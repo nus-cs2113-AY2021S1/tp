@@ -1,4 +1,4 @@
 package seedu.duke.constants;
 
-public class test {
+public class Examples {
 }
