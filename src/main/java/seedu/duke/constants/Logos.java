@@ -4,13 +4,13 @@ public class Logos {
     public static final String NEWLINE = System.lineSeparator();
 
 
-    public static final String LOGO_1 = " ,-----.,--.   ,--.      ,--.                  \n"
+    public static final String LOGO_1 = " ,-----.,--.   ,--.      ,--.\n"
             + "'  .--./|  |   |  | ,"
-            + "---.|  |,-. ,---. ,--.--. \n"
-            + "|  |    |  |   |  || .--'|     /| .-. :|  .--' \n"
+            + "---.|  |,-. ,---. ,--.--.\n"
+            + "|  |    |  |   |  || .--'|     /| .-. :|  .--'\n"
             + "'  '--'\\|  '--.|"
-            + "  |\\ `--.|  \\  \\\\   --.|  |    \n"
-            + " `-----'`-----'`--' `---'`--'`--'`----'`--'   \n";
+            + "  |\\ `--.|  \\  \\\\   --.|  |\n"
+            + " `-----'`-----'`--' `---'`--'`--'`----'`--'\n";
 
     // TODO: convert to emoticon
     public static final String PLAIN_TEXT_DIVIDER = "--------------------------------------------------------------";
