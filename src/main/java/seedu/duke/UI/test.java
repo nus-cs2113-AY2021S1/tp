@@ -1,4 +1,4 @@
 package seedu.duke.ui;
 
-public class test {
+public class Test {
 }

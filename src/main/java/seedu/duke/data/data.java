@@ -1,4 +1,4 @@
 package seedu.duke.data;
 
-public class data {
+public class Data {
 }
