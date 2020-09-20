@@ -1,4 +1,4 @@
-package seedu.duke.Constants;
+package seedu.duke.constants;
 
 public class Logos {
     public static final String NEWLINE = System.lineSeparator();
