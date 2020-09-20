@@ -1,4 +1,4 @@
 package seedu.duke.constants;
 
-public class clickerMessages {
+public class ClickerMessages {
 }
