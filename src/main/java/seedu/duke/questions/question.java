@@ -1,4 +1,4 @@
 package seedu.duke.questions;
 
-public class question {
+public class Question {
 }
