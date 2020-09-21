@@ -1,12 +1,12 @@
 package seedu.duke.question;
 
-public class MCQ extends Question{
+public class Mcq extends Question {
 
     private String[] wrongAnswers = new String[4];
     private String correctAnswer;
     int numWrongAnswers;
 
-    public MCQ(String correctAnswer, String question, int numWrongAnswers) {
+    public Mcq(String correctAnswer, String question, int numWrongAnswers) {
         super(correctAnswer, question);
         setNumWrongAnswers(numWrongAnswers);
     }

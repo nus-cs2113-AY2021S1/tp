@@ -4,7 +4,7 @@ public class FillBlank extends Question {
     private String stringBefore;
     private String stringAfter;
 
-    public FillBlank(String correctAnswer, String stringBefore, String stringAfter){
+    public FillBlank(String correctAnswer, String stringBefore, String stringAfter) {
         super(correctAnswer, "");
         setStringBefore(stringBefore);
         setStringAfter(stringAfter);
