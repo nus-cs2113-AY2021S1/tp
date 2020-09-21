@@ -6,7 +6,7 @@ import seedu.duke.ui.UI;
 
 public class Duke {
     private static final Scanner SCANNER = new Scanner(System.in);
-    
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
