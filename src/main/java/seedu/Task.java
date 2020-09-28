@@ -1,4 +1,4 @@
-package seedu.PlaNUS;
+package seedu;
 
 public class Task {
     protected String description;
