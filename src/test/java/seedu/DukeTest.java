@@ -1,4 +1,4 @@
-package seedu.Duke;
+package seedu;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
