@@ -1,4 +1,4 @@
-package seedu;
+package seedu.Duke;
 
 public class Task {
     protected String description;

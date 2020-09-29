@@ -1,6 +1,4 @@
-package seedu.duke;
-
-import seedu.Task;
+package seedu.Duke;
 
 import java.util.ArrayList;
 import java.util.Scanner;
