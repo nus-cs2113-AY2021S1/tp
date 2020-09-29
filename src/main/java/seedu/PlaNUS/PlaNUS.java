@@ -1,9 +1,9 @@
-package seedu.Duke;
+package seedu.PlaNUS;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Duke {
+public class PlaNUS {
 
     public static final String COMMAND_HELP = "help";
     public static final String COMMAND_ADD = "add";
