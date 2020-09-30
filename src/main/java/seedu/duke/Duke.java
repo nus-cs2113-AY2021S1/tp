@@ -17,5 +17,9 @@ public class Duke {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
+        int check = 1;
+        if (check==1) {
+           System.out.println("Testin for forking workflow");
+        }
     }
 }
