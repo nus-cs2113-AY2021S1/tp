@@ -2,9 +2,9 @@ package seedu.duke.quiz;
 
 public class QuizPreparation {
 //    // function to select quizzes
-//    public static void selectQuizzes(String searchTerm, ) {
+//    public static void selectQuizzes(String searchTerm,) {
 //        // create an empty instance of quiz
-//        Quiz newQuiz = new Quiz(participant, numQuestions );
+//        Quiz newQuiz = new Quiz(participant, numQuestions);
 //
 //        // look through the question.txt files and find suitable questions based on conditions
 //        filterQuestions(searchTerm, topic, subtopic, )
