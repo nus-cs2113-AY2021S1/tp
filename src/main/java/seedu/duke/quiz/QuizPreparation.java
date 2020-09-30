@@ -9,7 +9,7 @@ public class QuizPreparation {
 //        // look through the question.txt files and find suitable questions based on conditions
 //        filterQuestions(searchTerm, topic, subtopic, )
 //    /*
-//    	search term -> word it will search for
+//        search term -> word it will search for
 //        topic -> filter only for questions under a specific topic
 //        subtopic -> filter only questions under a specific topic
 //        type -> filter questions of a certain type only
