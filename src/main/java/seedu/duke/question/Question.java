@@ -13,7 +13,7 @@ public class Question {
         this.isCorrect = false;
     }
 
-    public void setIsCorrect(boolean isCorrect){
+    public void setIsCorrect(boolean isCorrect) {
         this.isCorrect = isCorrect;
     }
 
