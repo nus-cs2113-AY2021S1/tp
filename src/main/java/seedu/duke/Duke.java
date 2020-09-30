@@ -2,7 +2,6 @@ package seedu.duke;
 
 import java.util.Scanner;
 import seedu.duke.constants.Logos;
-import seedu.duke.ui.UI;
 
 public class Duke {
     private static final Scanner SCANNER = new Scanner(System.in);
