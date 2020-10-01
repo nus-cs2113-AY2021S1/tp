@@ -29,7 +29,7 @@ public class FileFunctions {
      * @throws FileNotFoundException the file to check was not found
      */
     public static void checkFileExists(java.io.File file) throws FileNotFoundException {
-        if (!file.exists()){
+        if (!file.exists()) {
             throw new FileNotFoundException();
         }
     }
