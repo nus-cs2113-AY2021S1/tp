@@ -12,6 +12,7 @@ public class Duke {
                 + "  / /_/ / / __ `/  |/ / / / /\\__ \\ \n"
                 + " / ____/ / /_/ / /|  / /_/ /___/ / \n"
                 + "/_/   /_/\\__,_/_/ |_/\\____//____/  \n";
+
         System.out.println("Hello from\n" + logo);
         System.out.println("What is your name?");
 
