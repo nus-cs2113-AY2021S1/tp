@@ -7,8 +7,8 @@ public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
 
-    private static final String HELP_STRING = "This is a help command. Currently all commands are recognise as Help " +
-            "command.";
+    private static final String HELP_STRING = "This is a help command. Currently all commands are recognise as Help "
+            + "command.";
 
     @Override
     public String execute() {
