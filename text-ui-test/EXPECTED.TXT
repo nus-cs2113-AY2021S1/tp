@@ -1,3 +1,7 @@
+Enter command:
 This is a help command. Currently all commands are recognise as Help command.
+Enter command:
 This is a help command. Currently all commands are recognise as Help command.
+Enter command:
+null
 BYE
