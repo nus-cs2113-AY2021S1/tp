@@ -1,4 +1,4 @@
-# Duke
+# Financeit
 
 {Give product intro here}
 
