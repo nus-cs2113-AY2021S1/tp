@@ -22,11 +22,6 @@ public class Ui {
      * @return user's input
      */
     public String readCommand() {
-//        String userInput;
-//        try {
-//            userInput = in.nextLine().trim();
-//        }
-//        catch (NoSuchElementException e)
         return in.nextLine().trim();
     }
 
@@ -73,7 +68,7 @@ public class Ui {
      * Shows the task deleted and the number of tasks left in the list.
      *
      * @param taskNumberDelete task number of the task to be deleted.
-     * @param taskList task list of the task to be deleted.
+     * @param taskList         task list of the task to be deleted.
      */
     public static void printDeleteTaskMessage(int taskNumberDelete, TaskList taskList) {
         /* - 1 is catered for array list's index starting from 0. */
@@ -96,6 +91,7 @@ public class Ui {
     /**
      * Shows the user the task (that was indicated by the user) that was marked as done .
      *
+     * @param taskList            task list that has the task marked as done.
      * @param taskNumberCompleted task number indicated by the user as done.
      */
     public static void printCompleteTaskMessage(int taskNumberCompleted, TaskList taskList) {
@@ -161,8 +157,8 @@ public class Ui {
             System.out.println("Error: Please key in the event in this format: event ... /at ...");
             break;
         case "invalid command":
-            System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n" +
-                    "Available commands: list, done, todo, deadline, event");
+            System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
+                    + "Available commands: list, done, todo, deadline, event");
             break;
         case "invalid task action":
             System.out.println("Error: Total task(s): " + taskList.getTotalTask());
