@@ -1,3 +1,4 @@
+Loading userSettings.txt save file...
 Take a quiz with
  ,-----.,--.   ,--.      ,--.
 '  .--./|  |   |  | ,---.|  |,-. ,---. ,--.--.
@@ -5,5 +6,8 @@ Take a quiz with
 '  '--'\|  '--.|  |\ `--.|  \  \\   --.|  |
  `-----'`-----'`--' `---'`--'`--'`----'`--'
 
-What is your name?
-Hello James Gosling
+--------------------------------------------------------------
+Hello John Doe! Welcome to CLIcker!
+What can I do for you?
+--------------------------------------------------------------
+Bye John Doe! Hope to see you again soon! 
