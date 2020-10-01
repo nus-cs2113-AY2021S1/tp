@@ -12,7 +12,7 @@ import static seedu.duke.constants.RegexStrings.BLANK_STRING_REGEX;
 
 public class FileFunctions {
     /**
-     * Get a file from file path
+     * Get a file from file path.
      *
      * @param filePath given file path
      * @return file object retrieved from the given file path
@@ -23,7 +23,7 @@ public class FileFunctions {
     }
 
     /**
-     * check if a file exists
+     * check if a file exists.
      *
      * @param file a given file to check
      * @throws FileNotFoundException the file to check was not found
@@ -35,7 +35,7 @@ public class FileFunctions {
     }
 
     /**
-     * Writes a double new line to the file to create one blank line of space
+     * Writes a double new line to the file to create one blank line of space.
      *
      * @param filePath given file path
      * @throws IOException unable to write to file
