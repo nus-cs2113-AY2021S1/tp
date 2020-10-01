@@ -1,0 +1,7 @@
+Topic: Biology
+Sub-topic: Human Body
+Question title: Circulatory System
+Question type: QNA
+---
+Question: Which organ in the circulatory system pumps blood? (1 word)
+Answer: heart
