@@ -1,13 +1,73 @@
 package seedu.duke;
 
-import java.util.Scanner;
+import seedu.duke.command.Command;
+import seedu.duke.command.ExitCommand;
+import seedu.duke.data.notebook.Notebook;
+import seedu.duke.data.timetable.Timetable;
+import seedu.duke.storage.StorageManager;
+import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Parser;
 
+/**
+ * Entry point of the NotUS application.
+ */
 public class Duke {
+
+    private InterfaceManager interfaceManager;
+    private StorageManager storageManager;
+    private Notebook notebook;
+    private Timetable timetable;
+
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Initializes the required managers.
+     */
+    private void init() {
+        this.interfaceManager = new InterfaceManager();
+        this.storageManager = new StorageManager();
+        this.notebook = new Notebook();
+        this.timetable = new Timetable();
+    }
+
+    /** Reads the user command and executes it until the user exits the program. */
+    private void runCommandLoop() {
+        Command command;
+
+        do {
+            interfaceManager.prints("HI");
+            String userCommandText = interfaceManager.getUserCommandInput();
+            command = new Parser().parseCommand(userCommandText);
+            String result = executeCommand(command);
+            interfaceManager.prints(result);
+        } while (!ExitCommand.isExit(command));
+        interfaceManager.prints("BYE");
+    }
+
+    /**
+     * Exits the application.
+     */
+    private void exit() {
+
+    }
+
+    /** Runs the program until termination. */
+    private void run() {
+        init();
+        runCommandLoop();
+        exit();
+    }
+
+    private String executeCommand(Command command) {
+        command.setData(notebook, timetable);
+        String result = command.execute();
+        storageManager.saveAll(notebook, timetable);
+        return result;
+    }
+
+    /**
+     * Main entry-point for the application.
      */
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
+        /*String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
@@ -16,6 +76,8 @@ public class Duke {
         System.out.println("What is your name?");
 
         Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+
+        System.out.println("Hello " + in.nextLine());*/
+        new Duke().run();
     }
 }
