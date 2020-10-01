@@ -6,13 +6,15 @@ import java.util.Scanner;
 import seedu.duke.constants.Logos;
 
 import static seedu.duke.database.UserSettingsLoader.loadUserSettings;
-import static seedu.duke.ui.UI.*;
+import static seedu.duke.ui.UI.printDivider;
+import static seedu.duke.ui.UI.printFarewellMessage;
+import static seedu.duke.ui.UI.printHelloMessage;
 
 public class Duke {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     /**
-     * settings set to defaults
+     * Settings set to defaults.
      **/
     private static final int NUMBER_OF_SETTINGS = 1; // currently only, username
     public static String username = "User";

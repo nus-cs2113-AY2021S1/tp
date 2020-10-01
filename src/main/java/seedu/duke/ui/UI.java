@@ -8,19 +8,19 @@ public class UI {
     public static final String NEWLINE = System.lineSeparator();
 
     /**
-     * Line divider set to default before settings are loaded
+     * Line divider set to default before settings are loaded.
      */
     public static String currentLineDivider = PLAIN_TEXT_DIVIDER;
 
     /**
-     * Prints the line divider to the console
+     * Prints the line divider to the console.
      */
     public static void printDivider() {
         System.out.println(currentLineDivider);
     }
 
     /**
-     * Prints the personalised greeting message
+     * Prints the personalised greeting message.
      *
      * @param username user input name
      */
@@ -31,7 +31,7 @@ public class UI {
     }
 
     /**
-     * Prints the personalised farewell message
+     * Prints the personalised farewell message.
      *
      * @param username user indicated name
      */

@@ -35,7 +35,7 @@ public class fileFunctions {
     }
 
     /**
-     * writes a double new line to the file to create one blank line of space
+     * Writes a double new line to the file to create one blank line of space
      *
      * @param filePath given file path
      * @throws IOException unable to write to file
@@ -46,7 +46,7 @@ public class fileFunctions {
     }
 
     /**
-     * appends the string to the given file specified by filePath
+     * Appends the string to the given file specified by filePath.
      *
      * @param textToAppend string to be appended to the file
      * @param filePath filepath to the file
@@ -59,7 +59,7 @@ public class fileFunctions {
     }
 
     /**
-     * continue reading through a file until a specific string is found
+     * Continue reading through a file until a specific string is found.
      *
      * @param stringSearched indicator string
      * @param fileScanner    scanner for scanning a file
@@ -79,17 +79,17 @@ public class fileFunctions {
     }
 
     /**
-     * Read non-blank lines of the file
+     * Read non-blank lines of the file.
      *
-     * @param FILE_SCANNER scanner to read through lines in the file
+     * @param fileScanner scanner to read through lines in the file
      * @return return a non blank line read from the file
      */
-    public static String getFileNextLine(Scanner FILE_SCANNER) {
+    public static String getFileNextLine(Scanner fileScanner) {
         String fileInput;
         do {
-            fileInput = FILE_SCANNER.nextLine();
-        } while (fileInput.matches(BLANK_STRING_REGEX) ||
-                fileInput.startsWith(INPUT_COMMENT_MARKER));
+            fileInput = fileScanner.nextLine();
+        } while (fileInput.matches(BLANK_STRING_REGEX)
+                || fileInput.startsWith(INPUT_COMMENT_MARKER));
         return fileInput;
     }
 }

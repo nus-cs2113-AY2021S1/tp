@@ -1,10 +1,10 @@
 package seedu.duke.parsers;
 
-import seedu.duke.exceptions.*;
+import seedu.duke.exceptions.SettingObjectWrongFormatException;
 
 public class Parsers {
     /**
-     * Extract the value string from line in settings save file
+     * Extract the value string from line in settings save file.
      *
      * @param fileLine    a line read from the file
      * @param objectTitle the string indicating the type of object

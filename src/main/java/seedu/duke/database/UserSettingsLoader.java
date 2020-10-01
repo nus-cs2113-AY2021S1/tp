@@ -1,18 +1,20 @@
 package seedu.duke.database;
 
-import seedu.duke.exceptions.*;
-import seedu.duke.parsers.*;
-
-import java.util.*;
+import seedu.duke.exceptions.SettingObjectWrongFormatException;
+import seedu.duke.parsers.Parsers;
 
 import java.io.FileNotFoundException;
 
-import static seedu.duke.constants.ClickerMessages.*;
+import static seedu.duke.constants.ClickerMessages.ERROR_READING_FILE_ON_LINE_MSG_FORMAT;
+import static seedu.duke.constants.ClickerMessages.LOADING_SETTINGS_MSG;
+import static seedu.duke.constants.ClickerMessages.SETTINGS_FILE_NOT_FOUND_MSG;
 import static seedu.duke.constants.FilePaths.DEFAULT_USER_SETTINGS_FILE_PATH;
 import static seedu.duke.constants.Tags.USERNAME_TAG;
 import static seedu.duke.database.fileFunctions.readFileUntilLineContainsString;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class UserSettingsLoader {
@@ -31,14 +33,14 @@ public class UserSettingsLoader {
 
     private static void readUserSettingsFile(ArrayList<String> savedSettings, File userSettingsFile)
             throws FileNotFoundException {
-        Scanner USER_SETTINGS_FILE_SCANNER = new Scanner(userSettingsFile);
+        Scanner userSettingsFileScanner = new Scanner(userSettingsFile);
         String fileLine = "";
         String username = "temp";
 
         try {
             String parsedString;
 
-            fileLine = readFileUntilLineContainsString(USERNAME_TAG, USER_SETTINGS_FILE_SCANNER);
+            fileLine = readFileUntilLineContainsString(USERNAME_TAG, userSettingsFileScanner);
             parsedString = Parsers.parseFileObject(fileLine, USERNAME_TAG);
             if (!parsedString.isBlank()) {
                 username = parsedString;
@@ -51,7 +53,7 @@ public class UserSettingsLoader {
     }
 
     /**
-     * Sets the default settings to saved settings array
+     * Sets the default settings to saved settings array.
      *
      * @param savedSettings array of saved settings
      * @param username      user input name
