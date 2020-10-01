@@ -41,7 +41,7 @@ public class InterfaceManager {
      * @param message Message to be printed out.
      */
     public void prints(String message) {
-        out.println(message + LS);
+        out.println(message);
     }
 
     /**
