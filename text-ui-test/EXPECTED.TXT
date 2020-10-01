@@ -1,3 +1,7 @@
+Loading userSettings.txt save file...
+userSettings.txt save file not found
+Creating new file...
+--------------------------------------------------------------
 Take a quiz with
  ,-----.,--.   ,--.      ,--.
 '  .--./|  |   |  | ,---.|  |,-. ,---. ,--.--.
@@ -5,5 +9,8 @@ Take a quiz with
 '  '--'\|  '--.|  |\ `--.|  \  \\   --.|  |
  `-----'`-----'`--' `---'`--'`--'`----'`--'
 
-What is your name?
-Hello James Gosling
+--------------------------------------------------------------
+Hello User! Welcome to CLIcker!
+What can I do for you?
+--------------------------------------------------------------
+Bye User! Hope to see you again soon!
