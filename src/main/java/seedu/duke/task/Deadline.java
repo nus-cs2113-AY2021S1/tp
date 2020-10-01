@@ -1,4 +1,4 @@
-package seedu.duke.Task;
+package seedu.duke.task;
 
 /**
  * Represents a deadline task.

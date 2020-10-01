@@ -1,4 +1,4 @@
-package seedu.duke.Task;
+package seedu.duke.task;
 
 /**
  * Represents a Task in the task list.
@@ -12,7 +12,7 @@ public abstract class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
-        }
+    }
 
     /**
      * Returns the status of the task and the description of the task.

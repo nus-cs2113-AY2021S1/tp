@@ -1,12 +1,12 @@
 package seedu.duke;
 
-import seedu.duke.Command.AddCommand;
-import seedu.duke.Command.Command;
-import seedu.duke.Command.DeleteCommand;
-import seedu.duke.Command.DoneCommand;
-import seedu.duke.Command.ExitCommand;
-import seedu.duke.Command.FindCommand;
-import seedu.duke.Command.ListCommand;
+import seedu.duke.command.AddCommand;
+import seedu.duke.command.Command;
+import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.DoneCommand;
+import seedu.duke.command.ExitCommand;
+import seedu.duke.command.FindCommand;
+import seedu.duke.command.ListCommand;
 
 /**
  * Determines the type of command input by the user and calls for the respective command function.

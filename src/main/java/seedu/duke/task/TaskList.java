@@ -1,4 +1,4 @@
-package seedu.duke.Task;
+package seedu.duke.task;
 
 import java.util.ArrayList;
 

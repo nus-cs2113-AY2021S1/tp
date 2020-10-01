@@ -1,11 +1,11 @@
-package seedu.duke.Command;
+package seedu.duke.command;
 
 import seedu.duke.DukeException;
 import seedu.duke.Storage;
-import seedu.duke.Task.Deadline;
-import seedu.duke.Task.Event;
-import seedu.duke.Task.TaskList;
-import seedu.duke.Task.Todo;
+import seedu.duke.task.Deadline;
+import seedu.duke.task.Event;
+import seedu.duke.task.TaskList;
+import seedu.duke.task.Todo;
 import seedu.duke.Ui;
 
 /**

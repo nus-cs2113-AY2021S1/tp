@@ -1,10 +1,9 @@
 package seedu.duke;
 
-import seedu.duke.Task.Task;
-import seedu.duke.Task.TaskList;
+import seedu.duke.task.Task;
+import seedu.duke.task.TaskList;
 
 import java.io.IOException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -42,9 +41,9 @@ public class Ui {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        System.out.println("____________________________________________________________\n" +
-                " Hello! I'm Duke\n" +
-                " What can I do for you?");
+        System.out.println("____________________________________________________________\n"
+                + " Hello! I'm Duke\n"
+                + " What can I do for you?");
         printDukeBorder(false);
     }
 
@@ -73,8 +72,8 @@ public class Ui {
     /**
      * Shows the task deleted and the number of tasks left in the list.
      *
-     * @param taskNumberDelete
-     * @param taskList
+     * @param taskNumberDelete task number of the task to be deleted.
+     * @param taskList task list of the task to be deleted.
      */
     public static void printDeleteTaskMessage(int taskNumberDelete, TaskList taskList) {
         /* - 1 is catered for array list's index starting from 0. */
@@ -100,7 +99,9 @@ public class Ui {
      * @param taskNumberCompleted task number indicated by the user as done.
      */
     public static void printCompleteTaskMessage(int taskNumberCompleted, TaskList taskList) {
-        System.out.println("Good work! I've marked this task as done:\n" + taskList.getTaskList().get(taskNumberCompleted - 1));
+        System.out.println(
+                "Good work! I've marked this task as done:\n"
+                        + taskList.getTaskList().get(taskNumberCompleted - 1));
     }
 
     /**
@@ -121,7 +122,7 @@ public class Ui {
      * Prints all tasks that contains the keyword, including the task index in the task list.
      *
      * @param taskList the list of tasks being searched.
-     * @param keyword keyword indicated by user.
+     * @param keyword  keyword indicated by user.
      * @throws DukeException if there are no tasks that contains the keyword.
      */
     public static void printFindTaskMessage(TaskList taskList, String keyword) throws DukeException {
@@ -205,7 +206,7 @@ public class Ui {
     }
 
     /**
-     * Shows the user the exception that occurred when creating a storage file
+     * Shows the user the exception that occurred when creating a storage file.
      *
      * @param e exception message.
      */

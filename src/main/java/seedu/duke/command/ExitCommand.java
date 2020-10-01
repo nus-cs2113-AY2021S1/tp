@@ -1,12 +1,12 @@
-package seedu.duke.Command;
+package seedu.duke.command;
 
 import seedu.duke.Storage;
-import seedu.duke.Task.TaskList;
+import seedu.duke.task.TaskList;
 
 /**
  * Saves the current task list locally before terminating the programme.
  */
-public class ExitCommand extends Command{
+public class ExitCommand extends Command {
 
     public ExitCommand(String userInput) {
         super(userInput);
@@ -16,7 +16,7 @@ public class ExitCommand extends Command{
      * Saves the current task list locally.
      *
      * @param taskList the task list to be saved.
-     * @param storage the storage to be saved to.
+     * @param storage  the storage to be saved to.
      */
     @Override
     public void execute(TaskList taskList, Storage storage) {
@@ -27,7 +27,7 @@ public class ExitCommand extends Command{
      * Sets the isExit flag to true.
      */
     @Override
-    public boolean isExit(){
+    public boolean isExit() {
         return true;
     }
 }

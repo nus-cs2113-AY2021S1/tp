@@ -1,9 +1,9 @@
-package seedu.duke.Command;
+package seedu.duke.command;
 
 
 import seedu.duke.DukeException;
 import seedu.duke.Storage;
-import seedu.duke.Task.TaskList;
+import seedu.duke.task.TaskList;
 import seedu.duke.Ui;
 
 /**

@@ -1,7 +1,7 @@
 package seedu.duke;
 
-import seedu.duke.Command.Command;
-import seedu.duke.Task.TaskList;
+import seedu.duke.command.Command;
+import seedu.duke.task.TaskList;
 
 import java.io.FileNotFoundException;
 

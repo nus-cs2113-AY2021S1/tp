@@ -1,10 +1,10 @@
 package seedu.duke;
 
-import seedu.duke.Task.Deadline;
-import seedu.duke.Task.Event;
-import seedu.duke.Task.Task;
-import seedu.duke.Task.TaskList;
-import seedu.duke.Task.Todo;
+import seedu.duke.task.Deadline;
+import seedu.duke.task.Event;
+import seedu.duke.task.Task;
+import seedu.duke.task.TaskList;
+import seedu.duke.task.Todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
