@@ -10,7 +10,7 @@ import static seedu.duke.constants.InputMarkers.INPUT_COMMENT_MARKER;
 import static seedu.duke.constants.Logos.NEWLINE;
 import static seedu.duke.constants.RegexStrings.BLANK_STRING_REGEX;
 
-public class fileFunctions {
+public class FileFunctions {
     /**
      * Get a file from file path
      *
@@ -92,4 +92,6 @@ public class fileFunctions {
                 || fileInput.startsWith(INPUT_COMMENT_MARKER));
         return fileInput;
     }
+
+
 }

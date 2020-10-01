@@ -1,4 +1,7 @@
 Loading userSettings.txt save file...
+userSettings.txt save file not found
+Creating new file...
+--------------------------------------------------------------
 Take a quiz with
  ,-----.,--.   ,--.      ,--.
 '  .--./|  |   |  | ,---.|  |,-. ,---. ,--.--.
@@ -7,7 +10,7 @@ Take a quiz with
  `-----'`-----'`--' `---'`--'`--'`----'`--'
 
 --------------------------------------------------------------
-Hello John Doe! Welcome to CLIcker!
+Hello User! Welcome to CLIcker!
 What can I do for you?
 --------------------------------------------------------------
-Bye John Doe! Hope to see you again soon! 
+Bye User! Hope to see you again soon!

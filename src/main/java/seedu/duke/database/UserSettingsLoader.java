@@ -10,7 +10,7 @@ import static seedu.duke.constants.ClickerMessages.LOADING_SETTINGS_MSG;
 import static seedu.duke.constants.ClickerMessages.SETTINGS_FILE_NOT_FOUND_MSG;
 import static seedu.duke.constants.FilePaths.DEFAULT_USER_SETTINGS_FILE_PATH;
 import static seedu.duke.constants.Tags.USERNAME_TAG;
-import static seedu.duke.database.fileFunctions.readFileUntilLineContainsString;
+import static seedu.duke.database.FileFunctions.readFileUntilLineContainsString;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -22,8 +22,8 @@ public class UserSettingsLoader {
         System.out.println(LOADING_SETTINGS_MSG);
 
         try {
-            File userSettingsFile = fileFunctions.getFileFromFilePath(DEFAULT_USER_SETTINGS_FILE_PATH);
-            fileFunctions.checkFileExists(userSettingsFile);
+            File userSettingsFile = FileFunctions.getFileFromFilePath(DEFAULT_USER_SETTINGS_FILE_PATH);
+            FileFunctions.checkFileExists(userSettingsFile);
             readUserSettingsFile(savedSettings, userSettingsFile);
         } catch (FileNotFoundException e) {
             System.out.println(SETTINGS_FILE_NOT_FOUND_MSG);

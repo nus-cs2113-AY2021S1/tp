@@ -1,7 +1,7 @@
 package seedu.duke.constants;
 
 /**
- * Default file paths for save files
+ * Default file paths for save files.
  */
 public class FilePaths {
     /** Default path to file for saving settings.  */
