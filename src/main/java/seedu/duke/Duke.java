@@ -33,7 +33,7 @@ public class Duke {
         Command command;
 
         do {
-            interfaceManager.prints("HI");
+            interfaceManager.prints("Enter command:");
             String userCommandText = interfaceManager.getUserCommandInput();
             command = new Parser().parseCommand(userCommandText);
             String result = executeCommand(command);
@@ -59,7 +59,7 @@ public class Duke {
     private String executeCommand(Command command) {
         command.setData(notebook, timetable);
         String result = command.execute();
-        storageManager.saveAll(notebook, timetable);
+        //storageManager.saveAll(notebook, timetable);
         return result;
     }
 
