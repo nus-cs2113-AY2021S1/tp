@@ -1,4 +1,7 @@
 # About us
+we are an idiosyncratic and narcissistic batch of self-righteous
+elitist who defends presumably morally questionable positions.
+
 
 Display | Name | Github Profile | Portfolio 
 --------|:----:|:--------------:|:---------:
