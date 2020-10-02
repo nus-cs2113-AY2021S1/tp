@@ -17,8 +17,7 @@ public class Module {
     public String toString() {
         if (this.exp == -1) {
             return this.modulecode;
-        }
-        else {
+        } else {
             return this.modulecode + " " + this.exp;
         }
     }
