@@ -5,6 +5,4 @@
 Useful links:
 * [User Guide](UserGuide.md)
 * [Developer Guide](DeveloperGuide.md)
-* [About Us](AboutUs.md)
-
-hi
+* [About Us](AboutUs.md)g
