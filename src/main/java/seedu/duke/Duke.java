@@ -1,24 +1,49 @@
 package seedu.duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
 import seedu.duke.constants.Logos;
 import seedu.duke.database.FileSavers;
 import seedu.duke.question.FillBlank;
 import seedu.duke.question.Qna;
 
+import static seedu.duke.database.UserSettingsLoader.loadUserSettings;
+import static seedu.duke.ui.UI.printDivider;
+import static seedu.duke.ui.UI.printFarewellMessage;
+import static seedu.duke.ui.UI.printHelloMessage;
+
 public class Duke {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Settings set to defaults.
+     **/
+    private static final int NUMBER_OF_SETTINGS = 1; // currently only, username
+    public static String username = "User";
+    public static ArrayList<String> savedSettings = new ArrayList<>(NUMBER_OF_SETTINGS);
+
+
+    /**
+     * Main entry-point for the CLIcker application.
      */
     public static void main(String[] args) {
-        System.out.println("Take a quiz with\n" + Logos.DOTTED_CLICKER_LOGO);
-        System.out.println("What is your name?");
+        setUserSettingsArrayList(savedSettings, username);
+        loadUserSettings(savedSettings);
+        printDivider();
+        username = savedSettings.get(0);
 
-        System.out.println("Hello " + SCANNER.nextLine());
+        System.out.println("Take a quiz with\n" + Logos.DOTTED_CLICKER_LOGO);
+        printHelloMessage(username);
+        printFarewellMessage(username);
+
+    }
 
         //testFbAndQnaSavers();
+
+    private static void setUserSettingsArrayList(ArrayList<String> savedSettings, String username) {
+        savedSettings.add(username);
+
     }
 
     /*
