@@ -10,7 +10,5 @@ public class Constants {
         EXP,
         INC
     }
-    //public static final String paramRegex = String.format("(\\s+)([%s]{1})(\\w+) || ([%s]{1})(\\w+)(\\s+)", String.join("", DEFAULT_PARAMS_PREFIX), String.join("", DEFAULT_PARAMS_PREFIX));
-    public static final String paramRegex = String.format("(([-/]{1})(\\w+)(\\s+))");
-
+    public static final String paramRegex = String.format("([%s]{1})(\\w+)(\\s+)", String.join("", DEFAULT_PARAMS_PREFIX));
 }
