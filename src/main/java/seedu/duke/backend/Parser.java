@@ -12,7 +12,7 @@ public class Parser {
     }
 
     /**
-     * Given a string input, returns a sanitized and pre-processed UserInput object
+     * Given a string input, returns a sanitized and pre-processed UserInput object.
      * @param input The string to be processed
      * @return UserInput object containing the command and all arguments
      */
@@ -65,8 +65,8 @@ public class Parser {
     }
 
     /**
-     * TODO implement string sanitization
-     * Cleans up the string to ensure that anything else is safe for the rest of the program to handle
+     * TODO implement string sanitization.
+     * Cleans up the string to ensure that anything else is safe for the rest of the program to handle.
      * @param s String to be sanitized
      * @return Sanitized string S
      */
