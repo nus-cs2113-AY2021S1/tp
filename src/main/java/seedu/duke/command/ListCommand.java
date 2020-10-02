@@ -1,8 +1,8 @@
 package seedu.duke.command;
 
 import seedu.duke.Storage;
-import seedu.duke.task.TaskList;
 import seedu.duke.Ui;
+import seedu.duke.task.TaskList;
 
 /**
  * Lists all tasks in the task list to the user.

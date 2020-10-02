@@ -46,9 +46,7 @@ public class Ui {
      * Prints the Duke exit message.
      */
     public static void printExitMessage() {
-        printDukeBorder(true);
-        System.out.println("Bye. Hope to see you again soon!\n");
-        printDukeBorder(false);
+        System.out.println("Bye. Hope to see you again soon!");
     }
 
     /**
@@ -158,7 +156,7 @@ public class Ui {
             break;
         case "invalid command":
             System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
-                    + "Available commands: list, done, todo, deadline, event");
+                    + "Available commands: list, done, todo, deadline, event, find, delete, bye");
             break;
         case "invalid task action":
             System.out.println("Error: Total task(s): " + taskList.getTotalTask());
@@ -217,10 +215,4 @@ public class Ui {
         System.out.println("New output file created.");
     }
 
-    /**
-     * Prints the message to inform the user that the storage file was overwritten.
-     */
-    public static void printFileOverwriteMessage() {
-        System.out.println("File exists. Data overwrite.");
-    }
 }

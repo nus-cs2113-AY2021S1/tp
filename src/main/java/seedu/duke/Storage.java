@@ -71,7 +71,6 @@ public class Storage {
     private static void createFile(File output) {
         try {
             if (output.exists()) {
-                Ui.printFileOverwriteMessage();
                 return;
             }
             if (!output.getParentFile().exists()) {

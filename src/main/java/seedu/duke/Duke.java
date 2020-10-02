@@ -6,8 +6,8 @@ import seedu.duke.task.TaskList;
 import java.io.FileNotFoundException;
 
 /**
- *Entry point of the Duke application.
- *Initializes the application and starts the interaction with the user.
+ * Entry point of the Duke application.
+ * Initializes the application and starts the interaction with the user.
  */
 public class Duke {
 
@@ -52,7 +52,6 @@ public class Duke {
                 Ui.printDukeBorder(false);
             }
         }
-        Ui.printExitMessage();
     }
 
 

@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.Storage;
+import seedu.duke.Ui;
 import seedu.duke.task.TaskList;
 
 /**
@@ -21,6 +22,7 @@ public class ExitCommand extends Command {
     @Override
     public void execute(TaskList taskList, Storage storage) {
         storage.saveData(taskList);
+        Ui.printExitMessage();
     }
 
     /**
