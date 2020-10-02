@@ -10,8 +10,8 @@ import java.io.IOException;
 
 public class FileSavers {
 
-    public static void saveFillBlankQuestionToNewFile(String topic, String subTopic, String questionName,
-                                                      Question question) {
+    public static void saveFillBlankAndQnaQuestionToNewFile(String topic, String subTopic, String questionName,
+                                                            Question question) {
         // Creates a new directory for the file
         String filePathWithoutQuestionName = "data\\Quizzes\\" + topic + "\\" + subTopic;
         File directory = new File(filePathWithoutQuestionName);
@@ -22,7 +22,7 @@ public class FileSavers {
             System.out.printf("Opening %s ...", filePathWithoutQuestionName);
         }
 
-        // Creates a new _fb.txt file
+        // Creates a new _fb.txt / _qna.txt file
         String filePathWithQuestionName = filePathWithoutQuestionName + "\\" + questionName + "_fb.txt";
         String textToWrite;
         if (question instanceof FillBlank) {
