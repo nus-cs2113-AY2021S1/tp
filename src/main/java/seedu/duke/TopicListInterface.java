@@ -3,9 +3,14 @@ package seedu.duke;
 import java.util.ArrayList;
 
 public interface TopicListInterface {
-    public ArrayList<TopicInterface> getTopics();
-    public void showTopics();
-    public void addTopic(TopicInterface topic);
-    public void deleteTopic(TopicInterface topic);
-    public int getTopicCount();
+    ArrayList<TopicInterface> getTopics();
+
+    void showTopics();
+
+    void addTopic(TopicInterface topic);
+
+    void deleteTopic(TopicInterface topic);
+
+    int getTopicCount();
+
 }

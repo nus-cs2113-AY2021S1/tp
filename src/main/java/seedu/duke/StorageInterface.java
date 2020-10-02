@@ -3,6 +3,8 @@ package seedu.duke;
 import java.util.ArrayList;
 
 public interface StorageInterface {
-    public void save(ArrayList<TopicInterface> topics);
-    public ArrayList<TopicInterface> load();
+    void save(ArrayList<TopicInterface> topics);
+
+    ArrayList<TopicInterface> load();
+
 }
