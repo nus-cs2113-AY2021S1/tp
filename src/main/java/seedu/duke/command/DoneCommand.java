@@ -18,7 +18,7 @@ public class DoneCommand extends Command {
      * Saves the updated task list in the storage after the task is marked as done.
      *
      * @param taskList the task list that contains the task.
-     * @param the      storage to be saved to.
+     * @param storage  the storage to be saved to.
      * @throws DukeException if the done command is invalid.
      */
     @Override

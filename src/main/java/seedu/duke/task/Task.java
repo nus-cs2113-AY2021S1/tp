@@ -4,8 +4,8 @@ package seedu.duke.task;
  * Represents a Task in the task list.
  */
 public abstract class Task {
-    public static final String TICK_SYMBOL = "\u2713";
-    public static final String CROSS_SYMBOL = "\u2718";
+    public static final String TICK_SYMBOL = "/";
+    public static final String CROSS_SYMBOL = "X";
     protected String description;
     protected boolean isDone;
 

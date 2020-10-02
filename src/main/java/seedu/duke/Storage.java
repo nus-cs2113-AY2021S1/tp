@@ -18,7 +18,7 @@ import java.util.Scanner;
 public class Storage {
 
     private static String storageFilePath;
-    public static final String TICK_SYMBOL = "[\u2713]";
+    public static final String TICK_SYMBOL = "[/]";
 
     public Storage(String filePath) {
         storageFilePath = filePath;

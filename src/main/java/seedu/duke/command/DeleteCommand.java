@@ -19,7 +19,7 @@ public class DeleteCommand extends Command {
      * Saves the updated task list in the storage after the task is deleted.
      *
      * @param taskList the task list to delete the task from.
-     * @param the      storage to be saved to.
+     * @param storage  the storage to be saved to.
      * @throws DukeException if the delete command input is invalid.
      */
     @Override
