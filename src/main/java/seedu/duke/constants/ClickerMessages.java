@@ -20,9 +20,7 @@ public class ClickerMessages {
     public static final String SETTINGS_FILE_NOT_FOUND_MSG = "userSettings.txt save file not found" + NEWLINE
             + "Creating new file...";
 
-    /**
-     * File creator msg
-     */
+    /** File creator function messages.  */
     public static final String NEW_FILE_CREATED_MSG_FORMAT = "New file created";
     public static final String IO_ERROR_WHEN_MAKING_FILE_MSG = "IO error when making file!";
     public static final String FILE_ALREADY_EXISTS_MSG = "File already exists.";

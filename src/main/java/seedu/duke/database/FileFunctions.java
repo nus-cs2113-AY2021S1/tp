@@ -148,10 +148,10 @@ public class FileFunctions {
             File file = new File(directoryPath);
             //Creating the directory
             boolean isFileCreated = file.mkdir();
-            if(isFileCreated) {
+            if (isFileCreated) {
                 System.out.println(DIRECTORY_CREATED_SUCCESSFULLY_MSG);
                 filePath = directoryPath + "/" + txtFileName + ".txt";
-            }else{
+            } else {
                 System.out.println(COULD_NOT_CREATE_DIRECTORY_MSG);
             }
         } catch (FilePathInvalidException e) {
