@@ -3,18 +3,17 @@ package seedu.financeit.manualtracker;
 import seedu.financeit.utils.CommandPacket;
 import seedu.financeit.utils.Constants;
 import seedu.financeit.utils.FiniteStateMachine;
-import seedu.financeit.utils.InputParser;
 import seedu.financeit.utils.UiManager;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class ManualTracker {
     private static ArrayList<Ledger> ledgers = new ArrayList<>();
     private static Ledger currLedger;
-    private static Scanner scanner = new Scanner(System.in);
+
     private static CommandPacket packet;
-    private static InputParser inputParser = new InputParser();
+
 
     public static void main() {
         boolean endTracker = false;
@@ -47,6 +46,10 @@ public class ManualTracker {
                 break;
             case INVALID_STATE:
                 FSM.setNextState(handleInvalidState());
+                break;
+            case EXIT:
+                System.out.println("Exiting Manual Tracker...");
+                endTracker = true;
                 break;
             case END_TRACKER:
                 endTracker = true;
@@ -156,21 +159,19 @@ public class ManualTracker {
         return state;
     }
 
-    private static CommandPacket handleInput(){
-        UiManager.printInputPrompt();
-        String input = scanner.nextLine();
-        return inputParser.parseInput(input.toLowerCase());
-    }
+
 
     private static FiniteStateMachine.State handleMainMenu(){
         System.out.println("Enter something");
-        String[][] input = {{"No." , "Command"},
+        String[][] input = {
+                {"No." , "Command"},
                 {"1.", "Open ledger"},
                 {"2.", "New ledger"},
                 {"3.", "list ledgers"},
-                {"4", "delete ledgers"}};
+                {"4", "delete ledgers"}
+        };
         UiManager.printList(input);
-        packet = handleInput();
+        packet = UiManager.handleInput();
         System.out.println(packet);
         switch(packet.getCommandString()){
         case "open":
@@ -182,6 +183,8 @@ public class ManualTracker {
             return FiniteStateMachine.State.SHOW_LEDGER;
         case "delete":
             return FiniteStateMachine.State.DELETE_LEDGER;
+        case "exit":
+            return FiniteStateMachine.State.EXIT;
         default:
             System.out.println("Command not recognised. Try again.");
             return FiniteStateMachine.State.MAIN_MENU;
@@ -189,7 +192,7 @@ public class ManualTracker {
     }
 
     private static FiniteStateMachine.State handleOpenLedger(){
-        packet = handleInput();
+        packet = UiManager.handleInput();
         System.out.println(packet);
         switch(packet.getCommandString()){
         case "b":

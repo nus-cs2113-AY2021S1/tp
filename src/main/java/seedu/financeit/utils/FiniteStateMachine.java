@@ -11,7 +11,8 @@ public class FiniteStateMachine {
         SHOW_ENTRY,
         DELETE_ENTRY,
         END_TRACKER,
-        INVALID_STATE
+        INVALID_STATE,
+        EXIT
     }
 
     private State currState;

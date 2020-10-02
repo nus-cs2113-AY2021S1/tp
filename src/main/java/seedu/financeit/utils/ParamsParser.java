@@ -24,29 +24,42 @@ public class ParamsParser {
     public HashMap<String, String> parseParams() {
         HashMap<String, String> params = new HashMap<>();
         String[] buffer;
-        boolean shouldContinueParsing = true;
-        paramSubstring += " /end";
-        do {
-            //Separate into [paramType, rest of string]
-            buffer = paramSubstring.trim().split(" ", 2);
-            String paramType = buffer[0];
-            boolean paramArgumentExist = buffer.length > 1;
+        String paramArgument = "";
 
-            if (buffer[0].trim().equals("/end")){
-                break;
-            }
-            paramSubstring = buffer[1];
+        do {
+            paramSubstring += " ";
+            paramArgument = "";
+            //Separate into [paramType, rest of string]
+            buffer = paramSubstring.split(" ", 2);
+            String paramType = buffer[0];
+            System.out.println("paramt " + paramType);
+            boolean paramArgumentExist = buffer.length > 1;
+            paramSubstring = buffer[1] + " ";
             matcher = RegexMatcher.regexMatcher(paramSubstring, Constants.paramRegex);
             //Separate into [paramArgument, rest of string]
+            System.out.println("paramsub " + paramSubstring);
 
-            String separator = String.valueOf(paramSubstring.charAt(matcher.start()));
-            buffer = paramSubstring.split(separator, 2);
-            buffer[1] = separator + buffer[1];
-            String paramArgument = buffer[0];
-            boolean nextParamExist = buffer.length > 1;
-            paramSubstring = buffer[1];
-            params.put(paramType, paramArgument);
-        } while(shouldContinueParsing);
+            try {
+                if (matcher.start() != 0) {
+                    String separator = String.valueOf(paramSubstring.charAt(matcher.start()));
+                    buffer = paramSubstring.split(separator, 2);
+                    buffer[1] = separator + buffer[1];
+                    paramArgument = buffer[0];
+                    paramSubstring = buffer[1];
+                }
+                params.put(paramType, paramArgument);
+                System.out.println(params);
+            } catch (java.lang.IllegalStateException exception) {
+                //This point is reached when there are no more params to parse.
+
+                //If there is a param type registered earlier
+                if (paramType.length() > 0) {
+                    paramArgument = paramSubstring.trim();
+                    params.put(paramType, paramArgument);
+                }
+                break;
+            }
+        } while(true);
         return params;
     }
 }

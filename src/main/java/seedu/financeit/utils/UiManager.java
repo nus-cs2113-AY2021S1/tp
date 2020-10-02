@@ -2,8 +2,12 @@ package seedu.financeit.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class UiManager {
+    private static Scanner scanner = new Scanner(System.in);
+    private static InputParser inputParser = new InputParser();
+
     public static String returnLineWithSymbol(int width, String symbol){
         return new String(new char[width]).replace("\0", symbol);
     }
@@ -41,6 +45,12 @@ public class UiManager {
 
     public static void printInputPrompt(){
         drawPartition();
-        System.out.println(">>> ");
+        System.out.print(">>> ");
+    }
+
+    public static CommandPacket handleInput(){
+        UiManager.printInputPrompt();
+        String input = scanner.nextLine();
+        return inputParser.parseInput(input.toLowerCase());
     }
 }

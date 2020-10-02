@@ -29,30 +29,34 @@ public class InputParser {
         CommandPacket packet;
         HashMap<String, String> params = new HashMap<>();
         String[] buffer = null;
-
+        String separator = "";
         boolean paramsExist = false;
         boolean commandContentExist = false;
 
         //Split into [command, rest of input]
 
-
         //Check for existence of command title
         //commandContentExist = buffer.length > 1 && !(buffer[1].startsWith("/") || buffer[1].startsWith("-"));
-        for(String i : Constants.DEFAULT_PARAMS_PREFIX) {
-            commandContentExist = input.contains(i);
-            if (commandContentExist) {
-                buffer = input.split(i, 2);
-                buffer[1] = i + buffer[1];
-                commandString = buffer[0];
-                break;
-            }
-        }
-        if(commandContentExist) {
-            String paramSubstring = buffer[1];
-            params = new ParamsParser(paramSubstring).parseParams();
-        } else {
+        try {
+            matcher = RegexMatcher.regexMatcher(input, Constants.paramRegex);
+            separator = String.valueOf(input.charAt(matcher.start()));
+            commandContentExist = true;
+
+        } catch (java.lang.IllegalStateException exception) {
+            System.out.println("lol");
             commandString = input;
         }
+        if (commandContentExist) {
+            System.out.println(matcher.start());
+            buffer = input.split(separator, 2);
+            //command , /a param
+            System.out.println(buffer[0]);
+            buffer[1] = separator + buffer[1];
+            commandString = buffer[0];
+            String paramSubstring = buffer[1];
+            params = new ParamsParser(paramSubstring).parseParams();
+        }
+
         return new CommandPacket(commandString, params);
     }
 
