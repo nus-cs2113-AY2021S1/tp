@@ -15,7 +15,7 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         System.out.println("What is your name?");
 
-        Scanner IN = new Scanner(System.in);
-        System.out.println("Hello " + IN.nextLine());
+        Scanner in = new Scanner(System.in);
+        System.out.println("Hello " + in.nextLine());
     }
 }
