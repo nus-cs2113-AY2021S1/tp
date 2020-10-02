@@ -1,6 +1,11 @@
 Loading userSettings.txt save file...
 userSettings.txt save file not found
 Creating new file...
+Auto creating new file
+File does not exist.
+Directory created successfully
+File created
+New file created
 --------------------------------------------------------------
 Take a quiz with
  ,-----.,--.   ,--.      ,--.
