@@ -1,5 +1,8 @@
-import manualtracker.ManualTracker;
-import utils.InputParser;
+package seedu.financeit;
+
+import seedu.financeit.manualtracker.ManualTracker;
+import seedu.financeit.utils.InputParser;
+import seedu.financeit.utils.UiManager;
 
 public class Financeit {
     public static void main(String[] args){
@@ -18,7 +21,7 @@ public class Financeit {
                 {"Mary"}
         };
 
-        utils.UiManager.printList(input1);
+        UiManager.printList(input1);
         ManualTracker.main();
     }
 }

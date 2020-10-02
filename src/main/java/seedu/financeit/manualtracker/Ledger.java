@@ -1,6 +1,6 @@
-package manualtracker;
+package seedu.financeit.manualtracker;
 
-import manualtracker.Entry;
+import seedu.financeit.utils.InputParser;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ public class Ledger {
     ArrayList<Entry> entryList = new ArrayList<>();
     LocalDate date;
     public Ledger(String rawDate){
-        LocalDate date = LocalDate.parse(utils.InputParser.parseDateTime(rawDate, "date"));
+        LocalDate date = LocalDate.parse(InputParser.parseDateTime(rawDate, "date"));
         this.date = date;
     }
 

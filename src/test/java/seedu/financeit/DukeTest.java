@@ -1,8 +1,8 @@
-package seedu.duke;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
+package seedu.financeit;
 
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DukeTest {
     @Test

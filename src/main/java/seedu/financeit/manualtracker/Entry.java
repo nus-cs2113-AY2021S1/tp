@@ -1,8 +1,8 @@
-package manualtracker;
+package seedu.financeit.manualtracker;
 
-import utils.Constants;
-import utils.InputParser;
-import utils.User;
+import seedu.financeit.utils.Constants;
+import seedu.financeit.utils.InputParser;
+import seedu.financeit.utils.User;
 
 import java.time.LocalTime;
 import java.util.Arrays;

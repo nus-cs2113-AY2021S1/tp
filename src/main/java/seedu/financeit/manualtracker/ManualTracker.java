@@ -1,6 +1,10 @@
-package manualtracker;
+package seedu.financeit.manualtracker;
 
-import utils.*;
+import seedu.financeit.utils.CommandPacket;
+import seedu.financeit.utils.Constants;
+import seedu.financeit.utils.FiniteStateMachine;
+import seedu.financeit.utils.InputParser;
+import seedu.financeit.utils.UiManager;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,6 +15,7 @@ public class ManualTracker {
     private static Scanner scanner = new Scanner(System.in);
     private static CommandPacket packet;
     private static InputParser inputParser = new InputParser();
+
     public static void main() {
         boolean endTracker = false;
         FiniteStateMachine FSM = new FiniteStateMachine(FiniteStateMachine.State.MAIN_MENU);

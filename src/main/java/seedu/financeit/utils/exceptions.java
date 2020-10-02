@@ -1,4 +1,4 @@
-package utils;
+package seedu.financeit.utils;
 
 public class exceptions {
     public static class EmptyContentException extends Exception{

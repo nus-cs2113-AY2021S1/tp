@@ -1,9 +1,20 @@
-package utils;
+package seedu.financeit.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Printer {
+public class UiManager {
+    public static String returnLineWithSymbol(int width, String symbol){
+        return new String(new char[width]).replace("\0", symbol);
+    }
+    public static void printLineWithSymbol(int width, String symbol){
+        System.out.println(returnLineWithSymbol(width, symbol));
+    }
+
+    public static void drawPartition(){
+        printLineWithSymbol(Constants.MAX_PARTITION_LINE_LEN, "_");
+    }
+
     public static void printList(String[][] input){
         printRowHeader(input[0]);
         for (int i = 1; i < input.length; i++) {
@@ -28,4 +39,8 @@ public class Printer {
         System.out.println(new String(new char[header.length()]).replace("", "-"));
     }
 
+    public static void printInputPrompt(){
+        drawPartition();
+        System.out.println(">>> ");
+    }
 }

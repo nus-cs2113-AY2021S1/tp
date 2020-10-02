@@ -1,9 +1,9 @@
-package utils;
+package seedu.financeit.utils;
 
 import java.util.HashMap;
 import java.util.regex.Matcher;
 
-public final class InputParser {
+public class InputParser {
     protected Matcher matcher;
     public InputParser() {
     }

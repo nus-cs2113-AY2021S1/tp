@@ -1,4 +1,4 @@
-package utils;
+package seedu.financeit.utils;
 
 public class Constants {
     public static final String[] DEFAULT_EXP_CAT = {"TRANSPORT", "FOOD", "TRAVEL", "SHOPPING", "BILLS"};
