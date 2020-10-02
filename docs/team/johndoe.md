@@ -1,4 +1,4 @@
-# John Doe - Project Portfolio Page
+# Jia Ern - Project Portfolio Page
 
 ## Overview
 
