@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import java.util.Scanner;
+import seedu.duke.tysPackage.tysMain;
 
 public class Duke {
     /**
@@ -20,11 +21,14 @@ public class Duke {
 
         int check = 1;
         if (check==1) {
-           System.out.println("Testin for forking workflow");
+            System.out.println("Testin for forking workflow");
+        }
         if (1 == 1)
         {
             System.out.println("true");
         }
+
+        tysMain.testShowFunction();
     }
 }
 
