@@ -3,7 +3,8 @@ package seedu.duke.util;
 import seedu.duke.command.Command;
 import seedu.duke.command.HelpCommand;
 import seedu.duke.command.AddCommand;
-import seedu.duke.command.ListCommand;
+import seedu.duke.command.ListNoteCommand;
+import seedu.duke.command.ListEventCommand;
 import seedu.duke.command.ViewNoteCommand;
 import seedu.duke.command.EditCommand;
 import seedu.duke.command.DeleteCommand;
@@ -13,36 +14,46 @@ import seedu.duke.command.TagCommand;
 import seedu.duke.command.RemindCommand;
 import seedu.duke.command.ExitCommand;
 
+import seedu.duke.data.notebook.Note;
+import seedu.duke.data.timetable.Timetable;
+
 /**
  * Parses user input.
  */
 public class Parser {
 
     public Command parseCommand(String userInput) {
-        String commandString = userInput.split(" ", 1)[0];
+        String[] userCommandAndArguments = userInput.split(" ", 2);
+        String commandString = userCommandAndArguments[0];
+        //String userMessage = userCommandAndMessage[1];
 
         switch  (commandString.toLowerCase()) {
         case AddCommand.COMMAND_WORD_NOTE:
+            // return prepareAddNote(userMessage);
         case AddCommand.COMMAND_WORD_EVENT:
-            // return new AddCommand();
-        case ListCommand.COMMAND_WORD:
-            // return new ListCommand();
+            // return prepareAddEvent(userMessage);
+        case ListNoteCommand.COMMAND_WORD:
+            // return prepareListNote(userMessage);
+        case ListEventCommand.COMMAND_WORD_:
+            // return prepareListEvent(userMessage);
         case ViewNoteCommand.COMMAND_WORD:
-            // return new ViewNoteCommand();
+            // return prepareViewNote(userMessage);
         case EditCommand.COMMAND_WORD_NOTE:
+            // return prepareEditNote(userMessage);
         case EditCommand.COMMAND_WORD_EVENT:
-            // return new EditCommand();
+            // return prepareEditEvent(userMessage);
         case DeleteCommand.COMMAND_WORD_NOTE:
+            // return prepareDeleteNote(userMessage);
         case DeleteCommand.COMMAND_WORD_EVENT:
-            // return new DeleteCommand();
+            // return prepareDeleteEvent(userMessage);
         case FindCommand.COMMAND_WORD:
-            // return new FindCommand();
+            // return prepareFind(userMessage);
         case PinCommand.COMMAND_WORD:
-            // return new PinCommand();
+            // return preparePin(userMessage);
         case TagCommand.COMMAND_WORD:
-            // return new TagCommand();
+            // return prepareTag(userMessage);
         case RemindCommand.COMMAND_WORD:
-            // return new RemindCommand();
+            // return prepareRemind(userMessage);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
@@ -50,4 +61,58 @@ public class Parser {
             return new HelpCommand();
         }
     }
+
+    /*
+    private Command prepareAddNote(String userMessage) {
+        return new AddCommand(note);
+    }
+
+    private Command prepareAddEvent(String userMessage) {
+        return new AddCommand(event);
+    }
+
+    private Command prepareListNote(String userMessage) {
+        return new ListNoteCommand();
+    }
+
+    private Command prepareListEvent(String userMessage) {
+        return new ListEventCommand();
+     }
+
+     private Command prepareViewNote(String userMessage) {
+        return new ViewNoteCommand();
+     }
+
+     private Command prepareEditNote(String userMessage) {
+        return new EditCommand(index, note);
+     }
+
+     private Command prepareEditEvent(String userMessage) {
+        return new EditCommand(index, event);
+     }
+
+     private Command prepareDeleteNote(String userMessage) {
+        return new EditCommand(index, true);
+     }
+
+     private Command prepareDeleteEvent(String userMessage) {
+        return new EditCommand(index, false);
+     }
+
+     private Command prepareFind(String userMessage) {
+        return new FindCommand(keywords);
+     }
+
+     private Command preparePin(String userMessage) {
+        return new PinCommand(index);
+     }
+
+     private Command prepareTag(String userMessage) {
+        return new TagCommand();
+     }
+
+     private Command prepareRemind(String userMessage) {
+        return new RemindCommand(index, isToRemind);
+     }
+     */
 }

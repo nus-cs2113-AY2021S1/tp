@@ -14,7 +14,8 @@ public class TagCommand extends Command {
      * Constructs a TagCommand to list all the Tags.
      */
     public TagCommand() {
-        isListTag = true;
+        this.tag = null;
+        this.isListTag = true;
     }
 
     /**
@@ -24,7 +25,7 @@ public class TagCommand extends Command {
      */
     public TagCommand(String tag) {
         this.tag = tag;
-        isListTag = false;
+        this.isListTag = false;
     }
 
     @Override

@@ -32,8 +32,8 @@ public class AddCommand extends Command {
      * @param event to be added.
      */
     public AddCommand(Event event) {
-        this.event  = event;
         this.note = null;
+        this.event  = event;
         this.isAddNote = false;
     }
 

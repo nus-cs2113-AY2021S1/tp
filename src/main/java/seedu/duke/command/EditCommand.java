@@ -12,9 +12,9 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD_EVENT = "edit-e";
 
     private int index;
-    private boolean isEditNote;
     private Note note;
     private Event event;
+    private boolean isEditNote;
 
     /**
      * Constructs an EditCommand to edit a Note.
@@ -25,21 +25,21 @@ public class EditCommand extends Command {
     public EditCommand(int index, Note note) {
         this.index = index;
         this.note = note;
-        this.isEditNote = true;
         this.event = null;
+        this.isEditNote = true;
     }
 
     /**
-     * Constructs an EditCommand to edit a Note.
+     * Constructs an EditCommand to edit an Event.
      *
      * @param index of the Event to be edited.
      * @param event to be edited.
      */
     public EditCommand(int index, Event event) {
         this.index = index;
+        this.note = null;
         this.event = event;
         this.isEditNote = false;
-        this.note = null;
     }
 
     @Override
