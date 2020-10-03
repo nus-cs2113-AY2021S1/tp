@@ -1,8 +1,8 @@
 package seedu.duke.command;
 
 import seedu.duke.exception.DukeEventException;
-import seedu.duke.tasks.Event;
-import seedu.duke.tasks.TaskList;
+import seedu.duke.task.Event;
+import seedu.duke.list.TaskList;
 
 public class AddEventCommand extends Command {
     private String fullCommand;

@@ -1,9 +1,10 @@
 package seedu.duke;
 
 import seedu.duke.command.Command;
+import seedu.duke.exception.DukeException;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
-import seedu.duke.tasks.TaskList;
+import seedu.duke.list.TaskList;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
@@ -40,8 +41,10 @@ public class Duke {
                 tasks.saveTask(storage.getFileName());
             } catch (IOException e) {
                 Ui.printWritingError();
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e){
                 Ui.printIndexError();
+            } catch (DukeException e) {
+                Ui.printError();  // TODO: change to show specific error
             }
         }
         Ui.printBye();

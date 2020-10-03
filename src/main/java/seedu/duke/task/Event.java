@@ -1,12 +1,17 @@
-package seedu.duke.tasks;
+package seedu.duke.task;
 
-public class Todo extends Task {
+import seedu.duke.list.TaskList;
 
-    public Todo(String description, boolean isDone) {
+public class Event extends Task {
+
+    protected String at;
+
+    public Event(String description,boolean isDone, String at) {
         super(description,isDone);
+        this.at = at;
     }
 
-    public void printTodo(TaskList taskList){
+    public void printEvent(TaskList taskList){
         System.out.println("____________________________________________________________\n" +
                 "Got it. I've added this task:\n  " + this + "\n" +
                 "Now you have " + taskList.getList().size() + (taskList.getList().size() == 1
@@ -15,7 +20,7 @@ public class Todo extends Task {
     }
 
     @Override
-    public String toString(){
-        return "[T]" + super.toString();
+    public String toString() {
+        return "[E]" + super.toString() + " (at: " + at + ")";
     }
 }

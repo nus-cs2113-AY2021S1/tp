@@ -1,4 +1,4 @@
-package seedu.duke.tasks;
+package seedu.duke.task;
 
 public class Task {
     protected String description;

@@ -1,7 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.command.Command;
-import seedu.duke.tasks.TaskList;
+import seedu.duke.list.TaskList;
 
 public class ExitCommand extends Command {
 

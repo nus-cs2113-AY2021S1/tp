@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
-import seedu.duke.tasks.Task;
-import seedu.duke.tasks.TaskList;
+import seedu.duke.task.Task;
+import seedu.duke.list.TaskList;
 import seedu.duke.ui.Ui;
 
 public class DeleteCommand extends Command {

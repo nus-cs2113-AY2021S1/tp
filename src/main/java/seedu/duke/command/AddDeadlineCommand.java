@@ -1,8 +1,8 @@
 package seedu.duke.command;
 
 import seedu.duke.exception.DukeDeadlineException;
-import seedu.duke.tasks.Deadline;
-import seedu.duke.tasks.TaskList;
+import seedu.duke.task.Deadline;
+import seedu.duke.list.TaskList;
 
 public class AddDeadlineCommand extends Command {
     private String fullCommand;

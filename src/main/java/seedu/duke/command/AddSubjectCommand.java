@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.tasks.TaskList;
+import seedu.duke.list.TaskList;
 
 /**
  * Adds an instance of the <code>Deadline</code> class into a <code>TaskList</code>

@@ -1,9 +1,9 @@
 package seedu.duke.storage;
 
-import seedu.duke.tasks.Deadline;
-import seedu.duke.tasks.Event;
-import seedu.duke.tasks.TaskList;
-import seedu.duke.tasks.Todo;
+import seedu.duke.task.Deadline;
+import seedu.duke.task.Event;
+import seedu.duke.list.TaskList;
+import seedu.duke.task.Todo;
 import seedu.duke.ui.Ui;
 
 import java.io.File;

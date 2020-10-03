@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.exception.DukeException;
-import seedu.duke.tasks.TaskList;
+import seedu.duke.list.TaskList;
 
 /**
  * Various commands to use depending on the various inputs given by the user

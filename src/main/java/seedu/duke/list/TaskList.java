@@ -1,6 +1,6 @@
-package seedu.duke.tasks;
+package seedu.duke.list;
 
-import seedu.duke.tasks.Task;
+import seedu.duke.task.Task;
 
 import java.io.FileWriter;
 import java.io.IOException;

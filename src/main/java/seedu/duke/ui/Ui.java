@@ -1,7 +1,7 @@
 package seedu.duke.ui;
 
-import seedu.duke.tasks.Task;
-import seedu.duke.tasks.TaskList;
+import seedu.duke.task.Task;
+import seedu.duke.list.TaskList;
 
 import java.util.List;
 import java.util.Scanner;

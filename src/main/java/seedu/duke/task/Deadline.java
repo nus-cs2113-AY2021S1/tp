@@ -1,15 +1,17 @@
-package seedu.duke.tasks;
+package seedu.duke.task;
 
-public class Event extends Task {
+import seedu.duke.list.TaskList;
 
-    protected String at;
+public class Deadline extends Task {
 
-    public Event(String description,boolean isDone, String at) {
+    protected String by;
+
+    public Deadline(String description,boolean isDone, String by) {
         super(description,isDone);
-        this.at = at;
+        this.by = by;
     }
 
-    public void printEvent(TaskList taskList){
+    public void printDeadline(TaskList taskList){
         System.out.println("____________________________________________________________\n" +
                 "Got it. I've added this task:\n  " + this + "\n" +
                 "Now you have " + taskList.getList().size() + (taskList.getList().size() == 1
@@ -19,6 +21,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return "[D]" + super.toString() + " (by: " + by + ")";
     }
 }
