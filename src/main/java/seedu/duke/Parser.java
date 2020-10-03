@@ -3,7 +3,7 @@ package seedu.duke;
 import java.util.ArrayList;
 
 /**
- * Parses user input
+ * Parses user input.
  */
 public class Parser {
     protected static boolean exit = false;
@@ -30,13 +30,13 @@ public class Parser {
             //methods
             break;
         case "list":
-            //methods;
+            Ui.printList(modList);
             break;
         case "help":
             //methods
             break;
         case "exit":
-            if(input.trim().length()>4) {
+            if (input.trim().length() > 4) {
                 Ui.printInvalidCommand();
             } else {
                 Ui.printExitScreen();

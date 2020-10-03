@@ -26,6 +26,17 @@ public class Ui {
     }
 
     /**
+     * Prints out the task list.
+     *
+     * @param modList task list
+     */
+    public static void printList(ArrayList<Module> modList) {
+        for (int i = 0; i < ModuleList.modList.size(); i++) {
+            System.out.println(ModuleList.modList.get(i));
+        }
+    }
+
+    /**
      * Prints the welcome screen when the program starts.
      */
     public static void printWelcomeScreen() {
