@@ -13,11 +13,9 @@ public class Duke {
     }
 
     public static void run(ModuleList t) {
-        boolean isExit = false;
-        while (!isExit) {
+        while (!Parser.isExit()) {
             String input = Ui.readCommand();
             Parser.parse(input, ModuleList.modList);
-            isExit = Parser.isExit();
         }
     }
 }

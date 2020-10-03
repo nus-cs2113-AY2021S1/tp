@@ -1,2 +1,3 @@
 James Gosling
-bye
+addmod CS2113T
+exit

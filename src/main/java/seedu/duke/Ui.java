@@ -52,9 +52,8 @@ public class Ui {
      * Prompts the user to enter his/her name.
      */
     public static void printNamePrompt() {
-        Scanner scan = new Scanner(System.in);
         System.out.println("What is your name?");
-        String name = scan.nextLine();
+        String name = in.nextLine();
         if (name.isEmpty()) {
             Ui.printInvalidCommand();
             printNamePrompt();
