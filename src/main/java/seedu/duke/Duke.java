@@ -35,6 +35,7 @@ public class Duke {
             try {
                 String fullCommand = Ui.readCommand();
                 Command c = Parser.parse(fullCommand);
+                c.execute(tasks);
                 isExit = c.isExit();
                 tasks.saveTask(storage.getFileName());
             } catch (IOException e) {

@@ -1,6 +1,9 @@
 package seedu.duke.storage;
 
+import seedu.duke.tasks.Deadline;
+import seedu.duke.tasks.Event;
 import seedu.duke.tasks.TaskList;
+import seedu.duke.tasks.Todo;
 import seedu.duke.ui.Ui;
 
 import java.io.File;
@@ -54,7 +57,22 @@ public class Storage {
     private void getFile(TaskList taskList) throws FileNotFoundException {
         Scanner scan = new Scanner(this.file);
         while(scan.hasNextLine()){
-            //add to TaskList
+            String content = scan.nextLine();
+            String[] contents = content.split("\\s\\|\\s");
+            String legend = contents[0].trim();
+            Boolean done = (Integer.valueOf(contents[1].trim()) == 1) ? true : false;
+            String action = contents[2].trim();
+            String action2 = "";
+            if(legend.equals("D") || legend.equals("E")){
+                action2 = contents[3].trim();
+            }
+            if(legend.equals("T")){
+                taskList.add(new Todo(action,done));
+            }else if(legend.equals("D")){
+                taskList.add(new Deadline(action,done,action2));
+            }else if(legend.equals("E")){
+                taskList.add(new Event(action,done,action2));
+            }
         }
     }
 
