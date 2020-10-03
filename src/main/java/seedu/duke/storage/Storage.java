@@ -44,7 +44,7 @@ public class Storage {
         } catch (FileNotFoundException e) {
             try {
                 createFile();
-                Ui.fileNotFoundError();
+//                Ui.fileNotFoundError();
             } catch (IOException e1) {
                 Ui.createFileError();
             }
