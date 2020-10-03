@@ -1,6 +1,6 @@
 package seedu.duke.question;
 
-public class Question {
+public abstract class Question {
     protected String correctAnswer;
     protected String question;
     protected boolean isCorrect;
