@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.DateParser;
 import seedu.duke.DukeException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
@@ -7,6 +8,9 @@ import seedu.duke.task.Deadline;
 import seedu.duke.task.Event;
 import seedu.duke.task.TaskList;
 import seedu.duke.task.Todo;
+
+import java.time.LocalDate;
+
 
 /**
  * Adds a task to the task list, depending on what kind of task (event, deadline, todo) it is.
@@ -36,7 +40,7 @@ public class AddCommand extends Command {
         command = userInput.split(" ", 2);
         String commandType = command[0];
         String taskDescription;
-        String taskDate;
+        LocalDate taskDate;
 
         switch (commandType) {
         case TODO:
@@ -56,9 +60,9 @@ public class AddCommand extends Command {
             try {
                 command = command[1].split("/by");
                 taskDescription = command[0].trim();
-                taskDate = command[1].trim();
+                taskDate = DateParser.inputDateProcessor(command[1].trim());
 
-                if (taskDescription.isEmpty() || taskDate.isEmpty()) {
+                if (taskDescription.isEmpty()) {
                     throw new DukeException("deadline");
                 } else {
                     taskList.addTask(new Deadline(taskDescription, taskDate));
@@ -71,9 +75,9 @@ public class AddCommand extends Command {
             try {
                 command = command[1].split("/at");
                 taskDescription = command[0].trim();
-                taskDate = command[1].trim();
+                taskDate = DateParser.inputDateProcessor(command[1].trim());
 
-                if (taskDescription.isEmpty() || taskDate.isEmpty()) {
+                if (taskDescription.isEmpty()) {
                     throw new DukeException("event");
                 } else {
                     taskList.addTask(new Event(taskDescription, taskDate));
