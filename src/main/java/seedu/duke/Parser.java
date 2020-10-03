@@ -44,7 +44,7 @@ public class Parser {
             }
             break;
         default:
-            System.out.println("Sorry, I don't understand");
+            Ui.printInvalidCommand();
         }
     }
 

@@ -46,7 +46,20 @@ public class Ui {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
+    }
+
+    public static void printNamePrompt() {
+        Scanner scan = new Scanner(System.in);
         System.out.println("What is your name?");
+        String name = scan.nextLine();
+        if (name.isEmpty()) {
+            Ui.printInvalidCommand();
+            printNamePrompt();
+        } else {
+            System.out.println("");
+            System.out.println("Hello " + name);
+            System.out.println("What can I do for you?" + System.lineSeparator());
+        }
     }
 
     /**
