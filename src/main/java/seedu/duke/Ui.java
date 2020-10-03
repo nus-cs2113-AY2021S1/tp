@@ -48,6 +48,9 @@ public class Ui {
         System.out.println("Hello from\n" + logo);
     }
 
+    /**
+     * Prompts the user to enter his/her name.
+     */
     public static void printNamePrompt() {
         Scanner scan = new Scanner(System.in);
         System.out.println("What is your name?");
