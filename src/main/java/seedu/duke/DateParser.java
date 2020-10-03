@@ -8,12 +8,12 @@ import java.time.format.DateTimeFormatter;
  * Default date format is ddMMyy for fastest date input.
  */
 public abstract class DateParser {
+    //@@author Jingming517 - reused with minor modification.
     /**
      * Converts date of a user input from a String to LocalDate.
      *
      * @param date string of date to process.
      * @return date in LocalDate format.
-     * @@author Jingming517 - reused with minor modification.
      */
     public static LocalDate inputDateProcessor(String date) throws Exception {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyy");
@@ -31,6 +31,6 @@ public abstract class DateParser {
         return ld;
 
     }
-    /** @@author Jingming517 */
+    //@@author Jingming517 */
 
 }
