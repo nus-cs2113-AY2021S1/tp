@@ -1,2 +1,4 @@
-package seedu.duke.exceptions;public class QuestionTypeException {
+package seedu.duke.exceptions;
+
+public class QuestionTypeException extends Exception {
 }
