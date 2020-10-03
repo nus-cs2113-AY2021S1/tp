@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 /**
@@ -91,18 +93,24 @@ public class Storage {
         String isDone = command.substring(3, 6);
         String taskDetails = command.substring(7); // includes task's description and date
         String taskDescription;
-        String taskDate;
+        String taskDateString;
+        LocalDate taskDate;
+
+        DateTimeFormatter storageDateFormat = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
 
         switch (task) {
         case "T":
             taskDescription = taskDetails;
+
             taskList.addTask(new Todo(taskDescription));
             break;
         case "D":
             int indexEndOfDesc = taskDetails.indexOf(" (by: ");
             taskDetails = taskDetails.replace("(by: ", "");
             taskDescription = taskDetails.substring(0, indexEndOfDesc);
-            taskDate = taskDetails.substring(indexEndOfDesc, taskDetails.length() - 1);
+
+            taskDateString = taskDetails.substring(indexEndOfDesc, taskDetails.length() - 1).trim();
+            taskDate = LocalDate.parse(taskDateString, storageDateFormat);
 
             taskList.addTask(new Deadline(taskDescription, taskDate));
             break;
@@ -110,7 +118,8 @@ public class Storage {
             indexEndOfDesc = taskDetails.indexOf(" (at: ");
             taskDetails = taskDetails.replace("(at: ", "");
             taskDescription = taskDetails.substring(0, indexEndOfDesc);
-            taskDate = taskDetails.substring(indexEndOfDesc, taskDetails.length() - 1);
+            taskDateString = taskDetails.substring(indexEndOfDesc, taskDetails.length() - 1).trim();
+            taskDate = LocalDate.parse(taskDateString, storageDateFormat);
 
             taskList.addTask(new Event(taskDescription, taskDate));
             break;

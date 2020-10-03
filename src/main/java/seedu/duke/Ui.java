@@ -16,6 +16,10 @@ public class Ui {
         this.in = new Scanner(System.in);
     }
 
+    public static void printDateParseError() {
+        System.out.println("Unable to parse date");
+    }
+
     /**
      * Returns the input of the user.
      *
@@ -149,10 +153,10 @@ public class Ui {
             System.out.println("Error: The description of todo cannot be empty.");
             break;
         case "deadline":
-            System.out.println("Error: Please key in the deadline in this format: deadline ... /by ...");
+            System.out.println("Error: Please key in the deadline in this format: deadline ... /by ddMMyy");
             break;
         case "event":
-            System.out.println("Error: Please key in the event in this format: event ... /at ...");
+            System.out.println("Error: Please key in the event in this format: event ... /at ddMMyy");
             break;
         case "invalid command":
             System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
