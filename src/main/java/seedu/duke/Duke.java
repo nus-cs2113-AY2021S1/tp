@@ -8,7 +8,7 @@ public class Duke {
      */
     //private static ArrayList<Module> modList = new ArrayList<>();
 
-    public static void printlist() {
+    public static void printList() {
         for (int i = 0; i < ModuleList.modList.size(); i++) {
             System.out.println(ModuleList.modList.get(i));
         }
@@ -35,7 +35,7 @@ public class Duke {
             }
             input = in.nextLine();
         }
-        printlist();
+        printList();
         System.out.println("Bye");
     }
 }
