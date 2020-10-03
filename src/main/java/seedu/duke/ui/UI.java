@@ -1,7 +1,5 @@
 package seedu.duke.ui;
 
-import seedu.duke.settings.Settings;
-
 public class UI {
     public static final String NEWLINE = System.lineSeparator();
 
