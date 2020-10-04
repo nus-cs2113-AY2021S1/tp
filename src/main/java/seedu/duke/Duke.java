@@ -1,10 +1,10 @@
 package seedu.duke;
 
+import ui.Ui;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
-
-import ui.Ui;
 
 import static seedu.duke.CommandExtract.*;
 
@@ -18,6 +18,15 @@ public class Duke {
 
     private Duke() {
         ui = new Ui();
+    }
+
+    public static void main(String[] args) {
+        new Duke().run();
+    }
+
+    public static ArrayList<String> parser(String input) {
+        String[] projectDetails = input.split("\\s+");
+        return new ArrayList<>(Arrays.asList(projectDetails));
     }
 
     public void run() {
@@ -75,8 +84,10 @@ public class Duke {
                                 pdetails.indexOf(CommandExtract.DESCRIPTION)));
                         String priority = pdetails.get(pdetails.indexOf(PRIORITY) + 1);
                         Project.backlog.addTask(new Task(title, desc, priority));
-                    } else if (exec.equals(VIEW)){
+                    } else if (exec.equals(VIEW)) {
                         Project.backlog.viewTask(pdetails.get(2), ui);
+                    } else if (exec.equals(DELETE)) {
+                        Project.backlog.deleteTask(pdetails.subList(2, pdetails.size()), ui);
                     }
                     break;
 
@@ -90,13 +101,5 @@ public class Duke {
             input = in.nextLine();
         }
         System.out.println("Code exited");
-    }
-    public static void main(String[] args) {
-        new Duke().run();
-    }
-
-    public static ArrayList<String> parser(String input) {
-        String[] projectDetails = input.split("\\s+");
-        return new ArrayList<>(Arrays.asList(projectDetails));
     }
 }

@@ -16,9 +16,11 @@ public class Ui {
     private void printLogo() {
         System.out.println("Hello from\n" + LOGO);
     }
+
     public String readLine() {
         return IN.nextLine().strip();
     }
+
     private void printGreeting() {
         System.out.println("Please enter the project details for instantiation");
     }
@@ -27,7 +29,7 @@ public class Ui {
         System.out.println(s);
     }
 
-    public void welcomeUser(){
+    public void welcomeUser() {
         printLogo();
         printGreeting();
     }
@@ -45,5 +47,13 @@ public class Ui {
 
     public void displayTask(Task task) {
         System.out.println(task.toString());
+    }
+
+    public void displayInvalidId() {
+        System.out.println("The following task id doesn't exist in backlog.\n Please enter a valid id.");
+    }
+
+    public void printTaskRemoved(Task task) {
+        System.out.println("The corresponding task " + task.toString() + " has been removed.");
     }
 }

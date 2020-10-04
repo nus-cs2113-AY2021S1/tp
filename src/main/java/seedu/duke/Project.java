@@ -69,10 +69,6 @@ public class Project {
         }
     }
 
-    public void deleteTask(int id){
-
-    }
-
     public void displayProjectBacklog() {
         if (backlog.size() == 0) {
             System.out.println("No tasks currently added to project backlog.");
