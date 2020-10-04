@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import seedu.duke.constants.Logos;
+import seedu.duke.settings.Settings;
+import seedu.duke.ui.UI;
 
 import static seedu.duke.database.UserSettingsLoader.loadUserSettings;
 import static seedu.duke.ui.UI.printDivider;
@@ -33,7 +35,6 @@ public class Duke {
         System.out.println("Take a quiz with\n" + Logos.DOTTED_CLICKER_LOGO);
         printHelloMessage(username);
         printFarewellMessage(username);
-
     }
 
     /**
