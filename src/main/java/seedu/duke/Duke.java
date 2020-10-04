@@ -1,33 +1,49 @@
 package seedu.duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
 import seedu.duke.constants.Logos;
 import seedu.duke.settings.Settings;
 import seedu.duke.ui.UI;
+
+import static seedu.duke.database.UserSettingsLoader.loadUserSettings;
+import static seedu.duke.ui.UI.printDivider;
+import static seedu.duke.ui.UI.printFarewellMessage;
+import static seedu.duke.ui.UI.printHelloMessage;
 
 public class Duke {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Settings set to defaults.
+     **/
+    private static final int NUMBER_OF_SETTINGS = 1; // currently only username
+    public static String username = "User";
+    public static ArrayList<String> savedSettings = new ArrayList<>(NUMBER_OF_SETTINGS);
+
+
+    /**
+     * Main entry-point for the CLIcker application.
      */
     public static void main(String[] args) {
-        Settings userSettings = new Settings();
+        setUserSettingsArrayList(savedSettings, username);
+        loadUserSettings(savedSettings);
+        printDivider();
+        username = savedSettings.get(0);
+
         System.out.println("Take a quiz with\n" + Logos.DOTTED_CLICKER_LOGO);
-        System.out.println("What is your name?");
-        userSettings.setName(SCANNER.nextLine());
-        System.out.println("Hello " + userSettings.getName());
-        System.out.println("What would you like me to do for you today?");
-        String command = SCANNER.next();
-        if(command.equals("settings")) {
-            if(SCANNER.hasNextInt()) {
-               userSettings.setDividerNum(SCANNER.nextInt());
-            } else {
-                userSettings.setName(SCANNER.nextLine());
-            }
-        } else if(command.equals("help")) {
-            String next = SCANNER.next();
-            UI.printHelpMessage(next);
-        }
+        printHelloMessage(username);
+        printFarewellMessage(username);
+    }
+
+    /**
+     * Set the values in the array for the saved settings.
+     *
+     * @param savedSettings Array of saved settings
+     * @param username      User input name
+     */
+    private static void setUserSettingsArrayList(ArrayList<String> savedSettings, String username) {
+        savedSettings.add(username);
     }
 }
