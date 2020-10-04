@@ -16,7 +16,7 @@ public class Duke {
     /**
      * Settings set to defaults.
      **/
-    private static final int NUMBER_OF_SETTINGS = 1; // currently only, username
+    private static final int NUMBER_OF_SETTINGS = 1; // currently only username
     public static String username = "User";
     public static ArrayList<String> savedSettings = new ArrayList<>(NUMBER_OF_SETTINGS);
 
@@ -36,6 +36,12 @@ public class Duke {
 
     }
 
+    /**
+     * Set the values in the array for the saved settings.
+     *
+     * @param savedSettings Array of saved settings
+     * @param username      User input name
+     */
     private static void setUserSettingsArrayList(ArrayList<String> savedSettings, String username) {
         savedSettings.add(username);
     }
