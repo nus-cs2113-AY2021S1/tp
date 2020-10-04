@@ -1,12 +1,18 @@
 package seedu.financeit.utils;
+
 import java.util.HashMap;
 import java.util.regex.Matcher;
 
 public class ParamsParser {
     protected String paramSubstring;
     protected Matcher matcher;
+
     public ParamsParser(String paramSubstring) {
         this.paramSubstring = paramSubstring;
+    }
+
+    public String getSeparator(String input) {
+        return String.valueOf(input.charAt(matcher.start() + 1));
     }
 
     /**
@@ -34,18 +40,19 @@ public class ParamsParser {
             String paramType = buffer[0];
             System.out.println("paramt " + paramType);
             boolean paramArgumentExist = buffer.length > 1;
-            paramSubstring = buffer[1] + " ";
+            paramSubstring = " " + buffer[1] + " ";
             matcher = RegexMatcher.regexMatcher(paramSubstring, Constants.paramRegex);
             //Separate into [paramArgument, rest of string]
             System.out.println("paramsub " + paramSubstring);
 
             try {
-                if (matcher.start() != 0) {
-                    String separator = String.valueOf(paramSubstring.charAt(matcher.start()));
-                    buffer = paramSubstring.split(separator, 2);
+                // If
+                if (matcher.start() > 0) {
+                    String separator = getSeparator(paramSubstring);
+                    buffer = paramSubstring.trim().split(separator, 2);
                     buffer[1] = separator + buffer[1];
-                    paramArgument = buffer[0];
-                    paramSubstring = buffer[1];
+                    paramArgument = buffer[0].trim();
+                    paramSubstring = buffer[1].trim();
                 }
                 params.put(paramType, paramArgument);
                 System.out.println(params);
@@ -59,7 +66,7 @@ public class ParamsParser {
                 }
                 break;
             }
-        } while(true);
+        } while (true);
         return params;
     }
 }
