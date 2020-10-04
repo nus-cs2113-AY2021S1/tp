@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static seedu.duke.CommandExtract.ADD;
-import static seedu.duke.CommandExtract.PRIORITY;
-import static seedu.duke.CommandExtract.TITLE;
+import ui.Ui;
+
+import static seedu.duke.CommandExtract.*;
 
 public class Duke {
 
@@ -14,9 +14,17 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static void main(String[] args) {
+    private final Ui ui;
 
-        System.out.println("Please enter the project details for instantiation");
+    private Duke() {
+        ui = new Ui();
+    }
+
+    public void run() {
+
+        ui.welcomeUser();
+        boolean isExit = false;
+
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
         ArrayList<String> pdetails = parser(input);
@@ -52,7 +60,7 @@ public class Duke {
                         proj.removeMember(pdetails.subList(2, pdetails.size()));
                         break;
                     case CommandExtract.DISPLAY_MEMBERS:
-                        proj.displayMembers();
+                        ui.displayMembers();
                         break;
                     default:
                         System.out.println("Unknown format");
@@ -66,7 +74,9 @@ public class Duke {
                         String title = String.join(" ", pdetails.subList(pdetails.indexOf(TITLE) + 1,
                                 pdetails.indexOf(CommandExtract.DESCRIPTION)));
                         String priority = pdetails.get(pdetails.indexOf(PRIORITY) + 1);
-                        proj.addTask(new Task(title, desc, priority));
+                        Project.backlog.addTask(new Task(title, desc, priority));
+                    } else if (exec.equals(VIEW)){
+                        Project.backlog.viewTask(pdetails.get(2), ui);
                     }
                     break;
 
@@ -80,6 +90,9 @@ public class Duke {
             input = in.nextLine();
         }
         System.out.println("Code exited");
+    }
+    public static void main(String[] args) {
+        new Duke().run();
     }
 
     public static ArrayList<String> parser(String input) {

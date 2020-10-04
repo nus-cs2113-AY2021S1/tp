@@ -1,7 +1,10 @@
 package seedu.duke;
 
+import java.util.ArrayList;
+
 public class Member {
     String userId;
+    ArrayList<Task> allocatedTask = new ArrayList<>(100);
 
     public Member(String userId) {
         this.userId = userId;
@@ -22,5 +25,11 @@ public class Member {
         // Compare the userId of members and return accordingly
         return userId.equals(v.userId);
     }
+
+    public void addTask(Task task){
+        allocatedTask.add(task);
+    }
+
+
 
 }

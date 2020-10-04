@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Project {
-    static ArrayList<Task> projectBacklog = new ArrayList<>(100);
-    ArrayList<Member> member = new ArrayList<>(100);
+
+    static ProjectBacklog backlog;
+    public static ArrayList<Member> member;
     String title;
     String description;
     int projectDuration;
@@ -19,6 +20,8 @@ public class Project {
         this.description = description;
         this.projectDuration = projectDuration;
         this.sprintLength = sprintLength;
+        backlog = new ProjectBacklog();
+        member = new ArrayList<>(100);
     }
 
     public String toString() {
@@ -49,6 +52,7 @@ public class Project {
             } else {
                 m = new Member(s);
                 member.add(m);
+                System.out.println("The user associated with " + s + "has been added");
             }
         }
     }
@@ -58,34 +62,24 @@ public class Project {
         for (String s : userId) {
             if (member.contains(new Member(s))) {
                 member.remove(new Member(s));
+                System.out.println("The user associated with " + s + "has been removed from the project");
             } else {
                 System.out.println("This member is not associated with this project: " + new Member(s).userId);
             }
         }
     }
 
-    public void displayMembers() {
-        if (member.size() == 0) {
-            System.out.println("Currently no members added to the project.");
-        } else {
-            System.out.println("Here are the members added to you project:");
-            for (int i = 0; i < member.size(); i++) {
-                System.out.println("\t" + (i + 1) + ". " + member.get(i).getUserId());
-            }
-        }
-    }
+    public void deleteTask(int id){
 
-    public void addTask(Task task) {
-        projectBacklog.add(task);
     }
 
     public void displayProjectBacklog() {
-        if (projectBacklog.size() == 0) {
+        if (backlog.size() == 0) {
             System.out.println("No tasks currently added to project backlog.");
         } else {
             System.out.println("Current tasks in your project backlog");
-            for (int i = 0; i < projectBacklog.size(); i++) {
-                System.out.println("\t" + (i + 1) + ". " + projectBacklog.get(i).title);
+            for (int i = 0; i < backlog.size(); i++) {
+                System.out.println("\t" + (i + 1) + ". " + backlog.getTask(i).title);
             }
         }
     }

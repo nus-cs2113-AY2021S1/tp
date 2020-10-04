@@ -12,4 +12,5 @@ public class CommandExtract {
     static final String SD = "-sd";
     static final String DISPLAY_MEMBERS = "/disp";
     static final String PRIORITY = "-priority";
+    static final String VIEW = "/view";
 }
