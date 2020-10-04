@@ -14,17 +14,25 @@ public class AddCommands {
     public static void getIndexesOfTagsFromQna(String command) {
         indexes.clear();
 
+        indexes.add(0);
+
         indexes.add(command.indexOf("tp\\"));
         indexes.add(command.indexOf("st\\"));
         indexes.add(command.indexOf("qn\\"));
         indexes.add(command.indexOf("qns\\"));
         indexes.add(command.indexOf("ans\\"));
 
+        indexes.add(command.length());
+
         Collections.sort(indexes);
+
+        // Throws Error if any of the indexes is -1
     }
 
     public static void getIndexesOfTagsFromFillBlank(String command) {
         indexes.clear();
+
+        indexes.add(0);
 
         indexes.add(command.indexOf("tp\\"));
         indexes.add(command.indexOf("st\\"));
@@ -33,11 +41,17 @@ public class AddCommands {
         indexes.add(command.indexOf("bl\\"));
         indexes.add(command.indexOf("sa\\"));
 
+        indexes.add(command.length());
+
         Collections.sort(indexes);
+
+        // Throws Error if any of the indexes is -1
     }
 
     public static void getIndexesOfTagsFromMcq(String command) {
         indexes.clear();
+
+        indexes.add(0);
 
         indexes.add(command.indexOf("tp\\"));
         indexes.add(command.indexOf("st\\"));
@@ -52,21 +66,24 @@ public class AddCommands {
             indexes.add(command.indexOf("w4\\"));
         }
 
+        indexes.add(command.length());
+
         Collections.sort(indexes);
+
+        // Throws Error if any of the indexes is -1
     }
 
     public static String extractTagInformationFromCommand(String command, String extract) {
         // TODO: Exceptions: extract is not one of the three tp, st, qn
-        String questionType = command.substring(0, indexes.get(0)).trim();
 
-        for (int i = 0; i < indexes.size() - 1; i++) {
+        for (int i = 1; i < indexes.size() - 1; i++) {
 
-            String tag;
-            if (i < indexes.size() - 2) {
-                tag = command.substring(indexes.get(i), indexes.get(i + 1));
-            } else {
-                tag = command.substring(indexes.get(i));
-            }
+            String tag = command.substring(indexes.get(i), indexes.get(i + 1));;
+//            if (i < indexes.size() - 2) {
+//
+//            } else {
+//                tag = command.substring(indexes.get(i));
+//            }
 
             if (tag.trim().startsWith("tp\\") && extract.equalsIgnoreCase("topic")) {
                 return tag.replace("tp\\", "").trim();
@@ -83,8 +100,8 @@ public class AddCommands {
             boolean hasQuestionTag = tag.trim().startsWith("qns\\") && extract.equalsIgnoreCase("question");
             boolean hasAnswerTag = tag.trim().startsWith("ans\\") && extract.equalsIgnoreCase("answer");
 
-            switch (questionType) {
-            case "qna":
+            switch (CommandChecker.commandType) {
+            case QNA:
                 if (hasQuestionTag) {
                     return tag.replace("qns\\", "").trim();
                 }
@@ -92,7 +109,7 @@ public class AddCommands {
                     return tag.replace("ans\\", "").trim();
                 }
                 break;
-            case "mcq":
+            case MCQ:
                 if (hasQuestionTag) {
                     return tag.replace("qns\\", "").trim();
                 }
@@ -115,7 +132,7 @@ public class AddCommands {
                     return tag.replace("wa4\\", "").trim();
                 }
                 break;
-            case "fillblank":
+            case FILLBLANK:
                 if (tag.trim().startsWith("sb\\") && extract.equalsIgnoreCase("stringBefore")) {
                     return tag.replace("sb\\","").trim();
                 }
