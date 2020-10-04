@@ -1,4 +1,4 @@
-package seedu.duke.subject;
+package seedu.duke.list;
 
 public class SubjectList {
 }

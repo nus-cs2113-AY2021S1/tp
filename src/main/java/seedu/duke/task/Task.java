@@ -1,4 +1,4 @@
-package seedu.duke.tasks;
+package seedu.duke.task;
 
 public class Task {
     protected String description;
@@ -10,7 +10,8 @@ public class Task {
     }
 
     /**
-     * Checks whether a task is done
+     * Checks whether a task is done.
+     *
      * @return true when a task is done
      */
     public String getStatusIcon() {
@@ -18,18 +19,19 @@ public class Task {
     }
 
     /**
-     * Marks the task as done
+     * Marks the task as done.
      */
-    public void markAsDone(){
+    public void markAsDone() {
         this.isDone = true;
     }
 
     /**
-     * Prints the String representation of the class
+     * Prints the String representation of the class.
+     *
      * @return the String representation of the class
      */
     @Override
-    public String toString(){
+    public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
     }
 }
