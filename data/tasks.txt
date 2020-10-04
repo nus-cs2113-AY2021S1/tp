@@ -1,0 +1,6 @@
+[T][/] hi
+[D][X] project (by: 20-Jan-2020)
+[E][X] meeting (at: 20-Oct-2020)
+[T][X] hi
+[D][X] hi (by: 17-Oct-2021)
+[E][X] got it (at: 19-Nov-2020)

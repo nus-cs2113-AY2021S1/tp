@@ -7,8 +7,8 @@ import seedu.duke.task.TaskList;
 /**
  * Lists all tasks in the task list to the user.
  */
-public class ListCommand extends Command {
-    public ListCommand(String userInput) {
+public class PrintListCommand extends Command {
+    public PrintListCommand(String userInput) {
         super(userInput);
     }
 

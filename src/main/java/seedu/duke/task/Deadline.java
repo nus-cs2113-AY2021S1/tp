@@ -8,10 +8,12 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
     protected LocalDate by;
+    protected String taskType;
 
     public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;
+        this.taskType = "D";
     }
 
     /**
@@ -20,5 +22,11 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy")) + ")";
+    }
+
+    @Override
+    /** Returns the respective task type. */
+    public String getTaskType() {
+        return taskType;
     }
 }
