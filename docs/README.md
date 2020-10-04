@@ -1,4 +1,4 @@
-# Duke
+# Hospitalsaurus ReX
 
 {Give product intro here}
 
