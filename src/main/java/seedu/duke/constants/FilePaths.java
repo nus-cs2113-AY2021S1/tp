@@ -9,4 +9,11 @@ public class FilePaths {
 
     /** Test file path to see where the files save. */
     public static final String TEST_FILE_PATH = "testFile.txt";
+
+    /** Path to store user past history. */
+    public static final String HISTORY_FILE_PATH = "data/history.txt";
+
+    /** The general path to store the statistics of the past quizzes. */
+    public static final String STATS = "data/Stats/stats";
+
 }

@@ -1,0 +1,10 @@
+Topic: History
+Sub-topic: Singapore
+Question title: First president Singapore
+Question type: MCQ
+---
+Question: Who is the first president of independent Singapore
+Number of correct answers: 1
+Answer: Yusof Ishak
+Number of wrong answers: 3
+Wrong answers: Lee Kuan Yew | Benjamin Sheares | Halimah Jacob
