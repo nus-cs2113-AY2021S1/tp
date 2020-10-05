@@ -1,5 +1,7 @@
 package seedu.duke.ui;
 
+import java.util.Scanner;
+
 public class TextUi {
     private static final String LOGO = "________                __                .__  _____       \n"
             + "\\_____  \\  __ __  _____/  |_  ____   _____|__|/ ____\\__.__.\n"
@@ -11,6 +13,12 @@ public class TextUi {
     private static final String WELCOME_MESSAGE = "Welcome to Quotesify!";
     private static final String GOODBYE_MESSAGE = "Have a nice day!";
 
+    private final Scanner in;
+
+    public TextUi() {
+        in = new Scanner(System.in);
+    }
+
     public void showWelcomeMessage() {
         System.out.println(LOGO);
         System.out.println(WELCOME_MESSAGE);
@@ -18,5 +26,9 @@ public class TextUi {
 
     public void showGoodbyeMessage() {
         System.out.println(GOODBYE_MESSAGE);
+    }
+
+    public String getUserCommand() {
+        return in.nextLine().trim();
     }
 }
