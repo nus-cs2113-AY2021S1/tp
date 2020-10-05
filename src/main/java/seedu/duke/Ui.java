@@ -183,8 +183,8 @@ public class Ui {
             System.out.println("You have no deadlines or todos now!");
         } else {
             float progress = (float) numFinished / numTotal * 100;
-            System.out.println("You have finished " + numFinished + "/" + numTotal +
-                    " (" + String.format("%.2f", progress) + "%) deadlines and todos.");
+            System.out.println("You have finished " + numFinished + "/" + numTotal
+                    + " (" + String.format("%.2f", progress) + "%) deadlines and todos.");
         }
     }
 
@@ -207,8 +207,8 @@ public class Ui {
             break;
         case "invalid command":
             System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
-                    + "Available commands: print list, print events, print progress, done, " +
-                    "todo, deadline, event, find, delete, bye");
+                    + "Available commands: print list, print events, print progress, done, "
+                    + "todo, deadline, event, find, delete, bye");
             break;
         case "invalid task action":
             System.out.println("Error: Total task(s): " + taskList.getTotalTask());
