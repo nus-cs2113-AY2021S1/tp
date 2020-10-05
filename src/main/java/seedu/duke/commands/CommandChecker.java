@@ -21,7 +21,7 @@ public enum CommandChecker {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static String getUserInput() {
-        System.out.print("!man: ");
+        System.out.print("You: ");
         String inputLine = SCANNER.nextLine();
 
         while (inputLine.trim().isEmpty()) {
