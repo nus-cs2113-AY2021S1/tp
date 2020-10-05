@@ -7,7 +7,7 @@ import seedu.duke.ui.Ui;
 public class FindSubjectCommand extends SubjectCommand {
     private String fullcommand;
 
-    public FindSubjectCommand(String fullcommand){
+    public FindSubjectCommand(String fullcommand) {
         this.fullcommand = fullcommand;
     }
 
@@ -21,7 +21,7 @@ public class FindSubjectCommand extends SubjectCommand {
      * Checks whether the the user exits the program
      * @return <code>true</code> if user exits the program
      */
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
 }

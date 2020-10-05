@@ -42,7 +42,7 @@ public class Duke {
             try {
                 String fullCommand = Ui.readCommand();
                 SubjectCommand c = SubjectParser.parse(fullCommand);
-                if (c instanceof ReturnSubjectCommand){
+                if (c instanceof ReturnSubjectCommand) {
                     Subject subject = c.execute(subjects);
                     ((ReturnSubjectCommand) c).goToSubject(subject);
                 }

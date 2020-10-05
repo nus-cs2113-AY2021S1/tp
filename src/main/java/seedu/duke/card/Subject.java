@@ -9,7 +9,7 @@ public class Subject {
     private List<Topic> topics;
     private TaskList tasks;
 
-    public Subject(String title){
+    public Subject(String title) {
         this.title = title;
     }
 
@@ -45,7 +45,7 @@ public class Subject {
         return tasks;
     }
 
-    public String toString(){
+    public String toString() {
         return this.title;
     }
 }

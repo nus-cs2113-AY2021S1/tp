@@ -6,7 +6,7 @@ import seedu.duke.ui.Ui;
 public class FindTaskCommand extends TaskCommand {
     private String fullcommand;
 
-    public FindTaskCommand(String fullcommand){
+    public FindTaskCommand(String fullcommand) {
         this.fullcommand = fullcommand;
     }
 
@@ -19,7 +19,7 @@ public class FindTaskCommand extends TaskCommand {
      * Checks whether the the user exits the program
      * @return <code>true</code> if user exits the program
      */
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
 }

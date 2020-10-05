@@ -11,7 +11,7 @@ import seedu.duke.exception.RepeatedSubjectException;
 public class AddSubjectCommand extends SubjectCommand {
     private String fullCommand;
 
-    public AddSubjectCommand(String fullCommand){
+    public AddSubjectCommand(String fullCommand) {
         this.fullCommand = fullCommand;
     }
 
@@ -40,7 +40,7 @@ public class AddSubjectCommand extends SubjectCommand {
      * Checks whether the the user exits the program
      * @return <code>true</code> if user exits the program
      */
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
 }

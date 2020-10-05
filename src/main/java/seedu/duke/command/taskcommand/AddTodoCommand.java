@@ -7,7 +7,7 @@ import seedu.duke.task.Todo;
 public class AddTodoCommand extends TaskCommand {
     private String fullCommand;
 
-    public AddTodoCommand(String fullCommand){
+    public AddTodoCommand(String fullCommand) {
         this.fullCommand = fullCommand;
     }
 
@@ -37,7 +37,7 @@ public class AddTodoCommand extends TaskCommand {
      * Checks whether the the user exits the program
      * @return <code>true</code> if user exits the program
      */
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
 }
