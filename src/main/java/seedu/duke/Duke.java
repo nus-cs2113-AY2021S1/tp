@@ -1,19 +1,20 @@
 package seedu.duke;
 
+import seedu.duke.book.BookList;
 import seedu.duke.commands.Command;
 import seedu.duke.parser.Parser;
 import seedu.duke.ui.TextUi;
-
-import java.util.Scanner;
 
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
     private TextUi ui;
+    private BookList books;
 
     public Duke() {
         ui = new TextUi();
+        books = new BookList();
     }
 
     public void start() {
@@ -33,7 +34,7 @@ public class Duke {
                 System.out.println("Invalid command, bye!");
                 break;
             }
-            command.execute();
+            command.execute(ui, books);
             isExit = command.isExit();
         }
     }
