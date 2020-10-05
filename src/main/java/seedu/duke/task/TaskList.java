@@ -39,17 +39,17 @@ public class TaskList {
      */
     public void saveTask(String filename) throws IOException {
         FileWriter fileWriter = new FileWriter(filename);
-        for(Task task : this.taskList) {
-            if(task instanceof Todo) {
-                fileWriter.write("T | " + (task.isDone ? "1" : "0") + " | " +
-                        task.description + "\n");
-            }else if(task instanceof Deadline) {
+        for (Task task : this.taskList) {
+            if (task instanceof Todo) {
+                fileWriter.write("T | " + (task.isDone ? "1" : "0") + " | "
+                        + task.description + "\n");
+            } else if (task instanceof Deadline) {
                 String[] deadline =  task.description.split("/by");
-                fileWriter.write("D | " + (task.isDone ? "1" : "0") + " | " +
-                        task.description + " | " + ((Deadline) task).by + "\n");
-            }else if(task instanceof Event) {
-                fileWriter.write("E | " + (task.isDone ? "1" : "0") + " | " +
-                        task.description + " | " + ((Event) task).at + "\n");
+                fileWriter.write("D | " + (task.isDone ? "1" : "0") + " | "
+                        + task.description + " | " + ((Deadline) task).by + "\n");
+            } else if (task instanceof Event) {
+                fileWriter.write("E | " + (task.isDone ? "1" : "0") + " | "
+                        + task.description + " | " + ((Event) task).at + "\n");
             }
         }
         fileWriter.close();

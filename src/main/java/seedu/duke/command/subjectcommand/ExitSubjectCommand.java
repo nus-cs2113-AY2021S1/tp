@@ -7,7 +7,7 @@ public class ExitSubjectCommand extends SubjectCommand {
 
     public Subject execute(SubjectList subjectList) {
         return null;
-    };
+    }
 
     /**
      * Checks whether the the user exits the program.

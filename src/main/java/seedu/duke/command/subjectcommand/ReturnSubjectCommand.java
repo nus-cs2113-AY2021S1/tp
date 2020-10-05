@@ -18,7 +18,7 @@ public class ReturnSubjectCommand extends SubjectCommand {
 
     public Subject execute(SubjectList subjectList) throws NoSubjectException {
         String[] message = this.fullcommand.split(" ");
-        if (message[1].isEmpty()){
+        if (message[1].isEmpty()) {
             throw new NoSubjectException();
         }
         for (Subject subject : subjectList.getList()) {

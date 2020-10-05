@@ -25,7 +25,7 @@ public class AddSubjectCommand extends SubjectCommand {
         if (title.isEmpty()) {
             throw new NoSubjectException();
         }
-        for(Subject subject : subjectList.getList()) {
+        for (Subject subject : subjectList.getList()) {
             if (subject.getTitle().equals(title)) {
                 throw new RepeatedSubjectException();
             }
