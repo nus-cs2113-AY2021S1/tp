@@ -1,13 +1,13 @@
 package seedu.duke.command;
 
-import duke.Storage;
-import duke.Ui;
-import duke.task.TaskList;
+import seedu.duke.Storage;
+import seedu.duke.Ui;
+import seedu.duke.bookmark.BookmarkList;
 
 /**
  * Represents the user command exit the Duke program.
  */
-public class ExitCommand extends Command{
+public class ExitCommand extends Command {
     public static final String BYE_KW = "bye";
 
     /**
@@ -20,12 +20,12 @@ public class ExitCommand extends Command{
     /**
      * Prints the exit screen before the program exits.
      *
-     * @param taskList The list of tasks.
+     * @param bookmarks The list of bookmarks.
      * @param ui The user interface.
      * @param storage The storage for saving and loading.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(BookmarkList bookmarks, Ui ui, Storage storage) {
         ui.showExitScreen();
     }
 }
