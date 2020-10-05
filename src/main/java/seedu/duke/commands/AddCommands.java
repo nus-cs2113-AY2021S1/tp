@@ -22,7 +22,7 @@ public class AddCommands {
         System.out.println("Input add function, exit by command \"exit\" ");
         String command = CommandChecker.getUserInput();
         while (!command.equalsIgnoreCase("exit")) {
-            switch(CommandChecker.commandType){
+            switch(CommandChecker.commandType) {
             case QNA:
                 addQnaQuestion(command);
                 break;
@@ -50,7 +50,8 @@ public class AddCommands {
         String answer = extractTagInformationFromCommand(command, "answer");
 
         try {
-            QuestionSavers.saveFillBlankAndQnaQuestionToNewFile(topic, subTopic, questionName, new Qna(answer, question));
+            QuestionSavers.saveFillBlankAndQnaQuestionToNewFile(topic, subTopic,
+                    questionName, new Qna(answer, question));
         } catch (QuestionTypeException e) {
             System.out.println("Input code failed to create correct question type");
         }
@@ -71,15 +72,12 @@ public class AddCommands {
         String stringAfter = extractTagInformationFromCommand(command, "stringAfter");
 
         try {
-            QuestionSavers.saveFillBlankAndQnaQuestionToNewFile(topic, subTopic, questionName, new FillBlank(blank, stringBefore, stringAfter));
+            QuestionSavers.saveFillBlankAndQnaQuestionToNewFile(topic, subTopic,
+                    questionName, new FillBlank(blank, stringBefore, stringAfter));
         } catch (QuestionTypeException e) {
             System.out.println("Input code failed to create correct question type");
         }
     }
-
-//    private static void addMcqQuestion(String command) {
-//
-//    }
 
     private static void getIndexesOfTagsFromQna(String command) throws CommandTagMissingException {
         indexesList.clear();
@@ -157,11 +155,6 @@ public class AddCommands {
         for (int i = 1; i < indexesList.size() - 1; i++) {
 
             String tag = command.substring(indexesList.get(i), indexesList.get(i + 1));;
-//            if (i < indexes.size() - 2) {
-//
-//            } else {
-//                tag = command.substring(indexes.get(i));
-//            }
 
             if (tag.trim().startsWith("tp\\") && extract.equalsIgnoreCase("topic")) {
                 return tag.replace("tp\\", "").trim();
@@ -221,6 +214,8 @@ public class AddCommands {
                     return tag.replace("sa\\", "").trim();
                 }
                 break;
+            default:
+                return null;
             }
         }
         return null;

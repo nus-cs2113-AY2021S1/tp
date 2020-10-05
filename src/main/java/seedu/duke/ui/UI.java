@@ -7,44 +7,44 @@ import static seedu.duke.constants.Logos.PLAIN_TEXT_DIVIDER;
 public class UI {
     public static final String NEWLINE = System.lineSeparator();
 
-     /**
+    /**
      * Line divider set to default before settings are loaded. Default is the first one.
      */
     public static String currentLineDivider = getDivider(1);
     
     // Main Help function
-    public static void printHelpMessage(String input) {
-        switch(input) {
-            case "add":
-                printHelpAdd();
-                break;
-            case "settings":
-                printHelpSettings();
-                break;
-            case "list":
-                printHelpList();
-                break;
-            case "history":
-                printHelpHistory();
-                break;
-            case "stats":
-                printHelpStats();
-                break;
-            case "review":
-                printHelpReview();
-                break;
-            case "quiz":
-                printHelpQuiz();
-                break;
-            case "clear":
-                printHelpClear();
-                break;
-            case "exit":
-                printHelpExit();
-                break;
-            default:
-                printHelp();
-                break;
+    public static void printHelpMessage (String input) {
+        switch (input) {
+        case "add":
+            printHelpAdd();
+            break;
+        case "settings":
+            printHelpSettings();
+            break;
+        case "list":
+            printHelpList();
+            break;
+        case "history":
+            printHelpHistory();
+            break;
+        case "stats":
+            printHelpStats();
+            break;
+        case "review":
+            printHelpReview();
+            break;
+        case "quiz":
+            printHelpQuiz();
+            break;
+        case "clear":
+            printHelpClear();
+            break;
+        case "exit":
+            printHelpExit();
+            break;
+        default:
+            printHelp();
+            break;
         }
     }
 
@@ -65,9 +65,11 @@ public class UI {
 
     public static void printHelpAdd() {
         System.out.println("Use the following format for the 'help' command:");
-        System.out.println("add t\\<topic> st\\<subtopic> n\\<quiz name> mcq\\<number of MCQ questions> qna\\<number of QNA questions> fb\\ <number of fill in the blanks questions>");
+        System.out.println("add t\\<topic> st\\<subtopic> n\\<quiz name> mcq\\<number of MCQ questions> qna\\"
+                + "<number of QNA questions> fb\\ <number of fill in the blanks questions>");
         System.out.println("Example: add t\\Science st\\Chemistry n\\stoichiometry quiz 1 mcq\\3 mrq\\0 qna\\4 fb\\2");
-        System.out.println("This adds a quiz of topic 'Science', subtopic 'Chemistry' and named 'stoichiometry quiz 1', with 3 MCQ questions, 0 MRQ questions, 4 QNA questions, and 2 fill in the blank questions.");
+        System.out.println("This adds a quiz of topic 'Science', subtopic 'Chemistry' and named 'stoichiometry quiz 1'"
+                + ", with 3 MCQ questions, 0 MRQ questions, 4 QNA questions, and 2 fill in the blank questions.");
     }
 
     public static void printHelpList() {
@@ -94,7 +96,8 @@ public class UI {
     }
 
     public static void printHelpClear() {
-        System.out.println("Delete all your saved quizzes in CLIcker by typing 'clear'. A warning prompt will be generated before deletion.");
+        System.out.println("Delete all your saved quizzes in CLIcker by typing 'clear'. "
+                + "A warning prompt will be generated before deletion.");
     }
 
     public static void printHelpExit() {
@@ -103,7 +106,7 @@ public class UI {
 
     public static String getDivider(int input) {
         String divider;
-        if(input == 1) {
+        if (input == 1) {
             divider = "‿︵‿︵‿︵‿︵︵‿︵‿︵‿︵‿︵‿︵‿︵︵‿︵‿︵‿︵‿︵‿︵";
         } else if (input == 2) {
             divider = "---------------------------------------------";

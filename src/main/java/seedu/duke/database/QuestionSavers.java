@@ -30,7 +30,7 @@ public class QuestionSavers {
         File directory = new File(filePathWithoutQuestionName);
 
         if (directory.mkdirs()) {
-                System.out.println("A directory has just been created");
+            System.out.println("A directory has just been created");
         } else {
             System.out.printf("Opening %s ...\n", filePathWithoutQuestionName);
         }
@@ -39,13 +39,13 @@ public class QuestionSavers {
         String textToWrite;
         String suffices;
         if (question instanceof FillBlank) {
-            textToWrite = "string before: " + ((FillBlank) question).getStringBefore() + System.lineSeparator() +
-                    "blank: " + question.getCorrectAnswer() + System.lineSeparator() +
-                    "string after: " + ((FillBlank) question).getStringAfter();
+            textToWrite = "string before: " + ((FillBlank) question).getStringBefore() + System.lineSeparator()
+                    + "blank: " + question.getCorrectAnswer() + System.lineSeparator()
+                    + "string after: " + ((FillBlank) question).getStringAfter();
             suffices = "_fb.txt";
         } else if (question instanceof Qna) {
-            textToWrite = "question: " + question.getQuestion() + System.lineSeparator() +
-                    "answer: " + question.getCorrectAnswer();
+            textToWrite = "question: " + question.getQuestion() + System.lineSeparator()
+                    + "answer: " + question.getCorrectAnswer();
             suffices = "_qna.txt";
         } else {
             throw new QuestionTypeException();

@@ -35,29 +35,29 @@ public enum CommandChecker {
     }
 
     public static CommandChecker extractCommandType(String userInput) {
-        if (userInput.toLowerCase().trim().startsWith("help")){
+        if (userInput.toLowerCase().trim().startsWith("help")) {
             return CommandChecker.HELP;
-        } else if (userInput.toLowerCase().trim().startsWith("settings")){
+        } else if (userInput.toLowerCase().trim().startsWith("settings")) {
             return CommandChecker.SETTINGS;
-        } else if (userInput.toLowerCase().trim().startsWith("qna")){
+        } else if (userInput.toLowerCase().trim().startsWith("qna")) {
             return CommandChecker.QNA;
-        } else if (userInput.toLowerCase().trim().startsWith("mcq")){
+        } else if (userInput.toLowerCase().trim().startsWith("mcq")) {
             return CommandChecker.MCQ;
-        } else if (userInput.toLowerCase().trim().startsWith("fillblank")){
+        } else if (userInput.toLowerCase().trim().startsWith("fillblank")) {
             return CommandChecker.FILLBLANK;
-        } else if (userInput.toLowerCase().trim().startsWith("list")){
+        } else if (userInput.toLowerCase().trim().startsWith("list")) {
             return CommandChecker.LIST;
-        } else if (userInput.toLowerCase().trim().startsWith("history")){
+        } else if (userInput.toLowerCase().trim().startsWith("history")) {
             return CommandChecker.HISTORY;
-        } else if (userInput.toLowerCase().trim().startsWith("stats")){
+        } else if (userInput.toLowerCase().trim().startsWith("stats")) {
             return CommandChecker.STATS;
-        } else if (userInput.toLowerCase().trim().startsWith("review")){
+        } else if (userInput.toLowerCase().trim().startsWith("review")) {
             return CommandChecker.REVIEW;
-        } else if (userInput.toLowerCase().trim().startsWith("quiz")){
+        } else if (userInput.toLowerCase().trim().startsWith("quiz")) {
             return CommandChecker.QUIZ;
-        } else if (userInput.toLowerCase().trim().startsWith("clear")){
+        } else if (userInput.toLowerCase().trim().startsWith("clear")) {
             return CommandChecker.CLEAR;
-        } else if (userInput.toLowerCase().trim().startsWith("exit")){
+        } else if (userInput.toLowerCase().trim().startsWith("exit")) {
             return CommandChecker.EXIT;
         } else {
             return CommandChecker.UNRECOGNISED;

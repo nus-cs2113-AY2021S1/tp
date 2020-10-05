@@ -1,5 +1,7 @@
 package seedu.duke.settings;
+
 import seedu.duke.ui.UI;
+
 public class Settings {
     protected String name;
     protected int dividerNum;
@@ -17,7 +19,7 @@ public class Settings {
 
     // Setter for divider number
     public void setDividerNum(int divider) {
-        if(divider < 1 || divider > 4) {
+        if (divider < 1 || divider > 4) {
             System.out.println("Enter a valid number 1 -4!");
         } else {
             this.dividerNum = divider;

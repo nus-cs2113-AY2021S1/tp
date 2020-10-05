@@ -22,7 +22,7 @@ public class QuestionLoaders {
      * @throws FilePathInvalidException File path is incorrectly formatted.
      */
     public static Question loadFillBlankAndQnaQuestion(String directoryPath, String fileName)
-            throws FilePathInvalidException{
+            throws FilePathInvalidException {
 
         // TODO: Check validity of directoryPath and fileName
 
@@ -67,7 +67,7 @@ public class QuestionLoaders {
     private static void filterQnaQuestionLines(ArrayList<String> lines) {
         for (int i = 0; i < 2; i++) {
             String cutString;
-            switch(i) {
+            switch (i) {
             case 0:
                 cutString = lines.get(i).replace("question: ", "");
                 break;
@@ -85,7 +85,7 @@ public class QuestionLoaders {
     private static void filterFillBlankQuestionLines(ArrayList<String> lines) {
         for (int i = 0; i < 3; i++) {
             String cutString;
-            switch(i) {
+            switch (i) {
             case 0:
                 cutString = lines.get(i).replace("string before: ", "");
                 break;
