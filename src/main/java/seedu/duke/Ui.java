@@ -166,24 +166,24 @@ public class Ui {
      *
      * @param taskList the list of user tasks.
      */
-    public static void printProgress(TaskList taskList){
-        int num_finished = 0;
-        int num_total = 0;
+    public static void printProgress(TaskList taskList) {
+        int numFinished = 0;
+        int numTotal = 0;
         for (int i = 0; i < taskList.getTotalTask(); i++) {
             Task task = taskList.getTaskList().get(i);
-            if (task.getTaskType().equals("E") || task.getTaskType().equals("D")){
-                num_total++;
-                if (task.getIsDone()){
-                    num_finished++;
+            if (task.getTaskType().equals("E") || task.getTaskType().equals("D")) {
+                numTotal++;
+                if (task.getIsDone()) {
+                    numFinished++;
                 }
             }
         }
 
-        if (num_total == 0){
+        if (numTotal == 0) {
             System.out.println("You have no deadlines or todos now!");
         } else {
-            float progress = (float) num_finished / num_total * 100;
-            System.out.println("You have finished " + num_finished + "/" + num_total +
+            float progress = (float) numFinished / numTotal * 100;
+            System.out.println("You have finished " + numFinished + "/" + numTotal +
                     " (" + String.format("%.2f", progress) + "%) deadlines and todos.");
         }
     }
@@ -207,7 +207,8 @@ public class Ui {
             break;
         case "invalid command":
             System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
-                    + "Available commands: print list, print events, print progress, done, todo, deadline, event, find, delete, bye");
+                    + "Available commands: print list, print events, print progress, done, " +
+                    "todo, deadline, event, find, delete, bye");
             break;
         case "invalid task action":
             System.out.println("Error: Total task(s): " + taskList.getTotalTask());

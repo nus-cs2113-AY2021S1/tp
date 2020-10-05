@@ -7,7 +7,7 @@ import seedu.duke.task.TaskList;
 /**
  * Show the progress of deadlines and todos to the user.
  */
-public class ProgressCommand extends Command{
+public class ProgressCommand extends Command {
     public ProgressCommand(String userInput) {
         super(userInput);
     }

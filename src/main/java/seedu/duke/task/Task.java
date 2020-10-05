@@ -51,7 +51,7 @@ public abstract class Task {
     }
 
     /**
-     * Get the state of the task
+     * Get the state of the task.
      *
      * @return the state of the task
      */
