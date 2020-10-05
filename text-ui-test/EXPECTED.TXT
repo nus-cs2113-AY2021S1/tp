@@ -1,1 +1,2 @@
-[AC_1 BR1, Lights_1 BR1]
+AC_1 BR1 status: false
+Lights_1 BR1 status: true
