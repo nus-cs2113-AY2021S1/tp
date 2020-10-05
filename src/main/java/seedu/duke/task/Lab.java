@@ -12,7 +12,7 @@ public class Lab extends Task {
         super(description);
         this.date = date;
         this.time = time;
-        this.taskType = "LAB";
+        this.taskType = "E";
     }
 
     /**

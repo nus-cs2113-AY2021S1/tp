@@ -12,7 +12,7 @@ public class Lecture extends Task {
         super(description);
         this.date = date;
         this.time = time;
-        this.taskType = "LEC";
+        this.taskType = "E";
     }
 
     /**

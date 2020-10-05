@@ -13,7 +13,7 @@ public class Tutorial extends Task {
         super(description);
         this.date = date;
         this.time = time;
-        this.taskType = "TUT";
+        this.taskType = "E";
     }
 
     /**
