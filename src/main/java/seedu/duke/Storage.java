@@ -37,27 +37,26 @@ public class Storage {
      */
     public ArrayList<String> load() throws DukeException {
         File f = new File(filePath);
-        ArrayList<String> tasks;
+        ArrayList<String> data;
         try {
-            tasks = getTasks(f);
+            data = getData(f);
         } catch (FileNotFoundException e) {
             throw new DukeException(DukeExceptionType.ERROR_LOADING_FILE);
         }
-        return tasks;
+        return data;
     }
 
-    private ArrayList<String> getTasks(File f) throws FileNotFoundException {
-        ArrayList<String> tasks = new ArrayList<>();
+    private ArrayList<String> getData(File f) throws FileNotFoundException {
+        ArrayList<String> bookmarks = new ArrayList<>();
         Scanner s = new Scanner(f);
         while (s.hasNextLine()) {
-            tasks.add(s.nextLine());
+            bookmarks.add(s.nextLine());
         }
-        return tasks;
+        return bookmarks;
     }
 
     /**
-     * This method creates the file if it does not exist and saves
-     * tasks data in the file.
+     * This method creates the file if it does not exist and saves tasks data in the file.
      *
      * @param data The string of all the data to be saved in the file.
      * @throws DukeException If there is an error writing to the file.
