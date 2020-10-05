@@ -37,7 +37,7 @@ public class AddSubjectCommand extends SubjectCommand {
     }
 
     /**
-     * Checks whether the the user exits the program
+     * Checks whether the the user exits the program.
      * @return <code>true</code> if user exits the program
      */
     public boolean isExit() {

@@ -14,7 +14,7 @@ import seedu.duke.command.taskcommand.TaskCommand;
 public class TaskParser {
 
     /**
-     * Parses the inputs provided by the user
+     * Parses the inputs provided by the user.
      * @param fullCommand input by the user
      * @return returns a command instance to execute a command
      */

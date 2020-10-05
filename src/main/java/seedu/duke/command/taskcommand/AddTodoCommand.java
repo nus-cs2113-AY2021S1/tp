@@ -12,7 +12,7 @@ public class AddTodoCommand extends TaskCommand {
     }
 
     /**
-     * Adds an instance of the <code>Todo</code> class into a <code>TaskList</code>
+     * Adds an instance of the <code>Todo</code> class into a <code>TaskList</code>.
      * @param taskList An instance of the <code>TaskList</code> class for the user to append to
      * @throws TaskTodoException If there are no parameters written to initialise the creation of a new Todo class
      */
@@ -34,7 +34,7 @@ public class AddTodoCommand extends TaskCommand {
     }
 
     /**
-     * Checks whether the the user exits the program
+     * Checks whether the the user exits the program.
      * @return <code>true</code> if user exits the program
      */
     public boolean isExit() {
