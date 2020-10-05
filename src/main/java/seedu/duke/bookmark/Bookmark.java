@@ -1,10 +1,7 @@
 package seedu.duke.bookmark;
-
 import seedu.duke.command.AddBookmarkCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
-
-import java.awt.print.Book;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +16,7 @@ public class Bookmark {
     private String description;
     private String url;
     private final String SEPARATOR = " | ";
-
+    
 
     /**
      * Constructs a bookmark object containing a URL and description of the webpage.
@@ -48,6 +45,7 @@ public class Bookmark {
      * @param input the string input by the user.
      * @return a list of strings containing the URL and the description
      */
+
 //    public static List<String> extractDescriptionAndURL(String input) {
 //        List<String> urlAndDescription = Arrays.asList(input.split(" ", 2));
 //        if (urlAndDescription.size() != 2) {
@@ -55,13 +53,14 @@ public class Bookmark {
 //        }
 //        return urlAndDescription;
 //    }
-
+    
     /**
      * Returns the topic, URL and description that can be detected from the given input.
      *
      * @param input the string input by the user.
      * @return a list of strings containing the topic, URL and the description
      */
+
     public static List<String> extractModuleDescriptionAndURL (String input) throws DukeException {
         input = input.substring(AddBookmarkCommand.ADD_KW.length()).trim();
         System.out.println(input);
@@ -89,6 +88,7 @@ public class Bookmark {
 
         return false;
     }
+        
 
     /**
      * This method opens a web browser and open the URL of the bookmark.
@@ -119,6 +119,7 @@ public class Bookmark {
     public String getDescription() {
         return description;
     }
+
     public String getModule() {
         return module;
     }

@@ -1,7 +1,7 @@
 package seedu.duke.bookmark;
 
-import seedu.duke.exception.DukeException;
 
+import seedu.duke.exception.DukeException;
 import java.util.ArrayList;
 
 public class BookmarkList {
@@ -11,6 +11,7 @@ public class BookmarkList {
     public BookmarkList() {
         this.bookmarks = new ArrayList<>();
     }
+
 
     public BookmarkList(ArrayList<String> bookmarkString) {
         this.bookmarks = new ArrayList<>();
@@ -95,6 +96,5 @@ public class BookmarkList {
     public void deleteBookmark(Bookmark bookmark) {
         bookmarks.remove(bookmark);
     }
-
 
 }

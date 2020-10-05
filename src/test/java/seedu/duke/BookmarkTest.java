@@ -16,7 +16,11 @@ class BookmarkTest {
         List<String> expectedUrlAndDescription = new ArrayList<>();
         expectedUrlAndDescription.add("www.google.com");
         expectedUrlAndDescription.add("google website");
+<<<<<<< HEAD
         assertEquals(expectedUrlAndDescription, Bookmark.extractDescriptionAndURL(input));
+=======
+        assertEquals(expectedUrlAndDescription, Bookmark.extractUrlAndDescription(input));
+>>>>>>> cbd4a4f89a0ceb58555b7bcbf0972be73f810bdb
     }
 
     @Test
