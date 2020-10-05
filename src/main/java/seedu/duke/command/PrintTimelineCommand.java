@@ -19,6 +19,7 @@ public class PrintTimelineCommand extends Command {
 
         for (int i = 0; i < taskList.getTotalTask(); i++) {
             Task temp = taskList.getTask(i);
+
             switch (taskList.getTask(i).getTaskType()) {
             case "E":
             case "D":
@@ -31,7 +32,7 @@ public class PrintTimelineCommand extends Command {
                 break;
             }
         }
-        
+
         TaskList sortedList = sortByDate(timelineList);
         System.out.println("Here is your timeline:");
         int numberOfItems = sortedList.getTotalTask();
@@ -42,6 +43,7 @@ public class PrintTimelineCommand extends Command {
             }
             System.out.println("|        |__ " + sortedList.getTask(i).toString());
         }
+        
     }
 
     public TaskList sortByDate(TaskList taskList) {
