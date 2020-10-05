@@ -28,7 +28,7 @@ public class Parser {
         } else if (userInput.equals(COMMAND_PRINT_LIST)) {
             return new PrintListCommand(userInput);
         } else if (userInput.equals(COMMAND_PRINT_EVENTS)) {
-          return new PrintEventsCommand(userInput);
+            return new PrintEventsCommand(userInput);
         } else if (userInput.startsWith(COMMAND_DONE)) {
             return new DoneCommand(userInput);
         } else if (userInput.startsWith(COMMAND_DELETE)) {

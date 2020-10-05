@@ -89,6 +89,7 @@ public class Ui {
             System.out.printf("%d." + taskList.getTaskList().get(i) + "\n", i + 1);
         }
     }
+
     /**
      * Shows the user all the event type of tasks in the task list,
      * such as lecture, lab, tutorial and events.
@@ -99,7 +100,7 @@ public class Ui {
         int eventCounts = 0;
         System.out.println("This is your list of event(s):");
         for (int i = 0; i < taskList.getTotalTask(); i++) {
-            if (taskList.getTaskList().get(i).getTaskType().equals("E")){
+            if (taskList.getTaskList().get(i).getTaskType().equals("E")) {
                 eventCounts++;
                 System.out.printf("%d." + taskList.getTaskList().get(i) + "\n", eventCounts);
             }
