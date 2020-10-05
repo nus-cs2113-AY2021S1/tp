@@ -52,6 +52,7 @@ public abstract class Task {
         this.isDone = true;
     }
 
-    public LocalDate getTime() { return null; }
-
+    public LocalDate getTime() {
+        return null;
+    }
 }
