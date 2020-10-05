@@ -11,6 +11,5 @@ public enum DukeExceptionType {
     INVALID_TASK_NUMBER,
     WRITE_FILE_ERROR,
     ERROR_LOADING_FILE,
-    INVALID_TASK_DATA,
     INVALID_DATE_TIME
 }

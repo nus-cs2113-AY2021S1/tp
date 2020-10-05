@@ -1,15 +1,14 @@
 package seedu.duke;
 
+import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.command.Command;
+import seedu.duke.exception.DukeException;
 
 public class Duke {
 
     private Storage storage;
-    private TaskList tasks;
+    private BookmarkList bookmarks;
     private Ui ui;
-
-
-
 
     /**
      * Constructs a new Duke instance.
@@ -21,11 +20,18 @@ public class Duke {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
-            tasks = new TaskList(storage.load());
+            bookmarks = new BookmarkList(storage.load());
         } catch (DukeException e) {
             ui.showLoadingError();
-            tasks = new TaskList();
+            bookmarks = new BookmarkList();
         }
+        //try {
+        //    load timetable here
+        //    if use another text file to save timetable, then pass another filepath to Duke constructor
+        //    and create another Storage object
+        //} catch (DukeException e) {
+
+        //}
     }
 
     /**
@@ -40,13 +46,12 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
+                c.execute(bookmarks, ui, storage);  // pass timetable here
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showErrorMessage(e);
             }
         } while (!isExit);
-
     }
 
     /**
@@ -55,8 +60,6 @@ public class Duke {
      * @param args Unused.
      */
     public static void main(String[] args) {
-        new Duke("./data/tasks.txt").run();
+        new Duke("./data/data.txt").run();
     }
 }
-
-// jusufn
