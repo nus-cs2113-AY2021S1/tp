@@ -34,18 +34,22 @@ public class Ui {
         for (int i = 0; i < modList.size(); i++) {
             System.out.println(modList.get(i));
         }
+        System.out.println("");
     }
 
     /**
      * Prints the welcome screen when the program starts.
      */
     public static void printWelcomeScreen() {
-        String logo = " ____        _\n"
-                + "|  _ \\ _   _| | _____\n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        String logo = "|\\\\        /|         |======            ||\n"
+                + "||\\\\      / |  __   __|  ||  __  ___ ___ ||    ___   ____\n"
+                + "|| \\\\    /  |//  \\//  |  ||//  \\/  |/    ||// / _ \\ //   \\\n"
+                + "||  \\\\  /   |||   ||  |  |||   ||  ||    ||\\\\ | __/ ||\n"
+                + "||   \\\\/    |\\\\__/\\\\__|  |||   \\\\__|\\___ || \\\\\\___| ||\n"
+                + "*****************************************************|\n";
+
         System.out.println("Hello from\n" + logo);
+        System.out.println("User guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/" + System.lineSeparator());
     }
 
     /**
@@ -59,7 +63,7 @@ public class Ui {
             printNamePrompt();
         } else {
             System.out.println("");
-            System.out.println("Hello " + name);
+            System.out.println("Hello " + name + "!");
             System.out.println("What can I do for you?" + System.lineSeparator());
         }
     }
