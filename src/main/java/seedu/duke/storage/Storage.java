@@ -1,9 +1,10 @@
-package seedu.duke;
+package seedu.duke.storage;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import seedu.duke.*;
 
 import java.io.File;
 import java.io.FileReader;
