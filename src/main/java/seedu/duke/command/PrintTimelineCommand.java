@@ -36,7 +36,7 @@ public class PrintTimelineCommand extends Command {
         System.out.println("Here is your timeline:");
         int numberOfItems = sortedList.getTotalTask();
         System.out.println("Timeline \n|" );
-        for (int i = 0; i < numberOfItems; i + + ) {
+        for (int i = 0; i < numberOfItems; i++ ) {
             if (i == 0 || (sortedList.getTask(i-1).getTime() != sortedList.getTask(i).getTime())) {
                 System.out.println("|__ " + sortedList.getTask(i).getTime() );
             }
@@ -49,8 +49,8 @@ public class PrintTimelineCommand extends Command {
     public TaskList sortByDate(TaskList taskList) {
         TaskList sortingList = taskList;
 
-        for (int i = 0; i < taskList.getTotalTask(); i + + ) {
-            for (int j = i + 1; j < taskList.getTotalTask(); j + + ) {
+        for (int i = 0; i < taskList.getTotalTask(); i++ ) {
+            for (int j = i + 1; j < taskList.getTotalTask(); j++ ) {
                 if (taskList.getTask(i).getTime() != null && taskList.getTask(j).getTime() != null) {
                     if (taskList.getTask(j).getTime().isBefore(taskList.getTask(i).getTime())) {
                         sortingList.swapTasks(i, j);
