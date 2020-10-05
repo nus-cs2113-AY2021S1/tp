@@ -1,30 +1,61 @@
 package seedu.duke;
 
-import java.util.Scanner;
+import seedu.duke.command.Command;
 
 public class Duke {
+
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
+
+
+
+
+    /**
+     * Constructs a new Duke instance.
+     * Pass the filepath of the txt file to set up storage.
+     *
+     * @param filePath The filepath of the txt file.
+     */
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (DukeException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+    }
+
+    /**
+     * This method is used run the Duke program.
+     */
+    public void run() {
+        boolean isExit = false;
+
+        ui.showWelcomeScreen();
+
+        do {
+            try {
+                String fullCommand = ui.readCommand();
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showErrorMessage(e);
+            }
+        } while (!isExit);
+
+    }
+
     /**
      * Main entry-point for the java.duke.Duke application.
+     *
+     * @param args Unused.
      */
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
-
-        int check = 1;
-        if (check==1) {
-           System.out.println("Testin for forking workflow");
-        if (1 == 1)
-        {
-            System.out.println("true");
-        }
+        new Duke("./data/tasks.txt").run();
     }
 }
 
