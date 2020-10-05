@@ -19,6 +19,11 @@ public class ClickerMessages {
             + "No previous settings loaded";
     public static final String SETTINGS_FILE_NOT_FOUND_MSG = "userSettings.txt save file not found" + NEWLINE
             + "Creating new file...";
+    public static final String LOADING_HISTORY_MSG = "Loading history.txt save file...";
+    public static final String HISTORY_FILE_EMPTY_MSG = "history.txt save file empty" + NEWLINE
+            + "No previous settings loaded";
+    public static final String HISTORY_FILE_NOT_FOUND_MSG = "history.txt save file not found" + NEWLINE
+            + "Creating new file...";
 
     /** File creator function messages.  */
     public static final String NEW_FILE_CREATED_MSG_FORMAT = "New file created";
