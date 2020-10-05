@@ -31,4 +31,9 @@ public class Event extends Task {
         return taskType;
     }
 
+    @Override
+    public LocalDate getTime() {
+        return this.at;
+    }
+
 }

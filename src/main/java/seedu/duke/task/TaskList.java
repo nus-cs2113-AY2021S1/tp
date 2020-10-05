@@ -1,6 +1,7 @@
 package seedu.duke.task;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Represents a task list.
@@ -51,4 +52,11 @@ public class TaskList {
         return taskList;
     }
 
+    public Task getTask(int i) {
+        return taskList.get(i);
+    }
+
+    public void swapTasks(int i, int j) {
+        Collections.swap(taskList, i, j);
+    }
 }

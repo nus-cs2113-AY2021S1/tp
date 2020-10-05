@@ -1,5 +1,7 @@
 package seedu.duke.task;
 
+import java.time.LocalDate;
+
 /**
  * Represents a Task in the task list.
  */
@@ -59,4 +61,7 @@ public abstract class Task {
         return isDone;
     }
 
+    public LocalDate getTime() {
+        return null;
+    }
 }
