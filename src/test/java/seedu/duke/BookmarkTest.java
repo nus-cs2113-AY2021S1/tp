@@ -13,7 +13,7 @@ class BookmarkTest {
     @Test
     void extractUrlAndDescription_descriptionWithWhiteSpace_returnsUrlAndDescription() {
         String input = "www.google.com google website";
-        List<String> expectedUrlAndDescription= new ArrayList<>();
+        List<String> expectedUrlAndDescription = new ArrayList<>();
         expectedUrlAndDescription.add("www.google.com");
         expectedUrlAndDescription.add("google website");
         assertEquals(expectedUrlAndDescription, Bookmark.extractUrlAndDescription(input));
