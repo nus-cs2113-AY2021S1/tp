@@ -3,6 +3,8 @@ import seedu.duke.command.AddBookmarkCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -64,7 +66,7 @@ public class Bookmark {
     public static List<String> extractModuleDescriptionAndURL (String input) throws DukeException {
         input = input.substring(AddBookmarkCommand.ADD_KW.length()).trim();
         System.out.println(input);
-        List<String> moduleDescriptionURL = Arrays.asList(input.split(" ", 3));
+        List<String> moduleDescriptionURL = new ArrayList<String>(Arrays.asList(input.split(" ", 3)));
         if (moduleDescriptionURL.size() == 2) {
             moduleDescriptionURL.add(0, "");  // No entry for module
         }
