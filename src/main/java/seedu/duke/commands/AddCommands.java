@@ -29,9 +29,6 @@ public class AddCommands {
             case FILLBLANK:
                 addFillBlankQuestion(command);
                 break;
-//            case MCQ:
-//                addMcqQuestion(command);
-//                break;
             default:
                 throw new QuestionTypeException();
             }
