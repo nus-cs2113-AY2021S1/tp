@@ -1,9 +1,6 @@
 package seedu.duke.storage;
 
-import seedu.duke.task.Deadline;
-import seedu.duke.task.Event;
-import seedu.duke.task.TaskList;
-import seedu.duke.task.Todo;
+import seedu.duke.card.SubjectList;
 import seedu.duke.ui.Ui;
 
 import java.io.File;
@@ -14,12 +11,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-public class Storage {
+public class SubjectStorage {
 
     private File file;
     private String fileName;
 
-    public Storage(String fileName) {
+    public SubjectStorage(String fileName) {
         this.fileName = fileName;
         this.file = new File(fileName);
     }
@@ -36,11 +33,11 @@ public class Storage {
     /**
      * Tries to get the file to write on, if not create a new file.
      *
-     * @param taskList Writes contents of the file into a <code>TaskList</code>
+     * @param subjectList Writes contents of the file into a <code>TaskList</code>
      */
-    public void load(TaskList taskList) {
+    public void load(SubjectList subjectList) {
         try {
-            getFile(taskList);
+            getFile(subjectList);
         } catch (FileNotFoundException e) {
             try {
                 createFile();
@@ -54,28 +51,13 @@ public class Storage {
     /**
      * Reads the file contents and writes in onto a <code>TaskList</code>.
      *
-     * @param taskList the taskList which data will be read into
+     * @param subjectList the taskList which data will be read into
      * @throws FileNotFoundException When there are no files found
      */
-    private void getFile(TaskList taskList) throws FileNotFoundException {
+    private void getFile(SubjectList subjectList) throws FileNotFoundException {
         Scanner scan = new Scanner(this.file);
         while (scan.hasNextLine()) {
-            String content = scan.nextLine();
-            String[] contents = content.split("\\s\\|\\s");
-            String legend = contents[0].trim();
-            Boolean done = (Integer.valueOf(contents[1].trim()) == 1) ? true : false;
-            String action = contents[2].trim();
-            String action2 = "";
-            if (legend.equals("D") || legend.equals("E")) {
-                action2 = contents[3].trim();
-            }
-            if (legend.equals("T")) {
-                taskList.add(new Todo(action, done));
-            } else if (legend.equals("D")) {
-                taskList.add(new Deadline(action, done, action2));
-            } else if (legend.equals("E")) {
-                taskList.add(new Event(action, done, action2));
-            }
+
         }
     }
 

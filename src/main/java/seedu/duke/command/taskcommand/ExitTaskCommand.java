@@ -1,8 +1,9 @@
-package seedu.duke.command;
+package seedu.duke.command.taskcommand;
 
-import seedu.duke.list.TaskList;
+import seedu.duke.command.taskcommand.TaskCommand;
+import seedu.duke.task.TaskList;
 
-public class ExitCommand extends Command {
+public class ExitTaskCommand extends TaskCommand {
 
     public void execute(TaskList taskList) {
     }

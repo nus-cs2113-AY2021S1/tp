@@ -1,15 +1,16 @@
-package seedu.duke.command;
+package seedu.duke.command.taskcommand;
 
-import seedu.duke.list.TaskList;
+import seedu.duke.command.taskcommand.TaskCommand;
+import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
 /**
  * Allows marking a <code>Task</code> in a <code>TaskList</code> as done.
  */
-public class DoneCommand extends Command {
+public class DoneTaskCommand extends TaskCommand {
     private String fullCommand;
 
-    public DoneCommand(String fullCommand) {
+    public DoneTaskCommand(String fullCommand) {
         this.fullCommand = fullCommand;
     }
 
