@@ -26,7 +26,7 @@ public class Duke {
 
     public void runLoopUntilExitCommand() {
         boolean isExit = false;
-        while(!isExit){
+        while(!isExit) {
             String userCommandText = ui.getUserCommand();
             Command command = new Parser().parseUserCommand(userCommandText);
             if (command == null) {
