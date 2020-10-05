@@ -25,7 +25,13 @@ public class Parser {
     public Command parseCommand(String userInput) {
         String[] userCommandAndArguments = userInput.split(" ", 2);
         String commandString = userCommandAndArguments[0];
-        //String userMessage = userCommandAndMessage[1];
+        String userMessage;
+
+        try {
+            userMessage = userCommandAndArguments[1];
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            userMessage = null;
+        }
 
         switch  (commandString.toLowerCase()) {
         case AddCommand.COMMAND_WORD_NOTE:
