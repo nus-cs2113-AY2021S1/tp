@@ -1,8 +1,11 @@
 package seedu.duke;
 
 import seedu.duke.data.ApplianceList;
+import seedu.duke.data.framework.Appliance;
 import seedu.duke.data.type.AirConditioner;
 import seedu.duke.data.type.Lights;
+
+import java.util.ArrayList;
 
 public class SmartHomeBot {
     private static final ApplianceList appliances = new ApplianceList();
@@ -13,6 +16,15 @@ public class SmartHomeBot {
         appliances.addAppliance(ac);
         appliances.addAppliance(bedroomLight);
 
-        System.out.println(appliances.getAllAppliance());
+        //Changing temperature for aircondtioner
+        AirConditioner temp = (AirConditioner) appliances.getAppliance(0);
+        temp.setTemperature("25");
+        appliances.setAppliance(0,temp);
+        appliances.getAppliance(1).switchOn();
+
+        for (Appliance a: appliances.getAllAppliance()) {
+            System.out.println(a);
+        }
+
     }
 }

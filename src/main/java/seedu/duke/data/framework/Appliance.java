@@ -18,11 +18,11 @@ public abstract class Appliance {
     }
 
     public void switchOff() {
-        status = false;
+        this.status = false;
     }
 
     public boolean getStatus() {
-        return status;
+        return this.status;
     }
 
     public abstract String getType();
@@ -36,7 +36,7 @@ public abstract class Appliance {
     }
 
     public String toString() {
-        return this.name;
+        return this.name + " status: "+ getStatus();
     }
 
 }
