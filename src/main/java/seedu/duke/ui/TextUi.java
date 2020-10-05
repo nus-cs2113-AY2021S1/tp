@@ -1,5 +1,7 @@
 package seedu.duke.ui;
 
+import seedu.duke.book.BookList;
+
 import java.util.Scanner;
 
 public class TextUi {
@@ -12,6 +14,7 @@ public class TextUi {
 
     private static final String WELCOME_MESSAGE = "Welcome to Quotesify!";
     private static final String GOODBYE_MESSAGE = "Have a nice day!";
+    private static final String SUCCESSFUL_ADD = "Alright! It has been added!";
 
     private final Scanner in;
 
@@ -29,6 +32,11 @@ public class TextUi {
     }
 
     public String getUserCommand() {
+        System.out.println("What would you like to do with Quotesify?");
         return in.nextLine().trim();
+    }
+
+    public void printSuccessfulAddCommand() {
+        System.out.println(SUCCESSFUL_ADD);
     }
 }

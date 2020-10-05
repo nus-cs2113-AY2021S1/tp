@@ -5,5 +5,8 @@ ________                __                .__  _____
 \_____\ \_/____/ \____/|__|  \___  >____  >__||__|  / ____|
        \__>                      \/     \/          \/    
 Welcome to Quotesify!
+What would you like to do with Quotesify?
+Alright! It has been added!
+What would you like to do with Quotesify?
 Invalid command, bye!
 Have a nice day!

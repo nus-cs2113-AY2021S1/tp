@@ -1,5 +1,6 @@
 package seedu.duke.parser;
 
+import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 
@@ -15,7 +16,7 @@ public class Parser {
     public Command parseUserCommand(String input) {
         String[] tokens = input.split(" ", 2);
 
-        // if user did not provide arguments, let tokens[1] be empty string
+        // if user did not provide arguments, let tokens[0] be empty string
         if (tokens.length == 1) {
             tokens = new String[]{tokens[0], ""};
         }
@@ -25,6 +26,7 @@ public class Parser {
 
         switch (command) {
         case COMMAND_ADD:
+            return new AddCommand(arguments);
         case COMMAND_BOOKMARK:
         case COMMAND_DELETE:
         case COMMAND_EDIT:
