@@ -4,14 +4,14 @@ import seedu.duke.card.Subject;
 import seedu.duke.card.SubjectList;
 import seedu.duke.ui.Ui;
 
-public class FindSubjectCommand extends SubjectCommand{
+public class FindSubjectCommand extends SubjectCommand {
     private String fullcommand;
 
     public FindSubjectCommand(String fullcommand){
         this.fullcommand = fullcommand;
     }
 
-    public Subject execute(SubjectList subjectList){
+    public Subject execute(SubjectList subjectList) {
         String[] message = this.fullcommand.split(" ");
         Ui.printFindSubject(subjectList,message[1]);
         return null;

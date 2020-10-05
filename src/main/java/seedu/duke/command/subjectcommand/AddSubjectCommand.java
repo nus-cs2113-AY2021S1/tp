@@ -16,17 +16,17 @@ public class AddSubjectCommand extends SubjectCommand {
     }
 
     public Subject execute(SubjectList subjectList) throws NoSubjectException, RepeatedSubjectException {
-        int startOfMessage = 8;
+        int startOfMessage = 4;
         int endOfMessage = fullCommand.length();
-        if (endOfMessage <= startOfMessage){
+        if (endOfMessage <= startOfMessage) {
             throw new NoSubjectException();
         }
         String title = fullCommand.substring(startOfMessage,endOfMessage);
-        if (title.isEmpty()){
+        if (title.isEmpty()) {
             throw new NoSubjectException();
         }
-        for(Subject subject : subjectList.getList()){
-            if (subject.getTitle().equals(title)){
+        for(Subject subject : subjectList.getList()) {
+            if (subject.getTitle().equals(title)) {
                 throw new RepeatedSubjectException();
             }
         }

@@ -10,7 +10,7 @@ public class FindTaskCommand extends TaskCommand {
         this.fullcommand = fullcommand;
     }
 
-    public void execute(TaskList taskList){
+    public void execute(TaskList taskList) {
         String[] message = this.fullcommand.split(" ");
         Ui.printFindTask(taskList,message[1]);
     }

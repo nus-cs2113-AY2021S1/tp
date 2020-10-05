@@ -5,7 +5,7 @@ import seedu.duke.card.SubjectList;
 
 public class ExitSubjectCommand extends SubjectCommand {
 
-    public Subject execute(SubjectList subjectList){
+    public Subject execute(SubjectList subjectList) {
         return null;
     };
 
