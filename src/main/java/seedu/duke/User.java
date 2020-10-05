@@ -61,12 +61,12 @@ public class User {
             try {
                 ageInput = Integer.parseInt(in.nextLine());
                 if (ageInput <= 0) {
-                    System.out.println("oops that is an invalid age input.\n" +
-                            "Please enter your age:");
+                    System.out.println("oops that is an invalid age input.\n"
+                            + "Please enter your age:");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Oops that is an invalid age input.\n" +
-                        "Please enter your age:");
+                System.out.println("Oops that is an invalid age input.\n"
+                        + "Please enter your age:");
                 ageInput = 0;
                 continue;
             }
@@ -81,12 +81,12 @@ public class User {
             try {
                 heightInput = Double.parseDouble(in.nextLine());
                 if (heightInput <= 0.00) {
-                    System.out.println("oops that is an invalid height input.\n" +
-                            "Please enter your weight (in m):");
+                    System.out.println("oops that is an invalid height input.\n"
+                            + "Please enter your weight (in m):");
                 }
-            } catch (NumberFormatException e){
-                System.out.println("Oops that is an invalid height input.\n" +
-                        "Please enter your weight (in m):");
+            } catch (NumberFormatException e) {
+                System.out.println("Oops that is an invalid height input.\n"
+                        + "Please enter your weight (in m):");
                 heightInput = 0.00;
                 continue;
             }
@@ -101,12 +101,12 @@ public class User {
             try {
                 weightInput = Double.parseDouble(in.nextLine());
                 if (weightInput <= 0.00) {
-                    System.out.println("Oops that is an invalid weight input\n" +
-                            "Please enter your weight (in kg):");
+                    System.out.println("Oops that is an invalid weight input\n"
+                            + "Please enter your weight (in kg):");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Oops that is an invalid weight input.\n" +
-                        "Please enter your weight (in kg):");
+                System.out.println("Oops that is an invalid weight input.\n"
+                        + "Please enter your weight (in kg):");
                 weightInput = 0.00;
                 continue;
             }
@@ -121,12 +121,12 @@ public class User {
                 genderInput = Integer.parseInt(in.nextLine());
                 System.out.println(genderInput);
                 if (genderInput != 1 && genderInput != 2) {
-                    System.out.println("oops that is an invalid Gender input.\n" +
-                            "Please enter your gender (Enter '1' for Male or '2' for Female):");
+                    System.out.println("oops that is an invalid Gender input.\n"
+                            + "Please enter your gender (Enter '1' for Male or '2' for Female):");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Oops that is an invalid gender input.\n" +
-                        "Please enter your gender (Enter '1' for Male or '2' for Female):");
+                System.out.println("Oops that is an invalid gender input.\n"
+                        + "Please enter your gender (Enter '1' for Male or '2' for Female):");
                 genderInput = 0;
                 continue;
             }
@@ -138,7 +138,7 @@ public class User {
         }
     }
 
-    public void viewProfile(){
+    public void viewProfile() {
         System.out.println("Name:");
         System.out.println(getName());
         System.out.println("Age:");
