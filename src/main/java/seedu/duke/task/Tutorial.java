@@ -17,7 +17,7 @@ public class Tutorial extends Task {
     }
 
     /**
-     * Return a string to describe the tutorial task
+     * Return a string to describe the tutorial task.
      */
     @Override
     public String toString() {

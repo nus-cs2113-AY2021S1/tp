@@ -16,7 +16,7 @@ public class Lab extends Task {
     }
 
     /**
-     * Return a string to describe the lab task
+     * Return a string to describe the lab task.
      */
     @Override
     public String toString() {

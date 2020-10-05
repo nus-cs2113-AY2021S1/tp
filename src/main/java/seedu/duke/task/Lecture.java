@@ -16,7 +16,7 @@ public class Lecture extends Task {
     }
 
     /**
-     * Return a string to describe the lecture task
+     * Return a string to describe the lecture task.
      */
     @Override
     public String toString() {
