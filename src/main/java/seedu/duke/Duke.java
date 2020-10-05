@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import seedu.duke.constants.Logos;
-
 import static seedu.duke.database.UserSettingsLoader.loadUserSettings;
-import static seedu.duke.ui.UI.*;
+import static seedu.duke.ui.UI.printDivider;
+import static seedu.duke.ui.UI.printFarewellMessage;
+import static seedu.duke.ui.UI.printHelloMessage;
 
 public class Duke {
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -14,7 +15,7 @@ public class Duke {
     /**
      * Settings set to defaults.
      **/
-    private static final int NUMBER_OF_SETTINGS = 1; // currently only, username
+    private static final int NUMBER_OF_SETTINGS = 1; // currently only username
     public static String username = "User";
     public static ArrayList<String> savedSettings = new ArrayList<>(NUMBER_OF_SETTINGS);
 
@@ -34,9 +35,15 @@ public class Duke {
 
     }
 
+
+    /**
+     * Set the values in the array for the saved settings.
+     *
+     * @param savedSettings Array of saved settings
+     * @param username      User input name
+     */
     private static void setUserSettingsArrayList(ArrayList<String> savedSettings, String username) {
         savedSettings.add(username);
 
     }
-
 }

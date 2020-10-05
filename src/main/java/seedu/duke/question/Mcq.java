@@ -1,7 +1,8 @@
 package seedu.duke.question;
 
 public class Mcq extends Question {
-
+    private String topic;
+    private String subTopic;
     private String[] wrongAnswers = new String[4];
     private String correctAnswer;
     int numWrongAnswers;
@@ -49,5 +50,22 @@ public class Mcq extends Question {
 
     public boolean returnResult() {
         return this.isCorrect;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    /**
+     * Create respective topic name folder in the database (might refer to the loaders).
+     *
+     * @param topic name of the stated topic
+     */
+    public void createFolder(String topic) {
+
+    }
+
+    public void setSubTopic(String subTopic) {
+        this.subTopic = subTopic;
     }
 }
