@@ -75,4 +75,15 @@ public class Ui {
         System.out.println("All changes saved.");
         System.out.println("Bye. Hope to see you again soon!" + System.lineSeparator());
     }
+
+    /**
+     * Prints the a table.
+     *
+     * @param modList list of modules.
+     * @param week specified week number.
+     */
+    public static void printTable(ArrayList<Module> modList, int week) {
+        View view = new View();
+        view.printAllModuleInformation(modList,week);
+    }
 }

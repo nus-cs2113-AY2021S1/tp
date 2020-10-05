@@ -1,7 +1,5 @@
 package seedu.duke;
 
-import java.util.ArrayList;
-
 /**
  * Parses user input.
  */
@@ -34,7 +32,8 @@ public class Parser {
             //methods
             break;
         case "list":
-            Ui.printList(t.getData());
+            //Ui.printList(t.getData());
+            Ui.printTable(t.getData(), Integer.parseInt(command[1]));
             break;
         case "help":
             //methods
@@ -53,7 +52,9 @@ public class Parser {
     }
 
     /**
-     * Returns true if user types in "bye".
+     * Prints the week number, module code, expected workload and actual time spent
+     * in the specified week for all the modules taken.
+     * GL testing stuff
      *
      * @return status of exit
      */
