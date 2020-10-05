@@ -1,3 +1,7 @@
 James Gosling
-addmod CS2113T
+addmod CS1000
+addmod CS2113t
+addexp CS3000 6
+addexp CS3200 8
 exit
+
