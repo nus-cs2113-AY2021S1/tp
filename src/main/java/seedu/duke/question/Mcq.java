@@ -52,6 +52,8 @@ public class Mcq extends Question {
         return this.isCorrect;
     }
 
+
+
     public void setTopic(String topic) {
         this.topic = topic;
     }

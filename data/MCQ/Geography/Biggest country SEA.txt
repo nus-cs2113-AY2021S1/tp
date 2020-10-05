@@ -5,6 +5,6 @@ Question type: MCQ
 ---
 Question: Which is the biggest country in South East Asia?
 Number of correct answers: 1
-Answer: Indonesia
+Correct answers: Indonesia
 Number of wrong answers: 3
 Wrong answers: Singapore | Vietnam | Thailand

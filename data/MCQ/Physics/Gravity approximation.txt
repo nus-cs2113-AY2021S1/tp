@@ -5,6 +5,6 @@ Question type: MCQ
 ---
 Question: Which of the following figures is the closest approximation for average Earth's gravity?
 Number of correct answers: 1
-Answer: 9.8
+Correct answers: 9.8
 Number of wrong answers: 3
 Wrong answers: 9.7 | 9.9 | 10
