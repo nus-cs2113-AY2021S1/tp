@@ -34,6 +34,16 @@ public abstract class Task {
     }
 
     /**
+     * Returns empty string, will be overridden in different task types by
+     * the corresponding task type.
+     *
+     * @return default task type is empty.
+     */
+    public String getTaskType() {
+        return "";
+    }
+
+    /**
      * Sets the task as done.
      */
     public void markAsDone() {

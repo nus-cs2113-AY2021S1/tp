@@ -9,10 +9,12 @@ import java.time.format.DateTimeFormatter;
  */
 public class Event extends Task {
     protected LocalDate at;
+    protected String taskType;
 
     public Event(String description, LocalDate at) {
         super(description);
         this.at = at;
+        this.taskType = "E";
     }
 
     /**
@@ -21,6 +23,12 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy")) + ")";
+    }
+
+    @Override
+    /** Returns the respective task type. */
+    public String getTaskType() {
+        return taskType;
     }
 
 }
