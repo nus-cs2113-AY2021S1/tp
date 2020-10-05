@@ -30,7 +30,7 @@ public class ReturnSubjectCommand extends SubjectCommand {
     }
 
     public void goToSubject(Subject subject){
-        while(!isExit()){
+        while (!isExit()){
             // TODO: implement the same thing in Duke run in here, but for Tasks instead
         }
     }

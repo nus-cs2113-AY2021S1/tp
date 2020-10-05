@@ -10,7 +10,7 @@ public class TaskParser {
      * @return returns a command instance to execute a command
      */
     public static TaskCommand parse(String fullCommand){
-        if(fullCommand.equals("bye")){
+        if (fullCommand.equals("bye")){
             return new ExitTaskCommand();
         }else if (fullCommand.startsWith("done ")) {
             return new DoneTaskCommand(fullCommand);
@@ -22,11 +22,11 @@ public class TaskParser {
             return new AddDeadlineCommand(fullCommand);
         } else if (fullCommand.startsWith("event")) {
             return new AddEventCommand(fullCommand);
-        }else if (fullCommand.startsWith("delete ")){
+        } else if (fullCommand.startsWith("delete ")){
             return new DeleteTaskCommand(fullCommand);
-        }else if (fullCommand.startsWith("find")) {
+        } else if (fullCommand.startsWith("find")) {
             return new FindTaskCommand(fullCommand);
-        }else{
+        } else{
             return new SorryTaskCommand();
         }
     }
