@@ -4,6 +4,7 @@ import seedu.duke.command.Command;
 import seedu.duke.task.TaskList;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * Entry point of the Duke application.
@@ -20,16 +21,12 @@ public class Duke {
      *
      * @param filePath Filepath of the storage data.
      */
-    public Duke(String filePath) {
+    public Duke(String filePath) throws IOException {
         ui = new Ui();
         storage = new Storage(filePath);
         taskList = new TaskList();
 
-        try {
-            storage.importData(taskList);
-        } catch (FileNotFoundException e) {
-            Ui.printNoImportDataMessage();
-        }
+        storage.readFromFile(taskList);
     }
 
     /**
@@ -55,7 +52,7 @@ public class Duke {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new Duke("data/tasks.txt").run();
     }
 }
