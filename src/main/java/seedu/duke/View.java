@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class View {
     /**
@@ -25,21 +26,21 @@ public class View {
      * @return expected workload.
      */
     public int viewExpWorkLoad(ArrayList<Module> modList, String moduleCode) {
-        int output = -1;
-        for (Module m : modList) {
-            if (m.getModuleCode().equalsIgnoreCase(moduleCode)) {
-                output = m.getExpectedWorkload();
-            }
-        }
-        if (output == -1) {
-            //print error msg of mod not found
+        int output;
+        Module mod;
+
+        if (doesModuleExist(modList, moduleCode)) {
+            mod = getModule(modList, moduleCode);
+            output = mod.getExpectedWorkload();
+        } else {
+            //print error msg of mod not found.
+            output = -1;
         }
         return output;
     }
 
     /**
-     * shows time spent for week 1 up to present.
-     * which week is not specified.
+     * shows time spent for specified week.
      *
      * @param modList    list containing all the modules taken.
      * @param moduleCode specified module code.
@@ -47,22 +48,18 @@ public class View {
      * @return amount of time spent on the specified module for the particular week.
      */
     public double viewActualTime(ArrayList<Module> modList, String moduleCode, int week) {
-        double output = -1;
-        double[] actualTime = new double[13];
-        for (int i = 0; i < 13; i++) {
-            actualTime[i] = -1;
-        }
-        for (Module m : modList) {
-            if (m.getModuleCode().equalsIgnoreCase(moduleCode)) {
-                actualTime = m.getActualTime();
-            }
-        }
-        if (actualTime[0] == -1) {
-            //print error msg of mod not found.
-        } else {
-            output = actualTime[week];
-        }
+        double output;
+        double[] actualTime;
+        Module mod;
 
+        if (doesModuleExist(modList, moduleCode)) {
+            mod = getModule(modList, moduleCode);
+            actualTime = mod.getActualTime();
+            output = actualTime[week - 1];
+        } else {
+            //print error msg of mod not found.
+            output = 0;
+        }
         return output;
     }
 
@@ -72,24 +69,52 @@ public class View {
      *
      * @param modList    list containing all the modules taken.
      * @param moduleCode specified module code.
-     * @return a list of amount of time spent on the specified module for the week 1 up to present.
+     * @return an array of amount of time spent on the specified module for the week 1 to week 13.
      */
     public double[] viewActualTime(ArrayList<Module> modList, String moduleCode) {
+        Module mod;
         double[] actualTime = new double[13];
-        for (int i = 0; i < 13; i++) {
-            actualTime[i] = -1;
-        }
-        for (Module m : modList) {
-            if (m.getModuleCode().equalsIgnoreCase(moduleCode)) {
-                actualTime = m.getActualTime();
-            }
-        }
-        if (actualTime[0] == -1) {
-            //print error msg of mod not found.
-        }
 
+        if (doesModuleExist(modList, moduleCode)) {
+            mod = getModule(modList, moduleCode);
+            actualTime = mod.getActualTime();
+        } else {
+            //print error msg of mod not found.
+            Arrays.fill(actualTime, -1);
+        }
         return actualTime;
     }
 
+    /**
+     * Checks if the specified module exists in the module list.
+     *
+     * @param modList    list containing all the modules taken.
+     * @param moduleCode specified module code.
+     * @return whether the module exists in the list
+     */
+    protected boolean doesModuleExist(ArrayList<Module> modList, String moduleCode) {
+        for (Module m : modList) {
+            if (m.getModuleCode().equalsIgnoreCase(moduleCode)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Looks for the specified module in the given list.
+     *
+     * @param modList    list containing all the modules taken.
+     * @param moduleCode specified module code.
+     * @return the specified module from the given list.
+     */
+    protected Module getModule(ArrayList<Module> modList, String moduleCode) {
+        for (Module m : modList) {
+            if (m.getModuleCode().equalsIgnoreCase(moduleCode)) {
+                return m;
+            }
+        }
+        return null;
+    }
 
 }
