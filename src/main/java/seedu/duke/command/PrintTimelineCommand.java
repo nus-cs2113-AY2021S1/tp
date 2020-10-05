@@ -31,16 +31,16 @@ public class PrintTimelineCommand extends Command {
                 break;
             }
         }
+        
         TaskList sortedList = sortByDate(timelineList);
         System.out.println("Here is your timeline:");
         int numberOfItems = sortedList.getTotalTask();
         System.out.println("Timeline \n|");
-        for (int i = 0; i < numberOfItems; i++){
-            if (i == 0 || (sortedList.getTask(i - 1).getTime() != sortedList.getTask(i).getTime())){
+        for (int i = 0; i < numberOfItems; i++) {
+            if (i == 0 || (sortedList.getTask(i - 1).getTime() != sortedList.getTask(i).getTime())) {
                 System.out.println("|__ " + sortedList.getTask(i).getTime());
             }
             System.out.println("|        |__ " + sortedList.getTask(i).toString());
-
         }
     }
 
