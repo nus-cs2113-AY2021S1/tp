@@ -1,7 +1,5 @@
 package seedu.duke.task;
 
-import seedu.duke.list.TaskList;
-
 public class Todo extends Task {
 
     public Todo(String description, boolean isDone) {

@@ -1,7 +1,9 @@
 package seedu.duke.ui;
 
+import seedu.duke.card.Subject;
+import seedu.duke.card.SubjectList;
 import seedu.duke.task.Task;
-import seedu.duke.list.TaskList;
+import seedu.duke.task.TaskList;
 
 import java.util.List;
 import java.util.Scanner;
@@ -26,7 +28,19 @@ public class Ui {
                 + "____________________________________________________________\n");
     }
 
-    public static void printList(List<Task> list) {
+    public static void printSubjectList(List<Subject> list) {
+        int num = 1;
+        System.out.println("____________________________________________________________\n"
+                + "Here are the task(s) in your list:");
+        for (Subject item : list) {
+            System.out.println(num + "." + item);
+            num++;
+        }
+        System.out.println("____________________________________________________________");
+    }
+
+
+    public static void printTaskList(List<Task> list) {
         int num = 1;
         System.out.println("____________________________________________________________\n"
                 + "Here are the task(s) in your list:");
@@ -52,6 +66,14 @@ public class Ui {
                 + "____________________________________________________________");
     }
 
+    public static void printSubjectDelete(Subject subject, int total) {
+        System.out.println("____________________________________________________________\n"
+                + " Noted. I've removed this subject:\n   "
+                + subject + "\n"
+                + " Now you have " + total + (total == 1 ? " task in the list.\n" : " tasks in the list.\n")
+                + "____________________________________________________________");
+    }
+
     public static void printBye() {
         System.out.println("____________________________________________________________\n"
                 + " Bye. Hope to see you again soon!\n"
@@ -61,6 +83,18 @@ public class Ui {
     public static void printError() {
         System.out.println("____________________________________________________________\n"
                 + " ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n"
+                + "____________________________________________________________");
+    }
+
+    public static void printNoSubjectError() {
+        System.out.println("____________________________________________________________\n"
+                + " ☹ OOPS!!! I'm sorry, but subject is not found :-(\n"
+                + "____________________________________________________________");
+    }
+
+    public static void printRepeatedSubjectError() {
+        System.out.println("____________________________________________________________\n"
+                + " ☹ OOPS!!! I'm sorry, but subject is already in the list :-(\n"
                 + "____________________________________________________________");
     }
 
@@ -88,7 +122,7 @@ public class Ui {
                 + "____________________________________________________________");
     }
 
-    public static void printFind(TaskList taskList, String find) {
+    public static void printFindTask(TaskList taskList, String find) {
         int taskPresent = 0;
         for (Task task : taskList.getList()) {
             if (task.toString().contains(find)) {
@@ -100,6 +134,22 @@ public class Ui {
         if (taskPresent == 0) {
             System.out.println("____________________________________________________________\n"
                     + " Sorry! I could not find any task with " + find + " in the list");
+        }
+        System.out.println("____________________________________________________________");
+    }
+
+    public static void printFindSubject(SubjectList subjectList, String find) {
+        int taskPresent = 0;
+        for (Subject subject : subjectList.getList()) {
+            if (subject.toString().contains(find)) {
+                Ui.printMatch(taskPresent);
+                System.out.println(subject);
+                taskPresent = 1;
+            }
+        }
+        if (taskPresent == 0) {
+            System.out.println("____________________________________________________________\n"
+                    + " Sorry! I could not find any subjects with " + find + " in the list");
         }
         System.out.println("____________________________________________________________");
     }

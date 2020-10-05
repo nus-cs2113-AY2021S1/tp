@@ -1,10 +1,15 @@
 package seedu.duke;
 
-import seedu.duke.command.Command;
-import seedu.duke.exception.DukeException;
-import seedu.duke.parser.Parser;
-import seedu.duke.storage.Storage;
-import seedu.duke.list.TaskList;
+import seedu.duke.card.Subject;
+import seedu.duke.command.subjectcommand.ReturnSubjectCommand;
+import seedu.duke.command.subjectcommand.SubjectCommand;
+import seedu.duke.exception.NoSubjectException;
+import seedu.duke.exception.RepeatedSubjectException;
+import seedu.duke.exception.SubjectException;
+import seedu.duke.exception.TaskException;
+import seedu.duke.card.SubjectList;
+import seedu.duke.parser.SubjectParser;
+import seedu.duke.storage.SubjectStorage;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
@@ -13,8 +18,8 @@ import java.util.ArrayList;
 public class Duke {
     public static String FILENAME = "data/duke.txt";
 
-    private Storage storage;
-    private TaskList tasks;
+    private SubjectStorage subjectStorage;
+    private SubjectList subjects;
 
     /**
      * Initialises Duke.
@@ -22,9 +27,9 @@ public class Duke {
      * @param filename of the <code>File</code> that stores the text data of the to-do list
      */
     public Duke(String filename) {
-        storage = new Storage(filename);
-        tasks = new TaskList(new ArrayList<>());
-        storage.load(tasks);
+        subjectStorage = new SubjectStorage(filename);
+        subjects = new SubjectList(new ArrayList<>());
+        subjectStorage.load(subjects);
     }
 
     /**
@@ -36,16 +41,22 @@ public class Duke {
         while (!isExit) {
             try {
                 String fullCommand = Ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks);
+                SubjectCommand c = SubjectParser.parse(fullCommand);
+                if (c instanceof ReturnSubjectCommand){
+                    Subject subject = c.execute(subjects);
+                    ((ReturnSubjectCommand) c).goToSubject(subject);
+                }
+                c.execute(subjects);
                 isExit = c.isExit();
-                tasks.saveTask(storage.getFileName());
+                subjects.saveSubject(subjectStorage.getFileName());
             } catch (IOException e) {
                 Ui.printWritingError();
             } catch (NumberFormatException e) {
                 Ui.printIndexError();
-            } catch (DukeException e) {
-                Ui.printError();  // TODO: change to show specific error
+            } catch (NoSubjectException e) {
+                Ui.printNoSubjectError();
+            } catch (RepeatedSubjectException e) {
+                Ui.printRepeatedSubjectError();
             }
         }
         Ui.printBye();

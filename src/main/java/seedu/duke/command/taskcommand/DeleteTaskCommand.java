@@ -1,13 +1,14 @@
-package seedu.duke.command;
+package seedu.duke.command.taskcommand;
 
+import seedu.duke.command.Command;
 import seedu.duke.task.Task;
-import seedu.duke.list.TaskList;
+import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
-public class DeleteCommand extends Command {
+public class DeleteTaskCommand extends TaskCommand {
     private String fullCommand;
 
-    public DeleteCommand(String fullCommand) {
+    public DeleteTaskCommand(String fullCommand) {
         this.fullCommand = fullCommand;
     }
 

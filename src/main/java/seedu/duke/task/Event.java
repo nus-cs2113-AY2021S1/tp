@@ -1,7 +1,5 @@
 package seedu.duke.task;
 
-import seedu.duke.list.TaskList;
-
 public class Event extends Task {
 
     protected String at;
