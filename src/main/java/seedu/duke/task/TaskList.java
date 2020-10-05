@@ -55,7 +55,7 @@ public class TaskList {
     public Task getTask(int i) {
         return taskList.get(i);
     }
-    
+
     public void swapTasks(int i, int j) {
         Collections.swap(taskList, i, j);
     }
