@@ -205,6 +205,15 @@ public class Ui {
         case "event":
             System.out.println("Error: Please key in the event in this format: event ... /at ddMMyy");
             break;
+        case "lecture":
+            System.out.println("Error: Please key in the event in this format: lecture ... / date time");
+            break;
+        case "tutorial":
+            System.out.println("Error: Please key in the event in this format: tutorial ... / date time");
+            break;
+        case "lab":
+            System.out.println("Error: Please key in the event in this format: lab ... / date time");
+            break;
         case "invalid command":
             System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
                     + "Available commands: print list, print events, print progress, done, "

@@ -8,6 +8,9 @@ import seedu.duke.task.Deadline;
 import seedu.duke.task.Event;
 import seedu.duke.task.TaskList;
 import seedu.duke.task.Todo;
+import seedu.duke.task.Lecture;
+import seedu.duke.task.Tutorial;
+import seedu.duke.task.Lab;
 
 import java.time.LocalDate;
 
@@ -20,6 +23,9 @@ public class AddCommand extends Command {
     public static final String TODO = "todo";
     public static final String DEADLINE = "deadline";
     public static final String EVENT = "event";
+    public static final String LECTURE = "lecture";
+    public static final String TUTORIAL = "tutorial";
+    public static final String LAB = "lab";
 
     public AddCommand(String userInput) {
         super(userInput);
@@ -84,6 +90,54 @@ public class AddCommand extends Command {
                 }
             } catch (Exception e) {
                 throw new DukeException("event");
+            }
+            break;
+        case LECTURE:
+            try {
+                command = command[1].split("/");
+                taskDescription = command[0].trim();
+
+                command = command[1].trim().split(" ");
+
+                if (taskDescription.isEmpty()) {
+                    throw new DukeException("lecture");
+                } else {
+                    taskList.addTask(new Lecture(taskDescription, command[0], command[1]));
+                }
+            } catch (Exception e) {
+                throw new DukeException("lecture");
+            }
+            break;
+        case TUTORIAL:
+            try {
+                command = command[1].split("/");
+                taskDescription = command[0].trim();
+
+                command = command[1].trim().split(" ");
+
+                if (taskDescription.isEmpty()) {
+                    throw new DukeException("tutorial");
+                } else {
+                    taskList.addTask(new Tutorial(taskDescription, command[0], command[1]));
+                }
+            } catch (Exception e) {
+                throw new DukeException("tutorial");
+            }
+            break;
+        case LAB:
+            try {
+                command = command[1].split("/");
+                taskDescription = command[0].trim();
+
+                command = command[1].trim().split(" ");
+
+                if (taskDescription.isEmpty()) {
+                    throw new DukeException("lab");
+                } else {
+                    taskList.addTask(new Lab(taskDescription, command[0], command[1]));
+                }
+            } catch (Exception e) {
+                throw new DukeException("lab");
             }
             break;
         default:
