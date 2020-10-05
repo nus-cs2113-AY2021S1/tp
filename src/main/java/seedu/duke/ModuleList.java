@@ -6,16 +6,20 @@ public class ModuleList {
 
     public static ArrayList<Module> modList = new ArrayList<>();
 
-    public static ArrayList<Module> add(String input) {
-        if (input.startsWith("addmod")) {
-            Module s = new Module(input.substring(7));
-            modList.add(s);
-            System.out.println(s + " is added");
-        } else if (input.startsWith("addexp")) {
-            Module s = new Module(input.substring(7, 13), input.substring(14));
-            modList.add(s);
-            System.out.println(s + " is added");
-        }
+    public static void addMod(String input) {
+        Module currentModule = new Module(input.substring(7));
+        modList.add(currentModule);
+        System.out.println(currentModule + " is added");
+    }
+
+    public static void addExp(String input) {
+        String[] modInfo = input.split(" ", 3);
+        Module currentMod = new Module(modInfo[1], modInfo[2]);
+        modList.add(currentMod);
+        System.out.println(currentMod + " is added");
+    }
+
+    public static ArrayList<Module> getData() {
         return modList;
     }
 }
