@@ -2,7 +2,8 @@ package seedu.duke;
 
 public class Module {
     protected String moduleCode;
-    protected int exp = -1;
+
+    protected int expected = -1;
     //create an array here for actual workload
     protected double[] actualTime = new double[13];
 
@@ -10,16 +11,17 @@ public class Module {
         this.moduleCode = mod;
     }
 
-    public Module(String mod, String exp) {
+
+    public Module(String mod, String expected) {
         this.moduleCode = mod;
-        this.exp = Integer.parseInt(exp);
+        this.expected = Integer.parseInt(expected);
     }
 
     public String toString() {
-        if (this.exp == -1) {
+        if (this.expected == -1) {
             return this.moduleCode;
         } else {
-            return this.moduleCode + " " + this.exp;
+            return this.moduleCode + ", Expected Workload: " + this.expected + "h";
         }
     }
 
@@ -29,7 +31,7 @@ public class Module {
     }
 
     public int getExpectedWorkload() {
-        return exp;
+        return expected;
     }
 
     public double[] getActualTime() {
