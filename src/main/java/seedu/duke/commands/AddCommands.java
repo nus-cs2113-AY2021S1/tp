@@ -22,7 +22,7 @@ public class AddCommands {
         System.out.println("Input add function, exit by command \"exit\" ");
         String command = CommandChecker.getUserInput();
         while (!command.equalsIgnoreCase("exit")) {
-            switch(CommandChecker.commandType) {
+            switch (CommandChecker.commandType) {
             case QNA:
                 addQnaQuestion(command);
                 break;

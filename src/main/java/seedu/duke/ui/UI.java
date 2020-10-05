@@ -13,7 +13,7 @@ public class UI {
     public static String currentLineDivider = getDivider(1);
     
     // Main Help function
-    public static void printHelpMessage (String input) {
+    public static void printHelpMessage(String input) {
         switch (input) {
         case "add":
             printHelpAdd();
