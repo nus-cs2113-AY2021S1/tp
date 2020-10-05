@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -19,117 +20,77 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    private static String storageFilePath;
-    public static final String TICK_SYMBOL = "[/]";
-
-    public Storage(String filePath) {
-        storageFilePath = filePath;
-    }
+    private static final int TYPE = 0;
+    private static final int DESCRIPTION = 2;
+    private static final int DATE = 3;
+    private static final int IS_DONE = 1;
+    private static ArrayList<Task> taskArrayList;
+    private static File f;
+    private static String filePath;
+    private static LocalDate date;
+    public static int countFileTasks = 0;
 
     /**
-     * Writes to a text file the list of tasks. Creates a new storage file if the file does not exists.
+     * Constructor of the Storage class.
+     * Initialize file f and file path, if f does not exists, creat a new file f.
      *
-     * @param taskList Contains the list of tasks to be saved.
+     * @param filePath the path that is the destination of the file.
+     * @throws IOException
      */
-    public void saveData(TaskList taskList) {
-        File output = new File(storageFilePath);
-
-        /** Attempts to create a file to store the data. */
-        createFile(output);
-
+    public Storage(String filePath) throws IOException {
+        f = new File(filePath);
+        f.createNewFile();
+        this.filePath=filePath;
+    }
+    /**
+     * Write the data from taskList into file.
+     *
+     * @param tasks the taskList that the data is stored during running the program.
+     */
+    public static void writeToFile(TaskList tasks) {
         try {
-            FileWriter fw = new FileWriter(output);
-            for (Task t : taskList.getTaskList()) {
-                fw.write(t.toString() + "\n");
+            FileWriter fw = new FileWriter(filePath);
+            taskArrayList = tasks.getTaskList();
+            for(Task task: taskArrayList) {
+                fw.write(task.printIntoFile() + "\n");
             }
             fw.close();
         } catch (IOException e) {
-            Ui.printSaveDataErrorMessage(e);
+            System.out.println("Error writing file");
         }
     }
 
     /**
-     * Reads from a storage file and imports the tasks to a task list.
+     * Read data from file and store the data into the taskList.
      *
-     * @param taskList Stores the tasks to this task list.
-     * @throws FileNotFoundException if storage file does not exist.
+     * @param tasks A taskList that store the data read from file.
      */
-    public void importData(TaskList taskList) throws FileNotFoundException {
-
-        File input = new File(storageFilePath);
-        Scanner s = new Scanner(input);
-
-        while (s.hasNext()) {
-            extractCommandFromStorage(s.nextLine(), taskList);
-        }
-        Ui.printImportDataSuccessMessage();
-    }
-
-    /**
-     * Creates a new storage file if the file does not exists.
-     *
-     * @param output Storage file.
-     */
-    private static void createFile(File output) {
+    public static int readFromFile(TaskList tasks) {
         try {
-            if (output.exists()) {
-                return;
+            Scanner sc = new Scanner(f);
+            Task task;
+            while (sc.hasNext()) {
+                String[] taskInFile = sc.nextLine().split("\\|");
+                if (taskInFile[TYPE].equals("T")) {
+                    task = new Todo(taskInFile[DESCRIPTION]);
+                } else if(taskInFile[TYPE].equals("D")) {
+                    date = LocalDate.parse(taskInFile[DATE].trim());
+                    task = new Deadline(taskInFile[DESCRIPTION], date);
+                } else {
+                    date = LocalDate.parse(taskInFile[DATE].trim());
+                    task = new Event(taskInFile[DESCRIPTION], date);
+                }
+                countFileTasks++;
+                if (taskInFile[IS_DONE].equals("true")) {
+                    task.markAsDone();
+                }
+                tasks.addTask(task);
             }
-            if (!output.getParentFile().exists()) {
-                output.getParentFile().mkdirs();
-            }
-            output.createNewFile();
-            Ui.printFileCreatedMessage();
-        } catch (IOException e) {
-            Ui.printFileCreateErrorMessage(e);
+        } catch (FileNotFoundException e) {
+            System.out.println("Error reading file");
+        } catch (Exception e) {
+            System.out.println("Wrong format of date: should be ddmmyy");
         }
-    }
-
-    /**
-     * Determines the tasks' type and status, and adds them accordingly to the task list.
-     */
-    private void extractCommandFromStorage(String command, TaskList taskList) {
-        String task = command.substring(1, 2);
-        String isDone = command.substring(3, 6);
-        String taskDetails = command.substring(7); // includes task's description and date
-        String taskDescription;
-        String taskDateString;
-        LocalDate taskDate;
-
-        DateTimeFormatter storageDateFormat = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
-
-        switch (task) {
-        case "T":
-            taskDescription = taskDetails;
-
-            taskList.addTask(new Todo(taskDescription));
-            break;
-        case "D":
-            int indexEndOfDesc = taskDetails.indexOf(" (by: ");
-            taskDetails = taskDetails.replace("(by: ", "");
-            taskDescription = taskDetails.substring(0, indexEndOfDesc);
-
-            taskDateString = taskDetails.substring(indexEndOfDesc, taskDetails.length() - 1).trim();
-            taskDate = LocalDate.parse(taskDateString, storageDateFormat);
-
-            taskList.addTask(new Deadline(taskDescription, taskDate));
-            break;
-        case "E":
-            indexEndOfDesc = taskDetails.indexOf(" (at: ");
-            taskDetails = taskDetails.replace("(at: ", "");
-            taskDescription = taskDetails.substring(0, indexEndOfDesc);
-            taskDateString = taskDetails.substring(indexEndOfDesc, taskDetails.length() - 1).trim();
-            taskDate = LocalDate.parse(taskDateString, storageDateFormat);
-
-            taskList.addTask(new Event(taskDescription, taskDate));
-            break;
-        default:
-            System.out.println(task);
-            break;
-        }
-
-        if (isDone.equals(TICK_SYMBOL)) {
-            taskList.markTaskAsDone(taskList.getTotalTask());
-        }
+        return countFileTasks;
     }
 }
