@@ -47,12 +47,12 @@ public class Storage {
     }
 
     private ArrayList<String> getData(File f) throws FileNotFoundException {
-        ArrayList<String> bookmarks = new ArrayList<>();
+        ArrayList<String> tasks = new ArrayList<>();
         Scanner s = new Scanner(f);
         while (s.hasNextLine()) {
-            bookmarks.add(s.nextLine());
+            tasks.add(s.nextLine());
         }
-        return bookmarks;
+        return tasks;
     }
 
     /**
