@@ -25,6 +25,7 @@ public class UserSettingsLoader {
 
         try {
             File userSettingsFile = FileFunctions.getFileFromFilePath(DEFAULT_USER_SETTINGS_FILE_PATH);
+            System.out.println(userSettingsFile.getAbsolutePath());
             FileFunctions.checkFileExists(userSettingsFile);
             readUserSettingsFile(savedSettings, userSettingsFile);
         } catch (FileNotFoundException e) {

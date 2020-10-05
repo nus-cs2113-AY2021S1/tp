@@ -1,9 +1,9 @@
 package seedu.duke.question;
 
-public class Question {
-    public String correctAnswer;
-    public String question;
-    public boolean isCorrect;
+public abstract class Question {
+    protected String correctAnswer;
+    protected String question;
+    protected boolean isCorrect;
 
     //public String hint; // TODO: for version 2 only delete for ver 1 submission
 
