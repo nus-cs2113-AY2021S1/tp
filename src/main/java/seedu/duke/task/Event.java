@@ -34,8 +34,13 @@ public class Event extends Task {
         return taskType;
     }
 
-    public String printIntoFile(){
+    public String printIntoFile() {
         return EVENT_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description + SEPARATOR + this.at;
+    }
+
+    @Override
+    public LocalDate getTime() {
+        return this.at;
     }
 
 }

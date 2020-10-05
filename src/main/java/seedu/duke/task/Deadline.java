@@ -33,7 +33,13 @@ public class Deadline extends Task {
         return taskType;
     }
 
-    public String printIntoFile(){
+    @Override
+    public String printIntoFile() {
         return DEADLINE_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description + SEPARATOR + this.by;
+    }
+
+    @Override
+    public LocalDate getTime() {
+        return this.by;
     }
 }
