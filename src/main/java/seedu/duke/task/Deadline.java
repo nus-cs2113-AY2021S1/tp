@@ -29,4 +29,9 @@ public class Deadline extends Task {
     public String getTaskType() {
         return taskType;
     }
+
+    @Override
+    public LocalDate getTime() {
+        return this.by;
+    }
 }
