@@ -10,7 +10,10 @@ What is your name?
 Hello James Gosling
 What can I do for you?
 
-CS2113T is added
+CS1000 is added
+CS2113t is added
+CS3000, Expected Workload: 6h is added
+CS3200, Expected Workload: 8h is added
 All changes saved.
 Bye. Hope to see you again soon!
 
