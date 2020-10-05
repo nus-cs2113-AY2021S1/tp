@@ -36,7 +36,7 @@ public abstract class Appliance {
     }
 
     public String toString() {
-        return this.name + " status: "+ getStatus();
+        return this.name + " status: " + getStatus();
     }
 
 }
