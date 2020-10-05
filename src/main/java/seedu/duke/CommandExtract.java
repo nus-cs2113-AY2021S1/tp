@@ -10,7 +10,7 @@ public class CommandExtract {
     static final String DESCRIPTION = "-desc";
     static final String DURATION = "-duration";
     static final String SD = "-sd";
-    static final String DISPLAY_MEMBERS = "/disp";
+    static final String DISPLAY = "/disp";
     static final String PRIORITY = "-priority";
     static final String VIEW = "/view";
 }

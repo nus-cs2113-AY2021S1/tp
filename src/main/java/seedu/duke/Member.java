@@ -26,10 +26,8 @@ public class Member {
         return userId.equals(v.userId);
     }
 
-    public void addTask(Task task){
+    public void addTask(Task task) {
         allocatedTask.add(task);
     }
-
-
 
 }

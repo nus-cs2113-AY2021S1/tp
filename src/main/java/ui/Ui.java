@@ -49,6 +49,10 @@ public class Ui {
         System.out.println(task.toString());
     }
 
+    public void invalidCommand() {
+        System.out.println("Unknown format or command.");
+    }
+
     public void displayInvalidId() {
         System.out.println("The following task id doesn't exist in backlog.\n Please enter a valid id.");
     }
