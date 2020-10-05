@@ -50,4 +50,13 @@ public abstract class Task {
         this.isDone = true;
     }
 
+    /**
+     * Get the state of the task
+     *
+     * @return the state of the task
+     */
+    public boolean getIsDone() {
+        return isDone;
+    }
+
 }
