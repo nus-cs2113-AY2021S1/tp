@@ -3,6 +3,7 @@ package seedu.duke.commands;
 import seedu.duke.author.Author;
 import seedu.duke.book.Book;
 import seedu.duke.book.BookList;
+import seedu.duke.lists.QuotesifyList;
 import seedu.duke.ui.TextUi;
 
 public class AddCommand extends Command {
@@ -17,10 +18,10 @@ public class AddCommand extends Command {
         information = details[1];
     }
 
-    public void execute(TextUi ui, BookList books) {
+    public void execute(TextUi ui, QuotesifyList list) {
         switch (type) {
         case BOOK:
-            addBook(books);
+            addBook((BookList)list);
             break;
         default:
         }
