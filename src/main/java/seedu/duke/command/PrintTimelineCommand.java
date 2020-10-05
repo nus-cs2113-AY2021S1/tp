@@ -43,7 +43,7 @@ public class PrintTimelineCommand extends Command {
             }
             System.out.println("|        |__ " + sortedList.getTask(i).toString());
         }
-        
+
     }
 
     public TaskList sortByDate(TaskList taskList) {
