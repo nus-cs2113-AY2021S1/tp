@@ -4,7 +4,13 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import seedu.duke.*;
+
+import seedu.duke.OptionInterface;
+import seedu.duke.OptionListInterface;
+import seedu.duke.QuestionInterface;
+import seedu.duke.QuestionListInterface;
+import seedu.duke.TopicInterface;
+import seedu.duke.UiInterface;
 
 import java.io.File;
 import java.io.FileReader;
