@@ -35,7 +35,7 @@ public class TaskParser {
             return new DeleteTaskCommand(fullCommand);
         } else if (fullCommand.startsWith("find")) {
             return new FindTaskCommand(fullCommand);
-        } else{
+        } else {
             return new SorryTaskCommand();
         }
     }
