@@ -9,6 +9,9 @@ public abstract class Task {
     protected String description;
     protected boolean isDone;
 
+    private static final String TASK_FILE_SYMBOL = "Task";
+    private static final String SEPARATOR = "|";
+
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -48,6 +51,10 @@ public abstract class Task {
      */
     public void markAsDone() {
         this.isDone = true;
+    }
+
+    public String printIntoFile(){
+        return TASK_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description;
     }
 
 }

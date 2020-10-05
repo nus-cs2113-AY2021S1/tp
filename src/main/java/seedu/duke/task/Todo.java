@@ -6,6 +6,9 @@ package seedu.duke.task;
 public class Todo extends Task {
     protected String taskType;
 
+    private static final String TODO_FILE_SYMBOL = "T";
+    private static final String SEPARATOR = "|";
+
     public Todo(String description) {
         super(description);
         this.taskType = "T";
@@ -23,5 +26,9 @@ public class Todo extends Task {
     @Override
     public String getTaskType() {
         return taskType;
+    }
+
+    public String printIntoFile(){
+        return TODO_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description;
     }
 }
