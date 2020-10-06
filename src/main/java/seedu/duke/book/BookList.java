@@ -27,6 +27,12 @@ public class BookList extends QuotesifyList<Book> {
 
     @Override
     public String toString() {
-        return "";
+        String booksToReturn = "";
+
+        for (Book book : books) {
+            booksToReturn += book.toString() + System.lineSeparator();
+        }
+
+        return booksToReturn;
     }
 }

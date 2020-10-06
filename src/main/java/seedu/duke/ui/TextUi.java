@@ -1,5 +1,6 @@
 package seedu.duke.ui;
 
+import seedu.duke.book.Book;
 import seedu.duke.book.BookList;
 import seedu.duke.quote.Quote;
 import seedu.duke.quote.QuoteList;
@@ -16,7 +17,8 @@ public class TextUi {
 
     private static final String WELCOME_MESSAGE = "Welcome to Quotesify!";
     private static final String GOODBYE_MESSAGE = "Have a nice day!";
-    private static final String SUCCESSFUL_ADD = "Alright! It has been added!";
+    private static final String ADD_BOOK = "This book has been added:";
+    private static final String ADD_CATEGORY = "I have tagged \"%s\" category to \"%s\"!";
 
     private final Scanner in;
 
@@ -38,12 +40,25 @@ public class TextUi {
         return in.nextLine().trim();
     }
 
-    public void printSuccessfulAddCommand() {
-        System.out.println(SUCCESSFUL_ADD);
+    public void printAddBook(Book book) {
+        System.out.println(ADD_BOOK);
+        System.out.println(book.toString());
     }
 
     public void printAllQuotes(QuoteList quotes) {
         System.out.println("Here are your quotes:");
         System.out.println(quotes);
+    }
+
+    public void printAddCategoryToBook(String bookTitle, String categoryName) {
+        System.out.println(String.format(ADD_CATEGORY, categoryName, bookTitle));
+    }
+
+    public void printAddCategoryToQuote(String quote, String categoryName) {
+        System.out.println(String.format(ADD_CATEGORY, categoryName, quote));
+    }
+
+    public void printBook(Book book) {
+        System.out.println(book.toString());
     }
 }

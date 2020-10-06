@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.book.BookList;
+import seedu.duke.category.CategoryList;
 import seedu.duke.commands.Command;
 import seedu.duke.lists.ListManager;
 import seedu.duke.lists.QuotesifyList;
@@ -16,17 +17,21 @@ public class Duke {
     private TextUi ui;
     private BookList books;
     private QuoteList quotes;
+    private CategoryList categories;
     private RatingList ratings;
-    private final ListManager listManager = new ListManager();
 
+    private final ListManager listManager = new ListManager();
 
     public Duke() {
         ui = new TextUi();
         books = new BookList();
-        listManager.addToList(ListManager.BOOK_LIST, books);
+        categories = new CategoryList();
         quotes = new QuoteList();
-        listManager.addToList(ListManager.QUOTE_LIST, quotes);
         ratings = new RatingList();
+
+        listManager.addToList(ListManager.BOOK_LIST, books);
+        listManager.addToList(ListManager.QUOTE_LIST, quotes);
+        listManager.addToList(ListManager.CATEGORY_LIST, categories);
         listManager.addToList(ListManager.RATING_LIST, ratings);
     }
 
