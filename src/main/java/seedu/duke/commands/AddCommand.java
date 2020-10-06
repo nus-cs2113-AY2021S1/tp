@@ -88,27 +88,28 @@ public class AddCommand extends Command {
 
     private void addCategoryToBookAndQuote(CategoryList categories, TextUi ui, ListManager listManager) {
         String[] tokens = information.split(" ");
-        Stack<String> stack = convertStringArrayToStack(tokens);
-        executeParameters(categories, stack, ui, listManager);
+        Stack<String> parameters = convertStringArrayToStack(tokens);
+        executeParameters(categories, parameters, ui, listManager);
     }
 
     private Stack<String> convertStringArrayToStack(String[] tokens) {
-        Stack<String> stack = new Stack<>();
+        Stack<String> parameters = new Stack<>();
         for (String token : tokens) {
-            stack.push(token);
+            parameters.push(token);
         }
-        return stack;
+        return parameters;
     }
 
-    private void executeParameters(CategoryList categories, Stack<String> stack, TextUi ui, ListManager listManager) {
+    private void executeParameters(CategoryList categories, Stack<String> parameters, TextUi ui,
+                                   ListManager listManager) {
         String categoryName;
         String bookTitle = null;
         int quoteNum = -1;
 
         try {
             String object = "";
-            while (!stack.empty()) {
-                String item = stack.pop();
+            while (!parameters.empty()) {
+                String item = parameters.pop();
                 if (item.equals(TAG_BOOK)) {
                     bookTitle = object.trim();
                     object = "";
