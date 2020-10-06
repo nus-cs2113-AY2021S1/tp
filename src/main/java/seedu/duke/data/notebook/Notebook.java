@@ -39,10 +39,10 @@ public class Notebook {
     /**
      * Removes a note from the timetable.
      *
-     * @param note to be removed.
+     * @throws SystemException if an error occurs.
      */
-    public void deleteNote(Note note) {
-
+    public void deleteNote(int note) throws SystemException {
+        notes.remove(note);
     }
 
     public ArrayList<Note> getNotes() {
