@@ -6,7 +6,7 @@ public class Fan extends Appliance {
 
     private static String speed;
 
-    public Fan(String name, String location, String power) {
+    public Fan(String name, String location) {
         super(name, location);
         speed = "1";
     }
