@@ -2,6 +2,8 @@ package seedu.duke;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Duke {
     /**
@@ -13,6 +15,11 @@ public class Duke {
     public static final String COMMAND_BYE = "bye";
     private static ArrayList<Task> tasks;
     private static boolean isExit;
+    private static final Pattern TASK_PATTERN = Pattern.compile(
+            "^(?<description>(\\w+\\s*)+\\w*)"
+            + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
+            + "( t/(?<time>\\d{4}))?"
+            + "( p/(?<priority>\\d))?$");
 
     public static void main(String[] args) {
         showWelcomeMessage();
@@ -53,7 +60,7 @@ public class Duke {
             break;
         case COMMAND_ADD:
             String commandArgs = commandTypeAndParams[1];
-            addTask(commandArgs);
+            executeAddTask(commandArgs);
             break;
         case COMMAND_LIST:
             showList();
@@ -78,39 +85,20 @@ public class Duke {
         return userInput.split(" ", 2);
     }
 
-    private static void addTask(String commandArgs) {
-        String description = "";
-        String date = "";
-        String time = "";
-        String priority = "";
-        if (commandArgs.contains("d/")) {
-            int descriptionEndIndex = commandArgs.indexOf("/") - 2;
-            int dateBeginIndex = commandArgs.indexOf("d/") + 2;
-            int dateEndIndex = (commandArgs.substring(dateBeginIndex).contains("/"))
-                    ? commandArgs.indexOf("/", dateBeginIndex) - 2 : commandArgs.length();
-            description = commandArgs.substring(0, descriptionEndIndex);
-            date = commandArgs.substring(dateBeginIndex,dateEndIndex);
+    private static void executeAddTask(String commandArgs) {
+        Matcher matcher = TASK_PATTERN.matcher(commandArgs);
+        Task task;
+        if (matcher.find()) {
+            String description = matcher.group("description");
+            String dateString = matcher.group("date");
+            String timeString = matcher.group("time");
+            String priorityString = matcher.group("priority");
+            task = new Task(description, dateString, timeString, priorityString);
+        } else {
+            // TODO throw new InvalidCommandException();
+            System.out.println("Invalid command!");
+            return;
         }
-        if (commandArgs.contains("t/")) {
-            int descriptionEndIndex = commandArgs.indexOf("/") - 2;
-            int timeBeginIndex = commandArgs.indexOf("t/") + 2;
-            int timeEndIndex = (commandArgs.substring(timeBeginIndex).contains("/"))
-                    ? commandArgs.indexOf("/", timeBeginIndex) - 2 : commandArgs.length();
-            description = commandArgs.substring(0, descriptionEndIndex);
-            time = commandArgs.substring(timeBeginIndex, timeEndIndex);
-        }
-        if (commandArgs.contains("p/")) {
-            int descriptionEndIndex = commandArgs.indexOf("/") - 2;
-            int priorityBeginIndex = commandArgs.indexOf("p/") + 2;
-            int priorityEndIndex = (commandArgs.substring(priorityBeginIndex).contains("/"))
-                    ? commandArgs.indexOf("/", priorityBeginIndex) - 2 : commandArgs.length();
-            description = commandArgs.substring(0, descriptionEndIndex);
-            priority = commandArgs.substring(priorityBeginIndex, priorityEndIndex);
-        }
-        if (!(commandArgs.contains("d/") || commandArgs.contains("t/") || commandArgs.contains("p/"))) {
-            description = commandArgs;
-        }
-        Task task = new Task(description, date, time, priority);
         tasks.add(task);
         System.out.println("\nTask added:");
         System.out.println(task.toString());
