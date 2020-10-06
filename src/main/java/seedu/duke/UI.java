@@ -1,33 +1,34 @@
 package seedu.duke;
 
+import seedu.duke.common.Commands;
+import seedu.duke.common.Messages;
+
+import java.util.Scanner;
+
 /**
  * Prints messages
  */
 public class UI {
-    private static final String MESSAGE_GREET = "Hello! Welcome to Fitr. "
-            + System.lineSeparator() + "What can I do for you?";
-    private static final String MESSGAGE_BYE = "Bye. Hope to see you again soon!";
-    private static final String COMMAND_ADD = "add";
-    private static final String COMMAND_SHOW = "show";
-    private static final String COMMAND_DELETE = "delete";
-    private static final String COMMAND_BMI = "bmi";
-    private static final String COMMAND_EXIT = "exit";
+    public String read() {
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
 
     public void printGreetingMessage() {
-        System.out.println(MESSAGE_GREET);
+        System.out.println(Messages.MESSAGE_GREET);
     }
 
     public void printExitMessage() {
-        System.out.println(MESSGAGE_BYE);
+        System.out.println(Messages.MESSAGE_BYE);
     }
 
     public void printHelpMessage() {
         System.out.println("These are commands Fitr understands: \n"
-                + COMMAND_ADD + "\t Adds food/exercise to Fitr program\n"
-                + COMMAND_SHOW + " <date>\t Shows entries for specified date\n"
-                + COMMAND_DELETE + " <entry index>\t Deletes selected entry\n"
-                + COMMAND_BMI + " /cm <height> /kg <weight>\t Calculates BMI and outputs health risk\n"
-                + COMMAND_EXIT + "\t Exits the program");
+                + Commands.COMMAND_ADD + "\t Adds food/exercise to Fitr program\n"
+                + Commands.COMMAND_SHOW + " <date>\t Shows entries for specified date\n"
+                + Commands.COMMAND_DELETE + " <entry index>\t Deletes selected entry\n"
+                + Commands.COMMAND_BMI + " /cm <height> /kg <weight>\t Calculates BMI and outputs health risk\n"
+                + Commands.COMMAND_EXIT + "\t Exits the program");
     }
 
     public void printFoodOrExercise() {
