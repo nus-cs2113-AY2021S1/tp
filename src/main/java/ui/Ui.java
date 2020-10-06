@@ -60,24 +60,13 @@ public class Ui {
         }
     }
 
-    public void showRevisionContent(ArrayList<Card> cards, int cardCount, Chapter toRevise) {
-        if (cardCount == 0) {
-            out.println(String.format(MESSAGE_NO_CARDS_IN_CHAPTER, toRevise));
-            return;
-        }
-        out.println("The revision for " + toRevise + " will start now:");
-        boolean isEqualsDate = false;
-        for (Card c : cards) {
-            if (Scheduler.isDeadlineDue(c.getDueBy())) {
-                isEqualsDate = true;
-                out.println(c.getQuestion() + MESSAGE_SHOW_ANSWER_PROMPT);
-                getAnswerInput(c);
-            }
-        }
-        if (!isEqualsDate) {
-            out.println(String.format(MESSAGE_NO_CARDS_DUE, toRevise));
-        }
-        out.println(String.format(MESSAGE_SUCCESS, toRevise));
+    public void showToUser(String message) {
+        out.println(message);
+    }
+
+    public void showRevisionContent(Card c) {
+        out.println(c.getQuestion() + MESSAGE_SHOW_ANSWER_PROMPT);
+        getAnswerInput(c);
     }
 
     public void getAnswerInput(Card c) {
