@@ -1,21 +1,23 @@
-package seedu.duke;
+package seedu.duke.ui;
+
+import seedu.duke.HintInterface;
+import seedu.duke.QuestionInterface;
+import seedu.duke.option.OptionInterface;
 
 public interface UiInterface {
     String getInputFromUser();
-
-    void showToUser();
 
     void printGreetMessage();
 
     void printExitMessage();
 
-    void printOption(OptionInterface option);
+    void printOption(OptionInterface option, int optionNumber);
 
-    void printQuestion(QuestionInterface question);
+    void printQuestion(QuestionInterface question, int questionNumber);
 
     void printHint(HintInterface hint);
 
-    void printStartQuizPage();
+    void printStartQuizPage(int numberOfQuestionsChosen, String topicsChosen);
 
     void printEndQuizPage();
 
