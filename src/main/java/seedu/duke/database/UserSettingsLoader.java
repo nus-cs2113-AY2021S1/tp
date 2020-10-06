@@ -21,15 +21,15 @@ import java.util.Scanner;
 
 public class UserSettingsLoader {
     public static void loadUserSettings(ArrayList<String> savedSettings) {
-        System.out.println(LOADING_SETTINGS_MSG);
+        //System.out.println(LOADING_SETTINGS_MSG);
 
         try {
             File userSettingsFile = FileFunctions.getFileFromFilePath(DEFAULT_USER_SETTINGS_FILE_PATH);
-            System.out.println(userSettingsFile.getAbsolutePath());
+            //System.out.println(userSettingsFile.getAbsolutePath());
             FileFunctions.checkFileExists(userSettingsFile);
             readUserSettingsFile(savedSettings, userSettingsFile);
         } catch (FileNotFoundException e) {
-            System.out.println(SETTINGS_FILE_NOT_FOUND_MSG);
+            //System.out.println(SETTINGS_FILE_NOT_FOUND_MSG);
             autoCreateNewFile(DEFAULT_USER_SETTINGS_FILE_PATH);
             //autoCreateNewFile(TEST_FILE_PATH);
         }
@@ -52,7 +52,7 @@ public class UserSettingsLoader {
             }
 
         } catch (SettingObjectWrongFormatException e) {
-            System.out.printf(ERROR_READING_FILE_ON_LINE_MSG_FORMAT, fileLine);
+            //System.out.printf(ERROR_READING_FILE_ON_LINE_MSG_FORMAT, fileLine);
         }
     }
 

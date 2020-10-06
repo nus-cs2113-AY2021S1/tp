@@ -9,7 +9,7 @@ public class FilePaths {
     /**
      * Default path to file for saving settings.
      */
-    public static final String DEFAULT_USER_SETTINGS_FILE_PATH = "/data" + File.pathSeparator + "userSettings.txt";
+    public static final String DEFAULT_USER_SETTINGS_FILE_PATH = "/data" + File.separator + "userSettings.txt";
 
     /**
      * Test file path to see where the files save.

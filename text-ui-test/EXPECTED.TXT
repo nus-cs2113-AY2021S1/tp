@@ -1,12 +1,3 @@
-Loading userSettings.txt save file...
-C:\data;userSettings.txt
-userSettings.txt save file not found
-Creating new file...
-Auto creating new file
-File does not exist.
-Sorry, could not create specified directory
-IO error when making file!
-New file created
 ---------------------------------------------
 Take a quiz with
  ,-----.,--.   ,--.      ,--.
