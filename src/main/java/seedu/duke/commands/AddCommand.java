@@ -189,6 +189,19 @@ public class AddCommand extends Command {
             return;
         }
 
+        boolean isRated = false;
+        for (int i = 0; i < ratings.getList().size(); i++) {
+            if (ratings.getList().get(i).getTitleOfRatedBook().equals(titleOfBookToRate)) {
+                isRated = true;
+                break;
+            }
+        }
+
+        if (isRated) {
+            System.out.println("This book has already been rated");
+            return;
+        }
+
         boolean doesExist = false;
         for (int i = 0; i < existingBooks.getList().size(); i++) {
             if (existingBooks.getList().get(i).getTitle().equals(titleOfBookToRate)) {
@@ -201,6 +214,7 @@ public class AddCommand extends Command {
             ratings.add(new Rating(ratingScore, titleOfBookToRate));
             System.out.println("You have just rated " + titleOfBookToRate
                     + " " + ratingScore + " star!");
+            System.out.println(ratings.toString());
         } else {
             System.out.println("I can't find this book to rate!");
         }
