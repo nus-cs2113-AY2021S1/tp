@@ -1,5 +1,6 @@
 package seedu.duke.ui;
 
+import seedu.duke.book.Book;
 import seedu.duke.book.BookList;
 import seedu.duke.quote.Quote;
 import seedu.duke.quote.QuoteList;
@@ -54,5 +55,9 @@ public class TextUi {
 
     public void printAddCategoryToQuote(String quote, String categoryName) {
         System.out.println(String.format(ADD_CATEGORY, categoryName, quote));
+    }
+
+    public void printBook(Book book) {
+        System.out.println(book.toString());
     }
 }
