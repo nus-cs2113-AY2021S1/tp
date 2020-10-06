@@ -7,7 +7,7 @@ public class HomeLocations {
     private ArrayList<String> locations = new ArrayList<>();
 
     /**
-     * Creating new location if is not existed
+     * Creating new location if is not existed.
      *
      * @param location used to be added into the location list
      */
@@ -22,7 +22,7 @@ public class HomeLocations {
     }
 
     /**
-     * Removing selected location with user input
+     * Removing selected location with user input.
      *
      * @param location used to be removed from the location list
      */
@@ -54,7 +54,7 @@ public class HomeLocations {
     }
 
     /**
-     * Returns true if location string is not found
+     * Returns true if location string is not found.
      *
      * @param location used to identify the display index
      * @return isValid true if location is not found in list
