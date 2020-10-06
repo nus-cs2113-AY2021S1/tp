@@ -10,6 +10,18 @@ import java.util.Scanner;
 public class Storage {
     public static final String DIRECTORY_PATH = new File("data").getAbsolutePath();
 
+    public void save (ArrayList<String> list, String dataPath) {
+        final String FILE_PATH = DIRECTORY_PATH + dataPath;
+
+        if(Files.exists(Path.of(FILE_PATH))) {
+            try {
+                Files.write(Path.of(FILE_PATH), list);
+            } catch (IOException e) {
+                System.out.println("There was a problem writing to storage");
+            }
+        }
+    }
+
     public ArrayList<String> load(String dataPath) {
         ArrayList<String> data = new ArrayList<>();
         final String FILE_PATH = DIRECTORY_PATH + dataPath;
