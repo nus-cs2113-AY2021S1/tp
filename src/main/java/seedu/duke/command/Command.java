@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Notebook;
+import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.timetable.Timetable;
 
 /**
@@ -10,6 +11,7 @@ public abstract class Command {
 
     protected Notebook notebook;
     protected Timetable timetable;
+    protected TagManager tagManager;
 
     protected static final int NULL_INT = -1;
 
@@ -28,9 +30,11 @@ public abstract class Command {
      *
      * @param notebook referenced Notebook data.
      * @param timetable referenced Timetable data.
+     * @param tagManager referenced TagManager.
      */
-    public void setData(Notebook notebook, Timetable timetable) {
+    public void setData(Notebook notebook, Timetable timetable, TagManager tagManager) {
         this.notebook = notebook;
         this.timetable = timetable;
+        this.tagManager = tagManager;
     }
 }

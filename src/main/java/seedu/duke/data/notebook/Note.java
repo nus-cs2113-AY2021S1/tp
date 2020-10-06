@@ -37,4 +37,12 @@ public class Note {
         this(title, content, isPinned);
         this.tags = tags;
     }
+
+    public ArrayList<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(ArrayList<Tag> tags) {
+        this.tags = tags;
+    }
 }

@@ -1,21 +1,6 @@
 package seedu.duke.util;
 
-import seedu.duke.command.Command;
-import seedu.duke.command.HelpCommand;
-import seedu.duke.command.AddCommand;
-import seedu.duke.command.ListNoteCommand;
-import seedu.duke.command.ListEventCommand;
-import seedu.duke.command.ViewNoteCommand;
-import seedu.duke.command.EditCommand;
-import seedu.duke.command.DeleteCommand;
-import seedu.duke.command.FindCommand;
-import seedu.duke.command.PinCommand;
-import seedu.duke.command.TagCommand;
-import seedu.duke.command.RemindCommand;
-import seedu.duke.command.ExitCommand;
-
-import seedu.duke.data.notebook.Note;
-import seedu.duke.data.timetable.Timetable;
+import seedu.duke.command.*;
 
 /**
  * Parses user input.
@@ -56,8 +41,14 @@ public class Parser {
             // return prepareFind(userMessage);
         case PinCommand.COMMAND_WORD:
             // return preparePin(userMessage);
+        case CreateTagCommand.COMMAND_WORD:
+            // return prepareCreateTag(userMessage);
+        case DeleteTagCommand.COMMAND_WORD:
+            // return prepareDeleteTag(userMessage);
+        case ListTagCommand.COMMAND_WORD:
+            return new ListTagCommand();
         case TagCommand.COMMAND_WORD:
-            // return prepareTag(userMessage);
+            // return new prepareTag(userMessage);
         case RemindCommand.COMMAND_WORD:
             // return prepareRemind(userMessage);
         case ExitCommand.COMMAND_WORD:
@@ -113,8 +104,35 @@ public class Parser {
         return new PinCommand(index);
      }
 
+     private Command prepareCreateTag(String userMessage) {
+        if (userMessage.isBlank() || userMessage.isEmpty()) {
+            return new IncorrectCommand();
+        }
+        String tagName = ?;
+        String tagColor = ?;
+
+        return new CreateTagCommand(tagName, tagColor);
+     }
+
+     private Command prepareDeleteTag(String userMessage) {
+        if (userMessage.isBlank() || userMessage.isEmpty()) {
+            return new IncorrectCommand();
+        }
+        String tagName = ?;
+
+        return new DeleteTagCommand(tagName);
+     }
+
      private Command prepareTag(String userMessage) {
-        return new TagCommand();
+        if(userMessage.isBlank() || userMessage.isEmpty()) {
+            return new IncorrectCommand();
+        } else {
+            int index = ?
+            String tagName = ?
+            String tagColor = ?
+            Note noteToBeTagged = notebook.getNotes().get(index);
+        }
+        return new TagCommand(index, tagName, tagColor);
      }
 
      private Command prepareRemind(String userMessage) {

@@ -1,8 +1,10 @@
 package seedu.duke;
 
+import com.sun.javadoc.Tag;
 import seedu.duke.command.Command;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.data.notebook.Notebook;
+import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.timetable.Timetable;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.InterfaceManager;
@@ -17,6 +19,7 @@ public class Duke {
     private StorageManager storageManager;
     private Notebook notebook;
     private Timetable timetable;
+    private TagManager tagManager;
 
     /**
      * Initializes the required managers.
@@ -26,6 +29,7 @@ public class Duke {
         this.storageManager = new StorageManager();
         this.notebook = new Notebook();
         this.timetable = new Timetable();
+        this.tagManager = new TagManager();
     }
 
     /** Reads the user command and executes it until the user exits the program. */
@@ -57,7 +61,7 @@ public class Duke {
     }
 
     private String executeCommand(Command command) {
-        command.setData(notebook, timetable);
+        command.setData(notebook, timetable, tagManager);
         String result = command.execute();
         //storageManager.saveAll(notebook, timetable);
         return result;
