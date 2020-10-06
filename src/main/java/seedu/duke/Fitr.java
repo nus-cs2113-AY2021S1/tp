@@ -1,21 +1,43 @@
 package seedu.duke;
 
-import java.util.Scanner;
-
 public class Fitr {
-    /**
-     * Main entry-point for the java.duke.Duke application.
-     */
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
+    private Storage storage;
+    private FoodList foodList;
+    private ExerciseList exerciseList;
+    private User user;
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+    public Fitr (String filePathOfFoodList, String filePathOfExerciseList) {
+        storage = new Storage(filePathOfFoodList, filePathOfExerciseList);
+        user = new User();
+        try {
+            foodList = new FoodList(storage.loadFoodList());
+        } catch (FileNotFoundException e) {
+            UI.printFoodListNotFoundError();
+            foodList = new FoodList();
+        }
+        try {
+            exerciseList = new ExerciseList(storage.loadExerciseList());
+        } catch (FileNotFoundException e) {
+            UI.printExerciseListNotFoundError();
+            exerciseList = new ExerciseList();
+        }
+    }
+
+    public void run() {
+        UI.printGreetingMessage();
+        while(true) {
+            try {
+                String userInput = UI.read();
+                Command c = Parser.parse(userInput);
+                c.execute(foodList, exerciseList, storage);
+            } catch (Fitrexception e) {  //Please replace this with any exception when executing the command.
+                UI.showError(e.getMessage()); //Please replace this with the corresponding error message in UI.
+            }
+        }
+        UI.printExitMessage();
+    }
+
+    public static void main(String[] args) {
+        new Fitr("data/foodList.txt", "data/exerciseList.txt").run();
     }
 }
