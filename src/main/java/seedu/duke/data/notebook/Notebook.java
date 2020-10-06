@@ -1,5 +1,7 @@
 package seedu.duke.data.notebook;
 
+import seedu.duke.data.exception.SystemException;
+
 import java.util.ArrayList;
 
 /**
@@ -28,10 +30,10 @@ public class Notebook {
     /**
      * Adds a note into the notebook.
      *
-     * @param note to be added.
+     * @throws SystemException if an error occurs.
      */
-    public void addNote(Note note) {
-
+    public void addNote(Note note) throws SystemException {
+        notes.add(note);
     }
 
     /**
@@ -41,5 +43,9 @@ public class Notebook {
      */
     public void deleteNote(Note note) {
 
+    }
+
+    public ArrayList<Note> getNotes() {
+        return this.notes;
     }
 }
