@@ -81,14 +81,11 @@ public class Parser {
         return answer;
     }
 
-    private static Command prepareRevise(String arg) throws InvalidInputException {
-        if (arg.isEmpty()) {
+    private static Command prepareRevise(String commandArgs) throws InvalidInputException {
+        if (commandArgs.isEmpty()) {
             throw new InvalidInputException();
         }
-        // Initialize a new Chapter object or
-        // Once Chapter level is implemented, create Chapter object with the given arg (chapterName)
-        Chapter chapter = new Chapter(arg);
-        return new ReviseCommand(chapter);
+        return new ReviseCommand(commandArgs);
     }
 
     private static Command prepareExit(String commandArgs) throws InvalidInputException {
