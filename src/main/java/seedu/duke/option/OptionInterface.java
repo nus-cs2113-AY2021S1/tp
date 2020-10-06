@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.option;
 
 public interface OptionInterface {
     String getOptionDescription();
