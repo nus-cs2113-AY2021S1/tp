@@ -29,7 +29,6 @@ public class Storage {
     private static final int TIME = 4;
     private static final int IS_DONE = 1;
     private static ArrayList<Task> taskArrayList;
-    private static File f;
     private static String filePath;
     private static LocalDate date;
     public static int countFileTasks = 0;
@@ -42,10 +41,29 @@ public class Storage {
      * @throws IOException throws Exception when fail to create a file
      */
     public Storage(String filePath) throws IOException {
-        f = new File(filePath);
-        f.createNewFile();
         this.filePath = filePath;
     }
+
+    /**
+     * Creates a new storage file if the file does not exists.
+     *
+     * @param output Storage file.
+     */
+    private static void createFile(File output) {
+        try {
+            if (output.exists()) {
+                return;
+            }
+            if (!output.getParentFile().exists()) {
+                output.getParentFile().mkdirs();
+            }
+            output.createNewFile();
+            Ui.printFileCreatedMessage();
+        } catch (IOException e) {
+            Ui.printFileCreateErrorMessage(e);
+        }
+    }
+
     /**
      * Write the data from taskList into file.
      *
@@ -53,7 +71,9 @@ public class Storage {
      */
     public static void writeToFile(TaskList tasks) {
         try {
-            FileWriter fw = new FileWriter(filePath);
+            File output = new File(filePath);
+            createFile(output);
+            FileWriter fw = new FileWriter(output);
             taskArrayList = tasks.getTaskList();
             for (Task task: taskArrayList) {
                 fw.write(task.printIntoFile() + "\n");
@@ -69,9 +89,12 @@ public class Storage {
      *
      * @param tasks A taskList that store the data read from file.
      */
-    public static int readFromFile(TaskList tasks) {
+    public static int readFromFile(TaskList tasks) throws FileNotFoundException {
+        File input = new File(filePath);
+        createFile(input);
+
         try {
-            Scanner sc = new Scanner(f);
+            Scanner sc = new Scanner(input);
             Task task;
             while (sc.hasNext()) {
                 String[] taskInFile = sc.nextLine().split("\\|");
@@ -96,8 +119,6 @@ public class Storage {
                 }
                 tasks.addTask(task);
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("Error reading file");
         } catch (Exception e) {
             System.out.println("Wrong format of date");
         }
