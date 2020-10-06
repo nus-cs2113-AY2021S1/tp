@@ -41,7 +41,7 @@ public class InputParser {
         //Split into [command, rest of input]
 
         //Check for existence of command title
-        //commandContentExist = buffer.length > 1 && !(buffer[1].startsWith("/") || buffer[1].startsWith("-"));
+
         try {
             this.matcher = RegexMatcher.regexMatcher(input, Constants.paramRegex);
             separator = this.getSeparator(input);

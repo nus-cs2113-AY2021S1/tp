@@ -11,6 +11,7 @@ public class Constants {
         INC
     }
 
+    // Regex detects the following: <whitespace>/<word><whitespace>
     public static final String paramRegex = String.format("(\\s+)([%s]{1})(\\w+)(\\s+)",
             String.join("", DEFAULT_PARAMS_PREFIX));
 }

@@ -46,7 +46,9 @@ public class ParamsParser {
             System.out.println("paramsub " + paramSubstring);
 
             try {
-                // If
+                if (buffer[1].trim().length() == 0) {
+                    throw new java.lang.IllegalStateException();
+                }
                 if (matcher.start() > 0) {
                     String separator = getSeparator(paramSubstring);
                     buffer = paramSubstring.trim().split(separator, 2);
