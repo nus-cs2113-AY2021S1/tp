@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
+import seedu.duke.commands.CreateCommand;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.InvalidCommand;
@@ -14,6 +15,8 @@ public class Parser {
         final String arguments = userInput.replaceFirst(commandWord, "").trim();
 
         switch (commandWord) {
+        case CreateCommand.COMMAND_WORD:
+            return new CreateCommand(arguments);
         case AddCommand.COMMAND_WORD:
             return prepareAddCommand(arguments);
         case DeleteCommand.COMMAND_WORD:
