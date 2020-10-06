@@ -1,10 +1,6 @@
 package seedu.financeit.manualtracker;
 
-import seedu.financeit.utils.CommandPacket;
-import seedu.financeit.utils.Constants;
-import seedu.financeit.utils.FiniteStateMachine;
-import seedu.financeit.utils.LedgerList;
-import seedu.financeit.utils.UiManager;
+import seedu.financeit.utils.*;
 
 public class ManualTracker {
     private static Ledger currLedger;
@@ -166,7 +162,7 @@ public class ManualTracker {
                 {"3.", "list ledgers"},
                 {"4", "delete ledgers"}
         };
-        UiManager.printList(input);
+        Printer.printList(input);
         packet = UiManager.handleInput();
         System.out.println(packet);
         System.out.println(packet.getCommandString());

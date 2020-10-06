@@ -8,23 +8,16 @@ public class UiManager {
     private static Scanner scanner = new Scanner(System.in);
     private static InputParser inputParser = new InputParser();
 
-    public static String returnLineWithSymbol(int width, String symbol) {
+    public static String getLineWithSymbol(int width, String symbol) {
         return new String(new char[width]).replace("\0", symbol);
     }
 
     public static void printLineWithSymbol(int width, String symbol) {
-        System.out.println(returnLineWithSymbol(width, symbol));
+        System.out.println(getLineWithSymbol(width, symbol));
     }
 
     public static void drawPartition() {
         printLineWithSymbol(Constants.MAX_PARTITION_LINE_LEN, "_");
-    }
-
-    public static void printList(String[][] input) {
-        printRowHeader(input[0]);
-        for (int i = 1; i < input.length; i++) {
-            System.out.println(getPrintListRow(input[i]).replaceFirst("|", ""));
-        }
     }
 
     public static String getPrintListRow(String[] input) {

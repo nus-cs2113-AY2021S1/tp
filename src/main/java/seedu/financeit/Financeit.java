@@ -3,7 +3,7 @@ package seedu.financeit;
 import seedu.financeit.manualtracker.ManualTracker;
 import seedu.financeit.utils.CommandPacket;
 import seedu.financeit.utils.InputParser;
-import seedu.financeit.utils.UiManager;
+import seedu.financeit.utils.Printer;
 
 public class Financeit {
     public static void main(String[] args) {
@@ -12,6 +12,18 @@ public class Financeit {
         String inputString = "mom";
         CommandPacket packet = inputParser.parseInput(inputString);
         packet.getParamTypes();
+
+        Printer.setTitle("Test table");
+        Printer.addRow("Name;Age;Place;letters;60;adsadasdsadsadsadsadsadasd");
+        Printer.addRow("John;15;Woodlands;g;5;d");
+        Printer.addRow("Dog;16;Woodlands;g;6;g");
+        Printer.printList();
+
+        Printer.setTitle("Test table 2");
+        Printer.addRow("Name;Age;Place;letters");
+        Printer.addRow("Mary;16;Woodlands;g");
+        Printer.addRow("Cat;16;Woodlands;g");
+        Printer.printList();
 
         String[][] input = {
                 {"Name", "Age", "Place", "letters"},
@@ -24,7 +36,7 @@ public class Financeit {
                 {"Mary"}
         };
 
-        UiManager.printList(input1);
+        Printer.printList(input1);
         ManualTracker.main();
     }
 }
