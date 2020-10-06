@@ -8,7 +8,7 @@ public class ByeCommand extends Command {
      * Constructor for exiting the program.
      */
     public ByeCommand() {
-        this.isExit = false;
+        this.isExit = true;
     }
 
 //    @Override
