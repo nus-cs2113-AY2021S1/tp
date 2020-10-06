@@ -2,9 +2,8 @@ package seedu.duke.command;
 
 import seedu.duke.DukeException;
 import seedu.duke.Storage;
-import seedu.duke.Ui;
-import seedu.duke.task.TaskList;
 import seedu.duke.task.Task;
+import seedu.duke.task.TaskList;
 
 
 public class PrintTimelineCommand extends Command {
