@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 public class PatientList {
 
-    private static final String PATIENT_NUMBER_ERROR = "Invalid patient number.";
-
     private final ArrayList<Patient> patients;
 
     /**

@@ -7,7 +7,7 @@ import seedu.rex.data.exception.RexException;
 
 public class Parser {
     public static Patient readPatient(String line) {
-        //to read patients from file
+        // to read patients from file
         return null;
     }
 
