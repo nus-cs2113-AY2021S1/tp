@@ -10,12 +10,12 @@ import java.util.Scanner;
 public class Storage {
     public static final String DIRECTORY_PATH = new File("data").getAbsolutePath();
 
-    public void save (ArrayList<String> list, String dataPath) {
-        final String FILE_PATH = DIRECTORY_PATH + dataPath;
+    public void save(ArrayList<String> list, String dataPath) {
+        final String filePath = DIRECTORY_PATH + dataPath;
 
-        if(Files.exists(Path.of(FILE_PATH))) {
+        if (Files.exists(Path.of(filePath))) {
             try {
-                Files.write(Path.of(FILE_PATH), list);
+                Files.write(Path.of(filePath), list);
             } catch (IOException e) {
                 System.out.println("There was a problem writing to storage");
             }
@@ -24,13 +24,13 @@ public class Storage {
 
     public ArrayList<String> load(String dataPath) {
         ArrayList<String> data = new ArrayList<>();
-        final String FILE_PATH = DIRECTORY_PATH + dataPath;
-        File file = new File(FILE_PATH);
+        final String filePath = DIRECTORY_PATH + dataPath;
+        File file = new File(filePath);
 
-        if(Files.exists(Path.of(DIRECTORY_PATH))) {
+        if (Files.exists(Path.of(DIRECTORY_PATH))) {
             data = readFile(file);
         } else {
-            if(createDirectory()) {
+            if (createDirectory()) {
                 data = readFile(file);
             }
         }
@@ -44,9 +44,9 @@ public class Storage {
         try {
             boolean fileCreated = file.createNewFile();
 
-            if(!fileCreated) {
+            if (!fileCreated) {
                 Scanner sc = new Scanner(file);
-                while(sc.hasNext()) {
+                while (sc.hasNext()) {
                     String dataString = sc.nextLine();
                     data.add(dataString);
                 }
