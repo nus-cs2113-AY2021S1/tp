@@ -4,8 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+
 public class Task {
-    protected String description;
+    private String description;
     private LocalDate date;
     private LocalTime time;
     private Integer priority;

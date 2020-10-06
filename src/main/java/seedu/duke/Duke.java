@@ -9,19 +9,25 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static final String COMMAND_HELP = "help";
-    public static final String COMMAND_ADD = "add";
-    public static final String COMMAND_LIST = "list";
-    public static final String COMMAND_BYE = "bye";
-    private static ArrayList<Task> tasks;
-    private static boolean isExit;
+    private static final String COMMAND_HELP = "help";
+    private static final String COMMAND_ADD = "add";
+    private static final String COMMAND_LIST = "list";
+    private static final String COMMAND_BYE = "bye";
     private static final Pattern TASK_PATTERN = Pattern.compile(
             "^(?<description>(\\w+\\s*)+\\w*)"
             + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
             + "( t/(?<time>\\d{4}))?"
             + "( p/(?<priority>\\d))?$");
 
+    private final ArrayList<Task> tasks = new ArrayList<>();
+    private boolean isExit;
+    private Storage storage;
+
     public static void main(String[] args) {
+        new Duke().run();
+    }
+
+    private void run() {
         showWelcomeMessage();
         initProgram();
         while (!isExit) {
@@ -30,7 +36,7 @@ public class Duke {
         }
     }
 
-    private static void showWelcomeMessage() {
+    private void showWelcomeMessage() {
         System.out.println("\nWelcome to\n"
                 + "    ____  __      _   ____  _______\n"
                 + "   / __ \\/ /___ _/ | / / / / / ___/\n"
@@ -40,17 +46,18 @@ public class Duke {
                 + "v1.0\n");
     }
 
-    private static void initProgram() {
-        tasks = new ArrayList<>();
+    private void initProgram() {
+        storage = new Storage();
+        storage.loadTasks(tasks);
         isExit = false;
     }
 
-    private static String getUserInput() {
+    private String getUserInput() {
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
 
-    private static void executeCommand(String userInput) {
+    private void executeCommand(String userInput) {
         String[] commandTypeAndParams = splitCommandWordAndArgs(userInput);
         String commandType = commandTypeAndParams[0];
 
@@ -73,7 +80,7 @@ public class Duke {
         }
     }
 
-    private static void showCommands() {
+    private void showCommands() {
         System.out.println("\nList of available commands:");
         System.out.println("- help: show list of available commands");
         System.out.println("- add: add a task");
@@ -81,11 +88,11 @@ public class Duke {
         System.out.println("- bye: exit the program\n");
     }
 
-    private static String[] splitCommandWordAndArgs(String userInput) {
+    private String[] splitCommandWordAndArgs(String userInput) {
         return userInput.split(" ", 2);
     }
 
-    private static void executeAddTask(String commandArgs) {
+    private void executeAddTask(String commandArgs) {
         Matcher matcher = TASK_PATTERN.matcher(commandArgs);
         Task task;
         if (matcher.find()) {
@@ -105,7 +112,7 @@ public class Duke {
         System.out.println("Now you have " + tasks.size() + " task(s) in your list.\n");
     }
 
-    private static void showList() {
+    private void showList() {
         System.out.println("\nHere is your list of tasks:");
         for (Task task : tasks) {
             System.out.println((tasks.indexOf(task) + 1) + ". " + task.toString());
@@ -113,8 +120,10 @@ public class Duke {
         System.out.println();
     }
 
-    private static void exitProgram() {
+
+    private void exitProgram() {
         isExit = true;
+        storage.writeTasksToFile(tasks);
         System.out.println("\nBye! See you again!");
     }
 }
