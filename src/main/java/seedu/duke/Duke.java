@@ -31,7 +31,6 @@ public class Duke {
         int avgEpisodeLength = 30;
         int totalEpisodes = 24;
         Anime testAnime = new Anime(animeName, releaseDate, rating, genre, avgEpisodeLength, totalEpisodes);
-        System.out.println("Release Date in LocalTime: " + testAnime.getReleaseDate());
         System.out.println("Release Date in String: " + testAnime.getReleaseDateInString());
         System.out.println("===End of Sample Anime Class===");
     }
