@@ -11,7 +11,7 @@ public class Food {
         this.carbohydrate = carbohydrate;
         this.protein = protein;
     }
-    
+
     public String getName() {
         return name;
     }
