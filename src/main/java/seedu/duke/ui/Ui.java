@@ -182,7 +182,7 @@ public class Ui {
 
     public static void printExitToMain() {
         System.out.println("____________________________________________________________\n"
-                + "Going back to the main screen.\n" +
-                "____________________________________________________________\n");
+                + "Going back to the main screen.\n"
+                + "____________________________________________________________\n");
     }
 }
