@@ -11,7 +11,7 @@ public class UI {
      * Line divider set to default before settings are loaded. Default is the first one.
      */
     public static String currentLineDivider = getDivider(1);
-    
+
     // Main Help function
     public static void printHelpMessage(String input) {
         switch (input) {
@@ -110,12 +110,12 @@ public class UI {
             divider = "---------------------------------------------";
         } else if (input == 2) {
             divider = "=^..^=   =^..^=   =^..^=    =^..^=    =^..^=";
-        } else if (input == 3){
+        } else if (input == 3) {
             divider = "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-";
         }
         return divider;
     }
-    
+
     /**
      * Prints the personalised greeting message.
      *
@@ -135,7 +135,7 @@ public class UI {
     public static void printFarewellMessage(String username) {
         System.out.printf(FAREWELL_GREETING, username);
     }
-    
+
     /**
      * Prints the line divider to the console.
      */
