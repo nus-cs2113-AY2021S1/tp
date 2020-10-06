@@ -23,8 +23,8 @@ public class ReviseCommand extends Command {
 
     private final Chapter toRevise;
 
-    public ReviseCommand(Chapter toRevise) {
-        this.toRevise = toRevise;
+    public ReviseCommand(String toRevise) {
+        this.toRevise = new Chapter(toRevise);
     }
 
     @Override
