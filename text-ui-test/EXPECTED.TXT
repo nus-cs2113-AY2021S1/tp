@@ -7,3 +7,6 @@ Hello from
 
 What is your name?
 Hello James Gosling
+===Running Sample Anime Class===
+Release Date in String: 30/Dec/2020
+===End of Sample Anime Class===
