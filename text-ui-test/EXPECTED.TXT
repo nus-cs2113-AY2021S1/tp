@@ -7,3 +7,7 @@ Hello from
 
 What is your name?
 Hello James Gosling
+===Running Sample Anime Class===
+Release Date in LocalTime: Wed Dec 30 00:00:00 SGT 2020
+Release Date in String: 30/Dec/2020
+===End of Sample Anime Class===
