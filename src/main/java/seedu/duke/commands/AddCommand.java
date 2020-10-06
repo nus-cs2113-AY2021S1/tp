@@ -35,8 +35,7 @@ public class AddCommand extends Command {
             break;
         default:
         }
-
-//        ui.printSuccessfulAddCommand();
+        ui.printSuccessfulAddCommand();
     }
 
     private void addBook(BookList books) {

@@ -11,6 +11,7 @@ public class Quote {
     public Quote(String quote) {
         this.quote = quote;
     }
+
     public Quote(String quote, Author author) {
         this.quote = quote;
         this.author = author;

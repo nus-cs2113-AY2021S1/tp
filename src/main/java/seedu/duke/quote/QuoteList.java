@@ -37,7 +37,7 @@ public class QuoteList extends QuotesifyList<Quote> {
             String additionalInformation = "";
             if (quote.getAuthor() != null && quote.getReference() != null) {
                 additionalInformation = " -" + quote.getAuthor().getName() + ", " + quote.getReference();
-            }else if (quote.getAuthor() != null) {
+            } else if (quote.getAuthor() != null) {
                 additionalInformation = " -" + quote.getReference();
             } else if (quote.getReference() != null) {
                 additionalInformation = " -" + quote.getReference();
