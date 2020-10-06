@@ -5,6 +5,9 @@ import seedu.duke.task.Event;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 import seedu.duke.task.Todo;
+import seedu.duke.task.Lab;
+import seedu.duke.task.Tutorial;
+import seedu.duke.task.Lecture;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,6 +26,7 @@ public class Storage {
     private static final int TYPE = 0;
     private static final int DESCRIPTION = 2;
     private static final int DATE = 3;
+    private static final int TIME = 4;
     private static final int IS_DONE = 1;
     private static ArrayList<Task> taskArrayList;
     private static File f;
@@ -76,9 +80,15 @@ public class Storage {
                 } else if(taskInFile[TYPE].equals("D")) {
                     date = LocalDate.parse(taskInFile[DATE].trim());
                     task = new Deadline(taskInFile[DESCRIPTION], date);
-                } else {
+                } else if (taskInFile[TYPE].equals("E")) {
                     date = LocalDate.parse(taskInFile[DATE].trim());
                     task = new Event(taskInFile[DESCRIPTION], date);
+                } else if (taskInFile[TYPE].equals("LEC")) {
+                    task = new Lecture(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
+                } else if (taskInFile[TYPE].equals("TUT")) {
+                    task = new Tutorial(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
+                } else {
+                    task = new Lab(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
                 }
                 countFileTasks++;
                 if (taskInFile[IS_DONE].equals("true")) {
@@ -89,7 +99,7 @@ public class Storage {
         } catch (FileNotFoundException e) {
             System.out.println("Error reading file");
         } catch (Exception e) {
-            System.out.println("Wrong format of date: should be ddmmyy");
+            System.out.println("Wrong format of date");
         }
         return countFileTasks;
     }
