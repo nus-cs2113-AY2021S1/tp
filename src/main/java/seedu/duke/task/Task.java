@@ -55,8 +55,18 @@ public abstract class Task {
         this.isDone = true;
     }
 
-    public String printIntoFile(){
+
+    public String printIntoFile() {
         return TASK_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description;
+    }
+
+    /**
+     * Get the state of the task.
+     *
+     * @return the state of the task
+     */
+    public boolean getIsDone() {
+        return isDone;
     }
 
     public LocalDate getTime() {

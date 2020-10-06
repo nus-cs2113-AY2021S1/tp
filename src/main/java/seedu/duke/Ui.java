@@ -162,6 +162,33 @@ public class Ui {
     }
 
     /**
+     * Show the user's progress on deadlines and todos.
+     *
+     * @param taskList the list of user tasks.
+     */
+    public static void printProgress(TaskList taskList) {
+        int numFinished = 0;
+        int numTotal = 0;
+        for (int i = 0; i < taskList.getTotalTask(); i++) {
+            Task task = taskList.getTaskList().get(i);
+            if (task.getTaskType().equals("E") || task.getTaskType().equals("D")) {
+                numTotal++;
+                if (task.getIsDone()) {
+                    numFinished++;
+                }
+            }
+        }
+
+        if (numTotal == 0) {
+            System.out.println("You have no deadlines or todos now!");
+        } else {
+            float progress = (float) numFinished / numTotal * 100;
+            System.out.println("You have finished " + numFinished + "/" + numTotal
+                    + " (" + String.format("%.2f", progress) + "%) deadlines and todos.");
+        }
+    }
+
+    /**
      * Prints the error message based on the invalid command input by the user.
      *
      * @param e        type of error.
@@ -178,9 +205,19 @@ public class Ui {
         case "event":
             System.out.println("Error: Please key in the event in this format: event ... /at ddMMyy");
             break;
+        case "lecture":
+            System.out.println("Error: Please key in the event in this format: lecture ... / date time");
+            break;
+        case "tutorial":
+            System.out.println("Error: Please key in the event in this format: tutorial ... / date time");
+            break;
+        case "lab":
+            System.out.println("Error: Please key in the event in this format: lab ... / date time");
+            break;
         case "invalid command":
             System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
-                    + "Available commands: print list, print events, done, todo, deadline, event, find, delete, bye");
+                    + "Available commands: print list, print events, print progress, done, "
+                    + "todo, deadline, event, find, delete, bye");
             break;
         case "invalid task action":
             System.out.println("Error: Total task(s): " + taskList.getTotalTask());
