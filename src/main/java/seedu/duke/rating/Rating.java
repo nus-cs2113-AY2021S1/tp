@@ -1,7 +1,5 @@
 package seedu.duke.rating;
 
-import seedu.duke.book.Book;
-
 public class Rating {
     private String titleOfRatedBook;
     private int rating;
