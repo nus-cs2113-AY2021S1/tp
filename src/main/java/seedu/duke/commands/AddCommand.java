@@ -33,8 +33,8 @@ public class AddCommand extends Command {
         switch (type) {
         case TAG_BOOK:
             BookList books = (BookList) listManager.getList(ListManager.BOOK_LIST);
-            addBook(books);
-            ui.printSuccessfulAddCommand();
+            Book newBook = addBook(books);
+            ui.printAddBook(newBook);
             break;
         case TAG_QUOTE:
             QuoteList quotes = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
@@ -49,10 +49,13 @@ public class AddCommand extends Command {
         }
     }
 
-    private void addBook(BookList books) {
+    private Book addBook(BookList books) {
         String[] titleAndAuthor = information.split("/by", 2);
         Author author = new Author(titleAndAuthor[1].trim());
-        books.add(new Book(author, titleAndAuthor[0].trim()));
+        Book newBook = new Book(author, titleAndAuthor[0].trim());
+        books.add(newBook);
+
+        return newBook;
     }
 
     private void addQuote(QuoteList quotes) {

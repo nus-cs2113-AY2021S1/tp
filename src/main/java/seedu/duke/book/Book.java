@@ -42,4 +42,13 @@ public class Book {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    @Override
+    public String toString() {
+        if (category != null) {
+            return title + " by " + author.getName() + " -" + category;
+        }
+
+        return title + " by " + author.getName();
+    }
 }
