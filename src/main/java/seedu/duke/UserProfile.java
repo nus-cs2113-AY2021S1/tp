@@ -1,0 +1,19 @@
+package seedu.duke;
+
+public class UserProfile extends Human {
+
+    String name, birthdate, gender;
+
+    public UserProfile(String name, String birthdate, String gender) {
+        super(name);
+        this.birthdate = birthdate;
+        this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "Name= " + getName() +
+                ", birthdate='" + birthdate +
+                ", gender='" + gender;
+    }
+}
