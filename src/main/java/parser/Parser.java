@@ -4,8 +4,9 @@ import commands.AddCommand;
 import commands.Command;
 import commands.ExitCommand;
 import commands.ListCommand;
+import commands.ReviseCommand;
 import exception.InvalidInputException;
-
+import manager.chapter.Chapter;
 
 
 public class Parser {
@@ -19,6 +20,8 @@ public class Parser {
             return prepareList(commandArgs);
         case AddCommand.COMMAND_WORD:
             return prepareAdd(commandArgs);
+        case ReviseCommand.COMMAND_WORD:
+            return prepareRevise(commandArgs);
         case ExitCommand.COMMAND_WORD:
             return prepareExit(commandArgs);
         default:
@@ -76,6 +79,13 @@ public class Parser {
         }
 
         return answer;
+    }
+
+    private static Command prepareRevise(String commandArgs) throws InvalidInputException {
+        if (commandArgs.isEmpty()) {
+            throw new InvalidInputException();
+        }
+        return new ReviseCommand(commandArgs);
     }
 
     private static Command prepareExit(String commandArgs) throws InvalidInputException {
