@@ -58,7 +58,6 @@ public class Storage {
                 output.getParentFile().mkdirs();
             }
             output.createNewFile();
-            Ui.printFileCreatedMessage();
         } catch (IOException e) {
             Ui.printFileCreateErrorMessage(e);
         }
