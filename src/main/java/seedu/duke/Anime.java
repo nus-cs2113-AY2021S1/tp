@@ -87,6 +87,7 @@ public class Anime {
             this.rating = rating;
         }
     }
+
     public String[] getGenre() {
         return genre;
     }
