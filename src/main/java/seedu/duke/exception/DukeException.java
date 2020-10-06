@@ -1,7 +1,7 @@
 package seedu.duke.exception;
 
-public class SCRUMptiousException extends Exception {
-    public SCRUMptiousException (String message) {
+public class DukeException extends Exception {
+    public DukeException(String message) {
         super(message);
     }
 

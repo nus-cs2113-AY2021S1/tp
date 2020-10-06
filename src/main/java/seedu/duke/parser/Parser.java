@@ -4,7 +4,7 @@ import seedu.duke.command.MemberCommand;
 import seedu.duke.command.ProjectCommand;
 import seedu.duke.command.SprintCommand;
 import seedu.duke.command.TaskCommand;
-import seedu.duke.exception.SCRUMptiousException;
+import seedu.duke.exception.DukeException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,14 +63,14 @@ public class Parser {
                 case CREATE:
                     try {
                         new ProjectCommand().createProjectCommand(TITLE, DESCRIPTION, DEADLINE, SPRINT_INTERVAL, PARAMETERS);
-                    } catch (SCRUMptiousException e) {
+                    } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
                     break;
                 default:
                     try {
-                        throw new SCRUMptiousException("Invalid action");
-                    } catch (SCRUMptiousException e) {
+                        throw new DukeException("Invalid action");
+                    } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
                 }
@@ -85,8 +85,8 @@ public class Parser {
                     break;
                 default:
                     try {
-                        throw new SCRUMptiousException("Invalid action");
-                    } catch (SCRUMptiousException e) {
+                        throw new DukeException("Invalid action");
+                    } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
                 }
@@ -96,7 +96,7 @@ public class Parser {
                 case ADD:
                     try {
                         new TaskCommand().addTaskCommand(TITLE, DESCRIPTION, PRIORITY, PARAMETERS);
-                    } catch (SCRUMptiousException e) {
+                    } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
                     break;
@@ -109,7 +109,7 @@ public class Parser {
                 case PRIORITY:
                     try {
                         new TaskCommand().changeTaskPriorityCommand(TASK_ID, PRIORITY, PARAMETERS);
-                    } catch (SCRUMptiousException e) {
+                    } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
                     break;
@@ -118,8 +118,8 @@ public class Parser {
                     break;
                 default:
                     try {
-                        throw new SCRUMptiousException("Invalid action");
-                    } catch (SCRUMptiousException e) {
+                        throw new DukeException("Invalid action");
+                    } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
                 }
@@ -143,8 +143,8 @@ public class Parser {
                     break;
                 default:
                     try {
-                        throw new SCRUMptiousException("Invalid action");
-                    } catch (SCRUMptiousException e) {
+                        throw new DukeException("Invalid action");
+                    } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
                 }
