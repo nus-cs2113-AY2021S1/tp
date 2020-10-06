@@ -17,7 +17,7 @@ public class TextUi {
 
     private static final String WELCOME_MESSAGE = "Welcome to Quotesify!";
     private static final String GOODBYE_MESSAGE = "Have a nice day!";
-    private static final String SUCCESSFUL_ADD = "Alright! It has been added!";
+    private static final String ADD_BOOK = "This book has been added:";
     private static final String ADD_CATEGORY = "I have tagged \"%s\" category to \"%s\"!";
 
     private final Scanner in;
@@ -40,8 +40,9 @@ public class TextUi {
         return in.nextLine().trim();
     }
 
-    public void printSuccessfulAddCommand() {
-        System.out.println(SUCCESSFUL_ADD);
+    public void printAddBook(Book book) {
+        System.out.println(ADD_BOOK);
+        System.out.println(book.toString());
     }
 
     public void printAllQuotes(QuoteList quotes) {

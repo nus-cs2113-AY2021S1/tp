@@ -34,7 +34,7 @@ public class AddCommand extends Command {
         case TAG_BOOK:
             BookList books = (BookList) listManager.getList(ListManager.BOOK_LIST);
             Book newBook = addBook(books);
-            ui.printBook(newBook);
+            ui.printAddBook(newBook);
             break;
         case TAG_QUOTE:
             QuoteList quotes = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
