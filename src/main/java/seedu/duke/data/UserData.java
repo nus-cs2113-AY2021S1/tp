@@ -24,7 +24,7 @@ public class UserData {
 
     public EventList getEventList(String name) {
         for (EventList e : eventLists) {
-            if(e.getName().equals(name)) {
+            if (e.getName().equals(name)) {
                 return e;
             }
         }
