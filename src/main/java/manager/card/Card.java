@@ -1,4 +1,5 @@
 package manager.card;
+
 import java.time.LocalDate;
 
 public class Card {
