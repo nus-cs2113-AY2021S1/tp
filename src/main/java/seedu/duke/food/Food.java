@@ -5,11 +5,18 @@ public class Food {
     private final int calorie;
     private final int carbohydrate;
     private final int protein;
-    public Food(String name, int calorie, int carbohydrate, int protein){
+    private final int fats;
+
+    public Food(String name, int calorie, int carbohydrate, int protein, int fats){
         this.name = name;
         this.calorie = calorie;
         this.carbohydrate = carbohydrate;
         this.protein = protein;
+        this.fats = fats;
+    }
+
+    public int getFats() {
+        return fats;
     }
 
     public String getName() {
@@ -27,6 +34,4 @@ public class Food {
     public int getProtein() {
         return protein;
     }
-
-
 }
