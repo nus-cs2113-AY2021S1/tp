@@ -7,9 +7,6 @@ import seedu.duke.OptionListInterface;
 import java.util.ArrayList;
 
 public class Question implements QuestionInterface {
-
-    // might want to change all the interface classes to just the classes themselves
-
     private String description;
     private OptionListInterface options;
     private HintInterface hint;

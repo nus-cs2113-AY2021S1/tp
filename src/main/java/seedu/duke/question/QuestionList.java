@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class QuestionList implements QuestionListInterface {
-    private ArrayList<Question> questions;
-    private ArrayList<Question> questionsForQuiz;
+    private ArrayList<QuestionInterface> questions;
+    private ArrayList<QuestionInterface> questionsForQuiz;
     private int questionsAnswered;
 
     private static final Random RANDOM = new Random();
 
-    public QuestionList(ArrayList<Question> loadedQuestions) {
+    public QuestionList(ArrayList<QuestionInterface> loadedQuestions) {
         questions = loadedQuestions;
         questionsForQuiz = null;
         questionsAnswered = 0;
@@ -18,7 +18,7 @@ public class QuestionList implements QuestionListInterface {
 
 
     @Override
-    public ArrayList<Question> getChosenNumberOfRandomQuestion(int numberOfQuestionsForQuiz) {
+    public ArrayList<QuestionInterface> getChosenNumberOfRandomQuestion(int numberOfQuestionsForQuiz) {
         int numberOfQuestionsSelected = 0;
         ArrayList<Integer> integersChosen = new ArrayList<>();
 

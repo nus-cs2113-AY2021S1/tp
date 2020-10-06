@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 public interface QuestionInterface {
 
-    // might want to change all the interface classes to just the classes themselves
-
     String getQuestionDescription();
 
     ArrayList<OptionInterface> getOptions();

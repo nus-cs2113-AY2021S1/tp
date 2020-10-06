@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public interface QuestionListInterface {
     // ArrayList<QuestionInterface> getQuestions();
 
-    ArrayList<Question> getChosenNumberOfRandomQuestion(int numberOfQuestionsForQuiz);
+    ArrayList<QuestionInterface> getChosenNumberOfRandomQuestion(int numberOfQuestionsForQuiz);
 
     // String addQuestion(QuestionInterface question);
 
