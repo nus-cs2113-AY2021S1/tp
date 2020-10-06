@@ -55,6 +55,8 @@ public class ParamsParser {
                     buffer[1] = separator + buffer[1];
                     paramArgument = buffer[0].trim();
                     paramSubstring = buffer[1].trim();
+                } else {
+                    paramSubstring = paramSubstring.trim();
                 }
                 params.put(paramType, paramArgument);
                 System.out.println(params);
