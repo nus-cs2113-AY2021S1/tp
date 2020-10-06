@@ -31,7 +31,7 @@ public class AddCommand extends Command {
         case TAG_QUOTE:
             QuoteList quotes = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
             addQuote(quotes);
-            quotes.printAllQuotes();
+            ui.printAllQuotes(quotes);
             break;
         default:
         }

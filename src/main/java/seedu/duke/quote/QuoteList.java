@@ -1,6 +1,7 @@
 package seedu.duke.quote;
 
 import seedu.duke.lists.QuotesifyList;
+import seedu.duke.ui.TextUi;
 
 import java.util.ArrayList;
 
@@ -27,13 +28,9 @@ public class QuoteList extends QuotesifyList<Quote> {
 
     @Override
     public String toString() {
-        return "";
-    }
-
-    public void printAllQuotes() {
-        System.out.println("Here are your quotes:");
+        String quotesToReturn = "";
         for (Quote quote : quotes) {
-            String quoteToPrint = '\"' + quote.getQuote() + '\"';
+            String quoteToAppend = '\"' + quote.getQuote() + '\"';
             String additionalInformation = "";
             if (quote.getAuthor() != null && quote.getReference() != null) {
                 additionalInformation = " -" + quote.getAuthor().getName() + ", " + quote.getReference();
@@ -42,8 +39,8 @@ public class QuoteList extends QuotesifyList<Quote> {
             } else if (quote.getReference() != null) {
                 additionalInformation = " -" + quote.getReference();
             }
-            quoteToPrint += additionalInformation;
-            System.out.println(quoteToPrint);
+            quotesToReturn += (quoteToAppend + additionalInformation + System.lineSeparator());
         }
+        return quotesToReturn;
     }
 }

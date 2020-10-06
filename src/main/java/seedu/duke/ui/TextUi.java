@@ -1,6 +1,8 @@
 package seedu.duke.ui;
 
 import seedu.duke.book.BookList;
+import seedu.duke.quote.Quote;
+import seedu.duke.quote.QuoteList;
 
 import java.util.Scanner;
 
@@ -38,5 +40,10 @@ public class TextUi {
 
     public void printSuccessfulAddCommand() {
         System.out.println(SUCCESSFUL_ADD);
+    }
+
+    public void printAllQuotes(QuoteList quotes) {
+        System.out.println("Here are your quotes:");
+        System.out.println(quotes);
     }
 }
