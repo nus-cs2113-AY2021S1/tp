@@ -1,30 +1,49 @@
 package seedu.duke;
 
-import seedu.duke.data.ApplianceList;
-import seedu.duke.data.framework.Appliance;
-import seedu.duke.data.type.AirConditioner;
-import seedu.duke.data.type.Lights;
+import seedu.duke.ui.TextUi;
 
-import java.util.ArrayList;
+/**
+ * Entry point of the SmartHome application.
+ * Initializes the application and starts the interaction with the user.
+ */
 
 public class SmartHomeBot {
-    private static final ApplianceList appliances = new ApplianceList();
+
+    private static TextUi ui = new TextUi();
 
     public static void main(String[] args) {
-        AirConditioner ac = new AirConditioner("AC_1 BR1", "BR1");
-        Lights bedroomLight = new Lights("Lights_1 BR1", "BR1");
-        appliances.addAppliance(ac);
-        appliances.addAppliance(bedroomLight);
-
-        //Changing temperature for aircondtioner
-        AirConditioner temp = (AirConditioner) appliances.getAppliance(0);
-        temp.setTemperature("25");
-        appliances.setAppliance(0,temp);
-        appliances.getAppliance(1).switchOn();
-
-        for (Appliance a: appliances.getAllAppliance()) {
-            System.out.println(a);
-        }
-
+        new SmartHomeBot().run();
     }
+
+    /** Runs the program until termination.  */
+    private void run() {
+        start();
+        runCommandLoopUntilExitCommand();
+        exit();
+    }
+
+    /**
+     * Initialise the import of data from the text file,
+     * and prints the welcome message.
+     *
+     */
+    private void start() {
+        this.ui = new TextUi();
+        ui.showWelcomeMessage();
+    }
+
+    /** Prints the Goodbye message and exits. */
+    private void exit() {
+        ui.showGoodByeMessage();
+        System.exit(0);
+    }
+
+    /** Reads the user command and executes it, until the user issues the bye command.  */
+    private void runCommandLoopUntilExitCommand() {
+        String userCommandText;
+        do {
+            userCommandText = ui.getUserCommand();
+        } while (!userCommandText.equals("exit"));
+    }
+
 }

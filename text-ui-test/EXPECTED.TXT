@@ -1,2 +1,4 @@
-AC_1 BR1 status: false
-Lights_1 BR1 status: true
+===================================================
+Welcome to your SmartHomeBot V1.0!
+===================================================
+Enter command: Good bye!
