@@ -28,7 +28,7 @@ public class Todo extends Task {
         return taskType;
     }
 
-    public String printIntoFile(){
+    public String printIntoFile() {
         return TODO_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description;
     }
 }

@@ -39,12 +39,12 @@ public class Storage {
      * Initialize file f and file path, if f does not exists, creat a new file f.
      *
      * @param filePath the path that is the destination of the file.
-     * @throws IOException
+     * @throws IOException throws Exception when fail to create a file
      */
     public Storage(String filePath) throws IOException {
         f = new File(filePath);
         f.createNewFile();
-        this.filePath=filePath;
+        this.filePath = filePath;
     }
     /**
      * Write the data from taskList into file.
@@ -55,7 +55,7 @@ public class Storage {
         try {
             FileWriter fw = new FileWriter(filePath);
             taskArrayList = tasks.getTaskList();
-            for(Task task: taskArrayList) {
+            for (Task task: taskArrayList) {
                 fw.write(task.printIntoFile() + "\n");
             }
             fw.close();
@@ -77,7 +77,7 @@ public class Storage {
                 String[] taskInFile = sc.nextLine().split("\\|");
                 if (taskInFile[TYPE].equals("T")) {
                     task = new Todo(taskInFile[DESCRIPTION]);
-                } else if(taskInFile[TYPE].equals("D")) {
+                } else if (taskInFile[TYPE].equals("D")) {
                     date = LocalDate.parse(taskInFile[DATE].trim());
                     task = new Deadline(taskInFile[DESCRIPTION], date);
                 } else if (taskInFile[TYPE].equals("E")) {
