@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import seedu.duke.data.ApplianceList;
+import seedu.duke.data.HomeLocations;
 import seedu.duke.ui.TextUi;
 
 /**
@@ -10,12 +12,14 @@ import seedu.duke.ui.TextUi;
 public class SmartHomeBot {
 
     private static TextUi ui = new TextUi();
+    private ApplianceList appliances = new ApplianceList();
+    private HomeLocations homeLocations = new HomeLocations();
 
     public static void main(String[] args) {
         new SmartHomeBot().run();
     }
 
-    /** Runs the program until termination.  */
+    /** Runs the program until termination. */
     private void run() {
         start();
         runCommandLoopUntilExitCommand();
@@ -25,7 +29,6 @@ public class SmartHomeBot {
     /**
      * Initialise the import of data from the text file,
      * and prints the welcome message.
-     *
      */
     private void start() {
         this.ui = new TextUi();
@@ -38,7 +41,7 @@ public class SmartHomeBot {
         System.exit(0);
     }
 
-    /** Reads the user command and executes it, until the user issues the bye command.  */
+    /** Reads the user command and executes it, until the user issues the bye command. */
     private void runCommandLoopUntilExitCommand() {
         String userCommandText;
         do {

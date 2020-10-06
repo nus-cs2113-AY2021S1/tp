@@ -10,7 +10,6 @@ public abstract class Appliance {
         this.name = name;
         this.location = location;
         this.status = false;
-
     }
 
     public void switchOn() {
