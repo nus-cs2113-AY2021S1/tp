@@ -1,47 +1,51 @@
-package manualtracker;
+package seedu.financeit.manualtracker;
 
-import utils.*;
-
-import java.util.ArrayList;
-import java.util.Scanner;
+import seedu.financeit.utils.CommandPacket;
+import seedu.financeit.utils.Constants;
+import seedu.financeit.utils.FiniteStateMachine;
+import seedu.financeit.utils.LedgerList;
+import seedu.financeit.utils.UiManager;
 
 public class ManualTracker {
-    private static ArrayList<Ledger> ledgers = new ArrayList<>();
     private static Ledger currLedger;
-    private static Scanner scanner = new Scanner(System.in);
+    private static LedgerList ledgerList = new LedgerList();
     private static CommandPacket packet;
-    private static InputParser inputParser = new InputParser();
+
     public static void main() {
         boolean endTracker = false;
-        FiniteStateMachine FSM = new FiniteStateMachine(FiniteStateMachine.State.MAIN_MENU);
+        FiniteStateMachine fsm = new FiniteStateMachine(FiniteStateMachine.State.MAIN_MENU);
         while (!endTracker) {
-            switch (FSM.getCurrState()) {
+            switch (fsm.getCurrState()) {
             case MAIN_MENU:
-                FSM.setNextState(handleMainMenu());
+                fsm.setNextState(handleMainMenu());
                 break;
             case CREATE_LEDGER:
-                FSM.setNextState(handleCreateLedger());
+                fsm.setNextState(handleCreateLedger());
                 break;
             case OPEN_LEDGER:
-                FSM.setNextState(handleOpenLedger());
+                fsm.setNextState(handleOpenLedger());
                 break;
             case DELETE_LEDGER:
-                FSM.setNextState(handleDeleteLedger());
+                fsm.setNextState(handleDeleteLedger());
                 break;
             case SHOW_LEDGER:
-                FSM.setNextState(handleShowLedger());
+                fsm.setNextState(handleShowLedger());
                 break;
             case CREATE_ENTRY:
-                FSM.setNextState(handleAddEntry());
+                fsm.setNextState(handleAddEntry());
                 break;
             case DELETE_ENTRY:
-                FSM.setNextState(handleDeleteEntry());
+                fsm.setNextState(handleDeleteEntry());
                 break;
             case SHOW_ENTRY:
-                FSM.setNextState(handleShowEntry());
+                fsm.setNextState(handleShowEntry());
                 break;
             case INVALID_STATE:
-                FSM.setNextState(handleInvalidState());
+                fsm.setNextState(handleInvalidState());
+                break;
+            case EXIT:
+                System.out.println("Exiting Manual Tracker...");
+                endTracker = true;
                 break;
             case END_TRACKER:
                 endTracker = true;
@@ -50,7 +54,7 @@ public class ManualTracker {
             default:
                 break;
             }
-            FSM.transitionState();
+            fsm.transitionState();
         }
     }
 
@@ -61,12 +65,12 @@ public class ManualTracker {
     private static FiniteStateMachine.State handleCreateLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         System.out.println("create ledger");
-        for(String param : packet.getParamTypes()) {
+        for (String param : packet.getParamTypes()) {
             System.out.println(param);
-            switch(param){
+            switch (param) {
             case "/date":
                 Ledger ledger = new Ledger(packet.getParam(param));
-                ledgers.add(ledger);
+                ledgerList.addLedger(ledger);
                 System.out.println("Ledger created! " + ledger.getDate());
 
                 break;
@@ -80,11 +84,12 @@ public class ManualTracker {
 
     private static FiniteStateMachine.State handleDeleteLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.CREATE_LEDGER;
-        for(String param : packet.getParamTypes()) {
-            switch(param){
+        for (String param : packet.getParamTypes()) {
+            switch (param) {
             case "/date":
-                ledgers.remove(new Ledger(packet.getParam(param)));
+                ledgerList.removeLedger(new Ledger(packet.getParam(param)));
                 state = FiniteStateMachine.State.MAIN_MENU;
+                break;
             default:
                 System.out.println("Command failed.");
                 break;
@@ -100,6 +105,7 @@ public class ManualTracker {
 
     private static FiniteStateMachine.State handleShowLedger() {
         System.out.println("Show ledger");
+        ledgerList.printList();
         return FiniteStateMachine.State.MAIN_MENU;
     }
 
@@ -108,8 +114,8 @@ public class ManualTracker {
         return FiniteStateMachine.State.MAIN_MENU;
     }
 
-    public static Constants.EntryType getEntryType(){
-        for(String param : packet.getParamTypes()) {
+    public static Constants.EntryType getEntryType() {
+        for (String param : packet.getParamTypes()) {
             switch (param) {
             case "-i":
                 return Constants.EntryType.INC;
@@ -126,8 +132,8 @@ public class ManualTracker {
     private static FiniteStateMachine.State handleAddEntry() {
         FiniteStateMachine.State state = FiniteStateMachine.State.CREATE_LEDGER;
         Entry entry = new Entry();
-        for(String param : packet.getParamTypes()) {
-            switch(param){
+        for (String param : packet.getParamTypes()) {
+            switch (param) {
             case "-i":
                 entry.setEntryType(Constants.EntryType.INC);
                 break;
@@ -151,23 +157,20 @@ public class ManualTracker {
         return state;
     }
 
-    private static CommandPacket handleInput(){
-        UiManager.printInputPrompt();
-        String input = scanner.nextLine();
-        return inputParser.parseInput(input.toLowerCase());
-    }
-
-    private static FiniteStateMachine.State handleMainMenu(){
+    private static FiniteStateMachine.State handleMainMenu() {
         System.out.println("Enter something");
-        String[][] input = {{"No." , "Command"},
+        String[][] input = {
+                {"No.", "Command"},
                 {"1.", "Open ledger"},
                 {"2.", "New ledger"},
                 {"3.", "list ledgers"},
-                {"4", "delete ledgers"}};
+                {"4", "delete ledgers"}
+        };
         UiManager.printList(input);
-        packet = handleInput();
+        packet = UiManager.handleInput();
         System.out.println(packet);
-        switch(packet.getCommandString()){
+        System.out.println(packet.getCommandString());
+        switch (packet.getCommandString()) {
         case "open":
             System.out.println("done");
             return FiniteStateMachine.State.OPEN_LEDGER;
@@ -177,16 +180,18 @@ public class ManualTracker {
             return FiniteStateMachine.State.SHOW_LEDGER;
         case "delete":
             return FiniteStateMachine.State.DELETE_LEDGER;
+        case "exit":
+            return FiniteStateMachine.State.EXIT;
         default:
             System.out.println("Command not recognised. Try again.");
             return FiniteStateMachine.State.MAIN_MENU;
         }
     }
 
-    private static FiniteStateMachine.State handleOpenLedger(){
-        packet = handleInput();
+    private static FiniteStateMachine.State handleOpenLedger() {
+        packet = UiManager.handleInput();
         System.out.println(packet);
-        switch(packet.getCommandString()){
+        switch (packet.getCommandString()) {
         case "b":
             return FiniteStateMachine.State.MAIN_MENU;
         default:
