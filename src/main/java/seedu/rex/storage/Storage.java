@@ -1,8 +1,8 @@
 package seedu.rex.storage;
 
 import seedu.rex.data.PatientList;
-import seedu.rex.data.patient.Patient;
 import seedu.rex.data.exception.RexException;
+import seedu.rex.data.patient.Patient;
 import seedu.rex.parser.Parser;
 
 import java.io.BufferedReader;

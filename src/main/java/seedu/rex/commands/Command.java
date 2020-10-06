@@ -11,7 +11,7 @@ import seedu.rex.ui.Ui;
 public abstract class Command {
 
     public static final String MESSAGE = Ui.LOGO + "\n How may i assist you?"
-            .replace("\n",System.lineSeparator() + "\t");
+            .replace("\n", System.lineSeparator() + "\t");
     public static final String COMMAND_ERROR = "I'm sorry, but I don't know what that means :-(";
 
     boolean isExit;
@@ -26,9 +26,9 @@ public abstract class Command {
     /**
      * Executes command.
      *
-     * @param patients   PatientList object.
-     * @param ui      Ui object.
-     * @param storage Storage object.
+     * @param patients PatientList object.
+     * @param ui       Ui object.
+     * @param storage  Storage object.
      * @throws RexException If there is issue executing command.
      */
     public abstract void execute(PatientList patients, Ui ui, Storage storage) throws RexException;

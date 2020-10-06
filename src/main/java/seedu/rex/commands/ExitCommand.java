@@ -15,9 +15,9 @@ public class ExitCommand extends Command {
     /**
      * Says goodbye to user and exits Rex.
      *
-     * @param patients   PatientList object.
-     * @param ui      Ui object.
-     * @param storage Storage object.
+     * @param patients PatientList object.
+     * @param ui       Ui object.
+     * @param storage  Storage object.
      */
     @Override
     public void execute(PatientList patients, Ui ui, Storage storage) {
