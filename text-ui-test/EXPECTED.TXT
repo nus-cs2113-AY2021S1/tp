@@ -6,7 +6,6 @@ ________                __                .__  _____
        \__>                      \/     \/          \/    
 Welcome to Quotesify!
 What would you like to do with Quotesify?
-Alright! It has been added!
 What would you like to do with Quotesify?
 Invalid command, bye!
 Have a nice day!
