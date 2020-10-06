@@ -91,6 +91,26 @@ public class Ui {
     }
 
     /**
+     * Shows the user all the event type of tasks in the task list,
+     * such as lecture, lab, tutorial and events.
+     *
+     * @param taskList tasks retrieved from this task list.
+     */
+    public static void printEventsListView(TaskList taskList) {
+        int eventCounts = 0;
+        System.out.println("This is your list of event(s):");
+        for (int i = 0; i < taskList.getTotalTask(); i++) {
+            if (taskList.getTaskList().get(i).getTaskType().equals("E")) {
+                eventCounts++;
+                System.out.printf("%d." + taskList.getTaskList().get(i) + "\n", eventCounts);
+            }
+        }
+        if (eventCounts == 0) {
+            System.out.println("Opps, there seems no events stored in your list!");
+        }
+    }
+
+    /**
      * Shows the user the task (that was indicated by the user) that was marked as done .
      *
      * @param taskList            task list that has the task marked as done.
@@ -160,7 +180,7 @@ public class Ui {
             break;
         case "invalid command":
             System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
-                    + "Available commands: list, done, todo, deadline, event, find, delete, bye");
+                    + "Available commands: print list, print events, done, todo, deadline, event, find, delete, bye");
             break;
         case "invalid task action":
             System.out.println("Error: Total task(s): " + taskList.getTotalTask());
