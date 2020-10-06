@@ -1,6 +1,6 @@
 package seedu.duke.question;
 
-import seedu.duke.HintInterface;
+import seedu.duke.hint.HintInterface;
 import seedu.duke.OptionInterface;
 import seedu.duke.OptionListInterface;
 
