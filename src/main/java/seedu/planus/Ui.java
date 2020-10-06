@@ -2,10 +2,13 @@ package seedu.planus;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Ui {
     //    private final int DISPLAY_LENGTH = 140;
@@ -16,15 +19,15 @@ public class Ui {
     private String message = null;
     private final Scanner in;
     private final PrintStream out;
-    private ArrayList<Integer> tasks;
+    private ArrayList<Task> tasks;
 
-    private Month month = LocalDateTime.now().getMonth();
+    private Month month = LocalDate.now().getMonth();
 
-    public Ui(ArrayList<Integer> tasks) {
+    public Ui(ArrayList<Task> tasks) {
         this(System.in, System.out, tasks);
     }
 
-    private Ui(InputStream in, PrintStream out, ArrayList<Integer> tasks) {
+    private Ui(InputStream in, PrintStream out, ArrayList<Task> tasks) {
         this.in = new Scanner(in);
         this.out = out;
         this.tasks = tasks;
@@ -34,12 +37,34 @@ public class Ui {
         return in.nextLine();
     }
 
-    private void displayAllByTime() {
-        // Sort by datetime
+    public void displayAll() {
+        // Basic adding sequence
+        displayTasks(tasks);
     }
 
-    private void displayAllByPriority() {
+    public void displayAllByTime() {
+        // Sort by datetime, default display mode
+        List<Task> sorted = tasks.stream()
+                .sorted(new DateSorter())
+                .collect(Collectors.toList());
+        displayTasks((ArrayList<Task>) sorted);
+    }
+
+    public void displayAllByPriority() {
         // Sort by priority, same priority then datetime
+        List<Task> sorted = tasks.stream()
+                .sorted(new DateSorter())
+                .sorted(new PrioritySorter())
+                .collect(Collectors.toList());
+        displayTasks((ArrayList<Task>) sorted);
+    }
+
+    private void displayTasks(ArrayList<Task> tasks) {
+        out.println("\nHere is your list of tasks:");
+        for (Task task : tasks) {
+            out.println((tasks.indexOf(task) + 1) + ". " + task);
+        }
+        out.println();
     }
 
     private void generateScreenWeeklyView() {

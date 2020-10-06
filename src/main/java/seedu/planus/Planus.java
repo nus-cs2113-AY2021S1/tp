@@ -16,6 +16,7 @@ public class Planus {
     private static final String COMMAND_ADD = "add";
     private static final String COMMAND_LIST = "list";
     private static final String COMMAND_BYE = "bye";
+    // Default date: day that the task is created, default priority: 0 (low to high: 0 - 4)
     private static final Pattern TASK_PATTERN = Pattern.compile(
             "^(?<description>(\\w+\\s*)+\\w*)"
             + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
@@ -25,6 +26,7 @@ public class Planus {
     private final ArrayList<Task> tasks = new ArrayList<>();
     private boolean isExit;
     private Storage storage;
+    private Ui ui;
 
     public static void main(String[] args) {
         new Planus().run();
@@ -53,8 +55,7 @@ public class Planus {
         storage = new Storage();
         storage.loadTasks(tasks);
         isExit = false;
-
-        //        Ui ui = new Ui();
+        ui = new Ui(tasks);
         //        ui.printScreen();
 
         //        Calendar c = Calendar.getInstance();
@@ -90,7 +91,9 @@ public class Planus {
             executeAddTask(commandArgs);
             break;
         case COMMAND_LIST:
-            showList();
+            //            showList();
+            //            ui.displayAllByTime();
+            ui.displayAllByPriority();
             break;
         case COMMAND_BYE:
             exitProgram();

@@ -21,7 +21,7 @@ public class Task {
 
     private LocalDate dateStringToDate(String dateString) {
         if (dateString == null) {
-            return null;
+            return LocalDate.now();
         }
         String[] dateParts = dateString.split("-");
         int day = Integer.parseInt(dateParts[0]);
