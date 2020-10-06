@@ -100,7 +100,8 @@ public class AddCommand extends Command {
         return parameters;
     }
 
-    private void executeParameters(CategoryList categories, Stack<String> parameters, TextUi ui, ListManager listManager) {
+    private void executeParameters(CategoryList categories, Stack<String> parameters, TextUi ui,
+                                   ListManager listManager) {
         String categoryName;
         String bookTitle = null;
         int quoteNum = -1;
