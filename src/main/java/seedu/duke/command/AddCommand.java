@@ -6,11 +6,11 @@ import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.task.Deadline;
 import seedu.duke.task.Event;
+import seedu.duke.task.Lab;
+import seedu.duke.task.Lecture;
 import seedu.duke.task.TaskList;
 import seedu.duke.task.Todo;
-import seedu.duke.task.Lecture;
 import seedu.duke.task.Tutorial;
-import seedu.duke.task.Lab;
 
 import java.time.LocalDate;
 
