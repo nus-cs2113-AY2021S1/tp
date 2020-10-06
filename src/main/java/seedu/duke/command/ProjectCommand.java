@@ -33,25 +33,24 @@ public class ProjectCommand {
         }
 
 
-        parameters.get(title);
         /*Insert code for putting the title into the project class here.
         .
         .
         .
          */
-        parameters.get(desc);
+
         /*Insert code for putting the description into the project class here.
         .
         .
         .
          */
-        parameters.get(end);
+
         /*Insert code for putting the deadline into the project class here.
         .
         .
         .
          */
-        parameters.get(sd);
+
         /*Insert code for putting the sprint interval into the project class here.
         .
         .
