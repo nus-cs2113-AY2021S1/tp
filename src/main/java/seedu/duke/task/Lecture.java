@@ -8,6 +8,9 @@ public class Lecture extends Task {
     protected String time;
     protected String taskType;
 
+    private static final String LECTURE_FILE_SYMBOL = "LEC";
+    private static final String SEPARATOR = "|";
+
     public Lecture(String description, String date, String time) {
         super(description);
         this.date = date;
@@ -21,6 +24,12 @@ public class Lecture extends Task {
     @Override
     public String toString() {
         return "[LEC]" + super.toString() + " (" + date + " " + time + ")";
+    }
+
+    @Override
+    public String printIntoFile() {
+        return LECTURE_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description
+                + SEPARATOR + this.date + SEPARATOR + this.time;
     }
 
     /** Returns the respective task type. */

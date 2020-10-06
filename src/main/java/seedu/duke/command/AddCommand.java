@@ -145,6 +145,6 @@ public class AddCommand extends Command {
         }
 
         Ui.printAddTaskMessage(taskList);
-        storage.saveData(taskList);
+        storage.writeToFile(taskList);
     }
 }

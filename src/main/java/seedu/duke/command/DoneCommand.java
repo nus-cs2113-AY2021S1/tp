@@ -39,6 +39,6 @@ public class DoneCommand extends Command {
 
         Ui.printCompleteTaskMessage(taskNumberCompleted, taskList);
 
-        storage.saveData(taskList);
+        storage.writeToFile(taskList);
     }
 }
