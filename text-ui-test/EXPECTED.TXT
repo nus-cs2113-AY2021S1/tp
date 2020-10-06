@@ -1,12 +1,20 @@
-Hello from
+Hello welcome to AniChan
  ____        _        
 |  _ \ _   _| | _____ 
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-What is your name?
-Hello James Gosling
+What might your name be?
+What might your dob be?
+What might your gender be?
+Name= James Gosling, birthdate= 01/02/1999, gender= Male
+Voice actors for Kirito are:
+1. Name='Yoshitsugu Matsuoka'
+2. Name='Bryce Papenbrook'
+Characters voiced by Yoshitsugu Matsuoka are:
+1. Name='Kirito'
+2. Name='Soma Yukihira'
 ===Running Sample Anime Class===
 Release Date in String: 30/Dec/2020
 ===End of Sample Anime Class===
