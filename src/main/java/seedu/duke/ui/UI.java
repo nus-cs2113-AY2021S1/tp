@@ -105,14 +105,12 @@ public class UI {
     }
 
     public static String getDivider(int input) {
-        String divider;
+        String divider = "";
         if (input == 1) {
-            divider = "‿︵‿︵‿︵‿︵︵‿︵‿︵‿︵‿︵‿︵‿︵︵‿︵‿︵‿︵‿︵‿︵";
-        } else if (input == 2) {
             divider = "---------------------------------------------";
-        } else if (input == 3) {
+        } else if (input == 2) {
             divider = "=^..^=   =^..^=   =^..^=    =^..^=    =^..^=";
-        } else {
+        } else if (input == 3){
             divider = "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-";
         }
         return divider;
