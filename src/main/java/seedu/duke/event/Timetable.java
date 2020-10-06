@@ -25,4 +25,9 @@ public class Timetable extends Event {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    @Override
+    public String toString() {
+        return "[T]" + super.toString();
+    }
 }

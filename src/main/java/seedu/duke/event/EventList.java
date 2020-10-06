@@ -23,4 +23,8 @@ public class EventList {
     public String getName() {
         return name;
     }
+
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
 }

@@ -25,4 +25,9 @@ public class Zoom extends Event {
     public void setZoomLink(String zoomLink) {
         this.zoomLink = zoomLink;
     }
+
+    @Override
+    public String toString() {
+        return "[Z]" + super.toString();
+    }
 }

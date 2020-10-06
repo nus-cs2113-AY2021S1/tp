@@ -1,5 +1,9 @@
 package seedu.duke.ui;
 
+import seedu.duke.event.Event;
+import seedu.duke.event.EventList;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -48,8 +52,17 @@ public class Ui {
 
     }
 
-    public void printListMessage() {
-
+    public void printList(ArrayList<EventList> eventLists) {
+        int eventCount = 0;
+        System.out.println("Here is a list of all your events!");
+        for (EventList eventList : eventLists) {
+            System.out.println("Under " + eventList.getName() + " events, you have: ");
+            for (Event event : eventList.getEvents()) {
+                eventCount++;
+                System.out.println(eventCount + " " + event.toString());
+            }
+            eventCount = 0;
+        }
     }
 
     public void printDeadlineChangedMessage() {
