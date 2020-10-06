@@ -47,7 +47,7 @@ public class Ui {
             out.println("There are no cards in your list.");
             return;
         }
-        out.println("Here are the tasks in your list:");
+        out.println("Here are the cards in your list:");
         for (Card c : cards) {
             out.println((cards.indexOf(c) + 1) + "." + c);
         }
