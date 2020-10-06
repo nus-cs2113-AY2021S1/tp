@@ -6,17 +6,26 @@ import seedu.duke.category.Category;
 public class Quote {
     private Author author;
     private String quote;
-    private Category category;
+    private String reference;
 
-    public Quote(Author author, String quote) {
-        this.author = author;
+    public Quote(String quote) {
         this.quote = quote;
     }
 
-    public Quote(Author author, String quote, Category category) {
-        this.author = author;
+    public Quote(String quote, Author author) {
         this.quote = quote;
-        this.category = category;
+        this.author = author;
+    }
+
+    public Quote(String quote,String reference) {
+        this.quote = quote;
+        this.reference = reference;
+    }
+
+    public Quote(String quote, String reference, Author author) {
+        this.quote = quote;
+        this.author = author;
+        this.reference = reference;
     }
 
     public Author getAuthor() {
@@ -35,11 +44,11 @@ public class Quote {
         this.quote = quote;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getReference() {
+        return reference;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 }
