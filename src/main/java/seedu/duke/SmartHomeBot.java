@@ -48,7 +48,9 @@ public class SmartHomeBot {
         Command command;
         do {
             String userCommandText = ui.getUserCommand();
-            command = Parser.parseCommand(userCommandText);
+            command = new Parser().parseCommand(userCommandText);
+            command.setData(appliances, homeLocations);
+            command.execute();
         } while (!ExitCommand.isExit(command));
     }
 
