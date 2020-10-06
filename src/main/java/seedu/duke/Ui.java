@@ -238,7 +238,7 @@ public class Ui {
             break;
         case "invalid command":
             System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
-                    + "Type \"/help\" to learn the different commands.");
+                    + "Type \"help\" to learn the different commands.");
             break;
         case "invalid task action":
             System.out.println("Error: Total task(s): " + taskList.getTotalTask());
