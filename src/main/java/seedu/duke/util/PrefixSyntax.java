@@ -9,4 +9,5 @@ public class PrefixSyntax {
     public static final String PREFIX_TITLE = "t";
     public static final String PREFIX_TAG = "tag";
     public static final String PREFIX_PIN = "pin";
+    public static final String PREFIX_INDEX = "i";
 }

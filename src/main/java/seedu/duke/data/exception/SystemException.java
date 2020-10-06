@@ -7,7 +7,8 @@ public class SystemException extends Exception {
     /** Types of exception. */
     public enum ExceptionType {
         EXCEPTION_MISSING_DESCRIPTION("Missing description"),
-        EXCEPTION_DUPLICATE_PERSON("This person already exists in the address book");
+        EXCEPTION_DUPLICATE_NOTE("This note already exists in the notebook"),
+        EXCEPTION_MISSING_NOTE("This note does not exists in the notebook");
 
         /** The exception message. */
         private final String exceptionMessage;

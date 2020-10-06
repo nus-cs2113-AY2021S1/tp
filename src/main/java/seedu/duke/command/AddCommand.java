@@ -34,7 +34,7 @@ public class AddCommand extends Command {
      *
      * @param note to be added.
      */
-    public AddCommand(Note note) throws SystemException {
+    public AddCommand(Note note) {
         this.note = note;
         this.event = null;
         this.isAddNote = true;
@@ -59,7 +59,7 @@ public class AddCommand extends Command {
                     .collect(toList());
 
             if (!filteredTaskList.isEmpty()) {
-                throw new SystemException(SystemException.ExceptionType.EXCEPTION_DUPLICATE_PERSON);
+                throw new SystemException(SystemException.ExceptionType.EXCEPTION_DUPLICATE_NOTE);
             }
 
             notebook.addNote(note);

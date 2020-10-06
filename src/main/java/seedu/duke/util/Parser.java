@@ -26,6 +26,7 @@ import java.util.Scanner;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
+import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 
 /**
  * Parses user input.
@@ -60,7 +61,7 @@ public class Parser {
         case EditCommand.COMMAND_WORD_EVENT:
             // return prepareEditEvent(userMessage);
         case DeleteCommand.COMMAND_WORD_NOTE:
-            // return prepareDeleteNote(userMessage);
+            return prepareDeleteNote(userMessage);
         case DeleteCommand.COMMAND_WORD_EVENT:
             // return prepareDeleteEvent(userMessage);
         case FindCommand.COMMAND_WORD:
@@ -140,9 +141,6 @@ public class Parser {
         }
     }
 
-    // add-n t[C++ to Java]
-    // add-n pin[true] t[C++ to Java] tag[CS2113]
-    // add-n /t C++ to Java /pin true /tag CS2113, Computing
 
     public String inputContent() {
         Scanner input = new Scanner(System.in);
@@ -170,6 +168,36 @@ public class Parser {
         commandInput.delete(lastChar, commandInput.length());
     }
 
+    private Command prepareDeleteNote(String userMessage) {
+        String[] userMessageArray;
+        ArrayList<String[]> individualInfo = new ArrayList<String[]>();
+        int index = 0;
+
+        try {
+            userMessageArray = userMessage.split("/");
+            for (String type : userMessageArray) {
+                individualInfo.add(type.split(" ", 2));
+            }
+            individualInfo.remove(0);
+            for (String[] stringInfo : individualInfo) {
+                switch (stringInfo[0]) {
+                case PREFIX_INDEX:
+                    if (stringInfo[1].isBlank()) {
+                        throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+                    }
+                    index = Integer.parseInt(stringInfo[1].trim());
+                    break;
+                default:
+                }
+            }
+            return new DeleteCommand(index, true);
+        } catch (SystemException exception) {
+            return new IncorrectCommand(exception.getMessage());
+        } catch (NumberFormatException exception) {
+            return new IncorrectCommand("Invalid format");
+        }
+    }
+
     /*
     private Command prepareAddEvent(String userMessage) {
         return new AddCommand(event);
@@ -193,10 +221,6 @@ public class Parser {
 
      private Command prepareEditEvent(String userMessage) {
         return new EditCommand(index, event);
-     }
-
-     private Command prepareDeleteNote(String userMessage) {
-        return new EditCommand(index, true);
      }
 
      private Command prepareDeleteEvent(String userMessage) {
