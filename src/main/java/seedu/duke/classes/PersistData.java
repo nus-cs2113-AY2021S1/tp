@@ -1,6 +1,6 @@
-package Classes;
+package seedu.duke.classes;
 
-import Utility.SaveState;
+import seedu.duke.utility.SaveState;
 
 public class PersistData implements SaveState {
 

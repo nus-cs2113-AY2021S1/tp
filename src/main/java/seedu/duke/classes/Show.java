@@ -1,4 +1,4 @@
-package Classes;
+package seedu.duke.classes;
 
 public class Show {
     protected String name;
@@ -12,7 +12,7 @@ public class Show {
         this.numSeasons = numSeasons;
         this.numEpisodesForSeasons = numEpisodesForSeasons;
         this.rating = -1;
-        this.review = "null";   //TODO:I was thnking of doing an overloaded constrctor but I think need a subclass, can take a look at it another time thankz
+        this.review = "null";   //TODO:I was thnking of doing an overloaded constrctor but I think need a subclass
     }
 
 

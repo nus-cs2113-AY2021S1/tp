@@ -1,4 +1,4 @@
-package Commands;
+package seedu.duke.commands;
 
 public class Command {
     protected String description;
