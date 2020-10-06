@@ -37,7 +37,7 @@ public class DeleteCommand extends Command {
                 String title = notebook.getNotes().get(index - 1).getTitle();
                 notebook.deleteNote(index - 1);
                 return "Note deleted: " + title;
-            } catch (IndexOutOfBoundsException exception) {
+            } catch (IndexOutOfBoundsException | SystemException exception) {
                 return "This note does not exists in the notebook";
             }
         } else {
