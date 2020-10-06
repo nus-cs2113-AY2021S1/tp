@@ -10,6 +10,8 @@ import seedu.duke.exception.TaskException;
 import seedu.duke.card.SubjectList;
 import seedu.duke.parser.SubjectParser;
 import seedu.duke.storage.SubjectStorage;
+import seedu.duke.task.Task;
+import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
@@ -20,6 +22,7 @@ public class Duke {
 
     private SubjectStorage subjectStorage;
     private SubjectList subjects;
+    private TaskList tasks;
 
     /**
      * Initialises Duke.
@@ -29,6 +32,7 @@ public class Duke {
     public Duke(String filename) {
         subjectStorage = new SubjectStorage(filename);
         subjects = new SubjectList(new ArrayList<>());
+        tasks = new TaskList(new ArrayList<>());
         subjectStorage.load(subjects);
     }
 
@@ -44,9 +48,10 @@ public class Duke {
                 SubjectCommand c = SubjectParser.parse(fullCommand);
                 if (c instanceof ReturnSubjectCommand) {
                     Subject subject = c.execute(subjects);
-                    ((ReturnSubjectCommand) c).goToSubject(subject);
+                    ((ReturnSubjectCommand) c).goToSubject(subject, tasks);
+                } else {
+                    c.execute(subjects);
                 }
-                c.execute(subjects);
                 isExit = c.isExit();
                 subjects.saveSubject(subjectStorage.getFileName());
             } catch (IOException e) {

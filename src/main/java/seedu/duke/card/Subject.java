@@ -15,9 +15,9 @@ public class Subject {
 
     public void printSubject(SubjectList subjectList) {
         System.out.println("____________________________________________________________\n"
-                + "Got it. I've added this task:\n  " + this + "\n"
+                + "Got it. I've added this subject:\n  " + this + "\n"
                 + "Now you have " + subjectList.getList().size() + (subjectList.getList().size() == 1
-                ? " task in the list.\n" : " tasks in the list.\n")
+                ? " subject in the list.\n" : " subjects in the list.\n")
                 + "____________________________________________________________");
     }
 

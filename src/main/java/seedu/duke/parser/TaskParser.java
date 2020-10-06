@@ -15,11 +15,12 @@ public class TaskParser {
 
     /**
      * Parses the inputs provided by the user.
+     *
      * @param fullCommand input by the user
      * @return returns a command instance to execute a command
      */
     public static TaskCommand parse(String fullCommand) {
-        if (fullCommand.equals("bye")) {
+        if (fullCommand.equals("exit")) {
             return new ExitTaskCommand();
         } else if (fullCommand.startsWith("done ")) {
             return new DoneTaskCommand(fullCommand);

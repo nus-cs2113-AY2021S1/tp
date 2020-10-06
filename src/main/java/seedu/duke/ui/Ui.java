@@ -16,14 +16,15 @@ public class Ui {
     }
 
     public static void printStart() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        String logo = "                               __________ \n" +
+                "                              |  __ |  _ \\    \n" +
+                " ____  ______      _____      |  |__| | | |\n" +
+                "|  __|/ __ \\ \\    / /| | ____ |   __| | | |\n" +
+                "| |  |  __/ \\ \\__/ / | | \\____|  |__| |_| |\n" +
+                "| |   \\___|  \\____/  |_| ____/|_____|_____/ \n";
         System.out.println("Hello from\n" + logo);
         System.out.println("____________________________________________________________\n"
-                + " Hello! I'm Duke\n"
+                + " Hello! I'm revisED\n"
                 + " What can I do for you?\n"
                 + "____________________________________________________________\n");
     }
@@ -31,7 +32,7 @@ public class Ui {
     public static void printSubjectList(List<Subject> list) {
         int num = 1;
         System.out.println("____________________________________________________________\n"
-                + "Here are the task(s) in your list:");
+                + "Here are the subject(s) in your list:");
         for (Subject item : list) {
             System.out.println(num + "." + item);
             num++;
@@ -43,7 +44,7 @@ public class Ui {
     public static void printTaskList(List<Task> list) {
         int num = 1;
         System.out.println("____________________________________________________________\n"
-                + "Here are the task(s) in your list:");
+                + "Here are the task(s) and topic(s) in your list:");
         for (Task item : list) {
             System.out.println(num + "." + item);
             num++;
@@ -171,5 +172,17 @@ public class Ui {
 
     public static void printWritingError() {
         System.out.println("Writing to file failed.");
+    }
+
+    public static void printGoToSubject(Subject subject) {
+        System.out.println("____________________________________________________________\n"
+                + "You are currently looking at the " + subject.toString() + " subject\n"
+                + "____________________________________________________________\n");
+    }
+
+    public static void printExitToMain() {
+        System.out.println("____________________________________________________________\n"
+                + "Going back to the main screen.\n" +
+                "____________________________________________________________\n");
     }
 }
