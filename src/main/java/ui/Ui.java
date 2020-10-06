@@ -92,4 +92,22 @@ public class Ui {
     public void showExit() {
         out.println("Exiting the program...");
     }
+
+    public void showHelpList() {
+        out.println("Here is a list of commands available:" + "\n");
+        out.println("1. Shows a list of flashcards available");
+        out.println("   Format: list");
+
+        out.println("2. Adds a flashcard to the schedule manager");
+        out.println("   Format: add q:QUESTION | a:ANSWER");
+
+        out.println("3. Revises flashcards one by one");
+        out.println("   Format: revise");
+
+        out.println("4. Exits the program");
+        out.println("   Format: exit");
+
+        out.println("4. Shows a list of commands available");
+        out.println("   Format: help");
+    }
 }
