@@ -6,7 +6,8 @@ package seedu.duke.data.exception;
 public class SystemException extends Exception {
     /** Types of exception. */
     public enum ExceptionType {
-        EXCEPTION_MISSING_DESCRIPTION("Missing description");
+        EXCEPTION_MISSING_DESCRIPTION("Missing description"),
+        EXCEPTION_DUPLICATE_PERSON("This person already exists in the address book");
 
         /** The exception message. */
         private final String exceptionMessage;

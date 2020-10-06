@@ -9,7 +9,7 @@ public class Note {
     private String title;
     private String content;
     private Boolean isPinned;
-    private ArrayList<Tag> tags;
+    private ArrayList<Tag> tagArrayList;
 
     /**
      * Constructs a Note object with its title, content and pinned status provided.
@@ -22,7 +22,7 @@ public class Note {
         this.title = title;
         this.content = content;
         this.isPinned = isPinned;
-        tags = null;
+        tagArrayList = null;
     }
 
     /**
@@ -35,6 +35,22 @@ public class Note {
      */
     public Note(String title, String content, Boolean isPinned, ArrayList<Tag> tags) {
         this(title, content, isPinned);
-        this.tags = tags;
+        this.tagArrayList = tags;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getPinned() {
+        return (isPinned ? "Y" : "N");
+    }
+
+    public ArrayList<Tag> getTags() {
+        return this.tagArrayList;
     }
 }
