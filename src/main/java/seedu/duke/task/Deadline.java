@@ -1,14 +1,19 @@
 package seedu.duke.task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents a deadline task.
  */
 public class Deadline extends Task {
-    protected String by;
+    protected LocalDate by;
+    protected String taskType;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, LocalDate by) {
         super(description);
-        this.by = by.trim();
+        this.by = by;
+        this.taskType = "D";
     }
 
     /**
@@ -16,6 +21,17 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy")) + ")";
+    }
+
+    @Override
+    /** Returns the respective task type. */
+    public String getTaskType() {
+        return taskType;
+    }
+
+    @Override
+    public LocalDate getTime() {
+        return this.by;
     }
 }

@@ -9,8 +9,9 @@ done1
 delete1
 find no such keyword
 todo read book
-event project meeting /at July 6th 2-4pm
+event project meeting /at 060606
 deadline return book /by June 6th
+deadline return book /by 080606
 find book
 list
 done 3

@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.DateParser;
 import seedu.duke.DukeException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
@@ -7,6 +8,12 @@ import seedu.duke.task.Deadline;
 import seedu.duke.task.Event;
 import seedu.duke.task.TaskList;
 import seedu.duke.task.Todo;
+import seedu.duke.task.Lecture;
+import seedu.duke.task.Tutorial;
+import seedu.duke.task.Lab;
+
+import java.time.LocalDate;
+
 
 /**
  * Adds a task to the task list, depending on what kind of task (event, deadline, todo) it is.
@@ -16,6 +23,9 @@ public class AddCommand extends Command {
     public static final String TODO = "todo";
     public static final String DEADLINE = "deadline";
     public static final String EVENT = "event";
+    public static final String LECTURE = "lecture";
+    public static final String TUTORIAL = "tutorial";
+    public static final String LAB = "lab";
 
     public AddCommand(String userInput) {
         super(userInput);
@@ -36,7 +46,7 @@ public class AddCommand extends Command {
         command = userInput.split(" ", 2);
         String commandType = command[0];
         String taskDescription;
-        String taskDate;
+        LocalDate taskDate;
 
         switch (commandType) {
         case TODO:
@@ -56,9 +66,9 @@ public class AddCommand extends Command {
             try {
                 command = command[1].split("/by");
                 taskDescription = command[0].trim();
-                taskDate = command[1].trim();
+                taskDate = DateParser.inputDateProcessor(command[1].trim());
 
-                if (taskDescription.isEmpty() || taskDate.isEmpty()) {
+                if (taskDescription.isEmpty()) {
                     throw new DukeException("deadline");
                 } else {
                     taskList.addTask(new Deadline(taskDescription, taskDate));
@@ -71,15 +81,63 @@ public class AddCommand extends Command {
             try {
                 command = command[1].split("/at");
                 taskDescription = command[0].trim();
-                taskDate = command[1].trim();
+                taskDate = DateParser.inputDateProcessor(command[1].trim());
 
-                if (taskDescription.isEmpty() || taskDate.isEmpty()) {
+                if (taskDescription.isEmpty()) {
                     throw new DukeException("event");
                 } else {
                     taskList.addTask(new Event(taskDescription, taskDate));
                 }
             } catch (Exception e) {
                 throw new DukeException("event");
+            }
+            break;
+        case LECTURE:
+            try {
+                command = command[1].split("/");
+                taskDescription = command[0].trim();
+
+                command = command[1].trim().split(" ");
+
+                if (taskDescription.isEmpty()) {
+                    throw new DukeException("lecture");
+                } else {
+                    taskList.addTask(new Lecture(taskDescription, command[0], command[1]));
+                }
+            } catch (Exception e) {
+                throw new DukeException("lecture");
+            }
+            break;
+        case TUTORIAL:
+            try {
+                command = command[1].split("/");
+                taskDescription = command[0].trim();
+
+                command = command[1].trim().split(" ");
+
+                if (taskDescription.isEmpty()) {
+                    throw new DukeException("tutorial");
+                } else {
+                    taskList.addTask(new Tutorial(taskDescription, command[0], command[1]));
+                }
+            } catch (Exception e) {
+                throw new DukeException("tutorial");
+            }
+            break;
+        case LAB:
+            try {
+                command = command[1].split("/");
+                taskDescription = command[0].trim();
+
+                command = command[1].trim().split(" ");
+
+                if (taskDescription.isEmpty()) {
+                    throw new DukeException("lab");
+                } else {
+                    taskList.addTask(new Lab(taskDescription, command[0], command[1]));
+                }
+            } catch (Exception e) {
+                throw new DukeException("lab");
             }
             break;
         default:
