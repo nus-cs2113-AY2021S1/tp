@@ -17,4 +17,7 @@ public class Option implements OptionInterface {
         return isCorrectAnswer;
     }
 
+    public void markAsCorrectAnswer() {
+        this.isCorrectAnswer = true;
+    }
 }

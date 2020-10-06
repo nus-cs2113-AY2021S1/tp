@@ -5,4 +5,5 @@ public interface OptionInterface {
 
     boolean isCorrectAnswer();
 
+    void markAsCorrectAnswer(); 
 }
