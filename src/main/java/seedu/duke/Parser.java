@@ -7,6 +7,8 @@ import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.InvalidCommand;
 import seedu.duke.commands.ListCommand;
+import seedu.duke.commands.OffCommand;
+import seedu.duke.commands.OnCommand;
 import seedu.duke.commands.RemoveCommand;
 
 public class Parser {
@@ -25,6 +27,10 @@ public class Parser {
             return prepareAddCommand(arguments);
         case DeleteCommand.COMMAND_WORD:
             return prepareDeleteCommand(arguments);
+        case OnCommand.COMMAND_WORD:
+            return prepareOnCommand(arguments);
+        case OffCommand.COMMAND_WORD:
+            return prepareOffCommand(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         case ExitCommand.COMMAND_WORD:
@@ -72,4 +78,23 @@ public class Parser {
         }
         return new InvalidCommand("Missing l/");
     }
+
+    private static Command prepareOnCommand(String arguments) {
+        String name;
+        if (arguments.contains("n/")) {
+            name = arguments.replace("n/", "");
+            return new OnCommand(name);
+        }
+        return new InvalidCommand("Missing n/");
+    }
+
+    private static Command prepareOffCommand(String arguments) {
+        String name;
+        if (arguments.contains("n/")) {
+            name = arguments.replace("n/", "");
+            return new OffCommand(name);
+        }
+        return new InvalidCommand("Missing n/");
+    }
+
 }
