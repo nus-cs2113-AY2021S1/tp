@@ -8,14 +8,19 @@ import seedu.duke.category.CategoryList;
 import seedu.duke.lists.ListManager;
 import seedu.duke.quote.Quote;
 import seedu.duke.quote.QuoteList;
+import seedu.duke.rating.Rating;
+import seedu.duke.rating.RatingList;
 import seedu.duke.ui.TextUi;
 
 import java.util.ArrayList;
 import java.util.Stack;
 
 public class AddCommand extends Command {
+    public static final int RATING_ONE = 1;
+    public static final int RATING_FIVE = 5;
     private static final String TAG_BOOK = "-b";
     private static final String TAG_QUOTE = "-q";
+    private static final String TAG_RATING = "-r";
     private static final String TAG_CATEGORY = "-c";
 
     private static final String ERROR_INVALID_QUOTE_NUM = "Invalid quote number specified!";
@@ -44,6 +49,11 @@ public class AddCommand extends Command {
         case TAG_CATEGORY:
             CategoryList categories = (CategoryList) listManager.getList(ListManager.CATEGORY_LIST);
             addCategoryToBookAndQuote(categories, ui, listManager);
+            break;
+        case TAG_RATING:
+            RatingList ratings = (RatingList) listManager.getList(ListManager.RATING_LIST);
+            BookList existingBooks = (BookList) listManager.getList(ListManager.BOOK_LIST);
+            addRating(ratings, existingBooks);
             break;
         default:
         }
@@ -162,6 +172,38 @@ public class AddCommand extends Command {
             return false;
         }
         return true;
+    }
+
+    private void addRating(RatingList ratings, BookList existingBooks) {
+        String[] ratingDetails = information.split(" ", 2);
+        int ratingScore;
+        try {
+            ratingScore = Integer.parseInt(ratingDetails[0]);
+        } catch (NumberFormatException e) {
+            System.out.println("Sorry I don't understand you");
+            return;
+        }
+        String titleOfBookToRate = ratingDetails[1].trim();
+        if (!(ratingScore >= RATING_ONE && ratingScore <= RATING_FIVE)) {
+            System.out.println("That score is out of our range my friend");
+            return;
+        }
+
+        boolean doesExist = false;
+        for (int i = 0; i < existingBooks.getList().size(); i++) {
+            if (existingBooks.getList().get(i).getTitle().equals(titleOfBookToRate)) {
+                doesExist = true;
+                break;
+            }
+        }
+
+        if (doesExist) {
+            ratings.add(new Rating(ratingScore, titleOfBookToRate));
+            System.out.println("You have just rated " + titleOfBookToRate
+                    + " " + ratingScore + " star!");
+        } else {
+            System.out.println("I can't find this book to rate!");
+        }
     }
 
     public boolean isExit() {
