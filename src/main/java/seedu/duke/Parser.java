@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
+import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.InvalidCommand;
 
@@ -15,6 +16,8 @@ public class Parser {
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return prepareAddCommand(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return prepareDeleteCommand(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         default:
@@ -34,5 +37,13 @@ public class Parser {
         return new AddCommand(name, location, type);
     }
 
+    private static Command prepareDeleteCommand(String arguments) {
+        String name;
+        if (arguments.contains("n/")) {
+            name = arguments.replace("n/", "");
+            return new DeleteCommand(name.trim());
+        }
+        return new InvalidCommand("Missing n/");
+    }
 
 }
