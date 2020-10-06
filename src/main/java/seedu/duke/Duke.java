@@ -2,6 +2,8 @@ package seedu.duke;
 
 import seedu.duke.book.BookList;
 import seedu.duke.commands.Command;
+import seedu.duke.lists.ListManager;
+import seedu.duke.lists.QuotesifyList;
 import seedu.duke.parser.Parser;
 import seedu.duke.ui.TextUi;
 
@@ -11,10 +13,13 @@ public class Duke {
      */
     private TextUi ui;
     private BookList books;
+    private final ListManager listManager = new ListManager();
+
 
     public Duke() {
         ui = new TextUi();
         books = new BookList();
+        listManager.addToList(ListManager.BOOK_LIST, books);
     }
 
     public void start() {
@@ -34,7 +39,7 @@ public class Duke {
                 System.out.println("Invalid command, bye!");
                 break;
             }
-            command.execute(ui, books);
+            command.execute(ui, listManager);
             isExit = command.isExit();
         }
     }

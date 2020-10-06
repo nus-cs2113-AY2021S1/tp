@@ -13,6 +13,7 @@ public abstract class QuotesifyList<T> {
         this.list = list;
     }
 
+
     public ArrayList<T> getList() {
         return list;
     }
