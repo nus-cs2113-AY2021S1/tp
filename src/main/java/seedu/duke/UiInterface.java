@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import seedu.duke.question.QuestionInterface;
+
 public interface UiInterface {
     String getInputFromUser();
 
