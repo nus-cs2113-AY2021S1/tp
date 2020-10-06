@@ -21,7 +21,12 @@ public class Parser {
 
     }
 
-
+    /**
+     * Function takes in user input and then generates the correct command requested from the user input.
+     *
+     * @param userInput String containing what is typed by the user on the computer
+     * @return Command from what is written by user. Return null if incorrect command
+     */
     public Command parse(String userInput) {
 
         String[] words = userInput.split(" ");
