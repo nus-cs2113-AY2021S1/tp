@@ -10,4 +10,7 @@ public class ExitCommand extends Command {
         return command instanceof ExitCommand; // instanceof returns false if it is null
     }
 
+    public void execute() {
+
+    }
 }

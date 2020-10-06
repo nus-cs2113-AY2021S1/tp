@@ -2,6 +2,11 @@ package seedu.duke.commands;
 
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Delete the existing appliance by its indicated INDEX that has been added to SmartHomeBot\n"
+            + "Parameters: INDEX\n"
+            + "Example: " + COMMAND_WORD
+            + " 1";
     private final String userEnteredName;
 
     public DeleteCommand(String name) {

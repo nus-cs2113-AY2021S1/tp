@@ -8,6 +8,12 @@ import seedu.duke.data.type.WaterHeater;
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds a new appliance to the particular location to the SmartHomeBot. \n"
+            + "Parameters: add l/LOCATION n/NAME w/WATTS t/TYPE_OF_APPLIANCE \n"
+            + "Example: " + COMMAND_WORD
+            + " l/Bedroom 1 n/Fan 1 w/50 t/Fan";
+
     private final String name;
     private final String location;
     private final String type;
