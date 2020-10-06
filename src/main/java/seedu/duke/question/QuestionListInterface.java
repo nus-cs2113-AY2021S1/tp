@@ -3,13 +3,13 @@ package seedu.duke.question;
 import java.util.ArrayList;
 
 public interface QuestionListInterface {
-    ArrayList<QuestionInterface> getQuestions();
+    // ArrayList<QuestionInterface> getQuestions();
 
-    ArrayList<QuestionInterface> getNumberOfRandomQuestion(int numberOfQuestions);
+    ArrayList<Question> getChosenNumberOfRandomQuestion(int numberOfQuestionsForQuiz);
 
-    String addQuestion(QuestionInterface question);
+    // String addQuestion(QuestionInterface question);
 
-    void deleteQuestion(QuestionInterface question);
+    // void deleteQuestion(QuestionInterface question);
 
     int getQuestionCount();
 
