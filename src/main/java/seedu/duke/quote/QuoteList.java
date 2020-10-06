@@ -16,6 +16,10 @@ public class QuoteList extends QuotesifyList<Quote> {
         super(quotes);
     }
 
+    public Quote getQuote(int index) {
+        return quotes.get(index);
+    }
+
     @Override
     public void add(Quote newQuote) {
         quotes.add(newQuote);
