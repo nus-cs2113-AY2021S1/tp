@@ -6,6 +6,7 @@ import seedu.duke.commands.CreateCommand;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.InvalidCommand;
+import seedu.duke.commands.RemoveCommand;
 
 public class Parser {
 
@@ -17,6 +18,8 @@ public class Parser {
         switch (commandWord) {
         case CreateCommand.COMMAND_WORD:
             return new CreateCommand(arguments);
+        case RemoveCommand.COMMAND_WORD:
+            return new RemoveCommand(arguments);
         case AddCommand.COMMAND_WORD:
             return prepareAddCommand(arguments);
         case DeleteCommand.COMMAND_WORD:
