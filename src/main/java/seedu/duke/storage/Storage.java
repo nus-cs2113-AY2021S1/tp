@@ -74,10 +74,34 @@ public class Storage {
         ArrayList<Event> loadedEventsList = new ArrayList<>();
     }
 
+    /**
+     * Function accepts a string and creates a path object originating from the user directory.
+     *
+     * @param pathName is a string array which accepts in the path name words, each word represents a folder
+     * @return Path object indicating the location of the pathName keyed in initially.
+     */
     private Path createPath(String[] pathName) {
 
         String origin = System.getProperty("user.dir");
         Path newPath = Paths.get(origin, pathName);
         return newPath;
+    }
+
+    /**
+     * Function gives a string containing the Directory location.
+     *
+     * @return String containing directory location
+     */
+    public String getDirectoryString() {
+        return fileDirectoryPath.toString();
+    }
+
+    /**
+     * Function gives a string containng the file full location path name.
+     *
+     * @return String containing the file's location
+     */
+    public String getFileLocationString() {
+        return fileNamePath.toString();
     }
 }
