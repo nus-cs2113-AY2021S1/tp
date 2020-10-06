@@ -2,18 +2,18 @@ package seedu.duke.Finance;
 
 public class FinanceLog {
     public String[] finLog;
-    public float[] finLogVal;
+    public double[] finLogVal;
     public int finSize;
-    public float sum;
+    public double sum;
 
     public FinanceLog() {
         finLog=new String[100];
-        finLogVal=new float[100];
+        finLogVal=new double[100];
         finSize=0;
         sum=0;
     }
 
-    public void addFin(String log, float val) {
+    public void addFin(String log, double val) {
         finLog[finSize]=log;
         finLogVal[finSize]=val;
         finSize++;
