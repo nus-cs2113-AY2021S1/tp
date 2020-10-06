@@ -13,13 +13,4 @@ class DukeTest {
     public void sampleTest() {
         assertTrue(true);
     }
-
-    @Test
-    public void quoteAddTest() {
-        QuoteList quotes = new QuoteList();
-        Author author = new Author("Gill Bates");
-        Quote quote = new Quote("It was the butler", "Herlock Shomles", author);
-        quotes.add(quote);
-        assertEquals(quote, quotes.getQuote(0));
-    }
 }
