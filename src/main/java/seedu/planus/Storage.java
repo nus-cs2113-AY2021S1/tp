@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.planus;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

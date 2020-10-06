@@ -1,11 +1,14 @@
-package seedu.duke;
+package seedu.planus;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Duke {
+public class Planus {
+
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -24,7 +27,7 @@ public class Duke {
     private Storage storage;
 
     public static void main(String[] args) {
-        new Duke().run();
+        new Planus().run();
     }
 
     private void run() {
@@ -50,6 +53,23 @@ public class Duke {
         storage = new Storage();
         storage.loadTasks(tasks);
         isExit = false;
+
+        //        Ui ui = new Ui();
+        //        ui.printScreen();
+
+        //        Calendar c = Calendar.getInstance();
+        //        System.out.println(c.get(Calendar.YEAR));
+        //        System.out.println(c.get(Calendar.DAY_OF_MONTH));
+        //        System.out.println(c.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.ENGLISH));
+        //        System.out.println(c);
+
+        //        LocalDate d = LocalDate.now();
+        //        System.out.println(d);
+        //        int year = d.getYear();
+        //        int month = d.getMonthValue();
+        //        d = LocalDate.of(year, month, 1);
+        //        System.out.println(d);
+        //        System.out.println(d.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.ENGLISH));
     }
 
     private String getUserInput() {
@@ -76,6 +96,7 @@ public class Duke {
             exitProgram();
             break;
         default:
+            System.out.println("Invalid command");
             break;
         }
     }
@@ -125,5 +146,6 @@ public class Duke {
         isExit = true;
         storage.writeTasksToFile(tasks);
         System.out.println("\nBye! See you again!");
+
     }
 }
