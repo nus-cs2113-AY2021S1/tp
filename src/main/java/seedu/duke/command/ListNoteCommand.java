@@ -11,6 +11,8 @@ public class ListNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "list-n";
 
+    public static final String MESSAGE_USAGE = "";
+
     private ArrayList<Tag> tags;
     private boolean isSorted;
     private boolean isAscendingOrder;

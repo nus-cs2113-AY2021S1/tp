@@ -10,10 +10,15 @@ import java.util.Map;
  * Represents a TagManager. Manages the tags for the notes.
  */
 public class TagManager {
-    private static Map<Tag, ArrayList<Note>> tagMap;
+
+    private Map<Tag, ArrayList<Note>> tagMap;
 
     public TagManager() {
         tagMap = new HashMap<>();
+    }
+
+    public Map<Tag, ArrayList<Note>> getTagMap() {
+        return tagMap;
     }
 
     /**
@@ -68,6 +73,16 @@ public class TagManager {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Creates a Tag with the provided Tag.
+     *
+     * @param tag
+     */
+    public void createTag(Tag tag) {
+        tagMap.put(tag, new ArrayList<>());
+
     }
 
     /**
@@ -135,7 +150,7 @@ public class TagManager {
     public void removeTag(Note note, String tagName) {
         for (Tag t : tagMap.keySet()) {
             if (t.getTagName().equalsIgnoreCase(tagName)) {
-                //note.getTags().remove(t);
+                note.getTags().remove(t);
                 tagMap.remove(t, note);
             }
         }
@@ -156,16 +171,17 @@ public class TagManager {
      *
      * @param tagName name of the Tag to be deleted.
      */
-    public void deleteTag(String tagName) {
+    public boolean deleteTag(String tagName) {
         for (Tag t : tagMap.keySet()) {
             if (t.getTagName().equalsIgnoreCase(tagName)) {
                 for (Note n : tagMap.get(t)) {
-                    //n.getTags().remove(t);
+                    n.getTags().remove(t);
                 }
                 tagMap.remove(t);
-                break;
+                return true;
             }
         }
+        return false;
     }
 
     /**

@@ -7,6 +7,8 @@ public class PinCommand extends Command {
 
     public static final String COMMAND_WORD = "pin-n";
 
+    public static final String MESSAGE_USAGE = "";
+
     private int index;
     private String title;
     private boolean isPinByIndex;

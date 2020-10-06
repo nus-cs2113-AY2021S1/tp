@@ -8,6 +8,9 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD_NOTE = "delete-n";
     public static final String COMMAND_WORD_EVENT = "delete-e";
 
+    public static final String MESSAGE_USAGE_NOTE = "";
+    public static final String MESSAGE_USAGE_EVENT = "";
+
     private int index;
     private boolean isDeleteNote;
 

@@ -7,6 +7,8 @@ public class RemindCommand extends Command {
 
     public static final String COMMAND_WORD = "remind-e";
 
+    public static final String MESSAGE_USAGE = "";
+
     private int index;
     private boolean isToRemind;
 

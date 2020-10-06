@@ -7,6 +7,8 @@ public class ViewNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "view-n";
 
+    public static final String MESSAGE_USAGE = "";
+
     private int index;
     private String title;
     private boolean isViewByIndex;

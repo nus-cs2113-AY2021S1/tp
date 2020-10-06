@@ -7,6 +7,8 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find-n";
 
+    public static final String MESSAGE_USAGE = "";
+
     private String keywords;
 
     /**

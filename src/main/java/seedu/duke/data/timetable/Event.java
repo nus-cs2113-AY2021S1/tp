@@ -43,4 +43,44 @@ public class Event {
         this.isToRemind = isToRemind;
         this.isRecurring = isRecurring;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
+
+    public Boolean getToRemind() {
+        return isToRemind;
+    }
+
+    public void setToRemind(Boolean toRemind) {
+        isToRemind = toRemind;
+    }
+
+    public Boolean getRecurring() {
+        return isRecurring;
+    }
+
+    public void setRecurring(Boolean recurring) {
+        isRecurring = recurring;
+    }
 }

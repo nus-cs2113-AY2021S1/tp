@@ -9,6 +9,8 @@ public class ListEventCommand extends Command {
 
     public static final String COMMAND_WORD_ = "list-e";
 
+    public static final String MESSAGE_USAGE = "";
+
     private LocalDate date;
     private boolean isListByDate;
 

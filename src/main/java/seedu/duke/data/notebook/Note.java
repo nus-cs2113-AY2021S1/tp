@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * Represents a Note. Contains all the information of a note.
  */
 public class Note {
+
     private String title;
     private String content;
     private Boolean isPinned;
@@ -22,7 +23,7 @@ public class Note {
         this.title = title;
         this.content = content;
         this.isPinned = isPinned;
-        tags = null;
+        tags = new ArrayList<>();
     }
 
     /**
@@ -38,8 +39,32 @@ public class Note {
         this.tags = tags;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getPinned() {
+        return (isPinned ? "Y" : "N");
+    }
+
+    public void setPinned(Boolean pinned) {
+        isPinned = pinned;
+    }
+
     public ArrayList<Tag> getTags() {
-        return tags;
+        return this.tags;
     }
 
     public void setTags(ArrayList<Tag> tags) {

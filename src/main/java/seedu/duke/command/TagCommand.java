@@ -9,15 +9,17 @@ import seedu.duke.data.notebook.Tag;
 public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "tag";
-    private final String ADD_TAG_MESSAGE = "Added the tag to the note!";
+    private static final String ADD_TAG_MESSAGE = "Added the tag to the note!";
     private static final String REMOVE_TAG_MESSAGE = "Removed the tag from the note!";
+
+    public static final String MESSAGE_USAGE = "";
 
     private Note note;
     private String tagName;
     private String tagColor;
 
-    public TagCommand(Note note, String tagName, String tagColor) {
-        this.note = note;
+    public TagCommand(int index, String tagName, String tagColor) {
+        this.note = notebook.getNotes().get(index);
         this.tagName = tagName;
         this.tagColor = tagColor;
     }

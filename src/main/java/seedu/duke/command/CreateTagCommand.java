@@ -9,6 +9,8 @@ public class CreateTagCommand extends Command {
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Created a tag!";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Tag already exists!";
 
+    public static final String MESSAGE_USAGE = "";
+
     private String tagName;
     private String tagColor;
 

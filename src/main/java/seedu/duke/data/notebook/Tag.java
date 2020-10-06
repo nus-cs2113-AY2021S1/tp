@@ -56,25 +56,25 @@ public class Tag {
         case COLOR_RED_STRING:
             this.tagColor = TagColor.COLOR_RED;
             break;
-        case "GREEN":
+        case COLOR_GREEN_STRING:
             this.tagColor = TagColor.COLOR_GREEN;
             break;
-        case "BLUE":
+        case COLOR_BLUE_STRING:
             this.tagColor = TagColor.COLOR_BLUE;
             break;
-        case "YELLOW":
+        case COLOR_YELLOW_STRING:
             this.tagColor = TagColor.COLOR_YELLOW;
             break;
-        case "PURPLE":
+        case COLOR_PURPLE_STRING:
             this.tagColor = TagColor.COLOR_PURPLE;
             break;
-        case "CYAN":
+        case COLOR_CYAN_STRING:
             this.tagColor = TagColor.COLOR_CYAN;
             break;
-        case "WHITE":
+        case COLOR_WHITE_STRING:
             this.tagColor = TagColor.COLOR_WHITE;
             break;
-        case "BLACK":
+        case COLOR_BLACK_STRING:
         default:
             this.tagColor = TagColor.COLOR_BLACK;
             break;
@@ -108,6 +108,6 @@ public class Tag {
      */
     @Override
     public String toString() {
-        return tagColor.color + "[" + tagName + "]" + TagColor.COLOR_CLEAR;
+        return tagColor.color + "[" + tagName + "]" + TagColor.COLOR_CLEAR.color;
     }
 }
