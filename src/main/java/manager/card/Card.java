@@ -6,12 +6,12 @@ public class Card {
     private String question;
     private String answer;
     private int previousInterval;
-    private LocalDate date;
+    private LocalDate dueBy;
 
     public Card(String question, String answer) {
         this.question = question;
         this.answer = answer;
-        this.date = LocalDate.now();
+        this.dueBy = LocalDate.now();
         this.previousInterval = 1;
     }
 
@@ -23,8 +23,12 @@ public class Card {
         return "[A] " + answer;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getDueBy() {
+        return dueBy;
+    }
+
+    public void setDueBy(LocalDate newDueBy) {
+        dueBy = newDueBy;
     }
 
     public String toString() {

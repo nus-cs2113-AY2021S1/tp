@@ -2,12 +2,12 @@ package ui;
 
 import manager.card.Card;
 import manager.chapter.Chapter;
+import scheduler.Scheduler;
 
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.time.LocalDate;
 
 import static commands.ReviseCommand.MESSAGE_NO_CARDS_DUE;
 import static commands.ReviseCommand.MESSAGE_NO_CARDS_IN_CHAPTER;
@@ -68,7 +68,7 @@ public class Ui {
         out.println("The revision for " + toRevise + " will start now:");
         boolean isEqualsDate = false;
         for (Card c : cards) {
-            if (c.getDate().equals(LocalDate.now())) {
+            if (Scheduler.isDeadlineDue(c.getDueBy())) {
                 isEqualsDate = true;
                 out.println(c.getQuestion() + MESSAGE_SHOW_ANSWER_PROMPT);
                 getAnswerInput(c);
