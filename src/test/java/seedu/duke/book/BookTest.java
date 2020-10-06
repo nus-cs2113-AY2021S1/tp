@@ -3,7 +3,7 @@ package seedu.duke.book;
 import org.junit.jupiter.api.Test;
 import seedu.duke.author.Author;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BookTest {
     @Test
