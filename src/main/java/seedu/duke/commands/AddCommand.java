@@ -7,11 +7,16 @@ import seedu.duke.lists.ListManager;
 import seedu.duke.lists.QuotesifyList;
 import seedu.duke.quote.Quote;
 import seedu.duke.quote.QuoteList;
+import seedu.duke.rating.Rating;
+import seedu.duke.rating.RatingList;
 import seedu.duke.ui.TextUi;
 
 public class AddCommand extends Command {
+    public static final int RATING_ONE = 1;
+    public static final int RATING_FIVE = 5;
     private static final String TAG_BOOK = "-b";
     private static final String TAG_QUOTE = "-q";
+    private static final String TAG_RATING = "-r";
 
     private String type;
     private String information;
@@ -27,15 +32,52 @@ public class AddCommand extends Command {
         case TAG_BOOK:
             BookList books = (BookList) listManager.getList(ListManager.BOOK_LIST);
             addBook(books);
+            ui.printSuccessfulAddCommand();
             break;
         case TAG_QUOTE:
             QuoteList quotes = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
             addQuote(quotes);
             ui.printAllQuotes(quotes);
             break;
+        case TAG_RATING:
+            RatingList ratings = (RatingList) listManager.getList(ListManager.RATING_LIST);
+            BookList existingBooks = (BookList) listManager.getList(ListManager.BOOK_LIST);
+            addRating(ratings, existingBooks);
+            break;
         default:
         }
-        ui.printSuccessfulAddCommand();
+    }
+
+    private void addRating(RatingList ratings, BookList existingBooks) {
+        String[] ratingDetails = information.split(" ", 2);
+        int ratingScore;
+        try {
+            ratingScore = Integer.parseInt(ratingDetails[0]);
+        } catch (NumberFormatException e) {
+            System.out.println("Sorry I don't understand you");
+            return;
+        }
+        String titleOfBookToRate = ratingDetails[1].trim();
+        if (!(ratingScore >= RATING_ONE && ratingScore <= RATING_FIVE)) {
+            System.out.println("That score is out of our range my friend");
+            return;
+        }
+
+        boolean doesExist = false;
+        for (int i = 0; i < existingBooks.getList().size(); i++) {
+            if (existingBooks.getList().get(i).getTitle().equals(titleOfBookToRate)) {
+                doesExist = true;
+                break;
+            }
+        }
+
+        if (doesExist) {
+            ratings.add(new Rating(ratingScore, titleOfBookToRate));
+            System.out.println("You have just rated " + titleOfBookToRate + " "
+                    + ratingScore + " star!");
+        } else {
+            System.out.println("I can't find this book to rate!");
+        }
     }
 
     private void addBook(BookList books) {
