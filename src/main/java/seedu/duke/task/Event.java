@@ -11,6 +11,9 @@ public class Event extends Task {
     protected LocalDate at;
     protected String taskType;
 
+    private static final String EVENT_FILE_SYMBOL = "E";
+    private static final String SEPARATOR = "|";
+
     public Event(String description, LocalDate at) {
         super(description);
         this.at = at;
@@ -29,6 +32,10 @@ public class Event extends Task {
     /** Returns the respective task type. */
     public String getTaskType() {
         return taskType;
+    }
+
+    public String printIntoFile() {
+        return EVENT_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description + SEPARATOR + this.at;
     }
 
     @Override

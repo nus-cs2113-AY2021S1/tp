@@ -38,7 +38,7 @@ public class DeleteCommand extends Command {
         Ui.printDeleteTaskMessage(taskNumberDelete, taskList);
 
         taskList.deleteTask(taskNumberDelete - 1); // - 1 to cater for index starting from 0
-        storage.saveData(taskList);
+        storage.writeToFile(taskList);
 
     }
 }
