@@ -50,6 +50,10 @@ public class Entry {
         this.entryType = entryType;
     }
 
+    public Constants.EntryType getEntryType() {
+        return this.entryType;
+    }
+
     public void setTime(String rawTime) {
         LocalTime time = LocalTime.parse(InputParser.parseDateTime(rawTime, "time"));
         this.time = time;

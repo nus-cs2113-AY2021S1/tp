@@ -1,6 +1,7 @@
 package seedu.financeit;
 
 import seedu.financeit.manualtracker.ManualTracker;
+import seedu.financeit.utils.CommandPacket;
 import seedu.financeit.utils.InputParser;
 import seedu.financeit.utils.UiManager;
 
@@ -9,7 +10,9 @@ public class Financeit {
         InputParser inputParser = new InputParser();
         // String inputString = "mom /m mom -d dad /s son /d daughter";
         String inputString = "mom";
-        System.out.println(inputParser.parseInput(inputString));
+        CommandPacket packet = inputParser.parseInput(inputString);
+        packet.getParamTypes();
+
         String[][] input = {
                 {"Name", "Age", "Place", "letters"},
                 {"John", "15", "Woodlands", "g"},

@@ -132,8 +132,8 @@ public class ManualTracker {
     private static FiniteStateMachine.State handleAddEntry() {
         FiniteStateMachine.State state = FiniteStateMachine.State.CREATE_LEDGER;
         Entry entry = new Entry();
-        for (String param : packet.getParamTypes()) {
-            switch (param) {
+        for (String paramType : packet.getParamTypes()) {
+            switch (paramType) {
             case "-i":
                 entry.setEntryType(Constants.EntryType.INC);
                 break;
@@ -141,13 +141,13 @@ public class ManualTracker {
                 entry.setEntryType(Constants.EntryType.EXP);
                 break;
             case "/time":
-                entry.setTime(packet.getParam(param));
+                entry.setTime(packet.getParam(paramType));
                 break;
             case "/info":
-                entry.setDescription(packet.getParam(param));
+                entry.setDescription(packet.getParam(paramType));
                 break;
             case "/cat":
-                entry.setCategory(packet.getParam(param), getEntryType());
+                entry.setCategory(packet.getParam(paramType), getEntryType());
                 break;
             default:
                 System.out.println("Command failed.");
