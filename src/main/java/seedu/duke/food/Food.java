@@ -5,6 +5,7 @@ public class Food {
     private final int calorie;
     private final int carbohydrate;
     private final int protein;
+
     public Food(String name, int calorie, int carbohydrate, int protein){
         this.name = name;
         this.calorie = calorie;
@@ -27,6 +28,4 @@ public class Food {
     public int getProtein() {
         return protein;
     }
-
-
 }
