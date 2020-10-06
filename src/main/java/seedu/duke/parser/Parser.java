@@ -1,4 +1,6 @@
-package seedu.duke;
+package seedu.duke.parser;
+
+import seedu.duke.command.*;
 
 import java.util.Arrays;
 
@@ -12,7 +14,7 @@ public class Parser {
     };
 
 
-    public Command com Parse(String userInput) {
+    public Command Parse(String userInput) {
 
         String[] words = userInput.split(" ");
 
@@ -23,29 +25,30 @@ public class Parser {
         }
 
         String commandWord = words[0];
-        String[] argument = Arrays.copyOfRange(words, 1, words.length);
+        String[] argumentWords = Arrays.copyOfRange(words, 1, words.length);
+        String argument = String.join(" ", argumentWords);
 
         switch (commandWord) {
         case "add":
-            return null;
+            return new AddCommand(argument);
 
         case "list":
-            return null;
+            return new ListCommand(argument);
 
         case "bye":
-            return null;
+            return new ByeCommand();
 
         case "check":
-            return null;
+            return new CheckCommand(argument);
 
         case "repeat":
-            return null;
+            return new RepeatCommand(argument);
 
         case "goal":
-            return null;
+            return new GoalCommand(argument);
 
         case "deadline":
-            return null;
+            return new DeadlineCommand(argument);
 
         default:
             System.out.println("Error! Unrecognised command");
