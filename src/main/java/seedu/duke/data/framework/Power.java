@@ -29,7 +29,6 @@ public class Power {
     /**
      * Appliance only can be switched on if it was 'off' previously.
      */
-
     public void onAppliance() {
         if (!status) {
             status = true;
@@ -58,7 +57,7 @@ public class Power {
     }
 
     /**
-     * Gets the system current time
+     * Gets the system current time.
      *
      * @return currentTime in string with the format defined
      */
@@ -72,17 +71,13 @@ public class Power {
         Date onTimeValue;
         Date offTimeValue;
         double timeUsed;
-        // if appliance has never been on, thus there is no onTime
-        if (onTime != null) { //if (wasOnOnce)
-            // convert to value
+        if (onTime != null) {
             onTimeValue = timeFormat.parse(onTime);
-            // if appliance is offed, thus there is an off time
             if (!this.status) {
                 offTimeValue = timeFormat.parse(offTime);
                 timeUsed = offTimeValue.getTime() - onTimeValue.getTime();
                 onTime = offTime;
             } else {
-                // if status is remained on, thus offTime will be current time.
                 Date currentUsedTime = timeFormat.parse(getCurrentTime());
                 timeUsed = currentUsedTime.getTime() - onTimeValue.getTime();
                 onTime = getCurrentTime();
