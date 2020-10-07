@@ -27,6 +27,10 @@ public class Card {
         return dueBy;
     }
 
+    public int getPreviousInterval() {
+        return previousInterval;
+    }
+
     public void setDueBy(LocalDate newDueBy) {
         dueBy = newDueBy;
     }
