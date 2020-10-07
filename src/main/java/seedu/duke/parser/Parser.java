@@ -5,6 +5,7 @@ import seedu.duke.command.ProjectCommand;
 import seedu.duke.command.SprintCommand;
 import seedu.duke.command.TaskCommand;
 import seedu.duke.exception.DukeException;
+import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,20 +26,19 @@ import static seedu.duke.command.CommandSummary.VIEW;
 import static seedu.duke.command.CommandSummary.DONE;
 import static seedu.duke.command.CommandSummary.PRIORITY;
 import static seedu.duke.command.CommandSummary.ASSIGN;
-import static seedu.duke.command.CommandSummary.TITLE;
-import static seedu.duke.command.CommandSummary.DESCRIPTION;
 import static seedu.duke.command.CommandSummary.TASK_ID;
 
 
 public class Parser {
-    private static final Pattern CMD_PATTERN = Pattern.compile("(\\w+)\\s\\/(\\w+)\\s(.+)"); //Groups of 3: (command) (action) (options)
-    private static final Pattern ARGS_PATTERN = Pattern.compile("-(\\w+)\\s([^-]+)"); //Groups of 2: (option name) (option value)
-    private static final Scanner SCAN = new Scanner(System.in);
+    //Groups of 3: (command) (action) (options)
+    private static final Pattern CMD_PATTERN = Pattern.compile("(\\w+)\\s\\/(\\w+)\\s(.+)");
+    //Groups of 2: (option name) (option value)
+    private static final Pattern ARGS_PATTERN = Pattern.compile("-(\\w+)\\s([^-]+)");
     private final Hashtable<String, String> PARAMETERS = new Hashtable<>();
     private final ArrayList<String> PARAMS = new ArrayList<>();
 
-    public void parser() {
-        String userInput = SCAN.nextLine();
+    public void parser(Ui ui) {
+        String userInput = ui.readLine();
 
         if (userInput.equals(BYE)) {
             System.out.println(BYE);
@@ -57,7 +57,8 @@ public class Parser {
                 PARAMS.addAll(Arrays.asList(arguments));
             } else {
                 while (parameterMatcher.find()) { //go through each occurrence of options
-                    PARAMETERS.put(parameterMatcher.group(1), parameterMatcher.group(2)); //put the options into the hashtable (similar to dictionary)
+                    //put the options into the hashtable (similar to dictionary)
+                    PARAMETERS.put(parameterMatcher.group(1), parameterMatcher.group(2));
                 }
             }
 
@@ -85,7 +86,7 @@ public class Parser {
                     new MemberCommand().addMemberCommand(PARAMS);
                     break;
                 case DELETE:
-                    new MemberCommand().deleteMemberCommand(PARAMS);
+                    new MemberCommand().deleteMemberCommand(PARAMS, ui);
                     break;
                 default:
                     try {
@@ -99,16 +100,16 @@ public class Parser {
                 switch (action.toLowerCase()) {
                 case ADD:
                     try {
-                        new TaskCommand().addTaskCommand(PARAMETERS);
+                        new TaskCommand().addTaskCommand(PARAMETERS, ui);
                     } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
                     break;
                 case DELETE:
-                    new TaskCommand().deleteTaskCommand(PARAMS);
+                    new TaskCommand().deleteTaskCommand(PARAMS, ui);
                     break;
                 case VIEW:
-                    new TaskCommand().viewTaskCommand(PARAMS);
+                    new TaskCommand().viewTaskCommand(PARAMS, ui);
                     break;
                 case PRIORITY:
                     try {

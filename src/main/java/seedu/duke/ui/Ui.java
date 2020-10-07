@@ -1,5 +1,6 @@
 package seedu.duke.ui;
 
+import seedu.duke.Member;
 import seedu.duke.task.Task;
 
 import java.util.Scanner;
@@ -75,4 +76,11 @@ public class Ui {
         System.out.println("The corresponding task " + task.toString() + " has been removed.");
     }
 
+    public void removeMember(String s) {
+        System.out.println();
+    }
+
+    public void memberNotFound(String s) {
+        System.out.println("This member is not associated with this project: " + s);
+    }
 }

@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.parser.Parser;
+import seedu.duke.ui.Ui;
 
 import java.util.Scanner;
 
@@ -8,6 +9,9 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
+
+    static Ui ui = new Ui();
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -21,7 +25,7 @@ public class Duke {
 
         System.out.println("Hello " + in.nextLine());
         while (true) {
-            new Parser().parser();
+            new Parser().parser(ui);
         }
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ProjectMember {
 
-    ArrayList<Member> memberList;
+    public ArrayList<Member> memberList;
 
     public ProjectMember() {
         memberList = new ArrayList<>(100);
@@ -21,18 +21,18 @@ public class ProjectMember {
         return memberList.get(id);
     }
 
-    public void addMember(List<String> userId) {
-        Member m;
-        for (String s : userId) {
-            if (memberList.contains(new Member(s))) {
-                System.out.println("The user associated with " + s + " is already added to the project");
-            } else {
-                m = new Member(s);
-                memberList.add(m);
-                System.out.println("The user associated with " + s + " has been added");
-            }
-        }
-    }
+    //    public void addMember(List<String> userId) {
+    //        Member m;
+    //        for (String s : userId) {
+    //            if (memberList.contains(new Member(s))) {
+    //                System.out.println("The user associated with " + s + " is already added to the project");
+    //            } else {
+    //                m = new Member(s);
+    //                memberList.add(m);
+    //                System.out.println("The user associated with " + s + " has been added");
+    //            }
+    //        }
+    //    }
 
     //add comparator for removing object
     public void deleteMember(List<String> userId) {
