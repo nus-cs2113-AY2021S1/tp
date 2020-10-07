@@ -113,4 +113,13 @@ public class Power {
         return this.totalPowerConsumption;
     }
 
+    public void computeFromFile(double powerComsumption) {
+        powerUsed = powerComsumption;
+        totalPowerConsumption += powerUsed;
+    }
+
+    public String toString() {
+        return String.valueOf(this.powerUsed);
+    }
+
 }

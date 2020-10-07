@@ -5,6 +5,7 @@ import seedu.duke.commands.ExitCommand;
 import seedu.duke.data.ApplianceList;
 import seedu.duke.data.HomeLocations;
 import seedu.duke.ui.TextUi;
+import seedu.duke.storage.StorageFile;
 
 /**
  * Entry point of the SmartHome application.
@@ -16,6 +17,7 @@ public class SmartHomeBot {
     private static TextUi ui = new TextUi();
     private ApplianceList appliances = new ApplianceList();
     private HomeLocations homeLocations = new HomeLocations();
+    private StorageFile storage = new StorageFile(appliances, homeLocations);
 
     public static void main(String[] args) {
         new SmartHomeBot().run();
@@ -35,6 +37,7 @@ public class SmartHomeBot {
     private void start() {
         this.ui = new TextUi();
         ui.showWelcomeMessage();
+        storage.readFile();
     }
 
     /** Prints the Goodbye message and exits. */
@@ -51,6 +54,7 @@ public class SmartHomeBot {
             command = new Parser().parseCommand(userCommandText);
             command.setData(appliances, homeLocations);
             command.execute();
+            storage.writeToFile();
         } while (!ExitCommand.isExit(command));
     }
 

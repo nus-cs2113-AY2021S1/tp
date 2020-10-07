@@ -32,8 +32,16 @@ public abstract class Appliance {
         return this.status;
     }
 
+    public String getStringPower() {
+        return power;
+    }
+
     public double measureConsumption() {
         return appliancePower.getPower();
+    }
+
+    public String getPowerConsumption() {
+        return appliancePower.toString();
     }
 
     public String getPower() {
