@@ -9,6 +9,11 @@ public abstract class Event {
     protected LocalTime time;
     protected int repeatCount;
     protected boolean isDone;
+    protected int repeatUnit; //weekly or monthly
+
+    protected static final int WEEKLY = 1;
+    protected static final int MONTHLY = 2;
+
 
     /**
      * Creates a new event with the given description and default its done status to false.
@@ -41,6 +46,10 @@ public abstract class Event {
         this.repeatCount = repeatCount;
     }
 
+    public void setRepeatUnit(int repeatUnit) {
+        this.repeatUnit = repeatUnit;
+    }
+
     /**
      * Sets the event's done status to true.
      */
@@ -55,5 +64,33 @@ public abstract class Event {
      */
     public String getStatus() {
         return (isDone) ? "✓" : "✕";
+    }
+
+    /**
+     * Returns a String representation of an event's repeat status.
+     *
+     * @return string representation of event's repeat status, with starting date, repetition amount and repetition time step
+     */
+    public String getRepeatStatus() {
+        String dateString;
+        String repeatNumber;
+        String repeatTimeInterval;
+
+        dateString = this.date.toString();
+        repeatNumber = Integer.toString(repeatCount);
+        switch(repeatUnit) {
+        case WEEKLY:
+            repeatTimeInterval = "Weekly";
+            break;
+        case MONTHLY:
+            repeatTimeInterval = "Monthly";
+            break;
+        default:
+            repeatTimeInterval = "NULL";
+
+        }
+
+        return "Repeat Status: " + repeatTimeInterval + " for " + repeatNumber + " time(s) starting from " + dateString;
+
     }
 }
