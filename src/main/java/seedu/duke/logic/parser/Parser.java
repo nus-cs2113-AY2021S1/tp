@@ -18,7 +18,7 @@ public class Parser {
     }
 
     /**
-     * Split sentence to derive command and rest of the user input
+     * Split sentence to derive command and rest of the user input.
      *
      * @return String Array with two element: Command and the rest of the user input
      */
@@ -27,29 +27,29 @@ public class Parser {
         return split.length == 2 ? split : new String[]{split[0], " "};
     }
 
-    public boolean extractType () throws CustomException {
+    public boolean extractType() throws CustomException {
 
         String command = splitCommands()[0];
 
-        switch(command) {
-//        case "/route":
-//
-//            break;
-//        case "/routemap":
-//
-//            break;
-//        case "/bus":
-//
-//            break;
-//        case "/allbus":
-//
-//            break;
-//        case "/liststops":
-//
-//            break;
-//        case "/help":
-//
-//            break;
+        switch (command) {
+        //        case "/route":
+        //
+        //            break;
+        //        case "/routemap":
+        //
+        //            break;
+        //        case "/bus":
+        //
+        //            break;
+        //        case "/allbus":
+        //
+        //            break;
+        //        case "/liststops":
+        //
+        //            break;
+        //        case "/help":
+        //
+        //            break;
         case "/exit":
             com = new ExitCommand();
             break;

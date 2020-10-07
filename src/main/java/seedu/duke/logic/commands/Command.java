@@ -7,9 +7,9 @@ public abstract class Command {
 
     /**
      * Executes the command and returns the result message.
-     *
      */
-    public abstract void executeCommand ();
+    public abstract void executeCommand();
+
     public boolean isOngoing() {
         return true;
     }

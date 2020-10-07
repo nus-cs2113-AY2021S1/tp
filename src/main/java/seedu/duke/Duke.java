@@ -22,7 +22,7 @@ public class Duke {
 
         Ui.printWelcomeMessage();
 
-        while(isOngoing) {
+        while (isOngoing) {
             try {
                 parser.getCommand();
                 isOngoing = parser.extractType();
