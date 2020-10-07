@@ -34,6 +34,10 @@ public class UserData {
         return null; //change this to throw exception, list not found.
     }
 
+    public ArrayList<EventList> getAllEventLists() {
+        return eventLists;
+    }
+
     /**
      * Returns the user's goal.
      *

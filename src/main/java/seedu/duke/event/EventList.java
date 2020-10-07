@@ -38,4 +38,12 @@ public class EventList {
         //event not found
         return null;
     }
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
+
+    public Event getNewestEvent() {
+        return events.get(events.size() - 1);
+
+    }
 }

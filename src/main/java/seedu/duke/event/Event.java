@@ -34,6 +34,10 @@ public abstract class Event {
         this.description = description;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
     public void setDate(LocalDate date) {
         this.date = date;
     }
@@ -66,6 +70,7 @@ public abstract class Event {
         return (isDone) ? "✓" : "✕";
     }
 
+
     /**
      * Returns a String representation of an event's repeat status.
      *
@@ -78,7 +83,7 @@ public abstract class Event {
 
         dateString = this.date.toString();
         repeatNumber = Integer.toString(repeatCount);
-        switch(repeatUnit) {
+        switch (repeatUnit) {
         case WEEKLY:
             repeatTimeInterval = "Weekly";
             break;
@@ -91,6 +96,11 @@ public abstract class Event {
         }
 
         return "Repeat Status: " + repeatTimeInterval + " for " + repeatNumber + " time(s) starting from " + dateString;
+
+    }
+    @Override
+    public String toString() {
+        return "[" + getStatus() + "] " + getDescription();
 
     }
 }
