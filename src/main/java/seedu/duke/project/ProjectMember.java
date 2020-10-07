@@ -35,7 +35,7 @@ public class ProjectMember {
     }
 
     //add comparator for removing object
-    public void removeMember(List<String> userId) {
+    public void deleteMember(List<String> userId) {
         for (String s : userId) {
             if (memberList.contains(new Member(s))) {
                 memberList.remove(new Member(s));

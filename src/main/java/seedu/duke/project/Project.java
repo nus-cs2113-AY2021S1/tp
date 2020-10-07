@@ -12,16 +12,15 @@ public class Project {
     public static ProjectMember member;
     String title;
     String description;
-    int projectDuration;
+    String projectDeadline;
     int sprintLength;
     LocalDate startDate = null;
-    LocalDate endDate = null;
 
-    public Project(String title, String description, int projectDuration, int sprintLength) {
+    public Project(String title, String description, String projectDeadline, String sprintLength) {
         this.title = title;
         this.description = description;
-        this.projectDuration = projectDuration;
-        this.sprintLength = sprintLength;
+        this.projectDeadline = projectDeadline;
+        this.sprintLength = Integer.parseInt(sprintLength);
         backlog = new ProjectBacklog();
         member = new ProjectMember();
     }
@@ -30,9 +29,6 @@ public class Project {
         return "Project title: " + title + "\nProject description " + description;
     }
 
-    public int getProjectDuration() {
-        return projectDuration;
-    }
 
     public int getSprintLength() {
         return sprintLength;
@@ -45,8 +41,6 @@ public class Project {
     public String getDescription() {
         return description;
     }
-
-
 
     public void displayProjectBacklog() {
         if (backlog.size() == 0) {
@@ -64,7 +58,6 @@ public class Project {
     public void setStartDate() {
         if (startDate != null) {
             startDate = LocalDate.now();
-            endDate = startDate.plusDays(projectDuration);
         }
     }
 }

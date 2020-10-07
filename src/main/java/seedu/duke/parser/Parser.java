@@ -21,14 +21,12 @@ import static seedu.duke.command.CommandSummary.PROJECT;
 import static seedu.duke.command.CommandSummary.TASK;
 import static seedu.duke.command.CommandSummary.MEMBER;
 import static seedu.duke.command.CommandSummary.SPRINT;
-import static seedu.duke.command.CommandSummary.SPRINT_INTERVAL;
 import static seedu.duke.command.CommandSummary.VIEW;
 import static seedu.duke.command.CommandSummary.DONE;
 import static seedu.duke.command.CommandSummary.PRIORITY;
 import static seedu.duke.command.CommandSummary.ASSIGN;
 import static seedu.duke.command.CommandSummary.TITLE;
 import static seedu.duke.command.CommandSummary.DESCRIPTION;
-import static seedu.duke.command.CommandSummary.DEADLINE;
 import static seedu.duke.command.CommandSummary.TASK_ID;
 
 
@@ -41,6 +39,12 @@ public class Parser {
 
     public void parser() {
         String userInput = SCAN.nextLine();
+
+        if (userInput.equals(BYE)) {
+            System.out.println(BYE);
+            System.exit(0);
+        }
+
         Matcher cmdMatcher = CMD_PATTERN.matcher(userInput);
         if (cmdMatcher.matches()) { //Need to check if it matches, groupCount will always show 3
             String command = cmdMatcher.group(1); //capture first group (command)
@@ -62,7 +66,7 @@ public class Parser {
                 switch (action.toLowerCase()) {
                 case CREATE:
                     try {
-                        new ProjectCommand().createProjectCommand(TITLE, DESCRIPTION, DEADLINE, SPRINT_INTERVAL, PARAMETERS);
+                        new ProjectCommand().createProjectCommand(PARAMETERS);
                     } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
@@ -149,9 +153,6 @@ public class Parser {
                     }
                 }
                 break;
-            case BYE:
-                System.out.println(BYE);
-                System.exit(0);
             default:
                 System.out.println("Invalid command!");
             }
