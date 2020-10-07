@@ -17,7 +17,7 @@ public class Bookmark {
     private String module;
     private String description;
     private String url;
-    private final String SEPARATOR = " | ";
+    private static final String SEPARATOR = " | ";
     
 
     /**
