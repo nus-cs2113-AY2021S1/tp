@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import seedu.duke.commands.Command;
+import seedu.duke.commands.ExitCommand;
 import seedu.duke.data.ApplianceList;
 import seedu.duke.data.HomeLocations;
 import seedu.duke.ui.TextUi;
@@ -43,10 +45,13 @@ public class SmartHomeBot {
 
     /** Reads the user command and executes it, until the user issues the bye command. */
     private void runCommandLoopUntilExitCommand() {
-        String userCommandText;
+        Command command;
         do {
-            userCommandText = ui.getUserCommand();
-        } while (!userCommandText.equals("exit"));
+            String userCommandText = ui.getUserCommand();
+            command = new Parser().parseCommand(userCommandText);
+            command.setData(appliances, homeLocations);
+            command.execute();
+        } while (!ExitCommand.isExit(command));
     }
 
 }
