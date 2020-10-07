@@ -51,7 +51,7 @@ public class Duke {
 
     /**
      * Prints the main menu of the application
-     * and requests for command
+     * and requests for command.
      *
      */
     private static void getCommand() {
@@ -135,7 +135,7 @@ public class Duke {
     }
 
     /**
-     * Adds a new user profile
+     * Adds a new user profile.
      */
     private static void addProfile(String description) {
         // Code to be added
@@ -145,7 +145,7 @@ public class Duke {
     }
 
     /**
-     * Edits an existing user profile
+     * Edits an existing user profile.
      */
     private static void editProfile(String description) {
         // Code to be added
@@ -155,7 +155,7 @@ public class Duke {
     }
 
     /**
-     * Browses the list of anime
+     * Browses the list of anime.
      */
     private static void browseAnime(String description) {
         // Code to be added
@@ -165,7 +165,7 @@ public class Duke {
     }
 
     /**
-     * Adds an anime to current watchlist
+     * Adds an anime to current watchlist.
      */
     private static void addToWatchlist(String description) {
         // Code to be added
@@ -175,7 +175,7 @@ public class Duke {
     }
 
     /**
-     * Bookmarks an anime
+     * Bookmarks an anime.
      */
     private static void bookmarkAnime(String description) {
         // Code to be added
@@ -185,7 +185,7 @@ public class Duke {
     }
 
     /**
-     * Shows help function
+     * Shows help function.
      */
     private static void showHelp() {
         // Code to be added

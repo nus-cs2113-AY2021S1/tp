@@ -3,7 +3,7 @@ package seedu.duke;
 public class Ui {
 
     /**
-     * Greets new user upon opening up application
+     * Greets new user upon opening up application.
      */
     public void greetFirstTime() {
         System.out.println("Welcome to AniChan!");
@@ -13,7 +13,7 @@ public class Ui {
     }
 
     /**
-     * Greets existing user upon opening up application
+     * Greets existing user upon opening up application.
      */
     public void greetExisting(UserProfile userProfile) {
         String userName = userProfile.getName();
@@ -22,7 +22,7 @@ public class Ui {
     }
 
     /**
-     * Prints out available commands
+     * Prints out available commands.
      */
     public void showMainMenu() {
         System.out.println("1. Add a profile (addprofile)");
@@ -38,7 +38,7 @@ public class Ui {
 
     /**
      * Prints out a line telling a user that
-     * an invalid command was given
+     * an invalid command was given.
      */
     public void showInvalidCommand() {
         System.out.println("Please enter a valid command!");
@@ -46,7 +46,7 @@ public class Ui {
     }
 
     /**
-     * Prints out bye message
+     * Prints out bye message.
      */
     public void bye() {
         System.out.println("Sayonara!");
