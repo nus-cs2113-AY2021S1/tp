@@ -17,7 +17,6 @@ public class ByeCommand extends Command {
 
     @Override
     public void execute(UserData data, Ui ui, Storage storage) {
-        ui.printByeMessage();
     }
 
 }
