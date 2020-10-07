@@ -18,7 +18,7 @@ public class QuestionList implements QuestionListInterface {
 
 
     @Override
-    public ArrayList<QuestionInterface> getChosenNumberOfRandomQuestion(int numberOfQuestionsForQuiz) {
+    public void setQuizQuestions(int numberOfQuestionsForQuiz) {
         int numberOfQuestionsSelected = 0;
         // prevent repeated questions from being selected again
         ArrayList<Integer> integersChosen = new ArrayList<>();
@@ -38,8 +38,6 @@ public class QuestionList implements QuestionListInterface {
             numberOfQuestionsSelected++;
             integersChosen.add(randomQuestionIndex);
         }
-
-        return questionsForQuiz;
     }
 
 
@@ -70,7 +68,7 @@ public class QuestionList implements QuestionListInterface {
     }
 
     @Override
-    public Boolean allQuestionsAnswered() {
+    public boolean areAllQuestionsAnswered() {
         return numberOfQuestionsAnswered == questionsForQuiz.size();
     }
 }
