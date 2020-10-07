@@ -24,7 +24,7 @@ public class Storage {
         try {
             File f = new File(FILE_PATHWAY);    // create a File for the given file path
             Scanner s = new Scanner(f);     // create a Scanner using the File as the source
-            while(s.hasNext()) {
+            while (s.hasNext()) {
                 String fileCommand = s.nextLine();
                 String[] args = fileCommand.split(QUESTION_ANSWER_PREFIX, 2);
                 String question = Parser.parseQuestioninFile(args[0]);
@@ -41,8 +41,8 @@ public class Storage {
 
     public static void writeToFile(CardList cards) throws IOException {
         FileWriter fw = new FileWriter(FILE_PATHWAY);
-        for (int i=0; i<cards.getCardCount(); i++) {
-            fw.write( cards.getCard(i).toString() + "\n");
+        for (int i = 0; i < cards.getCardCount(); i++) {
+            fw.write(cards.getCard(i).toString() + "\n");
         }
         fw.close();
     }

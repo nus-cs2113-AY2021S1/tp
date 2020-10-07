@@ -19,18 +19,18 @@ public class Parser {
         String commandArgs = commandTypeAndArgs[1].trim();
 
         switch (commandType) {
-            case ListCommand.COMMAND_WORD:
-                return prepareList(commandArgs);
-            case AddCommand.COMMAND_WORD:
-                return prepareAdd(commandArgs);
-            case ReviseCommand.COMMAND_WORD:
-                return prepareRevise(commandArgs);
-            case ExitCommand.COMMAND_WORD:
-                return prepareExit(commandArgs);
-            case HelpCommand.COMMAND_WORD:
-                return prepareHelp(commandArgs);
-            default:
-                throw new InvalidInputException();
+        case ListCommand.COMMAND_WORD:
+            return prepareList(commandArgs);
+        case AddCommand.COMMAND_WORD:
+            return prepareAdd(commandArgs);
+        case ReviseCommand.COMMAND_WORD:
+            return prepareRevise(commandArgs);
+        case ExitCommand.COMMAND_WORD:
+            return prepareExit(commandArgs);
+        case HelpCommand.COMMAND_WORD:
+            return prepareHelp(commandArgs);
+        default:
+            throw new InvalidInputException();
         }
     }
 
