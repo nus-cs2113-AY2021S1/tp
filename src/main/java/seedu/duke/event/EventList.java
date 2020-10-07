@@ -1,7 +1,11 @@
 package seedu.duke.event;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EventList {
     private String name;
@@ -25,15 +29,19 @@ public class EventList {
         return name;
     }
 
-    public ArrayList<Event> checkEventsOnDate(LocalDate checkDate) {
-        ArrayList<Event> eventsOnDate = new ArrayList<>();
+    public ArrayList<Event> checkEventsInTimeRange(LocalDate startDate, LocalDate endDate,
+                                                   LocalTime startTime, LocalTime endTime) {
+        ArrayList<Event> eventsInTimeRange = new ArrayList<>();
 
         for (Event event: events) {
-            if (event.date == checkDate) {
-                eventsOnDate.add(event);
+            boolean eventIsBetweenDate = event.date.isAfter(startDate) && event.date.isBefore(endDate);
+            boolean eventIsBetweenTime = event.time.isAfter(startTime) && event.time.isBefore(endTime);
+
+            if (eventIsBetweenDate && eventIsBetweenTime) {
+                eventsInTimeRange.add(event);
             }
         }
 
-        return eventsOnDate;
+        return eventsInTimeRange;
     }
 }

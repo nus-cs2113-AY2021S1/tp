@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -32,26 +33,39 @@ public class CheckCommand extends Command {
     //@Override
     public void execute(EventList events, Ui ui, Storage storage) {
         String checkDate = command.replaceFirst("check", "").trim();
-
-        List<LocalDate> startDateAndTime;
         String[] datesAndTime = checkDate.split(";");
 
         LocalDate startDate = getDate(datesAndTime[0]);
-        LocalTime startTime = getTime(datesAndTime[1]);
         LocalDate endDate = getDate(datesAndTime[2]);
+
+        LocalTime startTime = getTime(datesAndTime[1]);
         LocalTime endTime = getTime(datesAndTime[3]);
 
-
+        events.checkEventsInTimeRange(startDate, endDate, startTime, endTime);
     }
 
-    private LocalDateTime getDate(String stringDate) {
+    private void getStartAndEndTime(String[] datesAndTime, List<LocalTime> startAndEndTime) {
+        LocalTime startTime = getTime(datesAndTime[1]);
+        LocalTime endTime = getTime(datesAndTime[3]);
+        startAndEndTime.add(startTime);
+        startAndEndTime.add(endTime);
+    }
+
+    private void getStartAndEndDate(String[] datesAndTime, List<LocalDate> startAndEndDate) {
+        LocalDate startDate = getDate(datesAndTime[0]);
+        LocalDate endDate = getDate(datesAndTime[2]);
+        startAndEndDate.add(startDate);
+        startAndEndDate.add(endDate);
+    }
+
+    private LocalDate getDate(String stringDate) {
         String[] dateFormats = new String[]{"dd/MM/yy", "MM/yy", "yy"};
-        LocalDateTime date = null;
+        LocalDate date = null;
 
         for (String format : dateFormats) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
             try {
-                date = LocalDateTime.parse(stringDate.trim(), formatter);
+                date = LocalDate.parse(stringDate.trim(), formatter);
                 return date;
             } catch (DateTimeParseException e) {
                 //ignore
@@ -83,4 +97,5 @@ public class CheckCommand extends Command {
 
         return time;
     }
+
 }
