@@ -14,7 +14,7 @@ public class UserData {
         eventLists.add(new EventList("Personal"));
         eventLists.add(new EventList("Timetable"));
         eventLists.add(new EventList("Zoom"));
-        goal = null;
+        setGoal(null);
     }
 
     public UserData(ArrayList<EventList> eventLists) {
@@ -36,6 +36,15 @@ public class UserData {
 
     public ArrayList<EventList> getAllEventLists() {
         return eventLists;
+    }
+
+    /**
+     * Sets the user's goal.
+     *
+     * @param goal to set to.
+     */
+    public void setGoal(Goal goal) {
+        this.goal = goal;
     }
 
     /**
