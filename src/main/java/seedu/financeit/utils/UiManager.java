@@ -43,8 +43,15 @@ public class UiManager {
     }
 
     public static CommandPacket handleInput() {
+        return handleInput("echo");
+    }
+
+    public static CommandPacket handleInput(String mode) {
         UiManager.printInputPrompt();
         String input = scanner.nextLine();
+        if (mode.equals("echo")) {
+            System.out.println(input);
+        }
         return inputParser.parseInput(input.toLowerCase());
     }
 

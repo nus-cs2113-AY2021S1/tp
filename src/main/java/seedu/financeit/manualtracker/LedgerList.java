@@ -20,6 +20,10 @@ public class LedgerList {
         return this.ledgers.size();
     }
 
+    public Ledger getLedgerFromIndex(int index) {
+        return this.ledgers.get(index);
+    }
+
     public Ledger getLedgerFromDate(LocalDateTime dateTime) {
         for (Ledger i : this.ledgers) {
             if (i.dateTime.equals(dateTime)) {
@@ -31,6 +35,16 @@ public class LedgerList {
 
     public void removeLedger(LocalDateTime dateTime) {
         Ledger removedLedger = getLedgerFromDate(dateTime);
+        if (removedLedger == null) {
+            System.out.println("No ledger found. Try again!");
+        } else {
+            this.removeLedger(removedLedger);
+            System.out.println(String.format("Ledger Removed: %s", removedLedger));
+        }
+    }
+
+    public void removeLedger(int index) {
+        Ledger removedLedger = getLedgerFromIndex(index);
         if (removedLedger == null) {
             System.out.println("No ledger found. Try again!");
         } else {

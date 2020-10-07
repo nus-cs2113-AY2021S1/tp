@@ -1,5 +1,6 @@
 package seedu.financeit;
 
+import seedu.financeit.manualtracker.ManualTracker;
 import seedu.financeit.utils.InputParser;
 import seedu.financeit.utils.UiManager;
 
@@ -40,9 +41,9 @@ public class Financeit {
 
         Printer.printList(input1);*/
         UiManager.refreshPage();
-        //ManualTracker.main();
+        ManualTracker.main();
 
-        adjustToColWidth("asdsadsadadasdasd", 4);
+        //adjustToColWidth("asdsadsadadasdasd", 4);
 
     }
     public static ArrayList<String> adjustToColWidth(String input, int length) {

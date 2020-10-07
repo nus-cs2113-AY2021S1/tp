@@ -20,6 +20,10 @@ public class EntryList {
         return this.entries.size();
     }
 
+    public Entry getEntryFromIndex(int index){
+        return this.entries.get(index);
+    }
+
     public Entry getEntryFromDateTime(LocalDateTime dateTime) {
         for (Entry i : this.entries) {
             if (i.dateTime.equals(dateTime)) {
@@ -39,6 +43,19 @@ public class EntryList {
         }
     }
 
+    public void removeEntry(int index) {
+        Entry removedEntry = this.getEntryFromIndex(index);
+        if (removedEntry == null) {
+            System.out.println("No entry found. Try again!");
+        } else {
+            this.removeEntry(removedEntry);
+            System.out.println(String.format("Ledger Removed:"));
+            Printer.addRow("Entry Type;Category;Amount;Time;Description                    ");
+            Printer.addRow(removedEntry.toString());
+            Printer.printList();
+        }
+    }
+
     public void removeEntry(Entry entry) {
         this.entries.remove(entry);
     }
@@ -47,9 +64,9 @@ public class EntryList {
         return this.entries.get(index);
     }
 
-    public void printList() {
-        Printer.setTitle("List of Ledgers");
-        Printer.addRow("Entry Number;Entry Type;Category;Time;Description                            ");
+    public void printList(String ledgerDate) {
+        Printer.setTitle(String.format("List of Entries for Ledger [%s]", ledgerDate));
+        Printer.addRow("Entry Number;Entry Type;Category;Amount;Time;Description                    ");
         if (this.getEntriesSize() == 0) {
             Printer.addRow("No entries created               ");
         } else {

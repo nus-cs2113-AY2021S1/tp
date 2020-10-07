@@ -12,10 +12,11 @@ public class Entry {
     private String description = " ";
     private String category = " ";
     private Constants.EntryType entryType;
-    LocalDateTime dateTime;
-    DateTimeManager dateTimeManager;
+    private LocalDateTime dateTime;
+    private DateTimeManager dateTimeManager;
     private boolean isAuto;
-    String defaultDateTimeFormat = "time";
+    private String defaultDateTimeFormat = "time";
+    private double amount = 0.00;
 
     public Entry() {
     }
@@ -49,10 +50,16 @@ public class Entry {
         return this.description;
     }
 
-    public void setCategory(String category, Constants.EntryType type) {
-        if (isValidCategory(category, type)) {
-            this.category = Constants.categoryMap.get(category);
-        }
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public double getAmount() {
+        return this.amount;
+    }
+
+    public void setCategory(String category) {
+        this.category = Constants.categoryMap.get(category);
     }
 
     public String getCategory(){
@@ -78,6 +85,6 @@ public class Entry {
 
     @Override
     public String toString(){
-        return String.format("%s;%s;%s;%s", this.entryType, this.category, this.getTime(), this.description);
+        return String.format("%s;%s;%s;%s;%s", this.entryType, this.category, this.amount, this.getTime(), this.description);
     }
 }

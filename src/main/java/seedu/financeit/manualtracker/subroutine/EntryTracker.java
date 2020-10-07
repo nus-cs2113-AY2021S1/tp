@@ -1,7 +1,12 @@
 package seedu.financeit.manualtracker.subroutine;
 
 import seedu.financeit.manualtracker.Ledger;
-import seedu.financeit.utils.*;
+import seedu.financeit.utils.CommandPacket;
+import seedu.financeit.utils.Constants;
+import seedu.financeit.utils.FiniteStateMachine;
+import seedu.financeit.utils.InputParser;
+import seedu.financeit.utils.Printer;
+import seedu.financeit.utils.UiManager;
 
 import java.time.LocalDateTime;
 
@@ -54,16 +59,23 @@ public class EntryTracker {
 
     private static FiniteStateMachine.State handleDeleteEntry() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        System.out.println("Deleting ledger...");
-        for (String param : packet.getParamTypes()) {
-            System.out.println(param);
-            switch (param) {
+        System.out.println("Deleting entry...");
+        for (String paramType : packet.getParamTypes()) {
+            System.out.println(paramType);
+            switch (paramType) {
             case "/date":
-                String rawDate = packet.getParam(param);
+                String rawDate = packet.getParam(paramType);
                 LocalDateTime dateTime = LocalDateTime.parse(InputParser.parseRawDateTime(rawDate, "date"));
                 entryList.removeEntry(dateTime);
-
                 break;
+
+            case "/id":
+                int index = Integer.parseInt(packet.getParam(paramType));
+                // To account for offset of array indexing where beginning index is 0
+                index = index - 1;
+                entryList.removeEntry(index);
+                break;
+
             default:
                 System.out.println("Command failed.");
                 break;
@@ -74,13 +86,13 @@ public class EntryTracker {
 
     private static FiniteStateMachine.State handleShowEntry() {
         System.out.println("Show entry");
-        entryList.printList();
+        entryList.printList(currLedger.toString());
         return FiniteStateMachine.State.MAIN_MENU;
     }
 
     public static Constants.EntryType getEntryType() {
-        for (String param : packet.getParamTypes()) {
-            switch (param) {
+        for (String paramType : packet.getParamTypes()) {
+            switch (paramType) {
             case "-i":
                 return Constants.EntryType.INC;
             case "-e":
@@ -100,17 +112,22 @@ public class EntryTracker {
     private static FiniteStateMachine.State handleCreateEntry(String mode) {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry entry;
+        Double amount;
+
         if (mode.equals("edit")) {
-            String rawTime = packet.getParam("/date");
-            LocalDateTime dateTime = LocalDateTime.parse(InputParser.parseRawDateTime(rawTime, "time"));
-            entry = entryList.getEntryFromDateTime(dateTime);
-            System.out.println("Entry created! " + entry.getTime());
+            int index = Integer.parseInt(packet.getParam("/id"));
+            index = index - 1;
+            entry = entryList.getEntryFromIndex(index);
         } else {
             entry = new Entry();
         }
-        System.out.println(packet);
+
         for (String paramType : packet.getParamTypes()) {
             switch (paramType) {
+            case "/amt":
+                amount = Double.parseDouble(packet.getParam(paramType));
+                entry.setAmount(amount);
+                break;
             case "-i":
                 entry.setEntryType(Constants.EntryType.INC);
                 break;
@@ -121,10 +138,12 @@ public class EntryTracker {
                 entry.setDateTime(packet.getParam(paramType));
                 break;
             case "/desc":
+                System.out.println("desc");
                 entry.setDescription(packet.getParam(paramType));
                 break;
             case "/cat":
-                entry.setCategory(packet.getParam(paramType), getEntryType());
+                System.out.println("yep");
+                entry.setCategory(packet.getParam(paramType));
                 break;
             default:
                 System.out.println("Command failed.");
@@ -135,7 +154,6 @@ public class EntryTracker {
         if (mode != "edit") {
             entryList.addEntry(entry);
         }
-        System.out.println(entry);
         return state;
     }
 

@@ -48,17 +48,16 @@ public class ManualTracker {
         }
     }
 
-
-
     private static FiniteStateMachine.State handleCreateLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        for (String param : packet.getParamTypes()) {
-            switch (param) {
+        for (String paramType : packet.getParamTypes()) {
+            switch (paramType) {
             case "/date":
-                Ledger ledger = new Ledger(packet.getParam(param));
+                Ledger ledger = new Ledger(packet.getParam(paramType));
                 ledgerList.addLedger(ledger);
                 System.out.println("Ledger created! " + ledger.getDate());
                 break;
+
             default:
                 System.out.println("Command failed.");
                 break;
@@ -69,13 +68,21 @@ public class ManualTracker {
 
     private static FiniteStateMachine.State handleDeleteLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        for (String param : packet.getParamTypes()) {
-            switch (param) {
+        for (String paramTyoe : packet.getParamTypes()) {
+            switch (paramTyoe) {
             case "/date":
-                String rawDate = packet.getParam(param);
+                String rawDate = packet.getParam(paramTyoe);
                 LocalDateTime dateTime = LocalDateTime.parse(InputParser.parseRawDateTime(rawDate, "date"));
                 ledgerList.removeLedger(dateTime);
                 break;
+
+            case "/id":
+                int index = Integer.parseInt(packet.getParam(paramTyoe));
+                // To account for offset of array indexing where beginning index is 0
+                index = index - 1;
+                ledgerList.removeLedger(index);
+                break;
+
             default:
                 System.out.println("Command failed.");
                 break;
@@ -83,8 +90,6 @@ public class ManualTracker {
         }
         return state;
     }
-
-
 
     private static FiniteStateMachine.State handleShowLedger() {
         System.out.println("Show ledger");
@@ -138,25 +143,13 @@ public class ManualTracker {
         }
     }
 
-/*    private static FiniteStateMachine.State handleOpenLedger() {
-        packet = UiManager.handleInput();
-        System.out.println(packet);
-        switch (packet.getCommandString()) {
-        case "b":
-            return FiniteStateMachine.State.MAIN_MENU;
-        default:
-            System.out.println("Command not recognised. Try again.");
-            return FiniteStateMachine.State.OPEN_LEDGER;
-        }
-    }*/
-
     private static FiniteStateMachine.State handleOpenLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         boolean endRoutine = false;
-        for (String param : packet.getParamTypes()) {
-            switch (param) {
+        for (String paramType : packet.getParamTypes()) {
+            switch (paramType) {
             case "/date":
-                String rawDate = packet.getParam(param);
+                String rawDate = packet.getParam(paramType);
                 LocalDateTime dateTime = LocalDateTime.parse(InputParser.parseRawDateTime(rawDate, "date"));
                 currLedger = ledgerList.getLedgerFromDate(dateTime);
                 break;

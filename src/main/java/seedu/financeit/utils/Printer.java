@@ -58,36 +58,33 @@ public class Printer {
         System.out.println(formatTitle(title, getHeaderRowWidth(header)));
 
         printRowHeader(header);
-        printHorizontalPartition(getHeaderRowWidth(header));
+        printHorizontalHeaderPartition(getHeaderRowWidth(header));
         for (int i = 1; i < input.size(); i++) {
             String[] buffer = input.get(i).split(";");
             printRow(buffer);
+            printHorizontalPartition(getHeaderRowWidth(header));
         }
-        printHorizontalPartition(getHeaderRowWidth(header));
     }
 
     public static void printList() {
         printList(listContents);
         listContents.clear();
+        title = "";
     }
 
     public static int getColWidth(int length) {
         return length > DEFAULT_COL_WIDTH ? length : DEFAULT_COL_WIDTH;
     }
 
-//    public static String getPrintListRow(String[] input) {
-//        ArrayList<String> buffer = new ArrayList<>();
-//        Arrays.stream(input)
-//                .forEach(s -> buffer.add(getPrintFormat(s, getColWidth(s))));
-//        return String.join("", buffer);
-//    }
-
-    public static ArrayList<String> adjustToColWidth(String input, int length) {
+    public static ArrayList<String> adjustToColWidth(String rawInput, int length) {
         ArrayList<String> output = new ArrayList<>();
-        Pattern pattern = Pattern.compile(String.format(".{%s}|.{1,}$", length));
-        Matcher matcher = pattern.matcher(input);
-        while (matcher.find()) {
-            output.add(matcher.group());
+        String[] inputs = rawInput.split("[>]");
+        for (String input: inputs) {
+            Pattern pattern = Pattern.compile(String.format(".{%s}|.{1,}$", length));
+            Matcher matcher = pattern.matcher(input);
+            while (matcher.find()) {
+                output.add(matcher.group());
+            }
         }
         return output;
     }
@@ -115,28 +112,27 @@ public class Printer {
         }
 
         for (int line = 0; line < maxLines; line++) {
+            buffer.clear();
             for (int col = 0; col < input.length; col++) {
                 // If the content of the box is fully printed,
                 // no need to access it anymore
-                if (line > token[col].size() - 1) {
-                    continue;
+                if (line + 1 > token[col].size()) {
+                    entry = getPrintFormat(" ", getColWidth(colWidth[col]));
                 } else {
-                    entry = getPrintFormat(token[col].get(line), getColWidth(colWidth[line]));
-                    buffer.add(entry);
+                    entry = getPrintFormat(token[col].get(line), getColWidth(colWidth[col]));
+//                    System.out.println("colw: " + colWidth[col]);
+//                    System.out.println("line: " + line);
                 }
+                buffer.add(entry);
             }
-            output += String.join("", buffer) + "\n";
+//            for (int i : colWidth) {
+//                System.out.print(i + ", ");
+//            }
+//            System.out.println("\n");
+
+            output += String.join("", buffer);
+            output += (line < maxLines - 1) ? "|\n" : "";
         }
-
-        /*while(!endLine) {
-            for (int i = 0; i < input.length; i++) {
-                entry = getPrintFormat(input[i], getColWidth(colWidth[i]));
-                isEndLine[i] = input[i].length() <= colWidth[i];
-
-                buffer.add(adjustToColWidth(entry));
-            }
-            output += String.join("", buffer) + "\n";
-        }*/
         return output;
     }
 
@@ -152,6 +148,10 @@ public class Printer {
     }
 
     public static void printHorizontalPartition(int rowWidth) {
+        System.out.println(UiManager.getLineWithSymbol(rowWidth / 2, " -"));
+    }
+
+    public static void printHorizontalHeaderPartition(int rowWidth) {
         System.out.println(UiManager.getLineWithSymbol(rowWidth, "-"));
     }
 

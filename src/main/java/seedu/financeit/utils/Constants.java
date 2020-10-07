@@ -13,6 +13,8 @@ public class Constants {
             put("tvl", "TRAVEL");
             put("shp", "SHOPPING");
             put("bll", "BILLS");
+            put("slr", "SALARY");
+            put("alw", "ALLOWANCE");
         }
     };
 
