@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Notebook {
 
-    private final ArrayList<Note> notes;
+    private ArrayList<Note> notes;
 
     /**
      * Creates a new list of notes.
@@ -24,6 +24,14 @@ public class Notebook {
      * @param notes of existing data.
      */
     public Notebook(ArrayList<Note> notes) {
+        this.notes = notes;
+    }
+
+    public ArrayList<Note> getNotes() {
+        return this.notes;
+    }
+
+    public void setNotes(ArrayList<Note> notes) {
         this.notes = notes;
     }
 
@@ -43,9 +51,5 @@ public class Notebook {
      */
     public void deleteNote(int note) throws SystemException {
         notes.remove(note);
-    }
-
-    public ArrayList<Note> getNotes() {
-        return this.notes;
     }
 }
