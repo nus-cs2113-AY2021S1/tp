@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import seedu.duke.option.OptionInterface;
+
 public interface UiInterface {
     String getInputFromUser();
 
