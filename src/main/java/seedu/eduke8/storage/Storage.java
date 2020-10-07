@@ -7,11 +7,10 @@ import org.json.simple.parser.ParseException;
 import seedu.eduke8.question.QuestionInterface;
 import seedu.eduke8.question.QuestionListInterface;
 import seedu.eduke8.TopicInterface;
-import seedu.eduke8.UiInterface;
+import seedu.eduke8.ui.UiInterface;
 import seedu.eduke8.option.OptionInterface;
 import seedu.eduke8.option.OptionListInterface;
-import seedu.eduke8.TopicInterface;
-import seedu.eduke8.UiInterface;
+
 
 
 import java.io.File;

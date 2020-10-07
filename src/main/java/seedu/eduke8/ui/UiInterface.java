@@ -1,18 +1,12 @@
-<<<<<<< HEAD:src/main/java/seedu/eduke8/UiInterface.java
-package seedu.eduke8;
+package seedu.eduke8.ui;
 
 
 import seedu.eduke8.hint.HintInterface;
 import seedu.eduke8.question.QuestionInterface;
 import seedu.eduke8.option.OptionInterface;
 
-=======
-package seedu.duke.ui;
 
-import seedu.duke.hint.HintInterface;
-import seedu.duke.question.QuestionInterface;
-import seedu.duke.option.OptionInterface;
->>>>>>> master:src/main/java/seedu/eduke8/ui/UiInterface.java
+
 
 public interface UiInterface {
     String getInputFromUser();
