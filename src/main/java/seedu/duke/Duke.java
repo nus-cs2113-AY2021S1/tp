@@ -1,8 +1,11 @@
 package seedu.duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    private static ArrayList<Watchlist> watchlists;
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -10,25 +13,12 @@ public class Duke {
         quickStart();
         addVoice();
         addAnime();
-    }
 
-    private static void addVoice() {
-        VoiceActor yoshitsuguMatsuoka = new VoiceActor("Yoshitsugu Matsuoka");
-        VoiceActor brycePapenbrook = new VoiceActor("Bryce Papenbrook");
-        Character kirito = new Character("Kirito");
-        Character somaYukihira = new Character("Soma Yukihira");
-
-        // Many to many relationship
-        yoshitsuguMatsuoka.addCharacter(kirito); // Japanese va
-        yoshitsuguMatsuoka.addCharacter(somaYukihira);
-        brycePapenbrook.addCharacter(kirito); // English va
-
-        kirito.addVoiceActor(yoshitsuguMatsuoka);
-        kirito.addVoiceActor(brycePapenbrook);
-        somaYukihira.addVoiceActor(yoshitsuguMatsuoka);
-
-        kirito.printVoiceActors();
-        yoshitsuguMatsuoka.printCharacters();
+        watchlists = new ArrayList<>();
+        createWatchlist("Anime-2020");      // Sample usage [Parameter to be updated to use user input]
+        for (Watchlist watchlist : watchlists) {        // Verification of Watchlist content
+            System.out.println(watchlist.toString());
+        }
     }
 
     private static void quickStart() {
@@ -52,7 +42,26 @@ public class Duke {
         System.out.println(newProfile);
     }
 
-    //Sample Usage of Anime Class [To Be Deleted]
+    private static void addVoice() {
+        VoiceActor yoshitsuguMatsuoka = new VoiceActor("Yoshitsugu Matsuoka");
+        VoiceActor brycePapenbrook = new VoiceActor("Bryce Papenbrook");
+        Character kirito = new Character("Kirito");
+        Character somaYukihira = new Character("Soma Yukihira");
+
+        // Many to many relationship
+        yoshitsuguMatsuoka.addCharacter(kirito); // Japanese va
+        yoshitsuguMatsuoka.addCharacter(somaYukihira);
+        brycePapenbrook.addCharacter(kirito); // English va
+
+        kirito.addVoiceActor(yoshitsuguMatsuoka);
+        kirito.addVoiceActor(brycePapenbrook);
+        somaYukihira.addVoiceActor(yoshitsuguMatsuoka);
+
+        kirito.printVoiceActors();
+        yoshitsuguMatsuoka.printCharacters();
+    }
+
+    // Sample usage of Anime Class [To Be Deleted]
     private static void addAnime() {
         System.out.println("===Running Sample Anime Class===");
         String[] releaseDate = {"2020", "12", "30"};
@@ -66,5 +75,8 @@ public class Duke {
         System.out.println("===End of Sample Anime Class===");
     }
 
+    private static void createWatchlist(String watchlistName) {
+        Watchlist newWatchlist = new Watchlist(watchlistName);
+        watchlists.add(newWatchlist);
+    }
 }
-
