@@ -32,9 +32,9 @@ class DeadlineCommandTest {
 
         DeadlineCommand testDeadlineWithDateOnly = new DeadlineCommand("1; 7/10/20");
         testDeadlineWithDateOnly.execute(data, ui, storage);
-        String addOutput = "You have successfully added this event to your list!\r\n[P][✕] sleep\r\n";
-        String dividerline = "_________________________________\r\n";
-        String deadlineOutput = "You have successfully updated the deadline for this event!\r\n";
+        String addOutput = "You have successfully added this event to your list!\n[P][✕] sleep\n";
+        String dividerline = "_________________________________\n";
+        String deadlineOutput = "You have successfully updated the deadline for this event!\n";
         String event = "[P][✕] sleep on 2020-10-07";
         assertEquals(addOutput + dividerline + deadlineOutput + event,
                 outputStreamCaptor.toString().trim());
@@ -48,9 +48,9 @@ class DeadlineCommandTest {
 
         DeadlineCommand testDeadlineWithDateOnly = new DeadlineCommand("1; 7/10/20; 11:20 PM");
         testDeadlineWithDateOnly.execute(data, ui, storage);
-        String addOutput = "You have successfully added this event to your list!\r\n[P][✕] sleep\r\n";
-        String dividerline = "_________________________________\r\n";
-        String deadlineOutput = "You have successfully updated the deadline for this event!\r\n";
+        String addOutput = "You have successfully added this event to your list!\n[P][✕] sleep\n";
+        String dividerline = "_________________________________\n";
+        String deadlineOutput = "You have successfully updated the deadline for this event!\n";
         String event = "[P][✕] sleep on 2020-10-07, 23:20";
         assertEquals(addOutput + dividerline + deadlineOutput + event,
                 outputStreamCaptor.toString().trim());
