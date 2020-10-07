@@ -3,7 +3,6 @@ package seedu.duke;
 import seedu.duke.command.Command;
 import seedu.duke.task.TaskList;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**

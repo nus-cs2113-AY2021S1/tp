@@ -22,7 +22,9 @@ public class Todo extends Task {
         return "[T]" + super.toString();
     }
 
-    /** Returns the respective task type. */
+    /**
+     * Returns the respective task type.
+     */
     @Override
     public String getTaskType() {
         return taskType;

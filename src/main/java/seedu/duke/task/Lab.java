@@ -32,7 +32,9 @@ public class Lab extends Task {
                 + SEPARATOR + this.date + SEPARATOR + this.time;
     }
 
-    /** Returns the respective task type. */
+    /**
+     * Returns the respective task type.
+     */
     @Override
     public String getTaskType() {
         return taskType;
