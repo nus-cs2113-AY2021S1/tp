@@ -16,6 +16,28 @@ public class Ui {
         this.in = new Scanner(System.in);
     }
 
+    /**
+     * Lists all available commands to the user with the format of the command.
+     */
+    public static void printHelpCommand() {
+        System.out.println("List of available commands:\n"
+                + "1. todo <task description>\n"
+                + "2. deadline <task description> /by ddMMyy\n"
+                + "3. event <task description>/at ddMMyy\n"
+                + "4. exam <module code> <exam details> /at ddMMyy HHmm\n"
+                + "5. lecture ... / date time\n"
+                + "6. tutorial ... / date time\n"
+                + "7. lab ... / date time\n"
+                + "8. done <task number>\n"
+                + "9. delete <task number>\n"
+                + "10. find <keyword>\n"
+                + "11. print list\n"
+                + "12. print events\n"
+                + "13. print timeline\n"
+                + "14. print progress"
+        );
+    }
+
     public static void printDateParseError() {
         System.out.println("Unable to parse date");
     }
@@ -106,7 +128,7 @@ public class Ui {
             }
         }
         if (eventCounts == 0) {
-            System.out.println("Opps, there seems no events stored in your list!");
+            System.out.println("Oops, there are no events stored in your list!");
         }
     }
 
@@ -220,8 +242,7 @@ public class Ui {
             break;
         case "invalid command":
             System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
-                    + "Available commands: print list, print events, print progress, done, "
-                    + "todo, deadline, event, find, delete, bye");
+                    + "Type \"help\" to learn the different commands.");
             break;
         case "invalid task action":
             System.out.println("Error: Total task(s): " + taskList.getTotalTask());
