@@ -8,14 +8,14 @@ public class Duke {
 
     public static void main(String[] args) {
         Ui.printWelcomeScreen();
-        Ui.printNamePrompt();
-        run(modules);
+        String name = Ui.printNamePrompt();
+        run(modules, name);
     }
 
-    public static void run(ModuleList modules) {
+    public static void run(ModuleList modules, String name) {
         while (!Parser.isExit()) {
             String input = Ui.readCommand();
-            Parser.parse(input, modules);
+            Parser.parse(input, modules, name);
         }
     }
 }
