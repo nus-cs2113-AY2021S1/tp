@@ -1,22 +1,20 @@
 package seedu.duke.rating;
 
-import seedu.duke.book.Book;
-
 public class Rating {
-    private Book book;
+    private String titleOfRatedBook;
     private int rating;
 
-    public Rating(Book book, int rating) {
-        this.book = book;
+    public Rating(int rating, String titleOfRatedBook) {
         this.rating = rating;
+        this.titleOfRatedBook = titleOfRatedBook;
     }
 
-    public Book getBook() {
-        return book;
+    public String getTitleOfRatedBook() {
+        return titleOfRatedBook;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setTitleOfRatedBook(String titleOfRatedBook) {
+        this.titleOfRatedBook = titleOfRatedBook;
     }
 
     public int getRating() {

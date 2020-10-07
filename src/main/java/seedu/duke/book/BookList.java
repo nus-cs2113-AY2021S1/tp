@@ -1,19 +1,38 @@
 package seedu.duke.book;
 
+import seedu.duke.lists.QuotesifyList;
+
 import java.util.ArrayList;
 
-public class BookList {
-    private ArrayList<Book> books;
+public class BookList extends QuotesifyList<Book> {
+    private ArrayList<Book> books = super.getList();
 
     public BookList() {
-        this.books = new ArrayList<>();
+        super(new ArrayList<>());
     }
 
     public BookList(ArrayList<Book> books) {
-        this.books = books;
+        super(books);
     }
 
+    @Override
     public void add(Book newBook) {
         books.add(newBook);
+    }
+
+    @Override
+    public void delete(int index) {
+        books.remove(index);
+    }
+
+    @Override
+    public String toString() {
+        String booksToReturn = "";
+
+        for (Book book : books) {
+            booksToReturn += book.toString() + System.lineSeparator();
+        }
+
+        return booksToReturn;
     }
 }
