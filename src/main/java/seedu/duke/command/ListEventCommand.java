@@ -11,7 +11,7 @@ public class ListEventCommand extends Command {
 
     public static final String COMMAND_WORD = "list-e";
 
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": List all the events in the Timetable. Parameters: "
+    private static final String COMMAND_USAGE = COMMAND_WORD + ": List all the events in the Timetable. Parameters: "
             + "[" + PREFIX_DATETIME + " DATE_TIME]";
 
     private LocalDate date;

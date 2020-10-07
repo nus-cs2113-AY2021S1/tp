@@ -25,7 +25,7 @@ public class CreateTagCommand extends Command {
     public static final String COLOR_WHITE_STRING = "\u001B[30m";
     public static final String COLOR_RESET_STRING = "\u001B[0m";
 
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Creates a tag. Parameters: "
+    private static final String COMMAND_USAGE = COMMAND_WORD + ": Creates a tag. Parameters: "
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG NAME [TAG COLOR]"
             + COLOR_RESET_STRING + InterfaceManager.LS + "(Available colors: "
             + COLOR_WHITE_STRING + Tag.COLOR_WHITE_STRING + ", "

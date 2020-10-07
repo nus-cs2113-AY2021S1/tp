@@ -18,9 +18,9 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD_NOTE = "delete-n";
     public static final String COMMAND_WORD_EVENT = "delete-e";
 
-    public static final String COMMAND_USAGE_NOTE = COMMAND_WORD_NOTE + ": Deletes a note. Parameters: "
+    private static final String COMMAND_USAGE_NOTE = COMMAND_WORD_NOTE + ": Deletes a note. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
-    public static final String COMMAND_USAGE_EVENT = COMMAND_WORD_EVENT + ": Deletes an event. Parameters: "
+    private static final String COMMAND_USAGE_EVENT = COMMAND_WORD_EVENT + ": Deletes an event. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
 
     private int index;

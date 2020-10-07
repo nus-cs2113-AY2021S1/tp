@@ -21,14 +21,14 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD_NOTE = "edit-n";
     public static final String COMMAND_WORD_EVENT = "edit-e";
 
-    public static final String COMMAND_USAGE_NOTE = COMMAND_WORD_NOTE + ": Edits a note in the notebook. Parameters: "
+    private static final String COMMAND_USAGE_NOTE = COMMAND_WORD_NOTE + ": Edits a note in the notebook. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE] "
             +  PREFIX_LINE + " LINE "
             +  PREFIX_CONTENT + " CONTENT "
-            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG1 TAG2...] ";
+            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR " + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...] ";
 
-    public static final String COMMAND_USAGE_EVENT = COMMAND_WORD_EVENT + ": Edits an event in the timetable. "
+    private static final String COMMAND_USAGE_EVENT = COMMAND_WORD_EVENT + ": Edits an event in the timetable. "
             + "Parameters: " + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE] "
             + PREFIX_DATETIME + " DATE_TIME "

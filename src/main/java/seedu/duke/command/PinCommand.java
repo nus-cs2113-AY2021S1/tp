@@ -11,7 +11,7 @@ public class PinCommand extends Command {
 
     public static final String COMMAND_WORD = "pin-n";
 
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Pins or unpins a note. Parameters: "
+    private static final String COMMAND_USAGE = COMMAND_WORD + ": Pins or unpins a note. Parameters: "
             + "[" + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX] "
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE] ";
 

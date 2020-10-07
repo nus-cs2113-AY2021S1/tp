@@ -2,19 +2,19 @@ Enter command:
 
 The recognized commands and their usages are listed below. Parameters listed in brackets, [ ] represent optional inputs.
 
-[30madd-n: Adds a note to notebook. Parameters: /t TITLE [/tag TAG TAG1 TAG2...] [/pin PIN]
+[30madd-n: Adds a note to notebook. Parameters: /t TITLE [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...] [/pin PIN]
 [36madd-e: Adds an event to timetable. Parameters: /t TITLE /d DATE_TIME [/rec RECURRING] [/rem REMIND]
 [30mcreate-t: Creates a tag. Parameters: /tag TAG NAME [TAG COLOR][0m
 (Available colors: [30mWHITE, [31mRED, [32mGREEN, [34mBLUE, [33mYELLOW, [35mPURPLE, [36mCYAN[0m)
 [36mdelete-n: Deletes a note. Parameters: /i INDEX
 [30mdelete-e: Deletes an event. Parameters: /i INDEX
 [36mdelete-t: Deletes a tag. Parameters: TAG_NAME
-[30medit-n: Edits a note in the notebook. Parameters: /i INDEX [/t TITLE] /ln LINE /c CONTENT [/tag TAG TAG1 TAG2...] 
+[30medit-n: Edits a note in the notebook. Parameters: /i INDEX [/t TITLE] /ln LINE /c CONTENT [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...] 
 [36medit-e: Edits an event in the timetable. Parameters: /i INDEX [/t TITLE] /d DATE_TIME [/rec RECURRING] [/rem REMIND]
 [30mexit: Exits the program.
 [36mfind-n: Finds a note. Parameters: KEYWORDS
 [30mlist-e: List all the events in the Timetable. Parameters: [/d DATE_TIME]
-[36mlist-n: Lists all the notes in the Notebook. Parameters: [/tag TAG TAG1 TAG2...] [up/down]
+[36mlist-n: Lists all the notes in the Notebook. Parameters: [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...] [up/down]
 [30mlist-t: Lists all the tags.
 [36mpin-n: Pins or unpins a note. Parameters: [/i INDEX] [/t TITLE] 
 [30mremind-e: Set a reminder for an event. Parameters: /i INDEX
@@ -25,19 +25,19 @@ Enter command:
 
 The recognized commands and their usages are listed below. Parameters listed in brackets, [ ] represent optional inputs.
 
-[30madd-n: Adds a note to notebook. Parameters: /t TITLE [/tag TAG TAG1 TAG2...] [/pin PIN]
+[30madd-n: Adds a note to notebook. Parameters: /t TITLE [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...] [/pin PIN]
 [36madd-e: Adds an event to timetable. Parameters: /t TITLE /d DATE_TIME [/rec RECURRING] [/rem REMIND]
 [30mcreate-t: Creates a tag. Parameters: /tag TAG NAME [TAG COLOR][0m
 (Available colors: [30mWHITE, [31mRED, [32mGREEN, [34mBLUE, [33mYELLOW, [35mPURPLE, [36mCYAN[0m)
 [36mdelete-n: Deletes a note. Parameters: /i INDEX
 [30mdelete-e: Deletes an event. Parameters: /i INDEX
 [36mdelete-t: Deletes a tag. Parameters: TAG_NAME
-[30medit-n: Edits a note in the notebook. Parameters: /i INDEX [/t TITLE] /ln LINE /c CONTENT [/tag TAG TAG1 TAG2...] 
+[30medit-n: Edits a note in the notebook. Parameters: /i INDEX [/t TITLE] /ln LINE /c CONTENT [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...] 
 [36medit-e: Edits an event in the timetable. Parameters: /i INDEX [/t TITLE] /d DATE_TIME [/rec RECURRING] [/rem REMIND]
 [30mexit: Exits the program.
 [36mfind-n: Finds a note. Parameters: KEYWORDS
 [30mlist-e: List all the events in the Timetable. Parameters: [/d DATE_TIME]
-[36mlist-n: Lists all the notes in the Notebook. Parameters: [/tag TAG TAG1 TAG2...] [up/down]
+[36mlist-n: Lists all the notes in the Notebook. Parameters: [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...] [up/down]
 [30mlist-t: Lists all the tags.
 [36mpin-n: Pins or unpins a note. Parameters: [/i INDEX] [/t TITLE] 
 [30mremind-e: Set a reminder for an event. Parameters: /i INDEX
@@ -48,19 +48,19 @@ Enter command:
 
 The recognized commands and their usages are listed below. Parameters listed in brackets, [ ] represent optional inputs.
 
-[30madd-n: Adds a note to notebook. Parameters: /t TITLE [/tag TAG TAG1 TAG2...] [/pin PIN]
+[30madd-n: Adds a note to notebook. Parameters: /t TITLE [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...] [/pin PIN]
 [36madd-e: Adds an event to timetable. Parameters: /t TITLE /d DATE_TIME [/rec RECURRING] [/rem REMIND]
 [30mcreate-t: Creates a tag. Parameters: /tag TAG NAME [TAG COLOR][0m
 (Available colors: [30mWHITE, [31mRED, [32mGREEN, [34mBLUE, [33mYELLOW, [35mPURPLE, [36mCYAN[0m)
 [36mdelete-n: Deletes a note. Parameters: /i INDEX
 [30mdelete-e: Deletes an event. Parameters: /i INDEX
 [36mdelete-t: Deletes a tag. Parameters: TAG_NAME
-[30medit-n: Edits a note in the notebook. Parameters: /i INDEX [/t TITLE] /ln LINE /c CONTENT [/tag TAG TAG1 TAG2...] 
+[30medit-n: Edits a note in the notebook. Parameters: /i INDEX [/t TITLE] /ln LINE /c CONTENT [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...] 
 [36medit-e: Edits an event in the timetable. Parameters: /i INDEX [/t TITLE] /d DATE_TIME [/rec RECURRING] [/rem REMIND]
 [30mexit: Exits the program.
 [36mfind-n: Finds a note. Parameters: KEYWORDS
 [30mlist-e: List all the events in the Timetable. Parameters: [/d DATE_TIME]
-[36mlist-n: Lists all the notes in the Notebook. Parameters: [/tag TAG TAG1 TAG2...] [up/down]
+[36mlist-n: Lists all the notes in the Notebook. Parameters: [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...] [up/down]
 [30mlist-t: Lists all the tags.
 [36mpin-n: Pins or unpins a note. Parameters: [/i INDEX] [/t TITLE] 
 [30mremind-e: Set a reminder for an event. Parameters: /i INDEX

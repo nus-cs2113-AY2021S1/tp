@@ -23,11 +23,11 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD_NOTE = "add-n";
     public static final String COMMAND_WORD_EVENT = "add-e";
 
-    public static final String COMMAND_USAGE_NOTE = COMMAND_WORD_NOTE + ": Adds a note to notebook. Parameters: "
+    private static final String COMMAND_USAGE_NOTE = COMMAND_WORD_NOTE + ": Adds a note to notebook. Parameters: "
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE "
-            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG1 TAG2...] "
+            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR " + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...] "
             + "[" + PREFIX_DELIMITER + PREFIX_PIN + " PIN]";
-    public static final String COMMAND_USAGE_EVENT = COMMAND_WORD_EVENT + ": Adds an event to timetable. Parameters: "
+    private static final String COMMAND_USAGE_EVENT = COMMAND_WORD_EVENT + ": Adds an event to timetable. Parameters: "
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE "
             + PREFIX_DATETIME + " DATE_TIME "
             + "[" + PREFIX_RECURRING + " RECURRING] "

@@ -7,7 +7,7 @@ public class ListTagCommand extends Command {
 
     public static final String COMMAND_WORD = "list-t";
 
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Lists all the tags.";
+    private static final String COMMAND_USAGE = COMMAND_WORD + ": Lists all the tags.";
 
     public static String getCommandUsage() {
         return COMMAND_USAGE;
