@@ -5,8 +5,11 @@ import commands.Command;
 import commands.ExitCommand;
 import commands.ListCommand;
 import commands.ReviseCommand;
+import commands.HelpCommand;
+import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import manager.chapter.Chapter;
+import storage.Storage;
 
 
 public class Parser {
@@ -24,6 +27,8 @@ public class Parser {
             return prepareRevise(commandArgs);
         case ExitCommand.COMMAND_WORD:
             return prepareExit(commandArgs);
+        case HelpCommand.COMMAND_WORD:
+            return prepareHelp(commandArgs);
         default:
             throw new InvalidInputException();
         }
@@ -93,5 +98,38 @@ public class Parser {
             throw new InvalidInputException();
         }
         return new ExitCommand();
+    }
+
+    private static Command prepareHelp(String commandArgs) throws InvalidInputException {
+        if (!commandArgs.isEmpty()) {
+            throw new InvalidInputException();
+        }
+        return new HelpCommand();
+    }
+
+    public static String parseQuestioninFile(String arg) throws InvalidFileFormatException {
+        if (!(arg.trim().startsWith(Storage.QUESTION_PREFIX))) {
+            throw new InvalidFileFormatException();
+        }
+
+        String question = arg.substring(3).trim();
+        if (question.isEmpty()) {
+            throw new InvalidFileFormatException();
+        }
+
+        return question;
+    }
+
+    public static String parseAnswerinFile(String arg) throws InvalidFileFormatException {
+        if (!(arg.trim().startsWith(Storage.ANSWER_PREFIX))) {
+            throw new InvalidFileFormatException();
+        }
+
+        String answer = arg.substring(3).trim();
+        if (answer.isEmpty()) {
+            throw new InvalidFileFormatException();
+        }
+
+        return answer;
     }
 }

@@ -1,5 +1,11 @@
 package ui;
 
+import commands.AddCommand;
+import commands.ExitCommand;
+import commands.ListCommand;
+import commands.HelpCommand;
+import commands.ReviseCommand;
+
 import manager.card.Card;
 import manager.chapter.Chapter;
 import scheduler.Scheduler;
@@ -91,5 +97,14 @@ public class Ui {
 
     public void showExit() {
         out.println("Exiting the program...");
+    }
+
+    public void showHelpList() {
+        out.println("Here is a list of commands available:" + "\n");
+        out.println("1. " + ListCommand.MESSAGE_USAGE);
+        out.println("2. " + ReviseCommand.MESSAGE_USAGE);
+        out.println("3. " + HelpCommand.MESSAGE_USAGE);
+        out.println("4. " + AddCommand.MESSAGE_USAGE);
+        out.println("5. " + ExitCommand.MESSAGE_USAGE);
     }
 }

@@ -3,15 +3,15 @@ package commands;
 import manager.chapter.CardList;
 import ui.Ui;
 
-public class ExitCommand extends Command {
-    public static final String COMMAND_WORD = "exit";
+public class HelpCommand extends Command {
+    public static final String COMMAND_WORD = "help";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exits the program. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of commands available. \n"
             + "Example: " + COMMAND_WORD + "\n";
 
     @Override
     public void execute(CardList cards, Ui ui) {
-        ui.showExit();
+        ui.showHelpList();
     }
 
     @Override
