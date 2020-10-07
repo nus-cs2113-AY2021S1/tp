@@ -67,6 +67,52 @@ public class InputParser {
     }
 
     /**
+     * Parses raw date and time input from the user and return a formatted string that can be parsed by DateTine class.
+     * @param input
+     * @return Formatted String in YYYY-MM-DDTHH:MM:SS
+     */
+    public static String parseRawDateTime(String input){
+        return parseRawDateTime(input, " ");
+    }
+
+    public static String parseRawDateTime(String input, String mode){
+        int matchCount = 0;
+        // If user uses a string token as a separator between two datetimes, say "to", remove from the string.
+        String[] tokens = input.replaceAll("[\\s]+[\\D]+[\\s]+|,", " ").split("[\\s]+");
+
+        String[] output = new String[2];
+        String date = "";
+
+        if (mode.equals("date")) {
+            date = parseDateTime(tokens[0], "date");
+            output[0] = date + "T" + Constants.PLACEHOLDER_TIME;
+            output[1] = "\0";
+        } else if (mode.equals("time")){
+            date = parseDateTime(Constants.PLACEHOLDER_DATE, "date");
+            output[0] = date + "T" + parseDateTime(tokens[1], "time");
+            output[1] = "\0";
+        } else if (tokens.length == 2) {
+            // Considers the case with date and time
+            date = parseDateTime(tokens[0], "date");
+            output[0] = date + "T" + parseDateTime(tokens[1], "time");
+            output[1] = "\0";
+        } else if (tokens.length == 3) {
+            // Considers the case with date, start time and end time
+            date = parseDateTime(tokens[0], "date");
+            output[0] = date + "T" + parseDateTime(tokens[1], "time");
+            output[1] = date + "T" + parseDateTime(tokens[2], "time");
+        } else if (tokens.length == 4) {
+            // Considers the case with start date, end date, start time and end time.
+            date = parseDateTime(tokens[0], "date");
+            output[0] = date + "T" + parseDateTime(tokens[1], "time");
+            date = parseDateTime(tokens[2], "date");
+            output[1] = date + "T" + parseDateTime(tokens[3], "time");
+        }
+        // If two datetimes are to be given, then segregate them with "," in a single string output.
+        return String.join("", output).trim();
+    }
+
+    /**
      * Parse strings to produce date or time depending on mode specified in arguments.
      * @param input Input by user to set date or time
      * @param mode Mode set by user, can be "date" or "time" depends on input to be parsed

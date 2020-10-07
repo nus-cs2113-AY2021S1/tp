@@ -1,17 +1,19 @@
 package seedu.financeit.manualtracker;
 
+import seedu.financeit.utils.DateTimeManager;
 import seedu.financeit.utils.InputParser;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Ledger {
     ArrayList<Entry> entryList = new ArrayList<>();
-    LocalDate date;
+    DateTimeManager dateTimeManager;
+    String defaultDateTimeFormat = "date";
 
     public Ledger(String rawDate) {
-        LocalDate date = LocalDate.parse(InputParser.parseDateTime(rawDate, "date"));
-        this.date = date;
+        LocalDateTime dateTime = LocalDateTime.parse(InputParser.parseRawDateTime(rawDate, "date"));
+        this.dateTimeManager = new DateTimeManager(dateTime);
     }
 
     public void addEntry(Entry entry) {
@@ -19,7 +21,7 @@ public class Ledger {
     }
 
     public String getDate() {
-        return this.date.getDayOfWeek().toString();
+        return this.dateTimeManager.getDateFormatted(this.defaultDateTimeFormat);
     }
 
     @Override
