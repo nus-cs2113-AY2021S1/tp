@@ -1,6 +1,11 @@
 package ui;
 
-import commands.*;
+import commands.AddCommand;
+import commands.ExitCommand;
+import commands.ListCommand;
+import commands.HelpCommand;
+import commands.ReviseCommand;
+
 import manager.card.Card;
 import manager.chapter.Chapter;
 import scheduler.Scheduler;
