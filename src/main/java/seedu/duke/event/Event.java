@@ -74,7 +74,7 @@ public abstract class Event {
     /**
      * Returns a String representation of an event's repeat status.
      *
-     * @return string representation of event's repeat status, with starting date, repetition amount and repetition time step
+     * @return string representation of event's repeat status, with starting date, repetition amount and time
      */
     public String getRepeatStatus() {
         String dateString;
@@ -98,6 +98,7 @@ public abstract class Event {
         return "Repeat Status: " + repeatTimeInterval + " for " + repeatNumber + " time(s) starting from " + dateString;
 
     }
+
     @Override
     public String toString() {
         return "[" + getStatus() + "] " + getDescription();

@@ -38,6 +38,7 @@ public class EventList {
         //event not found
         return null;
     }
+
     public ArrayList<Event> getEvents() {
         return events;
     }
