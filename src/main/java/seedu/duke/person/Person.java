@@ -120,7 +120,7 @@ public class Person {
      *
      * @param newActivityLevel The new/revised activity level of the person.
      */
-    public void getActivityLevel(ActivityLevel newActivityLevel) {
+    public void setActivityLevel(ActivityLevel newActivityLevel) {
         activityLevel = newActivityLevel;
     }
 }
