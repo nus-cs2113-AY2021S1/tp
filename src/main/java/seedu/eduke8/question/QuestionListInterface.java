@@ -1,11 +1,9 @@
 package seedu.eduke8.question;
 
-import java.util.ArrayList;
-
 public interface QuestionListInterface {
     // ArrayList<QuestionInterface> getQuestions();
 
-    ArrayList<QuestionInterface> getChosenNumberOfRandomQuestion(int numberOfQuestionsForQuiz);
+    void setQuizQuestions(int numberOfQuestionsForQuiz);
 
     // String addQuestion(QuestionInterface question);
 
@@ -17,6 +15,6 @@ public interface QuestionListInterface {
 
     QuestionInterface getNextQuestion();
 
-    Boolean allQuestionsAnswered();
+    boolean areAllQuestionsAnswered();
 
 }
