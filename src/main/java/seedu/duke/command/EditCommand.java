@@ -11,8 +11,9 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD_NOTE = "edit-n";
     public static final String COMMAND_WORD_EVENT = "edit-e";
 
-    public static final String MESSAGE_USAGE_NOTE = "";
-    public static final String MESSAGE_USAGE_EVENT = "";
+    public static final String COMMAND_USAGE_NOTE = COMMAND_WORD_NOTE + ": Edits a note in the notebook. Parameters: ";
+    public static final String COMMAND_USAGE_EVENT = COMMAND_WORD_EVENT + ": Edits an event in the timetable. "
+            + "Parameters: ";
 
     private int index;
     private Note note;

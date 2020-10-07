@@ -7,7 +7,7 @@ public class RemindCommand extends Command {
 
     public static final String COMMAND_WORD = "remind-e";
 
-    public static final String MESSAGE_USAGE = "";
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Set a reminder for an event. Parameters: ";
 
     private int index;
     private boolean isToRemind;

@@ -3,6 +3,10 @@ package seedu.duke.command;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
 
+import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
+import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
+import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
+
 /**
  * Tags or untags a Note.
  */
@@ -12,7 +16,9 @@ public class TagCommand extends Command {
     private static final String ADD_TAG_MESSAGE = "Added the tag to the note!";
     private static final String REMOVE_TAG_MESSAGE = "Removed the tag from the note!";
 
-    public static final String MESSAGE_USAGE = "";
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Tags or untags a note. Parameters: "
+            + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
+            + PREFIX_DELIMITER + PREFIX_TAG + " TAG NAME [TAG COLOR]";
 
     private int index;
     private String tagName;

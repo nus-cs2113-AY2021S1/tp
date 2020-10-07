@@ -7,7 +7,7 @@ public class ViewNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "view-n";
 
-    public static final String MESSAGE_USAGE = "";
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Views a note. Parameters: ";
 
     private int index;
     private String title;

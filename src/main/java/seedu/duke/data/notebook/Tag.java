@@ -5,14 +5,14 @@ package seedu.duke.data.notebook;
  */
 public class Tag {
 
-    private static final String COLOR_RED_STRING = "RED";
-    private static final String COLOR_GREEN_STRING = "GREEN";
-    private static final String COLOR_BLUE_STRING = "BLUE";
-    private static final String COLOR_YELLOW_STRING = "YELLOW";
-    private static final String COLOR_PURPLE_STRING = "PURPLE";
-    private static final String COLOR_CYAN_STRING = "CYAN";
-    private static final String COLOR_BLACK_STRING = "BLACK";
-    private static final String COLOR_WHITE_STRING = "WHITE";
+    public static final String COLOR_RED_STRING = "RED";
+    public static final String COLOR_GREEN_STRING = "GREEN";
+    public static final String COLOR_BLUE_STRING = "BLUE";
+    public static final String COLOR_YELLOW_STRING = "YELLOW";
+    public static final String COLOR_PURPLE_STRING = "PURPLE";
+    public static final String COLOR_CYAN_STRING = "CYAN";
+    public static final String COLOR_BLACK_STRING = "BLACK";
+    public static final String COLOR_WHITE_STRING = "WHITE";
 
     /**
      * Types of color.

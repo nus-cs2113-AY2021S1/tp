@@ -65,7 +65,7 @@ public class Parser {
             // return prepareAddEvent(userMessage);
         case ListNoteCommand.COMMAND_WORD:
             // return prepareListNote(userMessage);
-        case ListEventCommand.COMMAND_WORD_:
+        case ListEventCommand.COMMAND_WORD:
             // return prepareListEvent(userMessage);
         case ViewNoteCommand.COMMAND_WORD:
             // return prepareViewNote(userMessage);

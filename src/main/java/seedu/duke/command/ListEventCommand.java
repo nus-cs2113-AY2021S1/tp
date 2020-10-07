@@ -7,9 +7,9 @@ import java.time.LocalDate;
  */
 public class ListEventCommand extends Command {
 
-    public static final String COMMAND_WORD_ = "list-e";
+    public static final String COMMAND_WORD = "list-e";
 
-    public static final String MESSAGE_USAGE = "";
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": List all the events in the Timetable. Parameters: ";
 
     private LocalDate date;
     private boolean isListByDate;

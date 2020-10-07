@@ -6,7 +6,7 @@ package seedu.duke.command;
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "exit";
 
-    public static final String MESSAGE_USAGE = "";
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Exits the program.";
 
     @Override
     public String execute() {
