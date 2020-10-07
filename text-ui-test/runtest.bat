@@ -1,7 +1,7 @@
 @echo off
 setlocal enableextensions
 pushd %~dp0
-
+call ..\..\SwitchJava.bat
 cd ..
 call gradlew clean shadowJar
 

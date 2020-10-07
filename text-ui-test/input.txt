@@ -1,1 +1,7 @@
-James Gosling
+ledger new /date 200404
+ledger list
+ledger open /date 200404
+entry new /time 1500 -i /desc Lunch with friends
+entry list
+exit
+exit
