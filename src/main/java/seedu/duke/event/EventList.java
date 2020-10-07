@@ -1,5 +1,6 @@
 package seedu.duke.event;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class EventList {
@@ -22,5 +23,17 @@ public class EventList {
 
     public String getName() {
         return name;
+    }
+
+    public ArrayList<Event> checkEventsOnDate(LocalDate checkDate) {
+        ArrayList<Event> eventsOnDate = new ArrayList<>();
+
+        for (Event event: events) {
+            if (event.date == checkDate) {
+                eventsOnDate.add(event);
+            }
+        }
+
+        return eventsOnDate;
     }
 }
