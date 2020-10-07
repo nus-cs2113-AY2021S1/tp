@@ -7,8 +7,8 @@ import org.json.simple.parser.ParseException;
 
 import seedu.duke.option.OptionInterface;
 import seedu.duke.option.OptionListInterface;
-import seedu.duke.QuestionInterface;
-import seedu.duke.QuestionListInterface;
+import seedu.duke.question.QuestionInterface;
+import seedu.duke.question.QuestionListInterface;
 import seedu.duke.TopicInterface;
 import seedu.duke.ui.UiInterface;
 

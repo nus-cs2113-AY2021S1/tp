@@ -9,6 +9,4 @@ public interface OptionListInterface {
 
     void deleteOption(OptionInterface option);
 
-    int getOptionCount();
-
 }

@@ -3,35 +3,25 @@ package seedu.duke.option;
 import java.util.ArrayList;
 
 public class OptionList implements OptionListInterface {
-    private final ArrayList<OptionInterface> optionList;
-    private int optionCount;
+    private final ArrayList<OptionInterface> options;
 
     public OptionList() {
-        optionList = new ArrayList<>();
-        this.optionCount = 0;
+        options = new ArrayList<>();
     }
 
     public OptionList(ArrayList<OptionInterface> optionList) {
-        this.optionList = optionList;
-        this.optionCount = 0;
+        this.options = optionList;
     }
 
     public void addOption(OptionInterface option) {
-        optionList.add(option);
-        this.optionCount++;
+        options.add(option);
     }
 
     public void deleteOption(OptionInterface option) {
-        optionList.remove(option);
-        this.optionCount--;
+        options.remove(option);
     }
 
     public ArrayList<OptionInterface> getOptionList() {
-        return this.optionList;
+        return this.options;
     }
-
-    public int getOptionCount() {
-        return this.optionCount;
-    }
-
 }

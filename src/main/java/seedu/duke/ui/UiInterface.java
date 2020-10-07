@@ -4,6 +4,10 @@ import seedu.duke.HintInterface;
 import seedu.duke.QuestionInterface;
 import seedu.duke.option.OptionInterface;
 
+import seedu.duke.option.OptionInterface;
+import seedu.duke.hint.HintInterface;
+import seedu.duke.question.QuestionInterface;
+
 public interface UiInterface {
     String getInputFromUser();
 
