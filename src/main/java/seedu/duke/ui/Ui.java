@@ -64,12 +64,17 @@ public class Ui {
 
     public void printSpecificList(String eventType, EventList eventList) {
         int eventCount = 0;
-        System.out.println("Here is a list of your " + eventType + " events:");
-        for (Event event : eventList.getEvents()) {
-            eventCount++;
-            System.out.println(eventCount + ". " + event.toString());
+        if (eventList.getEvents().size() == 0) {
+            System.out.println("You have no events under " + eventType + ".");
+        } else {
+            System.out.println("Here is a list of your " + eventType + " events:");
+            for (Event event : eventList.getEvents()) {
+                eventCount++;
+                System.out.println(eventCount + ". " + event.toString());
+            }
         }
     }
+
 
     public void printList(ArrayList<EventList> eventLists) {
         int eventCount = 0;
