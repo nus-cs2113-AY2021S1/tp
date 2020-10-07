@@ -18,11 +18,15 @@ public class TagCommand extends Command {
 
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Tags or untags a note. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
-            + PREFIX_DELIMITER + PREFIX_TAG + " TAG NAME [TAG COLOR]";
+            + PREFIX_DELIMITER + PREFIX_TAG + " TAG_NAME [TAG_COLOR]";
 
     private int index;
     private String tagName;
     private String tagColor;
+
+    public static String getCommandUsage() {
+        return COMMAND_USAGE;
+    }
 
     public TagCommand(int index, String tagName, String tagColor) {
         this.index = index;

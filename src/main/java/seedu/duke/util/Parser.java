@@ -58,7 +58,7 @@ public class Parser {
             userMessage = null;
         }
 
-        switch (commandString.toLowerCase()) {
+        switch (commandString.toUpperCase()) {
         case AddCommand.COMMAND_WORD_NOTE:
             return prepareAddNote(userMessage);
         case AddCommand.COMMAND_WORD_EVENT:
@@ -94,6 +94,7 @@ public class Parser {
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
         default:
             return new HelpCommand();
         }

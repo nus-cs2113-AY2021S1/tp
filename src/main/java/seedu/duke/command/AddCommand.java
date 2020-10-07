@@ -7,7 +7,10 @@ import seedu.duke.data.timetable.Event;
 import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toList;
+import static seedu.duke.util.PrefixSyntax.PREFIX_DATETIME;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
+import static seedu.duke.util.PrefixSyntax.PREFIX_RECURRING;
+import static seedu.duke.util.PrefixSyntax.PREFIX_REMIND;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
@@ -22,13 +25,25 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_USAGE_NOTE = COMMAND_WORD_NOTE + ": Adds a note to notebook. Parameters: "
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE "
-            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAGS] "
+            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG1 TAG2...] "
             + "[" + PREFIX_DELIMITER + PREFIX_PIN + " PIN]";
-    public static final String COMMAND_USAGE_EVENT = COMMAND_WORD_EVENT + ": Adds an event to timetable. Parameters: ";
+    public static final String COMMAND_USAGE_EVENT = COMMAND_WORD_EVENT + ": Adds an event to timetable. Parameters: "
+            + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE "
+            + PREFIX_DATETIME + " DATE_TIME "
+            + "[" + PREFIX_RECURRING + " RECURRING] "
+            + "[" + PREFIX_REMIND + " REMIND]";
 
     private Note note;
     private Event event;
     private boolean isAddNote;
+
+    public static String getCommandUsageNote() {
+        return COMMAND_USAGE_NOTE;
+    }
+
+    public static String getCommandUsageEvent() {
+        return COMMAND_USAGE_EVENT;
+    }
 
     /**
      * Constructs an AddCommand to add a Note into the Notebook.

@@ -11,7 +11,6 @@ public class Tag {
     public static final String COLOR_YELLOW_STRING = "YELLOW";
     public static final String COLOR_PURPLE_STRING = "PURPLE";
     public static final String COLOR_CYAN_STRING = "CYAN";
-    public static final String COLOR_BLACK_STRING = "BLACK";
     public static final String COLOR_WHITE_STRING = "WHITE";
 
     /**
@@ -25,8 +24,7 @@ public class Tag {
         COLOR_BLUE("\u001B[34m"),
         COLOR_PURPLE("\u001B[35m"),
         COLOR_CYAN("\u001B[36m"),
-        COLOR_BLACK("\u001B[37m"),
-        COLOR_CLEAR("\u001B[0m");
+        COLOR_RESET("\u001B[0m");
 
         private final String color;
 
@@ -40,7 +38,7 @@ public class Tag {
 
     public Tag(String tagName) {
         this.tagName = tagName;
-        this.tagColor = TagColor.COLOR_BLACK;
+        this.tagColor = TagColor.COLOR_RESET;
     }
 
     /**
@@ -74,9 +72,8 @@ public class Tag {
         case COLOR_WHITE_STRING:
             this.tagColor = TagColor.COLOR_WHITE;
             break;
-        case COLOR_BLACK_STRING:
         default:
-            this.tagColor = TagColor.COLOR_BLACK;
+            this.tagColor = TagColor.COLOR_RESET;
             break;
         }
     }
@@ -108,6 +105,6 @@ public class Tag {
      */
     @Override
     public String toString() {
-        return tagColor.color + "[" + tagName + "]" + TagColor.COLOR_CLEAR.color;
+        return tagColor.color + "[" + tagName + "]" + TagColor.COLOR_RESET.color;
     }
 }

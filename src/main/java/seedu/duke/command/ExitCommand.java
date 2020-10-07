@@ -8,6 +8,10 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Exits the program.";
 
+    public static String getCommandUsage() {
+        return COMMAND_USAGE;
+    }
+
     @Override
     public String execute() {
         return null;
