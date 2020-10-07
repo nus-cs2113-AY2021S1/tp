@@ -24,11 +24,27 @@ public class EventList {
         return name;
     }
 
+    public Event getEventByIndex(int index) {
+
+        try {
+
+            return events.get(index);
+
+        } catch (IndexOutOfBoundsException e) {
+
+            System.out.println("Error, no such index is available!");
+
+        }
+        //event not found
+        return null;
+    }
+
     public ArrayList<Event> getEvents() {
         return events;
     }
 
     public Event getNewestEvent() {
         return events.get(events.size() - 1);
+
     }
 }
