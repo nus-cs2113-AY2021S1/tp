@@ -11,6 +11,7 @@ import seedu.duke.commands.ListCommand;
 import seedu.duke.commands.OffCommand;
 import seedu.duke.commands.OnCommand;
 import seedu.duke.commands.RemoveCommand;
+import seedu.duke.commands.UsageCommand;
 
 public class Parser {
 
@@ -36,6 +37,8 @@ public class Parser {
             return prepareOffCommand(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+        case UsageCommand.COMMAND_WORD:
+            return new UsageCommand();
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         default:
@@ -51,8 +54,23 @@ public class Parser {
             return new InvalidCommand("Follow Add Command Format");
         }
         String name = arguments.substring(arguments.indexOf("n/") + 2, arguments.indexOf("w/")).trim();
+        String power = arguments.substring(arguments.indexOf("w/") + 2, arguments.indexOf("t/")).trim();
         String type = arguments.substring(arguments.indexOf("t/") + 2).trim();
-        return new AddCommand(name, location, type);
+        if (powerIsNumeric(power)) {
+            return new AddCommand(name, location, power, type);
+        } else {
+            return new InvalidCommand("Power is not in number");
+        }
+    }
+
+    private static boolean powerIsNumeric(String power) {
+        try {
+            Double.parseDouble(power);
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a numerical value for power.");
+            return false;
+        }
     }
 
     private static Command prepareDeleteCommand(String arguments) {
