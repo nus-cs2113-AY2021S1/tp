@@ -6,7 +6,7 @@ import seedu.duke.event.Event;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RepeatCommandTest {
 
@@ -15,7 +15,7 @@ class RepeatCommandTest {
     Storage storage = new Storage("data");
 
     @Test
-    public void repeat_validPersonalEventIndex_repeatPassMessagePrinted () {
+    public void repeat_validPersonalEventIndex_repeatPassMessagePrinted() {
 
         //create the user data to have one item first
         String userInput = "personal holiday; 2020-10-01";
