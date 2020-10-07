@@ -1,4 +1,4 @@
-package seedu.duke.hint;
+package seedu.eduke8.hint;
 
 public class Hint implements HintInterface {
     private String description;

@@ -1,6 +1,6 @@
-package seedu.duke.storage;
+package seedu.eduke8.storage;
 
-import seedu.duke.TopicInterface;
+import seedu.eduke8.TopicInterface;
 
 import java.util.ArrayList;
 

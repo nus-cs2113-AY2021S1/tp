@@ -1,7 +1,7 @@
-package seedu.duke;
+package seedu.eduke8;
 
-import seedu.duke.hint.HintInterface;
-import seedu.duke.question.QuestionInterface;
+import seedu.eduke8.hint.HintInterface;
+import seedu.eduke8.question.QuestionInterface;
 
 public interface UiInterface {
     String getInputFromUser();
