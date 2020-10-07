@@ -47,4 +47,10 @@ public class UiManager {
         String input = scanner.nextLine();
         return inputParser.parseInput(input.toLowerCase());
     }
+
+    public static void refreshPage(){
+        for(int i = 0 ; i < 4; i++){
+            System.out.println();
+        }
+    }
 }

@@ -1,7 +1,11 @@
 package seedu.financeit;
 
-import seedu.financeit.manualtracker.ManualTracker;
 import seedu.financeit.utils.InputParser;
+import seedu.financeit.utils.UiManager;
+
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Financeit {
     public static void main(String[] args) {
@@ -35,7 +39,21 @@ public class Financeit {
         };
 
         Printer.printList(input1);*/
-        ManualTracker.main();
+        UiManager.refreshPage();
+        //ManualTracker.main();
+
+        adjustToColWidth("asdsadsadadasdasd", 4);
+
+    }
+    public static ArrayList<String> adjustToColWidth(String input, int length) {
+        ArrayList<String> output = new ArrayList<>();
+        Pattern pattern = Pattern.compile(String.format(".{%s}|.{1,}$", length));
+        Matcher matcher = pattern.matcher(input);
+        while (matcher.find()) {
+            System.out.println(matcher.group());
+            output.add(matcher.group());
+        }
+        return output;
     }
 }
 

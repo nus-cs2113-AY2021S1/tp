@@ -1,5 +1,6 @@
 package seedu.financeit.manualtracker;
 
+import seedu.financeit.manualtracker.subroutine.Entry;
 import seedu.financeit.utils.DateTimeManager;
 import seedu.financeit.utils.InputParser;
 
@@ -9,15 +10,20 @@ import java.util.ArrayList;
 public class Ledger {
     ArrayList<Entry> entryList = new ArrayList<>();
     DateTimeManager dateTimeManager;
+    LocalDateTime dateTime;
     String defaultDateTimeFormat = "date";
 
     public Ledger(String rawDate) {
-        LocalDateTime dateTime = LocalDateTime.parse(InputParser.parseRawDateTime(rawDate, "date"));
-        this.dateTimeManager = new DateTimeManager(dateTime);
+        this.setDate(rawDate);
     }
 
     public void addEntry(Entry entry) {
         this.entryList.add(entry);
+    }
+
+    public void setDate(String rawDate){
+        this.dateTime = LocalDateTime.parse(InputParser.parseRawDateTime(rawDate, "date"));
+        this.dateTimeManager = new DateTimeManager(dateTime);
     }
 
     public String getDate() {

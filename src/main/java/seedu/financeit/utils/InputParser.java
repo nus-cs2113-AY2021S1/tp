@@ -88,8 +88,8 @@ public class InputParser {
             output[0] = date + "T" + Constants.PLACEHOLDER_TIME;
             output[1] = "\0";
         } else if (mode.equals("time")){
-            date = parseDateTime(Constants.PLACEHOLDER_DATE, "date");
-            output[0] = date + "T" + parseDateTime(tokens[1], "time");
+            date = Constants.PLACEHOLDER_DATE;
+            output[0] = date + "T" + parseDateTime(tokens[0], "time");
             output[1] = "\0";
         } else if (tokens.length == 2) {
             // Considers the case with date and time

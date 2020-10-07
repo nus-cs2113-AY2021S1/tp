@@ -1,6 +1,8 @@
 package seedu.financeit.utils;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Printer {
     private static ArrayList<String> listContents = new ArrayList<>();
@@ -32,33 +34,36 @@ public class Printer {
     }
 
     public static void printRow(String[] row) {
-        System.out.println(getPrintListRow(row).replaceFirst("(|)", "") + "|");
+        System.out.println(getPrintListRow(row) + "|");
     }
 
     public static void printList(String[][] input) {
         String[] header = input[0];
         printRowHeader(header);
-        printHorizontalPartition(getRowWidth(header));
+        printHorizontalPartition(getHeaderRowWidth(header));
         for (int i = 1; i < input.length; i++) {
             printRow(input[1]);
         }
-        printHorizontalPartition(getRowWidth(header));
+        printHorizontalPartition(getHeaderRowWidth(header));
     }
 
+    /**
+     * Main table printing function
+     * @param input
+     */
     public static void printList(ArrayList<String> input) {
         String[] header = input.get(0).split(";");
+        //Set the width of the column based on the length of column header
         setColWidth(header);
+        System.out.println(formatTitle(title, getHeaderRowWidth(header)));
 
-        System.out.println("\n");
-        System.out.println(formatTitle(title, getRowWidth(header)));
         printRowHeader(header);
-        printHorizontalPartition(getRowWidth(header));
+        printHorizontalPartition(getHeaderRowWidth(header));
         for (int i = 1; i < input.size(); i++) {
             String[] buffer = input.get(i).split(";");
             printRow(buffer);
         }
-        printHorizontalPartition(getRowWidth(header));
-        System.out.println("\n");
+        printHorizontalPartition(getHeaderRowWidth(header));
     }
 
     public static void printList() {
@@ -77,14 +82,62 @@ public class Printer {
 //        return String.join("", buffer);
 //    }
 
+    public static ArrayList<String> adjustToColWidth(String input, int length) {
+        ArrayList<String> output = new ArrayList<>();
+        Pattern pattern = Pattern.compile(String.format(".{%s}|.{1,}$", length));
+        Matcher matcher = pattern.matcher(input);
+        while (matcher.find()) {
+            output.add(matcher.group());
+        }
+        return output;
+    }
+
+    /**
+     * Handles printing of each row for all columns
+     * @param input
+     */
     public static String getPrintListRow(String[] input) {
+        int maxLines = 0;
+        String output = "";
         ArrayList<String> buffer = new ArrayList<>();
         String entry = "";
-        for (int i = 0 ; i < input.length; i++) {
-            entry = getPrintFormat(input[i], getColWidth(colWidth[i]));
-            buffer.add(entry);
+        ArrayList<String>[] token = new ArrayList[input.length];
+
+        // Determine how many lines needed for each column, and also segmenting
+        // the contents of each box to each line.
+        // This allows for warping of lines that would normally overflow from
+        // the default column width.
+        for (int col = 0; col < input.length; col++) {
+            token[col] = adjustToColWidth(input[col], getColWidth(colWidth[col]));
+            if (token[col].size() > maxLines) {
+                maxLines = token[col].size();
+            }
         }
-        return String.join("", buffer);
+
+        for (int line = 0; line < maxLines; line++) {
+            for (int col = 0; col < input.length; col++) {
+                // If the content of the box is fully printed,
+                // no need to access it anymore
+                if (line > token[col].size() - 1) {
+                    continue;
+                } else {
+                    entry = getPrintFormat(token[col].get(line), getColWidth(colWidth[line]));
+                    buffer.add(entry);
+                }
+            }
+            output += String.join("", buffer) + "\n";
+        }
+
+        /*while(!endLine) {
+            for (int i = 0; i < input.length; i++) {
+                entry = getPrintFormat(input[i], getColWidth(colWidth[i]));
+                isEndLine[i] = input[i].length() <= colWidth[i];
+
+                buffer.add(adjustToColWidth(entry));
+            }
+            output += String.join("", buffer) + "\n";
+        }*/
+        return output;
     }
 
     public static String getPrintFormat(String s, int width) {
@@ -109,7 +162,7 @@ public class Printer {
         }
     }
 
-    public static int getRowWidth (String[] row){
+    public static int getHeaderRowWidth(String[] row){
         String header = getPrintListRow(row);
         return header.length();
     }
