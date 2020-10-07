@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
@@ -8,6 +9,8 @@ import seedu.duke.ui.Ui;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -32,12 +35,17 @@ class DeadlineCommandTest {
 
         DeadlineCommand testDeadlineWithDateOnly = new DeadlineCommand("1; 7/10/20");
         testDeadlineWithDateOnly.execute(data, ui, storage);
-        String addOutput = "You have successfully added this event to your list!\n[P][✕] sleep\n";
-        String dividerline = "_________________________________\n";
-        String deadlineOutput = "You have successfully updated the deadline for this event!\n";
-        String event = "[P][✕] sleep on 2020-10-07";
-        assertEquals(addOutput + dividerline + deadlineOutput + event,
-                outputStreamCaptor.toString().trim());
+        StringWriter expectedStringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(expectedStringWriter);
+        printWriter.println("You have successfully added this event to your list!");
+        printWriter.println("[P][✕] sleep");
+        printWriter.println("_________________________________");
+        printWriter.println("You have successfully updated the deadline for this event!");
+        printWriter.println("[P][✕] sleep on 2020-10-07");
+        printWriter.close();
+        String expected = expectedStringWriter.toString();
+        assertEquals(expected,
+                outputStreamCaptor.toString());
     }
 
     @Test
@@ -48,12 +56,21 @@ class DeadlineCommandTest {
 
         DeadlineCommand testDeadlineWithDateOnly = new DeadlineCommand("1; 7/10/20; 11:20 PM");
         testDeadlineWithDateOnly.execute(data, ui, storage);
-        String addOutput = "You have successfully added this event to your list!\n[P][✕] sleep\n";
-        String dividerline = "_________________________________\n";
-        String deadlineOutput = "You have successfully updated the deadline for this event!\n";
-        String event = "[P][✕] sleep on 2020-10-07, 23:20";
-        assertEquals(addOutput + dividerline + deadlineOutput + event,
-                outputStreamCaptor.toString().trim());
+        StringWriter expectedStringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(expectedStringWriter);
+        printWriter.println("You have successfully added this event to your list!");
+        printWriter.println("[P][✕] sleep");
+        printWriter.println("_________________________________");
+        printWriter.println("You have successfully updated the deadline for this event!");
+        printWriter.println("[P][✕] sleep on 2020-10-07, 23:20");
+        printWriter.close();
+        String expected = expectedStringWriter.toString();
+        assertEquals(expected,
+                outputStreamCaptor.toString());
+    }
+    @AfterEach
+    public void tearDown() {
+        System.setOut(standardOut);
     }
 
 }
