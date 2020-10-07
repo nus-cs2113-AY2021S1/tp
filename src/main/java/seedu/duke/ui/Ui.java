@@ -64,7 +64,7 @@ public class Ui {
 
     public void printSpecificList(String eventType, EventList eventList) {
         int eventCount = 0;
-        if(eventList.getEvents().size() == 0) {
+        if (eventList.getEvents().size() == 0) {
             System.out.println("You have no events under " + eventType + ".");
         } else {
             System.out.println("Here is a list of your " + eventType + " events:");

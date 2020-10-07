@@ -11,7 +11,7 @@ import seedu.duke.ui.Ui;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ListCommandTest {
     private final PrintStream standardOut = System.out;
@@ -36,11 +36,11 @@ class ListCommandTest {
         Command listCommand = new ListCommand(inputString);
         listCommand.execute(data, ui, storage);
 
-        assertEquals("Here is a list of all your events!" + System.lineSeparator() +
-                        "You have no events under Personal." + System.lineSeparator() +
-                        "You have no events under Timetable." + System.lineSeparator() +
-                        "You have no events under Zoom." + System.lineSeparator() +
-                        "_________________________________" + System.lineSeparator(),
+        assertEquals("Here is a list of all your events!" + System.lineSeparator()
+                        + "You have no events under Personal." + System.lineSeparator()
+                        + "You have no events under Timetable." + System.lineSeparator()
+                        + "You have no events under Zoom." + System.lineSeparator()
+                        + "_________________________________" + System.lineSeparator(),
                 outputStreamCaptor.toString());
     }
 
@@ -62,12 +62,12 @@ class ListCommandTest {
         Command listCommand = new ListCommand(inputString);
         listCommand.execute(data, ui, storage);
 
-        assertEquals("You have successfully added this event to your list!" + System.lineSeparator() +
-                        "[Z][✕] Math class, Link: " +
-                        "zoom.com on 2000-10-09, 13:00" + System.lineSeparator() +
-                        "_________________________________" + System.lineSeparator() +
-                        "Here is a list of your Zoom events:" + System.lineSeparator() +
-                        "1. [Z][✕] Math class, Link: zoom.com on 2000-10-09, 13:00" + System.lineSeparator(),
+        assertEquals("You have successfully added this event to your list!" + System.lineSeparator()
+                        + "[Z][✕] Math class, Link: "
+                        + "zoom.com on 2000-10-09, 13:00" + System.lineSeparator()
+                        + "_________________________________" + System.lineSeparator()
+                        + "Here is a list of your Zoom events:" + System.lineSeparator()
+                        + "1. [Z][✕] Math class, Link: zoom.com on 2000-10-09, 13:00" + System.lineSeparator(),
                 outputStreamCaptor.toString());
     }
 
