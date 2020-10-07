@@ -1,8 +1,8 @@
 package seedu.duke.command;
 
-import seedu.duke.data.UserData;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
+import seedu.duke.data.UserData;
 
 /**
  * Command to end program seedu.duke.
@@ -17,6 +17,6 @@ public class ByeCommand extends Command {
 
     @Override
     public void execute(UserData data, Ui ui, Storage storage) {
-
     }
+
 }

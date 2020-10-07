@@ -29,6 +29,10 @@ public abstract class Event {
         this.description = description;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
     public void setDate(LocalDate date) {
         this.date = date;
     }
@@ -55,5 +59,10 @@ public abstract class Event {
      */
     public String getStatus() {
         return (isDone) ? "✓" : "✕";
+    }
+
+    @Override
+    public String toString() {
+        return "[" + getStatus() + "] " + getDescription();
     }
 }
