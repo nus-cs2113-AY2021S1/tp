@@ -28,8 +28,8 @@ public class TagManager {
      * @return true if Tag exists, false otherwise.
      */
     private boolean containsTag(String tagName) {
-        for(Tag t : tagMap.keySet()) {
-            if(t.getTagName().equalsIgnoreCase(tagName)) {
+        for (Tag t : tagMap.keySet()) {
+            if (t.getTagName().equalsIgnoreCase(tagName)) {
                 return true;
             }
         }
@@ -37,8 +37,8 @@ public class TagManager {
     }
 
     public Tag getTag(String tagName) {
-        for(Tag t : tagMap.keySet()) {
-            if(t.getTagName().equalsIgnoreCase(tagName)) {
+        for (Tag t : tagMap.keySet()) {
+            if (t.getTagName().equalsIgnoreCase(tagName)) {
                 return t;
             }
         }
@@ -53,7 +53,7 @@ public class TagManager {
     public void createTag(String tagName) {
         boolean isTagExist = containsTag(tagName);
 
-        if(!isTagExist) {
+        if (!isTagExist) {
             tagMap.put(new Tag(tagName), new ArrayList<>());
         }
     }
@@ -67,7 +67,7 @@ public class TagManager {
     public boolean createTag(String tagName, String tagColor) {
         boolean isTagExist = containsTag(tagName);
 
-        if(!isTagExist) {
+        if (!isTagExist) {
             tagMap.put(new Tag(tagName, tagColor), new ArrayList<>());
             return true;
         } else {
@@ -78,7 +78,7 @@ public class TagManager {
     /**
      * Creates a Tag with the provided Tag.
      *
-     * @param tag
+     * @param tag provided Tag.
      */
     public void createTag(Tag tag) {
         tagMap.put(tag, new ArrayList<>());
@@ -117,17 +117,12 @@ public class TagManager {
     public void tagNote(Note note, String tagName, String tagColor) {
         boolean isTagExist = containsTag(tagName);
 
-        if(!isTagExist) {
+        if (!isTagExist) {
             createTag(tagName, tagColor);
         }
 
-        for(Tag t : tagMap.keySet()) {
-            if(t.getTagName().equalsIgnoreCase(tagName)) {
-                note.getTags().add(t);
-                tagMap.get(t).add(note);
-                break;
-            }
-        }
+        Tag tag = getTag(tagName);
+        tagNote(note, tag);
     }
 
     /**
@@ -148,11 +143,10 @@ public class TagManager {
      * @param tagName name of the Tag.
      */
     public void removeTag(Note note, String tagName) {
-        for (Tag t : tagMap.keySet()) {
-            if (t.getTagName().equalsIgnoreCase(tagName)) {
-                note.getTags().remove(t);
-                tagMap.remove(t, note);
-            }
+        Tag tag = getTag(tagName);
+
+        if (tag != null) {
+            removeTag(note, tag);
         }
     }
 
@@ -164,6 +158,7 @@ public class TagManager {
      */
     public void removeTag(Note note, Tag tag) {
         tagMap.remove(tag, note);
+        note.getTags().remove(tag);
     }
 
     /**
@@ -172,16 +167,17 @@ public class TagManager {
      * @param tagName name of the Tag to be deleted.
      */
     public boolean deleteTag(String tagName) {
-        for (Tag t : tagMap.keySet()) {
-            if (t.getTagName().equalsIgnoreCase(tagName)) {
-                for (Note n : tagMap.get(t)) {
-                    n.getTags().remove(t);
-                }
-                tagMap.remove(t);
-                return true;
-            }
+        Tag tag = getTag(tagName);
+
+        if (tag == null) {
+            return false;
         }
-        return false;
+
+        for (Note n : tagMap.get(tag)) {
+            n.getTags().remove(tag);
+        }
+        tagMap.remove(tag);
+        return true;
     }
 
     /**
@@ -201,7 +197,6 @@ public class TagManager {
         int numTagsToCheck = note.getTags().size();
         for (int i = 0; i < numTagsToCheck; ++i) {
             Tag tag = note.getTags().get(0);
-
             Tag existingTag = getTag(tag.getTagName());
 
             note.getTags().remove(tag);

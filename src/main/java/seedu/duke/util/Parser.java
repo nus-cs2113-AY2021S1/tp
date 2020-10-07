@@ -1,6 +1,22 @@
 package seedu.duke.util;
 
-import seedu.duke.command.*;
+import seedu.duke.command.Command;
+import seedu.duke.command.AddCommand;
+import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.EditCommand;
+import seedu.duke.command.FindCommand;
+import seedu.duke.command.PinCommand;
+import seedu.duke.command.ListNoteCommand;
+import seedu.duke.command.ViewNoteCommand;
+import seedu.duke.command.CreateTagCommand;
+import seedu.duke.command.DeleteTagCommand;
+import seedu.duke.command.ListTagCommand;
+import seedu.duke.command.TagCommand;
+import seedu.duke.command.ListEventCommand;
+import seedu.duke.command.RemindCommand;
+import seedu.duke.command.IncorrectCommand;
+import seedu.duke.command.HelpCommand;
+import seedu.duke.command.ExitCommand;
 
 import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Note;
@@ -13,6 +29,9 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
 import static seedu.duke.util.PrefixSyntax.PREFIX_END;
+import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
+import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
+import static seedu.duke.util.PrefixSyntax.STRING_SPLIT_DELIMITER;
 
 /**
  * Parses user input.
@@ -21,6 +40,12 @@ public class Parser {
 
     private static final int CONTAINS_TAG_COLOR_INFO = 2;
 
+    /**
+     * Parses userInput string into a Command to be executed.
+     *
+     * @param userInput Original string of the userInput.
+     * @return Command to be executed.
+     */
     public Command parseCommand(String userInput) {
 
         String[] userCommandAndArguments = userInput.split(" ", 2);
@@ -49,7 +74,7 @@ public class Parser {
         case EditCommand.COMMAND_WORD_EVENT:
             // return prepareEditEvent(userMessage);
         case DeleteCommand.COMMAND_WORD_NOTE:
-            // return prepareDeleteNote(userMessage);
+            return prepareDeleteNote(userMessage);
         case DeleteCommand.COMMAND_WORD_EVENT:
             // return prepareDeleteEvent(userMessage);
         case FindCommand.COMMAND_WORD:
@@ -74,13 +99,20 @@ public class Parser {
         }
     }
 
+    /**
+     * Splits the userMessage into the respective info by the delimiter.
+     *
+     * @param userMessage Original string of the userInput.
+     * @return Split strings.
+     * @throws NullPointerException when the userMessage is empty.
+     */
     private ArrayList<String[]> splitInfoDetails(String userMessage) throws NullPointerException {
-        String[] splitMessage = userMessage.split("/");
+        String[] splitMessage = userMessage.split(PREFIX_DELIMITER);
         ArrayList<String[]> splitMessageContent = new ArrayList<>();
 
         // Splits the prefix and the remaining content
         for (String s : splitMessage) {
-            splitMessageContent.add(s.split(" ", 2));
+            splitMessageContent.add(s.split(STRING_SPLIT_DELIMITER, 2));
         }
 
         // Remove the first element as it is always empty
@@ -130,6 +162,7 @@ public class Parser {
                     isPinned = Boolean.parseBoolean(infoDetails[1].trim());
                     break;
                 default:
+                    break;
                 }
             }
 
@@ -152,10 +185,6 @@ public class Parser {
         }
     }
 
-    // add-n t[C++ to Java]
-    // add-n pin[true] t[C++ to Java] tag[CS2113]
-    // add-n /t C++ to Java /pin true /tag CS2113, Computing
-
     public String inputContent() {
         Scanner input = new Scanner(System.in);
         StringBuilder commandInput = new StringBuilder();
@@ -176,15 +205,41 @@ public class Parser {
         return commandInput.toString();
     }
 
-    // Delete the last line when typing
+    // Deletes the last line when typing
     public void deleteLine(StringBuilder commandInput, String characters, int noOfChar) {
         int lastChar = commandInput.lastIndexOf(characters) + noOfChar;
         commandInput.delete(lastChar, commandInput.length());
     }
 
+    private Command prepareDeleteNote(String userMessage) {
+        int index = 0;
+
+        try {
+            ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
+
+            for (String[] infoDetails : splitInfo) {
+                String prefix = infoDetails[0];
+                switch (prefix) {
+                case PREFIX_INDEX:
+                    if (infoDetails[1].isBlank()) {
+                        throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+                    }
+                    index = Integer.parseInt(infoDetails[1].trim());
+                    break;
+                default:
+                }
+            }
+            return new DeleteCommand(index, true);
+        } catch (SystemException exception) {
+            return new IncorrectCommand(exception.getMessage());
+        } catch (NumberFormatException exception) {
+            return new IncorrectCommand("Invalid format");
+        }
+    }
+
     /*
     private Command prepareAddEvent(String userMessage) {
-        return new AddCommand(event);
+    return new AddCommand(event);
     }
 
     private Command prepareListNote(String userMessage) {
@@ -193,89 +248,85 @@ public class Parser {
 
     private Command prepareListEvent(String userMessage) {
         return new ListEventCommand();
-     }
+    }
 
-     private Command prepareViewNote(String userMessage) {
-        return new ViewNoteCommand();
-     }
+    private Command prepareViewNote(String userMessage) {
+       return new ViewNoteCommand();
+    }
 
-     private Command prepareEditNote(String userMessage) {
-        return new EditCommand(index, note);
-     }
+    private Command prepareEditNote(String userMessage) {
+       return new EditCommand(index, note);
+    }
 
-     private Command prepareEditEvent(String userMessage) {
-        return new EditCommand(index, event);
-     }
+    private Command prepareEditEvent(String userMessage) {
+       return new EditCommand(index, event);
+    }
 
-     private Command prepareDeleteNote(String userMessage) {
-        return new EditCommand(index, true);
-     }
+    private Command prepareDeleteEvent(String userMessage) {
+       return new EditCommand(index, false);
+    }
 
-     private Command prepareDeleteEvent(String userMessage) {
-        return new EditCommand(index, false);
-     }
+    private Command prepareFind(String userMessage) {
+       return new FindCommand(keywords);
+    }
 
-     private Command prepareFind(String userMessage) {
-        return new FindCommand(keywords);
-     }
+    private Command preparePin(String userMessage) {
+       return new PinCommand(index);
+    }
+    */
 
-     private Command preparePin(String userMessage) {
-        return new PinCommand(index);
-     }*/
+    private Command prepareCreateTag(String userMessage) {
+        String tagName = "";
+        String tagColor = "";
 
-     private Command prepareCreateTag(String userMessage) {
-         String tagName = "";
-         String tagColor = "";
+        try {
+            String[] tagInfo = userMessage.split(" ", 2);
 
-         try {
-             String[] tagInfo = userMessage.split(" ", 2);
-
-             if (tagInfo[0].isBlank()) {
-                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
-             } else {
-                 tagName = tagInfo[0].trim();
-             }
-             if (tagInfo.length == CONTAINS_TAG_COLOR_INFO) {
-                 tagColor = tagInfo[1].trim();
-             }
-         } catch (NullPointerException exception) {
-             return new IncorrectCommand("Missing description!");
-         } catch (SystemException exception) {
-             return new IncorrectCommand(exception.getMessage());
-         }
-         return new CreateTagCommand(tagName, tagColor);
-     }
-
-     private Command prepareDeleteTag(String userMessage) {
-         String tagName = "";
-
-         try {
-
-             if (userMessage.isBlank()) {
+            if (tagInfo[0].isBlank()) {
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
-             } else {
+            } else {
+                tagName = tagInfo[0].trim();
+            }
+            if (tagInfo.length == CONTAINS_TAG_COLOR_INFO) {
+                tagColor = tagInfo[1].trim();
+            }
+        } catch (NullPointerException | ArrayIndexOutOfBoundsException exception) {
+            return new IncorrectCommand("Missing description!");
+        } catch (SystemException exception) {
+            return new IncorrectCommand(exception.getMessage());
+        }
+        return new CreateTagCommand(tagName, tagColor);
+    }
+
+    private Command prepareDeleteTag(String userMessage) {
+        String tagName = "";
+
+        try {
+            if (userMessage.isBlank()) {
+                throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+            } else {
                 tagName = userMessage.trim();
-             }
-         } catch (NullPointerException exception) {
-             return new IncorrectCommand("Missing description!");
-         } catch (SystemException exception) {
-             return new IncorrectCommand(exception.getMessage());
-         }
-         return new DeleteTagCommand(tagName);
-     }
+            }
+        } catch (NullPointerException exception) {
+            return new IncorrectCommand("Missing description!");
+        } catch (SystemException exception) {
+            return new IncorrectCommand(exception.getMessage());
+        }
+        return new DeleteTagCommand(tagName);
+    }
 
-     private Command prepareTag(String userMessage) {
-         int index = 0;
-         String tagName = "";
-         String tagColor = "";
+    private Command prepareTag(String userMessage) {
+        int index = 0;
+        String tagName = "";
+        String tagColor = "";
 
-         try {
-             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
+        try {
+            ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
 
-             for (String[] infoDetails : splitInfo) {
-                 String prefix = infoDetails[0];
-                 switch (prefix) {
-                 case PREFIX_TAG:
+            for (String[] infoDetails : splitInfo) {
+                String prefix = infoDetails[0];
+                switch (prefix) {
+                case PREFIX_TAG:
                     if (infoDetails[1].isBlank()) {
                         throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
                     }
@@ -288,23 +339,31 @@ public class Parser {
                         tagName = tagInfo[0].trim();
                     }
                     if (tagInfo.length == CONTAINS_TAG_COLOR_INFO) {
-                     tagColor = tagInfo[1].trim();
+                        tagColor = tagInfo[1].trim();
                     }
                     break;
-                     //CASE PREFIX_INDEX:
-                 //break;
-                 }
-             }
-         } catch (NullPointerException exception) {
-             return new IncorrectCommand("Missing description!");
-         } catch (SystemException exception) {
-             return new IncorrectCommand(exception.getMessage());
-         }
-         return new TagCommand(index, tagName, tagColor);
-     }
+                case PREFIX_INDEX:
+                    if (infoDetails[1].isBlank()) {
+                        throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+                    }
+                    index = Integer.parseInt(infoDetails[1].trim());
+                    break;
+                default:
+                }
+            }
+        } catch (NullPointerException | ArrayIndexOutOfBoundsException exception) {
+            return new IncorrectCommand("Missing description!");
+        } catch (SystemException exception) {
+            return new IncorrectCommand(exception.getMessage());
+        } catch (NumberFormatException exception) {
+            return new IncorrectCommand("Invalid format!");
+        }
+        return new TagCommand(index, tagName, tagColor);
+    }
 
-     /*private Command prepareRemind(String userMessage) {
-        return new RemindCommand(index, isToRemind);
-     }
-     */
+    /*
+    private Command prepareRemind(String userMessage) {
+       return new RemindCommand(index, isToRemind);
+    }
+    */
 }

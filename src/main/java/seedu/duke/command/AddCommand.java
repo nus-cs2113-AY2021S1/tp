@@ -36,7 +36,7 @@ public class AddCommand extends Command {
      *
      * @param note to be added.
      */
-    public AddCommand(Note note) throws SystemException {
+    public AddCommand(Note note) {
         this.note = note;
         this.event = null;
         this.isAddNote = true;

@@ -14,12 +14,12 @@ public class TagCommand extends Command {
 
     public static final String MESSAGE_USAGE = "";
 
-    private Note note;
+    private int index;
     private String tagName;
     private String tagColor;
 
     public TagCommand(int index, String tagName, String tagColor) {
-        this.note = notebook.getNotes().get(index);
+        this.index = index;
         this.tagName = tagName;
         this.tagColor = tagColor;
     }
@@ -28,13 +28,15 @@ public class TagCommand extends Command {
     public String execute() {
         Tag tag = tagManager.getTag(tagName);
 
+        Note note = notebook.getNotes().get(index - 1);
+
         // Remove the tag from the note if it does not have the Tag
         if (note.getTags().contains(tag)) {
             tagManager.removeTag(note, tag);
-            return ADD_TAG_MESSAGE + tag;
+            return REMOVE_TAG_MESSAGE + tag;
         } else {
             tagManager.tagNote(note, tagName, tagColor);
-            return REMOVE_TAG_MESSAGE + tag;
+            return ADD_TAG_MESSAGE + tag;
         }
     }
 }
