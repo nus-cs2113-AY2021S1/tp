@@ -1,13 +1,19 @@
 package seedu.duke.database;
 
 
-import seedu.duke.food.Food;
-
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class DataBase{
-
+    private final ArrayList<Canteen> canteenList;
     public DataBase(){
+        this.canteenList = new ArrayList<>();
+        init();
+    }
+
+    /***
+     * Reads a file from
+     */
+    private void init(){
+
     }
 }
