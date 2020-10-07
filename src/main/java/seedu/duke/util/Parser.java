@@ -46,7 +46,7 @@ public class Parser {
      * @param userInput Original string of the userInput.
      * @return Command to be executed.
      */
-    public Command parseCommand(String userInput) {
+    public Command parseCommand(String userInput) throws SystemException {
 
         String[] userCommandAndArguments = userInput.split(" ", 2);
         String commandString = userCommandAndArguments[0];
@@ -78,7 +78,7 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD_EVENT:
             // return prepareDeleteEvent(userMessage);
         case FindCommand.COMMAND_WORD:
-            // return prepareFind(userMessage);
+            return prepareFind(userMessage);
         case PinCommand.COMMAND_WORD:
             // return preparePin(userMessage);
         case CreateTagCommand.COMMAND_WORD:
@@ -238,6 +238,14 @@ public class Parser {
         }
     }
 
+    private Command prepareFind(String userMessage) {
+        if (userMessage.isBlank()) {
+            return new IncorrectCommand("No search query input. Please enter a keyword for search results.");
+        }
+        return new FindCommand(userMessage);
+    }
+
+
     /*
     private Command prepareAddEvent(String userMessage) {
     return new AddCommand(event);
@@ -265,10 +273,6 @@ public class Parser {
 
     private Command prepareDeleteEvent(String userMessage) {
        return new EditCommand(index, false);
-    }
-
-    private Command prepareFind(String userMessage) {
-       return new FindCommand(keywords);
     }
 
     private Command preparePin(String userMessage) {
