@@ -18,3 +18,15 @@ Characters voiced by Yoshitsugu Matsuoka are:
 ===Running Sample Anime Class===
 Release Date in String: 30/Dec/2020
 ===End of Sample Anime Class===
+===Running Sample Anime List Class===
+Name: Adventures of Adventurers
+Episodes: 24
+Release Date:30/Dec/2020
+Rating: 65
+Genre: [Science, Action, Dance]
+Name: Actions in Action
+Episodes: 13
+Release Date:15/Apr/1997
+Rating: 80
+Genre: [Adventure, Action, Dance]
+===End of Sample Anime List Class===

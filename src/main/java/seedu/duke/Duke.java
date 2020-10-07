@@ -1,8 +1,11 @@
 package seedu.duke;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
+
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -10,6 +13,7 @@ public class Duke {
         quickStart();
         addVoice();
         addAnime();
+        createAnimeList();
     }
 
     private static void addVoice() {
@@ -66,5 +70,33 @@ public class Duke {
         System.out.println("===End of Sample Anime Class===");
     }
 
+    //Sample Usage of AnimeList Class [To Be Deleted]
+    private static void createAnimeList() {
+        System.out.println("===Running Sample Anime List Class===");
+        ArrayList<Anime> animeStorageList = new ArrayList<>();
+        String[] releaseDate = {"2020", "12", "30"};
+        String[] genre = {"Science", "Action", "Dance"};
+        String animeName = "Adventures of Adventurers";
+        int rating = 65;
+        int avgEpisodeLength = 30;
+        int totalEpisodes = 24;
+        Anime testAnime = new Anime(animeName, releaseDate, rating, genre, avgEpisodeLength, totalEpisodes);
+
+        String[] releaseDate2 = {"1997", "4", "15"};
+        String[] genre2 = {"Adventure", "Action", "Dance"};
+        String animeName2 = "Actions in Action";
+        int rating2 = 80;
+        int avgEpisodeLength2 = 20;
+        int totalEpisodes2 = 13;
+        Anime testAnime2 = new Anime(animeName2, releaseDate2, rating2, genre2, avgEpisodeLength2, totalEpisodes2);
+
+        animeStorageList.add(testAnime);
+        animeStorageList.add(testAnime2);
+
+        AnimeList animeList = new AnimeList(animeStorageList);
+        animeList.printAll();
+
+        System.out.println("===End of Sample Anime List Class===");
+    }
 }
 
