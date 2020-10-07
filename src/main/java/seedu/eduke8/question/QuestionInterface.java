@@ -18,10 +18,10 @@ public interface QuestionInterface {
 
     boolean wasAnsweredCorrectly();
 
-    void setAsAnsweredCorrectly();
+    void markAsAnsweredCorrectly();
 
     boolean wasAttempted();
 
-    void setAsAttempted();
+    void markAsAttempted();
 
 }
