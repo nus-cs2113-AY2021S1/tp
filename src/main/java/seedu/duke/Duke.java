@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Duke {
 
     private Storage storage;
-    private UserData tasks;
+    private UserData data;
     private Ui ui;
     private Command com;
     private Parser currentParse;
@@ -32,7 +32,7 @@ public class Duke {
 
         storage = new Storage(filePath);
 
-        tasks = new UserData();
+        data = new UserData();
 
         currentParse = new Parser();
 
@@ -50,7 +50,7 @@ public class Duke {
             ui.printDividerLine();
             Command c = currentParse.parse(userInput);
             isExit = c.isExit();
-            c.execute(tasks, ui, storage);
+            c.execute(data, ui, storage);
         }
         ui.printByeMessage();
 
