@@ -94,8 +94,9 @@ public class Ui {
         printDividerLine();
     }
 
-    public void printDeadlineChangedMessage() {
-
+    public void printDeadlineChangedMessage(Event eventUpdated) {
+        System.out.println("You have successfully updated the deadline for this event!");
+        System.out.println(eventUpdated);
     }
 
     public void printStorageSavedMessage() {
