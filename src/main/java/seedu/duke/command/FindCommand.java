@@ -14,6 +14,8 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find-n";
 
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Finds a note. Parameters: ";
+
     private String keywords;
 
     /**

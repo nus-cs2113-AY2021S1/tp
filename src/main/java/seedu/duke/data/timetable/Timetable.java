@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Timetable {
 
-    private final ArrayList<Event> events;
+    private ArrayList<Event> events;
 
     /**
      * Creates a new list of events.
@@ -22,6 +22,14 @@ public class Timetable {
      * @param events from existing data.
      */
     public Timetable(ArrayList<Event> events) {
+        this.events = events;
+    }
+
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(ArrayList<Event> events) {
         this.events = events;
     }
 
@@ -42,5 +50,6 @@ public class Timetable {
     public void deleteEvent(Event event) {
 
     }
+
 
 }

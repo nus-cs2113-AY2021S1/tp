@@ -7,6 +7,7 @@ import seedu.duke.data.timetable.Event;
 import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toList;
+import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
@@ -19,11 +20,11 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD_NOTE = "add-n";
     public static final String COMMAND_WORD_EVENT = "add-e";
 
-    public static final String MESSAGE_USAGE_NOTE = COMMAND_WORD_NOTE + ": Adds a note to notebook. "
-            + "Parameters: "
-            + "/" + PREFIX_TITLE + " TITLE" + " "
-            + "/" + PREFIX_TAG + " TAGS" + " "
-            + "/" + PREFIX_PIN + " PIN";
+    public static final String COMMAND_USAGE_NOTE = COMMAND_WORD_NOTE + ": Adds a note to notebook. Parameters: "
+            + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE "
+            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAGS] "
+            + "[" + PREFIX_DELIMITER + PREFIX_PIN + " PIN]";
+    public static final String COMMAND_USAGE_EVENT = COMMAND_WORD_EVENT + ": Adds an event to timetable. Parameters: ";
 
     private Note note;
     private Event event;
@@ -62,10 +63,14 @@ public class AddCommand extends Command {
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_DUPLICATE_NOTE);
             }
 
+            // rebind the tags if there are duplicated tags
+            tagManager.rebindTags(note);
             notebook.addNote(note);
             return "New note added: " + note.getTitle();
         } catch (SystemException exception) {
             return exception.getMessage();
         }
     }
+
+
 }
