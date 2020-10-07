@@ -10,7 +10,7 @@ public abstract class Words {
     }
 
     /**
-     * Function to get the type of this word
+     * Function to get the type of this word.
      * i.e. Noun, Verb, or Adjective
      * @return the type of this word
      */

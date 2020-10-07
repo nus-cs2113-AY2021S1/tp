@@ -1,6 +1,10 @@
 package seedu.duke.wordlist;
 
-import seedu.duke.words.*;
+import seedu.duke.words.Words;
+import seedu.duke.words.Noun;
+import seedu.duke.words.Verb;
+import seedu.duke.words.Adjective;
+
 import seedu.duke.ui.UI;
 import java.util.ArrayList;
 
@@ -8,7 +12,7 @@ public class WordList {
     public static ArrayList<Words> wordList = new ArrayList<>();
 
     /**
-     * Function to add noun to word list
+     * Function to add noun to word list.
      * @param input a string which contains
      *              the word and its definition
      */
@@ -20,7 +24,7 @@ public class WordList {
     }
 
     /**
-     * Function to add verb to word list
+     * Function to add verb to word list.
      * @param input a string which contains
      *              the word and its definition
      */
@@ -32,7 +36,7 @@ public class WordList {
     }
 
     /**
-     * Function to add adjective to word list
+     * Function to add adjective to word list.
      * @param input a string which contains
      *              the word and its definition
      */
