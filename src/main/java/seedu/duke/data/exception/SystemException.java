@@ -8,8 +8,8 @@ public class SystemException extends Exception {
     public enum ExceptionType {
         EXCEPTION_MISSING_DESCRIPTION("Missing description!"),
         EXCEPTION_MISSING_TITLE("Missing title!"),
-        EXCEPTION_DUPLICATE_NOTE("This note already exists in the notebook"),
-        EXCEPTION_MISSING_NOTE("This note does not exists in the notebook");
+        EXCEPTION_DUPLICATE_NOTE("This note already exists in the notebook!"),
+        EXCEPTION_MISSING_NOTE("This note does not exists in the notebook!");
 
         /** The exception message. */
         private final String exceptionMessage;
