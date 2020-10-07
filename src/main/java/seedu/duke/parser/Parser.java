@@ -2,6 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
+import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.ExitCommand;
 
 public class Parser {
@@ -29,6 +30,7 @@ public class Parser {
             return new AddCommand(arguments);
         case COMMAND_BOOKMARK:
         case COMMAND_DELETE:
+            return new DeleteCommand(arguments);
         case COMMAND_EDIT:
         case COMMAND_LIST:
         case COMMAND_TODO:
