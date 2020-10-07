@@ -23,12 +23,6 @@ public class Personal extends Event {
     }
 
     public Personal(String description, LocalDate date) {
-        this(description, date, null);
-        hasDate = true;
-        hasTime = false;
-    }
-
-    public Personal(String description, LocalDate date) {
         this(description, date, null, 0);
     }
 

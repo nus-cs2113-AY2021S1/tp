@@ -35,9 +35,19 @@ public class EventList {
 
         for (Event event : events) {
             boolean eventIsBetweenDate = event.date.isAfter(startDate) && event.date.isBefore(endDate);
-            boolean eventIsBetweenTime = event.time.isAfter(startTime) && event.time.isBefore(endTime);
 
-            if (eventIsBetweenDate && eventIsBetweenTime) {
+            boolean eventIsBetweenTime;
+            if (eventIsBetweenDate) {
+                eventIsBetweenTime = true;
+            } else if (event.date.isEqual(startDate)) {
+                eventIsBetweenTime = !(event.time.isBefore(startTime));
+            } else if (event.date.isEqual(endDate)) {
+                eventIsBetweenTime = !(event.time.isAfter(endTime));
+            } else {
+                eventIsBetweenTime = false;
+            }
+
+            if (eventIsBetweenTime) {
                 eventsInTimeRange.add(event);
             }
         }
