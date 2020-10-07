@@ -198,9 +198,9 @@ public class Parser {
         }
     }
 
-    private Command prepareFind(String userMessage) throws SystemException {
+    private Command prepareFind(String userMessage) {
         if (userMessage.isBlank()) {
-            throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+            return new IncorrectCommand("No search query input. Please enter a keyword for search results.");
         }
         return new FindCommand(userMessage);
     }

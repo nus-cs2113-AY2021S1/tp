@@ -5,8 +5,6 @@ import seedu.duke.data.notebook.Note;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import static seedu.duke.ui.InterfaceManager.printFindNotesMessage;
-
 /**
  * Finds Notes in the Notebook.(Possible to add find in event too)
  */
@@ -27,11 +25,20 @@ public class FindCommand extends Command {
 
     @Override
     public String execute() {
+        String notes = "";
+
         ArrayList<Note> filteredNotes = (ArrayList<Note>) notebook.getNotes().stream()
                 .filter((s) -> s.getTitle().contains(keywords))
                 .collect(Collectors.toList());
 
-        printFindNotesMessage(filteredNotes);
-        return null;
+        for (int i = 0; i < filteredNotes.size(); i++) {
+            notes += (i + 1) + "." + filteredNotes.get(i).toString();
+        }
+
+        if (filteredNotes.isEmpty()) {
+            return "There are no matching notes. Please try another search query.\n";
+        }
+
+        return "Here are the matching notes in your list:\n" + notes;
     }
 }
