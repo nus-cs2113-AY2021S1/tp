@@ -1,31 +1,43 @@
 package seedu.duke.data.framework;
 
 public abstract class Appliance {
-
     protected String name;
     protected String location;
-    protected boolean status;
+    protected String power;
+    private String status;
+    private Power appliancePower;
 
-    public Appliance(String name, String location) {
+    public Appliance(String name, String location, String power) {
         this.name = name;
         this.location = location;
-        this.status = false;
+        this.status = "Off";
+        this.power = power;
+        appliancePower = new Power(power);
     }
 
     public void switchOn() {
-        this.status = true;
+        appliancePower.onAppliance();
     }
 
     public void switchOff() {
-        this.status = false;
+        appliancePower.offAppliance();
     }
 
     public String getStatus() {
-        String status = "Off";
-        if (this.status) {
-            status = "On";
+        if (appliancePower.getStatus()) {
+            this.status = "On";
+        } else {
+            this.status = "Off";
         }
-        return status;
+        return this.status;
+    }
+
+    public double measureConsumption() {
+        return appliancePower.getPower();
+    }
+
+    public String getPower() {
+        return this.power;
     }
 
     public abstract String getType();

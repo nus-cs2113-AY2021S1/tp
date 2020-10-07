@@ -6,8 +6,8 @@ public class AirConditioner extends Appliance {
 
     private String temperature;
 
-    public AirConditioner(String name, String location) {
-        super(name, location);
+    public AirConditioner(String name, String location, String power) {
+        super(name, location, power);
         this.temperature = "25";
     }
 
