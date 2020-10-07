@@ -36,8 +36,10 @@ public class Ui {
         return in.nextLine();
     }
 
-    public void printEventAddedMessage() {
-
+    public void printEventAddedMessage(Event event) {
+        System.out.println("You have successfully added this event to your list!");
+        System.out.println(event);
+        printDividerLine();
     }
 
     public void printRepeatEventMessage() {
@@ -60,17 +62,31 @@ public class Ui {
 
     }
 
+    public void printSpecificList(String eventType, EventList eventList) {
+        int eventCount = 0;
+        System.out.println("Here is a list of your " + eventType + " events:");
+        for (Event event : eventList.getEvents()) {
+            eventCount++;
+            System.out.println(eventCount + ". " + event.toString());
+        }
+    }
+
     public void printList(ArrayList<EventList> eventLists) {
         int eventCount = 0;
         System.out.println("Here is a list of all your events!");
         for (EventList eventList : eventLists) {
-            System.out.println("Under " + eventList.getName() + " events, you have: ");
-            for (Event event : eventList.getEvents()) {
-                eventCount++;
-                System.out.println(eventCount + " " + event.toString());
+            if(eventList.getEvents().size() > 0) {
+                System.out.println("Under " + eventList.getName() + " events, you have: ");
+                for (Event event : eventList.getEvents()) {
+                    eventCount++;
+                    System.out.println(eventCount + ". " + event.toString());
+                }
+            } else {
+                System.out.println("You have no events under " + eventList.getName() + ".");
             }
             eventCount = 0;
         }
+        printDividerLine();
     }
 
     public void printDeadlineChangedMessage() {
