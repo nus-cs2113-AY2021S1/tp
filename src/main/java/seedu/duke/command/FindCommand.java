@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
+import seedu.duke.ui.InterfaceManager;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -38,9 +39,9 @@ public class FindCommand extends Command {
         }
 
         if (filteredNotes.isEmpty()) {
-            return "There are no matching notes. Please try another search query.\n";
+            return "There are no matching notes. Please try another search query." + InterfaceManager.LS;
         }
 
-        return "Here are the matching notes in your list:\n" + notes;
+        return "Here are the matching notes in your list:" + InterfaceManager.LS + notes;
     }
 }
