@@ -1,15 +1,13 @@
-package seedu.duke;
+package seedu.duke.topic;
 
 import java.util.ArrayList;
 
 public interface TopicListInterface {
-    ArrayList<TopicInterface> getTopics();
-
     void showTopics();
 
     void addTopic(TopicInterface topic);
 
-    void deleteTopic(TopicInterface topic);
+    void deleteTopic(int index);
 
     int getTopicCount();
 

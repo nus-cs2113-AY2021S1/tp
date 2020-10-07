@@ -9,7 +9,7 @@ import seedu.duke.OptionInterface;
 import seedu.duke.OptionListInterface;
 import seedu.duke.QuestionInterface;
 import seedu.duke.QuestionListInterface;
-import seedu.duke.TopicInterface;
+import seedu.duke.topic.TopicInterface;
 import seedu.duke.UiInterface;
 
 import java.io.File;

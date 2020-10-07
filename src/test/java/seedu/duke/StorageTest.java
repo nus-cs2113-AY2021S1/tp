@@ -2,6 +2,7 @@ package seedu.duke;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.storage.Storage;
+import seedu.duke.topic.TopicInterface;
 
 import java.util.ArrayList;
 
