@@ -1,6 +1,8 @@
 package seedu.duke;
 
 import seedu.duke.option.OptionInterface;
+import seedu.duke.hint.HintInterface;
+import seedu.duke.question.QuestionInterface;
 
 public interface UiInterface {
     String getInputFromUser();
