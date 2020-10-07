@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.data.notebook.Tag;
 import seedu.duke.data.notebook.TagManager;
+import seedu.duke.ui.InterfaceManager;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
@@ -26,7 +27,7 @@ public class CreateTagCommand extends Command {
 
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Creates a tag. Parameters: "
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG NAME [TAG COLOR]"
-            + COLOR_RESET_STRING + "\n(Available colors: "
+            + COLOR_RESET_STRING + InterfaceManager.LS + "(Available colors: "
             + COLOR_WHITE_STRING + Tag.COLOR_WHITE_STRING + ", "
             + COLOR_RED_STRING + Tag.COLOR_RED_STRING + ", "
             + COLOR_GREEN_STRING + Tag.COLOR_GREEN_STRING + ", "

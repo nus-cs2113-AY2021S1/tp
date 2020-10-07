@@ -21,9 +21,9 @@ public class HelpCommand extends Command {
     public String execute() {
         String helpList = HELP_STRING + InterfaceManager.LS + COLOR_WHITE_STRING
                 + AddCommand.getCommandUsageNote() + InterfaceManager.LS + COLOR_CYAN_STRING
-                + AddCommand.getCommandUsageEvent() + COLOR_WHITE_STRING + InterfaceManager.LS
+                + AddCommand.getCommandUsageEvent() + InterfaceManager.LS + COLOR_WHITE_STRING
                 + CreateTagCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
-                + DeleteCommand.getCommandUsageNote() + COLOR_WHITE_STRING + InterfaceManager.LS
+                + DeleteCommand.getCommandUsageNote() + InterfaceManager.LS + COLOR_WHITE_STRING
                 + DeleteCommand.getCommandUsageEvent() + InterfaceManager.LS + COLOR_CYAN_STRING
                 + DeleteTagCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
                 + EditCommand.getCommandUsageNote() + InterfaceManager.LS + COLOR_CYAN_STRING
