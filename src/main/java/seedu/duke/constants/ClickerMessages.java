@@ -35,4 +35,9 @@ public class ClickerMessages {
     public static final String FILE_PATH_TO_DIRECTORY_INVALID_MSG = "File path to directory invalid!";
     public static final String FILE_NOT_FOUND_MSG = "File does not exist.";
     public static final String FILE_AUTO_CREATED_MSG = "Auto creating new file";
+    public static final String ADD_NOUN_MSG = "Added the following noun:";
+    public static final String ADD_VERB_MSG = "Added the following verb:";
+    public static final String ADD_ADJECTIVE_MSG = "Added the following adjective:";
+    public static final String LIST_WORDS_MSG = "Here are the words stored in the program:";
+
 }

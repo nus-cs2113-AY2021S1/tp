@@ -8,6 +8,7 @@ import static seedu.duke.database.UserSettingsLoader.loadUserSettings;
 import static seedu.duke.ui.UI.printDivider;
 import static seedu.duke.ui.UI.printFarewellMessage;
 import static seedu.duke.ui.UI.printHelloMessage;
+import seedu.duke.wordlist.WordList;
 
 public class Duke {
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -31,6 +32,32 @@ public class Duke {
 
         System.out.println("Take a quiz with\n" + Logos.DOTTED_CLICKER_LOGO);
         printHelloMessage(username);
+        boolean isExit = false;
+        while (!isExit) {
+            switch (SCANNER.next()) {
+            case "noun": {
+                String input = SCANNER.nextLine();
+                WordList.addNoun(input);
+                break;
+            }
+            case "verb": {
+                String input = SCANNER.nextLine();
+                WordList.addVerb(input);
+                break;
+            }
+            case "adj": {
+                String input = SCANNER.nextLine();
+                WordList.addAdjective(input);
+                break;
+            }
+            case "list":
+                WordList.listWords();
+                break;
+            default:
+                isExit = true;
+                break;
+            }
+        }
         printFarewellMessage(username);
 
     }

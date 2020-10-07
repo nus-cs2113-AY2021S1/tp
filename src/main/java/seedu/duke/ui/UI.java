@@ -1,8 +1,6 @@
 package seedu.duke.ui;
 
-import static seedu.duke.constants.ClickerMessages.FAREWELL_GREETING;
-import static seedu.duke.constants.ClickerMessages.HELLO_GREETING;
-import static seedu.duke.constants.Logos.PLAIN_TEXT_DIVIDER;
+import seedu.duke.constants.ClickerMessages;
 
 public class UI {
     public static final String NEWLINE = System.lineSeparator();
@@ -123,7 +121,7 @@ public class UI {
      */
     public static void printHelloMessage(String username) {
         printDivider();
-        System.out.print(String.format(HELLO_GREETING, username));
+        System.out.printf(ClickerMessages.HELLO_GREETING, username);
         printDivider();
     }
 
@@ -133,7 +131,7 @@ public class UI {
      * @param username user indicated name
      */
     public static void printFarewellMessage(String username) {
-        System.out.printf(FAREWELL_GREETING, username);
+        System.out.printf(ClickerMessages.FAREWELL_GREETING, username);
     }
 
     /**
@@ -141,5 +139,21 @@ public class UI {
      */
     public static void printDivider() {
         System.out.println(currentLineDivider);
+    }
+
+    public static void addNounMessage(String noun) {
+        System.out.println(ClickerMessages.ADD_NOUN_MSG + noun);
+    }
+
+    public static void addVerbMessage(String verb) {
+        System.out.println(ClickerMessages.ADD_VERB_MSG + verb);
+    }
+
+    public static void addAdjectiveMessage(String adj) {
+        System.out.println(ClickerMessages.ADD_ADJECTIVE_MSG + adj);
+    }
+
+    public static void listWordsMessage() {
+        System.out.println(ClickerMessages.LIST_WORDS_MSG);
     }
 }
