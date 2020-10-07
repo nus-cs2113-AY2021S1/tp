@@ -1,4 +1,5 @@
 package seedu.duke.bookmark;
+
 import seedu.duke.command.AddBookmarkCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
@@ -47,13 +48,13 @@ public class Bookmark {
      * @return a list of strings containing the URL and the description
      */
 
-//    public static List<String> extractDescriptionAndURL(String input) {
-//        List<String> urlAndDescription = Arrays.asList(input.split(" ", 2));
-//        if (urlAndDescription.size() != 2) {
-//            throw new DukeException(DukeExceptionType.INVALID_URL_AND_DESCRIPTION);
-//        }
-//        return urlAndDescription;
-//    }
+    //    public static List<String> extractDescriptionAndURL(String input) {
+    //        List<String> urlAndDescription = Arrays.asList(input.split(" ", 2));
+    //        if (urlAndDescription.size() != 2) {
+    //            throw new DukeException(DukeExceptionType.INVALID_URL_AND_DESCRIPTION);
+    //        }
+    //        return urlAndDescription;
+    //    }
     
     /**
      * Returns the topic, URL and description that can be detected from the given input.
@@ -73,7 +74,7 @@ public class Bookmark {
             throw new DukeException(DukeExceptionType.INVALID_URL_AND_DESCRIPTION);
         }
         if (moduleDescriptionLink.get(1).isBlank() || moduleDescriptionLink.get(2).isBlank()) {
-           throw new DukeException(DukeExceptionType.EMPTY_DESCRIPTION);
+            throw new DukeException(DukeExceptionType.EMPTY_DESCRIPTION);
         }
         if (!isLinkValid(moduleDescriptionLink.get(2))) {
             throw new DukeException(DukeExceptionType.INVALID_URL_AND_DESCRIPTION);

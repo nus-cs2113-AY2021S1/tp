@@ -42,10 +42,10 @@ public class BookmarkList {
      *
      * @param index The index of the task in the list to be marked as done.
      */
-//    public void markTaskDone(int index) {
-//        Task task = taskList.get(index);
-//        task.markDone();
-//    }
+    //    public void markTaskDone(int index) {
+    //        Task task = taskList.get(index);
+    //        task.markDone();
+    //    }
 
     /**
      * Returns the the data of all of the tasks in the list to be saved in the file.

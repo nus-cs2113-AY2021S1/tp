@@ -6,7 +6,7 @@ import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.exception.DukeException;
 
-public class ListCommand extends Command{
+public class ListCommand extends Command {
     public static final String LIST_KW = "list";
 
     /**
