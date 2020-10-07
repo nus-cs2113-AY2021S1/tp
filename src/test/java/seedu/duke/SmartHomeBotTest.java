@@ -8,11 +8,11 @@ import seedu.duke.data.HomeLocations;
 class SmartHomeBotTest {
     @Test
     public void addLocationTest() {
-        String BR1 = "BedRoom 1";
-        String BR2 = "BedRoom 2";
+        String br1 = "BedRoom 1";
+        String br2 = "BedRoom 2";
         HomeLocations homeLocations = new HomeLocations();
-        homeLocations.addLocation(BR1);
-        homeLocations.addLocation(BR2);
-        assertEquals("[BedRoom 1, BedRoom 2]",homeLocations.getLocations().toString());
+        homeLocations.addLocation(br1);
+        homeLocations.addLocation(br2);
+        assertEquals("[BedRoom 1, BedRoom 2]", homeLocations.getLocations().toString());
     }
 }
