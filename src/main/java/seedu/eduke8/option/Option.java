@@ -1,4 +1,4 @@
-package seedu.duke.option;
+package seedu.eduke8.option;
 
 public class Option implements OptionInterface {
     private String optionDescription;

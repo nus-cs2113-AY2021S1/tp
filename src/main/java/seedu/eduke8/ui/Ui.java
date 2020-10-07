@@ -1,8 +1,8 @@
-package seedu.duke.ui;
+package seedu.eduke8.ui;
 
-import seedu.duke.hint.HintInterface;
-import seedu.duke.question.QuestionInterface;
-import seedu.duke.option.OptionInterface;
+import seedu.eduke8.hint.HintInterface;
+import seedu.eduke8.question.QuestionInterface;
+import seedu.eduke8.option.OptionInterface;
 
 import java.util.Scanner;
 

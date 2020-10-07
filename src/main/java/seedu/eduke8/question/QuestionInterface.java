@@ -1,6 +1,6 @@
-package seedu.duke.question;
+package seedu.eduke8.question;
 
-import seedu.duke.option.OptionInterface;
+import seedu.eduke8.option.OptionInterface;
 
 import java.util.ArrayList;
 

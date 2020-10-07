@@ -1,4 +1,4 @@
-package seedu.duke.hint;
+package seedu.eduke8.hint;
 
 public interface HintInterface {
     String getHintDescription();
