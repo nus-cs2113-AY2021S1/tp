@@ -4,12 +4,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
-import seedu.duke.OptionInterface;
-import seedu.duke.OptionListInterface;
-import seedu.duke.QuestionInterface;
-import seedu.duke.QuestionListInterface;
 import seedu.duke.topic.TopicInterface;
+import seedu.duke.option.OptionInterface;
+import seedu.duke.option.OptionListInterface;
+import seedu.duke.question.QuestionInterface;
+import seedu.duke.question.QuestionListInterface;
 import seedu.duke.UiInterface;
 
 import java.io.File;
