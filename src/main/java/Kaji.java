@@ -21,9 +21,10 @@ public class Kaji {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
                 c.execute(cards, ui);
+                ui.printEmptyLine();
                 isExit = c.isExit();
             } catch (InvalidInputException e) {
-                System.out.println("Invalid input given");
+                System.out.println("Invalid input given.\n");
             }
         }
     }
