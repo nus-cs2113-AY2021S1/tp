@@ -27,6 +27,13 @@ public class RatingList extends QuotesifyList<Rating> {
 
     @Override
     public String toString() {
-        return null;
+        String ratingsToReturn = "";
+        for (Rating rating : ratings) {
+            String titleOfRatedBook = rating.getTitleOfRatedBook();
+            int ratingScore = rating.getRating();
+            ratingsToReturn += titleOfRatedBook + ": " + ratingScore + " star"
+                    + System.lineSeparator();
+        }
+        return ratingsToReturn;
     }
 }
