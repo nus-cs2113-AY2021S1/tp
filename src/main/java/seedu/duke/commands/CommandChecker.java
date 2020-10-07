@@ -15,6 +15,8 @@ public enum CommandChecker {
     QUIZ,
     CLEAR,
     EXIT,
+    SCENE,
+    TOPIC,
     UNRECOGNISED;
 
     public static CommandChecker commandType;
@@ -28,37 +30,42 @@ public enum CommandChecker {
             System.out.println("Oops! Command cannot be empty");
             inputLine = SCANNER.nextLine();
         }
-
-        commandType = CommandChecker.extractCommandType(inputLine.trim());
+        String[] words = inputLine.split(" ");
+        String command = words[0];
+        commandType = CommandChecker.extractCommandType(command);
 
         return inputLine.trim();
     }
 
-    public static CommandChecker extractCommandType(String userInput) {
-        if (userInput.toLowerCase().trim().startsWith("help")) {
+    public static CommandChecker extractCommandType(String userCommand) {
+        if (userCommand.equalsIgnoreCase("help")) {
             return CommandChecker.HELP;
-        } else if (userInput.toLowerCase().trim().startsWith("settings")) {
+        } else if (userCommand.equalsIgnoreCase("settings")) {
             return CommandChecker.SETTINGS;
-        } else if (userInput.toLowerCase().trim().startsWith("qna")) {
+        } else if (userCommand.equalsIgnoreCase("qna")) {
             return CommandChecker.QNA;
-        } else if (userInput.toLowerCase().trim().startsWith("mcq")) {
+        } else if (userCommand.equalsIgnoreCase("mcq")) {
             return CommandChecker.MCQ;
-        } else if (userInput.toLowerCase().trim().startsWith("fillblank")) {
+        } else if (userCommand.equalsIgnoreCase("fillblank")) {
             return CommandChecker.FILLBLANK;
-        } else if (userInput.toLowerCase().trim().startsWith("list")) {
+        } else if (userCommand.equalsIgnoreCase("list")) {
             return CommandChecker.LIST;
-        } else if (userInput.toLowerCase().trim().startsWith("history")) {
+        } else if (userCommand.equalsIgnoreCase("history")) {
             return CommandChecker.HISTORY;
-        } else if (userInput.toLowerCase().trim().startsWith("stats")) {
+        } else if (userCommand.equalsIgnoreCase("stats")) {
             return CommandChecker.STATS;
-        } else if (userInput.toLowerCase().trim().startsWith("review")) {
+        } else if (userCommand.equalsIgnoreCase("review")) {
             return CommandChecker.REVIEW;
-        } else if (userInput.toLowerCase().trim().startsWith("quiz")) {
+        } else if (userCommand.equalsIgnoreCase("quiz")) {
             return CommandChecker.QUIZ;
-        } else if (userInput.toLowerCase().trim().startsWith("clear")) {
+        } else if (userCommand.equalsIgnoreCase("clear")) {
             return CommandChecker.CLEAR;
-        } else if (userInput.toLowerCase().trim().startsWith("exit")) {
+        } else if (userCommand.equalsIgnoreCase("exit")) {
             return CommandChecker.EXIT;
+        } else if (userCommand.equalsIgnoreCase("scene")) {
+            return CommandChecker.SCENE;
+        } else if (userCommand.equalsIgnoreCase("topic")) {
+            return CommandChecker.TOPIC;
         } else {
             return CommandChecker.UNRECOGNISED;
         }
