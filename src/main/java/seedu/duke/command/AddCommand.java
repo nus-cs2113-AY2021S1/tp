@@ -1,18 +1,20 @@
 package seedu.duke.command;
 
-import seedu.duke.DateParser;
+import seedu.duke.DateTimeParser;
 import seedu.duke.DukeException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.task.Deadline;
 import seedu.duke.task.Event;
+import seedu.duke.task.Exam;
+import seedu.duke.task.Lab;
+import seedu.duke.task.Lecture;
 import seedu.duke.task.TaskList;
 import seedu.duke.task.Todo;
-import seedu.duke.task.Lecture;
 import seedu.duke.task.Tutorial;
-import seedu.duke.task.Lab;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 /**
@@ -26,6 +28,7 @@ public class AddCommand extends Command {
     public static final String LECTURE = "lecture";
     public static final String TUTORIAL = "tutorial";
     public static final String LAB = "lab";
+    public static final String EXAM = "exam";
 
     public AddCommand(String userInput) {
         super(userInput);
@@ -42,11 +45,13 @@ public class AddCommand extends Command {
     @Override
     public void execute(TaskList taskList, Storage storage) throws DukeException {
         String[] command;
+        String[] dateTime;
+        String taskDescription;
+        LocalDate taskDate;
+        LocalTime taskTime;
 
         command = userInput.split(" ", 2);
         String commandType = command[0];
-        String taskDescription;
-        LocalDate taskDate;
 
         switch (commandType) {
         case TODO:
@@ -66,7 +71,7 @@ public class AddCommand extends Command {
             try {
                 command = command[1].split("/by");
                 taskDescription = command[0].trim();
-                taskDate = DateParser.inputDateProcessor(command[1].trim());
+                taskDate = DateTimeParser.inputDateProcessor(command[1].trim());
 
                 if (taskDescription.isEmpty()) {
                     throw new DukeException("deadline");
@@ -81,7 +86,7 @@ public class AddCommand extends Command {
             try {
                 command = command[1].split("/at");
                 taskDescription = command[0].trim();
-                taskDate = DateParser.inputDateProcessor(command[1].trim());
+                taskDate = DateTimeParser.inputDateProcessor(command[1].trim());
 
                 if (taskDescription.isEmpty()) {
                     throw new DukeException("event");
@@ -90,6 +95,31 @@ public class AddCommand extends Command {
                 }
             } catch (Exception e) {
                 throw new DukeException("event");
+            }
+            break;
+        case EXAM:
+            String moduleCode;
+            String examDetails;
+            /**
+             * User input for Exam task example: exam CS2113 open book /at 020202 1200
+             */
+            try {
+                command = command[1].trim().split(" ", 2); // splits to CS2113 and open book...
+                moduleCode = command[0];
+                command = command[1].split("/at");
+                examDetails = command[0].trim();
+                dateTime = command[1].trim().split(" ", 2);
+                taskDate = DateTimeParser.inputDateProcessor(dateTime[0].trim());
+                taskTime = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
+
+
+                if (moduleCode.isEmpty()) {
+                    throw new DukeException("exam");
+                } else {
+                    taskList.addTask(new Exam(moduleCode, examDetails, taskDate, taskTime));
+                }
+            } catch (Exception e) {
+                throw new DukeException("exam");
             }
             break;
         case LECTURE:
