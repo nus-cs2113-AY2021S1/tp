@@ -26,7 +26,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE] "
             +  PREFIX_LINE + " LINE "
             +  PREFIX_CONTENT + " CONTENT "
-            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR " + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...] ";
+            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR "
+            + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...] ";
 
     private static final String COMMAND_USAGE_EVENT = COMMAND_WORD_EVENT + ": Edits an event in the timetable. "
             + "Parameters: " + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "

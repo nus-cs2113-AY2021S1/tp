@@ -25,7 +25,8 @@ public class AddCommand extends Command {
 
     private static final String COMMAND_USAGE_NOTE = COMMAND_WORD_NOTE + ": Adds a note to notebook. Parameters: "
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE "
-            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR " + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...] "
+            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR "
+            + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...] "
             + "[" + PREFIX_DELIMITER + PREFIX_PIN + " PIN]";
     private static final String COMMAND_USAGE_EVENT = COMMAND_WORD_EVENT + ": Adds an event to timetable. Parameters: "
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE "

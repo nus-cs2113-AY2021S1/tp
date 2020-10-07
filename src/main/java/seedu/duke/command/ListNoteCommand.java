@@ -15,7 +15,8 @@ public class ListNoteCommand extends Command {
     public static final String COMMAND_WORD = "list-n";
 
     private static final String COMMAND_USAGE = COMMAND_WORD + ": Lists all the notes in the Notebook. Parameters: "
-            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR " + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...] "
+            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR "
+            + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...] "
             + "[up/down]";
 
     private ArrayList<Tag> tags;
