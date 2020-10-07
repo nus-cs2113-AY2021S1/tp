@@ -47,4 +47,8 @@ public class EventList {
         return events.get(events.size() - 1);
 
     }
+
+    public void setEvent(int index, Event e) {
+        events.set(index, e);
+    }
 }
