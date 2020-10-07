@@ -9,7 +9,7 @@ import seedu.duke.ui.Ui;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GoalCommandTest {
     private final PrintStream standardOut = System.out;
@@ -52,9 +52,9 @@ class GoalCommandTest {
         command = new GoalCommand(null);
         command.execute(data, ui, null);
         assertEquals(
-                "Goal changed to: " + inputString1 +
-                "\r\nGoal changed to: " + inputString2 +
-                "\r\nGoal: " + inputString2, outputStreamCaptor.toString().trim());
+                "Goal changed to: " + inputString1
+                        + "\r\nGoal changed to: " + inputString2
+                        + "\r\nGoal: " + inputString2, outputStreamCaptor.toString().trim());
     }
 
     @Test
