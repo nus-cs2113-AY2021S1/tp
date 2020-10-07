@@ -6,15 +6,6 @@ public class Goal extends Event {
     }
 
     /**
-     * Changes the description of goal to the given description.
-     *
-     * @param description to change to.
-     */
-    public void changeGoal(String description) {
-        setDescription(description);
-    }
-
-    /**
      * Returns a string representation of goal.
      *
      * @return string representation of goal.

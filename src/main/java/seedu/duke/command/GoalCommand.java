@@ -21,11 +21,12 @@ public class GoalCommand extends Command {
 
     @Override
     public void execute(UserData data, Ui ui, Storage storage) {
-        Goal goal = data.getGoal();
         if (command == null) {
+            Goal goal = data.getGoal();
             ui.printGoalMessage(goal);
         } else {
-            goal.changeGoal(command);
+            Goal goal = new Goal(command);
+            data.setGoal(goal);
             ui.printChangeGoalMessage(goal);
             //update storage
         }
