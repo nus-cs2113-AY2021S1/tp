@@ -99,7 +99,7 @@ public class Parser {
                 switch (action.toLowerCase()) {
                 case ADD:
                     try {
-                        new TaskCommand().addTaskCommand(TITLE, DESCRIPTION, PRIORITY, PARAMETERS);
+                        new TaskCommand().addTaskCommand(PARAMETERS);
                     } catch (DukeException e) {
                         e.printExceptionMessage();
                     }

@@ -19,7 +19,7 @@ public class ProjectCommand {
         } else {
             throw new DukeException("no title");
         }
-        if (parameters.get(DEADLINE) != null) {
+        if (parameters.get(DESCRIPTION) != null) {
             description = parameters.get(DESCRIPTION);
         } else {
             throw new DukeException("no description");

@@ -1,6 +1,6 @@
 package seedu.duke.project;
 
-import seedu.duke.Task;
+import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;

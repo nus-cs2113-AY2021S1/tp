@@ -44,7 +44,7 @@ public class Project {
         } else {
             System.out.println("Current tasks in your project backlog");
             for (int i = 0; i < backlog.size(); i++) {
-                System.out.println("\t" + (i + 1) + ". " + backlog.getTask(i).title);
+                System.out.println("\t" + (i + 1) + ". " + backlog.getTask(i).getTitle());
             }
         }
     }

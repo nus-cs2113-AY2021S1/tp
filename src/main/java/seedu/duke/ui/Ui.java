@@ -1,9 +1,12 @@
 package seedu.duke.ui;
 
-import seedu.duke.Task;
-import seedu.duke.project.Project;
+import seedu.duke.task.Task;
 
 import java.util.Scanner;
+
+import static seedu.duke.project.Project.backlog;
+import static seedu.duke.project.Project.member;
+
 
 public class Ui {
     private static final Scanner IN = new Scanner(System.in);
@@ -35,12 +38,23 @@ public class Ui {
     }
 
     public void displayMembers() {
-        if (Project.member.size() == 0) {
+        if (member.size() == 0) {
             System.out.println("Currently no members added to the project.");
         } else {
             System.out.println("Here are the members added to you project:");
-            for (int i = 0; i < Project.member.size(); i++) {
-                System.out.println("\t" + (i + 1) + ". " + Project.member.getMember(i).getUserId());
+            for (int i = 0; i < member.size(); i++) {
+                System.out.println("\t" + (i + 1) + ". " + member.getMember(i).getUserId());
+            }
+        }
+    }
+
+    public void displayProjectBacklog() {
+        if (backlog.size() == 0) {
+            System.out.println("No tasks currently added to project backlog.");
+        } else {
+            System.out.println("Current tasks in your project backlog");
+            for (int i = 0; i < backlog.size(); i++) {
+                System.out.println("\t" + (i + 1) + ". " + backlog.getTask(i).getTitle());
             }
         }
     }
@@ -60,4 +74,5 @@ public class Ui {
     public void printTaskRemoved(Task task) {
         System.out.println("The corresponding task " + task.toString() + " has been removed.");
     }
+
 }
