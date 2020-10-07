@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AnimeData {
-    public ArrayList<Anime> animeList;
+    public ArrayList<Anime> animeDataList;
 
-    public AnimeData(ArrayList<Anime> animeList) {
-        this.animeList = animeList;
+    public AnimeData(ArrayList<Anime> animeDataList) {
+        this.animeDataList = animeDataList;
     }
 
     public AnimeData() {
-        this.animeList = new ArrayList<>();
+        this.animeDataList = new ArrayList<>();
     }
 
     public Anime getAnime(Integer animeIndex) {
-        return animeList.get(animeIndex);
+        return animeDataList.get(animeIndex);
     }
 
     public int getSize() {
-        return animeList.size();
+        return animeDataList.size();
     }
 
     public void printAll() {
-        for (Anime anime : animeList) {
+        for (Anime anime : animeDataList) {
             System.out.println("Name: " + anime.getAnimeName());
             System.out.println("Episodes: " + anime.getTotalEpisodes());
             System.out.println("Release Date:" + anime.getReleaseDateInString());
