@@ -139,8 +139,11 @@ public class Duke {
         String[] descriptionSplit = description.split(" ", 2);
         String commandOption = descriptionSplit[0];
         String watchlistName = descriptionSplit[1];
-        Watchlist newWatchlist = new Watchlist(watchlistName);
-        watchlists.add(newWatchlist);
+
+        if (commandOption.equals("-n")) {
+            Watchlist newWatchlist = new Watchlist(watchlistName);
+            watchlists.add(newWatchlist);
+        }
     }
 
     /**
