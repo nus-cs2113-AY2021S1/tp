@@ -23,7 +23,7 @@ public class RepeatCommand extends Command {
     private boolean isValid;
 
     /**
-     * Set up for the repeat command
+     * Set up for the repeat command.
      * @param command user input with the format eventIndex; eventType; timeInterval; NumberofIterations
      */
     public RepeatCommand(String command) {
@@ -67,6 +67,7 @@ public class RepeatCommand extends Command {
         isValid = true;
 
     }
+
     @Override
     public void execute(UserData data, Ui ui, Storage storage) {
 
@@ -95,7 +96,7 @@ public class RepeatCommand extends Command {
         firstLetter = Character.toUpperCase(firstLetter);
         String remaining = word.substring(1);
         String capitaliseFirstLetter = Character.toString(firstLetter);
-        return capitaliseFirstLetter+remaining;
+        return capitaliseFirstLetter + remaining;
 
     }
 }

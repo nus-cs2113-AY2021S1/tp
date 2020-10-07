@@ -1,7 +1,6 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.Duke;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.storage.Storage;
