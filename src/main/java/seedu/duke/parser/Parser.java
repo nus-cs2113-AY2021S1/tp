@@ -37,6 +37,7 @@ public class Parser {
     private final Hashtable<String, String> PARAMETERS = new Hashtable<>();
     private final ArrayList<String> PARAMS = new ArrayList<>();
 
+
     public void parser(Ui ui) {
         String userInput = ui.readLine();
 
