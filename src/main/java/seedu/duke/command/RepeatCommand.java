@@ -19,9 +19,13 @@ public class RepeatCommand extends Command {
     private int eventIndex;
     private String eventType;
     private int timeInterval;
-    private int repeatAmount;
+    private int numberOfIterations;
     private boolean isValid;
 
+    /**
+     * Set up for the repeat command
+     * @param command user input with the format eventIndex; eventType; timeInterval; NumberofIterations
+     */
     public RepeatCommand(String command) {
         this.isExit = false;
         this.command = command;
@@ -43,34 +47,55 @@ public class RepeatCommand extends Command {
         }
 
         eventIndex = Integer.parseInt(words[0]) - 1;
-        eventType = words[1];
-        repeatAmount = Integer.parseInt(words[3]);
+        eventType = capitaliseFirstLetter(words[1]);
+        numberOfIterations = Integer.parseInt(words[3]);
 
         String intervalWord = words[2];
 
         switch (intervalWord) {
         case "weekly":
             timeInterval = 1;
+            break;
         case "monthly":
             timeInterval = 2;
+            break;
         default:
             timeInterval = 0;
+            isValid = false;
+            return;
         }
+        isValid = true;
 
     }
     @Override
     public void execute(UserData data, Ui ui, Storage storage) {
 
-
-        EventList information = data.getEventList(this.eventType);
-        Event toChange = information.getEventByIndex(this.eventIndex);
-        toChange.setRepeatUnit(this.timeInterval);
-        toChange.setRepeatCount(this.repeatAmount);
-
         if (!isValid) {
             System.out.println("Error! invalid input given to repeat.");
             return;
         }
+
+        EventList information = data.getEventList(this.eventType);
+        Event toChange = information.getEventByIndex(this.eventIndex);
+        toChange.setRepeatUnit(this.timeInterval);
+        toChange.setRepeatCount(this.numberOfIterations);
+
+
         System.out.println("All done, the program is set to repeat.");
+    }
+
+    /**
+     * Function accept a word string and capitalise the first letter.
+     *
+     * @param word String containing the word to have the first letter capitalised
+     * @return String of the word with first letter capitalised
+     */
+    private String capitaliseFirstLetter(String word) {
+        char firstLetter = word.charAt(0);
+        firstLetter = Character.toUpperCase(firstLetter);
+        String remaining = word.substring(1);
+        String capitaliseFirstLetter = Character.toString(firstLetter);
+        return capitaliseFirstLetter+remaining;
+
     }
 }
