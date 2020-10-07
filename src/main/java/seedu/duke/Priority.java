@@ -1,4 +1,4 @@
-package scrumptious;
+package seedu.duke;
 
 public enum Priority {
     HIGH {
