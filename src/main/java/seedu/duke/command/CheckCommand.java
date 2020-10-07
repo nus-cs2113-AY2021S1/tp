@@ -6,20 +6,16 @@ import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Command to check availability.
  */
 public class CheckCommand extends Command {
-
-    public static final int DATE_TIME_FIELD_COUNT = 4;
-
     /**
      * Constructor for checking availability seedu.duke
      *
@@ -35,27 +31,17 @@ public class CheckCommand extends Command {
         String checkDate = command.replaceFirst("check", "").trim();
         String[] datesAndTime = checkDate.split(";");
 
-        LocalDate startDate = getDate(datesAndTime[0]);
-        LocalDate endDate = getDate(datesAndTime[2]);
+        LocalDate startDate = getDate(datesAndTime[0].trim());
+        LocalDate endDate = getDate(datesAndTime[2].trim());
 
-        LocalTime startTime = getTime(datesAndTime[1]);
-        LocalTime endTime = getTime(datesAndTime[3]);
+        LocalTime startTime = getTime(datesAndTime[1].trim());
+        LocalTime endTime = getTime(datesAndTime[3].trim());
 
-        events.checkEventsInTimeRange(startDate, endDate, startTime, endTime);
-    }
-
-    private void getStartAndEndTime(String[] datesAndTime, List<LocalTime> startAndEndTime) {
-        LocalTime startTime = getTime(datesAndTime[1]);
-        LocalTime endTime = getTime(datesAndTime[3]);
-        startAndEndTime.add(startTime);
-        startAndEndTime.add(endTime);
-    }
-
-    private void getStartAndEndDate(String[] datesAndTime, List<LocalDate> startAndEndDate) {
-        LocalDate startDate = getDate(datesAndTime[0]);
-        LocalDate endDate = getDate(datesAndTime[2]);
-        startAndEndDate.add(startDate);
-        startAndEndDate.add(endDate);
+        ArrayList<Event> eventsInTimeRange = events.checkEventsInTimeRange(startDate, endDate, startTime, endTime);
+        //in place of a UI function
+        for (Event event: eventsInTimeRange) {
+            System.out.println(event);
+        }
     }
 
     private LocalDate getDate(String stringDate) {
