@@ -68,6 +68,7 @@ class DeadlineCommandTest {
         assertEquals(expected,
                 outputStreamCaptor.toString());
     }
+
     @AfterEach
     public void tearDown() {
         System.setOut(standardOut);
