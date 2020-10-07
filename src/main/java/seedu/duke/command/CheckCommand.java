@@ -10,7 +10,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Command to check availability.
@@ -46,7 +45,7 @@ public class CheckCommand extends Command {
 
     private LocalDate getDate(String stringDate) {
         String[] dateFormats = new String[]{"dd/MM/yy", "MM/yy", "yy"};
-        LocalDate date = null;
+        LocalDate date;
 
         for (String format : dateFormats) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
@@ -66,7 +65,7 @@ public class CheckCommand extends Command {
 
     private LocalTime getTime(String stringTime) {
         String[] timeFormats = new String[]{"HH:mm", "HH", "hh:mm a", "hh a"};
-        LocalTime time = null;
+        LocalTime time;
 
         for (String format : timeFormats) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
