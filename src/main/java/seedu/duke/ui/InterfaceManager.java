@@ -1,10 +1,12 @@
 package seedu.duke.ui;
 
+import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.timetable.Timetable;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -60,5 +62,16 @@ public class InterfaceManager {
      */
     private void prints(Timetable timetable) {
 
+    }
+
+    public static void printFindNotesMessage(ArrayList<Note> filteredNotes) {
+        if (filteredNotes.isEmpty()) {
+            System.out.println(" Keyword returns no search result! Try other keywords");
+        } else {
+            System.out.println(" Here are the matching notes in your list:");
+            for (int i = 0; i < filteredNotes.size(); i++) {
+                System.out.println(" " + (i + 1) + "." + filteredNotes.get(i).toString());
+            }
+        }
     }
 }

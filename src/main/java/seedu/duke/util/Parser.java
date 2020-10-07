@@ -33,7 +33,7 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
  */
 public class Parser {
 
-    public Command parseCommand(String userInput) {
+    public Command parseCommand(String userInput) throws SystemException {
 
         String[] userCommandAndArguments = userInput.split(" ", 2);
         String commandString = userCommandAndArguments[0];
@@ -65,7 +65,7 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD_EVENT:
             // return prepareDeleteEvent(userMessage);
         case FindCommand.COMMAND_WORD:
-            // return prepareFind(userMessage);
+            return prepareFind(userMessage);
         case PinCommand.COMMAND_WORD:
             // return preparePin(userMessage);
         case TagCommand.COMMAND_WORD:
@@ -198,6 +198,14 @@ public class Parser {
         }
     }
 
+    private Command prepareFind(String userMessage) throws SystemException {
+        if (userMessage.isBlank()) {
+            throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+        }
+        return new FindCommand(userMessage);
+    }
+
+
     /*
     private Command prepareAddEvent(String userMessage) {
         return new AddCommand(event);
@@ -225,10 +233,6 @@ public class Parser {
 
      private Command prepareDeleteEvent(String userMessage) {
         return new EditCommand(index, false);
-     }
-
-     private Command prepareFind(String userMessage) {
-        return new FindCommand(keywords);
      }
 
      private Command preparePin(String userMessage) {

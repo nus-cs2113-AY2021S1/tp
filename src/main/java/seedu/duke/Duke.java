@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.ExitCommand;
+import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.timetable.Timetable;
 import seedu.duke.storage.StorageManager;
@@ -29,7 +30,7 @@ public class Duke {
     }
 
     /** Reads the user command and executes it until the user exits the program. */
-    private void runCommandLoop() {
+    private void runCommandLoop() throws SystemException {
         Command command;
 
         do {
@@ -50,7 +51,7 @@ public class Duke {
     }
 
     /** Runs the program until termination. */
-    private void run() {
+    private void run() throws SystemException {
         init();
         runCommandLoop();
         exit();
@@ -66,7 +67,7 @@ public class Duke {
     /**
      * Main entry-point for the application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SystemException {
         /*String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
