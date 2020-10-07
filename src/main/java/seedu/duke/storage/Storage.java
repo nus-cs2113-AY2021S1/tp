@@ -10,7 +10,7 @@ import seedu.duke.option.OptionListInterface;
 import seedu.duke.question.QuestionInterface;
 import seedu.duke.question.QuestionListInterface;
 import seedu.duke.TopicInterface;
-import seedu.duke.UiInterface;
+import seedu.duke.ui.UiInterface;
 
 import java.io.File;
 import java.io.FileReader;
