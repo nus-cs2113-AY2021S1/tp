@@ -7,8 +7,4 @@ class TagCommandTest {
     @Test
     void execute() {
     }
-
-    @Test
-    void testExecute() {
-    }
 }

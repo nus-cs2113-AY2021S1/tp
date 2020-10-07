@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
 
-class AddCommandTest {
+class DeleteTagCommandTest {
 
     @Test
     void execute() {
