@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 public class DateTimeParser {
     private static final String[] dateformatStrings = {"yyyy/M/d", "yyyy-M-d", "d/M/yy",
-            "d/M/yyyy", "d-M-yy", "d-M-yyyy"};
+        "d/M/yyyy", "d-M-yy", "d-M-yyyy"};
     private static final String[] timeformatStrings = {"h:m a", "hhmm a", "H:m", "HHmm"};
 
     /**
@@ -19,11 +19,13 @@ public class DateTimeParser {
      * @throws Exception if date format is not accepted.
      */
     public static LocalDate dateParser(String date) throws Exception {
-        for (String formatString : dateformatStrings) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formatString);
+        int i = 0;
+        while (i < dateformatStrings.length) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateformatStrings[i]);
             try {
                 return LocalDate.parse(date, formatter);
-            } catch (DateTimeException ignored) {
+            } catch (DateTimeException e) {
+                i++;
             }
         }
         throw new Exception("Something is wrong with the date!");
@@ -39,11 +41,13 @@ public class DateTimeParser {
      */
     public static LocalTime timeParser(String time) throws Exception {
         time = time.toUpperCase();
-        for (String formatString : timeformatStrings) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formatString);
+        int i = 0;
+        while (i < timeformatStrings.length) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(timeformatStrings[i]);
             try {
                 return LocalTime.parse(time, formatter);
-            } catch (DateTimeException ignored) {
+            } catch (DateTimeException e) {
+                i++;
             }
         }
         throw new Exception("Something is wrong with the time!");
