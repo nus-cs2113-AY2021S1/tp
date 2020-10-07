@@ -31,10 +31,10 @@ public class Planus {
     }
 
     private void run() {
-        ui.showWelcomeMessage();
         initProgram();
+        ui.showWelcomeMessage();
         while (!isExit) {
-            String userInput = getUserInput();
+            String userInput = ui.getUserInput();
             executeCommand(userInput);
         }
     }
@@ -44,11 +44,6 @@ public class Planus {
         storage.loadTasks(tasks);
         isExit = false;
         ui = new Ui(tasks);
-    }
-
-    private String getUserInput() {
-        Scanner input = new Scanner(System.in);
-        return input.nextLine();
     }
 
     private void executeCommand(String userInput) {

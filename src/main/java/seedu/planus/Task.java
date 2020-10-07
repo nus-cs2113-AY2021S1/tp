@@ -16,7 +16,6 @@ public class Task {
         date = dateStringToDate(dateString);
         time = timeStringToTime(timeString);
         priority = priorityStringToPriority(priorityString);
-
     }
 
     private LocalDate dateStringToDate(String dateString) {
