@@ -2,6 +2,4 @@
 Welcome to your SmartHomeBot V1.0!
 Load File Does not Exist. No contents will be loaded.
 ===================================================
-Enter command: File is empty
-File created
-Good bye!
+Enter command: Good bye!

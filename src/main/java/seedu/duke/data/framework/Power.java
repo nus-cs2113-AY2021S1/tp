@@ -119,7 +119,7 @@ public class Power {
     }
 
     public String toString() {
-        return String.valueOf(this.powerUsed);
+        return String.valueOf(this.totalPowerConsumption);
     }
 
 }
