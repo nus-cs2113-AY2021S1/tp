@@ -50,6 +50,7 @@ public class Duke {
             ui.printDividerLine();
             Command c = currentParse.parse(userInput);
             isExit = c.isExit();
+            c.execute(tasks, ui, storage);
         }
         ui.printByeMessage();
 
