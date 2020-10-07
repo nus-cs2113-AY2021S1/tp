@@ -35,7 +35,7 @@ public class Parser {
     //Groups of 2: (option name) (option value)
     private static final Pattern ARGS_PATTERN = Pattern.compile("-(\\w+)\\s([^-]+)");
     private final Hashtable<String, String> PARAMETERS = new Hashtable<>();
-    private final ArrayList<String> PARAMS = new ArrayList<>();
+    private  ArrayList<String> PARAMS = new ArrayList<>();
 
     public void parser(Ui ui) {
         String userInput = ui.readLine();
