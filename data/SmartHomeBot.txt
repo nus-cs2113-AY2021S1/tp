@@ -1,7 +1,2 @@
-[br1]
-br1|light1: Off: Off|25|Light|Off|0.0
-br1|light2: On: On|25|Light|On|0.24166666666666667
-br1|light3|25|Light|Off|0.0
-br1|light4|25|Light|Off|0.0
-br1|light7|25|Light|Off|0.0
-br1|light1|25|Light|Off|0.0
+[bedroom 1]
+bedroom 1|fan|500|Fan|Off|0.0

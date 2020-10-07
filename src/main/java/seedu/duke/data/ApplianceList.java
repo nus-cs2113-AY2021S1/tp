@@ -13,7 +13,11 @@ public class ApplianceList {
     }
 
     public void addAppliance(Appliance appliance) {
-        appliances.add(appliance);
+        if (!isAppliance(appliance)) {
+            appliances.add(appliance);
+        } else {
+            System.out.println("Appliance name already exist in the list, will not be created");
+        }
     }
 
     public void removeAppliance(int index) {
@@ -30,6 +34,17 @@ public class ApplianceList {
 
     public void setAppliance(int index, Appliance appliance) {
         appliances.set(index, appliance);
+    }
+
+    private Boolean isAppliance(Appliance toAddAppliance) {
+        boolean isExist = false;
+        for (Appliance a : appliances) {
+            if (a.getName().equals(toAddAppliance.getName())) {
+                isExist = true;
+                break;
+            }
+        }
+        return isExist;
     }
 
 }
