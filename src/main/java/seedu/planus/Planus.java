@@ -93,7 +93,8 @@ public class Planus {
         case COMMAND_LIST:
             //            showList();
             //            ui.displayAllByTime();
-            ui.displayAllByPriority();
+            //            ui.displayAllByPriority();
+            ui.testDayStructure();
             break;
         case COMMAND_BYE:
             exitProgram();

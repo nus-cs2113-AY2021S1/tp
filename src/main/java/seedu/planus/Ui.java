@@ -59,6 +59,12 @@ public class Ui {
         displayTasks((ArrayList<Task>) sorted);
     }
 
+    public void testDayStructure() {
+        LocalDate date = LocalDate.now();
+        DayStructure ds = new DayStructure(date, tasks);
+        out.print(ds);
+    }
+
     private void displayTasks(ArrayList<Task> tasks) {
         out.println("\nHere is your list of tasks:");
         for (Task task : tasks) {

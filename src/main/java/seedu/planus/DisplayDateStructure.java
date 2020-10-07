@@ -10,6 +10,6 @@ public class DisplayDateStructure {
 
     private LocalDate currentDate = LocalDate.now();
     private DayStructure day;
-
+    protected int index = 0;
 
 }
