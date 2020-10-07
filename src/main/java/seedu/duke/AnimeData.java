@@ -3,14 +3,14 @@ package seedu.duke;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class AnimeList {
+public class AnimeData {
     public ArrayList<Anime> animeList;
 
-    public AnimeList(ArrayList<Anime> animeList) {
+    public AnimeData(ArrayList<Anime> animeList) {
         this.animeList = animeList;
     }
 
-    public AnimeList() {
+    public AnimeData() {
         this.animeList = new ArrayList<>();
     }
 

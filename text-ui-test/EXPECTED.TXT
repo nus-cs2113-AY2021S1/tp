@@ -18,6 +18,9 @@ Characters voiced by Yoshitsugu Matsuoka are:
 ===Running Sample Anime Class===
 Release Date in String: 30/Dec/2020
 ===End of Sample Anime Class===
+Anime-2020
+Uhh.. It's empty.. :(
+
 ===Running Sample Anime List Class===
 Name: Adventures of Adventurers
 Episodes: 24
