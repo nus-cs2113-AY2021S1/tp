@@ -5,20 +5,25 @@ import java.util.Scanner;
 
 public class Duke {
     private static ArrayList<Watchlist> watchlists;
+    private static Ui ui;
 
     /**
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
+        ui = new Ui();
         quickStart();
         addVoice();
         addAnime();
 
         watchlists = new ArrayList<>();
-        createWatchlist("Anime-2020");      // Sample usage [Parameter to be updated to use user input]
+        createWatchlist("-n Anime-2020");      // Sample usage [Parameter to be updated to use user input]
         for (Watchlist watchlist : watchlists) {        // Verification of Watchlist content
             System.out.println(watchlist.toString());
         }
+
+        getCommand();
+        ui.bye();
     }
 
     private static void quickStart() {
@@ -40,6 +45,50 @@ public class Duke {
 
         UserProfile newProfile = new UserProfile(name, dob, gender);
         System.out.println(newProfile);
+    }
+
+    /**
+     * Prints the main menu of the application
+     * and requests for command
+     *
+     */
+    private static void getCommand() {
+        // Request for first command
+        System.out.println("What would you like to do today?");
+        Scanner input = new Scanner(System.in);
+
+        while (true) {
+            ui.showMainMenu();
+
+            String fullCommand = input.nextLine();
+            String[] fullCommandSplit = fullCommand.split(" ", 2);
+
+            String description = "";
+            String command = fullCommandSplit[0];
+            if (fullCommandSplit.length > 1) {
+                description = fullCommandSplit[1];
+            }
+
+            if (command.equals("addprofile")) {
+                addProfile(description);
+            } else if (command.equals("editprofile")) {
+                editProfile(description);
+            } else if (command.equals("browse")) {
+                browseAnime(description);
+            } else if (command.equals("watchlist")) {
+                createWatchlist(description);
+            } else if (command.equals("add")) {
+                addToWatchlist(description);
+            } else if (command.equals("bookmark")) {
+                bookmarkAnime(description);
+            } else if (command.equals("help")) {
+                showHelp();
+            } else if (command.equals("exit")) {
+                return;
+            } else {
+                ui.showInvalidCommand();
+            }
+        }
     }
 
     private static void addVoice() {
@@ -75,8 +124,71 @@ public class Duke {
         System.out.println("===End of Sample Anime Class===");
     }
 
-    private static void createWatchlist(String watchlistName) {
+    private static void createWatchlist(String description) {
+        String[] descriptionSplit = description.split(" ", 2);
+        String commandOption = descriptionSplit[0];
+        String watchlistName = descriptionSplit[1];
         Watchlist newWatchlist = new Watchlist(watchlistName);
         watchlists.add(newWatchlist);
+    }
+
+    /**
+     * Adds a new user profile
+     */
+    private static void addProfile(String description) {
+        // Code to be added
+
+        // Print for testing
+        System.out.println("New profile added!");
+    }
+
+    /**
+     * Edits an existing user profile
+     */
+    private static void editProfile(String description) {
+        // Code to be added
+
+        // Print for testing
+        System.out.println("Profile edited!");
+    }
+
+    /**
+     * Browses the list of anime
+     */
+    private static void browseAnime(String description) {
+        // Code to be added
+
+        // Print for testing
+        System.out.println("Anime browsed!");
+    }
+
+    /**
+     * Adds an anime to current watchlist
+     */
+    private static void addToWatchlist(String description) {
+        // Code to be added
+
+        // Print for testing
+        System.out.println("Anime added");
+    }
+
+    /**
+     * Bookmarks an anime
+     */
+    private static void bookmarkAnime(String description) {
+        // Code to be added
+
+        // Print for testing
+        System.out.println("Anime bookmarked");
+    }
+
+    /**
+     * Shows help function
+     */
+    private static void showHelp() {
+        // Code to be added
+
+        // Print for testing
+        System.out.println("Help showed");
     }
 }
