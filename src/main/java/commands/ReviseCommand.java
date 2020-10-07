@@ -22,6 +22,12 @@ public class ReviseCommand extends Command {
     public static final String MESSAGE_NO_CARDS_IN_CHAPTER = "You currently have no cards in %1$s.";
     public static final String MESSAGE_NO_CARDS_DUE = "You have no cards due for revision in %1$s today.";
     public static final String MESSAGE_SHOW_ANSWER_PROMPT = "\n[enter s to show answer]";
+    public static final String MESSAGE_SHOW_RATING_PROMPT = "How well did you do for this card?\n"
+            + "[enter e(easy), m(medium), h(hard), c(cannot answer)]";
+    public static final String EASY = "e";
+    public static final String MEDIUM = "m";
+    public static final String HARD = "h";
+    public static final String CANNOT_ANSWER = "c";
 
     private final Chapter toRevise;
 
@@ -32,6 +38,7 @@ public class ReviseCommand extends Command {
     @Override
     public void execute(CardList cards, Ui ui) {
         ArrayList<Card> allCards = cards.getAllCards();
+        ArrayList<Card> repeatCards = new ArrayList<>();
         int cardCount = cards.getCardCount();
         if (cardCount == 0) {
             ui.showToUser(String.format(MESSAGE_NO_CARDS_IN_CHAPTER, toRevise));
@@ -41,8 +48,9 @@ public class ReviseCommand extends Command {
         int count = 1;
         for (Card c : allCards) {
             if (Scheduler.isDeadlineDue(c.getDueBy())) {
-                ui.showToUser("Question " + count + ":");
-                ui.showRevisionContent(c);
+                ui.showToUser("\nQuestion " + count + ":");
+                ui.showCard(c);
+                repeatCards = rateCard(ui, repeatCards, c);
                 count++;
             }
         }
@@ -50,7 +58,52 @@ public class ReviseCommand extends Command {
             ui.showToUser(String.format(MESSAGE_NO_CARDS_DUE, toRevise));
             return;
         }
+
+        repeatRevision(ui, repeatCards, count);
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
+    }
+
+    private ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards, Card c) {
+        String input = ui.getRating();
+        boolean isInvalid = true;
+        while (isInvalid) {
+            switch (input.toLowerCase()) {
+            case EASY:
+                c.setDueBy(Scheduler.computeEasyDeadline(c.getPreviousInterval()));
+                isInvalid = false;
+                break;
+            case MEDIUM:
+                c.setDueBy(Scheduler.computeMediumDeadline(c.getPreviousInterval()));
+                isInvalid = false;
+                break;
+            case HARD:
+                c.setDueBy(Scheduler.computeHardDeadline(c.getPreviousInterval()));
+                isInvalid = false;
+                break;
+            case CANNOT_ANSWER:
+                repeatCards.add(c);
+                isInvalid = false;
+                break;
+            default:
+                ui.showToUser("You have entered an invalid input, please try again.");
+                input = ui.getRating();
+            }
+        }
+        return repeatCards;
+    }
+
+    private void repeatRevision(Ui ui, ArrayList<Card> cards, int count) {
+        while (cards.size() != 0) {
+            System.out.println(cards.size());
+            ArrayList<Card> repeatCards = new ArrayList<>();
+            for (Card c : cards) {
+                ui.showToUser("\nQuestion " + count + ":");
+                ui.showCard(c);
+                repeatCards = rateCard(ui, repeatCards, c);
+                count++;
+            }
+            cards = new ArrayList<>(repeatCards);
+        }
     }
 
     @Override

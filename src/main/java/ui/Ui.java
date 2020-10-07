@@ -9,10 +9,12 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static commands.ReviseCommand.MESSAGE_NO_CARDS_DUE;
-import static commands.ReviseCommand.MESSAGE_NO_CARDS_IN_CHAPTER;
+import static commands.ReviseCommand.CANNOT_ANSWER;
+import static commands.ReviseCommand.EASY;
+import static commands.ReviseCommand.HARD;
+import static commands.ReviseCommand.MEDIUM;
 import static commands.ReviseCommand.MESSAGE_SHOW_ANSWER_PROMPT;
-import static commands.ReviseCommand.MESSAGE_SUCCESS;
+import static commands.ReviseCommand.MESSAGE_SHOW_RATING_PROMPT;
 
 public class Ui {
     private final Scanner in;
@@ -36,7 +38,11 @@ public class Ui {
     }
 
     public void showWelcome() {
-        out.println("Welcome to Kaji!");
+        out.println("Welcome to Kaji!\n");
+    }
+
+    public void printEmptyLine() {
+        out.println();
     }
 
     public void showCardAdded(Card card, int cardCount) {
@@ -64,7 +70,7 @@ public class Ui {
         out.println(message);
     }
 
-    public void showRevisionContent(Card c) {
+    public void showCard(Card c) {
         out.println(c.getQuestion() + MESSAGE_SHOW_ANSWER_PROMPT);
         getAnswerInput(c);
     }
@@ -76,6 +82,11 @@ public class Ui {
             input = in.nextLine();
         }
         out.println(c.getAnswer());
+    }
+
+    public String getRating() {
+        out.println(MESSAGE_SHOW_RATING_PROMPT);
+        return in.nextLine();
     }
 
     public void showExit() {
