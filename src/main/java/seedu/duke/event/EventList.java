@@ -33,7 +33,7 @@ public class EventList {
                                                    LocalTime startTime, LocalTime endTime) {
         ArrayList<Event> eventsInTimeRange = new ArrayList<>();
 
-        for (Event event: events) {
+        for (Event event : events) {
             boolean eventIsBetweenDate = event.date.isAfter(startDate) && event.date.isBefore(endDate);
             boolean eventIsBetweenTime = event.time.isAfter(startTime) && event.time.isBefore(endTime);
 
@@ -43,5 +43,13 @@ public class EventList {
         }
 
         return eventsInTimeRange;
+    }
+
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
+
+    public Event getNewestEvent() {
+        return events.get(events.size() - 1);
     }
 }

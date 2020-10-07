@@ -10,6 +10,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import seedu.duke.data.UserData;
+import seedu.duke.storage.Storage;
+import seedu.duke.ui.Ui;
 
 /**
  * Command to check availability.
@@ -25,8 +30,8 @@ public class CheckCommand extends Command {
         this.command = command;
     }
 
-    //@Override
-    public void execute(EventList events, Ui ui, Storage storage) {
+    @Override
+    public void execute(UserData data, Ui ui, Storage storage) {
         String checkDate = command.replaceFirst("check", "").trim();
         String[] datesAndTime = checkDate.split(";");
 
@@ -36,7 +41,13 @@ public class CheckCommand extends Command {
         LocalTime startTime = getTime(datesAndTime[1].trim());
         LocalTime endTime = getTime(datesAndTime[3].trim());
 
-        ArrayList<Event> eventsInTimeRange = events.checkEventsInTimeRange(startDate, endDate, startTime, endTime);
+        ArrayList<Event> eventsInTimeRange = new ArrayList<>();
+        ArrayList<String> eventTypes = (ArrayList<String>) Arrays.asList("Personal", "Timetable", "Zoom");
+        for (String type: eventTypes) {
+            EventList eventsList = data.getEventList(type);
+            eventsInTimeRange.addAll(eventsList.checkEventsInTimeRange(startDate, endDate, startTime, endTime));
+        }
+        
         //in place of a UI function
         for (Event event: eventsInTimeRange) {
             System.out.println(event);
@@ -82,5 +93,4 @@ public class CheckCommand extends Command {
 
         return time;
     }
-
 }

@@ -2,16 +2,19 @@ package seedu.duke.data;
 
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
+import seedu.duke.event.Goal;
 
 import java.util.ArrayList;
 
 public class UserData {
     private ArrayList<EventList> eventLists = new ArrayList<>();
+    private Goal goal;
 
     public UserData() {
         eventLists.add(new EventList("Personal"));
         eventLists.add(new EventList("Timetable"));
         eventLists.add(new EventList("Zoom"));
+        setGoal(null);
     }
 
     public UserData(ArrayList<EventList> eventLists) {
@@ -29,5 +32,27 @@ public class UserData {
             }
         }
         return null; //change this to throw exception, list not found.
+    }
+
+    public ArrayList<EventList> getAllEventLists() {
+        return eventLists;
+    }
+
+    /**
+     * Sets the user's goal.
+     *
+     * @param goal to set to.
+     */
+    public void setGoal(Goal goal) {
+        this.goal = goal;
+    }
+
+    /**
+     * Returns the user's goal.
+     *
+     * @return user's goal.
+     */
+    public Goal getGoal() {
+        return goal;
     }
 }
