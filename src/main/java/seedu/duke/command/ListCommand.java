@@ -1,10 +1,8 @@
 package seedu.duke.command;
 
-import seedu.duke.event.EventList;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
-
-import java.util.ArrayList;
+import seedu.duke.data.UserData;
 
 /**
  * Command to list events.
@@ -20,8 +18,8 @@ public class ListCommand extends Command {
         this.command = command;
     }
 
-    /*@Override
-    public void execute(ArrayList<EventList> eventLists, Ui ui, Storage storage) {
-        ui.printList(eventLists);
-    }*/
+    @Override
+    public void execute(UserData data, Ui ui, Storage storage) {
+        ui.printList(data.getAllEventLists());
+    }
 }

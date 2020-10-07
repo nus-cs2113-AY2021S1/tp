@@ -1,10 +1,8 @@
 package seedu.duke.command;
 
-import seedu.duke.event.EventList;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
-
-import java.util.ArrayList;
+import seedu.duke.data.UserData;
 
 /**
  * Command to end program seedu.duke.
@@ -17,8 +15,9 @@ public class ByeCommand extends Command {
         this.isExit = true;
     }
 
-    /*@Override
-    public void execute(ArrayList<EventList> eventLists, Ui ui, Storage storage) {
-          ui.printByeMessage();
-    }*/
+    @Override
+    public void execute(UserData data, Ui ui, Storage storage) {
+        ui.printByeMessage();
+    }
+
 }

@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -16,24 +17,33 @@ import java.util.Scanner;
  * Saves and loads the events list to and from an external txt file.
  */
 public class Storage {
-    public Path path;
+    public Path fileNamePath;
+    public Path fileDirectoryPath;
 
     /**
      * Creates a new storage manager that can load and save files to and from a given filepath.
      *
-     * @param path is the filepath which files are saved to and loaded from
+     * @param initPath is the name of the filepath which files are saved to and loaded from
      */
-    public Storage(Path path) {
-        this.path = path;
+    public Storage(String initPath) {
+        String locationOfFileName = initPath + ",data.txt";
+
+        //Directory words only contain info on making the folder
+        //File words contain the info on how to make the file itself
+        String[] pathDirectoryWords = initPath.split(",");
+        String[] pathFileWords = initPath.split(",");
+
+        fileDirectoryPath = createPath(pathDirectoryWords);
+        fileNamePath = createPath(pathFileWords);
     }
 
     /**
      * Creates a folder for the events list if it does not exist yet.
      */
     protected void initialiseFolder() {
-        if (!Files.exists(path)) {
+        if (!Files.exists(fileNamePath)) {
             try {
-                Files.createDirectory(path);
+                Files.createDirectory(fileDirectoryPath);
             } catch (IOException e) {
                 System.out.println("IO exception encountered when creating data directory.");
             }
@@ -62,5 +72,36 @@ public class Storage {
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
         List<String> eventInfo;
         ArrayList<Event> loadedEventsList = new ArrayList<>();
+    }
+
+    /**
+     * Function accepts a string and creates a path object originating from the user directory.
+     *
+     * @param pathName is a string array which accepts in the path name words, each word represents a folder
+     * @return Path object indicating the location of the pathName keyed in initially.
+     */
+    private Path createPath(String[] pathName) {
+
+        String origin = System.getProperty("user.dir");
+        Path newPath = Paths.get(origin, pathName);
+        return newPath;
+    }
+
+    /**
+     * Function gives a string containing the Directory location.
+     *
+     * @return String containing directory location
+     */
+    public String getDirectoryString() {
+        return fileDirectoryPath.toString();
+    }
+
+    /**
+     * Function gives a string containng the file full location path name.
+     *
+     * @return String containing the file's location
+     */
+    public String getFileLocationString() {
+        return fileNamePath.toString();
     }
 }

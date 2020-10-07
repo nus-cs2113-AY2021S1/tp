@@ -1,15 +1,12 @@
 package seedu.duke.command;
 
 import seedu.duke.data.UserData;
-import seedu.duke.event.EventList;
 import seedu.duke.event.Personal;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 
 /**
  * Command to add events.
@@ -43,7 +40,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(ArrayList<EventList> eventsList, Ui ui, Storage storage, UserData userData) {
+    public void execute(UserData data, Ui ui, Storage storage) {
         String[] argumentWords = argument.split(";");
         //
         // example input : add Zoom math; 27/9/2020; 1300

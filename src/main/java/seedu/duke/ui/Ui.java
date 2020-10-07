@@ -44,8 +44,16 @@ public class Ui {
 
     }
 
-    public void printGoalAddedMessage() {
+    public void printGoalMessage(Event goal) {
+        if (goal != null) {
+            System.out.println("Goal: " + goal);
+        } else {
+            System.out.println("You have no goal! Why not set one now?");
+        }
+    }
 
+    public void printChangeGoalMessage(Event goal) {
+        System.out.println("Goal changed to: " + goal);
     }
 
     public void printCheckMessage() {

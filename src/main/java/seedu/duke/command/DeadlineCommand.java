@@ -1,5 +1,9 @@
 package seedu.duke.command;
 
+import seedu.duke.data.UserData;
+import seedu.duke.storage.Storage;
+import seedu.duke.ui.Ui;
+
 /**
  * Command to set deadline for personal events.
  */
@@ -14,8 +18,8 @@ public class DeadlineCommand extends Command {
         this.command = command;
     }
 
-//    @Override
-//    public void execute(TaskList tasks, Ui ui, Storage storage) {
-//
-//    }
+    @Override
+    public void execute(UserData data, Ui ui, Storage storage) {
+
+    }
 }
