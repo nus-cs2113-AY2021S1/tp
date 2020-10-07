@@ -22,14 +22,14 @@ public class Ui implements UiInterface {
 
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String HORIZONTAL_LINE = "-------------------------------------------------------------------";
-    private static final String MESSAGE_ABOUT = "E-Duke-8 is a desktop app that helps CS2113/T students learn and " +
-            "understand software engineering and OOP principles through a gamified platform and enhance their " +
-            "learning experience. It also consolidates key concepts for easy revision. ";
+    private static final String MESSAGE_ABOUT = "E-Duke-8 is a desktop app that helps CS2113/T students learn and "
+            + "understand software engineering and OOP principles through a gamified platform and enhance their "
+            + "learning experience. It also consolidates key concepts for easy revision. ";
     private static final String MESSAGE_GREETINGS = "Hello! I'm E-Duke-8\n What can I do for you?";
     private static final String MESSAGE_EXIT = "Bye bye. Hope you have a nice day and see you soon!";
     private static final String MESSAGE_HELP = "These are the commands that you can used:";
-    private static final String MESSAGE_COMMANDS = "1) about\n2) help\n3) topics\n4) textbook\n5) quiz\n6) stats\n" +
-            "7) exit";
+    private static final String MESSAGE_COMMANDS = "1) about\n2) help\n3) topics\n4) textbook\n5) quiz\n6) stats\n"
+            + "7) exit";
     private static final String MESSAGE_QUIZ_START = "Start of quiz:";
     private static final String MESSAGE_QUIZ_END = "This is the end of the quiz!\nHope you have learnt something new!";
     private static final String MESSAGE_ANSWER_WRONG = "Oops! Please try again! Do visit the textbook to read up more.";
@@ -47,7 +47,8 @@ public class Ui implements UiInterface {
         System.out.println(HORIZONTAL_LINE);
     }
 
-    public void printGreetMessage(){
+    public void printGreetMessage() {
+        System.out.println(LOGO);
         printMessage(MESSAGE_GREETINGS);
     }
 
@@ -57,7 +58,7 @@ public class Ui implements UiInterface {
 
     public void printOption(OptionInterface option, int optionNumber) {
         System.out.println(optionNumber + ") " + option.getOptionDescription());
-        if(optionNumber == LAST_OPTION) {
+        if (optionNumber == LAST_OPTION) {
             System.out.println(HORIZONTAL_LINE);
         }
     }
@@ -117,10 +118,10 @@ public class Ui implements UiInterface {
     }
 
     private void printStartQuizTopics(String topicsChosen) {
-        if(topicsChosen.contains(",")) {
+        if (topicsChosen.contains(",")) {
             int indexOfSplit = topicsChosen.indexOf(",");
             String topics1 = topicsChosen.substring(0, indexOfSplit).trim();
-            String topics2 = topicsChosen.substring(indexOfSplit+1).trim();
+            String topics2 = topicsChosen.substring(indexOfSplit + 1).trim();
             System.out.println("The topics chosen are: " + topics1 + " and " + topics2);
         } else {
             System.out.println("The topic chosen is: " + topicsChosen);
@@ -128,7 +129,7 @@ public class Ui implements UiInterface {
     }
 
     private void printStartQuizQuestions(int numberOfQuestionsChosen) {
-        System.out.println("You have chosen to complete "+ numberOfQuestionsChosen + "question");
+        System.out.println("You have chosen to complete " + numberOfQuestionsChosen + "question");
         if (numberOfQuestionsChosen < 2) {
             System.out.println(".");
         } else {
