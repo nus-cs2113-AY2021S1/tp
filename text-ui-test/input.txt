@@ -12,6 +12,7 @@ todo read book
 event project meeting /at 060606
 deadline return book /by June 6th
 deadline return book /by 080606
+exam CS2113 open book /at 020202 1200
 find book
 list
 done 3

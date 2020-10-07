@@ -128,7 +128,7 @@ public class Ui {
             }
         }
         if (eventCounts == 0) {
-            System.out.println("Opps, there seems no events stored in your list!");
+            System.out.println("Oops, there are no events stored in your list!");
         }
     }
 
@@ -228,13 +228,17 @@ public class Ui {
             System.out.println("Error: Please key in the event in this format: event ... /at ddMMyy");
             break;
         case "lecture":
-            System.out.println("Error: Please key in the event in this format: lecture ... / date time");
+            System.out.println("Error: Please key in the lecture in this format: lecture ... / date time");
             break;
         case "tutorial":
-            System.out.println("Error: Please key in the event in this format: tutorial ... / date time");
+            System.out.println("Error: Please key in the tutorial in this format: tutorial ... / date time");
             break;
         case "lab":
-            System.out.println("Error: Please key in the event in this format: lab ... / date time");
+            System.out.println("Error: Please key in the lab in this format: lab ... / date time");
+            break;
+        case "exam":
+            System.out.println("Error: Please key in the exam in this format: exam <module code> <exam details> /at "
+                    + "ddMMyy HHmm");
             break;
         case "invalid command":
             System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
