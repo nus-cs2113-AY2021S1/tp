@@ -1,6 +1,5 @@
 package seedu.duke;
 
-import com.sun.javadoc.Tag;
 import seedu.duke.command.Command;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.data.notebook.Notebook;

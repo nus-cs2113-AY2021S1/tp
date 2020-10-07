@@ -65,26 +65,13 @@ public class AddCommand extends Command {
             }
 
             // rebind the tags if there are duplicated tags
-            int numTagsToCheck = note.getTags().size();
-            for (int i = 0; i < numTagsToCheck; ++i) {
-                Tag tag = note.getTags().get(0);
-
-                Tag existingTag = tagManager.getTag(tag.getTagName());
-
-                note.getTags().remove(tag);
-
-                if (existingTag == null) {
-                    tagManager.createTag(tag);
-                    tagManager.tagNote(note, tag);
-                } else if (!note.getTags().contains(existingTag)) {
-                    tagManager.tagNote(note, existingTag);
-                }
-
-            }
+            tagManager.rebindTags(note);
             notebook.addNote(note);
             return "New note added: " + note.getTitle();
         } catch (SystemException exception) {
             return exception.getMessage();
         }
     }
+
+
 }

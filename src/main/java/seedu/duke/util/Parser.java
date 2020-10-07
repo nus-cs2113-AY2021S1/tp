@@ -112,7 +112,6 @@ public class Parser {
                         throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
                     }
                     Tag tag;
-
                     String[] tagInfo = infoDetails[1].split(" ", 2);
 
                     if (tagInfo[0].isBlank()) {
@@ -251,11 +250,11 @@ public class Parser {
          String tagName = "";
 
          try {
-             String[] tagInfo = userMessage.split(" ", 2);
-             if (tagInfo[0].isBlank()) {
+
+             if (userMessage.isBlank()) {
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
              } else {
-                tagName = tagInfo[0].trim();
+                tagName = userMessage.trim();
              }
          } catch (NullPointerException exception) {
              return new IncorrectCommand("Missing description!");

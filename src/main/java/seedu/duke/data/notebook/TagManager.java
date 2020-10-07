@@ -196,4 +196,22 @@ public class TagManager {
         }
         return tagList;
     }
+
+    public void rebindTags(Note note) {
+        int numTagsToCheck = note.getTags().size();
+        for (int i = 0; i < numTagsToCheck; ++i) {
+            Tag tag = note.getTags().get(0);
+
+            Tag existingTag = getTag(tag.getTagName());
+
+            note.getTags().remove(tag);
+
+            if (existingTag == null) {
+                createTag(tag);
+                tagNote(note, tag);
+            } else if (!note.getTags().contains(existingTag)) {
+                tagNote(note, existingTag);
+            }
+        }
+    }
 }
