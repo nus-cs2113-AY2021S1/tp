@@ -9,6 +9,9 @@ import java.util.ArrayList;
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of flashcards available. \n"
+            + "Example: " + COMMAND_WORD + "\n";
+
     @Override
     public void execute(CardList cards, Ui ui) {
         ArrayList<Card> allCards = cards.getAllCards();
