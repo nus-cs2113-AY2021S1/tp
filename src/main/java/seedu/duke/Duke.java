@@ -54,7 +54,6 @@ public class Duke {
                 WordList.listWords();
                 break;
             default:
-                System.out.println("Donno what you talking about bye");
                 isExit = true;
                 break;
             }
