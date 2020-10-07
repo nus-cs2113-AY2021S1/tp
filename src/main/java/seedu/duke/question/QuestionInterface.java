@@ -1,11 +1,16 @@
-package seedu.duke;
+package seedu.duke.question;
+
+import seedu.duke.OptionInterface;
+
+import java.util.ArrayList;
 
 public interface QuestionInterface {
+
     String getQuestionDescription();
 
-    void showOptions();
+    ArrayList<OptionInterface> getOptions();
 
-    void showHint();
+    String getHint();
 
     boolean hintWasShown();
 
