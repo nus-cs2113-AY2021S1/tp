@@ -33,3 +33,13 @@ Release Date:15/Apr/1997
 Rating: 80
 Genre: [Adventure, Action, Dance]
 ===End of Sample Anime List Class===
+What would you like to do today?
+1. Add a profile (addprofile)
+2. Edit a profile (editprofile)
+3. Browse through all anime (browse)
+4. Create a watchlist (watchlist)
+5. Add to watchlist (add)
+6. Bookmark an anime (bookmark)
+7. Help (help)
+8. Exit (exit)
+
