@@ -7,7 +7,7 @@ public class InvalidCommand extends Command {
     }
 
     @Override
-    public boolean execute(FoodList foodlist, ExerciseList exerciseList, Storage storage) {
+    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage) {
         UI.printInvalidCommandError();
         return false;
     }
