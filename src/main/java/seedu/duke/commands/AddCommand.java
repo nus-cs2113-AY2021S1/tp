@@ -5,6 +5,7 @@ import seedu.duke.book.Book;
 import seedu.duke.book.BookList;
 import seedu.duke.category.Category;
 import seedu.duke.category.CategoryList;
+import seedu.duke.category.CategoryParser;
 import seedu.duke.lists.ListManager;
 import seedu.duke.quote.Quote;
 import seedu.duke.quote.QuoteList;
@@ -13,18 +14,8 @@ import seedu.duke.rating.RatingList;
 import seedu.duke.ui.TextUi;
 
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class AddCommand extends Command {
-    public static final int RATING_ONE = 1;
-    public static final int RATING_FIVE = 5;
-    private static final String TAG_BOOK = "-b";
-    private static final String TAG_QUOTE = "-q";
-    private static final String TAG_RATING = "-r";
-    private static final String TAG_CATEGORY = "-c";
-
-    private static final String ERROR_INVALID_QUOTE_NUM = "Invalid quote number specified!";
-
     private String type;
     private String information;
 
@@ -48,7 +39,7 @@ public class AddCommand extends Command {
             break;
         case TAG_CATEGORY:
             CategoryList categories = (CategoryList) listManager.getList(ListManager.CATEGORY_LIST);
-            addCategoryToBookAndQuote(categories, ui, listManager);
+            addCategoryToBookOrQuote(categories, ui, listManager);
             break;
         case TAG_RATING:
             RatingList ratings = (RatingList) listManager.getList(ListManager.RATING_LIST);
@@ -86,46 +77,19 @@ public class AddCommand extends Command {
 
     }
 
-    private void addCategoryToBookAndQuote(CategoryList categories, TextUi ui, ListManager listManager) {
+    private void addCategoryToBookOrQuote(CategoryList categories, TextUi ui, ListManager listManager) {
         String[] tokens = information.split(" ");
-        Stack<String> parameters = convertStringArrayToStack(tokens);
+        String[] parameters = CategoryParser.getRequiredParameters(tokens);
         executeParameters(categories, parameters, ui, listManager);
     }
 
-    private Stack<String> convertStringArrayToStack(String[] tokens) {
-        Stack<String> parameters = new Stack<>();
-        for (String token : tokens) {
-            parameters.push(token);
-        }
-        return parameters;
-    }
-
-    private void executeParameters(CategoryList categories, Stack<String> parameters, TextUi ui,
-                                   ListManager listManager) {
-        String categoryName;
-        String bookTitle = null;
-        int quoteNum = -1;
-
+    private void executeParameters(CategoryList categories, String[] parameters, TextUi ui, ListManager listManager) {
         try {
-            String object = "";
-            while (!parameters.empty()) {
-                String item = parameters.pop();
-                if (item.equals(TAG_BOOK)) {
-                    bookTitle = object.trim();
-                    object = "";
-                    continue;
-                } else if (item.equals(TAG_QUOTE)) {
-                    quoteNum = Integer.parseInt(object.trim());
-                    object = "";
-                    continue;
-                }
-                object = item + " " + object;
-            }
-            categoryName = object.trim();
+            String categoryName = parameters[0];
+            String bookTitle = parameters[1];
+            int quoteNum = Integer.parseInt(parameters[2]);
 
-            if (!categories.doesCategoryExist(categoryName)) {
-                categories.add(new Category(categoryName));
-            }
+            addCategoryToList(categories, categoryName);
 
             Category category = categories.getCategoryByName(categoryName);
             if (addCategoryToBook(category, bookTitle, listManager)) {
@@ -137,9 +101,15 @@ public class AddCommand extends Command {
                 ArrayList<Quote> quotes = quoteList.getList();
                 ui.printAddCategoryToQuote(quotes.get(quoteNum).getQuote(), category.getCategoryName());
             }
-
+            ui.printCategorySize(category);
         } catch (NumberFormatException e) {
             System.out.println(ERROR_INVALID_QUOTE_NUM);
+        }
+    }
+
+    private void addCategoryToList(CategoryList categories, String categoryName) {
+        if (!categories.doesCategoryExist(categoryName)) {
+            categories.add(new Category(categoryName));
         }
     }
 
@@ -153,6 +123,7 @@ public class AddCommand extends Command {
         for (Book book : books) {
             if (book.getTitle().equals(bookTitle)) {
                 book.setCategory(category);
+                category.getBooks().add(book);
                 return true;
             }
         }
@@ -167,7 +138,9 @@ public class AddCommand extends Command {
         QuoteList quoteList = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
         ArrayList<Quote> quotes = quoteList.getList();
         try {
-            quotes.get(quoteNum).setCategory(category);
+            Quote quote = quotes.get(quoteNum);
+            quote.setCategory(category);
+            category.getQuotes().add(quote);
         } catch (IndexOutOfBoundsException e) {
             System.out.println(ERROR_INVALID_QUOTE_NUM);
             return false;
