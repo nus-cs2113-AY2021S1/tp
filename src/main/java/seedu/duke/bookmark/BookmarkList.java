@@ -61,7 +61,7 @@ public class BookmarkList {
     }
 
     /**
-     * Returns the number of tasks in the list
+     * Returns the number of tasks in the list.
      *
      * @return the size of the taskList.
      */
