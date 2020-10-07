@@ -56,6 +56,7 @@ public class Parser {
         default:
             throw new CustomException(ExceptionType.INVALID_COMMAND);
         }
+        com.executeCommand();
         return com.isOngoing();
 
     }
