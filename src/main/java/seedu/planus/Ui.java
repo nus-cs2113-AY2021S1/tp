@@ -3,7 +3,6 @@ package seedu.planus;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +10,6 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Ui {
-    //    private final int DISPLAY_LENGTH = 140;
-    //    private final int DISPLAY_HEIGHT = 50;
-
-    //    private char[][] screen = new char[DISPLAY_HEIGHT][DISPLAY_LENGTH];
-    private char[][] screen = null;
-    private String message = null;
     private final Scanner in;
     private final PrintStream out;
     private ArrayList<Task> tasks;
@@ -59,12 +52,6 @@ public class Ui {
         displayTasks((ArrayList<Task>) sorted);
     }
 
-    public void testDayStructure() {
-        LocalDate date = LocalDate.now();
-        DayStructure ds = new DayStructure(date, tasks);
-        out.print(ds);
-    }
-
     private void displayTasks(ArrayList<Task> tasks) {
         out.println("\nHere is your list of tasks:");
         for (Task task : tasks) {
@@ -73,24 +60,22 @@ public class Ui {
         out.println();
     }
 
-    private void generateScreenWeeklyView() {
-        screen = new char[21][120];
-        for (int i = 0; i <= 20; i++) {
-            for (int j = 0; j <= 119; j++) {
-                if (i % 20 == 0 || j % 17 == 0) {
-                    screen[i][j] = '*';
-                } else {
-                    screen[i][j] = ' ';
-                }
-            }
-        }
+    public void showWelcomeMessage() {
+        out.println("\nWelcome to\n"
+                + "    ____  __      _   ____  _______\n"
+                + "   / __ \\/ /___ _/ | / / / / / ___/\n"
+                + "  / /_/ / / __ `/  |/ / / / /\\__ \\ \n"
+                + " / ____/ / /_/ / /|  / /_/ /___/ / \n"
+                + "/_/   /_/\\__,_/_/ |_/\\____//____/  "
+                + "v1.0\n");
     }
 
-    public void printScreen() {
-        generateScreenWeeklyView();
-        for (char[] arr : screen) {
-            out.println(arr);
-        }
+    public void showCommands() {
+        System.out.println("\nList of available commands:");
+        System.out.println("- help: show list of available commands");
+        System.out.println("- add: add a task");
+        System.out.println("- list: show list of tasks");
+        System.out.println("- bye: exit the program\n");
     }
 
     public Month getMonth() {
@@ -101,19 +86,4 @@ public class Ui {
         this.month = month;
     }
 
-    public char[][] getScreen() {
-        return screen;
-    }
-
-    public void setScreen(char[][] screen) {
-        this.screen = screen;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }
