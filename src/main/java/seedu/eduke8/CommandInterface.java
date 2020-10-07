@@ -1,6 +1,6 @@
-package seedu.duke;
+package seedu.eduke8;
 
-import seedu.duke.storage.StorageInterface;
+import seedu.eduke8.storage.StorageInterface;
 
 public interface CommandInterface {
     void execute(TopicListInterface topics, StorageInterface storage);

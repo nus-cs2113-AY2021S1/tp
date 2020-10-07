@@ -1,8 +1,8 @@
-package seedu.duke;
+package seedu.eduke8;
 
 import java.util.Scanner;
 
-public class Duke {
+public class Eduke8 {
     /**
      * Main entry-point for the java.duke.Duke application.
      */

@@ -1,4 +1,4 @@
-package seedu.duke.hint;
+package seedu.eduke8.hint;
 
 import org.junit.jupiter.api.Test;
 

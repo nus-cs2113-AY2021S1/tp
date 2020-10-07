@@ -1,4 +1,4 @@
-package seedu.duke.question;
+package seedu.eduke8.question;
 
 import java.util.ArrayList;
 
