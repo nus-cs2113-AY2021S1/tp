@@ -18,4 +18,5 @@ list
 done 3
 delete 2
 list
+help
 bye
