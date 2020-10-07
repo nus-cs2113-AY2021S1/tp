@@ -3,7 +3,6 @@ import seedu.duke.command.AddBookmarkCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -63,27 +62,27 @@ public class Bookmark {
      * @return a list of strings containing the topic, URL and the description
      */
 
-    public static List<String> extractModuleDescriptionAndURL (String input) throws DukeException {
+    public static List<String> extractModuleDescriptionAndLink(String input) throws DukeException {
         input = input.substring(AddBookmarkCommand.ADD_KW.length()).trim();
         System.out.println(input);
-        List<String> moduleDescriptionURL = new ArrayList<String>(Arrays.asList(input.split(" ", 3)));
-        if (moduleDescriptionURL.size() == 2) {
-            moduleDescriptionURL.add(0, "");  // No entry for module
+        List<String> moduleDescriptionLink = new ArrayList<String>(Arrays.asList(input.split(" ", 3)));
+        if (moduleDescriptionLink.size() == 2) {
+            moduleDescriptionLink.add(0, "");  // No entry for module
         }
-        if (moduleDescriptionURL.size() != 3) {
+        if (moduleDescriptionLink.size() != 3) {
             throw new DukeException(DukeExceptionType.INVALID_URL_AND_DESCRIPTION);
         }
-        if (moduleDescriptionURL.get(1).isBlank() || moduleDescriptionURL.get(2).isBlank()) {
+        if (moduleDescriptionLink.get(1).isBlank() || moduleDescriptionLink.get(2).isBlank()) {
            throw new DukeException(DukeExceptionType.EMPTY_DESCRIPTION);
         }
-        if (!isURLValid(moduleDescriptionURL.get(2))) {
+        if (!isLinkValid(moduleDescriptionLink.get(2))) {
             throw new DukeException(DukeExceptionType.INVALID_URL_AND_DESCRIPTION);
         }
 
-        return moduleDescriptionURL;
+        return moduleDescriptionLink;
     }
 
-    private static Boolean isURLValid(String url) {
+    private static Boolean isLinkValid(String url) {
         if (url.startsWith("www.") || url.startsWith("https://")) {
             return true;
         }
