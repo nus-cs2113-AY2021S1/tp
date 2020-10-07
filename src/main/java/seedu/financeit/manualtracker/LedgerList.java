@@ -1,6 +1,6 @@
-package seedu.financeit.utils;
+package seedu.financeit.manualtracker;
 
-import seedu.financeit.manualtracker.Ledger;
+import seedu.financeit.utils.Printer;
 
 import java.util.ArrayList;
 
@@ -28,9 +28,11 @@ public class LedgerList {
     }
 
     public void printList() {
+        Printer.setTitle("List of Ledgers");
+        Printer.addRow("Ledger Number;Ledger Date");
         for (int i = 0; i < this.getSizeOfList(); i++) {
-            System.out.println(String.format("[%d] %s", i + 1, this.list.get(i)));
+            Printer.addRow(String.format("%s;%s", i + 1, this.list.get(i)));
         }
+        Printer.printList();
     }
-
 }

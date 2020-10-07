@@ -45,18 +45,18 @@ public class InputParser {
         try {
             this.matcher = RegexMatcher.regexMatcher(input, Constants.paramRegex);
             separator = this.getSeparator(input);
-            System.out.println(separator);
+            //System.out.println(separator);
             commandContentExist = true;
 
         } catch (java.lang.IllegalStateException exception) {
-            System.out.println("lol");
+            //System.out.println("lol");
             commandString = input;
         }
         if (commandContentExist) {
-            System.out.println(matcher.start());
+            //System.out.println(matcher.start());
             buffer = input.split(separator, 2);
             //command , /a param
-            System.out.println(buffer[0]);
+            //System.out.println(buffer[0]);
             buffer[1] = separator + buffer[1];
             commandString = buffer[0];
             String paramSubstring = buffer[1];

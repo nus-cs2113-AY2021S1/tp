@@ -1,16 +1,14 @@
 package seedu.financeit;
 
 import seedu.financeit.manualtracker.ManualTracker;
-import seedu.financeit.utils.CommandPacket;
 import seedu.financeit.utils.InputParser;
-import seedu.financeit.utils.Printer;
 
 public class Financeit {
     public static void main(String[] args) {
         InputParser inputParser = new InputParser();
         // String inputString = "mom /m mom -d dad /s son /d daughter";
         String inputString = "mom";
-        CommandPacket packet = inputParser.parseInput(inputString);
+       /* CommandPacket packet = inputParser.parseInput(inputString);
         packet.getParamTypes();
 
         Printer.setTitle("Test table");
@@ -36,7 +34,7 @@ public class Financeit {
                 {"Mary"}
         };
 
-        Printer.printList(input1);
+        Printer.printList(input1);*/
         ManualTracker.main();
     }
 }

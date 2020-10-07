@@ -155,20 +155,20 @@ public class ManualTracker {
 
     private static FiniteStateMachine.State handleMainMenu() {
         System.out.println("Enter something");
-        String[][] input = {
-                {"No.", "Command"},
-                {"1.", "Open ledger"},
-                {"2.", "New ledger"},
-                {"3.", "list ledgers"},
-                {"4", "delete ledgers"}
-        };
-        Printer.printList(input);
+        Printer.setTitle("List of Commands");
+        Printer.addRow("No.;Command;Input Format                  ");
+        Printer.addRow("1.;Open ledger;open /date <YYMMDD>");
+        Printer.addRow("2.;New ledger;new /date <YYMMDD>");
+        Printer.addRow("3.;list ledgers;list");
+        Printer.addRow("4.;delete ledgers;delete /date <YYMMDD>");
+        Printer.printList();
+
         packet = UiManager.handleInput();
-        System.out.println(packet);
-        System.out.println(packet.getCommandString());
+        //System.out.println(packet);
+        //System.out.println(packet.getCommandString());
         switch (packet.getCommandString()) {
         case "open":
-            System.out.println("done");
+            //System.out.println("done");
             return FiniteStateMachine.State.OPEN_LEDGER;
         case "new":
             return FiniteStateMachine.State.CREATE_LEDGER;

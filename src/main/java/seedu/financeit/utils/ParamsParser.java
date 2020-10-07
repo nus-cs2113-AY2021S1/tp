@@ -38,12 +38,12 @@ public class ParamsParser {
             //Separate into [paramType, rest of string]
             buffer = paramSubstring.split(" ", 2);
             String paramType = buffer[0];
-            System.out.println("paramt " + paramType);
+            //System.out.println("paramt " + paramType);
             boolean paramArgumentExist = buffer.length > 1;
             paramSubstring = " " + buffer[1] + " ";
             matcher = RegexMatcher.regexMatcher(paramSubstring, Constants.paramRegex);
             //Separate into [paramArgument, rest of string]
-            System.out.println("paramsub " + paramSubstring);
+            //System.out.println("paramsub " + paramSubstring);
 
             try {
                 if (buffer[1].trim().length() == 0) {
@@ -59,7 +59,7 @@ public class ParamsParser {
                     paramSubstring = paramSubstring.trim();
                 }
                 params.put(paramType, paramArgument);
-                System.out.println(params);
+                //System.out.println(params);
             } catch (java.lang.IllegalStateException exception) {
                 //This point is reached when there are no more params to parse.
 
