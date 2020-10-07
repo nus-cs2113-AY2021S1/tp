@@ -1,6 +1,6 @@
 package seedu.duke;
 
-public class AddCommand extends Command{
+public class AddCommand extends Command {
     @Override
     public void execute(FoodList foodlist,ExerciseList exerciseList, Storage storage) {
 
@@ -18,7 +18,7 @@ public class AddCommand extends Command{
                     int amountOfFood = Integer.parseInt(command.split(" ", 2)[1]);
                     foodlist.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood));
                 }
-            }catch (NumberFormatException | NullPointerException e){
+            } catch (NumberFormatException | NullPointerException e) {
                 System.out.println("Sorry calories have to be a number");
             }
         } else if (type.equals("exercise")) {
@@ -33,7 +33,7 @@ public class AddCommand extends Command{
                     int durationOfExercise = Integer.parseInt(command.split(" ", 2)[1]);
                     exerciseList.addExercise(new Exercise(nameOfExercise, amountOfCaloriesBurnt, durationOfExercise));
                 }
-            } catch (NumberFormatException | NullPointerException e){
+            } catch (NumberFormatException | NullPointerException e) {
                 System.out.println("Sorry calories have to be a number");
             }
         }
