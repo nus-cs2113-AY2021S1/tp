@@ -8,6 +8,8 @@ import seedu.duke.ui.Ui;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -51,13 +53,15 @@ class GoalCommandTest {
         command.execute(data, ui, null);
         command = new GoalCommand(null);
         command.execute(data, ui, null);
-        assertEquals(
-                "Goal changed to: " + inputString1
-                        + "\r\nGoal changed to: " + inputString2
-                        + "\r\nGoal: " + inputString2, outputStreamCaptor.toString().trim());
+        StringWriter expectedStringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(expectedStringWriter);
+        printWriter.println("Goal changed to: " + inputString1);
+        printWriter.println("Goal changed to: " + inputString2);
+        printWriter.println("Goal: " + inputString2);
+        printWriter.close();
+        String expected = expectedStringWriter.toString();
+        assertEquals(expected, outputStreamCaptor.toString());
     }
-
-    @Test
 
     @AfterEach
     public void tearDown() {
