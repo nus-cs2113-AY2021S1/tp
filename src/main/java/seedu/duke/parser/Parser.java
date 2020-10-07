@@ -41,6 +41,12 @@ public class Parser {
 
     public void parser() {
         String userInput = SCAN.nextLine();
+
+        if (userInput.equals(BYE)) {
+            System.out.println(BYE);
+            System.exit(0);
+        }
+
         Matcher cmdMatcher = CMD_PATTERN.matcher(userInput);
         if (cmdMatcher.matches()) { //Need to check if it matches, groupCount will always show 3
             String command = cmdMatcher.group(1); //capture first group (command)
@@ -149,9 +155,6 @@ public class Parser {
                     }
                 }
                 break;
-            case BYE:
-                System.out.println(BYE);
-                System.exit(0);
             default:
                 System.out.println("Invalid command!");
             }
