@@ -4,7 +4,7 @@ public class AddCommand extends Command{
 
 
     @Override
-    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage) {
+    public boolean execute(FoodList foodlist, ExerciseList exerciseList, Storage storage) {
 
     }
 }

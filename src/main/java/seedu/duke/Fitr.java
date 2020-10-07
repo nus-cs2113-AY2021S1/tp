@@ -6,7 +6,7 @@ public class Fitr {
     private ExerciseList exerciseList;
     private User user;
 
-    public Fitr (String filePathOfFoodList, String filePathOfExerciseList) {
+    public Fitr(String filePathOfFoodList, String filePathOfExerciseList) {
         storage = new Storage(filePathOfFoodList, filePathOfExerciseList);
         user = new User();
         try {
@@ -24,13 +24,15 @@ public class Fitr {
     }
 
     public void run() {
+        boolean isExit = false;
         UI.printGreetingMessage();
-        while(true) {
+        while(!isExit) {
             try {
                 String userInput = UI.read();
                 Command c = Parser.parse(userInput);
                 c.execute(foodList, exerciseList, storage);
-            } catch (Fitrexception e) {  //Please replace this with any exception when executing the command.
+                isExit = c.exit();
+            } catch (FitrException e) {  //Please replace this with any exception when executing the command.
                 UI.showError(e.getMessage()); //Please replace this with the corresponding error message in UI.
             }
         }
