@@ -1,7 +1,7 @@
 package seedu.duke.ui;
 
-import seedu.duke.project.Project;
 import seedu.duke.Task;
+import seedu.duke.project.Project;
 
 import java.util.Scanner;
 

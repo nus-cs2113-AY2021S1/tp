@@ -1,10 +1,6 @@
 package seedu.duke.project;
 
-import seedu.duke.Member;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Project {
 

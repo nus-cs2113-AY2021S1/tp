@@ -3,13 +3,9 @@ package seedu.duke.command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
 
-import static seedu.duke.command.CommandSummary.TITLE;
-import static seedu.duke.command.CommandSummary.DESCRIPTION;
-import static seedu.duke.command.CommandSummary.DEADLINE;
-import static seedu.duke.command.CommandSummary.SPRINT_DURATION;
-
-
 import java.util.Hashtable;
+
+import static seedu.duke.command.CommandSummary.*;
 
 public class ProjectCommand {
     public void createProjectCommand(Hashtable<String, String> parameters) throws DukeException {
@@ -40,6 +36,5 @@ public class ProjectCommand {
         }
 
         Project proj = new Project(title, description, deadline, sd);
-
     }
 }
