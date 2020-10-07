@@ -71,25 +71,34 @@ public class Duke {
                 description = fullCommandSplit[1];
             }
 
-            if (command.equals("addprofile")) {
+            switch (command) {
+            case "addprofile":
                 addProfile(description);
-            } else if (command.equals("editprofile")) {
+                break;
+            case "editprofile":
                 editProfile(description);
-            } else if (command.equals("browse")) {
+                break;
+            case "browse":
                 browseAnime(description);
-            } else if (command.equals("watchlist")) {
+                break;
+            case "watchlist":
                 createWatchlist(description);
-            } else if (command.equals("add")) {
+                break;
+            case "add":
                 addToWatchlist(description);
-            } else if (command.equals("bookmark")) {
+                break;
+            case "bookmark":
                 bookmarkAnime(description);
-            } else if (command.equals("help")) {
+                break;
+            case "help":
                 showHelp();
-            } else if (command.equals("exit")) {
+                break;
+            case "exit":
                 return;
-            } else {
+            default:
                 ui.showInvalidCommand();
             }
+
         }
     }
 
