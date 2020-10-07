@@ -1,8 +1,8 @@
 package seedu.duke.question;
 
 import seedu.duke.hint.HintInterface;
-import seedu.duke.OptionInterface;
-import seedu.duke.OptionListInterface;
+import seedu.duke.option.OptionInterface;
+import seedu.duke.option.OptionListInterface;
 
 import java.util.ArrayList;
 

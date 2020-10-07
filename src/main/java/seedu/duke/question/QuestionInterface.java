@@ -1,6 +1,6 @@
 package seedu.duke.question;
 
-import seedu.duke.OptionInterface;
+import seedu.duke.option.OptionInterface;
 
 import java.util.ArrayList;
 
