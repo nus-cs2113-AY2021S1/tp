@@ -36,7 +36,7 @@ public class Personal extends Event {
 
     @Override
     public String toString() {
-        if(hasTime && hasDate) {
+        if (hasTime && hasDate) {
             return "[P]" + super.toString() + " on " + date + ", " + time;
         } else if (!hasTime && hasDate) {
             return "[P]" + super.toString() + " on " + date;

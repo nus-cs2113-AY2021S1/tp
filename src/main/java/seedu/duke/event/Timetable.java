@@ -33,7 +33,7 @@ public class Timetable extends Event {
 
     @Override
     public String toString() {
-        if(hasLocation) {
+        if (hasLocation) {
             return "[T]" + super.toString() + ", Location: " + location + " on "  + date + ", " + time;
         } else {
             return "[T]" + super.toString() + " on " + date + ", " + time;

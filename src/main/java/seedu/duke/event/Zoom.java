@@ -36,7 +36,7 @@ public class Zoom extends Event {
 
     @Override
     public String toString() {
-        if(hasTime && hasDate) {
+        if (hasTime && hasDate) {
             return "[Z]" + super.toString() + ", Link: " + zoomLink + " on "  + date + ", " + time;
         } else {
             return "[Z]" + super.toString() + ", Link: " + zoomLink;

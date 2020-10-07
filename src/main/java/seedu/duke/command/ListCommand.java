@@ -10,6 +10,7 @@ import seedu.duke.data.UserData;
 public class ListCommand extends Command {
     private String listEventType;
     private Boolean isInvalidEventType = false;
+
     /**
      * Constructor for listing events seedu.duke
      *
@@ -40,7 +41,7 @@ public class ListCommand extends Command {
 
     @Override
     public void execute(UserData data, Ui ui, Storage storage) {
-        if(!isInvalidEventType) {
+        if (!isInvalidEventType) {
             switch (listEventType) {
             case "Zoom":
             case "Personal":

@@ -75,7 +75,7 @@ public class Ui {
         int eventCount = 0;
         System.out.println("Here is a list of all your events!");
         for (EventList eventList : eventLists) {
-            if(eventList.getEvents().size() > 0) {
+            if (eventList.getEvents().size() > 0) {
                 System.out.println("Under " + eventList.getName() + " events, you have: ");
                 for (Event event : eventList.getEvents()) {
                     eventCount++;

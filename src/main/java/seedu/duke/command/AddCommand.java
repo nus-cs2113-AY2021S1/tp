@@ -20,6 +20,7 @@ public class AddCommand extends Command {
     private String eventType;
     private String argument;
     private Boolean isInvalidEventType = false;
+
     /**
      * Constructor for adding events seedu.duke
      *
@@ -28,7 +29,7 @@ public class AddCommand extends Command {
     public AddCommand(String[] commandWords) {
         this.isExit = false;
         String tempEventType = commandWords[0].toLowerCase();
-        switch(tempEventType) {
+        switch (tempEventType) {
         case "zoom":
             eventType = "Zoom";
             break;
@@ -52,7 +53,7 @@ public class AddCommand extends Command {
         String[] argumentWords = argument.split(";");
         Boolean successfulAdd = false;
 
-        if(!isInvalidEventType) {
+        if (!isInvalidEventType) {
             switch (eventType) {
             case "Personal":
                 if (argumentWords.length >= 1 && argumentWords.length <= 3) {
@@ -92,7 +93,8 @@ public class AddCommand extends Command {
                         try {
                             LocalDate localDate = DateTimeParser.dateParser(argumentWords[2].trim());
                             LocalTime localTime = DateTimeParser.timeParser(argumentWords[3].trim());
-                            data.getEventList("Zoom").add(new Zoom(argumentWords[0], argumentWords[1].trim(), localDate, localTime));
+                            data.getEventList("Zoom").add(new Zoom(argumentWords[0], argumentWords[1].trim(),
+                                    localDate, localTime));
                             successfulAdd = true;
                         } catch (Exception e) {
                             ui.printExceptionMessage(e.toString());
@@ -109,7 +111,8 @@ public class AddCommand extends Command {
                         try {
                             LocalDate localDate = DateTimeParser.dateParser(argumentWords[1].trim());
                             LocalTime localTime = DateTimeParser.timeParser(argumentWords[2].trim());
-                            data.getEventList("Timetable").add(new Timetable(argumentWords[0].trim(), localDate, localTime));
+                            data.getEventList("Timetable").add(new Timetable(argumentWords[0].trim(),
+                                    localDate, localTime));
                             successfulAdd = true;
                         } catch (Exception e) {
                             ui.printExceptionMessage(e.toString());
@@ -118,7 +121,8 @@ public class AddCommand extends Command {
                         try {
                             LocalDate localDate = DateTimeParser.dateParser(argumentWords[2].trim());
                             LocalTime localTime = DateTimeParser.timeParser(argumentWords[3].trim());
-                            data.getEventList("Timetable").add(new Timetable(argumentWords[0].trim(), argumentWords[1].trim(), localDate, localTime));
+                            data.getEventList("Timetable").add(new Timetable(argumentWords[0].trim(),
+                                    argumentWords[1].trim(), localDate, localTime));
                             successfulAdd = true;
                         } catch (Exception e) {
                             ui.printExceptionMessage(e.toString());
