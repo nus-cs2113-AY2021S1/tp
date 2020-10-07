@@ -1,2 +1,4 @@
-package seedu.duke;public class EmptyParameterException {
+package seedu.duke;
+
+public class EmptyParameterException extends Exception {
 }
