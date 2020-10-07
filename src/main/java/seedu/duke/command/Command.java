@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.tool.Access;
-import seedu.duke.level.Admin;
+import seedu.duke.tool.Storage;
 import seedu.duke.tool.Ui;
 
 public abstract class Command {
@@ -11,7 +11,7 @@ public abstract class Command {
         this.fullCommand = fullCommand;
     }
 
-    public abstract void execute(Access access, Ui ui, Admin admin);
+    public abstract void execute(Access access, Ui ui, Storage storage);
 
     public boolean isExit() {
         return false;

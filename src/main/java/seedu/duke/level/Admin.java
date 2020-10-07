@@ -8,19 +8,25 @@ public class Admin {
     protected ArrayList<Module> modules;
     protected int moduleAmount = 0;
 
+    //if there is no storage
     public Admin() {
-        modules = new ArrayList<Module>();
+        modules = new ArrayList<>();
         moduleAmount = 0;
     }
 
-    public void addModule(Module module){
-        modules.add(module);
-       // modules.get(moduleAmount).doneAddModule();
-        moduleAmount++;
+    //if there is storage
+    public Admin(ArrayList<Module> modules) {
+        this.modules = new ArrayList<>(modules);
+        moduleAmount = modules.size();
     }
 
-    public void addChapter(String filter, String moduleLevel) {
-        int index = modules.indexOf(moduleLevel);
-        modules.get(index).add(new Chapter(filter));
+    public ArrayList<Module> getModules() {
+        return modules;
+    }
+
+    public void add(Module module) {
+        modules.add(module);
+        moduleAmount++;
+        modules.get(moduleAmount).doneAddModule();
     }
 }

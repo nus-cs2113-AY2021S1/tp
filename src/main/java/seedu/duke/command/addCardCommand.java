@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.tool.Access;
-import seedu.duke.level.Admin;
+import seedu.duke.tool.Storage;
 import seedu.duke.tool.Ui;
 
 public class addCardCommand extends Command {
@@ -10,7 +10,6 @@ public class addCardCommand extends Command {
     }
 
     @Override
-    public void execute(Access access, Ui ui, Admin admin) {
-
+    public void execute(Access access, Ui ui, Storage storage) {
     }
 }

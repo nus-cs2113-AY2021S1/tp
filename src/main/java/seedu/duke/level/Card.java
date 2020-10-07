@@ -11,6 +11,7 @@ public class Card {
         totalCard++;
     }
 
+
     public String getQuestion() {
         return question;
     }
@@ -20,5 +21,8 @@ public class Card {
     }
 
     public void doneAddCard() {
+        System.out.println("    Got it. I've added this card:");
+        System.out.println("    " + getQuestion() + "   " + getAnswer());
+        System.out.println("    Now you have " + totalCard +" cards in the list.");
     }
 }

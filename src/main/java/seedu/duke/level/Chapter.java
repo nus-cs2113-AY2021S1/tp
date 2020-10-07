@@ -15,6 +15,12 @@ public class Chapter {
         totalChapter++;
     }
 
+    public Chapter(String chapterName, ArrayList<Card> cards) {
+        this.chapterName = chapterName;
+        this.cards = new ArrayList<>(cards);
+        cardAmount = cards.size();
+    }
+
     public void add(Card card){
         cards.add(card);
         cards.get(cardAmount).doneAddCard();
@@ -22,13 +28,12 @@ public class Chapter {
     }
 
     public void doneAddChapter() {
-        totalChapter++;
-        System.out.println("    Got it. I've added this task:");
+        System.out.println("    Got it. I've added this chapter:");
         System.out.println("    " + getChapter());
-        System.out.println("    Now you have " + totalChapter +" modules in the list.");
+        System.out.println("    Now you have " + totalChapter +" chapters in the list.");
     }
 
-    private String getChapter() {
+    public String getChapter() {
         return chapterName;
     }
 

@@ -24,9 +24,17 @@ public class Parser {
         else if(fullCommand.toLowerCase().contains("gomodule")) {
             return new goModuleCommand(fullCommand);
         }
+        else if(fullCommand.toLowerCase().contains("gochapter")) {
+            return new goChapterCommand(fullCommand);
+        }
         else if(fullCommand.toLowerCase().contains("backmodule")) {
             return new backModuleCommand(fullCommand);
         }
-        return null;
+        else if(fullCommand.toLowerCase().contains("backchapter")) {
+            return new backChapterCommand(fullCommand);
+        }
+        else {
+            return new randomCommand(fullCommand);
+        }
     }
 }

@@ -1,8 +1,10 @@
 package seedu.duke.command;
 
-import seedu.duke.tool.Access;
 import seedu.duke.level.Admin;
+import seedu.duke.level.Chapter;
+import seedu.duke.tool.Access;
 import seedu.duke.level.Module;
+import seedu.duke.tool.Storage;
 import seedu.duke.tool.Ui;
 
 public class addModuleCommand extends Command {
@@ -11,8 +13,13 @@ public class addModuleCommand extends Command {
     }
 
     @Override
-    public void execute(Access access, Ui ui, Admin admin) {
+    public void execute(Access access, Ui ui, Storage storage) {
         String filter = fullCommand.replace("addModule ", "");
-        admin.addModule(new Module(filter));
+        if(access.getModuleLevel() == "") {
+            Admin newAdmin = access.getAdmin();
+            newAdmin.add(new Module(filter));
+            access.setAdmin(newAdmin);
+            storage.createModule(filter);
+        }
     }
 }

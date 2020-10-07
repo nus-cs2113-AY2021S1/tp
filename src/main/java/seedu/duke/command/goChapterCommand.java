@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.level.Module;
+import seedu.duke.level.Chapter;
 import seedu.duke.tool.Access;
 import seedu.duke.tool.Storage;
 import seedu.duke.tool.Ui;
@@ -8,26 +8,27 @@ import seedu.duke.tool.Ui;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class goModuleCommand extends Command {
-    public goModuleCommand(String fullCommand) {
+public class goChapterCommand extends Command{
+
+    public goChapterCommand(String fullCommand) {
         super(fullCommand);
     }
 
     @Override
     public void execute(Access access, Ui ui, Storage storage) {
-        String filter = fullCommand.replace("goModule ", "");
+        String filter = fullCommand.replace("goChapter ", "");
         boolean isLevelExist = false;
-        ArrayList<Module> modules = access.getAdmin().getModules();
-        for (Module module : modules) {
-            if(filter.equalsIgnoreCase(module.getModule())) {
+        ArrayList<Chapter> chapters = access.getModule().getChapter();
+        for (Chapter chapter : chapters) {
+            if(filter.equalsIgnoreCase(chapter.getChapter())) {
                 access.setModuleLevel(filter);
                 isLevelExist = true;
                 try {
-                    Module newModule = new Module(module.getModule(), storage.loadChapter(module.getModule()));
-                    access.setModule(newModule);
+                    Chapter newChapter = new Chapter(chapter.getChapter(), storage.loadCard(access.getModuleLevel(), chapter.getChapter()));
+                    access.setChapter(newChapter);
                 } catch (FileNotFoundException e) {
-                    Module newModule = new Module(module.getModule());
-                    access.setModule(newModule);
+                    Chapter newChapter = new Chapter(chapter.getChapter());
+                    access.setChapter(newChapter);
                     System.out.println("Hihi, seems like it is a new module, you can try to add chapter inside!");
                 }
                 break;

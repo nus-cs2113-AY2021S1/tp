@@ -1,30 +1,38 @@
 package seedu.duke.tool;
 
+import seedu.duke.level.Admin;
+import seedu.duke.level.Chapter;
+import seedu.duke.level.Module;
+
+import java.util.ArrayList;
+
 public class Access {
     protected String level;
     protected String adminLevel;
     protected String moduleLevel;
     protected String chapterLevel;
-    protected String cardLevel;
+    protected Chapter chapter;
+    protected Module module;
+    protected Admin admin;
 
-    public Access(String level) {
-        this.level = level;
+    public Access(Admin admin) {
+        this.admin = admin;
+        this.module = null;
+        this.chapter = null;
+        this.level = "admin";
+        this.adminLevel = "admin";
+        this.moduleLevel = "";
+        this.chapterLevel = "";
     }
 
     public Access() {
         this.level = "admin";
         this.adminLevel = "admin";
-        this.cardLevel = "";
         this.moduleLevel = "";
         this.chapterLevel = "";
-    }
-
-    public void incrementLevel(String newLevel) {
-        this.level = level + "/" + newLevel;
-    }
-
-    public void decreaseLevel(String currentLevel) {
-        level.replace("/" + currentLevel, "");
+        this.module = null;
+        this.chapter = null;
+        this.admin = new Admin();
     }
 
     public String getModuleLevel() {
@@ -35,26 +43,78 @@ public class Access {
         return level;
     }
 
-    public String getAdminLevel() {
-        return adminLevel;
-    }
-
     public String getChapterLevel() {
         return chapterLevel;
     }
 
-    public String getCardLevel() {
-        return cardLevel;
+    public Module getModule() {
+        return module;
+    }
+
+    public Chapter getChapter() {
+        return chapter;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public void setModule(Module module) {
+        this.module = module;
+    }
+
+    public void setChapter(Chapter chapter) {
+        this.chapter = chapter;
     }
 
     public void setModuleLevel(String moduleLevel) {
-        if(moduleLevel != "") {
+        if(this.chapterLevel != "") {
+            System.out.println("Sorry, you currently are in the chapter level, please go back to admin level first.");
+        }
+        else if (this.moduleLevel != "") {
+            if (moduleLevel == "") {
+                String replacement = "/" + this.moduleLevel;
+                this.level = level.replace(replacement, "");
+                this.moduleLevel = moduleLevel;
+                this.module = null;
+            }
+            else {
+                System.out.println("Sorry, you are already in the module level, please go back to admin level first.");
+            }
+        }
+        else {
             this.moduleLevel = moduleLevel;
             this.level = level + "/" + moduleLevel;
-            return;
+            this.module = new Module(moduleLevel);
         }
-        String replacement = "/" + this.moduleLevel;
-        this.level = level.replace(replacement, "");
-        this.moduleLevel = moduleLevel;
     }
+
+    public void setChapterLevel(String chapterLevel) {
+        if(this.moduleLevel == "") { //wrong level
+            //throw new Exception();
+            System.out.println("Sorry, you currently are in the admin level, please enter module level first.");
+        }
+        else if(this.chapterLevel != "") {
+            if(chapterLevel == "") { //correct level, correct command
+                this.chapterLevel = chapterLevel;
+                this.level = level + "/" + chapterLevel;
+                this.chapter = new Chapter(chapterLevel);
+            }
+            else {
+                System.out.println("Sorry, you are already in the chapter level, " +
+                        "please go back to module level first.");
+            }
+        }
+        else{ //go back
+            String replacement = "/" + this.chapterLevel;
+            this.level = level.replace(replacement, "");
+            this.chapterLevel = chapterLevel;
+            this.chapter = null;
+        }
+    }
+
 }

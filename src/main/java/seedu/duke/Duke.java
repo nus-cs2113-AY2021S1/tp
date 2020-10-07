@@ -4,22 +4,32 @@ import seedu.duke.command.Command;
 import seedu.duke.level.Admin;
 import seedu.duke.tool.Access;
 import seedu.duke.tool.Parser;
+import seedu.duke.tool.Storage;
 import seedu.duke.tool.Ui;
 
-import java.util.Scanner;
+import java.io.FileNotFoundException;
 
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
     private Ui ui;
-    private Admin admin;
     private Access access;
+    private Storage storage;
 
-    public Duke() {
+    public Duke(String filePath) {
         ui = new Ui();
-        admin = new Admin();
-        access = new Access();
+        storage = new Storage(filePath);
+        try {
+            access = new Access(new Admin(storage.loadModule()));
+            ui.showLine(); // show the divider line ("_______")
+            Command c = Parser.parse("list");
+            c.execute(access, ui, storage);
+            ui.showLine();
+        } catch (FileNotFoundException e) {
+            storage.createAdmin();
+            access = new Access();
+        }
     }
 
     public void run() {
@@ -28,8 +38,7 @@ public class Duke {
             String fullCommand = ui.readCommand();
             ui.showLine(); // show the divider line ("_______")
             Command c = Parser.parse(fullCommand);
-            //System.out.println(fullCommand);
-            c.execute(access, ui, admin);
+            c.execute(access, ui, storage);
             isExit = c.isExit();
             ui.showLine();
             System.out.println(access.getLevel());
@@ -43,11 +52,6 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
-
-        new Duke().run();
+        new Duke("data/admin").run();
     }
 }
