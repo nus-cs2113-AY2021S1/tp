@@ -3,6 +3,8 @@ package seedu.duke.data.type;
 import seedu.duke.data.framework.Appliance;
 
 public class WaterHeater extends Appliance {
+
+    public static final String TYPE_WORD = "waterheater";
     private String temperature;
     private String duration;
 
