@@ -59,38 +59,4 @@ public class UserData {
         return goal;
     }
 
-    /**
-     * Set the user's deadline for personal events with date only.
-     *
-     * @param index of event
-     * @param date  of event to be completed
-     */
-    public Event deadlineChangeDateOnly(int index, LocalDate date) {
-        EventList personalEvent = getEventList("Personal");
-        Event oldEvent = personalEvent.getEventByIndex(index - 1);
-        Event updateEvent = null;
-        if (oldEvent != null) {
-            updateEvent = new Personal(oldEvent.getDescription(), date);
-            getEventList("Personal").setEvent(index - 1, updateEvent);
-        }
-        return updateEvent;
-    }
-
-    /**
-     * Set the user's deadline for personal events with date and time.
-     *
-     * @param index of event
-     * @param date  of event to be completed
-     * @param time  of event to be completed
-     */
-    public Event deadlineChangeDateTime(int index, LocalDate date, LocalTime time) {
-        EventList personalEvent = getEventList("Personal");
-        Event oldEvent = personalEvent.getEventByIndex(index - 1);
-        Event updateEvent = null;
-        if (oldEvent != null) {
-            updateEvent = new Personal(oldEvent.getDescription(), date, time);
-            getEventList("Personal").setEvent(index - 1, updateEvent);
-        }
-        return updateEvent;
-    }
 }

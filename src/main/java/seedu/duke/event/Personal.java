@@ -34,6 +34,14 @@ public class Personal extends Event {
         hasTime = false;
     }
 
+    public void setHasDate(Boolean hasDate) {
+        this.hasDate = hasDate;
+    }
+
+    public void setHasTime(Boolean hasTime) {
+        this.hasTime = hasTime;
+    }
+
     @Override
     public String toString() {
         if (hasTime && hasDate) {
