@@ -37,28 +37,27 @@ public class ShowTimetableCommand extends Command {
 
         if (input.length() == 4){
             return "ALL";
-        } else if (input.substring(4 , 5).compareToIgnoreCase(" ") == 0) {
+        } else if (input.substring(4 , 5).equals(" ") == false) {
             return null;
         }
 
         String dayData = input.substring(5);
 
-        switch (dayData) {
-        case Slot.MON:
+        if (dayData.compareToIgnoreCase(Slot.MON) == 0) {
             outputData = Slot.MON;
-        case Slot.TUE:
+        } else if (dayData.compareToIgnoreCase(Slot.TUE) == 0) {
             outputData = Slot.TUE;
-        case Slot.WED:
+        } else if (dayData.compareToIgnoreCase(Slot.WED) == 0) {
             outputData = Slot.WED;
-        case Slot.THU:
+        } else if (dayData.compareToIgnoreCase(Slot.THU) == 0) {
             outputData = Slot.THU;
-        case Slot.FRI:
+        } else if (dayData.compareToIgnoreCase(Slot.FRI) == 0) {
             outputData = Slot.FRI;
-        case Slot.SAT:
+        } else if (dayData.compareToIgnoreCase(Slot.SAT) == 0) {
             outputData = Slot.SAT;
-        case Slot.SUN:
+        } else if (dayData.compareToIgnoreCase(Slot.SUN) == 0) {
             outputData = Slot.SUN;
-        default:
+        } else {
             outputData = null;
         }
 

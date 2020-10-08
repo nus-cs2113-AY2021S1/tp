@@ -117,13 +117,12 @@ public class Ui {
     }
 
     private void printUnknownModeMessage() {
-        print("Unknown mode input\n");
-        print("Valid modes: bookmark, timetable\n");
+        print("Unknown mode input\n" + "Valid modes: bookmark, timetable");
     }
 
     private void printUnknownDayMessage() {
-        print("Unknown day input\n");
-        print("Valid days: monday, tuesday, wednesday, thursday, friday, saturday, sunday\n");
+        print("Unknown day input\n" +
+            "Valid days: monday, tuesday, wednesday, thursday, friday, saturday, sunday\n");
     }
 
     private void printEmptyTimetableMessage () {

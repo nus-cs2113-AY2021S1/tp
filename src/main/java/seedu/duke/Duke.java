@@ -23,11 +23,11 @@ public class Duke {
         storage = new Storage(filePath);
         try {
             bookmarks = new BookmarkList(storage.load());
-            // create slot list
+            slotList = new SlotList(); // temp create new slot list for testing
         } catch (DukeException e) {
             ui.showLoadingError();
             bookmarks = new BookmarkList();
-            //create new slot list
+            slotList = new SlotList();
         }
         //try {
         //    load timetable here
