@@ -2,7 +2,7 @@ package seedu.eduke8.topic;
 
 import java.util.ArrayList;
 
-class TopicList implements TopicListInterface {
+public class TopicList implements TopicListInterface {
     private ArrayList<TopicInterface> allTopics;
 
     public TopicList(ArrayList<TopicInterface> loadedTopics) {
