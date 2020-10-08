@@ -16,7 +16,7 @@ public class Tag {
     /**
      * Types of color.
      */
-    private enum TagColor {
+    public enum TagColor {
         COLOR_WHITE("\u001B[30m"),
         COLOR_RED("\u001B[31m"),
         COLOR_GREEN("\u001B[32m"),
@@ -26,7 +26,7 @@ public class Tag {
         COLOR_CYAN("\u001B[36m"),
         COLOR_RESET("\u001B[0m");
 
-        private final String color;
+        public final String color;
 
         TagColor(String color) {
             this.color = color;
