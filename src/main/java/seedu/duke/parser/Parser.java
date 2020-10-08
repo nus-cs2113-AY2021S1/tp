@@ -149,7 +149,7 @@ public class Parser {
                     break;
                 default:
                     try {
-                        throw new DukeException("Invalid action");
+                        throw new DukeException("Invalid action!");
                     } catch (DukeException e) {
                         e.printExceptionMessage();
                     }

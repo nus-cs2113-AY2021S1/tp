@@ -1,5 +1,6 @@
 package seedu.duke.task;
 
+
 public enum Priority {
     HIGH {
         public String toString() {

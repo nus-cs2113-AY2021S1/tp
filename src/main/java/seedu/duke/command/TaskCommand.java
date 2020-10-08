@@ -14,17 +14,17 @@ public class TaskCommand {
         if (tasks.get(title) != null) {
             System.out.println(tasks.get(title));
         } else {
-            throw new DukeException("no title");
+            throw new DukeException("Please enter a title!");
         }
         if (tasks.get(desc) != null) {
             System.out.println(tasks.get(desc));
         } else {
-            throw new DukeException("no description");
+            throw new DukeException("Please enter a description!");
         }
         if (tasks.get(priority) != null) {
             System.out.println(tasks.get(priority));
         } else {
-            throw new DukeException("no priority");
+            throw new DukeException("Please enter a priority!");
         }
 
         /* Insert actual code for adding tasks here.
