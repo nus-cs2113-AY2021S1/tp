@@ -84,7 +84,7 @@ public class Question implements QuestionInterface {
     }
 
     @Override
-    public void setAsAnsweredCorrectly() {
+    public void markAsAnsweredCorrectly() {
         wasAnsweredCorrectly = true;
     }
 
@@ -100,7 +100,7 @@ public class Question implements QuestionInterface {
 
 
     @Override
-    public void setAsAttempted() {
+    public void markAsAttempted() {
         wasAttempted = true;
     }
 }
