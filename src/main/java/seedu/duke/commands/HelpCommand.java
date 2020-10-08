@@ -1,25 +1,27 @@
 package seedu.duke.commands;
 
+import static seedu.duke.common.Messages.LINE;
+
 public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows program usage instructions.\n"
             + "Example: " + COMMAND_WORD;
-    private static final String line = "-------------------------------------------------------";
+
 
     @Override
     public void execute() {
         System.out.println(
-                line + "\n" + HelpCommand.MESSAGE_USAGE + "\n" + line
-                        + "\n" + CreateCommand.MESSAGE_USAGE + "\n" + line
-                        + "\n" + RemoveCommand.MESSAGE_USAGE + "\n" + line
-                        + "\n" + AddCommand.MESSAGE_USAGE + "\n" + line
-                        + "\n" + DeleteCommand.MESSAGE_USAGE + "\n" + line
-                        + "\n" + OnCommand.MESSAGE_USAGE + "\n" + line
-                        + "\n" + OffCommand.MESSAGE_USAGE + "\n" + line
-                        + "\n" + ListCommand.MESSAGE_USAGE + "\n" + line
-                        + "\n" + ExitCommand.MESSAGE_USAGE + "\n");
+                LINE  + HelpCommand.MESSAGE_USAGE + "\n" + LINE
+                      + CreateCommand.MESSAGE_USAGE + "\n" + LINE
+                      + RemoveCommand.MESSAGE_USAGE  + "\n" + LINE
+                      + AddCommand.MESSAGE_USAGE + "\n" + LINE
+                      + DeleteCommand.MESSAGE_USAGE + "\n" + LINE
+                      + OnCommand.MESSAGE_USAGE + "\n" + LINE
+                      + OffCommand.MESSAGE_USAGE + "\n" + LINE
+                      + ListCommand.MESSAGE_USAGE + "\n" + LINE
+                      + ExitCommand.MESSAGE_USAGE + "\n");
     }
 
 }

@@ -1,5 +1,7 @@
 package seedu.duke.commands;
 
+import static seedu.duke.common.Messages.LINE;
+
 public class InvalidCommand extends Command {
 
     public final String feedbackToUser;
@@ -10,7 +12,7 @@ public class InvalidCommand extends Command {
 
     @Override
     public void execute() {
-        System.out.print(this.feedbackToUser + "\n");
+        System.out.println(LINE + this.feedbackToUser);
     }
 
 }
