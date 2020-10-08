@@ -33,7 +33,7 @@ public class StorageManager {
         for (int i = 0; i < notebook.getSize(); i++){
             try{
                 saveNoteContent(notebook.getNote(i));
-
+                saveNoteDetails (notebook.getNote(i));
             } catch (IOException e) {
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_CREATION_ERROR);
             }
@@ -81,6 +81,18 @@ public class StorageManager {
         createFile (path);
         FileWriter fwAppend = new FileWriter(path, true);
         fwAppend.write(note.getContent());
+        fwAppend.close();
+    }
+
+    /**
+     * Saves the details of notes such as title, tags and pinned status to the notebook text file
+     * @param note Note of which details are to be saved to the file
+     */
+    private static void saveNoteDetails(Note note) throws IOException {
+        String path = FOLDER_DIR + "/" + NOTEBOOK_FILE_PATH;
+        createFile(path);
+        FileWriter fwAppend = new FileWriter(path, true);
+        fwAppend.write(note.getTitle() + DELIMINATOR + note.getPinned() + DELIMINATOR + note.getTags() + System.lineSeparator());
         fwAppend.close();
     }
     /**
