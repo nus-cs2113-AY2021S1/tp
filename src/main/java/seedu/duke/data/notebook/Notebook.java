@@ -31,6 +31,10 @@ public class Notebook {
         return this.notes;
     }
 
+    public Note getNote(int index){
+        return this.notes.get(index);
+    }
+
     public void setNotes(ArrayList<Note> notes) {
         this.notes = notes;
     }
@@ -51,5 +55,9 @@ public class Notebook {
      */
     public void deleteNote(int note) throws SystemException {
         notes.remove(note);
+    }
+
+    public int  getSize(){
+        return notes.size();
     }
 }
