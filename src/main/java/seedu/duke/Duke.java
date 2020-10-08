@@ -3,12 +3,17 @@ package seedu.duke;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import seedu.duke.commands.CommandChecker;
 import seedu.duke.constants.Logos;
+
+import static seedu.duke.commands.CommandChecker.extractCommandType;
 import static seedu.duke.database.UserSettingsLoader.loadUserSettings;
+
+import static seedu.duke.functions.CommandExecutor.executeCommand;
+import static seedu.duke.parsers.Parsers.getUserInput;
 import static seedu.duke.ui.UI.printDivider;
 import static seedu.duke.ui.UI.printFarewellMessage;
 import static seedu.duke.ui.UI.printHelloMessage;
-import seedu.duke.wordlist.WordList;
 
 public class Duke {
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -22,7 +27,7 @@ public class Duke {
 
 
     /**
-     * Main entry-point for the CLIcker application.
+     * Main entry-point for the Fluffle application.
      */
     public static void main(String[] args) {
         setUserSettingsArrayList(savedSettings, username);
@@ -30,35 +35,48 @@ public class Duke {
         printDivider();
         username = savedSettings.get(0);
 
-        System.out.println("Take a quiz with\n" + Logos.DOTTED_CLICKER_LOGO);
+        System.out.println("Write a story with\n" + Logos.BIG_FLUFFLE_LOGO);
         printHelloMessage(username);
         boolean isExit = false;
-        while (!isExit) {
-            switch (SCANNER.next()) {
-            case "noun": {
-                String input = SCANNER.nextLine();
-                WordList.addNoun(input);
-                break;
-            }
-            case "verb": {
-                String input = SCANNER.nextLine();
-                WordList.addVerb(input);
-                break;
-            }
-            case "adj": {
-                String input = SCANNER.nextLine();
-                WordList.addAdjective(input);
-                break;
-            }
-            case "list":
-                WordList.listWords();
-                break;
-            default:
-                isExit = true;
-                break;
-            }
-        }
+
+        String userInput;
+        CommandChecker commandChecker;
+
+        do {
+            userInput = getUserInput(SCANNER);
+            printDivider();
+            commandChecker = extractCommandType(userInput);
+            executeCommand(commandChecker, userInput);
+            printDivider();
+        } while (commandChecker != CommandChecker.EXIT);
+
         printFarewellMessage(username);
+
+        //        while (!isExit) {
+        //            switch (SCANNER.next()) {
+        //            case "noun": {
+        //                String input = SCANNER.nextLine();
+        //                WordList.addNoun(input);
+        //                break;
+        //            }
+        //            case "verb": {
+        //                String input = SCANNER.nextLine();
+        //                WordList.addVerb(input);
+        //                break;
+        //            }
+        //            case "adj": {
+        //                String input = SCANNER.nextLine();
+        //                WordList.addAdjective(input);
+        //                break;
+        //            }
+        //            case "list":
+        //                WordList.listWords();
+        //                break;
+        //            default:
+        //                isExit = true;
+        //                break;
+        //            }
+        //        }
 
     }
 
