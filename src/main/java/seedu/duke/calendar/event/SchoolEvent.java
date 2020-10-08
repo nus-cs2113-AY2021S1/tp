@@ -24,7 +24,7 @@ public abstract class SchoolEvent extends Event {
      */
     @Override
     public String toString() {
-        return this.moduleCode;
+        return moduleCode + " " + super.toString();
     }
 
     public abstract String printIntoFile();

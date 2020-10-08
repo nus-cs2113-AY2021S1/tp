@@ -2,7 +2,6 @@ package seedu.duke;
 
 import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
-import seedu.duke.calendar.event.Activity;
 import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Lab;
 import seedu.duke.calendar.task.Task;
@@ -103,7 +102,7 @@ public class Storage {
                     task = new Deadline(taskInFile[DESCRIPTION], date);
                 } else if (taskInFile[TYPE].equals("E")) {
                     date = LocalDate.parse(taskInFile[DATE].trim());
-                    task = new Activity(taskInFile[DESCRIPTION], date);
+//                    task = new Activity(taskInFile[DESCRIPTION], date);
                 } else if (taskInFile[TYPE].equals("LEC")) {
 //                    task = new Lecture(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
                 } else if (taskInFile[TYPE].equals("TUT")) {

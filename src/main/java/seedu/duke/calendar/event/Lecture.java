@@ -1,6 +1,4 @@
-package seedu.duke.calendar.task;
-
-import seedu.duke.calendar.event.SchoolEvent;
+package seedu.duke.calendar.event;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -26,12 +24,12 @@ public class Lecture extends SchoolEvent {
      */
     @Override
     public String toString() {
-        return "[LEC]" + super.toString() + " (" + date + " " + time + ")";
+        return "[LEC] " + super.toString();
     }
 
     @Override
     public String printIntoFile() {
-        return LECTURE_FILE_SYMBOL + moduleCode
+        return LECTURE_FILE_SYMBOL + " " + moduleCode
                 + SEPARATOR + this.date + SEPARATOR + this.time;
     }
 

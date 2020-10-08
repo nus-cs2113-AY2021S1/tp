@@ -24,9 +24,9 @@ public class Ui {
         System.out.println("List of available commands:\n"
                 + "1. todo <task description>\n"
                 + "2. deadline <task description> /by ddMMyy\n"
-                + "3. event <task description>/at ddMMyy\n"
+                + "3. activity <activity description> <venue> /at ddMMyy\n"
                 + "4. exam <module code> <exam details> /at ddMMyy HHmm\n"
-                + "5. lecture ... / date time\n"
+                + "5. lecture <module code> <venue> /at ddMMyy HHmm\n"
                 + "6. tutorial ... / date time\n"
                 + "7. lab ... / date time\n"
                 + "8. done <task number>\n"
@@ -229,7 +229,7 @@ public class Ui {
         case "deadline":
             System.out.println("Error: Please key in the deadline in this format: deadline ... /by ddMMyy");
             break;
-        case "event":
+        case "activity":
             System.out.println("Error: Please key in the event in this format: event ... /at ddMMyy");
             break;
         case "lecture":

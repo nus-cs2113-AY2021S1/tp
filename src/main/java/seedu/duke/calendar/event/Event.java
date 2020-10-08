@@ -4,6 +4,7 @@ import seedu.duke.calendar.CalendarItem;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents an event in the event list.
@@ -18,6 +19,13 @@ public abstract class Event extends CalendarItem {
         this.date = date;
         this.time = time;
         this.venue = venue;
+    }
+
+    @Override
+    public String toString() {
+        return date.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy")) + " "
+                + time.format(DateTimeFormatter.ofPattern("h:mm a"))
+                + " (" + venue + ")";
     }
 
     public abstract String getTaskType();

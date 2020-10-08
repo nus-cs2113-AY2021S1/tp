@@ -6,10 +6,10 @@ import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.event.Activity;
+import seedu.duke.calendar.event.Lecture;
 import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Exam;
 import seedu.duke.calendar.task.Lab;
-import seedu.duke.calendar.task.Lecture;
 import seedu.duke.calendar.task.Todo;
 import seedu.duke.calendar.task.Tutorial;
 
@@ -24,7 +24,7 @@ public class AddCommand extends Command {
 
     public static final String TODO = "todo";
     public static final String DEADLINE = "deadline";
-    public static final String EVENT = "event";
+    public static final String ACTIVITY = "activity";
     public static final String LECTURE = "lecture";
     public static final String TUTORIAL = "tutorial";
     public static final String LAB = "lab";
@@ -47,8 +47,8 @@ public class AddCommand extends Command {
         String[] command;
         String[] dateTime;
         String taskDescription;
-        LocalDate taskDate;
-        LocalTime taskTime;
+        LocalDate date;
+        LocalTime time;
         String venue;
 
         command = userInput.split(" ", 2);
@@ -72,30 +72,38 @@ public class AddCommand extends Command {
             try {
                 command = command[1].split("/by");
                 taskDescription = command[0].trim();
-                taskDate = DateTimeParser.inputDateProcessor(command[1].trim());
+                date = DateTimeParser.inputDateProcessor(command[1].trim());
 
                 if (taskDescription.isEmpty()) {
                     throw new DukeException("deadline");
                 } else {
-                    calendarList.addTask(new Deadline(taskDescription, taskDate));
+                    calendarList.addTask(new Deadline(taskDescription, date));
                 }
             } catch (Exception e) {
                 throw new DukeException("deadline");
             }
             break;
-        case EVENT:
+        case ACTIVITY:
+            /**
+             * User input for Activity event example: run training /at 020202 1200 sentosa
+             */
             try {
                 command = command[1].split("/at");
                 taskDescription = command[0].trim();
-                taskDate = DateTimeParser.inputDateProcessor(command[1].trim());
+                String[] dateTimeVenue;
+                dateTimeVenue = command[1].trim().split(" ", 3);
+                date = DateTimeParser.inputDateProcessor(dateTimeVenue[0].trim());
+                time = DateTimeParser.inputTimeProcessor(dateTimeVenue[1].trim());
+                venue = dateTimeVenue[2].trim();
+
 
                 if (taskDescription.isEmpty()) {
-                    throw new DukeException("event");
+                    throw new DukeException("activity");
                 } else {
-                    calendarList.addTask(new Activity(taskDescription, taskDate));
+                    calendarList.addEvent(new Activity(taskDescription, date, time, venue));
                 }
             } catch (Exception e) {
-                throw new DukeException("event");
+                throw new DukeException("activity");
             }
             break;
         case EXAM:
@@ -110,14 +118,14 @@ public class AddCommand extends Command {
                 command = command[1].split("/at");
                 examDetails = command[0].trim();
                 dateTime = command[1].trim().split(" ", 2);
-                taskDate = DateTimeParser.inputDateProcessor(dateTime[0].trim());
-                taskTime = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
+                date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
+                time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
 
 
                 if (moduleCode.isEmpty()) {
                     throw new DukeException("exam");
                 } else {
-                    calendarList.addTask(new Exam(moduleCode, examDetails, taskDate, taskTime));
+                    calendarList.addTask(new Exam(moduleCode, examDetails, date, time));
                 }
             } catch (Exception e) {
                 throw new DukeException("exam");
@@ -125,7 +133,7 @@ public class AddCommand extends Command {
             break;
         case LECTURE:
             /**
-             * User input for Exam task example: exam CS2113 open book /at 020202 1200
+             * User input for Lecture task example: lecture CS2113 LT2 /at 020202 1200
              */
             try {
                 command = command[1].trim().split(" ", 2); // splits to CS2113 and open book...
@@ -133,14 +141,14 @@ public class AddCommand extends Command {
                 command = command[1].split("/at");
                 venue = command[0].trim();
                 dateTime = command[1].trim().split(" ", 2);
-                taskDate = DateTimeParser.inputDateProcessor(dateTime[0].trim());
-                taskTime = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
+                date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
+                time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
 
 
                 if (moduleCode.isEmpty()) {
                     throw new DukeException("exam");
                 } else {
-                    calendarList.addEvent(new Lecture(moduleCode, taskDate, taskTime, venue));
+                    calendarList.addEvent(new Lecture(moduleCode, date, time, venue));
                 }
             } catch (Exception e) {
                 throw new DukeException("lecture");
