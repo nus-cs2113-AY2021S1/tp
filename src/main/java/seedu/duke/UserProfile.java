@@ -1,17 +1,39 @@
 package seedu.duke;
 
-public class UserProfile extends Human {
-    protected String birthdate;
-    protected String gender;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-    public UserProfile(String name, String birthdate, String gender) {
+public class UserProfile extends Human {
+    private static final SimpleDateFormat DATE_MONTH_YEAR = new SimpleDateFormat("dd/MM/yyyy");
+    protected Date birthdate;
+    protected Gender gender;
+
+    public UserProfile(String name, String birthdate, String gender) throws ParseException {
         super(name);
-        this.birthdate = birthdate;
-        this.gender = gender;
+        setBirthdate(birthdate);
+        setGender(gender);
+    }
+
+    public void setGender(String genderString) {
+        switch (genderString) {
+        case "Male":
+            gender = Gender.Male;
+            break;
+        case "Female":
+            gender = Gender.Female;
+            break;
+        default:
+            gender = Gender.Other;
+        }
+    }
+
+    public void setBirthdate(String birthdateString) throws ParseException {
+        birthdate = DATE_MONTH_YEAR.parse(birthdateString);
     }
 
     @Override
     public String toString() {
-        return "Name= " + getName() + ", birthdate= " + birthdate + ", gender= " + gender;
+        return "Name= " + name + ", birthdate= " + birthdate + ", gender= " + gender;
     }
 }

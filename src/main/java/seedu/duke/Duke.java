@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -35,14 +36,28 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello welcome to AniChan\n" + logo);
+        System.out.println("Before we start, let me learn more about you!");
 
+        boolean profileMade = false;
+
+        while (!profileMade) {
+            try {
+                createProfile();
+                profileMade = true;
+            } catch (ParseException e) {
+                System.out.println("Is your date in dd/MM/yyyy format?");
+            }
+        }
+    }
+
+    private static void createProfile() throws ParseException {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("What might your name be?");
+        System.out.println("What's your name?");
         String name = input.nextLine();
-        System.out.println("What might your dob be?");
+        System.out.println("Hello " + name + "! What might your date of birth be?");
         String dob = input.nextLine();
-        System.out.println("What might your gender be?");
+        System.out.println("What might your gender be? (Male/Female/Others)");
         String gender = input.nextLine();
 
         UserProfile newProfile = new UserProfile(name, dob, gender);

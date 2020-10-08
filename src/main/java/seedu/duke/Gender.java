@@ -1,2 +1,7 @@
-package seedu.duke;public class Gender {
+package seedu.duke;
+
+public enum Gender {
+    Male,
+    Female,
+    Other
 }
