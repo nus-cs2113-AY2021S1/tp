@@ -1,11 +1,13 @@
-package seedu.duke.task;
+package seedu.duke.calendar.task;
+
+import seedu.duke.calendar.CalendarItem;
 
 import java.time.LocalDate;
 
 /**
  * Represents a Task in the task list.
  */
-public abstract class Task {
+public abstract class Task extends CalendarItem {
     public static final String TICK_SYMBOL = "/";
     public static final String CROSS_SYMBOL = "X";
     protected String description;
@@ -56,6 +58,7 @@ public abstract class Task {
     }
 
 
+    @Override
     public String printIntoFile() {
         return TASK_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description;
     }

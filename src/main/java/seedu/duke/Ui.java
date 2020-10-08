@@ -1,7 +1,8 @@
 package seedu.duke;
 
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
+import seedu.duke.calendar.CalendarItem;
+import seedu.duke.calendar.CalendarList;
+import seedu.duke.calendar.task.Task;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -23,9 +24,9 @@ public class Ui {
         System.out.println("List of available commands:\n"
                 + "1. todo <task description>\n"
                 + "2. deadline <task description> /by ddMMyy\n"
-                + "3. event <task description>/at ddMMyy\n"
-                + "4. exam <module code> <exam details> /at ddMMyy HHmm\n"
-                + "5. lecture ... / date time\n"
+                + "3. activity <activity description> <venue> /at ddMMyy\n"
+                + "4. exam <module code> <venue> /at ddMMyy HHmm\n"
+                + "5. lecture <module code> <venue> /at ddMMyy HHmm\n"
                 + "6. tutorial ... / date time\n"
                 + "7. lab ... / date time\n"
                 + "8. done <task number>\n"
@@ -92,23 +93,23 @@ public class Ui {
      * Shows the task deleted and the number of tasks left in the list.
      *
      * @param taskNumberDelete task number of the task to be deleted.
-     * @param taskList         task list of the task to be deleted.
+     * @param calendarList     task list of the task to be deleted.
      */
-    public static void printDeleteTaskMessage(int taskNumberDelete, TaskList taskList) {
+    public static void printDeleteTaskMessage(int taskNumberDelete, CalendarList calendarList) {
         /* - 1 is catered for array list's index starting from 0. */
-        System.out.println("Task deleted:\n" + taskList.getTaskList().get(taskNumberDelete - 1));
-        System.out.println("Your total tasks: " + (taskList.getTotalTask() - 1));
+        System.out.println("Task deleted:\n" + calendarList.getCalendarList().get(taskNumberDelete - 1));
+        System.out.println("Your total tasks: " + (calendarList.getTotalTasks() - 1));
     }
 
     /**
-     * Shows the user the list of tasks in the task list, formatted as an indexed list starting from 1.
+     * Shows the user the list of tasks in the calendar list, formatted as an indexed list starting from 1.
      *
-     * @param taskList tasks retrieved from this task list.
+     * @param calendarList tasks retrieved from this task list.
      */
-    public static void printTaskListView(TaskList taskList) {
+    public static void printTaskListView(CalendarList calendarList) {
         System.out.println("This is your list of task(s):");
-        for (int i = 0; i < taskList.getTotalTask(); i++) {
-            System.out.printf("%d." + taskList.getTaskList().get(i) + "\n", i + 1);
+        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+            System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", i + 1);
         }
     }
 
@@ -116,66 +117,70 @@ public class Ui {
      * Shows the user all the event type of tasks in the task list,
      * such as lecture, lab, tutorial and events.
      *
-     * @param taskList tasks retrieved from this task list.
+     * @param calendarList tasks retrieved from this task list.
      */
-    public static void printEventsListView(TaskList taskList) {
+    /*
+    public static void printEventsListView(CalendarList calendarList) {
         int eventCounts = 0;
         System.out.println("This is your list of event(s):");
-        for (int i = 0; i < taskList.getTotalTask(); i++) {
-            if (taskList.getTaskList().get(i).getTaskType().equals("E")) {
+        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+            if (calendarList.getCalendarList().get(i).getTaskType().equals("E")) {
                 eventCounts++;
-                System.out.printf("%d." + taskList.getTaskList().get(i) + "\n", eventCounts);
+                System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", eventCounts);
             }
         }
         if (eventCounts == 0) {
             System.out.println("Oops, there are no events stored in your list!");
         }
     }
+    */
 
     /**
      * Shows the user the task (that was indicated by the user) that was marked as done .
      *
-     * @param taskList            task list that has the task marked as done.
+     * @param calendarList        calendar list that has the task marked as done.
      * @param taskNumberCompleted task number indicated by the user as done.
      */
-    public static void printCompleteTaskMessage(int taskNumberCompleted, TaskList taskList) {
+    public static void printCompleteTaskMessage(int taskNumberCompleted, CalendarList calendarList) {
         System.out.println(
                 "Good work! I've marked this task as done:\n"
-                        + taskList.getTaskList().get(taskNumberCompleted - 1));
+                        + calendarList.getCalendarList().get(taskNumberCompleted - 1));
     }
 
     /**
      * Shows the user the task that was added and the total number of tasks in the task list.
      *
-     * @param taskList the list of task that the task was added to.
+     * @param calendarList the calendar list that the task was added to.
      */
-    public static void printAddTaskMessage(TaskList taskList) {
+    public static void printAddTaskMessage(CalendarList calendarList) {
         System.out.println("Got it. I've added this task:");
 
         /* - 1 is catered for array list's index starting from 0. */
-        System.out.println(taskList.getTaskList().get(taskList.getTaskList().size() - 1));
+        System.out.println(calendarList.getCalendarList().get(calendarList.getCalendarList().size() - 1));
 
-        System.out.println("Your total tasks: " + taskList.getTotalTask());
+        System.out.println("Your total tasks: " + calendarList.getTotalTasks());
     }
 
     /**
      * Prints all tasks that contains the keyword, including the task index in the task list.
      *
-     * @param taskList the list of tasks being searched.
-     * @param keyword  keyword indicated by user.
+     * @param calendarList the list of tasks being searched.
+     * @param keyword      keyword indicated by user.
      * @throws DukeException if there are no tasks that contains the keyword.
      */
-    public static void printFindTaskMessage(TaskList taskList, String keyword) throws DukeException {
+    public static void printFindTaskMessage(CalendarList calendarList, String keyword) throws DukeException {
         boolean isFound = false;
 
-        for (int i = 0; i < taskList.getTotalTask(); i++) {
-            Task task = taskList.getTaskList().get(i);
-            if (task.getDescription().contains(keyword)) {
-                if (!isFound) { // first instance when keyword is found
-                    System.out.println("Here are the matching tasks in your list:");
+        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+            CalendarItem item = calendarList.getCalendarList().get(i);
+            if (item instanceof Task) {
+                if (((Task) item).getDescription().contains(keyword)) {
+                    if (!isFound) { // first instance when keyword is found
+                        System.out.println("Here are the matching tasks in your list:");
+                    }
+                    isFound = true;
+                    System.out.println((i + 1) + "." + item);
                 }
-                isFound = true;
-                System.out.println((i + 1) + "." + task);
             }
         }
         if (!isFound) {
@@ -186,17 +191,19 @@ public class Ui {
     /**
      * Show the user's progress on deadlines and todos.
      *
-     * @param taskList the list of user tasks.
+     * @param calendarList the list of user tasks.
      */
-    public static void printProgress(TaskList taskList) {
+    public static void printProgress(CalendarList calendarList) {
         int numFinished = 0;
         int numTotal = 0;
-        for (int i = 0; i < taskList.getTotalTask(); i++) {
-            Task task = taskList.getTaskList().get(i);
-            if (task.getTaskType().equals("E") || task.getTaskType().equals("D")) {
-                numTotal++;
-                if (task.getIsDone()) {
-                    numFinished++;
+        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+            CalendarItem item = calendarList.getCalendarList().get(i);
+            if (item instanceof Task) {
+                if (((Task) item).getTaskType().equals("E") || ((Task) item).getTaskType().equals("D")) {
+                    numTotal++;
+                    if (((Task) item).getIsDone()) {
+                        numFinished++;
+                    }
                 }
             }
         }
@@ -213,10 +220,10 @@ public class Ui {
     /**
      * Prints the error message based on the invalid command input by the user.
      *
-     * @param e        type of error.
-     * @param taskList the working list of task.
+     * @param e            type of error.
+     * @param calendarList the working calendar list.
      */
-    public static void printDukeExceptionMessage(DukeException e, TaskList taskList) {
+    public static void printDukeExceptionMessage(DukeException e, CalendarList calendarList) {
         switch (e.getException()) {
         case "todo":
             System.out.println("Error: The description of todo cannot be empty.");
@@ -224,7 +231,7 @@ public class Ui {
         case "deadline":
             System.out.println("Error: Please key in the deadline in this format: deadline ... /by ddMMyy");
             break;
-        case "event":
+        case "activity":
             System.out.println("Error: Please key in the event in this format: event ... /at ddMMyy");
             break;
         case "lecture":
@@ -245,7 +252,7 @@ public class Ui {
                     + "Type \"help\" to learn the different commands.");
             break;
         case "invalid task action":
-            System.out.println("Error: Total task(s): " + taskList.getTotalTask());
+            System.out.println("Error: Total task(s): " + calendarList.getTotalTasks());
             break;
         case "done":
             System.out.println("Error: Please key in the command in this format: done <task number>");
@@ -255,6 +262,9 @@ public class Ui {
             break;
         case "keyword not found":
             System.out.println("There are no tasks matching this keyword. Check that you have spelt it correctly.");
+            break;
+        case "invalid done number":
+            System.out.println("You can only mark a task as done. An event cannot be marked as done.");
             break;
         default:
             System.out.println("Unknown Error.");

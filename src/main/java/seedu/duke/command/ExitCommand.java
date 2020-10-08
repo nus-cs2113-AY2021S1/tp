@@ -2,10 +2,10 @@ package seedu.duke.command;
 
 import seedu.duke.Storage;
 import seedu.duke.Ui;
-import seedu.duke.task.TaskList;
+import seedu.duke.calendar.CalendarList;
 
 /**
- * Saves the current task list locally before terminating the programme.
+ * Saves the current calendar list locally before terminating the programme.
  */
 public class ExitCommand extends Command {
 
@@ -14,14 +14,14 @@ public class ExitCommand extends Command {
     }
 
     /**
-     * Saves the current task list locally.
+     * Saves the current calendar list locally.
      *
-     * @param taskList the task list to be saved.
-     * @param storage  the storage to be saved to.
+     * @param calendarList the calendar list to be saved.
+     * @param storage      the storage to be saved to.
      */
     @Override
-    public void execute(TaskList taskList, Storage storage) {
-        storage.writeToFile(taskList);
+    public void execute(CalendarList calendarList, Storage storage) {
+        storage.writeToFile(calendarList);
         Ui.printExitMessage();
     }
 

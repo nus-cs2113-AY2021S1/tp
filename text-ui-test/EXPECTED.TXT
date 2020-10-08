@@ -48,7 +48,7 @@ Your total tasks: 1
 ...........................................
 ............. DUKE CHAT BOX ^^ ............
 Got it. I've added this task:
-[E][X] project meeting (at: 06-Jun-2006)
+[A] project meeting 06-Jun-2006 12:00 PM (sentosa beach)
 Your total tasks: 2
 ...........................................
 ............. DUKE CHAT BOX ^^ ............
@@ -61,7 +61,7 @@ Your total tasks: 3
 ...........................................
 ............. DUKE CHAT BOX ^^ ............
 Got it. I've added this task:
-[Ex]CS2113 (at: 02-Feb-2002, 12:00 PM)
+[Exam] CS2113 02-Feb-2002 12:00 PM (open book)
 Your total tasks: 4
 ...........................................
 ............. DUKE CHAT BOX ^^ ............
@@ -79,7 +79,7 @@ Good work! I've marked this task as done:
 ...........................................
 ............. DUKE CHAT BOX ^^ ............
 Task deleted:
-[E][X] project meeting (at: 06-Jun-2006)
+[A] project meeting 06-Jun-2006 12:00 PM (sentosa beach)
 Your total tasks: 3
 ...........................................
 ............. DUKE CHAT BOX ^^ ............
@@ -90,9 +90,9 @@ Type "help" to learn the different commands.
 List of available commands:
 1. todo <task description>
 2. deadline <task description> /by ddMMyy
-3. event <task description>/at ddMMyy
-4. exam <module code> <exam details> /at ddMMyy HHmm
-5. lecture ... / date time
+3. activity <activity description> <venue> /at ddMMyy
+4. exam <module code> <venue> /at ddMMyy HHmm
+5. lecture <module code> <venue> /at ddMMyy HHmm
 6. tutorial ... / date time
 7. lab ... / date time
 8. done <task number>

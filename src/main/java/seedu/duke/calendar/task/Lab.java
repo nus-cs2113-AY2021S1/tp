@@ -1,18 +1,17 @@
-package seedu.duke.task;
+package seedu.duke.calendar.task;
 
 /**
- * Represents a tutorial event.
+ * Represents a lab event.
  */
-public class Tutorial extends Task {
+public class Lab extends Task {
     protected String date;
     protected String time;
     protected String taskType;
 
-    private static final String TUTORIAL_FILE_SYMBOL = "TUT";
+    private static final String LAB_FILE_SYMBOL = "LAB";
     private static final String SEPARATOR = "|";
 
-
-    public Tutorial(String description, String date, String time) {
+    public Lab(String description, String date, String time) {
         super(description);
         this.date = date;
         this.time = time;
@@ -20,16 +19,16 @@ public class Tutorial extends Task {
     }
 
     /**
-     * Return a string to describe the tutorial task.
+     * Return a string to describe the lab task.
      */
     @Override
     public String toString() {
-        return "[TUT]" + super.toString() + " (" + date + " " + time + ")";
+        return "[LAB]" + super.toString() + " (" + date + " " + time + ")";
     }
 
     @Override
     public String printIntoFile() {
-        return TUTORIAL_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description
+        return LAB_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description
                 + SEPARATOR + this.date + SEPARATOR + this.time;
     }
 

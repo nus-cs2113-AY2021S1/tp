@@ -1,7 +1,7 @@
 todo
 deadline wrongcommand
 find
-event
+activity
 done
 delete
 wrongcommand
@@ -9,7 +9,7 @@ done1
 delete1
 find no such keyword
 todo read book
-event project meeting /at 060606
+activity project meeting /at 060606 1200 sentosa beach
 deadline return book /by June 6th
 deadline return book /by 080606
 exam CS2113 open book /at 020202 1200
