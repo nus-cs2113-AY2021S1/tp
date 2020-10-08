@@ -1,8 +1,9 @@
 package seedu.financeit;
 
+import seedu.financeit.manualtracker.ManualTracker;
+import seedu.financeit.utils.*;
+import java.util.Scanner;
 import seedu.financeit.parser.InputParser;
-import seedu.financeit.utils.Printer;
-import seedu.financeit.utils.UiManager;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -10,9 +11,29 @@ import java.util.regex.Pattern;
 
 public class Financeit {
     public static void main(String[] args) {
+        while(true) {
+            MenuPrint.print();
+            Scanner in = new Scanner(System.in);
+            String input = in.nextLine();
+            switch (input) {
+                case "manual": ManualTracker.main();
+                    break;
+                case "auto": //AutoTracker.main();
+                    break;
+                case "acc": //AccSummary.main();
+                    break;
+                case "goal": //GoalTracker.main();
+                    break;
+                case "financial": //FinancialCalculator.main();
+                    break;
+                case "exit": return;
+                default: MenuPrint.prompt = "Invalid Command";
+            }
+        }
+/*
         InputParser inputParser = new InputParser();
-        // String inputString = "mom /m mom -d dad /s son /d daughter";
-/*        String inputString = "mom";
+        String inputString = "mom /m mom -d dad /s son /d daughter";
+        //String inputString = "mom";
         CommandPacket packet = inputParser.parseInput(inputString);
         packet.getParamTypes();
 
@@ -37,26 +58,19 @@ public class Financeit {
                 {"Name"},
                 {"John"},
                 {"Mary"}
-        };*/
+        };
 
-        // Printer.printList();
+        Printer.printList();
         UiManager.refreshPage();
+
         //ManualTracker.main();
         print();
         //adjustToColWidth("asdsadsadadasdasd", 4);
-
+        adjustToColWidth("asdsadsadadasdasd", 4);
+*/
     }
 
-    public static void print() {
-        Printer.setTitle("Welcome to Main Menu");
-        Printer.addRow("No. ; Feature                               ; Command               ");
-        Printer.addRow("[1]; Manual Income/ Expense Tracker;run manualtracker");
-        Printer.addRow("[2]; Auto Income/ Expense Tracker");
-        Printer.addRow("[3]; Account Summary");
-        Printer.addRow("[4]; Goals Tracker");
-        Printer.addRow("[5]; Financial Calculator");
-        Printer.printList();
-    }
+
     public static ArrayList<String> adjustToColWidth(String input, int length) {
         ArrayList<String> output = new ArrayList<>();
         Pattern pattern = Pattern.compile(String.format(".{%s}|.{1,}$", length));
@@ -66,7 +80,9 @@ public class Financeit {
             output.add(matcher.group());
         }
         return output;
+
     }
+
 }
 
 // This prints a table in case we need it
