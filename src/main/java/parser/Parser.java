@@ -1,14 +1,20 @@
 package parser;
 
-import commands.AddCommand;
 import commands.Command;
-import commands.ExitCommand;
 import commands.ListCommand;
-import commands.ReviseCommand;
+import commands.AddChapterCommand;
+import commands.AddCommand;
+import commands.AddModuleCommand;
+import commands.BackChapterCommand;
+import commands.GoChapterCommand;
 import commands.HelpCommand;
+import commands.ReviseCommand;
+import commands.ExitCommand;
+import commands.GoModuleCommand;
+import commands.BackModuleCommand;
+
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
-import manager.chapter.Chapter;
 import storage.Storage;
 
 
@@ -29,9 +35,63 @@ public class Parser {
             return prepareExit(commandArgs);
         case HelpCommand.COMMAND_WORD:
             return prepareHelp(commandArgs);
+        case AddModuleCommand.COMMAND_WORD:
+            return prepareAddModule(commandArgs);
+        case AddChapterCommand.COMMAND_WORD:
+            return prepareAddChapter(commandArgs);
+        case BackModuleCommand.COMMAND_WORD:
+            return prepareBackModule(commandArgs);
+        case BackChapterCommand.COMMAND_WORD:
+            return prepareBackChapter(commandArgs);
+        case GoModuleCommand.COMMAND_WORD:
+            return prepareGoModule(commandArgs);
+        case GoChapterCommand.COMMAND_WORD:
+            return prepareGoChapter(commandArgs);
         default:
             throw new InvalidInputException();
         }
+    }
+
+    private static Command prepareGoChapter(String commandArgs) throws InvalidInputException {
+        if (commandArgs.isEmpty()) {
+            throw new InvalidInputException();
+        }
+        return new GoChapterCommand(commandArgs);
+    }
+
+    private static Command prepareGoModule(String commandArgs) throws InvalidInputException {
+        if (commandArgs.isEmpty()) {
+            throw new InvalidInputException();
+        }
+        return new GoModuleCommand(commandArgs);
+    }
+
+    private static Command prepareBackChapter(String commandArgs) throws InvalidInputException {
+        if (!commandArgs.isEmpty()) {
+            throw new InvalidInputException();
+        }
+        return new BackChapterCommand();
+    }
+
+    private static Command prepareBackModule(String commandArgs) throws InvalidInputException {
+        if (!commandArgs.isEmpty()) {
+            throw new InvalidInputException();
+        }
+        return new BackModuleCommand();
+    }
+
+    private static Command prepareAddChapter(String commandArgs) throws InvalidInputException {
+        if (commandArgs.isEmpty()) {
+            throw new InvalidInputException();
+        }
+        return new AddChapterCommand(commandArgs);
+    }
+
+    private static Command prepareAddModule(String commandArgs) throws InvalidInputException {
+        if (commandArgs.isEmpty()) {
+            throw new InvalidInputException();
+        }
+        return new AddModuleCommand(commandArgs);
     }
 
     private static String[] splitCommandTypeAndArgs(String userCommand) {

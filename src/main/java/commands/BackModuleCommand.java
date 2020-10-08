@@ -5,15 +5,12 @@ import manager.chapter.CardList;
 import storage.Storage;
 import ui.Ui;
 
-public class HelpCommand extends Command {
-    public static final String COMMAND_WORD = "help";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of commands available. \n"
-            + "Example: " + COMMAND_WORD + "\n";
+public class BackModuleCommand extends Command {
+    public static final String COMMAND_WORD = "backmodule";
 
     @Override
     public void execute(CardList cards, Ui ui, Access access, Storage storage) {
-        ui.showHelpList();
+        access.setModuleLevel("");
     }
 
     @Override

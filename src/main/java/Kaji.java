@@ -1,19 +1,33 @@
+import access.Access;
 import commands.Command;
 import exception.InvalidInputException;
+import manager.admin.Admin;
 import manager.chapter.CardList;
 import parser.Parser;
 import storage.Storage;
 import ui.Ui;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Kaji {
     private CardList cards;
     private Ui ui;
+    private Access access;
+    private Storage storage;
 
-    public Kaji() {
+
+    public Kaji(String filePath) {
         ui = new Ui();
         cards = new CardList();
+        storage = new Storage(filePath);
+        try {
+            Admin admin = new Admin(storage.loadModule());
+            access = new Access(admin);
+        } catch (FileNotFoundException e) {
+            storage.createAdmin();
+            access = new Access();
+        }
     }
 
     public void run() {
@@ -23,9 +37,10 @@ public class Kaji {
         Storage.getFileContents(cards);
         while (!isExit) {
             try {
+                ui.showLevel(access);
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(cards, ui);
+                c.execute(cards, ui, access, storage);
                 ui.printEmptyLine();
                 Storage.writeToFile(cards);
                 isExit = c.isExit();
@@ -38,6 +53,6 @@ public class Kaji {
     }
 
     public static void main(String[] args) {
-        new Kaji().run();
+        new Kaji("data/admin").run();
     }
 }

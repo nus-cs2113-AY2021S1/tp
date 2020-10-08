@@ -1,5 +1,6 @@
 package ui;
 
+import access.Access;
 import commands.AddCommand;
 import commands.ExitCommand;
 import commands.ListCommand;
@@ -21,6 +22,7 @@ import static commands.ReviseCommand.MESSAGE_SHOW_RATING_PROMPT;
 public class Ui {
     private final Scanner in;
     private final PrintStream out;
+    private static final String lineSplit = "    ____________________________________________________________";
 
     public Ui() {
         this(System.in, System.out);
@@ -41,6 +43,10 @@ public class Ui {
 
     public void showWelcome() {
         out.println("Welcome to Kaji!\n");
+    }
+
+    public void showLevel(Access access) {
+        out.println(access.getLevel());
     }
 
     public void printEmptyLine() {
