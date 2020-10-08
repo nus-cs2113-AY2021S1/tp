@@ -20,7 +20,7 @@ public class DeleteTagCommand extends Command {
         return COMMAND_USAGE;
     }
 
-    private final ArrayList<Tag> tags;
+    private ArrayList<Tag> tags;
 
     /**
      * Constructs a DeleteCommand to delete tag(s).

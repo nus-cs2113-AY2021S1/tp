@@ -23,8 +23,8 @@ public class TagCommand extends Command {
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG_NAME [TAG_COLOR]";
 
-    private final int index;
-    private final ArrayList<Tag> tags;
+    private int index;
+    private ArrayList<Tag> tags;
 
     public static String getCommandUsage() {
         return COMMAND_USAGE;

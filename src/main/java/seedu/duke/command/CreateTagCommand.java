@@ -43,7 +43,7 @@ public class CreateTagCommand extends Command {
         return COMMAND_USAGE;
     }
 
-    private final ArrayList<Tag> tags;
+    private ArrayList<Tag> tags;
 
     /**
      * Constructs a CreateTagCommand to create tag(s).

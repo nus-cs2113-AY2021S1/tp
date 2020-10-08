@@ -14,7 +14,7 @@ public class TagManager {
     private static final String STRING_TAG_EMPTY = "There are no tags!";
     private static final String STRING_TAG_LIST = "Here are the available tags:" + InterfaceManager.LS;
 
-    private final Map<Tag, ArrayList<Note>> tagMap;
+    private Map<Tag, ArrayList<Note>> tagMap;
 
     public TagManager() {
         tagMap = new HashMap<>();
