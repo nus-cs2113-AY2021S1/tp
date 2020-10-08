@@ -1,10 +1,13 @@
-package seedu.duke.task;
+package seedu.duke.calendar.task;
 
 /**
  * Represents a todo task.
  */
 public class Todo extends Task {
     protected String taskType;
+
+    private static final String TODO_FILE_SYMBOL = "T";
+    private static final String SEPARATOR = "|";
 
     public Todo(String description) {
         super(description);
@@ -19,9 +22,16 @@ public class Todo extends Task {
         return "[T]" + super.toString();
     }
 
-    /** Returns the respective task type. */
+    /**
+     * Returns the respective task type.
+     */
     @Override
     public String getTaskType() {
         return taskType;
+    }
+
+    @Override
+    public String printIntoFile() {
+        return TODO_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description;
     }
 }

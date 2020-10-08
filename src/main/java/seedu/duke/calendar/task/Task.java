@@ -1,15 +1,20 @@
-package seedu.duke.task;
+package seedu.duke.calendar.task;
+
+import seedu.duke.calendar.CalendarItem;
 
 import java.time.LocalDate;
 
 /**
  * Represents a Task in the task list.
  */
-public abstract class Task {
+public abstract class Task extends CalendarItem {
     public static final String TICK_SYMBOL = "/";
     public static final String CROSS_SYMBOL = "X";
     protected String description;
     protected boolean isDone;
+
+    private static final String TASK_FILE_SYMBOL = "Task";
+    private static final String SEPARATOR = "|";
 
     public Task(String description) {
         this.description = description;
@@ -50,6 +55,21 @@ public abstract class Task {
      */
     public void markAsDone() {
         this.isDone = true;
+    }
+
+
+    @Override
+    public String printIntoFile() {
+        return TASK_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description;
+    }
+
+    /**
+     * Get the state of the task.
+     *
+     * @return the state of the task
+     */
+    public boolean getIsDone() {
+        return isDone;
     }
 
     public LocalDate getTime() {
