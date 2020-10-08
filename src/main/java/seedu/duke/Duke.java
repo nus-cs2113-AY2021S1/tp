@@ -30,11 +30,11 @@ public class Duke {
     public void run() {
         //...
         ui.hello();
-        Scanner scanner = new Scanner(System.in);
         InputParser parseManager = new InputParser();
         while (!parseManager.isByeTime()) {
             Ui.printLineIcon();
-            parseManager.parseInput(scanner.nextLine());
+            String scan = ui.getUserCommand();
+            parseManager.parseInput(scan);
         }
     }
 
