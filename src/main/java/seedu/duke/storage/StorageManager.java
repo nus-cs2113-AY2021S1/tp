@@ -95,7 +95,7 @@ public class StorageManager {
         String noteDetails = note.getTitle()
                             + DELIMINATOR
                             + note.getPinned()
-                            + DELIMINATOR
+                            + DELIMITER
                             + note.getTags()
                             + System.lineSeparator();
         fwAppend.write(noteDetails);
