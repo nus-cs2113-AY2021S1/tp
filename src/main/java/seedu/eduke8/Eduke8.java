@@ -34,7 +34,7 @@ public class Eduke8 {
 
         //while(!isExit) {
         String userInput = ui.getInputFromUser();
-        parser.parseCommand(userInput);
+        parser.parseCommand(topicList, userInput);
         //isExit = parser.parseCommand(userInput);
 
         //}
