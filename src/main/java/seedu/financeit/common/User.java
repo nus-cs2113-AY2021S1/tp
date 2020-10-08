@@ -1,4 +1,4 @@
-package seedu.financeit.utils;
+package seedu.financeit.common;
 
 import java.util.ArrayList;
 

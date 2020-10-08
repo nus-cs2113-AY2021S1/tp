@@ -1,7 +1,7 @@
 package seedu.financeit;
 
-import seedu.financeit.manualtracker.ManualTracker;
-import seedu.financeit.utils.InputParser;
+import seedu.financeit.parser.InputParser;
+import seedu.financeit.utils.Printer;
 import seedu.financeit.utils.UiManager;
 
 import java.util.ArrayList;
@@ -41,10 +41,21 @@ public class Financeit {
 
         // Printer.printList();
         UiManager.refreshPage();
-        ManualTracker.main();
-
+        //ManualTracker.main();
+        print();
         //adjustToColWidth("asdsadsadadasdasd", 4);
 
+    }
+
+    public static void print() {
+        Printer.setTitle("Welcome to Main Menu");
+        Printer.addRow("No. ; Feature                               ; Command               ");
+        Printer.addRow("[1]; Manual Income/ Expense Tracker;run manualtracker");
+        Printer.addRow("[2]; Auto Income/ Expense Tracker");
+        Printer.addRow("[3]; Account Summary");
+        Printer.addRow("[4]; Goals Tracker");
+        Printer.addRow("[5]; Financial Calculator");
+        Printer.printList();
     }
     public static ArrayList<String> adjustToColWidth(String input, int length) {
         ArrayList<String> output = new ArrayList<>();

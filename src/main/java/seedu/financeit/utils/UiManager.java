@@ -1,5 +1,9 @@
 package seedu.financeit.utils;
 
+import seedu.financeit.common.CommandPacket;
+import seedu.financeit.common.Constants;
+import seedu.financeit.parser.InputParser;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
