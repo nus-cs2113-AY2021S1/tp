@@ -5,7 +5,7 @@ import manager.chapter.CardList;
 import storage.Storage;
 import ui.Ui;
 
-public class backChapterCommand extends Command {
+public class BackChapterCommand extends Command {
     public static final String COMMAND_WORD = "backchapter";
 
     @Override

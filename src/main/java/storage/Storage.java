@@ -23,7 +23,7 @@ public class Storage {
 
     protected String filePath;
 
-    public Storage(String filePath){
+    public Storage(String filePath) {
         this.filePath = filePath;
     }
 
@@ -31,12 +31,11 @@ public class Storage {
     public void createAdmin() {
         File f = new File(filePath);
         boolean success = f.getParentFile().mkdir();
-        System.out.println("    "+ filePath);
-        if(success) {
-            System.out.println("    Successfully created new directory");
-        }
-        else {
-            System.out.println("    Failed to create new directory");
+        System.out.println(filePath);
+        if (success) {
+            System.out.println("Successfully created new directory");
+        } else {
+            System.out.println("Failed to create new directory");
         }
     }
 
@@ -47,10 +46,9 @@ public class Storage {
         //String v = f1.getAbsolutePath();
         //System.out.println("    getParentFile: " + v);
         //System.out.println("    filePath: " + f.getPath());
-        if(success) {
+        if (success) {
             System.out.println("    Successfully created new directory " + moduleName);
-        }
-        else {
+        } else {
             System.out.println("    Failed to create new directory");
         }
     }
@@ -58,10 +56,9 @@ public class Storage {
     public void createChapter(String chapterName, String moduleName) {
         File f = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
         boolean success = f.getParentFile().mkdir();
-        if(success) {
+        if (success) {
             System.out.println("    Successfully created new directory " + chapterName);
-        }
-        else {
+        } else {
             System.out.println("    Failed to create new directory");
         }
     }
@@ -71,9 +68,9 @@ public class Storage {
         ArrayList<Module> modules = new ArrayList<Module>();
         Scanner s = new Scanner(f);
 
-        String contents[] = f.list();
+        String[] contents = f.list();
         System.out.println("List of files and directories in the specified directory:");
-        for(int i=0; i<contents.length; i++) {
+        for (int i = 0; i < contents.length; i++) {
             System.out.println(contents[i]);
             modules.add(new Module(contents[i]));
         }
@@ -84,9 +81,9 @@ public class Storage {
         File f = new File(filePath + "/" + module);
         ArrayList<Chapter> chapters = new ArrayList<Chapter>();
         Scanner s = new Scanner(f);
-        String contents[] = f.list();
+        String[] contents = f.list();
         System.out.println("List of files and directories in the specified directory:");
-        for(int i=0; i<contents.length; i++) {
+        for (int i = 0; i < contents.length; i++) {
             String target = contents[i].replace(".txt", "");
             System.out.println(contents[i]);
             chapters.add(new Chapter(target));

@@ -7,23 +7,22 @@ import access.Access;
 import storage.Storage;
 import ui.Ui;
 
-public class addChapterCommand extends Command {
+public class AddChapterCommand extends Command {
     public static final String COMMAND_WORD = "addchapter";
     String chapterCode;
 
-    public addChapterCommand(String chapterCode) {
+    public AddChapterCommand(String chapterCode) {
         this.chapterCode = chapterCode;
     }
 
     @Override
     public void execute(CardList cards, Ui ui, Access access, Storage storage) {
-        if(access.getModuleLevel() != "") {
+        if (access.getModuleLevel() != "") {
             Module newModule = access.getModule();
             newModule.add(new Chapter(chapterCode));
             access.setModule(newModule);
             storage.createChapter(chapterCode, access.getModuleLevel());
-        }
-        else {
+        } else {
             System.out.println("Sorry, you currently are in the admin level, please enter module level first.");
         }
     }

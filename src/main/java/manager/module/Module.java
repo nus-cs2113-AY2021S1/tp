@@ -24,7 +24,7 @@ public class Module {
         totalModule++;
     }
 
-    public void add(Chapter chapter){
+    public void add(Chapter chapter) {
         chapters.add(chapter);
         chapters.get(chapterAmount).doneAddChapter();
         chapterAmount++;
@@ -33,7 +33,7 @@ public class Module {
     public void doneAddModule() {
         System.out.println("    Got it. I've added this module:");
         System.out.println("    " + getModule());
-        System.out.println("    Now you have " + totalModule +" modules in the list.");
+        System.out.println("    Now you have " + totalModule + " modules in the list.");
     }
 
     public String getModule() {

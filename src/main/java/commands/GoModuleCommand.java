@@ -9,11 +9,11 @@ import ui.Ui;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class goModuleCommand extends Command {
+public class GoModuleCommand extends Command {
     public static final String COMMAND_WORD = "gomodule";
     String moduleCode;
 
-    public goModuleCommand(String moduleCode) {
+    public GoModuleCommand(String moduleCode) {
         this.moduleCode = moduleCode;
     }
 
@@ -22,7 +22,7 @@ public class goModuleCommand extends Command {
         boolean isLevelExist = false;
         ArrayList<Module> modules = access.getAdmin().getModules();
         for (Module module : modules) {
-            if(moduleCode.equalsIgnoreCase(module.getModule())) {
+            if (moduleCode.equalsIgnoreCase(module.getModule())) {
                 access.setModuleLevel(moduleCode);
                 isLevelExist = true;
                 try {

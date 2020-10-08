@@ -28,7 +28,7 @@ public class Chapter {
         cardAmount = cards.size();
     }
 
-    public void add(Card card){
+    public void add(Card card) {
         cards.add(card);
         cardAmount++;
     }
@@ -36,7 +36,7 @@ public class Chapter {
     public void doneAddChapter() {
         System.out.println("    Got it. I've added this chapter:");
         System.out.println("    " + getChapter());
-        System.out.println("    Now you have " + totalChapter +" chapters in the list.");
+        System.out.println("    Now you have " + totalChapter + " chapters in the list.");
     }
 
     public String getChapter() {

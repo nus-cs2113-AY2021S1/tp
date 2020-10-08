@@ -9,11 +9,11 @@ import ui.Ui;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class goChapterCommand extends Command {
+public class GoChapterCommand extends Command {
     public static final String COMMAND_WORD = "gochapter";
     String chapterCode;
 
-    public goChapterCommand(String chapterCode) {
+    public GoChapterCommand(String chapterCode) {
         this.chapterCode = chapterCode;
     }
 
@@ -22,11 +22,12 @@ public class goChapterCommand extends Command {
         boolean isLevelExist = false;
         ArrayList<Chapter> chapters = access.getModule().getChapter();
         for (Chapter chapter : chapters) {
-            if(chapterCode.equalsIgnoreCase(chapter.getChapter())) {
+            if (chapterCode.equalsIgnoreCase(chapter.getChapter())) {
                 access.setChapterLevel(chapterCode);
                 isLevelExist = true;
                 try {
-                    Chapter newChapter = new Chapter(chapter.getChapter(), storage.loadCard(access.getModuleLevel(), chapter.getChapter()));
+                    Chapter newChapter = new Chapter(chapter.getChapter(),
+                            storage.loadCard(access.getModuleLevel(), chapter.getChapter()));
                     access.setChapter(newChapter);
                 } catch (FileNotFoundException e) {
                     Chapter newChapter = new Chapter(chapter.getChapter());
