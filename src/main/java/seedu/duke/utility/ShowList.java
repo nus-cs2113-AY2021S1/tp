@@ -2,11 +2,12 @@ package seedu.duke.utility;
 
 import seedu.duke.classes.Show;
 
-public class ShowList {
-    Show[] showList;
+import java.util.HashMap;
 
-    public ShowList(Show[] showList) {
-        this.showList = showList;
+public class ShowList {
+    HashMap<String,Show> showList;
+
+    public ShowList() {
     }
 
 }
