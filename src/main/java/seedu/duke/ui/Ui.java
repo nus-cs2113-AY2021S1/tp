@@ -110,6 +110,10 @@ public class Ui {
         System.out.println("Sorry, I did not understand your command!");
     }
 
+    public void printNoEventInTimeRangeMessage() {
+        System.out.println("There are no events going on during that period.");
+    }
+
     /**
      * Prints exception message.
      *
