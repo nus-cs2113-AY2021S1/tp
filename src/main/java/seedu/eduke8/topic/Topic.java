@@ -2,7 +2,7 @@ package seedu.eduke8.topic;
 
 import seedu.eduke8.question.QuestionListInterface;
 
-class Topic implements TopicInterface {
+public class Topic implements TopicInterface {
 
     private String topicName;
     private QuestionListInterface allQuestions;
