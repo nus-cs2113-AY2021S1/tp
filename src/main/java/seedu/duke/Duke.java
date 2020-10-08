@@ -61,7 +61,7 @@ public class Duke {
      *
      * @param args No arguments entered so far
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         /*String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
