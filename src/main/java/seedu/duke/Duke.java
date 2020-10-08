@@ -29,11 +29,14 @@ public class Duke {
     }
 
     private static void quickStart() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        String logo = "                 _  _____ _                 \n"
+                + "     /\\         (_)/ ____| |                \n"
+                + "    /  \\   _ __  _| |    | |__   __ _ _ __  \n"
+                + "   / /\\ \\ | '_ \\| | |    | '_ \\ / _` | '_ \\ \n"
+                + "  / ____ \\| | | | | |____| | | | (_| | | | |\n"
+                + " /_/    \\_\\_| |_|_|\\_____|_| |_|\\__,_|_| |_|\n"
+                + "                                            \n"
+                + "                                            ";
         System.out.println("Hello welcome to AniChan\n" + logo);
         System.out.println("Before we start, let me learn more about you!");
 
