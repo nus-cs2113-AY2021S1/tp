@@ -4,13 +4,14 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import static seedu.duke.common.Messages.DIVIDER;
+
 /**
  * Text UI of the application.
  */
 
 public class TextUi {
 
-    private static final String DIVIDER = "===================================================";
     private static final String MESSAGE_WELCOME = "Welcome to your SmartHomeBot V1.0!";
     private static final String MESSAGE_GOODBYE = "Good bye!";
 

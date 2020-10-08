@@ -6,53 +6,53 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+import static seedu.duke.common.Messages.LINE;
+
 public class Power {
 
     private final int power;
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy | HH:mm:ss");
     LocalDateTime currentTime;
+    Appliance appliance;
     private String offTime;
     private String onTime;
     private double powerUsed;
     private double totalHours;
 
-    private Boolean status;
+    private Boolean isOn;
     private double totalPowerConsumption;
 
     public Power(String power) {
         this.power = Integer.parseInt(power);
-        this.status = false;
+        this.isOn = false;
         totalPowerConsumption = 0;
         totalHours = 0;
     }
 
     /**
      * Appliance only can be switched on if it was 'off' previously.
+     * @return
      */
     public void onAppliance() {
-        if (!status) {
-            status = true;
+        if (!isOn) {
+            this.isOn = true;
             onTime = getCurrentTime();
-            //Testing
-            System.out.println("On at : " + onTime);
         } else {
-            System.out.println("The appliance remains its status. " + status);
+            System.out.println("The appliance is already ON previously.");
         }
     }
 
     public void offAppliance() {
-        if (status) {
-            status = false;
+        if (isOn) {
+            this.isOn = false;
             offTime = getCurrentTime();
-            //Testing
-            System.out.println("Off at : " + offTime);
             try {
                 calculateTimeUsed();
             } catch (ParseException e) {
-                e.printStackTrace();
+                System.out.println(LINE + "Time format is wrong.");
             }
         } else {
-            System.out.println("The appliance remains its status. " + status);
+            System.out.println("The appliance is already OFF previously.");
         }
     }
 
@@ -71,9 +71,17 @@ public class Power {
         Date onTimeValue;
         Date offTimeValue;
         double timeUsed;
+        boolean isOnOnce;
+
         if (onTime != null) {
+            isOnOnce = true;
+        } else {
+            isOnOnce = false;
+        }
+
+        if (isOnOnce) {
             onTimeValue = timeFormat.parse(onTime);
-            if (!this.status) {
+            if (!this.isOn) {
                 offTimeValue = timeFormat.parse(offTime);
                 timeUsed = offTimeValue.getTime() - onTimeValue.getTime();
                 onTime = offTime;
@@ -89,26 +97,23 @@ public class Power {
         // For simulation purpose, 1 second in System equals to 1 hour in SmartHomeBot
         // Convert back to hours timeDifference/(1000 * 60 * 60)
         totalHours = timeUsed / (1000 * 6);
-        System.out.format("Hours used: %.2f \n", totalHours);
-
     }
 
     private void calculatePowerConsumed() throws ParseException {
         calculateTimeUsed();
         powerUsed = totalHours * power / 1000.00;
         totalPowerConsumption += powerUsed;
-        System.out.format("Power used: %.2f kWh at that instance.\n", powerUsed);
     }
 
     public Boolean getStatus() {
-        return this.status;
+        return this.isOn;
     }
 
     public double getPower() {
         try {
             calculatePowerConsumed();
         } catch (ParseException e) {
-            e.printStackTrace();
+            System.out.println(LINE + "Time format is wrong.");
         }
         return this.totalPowerConsumption;
     }
