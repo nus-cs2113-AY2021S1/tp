@@ -3,6 +3,7 @@ package seedu.duke;
 import seedu.duke.classes.Storage;
 import seedu.duke.utility.ShowList;
 import seedu.duke.utility.Ui;
+import seedu.duke.utility.InputParser;
 
 import java.util.Scanner;
 
@@ -28,6 +29,13 @@ public class Duke {
 
     public void run() {
         //...
+        ui.hello();
+        Scanner scanner = new Scanner(System.in);
+        InputParser parseManager = new InputParser();
+        while (!parseManager.isByeTime()) {
+            Ui.printLineIcon();
+            parseManager.parseInput(scanner.nextLine());
+        }
     }
 
     public static void main(String[] args) {
