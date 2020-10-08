@@ -1,2 +1,2 @@
-[bedroom 1]
-bedroom 1|fan|500|Fan|Off|0.0
+[bedroom1]
+bedroom1|light1|25|Light|On|0.1958333333333333

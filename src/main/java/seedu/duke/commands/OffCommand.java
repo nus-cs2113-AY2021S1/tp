@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.EmptyParameterException;
 import seedu.duke.data.framework.Appliance;
 
 public class OffCommand extends Command {
@@ -12,7 +13,10 @@ public class OffCommand extends Command {
             + " n/Fan 1";
     private final String name;
 
-    public OffCommand(String name) {
+    public OffCommand(String name) throws EmptyParameterException {
+        if (name.isEmpty()) {
+            throw new EmptyParameterException();
+        }
         this.name = name;
     }
 
@@ -22,8 +26,10 @@ public class OffCommand extends Command {
             if (i.getName().equals((this.name))) {
                 i.switchOff();
                 System.out.println(this.name + ": OFF");
+                return;
             }
         }
+        System.out.println(name + " does not exist.");
     }
 
 }

@@ -1,5 +1,7 @@
 package seedu.duke.commands;
 
+import seedu.duke.EmptyParameterException;
+
 public class RemoveCommand extends Command {
 
     public static final String COMMAND_WORD = "remove";
@@ -10,7 +12,10 @@ public class RemoveCommand extends Command {
             + " l/Bedroom 1";
     private final String usersEnteredLocation;
 
-    public RemoveCommand(String location) {
+    public RemoveCommand(String location) throws EmptyParameterException {
+        if (location.isEmpty()) {
+            throw new EmptyParameterException();
+        }
         this.usersEnteredLocation = location;
     }
 

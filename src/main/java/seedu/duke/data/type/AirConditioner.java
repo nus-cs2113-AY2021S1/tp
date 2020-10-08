@@ -4,6 +4,7 @@ import seedu.duke.data.framework.Appliance;
 
 public class AirConditioner extends Appliance {
 
+    public static final String TYPE_WORD = "airconditioner";
     private String temperature;
 
     public AirConditioner(String name, String location, String power) {

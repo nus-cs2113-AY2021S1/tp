@@ -1,5 +1,6 @@
 package seedu.duke.storage;
 
+import seedu.duke.EmptyParameterException;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CreateCommand;
@@ -28,8 +29,8 @@ public class StorageFile {
 
     public static void writeToFile() {
         try {
-            clearFile();
             createFile();
+            clearFile();
             FileWriter myWriter = new FileWriter(filePath);
             myWriter.write(homeLocations.getLocations().toString() + "\n");
             for (int i = 0; i < appliances.getAllAppliance().size(); i++) {
@@ -64,21 +65,20 @@ public class StorageFile {
             while (myReader.hasNextLine()) {
                 file = myReader.nextLine();
                 String[] splitString = file.split("\\|", 7);
-                Power powerComsumption = new Power(splitString[2]);
-                powerComsumption.computeFromFile(Double.parseDouble(splitString[5]));
                 Command abc = new AddCommand(splitString[1], splitString[0], splitString[2], splitString[3]);
                 abc.setData(appliances, homeLocations);
                 abc.execute();
+                appliances.getAppliance(i).updatePowerConsumption(splitString[5]);
                 if (splitString[4].toLowerCase().equals("on")) {
                     appliances.getAppliance(i).switchOn();
-                } else if (splitString[4].toLowerCase().equals("off")) {
-                    appliances.getAppliance(i).switchOff();
                 }
                 i++;
             }
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("Load File Does not Exist. No contents will be loaded.");
+        } catch (EmptyParameterException e) {
+            System.out.println("Null location found in save file.");
         }
     }
 
@@ -92,7 +92,6 @@ public class StorageFile {
                 return;
             } else {
                 myObj.createNewFile();
-                System.out.println("File created");
             }
 
         } catch (IOException e) {

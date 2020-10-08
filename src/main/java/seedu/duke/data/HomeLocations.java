@@ -1,5 +1,7 @@
 package seedu.duke.data;
 
+import seedu.duke.data.framework.Appliance;
+
 import java.util.ArrayList;
 
 public class HomeLocations {

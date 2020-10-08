@@ -44,6 +44,10 @@ public abstract class Appliance {
         return appliancePower.toString();
     }
 
+    public void updatePowerConsumption(String powerConsumption) {
+        appliancePower.computeFromFile(Double.parseDouble(powerConsumption));
+    }
+
     public String getPower() {
         return this.power;
     }

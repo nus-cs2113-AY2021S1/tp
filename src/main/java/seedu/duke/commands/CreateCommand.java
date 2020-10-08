@@ -1,5 +1,7 @@
 package seedu.duke.commands;
 
+import seedu.duke.EmptyParameterException;
+
 public class CreateCommand extends Command {
 
     public static final String COMMAND_WORD = "create";
@@ -10,7 +12,10 @@ public class CreateCommand extends Command {
             + " l/Bedroom 1";
     private final String usersEnteredLocation;
 
-    public CreateCommand(String location) {
+    public CreateCommand(String location) throws EmptyParameterException {
+        if (location.isEmpty()) {
+            throw new EmptyParameterException();
+        }
         this.usersEnteredLocation = location;
     }
 
