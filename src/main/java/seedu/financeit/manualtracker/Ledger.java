@@ -1,25 +1,33 @@
 package seedu.financeit.manualtracker;
 
+import seedu.financeit.manualtracker.subroutine.Entry;
+import seedu.financeit.utils.DateTimeManager;
 import seedu.financeit.utils.InputParser;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Ledger {
     ArrayList<Entry> entryList = new ArrayList<>();
-    LocalDate date;
+    DateTimeManager dateTimeManager;
+    LocalDateTime dateTime;
+    String defaultDateTimeFormat = "date";
 
     public Ledger(String rawDate) {
-        LocalDate date = LocalDate.parse(InputParser.parseDateTime(rawDate, "date"));
-        this.date = date;
+        this.setDate(rawDate);
     }
 
     public void addEntry(Entry entry) {
         this.entryList.add(entry);
     }
 
+    public void setDate(String rawDate){
+        this.dateTime = LocalDateTime.parse(InputParser.parseRawDateTime(rawDate, "date"));
+        this.dateTimeManager = new DateTimeManager(dateTime);
+    }
+
     public String getDate() {
-        return this.date.getDayOfWeek().toString();
+        return this.dateTimeManager.getDateFormatted(this.defaultDateTimeFormat);
     }
 
     @Override
