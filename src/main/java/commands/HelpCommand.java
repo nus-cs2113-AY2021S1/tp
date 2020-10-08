@@ -16,6 +16,6 @@ public class HelpCommand extends Command {
 
     @Override
     public boolean isExit() {
-        return true;
+        return false;
     }
 }
