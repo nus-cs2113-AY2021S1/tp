@@ -26,10 +26,14 @@ public class Tag {
         COLOR_CYAN("\u001B[36m"),
         COLOR_RESET("\u001B[0m");
 
-        public final String color;
+        private final String color;
 
         TagColor(String color) {
             this.color = color;
+        }
+
+        public String getColor() {
+            return color;
         }
     }
 
@@ -37,8 +41,8 @@ public class Tag {
     private TagColor tagColor;
 
     public Tag(String tagName) {
-        this.tagName = tagName;
-        this.tagColor = TagColor.COLOR_RESET;
+        setTagName(tagName);
+        setTagColor(TagColor.COLOR_RESET);
     }
 
     /**
@@ -48,8 +52,32 @@ public class Tag {
      * @param tagColor color of the tag.
      */
     public Tag(String tagName, String tagColor) {
-        this.tagName = tagName;
+        setTagName(tagName);
+        setTagColor(tagColor);
+    }
 
+    /** Getter function for the name of the tag. */
+    public String getTagName() {
+        return tagName;
+    }
+
+    /** Setter function for the name of the tag. */
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
+    }
+
+    /** Getter function for the color of the tag. */
+    public TagColor getTagColor() {
+        return tagColor;
+    }
+
+    /** Setter function for the color of the tag. */
+    public void setTagColor(TagColor tagColor) {
+        this.tagColor = tagColor;
+    }
+
+    /** Setter function for the color of the tag. */
+    public void setTagColor(String tagColor) {
         switch (tagColor.toUpperCase()) {
         case COLOR_RED_STRING:
             this.tagColor = TagColor.COLOR_RED;
@@ -76,26 +104,6 @@ public class Tag {
             this.tagColor = TagColor.COLOR_RESET;
             break;
         }
-    }
-
-    /** Getter function for the name of the tag. */
-    public String getTagName() {
-        return tagName;
-    }
-
-    /** Setter function for the name of the tag. */
-    public void setTagName(String tagName) {
-        this.tagName = tagName;
-    }
-
-    /** Getter function for the color of the tag. */
-    public TagColor getTagColor() {
-        return tagColor;
-    }
-
-    /** Setter function for the color of the tag. */
-    public void setTagColor(TagColor tagColor) {
-        this.tagColor = tagColor;
     }
 
     /**
