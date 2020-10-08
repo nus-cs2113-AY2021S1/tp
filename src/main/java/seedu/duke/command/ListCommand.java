@@ -16,14 +16,6 @@ public class ListCommand extends Command {
 
     }
 
-    /**
-     * Prints all the details of the tasks in the list.
-     *
-     * @param taskList The list of tasks.
-     * @param ui The user interface.
-     * @param storage The storage for saving and loading.
-     */
-
     private String getMessage(BookmarkList bookmarks) {
         String message = "\tHere are the bookmarks in your list:\n";
         for (int i = 0; i < bookmarks.getSize(); i++) {

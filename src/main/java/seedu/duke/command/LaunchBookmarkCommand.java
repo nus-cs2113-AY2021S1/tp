@@ -13,7 +13,7 @@ public class LaunchBookmarkCommand extends Command {
 
 
     /**
-     * Constructs a new ExitCommand instance and sets isExitCommand to true.
+     * Constructs a new LaunchBookmarkCommand instance and and gets the index of the bookmark to launch.
      */
 
     public LaunchBookmarkCommand(String command) throws DukeException {
@@ -28,9 +28,8 @@ public class LaunchBookmarkCommand extends Command {
         }
     }
 
-
     /**
-     * Prints the exit screen before the program exits.
+     * launches the bookmark.
      *
      * @param bookmarks The list of bookmarks.
      * @param ui The user interface.
