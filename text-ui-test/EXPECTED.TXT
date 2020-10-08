@@ -2,4 +2,5 @@
 Welcome to your SmartHomeBot V1.0!
 Load File Does not Exist. No contents will be loaded.
 ==================================================
-Enter command: Good bye!
+Enter command: Exporting data........Completed!
+Good bye!
