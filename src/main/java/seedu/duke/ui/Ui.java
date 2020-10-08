@@ -30,4 +30,9 @@ public class Ui {
     public static void printExitMessage() {
         System.out.println("So long buddy!");
     }
+    public static void printRouteSelectionMessage()
+    {
+        System.out.println("What bus routes would you like to see?\nCurrently, we have two bus routes available for" +
+                "your viewing \n1.AA1 \n2.AA2 \nType the name to view:");
+    }
 }
