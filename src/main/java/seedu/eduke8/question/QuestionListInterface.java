@@ -5,16 +5,13 @@ public interface QuestionListInterface {
 
     void setQuizQuestions(int numberOfQuestionsForQuiz);
 
-    // String addQuestion(QuestionInterface question);
+    int getNumberOfQuestionsInQuiz();
 
-    // void deleteQuestion(QuestionInterface question);
-
-    int getQuestionCount();
-
-    void markQuestionAsAttempted();
+    int getNumberOfQuestionsInTopic();
 
     QuestionInterface getNextQuestion();
 
-    boolean areAllQuestionsAnswered();
+    int getCurrentQuestionNumber();
 
+    boolean areAllQuestionsAnswered();
 }

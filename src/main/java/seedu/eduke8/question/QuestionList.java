@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class QuestionList implements QuestionListInterface {
-    private ArrayList<QuestionInterface> allQuestions;
-    private ArrayList<QuestionInterface> questionsForQuiz;
-    private int numberOfQuestionsAnswered;
+    private ArrayList<QuestionInterface> allQuestions;  // list of questions for the particular topic
+    private ArrayList<QuestionInterface> quizQuestions;
+    private int currentQuestionNumber;
 
     private static final Random RANDOM = new Random();
 
     public QuestionList(ArrayList<QuestionInterface> loadedQuestions) {
         allQuestions = loadedQuestions;
-        questionsForQuiz = null;
-        numberOfQuestionsAnswered = 0;
+        quizQuestions = null;
+        currentQuestionNumber = 0;
     }
 
 
@@ -34,7 +34,7 @@ public class QuestionList implements QuestionListInterface {
             }
 
             // choose a random question from the question list and add it to the questions for quiz
-            questionsForQuiz.add(allQuestions.get(randomQuestionIndex));
+            quizQuestions.add(allQuestions.get(randomQuestionIndex));
             numberOfQuestionsSelected++;
             integersChosen.add(randomQuestionIndex);
         }
@@ -42,33 +42,28 @@ public class QuestionList implements QuestionListInterface {
 
 
     @Override
-    public int getQuestionCount() {
-        return questionsForQuiz.size();
+    public int getNumberOfQuestionsInQuiz() {
+        return quizQuestions.size();
     }
 
-    // should throw indexOutOfBounds exception as even though we might
-    // do a check in the program that calls this method, we still need the exception
-    // in case anything happens
     @Override
-    public void markQuestionAsAttempted() {
-        // mark the current question as attempted if method is called in the Quiz class
-        questionsForQuiz.get(numberOfQuestionsAnswered).setAsAttempted();
-        // the last increment will make it be the same as the number of questions there are
-        // for instance, if there are 5 questions, the last call of this method will set the
-        // question at index 4 to be attempted, and will increment the variable questionsAnswered
-        // to 5, while not running again, since no more questions left.
-        numberOfQuestionsAnswered++;
+    public int getNumberOfQuestionsInTopic() {
+        return allQuestions.size();
     }
 
     @Override
     public QuestionInterface getNextQuestion() {
-        // will be called after markQuestionAsAttempted(), so naturally the
-        // questionsAnswered would have incremented
-        return questionsForQuiz.get(numberOfQuestionsAnswered);
+        // Gets current question and increment count for number of questions shown to user
+        return quizQuestions.get(currentQuestionNumber++);
+    }
+
+    @Override
+    public int getCurrentQuestionNumber() {
+        return currentQuestionNumber;
     }
 
     @Override
     public boolean areAllQuestionsAnswered() {
-        return numberOfQuestionsAnswered == questionsForQuiz.size();
+        return currentQuestionNumber == quizQuestions.size();
     }
 }

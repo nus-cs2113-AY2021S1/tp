@@ -31,7 +31,7 @@ public class Quiz implements QuizInterface {
     private void goThroughQuizQuestions(UiInterface ui, QuestionListInterface questionList) {
         while (!questionList.areAllQuestionsAnswered()) {
             QuestionInterface question = questionList.getNextQuestion();
-            ui.printQuestion(question, questionList.getQuestionCount());
+            ui.printQuestion(question, questionList.getCurrentQuestionNumber());
 
             ArrayList<OptionInterface> options = question.getOptions();
 
@@ -39,17 +39,20 @@ public class Quiz implements QuizInterface {
                 ui.printOption(options.get(i), i + 1);
             }
 
-            parseChosenOption(ui, options);
+            parseChosenOption(ui, options, question);
         }
     }
 
-    private void parseChosenOption(UiInterface ui, ArrayList<OptionInterface> options) {
+    private void parseChosenOption(UiInterface ui, ArrayList<OptionInterface> options, QuestionInterface question) {
         // Should probably use parser for this part to add hints also
         int chosen = Integer.parseInt(ui.getInputFromUser());
         if (options.get(chosen).isCorrectAnswer()) {
             ui.printAnswerIsCorrect();
+            question.markAsAnsweredCorrectly();
         } else {
             ui.printAnswerIsWrong();
         }
+
+        question.markAsAttempted();
     }
 }
