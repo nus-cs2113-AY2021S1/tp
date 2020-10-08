@@ -182,14 +182,17 @@ public class View {
 
         for (Module m : modList) {
             String out = contents;
+
             String crosses = REPLACE_BY_MODULE_CODE + crossToBeAdded;
             String weekNum = (isTwoDigitNumber(weekNumber) ? "" : WEEK_NUMBER_PADING_CHAR) + weekNumber;
             out = out.replace(REPLACE_BY_WEEK_NUMBER, weekNum);
+
             StringBuilder moduleCode = new StringBuilder(m.getModuleCode());
             while (moduleCode.length() < crosses.length()) {
                 moduleCode.append(" ");
             }
             out = out.replace(crosses, moduleCode.toString());
+
             if (m.doesExpectedWorkLoadExist()) {
                 String expectedWorkLoad = (isTwoDigitNumber(m.getExpectedWorkload()) ? "" : PADING_CHAR)
                         + m.getExpectedWorkload();
@@ -207,6 +210,7 @@ public class View {
             } else {
                 out = out.replace(REPLACE_BY_NO_ACTUAL_WORKLOAD_FOUND, NO_INPUT);
             }
+
             System.out.print(out + border);
         }
     }
