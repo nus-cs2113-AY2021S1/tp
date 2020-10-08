@@ -18,6 +18,11 @@ public class DeleteCommand extends Command {
 
     public DeleteCommand(String arguments) {
         String[] details = arguments.split(" ", 2);
+
+        // if user did not provide arguments, let details[0] be empty string
+        if (details.length == 1) {
+            details = new String[]{details[0], ""};
+        }
         type = details[0];
         information = details[1];
     }
@@ -43,7 +48,7 @@ public class DeleteCommand extends Command {
         try {
             String categoryName = parameters[0];
             String bookTitle = parameters[1];
-            int quoteNum = Integer.parseInt(parameters[2]);
+            int quoteNum = Integer.parseInt(parameters[2]) - 1;
             Category category = categories.getCategoryByName(categoryName);
 
             if (deleteCategoryFromBook(category, bookTitle, listManager)) {
@@ -79,7 +84,7 @@ public class DeleteCommand extends Command {
     }
 
     private boolean deleteCategoryFromQuote(Category category, int quoteNum, ListManager listManager) {
-        if (quoteNum == -1 || category == null) {
+        if (quoteNum < 0 || category == null) {
             return false;
         }
 
