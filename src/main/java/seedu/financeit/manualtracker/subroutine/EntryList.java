@@ -1,6 +1,6 @@
 package seedu.financeit.manualtracker.subroutine;
 
-import seedu.financeit.utils.Printer;
+import seedu.financeit.ui.TablePrinter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -50,9 +50,9 @@ public class EntryList {
         } else {
             this.removeEntry(removedEntry);
             System.out.println(String.format("Ledger Removed:"));
-            Printer.addRow("Auto;Entry Type;Category;Amount;Time;Description                    ");
-            Printer.addRow(removedEntry.toString());
-            Printer.printList();
+            TablePrinter.addRow("Auto;Entry Type;Category;Amount;Time;Description                    ");
+            TablePrinter.addRow(removedEntry.toString());
+            TablePrinter.printList();
         }
     }
 
@@ -65,15 +65,15 @@ public class EntryList {
     }
 
     public void printList(String ledgerDate) {
-        Printer.setTitle(String.format("List of Entries for Ledger [%s]", ledgerDate));
-        Printer.addRow("Entry Number;Auto;Entry Type;Category;Amount;Time;Description                    ");
+        TablePrinter.setTitle(String.format("List of Entries for Ledger [%s]", ledgerDate));
+        TablePrinter.addRow("Entry Number;Auto;Entry Type;Category;Amount;Time;Description                    ");
         if (this.getEntriesSize() == 0) {
-            Printer.addRow("No entries created               ");
+            TablePrinter.addRow("No entries created               ");
         } else {
             for (int i = 0; i < this.getEntriesSize(); i++) {
-                Printer.addRow(String.format("%s;%s", i + 1, this.entries.get(i)));
+                TablePrinter.addRow(String.format("%s;%s", i + 1, this.entries.get(i)));
             }
         }
-        Printer.printList();
+        TablePrinter.printList();
     }
 }

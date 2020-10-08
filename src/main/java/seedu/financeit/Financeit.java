@@ -1,9 +1,9 @@
 package seedu.financeit;
 
+import seedu.financeit.common.CommandPacket;
 import seedu.financeit.manualtracker.ManualTracker;
-import seedu.financeit.utils.*;
-import java.util.Scanner;
-import seedu.financeit.parser.InputParser;
+import seedu.financeit.ui.MenuPrinter;
+import seedu.financeit.ui.UiManager;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -12,11 +12,12 @@ import java.util.regex.Pattern;
 public class Financeit {
     public static void main(String[] args) {
         while(true) {
-            MenuPrint.print();
-            Scanner in = new Scanner(System.in);
-            String input = in.nextLine();
-            switch (input) {
-                case "manual": ManualTracker.main();
+            MenuPrinter.printMainMenu();
+            CommandPacket input = UiManager.handleInput();
+            UiManager.refreshPage();
+            switch (input.getCommandString()) {
+                case "manual":
+                    ManualTracker.main();
                     break;
                 case "auto": //AutoTracker.main();
                     break;
@@ -26,8 +27,11 @@ public class Financeit {
                     break;
                 case "financial": //FinancialCalculator.main();
                     break;
-                case "exit": return;
-                default: MenuPrint.prompt = "Invalid Command";
+                case "exit":
+                    return;
+                default:
+                    MenuPrinter.prompt = "Invalid Command";
+                    break;
             }
         }
 /*

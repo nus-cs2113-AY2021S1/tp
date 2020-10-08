@@ -80,7 +80,7 @@ public class Entry {
     }
 
     public void setDateTime(String rawTime){
-        this.dateTime = LocalDateTime.parse(InputParser.parseRawDateTime(rawTime, "time"));
+        this.dateTime = InputParser.parseRawDateTime(rawTime, "time");
         this.dateTimeManager = new DateTimeManager(dateTime);
     }
 

@@ -5,8 +5,8 @@ import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.utils.FiniteStateMachine;
 import seedu.financeit.parser.InputParser;
-import seedu.financeit.utils.Printer;
-import seedu.financeit.utils.UiManager;
+import seedu.financeit.ui.TablePrinter;
+import seedu.financeit.ui.UiManager;
 
 import java.time.LocalDateTime;
 
@@ -65,7 +65,7 @@ public class EntryTracker {
             switch (paramType) {
             case "/date":
                 String rawDate = packet.getParam(paramType);
-                LocalDateTime dateTime = LocalDateTime.parse(InputParser.parseRawDateTime(rawDate, "date"));
+                LocalDateTime dateTime = InputParser.parseRawDateTime(rawDate, "date");
                 entryList.removeEntry(dateTime);
                 break;
 
@@ -158,14 +158,14 @@ public class EntryTracker {
     }
 
     private static void printCommandList(){
-        Printer.setTitle("List of Commands");
-        Printer.addRow("No.;Command                 ;Input Format                                                 ");
-        Printer.addRow("1.;New entry;entry new /time <HHMM> /info <string> /cat <category> -[i/e]");
-        Printer.addRow("2.;Edit entry;entry edit <parameter to edit>");
-        Printer.addRow("3.;list entries;entry list");
-        Printer.addRow("4.;delete entry;entry delete /time <HHMM>");
-        Printer.addRow("5.;exit to manual tracker;exit");
-        Printer.printList();
+        TablePrinter.setTitle("List of Commands");
+        TablePrinter.addRow("No.;Command                 ;Input Format                                                 ");
+        TablePrinter.addRow("1.;New entry;entry new /time <HHMM> /info <string> /cat <category> -[i/e]");
+        TablePrinter.addRow("2.;Edit entry;entry edit <parameter to edit>");
+        TablePrinter.addRow("3.;list entries;entry list");
+        TablePrinter.addRow("4.;delete entry;entry delete /time <HHMM>");
+        TablePrinter.addRow("5.;exit to manual tracker;exit");
+        TablePrinter.printList();
     }
 
     private static FiniteStateMachine.State handleInvalidState() {
@@ -174,6 +174,8 @@ public class EntryTracker {
     }
 
     private static FiniteStateMachine.State handleMainMenu() {
+        UiManager.printSpace();
+        UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY, String.format("[ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER %s)", currLedger));
         System.out.printf("You are now in entry tracker for ledger [%s]!\n", currLedger);
         System.out.println("Enter command!");
         System.out.println("Input \"commands\" for list of commands.");

@@ -1,9 +1,11 @@
-package seedu.financeit.utils;
+package seedu.financeit.ui;
+
+import seedu.financeit.utils.RegexMatcher;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
-public class Printer {
+public class TablePrinter {
     private static ArrayList<String> listContents = new ArrayList<>();
     private static String title = "";
     private static final int DEFAULT_COL_WIDTH = 15;

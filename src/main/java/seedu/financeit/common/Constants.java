@@ -37,6 +37,22 @@ public class Constants {
         }
     }
 
+    public enum PrintType {
+        ERROR_MESSAGE("ERROR"),
+        INSTRUCTION("TODO"),
+        GOAL_STATUS("GOAL STATUS"),
+        DIRECTORY("DIR"),
+        SYS_MSG("SYSTEM MESSAGE");
+        public String literal;
+        PrintType(String string) {
+            literal = string;
+        }
+        @Override
+        public String toString(){
+            return literal;
+        }
+    }
+
     // Regex detects the following: <whitespace>/<word><whitespace>
     public static final String paramRegex = String.format("(\\s)([%s]{1})(\\w+)(\\s)",
             String.join("", DEFAULT_PARAMS_PREFIX));

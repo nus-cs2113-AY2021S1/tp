@@ -2,8 +2,13 @@ package seedu.financeit.parser;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
+import seedu.financeit.common.exceptions.EmptyCommandStringException;
+import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.RegexMatcher;
 
+import java.security.InvalidParameterException;
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 
@@ -40,31 +45,33 @@ public class InputParser {
         String[] buffer = null;
         String separator = "";
         boolean paramsExist = false;
-        boolean commandContentExist = false;
 
         //Split into [command, rest of input]
-
         //Check for existence of command title
 
         try {
+            input = " " + input + " ";
             this.matcher = RegexMatcher.regexMatcher(input, Constants.paramRegex);
             separator = this.getSeparator(input);
-            //System.out.println(separator);
-            commandContentExist = true;
+            paramsExist = true;
 
         } catch (java.lang.IllegalStateException exception) {
-            //System.out.println("lol");
             commandString = input;
+            return new CommandPacket(commandString, params);
         }
-        if (commandContentExist) {
-            //System.out.println(matcher.start());
+
+        try {
             buffer = input.split(separator, 2);
+            if (buffer[0].equals(" ")) {
+                throw new EmptyCommandStringException();
+            }
             //command , /a param
-            //System.out.println(buffer[0]);
             buffer[1] = separator + buffer[1];
             commandString = buffer[0];
             String paramSubstring = buffer[1];
             params = new ParamsParser(paramSubstring).parseParams();
+        } catch (EmptyCommandStringException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, exception.getMessage());
         }
 
         return new CommandPacket(commandString, params);
@@ -75,17 +82,21 @@ public class InputParser {
      * @param input
      * @return Formatted String in YYYY-MM-DDTHH:MM:SS
      */
-    public static String parseRawDateTime(String input){
+    public static LocalDateTime parseRawDateTime(String input){
         return parseRawDateTime(input, " ");
     }
 
-    public static String parseRawDateTime(String input, String mode){
+    public static LocalDateTime parseRawDateTime(String input, String mode) throws InvalidParameterException, NullPointerException, DateTimeException {
+        String dateTimeInput;
         int matchCount = 0;
         // If user uses a string token as a separator between two datetimes, say "to", remove from the string.
         String[] tokens = input.replaceAll("[\\s]+[\\D]+[\\s]+|,", " ").split("[\\s]+");
 
         String[] output = new String[2];
         String date = "";
+        if (input.trim().length() == 0) {
+            throw new NullPointerException();
+        }
 
         if (mode.equals("date")) {
             date = parseDateTime(tokens[0], "date");
@@ -111,9 +122,13 @@ public class InputParser {
             output[0] = date + "T" + parseDateTime(tokens[1], "time");
             date = parseDateTime(tokens[2], "date");
             output[1] = date + "T" + parseDateTime(tokens[3], "time");
+        } else {
+            throw new InvalidParameterException();
         }
+
         // If two datetimes are to be given, then segregate them with "," in a single string output.
-        return String.join("", output).trim();
+        dateTimeInput = String.join("", output).trim();
+        return LocalDateTime.parse(dateTimeInput);
     }
 
     /**

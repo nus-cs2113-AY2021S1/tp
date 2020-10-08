@@ -1,0 +1,10 @@
+manual
+commands
+ledger new /date 200404
+ledger new /date 200504
+ledger open /date 202020
+ledger list
+ledger open /date 200404
+exit
+exit
+exit

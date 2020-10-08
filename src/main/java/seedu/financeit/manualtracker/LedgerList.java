@@ -1,6 +1,7 @@
 package seedu.financeit.manualtracker;
 
-import seedu.financeit.utils.Printer;
+import seedu.financeit.common.exceptions.ObjectNotFoundException;
+import seedu.financeit.ui.TablePrinter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,37 +21,32 @@ public class LedgerList {
         return this.ledgers.size();
     }
 
-    public Ledger getLedgerFromIndex(int index) {
+    public Ledger getLedgerFromIndex(int index) throws IndexOutOfBoundsException{
+        if (index < 0 || index >= this.getLedgersSize()) {
+            throw new IndexOutOfBoundsException(String.format("%s [%d]", "Ledger", index));
+        }
         return this.ledgers.get(index);
     }
 
-    public Ledger getLedgerFromDate(LocalDateTime dateTime) {
+    public Ledger getLedgerFromDate(LocalDateTime dateTime) throws ObjectNotFoundException {
         for (Ledger i : this.ledgers) {
             if (i.dateTime.equals(dateTime)) {
                 return i;
             }
         }
-        return null;
+        throw new ObjectNotFoundException(String.format("%s [%s]", "Ledger", dateTime));
     }
 
-    public void removeLedger(LocalDateTime dateTime) {
+    public void removeLedger(LocalDateTime dateTime) throws ObjectNotFoundException {
         Ledger removedLedger = getLedgerFromDate(dateTime);
-        if (removedLedger == null) {
-            System.out.println("No ledger found. Try again!");
-        } else {
-            this.removeLedger(removedLedger);
-            System.out.println(String.format("Ledger Removed: %s", removedLedger));
-        }
+        this.removeLedger(removedLedger);
+        System.out.println(String.format("Ledger Removed: %s", removedLedger));
     }
 
-    public void removeLedger(int index) {
+    public void removeLedger(int index) throws IndexOutOfBoundsException {
         Ledger removedLedger = getLedgerFromIndex(index);
-        if (removedLedger == null) {
-            System.out.println("No ledger found. Try again!");
-        } else {
-            this.removeLedger(removedLedger);
-            System.out.println(String.format("Ledger Removed: %s", removedLedger));
-        }
+        this.removeLedger(removedLedger);
+        System.out.println(String.format("Ledger Removed: %s", removedLedger));
     }
 
     public void removeLedger(Ledger ledger) {
@@ -62,15 +58,15 @@ public class LedgerList {
     }
 
     public void printList() {
-        Printer.setTitle("List of Ledgers");
-        Printer.addRow("Ledger Number;Ledger Date");
+        TablePrinter.setTitle("List of Ledgers");
+        TablePrinter.addRow("Ledger Number;Ledger Date");
         if (this.getLedgersSize() == 0) {
-            Printer.addRow("No ledgers created               ");
+            TablePrinter.addRow("No ledgers created;               ");
         } else {
             for (int i = 0; i < this.getLedgersSize(); i++) {
-                Printer.addRow(String.format("%s;%s", i + 1, this.ledgers.get(i)));
+                TablePrinter.addRow(String.format("%s;%s", i + 1, this.ledgers.get(i)));
             }
         }
-        Printer.printList();
+        TablePrinter.printList();
     }
 }
