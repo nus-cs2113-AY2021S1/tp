@@ -14,8 +14,15 @@ public class AnimeData {
         this.animeDataList = new ArrayList<>();
     }
 
-    public Anime getAnime(Integer animeIndex) {
-        return animeDataList.get(animeIndex);
+    public Anime getAnime(Integer animeIndex) throws IndexOutOfBoundsException, NullPointerException {
+        try {
+            return animeDataList.get(animeIndex);
+        } catch (IndexOutOfBoundsException e) {
+            throw e;
+        } catch (NullPointerException e) {
+            throw e;
+        }
+
     }
 
     public int getSize() {
