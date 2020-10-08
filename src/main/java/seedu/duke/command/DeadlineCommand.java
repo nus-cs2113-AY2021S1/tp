@@ -2,6 +2,8 @@ package seedu.duke.command;
 
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
+import seedu.duke.event.EventList;
+import seedu.duke.event.Personal;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -36,17 +38,22 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) {
-        int withTime = parseUserCommand(command, ui);
-        Event eventUpdated = null;
-        if (withTime == 0) {
-            eventUpdated = data.deadlineChangeDateOnly(index, date);
-        } else if (withTime == 1) {
-            eventUpdated = data.deadlineChangeDateTime(index, date, time);
-        } else {
-            System.out.println("Deadline does not have index/data");
-        }
-        if (eventUpdated != null) {
-            ui.printDeadlineChangedMessage(eventUpdated);
+        parseUserCommand(command, ui, data);
+        EventList personalList = data.getEventList("Personal");
+        Event updatedEvent = personalList.getEventByIndex(index - 1);
+        if (updatedEvent != null) {
+            Personal event = (Personal) updatedEvent;
+            if (time == null) {
+                event.setHasDate(true);
+                event.setHasTime(false);
+                updatedEvent.setDate(date);
+            } else {
+                event.setHasDate(true);
+                event.setHasTime(true);
+                updatedEvent.setDate(date);
+                updatedEvent.setTime(time);
+            }
+            ui.printDeadlineChangedMessage(updatedEvent);
         }
 
     }
@@ -55,9 +62,8 @@ public class DeadlineCommand extends Command {
      * Parsing user command to put in the correct format for arguments and checking if its date or date and time.
      *
      * @param command user input arguments
-     * @return update deadline with time or without time
      */
-    private int parseUserCommand(String command, Ui ui) {
+    private void parseUserCommand(String command, Ui ui, UserData data) {
         command = command.trim();
         String[] commandSplit = command.split(";");
         if (commandSplit.length == 2) {
@@ -67,7 +73,6 @@ public class DeadlineCommand extends Command {
             } catch (Exception e) {
                 ui.printExceptionMessage(e.toString());
             }
-            return 0;
 
         } else if (commandSplit.length == 3) {
             index = Integer.parseInt(commandSplit[0].trim());
@@ -79,10 +84,7 @@ public class DeadlineCommand extends Command {
             } catch (Exception e) {
                 ui.printExceptionMessage(e.toString());
             }
-
-            return 1;
         }
-        return 2;
 
     }
 }

@@ -79,7 +79,4 @@ public class EventList {
 
     }
 
-    public void setEvent(int index, Event e) {
-        events.set(index, e);
-    }
 }
