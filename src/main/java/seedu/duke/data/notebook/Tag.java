@@ -11,13 +11,12 @@ public class Tag {
     public static final String COLOR_YELLOW_STRING = "YELLOW";
     public static final String COLOR_PURPLE_STRING = "PURPLE";
     public static final String COLOR_CYAN_STRING = "CYAN";
-    public static final String COLOR_BLACK_STRING = "BLACK";
     public static final String COLOR_WHITE_STRING = "WHITE";
 
     /**
      * Types of color.
      */
-    private enum TagColor {
+    public enum TagColor {
         COLOR_WHITE("\u001B[30m"),
         COLOR_RED("\u001B[31m"),
         COLOR_GREEN("\u001B[32m"),
@@ -25,13 +24,16 @@ public class Tag {
         COLOR_BLUE("\u001B[34m"),
         COLOR_PURPLE("\u001B[35m"),
         COLOR_CYAN("\u001B[36m"),
-        COLOR_BLACK("\u001B[37m"),
-        COLOR_CLEAR("\u001B[0m");
+        COLOR_RESET("\u001B[0m");
 
-        private final String color;
+        private String color;
 
         TagColor(String color) {
             this.color = color;
+        }
+
+        public String getColor() {
+            return color;
         }
     }
 
@@ -39,8 +41,8 @@ public class Tag {
     private TagColor tagColor;
 
     public Tag(String tagName) {
-        this.tagName = tagName;
-        this.tagColor = TagColor.COLOR_BLACK;
+        setTagName(tagName);
+        setTagColor(TagColor.COLOR_RESET);
     }
 
     /**
@@ -50,35 +52,8 @@ public class Tag {
      * @param tagColor color of the tag.
      */
     public Tag(String tagName, String tagColor) {
-        this.tagName = tagName;
-
-        switch (tagColor.toUpperCase()) {
-        case COLOR_RED_STRING:
-            this.tagColor = TagColor.COLOR_RED;
-            break;
-        case COLOR_GREEN_STRING:
-            this.tagColor = TagColor.COLOR_GREEN;
-            break;
-        case COLOR_BLUE_STRING:
-            this.tagColor = TagColor.COLOR_BLUE;
-            break;
-        case COLOR_YELLOW_STRING:
-            this.tagColor = TagColor.COLOR_YELLOW;
-            break;
-        case COLOR_PURPLE_STRING:
-            this.tagColor = TagColor.COLOR_PURPLE;
-            break;
-        case COLOR_CYAN_STRING:
-            this.tagColor = TagColor.COLOR_CYAN;
-            break;
-        case COLOR_WHITE_STRING:
-            this.tagColor = TagColor.COLOR_WHITE;
-            break;
-        case COLOR_BLACK_STRING:
-        default:
-            this.tagColor = TagColor.COLOR_BLACK;
-            break;
-        }
+        setTagName(tagName);
+        setTagColor(tagColor);
     }
 
     /** Getter function for the name of the tag. */
@@ -101,6 +76,36 @@ public class Tag {
         this.tagColor = tagColor;
     }
 
+    /** Setter function for the color of the tag. */
+    public void setTagColor(String tagColor) {
+        switch (tagColor.toUpperCase()) {
+        case COLOR_RED_STRING:
+            this.tagColor = TagColor.COLOR_RED;
+            break;
+        case COLOR_GREEN_STRING:
+            this.tagColor = TagColor.COLOR_GREEN;
+            break;
+        case COLOR_BLUE_STRING:
+            this.tagColor = TagColor.COLOR_BLUE;
+            break;
+        case COLOR_YELLOW_STRING:
+            this.tagColor = TagColor.COLOR_YELLOW;
+            break;
+        case COLOR_PURPLE_STRING:
+            this.tagColor = TagColor.COLOR_PURPLE;
+            break;
+        case COLOR_CYAN_STRING:
+            this.tagColor = TagColor.COLOR_CYAN;
+            break;
+        case COLOR_WHITE_STRING:
+            this.tagColor = TagColor.COLOR_WHITE;
+            break;
+        default:
+            this.tagColor = TagColor.COLOR_RESET;
+            break;
+        }
+    }
+
     /**
      * Overrides the parent class toString function to return the tag with its tag color.
      *
@@ -108,6 +113,6 @@ public class Tag {
      */
     @Override
     public String toString() {
-        return tagColor.color + "[" + tagName + "]" + TagColor.COLOR_CLEAR.color;
+        return tagColor.color + "[" + tagName + "]" + TagColor.COLOR_RESET.color;
     }
 }

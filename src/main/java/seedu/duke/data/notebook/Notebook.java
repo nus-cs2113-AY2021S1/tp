@@ -36,12 +36,14 @@ public class Notebook {
         return this.notes;
     }
 
+    public Note getNote(int index) {
+        return notes.get(index);
+    }
+
     /**
      * Adds a note into the notebook.
-     *
-     * @throws SystemException if an error occurs.
      */
-    public void addNote(Note note) throws SystemException {
+    public void addNote(Note note) {
         notes.add(note);
     }
 
@@ -50,7 +52,7 @@ public class Notebook {
      *
      * @throws SystemException if an error occurs.
      */
-    public void deleteNote(int index) throws SystemException {
+    public void deleteNote(int index) {
         notes.remove(index);
     }
 
@@ -59,11 +61,15 @@ public class Notebook {
      *
      * @throws SystemException if an error occurs.
      */
-    public void deleteNote(String title) throws SystemException {
+    public void deleteNote(String title) {
         notes.removeIf(note -> note.getTitle().equals(title));
     }
 
     public void setNotes(ArrayList<Note> notes) {
         this.notes = notes;
+    }
+
+    public int getSize() {
+        return notes.size();
     }
 }

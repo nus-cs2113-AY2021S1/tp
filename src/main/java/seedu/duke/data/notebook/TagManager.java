@@ -11,6 +11,9 @@ import java.util.Map;
  */
 public class TagManager {
 
+    private static final String STRING_TAG_EMPTY = "There are no tags!";
+    private static final String STRING_TAG_LIST = "Here are the available tags:" + InterfaceManager.LS;
+
     private Map<Tag, ArrayList<Note>> tagMap;
 
     public TagManager() {
@@ -22,7 +25,7 @@ public class TagManager {
     }
 
     /**
-     * Checks if the Tag exists in the Map.
+     * Returns if a tag with the tag name exists.
      *
      * @param tagName name of the Tag to check.
      * @return true if Tag exists, false otherwise.
@@ -36,6 +39,12 @@ public class TagManager {
         return false;
     }
 
+    /**
+     * Returns the Tag that matches the tag name.
+     *
+     * @param tagName name of the Tag to check.
+     * @return the Tag if it exists, null otherwise.
+     */
     public Tag getTag(String tagName) {
         for (Tag t : tagMap.keySet()) {
             if (t.getTagName().equalsIgnoreCase(tagName)) {
@@ -63,14 +72,14 @@ public class TagManager {
      *
      * @param tagName name of the Tag.
      * @param tagColor color of the Tag.
+     * @return true if new Tag is created, false otherwise.
      */
     public boolean createTag(String tagName, String tagColor) {
-        boolean isTagExist = containsTag(tagName);
-
-        if (!isTagExist) {
+        if (!containsTag(tagName)) {
             tagMap.put(new Tag(tagName, tagColor), new ArrayList<>());
             return true;
         } else {
+            getTag(tagName).setTagColor(tagColor);
             return false;
         }
     }
@@ -79,18 +88,25 @@ public class TagManager {
      * Creates a Tag with the provided Tag.
      *
      * @param tag provided Tag.
+     * @param overridesColor determine if the tag color needs to be override.
+     * @return true if new Tag is created, false otherwise.
      */
-    public void createTag(Tag tag) {
-        tagMap.put(tag, new ArrayList<>());
+    public boolean createTag(Tag tag, boolean overridesColor) {
+        // Check if there exist a tag with the same tag name.
+        Tag existingTag = getTag(tag.getTagName());
 
+        // If the tag does not exist, creates it.
+        if (existingTag == null) {
+            tagMap.put(tag, new ArrayList<>());
+            return true;
+        } else {
+            if (overridesColor) {
+                existingTag.setTagColor(tag.getTagColor());
+            }
+            return false;
+        }
     }
 
-    /**
-     * Tags a Note with the provided name. Creates a new Tag if the Tag does not exist.
-     *
-     * @param note Note to be tagged.
-     * @param tagName name of the Tag.
-     */
     /*public void tagNote(Note note, String tagName) {
         boolean isTagExist = containsTag(tagName);
 
@@ -165,6 +181,7 @@ public class TagManager {
      * Deletes a Tag from the Map. Notes that have the Tag will be untagged.
      *
      * @param tagName name of the Tag to be deleted.
+     * @return true if there exist the tag and is deleted, false otherwise.
      */
     public boolean deleteTag(String tagName) {
         Tag tag = getTag(tagName);
@@ -181,28 +198,65 @@ public class TagManager {
     }
 
     /**
+     * Deletes a Tag from the Map. Notes that have the Tag will be untagged.
+     *
+     * @param tag to be deleted.
+     * @return true if there exist the tag and is deleted, false otherwise.
+     */
+    public boolean deleteTag(Tag tag) {
+        Tag existingTag = getTag(tag.getTagName());
+
+        if (existingTag == null) {
+            return false;
+        }
+
+        for (Note n : tagMap.get(existingTag)) {
+            n.getTags().remove(existingTag);
+        }
+        tagMap.remove(existingTag);
+        return true;
+    }
+
+    /**
      * Lists all the Tags in the map.
      *
-     * @return all the Tags.
+     * @return all the Tags as string.
      */
     public String listTags() {
-        String tagList = "";
+        String tagList;
+
+        if (tagMap.isEmpty()) {
+            return STRING_TAG_EMPTY;
+        } else  {
+            tagList = STRING_TAG_LIST;
+        }
+
         for (Tag t : tagMap.keySet()) {
             tagList = tagList.concat(t.toString() + InterfaceManager.LS);
         }
-        return tagList;
+        return tagList.trim();
     }
 
+    /**
+     * Rebinds all the tags in the note to the existing tags in the database.
+     *
+     * @param note the note to have the tags rebind.
+     */
     public void rebindTags(Note note) {
         int numTagsToCheck = note.getTags().size();
-        for (int i = 0; i < numTagsToCheck; ++i) {
-            Tag tag = note.getTags().get(0);
-            Tag existingTag = getTag(tag.getTagName());
 
+        // loop through all the tags in notes
+        for (int i = 0; i < numTagsToCheck; ++i) {
+
+            // always check against the tag of the first note
+            Tag tag = note.getTags().get(0);
+            // check if the tag exists in the database
+            Tag existingTag = getTag(tag.getTagName());
             note.getTags().remove(tag);
 
             if (existingTag == null) {
-                createTag(tag);
+                // if the tag does not exist in the database, create the tag and tag to note
+                createTag(tag, false);
                 tagNote(note, tag);
             } else if (!note.getTags().contains(existingTag)) {
                 tagNote(note, existingTag);
