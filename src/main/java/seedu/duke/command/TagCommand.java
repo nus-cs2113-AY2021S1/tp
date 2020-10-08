@@ -16,13 +16,17 @@ public class TagCommand extends Command {
     private static final String ADD_TAG_MESSAGE = "Added the tag to the note!";
     private static final String REMOVE_TAG_MESSAGE = "Removed the tag from the note!";
 
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Tags or untags a note. Parameters: "
+    private static final String COMMAND_USAGE = COMMAND_WORD + ": Tags or untags a note. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
-            + PREFIX_DELIMITER + PREFIX_TAG + " TAG NAME [TAG COLOR]";
+            + PREFIX_DELIMITER + PREFIX_TAG + " TAG_NAME [TAG_COLOR]";
 
     private int index;
     private String tagName;
     private String tagColor;
+
+    public static String getCommandUsage() {
+        return COMMAND_USAGE;
+    }
 
     public TagCommand(int index, String tagName, String tagColor) {
         this.index = index;

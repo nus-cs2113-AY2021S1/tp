@@ -9,9 +9,13 @@ public class DeleteTagCommand extends Command {
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Deleted the tag!";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "The tag does not exist!";
 
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Deletes a tag. Parameters: TAG NAME";
+    private static final String COMMAND_USAGE = COMMAND_WORD + ": Deletes a tag. Parameters: TAG_NAME";
 
     private String tagName;
+
+    public static String getCommandUsage() {
+        return COMMAND_USAGE;
+    }
 
     public DeleteTagCommand(String tagName) {
         this.tagName = tagName;
