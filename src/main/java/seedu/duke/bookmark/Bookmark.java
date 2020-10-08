@@ -1,9 +1,9 @@
 package seedu.duke.bookmark;
+
 import seedu.duke.command.AddBookmarkCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +17,7 @@ public class Bookmark {
     private String module;
     private String description;
     private String url;
-    private final String SEPARATOR = " | ";
+    private static final String SEPARATOR = " | ";
     
 
     /**
@@ -48,13 +48,13 @@ public class Bookmark {
      * @return a list of strings containing the URL and the description
      */
 
-//    public static List<String> extractDescriptionAndURL(String input) {
-//        List<String> urlAndDescription = Arrays.asList(input.split(" ", 2));
-//        if (urlAndDescription.size() != 2) {
-//            throw new DukeException(DukeExceptionType.INVALID_URL_AND_DESCRIPTION);
-//        }
-//        return urlAndDescription;
-//    }
+    //    public static List<String> extractDescriptionAndURL(String input) {
+    //        List<String> urlAndDescription = Arrays.asList(input.split(" ", 2));
+    //        if (urlAndDescription.size() != 2) {
+    //            throw new DukeException(DukeExceptionType.INVALID_URL_AND_DESCRIPTION);
+    //        }
+    //        return urlAndDescription;
+    //    }
     
     /**
      * Returns the topic, URL and description that can be detected from the given input.
@@ -63,27 +63,27 @@ public class Bookmark {
      * @return a list of strings containing the topic, URL and the description
      */
 
-    public static List<String> extractModuleDescriptionAndURL (String input) throws DukeException {
+    public static List<String> extractModuleDescriptionAndUrl(String input) throws DukeException {
         input = input.substring(AddBookmarkCommand.ADD_KW.length()).trim();
         System.out.println(input);
-        List<String> moduleDescriptionURL = new ArrayList<String>(Arrays.asList(input.split(" ", 3)));
-        if (moduleDescriptionURL.size() == 2) {
-            moduleDescriptionURL.add(0, "");  // No entry for module
+        List<String> moduleDescriptionUrl = new ArrayList<String>(Arrays.asList(input.split(" ", 3)));
+        if (moduleDescriptionUrl.size() == 2) {
+            moduleDescriptionUrl.add(0, "");  // No entry for module
         }
-        if (moduleDescriptionURL.size() != 3) {
+        if (moduleDescriptionUrl.size() != 3) {
             throw new DukeException(DukeExceptionType.INVALID_URL_AND_DESCRIPTION);
         }
-        if (moduleDescriptionURL.get(1).isBlank() || moduleDescriptionURL.get(2).isBlank()) {
-           throw new DukeException(DukeExceptionType.EMPTY_DESCRIPTION);
+        if (moduleDescriptionUrl.get(1).isBlank() || moduleDescriptionUrl.get(2).isBlank()) {
+            throw new DukeException(DukeExceptionType.EMPTY_DESCRIPTION);
         }
-        if (!isURLValid(moduleDescriptionURL.get(2))) {
+        if (!isUrlValid(moduleDescriptionUrl.get(2))) {
             throw new DukeException(DukeExceptionType.INVALID_URL_AND_DESCRIPTION);
         }
 
-        return moduleDescriptionURL;
+        return moduleDescriptionUrl;
     }
 
-    private static Boolean isURLValid(String url) {
+    private static Boolean isUrlValid(String url) {
         if (url.startsWith("www.") || url.startsWith("https://")) {
             return true;
         }

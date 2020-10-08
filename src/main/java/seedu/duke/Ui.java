@@ -39,6 +39,7 @@ public class Ui {
                 + message
                 + LINE);
     }
+
     /**
      * Prints a message after starting the program.
      */

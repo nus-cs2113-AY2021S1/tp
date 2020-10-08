@@ -22,7 +22,7 @@ public class AddBookmarkCommand extends Command {
      */
 
     public AddBookmarkCommand(String command) throws DukeException {
-        List<String> descAndAt = Bookmark.extractModuleDescriptionAndURL(command);
+        List<String> descAndAt = Bookmark.extractModuleDescriptionAndUrl(command);
         module = descAndAt.get(0);
         description = descAndAt.get(1);
         url = descAndAt.get(2);
