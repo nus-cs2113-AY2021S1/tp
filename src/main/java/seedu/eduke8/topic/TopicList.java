@@ -2,7 +2,7 @@ package seedu.eduke8.topic;
 
 import java.util.ArrayList;
 
-class TopicList implements TopicListInterface {
+public class TopicList implements TopicListInterface {
     private ArrayList<TopicInterface> allTopics;
 
     public TopicList(ArrayList<TopicInterface> loadedTopics) {
@@ -25,6 +25,15 @@ class TopicList implements TopicListInterface {
     @Override
     public void deleteTopic(int index) {
         allTopics.remove(index);
+    }
+
+    public TopicInterface findTopic(String topicName) {
+        for (TopicInterface topic : allTopics) {
+            if (topicName.equals(topic.getTopic())) {
+                return topic;
+            }
+        }
+        return null;
     }
 
     @Override

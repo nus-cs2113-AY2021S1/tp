@@ -4,12 +4,21 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import seedu.eduke8.question.QuestionInterface;
-import seedu.eduke8.question.QuestionListInterface;
-import seedu.eduke8.topic.TopicInterface;
-import seedu.eduke8.ui.UiInterface;
+import seedu.eduke8.hint.Hint;
+import seedu.eduke8.hint.HintInterface;
+import seedu.eduke8.option.Option;
 import seedu.eduke8.option.OptionInterface;
+import seedu.eduke8.option.OptionList;
 import seedu.eduke8.option.OptionListInterface;
+import seedu.eduke8.question.Question;
+import seedu.eduke8.question.QuestionInterface;
+import seedu.eduke8.question.QuestionList;
+import seedu.eduke8.question.QuestionListInterface;
+import seedu.eduke8.topic.Topic;
+import seedu.eduke8.topic.TopicInterface;
+import seedu.eduke8.ui.Ui;
+import seedu.eduke8.ui.UiInterface;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,7 +28,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Storage implements StorageInterface {
     private String filePath = new File("").getAbsolutePath();
-    private UiInterface ui;
+    private static UiInterface ui = new Ui();
 
     public Storage(String filePath) {
         // Use relative path for Unix systems
@@ -55,8 +64,7 @@ public class Storage implements StorageInterface {
             return topicsAsObjects;
 
         } catch (IOException | ParseException e) {
-            e.printStackTrace();
-            // ui.printError();
+            ui.printError();
         }
 
         return null;
@@ -70,11 +78,9 @@ public class Storage implements StorageInterface {
                 .map(question -> parseToQuestionObject((JSONObject) question))
                 .collect(toList());
 
-        QuestionListInterface questionList = null;
-        // TODO construct questionList object when class is available
+        QuestionListInterface questionList = new QuestionList(questionsAsObjects);
 
-        TopicInterface topicAsObject = null;
-        // TODO construct topic object when class is available
+        TopicInterface topicAsObject = new Topic(topicTitle, questionList);
 
         return topicAsObject;
     }
@@ -86,13 +92,13 @@ public class Storage implements StorageInterface {
                 .map(option -> parseToOptionObject((JSONObject) option))
                 .collect(toList());
 
-        OptionListInterface optionList = null;
-        // TODO construct optionList object when class is available
+        OptionListInterface optionList = new OptionList(optionsAsObjects);
 
         String hintDescription = (String) question.get("hint");
 
-        QuestionInterface questionAsObject = null;
-        // TODO construct question object when class is available
+        HintInterface hint = new Hint(hintDescription);
+
+        QuestionInterface questionAsObject = new Question(questionDescription, optionList, hint);
 
         return questionAsObject;
     }
@@ -101,8 +107,11 @@ public class Storage implements StorageInterface {
         String optionDescription = (String) option.get("description");
         boolean isCorrectAnswer = (boolean) option.get("correct");
 
-        OptionInterface optionAsObject = null;
-        // TODO construct option object when class is available
+        OptionInterface optionAsObject = new Option(optionDescription);
+
+        if (isCorrectAnswer) {
+            optionAsObject.markAsCorrectAnswer();
+        }
 
         return optionAsObject;
     }
@@ -114,7 +123,7 @@ public class Storage implements StorageInterface {
             try {
                 f.createNewFile();
             } catch (IOException e) {
-                e.printStackTrace();
+                ui.printError();
             }
         }
     }
