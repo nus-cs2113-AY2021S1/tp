@@ -21,13 +21,23 @@ public class Eduke8 {
 
     private void run() {
         start();
-        String userInput = ui.getInputFromUser();
-        parser.parseCommand(userInput);
+        runCommandLoopUntilExit();
         exit();
     }
 
     private void start() {
         ui.printGreetMessage();
+    }
+
+    private void runCommandLoopUntilExit() {
+        //boolean isExit = false;
+
+        //while(!isExit) {
+        String userInput = ui.getInputFromUser();
+        parser.parseCommand(userInput);
+        //isExit = parser.parseCommand(userInput);
+
+        //}
     }
 
     private void exit() {
