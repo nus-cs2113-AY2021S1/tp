@@ -33,10 +33,8 @@ public class Duke {
         InputParser parseManager = new InputParser();
         while (!parseManager.isByeTime()) {
             Ui.printLineIcon();
-            if (!scan.hasNextLine()) {
-                String input = scan.nextLine();
-                parseManager.parseInput(input);
-            }
+            String input = scan.nextLine();
+            parseManager.parseInput(input);
         }
     }
 
@@ -44,3 +42,4 @@ public class Duke {
         new Duke("data/tasks.txt").run();
     }
 }
+

@@ -59,7 +59,7 @@ public class Ui {
     }
 
     public static void printLineIcon() {
-        System.out.print(">>> ");
+        System.out.println("Enter a command: ");
     }
 
     public static void printShowList(ShowList showList) {
