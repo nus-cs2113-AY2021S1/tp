@@ -1,4 +1,6 @@
-package seedu.financeit.utils;
+package seedu.financeit.parser;
+
+import seedu.financeit.common.Constants;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

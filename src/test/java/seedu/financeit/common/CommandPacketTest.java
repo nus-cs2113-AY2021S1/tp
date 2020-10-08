@@ -1,17 +1,17 @@
-package seedu.financeit.utils; /**
+package seedu.financeit.common; /**
  * Organises data from input string into distinct data types and structure.
  * For scalability purposes, a hash table is implemented to map param type to its corresponding params.
  */
 
 import java.util.HashMap;
 
-public class CommandPacket {
+public class CommandPacketTest {
     private String commandString;
     private HashMap paramMap;
     private String rawInput;
 
     // Constructors
-    public CommandPacket(String taskType, HashMap paramMap) {
+    public CommandPacketTest(String taskType, HashMap paramMap) {
         this.commandString = taskType;
         this.paramMap = paramMap;
     }

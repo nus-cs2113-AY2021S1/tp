@@ -1,6 +1,8 @@
 package seedu.financeit.manualtracker;
 
+import seedu.financeit.common.CommandPacket;
 import seedu.financeit.manualtracker.subroutine.EntryTracker;
+import seedu.financeit.parser.InputParser;
 import seedu.financeit.utils.*;
 
 import java.time.LocalDateTime;
@@ -120,11 +122,8 @@ public class ManualTracker {
 
         packet = UiManager.handleInput();
         UiManager.refreshPage();
-        //System.out.println(packet);
-        //System.out.println(packet.getCommandString());
         switch (packet.getCommandString()) {
         case "ledger open":
-            //System.out.println("done");
             return FiniteStateMachine.State.OPEN_LEDGER;
         case "ledger new":
             return FiniteStateMachine.State.CREATE_LEDGER;
@@ -145,7 +144,6 @@ public class ManualTracker {
 
     private static FiniteStateMachine.State handleOpenLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        boolean endRoutine = false;
         for (String paramType : packet.getParamTypes()) {
             switch (paramType) {
             case "/date":
@@ -158,7 +156,6 @@ public class ManualTracker {
                 return state;
             }
         }
-
         EntryTracker.setCurrLedger(currLedger);
         return EntryTracker.main();
     }

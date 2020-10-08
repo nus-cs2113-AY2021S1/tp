@@ -2,8 +2,8 @@ package seedu.financeit;
 
 import seedu.financeit.manualtracker.ManualTracker;
 import seedu.financeit.utils.*;
-
 import java.util.Scanner;
+import seedu.financeit.parser.InputParser;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -11,9 +11,25 @@ import java.util.regex.Pattern;
 
 public class Financeit {
     public static void main(String[] args) {
-        MenuPrint.print();
-        Scanner input = new Scanner(System.in);
-
+        while(true) {
+            MenuPrint.print();
+            Scanner in = new Scanner(System.in);
+            String input = in.nextLine();
+            switch (input) {
+                case "manual": ManualTracker.main();
+                    break;
+                case "auto": //AutoTracker.main();
+                    break;
+                case "acc": //AccSummary.main();
+                    break;
+                case "goal": //GoalTracker.main();
+                    break;
+                case "financial": //FinancialCalculator.main();
+                    break;
+                case "exit": return;
+                default: MenuPrint.prompt = "Invalid Command";
+            }
+        }
 /*
         InputParser inputParser = new InputParser();
         String inputString = "mom /m mom -d dad /s son /d daughter";
@@ -46,12 +62,15 @@ public class Financeit {
 
         Printer.printList();
         UiManager.refreshPage();
-        ManualTracker.main();
 
-
+        //ManualTracker.main();
+        print();
+        //adjustToColWidth("asdsadsadadasdasd", 4);
         adjustToColWidth("asdsadsadadasdasd", 4);
 */
     }
+
+
     public static ArrayList<String> adjustToColWidth(String input, int length) {
         ArrayList<String> output = new ArrayList<>();
         Pattern pattern = Pattern.compile(String.format(".{%s}|.{1,}$", length));
