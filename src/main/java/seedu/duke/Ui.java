@@ -16,7 +16,7 @@ public class Ui {
      * Greets existing user upon opening up application.
      */
     public void greetExisting(UserProfile userProfile) {
-        String userName = userProfile.getName();
+        String userName = userProfile.toString();
         System.out.println("Welcome Back, " + userName);
         System.out.println();
     }
