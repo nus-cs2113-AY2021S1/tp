@@ -18,20 +18,20 @@ public class AddBookmarkCommand extends Command {
     public String url;
 
     /**
-     * Constructs a new ExitCommand instance and sets isExitCommand to true.
+     * Constructs a new AddBookmarkCommand instance and stores the information of the bookmark given by the input.
+     *
+     * @param command The user input command.
+     * @throws DukeException thrown if input command is invalid.
      */
-
     public AddBookmarkCommand(String command) throws DukeException {
         List<String> descAndAt = Bookmark.extractModuleDescriptionAndUrl(command);
         module = descAndAt.get(0);
         description = descAndAt.get(1);
         url = descAndAt.get(2);
-        //Commit
     }
 
-
     /**
-     * Prints the exit screen before the program exits.
+     * Adds the bookmark to the bookmark list and saves the bookmarks list in the text file.
      *
      * @param bookmarks The list of bookmarks.
      * @param ui The user interface.
@@ -41,7 +41,7 @@ public class AddBookmarkCommand extends Command {
     public void execute(BookmarkList bookmarks, Ui ui, Storage storage) {
         Bookmark bookmark = new Bookmark(module, description, url);
         bookmarks.addBookmark(bookmark);
-        ui.printPublic("Added bookmark: " + "[" + module + "] "
+        ui.print("Added bookmark: " + "[" + module + "] "
                 + description + " " +  url + System.lineSeparator());
         try {
             storage.save(bookmarks.getData());

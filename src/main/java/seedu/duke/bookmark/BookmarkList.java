@@ -1,56 +1,58 @@
 package seedu.duke.bookmark;
 
-
-import seedu.duke.exception.DukeException;
 import java.util.ArrayList;
 
+/**
+ * This class represents the bookmark list used to store and organize bookmarks.
+ */
 public class BookmarkList {
-
     private ArrayList<Bookmark> bookmarks;
 
+    /**
+     * Constructs a BookmarkList object with an empty ArrayList to store Bookmark objects.
+     */
     public BookmarkList() {
         this.bookmarks = new ArrayList<>();
     }
 
-
-    public BookmarkList(ArrayList<String> bookmarkString) {
+    /**
+     * Constructs the BookmarkList object containing an ArrayList to store Bookmark objects.
+     * This constructor is used when loading bookmarks from a text file.
+     *
+     * @param bookmarkStrings the list of strings of bookmarks.
+     */
+    public BookmarkList(ArrayList<String> bookmarkStrings) {
         this.bookmarks = new ArrayList<>();
-        loadBookmarkList(bookmarkString);
+        loadBookmarkList(bookmarkStrings);
     }
 
     private void loadBookmarkList(ArrayList<String> bookmarks) {
         for (String line : bookmarks) {
-            loadBookmarks(line);
+            loadBookmark(line);
         }
     }
 
+    /**
+     * This method adds the given bookmark object to the bookmark list.
+     *
+     * @param bookmark the bookmark to be added to the list.
+     */
     public void addBookmark(Bookmark bookmark)  {
         bookmarks.add(bookmark);
     }
 
-
-    private void loadBookmarks(String line) {
+    private void loadBookmark(String line) {
         try {
             bookmarks.add(Bookmark.initBookmark(line));
-        } catch (IndexOutOfBoundsException | DukeException e) {
+        } catch (IndexOutOfBoundsException e) {
             // Invalid task data, skips to the next entry
         }
     }
 
     /**
-     * This method marks a task in the list as done.
+     * Returns the the data of all bookmarks in the list to be saved in the text file.
      *
-     * @param index The index of the task in the list to be marked as done.
-     */
-    //    public void markTaskDone(int index) {
-    //        Task task = taskList.get(index);
-    //        task.markDone();
-    //    }
-
-    /**
-     * Returns the the data of all of the tasks in the list to be saved in the file.
-     *
-     * @return the data of all the tasks.
+     * @return the data of all the bookmarks.
      */
     public String getData() {
         StringBuilder data = new StringBuilder();
@@ -61,40 +63,39 @@ public class BookmarkList {
     }
 
     /**
-     * Returns the number of tasks in the list.
+     * Returns the number of bookmarks in the list.
      *
-     * @return the size of the taskList.
+     * @return the size of the bookmark list.
      */
     public int getSize() {
         return bookmarks.size();
     }
 
     /**
-     * Returns task based on the index.
+     * Returns bookmark based on the index.
      *
-     * @param index The index of the task in the list.
-     * @return Task The task with the corresponding index in the list.
+     * @param index The index of the bookmark in the list.
+     * @return The bookmark with the corresponding index in the list.
      */
     public Bookmark getBookmark(int index) {
         return bookmarks.get(index);
     }
 
     /**
-     * Returns the taskList.
+     * Returns the bookmark list.
      *
-     * @return The taskList.
+     * @return The bookmark list.
      */
     public ArrayList<Bookmark> getBookmarkList() {
         return bookmarks;
     }
 
     /**
-     * This method deletes the task from the list.
+     * This method deletes the bookmark from the list.
      *
      * @param bookmark The bookmark to be deleted.
      */
     public void deleteBookmark(Bookmark bookmark) {
         bookmarks.remove(bookmark);
     }
-
 }

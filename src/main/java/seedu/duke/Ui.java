@@ -28,13 +28,7 @@ public class Ui {
         return scanner.nextLine().trim();
     }
 
-    private void print(String message) {
-        System.out.println(LINE
-                + message
-                + LINE);
-    }
-
-    public void printPublic(String message) {
+    public void print(String message) {
         System.out.println(LINE
                 + message
                 + LINE);
@@ -82,25 +76,44 @@ public class Ui {
         case UNKNOWN_INPUT:
             printUnknownInputMessage();
             break;
-        case INVALID_TASK_NUMBER:
+        case INVALID_BOOKMARK_NUMBER:
             //printUseValidTaskNumberMessage();
             break;
         case WRITE_FILE_ERROR:
             //printErrorWritingToFile();
             break;
         case EMPTY_DESCRIPTION:
-            //printEmptyTaskDescriptionMessage(dukeException.getTaskType());
+            printEmptyBookmarkDescriptionMessage();
             break;
-        case INVALID_TASK_FORMAT:
-            //printEnterValidTaskFormatMessage(dukeException.getTaskType());
+        case ERROR_LAUNCHING_URL:
+            printErrorLaunchUrlMessage();
             break;
-        case INVALID_DATE_TIME:
-            //printInvalidDateTime();
+        case INVALID_BOOKMARK_INPUT:
+            printInvalidBookmarkInputMessage();
+            break;
+        case INVALID_URL:
+            printInvalidUrl();
             break;
         default:
             // unable to get dukeExceptionType
             break;
         }
+    }
+
+    private void printErrorLaunchUrlMessage() {
+        print("Error launching url\n");
+    }
+
+    private void printInvalidUrl() {
+        print("Invalid url\n");
+    }
+
+    private void printInvalidBookmarkInputMessage() {
+        print("Invalid bookmark input\n");
+    }
+
+    private void printEmptyBookmarkDescriptionMessage() {
+        print("Empty description\n");
     }
 
     private void printUnknownInputMessage() {

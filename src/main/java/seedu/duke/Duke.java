@@ -46,7 +46,7 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(bookmarks, ui, storage);  // pass timetable here
+                c.execute(bookmarks, ui, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showErrorMessage(e);
