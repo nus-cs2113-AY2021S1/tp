@@ -22,6 +22,7 @@ import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.exception.SystemException.ExceptionType;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
+import seedu.duke.ui.InterfaceManager;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -40,7 +41,7 @@ import static seedu.duke.util.PrefixSyntax.STRING_SPLIT_DELIMITER;
 public class Parser {
 
     private static final int CONTAINS_TAG_COLOR_INFO = 2;
-    private static final int NULL_INDEX = -1;
+    private static final int NULL_INDEX = 0;
 
     /**
      * Parses userInput string into a Command to be executed.
@@ -60,7 +61,6 @@ public class Parser {
             userMessage = null;
         }
 
-
         try {
             switch (commandString.toLowerCase()) {
             case AddCommand.COMMAND_WORD_NOTE:
@@ -68,7 +68,7 @@ public class Parser {
             case AddCommand.COMMAND_WORD_EVENT:
                 // return prepareAddEvent(userMessage);
             case ListNoteCommand.COMMAND_WORD:
-                // return prepareListNote(userMessage);
+                return prepareListNote(userMessage);
             case ListEventCommand.COMMAND_WORD:
                 // return prepareListEvent(userMessage);
             case ViewNoteCommand.COMMAND_WORD:
@@ -98,8 +98,11 @@ public class Parser {
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
             case HelpCommand.COMMAND_WORD:
-            default:
                 return new HelpCommand();
+            default:
+                return new IncorrectCommand(InterfaceManager.LS
+                        + "Invalid Command. Please try again or enter help to get a list of valid commands."
+                        + InterfaceManager.LS);
             }
         } catch (SystemException exception) {
             return new IncorrectCommand(exception.getMessage());
@@ -161,7 +164,7 @@ public class Parser {
         return new Tag(tagName, tagColor);
     }
 
-    private Command prepareAddNote(String userMessage) {
+    private Command prepareAddNote(String userMessage) throws SystemException {
         Note note;
         String title = null;
         String content;
@@ -176,7 +179,7 @@ public class Parser {
                 switch (prefix) {
                 case PREFIX_TITLE:
                     if (infoDetails[1].isBlank()) {
-                        throw new SystemException(ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+                        throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
                     }
                     title = infoDetails[1].trim();
                     break;
@@ -186,7 +189,7 @@ public class Parser {
                     break;
                 case PREFIX_PIN:
                     if (infoDetails[1].isBlank()) {
-                        throw new SystemException(ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+                        throw new SystemException(ExceptionType.EXCEPTION_MISSING_PIN);
                     }
                     isPinned = Boolean.parseBoolean(infoDetails[1].trim());
                     break;
@@ -207,10 +210,10 @@ public class Parser {
             note = tags.isEmpty() ? new Note(title, content, isPinned) : new Note(title, content, isPinned, tags);
 
             return new AddCommand(note);
-        } catch (SystemException exception) {
-            return new IncorrectCommand(exception.getMessage());
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException exception) {
-            return new IncorrectCommand("Missing description!");
+        } catch (NullPointerException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE_PREFIX);
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
         }
     }
 
@@ -240,8 +243,8 @@ public class Parser {
         commandInput.delete(lastChar, commandInput.length());
     }
 
-    private Command prepareDeleteNote(String userMessage) {
-        int index = 0;
+    private Command prepareDeleteNote(String userMessage) throws SystemException {
+        int index = NULL_INDEX;
 
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
@@ -251,36 +254,76 @@ public class Parser {
                 switch (prefix) {
                 case PREFIX_INDEX:
                     if (infoDetails[1].isBlank()) {
-                        throw new SystemException(ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+                        throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
                     }
                     index = Integer.parseInt(infoDetails[1].trim());
                     break;
                 default:
                 }
             }
+
+            if (index <= NULL_INDEX) {
+                throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+            }
+
             return new DeleteCommand(index, true);
-        } catch (SystemException exception) {
-            return new IncorrectCommand(exception.getMessage());
+        } catch (NullPointerException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX_PREFIX);
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
         } catch (NumberFormatException exception) {
-            return new IncorrectCommand("Invalid format");
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
         }
     }
 
-    private Command prepareFind(String userMessage) {
+    private Command prepareFind(String userMessage) throws SystemException {
         if (userMessage.isBlank()) {
-            return new IncorrectCommand("No search query input. Please enter a keyword for search results.");
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_KEYWORD);
         }
         return new FindCommand(userMessage);
     }
 
+    private Command prepareListNote(String userMessage) {
+        // If no optional parameters, return default display of list
+        if (userMessage == null) {
+            return new ListNoteCommand();
+        }
+
+        Boolean isAscending = null;
+        ArrayList<String> tags = new ArrayList<>();
+        String[] words = userMessage.split("\\S");
+
+        if (userMessage.contains("/tag")) {
+            for (int i = 0; i < words.length; i++) {
+                if (words[i].equals("/tag")) {
+                    tags.add(words[i + 1]);
+                }
+            }
+        }
+
+        for (String word : words) {
+            if (word.equals("up")) {
+                isAscending = true;
+            } else if (word.equals("down")) {
+                isAscending = false;
+            }
+        }
+
+        if (tags.isEmpty()) {
+            return new ListNoteCommand(isAscending);
+        } else {
+            if (isAscending == null) {
+                return new ListNoteCommand(tags);
+            } else {
+                return new ListNoteCommand(isAscending, tags);
+            }
+        }
+
+    }
 
     /*
     private Command prepareAddEvent(String userMessage) {
     return new AddCommand(event);
-    }
-
-    private Command prepareListNote(String userMessage) {
-        return new ListNoteCommand();
     }
 
     private Command prepareListEvent(String userMessage) {
@@ -337,8 +380,6 @@ public class Parser {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG_PREFIX);
         } catch (ArrayIndexOutOfBoundsException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG);
-        } catch (SystemException exception) {
-            return new IncorrectCommand(exception.getMessage());
         }
 
         if (isCreate) {
@@ -384,8 +425,8 @@ public class Parser {
                 throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG_PREFIX);
             }
 
-            if (index == NULL_INDEX) {
-                throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX_PREFIX);
+            if (index <= NULL_INDEX) {
+                throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
             }
         } catch (NullPointerException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG_PREFIX);
@@ -393,8 +434,6 @@ public class Parser {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
         } catch (NumberFormatException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
-        } catch (SystemException exception) {
-            return new IncorrectCommand(exception.getMessage());
         }
         return new TagCommand(index, tags);
     }
