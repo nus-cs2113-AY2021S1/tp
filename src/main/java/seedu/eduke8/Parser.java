@@ -6,10 +6,10 @@ import seedu.eduke8.ui.UiInterface;
 
 public class Parser implements ParserInterface {
 
-    public void parseCommand(String userInput){
+    public void parseCommand(String userInput) {
         String[] commandArr = userInput.trim().split(" ", 0);
         UiInterface ui = null;
-        switch(commandArr[0]) {
+        switch (commandArr[0]) {
         case "about":
             ui.printAbout();
             break;
@@ -34,7 +34,7 @@ public class Parser implements ParserInterface {
     }
 
     public void parseAnswer(String quizAnswer) {
-        switch(quizAnswer.trim()){
+        switch (quizAnswer.trim()) {
         case "1":
         case "2":
         case "3":
