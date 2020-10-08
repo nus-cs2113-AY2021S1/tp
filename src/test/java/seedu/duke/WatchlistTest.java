@@ -16,13 +16,13 @@ class WatchlistTest {
     @Test
     void animeListInString_emptyAnimeList_returnsListIsEmptyMessage() {
         String expected = System.lineSeparator() + "Uhh.. It's empty.. :(" + System.lineSeparator();
-        assertEquals(expected, emptyWatchlist.animeListInString());
+        assertEquals(emptyWatchlist.animeListInString(), expected);
     }
 
     @Test
     void toString_emptyAnimeList_returnsWatchlistNameWithListIsEmptyMessage() {
         String expected = "myWatchlist" + System.lineSeparator();
         expected += "Uhh.. It's empty.. :(" + System.lineSeparator();
-        assertEquals(expected, emptyWatchlist.toString());
+        assertEquals(emptyWatchlist.toString(), expected);
     }
 }
