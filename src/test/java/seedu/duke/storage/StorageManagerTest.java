@@ -51,7 +51,6 @@ class StorageManagerTest {
             StorageManager.saveNoteContent(note);
         } catch (IOException e) {
             System.out.println("Unable to create file");
-            fail();
         }
     }
 }
