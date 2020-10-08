@@ -23,7 +23,7 @@ public class DeleteNoteCommand extends Command {
 
     public static final String COMMAND_USAGE_NOTE = COMMAND_WORD_NOTE + ": Deletes a note. Parameters: "
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE or "
-            + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX ";
+            + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
 
     /*
     private static final String COMMAND_USAGE_EVENT = COMMAND_WORD_EVENT + ": Deletes an event. Parameters: "

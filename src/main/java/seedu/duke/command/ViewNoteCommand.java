@@ -13,7 +13,7 @@ public class ViewNoteCommand extends Command {
 
     private static final String COMMAND_USAGE = COMMAND_WORD + ": Views a note. Parameters: "
             + "[" + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX] "
-            + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE] ";
+            + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE]";
 
     private int index;
     private String title;
