@@ -4,9 +4,11 @@ import seedu.duke.EmptyParameterException;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CreateCommand;
+import seedu.duke.common.Messages;
 import seedu.duke.data.ApplianceList;
 import seedu.duke.data.HomeLocations;
 import seedu.duke.data.framework.Power;
+import seedu.duke.ui.TextUi;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,9 +20,9 @@ import java.util.Scanner;
 public class StorageFile {
 
     private static String filePath = "data/SmartHomeBot.txt";
-
     private static ApplianceList appliances;
     private static HomeLocations homeLocations;
+    private static TextUi ui = new TextUi();
 
     public StorageFile(ApplianceList appliances, HomeLocations homeLocations) {
         this.homeLocations = homeLocations;
@@ -75,6 +77,7 @@ public class StorageFile {
                 i++;
             }
             myReader.close();
+            ui.showToUser(Messages.MESSAGE_IMPORT);
         } catch (FileNotFoundException e) {
             System.out.println("Load File Does not Exist. No contents will be loaded.");
         } catch (EmptyParameterException e) {

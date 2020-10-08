@@ -2,11 +2,13 @@ package seedu.duke.commands;
 
 import seedu.duke.data.ApplianceList;
 import seedu.duke.data.HomeLocations;
+import seedu.duke.ui.TextUi;
 
 public class Command {
 
     protected ApplianceList appliances;
     protected HomeLocations homeLocationsList;
+    protected static TextUi ui = new TextUi();
 
     protected Command() {
     }
