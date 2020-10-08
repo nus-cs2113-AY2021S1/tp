@@ -1,6 +1,5 @@
 package seedu.eduke8;
 
-
 import seedu.eduke8.option.OptionInterface;
 import seedu.eduke8.question.QuestionInterface;
 import seedu.eduke8.quiz.Quiz;
