@@ -1,15 +1,6 @@
 package seedu.duke.utility;
 
 public class Ui {
-    private final java.util.Scanner in;
-
-    public Ui(java.io.InputStream in) {
-        this.in = new java.util.Scanner(in);
-    }
-
-    public Ui() {
-        this(System.in);
-    }
 
     public static void printLogo() {
         String logo = " __          __  _______ _____ _    _ _   _ ________   _________ \n"
@@ -84,22 +75,6 @@ public class Ui {
     public static void deleteShow(ShowList showList) {
         printLine();
         // Iterate through Hashmap of ShowList here...
-    }
-
-    public String getUserCommand() {
-        String userInput = in.nextLine();
-
-        //Take out all empty/whitespace lines
-        while (isInputEmpty(userInput)) {
-            System.out.println("No input detected");
-            userInput = in.nextLine();
-        }
-
-        return userInput;
-    }
-
-    private boolean isInputEmpty(String rawInput) {
-        return rawInput.trim().isEmpty();
     }
 
 }
