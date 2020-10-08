@@ -6,6 +6,11 @@ import java.util.Arrays;
 public class View {
 
     private static final int LENGTH_OF_MODULE_CODE = 6;
+    public static final String FIRST_PART_OF_BORDER = "+------+-";
+    public static final String SECOND_PART_OF_BORDER = "-------+----------+----------+\n";
+    public static final String FIRST_PART_OF_HEADER = "| Week | Module ";
+    public static final String SECOND_PART_OF_HEADER = "| Expected |  Actual  |\n";
+    public static final String NO_INPUT = " No Input ";
 
     /**
      * Displays all the modules taken by the user.
@@ -153,8 +158,8 @@ public class View {
             crossToBeAdded.append("X");
         }
 
-        String border = "+------+-" + dashToBeAdded + "-------+----------+----------+\n";
-        String header = "| Week | Module " + spaceToBeAdded + "| Expected |  Actual  |\n";
+        String border = FIRST_PART_OF_BORDER + dashToBeAdded + SECOND_PART_OF_BORDER;
+        String header = FIRST_PART_OF_HEADER + spaceToBeAdded + SECOND_PART_OF_HEADER;
         String contents = "|  WK  | XXXXXX" + crossToBeAdded + " |    YY    |   ZZZZ   |\n";
 
         System.out.print(border + header + border);
@@ -162,7 +167,7 @@ public class View {
         for (Module m : modList) {
             String out = contents;
             String crosses = "XXXXXX" + crossToBeAdded;
-            String weekNum = ((week > 10) ? "" : "0") + Integer.toString(week);
+            String weekNum = ((week > 10) ? "" : "0") + week;
             out = out.replace("WK", weekNum);
             StringBuilder moduleCode = new StringBuilder(m.getModuleCode());
             while (moduleCode.length() < crosses.length()) {
@@ -171,18 +176,18 @@ public class View {
             out = out.replace(crosses, moduleCode.toString());
             if (m.getExpectedWorkload() != -1) {
                 String expectedWorkLoad = ((m.getExpectedWorkload() > 10) ? "" : " ")
-                        + Integer.toString(m.getExpectedWorkload());
+                        + m.getExpectedWorkload();
                 out = out.replace("YY", expectedWorkLoad);
             } else {
-                out = out.replace("    YY    ", " No Input ");
+                out = out.replace("    YY    ", NO_INPUT);
             }
             double actualTime = m.getActualTime()[week - 1];
             if (actualTime != -1) {
                 actualTime = round(actualTime, 1);
-                String actualWorkLoad = ((actualTime > 10) ? "" : " ") + Double.toString(actualTime);
+                String actualWorkLoad = ((actualTime > 10) ? "" : " ") + actualTime;
                 out = out.replace("ZZZZ", actualWorkLoad);
             } else {
-                out = out.replace("   ZZZZ   ", " No Input ");
+                out = out.replace("   ZZZZ   ", NO_INPUT);
             }
             System.out.print(out + border);
         }
