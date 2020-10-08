@@ -45,18 +45,18 @@ public class InputParser {
         try {
             this.matcher = RegexMatcher.regexMatcher(input, Constants.paramRegex);
             separator = this.getSeparator(input);
-            System.out.println(separator);
+            //System.out.println(separator);
             commandContentExist = true;
 
         } catch (java.lang.IllegalStateException exception) {
-            System.out.println("lol");
+            //System.out.println("lol");
             commandString = input;
         }
         if (commandContentExist) {
-            System.out.println(matcher.start());
+            //System.out.println(matcher.start());
             buffer = input.split(separator, 2);
             //command , /a param
-            System.out.println(buffer[0]);
+            //System.out.println(buffer[0]);
             buffer[1] = separator + buffer[1];
             commandString = buffer[0];
             String paramSubstring = buffer[1];
@@ -64,6 +64,52 @@ public class InputParser {
         }
 
         return new CommandPacket(commandString, params);
+    }
+
+    /**
+     * Parses raw date and time input from the user and return a formatted string that can be parsed by DateTine class.
+     * @param input
+     * @return Formatted String in YYYY-MM-DDTHH:MM:SS
+     */
+    public static String parseRawDateTime(String input){
+        return parseRawDateTime(input, " ");
+    }
+
+    public static String parseRawDateTime(String input, String mode){
+        int matchCount = 0;
+        // If user uses a string token as a separator between two datetimes, say "to", remove from the string.
+        String[] tokens = input.replaceAll("[\\s]+[\\D]+[\\s]+|,", " ").split("[\\s]+");
+
+        String[] output = new String[2];
+        String date = "";
+
+        if (mode.equals("date")) {
+            date = parseDateTime(tokens[0], "date");
+            output[0] = date + "T" + Constants.PLACEHOLDER_TIME;
+            output[1] = "\0";
+        } else if (mode.equals("time")){
+            date = Constants.PLACEHOLDER_DATE;
+            output[0] = date + "T" + parseDateTime(tokens[0], "time");
+            output[1] = "\0";
+        } else if (tokens.length == 2) {
+            // Considers the case with date and time
+            date = parseDateTime(tokens[0], "date");
+            output[0] = date + "T" + parseDateTime(tokens[1], "time");
+            output[1] = "\0";
+        } else if (tokens.length == 3) {
+            // Considers the case with date, start time and end time
+            date = parseDateTime(tokens[0], "date");
+            output[0] = date + "T" + parseDateTime(tokens[1], "time");
+            output[1] = date + "T" + parseDateTime(tokens[2], "time");
+        } else if (tokens.length == 4) {
+            // Considers the case with start date, end date, start time and end time.
+            date = parseDateTime(tokens[0], "date");
+            output[0] = date + "T" + parseDateTime(tokens[1], "time");
+            date = parseDateTime(tokens[2], "date");
+            output[1] = date + "T" + parseDateTime(tokens[3], "time");
+        }
+        // If two datetimes are to be given, then segregate them with "," in a single string output.
+        return String.join("", output).trim();
     }
 
     /**

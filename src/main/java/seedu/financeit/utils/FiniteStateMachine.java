@@ -12,7 +12,8 @@ public class FiniteStateMachine {
         DELETE_ENTRY,
         END_TRACKER,
         INVALID_STATE,
-        EXIT
+        EXIT,
+        EDIT_ENTRY
     }
 
     private State currState;
