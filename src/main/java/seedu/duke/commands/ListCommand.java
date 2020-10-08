@@ -12,7 +12,7 @@ public class ListCommand extends Command {
     public ListCommand(String arguments) {
         String[] details = arguments.split(" ", 2);
 
-        // if user did not provide arguments, let details[0] be empty string
+        // if user did not provide arguments, let details[1] be empty string
         if (details.length == 1) {
             details = new String[]{details[0], ""};
         }

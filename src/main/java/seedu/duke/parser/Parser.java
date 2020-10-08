@@ -18,7 +18,7 @@ public class Parser {
     public Command parseUserCommand(String input) {
         String[] tokens = input.split(" ", 2);
 
-        // if user did not provide arguments, let tokens[0] be empty string
+        // if user did not provide arguments, let tokens[1] be empty string
         if (tokens.length == 1) {
             tokens = new String[]{tokens[0], ""};
         }
