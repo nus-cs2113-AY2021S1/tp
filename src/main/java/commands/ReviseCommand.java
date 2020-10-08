@@ -50,7 +50,8 @@ public class ReviseCommand extends Command {
             if (Scheduler.isDeadlineDue(c.getDueBy())) {
                 ui.showToUser("\nQuestion " + count + ":");
                 ui.showCard(c);
-                repeatCards = rateCard(ui, repeatCards, c);
+                String input = ui.getRating();
+                repeatCards = rateCard(ui, repeatCards, c, input);
                 count++;
             }
         }
@@ -63,8 +64,7 @@ public class ReviseCommand extends Command {
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
     }
 
-    private ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards, Card c) {
-        String input = ui.getRating();
+    public static ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards, Card c, String input) {
         boolean isInvalid = true;
         while (isInvalid) {
             switch (input.toLowerCase()) {
@@ -99,7 +99,8 @@ public class ReviseCommand extends Command {
             for (Card c : cards) {
                 ui.showToUser("\nQuestion " + count + ":");
                 ui.showCard(c);
-                repeatCards = rateCard(ui, repeatCards, c);
+                String input = ui.getRating();
+                repeatCards = rateCard(ui, repeatCards, c, input);
                 count++;
             }
             cards = new ArrayList<>(repeatCards);

@@ -15,10 +15,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static commands.ReviseCommand.CANNOT_ANSWER;
-import static commands.ReviseCommand.EASY;
-import static commands.ReviseCommand.HARD;
-import static commands.ReviseCommand.MEDIUM;
 import static commands.ReviseCommand.MESSAGE_SHOW_ANSWER_PROMPT;
 import static commands.ReviseCommand.MESSAGE_SHOW_RATING_PROMPT;
 
