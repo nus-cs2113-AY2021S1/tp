@@ -57,7 +57,7 @@ public class Notebook {
         notes.remove(note);
     }
 
-    public int  getSize() {
+    public int getSize() {
         return notes.size();
     }
 }
