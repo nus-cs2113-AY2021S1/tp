@@ -2,6 +2,7 @@ package seedu.duke.event;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public abstract class Event {
     protected String description;
@@ -10,6 +11,7 @@ public abstract class Event {
     protected int repeatCount;
     protected boolean isDone;
     protected int repeatUnit; //weekly or monthly
+    protected ArrayList<DateStatusPair> dateTimeList;
 
     protected static final int WEEKLY = 1;
     protected static final int MONTHLY = 2;
