@@ -39,7 +39,6 @@ public class ParamsParser {
             buffer = paramSubstring.split(" ", 2);
             String paramType = buffer[0];
             //System.out.println("paramt " + paramType);
-            boolean paramArgumentExist = buffer.length > 1;
             paramSubstring = " " + buffer[1] + " ";
             matcher = RegexMatcher.regexMatcher(paramSubstring, Constants.paramRegex);
             //Separate into [paramArgument, rest of string]
@@ -49,6 +48,7 @@ public class ParamsParser {
                 if (buffer[1].trim().length() == 0) {
                     throw new java.lang.IllegalStateException();
                 }
+                // If there are param content before the next paramType
                 if (matcher.start() > 0) {
                     String separator = getSeparator(paramSubstring);
                     buffer = paramSubstring.trim().split(separator, 2);

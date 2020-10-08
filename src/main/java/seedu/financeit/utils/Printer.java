@@ -9,6 +9,7 @@ public class Printer {
     private static String title = "";
     private static final int DEFAULT_COL_WIDTH = 15;
     private static int[] colWidth;
+    private static int pad = 5;
 
     public static String formatTitle(String input) {
         String output = UiManager.getLineWithSymbol(input.length() + 4, "=");
@@ -35,16 +36,6 @@ public class Printer {
 
     public static void printRow(String[] row) {
         System.out.println(getPrintListRow(row) + "|");
-    }
-
-    public static void printList(String[][] input) {
-        String[] header = input[0];
-        printRowHeader(header);
-        printHorizontalPartition(getHeaderRowWidth(header));
-        for (int i = 1; i < input.length; i++) {
-            printRow(input[1]);
-        }
-        printHorizontalPartition(getHeaderRowWidth(header));
     }
 
     /**
@@ -76,14 +67,54 @@ public class Printer {
         return length > DEFAULT_COL_WIDTH ? length : DEFAULT_COL_WIDTH;
     }
 
-    public static ArrayList<String> adjustToColWidth(String rawInput, int length) {
+    public static ArrayList<String> adjustWordToColWidth(String rawInput, int maxLength) {
+        maxLength = maxLength - 1;
         ArrayList<String> output = new ArrayList<>();
         String[] inputs = rawInput.split("[>]");
         for (String input: inputs) {
-            Pattern pattern = Pattern.compile(String.format(".{%s}|.{1,}$", length));
+            Pattern pattern = Pattern.compile(String.format(".{%s}|.{1,}$", maxLength));
             Matcher matcher = pattern.matcher(input);
             while (matcher.find()) {
                 output.add(matcher.group());
+            }
+        }
+        return output;
+    }
+
+    public static ArrayList<String> adjustContentToColWidth(String rawInput, int maxLength) {
+        ArrayList<String> output = new ArrayList<>();
+        String[] inputs = rawInput.split("[>]");
+        String[] buffer;
+        String feed = "";
+        boolean hasParsedLongWord;
+        for (String input: inputs) {
+            // Break down input line into word tokens
+            buffer = input.split(" ");
+            int scannedWordCount = 0;
+            // While the input line is not fully visited
+            while (scannedWordCount + 1  <= buffer.length) {
+                hasParsedLongWord = false;
+                feed = "";
+                // Acquire segment of buffer right before line feed exceeds the char limit
+                if(buffer[scannedWordCount].length() > maxLength) {
+                    ArrayList<String> tokens = adjustWordToColWidth(buffer[scannedWordCount], maxLength);
+                    for (int i = 0; i < tokens.size(); i++) {
+                        feed = tokens.get(i);
+                        if (i < tokens.size() - 1) {
+                            feed += "-";
+                        }
+                        output.add(feed);
+                    }
+                    scannedWordCount++;
+                } else {
+                    do {
+                        feed += buffer[scannedWordCount] + " ";
+                        scannedWordCount++;
+                    } while ((scannedWordCount + 1 < buffer.length) && (feed.length() + buffer[scannedWordCount].length() + 1 < maxLength - pad));
+                    output.add(feed);
+                }
+                // Add acquired line to the output arrayList
+
             }
         }
         return output;
@@ -105,7 +136,7 @@ public class Printer {
         // This allows for warping of lines that would normally overflow from
         // the default column width.
         for (int col = 0; col < input.length; col++) {
-            token[col] = adjustToColWidth(input[col], getColWidth(colWidth[col]));
+            token[col] = adjustContentToColWidth(input[col], getColWidth(colWidth[col]));
             if (token[col].size() > maxLines) {
                 maxLines = token[col].size();
             }
@@ -152,7 +183,7 @@ public class Printer {
     }
 
     public static void printHorizontalHeaderPartition(int rowWidth) {
-        System.out.println(UiManager.getLineWithSymbol(rowWidth, "-"));
+        System.out.println(UiManager.getLineWithSymbol(rowWidth , "-"));
     }
 
     public static void setColWidth(String[] row){
@@ -164,6 +195,7 @@ public class Printer {
 
     public static int getHeaderRowWidth(String[] row){
         String header = getPrintListRow(row);
-        return header.length();
+        String[] output = header.split("\\n");
+        return output[0].length();
     }
 }

@@ -1,7 +1,7 @@
 ledger new /date 200404
 ledger list
 ledger open /date 200404
-entry new /amt 600 /time 1500 -e /desc Lunch with friends in the middle of the ocean on the peak of the sky pillar /cat fd
+entry new /amt 600 /time 1500 -e /desc Lunch with friends in the middle of the ocean on the peak of the sky pillar  sdsadsadsadsadsadsadsadsadsdsadsadsadsadsadsadsadsa /cat fd -auto
 entry new /amt 400 /time 1600 -e /desc Bought ten chilli >and five bell peppers >and three carrots >and a big bag of cheetos >and diet coke, please /cat shp
 entry new /amt 500 /time 1700 -i /desc Monthly wages /cat slr
 entry edit /id 3 /amt 1000

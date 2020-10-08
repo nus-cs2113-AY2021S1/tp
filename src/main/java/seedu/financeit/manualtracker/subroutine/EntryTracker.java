@@ -113,7 +113,7 @@ public class EntryTracker {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry entry;
         Double amount;
-
+        System.out.println(packet);
         if (mode.equals("edit")) {
             int index = Integer.parseInt(packet.getParam("/id"));
             index = index - 1;
@@ -138,13 +138,13 @@ public class EntryTracker {
                 entry.setDateTime(packet.getParam(paramType));
                 break;
             case "/desc":
-                System.out.println("desc");
                 entry.setDescription(packet.getParam(paramType));
                 break;
             case "/cat":
-                System.out.println("yep");
                 entry.setCategory(packet.getParam(paramType));
                 break;
+            case "-auto":
+                entry.setIsAuto(true);
             default:
                 System.out.println("Command failed.");
                 break;

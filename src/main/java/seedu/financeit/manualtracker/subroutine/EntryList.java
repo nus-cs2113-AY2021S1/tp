@@ -26,7 +26,7 @@ public class EntryList {
 
     public Entry getEntryFromDateTime(LocalDateTime dateTime) {
         for (Entry i : this.entries) {
-            if (i.dateTime.equals(dateTime)) {
+            if (i.getDateTime().equals(dateTime)) {
                 return i;
             }
         }
@@ -50,7 +50,7 @@ public class EntryList {
         } else {
             this.removeEntry(removedEntry);
             System.out.println(String.format("Ledger Removed:"));
-            Printer.addRow("Entry Type;Category;Amount;Time;Description                    ");
+            Printer.addRow("Auto;Entry Type;Category;Amount;Time;Description                    ");
             Printer.addRow(removedEntry.toString());
             Printer.printList();
         }
@@ -66,7 +66,7 @@ public class EntryList {
 
     public void printList(String ledgerDate) {
         Printer.setTitle(String.format("List of Entries for Ledger [%s]", ledgerDate));
-        Printer.addRow("Entry Number;Entry Type;Category;Amount;Time;Description                    ");
+        Printer.addRow("Entry Number;Auto;Entry Type;Category;Amount;Time;Description                    ");
         if (this.getEntriesSize() == 0) {
             Printer.addRow("No entries created               ");
         } else {

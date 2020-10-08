@@ -14,7 +14,7 @@ public class Entry {
     private Constants.EntryType entryType;
     private LocalDateTime dateTime;
     private DateTimeManager dateTimeManager;
-    private boolean isAuto;
+    private boolean isAuto = false;
     private String defaultDateTimeFormat = "time";
     private double amount = 0.00;
 
@@ -28,6 +28,11 @@ public class Entry {
         this.dateTime = dateTime;
         this.isAuto = isAuto;
     }
+
+    public LocalDateTime getDateTime(){
+        return this.dateTime;
+    }
+
     public String getTime() {
         return this.dateTimeManager.getDateFormatted(this.defaultDateTimeFormat);
     }
@@ -83,8 +88,12 @@ public class Entry {
         this.isAuto = isAuto;
     }
 
+    public String isAutoToString() {
+        return this.isAuto ? "Auto" : "";
+    }
+
     @Override
     public String toString(){
-        return String.format("%s;%s;%s;%s;%s", this.entryType, this.category, this.amount, this.getTime(), this.description);
+        return String.format("%s;%s;%s;%s;%s;%s", this.isAutoToString(),this.entryType, this.category, this.amount, this.getTime(), this.description);
     }
 }

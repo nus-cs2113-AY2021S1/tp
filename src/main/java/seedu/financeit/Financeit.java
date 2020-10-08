@@ -12,20 +12,20 @@ public class Financeit {
     public static void main(String[] args) {
         InputParser inputParser = new InputParser();
         // String inputString = "mom /m mom -d dad /s son /d daughter";
-        String inputString = "mom";
-       /* CommandPacket packet = inputParser.parseInput(inputString);
+/*        String inputString = "mom";
+        CommandPacket packet = inputParser.parseInput(inputString);
         packet.getParamTypes();
 
         Printer.setTitle("Test table");
-        Printer.addRow("Name;Age;Place;letters;60;adsadasdsadsadsadsadsadasd");
-        Printer.addRow("John;15;Woodlands;g;5;d");
-        Printer.addRow("Dog;16;Woodlands;g;6;g");
+        Printer.addRow("Name;Age;Place;letters;60");
+        Printer.addRow("John;15;Woodlands;g;5");
+        Printer.addRow("Dog;16;Woodlands;g;6");
         Printer.printList();
 
         Printer.setTitle("Test table 2");
         Printer.addRow("Name;Age;Place;letters");
         Printer.addRow("Mary;16;Woodlands;g");
-        Printer.addRow("Cat;16;Woodlands;g");
+        Printer.addRow("Cat;16;Woodlands;gffffffffffffffffffffffffffffffffffffffffff");
         Printer.printList();
 
         String[][] input = {
@@ -37,9 +37,9 @@ public class Financeit {
                 {"Name"},
                 {"John"},
                 {"Mary"}
-        };
+        };*/
 
-        Printer.printList(input1);*/
+        // Printer.printList();
         UiManager.refreshPage();
         ManualTracker.main();
 
