@@ -1,6 +1,14 @@
 package seedu.duke.ui;
 
+import java.util.Scanner;
+
 public class Ui {
+
+    private static Scanner in = new Scanner(System.in);
+
+    public static String getCommand() {
+        return in.nextLine();
+    }
 
     public static void printWelcomeMessage() {
         String logo = " ____        _        \n"

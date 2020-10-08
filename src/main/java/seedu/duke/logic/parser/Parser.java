@@ -5,16 +5,13 @@ import seedu.duke.exceptions.ExceptionType;
 import seedu.duke.logic.commands.Command;
 import seedu.duke.logic.commands.ExitCommand;
 
-import java.util.Scanner;
-
 public class Parser {
 
-    String userInput;
-    Scanner in = new Scanner(System.in);
-    Command com;
+    private String userInput;
+    private Command com;
 
-    public void getCommand() {
-        userInput = in.nextLine();
+    public Parser(String userInput) {
+        this.userInput = userInput;
     }
 
     /**
