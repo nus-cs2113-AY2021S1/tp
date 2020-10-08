@@ -2,14 +2,13 @@ package seedu.financeit.utils;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Printer {
     private static ArrayList<String> listContents = new ArrayList<>();
     private static String title = "";
     private static final int DEFAULT_COL_WIDTH = 15;
     private static int[] colWidth;
-    private static int pad = 5;
+    private static int pad = 0;
 
     public static String formatTitle(String input) {
         String output = UiManager.getLineWithSymbol(input.length() + 4, "=");
@@ -72,8 +71,7 @@ public class Printer {
         ArrayList<String> output = new ArrayList<>();
         String[] inputs = rawInput.split("[>]");
         for (String input: inputs) {
-            Pattern pattern = Pattern.compile(String.format(".{%s}|.{1,}$", maxLength));
-            Matcher matcher = pattern.matcher(input);
+            Matcher matcher = RegexMatcher.regexMatcher(input, String.format(".{%s}|.{1,}$", maxLength));
             while (matcher.find()) {
                 output.add(matcher.group());
             }
@@ -97,6 +95,7 @@ public class Printer {
                 feed = "";
                 // Acquire segment of buffer right before line feed exceeds the char limit
                 if(buffer[scannedWordCount].length() > maxLength) {
+                    //System.out.println("if: " + buffer[scannedWordCount]);
                     ArrayList<String> tokens = adjustWordToColWidth(buffer[scannedWordCount], maxLength);
                     for (int i = 0; i < tokens.size(); i++) {
                         feed = tokens.get(i);
@@ -107,14 +106,13 @@ public class Printer {
                     }
                     scannedWordCount++;
                 } else {
+                    //System.out.println("else: " + buffer[scannedWordCount]);
                     do {
                         feed += buffer[scannedWordCount] + " ";
                         scannedWordCount++;
-                    } while ((scannedWordCount + 1 < buffer.length) && (feed.length() + buffer[scannedWordCount].length() + 1 < maxLength - pad));
+                    } while ((scannedWordCount < buffer.length) && (feed.length() + 1 + buffer[scannedWordCount].length() < maxLength - pad));
                     output.add(feed);
                 }
-                // Add acquired line to the output arrayList
-
             }
         }
         return output;

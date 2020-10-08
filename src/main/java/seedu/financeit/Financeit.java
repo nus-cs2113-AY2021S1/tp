@@ -1,7 +1,7 @@
 package seedu.financeit;
 
 import seedu.financeit.manualtracker.ManualTracker;
-import seedu.financeit.utils.InputParser;
+import seedu.financeit.parser.InputParser;
 import seedu.financeit.utils.UiManager;
 
 import java.util.ArrayList;

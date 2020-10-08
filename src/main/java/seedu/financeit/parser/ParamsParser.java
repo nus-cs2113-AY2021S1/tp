@@ -1,4 +1,7 @@
-package seedu.financeit.utils;
+package seedu.financeit.parser;
+
+import seedu.financeit.common.Constants;
+import seedu.financeit.utils.RegexMatcher;
 
 import java.util.HashMap;
 import java.util.regex.Matcher;

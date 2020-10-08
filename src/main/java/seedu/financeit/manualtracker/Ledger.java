@@ -1,8 +1,8 @@
 package seedu.financeit.manualtracker;
 
 import seedu.financeit.manualtracker.subroutine.Entry;
-import seedu.financeit.utils.DateTimeManager;
-import seedu.financeit.utils.InputParser;
+import seedu.financeit.parser.DateTimeManager;
+import seedu.financeit.parser.InputParser;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

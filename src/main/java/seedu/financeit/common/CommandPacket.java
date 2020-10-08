@@ -1,4 +1,4 @@
-package seedu.financeit.utils; /**
+package seedu.financeit.common; /**
  * Organises data from input string into distinct data types and structure.
  * For scalability purposes, a hash table is implemented to map param type to its corresponding params.
  */
