@@ -1,7 +1,9 @@
 package commands;
 
+import access.Access;
 import manager.card.Card;
 import manager.chapter.CardList;
+import storage.Storage;
 import ui.Ui;
 
 public class AddCommand extends Command {
@@ -22,10 +24,15 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cards, Ui ui) {
-        cards.addCard(card);
-        int cardCount = cards.getCardCount();
-        ui.showCardAdded(cards.getCard(cardCount - 1), cardCount);
+    public void execute(CardList cards, Ui ui, Access access, Storage storage) {
+        if(access.getChapterLevel() != "") {
+            cards.addCard(card);
+            int cardCount = cards.getCardCount();
+            ui.showCardAdded(cards.getCard(cardCount - 1), cardCount);
+        }
+        else {
+            System.out.println("Sorry, you currently are in the wrong level, please enter chapter level first.");
+        }
     }
 
     @Override

@@ -1,10 +1,8 @@
-package seedu.duke.tool;
+package access;
 
-import seedu.duke.level.Admin;
-import seedu.duke.level.Chapter;
-import seedu.duke.level.Module;
-
-import java.util.ArrayList;
+import manager.admin.Admin;
+import manager.chapter.Chapter;
+import manager.module.Module;
 
 public class Access {
     protected String level;
@@ -95,25 +93,26 @@ public class Access {
 
     public void setChapterLevel(String chapterLevel) {
         if(this.moduleLevel == "") { //wrong level
-            //throw new Exception();
             System.out.println("Sorry, you currently are in the admin level, please enter module level first.");
         }
-        else if(this.chapterLevel != "") {
-            if(chapterLevel == "") { //correct level, correct command
+        else {
+            if(this.chapterLevel != "") {
+                if(chapterLevel == "") {
+                    String replacement = "/" + this.chapterLevel;
+                    this.level = level.replace(replacement, "");
+                    this.chapterLevel = chapterLevel;
+                    this.chapter = null;
+                }
+                else {
+                    System.out.println("Sorry, you are already in the chapter level, " +
+                            "please go back to module level first.");
+                }
+            }
+            else {
                 this.chapterLevel = chapterLevel;
                 this.level = level + "/" + chapterLevel;
                 this.chapter = new Chapter(chapterLevel);
             }
-            else {
-                System.out.println("Sorry, you are already in the chapter level, " +
-                        "please go back to module level first.");
-            }
-        }
-        else{ //go back
-            String replacement = "/" + this.chapterLevel;
-            this.level = level.replace(replacement, "");
-            this.chapterLevel = chapterLevel;
-            this.chapter = null;
         }
     }
 

@@ -1,4 +1,6 @@
-package seedu.duke.level;
+package manager.module;
+
+import manager.chapter.Chapter;
 
 import java.util.ArrayList;
 
@@ -42,7 +44,7 @@ public class Module {
         this.chapters = chapters;
     }
 
-    public ArrayList<Chapter> getChapter() {
+    public ArrayList<manager.chapter.Chapter> getChapter() {
         return chapters;
     }
 }

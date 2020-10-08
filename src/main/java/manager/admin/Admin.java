@@ -1,6 +1,6 @@
-package seedu.duke.level;
+package manager.admin;
 
-import seedu.duke.level.Module;
+import manager.module.Module;
 
 import java.util.ArrayList;
 
@@ -26,7 +26,7 @@ public class Admin {
 
     public void add(Module module) {
         modules.add(module);
-        moduleAmount++;
         modules.get(moduleAmount).doneAddModule();
+        moduleAmount++;
     }
 }

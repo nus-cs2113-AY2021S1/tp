@@ -1,27 +1,29 @@
-package seedu.duke.command;
+package commands;
 
-import seedu.duke.level.Chapter;
-import seedu.duke.tool.Access;
-import seedu.duke.tool.Storage;
-import seedu.duke.tool.Ui;
+import manager.chapter.CardList;
+import access.Access;
+import manager.chapter.Chapter;
+import storage.Storage;
+import ui.Ui;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class goChapterCommand extends Command{
+public class goChapterCommand extends Command {
+    public static final String COMMAND_WORD = "gochapter";
+    String chapterCode;
 
-    public goChapterCommand(String fullCommand) {
-        super(fullCommand);
+    public goChapterCommand(String chapterCode) {
+        this.chapterCode = chapterCode;
     }
 
     @Override
-    public void execute(Access access, Ui ui, Storage storage) {
-        String filter = fullCommand.replace("goChapter ", "");
+    public void execute(CardList cards, Ui ui, Access access, Storage storage) {
         boolean isLevelExist = false;
         ArrayList<Chapter> chapters = access.getModule().getChapter();
         for (Chapter chapter : chapters) {
-            if(filter.equalsIgnoreCase(chapter.getChapter())) {
-                access.setModuleLevel(filter);
+            if(chapterCode.equalsIgnoreCase(chapter.getChapter())) {
+                access.setChapterLevel(chapterCode);
                 isLevelExist = true;
                 try {
                     Chapter newChapter = new Chapter(chapter.getChapter(), storage.loadCard(access.getModuleLevel(), chapter.getChapter()));
@@ -35,7 +37,12 @@ public class goChapterCommand extends Command{
             }
         }
         if (isLevelExist == false) {
-            System.out.println("Sorry, I cannot find this module, please add this module first");
+            System.out.println("Sorry, I cannot find this chapter, please add this chapter first");
         }
+    }
+
+    @Override
+    public boolean isExit() {
+        return false;
     }
 }
