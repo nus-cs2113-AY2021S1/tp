@@ -25,7 +25,7 @@ public class Ui {
                 + "1. todo <task description>\n"
                 + "2. deadline <task description> /by ddMMyy\n"
                 + "3. activity <activity description> <venue> /at ddMMyy\n"
-                + "4. exam <module code> <exam details> /at ddMMyy HHmm\n"
+                + "4. exam <module code> <venue> /at ddMMyy HHmm\n"
                 + "5. lecture <module code> <venue> /at ddMMyy HHmm\n"
                 + "6. tutorial ... / date time\n"
                 + "7. lab ... / date time\n"

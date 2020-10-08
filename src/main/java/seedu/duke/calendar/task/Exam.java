@@ -1,32 +1,37 @@
 package seedu.duke.calendar.task;
 
+import seedu.duke.calendar.event.SchoolEvent;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represents an Exam event.
  */
-public class Exam extends Task {
+public class Exam extends SchoolEvent {
+    protected String taskType;
 
-    private String examDetails;
-    private LocalDate date;
-    private LocalTime time;
-
-    public Exam(String moduleCode, String examDetails, LocalDate date, LocalTime time) {
-        super(moduleCode);
-        this.examDetails = examDetails;
-        this.date = date;
-        this.time = time;
+    public Exam(String moduleCode, LocalDate date, LocalTime time, String venue) {
+        super(moduleCode, date, time, venue);
     }
+
 
     /**
      * Returns a [Ex] icon to indicate task as a Exam task.
      */
     @Override
     public String toString() {
-        return "[Ex]" + this.description + " (at: " + date.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"))
-                + ", " + time.format(DateTimeFormatter.ofPattern("h:mm a")) + ")";
+        return "[Exam] " + super.toString();
+    }
+
+    @Override
+    public String getTaskType() {
+        return taskType;
+    }
+
+    @Override
+    public String printIntoFile() {
+        return null;
     }
 
 }

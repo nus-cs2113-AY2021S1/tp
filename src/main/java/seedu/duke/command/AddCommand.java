@@ -50,6 +50,7 @@ public class AddCommand extends Command {
         LocalDate date;
         LocalTime time;
         String venue;
+        String moduleCode;
 
         command = userInput.split(" ", 2);
         String commandType = command[0];
@@ -107,16 +108,15 @@ public class AddCommand extends Command {
             }
             break;
         case EXAM:
-            String moduleCode;
-            String examDetails;
+
             /**
-             * User input for Exam task example: exam CS2113 open book /at 020202 1200
+             * User input for Exam task example: exam CS2113 BLK:EA LT2 /at 020202 1200
              */
             try {
-                command = command[1].trim().split(" ", 2); // splits to CS2113 and open book...
+                command = command[1].trim().split(" ", 2); // splits to CS2113 and BLK:EA LT2...
                 moduleCode = command[0];
                 command = command[1].split("/at");
-                examDetails = command[0].trim();
+                venue = command[0].trim();
                 dateTime = command[1].trim().split(" ", 2);
                 date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
                 time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
@@ -125,7 +125,7 @@ public class AddCommand extends Command {
                 if (moduleCode.isEmpty()) {
                     throw new DukeException("exam");
                 } else {
-                    calendarList.addTask(new Exam(moduleCode, examDetails, date, time));
+                    calendarList.addEvent(new Exam(moduleCode, date, time, venue));
                 }
             } catch (Exception e) {
                 throw new DukeException("exam");
