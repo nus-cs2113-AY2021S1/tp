@@ -1,6 +1,8 @@
 package seedu.duke;
 
+import seedu.duke.classes.Storage;
 import seedu.duke.utility.ShowList;
+import seedu.duke.utility.Ui;
 
 import java.util.Scanner;
 
@@ -8,17 +10,27 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static void main(String[] args) {
-        ShowList showList = new ShowList();
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+    private Storage storage;
+    //public ShowList shows;
+    private Ui ui;
+
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            new ShowList(/*storage.loadState()*/);
+        } catch (Exception e) {
+            //ui.showLoadingError();
+            new ShowList();
+        }
+    }
+
+    public void run() {
+        //...
+    }
+
+    public static void main(String[] args) {
+        new Duke("data/tasks.txt").run();
     }
 }
