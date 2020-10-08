@@ -24,8 +24,6 @@ public class Kaji {
         try {
             Admin admin = new Admin(storage.loadModule());
             access = new Access(admin);
-            ui.showLine(); // show the divider line ("_______")
-            ui.showLine();
         } catch (FileNotFoundException e) {
             storage.createAdmin();
             access = new Access();
