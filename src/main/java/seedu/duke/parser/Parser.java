@@ -4,6 +4,7 @@ import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.ListCommand;
 
 public class Parser {
     private static final String COMMAND_ADD = "add";
@@ -33,6 +34,7 @@ public class Parser {
             return new DeleteCommand(arguments);
         case COMMAND_EDIT:
         case COMMAND_LIST:
+            return new ListCommand(arguments);
         case COMMAND_TODO:
         case COMMAND_BYE:
             return new ExitCommand();

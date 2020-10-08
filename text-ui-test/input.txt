@@ -2,5 +2,12 @@ helloooo
 add -b book1 /by me
 add -q quote1
 add -c action -b book1
-add -c motivational -q 0
+add -c motivational -q 1
+add -c nice -b book1 -q 1
+list -c
+delete -c action -b book1
+list -c action
+delete -c motivational -q 1
+list -c motivational
+list -c nice
 bye
