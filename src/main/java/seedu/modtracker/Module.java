@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.modtracker;
 
 import java.util.Arrays;
 

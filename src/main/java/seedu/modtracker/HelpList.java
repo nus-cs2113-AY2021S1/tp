@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.modtracker;
 
 /**
  * Stores a list of all the commands available.

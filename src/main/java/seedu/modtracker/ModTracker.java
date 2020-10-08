@@ -1,9 +1,9 @@
-package seedu.duke;
+package seedu.modtracker;
 
 /**
- * Main entry-point for the java.duke.Duke application.
+ * Main entry-point for the java.seedu.modtracker application.
  */
-public class Duke {
+public class ModTracker {
     private static ModuleList modules;
 
     public static void main(String[] args) {

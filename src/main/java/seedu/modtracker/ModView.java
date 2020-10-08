@@ -1,9 +1,9 @@
-package seedu.duke;
+package seedu.modtracker;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class View {
+public class ModView {
 
     private static final int LENGTH_OF_MODULE_CODE = 6;
 

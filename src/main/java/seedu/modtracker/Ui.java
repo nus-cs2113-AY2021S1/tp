@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.modtracker;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -85,7 +85,7 @@ public class Ui {
      * @param week specified week number.
      */
     public static void printTable(ArrayList<Module> modList, int week) {
-        View view = new View();
+        ModView view = new ModView();
         view.printAllModuleInformation(modList,week);
     }
 
