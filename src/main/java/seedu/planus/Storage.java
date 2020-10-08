@@ -47,7 +47,7 @@ public class Storage {
     /**
      * Create a directory if the "data" directory does not exists.
      *
-     * @return true if directory is at the point of execution.
+     * @return true if directory is created at the point of execution.
      */
     private boolean createDirectory() {
         File directory = new File(DIRECTORY_NAME);
@@ -71,7 +71,7 @@ public class Storage {
         File file = new File(DIRECTORY_NAME + "/" + FILE_NAME);
         Scanner scanner = new Scanner(file);
         Type type = new TypeToken<Task>(){}.getType();
-        while (scanner.hasNext()) {
+        while (scanner.hasNextLine()) {
             tasks.add(gson.fromJson(scanner.nextLine(), type));
         }
     }
