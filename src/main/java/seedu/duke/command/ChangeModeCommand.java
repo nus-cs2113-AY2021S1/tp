@@ -1,0 +1,56 @@
+package seedu.duke.command;
+
+import seedu.duke.Duke;
+import seedu.duke.Storage;
+import seedu.duke.Ui;
+import seedu.duke.bookmark.BookmarkList;
+import seedu.duke.exception.DukeException;
+import seedu.duke.exception.DukeExceptionType;
+import seedu.duke.Parser;
+import seedu.duke.slot.SlotList;
+
+public class ChangeModeCommand extends Command {
+    public static final String MODE_KW = "mode";
+    public int setToMode;
+
+    /**
+     * Constructs a new ChangeModeCommand instance.
+     */
+    public ChangeModeCommand(String command) {
+        setToMode = getModeFromCommand(command);
+    }
+
+
+    @Override
+    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui, Storage storage) throws DukeException {
+        if (setToMode == 1) {
+            Parser.programMode = 1;
+            ui.printPublic("Changing to bookmark mode" + System.lineSeparator());
+        } else if (setToMode == 2) {
+            Parser.programMode = 2;
+            ui.printPublic("Changing to timetable mode" + System.lineSeparator());
+        } else {
+            throw new DukeException(DukeExceptionType.INVALID_MODE);
+        }
+    }
+
+    public int getModeFromCommand(String input) {
+        int outputData;
+
+        if (input.length() <= 5) {
+            return 0;
+        }
+
+        String modeData = input.substring(5);
+
+        if (modeData.equals("bookmark") == true) {
+            outputData = 1;
+        } else if (modeData.equals("timetable") == true) {
+            outputData = 2;
+        } else {
+            outputData = 0;
+        }
+
+        return outputData;
+    }
+}

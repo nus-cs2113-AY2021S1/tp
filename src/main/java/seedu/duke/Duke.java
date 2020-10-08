@@ -1,35 +1,69 @@
 package seedu.duke;
 
-import java.util.Scanner;
-import seedu.duke.tysPackage.tysMain;
+import seedu.duke.bookmark.BookmarkList;
+import seedu.duke.command.Command;
+import seedu.duke.exception.DukeException;
+import seedu.duke.slot.SlotList;
 
 public class Duke {
+
+    private Storage storage;
+    private BookmarkList bookmarks;
+    private SlotList slotList;
+    private Ui ui;
+
+    /**
+     * Constructs a new Duke instance.
+     * Pass the filepath of the txt file to set up storage.
+     *
+     * @param filePath The filepath of the txt file.
+     */
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            bookmarks = new BookmarkList(storage.load());
+            // create slot list
+        } catch (DukeException e) {
+            ui.showLoadingError();
+            bookmarks = new BookmarkList();
+            //create new slot list
+        }
+        //try {
+        //    load timetable here
+        //    if use another text file to save timetable, then pass another filepath to Duke constructor
+        //    and create another Storage object
+        //} catch (DukeException e) {
+
+        //}
+    }
+
+    /**
+     * This method is used run the Duke program.
+     */
+    public void run() {
+        boolean isExit = false;
+
+        ui.showWelcomeScreen();
+
+        do {
+            try {
+                String fullCommand = ui.readCommand();
+                Command c = Parser.parse(fullCommand);
+                c.execute(bookmarks, slotList, ui, storage);  // pass timetable here
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showErrorMessage(e);
+            }
+        } while (!isExit);
+    }
+
     /**
      * Main entry-point for the java.duke.Duke application.
+     *
+     * @param args Unused.
      */
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
-
-        int check = 1;
-        if (check==1) {
-            System.out.println("Testin for forking workflow");
-        }
-        if (1 == 1)
-        {
-            System.out.println("true");
-        }
-
-        tysMain.testShowFunction();
+        new Duke("./data/data.txt").run();
     }
 }
-
-// jusufn

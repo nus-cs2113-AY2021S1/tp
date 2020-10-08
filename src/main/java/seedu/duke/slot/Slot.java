@@ -1,14 +1,26 @@
-package seedu.duke.tysPackage;
+package seedu.duke.slot;
 
+import java.util.ArrayList;
 import java.time.LocalTime;
 
-public class Timetable {
+public class Slot {
+
+    public static final String MON = "Monday";
+    public static final String TUE = "Tuesday";
+    public static final String WED = "Wednesday";
+    public static final String THU = "Thursday";
+    public static final String FRI = "Friday";
+    public static final String SAT = "Saturday";
+    public static final String SUN = "Sunday";
+
+    public static final String[] days = {MON, TUE, WED, THU, FRI, SAT, SUN};
+
     private LocalTime startTime;
     private LocalTime endTime;
     private String title;
     private String day;
 
-    public Timetable(LocalTime startTimeInput, LocalTime endTimeInput, String dayInput, String titleInput) {
+    public Slot(LocalTime startTimeInput, LocalTime endTimeInput, String dayInput, String titleInput) {
         startTime = startTimeInput;
         endTime = endTimeInput;
         title = titleInput;
