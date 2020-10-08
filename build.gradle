@@ -29,11 +29,11 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "seedu.modtracker.ModTracker"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "modtracker"
     archiveClassifier = null
 }
 

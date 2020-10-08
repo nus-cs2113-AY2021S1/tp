@@ -1,9 +1,9 @@
-package seedu.duke;
+package seedu.modtracker;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class View {
+public class ModView {
 
     private static final int LENGTH_OF_MODULE_CODE = 6;
 
@@ -186,6 +186,7 @@ public class View {
             }
             System.out.print(out + border);
         }
+        System.out.println();
     }
 
     private double round(double value, int decimalPlaces) {
