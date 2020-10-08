@@ -183,14 +183,31 @@ public abstract class Event {
         }
     }
 
+    /**
+     * Gets the status of whether the event has been repeated or not.
+     *
+     * @return boolean of repeat status
+     */
     public boolean getIsRepeat() {
         return this.isRepeat;
     }
 
+    /**
+     * Gets the number of additional repetitions this event has.
+     *
+     * @return Integer containing number of repetitions
+     */
     public int getRepeatCount() {
         return repeatCount;
     }
 
+    /**
+     * Function adds a DateStatusPair into the current Date Time list to indicate repeated events.
+     *
+     * @param date LocalDate representing date of the repeated event
+     * @param time LocalTime representing time of the repeated event
+     * @param state Boolean indicating if the event has been completed or not
+     */
     public void addRepeatDateStatusPair(LocalDate date, LocalTime time, boolean state) {
         DateStatusPair toAdd = new DateStatusPair(date, time);
         toAdd.setDone(state);

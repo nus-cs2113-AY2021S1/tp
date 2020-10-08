@@ -41,6 +41,11 @@ public class RepeatCommand extends Command {
         parseUserCommand(command);
     }
 
+    /**
+     * Parser for processing the user commands into their individual components.
+     *
+     * @param command String containing user command
+     */
     private void parseUserCommand(String command) {
 
         int argumentNumber = 4;
@@ -101,6 +106,13 @@ public class RepeatCommand extends Command {
         System.out.println("All done, the program is set to repeat.");
     }
 
+    /**
+     * Creates the ArrayList entries in the events to show repetition.
+     *
+     * @param eventToRepeat Event object that needs to be repeated
+     * @param repeatUnit int of how much time to increment the original time by, weekly or monthly
+     * @param repeatCount Integer showing how many times to increment
+     */
     private void createDateList(Event eventToRepeat, int repeatUnit, int repeatCount) {
 
         LocalDate startDate;
