@@ -1,6 +1,6 @@
-package seedu.duke.question;
+package seedu.eduke8.question;
 
-import seedu.duke.OptionInterface;
+import seedu.eduke8.option.OptionInterface;
 
 import java.util.ArrayList;
 
@@ -18,10 +18,10 @@ public interface QuestionInterface {
 
     boolean wasAnsweredCorrectly();
 
-    void setAsAnsweredCorrectly();
+    void markAsAnsweredCorrectly();
 
     boolean wasAttempted();
 
-    void setAsAttempted();
+    void markAsAttempted();
 
 }

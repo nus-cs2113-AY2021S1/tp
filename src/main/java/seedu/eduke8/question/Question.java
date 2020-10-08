@@ -1,8 +1,8 @@
-package seedu.duke.question;
+package seedu.eduke8.question;
 
-import seedu.duke.hint.HintInterface;
-import seedu.duke.OptionInterface;
-import seedu.duke.OptionListInterface;
+import seedu.eduke8.hint.HintInterface;
+import seedu.eduke8.option.OptionInterface;
+import seedu.eduke8.option.OptionListInterface;
 
 import java.util.ArrayList;
 
@@ -84,7 +84,7 @@ public class Question implements QuestionInterface {
     }
 
     @Override
-    public void setAsAnsweredCorrectly() {
+    public void markAsAnsweredCorrectly() {
         wasAnsweredCorrectly = true;
     }
 
@@ -100,7 +100,7 @@ public class Question implements QuestionInterface {
 
 
     @Override
-    public void setAsAttempted() {
+    public void markAsAttempted() {
         wasAttempted = true;
     }
 }

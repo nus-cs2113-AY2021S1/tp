@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.eduke8.option;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,5 @@ public interface OptionListInterface {
     void addOption(OptionInterface option);
 
     void deleteOption(OptionInterface option);
-
-    int getOptionCount();
 
 }

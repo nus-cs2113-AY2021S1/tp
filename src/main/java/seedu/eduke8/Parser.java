@@ -1,6 +1,10 @@
-package seedu.duke;
+package seedu.eduke8;
 
-public class Parser implements ParserInterface{
+
+import seedu.eduke8.quiz.QuizInterface;
+import seedu.eduke8.ui.UiInterface;
+
+public class Parser implements ParserInterface {
 
     public void parseCommand(String userInput){
         String[] commandArr = userInput.trim().split(" ", 0);
@@ -19,7 +23,7 @@ public class Parser implements ParserInterface{
             break;
         case "quiz":
             QuizInterface quiz = null;
-            quiz.startQuiz();
+            quiz.startQuiz(ui);
             break;
         case "exit":
             System.exit(0);

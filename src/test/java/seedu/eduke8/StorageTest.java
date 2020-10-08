@@ -1,7 +1,9 @@
-package seedu.duke;
+package seedu.eduke8;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.storage.Storage;
+import seedu.eduke8.storage.Storage;
+import seedu.eduke8.topic.TopicInterface;
+
 
 import java.util.ArrayList;
 
