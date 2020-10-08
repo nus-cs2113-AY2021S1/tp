@@ -27,6 +27,15 @@ public class TopicList implements TopicListInterface {
         allTopics.remove(index);
     }
 
+    public TopicInterface findTopic(String topicName) {
+        for (TopicInterface topic : allTopics) {
+            if (topicName.equals(topic.getTopic())) {
+                return topic;
+            }
+        }
+        return null;
+    }
+
     @Override
     public int getTopicCount() {
         return allTopics.size();
