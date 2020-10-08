@@ -30,7 +30,8 @@ public class Ui {
 
     private void print(String message) {
         System.out.println(LINE
-                + message
+                + messagecgvd
+
                 + LINE);
     }
 
