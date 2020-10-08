@@ -1,5 +1,8 @@
 package seedu.duke.data.framework;
 
+import seedu.duke.common.Messages;
+import seedu.duke.ui.TextUi;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -11,16 +14,17 @@ import static seedu.duke.common.Messages.LINE;
 public class Power {
 
     private final int power;
-    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy | HH:mm:ss");
+    private static final String TIME_DATE_FORMAT = "dd/MM/yyyy | HH:mm:ss";
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(TIME_DATE_FORMAT);
     LocalDateTime currentTime;
     Appliance appliance;
     private String offTime;
     private String onTime;
     private double powerUsed;
     private double totalHours;
-
     private Boolean isOn;
     private double totalPowerConsumption;
+    private static TextUi ui = new TextUi();
 
     public Power(String power) {
         this.power = Integer.parseInt(power);
@@ -38,7 +42,7 @@ public class Power {
             this.isOn = true;
             onTime = getCurrentTime();
         } else {
-            System.out.println("The appliance is already ON previously.");
+            ui.showToUser(Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON);
         }
     }
 
@@ -49,10 +53,10 @@ public class Power {
             try {
                 calculateTimeUsed();
             } catch (ParseException e) {
-                System.out.println(LINE + "Time format is wrong.");
+                ui.showToUser(LINE + Messages.MESSAGE_TIME_FORMAT_ERROR);
             }
         } else {
-            System.out.println("The appliance is already OFF previously.");
+            ui.showToUser(Messages.MESSAGE_APPLIANCE_PREVIOUSLY_OFF);
         }
     }
 
@@ -67,7 +71,7 @@ public class Power {
     }
 
     private void calculateTimeUsed() throws ParseException {
-        SimpleDateFormat timeFormat = new SimpleDateFormat("dd/MM/yyyy | HH:mm:ss");
+        SimpleDateFormat timeFormat = new SimpleDateFormat(TIME_DATE_FORMAT);
         Date onTimeValue;
         Date offTimeValue;
         double timeUsed;
@@ -113,7 +117,7 @@ public class Power {
         try {
             calculatePowerConsumed();
         } catch (ParseException e) {
-            System.out.println(LINE + "Time format is wrong.");
+            System.out.println(LINE + Messages.MESSAGE_TIME_FORMAT_ERROR);
         }
         return this.totalPowerConsumption;
     }

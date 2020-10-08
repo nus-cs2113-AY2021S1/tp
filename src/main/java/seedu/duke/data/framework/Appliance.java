@@ -6,11 +6,13 @@ public abstract class Appliance {
     protected String power;
     private String status;
     private Power appliancePower;
+    private static final String ON = "On";
+    private static final String OFF = "Off";
 
     public Appliance(String name, String location, String power) {
         this.name = name;
         this.location = location;
-        this.status = "Off";
+        this.status = OFF;
         this.power = power;
         appliancePower = new Power(power);
     }
@@ -25,9 +27,9 @@ public abstract class Appliance {
 
     public String getStatus() {
         if (appliancePower.getStatus()) {
-            this.status = "On";
+            this.status = ON;
         } else {
-            this.status = "Off";
+            this.status = OFF;
         }
         return this.status;
     }

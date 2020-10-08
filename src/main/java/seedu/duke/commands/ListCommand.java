@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.common.Messages;
 import seedu.duke.data.framework.Appliance;
 
 import static seedu.duke.common.Messages.LINE;
@@ -23,26 +24,26 @@ public class ListCommand extends Command {
         int index = 1;
         if (parameter.equals(LOCATION_TYPE)) {
             if (homeLocationsList.getLocations().size() == 0) {
-                System.out.println(LINE + "There is currently no locations in the list");
+                ui.showToUser(LINE + Messages.MESSAGE_LIST_NO_LOCATIONS);
                 return;
             }
-            System.out.println(LINE + "Here are the location you have entered.");
+            System.out.println(LINE + Messages.MESSAGE_LIST_LOCATIONS);
             for (String location : homeLocationsList.getLocations()) {
-                System.out.println(index + ": " + location);
+                ui.showToUser(index + ": " + location);
                 index++;
             }
         } else if (parameter.equals(APPLIANCE_TYPE)) {
             if (appliances.getAllAppliance().size() == 0) {
-                System.out.println(LINE + "There is currently no appliances in the list");
+                ui.showToUser(LINE + Messages.MESSAGE_LIST_NO_APPLIANCES);
                 return;
             }
-            System.out.println(LINE + "Here are the appliances in your list.");
+            System.out.println(LINE + Messages.MESSAGE_LIST_APPLIANCES);
             for (Appliance a : appliances.getAllAppliance()) {
-                System.out.println(index + ": " + a.getName()
-                        + " | Location: " + a.getLocation()
-                        + " | Status: " + a.getStatus()
-                        + " | Watt: " + a.getPower()
-                        + " | Type: " + a.getType());
+                ui.showToUser(index + ": " + a.getName()
+                        + Messages.MESSAGE_DISPLAY_LOCATION + a.getLocation()
+                        + Messages.MESSAGE_DISPLAY_STATUS  + a.getStatus()
+                        + Messages.MESSAGE_DISPLAY_WATT  + a.getPower()
+                        + Messages.MESSAGE_DISPLAY_TYPE  + a.getType());
                 index++;
             }
         }

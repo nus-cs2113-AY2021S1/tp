@@ -12,7 +12,7 @@ public class InvalidCommand extends Command {
 
     @Override
     public void execute() {
-        System.out.println(LINE + this.feedbackToUser);
+        ui.showToUser(LINE + this.feedbackToUser);
     }
 
 }

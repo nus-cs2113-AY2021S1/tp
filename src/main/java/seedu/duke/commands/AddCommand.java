@@ -1,9 +1,11 @@
 package seedu.duke.commands;
 
+import seedu.duke.common.Messages;
 import seedu.duke.data.type.AirConditioner;
 import seedu.duke.data.type.Fan;
 import seedu.duke.data.type.Lights;
 import seedu.duke.data.type.WaterHeater;
+import seedu.duke.ui.TextUi;
 
 public class AddCommand extends Command {
 
@@ -12,7 +14,6 @@ public class AddCommand extends Command {
             + ": Adds a new appliance to the particular location to the SmartHomeBot. \n"
             + "Parameters: add NAME l/LOCATION w/WATTS t/TYPE_OF_APPLIANCE \n" + "Example: "
             + COMMAND_WORD + " Fan1 l/Bedroom 1 w/50 t/Fan";
-
     private final String name;
     private final String location;
     private final String power;
@@ -46,10 +47,10 @@ public class AddCommand extends Command {
                 appliances.addAppliance(waterheater);
                 break;
             default:
-                System.out.println("Type Entered does not exist.");
+                ui.showToUser(Messages.MESSAGE_TYPE_NOT_EXIST);
             }
         } else {
-            System.out.println("Location does not exist.");
+            ui.showToUser(Messages.MESSAGE_LOCATION_NOT_EXIST);
         }
     }
 
