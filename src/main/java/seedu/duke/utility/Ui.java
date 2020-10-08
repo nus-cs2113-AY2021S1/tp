@@ -76,5 +76,8 @@ public class Ui {
         printLine();
         // Iterate through Hashmap of ShowList here...
     }
-
+  
+    public static void printIoException() {
+        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_IO_EXCEPTION);
+    }
 }

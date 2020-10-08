@@ -10,6 +10,10 @@ public class ShowList {
     public ShowList() {
     }
 
+    public ShowList(HashMap<String, Show> showList) {
+        this.showList = showList;
+    }
+
     public static Show getShow(String showName) {
         Show show = showList.get(showName);
         /* Do changes to show */
