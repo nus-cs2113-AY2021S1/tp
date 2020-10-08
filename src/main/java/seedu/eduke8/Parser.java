@@ -49,8 +49,8 @@ public class Parser implements ParserInterface {
 
     public void parseChosenOption(UiInterface ui, ArrayList<OptionInterface> options, QuestionInterface question) {
         // Should probably use parser for this part to add hints also
-        int chosen = Integer.parseInt(ui.getInputFromUser());
-        if (options.get(chosen).isCorrectAnswer()) {
+        int chosenOption = Integer.parseInt(ui.getInputFromUser());
+        if (options.get(chosenOption).isCorrectAnswer()) {
             ui.printAnswerIsCorrect();
             question.markAsAnsweredCorrectly();
         } else {
