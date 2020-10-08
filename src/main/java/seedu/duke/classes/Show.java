@@ -1,11 +1,15 @@
 package seedu.duke.classes;
 
+
+import java.time.LocalDateTime;
+
 public class Show {
     protected String name;
     protected int numSeasons;
     protected int[] numEpisodesForSeasons;
     protected int rating;
     protected String review;
+    protected LocalDateTime showTime;   //The time of the show, maybe include date
 
     public Show(String name, int numSeasons, int[] numEpisodesForSeasons) {
         this.name = name;
