@@ -63,7 +63,7 @@ public class Duke {
         while (true) {
             ui.showMainMenu();
 
-            try{
+            try {
                 String fullCommand = input.nextLine();
 
                 String[] fullCommandSplit = parser.parseUserInput(fullCommand);
