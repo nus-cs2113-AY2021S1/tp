@@ -58,47 +58,52 @@ public class Duke {
         // Request for first command
         System.out.println("What would you like to do today?");
         Scanner input = new Scanner(System.in);
+        Parser parser = new Parser();
 
         while (true) {
             ui.showMainMenu();
 
-            String fullCommand = input.nextLine();
-            String[] fullCommandSplit = fullCommand.split(" ", 2);
+            try{
+                String fullCommand = input.nextLine();
 
-            String description = "";
-            String command = fullCommandSplit[0];
-            if (fullCommandSplit.length > 1) {
-                description = fullCommandSplit[1];
-            }
+                String[] fullCommandSplit = parser.parseUserInput(fullCommand);
 
-            switch (command) {
-            case "addprofile":
-                addProfile(description);
-                break;
-            case "editprofile":
-                editProfile(description);
-                break;
-            case "browse":
-                browseAnime(description);
-                break;
-            case "watchlist":
-                createWatchlist(description);
-                break;
-            case "add":
-                addToWatchlist(description);
-                break;
-            case "bookmark":
-                bookmarkAnime(description);
-                break;
-            case "help":
-                showHelp();
-                break;
-            case "exit":
-                return;
-            default:
+                String description = "";
+                String command = fullCommandSplit[0];
+                if (fullCommandSplit.length > 1) {
+                    description = fullCommandSplit[1];
+                }
+
+                switch (command) {
+                case "addprofile":
+                    addProfile(description);
+                    break;
+                case "editprofile":
+                    editProfile(description);
+                    break;
+                case "browse":
+                    browseAnime(description);
+                    break;
+                case "watchlist":
+                    createWatchlist(description);
+                    break;
+                case "add":
+                    addToWatchlist(description);
+                    break;
+                case "bookmark":
+                    bookmarkAnime(description);
+                    break;
+                case "help":
+                    showHelp();
+                    break;
+                case "exit":
+                    return;
+                default:
+                    throw new DukeException();
+                }
+            } catch (DukeException e) {
                 ui.showInvalidCommand();
             }
-
         }
     }
 
