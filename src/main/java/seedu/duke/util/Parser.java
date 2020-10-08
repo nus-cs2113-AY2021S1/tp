@@ -19,9 +19,9 @@ import seedu.duke.command.HelpCommand;
 import seedu.duke.command.ExitCommand;
 
 import seedu.duke.data.exception.SystemException;
+import seedu.duke.data.exception.SystemException.ExceptionType;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
-import seedu.duke.data.notebook.TagManager;
 import seedu.duke.ui.InterfaceManager;
 
 import java.util.ArrayList;
@@ -41,6 +41,7 @@ import static seedu.duke.util.PrefixSyntax.STRING_SPLIT_DELIMITER;
 public class Parser {
 
     private static final int CONTAINS_TAG_COLOR_INFO = 2;
+    private static final int NULL_INDEX = 0;
 
     /**
      * Parses userInput string into a Command to be executed.
@@ -48,7 +49,7 @@ public class Parser {
      * @param userInput Original string of the userInput.
      * @return Command to be executed.
      */
-    public Command parseCommand(String userInput) throws SystemException {
+    public Command parseCommand(String userInput) {
 
         String[] userCommandAndArguments = userInput.split(" ", 2);
         String commandString = userCommandAndArguments[0];
@@ -60,54 +61,58 @@ public class Parser {
             userMessage = null;
         }
 
-        switch (commandString.toLowerCase()) {
-        case AddCommand.COMMAND_WORD_NOTE:
-            return prepareAddNote(userMessage);
-        case AddCommand.COMMAND_WORD_EVENT:
-            // return prepareAddEvent(userMessage);
-        case ListNoteCommand.COMMAND_WORD:
-            return prepareListNote(userMessage);
-        case ListEventCommand.COMMAND_WORD:
-            // return prepareListEvent(userMessage);
-        case ViewNoteCommand.COMMAND_WORD:
-            // return prepareViewNote(userMessage);
-        case EditCommand.COMMAND_WORD_NOTE:
-            // return prepareEditNote(userMessage);
-        case EditCommand.COMMAND_WORD_EVENT:
-            // return prepareEditEvent(userMessage);
-        case DeleteCommand.COMMAND_WORD_NOTE:
-            return prepareDeleteNote(userMessage);
-        case DeleteCommand.COMMAND_WORD_EVENT:
-            // return prepareDeleteEvent(userMessage);
-        case FindCommand.COMMAND_WORD:
-            return prepareFind(userMessage);
-        case PinCommand.COMMAND_WORD:
-            // return preparePin(userMessage);
-        case CreateTagCommand.COMMAND_WORD:
-            return prepareCreateTag(userMessage);
-        case DeleteTagCommand.COMMAND_WORD:
-            return prepareDeleteTag(userMessage);
-        case ListTagCommand.COMMAND_WORD:
-            return new ListTagCommand();
-        case TagCommand.COMMAND_WORD:
-            return prepareTag(userMessage);
-        case RemindCommand.COMMAND_WORD:
-            // return prepareRemind(userMessage);
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-        default:
-            return new IncorrectCommand(InterfaceManager.LS
-                    + "Invalid Command. Please try again or enter help to get a list of valid commands."
-                    + InterfaceManager.LS);
+        try {
+            switch (commandString.toLowerCase()) {
+            case AddCommand.COMMAND_WORD_NOTE:
+                return prepareAddNote(userMessage);
+            case AddCommand.COMMAND_WORD_EVENT:
+                // return prepareAddEvent(userMessage);
+            case ListNoteCommand.COMMAND_WORD:
+                return prepareListNote(userMessage);
+            case ListEventCommand.COMMAND_WORD:
+                // return prepareListEvent(userMessage);
+            case ViewNoteCommand.COMMAND_WORD:
+                // return prepareViewNote(userMessage);
+            case EditCommand.COMMAND_WORD_NOTE:
+                // return prepareEditNote(userMessage);
+            case EditCommand.COMMAND_WORD_EVENT:
+                // return prepareEditEvent(userMessage);
+            case DeleteCommand.COMMAND_WORD_NOTE:
+                return prepareDeleteNote(userMessage);
+            case DeleteCommand.COMMAND_WORD_EVENT:
+                // return prepareDeleteEvent(userMessage);
+            case FindCommand.COMMAND_WORD:
+                return prepareFind(userMessage);
+            case PinCommand.COMMAND_WORD:
+                // return preparePin(userMessage);
+            case CreateTagCommand.COMMAND_WORD:
+                return prepareCreateOrDeleteTag(userMessage, true);
+            case DeleteTagCommand.COMMAND_WORD:
+                return prepareCreateOrDeleteTag(userMessage, false);
+            case ListTagCommand.COMMAND_WORD:
+                return new ListTagCommand();
+            case TagCommand.COMMAND_WORD:
+                return prepareTag(userMessage);
+            case RemindCommand.COMMAND_WORD:
+                // return prepareRemind(userMessage);
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
+            default:
+                return new IncorrectCommand(InterfaceManager.LS
+                        + "Invalid Command. Please try again or enter help to get a list of valid commands."
+                        + InterfaceManager.LS);
+            }
+        } catch (SystemException exception) {
+            return new IncorrectCommand(exception.getMessage());
         }
     }
 
     /**
      * Splits the userMessage into the respective info by the delimiter.
      *
-     * @param userMessage Original string of the userInput.
+     * @param userMessage Original string of the user message.
      * @return Split strings.
      * @throws NullPointerException when the userMessage is empty.
      */
@@ -125,12 +130,46 @@ public class Parser {
         return splitMessageContent;
     }
 
-    private Command prepareAddNote(String userMessage) {
+    /**
+     * Creates and returns a Tag object based on the info provided.
+     *
+     * @param tagMessage info of the Tag. Contains tag name and may contain tag color.
+     * @return new Tag object.
+     * @throws SystemException for missing tag name.
+     */
+    private Tag handleTagPrefix(String[] tagMessage) throws SystemException {
+        String tagName;
+        String tagColor = "";
+
+        // Ensures that the message is not blank.
+        try {
+            if (tagMessage[1].isBlank()) {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG);
+            }
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG);
+        }
+
+        // Split into the tag name and tag color.
+        String[] tagInfo = tagMessage[1].split(" ", 2);
+
+        if (tagInfo[0].isBlank()) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG);
+        } else {
+            tagName = tagInfo[0].trim();
+        }
+        if (tagInfo.length == CONTAINS_TAG_COLOR_INFO) {
+            tagColor = tagInfo[1].trim();
+        }
+        return new Tag(tagName, tagColor);
+    }
+
+    private Command prepareAddNote(String userMessage) throws SystemException {
         Note note;
         String title = null;
         String content;
-        Boolean isPinned = false;
-        ArrayList<Tag> tags = new ArrayList<Tag>();
+        boolean isPinned = false;
+        ArrayList<Tag> tags = new ArrayList<>();
 
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
@@ -140,29 +179,17 @@ public class Parser {
                 switch (prefix) {
                 case PREFIX_TITLE:
                     if (infoDetails[1].isBlank()) {
-                        throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+                        throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
                     }
                     title = infoDetails[1].trim();
                     break;
                 case PREFIX_TAG:
-                    if (infoDetails[1].isBlank()) {
-                        throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
-                    }
-                    Tag tag;
-                    String[] tagInfo = infoDetails[1].split(" ", 2);
-
-                    if (tagInfo[0].isBlank()) {
-                        throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
-                    } else if (tagInfo.length == CONTAINS_TAG_COLOR_INFO) {
-                        tag = new Tag(tagInfo[0].trim(), tagInfo[1].trim());
-                    } else {
-                        tag = new Tag(tagInfo[0].trim());
-                    }
+                    Tag tag = handleTagPrefix(infoDetails);
                     tags.add(tag);
                     break;
                 case PREFIX_PIN:
                     if (infoDetails[1].isBlank()) {
-                        throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+                        throw new SystemException(ExceptionType.EXCEPTION_MISSING_PIN);
                     }
                     isPinned = Boolean.parseBoolean(infoDetails[1].trim());
                     break;
@@ -172,7 +199,7 @@ public class Parser {
             }
 
             if (title.isBlank()) {
-                throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_TITLE);
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
             }
 
             // Get Content
@@ -183,10 +210,10 @@ public class Parser {
             note = tags.isEmpty() ? new Note(title, content, isPinned) : new Note(title, content, isPinned, tags);
 
             return new AddCommand(note);
-        } catch (SystemException exception) {
-            return new IncorrectCommand(exception.getMessage());
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException exception) {
-            return new IncorrectCommand("Missing description!");
+        } catch (NullPointerException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE_PREFIX);
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
         }
     }
 
@@ -216,8 +243,8 @@ public class Parser {
         commandInput.delete(lastChar, commandInput.length());
     }
 
-    private Command prepareDeleteNote(String userMessage) {
-        int index = 0;
+    private Command prepareDeleteNote(String userMessage) throws SystemException {
+        int index = NULL_INDEX;
 
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
@@ -227,24 +254,31 @@ public class Parser {
                 switch (prefix) {
                 case PREFIX_INDEX:
                     if (infoDetails[1].isBlank()) {
-                        throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+                        throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
                     }
                     index = Integer.parseInt(infoDetails[1].trim());
                     break;
                 default:
                 }
             }
+
+            if (index <= NULL_INDEX) {
+                throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+            }
+
             return new DeleteCommand(index, true);
-        } catch (SystemException exception) {
-            return new IncorrectCommand(exception.getMessage());
+        } catch (NullPointerException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX_PREFIX);
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
         } catch (NumberFormatException exception) {
-            return new IncorrectCommand("Invalid format");
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
         }
     }
 
-    private Command prepareFind(String userMessage) {
+    private Command prepareFind(String userMessage) throws SystemException {
         if (userMessage.isBlank()) {
-            return new IncorrectCommand("No search query input. Please enter a keyword for search results.");
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_KEYWORD);
         }
         return new FindCommand(userMessage);
     }
@@ -267,10 +301,10 @@ public class Parser {
             }
         }
 
-        for (int i = 0; i < words.length; i++) {
-            if (words[i].equals("up")) {
+        for (String word : words) {
+            if (word.equals("up")) {
                 isAscending = true;
-            } else if (words[i].equals("down")) {
+            } else if (word.equals("down")) {
                 isAscending = false;
             }
         }
@@ -317,50 +351,54 @@ public class Parser {
     }
     */
 
-    private Command prepareCreateTag(String userMessage) {
-        String tagName = "";
-        String tagColor = "";
+    /**
+     * Returns a CreateTagCommand or a DeleteTagCommand based on the user message.
+     *
+     * @param userMessage Original string of the user message.
+     * @param isCreate determines the type of command (CreateTagCommand or DeleteTagCommand) to return.
+     * @return either a new CreateTagCommand or DeleteTagCommand.
+     * @throws SystemException for missing tag prefix or tag name.
+     */
+    private Command prepareCreateOrDeleteTag(String userMessage, boolean isCreate) throws SystemException {
+        ArrayList<Tag> tags = new ArrayList<>();
 
         try {
-            String[] tagInfo = userMessage.split(" ", 2);
+            ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
 
-            if (tagInfo[0].isBlank()) {
-                throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
-            } else {
-                tagName = tagInfo[0].trim();
+            for (String[] infoDetails : splitInfo) {
+                String prefix = infoDetails[0];
+                if (prefix.equalsIgnoreCase(PREFIX_TAG)) {
+                    Tag tag = handleTagPrefix(infoDetails);
+                    tags.add(tag);
+                }
             }
-            if (tagInfo.length == CONTAINS_TAG_COLOR_INFO) {
-                tagColor = tagInfo[1].trim();
-            }
-        } catch (NullPointerException | ArrayIndexOutOfBoundsException exception) {
-            return new IncorrectCommand("Missing description!");
-        } catch (SystemException exception) {
-            return new IncorrectCommand(exception.getMessage());
-        }
-        return new CreateTagCommand(tagName, tagColor);
-    }
-
-    private Command prepareDeleteTag(String userMessage) {
-        String tagName = "";
-
-        try {
-            if (userMessage.isBlank()) {
-                throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
-            } else {
-                tagName = userMessage.trim();
+            // Ensures that there is at least 1 tag to be created or deleted.
+            if (tags.isEmpty()) {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG_PREFIX);
             }
         } catch (NullPointerException exception) {
-            return new IncorrectCommand("Missing description!");
-        } catch (SystemException exception) {
-            return new IncorrectCommand(exception.getMessage());
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG_PREFIX);
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG);
         }
-        return new DeleteTagCommand(tagName);
+
+        if (isCreate) {
+            return new CreateTagCommand(tags);
+        } else {
+            return new DeleteTagCommand(tags);
+        }
     }
 
-    private Command prepareTag(String userMessage) {
-        int index = 0;
-        String tagName = "";
-        String tagColor = "";
+    /**
+     * Returns a TagCommand to tag a note.
+     *
+     * @param userMessage Original string of the user message.
+     * @return a new TagCommand.
+     * @throws SystemException for invalid index input, missing tag prefix or tag name.
+     */
+    private Command prepareTag(String userMessage) throws SystemException {
+        int index = NULL_INDEX;
+        ArrayList<Tag> tags = new ArrayList<>();
 
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
@@ -369,38 +407,35 @@ public class Parser {
                 String prefix = infoDetails[0];
                 switch (prefix) {
                 case PREFIX_TAG:
-                    if (infoDetails[1].isBlank()) {
-                        throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
-                    }
-
-                    String[] tagInfo = infoDetails[1].split(" ", 2);
-
-                    if (tagInfo[0].isBlank()) {
-                        throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
-                    } else {
-                        tagName = tagInfo[0].trim();
-                    }
-                    if (tagInfo.length == CONTAINS_TAG_COLOR_INFO) {
-                        tagColor = tagInfo[1].trim();
-                    }
+                    Tag tag = handleTagPrefix(infoDetails);
+                    tags.add(tag);
                     break;
                 case PREFIX_INDEX:
                     if (infoDetails[1].isBlank()) {
-                        throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+                        throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
                     }
                     index = Integer.parseInt(infoDetails[1].trim());
                     break;
                 default:
+                    break;
                 }
             }
-        } catch (NullPointerException | ArrayIndexOutOfBoundsException exception) {
-            return new IncorrectCommand("Missing description!");
-        } catch (SystemException exception) {
-            return new IncorrectCommand(exception.getMessage());
+
+            if (tags.isEmpty()) {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG_PREFIX);
+            }
+
+            if (index <= NULL_INDEX) {
+                throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+            }
+        } catch (NullPointerException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG_PREFIX);
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
         } catch (NumberFormatException exception) {
-            return new IncorrectCommand("Invalid format!");
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
         }
-        return new TagCommand(index, tagName, tagColor);
+        return new TagCommand(index, tags);
     }
 
     /*

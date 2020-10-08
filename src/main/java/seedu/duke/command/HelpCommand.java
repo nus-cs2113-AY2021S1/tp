@@ -8,9 +8,9 @@ import seedu.duke.ui.InterfaceManager;
  */
 public class HelpCommand extends Command {
 
-    public static final String COLOR_CYAN_STRING = TagColor.COLOR_CYAN.color;
-    public static final String COLOR_WHITE_STRING = TagColor.COLOR_WHITE.color;
-    public static final String COLOR_RESET_STRING = TagColor.COLOR_RESET.color;
+    public static final String COLOR_CYAN_STRING = TagColor.COLOR_CYAN.getColor();
+    public static final String COLOR_WHITE_STRING = TagColor.COLOR_WHITE.getColor();
+    public static final String COLOR_RESET_STRING = TagColor.COLOR_RESET.getColor();
 
     public static final String COMMAND_WORD = "help";
 

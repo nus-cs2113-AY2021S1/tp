@@ -7,7 +7,16 @@ public class SystemException extends Exception {
     /** Types of exception. */
     public enum ExceptionType {
         EXCEPTION_MISSING_DESCRIPTION("Missing description!"),
+        EXCEPTION_MISSING_TITLE_PREFIX("Missing title prefix!"),
         EXCEPTION_MISSING_TITLE("Missing title!"),
+        EXCEPTION_MISSING_TAG_PREFIX("Missing tag prefix!"),
+        EXCEPTION_MISSING_TAG("Missing tag name!"),
+        EXCEPTION_MISSING_INDEX_PREFIX("Missing index prefix!"),
+        EXCEPTION_MISSING_INDEX("Missing index!"),
+        EXCEPTION_MISSING_PIN("Missing pin!"),
+        EXCEPTION_MISSING_KEYWORD("No search query input. Please enter a keyword for search results."),
+        EXCEPTION_INVALID_INDEX_FORMAT("Invalid index format!"),
+        EXCEPTION_INVALID_INDEX_VALUE("Invalid index value!"),
         EXCEPTION_DUPLICATE_NOTE("This note already exists in the notebook!"),
         EXCEPTION_MISSING_NOTE("This note does not exists in the notebook!"),
         EXCEPTION_FILE_CREATION_ERROR("Unable to create a file");

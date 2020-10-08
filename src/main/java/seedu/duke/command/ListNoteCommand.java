@@ -1,16 +1,11 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
-import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.Tag;
-import seedu.duke.data.notebook.TagManager;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
