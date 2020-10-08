@@ -21,3 +21,25 @@ Release Date in String: 30/Dec/2020
 Anime-2020
 Uhh.. It's empty.. :(
 
+===Running Sample Anime List Class===
+Name: Adventures of Adventurers
+Episodes: 24
+Release Date:30/Dec/2020
+Rating: 65
+Genre: [Science, Action, Dance]
+Name: Actions in Action
+Episodes: 13
+Release Date:15/Apr/1997
+Rating: 80
+Genre: [Adventure, Action, Dance]
+===End of Sample Anime List Class===
+What would you like to do today?
+1. Add a profile (addprofile)
+2. Edit a profile (editprofile)
+3. Browse through all anime (browse)
+4. Create a watchlist (watchlist)
+5. Add to watchlist (add)
+6. Bookmark an anime (bookmark)
+7. Help (help)
+8. Exit (exit)
+
