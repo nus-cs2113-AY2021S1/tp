@@ -4,18 +4,31 @@ package seedu.modtracker;
  * Main entry-point for the java.seedu.modtracker application.
  */
 public class ModTracker {
-    private static ModuleList modules;
+
+    private Ui ui;
+    private final ModuleList modules = new ModuleList();
 
     public static void main(String[] args) {
-        Ui.printWelcomeScreen();
-        String name = Ui.printNamePrompt();
-        run(modules, name);
+        new ModTracker().run();
     }
 
-    public static void run(ModuleList modules, String name) {
-        while (!Parser.isExit()) {
-            String input = Ui.readCommand();
-            Parser.parse(input, modules, name);
+    public void run() {
+        String name = start();
+        runCommandLoopUntilExitCommand(modules, name);
+    }
+
+    public String start() {
+        this.ui = new Ui();
+        ui.printWelcomeScreen();
+        return ui.printNamePrompt();
+    }
+
+    public void runCommandLoopUntilExitCommand(ModuleList modules, String name) {
+        Parser parser = new Parser();
+        while (!parser.isExit()) {
+            String input = ui.readCommand();
+            parser.parse(input, modules, name);
         }
     }
+
 }

@@ -10,21 +10,22 @@ public class Parser {
      * Parses user inputs.
      *
      * @param input user input
-     * @param t modlist
+     * @param modules modlist
      * @param name name entered by the user
      */
-    public static void parse(String input, ModuleList t, String name) {
+    public void parse(String input, ModuleList modules, String name) {
+        Ui ui = new Ui();
         String[] command = input.trim().split(" ");
 
         switch (command[0].toLowerCase()) {
         case "addmod":
-            t.addMod(input);
+            modules.addMod(input);
             break;
         case "addtime":
             //methods
             break;
         case "addexp":
-            t.addExp(input);
+            modules.addExp(input);
             break;
         case "deletemod":
             //methods
@@ -39,22 +40,21 @@ public class Parser {
             //methods
             break;
         case "list":
-            //Ui.printList(t.getData());
-            Ui.printTable(t.getData(), Integer.parseInt(command[1]));
+            ui.printTable(modules.getData(), Integer.parseInt(command[1]));
             break;
         case "help":
-            Ui.printHelpList();
+            ui.printHelpList();
             break;
         case "exit":
             if (input.trim().length() > 4) {
-                Ui.printInvalidCommand();
+                ui.printInvalidCommand();
             } else {
-                Ui.printExitScreen(name);
+                ui.printExitScreen(name);
                 exit = true;
             }
             break;
         default:
-            Ui.printInvalidCommand();
+            ui.printInvalidCommand();
         }
     }
 
@@ -63,7 +63,7 @@ public class Parser {
      *
      * @return status of exit
      */
-    public static boolean isExit() {
+    public boolean isExit() {
         return exit;
     }
 

@@ -7,40 +7,28 @@ import java.util.Scanner;
  * Text UI of the program.
  */
 public class Ui {
-    private static Scanner in = new Scanner(System.in);
+    private static final Scanner in = new Scanner(System.in);
 
     /**
      * Reads input entered by the user.
      *
      * @return input entered by the user
      */
-    public static String readCommand() {
+    public String readCommand() {
         return in.nextLine();
     }
 
     /**
      * Prints the invalid command line.
      */
-    public static void printInvalidCommand() {
+    public void printInvalidCommand() {
         System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(" + System.lineSeparator());
-    }
-
-    /**
-     * Prints out the task list.
-     *
-     * @param modList task list
-     */
-    public static void printList(ArrayList<Module> modList) {
-        for (int i = 0; i < modList.size(); i++) {
-            System.out.println(modList.get(i));
-        }
-        System.out.println("");
     }
 
     /**
      * Prints the welcome screen when the program starts.
      */
-    public static void printWelcomeScreen() {
+    public void printWelcomeScreen() {
         String logo = "|\\\\        /|         |======            ||\n"
                 + "||\\\\      / |  __   __|  ||  __  ___ ___ ||    ___   ____\n"
                 + "|| \\\\    /  |//  \\//  |  ||//  \\/  |/    ||// / _ \\ //   \\\n"
@@ -56,11 +44,11 @@ public class Ui {
     /**
      * Prompts the user to enter his/her name.
      */
-    public static String printNamePrompt() {
+    public String printNamePrompt() {
         System.out.println("What is your name?");
         String name = in.nextLine();
         if (name.isEmpty()) {
-            Ui.printInvalidCommand();
+            printInvalidCommand();
             printNamePrompt();
         } else {
             System.out.println("");
@@ -73,7 +61,7 @@ public class Ui {
     /**
      * Prints the exit line when user entered "bye".
      */
-    public static void printExitScreen(String name) {
+    public void printExitScreen(String name) {
         System.out.println("All changes saved.");
         System.out.println("Bye " + name + ". Hope to see you again soon!" + System.lineSeparator());
     }
@@ -84,7 +72,7 @@ public class Ui {
      * @param modList list of modules.
      * @param week specified week number.
      */
-    public static void printTable(ArrayList<Module> modList, int week) {
+    public void printTable(ArrayList<Module> modList, int week) {
         ModView view = new ModView();
         view.printAllModuleInformation(modList,week);
     }
@@ -92,7 +80,8 @@ public class Ui {
     /**
      * Prints all available commands.
      */
-    public static void printHelpList() {
-        HelpList.listCommands();
+    public void printHelpList() {
+        HelpList help = new HelpList();
+        help.listCommands();
     }
 }

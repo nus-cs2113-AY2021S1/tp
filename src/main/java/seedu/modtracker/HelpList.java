@@ -8,7 +8,7 @@ public class HelpList {
     /**
      * Prints the full list of commands available.
      */
-    public static void listCommands() {
+    public void listCommands() {
         System.out.println("Available Commands:\n"
                 + "1. addmod <module code>\n"
                 + "   example: addmod CS2113T\n"
