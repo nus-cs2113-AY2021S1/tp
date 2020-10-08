@@ -12,6 +12,7 @@ public abstract class Event {
     protected boolean isDone;
     protected int repeatUnit; //weekly or monthly
     protected ArrayList<DateStatusPair> dateTimeList;
+    protected boolean isRepeat;
 
     protected static final int WEEKLY = 1;
     protected static final int MONTHLY = 2;
@@ -25,6 +26,8 @@ public abstract class Event {
     public Event(String description) {
         setDescription(description);
         isDone = false;
+        isRepeat = false;
+        dateTimeList = new ArrayList<>();
     }
 
     /**
@@ -56,6 +59,10 @@ public abstract class Event {
         this.repeatUnit = repeatUnit;
     }
 
+    public void setIsRepeat(boolean toRepeat) {
+        this.isRepeat = toRepeat;
+    }
+
     /**
      * Sets the event's done status to true.
      */
@@ -70,6 +77,27 @@ public abstract class Event {
      */
     public String getStatus() {
         return (isDone) ? "✓" : "✕";
+    }
+
+    /**
+     * Returns a string representation of event's done status for a particular index for repeated events.
+     *
+     * @param index integer of the index number of the repeated event date status pair
+     * @return String representation of the event done status.
+     */
+    public String getStatus(int index) {
+
+        boolean isEventDone;
+        try {
+
+            DateStatusPair currentDateStatusPair = this.dateTimeList.get(index);
+            isEventDone = currentDateStatusPair.getDoneStatus();
+            return (isEventDone) ? "✓" : "✕";
+
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Error! Index out of bounds");
+            return null;
+        }
     }
 
 
@@ -100,6 +128,61 @@ public abstract class Event {
         return "Repeat Status: " + repeatTimeInterval + " for " + repeatNumber + " time(s) starting from " + dateString;
 
     }
+
+    /**
+     * Gets date of the event.
+     *
+     * @return LocalDate object containing the date of the event
+     */
+    public LocalDate getDate() {
+
+        return this.date;
+    }
+
+    /**
+     * Gets date of the event stored at an index for repeated events.
+     *
+     * @param index Integer of the index number for the DateStatusPair object
+     * @return LocalDate object containing the date at that iteration
+     */
+    public LocalDate getDate(int index) {
+
+        try {
+            DateStatusPair currentDateStatusPair = this.dateTimeList.get(index);
+            return currentDateStatusPair.getDate();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Error! Index out of bounds");
+            return null;
+        }
+
+    }
+
+    /**
+     * Gets time of the event.
+     *
+     * @return LocalTime object containing the time of the event
+     */
+    public LocalTime getTime() {
+        return this.time;
+    }
+
+    /**
+     * Gets time of the event stored at an index for repeated events.
+     *
+     * @param index Integer of the index number for the DateStatusPair object
+     * @return LocalTime object containing the time at that iteration
+     */
+    public LocalTime getTime(int index) {
+
+        try {
+            DateStatusPair currentDateStatusPair = this.dateTimeList.get(index);
+            return currentDateStatusPair.getTime();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Error! Index out of bounds");
+            return null;
+        }
+    }
+
 
     @Override
     public String toString() {
