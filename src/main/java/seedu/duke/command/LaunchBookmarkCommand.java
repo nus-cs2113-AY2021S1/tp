@@ -24,7 +24,7 @@ public class LaunchBookmarkCommand extends Command {
         try {
             index = Integer.parseInt(details.trim()) - 1;
         } catch (NullPointerException | NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeException(DukeExceptionType.INVALID_TASK_NUMBER);
+            throw new DukeException(DukeExceptionType.INVALID_BOOKMARK_NUMBER);
         }
     }
 
@@ -41,10 +41,10 @@ public class LaunchBookmarkCommand extends Command {
         try {
             Bookmark bookmark = bookmarks.getBookmark(index);
             bookmark.launch();
-            ui.printPublic(getMessage(bookmark));
+            ui.print(getMessage(bookmark));
             //storage.save(taskList.getData());
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(DukeExceptionType.INVALID_TASK_NUMBER);
+            throw new DukeException(DukeExceptionType.INVALID_BOOKMARK_NUMBER);
         }
     }
 

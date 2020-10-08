@@ -6,7 +6,7 @@ import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.exception.DukeException;
 
-public class ListCommand extends Command{
+public class ListCommand extends Command {
     public static final String LIST_KW = "list";
 
     /**
@@ -35,6 +35,6 @@ public class ListCommand extends Command{
     @Override
     public void execute(BookmarkList bookmarks, Ui ui, Storage storage) throws DukeException {
         String message = getMessage(bookmarks);
-        ui.printPublic(message);
+        ui.print(message);
     }
 }

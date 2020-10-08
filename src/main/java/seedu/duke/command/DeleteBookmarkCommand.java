@@ -24,7 +24,7 @@ public class DeleteBookmarkCommand extends Command {
         try {
             index = Integer.parseInt(details.trim()) - 1;
         } catch (NullPointerException | NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeException(DukeExceptionType.INVALID_TASK_NUMBER);
+            throw new DukeException(DukeExceptionType.INVALID_BOOKMARK_NUMBER);
         }
     }
 
@@ -41,15 +41,15 @@ public class DeleteBookmarkCommand extends Command {
         try {
             Bookmark bookmark = bookmarks.getBookmark(index);
             bookmarks.deleteBookmark(bookmarks.getBookmark(index));
-            ui.printPublic(getMessage(bookmark));
+            ui.print(getMessage(bookmark));
             //storage.save(taskList.getData());
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(DukeExceptionType.INVALID_TASK_NUMBER);
+            throw new DukeException(DukeExceptionType.INVALID_BOOKMARK_NUMBER);
         }
     }
 
     private String getMessage(Bookmark bookmark) {
-        String message = "\tNI've deleted this bookmark!:\n"
+        String message = "\tI've deleted this bookmark!:\n"
                 + "\t  [" + bookmark.getModule() + "] " + bookmark.getDescription() + " " + bookmark.getUrl() + "\n";
         return message;
     }
