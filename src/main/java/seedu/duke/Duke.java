@@ -29,13 +29,13 @@ public class Duke {
     public void run() {
         //...
         ui.hello();
-        Scanner scan = new Scanner(System.in);
+        /*Scanner scan = new Scanner(System.in);
         InputParser parseManager = new InputParser();
         while (!parseManager.isByeTime()) {
             Ui.printLineIcon();
             String input = scan.nextLine();
             parseManager.parseInput(input);
-        }
+        }*/
     }
 
     public static void main(String[] args) {
