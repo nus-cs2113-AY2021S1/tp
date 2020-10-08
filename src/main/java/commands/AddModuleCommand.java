@@ -17,15 +17,15 @@ public class AddModuleCommand extends Command {
 
     @Override
     public void execute(CardList cards, Ui ui, Access access, Storage storage) {
-        if (access.getModuleLevel() == "") {
-            Admin newAdmin = access.getAdmin();
-            newAdmin.add(new Module(moduleCode));
-            access.setAdmin(newAdmin);
-            storage.createModule(moduleCode);
-        } else {
+        if (!(access.getModuleLevel().equals(""))) {
             System.out.println("Sorry, you currently are in the module/chapter level, "
                     + "please go back to Admin level first.");
+            return;
         }
+        Admin newAdmin = access.getAdmin();
+        newAdmin.add(new Module(moduleCode));
+        access.setAdmin(newAdmin);
+        storage.createModule(moduleCode);
     }
 
     @Override

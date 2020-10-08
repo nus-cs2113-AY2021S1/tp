@@ -17,14 +17,14 @@ public class AddChapterCommand extends Command {
 
     @Override
     public void execute(CardList cards, Ui ui, Access access, Storage storage) {
-        if (access.getModuleLevel() != "") {
-            Module newModule = access.getModule();
-            newModule.add(new Chapter(chapterCode));
-            access.setModule(newModule);
-            storage.createChapter(chapterCode, access.getModuleLevel());
-        } else {
+        if (access.getModuleLevel().equals("")) {
             System.out.println("Sorry, you currently are in the admin level, please enter module level first.");
+            return;
         }
+        Module newModule = access.getModule();
+        newModule.add(new Chapter(chapterCode));
+        access.setModule(newModule);
+        storage.createChapter(chapterCode, access.getModuleLevel());
     }
 
     @Override

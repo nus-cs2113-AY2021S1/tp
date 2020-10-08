@@ -70,11 +70,11 @@ public class Access {
     }
 
     public void setModuleLevel(String moduleLevel) {
-        if (this.chapterLevel != "") {
+        if (this.chapterLevel.equals("")) {
             System.out.println("Sorry, you currently are in the chapter level, "
                     + "please go back to admin level first.");
-        } else if (this.moduleLevel != "") {
-            if (moduleLevel == "") {
+        } else if (!(this.moduleLevel.equals(""))) {
+            if (moduleLevel.equals("")) {
                 String replacement = "/" + this.moduleLevel;
                 this.level = level.replace(replacement, "");
                 this.moduleLevel = moduleLevel;
