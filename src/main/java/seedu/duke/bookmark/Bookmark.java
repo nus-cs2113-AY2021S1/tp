@@ -63,27 +63,27 @@ public class Bookmark {
      * @return a list of strings containing the topic, URL and the description
      */
 
-    public static List<String> extractModuleDescriptionAndLink(String input) throws DukeException {
+    public static List<String> extractModuleDescriptionAndUrl(String input) throws DukeException {
         input = input.substring(AddBookmarkCommand.ADD_KW.length()).trim();
         System.out.println(input);
-        List<String> moduleDescriptionLink = new ArrayList<String>(Arrays.asList(input.split(" ", 3)));
-        if (moduleDescriptionLink.size() == 2) {
-            moduleDescriptionLink.add(0, "");  // No entry for module
+        List<String> moduleDescriptionUrl = new ArrayList<String>(Arrays.asList(input.split(" ", 3)));
+        if (moduleDescriptionUrl.size() == 2) {
+            moduleDescriptionUrl.add(0, "");  // No entry for module
         }
-        if (moduleDescriptionLink.size() != 3) {
+        if (moduleDescriptionUrl.size() != 3) {
             throw new DukeException(DukeExceptionType.INVALID_URL_AND_DESCRIPTION);
         }
-        if (moduleDescriptionLink.get(1).isBlank() || moduleDescriptionLink.get(2).isBlank()) {
+        if (moduleDescriptionUrl.get(1).isBlank() || moduleDescriptionUrl.get(2).isBlank()) {
             throw new DukeException(DukeExceptionType.EMPTY_DESCRIPTION);
         }
-        if (!isLinkValid(moduleDescriptionLink.get(2))) {
+        if (!isUrlValid(moduleDescriptionUrl.get(2))) {
             throw new DukeException(DukeExceptionType.INVALID_URL_AND_DESCRIPTION);
         }
 
-        return moduleDescriptionLink;
+        return moduleDescriptionUrl;
     }
 
-    private static Boolean isLinkValid(String url) {
+    private static Boolean isUrlValid(String url) {
         if (url.startsWith("www.") || url.startsWith("https://")) {
             return true;
         }
