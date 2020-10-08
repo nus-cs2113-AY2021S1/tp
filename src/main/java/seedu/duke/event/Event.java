@@ -106,7 +106,7 @@ public abstract class Event {
      *
      * @return string representation of event's repeat status, with starting date, repetition amount and time
      */
-    public String getRepeatStatus() {
+    public String getRepeatStatusString() {
         String dateString;
         String repeatNumber;
         String repeatTimeInterval;
@@ -183,6 +183,19 @@ public abstract class Event {
         }
     }
 
+    public boolean getIsRepeat() {
+        return this.isRepeat;
+    }
+
+    public int getRepeatCount() {
+        return repeatCount;
+    }
+
+    public void addRepeatDateStatusPair (LocalDate date, LocalTime time, boolean state) {
+        DateStatusPair toAdd = new DateStatusPair(date, time);
+        toAdd.setDone(state);
+        this.dateTimeList.add(toAdd);
+    }
 
     @Override
     public String toString() {

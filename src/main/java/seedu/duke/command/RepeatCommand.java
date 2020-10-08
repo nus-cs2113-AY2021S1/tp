@@ -1,10 +1,15 @@
 package seedu.duke.command;
 
 import seedu.duke.data.UserData;
+import seedu.duke.event.DateStatusPair;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * Command to repeat task.
@@ -21,6 +26,10 @@ public class RepeatCommand extends Command {
     private int timeInterval;
     private int numberOfIterations;
     private boolean isValid;
+
+    private static final int WEEKLY = 1;
+    private static final int MONTHLY = 2;
+
 
     /**
      * Set up for the repeat command.
@@ -45,6 +54,7 @@ public class RepeatCommand extends Command {
             this.isValid = false;
             return;
         }
+
 
         eventIndex = Integer.parseInt(words[0]) - 1;
         eventType = capitaliseFirstLetter(words[1]);
@@ -78,11 +88,48 @@ public class RepeatCommand extends Command {
 
         EventList information = data.getEventList(this.eventType);
         Event toChange = information.getEventByIndex(this.eventIndex);
+        if (toChange.getDate() == null) {
+            System.out.println("Error! cannot repeat with no date.");
+            return;
+        }
+        createDateList(toChange, this.timeInterval, this.numberOfIterations);
+        toChange.setIsRepeat(true);
         toChange.setRepeatUnit(this.timeInterval);
         toChange.setRepeatCount(this.numberOfIterations);
 
 
         System.out.println("All done, the program is set to repeat.");
+    }
+
+    private void createDateList(Event eventToRepeat, int repeatUnit, int repeatCount) {
+
+        LocalDate startDate;
+        LocalTime startTime;
+        boolean isStartEventDone;
+
+        startDate = eventToRepeat.getDate();
+        startTime = eventToRepeat.getTime();
+        isStartEventDone = eventToRepeat.getStatus().equals("✓");
+
+        eventToRepeat.addRepeatDateStatusPair(startDate, startTime, isStartEventDone);
+
+        for (int i = 0; i < repeatCount; i++) {
+
+            switch(repeatUnit) {
+            case 1:
+                startDate = startDate.plusWeeks(1);
+                break;
+            case 2:
+                startDate = startDate.plusMonths(1);
+                break;
+            default:
+                continue;
+            }
+
+            eventToRepeat.addRepeatDateStatusPair(startDate, startTime, false);
+
+        }
+
     }
 
     /**
