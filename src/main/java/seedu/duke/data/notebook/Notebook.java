@@ -31,7 +31,7 @@ public class Notebook {
         return this.notes;
     }
 
-    public Note getNote(int index){
+    public Note getNote(int index) {
         return this.notes.get(index);
     }
 
@@ -57,7 +57,7 @@ public class Notebook {
         notes.remove(note);
     }
 
-    public int  getSize(){
+    public int  getSize() {
         return notes.size();
     }
 }

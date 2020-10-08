@@ -29,11 +29,11 @@ public class StorageManager {
      * @param notebook The Notebook containing all the notes to be saved.
      */
     public static void saveNotebook(Notebook notebook) throws SystemException {
-        createDirectory ();
-        for (int i = 0; i < notebook.getSize();i++){
-            try{
+        createDirectory();
+        for (int i = 0; i < notebook.getSize();i++) {
+            try {
                 saveNoteContent(notebook.getNote(i));
-                saveNoteDetails (notebook.getNote(i));
+                saveNoteDetails(notebook.getNote(i));
             } catch (IOException e) {
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_CREATION_ERROR);
             }
@@ -72,29 +72,36 @@ public class StorageManager {
     }
 
     /**
-     * Saves an individual note to the storage file
+     * Saves an individual note to the storage file.
      *
      * @param note The note to be saved
      */
     public static void saveNoteContent(Note note) throws IOException {
-        String path = FOLDER_DIR + NOTES_DIR + "/"+note.getTitle() + ".txt";
-        createFile (path);
+        String path = FOLDER_DIR + NOTES_DIR + "/" + note.getTitle() + ".txt";
+        createFile(path);
         FileWriter fwAppend = new FileWriter(path, true);
         fwAppend.write(note.getContent());
         fwAppend.close();
     }
 
     /**
-     * Saves the details of notes such as title, tags and pinned status to the notebook text file
+     * Saves the details of notes such as title, tags and pinned status to the notebook text file.
      * @param note Note of which details are to be saved to the file
      */
     private static void saveNoteDetails(Note note) throws IOException {
         String path = FOLDER_DIR + "/" + NOTEBOOK_FILE_PATH;
         createFile(path);
         FileWriter fwAppend = new FileWriter(path, true);
-        fwAppend.write(note.getTitle() + DELIMINATOR + note.getPinned() + DELIMINATOR + note.getTags() + System.lineSeparator());
+        String noteDetails = note.getTitle()
+                            + DELIMINATOR
+                            + note.getPinned()
+                            + DELIMINATOR
+                            + note.getTags()
+                            + System.lineSeparator();
+        fwAppend.write(noteDetails);
         fwAppend.close();
     }
+
     /**
      * Creates a directory path data/notes. In case both data and /notes do not exist.
      */
@@ -110,6 +117,7 @@ public class StorageManager {
             noteDirectory.mkdir();
         }
     }
+
     /**
      * Checks if a file exists. If it does not, creates file with the input path
      * @param path path of file to be created
@@ -117,7 +125,7 @@ public class StorageManager {
      */
     private static void createFile(String path) throws IOException {
         File file = new File(path);
-        if (!file.exists()){
+        if (!file.exists()) {
             file.createNewFile();
         }
     }
