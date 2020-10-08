@@ -2,11 +2,7 @@ package seedu.duke;
 
 import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
-import seedu.duke.calendar.task.Deadline;
-import seedu.duke.calendar.task.Lab;
 import seedu.duke.calendar.task.Task;
-import seedu.duke.calendar.task.Todo;
-import seedu.duke.calendar.task.Tutorial;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -93,6 +89,7 @@ public class Storage {
         try {
             Scanner sc = new Scanner(input);
             Task task;
+            /*
             while (sc.hasNext()) {
                 String[] taskInFile = sc.nextLine().split("\\|");
                 if (taskInFile[TYPE].equals("T")) {
@@ -102,9 +99,9 @@ public class Storage {
                     task = new Deadline(taskInFile[DESCRIPTION], date);
                 } else if (taskInFile[TYPE].equals("E")) {
                     date = LocalDate.parse(taskInFile[DATE].trim());
-//                    task = new Activity(taskInFile[DESCRIPTION], date);
+                    task = new Activity(taskInFile[DESCRIPTION], date);
                 } else if (taskInFile[TYPE].equals("LEC")) {
-//                    task = new Lecture(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
+                    task = new Lecture(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
                 } else if (taskInFile[TYPE].equals("TUT")) {
                     task = new Tutorial(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
                 } else {
@@ -112,10 +109,11 @@ public class Storage {
                 }
                 countFileTasks++;
                 if (taskInFile[IS_DONE].equals("true")) {
-//                    task.markAsDone();
+                    task.markAsDone();
                 }
-//                calendarList.addTask(task);
+                calendarList.addTask(task);
             }
+            */
         } catch (Exception e) {
             System.out.println("Wrong format of date");
         }

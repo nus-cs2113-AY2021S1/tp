@@ -12,7 +12,7 @@ import java.util.Collections;
  */
 public class CalendarList {
 
-    private ArrayList<CalendarItem> calendarList;
+    private ArrayList<CalendarItem> calendarList; // contains all events and tasks
     private int totalItems = 0;
     private int totalTasks = 0;
     private int totalEvents = 0;

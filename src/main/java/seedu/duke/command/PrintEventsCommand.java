@@ -21,6 +21,6 @@ public class PrintEventsCommand extends Command {
      */
     @Override
     public void execute(CalendarList calendarList, Storage storage) {
-//        Ui.printEventsListView(calendarList);
+        /* Ui.printEventsListView(calendarList); */
     }
 }

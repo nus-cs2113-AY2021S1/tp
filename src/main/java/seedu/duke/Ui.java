@@ -119,19 +119,21 @@ public class Ui {
      *
      * @param calendarList tasks retrieved from this task list.
      */
-//    public static void printEventsListView(CalendarList calendarList) {
-//        int eventCounts = 0;
-//        System.out.println("This is your list of event(s):");
-//        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
-//            if (calendarList.getCalendarList().get(i).getTaskType().equals("E")) {
-//                eventCounts++;
-//                System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", eventCounts);
-//            }
-//        }
-//        if (eventCounts == 0) {
-//            System.out.println("Oops, there are no events stored in your list!");
-//        }
-//    }
+    /*
+    public static void printEventsListView(CalendarList calendarList) {
+        int eventCounts = 0;
+        System.out.println("This is your list of event(s):");
+        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+            if (calendarList.getCalendarList().get(i).getTaskType().equals("E")) {
+                eventCounts++;
+                System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", eventCounts);
+            }
+        }
+        if (eventCounts == 0) {
+            System.out.println("Oops, there are no events stored in your list!");
+        }
+    }
+    */
 
     /**
      * Shows the user the task (that was indicated by the user) that was marked as done .
