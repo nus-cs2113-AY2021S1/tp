@@ -9,7 +9,8 @@ public class SystemException extends Exception {
         EXCEPTION_MISSING_DESCRIPTION("Missing description!"),
         EXCEPTION_MISSING_TITLE("Missing title!"),
         EXCEPTION_DUPLICATE_NOTE("This note already exists in the notebook!"),
-        EXCEPTION_MISSING_NOTE("This note does not exists in the notebook!");
+        EXCEPTION_MISSING_NOTE("This note does not exists in the notebook!"),
+        EXCEPTION_FILE_CREATION_ERROR("Unable to create a file");
 
         /** The exception message. */
         private final String exceptionMessage;
