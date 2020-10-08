@@ -6,6 +6,7 @@ import java.util.Scanner;
 import seedu.duke.commands.CommandChecker;
 import seedu.duke.constants.Logos;
 
+import static seedu.duke.commands.CommandChecker.UNRECOGNISED;
 import static seedu.duke.commands.CommandChecker.extractCommandType;
 import static seedu.duke.database.UserSettingsLoader.loadUserSettings;
 
@@ -40,15 +41,15 @@ public class Duke {
         boolean isExit = false;
 
         String userInput;
-        CommandChecker commandChecker;
+        CommandChecker commandChecker = UNRECOGNISED;
 
-        do {
+        while (commandChecker != CommandChecker.EXIT) {
             userInput = getUserInput(SCANNER);
             printDivider();
             commandChecker = extractCommandType(userInput);
             executeCommand(commandChecker, userInput);
             printDivider();
-        } while (commandChecker != CommandChecker.EXIT);
+        }
 
         printFarewellMessage(username);
 

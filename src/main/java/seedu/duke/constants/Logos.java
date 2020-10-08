@@ -3,8 +3,8 @@ package seedu.duke.constants;
 public class Logos {
     public static final String NEWLINE = System.lineSeparator();
 
-    public static final String BIG_FLUFFLE_LOGO = "  ______ _        __  __ _      \n" + " |  ____| |      / _|/ "
-            + "_| |     \n" + " | |__  | |_   _| |_| |_| | ___ \n" + " |  __| | | | | |  _|  _| |/ _ \\\n"
+    public static final String BIG_FLUFFLE_LOGO = "  ______ _        __  __ _\n" + " |  ____| |      / _|/ "
+            + "_| |\n" + " | |__  | |_   _| |_| |_| | ___\n" + " |  __| | | | | |  _|  _| |/ _ \\\n"
             + " | |    |" + " | |_| | | | | | |  __/\n" + " |_|    |_|\\__,_|_| |_| |_|\\___|";
 
     // line divider options
