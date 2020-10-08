@@ -11,13 +11,13 @@ import java.util.Map;
  */
 public class TagManager {
 
-    private Map<Tag, ArrayList<Note>> tagMap;
+    private static Map<Tag, ArrayList<Note>> tagMap;
 
     public TagManager() {
         tagMap = new HashMap<>();
     }
 
-    public Map<Tag, ArrayList<Note>> getTagMap() {
+    public static Map<Tag, ArrayList<Note>> getTagMap() {
         return tagMap;
     }
 

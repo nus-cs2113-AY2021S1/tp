@@ -21,6 +21,8 @@ import seedu.duke.command.ExitCommand;
 import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
+import seedu.duke.data.notebook.TagManager;
+import seedu.duke.ui.InterfaceManager;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -58,13 +60,13 @@ public class Parser {
             userMessage = null;
         }
 
-        switch (commandString.toUpperCase()) {
+        switch (commandString.toLowerCase()) {
         case AddCommand.COMMAND_WORD_NOTE:
             return prepareAddNote(userMessage);
         case AddCommand.COMMAND_WORD_EVENT:
             // return prepareAddEvent(userMessage);
         case ListNoteCommand.COMMAND_WORD:
-            // return prepareListNote(userMessage);
+            return prepareListNote(userMessage);
         case ListEventCommand.COMMAND_WORD:
             // return prepareListEvent(userMessage);
         case ViewNoteCommand.COMMAND_WORD:
@@ -96,7 +98,9 @@ public class Parser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
         default:
-            return new HelpCommand();
+            return new IncorrectCommand(InterfaceManager.LS
+                    + "Invalid Command. Please try again or enter help to get a list of valid commands."
+                    + InterfaceManager.LS);
         }
     }
 
@@ -245,14 +249,47 @@ public class Parser {
         return new FindCommand(userMessage);
     }
 
+    private Command prepareListNote(String userMessage) {
+        // If no optional parameters, return default display of list
+        if (userMessage == null) {
+            return new ListNoteCommand();
+        }
+
+        Boolean isAscending = null;
+        ArrayList<String> tags = new ArrayList<>();
+        String[] words = userMessage.split("\\S");
+
+        if (userMessage.contains("/tag")) {
+            for (int i = 0; i < words.length; i++) {
+                if (words[i].equals("/tag")) {
+                    tags.add(words[i + 1]);
+                }
+            }
+        }
+
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].equals("up")) {
+                isAscending = true;
+            } else if (words[i].equals("down")) {
+                isAscending = false;
+            }
+        }
+
+        if (tags.isEmpty()) {
+            return new ListNoteCommand(isAscending);
+        } else {
+            if (isAscending == null) {
+                return new ListNoteCommand(tags);
+            } else {
+                return new ListNoteCommand(isAscending, tags);
+            }
+        }
+
+    }
 
     /*
     private Command prepareAddEvent(String userMessage) {
     return new AddCommand(event);
-    }
-
-    private Command prepareListNote(String userMessage) {
-        return new ListNoteCommand();
     }
 
     private Command prepareListEvent(String userMessage) {
