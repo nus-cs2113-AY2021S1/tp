@@ -28,8 +28,8 @@ public class Duke {
 
     public void run() {
         //...
-        ui.hello();
-        /*Scanner scan = new Scanner(System.in);
+        /*ui.hello();
+        Scanner scan = new Scanner(System.in);
         InputParser parseManager = new InputParser();
         while (!parseManager.isByeTime()) {
             Ui.printLineIcon();
