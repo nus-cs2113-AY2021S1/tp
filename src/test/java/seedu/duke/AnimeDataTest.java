@@ -29,7 +29,6 @@ class AnimeDataTest {
         animeStorageList.add(testAnime2);
         AnimeData animeData = new AnimeData(animeStorageList);
 
-
         assertThrows(IndexOutOfBoundsException.class, () -> {
             animeData.getAnime(-1);
         });
@@ -61,9 +60,5 @@ class AnimeDataTest {
         assertThrows(NullPointerException.class, () -> {
             animeData.getAnime(null);
         });
-
-
     }
-
-
 }
