@@ -18,5 +18,5 @@ class CommandTest {
         command.setDescription("set description");
         assertEquals("set description", command.getDescription());
     }
-    
+
 }
