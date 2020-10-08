@@ -10,10 +10,6 @@ public class AnimeData {
         this.animeDataList = animeDataList;
     }
 
-//    public AnimeData() {
-//        this.animeDataList = new ArrayList<>();
-//    }
-
     public Anime getAnime(Integer animeIndex) throws IndexOutOfBoundsException, NullPointerException {
         try {
             return animeDataList.get(animeIndex);
