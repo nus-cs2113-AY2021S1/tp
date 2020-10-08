@@ -30,7 +30,7 @@ public class StorageManager {
      */
     public static void saveNotebook(Notebook notebook) throws SystemException {
         createDirectory ();
-        for (int i = 0; i < notebook.getSize(); i++){
+        for (int i = 0; i < notebook.getSize();i++){
             try{
                 saveNoteContent(notebook.getNote(i));
                 saveNoteDetails (notebook.getNote(i));
@@ -46,7 +46,7 @@ public class StorageManager {
      *
      * @param timetable The Timetable containing all the events to be saved.
      */
-    private void saveTimetable(Timetable timetable) {
+    private void saveTimetable(Timetable timetable){
 
     }
 
@@ -56,7 +56,7 @@ public class StorageManager {
      * @param notebook The Notebook containing all the notes to be saved.
      * @param timetable The Timetable containing all the events to be saved.
      */
-    public void saveAll(Notebook notebook, Timetable timetable)throws SystemException{
+    public void saveAll(Notebook notebook, Timetable timetable)throws SystemException {
         saveNotebook(notebook);
         saveTimetable(timetable);
     }
@@ -67,7 +67,7 @@ public class StorageManager {
      * @param notebook The Notebook to be loaded into.
      * @param timeTable The Timetable to be loaded into.
      */
-    public void loadAll(Notebook notebook, Timetable timeTable) {
+    public void loadAll(Notebook notebook, Timetable timeTable){
 
     }
 

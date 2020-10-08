@@ -14,22 +14,23 @@ class StorageManagerTest {
     @Test
     void saveNotebook() throws SystemException {
         Notebook notes = new Notebook();
-        String content ="Hello this is a test note\n" +
-                "With a few lines\n" +
-                "\n" +
-                "\n" +
-                "This is the end of the note\n";
-        for (int i = 0; i < 10; i ++){
+        String content = "Hello this is a test note\n"
+                + "With a few lines\n"
+                + "\n"
+                + "\n"
+                + "This is the end of the note\n";
+        for (int i = 0; i < 10; i++) {
             String title = "testNote_" + i;
             Boolean isPinned = false;
-            if (i%2==0){
+            if (i % 2 == 0) {
                 isPinned = true;
             }
-            Note note = new Note (title, content, isPinned);
+            Note note = new Note(title, content, isPinned);
             notes.addNote(note);
         }
         StorageManager.saveNotebook(notes);
     }
+
     @Test
     void saveAll() {
     }
@@ -39,16 +40,16 @@ class StorageManagerTest {
     }
 
     @Test
-    void saveNoteContent(){
-        String content ="Hello this is a test note\n" +
-                        "With a few lines\n" +
-                        "\n" +
-                        "\n" +
-                        "This is the end of the note\n";
+    void saveNoteContent() {
+        String content = "Hello this is a test note\n"
+                        + "With a few lines\n"
+                        + "\n"
+                        + "\n"
+                        + "This is the end of the note\n";
         Note note = new Note("TestNote", content, false);
-        try{
+        try {
             StorageManager.saveNoteContent(note);
-        }catch(IOException e){
+        } catch (IOException e) {
             System.out.println("Unable to create file");
             fail();
         }
