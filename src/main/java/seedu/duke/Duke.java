@@ -9,7 +9,7 @@ public class Duke {
     private static Parser parser;
 
     public Duke() {
-        parser = new Parser();
+
     }
 
     /**
@@ -24,7 +24,8 @@ public class Duke {
 
         while (isOngoing) {
             try {
-                parser.getCommand();
+                String fullCommand = Ui.getCommand();
+                parser = new Parser(fullCommand);
                 isOngoing = parser.extractType();
             } catch (CustomException error) {
                 Ui.showError(error);
