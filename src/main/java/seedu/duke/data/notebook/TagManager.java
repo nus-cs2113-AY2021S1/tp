@@ -17,7 +17,7 @@ public class TagManager {
         tagMap = new HashMap<>();
     }
 
-    public static Map<Tag, ArrayList<Note>> getTagMap() {
+    public Map<Tag, ArrayList<Note>> getTagMap() {
         return tagMap;
     }
 

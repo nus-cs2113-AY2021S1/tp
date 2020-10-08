@@ -108,7 +108,7 @@ public class ListNoteCommand extends Command {
                 }
             }
         } else {
-            Map<Tag, ArrayList<Note>> tag = TagManager.getTagMap();
+            Map<Tag, ArrayList<Note>> tag = tagManager.getTagMap();
 
             // Based on user inputted tags, will store the respective values in an ArrayList
             // E.g. if user input 2 tags, CS2113 and important, will have 2 ArrayList
