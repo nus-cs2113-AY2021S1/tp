@@ -3,6 +3,8 @@ package seedu.duke.commands;
 import seedu.duke.EmptyParameterException;
 import seedu.duke.data.framework.Appliance;
 
+import static seedu.duke.common.Messages.LINE;
+
 public class OffCommand extends Command {
 
     public static final String COMMAND_WORD = "off";
@@ -23,9 +25,10 @@ public class OffCommand extends Command {
     @Override
     public void execute() {
         for (Appliance i : appliances.getAllAppliance()) {
+            String location = i.getLocation();
             if (i.getName().equals((this.name))) {
+                System.out.printf(LINE + "Switching off %s in %s ......OFF!\n", name, location);
                 i.switchOff();
-                System.out.println(this.name + ": OFF");
                 return;
             }
         }
