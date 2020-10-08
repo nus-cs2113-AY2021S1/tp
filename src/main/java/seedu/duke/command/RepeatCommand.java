@@ -115,7 +115,7 @@ public class RepeatCommand extends Command {
 
         for (int i = 0; i < repeatCount; i++) {
 
-            switch(repeatUnit) {
+            switch (repeatUnit) {
             case 1:
                 startDate = startDate.plusWeeks(1);
                 break;

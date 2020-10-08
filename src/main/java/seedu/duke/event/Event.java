@@ -191,7 +191,7 @@ public abstract class Event {
         return repeatCount;
     }
 
-    public void addRepeatDateStatusPair (LocalDate date, LocalTime time, boolean state) {
+    public void addRepeatDateStatusPair(LocalDate date, LocalTime time, boolean state) {
         DateStatusPair toAdd = new DateStatusPair(date, time);
         toAdd.setDone(state);
         this.dateTimeList.add(toAdd);
