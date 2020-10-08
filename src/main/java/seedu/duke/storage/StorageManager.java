@@ -29,7 +29,7 @@ public class StorageManager {
      * @param notebook The Notebook containing all the notes to be saved.
      */
     public static void saveNotebook(Notebook notebook) throws SystemException {
-
+        createDirectory ();
         for (int i = 0; i < notebook.getSize(); i++){
             try{
                 saveNoteContent(notebook.getNote(i));
@@ -83,7 +83,21 @@ public class StorageManager {
         fwAppend.write(note.getContent());
         fwAppend.close();
     }
-
+    /**
+     * Creates a directory path data/notes. In case both data and /notes do not exist.
+     */
+    private static void createDirectory() {
+        String dataPath = FOLDER_DIR;
+        String notePath = FOLDER_DIR + NOTES_DIR;
+        File dataDirectory = new File(dataPath);
+        File noteDirectory = new File(notePath);
+        if (!dataDirectory.exists()) {
+            dataDirectory.mkdir();
+        }
+        if (!noteDirectory.exists()) {
+            noteDirectory.mkdir();
+        }
+    }
     /**
      * Checks if a file exists. If it does not, creates file with the input path
      * @param path path of file to be created
