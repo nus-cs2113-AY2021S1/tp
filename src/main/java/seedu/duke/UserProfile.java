@@ -9,7 +9,7 @@ public class UserProfile extends Human {
     protected Date birthdate;
     protected Gender gender;
 
-    public UserProfile(String name, String birthdate, String gender) throws ParseException {
+    public UserProfile(String name, String birthdate, String gender) throws ParseException, DukeException {
         super(name);
         setBirthdate(birthdate);
         setGender(gender);
@@ -32,8 +32,16 @@ public class UserProfile extends Human {
         birthdate = DATE_MONTH_YEAR.parse(birthdateString);
     }
 
+    public String getDobString() {
+        return DATE_MONTH_YEAR.format(birthdate);
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
     @Override
     public String toString() {
-        return "Name= " + name + ", birthdate= " + birthdate + ", gender= " + gender;
+        return "Name= " + name + ", birthdate= " + getDobString() + ", gender= " + getGender();
     }
 }

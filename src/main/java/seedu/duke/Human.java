@@ -3,8 +3,12 @@ package seedu.duke;
 public abstract class Human {
     protected String name;
 
-    public Human(String name) {
-        setName(name);
+    public Human(String name) throws DukeException {
+        if (!name.isEmpty()) {
+            setName(name);
+        } else {
+            throw new DukeException();
+        }
     }
 
     public void setName(String name) {

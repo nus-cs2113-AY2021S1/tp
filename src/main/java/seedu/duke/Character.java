@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Character extends Human {
     protected ArrayList<VoiceActor> voiceActors = new ArrayList<>();
 
-    public Character(String name) {
+    public Character(String name) throws DukeException {
         super(name);
     }
 
@@ -18,6 +18,10 @@ public class Character extends Human {
         for (int i = 0; i < voiceActors.size(); i++) {
             System.out.println(i + 1 + ". " + voiceActors.get(i));
         }
+    }
+
+    public int getTotalVoiceActors() {
+        return voiceActors.size();
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class VoiceActor extends Human {
     protected ArrayList<Character> characters = new ArrayList<>();
 
-    public VoiceActor(String name) {
+    public VoiceActor(String name) throws DukeException {
         super(name);
     }
 
@@ -14,10 +14,18 @@ public class VoiceActor extends Human {
     }
 
     public void printCharacters() {
-        System.out.println("Characters voiced by " + name + " are:");
-        for (int i = 0; i < characters.size(); i++) {
-            System.out.println(i + 1 + ". " + characters.get(i));
+        if (characters.size() > 0) {
+            System.out.println("Characters voiced by " + name + " are:");
+            for (int i = 0; i < characters.size(); i++) {
+                System.out.println(i + 1 + ". " + characters.get(i));
+            }
+        } else {
+            System.out.println(name + " has not voiced any characters yet.");
         }
+    }
+
+    public int getTotalCharacters() {
+        return characters.size();
     }
 
     @Override
