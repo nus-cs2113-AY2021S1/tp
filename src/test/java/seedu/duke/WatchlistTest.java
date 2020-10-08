@@ -1,23 +1,28 @@
 package seedu.duke;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WatchlistTest {
+    private Watchlist emptyWatchlist;
 
-    @Test
-    void animeListInString_EmptyAnimeList_printListIsEmptyMessage() {
-        Watchlist watchlist = new Watchlist("myWatchlist");
-        String expected = System.lineSeparator() + "Uhh.. It's empty.. :(" + System.lineSeparator();
-        assertEquals(expected, watchlist.animeListInString());
+    @BeforeEach
+    void setUp() {
+        emptyWatchlist = new Watchlist("myWatchlist");
     }
 
     @Test
-    void toString_EmptyAnimeList_printWatchlistNameAndListIsEmptyMessage() {
-        Watchlist watchlist = new Watchlist("myWatchlist");
+    void animeListInString_emptyAnimeList_returnsListIsEmptyMessage() {
+        String expected = System.lineSeparator() + "Uhh.. It's empty.. :(" + System.lineSeparator();
+        assertEquals(emptyWatchlist.animeListInString(), expected);
+    }
+
+    @Test
+    void toString_emptyAnimeList_returnsWatchlistNameWithListIsEmptyMessage() {
         String expected = "myWatchlist" + System.lineSeparator();
         expected += "Uhh.. It's empty.. :(" + System.lineSeparator();
-        assertEquals(expected, watchlist.toString());
+        assertEquals(emptyWatchlist.toString(), expected);
     }
 }
