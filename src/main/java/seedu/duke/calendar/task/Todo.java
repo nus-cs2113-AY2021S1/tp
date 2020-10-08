@@ -1,4 +1,4 @@
-package seedu.duke.task;
+package seedu.duke.calendar.task;
 
 /**
  * Represents a todo task.
@@ -30,6 +30,7 @@ public class Todo extends Task {
         return taskType;
     }
 
+    @Override
     public String printIntoFile() {
         return TODO_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description;
     }

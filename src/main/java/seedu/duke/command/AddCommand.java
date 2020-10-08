@@ -4,14 +4,14 @@ import seedu.duke.DateTimeParser;
 import seedu.duke.DukeException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
-import seedu.duke.task.Deadline;
-import seedu.duke.task.Event;
-import seedu.duke.task.Exam;
-import seedu.duke.task.Lab;
-import seedu.duke.task.Lecture;
-import seedu.duke.task.TaskList;
-import seedu.duke.task.Todo;
-import seedu.duke.task.Tutorial;
+import seedu.duke.calendar.CalendarList;
+import seedu.duke.calendar.event.Activity;
+import seedu.duke.calendar.task.Deadline;
+import seedu.duke.calendar.task.Exam;
+import seedu.duke.calendar.task.Lab;
+import seedu.duke.calendar.task.Lecture;
+import seedu.duke.calendar.task.Todo;
+import seedu.duke.calendar.task.Tutorial;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -36,19 +36,20 @@ public class AddCommand extends Command {
 
     /**
      * Creates a task in the task list after determining what type of task (event, deadline, todo).
-     * Saves the updated task list in the storage after the new task is added.
+     * Saves the updated calendar list in the storage after the new task is added.
      *
-     * @param taskList the task list to add the new task to.
-     * @param storage  the storage to be saved to.
+     * @param calendarList the calendar list to add the new task to.
+     * @param storage      the storage to be saved to.
      * @throws DukeException if the add command input is invalid.
      */
     @Override
-    public void execute(TaskList taskList, Storage storage) throws DukeException {
+    public void execute(CalendarList calendarList, Storage storage) throws DukeException {
         String[] command;
         String[] dateTime;
         String taskDescription;
         LocalDate taskDate;
         LocalTime taskTime;
+        String venue;
 
         command = userInput.split(" ", 2);
         String commandType = command[0];
@@ -61,7 +62,7 @@ public class AddCommand extends Command {
                 if (taskDescription.isEmpty()) {
                     throw new DukeException("todo");
                 } else {
-                    taskList.addTask(new Todo(taskDescription));
+                    calendarList.addTask(new Todo(taskDescription));
                 }
             } catch (Exception e) {
                 throw new DukeException("todo");
@@ -76,7 +77,7 @@ public class AddCommand extends Command {
                 if (taskDescription.isEmpty()) {
                     throw new DukeException("deadline");
                 } else {
-                    taskList.addTask(new Deadline(taskDescription, taskDate));
+                    calendarList.addTask(new Deadline(taskDescription, taskDate));
                 }
             } catch (Exception e) {
                 throw new DukeException("deadline");
@@ -91,7 +92,7 @@ public class AddCommand extends Command {
                 if (taskDescription.isEmpty()) {
                     throw new DukeException("event");
                 } else {
-                    taskList.addTask(new Event(taskDescription, taskDate));
+                    calendarList.addTask(new Activity(taskDescription, taskDate));
                 }
             } catch (Exception e) {
                 throw new DukeException("event");
@@ -116,23 +117,30 @@ public class AddCommand extends Command {
                 if (moduleCode.isEmpty()) {
                     throw new DukeException("exam");
                 } else {
-                    taskList.addTask(new Exam(moduleCode, examDetails, taskDate, taskTime));
+                    calendarList.addTask(new Exam(moduleCode, examDetails, taskDate, taskTime));
                 }
             } catch (Exception e) {
                 throw new DukeException("exam");
             }
             break;
         case LECTURE:
+            /**
+             * User input for Exam task example: exam CS2113 open book /at 020202 1200
+             */
             try {
-                command = command[1].split("/");
-                taskDescription = command[0].trim();
+                command = command[1].trim().split(" ", 2); // splits to CS2113 and open book...
+                moduleCode = command[0];
+                command = command[1].split("/at");
+                venue = command[0].trim();
+                dateTime = command[1].trim().split(" ", 2);
+                taskDate = DateTimeParser.inputDateProcessor(dateTime[0].trim());
+                taskTime = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
 
-                command = command[1].trim().split(" ");
 
-                if (taskDescription.isEmpty()) {
-                    throw new DukeException("lecture");
+                if (moduleCode.isEmpty()) {
+                    throw new DukeException("exam");
                 } else {
-                    taskList.addTask(new Lecture(taskDescription, command[0], command[1]));
+                    calendarList.addEvent(new Lecture(moduleCode, taskDate, taskTime, venue));
                 }
             } catch (Exception e) {
                 throw new DukeException("lecture");
@@ -148,7 +156,7 @@ public class AddCommand extends Command {
                 if (taskDescription.isEmpty()) {
                     throw new DukeException("tutorial");
                 } else {
-                    taskList.addTask(new Tutorial(taskDescription, command[0], command[1]));
+                    calendarList.addTask(new Tutorial(taskDescription, command[0], command[1]));
                 }
             } catch (Exception e) {
                 throw new DukeException("tutorial");
@@ -164,7 +172,7 @@ public class AddCommand extends Command {
                 if (taskDescription.isEmpty()) {
                     throw new DukeException("lab");
                 } else {
-                    taskList.addTask(new Lab(taskDescription, command[0], command[1]));
+                    calendarList.addTask(new Lab(taskDescription, command[0], command[1]));
                 }
             } catch (Exception e) {
                 throw new DukeException("lab");
@@ -174,7 +182,7 @@ public class AddCommand extends Command {
             throw new DukeException("invalid command");
         }
 
-        Ui.printAddTaskMessage(taskList);
-        storage.writeToFile(taskList);
+        Ui.printAddTaskMessage(calendarList);
+        storage.writeToFile(calendarList);
     }
 }

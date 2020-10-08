@@ -1,4 +1,4 @@
-package seedu.duke.task;
+package seedu.duke.calendar.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

@@ -1,5 +1,7 @@
-package seedu.duke.task;
+package seedu.duke.calendar.event;
 
+
+import seedu.duke.calendar.task.Task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -7,14 +9,14 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents an event task.
  */
-public class Event extends Task {
+public class Activity extends Task {
     protected LocalDate at;
     protected String taskType;
 
     private static final String EVENT_FILE_SYMBOL = "E";
     private static final String SEPARATOR = "|";
 
-    public Event(String description, LocalDate at) {
+    public Activity(String description, LocalDate at) {
         super(description);
         this.at = at;
         this.taskType = "E";
@@ -34,6 +36,7 @@ public class Event extends Task {
         return taskType;
     }
 
+    @Override
     public String printIntoFile() {
         return EVENT_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description + SEPARATOR + this.at;
     }
