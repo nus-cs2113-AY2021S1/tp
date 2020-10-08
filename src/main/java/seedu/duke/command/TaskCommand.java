@@ -84,7 +84,7 @@ public class TaskCommand {
             throw new DukeException("no priority");
         }
 
-        /* Insert actual code for changing task priority here.
+        /* Insert actual code for changing seedu.duke.task priority here.
         .
         .
         .
