@@ -17,7 +17,7 @@ class WatchlistTest {
     void toString_EmptyAnimeList_printWatchlistNameAndListIsEmptyMessage() {
         Watchlist watchlist = new Watchlist("myWatchlist");
         String expected = "myWatchlist" + System.lineSeparator();
-        expected += "Uhh.. It's empty.. :(" + System.lineSeparator();;
+        expected += "Uhh.. It's empty.. :(" + System.lineSeparator();
         assertEquals(expected, watchlist.toString());
     }
 }
