@@ -32,7 +32,7 @@ public class Notebook {
     }
 
     public Note getNote(int index) {
-        return this.notes.get(index);
+        return notes.get(index);
     }
 
     public void setNotes(ArrayList<Note> notes) {
