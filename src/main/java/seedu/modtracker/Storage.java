@@ -43,12 +43,15 @@ public class Storage {
      * Appends the specified input to the storage file and creates a new line.
      *
      * @param input The input to be appended to the file.
-     * @throws IOException If the file cannot be opened or modified.
      */
-    public void appendToFile(String input) throws IOException {
-        // creates a FileWriter in append mode
-        FileWriter fw = new FileWriter(filePath, true);
-        fw.write(input + System.lineSeparator());
-        fw.close();
+    public void appendToFile(String input) {
+        try {
+            // creates a FileWriter in append mode
+            FileWriter fw = new FileWriter(filePath, true);
+            fw.write(input + System.lineSeparator());
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
