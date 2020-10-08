@@ -4,20 +4,30 @@ import java.util.Scanner;
 
 public enum CommandChecker {
     HELP,
-    SETTINGS,
-    QNA,
-    MCQ,
-    FILLBLANK,
-    LIST,
-    HISTORY,
+    USERNAME,
+    DIVIDER,
+
+    NOUN,
+    VERB,
+    ADJ,
+    LIST_WORDS,
+    FILTER_WORDS,
+
+    NAME,
+    GEN_NAME,
+    LIST_NAMES,
+    FILTER_NAMES,
+
+    BUNNY,
+    LIST_BUNNY,
+    FILTER_BUNNY,
+
     STATS,
-    REVIEW,
-    QUIZ,
-    CLEAR,
+    DELETE,
     EXIT,
     UNRECOGNISED;
 
-    public static CommandChecker commandType;
+    public static CommandChecker commandChecker;
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static String getUserInput() {
@@ -29,38 +39,44 @@ public enum CommandChecker {
             inputLine = SCANNER.nextLine();
         }
 
-        commandType = CommandChecker.extractCommandType(inputLine.trim());
+        commandChecker = extractCommandType(inputLine.trim());
 
         return inputLine.trim();
     }
 
+    /**
+     *  Figure out the command type from userInput.
+     *
+     * @param userInput string containing user input command
+     * @return the type of command detected
+     */
     public static CommandChecker extractCommandType(String userInput) {
         if (userInput.toLowerCase().trim().startsWith("help")) {
             return CommandChecker.HELP;
-        } else if (userInput.toLowerCase().trim().startsWith("settings")) {
-            return CommandChecker.SETTINGS;
-        } else if (userInput.toLowerCase().trim().startsWith("qna")) {
-            return CommandChecker.QNA;
-        } else if (userInput.toLowerCase().trim().startsWith("mcq")) {
-            return CommandChecker.MCQ;
-        } else if (userInput.toLowerCase().trim().startsWith("fillblank")) {
-            return CommandChecker.FILLBLANK;
-        } else if (userInput.toLowerCase().trim().startsWith("list")) {
-            return CommandChecker.LIST;
-        } else if (userInput.toLowerCase().trim().startsWith("history")) {
-            return CommandChecker.HISTORY;
-        } else if (userInput.toLowerCase().trim().startsWith("stats")) {
-            return CommandChecker.STATS;
-        } else if (userInput.toLowerCase().trim().startsWith("review")) {
-            return CommandChecker.REVIEW;
-        } else if (userInput.toLowerCase().trim().startsWith("quiz")) {
-            return CommandChecker.QUIZ;
-        } else if (userInput.toLowerCase().trim().startsWith("clear")) {
-            return CommandChecker.CLEAR;
+        } else if (userInput.toLowerCase().trim().startsWith("username")) {
+            return CommandChecker.USERNAME;
+        } else if (userInput.toLowerCase().trim().startsWith("divider")) {
+            return CommandChecker.DIVIDER;
+
+        } else if (userInput.toLowerCase().trim().startsWith("noun")) {
+            return CommandChecker.NOUN;
+        } else if (userInput.toLowerCase().trim().startsWith("verb")) {
+            return CommandChecker.VERB;
+        } else if (userInput.toLowerCase().trim().startsWith("adj")) {
+            return CommandChecker.ADJ;
+        } else if (userInput.toLowerCase().trim().startsWith("list words")) {
+            return CommandChecker.LIST_WORDS;
+
+        } else if (userInput.toLowerCase().trim().startsWith("bunny")) {
+            return CommandChecker.BUNNY;
+        } else if (userInput.toLowerCase().trim().startsWith("list bunny")) {
+            return CommandChecker.LIST_BUNNY;
+
         } else if (userInput.toLowerCase().trim().startsWith("exit")) {
             return CommandChecker.EXIT;
         } else {
             return CommandChecker.UNRECOGNISED;
         }
     }
+
 }
