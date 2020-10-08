@@ -20,7 +20,7 @@ public class StorageManager {
     private static final String NOTEBOOK_FILE_PATH = "notebook.txt";
     private static final String TIMETABLE_FILE_PATH = "timetable.txt";
 
-    private static final String DELIMINATOR = "|";
+    private static final String DELIMITER = "|";
 
 
     /**
