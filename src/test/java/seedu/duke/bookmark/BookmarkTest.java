@@ -41,9 +41,9 @@ class BookmarkTest {
 
     @Test
     void extractModuleDescriptionAndUrl_invalidUrl_throwsDukeException() {
-        String input = "add CS2113T www.google.com";
+        String input = "add CS2113T google.com";
         DukeException e = assertThrows(DukeException.class, () -> Bookmark.extractModuleDescriptionAndUrl(input));
-        assertEquals(DukeExceptionType.EMPTY_DESCRIPTION, e.getError());
+        assertEquals(DukeExceptionType.INVALID_URL, e.getError());
     }
 
     @Test
