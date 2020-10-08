@@ -29,7 +29,7 @@ test {
 }
 
 application {
-    mainClassName = "seedu.modtracker.Modtracker"
+    mainClassName = "seedu.modtracker.ModTracker"
 }
 
 shadowJar {
