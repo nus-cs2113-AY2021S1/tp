@@ -93,7 +93,7 @@ public class StorageManager {
         createFile(path);
         FileWriter fwAppend = new FileWriter(path, true);
         String noteDetails = note.getTitle()
-                            + DELIMINATOR
+                            + DELIMITER
                             + note.getPinned()
                             + DELIMITER
                             + note.getTags()
