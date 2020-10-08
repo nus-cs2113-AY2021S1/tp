@@ -2,10 +2,13 @@ package seedu.financeit;
 
 import seedu.financeit.manualtracker.ManualTracker;
 import seedu.financeit.utils.InputParser;
+import seedu.financeit.utils.MenuPrint;
 import seedu.financeit.utils.UiManager;
+import java.util.Scanner;
 
 public class Financeit {
     public static void main(String[] args) {
+        /*
         InputParser inputParser = new InputParser();
         // String inputString = "mom /m mom -d dad /s son /d daughter";
         String inputString = "mom";
@@ -23,6 +26,17 @@ public class Financeit {
 
         UiManager.printList(input1);
         ManualTracker.main();
+        */
+
+        MenuPrint.print();
+        while (1){
+            Scanner input = new Scanner(System.in);
+
+            switch(input){
+                case ""
+            }
+        }
+
     }
 }
 
