@@ -1,9 +1,9 @@
 package seedu.duke;
 
+import seedu.duke.calendar.CalendarList;
 import seedu.duke.command.Command;
-import seedu.duke.task.TaskList;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * Entry point of the Duke application.
@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 public class Duke {
 
     private Storage storage;
-    private TaskList taskList;
+    private CalendarList calendarList;
     private Ui ui;
 
     /**
@@ -20,16 +20,12 @@ public class Duke {
      *
      * @param filePath Filepath of the storage data.
      */
-    public Duke(String filePath) {
+    public Duke(String filePath) throws IOException {
         ui = new Ui();
         storage = new Storage(filePath);
-        taskList = new TaskList();
+        calendarList = new CalendarList();
 
-        try {
-            storage.importData(taskList);
-        } catch (FileNotFoundException e) {
-            Ui.printNoImportDataMessage();
-        }
+        storage.readFromFile(calendarList);
     }
 
     /**
@@ -44,10 +40,10 @@ public class Duke {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.handleUserInput(fullCommand);
                 Ui.printDukeBorder(true);
-                c.execute(taskList, storage);
+                c.execute(calendarList, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
-                Ui.printDukeExceptionMessage(e, taskList);
+                Ui.printDukeExceptionMessage(e, calendarList);
             } finally {
                 Ui.printDukeBorder(false);
             }
@@ -55,7 +51,7 @@ public class Duke {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new Duke("data/tasks.txt").run();
     }
 }
