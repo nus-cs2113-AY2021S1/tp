@@ -1,9 +1,8 @@
 package seedu.financeit;
 
 import seedu.financeit.manualtracker.ManualTracker;
-import seedu.financeit.utils.InputParser;
-import seedu.financeit.utils.MenuPrint;
-import seedu.financeit.utils.UiManager;
+import seedu.financeit.utils.*;
+
 import java.util.Scanner;
 
 import java.util.ArrayList;
@@ -12,10 +11,13 @@ import java.util.regex.Pattern;
 
 public class Financeit {
     public static void main(String[] args) {
+        MenuPrint.print();
+        Scanner input = new Scanner(System.in);
 
-      //InputParser inputParser = new InputParser();
-        // String inputString = "mom /m mom -d dad /s son /d daughter";
-/*      String inputString = "mom";
+/*
+        InputParser inputParser = new InputParser();
+        String inputString = "mom /m mom -d dad /s son /d daughter";
+        //String inputString = "mom";
         CommandPacket packet = inputParser.parseInput(inputString);
         packet.getParamTypes();
 
@@ -42,13 +44,13 @@ public class Financeit {
                 {"Mary"}
         };
 
-        // Printer.printList();
+        Printer.printList();
         UiManager.refreshPage();
         ManualTracker.main();
+
+
+        adjustToColWidth("asdsadsadadasdasd", 4);
 */
-
-        //adjustToColWidth("asdsadsadadasdasd", 4);
-
     }
     public static ArrayList<String> adjustToColWidth(String input, int length) {
         ArrayList<String> output = new ArrayList<>();
