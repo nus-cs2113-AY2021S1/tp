@@ -186,6 +186,7 @@ public class View {
             }
             System.out.print(out + border);
         }
+        System.out.println();
     }
 
     private double round(double value, int decimalPlaces) {

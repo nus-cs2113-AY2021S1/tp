@@ -6,7 +6,14 @@ package seedu.duke;
 public class Parser {
     protected static boolean exit = false;
 
-    public static void parse(String input, ModuleList t) {
+    /**
+     * Parses user inputs.
+     *
+     * @param input user input
+     * @param t modlist
+     * @param name name entered by the user
+     */
+    public static void parse(String input, ModuleList t, String name) {
         String[] command = input.trim().split(" ");
 
         switch (command[0].toLowerCase()) {
@@ -36,13 +43,13 @@ public class Parser {
             Ui.printTable(t.getData(), Integer.parseInt(command[1]));
             break;
         case "help":
-            //methods
+            Ui.printHelpList();
             break;
         case "exit":
             if (input.trim().length() > 4) {
                 Ui.printInvalidCommand();
             } else {
-                Ui.printExitScreen();
+                Ui.printExitScreen(name);
                 exit = true;
             }
             break;
@@ -52,9 +59,7 @@ public class Parser {
     }
 
     /**
-     * Prints the week number, module code, expected workload and actual time spent
-     * in the specified week for all the modules taken.
-     * GL testing stuff
+     * Checks for exit status.
      *
      * @return status of exit
      */

@@ -6,7 +6,8 @@ Hello from
 ||   \\/    |\\__/\\__|  |||   \\__|\___ || \\\___| ||
 *****************************************************|
 
-User guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/
+Full user guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/
+Enter <help> for a quick view of available commands.
 
 What is your name?
 
@@ -32,6 +33,7 @@ CS3200, Expected Workload: 8h is added
 +------+---------+----------+----------+
 |  02  | CS3200  |     8    | No Input |
 +------+---------+----------+----------+
+
 All changes saved.
-Bye. Hope to see you again soon!
+Bye James Gosling. Hope to see you again soon!
 

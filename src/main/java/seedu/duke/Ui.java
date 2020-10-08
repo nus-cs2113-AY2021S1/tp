@@ -48,14 +48,15 @@ public class Ui {
                 + "||   \\\\/    |\\\\__/\\\\__|  |||   \\\\__|\\___ || \\\\\\___| ||\n"
                 + "*****************************************************|\n";
 
-        System.out.println("Hello from\n" + logo);
-        System.out.println("User guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/" + System.lineSeparator());
+        System.out.println("Hello from" + System.lineSeparator() + logo);
+        System.out.println("Full user guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/");
+        System.out.println("Enter <help> for a quick view of available commands." + System.lineSeparator());
     }
 
     /**
      * Prompts the user to enter his/her name.
      */
-    public static void printNamePrompt() {
+    public static String printNamePrompt() {
         System.out.println("What is your name?");
         String name = in.nextLine();
         if (name.isEmpty()) {
@@ -66,18 +67,19 @@ public class Ui {
             System.out.println("Hello " + name + "!");
             System.out.println("What can I do for you?" + System.lineSeparator());
         }
+        return name;
     }
 
     /**
      * Prints the exit line when user entered "bye".
      */
-    public static void printExitScreen() {
+    public static void printExitScreen(String name) {
         System.out.println("All changes saved.");
-        System.out.println("Bye. Hope to see you again soon!" + System.lineSeparator());
+        System.out.println("Bye " + name + ". Hope to see you again soon!" + System.lineSeparator());
     }
 
     /**
-     * Prints the a table.
+     * Prints all the module information in a table.
      *
      * @param modList list of modules.
      * @param week specified week number.
@@ -85,5 +87,12 @@ public class Ui {
     public static void printTable(ArrayList<Module> modList, int week) {
         View view = new View();
         view.printAllModuleInformation(modList,week);
+    }
+
+    /**
+     * Prints all available commands.
+     */
+    public static void printHelpList() {
+        HelpList.listCommands();
     }
 }
