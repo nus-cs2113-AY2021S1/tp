@@ -19,14 +19,14 @@ public class Parser {
      *
      * @return String Array with two element: Command and the rest of the user input
      */
-    private String[] splitCommands() {
-        final String[] split = userInput.trim().split("\\s+", 2);
-        return split.length == 2 ? split : new String[]{split[0], " "};
+    private String[] splitCommands(int length) {
+        final String[] split = userInput.trim().split("\\s+", length);
+        return split.length == length ? split : new String[]{split[0], " "};
     }
 
     public boolean extractType() throws CustomException {
 
-        String command = splitCommands()[0];
+        String command = splitCommands(2)[0];
 
         switch (command) {
         //        case "/route":
@@ -56,11 +56,6 @@ public class Parser {
         com.executeCommand();
         return com.isOngoing();
 
-    }
-
-    private String[] splitRouteMessage() {
-        final String[] split = splitCommands()[1].trim().split("\\s+", 3);
-        return split.length == 3 ? split : new String[]{split[0], " "};
     }
 
 }
