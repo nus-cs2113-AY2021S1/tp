@@ -4,6 +4,9 @@ import seedu.duke.data.notebook.Tag;
 
 import java.util.ArrayList;
 
+import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
+import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
+
 /**
  * Lists all the Notes in the Notebook.
  */
@@ -11,11 +14,18 @@ public class ListNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "list-n";
 
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Lists all the notes in the Notebook. Parameters: ";
+    private static final String COMMAND_USAGE = COMMAND_WORD + ": Lists all the notes in the Notebook. Parameters: "
+            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR "
+            + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...] "
+            + "[up/down]";
 
     private ArrayList<Tag> tags;
     private boolean isSorted;
     private boolean isAscendingOrder;
+
+    public static String getCommandUsage() {
+        return COMMAND_USAGE;
+    }
 
     /**
      * Constructs a ListCommand to list all the Notes in the Notebook in a sorted order.
