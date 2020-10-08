@@ -13,7 +13,7 @@ public class LaunchBookmarkCommand extends Command {
 
 
     /**
-     * Constructs a new ExitCommand instance and sets isExitCommand to true.
+     * Constructs a new LaunchBookmarkCommand instance and and gets the index of the bookmark to launch.
      */
 
     public LaunchBookmarkCommand(String command) throws DukeException {
@@ -24,13 +24,12 @@ public class LaunchBookmarkCommand extends Command {
         try {
             index = Integer.parseInt(details.trim()) - 1;
         } catch (NullPointerException | NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeException(DukeExceptionType.INVALID_TASK_NUMBER);
+            throw new DukeException(DukeExceptionType.INVALID_BOOKMARK_NUMBER);
         }
     }
 
-
     /**
-     * Prints the exit screen before the program exits.
+     * launches the bookmark.
      *
      * @param bookmarks The list of bookmarks.
      * @param ui The user interface.
@@ -41,10 +40,10 @@ public class LaunchBookmarkCommand extends Command {
         try {
             Bookmark bookmark = bookmarks.getBookmark(index);
             bookmark.launch();
-            ui.printPublic(getMessage(bookmark));
+            ui.print(getMessage(bookmark));
             //storage.save(taskList.getData());
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(DukeExceptionType.INVALID_TASK_NUMBER);
+            throw new DukeException(DukeExceptionType.INVALID_BOOKMARK_NUMBER);
         }
     }
 
