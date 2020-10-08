@@ -29,6 +29,8 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
 import static seedu.duke.util.PrefixSyntax.PREFIX_END;
+import static seedu.duke.util.PrefixSyntax.PREFIX_DELETE_LINE;
+import static seedu.duke.util.PrefixSyntax.STRING_NEW_LINE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.STRING_SPLIT_DELIMITER;
@@ -61,8 +63,8 @@ public class Parser {
         switch (commandString.toLowerCase()) {
         case AddCommand.COMMAND_WORD_NOTE:
             return prepareAddNote(userMessage);
-        case AddCommand.COMMAND_WORD_EVENT:
-            // return prepareAddEvent(userMessage);
+        /*case AddCommand.COMMAND_WORD_EVENT:
+             return prepareAddEvent(userMessage);*/
         case ListNoteCommand.COMMAND_WORD:
             // return prepareListNote(userMessage);
         case ListEventCommand.COMMAND_WORD:
@@ -75,8 +77,8 @@ public class Parser {
             // return prepareEditEvent(userMessage);
         case DeleteCommand.COMMAND_WORD_NOTE:
             return prepareDeleteNote(userMessage);
-        case DeleteCommand.COMMAND_WORD_EVENT:
-            // return prepareDeleteEvent(userMessage);
+        /*case DeleteCommand.COMMAND_WORD_EVENT:
+             return prepareDeleteEvent(userMessage);*/
         case FindCommand.COMMAND_WORD:
             // return prepareFind(userMessage);
         case PinCommand.COMMAND_WORD:
@@ -120,12 +122,18 @@ public class Parser {
         return splitMessageContent;
     }
 
+    /**
+     * Prepare userInput into Note before adding into Notebook.
+     *
+     * @param userMessage Original string user inputs.
+     * @return Result of the add note command
+     */
     private Command prepareAddNote(String userMessage) {
         Note note;
-        String title = null;
+        String title = "";
         String content;
-        Boolean isPinned = false;
-        ArrayList<Tag> tags = new ArrayList<Tag>();
+        boolean isPinned = false;
+        ArrayList<Tag> tags = new ArrayList<>();
 
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
@@ -185,6 +193,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Used for input of note content and processing the input into a readable data.
+     *
+     * @return A string of converted content input
+     */
     public String inputContent() {
         Scanner input = new Scanner(System.in);
         StringBuilder commandInput = new StringBuilder();
@@ -192,33 +205,53 @@ public class Parser {
         // Type note
         do {
             commandInput.append(input.nextLine());
-            if (!commandInput.equals(PREFIX_END)) {
-                commandInput.append("\n");
-            }
-            if (commandInput.toString().contains("/d")) {
-                deleteLine(commandInput, "\n/d\n", 0);
-                deleteLine(commandInput, "\n", 1);
-            }
-        } while (!commandInput.toString().contains(PREFIX_END));
 
-        deleteLine(commandInput, "\n/end\n", 0);
+            // Add next line when user press enter
+            if (!commandInput.toString().equals(PREFIX_END)) {
+                commandInput.append(STRING_NEW_LINE);
+            }
+
+            // "/d" Delete previous line if there user makes mistakes
+            if (commandInput.toString().contains(PREFIX_DELETE_LINE)) {
+                deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELETE_LINE + STRING_NEW_LINE, 0);
+                deleteLine(commandInput, STRING_NEW_LINE, 1);
+            }
+        } while (!commandInput.toString().contains(PREFIX_END)); // "/end" to end input note
+
+        // Delete "/end" command when user ends the edit
+        deleteLine(commandInput, STRING_NEW_LINE + PREFIX_END + STRING_NEW_LINE, 0);
+
         return commandInput.toString();
     }
 
-    // Deletes the last line when typing
+    /**
+     * Delete the last line for mistakes made in inputContent().
+     *
+     * @param commandInput Original string of the note content.
+     * @param characters String of character to be removed.
+     * @param noOfChar Number of character. 0 to remove new line, 1 to resume typing on the same line.
+     */
     public void deleteLine(StringBuilder commandInput, String characters, int noOfChar) {
         int lastChar = commandInput.lastIndexOf(characters) + noOfChar;
         commandInput.delete(lastChar, commandInput.length());
     }
 
+    /**
+     * Prepare userInput into a int before deletion.
+     *
+     * @param userMessage Original string user inputs.
+     * @return Result of the delete note command
+     */
     private Command prepareDeleteNote(String userMessage) {
         int index = 0;
+        String title = "";
+        String prefix = "";
 
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
 
             for (String[] infoDetails : splitInfo) {
-                String prefix = infoDetails[0];
+                prefix = infoDetails[0];
                 switch (prefix) {
                 case PREFIX_INDEX:
                     if (infoDetails[1].isBlank()) {
@@ -226,10 +259,20 @@ public class Parser {
                     }
                     index = Integer.parseInt(infoDetails[1].trim());
                     break;
+                case PREFIX_TITLE:
+                    if (infoDetails[1].isBlank()) {
+                        throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+                    }
+                    title = infoDetails[1].trim();
+                    break;
                 default:
                 }
             }
-            return new DeleteCommand(index, true);
+            if (prefix.equalsIgnoreCase(PREFIX_TITLE)) {
+                return new DeleteCommand(title);
+            } else {
+                return new DeleteCommand(index);
+            }
         } catch (SystemException exception) {
             return new IncorrectCommand(exception.getMessage());
         } catch (NumberFormatException exception) {
@@ -276,7 +319,7 @@ public class Parser {
     */
 
     private Command prepareCreateTag(String userMessage) {
-        String tagName = "";
+        String tagName;
         String tagColor = "";
 
         try {
@@ -299,7 +342,7 @@ public class Parser {
     }
 
     private Command prepareDeleteTag(String userMessage) {
-        String tagName = "";
+        String tagName;
 
         try {
             if (userMessage.isBlank()) {

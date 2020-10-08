@@ -27,12 +27,13 @@ public class Notebook {
         this.notes = notes;
     }
 
+    /**
+     * Gets a list of notes from existing data.
+     *
+     * @return notes of existing data.
+     */
     public ArrayList<Note> getNotes() {
         return this.notes;
-    }
-
-    public void setNotes(ArrayList<Note> notes) {
-        this.notes = notes;
     }
 
     /**
@@ -49,7 +50,20 @@ public class Notebook {
      *
      * @throws SystemException if an error occurs.
      */
-    public void deleteNote(int note) throws SystemException {
-        notes.remove(note);
+    public void deleteNote(int index) throws SystemException {
+        notes.remove(index);
+    }
+
+    /**
+     * Removes a note from the timetable.
+     *
+     * @throws SystemException if an error occurs.
+     */
+    public void deleteNote(String title) throws SystemException {
+        notes.removeIf(note -> note.getTitle().equals(title));
+    }
+
+    public void setNotes(ArrayList<Note> notes) {
+        this.notes = notes;
     }
 }

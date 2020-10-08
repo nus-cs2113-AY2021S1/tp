@@ -14,4 +14,5 @@ public class PrefixSyntax {
     public static final String PREFIX_INDEX = "i";
     public static final String PREFIX_DELIMITER = "/";
     public static final String STRING_SPLIT_DELIMITER = " ";
+    public static final String STRING_NEW_LINE = "\n";
 }
