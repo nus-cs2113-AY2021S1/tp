@@ -25,13 +25,13 @@ public class AddCommand extends Command {
 
     @Override
     public void execute(CardList cards, Ui ui, Access access, Storage storage) {
-        if (access.getChapterLevel() != "") {
-            cards.addCard(card);
-            int cardCount = cards.getCardCount();
-            ui.showCardAdded(cards.getCard(cardCount - 1), cardCount);
-        } else {
+        if (access.getChapterLevel().equals("")) {
             System.out.println("Sorry, you currently are in the wrong level, please enter chapter level first.");
+            return;
         }
+        cards.addCard(card);
+        int cardCount = cards.getCardCount();
+        ui.showCardAdded(cards.getCard(cardCount - 1), cardCount);
     }
 
     @Override

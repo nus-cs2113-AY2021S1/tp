@@ -113,8 +113,4 @@ public class Ui {
         out.println("4. " + AddCommand.MESSAGE_USAGE);
         out.println("5. " + ExitCommand.MESSAGE_USAGE);
     }
-
-    public void showLine() {
-        System.out.println(lineSplit);
-    }
 }
