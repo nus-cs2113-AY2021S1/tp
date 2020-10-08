@@ -48,4 +48,12 @@ public class Show {
     public void setReview(String review) {
         this.review = review;
     }
+
+    public void setNumSeasons(int numSeasons) {
+        this.numSeasons = numSeasons;
+    }
+
+    public void setNumEpisodesForSeasons(int[] numEpisodesForSeasons) {
+        this.numEpisodesForSeasons = numEpisodesForSeasons;
+    }
 }
