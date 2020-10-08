@@ -1,12 +1,11 @@
 package seedu.duke.storage;
 
-import seedu.duke.EmptyParameterException;
+import seedu.duke.exceptions.EmptyParameterException;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CreateCommand;
 import seedu.duke.data.ApplianceList;
 import seedu.duke.data.HomeLocations;
-import seedu.duke.data.framework.Power;
 
 import java.io.File;
 import java.io.FileNotFoundException;

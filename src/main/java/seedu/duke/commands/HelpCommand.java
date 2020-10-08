@@ -12,7 +12,7 @@ public class HelpCommand extends Command {
 
     @Override
     public void execute() {
-        System.out.println(
+        ui.showToUser(
                 LINE  + HelpCommand.MESSAGE_USAGE + "\n" + LINE
                       + CreateCommand.MESSAGE_USAGE + "\n" + LINE
                       + RemoveCommand.MESSAGE_USAGE  + "\n" + LINE

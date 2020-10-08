@@ -12,6 +12,7 @@ import seedu.duke.commands.OffCommand;
 import seedu.duke.commands.OnCommand;
 import seedu.duke.commands.RemoveCommand;
 import seedu.duke.commands.UsageCommand;
+import seedu.duke.exceptions.EmptyParameterException;
 
 
 public class Parser {

@@ -1,6 +1,9 @@
 package seedu.duke.commands;
 
-import seedu.duke.EmptyParameterException;
+import seedu.duke.exceptions.EmptyParameterException;
+import seedu.duke.exceptions.InvalidAddtionOfLocation;
+
+import static seedu.duke.common.Messages.MESSAGE_REPEATED_LOCATION;
 
 public class CreateCommand extends Command {
 
@@ -21,11 +24,12 @@ public class CreateCommand extends Command {
 
     @Override
     public void execute() {
-        if (!homeLocationsList.isLocationCreated(usersEnteredLocation)) {
+        try{
             homeLocationsList.addLocation(usersEnteredLocation);
-        } else {
-            System.out.println("Location already exist");
+        } catch (InvalidAddtionOfLocation e){
+            ui.showToUser(MESSAGE_REPEATED_LOCATION);
         }
+
     }
 
 }

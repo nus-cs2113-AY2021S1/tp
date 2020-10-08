@@ -1,6 +1,6 @@
 package seedu.duke.commands;
 
-import seedu.duke.EmptyParameterException;
+import seedu.duke.exceptions.EmptyParameterException;
 
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
@@ -26,6 +26,6 @@ public class DeleteCommand extends Command {
                 return;
             }
         }
-        System.out.println(userEnteredName + " does not exist.");
+        ui.showToUser(userEnteredName + " does not exist.");
     }
 }

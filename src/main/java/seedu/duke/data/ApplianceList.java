@@ -1,6 +1,7 @@
 package seedu.duke.data;
 
 import seedu.duke.data.framework.Appliance;
+import seedu.duke.exceptions.InvalidAdditionOfAppliance;
 
 import java.util.ArrayList;
 
@@ -12,11 +13,11 @@ public class ApplianceList {
         appliances = new ArrayList<>();
     }
 
-    public void addAppliance(Appliance appliance) {
+    public void addAppliance(Appliance appliance) throws InvalidAdditionOfAppliance {
         if (!isAppliance(appliance)) {
             appliances.add(appliance);
         } else {
-            System.out.println("Appliance name already exist in the list, will not be created");
+          throw new InvalidAdditionOfAppliance();
         }
     }
 

@@ -1,6 +1,6 @@
 package seedu.duke.commands;
 
-import seedu.duke.EmptyParameterException;
+import seedu.duke.exceptions.EmptyParameterException;
 
 public class RemoveCommand extends Command {
 
@@ -24,6 +24,7 @@ public class RemoveCommand extends Command {
         for (int x = appliances.getAllAppliance().size() - 1; x >= 0; x--) {
             if (appliances.getAppliance(x).getLocation().equals(usersEnteredLocation)) {
                 appliances.removeAppliance(x);
+                break;
             }
         }
         homeLocationsList.removeLocation(usersEnteredLocation);

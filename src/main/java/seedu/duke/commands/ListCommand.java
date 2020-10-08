@@ -23,22 +23,22 @@ public class ListCommand extends Command {
         int index = 1;
         if (parameter.equals(LOCATION_TYPE)) {
             if (homeLocationsList.getLocations().size() == 0) {
-                System.out.println(LINE + "There is currently no locations in the list");
+                ui.showToUser(LINE + "There is currently no locations in the list");
                 return;
             }
             System.out.println(LINE + "Here are the location you have entered.");
             for (String location : homeLocationsList.getLocations()) {
-                System.out.println(index + ": " + location);
+                ui.showToUser(index + ": " + location);
                 index++;
             }
         } else if (parameter.equals(APPLIANCE_TYPE)) {
             if (appliances.getAllAppliance().size() == 0) {
-                System.out.println(LINE + "There is currently no appliances in the list");
+                ui.showToUser(LINE + "There is currently no appliances in the list");
                 return;
             }
             System.out.println(LINE + "Here are the appliances in your list.");
             for (Appliance a : appliances.getAllAppliance()) {
-                System.out.println(index + ": " + a.getName()
+                ui.showToUser(index + ": " + a.getName()
                         + " | Location: " + a.getLocation()
                         + " | Status: " + a.getStatus()
                         + " | Watt: " + a.getPower()

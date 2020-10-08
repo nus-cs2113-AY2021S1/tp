@@ -1,6 +1,6 @@
 package seedu.duke.data;
 
-import seedu.duke.data.framework.Appliance;
+import seedu.duke.exceptions.InvalidAddtionOfLocation;
 
 import java.util.ArrayList;
 
@@ -13,13 +13,13 @@ public class HomeLocations {
      *
      * @param location used to be added into the location list
      */
-    public void addLocation(String location) {
+    public void addLocation(String location) throws InvalidAddtionOfLocation {
         // create location from Appliance
         if (!isLocationCreated(location)) {
             this.locations.add(location);
         } else {
             // Will be replaced with throwing an exception
-            System.out.println("Existing Location has been added");
+            throw new InvalidAddtionOfLocation();
         }
     }
 

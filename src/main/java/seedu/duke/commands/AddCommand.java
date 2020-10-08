@@ -4,6 +4,9 @@ import seedu.duke.data.type.AirConditioner;
 import seedu.duke.data.type.Fan;
 import seedu.duke.data.type.Lights;
 import seedu.duke.data.type.WaterHeater;
+import seedu.duke.exceptions.InvalidAdditionOfAppliance;
+
+import static seedu.duke.common.Messages.*;
 
 public class AddCommand extends Command {
 
@@ -28,28 +31,33 @@ public class AddCommand extends Command {
     @Override
     public void execute() {
         if (homeLocationsList.isLocationCreated(location)) {
-            switch (type.toLowerCase()) {
-            case Fan.TYPE_WORD:
-                Fan fan = new Fan(name, location, power);
-                appliances.addAppliance(fan);
-                break;
-            case AirConditioner.TYPE_WORD:
-                AirConditioner ac = new AirConditioner(name, location, power);
-                appliances.addAppliance(ac);
-                break;
-            case Lights.TYPE_WORD:
-                Lights light = new Lights(name, location, power);
-                appliances.addAppliance(light);
-                break;
-            case WaterHeater.TYPE_WORD:
-                WaterHeater waterheater = new WaterHeater(name, location, power);
-                appliances.addAppliance(waterheater);
-                break;
-            default:
-                System.out.println("Type Entered does not exist.");
+            try {
+                switch (type.toLowerCase()) {
+                case Fan.TYPE_WORD:
+                    Fan fan = new Fan(name, location, power);
+                    appliances.addAppliance(fan);
+                    break;
+                case AirConditioner.TYPE_WORD:
+                    AirConditioner ac = new AirConditioner(name, location, power);
+                    appliances.addAppliance(ac);
+                    break;
+                case Lights.TYPE_WORD:
+                    Lights light = new Lights(name, location, power);
+                    appliances.addAppliance(light);
+                    break;
+                case WaterHeater.TYPE_WORD:
+                    WaterHeater waterheater = new WaterHeater(name, location, power);
+                    appliances.addAppliance(waterheater);
+                    break;
+                default:
+                    ui.showToUser(MESSAGE_INVALID_APPLIANCE_TYPE);
+                }
+            } catch (InvalidAdditionOfAppliance e) {
+                ui.showToUser(MESSAGE_REPEATED_APPLIANCE_NAME);
             }
+
         } else {
-            System.out.println("Location does not exist.");
+            ui.showToUser(MESSAGE_LOCATION_DOES_NOT_EXIST);
         }
     }
 
