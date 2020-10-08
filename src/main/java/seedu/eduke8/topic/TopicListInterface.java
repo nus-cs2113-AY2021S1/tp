@@ -7,6 +7,8 @@ public interface TopicListInterface {
 
     void deleteTopic(int index);
 
+    TopicInterface findTopic(String topicName);
+
     int getTopicCount();
 
 }

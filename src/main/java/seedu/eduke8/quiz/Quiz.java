@@ -1,5 +1,6 @@
 package seedu.eduke8.quiz;
 
+import seedu.eduke8.Parser;
 import seedu.eduke8.topic.TopicInterface;
 import seedu.eduke8.ui.UiInterface;
 import seedu.eduke8.option.OptionInterface;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 public class Quiz implements QuizInterface {
     private TopicInterface topic;
     private int numberOfQuestions;
+    Parser parser = new Parser();
 
     public Quiz(TopicInterface topic, int numberOfQuestions) {
         this.topic = topic;
@@ -39,20 +41,7 @@ public class Quiz implements QuizInterface {
                 ui.printOption(options.get(i), i + 1);
             }
 
-            parseChosenOption(ui, options, question);
+            parser.parseChosenOption(ui, options, question);
         }
-    }
-
-    private void parseChosenOption(UiInterface ui, ArrayList<OptionInterface> options, QuestionInterface question) {
-        // Should probably use parser for this part to add hints also
-        int chosen = Integer.parseInt(ui.getInputFromUser());
-        if (options.get(chosen).isCorrectAnswer()) {
-            ui.printAnswerIsCorrect();
-            question.markAsAnsweredCorrectly();
-        } else {
-            ui.printAnswerIsWrong();
-        }
-
-        question.markAsAttempted();
     }
 }
