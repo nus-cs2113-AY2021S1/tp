@@ -26,7 +26,7 @@ public class Tag {
         COLOR_CYAN("\u001B[36m"),
         COLOR_RESET("\u001B[0m");
 
-        private final String color;
+        private final String COLOR;
 
         TagColor(String color) {
             this.color = color;
