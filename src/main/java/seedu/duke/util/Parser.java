@@ -1,37 +1,24 @@
 package seedu.duke.util;
 
-import seedu.duke.command.Command;
-import seedu.duke.command.AddCommand;
-import seedu.duke.command.DeleteCommand;
-import seedu.duke.command.EditCommand;
-import seedu.duke.command.FindCommand;
-import seedu.duke.command.PinCommand;
-import seedu.duke.command.ListNoteCommand;
-import seedu.duke.command.ViewNoteCommand;
-import seedu.duke.command.CreateTagCommand;
-import seedu.duke.command.DeleteTagCommand;
-import seedu.duke.command.ListTagCommand;
-import seedu.duke.command.TagCommand;
-import seedu.duke.command.ListEventCommand;
-import seedu.duke.command.RemindCommand;
-import seedu.duke.command.IncorrectCommand;
-import seedu.duke.command.HelpCommand;
-import seedu.duke.command.ExitCommand;
+import seedu.duke.command.*;
 
 import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
+import seedu.duke.data.timetable.Event;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
-import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
-import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
-import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
-import static seedu.duke.util.PrefixSyntax.PREFIX_END;
-import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
-import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
-import static seedu.duke.util.PrefixSyntax.STRING_SPLIT_DELIMITER;
+import static seedu.duke.util.PrefixSyntax.*;
 
 /**
  * Parses user input.
@@ -61,8 +48,8 @@ public class Parser {
         switch (commandString.toLowerCase()) {
         case AddCommand.COMMAND_WORD_NOTE:
             return prepareAddNote(userMessage);
-        case AddCommand.COMMAND_WORD_EVENT:
-            // return prepareAddEvent(userMessage);
+        case AddEventCommand.COMMAND_WORD_EVENT:
+             return prepareAddEvent(userMessage);
         case ListNoteCommand.COMMAND_WORD:
             // return prepareListNote(userMessage);
         case ListEventCommand.COMMAND_WORD:
@@ -112,6 +99,7 @@ public class Parser {
 
         // Splits the prefix and the remaining content
         for (String s : splitMessage) {
+            System.out.println(s);
             splitMessageContent.add(s.split(STRING_SPLIT_DELIMITER, 2));
         }
 
@@ -183,6 +171,71 @@ public class Parser {
         } catch (ArrayIndexOutOfBoundsException | NullPointerException exception) {
             return new IncorrectCommand("Missing description!");
         }
+    }
+
+    private String checkBlank(String input, SystemException.ExceptionType e) throws SystemException {
+        if (input.isBlank()) {
+            throw new SystemException(e);
+        } else {
+            return input.trim();
+        }
+    }
+
+    private Command prepareAddEvent(String userMessage) {
+        // add-e event timing -r type until -a
+        // add-e eventTitle /t timing /r occurrance /a time before
+
+        String title = "";
+        LocalDateTime dateTime = null;
+        boolean toRemind = false;
+        boolean isRecurring = false;
+
+        try {
+            ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
+            for (String[] infoDetails : splitInfo) {
+                String prefix = infoDetails[0];
+                switch (prefix) {
+                case PREFIX_TITLE:
+                    title = checkBlank(infoDetails[1], SystemException.ExceptionType.EXCEPTION_MISSING_TITLE);
+                    break;
+                case PREFIX_TIMING:
+                    String timingString = checkBlank(infoDetails[1], SystemException.ExceptionType.EXCEPTION_MISSING_TIMING);
+                    dateTime = dateTimeParser(timingString);
+                    break;
+                case PREFIX_REMIND:
+                    toRemind = true;
+                    break;
+                case PREFIX_RECURRING:
+                    isRecurring = true;
+                    break;
+                default:
+                    throw new SystemException(SystemException.ExceptionType.EXCEPTION_WRONG_PREFIX);
+                }
+            }
+
+            if (title.isBlank()) {
+                throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_TITLE);
+            } else if (dateTime == null) {
+                throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_TIMING);
+            }
+        } catch (SystemException e) {
+            return new IncorrectCommand(e.getMessage());
+        }
+
+
+        Event event = new Event(title, dateTime, toRemind, isRecurring);
+        return new AddEventCommand(event);
+    }
+
+    private LocalDateTime dateTimeParser(String input) throws SystemException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dateTime;
+        try {
+            dateTime = LocalDateTime.parse(input, formatter);
+        } catch (DateTimeParseException e) {
+            throw new SystemException(SystemException.ExceptionType.EXCEPTION_WRONG_TIMING);
+        }
+        return dateTime;
     }
 
     public String inputContent() {

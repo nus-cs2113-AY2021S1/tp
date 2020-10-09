@@ -1,6 +1,7 @@
 package seedu.duke.data.timetable;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /**
@@ -44,6 +45,10 @@ public class Event {
         this.isRecurring = isRecurring;
     }
 
+    public Event(String title, LocalDateTime dateTime, boolean isToRemind, boolean isRecurring) {
+        this(title, dateTime.toLocalDate(), dateTime.toLocalTime(), isToRemind, isRecurring);
+    }
+
     public String getTitle() {
         return title;
     }
@@ -82,5 +87,9 @@ public class Event {
 
     public void setRecurring(Boolean recurring) {
         isRecurring = recurring;
+    }
+
+    public String toString() {
+        return String.format("Event: %s\nDate: %s\nTime: %s\nRepeating: %b", title, date.toString(), time.toString(), isRecurring);
     }
 }
