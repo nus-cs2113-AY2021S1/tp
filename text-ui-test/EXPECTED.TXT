@@ -15,15 +15,3600 @@ Name= James Gosling, birthdate= 01/02/1999, gender= Male
 ===Running Sample Anime Class===
 Release Date in String: 30/Dec/2020
 ===End of Sample Anime Class===
+===Running Anime Data Print check===
+Rating not within 0 to 100 range
+Rating not within 0 to 100 range
+---------------------------------
+Index: 1
+Name: Cowboy Bebop
+Episodes: 26
+Release Date:03/Apr/1998
+Rating: 86
+Genre: [Action, Adventure, Drama, Sci-Fi]
+---------------------------------
+Index: 2
+Name: Cowboy Bebop: The Movie - Knockin' on Heaven's Door
+Episodes: 1
+Release Date:01/Sep/2001
+Rating: 82
+Genre: [Action, Drama, Mystery, Sci-Fi]
+---------------------------------
+Index: 3
+Name: Trigun
+Episodes: 26
+Release Date:01/Apr/1998
+Rating: 79
+Genre: [Action, Adventure, Comedy, Drama, Sci-Fi]
+---------------------------------
+Index: 4
+Name: Witch Hunter Robin
+Episodes: 26
+Release Date:02/Jul/2002
+Rating: 68
+Genre: [Action, Drama, Mystery, Supernatural]
+---------------------------------
+Index: 5
+Name: Beet the Vandel Buster
+Episodes: 52
+Release Date:30/Sep/2004
+Rating: 62
+Genre: [Adventure, Fantasy, Supernatural]
+---------------------------------
+Index: 6
+Name: Eyeshield 21
+Episodes: 145
+Release Date:06/Apr/2005
+Rating: 75
+Genre: [Action, Comedy, Sports]
+---------------------------------
+Index: 7
+Name: Honey and Clover
+Episodes: 24
+Release Date:15/Apr/2005
+Rating: 77
+Genre: [Comedy, Drama, Romance, Slice of Life]
+---------------------------------
+Index: 8
+Name: Hungry Heart: Wild Striker
+Episodes: 52
+Release Date:11/Sep/2002
+Rating: 70
+Genre: [Comedy, Slice of Life, Sports]
+---------------------------------
+Index: 9
+Name: Initial D Fourth Stage
+Episodes: 24
+Release Date:17/Apr/2004
+Rating: 79
+Genre: [Action, Drama, Sports]
+---------------------------------
+Index: 10
+Name: Monster
+Episodes: 74
+Release Date:07/Apr/2004
+Rating: 86
+Genre: [Drama, Horror, Mystery, Psychological, Thriller]
+---------------------------------
+Index: 11
+Name: Naruto
+Episodes: 220
+Release Date:03/Oct/2002
+Rating: 78
+Genre: [Action, Comedy]
+---------------------------------
+Index: 12
+Name: One Piece
+Episodes: -1
+Release Date:20/Oct/1999
+Rating: 84
+Genre: [Action, Adventure, Comedy, Drama, Fantasy]
+---------------------------------
+Index: 13
+Name: The Prince of Tennis
+Episodes: 178
+Release Date:10/Oct/2001
+Rating: 74
+Genre: [Action, Comedy, Sports]
+---------------------------------
+Index: 14
+Name: Ring ni Kakero 1
+Episodes: 12
+Release Date:06/Oct/2004
+Rating: 53
+Genre: [Action, Sports]
+---------------------------------
+Index: 15
+Name: School Rumble
+Episodes: 26
+Release Date:05/Oct/2004
+Rating: 76
+Genre: [Comedy, Romance]
+---------------------------------
+Index: 16
+Name: Desert Punk
+Episodes: 24
+Release Date:06/Oct/2004
+Rating: 69
+Genre: [Action, Adventure, Comedy, Ecchi, Sci-Fi]
+---------------------------------
+Index: 17
+Name: Texhnolyze
+Episodes: 22
+Release Date:17/Apr/2003
+Rating: 75
+Genre: [Action, Drama, Psychological, Sci-Fi]
+---------------------------------
+Index: 18
+Name: Trinity Blood
+Episodes: 24
+Release Date:29/Apr/2005
+Rating: 67
+Genre: [Action, Drama, Horror, Sci-Fi, Supernatural]
+---------------------------------
+Index: 19
+Name: Yakitate!! Japan
+Episodes: 69
+Release Date:12/Oct/2004
+Rating: 75
+Genre: [Comedy]
+---------------------------------
+Index: 20
+Name: Zipang
+Episodes: 26
+Release Date:07/Oct/2004
+Rating: 70
+Genre: [Action, Sci-Fi]
+---------------------------------
+Index: 21
+Name: Neon Genesis Evangelion
+Episodes: 26
+Release Date:03/Oct/1995
+Rating: 82
+Genre: [Action, Drama, Mecha, Mystery, Psychological, Sci-Fi]
+---------------------------------
+Index: 22
+Name: Neon Genesis Evangelion: Death & Rebirth
+Episodes: 1
+Release Date:15/Mar/1997
+Rating: 71
+Genre: [Drama, Mecha, Psychological, Sci-Fi]
+---------------------------------
+Index: 23
+Name: Neon Genesis Evangelion: The End of Evangelion
+Episodes: 1
+Release Date:19/Jul/1997
+Rating: 85
+Genre: [Action, Drama, Mecha, Psychological, Sci-Fi]
+---------------------------------
+Index: 24
+Name: Berserk
+Episodes: 25
+Release Date:07/Oct/1997
+Rating: 82
+Genre: [Action, Adventure, Drama, Fantasy, Horror, Supernatural]
+---------------------------------
+Index: 25
+Name: Ghost in the Shell
+Episodes: 1
+Release Date:18/Nov/1995
+Rating: 80
+Genre: [Action, Psychological, Sci-Fi]
+---------------------------------
+Index: 26
+Name: Samurai X: Trust and Betrayal
+Episodes: 4
+Release Date:20/Feb/1999
+Rating: 84
+Genre: [Action, Drama, Romance]
+---------------------------------
+Index: 27
+Name: Rurouni Kenshin
+Episodes: 94
+Release Date:10/Jan/1996
+Rating: 79
+Genre: [Action, Adventure, Comedy, Romance]
+---------------------------------
+Index: 28
+Name: Samurai X: The Motion Picture
+Episodes: 1
+Release Date:20/Dec/1997
+Rating: 70
+Genre: [Drama]
+---------------------------------
+Index: 29
+Name: Akira
+Episodes: 1
+Release Date:16/Jul/1988
+Rating: 79
+Genre: [Action, Adventure, Horror, Psychological, Sci-Fi, Supernatural]
+---------------------------------
+Index: 30
+Name: .hack//Sign
+Episodes: 26
+Release Date:04/Apr/2002
+Rating: 66
+Genre: [Adventure, Fantasy, Mystery, Sci-Fi]
+---------------------------------
+Index: 31
+Name: Oh! My Goddess
+Episodes: 5
+Release Date:21/Feb/1993
+Rating: 69
+Genre: [Comedy, Romance, Supernatural]
+---------------------------------
+Index: 32
+Name: Oh! My Goddess
+Episodes: 24
+Release Date:07/Jan/2005
+Rating: 70
+Genre: [Comedy, Romance, Supernatural]
+---------------------------------
+Index: 33
+Name: Angel Sanctuary
+Episodes: 3
+Release Date:25/May/2000
+Rating: 55
+Genre: [Action, Drama, Ecchi, Romance, Supernatural]
+---------------------------------
+Index: 34
+Name: Battle Doll Angelic Layer
+Episodes: 26
+Release Date:01/Apr/2001
+Rating: 68
+Genre: [Comedy, Drama, Sci-Fi, Sports]
+---------------------------------
+Index: 35
+Name: Ai Yori Aoshi
+Episodes: 24
+Release Date:11/Apr/2002
+Rating: 66
+Genre: [Comedy, Drama, Romance, Slice of Life]
+---------------------------------
+Index: 36
+Name: Appleseed (Movie)
+Episodes: 1
+Release Date:17/Apr/2004
+Rating: 66
+Genre: [Action, Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 37
+Name: Arc the Lad
+Episodes: 26
+Release Date:05/Apr/1999
+Rating: 59
+Genre: [Action, Adventure, Fantasy, Horror, Sci-Fi]
+---------------------------------
+Index: 38
+Name: Avenger
+Episodes: 13
+Release Date:02/Oct/2003
+Rating: 52
+Genre: [Adventure, Fantasy, Sci-Fi]
+---------------------------------
+Index: 39
+Name: Beck: Mongolian Chop Squad
+Episodes: 26
+Release Date:07/Oct/2004
+Rating: 79
+Genre: [Comedy, Drama, Music, Slice of Life]
+---------------------------------
+Index: 40
+Name: Blue Gender
+Episodes: 26
+Release Date:08/Oct/1999
+Rating: 65
+Genre: [Adventure, Drama, Horror, Mecha, Psychological, Romance, Sci-Fi]
+---------------------------------
+Index: 41
+Name: Chobits
+Episodes: 26
+Release Date:03/Apr/2002
+Rating: 71
+Genre: [Comedy, Drama, Ecchi, Romance, Sci-Fi]
+---------------------------------
+Index: 42
+Name: Chrono Crusade
+Episodes: 24
+Release Date:24/Nov/2003
+Rating: 71
+Genre: [Action, Romance, Supernatural]
+---------------------------------
+Index: 43
+Name: D.N.Angel
+Episodes: 26
+Release Date:03/Apr/2003
+Rating: 66
+Genre: [Action, Comedy, Fantasy, Romance]
+---------------------------------
+Index: 44
+Name: D.C.~Da Capo~
+Episodes: 26
+Release Date:05/Jul/2003
+Rating: 62
+Genre: [Drama, Romance]
+---------------------------------
+Index: 45
+Name: DearS
+Episodes: 12
+Release Date:11/Jul/2004
+Rating: 60
+Genre: [Comedy, Ecchi, Romance, Sci-Fi]
+---------------------------------
+Index: 46
+Name: Rozen Maiden
+Episodes: 12
+Release Date:08/Oct/2004
+Rating: 70
+Genre: [Action, Comedy, Drama]
+---------------------------------
+Index: 47
+Name: Rozen Maiden: Dreaming
+Episodes: 12
+Release Date:21/Oct/2005
+Rating: 72
+Genre: [Action, Comedy, Drama]
+---------------------------------
+Index: 48
+Name: Azumanga Daioh: The Animation
+Episodes: 26
+Release Date:09/Apr/2002
+Rating: 77
+Genre: [Comedy, Slice of Life]
+---------------------------------
+Index: 49
+Name: Basilisk: The Kouga Ninja Scrolls
+Episodes: 24
+Release Date:13/Apr/2005
+Rating: 71
+Genre: [Action, Adventure, Fantasy, Romance]
+---------------------------------
+Index: 50
+Name: Black Cat
+Episodes: 23
+Release Date:06/Oct/2005
+Rating: 69
+Genre: [Adventure, Comedy, Sci-Fi]
+---------------------------------
+Index: 51
+Name: Cluster Edge
+Episodes: 25
+Release Date:04/Oct/2005
+Rating: 53
+Genre: [Action, Fantasy, Sci-Fi]
+---------------------------------
+Index: 52
+Name: Full Metal Panic!
+Episodes: 24
+Release Date:08/Jan/2002
+Rating: 73
+Genre: [Action, Comedy, Mecha, Sci-Fi]
+---------------------------------
+Index: 53
+Name: Full Metal Panic? Fumoffu
+Episodes: 12
+Release Date:26/Aug/2003
+Rating: 78
+Genre: [Action, Comedy, Romance]
+---------------------------------
+Index: 54
+Name: Full Metal Panic! The Second Raid
+Episodes: 13
+Release Date:14/Jul/2005
+Rating: 77
+Genre: [Action, Mecha, Sci-Fi]
+---------------------------------
+Index: 55
+Name: Gakuen Alice
+Episodes: 26
+Release Date:30/Oct/2004
+Rating: 71
+Genre: [Comedy, Drama, Fantasy, Supernatural]
+---------------------------------
+Index: 56
+Name: Fafner of the Blue Sky
+Episodes: 25
+Release Date:05/Jul/2004
+Rating: 69
+Genre: [Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 57
+Name: Magical Girl Lyrical Nanoha
+Episodes: 13
+Release Date:03/Oct/2004
+Rating: 71
+Genre: [Action, Comedy, Drama, Mahou Shoujo]
+---------------------------------
+Index: 58
+Name: Magical Girl Lyrical Nanoha A's
+Episodes: 13
+Release Date:02/Oct/2005
+Rating: 78
+Genre: [Action, Comedy, Drama, Mahou Shoujo]
+---------------------------------
+Index: 59
+Name: Shuffle!
+Episodes: 24
+Release Date:08/Jul/2005
+Rating: 66
+Genre: [Comedy, Drama, Ecchi, Fantasy, Romance]
+---------------------------------
+Index: 60
+Name: Mobile Suit Gundam
+Episodes: 43
+Release Date:07/Apr/1979
+Rating: 75
+Genre: [Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 61
+Name: Mobile Suit Gundam: The 08th MS Team
+Episodes: 12
+Release Date:25/Jan/1996
+Rating: 77
+Genre: [Adventure, Drama, Mecha, Romance, Sci-Fi]
+---------------------------------
+Index: 62
+Name: Mobile Suit Gundam 0080: War in the Pocket
+Episodes: 6
+Release Date:25/Mar/1989
+Rating: 78
+Genre: [Adventure, Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 63
+Name: Mobile Suit Gundam: The 08th MS Team - Miller's Report
+Episodes: 1
+Release Date:01/Aug/1998
+Rating: 63
+Genre: [Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 64
+Name: Mobile Suit Gundam 0083: Stardust Memory
+Episodes: 13
+Release Date:23/May/1991
+Rating: 68
+Genre: [Adventure, Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 65
+Name: Mobile Suit Zeta Gundam
+Episodes: 50
+Release Date:02/Mar/1985
+Rating: 77
+Genre: [Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 66
+Name: Mobile Suit Gundam ZZ
+Episodes: 47
+Release Date:08/Mar/1986
+Rating: 63
+Genre: [Comedy, Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 67
+Name: Mobile Suit Gundam: Char's Counterattack
+Episodes: 1
+Release Date:12/Mar/1988
+Rating: 72
+Genre: [Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 68
+Name: Mobile Suit Gundam F91
+Episodes: 1
+Release Date:16/Mar/1991
+Rating: 62
+Genre: [Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 69
+Name: Mobile Suit Victory Gundam
+Episodes: 51
+Release Date:02/Apr/1993
+Rating: 62
+Genre: [Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 70
+Name: Mobile Suit Gundam Wing
+Episodes: 49
+Release Date:07/Apr/1995
+Rating: 71
+Genre: [Action, Adventure, Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 71
+Name: Mobile Suit Gundam Wing: Endless Waltz
+Episodes: 3
+Release Date:25/Jan/1997
+Rating: 71
+Genre: [Action, Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 72
+Name: After War Gundam X
+Episodes: 39
+Release Date:05/Apr/1996
+Rating: 69
+Genre: [Adventure, Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 73
+Name: Mobile Suit Gundam Seed
+Episodes: 50
+Release Date:05/Oct/2002
+Rating: 72
+Genre: [Action, Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 74
+Name: Mobile Suit Gundam Seed Destiny
+Episodes: 50
+Release Date:09/Oct/2004
+Rating: 65
+Genre: [Drama, Mecha, Romance, Sci-Fi]
+---------------------------------
+Index: 75
+Name: Turn A Gundam
+Episodes: 50
+Release Date:09/Apr/1999
+Rating: 76
+Genre: [Action, Adventure, Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 76
+Name: Mobile Fighter G Gundam
+Episodes: 49
+Release Date:01/Apr/1994
+Rating: 73
+Genre: [Action, Adventure, Comedy, Drama, Mecha, Romance]
+---------------------------------
+Index: 77
+Name: Last Exile
+Episodes: 26
+Release Date:07/Apr/2003
+Rating: 75
+Genre: [Action, Adventure, Sci-Fi]
+---------------------------------
+Index: 78
+Name: My-Hime
+Episodes: 26
+Release Date:30/Sep/2004
+Rating: 69
+Genre: [Action, Comedy, Drama, Fantasy, Mecha, Romance]
+---------------------------------
+Index: 79
+Name: My ZHiME
+Episodes: 26
+Release Date:07/Oct/2005
+Rating: 68
+Genre: [Comedy, Drama, Fantasy]
+---------------------------------
+Index: 80
+Name: Prétear: The New Legend of Snow White
+Episodes: 13
+Release Date:04/Apr/2001
+Rating: 65
+Genre: [Comedy, Drama, Fantasy, Mahou Shoujo, Romance]
+---------------------------------
+Index: 81
+Name: Air
+Episodes: 13
+Release Date:07/Jan/2005
+Rating: 68
+Genre: [Drama, Romance, Slice of Life, Supernatural]
+---------------------------------
+Index: 82
+Name: Love You Baby
+Episodes: 26
+Release Date:03/Apr/2004
+Rating: 71
+Genre: [Comedy, Drama, Romance]
+---------------------------------
+Index: 83
+Name: Red Riding Hood Chacha
+Episodes: 74
+Release Date:07/Jan/1994
+Rating: 66
+Genre: [Adventure, Comedy, Fantasy, Mahou Shoujo, Romance]
+---------------------------------
+Index: 84
+Name: Ceres, Celestial Legend
+Episodes: 24
+Release Date:20/Apr/2000
+Rating: 65
+Genre: [Adventure, Comedy, Drama, Horror, Romance]
+---------------------------------
+Index: 85
+Name: Boys Be...
+Episodes: 13
+Release Date:11/Apr/2000
+Rating: 57
+Genre: [Comedy, Romance, Slice of Life]
+---------------------------------
+Index: 86
+Name: Boys Over Flowers
+Episodes: 51
+Release Date:08/Sep/1996
+Rating: 70
+Genre: [Comedy, Drama, Romance]
+---------------------------------
+Index: 87
+Name: Jing: King of Bandits
+Episodes: 13
+Release Date:15/May/2002
+Rating: 65
+Genre: [Adventure, Comedy, Fantasy, Sci-Fi]
+---------------------------------
+Index: 88
+Name: Jing: King of Bandits - Seventh Heaven
+Episodes: 3
+Release Date:21/Jan/2004
+Rating: 65
+Genre: [Adventure, Comedy, Fantasy, Psychological]
+---------------------------------
+Index: 89
+Name: Burst Angel
+Episodes: 24
+Release Date:06/May/2004
+Rating: 63
+Genre: [Adventure, Comedy, Mecha, Sci-Fi]
+---------------------------------
+Index: 90
+Name: Chuuka Ichiban!
+Episodes: 52
+Release Date:27/Apr/1997
+Rating: 68
+Genre: [Action, Adventure, Drama]
+---------------------------------
+Index: 91
+Name: Corrector Yui
+Episodes: 52
+Release Date:09/Apr/1999
+Rating: 63
+Genre: [Adventure, Comedy, Mahou Shoujo, Sci-Fi]
+---------------------------------
+Index: 92
+Name: The Cosmopolitan Prayers
+Episodes: 8
+Release Date:12/Jan/2004
+Rating: 39
+Genre: [Action, Adventure, Comedy, Ecchi, Fantasy]
+---------------------------------
+Index: 93
+Name: Stellvia of the Universe
+Episodes: 26
+Release Date:03/Apr/2003
+Rating: 69
+Genre: [Action, Mecha, Romance, Sci-Fi]
+---------------------------------
+Index: 94
+Name: Cromartie High School
+Episodes: 26
+Release Date:03/Oct/2003
+Rating: 76
+Genre: [Comedy]
+---------------------------------
+Index: 95
+Name: Ijigen no Sekai El Hazard
+Episodes: 13
+Release Date:08/Jan/1998
+Rating: 61
+Genre: [Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 96
+Name: El Hazard: The Wanderers
+Episodes: 26
+Release Date:06/Oct/1995
+Rating: 64
+Genre: [Adventure, Comedy]
+---------------------------------
+Index: 97
+Name: El Hazard: The Magnificent World
+Episodes: 7
+Release Date:26/May/1995
+Rating: 68
+Genre: [Adventure, Comedy, Fantasy, Romance]
+---------------------------------
+Index: 98
+Name: Shinpi no Sekai El Hazard 2
+Episodes: 4
+Release Date:21/Mar/1997
+Rating: 61
+Genre: [Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 99
+Name: Final Approach
+Episodes: 13
+Release Date:03/Oct/2004
+Rating: 59
+Genre: [Comedy, Drama, Romance, Slice of Life]
+---------------------------------
+Index: 100
+Name: Fruits Basket
+Episodes: 26
+Release Date:05/Jul/2001
+Rating: 74
+Genre: [Comedy, Drama, Fantasy, Romance, Slice of Life]
+---------------------------------
+Index: 101
+Name: Fullmetal Alchemist
+Episodes: 51
+Release Date:04/Oct/2003
+Rating: 79
+Genre: [Action, Adventure, Comedy, Drama, Fantasy]
+---------------------------------
+Index: 102
+Name: Full Moon
+Episodes: 52
+Release Date:06/Apr/2002
+Rating: 75
+Genre: [Comedy, Drama, Mahou Shoujo, Music, Romance, Supernatural]
+---------------------------------
+Index: 103
+Name: Fushigi Yugi: The Mysterious Play
+Episodes: 52
+Release Date:06/Apr/1995
+Rating: 71
+Genre: [Adventure, Comedy, Drama, Fantasy, Romance]
+---------------------------------
+Index: 104
+Name: Mysterious Play: Eikoden
+Episodes: 4
+Release Date:21/Dec/2001
+Rating: 61
+Genre: [Adventure, Fantasy, Romance]
+---------------------------------
+Index: 105
+Name: Twin Love
+Episodes: 13
+Release Date:06/Oct/2004
+Rating: 60
+Genre: [Comedy, Romance]
+---------------------------------
+Index: 106
+Name: Twin Love Alternative
+Episodes: 13
+Release Date:07/Apr/2005
+Rating: 64
+Genre: [Comedy, Drama, Romance]
+---------------------------------
+Index: 107
+Name: Gate Keepers
+Episodes: 24
+Release Date:03/Apr/2000
+Rating: 62
+Genre: [Action, Comedy, Fantasy, Mecha, Sci-Fi]
+---------------------------------
+Index: 108
+Name: Gate Keepers 21
+Episodes: 6
+Release Date:24/Apr/2002
+Rating: 60
+Genre: [Action, Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 109
+Name: Saiyuki
+Episodes: 50
+Release Date:04/Apr/2000
+Rating: 70
+Genre: [Adventure, Comedy, Drama, Supernatural]
+---------------------------------
+Index: 110
+Name: Saiyuki Reload
+Episodes: 25
+Release Date:02/Oct/2003
+Rating: 69
+Genre: [Action, Adventure, Comedy, Drama, Fantasy]
+---------------------------------
+Index: 111
+Name: Saiyuki Gunlock
+Episodes: 26
+Release Date:02/Apr/2004
+Rating: 67
+Genre: [Action, Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 112
+Name: Get Backers
+Episodes: 49
+Release Date:05/Oct/2002
+Rating: 71
+Genre: [Action, Comedy, Drama, Mystery]
+---------------------------------
+Index: 113
+Name: Green Green
+Episodes: 12
+Release Date:12/Jul/2003
+Rating: 54
+Genre: [Comedy, Ecchi, Romance, Slice of Life]
+---------------------------------
+Index: 114
+Name: Gunslinger Girl
+Episodes: 13
+Release Date:08/Oct/2003
+Rating: 71
+Genre: [Action, Drama, Psychological, Sci-Fi]
+---------------------------------
+Index: 115
+Name: Hikaru no Go
+Episodes: 75
+Release Date:10/Oct/2001
+Rating: 78
+Genre: [Comedy, Sports, Supernatural]
+---------------------------------
+Index: 116
+Name: Hunter x Hunter
+Episodes: 62
+Release Date:16/Oct/1999
+Rating: 81
+Genre: [Action, Adventure, Fantasy]
+---------------------------------
+Index: 117
+Name: Hunter x Hunter: Yorknew City
+Episodes: 8
+Release Date:17/Jan/2002
+Rating: 81
+Genre: [Action, Adventure, Fantasy]
+---------------------------------
+Index: 118
+Name: Hunter x Hunter: Greed Island
+Episodes: 8
+Release Date:05/Feb/2003
+Rating: 79
+Genre: [Action, Adventure, Fantasy]
+---------------------------------
+Index: 119
+Name: Hunter x Hunter: Greed Island Final
+Episodes: 14
+Release Date:03/Mar/2004
+Rating: 79
+Genre: [Action, Adventure, Fantasy]
+---------------------------------
+Index: 120
+Name: Jinki:Extend
+Episodes: 12
+Release Date:05/Jan/2005
+Rating: 54
+Genre: [Mecha, Sci-Fi]
+---------------------------------
+Index: 121
+Name: Kamikaze Kaitou Jeanne
+Episodes: 44
+Release Date:13/Feb/1999
+Rating: 69
+Genre: [Action, Adventure, Comedy, Drama, Fantasy, Mahou Shoujo, Mystery, Romance]
+---------------------------------
+Index: 122
+Name: Destiny of the Shrine Maiden
+Episodes: 12
+Release Date:02/Oct/2004
+Rating: 62
+Genre: [Drama, Mecha, Romance]
+---------------------------------
+Index: 123
+Name: Kanon
+Episodes: 13
+Release Date:31/Jan/2002
+Rating: 64
+Genre: [Drama, Romance, Slice of Life, Supernatural]
+---------------------------------
+Index: 124
+Name: His and Her Circumstances
+Episodes: 26
+Release Date:02/Oct/1998
+Rating: 74
+Genre: [Comedy, Drama, Romance, Slice of Life]
+---------------------------------
+Index: 125
+Name: This Ugly Yet Beautiful World
+Episodes: 12
+Release Date:02/Apr/2004
+Rating: 61
+Genre: [Comedy, Drama, Romance, Sci-Fi]
+---------------------------------
+Index: 126
+Name: Rumbling Hearts
+Episodes: 14
+Release Date:05/Oct/2003
+Rating: 67
+Genre: [Drama, Romance, Slice of Life]
+---------------------------------
+Index: 127
+Name: Diamond Daydreams
+Episodes: 12
+Release Date:20/Jan/2004
+Rating: 57
+Genre: [Drama, Romance, Slice of Life]
+---------------------------------
+Index: 128
+Name: Loveless
+Episodes: 12
+Release Date:07/Apr/2005
+Rating: 60
+Genre: [Action, Drama, Fantasy, Mystery, Romance]
+---------------------------------
+Index: 129
+Name: Blood+
+Episodes: 50
+Release Date:08/Oct/2005
+Rating: 71
+Genre: [Action, Drama, Horror, Mystery, Supernatural]
+---------------------------------
+Index: 130
+Name: Re: Cutie Honey
+Episodes: 3
+Release Date:24/Jul/2004
+Rating: 69
+Genre: [Action, Comedy, Ecchi, Mahou Shoujo, Sci-Fi]
+---------------------------------
+Index: 131
+Name: Solty Rei
+Episodes: 24
+Release Date:06/Oct/2005
+Rating: 67
+Genre: [Action, Sci-Fi]
+---------------------------------
+Index: 132
+Name: The Twelve Kingdoms
+Episodes: 45
+Release Date:09/Apr/2002
+Rating: 77
+Genre: [Action, Adventure, Fantasy, Supernatural]
+---------------------------------
+Index: 133
+Name: Shaman King
+Episodes: 64
+Release Date:04/Jul/2001
+Rating: 74
+Genre: [Action, Adventure, Comedy, Drama, Supernatural]
+---------------------------------
+Index: 134
+Name: X/1999
+Episodes: 1
+Release Date:03/Aug/1996
+Rating: 59
+Genre: [Action, Drama, Fantasy, Horror, Sci-Fi]
+---------------------------------
+Index: 135
+Name: X
+Episodes: 24
+Release Date:03/Oct/2001
+Rating: 68
+Genre: [Action, Drama, Fantasy, Romance]
+---------------------------------
+Index: 136
+Name: Negima!
+Episodes: 26
+Release Date:06/Jan/2005
+Rating: 65
+Genre: [Comedy, Ecchi, Fantasy, Romance]
+---------------------------------
+Index: 137
+Name: Maria Watches Over Us
+Episodes: 13
+Release Date:08/Jan/2004
+Rating: 69
+Genre: [Drama, Romance, Slice of Life]
+---------------------------------
+Index: 138
+Name: Melody of Oblivion
+Episodes: 24
+Release Date:07/Apr/2004
+Rating: 56
+Genre: [Action, Adventure, Fantasy, Horror, Mecha, Sci-Fi]
+---------------------------------
+Index: 139
+Name: Now and Then, Here and There
+Episodes: 13
+Release Date:14/Oct/1999
+Rating: 73
+Genre: [Adventure, Drama, Fantasy, Sci-Fi]
+---------------------------------
+Index: 140
+Name: Peacemaker
+Episodes: 24
+Release Date:08/Oct/2003
+Rating: 68
+Genre: [Action, Comedy]
+---------------------------------
+Index: 141
+Name: Pita-Ten
+Episodes: 26
+Release Date:07/Apr/2002
+Rating: 63
+Genre: [Comedy, Fantasy, Romance]
+---------------------------------
+Index: 142
+Name: Power Stone
+Episodes: 26
+Release Date:03/Apr/1999
+Rating: 57
+Genre: [Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 143
+Name: Princess Mononoke
+Episodes: 1
+Release Date:12/Jul/1997
+Rating: 85
+Genre: [Action, Adventure, Drama, Fantasy]
+---------------------------------
+Index: 144
+Name: RahXephon
+Episodes: 26
+Release Date:21/Jan/2002
+Rating: 70
+Genre: [Drama, Mecha, Music, Mystery, Psychological, Romance, Sci-Fi]
+---------------------------------
+Index: 145
+Name: Samurai 7
+Episodes: 26
+Release Date:12/Jun/2004
+Rating: 70
+Genre: [Action, Mecha, Sci-Fi]
+---------------------------------
+Index: 146
+Name: Scrapped Princess
+Episodes: 24
+Release Date:08/Apr/2003
+Rating: 70
+Genre: [Adventure, Comedy, Drama, Fantasy, Mecha, Sci-Fi]
+---------------------------------
+Index: 147
+Name: s-CRY-ed
+Episodes: 26
+Release Date:04/Jul/2001
+Rating: 69
+Genre: [Action, Adventure, Sci-Fi]
+---------------------------------
+Index: 148
+Name: Lunar Legend Tsukihime
+Episodes: 12
+Release Date:10/Oct/2003
+Rating: 62
+Genre: [Action, Horror, Mystery, Romance, Supernatural]
+---------------------------------
+Index: 149
+Name: Slam Dunk
+Episodes: 101
+Release Date:16/Oct/1993
+Rating: 81
+Genre: [Comedy, Drama, Slice of Life, Sports]
+---------------------------------
+Index: 150
+Name: Strange Dawn
+Episodes: 13
+Release Date:11/Jul/2000
+Rating: 56
+Genre: [Adventure, Drama, Fantasy]
+---------------------------------
+Index: 151
+Name: Tactics
+Episodes: 25
+Release Date:06/Oct/2004
+Rating: 66
+Genre: [Comedy, Drama, Fantasy, Mystery]
+---------------------------------
+Index: 152
+Name: Tenjho Tenge
+Episodes: 24
+Release Date:02/Apr/2004
+Rating: 64
+Genre: [Action, Comedy, Ecchi]
+---------------------------------
+Index: 153
+Name: Tokyo Underground
+Episodes: 26
+Release Date:02/Apr/2002
+Rating: 60
+Genre: [Action, Adventure, Romance, Sci-Fi]
+---------------------------------
+Index: 154
+Name: Triangle Heart: Sweet Songs Forever
+Episodes: 4
+Release Date:24/Jul/2003
+Rating: 54
+Genre: [Adventure, Romance]
+---------------------------------
+Index: 155
+Name: Tsubasa Chronicle
+Episodes: 26
+Release Date:09/Apr/2005
+Rating: 71
+Genre: [Adventure, Fantasy, Romance]
+---------------------------------
+Index: 156
+Name: Ultramaniac - Magical Girl
+Episodes: 26
+Release Date:20/May/2003
+Rating: 65
+Genre: [Comedy, Mahou Shoujo, Romance]
+---------------------------------
+Index: 157
+Name: Ultra Maniac OVA
+Episodes: 1
+Release Date:06/Aug/2002
+Rating: 59
+Genre: [Comedy, Romance]
+---------------------------------
+Index: 158
+Name: Vandread
+Episodes: 13
+Release Date:03/Oct/2000
+Rating: 67
+Genre: [Action, Ecchi, Mecha, Sci-Fi]
+---------------------------------
+Index: 159
+Name: Vandread: The Second Stage
+Episodes: 13
+Release Date:05/Oct/2001
+Rating: 69
+Genre: [Action, Ecchi, Mecha, Sci-Fi]
+---------------------------------
+Index: 160
+Name: Escaflowne
+Episodes: 26
+Release Date:02/Apr/1996
+Rating: 72
+Genre: [Adventure, Fantasy, Mecha, Romance]
+---------------------------------
+Index: 161
+Name: Whistle!
+Episodes: 39
+Release Date:06/May/2002
+Rating: 65
+Genre: [Sports]
+---------------------------------
+Index: 162
+Name: Xenosaga: The Animation
+Episodes: 12
+Release Date:06/Jan/2005
+Rating: 55
+Genre: [Action, Mecha, Sci-Fi]
+---------------------------------
+Index: 163
+Name: Initial D First Stage
+Episodes: 26
+Release Date:19/Apr/1998
+Rating: 81
+Genre: [Action, Drama, Sports]
+---------------------------------
+Index: 164
+Name: Initial D Second Stage
+Episodes: 13
+Release Date:15/Oct/1999
+Rating: 79
+Genre: [Action, Drama, Sports]
+---------------------------------
+Index: 165
+Name: Initial D Third Stage
+Episodes: 1
+Release Date:13/Jan/2001
+Rating: 77
+Genre: [Action, Drama, Romance, Sports]
+---------------------------------
+Index: 166
+Name: Love Hina
+Episodes: 24
+Release Date:19/Apr/2000
+Rating: 67
+Genre: [Comedy, Ecchi, Romance, Slice of Life]
+---------------------------------
+Index: 167
+Name: Love Hina Again
+Episodes: 3
+Release Date:26/Jan/2002
+Rating: 68
+Genre: [Comedy, Drama, Romance]
+---------------------------------
+Index: 168
+Name: Love Hina Christmas Movie
+Episodes: 1
+Release Date:25/Dec/2000
+Rating: 68
+Genre: [Comedy, Romance, Slice of Life]
+---------------------------------
+Index: 169
+Name: Love Hina Spring Movie
+Episodes: 1
+Release Date:02/Apr/2001
+Rating: 67
+Genre: [Adventure, Comedy, Romance]
+---------------------------------
+Index: 170
+Name: Maburaho
+Episodes: 24
+Release Date:14/Oct/2003
+Rating: 62
+Genre: [Comedy, Drama, Ecchi, Romance]
+---------------------------------
+Index: 171
+Name: Macross Zero
+Episodes: 5
+Release Date:21/Dec/2002
+Rating: 70
+Genre: [Adventure, Mecha, Sci-Fi]
+---------------------------------
+Index: 172
+Name: Please☆Teacher!
+Episodes: 12
+Release Date:10/Jan/2002
+Rating: 67
+Genre: [Comedy, Drama, Romance, Sci-Fi]
+---------------------------------
+Index: 173
+Name: Please☆Twins!
+Episodes: 12
+Release Date:15/Jul/2003
+Rating: 64
+Genre: [Comedy, Drama, Sci-Fi]
+---------------------------------
+Index: 174
+Name: Rizelmine
+Episodes: 24
+Release Date:02/Apr/2002
+Rating: 58
+Genre: [Comedy, Ecchi, Romance, Sci-Fi]
+---------------------------------
+Index: 175
+Name: Speed Grapher
+Episodes: 24
+Release Date:08/Apr/2005
+Rating: 68
+Genre: [Action, Drama, Ecchi, Mystery, Psychological, Supernatural]
+---------------------------------
+Index: 176
+Name: Spirited Away
+Episodes: 1
+Release Date:20/Jul/2001
+Rating: 86
+Genre: [Adventure, Drama, Fantasy, Romance, Supernatural]
+---------------------------------
+Index: 177
+Name: Cheeky Angel
+Episodes: 50
+Release Date:06/Apr/2002
+Rating: 68
+Genre: [Comedy, Romance]
+---------------------------------
+Index: 178
+Name: Video Girl Ai
+Episodes: 6
+Release Date:27/Mar/1992
+Rating: 68
+Genre: [Comedy, Drama, Ecchi, Romance]
+---------------------------------
+Index: 179
+Name: Wolf's Rain
+Episodes: 26
+Release Date:07/Jan/2003
+Rating: 74
+Genre: [Action, Adventure, Drama, Fantasy, Mystery, Sci-Fi]
+---------------------------------
+Index: 180
+Name: Yumeria
+Episodes: 12
+Release Date:09/Jan/2004
+Rating: 54
+Genre: [Action, Comedy, Ecchi]
+---------------------------------
+Index: 181
+Name: Samurai Champloo
+Episodes: 26
+Release Date:20/May/2004
+Rating: 83
+Genre: [Action, Adventure, Comedy]
+---------------------------------
+Index: 182
+Name: Record of Lodoss War: Chronicles of the Heroic Knight
+Episodes: 27
+Release Date:01/Apr/1998
+Rating: 65
+Genre: [Action, Adventure, Drama, Fantasy, Romance]
+---------------------------------
+Index: 183
+Name: Record of Lodoss War
+Episodes: 13
+Release Date:30/Jun/1990
+Rating: 69
+Genre: [Action, Adventure, Fantasy, Supernatural]
+---------------------------------
+Index: 184
+Name: R.O.D - READ OR DIE
+Episodes: 3
+Release Date:23/May/2001
+Rating: 72
+Genre: [Action, Adventure, Mystery, Sci-Fi]
+---------------------------------
+Index: 185
+Name: R.O.D -THE TV-
+Episodes: 26
+Release Date:01/Sep/2003
+Rating: 72
+Genre: [Action, Adventure, Comedy, Drama, Sci-Fi]
+---------------------------------
+Index: 186
+Name: Ranma ½
+Episodes: 161
+Release Date:15/Apr/1989
+Rating: 74
+Genre: [Action, Comedy, Ecchi, Romance, Slice of Life]
+---------------------------------
+Index: 187
+Name: Project A-ko
+Episodes: 1
+Release Date:21/Jun/1986
+Rating: 62
+Genre: [Action, Adventure, Comedy, Mecha, Sci-Fi]
+---------------------------------
+Index: 188
+Name: Pia Carrot 2 DX
+Episodes: 6
+Release Date:18/Dec/1999
+Rating: 49
+Genre: [Comedy, Romance]
+---------------------------------
+Index: 189
+Name: Welcome to Pia Carrot! Sayaka's Love Story
+Episodes: 1
+Release Date:19/Oct/2002
+Rating: 48
+Genre: [Romance]
+---------------------------------
+Index: 190
+Name: Martian Successor Nadesico
+Episodes: 26
+Release Date:01/Oct/1996
+Rating: 72
+Genre: [Action, Comedy, Mecha, Romance, Sci-Fi]
+---------------------------------
+Index: 191
+Name: Martian Successor Nadesico: The Prince of Darkness
+Episodes: 1
+Release Date:01/Aug/1998
+Rating: 61
+Genre: [Action, Comedy, Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 192
+Name: Mezzo
+Episodes: 13
+Release Date:04/Jan/2004
+Rating: 60
+Genre: [Action, Adventure, Comedy, Mystery, Sci-Fi]
+---------------------------------
+Index: 193
+Name: Dragon Ball
+Episodes: 153
+Release Date:26/Feb/1986
+Rating: 77
+Genre: [Action, Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 194
+Name: Dragon Ball GT
+Episodes: 64
+Release Date:07/Feb/1996
+Rating: 61
+Genre: [Action, Adventure, Comedy, Fantasy, Sci-Fi]
+---------------------------------
+Index: 195
+Name: Elfen Lied
+Episodes: 13
+Release Date:25/Jul/2004
+Rating: 69
+Genre: [Action, Drama, Ecchi, Horror, Psychological, Romance, Supernatural]
+---------------------------------
+Index: 196
+Name: FLCL
+Episodes: 6
+Release Date:26/Apr/2000
+Rating: 78
+Genre: [Action, Comedy, Mecha, Sci-Fi]
+---------------------------------
+Index: 197
+Name: Hell Girl
+Episodes: 26
+Release Date:05/Oct/2005
+Rating: 72
+Genre: [Drama, Horror, Mystery, Psychological, Supernatural]
+---------------------------------
+Index: 198
+Name: Ninja Nonsense
+Episodes: 12
+Release Date:10/Jul/2004
+Rating: 65
+Genre: [Comedy]
+---------------------------------
+Index: 199
+Name: Air Master
+Episodes: 27
+Release Date:02/Apr/2003
+Rating: 61
+Genre: [Action, Adventure, Comedy]
+---------------------------------
+Index: 200
+Name: Shrine of the Morning Mist
+Episodes: 26
+Release Date:04/Jul/2002
+Rating: 54
+Genre: [Action, Comedy, Drama, Fantasy]
+---------------------------------
+Index: 201
+Name: Cardcaptor Sakura
+Episodes: 70
+Release Date:07/Apr/1998
+Rating: 80
+Genre: [Adventure, Comedy, Drama, Fantasy, Mahou Shoujo, Romance]
+---------------------------------
+Index: 202
+Name: Daa! Daa! Daa!
+Episodes: 78
+Release Date:28/Mar/2000
+Rating: 69
+Genre: [Comedy, Sci-Fi]
+---------------------------------
+Index: 203
+Name: Dan Doh!!
+Episodes: 26
+Release Date:03/Apr/2004
+Rating: 55
+Genre: [Adventure, Sports]
+---------------------------------
+Index: 204
+Name: Case Closed
+Episodes: -1
+Release Date:08/Jan/1996
+Rating: 81
+Genre: [Adventure, Comedy, Mystery, Psychological]
+---------------------------------
+Index: 205
+Name: E's Otherwise
+Episodes: 26
+Release Date:01/Apr/2003
+Rating: 57
+Genre: [Adventure, Comedy, Drama, Sci-Fi, Supernatural]
+---------------------------------
+Index: 206
+Name: Eureka Seven
+Episodes: 50
+Release Date:17/Apr/2005
+Rating: 78
+Genre: [Adventure, Drama, Mecha, Romance, Sci-Fi]
+---------------------------------
+Index: 207
+Name: Flame of Recca
+Episodes: 42
+Release Date:19/Jul/1997
+Rating: 68
+Genre: [Action, Adventure]
+---------------------------------
+Index: 208
+Name: Gankutsuou: The Count of Monte Cristo
+Episodes: 24
+Release Date:06/Oct/2004
+Rating: 79
+Genre: [Drama, Mystery, Sci-Fi, Supernatural, Thriller]
+---------------------------------
+Index: 209
+Name: Genshiken
+Episodes: 12
+Release Date:10/Oct/2004
+Rating: 74
+Genre: [Comedy, Slice of Life]
+---------------------------------
+Index: 210
+Name: Girls Bravo
+Episodes: 11
+Release Date:05/Jul/2004
+Rating: 58
+Genre: [Comedy, Ecchi, Romance]
+---------------------------------
+Index: 211
+Name: The Gokusen
+Episodes: 13
+Release Date:06/Jan/2004
+Rating: 69
+Genre: [Comedy, Drama, Slice of Life]
+---------------------------------
+Index: 212
+Name: Gravitation TV
+Episodes: 13
+Release Date:04/Oct/2000
+Rating: 62
+Genre: [Comedy, Music, Romance]
+---------------------------------
+Index: 213
+Name: Agatha Christie's Great Detectives Poirot and Marple
+Episodes: 39
+Release Date:04/Jul/2004
+Rating: 60
+Genre: [Mystery]
+---------------------------------
+Index: 214
+Name: GTO: Great Teacher Onizuka
+Episodes: 43
+Release Date:30/Jun/1999
+Rating: 84
+Genre: [Comedy, Drama, Slice of Life]
+---------------------------------
+Index: 215
+Name: Rave Master
+Episodes: 51
+Release Date:13/Oct/2001
+Rating: 67
+Genre: [Adventure, Comedy, Fantasy, Romance]
+---------------------------------
+Index: 216
+Name: Haruka: Beyond the Stream of Time – A Tale of the Eight Guardians
+Episodes: 26
+Release Date:06/Oct/2004
+Rating: 61
+Genre: [Drama, Fantasy]
+---------------------------------
+Index: 217
+Name: Strawberry 100%
+Episodes: 12
+Release Date:06/Apr/2005
+Rating: 62
+Genre: [Comedy, Ecchi, Romance]
+---------------------------------
+Index: 218
+Name: InuYasha
+Episodes: 167
+Release Date:16/Oct/2000
+Rating: 75
+Genre: [Action, Adventure, Comedy, Fantasy, Romance]
+---------------------------------
+Index: 219
+Name: Zatch Bell!
+Episodes: 150
+Release Date:06/Apr/2003
+Rating: 71
+Genre: [Adventure, Comedy, Supernatural]
+---------------------------------
+Index: 220
+Name: Kyo Kara Maoh! - God (?) Save Our King!
+Episodes: 78
+Release Date:03/Apr/2004
+Rating: 70
+Genre: [Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 221
+Name: Madlax
+Episodes: 26
+Release Date:05/Apr/2004
+Rating: 66
+Genre: [Action, Drama, Mystery, Psychological, Supernatural]
+---------------------------------
+Index: 222
+Name: Haré+Guu
+Episodes: 26
+Release Date:03/Apr/2001
+Rating: 72
+Genre: [Comedy]
+---------------------------------
+Index: 223
+Name: Haré+Guu Deluxe
+Episodes: 6
+Release Date:25/Aug/2002
+Rating: 73
+Genre: [Comedy]
+---------------------------------
+Index: 224
+Name: Jungle wa Itsumo Hare nochi Guu Final
+Episodes: 7
+Release Date:21/Dec/2003
+Rating: 71
+Genre: [Comedy]
+---------------------------------
+Index: 225
+Name: Voices of a Distant Star
+Episodes: 1
+Release Date:02/Feb/2002
+Rating: 65
+Genre: [Drama, Mecha, Romance, Sci-Fi]
+---------------------------------
+Index: 226
+Name: Battle Vixens: Ikki Tousen
+Episodes: 13
+Release Date:30/Jul/2003
+Rating: 58
+Genre: [Action, Ecchi]
+---------------------------------
+Index: 227
+Name: Sheep's Song
+Episodes: 4
+Release Date:25/May/2003
+Rating: 56
+Genre: [Drama, Horror]
+---------------------------------
+Index: 228
+Name: Happy☆Lesson
+Episodes: 5
+Release Date:19/Jul/2001
+Rating: 59
+Genre: [Comedy, Romance]
+---------------------------------
+Index: 229
+Name: Happy☆Lesson (TV)
+Episodes: 13
+Release Date:01/Apr/2002
+Rating: 60
+Genre: [Comedy, Drama, Romance, Slice of Life]
+---------------------------------
+Index: 230
+Name: Happy☆Lesson: Advance
+Episodes: 13
+Release Date:03/Jul/2003
+Rating: 62
+Genre: [Comedy, Romance, Slice of Life]
+---------------------------------
+Index: 231
+Name: Happy☆Lesson: The Final
+Episodes: 3
+Release Date:25/May/2004
+Rating: 60
+Genre: [Comedy, Romance]
+---------------------------------
+Index: 232
+Name: Fighting Spirit
+Episodes: 75
+Release Date:04/Oct/2000
+Rating: 86
+Genre: [Comedy, Drama, Sports]
+---------------------------------
+Index: 233
+Name: Fighting Spirit: Champion Road
+Episodes: 1
+Release Date:18/Apr/2003
+Rating: 80
+Genre: [Comedy, Sports]
+---------------------------------
+Index: 234
+Name: Fighting Spirit: Mashiba vs. Kimura
+Episodes: 1
+Release Date:05/Sep/2003
+Rating: 80
+Genre: [Comedy, Sports]
+---------------------------------
+Index: 235
+Name: Gunparade March
+Episodes: 12
+Release Date:06/Feb/2003
+Rating: 60
+Genre: [Drama, Mecha, Romance, Sci-Fi, Slice of Life]
+---------------------------------
+Index: 236
+Name: Gungrave
+Episodes: 26
+Release Date:07/Oct/2003
+Rating: 74
+Genre: [Action, Drama, Sci-Fi]
+---------------------------------
+Index: 237
+Name: Golden Boy
+Episodes: 6
+Release Date:27/Oct/1995
+Rating: 77
+Genre: [Adventure, Comedy, Ecchi]
+---------------------------------
+Index: 238
+Name: Bleach
+Episodes: 366
+Release Date:05/Oct/2004
+Rating: 73
+Genre: [Action, Adventure, Supernatural]
+---------------------------------
+Index: 239
+Name: Hellsing
+Episodes: 13
+Release Date:11/Oct/2001
+Rating: 70
+Genre: [Action, Horror, Supernatural]
+---------------------------------
+Index: 240
+Name: Gad Guard
+Episodes: 26
+Release Date:16/Apr/2003
+Rating: 60
+Genre: [Adventure, Mecha, Sci-Fi]
+---------------------------------
+Index: 241
+Name: Noir
+Episodes: 26
+Release Date:06/Apr/2001
+Rating: 68
+Genre: [Action, Drama, Mystery]
+---------------------------------
+Index: 242
+Name: Someday's Dreamers
+Episodes: 12
+Release Date:10/Jan/2003
+Rating: 62
+Genre: [Drama, Slice of Life, Supernatural]
+---------------------------------
+Index: 243
+Name: Kiddy Grade
+Episodes: 24
+Release Date:09/Oct/2002
+Rating: 66
+Genre: [Action, Ecchi, Mecha, Sci-Fi]
+---------------------------------
+Index: 244
+Name: Love Love?
+Episodes: 9
+Release Date:04/May/2004
+Rating: 51
+Genre: [Comedy, Ecchi, Romance]
+---------------------------------
+Index: 245
+Name: Mahoromatic - Automatic Maiden
+Episodes: 12
+Release Date:10/Sep/2001
+Rating: 68
+Genre: [Comedy, Ecchi, Romance, Sci-Fi]
+---------------------------------
+Index: 246
+Name: Mahoromatic - Something More Beautiful
+Episodes: 14
+Release Date:26/Sep/2002
+Rating: 67
+Genre: [Comedy, Drama, Ecchi, Romance, Sci-Fi]
+---------------------------------
+Index: 247
+Name: Viewtiful Joe
+Episodes: 51
+Release Date:02/Oct/2004
+Rating: 62
+Genre: [Action, Comedy, Sci-Fi]
+---------------------------------
+Index: 248
+Name: Requiem from the Darkness
+Episodes: 13
+Release Date:04/Oct/2003
+Rating: 66
+Genre: [Fantasy, Horror, Mystery, Psychological, Supernatural]
+---------------------------------
+Index: 249
+Name: Animal Lane
+Episodes: 51
+Release Date:04/Oct/2005
+Rating: 56
+Genre: [Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 250
+Name: Akane Maniax
+Episodes: 3
+Release Date:25/Nov/2004
+Rating: 54
+Genre: [Comedy, Mecha, Romance]
+---------------------------------
+Index: 251
+Name: Angel Heart
+Episodes: 50
+Release Date:04/Oct/2005
+Rating: 64
+Genre: [Action, Romance]
+---------------------------------
+Index: 252
+Name: Anne of Green Gables
+Episodes: 50
+Release Date:07/Jan/1979
+Rating: 77
+Genre: [Drama, Slice of Life]
+---------------------------------
+Index: 253
+Name: Area 88 (TV)
+Episodes: 12
+Release Date:09/Jan/2004
+Rating: 64
+Genre: [Action, Drama, Romance]
+---------------------------------
+Index: 254
+Name: Argento Soma
+Episodes: 25
+Release Date:06/Oct/2000
+Rating: 62
+Genre: [Action, Adventure, Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 255
+Name: B't X
+Episodes: 25
+Release Date:06/Apr/1996
+Rating: 62
+Genre: [Adventure, Mecha, Sci-Fi]
+---------------------------------
+Index: 256
+Name: Baki the Grappler
+Episodes: 24
+Release Date:09/Jan/2001
+Rating: 71
+Genre: [Sports]
+---------------------------------
+Index: 257
+Name: Beyblade
+Episodes: 51
+Release Date:08/Jan/2001
+Rating: 63
+Genre: [Action, Adventure, Comedy, Sci-Fi, Sports]
+---------------------------------
+Index: 258
+Name: Comic Party
+Episodes: 13
+Release Date:02/Apr/2001
+Rating: 61
+Genre: [Comedy, Drama]
+---------------------------------
+Index: 259
+Name: Crest of the Stars
+Episodes: 13
+Release Date:02/Jan/1999
+Rating: 73
+Genre: [Action, Romance, Sci-Fi]
+---------------------------------
+Index: 260
+Name: D.C.S.S. ~Da Capo Second Season~
+Episodes: 26
+Release Date:02/Jul/2005
+Rating: 64
+Genre: [Comedy, Drama, Romance, Supernatural]
+---------------------------------
+Index: 261
+Name: Hoop Days
+Episodes: 26
+Release Date:07/Apr/2003
+Rating: 60
+Genre: [Drama, Sports]
+---------------------------------
+Index: 262
+Name: Di Gi Charat
+Episodes: 16
+Release Date:30/Nov/1999
+Rating: 62
+Genre: [Comedy, Fantasy, Sci-Fi]
+---------------------------------
+Index: 263
+Name: Divergence Eve
+Episodes: 13
+Release Date:02/Jul/2003
+Rating: 49
+Genre: [Adventure, Comedy, Drama, Horror, Mecha, Sci-Fi]
+---------------------------------
+Index: 264
+Name: Misaki Chronicle: Divergence Eve
+Episodes: 13
+Release Date:03/Jan/2004
+Rating: 53
+Genre: [Mecha, Sci-Fi]
+---------------------------------
+Index: 265
+Name: Dragon Drive
+Episodes: 38
+Release Date:04/Jul/2002
+Rating: 60
+Genre: [Action, Adventure, Comedy, Fantasy, Sci-Fi]
+---------------------------------
+Index: 266
+Name: Grenadier: The Beautiful Warrior
+Episodes: 12
+Release Date:14/Oct/2004
+Rating: 62
+Genre: [Adventure, Comedy, Ecchi]
+---------------------------------
+Index: 267
+Name: .hack//Legend Of The Twilight
+Episodes: 12
+Release Date:09/Jan/2003
+Rating: 61
+Genre: [Adventure, Comedy, Fantasy, Sci-Fi]
+---------------------------------
+Index: 268
+Name: .hack//Liminality
+Episodes: 4
+Release Date:20/Jun/2002
+Rating: 62
+Genre: [Mystery, Sci-Fi]
+---------------------------------
+Index: 269
+Name: 3x3 Eyes
+Episodes: 4
+Release Date:25/Jul/1991
+Rating: 61
+Genre: [Action, Fantasy, Horror, Romance]
+---------------------------------
+Index: 270
+Name: Cinderella Boy
+Episodes: 13
+Release Date:24/Jun/2003
+Rating: 57
+Genre: [Action, Adventure, Comedy, Mystery]
+---------------------------------
+Index: 271
+Name: Future Boy Conan
+Episodes: 26
+Release Date:04/Apr/1978
+Rating: 76
+Genre: [Adventure, Drama, Sci-Fi]
+---------------------------------
+Index: 272
+Name: Oh! My Goddess: The Adventures of Mini-Goddess
+Episodes: 48
+Release Date:06/Apr/1998
+Rating: 63
+Genre: [Comedy, Supernatural]
+---------------------------------
+Index: 273
+Name: Ah! My Goddess: The Movie
+Episodes: 1
+Release Date:21/Oct/2000
+Rating: 72
+Genre: [Drama, Romance, Supernatural]
+---------------------------------
+Index: 274
+Name: Abashiri Ikka
+Episodes: 4
+Release Date:21/May/1991
+Rating: 47
+Genre: [Action, Comedy]
+---------------------------------
+Index: 275
+Name: Magical Shopping Arcade Abenobashi
+Episodes: 13
+Release Date:04/Apr/2002
+Rating: 69
+Genre: [Comedy, Ecchi, Fantasy]
+---------------------------------
+Index: 276
+Name: Kerokko Demetan
+Episodes: 39
+Release Date:02/Jan/1973
+Rating: 0
+Genre: [Comedy]
+---------------------------------
+Index: 277
+Name: Zettai Shounen
+Episodes: 26
+Release Date:21/May/2005
+Rating: 62
+Genre: [Drama, Fantasy, Mystery, Sci-Fi]
+---------------------------------
+Index: 278
+Name: Zettai Seigi Love Pheromone
+Episodes: 13
+Release Date:05/Jul/2005
+Rating: 52
+Genre: [Comedy]
+---------------------------------
+Index: 279
+Name: Three Little Ghosts
+Episodes: 50
+Release Date:09/Apr/1991
+Rating: 0
+Genre: [Comedy, Supernatural]
+---------------------------------
+Index: 280
+Name: Ace wo Nerae!
+Episodes: 26
+Release Date:05/Oct/1973
+Rating: 65
+Genre: [Drama, Sports]
+---------------------------------
+Index: 281
+Name: Ace wo Nerae: Final Stage
+Episodes: 12
+Release Date:25/Oct/1989
+Rating: 55
+Genre: [Action, Sports]
+---------------------------------
+Index: 282
+Name: Aim for the Ace! (1979)
+Episodes: 1
+Release Date:08/Sep/1979
+Rating: 63
+Genre: [Drama, Romance, Sports]
+---------------------------------
+Index: 283
+Name: Ace wo Nerae! 2
+Episodes: 13
+Release Date:25/Jul/1988
+Rating: 60
+Genre: [Drama, Sports]
+---------------------------------
+Index: 284
+Name: A Chinese Ghost Story
+Episodes: 1
+Release Date:31/Jul/1997
+Rating: 52
+Genre: [Action, Drama, Fantasy, Romance]
+---------------------------------
+Index: 285
+Name: Final Fantasy VII: Advent Children
+Episodes: 1
+Release Date:14/Sep/2005
+Rating: 71
+Genre: [Action, Fantasy]
+---------------------------------
+Index: 286
+Name: Hand Maid May
+Episodes: 10
+Release Date:26/Jul/2000
+Rating: 61
+Genre: [Comedy, Romance, Sci-Fi]
+---------------------------------
+Index: 287
+Name: Happy World!
+Episodes: 3
+Release Date:13/Dec/2002
+Rating: 53
+Genre: [Comedy, Ecchi, Fantasy, Romance]
+---------------------------------
+Index: 288
+Name: Najica Blitz Tactics
+Episodes: 12
+Release Date:05/Oct/2001
+Rating: 54
+Genre: [Action, Comedy, Ecchi, Sci-Fi]
+---------------------------------
+Index: 289
+Name: Paradise Kiss
+Episodes: 12
+Release Date:13/Oct/2005
+Rating: 74
+Genre: [Comedy, Drama, Romance, Slice of Life]
+---------------------------------
+Index: 290
+Name: Paranoia Agent
+Episodes: 13
+Release Date:03/Feb/2004
+Rating: 75
+Genre: [Drama, Mystery, Psychological, Supernatural, Thriller]
+---------------------------------
+Index: 291
+Name: Patlabor the Mobile Police
+Episodes: 47
+Release Date:11/Oct/1989
+Rating: 74
+Genre: [Comedy, Mecha, Sci-Fi]
+---------------------------------
+Index: 292
+Name: Peach Girl: Super Pop Love Hurricane
+Episodes: 25
+Release Date:08/Jan/2005
+Rating: 63
+Genre: [Drama, Romance, Slice of Life]
+---------------------------------
+Index: 293
+Name: Petshop of Horrors
+Episodes: 4
+Release Date:02/Mar/1999
+Rating: 66
+Genre: [Horror, Mystery, Psychological, Supernatural]
+---------------------------------
+Index: 294
+Name: Petite Princess Yucie
+Episodes: 26
+Release Date:30/Sep/2002
+Rating: 64
+Genre: [Comedy, Fantasy]
+---------------------------------
+Index: 295
+Name: Piano: The Melody of a Young Girl's Heart
+Episodes: 10
+Release Date:11/Nov/2002
+Rating: 52
+Genre: [Drama, Music, Romance, Slice of Life]
+---------------------------------
+Index: 296
+Name: Planetes
+Episodes: 26
+Release Date:04/Oct/2003
+Rating: 80
+Genre: [Drama, Romance, Sci-Fi, Slice of Life]
+---------------------------------
+Index: 297
+Name: Midori Days
+Episodes: 13
+Release Date:04/Apr/2004
+Rating: 69
+Genre: [Comedy, Drama, Ecchi, Romance, Slice of Life, Supernatural]
+---------------------------------
+Index: 298
+Name: Magical Circle Guru Guru
+Episodes: 45
+Release Date:13/Oct/1994
+Rating: 68
+Genre: [Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 299
+Name: Magical Circle Guru Guru 2
+Episodes: 38
+Release Date:04/Apr/2000
+Rating: 64
+Genre: [Comedy, Fantasy]
+---------------------------------
+Index: 300
+Name: Mama wa Shougaku 4 Nensei
+Episodes: 51
+Release Date:10/Jan/1992
+Rating: 63
+Genre: [Comedy, Drama, Sci-Fi]
+---------------------------------
+Index: 301
+Name: Marmalade Boy
+Episodes: 76
+Release Date:13/Mar/1994
+Rating: 68
+Genre: [Comedy, Drama, Romance, Slice of Life]
+---------------------------------
+Index: 302
+Name: Mythical Detective Loki Ragnarok
+Episodes: 26
+Release Date:05/Apr/2003
+Rating: 67
+Genre: [Comedy, Mystery, Supernatural]
+---------------------------------
+Index: 303
+Name: Ginyuu Mokushiroku Meine Liebe
+Episodes: 13
+Release Date:04/Nov/2004
+Rating: 53
+Genre: [Drama, Fantasy]
+---------------------------------
+Index: 304
+Name: Psychic Academy
+Episodes: 24
+Release Date:29/Mar/2002
+Rating: 54
+Genre: [Comedy, Romance, Supernatural]
+---------------------------------
+Index: 305
+Name: Rose of Versailles
+Episodes: 40
+Release Date:10/Oct/1979
+Rating: 80
+Genre: [Adventure, Drama, Romance]
+---------------------------------
+Index: 306
+Name: Serial Experiments Lain
+Episodes: 13
+Release Date:06/Jul/1998
+Rating: 79
+Genre: [Drama, Mystery, Psychological, Sci-Fi, Supernatural]
+---------------------------------
+Index: 307
+Name: Time of Shura
+Episodes: 26
+Release Date:06/Apr/2004
+Rating: 69
+Genre: [Action]
+---------------------------------
+Index: 308
+Name: Spiral: Bond of Reasoning
+Episodes: 25
+Release Date:01/Oct/2002
+Rating: 66
+Genre: [Comedy, Drama, Mystery]
+---------------------------------
+Index: 309
+Name: Starship Operators
+Episodes: 13
+Release Date:05/Jan/2005
+Rating: 63
+Genre: [Drama, Sci-Fi]
+---------------------------------
+Index: 310
+Name: MoonPhase
+Episodes: 25
+Release Date:04/Oct/2004
+Rating: 64
+Genre: [Comedy, Fantasy, Romance]
+---------------------------------
+Index: 311
+Name: Twin Spica
+Episodes: 20
+Release Date:01/Nov/2003
+Rating: 66
+Genre: [Drama, Sci-Fi, Supernatural]
+---------------------------------
+Index: 312
+Name: Emma: A Victorian Romance
+Episodes: 12
+Release Date:03/Apr/2005
+Rating: 73
+Genre: [Drama, Romance, Slice of Life]
+---------------------------------
+Index: 313
+Name: Double Wish
+Episodes: 13
+Release Date:03/Oct/2004
+Rating: 54
+Genre: [Drama, Romance, Slice of Life]
+---------------------------------
+Index: 314
+Name: Wild Arms: Twilight Venom
+Episodes: 22
+Release Date:18/Oct/1999
+Rating: 56
+Genre: [Action, Adventure, Fantasy, Sci-Fi]
+---------------------------------
+Index: 315
+Name: Bottle Fairy
+Episodes: 13
+Release Date:03/Oct/2003
+Rating: 59
+Genre: [Comedy, Fantasy, Slice of Life]
+---------------------------------
+Index: 316
+Name: Magical Kanan
+Episodes: 13
+Release Date:01/Jan/2005
+Rating: 51
+Genre: [Drama, Fantasy, Mahou Shoujo, Supernatural]
+---------------------------------
+Index: 317
+Name: Magical DoReMi
+Episodes: 51
+Release Date:07/Feb/1999
+Rating: 71
+Genre: [Comedy, Mahou Shoujo]
+---------------------------------
+Index: 318
+Name: Ojamajo Doremi Sharp
+Episodes: 49
+Release Date:06/Feb/2000
+Rating: 72
+Genre: [Comedy, Mahou Shoujo]
+---------------------------------
+Index: 319
+Name: More! Useless Witch Doremi
+Episodes: 50
+Release Date:04/Feb/2001
+Rating: 72
+Genre: [Comedy, Fantasy, Mahou Shoujo]
+---------------------------------
+Index: 320
+Name: Useless Witch Doremi Kaboom!
+Episodes: 51
+Release Date:03/Feb/2002
+Rating: 75
+Genre: [Comedy, Mahou Shoujo]
+---------------------------------
+Index: 321
+Name: Ultimate Girls
+Episodes: 12
+Release Date:10/Jan/2005
+Rating: 50
+Genre: [Comedy, Ecchi, Sci-Fi]
+---------------------------------
+Index: 322
+Name: Shakugan no Shana
+Episodes: 24
+Release Date:06/Oct/2005
+Rating: 71
+Genre: [Action, Comedy, Drama, Fantasy, Romance]
+---------------------------------
+Index: 323
+Name: Fate/stay night
+Episodes: 24
+Release Date:07/Jan/2006
+Rating: 68
+Genre: [Action, Fantasy, Romance, Supernatural]
+---------------------------------
+Index: 324
+Name: Bludgeoning Angel Dokuro-chan
+Episodes: 4
+Release Date:13/Mar/2005
+Rating: 61
+Genre: [Comedy, Ecchi]
+---------------------------------
+Index: 325
+Name: Iriya no Sora, UFO no Natsu
+Episodes: 6
+Release Date:28/Jan/2005
+Rating: 64
+Genre: [Drama, Romance, Sci-Fi]
+---------------------------------
+Index: 326
+Name: I'll/CKBC
+Episodes: 2
+Release Date:18/Dec/2002
+Rating: 54
+Genre: [Action, Drama, Sports]
+---------------------------------
+Index: 327
+Name: Legend of Himiko
+Episodes: 12
+Release Date:07/Jan/1999
+Rating: 53
+Genre: [Adventure, Drama, Fantasy, Supernatural]
+---------------------------------
+Index: 328
+Name: Memories Off
+Episodes: 3
+Release Date:21/Nov/2001
+Rating: 50
+Genre: [Drama, Romance]
+---------------------------------
+Index: 329
+Name: Memories Off 2nd
+Episodes: 3
+Release Date:22/Jan/2003
+Rating: 54
+Genre: [Drama, Romance]
+---------------------------------
+Index: 330
+Name: Memories Off 3.5: Omoide no Kanata e
+Episodes: 4
+Release Date:12/May/2004
+Rating: 52
+Genre: [Drama, Romance]
+---------------------------------
+Index: 331
+Name: Gallery Fake
+Episodes: 37
+Release Date:08/Jan/2005
+Rating: 67
+Genre: [Mystery]
+---------------------------------
+Index: 332
+Name: Fake
+Episodes: 1
+Release Date:21/Apr/1998
+Rating: 58
+Genre: [Comedy, Mystery, Romance]
+---------------------------------
+Index: 333
+Name: Agent Aika
+Episodes: 7
+Release Date:25/Apr/1997
+Rating: 55
+Genre: [Action, Adventure, Comedy, Ecchi, Sci-Fi]
+---------------------------------
+Index: 334
+Name: Akazukin Chacha OVA
+Episodes: 3
+Release Date:06/Dec/1995
+Rating: 58
+Genre: [Comedy, Fantasy]
+---------------------------------
+Index: 335
+Name: Boogiepop Phantom
+Episodes: 12
+Release Date:05/Jan/2000
+Rating: 69
+Genre: [Drama, Horror, Mystery, Psychological, Supernatural]
+---------------------------------
+Index: 336
+Name: Burn Up Excess
+Episodes: 13
+Release Date:12/Dec/1997
+Rating: 59
+Genre: [Action, Adventure, Comedy, Ecchi, Sci-Fi]
+---------------------------------
+Index: 337
+Name: Cardcaptor Sakura: The Movie
+Episodes: 1
+Release Date:21/Aug/1999
+Rating: 74
+Genre: [Comedy, Fantasy, Mahou Shoujo]
+---------------------------------
+Index: 338
+Name: Cardcaptor Sakura the Movie 2: The Sealed Card
+Episodes: 1
+Release Date:15/Jul/2000
+Rating: 80
+Genre: [Drama, Fantasy, Mahou Shoujo, Romance]
+---------------------------------
+Index: 339
+Name: All Purpose Cultural Cat Girl Nuku Nuku
+Episodes: 6
+Release Date:21/Oct/1992
+Rating: 60
+Genre: [Action, Adventure, Comedy, Mecha, Sci-Fi]
+---------------------------------
+Index: 340
+Name: All Purpose Cultural Cat Girl Nuku Nuku Dash!
+Episodes: 12
+Release Date:23/Sep/1998
+Rating: 55
+Genre: [Action, Comedy, Ecchi, Romance, Sci-Fi]
+---------------------------------
+Index: 341
+Name: All Purpose Cultural Cat Girl Nuku Nuku TV
+Episodes: 12
+Release Date:07/Jan/1998
+Rating: 58
+Genre: [Action, Adventure, Comedy, Mecha, Sci-Fi]
+---------------------------------
+Index: 342
+Name: Elfen Lied: In the Passing Rain
+Episodes: 1
+Release Date:21/Apr/2005
+Rating: 65
+Genre: [Action, Drama, Ecchi, Horror, Psychological, Romance, Supernatural]
+---------------------------------
+Index: 343
+Name: éX-Driver
+Episodes: 6
+Release Date:25/Jul/2000
+Rating: 61
+Genre: [Action, Sci-Fi]
+---------------------------------
+Index: 344
+Name: éX-Driver the Movie
+Episodes: 1
+Release Date:20/Apr/2002
+Rating: 58
+Genre: [Adventure, Comedy, Sci-Fi]
+---------------------------------
+Index: 345
+Name: Quack Experimental Anime Excel Saga
+Episodes: 26
+Release Date:08/Oct/1999
+Rating: 70
+Genre: [Comedy, Sci-Fi]
+---------------------------------
+Index: 346
+Name: Mysterious Play OVA
+Episodes: 3
+Release Date:25/Oct/1996
+Rating: 65
+Genre: [Adventure, Drama, Fantasy, Romance]
+---------------------------------
+Index: 347
+Name: Mysterious Play OVA 2
+Episodes: 6
+Release Date:25/May/1997
+Rating: 66
+Genre: [Adventure, Drama, Fantasy, Romance]
+---------------------------------
+Index: 348
+Name: Step Up Love Story
+Episodes: 4
+Release Date:26/Jul/2002
+Rating: 58
+Genre: [Comedy, Ecchi, Romance, Slice of Life]
+---------------------------------
+Index: 349
+Name: Galaxy Angel
+Episodes: 25
+Release Date:07/Apr/2001
+Rating: 66
+Genre: [Comedy, Sci-Fi]
+---------------------------------
+Index: 350
+Name: Gantz
+Episodes: 13
+Release Date:12/Apr/2004
+Rating: 64
+Genre: [Action, Drama, Ecchi, Horror, Psychological, Sci-Fi, Supernatural]
+---------------------------------
+Index: 351
+Name: Gilgamesh
+Episodes: 26
+Release Date:02/Nov/2003
+Rating: 57
+Genre: [Drama, Fantasy, Sci-Fi]
+---------------------------------
+Index: 352
+Name: H2
+Episodes: 41
+Release Date:01/Jun/1995
+Rating: 65
+Genre: [Comedy, Romance, Sports]
+---------------------------------
+Index: 353
+Name: Haibane Renmei
+Episodes: 13
+Release Date:10/Oct/2002
+Rating: 79
+Genre: [Drama, Fantasy, Mystery, Psychological, Slice of Life]
+---------------------------------
+Index: 354
+Name: Capeta
+Episodes: 52
+Release Date:04/Oct/2005
+Rating: 74
+Genre: [Drama, Sports]
+---------------------------------
+Index: 355
+Name: Karas
+Episodes: 6
+Release Date:25/Mar/2005
+Rating: 68
+Genre: [Action, Fantasy, Sci-Fi]
+---------------------------------
+Index: 356
+Name: Suzuka
+Episodes: 26
+Release Date:07/Jul/2005
+Rating: 67
+Genre: [Drama, Romance, Sports]
+---------------------------------
+Index: 357
+Name: Tales of Phantasia
+Episodes: 4
+Release Date:25/Nov/2004
+Rating: 63
+Genre: [Adventure, Fantasy]
+---------------------------------
+Index: 358
+Name: Yu Yu Hakusho: Ghostfiles
+Episodes: 112
+Release Date:10/Oct/1992
+Rating: 82
+Genre: [Action, Adventure, Comedy, Supernatural]
+---------------------------------
+Index: 359
+Name: Escaflowne: A Girl in Gaea
+Episodes: 1
+Release Date:24/Jun/2000
+Rating: 65
+Genre: [Adventure, Drama, Fantasy, Mecha, Romance, Sci-Fi]
+---------------------------------
+Index: 360
+Name: Ai Yori Aoshi: Enishi
+Episodes: 12
+Release Date:13/Oct/2003
+Rating: 67
+Genre: [Comedy, Drama, Romance, Slice of Life]
+---------------------------------
+Index: 361
+Name: Banner of the Stars
+Episodes: 13
+Release Date:14/Apr/2000
+Rating: 73
+Genre: [Action, Romance, Sci-Fi]
+---------------------------------
+Index: 362
+Name: Banner of the Stars II
+Episodes: 10
+Release Date:11/Jul/2001
+Rating: 74
+Genre: [Action, Romance, Sci-Fi]
+---------------------------------
+Index: 363
+Name: Banner of the Stars III
+Episodes: 2
+Release Date:06/Aug/2005
+Rating: 72
+Genre: [Action, Romance, Sci-Fi]
+---------------------------------
+Index: 364
+Name: Battle Flag of the Stars Tokubetsu-hen
+Episodes: 1
+Release Date:04/Jul/2001
+Rating: 59
+Genre: [Action, Romance, Sci-Fi]
+---------------------------------
+Index: 365
+Name: Outlaw Star
+Episodes: 24
+Release Date:08/Jan/1998
+Rating: 74
+Genre: [Action, Adventure, Comedy, Sci-Fi]
+---------------------------------
+Index: 366
+Name: Samurai X: Reflection
+Episodes: 2
+Release Date:03/Dec/2001
+Rating: 74
+Genre: [Drama, Romance]
+---------------------------------
+Index: 367
+Name: Otogi-Jushi Akazukin OVA
+Episodes: 1
+Release Date:20/Feb/2005
+Rating: 54
+Genre: [Adventure]
+---------------------------------
+Index: 368
+Name: Hanaukyo Maids
+Episodes: 12
+Release Date:12/Apr/2001
+Rating: 60
+Genre: [Comedy, Ecchi, Romance]
+---------------------------------
+Index: 369
+Name: Bastard!!
+Episodes: 6
+Release Date:25/Aug/1992
+Rating: 61
+Genre: [Action, Adventure, Comedy, Ecchi, Fantasy]
+---------------------------------
+Index: 370
+Name: Blood: The Last Vampire
+Episodes: 1
+Release Date:18/Nov/2000
+Rating: 65
+Genre: [Horror, Supernatural]
+---------------------------------
+Index: 371
+Name: Buzzer Beater
+Episodes: 13
+Release Date:05/Feb/2005
+Rating: 58
+Genre: [Action, Sci-Fi, Sports]
+---------------------------------
+Index: 372
+Name: Detective School Q
+Episodes: 45
+Release Date:15/Apr/2003
+Rating: 73
+Genre: [Comedy, Drama, Mystery]
+---------------------------------
+Index: 373
+Name: Final Fantasy VII: Last Order
+Episodes: 1
+Release Date:14/Sep/2005
+Rating: 67
+Genre: [Action, Adventure, Drama, Fantasy, Sci-Fi]
+---------------------------------
+Index: 374
+Name: Gun x Sword
+Episodes: 26
+Release Date:04/Jul/2005
+Rating: 69
+Genre: [Action, Adventure, Drama, Mecha, Sci-Fi]
+---------------------------------
+Index: 375
+Name: He is My Master
+Episodes: 12
+Release Date:08/Apr/2005
+Rating: 60
+Genre: [Comedy, Ecchi, Slice of Life]
+---------------------------------
+Index: 376
+Name: Mars of Destruction
+Episodes: 1
+Release Date:06/Jul/2005
+Rating: 19
+Genre: [Action, Horror, Sci-Fi]
+---------------------------------
+Index: 377
+Name: My Neighbors the Yamadas
+Episodes: 1
+Release Date:17/Jul/1999
+Rating: 68
+Genre: [Comedy, Slice of Life]
+---------------------------------
+Index: 378
+Name: Porco Rosso
+Episodes: 1
+Release Date:18/Jul/1992
+Rating: 77
+Genre: [Action, Adventure, Comedy, Drama, Romance]
+---------------------------------
+Index: 379
+Name: Ragnarok the Animation
+Episodes: 26
+Release Date:07/Apr/2004
+Rating: 59
+Genre: [Action, Fantasy]
+---------------------------------
+Index: 380
+Name: Ranma ½: Big Trouble in Nekonron, China
+Episodes: 1
+Release Date:02/Nov/1991
+Rating: 67
+Genre: [Adventure, Comedy]
+---------------------------------
+Index: 381
+Name: Samurai Deeper Kyo
+Episodes: 26
+Release Date:02/Jul/2002
+Rating: 62
+Genre: [Adventure, Comedy, Supernatural]
+---------------------------------
+Index: 382
+Name: Spriggan
+Episodes: 1
+Release Date:05/Sep/1998
+Rating: 62
+Genre: [Action, Adventure, Sci-Fi]
+---------------------------------
+Index: 383
+Name: Stratos 4
+Episodes: 13
+Release Date:05/Jan/2003
+Rating: 60
+Genre: [Comedy, Sci-Fi]
+---------------------------------
+Index: 384
+Name: Stratos 4 OVA
+Episodes: 2
+Release Date:25/May/2004
+Rating: 57
+Genre: [Comedy, Sci-Fi]
+---------------------------------
+Index: 385
+Name: Stratos 4 Advance
+Episodes: 6
+Release Date:05/Mar/2005
+Rating: 58
+Genre: [Comedy, Sci-Fi]
+---------------------------------
+Index: 386
+Name: Dirty Pair
+Episodes: 24
+Release Date:15/Jul/1985
+Rating: 68
+Genre: [Action, Adventure, Comedy, Ecchi, Sci-Fi]
+---------------------------------
+Index: 387
+Name: Araiso Private High School Student Council Executive Committee
+Episodes: 2
+Release Date:29/Mar/2002
+Rating: 54
+Genre: [Action, Comedy, Mystery, Sports, Supernatural]
+---------------------------------
+Index: 388
+Name: Legend of the Crystals: Final Fantasy
+Episodes: 4
+Release Date:21/Mar/1994
+Rating: 53
+Genre: [Action, Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 389
+Name: Kaleido Star
+Episodes: 51
+Release Date:03/Apr/2003
+Rating: 75
+Genre: [Comedy, Drama, Fantasy, Sports]
+---------------------------------
+Index: 390
+Name: Kaleido Star: New Wings Extra Stage
+Episodes: 1
+Release Date:24/Sep/2004
+Rating: 69
+Genre: [Adventure, Comedy, Drama]
+---------------------------------
+Index: 391
+Name: Kaleido Star: Legend of Phoenix
+Episodes: 1
+Release Date:11/Dec/2005
+Rating: 73
+Genre: [Comedy, Drama]
+---------------------------------
+Index: 392
+Name: Fullmetal Alchemist: The Movie - Conqueror of Shamballa
+Episodes: 1
+Release Date:23/Jul/2005
+Rating: 71
+Genre: [Comedy, Drama, Fantasy]
+---------------------------------
+Index: 393
+Name: Howl‘s Moving Castle
+Episodes: 1
+Release Date:20/Nov/2004
+Rating: 84
+Genre: [Adventure, Drama, Fantasy, Romance]
+---------------------------------
+Index: 394
+Name: The Place Promised in Our Early Days
+Episodes: 1
+Release Date:20/Nov/2004
+Rating: 70
+Genre: [Drama, Romance, Sci-Fi]
+---------------------------------
+Index: 395
+Name: Legend of Lemnear
+Episodes: 1
+Release Date:25/Jul/1989
+Rating: 50
+Genre: [Action, Adventure, Fantasy]
+---------------------------------
+Index: 396
+Name: Magic Knight Rayearth
+Episodes: 20
+Release Date:17/Oct/1994
+Rating: 70
+Genre: [Adventure, Comedy, Drama, Fantasy, Mahou Shoujo, Mecha]
+---------------------------------
+Index: 397
+Name: Perfect Blue
+Episodes: 1
+Release Date:28/Feb/1998
+Rating: 84
+Genre: [Drama, Horror, Psychological]
+---------------------------------
+Index: 398
+Name: Phantom: The Animation
+Episodes: 3
+Release Date:27/Feb/2004
+Rating: 60
+Genre: [Action, Drama, Thriller]
+---------------------------------
+Index: 399
+Name: RG Veda
+Episodes: 2
+Release Date:01/Jun/1991
+Rating: 52
+Genre: [Adventure, Drama, Fantasy]
+---------------------------------
+Index: 400
+Name: Revolutionary Girl Utena
+Episodes: 39
+Release Date:02/Apr/1997
+Rating: 81
+Genre: [Drama, Fantasy, Mystery, Psychological, Romance]
+---------------------------------
+Index: 401
+Name: Revolutionary Girl Utena: The Adolescence of Utena
+Episodes: 1
+Release Date:14/Aug/1999
+Rating: 76
+Genre: [Drama, Fantasy, Romance]
+---------------------------------
+Index: 402
+Name: Naruto the Movie: Ninja Clash in the Land of Snow
+Episodes: 1
+Release Date:21/Aug/2004
+Rating: 67
+Genre: [Adventure, Comedy, Drama, Supernatural]
+---------------------------------
+Index: 403
+Name: Please☆Teacher!: Secret Couple
+Episodes: 1
+Release Date:25/Oct/2002
+Rating: 67
+Genre: [Comedy, Ecchi, Romance, Sci-Fi]
+---------------------------------
+Index: 404
+Name: Maria Watches Over Us: Printemps
+Episodes: 13
+Release Date:04/Jul/2004
+Rating: 73
+Genre: [Drama, Romance]
+---------------------------------
+Index: 405
+Name: Tales of Eternia
+Episodes: 13
+Release Date:08/Jan/2001
+Rating: 56
+Genre: [Adventure, Comedy, Fantasy, Romance]
+---------------------------------
+Index: 406
+Name: Knight Hunters Eternity
+Episodes: 13
+Release Date:28/Nov/2002
+Rating: 55
+Genre: [Action, Drama]
+---------------------------------
+Index: 407
+Name: Knight Hunters
+Episodes: 25
+Release Date:09/Apr/1998
+Rating: 57
+Genre: [Action, Drama]
+---------------------------------
+Index: 408
+Name: Tenjho Tenge: The Ultimate Fight
+Episodes: 2
+Release Date:16/Mar/2005
+Rating: 65
+Genre: [Adventure, Drama, Romance, Supernatural]
+---------------------------------
+Index: 409
+Name: InuYasha the Movie 4: Fire on the Mystic Island
+Episodes: 1
+Release Date:23/Dec/2004
+Rating: 72
+Genre: [Adventure, Comedy, Drama, Romance]
+---------------------------------
+Index: 410
+Name: InuYasha the Movie 2: The Castle Beyond the Looking Glass
+Episodes: 1
+Release Date:21/Dec/2002
+Rating: 73
+Genre: [Adventure, Drama, Fantasy, Romance]
+---------------------------------
+Index: 411
+Name: InuYasha the Movie 3: Swords of an Honorable Ruler
+Episodes: 1
+Release Date:20/Dec/2003
+Rating: 74
+Genre: [Adventure, Comedy, Drama, Fantasy]
+---------------------------------
+Index: 412
+Name: InuYasha the Movie: Affections Touching Across Time
+Episodes: 1
+Release Date:22/Dec/2001
+Rating: 71
+Genre: [Adventure, Comedy, Drama, Fantasy, Romance]
+---------------------------------
+Index: 413
+Name: .hack//Gift
+Episodes: 1
+Release Date:16/Nov/2003
+Rating: 55
+Genre: [Comedy, Fantasy]
+---------------------------------
+Index: 414
+Name: Fantastic Children
+Episodes: 26
+Release Date:05/Oct/2004
+Rating: 71
+Genre: [Adventure, Fantasy, Mystery, Romance, Sci-Fi]
+---------------------------------
+Index: 415
+Name: Best Student Council
+Episodes: 26
+Release Date:07/Apr/2005
+Rating: 63
+Genre: [Comedy, Slice of Life]
+---------------------------------
+Index: 416
+Name: MUSHI-SHI
+Episodes: 26
+Release Date:23/Oct/2005
+Rating: 85
+Genre: [Adventure, Fantasy, Mystery, Slice of Life, Supernatural]
+---------------------------------
+Index: 417
+Name: I Dream of Mimi
+Episodes: 3
+Release Date:25/Apr/1997
+Rating: 56
+Genre: [Comedy, Ecchi, Sci-Fi]
+---------------------------------
+Index: 418
+Name: One Piece Movie 01
+Episodes: 1
+Release Date:04/Mar/2000
+Rating: 67
+Genre: [Action, Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 419
+Name: One Piece Movie 02: Clockwork Island Adventure
+Episodes: 1
+Release Date:03/Mar/2001
+Rating: 67
+Genre: [Action, Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 420
+Name: One Piece Movie 03: Chopper Kingdom of Strange Animal Island
+Episodes: 1
+Release Date:02/Mar/2002
+Rating: 65
+Genre: [Action, Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 421
+Name: One Piece Movie 04: Dead End
+Episodes: 1
+Release Date:01/Mar/2003
+Rating: 72
+Genre: [Action, Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 422
+Name: One Piece Movie 05: The Curse of the Sacred Sword
+Episodes: 1
+Release Date:06/Mar/2004
+Rating: 68
+Genre: [Action, Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 423
+Name: One Piece: Baron Omatsuri and the Secret Island
+Episodes: 1
+Release Date:05/Mar/2005
+Rating: 75
+Genre: [Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 424
+Name: ONE PIECE Mega Mecha Soldier of Karakuri Castle
+Episodes: 1
+Release Date:04/Mar/2006
+Rating: 69
+Genre: [Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 425
+Name: One Piece: Defeat the Pirate Ganzack!
+Episodes: 1
+Release Date:26/Jul/1998
+Rating: 63
+Genre: [Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 426
+Name: Ghost in the Shell: Stand Alone Complex
+Episodes: 26
+Release Date:01/Oct/2002
+Rating: 82
+Genre: [Action, Sci-Fi]
+---------------------------------
+Index: 427
+Name: Ghost in the Shell 2: Innocence
+Episodes: 1
+Release Date:06/Mar/2004
+Rating: 75
+Genre: [Action, Psychological, Sci-Fi]
+---------------------------------
+Index: 428
+Name: Karin: Chibi Vampire
+Episodes: 24
+Release Date:03/Nov/2005
+Rating: 67
+Genre: [Comedy, Romance]
+---------------------------------
+Index: 429
+Name: My Wife is a High School Girl
+Episodes: 13
+Release Date:02/Jul/2005
+Rating: 56
+Genre: [Comedy, Drama, Romance, Slice of Life]
+---------------------------------
+Index: 430
+Name: To Heart 2
+Episodes: 13
+Release Date:03/Oct/2005
+Rating: 59
+Genre: [Comedy, Drama, Romance, Slice of Life]
+---------------------------------
+Index: 431
+Name: To Heart
+Episodes: 13
+Release Date:02/Apr/1999
+Rating: 61
+Genre: [Drama, Romance, Slice of Life]
+---------------------------------
+Index: 432
+Name: Tide-Line Blue
+Episodes: 13
+Release Date:07/Jul/2005
+Rating: 58
+Genre: [Action, Adventure, Drama]
+---------------------------------
+Index: 433
+Name: Macross Plus
+Episodes: 4
+Release Date:25/Aug/1994
+Rating: 74
+Genre: [Action, Drama, Mecha, Music, Sci-Fi]
+---------------------------------
+Index: 434
+Name: Hotori: Tada Saiwai wo Koinegau
+Episodes: 1
+Release Date:28/Aug/2005
+Rating: 63
+Genre: [Drama, Sci-Fi]
+---------------------------------
+Index: 435
+Name: Skating Rink Kaleidoscope
+Episodes: 12
+Release Date:09/Oct/2005
+Rating: 67
+Genre: [Drama, Romance, Sports, Supernatural]
+---------------------------------
+Index: 436
+Name: ARIA The ANIMATION
+Episodes: 13
+Release Date:06/Oct/2005
+Rating: 75
+Genre: [Fantasy, Sci-Fi, Slice of Life]
+---------------------------------
+Index: 437
+Name: Aquarion
+Episodes: 26
+Release Date:05/Apr/2005
+Rating: 67
+Genre: [Action, Mecha, Romance, Sci-Fi, Supernatural]
+---------------------------------
+Index: 438
+Name: The Law of Ueki
+Episodes: 51
+Release Date:04/Apr/2005
+Rating: 73
+Genre: [Action, Adventure, Comedy, Drama, Supernatural]
+---------------------------------
+Index: 439
+Name: Yu-Gi-Oh!
+Episodes: 224
+Release Date:18/Apr/2000
+Rating: 71
+Genre: [Adventure]
+---------------------------------
+Index: 440
+Name: Yu-Gi-Oh! GX
+Episodes: 180
+Release Date:06/Oct/2004
+Rating: 68
+Genre: [Action, Comedy, Fantasy]
+---------------------------------
+Index: 441
+Name: Kurau Phantom Memory
+Episodes: 24
+Release Date:24/Jun/2004
+Rating: 67
+Genre: [Action, Drama, Sci-Fi]
+---------------------------------
+Index: 442
+Name: Saiyuki Requiem
+Episodes: 1
+Release Date:18/Aug/2001
+Rating: 65
+Genre: [Adventure, Supernatural]
+---------------------------------
+Index: 443
+Name: Damekko Doubutsu
+Episodes: 26
+Release Date:17/Jan/2005
+Rating: 62
+Genre: [Comedy, Slice of Life]
+---------------------------------
+Index: 444
+Name: Kino's Journey
+Episodes: 13
+Release Date:08/Apr/2003
+Rating: 81
+Genre: [Action, Adventure, Psychological, Slice of Life]
+---------------------------------
+Index: 445
+Name: Girls Bravo: Second Season
+Episodes: 13
+Release Date:27/Jan/2005
+Rating: 60
+Genre: [Comedy, Ecchi, Romance]
+---------------------------------
+Index: 446
+Name: Strawberry Marshmallow
+Episodes: 12
+Release Date:15/Jul/2005
+Rating: 73
+Genre: [Comedy, Slice of Life]
+---------------------------------
+Index: 447
+Name: KamiChu!
+Episodes: 12
+Release Date:28/Jun/2005
+Rating: 70
+Genre: [Comedy, Slice of Life, Supernatural]
+---------------------------------
+Index: 448
+Name: Pani Poni Dash!
+Episodes: 26
+Release Date:04/Jul/2005
+Rating: 70
+Genre: [Comedy]
+---------------------------------
+Index: 449
+Name: Armitage III: Dual Matrix
+Episodes: 1
+Release Date:25/Jun/2002
+Rating: 62
+Genre: [Action, Adventure, Mecha, Sci-Fi]
+---------------------------------
+Index: 450
+Name: Armitage III: Poly-Matrix
+Episodes: 1
+Release Date:20/Apr/1996
+Rating: 64
+Genre: [Action, Adventure, Mecha, Romance, Sci-Fi]
+---------------------------------
+Index: 451
+Name: Sorcerer Hunters
+Episodes: 26
+Release Date:03/Oct/1995
+Rating: 62
+Genre: [Adventure, Comedy, Ecchi, Fantasy]
+---------------------------------
+Index: 452
+Name: The Dagger of Kamui
+Episodes: 1
+Release Date:03/Sep/1985
+Rating: 59
+Genre: [Adventure, Drama, Fantasy]
+---------------------------------
+Index: 453
+Name: Traveller Yami
+Episodes: 13
+Release Date:02/Oct/2003
+Rating: 59
+Genre: [Adventure, Ecchi, Fantasy, Mystery]
+---------------------------------
+Index: 454
+Name: Great Planet Evil-Destroyer Dangaio
+Episodes: 3
+Release Date:28/Sep/1987
+Rating: 56
+Genre: [Action, Adventure, Mecha, Sci-Fi]
+---------------------------------
+Index: 455
+Name: Demon City Shinjuku
+Episodes: 1
+Release Date:25/Oct/1988
+Rating: 56
+Genre: [Action, Adventure, Horror, Romance, Supernatural]
+---------------------------------
+Index: 456
+Name: Doraemon
+Episodes: 26
+Release Date:01/Apr/1973
+Rating: 69
+Genre: [Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 457
+Name: Dragon Ball Movie 1: Curse of the Blood Rubies
+Episodes: 1
+Release Date:20/Dec/1986
+Rating: 63
+Genre: [Action, Adventure, Comedy, Drama, Fantasy]
+---------------------------------
+Index: 458
+Name: The Eternal Aseria
+Episodes: 2
+Release Date:24/Jun/2005
+Rating: 46
+Genre: [Adventure, Drama, Fantasy]
+---------------------------------
+Index: 459
+Name: Fatal Fury: The Motion Picture
+Episodes: 1
+Release Date:16/Jul/1994
+Rating: 59
+Genre: [Action, Adventure, Drama, Romance]
+---------------------------------
+Index: 460
+Name: Twin Princesses of the Wonder Planet
+Episodes: 51
+Release Date:02/Apr/2005
+Rating: 65
+Genre: [Comedy, Fantasy, Mahou Shoujo]
+---------------------------------
+Index: 461
+Name: Glass Mask
+Episodes: 23
+Release Date:09/Apr/1984
+Rating: 64
+Genre: [Drama, Romance]
+---------------------------------
+Index: 462
+Name: Gravitation: Lyrics of Love
+Episodes: 2
+Release Date:23/Jul/1999
+Rating: 62
+Genre: [Comedy, Music, Romance]
+---------------------------------
+Index: 463
+Name: Hamtaro
+Episodes: 296
+Release Date:07/Jul/2000
+Rating: 63
+Genre: [Adventure, Comedy]
+---------------------------------
+Index: 464
+Name: I My Me! Strawberry Eggs
+Episodes: 13
+Release Date:04/Jul/2001
+Rating: 63
+Genre: [Comedy, Drama, Romance, Slice of Life]
+---------------------------------
+Index: 465
+Name: Kakyuusei 2: Hitomi no Naka no Shoujo-tachi
+Episodes: 13
+Release Date:02/Oct/2004
+Rating: 48
+Genre: [Comedy, Drama, Romance]
+---------------------------------
+Index: 466
+Name: Moeyo Ken
+Episodes: 13
+Release Date:01/Jul/2005
+Rating: 53
+Genre: [Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 467
+Name: Kiki's Delivery Service
+Episodes: 1
+Release Date:29/Jul/1989
+Rating: 81
+Genre: [Adventure, Comedy, Drama, Fantasy, Romance, Slice of Life]
+---------------------------------
+Index: 468
+Name: Castle in the Sky
+Episodes: 1
+Release Date:02/Aug/1986
+Rating: 80
+Genre: [Adventure, Fantasy, Romance, Sci-Fi]
+---------------------------------
+Index: 469
+Name: Le Portrait de Petit Cossette
+Episodes: 3
+Release Date:11/Apr/2004
+Rating: 64
+Genre: [Drama, Horror, Psychological, Romance, Supernatural]
+---------------------------------
+Index: 470
+Name: Legend of Crystania: The Motion Picture
+Episodes: 1
+Release Date:29/Jul/1995
+Rating: 51
+Genre: [Action, Adventure, Fantasy, Supernatural]
+---------------------------------
+Index: 471
+Name: Sgt. Frog
+Episodes: 358
+Release Date:03/Apr/2004
+Rating: 73
+Genre: [Comedy, Sci-Fi]
+---------------------------------
+Index: 472
+Name: School Rumble Ichi Gakki Hoshuu
+Episodes: 2
+Release Date:22/Dec/2005
+Rating: 73
+Genre: [Comedy, Romance]
+---------------------------------
+Index: 473
+Name: Magical Princess Minky Momo
+Episodes: 63
+Release Date:18/Mar/1982
+Rating: 59
+Genre: [Mahou Shoujo]
+---------------------------------
+Index: 474
+Name: Mahoraba: Heartful days
+Episodes: 26
+Release Date:10/Jan/2005
+Rating: 69
+Genre: [Comedy, Drama, Romance]
+---------------------------------
+Index: 475
+Name: Marmalade Boy Movie
+Episodes: 1
+Release Date:04/Mar/1995
+Rating: 64
+Genre: [Comedy, Drama, Romance, Slice of Life]
+---------------------------------
+Index: 476
+Name: Mermaid Melody: Pichi Pichi Pitch
+Episodes: 52
+Release Date:05/Apr/2003
+Rating: 66
+Genre: [Adventure, Comedy, Fantasy, Mahou Shoujo, Music, Romance]
+---------------------------------
+Index: 477
+Name: Metropolis
+Episodes: 1
+Release Date:26/May/2001
+Rating: 72
+Genre: [Adventure, Drama, Romance, Sci-Fi]
+---------------------------------
+Index: 478
+Name: My Neighbor Totoro
+Episodes: 1
+Release Date:16/Apr/1988
+Rating: 80
+Genre: [Adventure, Fantasy, Supernatural]
+---------------------------------
+Index: 479
+Name: Please☆Twins!: The Summer Never Ends
+Episodes: 1
+Release Date:28/Apr/2004
+Rating: 65
+Genre: [Comedy, Drama, Romance]
+---------------------------------
+Index: 480
+Name: Otogi Zoshi: The Legend of Magatama
+Episodes: 26
+Release Date:07/Jul/2004
+Rating: 61
+Genre: [Adventure, Drama, Fantasy, Supernatural]
+---------------------------------
+Index: 481
+Name: Please Save My Earth
+Episodes: 6
+Release Date:17/Dec/1993
+Rating: 64
+Genre: [Drama, Romance, Sci-Fi]
+---------------------------------
+Index: 482
+Name: Pokémon
+Episodes: 276
+Release Date:01/Apr/1997
+Rating: 70
+Genre: [Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 483
+Name: Pokémon: The First Movie
+Episodes: 1
+Release Date:18/Jul/1998
+Rating: 73
+Genre: [Adventure, Comedy, Drama, Fantasy, Sci-Fi]
+---------------------------------
+Index: 484
+Name: She, The Ultimate Weapon
+Episodes: 13
+Release Date:02/Jul/2002
+Rating: 66
+Genre: [Drama, Romance, Sci-Fi]
+---------------------------------
+Index: 485
+Name: Sailor Moon
+Episodes: 46
+Release Date:07/Mar/1992
+Rating: 74
+Genre: [Action, Fantasy, Mahou Shoujo, Romance]
+---------------------------------
+Index: 486
+Name: Sailor Moon R: The Movie
+Episodes: 1
+Release Date:05/Dec/1993
+Rating: 72
+Genre: [Drama, Mahou Shoujo, Romance]
+---------------------------------
+Index: 487
+Name: Sailor Moon S
+Episodes: 38
+Release Date:19/Mar/1994
+Rating: 76
+Genre: [Action, Drama, Fantasy, Mahou Shoujo, Romance]
+---------------------------------
+Index: 488
+Name: Teacher's Time
+Episodes: 13
+Release Date:05/Apr/2004
+Rating: 57
+Genre: [Comedy, Slice of Life]
+---------------------------------
+Index: 489
+Name: The Slayers
+Episodes: 26
+Release Date:07/Apr/1995
+Rating: 74
+Genre: [Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 490
+Name: The Slayers Next
+Episodes: 26
+Release Date:05/Apr/1996
+Rating: 77
+Genre: [Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 491
+Name: Slayers: The Motion Picture
+Episodes: 1
+Release Date:29/Jul/1995
+Rating: 68
+Genre: [Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 492
+Name: Tekken: The Motion Picture
+Episodes: 2
+Release Date:21/Jan/1998
+Rating: 45
+Genre: [Action, Adventure, Sci-Fi]
+---------------------------------
+Index: 493
+Name: Tenchi in Tokyo
+Episodes: 26
+Release Date:01/Apr/1997
+Rating: 64
+Genre: [Comedy, Romance, Sci-Fi]
+---------------------------------
+Index: 494
+Name: No Need for Tenchi!
+Episodes: 6
+Release Date:25/Sep/1992
+Rating: 72
+Genre: [Action, Comedy, Sci-Fi]
+---------------------------------
+Index: 495
+Name: Tenchi Muyo! Ryo-Ohki 2
+Episodes: 6
+Release Date:25/Sep/1994
+Rating: 72
+Genre: [Action, Comedy, Sci-Fi]
+---------------------------------
+Index: 496
+Name: Tenchi Muyo! Ryo-Ohki 3
+Episodes: 6
+Release Date:18/Sep/2003
+Rating: 67
+Genre: [Action, Comedy, Sci-Fi]
+---------------------------------
+Index: 497
+Name: Vampire Hunter D: Bloodlust
+Episodes: 1
+Release Date:25/Aug/2000
+Rating: 75
+Genre: [Action, Adventure, Drama, Fantasy, Horror, Romance, Sci-Fi]
+---------------------------------
+Index: 498
+Name: Venus Wars
+Episodes: 1
+Release Date:11/Mar/1989
+Rating: 64
+Genre: [Action, Adventure, Sci-Fi]
+---------------------------------
+Index: 499
+Name: Fantasy Chemistry Series: Wandaba Style
+Episodes: 12
+Release Date:05/Apr/2003
+Rating: 50
+Genre: [Comedy, Sci-Fi]
+---------------------------------
+Index: 500
+Name: Wind: A Breath of Heart (2004)
+Episodes: 13
+Release Date:30/Jun/2004
+Rating: 52
+Genre: [Drama, Romance, Supernatural]
+---------------------------------
+Index: 501
+Name: Wind: A Breath of Heart OVA
+Episodes: 3
+Release Date:25/Jun/2004
+Rating: 54
+Genre: [Drama, Romance, Supernatural]
+---------------------------------
+Index: 502
+Name: Sky Blue
+Episodes: 1
+Release Date:17/Jul/2003
+Rating: 64
+Genre: [Action, Drama, Romance, Sci-Fi]
+---------------------------------
+Index: 503
+Name: Yu☆Gi☆Oh!
+Episodes: 27
+Release Date:04/Apr/1998
+Rating: 68
+Genre: [Action, Comedy, Fantasy]
+---------------------------------
+Index: 504
+Name: Grappler Baki Maximum Tournament
+Episodes: 24
+Release Date:24/Jul/2001
+Rating: 70
+Genre: [Action, Sports]
+---------------------------------
+Index: 505
+Name: Digimon: Digital Monsters
+Episodes: 54
+Release Date:07/Mar/1999
+Rating: 75
+Genre: [Action, Adventure, Comedy, Fantasy]
+---------------------------------
+Index: 506
+Name: Descendants of Darkness
+Episodes: 13
+Release Date:02/Oct/2000
+Rating: 63
+Genre: [Comedy, Drama, Fantasy, Horror]
+---------------------------------
+Index: 507
+Name: Steel Angel Kurumi
+Episodes: 24
+Release Date:05/Oct/1999
+Rating: 61
+Genre: [Adventure, Comedy, Drama, Mecha, Romance]
+---------------------------------
+Index: 508
+Name: Steel Angel Kurumi 2
+Episodes: 12
+Release Date:12/Apr/2001
+Rating: 55
+Genre: [Comedy, Mecha, Romance, Sci-Fi]
+---------------------------------
+Index: 509
+Name: Steel Angel Kurumi Zero
+Episodes: 3
+Release Date:18/Apr/2001
+Rating: 55
+Genre: [Drama, Romance, Sci-Fi]
+---------------------------------
+Index: 510
+Name: Steel Angel Kurumi Encore
+Episodes: 4
+Release Date:19/Jul/2000
+Rating: 60
+Genre: [Comedy, Romance, Sci-Fi]
+---------------------------------
+Index: 511
+Name: Major S2
+Episodes: 26
+Release Date:10/Dec/2005
+Rating: 80
+Genre: [Comedy, Drama, Sports]
+===End of Anime Data Print check===
 Anime-2020
 Uhh.. It's empty.. :(
 
 ===Running Sample Anime List Class===
+---------------------------------
+Index: 1
 Name: Adventures of Adventurers
 Episodes: 24
 Release Date:30/Dec/2020
 Rating: 65
 Genre: [Science, Action, Dance]
+---------------------------------
+Index: 2
 Name: Actions in Action
 Episodes: 13
 Release Date:15/Apr/1997
