@@ -1,10 +1,10 @@
 package seedu.duke.ui;
 
+import seedu.duke.common.Messages;
+
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
-
-import static seedu.duke.common.Messages.DIVIDER;
 
 /**
  * Text UI of the application.
@@ -12,12 +12,9 @@ import static seedu.duke.common.Messages.DIVIDER;
 
 public class TextUi {
 
-    private static final String MESSAGE_WELCOME = "Welcome to your SmartHomeBot V1.0!";
-    private static final String MESSAGE_GOODBYE = "Good bye!";
-
     /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
-
+    private static final String ENTER_COMMAND = "Enter command: ";
     private static Scanner in;
     private static PrintStream out;
 
@@ -58,7 +55,7 @@ public class TextUi {
      */
     public String getUserCommand() {
         printDivider();
-        out.print("Enter command: ");
+        out.print(ENTER_COMMAND);
         String fullInputLine = in.nextLine();
         while (shouldIgnore(fullInputLine)) {
             fullInputLine = in.nextLine();
@@ -68,14 +65,15 @@ public class TextUi {
 
     public void showWelcomeMessage() {
         printDivider();
-        showToUser(MESSAGE_WELCOME);
+        showToUser(Messages.MESSAGE_WELCOME);
     }
 
     /**
      * Generates and prints the Goodbye message upon the end of the application.
      */
     public void showGoodByeMessage() {
-        showToUser(MESSAGE_GOODBYE);
+        showToUser(Messages.MESSAGE_EXPORT);
+        showToUser(Messages.MESSAGE_GOODBYE);
     }
 
     /**
@@ -89,6 +87,6 @@ public class TextUi {
      * Print a divider.
      */
     private static void printDivider() {
-        showToUser(DIVIDER);
+        showToUser(Messages.DIVIDER);
     }
 }

@@ -9,10 +9,10 @@ public class OffCommand extends Command {
 
     public static final String COMMAND_WORD = "off";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Turns off specified appliance by its indicated name \n"
-            + "Parameters: n/NAME\n"
+            + ": Turns off specified appliance by its indicated NAME \n"
+            + "Parameters: NAME\n"
             + "Example: " + COMMAND_WORD
-            + " n/Fan 1";
+            + " Fan 1";
     private final String name;
 
     public OffCommand(String name) throws EmptyParameterException {

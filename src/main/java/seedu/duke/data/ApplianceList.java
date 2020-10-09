@@ -14,15 +14,20 @@ public class ApplianceList {
     }
 
     public void addAppliance(Appliance appliance) throws InvalidAdditionOfAppliance {
-        if (!isAppliance(appliance)) {
+        if (!isAppliance(appliance.getName())) {
             appliances.add(appliance);
         } else {
-          throw new InvalidAdditionOfAppliance();
+            throw new InvalidAdditionOfAppliance();
         }
     }
 
-    public void removeAppliance(int index) {
-        appliances.remove(index);
+    public void removeAppliance(String userEnteredName) {
+        for (int i = 0; i < getAllAppliance().size(); i++) {
+            if (getAppliance(i).getName().equals(userEnteredName)) {
+                appliances.remove(i);
+                break;
+            }
+        }
     }
 
     public Appliance getAppliance(int index) {
@@ -37,10 +42,10 @@ public class ApplianceList {
         appliances.set(index, appliance);
     }
 
-    private Boolean isAppliance(Appliance toAddAppliance) {
+    public Boolean isAppliance(String toAddApplianceName) {
         boolean isExist = false;
         for (Appliance a : appliances) {
-            if (a.getName().equals(toAddAppliance.getName())) {
+            if (a.getName().equals(toAddApplianceName)) {
                 isExist = true;
                 break;
             }

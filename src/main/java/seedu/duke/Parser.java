@@ -12,10 +12,16 @@ import seedu.duke.commands.OffCommand;
 import seedu.duke.commands.OnCommand;
 import seedu.duke.commands.RemoveCommand;
 import seedu.duke.commands.UsageCommand;
+import seedu.duke.common.Messages;
 import seedu.duke.exceptions.EmptyParameterException;
+import seedu.duke.ui.TextUi;
 
 
 public class Parser {
+
+    private static TextUi ui = new TextUi();
+    private static final String APPLIANCE_TYPE = "appliance";
+    private static final String LOCATION_TYPE = "location";
 
     public static Command parseCommand(String userInput) {
         String[] words = userInput.trim().split(" ", 2);
@@ -44,7 +50,7 @@ public class Parser {
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
             default:
-                return new InvalidCommand("Invalid Command Format");
+                return new InvalidCommand(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
             }
         } catch (EmptyParameterException e) {
             return new InvalidCommand("The parameter of " + commandWord + " cannot be empty.");
@@ -66,22 +72,22 @@ public class Parser {
             power = arguments.substring(indexPower + 2, indexType).trim();
             type = arguments.substring(indexType + 2).toLowerCase().trim();
         } else {
-            return new InvalidCommand("Please follow order of AddCommand");
+            return new InvalidCommand(Messages.MESSAGE_INVALID_ADD_COMMAND);
         }
 
         if (powerIsNumeric(power)) {
             return new AddCommand(name, location, power, type);
         } else {
-            return new InvalidCommand("Power is not in number");
+            return new InvalidCommand(Messages.MESSAGE_POWER_NOT_NUMBER);
         }
 
     }
 
     private static Command prepareListCommand(String arguments) {
-        if (arguments.equals("appliance") || arguments.equals("location")) {
+        if (arguments.equals(APPLIANCE_TYPE) || arguments.equals(LOCATION_TYPE)) {
             return new ListCommand(arguments);
         } else {
-            return new InvalidCommand("Please enter either 'list appliance' or 'list location'");
+            return new InvalidCommand(Messages.MESSAGE_INVALID_LIST_COMMAND);
         }
     }
 
@@ -90,7 +96,7 @@ public class Parser {
             Double.parseDouble(power);
             return true;
         } catch (NumberFormatException e) {
-            System.out.println("Please enter a numerical value for power.");
+            ui.showToUser(Messages.MESSAGE_ENTER_NUMERICAL);
             return false;
         }
     }

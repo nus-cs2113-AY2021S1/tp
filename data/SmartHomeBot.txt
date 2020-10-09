@@ -1,3 +1,2 @@
-[bedroom1, br1, bedroom 2]
-bedroom1|light1|25|Light|On|7.208333333333333
-br1|led|500|Light|On|18.750000000000004
+[bedroom 2]
+bedroom 2|ac2|1000|AirConditioner|Off|0.0

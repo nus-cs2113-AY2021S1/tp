@@ -1,12 +1,15 @@
 package seedu.duke.commands;
 
+import seedu.duke.common.Messages;
 import seedu.duke.data.type.AirConditioner;
 import seedu.duke.data.type.Fan;
 import seedu.duke.data.type.Lights;
 import seedu.duke.data.type.WaterHeater;
 import seedu.duke.exceptions.InvalidAdditionOfAppliance;
 
-import static seedu.duke.common.Messages.*;
+import static seedu.duke.common.Messages.MESSAGE_APPLIANCE_EXIST;
+import static seedu.duke.common.Messages.MESSAGE_APPLIANCE_TYPE_NOT_EXIST;
+
 
 public class AddCommand extends Command {
 
@@ -50,14 +53,14 @@ public class AddCommand extends Command {
                     appliances.addAppliance(waterheater);
                     break;
                 default:
-                    ui.showToUser(MESSAGE_INVALID_APPLIANCE_TYPE);
+                    ui.showToUser(MESSAGE_APPLIANCE_TYPE_NOT_EXIST);
                 }
             } catch (InvalidAdditionOfAppliance e) {
-                ui.showToUser(MESSAGE_REPEATED_APPLIANCE_NAME);
+                ui.showToUser(MESSAGE_APPLIANCE_EXIST);
             }
 
         } else {
-            ui.showToUser(MESSAGE_LOCATION_DOES_NOT_EXIST);
+            ui.showToUser(Messages.MESSAGE_LOCATION_NOT_EXIST);
         }
     }
 

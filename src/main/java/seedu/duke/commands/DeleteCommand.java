@@ -5,10 +5,10 @@ import seedu.duke.exceptions.EmptyParameterException;
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Delete the existing appliance by its indicated INDEX that has been added to SmartHomeBot\n"
-            + "Parameters: INDEX\n"
+            + ": Delete the existing appliance by its indicated NAME that has been added to SmartHomeBot\n"
+            + "Parameters: NAME\n"
             + "Example: " + COMMAND_WORD
-            + " 1";
+            + " Fan 1";
     private final String userEnteredName;
 
     public DeleteCommand(String name) throws EmptyParameterException {
@@ -20,12 +20,13 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute() {
-        for (int i = 0; i < appliances.getAllAppliance().size(); i++) {
-            if (appliances.getAppliance(i).getName().equals(userEnteredName)) {
-                appliances.removeAppliance(i);
-                return;
-            }
+        Boolean isApplianceExist = appliances.isAppliance(this.userEnteredName);
+        if (isApplianceExist) {
+            appliances.removeAppliance(this.userEnteredName);
+        } else {
+            ui.showToUser(userEnteredName + " does not exist.");
         }
-        ui.showToUser(userEnteredName + " does not exist.");
+
+
     }
 }

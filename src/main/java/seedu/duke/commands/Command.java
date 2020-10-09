@@ -8,7 +8,8 @@ public class Command {
 
     protected ApplianceList appliances;
     protected HomeLocations homeLocationsList;
-    protected TextUi ui = new TextUi();
+    protected static TextUi ui = new TextUi();
+
     protected Command() {
     }
 
