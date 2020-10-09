@@ -15,7 +15,8 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
  */
 public class DeleteNoteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete-n";
+    // Change name to COMMAND_WORD
+    public static final String COMMAND_WORD_NOTE = "delete-n";
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Note deleted: ";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook! ";
     /*
