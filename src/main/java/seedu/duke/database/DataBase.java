@@ -15,6 +15,10 @@ public class DataBase{
 
     private static final String DATA_FILE_SEPERATOR = "\\|";
 
+    private static final String rootDirectory = System.getProperty("user.dir");
+    private static final String dataFileFolder = "src" + File.separator + "main" + File.separator +
+            "java" + File.separator + "seedu" + File.separator + "duke" + File.separator + "database";
+
     private final ArrayList<Canteen> canteenList;
 
     public DataBase(){
@@ -25,7 +29,8 @@ public class DataBase{
      * Reads a file from the data base and puts it into the DataBase object
      */
     public void init() throws FileNotFoundException {
-        File dataFile = new File(System.getProperty("user.dir") + File.separator + "data.txt");
+        String fileFolder = rootDirectory + File.separator + dataFileFolder;
+        File dataFile = new File( fileFolder + File.separator + "data.txt");
         Scanner fileReader = new Scanner(dataFile);
         String fileLine;
         boolean start = false;
@@ -82,6 +87,7 @@ public class DataBase{
         while (!(fileLine.equals(UP_SYMBOL))){
             food = new Food(fileData[0], Integer.parseInt(fileData[1]),Integer.parseInt(fileData[2])
             ,Integer.parseInt(fileData[3]),Integer.parseInt(fileData[4]));
+            store.addFood(food);
             fileLine = fileSegment.nextLine();
             fileData = fileLine.split(DATA_FILE_SEPERATOR);
         }
