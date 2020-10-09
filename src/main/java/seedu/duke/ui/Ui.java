@@ -28,7 +28,7 @@ public class Ui {
         System.out.println("____________________________________________________________\n"
                 + " Hello! I'm revisED\n"
                 + " What can I do for you?\n"
-                + "____________________________________________________________\n");
+                + "____________________________________________________________");
     }
 
     public static void printSubjectList(List<Subject> list) {
@@ -141,7 +141,7 @@ public class Ui {
             }
         }
         if (taskPresent == 0) {
-            System.out.println(" Sorry! I could not find any task with " + find + " in the list");
+            System.out.println(" Sorry! I could not find any task with " + find + " in the list.");
         }
         System.out.println("____________________________________________________________");
     }
@@ -157,7 +157,7 @@ public class Ui {
         }
         if (taskPresent == 0) {
             System.out.println("____________________________________________________________\n"
-                    + " Sorry! I could not find any subjects with " + find + " in the list");
+                    + " Sorry! I could not find any subjects with " + find + " in the list.");
         }
         System.out.println("____________________________________________________________");
     }
@@ -201,7 +201,7 @@ public class Ui {
             System.out.println(index + "." + t);
             index++;
         }
-        System.out.println("____________________________________________________________");
+        System.out.println();
     }
 
     public static void printTopicMatch(int taskPresent) {
@@ -222,9 +222,9 @@ public class Ui {
         }
         if (taskPresent == 0) {
             System.out.println("____________________________________________________________\n"
-                    + " Sorry! I could not find any topics with " + query + " in the list");
+                    + " Sorry! I could not find any topics with " + query + " in the list.");
         }
-        System.out.println("____________________________________________________________");
+        System.out.println();
     }
 
     public static void printGoToTopic(Topic topic) {
