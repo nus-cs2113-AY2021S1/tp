@@ -13,7 +13,6 @@ public class Parser {
      * @param modList module list
      * @param name name entered by the user
      */
-
     public void parse(String input, ModuleList modList, String name, Storage storage) {
         Ui ui = new Ui();
         String[] command = input.trim().split(" ");
