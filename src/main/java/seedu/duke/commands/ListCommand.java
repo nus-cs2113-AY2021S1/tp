@@ -3,7 +3,13 @@ package seedu.duke.commands;
 import seedu.duke.category.Category;
 import seedu.duke.category.CategoryList;
 import seedu.duke.lists.ListManager;
+import seedu.duke.rating.Rating;
+import seedu.duke.rating.RatingList;
 import seedu.duke.ui.TextUi;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ListCommand extends Command {
     private String type;
@@ -18,6 +24,9 @@ public class ListCommand extends Command {
         }
         type = details[0];
         information = details[1];
+
+//        System.out.println(type);
+//        System.out.println(information);
     }
 
     @Override
@@ -27,7 +36,33 @@ public class ListCommand extends Command {
             CategoryList categoryList = (CategoryList) listManager.getList(ListManager.CATEGORY_LIST);
             listCategories(categoryList, ui);
             break;
+        case TAG_RATING:
+            RatingList ratingList = (RatingList) listManager.getList(ListManager.RATING_LIST);
+            listRatings(ratingList, ui);
+            break;
         default:
+        }
+    }
+
+    private void listRatings(RatingList ratingList, TextUi ui) {
+        ArrayList<Rating> ratings = ratingList.getList();
+        ratings.sort(Comparator.comparing(Rating::getRating));
+        Collections.reverse(ratings);
+        if (information == "") {
+            System.out.println("Planning to recommend some books? Here are your rated books!");
+            System.out.println(ratingList.toString());
+        } else {
+            int ratingToList = Integer.parseInt(information);
+            if (!(ratingToList >= RATING_ONE && ratingToList <= RATING_FIVE)) {
+                System.out.println("That score is out of our range my friend");
+                return;
+            }
+            System.out.println("Here are the books you rated as " + ratingToList + " star!");
+            for (Rating rating : ratings) {
+                if (rating.getRating() == ratingToList) {
+                    System.out.println(rating.getTitleOfRatedBook());
+                }
+            }
         }
     }
 
