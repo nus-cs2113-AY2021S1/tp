@@ -34,4 +34,10 @@ public class Food {
     public int getProtein() {
         return protein;
     }
+
+    @Override
+    public String toString(){
+        return name + " :: calorie : " + calorie + " :: protein : " + protein + ":: carbohydrate :" + carbohydrate
+                + ":: fats :" + fats;
+    }
 }
