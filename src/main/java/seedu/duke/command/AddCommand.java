@@ -23,7 +23,7 @@ public class AddCommand extends Command {
     /**
      * Constructor for adding events seedu.duke
      *
-     * @param commandWords from user input
+     * @param command from user input
      */
     public AddCommand(String command) {
         this.isExit = false;
@@ -43,13 +43,16 @@ public class AddCommand extends Command {
             isInvalidEventType = true;
             break;
         }
+        if (commandWords.length == 1) {
+            isInvalidEventType = true;
+        }
         String[] argumentWords = Arrays.copyOfRange(commandWords, 1, commandWords.length);
         argument = String.join(" ", argumentWords);
 
     }
 
     /**
-     * Adds an event to individual eventLists
+     * Adds an event to individual eventLists.
      *
      * @param data    object of UserData class containing user's data.
      * @param ui      containing the responses to print.
@@ -78,15 +81,17 @@ public class AddCommand extends Command {
             if (successfulAdd) {
                 ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
             } else {
-                System.out.println("Error adding " + eventType + " event, please try again");
+                System.out.println("Error adding " + eventType + " event, please try again!");
+                ui.printDividerLine();
             }
         } else {
             System.out.println("Invalid add command!");
+            ui.printDividerLine();
         }
     }
 
     /**
-     * Adds a Timetable event
+     * Adds a Timetable event.
      *
      * @param data object of UserData class containing user's data.
      * @param ui containing the responses to print.
@@ -118,13 +123,13 @@ public class AddCommand extends Command {
                 }
             }
         } else {
-            System.out.println("Timetable event creating error");
+            System.out.println("Incorrect number of parameters for Timetable event!");
         }
         return successfulAdd;
     }
 
     /**
-     * Adds a Personal event
+     * Adds a Personal event.
      *
      * @param data object of UserData class containing user's data.
      * @param ui containing the responses to print.
@@ -157,13 +162,13 @@ public class AddCommand extends Command {
                 }
             }
         } else {
-            System.out.println("Personal event creating error");
+            System.out.println("Incorrect number of parameters for Personal event!");
         }
         return successfulAdd;
     }
 
     /**
-     * Adds a Zoom event
+     * Adds a Zoom event.
      *
      * @param data object of UserData class containing user's data.
      * @param ui containing the responses to print.
@@ -171,7 +176,7 @@ public class AddCommand extends Command {
      * @return Boolean that confirms if the event was added
      */
     private Boolean addZoom(UserData data, Ui ui, String[] argumentWords) {
-        Boolean successfulAdd = false ;
+        Boolean successfulAdd = false;
         if (argumentWords.length == 2 || argumentWords.length == 4) {
             // 2 cases: only have description & zoomlink , have description,zoomlink, date,time
             if (argumentWords.length == 2) {
@@ -189,7 +194,7 @@ public class AddCommand extends Command {
                 }
             }
         } else {
-            System.out.println("Zoom event creating error");
+            System.out.println("Incorrect number of parameters for Zoom event!");
         }
         return successfulAdd;
     }
