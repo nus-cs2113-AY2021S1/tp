@@ -21,7 +21,7 @@ public class Duke {
      *
      * @param filePath Filepath of the storage data.
      */
-    public Duke(String filePath) throws IOException {
+    public Duke(String filePath) throws Exception {
         ui = new Ui();
         storage = new Storage(filePath);
         taskList = new TaskList();
@@ -52,7 +52,7 @@ public class Duke {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         new Duke("data/tasks.txt").run();
     }
 }

@@ -14,7 +14,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -88,39 +87,50 @@ public class Storage {
      *
      * @param tasks A taskList that store the data read from file.
      */
-    public static int readFromFile(TaskList tasks) throws FileNotFoundException {
+    public static void readFromFile(TaskList tasks) {
         File input = new File(filePath);
         createFile(input);
-
+        Scanner sc = null;
         try {
-            Scanner sc = new Scanner(input);
-            Task task;
-            while (sc.hasNext()) {
-                String[] taskInFile = sc.nextLine().split("\\|");
-                if (taskInFile[TYPE].equals("T")) {
-                    task = new Todo(taskInFile[DESCRIPTION]);
-                } else if (taskInFile[TYPE].equals("D")) {
-                    date = LocalDate.parse(taskInFile[DATE].trim());
-                    task = new Deadline(taskInFile[DESCRIPTION], date);
-                } else if (taskInFile[TYPE].equals("E")) {
-                    date = LocalDate.parse(taskInFile[DATE].trim());
-                    task = new Event(taskInFile[DESCRIPTION], date);
-                } else if (taskInFile[TYPE].equals("LEC")) {
-                    task = new Lecture(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
-                } else if (taskInFile[TYPE].equals("TUT")) {
-                    task = new Tutorial(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
-                } else {
-                    task = new Lab(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
-                }
-                countFileTasks++;
-                if (taskInFile[IS_DONE].equals("true")) {
-                    task.markAsDone();
-                }
-                tasks.addTask(task);
-            }
-        } catch (Exception e) {
-            System.out.println("Wrong format of date");
+            sc = new Scanner(input);
+        } catch (FileNotFoundException e) {
+            System.out.println("OOPs, file cannot be found.");
         }
-        return countFileTasks;
+        Task task = null;
+        while (sc.hasNext()) {
+            String[] taskInFile = sc.nextLine().split("\\|");
+            switch (taskInFile[TYPE]) {
+            case "T":
+                task = new Todo(taskInFile[DESCRIPTION]);
+                break;
+            case "D":
+                date = LocalDate.parse(taskInFile[DATE].trim());
+                task = new Deadline(taskInFile[DESCRIPTION], date);
+                break;
+            case "E":
+                date = LocalDate.parse(taskInFile[DATE].trim());
+                task = new Event(taskInFile[DESCRIPTION], date);
+                break;
+            case "LEC":
+                task = new Lecture(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
+                break;
+            case "TUT":
+                task = new Tutorial(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
+                break;
+            case "LAB":
+                task = new Lab(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
+                break;
+            default:
+                System.out.println("Invalid file command input");
+            }
+            countFileTasks++;
+            if (taskInFile[IS_DONE].equals("true")) {
+                assert task != null;
+                task.markAsDone();
+            }
+            tasks.addTask(task);
+        }
+
+
     }
 }

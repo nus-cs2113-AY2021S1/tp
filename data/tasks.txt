@@ -1,1 +1,3 @@
 T|false|1
+T|true|1
+LEC|false|cs2101|020310|1200

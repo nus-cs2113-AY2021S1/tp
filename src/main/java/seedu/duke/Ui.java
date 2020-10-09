@@ -231,6 +231,8 @@ public class Ui {
         case "keyword not found":
             System.out.println("There are no tasks matching this keyword. Check that you have spelt it correctly.");
             break;
+        case "file not found":
+            System.out.println("The file can not be found");
         default:
             System.out.println("Unknown Error.");
             break;

@@ -52,7 +52,6 @@ public class AddCommand extends Command {
         case TODO:
             try {
                 taskDescription = command[1].trim();
-
                 if (taskDescription.isEmpty()) {
                     throw new DukeException("todo");
                 } else {
