@@ -40,8 +40,8 @@ public class TablePrinter {
     }
 
     /**
-     * Main table printing function
-     * @param input
+     * Main table printing function.
+     * @param input Input rows to print table contents.
      */
     public static void printList(ArrayList<String> input) {
         String[] header = input.get(0).split(";");
@@ -96,7 +96,7 @@ public class TablePrinter {
                 hasParsedLongWord = false;
                 feed = "";
                 // Acquire segment of buffer right before line feed exceeds the char limit
-                if(buffer[scannedWordCount].length() > maxLength) {
+                if (buffer[scannedWordCount].length() > maxLength) {
                     //System.out.println("if: " + buffer[scannedWordCount]);
                     ArrayList<String> tokens = adjustWordToColWidth(buffer[scannedWordCount], maxLength);
                     for (int i = 0; i < tokens.size(); i++) {
@@ -112,7 +112,8 @@ public class TablePrinter {
                     do {
                         feed += buffer[scannedWordCount] + " ";
                         scannedWordCount++;
-                    } while ((scannedWordCount < buffer.length) && (feed.length() + 1 + buffer[scannedWordCount].length() < maxLength - pad));
+                    } while ((scannedWordCount < buffer.length)
+                        && (feed.length() + 1 + buffer[scannedWordCount].length() < maxLength - pad));
                     output.add(feed);
                 }
             }
@@ -121,8 +122,8 @@ public class TablePrinter {
     }
 
     /**
-     * Handles printing of each row for all columns
-     * @param input
+     * Handles printing of each row for all columns.
+     * @param input Input table row to print.
      */
     public static String getPrintListRow(String[] input) {
         int maxLines = 0;
@@ -151,16 +152,9 @@ public class TablePrinter {
                     entry = getPrintFormat(" ", getColWidth(colWidth[col]));
                 } else {
                     entry = getPrintFormat(token[col].get(line), getColWidth(colWidth[col]));
-//                    System.out.println("colw: " + colWidth[col]);
-//                    System.out.println("line: " + line);
                 }
                 buffer.add(entry);
             }
-//            for (int i : colWidth) {
-//                System.out.print(i + ", ");
-//            }
-//            System.out.println("\n");
-
             output += String.join("", buffer);
             output += (line < maxLines - 1) ? "|\n" : "";
         }
@@ -183,17 +177,17 @@ public class TablePrinter {
     }
 
     public static void printHorizontalHeaderPartition(int rowWidth) {
-        System.out.println(UiManager.getLineWithSymbol(rowWidth , "-"));
+        System.out.println(UiManager.getLineWithSymbol(rowWidth, "-"));
     }
 
-    public static void setColWidth(String[] row){
+    public static void setColWidth(String[] row) {
         colWidth = new int[row.length];
         for (int i = 0; i < row.length; i++) {
             colWidth[i] = row[i].length();
         }
     }
 
-    public static int getHeaderRowWidth(String[] row){
+    public static int getHeaderRowWidth(String[] row) {
         String header = getPrintListRow(row);
         String[] output = header.split("\\n");
         return output[0].length();

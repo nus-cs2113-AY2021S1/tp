@@ -3,7 +3,9 @@ package seedu.financeit.manualtracker;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.exceptions.DuplicateInputException;
-import seedu.financeit.common.exceptions.ObjectNotFoundException;
+import seedu.financeit.common.exceptions.EmptyParamException;
+import seedu.financeit.common.exceptions.InsufficientParamsException;
+import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.manualtracker.subroutine.EntryTracker;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
@@ -66,7 +68,7 @@ public class ManualTracker {
         );
 
         packet = UiManager.handleInput();
-        //System.out.println(packet);
+        // System.out.println(packet);
         UiManager.refreshPage();
         switch (packet.getCommandString()) {
         case "ledger open":
@@ -98,23 +100,19 @@ public class ManualTracker {
 
     private static FiniteStateMachine.State handleCreateLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        for (String paramType : packet.getParamTypes()) {
-            switch (paramType) {
-            case "/date":
-                // Fall through
-            case "/id":
-                try {
-                    Ledger ledger = createLedger(paramType);
-                    ledgerList.addItem(ledger);
-                } catch (AssertionError Error) {
-                    break;
-                }
-                break;
-            default:
-                System.out.println("Command failed.");
-                break;
-            }
+        Ledger ledger = null;
+        try {
+            ledger = createLedgerWithErrorHandling(packet);
+            ledgerList.addItem(ledger);
+        } catch (AssertionError error) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    "Input failed due to param error.");
+        } catch (DuplicateInputException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    exception.getMessage());
         }
+
+        UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, String.format("%s added!", ledger.getName()));
         return state;
     }
 
@@ -126,9 +124,11 @@ public class ManualTracker {
                 // Fall through
             case "/id":
                 try {
-                    Ledger ledger = getLedgerFromList(paramType);
-                    ledgerList.removeLedger(ledger);
-                } catch (AssertionError Error) {
+                    Ledger ledger = getLedgerWithErrorHandling(paramType);
+                    ledgerList.removeItem(ledger);
+                } catch (AssertionError error) {
+                    UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                            "Input failed due to param error.");
                     break;
                 }
                 break;
@@ -141,8 +141,7 @@ public class ManualTracker {
     }
 
     private static FiniteStateMachine.State handleShowLedger() {
-        System.out.println("Show ledger");
-        System.out.println(ledgerList.getItemsSize());
+        //System.out.println(ledgerList.getItemsSize());
         ledgerList.printList();
         return FiniteStateMachine.State.MAIN_MENU;
     }
@@ -154,16 +153,19 @@ public class ManualTracker {
 
     private static FiniteStateMachine.State handleOpenLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
+
         for (String paramType : packet.getParamTypes()) {
             switch (paramType) {
             case "/date":
                 // Fall through
             case "/id":
                 try {
-                    currLedger = getLedgerFromList(paramType);
+                    currLedger = getLedgerWithErrorHandling(paramType);
                     EntryTracker.setCurrLedger(currLedger);
                     EntryTracker.main();
                 } catch (AssertionError error) {
+                    UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                            "Input failed due to param error.");
                     break;
                 }
                 break;
@@ -175,30 +177,46 @@ public class ManualTracker {
         return EntryTracker.main();
     }
 
-    private static Ledger createLedger(String paramType) throws AssertionError{
+    private static Ledger createLedgerWithErrorHandling(CommandPacket packet) throws AssertionError {
+        Ledger ledger = null;
+
+        try {
+            ledger = new Ledger(packet);
+        } catch (DateTimeException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    "Not a valid date on the Gregorian Calendar!",
+                    "Check your input again against the following format!",
+                    "Date format: YYMMDD",
+                    "Time format: HHMM");
+            throw new AssertionError();
+        } catch (InvalidParameterException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    "Input format is not recognised.",
+                    "Check your input again against the following format!",
+                    "Date format: YYMMDD",
+                    "Time format: HHMM");
+            throw new AssertionError();
+        } catch (InsufficientParamsException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    exception.getMessage());
+            throw new AssertionError();
+        } catch (EmptyParamException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    exception.getMessage(),
+                    "Enter \"commands\" to check format!");
+            throw new AssertionError();
+        }
+        return ledger;
+    }
+
+    private static Ledger getLedgerWithErrorHandling(String paramType) throws AssertionError {
         Ledger ledger = null;
         switch (paramType) {
         case "/date":
             String rawDate = packet.getParam(paramType);
             try {
                 LocalDateTime dateTime = InputParser.parseRawDateTime(rawDate, "date");
-                ledgerList.checkDuplicates(dateTime);
-                ledger = new Ledger(dateTime);
-            } catch (DuplicateInputException exception) {
-                throw new AssertionError();
-            }
-        }
-        return ledger;
-    }
-
-    private static Ledger getLedgerFromList(String paramType) throws AssertionError {
-        Ledger ledger = null;
-        switch(paramType) {
-        case "/date":
-            String rawDate = packet.getParam(paramType);
-            try {
-                LocalDateTime dateTime = InputParser.parseRawDateTime(rawDate, "date");
-                ledger = ledgerList.getItemFromDateTime(dateTime);
+                ledger = (Ledger) ledgerList.getItemFromDateTime(dateTime);
             } catch (NullPointerException exception) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                         "No params supplied to " + paramType,
@@ -218,7 +236,7 @@ public class ManualTracker {
                         "Date format: YYMMDD",
                         "Time format: HHMM");
                 throw new AssertionError();
-            } catch (ObjectNotFoundException exception) {
+            } catch (ItemNotFoundException exception) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                         String.format("Ledger of date %s does not exist!", rawDate));
                 throw new AssertionError();
@@ -230,18 +248,22 @@ public class ManualTracker {
             // To account for offset of array indexing where beginning index is 0
             index = index - 1;
             try {
-                ledger = ledgerList.getLedgerByIndex(index);
+                ledger = (Ledger) ledgerList.getLedgerByIndex(index);
             } catch (IndexOutOfBoundsException exception) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                         "Index input is out of bounds!",
                         String.format("The range is from 1 to %d", ledgerList.getItemsSize()));
             }
             break;
+
+        default:
+            // Fall through
+            break;
         }
         return ledger;
     }
 
-    private static void printCommandList(){
+    private static void printCommandList() {
         TablePrinter.setTitle("List of Commands");
         TablePrinter.addRow("No.;Command            ;Input Format                  ");
         TablePrinter.addRow("1.;Open ledger;ledger open /date <YYMMDD>");

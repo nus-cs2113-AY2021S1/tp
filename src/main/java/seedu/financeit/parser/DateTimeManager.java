@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Class that stores and manages the output of Datetime classes
+ * Class that stores and manages the output of Datetime classes.
  */
 public class DateTimeManager {
     private LocalDateTime dateTime;
@@ -24,8 +24,8 @@ public class DateTimeManager {
     }
 
     /**
-     * Takes in one format specifier string and outputs datetime string with the corresponding format
-     * @param whichFormat
+     * Takes in one format specifier string and outputs datetime string with the corresponding format.
+     * @param whichFormat Format to determine output of dateTime.
      * @return Formatted dateTime string
      */
     public String getDateFormatted(String whichFormat) {
@@ -61,11 +61,12 @@ public class DateTimeManager {
     }
 
     /**
-     * Handles a String array of format specifiers and arranges the tokens of formatted datetime substrings in a proper order
-     * @param whichFormat
+     * Handles a String array of format specifiers
+     * and arranges the tokens of formatted datetime substrings in a proper order.
+     * @param whichFormat Format to determine output of dateTime
      * @return Formatted dateTime string
      */
-    public String getDateFormatted(String[] whichFormat){
+    public String getDateFormatted(String[] whichFormat) {
         String[] token = new String[Constants.MAX_ARRAY_LEN];
         String dateTime;
         String output = "";
@@ -74,7 +75,7 @@ public class DateTimeManager {
             return getDateFormatted("dateTime");
         }
 
-        for(String format : whichFormat) {
+        for (String format : whichFormat) {
             dateTime = getDateFormatted(format);
             switch (format) {
             case "day":
@@ -95,8 +96,8 @@ public class DateTimeManager {
                 break;
             }
         }
-        for(int i = 0; i < 4; i++){
-            if(token[i] != null){
+        for (int i = 0; i < 4; i++) {
+            if (token[i] != null) {
                 output += token[i] + " ";
             }
         }

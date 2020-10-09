@@ -1,9 +1,9 @@
 package seedu.financeit.manualtracker;
 
-import seedu.financeit.common.List;
+import seedu.financeit.common.ItemList;
 import seedu.financeit.ui.TablePrinter;
 
-public class LedgerList extends List {
+public class LedgerList extends ItemList {
 
     @Override
     public void printList(String... ledgerName) {

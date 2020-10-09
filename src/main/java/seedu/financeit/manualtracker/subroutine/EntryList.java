@@ -1,14 +1,18 @@
 package seedu.financeit.manualtracker.subroutine;
 
-import seedu.financeit.common.List;
+import seedu.financeit.common.ItemList;
 import seedu.financeit.ui.TablePrinter;
 
-public class EntryList extends List {
+public class EntryList extends ItemList {
+
+    public void checkDuplicates() {
+
+    }
 
     @Override
-    public void printList(String ledgerDate) {
-        TablePrinter.setTitle(String.format("List of Entries for Ledger [%s]", ledgerDate));
-        TablePrinter.addRow("Entry Number;Auto;Entry Type;Category;Amount;Time;Description                    ");
+    public void printList(String... ledgerDate) {
+        TablePrinter.setTitle(String.format("List of Entries for Ledger [%s]", ledgerDate[0]));
+        TablePrinter.addRow("Entry Number;Entry Type;Category;Amount;Time;Description                    ");
         if (super.getItemsSize() == 0) {
             TablePrinter.addRow("No entries created               ");
         } else {

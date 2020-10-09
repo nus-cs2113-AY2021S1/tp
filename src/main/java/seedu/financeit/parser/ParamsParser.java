@@ -1,6 +1,5 @@
 package seedu.financeit.parser;
 
-import seedu.financeit.common.Constants;
 import seedu.financeit.utils.RegexMatcher;
 
 import java.util.HashMap;
@@ -43,7 +42,7 @@ public class ParamsParser {
             String paramType = buffer[0];
             //System.out.println("paramt " + paramType);
             paramSubstring = " " + buffer[1] + " ";
-            matcher = RegexMatcher.regexMatcher(paramSubstring, Constants.paramRegex);
+            matcher = RegexMatcher.paramMatcher(paramSubstring);
             //Separate into [paramArgument, rest of string]
             //System.out.println("paramsub " + paramSubstring);
 

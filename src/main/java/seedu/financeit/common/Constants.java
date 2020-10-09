@@ -31,8 +31,9 @@ public class Constants {
         EntryType(String string) {
             literal = string;
         }
+
         @Override
-        public String toString(){
+        public String toString() {
             return literal;
         }
     }
@@ -47,13 +48,14 @@ public class Constants {
         PrintType(String string) {
             literal = string;
         }
+
         @Override
-        public String toString(){
+        public String toString() {
             return literal;
         }
     }
 
+
     // Regex detects the following: <whitespace>/<word><whitespace>
-    public static final String paramRegex = String.format("(\\s)([%s]{1})(\\w+)(\\s)",
-            String.join("", DEFAULT_PARAMS_PREFIX));
+
 }

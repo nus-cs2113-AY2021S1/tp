@@ -59,7 +59,7 @@ public class UiManager {
         return inputParser.parseInput(input.toLowerCase());
     }
 
-    public static void printWithStatusIcon(Constants.PrintType printType, String... messages){
+    public static void printWithStatusIcon(Constants.PrintType printType, String... messages) {
         for (int i = 0; i < messages.length; i++) {
             if (i == 0) {
                 System.out.println(String.format("[ %-15s]: %s", printType, messages[i]));
@@ -73,8 +73,8 @@ public class UiManager {
         System.out.println("\n");
     }
 
-    public static void refreshPage(){
-        for(int i = 0 ; i < 4; i++){
+    public static void refreshPage() {
+        for (int i = 0; i < 4; i++) {
             System.out.println();
         }
     }

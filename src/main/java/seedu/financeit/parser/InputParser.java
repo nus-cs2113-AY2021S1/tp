@@ -51,7 +51,7 @@ public class InputParser {
 
         try {
             input = " " + input + " ";
-            this.matcher = RegexMatcher.regexMatcher(input, Constants.paramRegex);
+            this.matcher = RegexMatcher.paramMatcher(input);
             separator = this.getSeparator(input);
             paramsExist = true;
 
@@ -73,20 +73,20 @@ public class InputParser {
         } catch (EmptyCommandStringException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, exception.getMessage());
         }
-
         return new CommandPacket(commandString, params);
     }
 
     /**
      * Parses raw date and time input from the user and return a formatted string that can be parsed by DateTine class.
-     * @param input
+     * @param input Input string to parse
      * @return Formatted String in YYYY-MM-DDTHH:MM:SS
      */
-    public static LocalDateTime parseRawDateTime(String input){
+    public static LocalDateTime parseRawDateTime(String input) {
         return parseRawDateTime(input, " ");
     }
 
-    public static LocalDateTime parseRawDateTime(String input, String mode) throws InvalidParameterException, NullPointerException, DateTimeException {
+    public static LocalDateTime parseRawDateTime(String input, String mode) throws InvalidParameterException,
+        NullPointerException, DateTimeException {
         String dateTimeInput;
         int matchCount = 0;
         // If user uses a string token as a separator between two datetimes, say "to", remove from the string.
@@ -94,15 +94,14 @@ public class InputParser {
 
         String[] output = new String[2];
         String date = "";
-        if (input.trim().length() == 0) {
-            throw new NullPointerException();
+        if (RegexMatcher.alphabetMatcher(input).find()) {
+            throw new InvalidParameterException();
         }
-
         if (mode.equals("date")) {
             date = parseDateTime(tokens[0], "date");
             output[0] = date + "T" + Constants.PLACEHOLDER_TIME;
             output[1] = "\0";
-        } else if (mode.equals("time")){
+        } else if (mode.equals("time")) {
             date = Constants.PLACEHOLDER_DATE;
             output[0] = date + "T" + parseDateTime(tokens[0], "time");
             output[1] = "\0";
