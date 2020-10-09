@@ -12,9 +12,19 @@ public class User {
     public static Double weight;
     public static String gender;
     public Scanner in = new Scanner(System.in);
+    private static boolean isConfig = false;
+    private FoodList foodList;
+    private ExerciseList exerciseList;
+    private Storage storage;
 
-    public User() {
-        setup();
+    public User(FoodList foodList, ExerciseList exerciseList, Storage storage) {
+        while (isConfig == false) {
+            setup();
+            isConfig = true;
+        }
+        this.foodList = foodList;
+        this.exerciseList = exerciseList;
+        this.storage = storage;
     }
 
     private void setup() {
@@ -61,7 +71,7 @@ public class User {
             try {
                 ageInput = Integer.parseInt(in.nextLine());
                 if (ageInput <= 0) {
-                    System.out.println("oops that is an invalid age input.\n"
+                    System.out.println("Oops that is an invalid age input.\n"
                             + "Please enter your age:");
                 }
             } catch (NumberFormatException e) {
@@ -81,12 +91,12 @@ public class User {
             try {
                 heightInput = Double.parseDouble(in.nextLine());
                 if (heightInput <= 0.00) {
-                    System.out.println("oops that is an invalid height input.\n"
-                            + "Please enter your weight (in m):");
+                    System.out.println("Oops that is an invalid height input.\n"
+                            + "Please enter your height (in m):");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Oops that is an invalid height input.\n"
-                        + "Please enter your weight (in m):");
+                        + "Please enter your height (in m):");
                 heightInput = 0.00;
                 continue;
             }
@@ -151,4 +161,30 @@ public class User {
         System.out.println(getWeight());
     }
 
+    public Calorie calculateCalorieBurnt() {
+        int index = 0;
+        int totalBurnt = 0;
+        while (exerciseList.getExercise(index) != null) {
+            totalBurnt = exerciseList.getExercise(index).getCalories();
+            index++;
+        }
+        return new Calorie(totalBurnt);
+    }
+
+    public Calorie calculateCalorieConsumed() {
+        int index = 0;
+        int totalConsumed = 0;
+        while (foodList.getFood(index) != null) {
+            totalConsumed = foodList.getFood(index).getCalories();
+        }
+        return new Calorie(totalConsumed);
+    }
+
+    public Calorie calculateCalorie() {
+        int totalCalories;
+        Calorie totalConsumed = calculateCalorieConsumed();
+        Calorie totalBurnt = calculateCalorieBurnt();
+        totalCalories = totalConsumed.get() - totalBurnt.get();
+        return new Calorie(totalCalories);
+    }
 }
