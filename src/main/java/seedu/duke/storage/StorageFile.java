@@ -76,8 +76,8 @@ public class StorageFile {
             try {
                 String applianceList = myReader.nextLine();
                 String[] splitString = applianceList.split("\\|", 7);
-                if (splitString[1].isEmpty() || splitString[0].isEmpty() ||
-                        splitString[2].isEmpty() || splitString[3].isEmpty()) {
+                if (splitString[1].isEmpty() || splitString[0].isEmpty()
+                        || splitString[2].isEmpty() || splitString[3].isEmpty()) {
                     throw new FileCorrupted();
                 }
                 Command abc = new AddCommand(splitString[1], splitString[0], splitString[2], splitString[3]);
