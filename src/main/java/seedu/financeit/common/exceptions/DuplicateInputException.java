@@ -1,7 +1,7 @@
 package seedu.financeit.common.exceptions;
 
-public class DateTimeParseException extends Exception {
-    public DateTimeParseException(String message) {
+public class DuplicateInputException extends Exception {
+    public DuplicateInputException(String message) {
         super(message);
     }
 }

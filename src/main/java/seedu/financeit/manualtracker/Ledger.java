@@ -29,6 +29,10 @@ public class Ledger {
         return this.dateTimeManager.getDateFormatted(this.defaultDateTimeFormat);
     }
 
+    public LocalDateTime getDateTime() {
+        return this.dateTime;
+    }
+
     @Override
     public String toString() {
         return this.getDate();

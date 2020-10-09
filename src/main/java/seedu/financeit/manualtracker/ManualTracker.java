@@ -2,6 +2,7 @@ package seedu.financeit.manualtracker;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
+import seedu.financeit.common.exceptions.DuplicateInputException;
 import seedu.financeit.common.exceptions.ObjectNotFoundException;
 import seedu.financeit.manualtracker.subroutine.EntryTracker;
 import seedu.financeit.parser.InputParser;
@@ -103,8 +104,8 @@ public class ManualTracker {
                 // Fall through
             case "/id":
                 try {
-                    Ledger ledger = getLedgerFromList(paramType);
-                    ledgerList.addLedger(ledger);
+                    Ledger ledger = createLedger(paramType);
+                    ledgerList.addItem(ledger);
                 } catch (AssertionError Error) {
                     break;
                 }
@@ -141,7 +142,7 @@ public class ManualTracker {
 
     private static FiniteStateMachine.State handleShowLedger() {
         System.out.println("Show ledger");
-        System.out.println(ledgerList.getLedgersSize());
+        System.out.println(ledgerList.getItemsSize());
         ledgerList.printList();
         return FiniteStateMachine.State.MAIN_MENU;
     }
@@ -174,14 +175,30 @@ public class ManualTracker {
         return EntryTracker.main();
     }
 
-    private static Ledger getLedgerFromList(String paramType) throws AssertionError{
+    private static Ledger createLedger(String paramType) throws AssertionError{
+        Ledger ledger = null;
+        switch (paramType) {
+        case "/date":
+            String rawDate = packet.getParam(paramType);
+            try {
+                LocalDateTime dateTime = InputParser.parseRawDateTime(rawDate, "date");
+                ledgerList.checkDuplicates(dateTime);
+                ledger = new Ledger(dateTime);
+            } catch (DuplicateInputException exception) {
+                throw new AssertionError();
+            }
+        }
+        return ledger;
+    }
+
+    private static Ledger getLedgerFromList(String paramType) throws AssertionError {
         Ledger ledger = null;
         switch(paramType) {
         case "/date":
             String rawDate = packet.getParam(paramType);
             try {
                 LocalDateTime dateTime = InputParser.parseRawDateTime(rawDate, "date");
-                ledger = ledgerList.getLedgerFromDate(dateTime);
+                ledger = ledgerList.getItemFromDateTime(dateTime);
             } catch (NullPointerException exception) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                         "No params supplied to " + paramType,
@@ -217,7 +234,7 @@ public class ManualTracker {
             } catch (IndexOutOfBoundsException exception) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                         "Index input is out of bounds!",
-                        String.format("The range is from 1 to %d", ledgerList.getLedgersSize()));
+                        String.format("The range is from 1 to %d", ledgerList.getItemsSize()));
             }
             break;
         }
