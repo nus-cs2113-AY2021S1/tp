@@ -1,13 +1,9 @@
 package seedu.duke.ui;
 
-import seedu.duke.Member;
+import seedu.duke.project.Project;
 import seedu.duke.task.Task;
 
 import java.util.Scanner;
-
-import static seedu.duke.project.Project.backlog;
-import static seedu.duke.project.Project.member;
-
 
 public class Ui {
     private static final Scanner IN = new Scanner(System.in);
@@ -38,24 +34,24 @@ public class Ui {
         printGreeting();
     }
 
-    public void displayMembers() {
-        if (member.size() == 0) {
+    public void displayMembers(Project proj) {
+        if (proj.members.size() == 0) {
             System.out.println("Currently no members added to the project.");
         } else {
             System.out.println("Here are the members added to you project:");
-            for (int i = 0; i < member.size(); i++) {
-                System.out.println("\t" + (i + 1) + ". " + member.getMember(i).getUserId());
+            for (int i = 0; i < proj.members.size(); i++) {
+                System.out.println("\t" + (i + 1) + ". " + proj.members.getMember(i).getUserId());
             }
         }
     }
 
-    public void displayProjectBacklog() {
-        if (backlog.size() == 0) {
+    public void displayProjectBacklog(Project proj) {
+        if (proj.backlog.size() == 0) {
             System.out.println("No tasks currently added to project backlog.");
         } else {
             System.out.println("Current tasks in your project backlog");
-            for (int i = 0; i < backlog.size(); i++) {
-                System.out.println("\t" + (i + 1) + ". " + backlog.getTask(i).getTitle());
+            for (int i = 0; i < proj.backlog.size(); i++) {
+                System.out.println("\t" + (i + 1) + ". " + proj.backlog.getTask(i).getTitle());
             }
         }
     }
@@ -80,7 +76,19 @@ public class Ui {
         System.out.println();
     }
 
+    public void printAddMember(String s) {
+        System.out.println("The user associated with " + s + " has been added");
+    }
+
     public void memberNotFound(String s) {
         System.out.println("This member is not associated with this project: " + s);
+    }
+
+    public void printMemberAlreadyAdded(String s) {
+        System.out.println("The user associated with " + s + " is already added to the project");
+    }
+
+    public void printProjectAdded() {
+        System.out.println("Project successfully created.");
     }
 }

@@ -2,7 +2,9 @@ package seedu.duke.command;
 
 import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
+import seedu.duke.ui.Ui;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 import static seedu.duke.command.CommandSummary.DEADLINE;
@@ -11,7 +13,7 @@ import static seedu.duke.command.CommandSummary.DESCRIPTION;
 import static seedu.duke.command.CommandSummary.SPRINT_DURATION;
 
 public class ProjectCommand {
-    public void createProjectCommand(Hashtable<String, String> parameters) throws DukeException {
+    public void createProjectCommand(Hashtable<String, String> parameters, Ui ui, ArrayList<Project> projectList) throws DukeException {
 
         String title;
         String description;
@@ -40,5 +42,7 @@ public class ProjectCommand {
         }
 
         Project proj = new Project(title, description, deadline, sd);
+        ui.printProjectAdded();
+        projectList.add(proj);
     }
 }

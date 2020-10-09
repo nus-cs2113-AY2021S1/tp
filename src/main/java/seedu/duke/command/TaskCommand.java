@@ -13,11 +13,12 @@ import static seedu.duke.command.CommandSummary.TITLE;
 import static seedu.duke.command.CommandSummary.DESCRIPTION;
 
 public class TaskCommand {
-    public void addTaskCommand(Hashtable<String, String> tasks, Ui ui) throws DukeException {
+    public void addTaskCommand(Hashtable<String, String> tasks, Ui ui, ArrayList<Project> projectList) throws DukeException {
 
         String title;
         String description;
         String priority;
+        Project proj = projectList.get(0);
 
         if (tasks.get(TITLE) != null) {
             title = tasks.get(TITLE);
@@ -36,18 +37,19 @@ public class TaskCommand {
         }
 
         Task task = new Task(title, description, priority);
-        Project.backlog.addTask(task);
+        proj.backlog.addTask(task);
 
     }
 
-    public void deleteTaskCommand(ArrayList<String> taskId, Ui ui) {
+    public void deleteTaskCommand(ArrayList<String> taskId, Ui ui, ArrayList<Project> projectList) {
 
+        Project proj = projectList.get(0);
         for (String id : taskId) {
             try {
                 int backlogId = Integer.parseInt(id) - 1;
-                if (backlogId < Project.backlog.size()) {
-                    ui.printTaskRemoved(Project.backlog.backlogTasks.get(backlogId));
-                    Project.backlog.backlogTasks.remove(backlogId);
+                if (backlogId < proj.backlog.size()) {
+                    ui.printTaskRemoved(proj.backlog.backlogTasks.get(backlogId));
+                    proj.backlog.backlogTasks.remove(backlogId);
                 } else {
                     ui.displayInvalidId();
                 }
@@ -57,14 +59,15 @@ public class TaskCommand {
         }
     }
 
-    public void viewTaskCommand(ArrayList<String> taskId, Ui ui) {
+    public void viewTaskCommand(ArrayList<String> taskId, Ui ui, ArrayList<Project> projectList) {
 
+        Project proj = projectList.get(0);
         for (String id : taskId) {
             Task task = null;
             try {
                 int backlogId = Integer.parseInt(id) - 1;
-                if (backlogId < Project.backlog.backlogTasks.size()) {
-                    task = Project.backlog.backlogTasks.get(backlogId);
+                if (backlogId < proj.backlog.backlogTasks.size()) {
+                    task = proj.backlog.backlogTasks.get(backlogId);
                     ui.displayTask(task);
                 } else {
                     ui.displayInvalidId();

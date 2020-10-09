@@ -5,6 +5,7 @@ import seedu.duke.command.ProjectCommand;
 import seedu.duke.command.SprintCommand;
 import seedu.duke.command.TaskCommand;
 import seedu.duke.exception.DukeException;
+import seedu.duke.project.Project;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class Parser {
     private  ArrayList<String> PARAMS = new ArrayList<>();
 
 
-    public void parser(Ui ui) {
+    public void parser(Ui ui, ArrayList<Project> projectList) {
         String userInput = ui.readLine();
 
         if (userInput.equals(BYE)) {
@@ -68,7 +69,7 @@ public class Parser {
                 switch (action.toLowerCase()) {
                 case CREATE:
                     try {
-                        new ProjectCommand().createProjectCommand(PARAMETERS);
+                        new ProjectCommand().createProjectCommand(PARAMETERS, ui, projectList);
                     } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
@@ -84,10 +85,10 @@ public class Parser {
             case MEMBER:
                 switch (action.toLowerCase()) {
                 case ADD:
-                    new MemberCommand().addMemberCommand(PARAMS);
+                    new MemberCommand().addMemberCommand(PARAMS, ui, projectList);
                     break;
                 case DELETE:
-                    new MemberCommand().deleteMemberCommand(PARAMS, ui);
+                    new MemberCommand().deleteMemberCommand(PARAMS, ui, projectList);
                     break;
                 default:
                     try {
@@ -101,16 +102,16 @@ public class Parser {
                 switch (action.toLowerCase()) {
                 case ADD:
                     try {
-                        new TaskCommand().addTaskCommand(PARAMETERS, ui);
+                        new TaskCommand().addTaskCommand(PARAMETERS, ui, projectList);
                     } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
                     break;
                 case DELETE:
-                    new TaskCommand().deleteTaskCommand(PARAMS, ui);
+                    new TaskCommand().deleteTaskCommand(PARAMS, ui, projectList);
                     break;
                 case VIEW:
-                    new TaskCommand().viewTaskCommand(PARAMS, ui);
+                    new TaskCommand().viewTaskCommand(PARAMS, ui, projectList);
                     break;
                 case PRIORITY:
                     try {

@@ -1,8 +1,10 @@
 package seedu.duke;
 
 import seedu.duke.parser.Parser;
+import seedu.duke.project.Project;
 import seedu.duke.ui.Ui;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -22,10 +24,11 @@ public class Duke {
         System.out.println("What is your name?");
 
         Scanner in = new Scanner(System.in);
+        ArrayList<Project> projectList = new ArrayList<>(10);
 
         System.out.println("Hello " + in.nextLine());
         while (true) {
-            new Parser().parser(ui);
+            new Parser().parser(ui, projectList);
         }
     }
 }

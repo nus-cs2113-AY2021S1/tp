@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public class Project {
 
-    public static ProjectBacklog backlog;
-    public static ProjectMember member;
+    public ProjectBacklog backlog;
+    public ProjectMember members;
     String title;
     String description;
     String projectDeadline;
@@ -18,7 +18,7 @@ public class Project {
         this.projectDeadline = projectDeadline;
         this.sprintLength = Integer.parseInt(sprintLength);
         backlog = new ProjectBacklog();
-        member = new ProjectMember();
+        members = new ProjectMember();
     }
 
     public String toString() {
