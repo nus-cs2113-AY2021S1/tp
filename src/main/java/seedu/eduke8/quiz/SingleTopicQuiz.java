@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class SingleTopicQuiz implements Quiz {
     private Topic topic;
     private int numberOfQuestions;
-    Parser quizParser = new QuizParser();
+    private Parser quizParser = new QuizParser();
 
     public SingleTopicQuiz(Topic topic, int numberOfQuestions) {
         this.topic = topic;

@@ -1,10 +1,9 @@
-package seedu.eduke8;
+package seedu.eduke8.storage;
 
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.question.QuestionList;
-import seedu.eduke8.storage.TopicsStorage;
 import seedu.eduke8.topic.Topic;
 
 import java.io.IOException;
@@ -15,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TopicsStorageTest {
     @Test
-    public void load_invalidPath_expectIOException() {
+    public void load_invalidPath_expectIoException() {
         TopicsStorage topicsStorage = new TopicsStorage("data/test/invalid.json");
         assertThrows(IOException.class, topicsStorage::load);
     }
