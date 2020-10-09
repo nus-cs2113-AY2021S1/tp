@@ -16,7 +16,8 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
  */
 public class AddNoteCommand extends Command {
 
-    public static final String  COMMAND_WORD_NOTE = "add-n";
+    // change name to COMMAND_WORD
+    public static final String COMMAND_WORD_NOTE = "add-n";
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "New note added: ";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note already exists in the notebook! ";
     /*
