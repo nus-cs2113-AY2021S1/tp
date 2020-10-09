@@ -10,13 +10,13 @@ public class Module {
 
     public Module(String mod) {
         this.moduleCode = mod;
-        Arrays.fill(this.actualTime, 0);
+        Arrays.fill(this.actualTime, -1);
     }
 
     public Module(String mod, String expected) {
         this.moduleCode = mod;
         this.expected = Integer.parseInt(expected);
-        Arrays.fill(actualTime, 0);
+        Arrays.fill(actualTime, -1);
     }
 
     @Override
