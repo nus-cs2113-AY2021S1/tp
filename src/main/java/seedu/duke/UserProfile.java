@@ -44,4 +44,8 @@ public class UserProfile extends Human {
     public String toString() {
         return "Name= " + name + ", birthdate= " + getDobString() + ", gender= " + getGender();
     }
+
+    public String toFileString() {
+        return name + " | " + DATE_MONTH_YEAR.format(birthdate) + " | " + gender;
+    }
 }

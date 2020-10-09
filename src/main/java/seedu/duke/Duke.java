@@ -8,6 +8,10 @@ import java.util.Scanner;
 public class Duke {
     private static ArrayList<Watchlist> watchlists;
     private static Ui ui;
+    private static Storage storage;
+    private static final String USER_PROFILE_FILE_NAME = "userprofile.txt";
+    private static final String WATCHLIST_FILE_NAME = "watchlist.txt";
+    private static final Scanner CONSOLE = new Scanner(System.in);
 
 
     /**
@@ -15,7 +19,21 @@ public class Duke {
      */
     public static void main(String[] args) {
         ui = new Ui();
-        quickStart();
+        storage = new Storage(USER_PROFILE_FILE_NAME, WATCHLIST_FILE_NAME);
+
+        UserProfile userProfile = null;
+        try {
+            userProfile = storage.readUserProfileFile();
+        } catch (ParseException | DukeException exception) {
+            System.out.println("User profile data is corrupted or not found!");
+        }
+
+        watchlists = storage.readWatchlistFile();
+        if (userProfile == null) {
+            userProfile = quickStart();
+            storage.writeUserProfileFile(userProfile);
+        }
+
         addAnime();
 
         try {
@@ -29,18 +47,11 @@ public class Duke {
             e.printStackTrace();
         }
 
-        watchlists = new ArrayList<>();
-        createWatchlist("-n Anime-2020");      // Sample usage [Parameter to be updated to use user input]
-        for (Watchlist watchlist : watchlists) {        // Verification of Watchlist content
-            System.out.println(watchlist.toString());
-        }
-
         createAnimeList();
         getCommand();
-        ui.bye();
     }
 
-    private static void quickStart() {
+    private static UserProfile quickStart() {
         String logo = "                 _  _____ _                 \n"
                 + "     /\\         (_)/ ____| |                \n"
                 + "    /  \\   _ __  _| |    | |__   __ _ _ __  \n"
@@ -52,11 +63,11 @@ public class Duke {
         System.out.println("Hello welcome to AniChan\n" + logo);
         System.out.println("Before we start, let me learn more about you!");
 
+        UserProfile userProfile = null;
         boolean profileMade = false;
-
         while (!profileMade) {
             try {
-                createProfile();
+                userProfile = createProfile();
                 profileMade = true;
             } catch (ParseException e) {
                 System.out.println("Is your date in dd/MM/yyyy format?");
@@ -64,20 +75,21 @@ public class Duke {
                 System.out.println("Is your name empty?");
             }
         }
+
+        return userProfile;
     }
 
-    private static void createProfile() throws ParseException, DukeException {
-        Scanner input = new Scanner(System.in);
-
+    private static UserProfile createProfile() throws ParseException, DukeException {
         System.out.println("What's your name?");
-        String name = input.nextLine();
+        String name = CONSOLE.nextLine();
         System.out.println("Hello " + name + "! What might your date of birth be?");
-        String dob = input.nextLine();
+        String dob = CONSOLE.nextLine();
         System.out.println("What might your gender be? (Male/Female/Others)");
-        String gender = input.nextLine();
+        String gender = CONSOLE.nextLine();
 
         UserProfile newProfile = new UserProfile(name, dob, gender);
         System.out.println(newProfile);
+        return newProfile;
     }
 
     /**
@@ -85,16 +97,13 @@ public class Duke {
      * and requests for command.
      */
     private static void getCommand() {
-        // Request for first command
         System.out.println("What would you like to do today?");
-        Scanner input = new Scanner(System.in);
         Parser parser = new Parser();
         ui.showMainMenu();
 
-        while (input.hasNextLine()) {
+        while (CONSOLE.hasNextLine()) {
+            String fullCommand = CONSOLE.nextLine();
             try {
-                String fullCommand = input.nextLine();
-
                 String[] fullCommandSplit = parser.parseUserInput(fullCommand);
 
                 String description = "";
@@ -126,8 +135,10 @@ public class Duke {
                     showHelp();
                     break;
                 case "exit":
+                    ui.bye();
                     return;
                 default:
+                    System.out.println("??");
                     throw new DukeException();
                 }
             } catch (DukeException e) {
@@ -159,6 +170,9 @@ public class Duke {
             Watchlist newWatchlist = new Watchlist(watchlistName);
             watchlists.add(newWatchlist);
         }
+
+        storage.writeWatchlistFile(watchlists);
+        System.out.println("Watchlist created successfully!");
     }
 
     /**
