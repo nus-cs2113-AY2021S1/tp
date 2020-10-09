@@ -10,20 +10,10 @@ public class Fitr {
     private User user;
 
     public Fitr(String filePathOfFoodList, String filePathOfExerciseList){
+        foodList = new FoodList();
+        exerciseList = new ExerciseList();
         try {
             storage = new Storage(filePathOfFoodList, filePathOfExerciseList);
-            try {
-                foodList = new FoodList(storage.loadFoodList());
-            } catch (FileNotFoundException e) {
-                UI.printFoodListNotFoundError();
-                foodList = new FoodList();
-            }
-            try {
-                exerciseList = new ExerciseList(storage.loadExerciseList());
-            } catch (FileNotFoundException e) {
-                UI.printExerciseListNotFoundError();
-                exerciseList = new ExerciseList();
-            }
         }catch (IOException e){
             System.out.println("Theres no file");
         }

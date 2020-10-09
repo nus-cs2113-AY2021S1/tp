@@ -1,7 +1,7 @@
 package seedu.duke;
 
 public class DeleteCommand extends Command {
-    DeleteCommand(String command){
+    public DeleteCommand(String command){
         this.command = command;
     }
     @Override

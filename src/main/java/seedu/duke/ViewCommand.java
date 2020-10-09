@@ -5,7 +5,7 @@ public class ViewCommand extends Command {
     private FoodList foodList;
     private ExerciseList exerciseList;
     private Storage storage;
-    ViewCommand(String command){
+    public ViewCommand(String command){
         this.command = command;
     }
 
@@ -32,6 +32,7 @@ public class ViewCommand extends Command {
         System.out.println("Here is the list of food:");
         while (foodList.getFood(index) != null) {
             System.out.println("[" + printIndex + "] " + foodList.getFood(index));
+            index++;
         }
     }
 
@@ -43,6 +44,7 @@ public class ViewCommand extends Command {
         System.out.println("Here is the list of your exercises:");
         while (exerciseList.getExercise(index) != null) {
             System.out.println("[" + printIndex + "] " + exerciseList.getExercise(index));
+            index++;
         }
     }
 
