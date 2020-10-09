@@ -29,7 +29,7 @@ public class Lab extends SchoolEvent {
     }
 
     /**
-     * Describe the lab event
+     * Describe the lab event.
      *
      * @return a string containing the information about the lab event
      */

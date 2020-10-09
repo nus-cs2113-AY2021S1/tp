@@ -29,7 +29,7 @@ public abstract class Event extends CalendarItem {
     }
 
     /**
-     * Describe the event
+     * Describe the event.
      *
      * @return a string containing the information about the event
      */

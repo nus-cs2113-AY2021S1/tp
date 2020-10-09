@@ -30,6 +30,8 @@ public class Tutorial extends SchoolEvent {
 
 
     /**
+     * Describe the tutorial event.
+     *
      * @Return a string to describe the tutorial event.
      */
     @Override
