@@ -170,6 +170,7 @@ public class Parser {
      * Prepare userInput into Note before adding into Notebook.
      *
      * @param userMessage Original string user inputs.
+     * @throws SystemException if an error occurs.
      * @return Result of the add note command
      */
     private Command prepareAddNote(String userMessage) throws SystemException {
