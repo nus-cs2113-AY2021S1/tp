@@ -6,7 +6,7 @@ public class CommandSummary {
      */
     public static final String PROJECT = "project";
     public static final String MEMBER = "member";
-    public static final String TASK = "task";
+    public static final String TASK = "seedu/duke/task";
     public static final String SPRINT = "sprint";
 
     /*

@@ -24,17 +24,17 @@ public class TaskCommand {
         if (tasks.get(TITLE) != null) {
             title = tasks.get(TITLE);
         } else {
-            throw new DukeException("no title");
+            throw new DukeException("Please enter a title!");
         }
         if (tasks.get(DESCRIPTION) != null) {
             description = tasks.get(DESCRIPTION);
         } else {
-            throw new DukeException("no description");
+            throw new DukeException("Please enter a description!");
         }
         if (tasks.get(PRIORITY) != null) {
             priority = tasks.get(PRIORITY);
         } else {
-            throw new DukeException("no priority");
+            throw new DukeException("Please enter a priority!");
         }
         Project proj = projectList.get(0);
         Task task = new Task(title, description, priority);
@@ -95,7 +95,7 @@ public class TaskCommand {
             throw new DukeException("no priority");
         }
 
-        /* Insert actual code for changing task priority here.
+        /* Insert actual code for changing seedu.duke.task priority here.
         .
         .
         .
