@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,6 +17,17 @@ public class Duke {
         ui = new Ui();
         quickStart();
         addAnime();
+
+        try {
+            System.out.println("===Running Anime Data Print check===");
+            AnimeStorage animeStorage = new AnimeStorage("/data/AniListData");
+            AnimeData animeData = new AnimeData(animeStorage.readAnimeDatabase());
+            //animeData.printAll();
+            //animeData.printOne(1);
+            System.out.println("===End of Anime Data Print check===");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         watchlists = new ArrayList<>();
         createWatchlist("-n Anime-2020");      // Sample usage [Parameter to be updated to use user input]
@@ -77,10 +89,9 @@ public class Duke {
         System.out.println("What would you like to do today?");
         Scanner input = new Scanner(System.in);
         Parser parser = new Parser();
+        ui.showMainMenu();
 
-        while (true) {
-            ui.showMainMenu();
-
+        while (input.hasNextLine()) {
             try {
                 String fullCommand = input.nextLine();
 

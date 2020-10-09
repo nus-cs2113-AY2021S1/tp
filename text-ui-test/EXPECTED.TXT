@@ -15,15 +15,21 @@ Name= James Gosling, birthdate= 01/02/1999, gender= Male
 ===Running Sample Anime Class===
 Release Date in String: 30/Dec/2020
 ===End of Sample Anime Class===
+===Running Anime Data Print check===
+===End of Anime Data Print check===
 Anime-2020
 Uhh.. It's empty.. :(
 
 ===Running Sample Anime List Class===
+---------------------------------
+Index: 1
 Name: Adventures of Adventurers
 Episodes: 24
 Release Date:30/Dec/2020
 Rating: 65
 Genre: [Science, Action, Dance]
+---------------------------------
+Index: 2
 Name: Actions in Action
 Episodes: 13
 Release Date:15/Apr/1997
@@ -40,3 +46,4 @@ What would you like to do today?
 7. Help (help)
 8. Exit (exit)
 
+Sayonara!
