@@ -16,15 +16,6 @@ Name= James Gosling, birthdate= 01/02/1999, gender= Male
 Release Date in String: 30/Dec/2020
 ===End of Sample Anime Class===
 ===Running Anime Data Print check===
-Rating not within 0 to 100 range
-Rating not within 0 to 100 range
----------------------------------
-Index: 1
-Name: Cowboy Bebop: The Movie - Knockin' on Heaven's Door
-Episodes: 1
-Release Date:01/Sep/2001
-Rating: 82
-Genre: [Action, Drama, Mystery, Sci-Fi]
 ===End of Anime Data Print check===
 Anime-2020
 Uhh.. It's empty.. :(

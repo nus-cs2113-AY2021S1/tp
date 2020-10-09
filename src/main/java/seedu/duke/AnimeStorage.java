@@ -68,9 +68,9 @@ public class AnimeStorage {
         JSONObject jsonObject = new JSONObject();
         while (iterator.hasNext()) {
             String animeName;
-            int animeEpisode = -1;
-            int animeRating = -1;
-            int animeDuration = -1;
+            int animeEpisode = 0;
+            int animeRating = 0;
+            int animeDuration = 0;
 
             jsonObject = (JSONObject) iterator.next().get("data");
             jsonObject = (JSONObject) jsonObject.get("Media");
