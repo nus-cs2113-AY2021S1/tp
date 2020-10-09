@@ -6,6 +6,7 @@ public class InvalidCommand extends Command {
         super();
     }
 
+    @Override
     public boolean exit() {
         return false;
     }
