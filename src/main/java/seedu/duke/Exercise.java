@@ -10,13 +10,13 @@ public class Exercise {
         this.nameOfExercise = nameOfExercise;
         this.caloriesBurnt = caloriesBurnt;
         this.durationOfExercise = durationOfExercise;
-        this.caloricBurnRate = caloriesBurnt.get()/durationOfExercise;
+        this.caloricBurnRate = this.caloriesBurnt.get() / this.durationOfExercise;
     }
 
     public Exercise(String name,Calorie caloriesBurnt) {
         this.nameOfExercise = name;
         this.caloriesBurnt = caloriesBurnt;
-        this.caloricBurnRate = caloriesBurnt.get()/durationOfExercise;
+        this.caloricBurnRate = this.caloriesBurnt.get() / this.durationOfExercise;
     }
 
     public int getCalories() {

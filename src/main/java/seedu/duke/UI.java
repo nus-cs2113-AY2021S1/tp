@@ -6,7 +6,7 @@ import seedu.duke.common.Messages;
 import java.util.Scanner;
 
 /**
- * Prints messages
+ * Prints messages.
  */
 public class UI {
     public String read() {
