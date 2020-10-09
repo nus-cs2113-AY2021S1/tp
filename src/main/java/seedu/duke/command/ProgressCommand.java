@@ -5,7 +5,7 @@ import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
 
 /**
- * Show the progress of deadlines and todos to the user.
+ * Show the progress of todos and deadlines to the user.
  */
 public class ProgressCommand extends Command {
     public ProgressCommand(String userInput) {
@@ -13,9 +13,9 @@ public class ProgressCommand extends Command {
     }
 
     /**
-     * Show the progress of deadlines and todos to the user.
+     * Show the progress of todos and deadlines to the user.
      *
-     * @param calendarList the calendar list to list from
+     * @param calendarList the calendar list of all tasks and events
      * @param storage      not required
      */
     @Override

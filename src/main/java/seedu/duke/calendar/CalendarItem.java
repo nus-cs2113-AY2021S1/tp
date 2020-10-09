@@ -6,6 +6,8 @@ import java.time.LocalTime;
 public abstract class CalendarItem {
     public abstract String printIntoFile();
 
+    public abstract String getTaskType();
+
     public abstract LocalTime getTime();
 
     public abstract LocalDate getDate();
