@@ -36,7 +36,7 @@ public class PrintTimelineCommand extends Command {
         CalendarList sortedList = sortByDate(taskList);
         System.out.println("Here is your timeline:");
         int numberOfItems = sortedList.getTotalItems();
-        System.out.println("Timeline \n|");
+        System.out.println("Timeline\n|");
         for (int i = 0; i < numberOfItems; i++) {
             if (i == 0 || (sortedList.getItem(i - 1).getDate() != sortedList.getItem(i).getDate())) {
                 System.out.println("|__ " + sortedList.getItem(i).getTime());
