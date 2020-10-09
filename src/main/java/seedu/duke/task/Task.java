@@ -14,9 +14,12 @@ public class Task {
         this.isDone = false;
     }
 
-
     public void setAsDone() {
         this.isDone = true;
+    }
+
+    public void setPriority(String input) {
+        priority = Priority.valueOf(input);
     }
 
     public String getDescription() {
@@ -25,10 +28,6 @@ public class Task {
 
     public String getPriority() {
         return priority.toString();
-    }
-
-    public void setPriority(String input) {
-        priority = Priority.valueOf(input);
     }
 
     public String getTitle() {
@@ -43,6 +42,7 @@ public class Task {
     public String toString() {
         return title + " " + priority + " " + isDone;
     }
+
 
     //Delete seedu.duke.task handled outside using ArrayList remove() function
     //iD handled outside. (seedu.duke.task number)
