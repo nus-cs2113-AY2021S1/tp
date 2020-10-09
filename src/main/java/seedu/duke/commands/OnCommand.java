@@ -1,6 +1,6 @@
 package seedu.duke.commands;
 
-import seedu.duke.EmptyParameterException;
+import seedu.duke.exceptions.EmptyParameterException;
 import seedu.duke.data.framework.Appliance;
 
 import static seedu.duke.common.Messages.LINE;
@@ -31,7 +31,7 @@ public class OnCommand extends Command {
                 return;
             }
         }
-        System.out.println(LINE + name + " does not exist.");
+        ui.showToUser(LINE + name + " does not exist.");
     }
 
 }

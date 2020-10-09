@@ -1,13 +1,12 @@
 package seedu.duke.storage;
 
-import seedu.duke.EmptyParameterException;
+import seedu.duke.exceptions.EmptyParameterException;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CreateCommand;
-import seedu.duke.common.Messages;
 import seedu.duke.data.ApplianceList;
 import seedu.duke.data.HomeLocations;
-import seedu.duke.data.framework.Power;
+import seedu.duke.exceptions.FileCorrupted;
 import seedu.duke.ui.TextUi;
 
 import java.io.File;
@@ -16,6 +15,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+
+import static seedu.duke.common.Messages.MESSAGE_FILE_CORRUPTED;
+import static seedu.duke.common.Messages.MESSAGE_IMPORT;
 
 public class StorageFile {
 
@@ -54,19 +56,30 @@ public class StorageFile {
             int i = 0;
             File myFile = new File(filePath);
             Scanner myReader = new Scanner(myFile);
-            String file = myReader.nextLine();
-            int start = file.indexOf("[") + 1;
-            int end = file.indexOf("]");
-            String when = file.substring(start, end);
-            String[] stringSplit = when.split(",");
-            for (int j = 0; j < stringSplit.length; j++) {
-                Command newLocation = new CreateCommand(stringSplit[j].trim());
-                newLocation.setData(appliances, homeLocations);
-                newLocation.execute();
+            String locationList = myReader.nextLine();
+            try {
+                convertTextToLocationList(locationList);
+                convertTextToApplianceList(i, myReader);
+            } catch (FileCorrupted e) {
+                ui.showToUser(MESSAGE_FILE_CORRUPTED);
             }
-            while (myReader.hasNextLine()) {
-                file = myReader.nextLine();
-                String[] splitString = file.split("\\|", 7);
+
+            myReader.close();
+            ui.showToUser(MESSAGE_IMPORT);
+        } catch (FileNotFoundException | EmptyParameterException e) {
+            System.out.println("Load File Does not Exist. No contents will be loaded.");
+        }
+    }
+
+    private static void convertTextToApplianceList(int i, Scanner myReader) throws FileCorrupted {
+        while (myReader.hasNextLine()) {
+            try {
+                String applianceList = myReader.nextLine();
+                String[] splitString = applianceList.split("\\|", 7);
+                if (splitString[1].isEmpty() || splitString[0].isEmpty()
+                        || splitString[2].isEmpty() || splitString[3].isEmpty()) {
+                    throw new FileCorrupted();
+                }
                 Command abc = new AddCommand(splitString[1], splitString[0], splitString[2], splitString[3]);
                 abc.setData(appliances, homeLocations);
                 abc.execute();
@@ -75,14 +88,28 @@ public class StorageFile {
                     appliances.getAppliance(i).switchOn();
                 }
                 i++;
+            } catch (IndexOutOfBoundsException e) {
+                throw new FileCorrupted();
             }
-            myReader.close();
-            ui.showToUser(Messages.MESSAGE_IMPORT);
-        } catch (FileNotFoundException e) {
-            System.out.println("Load File Does not Exist. No contents will be loaded.");
-        } catch (EmptyParameterException e) {
-            System.out.println("Null location found in save file.");
+
         }
+    }
+
+    private static void convertTextToLocationList(String locationList) throws EmptyParameterException, FileCorrupted {
+        try {
+            int start = locationList.indexOf("[") + 1;
+            int end = locationList.indexOf("]");
+            String when = locationList.substring(start, end);
+            String[] stringSplit = when.split(",");
+            for (int j = 0; j < stringSplit.length; j++) {
+                Command newLocation = new CreateCommand(stringSplit[j].trim());
+                newLocation.setData(appliances, homeLocations);
+                newLocation.execute();
+            }
+        } catch (IndexOutOfBoundsException e) {
+            throw new FileCorrupted();
+        }
+
     }
 
     public static void createFile() {
@@ -98,7 +125,7 @@ public class StorageFile {
             }
 
         } catch (IOException e) {
-            System.out.println("An error occured");
+            System.out.println("An error occurred");
         }
     }
 

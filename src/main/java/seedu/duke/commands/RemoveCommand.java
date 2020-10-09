@@ -1,6 +1,8 @@
 package seedu.duke.commands;
 
-import seedu.duke.EmptyParameterException;
+import seedu.duke.exceptions.EmptyParameterException;
+
+import static seedu.duke.common.Messages.MESSAGE_LOCATION_NOT_EXIST;
 
 public class RemoveCommand extends Command {
 
@@ -21,12 +23,18 @@ public class RemoveCommand extends Command {
 
     @Override
     public void execute() {
-        for (int x = appliances.getAllAppliance().size() - 1; x >= 0; x--) {
-            if (appliances.getAppliance(x).getLocation().equals(usersEnteredLocation)) {
-                appliances.removeAppliance(x);
+        Boolean isLocationExist = homeLocationsList.isLocationCreated(this.usersEnteredLocation);
+        if (isLocationExist) {
+            for (int x = appliances.getAllAppliance().size() - 1; x >= 0; x--) {
+                if (appliances.getAppliance(x).getLocation().equals(this.usersEnteredLocation)) {
+                    appliances.removeAppliance((appliances.getAppliance(x).getName()));
+                }
             }
+            homeLocationsList.removeLocation(this.usersEnteredLocation);
+        } else {
+            ui.showToUser(MESSAGE_LOCATION_NOT_EXIST + " Nothing will be deleted.");
         }
-        homeLocationsList.removeLocation(usersEnteredLocation);
+
     }
 
 }

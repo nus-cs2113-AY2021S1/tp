@@ -8,7 +8,8 @@ public class Messages {
     public static final String MESSAGE_GOODBYE = "Good bye!";
     public static final String MESSAGE_IMPORT = "Importing data........Completed!";
     public static final String MESSAGE_EXPORT = "Exporting data........Completed!";
-    public static final String MESSAGE_TYPE_NOT_EXIST = "Type Entered does not exist.";
+    public static final String MESSAGE_APPLIANCE_TYPE_NOT_EXIST = "Type Entered does not exist.";
+    public static final String MESSAGE_APPLIANCE_EXIST = "Appliance name already exists.";
     public static final String MESSAGE_LOCATION_NOT_EXIST = "Location does not exist.";
     public static final String MESSAGE_LOCATION_EXIST = "Location already exist";
     public static final String MESSAGE_DISPLAY_LOCATION = " | Location: ";
@@ -28,5 +29,7 @@ public class Messages {
     public static final String MESSAGE_TIME_FORMAT_ERROR = "Time format is wrong.";
     public static final String MESSAGE_APPLIANCE_PREVIOUSLY_ON = "The appliance is already ON previously.";
     public static final String MESSAGE_APPLIANCE_PREVIOUSLY_OFF = "The appliance is already OFF previously.";
+
+    public static final String MESSAGE_FILE_CORRUPTED = "Data file is corrupted, some data will not be entered";
 
 }

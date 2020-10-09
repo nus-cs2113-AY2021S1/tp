@@ -1,6 +1,7 @@
 package seedu.duke.data;
 
 import seedu.duke.data.framework.Appliance;
+import seedu.duke.exceptions.InvalidAdditionOfAppliance;
 
 import java.util.ArrayList;
 
@@ -12,16 +13,21 @@ public class ApplianceList {
         appliances = new ArrayList<>();
     }
 
-    public void addAppliance(Appliance appliance) {
-        if (!isAppliance(appliance)) {
+    public void addAppliance(Appliance appliance) throws InvalidAdditionOfAppliance {
+        if (!isAppliance(appliance.getName())) {
             appliances.add(appliance);
         } else {
-            System.out.println("Appliance name already exist in the list, will not be created");
+            throw new InvalidAdditionOfAppliance();
         }
     }
 
-    public void removeAppliance(int index) {
-        appliances.remove(index);
+    public void removeAppliance(String userEnteredName) {
+        for (int i = 0; i < getAllAppliance().size(); i++) {
+            if (getAppliance(i).getName().equals(userEnteredName)) {
+                appliances.remove(i);
+                break;
+            }
+        }
     }
 
     public Appliance getAppliance(int index) {
@@ -36,10 +42,10 @@ public class ApplianceList {
         appliances.set(index, appliance);
     }
 
-    private Boolean isAppliance(Appliance toAddAppliance) {
+    public Boolean isAppliance(String toAddApplianceName) {
         boolean isExist = false;
         for (Appliance a : appliances) {
-            if (a.getName().equals(toAddAppliance.getName())) {
+            if (a.getName().equals(toAddApplianceName)) {
                 isExist = true;
                 break;
             }

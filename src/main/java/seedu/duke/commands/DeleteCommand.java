@@ -1,6 +1,6 @@
 package seedu.duke.commands;
 
-import seedu.duke.EmptyParameterException;
+import seedu.duke.exceptions.EmptyParameterException;
 
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
@@ -20,12 +20,13 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute() {
-        for (int i = 0; i < appliances.getAllAppliance().size(); i++) {
-            if (appliances.getAppliance(i).getName().equals(userEnteredName)) {
-                appliances.removeAppliance(i);
-                return;
-            }
+        Boolean isApplianceExist = appliances.isAppliance(this.userEnteredName);
+        if (isApplianceExist) {
+            appliances.removeAppliance(this.userEnteredName);
+        } else {
+            ui.showToUser(userEnteredName + " does not exist.");
         }
-        ui.showToUser(userEnteredName + " does not exist.");
+
+
     }
 }

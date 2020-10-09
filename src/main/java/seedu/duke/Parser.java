@@ -13,6 +13,7 @@ import seedu.duke.commands.OnCommand;
 import seedu.duke.commands.RemoveCommand;
 import seedu.duke.commands.UsageCommand;
 import seedu.duke.common.Messages;
+import seedu.duke.exceptions.EmptyParameterException;
 import seedu.duke.ui.TextUi;
 
 

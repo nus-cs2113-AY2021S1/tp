@@ -1,7 +1,9 @@
 package seedu.duke.commands;
 
-import seedu.duke.EmptyParameterException;
-import seedu.duke.common.Messages;
+import seedu.duke.exceptions.EmptyParameterException;
+import seedu.duke.exceptions.InvalidAddtionOfLocation;
+
+import static seedu.duke.common.Messages.MESSAGE_LOCATION_EXIST;
 
 public class CreateCommand extends Command {
 
@@ -23,10 +25,10 @@ public class CreateCommand extends Command {
 
     @Override
     public void execute() {
-        if (!homeLocationsList.isLocationCreated(usersEnteredLocation)) {
+        try {
             homeLocationsList.addLocation(usersEnteredLocation);
-        } else {
-            ui.showToUser(Messages.MESSAGE_LOCATION_EXIST);
+        } catch (InvalidAddtionOfLocation e) {
+            ui.showToUser(MESSAGE_LOCATION_EXIST);
         }
     }
 
