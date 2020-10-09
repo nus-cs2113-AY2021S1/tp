@@ -3,7 +3,6 @@ package seedu.duke;
 public class AddCommand extends Command {
     @Override
     public void execute(FoodList foodlist,ExerciseList exerciseList, Storage storage) {
-
         String type = command.split(" ", 2)[0];
         command = command.split(" ", 2)[1];
         if (type.equals("food")) {
@@ -37,5 +36,10 @@ public class AddCommand extends Command {
                 System.out.println("Sorry calories have to be a number");
             }
         }
+    }
+
+    @Override
+    public boolean isExit() {
+        return false;
     }
 }

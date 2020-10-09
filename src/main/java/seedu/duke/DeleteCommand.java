@@ -21,4 +21,9 @@ public class DeleteCommand extends Command {
             System.out.println("Sorry index deletion must be an number");
         }
     }
+
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 }

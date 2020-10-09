@@ -52,4 +52,9 @@ public class ViewCommand extends Command {
         System.out.println("Net calorie:");
         System.out.println(user.calculateCalorie());
     }
+
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 }
