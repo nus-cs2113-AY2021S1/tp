@@ -15,12 +15,12 @@ public class Duke {
     static Ui ui = new Ui();
 
     public static void main(String[] args) {
-       ui.printLogo();
+        ui.printLogo();
         System.out.println("What is your name?");
         Scanner in = new Scanner(System.in);
         ArrayList<Project> projectList = new ArrayList<>(10);
 
-        System.out.println("Hello " + in.nextLine());
+        System.out.print("Hello " + in.nextLine());
         while (true) {
             new Parser().parser(ui, projectList);
         }
