@@ -142,7 +142,7 @@ public class DataBase {
      * @param store partial name of the store
      * @return Food object
      */
-    public Food searchFoodByNameByStore(String food, String store){
+    public Food searchFoodByNameByStore(String food, String store) {
         return searchAllFoodByStore(store)
                 .filter( x -> x.getName().contains(food))
                 .findFirst()
@@ -169,7 +169,7 @@ public class DataBase {
      * @param store partial name of the store
      * @return  food stream
      */
-    public Stream<Food> searchAllFoodOfAllStores(String store){
+    public Stream<Food> searchAllFoodOfAllStores(String store) {
         return canteenList.stream()
                 .flatMap( x -> x.getStoreList().stream())
                 .filter( x -> x.getName().contains(store))
@@ -183,13 +183,13 @@ public class DataBase {
      * @param canteen partial name of the canteen
      * @return Food object
      */
-    public Food searchFoodByNameByCanteen(String food, String canteen){
+    public Food searchFoodByNameByCanteen(String food, String canteen) {
         return searchAllFoodByNameByCanteen(food, canteen)
                 .findFirst()
                 .orElseThrow();
     }
 
-    public Stream<Food> searchAllFoodByNameByCanteen(String food, String canteen){
+    public Stream<Food> searchAllFoodByNameByCanteen(String food, String canteen) {
         return canteenList.stream()
                 .filter(x -> x.getName().contains(canteen))
                 .findFirst()
@@ -205,11 +205,19 @@ public class DataBase {
      * @param calorie the maximum calorie of the food
      * @return a stream
      */
-    public Stream<Food> searchAllFoodBelowCalorie( int calorie){
-        return foodStream()
-                .filter( x -> x.getCalorie() < calorie);
+    public Stream<Food> searchAllFoodBelowCalorie( int calorie) {
+        return foodStream().filter( x -> x.getCalorie() < calorie);
     }
 
+    /***
+     * returns all food within the calorie range
+     * @param minCalorie minimum calories
+     * @param maxCalorie maxinum calories
+     * @return
+     */
+    public Stream<Food> searchAllFoodInCalorieRange( int minCalorie, int maxCalorie){
+        return foodStream().filter( x -> x.getCalorie() <= maxCalorie && x.getCalorie() >= minCalorie );
+    }
 
     /***
      * Provides a data stream of all the food in the data base
