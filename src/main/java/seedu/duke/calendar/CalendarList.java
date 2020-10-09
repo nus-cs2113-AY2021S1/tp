@@ -44,6 +44,11 @@ public class CalendarList {
         totalItems++;
     }
 
+    public void addItem(CalendarItem item) {
+        calendarList.add(item);
+        totalItems++;
+    }
+
     /**
      * Deletes the task from the task list.
      *

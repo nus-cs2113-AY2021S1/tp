@@ -1,5 +1,8 @@
 package seedu.duke.calendar.task;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * Represents a tutorial event.
  */
@@ -39,5 +42,15 @@ public class Tutorial extends Task {
     @Override
     public String getTaskType() {
         return taskType;
+    }
+
+    @Override
+    public LocalDate getDate() {
+        return null;
+    }
+
+    @Override
+    public LocalTime getTime() {
+        return null;
     }
 }

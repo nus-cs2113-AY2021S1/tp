@@ -34,4 +34,14 @@ public class Exam extends SchoolEvent {
         return null;
     }
 
+    @Override
+    public LocalDate getDate() {
+        return null;
+    }
+
+    @Override
+    public LocalTime getTime() {
+        return null;
+    }
+
 }
