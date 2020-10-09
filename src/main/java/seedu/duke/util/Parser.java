@@ -282,6 +282,7 @@ public class Parser {
      * Prepare userInput into a int before deletion.
      *
      * @param userMessage Original string user inputs.
+     * @throws SystemException if an error occurs.
      * @return Result of the delete note command
      */
     private Command prepareDeleteNote(String userMessage) throws SystemException {
