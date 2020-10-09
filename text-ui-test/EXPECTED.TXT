@@ -55,3 +55,4 @@ What would you like to do today?
 7. Help (help)
 8. Exit (exit)
 
+Sayonara!

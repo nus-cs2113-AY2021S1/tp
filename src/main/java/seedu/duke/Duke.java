@@ -89,10 +89,9 @@ public class Duke {
         System.out.println("What would you like to do today?");
         Scanner input = new Scanner(System.in);
         Parser parser = new Parser();
+        ui.showMainMenu();
 
-        while (true) {
-            ui.showMainMenu();
-
+        while (input.hasNextLine()) {
             try {
                 String fullCommand = input.nextLine();
 
