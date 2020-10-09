@@ -51,7 +51,7 @@ public class SingleTopicQuiz implements Quiz {
 
             Command answerCommand = quizParser.parseCommand(optionList, userInput);
 
-            answerCommand.execute(questionList, ui);
+            // answerCommand.execute(questionList, ui);
         }
     }
 }

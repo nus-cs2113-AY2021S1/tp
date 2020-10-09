@@ -43,8 +43,8 @@ public class Eduke8 {
         while (!isExit) {
             String userInput = ui.getInputFromUser();
             Command command = menuParser.parseCommand(topicList, userInput);
-            command.execute(topicList, ui);
-            isExit = command.isExit();
+            // command.execute(topicList, ui);
+            isExit = true; //command.isExit();
         }
     }
 
