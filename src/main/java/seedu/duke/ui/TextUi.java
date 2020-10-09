@@ -2,6 +2,7 @@ package seedu.duke.ui;
 
 import seedu.duke.book.Book;
 import seedu.duke.category.Category;
+import seedu.duke.category.CategoryList;
 import seedu.duke.quote.QuoteList;
 
 import java.util.Scanner;
@@ -21,6 +22,7 @@ public class TextUi {
     private static final String ADD_CATEGORY_MESSAGE = "I have tagged \"%s\" category to \"%s\"!";
     private static final String DELETE_CATEGORY_MESSAGE = "I have removed \"%s\" category from \"%s\"!";
     private static final String CATEGORY_SIZE_MESSAGE = "You have a total of %d item(s) tagged as \"%s\".";
+    private static final String LIST_CATEGORIES_MESSAGE = "Here is the list of all categories:";
 
     private final Scanner in;
 
@@ -65,11 +67,24 @@ public class TextUi {
     }
 
     public void printRemoveCategoryFromQuote(String quote, String categoryName) {
-        System.out.printf((ADD_CATEGORY_MESSAGE) + "\n", categoryName, quote);
+        System.out.printf((DELETE_CATEGORY_MESSAGE) + "\n", categoryName, quote);
     }
 
     public void printCategorySize(Category category) {
         System.out.printf((CATEGORY_SIZE_MESSAGE) + "\n", category.getSize(), category.getCategoryName());
+    }
+
+    public void printAllCategories(CategoryList categoryList) {
+        System.out.println(LIST_CATEGORIES_MESSAGE);
+        System.out.println(categoryList.toString());
+    }
+
+    public void printCategory(Category category) {
+        System.out.println(category.toString());
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
     }
 
     public void printBook(Book book) {

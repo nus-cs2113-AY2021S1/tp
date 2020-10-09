@@ -27,4 +27,33 @@ I have tagged "motivational" category to "quote1"!
 You have a total of 1 item(s) tagged as "motivational".
 
 What would you like to do with Quotesify?
+I have tagged "nice" category to "book1"!
+I have tagged "nice" category to "quote1"!
+You have a total of 2 item(s) tagged as "nice".
+
+What would you like to do with Quotesify?
+Here is the list of all categories:
+1. action - (1 items)
+2. motivational - (1 items)
+3. nice - (2 items)
+
+
+What would you like to do with Quotesify?
+I have removed "action" category from "book1"!
+You have a total of 0 item(s) tagged as "action".
+
+What would you like to do with Quotesify?
+action - (0 items)
+
+What would you like to do with Quotesify?
+I have removed "motivational" category from "quote1"!
+You have a total of 0 item(s) tagged as "motivational".
+
+What would you like to do with Quotesify?
+motivational - (0 items)
+
+What would you like to do with Quotesify?
+nice - (2 items)
+
+What would you like to do with Quotesify?
 Have a nice day!
