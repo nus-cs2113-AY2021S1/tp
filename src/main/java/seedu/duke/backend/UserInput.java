@@ -5,6 +5,7 @@ import java.util.Map;
 public class UserInput {
     private String command;
     private Map<String, String> args;
+    private String category;
 
     public UserInput(String c, Map<String, String> a) {
         command = c;
@@ -33,5 +34,13 @@ public class UserInput {
 
     public int getNumArgs() {
         return args.size();
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String s) {
+        category = s;
     }
 }

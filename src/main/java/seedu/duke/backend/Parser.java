@@ -2,19 +2,17 @@ package seedu.duke.backend;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class Parser {
-    Scanner in;
 
     public Parser() {
-        in = new Scanner(System.in);
+
     }
 
     /**
      * Given a string input, returns a sanitized and pre-processed UserInput object.
      * @param input The string to be processed
-     * @return UserInput object containing the command and all arguments
+     * @return UserInput object containing the command, category and all arguments
      */
     public UserInput parse(String input) {
         String userInput;
@@ -24,6 +22,13 @@ public class Parser {
         String[] output = userInput.split("\\/");
         UserInput ui;
         Map<String, String> map = new HashMap<>();
+        String category = checkCategory(output);
+        if (!category.equals("")) {
+            // Trim is still required as indexOf ' ' may hit a blank space before the category
+            // This removes the category from the command if it exists
+            String tmp = output[0].trim();
+            output[0] = tmp.substring(tmp.indexOf(' ') + 1);
+        }
         if (output.length == 1) {
             // There are no arguments supplied
             // Check if the input has any other arguments
@@ -44,6 +49,7 @@ public class Parser {
                 base = base.substring(0, base.indexOf(' '));
                 map.put("", arg);
             }
+            // Convert the / arguments into a map
             for (int i = 1; i < output.length; i++) {
                 String tmp = output[i].trim();
                 String key;
@@ -60,8 +66,27 @@ public class Parser {
             }
             ui = new UserInput(base, map);
         }
+        ui.setCategory(category);
         return ui;
 
+    }
+
+    /**
+     * Given any split output, finds if the output contains a string that indicates the category.
+     * Shorthand categories are supported.
+     * @param output The split string output
+     * @return The category of the command
+     */
+    public String checkCategory(String[] output) {
+        String tmp = output[0].trim().toLowerCase();
+        if (tmp.startsWith("hr ") || tmp.startsWith("h ")) {
+            return "hr";
+        } else if (tmp.startsWith("finance ") || tmp.startsWith("f ")) {
+            return "finance";
+        } else if (tmp.startsWith("event ") || tmp.startsWith("e ")) {
+            return "event";
+        }
+        return "";
     }
 
     /**
