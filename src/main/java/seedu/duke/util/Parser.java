@@ -276,6 +276,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Ensures that the user does not leave input blank after entering the find command word.
+     *
+     * @param userMessage user's input of the keyword.
+     * @return new FindCommand Command.
+     * @throws SystemException for missing keyword.
+     */
     private Command prepareFind(String userMessage) throws SystemException {
         if (userMessage.isBlank()) {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_KEYWORD);
@@ -283,8 +290,18 @@ public class Parser {
         return new FindCommand(userMessage);
     }
 
+    /**
+     * Returns a ListNote Command.
+     * ListNoteCommand is overloaded, so depending on the user input i.e
+     * list-n /tag TAG up/down
+     * tags and up/down are optional parameters for users to input
+     * up/down is to sort the list alphabetically either A-Z or Z-A
+     *
+     * @param userMessage user's input of the keyword.
+     * @return new ListNoteCommand Command.
+     */
     private Command prepareListNote(String userMessage) {
-        // If no optional parameters, return default display of list
+        // If no optional parameters, return default display of list note
         if (userMessage == null) {
             return new ListNoteCommand();
         }
@@ -293,6 +310,7 @@ public class Parser {
         ArrayList<String> tags = new ArrayList<>();
         String[] words = userMessage.split("\\S");
 
+        // May have multiple tags that need to be accounted for
         if (userMessage.contains("/tag")) {
             for (int i = 0; i < words.length; i++) {
                 if (words[i].equals("/tag")) {
@@ -309,6 +327,8 @@ public class Parser {
             }
         }
 
+        // No optional parameters case already accounted
+        // Minimally if no tag, will have up/down and vice versa
         if (tags.isEmpty()) {
             return new ListNoteCommand(isAscending);
         } else {
