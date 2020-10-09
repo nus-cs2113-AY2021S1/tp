@@ -3,11 +3,13 @@ package seedu.duke;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Duke {
     private static ArrayList<Watchlist> watchlists;
     private static Ui ui;
+    private static AnimeData animeData;
 
 
     /**
@@ -21,7 +23,7 @@ public class Duke {
         try {
             System.out.println("===Running Anime Data Print check===");
             AnimeStorage animeStorage = new AnimeStorage("/data/AniListData");
-            AnimeData animeData = new AnimeData(animeStorage.readAnimeDatabase());
+            animeData = new AnimeData(animeStorage.readAnimeDatabase());
             //animeData.printAll();
             //animeData.printOne(1);
             System.out.println("===End of Anime Data Print check===");
@@ -184,11 +186,71 @@ public class Duke {
     /**
      * Browses the list of anime.
      */
-    private static void browseAnime(String description) {
-        // Code to be added
+    public static void browseAnime(String description) {
+        Scanner input = new Scanner(System.in);
+        //Browse Feature (Bare and un-refactored)
+        //Ad-Hoc User input for testing
+        //TODO: Make it so that the sorting is not persistent
+        System.out.println("1 - Just Browse / 2 - List from (A-Z) / 3 - List from (Z-A) / 4 - Sort "
+                + "Rating Ascending / 5 - Sort Rating Descending");
+        String userInput = input.nextLine();
+        ArrayList<Anime> usableList = animeData.animeDataList;
+        switch (userInput.trim()) {
+        case "2":
+            usableList.sort(Comparator.comparing(Anime::getAnimeName));
+            break;
+        case "3":
+            usableList.sort(Comparator.comparing(Anime::getAnimeName).reversed());
+            break;
+        case "4":
+            usableList.sort(Comparator.comparing(Anime::getRating));
+            break;
+        case "5":
+            usableList.sort(Comparator.comparing(Anime::getRating).reversed());
+            break;
+        default:
+            System.out.println("Invalid Option!");
+        }
 
-        // Print for testing
-        System.out.println("Anime browsed!");
+        int browseIndex = 0;
+        boolean isBrowsing = true;
+        System.out.println("Happy Browsing!");
+        for (Anime anime : usableList) {
+            if (!isBrowsing) {
+                break;
+            }
+            browseIndex++;
+            System.out.println("\t" + browseIndex + ". " + anime.getAnimeName());
+            if (browseIndex % 20 == 0) {
+                while (true) {
+                    System.out.println("Enter 'c': To show more");
+                    System.out.println("Enter 'q': To stop");
+                    String browseOption = input.nextLine();
+
+                    if (browseOption.matches("-?\\d+(\\.\\d+)?")) {
+                        int indexObtained = Integer.parseInt(browseOption);
+                        System.out.println("Int detected: " + indexObtained);
+                        if (indexObtained > browseIndex || indexObtained < 1) {
+                            System.out.println("Out of Range query!");
+                        } else {
+                            Anime browseAnime = usableList.get(indexObtained - 1);
+                            System.out.println("Title       :   " + browseAnime.getAnimeName());
+                            System.out.println("Rating      :   " + browseAnime.getRating());
+                            System.out.println("Episodes    :   " + browseAnime.getTotalEpisodes());
+                            System.out.println("Release Date:   " + browseAnime.getReleaseDate());
+                        }
+                    }
+                    if (browseOption.trim().equals("c")) {
+                        break;
+                    }
+                    if (browseOption.trim().equals("q")) {
+                        isBrowsing = false;
+                        break;
+                    }
+                }
+            }
+        }
+        System.out.println("Total results found: " + browseIndex);
     }
 
     /**
