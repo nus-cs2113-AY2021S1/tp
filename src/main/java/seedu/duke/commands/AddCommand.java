@@ -1,10 +1,10 @@
 package seedu.duke.commands;
 
 import seedu.duke.common.Messages;
-import seedu.duke.data.type.AirConditioner;
-import seedu.duke.data.type.Fan;
-import seedu.duke.data.type.Lights;
-import seedu.duke.data.type.WaterHeater;
+import seedu.duke.data.AirConditioner;
+import seedu.duke.data.Fan;
+import seedu.duke.data.Lights;
+import seedu.duke.data.WaterHeater;
 import seedu.duke.exceptions.InvalidAdditionOfAppliance;
 
 import static seedu.duke.common.Messages.MESSAGE_APPLIANCE_EXIST;

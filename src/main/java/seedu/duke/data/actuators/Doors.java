@@ -1,4 +1,4 @@
-package seedu.duke.data.type.actuators;
+package seedu.duke.data.actuators;
 
 
 public class Doors extends Actuators {
