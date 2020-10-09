@@ -53,7 +53,7 @@ public class WordList {
     public static void listWords() {
         UI.listWordsMessage();
         for (int i = 0; i < wordList.size(); i++) {
-            System.out.println((i+1) + "." + wordList.get(i).getDescription());
+            System.out.println((i + 1) + "." + wordList.get(i).getDescription());
         }
     }
 }
