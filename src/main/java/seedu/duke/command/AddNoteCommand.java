@@ -12,7 +12,7 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
 
 /**
- * Adds a Note into the Notebook or an Event into the Timetable.
+ * Adds a Note into the Notebook.
  */
 public class AddNoteCommand extends Command {
 
@@ -50,7 +50,7 @@ public class AddNoteCommand extends Command {
     /**
      * Constructs an AddNoteCommand to add a Note into the Notebook.
      *
-     * @param note to be added.
+     * @param note refers to the note to be added.
      */
     public AddNoteCommand(Note note) {
         this.note = note;
