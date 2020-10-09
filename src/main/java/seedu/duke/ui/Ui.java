@@ -13,7 +13,7 @@ public class Ui {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-    private void printLogo() {
+    public void printLogo() {
         System.out.println("Hello from\n" + LOGO);
     }
 
