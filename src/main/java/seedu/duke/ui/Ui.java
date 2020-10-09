@@ -232,7 +232,7 @@ public class Ui {
 
     public static void printGoToTopic(Topic topic) {
         System.out.println("____________________________________________________________\n"
-                + "You are currently looking at the topic: " + topic.toString() + "\n"
+                + "You are currently looking at the topic: " + topic.getTitle() + "\n"
                 + "____________________________________________________________\n");
     }
 
@@ -245,6 +245,14 @@ public class Ui {
     public static void printRepeatedTopicError() {
         System.out.println("____________________________________________________________\n"
                 + " ☹ OOPS!!! I'm sorry, but that topic is already in the list :-(\n"
+                + "____________________________________________________________");
+    }
+
+    public static void printTopicDelete(Topic topic, int total) {
+        System.out.println("____________________________________________________________\n"
+                + " Noted. I've removed this topic:\n   "
+                + topic + "\n"
+                + " Now you have " + total + (total == 1 ? " task in the list.\n" : " tasks in the list.\n")
                 + "____________________________________________________________");
     }
 }

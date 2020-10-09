@@ -1,9 +1,17 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.topiccommand.*;
+
+import seedu.duke.command.topiccommand.AddTopicCommand;
+import seedu.duke.command.topiccommand.ExitTopicCommand;
+import seedu.duke.command.topiccommand.ListTopicCommand;
+import seedu.duke.command.topiccommand.TopicCommand;
+import seedu.duke.command.topiccommand.DeleteTopicCommand;
+import seedu.duke.command.topiccommand.FindTopicCommand;
+import seedu.duke.command.topiccommand.ReturnTopicCommand;
+import seedu.duke.command.topiccommand.SorryTopicCommand;
 
 /**
- * Parses the commands on the topic level
+ * Parses the commands on the topic level.
  */
 public class TopicParser {
 
