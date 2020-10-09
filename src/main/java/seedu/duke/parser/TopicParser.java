@@ -2,7 +2,11 @@ package seedu.duke.parser;
 
 
 import seedu.duke.command.Command;
-import seedu.duke.command.taskcommand.*;
+import seedu.duke.command.taskcommand.AddDeadlineCommand;
+import seedu.duke.command.taskcommand.AddEventCommand;
+import seedu.duke.command.taskcommand.AddTodoCommand;
+import seedu.duke.command.taskcommand.DeleteTaskCommand;
+import seedu.duke.command.taskcommand.DoneTaskCommand;
 import seedu.duke.command.topiccommand.AddTopicCommand;
 import seedu.duke.command.topiccommand.ExitTopicCommand;
 import seedu.duke.command.topiccommand.ListTopicCommand;
