@@ -1,14 +1,17 @@
 package seedu.duke.parser;
 
 
+import seedu.duke.command.Command;
+import seedu.duke.command.taskcommand.*;
 import seedu.duke.command.topiccommand.AddTopicCommand;
 import seedu.duke.command.topiccommand.ExitTopicCommand;
 import seedu.duke.command.topiccommand.ListTopicCommand;
-import seedu.duke.command.topiccommand.TopicCommand;
 import seedu.duke.command.topiccommand.DeleteTopicCommand;
 import seedu.duke.command.topiccommand.FindTopicCommand;
 import seedu.duke.command.topiccommand.ReturnTopicCommand;
 import seedu.duke.command.topiccommand.SorryTopicCommand;
+
+import java.util.Arrays;
 
 /**
  * Parses the commands on the topic level.
@@ -21,20 +24,41 @@ public class TopicParser {
      * @param fullCommand input by the user
      * @return returns a command instance to execute a command
      */
-    public static TopicCommand parse(String fullCommand) {
-        if (fullCommand.equals("bye")) {
-            return new ExitTopicCommand();
-        } else if (fullCommand.equals("list")) {
-            return new ListTopicCommand();
-        } else if (fullCommand.startsWith("add")) {
+    public static Command parse(String fullCommand) {
+        String[] message = fullCommand.split(" ");
+        switch (message[0]) {
+        case "bye":
+            if (fullCommand.equals("bye")) {
+                return new ExitTopicCommand();
+            }
+        case "list":
+            if (fullCommand.equals("list")) {
+                return new ListTopicCommand();
+            }
+        case "add":
             return new AddTopicCommand(fullCommand);
-        } else if (fullCommand.startsWith("delete ")) {
-            return new DeleteTopicCommand(fullCommand);
-        } else if (fullCommand.startsWith("find")) {
+        case "delete":
+            String [] commands = fullCommand.split(" ", 2);
+            if (message[1].equals("topic")) {
+                return new DeleteTopicCommand(commands[1]);
+            } else if (message[1].equals("task")) {
+                return new DeleteTaskCommand(commands[1]);
+            } else {
+                return new SorryTopicCommand();
+            }
+        case "find":
             return new FindTopicCommand(fullCommand);
-        } else if (fullCommand.startsWith("topic")) {
+        case "topic":
             return new ReturnTopicCommand(fullCommand);
-        } else {
+        case "todo":
+            return new AddTodoCommand(fullCommand);
+        case "deadline":
+            return new AddDeadlineCommand(fullCommand);
+        case "event":
+            return new AddEventCommand(fullCommand);
+        case "done":
+            return new DoneTaskCommand(fullCommand);
+        default:
             return new SorryTopicCommand();
         }
     }

@@ -28,7 +28,7 @@ public class Ui {
         System.out.println("____________________________________________________________\n"
                 + " Hello! I'm revisED\n"
                 + " What can I do for you?\n"
-                + "____________________________________________________________\n");
+                + "____________________________________________________________");
     }
 
     public static void printSubjectList(List<Subject> list) {
@@ -43,13 +43,13 @@ public class Ui {
     }
 
 
-    public static void printTaskList(List<Task> list) {
-        int num = 1;
-        System.out.println("____________________________________________________________\n"
-                + "Here are the task(s) and topic(s) in your list:");
-        for (Task item : list) {
-            System.out.println(num + "." + item);
-            num++;
+    public static void printTaskList(Subject subject) {
+        int index = 1;
+        TaskList taskList = subject.getTasks();
+        System.out.println("Here are the tasks(s) under " + subject.getTitle() + ": ");
+        for (Task t : taskList.getList()) {
+            System.out.println(index + "." + t);
+            index++;
         }
         System.out.println("____________________________________________________________");
     }
@@ -141,8 +141,7 @@ public class Ui {
             }
         }
         if (taskPresent == 0) {
-            System.out.println("____________________________________________________________\n"
-                    + " Sorry! I could not find any task with " + find + " in the list");
+            System.out.println(" Sorry! I could not find any task with " + find + " in the list.");
         }
         System.out.println("____________________________________________________________");
     }
@@ -158,15 +157,14 @@ public class Ui {
         }
         if (taskPresent == 0) {
             System.out.println("____________________________________________________________\n"
-                    + " Sorry! I could not find any subjects with " + find + " in the list");
+                    + " Sorry! I could not find any subjects with " + find + " in the list.");
         }
         System.out.println("____________________________________________________________");
     }
 
     public static void printMatch(int taskPresent) {
         if (taskPresent == 0) {
-            System.out.println("____________________________________________________________\n"
-                    + " Here are the matching task(s) in your list:");
+            System.out.println(" Here are the matching task(s) in your list:");
         }
     }
 
@@ -203,8 +201,7 @@ public class Ui {
             System.out.println(index + "." + t);
             index++;
         }
-        System.out.println("____________________________________________________________");
-        
+        System.out.println();
     }
 
     public static void printTopicMatch(int taskPresent) {
@@ -225,9 +222,9 @@ public class Ui {
         }
         if (taskPresent == 0) {
             System.out.println("____________________________________________________________\n"
-                    + " Sorry! I could not find any subjects with " + query + " in the list");
+                    + " Sorry! I could not find any topics with " + query + " in the list.");
         }
-        System.out.println("____________________________________________________________");
+        System.out.println();
     }
 
     public static void printGoToTopic(Topic topic) {

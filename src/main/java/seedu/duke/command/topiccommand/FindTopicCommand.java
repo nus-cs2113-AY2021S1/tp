@@ -5,6 +5,7 @@ import seedu.duke.card.SubjectList;
 import seedu.duke.card.Topic;
 import seedu.duke.card.TopicList;
 import seedu.duke.command.subjectcommand.SubjectCommand;
+import seedu.duke.command.taskcommand.FindTaskCommand;
 import seedu.duke.ui.Ui;
 
 public class FindTopicCommand extends TopicCommand {
@@ -18,6 +19,8 @@ public class FindTopicCommand extends TopicCommand {
         TopicList topicList = subject.getTopics();
         String[] message = this.fullcommand.split(" ");
         Ui.printFindTopic(topicList,message[1]);
+        FindTaskCommand findTaskCommand = new FindTaskCommand(this.fullcommand);
+        findTaskCommand.execute(subject.getTasks());
         return null;
     }
 

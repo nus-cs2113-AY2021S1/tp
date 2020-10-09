@@ -7,16 +7,25 @@ import java.util.List;
 
 public class Subject {
     private String title;
-    private TopicList topics = new TopicList(new ArrayList<>());
+    private TopicList topics;
     private TaskList tasks;
 
     public Subject(String title) {
         this.title = title;
+        topics = new TopicList(new ArrayList<>());
+        tasks = new TaskList(new ArrayList<>());
     }
 
     public Subject(String title, TopicList topics) {
         this.title = title;
         this.topics = topics;
+        tasks = new TaskList(new ArrayList<>());
+    }
+
+    public Subject(String title, TopicList topics, TaskList tasks) {
+        this.title = title;
+        this.topics = topics;
+        this.tasks = tasks;
     }
 
     public void printSubject(SubjectList subjectList) {
@@ -39,6 +48,7 @@ public class Subject {
         return tasks;
     }
 
+    @Override
     public String toString() {
         return this.title;
     }
