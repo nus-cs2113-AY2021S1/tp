@@ -1,27 +1,33 @@
 package seedu.eduke8.option;
 
+import seedu.eduke8.common.Displayable;
+import seedu.eduke8.common.DisplayableList;
+
 import java.util.ArrayList;
 
-public class OptionList implements OptionListInterface {
-    private final ArrayList<OptionInterface> options;
+public class OptionList implements DisplayableList {
+    private final ArrayList<Displayable> options;
 
     public OptionList() {
         options = new ArrayList<>();
     }
 
-    public OptionList(ArrayList<OptionInterface> optionList) {
-        this.options = optionList;
+    public OptionList(ArrayList<Displayable> options) {
+        this.options = options;
     }
 
-    public void addOption(OptionInterface option) {
-        options.add(option);
+    @Override
+    public ArrayList<Displayable> getInnerList() {
+        return this.options;
     }
 
-    public void deleteOption(OptionInterface option) {
+    @Override
+    public void add(Displayable option) {
         options.remove(option);
     }
 
-    public ArrayList<OptionInterface> getOptionList() {
-        return this.options;
+    @Override
+    public void delete(int index) {
+        options.remove(index);
     }
 }

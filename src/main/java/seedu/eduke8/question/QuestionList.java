@@ -1,23 +1,24 @@
 package seedu.eduke8.question;
 
+import seedu.eduke8.common.Displayable;
+import seedu.eduke8.common.DisplayableList;
+
 import java.util.ArrayList;
 import java.util.Random;
 
-public class QuestionList implements QuestionListInterface {
-    private ArrayList<QuestionInterface> allQuestions;  // list of questions for the particular topic
-    private ArrayList<QuestionInterface> quizQuestions;
+public class QuestionList implements DisplayableList {
+    private ArrayList<Displayable> allQuestions;  // list of questions for the particular topic
+    private ArrayList<Question> quizQuestions;
     private int currentQuestionNumber;
 
     private static final Random RANDOM = new Random();
 
-    public QuestionList(ArrayList<QuestionInterface> loadedQuestions) {
-        allQuestions = loadedQuestions;
+    public QuestionList(ArrayList<Displayable> questions) {
+        allQuestions = questions;
         quizQuestions = null;
         currentQuestionNumber = 0;
     }
 
-
-    @Override
     public void setQuizQuestions(int numberOfQuestionsForQuiz) {
         int numberOfQuestionsSelected = 0;
         // prevent repeated questions from being selected again
@@ -34,36 +35,45 @@ public class QuestionList implements QuestionListInterface {
             }
 
             // choose a random question from the question list and add it to the questions for quiz
-            quizQuestions.add(allQuestions.get(randomQuestionIndex));
+            quizQuestions.add((Question) allQuestions.get(randomQuestionIndex));
             numberOfQuestionsSelected++;
             integersChosen.add(randomQuestionIndex);
         }
     }
 
-
-    @Override
     public int getNumberOfQuestionsInQuiz() {
         return quizQuestions.size();
     }
 
-    @Override
     public int getNumberOfQuestionsInTopic() {
         return allQuestions.size();
     }
 
-    @Override
-    public QuestionInterface getNextQuestion() {
+    public Question getNextQuestion() {
         // Gets current question and increment count for number of questions shown to user
         return quizQuestions.get(currentQuestionNumber++);
     }
 
-    @Override
     public int getCurrentQuestionNumber() {
         return currentQuestionNumber;
     }
 
-    @Override
     public boolean areAllQuestionsAnswered() {
         return currentQuestionNumber == quizQuestions.size();
+    }
+
+    @Override
+    public ArrayList<Displayable> getInnerList() {
+        return allQuestions;
+    }
+
+    @Override
+    public void add(Displayable question) {
+        allQuestions.add(question);
+    }
+
+    @Override
+    public void delete(int index) {
+        allQuestions.remove(index);
     }
 }

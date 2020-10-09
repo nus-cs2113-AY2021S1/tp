@@ -1,16 +1,27 @@
 package seedu.eduke8.option;
 
-public class Option implements OptionInterface {
-    private String optionDescription;
+import seedu.eduke8.common.Displayable;
+
+public class Option implements Displayable {
+    private String description;
     private boolean isCorrectAnswer;
+    private boolean wasShown;
 
     public Option(String description) {
-        this.optionDescription = description;
-        this.isCorrectAnswer = false;
+        this.description = description;
+        isCorrectAnswer = false;
+        wasShown = false;
     }
 
-    public String getOptionDescription() {
-        return optionDescription;
+    @Override
+    public String getDescription() {
+        wasShown = true;
+        return description;
+    }
+
+    @Override
+    public boolean wasShown() {
+        return wasShown;
     }
 
     public boolean isCorrectAnswer() {

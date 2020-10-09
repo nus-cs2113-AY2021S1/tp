@@ -1,19 +1,20 @@
-package seedu.eduke8;
+package seedu.eduke8.parser;
 
-import seedu.eduke8.option.OptionInterface;
-import seedu.eduke8.question.QuestionInterface;
-import seedu.eduke8.quiz.Quiz;
-import seedu.eduke8.topic.TopicListInterface;
-import seedu.eduke8.ui.UiInterface;
+import seedu.eduke8.common.Displayable;
+import seedu.eduke8.option.Option;
+import seedu.eduke8.question.Question;
+import seedu.eduke8.quiz.SingleTopicQuiz;
+import seedu.eduke8.topic.TopicList;
+import seedu.eduke8.ui.Ui;
 
 import java.util.ArrayList;
 
-public class Parser implements ParserInterface {
+public class MenuParser implements Parser {
 
-    public Parser() {
+    public MenuParser() {
     }
 
-    public void parseCommand(TopicListInterface topicList, String userInput) {
+    public void parseCommand(TopicList topicList, String userInput) {
         int numOfQuestions = 0;
         String topicName = "";
         String[] commandArr = userInput.trim().split(" ", 0);
@@ -21,7 +22,7 @@ public class Parser implements ParserInterface {
             numOfQuestions = Integer.parseInt(commandArr[2].substring(2));
             topicName = commandArr[1].substring(2);
         }
-        UiInterface ui = null;
+        Ui ui = null;
         switch (commandArr[0]) {
         case "about":
             ui.printAbout();
@@ -35,8 +36,8 @@ public class Parser implements ParserInterface {
             ui.printTextbook();
             break;
         case "quiz":
-            Quiz quiz = new Quiz(topicList.findTopic(topicName), numOfQuestions);
-            quiz.startQuiz(ui);
+            SingleTopicQuiz singleTopicQuiz = new SingleTopicQuiz(topicList.findTopic(topicName), numOfQuestions);
+            singleTopicQuiz.startQuiz(ui);
             break;
         case "exit":
             System.exit(0);
@@ -46,17 +47,16 @@ public class Parser implements ParserInterface {
         }
     }
 
-    public void parseChosenOption(UiInterface ui, ArrayList<OptionInterface> options, QuestionInterface question) {
+    public void parseChosenOption(Ui ui, ArrayList<Displayable> options, Question question) {
         // Should probably use parser for this part to add hints also
-        int chosenOption = Integer.parseInt(ui.getInputFromUser());
-        if (options.get(chosenOption).isCorrectAnswer()) {
+        int chosenIndex = Integer.parseInt(ui.getInputFromUser());
+        Option chosenOption = (Option) options.get(chosenIndex);
+        if (chosenOption.isCorrectAnswer()) {
             ui.printAnswerIsCorrect();
             question.markAsAnsweredCorrectly();
         } else {
             ui.printAnswerIsWrong();
         }
-
-        question.markAsAttempted();
     }
 
 }

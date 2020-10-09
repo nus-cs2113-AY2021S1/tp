@@ -1,23 +1,30 @@
 package seedu.eduke8.topic;
 
-import seedu.eduke8.question.QuestionListInterface;
+import seedu.eduke8.common.Displayable;
+import seedu.eduke8.question.QuestionList;
 
-public class Topic implements TopicInterface {
+public class Topic implements Displayable {
+    private String description;
+    private QuestionList questionList;
+    private boolean wasShown;
 
-    private String topicName;
-    private QuestionListInterface allQuestions;
-
-
-    public Topic(String topicName, QuestionListInterface allQuestions) {
-        this.topicName = topicName;
-        this.allQuestions = allQuestions;
+    public Topic(String description, QuestionList questionList) {
+        this.description = description;
+        this.questionList = questionList;
+        wasShown = false;
     }
 
-    public String getTopic() {
-        return topicName;
+    @Override
+    public String getDescription() {
+        return description;
     }
 
-    public QuestionListInterface getQuestionList() {
-        return allQuestions;
+    @Override
+    public boolean wasShown() {
+        return wasShown;
+    }
+
+    public QuestionList getQuestionList() {
+        return questionList;
     }
 }

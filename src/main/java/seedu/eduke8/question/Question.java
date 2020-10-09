@@ -1,8 +1,8 @@
 package seedu.eduke8.question;
 
-import seedu.eduke8.hint.HintInterface;
-import seedu.eduke8.option.OptionInterface;
-import seedu.eduke8.option.OptionListInterface;
+import seedu.eduke8.common.Displayable;
+import seedu.eduke8.hint.Hint;
+import seedu.eduke8.option.OptionList;
 
 import java.util.ArrayList;
 
@@ -10,21 +10,19 @@ import java.util.ArrayList;
  * Represents a question of a certain topic. A <code>Question</code> object is represented by
  * its description, options and hint.
  */
-public class Question implements QuestionInterface {
+public class Question implements Displayable {
     private String description;
-    private OptionListInterface options;
-    private HintInterface hint;
-    private boolean wasHintShown;
+    private OptionList optionList;
+    private Hint hint;
     private boolean wasAnsweredCorrectly;
-    private boolean wasAttempted;
+    private boolean wasShown;
 
-    public Question(String description, OptionListInterface options, HintInterface hint) {
+    public Question(String description, OptionList optionList, Hint hint) {
         this.description = description;
-        this.options = options;
+        this.optionList = optionList;
         this.hint = hint;
-        wasHintShown = false;
         wasAnsweredCorrectly = false;
-        wasAttempted = false;
+        wasShown = false;
     }
 
     /**
@@ -33,59 +31,9 @@ public class Question implements QuestionInterface {
      * @return Question information.
      */
     @Override
-    public String getQuestionDescription() {
+    public String getDescription() {
+        wasShown = true;
         return description;
-    }
-
-    /**
-     * Returns the multiple options of the question.
-     *
-     * @return An arraylist of options.
-     */
-    @Override
-    public ArrayList<OptionInterface> getOptions() {
-        return options.getOptionList();
-    }
-
-    /**
-     * Returns the description of the hint tied to the question.
-     *
-     * @return Details of the hint.
-     */
-    @Override
-    public String getHint() {
-        return hint.getHintDescription();
-    }
-
-    /**
-     * Returns the description of the question.
-     *
-     * @return Question information.
-     */
-    @Override
-    public boolean hintWasShown() {
-        return wasHintShown;
-    }
-
-
-    @Override
-    public void setHintShown() {
-        wasHintShown = true;
-    }
-
-    /**
-     * Returns a boolean variable indicating if the question was answered correctly.
-     *
-     * @return True if question was answered correctly, false otherwise.
-     */
-    @Override
-    public boolean wasAnsweredCorrectly() {
-        return wasAnsweredCorrectly;
-    }
-
-    @Override
-    public void markAsAnsweredCorrectly() {
-        wasAnsweredCorrectly = true;
     }
 
     /**
@@ -94,13 +42,48 @@ public class Question implements QuestionInterface {
      * @return Indication of whether the question was attempted before or not.
      */
     @Override
-    public boolean wasAttempted() {
-        return wasAttempted;
+    public boolean wasShown() {
+        return wasShown;
     }
 
-
-    @Override
-    public void markAsAttempted() {
-        wasAttempted = true;
+    /**
+     * Returns the multiple options of the question.
+     *
+     * @return An arraylist of options.
+     */
+    public ArrayList<Displayable> getOptionList() {
+        return optionList.getInnerList();
     }
+
+    /**
+     * Returns the description of the hint tied to the question.
+     *
+     * @return Details of the hint.
+     */
+    public String getHint() {
+        return hint.getDescription();
+    }
+
+    /**
+     * Returns the description of the question.
+     *
+     * @return Question information.
+     */
+    public boolean wasHintShown() {
+        return hint.wasShown();
+    }
+
+    /**
+     * Returns a boolean variable indicating if the question was answered correctly.
+     *
+     * @return True if question was answered correctly, false otherwise.
+     */
+    public boolean wasAnsweredCorrectly() {
+        return wasAnsweredCorrectly;
+    }
+
+    public void markAsAnsweredCorrectly() {
+        wasAnsweredCorrectly = true;
+    }
+
 }

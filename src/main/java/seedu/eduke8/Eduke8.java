@@ -1,22 +1,23 @@
 package seedu.eduke8;
 
-import seedu.eduke8.storage.Storage;
+import seedu.eduke8.parser.MenuParser;
+import seedu.eduke8.storage.TopicsStorage;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
 public class Eduke8 {
     private static final String FILE_PATH = "data";
 
-    private Parser parser;
-    private Storage storage;
+    private MenuParser menuParser;
+    private TopicsStorage topicsStorage;
     private TopicList topicList;
     private Ui ui;
 
     private Eduke8(String filePath) {
-        parser = new Parser();
-        storage = new Storage(filePath);
+        menuParser = new MenuParser();
+        topicsStorage = new TopicsStorage(filePath);
         ui = new Ui();
-        topicList = new TopicList(storage.load());
+        topicList = new TopicList(topicsStorage.load());
     }
 
     private void run() {
@@ -34,7 +35,7 @@ public class Eduke8 {
 
         //while(!isExit) {
         String userInput = ui.getInputFromUser();
-        parser.parseCommand(topicList, userInput);
+        menuParser.parseCommand(topicList, userInput);
         //isExit = parser.parseCommand(userInput);
 
         //}

@@ -11,6 +11,6 @@ class HintTest {
         String inputHintDescription = "Please check the textbook page 88";
         Hint hint = new Hint(inputHintDescription);
 
-        assertEquals(inputHintDescription, hint.getHintDescription());
+        assertEquals(inputHintDescription, hint.getDescription());
     }
 }
