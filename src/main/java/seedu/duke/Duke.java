@@ -1,9 +1,8 @@
 package seedu.duke;
 
+import seedu.duke.calendar.CalendarList;
 import seedu.duke.command.Command;
-import seedu.duke.task.TaskList;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -13,7 +12,7 @@ import java.io.IOException;
 public class Duke {
 
     private Storage storage;
-    private TaskList taskList;
+    private CalendarList calendarList;
     private Ui ui;
 
     /**
@@ -24,9 +23,9 @@ public class Duke {
     public Duke(String filePath) throws Exception {
         ui = new Ui();
         storage = new Storage(filePath);
-        taskList = new TaskList();
+        calendarList = new CalendarList();
 
-        storage.readFromFile(taskList);
+        storage.readFromFile(calendarList);
     }
 
     /**
@@ -41,10 +40,10 @@ public class Duke {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.handleUserInput(fullCommand);
                 Ui.printDukeBorder(true);
-                c.execute(taskList, storage);
+                c.execute(calendarList, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
-                Ui.printDukeExceptionMessage(e, taskList);
+                Ui.printDukeExceptionMessage(e, calendarList);
             } finally {
                 Ui.printDukeBorder(false);
             }

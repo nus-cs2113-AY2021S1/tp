@@ -1,4 +1,7 @@
-package seedu.duke.task;
+package seedu.duke.calendar.task;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * Represents a tutorial event.
@@ -33,9 +36,21 @@ public class Tutorial extends Task {
                 + SEPARATOR + this.date + SEPARATOR + this.time;
     }
 
-    /** Returns the respective task type. */
+    /**
+     * Returns the respective task type.
+     */
     @Override
     public String getTaskType() {
         return taskType;
+    }
+
+    @Override
+    public LocalDate getDate() {
+        return null;
+    }
+
+    @Override
+    public LocalTime getTime() {
+        return null;
     }
 }
