@@ -13,7 +13,8 @@ import static seedu.duke.command.CommandSummary.DESCRIPTION;
 import static seedu.duke.command.CommandSummary.SPRINT_DURATION;
 
 public class ProjectCommand {
-    public void createProjectCommand(Hashtable<String, String> parameters, Ui ui, ArrayList<Project> projectList) throws DukeException {
+    public void createProjectCommand(Hashtable<String, String> parameters, Ui ui, ArrayList<Project> projectList)
+            throws DukeException {
 
         String title;
         String description;

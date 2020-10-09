@@ -13,12 +13,13 @@ import static seedu.duke.command.CommandSummary.TITLE;
 import static seedu.duke.command.CommandSummary.DESCRIPTION;
 
 public class TaskCommand {
-    public void addTaskCommand(Hashtable<String, String> tasks, Ui ui, ArrayList<Project> projectList) throws DukeException {
+    public void addTaskCommand(Hashtable<String, String> tasks, Ui ui, ArrayList<Project> projectList)
+            throws DukeException {
 
         String title;
         String description;
         String priority;
-        Project proj = projectList.get(0);
+
 
         if (tasks.get(TITLE) != null) {
             title = tasks.get(TITLE);
@@ -35,7 +36,7 @@ public class TaskCommand {
         } else {
             throw new DukeException("no priority");
         }
-
+        Project proj = projectList.get(0);
         Task task = new Task(title, description, priority);
         proj.backlog.addTask(task);
 

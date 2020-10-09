@@ -11,7 +11,6 @@ import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Hashtable;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,8 +34,8 @@ public class Parser {
     private static final Pattern CMD_PATTERN = Pattern.compile("(\\w+)\\s\\/(\\w+)\\s(.+)");
     //Groups of 2: (option name) (option value)
     private static final Pattern ARGS_PATTERN = Pattern.compile("-(\\w+)\\s([^-]+)");
-    private final Hashtable<String, String> PARAMETERS = new Hashtable<>();
-    private  ArrayList<String> PARAMS = new ArrayList<>();
+    private final Hashtable<String, String> parameters = new Hashtable<>();
+    private  ArrayList<String> params = new ArrayList<>();
 
 
     public void parser(Ui ui, ArrayList<Project> projectList) {
@@ -56,11 +55,11 @@ public class Parser {
 
             if (!rawArgs.contains("-")) {
                 String[] arguments = rawArgs.split(" ");
-                PARAMS.addAll(Arrays.asList(arguments));
+                params.addAll(Arrays.asList(arguments));
             } else {
                 while (parameterMatcher.find()) { //go through each occurrence of options
                     //put the options into the hashtable (similar to dictionary)
-                    PARAMETERS.put(parameterMatcher.group(1), parameterMatcher.group(2));
+                    parameters.put(parameterMatcher.group(1), parameterMatcher.group(2));
                 }
             }
 
@@ -69,7 +68,7 @@ public class Parser {
                 switch (action.toLowerCase()) {
                 case CREATE:
                     try {
-                        new ProjectCommand().createProjectCommand(PARAMETERS, ui, projectList);
+                        new ProjectCommand().createProjectCommand(parameters, ui, projectList);
                     } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
@@ -85,10 +84,10 @@ public class Parser {
             case MEMBER:
                 switch (action.toLowerCase()) {
                 case ADD:
-                    new MemberCommand().addMemberCommand(PARAMS, ui, projectList);
+                    new MemberCommand().addMemberCommand(params, ui, projectList);
                     break;
                 case DELETE:
-                    new MemberCommand().deleteMemberCommand(PARAMS, ui, projectList);
+                    new MemberCommand().deleteMemberCommand(params, ui, projectList);
                     break;
                 default:
                     try {
@@ -102,26 +101,26 @@ public class Parser {
                 switch (action.toLowerCase()) {
                 case ADD:
                     try {
-                        new TaskCommand().addTaskCommand(PARAMETERS, ui, projectList);
+                        new TaskCommand().addTaskCommand(parameters, ui, projectList);
                     } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
                     break;
                 case DELETE:
-                    new TaskCommand().deleteTaskCommand(PARAMS, ui, projectList);
+                    new TaskCommand().deleteTaskCommand(params, ui, projectList);
                     break;
                 case VIEW:
-                    new TaskCommand().viewTaskCommand(PARAMS, ui, projectList);
+                    new TaskCommand().viewTaskCommand(params, ui, projectList);
                     break;
                 case PRIORITY:
                     try {
-                        new TaskCommand().changeTaskPriorityCommand(TASK_ID, PRIORITY, PARAMETERS);
+                        new TaskCommand().changeTaskPriorityCommand(TASK_ID, PRIORITY, parameters);
                     } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
                     break;
                 case DONE:
-                    new TaskCommand().doneTaskCommand(PARAMS);
+                    new TaskCommand().doneTaskCommand(params);
                     break;
                 default:
                     try {
@@ -134,19 +133,19 @@ public class Parser {
             case SPRINT:
                 switch (action.toLowerCase()) {
                 case CREATE:
-                    new SprintCommand().createSprintCommand(PARAMS);
+                    new SprintCommand().createSprintCommand(params);
                     break;
                 case ADD:
-                    new SprintCommand().addSprintTaskCommand(PARAMS);
+                    new SprintCommand().addSprintTaskCommand(params);
                     break;
                 case DELETE:
-                    new SprintCommand().deleteSprintTaskCommand(PARAMS);
+                    new SprintCommand().deleteSprintTaskCommand(params);
                     break;
                 case VIEW:
-                    new SprintCommand().viewSprintCommand(PARAMS);
+                    new SprintCommand().viewSprintCommand(params);
                     break;
                 case ASSIGN:
-                    new SprintCommand().assignSprintTaskCommand(PARAMS);
+                    new SprintCommand().assignSprintTaskCommand(params);
                     break;
                 default:
                     try {
