@@ -52,33 +52,6 @@ public class Duke {
         }
 
         printFarewellMessage(username);
-
-        //        while (!isExit) {
-        //            switch (SCANNER.next()) {
-        //            case "noun": {
-        //                String input = SCANNER.nextLine();
-        //                WordList.addNoun(input);
-        //                break;
-        //            }
-        //            case "verb": {
-        //                String input = SCANNER.nextLine();
-        //                WordList.addVerb(input);
-        //                break;
-        //            }
-        //            case "adj": {
-        //                String input = SCANNER.nextLine();
-        //                WordList.addAdjective(input);
-        //                break;
-        //            }
-        //            case "list":
-        //                WordList.listWords();
-        //                break;
-        //            default:
-        //                isExit = true;
-        //                break;
-        //            }
-        //        }
-
     }
 
 
