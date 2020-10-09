@@ -1,3 +1,5 @@
+User profile file is not found.
+Watchlist file is not found.
 Hello welcome to AniChan
                  _  _____ _                 
      /\         (_)/ ____| |                
@@ -17,9 +19,6 @@ Release Date in String: 30/Dec/2020
 ===End of Sample Anime Class===
 ===Running Anime Data Print check===
 ===End of Anime Data Print check===
-Anime-2020
-Uhh.. It's empty.. :(
-
 ===Running Sample Anime List Class===
 ---------------------------------
 Index: 1
@@ -46,4 +45,6 @@ What would you like to do today?
 7. Help (help)
 8. Exit (exit)
 
+Watchlist created successfully!
+Watchlist created successfully!
 Sayonara!
