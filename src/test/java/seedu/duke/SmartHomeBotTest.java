@@ -41,28 +41,5 @@ class SmartHomeBotTest {
         assertThrows(InvalidAdditionOfAppliance.class, () -> applianceList.addAppliance(l1));
 
     }
-
-    @Test
-    public void removeLocationTest() throws InvalidAddtionOfLocation, EmptyParameterException {
-        //Create Sample Locations and empty appliance list
-        HomeLocations homeLocations = new HomeLocations();
-        homeLocations.addLocation("BedRoom1");
-        homeLocations.addLocation("BedRoom3");
-        // Prepare to read output of command
-        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-
-        ApplianceList applianceList = new ApplianceList();
-        // Remove Invalid location
-        Command removeLocation = new RemoveCommand("Bedroom2");
-        removeLocation.setData(applianceList, homeLocations);
-        removeLocation.execute();
-
-        //Process ui output
-        String outputString = outContent.toString().replace(System.getProperty("line.separator"), "");
-
-        //compare outputs
-        assertEquals(Messages.MESSAGE_LOCATION_NOT_EXIST + " Nothing will be deleted.",outputString);
-
-    }
+    
 }
