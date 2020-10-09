@@ -57,15 +57,15 @@ public class DataBase{
      * It will turn call fillStore with that name inserted, when the function fillStore
      * finishes executing, fileRead.nextLine() can either provide a new store name or UP_SYMBOL
      * if the UP_SYMBOL is provided, the function ends and the final Canteen object is returned
-     * @param name
-     * @param fileSegment
+     * @param name name of store
+     * @param fileSegment the file reader with the next line being a food item or UP_SYMBOL
      * @return
      */
     private Canteen fillCanteen(String name, Scanner fileSegment){
         Canteen canteen = new Canteen(name);
         String fileLine = fileSegment.nextLine();
         while (!(fileLine.equals(UP_SYMBOL))){
-            canteen.addStore(fillStore(name,fileSegment));
+            canteen.addStore(fillStore(fileLine,fileSegment));
             fileLine = fileSegment.nextLine();
         }
         return canteen;
