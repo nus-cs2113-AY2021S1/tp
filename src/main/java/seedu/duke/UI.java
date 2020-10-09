@@ -6,10 +6,10 @@ import seedu.duke.common.Messages;
 import java.util.Scanner;
 
 /**
- * Prints messages
+ * Prints messages.
  */
 public class UI {
-    public String read() {
+    public static String read() {
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }

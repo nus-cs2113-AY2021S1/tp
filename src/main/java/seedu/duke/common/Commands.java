@@ -1,7 +1,7 @@
 package seedu.duke.common;
 
 /**
- * Container for commands
+ * Container for commands.
  */
 public class Commands {
     public static final String COMMAND_ADD = "add";

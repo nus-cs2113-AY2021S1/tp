@@ -4,7 +4,8 @@ public class Exercise {
     protected String nameOfExercise; // The name of the Exercise
     protected Calorie caloriesBurnt;// Amount of calories burnt from exercise
     protected int durationOfExercise = 1; // Duration of the exercises
-    protected int caloricBurnRate = caloriesBurnt.get()/durationOfExercise; // Caloric Rate of the food, if amount isnt given we will take it as a whole unit.
+    // Caloric Rate of the food, if amount isnt given we will take it as a whole unit.
+    protected int caloricBurnRate = caloriesBurnt.get() / durationOfExercise;
 
     public Exercise(String nameOfExercise,Calorie caloriesBurnt, int durationOfExercise) {
         this.nameOfExercise = nameOfExercise;
