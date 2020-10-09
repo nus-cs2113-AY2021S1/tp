@@ -22,22 +22,17 @@ class SmartHomeBotTest {
         homeLocations.addLocation(br1);
         homeLocations.addLocation(br2);
         assertEquals("[BedRoom 1, BedRoom 2]", homeLocations.getLocations().toString());
-        assertThrows(InvalidAddtionOfLocation.class, () -> {
-            homeLocations.addLocation(br1);
-        });
+        assertThrows(InvalidAddtionOfLocation.class, () -> homeLocations.addLocation(br1));
     }
 
     @Test
     public void addApplianceTest() throws InvalidAdditionOfAppliance {
         ApplianceList applianceList = new ApplianceList();
         Lights l1 = new Lights("l1", "BedRoom1", "50");
-        Lights l2 = new Lights("l1", "BedRoom1", "50");
+        Lights l2 = new Lights("l2", "BedRoom1", "50");
         applianceList.addAppliance(l1);
         applianceList.addAppliance(l2);
-        assertThrows(InvalidAdditionOfAppliance.class, () -> {
-            applianceList.addAppliance(l1);
-        }
-        );
+        assertThrows(InvalidAdditionOfAppliance.class, () -> applianceList.addAppliance(l1));
 
     }
 
