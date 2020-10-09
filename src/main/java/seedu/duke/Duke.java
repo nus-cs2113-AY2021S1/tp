@@ -62,6 +62,8 @@ public class Duke {
                 Ui.printNoSubjectError();
             } catch (RepeatedSubjectException e) {
                 Ui.printRepeatedSubjectError();
+            } catch (IndexOutOfBoundsException e) {
+                Ui.printOutOfBoundsError();
             }
         }
         Ui.printBye();
