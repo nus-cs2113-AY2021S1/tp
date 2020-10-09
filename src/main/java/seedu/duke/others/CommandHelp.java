@@ -9,8 +9,8 @@ public class CommandHelp extends Command {
         return "Commands: hr add, hr delete, events add, events delete, finance add, finance delete, help, bye";
     }
 
-    public int validate(UserInput UI) {
-        if (UI.getCategory().equals("") && UI.getCommand().equalsIgnoreCase("help")) {
+    public int validate(UserInput input) {
+        if (input.getCategory().equals("") && input.getCommand().equalsIgnoreCase("help")) {
             return ACCEPT;
         } else {
             return NO_MATCH;

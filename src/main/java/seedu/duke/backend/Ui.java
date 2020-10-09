@@ -9,19 +9,20 @@ import java.util.Scanner;
 
 public class Ui {
     private Scanner sc;
-    private Parser p;
+    private Parser parser;
     private static ArrayList<Command> commandList = new ArrayList<>();
     private static boolean shutdown = false;
+    private static final String UNDERSCORES = "____________________________________________________________";
 
     public Ui() {
         sc = new Scanner(System.in);
-        p = new Parser();
+        parser = new Parser();
         initializeCommands();
     }
 
     public void run() {
         String inStr = sc.nextLine();
-        UserInput userInput = p.parse(inStr);
+        UserInput userInput = parser.parse(inStr);
         /*System.out.println("Category: "+userInput.getCategory());
         System.out.println("Command: "+userInput.getCommand());
         System.out.println("Num Args: "+userInput.getNumArgs());
@@ -48,7 +49,7 @@ public class Ui {
     }
 
     /**
-     * Returns if the loop should exit
+     * Returns if the loop should exit.
      * @return true if the program should terminate
      */
     public static boolean shouldShutdown() {
@@ -60,7 +61,7 @@ public class Ui {
     }
 
     /**
-     * Utility function for printing errors triggered by other classes
+     * Utility function for printing errors triggered by other classes.
      * @param text The string to be printed
      */
     public void printError(String text) {
@@ -72,13 +73,13 @@ public class Ui {
     }
 
     /**
-     * Prints the output with the divider lines and the supplied text
+     * Prints the output with the divider lines and the supplied text.
      * Option to make the text non instant for extra effect
      * @param text string to be printed
      * @param isInstant whether the string is printed instantly
      */
     private static void printOutput(String text, boolean isInstant) {
-        final String UNDERSCORES = "____________________________________________________________";
+
         System.out.println(UNDERSCORES);
         // Split text according to the lines to format.
         String[] lines = text.split("\\r?\\n");
@@ -104,7 +105,7 @@ public class Ui {
     }
 
     /**
-     * Creates a list of commands for the program to check through
+     * Creates a list of commands for the program to check through.
      */
     private static void initializeCommands() {
         commandList.add(new CommandHelp());
