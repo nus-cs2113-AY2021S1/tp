@@ -5,6 +5,9 @@ public class ViewCommand extends Command {
     private FoodList foodList;
     private ExerciseList exerciseList;
     private Storage storage;
+    ViewCommand(String command){
+        this.command = command;
+    }
 
     @Override
     public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage) {

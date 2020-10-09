@@ -47,4 +47,20 @@ public class UI {
     public static void printDelete(String entry) {
         System.out.println("Done! " + entry + "is removed");
     }
+
+    public static void printInvalidCommandError() {
+        System.out.println("Sorry this is an invalid Command!");
+    }
+
+    public static void printExerciseListNotFoundError() {
+        System.out.println("Exercise List cannot be found");
+    }
+
+    public static void printFoodListNotFoundError() {
+        System.out.println("Food List cannot be found");
+    }
+
+    public static void showError(String message) {
+        System.out.println("Error! Error!");
+    }
 }

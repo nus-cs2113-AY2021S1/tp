@@ -1,6 +1,9 @@
 package seedu.duke;
 
 public class AddCommand extends Command {
+    AddCommand(String command){
+        this.command = command;
+    }
     @Override
     public void execute(FoodList foodlist,ExerciseList exerciseList, Storage storage) {
         String type = command.split(" ", 2)[0];
