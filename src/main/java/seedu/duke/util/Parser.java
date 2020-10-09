@@ -237,6 +237,7 @@ public class Parser {
     /**
      * Used for input of note content and processing the input into a readable data.
      *
+     * @throws StringIndexOutOfBoundsException if an error occurs.
      * @return A string of converted content input
      */
     public String inputContent() throws StringIndexOutOfBoundsException {
