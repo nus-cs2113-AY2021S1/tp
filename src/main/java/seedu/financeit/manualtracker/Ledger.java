@@ -1,37 +1,73 @@
 package seedu.financeit.manualtracker;
 
-import seedu.financeit.manualtracker.subroutine.Entry;
-import seedu.financeit.parser.DateTimeManager;
+import seedu.financeit.common.CommandPacket;
+import seedu.financeit.common.Constants;
+import seedu.financeit.common.Item;
+import seedu.financeit.common.exceptions.EmptyParamException;
+import seedu.financeit.common.exceptions.InsufficientParamsException;
+import seedu.financeit.manualtracker.subroutine.EntryList;
 import seedu.financeit.parser.InputParser;
+import seedu.financeit.ui.UiManager;
 
+import java.security.InvalidParameterException;
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
-public class Ledger {
-    ArrayList<Entry> entryList = new ArrayList<>();
-    DateTimeManager dateTimeManager;
-    LocalDateTime dateTime;
-    String defaultDateTimeFormat = "date";
+public class Ledger extends Item {
+    public EntryList entryList = new EntryList();
 
-    public Ledger(String rawDate) {
-        this.setDate(rawDate);
+    public Ledger() {
+        super();
+        super.requiredParams = new String[] {
+            "/date"
+        };
+        super.setDefaultDateTimeFormat("date");
     }
 
-    public void addEntry(Entry entry) {
-        this.entryList.add(entry);
+    public Ledger(CommandPacket packet) throws DateTimeException, InvalidParameterException,
+        InsufficientParamsException, EmptyParamException {
+        this();
+        this.handleParams(packet);
     }
 
-    public void setDate(String rawDate){
-        this.dateTime = LocalDateTime.parse(InputParser.parseRawDateTime(rawDate, "date"));
-        this.dateTimeManager = new DateTimeManager(dateTime);
+    @Override
+    public String getName() {
+        return String.format("Ledger %d : [ %s ]", this.index + 1, this.dateTimeManager.getDateFormatted("date"));
     }
 
-    public String getDate() {
-        return this.dateTimeManager.getDateFormatted(this.defaultDateTimeFormat);
+    @Override
+    public boolean equals(Object object) {
+        Ledger entry = (Ledger) object;
+        return (super.dateTime.equals(entry.dateTime));
     }
 
     @Override
     public String toString() {
-        return this.getDate();
+        return super.getDateTimeFormatted();
+    }
+
+    @Override
+    public boolean isValidItem() {
+        return (this.dateTime != null);
+    }
+
+    @Override
+    public void handleParam(CommandPacket packet, String paramType) throws DateTimeException, InvalidParameterException,
+            EmptyParamException {
+        switch (paramType) {
+        case "/date":
+            String rawDate = packet.getParam(paramType);
+            if (rawDate.trim().length() == 0) {
+                throw new EmptyParamException(paramType);
+            }
+            LocalDateTime dateTime = InputParser.parseRawDateTime(rawDate, this.defaultDateTimeFormat);
+            this.setDateTime(dateTime);
+            break;
+
+        default:
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, paramType + " is not recognised.");
+            break;
+        }
+
     }
 }

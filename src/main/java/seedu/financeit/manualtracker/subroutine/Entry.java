@@ -1,40 +1,76 @@
 package seedu.financeit.manualtracker.subroutine;
 
+import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
-import seedu.financeit.parser.DateTimeManager;
-import seedu.financeit.parser.InputParser;
+import seedu.financeit.common.Item;
 import seedu.financeit.common.User;
+import seedu.financeit.common.exceptions.EmptyParamException;
+import seedu.financeit.common.exceptions.InsufficientParamsException;
+import seedu.financeit.manualtracker.Ledger;
+import seedu.financeit.parser.InputParser;
+import seedu.financeit.ui.UiManager;
 
+import java.security.InvalidParameterException;
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-public class Entry {
+public class Entry extends Item {
     private String description = " ";
-    private String category = " ";
-    private Constants.EntryType entryType;
-    private LocalDateTime dateTime;
-    private DateTimeManager dateTimeManager;
-    private boolean isAuto = false;
-    private String defaultDateTimeFormat = "time";
-    private double amount = 0.00;
+    private String category = null;
+    private Constants.EntryType entryType = null;
+    private double amount = -1;
+    private Ledger ledger = null;
 
     public Entry() {
+        super();
+        super.requiredParams = new String[]{
+            "/time",
+            "/cat",
+            "/amt",
+            "[ -i / -e ]"
+        };
+        super.setDefaultDateTimeFormat("time");
     }
 
-    public Entry(String description, String category, Constants.EntryType entryType, LocalDateTime dateTime, boolean isAuto) {
-        this.description = description;
-        this.category = category;
-        this.entryType = entryType;
-        this.dateTime = dateTime;
-        this.isAuto = isAuto;
+    public Entry(CommandPacket packet) throws DateTimeException, InvalidParameterException,
+            InsufficientParamsException, EmptyParamException {
+        this();
+        this.handleParams(packet);
     }
 
-    public LocalDateTime getDateTime(){
-        return this.dateTime;
-    }
-
-    public String getTime() {
-        return this.dateTimeManager.getDateFormatted(this.defaultDateTimeFormat);
+    @Override
+    public void handleParam(CommandPacket packet, String paramType) throws DateTimeException, InvalidParameterException,
+            InsufficientParamsException, EmptyParamException {
+        if (paramType.charAt(0) == '/' && packet.getParam(paramType).trim().length() == 0) {
+            throw new EmptyParamException(paramType);
+        }
+        switch (paramType) {
+        case "/time":
+            String rawTime = packet.getParam(paramType);
+            LocalDateTime dateTime = InputParser.parseRawDateTime(rawTime, defaultDateTimeFormat);
+            this.setDateTime(dateTime);
+            break;
+        case "/amt":
+            Double amount = Double.parseDouble(packet.getParam(paramType));
+            this.setAmount(amount);
+            break;
+        case "-i":
+            this.setEntryType(Constants.EntryType.INC);
+            break;
+        case "-e":
+            this.setEntryType(Constants.EntryType.EXP);
+            break;
+        case "/desc":
+            this.setDescription(packet.getParam(paramType));
+            break;
+        case "/cat":
+            this.setCategory(packet.getParam(paramType));
+            break;
+        default:
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, paramType + " is not recognised.");
+            break;
+        }
     }
 
     public boolean isValidCategory(String category, Constants.EntryType type) {
@@ -55,6 +91,10 @@ public class Entry {
         return this.description;
     }
 
+    public void setLedger(Ledger ledger) {
+        this.ledger = ledger;
+    }
+
     public void setAmount(double amount) {
         this.amount = amount;
     }
@@ -67,7 +107,7 @@ public class Entry {
         this.category = Constants.categoryMap.get(category);
     }
 
-    public String getCategory(){
+    public String getCategory() {
         return this.category;
     }
 
@@ -79,21 +119,33 @@ public class Entry {
         return this.entryType;
     }
 
-    public void setDateTime(String rawTime){
-        this.dateTime = LocalDateTime.parse(InputParser.parseRawDateTime(rawTime, "time"));
-        this.dateTimeManager = new DateTimeManager(dateTime);
-    }
-
-    public void setIsAuto(boolean isAuto) {
-        this.isAuto = isAuto;
-    }
-
-    public String isAutoToString() {
-        return this.isAuto ? "Auto" : "";
+    @Override
+    public String getName() {
+        return String.format("Entry %d : [ %s ] [ %s ]", this.getIndex(),
+            this.dateTimeManager.getDateFormatted("time"), this.description);
     }
 
     @Override
-    public String toString(){
-        return String.format("%s;%s;%s;%s;%s;%s", this.isAutoToString(),this.entryType, this.category, this.amount, this.getTime(), this.description);
+    public String toString() {
+        return String.format("%s;%s;%s;%s;%s", this.entryType, this.category, this.amount,
+            this.getDateTimeFormatted(), this.description);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        Entry entry = (Entry) object;
+        return (this.description.equals(entry.description))
+            && (this.category.equals(entry.category))
+            && (this.entryType.equals(entry.entryType))
+            && (this.dateTime.equals(entry.dateTime))
+            && (this.amount == entry.amount);
+    }
+
+    @Override
+    public boolean isValidItem() {
+        return (this.category != null)
+            && (this.entryType != null)
+            && (super.dateTime != null)
+            && (this.amount != -1);
     }
 }
