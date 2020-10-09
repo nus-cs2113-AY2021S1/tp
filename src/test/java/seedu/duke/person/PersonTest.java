@@ -16,56 +16,62 @@ class PersonTest {
 
     @Test
     void getAge_person_returnsAge() {
-        assertEquals(person.getAge(),21);
+        assertEquals(21, person.getAge());
     }
 
     @Test
     void setAge_personWithNewAge_returnsNewAge() {
         person.setAge(24);
-        assertEquals(person.getAge(),24);
+        assertEquals(24, person.getAge());
     }
 
     @Test
     void getHeight_person_returnsHeight() {
-        assertEquals(person.getHeight(),165);
+        assertEquals(165, person.getHeight());
     }
 
     @Test
     void setHeight_personWithNewHeight_returnsNewHeight() {
         person.setHeight(175);
-        assertEquals(person.getHeight(),175);
+        assertEquals(175, person.getHeight());
     }
 
     @Test
     void getOriginalWeight_person_returnsOriginalWeight() {
-        assertEquals(person.getOriginalWeight(),65);
+        assertEquals(65, person.getOriginalWeight());
     }
 
     @Test
     void setOriginalWeight_personWithNewOriginalWeight_returnsNewOriginalWeight() {
         person.setOriginalWeight(70);
-        assertEquals(person.getOriginalWeight(),70);
+        assertEquals(70, person.getOriginalWeight());
     }
 
     @Test
     void getTargetWeight_person_returnsTargetWeight() {
-        assertEquals(person.getTargetWeight(),55);
+        assertEquals(55, person.getTargetWeight());
     }
 
     @Test
     void setTargetWeight_personWithNewTargetWeight_returnsNewTargetWeight() {
         person.setTargetWeight(50);
-        assertEquals(person.getTargetWeight(),50);
+        assertEquals(50, person.getTargetWeight());
     }
 
     @Test
     void getActivityLevel_person_returnsActivityLevel() {
-        assertEquals(person.getActivityLevel(),ActivityLevel.LOW);
+        assertEquals(ActivityLevel.LOW, person.getActivityLevel());
     }
 
     @Test
     void setActivityLevel_personWithNewActivityLevel_returnsNewActivityLevel() {
         person.setActivityLevel(ActivityLevel.HIGH);
-        assertEquals(person.getActivityLevel(),ActivityLevel.HIGH);
+        assertEquals(ActivityLevel.HIGH, person.getActivityLevel());
+    }
+
+    @Test
+    void setActivityLevel_personWithNullActivityLevel_returnsNullActivityLevel() {
+        person.setActivityLevel(null);
+        assertEquals(null, person.getActivityLevel());
     }
 }
