@@ -1,13 +1,12 @@
-package seedu.duke.command.subjectcommand;
+package seedu.duke.command.topiccommand;
 
 import seedu.duke.card.Subject;
-import seedu.duke.card.SubjectList;
-import seedu.duke.exception.NoSubjectException;
+import seedu.duke.card.Topic;
 import seedu.duke.ui.Ui;
 
-public class SorrySubjectCommand extends SubjectCommand {
+public class SorryTopicCommand extends TopicCommand {
 
-    public Subject execute(SubjectList subjectList) {
+    public Topic execute(Subject subject) {
         Ui.printError();
         return null;
     }

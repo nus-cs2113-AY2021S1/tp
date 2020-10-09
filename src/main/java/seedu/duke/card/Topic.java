@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Topic {
     private String title;
-
     private List<Flashcard> flashcards;
 
     public Topic(String title) {
@@ -16,6 +15,10 @@ public class Topic {
     public Topic(String title, List<Flashcard> flashcards) {
         this.title = title;
         this.flashcards = flashcards;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public void addFlashCard(Flashcard flashcard) {
@@ -30,15 +33,15 @@ public class Topic {
         return flashcards.remove(index);
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public List<Flashcard> getFlashcards() {
         return flashcards;
+    }
+
+    public void printTopic(TopicList topicList) {
+        System.out.println("____________________________________________________________\n"
+                + "Got it. I've added this topic:\n  " + this.title + "\n"
+                + "Now you have " + topicList.getList().size() + (topicList.getList().size() == 1
+                ? " topic in the list.\n" : " topics in the list.\n")
+                + "____________________________________________________________");
     }
 }
