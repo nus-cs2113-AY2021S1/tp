@@ -15,16 +15,26 @@ public abstract class Event extends CalendarItem {
     protected String venue;
     protected boolean isOver;
 
+    /**
+     * A constructor for events.
+     *
+     * @param date date of the event
+     * @param time time of the event
+     * @param venue venue of the event
+     */
     public Event(LocalDate date, LocalTime time, String venue) {
         this.date = date;
         this.time = time;
         this.venue = venue;
     }
 
+    /**
+     * @return a string to describe the event
+     */
     @Override
     public String toString() {
         return date.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy")) + " "
-                + time.format(DateTimeFormatter.ofPattern("h:mm a"))
+                + time.format(DateTimeFormatter.ofPattern("h:mma"))
                 + " (" + venue + ")";
     }
 

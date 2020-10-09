@@ -235,13 +235,16 @@ public class Ui {
             System.out.println("Error: Please key in the event in this format: event ... /at ddMMyy");
             break;
         case "lecture":
-            System.out.println("Error: Please key in the lecture in this format: lecture ... / date time");
+            System.out.println("Error: Please key in the lecture in this format: lecture <module code> <venue? /at "
+                    + "ddMMyy HHmm");
             break;
         case "tutorial":
-            System.out.println("Error: Please key in the tutorial in this format: tutorial ... / date time");
+            System.out.println("Error: Please key in the tutorial in this format: tutorial <module code> <venue? /at "
+                    + "ddMMyy HHmm");
             break;
         case "lab":
-            System.out.println("Error: Please key in the lab in this format: lab ... / date time");
+            System.out.println("Error: Please key in the lab in this format: lab <module code> <venue? /at "
+                    + "ddMMyy HHmm");
             break;
         case "exam":
             System.out.println("Error: Please key in the exam in this format: exam <module code> <exam details> /at "
