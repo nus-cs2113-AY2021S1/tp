@@ -15,14 +15,13 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
  */
 public class DeleteNoteCommand extends Command {
 
-    // Change name to COMMAND_WORD
-    public static final String COMMAND_WORD_NOTE = "delete-n";
+    public static final String COMMAND_WORD = "delete-n";
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Note deleted: ";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook! ";
     /*
     public static final String COMMAND_WORD_EVENT = "delete-e"; TBR*/
 
-    public static final String COMMAND_USAGE_NOTE = COMMAND_WORD_NOTE + ": Deletes a note. Parameters: "
+    public static final String COMMAND_USAGE_NOTE = COMMAND_WORD + ": Deletes a note. Parameters: "
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE or "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
 

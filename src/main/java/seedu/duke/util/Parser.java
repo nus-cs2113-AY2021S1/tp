@@ -65,9 +65,9 @@ public class Parser {
 
         try {
             switch (commandString.toLowerCase()) {
-            case AddNoteCommand.COMMAND_WORD_NOTE:
+            case AddNoteCommand.COMMAND_WORD:
                 return prepareAddNote(userMessage);
-            /*case AddNoteCommand.COMMAND_WORD_EVENT:
+            /*case AddNoteCommand.COMMAND_WORD:
              return prepareAddEvent(userMessage);*/
             case ListNoteCommand.COMMAND_WORD:
                 return prepareListNote(userMessage);
@@ -79,9 +79,9 @@ public class Parser {
                 // return prepareEditNote(userMessage);
             case EditCommand.COMMAND_WORD_EVENT:
                 // return prepareEditEvent(userMessage);
-            case DeleteNoteCommand.COMMAND_WORD_NOTE:
+            case DeleteNoteCommand.COMMAND_WORD:
                 return prepareDeleteNote(userMessage);
-            /*case DeleteNoteCommand.COMMAND_WORD_EVENT:
+            /*case DeleteNoteCommand.COMMAND_WORD:
              return prepareDeleteEvent(userMessage);*/
             case FindCommand.COMMAND_WORD:
                 return prepareFind(userMessage);
@@ -170,8 +170,8 @@ public class Parser {
      * Prepare userInput into Note before adding into Notebook.
      *
      * @param userMessage Original string user inputs.
-     * @throws SystemException if an error occurs.
      * @return Result of the add note command
+     * @throws SystemException if an error occurs.
      */
     private Command prepareAddNote(String userMessage) throws SystemException {
         Note note;
@@ -237,8 +237,8 @@ public class Parser {
     /**
      * Used for input of note content and processing the input into a readable data.
      *
-     * @throws StringIndexOutOfBoundsException if an error occurs.
      * @return A string of converted content input
+     * @throws StringIndexOutOfBoundsException if an error occurs.
      */
     public String inputContent() throws StringIndexOutOfBoundsException {
         Scanner input = new Scanner(System.in);
@@ -282,8 +282,8 @@ public class Parser {
      * Prepare userInput into a int before deletion.
      *
      * @param userMessage Original string user inputs.
-     * @throws SystemException if an error occurs.
      * @return Result of the delete note command
+     * @throws SystemException if an error occurs.
      */
     private Command prepareDeleteNote(String userMessage) throws SystemException {
         int index = NULL_INDEX;
