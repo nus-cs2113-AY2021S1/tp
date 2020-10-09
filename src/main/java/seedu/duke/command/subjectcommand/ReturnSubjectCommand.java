@@ -58,9 +58,9 @@ public class ReturnSubjectCommand extends SubjectCommand {
                 }
                 isSubjectExit = c.isExit();
                 // TODO: implement the storage methods for Topic
-//                topics.saveSubject(topicStorage.getFileName());
-//            } catch (IOException e) {
-//                Ui.printWritingError();
+            //topics.saveSubject(topicStorage.getFileName());
+            //} catch (IOException e) {
+                //Ui.printWritingError();
             } catch (NumberFormatException e) {
                 Ui.printIndexError();
             } catch (NoSubjectException e) {
