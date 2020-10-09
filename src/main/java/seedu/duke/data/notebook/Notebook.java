@@ -1,7 +1,5 @@
 package seedu.duke.data.notebook;
 
-import seedu.duke.data.exception.SystemException;
-
 import java.util.ArrayList;
 
 /**
@@ -49,8 +47,6 @@ public class Notebook {
 
     /**
      * Removes a note from the timetable.
-     *
-     * @throws SystemException if an error occurs.
      */
     public void deleteNote(int index) {
         notes.remove(index);
@@ -58,8 +54,6 @@ public class Notebook {
 
     /**
      * Removes a note from the timetable.
-     *
-     * @throws SystemException if an error occurs.
      */
     public void deleteNote(String title) {
         notes.removeIf(note -> note.getTitle().equals(title));
