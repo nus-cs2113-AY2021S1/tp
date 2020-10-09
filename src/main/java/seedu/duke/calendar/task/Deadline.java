@@ -1,6 +1,7 @@
 package seedu.duke.calendar.task;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -39,7 +40,12 @@ public class Deadline extends Task {
     }
 
     @Override
-    public LocalDate getTime() {
+    public LocalDate getDate() {
         return this.by;
+    }
+
+    @Override
+    public LocalTime getTime() {
+        return null;
     }
 }

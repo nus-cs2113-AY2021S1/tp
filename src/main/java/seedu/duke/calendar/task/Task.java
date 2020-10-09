@@ -3,6 +3,7 @@ package seedu.duke.calendar.task;
 import seedu.duke.calendar.CalendarItem;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * Represents a Task in the task list.
@@ -72,7 +73,14 @@ public abstract class Task extends CalendarItem {
         return isDone;
     }
 
-    public LocalDate getTime() {
+    @Override
+    public LocalDate getDate() {
         return null;
     }
+
+    @Override
+    public LocalTime getTime() {
+        return null;
+    }
+
 }

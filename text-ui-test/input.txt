@@ -15,6 +15,7 @@ deadline return book /by 080606
 exam CS2113 open book /at 020202 1200
 find book
 list
+print timeline
 done 3
 delete 2
 list
