@@ -46,7 +46,7 @@ public class Parser {
             return new AddCommand(argumentWords);
 
         case "list":
-            return new ListCommand(argument);
+            return ListCommand.parse(argument);
 
         case "bye":
             return new ByeCommand();

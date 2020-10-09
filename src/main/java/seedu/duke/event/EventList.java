@@ -28,7 +28,7 @@ public class EventList {
     public String getName() {
         return name;
     }
-    
+
     public ArrayList<Event> checkEventsInTimeRange(LocalDate startDate, LocalDate endDate,
                                                    LocalTime startTime, LocalTime endTime) {
         ArrayList<Event> eventsInTimeRange = new ArrayList<>();

@@ -1,59 +1,46 @@
 package seedu.duke.command;
 
+import seedu.duke.event.EventList;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.UserData;
+
+import java.util.ArrayList;
 
 /**
  * Command to list events.
  */
 public class ListCommand extends Command {
-    private String listEventType;
-    private Boolean isInvalidEventType = false;
-
     /**
      * Constructor for listing events seedu.duke
      *
      * @param command from user input
      */
     public ListCommand(String command) {
-        String tempEventType = command.toLowerCase();
-        this.isExit = false;
-        switch (tempEventType) {
-        case "zoom":
-            listEventType = "Zoom";
-            break;
-        case "personal":
-            listEventType = "Personal";
-            System.out.println("Set list event type as personal");
-            break;
-        case "timetable":
-            listEventType = "Timetable";
-            break;
-        case "":
-            listEventType = "ListAll";
-            break;
-        default:
-            isInvalidEventType = true;
-            break;
-        }
+        this.command = command;
     }
 
     @Override
     public void execute(UserData data, Ui ui, Storage storage) {
-        if (!isInvalidEventType) {
-            switch (listEventType) {
-            case "Zoom":
-            case "Personal":
-            case "Timetable":
-                ui.printSpecificList(listEventType, data.getEventList(listEventType));
-                break;
-            case "ListAll":
-                ui.printList(data.getAllEventLists());
-                break;
-            default:
-                break;
+        ArrayList<EventList> eventLists = data.getAllEventLists();
+        if (command == null) {
+            ui.printAvailableList(eventLists);
+        } else if (command.equals("All")) {
+            for (EventList list : eventLists) {
+                ui.printList(list);
             }
+        } else {
+            ui.printList(data.getEventList(command));
+        }
+    }
+
+    public static Command parse(String input) {
+        if (input.isBlank()) {
+            return new ListCommand(null);
+        } else {
+            input = input.toLowerCase();
+            input = input.substring(0, 1).toUpperCase() + input.substring(1);
+            return new ListCommand(input);
         }
     }
 }

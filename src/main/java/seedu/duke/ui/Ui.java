@@ -33,7 +33,7 @@ public class Ui {
     }
 
     public String receiveCommand() {
-        return in.nextLine();
+        return in.nextLine().trim();
     }
 
     public void printEventAddedMessage(Event event) {
@@ -62,34 +62,40 @@ public class Ui {
 
     }
 
-    public void printSpecificList(String eventType, EventList eventList) {
-        int eventCount = 0;
-        if (eventList.getEvents().size() == 0) {
-            System.out.println("You have no events under " + eventType + ".");
-        } else {
-            System.out.println("Here is a list of your " + eventType + " events:");
-            for (Event event : eventList.getEvents()) {
-                eventCount++;
-                System.out.println(eventCount + ". " + event.toString());
-            }
+    /**
+     * Lists the name of all EventList in the given EventList ArrayList.
+     *
+     * @param eventLists EventList ArrayList to list.
+     */
+    public void printAvailableList(ArrayList<EventList> eventLists) {
+        System.out.println("Following are all existing lists:");
+        for (EventList list : eventLists) {
+            System.out.println(list.getName());
         }
+        System.out.println("'list All' will list all existing lists.");
+        printDividerLine();
     }
 
-
-    public void printList(ArrayList<EventList> eventLists) {
-        int eventCount = 0;
-        System.out.println("Here is a list of all your events!");
-        for (EventList eventList : eventLists) {
-            if (eventList.getEvents().size() > 0) {
-                System.out.println("Under " + eventList.getName() + " events, you have: ");
-                for (Event event : eventList.getEvents()) {
-                    eventCount++;
-                    System.out.println(eventCount + ". " + event.toString());
-                }
-            } else {
-                System.out.println("You have no events under " + eventList.getName() + ".");
+    /**
+     * Lists all the events in the given EventList.
+     *
+     * @param eventList EventList to list.
+     */
+    public void printList(EventList eventList) {
+        String eventListName = eventList.getName();
+        ArrayList<Event> events = eventList.getEvents();
+        if (events.size() == 0) {
+            System.out.println("You have no " + eventListName + " events!");
+        } else {
+            System.out.println("Here is a list of " + eventListName + " events:");
+            for(Event e : events) {
+                //if e.isRepeat()
+                //ArrayList<LocalDate> repeatDates = e.getRepeatDates();
+                //for(LocalDate date : repeatDates);
+                //e.toString(date);
+                //else
+                System.out.println(e);
             }
-            eventCount = 0;
         }
         printDividerLine();
     }
