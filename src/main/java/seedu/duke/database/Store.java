@@ -3,6 +3,7 @@ package seedu.duke.database;
 import seedu.duke.food.Food;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Store {

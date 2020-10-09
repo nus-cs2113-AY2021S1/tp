@@ -6,9 +6,12 @@ import seedu.duke.food.Food;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
-public class DataBase{
+public class DataBase {
     private static final String START_SYMBOL = "&%START";
     private static final String STOP_SYMBOL = "&%STOP";
     private static final String UP_SYMBOL = "&%UP";
@@ -19,9 +22,9 @@ public class DataBase{
     private static final String dataFileFolder = "src" + File.separator + "main" + File.separator +
             "java" + File.separator + "seedu" + File.separator + "duke" + File.separator + "database";
 
-    private final ArrayList<Canteen> canteenList;
+    private final List<Canteen> canteenList;
 
-    public DataBase(){
+    public DataBase() {
         this.canteenList = new ArrayList<>();
     }
 
@@ -30,21 +33,21 @@ public class DataBase{
      */
     public void init() throws FileNotFoundException {
         String fileFolder = rootDirectory + File.separator + dataFileFolder;
-        File dataFile = new File( fileFolder + File.separator + "data.txt");
+        File dataFile = new File(fileFolder + File.separator + "data.txt");
         Scanner fileReader = new Scanner(dataFile);
         String fileLine;
         boolean start = false;
-        while (fileReader.hasNext()){
+        while (fileReader.hasNext()) {
             fileLine = fileReader.nextLine();
             // ------ Check if the data base has started scanning ------
-            if (fileLine.equals(START_SYMBOL)){
+            if (fileLine.equals(START_SYMBOL)) {
                 start = true;
                 continue;
             }
             if (!(start)){
                 continue;
             }
-            if (fileLine.equals(STOP_SYMBOL)){
+            if (fileLine.equals(STOP_SYMBOL)) {
                 break;
             }
             canteenList.add(fillCanteen(fileLine, fileReader));
@@ -61,10 +64,10 @@ public class DataBase{
      * @param fileSegment the file reader with the next line being a food item or UP_SYMBOL
      * @return
      */
-    private Canteen fillCanteen(String name, Scanner fileSegment){
+    private Canteen fillCanteen(String name, Scanner fileSegment) {
         Canteen canteen = new Canteen(name);
         String fileLine = fileSegment.nextLine();
-        while (!(fileLine.equals(UP_SYMBOL))){
+        while (!(fileLine.equals(UP_SYMBOL))) {
             canteen.addStore(fillStore(fileLine,fileSegment));
             fileLine = fileSegment.nextLine();
         }
@@ -79,12 +82,12 @@ public class DataBase{
      * @param fileSegment the Scanner object used for the init() function
      * @return the completed store with all the food loaded
      */
-    private Store fillStore(String name, Scanner fileSegment){
+    private Store fillStore(String name, Scanner fileSegment) {
         Store store = new Store(name);
         Food food;
         String fileLine = fileSegment.nextLine();
         String[] fileData = fileLine.split(DATA_FILE_SEPERATOR);
-        while (!(fileLine.equals(UP_SYMBOL))){
+        while (!(fileLine.equals(UP_SYMBOL))) {
             food = new Food(fileData[0], Integer.parseInt(fileData[1]),Integer.parseInt(fileData[2])
             ,Integer.parseInt(fileData[3]),Integer.parseInt(fileData[4]));
             store.addFood(food);
@@ -97,7 +100,7 @@ public class DataBase{
     /***
      * Debugging function prints out all contents
      */
-    public void printAllData(){
+    public void printAllData() {
         System.out.println("Printing out all data");
         for (Canteen canteen : canteenList){
             System.out.println("Canteeh : " + canteen.getName());
@@ -112,5 +115,82 @@ public class DataBase{
     }
 
     // -------- Search functions --------
-    
+
+    /***
+     * this method searchs the whole data base and returns the first food item whose name contains the provided string
+     * @param food part of the name of the food
+     * @return Food
+     * @throws NoSuchElementException if no food contains the name provided
+     */
+    public Food searchFoodByName(String food) {
+        return foodStream().filter( x -> x.getName().contains(food)).findFirst().orElseThrow();
+    }
+
+    /***
+     * this method searchs the whole data base and returns all of the food whose name contains the provided string
+     * @param food part of the name of the food e.g. chicken
+     * @return data stream of all food items
+     */
+    public Stream<Food> searchAllFoodContainingName(String food) {
+        return foodStream().filter( x -> x.getName().contains(food));
+    }
+
+    /***
+     * search for the first food that contains the string provided in the first store which matchs the store
+     * string provided
+     * @param food partial name of the food
+     * @param store partial name of the store
+     * @return Food object
+     */
+    public Food searchFoodByNameByStore(String food, String store){
+        return canteenList.stream()
+                .flatMap( x -> x.getStoreList().stream())
+                .filter( x -> x.getName().contains(store))
+                .findFirst()
+                .orElseThrow()
+                .getFoodList()
+                .stream()
+                .filter( x -> x.getName().contains(food))
+                .findFirst()
+                .orElseThrow();
+    }
+
+    /***
+     * This method returns a stream of all the food in the first store that contains the given string
+     * @param store partial name of the store
+     * @return food stream
+     */
+    public Stream<Food> searchAllFoodOfStore(String store) {
+        return canteenList.stream()
+                .flatMap( x -> x.getStoreList().stream())
+                .filter( x -> x.getName().contains(store))
+                .findFirst()
+                .orElseThrow()
+                .getFoodList()
+                .stream();
+    }
+
+    /***
+     * this method returns a stream of all the food in all stores that contains the given string
+     * @param store partial name of the store
+     * @return  food stream
+     */
+    public Stream<Food> searchAllFoodOfAllStores(String store){
+        return canteenList.stream()
+                .flatMap( x -> x.getStoreList().stream())
+                .filter( x -> x.getName().contains(store))
+                .flatMap( x -> x.getFoodList().stream());
+    }
+
+    /***
+     * Provides a data stream of all the food in the data base
+     * @return a food stream
+     */
+    private Stream<Food> foodStream() {
+       return canteenList.stream()
+               .flatMap( x -> x.getStoreList().stream())
+               .flatMap( x -> x.getFoodList().stream());
+    }
+
+
 }
