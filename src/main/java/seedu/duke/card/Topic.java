@@ -44,4 +44,9 @@ public class Topic {
                 ? " topic in the list.\n" : " topics in the list.\n")
                 + "____________________________________________________________");
     }
+
+    @Override
+    public String toString() {
+        return this.title;
+    }
 }
