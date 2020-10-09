@@ -1,6 +1,10 @@
 package seedu.duke.backend;
 
 import seedu.duke.Command;
+import seedu.duke.Finance.CommandFinanceAdd;
+import seedu.duke.Finance.CommandFinanceDel;
+import seedu.duke.Finance.CommandFinanceSummary;
+import seedu.duke.Finance.FinanceLog;
 import seedu.duke.others.CommandBye;
 import seedu.duke.others.CommandHelp;
 
@@ -8,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
+    private static FinanceLog fl;
     private Scanner sc;
     private Parser parser;
     private static ArrayList<Command> commandList = new ArrayList<>();
@@ -17,6 +22,7 @@ public class Ui {
     public Ui() {
         sc = new Scanner(System.in);
         parser = new Parser();
+        fl=new FinanceLog();
         initializeCommands();
     }
 
@@ -79,7 +85,7 @@ public class Ui {
      * @param isInstant whether the string is printed instantly
      */
     private static void printOutput(String text, boolean isInstant) {
-
+        if (text==null) return;
         System.out.println(UNDERSCORES);
         // Split text according to the lines to format.
         String[] lines = text.split("\\r?\\n");
@@ -110,5 +116,8 @@ public class Ui {
     private static void initializeCommands() {
         commandList.add(new CommandHelp());
         commandList.add(new CommandBye());
+        commandList.add(new CommandFinanceSummary(fl));
+        commandList.add(new CommandFinanceAdd(fl));
+        commandList.add(new CommandFinanceDel(fl));
     }
 }
