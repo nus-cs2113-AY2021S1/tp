@@ -24,9 +24,6 @@ public class ListCommand extends Command {
         }
         type = details[0];
         information = details[1];
-
-//        System.out.println(type);
-//        System.out.println(information);
     }
 
     @Override
