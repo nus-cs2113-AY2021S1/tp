@@ -25,7 +25,7 @@ public class DeleteTopicCommand extends TopicCommand {
         int number = Integer.parseInt(message[1]);
         Topic topic = topicList.getList().get(number - 1);
         topicList.getList().remove(number - 1);
-        Ui.printSubjectDelete(topic, topicList.getList().size());
+        Ui.printTopicDelete(topic, topicList.getList().size());
         return null;
     }
 
