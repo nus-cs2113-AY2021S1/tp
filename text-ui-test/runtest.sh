@@ -6,7 +6,7 @@ cd "${0%/*}"
 cd ..
 ./gradlew clean shadowJar
 
-java  -jar $(find build/libs/ -print -quit) < text-ui-test/input.txt > text-ui-test/ACTUAL.TXT
+java  -jar build/libs/duke.jar < text-ui-test/input.txt > text-ui-test/ACTUAL.TXT
 
 cd text-ui-test
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
