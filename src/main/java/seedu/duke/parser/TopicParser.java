@@ -30,10 +30,14 @@ public class TopicParser {
         case "bye":
             if (fullCommand.equals("bye")) {
                 return new ExitTopicCommand();
+            } else {
+                return new SorryTopicCommand();
             }
         case "list":
             if (fullCommand.equals("list")) {
                 return new ListTopicCommand();
+            } else {
+                return new SorryTopicCommand();
             }
         case "add":
             return new AddTopicCommand(fullCommand);
