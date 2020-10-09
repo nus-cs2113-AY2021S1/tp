@@ -1,6 +1,8 @@
 package seedu.duke.backend;
 
 import seedu.duke.Command;
+import seedu.duke.Event.CommandEventAdd;
+import seedu.duke.Event.CommandEventDel;
 import seedu.duke.others.CommandBye;
 import seedu.duke.others.CommandHelp;
 
@@ -13,6 +15,7 @@ public class Ui {
     private static ArrayList<Command> commandList = new ArrayList<>();
     private static boolean shutdown = false;
     private static final String UNDERSCORES = "____________________________________________________________";
+
 
     public Ui() {
         sc = new Scanner(System.in);
@@ -79,7 +82,7 @@ public class Ui {
      * @param isInstant whether the string is printed instantly
      */
     private static void printOutput(String text, boolean isInstant) {
-
+        if (text==null) return;
         System.out.println(UNDERSCORES);
         // Split text according to the lines to format.
         String[] lines = text.split("\\r?\\n");
@@ -110,5 +113,7 @@ public class Ui {
     private static void initializeCommands() {
         commandList.add(new CommandHelp());
         commandList.add(new CommandBye());
+       // commandList.add(new CommandEventAdd(ev));
+       // commandList.add(new CommandEventDel(ev));
     }
 }
