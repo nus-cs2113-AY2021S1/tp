@@ -38,4 +38,15 @@ public class AnimeData {
             i += 1;
         }
     }
+
+    public void printOne(int animeIndex) {
+        Anime anime = animeDataList.get(animeIndex);
+        System.out.println("---------------------------------");
+        System.out.println("Index: " + animeIndex);
+        System.out.println("Name: " + anime.getAnimeName());
+        System.out.println("Episodes: " + anime.getTotalEpisodes());
+        System.out.println("Release Date:" + anime.getReleaseDateInString());
+        System.out.println("Rating: " + anime.getRating());
+        System.out.println("Genre: " + Arrays.toString(anime.getGenre()));
+    }
 }
