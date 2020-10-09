@@ -21,7 +21,7 @@ class RepeatCommandTest {
 
         //create the user data to have one item first
         String userInput = "personal holiday; 2020-10-01";
-        AddCommand addPersonalEvent = new AddCommand(userInput.split(" "));
+        AddCommand addPersonalEvent = new AddCommand(userInput);
         addPersonalEvent.execute(data, ui, storage);
 
         //execute the repeat command
@@ -38,7 +38,7 @@ class RepeatCommandTest {
 
         //create the user data to have one item first
         String userInput = "personal holiday; 2020-10-01";
-        AddCommand addPersonalEvent = new AddCommand(userInput.split(" "));
+        AddCommand addPersonalEvent = new AddCommand(userInput);
         addPersonalEvent.execute(data, ui, storage);
 
         //execute the repeat command
@@ -67,7 +67,7 @@ class RepeatCommandTest {
 
         //create the user data to have one item first
         String userInput = "personal celebration feast; 2020-10-01";
-        AddCommand addPersonalEvent = new AddCommand(userInput.split(" "));
+        AddCommand addPersonalEvent = new AddCommand(userInput);
         addPersonalEvent.execute(data, ui, storage);
 
         //execute the repeat command

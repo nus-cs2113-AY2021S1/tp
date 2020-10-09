@@ -32,7 +32,7 @@ class CheckCommandTest {
 
         // Add events to data
         String personalInput = "personal Go out for dinner; 05/05/20; 12:00";
-        Command addCommand = new AddCommand(personalInput.split(" "));
+        Command addCommand = new AddCommand(personalInput);
         addCommand.execute(data, ui, storage);
 
         // Execute check command
@@ -54,7 +54,7 @@ class CheckCommandTest {
 
         // Add events to data
         String personalInput = "personal Go out for dinner; 05/05/20; 12:00";
-        Command addCommand = new AddCommand(personalInput.split(" "));
+        Command addCommand = new AddCommand(personalInput);
         addCommand.execute(data, ui, storage);
 
         // Execute check command

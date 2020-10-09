@@ -52,7 +52,7 @@ class ListCommandTest {
 
         // Add zoom event to data
         String zoomInput = "zoom Math class; zoom.com; 09/10/2000; 1300";
-        Command addCommand = new AddCommand(zoomInput.split(" "));
+        Command addCommand = new AddCommand(zoomInput);
         addCommand.execute(data, ui, storage);
 
         // Execute list command

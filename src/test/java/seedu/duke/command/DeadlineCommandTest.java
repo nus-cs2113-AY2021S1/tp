@@ -30,7 +30,7 @@ class DeadlineCommandTest {
     @Test
     public void execute_withDate_printDeadline() {
         String input = "personal sleep";
-        Command addPersonalEvent = new AddCommand(input.split(" "));
+        Command addPersonalEvent = new AddCommand(input);
         addPersonalEvent.execute(data, ui, storage);
 
         DeadlineCommand testDeadlineWithDateOnly = new DeadlineCommand("1; 7/10/20");
@@ -51,7 +51,7 @@ class DeadlineCommandTest {
     @Test
     public void execute_withDateAndTime_printDeadline() {
         String input = "personal sleep";
-        Command addPersonalEvent = new AddCommand(input.split(" "));
+        Command addPersonalEvent = new AddCommand(input);
         addPersonalEvent.execute(data, ui, storage);
 
         DeadlineCommand testDeadlineWithDateOnly = new DeadlineCommand("1; 7/10/20; 11:20 PM");

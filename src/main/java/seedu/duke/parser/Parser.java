@@ -42,7 +42,7 @@ public class Parser {
 
         switch (commandWord) {
         case "add":
-            return new AddCommand(argumentWords);
+            return new AddCommand(argument);
 
         case "list":
             return ListCommand.parse(argument);
