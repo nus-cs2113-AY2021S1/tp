@@ -18,13 +18,13 @@ public class Duke {
         quickStart();
         addAnime();
 
-        try {
-            AnimeStorage animeStorage = new AnimeStorage("/data/AniListData");
-            AnimeData animeList = new AnimeData(animeStorage.readAnimeDatabase());
-            //animeList.printAll();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            //AnimeStorage animeStorage = new AnimeStorage("/data/AniListData");
+//            //AnimeData animeList = new AnimeData(animeStorage.readAnimeDatabase());
+//            //animeList.printAll();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         watchlists = new ArrayList<>();
         createWatchlist("-n Anime-2020");      // Sample usage [Parameter to be updated to use user input]

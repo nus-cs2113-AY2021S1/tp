@@ -49,7 +49,7 @@ public class AnimeStorage {
         for (String pathname : pathnames) {
             FileReader fileData = new FileReader(dataFile.getPath() + FILE_SEPARATOR
                     + pathname);
-            System.out.println(fileData);
+            //System.out.println(fileData);
             parseJson(animeDataList, fileData);
         }
         return animeDataList;
@@ -84,7 +84,7 @@ public class AnimeStorage {
             }
 
             //getting anime episode
-            System.out.println(jsonObject.get("episodes"));
+
             if (jsonObject.get("episodes") != null) {
                 animeEpisode =  (int) (long) jsonObject.get("episodes");
             }
@@ -117,6 +117,7 @@ public class AnimeStorage {
                 animeDuration =  (int) (long) jsonObject.get("duration");
             }
 
+            //System.out.println(jsonObject.get("episodes"));
             //System.out.println(jsonObject.get("id"));
             //System.out.println(animeName);
             //System.out.println(Arrays.toString(animeReleaseDate));
