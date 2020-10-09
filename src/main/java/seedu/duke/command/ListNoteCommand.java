@@ -107,8 +107,8 @@ public class ListNoteCommand extends Command {
             // E.g. if user input 2 tags, CS2113 and important, will have 2 ArrayList
             //      1 for the values corresponding to CS2113 and the other for important tag
             List<ArrayList<Note>> values = tags.stream()
-                            .map(tag::get)
-                            .collect(Collectors.toList());
+                    .map(tag::get)
+                    .collect(Collectors.toList());
 
             for (int i = 0; i < values.size(); i++) {
                 for (int j = 0; j < values.get(i).size(); j++) {
@@ -131,7 +131,10 @@ public class ListNoteCommand extends Command {
                 for (int i = 0; i < notes.size(); i++) {
                     noteString += (i + 1) + "." + notes.get(i).toString();
                 }
-            } else noteString = getSortedString(noteString, sortedTaggedNotes);
+            } else {
+                noteString = getSortedString(noteString, sortedTaggedNotes);
+
+            }
         }
 
         return noteString;
