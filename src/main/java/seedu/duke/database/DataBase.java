@@ -110,4 +110,7 @@ public class DataBase{
         }
         System.out.println("Finished Printing out all data");
     }
+
+    // -------- Search functions --------
+    
 }
