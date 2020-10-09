@@ -26,7 +26,7 @@ public class CommandSummary {
     public static final String TITLE = "title";
     public static final String DESCRIPTION = "desc";
     public static final String DEADLINE = "end";
-    public static final String SPRINT_INTERVAL = "si";
+    public static final String SPRINT_DURATION = "sd";
     public static final String TASK_ID = "id";
 
     /*

@@ -38,9 +38,14 @@ public class Task {
         return isDone;
     }
 
+    @Override
+    public String toString() {
+        return title + " " + priority + " " + isDone;
+    }
+
+
     //Delete seedu.duke.task handled outside using ArrayList remove() function
     //iD handled outside. (seedu.duke.task number)
     //valueOf for enum explained here:https://www.baeldung.com/java-string-to-enum
-
 
 }

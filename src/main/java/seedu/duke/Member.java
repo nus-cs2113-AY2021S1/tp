@@ -4,11 +4,13 @@ import seedu.duke.task.Task;
 import java.util.ArrayList;
 
 public class Member {
-    String userId;
-    ArrayList<Task> allocatedTask = new ArrayList<>(100);
+    public String userId;
+    ArrayList<Task> allocatedTask;
 
     public Member(String userId) {
         this.userId = userId;
+        allocatedTask = new ArrayList<>(100);
+
     }
 
     public String getUserId() {
@@ -27,7 +29,7 @@ public class Member {
         return userId.equals(v.userId);
     }
 
-    public void addTask(Task task) {
+    public void addMemberTask(Task task) {
         allocatedTask.add(task);
     }
 

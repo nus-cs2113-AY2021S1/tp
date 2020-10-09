@@ -1,60 +1,49 @@
 package seedu.duke.command;
 
 import seedu.duke.exception.DukeException;
+import seedu.duke.project.Project;
+import seedu.duke.ui.Ui;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 
-public class ProjectCommand {
-    public void createProjectCommand(String title, String desc, String end, String sd,
-                                     Hashtable<String, String> parameters) throws DukeException {
+import static seedu.duke.command.CommandSummary.DEADLINE;
+import static seedu.duke.command.CommandSummary.TITLE;
+import static seedu.duke.command.CommandSummary.DESCRIPTION;
+import static seedu.duke.command.CommandSummary.SPRINT_DURATION;
 
-        /*
-        Example of how to use the hashtable and how to throw the exception.
-         */
-        if (parameters.get(title) != null) {
-            System.out.println(parameters.get(title));
+public class ProjectCommand {
+    public void createProjectCommand(Hashtable<String, String> parameters, Ui ui, ArrayList<Project> projectList)
+            throws DukeException {
+
+        String title;
+        String description;
+        String deadline;
+        String sd;
+
+        if (parameters.get(TITLE) != null) {
+            title = parameters.get(TITLE);
         } else {
             throw new DukeException("no title");
         }
-        if (parameters.get(desc) != null) {
-            System.out.println(parameters.get(desc));
+        if (parameters.get(DESCRIPTION) != null) {
+            description = parameters.get(DESCRIPTION);
         } else {
             throw new DukeException("no description");
         }
-        if (parameters.get(end) != null) {
-            System.out.println(parameters.get(end));
+        if (parameters.get(DEADLINE) != null) {
+            deadline = parameters.get(DEADLINE);
         } else {
             throw new DukeException("no deadline");
         }
-        if (parameters.get(sd) != null) {
-            System.out.println(parameters.get(sd));
+        if (parameters.get(SPRINT_DURATION) != null) {
+            sd = parameters.get(SPRINT_DURATION);
         } else {
             throw new DukeException("no sprint interval");
         }
 
-
-        /*Insert code for putting the title into the project class here.
-        .
-        .
-        .
-         */
-
-        /*Insert code for putting the description into the project class here.
-        .
-        .
-        .
-         */
-
-        /*Insert code for putting the deadline into the project class here.
-        .
-        .
-        .
-         */
-
-        /*Insert code for putting the sprint interval into the project class here.
-        .
-        .
-        .
-         */
+        Project proj = new Project(title, description, deadline, sd);
+        ui.printProjectAdded();
+        projectList.add(proj);
     }
 }
