@@ -4,7 +4,9 @@ package seedu.duke.utility;
 *  Use save/load function to load help commands to user instead
 * */
 
-
+/**
+ * Represents a parser to process the commands inputted by the user.
+ */
 public class InputParser {
 
     private boolean isBye;
@@ -40,12 +42,30 @@ public class InputParser {
         return argumentArray;
     }
 
+    private static String getFirstWord(String input) {
+        int index = input.indexOf(' ');
+        if (index == -1) { // Input only contains a single word
+            return input;
+        } else {
+            return input.substring(0, index).trim(); // Extracts first word.
+        }
+    }
+
+    private static String removeFirstWord(String input) {
+        int index = input.indexOf(' ');
+        if (index == -1) { // Input only contains a single word
+            return "";
+        } else {
+            return input.substring(index + 1).trim(); // Extracts after space.
+        }
+    }
 
     public void parseInput(String input) {
-        String command = input.split(" ")[0];
+
+        String command = getFirstWord(input);
+        input = removeFirstWord(input);
 
         switch (command.toLowerCase()) {
-
         case "bye":
             Ui.printByeMessage();
             this.isBye = true;
@@ -55,44 +75,58 @@ public class InputParser {
             Ui.printHelp();
             return;
 
-        case "add":
+        /*case "add":
 
-            return;
+            return parseAddCommand(input);
 
         case "edit":
 
-            return;
+            return parseEditCommand();
 
         case "rating":
 
-            return;
+            return parseRatingCommand();
 
         case "list":
 
-            return;
+            return parseListCommand();
 
         case "delete":
 
-            return;
+            return parseDeleteCommand();
 
         case "deleterating":
 
-            return;
+            return parseDeleteRatingCommand();
 
         case "changerating":
 
-            return;
+            return parseChangeRatingCommand();
 
         case "save":
-
-            return;
-        case "":
-
-            return;
+            return parseSaveCommand();*/
 
         default:
-
+            Ui.printNoInputException();
         }
     }
+    /*
+    private static seedu.duke.commands.Command parseAddCommand(String input) {
+    }
+    private static seedu.duke.commands.Command parseEditCommand(String input) {
+    }
+    private static seedu.duke.commands.Command parseRatingCommand(String input) {
+    }
+    private static seedu.duke.commands.Command parseListCommand() {
+    }
+    private static seedu.duke.commands.Command parseDeleteCommand(String input) {
+    }
+    private static seedu.duke.commands.Command parseDeleteRatingCommand(String input) {
+    }
+    private static seedu.duke.commands.Command parseChangeRatingCommand(String input) {
+    }
+    private static seedu.duke.commands.Command parseSaveCommand() {
+    }*/
+
 }
 

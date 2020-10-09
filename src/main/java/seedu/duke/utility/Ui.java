@@ -1,5 +1,8 @@
 package seedu.duke.utility;
 
+/**
+ * Represents a Ui class that is responsible for Input/Output operations.
+ */
 public class Ui {
 
     public static void printLogo() {
@@ -80,4 +83,26 @@ public class Ui {
     public static void printIoException() {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_IO_EXCEPTION);
     }
+
+    public static void printNoDescriptionException() {
+        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_NO_DESCRIPTION);
+    }
+
+    public static void printNoTimeException() {
+        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_NO_TIME_DATA);
+    }
+
+    public static void printNoInputException() {
+        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_UNIDENTIFIED_INPUT);
+    }
+
+    public static void printInvalidDateException() {
+        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_SEARCH_DATE);
+    }
+
+    public static void printNotFoundException() {
+        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_NOT_FOUND_EXCEPTION);
+    }
+
 }
+
