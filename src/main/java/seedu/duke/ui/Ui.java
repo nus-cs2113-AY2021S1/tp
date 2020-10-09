@@ -87,14 +87,16 @@ public class Ui {
         if (events.size() == 0) {
             System.out.println("You have no " + eventListName + " events!");
         } else {
-            System.out.println("Here is a list of " + eventListName + " events:");
-            for(Event e : events) {
+            System.out.println("Here is a list of your " + eventListName + " events:");
+            int index = 1;
+            for (Event e : events) {
                 //if e.isRepeat()
                 //ArrayList<LocalDate> repeatDates = e.getRepeatDates();
                 //for(LocalDate date : repeatDates);
                 //e.toString(date);
                 //else
-                System.out.println(e);
+                System.out.println(index + ". " + e);
+                index++;
             }
         }
         printDividerLine();
