@@ -20,9 +20,11 @@ public class TextUi {
     private static final String PROMPT_MESSAGE = "\nWhat would you like to do with Quotesify?";
     private static final String ADD_BOOK = "This book has been added:";
     private static final String ADD_CATEGORY_MESSAGE = "I have tagged \"%s\" category to \"%s\"!";
+    private static final String ADD_RATING_MESSAGE = "You have just rated %s %d star!";
     private static final String DELETE_CATEGORY_MESSAGE = "I have removed \"%s\" category from \"%s\"!";
     private static final String CATEGORY_SIZE_MESSAGE = "You have a total of %d item(s) tagged as \"%s\".";
     private static final String LIST_CATEGORIES_MESSAGE = "Here is the list of all categories:";
+
 
     private final Scanner in;
 
@@ -89,5 +91,9 @@ public class TextUi {
 
     public void printBook(Book book) {
         System.out.println(book.toString());
+    }
+
+    public void printAddRatingToBook(int ratingScore, String titleOfBookToRate) {
+        System.out.printf((ADD_RATING_MESSAGE) + "\n", titleOfBookToRate, ratingScore);
     }
 }
