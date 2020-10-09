@@ -9,7 +9,6 @@ public class DeleteCommand extends Command {
             if (type.equals("food")) {
                 int deletionIndex = Integer.parseInt(command.split(" ", 2)[1]);
                 foodlist.deleteFood(deletionIndex - 1);
-
             } else if (type.equals("exercise")) {
                 int deletionIndex = Integer.parseInt(command.split(" ", 2)[1]);
                 exerciseList.deleteExercise(deletionIndex - 1);

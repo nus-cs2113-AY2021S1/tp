@@ -37,6 +37,5 @@ public class AddCommand extends Command {
                 System.out.println("Sorry calories have to be a number");
             }
         }
-
     }
 }
