@@ -61,8 +61,7 @@ public class ReturnSubjectCommand extends SubjectCommand {
 //                topics.saveSubject(topicStorage.getFileName());
 //            } catch (IOException e) {
 //                Ui.printWritingError();
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 Ui.printIndexError();
             } catch (NoSubjectException e) {
                 Ui.printNoTopicError();

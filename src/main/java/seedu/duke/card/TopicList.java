@@ -21,7 +21,7 @@ public class TopicList {
     }
 
     /**
-     * Gets the <code>Topic</code> at the index
+     * Gets the <code>Topic</code> at the index.
      *
      * @param index index number of the topic
      * @return <code>Topic</code> with the index number
