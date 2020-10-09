@@ -28,6 +28,8 @@ public class Lecture extends SchoolEvent {
 
 
     /**
+     * Describe the lecture event
+     *
      * @Return a string to describe the lecture event.
      */
     @Override

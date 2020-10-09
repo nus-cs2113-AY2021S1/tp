@@ -29,7 +29,9 @@ public abstract class Event extends CalendarItem {
     }
 
     /**
-     * @return a string to describe the event
+     * Describe the event
+     *
+     * @return a string containing the information about the event
      */
     @Override
     public String toString() {

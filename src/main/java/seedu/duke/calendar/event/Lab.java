@@ -29,7 +29,9 @@ public class Lab extends SchoolEvent {
     }
 
     /**
-     * @Return a string to describe the lab event.
+     * Describe the lab event
+     *
+     * @return a string containing the information about the lab event
      */
     @Override
     public String toString() {
