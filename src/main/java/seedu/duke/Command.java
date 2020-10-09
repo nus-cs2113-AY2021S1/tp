@@ -5,5 +5,5 @@ public abstract class Command {
 
     public abstract void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage);
 
+    public abstract boolean isExit();
 }
-
