@@ -21,7 +21,7 @@ public class Parser {
             t.addMod(input);
             break;
         case "addtime":
-            //methods
+            t.addTime(input);
             break;
         case "addexp":
             t.addExp(input);
@@ -33,7 +33,7 @@ public class Parser {
             //methods
             break;
         case "minus":
-            //methods
+            t.minusTime(input);
             break;
         case "compare":
             //methods
