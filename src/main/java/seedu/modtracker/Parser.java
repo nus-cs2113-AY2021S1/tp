@@ -13,27 +13,33 @@ public class Parser {
      * @param t modlist
      * @param name name entered by the user
      */
-    public static void parse(String input, ModuleList t, String name) {
+    public static void parse(String input, ModuleList t, String name, Storage storage) {
         String[] command = input.trim().split(" ");
 
         switch (command[0].toLowerCase()) {
         case "addmod":
             t.addMod(input);
+            storage.appendToFile(input);
             break;
         case "addtime":
             //methods
+            //storage.appendToFile(input);
             break;
         case "addexp":
             t.addExp(input);
+            storage.appendToFile(input);
             break;
         case "deletemod":
             //methods
+            //storage.appendToFile(input);
             break;
         case "deleteexp":
             //methods
+            //storage.appendToFile(input);
             break;
         case "minus":
             //methods
+            //storage.appendToFile(input);
             break;
         case "compare":
             //methods
