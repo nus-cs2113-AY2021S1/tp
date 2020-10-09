@@ -4,8 +4,6 @@ import seedu.eduke8.common.Displayable;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.OptionList;
 
-import java.util.ArrayList;
-
 /**
  * Represents a question of a certain topic. A <code>Question</code> object is represented by
  * its description, options and hint.
@@ -51,8 +49,8 @@ public class Question implements Displayable {
      *
      * @return An arraylist of options.
      */
-    public ArrayList<Displayable> getOptionList() {
-        return optionList.getInnerList();
+    public OptionList getOptionList() {
+        return optionList;
     }
 
     /**

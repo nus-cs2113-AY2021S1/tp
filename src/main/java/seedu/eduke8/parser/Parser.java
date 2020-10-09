@@ -1,7 +1,8 @@
 package seedu.eduke8.parser;
 
-import seedu.eduke8.topic.TopicList;
+import seedu.eduke8.Command;
+import seedu.eduke8.common.DisplayableList;
 
 public interface Parser {
-    void parseCommand(TopicList topicList, String userInput);
+    Command parseCommand(DisplayableList displayableList, String userInput);
 }

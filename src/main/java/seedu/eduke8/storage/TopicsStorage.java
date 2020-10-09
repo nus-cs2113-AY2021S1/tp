@@ -11,7 +11,6 @@ import seedu.eduke8.option.OptionList;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.topic.Topic;
-import seedu.eduke8.ui.Ui;
 
 import java.io.File;
 import java.io.FileReader;
@@ -22,7 +21,6 @@ import static java.util.stream.Collectors.toList;
 
 public class TopicsStorage implements Storage {
     private String filePath = new File("").getAbsolutePath();
-    private static Ui ui = new Ui();
 
     public TopicsStorage(String filePath) {
         // Use relative path for Unix systems
@@ -33,35 +31,28 @@ public class TopicsStorage implements Storage {
     }
 
     @Override
-    public void save(ArrayList<Displayable> displayables) {
+    public void save(ArrayList<Displayable> displayables) throws IOException {
         createFileIfNotExists();
 
         // For adding and removing questions for v2
     }
 
     @Override
-    public ArrayList<Displayable> load() {
+    public ArrayList<Displayable> load() throws IOException, ParseException {
         //JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
 
-        try {
-            FileReader reader = new FileReader(filePath);
+        FileReader reader = new FileReader(filePath);
 
-            //Read JSON file
-            JSONArray topicsArray = (JSONArray) jsonParser.parse(reader);
+        //Read JSON file
+        JSONArray topicsArray = (JSONArray) jsonParser.parse(reader);
 
-            //Iterate over employee array
-            ArrayList<Displayable> topicsAsObjects = (ArrayList<Displayable>) topicsArray.stream()
-                    .map(topic -> parseToTopicObject((JSONObject) topic))
-                    .collect(toList());
+        //Iterate over employee array
+        ArrayList<Displayable> topicsAsObjects = (ArrayList<Displayable>) topicsArray.stream()
+                .map(topic -> parseToTopicObject((JSONObject) topic))
+                .collect(toList());
 
-            return topicsAsObjects;
-
-        } catch (IOException | ParseException e) {
-            ui.printError();
-        }
-
-        return null;
+        return topicsAsObjects;
     }
 
     private static Topic parseToTopicObject(JSONObject topic) {
@@ -110,15 +101,11 @@ public class TopicsStorage implements Storage {
         return optionAsObject;
     }
 
-    private void createFileIfNotExists() {
+    private void createFileIfNotExists() throws  IOException {
         File f = new File(filePath);
         if (!f.exists()) {
             f.getParentFile().mkdirs();
-            try {
-                f.createNewFile();
-            } catch (IOException e) {
-                ui.printError();
-            }
+            f.createNewFile();
         }
     }
 }

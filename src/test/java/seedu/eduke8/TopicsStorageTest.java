@@ -1,35 +1,48 @@
 package seedu.eduke8;
 
+import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.storage.TopicsStorage;
 import seedu.eduke8.topic.Topic;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TopicsStorageTest {
     @Test
-    public void load_emptyJson_returnsNull() {
+    public void load_invalidPath_expectIOException() {
+        TopicsStorage topicsStorage = new TopicsStorage("data/test/invalid.json");
+        assertThrows(IOException.class, topicsStorage::load);
+    }
+
+    @Test
+    public void load_emptyJson_expectParseException() {
         TopicsStorage topicsStorage = new TopicsStorage("data/test/empty.json");
-        ArrayList<Displayable> topics = topicsStorage.load();
-        assertNull(topics);
+        assertThrows(ParseException.class, topicsStorage::load);
     }
 
     @Test
     public void load_exampleJson_returnsTopicsFromJson() {
         TopicsStorage topicsStorage = new TopicsStorage("data/test/example.json");
-        ArrayList<Displayable> topics = topicsStorage.load();
 
-        assertEquals(topics.size(), 2);
+        try {
+            ArrayList<Displayable> topics = topicsStorage.load();
+            assertEquals(topics.size(), 2);
 
-        Topic firstTopic = (Topic) topics.get(0);
-        assertEquals(firstTopic.getDescription(), "OOP");
+            Topic firstTopic = (Topic) topics.get(0);
+            assertEquals(firstTopic.getDescription(), "OOP");
 
-        QuestionList firstQuestionList = firstTopic.getQuestionList();
-        assertEquals(firstQuestionList.getNumberOfQuestionsInTopic(), 2);
+            QuestionList firstQuestionList = firstTopic.getQuestionList();
+            assertEquals(firstQuestionList.getNumberOfQuestionsInTopic(), 2);
+        } catch (ParseException | IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }
