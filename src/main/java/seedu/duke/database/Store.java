@@ -3,10 +3,12 @@ package seedu.duke.database;
 import seedu.duke.food.Food;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Store {
     private final String name;
     private final ArrayList<Food> foodList;
+
 
     public Store(String name){
         this.name = name;
@@ -28,4 +30,9 @@ public class Store {
     public void addFood(Food food){
         foodList.add(food);
     }
+
+    public List<Food> getFoodList() {
+        return foodList;
+    }
+
 }

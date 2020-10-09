@@ -1,6 +1,7 @@
 package seedu.duke.database;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Canteen {
     private final String name;
@@ -21,5 +22,9 @@ public class Canteen {
 
     public void addStore(Store store){
         storeList.add(store);
+    }
+
+    public List<Store> getStoreList() {
+        return storeList;
     }
 }
