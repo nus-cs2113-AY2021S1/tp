@@ -31,13 +31,7 @@ public class AnimeStorage {
 
     public AnimeStorage(String fileFolder) {
         this.dataFile = new File(prepareFile(fileFolder));
-        //System.out.println(dataFile.getPath());
-        // Populates the array with names of files and directories
         pathnames = dataFile.list();
-        // For each pathname in the pathnames array
-        //for (String pathname : pathnames) {
-        //    System.out.println(pathname);
-        //}
     }
 
     private String prepareFile(String fileFolder) {
