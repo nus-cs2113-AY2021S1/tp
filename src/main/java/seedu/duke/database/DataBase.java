@@ -62,7 +62,7 @@ public class DataBase {
      * if the UP_SYMBOL is provided, the function ends and the final Canteen object is returned
      * @param name name of store
      * @param fileSegment the file reader with the next line being a food item or UP_SYMBOL
-     * @return
+     * @return Canteen objected with all it's stores loaded
      */
     private Canteen fillCanteen(String name, Scanner fileSegment) {
         Canteen canteen = new Canteen(name);
@@ -189,6 +189,12 @@ public class DataBase {
                 .orElseThrow();
     }
 
+    /***
+     * returns all food that contains the provided food name in the first canteen that matchs the canteen name
+     * @param food partial name of the food
+     * @param canteen partial name of the canteen
+     * @return Food Stream
+     */
     public Stream<Food> searchAllFoodByNameByCanteen(String food, String canteen) {
         return canteenList.stream()
                 .filter(x -> x.getName().contains(canteen))
