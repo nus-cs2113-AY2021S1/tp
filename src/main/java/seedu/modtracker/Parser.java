@@ -10,37 +10,44 @@ public class Parser {
      * Parses user inputs.
      *
      * @param input user input
-     * @param modules modlist
+     * @param modList module list
      * @param name name entered by the user
      */
-    public void parse(String input, ModuleList modules, String name) {
+
+    public void parse(String input, ModuleList modList, String name, Storage storage) {
         Ui ui = new Ui();
         String[] command = input.trim().split(" ");
 
         switch (command[0].toLowerCase()) {
         case "addmod":
-            modules.addMod(input);
+            modList.addMod(input);
+            storage.appendToFile(input);
             break;
         case "addtime":
             //methods
+            //storage.appendToFile(input);
             break;
         case "addexp":
-            modules.addExp(input);
+            modList.addExp(input);
+            storage.appendToFile(input);
             break;
         case "deletemod":
             //methods
+            //storage.appendToFile(input);
             break;
         case "deleteexp":
             //methods
+            //storage.appendToFile(input);
             break;
         case "minus":
             //methods
+            //storage.appendToFile(input);
             break;
         case "compare":
             //methods
             break;
         case "list":
-            ui.printTable(modules.getData(), Integer.parseInt(command[1]));
+            ui.printTable(modList.getData(), Integer.parseInt(command[1]));
             break;
         case "help":
             ui.printHelpList();
