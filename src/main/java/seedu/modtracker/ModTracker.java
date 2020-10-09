@@ -4,9 +4,9 @@ package seedu.modtracker;
  * Main entry-point for the java.seedu.modtracker application.
  */
 public class ModTracker {
-    private Ui ui;
     private Storage storage;
-    private final ModuleList modList = new ModuleList();
+    private Ui ui = new Ui();
+    private ModuleList modList = new ModuleList();
 
     public static void main(String[] args) {
         new ModTracker().run();
@@ -19,7 +19,6 @@ public class ModTracker {
     }
 
     public String start() {
-        this.ui = new Ui();
         ui.printWelcomeScreen();
         return ui.printNamePrompt();
     }
