@@ -22,7 +22,7 @@ public class Duke {
             System.out.println("===Running Anime Data Print check===");
             AnimeStorage animeStorage = new AnimeStorage("/data/AniListData");
             AnimeData animeData = new AnimeData(animeStorage.readAnimeDatabase());
-            //animeList.printAll();
+            //animeData.printAll();
             //animeData.printOne(1);
             System.out.println("===End of Anime Data Print check===");
         } catch (IOException e) {

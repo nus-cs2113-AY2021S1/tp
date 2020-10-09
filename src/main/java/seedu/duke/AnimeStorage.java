@@ -64,7 +64,7 @@ public class AnimeStorage {
             e.printStackTrace();
         }
 
-        Iterator<JSONObject> iterator = jsonList.iterator();
+        Iterator iterator = jsonList.iterator();
         JSONObject jsonObject = new JSONObject();
         while (iterator.hasNext()) {
             String animeName;
@@ -72,7 +72,9 @@ public class AnimeStorage {
             int animeRating = 0;
             int animeDuration = 0;
 
-            jsonObject = (JSONObject) iterator.next().get("data");
+            //Advance the Iterator
+            jsonObject = (JSONObject) iterator.next();
+            jsonObject = (JSONObject) jsonObject.get("data");
             jsonObject = (JSONObject) jsonObject.get("Media");
 
             //Getting anime name
@@ -104,9 +106,8 @@ public class AnimeStorage {
             ArrayList<String> animeGenre;
             animeGenre = new ArrayList<>();
             JSONArray jsonGenre = (JSONArray) jsonObject.get("genres");
-            Iterator<String> iteratorGenre = jsonGenre.iterator();
-            while (iteratorGenre.hasNext()) {
-                animeGenre.add(iteratorGenre.next());
+            for (Object genre : jsonGenre) {
+                animeGenre.add((String) genre);
             }
             String[] animeGenreArray;
             animeGenreArray = new String[animeGenre.size()];
@@ -116,14 +117,6 @@ public class AnimeStorage {
             if (jsonObject.get("duration") != null) {
                 animeDuration =  (int) (long) jsonObject.get("duration");
             }
-
-            //System.out.println(jsonObject.get("episodes"));
-            //System.out.println(jsonObject.get("id"));
-            //System.out.println(animeName);
-            //System.out.println(Arrays.toString(animeReleaseDate));
-            //System.out.println(animeRating);
-            //System.out.println(Arrays.toString(animeGenreArray));
-            //System.out.println(animeDuration);
 
             Anime anime = new Anime(animeName, animeReleaseDate, animeRating, animeGenreArray, animeDuration,
                     animeEpisode);
