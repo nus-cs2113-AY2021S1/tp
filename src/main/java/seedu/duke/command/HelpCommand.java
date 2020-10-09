@@ -20,12 +20,15 @@ public class HelpCommand extends Command {
 
     @Override
     public String execute() {
-        String helpList = HELP_STRING + InterfaceManager.LS + COLOR_WHITE_STRING
-                + AddCommand.getCommandUsageNote() + InterfaceManager.LS + COLOR_CYAN_STRING
-                + AddCommand.getCommandUsageEvent() + InterfaceManager.LS + COLOR_WHITE_STRING
+
+        return HELP_STRING + InterfaceManager.LS + COLOR_WHITE_STRING
+                + AddNoteCommand.getCommandUsageNote() + InterfaceManager.LS + COLOR_CYAN_STRING
+                /*
+                + AddNoteCommand.getCommandUsageEvent() + InterfaceManager.LS + COLOR_WHITE_STRING*/
                 + CreateTagCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
-                + DeleteCommand.getCommandUsageNote() + InterfaceManager.LS + COLOR_WHITE_STRING
-                + DeleteCommand.getCommandUsageEvent() + InterfaceManager.LS + COLOR_CYAN_STRING
+                + DeleteNoteCommand.getCommandUsageNote() + InterfaceManager.LS + COLOR_WHITE_STRING
+                /*
+                + DeleteNoteCommand.getCommandUsageEvent() + InterfaceManager.LS + COLOR_CYAN_STRING*/
                 + DeleteTagCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
                 + EditCommand.getCommandUsageNote() + InterfaceManager.LS + COLOR_CYAN_STRING
                 + EditCommand.getCommandUsageEvent() + InterfaceManager.LS + COLOR_WHITE_STRING
@@ -38,7 +41,5 @@ public class HelpCommand extends Command {
                 + RemindCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
                 + TagCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
                 + ViewNoteCommand.getCommandUsage() + InterfaceManager.LS + COLOR_RESET_STRING;
-
-        return helpList;
     }
 }

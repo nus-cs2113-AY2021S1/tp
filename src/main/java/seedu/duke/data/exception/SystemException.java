@@ -17,9 +17,8 @@ public class SystemException extends Exception {
         EXCEPTION_MISSING_KEYWORD("No search query input. Please enter a keyword for search results."),
         EXCEPTION_INVALID_INDEX_FORMAT("Invalid index format!"),
         EXCEPTION_INVALID_INDEX_VALUE("Invalid index value!"),
-        EXCEPTION_DUPLICATE_NOTE("This note already exists in the notebook!"),
-        EXCEPTION_MISSING_NOTE("This note does not exists in the notebook!"),
-        EXCEPTION_FILE_CREATION_ERROR("Unable to create a file");
+        EXCEPTION_FILE_CREATION_ERROR("Unable to create a file!"),
+        EXCEPTION_INVALID_END_INPUT("Input /end on a new line!"),;
 
         /** The exception message. */
         private final String exceptionMessage;

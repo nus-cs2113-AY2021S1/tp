@@ -1,8 +1,8 @@
 package seedu.duke.util;
 
 import seedu.duke.command.Command;
-import seedu.duke.command.AddCommand;
-import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.AddNoteCommand;
+import seedu.duke.command.DeleteNoteCommand;
 import seedu.duke.command.EditCommand;
 import seedu.duke.command.FindCommand;
 import seedu.duke.command.PinCommand;
@@ -31,6 +31,8 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
 import static seedu.duke.util.PrefixSyntax.PREFIX_END;
+import static seedu.duke.util.PrefixSyntax.PREFIX_DELETE_LINE;
+import static seedu.duke.util.PrefixSyntax.STRING_NEW_LINE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.STRING_SPLIT_DELIMITER;
@@ -63,10 +65,10 @@ public class Parser {
 
         try {
             switch (commandString.toLowerCase()) {
-            case AddCommand.COMMAND_WORD_NOTE:
+            case AddNoteCommand.COMMAND_WORD:
                 return prepareAddNote(userMessage);
-            case AddCommand.COMMAND_WORD_EVENT:
-                // return prepareAddEvent(userMessage);
+            /*case AddNoteCommand.COMMAND_WORD:
+             return prepareAddEvent(userMessage);*/
             case ListNoteCommand.COMMAND_WORD:
                 return prepareListNote(userMessage);
             case ListEventCommand.COMMAND_WORD:
@@ -77,10 +79,10 @@ public class Parser {
                 // return prepareEditNote(userMessage);
             case EditCommand.COMMAND_WORD_EVENT:
                 // return prepareEditEvent(userMessage);
-            case DeleteCommand.COMMAND_WORD_NOTE:
+            case DeleteNoteCommand.COMMAND_WORD:
                 return prepareDeleteNote(userMessage);
-            case DeleteCommand.COMMAND_WORD_EVENT:
-                // return prepareDeleteEvent(userMessage);
+            /*case DeleteNoteCommand.COMMAND_WORD:
+             return prepareDeleteEvent(userMessage);*/
             case FindCommand.COMMAND_WORD:
                 return prepareFind(userMessage);
             case PinCommand.COMMAND_WORD:
@@ -164,11 +166,19 @@ public class Parser {
         return new Tag(tagName, tagColor);
     }
 
+    /**
+     * Prepare userInput into Note before adding into Notebook.
+     *
+     * @param userMessage Original string user inputs.
+     * @return Result of the add note command
+     * @throws SystemException if an error occurs.
+     */
     private Command prepareAddNote(String userMessage) throws SystemException {
         Note note;
-        String title = null;
-        String content;
+        String title = "";
+        String content = "";
         boolean isPinned = false;
+        boolean isInputSuccess = false;
         ArrayList<Tag> tags = new ArrayList<>();
 
         try {
@@ -203,13 +213,20 @@ public class Parser {
             }
 
             // Get Content
-            System.out.println("Enter Note:");
-            content = inputContent();
+            do {
+                System.out.println("Enter Note:");
+                try {
+                    content = inputContent();
+                    isInputSuccess = true;
+                } catch (StringIndexOutOfBoundsException exception) {
+                    System.out.println(ExceptionType.EXCEPTION_INVALID_END_INPUT);
+                }
+            } while (!isInputSuccess);
 
             // Add to note
             note = tags.isEmpty() ? new Note(title, content, isPinned) : new Note(title, content, isPinned, tags);
 
-            return new AddCommand(note);
+            return new AddNoteCommand(note);
         } catch (NullPointerException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE_PREFIX);
         } catch (ArrayIndexOutOfBoundsException exception) {
@@ -217,40 +234,67 @@ public class Parser {
         }
     }
 
-    public String inputContent() {
+    /**
+     * Used for input of note content and processing the input into a readable data.
+     *
+     * @return A string of converted content input
+     * @throws StringIndexOutOfBoundsException if an error occurs.
+     */
+    public String inputContent() throws StringIndexOutOfBoundsException {
         Scanner input = new Scanner(System.in);
         StringBuilder commandInput = new StringBuilder();
 
         // Type note
         do {
             commandInput.append(input.nextLine());
-            if (!commandInput.equals(PREFIX_END)) {
-                commandInput.append("\n");
-            }
-            if (commandInput.toString().contains("/d")) {
-                deleteLine(commandInput, "\n/d\n", 0);
-                deleteLine(commandInput, "\n", 1);
-            }
-        } while (!commandInput.toString().contains(PREFIX_END));
 
-        deleteLine(commandInput, "\n/end\n", 0);
+            // Add next line when user press enter
+            if (!commandInput.toString().equals(PREFIX_END)) {
+                commandInput.append(STRING_NEW_LINE);
+            }
+
+            // "/del" Delete previous line if there user makes mistakes
+            if (commandInput.toString().contains(PREFIX_DELETE_LINE)) {
+                deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELETE_LINE + STRING_NEW_LINE, 0);
+                deleteLine(commandInput, STRING_NEW_LINE, 1);
+            }
+        } while (!commandInput.toString().contains(PREFIX_END)); // "/end" to end input note
+
+        // Delete "/end" command when user ends the edit
+        deleteLine(commandInput, STRING_NEW_LINE + PREFIX_END + STRING_NEW_LINE, 0);
+
         return commandInput.toString();
     }
 
-    // Deletes the last line when typing
+    /**
+     * Delete the last line for mistakes made in inputContent().
+     *
+     * @param commandInput Original string of the note content.
+     * @param characters String of character to be removed.
+     * @param noOfChar Number of character. 0 to remove new line, 1 to resume typing on the same line.
+     */
     public void deleteLine(StringBuilder commandInput, String characters, int noOfChar) {
         int lastChar = commandInput.lastIndexOf(characters) + noOfChar;
         commandInput.delete(lastChar, commandInput.length());
     }
 
+    /**
+     * Prepare userInput into a int before deletion.
+     *
+     * @param userMessage Original string user inputs.
+     * @return Result of the delete note command
+     * @throws SystemException if an error occurs.
+     */
     private Command prepareDeleteNote(String userMessage) throws SystemException {
         int index = NULL_INDEX;
+        String title = "";
+        String prefix = "";
 
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
 
             for (String[] infoDetails : splitInfo) {
-                String prefix = infoDetails[0];
+                prefix = infoDetails[0];
                 switch (prefix) {
                 case PREFIX_INDEX:
                     if (infoDetails[1].isBlank()) {
@@ -258,15 +302,24 @@ public class Parser {
                     }
                     index = Integer.parseInt(infoDetails[1].trim());
                     break;
+                case PREFIX_TITLE:
+                    if (infoDetails[1].isBlank()) {
+                        throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+                    }
+                    title = infoDetails[1].trim();
+                    break;
                 default:
                 }
             }
 
-            if (index <= NULL_INDEX) {
-                throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+            if (prefix.equalsIgnoreCase(PREFIX_TITLE)) {
+                return new DeleteNoteCommand(title);
+            } else {
+                if (index <= NULL_INDEX) {
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+                }
+                return new DeleteNoteCommand(index);
             }
-
-            return new DeleteCommand(index, true);
         } catch (NullPointerException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX_PREFIX);
         } catch (ArrayIndexOutOfBoundsException exception) {
@@ -343,7 +396,7 @@ public class Parser {
 
     /*
     private Command prepareAddEvent(String userMessage) {
-    return new AddCommand(event);
+    return new AddNoteCommand(event);
     }
 
     private Command prepareListEvent(String userMessage) {

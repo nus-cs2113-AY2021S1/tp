@@ -23,7 +23,7 @@ public class DeleteTagCommand extends Command {
     private ArrayList<Tag> tags;
 
     /**
-     * Constructs a DeleteCommand to delete tag(s).
+     * Constructs a DeleteNoteCommand to delete tag(s).
      */
     public DeleteTagCommand(ArrayList<Tag> tags) {
         this.tags = tags;

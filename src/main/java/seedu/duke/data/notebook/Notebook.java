@@ -25,16 +25,17 @@ public class Notebook {
         this.notes = notes;
     }
 
+    /**
+     * Gets a list of notes from existing data.
+     *
+     * @return notes of existing data.
+     */
     public ArrayList<Note> getNotes() {
         return this.notes;
     }
 
     public Note getNote(int index) {
         return notes.get(index);
-    }
-
-    public void setNotes(ArrayList<Note> notes) {
-        this.notes = notes;
     }
 
     /**
@@ -47,8 +48,19 @@ public class Notebook {
     /**
      * Removes a note from the timetable.
      */
-    public void deleteNote(int note) {
-        notes.remove(note);
+    public void deleteNote(int index) {
+        notes.remove(index);
+    }
+
+    /**
+     * Removes a note from the timetable.
+     */
+    public void deleteNote(String title) {
+        notes.removeIf(note -> note.getTitle().equals(title));
+    }
+
+    public void setNotes(ArrayList<Note> notes) {
+        this.notes = notes;
     }
 
     public int getSize() {
