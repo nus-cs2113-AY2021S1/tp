@@ -1,7 +1,23 @@
 package seedu.duke.util;
 
-import seedu.duke.command.*;
-
+import seedu.duke.command.AddCommand;
+import seedu.duke.command.AddEventCommand;
+import seedu.duke.command.Command;
+import seedu.duke.command.CreateTagCommand;
+import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.DeleteTagCommand;
+import seedu.duke.command.EditCommand;
+import seedu.duke.command.ExitCommand;
+import seedu.duke.command.FindCommand;
+import seedu.duke.command.HelpCommand;
+import seedu.duke.command.IncorrectCommand;
+import seedu.duke.command.ListEventCommand;
+import seedu.duke.command.ListNoteCommand;
+import seedu.duke.command.ListTagCommand;
+import seedu.duke.command.PinCommand;
+import seedu.duke.command.RemindCommand;
+import seedu.duke.command.TagCommand;
+import seedu.duke.command.ViewNoteCommand;
 import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
@@ -18,7 +34,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import static seedu.duke.util.PrefixSyntax.*;
+import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
+import static seedu.duke.util.PrefixSyntax.PREFIX_END;
+import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
+import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
+import static seedu.duke.util.PrefixSyntax.PREFIX_RECURRING;
+import static seedu.duke.util.PrefixSyntax.PREFIX_REMIND;
+import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
+import static seedu.duke.util.PrefixSyntax.PREFIX_TIMING;
+import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
+import static seedu.duke.util.PrefixSyntax.STRING_SPLIT_DELIMITER;
 
 /**
  * Parses user input.
@@ -48,7 +73,7 @@ public class Parser {
         switch (commandString.toLowerCase()) {
         case AddCommand.COMMAND_WORD_NOTE:
             return prepareAddNote(userMessage);
-        case AddEventCommand.COMMAND_WORD_EVENT:
+        case AddEventCommand.COMMAND_WORD:
              return prepareAddEvent(userMessage);
         case ListNoteCommand.COMMAND_WORD:
             // return prepareListNote(userMessage);
@@ -181,9 +206,8 @@ public class Parser {
         }
     }
 
-    private Command prepareAddEvent(String userMessage) {
-        // add-e event timing -r type until -a
-        // add-e eventTitle /t timing /r occurrance /a time before
+    private Command prepareAddEvent(String userMessage) throws SystemException {
+        // add-e eventTitle /t timing /r occurrance /a time before (default same day)
 
         String title = "";
         LocalDateTime dateTime = null;
@@ -218,8 +242,10 @@ public class Parser {
             } else if (dateTime == null) {
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_TIMING);
             }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return new IncorrectCommand("No description found after a tag!");
         } catch (SystemException e) {
-            return new IncorrectCommand(e.getMessage());
+            throw e;
         }
 
 
