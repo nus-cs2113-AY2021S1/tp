@@ -1,4 +1,4 @@
-package seedu.duke.data.type;
+package seedu.duke.data;
 
 import seedu.duke.data.framework.Appliance;
 

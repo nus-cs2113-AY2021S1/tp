@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.data;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,7 +9,7 @@ import seedu.duke.commands.RemoveCommand;
 import seedu.duke.common.Messages;
 import seedu.duke.data.ApplianceList;
 import seedu.duke.data.HomeLocations;
-import seedu.duke.data.type.Lights;
+import seedu.duke.data.Lights;
 import seedu.duke.exceptions.EmptyParameterException;
 import seedu.duke.exceptions.InvalidAdditionOfAppliance;
 import seedu.duke.exceptions.InvalidAddtionOfLocation;
@@ -43,6 +43,21 @@ class SmartHomeBotTest {
     }
 
     @Test
+    void getTypeTest() {
+        assertEquals("AirConditioner", new AirConditioner("aircon1", "br1", "25").getType());
+    }
+
+    @Test
+    void onOffTest() {
+        AirConditioner aircon = new AirConditioner("aircon", "br1", "200");
+        if (aircon.getStatus().equals("On")) {
+            assertEquals("aircon: On", aircon.toString());
+        } else {
+            assertEquals("aircon: Off", aircon.toString());
+        }
+    }
+
+    @Test
     public void removeLocationTest() throws InvalidAddtionOfLocation, EmptyParameterException {
         //Create Sample Locations and empty appliance list
         HomeLocations homeLocations = new HomeLocations();
@@ -62,7 +77,7 @@ class SmartHomeBotTest {
         String outputString = outContent.toString().replace(System.getProperty("line.separator"), "");
 
         //compare outputs
-        assertEquals(Messages.MESSAGE_LOCATION_NOT_EXIST + " Nothing will be deleted.",outputString);
+        assertEquals(Messages.MESSAGE_LOCATION_NOT_EXIST + " Nothing will be deleted.", outputString);
 
     }
 }
