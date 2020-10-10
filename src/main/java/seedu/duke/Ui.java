@@ -28,8 +28,8 @@ public class Ui {
                 + "3. activity <activity description> <venue> /at ddMMyy\n"
                 + "4. exam <module code> <venue> /at ddMMyy HHmm\n"
                 + "5. lecture <module code> <venue> /at ddMMyy HHmm\n"
-                + "6. tutorial ... / date time\n"
-                + "7. lab ... / date time\n"
+                + "6. tutorial <module code> <venue> /at ddMMyy HHmm\n"
+                + "7. lab <module code> <venue> /at ddMMyy HHmm\n"
                 + "8. done <task number>\n"
                 + "9. delete <task number>\n"
                 + "10. find <keyword>\n"
@@ -198,12 +198,13 @@ public class Ui {
         int numTotal = 0;
         for (int i = 0; i < calendarList.getTotalTasks(); i++) {
             CalendarItem item = calendarList.getCalendarList().get(i);
-            if (item instanceof Task) {
-                if (((Task) item).getTaskType().equals("E") || ((Task) item).getTaskType().equals("D")) {
-                    numTotal++;
-                    if (((Task) item).getIsDone()) {
-                        numFinished++;
-                    }
+            if (!(item instanceof Task)) {
+                continue;
+            }
+            if (((Task)item).getTaskType().equals("D") || ((Task)item).getTaskType().equals("T")) {
+                numTotal++;
+                if (((Task) item).getIsDone()) {
+                    numFinished++;
                 }
             }
         }
@@ -235,13 +236,16 @@ public class Ui {
             System.out.println("Error: Please key in the event in this format: event ... /at ddMMyy");
             break;
         case "lecture":
-            System.out.println("Error: Please key in the lecture in this format: lecture ... / date time");
+            System.out.println("Error: Please key in the lecture in this format: lecture <module code> <venue? /at "
+                    + "ddMMyy HHmm");
             break;
         case "tutorial":
-            System.out.println("Error: Please key in the tutorial in this format: tutorial ... / date time");
+            System.out.println("Error: Please key in the tutorial in this format: tutorial <module code> <venue? /at "
+                    + "ddMMyy HHmm");
             break;
         case "lab":
-            System.out.println("Error: Please key in the lab in this format: lab ... / date time");
+            System.out.println("Error: Please key in the lab in this format: lab <module code> <venue? /at "
+                    + "ddMMyy HHmm");
             break;
         case "exam":
             System.out.println("Error: Please key in the exam in this format: exam <module code> <exam details> /at "
