@@ -25,10 +25,11 @@ public class TextUi {
     private static final String ADD_BOOK = "The book [%s] has been added!";
     private static final String DELETE_BOOK = "The book [%s] has been deleted!";
     private static final String ADD_CATEGORY_MESSAGE = "I have tagged \"%s\" category to \"%s\"!";
-    private static final String ADD_RATING_MESSAGE = "You have just rated %s %d star!";
     private static final String DELETE_CATEGORY_MESSAGE = "I have removed \"%s\" category from \"%s\"!";
     private static final String CATEGORY_SIZE_MESSAGE = "You have a total of %d item(s) tagged as \"%s\".";
     private static final String LIST_CATEGORIES_MESSAGE = "Here is the list of all categories:";
+    private static final String ADD_RATING_MESSAGE = "You have just rated %s %d star!";
+    public static final String DELETE_RATING_MESSAGE = "Rating for %s has been deleted!";
     private static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
             + " Here are your rated books!";
     private static final String LIST_SPECIFIED_RATING_MESSAGE = "Here are the books you rated as %d star!";
@@ -121,8 +122,7 @@ public class TextUi {
             }
         }
     }
-
-
+  
     public void printAllQuotesByAuthor(QuoteList quoteList, String authorName) {
         System.out.println(LIST_QUOTES);
         for (Quote quote : quoteList.getList()) {
@@ -148,5 +148,7 @@ public class TextUi {
                 System.out.println(quote.toString());
             }
         }
+    public void printDeleteRating(String bookTitle) {
+        System.out.printf((DELETE_RATING_MESSAGE) + "\n", bookTitle);
     }
 }
