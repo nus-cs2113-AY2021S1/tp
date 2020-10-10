@@ -49,24 +49,26 @@ public class ListCommand extends Command {
     }
 
     private void listQuotes(QuoteList quoteList, TextUi ui) {
-        if ((information.isEmpty())) {
-            listAllQuotes(quoteList, ui);
-        } else if (information.contains(Command.FLAG_AUTHOR) && information.contains(Command.FLAG_REFERENCE)) {
-            try {
+        try {
+            if ((information.isEmpty())) {
+                listAllQuotes(quoteList, ui);
+            } else if (information.contains(Command.FLAG_AUTHOR) && information.contains(Command.FLAG_REFERENCE)) {
                 information = information.substring(1);
                 HashMap<String, String> referenceAndAuthorName = QuoteParser.parseReferenceAndAuthor(information);
                 String reference = referenceAndAuthorName.get(Command.REFERENCE_KEYWORD);
                 String authorName = referenceAndAuthorName.get(Command.AUTHORNAME_KEYWORD);
                 listQuotesByReferenceAndAuthor(quoteList, reference, authorName, ui);
-            } catch (QuotesifyException e) {
-                System.out.println(e.getMessage());
+            } else if (information.contains(Command.FLAG_AUTHOR)) {
+                String authorName = QuoteParser.parseListWithAuthor(information);
+                listQuotesByAuthor(quoteList, authorName, ui);
+            } else if (information.contains(Command.FLAG_REFERENCE)){
+                String reference = QuoteParser.parseListWithReference(information);
+                listQuotesByReference(quoteList, reference, ui);
+            } else {
+                throw new QuotesifyException(ERROR_LIST_QUOTE_UNKOWN_COMMAND);
             }
-        } else if (information.contains(Command.FLAG_AUTHOR)) {
-            String authorName = QuoteParser.parseListWithAuthor(information);
-            listQuotesByAuthor(quoteList, authorName, ui);
-        } else {
-            String reference = QuoteParser.parseListWithReference(information);
-            listQuotesByReference(quoteList, reference, ui);
+        } catch (QuotesifyException e) {
+            System.out.println(e.getMessage());
         }
     }
 

@@ -25,5 +25,7 @@ public abstract class Command {
     public static final String REFERENCE_KEYWORD = "reference";
     public static final String AUTHORNAME_KEYWORD = "authorName";
 
+    public static final String ERROR_LIST_QUOTE_UNKOWN_COMMAND = "I do not understand that command. Try again";
+
     public abstract boolean isExit();
 }

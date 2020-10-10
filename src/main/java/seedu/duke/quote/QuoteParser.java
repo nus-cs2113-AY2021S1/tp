@@ -116,16 +116,24 @@ public class QuoteParser {
         }
     }
 
-    public static String parseListWithAuthor(String userInput) {
+    public static String parseListWithAuthor(String userInput) throws QuotesifyException {
         System.out.println(userInput);
         String[] authorFlagAndName = userInput.split(Command.FLAG_AUTHOR);
-        String authorName = authorFlagAndName[1].trim();
-        return authorName;
+        try{
+            String authorName = authorFlagAndName[1].trim();
+            return authorName;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new QuotesifyException(ERROR_MISSING_AUTHOR);
+        }
     }
 
-    public static String parseListWithReference(String userInput) {
+    public static String parseListWithReference(String userInput) throws QuotesifyException {
         String[] referenceFlagAndName = userInput.split(Command.FLAG_REFERENCE);
-        String reference = referenceFlagAndName[1].trim();
-        return reference;
+        try {
+            String reference = referenceFlagAndName[1].trim();
+            return reference;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new QuotesifyException(ERROR_MISSING_AUTHOR);
+        }
     }
 }
