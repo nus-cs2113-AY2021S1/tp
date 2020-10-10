@@ -14,7 +14,7 @@ The book [book1 by me] has been added!
 
 What would you like to do with Quotesify?
 Here are the quotes:
-"quote1"
+1. "quote1"
 
 
 What would you like to do with Quotesify?
