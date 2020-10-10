@@ -49,6 +49,7 @@ public class ListCommand extends Command {
         case TAG_BOOK:
             BookList bookList = (BookList) listManager.getList(ListManager.BOOK_LIST);
             listBooks(bookList, ui);
+            break;
         default:
         }
     }
