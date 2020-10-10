@@ -3,13 +3,22 @@ package seedu.duke;
 import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.task.Task;
+import seedu.duke.calendar.task.Todo;
+import seedu.duke.calendar.task.Deadline;
+import seedu.duke.calendar.event.Activity;
+import seedu.duke.calendar.event.Lecture;
+import seedu.duke.calendar.task.Tutorial;
+import seedu.duke.calendar.task.Lab;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 
 /**
@@ -22,9 +31,9 @@ public class Storage {
     private static final int DATE = 3;
     private static final int TIME = 4;
     private static final int IS_DONE = 1;
+    public static final int VENUE = 5;
     private static ArrayList<CalendarItem> taskArrayList;
     private static String filePath;
-    private static LocalDate date;
     public static int countFileTasks = 0;
 
     /**
@@ -32,9 +41,8 @@ public class Storage {
      * Initialize file f and file path, if f does not exists, creat a new file f.
      *
      * @param filePath the path that is the destination of the file.
-     * @throws IOException throws Exception when fail to create a file
      */
-    public Storage(String filePath) throws IOException {
+    public Storage(String filePath) {
         this.filePath = filePath;
     }
 
@@ -83,6 +91,8 @@ public class Storage {
      * @param calendarList A taskList that store the data read from file.
      */
     public static void readFromFile(CalendarList calendarList) {
+        LocalDate date;
+        LocalTime time;
         File input = new File(filePath);
         createFile(input);
         Scanner sc = null;
@@ -91,39 +101,43 @@ public class Storage {
         } catch (FileNotFoundException e) {
             System.out.println("OOPs, file cannot be found.");
         }
-        Task task = null;
+        CalendarItem item = null;
         while (sc.hasNext()) {
             String[] taskInFile = sc.nextLine().split("\\|");
             switch (taskInFile[TYPE]) {
             case "T":
-                task = new Todo(taskInFile[DESCRIPTION]);
+                item = new Todo(taskInFile[DESCRIPTION]);
                 break;
             case "D":
                 date = LocalDate.parse(taskInFile[DATE].trim());
-                task = new Deadline(taskInFile[DESCRIPTION], date);
+                item = new Deadline(taskInFile[DESCRIPTION], date);
                 break;
             case "E":
                 date = LocalDate.parse(taskInFile[DATE].trim());
-                task = new Event(taskInFile[DESCRIPTION], date);
+                time = LocalTime.parse(taskInFile[TIME].trim());
+                item = new Activity(taskInFile[DESCRIPTION], date, time, taskInFile[VENUE]);
                 break;
             case "LEC":
-                task = new Lecture(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
+                date = LocalDate.parse(taskInFile[DATE].trim());
+                time = LocalTime.parse(taskInFile[TIME].trim());
+                item = new Lecture(taskInFile[DESCRIPTION], date, time, taskInFile[VENUE]);
                 break;
             case "TUT":
-                task = new Tutorial(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
+                item = new Tutorial(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
                 break;
             case "LAB":
-                task = new Lab(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
+                item = new Lab(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
                 break;
             default:
                 System.out.println("Invalid file command input");
             }
             countFileTasks++;
             if (taskInFile[IS_DONE].equals("true")) {
-                assert task != null;
-                task.markAsDone();
+                if (item instanceof Task) {
+                    ((Task) item).markAsDone();
+                }
             }
-            calendarList.addTask(task);
+            calendarList.addItem(item);
         }
     }
 }

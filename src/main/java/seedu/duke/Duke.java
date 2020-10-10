@@ -20,7 +20,7 @@ public class Duke {
      *
      * @param filePath Filepath of the storage data.
      */
-    public Duke(String filePath) throws Exception {
+    public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
         calendarList = new CalendarList();
@@ -51,7 +51,7 @@ public class Duke {
     }
 
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }
 }
