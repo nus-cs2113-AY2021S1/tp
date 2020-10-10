@@ -1,6 +1,7 @@
 package seedu.duke.functions;
 
 import seedu.duke.commands.CommandChecker;
+import seedu.duke.filters.FilterExecutor;
 import seedu.duke.wordlist.WordList;
 
 import static seedu.duke.ui.UI.printHelpMessage;
@@ -28,6 +29,9 @@ public class CommandExecutor {
             break;
         case LIST_WORDS:
             WordList.listWords();
+            break;
+        case FILTER_WORDS:
+            FilterExecutor.executeFilterCommand(userInput);
             break;
         case BUNNY:
             //
