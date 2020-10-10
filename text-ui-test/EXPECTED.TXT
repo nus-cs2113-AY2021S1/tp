@@ -3,7 +3,7 @@ Enter command:
 The recognized commands and their usages are listed below. Parameters listed in brackets, [ ] represent optional inputs.
 
 [30madd-n: Adds a note to notebook. Parameters: /t TITLE [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...] [/pin PIN]
-[36madd-e: Adds an event to the timetable. Parameters:/t TITLE /timing TIMING [/rec Frequency (daily, weekly, monthly, yearly) ][/rem [Days before (Default: 1)] ]
+[36madd-e: Adds an event to the timetable. Parameters:/t TITLE /timing TIMING (Format: yyyy-MM-dd HH:mm) [/rec Frequency (daily, weekly, monthly, yearly)] [/rem [Days before (Default: 1)]] [/stop TIMING (Format: yyyy-MM-dd HH:mm)]
 [30mcreate-t: Creates a tag. Parameters: /tag TAG NAME [TAG COLOR][0m
 (Available colors: [30mWHITE, [31mRED, [32mGREEN, [34mBLUE, [33mYELLOW, [36mCYAN, [35mPURPLE[0m)
 [36mdelete-n: Deletes a note. Parameters: /t TITLE or /i INDEX

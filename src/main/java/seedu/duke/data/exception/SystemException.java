@@ -13,6 +13,8 @@ public class SystemException extends Exception {
         EXCEPTION_DUPLICATE_NOTE("This note already exists in the notebook!"),
         EXCEPTION_MISSING_NOTE("This note does not exists in the notebook!"),
         EXCEPTION_MISSING_TIMING("This event does not have a timing specified!"),
+        EXCEPTION_MISSING_RECURRING_END_TIME("Please specify until when do you want "
+                + "this event to repeat."),
         EXCEPTION_WRONG_TIMING("Your input has a wrong format for the date time input. Please follow "
                 + "the yyyy-MM-dd HH:mm format with the \"-\" and \":\" in 24-Hour Clock format"),
         EXCEPTION_MISSING_RECURRING_TYPE("Please indicate whether you would like to have the event "

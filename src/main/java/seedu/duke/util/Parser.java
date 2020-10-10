@@ -23,15 +23,16 @@ import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.exception.SystemException.ExceptionType;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
-import seedu.duke.data.timetable.DailyEvent;
 import seedu.duke.data.timetable.Event;
-
-import java.time.LocalDateTime;
-
-import seedu.duke.data.timetable.MonthlyEvent;
 import seedu.duke.data.timetable.RecurringEvent;
+import seedu.duke.data.timetable.DailyEvent;
+import seedu.duke.data.timetable.MonthlyEvent;
 import seedu.duke.data.timetable.WeeklyEvent;
 import seedu.duke.data.timetable.YearlyEvent;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import seedu.duke.ui.InterfaceManager;
 
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_END;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELETE_LINE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_RECURRING;
 import static seedu.duke.util.PrefixSyntax.PREFIX_REMIND;
+import static seedu.duke.util.PrefixSyntax.PREFIX_STOP_RECURRING;
 import static seedu.duke.util.PrefixSyntax.STRING_NEW_LINE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
@@ -249,6 +251,7 @@ public class Parser {
     /**
      * Checks if an input string if blank. If it is, throw the provided system exception. If it is not, return that
      * string trimmed.
+     *
      * @param input Input to be checked.
      * @param e ExceptionType to be thrown
      * @return Trimmed non-blank string
@@ -266,6 +269,9 @@ public class Parser {
      * Takes a user string designated to add an event and prepares it by extracting relevant information from the
      * provided required and optional tags. It requires a title tag and a timing tag (/t and /timing). Other tags allow
      * for it to be recurring and to set reminders of the event.
+     * Takes the format "add-e /t {Title} /timing {YYYY-MM-DD HH:MM} [/rem [How much earlier to remind]]
+     * [/rec {How often to re-occur}] [/stop {YYYY-MM-DD HH:MM}]
+     *
      * @param userMessage User input message
      * @return Returns an AddEventCommand to be executed by Duke
      * @throws SystemException Information provided by the tags are blank, wrong or do not have a default value.
@@ -275,6 +281,7 @@ public class Parser {
 
         String title = "";
         LocalDateTime dateTime = null;
+        LocalDateTime recurringEndTime = null;
         boolean toRemind = false;
         boolean isRecurring = false;
         String recurringType = "";
@@ -303,8 +310,13 @@ public class Parser {
                     try {
                         recurringType = checkBlank(infoDetails[1], e).toLowerCase();
                     } catch (ArrayIndexOutOfBoundsException ex) {
-                        recurringType = RecurringEvent.DAILY_RECURRENCE;
+                        recurringType = RecurringEvent.DAILY_RECURRENCE_TYPE;
                     }
+                    break;
+                case PREFIX_STOP_RECURRING:
+                    e = ExceptionType.EXCEPTION_MISSING_RECURRING_END_TIME;
+                    String endTimingString = checkBlank(infoDetails[1], e);
+                    recurringEndTime = DateTimeManager.dateTimeParser(endTimingString);
                     break;
                 default:
                     throw new SystemException(SystemException.ExceptionType.EXCEPTION_WRONG_PREFIX);
@@ -323,18 +335,20 @@ public class Parser {
         Event event;
 
         if (isRecurring) {
+            LocalDate date = (recurringEndTime != null) ? recurringEndTime.toLocalDate() : null;
             switch (recurringType) {
-            case RecurringEvent.DAILY_RECURRENCE:
-                event = new DailyEvent(title, dateTime, toRemind);
+            case RecurringEvent.DAILY_RECURRENCE_TYPE:
+                event = new DailyEvent(title, dateTime, toRemind, date);
                 break;
-            case RecurringEvent.WEEKLY_RECURRENCE:
-                event = new WeeklyEvent(title, dateTime, toRemind);
+            case RecurringEvent.WEEKLY_RECURRENCE_TYPE:
+
+                event = new WeeklyEvent(title, dateTime, toRemind, date);
                 break;
-            case RecurringEvent.MONTHLY_RECURRENCE:
-                event = new MonthlyEvent(title, dateTime, toRemind);
+            case RecurringEvent.MONTHLY_RECURRENCE_TYPE:
+                event = new MonthlyEvent(title, dateTime, toRemind, date);
                 break;
-            case RecurringEvent.YEARLY_RECURRENCE:
-                event = new YearlyEvent(title, dateTime, toRemind);
+            case RecurringEvent.YEARLY_RECURRENCE_TYPE:
+                event = new YearlyEvent(title, dateTime, toRemind, date);
                 break;
             default:
                 throw new SystemException(ExceptionType.EXCEPTION_WRONG_RECURRING_TYPE);

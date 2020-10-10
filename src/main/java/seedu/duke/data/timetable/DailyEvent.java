@@ -18,7 +18,7 @@ public class DailyEvent extends RecurringEvent {
      * @param endRecurrence When the Event should stop re-occurring.
      */
     public DailyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence) {
-        super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.DAILY_RECURRENCE);
+        super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.DAILY_RECURRENCE_TYPE);
     }
 
     /**
@@ -29,7 +29,7 @@ public class DailyEvent extends RecurringEvent {
      * @param isToRemind Whether the Event requires reminders.
      */
     public DailyEvent(String title, LocalDateTime dateTime, boolean isToRemind) {
-        super(title, dateTime, isToRemind, RecurringEvent.DAILY_RECURRENCE);
+        super(title, dateTime, isToRemind, RecurringEvent.DAILY_RECURRENCE_TYPE);
     }
 
     @Override

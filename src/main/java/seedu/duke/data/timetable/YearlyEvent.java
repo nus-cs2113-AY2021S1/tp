@@ -10,11 +10,11 @@ public class YearlyEvent extends RecurringEvent {
     private static final int TIME_STEP = 1;
 
     public YearlyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence) {
-        super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.YEARLY_RECURRENCE);
+        super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.YEARLY_RECURRENCE_TYPE);
     }
 
     public YearlyEvent(String title, LocalDateTime dateTime, boolean isToRemind) {
-        super(title, dateTime, isToRemind, DEFAULT_END_RECURRENCE, RecurringEvent.YEARLY_RECURRENCE);
+        super(title, dateTime, isToRemind, DEFAULT_END_RECURRENCE, RecurringEvent.YEARLY_RECURRENCE_TYPE);
     }
 
     @Override

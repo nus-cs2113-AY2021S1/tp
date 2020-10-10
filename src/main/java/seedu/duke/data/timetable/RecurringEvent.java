@@ -1,23 +1,28 @@
 package seedu.duke.data.timetable;
 
+import seedu.duke.ui.InterfaceManager;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
 public abstract class RecurringEvent extends Event {
-    private LocalDate endRecurrence;
-    private String recurrenceType;
+    private final LocalDate endRecurrence;
+    private final String recurrenceType;
 
     public static final LocalDate DEFAULT_END_RECURRENCE = LocalDate.of(3000, 12, 31);
-    public static final String DAILY_RECURRENCE = "daily";
-    public static final String WEEKLY_RECURRENCE = "weekly";
-    public static final String MONTHLY_RECURRENCE = "monthly";
-    public static final String YEARLY_RECURRENCE = "yearly";
+    public static final String DAILY_RECURRENCE_TYPE = "daily";
+    public static final String WEEKLY_RECURRENCE_TYPE = "weekly";
+    public static final String MONTHLY_RECURRENCE_TYPE = "monthly";
+    public static final String YEARLY_RECURRENCE_TYPE = "yearly";
 
     public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence,
                           String recurrenceType) {
         super(title, dateTime, isToRemind, true);
+        if (endRecurrence == null) {
+            endRecurrence = DEFAULT_END_RECURRENCE;
+        }
         this.endRecurrence = endRecurrence;
         this.recurrenceType = recurrenceType;
     }
@@ -45,7 +50,7 @@ public abstract class RecurringEvent extends Event {
      * @return ArrayList of this event at different dates at a specified interval within the time period.
      */
     public ArrayList<Event> getRecurrences(LocalDate startDate, LocalDate endDate) {
-        ArrayList<Event> eventSet = new ArrayList<Event>();
+        ArrayList<Event> eventSet = new ArrayList<>();
         LocalTime timing = getTime();
         while (startDate.compareTo(endDate) <= 0) {
             if (checkAfterEndRecurrence(startDate)) {
@@ -61,7 +66,13 @@ public abstract class RecurringEvent extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(" (%s)", recurrenceType);
+        String endRecurrenceString = "Until: ";
+        if (!endRecurrence.equals(DEFAULT_END_RECURRENCE)) {
+            endRecurrenceString += endRecurrence.toString();
+        } else {
+            endRecurrenceString += "Forever";
+        }
+        return super.toString() + String.format(" (%s)", recurrenceType) + InterfaceManager.LS + endRecurrenceString;
     }
 
     /**

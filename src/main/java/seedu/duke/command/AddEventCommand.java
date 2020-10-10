@@ -3,10 +3,12 @@ package seedu.duke.command;
 import seedu.duke.data.timetable.Event;
 import seedu.duke.data.timetable.RecurringEvent;
 import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.DateTimeManager;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_RECURRING;
 import static seedu.duke.util.PrefixSyntax.PREFIX_REMIND;
+import static seedu.duke.util.PrefixSyntax.PREFIX_STOP_RECURRING;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TIMING;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 
@@ -20,12 +22,13 @@ public class AddEventCommand extends Command {
 
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Adds an event to the timetable. Parameters:"
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE "
-            + PREFIX_DELIMITER + PREFIX_TIMING + " TIMING "
+            + PREFIX_DELIMITER + PREFIX_TIMING + " TIMING (Format: " + DateTimeManager.DATEFORMAT + ") "
             + "[" + PREFIX_DELIMITER + PREFIX_RECURRING
-            + String.format(" Frequency (%s, %s, %s, %s) ]",
-            RecurringEvent.DAILY_RECURRENCE, RecurringEvent.WEEKLY_RECURRENCE,
-            RecurringEvent.MONTHLY_RECURRENCE, RecurringEvent.YEARLY_RECURRENCE)
-            + "[" + PREFIX_DELIMITER + PREFIX_REMIND + " [Days before (Default: 1)] " + "]";
+            + String.format(" Frequency (%s, %s, %s, %s)] ",
+            RecurringEvent.DAILY_RECURRENCE_TYPE, RecurringEvent.WEEKLY_RECURRENCE_TYPE,
+            RecurringEvent.MONTHLY_RECURRENCE_TYPE, RecurringEvent.YEARLY_RECURRENCE_TYPE)
+            + "[" + PREFIX_DELIMITER + PREFIX_REMIND + " [Days before (Default: 1)]" + "] "
+            + "[" + PREFIX_DELIMITER + PREFIX_STOP_RECURRING + " TIMING (Format: " + DateTimeManager.DATEFORMAT + ")]";
 
     private final Event event;
 
