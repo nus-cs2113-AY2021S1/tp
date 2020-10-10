@@ -1,4 +1,6 @@
-Hello welcome to AniChan
+User profile file is not found.
+Watchlist file is not found.
+Welcome to AniChan!
                  _  _____ _                 
      /\         (_)/ ____| |                
     /  \   _ __  _| |    | |__   __ _ _ __  
@@ -7,12 +9,12 @@ Hello welcome to AniChan
  /_/    \_\_| |_|_|\_____|_| |_|\__,_|_| |_|
                                             
                                             
-Before we start, let me learn more about you!
+Let's get you started!
+Please enter your particulars:
 What's your name?
 Hello James Gosling! What might your date of birth be?
 What might your gender be? (Male/Female/Others)
 Name= James Gosling, birthdate= 01/02/1999, gender= Male
-Hello James Gosling-san!
 ===Running Sample Anime Class===
 Release Date in String: 30/Dec/2020
 ===End of Sample Anime Class===

@@ -34,6 +34,8 @@ public class Duke {
             userProfile = quickStart();
 
             storage.writeUserProfileFile(userProfile);
+        } else {
+            ui.greetExisting(userProfile);
         }
 
         System.out.println("Hello " + userProfile.getFancyName() + "!");
@@ -56,16 +58,7 @@ public class Duke {
     }
 
     private static UserProfile quickStart() {
-        String logo = "                 _  _____ _                 \n"
-                + "     /\\         (_)/ ____| |                \n"
-                + "    /  \\   _ __  _| |    | |__   __ _ _ __  \n"
-                + "   / /\\ \\ | '_ \\| | |    | '_ \\ / _` | '_ \\ \n"
-                + "  / ____ \\| | | | | |____| | | | (_| | | | |\n"
-                + " /_/    \\_\\_| |_|_|\\_____|_| |_|\\__,_|_| |_|\n"
-                + "                                            \n"
-                + "                                            ";
-        System.out.println("Hello welcome to AniChan\n" + logo);
-        System.out.println("Before we start, let me learn more about you!");
+        ui.greetFirstTime();
 
         UserProfile userProfile = null;
         boolean profileMade = false;
@@ -287,10 +280,23 @@ public class Duke {
      * Adds an anime to current watchlist.
      */
     private static void addToWatchlist(String description) {
-        // Code to be added
+        String[] descriptionSplit = description.split(" ", 2);
 
-        // Print for testing
-        System.out.println("Anime added");
+        try {
+            String commandOption = descriptionSplit[0];
+            String animeName = descriptionSplit[1];
+
+            if (commandOption.equals("-a") && animeName != null && !animeName.trim().isEmpty()) {
+                // currently only adding anime to default watchlist before
+                // implementing the selecting of watchlist
+                Watchlist currentWatchlist = watchlists.get(0);
+                currentWatchlist.addAnimeToList(animeName);
+            } else {
+                ui.showInvalidDescription("addToWatchlist");
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            ui.showInvalidDescription("addToWatchlist");
+        }
     }
 
     /**
