@@ -8,6 +8,8 @@ import seedu.duke.category.CategoryParser;
 import seedu.duke.lists.ListManager;
 import seedu.duke.quote.Quote;
 import seedu.duke.quote.QuoteList;
+import seedu.duke.rating.Rating;
+import seedu.duke.rating.RatingList;
 import seedu.duke.ui.TextUi;
 
 import java.util.ArrayList;
@@ -38,14 +40,47 @@ public class DeleteCommand extends Command {
             BookList books = (BookList) listManager.getList(ListManager.BOOK_LIST);
             deleteBook(books, ui, listManager);
             break;
+        case TAG_RATING:
+            RatingList ratings = (RatingList) listManager.getList(ListManager.RATING_LIST);
+            String bookTitle = information.trim();
+            deleteRating(ratings, ui, bookTitle);
+            break;
         default:
         }
     }
 
+    private void deleteRating(RatingList ratings, TextUi ui, String bookTitle) {
+        Rating ratingToBeDeleted = null;
+        for (Rating rating : ratings.getList()) {
+            if (rating.getTitleOfRatedBook().equals(bookTitle)) {
+                ratingToBeDeleted = rating;
+                break;
+            }
+        }
+        if (ratingToBeDeleted == null) {
+            System.out.println(ERROR_RATING_NOT_FOUND);
+            return;
+        }
+        ratings.delete(ratings.getList().indexOf(ratingToBeDeleted));
+        ui.printDeleteRating(bookTitle);
+    }
+
     private void deleteBook(BookList books, TextUi ui, ListManager listManager) {
         String[] titleAndAuthor = information.split("/by");
+        String bookTitle = titleAndAuthor[0].trim();
+
+        RatingList ratings = (RatingList) listManager.getList(ListManager.RATING_LIST);
+        Rating ratingToBeDeleted;
+        for (Rating rating : ratings.getList()) {
+            if (rating.getTitleOfRatedBook().equals(bookTitle)) {
+                ratingToBeDeleted = rating;
+                ratings.delete(ratings.getList().indexOf(ratingToBeDeleted));
+                break;
+            }
+        }
+
         try {
-            ArrayList<Book> filteredBooks = books.find(titleAndAuthor[0].trim(), titleAndAuthor[1].trim());
+            ArrayList<Book> filteredBooks = books.find(bookTitle, titleAndAuthor[1].trim());
             books.deleteByBook(filteredBooks.get(0));
             ui.printDeleteBook(filteredBooks.get(0));
         } catch (IndexOutOfBoundsException e) {
