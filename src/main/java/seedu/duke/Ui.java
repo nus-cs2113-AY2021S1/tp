@@ -265,6 +265,7 @@ public class Ui {
             break;
         case "file not found":
             System.out.println("The file can not be found");
+            break;
         case "invalid done number":
             System.out.println("You can only mark a task as done. An event cannot be marked as done.");
             break;
