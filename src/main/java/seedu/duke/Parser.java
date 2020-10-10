@@ -37,8 +37,6 @@ public class Parser {
             command = new ExitCommand();
         } else if (input.startsWith(ChangeModeCommand.MODE_KW)) {
             command = new ChangeModeCommand(input);
-        } else if (programMode == 0) {
-            command = new ChangeModeCommand(input);
         } else if (programMode == 1) {
             command = createBookmarkCommand(input);
         } else if (programMode == 2) {
