@@ -33,6 +33,10 @@ public class AddCommand extends Command {
 
     @Override
     public void execute() {
+        sortIntoType();
+    }
+
+    public void sortIntoType() {
         if (homeLocationsList.isLocationCreated(location)) {
             try {
                 switch (type.toLowerCase()) {

@@ -80,9 +80,9 @@ public class StorageFile {
                         || splitString[2].isEmpty() || splitString[3].isEmpty()) {
                     throw new FileCorrupted();
                 }
-                Command abc = new AddCommand(splitString[1], splitString[0], splitString[2], splitString[3]);
-                abc.setData(appliances, homeLocations);
-                abc.execute();
+                AddCommand add = new AddCommand(splitString[1], splitString[0], splitString[2], splitString[3]);
+                add.setData(appliances, homeLocations);
+                add.sortIntoType();
                 appliances.getAppliance(i).updatePowerConsumption(splitString[5]);
                 if (splitString[4].toLowerCase().equals("on")) {
                     appliances.getAppliance(i).switchOn();
@@ -102,9 +102,9 @@ public class StorageFile {
             String when = locationList.substring(start, end);
             String[] stringSplit = when.split(",");
             for (int j = 0; j < stringSplit.length; j++) {
-                Command newLocation = new CreateCommand(stringSplit[j].trim());
+                CreateCommand newLocation = new CreateCommand(stringSplit[j].trim());
                 newLocation.setData(appliances, homeLocations);
-                newLocation.execute();
+                newLocation.insertLocation();
             }
         } catch (IndexOutOfBoundsException e) {
             throw new FileCorrupted();
