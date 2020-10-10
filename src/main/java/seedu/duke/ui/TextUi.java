@@ -33,7 +33,7 @@ public class TextUi {
     private static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
             + " Here are your rated books!";
     private static final String LIST_SPECIFIED_RATING_MESSAGE = "Here are the books you rated as %d star!";
-    private static final String LIST_QUOTES = "Here are the quotes: ";
+    private static final String LIST_QUOTES = "Here are the quotes:";
 
     private final Scanner in;
 
