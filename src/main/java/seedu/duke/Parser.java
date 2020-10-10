@@ -96,7 +96,7 @@ public class Parser {
             Double.parseDouble(power);
             return true;
         } catch (NumberFormatException e) {
-            ui.showToUser(Messages.MESSAGE_ENTER_NUMERICAL);
+            ui.showToUser(Messages.MESSAGE_POWER_NOT_NUMBER);
             return false;
         }
     }

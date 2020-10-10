@@ -17,7 +17,6 @@ public class Power {
     private static final String TIME_DATE_FORMAT = "dd/MM/yyyy | HH:mm:ss";
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(TIME_DATE_FORMAT);
     LocalDateTime currentTime;
-    Appliance appliance;
     private String offTime;
     private String onTime;
     private double powerUsed;
@@ -51,7 +50,7 @@ public class Power {
             this.isOn = false;
             offTime = getCurrentTime();
             try {
-                calculateTimeUsed();
+                calculatePowerConsumed();
             } catch (ParseException e) {
                 ui.showToUser(LINE + Messages.MESSAGE_TIME_FORMAT_ERROR);
             }
@@ -100,11 +99,12 @@ public class Power {
 
         // For simulation purpose, 1 second in System equals to 1 hour in SmartHomeBot
         // Convert back to hours timeDifference/(1000 * 60 * 60)
-        totalHours = timeUsed / (1000 * 6);
+        totalHours = timeUsed / (1000);
     }
 
     private void calculatePowerConsumed() throws ParseException {
         calculateTimeUsed();
+        // convert to kWh
         powerUsed = totalHours * power / 1000.00;
         totalPowerConsumption += powerUsed;
     }

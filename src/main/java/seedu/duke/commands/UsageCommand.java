@@ -33,7 +33,7 @@ public class UsageCommand extends Command {
         for (int i = 0; i < appliances.getAllAppliance().size(); i++) {
             status = appliances.getAppliance(i).getStatus();
             applianceName = appliances.getAppliance(i).getName();
-            location = appliances.getAppliance(i).getName();
+            location = appliances.getAppliance(i).getLocation();
             double appliancePower = appliances.getAppliance(i).measureConsumption();
             totalUsage += appliancePower;
             String format = "%d. %-" + maxLengthName
