@@ -1,6 +1,6 @@
 print timeline
 lecture cs2113 lt12 /at 081020 1600
-tutorial cs2113 lt11 /at 101020 1300
+tutorial cs2113 lt11 /at 101020 1600
 lab cs1010 com1-b1-12 /at 101020 1000
 print progress
 bye
