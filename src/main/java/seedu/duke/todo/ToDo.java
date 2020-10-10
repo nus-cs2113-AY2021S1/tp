@@ -3,7 +3,7 @@ package seedu.duke.todo;
 public class ToDo {
     private String name;
     private String deadline;
-    boolean isDone;
+    private boolean isDone;
 
     public ToDo(String name, String deadline) {
         this.name = name;

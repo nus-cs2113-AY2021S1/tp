@@ -1,6 +1,7 @@
 package seedu.duke.ui;
 
 import seedu.duke.book.Book;
+import seedu.duke.bookmark.Bookmark;
 import seedu.duke.category.Category;
 import seedu.duke.category.CategoryList;
 import seedu.duke.quote.QuoteList;
@@ -9,7 +10,6 @@ import seedu.duke.rating.RatingList;
 import seedu.duke.todo.ToDo;
 import seedu.duke.todo.ToDoList;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TextUi {
@@ -34,11 +34,16 @@ public class TextUi {
     private static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
             + " Here are your rated books!";
     private static final String LIST_SPECIFIED_RATING_MESSAGE = "Here are the books you rated as %d star!";
-    private static final String ADD_TODO = "The task [%s] has been added!";
+    private static final String ADD_TODO_MESSAGE = "The task [%s] has been added!";
     private static final String TODO_SIZE_MESSAGE = "You have a total of %d task(s) recorded.";
-    private static final String LIST_TODOS_MESSAGE = "Here is the list of all tasks recorded:";
+    private static final String LIST_TODOS_MESSAGE = "Here is the list of all task(s) recorded:";
     private static final String DELETE_TODO_MESSAGE = "The Task [%s] has been deleted!";
     private static final String DONE_TODO_MESSAGE = "The Task [%s] has been marked as done!";
+    private static final String ADD_BOOKMARK_MESSAGE = "The bookmark [%s] has been added!";
+    private static final String UPDATE_BOOKMARK_MESSAGE = "The bookmark [%s] has been updated";
+    private static final String BOOKMARK_SIZE_MESSAGE = "You have a total of %d bookmark(s) recorded.";
+    private static final String LIST_BOOKMARKS_MESSAGE = "Here is the list of all bookmark(s) recorded:";
+    private static final String DELETE_BOOKMARKS_MESSAGE = "The bookmark [%s] has been removed!";
 
 
     private final Scanner in;
@@ -134,7 +139,7 @@ public class TextUi {
     }
 
     public void printAddToDo(ToDo toDo) {
-        System.out.printf(ADD_TODO + "\n", toDo.toString());
+        System.out.printf(ADD_TODO_MESSAGE + "\n", toDo.toString());
     }
 
     public void printToDo(ToDo toDo) {
@@ -152,5 +157,13 @@ public class TextUi {
 
     public void printDoneToDo(ToDo  toDo) {
         System.out.printf(DONE_TODO_MESSAGE + "\n", toDo.toString());
+    }
+
+    public void printAddBookmark(Bookmark bookmark) {
+        System.out.printf(ADD_BOOKMARK_MESSAGE + "\n", bookmark.toString());
+    }
+
+    public void printUpdateBookmark(Bookmark bookmark) {
+        System.out.printf(UPDATE_BOOKMARK_MESSAGE + "\n", bookmark.toString());
     }
 }

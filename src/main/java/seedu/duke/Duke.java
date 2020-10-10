@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.book.BookList;
+import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.category.CategoryList;
 import seedu.duke.commands.Command;
 import seedu.duke.lists.ListManager;
@@ -21,6 +22,7 @@ public class Duke {
     private CategoryList categories;
     private RatingList ratings;
     private ToDoList toDos;
+    private BookmarkList bookmarks;
 
     private final ListManager listManager = new ListManager();
 
@@ -31,12 +33,14 @@ public class Duke {
         quotes = new QuoteList();
         ratings = new RatingList();
         toDos = new ToDoList();
+        bookmarks = new BookmarkList();
 
         listManager.addToList(ListManager.BOOK_LIST, books);
         listManager.addToList(ListManager.QUOTE_LIST, quotes);
         listManager.addToList(ListManager.CATEGORY_LIST, categories);
         listManager.addToList(ListManager.RATING_LIST, ratings);
         listManager.addToList(ListManager.TODO_LIST, toDos);
+        listManager.addToList(ListManager.BOOKMARK_LIST, bookmarks);
     }
 
     public void start() {

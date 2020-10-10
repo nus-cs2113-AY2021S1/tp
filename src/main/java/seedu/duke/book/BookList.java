@@ -51,4 +51,13 @@ public class BookList extends QuotesifyList<Book> {
                 }).collect(Collectors.toList());
         return filteredBooks;
     }
+
+    public Book findByTitle(String title) {
+        for (Book book : books) {
+            if(book.getTitle().equals(title)){
+                return book;
+            }
+        }
+        return null;
+    }
 }

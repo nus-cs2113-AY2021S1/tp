@@ -1,38 +1,46 @@
 package seedu.duke.bookmark;
 
 import seedu.duke.book.Book;
+import seedu.duke.lists.QuotesifyList;
 
 import java.util.ArrayList;
 
-public class BookmarkList {
+public class BookmarkList extends QuotesifyList<Bookmark> {
     private ArrayList<Bookmark> bookmarks;
 
     public BookmarkList() {
-        bookmarks = new ArrayList<Bookmark>();
+        super(new ArrayList<>());
+    }
+    public BookmarkList(ArrayList<Bookmark> bookmarks) {
+        super(bookmarks);
     }
 
-    public void addBookmark(Bookmark bookmark) {
-        System.out.println("Adding bookmark to the list...");
-        bookmarks.add(bookmark);
-        System.out.println("Finished added");
+    public void add(Bookmark newBookmark) {
+        bookmarks.add(newBookmark);
     }
 
-    public Bookmark findBookmark(Book book) {
-        for (int i = 0; i < bookmarks.size(); i++) {
-            if(bookmarks.get(i).getBook().equals(book)) {
-                return bookmarks.get(i);
+    public Bookmark find(Book book) {
+        for (Bookmark bookmark : bookmarks) {
+            if(bookmark.getBook().equals(book)) {
+                return bookmark;
             }
         }
+
         return null;
     }
 
-    public void removeBookmark(Bookmark bookmark) {
-        bookmarks.remove(bookmark);
+    @Override
+    public void delete(int index) {
+        bookmarks.remove(index);
     }
 
-    public void listBookmarks() {
-        for (int i = 0; i < bookmarks.size(); i++) {
-            System.out.println(bookmarks.get(i).toString());
+    @Override
+    public String toString() {
+        String bookmarksToReturn = "";
+        for (Bookmark bookmark: bookmarks) {
+            bookmarksToReturn += bookmark.toString() + System.lineSeparator();
         }
+
+        return bookmarksToReturn;
     }
 }
