@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.bookmark.Bookmark;
@@ -19,17 +20,9 @@ public class ShowTimetableCommand extends Command {
         day = getDayFromCommand(command);
     }
 
-    /**
-     * Prints the exit screen before the program exits.
-     *
-     * @param bookmarks The list of bookmarks.
-     * @param ui The user interface.
-     * @param storage The storage for saving and loading.
-     */
-
     @Override
-    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui, Storage storage) throws DukeException {
-        slotList.printLessonAtTime(slotList.getSlotsList(), day);
+    public void execute(ItemList items, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage) throws DukeException {
+        slotList.printLessonAtTime(slotList.getSlotList(), day);
     }
 
     public String getDayFromCommand(String input) {

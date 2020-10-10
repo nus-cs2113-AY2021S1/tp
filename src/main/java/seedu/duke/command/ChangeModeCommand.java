@@ -1,12 +1,9 @@
 package seedu.duke.command;
 
-import seedu.duke.Duke;
-import seedu.duke.Storage;
-import seedu.duke.Ui;
+import seedu.duke.*;
 import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
-import seedu.duke.Parser;
 import seedu.duke.slot.SlotList;
 
 public class ChangeModeCommand extends Command {
@@ -22,13 +19,14 @@ public class ChangeModeCommand extends Command {
 
 
     @Override
-    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui, Storage storage) throws DukeException {
+    public void execute(ItemList items, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage)
+            throws DukeException {
         if (setToMode == 1) {
             Parser.programMode = 1;
-            ui.printPublic("Changing to bookmark mode" + System.lineSeparator());
+            ui.print("Changing to bookmark mode" + System.lineSeparator());
         } else if (setToMode == 2) {
             Parser.programMode = 2;
-            ui.printPublic("Changing to timetable mode" + System.lineSeparator());
+            ui.print("Changing to timetable mode" + System.lineSeparator());
         } else {
             throw new DukeException(DukeExceptionType.INVALID_MODE);
         }
