@@ -52,8 +52,10 @@ public class Storage {
     }
 
     /**
-     * Read's the user's data from the user config file.
+     * Reads the user's data from the user config file.
      *
+     * @param user the user to load the file into
+     * @return true if the file is read successfully, false if not
      * @throws FileNotFoundException if the file is not found
      */
     public boolean readUserConfigFile(User user) throws FileNotFoundException {
@@ -83,6 +85,7 @@ public class Storage {
     /**
      * Writes the user's data into the user config file.
      *
+     * @param user the user to load the file into
      * @throws IOException if an I/O error has occurred
      */
     public void writeUserConfigFile(User user) throws IOException {
@@ -97,23 +100,49 @@ public class Storage {
         file.close();
     }
 
+
     /**
-     * Reads the data from the food list file.
+     * Loads the list of the user's consumed food from a file and returns an ArrayList of Food objects.
      *
+     * @return an Arraylist of Food objects
      * @throws FileNotFoundException if the file is not found
      */
     public ArrayList<Food> loadFoodList() throws FileNotFoundException {
         ArrayList<Food> foodList = new ArrayList<>();
-
         String line;
+        String[] arguments;
+        Calorie calorie;
         File foodListFile = new File(foodListPath);
         Scanner readFile = new Scanner(foodListFile);
+
         while (readFile.hasNext()) {
             line = readFile.nextLine();
-            System.out.println(line);
+            arguments = line.split(COMMA_SEPARATOR);
+            foodList.add(new Food(arguments[0],
+                    new Calorie(Integer.parseInt(arguments[1])), Integer.parseInt(arguments[2])));
         }
 
         return foodList;
+    }
+
+    /**
+     * Writes the food list data into a file.
+     *
+     * @param foodList the food list to write to the file
+     * @throws IOException if an I/O error has occurred
+     */
+    public void writeFoodList(FoodList foodList) throws IOException {
+        FileWriter file = new FileWriter(foodListPath);
+        Food food;
+
+        for (int i = 0; i < foodList.getSize(); i++) {
+            food = foodList.getFood(i);
+            file.write(food.getFoodName()
+                    + COMMA_SEPARATOR + food.getCalories()
+                    + COMMA_SEPARATOR + food.getAmountOfFood() + System.lineSeparator());
+        }
+
+        file.close();
     }
 
     /**
