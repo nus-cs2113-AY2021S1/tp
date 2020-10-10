@@ -2,6 +2,10 @@ package seedu.modtracker;
 
 import java.util.Arrays;
 
+/**
+ * Represents a module. A <code>Module</code> object corresponds to
+ * a module with its moduleCode, expected time and actual time.
+ */
 public class Module {
 
     protected String moduleCode;
@@ -50,5 +54,23 @@ public class Module {
         double d = Double.parseDouble(time);
         int i = Integer.parseInt(week);
         this.actualTime[i] -= d;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Module)) {
+            return false;
+        }
+        Module m = (Module) obj;
+
+        return moduleCode.equals(m.moduleCode);
+    }
+
+
+    public int hashCode() {
+        return moduleCode.hashCode();
     }
 }
