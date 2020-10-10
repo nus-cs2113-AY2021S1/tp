@@ -1,6 +1,9 @@
 package seedu.duke.bookmark;
 
+import seedu.duke.exception.DukeException;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represents the bookmark list used to store and organize bookmarks.
@@ -97,5 +100,69 @@ public class BookmarkList {
      */
     public void deleteBookmark(Bookmark bookmark) {
         bookmarks.remove(bookmark);
+    }
+
+
+    /**
+     * This method searches the bookmarks from the list with matching module
+     * and description.
+     *
+     * @param list The List<String></String> containing the module and description to be searched
+     * @return The string message containing the matching bookmarks
+     */
+    public String findBookmarks(List<String> list) {
+        if (bookmarks.size() == 0) {
+            return ("Empty List");
+        }
+
+        String module = list.get(0).toUpperCase();
+        String description = list.get(1).toUpperCase();
+        String message = "";
+
+        for (int i = 0; i < bookmarks.size(); i++) {
+            if (bookmarks.get(i).getModule().toUpperCase().contains(module)
+                    && bookmarks.get(i).getDescription().toUpperCase().contains(description)) {
+                message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + "\n";
+            }
+        }
+
+        if (message.isEmpty()) {
+            return  "No tasks contain the specified keyword!" + "\n";
+        }
+        return "Here are your matching bookmarks" + "\n" + message;
+    }
+
+    /**
+     * This method searches the bookmarks from the list with matching module
+     * and description and launches them accordingly.
+     *
+     * @param list The List<String></String> containing the module and description to be searched
+     * @return The string message containing the matching bookmarks
+     */
+    public String launchBookmarks(List<String> list) {
+        if (bookmarks.size() == 0) {
+            return ("Empty List");
+        }
+
+        String module = list.get(0).toUpperCase();
+        String description = list.get(1).toUpperCase();
+        String message = "";
+
+        for (int i = 0; i < bookmarks.size(); i++) {
+            if (bookmarks.get(i).getModule().toUpperCase().contains(module)
+                    && bookmarks.get(i).getDescription().toUpperCase().contains(description)) {
+                message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + "\n";
+                try {
+                    bookmarks.get(i).launch();
+                } catch (DukeException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        if (message.isEmpty()) {
+            return  "No tasks contain the specified keyword!" + "\n";
+        }
+        return "Launched these bookmarks:" + "\n" + message;
     }
 }
