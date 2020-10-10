@@ -18,10 +18,10 @@ public class calculator {
     public calculator(ArrayList<Food> foodList){
         try {
             for(int i=0; i< foodList.size(); i++){
-                total.calorie += foodList.getPortionSize(i)*foodList.getCalorie(i);
-                total.carbs += foodList.getPortionSize(i)*foodList.getCarbs(i);
-                total.protein += foodList.getPortionSize(i)*foodList.getProtein(i);
-                total.fats += foodList.getPortionSize(i)*foodList.getFats(i);
+                total.calorie += foodList.get(i).portionSize * foodList.get(i).calorie;
+                total.carbs += foodList.get(i).portionSize * foodList.get(i).carbs(i);
+                total.protein += foodList.get(i).portionSize * foodList.get(i).protein(i);
+                total.fats += foodList.get(i).portionSize * foodList.get(i).fats(i);
             }
         } catch (NullPointerException e) {
             System.out.println("Ops, This foodList is null!");
