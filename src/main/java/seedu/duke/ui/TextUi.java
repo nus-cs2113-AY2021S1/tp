@@ -123,8 +123,6 @@ public class TextUi {
         }
     }
 
-<<<<<<< HEAD
-
     public void printAllQuotesByAuthor(QuoteList quoteList, String authorName) {
         System.out.println(LIST_QUOTES);
         for (Quote quote : quoteList.getList()) {
