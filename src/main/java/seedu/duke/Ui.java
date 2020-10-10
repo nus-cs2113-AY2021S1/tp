@@ -84,9 +84,9 @@ public class Ui {
      */
     public static void printDukeBorder(boolean top) {
         if (top) {
-            System.out.println("............. DUKE CHAT BOX ^^ ............");
+            System.out.println("..................... DUKE CHAT BOX ^^ ....................");
         } else {
-            System.out.println("...........................................");
+            System.out.println("...........................................................");
         }
     }
 
