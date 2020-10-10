@@ -25,6 +25,8 @@ public enum CommandChecker {
     STATS,
     DELETE,
     EXIT,
+    SCENE,
+    TOPIC,
     UNRECOGNISED;
 
     public static CommandChecker commandChecker;
@@ -38,12 +40,44 @@ public enum CommandChecker {
             System.out.println("Oops! Command cannot be empty");
             inputLine = SCANNER.nextLine();
         }
+<<<<<<< HEAD
+        String[] words = inputLine.split(" ");
+        String command = words[0];
+        commandType = CommandChecker.extractCommandType(command);
+=======
 
         commandChecker = extractCommandType(inputLine.trim());
+>>>>>>> df66c260dbe3273b7530aad4a6103ffe3a1370a4
 
         return inputLine.trim();
     }
 
+<<<<<<< HEAD
+    public static CommandChecker extractCommandType(String userCommand) {
+        if (userCommand.equalsIgnoreCase("help")) {
+            return CommandChecker.HELP;
+        } else if (userCommand.equalsIgnoreCase("settings")) {
+            return CommandChecker.SETTINGS;
+        } else if (userCommand.equalsIgnoreCase("qna")) {
+            return CommandChecker.QNA;
+        } else if (userCommand.equalsIgnoreCase("mcq")) {
+            return CommandChecker.MCQ;
+        } else if (userCommand.equalsIgnoreCase("fillblank")) {
+            return CommandChecker.FILLBLANK;
+        } else if (userCommand.equalsIgnoreCase("list")) {
+            return CommandChecker.LIST;
+        } else if (userCommand.equalsIgnoreCase("history")) {
+            return CommandChecker.HISTORY;
+        } else if (userCommand.equalsIgnoreCase("stats")) {
+            return CommandChecker.STATS;
+        } else if (userCommand.equalsIgnoreCase("review")) {
+            return CommandChecker.REVIEW;
+        } else if (userCommand.equalsIgnoreCase("quiz")) {
+            return CommandChecker.QUIZ;
+        } else if (userCommand.equalsIgnoreCase("clear")) {
+            return CommandChecker.CLEAR;
+        } else if (userCommand.equalsIgnoreCase("exit")) {
+=======
     /**
      *  Figure out the command type from userInput.
      *
@@ -73,7 +107,12 @@ public enum CommandChecker {
             return CommandChecker.LIST_BUNNY;
 
         } else if (userInput.toLowerCase().trim().startsWith("exit")) {
+>>>>>>> df66c260dbe3273b7530aad4a6103ffe3a1370a4
             return CommandChecker.EXIT;
+        } else if (userCommand.equalsIgnoreCase("scene")) {
+            return CommandChecker.SCENE;
+        } else if (userCommand.equalsIgnoreCase("topic")) {
+            return CommandChecker.TOPIC;
         } else {
             return CommandChecker.UNRECOGNISED;
         }

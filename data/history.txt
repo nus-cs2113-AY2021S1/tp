@@ -1,4 +1,3 @@
-----------------------------
 Username: John Doeh
 Number of quizzes taken: 3
 Quizzes taken: 1 | 4 | 8
