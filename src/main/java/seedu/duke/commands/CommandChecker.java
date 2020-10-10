@@ -30,22 +30,8 @@ public enum CommandChecker {
     public static CommandChecker commandChecker;
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static String getUserInput() {
-        System.out.print("You: ");
-        String inputLine = SCANNER.nextLine();
-
-        while (inputLine.trim().isEmpty()) {
-            System.out.println("Oops! Command cannot be empty");
-            inputLine = SCANNER.nextLine();
-        }
-
-        commandChecker = extractCommandType(inputLine.trim());
-
-        return inputLine.trim();
-    }
-
     /**
-     *  Figure out the command type from userInput.
+     *  Figures out the command type from userInput.
      *
      * @param userInput string containing user input command
      * @return the type of command detected
