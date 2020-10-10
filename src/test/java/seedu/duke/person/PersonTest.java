@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class PersonTest {
 
@@ -11,7 +12,36 @@ class PersonTest {
 
     @BeforeEach
     public void setUp() {
-        person = new Person(21,165,65,55,ActivityLevel.LOW);
+        person = new Person("Jack", Gender.MALE,21,165,75,65,
+                ActivityLevel.LOW);
+    }
+
+    @Test
+    void getName_person_returnsName() {
+        assertEquals("Jack", person.getName());
+    }
+
+    @Test
+    void setName_personWithNewName_returnNewName() {
+        person.setName("Jackie");
+        assertEquals("Jackie", person.getName());
+    }
+
+    @Test
+    void gender_person_returnsGender() {
+        assertEquals(Gender.MALE, person.getGender());
+    }
+
+    @Test
+    void gender_personWithNewGender_returnsNewGender() {
+        person.setGender(Gender.FEMALE);
+        assertEquals(Gender.FEMALE, person.getGender());
+    }
+
+    @Test
+    void gender_personWithNullGender_returnsNullGender() {
+        person.setGender(null);
+        assertNull(person.getGender());
     }
 
     @Test
@@ -38,7 +68,7 @@ class PersonTest {
 
     @Test
     void getOriginalWeight_person_returnsOriginalWeight() {
-        assertEquals(65, person.getOriginalWeight());
+        assertEquals(75, person.getOriginalWeight());
     }
 
     @Test
@@ -49,13 +79,13 @@ class PersonTest {
 
     @Test
     void getTargetWeight_person_returnsTargetWeight() {
-        assertEquals(55, person.getTargetWeight());
+        assertEquals(65, person.getTargetWeight());
     }
 
     @Test
     void setTargetWeight_personWithNewTargetWeight_returnsNewTargetWeight() {
-        person.setTargetWeight(50);
-        assertEquals(50, person.getTargetWeight());
+        person.setTargetWeight(68);
+        assertEquals(68, person.getTargetWeight());
     }
 
     @Test
@@ -72,6 +102,20 @@ class PersonTest {
     @Test
     void setActivityLevel_personWithNullActivityLevel_returnsNullActivityLevel() {
         person.setActivityLevel(null);
-        assertEquals(null, person.getActivityLevel());
+        assertNull(person.getActivityLevel());
+    }
+
+    @Test
+    void toString_person_returnsStringRepresentationOfPersonInformation() {
+        assertEquals("Hi Jack! Here is your information:" + System.lineSeparator()
+                + System.lineSeparator()
+                + "Name: Jack" + System.lineSeparator()
+                + "Gender: male" + System.lineSeparator()
+                + "Age: 21" + System.lineSeparator()
+                + "Height: 165cm" + System.lineSeparator()
+                + "Original weight: 75kg" + System.lineSeparator()
+                + "Target weight: 65kg" + System.lineSeparator()
+                + "Activity level: You engage in some form of light exercise or have a job that requires "
+                + "some physical activity.", person.toString());
     }
 }
