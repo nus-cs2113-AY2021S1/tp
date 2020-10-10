@@ -56,7 +56,8 @@ public class Storage {
      *
      * @throws FileNotFoundException if the file is not found
      */
-    public void readUserConfigFile(User user) throws FileNotFoundException {
+    public boolean readUserConfigFile(User user) throws FileNotFoundException {
+        boolean isReadSuccess = false;
         File file = new File(userConfigPath);
         Scanner readFile = new Scanner(file);
         String line, name, gender;
@@ -73,7 +74,10 @@ public class Storage {
             height = Double.parseDouble(arguments[3]);
             weight = Double.parseDouble(arguments[4]);
             user.loadUserData(name, age, height, weight, gender);
+            isReadSuccess = true;
         }
+
+        return isReadSuccess;
     }
 
     /**
