@@ -3,7 +3,7 @@ package seedu.rex.parser;
 import seedu.rex.commands.Command;
 import seedu.rex.commands.ExitCommand;
 import seedu.rex.data.exception.RexException;
-import seedu.rex.data.patient.Patient;
+import seedu.rex.data.hospital.Patient;
 
 public class Parser {
     public static Patient readPatient(String line) {
