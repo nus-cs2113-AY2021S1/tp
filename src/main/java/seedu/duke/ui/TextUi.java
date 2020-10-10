@@ -38,6 +38,7 @@ public class TextUi {
     private static final String TODO_SIZE_MESSAGE = "You have a total of %d task(s) recorded.";
     private static final String LIST_TODOS_MESSAGE = "Here is the list of all tasks recorded:";
     private static final String DELETE_TODO_MESSAGE = "The Task [%s] has been deleted!";
+    private static final String DONE_TODO_MESSAGE = "The Task [%s] has been marked as done!";
 
 
     private final Scanner in;
@@ -147,5 +148,9 @@ public class TextUi {
 
     public void printDeleteToDo(ToDo  toDo) {
         System.out.printf(DELETE_TODO_MESSAGE + "\n", toDo.toString());
+    }
+
+    public void printDoneToDo(ToDo  toDo) {
+        System.out.printf(DONE_TODO_MESSAGE + "\n", toDo.toString());
     }
 }

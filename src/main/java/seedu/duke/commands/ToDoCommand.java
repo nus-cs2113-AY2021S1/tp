@@ -5,13 +5,14 @@ import seedu.duke.todo.ToDo;
 import seedu.duke.todo.ToDoList;
 import seedu.duke.ui.TextUi;
 
-public class ToDoCommand {
+public class ToDoCommand extends Command{
     private String information;
 
     public ToDoCommand(String arguments) {
         this.information = arguments;
     }
 
+    @Override
     public void execute(TextUi ui, ListManager listManager) {
         ToDoList toDos = (ToDoList) listManager.getList(ListManager.TODO_LIST);
         ToDo newToDo = addToDo(toDos);
@@ -27,4 +28,10 @@ public class ToDoCommand {
 
         return newToDo;
     }
+
+    @Override
+    public boolean isExit(){
+        return false;
+    }
+
 }
