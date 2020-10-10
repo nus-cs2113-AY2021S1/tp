@@ -16,6 +16,7 @@ public class SystemException extends Exception {
         EXCEPTION_WRONG_TIMING("Your input has a wrong format for the date time input. Please follow the yyyy-MM-dd HH:mm format with the \"-\" and \":\""),
         EXCEPTION_MISSING_RECURRING_TYPE("Please indicate whether you would like to have the event repeat daily, weekly, monthly or yearly"),
         EXCEPTION_WRONG_RECURRING_TYPE("There are only the following recurring types: daily, weekly, monthly or yearly"),
+        EXCEPTION_INDEX_OUT_OF_RANGE("The index you specified is out of range. Please specify the index that is indicated when you print the event list"),
         EXCEPTION_MISSING_TAG_PREFIX("Missing tag prefix!"),
         EXCEPTION_MISSING_TAG("Missing tag name!"),
         EXCEPTION_MISSING_INDEX_PREFIX("Missing index prefix!"),

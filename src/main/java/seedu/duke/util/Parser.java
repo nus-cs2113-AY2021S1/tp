@@ -3,6 +3,7 @@ package seedu.duke.util;
 import seedu.duke.command.AddEventCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.CreateTagCommand;
+import seedu.duke.command.DeleteEventCommand;
 import seedu.duke.command.DeleteTagCommand;
 import seedu.duke.command.AddNoteCommand;
 import seedu.duke.command.DeleteNoteCommand;
@@ -25,10 +26,7 @@ import seedu.duke.data.notebook.Tag;
 import seedu.duke.data.timetable.DailyEvent;
 import seedu.duke.data.timetable.Event;
 
-import java.lang.reflect.Array;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -39,7 +37,6 @@ import seedu.duke.data.timetable.YearlyEvent;
 import seedu.duke.ui.InterfaceManager;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -92,7 +89,7 @@ public class Parser {
             case ListNoteCommand.COMMAND_WORD:
                 return prepareListNote(userMessage);
             case ListEventCommand.COMMAND_WORD:
-                // return prepareListEvent(userMessage);
+                 return prepareListEvent(userMessage);
             case ViewNoteCommand.COMMAND_WORD:
                 // return prepareViewNote(userMessage);
             case EditCommand.COMMAND_WORD_NOTE:
@@ -101,8 +98,8 @@ public class Parser {
                 // return prepareEditEvent(userMessage);
             case DeleteNoteCommand.COMMAND_WORD:
                 return prepareDeleteNote(userMessage);
-            /*case DeleteNoteCommand.COMMAND_WORD:
-             return prepareDeleteEvent(userMessage);*/
+            case DeleteEventCommand.COMMAND_WORD:
+                return prepareDeleteEvent(userMessage);
             case FindCommand.COMMAND_WORD:
                 return prepareFind(userMessage);
             case PinCommand.COMMAND_WORD:
@@ -274,7 +271,7 @@ public class Parser {
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
             for (String[] infoDetails : splitInfo) {
-                String prefix = infoDetails[0];
+                String prefix = infoDetails[0].toLowerCase();
                 switch (prefix) {
                 case PREFIX_TITLE:
                     title = checkBlank(infoDetails[1], SystemException.ExceptionType.EXCEPTION_MISSING_TITLE);
@@ -288,7 +285,11 @@ public class Parser {
                     break;
                 case PREFIX_RECURRING_EVENT:
                     isRecurring = true;
-                    recurringType = checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_RECURRING_TYPE);
+                    try {
+                        recurringType = checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_RECURRING_TYPE).toLowerCase();
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        recurringType = RecurringEvent.DAILY_RECURRANCE;
+                    }
                     break;
                 default:
                     throw new SystemException(SystemException.ExceptionType.EXCEPTION_WRONG_PREFIX);
@@ -504,15 +505,20 @@ public class Parser {
 
     }
 
-    /*
-    private Command prepareAddEvent(String userMessage) {
-    return new AddNoteCommand(event);
-    }
-
     private Command prepareListEvent(String userMessage) {
         return new ListEventCommand();
     }
 
+    private Command prepareDeleteEvent(String userMessage) throws SystemException {
+        int index;
+        try {
+            index = Integer.parseInt(checkBlank(userMessage, SystemException.ExceptionType.EXCEPTION_MISSING_INDEX));
+        } catch (NumberFormatException e) {
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
+        }
+        return new DeleteEventCommand(index);
+    }
+    /*
     private Command prepareViewNote(String userMessage) {
        return new ViewNoteCommand();
     }
@@ -523,10 +529,6 @@ public class Parser {
 
     private Command prepareEditEvent(String userMessage) {
        return new EditCommand(index, event);
-    }
-
-    private Command prepareDeleteEvent(String userMessage) {
-       return new EditCommand(index, false);
     }
 
     private Command preparePin(String userMessage) {

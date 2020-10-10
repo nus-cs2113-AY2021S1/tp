@@ -41,6 +41,6 @@ public class ListEventCommand extends Command {
 
     @Override
     public String execute() {
-        return null;
+        return timetable.getEvents().toString();
     }
 }
