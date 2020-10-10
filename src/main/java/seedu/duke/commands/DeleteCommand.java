@@ -170,7 +170,7 @@ public class DeleteCommand extends Command {
 
     private void deleteToDo(ToDoList toDos, int index, TextUi ui) {
         ToDo toDoToBeDeleted = toDos.find(index);
-        if(toDoToBeDeleted != null) {
+        if (toDoToBeDeleted != null) {
             toDos.delete(index);
             ui.printDeleteToDo(toDoToBeDeleted);
         }
@@ -192,15 +192,15 @@ public class DeleteCommand extends Command {
 
     private void deleteBookmark(BookList books, BookmarkList bookmarks, String titleName, TextUi ui) {
         Book targetBook = books.findByTitle(titleName);
-        if(targetBook != null) {
+        if (targetBook != null) {
             removeBookmarkFromBook(targetBook, bookmarks, ui);
         }
     }
 
-    private void removeBookmarkFromBook (Book targetBook, BookmarkList bookmarks, TextUi ui) {
+    private void removeBookmarkFromBook(Book targetBook, BookmarkList bookmarks, TextUi ui) {
         Bookmark bookmarkToBeDeleted = bookmarks.find(targetBook);
 
-        if(bookmarkToBeDeleted != null) {
+        if (bookmarkToBeDeleted != null) {
             bookmarks.delete(bookmarkToBeDeleted);
             ui.printDeleteBookmark(bookmarkToBeDeleted);
         }

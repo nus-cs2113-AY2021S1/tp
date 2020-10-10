@@ -57,7 +57,7 @@ public class BookmarkCommand extends Command {
 
         int pageNum = computePageNum(page);
         bookmarkToAdd = bookmarks.find(book);
-        if (bookmarkToAdd == null){
+        if (bookmarkToAdd == null) {
             bookmarkToAdd = createNewBookmark(bookmarks, book, pageNum);
             ui.printAddBookmark(bookmarkToAdd);
         }
@@ -67,18 +67,18 @@ public class BookmarkCommand extends Command {
         }
     }
 
-    public Bookmark createNewBookmark(BookmarkList bookmarks, Book book, int pageNum){
+    public Bookmark createNewBookmark(BookmarkList bookmarks, Book book, int pageNum) {
         Bookmark newBookmark = new Bookmark(book, pageNum);
         bookmarks.add(newBookmark);
         return newBookmark;
     }
 
-    public Bookmark updateExistingBookmark(Bookmark bookmark, int pageNum){
+    public Bookmark updateExistingBookmark(Bookmark bookmark, int pageNum) {
         bookmark.setPageNum(pageNum);
         return bookmark;
     }
 
-    private int computePageNum (String information) {
+    private int computePageNum(String information) {
         int pageNum = -1;
         try {
             pageNum = Integer.parseInt(information);
@@ -90,7 +90,7 @@ public class BookmarkCommand extends Command {
     }
 
     @Override
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
 

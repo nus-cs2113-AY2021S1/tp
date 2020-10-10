@@ -7,11 +7,11 @@ import java.util.ArrayList;
 public class ToDoList extends QuotesifyList<ToDo> {
     private ArrayList<ToDo> todos = super.getList();
 
-    public ToDoList(){
+    public ToDoList() {
         super(new ArrayList<>());
     }
 
-    public ToDoList(ArrayList<ToDo> toDos){
+    public ToDoList(ArrayList<ToDo> toDos) {
         super(toDos);
     }
 
@@ -20,7 +20,7 @@ public class ToDoList extends QuotesifyList<ToDo> {
     }
 
     public ToDo find(int taskNum) {
-        if(taskNum <= todos.size()) {
+        if (taskNum <= todos.size()) {
             return todos.get(taskNum);
         }
         else {

@@ -5,7 +5,7 @@ import seedu.duke.todo.ToDo;
 import seedu.duke.todo.ToDoList;
 import seedu.duke.ui.TextUi;
 
-public class DoneCommand extends Command{
+public class DoneCommand extends Command {
     private String type;
     private String information;
 
@@ -34,7 +34,7 @@ public class DoneCommand extends Command{
 
     private void doneToDo(ToDoList toDos, int index, TextUi ui) {
         ToDo targetTask = toDos.find(index);
-        if(targetTask != null) {
+        if (targetTask != null) {
             targetTask.setDone(true);
             ui.printDoneToDo(targetTask);
         }

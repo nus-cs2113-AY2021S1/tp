@@ -11,6 +11,7 @@ public class BookmarkList extends QuotesifyList<Bookmark> {
     public BookmarkList() {
         super(new ArrayList<>());
     }
+
     public BookmarkList(ArrayList<Bookmark> bookmarks) {
         super(bookmarks);
     }
@@ -21,7 +22,7 @@ public class BookmarkList extends QuotesifyList<Bookmark> {
 
     public Bookmark find(Book book) {
         for (Bookmark bookmark : bookmarks) {
-            if(bookmark.getBook().equals(book)) {
+            if (bookmark.getBook().equals(book)) {
                 return bookmark;
             }
         }
@@ -34,7 +35,7 @@ public class BookmarkList extends QuotesifyList<Bookmark> {
         bookmarks.remove(index);
     }
 
-    public void delete (Bookmark bookmark) {
+    public void delete(Bookmark bookmark) {
         bookmarks.remove(bookmark);
     }
 
