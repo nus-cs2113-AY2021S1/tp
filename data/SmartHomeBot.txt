@@ -1,1 +1,2 @@
-[]
+[bedroom 2]
+bedroom 2|ac2|1000|AirConditioner|Off|6.5
