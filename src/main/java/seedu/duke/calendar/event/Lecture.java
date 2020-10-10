@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a lecture event.
  */
 public class Lecture extends SchoolEvent {
-    protected String taskType;
+    protected String eventType;
 
     private static final String LECTURE_FILE_SYMBOL = "LEC";
     private static final String SEPARATOR = "|";
@@ -23,7 +23,7 @@ public class Lecture extends SchoolEvent {
      */
     public Lecture(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
-        taskType = "LEC";
+        eventType = "LEC";
     }
 
 
@@ -69,8 +69,8 @@ public class Lecture extends SchoolEvent {
      * Returns the respective object type.
      */
     @Override
-    public String getTaskType() {
-        return taskType;
+    public String getType() {
+        return eventType;
     }
 
 }

@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a lab event.
  */
 public class Lab extends SchoolEvent {
-    protected String taskType;
+    protected String eventType;
 
     private static final String LAB_FILE_SYMBOL = "LAB";
     private static final String SEPARATOR = "|";
@@ -25,7 +25,7 @@ public class Lab extends SchoolEvent {
      */
     public Lab(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
-        taskType = "LAB";
+        eventType = "LAB";
     }
 
     /**
@@ -55,8 +55,8 @@ public class Lab extends SchoolEvent {
      * Returns the respective object type.
      */
     @Override
-    public String getTaskType() {
-        return taskType;
+    public String getType() {
+        return eventType;
     }
 
     /**

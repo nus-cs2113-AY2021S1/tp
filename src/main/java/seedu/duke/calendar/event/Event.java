@@ -40,7 +40,7 @@ public abstract class Event extends CalendarItem {
                 + " (" + venue + ")";
     }
 
-    public abstract String getTaskType();
+    public abstract String getType();
 
     public LocalDate getDate() {
         return date;

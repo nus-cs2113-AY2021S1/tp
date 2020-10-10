@@ -198,7 +198,10 @@ public class Ui {
         int numTotal = 0;
         for (int i = 0; i < calendarList.getTotalTasks(); i++) {
             CalendarItem item = calendarList.getCalendarList().get(i);
-            if (item.getTaskType().equals("D") || item.getTaskType().equals("E")) {
+            if (!(item instanceof Task)) {
+                continue;
+            }
+            if (((Task)item).getTaskType().equals("D") || ((Task)item).getTaskType().equals("T")) {
                 numTotal++;
                 if (((Task) item).getIsDone()) {
                     numFinished++;

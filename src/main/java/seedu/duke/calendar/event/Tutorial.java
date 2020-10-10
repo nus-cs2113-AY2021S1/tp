@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a tutorial event.
  */
 public class Tutorial extends SchoolEvent {
-    protected String taskType;
+    protected String eventType;
 
     private static final String TUTORIAL_FILE_SYMBOL = "TUT";
     private static final String SEPARATOR = "|";
@@ -25,7 +25,7 @@ public class Tutorial extends SchoolEvent {
      */
     public Tutorial(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
-        taskType = "TUT";
+        eventType = "TUT";
     }
 
 
@@ -56,8 +56,8 @@ public class Tutorial extends SchoolEvent {
      * Returns the respective type.
      */
     @Override
-    public String getTaskType() {
-        return taskType;
+    public String getType() {
+        return eventType;
     }
 
     /**
