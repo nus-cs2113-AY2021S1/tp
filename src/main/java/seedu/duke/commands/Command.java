@@ -10,6 +10,8 @@ public abstract class Command {
     public static final String TAG_RATING = "-r";
     public static final String TAG_CATEGORY = "-c";
 
+    public static final String KEY_TODO = "todo";
+
     public static final String ERROR_INVALID_QUOTE_NUM = "Invalid quote number specified!";
 
     public static final String ERROR_NO_BOOK_FOUND = "There is no such book!";

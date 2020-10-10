@@ -7,6 +7,7 @@ import seedu.duke.quote.QuoteList;
 import seedu.duke.rating.Rating;
 import seedu.duke.rating.RatingList;
 import seedu.duke.todo.ToDo;
+import seedu.duke.todo.ToDoList;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -34,6 +35,9 @@ public class TextUi {
             + " Here are your rated books!";
     private static final String LIST_SPECIFIED_RATING_MESSAGE = "Here are the books you rated as %d star!";
     private static final String ADD_TODO = "The task [%s] has been added!";
+    private static final String TODO_SIZE_MESSAGE = "You have a total of %d task(s) recorded.";
+    private static final String LIST_TODOS_MESSAGE = "Here is the list of all tasks recorded:";
+    private static final String DELETE_TODO_MESSAGE = "The Task [%s] has been deleted!";
 
 
     private final Scanner in;
@@ -130,5 +134,14 @@ public class TextUi {
 
     public void printAddToDo(ToDo toDo) {
         System.out.printf(ADD_TODO + "\n", toDo.toString());
+    }
+
+    public void printToDo(ToDo toDo) {
+        System.out.println(toDo.toString());
+    }
+
+    public void printAllToDos(ToDoList toDoList){
+        System.out.println(LIST_TODOS_MESSAGE);
+        System.out.println(toDoList.toString());
     }
 }
