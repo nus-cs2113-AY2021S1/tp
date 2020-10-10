@@ -55,4 +55,13 @@ public class BookList extends QuotesifyList<Book> {
                 }).collect(Collectors.toList());
         return filteredBooks;
     }
+
+    public BookList filterByAuthor(String authorName) {
+        ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
+                .filter(book -> {
+                    Author bookAuthor = book.getAuthor();
+                    return bookAuthor.getName().equals(authorName);
+                }).collect(Collectors.toList());
+        return new BookList(filteredBooks);
+    }
 }
