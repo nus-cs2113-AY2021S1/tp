@@ -1,9 +1,10 @@
 package seedu.duke;
 
 public class DeleteCommand extends Command {
-    public DeleteCommand(String command){
+    public DeleteCommand(String command) {
         this.command = command;
     }
+
     @Override
     public void execute(FoodList foodlist,ExerciseList exerciseList, Storage storage) {
         try {

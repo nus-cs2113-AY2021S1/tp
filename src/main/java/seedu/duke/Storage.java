@@ -21,8 +21,12 @@ public class Storage {
     private final String userConfigPath;
 
     /**
-     * Creates 2 new files if they do not exist.
+     * Set up the files required in the application, by creating the files if the files do not exist and
+     * setting the file paths.
      *
+     * @param userConfigPath file path of the user's profile
+     * @param foodListPath file path of the food list
+     * @param exerciseListPath file path of the exercise list
      * @throws IOException if an I/O error has occurred
      */
     public Storage(String userConfigPath, String foodListPath, String exerciseListPath) throws IOException {
@@ -55,16 +59,19 @@ public class Storage {
      * Reads the user's data from the user config file.
      *
      * @param user the user to load the file into
-     * @return true if the file is read successfully, false if not
+     * @return True if the file is read successfully, False if not
      * @throws FileNotFoundException if the file is not found
      */
     public boolean readUserConfigFile(User user) throws FileNotFoundException {
         boolean isReadSuccess = false;
         File file = new File(userConfigPath);
         Scanner readFile = new Scanner(file);
-        String line, name, gender;
+        String line;
+        String name;
+        String gender;
         int age;
-        double height, weight;
+        double height;
+        double weight;
         String[] arguments;
 
         while (readFile.hasNext()) {
@@ -100,11 +107,10 @@ public class Storage {
         file.close();
     }
 
-
     /**
      * Loads the list of the user's consumed food from a file and returns an ArrayList of Food objects.
      *
-     * @return an Arraylist of Food objects
+     * @return an ArrayList of Food objects
      * @throws FileNotFoundException if the file is not found
      */
     public ArrayList<Food> loadFoodList() throws FileNotFoundException {
@@ -145,8 +151,9 @@ public class Storage {
     }
 
     /**
-     * Reads the data from the exercise list file.
+     * Loads the user's exercises from a file and returns an ArrayList of Exercise objects.
      *
+     * @return an ArrayList of Exercise objects
      * @throws FileNotFoundException if the file is not found
      */
     public ArrayList<Exercise> loadExerciseList() throws FileNotFoundException {
@@ -166,6 +173,12 @@ public class Storage {
         return exerciseList;
     }
 
+    /**
+     * Writes the exercise list data into a file.
+     *
+     * @param exerciseList the exercise list to write to the file
+     * @throws IOException if an I/O error has occurred
+     */
     public void writeExerciseList(ExerciseList exerciseList) throws IOException {
         FileWriter file = new FileWriter(exerciseListPath);
         Exercise exercise;

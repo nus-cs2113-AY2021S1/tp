@@ -8,17 +8,16 @@ public class Fitr {
     private ExerciseList exerciseList;
     private User user;
 
-    public Fitr(String filePathOfUserConfig, String filePathOfFoodList, String filePathOfExerciseList){
-        foodList = new FoodList();
-        exerciseList = new ExerciseList();
-        user = new User();
-
+    public Fitr(String filePathOfUserConfig, String filePathOfFoodList, String filePathOfExerciseList) {
         try {
+            user = new User();
             storage = new Storage(filePathOfUserConfig, filePathOfFoodList, filePathOfExerciseList);
             if (!storage.readUserConfigFile(user)) {
                 user.setup();
                 storage.writeUserConfigFile(user);
             }
+            foodList = new FoodList(storage.loadFoodList());
+            exerciseList = new ExerciseList(storage.loadExerciseList());
         } catch (IOException e) {
             System.out.println("Theres no file");
         }
@@ -26,7 +25,7 @@ public class Fitr {
 
     public void run() {
         boolean isExit = false;
-        while(!isExit) {
+        while (!isExit) {
             String userInput = UI.read();
             Command c = Parser.parse(userInput);
             c.execute(foodList, exerciseList, storage);
