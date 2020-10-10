@@ -33,7 +33,6 @@ public class Storage {
         File foodListFile = new File(foodListPath);
         File userConfigFile = new File(userConfigPath);
 
-
         if (!exerciseListFile.exists()) {
             exerciseListFile.createNewFile();
         } else if (!foodListFile.exists()) {
@@ -45,6 +44,26 @@ public class Storage {
 
     public Storage() throws IOException {
         this(DEFAULT_USER_CONFIG_FILEPATH, DEFAULT_FOOD_LIST_FILEPATH, DEFAULT_EXERCISE_LIST_FILEPATH);
+    }
+
+    /**
+     * Read's the user's data from the user config file.
+     *
+     * @throws FileNotFoundException if the file is not found
+     */
+    public void readUserConfigFile(User user) throws FileNotFoundException {
+        File file = new File(userConfigPath);
+        Scanner readFile = new Scanner(file);
+
+        // Temporary solution
+        String name, gender, age, height, weight;
+        name = readFile.nextLine();
+        gender = readFile.nextLine();
+        age = readFile.nextLine();
+        height = readFile.nextLine();
+        weight = readFile.nextLine();
+
+        user.loadUserData(name, age, height, weight, gender);
     }
 
     /**
@@ -64,7 +83,8 @@ public class Storage {
     /**
      * Reads the data from the food list file.
      *
-     * @throws FileNotFoundException if the file is not found     */
+     * @throws FileNotFoundException if the file is not found
+     */
     public ArrayList<Food> loadFoodList() throws FileNotFoundException {
         ArrayList<Food> foodList = new ArrayList<>();
 

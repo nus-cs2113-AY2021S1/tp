@@ -1,7 +1,6 @@
 package seedu.duke;
 
 public class ExitCommand extends Command {
-
     public ExitCommand(String command){
         this.command = command;
     }

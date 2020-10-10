@@ -13,10 +13,9 @@ public class Fitr {
         exerciseList = new ExerciseList();
         try {
             storage = new Storage(filePathOfUserConfig, filePathOfFoodList, filePathOfExerciseList);
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Theres no file");
         }
-
     }
 
     public void run() {
