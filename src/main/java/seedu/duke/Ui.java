@@ -50,11 +50,11 @@ public class Ui {
                 + "5. Your target weight in kg, or your original weight if your original weight is also "
                 + "your target weight." + LINE_SEPARATOR
                 + "6. Activity level from 1 to 5." + LINE_SEPARATOR
-                + "  1. " + ActvityLevel.NONE.getDescription() + LINE_SEPARATOR
-                + "  2. " + ActvityLevel.LOW.getDescription() + LINE_SEPARATOR
-                + "  3. " + ActvityLevel.MEDIUM.getDescription() + LINE_SEPARATOR
-                + "  4. " + ActvityLevel.HIGH.getDescription() + LINE_SEPARATOR
-                + "  5. " + ActvityLevel.EXTEREME.getDescription() + LINE_SEPARATOR + LINE_SEPARATOR
+                + "  1. " + ActivityLevel.NONE.getDescription() + LINE_SEPARATOR
+                + "  2. " + ActivityLevel.LOW.getDescription() + LINE_SEPARATOR
+                + "  3. " + ActivityLevel.MEDIUM.getDescription() + LINE_SEPARATOR
+                + "  4. " + ActivityLevel.HIGH.getDescription() + LINE_SEPARATOR
+                + "  5. " + ActivityLevel.EXTREME.getDescription() + LINE_SEPARATOR + LINE_SEPARATOR
                 + "Please input your details in the following format:" + LINE_SEPARATOR
                 + "  info g/GENDER a/AGE h/HEIGHT l/ACTIVITY_LEVEL o/ORIGINAL_WEIGHT t/TARGET_WEIGHT"
                         + LINE_SEPARATOR
