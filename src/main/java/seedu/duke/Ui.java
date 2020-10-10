@@ -64,8 +64,8 @@ public class Ui {
      * Tells the user that the input given is wrong
      * and shows the correct form of the command.
      */
-    public void showInvalidDescription(String command){
-        switch(command) {
+    public void showInvalidDescription(String command) {
+        switch (command) {
         case("addToWatchlist"):
             System.out.println("The input needs to be of the form \"add -a AnimeName\"! ");
             break;
