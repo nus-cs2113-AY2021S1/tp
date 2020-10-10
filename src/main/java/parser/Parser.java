@@ -13,6 +13,7 @@ import commands.ReviseCommand;
 import commands.ExitCommand;
 import commands.GoModuleCommand;
 import commands.BackModuleCommand;
+import commands.EditCommand;
 
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
@@ -20,6 +21,10 @@ import storage.Storage;
 
 
 public class Parser {
+    public static final String QUESTION_ANSWER_PREFIX = " \\| ";
+    public static final String QUESTION_PREFIX = "q:";
+    public static final String ANSWER_PREFIX = "a:";
+
     public static Command parse(String fullCommand) throws InvalidInputException {
         String[] commandTypeAndArgs = splitCommandTypeAndArgs(fullCommand);
         String commandType = commandTypeAndArgs[0].trim().toLowerCase();
@@ -50,6 +55,8 @@ public class Parser {
             return prepareGoModule(commandArgs);
         case GoChapterCommand.COMMAND_WORD:
             return prepareGoChapter(commandArgs);
+        case EditCommand.COMMAND_WORD:
+            return prepareEdit(commandArgs);
         default:
             throw new InvalidInputException();
         }
@@ -114,9 +121,12 @@ public class Parser {
 
     private static Command prepareAdd(String commandArgs) throws InvalidInputException {
         try {
-            String[] args = commandArgs.split(AddCommand.QUESTION_ANSWER_PREFIX, 2);
+            String[] args = commandArgs.split(QUESTION_ANSWER_PREFIX, 2);
             String question = parseQuestion(args[0]);
             String answer = parseAnswer(args[1]);
+            if (question.isEmpty() || answer.isEmpty()) {
+                throw new InvalidInputException();
+            }
             return new AddCommand(question, answer);
         } catch (IndexOutOfBoundsException | InvalidInputException e) {
             throw new InvalidInputException();
@@ -136,30 +146,43 @@ public class Parser {
         return new RemoveCommand(removeIndex);
     }
 
+    private static Command prepareEdit(String commandArgs) throws InvalidInputException {
+        try {
+            String[] args = commandArgs.split(" ", 2);
+            if (args[0].trim().isEmpty()) {
+                throw new InvalidInputException();
+            }
+
+            int editIndex = Integer.parseInt(args[0].trim()) - 1;
+
+            String[] questionAndAnswer = args[1].trim().split(QUESTION_ANSWER_PREFIX, 2);
+            String question = parseQuestion(questionAndAnswer[0]);
+            String answer = parseAnswer(questionAndAnswer[1]);
+
+            if (question.isEmpty() && answer.isEmpty()) {
+                throw new InvalidInputException();
+            }
+
+            return new EditCommand(editIndex, question, answer);
+        } catch (NumberFormatException | InvalidInputException | IndexOutOfBoundsException e) {
+            throw new InvalidInputException();
+        }
+    }
+
     private static String parseQuestion(String arg) throws InvalidInputException {
-        if (!(arg.trim().toLowerCase().startsWith(AddCommand.QUESTION_PREFIX))) {
+        if (!(arg.trim().toLowerCase().startsWith(QUESTION_PREFIX))) {
             throw new InvalidInputException();
         }
 
-        String question = arg.substring(2).trim();
-        if (question.isEmpty()) {
-            throw new InvalidInputException();
-        }
-
-        return question;
+        return arg.substring(2).trim();
     }
 
     private static String parseAnswer(String arg) throws InvalidInputException {
-        if (!(arg.trim().toLowerCase().startsWith(AddCommand.ANSWER_PREFIX))) {
+        if (!(arg.trim().toLowerCase().startsWith(ANSWER_PREFIX))) {
             throw new InvalidInputException();
         }
 
-        String answer = arg.substring(2).trim();
-        if (answer.isEmpty()) {
-            throw new InvalidInputException();
-        }
-
-        return answer;
+        return arg.substring(2).trim();
     }
 
     private static Command prepareRevise(String commandArgs) throws InvalidInputException {

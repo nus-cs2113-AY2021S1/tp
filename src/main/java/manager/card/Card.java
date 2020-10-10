@@ -15,11 +15,27 @@ public class Card {
         this.previousInterval = 1;
     }
 
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
     public String getQuestion() {
-        return "[Q] " + question;
+        return question;
     }
 
     public String getAnswer() {
+        return answer;
+    }
+
+    public String getQuestionWithPrefix() {
+        return "[Q] " + question;
+    }
+
+    public String getAnswerWithPrefix() {
         return "[A] " + answer;
     }
 

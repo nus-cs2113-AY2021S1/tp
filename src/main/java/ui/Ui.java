@@ -1,11 +1,7 @@
 package ui;
 
 import access.Access;
-import commands.AddCommand;
-import commands.ExitCommand;
-import commands.ListCommand;
-import commands.HelpCommand;
-import commands.ReviseCommand;
+import commands.*;
 
 import manager.card.Card;
 
@@ -77,7 +73,7 @@ public class Ui {
     }
 
     public void showCard(Card c) {
-        out.println(c.getQuestion() + MESSAGE_SHOW_ANSWER_PROMPT);
+        out.println(c.getQuestionWithPrefix() + MESSAGE_SHOW_ANSWER_PROMPT);
         getAnswerInput(c);
     }
 
@@ -87,7 +83,7 @@ public class Ui {
             out.println("You have entered an invalid input, please try again.");
             input = in.nextLine();
         }
-        out.println(c.getAnswer());
+        out.println(c.getAnswerWithPrefix());
     }
 
     public String getRating() {
@@ -106,5 +102,16 @@ public class Ui {
         out.println("3. " + HelpCommand.MESSAGE_USAGE);
         out.println("4. " + AddCommand.MESSAGE_USAGE);
         out.println("5. " + ExitCommand.MESSAGE_USAGE);
+        out.println("6. " + EditCommand.MESSAGE_USAGE);
+    }
+
+    public void showCardContent(Card card) {
+        out.println("The following card will be edited:");
+        out.println(card);
+    }
+
+    public void showEditedCardContent(Card card) {
+        out.println("Edited card:");
+        out.println(card);
     }
 }

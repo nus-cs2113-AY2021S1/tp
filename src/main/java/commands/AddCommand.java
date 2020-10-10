@@ -13,10 +13,6 @@ public class AddCommand extends Command {
             + "Parameters: q:QUESTION | a:ANSWER\n"
             + "Example: " + COMMAND_WORD + " q:What is the result of one plus one | a:two\n";
 
-    public static final String QUESTION_ANSWER_PREFIX = " \\| ";
-    public static final String QUESTION_PREFIX = "q:";
-    public static final String ANSWER_PREFIX = "a:";
-
     private final Card card;
 
     public AddCommand(String question, String answer) {
