@@ -1,4 +1,4 @@
-package seedu.financeit.utils;
+package seedu.financeit.ui;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
@@ -59,8 +59,22 @@ public class UiManager {
         return inputParser.parseInput(input.toLowerCase());
     }
 
-    public static void refreshPage(){
-        for(int i = 0 ; i < 40; i++){
+    public static void printWithStatusIcon(Constants.PrintType printType, String... messages) {
+        for (int i = 0; i < messages.length; i++) {
+            if (i == 0) {
+                System.out.println(String.format("[ %-15s]: %s", printType, messages[i]));
+            } else {
+                System.out.println(String.format("%-20s%s", " ", messages[i]));
+            }
+        }
+    }
+
+    public static void printSpace() {
+        System.out.println("\n");
+    }
+
+    public static void refreshPage() {
+        for (int i = 0; i < 4; i++) {
             System.out.println();
         }
     }
