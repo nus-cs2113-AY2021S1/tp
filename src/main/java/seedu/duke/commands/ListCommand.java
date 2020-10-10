@@ -52,6 +52,7 @@ public class ListCommand extends Command {
         case TAG_BOOKMARK:
             BookmarkList bookmarkList = (BookmarkList) listManager.getList(ListManager.BOOKMARK_LIST);
             listBookmarks(bookmarkList, ui);
+            break;
         case TAG_QUOTE:
             QuoteList quoteListList = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
             listQuotes(quoteListList, ui);
@@ -178,7 +179,7 @@ public class ListCommand extends Command {
         }
     }
 
-    private void listToDos(ToDoList toDoList, TextUi ui){
+    private void listToDos(ToDoList toDoList, TextUi ui) {
         ui.printAllToDos(toDoList);
     }
 
