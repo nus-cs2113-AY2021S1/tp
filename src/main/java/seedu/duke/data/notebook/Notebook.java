@@ -52,4 +52,8 @@ public class Notebook {
     public void deleteNote(int note) throws SystemException {
         notes.remove(note);
     }
+
+    public int getSize() {
+        return notes.size();
+    }
 }

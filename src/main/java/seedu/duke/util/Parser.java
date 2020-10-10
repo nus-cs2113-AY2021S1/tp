@@ -68,7 +68,7 @@ public class Parser {
         case ListEventCommand.COMMAND_WORD:
             // return prepareListEvent(userMessage);
         case ViewNoteCommand.COMMAND_WORD:
-            // return prepareViewNote(userMessage);
+            return prepareViewNote(userMessage);
         case EditCommand.COMMAND_WORD_NOTE:
             // return prepareEditNote(userMessage);
         case EditCommand.COMMAND_WORD_EVENT:
@@ -98,6 +98,8 @@ public class Parser {
             return new HelpCommand();
         }
     }
+
+
 
     /**
      * Splits the userMessage into the respective info by the delimiter.
@@ -248,12 +250,38 @@ public class Parser {
 
     private Command prepareListEvent(String userMessage) {
         return new ListEventCommand();
-    }
+    }*/
 
     private Command prepareViewNote(String userMessage) {
-       return new ViewNoteCommand();
-    }
+        String title;
+        int index;
+        try {
+            ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
 
+            for (String[] infoDetails : splitInfo) {
+                String prefix = infoDetails[0];
+                if (infoDetails[1].isBlank()) {
+                    throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+                }
+                switch (prefix) {
+                case PREFIX_TITLE:
+                    title = infoDetails[1].trim();
+                    return new ViewNoteCommand(title);
+                case PREFIX_INDEX:
+                    index = Integer.parseInt(infoDetails[1].trim());
+                    return new ViewNoteCommand(index);
+                default:
+                    return new IncorrectCommand("Missing tags!");
+                }
+            }
+        } catch (SystemException exception) {
+            return new IncorrectCommand(exception.getMessage());
+        } catch (ArrayIndexOutOfBoundsException | NullPointerException exception) {
+            return new IncorrectCommand("Missing description!");
+        }
+        return new IncorrectCommand("Incorrect format for viewing notes");
+    }
+    /*
     private Command prepareEditNote(String userMessage) {
        return new EditCommand(index, note);
     }
