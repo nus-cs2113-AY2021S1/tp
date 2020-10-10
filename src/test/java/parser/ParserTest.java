@@ -43,8 +43,8 @@ class ParserTest {
     public void parse_removeCommandEmptyArgs_exception() {
         Parser parser = new Parser();
         final String[] inputs = {
-                "remove",
-                "remove ",
+            "remove",
+            "remove ",
         };
         for (String input : inputs) {
             assertThrows(InvalidInputException.class, () -> parser.parse(input));
