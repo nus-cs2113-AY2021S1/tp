@@ -9,7 +9,10 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_REMIND;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TIMING;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 
-public class AddEventCommand extends Command{
+/**
+ * Adds an Event into a timetable.
+ */
+public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "add-e";
 
@@ -21,10 +24,20 @@ public class AddEventCommand extends Command{
 
     private final Event event;
 
+    /**
+     * Constructor for the AddEventCommand which specifies the event to add.
+     *
+     * @param e Event to add.
+     */
     public AddEventCommand(Event e) {
         event = e;
     }
 
+    /**
+     * Provides how the command should be used.
+     *
+     * @return How the command should be used.
+     */
     public static String getCommandUsage() {
         return COMMAND_USAGE;
     }

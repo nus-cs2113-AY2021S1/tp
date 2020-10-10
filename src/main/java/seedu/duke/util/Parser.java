@@ -270,12 +270,15 @@ public class Parser {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
             for (String[] infoDetails : splitInfo) {
                 String prefix = infoDetails[0];
+                ExceptionType e;
                 switch (prefix) {
                 case PREFIX_TITLE:
-                    title = checkBlank(infoDetails[1], SystemException.ExceptionType.EXCEPTION_MISSING_TITLE);
+                    e = SystemException.ExceptionType.EXCEPTION_MISSING_TITLE;
+                    title = checkBlank(infoDetails[1], e);
                     break;
                 case PREFIX_TIMING:
-                    String timingString = checkBlank(infoDetails[1], SystemException.ExceptionType.EXCEPTION_MISSING_TIMING);
+                    e = SystemException.ExceptionType.EXCEPTION_MISSING_TIMING;
+                    String timingString = checkBlank(infoDetails[1], e);
                     dateTime = dateTimeParser(timingString);
                     break;
                 case PREFIX_REMIND:
