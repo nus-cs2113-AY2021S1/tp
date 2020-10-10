@@ -9,6 +9,7 @@ import seedu.duke.calendar.event.Activity;
 import seedu.duke.calendar.event.Lecture;
 import seedu.duke.calendar.task.Tutorial;
 import seedu.duke.calendar.task.Lab;
+import seedu.duke.calendar.task.Exam;
 
 
 import java.io.File;
@@ -18,7 +19,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Scanner;
 
 /**
@@ -27,11 +27,18 @@ import java.util.Scanner;
 public class Storage {
 
     private static final int TYPE = 0;
-    private static final int DESCRIPTION = 2;
-    private static final int DATE = 3;
-    private static final int TIME = 4;
-    private static final int IS_DONE = 1;
-    public static final int VENUE = 5;
+    private static final int TASK_IS_DONE = 1;
+    private static final int TASK_DESCRIPTION = 2;
+    private static final int TASK_DATE = 3;
+    private static final int TASK_TIME = 4;
+
+    private static final int EVENT_MODULE_CODE = 1;
+    private static final int EVENT_IS_OVER = 2;
+    private static final int EVENT_DATE = 3;
+    private static final int EVENT_TIME = 4;
+    private static final int EVENT_VENUE = 5;
+    public static final int VENUE = 6;
+
     private static ArrayList<CalendarItem> taskArrayList;
     private static String filePath;
     public static int countFileTasks = 0;
@@ -106,33 +113,38 @@ public class Storage {
             String[] taskInFile = sc.nextLine().split("\\|");
             switch (taskInFile[TYPE]) {
             case "T":
-                item = new Todo(taskInFile[DESCRIPTION]);
+                item = new Todo(taskInFile[TASK_DESCRIPTION]);
                 break;
             case "D":
-                date = LocalDate.parse(taskInFile[DATE].trim());
-                item = new Deadline(taskInFile[DESCRIPTION], date);
+                date = LocalDate.parse(taskInFile[TASK_DATE].trim());
+                item = new Deadline(taskInFile[TASK_DESCRIPTION], date);
                 break;
             case "E":
-                date = LocalDate.parse(taskInFile[DATE].trim());
-                time = LocalTime.parse(taskInFile[TIME].trim());
-                item = new Activity(taskInFile[DESCRIPTION], date, time, taskInFile[VENUE]);
+                date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
+                time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
+                item = new Activity(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[VENUE]);
                 break;
             case "LEC":
-                date = LocalDate.parse(taskInFile[DATE].trim());
-                time = LocalTime.parse(taskInFile[TIME].trim());
-                item = new Lecture(taskInFile[DESCRIPTION], date, time, taskInFile[VENUE]);
+                date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
+                time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
+                item = new Lecture(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[VENUE]);
                 break;
             case "TUT":
-                item = new Tutorial(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
+                item = new Tutorial(taskInFile[EVENT_MODULE_CODE], taskInFile[TASK_DATE], taskInFile[TASK_TIME]);
                 break;
             case "LAB":
-                item = new Lab(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
+                item = new Lab(taskInFile[EVENT_MODULE_CODE], taskInFile[TASK_DATE], taskInFile[TASK_TIME]);
+                break;
+            case "EXAM":
+                date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
+                time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
+                item = new Exam(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[VENUE]);
                 break;
             default:
                 System.out.println("Invalid file command input");
             }
             countFileTasks++;
-            if (taskInFile[IS_DONE].equals("true")) {
+            if (taskInFile[TASK_IS_DONE].equals("true")) {
                 if (item instanceof Task) {
                     ((Task) item).markAsDone();
                 }

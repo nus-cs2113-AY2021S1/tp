@@ -29,7 +29,7 @@ public class Lecture extends SchoolEvent {
 
     @Override
     public String printIntoFile() {
-        return LECTURE_FILE_SYMBOL + " " + moduleCode
+        return LECTURE_FILE_SYMBOL + SEPARATOR + moduleCode
                 + SEPARATOR + this.date + SEPARATOR + this.time;
     }
 
