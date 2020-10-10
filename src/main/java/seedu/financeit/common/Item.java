@@ -2,6 +2,7 @@ package seedu.financeit.common;
 
 import seedu.financeit.common.exceptions.EmptyParamException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
+import seedu.financeit.common.exceptions.InvalidCategoryException;
 import seedu.financeit.parser.DateTimeManager;
 
 import java.security.InvalidParameterException;
@@ -49,7 +50,7 @@ public abstract class Item {
     }
 
     public void handleParams(CommandPacket packet) throws DateTimeException, InvalidParameterException,
-            InsufficientParamsException, EmptyParamException {
+            InsufficientParamsException, EmptyParamException, InvalidCategoryException {
         for (String paramType : packet.getParamTypes()) {
             handleParam(packet, paramType);
         }
@@ -59,7 +60,7 @@ public abstract class Item {
     }
 
     public abstract void handleParam(CommandPacket packet, String paramType) throws DateTimeException,
-            InvalidParameterException, InsufficientParamsException, EmptyParamException;
+            InvalidParameterException, InsufficientParamsException, EmptyParamException, InvalidCategoryException;
 
     public abstract boolean isValidItem();
 

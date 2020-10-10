@@ -2,10 +2,7 @@ package seedu.financeit.manualtracker.subroutine;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
-import seedu.financeit.common.exceptions.DuplicateInputException;
-import seedu.financeit.common.exceptions.EmptyParamException;
-import seedu.financeit.common.exceptions.InsufficientParamsException;
-import seedu.financeit.common.exceptions.ItemNotFoundException;
+import seedu.financeit.common.exceptions.*;
 import seedu.financeit.manualtracker.Ledger;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
@@ -68,8 +65,8 @@ public class EntryTracker {
         UiManager.printSpace();
         UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY,
             String.format("[ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER %s)", currLedger));
-        UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY,
-            String.format("You are now in entry tracker for ledger [%s]!\n", currLedger),
+        UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+            String.format("You are now in entry tracker for ledger [%s]!", currLedger),
                 "Enter command!",
                 "Input \"commands\" for list of commands."
         );
@@ -78,17 +75,28 @@ public class EntryTracker {
         UiManager.refreshPage();
         switch (packet.getCommandString()) {
         case "entry edit":
+            // Fall through
+        case "edit":
             return FiniteStateMachine.State.EDIT_ENTRY;
         case "entry new":
+            // Fall through
+        case "new":
             return FiniteStateMachine.State.CREATE_ENTRY;
         case "entry list":
+            // Fall through
+        case "list":
             return FiniteStateMachine.State.SHOW_ENTRY;
         case "entry delete":
+            // Fall through
+        case "delete":
             return FiniteStateMachine.State.DELETE_ENTRY;
         case "exit":
             return FiniteStateMachine.State.EXIT;
         case "commands":
             printCommandList();
+            return FiniteStateMachine.State.MAIN_MENU;
+        case "cat":
+            printValidCategories();
             return FiniteStateMachine.State.MAIN_MENU;
         default:
             System.out.println("Command not recognised. Try again.");
@@ -124,6 +132,11 @@ public class EntryTracker {
                     "Date format: YYMMDD",
                     "Time format: HHMM");
             throw new AssertionError();
+        } catch (InvalidCategoryException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                exception.getMessage(),
+                "Input \"exp cat\" to show valid categories!");
+            throw new AssertionError();
         }
     }
 
@@ -139,10 +152,6 @@ public class EntryTracker {
                     "Date format: YYMMDD",
                     "Time format: HHMM");
             throw new AssertionError();
-        } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    exception.getMessage());
-            throw new AssertionError();
         } catch (InvalidParameterException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     "Input format is not recognised.",
@@ -154,6 +163,11 @@ public class EntryTracker {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage(),
                     "Enter \"commands\" to check format!");
+        } catch (InvalidCategoryException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                exception.getMessage(),
+                "Input \"exp cat\" to show valid categories!");
+            throw new AssertionError();
         }
         return entry;
     }
@@ -301,6 +315,15 @@ public class EntryTracker {
         TablePrinter.addRow("3.;list entries;entry list");
         TablePrinter.addRow("4.;delete entry;entry delete /time <HHMM>");
         TablePrinter.addRow("5.;exit to manual tracker;exit");
+        TablePrinter.printList();
+    }
+
+    private static void printValidCategories() {
+        TablePrinter.setTitle("List of Valid Categories");
+        TablePrinter.addRow("Category;Input");
+        for (String i : Constants.categoryMap.keySet()) {
+            TablePrinter.addRow(String.format("%s;%s", i, Constants.categoryMap.get(i)));
+        }
         TablePrinter.printList();
     }
 

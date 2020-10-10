@@ -111,8 +111,6 @@ public class ManualTracker {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         }
-
-        UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, String.format("%s added!", ledger.getName()));
         return state;
     }
 

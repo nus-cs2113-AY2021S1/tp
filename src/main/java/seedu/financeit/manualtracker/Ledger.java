@@ -68,6 +68,15 @@ public class Ledger extends Item {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, paramType + " is not recognised.");
             break;
         }
-
+    }
+    @Override
+    public void handleParams(CommandPacket packet) throws DateTimeException, InvalidParameterException,
+        InsufficientParamsException, EmptyParamException {
+        for (String paramType : packet.getParamTypes()) {
+            handleParam(packet, paramType);
+        }
+        if (!isValidItem()) {
+            throw new InsufficientParamsException(this.requiredParams);
+        }
     }
 }

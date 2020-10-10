@@ -3,9 +3,9 @@ package seedu.financeit.manualtracker.subroutine;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.Item;
-import seedu.financeit.common.User;
 import seedu.financeit.common.exceptions.EmptyParamException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
+import seedu.financeit.common.exceptions.InvalidCategoryException;
 import seedu.financeit.manualtracker.Ledger;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.UiManager;
@@ -13,7 +13,6 @@ import seedu.financeit.ui.UiManager;
 import java.security.InvalidParameterException;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 
 public class Entry extends Item {
     private String description = " ";
@@ -34,14 +33,14 @@ public class Entry extends Item {
     }
 
     public Entry(CommandPacket packet) throws DateTimeException, InvalidParameterException,
-            InsufficientParamsException, EmptyParamException {
+        InsufficientParamsException, EmptyParamException, InvalidCategoryException {
         this();
         this.handleParams(packet);
     }
 
     @Override
     public void handleParam(CommandPacket packet, String paramType) throws DateTimeException, InvalidParameterException,
-            InsufficientParamsException, EmptyParamException {
+            EmptyParamException, InvalidCategoryException {
         if (paramType.charAt(0) == '/' && packet.getParam(paramType).trim().length() == 0) {
             throw new EmptyParamException(paramType);
         }
@@ -73,16 +72,6 @@ public class Entry extends Item {
         }
     }
 
-    public boolean isValidCategory(String category, Constants.EntryType type) {
-        return type == Constants.EntryType.INC
-                ? isCategoryInStringArray(Constants.DEFAULT_INC_CAT, category) || User.customCat.contains(category) :
-                isCategoryInStringArray(Constants.DEFAULT_EXP_CAT, category) || User.customCat.contains(category);
-    }
-
-    public boolean isCategoryInStringArray(String[] arr, String category) {
-        return Arrays.stream(arr).anyMatch(category::equals);
-    }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -103,7 +92,10 @@ public class Entry extends Item {
         return this.amount;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(String category) throws InvalidCategoryException {
+        if (!Constants.categoryMap.containsKey(category)) {
+            throw new InvalidCategoryException(category);
+        }
         this.category = Constants.categoryMap.get(category);
     }
 
@@ -117,6 +109,17 @@ public class Entry extends Item {
 
     public Constants.EntryType getEntryType() {
         return this.entryType;
+    }
+
+    @Override
+    public void handleParams(CommandPacket packet) throws DateTimeException, InvalidParameterException,
+        InsufficientParamsException, EmptyParamException, InvalidCategoryException {
+        for (String paramType : packet.getParamTypes()) {
+            handleParam(packet, paramType);
+        }
+        if (!isValidItem()) {
+            throw new InsufficientParamsException(this.requiredParams);
+        }
     }
 
     @Override
