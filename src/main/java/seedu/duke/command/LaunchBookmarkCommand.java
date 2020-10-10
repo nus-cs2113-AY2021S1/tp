@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.bookmark.Bookmark;
@@ -18,7 +19,6 @@ public class LaunchBookmarkCommand extends Command {
     private int launchTypeFlag;
 
 
-
     /**
      * Constructs a new LaunchBookmarkCommand instance and and gets the index of the bookmark to launch.
      * Determines whether the launch command was input with an integer or string. and sets launchTypeFlag
@@ -27,7 +27,6 @@ public class LaunchBookmarkCommand extends Command {
      * Strings (launchTypeFlag = 2)
      * @param command The command input by the user.
      */
-
     public LaunchBookmarkCommand(String command) throws DukeException {
         String details = command.substring(LAUNCH_KW.length());
         if (!details.startsWith(" ")) {
@@ -51,12 +50,13 @@ public class LaunchBookmarkCommand extends Command {
      * Launches the bookmark based on the launchTypeFlag previously determined
      * in LaunchBookmarkCommand initialization.
      *
-     * @param bookmarks The list of bookmarks.
+     * @param items The list of bookmarks.
      * @param ui The user interface.
      * @param storage The storage for saving and loading.
      */
     @Override
-    public void execute(BookmarkList bookmarks, Ui ui, Storage storage) throws DukeException {
+    public void execute(ItemList items, Ui ui, Storage storage) throws DukeException {
+        BookmarkList bookmarks = (BookmarkList) items;
         if (launchTypeFlag == 1) { // Launch based on index
             try {
                 Bookmark bookmark = bookmarks.getBookmark(index);

@@ -1,6 +1,7 @@
 package seedu.duke.bookmark;
 
 import seedu.duke.exception.DukeException;
+import seedu.duke.ItemList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 /**
  * This class represents the bookmark list used to store and organize bookmarks.
  */
-public class BookmarkList {
+public class BookmarkList extends ItemList {
     private ArrayList<Bookmark> bookmarks;
 
     /**

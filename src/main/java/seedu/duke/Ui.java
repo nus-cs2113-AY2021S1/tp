@@ -29,10 +29,7 @@ public class Ui {
     }
 
     public void print(String message) {
-        System.out.println(LINE
-                + message
-
-                + LINE);
+        System.out.println(LINE + message + LINE);
     }
 
     /**
@@ -125,9 +122,7 @@ public class Ui {
         print("Unknown input\n");
     }
 
-
     private void printMatchingBookmarks(String message) {
         print("Invalid url\n");
     }
-
 }
