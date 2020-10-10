@@ -5,7 +5,7 @@ import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
 
 /**
- * Lists all items in the calendar list to the user.
+ * Lists all tasks in the calendar list to the user.
  */
 public class PrintListCommand extends Command {
     public PrintListCommand(String userInput) {
@@ -13,7 +13,7 @@ public class PrintListCommand extends Command {
     }
 
     /**
-     * Lists all items in the calendar list to the user.
+     * Lists all tasks in the calendar list to the user.
      *
      * @param calendarList the calendar list to list from.
      * @param storage      not required.
