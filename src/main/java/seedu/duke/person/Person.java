@@ -2,7 +2,7 @@ package seedu.duke.person;
 
 /**
  * Represents a Person.
- * A <code>Person</code> has an age, height, certain activity level, original and desired weight.
+ * A <code>Person</code> has a name, gender, age, height, certain activity level, original and desired weight.
  */
 public class Person {
 
@@ -14,11 +14,15 @@ public class Person {
     private int targetWeight;
     private int age;
     private ActivityLevel activityLevel;
+    private Gender gender;
+    private String name;
 
     /**
-     * Constructs a <code>Person</code> with the given age, height, original weight, target weight and
-     * activity level.
+     * Constructs a <code>Person</code> with the given name, gender, age, height, original weight, target
+     * weight and activity level.
      *
+     * @param name The name of the person.
+     * @param gender The gender of the person.
      * @param age The age of the person.
      * @param height The height of the person.
      * @param originalWeight The original weight of the person.
@@ -26,7 +30,10 @@ public class Person {
      * @param activityLevel The activity level of the person or in other words, the amount of exercise the
      *     person engages in.
      */
-    public Person(int age, int height, int originalWeight, int targetWeight, ActivityLevel activityLevel) {
+    public Person(String name, Gender gender, int age, int height, int originalWeight, int targetWeight,
+                  ActivityLevel activityLevel) {
+        this.name = name;
+        this.gender = gender;
         this.age = age;
         this.height = height;
         this.originalWeight = originalWeight;
