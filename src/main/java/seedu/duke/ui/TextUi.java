@@ -2,6 +2,7 @@ package seedu.duke.ui;
 
 import seedu.duke.book.Book;
 import seedu.duke.bookmark.Bookmark;
+import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.category.Category;
 import seedu.duke.category.CategoryList;
 import seedu.duke.quote.QuoteList;
@@ -169,5 +170,10 @@ public class TextUi {
 
     public void printDeleteBookmark(Bookmark bookmark) {
         System.out.printf(DELETE_BOOKMARKS_MESSAGE + "\n", bookmark.toString());
+    }
+
+    public void printAllBookmarks(BookmarkList bookmarkList) {
+        System.out.println(LIST_BOOKMARKS_MESSAGE);
+        System.out.println(bookmarkList.toString());
     }
 }

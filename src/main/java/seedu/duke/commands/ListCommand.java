@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.category.Category;
 import seedu.duke.category.CategoryList;
 import seedu.duke.lists.ListManager;
@@ -39,10 +40,13 @@ public class ListCommand extends Command {
             RatingList ratingList = (RatingList) listManager.getList(ListManager.RATING_LIST);
             listRatings(ratingList, ui);
             break;
-        case KEY_TODO:
+        case TAG_TODO:
             ToDoList toDoList = (ToDoList) listManager.getList(ListManager.TODO_LIST);
             listToDos(toDoList,ui);
             break;
+        case TAG_BOOKMARK:
+            BookmarkList bookmarkList = (BookmarkList) listManager.getList(ListManager.BOOKMARK_LIST);
+            listBookmarks(bookmarkList, ui);
         default:
         }
     }
@@ -91,6 +95,10 @@ public class ListCommand extends Command {
 
     private void listToDos(ToDoList toDoList, TextUi ui){
         ui.printAllToDos(toDoList);
+    }
+
+    private void listBookmarks(BookmarkList bookmarkList, TextUi ui) {
+        ui.printAllBookmarks(bookmarkList);
     }
 
     @Override
