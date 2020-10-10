@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.timetable.Event;
+import seedu.duke.ui.InterfaceManager;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class ListEventCommand extends Command {
         int i = 1;
         for (Event event : events) {
             if (!first) {
-                result += "\n\n";
+                result += InterfaceManager.LS + InterfaceManager.LS;
             }
             first = false;
             result += String.format("%d.", i++) + event.toString();

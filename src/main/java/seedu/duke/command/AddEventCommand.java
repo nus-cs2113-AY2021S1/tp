@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.data.timetable.Event;
 import seedu.duke.data.timetable.RecurringEvent;
+import seedu.duke.ui.InterfaceManager;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_RECURRING;
@@ -43,6 +44,6 @@ public class AddEventCommand extends Command {
     @Override
     public String execute() {
         timetable.addEvent(event);
-        return "Added the following!\n\n" + event.toString();
+        return "Added the following!" + InterfaceManager.LS + InterfaceManager.LS + event.toString();
     }
 }
