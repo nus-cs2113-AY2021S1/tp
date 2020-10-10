@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.sprintcommands.AddSprintTaskCommand;
+import seedu.duke.commands.sprintcommands.AllocateSprintTaskCommand;
 import seedu.duke.commands.sprintcommands.CreateSprintCommand;
 import seedu.duke.commands.sprintcommands.ViewSprintCommand;
 import seedu.duke.data.Member;
@@ -68,6 +69,21 @@ public class Duke {
         parameters.put("3", "6");
 
         cmd = new AddSprintTaskCommand(parameters);
+        cmd.execute(proj, ui);
+
+        ui.showToUser("\n--------- AllocateSprintTask ---------");
+        parameters = new Hashtable<>();
+        parameters.put("taskid", "1");
+        parameters.put("0", "amy"); // (index, userid)
+        parameters.put("1", "john");
+
+        cmd = new AllocateSprintTaskCommand(parameters);
+        cmd.execute(proj, ui);
+        ui.showToUser("Dummy Sprint Tasks allocated.");
+
+        ui.showToUser("\n--------- ViewSprint Again ---------");
+        parameters = new Hashtable<>();
+        cmd = new ViewSprintCommand(parameters);
         cmd.execute(proj, ui);
 
     }

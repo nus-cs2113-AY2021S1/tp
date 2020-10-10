@@ -2,6 +2,7 @@ package seedu.duke.data;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class Sprint {
 
@@ -9,7 +10,8 @@ public class Sprint {
     private String goal;
     private LocalDate startDate;
     private LocalDate endDate;
-    private ArrayList<Integer> sprintTasks;
+    private Hashtable<Integer, ArrayList<String>> sprintTasks;
+    //private ArrayList<Integer> sprintTasks;
 
     public Sprint(String goal) {
         this(goal, null, null);
@@ -23,7 +25,7 @@ public class Sprint {
         setGoal(goal);
         setStartDate(startDate);
         setEndDate(endDate);
-        sprintTasks = new ArrayList<>();
+        sprintTasks = new Hashtable<>();
     }
 
     public String getGoal() {
@@ -51,14 +53,18 @@ public class Sprint {
     }
 
     public void addSprintTask(int taskId) {
-        this.sprintTasks.add(taskId);
+        this.sprintTasks.put(taskId, new ArrayList<>());
     }
 
     public void removeSprintTask(int taskId) {
         this.sprintTasks.remove(taskId);
     }
 
-    public ArrayList<Integer> getAllSprintTask() {
+    public void allocateSprintTask(int taskId, ArrayList<String> users) {
+        this.sprintTasks.put(taskId, users);
+    }
+
+    public Hashtable<Integer, ArrayList<String>> getAllSprintTask() {
         return this.sprintTasks;
     }
 }

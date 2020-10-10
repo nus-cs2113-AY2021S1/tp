@@ -7,7 +7,10 @@ import seedu.duke.parser.DateTimeParser;
 import seedu.duke.ui.TextUi;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
+import java.util.Set;
 
 public class ViewSprintCommand extends SprintCommand {
     SprintList allSprint;
@@ -33,6 +36,8 @@ public class ViewSprintCommand extends SprintCommand {
             ui.showToUser("Sprint Goal: " + currentSprint.getGoal());
             ui.showToUser("Sprint period: " + currentSprint.getStartDate() + " to " + currentSprint.getEndDate());
             ui.showToUser("Days left: " + currentSprint.getEndDate().compareTo(LocalDate.now()));
+            printSprintTask(proj, currentSprint, ui);
+
         } else {
             checkReason(proj,ui);
         }
@@ -40,8 +45,27 @@ public class ViewSprintCommand extends SprintCommand {
         return false;
     }
 
+    private void printSprintTask(Project proj, Sprint sprint, TextUi ui) {
+        Hashtable<Integer, ArrayList<String>> sprintTasks = sprint.getAllSprintTask();
+        if (sprintTasks.size() == 0){
+            System.out.println("No task allocated to current sprint.");
+            return;
+        }
+        ArrayList<String> users = new ArrayList<>();
+        System.out.println("Sprint Tasks:");
+        Set<Integer> keys = sprintTasks.keySet();
+        for(int key: keys){
+            proj.getProjectBacklog().viewTask(Integer.toString(key), ui);
+            users = sprintTasks.get(key);
+            if (users.size() == 0) {
+                ui.showToUser("No allocation.");
+            } else {
+                ui.showToUser("Allocated to:" + Arrays.toString(users.toArray()));
+            }
+        }
+    }
 
-    public void checkReason(Project proj, TextUi ui) {
+    private void checkReason(Project proj, TextUi ui) {
         if (allSprint.size() == 0) {
             ui.showToUser("You have yet to create your sprint.");
             return;
