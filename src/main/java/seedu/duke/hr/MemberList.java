@@ -23,4 +23,19 @@ public class MemberList {
         }
         return output;
     }
+
+    public static String deleteFromList(int index) {
+        String output;
+        try {
+            output = "Noted. I'll remove this member: \n";
+            output = output.concat(members.get(index).toString() + "\n");
+            members.remove(index);
+            Member.numOfMembers--;
+            output = output.concat("Now you have " + Member.numOfMembers + " member");
+            output = output.concat(((Member.numOfMembers > 1)?"s":"") + " in the list.\n");
+        } catch (IndexOutOfBoundsException e) {
+            output = "OOPS!!! The member does not exist.\n";
+        }
+        return output;
+    }
 }

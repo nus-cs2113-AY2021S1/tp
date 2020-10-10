@@ -2,6 +2,7 @@ package seedu.duke.backend;
 
 import seedu.duke.Command;
 import seedu.duke.hr.CommandAddMember;
+import seedu.duke.hr.CommandDelMember;
 import seedu.duke.hr.CommandViewMember;
 import seedu.duke.others.CommandBye;
 import seedu.duke.others.CommandHelp;
@@ -114,5 +115,6 @@ public class Ui {
         commandList.add(new CommandBye());
         commandList.add(new CommandAddMember());
         commandList.add(new CommandViewMember());
+        commandList.add(new CommandDelMember());
     }
 }
