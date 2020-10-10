@@ -8,7 +8,12 @@ public class Watchlist {
 
     public Watchlist(String name) {
         this.name = name;
-        animeList = new ArrayList<>();
+        this.animeList = new ArrayList<>();
+    }
+
+    public Watchlist(String name, ArrayList<String> animeList) {
+        this.name = name;
+        this.animeList = animeList;
     }
 
     public String animeListInString() {
@@ -31,5 +36,9 @@ public class Watchlist {
     @Override
     public String toString() {
         return name + animeListInString();
+    }
+
+    public String toFileString() {
+        return name + " | " + animeList.toString();
     }
 }
