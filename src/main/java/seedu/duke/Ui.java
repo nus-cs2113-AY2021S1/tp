@@ -142,8 +142,8 @@ public class Ui {
     }
 
     private void printUnknownDayMessage() {
-        print("Unknown day input\n" +
-                "Valid days: monday, tuesday, wednesday, thursday, friday, saturday, sunday\n");
+        print("Unknown day input\n" 
+              + "Valid days: monday, tuesday, wednesday, thursday, friday, saturday, sunday\n");
     }
 
     private void printEmptyTimetableMessage () {
