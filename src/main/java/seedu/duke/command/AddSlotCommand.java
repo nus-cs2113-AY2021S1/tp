@@ -49,8 +49,8 @@ public class AddSlotCommand extends Command {
      * @param slotStorage The storage for saving and loading.
      */
     @Override
-    public void execute(ItemList items, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage)
-            throws DukeException {
+    public void execute(ItemList items, SlotList slotList, Ui ui, Storage bookmarkStorage, 
+                        Storage slotStorage) throws DukeException {
         SlotList slots = (SlotList) slotList;
         Slot slot = new Slot(startTime, endTime, day, title);
         slots.addSlot(slot);

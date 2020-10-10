@@ -59,7 +59,7 @@ public class SlotList extends ItemList {
      * Returns the the data of all Slots in the list to be saved in the text file.
      *
      * @return the data of all the Slots.
-     */
+     */ 
     public String getData() {
         StringBuilder data = new StringBuilder();
         for (Slot slot : slots) {
