@@ -12,8 +12,6 @@ public abstract class Command {
     public static final String TAG_TODO = "-t";
     public static final String TAG_BOOKMARK = "-bm";
 
-    public static final String KEY_TODO = "todo";
-
     public static final String ERROR_INVALID_QUOTE_NUM = "Invalid quote number specified!";
     public static final String ERROR_INVALID_TODO_NUM = "Invalid task number specified!";
 

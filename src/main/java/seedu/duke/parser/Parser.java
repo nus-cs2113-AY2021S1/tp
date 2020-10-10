@@ -7,7 +7,6 @@ import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.DoneCommand;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.ListCommand;
-import seedu.duke.commands.ToDoCommand;
 
 public class Parser {
     private static final String COMMAND_ADD = "add";
@@ -15,7 +14,6 @@ public class Parser {
     private static final String COMMAND_DELETE = "delete";
     private static final String COMMAND_LIST = "list";
     private static final String COMMAND_BOOKMARK = "bookmark";
-    private static final String COMMAND_TODO = "todo";
     private static final String COMMAND_DONE = "done";
     private static final String COMMAND_BYE = "bye";
 
@@ -40,8 +38,6 @@ public class Parser {
         case COMMAND_EDIT:
         case COMMAND_LIST:
             return new ListCommand(arguments);
-        case COMMAND_TODO:
-            return new ToDoCommand(arguments);
         case COMMAND_DONE:
             return new DoneCommand(arguments);
         case COMMAND_BYE:
