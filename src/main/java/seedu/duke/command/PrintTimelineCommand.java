@@ -43,9 +43,9 @@ public class PrintTimelineCommand extends Command {
     }
 
     /**
-     * Sort the items in a CalendarList in time sequence
-     * @param calendarList
-     * @return
+     * Sort the items in a CalendarList in time sequence.
+     * @param calendarList list to be sorted.
+     * @return sorted CalendarList.
      */
     public CalendarList sortByDateTime(CalendarList calendarList) {
         CalendarList sortingList = calendarList;
