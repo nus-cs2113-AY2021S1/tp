@@ -15,8 +15,9 @@ public class SystemException extends Exception {
         EXCEPTION_MISSING_TIMING("This event does not have a timing specified!"),
         EXCEPTION_MISSING_RECURRING_END_TIME("Please specify until when do you want "
                 + "this event to repeat."),
-        EXCEPTION_WRONG_TIMING("Your input has a wrong format for the date time input. Please follow "
-                + "the yyyy-MM-dd HH:mm format with the \"-\" and \":\" in 24-Hour Clock format"),
+        EXCEPTION_WRONG_TIMING("Your input has a wrong format for the date time input. "
+
+                + "Please follow the yyyy-MM-dd HH:mm format with the \"-\" and \":\" in 24-Hour Clock format"),
         EXCEPTION_MISSING_RECURRING_TYPE("Please indicate whether you would like to have the event "
                 + "repeat daily, weekly, monthly or yearly"),
         EXCEPTION_WRONG_RECURRING_TYPE("There are only the following recurring types: "
