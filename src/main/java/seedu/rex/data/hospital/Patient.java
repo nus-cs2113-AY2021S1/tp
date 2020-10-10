@@ -1,6 +1,7 @@
 package seedu.rex.data.hospital;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 
 /**
@@ -10,23 +11,23 @@ public class Patient {
 
     private String name;
     private String nric;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private final Vector<Appointment> appointmentHistory;
 
-    Patient(String name, String nric, Date dateOfBirth) {
+    public Patient(String name, String nric, LocalDate dateOfBirth) {
         setName(name);
         setNric(nric);
         setDateOfBirth(dateOfBirth);
         this.appointmentHistory = new Vector<>();
 
-        // will create an empty appt history
+        // will create an empty appointment history
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -52,5 +53,14 @@ public class Patient {
 
     private enum Gender {
         MALE, FEMALE
+    }
+
+    /**
+     * Returns the <code>Patient</code> object as a String for printing or writing to a file.
+     * @return Patient's details as a String in a particular format.
+     */
+    @Override
+    public String toString() {
+        return name + ", " + nric + ", " + dateOfBirth.format(DateTimeFormatter.ISO_DATE);
     }
 }

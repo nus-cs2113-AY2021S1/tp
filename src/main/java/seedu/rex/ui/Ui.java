@@ -3,8 +3,11 @@ package seedu.rex.ui;
 import seedu.rex.commands.Command;
 import seedu.rex.commands.ExitCommand;
 import seedu.rex.storage.Storage;
+import seedu.rex.data.hospital.Patient;
 
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+import java.time.LocalDate;
 
 /**
  * Interacts with user.
@@ -24,6 +27,7 @@ public class Ui {
                     + "\t                  |_|                                                                   "
                     .replaceAll("\n", System.lineSeparator());
     private static final String DOTTED_LINE = "____________________________________________________________";
+    private static final String DATE_ERROR = "Error in date format.";
     private final Scanner in = new Scanner(System.in);
 
     /**
@@ -74,6 +78,20 @@ public class Ui {
         printWithIndent(ExitCommand.MESSAGE);
     }
 
+    public void showDateInputError() {
+        showError(DATE_ERROR);
+    }
+
+    /**
+     * Prints a message to indicate successful addition of a patient.
+     * @param patient The newly added <code>Patient</code>.
+     */
+    public void showPatientAdded(Patient patient) {
+        printWithIndent("Patient successfully added: ");
+        printWithIndent(patient.toString());
+    }
+
+
     /**
      * Reads command from user.
      *
@@ -82,5 +100,31 @@ public class Ui {
     public String readCommand() {
         System.out.println();
         return in.nextLine();
+    }
+
+    /**
+     * Reads the name of a new patient from the user.
+     * @return The name of the patient to be added.
+     */
+    public String getPatientName() {
+        printWithIndent("Enter patient name: ");
+        return in.nextLine().trim();
+    }
+
+    /**
+     * Reads the date of birth of a new patient from the user.
+     * @return The date of birth of the patient.
+     */
+    public LocalDate getPatientDateOfBirth() {
+        while (true) {
+            try {
+                printWithIndent("Enter patient date of birth (YYYY-MM-DD) including the dashes: ");
+                return LocalDate.parse(in.nextLine().trim());
+            } catch (DateTimeParseException e) {
+                showLine();
+                showDateInputError();
+                showLine();
+            }
+        }
     }
 }
