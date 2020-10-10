@@ -13,6 +13,11 @@ public class Ui {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
+    public static void displayTaskDone(String id) {
+        System.out.println("The following task has been marked as done: ");
+        System.out.println("\t" + id);
+    }
+
     public void printLogo() {
         System.out.println("Hello from\n" + LOGO);
     }
@@ -25,7 +30,7 @@ public class Ui {
         System.out.println("Please enter the project details for instantiation");
     }
 
-    public void printError(String s) {
+    public static void printError(String s) {
         System.out.println(s);
     }
 
@@ -64,7 +69,7 @@ public class Ui {
         System.out.println("Unknown format or command.");
     }
 
-    public void displayInvalidId() {
+    public static void displayInvalidId() {
         System.out.println("The following task id doesn't exist in backlog.\n Please enter a valid id.");
     }
 
@@ -91,4 +96,5 @@ public class Ui {
     public void printProjectAdded() {
         System.out.println("Project successfully created.");
     }
+
 }

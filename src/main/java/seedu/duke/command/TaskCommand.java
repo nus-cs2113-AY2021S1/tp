@@ -11,6 +11,8 @@ import java.util.Hashtable;
 import static seedu.duke.command.CommandSummary.PRIORITY;
 import static seedu.duke.command.CommandSummary.TITLE;
 import static seedu.duke.command.CommandSummary.DESCRIPTION;
+import static seedu.duke.command.CommandSummary.TASK_ID;
+
 
 public class TaskCommand {
     public void addTaskCommand(Hashtable<String, String> tasks, Ui ui, ArrayList<Project> projectList)
@@ -68,7 +70,7 @@ public class TaskCommand {
             try {
                 int backlogId = Integer.parseInt(id) - 1;
                 if (backlogId < proj.backlog.backlogTasks.size()) {
-                    task = proj.backlog.backlogTasks.get(backlogId);
+                    task = proj.backlog.getTask(backlogId);
                     ui.displayTask(task);
                 } else {
                     ui.displayInvalidId();
@@ -79,21 +81,29 @@ public class TaskCommand {
         }
     }
 
-    public void changeTaskPriorityCommand(String taskId, String priority,
-                                          Hashtable<String, String> tasks) throws DukeException {
+    public void changeTaskPriorityCommand(Hashtable<String, String> tasks, ArrayList<Project> projectList)
+            throws DukeException {
         /*
         Example of how to use the hashtable and how to throw the exception.
          */
-        if (tasks.get(taskId) != null) {
-            System.out.println(tasks.get(taskId));
+        Project proj = projectList.get(0);
+        Task task;
+        int id;
+        String priority;
+        if (tasks.get(TASK_ID) != null) {
+            id = Integer.parseInt(tasks.get(TASK_ID));
         } else {
-            throw new DukeException("no title");
+            throw new DukeException("invalid task id");
         }
-        if (tasks.get(priority) != null) {
-            System.out.println(tasks.get(priority));
+        if (tasks.get(PRIORITY) != null) {
+            priority = tasks.get(PRIORITY);
         } else {
             throw new DukeException("no priority");
         }
+
+        task  = proj.backlog.getTask(id);
+        task.setPriority(priority);
+
 
         /* Insert actual code for changing seedu.duke.task priority here.
         .
@@ -102,15 +112,26 @@ public class TaskCommand {
          */
     }
 
-    public void doneTaskCommand(ArrayList<String> tasks) {
+    public void doneTaskCommand(ArrayList<String> taskId, ArrayList<Project> projectList) {
         /*
            For testing purposes only, to be deleted.
          */
-        String task = "";
-        for (String t : tasks) {
-            task += t + " ";
+        Project proj = projectList.get(0);
+        for (String id : taskId) {
+            Task task = null;
+            try {
+                int backlogId = Integer.parseInt(id) - 1;
+                if (backlogId < proj.backlog.backlogTasks.size()) {
+                    task = proj.backlog.getTask(backlogId);
+                    task.setAsDone();
+                    Ui.displayTaskDone(id);
+                } else {
+                    Ui.displayInvalidId();
+                }
+            } catch (NumberFormatException e) {
+                Ui.printError("Task id is not an integer.");
+            }
         }
-        System.out.println("Tasks done: " + task);
 
         /* Insert actual code for completing tasks here.
         .
