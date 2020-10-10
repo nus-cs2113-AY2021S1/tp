@@ -14,6 +14,7 @@ public class Storage {
     private static final String DEFAULT_EXERCISE_LIST_FILEPATH = "exercises.txt";
     private static final String DEFAULT_FOOD_LIST_FILEPATH = "food.txt";
     private static final String DEFAULT_USER_CONFIG_FILEPATH = "user.txt";
+    private static final String COMMA_SEPARATOR = ",";
 
     private final String exerciseListPath;
     private final String foodListPath;
@@ -35,9 +36,13 @@ public class Storage {
 
         if (!exerciseListFile.exists()) {
             exerciseListFile.createNewFile();
-        } else if (!foodListFile.exists()) {
+        }
+
+        if (!foodListFile.exists()) {
             foodListFile.createNewFile();
-        } else if (!userConfigFile.exists()) {
+        }
+
+        if (!userConfigFile.exists()) {
             userConfigFile.createNewFile();
         }
     }
@@ -54,29 +59,37 @@ public class Storage {
     public void readUserConfigFile(User user) throws FileNotFoundException {
         File file = new File(userConfigPath);
         Scanner readFile = new Scanner(file);
+        String line, name, gender;
+        int age;
+        double height, weight;
+        String[] arguments;
 
-        // Temporary solution
-        String name, gender, age, height, weight;
-        name = readFile.nextLine();
-        gender = readFile.nextLine();
-        age = readFile.nextLine();
-        height = readFile.nextLine();
-        weight = readFile.nextLine();
-
-        user.loadUserData(name, age, height, weight, gender);
+        while (readFile.hasNext()) {
+            line = readFile.nextLine();
+            arguments = line.split(COMMA_SEPARATOR);
+            name = arguments[0];
+            gender = arguments[1];
+            age = Integer.parseInt(arguments[2]);
+            height = Double.parseDouble(arguments[3]);
+            weight = Double.parseDouble(arguments[4]);
+            user.loadUserData(name, age, height, weight, gender);
+        }
     }
 
     /**
      * Writes the user's data into the user config file.
+     *
+     * @throws IOException if an I/O error has occurred
      */
     public void writeUserConfigFile(User user) throws IOException {
         FileWriter file = new FileWriter(userConfigPath);
-        // Temporary code until another cleaner solution is found
-        file.write(User.getName() + System.lineSeparator());
-        file.write(User.getGender() + System.lineSeparator());
-        file.write(User.getAge() + System.lineSeparator());
-        file.write(String.valueOf(User.getHeight()) + System.lineSeparator());
-        file.write(String.valueOf(User.getWeight()) + System.lineSeparator());
+
+        file.write(User.getName()
+                + COMMA_SEPARATOR + User.getGender()
+                + COMMA_SEPARATOR + User.getAge()
+                + COMMA_SEPARATOR + User.getHeight()
+                + COMMA_SEPARATOR + User.getWeight());
+
         file.close();
     }
 
