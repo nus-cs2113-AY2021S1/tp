@@ -44,8 +44,8 @@ public class ListCommand extends Command {
         case TAG_QUOTE:
             QuoteList quoteListList = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
             listQuotes(quoteListList, ui);
+            break;
         default:
-
         }
     }
 

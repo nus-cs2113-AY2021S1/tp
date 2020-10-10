@@ -38,7 +38,7 @@ public class QuoteList extends QuotesifyList<Quote> {
     public String toString() {
         String quotesToReturn = "";
         for (int i = 0; i < getSize(); i++) {
-            quotesToReturn += (i+1 + ". " + quotes.get(i).toString());
+            quotesToReturn += (i + 1 + ". " + quotes.get(i).toString());
         }
         return quotesToReturn;
     }
