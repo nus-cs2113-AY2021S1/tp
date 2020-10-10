@@ -4,7 +4,10 @@ import seedu.duke.book.Book;
 import seedu.duke.category.Category;
 import seedu.duke.category.CategoryList;
 import seedu.duke.quote.QuoteList;
+import seedu.duke.rating.Rating;
+import seedu.duke.rating.RatingList;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TextUi {
@@ -25,6 +28,9 @@ public class TextUi {
     private static final String DELETE_CATEGORY_MESSAGE = "I have removed \"%s\" category from \"%s\"!";
     private static final String CATEGORY_SIZE_MESSAGE = "You have a total of %d item(s) tagged as \"%s\".";
     private static final String LIST_CATEGORIES_MESSAGE = "Here is the list of all categories:";
+    private static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
+            + " Here are your rated books!";
+    private static final String LIST_SPECIFIED_RATING_MESSAGE = "Here are the books you rated as %d star!";
 
 
     private final Scanner in;
@@ -99,5 +105,19 @@ public class TextUi {
 
     public void printAddRatingToBook(int ratingScore, String titleOfBookToRate) {
         System.out.printf((ADD_RATING_MESSAGE) + "\n", titleOfBookToRate, ratingScore);
+    }
+
+    public void printAllRatings(RatingList ratingList) {
+        System.out.println(LIST_ALL_RATINGS_MESSAGE);
+        System.out.println(ratingList.toString());
+    }
+
+    public void printSpecifiedRating(RatingList ratings, int ratingToList) {
+        System.out.printf((LIST_SPECIFIED_RATING_MESSAGE) + "\n", ratingToList);
+        for (Rating rating : ratings.getList()) {
+            if (rating.getRating() == ratingToList) {
+                System.out.println(rating.getTitleOfRatedBook());
+            }
+        }
     }
 }
