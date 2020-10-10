@@ -146,7 +146,7 @@ public class Ui {
               + "Valid days: monday, tuesday, wednesday, thursday, friday, saturday, sunday\n");
     }
 
-    private void printEmptyTimetableMessage () {
+    private void printEmptyTimetableMessage() {
         print("Timetable is empty\n");
     }
 
