@@ -1,8 +1,0 @@
-Topic:
-Sub-topic:
-Question title:
-Question type: FILL_BLANKS
----
-String before:
-Blank:
-String after:

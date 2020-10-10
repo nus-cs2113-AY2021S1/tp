@@ -1,7 +1,0 @@
-Topic: Misc
-Sub-topic: Jokes
-Question title: Chicken
-Question type: QNA
----
-Question: Why did the chicken cross the road?
-Answer: To get to the other side

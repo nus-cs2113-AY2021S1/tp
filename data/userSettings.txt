@@ -1,2 +1,0 @@
-Username: John Doe
-Divider Choice: 1
