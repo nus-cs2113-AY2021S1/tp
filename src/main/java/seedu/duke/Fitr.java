@@ -20,12 +20,7 @@ public class Fitr {
 
     public void run() {
         boolean isExit = false;
-        user = new User(foodList, exerciseList, storage);
-        try {
-            storage.writeUserConfigFile(user);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        user = new User();
         while(!isExit) {
             String userInput = UI.read();
             Command c = Parser.parse(userInput);

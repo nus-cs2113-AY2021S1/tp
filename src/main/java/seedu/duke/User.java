@@ -13,21 +13,8 @@ public class User {
     public static String gender;
     public Scanner in = new Scanner(System.in);
     private static boolean isConfig = false;
-    private FoodList foodList;
-    private ExerciseList exerciseList;
-    private Storage storage;
 
-    public User(FoodList foodList, ExerciseList exerciseList, Storage storage) {
-        while (isConfig == false) {
-            setup();
-            isConfig = true;
-        }
-        this.foodList = foodList;
-        this.exerciseList = exerciseList;
-        this.storage = storage;
-    }
-
-    private void setup() {
+    public void setup() {
         System.out.println("Hi there, before we begin, let me get to know you :)");
         System.out.println("Please enter your name:");
         setName();
@@ -37,8 +24,10 @@ public class User {
         setupHeight();
         System.out.println("Please enter your weight (in kg):");
         setupWeight();
-        System.out.println("Please enter your gender (Enter '1' for Male or '2' for Female):");
+        System.out.println("Please enter your gender (Enter 'm' for Male or 'f' for Female):");
         setupGender();
+        System.out.println("Setup complete!");
+        isConfig = true;
     }
 
     public static String getName() {
@@ -78,7 +67,6 @@ public class User {
                 System.out.println("Oops that is an invalid age input.\n"
                         + "Please enter your age:");
                 ageInput = 0;
-                continue;
             }
         }
         age = ageInput;
@@ -98,7 +86,6 @@ public class User {
                 System.out.println("Oops that is an invalid height input.\n"
                         + "Please enter your height (in m):");
                 heightInput = 0.00;
-                continue;
             }
         }
         height = heightInput;
@@ -118,73 +105,64 @@ public class User {
                 System.out.println("Oops that is an invalid weight input.\n"
                         + "Please enter your weight (in kg):");
                 weightInput = 0.00;
-                continue;
             }
         }
         weight = weightInput;
     }
 
     public void setupGender() {
-        Integer genderInput = 0;
-        while (genderInput != 1 && genderInput != 2) {
-            try {
-                genderInput = Integer.parseInt(in.nextLine());
-                System.out.println(genderInput);
-                if (genderInput != 1 && genderInput != 2) {
-                    System.out.println("oops that is an invalid Gender input.\n"
-                            + "Please enter your gender (Enter '1' for Male or '2' for Female):");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Oops that is an invalid gender input.\n"
-                        + "Please enter your gender (Enter '1' for Male or '2' for Female):");
-                genderInput = 0;
-                continue;
-            }
+        String genderInput = in.nextLine();
+        while (!genderInput.equalsIgnoreCase("m") && !genderInput.equalsIgnoreCase("f")) {
+            System.out.println("oops that is an invalid Gender input.\n"
+                    + "Please enter your gender (Enter 'm' for Male or 'f' for Female):");
+            genderInput = in.nextLine();
         }
-        if (genderInput == 1) {
+        if (genderInput.equalsIgnoreCase("m")) {
             gender = "Male";
-        } else if (genderInput == 2) {
+        } else if (genderInput.equalsIgnoreCase("f")) {
             gender = "Female";
         }
     }
 
-    public void viewProfile() {
-        System.out.println("Name:");
-        System.out.println(getName());
-        System.out.println("Age:");
-        System.out.println(getAge());
-        System.out.println("Gender:");
-        System.out.println(getGender());
-        System.out.println("Height:");
-        System.out.println(getHeight());
-        System.out.println("Weight:");
-        System.out.println(getWeight());
+    @Override
+    public String toString() {
+        return "Name:\n" + getName() + "\n" + "Age:\n" + getAge() + "\n" + "Gender:\n" + getGender()
+                + "\n" + "Height:\n" + getHeight() + "\n" + "Weight:\n" + getWeight() + "\n";
     }
 
-    public Calorie calculateCalorieBurnt() {
+    public Calorie calculateCalorieBurnt(ExerciseList exerciseList) {
         int index = 0;
         int totalBurnt = 0;
-        while (exerciseList.getExercise(index) != null) {
-            totalBurnt = exerciseList.getExercise(index).getCalories();
+        while (index < exerciseList.getSize()) {
+            totalBurnt += exerciseList.getExercise(index).getCalories();
             index++;
         }
         return new Calorie(totalBurnt);
     }
 
-    public Calorie calculateCalorieConsumed() {
+    public Calorie calculateCalorieConsumed(FoodList foodList) {
         int index = 0;
         int totalConsumed = 0;
-        while (foodList.getFood(index) != null) {
-            totalConsumed = foodList.getFood(index).getCalories();
+        while (index < foodList.getSize()) {
+            totalConsumed += foodList.getFood(index).getCalories();
+            index++;
         }
         return new Calorie(totalConsumed);
     }
 
-    public Calorie calculateCalorie() {
+    public Calorie calculateCalorie(FoodList foodList, ExerciseList exerciseList) {
         int totalCalories;
-        Calorie totalConsumed = calculateCalorieConsumed();
-        Calorie totalBurnt = calculateCalorieBurnt();
+        Calorie totalConsumed = calculateCalorieConsumed(foodList);
+        Calorie totalBurnt = calculateCalorieBurnt(exerciseList);
         totalCalories = totalConsumed.get() - totalBurnt.get();
         return new Calorie(totalCalories);
+    }
+
+    public void loadUserData(String name, Integer age, Double height, Double weight, String gender) {
+        this.name = name;
+        this.age = age;
+        this.height = height;
+        this.weight = weight;
+        this.gender = gender;
     }
 }
