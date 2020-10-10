@@ -5,7 +5,6 @@ import seedu.duke.command.AddEventCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.CreateTagCommand;
 import seedu.duke.command.DeleteTagCommand;
-import seedu.duke.command.Command;
 import seedu.duke.command.AddNoteCommand;
 import seedu.duke.command.DeleteNoteCommand;
 import seedu.duke.command.EditCommand;
