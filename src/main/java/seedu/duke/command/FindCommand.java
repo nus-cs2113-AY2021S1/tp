@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.ui.InterfaceManager;
 
@@ -13,7 +14,11 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find-n";
 
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Finds a note. Parameters: ";
+    private static final String COMMAND_USAGE = COMMAND_WORD + ": Finds a note. Parameters: KEYWORDS";
+
+    public static String getCommandUsage() {
+        return COMMAND_USAGE;
+    }
 
     private String keywords;
 
@@ -26,6 +31,12 @@ public class FindCommand extends Command {
         this.keywords = keywords;
     }
 
+    /**
+     * Filters and finds notes that has the title containing the user inputted keyword.
+     * Stores the filtered notes in an ArrayList of Note
+     *
+     * @return String containing the filtered list of notes
+     */
     @Override
     public String execute() {
         String notes = "";

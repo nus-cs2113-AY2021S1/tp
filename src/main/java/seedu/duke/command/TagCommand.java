@@ -2,6 +2,9 @@ package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
+import seedu.duke.ui.InterfaceManager;
+
+import java.util.ArrayList;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
@@ -13,36 +16,54 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "tag";
-    private static final String ADD_TAG_MESSAGE = "Added the tag to the note!";
-    private static final String REMOVE_TAG_MESSAGE = "Removed the tag from the note!";
+    private static final String ADD_TAG_MESSAGE = "Added the tag to the note! ";
+    private static final String REMOVE_TAG_MESSAGE = "Removed the tag from the note! ";
 
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Tags or untags a note. Parameters: "
+    private static final String COMMAND_USAGE = COMMAND_WORD + ": Tags or untags a note. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
-            + PREFIX_DELIMITER + PREFIX_TAG + " TAG NAME [TAG COLOR]";
+            + PREFIX_DELIMITER + PREFIX_TAG + " TAG_NAME [TAG_COLOR]";
 
     private int index;
-    private String tagName;
-    private String tagColor;
+    private ArrayList<Tag> tags;
 
-    public TagCommand(int index, String tagName, String tagColor) {
+    public static String getCommandUsage() {
+        return COMMAND_USAGE;
+    }
+
+    /**
+     * Constructs a TagCommand to tag or untag a Note.
+     */
+    public TagCommand(int index, ArrayList<Tag> tags) {
         this.index = index;
-        this.tagName = tagName;
-        this.tagColor = tagColor;
+        this.tags = tags;
     }
 
     @Override
     public String execute() {
-        Tag tag = tagManager.getTag(tagName);
+        String executeMessage = "";
 
-        Note note = notebook.getNotes().get(index - 1);
+        try {
+            Note note = notebook.getNotes().get(index - 1);
+            for (Tag t : tags) {
+                // Tries to get the tag from the database
+                Tag existingTag = tagManager.getTag(t.getTagName());
 
-        // Remove the tag from the note if it does not have the Tag
-        if (note.getTags().contains(tag)) {
-            tagManager.removeTag(note, tag);
-            return REMOVE_TAG_MESSAGE + tag;
-        } else {
-            tagManager.tagNote(note, tagName, tagColor);
-            return ADD_TAG_MESSAGE + tag;
+                // Check if the note contains such tag
+                if (note.getTags().contains(existingTag)) {
+                    tagManager.removeTag(note, existingTag);
+                    executeMessage = executeMessage.concat(REMOVE_TAG_MESSAGE + existingTag + InterfaceManager.LS);
+                } else {
+                    // Run the create tag in case existingTag is null, if it is not null, it updates the tag
+                    tagManager.createTag(t, false);
+                    existingTag = tagManager.getTag(t.getTagName());
+                    tagManager.tagNote(note, existingTag);
+                    executeMessage = executeMessage.concat(ADD_TAG_MESSAGE + existingTag + InterfaceManager.LS);
+                }
+            }
+            executeMessage = executeMessage + InterfaceManager.LS;
+        } catch (IndexOutOfBoundsException exception) {
+            executeMessage = "Invalid index input!";
         }
+        return executeMessage.trim();
     }
 }
