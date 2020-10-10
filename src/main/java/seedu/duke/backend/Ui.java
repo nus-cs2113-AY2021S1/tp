@@ -1,6 +1,7 @@
 package seedu.duke.backend;
 
 import seedu.duke.Command;
+import seedu.duke.hr.CommandAddMember;
 import seedu.duke.others.CommandBye;
 import seedu.duke.others.CommandHelp;
 
@@ -110,5 +111,6 @@ public class Ui {
     private static void initializeCommands() {
         commandList.add(new CommandHelp());
         commandList.add(new CommandBye());
+        commandList.add(new CommandAddMember());
     }
 }

@@ -19,6 +19,7 @@ public class CommandHelp extends Command {
 
     @Override
     public String help() {
+
         return "";
     }
 }
