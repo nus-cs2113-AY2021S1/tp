@@ -97,7 +97,7 @@ public class Event {
         String remindString = "Reminder: " + isToRemind;
         String repeatingString = "Repeating: " + isRecurring;
         String lineSeparator = InterfaceManager.LS;
-        return titleString + lineSeparator + dateString + lineSeparator + remindString 
+        return titleString + lineSeparator + dateString + lineSeparator + remindString
                 + lineSeparator + repeatingString;
     }
 }
