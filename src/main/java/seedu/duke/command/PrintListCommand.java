@@ -2,10 +2,10 @@ package seedu.duke.command;
 
 import seedu.duke.Storage;
 import seedu.duke.Ui;
-import seedu.duke.task.TaskList;
+import seedu.duke.calendar.CalendarList;
 
 /**
- * Lists all tasks in the task list to the user.
+ * Lists all tasks in the calendar list to the user.
  */
 public class PrintListCommand extends Command {
     public PrintListCommand(String userInput) {
@@ -13,13 +13,13 @@ public class PrintListCommand extends Command {
     }
 
     /**
-     * Lists all tasks in the task list to the user.
+     * Lists all tasks in the calendar list to the user.
      *
-     * @param taskList the task list to list from.
-     * @param storage  not required.
+     * @param calendarList the calendar list to list from.
+     * @param storage      not required.
      */
     @Override
-    public void execute(TaskList taskList, Storage storage) {
-        Ui.printTaskListView(taskList);
+    public void execute(CalendarList calendarList, Storage storage) {
+        Ui.printTaskListView(calendarList);
     }
 }

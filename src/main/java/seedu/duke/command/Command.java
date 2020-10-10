@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.DukeException;
 import seedu.duke.Storage;
-import seedu.duke.task.TaskList;
+import seedu.duke.calendar.CalendarList;
 
 /**
  * Represents an executable command.
@@ -17,7 +17,7 @@ public abstract class Command {
     /**
      * Executes the command and throws a Duke exception when the command is invalid.
      */
-    public abstract void execute(TaskList taskList, Storage storage) throws DukeException;
+    public abstract void execute(CalendarList calendarList, Storage storage) throws DukeException;
 
     /**
      * Returns true if the command is exit.
