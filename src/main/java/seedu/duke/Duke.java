@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.commands.Command;
+import seedu.duke.commands.sprintcommands.AddSprintTaskCommand;
 import seedu.duke.commands.sprintcommands.CreateSprintCommand;
 import seedu.duke.commands.sprintcommands.ViewSprintCommand;
 import seedu.duke.data.Member;
@@ -25,27 +26,27 @@ public class Duke {
 
         //project /create -title FakeTitle -desc FakeDescription -duration 90 -sd 10
         Project proj = new Project("ProjTitle", "ProjDescription", "60", "10");
-        ui.showToUser("Project created.");
+        ui.showToUser("Dummy Project created.");
 
         //member /add james amy
         List<String> members = Arrays.asList("james", "amy", "bob");
         proj.getMembers().addMember(members);
-        ui.showToUser("Members added.");
+        ui.showToUser("Dummy Members added.");
 
         //task /add -title <title> -desc <description> -priority <category>
-        Task task1 = new Task("Task1Title", "Task1Desc", "LOW");
-        Task task2 = new Task("Task2Title", "Task2Desc", "MED");
-        Task task3 = new Task("Task3Title", "Task3Desc", "HIGH");
         ProjectBacklog backlog = proj.getProjectBacklog();
-        backlog.addTask(task1);
-        backlog.addTask(task2);
-        backlog.addTask(task3);
+        for (int i = 0; i < 6; i++) {
+            Task task = new Task("Task" + (i + 1) + "Title", "Task" + (i + 1) + "Desc", "LOW");
+            backlog.addTask(task);
+            //backlog.viewTask(Integer.toString(i + 1), ui);
+        }
+        ui.showToUser("Dummy Tasks added.");
 
         String command = "sprint";
         String action = "create";
         Hashtable<String, String> parameters = new Hashtable<>();
         parameters.put("goal", "sprint1goal");
-        parameters.put("start", "20201212");
+        parameters.put("start", "20201001");
         Command cmd = new CreateSprintCommand(parameters);
         ui.showToUser("\n--------- CreateSprint ---------");
         for (int i = 0; i < 7; i++) {
@@ -55,7 +56,19 @@ public class Duke {
         }
 
         ui.showToUser("\n--------- ViewSprint ---------");
-        cmd = new ViewSprintCommand(new Hashtable<>());
+        parameters = new Hashtable<>();
+        cmd = new ViewSprintCommand(parameters);
         cmd.execute(proj, ui);
+
+        ui.showToUser("\n--------- AddSprintTask ---------");
+        parameters = new Hashtable<>();
+        parameters.put("0", "1"); // (index, taskid)
+        parameters.put("1", "2");
+        parameters.put("2", "4");
+        parameters.put("3", "6");
+
+        cmd = new AddSprintTaskCommand(parameters);
+        cmd.execute(proj, ui);
+
     }
 }

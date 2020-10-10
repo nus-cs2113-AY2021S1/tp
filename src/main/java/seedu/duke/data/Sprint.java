@@ -1,6 +1,7 @@
 package seedu.duke.data;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Sprint {
 
@@ -8,6 +9,7 @@ public class Sprint {
     private String goal;
     private LocalDate startDate;
     private LocalDate endDate;
+    private ArrayList<Integer> sprintTasks;
 
     public Sprint(String goal) {
         this(goal, null, null);
@@ -21,6 +23,7 @@ public class Sprint {
         setGoal(goal);
         setStartDate(startDate);
         setEndDate(endDate);
+        sprintTasks = new ArrayList<>();
     }
 
     public String getGoal() {
@@ -45,5 +48,17 @@ public class Sprint {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public void addSprintTask(int taskId) {
+        this.sprintTasks.add(taskId);
+    }
+
+    public void removeSprintTask(int taskId) {
+        this.sprintTasks.remove(taskId);
+    }
+
+    public ArrayList<Integer> getAllSprintTask() {
+        return this.sprintTasks;
     }
 }

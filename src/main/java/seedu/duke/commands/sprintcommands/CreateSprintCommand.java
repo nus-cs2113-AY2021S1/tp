@@ -35,7 +35,7 @@ public class CreateSprintCommand extends SprintCommand {
                 createSubsequentSprint(proj, ui);
             }
         }
-        return true;
+        return false;
     }
 
     private void createFirstSprint(Project proj, TextUi ui) {

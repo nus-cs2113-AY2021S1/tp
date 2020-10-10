@@ -1,15 +1,17 @@
 package seedu.duke.data;
 
+import seedu.duke.parser.DateTimeParser;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class SprintList {
     private ArrayList<Sprint> sprintList;
-    private int currentSprint;
+    private int currentSprintIndex;
 
     public SprintList() {
         sprintList = new ArrayList<>();
-        currentSprint = -1;
+        currentSprintIndex = -1;
     }
 
     public int size() {
@@ -24,11 +26,24 @@ public class SprintList {
         sprintList.add(new Sprint(goal, start, end));
     }
 
-    public int getCurrentSprint() {
-        return currentSprint;
+    public int getCurrentSprintIndex() {
+        return currentSprintIndex;
     }
 
-    public void setCurrentSprint(int currentSprint) {
-        this.currentSprint = currentSprint;
+    public void setCurrentSprintIndex(int currentSprintIndex) {
+        this.currentSprintIndex = currentSprintIndex;
+    }
+
+    public boolean updateCurrentSprint() {
+        for (int i = 0; i < this.size(); i++) {
+            Sprint current = this.getSprint(i);
+            if (DateTimeParser.diff(LocalDate.now(), current.getEndDate()) >= 0
+                    && DateTimeParser.diff(current.getStartDate(), LocalDate.now()) >= 0) {
+                this.setCurrentSprintIndex(i);
+                return true;
+
+            }
+        }
+        return false;
     }
 }

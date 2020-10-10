@@ -7,39 +7,34 @@ import seedu.duke.parser.DateTimeParser;
 import seedu.duke.ui.TextUi;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
-public class ViewSprintCommand extends SprintCommand {
+public class AddSprintTaskCommand extends SprintCommand{
     SprintList allSprint;
 
-    public ViewSprintCommand(Hashtable<String, String> parameters) {
+    public AddSprintTaskCommand(Hashtable<String, String> parameters) {
         super(parameters);
     }
 
-    /**
-     * Abstract method that execute the command.
-     *
-     * @param ui UI that handles user interaction
-     * @return Boolean - True if Bye command is executed
-     */
     public boolean execute(Project proj, TextUi ui) {
-
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
             Sprint currentSprint = allSprint.getSprint(currentSprintNo);
-            ui.showToUser("------ Current Sprint ------");
-            ui.showToUser("Sprint number: " + (currentSprintNo + 1));
-            ui.showToUser("Sprint Goal: " + currentSprint.getGoal());
-            ui.showToUser("Sprint period: " + currentSprint.getStartDate() + " to " + currentSprint.getEndDate());
-            ui.showToUser("Days left: " + currentSprint.getEndDate().compareTo(LocalDate.now()));
+
+            ui.showToUser("Tasks added: ");
+            for (int i = 0; i < parameters.size(); i++) {
+                String taskId = parameters.get(Integer.toString(i));
+                currentSprint.addSprintTask(Integer.parseInt(taskId));
+                proj.getProjectBacklog().viewTask(taskId, ui);
+
+            }
         } else {
             checkReason(proj,ui);
         }
-
         return false;
     }
-
 
     public void checkReason(Project proj, TextUi ui) {
         if (allSprint.size() == 0) {
@@ -67,4 +62,5 @@ public class ViewSprintCommand extends SprintCommand {
             ui.showToUser("First sprint will start on " + current.getStartDate());
         }
     }
+
 }
