@@ -40,7 +40,7 @@ public class Notebook {
      *
      * @throws SystemException if an error occurs.
      */
-    public void addNote(Note note) throws SystemException {
+    public void addNote(Note note) {
         notes.add(note);
     }
 
@@ -49,7 +49,7 @@ public class Notebook {
      *
      * @throws SystemException if an error occurs.
      */
-    public void deleteNote(int note) throws SystemException {
+    public void deleteNote(int note) {
         notes.remove(note);
     }
 
