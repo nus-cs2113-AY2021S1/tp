@@ -1,8 +1,10 @@
 package seedu.duke.commands;
 
-import seedu.duke.category.Category;
 import seedu.duke.category.CategoryList;
+import seedu.duke.exception.QuotesifyException;
 import seedu.duke.lists.ListManager;
+import seedu.duke.quote.QuoteList;
+import seedu.duke.quote.QuoteParser;
 import seedu.duke.rating.Rating;
 import seedu.duke.rating.RatingList;
 import seedu.duke.rating.RatingParser;
@@ -11,6 +13,7 @@ import seedu.duke.ui.TextUi;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 
 public class ListCommand extends Command {
     private String type;
@@ -38,8 +41,49 @@ public class ListCommand extends Command {
             RatingList ratingList = (RatingList) listManager.getList(ListManager.RATING_LIST);
             listRatings(ratingList, ui);
             break;
+        case TAG_QUOTE:
+            QuoteList quoteListList = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
+            listQuotes(quoteListList, ui);
         default:
         }
+    }
+
+    private void listQuotes(QuoteList quoteList, TextUi ui) {
+        if ((information.isEmpty())) {
+            listAllQuotes(quoteList, ui);
+        } else if (information.contains(Command.FLAG_AUTHOR) && information.contains(Command.FLAG_REFERENCE)) {
+            try {
+                information = information.substring(1);
+                HashMap<String, String> referenceAndAuthorName = QuoteParser.parseReferenceAndAuthor(information);
+                String reference = referenceAndAuthorName.get(Command.REFERENCE_KEYWORD);
+                String authorName = referenceAndAuthorName.get(Command.AUTHORNAME_KEYWORD);
+                listQuotesByReferenceAndAuthor(quoteList, reference, authorName, ui);
+            } catch (QuotesifyException e) {
+                System.out.println(e.getMessage());
+            }
+        } else if (information.contains(Command.FLAG_AUTHOR)) {
+            String authorName = QuoteParser.parseListWithAuthor(information);
+            listQuotesByAuthor(quoteList, authorName, ui);
+        } else {
+            String reference = QuoteParser.parseListWithReference(information);
+            listQuotesByReference(quoteList, reference, ui);
+        }
+    }
+
+    private void listQuotesByReferenceAndAuthor(QuoteList quoteList, String reference, String authorName, TextUi ui) {
+        ui.printAllQuotesByReferenceAndAuthor(quoteList, reference, authorName);
+    }
+
+    private void listAllQuotes(QuoteList quoteList, TextUi ui) {
+        ui.printAllQuotes(quoteList);
+    }
+
+    private void listQuotesByAuthor(QuoteList quoteList, String authorName, TextUi ui) {
+        ui.printAllQuotesByAuthor(quoteList, authorName);
+    }
+
+    private void listQuotesByReference(QuoteList quoteList, String reference, TextUi ui) {
+        ui.printAllQuotesByReference(quoteList, reference);
     }
 
     private void listRatings(RatingList ratingList, TextUi ui) {

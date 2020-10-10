@@ -3,6 +3,7 @@ package seedu.duke.ui;
 import seedu.duke.book.Book;
 import seedu.duke.category.Category;
 import seedu.duke.category.CategoryList;
+import seedu.duke.quote.Quote;
 import seedu.duke.quote.QuoteList;
 import seedu.duke.rating.Rating;
 import seedu.duke.rating.RatingList;
@@ -31,7 +32,7 @@ public class TextUi {
     private static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
             + " Here are your rated books!";
     private static final String LIST_SPECIFIED_RATING_MESSAGE = "Here are the books you rated as %d star!";
-
+    private static final String LIST_QUOTES = "Here are the quotes: ";
 
     private final Scanner in;
 
@@ -62,7 +63,7 @@ public class TextUi {
     }
 
     public void printAllQuotes(QuoteList quotes) {
-        System.out.println("Here are your quotes:");
+        System.out.println(LIST_QUOTES);
         System.out.println(quotes);
     }
 
@@ -117,6 +118,34 @@ public class TextUi {
         for (Rating rating : ratings.getList()) {
             if (rating.getRating() == ratingToList) {
                 System.out.println(rating.getTitleOfRatedBook());
+            }
+        }
+    }
+
+
+    public void printAllQuotesByAuthor(QuoteList quoteList, String authorName) {
+        System.out.println(LIST_QUOTES);
+        for (Quote quote : quoteList.getList()) {
+            if (quote.getAuthorName().equals(authorName)) {
+                System.out.println(quote.toString());
+            }
+        }
+    }
+
+    public void printAllQuotesByReference(QuoteList quoteList, String reference) {
+        System.out.println(LIST_QUOTES);
+        for (Quote quote : quoteList.getList()) {
+            if (quote.getReference().equals(reference)) {
+                System.out.println(quote.toString());
+            }
+        }
+    }
+
+    public void printAllQuotesByReferenceAndAuthor(QuoteList quoteList, String reference, String authorName) {
+        System.out.println(LIST_QUOTES);
+        for (Quote quote : quoteList.getList()) {
+            if (quote.getReference().equals(reference) && quote.getAuthorName().equals(authorName)) {
+                System.out.println(quote.toString());
             }
         }
     }
