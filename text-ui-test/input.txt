@@ -1,3 +1,4 @@
+help
 test
 list
 exit

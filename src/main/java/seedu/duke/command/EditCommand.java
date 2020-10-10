@@ -33,8 +33,8 @@ public class EditCommand extends Command {
             + "Parameters: " + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE] "
             + PREFIX_DATETIME + " DATE_TIME "
-            + "[" + PREFIX_RECURRING + " RECURRING] "
-            + "[" + PREFIX_REMIND + " REMIND]";
+            + "[" + PREFIX_DELIMITER + PREFIX_RECURRING + " RECURRING] "
+            + "[" + PREFIX_DELIMITER + PREFIX_REMIND + " REMIND]";
 
     private int index;
     private Note note;
