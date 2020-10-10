@@ -1,12 +1,29 @@
 package seedu.financeit.manualtracker.subroutine;
 
+import seedu.financeit.common.CommandPacket;
+import seedu.financeit.common.Constants;
 import seedu.financeit.common.ItemList;
+import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.TablePrinter;
+import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.ParamChecker;
+
+import java.util.ArrayList;
 
 public class EntryList extends ItemList {
-
-    public void checkDuplicates() {
-
+    public EntryList() {
+        defaultDateTimeFormat = "time";
+        super.requiredParams = new ArrayList<>() {
+            {
+                add("/time");
+                add("/cat");
+                add("/amt");
+                add("-i");
+                add("-e");
+                add("/id");
+                add("/desc");
+            }
+        };
     }
 
     @Override
@@ -21,6 +38,28 @@ public class EntryList extends ItemList {
             }
         }
         TablePrinter.printList();
+    }
+
+    @Override
+    public boolean isValidItem() {
+        return (this.itemQueue.size() == 1);
+    }
+
+    @Override
+    public void handleParam(CommandPacket packet, String paramType)
+        throws ParseFailParamException {
+        switch (paramType) {
+        case ParamChecker.PARAM_INDEX:
+            int index = paramChecker.checkAndReturnIndex(paramType, this.items);
+            this.itemQueue.add(this.getItemFromIndex(index));
+            break;
+        default:
+            if (!super.requiredParams.contains(paramType)) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    paramChecker.getUnrecognizedParamMessage(paramType));
+            }
+            break;
+        }
     }
 }
 

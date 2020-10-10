@@ -1,14 +1,15 @@
 package seedu.financeit.common;
 
+import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.DuplicateInputException;
+import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
-import seedu.financeit.ui.UiManager;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public abstract class ItemList<T extends Item> {
-
+public abstract class ItemList<T extends Item> extends ParamHandler {
+    protected ArrayList<T> itemQueue = new ArrayList<>();
     protected ArrayList<T> items = new ArrayList<>();
 
     public ItemList() {
@@ -18,18 +19,24 @@ public abstract class ItemList<T extends Item> {
         checkDuplicates(item);
         item.setIndex(this.getItemsSize());
         this.items.add(item);
-        UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
-                String.format("%s is added to the list!", item.getName()));
+    }
+
+    public void setItemQueue(CommandPacket packet)
+        throws InsufficientParamsException, ItemNotFoundException, ConflictingItemReference {
+        handleParams(packet);
+    }
+
+    public Item getItemQueue() {
+        Item output =  this.itemQueue.remove(0);
+        itemQueue.clear();
+        return output;
     }
 
     public int getItemsSize() {
         return this.items.size();
     }
 
-    public T getItemFromIndex(int index) throws IndexOutOfBoundsException {
-        if (index < 0 || index >= this.getItemsSize()) {
-            throw new IndexOutOfBoundsException();
-        }
+    public T getItemFromIndex(int index) {
         return this.items.get(index);
     }
 
@@ -52,10 +59,6 @@ public abstract class ItemList<T extends Item> {
 
     public void removeItem(T item) {
         this.items.remove(item);
-    }
-
-    public T getLedgerByIndex(int index) {
-        return this.items.get(index);
     }
 
     public abstract void printList(String... itemName);
