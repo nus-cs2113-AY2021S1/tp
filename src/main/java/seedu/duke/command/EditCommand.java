@@ -3,15 +3,7 @@ package seedu.duke.command;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.timetable.Event;
 
-import static seedu.duke.util.PrefixSyntax.PREFIX_CONTENT;
-import static seedu.duke.util.PrefixSyntax.PREFIX_DATETIME;
-import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
-import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
-import static seedu.duke.util.PrefixSyntax.PREFIX_LINE;
-import static seedu.duke.util.PrefixSyntax.PREFIX_RECURRING;
-import static seedu.duke.util.PrefixSyntax.PREFIX_REMIND;
-import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
-import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
+import static seedu.duke.util.PrefixSyntax.*;
 
 /**
  * Edits a Note in the Notebook or an Event from the Timetable.

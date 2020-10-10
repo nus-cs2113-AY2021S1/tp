@@ -27,8 +27,6 @@ import seedu.duke.data.timetable.DailyEvent;
 import seedu.duke.data.timetable.Event;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 import seedu.duke.data.timetable.MonthlyEvent;
 import seedu.duke.data.timetable.RecurringEvent;
@@ -37,19 +35,16 @@ import seedu.duke.data.timetable.YearlyEvent;
 import seedu.duke.ui.InterfaceManager;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_END;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELETE_LINE;
-import static seedu.duke.util.PrefixSyntax.PREFIX_RECURRING_EVENT;
-import static seedu.duke.util.PrefixSyntax.PREFIX_REMIND_EVENT;
+import static seedu.duke.util.PrefixSyntax.PREFIX_RECURRING;
+import static seedu.duke.util.PrefixSyntax.PREFIX_REMIND;
 import static seedu.duke.util.PrefixSyntax.STRING_NEW_LINE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
-import static seedu.duke.util.PrefixSyntax.PREFIX_RECURRING;
-import static seedu.duke.util.PrefixSyntax.PREFIX_REMIND;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TIMING;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
@@ -276,7 +271,7 @@ public class Parser {
      * @throws SystemException Occurs when information provided by the tags are blank,wrong or do not have a default value.
      */
     private Command prepareAddEvent(String userMessage) throws SystemException {
-        // add-e eventTitle /t timing /rec occurrance /rem time before (default same day)
+        // add-e eventTitle /t timing /rec occurrence /rem time before (default same day)
 
         String title = "";
         LocalDateTime dateTime = null;
@@ -296,10 +291,10 @@ public class Parser {
                     String timingString = checkBlank(infoDetails[1], SystemException.ExceptionType.EXCEPTION_MISSING_TIMING);
                     dateTime = DateTimeManager.dateTimeParser(timingString);
                     break;
-                case PREFIX_REMIND_EVENT:
+                case PREFIX_REMIND:
                     toRemind = true;
                     break;
-                case PREFIX_RECURRING_EVENT:
+                case PREFIX_RECURRING:
                     isRecurring = true;
                     try {
                         recurringType = checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_RECURRING_TYPE).toLowerCase();

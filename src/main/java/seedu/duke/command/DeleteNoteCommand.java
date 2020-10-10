@@ -13,7 +13,7 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 /**
  * Deletes a Note from the Notebook or an Event from the Timetable.
  */
-public class    DeleteNoteCommand extends Command {
+public class DeleteNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-n";
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Note deleted: ";
