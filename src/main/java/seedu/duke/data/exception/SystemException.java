@@ -13,7 +13,8 @@ public class SystemException extends Exception {
         EXCEPTION_DUPLICATE_NOTE("This note already exists in the notebook!"),
         EXCEPTION_MISSING_NOTE("This note does not exists in the notebook!"),
         EXCEPTION_MISSING_TIMING("This event does not have a timing specified!"),
-        EXCEPTION_WRONG_TIMING("Your input has a wrong format for the date time input. Please follow the yyyy-MM-dd HH:mm format with the \"-\" and \":\""),
+        EXCEPTION_WRONG_TIMING("Your input has a wrong format for the date time input. "
+                + "Please follow the yyyy-MM-dd HH:mm format with the \"-\" and \":\""),
         EXCEPTION_MISSING_TAG_PREFIX("Missing tag prefix!"),
         EXCEPTION_MISSING_TAG("Missing tag name!"),
         EXCEPTION_MISSING_INDEX_PREFIX("Missing index prefix!"),

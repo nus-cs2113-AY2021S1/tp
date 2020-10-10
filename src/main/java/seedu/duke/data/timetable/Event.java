@@ -1,5 +1,7 @@
 package seedu.duke.data.timetable;
 
+import seedu.duke.ui.InterfaceManager;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -90,6 +92,8 @@ public class Event {
     }
 
     public String toString() {
-        return String.format("Event: %s\nDate: %s\nTime: %s\nRepeating: %b", title, date.toString(), time.toString(), isRecurring);
+        String lineSep = InterfaceManager.LS;
+        return String.format("Event: %s%sDate: %s%sTime: %s%sRepeating: %b", title, lineSep, date.toString(), lineSep,
+                time.toString(), lineSep, isRecurring);
     }
 }
