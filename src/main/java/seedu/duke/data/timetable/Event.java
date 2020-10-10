@@ -93,7 +93,7 @@ public class Event {
 
     public String toString() {
         String titleString = "Event: " + title;
-        String dateString = "Date: " + date.toString() + "\tTime: " + time.toString();
+        String dateString = "Date: " + date.toString() + "Time: " + time.toString();
         String remindString = "Reminder: " + isToRemind;
         String repeatingString = "Repeating: " + isRecurring;
         String lineSeparator = InterfaceManager.LS;
