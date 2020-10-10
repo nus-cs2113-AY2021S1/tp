@@ -23,7 +23,7 @@ public class FilterCommandSlicer {
             filterType = FilterType.WORD_TYPE;
         } else if (cutCommand.toLowerCase().trim().startsWith("start")) {
             filterType = FilterType.STARTING_STRING;
-        } else if (cutCommand.toLowerCase().trim().startsWith("contain")) {
+        } else if (cutCommand.toLowerCase().trim().startsWith("include")) {
             filterType = FilterType.CONTAINING_STRING;
         } else {
             throw new FilterCommandException();
@@ -56,6 +56,10 @@ public class FilterCommandSlicer {
         while (index >= 0) {
             startStrings.add(command.substring(index + 1, index + 2));
             index = command.indexOf("-", index + 1);
+        }
+
+        if (startStrings.size() == 0) {
+            throw new FilterCommandException();
         }
         return (String[]) startStrings.toArray();
     }
