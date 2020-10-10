@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class EntryTracker {
     private static Ledger currLedger;
     private static EntryList entryList;
-    private static CommandPacket packet;
+    public static CommandPacket packet;
 
     public static void setCurrLedger(Ledger ledger) {
         currLedger = ledger;
@@ -264,7 +264,7 @@ public class EntryTracker {
         return null;
     }
 
-    private static FiniteStateMachine.State handleCreateEntry() {
+    public static FiniteStateMachine.State handleCreateEntry() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry entry;
         Double amount;

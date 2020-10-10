@@ -12,12 +12,12 @@ public class Financeit {
     public static void main(String[] args) {
         System.out.println(RegexMatcher.alphabetMatcher("abc").find());
         while (true) {
-            MenuPrinter.printMainMenu();
             try {
                 SaveManager.load();
             } catch (Exception m) {
                 MenuPrinter.prompt = "An exception has occurred: " + m;
             }
+            MenuPrinter.printMainMenu();
             CommandPacket input = UiManager.handleInput();
             UiManager.refreshPage();
             switch (input.getCommandString()) {
