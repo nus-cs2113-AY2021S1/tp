@@ -22,6 +22,7 @@ public class Parser {
             storage.appendToFile(input);
             break;
         case "addtime":
+            t.addTime(input);
             //methods
             //storage.appendToFile(input);
             break;
@@ -38,6 +39,7 @@ public class Parser {
             //storage.appendToFile(input);
             break;
         case "minus":
+            t.minusTime(input);
             //methods
             //storage.appendToFile(input);
             break;
