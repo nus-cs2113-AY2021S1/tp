@@ -32,7 +32,7 @@ public class Ui {
      * Greets existing user upon opening up application.
      */
     public void greetExisting(UserProfile userProfile) {
-        String userName = userProfile.name;
+        String userName = userProfile.getFancyName();
         showLogo();
         System.out.println("Welcome Back, " + userName);
         System.out.println();

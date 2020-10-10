@@ -38,8 +38,6 @@ public class Duke {
             ui.greetExisting(userProfile);
         }
 
-        System.out.println("Hello " + userProfile.getFancyName() + "!");
-
         addAnime();
 
         try {
