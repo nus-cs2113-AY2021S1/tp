@@ -12,6 +12,7 @@ import seedu.duke.quote.QuoteList;
 import seedu.duke.rating.Rating;
 import seedu.duke.rating.RatingList;
 import seedu.duke.rating.RatingParser;
+import seedu.duke.todo.ToDoList;
 import seedu.duke.ui.TextUi;
 
 import java.util.ArrayList;
