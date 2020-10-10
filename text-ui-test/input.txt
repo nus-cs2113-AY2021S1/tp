@@ -1,5 +1,6 @@
 helloooo
 add -b book1 /by me
+delete -b book1 /by me
 add -q quote1
 add -c action -b book1
 add -c motivational -q 1
