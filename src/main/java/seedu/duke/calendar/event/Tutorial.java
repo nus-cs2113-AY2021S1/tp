@@ -14,6 +14,8 @@ public class Tutorial extends SchoolEvent {
 
     private static final String TUTORIAL_FILE_SYMBOL = "TUT";
     private static final String SEPARATOR = "|";
+    public static final String TICK_SYMBOL = "/";
+    public static final String CROSS_SYMBOL = "X";
 
     /**
      * A Constructor of a tutorial object.
@@ -28,6 +30,29 @@ public class Tutorial extends SchoolEvent {
         eventType = "TUT";
     }
 
+    /**
+     * Check whether the tutorial is over.
+     *
+     * @return whether the tutorial is over
+     */
+    public boolean getIsOver() {
+        if (date.isBefore(LocalDate.now())) {
+            return true;
+        } else if (date.isEqual(LocalDate.now()) && time.isBefore(LocalTime.now())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Show whether the tutorial is over.
+     *
+     * @return whether the tutorial is over
+     */
+    public String getIcon() {
+        return (getIsOver() ? TICK_SYMBOL : CROSS_SYMBOL);
+    }
 
     /**
      * Describe the tutorial event.
@@ -36,8 +61,9 @@ public class Tutorial extends SchoolEvent {
      */
     @Override
     public String toString() {
-        return "[TUT]" +  moduleCode + " " + date.format(DateTimeFormatter.ofPattern("dd-MM-yy E")) + " "
-                + time.format(DateTimeFormatter.ofPattern("h:mma"))
+        return "[TUT]" +  "[" + getIcon() + "] " + moduleCode + " "
+                + date.format(DateTimeFormatter.ofPattern("dd-MM-yy E"))
+                + " " + time.format(DateTimeFormatter.ofPattern("h:mma"))
                 + " (" + venue + ")";
     }
 

@@ -12,6 +12,8 @@ public class Lecture extends SchoolEvent {
 
     private static final String LECTURE_FILE_SYMBOL = "LEC";
     private static final String SEPARATOR = "|";
+    public static final String TICK_SYMBOL = "/";
+    public static final String CROSS_SYMBOL = "X";
 
     /**
      * A Constructor of a lecture object.
@@ -24,8 +26,32 @@ public class Lecture extends SchoolEvent {
     public Lecture(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
         eventType = "LEC";
+        isOver = false;
     }
 
+    /**
+     * Check whether the lecture is over.
+     *
+     * @return whether the tutorial is over
+     */
+    public boolean getIsOver() {
+        if (date.isBefore(LocalDate.now())) {
+            return true;
+        } else if (date.isEqual(LocalDate.now()) && time.isBefore(LocalTime.now())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Show whether the lab is over.
+     *
+     * @return whether the lab is over
+     */
+    public String getIcon() {
+        return (getIsOver() ? TICK_SYMBOL : CROSS_SYMBOL);
+    }
 
     /**
      * Describe the lecture event.
@@ -34,8 +60,10 @@ public class Lecture extends SchoolEvent {
      */
     @Override
     public String toString() {
-        return "[LEC] " + moduleCode + " " + date.format(DateTimeFormatter.ofPattern("dd-MM-yy E")) + " "
-                + time.format(DateTimeFormatter.ofPattern("h:mma"))
+
+        return "[LEC]" + "[" + getIcon() + "] " + moduleCode + " "
+                + date.format(DateTimeFormatter.ofPattern("dd-MM-yy E"))
+                + " " + time.format(DateTimeFormatter.ofPattern("h:mma"))
                 + " (" + venue + ")";
     }
 
