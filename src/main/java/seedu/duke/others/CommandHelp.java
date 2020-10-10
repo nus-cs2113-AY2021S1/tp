@@ -6,7 +6,7 @@ import seedu.duke.backend.UserInput;
 public class CommandHelp extends Command {
     @Override
     public String execute() {
-        return "Commands: hr add, hr delete, events add, events delete, finance add, finance delete, help, bye";
+        return "Commands: hr add, hr delete, hr list, events add, events delete, finance add, finance delete, help, bye";
     }
 
     public int validate(UserInput input) {
