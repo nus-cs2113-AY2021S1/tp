@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * Represents a TimeTable object. Contains all the events.
@@ -12,18 +13,17 @@ import java.util.List;
 public class Timetable {
 
     private ArrayList<Event> events;
-    private HashMap<Integer, ArrayList<Event>> reminders;
-    private ArrayList<Event> dailyEvents;
+    private HashMap<Integer, ArrayList<Event>> thisYearTimetable;
+    private ArrayList<DailyEvent> dailyEvents;
+    private ArrayList<WeeklyEvent> weeklyEvents;
+    private ArrayList<MonthlyEvent> monthlyEvents;
+    private ArrayList<YearlyEvent> yearlyEvents;
 
     /**
      * Creates a new list of events.
      */
     public Timetable() {
         events = new ArrayList<>();
-        reminders = new HashMap<>();
-        for (int i = 0; i < Calendar.DAY_OF_WEEK; i++) {
-            reminders.put(i, new ArrayList<Event>());
-        }
     }
 
     /**
@@ -59,9 +59,6 @@ public class Timetable {
      */
     public void deleteEvent(int index) {
         Event event = events.get(index);
-        if (event.getToRemind()) {
-            removeReminder(event);
-        }
         this.events.remove(index);
     }
 
@@ -74,10 +71,8 @@ public class Timetable {
         return date.getDayOfWeek().getValue();
     }
 
-    public void removeReminder(Event e) {
-        int day = e.getDate().getDayOfWeek().getValue() - 1;
-        List<Event> reminderList = reminders.get(day);
-        reminderList.remove(e);
+    public ArrayList<Event> getMonthTimetable(int year, int month) {
+        return new ArrayList<Event>();
     }
 
 }
