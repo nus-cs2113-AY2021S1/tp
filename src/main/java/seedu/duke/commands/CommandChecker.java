@@ -4,22 +4,32 @@ import java.util.Scanner;
 
 public enum CommandChecker {
     HELP,
-    SETTINGS,
-    QNA,
-    MCQ,
-    FILLBLANK,
-    LIST,
-    HISTORY,
+    USERNAME,
+    DIVIDER,
+
+    NOUN,
+    VERB,
+    ADJ,
+    LIST_WORDS,
+    FILTER_WORDS,
+
+    NAME,
+    GEN_NAME,
+    LIST_NAMES,
+    FILTER_NAMES,
+
+    BUNNY,
+    LIST_BUNNY,
+    FILTER_BUNNY,
+
     STATS,
-    REVIEW,
-    QUIZ,
-    CLEAR,
+    DELETE,
     EXIT,
     SCENE,
     TOPIC,
     UNRECOGNISED;
 
-    public static CommandChecker commandType;
+    public static CommandChecker commandChecker;
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static String getUserInput() {
@@ -30,13 +40,19 @@ public enum CommandChecker {
             System.out.println("Oops! Command cannot be empty");
             inputLine = SCANNER.nextLine();
         }
+<<<<<<< HEAD
         String[] words = inputLine.split(" ");
         String command = words[0];
         commandType = CommandChecker.extractCommandType(command);
+=======
+
+        commandChecker = extractCommandType(inputLine.trim());
+>>>>>>> df66c260dbe3273b7530aad4a6103ffe3a1370a4
 
         return inputLine.trim();
     }
 
+<<<<<<< HEAD
     public static CommandChecker extractCommandType(String userCommand) {
         if (userCommand.equalsIgnoreCase("help")) {
             return CommandChecker.HELP;
@@ -61,6 +77,37 @@ public enum CommandChecker {
         } else if (userCommand.equalsIgnoreCase("clear")) {
             return CommandChecker.CLEAR;
         } else if (userCommand.equalsIgnoreCase("exit")) {
+=======
+    /**
+     *  Figure out the command type from userInput.
+     *
+     * @param userInput string containing user input command
+     * @return the type of command detected
+     */
+    public static CommandChecker extractCommandType(String userInput) {
+        if (userInput.toLowerCase().trim().startsWith("help")) {
+            return CommandChecker.HELP;
+        } else if (userInput.toLowerCase().trim().startsWith("username")) {
+            return CommandChecker.USERNAME;
+        } else if (userInput.toLowerCase().trim().startsWith("divider")) {
+            return CommandChecker.DIVIDER;
+
+        } else if (userInput.toLowerCase().trim().startsWith("noun")) {
+            return CommandChecker.NOUN;
+        } else if (userInput.toLowerCase().trim().startsWith("verb")) {
+            return CommandChecker.VERB;
+        } else if (userInput.toLowerCase().trim().startsWith("adj")) {
+            return CommandChecker.ADJ;
+        } else if (userInput.toLowerCase().trim().startsWith("list words")) {
+            return CommandChecker.LIST_WORDS;
+
+        } else if (userInput.toLowerCase().trim().startsWith("bunny")) {
+            return CommandChecker.BUNNY;
+        } else if (userInput.toLowerCase().trim().startsWith("list bunny")) {
+            return CommandChecker.LIST_BUNNY;
+
+        } else if (userInput.toLowerCase().trim().startsWith("exit")) {
+>>>>>>> df66c260dbe3273b7530aad4a6103ffe3a1370a4
             return CommandChecker.EXIT;
         } else if (userCommand.equalsIgnoreCase("scene")) {
             return CommandChecker.SCENE;
@@ -70,4 +117,5 @@ public enum CommandChecker {
             return CommandChecker.UNRECOGNISED;
         }
     }
+
 }

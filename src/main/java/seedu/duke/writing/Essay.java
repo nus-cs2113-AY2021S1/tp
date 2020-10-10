@@ -3,7 +3,7 @@ package seedu.duke.essay;
 import seedu.duke.history.History;
 import seedu.duke.writing.Writings;
 
-public class Essay extends Writings {
+public class Essay implements Writings {
     private String content;
 
     public String getContent() {
@@ -18,6 +18,7 @@ public class Essay extends Writings {
         super.author = author;
     }
 
+    @Override
     public String getAuthor() {
         return super.author;
     }

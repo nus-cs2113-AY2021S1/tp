@@ -2,6 +2,10 @@ package seedu.duke.ui;
 
 import seedu.duke.constants.ClickerMessages;
 
+import static seedu.duke.constants.Logos.CAT_TEXT_DIVIDER;
+import static seedu.duke.constants.Logos.FENCE_TEXT_DIVIDER;
+import static seedu.duke.constants.Logos.PLAIN_TEXT_DIVIDER;
+
 public class UI {
     public static final String NEWLINE = System.lineSeparator();
 
@@ -105,11 +109,11 @@ public class UI {
     public static String getDivider(int input) {
         String divider = "";
         if (input == 1) {
-            divider = "---------------------------------------------";
+            divider = PLAIN_TEXT_DIVIDER;
         } else if (input == 2) {
-            divider = "=^..^=   =^..^=   =^..^=    =^..^=    =^..^=";
+            divider = CAT_TEXT_DIVIDER;
         } else if (input == 3) {
-            divider = "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-";
+            divider = FENCE_TEXT_DIVIDER;
         }
         return divider;
     }
