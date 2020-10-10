@@ -25,6 +25,10 @@ public class CreateCommand extends Command {
 
     @Override
     public void execute() {
+        insertLocation();
+    }
+
+    public void insertLocation() {
         try {
             homeLocationsList.addLocation(usersEnteredLocation);
         } catch (InvalidAddtionOfLocation e) {
