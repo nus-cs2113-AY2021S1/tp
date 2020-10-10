@@ -8,6 +8,8 @@ import seedu.duke.category.CategoryParser;
 import seedu.duke.lists.ListManager;
 import seedu.duke.quote.Quote;
 import seedu.duke.quote.QuoteList;
+import seedu.duke.rating.Rating;
+import seedu.duke.rating.RatingList;
 import seedu.duke.ui.TextUi;
 
 import java.util.ArrayList;
@@ -38,9 +40,32 @@ public class DeleteCommand extends Command {
             BookList books = (BookList) listManager.getList(ListManager.BOOK_LIST);
             deleteBook(books, ui, listManager);
             break;
+        case TAG_RATING:
+            RatingList ratings = (RatingList) listManager.getList(ListManager.RATING_LIST);
+            deleteRating(ratings, ui);
+            break;
         default:
         }
     }
+
+    private void deleteRating(RatingList ratings, TextUi ui) {
+        String bookTitle = information.trim();
+        Rating ratingToBeDeleted = null;
+        for (Rating rating : ratings.getList()) {
+            if (rating.getTitleOfRatedBook().equals(bookTitle)) {
+                ratingToBeDeleted = rating;
+                break;
+            }
+        }
+        if (ratingToBeDeleted == null) {
+            System.out.println(ERROR_RATING_NOT_FOUND);
+            return;
+        }
+        ratings.delete(ratings.getList().indexOf(ratingToBeDeleted));
+        ui.printDeleteRating(bookTitle);
+    }
+
+
 
     private void deleteBook(BookList books, TextUi ui, ListManager listManager) {
         String[] titleAndAuthor = information.split("/by");
