@@ -19,5 +19,14 @@ public abstract class Command {
 
     public abstract void execute(TextUi ui, ListManager listManager);
 
+    public static final String FLAG_AUTHOR = "/by";
+    public static final String FLAG_REFERENCE = "/from";
+    public static final String FLAG_DELIMITER = "/";
+
+    public static final String REFERENCE_KEYWORD = "reference";
+    public static final String AUTHORNAME_KEYWORD = "authorName";
+
+    public static final String ERROR_LIST_QUOTE_UNKOWN_COMMAND = "I do not understand that command. Try again";
+
     public abstract boolean isExit();
 }

@@ -37,6 +37,10 @@ public class Quote {
         this.author = author;
     }
 
+    public String getAuthorName() {
+        return author.getName();
+    }
+
     public String getQuote() {
         return quote;
     }

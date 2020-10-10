@@ -57,7 +57,7 @@ public class AddCommand extends Command {
     }
 
     private Book addBook(BookList books) {
-        String[] titleAndAuthor = information.split("/by", 2);
+        String[] titleAndAuthor = information.split(Command.FLAG_AUTHOR, 2);
         Author author = new Author(titleAndAuthor[1].trim());
         Book newBook = new Book(author, titleAndAuthor[0].trim());
         books.add(newBook);
@@ -67,7 +67,7 @@ public class AddCommand extends Command {
 
     private void addQuote(QuoteList quotes, TextUi ui) {
         try {
-            Quote quote = QuoteParser.parseParameters(information);
+            Quote quote = QuoteParser.parseAddParameters(information);
             quotes.add(quote);
             ui.printAllQuotes(quotes);
         } catch (QuotesifyException e) {

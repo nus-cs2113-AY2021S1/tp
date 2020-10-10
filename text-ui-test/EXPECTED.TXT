@@ -13,8 +13,8 @@ What would you like to do with Quotesify?
 The book [book1 by me] has been added!
 
 What would you like to do with Quotesify?
-Here are your quotes:
-"quote1"
+Here are the quotes:
+1. "quote1"
 
 
 What would you like to do with Quotesify?
