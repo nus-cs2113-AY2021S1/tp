@@ -34,16 +34,7 @@ public class QuoteList extends QuotesifyList<Quote> {
     public String toString() {
         String quotesToReturn = "";
         for (Quote quote : quotes) {
-            String quoteToAppend = '\"' + quote.getQuote() + '\"';
-            String additionalInformation = "";
-            if (quote.getAuthor() != null && quote.getReference() != null) {
-                additionalInformation = " -" + quote.getAuthor().getName() + ", " + quote.getReference();
-            } else if (quote.getAuthor() != null) {
-                additionalInformation = " -" + quote.getReference();
-            } else if (quote.getReference() != null) {
-                additionalInformation = " -" + quote.getReference();
-            }
-            quotesToReturn += (quoteToAppend + additionalInformation + System.lineSeparator());
+            quotesToReturn += quote.toString();
         }
         return quotesToReturn;
     }
