@@ -9,7 +9,7 @@ import java.time.LocalTime;
  */
 public class Activity extends Event {
     private String details;
-    protected String taskType;
+    protected String eventType;
 
     private static final String EVENT_FILE_SYMBOL = "E";
     private static final String SEPARATOR = "|";
@@ -17,7 +17,7 @@ public class Activity extends Event {
     public Activity(String details, LocalDate date, LocalTime time, String venue) {
         super(date, time, venue);
         this.details = details;
-        taskType = "ACT";
+        eventType = "ACT";
     }
 
 
@@ -30,9 +30,9 @@ public class Activity extends Event {
     }
 
     @Override
-    /** Returns the respective task type. */
-    public String getTaskType() {
-        return taskType;
+    /** Returns the respective event type. */
+    public String getType() {
+        return eventType;
     }
 
     @Override
