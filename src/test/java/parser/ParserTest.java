@@ -38,4 +38,23 @@ class ParserTest {
         final String input = "exit args";
         assertThrows(InvalidInputException.class, () -> parser.parse(input));
     }
+
+    @Test
+    public void parse_removeCommandEmptyArgs_exception() {
+        Parser parser = new Parser();
+        final String[] inputs = {
+                "remove",
+                "remove ",
+        };
+        for (String input : inputs) {
+            assertThrows(InvalidInputException.class, () -> parser.parse(input));
+        }
+    }
+
+    @Test
+    public void parse_removeCommandNonIntegerArgs_exception() {
+        Parser parser = new Parser();
+        String input = "remove two";
+        assertThrows(InvalidInputException.class, () -> parser.parse(input));
+    }
 }
