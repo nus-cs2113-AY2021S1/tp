@@ -45,6 +45,7 @@ public class ListCommand extends Command {
             QuoteList quoteListList = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
             listQuotes(quoteListList, ui);
         default:
+
         }
     }
 
@@ -61,7 +62,7 @@ public class ListCommand extends Command {
             } else if (information.contains(Command.FLAG_AUTHOR)) {
                 String authorName = QuoteParser.parseListWithAuthor(information);
                 listQuotesByAuthor(quoteList, authorName, ui);
-            } else if (information.contains(Command.FLAG_REFERENCE)){
+            } else if (information.contains(Command.FLAG_REFERENCE)) {
                 String reference = QuoteParser.parseListWithReference(information);
                 listQuotesByReference(quoteList, reference, ui);
             } else {

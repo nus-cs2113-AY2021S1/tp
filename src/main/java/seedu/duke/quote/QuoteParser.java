@@ -10,8 +10,9 @@ public class QuoteParser {
     public static final String ERROR_MISSING_QUOTE = "I don't see the quote anywhere";
     public static final String ERROR_MISSING_AUTHOR = "Author name cannot be empty if \"/by\" flag is present";
     public static final String ERROR_MISSING_REFERENCE = "Reference field cannot be empty if \"/from\" flag is present";
-    public static final String ERROR_MISSING_REFERENCE_OR_AUTHOR = "Author name and Reference cannot be empty if " +
-            "\"/by\" flag and \"/from\" flag are present";
+    public static final String ERROR_MISSING_REFERENCE_OR_AUTHOR = "Author name and Reference cannot be empty if "
+            + "\"/by\" flag and \"/from\" flag are present";
+
     public static Quote parseAddParameters(String userInput) throws QuotesifyException {
         if (userInput.contains(Command.FLAG_REFERENCE) && userInput.contains(Command.FLAG_AUTHOR)) {
             return parseQuoteWithReferenceAndAuthor(userInput);
@@ -119,7 +120,7 @@ public class QuoteParser {
     public static String parseListWithAuthor(String userInput) throws QuotesifyException {
         System.out.println(userInput);
         String[] authorFlagAndName = userInput.split(Command.FLAG_AUTHOR);
-        try{
+        try {
             String authorName = authorFlagAndName[1].trim();
             return authorName;
         } catch (ArrayIndexOutOfBoundsException e) {
