@@ -140,7 +140,6 @@ public class Parser {
 
         // Splits the prefix and the remaining content
         for (String s : splitMessage) {
-            System.out.println(s);
             splitMessageContent.add(s.split(STRING_SPLIT_DELIMITER, 2));
         }
 
@@ -296,9 +295,7 @@ public class Parser {
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_TIMING);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            return new IncorrectCommand("No description found after a tag!");
-        } catch (SystemException e) {
-            throw e;
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
         }
 
 

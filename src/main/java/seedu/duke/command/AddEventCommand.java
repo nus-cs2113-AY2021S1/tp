@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.timetable.Event;
+import seedu.duke.ui.InterfaceManager;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_RECURRING;
@@ -18,16 +19,19 @@ public class AddEventCommand extends Command{
             + "[" + PREFIX_DELIMITER + PREFIX_RECURRING + " Frequency (daily, weekly, monthly, annually) " + "]"
             + "[" + PREFIX_DELIMITER + PREFIX_REMIND + " [Days before (Default: 1)] " + "]";
 
-    private Event event;
+    private final Event event;
 
     public AddEventCommand(Event e) {
         event = e;
     }
 
+    public static String getCommandUsage() {
+        return COMMAND_USAGE;
+    }
 
     @Override
     public String execute() {
         timetable.addEvent(event);
-        return "Added the following!\n\n" + event.toString();
+        return "Added the following!" + InterfaceManager.LS + InterfaceManager.LS + event.toString();
     }
 }
