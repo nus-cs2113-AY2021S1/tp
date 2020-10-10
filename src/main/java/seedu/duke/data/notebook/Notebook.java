@@ -1,7 +1,5 @@
 package seedu.duke.data.notebook;
 
-import seedu.duke.data.exception.SystemException;
-
 import java.util.ArrayList;
 
 /**
@@ -27,29 +25,45 @@ public class Notebook {
         this.notes = notes;
     }
 
+    /**
+     * Gets a list of notes from existing data.
+     *
+     * @return notes of existing data.
+     */
     public ArrayList<Note> getNotes() {
         return this.notes;
+    }
+
+    public Note getNote(int index) {
+        return notes.get(index);
+    }
+
+    /**
+     * Adds a note into the notebook.
+     */
+    public void addNote(Note note) {
+        notes.add(note);
+    }
+
+    /**
+     * Removes a note from the timetable.
+     */
+    public void deleteNote(int index) {
+        notes.remove(index);
+    }
+
+    /**
+     * Removes a note from the timetable.
+     */
+    public void deleteNote(String title) {
+        notes.removeIf(note -> note.getTitle().equals(title));
     }
 
     public void setNotes(ArrayList<Note> notes) {
         this.notes = notes;
     }
 
-    /**
-     * Adds a note into the notebook.
-     *
-     * @throws SystemException if an error occurs.
-     */
-    public void addNote(Note note) throws SystemException {
-        notes.add(note);
-    }
-
-    /**
-     * Removes a note from the timetable.
-     *
-     * @throws SystemException if an error occurs.
-     */
-    public void deleteNote(int note) throws SystemException {
-        notes.remove(note);
+    public int getSize() {
+        return notes.size();
     }
 }

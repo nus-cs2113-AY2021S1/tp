@@ -39,6 +39,11 @@ public class Note {
         this.tags = tags;
     }
 
+    /**
+     * Gets the title of note from existing data.
+     *
+     * @return title of the note.
+     */
     public String getTitle() {
         return title;
     }
