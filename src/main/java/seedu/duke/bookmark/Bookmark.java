@@ -96,12 +96,13 @@ public class Bookmark {
     }
 
     private void launchUrlForLinux(Runtime rt) throws IOException {
-        String[] browsers = {"epiphany", "firefox", "mozilla", "konqueror", "netscape", "opera", "links", "lynx"};
-        String cmd = "";
-        for (int i = 0; i < browsers.length; i++) {
-            cmd = (i == 0 ? "" : " || ") + browsers[i] + " \"" + url + "\" ";
+        String link;
+        if (url.startsWith("www.")) {
+            link = "https://" + url;
+        } else {
+            link = url;
         }
-        rt.exec(new String[] {"sh", "-c", cmd});
+        rt.exec("xdg-open " + link);
     }
 
     /**

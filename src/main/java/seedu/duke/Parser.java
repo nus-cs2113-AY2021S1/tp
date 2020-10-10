@@ -36,7 +36,6 @@ public class Parser {
 
         if (input.compareToIgnoreCase(ExitCommand.BYE_KW) == 0) {
             command = new ExitCommand();
-
         } else if (input.compareToIgnoreCase(ListCommand.LIST_KW) == 0) {
             command = new ListCommand();
         } else if (input.startsWith(DeleteBookmarkCommand.DEL_KW)) {

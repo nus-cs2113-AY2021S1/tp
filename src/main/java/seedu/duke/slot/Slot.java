@@ -7,7 +7,7 @@ public class Slot {
 
     public static final String MON = "Monday";
     public static final String TUE = "Tuesday";
-    public static final String WED = "Wednesda]y";
+    public static final String WED = "Wednesday";
     public static final String THU = "Thursday";
     public static final String FRI = "Friday";
     public static final String SAT = "Saturday";
