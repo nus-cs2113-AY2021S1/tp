@@ -23,15 +23,15 @@ import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.exception.SystemException.ExceptionType;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
-import seedu.duke.data.timetable.DailyEvent;
 import seedu.duke.data.timetable.Event;
+import seedu.duke.data.timetable.RecurringEvent;
+import seedu.duke.data.timetable.DailyEvent;
+import seedu.duke.data.timetable.WeeklyEvent;
+import seedu.duke.data.timetable.MonthlyEvent;
+import seedu.duke.data.timetable.YearlyEvent;
 
 import java.time.LocalDateTime;
 
-import seedu.duke.data.timetable.MonthlyEvent;
-import seedu.duke.data.timetable.RecurringEvent;
-import seedu.duke.data.timetable.WeeklyEvent;
-import seedu.duke.data.timetable.YearlyEvent;
 import seedu.duke.ui.InterfaceManager;
 
 import java.util.ArrayList;
@@ -75,6 +75,7 @@ public class Parser {
         } catch (ArrayIndexOutOfBoundsException exception) {
             userMessage = null;
         }
+
         try {
             switch (commandString.toLowerCase()) {
             case AddNoteCommand.COMMAND_WORD:
@@ -317,7 +318,7 @@ public class Parser {
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_TIMING);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            return new IncorrectCommand("No description found after a tag!");
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
         }
 
         Event event;
