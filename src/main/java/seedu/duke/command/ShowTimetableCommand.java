@@ -31,7 +31,7 @@ public class ShowTimetableCommand extends Command {
 
         if (input.length() == 4) {
             return "ALL";
-        } else if (input.substring(4 , 5).equals(" ") == false) {
+        } else if (input.substring(4, 5).equals(" ") == false) {
             return null;
         }
 
