@@ -23,6 +23,10 @@ public class Appointment {
         return time;
     }
 
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     public Patient getPatient() {
         return patient;
     }
@@ -53,9 +57,5 @@ public class Appointment {
 
     public void setPrescription(Prescription prescription) {
         this.prescription = prescription;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 }

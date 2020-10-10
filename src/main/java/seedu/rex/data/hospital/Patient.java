@@ -11,11 +11,7 @@ public class Patient {
     private String name;
     private String nric;
     private Date dateOfBirth;
-    private Vector<Appointment> appointmentHistory;
-
-    private enum Gender {
-        MALE, FEMALE
-    }
+    private final Vector<Appointment> appointmentHistory;
 
     Patient(String name, String nric, Date dateOfBirth) {
         setName(name);
@@ -52,5 +48,9 @@ public class Patient {
 
     public Vector<Appointment> getAppointmentHistory() {
         return appointmentHistory;
+    }
+
+    private enum Gender {
+        MALE, FEMALE
     }
 }
