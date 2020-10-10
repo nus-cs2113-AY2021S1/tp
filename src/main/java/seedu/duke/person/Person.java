@@ -166,4 +166,25 @@ public class Person {
     public void setActivityLevel(ActivityLevel newActivityLevel) {
         activityLevel = newActivityLevel;
     }
+
+    /**
+     * Returns a string representation of all information related to the user.
+     * Information includes name, gender, age, height, original weight, target weight and activity level.
+     *
+     * @return A string representation of all information related to the user.
+     */
+    @Override
+    public String toString() {
+        String userInformation = "Hi " + name + "! "
+                + "Here is your information:" + System.lineSeparator()
+                + System.lineSeparator()
+                + "Name: " + name + System.lineSeparator()
+                + "Gender: " + gender.getDescription() + System.lineSeparator()
+                + "Age: " + age + System.lineSeparator()
+                + "Height: " + height + "cm" + System.lineSeparator()
+                + "Original weight: " + originalWeight + "kg" + System.lineSeparator()
+                + "Target weight: " + targetWeight + "kg" + System.lineSeparator()
+                + "Activity level: " + activityLevel.getDescription();
+        return userInformation;
+    }
 }
