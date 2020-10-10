@@ -5,7 +5,7 @@ package seedu.financeit.common; /**
 
 import java.util.HashMap;
 
-public class CommandPacket {
+public class   CommandPacket {
     private String commandString;
     private HashMap paramMap;
     private String rawInput;
