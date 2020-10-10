@@ -1,3 +1,1 @@
-[bedroom 2, br1]
-bedroom 2|ac2|1000|AirConditioner|Off|0.0
-bedroom 2|light2|25|Light|Off|0.0
+[]
