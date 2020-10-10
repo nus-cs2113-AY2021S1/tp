@@ -15,6 +15,10 @@ public class RatingList extends QuotesifyList<Rating> {
         super(ratings);
     }
 
+    public Rating getRating(int index) {
+        return ratings.get(index);
+    }
+
     @Override
     public void add(Rating newRating) {
         ratings.add(newRating);

@@ -1,5 +1,6 @@
 package seedu.duke.category;
 
+import seedu.duke.exception.QuotesifyException;
 import seedu.duke.lists.QuotesifyList;
 
 import java.util.ArrayList;
@@ -24,13 +25,13 @@ public class CategoryList extends QuotesifyList<Category> {
         return false;
     }
 
-    public Category getCategoryByName(String name) {
+    public Category getCategoryByName(String name) throws NullPointerException {
         for (Category category : categories) {
             if (category.getCategoryName().equals(name)) {
                 return category;
             }
         }
-        return null;
+        throw new NullPointerException("\"" + name + "\" does not exist!");
     }
 
     @Override
@@ -45,6 +46,11 @@ public class CategoryList extends QuotesifyList<Category> {
 
     @Override
     public String toString() {
-        return null;
+        String list = "";
+        int index = 0;
+        for (Category category : categories) {
+            list += String.format("%d. %s\n", ++index, category.toString());
+        }
+        return list;
     }
 }

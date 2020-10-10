@@ -2,8 +2,12 @@ package seedu.duke.ui;
 
 import seedu.duke.book.Book;
 import seedu.duke.category.Category;
+import seedu.duke.category.CategoryList;
 import seedu.duke.quote.QuoteList;
+import seedu.duke.rating.Rating;
+import seedu.duke.rating.RatingList;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TextUi {
@@ -17,10 +21,18 @@ public class TextUi {
     private static final String WELCOME_MESSAGE = "Welcome to Quotesify!";
     private static final String GOODBYE_MESSAGE = "Have a nice day!";
     private static final String PROMPT_MESSAGE = "\nWhat would you like to do with Quotesify?";
-    private static final String ADD_BOOK = "This book has been added:";
+    private static final String ADD_BOOK = "The book [%s] has been added!";
+    private static final String DELETE_BOOK = "The book [%s] has been deleted!";
     private static final String ADD_CATEGORY_MESSAGE = "I have tagged \"%s\" category to \"%s\"!";
     private static final String DELETE_CATEGORY_MESSAGE = "I have removed \"%s\" category from \"%s\"!";
     private static final String CATEGORY_SIZE_MESSAGE = "You have a total of %d item(s) tagged as \"%s\".";
+    private static final String LIST_CATEGORIES_MESSAGE = "Here is the list of all categories:";
+    private static final String ADD_RATING_MESSAGE = "You have just rated %s %d star!";
+    public static final String DELETE_RATING_MESSAGE = "Rating for %s has been deleted!";
+    private static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
+            + " Here are your rated books!";
+    private static final String LIST_SPECIFIED_RATING_MESSAGE = "Here are the books you rated as %d star!";
+
 
     private final Scanner in;
 
@@ -43,8 +55,11 @@ public class TextUi {
     }
 
     public void printAddBook(Book book) {
-        System.out.println(ADD_BOOK);
-        System.out.println(book.toString());
+        System.out.printf(ADD_BOOK + "\n", book.toString());
+    }
+
+    public void printDeleteBook(Book book) {
+        System.out.printf(DELETE_BOOK + "\n", book.toString());
     }
 
     public void printAllQuotes(QuoteList quotes) {
@@ -65,14 +80,49 @@ public class TextUi {
     }
 
     public void printRemoveCategoryFromQuote(String quote, String categoryName) {
-        System.out.printf((ADD_CATEGORY_MESSAGE) + "\n", categoryName, quote);
+        System.out.printf((DELETE_CATEGORY_MESSAGE) + "\n", categoryName, quote);
     }
 
     public void printCategorySize(Category category) {
         System.out.printf((CATEGORY_SIZE_MESSAGE) + "\n", category.getSize(), category.getCategoryName());
     }
 
+    public void printAllCategories(CategoryList categoryList) {
+        System.out.println(LIST_CATEGORIES_MESSAGE);
+        System.out.println(categoryList.toString());
+    }
+
+    public void printCategory(Category category) {
+        System.out.println(category.toString());
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
+
     public void printBook(Book book) {
         System.out.println(book.toString());
+    }
+
+    public void printAddRatingToBook(int ratingScore, String titleOfBookToRate) {
+        System.out.printf((ADD_RATING_MESSAGE) + "\n", titleOfBookToRate, ratingScore);
+    }
+
+    public void printAllRatings(RatingList ratingList) {
+        System.out.println(LIST_ALL_RATINGS_MESSAGE);
+        System.out.println(ratingList.toString());
+    }
+
+    public void printSpecifiedRating(RatingList ratings, int ratingToList) {
+        System.out.printf((LIST_SPECIFIED_RATING_MESSAGE) + "\n", ratingToList);
+        for (Rating rating : ratings.getList()) {
+            if (rating.getRating() == ratingToList) {
+                System.out.println(rating.getTitleOfRatedBook());
+            }
+        }
+    }
+
+    public void printDeleteRating(String bookTitle) {
+        System.out.printf((DELETE_RATING_MESSAGE) + "\n", bookTitle);
     }
 }
