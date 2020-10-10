@@ -1,2 +1,3 @@
 public enum Mode {
+    INITIAL
 }

@@ -16,7 +16,6 @@ public class MainMenu extends Ui {
             "\n" +
             LINE_DIVIDER;
 
-
     public static void printWelcome() {
         System.out.println(WELCOME_MESSAGE);
     }

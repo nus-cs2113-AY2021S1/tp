@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Ui {
-    public static final String LINE_DIVIDER = "==================================================================";
+    public static final String LINE_DIVIDER = "=======================================================================";
 
     /**
      * Receive command input from the user via terminal
@@ -15,5 +15,9 @@ public class Ui {
         command = in.nextLine();
 
         return command;
+    }
+
+    public static void printExit() {
+        System.out.println(LINE_DIVIDER + "\nSee you again soon!!!\n" + LINE_DIVIDER);
     }
 }
