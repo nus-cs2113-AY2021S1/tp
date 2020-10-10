@@ -66,7 +66,7 @@ public class DeleteCommand extends Command {
     }
 
     private void deleteBook(BookList books, TextUi ui, ListManager listManager) {
-        String[] titleAndAuthor = information.split("/by");
+        String[] titleAndAuthor = information.split(FLAG_AUTHOR);
         String bookTitle = titleAndAuthor[0].trim();
 
         RatingList ratings = (RatingList) listManager.getList(ListManager.RATING_LIST);
