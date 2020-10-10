@@ -43,21 +43,20 @@ public enum CommandChecker {
             return CommandChecker.USERNAME;
         } else if (userInput.toLowerCase().trim().startsWith("divider")) {
             return CommandChecker.DIVIDER;
-
         } else if (userInput.toLowerCase().trim().startsWith("noun")) {
             return CommandChecker.NOUN;
         } else if (userInput.toLowerCase().trim().startsWith("verb")) {
             return CommandChecker.VERB;
         } else if (userInput.toLowerCase().trim().startsWith("adj")) {
             return CommandChecker.ADJ;
+        } else if (userInput.toLowerCase().trim().startsWith("filter")) {
+            return CommandChecker.FILTER_WORDS;
         } else if (userInput.toLowerCase().trim().startsWith("list words")) {
             return CommandChecker.LIST_WORDS;
-
         } else if (userInput.toLowerCase().trim().startsWith("bunny")) {
             return CommandChecker.BUNNY;
         } else if (userInput.toLowerCase().trim().startsWith("list bunny")) {
             return CommandChecker.LIST_BUNNY;
-
         } else if (userInput.toLowerCase().trim().startsWith("exit")) {
             return CommandChecker.EXIT;
         } else {
