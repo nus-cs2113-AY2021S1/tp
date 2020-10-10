@@ -17,4 +17,4 @@ slotadd 10:00 12:00 mon cs1231 lecture
 slotadd 1111
 slotadd 10:00 11:00
 slotdelete 1
-bye
+exit
