@@ -1,10 +1,21 @@
 package seedu.duke.bookmark;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BookmarkListTest {
+
+    private BookmarkList bookmarks;
+    private final Bookmark bookmark = new Bookmark("CS2113T", "tutorial", "www.google.com");
+
+    @BeforeEach
+    void init() {
+        bookmarks = new BookmarkList();
+        bookmarks.addBookmark(bookmark);
+    }
+
 
     @Test
     void addBookmark() {
@@ -22,6 +33,7 @@ class BookmarkListTest {
 
     @Test
     void getBookmark() {
+
     }
 
     @Test
@@ -30,5 +42,6 @@ class BookmarkListTest {
 
     @Test
     void deleteBookmark() {
+
     }
 }

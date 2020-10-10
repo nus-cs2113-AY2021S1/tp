@@ -29,10 +29,7 @@ public class Ui {
     }
 
     public void print(String message) {
-        System.out.println(LINE
-                + messagecgvd
-
-                + LINE);
+        System.out.println(LINE + message + LINE);
     }
 
     /**
@@ -78,7 +75,7 @@ public class Ui {
             printUnknownInputMessage();
             break;
         case INVALID_BOOKMARK_NUMBER:
-            //printUseValidTaskNumberMessage();
+            printUseValidTaskNumberMessage(dukeException.getInfo());
             break;
         case WRITE_FILE_ERROR:
             //printErrorWritingToFile();
@@ -95,10 +92,20 @@ public class Ui {
         case INVALID_URL:
             printInvalidUrl();
             break;
+        case INVALID_SLOT_INPUT:
+            printInvalidSlotInput();
+            break;
+        case INVALID_TIME_FORMAT:
+            printInvalidTimeFormat();
+            break;
         default:
             // unable to get dukeExceptionType
             break;
         }
+    }
+
+    private void printUseValidTaskNumberMessage(String info) {
+        print("Please enter a valid index number between 1 and " + info + "\n");
     }
 
     private void printErrorLaunchUrlMessage() {
@@ -120,4 +127,17 @@ public class Ui {
     private void printUnknownInputMessage() {
         print("Unknown input\n");
     }
+
+    private void printMatchingBookmarks(String message) {
+        print("Invalid url\n");
+    }
+
+    private void printInvalidSlotInput() {
+        print("Invalid slot input\n");
+    }
+
+    private void printInvalidTimeFormat() {
+        print("Invalid time format\n");
+    }
+
 }

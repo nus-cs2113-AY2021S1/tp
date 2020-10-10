@@ -1,13 +1,14 @@
 package seedu.duke;
 
-
-import seedu.duke.command.DeleteBookmarkCommand;
-import seedu.duke.command.ListCommand;
-import seedu.duke.command.LaunchBookmarkCommand;
 import seedu.duke.command.AddBookmarkCommand;
-
-import seedu.duke.command.Command;
+import seedu.duke.command.AddSlotCommand;
+import seedu.duke.command.DeleteBookmarkCommand;
+import seedu.duke.command.DeleteSlotCommand;
+import seedu.duke.command.LaunchBookmarkCommand;
+import seedu.duke.command.FindBookmarkCommand;
 import seedu.duke.command.ExitCommand;
+import seedu.duke.command.ListCommand;
+import seedu.duke.command.Command;
 
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
@@ -34,7 +35,6 @@ public class Parser {
 
         if (input.compareToIgnoreCase(ExitCommand.BYE_KW) == 0) {
             command = new ExitCommand();
-
         } else if (input.compareToIgnoreCase(ListCommand.LIST_KW) == 0) {
             command = new ListCommand();
         } else if (input.startsWith(DeleteBookmarkCommand.DEL_KW)) {
@@ -43,6 +43,12 @@ public class Parser {
             command = new AddBookmarkCommand(input);
         } else if (input.startsWith(LaunchBookmarkCommand.LAUNCH_KW)) {
             command = new LaunchBookmarkCommand(input);
+        } else if (input.startsWith(FindBookmarkCommand.FIND_KW)) {
+            command = new FindBookmarkCommand(input);
+        } else if (input.startsWith(AddSlotCommand.ADD_KW)) {
+            command = new AddSlotCommand(input);
+        } else if (input.startsWith(DeleteSlotCommand.DEL_KW)) {
+            command = new DeleteSlotCommand(input);
         } else {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
         }
