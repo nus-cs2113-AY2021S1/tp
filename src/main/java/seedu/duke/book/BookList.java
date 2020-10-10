@@ -32,6 +32,10 @@ public class BookList extends QuotesifyList<Book> {
         books.remove(book);
     }
 
+    public boolean isEmpty() {
+        return books.isEmpty();
+    }
+
     @Override
     public String toString() {
         String booksToReturn = "";
