@@ -48,15 +48,16 @@ public class Ui {
     public void printRepeatAdd(Event event) {
         System.out.println(event);
         System.out.println("is now repeating " + event.getRepeatType() + " for " + event.getRepeatCount() + " times.");
+        printDividerLine();
     }
 
     public void printRepeatList(Event event) {
         System.out.println(event + " is also on:");
         ArrayList<DateStatusPair> repeatList = event.getRepeatList();
         for (DateStatusPair pair : repeatList) {
-            LocalDate date = pair.getDate();
-            System.out.println(date.format(DateTimeFormatter.ofPattern("d MMM yyyy")));
+            System.out.println(pair);
         }
+        printDividerLine();
     }
 
     public void printGoalMessage(Event goal) {

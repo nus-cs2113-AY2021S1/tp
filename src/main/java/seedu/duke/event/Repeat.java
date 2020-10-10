@@ -13,16 +13,17 @@ public class Repeat {
     private String repeatType;
 
     public Repeat(LocalDate startDate, LocalTime startTime, String repeatType, int count) {
-        for (int i = 0; i < count; i++) {
+        for (int i = 1; i <= count; i++) {
             LocalDate repeatDate;
             if (repeatType.equals(MONTHLY)) {
-                repeatDate = startDate.plusMonths(1);
+                repeatDate = startDate.plusMonths(i);
             } else if (repeatType.equals(WEEKLY)) {
-                repeatDate = startDate.plusWeeks(1);
+                repeatDate = startDate.plusWeeks(i);
             } else {
-                repeatDate = startDate.plusDays(1);
+                repeatDate = startDate.plusDays(i);
             }
             DateStatusPair pair = new DateStatusPair(repeatDate, startTime);
+            repeatList.add(pair);
         }
         this.repeatType = repeatType;
     }

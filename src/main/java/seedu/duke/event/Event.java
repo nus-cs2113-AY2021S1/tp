@@ -86,7 +86,7 @@ public abstract class Event {
     }
 
     public String getRepeatType() {
-        return repeat.getRepeatType();
+        return repeat.getRepeatType().toLowerCase();
     }
 
     public int getRepeatCount() {
