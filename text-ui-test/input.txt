@@ -1,2 +1,6 @@
-print timeline
+hi
+todo homework
+exam cs2113t finals /at 201020 1230
+print list
+print events
 bye
