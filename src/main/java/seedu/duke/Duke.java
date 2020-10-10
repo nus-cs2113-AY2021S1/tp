@@ -25,7 +25,7 @@ public class Duke {
         UserProfile userProfile = null;
         try {
             userProfile = storage.readUserProfileFile();
-        } catch (ParseException | DukeException exception) {
+        } catch (ParseException | AniException exception) {
             System.out.println("User profile data is corrupted or not found!");
         }
 
@@ -66,16 +66,15 @@ public class Duke {
                 profileMade = true;
             } catch (ParseException e) {
                 System.out.println("Is your date in dd/MM/yyyy format?");
-            } catch (DukeException e) {
-                System.out.println("Is your name empty?");
+            } catch (AniException e) {
+                e.printStackTrace();
             }
         }
-
 
         return userProfile;
     }
 
-    private static UserProfile createProfile() throws ParseException, DukeException {
+    private static UserProfile createProfile() throws ParseException, AniException {
         System.out.println("What's your name?");
         String name = CONSOLE.nextLine();
         System.out.println("Hello " + name + "! What might your date of birth be?");
@@ -134,11 +133,11 @@ public class Duke {
                     ui.bye();
                     return;
                 default:
-                    System.out.println("??");
-                    throw new DukeException();
+                    throw new AniException("??");
                 }
-            } catch (DukeException e) {
-                ui.showInvalidCommand();
+            } catch (AniException e) {
+                e.printStackTrace();
+                // ui.showInvalidCommand();
             }
         }
     }
