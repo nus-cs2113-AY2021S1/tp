@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.bookmark.Bookmark;
@@ -38,12 +39,13 @@ public class FindBookmarkCommand extends Command {
     /**
      * prints the matching bookmark.
      *
-     * @param bookmarks The list of bookmarks.
+     * @param items The list of bookmarks.
      * @param ui The user interface.
      * @param storage The storage for saving and loading.
      */
     @Override
-    public void execute(BookmarkList bookmarks, Ui ui, Storage storage) {
+    public void execute(ItemList items, Ui ui, Storage storage) {
+        BookmarkList bookmarks = (BookmarkList) items;
         ui.print(bookmarks.findBookmarks(moduleAndDescription));
     }
 
