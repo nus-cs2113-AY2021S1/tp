@@ -7,66 +7,35 @@ import seedu.duke.parser.DateTimeParser;
 import seedu.duke.ui.TextUi;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Hashtable;
-import java.util.Set;
 
-public class ViewSprintCommand extends SprintCommand {
+public class DeleteSprintTaskCommand extends SprintCommand{
     SprintList allSprint;
 
-    public ViewSprintCommand(Hashtable<String, String> parameters) {
+    public DeleteSprintTaskCommand(Hashtable<String, String> parameters) {
         super(parameters);
     }
 
-    /**
-     * Abstract method that execute the command.
-     *
-     * @param ui UI that handles user interaction
-     * @return Boolean - True if Bye command is executed
-     */
     public boolean execute(Project proj, TextUi ui) {
-
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
             Sprint currentSprint = allSprint.getSprint(currentSprintNo);
-            ui.showToUser("------ Current Sprint ------");
-            ui.showToUser("Sprint number: " + (currentSprintNo + 1));
-            ui.showToUser("Sprint Goal: " + currentSprint.getGoal());
-            ui.showToUser("Sprint period: " + currentSprint.getStartDate() + " to " + currentSprint.getEndDate());
-            ui.showToUser("Days left: " + currentSprint.getEndDate().compareTo(LocalDate.now()));
-            printSprintTask(proj, currentSprint, ui);
 
+            ui.showToUser("Tasks deleted: ");
+            for (int i = 0; i < parameters.size(); i++) {
+                String taskId = parameters.get(Integer.toString(i));
+                proj.getProjectBacklog().viewTask(taskId, ui);
+                currentSprint.removeSprintTask(Integer.parseInt(taskId));
+
+            }
         } else {
             checkReason(proj,ui);
         }
-
         return false;
     }
 
-    private void printSprintTask(Project proj, Sprint sprint, TextUi ui) {
-        Hashtable<Integer, ArrayList<String>> sprintTasks = sprint.getAllSprintTask();
-        if (sprintTasks.size() == 0){
-            System.out.println("No task allocated to current sprint.");
-            return;
-        }
-        ArrayList<String> users = new ArrayList<>();
-        Set<Integer> keys = sprintTasks.keySet();
-
-        System.out.println("Sprint Tasks: " + keys.size());
-        for(int key: keys){
-            proj.getProjectBacklog().viewTask(Integer.toString(key), ui);
-            users = sprintTasks.get(key);
-            if (users.size() == 0) {
-                ui.showToUser("No allocation.");
-            } else {
-                ui.showToUser("Allocated to:" + Arrays.toString(users.toArray()));
-            }
-        }
-    }
-
-    private void checkReason(Project proj, TextUi ui) {
+    public void checkReason(Project proj, TextUi ui) {
         if (allSprint.size() == 0) {
             ui.showToUser("You have yet to create your sprint.");
             return;
@@ -92,4 +61,5 @@ public class ViewSprintCommand extends SprintCommand {
             ui.showToUser("First sprint will start on " + current.getStartDate());
         }
     }
+
 }

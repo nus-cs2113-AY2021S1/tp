@@ -1,10 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.commands.Command;
-import seedu.duke.commands.sprintcommands.AddSprintTaskCommand;
-import seedu.duke.commands.sprintcommands.AllocateSprintTaskCommand;
-import seedu.duke.commands.sprintcommands.CreateSprintCommand;
-import seedu.duke.commands.sprintcommands.ViewSprintCommand;
+import seedu.duke.commands.sprintcommands.*;
 import seedu.duke.data.Member;
 import seedu.duke.data.Project;
 import seedu.duke.data.ProjectBacklog;
@@ -82,6 +79,18 @@ public class Duke {
         ui.showToUser("Dummy Sprint Tasks allocated.");
 
         ui.showToUser("\n--------- ViewSprint Again ---------");
+        parameters = new Hashtable<>();
+        cmd = new ViewSprintCommand(parameters);
+        cmd.execute(proj, ui);
+
+        ui.showToUser("\n--------- DeleteSprintTask ---------");
+        parameters = new Hashtable<>();
+        parameters.put("0", "2");
+
+        cmd = new DeleteSprintTaskCommand(parameters);
+        cmd.execute(proj, ui);
+
+        ui.showToUser("\n--------- ViewSprint Again Again---------");
         parameters = new Hashtable<>();
         cmd = new ViewSprintCommand(parameters);
         cmd.execute(proj, ui);
