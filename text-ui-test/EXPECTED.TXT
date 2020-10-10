@@ -10,8 +10,7 @@ What would you like to do with Quotesify?
 Invalid command!
 
 What would you like to do with Quotesify?
-This book has been added:
-book1 by me
+The book [book1 by me] has been added!
 
 What would you like to do with Quotesify?
 Here are your quotes:
@@ -54,6 +53,9 @@ motivational - (0 items)
 
 What would you like to do with Quotesify?
 nice - (2 items)
+
+What would you like to do with Quotesify?
+The book [book1 by me] has been deleted!
 
 What would you like to do with Quotesify?
 Have a nice day!

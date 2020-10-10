@@ -10,4 +10,5 @@ list -c action
 delete -c motivational -q 1
 list -c motivational
 list -c nice
+delete -b book1 /by me
 bye

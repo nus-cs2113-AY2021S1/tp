@@ -1,8 +1,11 @@
 package seedu.duke.book;
 
+import seedu.duke.author.Author;
 import seedu.duke.lists.QuotesifyList;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class BookList extends QuotesifyList<Book> {
     private ArrayList<Book> books = super.getList();
@@ -25,6 +28,10 @@ public class BookList extends QuotesifyList<Book> {
         books.remove(index);
     }
 
+    public void deleteByBook(Book book) {
+        books.remove(book);
+    }
+
     @Override
     public String toString() {
         String booksToReturn = "";
@@ -34,5 +41,14 @@ public class BookList extends QuotesifyList<Book> {
         }
 
         return booksToReturn;
+    }
+
+    public ArrayList<Book> find(String title, String author) {
+        ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
+                .filter(book -> {
+                    Author bookAuthor = book.getAuthor();
+                    return bookAuthor.getName().equals(author) && book.getTitle().equals(title);
+                }).collect(Collectors.toList());
+        return filteredBooks;
     }
 }
