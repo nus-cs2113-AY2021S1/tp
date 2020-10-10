@@ -1,6 +1,7 @@
 package seedu.duke.ui;
 
 import seedu.duke.book.Book;
+import seedu.duke.book.BookList;
 import seedu.duke.category.Category;
 import seedu.duke.category.CategoryList;
 import seedu.duke.quote.Quote;
@@ -22,8 +23,10 @@ public class TextUi {
     private static final String WELCOME_MESSAGE = "Welcome to Quotesify!";
     private static final String GOODBYE_MESSAGE = "Have a nice day!";
     private static final String PROMPT_MESSAGE = "\nWhat would you like to do with Quotesify?";
-    private static final String ADD_BOOK = "The book [%s] has been added!";
-    private static final String DELETE_BOOK = "The book [%s] has been deleted!";
+    private static final String ADD_BOOK_MESSAGE = "The book [%s] has been added!";
+    private static final String DELETE_BOOK_MESSAGE = "The book [%s] has been deleted!";
+    private static final String LIST_BOOKS_MESSAGE = "Here is a list of all books:";
+    private static final String LIST_BOOKS_BY_AUTHOR_MESSAGE = "Here is a list of books by %s:";
     private static final String ADD_CATEGORY_MESSAGE = "I have tagged \"%s\" category to \"%s\"!";
     private static final String DELETE_CATEGORY_MESSAGE = "I have removed \"%s\" category from \"%s\"!";
     private static final String CATEGORY_SIZE_MESSAGE = "You have a total of %d item(s) tagged as \"%s\".";
@@ -56,11 +59,21 @@ public class TextUi {
     }
 
     public void printAddBook(Book book) {
-        System.out.printf(ADD_BOOK + "\n", book.toString());
+        System.out.printf(ADD_BOOK_MESSAGE + "\n", book.toString());
     }
 
     public void printDeleteBook(Book book) {
-        System.out.printf(DELETE_BOOK + "\n", book.toString());
+        System.out.printf(DELETE_BOOK_MESSAGE + "\n", book.toString());
+    }
+
+    public void printAllBooks(BookList bookList) {
+        System.out.println(LIST_BOOKS_MESSAGE);
+        System.out.println(bookList.toString());
+    }
+
+    public void printBooksByAuthor(BookList bookList, String authorName) {
+        System.out.printf(LIST_BOOKS_BY_AUTHOR_MESSAGE + "\n", authorName);
+        System.out.println(bookList.toString());
     }
 
     public void printAllQuotes(QuoteList quotes) {
@@ -99,10 +112,6 @@ public class TextUi {
 
     public void printErrorMessage(String message) {
         System.out.println(message);
-    }
-
-    public void printBook(Book book) {
-        System.out.println(book.toString());
     }
 
     public void printAddRatingToBook(int ratingScore, String titleOfBookToRate) {
