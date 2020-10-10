@@ -297,6 +297,8 @@ public class Parser {
             } else if (dateTime == null) {
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_TIMING);
             }
+        } catch (NullPointerException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE_PREFIX);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
         }
