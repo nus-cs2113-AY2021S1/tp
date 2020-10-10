@@ -22,6 +22,7 @@ import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.exception.SystemException.ExceptionType;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
+import seedu.duke.data.timetable.DailyEvent;
 import seedu.duke.data.timetable.Event;
 
 import java.lang.reflect.Array;
@@ -31,6 +32,10 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import seedu.duke.data.timetable.MonthlyEvent;
+import seedu.duke.data.timetable.RecurringEvent;
+import seedu.duke.data.timetable.WeeklyEvent;
+import seedu.duke.data.timetable.YearlyEvent;
 import seedu.duke.ui.InterfaceManager;
 
 import java.util.ArrayList;
@@ -41,6 +46,8 @@ import java.util.Scanner;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_END;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELETE_LINE;
+import static seedu.duke.util.PrefixSyntax.PREFIX_RECURRING_EVENT;
+import static seedu.duke.util.PrefixSyntax.PREFIX_REMIND_EVENT;
 import static seedu.duke.util.PrefixSyntax.STRING_NEW_LINE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
@@ -137,7 +144,6 @@ public class Parser {
 
         // Splits the prefix and the remaining content
         for (String s : splitMessage) {
-            System.out.println(s);
             splitMessageContent.add(s.split(STRING_SPLIT_DELIMITER, 2));
         }
 
@@ -263,6 +269,7 @@ public class Parser {
         LocalDateTime dateTime = null;
         boolean toRemind = false;
         boolean isRecurring = false;
+        String recurringType = "";
 
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
@@ -276,11 +283,12 @@ public class Parser {
                     String timingString = checkBlank(infoDetails[1], SystemException.ExceptionType.EXCEPTION_MISSING_TIMING);
                     dateTime = dateTimeParser(timingString);
                     break;
-                case PREFIX_REMIND:
+                case PREFIX_REMIND_EVENT:
                     toRemind = true;
                     break;
-                case PREFIX_RECURRING:
+                case PREFIX_RECURRING_EVENT:
                     isRecurring = true;
+                    recurringType = checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_RECURRING_TYPE);
                     break;
                 default:
                     throw new SystemException(SystemException.ExceptionType.EXCEPTION_WRONG_PREFIX);
@@ -298,9 +306,31 @@ public class Parser {
             throw e;
         }
 
+        Event event;
 
-        Event event = new Event(title, dateTime, toRemind, isRecurring);
-        return new AddEventCommand(event);
+        if (isRecurring) {
+            switch (recurringType) {
+            case RecurringEvent.DAILY_RECURRANCE:
+                event = new DailyEvent(title, dateTime, toRemind);
+                break;
+            case RecurringEvent.WEEKLY_RECURRANCE:
+                event = new WeeklyEvent(title, dateTime, toRemind);
+                break;
+            case RecurringEvent.MONTHLY_RECURRANCE:
+                event = new MonthlyEvent(title, dateTime, toRemind);
+                break;
+            case RecurringEvent.YEARLY_RECURRANCE:
+                event = new YearlyEvent(title, dateTime, toRemind);
+                break;
+            default:
+                throw new SystemException(ExceptionType.EXCEPTION_WRONG_RECURRING_TYPE);
+
+            }
+            return new AddEventCommand(event);
+        } else {
+            event = new Event(title, dateTime, toRemind, isRecurring);
+            return new AddEventCommand(event);
+        }
     }
 
     private LocalDateTime dateTimeParser(String input) throws SystemException {

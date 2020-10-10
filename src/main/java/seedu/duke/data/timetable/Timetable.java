@@ -14,6 +14,7 @@ public class Timetable {
 
     private ArrayList<Event> events;
     private HashMap<Integer, ArrayList<Event>> thisYearTimetable;
+    private ArrayList<Event> nonRecurringEvents;
     private ArrayList<DailyEvent> dailyEvents;
     private ArrayList<WeeklyEvent> weeklyEvents;
     private ArrayList<MonthlyEvent> monthlyEvents;
@@ -72,7 +73,18 @@ public class Timetable {
     }
 
     public ArrayList<Event> getMonthTimetable(int year, int month) {
-        return new ArrayList<Event>();
+        LocalDate startDate = LocalDate.of(year, month, 1);
+        LocalDate endDate = startDate.withDayOfMonth(startDate.lengthOfMonth());
+        ArrayList<Event> eventSet = new ArrayList<Event>();
+        for (Event event : events) {
+
+        }
+
+        int numDays = startDate.lengthOfMonth();
+        for (int i = 0; i < numDays; i++) {
+
+        }
+        return eventSet;
     }
 
 }

@@ -7,14 +7,22 @@ import java.util.ArrayList;
 
 public abstract class RecurringEvent extends Event {
     private LocalDate endRecurrance;
-    public static LocalDate DEFAULT_END_RECURRANCE = LocalDate.of(3000, 12, 31);
-    public RecurringEvent(String title, LocalDate date, LocalTime time, boolean isToRemind, LocalDate endRecurrance) {
-        super(title, date, time, isToRemind, true);
+    private String recurrenceType;
+
+    public static final LocalDate DEFAULT_END_RECURRANCE = LocalDate.of(3000, 12, 31);
+    public static final String DAILY_RECURRANCE = "daily";
+    public static final String WEEKLY_RECURRANCE = "weekly";
+    public static final String MONTHLY_RECURRANCE = "monthly";
+    public static final String YEARLY_RECURRANCE = "yearly";
+
+    public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrance, String recurrenceType) {
+        super(title, dateTime, isToRemind, true);
         this.endRecurrance = endRecurrance;
+        this.recurrenceType = recurrenceType;
     }
 
-    public RecurringEvent(String title, LocalDate date, LocalTime time, boolean isToRemind) {
-        this(title, date, time, isToRemind, DEFAULT_END_RECURRANCE);
+    public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, String recurrenceType) {
+        this(title, dateTime, isToRemind, DEFAULT_END_RECURRANCE, recurrenceType);
     }
 
     public boolean checkAfterEndRecurrance(LocalDate date) {
@@ -34,6 +42,11 @@ public abstract class RecurringEvent extends Event {
             startDate = timeStep(startDate);
         }
         return eventSet;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format(" (%s)", recurrenceType);
     }
 
     public abstract RecurringEvent stepOneTimePeriod();

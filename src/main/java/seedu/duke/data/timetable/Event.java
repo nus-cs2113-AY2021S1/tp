@@ -90,6 +90,10 @@ public class Event {
     }
 
     public String toString() {
-        return String.format("Event: %s\nDate: %s\nTime: %s\nRepeating: %b", title, date.toString(), time.toString(), isRecurring);
+        String titleString = "Event: " + title;
+        String dateString = "Date: " + date.toString();
+        String remindString = "Reminder: " + isToRemind;
+        String repeatingString = "Repeating: " + isRecurring;
+        return titleString + "\n" + dateString + "\n" + remindString + "\n" + repeatingString;
     }
 }

@@ -23,8 +23,7 @@ public class HelpCommand extends Command {
 
         return HELP_STRING + InterfaceManager.LS + COLOR_WHITE_STRING
                 + AddNoteCommand.getCommandUsageNote() + InterfaceManager.LS + COLOR_CYAN_STRING
-                /*
-                + AddNoteCommand.getCommandUsageEvent() + InterfaceManager.LS + COLOR_WHITE_STRING*/
+                + AddEventCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
                 + CreateTagCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
                 + DeleteNoteCommand.getCommandUsageNote() + InterfaceManager.LS + COLOR_WHITE_STRING
                 /*
