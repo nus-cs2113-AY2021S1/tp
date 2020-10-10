@@ -40,6 +40,19 @@ public class UserProfile extends Human {
         return gender;
     }
 
+    /**
+     * Provides the name of the user with Japanese honorifics depending on his gender.
+     *
+     * @return name of user with honorifics.
+     */
+    public String getFancyName() {
+        if (gender == Gender.Female) {
+            return name + "-chan";
+        } else {
+            return name + "-san";
+        }
+    }
+
     @Override
     public String toString() {
         return "Name= " + name + ", birthdate= " + getDobString() + ", gender= " + getGender();
