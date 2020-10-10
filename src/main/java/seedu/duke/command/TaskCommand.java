@@ -70,7 +70,7 @@ public class TaskCommand {
             try {
                 int backlogId = Integer.parseInt(id) - 1;
                 if (backlogId < proj.backlog.backlogTasks.size()) {
-                    task = proj.backlog.backlogTasks.get(backlogId);
+                    task = proj.backlog.getTask(backlogId);
                     ui.displayTask(task);
                 } else {
                     ui.displayInvalidId();
@@ -112,15 +112,26 @@ public class TaskCommand {
          */
     }
 
-    public void doneTaskCommand(ArrayList<String> tasks) {
+    public void doneTaskCommand(ArrayList<String> taskId, ArrayList<Project> projectList) {
         /*
            For testing purposes only, to be deleted.
          */
-        String task = "";
-        for (String t : tasks) {
-            task += t + " ";
+        Project proj = projectList.get(0);
+        for (String id : taskId) {
+            Task task = null;
+            try {
+                int backlogId = Integer.parseInt(id) - 1;
+                if (backlogId < proj.backlog.backlogTasks.size()) {
+                    task = proj.backlog.getTask(backlogId);
+                    task.setAsDone();
+                    Ui.displayTaskDone(id);
+                } else {
+                    Ui.displayInvalidId();
+                }
+            } catch (NumberFormatException e) {
+                Ui.printError("Task id is not an integer.");
+            }
         }
-        System.out.println("Tasks done: " + task);
 
         /* Insert actual code for completing tasks here.
         .

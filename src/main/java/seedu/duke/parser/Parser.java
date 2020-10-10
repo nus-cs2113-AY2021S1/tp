@@ -120,7 +120,7 @@ public class Parser {
                     }
                     break;
                 case DONE:
-                    new TaskCommand().doneTaskCommand(params);
+                    new TaskCommand().doneTaskCommand(params, projectList);
                     break;
                 default:
                     try {
