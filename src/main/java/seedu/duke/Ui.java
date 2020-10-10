@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
+import seedu.duke.calendar.event.Event;
 import seedu.duke.calendar.task.Task;
 
 import java.io.IOException;
@@ -102,7 +103,8 @@ public class Ui {
     }
 
     /**
-     * Shows the user the list of tasks in the calendar list, formatted as an indexed list starting from 1.
+     * Shows the user the list of items in the calendar list,
+     * formatted as an indexed list starting from 1.
      *
      * @param calendarList tasks retrieved from this task list.
      */
@@ -114,17 +116,16 @@ public class Ui {
     }
 
     /**
-     * Shows the user all the event type of tasks in the task list,
+     * Shows the user all the events in the calendar list,
      * such as lecture, lab, tutorial and events.
      *
      * @param calendarList tasks retrieved from this task list.
      */
-    /*
     public static void printEventsListView(CalendarList calendarList) {
         int eventCounts = 0;
         System.out.println("This is your list of event(s):");
         for (int i = 0; i < calendarList.getTotalTasks(); i++) {
-            if (calendarList.getCalendarList().get(i).getTaskType().equals("E")) {
+            if (calendarList.getCalendarList().get(i) instanceof Event) {
                 eventCounts++;
                 System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", eventCounts);
             }
@@ -133,7 +134,6 @@ public class Ui {
             System.out.println("Oops, there are no events stored in your list!");
         }
     }
-    */
 
     /**
      * Shows the user the task (that was indicated by the user) that was marked as done .
