@@ -34,6 +34,10 @@ public class BookmarkList extends QuotesifyList<Bookmark> {
         bookmarks.remove(index);
     }
 
+    public void delete (Bookmark bookmark) {
+        bookmarks.remove(bookmark);
+    }
+
     @Override
     public String toString() {
         String bookmarksToReturn = "";

@@ -166,4 +166,8 @@ public class TextUi {
     public void printUpdateBookmark(Bookmark bookmark) {
         System.out.printf(UPDATE_BOOKMARK_MESSAGE + "\n", bookmark.toString());
     }
+
+    public void printDeleteBookmark(Bookmark bookmark) {
+        System.out.printf(DELETE_BOOKMARKS_MESSAGE + "\n", bookmark.toString());
+    }
 }

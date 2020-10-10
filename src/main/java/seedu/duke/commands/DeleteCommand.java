@@ -1,7 +1,10 @@
 package seedu.duke.commands;
 
+import com.sun.jdi.event.StepEvent;
 import seedu.duke.book.Book;
 import seedu.duke.book.BookList;
+import seedu.duke.bookmark.Bookmark;
+import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.category.Category;
 import seedu.duke.category.CategoryList;
 import seedu.duke.category.CategoryParser;
@@ -51,7 +54,13 @@ public class DeleteCommand extends Command {
             ToDoList toDos = (ToDoList) listManager.getList(ListManager.TODO_LIST);
             int index = computeToDoIndex(information.trim());
             deleteToDo(toDos, index, ui);
-
+            break;
+        case TAG_BOOKMARK:
+            BookList bookList = (BookList) listManager.getList(ListManager.BOOK_LIST);
+            BookmarkList bookmarks = (BookmarkList) listManager.getList(ListManager.BOOKMARK_LIST);
+            String title = information.trim();
+            deleteBookmark(bookList, bookmarks, title, ui);
+            break;
         default:
         }
     }
@@ -179,6 +188,25 @@ public class DeleteCommand extends Command {
         }
 
         return index;
+    }
+
+    private void deleteBookmark(BookList books, BookmarkList bookmarks, String titleName, TextUi ui) {
+        Book targetBook = books.findByTitle(titleName);
+        if(targetBook != null) {
+            removeBookmarkFromBook(targetBook, bookmarks, ui);
+        }
+    }
+
+    private void removeBookmarkFromBook (Book targetBook, BookmarkList bookmarks, TextUi ui) {
+        Bookmark bookmarkToBeDeleted = bookmarks.find(targetBook);
+
+        if(bookmarkToBeDeleted != null) {
+            bookmarks.delete(bookmarkToBeDeleted);
+            ui.printDeleteBookmark(bookmarkToBeDeleted);
+        }
+        else {
+            System.out.println(ERROR_BOOKMARK_NOT_FOUND);
+        }
     }
 
     @Override

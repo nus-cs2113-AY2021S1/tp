@@ -1,6 +1,6 @@
 package seedu.duke.parser;
 
-import seedu.duke.bookmark.BookmarkCommand;
+import seedu.duke.commands.BookmarkCommand;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.DeleteCommand;

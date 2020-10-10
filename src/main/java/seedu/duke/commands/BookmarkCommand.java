@@ -1,7 +1,9 @@
-package seedu.duke.bookmark;
+package seedu.duke.commands;
 
 import seedu.duke.book.Book;
 import seedu.duke.book.BookList;
+import seedu.duke.bookmark.Bookmark;
+import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.commands.Command;
 import seedu.duke.lists.ListManager;
 import seedu.duke.ui.TextUi;
