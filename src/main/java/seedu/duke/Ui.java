@@ -107,6 +107,7 @@ public class Ui {
             break;
         case EMPTY_TIMETABLE:
             printEmptyTimetableMessage();
+            break;
         default:
             // unable to get dukeExceptionType
             break;
