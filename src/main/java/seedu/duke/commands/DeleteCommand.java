@@ -37,6 +37,7 @@ public class DeleteCommand extends Command {
         case TAG_BOOK:
             BookList books = (BookList) listManager.getList(ListManager.BOOK_LIST);
             deleteBook(books, ui, listManager);
+            break;
         default:
         }
     }
