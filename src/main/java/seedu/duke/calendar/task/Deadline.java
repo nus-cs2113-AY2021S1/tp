@@ -1,6 +1,7 @@
-package seedu.duke.task;
+package seedu.duke.calendar.task;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -9,6 +10,9 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     protected LocalDate by;
     protected String taskType;
+
+    private static final String DEADLINE_FILE_SYMBOL = "D";
+    private static final String SEPARATOR = "|";
 
     public Deadline(String description, LocalDate by) {
         super(description);
@@ -28,5 +32,20 @@ public class Deadline extends Task {
     /** Returns the respective task type. */
     public String getTaskType() {
         return taskType;
+    }
+
+    @Override
+    public String printIntoFile() {
+        return DEADLINE_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description + SEPARATOR + this.by;
+    }
+
+    @Override
+    public LocalDate getDate() {
+        return this.by;
+    }
+
+    @Override
+    public LocalTime getTime() {
+        return null;
     }
 }

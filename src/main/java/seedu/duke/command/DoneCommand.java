@@ -3,7 +3,7 @@ package seedu.duke.command;
 import seedu.duke.DukeException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
-import seedu.duke.task.TaskList;
+import seedu.duke.calendar.CalendarList;
 
 /**
  * Sets the task of task number specified by the user as done.
@@ -15,14 +15,14 @@ public class DoneCommand extends Command {
 
     /**
      * Sets the task of task number specified by the user as done.
-     * Saves the updated task list in the storage after the task is marked as done.
+     * Saves the updated calendar list in the storage after the task is marked as done.
      *
-     * @param taskList the task list that contains the task.
-     * @param storage  the storage to be saved to.
+     * @param calendarList the calendar list that contains the task.
+     * @param storage      the storage to be saved to.
      * @throws DukeException if the done command is invalid.
      */
     @Override
-    public void execute(TaskList taskList, Storage storage) throws DukeException {
+    public void execute(CalendarList calendarList, Storage storage) throws DukeException {
         int taskNumberCompleted;
 
         try {
@@ -31,14 +31,14 @@ public class DoneCommand extends Command {
             throw new DukeException("done");
         }
 
-        if (taskNumberCompleted > taskList.getTotalTask() || taskNumberCompleted <= 0) {
+        if (taskNumberCompleted > calendarList.getTotalTasks() || taskNumberCompleted <= 0) {
             throw new DukeException("invalid task action");
         }
 
-        taskList.markTaskAsDone(taskNumberCompleted);
+        calendarList.markTaskAsDone(taskNumberCompleted);
 
-        Ui.printCompleteTaskMessage(taskNumberCompleted, taskList);
+        Ui.printCompleteTaskMessage(taskNumberCompleted, calendarList);
 
-        storage.saveData(taskList);
+        storage.writeToFile(calendarList);
     }
 }
