@@ -1,6 +1,6 @@
 package seedu.duke;
 
-public class DukeException extends Exception {
+public class AniException extends Exception {
     protected String message;
 
     /**
@@ -8,7 +8,7 @@ public class DukeException extends Exception {
      *
      * @param message exception message.
      */
-    public DukeException(String message) {
+    public AniException(String message) {
         super(message);
         this.message = message;
     }
