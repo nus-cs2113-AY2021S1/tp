@@ -42,6 +42,11 @@ public class PrintTimelineCommand extends Command {
         }
     }
 
+    /**
+     * Sort the items in a CalendarList in time sequence
+     * @param calendarList
+     * @return
+     */
     public CalendarList sortByDateTime(CalendarList calendarList) {
         CalendarList sortingList = calendarList;
         for (int i = 0; i < calendarList.getTotalItems(); i++) {
