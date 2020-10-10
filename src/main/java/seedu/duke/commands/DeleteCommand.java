@@ -34,7 +34,21 @@ public class DeleteCommand extends Command {
             CategoryList categories = (CategoryList) listManager.getList(ListManager.CATEGORY_LIST);
             deleteCategoryFromBookOrQuote(categories, ui, listManager);
             break;
+        case TAG_BOOK:
+            BookList books = (BookList) listManager.getList(ListManager.BOOK_LIST);
+            deleteBook(books, ui, listManager);
         default:
+        }
+    }
+
+    private void deleteBook(BookList books, TextUi ui, ListManager listManager) {
+        String[] titleAndAuthor = information.split("/by");
+        try {
+            ArrayList<Book> filteredBooks = books.find(titleAndAuthor[0].trim(), titleAndAuthor[1].trim());
+            books.deleteByBook(filteredBooks.get(0));
+            ui.printDeleteBook(filteredBooks.get(0));
+        } catch (IndexOutOfBoundsException e) {
+            ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
         }
     }
 
