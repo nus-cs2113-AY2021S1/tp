@@ -11,7 +11,6 @@ public class Personal extends Event {
         super(description);
         setDate(date);
         setTime(time);
-        setRepeatCount(repeatCount);
         hasDate = true;
         hasTime = true;
     }

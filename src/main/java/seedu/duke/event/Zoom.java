@@ -8,18 +8,11 @@ public class Zoom extends Event {
     protected Boolean hasDate;
     protected Boolean hasTime;
 
-    public Zoom(String description, String zoomLink, LocalDate date, LocalTime time, int repeatCount) {
+    public Zoom(String description, String zoomLink, LocalDate date, LocalTime time) {
         super(description);
         setZoomLink(zoomLink);
         setDate(date);
         setTime(time);
-        setRepeatCount(repeatCount);
-        hasDate = true;
-        hasTime = true;
-    }
-
-    public Zoom(String description, String zoomLink, LocalDate date, LocalTime time) {
-        this(description, zoomLink, date, time, 0);
         hasDate = true;
         hasTime = true;
     }

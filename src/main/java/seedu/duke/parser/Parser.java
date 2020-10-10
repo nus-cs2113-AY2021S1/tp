@@ -54,7 +54,7 @@ public class Parser {
             return new CheckCommand(argument);
 
         case "repeat":
-            return new RepeatCommand(argument);
+            return RepeatCommand.parse(argument);
 
         case "goal":
             return new GoalCommand(argument);

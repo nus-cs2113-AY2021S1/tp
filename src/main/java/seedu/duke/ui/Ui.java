@@ -1,8 +1,11 @@
 package seedu.duke.ui;
 
+import seedu.duke.event.DateStatusPair;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -42,8 +45,18 @@ public class Ui {
         printDividerLine();
     }
 
-    public void printRepeatEventMessage() {
+    public void printRepeatAdd(Event event) {
+        System.out.println(event);
+        System.out.println("is now repeating " + event.getRepeatType() + " for " + event.getRepeatCount() + " times.");
+    }
 
+    public void printRepeatList(Event event) {
+        System.out.println(event + " is also on:");
+        ArrayList<DateStatusPair> repeatList = event.getRepeatList();
+        for (DateStatusPair pair : repeatList) {
+            LocalDate date = pair.getDate();
+            System.out.println(date.format(DateTimeFormatter.ofPattern("d MMM yyyy")));
+        }
     }
 
     public void printGoalMessage(Event goal) {
@@ -90,11 +103,6 @@ public class Ui {
             System.out.println("Here is a list of your " + eventListName + " events:");
             int index = 1;
             for (Event e : events) {
-                //if e.isRepeat()
-                //ArrayList<LocalDate> repeatDates = e.getRepeatDates();
-                //for(LocalDate date : repeatDates);
-                //e.toString(date);
-                //else
                 System.out.println(index + ". " + e);
                 index++;
             }
