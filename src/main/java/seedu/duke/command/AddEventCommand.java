@@ -31,12 +31,18 @@ public class AddEventCommand extends Command {
 
     /**
      * Constructor that takes in the event to be written to the timetable.
+     *
      * @param e Event to be written to the timetable.
      */
     public AddEventCommand(Event e) {
         event = e;
     }
 
+    /**
+     * Gets how the command is expected to be used.
+     *
+     * @return String representation of how the command is to be used.
+     */
     public static String getCommandUsage() {
         return COMMAND_USAGE;
     }

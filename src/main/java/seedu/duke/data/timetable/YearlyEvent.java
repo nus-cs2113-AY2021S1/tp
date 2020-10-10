@@ -3,11 +3,14 @@ package seedu.duke.data.timetable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Subclass of RecurringEvent that re-occurs every year.
+ */
 public class YearlyEvent extends RecurringEvent {
     private static final int TIME_STEP = 1;
 
-    public YearlyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrance) {
-        super(title, dateTime, isToRemind, endRecurrance, RecurringEvent.YEARLY_RECURRENCE);
+    public YearlyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence) {
+        super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.YEARLY_RECURRENCE);
     }
 
     public YearlyEvent(String title, LocalDateTime dateTime, boolean isToRemind) {

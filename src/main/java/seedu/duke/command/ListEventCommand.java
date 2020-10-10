@@ -23,6 +23,11 @@ public class ListEventCommand extends Command {
     private LocalDate date;
     private boolean isListByDate;
 
+    /**
+     * Gets how the command is expected to be used.
+     *
+     * @return String representation of how the command is to be used.
+     */
     public static String getCommandUsage() {
         return COMMAND_USAGE;
     }
