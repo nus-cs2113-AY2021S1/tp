@@ -1,19 +1,15 @@
-package NUSchedule.Storage;
+package NUSchedule.storage;
 
-import NUSchedule.Exception.CreatingFileException;
-import NUSchedule.Exception.LoadingException;
-import NUSchedule.Exception.WritingFileException;
-import NUSchedule.Task.Task;
-import NUSchedule.Task.Todo;
+
+import NUSchedule.event.Event;
+import NUSchedule.exception.CreatingFileException;
+import NUSchedule.exception.LoadingException;
+import NUSchedule.exception.WritingFileException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * This class creates the folder and file path if it's not already created, and
@@ -54,16 +50,16 @@ public class Storage {
 
 
     /**
-     * Save the data of the task list to the file.
+     * Save the data of the Event list to the file.
      *
-     * @param tasks the list of tasks provided by a variable from a TaskList object
+     * @param Events the list of Events provided by a variable from a EventList object
      * @throws WritingFileException represents the file is not correctly written
      */
-    public void writeFile(ArrayList<Task> tasks) throws WritingFileException {
+    public void writeFile(ArrayList<Event> Events) throws WritingFileException {
         try {
             FileWriter fw = new FileWriter(filePath);
-            for (Task task : tasks) {
-                fw.write(task.fileString());
+            for (Event Event : Events) {
+                fw.write(Event.fileString());
                 fw.write(System.lineSeparator());
             }
             fw.close();
@@ -73,54 +69,12 @@ public class Storage {
     }
 
     /**
-     * Prepares the data in the file as an ArrayList, which is used to construct the TaskList.
+     * Prepares the data in the file as an ArrayList, which is used to construct the EventList.
      *
-     * @return the tasks in an ArrayList
-     * @throws LoadingException represents the <code>tasks</code> is not correctly created
+     * @return the Events in an ArrayList
+     * @throws LoadingException represents the <code>Events</code> is not correctly created
      */
-    public ArrayList<Task> load() throws LoadingException {
-        ArrayList<Task> tasks = new ArrayList<Task>();
-        File dataFile = new File(filePath);
-        try {
-            Scanner s = new Scanner(dataFile);
-            while (s.hasNext()) {
-                String[] words = s.nextLine().split(REGEX_IN_FILE);
-                switch (words[0]) {
-                    case "T":
-                        tasks.add(new Todo(words[2]));
-                        if (Integer.parseInt(words[1]) == 1) {
-                            tasks.get(tasks.size() - 1).markAsDone();
-                        }
-                        break;
-                    case "E":
-                        try {
-                            tasks.add(new NUSchedule.Task.PersonalEvent(words[2], LocalDateTime.parse(words[3])));
-                        } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
-                            throw new LoadingException();
-                        }
-                        if (Integer.parseInt(words[1]) == 1) {
-                            tasks.get(tasks.size() - 1).markAsDone();
-                        }
-                        break;
-                    case "D":
-                        try {
-                            tasks.add(new NUSchedule.Task.Assignment(words[2], LocalDateTime.parse(words[3])));
-                        } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
-                            throw new LoadingException();
-                        }
-                        if (Integer.parseInt(words[1]) == 1) {
-                            tasks.get(tasks.size() - 1).markAsDone();
-                        }
-                        break;
-                    default:
-                        throw new LoadingException();
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("file not found");
-        } catch (IndexOutOfBoundsException e) {
-            throw new LoadingException();
-        }
-        return tasks;
-    }
+//    public ArrayList<Event> load() throws LoadingException {
+//todo to be implement
+//    }
 }

@@ -1,22 +1,22 @@
 package NUSchedule.command;
 
-import NUSchedule.Storage.Storage;
-import NUSchedule.TaskList.TaskList;
-import NUSchedule.UI.UI;
-import NUSchedule.Exception.DukeException;
+import NUSchedule.storage.Storage;
+import NUSchedule.eventList.EventList;
+import NUSchedule.ui.UI;
+import NUSchedule.exception.NUScheduleException;
 
 public class PrintFullListCommand extends Command {
 
     /**
-     * Prints the list of tasks.
+     * Prints the list of Events.
      *
-     * @param tasks   the list of tasks
-     * @param ui      do outputs
-     * @param storage store the data
-     * @throws DukeException the exceptions can happen in this function, to be handled based on the specific exception
+     * @param Events   the list of Events.
+     * @param ui      do outputs.
+     * @param storage store the data.
+     * @throws NUScheduleException the exceptions can happen in this function, to be handled based on the specific exception.
      */
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
-        ui.printTaskList(tasks.getTaskList());
+    public void execute(EventList Events, UI ui, Storage storage) throws NUScheduleException {
+        ui.printEventList(Events.getEventList());
     }
 }

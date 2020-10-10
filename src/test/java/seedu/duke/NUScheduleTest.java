@@ -1,4 +1,4 @@
-package seedu.duke;
+package NUSchedule;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

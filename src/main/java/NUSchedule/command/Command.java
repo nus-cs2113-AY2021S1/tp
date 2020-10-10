@@ -1,9 +1,9 @@
 package NUSchedule.command;
 
-import NUSchedule.Storage.Storage;
-import NUSchedule.TaskList.TaskList;
-import NUSchedule.UI.UI;
-import NUSchedule.Exception.DukeException;
+import NUSchedule.storage.Storage;
+import NUSchedule.eventList.EventList;
+import NUSchedule.ui.UI;
+import NUSchedule.exception.NUScheduleException;
 
 /**
  * Represents the command to be executed.
@@ -14,12 +14,12 @@ public abstract class Command {
     /**
      * Execute the command based on the specific command type.
      *
-     * @param tasks   the list of tasks.
+     * @param Events   the list of Events.
      * @param ui      do outputs.
      * @param storage store the data.
-     * @throws DukeException the exceptions can happen in this program, to be handled based on the specific exception.
+     * @throws NUScheduleException the exceptions can happen in this program, to be handled based on the specific exception.
      */
-    public abstract void execute(TaskList tasks, UI ui, Storage storage) throws DukeException;
+    public abstract void execute(EventList Events, UI ui, Storage storage) throws NUScheduleException;
 
     public boolean isExit() {
         return isExit;

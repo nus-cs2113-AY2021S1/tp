@@ -1,4 +1,4 @@
-package NUSchedule.Task;
+package NUSchedule.event;
 
 
 import java.time.LocalDate;
@@ -7,9 +7,9 @@ import java.time.format.DateTimeFormatter;
 
 
 /**
- * Represents the Event tasks.
+ * Represents the Event Events.
  */
-public class PersonalEvent extends Task {
+public class PersonalEvent extends Event {
 
     protected LocalDateTime at;
 
@@ -23,7 +23,7 @@ public class PersonalEvent extends Task {
     }
 
     /**
-     * Provides the date of the task.
+     * Provides the date of the Event.
      *
      * @return the LocalDate get from LocalDateTime
      */

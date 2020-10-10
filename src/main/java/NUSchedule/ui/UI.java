@@ -1,7 +1,7 @@
-package seedu.duke.ui;
+package NUSchedule.ui;
 
 
-import NUSchedule.Task.Task;
+import NUSchedule.event.Event;
 
 
 import java.util.ArrayList;
@@ -12,15 +12,15 @@ import java.util.Scanner;
  */
 public class UI {
 
-    public static final String LOGO = " _       _ _        _   ___       _                    _        _     \n"
-                                    + "| |     | | |      | | /___|     | |                  | |      | |   \n"
-                                    + "|  \\    | | |      | |//         | |                  | |      | |\n"
-                                    + "| |\\\\   | | |      | |\\\\         | |        ___       | |      | | ___ \n"
-                                    + "| | \\\\  | | |      | | \\\\     ___| |______ /___\\  ____| |_    _| |/___\\       \n"
-                                    + "| |  \\\\ | | |      | |  \\\\   /___|  ____  |<___>>|  __  | |  | | |<___>> \n"
-                                    + "| |   \\\\| | |      | |   \\\\ //   | |    | | ___/ | |  | | |  | | | ___/    \n"
-                                    + "| |    \\  | |______| |___// \\\\___| |    | |\\____ | |  | | |__| | |\\____\n"
-                                    + "|_|     |_|__________|___/   \\___|_|    |_|\\___/ |______|\\___,_|_|\\___/           \n";
+    public static final String LOGO = " _       _ _        _   ____       _                    _        _     \n"
+                                    + "| |     | | |      | | / ___|     | |                  | |      | |   \n"
+                                    + "|  \\    | | |      | |/ /         | |                  | |      | |\n"
+                                    + "| |\\\\   | | |      | |\\ \\         | |        ___       | |      | | ___ \n"
+                                    + "| | \\\\  | | |      | | \\ \\     ___| |______ /___\\  ____| |_    _| |/___\\       \n"
+                                    + "| |  \\\\ | | |      | |  \\ \\   /___|  ____  ||___|||  __  | |  | | ||___|| \n"
+                                    + "| |   \\\\| | |      | |   \\ \\ //   | |    | | ___/ | |  | | |  | | | ___/    \n"
+                                    + "| |    \\  | |______| |___/ / \\\\___| |    | |\\____ | |__| | |__| | |\\____\n"
+                                    + "|_|     |_|__________|____/   \\___|_|    |_|\\___/ |______|\\___,_|_|\\___/           \n";
     public static final String LINE_DIVIDER = "____________________________________________________________";
     public static final String EXIT_MESSAGE = "Bye. Hope to see you again soon!";
     private final Scanner in;
@@ -58,30 +58,30 @@ public class UI {
     /**
      * Prints all the events with labels, based on the input list.
      *
-     * @param tasks an <\code>ArrayList</\code> of events to be printed one by one.
+     * @param Events an <\code>ArrayList</\code> of events to be printed one by one.
      */
-    public void printTaskList(ArrayList<Task> tasks) {
-        int numPrintedTasks = 0;
+    public void printEventList(ArrayList<Event> Events) {
+        int numPrintedEvents = 0;
 
-        System.out.println(" Here are the tasks in your list:");
-        for (Task task : tasks) {
-            numPrintedTasks++;
-            System.out.println(numPrintedTasks + ". " + task.toString());
+        System.out.println(" Here are the Events in your list:");
+        for (Event Event : Events) {
+            numPrintedEvents++;
+            System.out.println(numPrintedEvents + ". " + Event.toString());
         }
     }
 
     /**
-     * Prints all the tasks of the filtered list with labels, based on the input list.
+     * Prints all the Events of the filtered list with labels, based on the input list.
      *
-     * @param tasks an <\code>ArrayList</\code> of tasks to be printed one by one
+     * @param Events an <\code>ArrayList</\code> of Events to be printed one by one
      */
-    public void printFilteredTaskList(ArrayList<Task> tasks) {
-        int numPrintedTasks = 0;
+    public void printFilteredEventList(ArrayList<Event> Events) {
+        int numPrintedEvents = 0;
 
-        System.out.println(" Here are the matching tasks in your list:");
-        for (Task task : tasks) {
-            numPrintedTasks++;
-            System.out.println(numPrintedTasks + ". " + task.toString());
+        System.out.println(" Here are the matching Events in your list:");
+        for (Event Event : Events) {
+            numPrintedEvents++;
+            System.out.println(numPrintedEvents + ". " + Event.toString());
         }
     }
 
@@ -121,55 +121,55 @@ public class UI {
     }
 
     /**
-     * Take in a size and prints the total number of tasks.
+     * Take in a size and prints the total number of Events.
      *
      * @param size get by calling <code>ArrayList<Event>::Size()</code>
      */
-    public void printNumTask(int size) {
-        System.out.println("Now you have " + size + " tasks in the list.");
+    public void printNumEvent(int size) {
+        System.out.println("Now you have " + size + " Events in the list.");
     }
 
     /**
-     * Prints the message when the user mark some task as done.
+     * Prints the message when the user mark some Event as done.
      *
-     * @param task the task being done
+     * @param Event the Event being done
      */
-    public void printDoneMessage(Task task) {
-        System.out.println("Nice! I've marked this task as done: ");
-        System.out.println(task.toString());
+    public void printDoneMessage(Event Event) {
+        System.out.println("Nice! I've marked this Event as done: ");
+        System.out.println(Event.toString());
     }
 
     /**
-     * Prints the message when the user deletes some task.
+     * Prints the message when the user deletes some Event.
      *
-     * @param task the task being deleted
+     * @param Event the Event being deleted
      */
-    public void printDeleteMessage(Task task) {
-        System.out.println("Noted. I've removed this task: ");
-        System.out.println(task.toString());
+    public void printDeleteMessage(Event Event) {
+        System.out.println("Noted. I've removed this Event: ");
+        System.out.println(Event.toString());
     }
 
     /**
-     * Prints the message when the user adds some task.
+     * Prints the message when the user adds some Event.
      *
-     * @param taskAdded the task being added
+     * @param EventAdded the Event being added
      */
-    public void printAddTaskMessage(Task taskAdded) {
-        System.out.println("Got it. I've added this task: ");
-        System.out.println(taskAdded.toString());
+    public void printAddEventMessage(Event EventAdded) {
+        System.out.println("Got it. I've added this Event: ");
+        System.out.println(EventAdded.toString());
     }
     /**
-     * Prints all the tasks of the filtered list with labels, based on the input list.
+     * Prints all the Events of the filtered list with labels, based on the input list.
      *
-     * @param filteredTaskList an <\code>ArrayList</\code> of tasks to be printed one by one
+     * @param filteredEventList an <\code>ArrayList</\code> of Events to be printed one by one
      */
-    public void printFilteredDateTaskList(ArrayList<Task> filteredTaskList) {
-        int numPrintedTasks = 0;
+    public void printFilteredDateEventList(ArrayList<Event> filteredEventList) {
+        int numPrintedEvents = 0;
 
-        System.out.println(" Here are the tasks on the given date in your list:");
-        for (Task task : filteredTaskList) {
-            numPrintedTasks++;
-            System.out.println(numPrintedTasks + ". " + task.toString());
+        System.out.println(" Here are the Events on the given date in your list:");
+        for (Event Event : filteredEventList) {
+            numPrintedEvents++;
+            System.out.println(numPrintedEvents + ". " + Event.toString());
         }
     }
 

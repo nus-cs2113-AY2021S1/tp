@@ -4,7 +4,7 @@ package NUSchedule.event;
 /**
  * Represents the Class events.
  */
-public class Class extends NUSchedule.Event.Event {
+public class Class extends Event {
 
     public Class(String description) {
         super(description);
@@ -16,16 +16,16 @@ public class Class extends NUSchedule.Event.Event {
      * @return the result string to be stored.
      */
     public String fileString() {
-        return "T//" + (isDone ? 1 : 0) + "//" + description;
+        return "C//" + (isDone ? 1 : 0) + "//" + description;
     }
 
     /**
      * Prepare the string to be printed in the list.
      *
-     * @return the string required in a certain format
-     * Example of the format: [T][✘]a
+     * @return the string required in a certain format.
+     * Example of the format: [C][✘]a.
      */
     public String toString() {
-        return "[T]" + super.toString();
+        return "[C]" + super.toString();
     }
 }

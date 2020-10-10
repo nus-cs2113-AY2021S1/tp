@@ -1,4 +1,4 @@
-package NUSchedule.Task;
+package NUSchedule.event;
 
 
 import java.time.LocalDate;
@@ -6,9 +6,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents the Assignment tasks.
+ * Represents the Assignment Events.
  */
-public class Assignment extends Task {
+public class Assignment extends Event {
 
     protected LocalDateTime by;
 
@@ -18,7 +18,7 @@ public class Assignment extends Task {
      * @return the result string to be stored
      */
     public String fileString() {
-        return "D//" + (isDone ? 1 : 0) + "//" + description + "//" + by;
+        return "A//" + (isDone ? 1 : 0) + "//" + description + "//" + by;
     }
 
     public Assignment(String description, LocalDateTime by) {
@@ -27,9 +27,9 @@ public class Assignment extends Task {
     }
 
     /**
-     * Provides the date of the task.
+     * Provides the date of the Assignment.
      *
-     * @return the LocalDate get from LocalDateTime
+     * @return the LocalDate get from LocalDateTime.
      */
     public LocalDate getDate() {
         return LocalDate.from(by);
@@ -38,10 +38,10 @@ public class Assignment extends Task {
     /**
      * Prepare the string to be printed in the list.
      *
-     * @return the string required in a certain format
-     * Example of the format: [D][✘]a  (by: Feb 20 2020 08:00)
+     * @return the string required in a certain format.
+     * Example of the format: [C][✘]a  (by: Feb 20 2020 08:00).
      */
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy HH':'mm")) + ")";
+        return "[A]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy HH':'mm")) + ")";
     }
 }
