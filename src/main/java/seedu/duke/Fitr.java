@@ -1,6 +1,5 @@
 package seedu.duke;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Fitr {
@@ -9,15 +8,14 @@ public class Fitr {
     private ExerciseList exerciseList;
     private User user;
 
-    public Fitr(String filePathOfFoodList, String filePathOfExerciseList){
+    public Fitr(String filePathOfUserConfig, String filePathOfFoodList, String filePathOfExerciseList){
         foodList = new FoodList();
         exerciseList = new ExerciseList();
         try {
-            storage = new Storage(filePathOfFoodList, filePathOfExerciseList);
-        }catch (IOException e){
+            storage = new Storage(filePathOfUserConfig, filePathOfFoodList, filePathOfExerciseList);
+        } catch (IOException e) {
             System.out.println("Theres no file");
         }
-
     }
 
     public void run() {
@@ -33,6 +31,6 @@ public class Fitr {
     }
 
     public static void main(String[] args) {
-        new Fitr("data/foodList.txt", "data/exerciseList.txt").run();
+        new Fitr("userConfig.txt", "foodList.txt", "exerciseList.txt").run();
     }
 }
