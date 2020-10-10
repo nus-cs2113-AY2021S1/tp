@@ -102,12 +102,12 @@ public class ManualTracker {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Ledger ledger = null;
         try {
-            ledger = createLedgerWithErrorHandling(packet);
+            ledger = new Ledger(packet);
             ledgerList.addItem(ledger);
         } catch (AssertionError error) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
-        } catch (DuplicateInputException exception) {
+        } catch (DuplicateInputException | InsufficientParamsException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         }
@@ -116,30 +116,22 @@ public class ManualTracker {
 
     private static FiniteStateMachine.State handleDeleteLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        for (String paramType : packet.getParamTypes()) {
-            switch (paramType) {
-            case "/date":
-                // Fall through
-            case "/id":
-                try {
-                    Ledger ledger = getLedgerWithErrorHandling(paramType);
-                    ledgerList.removeItem(ledger);
-                } catch (AssertionError error) {
-                    UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                            "Input failed due to param error.");
-                    break;
-                }
-                break;
-            default:
-                System.out.println("Command failed.");
-                break;
-            }
+        Ledger ledger;
+        try {
+            ledgerList.setCurrItem(packet);
+            ledger = (Ledger) ledgerList.getCurrItem();
+            ledgerList.removeItem(ledger);
+        } catch (AssertionError error) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                "Input failed due to param error.");
+        } catch (InsufficientParamsException | ItemNotFoundException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                exception.getMessage());
         }
         return state;
     }
 
     private static FiniteStateMachine.State handleShowLedger() {
-        //System.out.println(ledgerList.getItemsSize());
         ledgerList.printList();
         return FiniteStateMachine.State.MAIN_MENU;
     }
@@ -151,25 +143,19 @@ public class ManualTracker {
 
     private static FiniteStateMachine.State handleOpenLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
+        Ledger ledger;
 
-        for (String paramType : packet.getParamTypes()) {
-            switch (paramType) {
-            case "/date":
-                // Fall through
-            case "/id":
-                try {
-                    currLedger = getLedgerWithErrorHandling(paramType);
-                    EntryTracker.setCurrLedger(currLedger);
-                    EntryTracker.main();
-                } catch (AssertionError error) {
-                    UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                            "Input failed due to param error.");
-                    break;
-                }
-                break;
-            default:
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Command failed. Try again.");
-            }
+        try {
+            ledgerList.setCurrItem(packet);
+            ledger = (Ledger) ledgerList.getCurrItem();
+            EntryTracker.setCurrLedger(ledger);
+        } catch (AssertionError error) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                "Input failed due to param error.");
+            return state;
+        } catch (InsufficientParamsException | ItemNotFoundException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                exception.getMessage());
             return state;
         }
         return EntryTracker.main();

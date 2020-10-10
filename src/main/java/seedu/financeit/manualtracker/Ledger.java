@@ -3,30 +3,25 @@ package seedu.financeit.manualtracker;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.Item;
-import seedu.financeit.common.exceptions.EmptyParamException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
+import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.manualtracker.subroutine.EntryList;
-import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.UiManager;
-
-import java.security.InvalidParameterException;
-import java.time.DateTimeException;
-import java.time.LocalDateTime;
+import seedu.financeit.utils.ParamChecker;
 
 public class Ledger extends Item {
     public EntryList entryList = new EntryList();
+    private ParamChecker paramChecker;
 
     public Ledger() {
         super();
-        super.requiredParams = new String[] {
-            "/date"
-        };
+        super.requiredParams.add("/date");
         super.setDefaultDateTimeFormat("date");
     }
 
-    public Ledger(CommandPacket packet) throws DateTimeException, InvalidParameterException,
-        InsufficientParamsException, EmptyParamException {
+    public Ledger(CommandPacket packet) throws AssertionError, InsufficientParamsException {
         this();
+        this.paramChecker = new ParamChecker(packet);
         this.handleParams(packet);
     }
 
@@ -52,31 +47,17 @@ public class Ledger extends Item {
     }
 
     @Override
-    public void handleParam(CommandPacket packet, String paramType) throws DateTimeException, InvalidParameterException,
-            EmptyParamException {
+    public void handleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
-        case "/date":
-            String rawDate = packet.getParam(paramType);
-            if (rawDate.trim().length() == 0) {
-                throw new EmptyParamException(paramType);
-            }
-            LocalDateTime dateTime = InputParser.parseRawDateTime(rawDate, this.defaultDateTimeFormat);
+        case ParamChecker.PARAM_DATE:
+            paramChecker.checkAndReturnDateTime(paramType, defaultDateTimeFormat);
             this.setDateTime(dateTime);
             break;
 
         default:
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, paramType + " is not recognised.");
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                paramChecker.getUnrecognizedParamMessage(paramType));
             break;
-        }
-    }
-    @Override
-    public void handleParams(CommandPacket packet) throws DateTimeException, InvalidParameterException,
-        InsufficientParamsException, EmptyParamException {
-        for (String paramType : packet.getParamTypes()) {
-            handleParam(packet, paramType);
-        }
-        if (!isValidItem()) {
-            throw new InsufficientParamsException(this.requiredParams);
         }
     }
 }
