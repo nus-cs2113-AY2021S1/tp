@@ -15,6 +15,10 @@ public class CardList {
         cards.add(card);
     }
 
+    public void removeCard(int removeIndex) {
+        cards.remove(removeIndex);
+    }
+
     public int getCardCount() {
         return cards.size();
     }

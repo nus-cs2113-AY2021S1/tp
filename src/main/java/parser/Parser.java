@@ -8,6 +8,7 @@ import commands.AddModuleCommand;
 import commands.BackChapterCommand;
 import commands.GoChapterCommand;
 import commands.HelpCommand;
+import commands.RemoveCommand;
 import commands.ReviseCommand;
 import commands.ExitCommand;
 import commands.GoModuleCommand;
@@ -29,6 +30,8 @@ public class Parser {
             return prepareList(commandArgs);
         case AddCommand.COMMAND_WORD:
             return prepareAdd(commandArgs);
+        case RemoveCommand.COMMAND_WORD:
+            return prepareRemove(commandArgs);
         case ReviseCommand.COMMAND_WORD:
             return prepareRevise(commandArgs);
         case ExitCommand.COMMAND_WORD:
@@ -118,6 +121,19 @@ public class Parser {
         } catch (IndexOutOfBoundsException | InvalidInputException e) {
             throw new InvalidInputException();
         }
+    }
+
+    private static Command prepareRemove(String commandArgs) throws InvalidInputException {
+        int removeIndex;
+        if (commandArgs.isEmpty()) {
+            throw new InvalidInputException();
+        }
+        try {
+            removeIndex = Integer.parseInt(commandArgs) - 1;
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException();
+        }
+        return new RemoveCommand(removeIndex);
     }
 
     private static String parseQuestion(String arg) throws InvalidInputException {
