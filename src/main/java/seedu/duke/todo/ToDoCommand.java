@@ -8,6 +8,6 @@ public class ToDoCommand {
     }
 
     public void execute(ToDoList toDos) {
-        toDos.addToDo(toDo);
+        toDos.add(toDo);
     }
 }

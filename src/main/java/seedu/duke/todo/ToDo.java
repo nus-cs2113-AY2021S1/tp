@@ -1,8 +1,8 @@
 package seedu.duke.todo;
 
 public class ToDo {
-    String name;
-    String deadline;
+    private String name;
+    private String deadline;
     boolean isDone;
 
     public ToDo(String name, String deadline) {
