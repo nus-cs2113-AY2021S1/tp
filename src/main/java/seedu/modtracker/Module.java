@@ -10,7 +10,7 @@ public class Module {
 
     public Module(String mod) {
         this.moduleCode = mod;
-        Arrays.fill(actualTime, -1);
+        Arrays.fill(this.actualTime, -1);
     }
 
     public Module(String mod, String expected) {
@@ -38,5 +38,17 @@ public class Module {
 
     public double[] getActualTime() {
         return actualTime;
+    }
+
+    public void addActualTime(String time, String week) {
+        double d = Double.parseDouble(time);
+        int i = Integer.parseInt(week);
+        this.actualTime[i] += d;
+    }
+
+    public void minusActualTime(String time, String week) {
+        double d = Double.parseDouble(time);
+        int i = Integer.parseInt(week);
+        this.actualTime[i] -= d;
     }
 }

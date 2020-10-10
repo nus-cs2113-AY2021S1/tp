@@ -23,8 +23,8 @@ public class Parser {
             storage.appendToFile(input);
             break;
         case "addtime":
-            //methods
-            //storage.appendToFile(input);
+            modList.addTime(input);
+            storage.appendToFile(input);
             break;
         case "addexp":
             modList.addExp(input);
@@ -39,8 +39,8 @@ public class Parser {
             //storage.appendToFile(input);
             break;
         case "minus":
-            //methods
-            //storage.appendToFile(input);
+            modList.minusTime(input);
+            storage.appendToFile(input);
             break;
         case "compare":
             //methods
