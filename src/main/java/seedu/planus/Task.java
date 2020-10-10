@@ -1,11 +1,12 @@
-package seedu.duke;
+package seedu.planus;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+
 public class Task {
-    protected String description;
+    private String description;
     private LocalDate date;
     private LocalTime time;
     private Integer priority;
@@ -15,12 +16,11 @@ public class Task {
         date = dateStringToDate(dateString);
         time = timeStringToTime(timeString);
         priority = priorityStringToPriority(priorityString);
-
     }
 
     private LocalDate dateStringToDate(String dateString) {
         if (dateString == null) {
-            return null;
+            return LocalDate.now();
         }
         String[] dateParts = dateString.split("-");
         int day = Integer.parseInt(dateParts[0]);
