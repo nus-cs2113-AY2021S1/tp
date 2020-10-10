@@ -111,7 +111,6 @@ public class Storage {
         ArrayList<Food> foodList = new ArrayList<>();
         String line;
         String[] arguments;
-        Calorie calorie;
         File foodListFile = new File(foodListPath);
         Scanner readFile = new Scanner(foodListFile);
 
@@ -152,15 +151,32 @@ public class Storage {
      */
     public ArrayList<Exercise> loadExerciseList() throws FileNotFoundException {
         ArrayList<Exercise> exerciseList = new ArrayList<>();
-
         String line;
+        String[] arguments;
         File exerciseListFile = new File(exerciseListPath);
         Scanner readFile = new Scanner(exerciseListFile);
+
         while (readFile.hasNext()) {
             line = readFile.nextLine();
-            System.out.println(line);
+            arguments = line.split(COMMA_SEPARATOR);
+            exerciseList.add(new Exercise(arguments[0],
+                    new Calorie(Integer.parseInt(arguments[1])), Integer.parseInt(arguments[2])));
         }
 
         return exerciseList;
+    }
+
+    public void writeExerciseList(ExerciseList exerciseList) throws IOException {
+        FileWriter file = new FileWriter(exerciseListPath);
+        Exercise exercise;
+
+        for (int i = 0; i < exerciseList.getSize(); i++) {
+            exercise = exerciseList.getExercise(i);
+            file.write(exercise.getNameOfExercise()
+                    + COMMA_SEPARATOR + exercise.getCalories()
+                    + COMMA_SEPARATOR + exercise.getDuration() + System.lineSeparator());
+        }
+
+        file.close();
     }
 }
