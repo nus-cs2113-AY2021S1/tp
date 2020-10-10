@@ -44,7 +44,7 @@ public class Duke {
         //open file
         //busesInZoneA = fileManager.loadData();
         busesInZoneA.add(new Bus("AA1", AA1));
-        busesInZoneA.add(new Bus("AA1", AA2));
+        busesInZoneA.add(new Bus("AA2", AA2));
         BusData.createBusList(busesInZoneA);
 
     }
