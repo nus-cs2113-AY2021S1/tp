@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public abstract class Command {
 
-    public static final String MESSAGE = Ui.LOGO + "\n How may I assist you?"
+    public static final String MESSAGE = Ui.LOGO + "\n How may i assist you?"
             .replace("\n", System.lineSeparator() + "\t");
     public static final String COMMAND_ERROR = "I'm sorry, but I don't know what that means :-(";
     public static final int LEGAL_NRIC_LENGTH = 9;
