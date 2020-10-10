@@ -1,14 +1,14 @@
 User profile file is not found.
 Watchlist file is not found.
 Welcome to AniChan!
-                 _  _____ _
-     /\         (_)/ ____| |
-    /  \   _ __  _| |    | |__   __ _ _ __
-   / /\ \ | '_ \| | |    | '_ \ / _` | '_ \
+                 _  _____ _                 
+     /\         (_)/ ____| |                
+    /  \   _ __  _| |    | |__   __ _ _ __  
+   / /\ \ | '_ \| | |    | '_ \ / _` | '_ \ 
   / ____ \| | | | | |____| | | | (_| | | | |
  /_/    \_\_| |_|_|\_____|_| |_|\__,_|_| |_|
-
-
+                                            
+                                            
 Let's get you started!
 Please enter your particulars:
 What's your name?
