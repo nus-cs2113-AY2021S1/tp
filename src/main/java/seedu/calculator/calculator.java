@@ -13,7 +13,7 @@ public class calculator {
      * Construct a calculator taking in a foodList. Add up calories,
      * carbs, protein, and fats in each food item.
      *
-     * @param foodList foodList containing food items to calculate
+     * @param foodList foodList containing food items to calculate.
      */
     public calculator(ArrayList<Food> foodList){
         try {
