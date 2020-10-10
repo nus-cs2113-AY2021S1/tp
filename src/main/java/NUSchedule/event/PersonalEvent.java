@@ -40,9 +40,9 @@ public class PersonalEvent extends Event {
      * Prepare the string to be printed in the list.
      *
      * @return the string required in a certain format
-     * Example of the format: [E][✘]a  (at: Feb 20 2020 08:00)
+     * Example of the format: [P][✘]a  (at: Feb 20 2020 08:00)
      */
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy HH':'mm")) + ")";
+        return "[P]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy HH':'mm")) + ")";
     }
 }
