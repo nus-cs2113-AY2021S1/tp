@@ -1,7 +1,11 @@
 Enter command:
-This is a help command. Currently all commands are recognise as Help command.
+
+Invalid Command. Please try again or enter help to get a list of valid commands.
+
 Enter command:
-This is a help command. Currently all commands are recognise as Help command.
+
+Invalid Command. Please try again or enter help to get a list of valid commands.
+
 Enter command:
 null
 BYE

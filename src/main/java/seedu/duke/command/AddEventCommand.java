@@ -12,7 +12,7 @@ public class AddEventCommand extends Command{
 
     public static final String COMMAND_WORD = "add-e";
 
-    public static final String COMMAND_USAGE_EVENT = COMMAND_WORD + ": Adds an event to the timetable. Parameters:"
+    private static final String COMMAND_USAGE = COMMAND_WORD + ": Adds an event to the timetable. Parameters:"
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE "
             + PREFIX_DELIMITER + PREFIX_TIMING + " TIMING "
             + "[" + PREFIX_DELIMITER + PREFIX_RECURRING + " Frequency (daily, weekly, monthly, annually) " + "]"
