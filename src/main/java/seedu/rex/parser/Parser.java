@@ -10,17 +10,14 @@ import java.time.LocalDate;
 
 public class Parser {
     public static Patient readPatient(String line) {
-        String name;
-        String nric;
-        LocalDate dateOfBirth;
         StringBuilder record = new StringBuilder(line);
-        name = record.substring(0, record.indexOf(", "));
+        String name = record.substring(0, record.indexOf(", "));
         // Deletes first comma separator.
         record.delete(0, record.indexOf(", ") + 2);
-        nric = record.substring(0, record.indexOf(", "));
+        String nric = record.substring(0, record.indexOf(", "));
         // Deletes second comma separator.
         record.delete(0, record.indexOf(", ") + 2);
-        dateOfBirth = LocalDate.parse(record.toString());
+        LocalDate dateOfBirth = LocalDate.parse(record.toString());
         return new Patient(name, nric, dateOfBirth);
     }
 

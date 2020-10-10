@@ -50,7 +50,7 @@ public abstract class Command {
      * Checks if a given <code>String</code> consists of only numeric characters.
      * @param string The <code>String</code> to be checked.
      * @return <code>true</code> if the string contains only numeric characters; <code>false</code>
-     * otherwise.
+     *     otherwise.
      */
     public boolean isNumeric(String string) {
         if (string == null) {
