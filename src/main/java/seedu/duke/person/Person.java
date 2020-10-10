@@ -60,6 +60,24 @@ public class Person {
     }
 
     /**
+     * Returns the gender of the person.
+     *
+     * @return The gender of the person.
+     */
+    public Gender getGender() {
+        return gender;
+    }
+
+    /**
+     * Sets the gender of the person to the new gender given.
+     *
+     * @param newGender The new/revised gender of the person.
+     */
+    public void setGender(Gender newGender) {
+        gender = newGender;
+    }
+
+    /**
      * Returns the age of the person.
      *
      * @return The age of the person.
