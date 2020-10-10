@@ -16,12 +16,14 @@ import seedu.duke.common.Messages;
 import seedu.duke.exceptions.EmptyParameterException;
 import seedu.duke.ui.TextUi;
 
+import static seedu.duke.ui.TextUi.showToUser;
+
 
 public class Parser {
 
-    private static TextUi ui = new TextUi();
     private static final String APPLIANCE_TYPE = "appliance";
     private static final String LOCATION_TYPE = "location";
+    private static final TextUi ui = new TextUi();
 
     public static Command parseCommand(String userInput) {
         String[] words = userInput.trim().split(" ", 2);
@@ -40,7 +42,7 @@ public class Parser {
             case DeleteCommand.COMMAND_WORD:
                 return new DeleteCommand(arguments);
             case OnCommand.COMMAND_WORD:
-                return new OnCommand(arguments);
+                return prepareOnCommand(arguments);
             case OffCommand.COMMAND_WORD:
                 return new OffCommand(arguments);
             case ListCommand.COMMAND_WORD:
@@ -55,6 +57,20 @@ public class Parser {
         } catch (EmptyParameterException e) {
             return new InvalidCommand("The parameter of " + commandWord + " cannot be empty.");
         }
+    }
+
+    private static Command prepareOnCommand(String arguments) throws EmptyParameterException {
+        String name;
+        String parameter;
+        int indexParameter = arguments.indexOf("p/");
+        if (indexParameter == -1) {
+            name = arguments.trim();
+            parameter = "";
+        } else {
+            name = arguments.substring(0, indexParameter).trim();
+            parameter = arguments.substring(indexParameter + 2).trim();
+        }
+        return new OnCommand(name, parameter);
     }
 
     private static Command prepareAddCommand(String arguments) {

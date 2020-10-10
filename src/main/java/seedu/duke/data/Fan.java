@@ -4,8 +4,8 @@ import seedu.duke.data.framework.Appliance;
 
 public class Fan extends Appliance {
 
-    private static String speed;
     public static final String TYPE_WORD = "fan";
+    private static String speed;
 
     public Fan(String name, String location, String power) {
         super(name, location, power);
@@ -17,8 +17,15 @@ public class Fan extends Appliance {
         return "Fan";
     }
 
-    private void setSpeed(String speed) {
-        Fan.speed = speed;
+    public String getSpeed() {
+        return this.speed;
     }
 
+    public void setSpeed(String speed) {
+        this.speed = speed;
+    }
+
+    public String toString() {
+        return super.toString() + " with a speed of: " + getSpeed();
+    }
 }

@@ -25,7 +25,7 @@ public class AirConditioner extends Appliance {
     }
 
     public String toString() {
-        return super.toString();
+        return super.toString() + " with a temperature of: "+ getTemperature();
     }
 
 }

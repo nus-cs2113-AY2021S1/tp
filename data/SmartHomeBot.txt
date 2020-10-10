@@ -1,2 +1,5 @@
-[bedroom 2]
-bedroom 2|ac2|1000|AirConditioner|Off|6.5
+[bedroom 1, bedroom 2]
+bedroom 1|fan1|200|Fan|Off|5.2
+bedroom 2|fan2|200|Fan|Off|2.4
+bedroom 1|ac1|1000|AirConditioner|Off|0.0
+bedroom 2|ac2|1000|AirConditioner|Off|0.0
