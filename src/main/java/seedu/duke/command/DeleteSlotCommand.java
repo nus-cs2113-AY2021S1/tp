@@ -36,11 +36,11 @@ public class DeleteSlotCommand extends Command {
      *
      * @param items The list of Slots.
      * @param ui The user interface.
-     * @param storage The storage for saving and loading.
      */
     @Override
-    public void execute(ItemList items, Ui ui, Storage storage) throws DukeException {
-        SlotList slots = (SlotList) items;
+    public void execute(ItemList items, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage)
+            throws DukeException {
+        SlotList slots = (SlotList) slotList;
         try {
             Slot slot = slots.getSlot(index);
             slots.deleteSlot(slots.getSlot(index));

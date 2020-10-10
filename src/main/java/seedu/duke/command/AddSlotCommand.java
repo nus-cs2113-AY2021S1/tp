@@ -46,17 +46,18 @@ public class AddSlotCommand extends Command {
      *
      * @param items The list of slots.
      * @param ui The user interface.
-     * @param storage The storage for saving and loading.
+     * @param slotStorage The storage for saving and loading.
      */
     @Override
-    public void execute(ItemList items, Ui ui, Storage storage) {
-        SlotList slots = (SlotList) items;
+    public void execute(ItemList items, SlotList slotList, Ui ui, Storage bookmarkStorage, 
+                        Storage slotStorage) throws DukeException {
+        SlotList slots = (SlotList) slotList;
         Slot slot = new Slot(startTime, endTime, day, title);
         slots.addSlot(slot);
         ui.print("Added slot: " + day + " [" + startTime + "-" + endTime + "] "
                 + title + System.lineSeparator());
         try {
-            storage.save(slots.getData());
+            slotStorage.save(slots.getData());
         } catch (DukeException e) {
             e.printStackTrace();
         }

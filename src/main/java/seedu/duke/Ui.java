@@ -98,6 +98,15 @@ public class Ui {
         case INVALID_TIME_FORMAT:
             printInvalidTimeFormat();
             break;
+        case INVALID_MODE:
+            printUnknownModeMessage();
+            break;
+        case INVALID_TIMETABLE_DAY:
+            printUnknownDayMessage();
+            break;
+        case EMPTY_TIMETABLE:
+            printEmptyTimetableMessage();
+            break;
         default:
             // unable to get dukeExceptionType
             break;
@@ -126,6 +135,19 @@ public class Ui {
 
     private void printUnknownInputMessage() {
         print("Unknown input\n");
+    }
+
+    private void printUnknownModeMessage() {
+        print("Unknown mode input\n" + "Valid modes: bookmark, timetable");
+    }
+
+    private void printUnknownDayMessage() {
+        print("Unknown day input\n" 
+              + "Valid days: monday, tuesday, wednesday, thursday, friday, saturday, sunday\n");
+    }
+
+    private void printEmptyTimetableMessage() {
+        print("Timetable is empty\n");
     }
 
     private void printMatchingBookmarks(String message) {

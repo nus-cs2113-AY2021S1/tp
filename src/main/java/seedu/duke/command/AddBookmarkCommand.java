@@ -6,6 +6,7 @@ import seedu.duke.Ui;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.exception.DukeException;
+import seedu.duke.slot.SlotList;
 
 import java.util.List;
 
@@ -36,17 +37,17 @@ public class AddBookmarkCommand extends Command {
      *
      * @param items The list of bookmarks.
      * @param ui The user interface.
-     * @param storage The storage for saving and loading.
+     * @param bookmarkStorage The storage for saving and loading.
      */
     @Override
-    public void execute(ItemList items, Ui ui, Storage storage) {
+    public void execute(ItemList items, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage) {
         BookmarkList bookmarks = (BookmarkList) items;
         Bookmark bookmark = new Bookmark(module, description, url);
         bookmarks.addBookmark(bookmark);
         ui.print("Added bookmark: " + "[" + module + "] "
                 + description + " " +  url + System.lineSeparator());
         try {
-            storage.save(bookmarks.getData());
+            bookmarkStorage.save(bookmarks.getData());
         } catch (DukeException e) {
             e.printStackTrace();
         }

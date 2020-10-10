@@ -7,6 +7,7 @@ import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
+import seedu.duke.slot.SlotList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,10 +42,10 @@ public class FindBookmarkCommand extends Command {
      *
      * @param items The list of bookmarks.
      * @param ui The user interface.
-     * @param storage The storage for saving and loading.
+     * @param slotStorage The storage for saving and loading.
      */
     @Override
-    public void execute(ItemList items, Ui ui, Storage storage) {
+    public void execute(ItemList items, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage) {
         BookmarkList bookmarks = (BookmarkList) items;
         ui.print(bookmarks.findBookmarks(moduleAndDescription));
     }
