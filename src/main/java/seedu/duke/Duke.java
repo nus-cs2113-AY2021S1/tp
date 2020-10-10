@@ -67,10 +67,9 @@ public class Duke {
             } catch (ParseException e) {
                 System.out.println("Is your date in dd/MM/yyyy format?");
             } catch (DukeException e) {
-                System.out.println("Is your name empty?");
+                e.printStackTrace();
             }
         }
-
 
         return userProfile;
     }
@@ -134,11 +133,11 @@ public class Duke {
                     ui.bye();
                     return;
                 default:
-                    System.out.println("??");
-                    throw new DukeException();
+                    throw new DukeException("??");
                 }
             } catch (DukeException e) {
-                ui.showInvalidCommand();
+                e.printStackTrace();
+                // ui.showInvalidCommand();
             }
         }
     }

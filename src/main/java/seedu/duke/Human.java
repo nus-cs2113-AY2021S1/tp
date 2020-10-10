@@ -7,7 +7,7 @@ public abstract class Human {
         if (!name.isEmpty()) {
             setName(name);
         } else {
-            throw new DukeException();
+            throw new DukeException("Is your name empty?");
         }
     }
 
