@@ -1,21 +1,21 @@
-package seedu.duke.data;
+package seedu.duke;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import seedu.duke.Parser;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.InvalidCommand;
-
+import seedu.duke.data.Fan;
+import seedu.duke.data.Lights;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 
 class PowerUsageTest {
 
     @Test
     void getPowerTest() {
-        assertEquals("45", new Lights("Xiao Mi Light", "BedRoom 1", "45").getPower());
+        Assertions.assertEquals("45", new Lights("Xiao Mi Light", "BedRoom 1", "45").getPower());
     }
 
     @Test
