@@ -63,7 +63,7 @@ public class BookList extends QuotesifyList<Book> {
             }
         }
         return null;
-
+    }
     public BookList filterByAuthor(String authorName) {
         ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
                 .filter(book -> {
