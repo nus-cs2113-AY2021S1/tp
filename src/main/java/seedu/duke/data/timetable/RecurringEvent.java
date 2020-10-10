@@ -6,34 +6,35 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public abstract class RecurringEvent extends Event {
-    private LocalDate endRecurrance;
+    private LocalDate endRecurrence;
     private String recurrenceType;
 
-    public static final LocalDate DEFAULT_END_RECURRANCE = LocalDate.of(3000, 12, 31);
-    public static final String DAILY_RECURRANCE = "daily";
-    public static final String WEEKLY_RECURRANCE = "weekly";
-    public static final String MONTHLY_RECURRANCE = "monthly";
-    public static final String YEARLY_RECURRANCE = "yearly";
+    public static final LocalDate DEFAULT_END_RECURRENCE = LocalDate.of(3000, 12, 31);
+    public static final String DAILY_RECURRENCE = "daily";
+    public static final String WEEKLY_RECURRENCE = "weekly";
+    public static final String MONTHLY_RECURRENCE = "monthly";
+    public static final String YEARLY_RECURRENCE = "yearly";
 
-    public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrance, String recurrenceType) {
+    public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence,
+                          String recurrenceType) {
         super(title, dateTime, isToRemind, true);
-        this.endRecurrance = endRecurrance;
+        this.endRecurrence = endRecurrence;
         this.recurrenceType = recurrenceType;
     }
 
     public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, String recurrenceType) {
-        this(title, dateTime, isToRemind, DEFAULT_END_RECURRANCE, recurrenceType);
+        this(title, dateTime, isToRemind, DEFAULT_END_RECURRENCE, recurrenceType);
     }
 
-    public boolean checkAfterEndRecurrance(LocalDate date) {
-        return (endRecurrance.compareTo(date) < 0);
+    public boolean checkAfterEndRecurrence(LocalDate date) {
+        return (endRecurrence.compareTo(date) < 0);
     }
 
-    public ArrayList<Event> getRecurrances(LocalDate startDate, LocalDate endDate) {
+    public ArrayList<Event> getRecurrences(LocalDate startDate, LocalDate endDate) {
         ArrayList<Event> eventSet = new ArrayList<Event>();
         LocalTime timing = getTime();
         while (startDate.compareTo(endDate) <= 0) {
-            if (checkAfterEndRecurrance(startDate)) {
+            if (checkAfterEndRecurrence(startDate)) {
                 return eventSet;
             }
             LocalDateTime dateTime = LocalDateTime.of(startDate, timing);
@@ -50,6 +51,7 @@ public abstract class RecurringEvent extends Event {
     }
 
     public abstract RecurringEvent stepOneTimePeriod();
+
     public abstract LocalDate timeStep(LocalDate date);
 
 }

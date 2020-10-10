@@ -84,7 +84,7 @@ public class Parser {
             case ListNoteCommand.COMMAND_WORD:
                 return prepareListNote(userMessage);
             case ListEventCommand.COMMAND_WORD:
-                 return prepareListEvent(userMessage);
+                return prepareListEvent(userMessage);
             case ViewNoteCommand.COMMAND_WORD:
                 // return prepareViewNote(userMessage);
             case EditCommand.COMMAND_WORD_NOTE:
@@ -263,12 +263,12 @@ public class Parser {
     }
 
     /**
-     * Takes a user string designated to add an event and prepares it by extracting relevant information from the provided
-     * required and optional tags. It requires a title tag and a timing tag (/t and /timing). Other tags allow for it to be
-     * recurring and to set reminders of the event.
+     * Takes a user string designated to add an event and prepares it by extracting relevant information from the
+     * provided required and optional tags. It requires a title tag and a timing tag (/t and /timing). Other tags allow
+     * for it to be recurring and to set reminders of the event.
      * @param userMessage User input message
      * @return Returns an AddEventCommand to be executed by Duke
-     * @throws SystemException Occurs when information provided by the tags are blank,wrong or do not have a default value.
+     * @throws SystemException Information provided by the tags are blank, wrong or do not have a default value.
      */
     private Command prepareAddEvent(String userMessage) throws SystemException {
         // add-e eventTitle /t timing /rec occurrence /rem time before (default same day)
@@ -283,12 +283,15 @@ public class Parser {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
             for (String[] infoDetails : splitInfo) {
                 String prefix = infoDetails[0].toLowerCase();
+                ExceptionType e;
                 switch (prefix) {
                 case PREFIX_TITLE:
-                    title = checkBlank(infoDetails[1], SystemException.ExceptionType.EXCEPTION_MISSING_TITLE);
+                    e = ExceptionType.EXCEPTION_MISSING_TITLE;
+                    title = checkBlank(infoDetails[1], e);
                     break;
                 case PREFIX_TIMING:
-                    String timingString = checkBlank(infoDetails[1], SystemException.ExceptionType.EXCEPTION_MISSING_TIMING);
+                    e = ExceptionType.EXCEPTION_MISSING_TIMING;
+                    String timingString = checkBlank(infoDetails[1], e);
                     dateTime = DateTimeManager.dateTimeParser(timingString);
                     break;
                 case PREFIX_REMIND:
@@ -296,10 +299,11 @@ public class Parser {
                     break;
                 case PREFIX_RECURRING:
                     isRecurring = true;
+                    e = ExceptionType.EXCEPTION_MISSING_RECURRING_TYPE;
                     try {
-                        recurringType = checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_RECURRING_TYPE).toLowerCase();
+                        recurringType = checkBlank(infoDetails[1], e).toLowerCase();
                     } catch (ArrayIndexOutOfBoundsException e) {
-                        recurringType = RecurringEvent.DAILY_RECURRANCE;
+                        recurringType = RecurringEvent.DAILY_RECURRENCE;
                     }
                     break;
                 default:
@@ -320,16 +324,16 @@ public class Parser {
 
         if (isRecurring) {
             switch (recurringType) {
-            case RecurringEvent.DAILY_RECURRANCE:
+            case RecurringEvent.DAILY_RECURRENCE:
                 event = new DailyEvent(title, dateTime, toRemind);
                 break;
-            case RecurringEvent.WEEKLY_RECURRANCE:
+            case RecurringEvent.WEEKLY_RECURRENCE:
                 event = new WeeklyEvent(title, dateTime, toRemind);
                 break;
-            case RecurringEvent.MONTHLY_RECURRANCE:
+            case RecurringEvent.MONTHLY_RECURRENCE:
                 event = new MonthlyEvent(title, dateTime, toRemind);
                 break;
-            case RecurringEvent.YEARLY_RECURRANCE:
+            case RecurringEvent.YEARLY_RECURRENCE:
                 event = new YearlyEvent(title, dateTime, toRemind);
                 break;
             default:
@@ -507,7 +511,7 @@ public class Parser {
     }
 
     /**
-     * Parses the variables in userMessage to a form that is used in DeleteEventCommand
+     * Parses the variables in userMessage to a form that is used in DeleteEventCommand.
      * @param userMessage User Input without the action word
      * @return Returns a DeleteEventCommand to be executed by Duke
      * @throws SystemException When the index is not numeric (e.g. index = 1%s)

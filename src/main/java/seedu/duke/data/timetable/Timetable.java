@@ -146,10 +146,11 @@ public class Timetable {
      * @param events List of events that are recurrent.
      * @return An ArrayList of Events of all events that will occur between the two specified time periods.
      */
-    public ArrayList<Event> getAllRecurringEvents(LocalDate startDate, LocalDate endDate, ArrayList<? extends RecurringEvent> events) {
+    public ArrayList<Event> getAllRecurringEvents(LocalDate startDate, LocalDate endDate,
+                                                  ArrayList<? extends RecurringEvent> events) {
         ArrayList<Event> eventList = new ArrayList<>();
         for (RecurringEvent event : events) {
-            eventList.addAll(event.getRecurrances(startDate, endDate));
+            eventList.addAll(event.getRecurrences(startDate, endDate));
         }
         return eventList;
     }

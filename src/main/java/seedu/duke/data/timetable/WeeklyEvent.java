@@ -2,17 +2,16 @@ package seedu.duke.data.timetable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class WeeklyEvent extends RecurringEvent {
     private static final int TIME_STEP = 1;
 
     public WeeklyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrance) {
-        super(title, dateTime, isToRemind, endRecurrance, RecurringEvent.WEEKLY_RECURRANCE);
+        super(title, dateTime, isToRemind, endRecurrance, RecurringEvent.WEEKLY_RECURRENCE);
     }
 
     public WeeklyEvent(String title, LocalDateTime dateTime, boolean isToRemind) {
-        super(title, dateTime, isToRemind, RecurringEvent.WEEKLY_RECURRANCE);
+        super(title, dateTime, isToRemind, RecurringEvent.WEEKLY_RECURRENCE);
     }
 
     @Override
