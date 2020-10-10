@@ -89,6 +89,12 @@ public class Lecture extends SchoolEvent {
     }
 
     @Override
+    public String getDescription() {
+        return "[LEC]" + "[" + getIcon() + "] " + moduleCode + " "
+                + " (" + venue + ")";
+    }
+
+    @Override
     public LocalTime getTime() {
         return time;
     }
