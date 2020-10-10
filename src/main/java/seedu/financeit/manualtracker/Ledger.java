@@ -3,11 +3,15 @@ package seedu.financeit.manualtracker;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.Item;
+import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
+import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.manualtracker.subroutine.EntryList;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
+
+import java.util.ArrayList;
 
 public class Ledger extends Item {
     public EntryList entryList = new EntryList();
@@ -15,14 +19,24 @@ public class Ledger extends Item {
 
     public Ledger() {
         super();
-        super.requiredParams.add("/date");
+        super.requiredParams = new ArrayList<>() {
+            {
+                add("/date");
+                add("/id");
+            }
+        };
+        super.requiredParams.add("/id");
         super.setDefaultDateTimeFormat("date");
     }
 
     public Ledger(CommandPacket packet) throws AssertionError, InsufficientParamsException {
         this();
         this.paramChecker = new ParamChecker(packet);
-        this.handleParams(packet);
+        try {
+            this.handleParams(packet);
+        } catch (ItemNotFoundException | ConflictingItemReference exception) {
+            // Fall-through
+        }
     }
 
     @Override
@@ -50,13 +64,15 @@ public class Ledger extends Item {
     public void handleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case ParamChecker.PARAM_DATE:
-            paramChecker.checkAndReturnDateTime(paramType, defaultDateTimeFormat);
+            dateTime = paramChecker.checkAndReturnDateTime(paramType, defaultDateTimeFormat);
             this.setDateTime(dateTime);
             break;
 
         default:
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                paramChecker.getUnrecognizedParamMessage(paramType));
+            if (!super.requiredParams.contains(paramType)) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    paramChecker.getUnrecognizedParamMessage(paramType));
+            }
             break;
         }
     }

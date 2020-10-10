@@ -1,15 +1,15 @@
 package seedu.financeit.common;
 
+import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.DuplicateInputException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
-import seedu.financeit.ui.UiManager;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public abstract class ItemList<T extends Item> extends ParamHandler {
-    protected Item currItem;
+    protected ArrayList<T> itemQueue = new ArrayList<>();
     protected ArrayList<T> items = new ArrayList<>();
 
     public ItemList() {
@@ -19,15 +19,17 @@ public abstract class ItemList<T extends Item> extends ParamHandler {
         checkDuplicates(item);
         item.setIndex(this.getItemsSize());
         this.items.add(item);
-        UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
-                String.format("%s is added to the list!", item.getName()));
     }
-    public void setCurrItem(CommandPacket packet) throws InsufficientParamsException, ItemNotFoundException {
+
+    public void setItemQueue(CommandPacket packet)
+        throws InsufficientParamsException, ItemNotFoundException, ConflictingItemReference {
         handleParams(packet);
     }
 
-    public Item getCurrItem() {
-        return currItem;
+    public Item getItemQueue() {
+        Item output =  this.itemQueue.remove(0);
+        itemQueue.clear();
+        return output;
     }
 
     public int getItemsSize() {

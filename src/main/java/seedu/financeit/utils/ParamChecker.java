@@ -21,8 +21,11 @@ public class ParamChecker {
     public static final String PARAM_DESCRIPTION = "/desc";
     public static final String PARAM_CATEGORY = "/cat";
     public static final String PARAM_AMOUNT = "/amt";
+    public static final String PARAM_INC = "-i";
+    public static final String PARAM_EXP = "-e";
 
     CommandPacket packet;
+
     public ParamChecker(CommandPacket packet) {
         this.packet = packet;
     }
@@ -69,7 +72,7 @@ public class ParamChecker {
 
         if (list.getItemsSize() == 0) {
             message = "There are no items in the list.";
-        } else if (list.getItemsSize() == 1){
+        } else if (list.getItemsSize() == 1) {
             message = "The only valid item index is 1.";
         } else {
             message = String.format("The range is from 1 to %d", list.getItemsSize());
@@ -85,30 +88,27 @@ public class ParamChecker {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 "Index input is out of bounds!",
                 message);
-            throw new AssertionError();
         } catch (NumberFormatException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 "Cannot parse your input. Please enter a positive integer!",
                 message);
-            throw new AssertionError();
         }
 
         if (!parseSuccess) {
             throw new ParseFailParamException(paramType);
         }
 
-        return index;
+        return index - 1;
     }
 
-    public int checkAndReturnIndex(String paramType, ArrayList list)
-        throws ParseFailParamException {
+    public int checkAndReturnIndex(String paramType, ArrayList list) throws ParseFailParamException {
         String message;
         int index = -1;
         boolean parseSuccess = false;
 
         if (list.size() == 0) {
             message = "There are no items in the list.";
-        } else if (list.size() == 1){
+        } else if (list.size() == 1) {
             message = "The only valid item index is 1.";
         } else {
             message = String.format("The range is from 1 to %d", list.size());
@@ -124,33 +124,55 @@ public class ParamChecker {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 "Index input is out of bounds!",
                 message);
-            throw new AssertionError();
         } catch (NumberFormatException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 "Cannot parse your input. Please enter a positive integer!",
                 message);
-            throw new AssertionError();
         }
 
         if (!parseSuccess) {
             throw new ParseFailParamException(paramType);
         }
 
-        return index;
+        return index - 1;
     }
 
-    public String checkAndReturnCategory(String paramType) {
+    public double checkAndReturnDouble(String paramType) throws ParseFailParamException {
+        String input = packet.getParam(paramType);
+        boolean parseSuccess = false;
+        double output = -1;
+        try {
+            output = Double.parseDouble(input);
+            parseSuccess = true;
+        } catch (NumberFormatException | NullPointerException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                "Cannot parse your input. Please enter valid 2 d.p input!");
+        }
+
+        if (!parseSuccess) {
+            throw new ParseFailParamException(paramType);
+        }
+        return output;
+    }
+
+    public String checkAndReturnCategory(String paramType) throws ParseFailParamException {
+        boolean parseSuccess = false;
         String category = packet.getParam(paramType);
         try {
-            if (! Constants.categoryMap.containsKey(category)) {
+            if (!Constants.categoryMap.containsKey(category)) {
                 throw new InvalidCategoryException(category);
             }
+            parseSuccess = true;
         } catch (InvalidCategoryException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 exception.getMessage(),
                 "Input \"exp cat\" to show valid categories!");
         }
-        return Constants.categoryMap.get(category);
+
+        if (!parseSuccess) {
+            throw new ParseFailParamException(paramType);
+        }
+        return category;
     }
 
     public String getUnrecognizedParamMessage(String paramType) {

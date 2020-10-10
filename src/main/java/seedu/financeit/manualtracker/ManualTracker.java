@@ -2,19 +2,14 @@ package seedu.financeit.manualtracker;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
+import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.DuplicateInputException;
-import seedu.financeit.common.exceptions.EmptyParamException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.manualtracker.subroutine.EntryTracker;
-import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.FiniteStateMachine;
-
-import java.security.InvalidParameterException;
-import java.time.DateTimeException;
-import java.time.LocalDateTime;
 
 public class ManualTracker {
     private static Ledger currLedger;
@@ -104,6 +99,8 @@ public class ManualTracker {
         try {
             ledger = new Ledger(packet);
             ledgerList.addItem(ledger);
+            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+                String.format("%s created!", ledger.getName()));
         } catch (AssertionError error) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
@@ -118,13 +115,16 @@ public class ManualTracker {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Ledger ledger;
         try {
-            ledgerList.setCurrItem(packet);
-            ledger = (Ledger) ledgerList.getCurrItem();
+            ledgerList.setItemQueue(packet);
+            ledger = (Ledger) ledgerList.getItemQueue();
+            System.out.println(ledger.getName());
             ledgerList.removeItem(ledger);
+            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+                String.format("%s deleted!", ledger.getName()));
         } catch (AssertionError error) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 "Input failed due to param error.");
-        } catch (InsufficientParamsException | ItemNotFoundException exception) {
+        } catch (InsufficientParamsException | ItemNotFoundException | ConflictingItemReference exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 exception.getMessage());
         }
@@ -146,105 +146,21 @@ public class ManualTracker {
         Ledger ledger;
 
         try {
-            ledgerList.setCurrItem(packet);
-            ledger = (Ledger) ledgerList.getCurrItem();
+            ledgerList.setItemQueue(packet);
+            ledger = (Ledger) ledgerList.getItemQueue();
             EntryTracker.setCurrLedger(ledger);
+            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+                String.format("%s opened!", ledger.getName()));
         } catch (AssertionError error) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 "Input failed due to param error.");
             return state;
-        } catch (InsufficientParamsException | ItemNotFoundException exception) {
+        } catch (InsufficientParamsException | ItemNotFoundException | ConflictingItemReference exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 exception.getMessage());
             return state;
         }
         return EntryTracker.main();
-    }
-
-    private static Ledger createLedgerWithErrorHandling(CommandPacket packet) throws AssertionError {
-        Ledger ledger = null;
-
-        try {
-            ledger = new Ledger(packet);
-        } catch (DateTimeException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Not a valid date on the Gregorian Calendar!",
-                    "Check your input again against the following format!",
-                    "Date format: YYMMDD",
-                    "Time format: HHMM");
-            throw new AssertionError();
-        } catch (InvalidParameterException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Input format is not recognised.",
-                    "Check your input again against the following format!",
-                    "Date format: YYMMDD",
-                    "Time format: HHMM");
-            throw new AssertionError();
-        } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    exception.getMessage());
-            throw new AssertionError();
-        } catch (EmptyParamException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    exception.getMessage(),
-                    "Enter \"commands\" to check format!");
-            throw new AssertionError();
-        }
-        return ledger;
-    }
-
-    private static Ledger getLedgerWithErrorHandling(String paramType) throws AssertionError {
-        Ledger ledger = null;
-        switch (paramType) {
-        case "/date":
-            String rawDate = packet.getParam(paramType);
-            try {
-                LocalDateTime dateTime = InputParser.parseRawDateTime(rawDate, "date");
-                ledger = (Ledger) ledgerList.getItemFromDateTime(dateTime);
-            } catch (NullPointerException exception) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                        "No params supplied to " + paramType,
-                        "Enter \"commands\" to check format!");
-                throw new AssertionError();
-            } catch (DateTimeException exception) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                        "Not a valid date on the Gregorian Calendar!",
-                        "Check your input again against the following format!",
-                        "Date format: YYMMDD",
-                        "Time format: HHMM");
-                throw new AssertionError();
-            } catch (InvalidParameterException exception) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                        "Input format is not recognised.",
-                        "Check your input again against the following format!",
-                        "Date format: YYMMDD",
-                        "Time format: HHMM");
-                throw new AssertionError();
-            } catch (ItemNotFoundException exception) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                        String.format("Ledger of date %s does not exist!", rawDate));
-                throw new AssertionError();
-            }
-            break;
-
-        case "/id":
-            int index = Integer.parseInt(packet.getParam(paramType));
-            // To account for offset of array indexing where beginning index is 0
-            index = index - 1;
-            try {
-                ledger = (Ledger) ledgerList.getLedgerByIndex(index);
-            } catch (IndexOutOfBoundsException exception) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                        "Index input is out of bounds!",
-                        String.format("The range is from 1 to %d", ledgerList.getItemsSize()));
-            }
-            break;
-
-        default:
-            // Fall through
-            break;
-        }
-        return ledger;
     }
 
     private static void printCommandList() {

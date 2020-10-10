@@ -3,16 +3,22 @@ package seedu.financeit.manualtracker.subroutine;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.Item;
-import seedu.financeit.common.exceptions.EmptyParamException;
+import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
-import seedu.financeit.common.exceptions.InvalidCategoryException;
+import seedu.financeit.common.exceptions.ItemNotFoundException;
+import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.manualtracker.Ledger;
-import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.UiManager;
 
-import java.security.InvalidParameterException;
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+import static seedu.financeit.utils.ParamChecker.PARAM_AMOUNT;
+import static seedu.financeit.utils.ParamChecker.PARAM_CATEGORY;
+import static seedu.financeit.utils.ParamChecker.PARAM_DESCRIPTION;
+import static seedu.financeit.utils.ParamChecker.PARAM_EXP;
+import static seedu.financeit.utils.ParamChecker.PARAM_INC;
+import static seedu.financeit.utils.ParamChecker.PARAM_TIME;
 
 public class Entry extends Item {
     private String description = " ";
@@ -23,54 +29,30 @@ public class Entry extends Item {
 
     public Entry() {
         super();
-        super.requiredParams = new String[]{
-            "/time",
-            "/cat",
-            "/amt",
-            "[ -i / -e ]"
+        super.requiredParams = new ArrayList<>() {
+            {
+                add("/time");
+                add("/cat");
+                add("/amt");
+                add("-i");
+                add("-e");
+                add("/id");
+                add("/desc");
+            }
         };
         super.setDefaultDateTimeFormat("time");
     }
 
-    public Entry(CommandPacket packet) throws DateTimeException, InvalidParameterException,
-        InsufficientParamsException, EmptyParamException, InvalidCategoryException {
+    public Entry(CommandPacket packet) throws AssertionError, InsufficientParamsException {
         this();
-        this.handleParams(packet);
+        try {
+            this.handleParams(packet);
+        } catch (ItemNotFoundException | ConflictingItemReference exception) {
+            // Fall-through
+        }
     }
 
-    @Override
-    public void handleParam(CommandPacket packet, String paramType) throws DateTimeException, InvalidParameterException,
-            EmptyParamException, InvalidCategoryException {
-        if (paramType.charAt(0) == '/' && packet.getParam(paramType).trim().length() == 0) {
-            throw new EmptyParamException(paramType);
-        }
-        switch (paramType) {
-        case "/time":
-            String rawTime = packet.getParam(paramType);
-            LocalDateTime dateTime = InputParser.parseRawDateTime(rawTime, defaultDateTimeFormat);
-            this.setDateTime(dateTime);
-            break;
-        case "/amt":
-            Double amount = Double.parseDouble(packet.getParam(paramType));
-            this.setAmount(amount);
-            break;
-        case "-i":
-            this.setEntryType(Constants.EntryType.INC);
-            break;
-        case "-e":
-            this.setEntryType(Constants.EntryType.EXP);
-            break;
-        case "/desc":
-            this.setDescription(packet.getParam(paramType));
-            break;
-        case "/cat":
-            this.setCategory(packet.getParam(paramType));
-            break;
-        default:
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, paramType + " is not recognised.");
-            break;
-        }
-    }
+
 
     public void setDescription(String description) {
         this.description = description;
@@ -92,10 +74,7 @@ public class Entry extends Item {
         return this.amount;
     }
 
-    public void setCategory(String category) throws InvalidCategoryException {
-        if (!Constants.categoryMap.containsKey(category)) {
-            throw new InvalidCategoryException(category);
-        }
+    public void setCategory(String category) {
         this.category = Constants.categoryMap.get(category);
     }
 
@@ -112,19 +91,41 @@ public class Entry extends Item {
     }
 
     @Override
-    public void handleParams(CommandPacket packet) throws DateTimeException, InvalidParameterException,
-        InsufficientParamsException, EmptyParamException, InvalidCategoryException {
-        for (String paramType : packet.getParamTypes()) {
-            handleParam(packet, paramType);
-        }
-        if (!isValidItem()) {
-            throw new InsufficientParamsException(this.requiredParams);
+    public void handleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
+        switch (paramType) {
+        case PARAM_TIME:
+            LocalDateTime dateTime = paramChecker.checkAndReturnDateTime(paramType, defaultDateTimeFormat);
+            this.setDateTime(dateTime);
+            break;
+        case PARAM_AMOUNT:
+            Double amount = paramChecker.checkAndReturnDouble(paramType);
+            this.setAmount(amount);
+            break;
+        case PARAM_INC:
+            this.setEntryType(Constants.EntryType.INC);
+            break;
+        case PARAM_EXP:
+            this.setEntryType(Constants.EntryType.EXP);
+            break;
+        case PARAM_DESCRIPTION:
+            this.setDescription(packet.getParam(paramType));
+            break;
+        case PARAM_CATEGORY:
+            String category = paramChecker.checkAndReturnCategory(paramType);
+            this.setCategory(category);
+            break;
+        default:
+            if (!super.requiredParams.contains(paramType)) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    paramChecker.getUnrecognizedParamMessage(paramType));
+            }
+            break;
         }
     }
 
     @Override
     public String getName() {
-        return String.format("Entry %d : [ %s ] [ %s ]", this.getIndex(),
+        return String.format("Entry %d : [ %s ] [ %s ]", this.getIndex() + 1,
             this.dateTimeManager.getDateFormatted("time"), this.description);
     }
 
