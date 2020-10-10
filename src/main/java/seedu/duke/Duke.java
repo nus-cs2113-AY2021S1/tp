@@ -43,8 +43,8 @@ public class Duke {
     public Duke() {
         //open file
       
-        busesInZoneA.add(new Bus(Zone_A[0], AA1));
-        busesInZoneA.add(new Bus(Zone_A[1], AA2));
+        busesInZoneA.add(new Bus(ZONE_A[0], AA1));
+        busesInZoneA.add(new Bus(ZONE_A[1], AA2));
         BusData.createBusList(busesInZoneA);
 
     }
