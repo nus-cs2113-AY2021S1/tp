@@ -70,7 +70,7 @@ public class AddCommand extends Command {
             Quote quote = QuoteParser.parseParameters(information);
             quotes.add(quote);
             ui.printAllQuotes(quotes);
-        } catch(QuotesifyException e) {
+        } catch (QuotesifyException e) {
             System.out.println(e.getMessage());
         }
     }

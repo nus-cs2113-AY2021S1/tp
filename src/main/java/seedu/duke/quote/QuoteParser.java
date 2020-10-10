@@ -29,7 +29,7 @@ public class QuoteParser {
         return new Quote(quote);
     }
 
-    public static Quote parseQuoteWithReferenceAndAuthor(String userInput) throws QuotesifyException{
+    public static Quote parseQuoteWithReferenceAndAuthor(String userInput) throws QuotesifyException {
         // Throws exception if any fields are empty
         String[]  quoteAndInformation = userInput.split(FLAG_DELIMETER, 2);
         String quote = trimAndCheckEmptyQuote(quoteAndInformation[0]);
@@ -63,7 +63,7 @@ public class QuoteParser {
         return new Quote(quote, reference);
     }
 
-    public static Quote parseQuoteWithAuthor(String userInput) throws QuotesifyException{
+    public static Quote parseQuoteWithAuthor(String userInput) throws QuotesifyException {
         // Throws exception if quote of author name is empty
         String[] quoteAndAuthor = userInput.split(FLAG_AUTHOR, 2);
         String quote = trimAndCheckEmptyQuote(quoteAndAuthor[0]);
@@ -71,7 +71,7 @@ public class QuoteParser {
         return new Quote(quote, author);
     }
 
-    public static String trimAndCheckEmptyQuote(String quote) throws QuotesifyException{
+    public static String trimAndCheckEmptyQuote(String quote) throws QuotesifyException {
         quote = quote.trim();
         if (!quote.isEmpty()) {
             return quote;
