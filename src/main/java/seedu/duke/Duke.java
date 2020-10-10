@@ -1,6 +1,8 @@
 package seedu.duke;
 
 import seedu.duke.bookmark.BookmarkList;
+import seedu.duke.command.AddSlotCommand;
+import seedu.duke.command.DeleteSlotCommand;
 import seedu.duke.slot.SlotList;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
@@ -51,7 +53,11 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(bookmarks, ui, bookmarkStorage);
+                if (c instanceof AddSlotCommand || c instanceof DeleteSlotCommand) {
+                    c.execute(slots, ui, slotStorage);
+                } else {
+                    c.execute(bookmarks, ui, bookmarkStorage);
+                }
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showErrorMessage(e);

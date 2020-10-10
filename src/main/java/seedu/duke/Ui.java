@@ -92,6 +92,12 @@ public class Ui {
         case INVALID_URL:
             printInvalidUrl();
             break;
+        case INVALID_SLOT_INPUT:
+            printInvalidSlotInput();
+            break;
+        case INVALID_TIME_FORMAT:
+            printInvalidTimeFormat();
+            break;
         default:
             // unable to get dukeExceptionType
             break;
@@ -125,4 +131,13 @@ public class Ui {
     private void printMatchingBookmarks(String message) {
         print("Invalid url\n");
     }
+
+    private void printInvalidSlotInput() {
+        print("Invalid slot input\n");
+    }
+
+    private void printInvalidTimeFormat() {
+        print("Invalid time format\n");
+    }
+
 }
