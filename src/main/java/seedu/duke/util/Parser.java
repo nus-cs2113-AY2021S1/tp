@@ -74,7 +74,7 @@ public class Parser {
             case ListEventCommand.COMMAND_WORD:
                 // return prepareListEvent(userMessage);
             case ViewNoteCommand.COMMAND_WORD:
-                // return prepareViewNote(userMessage);
+                return prepareViewNote(userMessage);
             case EditCommand.COMMAND_WORD_NOTE:
                 // return prepareEditNote(userMessage);
             case EditCommand.COMMAND_WORD_EVENT:
@@ -405,9 +405,10 @@ public class Parser {
         return new ListEventCommand();
     }*/
 
-    private Command prepareViewNote(String userMessage) {
+    private Command prepareViewNote(String userMessage) throws SystemException {
         String title;
         int index;
+
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
 
@@ -424,14 +425,17 @@ public class Parser {
                     index = Integer.parseInt(infoDetails[1].trim());
                     return new ViewNoteCommand(index);
                 default:
-                    return new IncorrectCommand("Missing tags!");
+                    throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_TAG);
                 }
             }
-        } catch (SystemException exception) {
-            return new IncorrectCommand(exception.getMessage());
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException exception) {
-            return new IncorrectCommand("Missing description!");
+        } catch (NullPointerException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG_PREFIX);
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+        } catch (NumberFormatException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
         }
+
         return new IncorrectCommand("Incorrect format for viewing notes");
     }
     /*

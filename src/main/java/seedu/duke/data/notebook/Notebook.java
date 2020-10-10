@@ -66,8 +66,4 @@ public class Notebook {
     public int getSize() {
         return notes.size();
     }
-
-    public int getSize() {
-        return notes.size();
-    }
 }
