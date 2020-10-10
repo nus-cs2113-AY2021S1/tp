@@ -37,6 +37,8 @@ public class SlotList {
         if (hasSlotOnDay == false) {
             System.out.println("No lessons");
         }
+
+        System.out.println();
     }
 
     public void printTimetable(ArrayList<Slot> slots) {
