@@ -302,7 +302,7 @@ public class Parser {
                     e = ExceptionType.EXCEPTION_MISSING_RECURRING_TYPE;
                     try {
                         recurringType = checkBlank(infoDetails[1], e).toLowerCase();
-                    } catch (ArrayIndexOutOfBoundsException e) {
+                    } catch (ArrayIndexOutOfBoundsException ex) {
                         recurringType = RecurringEvent.DAILY_RECURRENCE;
                     }
                     break;
