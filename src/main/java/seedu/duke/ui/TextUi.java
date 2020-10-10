@@ -18,7 +18,8 @@ public class TextUi {
     private static final String WELCOME_MESSAGE = "Welcome to Quotesify!";
     private static final String GOODBYE_MESSAGE = "Have a nice day!";
     private static final String PROMPT_MESSAGE = "\nWhat would you like to do with Quotesify?";
-    private static final String ADD_BOOK = "This book has been added:";
+    private static final String ADD_BOOK = "The book [%s] has been added!";
+    private static final String DELETE_BOOK = "The book [%s] has been deleted!";
     private static final String ADD_CATEGORY_MESSAGE = "I have tagged \"%s\" category to \"%s\"!";
     private static final String DELETE_CATEGORY_MESSAGE = "I have removed \"%s\" category from \"%s\"!";
     private static final String CATEGORY_SIZE_MESSAGE = "You have a total of %d item(s) tagged as \"%s\".";
@@ -45,8 +46,11 @@ public class TextUi {
     }
 
     public void printAddBook(Book book) {
-        System.out.println(ADD_BOOK);
-        System.out.println(book.toString());
+        System.out.printf(ADD_BOOK + "\n", book.toString());
+    }
+
+    public void printDeleteBook(Book book) {
+        System.out.printf(DELETE_BOOK + "\n", book.toString());
     }
 
     public void printAllQuotes(QuoteList quotes) {

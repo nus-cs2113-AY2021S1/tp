@@ -12,6 +12,7 @@ public abstract class Command {
     public static final String TAG_CATEGORY = "-c";
 
     public static final String ERROR_INVALID_QUOTE_NUM = "Invalid quote number specified!";
+    public static final String ERROR_NO_BOOK_FOUND = "There is no such book!";
 
     public abstract void execute(TextUi ui, ListManager listManager);
 
