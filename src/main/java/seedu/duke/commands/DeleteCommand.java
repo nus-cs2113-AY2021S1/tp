@@ -42,14 +42,14 @@ public class DeleteCommand extends Command {
             break;
         case TAG_RATING:
             RatingList ratings = (RatingList) listManager.getList(ListManager.RATING_LIST);
-            deleteRating(ratings, ui);
+            String bookTitle = information.trim();
+            deleteRating(ratings, ui, bookTitle);
             break;
         default:
         }
     }
 
-    private void deleteRating(RatingList ratings, TextUi ui) {
-        String bookTitle = information.trim();
+    private void deleteRating(RatingList ratings, TextUi ui, String bookTitle) {
         Rating ratingToBeDeleted = null;
         for (Rating rating : ratings.getList()) {
             if (rating.getTitleOfRatedBook().equals(bookTitle)) {
@@ -65,12 +65,22 @@ public class DeleteCommand extends Command {
         ui.printDeleteRating(bookTitle);
     }
 
-
-
     private void deleteBook(BookList books, TextUi ui, ListManager listManager) {
         String[] titleAndAuthor = information.split("/by");
+        String bookTitle = titleAndAuthor[0].trim();
+
+        RatingList ratings = (RatingList) listManager.getList(ListManager.RATING_LIST);
+        Rating ratingToBeDeleted;
+        for (Rating rating : ratings.getList()) {
+            if (rating.getTitleOfRatedBook().equals(bookTitle)) {
+                ratingToBeDeleted = rating;
+                ratings.delete(ratings.getList().indexOf(ratingToBeDeleted));
+                break;
+            }
+        }
+
         try {
-            ArrayList<Book> filteredBooks = books.find(titleAndAuthor[0].trim(), titleAndAuthor[1].trim());
+            ArrayList<Book> filteredBooks = books.find(bookTitle, titleAndAuthor[1].trim());
             books.deleteByBook(filteredBooks.get(0));
             ui.printDeleteBook(filteredBooks.get(0));
         } catch (IndexOutOfBoundsException e) {
