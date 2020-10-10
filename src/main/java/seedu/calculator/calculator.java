@@ -7,7 +7,7 @@ import seedu.foodList;
  * Represents a calculator of food items in foodList.
  */
 public class calculator {
-    private static Food total = new Food (total, 0, 0, 0, 0);
+    private static Food total = new Food (total, 1, 0, 0, 0, 0);
 
     /**
      * Construct a calculator taking in a foodList. Add up calories,
@@ -18,10 +18,10 @@ public class calculator {
     public calculator(ArrayList<Food> foodList){
         try {
             for(int i=0; i< foodList.size(); i++){
-                total.calorie += foodList.getCalorie(i);
-                total.carbs += foodList.getCarbs(i);
-                total.protein += foodList.getProtein(i);
-                total.fats += foodList.getFats(i);
+                total.calorie += foodList.getPortionSize(i)*foodList.getCalorie(i);
+                total.carbs += foodList.getPortionSize(i)*foodList.getCarbs(i);
+                total.protein += foodList.getPortionSize(i)*foodList.getProtein(i);
+                total.fats += foodList.getPortionSize(i)*foodList.getFats(i);
             }
         } catch (NullPointerException e) {
             System.out.println("Ops, This foodList is null!");
