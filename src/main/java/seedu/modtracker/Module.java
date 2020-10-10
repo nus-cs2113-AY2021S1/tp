@@ -47,7 +47,11 @@ public class Module {
     public void addActualTime(String time, String week) {
         double d = Double.parseDouble(time);
         int i = Integer.parseInt(week);
-        this.actualTime[i] += d;
+        if (this.actualTime[i] == -1) {
+            this.actualTime[i] = d;
+        } else {
+            this.actualTime[i] += d;
+        }
     }
 
     public void minusActualTime(String time, String week) {
