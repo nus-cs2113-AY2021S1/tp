@@ -1,7 +1,7 @@
 package seedu.duke.util;
 
-import seedu.duke.command.AddEventCommand;
 import seedu.duke.command.Command;
+import seedu.duke.command.AddEventCommand;
 import seedu.duke.command.CreateTagCommand;
 import seedu.duke.command.DeleteEventCommand;
 import seedu.duke.command.DeleteTagCommand;
@@ -19,6 +19,7 @@ import seedu.duke.command.PinCommand;
 import seedu.duke.command.RemindCommand;
 import seedu.duke.command.TagCommand;
 import seedu.duke.command.ViewNoteCommand;
+
 import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.exception.SystemException.ExceptionType;
 import seedu.duke.data.notebook.Note;
