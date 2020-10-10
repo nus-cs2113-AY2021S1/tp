@@ -42,6 +42,24 @@ public class Person {
     }
 
     /**
+     * Returns the name of the person.
+     *
+     * @return The name of the person.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Sets the name of the person to the new name given.
+     *
+     * @param newName The new/revised name of the person.
+     */
+    public void setName(String newName) {
+        name = newName;
+    }
+
+    /**
      * Returns the age of the person.
      *
      * @return The age of the person.
