@@ -175,16 +175,13 @@ public class Person {
      */
     @Override
     public String toString() {
-        String userInformation = "Hi " + name + "! "
-                + "Here is your information:" + System.lineSeparator()
-                + System.lineSeparator()
-                + "Name: " + name + System.lineSeparator()
-                + "Gender: " + gender.getDescription() + System.lineSeparator()
-                + "Age: " + age + System.lineSeparator()
-                + "Height: " + height + "cm" + System.lineSeparator()
-                + "Original weight: " + originalWeight + "kg" + System.lineSeparator()
-                + "Target weight: " + targetWeight + "kg" + System.lineSeparator()
-                + "Activity level: " + activityLevel.getDescription();
+        String userInformation = "  Name: " + name + System.lineSeparator()
+                + "  Gender: " + gender.getDescription() + System.lineSeparator()
+                + "  Age: " + age + System.lineSeparator()
+                + "  Height: " + height + "cm" + System.lineSeparator()
+                + "  Original weight: " + originalWeight + "kg" + System.lineSeparator()
+                + "  Target weight: " + targetWeight + "kg" + System.lineSeparator()
+                + "  Activity level: " + activityLevel.getDescription();
         return userInformation;
     }
 }

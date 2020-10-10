@@ -107,15 +107,13 @@ class PersonTest {
 
     @Test
     void toString_person_returnsStringRepresentationOfPersonInformation() {
-        assertEquals("Hi Jack! Here is your information:" + System.lineSeparator()
-                + System.lineSeparator()
-                + "Name: Jack" + System.lineSeparator()
-                + "Gender: male" + System.lineSeparator()
-                + "Age: 21" + System.lineSeparator()
-                + "Height: 165cm" + System.lineSeparator()
-                + "Original weight: 75kg" + System.lineSeparator()
-                + "Target weight: 65kg" + System.lineSeparator()
-                + "Activity level: You engage in some form of light exercise or have a job that requires "
+        assertEquals("  Name: Jack" + System.lineSeparator()
+                + "  Gender: male" + System.lineSeparator()
+                + "  Age: 21" + System.lineSeparator()
+                + "  Height: 165cm" + System.lineSeparator()
+                + "  Original weight: 75kg" + System.lineSeparator()
+                + "  Target weight: 65kg" + System.lineSeparator()
+                + "  Activity level: You engage in some form of light exercise or have a job that requires "
                 + "some physical activity.", person.toString());
     }
 }
