@@ -11,6 +11,7 @@ import seedu.duke.quote.Quote;
 import seedu.duke.quote.QuoteList;
 import seedu.duke.rating.Rating;
 import seedu.duke.rating.RatingList;
+import seedu.duke.rating.RatingParser;
 import seedu.duke.ui.TextUi;
 
 import java.util.ArrayList;
@@ -156,19 +157,31 @@ public class AddCommand extends Command {
         String[] ratingDetails = information.split(" ", 2);
         String titleOfBookToRate = ratingDetails[1].trim();
 
-        int ratingScore;
-        try {
-            ratingScore = Integer.parseInt(ratingDetails[0]);
-        } catch (NumberFormatException e) {
-            System.out.println(ERROR_INVALID_FORMAT_ADD_RATING);
-            return;
+        int ratingScore = RatingParser.checkFormatOfRatingValue(ratingDetails[0]);
+        boolean isValid = RatingParser.checkRangeOfRatingValue(ratingScore);
+        if (isValid && !isRated(ratings, titleOfBookToRate) && isExistingBook(listManager, titleOfBookToRate)) {
+            ratings.add(new Rating(ratingScore, titleOfBookToRate));
+            ui.printAddRatingToBook(ratingScore, titleOfBookToRate);
         }
+    }
 
-        if (!(ratingScore >= RATING_ONE && ratingScore <= RATING_FIVE)) {
-            System.out.println(ERROR_INVALID_RATING_SCORE);
-            return;
+    private boolean isExistingBook(ListManager listManager, String titleOfBookToRate) {
+        BookList bookList = (BookList) listManager.getList(ListManager.BOOK_LIST);
+        ArrayList<Book> existingBooks = bookList.getList();
+        boolean doesExist = false;
+        for (Book existingBook : existingBooks) {
+            if (existingBook.getTitle().equals(titleOfBookToRate)) {
+                doesExist = true;
+                break;
+            }
         }
+        if (!doesExist) {
+            System.out.println(ERROR_BOOK_TO_RATE_NOT_FOUND);
+        }
+        return doesExist;
+    }
 
+    private boolean isRated(RatingList ratings, String titleOfBookToRate) {
         boolean isRated = false;
         String titleOfRatedBook;
         for (Rating rating : ratings.getList()) {
@@ -181,25 +194,9 @@ public class AddCommand extends Command {
 
         if (isRated) {
             System.out.println(ERROR_RATING_EXIST);
-            return;
+            return true;
         }
-
-        BookList bookList = (BookList) listManager.getList(ListManager.BOOK_LIST);
-        ArrayList<Book> existingBooks = bookList.getList();
-        boolean doesExist = false;
-        for (Book existingBook : existingBooks) {
-            if (existingBook.getTitle().equals(titleOfBookToRate)) {
-                doesExist = true;
-                break;
-            }
-        }
-
-        if (doesExist) {
-            ratings.add(new Rating(ratingScore, titleOfBookToRate));
-            ui.printAddRatingToBook(ratingScore, titleOfBookToRate);
-        } else {
-            System.out.println(ERROR_BOOK_TO_RATE_NOT_FOUND);
-        }
+        return false;
     }
 
     public boolean isExit() {

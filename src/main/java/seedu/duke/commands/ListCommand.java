@@ -5,6 +5,7 @@ import seedu.duke.category.CategoryList;
 import seedu.duke.lists.ListManager;
 import seedu.duke.rating.Rating;
 import seedu.duke.rating.RatingList;
+import seedu.duke.rating.RatingParser;
 import seedu.duke.ui.TextUi;
 
 import java.util.ArrayList;
@@ -45,21 +46,21 @@ public class ListCommand extends Command {
         ArrayList<Rating> ratings = ratingList.getList();
         ratings.sort(Comparator.comparing(Rating::getRating));
         Collections.reverse(ratings);
-        if (information == "") {
-            System.out.println("Planning to recommend some books? Here are your rated books!");
-            System.out.println(ratingList.toString());
+        if (information.equals("")) {
+            listAllRatings(ratingList, ui);
         } else {
-            int ratingToList = Integer.parseInt(information);
-            if (!(ratingToList >= RATING_ONE && ratingToList <= RATING_FIVE)) {
-                System.out.println("That score is out of our range my friend");
-                return;
-            }
-            System.out.println("Here are the books you rated as " + ratingToList + " star!");
-            for (Rating rating : ratings) {
-                if (rating.getRating() == ratingToList) {
-                    System.out.println(rating.getTitleOfRatedBook());
-                }
-            }
+            listSpecifiedRating(ratingList, ui);
+        }
+    }
+
+    private void listAllRatings(RatingList ratingList, TextUi ui) {
+        ui.printAllRatings(ratingList);
+    }
+
+    private void listSpecifiedRating(RatingList ratings, TextUi ui) {
+        int ratingToList = RatingParser.checkFormatOfRatingValue(information);
+        if (RatingParser.checkRangeOfRatingValue(ratingToList)) {
+            ui.printSpecifiedRating(ratings, ratingToList);
         }
     }
 
