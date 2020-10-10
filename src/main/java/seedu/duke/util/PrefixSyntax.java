@@ -9,8 +9,6 @@ public class PrefixSyntax {
     public static final String PREFIX_TITLE = "t";
     public static final String PREFIX_TAG = "tag";
     public static final String PREFIX_PIN = "pin";
-    public static final String PREFIX_REMIND = "a";
-    public static final String PREFIX_RECURRING = "r";
     public static final String PREFIX_TIMING = "timing";
     public static final String PREFIX_END = "/end";
     public static final String PREFIX_DATETIME = "/d";
