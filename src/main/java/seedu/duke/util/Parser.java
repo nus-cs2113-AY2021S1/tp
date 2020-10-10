@@ -251,6 +251,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if an input string if blank. If it is, throw the provided system exception. If it is not, return that
+     * string trimmed.
+     * @param input Input to be checked.
+     * @param e ExceptionType to be thrown
+     * @return Trimmed non-blank string
+     * @throws SystemException Occurs when input is blank.
+     */
     private String checkBlank(String input, SystemException.ExceptionType e) throws SystemException {
         if (input.isBlank()) {
             throw new SystemException(e);
@@ -259,8 +267,16 @@ public class Parser {
         }
     }
 
+    /**
+     * Takes a user string designated to add an event and prepares it by extracting relevant information from the provided
+     * required and optional tags. It requires a title tag and a timing tag (/t and /timing). Other tags allow for it to be
+     * recurring and to set reminders of the event.
+     * @param userMessage User input message
+     * @return Returns an AddEventCommand to be executed by Duke
+     * @throws SystemException Occurs when information provided by the tags are blank,wrong or do not have a default value.
+     */
     private Command prepareAddEvent(String userMessage) throws SystemException {
-        // add-e eventTitle /t timing /r occurrance /a time before (default same day)
+        // add-e eventTitle /t timing /rec occurrance /rem time before (default same day)
 
         String title = "";
         LocalDateTime dateTime = null;
@@ -278,7 +294,7 @@ public class Parser {
                     break;
                 case PREFIX_TIMING:
                     String timingString = checkBlank(infoDetails[1], SystemException.ExceptionType.EXCEPTION_MISSING_TIMING);
-                    dateTime = dateTimeParser(timingString);
+                    dateTime = DateTimeManager.dateTimeParser(timingString);
                     break;
                 case PREFIX_REMIND_EVENT:
                     toRemind = true;
@@ -303,8 +319,6 @@ public class Parser {
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             return new IncorrectCommand("No description found after a tag!");
-        } catch (SystemException e) {
-            throw e;
         }
 
         Event event;
@@ -327,22 +341,10 @@ public class Parser {
                 throw new SystemException(ExceptionType.EXCEPTION_WRONG_RECURRING_TYPE);
 
             }
-            return new AddEventCommand(event);
         } else {
             event = new Event(title, dateTime, toRemind, isRecurring);
-            return new AddEventCommand(event);
         }
-    }
-
-    private LocalDateTime dateTimeParser(String input) throws SystemException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dateTime;
-        try {
-            dateTime = LocalDateTime.parse(input, formatter);
-        } catch (DateTimeParseException e) {
-            throw new SystemException(SystemException.ExceptionType.EXCEPTION_WRONG_TIMING);
-        }
-        return dateTime;
+        return new AddEventCommand(event);
     }
 
     /**
@@ -509,6 +511,12 @@ public class Parser {
         return new ListEventCommand();
     }
 
+    /**
+     * Parses the variables in userMessage to a form that is used in DeleteEventCommand
+     * @param userMessage User Input without the action word
+     * @return Returns a DeleteEventCommand to be executed by Duke
+     * @throws SystemException When the index is not numeric (e.g. index = 1%s)
+     */
     private Command prepareDeleteEvent(String userMessage) throws SystemException {
         int index;
         try {
@@ -516,7 +524,8 @@ public class Parser {
         } catch (NumberFormatException e) {
             throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
         }
-        return new DeleteEventCommand(index);
+        // Convert from human-readable index to index in array.
+        return new DeleteEventCommand(index - 1);
     }
     /*
     private Command prepareViewNote(String userMessage) {

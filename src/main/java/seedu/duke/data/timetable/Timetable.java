@@ -80,7 +80,7 @@ public class Timetable {
      * @param index Index to be removed.
      */
     public Event deleteEvent(int index) throws SystemException {
-        if (index > events.size()) {
+        if (index >= events.size() || index < 0) {
             throw new SystemException(SystemException.ExceptionType.EXCEPTION_INDEX_OUT_OF_RANGE);
         }
         Event event = events.get(index);

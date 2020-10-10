@@ -7,6 +7,10 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 
+/**
+ * This class allows us to store relevant information regarding the events to be deleted from the timetable and manipulate it
+ * before executing it via the execute method.
+ */
 public class DeleteEventCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-e";

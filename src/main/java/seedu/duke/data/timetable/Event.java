@@ -91,7 +91,7 @@ public class Event {
 
     public String toString() {
         String titleString = "Event: " + title;
-        String dateString = "Date: " + date.toString();
+        String dateString = "Date: " + date.toString() + "\tTime: " + time.toString();
         String remindString = "Reminder: " + isToRemind;
         String repeatingString = "Repeating: " + isRecurring;
         return titleString + "\n" + dateString + "\n" + remindString + "\n" + repeatingString;
