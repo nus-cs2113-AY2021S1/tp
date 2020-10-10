@@ -39,12 +39,27 @@ class SmartHomeBotTest {
         applianceList.addAppliance(l1);
         applianceList.addAppliance(l2);
         assertThrows(InvalidAdditionOfAppliance.class, () -> applianceList.addAppliance(l1));
-
     }
 
     @Test
     void getTypeTest() {
         assertEquals("AirConditioner", new AirConditioner("aircon1", "br1", "25").getType());
+    }
+
+    @Test
+    void getNameTest() {
+        assertEquals("Xiao Mi Light", new Lights("Xiao Mi Light", "BedRoom 1", "45").getName());
+    }
+
+    @Test
+    void getLocationTest() {
+        assertEquals("BedRoom1", new Lights("Xiao Mi Light", "BedRoom1", "45").getLocation());
+    }
+
+    @Test
+    void getStatusTest() {
+        //New appliance added should be always remain Off until User switch it On
+        assertEquals("Off", new Lights("Xiao Mi Light", "BedRoom 1", "45").getStatus());
     }
 
     @Test
@@ -78,6 +93,6 @@ class SmartHomeBotTest {
 
         //compare outputs
         assertEquals(Messages.MESSAGE_LOCATION_NOT_EXIST + " Nothing will be deleted.", outputString);
-
     }
+
 }
