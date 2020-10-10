@@ -22,6 +22,7 @@ public class Ui {
      */
     public void greetFirstTime() {
         System.out.println("Welcome to AniChan!");
+        showLogo();
         System.lineSeparator();
         System.out.println("Let's get you started!");
         System.out.println("Please enter your particulars:");
@@ -32,6 +33,7 @@ public class Ui {
      */
     public void greetExisting(UserProfile userProfile) {
         String userName = userProfile.name;
+        showLogo();
         System.out.println("Welcome Back, " + userName);
         System.out.println();
     }

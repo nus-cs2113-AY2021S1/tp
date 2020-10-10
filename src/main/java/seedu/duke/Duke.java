@@ -22,7 +22,6 @@ public class Duke {
         ui = new Ui();
         storage = new Storage(USER_PROFILE_FILE_NAME, WATCHLIST_FILE_NAME);
 
-        ui.showLogo();
         UserProfile userProfile = null;
         try {
             userProfile = storage.readUserProfileFile();
