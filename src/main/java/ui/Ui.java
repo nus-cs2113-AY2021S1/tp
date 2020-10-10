@@ -8,8 +8,6 @@ import commands.HelpCommand;
 import commands.ReviseCommand;
 
 import manager.card.Card;
-import manager.chapter.Chapter;
-import scheduler.Scheduler;
 
 import java.io.InputStream;
 import java.io.PrintStream;
