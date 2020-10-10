@@ -1,5 +1,6 @@
 package seedu.duke.food;
 
+
 public class Food {
     private final String name;
     private final int calorie;

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class DataBase {
@@ -136,8 +137,9 @@ public class DataBase {
     }
 
     /***
-     * search for the first food that contains the string provided in the first store which matchs the store
-     * string provided
+     * Search for the first food that contains the string provided in the first store which matchs the store
+     * string provided.
+     *
      * @param food partial name of the food
      * @param store partial name of the store
      * @return Food object
@@ -150,7 +152,8 @@ public class DataBase {
     }
 
     /***
-     * This method returns a stream of all the food in the first store that contains the given string
+     * This method returns a stream of all the food in the first store that contains the given string.
+     *
      * @param store partial name of the store
      * @return food stream
      */
@@ -165,7 +168,8 @@ public class DataBase {
     }
 
     /***
-     * this method returns a stream of all the food in all stores that contains the given string
+     * This method returns a stream of all the food in all stores that contains the given string.
+     *
      * @param store partial name of the store
      * @return  food stream
      */
@@ -178,7 +182,8 @@ public class DataBase {
 
 
     /***
-     * this method returns the first food that matchs the
+     * This method returns the first food that matchs the.
+     *
      * @param food partial name of the food
      * @param canteen partial name of the canteen
      * @return Food object
@@ -190,7 +195,8 @@ public class DataBase {
     }
 
     /***
-     * returns all food that contains the provided food name in the first canteen that matchs the canteen name
+     * Returns all food that contains the provided food name in the first canteen that matchs the canteen name.
+     *
      * @param food partial name of the food
      * @param canteen partial name of the canteen
      * @return Food Stream
@@ -207,7 +213,8 @@ public class DataBase {
     }
 
     /***
-     * returns a stream of food whose calorie is below the provided amount
+     * Returns a stream of food whose calorie is below the provided amount.
+     *
      * @param calorie the maximum calorie of the food
      * @return a stream
      */
@@ -216,7 +223,8 @@ public class DataBase {
     }
 
     /***
-     * returns all food within the calorie range
+     * Returns all food within the calorie range.
+     *
      * @param minCalorie minimum calories
      * @param maxCalorie maxinum calories
      * @return
@@ -226,12 +234,17 @@ public class DataBase {
     }
 
     /***
-     * Provides a data stream of all the food in the data base
+     * Provides a data stream of all the food in the data base.
+     *
      * @return a food stream
      */
     private Stream<Food> foodStream() {
         return canteenList.stream()
                 .flatMap( x -> x.getStoreList().stream())
                 .flatMap( x -> x.getFoodList().stream());
+    }
+
+    public List<Food> foodList() {
+        return foodStream().collect(Collectors.toList());
     }
 }
