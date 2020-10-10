@@ -140,8 +140,12 @@ public class TextUi {
         System.out.println(toDo.toString());
     }
 
-    public void printAllToDos(ToDoList toDoList){
+    public void printAllToDos(ToDoList toDoList) {
         System.out.println(LIST_TODOS_MESSAGE);
         System.out.println(toDoList.toString());
+    }
+
+    public void printDeleteToDo(ToDo  toDo) {
+        System.out.printf(DELETE_TODO_MESSAGE + "\n", toDo.toString());
     }
 }

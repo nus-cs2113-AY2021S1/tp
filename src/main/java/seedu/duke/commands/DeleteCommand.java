@@ -10,6 +10,8 @@ import seedu.duke.quote.Quote;
 import seedu.duke.quote.QuoteList;
 import seedu.duke.rating.Rating;
 import seedu.duke.rating.RatingList;
+import seedu.duke.todo.ToDo;
+import seedu.duke.todo.ToDoList;
 import seedu.duke.ui.TextUi;
 
 import java.util.ArrayList;
@@ -45,6 +47,11 @@ public class DeleteCommand extends Command {
             String bookTitle = information.trim();
             deleteRating(ratings, ui, bookTitle);
             break;
+        case TAG_TODO:
+            ToDoList toDos = (ToDoList) listManager.getList(ListManager.TODO_LIST);
+            int index = computeToDoIndex(information.trim());
+            deleteToDo(toDos, index, ui);
+
         default:
         }
     }
@@ -150,6 +157,28 @@ public class DeleteCommand extends Command {
             return false;
         }
         return true;
+    }
+
+    private void deleteToDo(ToDoList toDos, int index, TextUi ui) {
+        ToDo toDoToBeDeleted = toDos.find(index);
+        if(toDoToBeDeleted != null) {
+            toDos.delete(index);
+            ui.printDeleteToDo(toDoToBeDeleted);
+        }
+        else {
+            System.out.println(ERROR_TODO_NOT_FOUND);
+        }
+    }
+
+    private int computeToDoIndex(String information) {
+        int index = 0;
+        try {
+            index = Integer.parseInt(information);
+        } catch (NumberFormatException e) {
+            System.out.println(ERROR_INVALID_TODO_NUM);
+        }
+
+        return index;
     }
 
     @Override
