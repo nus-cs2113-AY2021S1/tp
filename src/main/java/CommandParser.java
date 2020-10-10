@@ -5,8 +5,10 @@ public class CommandParser {
 
         if (commandModified.equals("exit")) {
             return CommandType.EXIT;
+        } else if (commandModified.equals("location")) {
+            return CommandType.LOCATION;
         } else {
-            return CommandType.EXIT; //TODO: Fix this
+            return CommandType.UNIDENTIFIABLE;
         }
     }
 }
