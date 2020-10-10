@@ -13,31 +13,31 @@ public class Duke {
     private static final String[] ZONE_A = {"AA1", "AA2"};
 
     private static final String[] AA1 = {
-            "PGP",
-            "Kent Ridge MRT Station",
-            "Opp University Health Center",
-            "Yusof Ishak House",
-            "Central Library",
-            "Kent Ridge",
-            "Museum",
-            "University Town",
-            "University Health Centre",
-            "Opp Kent RIdge MRT station",
-            "PGPR"
+        "PGP",
+        "Kent Ridge MRT Station",
+        "Opp University Health Center",
+        "Yusof Ishak House",
+        "Central Library",
+        "Kent Ridge",
+        "Museum",
+        "University Town",
+        "University Health Centre",
+        "Opp Kent RIdge MRT station",
+        "PGPR"
     };
 
     private static final String[] AA2 = {
-            "PGP",
-            "Kent Ridge MRT Station",
-            "Opp University Health Centre",
-            "University Town",
-            "Raffles Hall",
-            "Kent Vale",
-            "EA",
-            "NUS IT",
-            "University Health Centre",
-            "Opp Kent Ridge MRT Station",
-            "PGPR"
+        "PGP",
+        "Kent Ridge MRT Station",
+        "Opp University Health Centre",
+        "University Town",
+        "Raffles Hall",
+        "Kent Vale",
+        "EA",
+        "NUS IT",
+        "University Health Centre",
+        "Opp Kent Ridge MRT Station",
+        "PGPR"
     };
 
     public Duke() {
