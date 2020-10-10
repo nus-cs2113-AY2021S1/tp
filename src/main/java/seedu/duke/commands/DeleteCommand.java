@@ -173,8 +173,7 @@ public class DeleteCommand extends Command {
         if (toDoToBeDeleted != null) {
             toDos.delete(index);
             ui.printDeleteToDo(toDoToBeDeleted);
-        }
-        else {
+        } else {
             System.out.println(ERROR_TODO_NOT_FOUND);
         }
     }
@@ -203,8 +202,7 @@ public class DeleteCommand extends Command {
         if (bookmarkToBeDeleted != null) {
             bookmarks.delete(bookmarkToBeDeleted);
             ui.printDeleteBookmark(bookmarkToBeDeleted);
-        }
-        else {
+        } else {
             System.out.println(ERROR_BOOKMARK_NOT_FOUND);
         }
     }

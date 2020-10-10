@@ -45,8 +45,7 @@ public class BookmarkCommand extends Command {
         bookToMark = books.findByTitle(title);
         if (bookToMark != null) {
             addBookmarkToBook(bookToMark, bookmarks, page, ui);
-        }
-        else {
+        } else {
             System.out.println(ERROR_NO_BOOK_FOUND);
         }
 
@@ -60,8 +59,7 @@ public class BookmarkCommand extends Command {
         if (bookmarkToAdd == null) {
             bookmarkToAdd = createNewBookmark(bookmarks, book, pageNum);
             ui.printAddBookmark(bookmarkToAdd);
-        }
-        else {
+        } else {
             bookmarkToAdd = updateExistingBookmark(bookmarkToAdd, pageNum);
             ui.printUpdateBookmark(bookmarkToAdd);
         }

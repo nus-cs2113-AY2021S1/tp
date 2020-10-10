@@ -36,7 +36,7 @@ public class ToDo {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "T | " + ((this.isDone) ? "1" : "0")
                 + " | " + this.name + " | " + this.deadline;
     }

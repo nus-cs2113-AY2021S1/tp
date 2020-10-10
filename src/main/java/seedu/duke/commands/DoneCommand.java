@@ -37,8 +37,7 @@ public class DoneCommand extends Command {
         if (targetTask != null) {
             targetTask.setDone(true);
             ui.printDoneToDo(targetTask);
-        }
-        else {
+        } else {
             System.out.println(ERROR_TODO_NOT_FOUND);
         }
     }

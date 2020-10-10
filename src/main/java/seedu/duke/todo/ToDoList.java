@@ -22,8 +22,7 @@ public class ToDoList extends QuotesifyList<ToDo> {
     public ToDo find(int taskNum) {
         if (taskNum <= todos.size()) {
             return todos.get(taskNum);
-        }
-        else {
+        } else {
             return null;
         }
     }
