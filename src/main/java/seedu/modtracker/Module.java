@@ -73,8 +73,4 @@ public class Module {
         return moduleCode.equals(m.moduleCode);
     }
 
-
-    public int hashCode() {
-        return moduleCode.hashCode();
-    }
 }

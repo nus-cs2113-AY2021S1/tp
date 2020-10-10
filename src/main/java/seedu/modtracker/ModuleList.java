@@ -12,14 +12,14 @@ public class ModuleList {
     public static ArrayList<Module> modList = new ArrayList<>();
 
     /**
-     * Creates a module and adds the module to the list of modules if module
+     * Creates a module and adds the module to the list of modules if the module
      * does not exist.
      *
      * @param input module code typed in by user
      */
     public void addMod(String input) {
         String[] modInfo = input.split(" ", 2);
-        modInfo[1] = modInfo[1].toUpperCase(); //convert module code to upper case
+        modInfo[1] = modInfo[1].toUpperCase();
         if (!checkModuleIfExist(modInfo[1])) {
             Module currentModule = new Module(modInfo[1]);
             modList.add(currentModule);
@@ -38,7 +38,7 @@ public class ModuleList {
      */
     public void addExp(String input) {
         String[] modInfo = input.split(" ", 3);
-        modInfo[1] = modInfo[1].toUpperCase();  //convert module code to upper case
+        modInfo[1] = modInfo[1].toUpperCase();
         Module currentMod = new Module(modInfo[1], modInfo[2]);
         if (!checkModuleIfExist(modInfo[1])) {
             modList.add(currentMod);
@@ -57,7 +57,7 @@ public class ModuleList {
      */
     public void deleteMod(String input) {
         String[] modInfo = input.split(" ", 2);
-        modInfo[1] = modInfo[1].toUpperCase(); //convert module code to upper case
+        modInfo[1] = modInfo[1].toUpperCase();
         if (checkModuleIfExist(modInfo[1])) {
             Module inputMod = new Module(modInfo[1]);
             modList.remove(inputMod);
@@ -74,7 +74,7 @@ public class ModuleList {
      */
     public void deleteExp(String input) {
         String[] modInfo = input.split(" ", 2);
-        modInfo[1] = modInfo[1].toUpperCase();  //convert module code to upper case
+        modInfo[1] = modInfo[1].toUpperCase();
         if (checkModuleIfExist(modInfo[1])) {
             Module inputMod = new Module(modInfo[1]);
             int index = modList.indexOf(inputMod);
@@ -106,7 +106,6 @@ public class ModuleList {
         commandInfo[1] = commandInfo[1].toUpperCase();
         Module currentModule = new Module(commandInfo[1]);
         int index = modList.indexOf(currentModule);
-        //System.out.println(index + commandInfo[1]);
         modList.get(index).addActualTime(commandInfo[2], commandInfo[3]);
         System.out.println(commandInfo[2] + " hours are added to " + commandInfo[1] + System.lineSeparator());
     }
