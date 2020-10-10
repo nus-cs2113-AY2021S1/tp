@@ -32,8 +32,11 @@ public class Duke {
         watchlists = storage.readWatchlistFile();
         if (userProfile == null) {
             userProfile = quickStart();
+
             storage.writeUserProfileFile(userProfile);
         }
+
+        System.out.println("Hello " + userProfile.getFancyName() + "!");
 
         addAnime();
 
@@ -76,6 +79,7 @@ public class Duke {
                 System.out.println("Is your name empty?");
             }
         }
+
 
         return userProfile;
     }
