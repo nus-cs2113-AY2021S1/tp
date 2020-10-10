@@ -114,7 +114,7 @@ public class Parser {
                     break;
                 case PRIORITY:
                     try {
-                        new TaskCommand().changeTaskPriorityCommand(TASK_ID, PRIORITY, parameters);
+                        new TaskCommand().changeTaskPriorityCommand(parameters, projectList);
                     } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
