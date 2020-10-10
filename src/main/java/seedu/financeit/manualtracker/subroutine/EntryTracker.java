@@ -57,6 +57,8 @@ public class EntryTracker {
         return FiniteStateMachine.State.MAIN_MENU;
     }
 
+    public static EntryList getEntryList(){ return entryList; }
+
     private static FiniteStateMachine.State handleDeleteEntry() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         System.out.println("Deleting entry...");

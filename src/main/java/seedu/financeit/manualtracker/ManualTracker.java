@@ -50,6 +50,8 @@ public class ManualTracker {
         }
     }
 
+    public static LedgerList getLedgerList(){ return ledgerList; }
+
     private static FiniteStateMachine.State handleCreateLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         for (String paramType : packet.getParamTypes()) {
