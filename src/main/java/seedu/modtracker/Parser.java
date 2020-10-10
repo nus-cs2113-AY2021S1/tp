@@ -10,24 +10,24 @@ public class Parser {
      * Parses user inputs.
      *
      * @param input user input
-     * @param t modlist
+     * @param modList module list
      * @param name name entered by the user
      */
-    public static void parse(String input, ModuleList t, String name, Storage storage) {
+    public void parse(String input, ModuleList modList, String name, Storage storage) {
+        Ui ui = new Ui();
         String[] command = input.trim().split(" ");
 
         switch (command[0].toLowerCase()) {
         case "addmod":
-            t.addMod(input);
+            modList.addMod(input);
             storage.appendToFile(input);
             break;
         case "addtime":
-            t.addTime(input);
-            //methods
-            //storage.appendToFile(input);
+            modList.addTime(input);
+            storage.appendToFile(input);
             break;
         case "addexp":
-            t.addExp(input);
+            modList.addExp(input);
             storage.appendToFile(input);
             break;
         case "deletemod":
@@ -39,30 +39,28 @@ public class Parser {
             //storage.appendToFile(input);
             break;
         case "minus":
-            t.minusTime(input);
-            //methods
-            //storage.appendToFile(input);
+            modList.minusTime(input);
+            storage.appendToFile(input);
             break;
         case "compare":
             //methods
             break;
         case "list":
-            //Ui.printList(t.getData());
-            Ui.printTable(t.getData(), Integer.parseInt(command[1]));
+            ui.printTable(modList.getData(), Integer.parseInt(command[1]));
             break;
         case "help":
-            Ui.printHelpList();
+            ui.printHelpList();
             break;
         case "exit":
             if (input.trim().length() > 4) {
-                Ui.printInvalidCommand();
+                ui.printInvalidCommand();
             } else {
-                Ui.printExitScreen(name);
+                ui.printExitScreen(name);
                 exit = true;
             }
             break;
         default:
-            Ui.printInvalidCommand();
+            ui.printInvalidCommand();
         }
     }
 
@@ -71,7 +69,7 @@ public class Parser {
      *
      * @return status of exit
      */
-    public static boolean isExit() {
+    public boolean isExit() {
         return exit;
     }
 
