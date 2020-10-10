@@ -1,6 +1,8 @@
 package NUSchedule.event;
 
 
+import NUSchedule.location.Location;
+
 import java.time.LocalDate;
 
 /**
@@ -14,7 +16,7 @@ import java.time.LocalDate;
 public abstract class Event {
     protected String description;
     protected boolean isDone;
-
+    protected Location location;//to be implemented
     public Event(String description) {
         this.description = description;
         this.isDone = false;
