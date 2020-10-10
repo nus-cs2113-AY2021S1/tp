@@ -2,6 +2,7 @@ package seedu.rex.data;
 
 import seedu.rex.data.hospital.Patient;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class PatientList {
@@ -50,5 +51,15 @@ public class PatientList {
      */
     public void addPatient(Patient patient) {
         patients.add(patient);
+    }
+
+    /**
+     * Adds a new patient with given details to <code>patients</code> ArrayList.
+     * @param name Name of the patient.
+     * @param nric NRIC of the patient.
+     * @param dateOfBirth Patient's date of birth.
+     */
+    public void addNewPatient(String name, String nric, LocalDate dateOfBirth) {
+        addPatient(new Patient(name, nric, dateOfBirth));
     }
 }

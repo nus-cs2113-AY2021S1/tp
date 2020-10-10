@@ -77,6 +77,7 @@ public class Storage {
         for (int i = 0; i < patients.getSize(); i++) {
             // Need to format tasks
             fileContent.append(patients.getPatientUsingIndex(i));
+            fileContent.append('\n');
         }
 
         Path folderPath = Paths.get(folder);

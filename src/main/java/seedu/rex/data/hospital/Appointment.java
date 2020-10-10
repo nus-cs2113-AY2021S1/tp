@@ -1,21 +1,21 @@
 package seedu.rex.data.hospital;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Appointment {
 
-    private Date date;
+    private LocalDate date;
     private String time;
     private Patient patient;
     private Doctor doctor;
     private String notes;
     private Prescription prescription;
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -58,4 +58,5 @@ public class Appointment {
     public void setPrescription(Prescription prescription) {
         this.prescription = prescription;
     }
+
 }
