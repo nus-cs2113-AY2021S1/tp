@@ -32,6 +32,10 @@ public class BookList extends QuotesifyList<Book> {
         books.remove(book);
     }
 
+    public boolean isEmpty() {
+        return books.isEmpty();
+    }
+
     @Override
     public String toString() {
         String booksToReturn = "";
@@ -54,10 +58,18 @@ public class BookList extends QuotesifyList<Book> {
 
     public Book findByTitle(String title) {
         for (Book book : books) {
-            if(book.getTitle().equals(title)){
+            if(book.getTitle().equals(title)) {
                 return book;
             }
         }
         return null;
+
+    public BookList filterByAuthor(String authorName) {
+        ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
+                .filter(book -> {
+                    Author bookAuthor = book.getAuthor();
+                    return bookAuthor.getName().equals(authorName);
+                }).collect(Collectors.toList());
+        return new BookList(filteredBooks);
     }
 }

@@ -3,8 +3,10 @@ package seedu.duke.ui;
 import seedu.duke.book.Book;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
+import seedu.duke.book.BookList;
 import seedu.duke.category.Category;
 import seedu.duke.category.CategoryList;
+import seedu.duke.quote.Quote;
 import seedu.duke.quote.QuoteList;
 import seedu.duke.rating.Rating;
 import seedu.duke.rating.RatingList;
@@ -24,8 +26,10 @@ public class TextUi {
     private static final String WELCOME_MESSAGE = "Welcome to Quotesify!";
     private static final String GOODBYE_MESSAGE = "Have a nice day!";
     private static final String PROMPT_MESSAGE = "\nWhat would you like to do with Quotesify?";
-    private static final String ADD_BOOK = "The book [%s] has been added!";
-    private static final String DELETE_BOOK = "The book [%s] has been deleted!";
+    private static final String ADD_BOOK_MESSAGE = "The book [%s] has been added!";
+    private static final String DELETE_BOOK_MESSAGE = "The book [%s] has been deleted!";
+    private static final String LIST_BOOKS_MESSAGE = "Here is a list of all books:";
+    private static final String LIST_BOOKS_BY_AUTHOR_MESSAGE = "Here is a list of books by %s:";
     private static final String ADD_CATEGORY_MESSAGE = "I have tagged \"%s\" category to \"%s\"!";
     private static final String DELETE_CATEGORY_MESSAGE = "I have removed \"%s\" category from \"%s\"!";
     private static final String CATEGORY_SIZE_MESSAGE = "You have a total of %d item(s) tagged as \"%s\".";
@@ -45,7 +49,7 @@ public class TextUi {
     private static final String BOOKMARK_SIZE_MESSAGE = "You have a total of %d bookmark(s) recorded.";
     private static final String LIST_BOOKMARKS_MESSAGE = "Here is the list of all bookmark(s) recorded:";
     private static final String DELETE_BOOKMARKS_MESSAGE = "The bookmark [%s] has been removed!";
-
+    private static final String LIST_QUOTES = "Here are the quotes:";
 
     private final Scanner in;
 
@@ -68,15 +72,25 @@ public class TextUi {
     }
 
     public void printAddBook(Book book) {
-        System.out.printf(ADD_BOOK + "\n", book.toString());
+        System.out.printf(ADD_BOOK_MESSAGE + "\n", book.toString());
     }
 
     public void printDeleteBook(Book book) {
-        System.out.printf(DELETE_BOOK + "\n", book.toString());
+        System.out.printf(DELETE_BOOK_MESSAGE + "\n", book.toString());
+    }
+
+    public void printAllBooks(BookList bookList) {
+        System.out.println(LIST_BOOKS_MESSAGE);
+        System.out.println(bookList.toString());
+    }
+
+    public void printBooksByAuthor(BookList bookList, String authorName) {
+        System.out.printf(LIST_BOOKS_BY_AUTHOR_MESSAGE + "\n", authorName);
+        System.out.println(bookList.toString());
     }
 
     public void printAllQuotes(QuoteList quotes) {
-        System.out.println("Here are your quotes:");
+        System.out.println(LIST_QUOTES);
         System.out.println(quotes);
     }
 
@@ -113,10 +127,6 @@ public class TextUi {
         System.out.println(message);
     }
 
-    public void printBook(Book book) {
-        System.out.println(book.toString());
-    }
-
     public void printAddRatingToBook(int ratingScore, String titleOfBookToRate) {
         System.out.printf((ADD_RATING_MESSAGE) + "\n", titleOfBookToRate, ratingScore);
     }
@@ -131,6 +141,33 @@ public class TextUi {
         for (Rating rating : ratings.getList()) {
             if (rating.getRating() == ratingToList) {
                 System.out.println(rating.getTitleOfRatedBook());
+            }
+        }
+    }
+
+    public void printAllQuotesByAuthor(QuoteList quoteList, String authorName) {
+        System.out.println(LIST_QUOTES);
+        for (Quote quote : quoteList.getList()) {
+            if (quote.getAuthorName().equals(authorName)) {
+                System.out.println(quote.toString());
+            }
+        }
+    }
+
+    public void printAllQuotesByReference(QuoteList quoteList, String reference) {
+        System.out.println(LIST_QUOTES);
+        for (Quote quote : quoteList.getList()) {
+            if (quote.getReference().equals(reference)) {
+                System.out.println(quote.toString());
+            }
+        }
+    }
+
+    public void printAllQuotesByReferenceAndAuthor(QuoteList quoteList, String reference, String authorName) {
+        System.out.println(LIST_QUOTES);
+        for (Quote quote : quoteList.getList()) {
+            if (quote.getReference().equals(reference) && quote.getAuthorName().equals(authorName)) {
+                System.out.println(quote.toString());
             }
         }
     }

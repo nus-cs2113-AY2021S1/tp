@@ -37,6 +37,10 @@ public class Quote {
         this.author = author;
     }
 
+    public String getAuthorName() {
+        return author.getName();
+    }
+
     public String getQuote() {
         return quote;
     }
@@ -59,5 +63,19 @@ public class Quote {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        String quoteWithoutInformation = '\"' + quote + '\"';
+        String quoteInformation = "";
+        if (author != null && reference != null) {
+            quoteInformation = " - " + author.getName() + ", (" + reference + ')';
+        } else if (author != null) {
+            quoteInformation = " - " + author.getName();
+        } else if (reference != null) {
+            quoteInformation = " - " + reference;
+        }
+        return quoteWithoutInformation + quoteInformation + System.lineSeparator();
     }
 }

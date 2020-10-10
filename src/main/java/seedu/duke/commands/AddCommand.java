@@ -6,9 +6,11 @@ import seedu.duke.book.BookList;
 import seedu.duke.category.Category;
 import seedu.duke.category.CategoryList;
 import seedu.duke.category.CategoryParser;
+import seedu.duke.exception.QuotesifyException;
 import seedu.duke.lists.ListManager;
 import seedu.duke.quote.Quote;
 import seedu.duke.quote.QuoteList;
+import seedu.duke.quote.QuoteParser;
 import seedu.duke.rating.Rating;
 import seedu.duke.rating.RatingList;
 import seedu.duke.rating.RatingParser;
@@ -42,8 +44,7 @@ public class AddCommand extends Command {
             break;
         case TAG_QUOTE:
             QuoteList quotes = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
-            addQuote(quotes);
-            ui.printAllQuotes(quotes);
+            addQuote(quotes, ui);
             break;
         case TAG_CATEGORY:
             CategoryList categories = (CategoryList) listManager.getList(ListManager.CATEGORY_LIST);
@@ -63,7 +64,7 @@ public class AddCommand extends Command {
     }
 
     private Book addBook(BookList books) {
-        String[] titleAndAuthor = information.split("/by", 2);
+        String[] titleAndAuthor = information.split(Command.FLAG_AUTHOR, 2);
         Author author = new Author(titleAndAuthor[1].trim());
         Book newBook = new Book(author, titleAndAuthor[0].trim());
         books.add(newBook);
@@ -71,22 +72,14 @@ public class AddCommand extends Command {
         return newBook;
     }
 
-    private void addQuote(QuoteList quotes) {
-        if (information.contains("/from") && information.contains("/by")) {
-            String[] quoteAndInformation = information.split("/from", 2);
-            String[] referenceAndAuthor = quoteAndInformation[1].split("/by", 2);
-            Author author = new Author(referenceAndAuthor[1].trim());
-            quotes.add(new Quote(quoteAndInformation[0].trim(), referenceAndAuthor[0].trim(), author));
-        } else if (information.contains("/from")) {
-            String[] quoteAndReference = information.split("/from", 2);
-            quotes.add(new Quote(quoteAndReference[0].trim(), quoteAndReference[1].trim()));
-        } else if (information.contains("/by")) {
-            String[] quoteAndAuthor = information.split("/by", 2);
-            quotes.add(new Quote(quoteAndAuthor[0].trim(), quoteAndAuthor[1].trim()));
-        } else {
-            quotes.add(new Quote(information.trim()));
+    private void addQuote(QuoteList quotes, TextUi ui) {
+        try {
+            Quote quote = QuoteParser.parseAddParameters(information);
+            quotes.add(quote);
+            ui.printAllQuotes(quotes);
+        } catch (QuotesifyException e) {
+            System.out.println(e.getMessage());
         }
-
     }
 
     private void addCategoryToBookOrQuote(CategoryList categories, TextUi ui, ListManager listManager) {
