@@ -11,7 +11,7 @@ public class UpdateShowEpisodeProgressCommand extends Command {
     public UpdateShowEpisodeProgressCommand(String description, ArrayList<String> inputs) throws NullPointerException {
         super(description);
         this.inputs = inputs;
-        if (inputs.size() != 3 ) {
+        if (inputs.size() != 3) {
             throw new NullPointerException();
         }
     }
