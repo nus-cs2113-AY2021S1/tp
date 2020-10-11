@@ -13,4 +13,5 @@ done 3
 -t1
 -e2
 -e999
+print timeline
 bye
