@@ -47,6 +47,11 @@ public class Activity extends Event {
     }
 
     @Override
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    @Override
     public String getDescription() {
         return details;
     }

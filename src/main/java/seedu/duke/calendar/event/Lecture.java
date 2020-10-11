@@ -19,9 +19,9 @@ public class Lecture extends SchoolEvent {
      * A Constructor of a lecture object.
      *
      * @param moduleCode module code of the lecture
-     * @param date date of the lecture
-     * @param time time of the lecture
-     * @param venue venue of the lecture
+     * @param date       date of the lecture
+     * @param time       time of the lecture
+     * @param venue      venue of the lecture
      */
     public Lecture(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);

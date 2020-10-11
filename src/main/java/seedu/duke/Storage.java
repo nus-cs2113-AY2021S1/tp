@@ -2,16 +2,15 @@ package seedu.duke;
 
 import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
+import seedu.duke.calendar.event.Activity;
+import seedu.duke.calendar.event.Event;
+import seedu.duke.calendar.event.Lab;
 import seedu.duke.calendar.event.Lecture;
 import seedu.duke.calendar.event.Tutorial;
-import seedu.duke.calendar.event.Lab;
-import seedu.duke.calendar.event.Event;
-import seedu.duke.calendar.event.Activity;
+import seedu.duke.calendar.task.Deadline;
+import seedu.duke.calendar.event.Exam;
 import seedu.duke.calendar.task.Task;
 import seedu.duke.calendar.task.Todo;
-import seedu.duke.calendar.task.Deadline;
-import seedu.duke.calendar.task.Exam;
-
 
 import java.io.File;
 import java.io.FileNotFoundException;
