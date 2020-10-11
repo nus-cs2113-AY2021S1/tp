@@ -1,8 +1,10 @@
 package seedu.duke.utility;
 
 /*TODO include more parser classes (storage.parser, command.parser etc in the future)
-*  Use save/load function to load help commands to user instead
-* */
+
+
+import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
+import seedu.duke.commands.UpdateShowSeasonCommand;
 
 import seedu.duke.classes.Show;
 import seedu.duke.commands.ChangeRatingCommand;
@@ -11,6 +13,7 @@ import seedu.duke.commands.RatingCommand;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
+
 
 /**
  * Represents a parser to process the commands inputted by the user.
@@ -26,6 +29,23 @@ public class InputParser {
         return isBye;
     }
 
+    private static java.util.ArrayList<String> tokenizeStringArray(String input) {
+        java.util.ArrayList<String> inputArray = new java.util.ArrayList<>();
+        for (String token : input.split(" ")) {
+            inputArray.add(token);
+        }
+        int size = 0;
+        try {
+            size = inputArray.size();
+        } catch (NullPointerException e) {
+            Ui.printBadInputException();
+        }
+        if (size > 0) {
+            return inputArray;
+        } else {
+            return null;
+        }
+    }
 
     private static String getFirstWord(String input) {
         int index = input.indexOf(' ');
@@ -48,7 +68,6 @@ public class InputParser {
     public void parseInput(String input) {
 
         String command = getFirstWord(input);
-        //input = removeFirstWord(input);
         switch (command.toLowerCase()) {
         case "bye":
             Ui.printByeMessage();
@@ -57,6 +76,18 @@ public class InputParser {
 
         case "help":
             Ui.printHelp();
+            return;
+
+        case "episode":
+            java.util.ArrayList<String> updateInputs = tokenizeStringArray(input);
+            UpdateShowEpisodeProgressCommand updateShowProgress =
+                    new UpdateShowEpisodeProgressCommand(command, updateInputs);
+            updateShowProgress.processCommand();
+            return;
+        case "season":
+            java.util.ArrayList<String> seasonInputs = tokenizeStringArray(input);
+            UpdateShowSeasonCommand updateShowSeason = new UpdateShowSeasonCommand(command, seasonInputs);
+            updateShowSeason.processCommand();
             return;
 
         case "rating":
@@ -95,6 +126,7 @@ public class InputParser {
             Ui.printBadInputException();
         }
     }
+
 
     //todo: differentiate between show and movie soontm
 

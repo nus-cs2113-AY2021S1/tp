@@ -5,6 +5,7 @@ import seedu.duke.utility.InputParser;
 import seedu.duke.utility.ShowList;
 import seedu.duke.utility.Ui;
 
+
 import static seedu.duke.utility.Ui.SAVE_DIRECTORY;
 
 public class Duke {
@@ -27,6 +28,7 @@ public class Duke {
     }
 
     public void run() {
+
         ui.hello();
         InputParser parseManager = new InputParser();
         while (!parseManager.isByeTime()) {
