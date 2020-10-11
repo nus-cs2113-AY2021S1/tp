@@ -1,4 +1,10 @@
 # AniChan User Guide
+## Table of Contents
+1. [Introduction](#1-introduction)
+1. [Quick Start](#2-quick-start)
+1. [Features](#3-features)
+1. [FAQ](#4-faq)
+1. [Command Summary](#5-command-summary)
 
 ## 1. Introduction
 
@@ -16,10 +22,30 @@ AniChan is an all-rounded tool to effectively create and organize anime lists wi
 ## 3. Features 
 
 {Give detailed description of each feature}
-### 3.1 
+### 3.1 View the help: `help`
 
+### 3.2 Browse through all anime: `browse`
+
+### 3.3 Create an Anime watchlist: `watchlist`
+
+### 3.4 Add an Anime to the select watchlist: `add`
+
+### 3.5 Bookmark an Anime: `bookmark`
+
+### 3.6 Exit AniChan: `exit`
+Exit AniChan 
+
+Format: `exit`
+
+Sample Input: `exit`
+
+The expected outcome:
+```
+Sayonara!
+```
 ## 4. FAQ
 
 ## 5. Command Summary
-{Give a 'cheat sheet' of commands here}
 
+|Feature|Command|
+|---    |---|
