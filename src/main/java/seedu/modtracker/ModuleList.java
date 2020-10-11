@@ -18,14 +18,45 @@ public class ModuleList {
      * @param input module code typed in by user
      */
     public void addMod(String input) {
-        String[] modInfo = input.split(" ", 2);
-        modInfo[1] = modInfo[1].toUpperCase();
-        if (!checkIfModuleExist(modInfo[1])) {
-            Module currentModule = new Module(modInfo[1]);
-            modList.add(currentModule);
-            ui.printAdd(currentModule);
+        try {
+            String[] modInfo = input.split(" ", 2);
+            modInfo[1] = modInfo[1].toUpperCase();
+
+            if (!checkIfModuleValid(modInfo[1])) {
+                return;
+            }
+            if (!checkIfModuleExist(modInfo[1])) {
+                Module currentModule = new Module(modInfo[1]);
+                modList.add(currentModule);
+                ui.printAdd(currentModule);
+            } else {
+                ui.printExist(modInfo[1]);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Please type addmod <module code>" + System.lineSeparator());
+        }
+    }
+
+    public boolean checkIfModuleValid(String module) {
+        String trimmedMod = module.trim();
+        if (trimmedMod.contains(" ")) {
+            System.out.println("Please type module code without any spacing." + System.lineSeparator());
+            return false;
+        } else if (trimmedMod.length() < 6 || trimmedMod.length() > 8) {
+            System.out.println("Please check module code again. The module code should not have any spacing, and is of 6 - 8 characters." + System.lineSeparator());
+            return false;
         } else {
-            ui.printExist(modInfo[1]);
+            return true;
+        }
+    }
+
+
+    public boolean checkIfTimeValid(double hours) {
+        if (hours < 0) {
+            System.out.println("Please input a valid number of hours." + System.lineSeparator());
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -37,17 +68,29 @@ public class ModuleList {
      * @param input module code and expected time typed in by user
      */
     public void addExp(String input) {
-        String[] modInfo = input.split(" ", 3);
-        modInfo[1] = modInfo[1].toUpperCase();
-        Module currentMod = new Module(modInfo[1], modInfo[2]);
-        if (!checkIfModuleExist(modInfo[1])) {
-            modList.add(currentMod);
-        } else {
-            int index = modList.indexOf(currentMod);
+        try {
+            String[] modInfo = input.split(" ", 3);
+            modInfo[1] = modInfo[1].toUpperCase();
+            if (!checkIfModuleValid(modInfo[1])) {
+                return;
+            }
             int expectedTime = Integer.parseInt(modInfo[2]);
-            modList.get(index).expected = expectedTime;
+            if (!checkIfTimeValid(expectedTime)) {
+                return;
+            }
+            Module currentMod = new Module(modInfo[1], modInfo[2]);
+            if (!checkIfModuleExist(modInfo[1])) {
+                modList.add(currentMod);
+            } else {
+                int index = modList.indexOf(currentMod);
+                modList.get(index).expected = expectedTime;
+            }
+            ui.printAdd(currentMod);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Please type addexp <module code> <expected workload>" + System.lineSeparator());
+        } catch (NumberFormatException nfe) {
+            System.out.println("NumberFormatException: " + nfe.getMessage() + System.lineSeparator());
         }
-        ui.printAdd(currentMod);
     }
 
     /**
@@ -56,14 +99,21 @@ public class ModuleList {
      * @param input module code typed in by user
      */
     public void deleteMod(String input) {
-        String[] modInfo = input.split(" ", 2);
-        modInfo[1] = modInfo[1].toUpperCase();
-        if (checkIfModuleExist(modInfo[1])) {
-            Module inputMod = new Module(modInfo[1]);
-            modList.remove(inputMod);
-            ui.printDelete(modInfo[1]);
-        } else {
-            ui.printNotExist(modInfo[1]);
+        try {
+            String[] modInfo = input.split(" ", 2);
+            modInfo[1] = modInfo[1].toUpperCase();
+            if (!checkIfModuleValid(modInfo[1])) {
+                return;
+            }
+            if (checkIfModuleExist(modInfo[1])) {
+                Module inputMod = new Module(modInfo[1]);
+                modList.remove(inputMod);
+                ui.printDelete(modInfo[1]);
+            } else {
+                ui.printNotExist(modInfo[1]);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Please type deletemod <module code>" + System.lineSeparator());
         }
     }
 
@@ -73,15 +123,22 @@ public class ModuleList {
      * @param input module code and expected time typed in by user
      */
     public void deleteExp(String input) {
-        String[] modInfo = input.split(" ", 2);
-        modInfo[1] = modInfo[1].toUpperCase();
-        if (checkIfModuleExist(modInfo[1])) {
-            Module inputMod = new Module(modInfo[1]);
-            int index = modList.indexOf(inputMod);
-            modList.get(index).expected = -1;
-            ui.printDeleteExp(modInfo[1]);
-        } else {
-            ui.printNotExist(modInfo[1]);
+        try {
+            String[] modInfo = input.split(" ", 2);
+            modInfo[1] = modInfo[1].toUpperCase();
+            if (!checkIfModuleValid(modInfo[1])) {
+                return;
+            }
+            if (checkIfModuleExist(modInfo[1])) {
+                Module inputMod = new Module(modInfo[1]);
+                int index = modList.indexOf(inputMod);
+                modList.get(index).expected = -1;
+                ui.printDeleteExp(modInfo[1]);
+            } else {
+                ui.printNotExist(modInfo[1]);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Please type deleteexp <module code>" + System.lineSeparator());
         }
     }
 
