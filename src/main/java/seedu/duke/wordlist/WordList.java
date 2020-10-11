@@ -11,6 +11,10 @@ import java.util.ArrayList;
 public class WordList {
     public static ArrayList<Words> wordList = new ArrayList<>();
 
+    public static int getNumberOfWords() {
+        return wordList.size();
+    }
+
     /**
      * Function to add noun to word list.
      * @param input a string which contains
