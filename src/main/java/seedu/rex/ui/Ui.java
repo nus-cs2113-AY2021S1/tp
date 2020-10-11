@@ -127,4 +127,9 @@ public class Ui {
             }
         }
     }
+
+    public void showPatient(Patient patient) {
+        printWithIndent("Patient Details: ");
+        printWithIndent(patient.toString());
+    }
 }

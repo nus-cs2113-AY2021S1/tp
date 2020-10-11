@@ -3,6 +3,7 @@ package seedu.rex.parser;
 import seedu.rex.commands.AddCommand;
 import seedu.rex.commands.Command;
 import seedu.rex.commands.ExitCommand;
+import seedu.rex.commands.RetrieveCommand;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Patient;
 
@@ -28,6 +29,8 @@ public class Parser {
             command = new ExitCommand();
         } else if (trimmedCommand.contains(AddCommand.COMMAND_WORD)) {
             command = new AddCommand(trimmedCommand);
+        } else if (trimmedCommand.contains(RetrieveCommand.COMMAND_WORD)) {
+            command = new RetrieveCommand(trimmedCommand);
         } else {
             throw new RexException(Command.COMMAND_ERROR);
         }
