@@ -28,7 +28,7 @@ public class Exam extends SchoolEvent {
     }
 
     @Override
-    public String getTaskType() {
+    public String getType() {
         return taskType;
     }
 

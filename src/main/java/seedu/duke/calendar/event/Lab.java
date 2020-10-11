@@ -1,38 +1,39 @@
 package seedu.duke.calendar.event;
 
+import seedu.duke.calendar.task.Task;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a lecture event.
+ * Represents a lab event.
  */
-public class Lecture extends SchoolEvent {
+public class Lab extends SchoolEvent {
     protected String eventType;
 
-    private static final String LECTURE_FILE_SYMBOL = "LEC";
+    private static final String LAB_FILE_SYMBOL = "LAB";
     private static final String SEPARATOR = "|";
     public static final String TICK_SYMBOL = "/";
     public static final String CROSS_SYMBOL = "X";
 
     /**
-     * A Constructor of a lecture object.
+     * A Constructor of a lab object.
      *
-     * @param moduleCode module code of the lecture
-     * @param date date of the lecture
-     * @param time time of the lecture
-     * @param venue venue of the lecture
+     * @param moduleCode module code of the lab
+     * @param date date of the lab
+     * @param time time of the lab
+     * @param venue venue of the lab
      */
-    public Lecture(String moduleCode, LocalDate date, LocalTime time, String venue) {
+    public Lab(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
-        eventType = "LEC";
-        isOver = false;
+        eventType = "LAB";
     }
 
     /**
-     * Check whether the lecture is over.
+     * Check whether the lab is over.
      *
-     * @return whether the tutorial is over
+     * @return whether the lab is over
      */
     public boolean getIsOver() {
         if (date.isBefore(LocalDate.now())) {
@@ -54,43 +55,27 @@ public class Lecture extends SchoolEvent {
     }
 
     /**
-     * Describe the lecture event.
+     * Describe the lab event.
      *
-     * @Return a string to describe the lecture event.
+     * @return a string containing the information about the lab event
      */
     @Override
     public String toString() {
-
-        return "[LEC]" + "[" + getIcon() + "] " + moduleCode + " "
-                + date.format(DateTimeFormatter.ofPattern("dd-MM-yy E"))
+        return "[LAB]" + "[" + getIcon() + "] "
+                + moduleCode + " " + date.format(DateTimeFormatter.ofPattern("dd-MM-yy E"))
                 + " " + time.format(DateTimeFormatter.ofPattern("h:mma"))
                 + " (" + venue + ")";
     }
 
     /**
-     * Save the lecture event into files.
+     * Save the lab event into files.
      *
-     * @return string contains the information about the lecture event.
+     * @return string contains the information about the lab event.
      */
     @Override
     public String printIntoFile() {
-        return LECTURE_FILE_SYMBOL + SEPARATOR + moduleCode
+        return LAB_FILE_SYMBOL + " " + moduleCode
                 + SEPARATOR + this.date + SEPARATOR + this.time;
-    }
-
-    /**
-     * Get the date of the lecture.
-     *
-     * @return date of the lecture
-     */
-    @Override
-    public LocalDate getDate() {
-        return date;
-    }
-
-    @Override
-    public LocalTime getTime() {
-        return time;
     }
 
     /**
@@ -101,4 +86,23 @@ public class Lecture extends SchoolEvent {
         return eventType;
     }
 
+    /**
+     * Get the date of the lab.
+     *
+     * @return date of the lab
+     */
+    @Override
+    public LocalDate getDate() {
+        return date;
+    }
+
+    /**
+     * Get the time of the lab.
+     *
+     * @return time of the lab
+     */
+    @Override
+    public LocalTime getTime() {
+        return time;
+    }
 }

@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
+import seedu.duke.calendar.event.Event;
 import seedu.duke.calendar.task.Task;
 
 import java.io.IOException;
@@ -27,8 +28,8 @@ public class Ui {
                 + "3. activity <activity description> <venue> /at ddMMyy\n"
                 + "4. exam <module code> <venue> /at ddMMyy HHmm\n"
                 + "5. lecture <module code> <venue> /at ddMMyy HHmm\n"
-                + "6. tutorial ... / date time\n"
-                + "7. lab ... / date time\n"
+                + "6. tutorial <module code> <venue> /at ddMMyy HHmm\n"
+                + "7. lab <module code> <venue> /at ddMMyy HHmm\n"
                 + "8. done <task number>\n"
                 + "9. delete <task number>\n"
                 + "10. find <keyword>\n"
@@ -102,7 +103,8 @@ public class Ui {
     }
 
     /**
-     * Shows the user the list of tasks in the calendar list, formatted as an indexed list starting from 1.
+     * Shows the user the list of items in the calendar list,
+     * formatted as an indexed list starting from 1.
      *
      * @param calendarList tasks retrieved from this task list.
      */
@@ -114,17 +116,16 @@ public class Ui {
     }
 
     /**
-     * Shows the user all the event type of tasks in the task list,
+     * Shows the user all the events in the calendar list,
      * such as lecture, lab, tutorial and events.
      *
      * @param calendarList tasks retrieved from this task list.
      */
-    /*
     public static void printEventsListView(CalendarList calendarList) {
         int eventCounts = 0;
         System.out.println("This is your list of event(s):");
         for (int i = 0; i < calendarList.getTotalTasks(); i++) {
-            if (calendarList.getCalendarList().get(i).getTaskType().equals("E")) {
+            if (calendarList.getCalendarList().get(i) instanceof Event) {
                 eventCounts++;
                 System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", eventCounts);
             }
@@ -133,7 +134,6 @@ public class Ui {
             System.out.println("Oops, there are no events stored in your list!");
         }
     }
-    */
 
     /**
      * Shows the user the task (that was indicated by the user) that was marked as done .
@@ -198,12 +198,13 @@ public class Ui {
         int numTotal = 0;
         for (int i = 0; i < calendarList.getTotalTasks(); i++) {
             CalendarItem item = calendarList.getCalendarList().get(i);
-            if (item instanceof Task) {
-                if (((Task) item).getTaskType().equals("E") || ((Task) item).getTaskType().equals("D")) {
-                    numTotal++;
-                    if (((Task) item).getIsDone()) {
-                        numFinished++;
-                    }
+            if (!(item instanceof Task)) {
+                continue;
+            }
+            if (((Task)item).getTaskType().equals("D") || ((Task)item).getTaskType().equals("T")) {
+                numTotal++;
+                if (((Task) item).getIsDone()) {
+                    numFinished++;
                 }
             }
         }
@@ -235,13 +236,16 @@ public class Ui {
             System.out.println("Error: Please key in the event in this format: event ... /at ddMMyy");
             break;
         case "lecture":
-            System.out.println("Error: Please key in the lecture in this format: lecture ... / date time");
+            System.out.println("Error: Please key in the lecture in this format: lecture <module code> <venue? /at "
+                    + "ddMMyy HHmm");
             break;
         case "tutorial":
-            System.out.println("Error: Please key in the tutorial in this format: tutorial ... / date time");
+            System.out.println("Error: Please key in the tutorial in this format: tutorial <module code> <venue? /at "
+                    + "ddMMyy HHmm");
             break;
         case "lab":
-            System.out.println("Error: Please key in the lab in this format: lab ... / date time");
+            System.out.println("Error: Please key in the lab in this format: lab <module code> <venue? /at "
+                    + "ddMMyy HHmm");
             break;
         case "exam":
             System.out.println("Error: Please key in the exam in this format: exam <module code> <exam details> /at "

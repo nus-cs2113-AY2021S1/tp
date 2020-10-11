@@ -1,36 +1,37 @@
 package seedu.duke.calendar.event;
 
+import seedu.duke.calendar.task.Task;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a lecture event.
+ * Represents a tutorial event.
  */
-public class Lecture extends SchoolEvent {
+public class Tutorial extends SchoolEvent {
     protected String eventType;
 
-    private static final String LECTURE_FILE_SYMBOL = "LEC";
+    private static final String TUTORIAL_FILE_SYMBOL = "TUT";
     private static final String SEPARATOR = "|";
     public static final String TICK_SYMBOL = "/";
     public static final String CROSS_SYMBOL = "X";
 
     /**
-     * A Constructor of a lecture object.
+     * A Constructor of a tutorial object.
      *
-     * @param moduleCode module code of the lecture
-     * @param date date of the lecture
-     * @param time time of the lecture
-     * @param venue venue of the lecture
+     * @param moduleCode module code of the tutorial
+     * @param date date of the tutorial
+     * @param time time of the tutorial
+     * @param venue venue of the tutorial
      */
-    public Lecture(String moduleCode, LocalDate date, LocalTime time, String venue) {
+    public Tutorial(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
-        eventType = "LEC";
-        isOver = false;
+        eventType = "TUT";
     }
 
     /**
-     * Check whether the lecture is over.
+     * Check whether the tutorial is over.
      *
      * @return whether the tutorial is over
      */
@@ -45,60 +46,63 @@ public class Lecture extends SchoolEvent {
     }
 
     /**
-     * Show whether the lab is over.
+     * Show whether the tutorial is over.
      *
-     * @return whether the lab is over
+     * @return whether the tutorial is over
      */
     public String getIcon() {
         return (getIsOver() ? TICK_SYMBOL : CROSS_SYMBOL);
     }
 
     /**
-     * Describe the lecture event.
+     * Describe the tutorial event.
      *
-     * @Return a string to describe the lecture event.
+     * @Return a string to describe the tutorial event.
      */
     @Override
     public String toString() {
-
-        return "[LEC]" + "[" + getIcon() + "] " + moduleCode + " "
+        return "[TUT]" +  "[" + getIcon() + "] " + moduleCode + " "
                 + date.format(DateTimeFormatter.ofPattern("dd-MM-yy E"))
                 + " " + time.format(DateTimeFormatter.ofPattern("h:mma"))
                 + " (" + venue + ")";
     }
 
     /**
-     * Save the lecture event into files.
+     * Save the tutorial event into files.
      *
-     * @return string contains the information about the lecture event.
+     * @return string contains the information about the tutorial event.
      */
     @Override
     public String printIntoFile() {
-        return LECTURE_FILE_SYMBOL + SEPARATOR + moduleCode
+        return TUTORIAL_FILE_SYMBOL + " " + moduleCode
                 + SEPARATOR + this.date + SEPARATOR + this.time;
     }
 
     /**
-     * Get the date of the lecture.
-     *
-     * @return date of the lecture
-     */
-    @Override
-    public LocalDate getDate() {
-        return date;
-    }
-
-    @Override
-    public LocalTime getTime() {
-        return time;
-    }
-
-    /**
-     * Returns the respective object type.
+     * Returns the respective type.
      */
     @Override
     public String getType() {
         return eventType;
     }
 
+    /**
+     * Get the date of the tutorial.
+     *
+     * @return date of the tutorial
+     */
+    @Override
+    public LocalDate getDate() {
+        return date;
+    }
+
+    /**
+     * Get the time of the tutorial.
+     *
+     * @return time of the tutorial
+     */
+    @Override
+    public LocalTime getTime() {
+        return time;
+    }
 }
