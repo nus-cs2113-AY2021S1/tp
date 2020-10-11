@@ -61,11 +61,11 @@ public class ManualTracker {
         return ledgerList;
     }
 
-    public static void setCommandPacket(CommandPacket p){
+    public static void setCommandPacket(CommandPacket p) {
         packet = p;
     }
 
-    public static void CreateLedger(){
+    public static void createLedger() {
         handleCreateLedger();
     }
 

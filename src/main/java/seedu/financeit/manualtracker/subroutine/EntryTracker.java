@@ -22,7 +22,7 @@ public class EntryTracker {
         packet = p;
     }
 
-    public static void CreateEntry() {
+    public static void createEntry() {
         handleCreateEntry();
     }
 
@@ -38,33 +38,34 @@ public class EntryTracker {
         FiniteStateMachine fsm = new FiniteStateMachine(FiniteStateMachine.State.MAIN_MENU);
         while (!endTracker) {
             switch (fsm.getCurrState()) {
-                case MAIN_MENU:
-                    fsm.setNextState(handleMainMenu());
-                    break;
-                case CREATE_ENTRY:
-                    fsm.setNextState(handleCreateEntry());
-                    break;
-                case EDIT_ENTRY:
-                    fsm.setNextState(handleEditEntry());
-                    break;
-                case DELETE_ENTRY:
-                    fsm.setNextState(handleDeleteEntry());
-                    break;
-                case SHOW_ENTRY:
-                    fsm.setNextState(handleShowEntry());
-                    break;
-                case INVALID_STATE:
-                    fsm.setNextState(handleInvalidState());
-                    break;
-                case EXIT:
-                    System.out.println("Exiting subroutine...");
-                    endTracker = true;
-                    break;
-                case END_TRACKER:
-                    endTracker = true;
-                    break;
-                default:
-                    break;
+            case MAIN_MENU:
+                fsm.setNextState(handleMainMenu());
+                break;
+            case CREATE_ENTRY:
+                fsm.setNextState(handleCreateEntry());
+                break;
+            case EDIT_ENTRY:
+                fsm.setNextState(handleEditEntry());
+                break;
+            case DELETE_ENTRY:
+                fsm.setNextState(handleDeleteEntry());
+                break;
+            case SHOW_ENTRY:
+                fsm.setNextState(handleShowEntry());
+                break;
+            case INVALID_STATE:
+                fsm.setNextState(handleInvalidState());
+                break;
+            case EXIT:
+                System.out.println("Exiting subroutine...");
+                endTracker = true;
+                break;
+            case END_TRACKER:
+                endTracker = true;
+                break;
+            default:
+                // Fall through
+                break;
             }
             fsm.transitionState();
         }
@@ -89,33 +90,33 @@ public class EntryTracker {
         packet = new InputParser().parseInput(input);
         UiManager.refreshPage();
         switch (packet.getCommandString()) {
-            case "entry edit":
-                // Fall through
-            case "edit":
-                return FiniteStateMachine.State.EDIT_ENTRY;
-            case "entry new":
-                // Fall through
-            case "new":
-                return FiniteStateMachine.State.CREATE_ENTRY;
-            case "entry list":
-                // Fall through
-            case "list":
-                return FiniteStateMachine.State.SHOW_ENTRY;
-            case "entry delete":
-                // Fall through
-            case "delete":
-                return FiniteStateMachine.State.DELETE_ENTRY;
-            case "exit":
-                return FiniteStateMachine.State.EXIT;
-            case "commands":
-                printCommandList();
-                return FiniteStateMachine.State.MAIN_MENU;
-            case "cat":
-                printValidCategories();
-                return FiniteStateMachine.State.MAIN_MENU;
-            default:
-                System.out.println("Command not recognised. Try again.");
-                return FiniteStateMachine.State.MAIN_MENU;
+        case "entry edit":
+            // Fall through
+        case "edit":
+            return FiniteStateMachine.State.EDIT_ENTRY;
+        case "entry new":
+            // Fall through
+        case "new":
+            return FiniteStateMachine.State.CREATE_ENTRY;
+        case "entry list":
+            // Fall through
+        case "list":
+            return FiniteStateMachine.State.SHOW_ENTRY;
+        case "entry delete":
+            // Fall through
+        case "delete":
+            return FiniteStateMachine.State.DELETE_ENTRY;
+        case "exit":
+            return FiniteStateMachine.State.EXIT;
+        case "commands":
+            printCommandList();
+            return FiniteStateMachine.State.MAIN_MENU;
+        case "cat":
+            printValidCategories();
+            return FiniteStateMachine.State.MAIN_MENU;
+        default:
+            System.out.println("Command not recognised. Try again.");
+            return FiniteStateMachine.State.MAIN_MENU;
         }
     }
 
@@ -146,13 +147,13 @@ public class EntryTracker {
     public static Constants.EntryType getEntryType() {
         for (String paramType : packet.getParamTypes()) {
             switch (paramType) {
-                case "-i":
-                    return Constants.EntryType.INC;
-                case "-e":
-                    return Constants.EntryType.EXP;
-                default:
-                    System.out.println("Command failed.");
-                    break;
+            case "-i":
+                return Constants.EntryType.INC;
+            case "-e":
+                return Constants.EntryType.EXP;
+            default:
+                System.out.println("Command failed.");
+                break;
             }
         }
         return null;

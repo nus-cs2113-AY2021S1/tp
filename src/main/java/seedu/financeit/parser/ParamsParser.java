@@ -55,7 +55,7 @@ public class ParamsParser {
             */
 
             boolean isRestOfStringEmpty = buffer[1].length() == 0;
-            if(isRestOfStringEmpty) {
+            if (isRestOfStringEmpty) {
                 //No param argument, no further params
                 params.put(paramType, paramArgument);
                 break;
@@ -75,7 +75,7 @@ public class ParamsParser {
                 break;
             }
 
-            if(paramArgumentExist) {
+            if (paramArgumentExist) {
                 //Split into [paramArgument, rest of string]
                 String separator = getSeparator(paramSubstring);
                 buffer = paramSubstring.trim().split(separator, 2);
