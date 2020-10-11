@@ -6,6 +6,7 @@ import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.book.BookList;
 import seedu.duke.category.Category;
 import seedu.duke.category.CategoryList;
+import seedu.duke.lists.ListManager;
 import seedu.duke.quote.Quote;
 import seedu.duke.quote.QuoteList;
 import seedu.duke.rating.Rating;
@@ -13,6 +14,7 @@ import seedu.duke.rating.RatingList;
 import seedu.duke.todo.ToDo;
 import seedu.duke.todo.ToDoList;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class TextUi {
@@ -56,6 +58,7 @@ public class TextUi {
     private static final String LIST_QUOTES_BY_AUTHOR_MESSAGE = "Here is a list of quotes by %s:";
     private static final String LIST_QUOTES_BY_REFERENCE_MESSAGE = "Here is a list of quotes from %s:";
     private static final String LIST_QUOTES_BY_AUTHOR_AND_REFERENCE_MESSAGE = "Here is a list of quotes from %s by %s:";
+    private static final String PRINT_RANDOM_QUOTE = "Before you continue, here's something:";
 
     private final Scanner in;
 
@@ -249,5 +252,13 @@ public class TextUi {
     public void printAllBookmarks(BookmarkList bookmarkList) {
         System.out.println(LIST_BOOKMARKS_MESSAGE);
         System.out.println(bookmarkList.toString());
+    }
+
+    public void printRandomQuote(ListManager listManager) {
+        QuoteList quotes = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
+        Random rand = new Random();
+        int randomQuoteNumber = rand.nextInt(quotes.getSize() - 1);
+        Quote quoteToPrint = quotes.getQuote(randomQuoteNumber);
+        System.out.println(PRINT_RANDOM_QUOTE + System.lineSeparator() + quoteToPrint.toString());
     }
 }
