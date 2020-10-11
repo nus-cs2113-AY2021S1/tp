@@ -21,7 +21,7 @@ ____________________________________________________________
   1.name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member
 ____________________________________________________________
 ____________________________________________________________
-  Noted. I'll remove this member:
+  Noted. I'll remove this member: 
   name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member
   Now you have 0 member in the list.
 ____________________________________________________________
