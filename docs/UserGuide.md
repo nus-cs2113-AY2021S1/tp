@@ -2,41 +2,50 @@
 
 ## Introduction
 
-{Give a product intro}
+Hospitalsaurus ReX is a program to help administrative staff to keep track of patients.
 
 ## Quick Start
-
-{Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed.
 1. Down the latest version of `Hospitalsaurus ReX` from [here](https://github.com/AY2021S1-CS2113-T16-4/tp).
 
-## Features 
+## Features
 
-{Give detailed description of each feature}
+### Adding a patient: `add`
+Adds a patient to the database.
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+Format: `add NRIC`
 
-Format: `todo n/TODO_NAME d/DEADLINE`
-
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+* The `NRIC` must be valid.
+* Program will prompt name and date of birth to be entered.
 
 Example of usage: 
 
-`todo n/Write the rest of the User Guide d/next week`
+`add S9922312D`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+`add S7423213Z`
+
+### Retrieve a patient: `retrieve`
+Retrieves a patient to the database.
+
+Format: `retrieve NRIC`
+
+* The `NRIC` must be valid and in the database.
+* Program will show name and date of birth of the patient.
+
+Example of usage:
+
+`retrieve S9922312D`
+
+`retrieve S7423213Z`
 
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: Clone the program to the other computer, and copy the data folder over.
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+* Add patient `add NRIC`
+* Retrieve patient `retrieve NRIC`
