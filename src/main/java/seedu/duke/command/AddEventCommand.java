@@ -30,7 +30,7 @@ public class AddEventCommand extends Command {
             + "[" + PREFIX_DELIMITER + PREFIX_REMIND + " [Days before (Default: 1)]" + "] "
             + "[" + PREFIX_DELIMITER + PREFIX_STOP_RECURRING + " TIMING (Format: " + DateTimeManager.DATEFORMAT + ")]";
 
-    private final Event EVENT;
+    private Event event;
 
     /**
      * Constructor that takes in the event to be written to the timetable.
@@ -38,7 +38,7 @@ public class AddEventCommand extends Command {
      * @param event Event to be written to the timetable.
      */
     public AddEventCommand(Event event) {
-        EVENT = event;
+        this.event = event;
     }
 
     /**
@@ -52,7 +52,7 @@ public class AddEventCommand extends Command {
 
     @Override
     public String execute() {
-        timetable.addEvent(EVENT);
-        return "Added the following!" + InterfaceManager.LS + InterfaceManager.LS + EVENT.toString();
+        timetable.addEvent(event);
+        return "Added the following!" + InterfaceManager.LS + InterfaceManager.LS + event.toString();
     }
 }

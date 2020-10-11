@@ -8,8 +8,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public abstract class RecurringEvent extends Event {
-    private final LocalDate END_RECURRENCE_DATE;
-    private final String RECURRENCE_TYPE;
+    private LocalDate endRecurrenceDate;
+    private String recurrenceType;
 
     public static final LocalDate DEFAULT_END_RECURRENCE = LocalDate.of(3000, 12, 31);
     public static final String DAILY_RECURRENCE_TYPE = "daily";
@@ -23,8 +23,8 @@ public abstract class RecurringEvent extends Event {
         if (endRecurrenceDate == null) {
             endRecurrenceDate = DEFAULT_END_RECURRENCE;
         }
-        this.END_RECURRENCE_DATE = endRecurrenceDate;
-        this.RECURRENCE_TYPE = recurrenceType;
+        this.endRecurrenceDate = endRecurrenceDate;
+        this.recurrenceType = recurrenceType;
     }
 
     public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, String recurrenceType) {
@@ -38,7 +38,7 @@ public abstract class RecurringEvent extends Event {
      * @return Whether to re-occur or not.
      */
     public boolean checkAfterEndRecurrence(LocalDate date) {
-        return (END_RECURRENCE_DATE.compareTo(date) < 0);
+        return (endRecurrenceDate.compareTo(date) < 0);
     }
 
     /**
@@ -67,12 +67,12 @@ public abstract class RecurringEvent extends Event {
     @Override
     public String toString() {
         String endRecurrenceString = "Until: ";
-        if (!END_RECURRENCE_DATE.equals(DEFAULT_END_RECURRENCE)) {
-            endRecurrenceString += END_RECURRENCE_DATE.toString();
+        if (!endRecurrenceDate.equals(DEFAULT_END_RECURRENCE)) {
+            endRecurrenceString += endRecurrenceDate.toString();
         } else {
             endRecurrenceString += "Forever";
         }
-        return super.toString() + String.format(" (%s)", RECURRENCE_TYPE) + InterfaceManager.LS + endRecurrenceString;
+        return super.toString() + String.format(" (%s)", recurrenceType) + InterfaceManager.LS + endRecurrenceString;
     }
 
     /**
