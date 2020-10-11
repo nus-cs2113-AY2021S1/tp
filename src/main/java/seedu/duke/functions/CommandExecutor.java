@@ -2,9 +2,11 @@ package seedu.duke.functions;
 
 import seedu.duke.bunnyList.BunnyList;
 import seedu.duke.commands.CommandChecker;
+
 import seedu.duke.exceptions.BunnyIdeaMissingException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
 import seedu.duke.ui.UI;
+
 import seedu.duke.wordlist.WordList;
 
 import static seedu.duke.ui.UI.printHelpMessage;
@@ -32,6 +34,9 @@ public class CommandExecutor {
             break;
         case LIST_WORDS:
             WordList.listWords();
+            break;
+        case FILTER_WORDS:
+            FilterExecutor.executeFilterCommand(userInput);
             break;
         case BUNNY:
             try {

@@ -1,7 +1,0 @@
-Topic:
-Sub-topic:
-Question title:
-Question type: QNA
----
-Question:
-Answer:
