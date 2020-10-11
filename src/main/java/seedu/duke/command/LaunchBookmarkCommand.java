@@ -56,7 +56,7 @@ public class LaunchBookmarkCommand extends Command {
      */
     @Override
     public void execute(ItemList items, Ui ui, Storage storage) throws DukeException {
-        BookmarkList bookmarks = (BookmarkList) items;
+        BookmarkList bookmarks = items.getItemList();
         if (launchTypeFlag == 1) { // Launch based on index
             try {
                 Bookmark bookmark = bookmarks.getBookmark(index);

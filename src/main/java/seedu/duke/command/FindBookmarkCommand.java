@@ -45,7 +45,7 @@ public class FindBookmarkCommand extends Command {
      */
     @Override
     public void execute(ItemList items, Ui ui, Storage storage) {
-        BookmarkList bookmarks = (BookmarkList) items;
+        BookmarkList bookmarks = items.;
         ui.print(bookmarks.findBookmarks(moduleAndDescription));
     }
 
