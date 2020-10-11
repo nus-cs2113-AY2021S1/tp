@@ -1,12 +1,12 @@
 package seedu.eduke8.ui;
 
-import seedu.eduke8.hint.HintInterface;
-import seedu.eduke8.question.QuestionInterface;
-import seedu.eduke8.option.OptionInterface;
+import seedu.eduke8.hint.Hint;
+import seedu.eduke8.option.Option;
+import seedu.eduke8.question.Question;
 
 import java.util.Scanner;
 
-public class Ui implements UiInterface {
+public class Ui {
 
 
     private static final int LAST_OPTION = 4;
@@ -56,20 +56,20 @@ public class Ui implements UiInterface {
         printMessage(MESSAGE_EXIT);
     }
 
-    public void printOption(OptionInterface option, int optionNumber) {
-        System.out.println(optionNumber + ") " + option.getOptionDescription());
+    public void printOption(Option option, int optionNumber) {
+        System.out.println(optionNumber + ") " + option.getDescription());
         if (optionNumber == LAST_OPTION) {
             System.out.println(HORIZONTAL_LINE);
         }
     }
 
-    public void printQuestion(QuestionInterface question, int questionNumber) {
+    public void printQuestion(Question question, int questionNumber) {
         System.out.println(HORIZONTAL_LINE);
-        System.out.println(questionNumber + ". " + question.getQuestionDescription());
+        System.out.println(questionNumber + ". " + question.getDescription());
     }
 
-    public void printHint(HintInterface hint) {
-        System.out.println("Hint: " + hint);
+    public void printHint(Hint hint) {
+        System.out.println("Hint: " + hint.getDescription());
     }
 
     //Formatting of topicsChosen: separated by ","

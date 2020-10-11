@@ -1,43 +1,50 @@
 package seedu.eduke8.topic;
 
+import seedu.eduke8.common.Displayable;
+import seedu.eduke8.common.DisplayableList;
+
 import java.util.ArrayList;
 
-public class TopicList implements TopicListInterface {
-    private ArrayList<TopicInterface> allTopics;
+public class TopicList implements DisplayableList {
+    private ArrayList<Displayable> topics;
 
-    public TopicList(ArrayList<TopicInterface> loadedTopics) {
-        allTopics = loadedTopics;
+    public TopicList(ArrayList<Displayable> topics) {
+        this.topics = topics;
     }
 
-    @Override
     public void showTopics() {
         System.out.println("These are the available topics:");
-        for (int i = 0; i < allTopics.size(); i++) {
-            System.out.println(allTopics.get(i).getTopic());
+        for (int i = 0; i < topics.size(); i++) {
+            System.out.println(topics.get(i).getDescription());
         }
     }
 
     @Override
-    public void addTopic(TopicInterface topic) {
-        allTopics.add(topic);
+    public ArrayList<Displayable> getInnerList() {
+        return topics;
     }
 
     @Override
-    public void deleteTopic(int index) {
-        allTopics.remove(index);
+    public void add(Displayable topic) {
+        topics.add(topic);
     }
 
-    public TopicInterface findTopic(String topicName) {
-        for (TopicInterface topic : allTopics) {
-            if (topicName.equals(topic.getTopic())) {
+    @Override
+    public void delete(int index) {
+        topics.remove(index);
+    }
+
+    @Override
+    public Displayable find(String topicName) {
+        for (Displayable topic : topics) {
+            if (topicName.equals(topic.getDescription())) {
                 return topic;
             }
         }
         return null;
     }
 
-    @Override
-    public int getTopicCount() {
-        return allTopics.size();
+    public int getCount() {
+        return topics.size();
     }
 }
