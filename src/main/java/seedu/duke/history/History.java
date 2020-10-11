@@ -3,9 +3,8 @@ package seedu.duke.history;
 import java.util.ArrayList;
 import java.util.Timer;
 
-import seedu.duke.quiz.Quiz;
-
 public abstract class History {
+    /*
     protected String author;
     protected String title;
     protected int id;
@@ -40,4 +39,6 @@ public abstract class History {
                 + "topic" + topic + "\n"
                 + Timer;
     }
+
+     */
 }
