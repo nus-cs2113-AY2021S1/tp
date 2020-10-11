@@ -165,4 +165,9 @@ public class User {
         this.weight = weight;
         this.gender = gender;
     }
+
+    public double getBMI() {
+        return weight / ((height) * (height));
+    }
+
 }
