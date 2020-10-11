@@ -28,7 +28,6 @@ public class   CommandPacket {
     }
 
     public Set<String> getParamTypes() {
-//        return (String[]) paramMap.keySet().toArray(new String[0]);
         return paramMap.keySet();
     }
 

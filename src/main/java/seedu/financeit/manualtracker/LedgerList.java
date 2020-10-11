@@ -2,6 +2,7 @@ package seedu.financeit.manualtracker;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
+import seedu.financeit.common.Item;
 import seedu.financeit.common.ItemList;
 import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
@@ -10,7 +11,7 @@ import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class LedgerList extends ItemList {
@@ -22,6 +23,17 @@ public class LedgerList extends ItemList {
                 add("/id");
             }
         };
+    }
+
+    public Ledger getItemFromDate(LocalDate date) throws ItemNotFoundException {
+        Ledger output;
+        for (Item i : this.items) {
+            output = (Ledger)i;
+            if ((output.getDate().equals(date))) {
+                return output;
+            }
+        }
+        throw new ItemNotFoundException();
     }
 
     @Override
@@ -38,7 +50,6 @@ public class LedgerList extends ItemList {
         TablePrinter.printList();
     }
 
-
     @Override
     public boolean isValidItem() {
         return (this.itemQueue.size() == 1);
@@ -49,8 +60,8 @@ public class LedgerList extends ItemList {
         throws ParseFailParamException, ItemNotFoundException, ConflictingItemReference {
         switch (paramType) {
         case ParamChecker.PARAM_DATE:
-            LocalDateTime dateTime = paramChecker.checkAndReturnDateTime(paramType, this.defaultDateTimeFormat);
-            this.itemQueue.add(this.getItemFromDateTime(dateTime));
+            LocalDate date = paramChecker.checkAndReturnDate(paramType);
+            this.itemQueue.add(this.getItemFromDate(date));
             this.parseSuccessParams.add("/date");
             this.parseSuccessParams.add("/id");
 

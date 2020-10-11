@@ -6,12 +6,13 @@ import seedu.financeit.common.ItemList;
 import seedu.financeit.common.exceptions.EmptyParamException;
 import seedu.financeit.common.exceptions.InvalidCategoryException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
-import seedu.financeit.parser.InputParser;
+import seedu.financeit.parser.DateTimeParser;
 import seedu.financeit.ui.UiManager;
 
 import java.security.InvalidParameterException;
 import java.time.DateTimeException;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class ParamChecker {
@@ -32,16 +33,16 @@ public class ParamChecker {
         this.packet = packet;
     }
 
-    public LocalDateTime checkAndReturnDateTime(String paramType, String dateTimeFormat)
+    public LocalDate checkAndReturnDate(String paramType)
         throws ParseFailParamException {
-        LocalDateTime dateTime = null;
+        LocalDate date = null;
         boolean parseSuccess = false;
         try {
             String rawDate = packet.getParam(paramType);
             if (rawDate.trim().length() == 0) {
                 throw new EmptyParamException(paramType);
             }
-            dateTime = InputParser.parseRawDateTime(rawDate, dateTimeFormat);
+            date = DateTimeParser.parseLocalDate(rawDate);
             parseSuccess = true;
         } catch (DateTimeException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
@@ -63,7 +64,41 @@ public class ParamChecker {
         if (!parseSuccess) {
             throw new ParseFailParamException(paramType);
         }
-        return dateTime;
+        return date;
+    }
+
+    public LocalTime checkAndReturnTime(String paramType)
+        throws ParseFailParamException {
+        LocalTime time = null;
+        boolean parseSuccess = false;
+        try {
+            String rawTime = packet.getParam(paramType);
+            if (rawTime.trim().length() == 0) {
+                throw new EmptyParamException(paramType);
+            }
+            time = DateTimeParser.parseLocalTime(rawTime);
+            parseSuccess = true;
+        } catch (DateTimeException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                "Not a valid time on the Gregorian Calendar!",
+                "Check your input again against the following format!",
+                "Date format: YYMMDD",
+                "Time format: HHMM");
+        } catch (InvalidParameterException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                "Input format is not recognised.",
+                "Check your input again against the following format!",
+                "Date format: YYMMDD",
+                "Time format: HHMM");
+        } catch (EmptyParamException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                exception.getMessage(),
+                "Enter \"commands\" to check format!");
+        }
+        if (!parseSuccess) {
+            throw new ParseFailParamException(paramType);
+        }
+        return time;
     }
 
     public int checkAndReturnIndex(String paramType, ItemList list)

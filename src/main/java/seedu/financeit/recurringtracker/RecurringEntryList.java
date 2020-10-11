@@ -7,7 +7,7 @@ import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.TablePrinter;
 
-public class RecurringEntryList extends ItemList{
+public class RecurringEntryList extends ItemList {
     public RecurringEntryList() {
 
     }
@@ -36,7 +36,7 @@ public class RecurringEntryList extends ItemList{
     }
 
     @Override
-    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException, ItemNotFoundException, ConflictingItemReference {
-
+    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
+        ItemNotFoundException, ConflictingItemReference {
     }
 }

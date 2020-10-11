@@ -56,7 +56,9 @@ public class ManualTracker {
     }
 
 
-    public static LedgerList getLedgerList(){ return ledgerList; }
+    public static LedgerList getLedgerList() {
+        return ledgerList;
+    }
 
     private static FiniteStateMachine.State handleMainMenu() {
         UiManager.printSpace();

@@ -30,7 +30,7 @@ public class RecurringTracker {
             default:
                 handleInvalidCommand();
             }
-        } while(!endTracker);
+        } while (!endTracker);
     }
 
     static void handleAddEntry() {
