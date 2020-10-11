@@ -6,6 +6,7 @@ import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.DuplicateInputException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
+import seedu.financeit.goaltracker.TotalGoal;
 import seedu.financeit.manualtracker.Ledger;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
@@ -15,6 +16,7 @@ public class EntryTracker {
     private static Ledger currLedger;
     private static EntryList entryList;
     private static CommandPacket packet;
+    private static TotalGoal totalGoal = new TotalGoal();
 
     public static void setCurrLedger(Ledger ledger) {
         currLedger = ledger;
