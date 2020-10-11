@@ -3,6 +3,10 @@ package seedu.duke.commands;
 public class Command {
     protected String description;
 
+    public Command() {
+
+    }
+
     public Command(String description) {
         this.description = description;
     }
