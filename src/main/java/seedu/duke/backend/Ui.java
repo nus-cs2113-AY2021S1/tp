@@ -1,8 +1,14 @@
 package seedu.duke.backend;
 
 import seedu.duke.Command;
+<<<<<<< HEAD
 import seedu.duke.DukeArgumentException;
 import seedu.duke.DukeNoMatchException;
+=======
+import seedu.duke.hr.CommandAddMember;
+import seedu.duke.hr.CommandDelMember;
+import seedu.duke.hr.CommandViewMember;
+>>>>>>> 205e60ba9777d030247a2d171f8f08398c97e4f3
 import seedu.duke.others.CommandBye;
 import seedu.duke.others.CommandHelp;
 
@@ -114,5 +120,8 @@ public class Ui {
     private static void initializeCommands() {
         commandList.add(new CommandHelp());
         commandList.add(new CommandBye());
+        commandList.add(new CommandAddMember());
+        commandList.add(new CommandViewMember());
+        commandList.add(new CommandDelMember());
     }
 }
