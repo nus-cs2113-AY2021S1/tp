@@ -24,7 +24,7 @@ public class Financeit {
             String input = UiManager.handleInput();
             CommandPacket packet = new InputParser().parseInput(input);
             UiManager.refreshPage();
-            switch (input.getCommandString()) {
+            switch (packet.getCommandString()) {
                 case "manual":
                     ManualTracker.main();
                     break;

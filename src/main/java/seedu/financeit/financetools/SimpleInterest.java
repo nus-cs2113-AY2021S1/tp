@@ -53,7 +53,7 @@ public class SimpleInterest extends ParamHandler {
     }
 
     @Override
-    public void handleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
+    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
             ItemNotFoundException, ConflictingItemReference {
         switch (paramType) {
         case "/amount":
