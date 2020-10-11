@@ -20,23 +20,31 @@ public class Storage implements SaveState {
 
     @Override
     public void saveState(HashMap<String, Show> showList) throws IOException {
-        FileWriter fw = new FileWriter(filePath);
+
+        FileWriter fw;
+        try {
+            fw = new FileWriter(this.filePath); //overwrite existing file contents when called
+        } catch (IOException e) {
+            throw new IOException();
+        }
         int index = 1;
-        for (Map.Entry<String,Show> entry : showList.entrySet() ){
-            fw.write(index + ". " + entry.getValue().getName() + System.lineSeparator() );
-            fw.write("      Season: " + entry.getValue().getNumSeasons() + System.lineSeparator() );
+        for (Map.Entry<String,Show> entry : showList.entrySet()) {
+            fw.write(index + ". " + entry.getValue().getName() + System.lineSeparator());
+            fw.write("      Season: " + entry.getValue().getNumSeasons() + System.lineSeparator());
             String episodes = "";
-            for (int i = 1;i <= entry.getValue().getNumSeasons();i++){
+            for (int i = 1;i <= entry.getValue().getNumSeasons();i++) {
                 episodes = episodes + entry.getValue().getEpisodesForSeason(i) + " ";
             }
-            fw.write("      Episodes: " + episodes+System.lineSeparator());
-            fw.write("      Rating: " + entry.getValue().getRating() + System.lineSeparator() );
+            fw.write("      Episodes: " + episodes + System.lineSeparator());
+            fw.write("      Rating: " + entry.getValue().getRating() + System.lineSeparator());
+
             index++;
 
             //this is another save format
             /*
             String textToAdd=index+". "+entry.getValue().getName()+" | Season: "+entry.getValue().getNumSeasons()
-                    +" | Episodes: " +entry.getValue().getEpisodesForSeason(entry.getValue().getNumSeasons())+" | Rating: "+entry.getValue().getRating();
+                    +" | Episodes: " +entry.getValue().getEpisodesForSeason(entry.getValue().getNumSeasons())
+                    + " | Rating: "+entry.getValue().getRating();
             fw.write(textToAdd);
              */
         }
@@ -44,12 +52,21 @@ public class Storage implements SaveState {
     }
 
     @Override
-    public void loadState(HashMap<String, Show> showList) throws FileNotFoundException {
+    public java.util.HashMap<String, Show> loadState() throws FileNotFoundException {
+        File directory = new File("data");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
         File f = new File(filePath);
+        try {
+            f.createNewFile();
+        } catch (IOException ex) {
+            seedu.duke.utility.Ui.showCreateFileError();
+        }
         Scanner s = new Scanner(f);
+        HashMap<String, Show> showList = new java.util.HashMap<>();
         // we just assume that users will not change the contain in the file then the format will be fixed
-        while (s.hasNext() ){
-
+        while (s.hasNext()) {
             String name = s.nextLine().substring(3);
 
             String[] splitSeason = s.nextLine().split("Season: ");
@@ -83,6 +100,6 @@ public class Storage implements SaveState {
              */
 
         }
-
+        return showList;
     }
 }

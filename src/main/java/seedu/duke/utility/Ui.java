@@ -10,6 +10,7 @@ public class Ui {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_REVERSE = "\u001b[7m";
     public static final String ANSI_BOLD = "\u001b[1m";
+    public static final String SAVE_DIRECTORY = "data/showList.txt";
 
     public static void printLogo() {
         String logo = " __          __  _______ _____ _    _ _   _ ________   _________ \n"
@@ -58,7 +59,7 @@ public class Ui {
                 + " \n"
                 + "`edit` - Edits your show details\n"
                 + " \n"
-                + "`rating` - Modifies rating of your show\n"
+                + "`rating` - Set rating of your show\n"
                 + "\n"
                 + "`list` - Displays all your shows in list\n"
                 + "\n"
@@ -152,6 +153,10 @@ public class Ui {
 
     public static void printBadInputException() {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_INPUT);
+    }
+
+    public static void showCreateFileError() {
+        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_CREATE_FILE_ERROR);
     }
 
 }
