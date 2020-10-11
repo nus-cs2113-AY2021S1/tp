@@ -10,7 +10,7 @@ import seedu.duke.calendar.event.Lab;
 import seedu.duke.calendar.event.Lecture;
 import seedu.duke.calendar.event.Tutorial;
 import seedu.duke.calendar.task.Deadline;
-import seedu.duke.calendar.task.Exam;
+import seedu.duke.calendar.event.Exam;
 import seedu.duke.calendar.task.Todo;
 
 import java.time.LocalDate;

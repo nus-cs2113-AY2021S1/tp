@@ -1,4 +1,4 @@
-package seedu.duke.calendar.task;
+package seedu.duke.calendar.event;
 
 import seedu.duke.calendar.CalendarItem;
 

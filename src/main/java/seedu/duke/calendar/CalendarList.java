@@ -1,7 +1,7 @@
 package seedu.duke.calendar;
 
 import seedu.duke.DukeException;
-import seedu.duke.calendar.task.Event;
+import seedu.duke.calendar.event.Event;
 import seedu.duke.calendar.task.Task;
 
 import java.util.ArrayList;

@@ -1,8 +1,6 @@
 package seedu.duke.calendar.event;
 
 
-import seedu.duke.calendar.task.Event;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
