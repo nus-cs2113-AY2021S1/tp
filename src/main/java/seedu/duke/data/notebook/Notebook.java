@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Notebook {
 
-    private final ArrayList<Note> notes;
+    private ArrayList<Note> notes;
 
     /**
      * Creates a new list of notes.
@@ -26,20 +26,44 @@ public class Notebook {
     }
 
     /**
-     * Adds a note into the notebook.
+     * Gets a list of notes from existing data.
      *
-     * @param note to be added.
+     * @return notes of existing data.
+     */
+    public ArrayList<Note> getNotes() {
+        return this.notes;
+    }
+
+    public Note getNote(int index) {
+        return notes.get(index);
+    }
+
+    /**
+     * Adds a note into the notebook.
      */
     public void addNote(Note note) {
-
+        notes.add(note);
     }
 
     /**
      * Removes a note from the timetable.
-     *
-     * @param note to be removed.
      */
-    public void deleteNote(Note note) {
+    public void deleteNote(int index) {
+        notes.remove(index);
+    }
 
+    /**
+     * Removes a note from the timetable.
+     */
+    public void deleteNote(String title) {
+        notes.removeIf(note -> note.getTitle().equals(title));
+    }
+
+    public void setNotes(ArrayList<Note> notes) {
+        this.notes = notes;
+    }
+
+    public int getSize() {
+        return notes.size();
     }
 }
