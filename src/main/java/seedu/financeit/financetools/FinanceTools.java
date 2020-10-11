@@ -3,6 +3,7 @@ package seedu.financeit.financetools;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
+import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
@@ -27,7 +28,8 @@ public class FinanceTools {
 
         while (true) {
             printMenu();
-            CommandPacket packet = UiManager.handleInput();
+            String input = UiManager.handleInput();
+            CommandPacket packet = new InputParser().parseInput(input.toLowerCase());
             switch (packet.getCommandString()) {
             case "simplecalc":
                 System.out.print("Total Interest Earned: ");
