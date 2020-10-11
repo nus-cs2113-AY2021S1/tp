@@ -56,7 +56,7 @@ public class Event {
     /**
      * Creates an Event object with its title, date, time, isToRemind, isRecurring as well as time before reminder and
      * time unit provided.
-     * 
+     *
      * @param title Title of the event.
      * @param date Date of the event.
      * @param time Time of the event.
