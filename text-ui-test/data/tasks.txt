@@ -1,0 +1,6 @@
+LEC|false|cs2113|2020-10-08|16:00|lt12
+TUT|false|cs2113|2020-10-08|16:00|lt11
+LAB|false|cs1010|2020-10-10|10:00|com1-b1-12
+T|false|homework
+EXAM|false|cs2113t|2020-10-20|12:30|finals
+D|false|<task description>|2020-10-10
