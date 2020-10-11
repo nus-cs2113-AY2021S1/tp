@@ -1,16 +1,16 @@
 package seedu.eduke8.topic;
 
 import seedu.eduke8.common.Displayable;
-import seedu.eduke8.question.TopicQuestionList;
+import seedu.eduke8.question.QuestionList;
 
 public class Topic implements Displayable {
     private String description;
-    private TopicQuestionList questionList;
+    private QuestionList questionList;
     private boolean wasShown;
 
-    public Topic(String description, TopicQuestionList topicQuestionList) {
+    public Topic(String description, QuestionList questionList) {
         this.description = description;
-        this.questionList = topicQuestionList;
+        this.questionList = questionList;
         wasShown = false;
     }
 
@@ -24,7 +24,7 @@ public class Topic implements Displayable {
         return wasShown;
     }
 
-    public TopicQuestionList getQuestionList() {
+    public QuestionList getQuestionList() {
         return questionList;
     }
 }

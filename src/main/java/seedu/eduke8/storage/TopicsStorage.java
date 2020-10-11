@@ -9,7 +9,7 @@ import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.option.OptionList;
 import seedu.eduke8.question.Question;
-import seedu.eduke8.question.TopicQuestionList;
+import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.topic.Topic;
 
 import java.io.File;
@@ -63,9 +63,9 @@ public class TopicsStorage implements Storage {
                 .map(question -> parseToQuestionObject((JSONObject) question))
                 .collect(toList());
 
-        TopicQuestionList topicQuestionList = new TopicQuestionList(questionsAsObjects);
+        QuestionList questionList = new QuestionList(questionsAsObjects);
 
-        Topic topicAsObject = new Topic(topicTitle, topicQuestionList);
+        Topic topicAsObject = new Topic(topicTitle, questionList);
 
         return topicAsObject;
     }

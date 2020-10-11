@@ -3,7 +3,7 @@ package seedu.eduke8.storage;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 import seedu.eduke8.common.Displayable;
-import seedu.eduke8.question.TopicQuestionList;
+import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.topic.Topic;
 
 import java.io.IOException;
@@ -36,8 +36,8 @@ class TopicsStorageTest {
             Topic firstTopic = (Topic) topics.get(0);
             assertEquals(firstTopic.getDescription(), "OOP");
 
-            TopicQuestionList firstTopicQuestionList = firstTopic.getQuestionList();
-            assertEquals(firstTopicQuestionList.getCount(), 2);
+            QuestionList firstQuestionList = firstTopic.getQuestionList();
+            assertEquals(firstQuestionList.getCount(), 2);
         } catch (ParseException | IOException e) {
             e.printStackTrace();
         }

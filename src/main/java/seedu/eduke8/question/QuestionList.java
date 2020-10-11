@@ -6,11 +6,11 @@ import seedu.eduke8.exception.Eduke8Exception;
 
 import java.util.ArrayList;
 
-public class TopicQuestionList implements DisplayableList {
+public class QuestionList implements DisplayableList {
 
     private ArrayList<Displayable> questions;  // list of questions for the particular topic
 
-    public TopicQuestionList(ArrayList<Displayable> questions) {
+    public QuestionList(ArrayList<Displayable> questions) {
         this.questions = questions;
     }
 
