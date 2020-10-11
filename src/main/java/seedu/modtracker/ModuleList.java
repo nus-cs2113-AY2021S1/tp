@@ -20,7 +20,7 @@ public class ModuleList {
     public void addMod(String input) {
         String[] modInfo = input.split(" ", 2);
         modInfo[1] = modInfo[1].toUpperCase();
-        if (!checkModuleIfExist(modInfo[1])) {
+        if (!checkIfModuleExist(modInfo[1])) {
             Module currentModule = new Module(modInfo[1]);
             modList.add(currentModule);
             ui.printAdd(currentModule);
@@ -40,7 +40,7 @@ public class ModuleList {
         String[] modInfo = input.split(" ", 3);
         modInfo[1] = modInfo[1].toUpperCase();
         Module currentMod = new Module(modInfo[1], modInfo[2]);
-        if (!checkModuleIfExist(modInfo[1])) {
+        if (!checkIfModuleExist(modInfo[1])) {
             modList.add(currentMod);
         } else {
             int index = modList.indexOf(currentMod);
@@ -58,7 +58,7 @@ public class ModuleList {
     public void deleteMod(String input) {
         String[] modInfo = input.split(" ", 2);
         modInfo[1] = modInfo[1].toUpperCase();
-        if (checkModuleIfExist(modInfo[1])) {
+        if (checkIfModuleExist(modInfo[1])) {
             Module inputMod = new Module(modInfo[1]);
             modList.remove(inputMod);
             ui.printDelete(modInfo[1]);
@@ -75,7 +75,7 @@ public class ModuleList {
     public void deleteExp(String input) {
         String[] modInfo = input.split(" ", 2);
         modInfo[1] = modInfo[1].toUpperCase();
-        if (checkModuleIfExist(modInfo[1])) {
+        if (checkIfModuleExist(modInfo[1])) {
             Module inputMod = new Module(modInfo[1]);
             int index = modList.indexOf(inputMod);
             modList.get(index).expected = -1;
@@ -91,7 +91,7 @@ public class ModuleList {
      * @param input module code typed in by user
      * @return the existence of module in the list of modules.
      */
-    public boolean checkModuleIfExist(String input) {
+    public boolean checkIfModuleExist(String input) {
         Module currentMod = new Module(input);
         for (Module mod: modList) {
             if (mod.equals(currentMod)) {
