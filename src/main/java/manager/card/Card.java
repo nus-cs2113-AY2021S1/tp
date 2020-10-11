@@ -12,6 +12,7 @@ public class Card {
         this.question = question;
         this.answer = answer;
         this.dueBy = LocalDate.now();
+        this.dueBy = null;
         this.previousInterval = 1;
     }
 
