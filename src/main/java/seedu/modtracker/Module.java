@@ -73,4 +73,9 @@ public class Module {
         return moduleCode.equals(m.moduleCode);
     }
 
+    @Override
+    public int hashCode() {
+        return moduleCode.hashCode();
+    }
+
 }
