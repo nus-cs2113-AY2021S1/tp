@@ -1,11 +1,13 @@
 package seedu.duke.utility;
 
 import seedu.duke.classes.Show;
+import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.ChangeRatingCommand;
 import seedu.duke.commands.DeleteRatingCommand;
-import seedu.duke.commands.RatingCommand;
 import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
 import seedu.duke.commands.UpdateShowSeasonCommand;
+import seedu.duke.commands.RatingCommand;
+import seedu.duke.commands.Command;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -105,10 +107,10 @@ public class InputParser {
             parseChangeRatingCommand(input);
             return;
 
-        /*case "add":
-
-            return parseAddCommand(input);
-
+        case "add":
+            parseAddCommand(input);
+            return;
+        /*
         case "edit":
 
             return parseEditCommand();
@@ -163,15 +165,16 @@ public class InputParser {
         }
     }
 
-    /*
+
     private static void parseAddCommand(String input) {
         //catch for 1)too many/not enough inputs , 2)invalid input, 3)show alr added
         //maybe last arg is optional? idk cos user might not wanna put rating yet
         String[] tokenizedInput = input.split(" ");
+        new AddCommand(tokenizedInput);
         //add show detail into appropriate class
-        Ui.printShowAdded(tokenizedInput[0]);
+        Ui.printShowAdded(tokenizedInput[1]);
     }
-
+    /*
     private static seedu.duke.commands.Command parseEditCommand(String input) {
         //this one might need check agn, the current i/o is a yikes imo
         seedu.duke.utility.Ui.queryEditShow(input);
