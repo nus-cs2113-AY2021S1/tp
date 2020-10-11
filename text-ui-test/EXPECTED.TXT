@@ -1,4 +1,10 @@
 Printing of 25/7 logo!!!!
+========================================================================
+Welcome to 25/7 Task Manager!
+What can I do for you?
+Enter 'help' for the list of commands.
+==========================================================================
+
 ..................... DUKE CHAT BOX ^^ ....................
 Got it. I've added this task:
 [LEC][/] cs2113 08-10-20 Thu 4:00PM (lt12)
