@@ -27,8 +27,8 @@ public class Event {
      * @return String format of event.
      */
     public String printEvent() {
-        return "Event Name: " + this.eventName +  "\nDate: " +
-                date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\nTime: " + this.eventTime + "\n";
+        return "Event Name: " + this.eventName +  "\nDate: "
+                + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\nTime: " + this.eventTime + "\n";
     }
 
 }
