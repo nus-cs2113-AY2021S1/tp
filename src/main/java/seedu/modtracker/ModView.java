@@ -14,15 +14,15 @@ public class ModView {
     public static final int DECIMAL_PLACES = 1;
     public static final int MIN_WEEK_VALUE = 1;
     public static final int MAX_WEEK_VALUE = 13;
-    public static final String WEEK_NUMBER_PADING_CHAR = "0";
+    public static final String WEEK_NUMBER_PADDING_CHAR = "0";
     public static final int FACTOR = 10;
     public static final int INDEX_OFFSET = 1;
     public static final String REPLACE_BY_WEEK_NUMBER = "WK";
     public static final String REPLACE_BY_MODULE_CODE = "XXXXXX";
     public static final String FIRST_PART_OF_CONTENT = "|  " + REPLACE_BY_WEEK_NUMBER
             + "  | " + REPLACE_BY_MODULE_CODE;
-    public static final String PADING_CHAR = " ";
-    public static final String REPLACE_BY_EXPECTEDWORKLOAD = "YY";
+    public static final String PADDING_CHAR = " ";
+    public static final String REPLACE_BY_EXPECTED_WORKLOAD = "YY";
     public static final String REPLACE_BY_NO_EXPECTED_WORKLOAD_FOUND = "    YY    ";
     public static final String REPLACE_BY_ACTUAL_WORKLOAD = "ZZZZ";
     public static final String REPLACE_BY_NO_ACTUAL_WORKLOAD_FOUND = "   ZZZZ   ";
@@ -184,7 +184,7 @@ public class ModView {
             String out = contents;
 
             String crosses = REPLACE_BY_MODULE_CODE + crossToBeAdded;
-            String weekNum = (isTwoDigitNumber(weekNumber) ? "" : WEEK_NUMBER_PADING_CHAR) + weekNumber;
+            String weekNum = (isTwoDigitNumber(weekNumber) ? "" : WEEK_NUMBER_PADDING_CHAR) + weekNumber;
             out = out.replace(REPLACE_BY_WEEK_NUMBER, weekNum);
 
             StringBuilder moduleCode = new StringBuilder(m.getModuleCode());
@@ -194,9 +194,9 @@ public class ModView {
             out = out.replace(crosses, moduleCode.toString());
 
             if (m.doesExpectedWorkLoadExist()) {
-                String expectedWorkLoad = (isTwoDigitNumber(m.getExpectedWorkload()) ? "" : PADING_CHAR)
+                String expectedWorkLoad = (isTwoDigitNumber(m.getExpectedWorkload()) ? "" : PADDING_CHAR)
                         + m.getExpectedWorkload();
-                out = out.replace(REPLACE_BY_EXPECTEDWORKLOAD, expectedWorkLoad);
+                out = out.replace(REPLACE_BY_EXPECTED_WORKLOAD, expectedWorkLoad);
             } else {
                 out = out.replace(REPLACE_BY_NO_EXPECTED_WORKLOAD_FOUND, NO_INPUT);
             }
@@ -204,7 +204,7 @@ public class ModView {
             if (m.doesActualTimeExist(weekNumber)) {
                 double actualTime = m.getActualTime()[weekNumber - INDEX_OFFSET];
                 actualTime = round(actualTime, DECIMAL_PLACES);
-                String actualWorkLoad = (isTwoDigitNumber((int) actualTime) ? "" : PADING_CHAR)
+                String actualWorkLoad = (isTwoDigitNumber((int) actualTime) ? "" : PADDING_CHAR)
                         + actualTime;
                 out = out.replace(REPLACE_BY_ACTUAL_WORKLOAD, actualWorkLoad);
             } else {
@@ -221,7 +221,7 @@ public class ModView {
         return (double) Math.round(value * scale) / scale;
     }
 
-    private boolean isTwoDigitNumber (int num) {
+    private boolean isTwoDigitNumber(int num) {
         return String.valueOf(num).length() == 2;
     }
 }
