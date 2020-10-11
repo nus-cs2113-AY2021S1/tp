@@ -1,4 +1,4 @@
-package seedu.planus;
+package seedu.task;
 
 import java.util.Comparator;
 

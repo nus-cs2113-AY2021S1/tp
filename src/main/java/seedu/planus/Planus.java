@@ -1,8 +1,10 @@
 package seedu.planus;
 
+import seedu.data.TaskList;
+import seedu.storage.Storage;
+import seedu.task.Task;
+import seedu.ui.Ui;
 
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,7 +23,7 @@ public class Planus {
             + "( t/(?<time>\\d{4}))?"
             + "( p/(?<priority>\\d))?$");
 
-    private final ArrayList<Task> tasks = new ArrayList<>();
+    private final TaskList tasks = new TaskList();
     private boolean isExit;
     private Storage storage;
     private Ui ui;
@@ -43,7 +45,7 @@ public class Planus {
         storage = new Storage();
         storage.loadTasks(tasks);
         isExit = false;
-        ui = new Ui(tasks);
+        ui = new Ui();
     }
 
     private void executeCommand(String userInput) {
@@ -59,7 +61,7 @@ public class Planus {
             executeAddTask(commandArgs);
             break;
         case COMMAND_LIST:
-            ui.displayAll();
+            ui.displayAll(tasks);
             break;
         case COMMAND_BYE:
             exitProgram();
@@ -88,7 +90,7 @@ public class Planus {
             System.out.println("Invalid command!");
             return;
         }
-        tasks.add(task);
+        tasks.addTask(task);
         System.out.println("\nTask added:");
         System.out.println(task.toString());
         System.out.println("Now you have " + tasks.size() + " task(s) in your list.\n");

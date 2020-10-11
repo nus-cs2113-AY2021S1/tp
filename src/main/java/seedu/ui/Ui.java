@@ -1,66 +1,47 @@
-package seedu.planus;
+package seedu.ui;
+
+import seedu.data.TaskList;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
+
 
 public class Ui {
     private static final String LS = System.lineSeparator();
     private final Scanner in;
     private final PrintStream out;
-    private ArrayList<Task> tasks;
 
-    public Ui(ArrayList<Task> tasks) {
-        this(System.in, System.out, tasks);
+    public Ui() {
+        this(System.in, System.out);
     }
 
-    private Ui(InputStream in, PrintStream out, ArrayList<Task> tasks) {
+    private Ui(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
-        this.tasks = tasks;
     }
 
     public String getUserInput() {
         return in.nextLine();
     }
 
-    public void displayAll() {
+    public void displayAll(TaskList tasks) {
         // Basic adding sequence
         displayTasks(tasks);
     }
 
-    public void displayAllByTime() {
-        // Sort by datetime, default display mode
-        List<Task> sorted = tasks.stream()
-                .sorted(new DateSorter())
-                .collect(Collectors.toList());
-        displayTasks((ArrayList<Task>) sorted);
-    }
-
-    public void displayAllByPriority() {
-        // Sort by priority, same priority then datetime
-        List<Task> sorted = tasks.stream()
-                .sorted(new DateSorter())
-                .sorted(new PrioritySorter())
-                .collect(Collectors.toList());
-        displayTasks((ArrayList<Task>) sorted);
-    }
-
-    private void displayTasks(ArrayList<Task> tasks) {
+    private void displayTasks(TaskList tasks) {
         // Header
         out.println(LS + "Here is your list of tasks:");
         String format = "%-10s%-15s%-15s%-10s%-10s" + LS;
         out.format(format, "Index", "Description", "Date", "Time", "Priority");
-        for (Task task : tasks) {
+        for (int i = 0; i < tasks.size(); i++) {
             out.format(format,
-                    tasks.indexOf(task) + 1,
-                    task.getDescription(),
-                    task.getDate(),
-                    task.getTime() == null ? "" : task.getTime(),
-                    task.getPriority());
+                    i + 1,
+                    tasks.get(i).getDescription(),
+                    tasks.get(i).getDate(),
+                    tasks.get(i).getTime() == null ? "" : tasks.get(i).getTime(),
+                    tasks.get(i).getPriority());
         }
         out.println();
     }
