@@ -7,14 +7,14 @@ public class MainMenu extends Ui {
     private static LocalDateTime now = LocalDateTime.now();
     private static String nowFormatted = dateTimeFormat.format(now);
 
-    private static final String WELCOME_MESSAGE = LINE_DIVIDER + System.lineSeparator() +
-            "Welcome to Study It! Your personal study assistant!" +
-            "\n\n" +
-            "Current date & time : " + nowFormatted +
-            "\n\n" +
-            "Let's get productive! :)" +
-            "\n" +
-            LINE_DIVIDER;
+    private static final String WELCOME_MESSAGE = LINE_DIVIDER + System.lineSeparator()
+            + "Welcome to Study It! Your personal study assistant!"
+            + "\n\n"
+            + "Current date & time : " + nowFormatted
+            + "\n\n"
+            + "Let's get productive! :)"
+            + "\n"
+            + LINE_DIVIDER;
 
     public static void printWelcome() {
         System.out.println(WELCOME_MESSAGE);

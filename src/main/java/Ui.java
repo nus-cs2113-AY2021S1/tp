@@ -4,7 +4,7 @@ public class Ui {
     public static final String LINE_DIVIDER = "=======================================================================";
 
     /**
-     * Receive command input from the user via terminal
+     * Receive command input from the user via terminal.
      *
      * @return the command input as a String
      */
@@ -18,7 +18,8 @@ public class Ui {
     }
 
     /**
-     * Prints text with line divider above and below the text
+     * Prints text with line divider above and below the text.
+     *
      * @param text any String type text
      */
     public static void printLine(String text) {
@@ -41,10 +42,10 @@ public class Ui {
         try {
             Mode newMode = CommandParser.getDestinationMode(command);
             StudyIt.changeMode(newMode);
-            printLine("You are now at: " + ModeNames.getCurrentModeName() );
+            printLine("You are now at: " + ModeNames.getCurrentModeName());
         } catch (InvalidModeException e) {
-            printLine("Invalid mode name! Please try again.\n" +
-                    "You are still at: " + ModeNames.getCurrentModeName());
+            printLine("Invalid mode name! Please try again.\n"
+                    + "You are still at: " + ModeNames.getCurrentModeName());
         }
     }
 
