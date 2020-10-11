@@ -50,6 +50,7 @@ public class TextUi {
     private static final String LIST_BOOKMARKS_MESSAGE = "Here is the list of all bookmark(s) recorded:";
     private static final String DELETE_BOOKMARKS_MESSAGE = "The bookmark [%s] has been removed!";
     private static final String LIST_QUOTES = "Here are the quotes:";
+    private static final String DELETE_QUOTE_MESSAGE = "The quote \"%s\" has been deleted!";
 
     private final Scanner in;
 
@@ -170,6 +171,10 @@ public class TextUi {
                 System.out.println(quote.toString());
             }
         }
+    }
+
+    public  void printDeleteQuote(String quote) {
+        System.out.printf((DELETE_QUOTE_MESSAGE) + "\n", quote);
     }
 
     public void printDeleteRating(String bookTitle) {
