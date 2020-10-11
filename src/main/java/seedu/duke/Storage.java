@@ -38,7 +38,6 @@ public class Storage {
     private static final int EVENT_DATE = 3;
     private static final int EVENT_TIME = 4;
     private static final int EVENT_VENUE = 5;
-    public static final int VENUE = 6;
 
     private static ArrayList<CalendarItem> taskArrayList;
     private static String filePath;
@@ -138,7 +137,7 @@ public class Storage {
             case "EXAM":
                 date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
                 time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
-                item = new Exam(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[VENUE]);
+                item = new Exam(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
                 break;
             default:
                 System.out.println("Invalid file command input");

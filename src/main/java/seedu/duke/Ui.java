@@ -99,7 +99,7 @@ public class Ui {
     public static void printDeleteTaskMessage(int taskNumberDelete, CalendarList calendarList) {
         /* - 1 is catered for array list's index starting from 0. */
         System.out.println("Task deleted:\n" + calendarList.getCalendarList().get(taskNumberDelete - 1));
-        System.out.println("Your total tasks: " + (calendarList.getTotalTasks() - 1));
+        System.out.println("Your total tasks: " + (calendarList.getTotalItems() - 1));
     }
 
     /**
@@ -158,7 +158,7 @@ public class Ui {
         /* - 1 is catered for array list's index starting from 0. */
         System.out.println(calendarList.getCalendarList().get(calendarList.getCalendarList().size() - 1));
 
-        System.out.println("Your total tasks: " + calendarList.getTotalTasks());
+        System.out.println("Your total tasks: " + calendarList.getTotalItems());
     }
 
     /**
