@@ -46,4 +46,9 @@ public class Activity extends Event {
         return this.time;
     }
 
+    @Override
+    public String getDescription() {
+        return details;
+    }
+
 }
