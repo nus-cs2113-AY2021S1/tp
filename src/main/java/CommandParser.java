@@ -17,9 +17,19 @@ public class CommandParser {
             return CommandType.CHANGE_MODE;
         } else if (commandModified.equals("help")) {
             return CommandType.HELP;
-        } else {
+        } else if((StudyIt.getCurrentMode() == Mode.ACADEMIC) && (commandModified.startsWith("add contact"))){
+            return CommandType.ADD_CONTACT;
+        } else if((StudyIt.getCurrentMode() == Mode.ACADEMIC) && (commandModified.startsWith("check contact"))){
+            return CommandType.CHECK_CONTACT;
+        } else if((StudyIt.getCurrentMode() == Mode.ACADEMIC) && (commandModified.startsWith("add grade"))){
+            return CommandType.ADD_GRADE;
+        } else if((StudyIt.getCurrentMode() == Mode.ACADEMIC) && (commandModified.startsWith("check grade"))){
+            return CommandType.CHECK_GRADE;
+        }else {
             return CommandType.UNIDENTIFIABLE;
         }
+
+
     }
 
     public static Mode getDestinationMode(String command) throws InvalidModeException {
