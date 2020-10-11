@@ -8,15 +8,18 @@ import java.util.ArrayList;
 public class UpdateShowEpisodeProgressCommand extends Command {
     ArrayList<String> inputs;
 
-    public UpdateShowEpisodeProgressCommand(String description, ArrayList<String> inputs) {
+    public UpdateShowEpisodeProgressCommand(String description, ArrayList<String> inputs) throws NullPointerException {
         super(description);
         this.inputs = inputs;
+        if (inputs.size() != 3 ) {
+            throw new NullPointerException();
+        }
     }
 
     //INPUT : episode "show" "episode"
     public void processCommand() {
-        String showName = inputs.get(0);
-        int episode = Integer.parseInt(inputs.get(1));
+        String showName = inputs.get(1);
+        int episode = Integer.parseInt(inputs.get(2));
         Show show = ShowList.getShow(showName);
         show.setEpisodeWatched(episode);
         ShowList.setShow(showName, show);

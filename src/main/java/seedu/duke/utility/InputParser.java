@@ -79,13 +79,24 @@ public class InputParser {
 
         case "episode":
             ArrayList<String> updateInputs = tokenizeStringArray(input);
-            UpdateShowEpisodeProgressCommand updateShowProgress =
-                    new UpdateShowEpisodeProgressCommand(command, updateInputs);
+            UpdateShowEpisodeProgressCommand updateShowProgress;
+            try {
+                updateShowProgress = new UpdateShowEpisodeProgressCommand(command, updateInputs);
+            } catch (NullPointerException e) {
+                Ui.printBadInputException();
+                return;
+            }
             updateShowProgress.processCommand();
             return;
         case "season":
             ArrayList<String> seasonInputs = tokenizeStringArray(input);
-            UpdateShowSeasonCommand updateShowSeason = new UpdateShowSeasonCommand(command, seasonInputs);
+            UpdateShowSeasonCommand updateShowSeason;
+            try {
+                updateShowSeason = new UpdateShowSeasonCommand(command, seasonInputs);
+            } catch (NullPointerException e) {
+                Ui.printBadInputException();
+                return;
+            }
             updateShowSeason.processCommand();
             return;
 
@@ -127,7 +138,7 @@ public class InputParser {
     }
 
 
-    //todo: differentiate between show and movie soontm
+    //todo: differentiate between show and movie soon
 
     private static void parseAddRatingCommand(String input) {
         String[] tokenizedInput = input.split(" ");
