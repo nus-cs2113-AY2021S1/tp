@@ -6,7 +6,7 @@ public class HelpMessage extends Ui {
             + "exit                 - exit the program/mode you are currently at\n";
 
     private static final String currentModes = "These are the modes you can go to:\n"
-            + "1 menu       - Main menu\n"
+            + "1 menu       - main menu\n"
             + "2 bookmark   - bookmark internet links\n"
             + "3 timetable  - plan your study schedule\n"
             + "4 academic   - track your academic details\n"
