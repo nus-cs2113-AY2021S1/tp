@@ -1,9 +1,9 @@
 package seedu.duke.character;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
- * Class for character
+ * Class for character.
  */
 public class Character {
     private String characterName;
@@ -12,7 +12,7 @@ public class Character {
     private ArrayList<Character> enemies;
     private int age;
 
-    public Character(String characterName){
+    public Character(String characterName) {
         setCharacterName(characterName);
     }
 

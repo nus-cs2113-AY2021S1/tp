@@ -1,4 +1,4 @@
-package seedu.duke.bunnyList;
+package seedu.duke.bunnylist;
 
 import seedu.duke.bunny.Bunny;
 import seedu.duke.exceptions.BunnyIdeaMissingException;
@@ -21,8 +21,6 @@ public class BunnyList {
         HashMap<String, String> commandArguments = new HashMap<>();
         String idea;
         String genre = "";
-        ArrayList<Character> characters = new ArrayList<>();
-        Bunny newBunny;
 
         // parse bunny command into segments
         try {
@@ -38,10 +36,12 @@ public class BunnyList {
             throw new BunnyIdeaMissingException();
         }
 
-        if (commandArguments.containsKey(GENRE_TAG)){
+        if (commandArguments.containsKey(GENRE_TAG)) {
             genre = commandArguments.get(GENRE_TAG);
         }
 
+        ArrayList<Character> characters = new ArrayList<>();
+        Bunny newBunny;
         newBunny = new Bunny(idea, genre, characters);
         bunniesList.add(newBunny);
         UI.addBunnyMessage(newBunny.getDescription());
