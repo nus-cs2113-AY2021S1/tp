@@ -1,7 +1,10 @@
 package seedu.duke.slot;
 
+import java.time.DateTimeException;
 import java.time.LocalTime;
 import seedu.duke.ItemList;
+
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import seedu.duke.exception.DukeException;
@@ -49,7 +52,7 @@ public class SlotList extends ItemList {
     private void loadSlot(String line) {
         try {
             slots.add(Slot.initSlot(line));
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | DateTimeParseException e) {
             // TODO: to be fixed
             System.out.println("Error");
         }

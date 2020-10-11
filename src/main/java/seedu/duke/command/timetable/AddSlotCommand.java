@@ -1,15 +1,16 @@
-package seedu.duke.command;
+package seedu.duke.command.timetable;
 
 import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
+import seedu.duke.command.Command;
+import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 import seedu.duke.slot.Slot;
-import seedu.duke.exception.DukeException;
 import seedu.duke.slot.SlotList;
 
-import java.time.DateTimeException;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents the user command exit the Duke program.
@@ -34,7 +35,7 @@ public class AddSlotCommand extends Command {
             endTime = LocalTime.parse(parts[2]);
             day = parts[3];
             title = command.substring(command.indexOf(parts[3]) + parts[3].length());
-        } catch (DateTimeException e) {
+        } catch (DateTimeParseException e) {
             throw new DukeException(DukeExceptionType.INVALID_TIME_FORMAT);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(DukeExceptionType.INVALID_SLOT_INPUT);

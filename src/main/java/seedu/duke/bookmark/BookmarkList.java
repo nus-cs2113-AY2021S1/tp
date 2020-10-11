@@ -1,16 +1,19 @@
 package seedu.duke.bookmark;
 
-import seedu.duke.exception.DukeException;
 import seedu.duke.ItemList;
+import seedu.duke.exception.DukeException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class represents the bookmark list used to store and organize bookmarks.
  */
 public class BookmarkList extends ItemList {
     private ArrayList<Bookmark> bookmarks;
+    private static Logger logger = Logger.getLogger(BookmarkList.class.getName());
 
     /**
      * Constructs a BookmarkList object with an empty ArrayList to store Bookmark objects.
@@ -46,11 +49,14 @@ public class BookmarkList extends ItemList {
     }
 
     private void loadBookmark(String line) {
+        logger.entering(getClass().getName(), "loadBookmark");
         try {
             bookmarks.add(Bookmark.initBookmark(line));
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | DukeException e) {
             // Invalid task data, skips to the next entry
+            logger.log(Level.WARNING, "invalid bookmark data found in file: " + line, e);
         }
+        logger.exiting(getClass().getName(), "loadBookmark");
     }
 
     /**
@@ -105,10 +111,9 @@ public class BookmarkList extends ItemList {
 
 
     /**
-     * This method searches the bookmarks from the list with matching module
-     * and description.
+     * This method searches the bookmarks from the list with matching module and description.
      *
-     * @param list The List<String></String> containing the module and description to be searched
+     * @param list The list of strings containing the module and description to be searched
      * @return The string message containing the matching bookmarks
      */
     public String findBookmarks(List<String> list) {

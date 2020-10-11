@@ -78,7 +78,7 @@ public class Ui {
             printUseValidTaskNumberMessage(dukeException.getInfo());
             break;
         case WRITE_FILE_ERROR:
-            //printErrorWritingToFile();
+            printErrorWritingToFile();
             break;
         case EMPTY_DESCRIPTION:
             printEmptyBookmarkDescriptionMessage();
@@ -113,6 +113,10 @@ public class Ui {
         }
     }
 
+    private void printErrorWritingToFile() {
+        print("Error writing to file.\n");
+    }
+
     private void printUseValidTaskNumberMessage(String info) {
         print("Please enter a valid index number between 1 and " + info + "\n");
     }
@@ -138,7 +142,7 @@ public class Ui {
     }
 
     private void printUnknownModeMessage() {
-        print("Unknown mode input\n" + "Valid modes: bookmark, timetable");
+        print("Unknown mode input\n" + "Valid modes: bookmark, timetable\n");
     }
 
     private void printUnknownDayMessage() {

@@ -18,6 +18,11 @@
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
+|v1.0|studious NUS student| bookmark important websites from different modules|launch them easily when needed|
+|v1.0|NUS student|label my bookmarks|I can know quickly the topics of each link|
+|v1.0|busy NUS student|create a timetable within the app which syncs up with the system time|I will not miss my lessons|
+|v1.0|NUS student|take a look at my modules for the day, or the entire week|I can plan out my day/week|
+|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
 |v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
 

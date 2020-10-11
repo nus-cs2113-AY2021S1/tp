@@ -65,7 +65,7 @@ class BookmarkTest {
     }
 
     @Test
-    void initBookmark_validDataString_bookmark() {
+    void initBookmark_validDataString_bookmark() throws DukeException {
         String data = "CS2113T | tutorial | www.google.com";
         String module = "CS2113T";
         String description = "tutorial";
