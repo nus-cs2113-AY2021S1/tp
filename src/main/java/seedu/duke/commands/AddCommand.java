@@ -18,7 +18,8 @@ import seedu.duke.todo.ToDo;
 import seedu.duke.todo.ToDoList;
 import seedu.duke.ui.TextUi;
 
-import java.util.logging.*;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import java.util.ArrayList;
 
