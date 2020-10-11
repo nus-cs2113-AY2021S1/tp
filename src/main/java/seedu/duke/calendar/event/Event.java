@@ -18,8 +18,8 @@ public abstract class Event extends CalendarItem {
     /**
      * A constructor for events.
      *
-     * @param date date of the event
-     * @param time time of the event
+     * @param date  date of the event
+     * @param time  time of the event
      * @param venue venue of the event
      */
     public Event(LocalDate date, LocalTime time, String venue) {
