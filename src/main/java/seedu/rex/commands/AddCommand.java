@@ -24,7 +24,7 @@ public class AddCommand extends Command {
      * @param ui       Ui object of the program.
      * @param storage  Storage object used for saving data to files.
      * @throws RexException If there is an error in the NRIC inputted by the user, the data fails
-     *     to save successfully, or the NRIC already exists in the patient list.
+     *                      to save successfully, or the NRIC already exists in the patient list.
      */
     @Override
     public void execute(PatientList patients, Ui ui, Storage storage) throws RexException {

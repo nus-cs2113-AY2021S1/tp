@@ -55,8 +55,9 @@ public class PatientList {
 
     /**
      * Adds a new patient with given details to <code>patients</code> ArrayList.
-     * @param name Name of the patient.
-     * @param nric NRIC of the patient.
+     *
+     * @param name        Name of the patient.
+     * @param nric        NRIC of the patient.
      * @param dateOfBirth Patient's date of birth.
      */
     public void addNewPatient(String name, String nric, LocalDate dateOfBirth) {

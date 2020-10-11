@@ -50,8 +50,7 @@ public abstract class Command {
      * Checks if a given <code>String</code> consists of only integer characters.
      *
      * @param string The <code>String</code> to be checked.
-     * @return <code>true</code> if the string contains only integer characters; <code>false</code>
-     *     otherwise.
+     * @return <code>true</code> if the string contains only integer characters; <code>false</code> otherwise.
      */
     public boolean isInteger(String string) {
         if (string == null) {
@@ -69,7 +68,7 @@ public abstract class Command {
      * Extracts the NRIC from command inputted by the user.
      *
      * @param trimmedCommand String after command word.
-     * @param commandWord Command that was called.
+     * @param commandWord    Command that was called.
      * @return Patient's NRIC as a String.
      * @throws RexException If the NRIC inputted by the user is invalid.
      */
@@ -94,7 +93,7 @@ public abstract class Command {
      * Checks if the NRIC entered by the user already exists in the patient list.
      *
      * @param patients The list of patients.
-     * @param nric The NRIC entered by the user.
+     * @param nric     The NRIC entered by the user.
      * @return <code>true</code> if NRIC already exists; <code>false</code> otherwise.
      */
     public boolean isExistingPatient(PatientList patients, String nric) {
@@ -106,7 +105,7 @@ public abstract class Command {
      * Returns -1 if not found.
      *
      * @param patients The list of patients.
-     * @param nric The NRIC entered by the user.
+     * @param nric     The NRIC entered by the user.
      * @return index of the patient with the NRIC; -1 otherwise.
      */
     public int getExistingPatient(PatientList patients, String nric) {

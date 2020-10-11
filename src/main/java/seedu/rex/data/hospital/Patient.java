@@ -9,10 +9,10 @@ import java.util.Vector;
  */
 public class Patient {
 
+    private final Vector<Appointment> appointmentHistory;
     private String name;
     private String nric;
     private LocalDate dateOfBirth;
-    private final Vector<Appointment> appointmentHistory;
 
     public Patient(String name, String nric, LocalDate dateOfBirth) {
         setName(name);
@@ -51,16 +51,17 @@ public class Patient {
         return appointmentHistory;
     }
 
-    private enum Gender {
-        MALE, FEMALE
-    }
-
     /**
      * Returns the <code>Patient</code> object as a String for printing or writing to a file.
+     *
      * @return Patient's details as a String in a particular format.
      */
     @Override
     public String toString() {
         return name + ", " + nric + ", " + dateOfBirth.format(DateTimeFormatter.ISO_DATE);
+    }
+
+    private enum Gender {
+        MALE, FEMALE
     }
 }
