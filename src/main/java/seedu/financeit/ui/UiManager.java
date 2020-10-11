@@ -12,7 +12,7 @@ public class UiManager {
     private static InputParser inputParser = new InputParser();
 
     public static String getLineWithSymbol(int width, String symbol) {
-//        return new String(new char[width]).replace("\0", symbol);
+        // return new String(new char[width]).replace("\0", symbol);
         return symbol.repeat(width);
     }
 

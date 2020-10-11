@@ -2,7 +2,7 @@ package seedu.financeit.manualtracker.subroutine;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
-import seedu.financeit.common.Item;
+import seedu.financeit.common.DateTimeItem;
 import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
@@ -10,7 +10,7 @@ import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.manualtracker.Ledger;
 import seedu.financeit.ui.UiManager;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import static seedu.financeit.utils.ParamChecker.PARAM_AMOUNT;
@@ -20,7 +20,7 @@ import static seedu.financeit.utils.ParamChecker.PARAM_EXP;
 import static seedu.financeit.utils.ParamChecker.PARAM_INC;
 import static seedu.financeit.utils.ParamChecker.PARAM_TIME;
 
-public class Entry extends Item {
+public class Entry extends DateTimeItem {
     private String description = " ";
     private String category = null;
     private Constants.EntryType entryType = null;
@@ -51,8 +51,6 @@ public class Entry extends Item {
             // Fall-through
         }
     }
-
-
 
     public void setDescription(String description) {
         this.description = description;
@@ -94,8 +92,8 @@ public class Entry extends Item {
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case PARAM_TIME:
-            LocalDateTime dateTime = paramChecker.checkAndReturnDateTime(paramType, defaultDateTimeFormat);
-            this.setDateTime(dateTime);
+            LocalTime time = paramChecker.checkAndReturnTime(paramType);
+            super.setTime(time);
             this.parseSuccessParams.add(paramType);
             break;
         case PARAM_AMOUNT:
@@ -132,13 +130,13 @@ public class Entry extends Item {
     @Override
     public String getName() {
         return String.format("Entry %d : [ %s ] [ %s ]", this.getIndex() + 1,
-            this.dateTimeManager.getDateFormatted("time"), this.description);
+            this.dateTimeManager.getSingleTimeFormatted("time"), this.description);
     }
 
     @Override
     public String toString() {
         return String.format("%s;%s;%s;%s;%s", this.entryType, this.category, this.amount,
-            this.getDateTimeFormatted(), this.description);
+            this.getTimeFormatted(), this.description);
     }
 
     @Override
@@ -147,7 +145,7 @@ public class Entry extends Item {
         return (this.description.equals(entry.description))
             && (this.category.equals(entry.category))
             && (this.entryType.equals(entry.entryType))
-            && (this.dateTime.equals(entry.dateTime))
+            && (this.time.equals(entry.time))
             && (this.amount == entry.amount);
     }
 
@@ -155,7 +153,7 @@ public class Entry extends Item {
     public boolean isValidItem() {
         return (this.category != null)
             && (this.entryType != null)
-            && (super.dateTime != null)
+            && (this.time != null)
             && (this.amount != -1);
     }
 }

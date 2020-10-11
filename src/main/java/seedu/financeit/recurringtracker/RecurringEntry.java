@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import static seedu.financeit.utils.ParamChecker.*;
 
-public class RecurringEntry extends Item{
+public class RecurringEntry extends Item {
     private int day;
     private String description;
     private double amount;
@@ -66,7 +66,7 @@ public class RecurringEntry extends Item{
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     paramChecker.getUnrecognizedParamMessage(paramType));
         }
-        if(validParam) {
+        if (validParam) {
             parseSuccessParams.add(paramType);
         }
     }
