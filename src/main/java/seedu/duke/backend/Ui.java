@@ -37,8 +37,10 @@ public class Ui {
             printOutput(cmd.execute());
         } catch (DukeArgumentException ae) {
             // Placeholder if additional routine is required when user enters incorrect parameters
-        } catch (DukeNoMatchException ne){
+        } catch (DukeNoMatchException ne) {
             printOutput("No such command. Try 'help' for a list of commands.");
+        } catch (Exception e) {
+            printOutput("Command execution failed with an unhandled error!", true);
         }
     }
 
