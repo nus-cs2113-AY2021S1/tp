@@ -24,7 +24,17 @@ public class Ui {
      * @return the string of user input.
      */
     public String readCommand() {
-        System.out.print("Input: ");
+        if (Parser.getProgramMode() == 0) {
+            System.out.print("[Main Menu] Input: ");
+        }
+        else if (Parser.getProgramMode() == 1) {
+            System.out.print("[Bookmark mode] Input: ");
+        }
+        else if (Parser.getProgramMode() == 2) {
+            System.out.print("[Timetable mode] Input: ");
+        }
+        else System.out.print("[An error has occurred] ");
+
         return scanner.nextLine().trim();
     }
 

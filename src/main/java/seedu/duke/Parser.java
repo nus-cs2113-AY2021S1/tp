@@ -93,4 +93,9 @@ public class Parser {
 
         return command;
     }
+
+    public static int getProgramMode() {
+        return programMode;
+    }
+
 }
