@@ -40,7 +40,7 @@ public class CalendarList {
      */
     public void addEvent(Event event) {
         calendarList.add(event);
-        totalTasks++;
+        totalEvents++;
         totalItems++;
     }
 

@@ -2,13 +2,10 @@ package seedu.duke;
 
 import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
+import seedu.duke.calendar.event.*;
 import seedu.duke.calendar.task.Task;
 import seedu.duke.calendar.task.Todo;
 import seedu.duke.calendar.task.Deadline;
-import seedu.duke.calendar.event.Activity;
-import seedu.duke.calendar.event.Lecture;
-import seedu.duke.calendar.task.Tutorial;
-import seedu.duke.calendar.task.Lab;
 import seedu.duke.calendar.task.Exam;
 
 
@@ -30,10 +27,10 @@ public class Storage {
     private static final int TASK_IS_DONE = 1;
     private static final int TASK_DESCRIPTION = 2;
     private static final int TASK_DATE = 3;
-    private static final int TASK_TIME = 4;
 
-    private static final int EVENT_MODULE_CODE = 1;
-    private static final int EVENT_IS_OVER = 2;
+    private static final int EVENT_MODULE_CODE = 2;
+    private static final int DETAILS = 2;
+    private static final int EVENT_IS_OVER = 1;
     private static final int EVENT_DATE = 3;
     private static final int EVENT_TIME = 4;
     private static final int EVENT_VENUE = 5;
@@ -97,17 +94,12 @@ public class Storage {
      *
      * @param calendarList A taskList that store the data read from file.
      */
-    public static void readFromFile(CalendarList calendarList) {
+    public static void readFromFile(CalendarList calendarList) throws FileNotFoundException {
         LocalDate date;
         LocalTime time;
         File input = new File(filePath);
         createFile(input);
-        Scanner sc = null;
-        try {
-            sc = new Scanner(input);
-        } catch (FileNotFoundException e) {
-            System.out.println("OOPs, file cannot be found.");
-        }
+        Scanner sc = new Scanner(input);
         CalendarItem item = null;
         while (sc.hasNext()) {
             String[] taskInFile = sc.nextLine().split("\\|");
@@ -119,21 +111,25 @@ public class Storage {
                 date = LocalDate.parse(taskInFile[TASK_DATE].trim());
                 item = new Deadline(taskInFile[TASK_DESCRIPTION], date);
                 break;
-            case "E":
+            case "ACT":
                 date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
                 time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
-                item = new Activity(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[VENUE]);
+                item = new Activity(taskInFile[DETAILS], date, time, taskInFile[EVENT_VENUE]);
                 break;
             case "LEC":
                 date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
                 time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
-                item = new Lecture(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[VENUE]);
+                item = new Lecture(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
                 break;
             case "TUT":
-                item = new Tutorial(taskInFile[EVENT_MODULE_CODE], taskInFile[TASK_DATE], taskInFile[TASK_TIME]);
+                date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
+                time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
+                item = new Tutorial(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
                 break;
             case "LAB":
-                item = new Lab(taskInFile[EVENT_MODULE_CODE], taskInFile[TASK_DATE], taskInFile[TASK_TIME]);
+                date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
+                time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
+                item = new Lab(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
                 break;
             case "EXAM":
                 date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
@@ -149,7 +145,11 @@ public class Storage {
                     ((Task) item).markAsDone();
                 }
             }
-            calendarList.addItem(item);
+            if (item instanceof Task) {
+                calendarList.addTask((Task) item);
+            } else if (item instanceof Event) {
+                calendarList.addEvent((Event) item);
+            }
         }
     }
 }

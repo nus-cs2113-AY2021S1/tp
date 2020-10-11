@@ -3,6 +3,7 @@ package seedu.duke;
 import seedu.duke.calendar.CalendarList;
 import seedu.duke.command.Command;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -24,8 +25,11 @@ public class Duke {
         ui = new Ui();
         storage = new Storage(filePath);
         calendarList = new CalendarList();
-
-        storage.readFromFile(calendarList);
+        try {
+            storage.readFromFile(calendarList);
+        } catch (FileNotFoundException e) {
+            System.out.println("file not found");
+        }
     }
 
     /**

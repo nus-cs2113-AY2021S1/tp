@@ -110,7 +110,7 @@ public class Ui {
      */
     public static void printTaskListView(CalendarList calendarList) {
         System.out.println("This is your list of task(s):");
-        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
             System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", i + 1);
         }
     }
@@ -124,7 +124,7 @@ public class Ui {
     public static void printEventsListView(CalendarList calendarList) {
         int eventCounts = 0;
         System.out.println("This is your list of event(s):");
-        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
             if (calendarList.getCalendarList().get(i) instanceof Event) {
                 eventCounts++;
                 System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", eventCounts);
