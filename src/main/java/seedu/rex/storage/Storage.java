@@ -2,7 +2,7 @@ package seedu.rex.storage;
 
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
-import seedu.rex.data.patient.Patient;
+import seedu.rex.data.hospital.Patient;
 import seedu.rex.parser.Parser;
 
 import java.io.BufferedReader;
@@ -14,6 +14,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * Loads and saves data to file.
+ */
 public class Storage {
     public static final String LOAD_ERROR = "Error loading file.";
     private static final String READ_ERROR = "Error reading file.";
@@ -77,6 +80,7 @@ public class Storage {
         for (int i = 0; i < patients.getSize(); i++) {
             // Need to format tasks
             fileContent.append(patients.getPatientUsingIndex(i));
+            fileContent.append('\n');
         }
 
         Path folderPath = Paths.get(folder);
