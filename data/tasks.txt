@@ -1,0 +1,5 @@
+LEC|false|cs1212|2020-10-12|12:00|kjdh
+TUT|false|cs111|2020-10-10|12:00|da
+LAB|false|dkjwh|2020-11-10|11:00|d
+D|false|dkj\ sh|2020-10-20
+T|false|dkj\s h

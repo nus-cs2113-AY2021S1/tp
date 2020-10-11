@@ -57,17 +57,36 @@ public class Ui {
      * Prints the Duke welcome message.
      */
     public static void printWelcomeMessage() {
-        printDukeBorder(true);
-        String logo = " ____        _\n"
-                + "|  _ \\ _   _| | _____\n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("____________________________________________________________\n"
-                + " Hello! I'm Duke\n"
-                + " What can I do for you?");
-        printDukeBorder(false);
+        System.out.println("Printing of 25/7 logo!!!!");
+        System.out.println("========================================================================\n"
+            + "Welcome to 25/7 Task Manager!\n"
+            + "What can I do for you?\n"
+            + "Enter 'help' for the list of commands.\n"
+            + "==========================================================================\n");
+
+        /**
+//        String[]  HELLO_MESSAGE = {
+//                "=================================================================================================",
+//                "   .-----------------.     .-----------------.              //    .-------------------.",
+//                "   |______________.  |     |  _______________|             //     |______________.   |",
+//                "                  |  |     |  |                           //                    /   /",
+//                "                  |  |     |  |                          //                    /   /",
+//                "   .---------------  |     |  |---------------.         //                    /   /",
+//                "   | ________________|     |________________  |        //                    /   /",
+//                "   | |                                     |  |       //                    /   /",
+//                "   | |                                     |  |      //                    /   /",
+//                "   | ----------------.     .---------------|  |     //                    /   /",
+//                "   |_________________|     |__________________|    //                    /___/",
+//                " ",
+//                "=================================================================================================",
+//                " Welcome to 25/7 Task Manager!",
+//                " What can I do for you?",
+//                " Enter 'help' for the list of commands.",
+//                "================================================================================================="
+//        };
+//        System.out.println(String.join("\n", HELLO_MESSAGE));
+         */
+
     }
 
     /**
@@ -84,9 +103,9 @@ public class Ui {
      */
     public static void printDukeBorder(boolean top) {
         if (top) {
-            System.out.println("............. DUKE CHAT BOX ^^ ............");
+            System.out.println("..................... DUKE CHAT BOX ^^ ....................");
         } else {
-            System.out.println("...........................................");
+            System.out.println("...........................................................");
         }
     }
 
@@ -233,18 +252,18 @@ public class Ui {
             System.out.println("Error: Please key in the deadline in this format: deadline ... /by ddMMyy");
             break;
         case "activity":
-            System.out.println("Error: Please key in the event in this format: event ... /at ddMMyy");
+            System.out.println("Error: Please key in the activity in this format: activity ... /at ddMMyy");
             break;
         case "lecture":
-            System.out.println("Error: Please key in the lecture in this format: lecture <module code> <venue? /at "
+            System.out.println("Error: Please key in the lecture in this format: lecture <module code> <venue> /at "
                     + "ddMMyy HHmm");
             break;
         case "tutorial":
-            System.out.println("Error: Please key in the tutorial in this format: tutorial <module code> <venue? /at "
+            System.out.println("Error: Please key in the tutorial in this format: tutorial <module code> <venue> /at "
                     + "ddMMyy HHmm");
             break;
         case "lab":
-            System.out.println("Error: Please key in the lab in this format: lab <module code> <venue? /at "
+            System.out.println("Error: Please key in the lab in this format: lab <module code> <venue> /at "
                     + "ddMMyy HHmm");
             break;
         case "exam":
