@@ -222,29 +222,6 @@ public class Duke {
     }
 
     /**
-     * Adds an anime to current watchlist.
-     */
-    private void addToWatchlist(String description) {
-        String[] descriptionSplit = description.split(" ", 2);
-
-        try {
-            String commandOption = descriptionSplit[0];
-            String animeName = descriptionSplit[1];
-
-            if (commandOption.equals("-a") && animeName != null && !animeName.trim().isEmpty()) {
-                // currently only adding anime to default watchlist before
-                // implementing the selecting of watchlist
-                Watchlist currentWatchlist = watchlists.get(0);
-                currentWatchlist.addAnimeToList(animeName);
-            } else {
-                ui.showInvalidDescription("addToWatchlist");
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            ui.showInvalidDescription("addToWatchlist");
-        }
-    }
-
-    /**
      * Bookmarks an anime.
      */
     private void bookmarkAnime(String description) {
