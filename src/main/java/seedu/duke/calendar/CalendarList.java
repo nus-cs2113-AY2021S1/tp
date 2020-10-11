@@ -74,7 +74,7 @@ public class CalendarList {
     }
 
     public void swapTasks(int i, int j) {
-        if (calendarList.get(i)!=null && calendarList.get(j)!=null) {
+        if (calendarList.get(i) != null && calendarList.get(j) != null) {
             Collections.swap(calendarList, i, j);
         }
     }
