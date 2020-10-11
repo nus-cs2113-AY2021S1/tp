@@ -31,17 +31,22 @@ public class Ui {
                 + "6. tutorial <module code> <venue> /at ddMMyy HHmm\n"
                 + "7. lab <module code> <venue> /at ddMMyy HHmm\n"
                 + "8. done <task number>\n"
-                + "9. delete <task number>\n"
-                + "10. find <keyword>\n"
-                + "11. print list\n"
-                + "12. print events\n"
-                + "13. print timeline\n"
-                + "14. print progress"
+                + "9. -t <task number>\n"
+                + "10. -e <event number>\n"
+                + "11. find <keyword>\n"
+                + "12. print list\n"
+                + "13. print events\n"
+                + "14. print timeline\n"
+                + "15. print progress"
         );
     }
 
     public static void printDateParseError() {
         System.out.println("Unable to parse date");
+    }
+
+    public static void printTotalTaskNumber(int totalTasks) {
+        System.out.println("Current total task(s): " + totalTasks);
     }
 
     /**
@@ -93,13 +98,11 @@ public class Ui {
     /**
      * Shows the task deleted and the number of tasks left in the list.
      *
-     * @param taskNumberDelete task number of the task to be deleted.
-     * @param calendarList     task list of the task to be deleted.
+     * @param numberDelete task number of the task to be deleted.
+     * @param calendarList task list of the task to be deleted.
      */
-    public static void printDeleteTaskMessage(int taskNumberDelete, CalendarList calendarList) {
-        /* - 1 is catered for array list's index starting from 0. */
-        System.out.println("Task deleted:\n" + calendarList.getCalendarList().get(taskNumberDelete - 1));
-        System.out.println("Your total tasks: " + (calendarList.getTotalItems() - 1));
+    public static void printDeleteMessage(int numberDelete, CalendarList calendarList) {
+        System.out.println("Deleted:\n" + calendarList.getCalendarList().get(numberDelete));
     }
 
     /**
@@ -138,13 +141,13 @@ public class Ui {
     /**
      * Shows the user the task (that was indicated by the user) that was marked as done .
      *
-     * @param calendarList        calendar list that has the task marked as done.
-     * @param taskNumberCompleted task number indicated by the user as done.
+     * @param calendarNumberCompleted calendar number of the task set as done.
+     * @param calendarList            calendar list that has the task marked as done.
      */
-    public static void printCompleteTaskMessage(int taskNumberCompleted, CalendarList calendarList) {
+    public static void printCompleteTaskMessage(int calendarNumberCompleted, CalendarList calendarList) {
         System.out.println(
                 "Good work! I've marked this task as done:\n"
-                        + calendarList.getCalendarList().get(taskNumberCompleted - 1));
+                        + calendarList.getCalendarList().get(calendarNumberCompleted));
     }
 
     /**
@@ -201,7 +204,7 @@ public class Ui {
             if (!(item instanceof Task)) {
                 continue;
             }
-            if (((Task)item).getTaskType().equals("D") || ((Task)item).getTaskType().equals("T")) {
+            if (((Task) item).getTaskType().equals("D") || ((Task) item).getTaskType().equals("T")) {
                 numTotal++;
                 if (((Task) item).getIsDone()) {
                     numFinished++;
@@ -258,11 +261,15 @@ public class Ui {
         case "invalid task action":
             System.out.println("Error: Total task(s): " + calendarList.getTotalTasks());
             break;
+        case "invalid event action":
+            System.out.println("Error: Total event(s): " + calendarList.getTotalEvents());
+            break;
         case "done":
             System.out.println("Error: Please key in the command in this format: done <task number>");
             break;
         case "delete":
-            System.out.println("Error: Please key in the command in this format: delete <task number>");
+            System.out.println("Error: Please key in the command in this format: -t <task number> "
+                    + "OR -e <event number>");
             break;
         case "keyword not found":
             System.out.println("There are no tasks matching this keyword. Check that you have spelt it correctly.");

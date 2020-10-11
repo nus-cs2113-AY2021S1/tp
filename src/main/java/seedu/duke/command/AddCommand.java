@@ -6,12 +6,12 @@ import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.event.Activity;
+import seedu.duke.calendar.event.Lab;
 import seedu.duke.calendar.event.Lecture;
+import seedu.duke.calendar.event.Tutorial;
 import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Exam;
-import seedu.duke.calendar.event.Lab;
 import seedu.duke.calendar.task.Todo;
-import seedu.duke.calendar.event.Tutorial;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

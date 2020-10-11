@@ -23,7 +23,7 @@ public class Parser {
     public static final String COMMAND_PRINT_EVENTS = "print events";
     public static final String COMMAND_PRINT_TIMELINE = "print timeline";
     public static final String COMMAND_DONE = "done";
-    public static final String COMMAND_DELETE = "delete";
+    public static final String COMMAND_DELETE = "-";
     public static final String COMMAND_FIND = "find";
     public static final String COMMAND_SHOW_PROGRESS = "print progress";
 

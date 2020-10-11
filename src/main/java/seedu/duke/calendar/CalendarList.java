@@ -50,27 +50,90 @@ public class CalendarList {
     }
 
     /**
-     * Deletes the task from the task list.
+     * Deletes the task from the calendar list.
      *
-     * @param taskNumber of the task to be deleted.
+     * @param calendarNumber of the task to be deleted.
      */
-    public void deleteTask(int taskNumber) {
-        calendarList.remove(taskNumber);
+    public void deleteTask(int calendarNumber) {
+
+        calendarList.remove(calendarNumber);
         totalTasks--;
         totalItems--;
     }
 
     /**
+     * Deletes the event from the event list.
+     *
+     * @param calendarNumber of the event to be deleted.
+     */
+    public void deleteEvent(int calendarNumber) {
+
+        calendarList.remove(calendarNumber);
+        totalEvents--;
+        totalItems--;
+    }
+
+    /**
+     * Converts the task index to the calendar index.
+     *
+     * @param taskNumber   task index
+     * @param calendarList calendar list of the task.
+     * @return calendar index of the task
+     */
+    public static int convertTaskNumberToCalendarNumber(int taskNumber, CalendarList calendarList) {
+        int taskCount = 0;
+        int itemCount = 0;
+        for (CalendarItem s : calendarList.getCalendarList()) {
+
+            if (s instanceof Task) {
+                taskCount++;
+            }
+
+            if (taskNumber == taskCount) {
+                break;
+            }
+            itemCount++;
+        }
+        return itemCount;
+    }
+
+    /**
+     * Converts the event index to the calendar index.
+     *
+     * @param eventNumber  event index
+     * @param calendarList calendar list of the task.
+     * @return calendar index of the event
+     */
+    public static int convertEventNumberToCalendarNumber(int eventNumber, CalendarList calendarList) {
+        int eventCount = 0;
+        int itemCount = 0;
+        for (CalendarItem s : calendarList.getCalendarList()) {
+
+            if (s instanceof Event) {
+                eventCount++;
+            }
+
+            if (eventNumber == eventCount) {
+                break;
+            }
+            itemCount++;
+        }
+        return itemCount;
+    }
+
+    /**
      * Sets the task as done.
      *
-     * @param taskNumber of the task that is completed.
+     * @param calendarNumberCompleted of the task that is completed.
      */
-    public void markTaskAsDone(int taskNumber) throws DukeException {
-        if (calendarList.get(taskNumber - 1) instanceof Task) {
-            ((Task) calendarList.get(taskNumber - 1)).markAsDone();
+    public void markTaskAsDone(int calendarNumberCompleted) throws DukeException {
+
+        if (calendarList.get(calendarNumberCompleted) instanceof Task) {
+            ((Task) calendarList.get(calendarNumberCompleted)).markAsDone();
         } else {
             throw new DukeException("invalid done number");
         }
+
     }
 
     public void swapTasks(int i, int j) {
