@@ -2,6 +2,7 @@ package seedu.duke.event;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class DateStatusPair {
     private LocalDate date;
@@ -52,8 +53,8 @@ public class DateStatusPair {
      *
      * @return boolean containing the status of the event
      */
-    public boolean getDoneStatus() {
-        return isDone;
+    public String getStatus() {
+        return (isDone) ? "✓" : "✕";
     }
 
     /**
@@ -81,5 +82,11 @@ public class DateStatusPair {
      */
     public void setDone(boolean newStatus) {
         isDone = newStatus;
+    }
+
+    @Override
+    public String toString() {
+        return date.format(DateTimeFormatter.ofPattern("dd MMM yyyy")) + " "
+                + time.format(DateTimeFormatter.ofPattern("K:mm a")) + " [" + getStatus() + "]";
     }
 }

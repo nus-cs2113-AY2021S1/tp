@@ -1,161 +1,105 @@
 package seedu.duke.command;
 
 import seedu.duke.data.UserData;
-import seedu.duke.event.DateStatusPair;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
+import seedu.duke.event.Repeat;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /**
  * Command to repeat task.
  */
 public class RepeatCommand extends Command {
+    private static final String COMMANDTYPE_LIST = "list";
+    private static final String COMMANDTYPE_ADD = "add";
+    private String commandType;
+
     /**
-     * Constructor for repeating events seedu.duke
+     * Constructor for the repeat command.
      *
-     * @param command from user input
-     */
-
-    private int eventIndex;
-    private String eventType;
-    private int timeInterval;
-    private int numberOfIterations;
-    private boolean isValid;
-
-    private static final int WEEKLY = 1;
-    private static final int MONTHLY = 2;
-
-
-    /**
-     * Set up for the repeat command.
      * @param command user input with the format eventIndex; eventType; timeInterval; NumberofIterations
      */
-    public RepeatCommand(String command) {
+    public RepeatCommand(String command, String commandType) {
         this.isExit = false;
         this.command = command;
-        parseUserCommand(command);
-    }
-
-    /**
-     * Parser for processing the user commands into their individual components.
-     *
-     * @param command String containing user command
-     */
-    private void parseUserCommand(String command) {
-
-        int argumentNumber = 4;
-        //Split up into various components and remove trailing spaces
-        String[] words = command.split(";");
-        for (int i = 0; i < words.length; i++) {
-            words[i] = words[i].trim();
-        }
-
-        if (words.length != argumentNumber) {
-            this.isValid = false;
-            return;
-        }
-
-
-        eventIndex = Integer.parseInt(words[0]) - 1;
-        eventType = capitaliseFirstLetter(words[1]);
-        numberOfIterations = Integer.parseInt(words[3]);
-
-        String intervalWord = words[2];
-
-        switch (intervalWord) {
-        case "weekly":
-            timeInterval = 1;
-            break;
-        case "monthly":
-            timeInterval = 2;
-            break;
-        default:
-            timeInterval = 0;
-            isValid = false;
-            return;
-        }
-        isValid = true;
-
+        this.commandType = commandType;
     }
 
     @Override
     public void execute(UserData data, Ui ui, Storage storage) {
-
-        if (!isValid) {
-            System.out.println("Error! invalid input given to repeat.");
-            return;
+        switch (commandType) {
+        case COMMANDTYPE_ADD:
+            executeAdd(data, ui, storage);
+            break;
+        case COMMANDTYPE_LIST:
+            executeList(data, ui);
+            break;
+        default:
+            //do nothing
         }
-
-        EventList information = data.getEventList(this.eventType);
-        Event toChange = information.getEventByIndex(this.eventIndex);
-        if (toChange.getDate() == null) {
-            System.out.println("Error! cannot repeat with no date.");
-            return;
-        }
-        createDateList(toChange, this.timeInterval, this.numberOfIterations);
-        toChange.setIsRepeat(true);
-        toChange.setRepeatUnit(this.timeInterval);
-        toChange.setRepeatCount(this.numberOfIterations);
-
-
-        System.out.println("All done, the program is set to repeat.");
     }
 
-    /**
-     * Creates the ArrayList entries in the events to show repetition.
-     *
-     * @param eventToRepeat Event object that needs to be repeated
-     * @param repeatUnit int of how much time to increment the original time by, weekly or monthly
-     * @param repeatCount Integer showing how many times to increment
-     */
-    private void createDateList(Event eventToRepeat, int repeatUnit, int repeatCount) {
-
-        LocalDate startDate;
-        LocalTime startTime;
-        boolean isStartEventDone;
-
-        startDate = eventToRepeat.getDate();
-        startTime = eventToRepeat.getTime();
-        isStartEventDone = eventToRepeat.getStatus().equals("✓");
-
-        eventToRepeat.addRepeatDateStatusPair(startDate, startTime, isStartEventDone);
-
-        for (int i = 0; i < repeatCount; i++) {
-
-            switch (repeatUnit) {
-            case 1:
-                startDate = startDate.plusWeeks(1);
-                break;
-            case 2:
-                startDate = startDate.plusMonths(1);
-                break;
-            default:
-                continue;
-            }
-
-            eventToRepeat.addRepeatDateStatusPair(startDate, startTime, false);
-
+    public static Command parse(String input) {
+        String[] words = input.split(" ");
+        switch (words.length) {
+        case 2:
+            words[0] = formatListName(words[0]);
+            isValidNumber(words[1]);
+            input = String.join(" ", words);
+            return new RepeatCommand(input, COMMANDTYPE_LIST);
+        case 4:
+            words[0] = formatListName(words[0]);
+            isValidNumber(words[1]);
+            words[2] = words[2].toUpperCase();
+            isValidNumber(words[3]);
+            input = String.join(" ", words);
+            return new RepeatCommand(input, COMMANDTYPE_ADD);
+        default:
+            System.out.println("Invalid repeat command");
+            return null; //to change to throw exception or print help for repeat
         }
-
     }
 
-    /**
-     * Function accept a word string and capitalise the first letter.
-     *
-     * @param word String containing the word to have the first letter capitalised
-     * @return String of the word with first letter capitalised
-     */
-    private String capitaliseFirstLetter(String word) {
-        char firstLetter = word.charAt(0);
-        firstLetter = Character.toUpperCase(firstLetter);
-        String remaining = word.substring(1);
-        String capitaliseFirstLetter = Character.toString(firstLetter);
-        return capitaliseFirstLetter + remaining;
+    private static String formatListName(String name) {
+        name = name.toLowerCase();
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
+    }
 
+    private static void isValidNumber(String number) {
+        try {
+            Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            //to throw exception
+            System.out.println("Not a number");
+        }
+    }
+
+    private void executeList(UserData data, Ui ui) {
+        String[] words = command.split(" ");
+        EventList eventList = data.getEventList(words[0]);
+        int index = Integer.parseInt(words[1]) - 1;
+        Event repeatEvent = eventList.getEventByIndex(index);
+        ui.printRepeatList(repeatEvent);
+    }
+
+    private void executeAdd(UserData data, Ui ui, Storage storage) {
+        String[] words = command.split(" ");
+        EventList eventList = data.getEventList(words[0]);
+        int index = Integer.parseInt(words[1]) - 1;
+        Event eventToRepeat = eventList.getEventByIndex(index);
+        LocalDate startDate = eventToRepeat.getDate();
+        if (startDate == null) {
+            System.out.println("Unable to repeat an event with no date.");
+            //to change to throw exception
+        }
+        LocalTime startTime = eventToRepeat.getTime();
+        int count = Integer.parseInt(words[3]);
+        Repeat repeat = new Repeat(startDate, startTime, words[2], count);
+        eventToRepeat.setRepeat(repeat);
+        ui.printRepeatAdd(eventToRepeat);
     }
 }

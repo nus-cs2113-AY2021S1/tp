@@ -8,15 +8,8 @@ public abstract class Event {
     protected String description;
     protected LocalDate date;
     protected LocalTime time;
-    protected int repeatCount;
     protected boolean isDone;
-    protected int repeatUnit; //weekly or monthly
-    protected ArrayList<DateStatusPair> dateTimeList;
-    protected boolean isRepeat;
-
-    protected static final int WEEKLY = 1;
-    protected static final int MONTHLY = 2;
-
+    protected Repeat repeat;
 
     /**
      * Creates a new event with the given description and default its done status to false.
@@ -26,8 +19,7 @@ public abstract class Event {
     public Event(String description) {
         setDescription(description);
         isDone = false;
-        isRepeat = false;
-        dateTimeList = new ArrayList<>();
+        repeat = null;
     }
 
     /**
@@ -39,10 +31,6 @@ public abstract class Event {
         this.description = description;
     }
 
-    public String getDescription() {
-        return this.description;
-    }
-
     public void setDate(LocalDate date) {
         this.date = date;
     }
@@ -51,23 +39,15 @@ public abstract class Event {
         this.time = time;
     }
 
-    public void setRepeatCount(int repeatCount) {
-        this.repeatCount = repeatCount;
-    }
-
-    public void setRepeatUnit(int repeatUnit) {
-        this.repeatUnit = repeatUnit;
-    }
-
-    public void setIsRepeat(boolean toRepeat) {
-        this.isRepeat = toRepeat;
-    }
-
     /**
      * Sets the event's done status to true.
      */
     public void markAsDone() {
         this.isDone = true;
+    }
+
+    public void setRepeat(Repeat repeat) {
+        this.repeat = repeat;
     }
 
     /**
@@ -79,54 +59,8 @@ public abstract class Event {
         return (isDone) ? "✓" : "✕";
     }
 
-    /**
-     * Returns a string representation of event's done status for a particular index for repeated events.
-     *
-     * @param index integer of the index number of the repeated event date status pair
-     * @return String representation of the event done status.
-     */
-    public String getStatus(int index) {
-
-        boolean isEventDone;
-        try {
-
-            DateStatusPair currentDateStatusPair = this.dateTimeList.get(index);
-            isEventDone = currentDateStatusPair.getDoneStatus();
-            return (isEventDone) ? "✓" : "✕";
-
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Error! Index out of bounds");
-            return null;
-        }
-    }
-
-
-    /**
-     * Returns a String representation of an event's repeat status.
-     *
-     * @return string representation of event's repeat status, with starting date, repetition amount and time
-     */
-    public String getRepeatStatusString() {
-        String dateString;
-        String repeatNumber;
-        String repeatTimeInterval;
-
-        dateString = this.date.toString();
-        repeatNumber = Integer.toString(repeatCount);
-        switch (repeatUnit) {
-        case WEEKLY:
-            repeatTimeInterval = "Weekly";
-            break;
-        case MONTHLY:
-            repeatTimeInterval = "Monthly";
-            break;
-        default:
-            repeatTimeInterval = "NULL";
-
-        }
-
-        return "Repeat Status: " + repeatTimeInterval + " for " + repeatNumber + " time(s) starting from " + dateString;
-
+    public String getDescription() {
+        return this.description;
     }
 
     /**
@@ -135,26 +69,7 @@ public abstract class Event {
      * @return LocalDate object containing the date of the event
      */
     public LocalDate getDate() {
-
         return this.date;
-    }
-
-    /**
-     * Gets date of the event stored at an index for repeated events.
-     *
-     * @param index Integer of the index number for the DateStatusPair object
-     * @return LocalDate object containing the date at that iteration
-     */
-    public LocalDate getDate(int index) {
-
-        try {
-            DateStatusPair currentDateStatusPair = this.dateTimeList.get(index);
-            return currentDateStatusPair.getDate();
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Error! Index out of bounds");
-            return null;
-        }
-
     }
 
     /**
@@ -166,57 +81,20 @@ public abstract class Event {
         return this.time;
     }
 
-    /**
-     * Gets time of the event stored at an index for repeated events.
-     *
-     * @param index Integer of the index number for the DateStatusPair object
-     * @return LocalTime object containing the time at that iteration
-     */
-    public LocalTime getTime(int index) {
-
-        try {
-            DateStatusPair currentDateStatusPair = this.dateTimeList.get(index);
-            return currentDateStatusPair.getTime();
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Error! Index out of bounds");
-            return null;
-        }
+    public ArrayList<DateStatusPair> getRepeatList() {
+        return repeat.getRepeatList();
     }
 
-    /**
-     * Gets the status of whether the event has been repeated or not.
-     *
-     * @return boolean of repeat status
-     */
-    public boolean getIsRepeat() {
-        return this.isRepeat;
+    public String getRepeatType() {
+        return repeat.getRepeatType().toLowerCase();
     }
 
-    /**
-     * Gets the number of additional repetitions this event has.
-     *
-     * @return Integer containing number of repetitions
-     */
     public int getRepeatCount() {
-        return repeatCount;
-    }
-
-    /**
-     * Function adds a DateStatusPair into the current Date Time list to indicate repeated events.
-     *
-     * @param date LocalDate representing date of the repeated event
-     * @param time LocalTime representing time of the repeated event
-     * @param state Boolean indicating if the event has been completed or not
-     */
-    public void addRepeatDateStatusPair(LocalDate date, LocalTime time, boolean state) {
-        DateStatusPair toAdd = new DateStatusPair(date, time);
-        toAdd.setDone(state);
-        this.dateTimeList.add(toAdd);
+        return repeat.getRepeatCount();
     }
 
     @Override
     public String toString() {
         return "[" + getStatus() + "] " + getDescription();
-
     }
 }
