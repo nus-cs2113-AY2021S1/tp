@@ -6,32 +6,34 @@ Hello from
 ||   \\/    |\\__/\\__|  |||   \\__|\___ || \\\___| ||
 *****************************************************|
 
-User guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/
+Full user guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/
+Enter <help> for a quick view of available commands.
 
 What is your name?
 
 Hello James Gosling!
 What can I do for you?
 
-CS1000 is added
+CS1000 is added.
 
-CS2113t is added
+CS2113T is added.
 
-CS3000, Expected Workload: 6h is added
+CS3000, Expected Workload: 6h is added.
 
-CS3200, Expected Workload: 8h is added
+CS3200, Expected Workload: 8h is added.
 
 +------+---------+----------+----------+
 | Week | Module  | Expected |  Actual  |
 +------+---------+----------+----------+
 |  02  | CS1000  | No Input | No Input |
 +------+---------+----------+----------+
-|  02  | CS2113t | No Input | No Input |
+|  02  | CS2113T | No Input | No Input |
 +------+---------+----------+----------+
 |  02  | CS3000  |     6    | No Input |
 +------+---------+----------+----------+
 |  02  | CS3200  |     8    | No Input |
 +------+---------+----------+----------+
+
 All changes saved.
-Bye. Hope to see you again soon!
+Bye James Gosling. Hope to see you again soon!
 
