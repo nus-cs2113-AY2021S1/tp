@@ -9,9 +9,9 @@ import seedu.duke.calendar.event.Activity;
 import seedu.duke.calendar.event.Lecture;
 import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Exam;
-import seedu.duke.calendar.task.Lab;
+import seedu.duke.calendar.event.Lab;
 import seedu.duke.calendar.task.Todo;
-import seedu.duke.calendar.task.Tutorial;
+import seedu.duke.calendar.event.Tutorial;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -59,7 +59,6 @@ public class AddCommand extends Command {
         case TODO:
             try {
                 taskDescription = command[1].trim();
-
                 if (taskDescription.isEmpty()) {
                     throw new DukeException("todo");
                 } else {
@@ -144,7 +143,6 @@ public class AddCommand extends Command {
                 date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
                 time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
 
-
                 if (moduleCode.isEmpty()) {
                     throw new DukeException("exam");
                 } else {
@@ -155,35 +153,47 @@ public class AddCommand extends Command {
             }
             break;
         case TUTORIAL:
+            /**
+             * User input for Tutorial event example: tutorial CS1010 lt12 /at 090820 1000
+             */
             try {
-                command = command[1].split("/");
-                taskDescription = command[0].trim();
+                command = command[1].trim().split(" ", 2);
+                moduleCode = command[0];
+                command = command[1].split("/at");
+                venue = command[0].trim();
+                dateTime = command[1].trim().split(" ", 2);
+                date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
+                time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
 
-                command = command[1].trim().split(" ");
-
-                if (taskDescription.isEmpty()) {
-                    throw new DukeException("tutorial");
+                if (moduleCode.isEmpty()) {
+                    throw new DukeException("exam");
                 } else {
-                    calendarList.addTask(new Tutorial(taskDescription, command[0], command[1]));
+                    calendarList.addEvent(new Tutorial(moduleCode, date, time, venue));
                 }
             } catch (Exception e) {
                 throw new DukeException("tutorial");
             }
             break;
         case LAB:
+            /**
+             * User input for Lab event example: lab CS1010 com1-b1-14 /at 100820 1400
+             */
             try {
-                command = command[1].split("/");
-                taskDescription = command[0].trim();
+                command = command[1].trim().split(" ", 2);
+                moduleCode = command[0];
+                command = command[1].split("/at");
+                venue = command[0].trim();
+                dateTime = command[1].trim().split(" ", 2);
+                date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
+                time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
 
-                command = command[1].trim().split(" ");
-
-                if (taskDescription.isEmpty()) {
-                    throw new DukeException("lab");
+                if (moduleCode.isEmpty()) {
+                    throw new DukeException("exam");
                 } else {
-                    calendarList.addTask(new Lab(taskDescription, command[0], command[1]));
+                    calendarList.addEvent(new Lab(moduleCode, date, time, venue));
                 }
             } catch (Exception e) {
-                throw new DukeException("lab");
+                throw new DukeException("tutorial");
             }
             break;
         default:
