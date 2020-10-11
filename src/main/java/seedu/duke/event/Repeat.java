@@ -12,6 +12,14 @@ public class Repeat {
     private ArrayList<DateStatusPair> repeatList = new ArrayList<>();
     private String repeatType;
 
+    /**
+     * Fills up the array list with datestatus pair according to what unit of repeat is requested from user.
+     *
+     * @param startDate LocalDate Object indicating the start date of the event
+     * @param startTime LocalTime Object indicating the start time of the event
+     * @param repeatType String indicating how far to advance each date for each repetition
+     * @param count Integer containing the number of repetition to makes
+     */
     public Repeat(LocalDate startDate, LocalTime startTime, String repeatType, int count) {
         for (int i = 1; i <= count; i++) {
             LocalDate repeatDate;
