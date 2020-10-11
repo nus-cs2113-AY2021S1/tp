@@ -1,6 +1,7 @@
 package seedu.duke.calendar.event;
 
 
+import java.lang.annotation.Inherited;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -44,6 +45,11 @@ public class Activity extends Event {
     @Override
     public LocalTime getTime() {
         return this.time;
+    }
+
+    @Override
+    public LocalDate getDate() {
+        return this.date;
     }
 
     @Override

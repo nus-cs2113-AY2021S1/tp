@@ -40,12 +40,12 @@ public class Exam extends SchoolEvent {
 
     @Override
     public LocalDate getDate() {
-        return null;
+        return this.date;
     }
 
     @Override
     public LocalTime getTime() {
-        return null;
+        return this.time;
     }
 
 }
