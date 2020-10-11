@@ -4,18 +4,14 @@ import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
 public class CommandEventDel extends Command {
-    UserInput userInput;
-    //EventClass event;
+    private UserInput userInput;
+    int index;
 
-   // public CommandEventDel(EventClass ev) {
-    //    event = ev;
-   // }
     @Override
     public String execute() {
-       // String input = userInput.getArg("");
-        //int index = Integer.parseInt(input.trim());
-       // event.delEvent(index);
-        return null;
+        index = Integer.parseInt(userInput.getArg(""));
+        String output = EventList.deleteEvent(index-1);
+        return output;
     }
 
     @Override
@@ -23,11 +19,19 @@ public class CommandEventDel extends Command {
         return null;
     }
 
+    @Override
     public int validate(UserInput ui) {
-        if (userInput.getCategory().equals("event") && userInput.getCommand().equalsIgnoreCase("delEvent")) {
-            userInput = ui;
-            return ACCEPT;
-        } else return NO_MATCH;
+        userInput = ui;
+        if (ui.getCategory().equals("event") && ui.getCommand().equalsIgnoreCase("delEvent")) {
+            if (ui.getNumArgs() == 1) {
+                if ((ui.getArg("") != null)){
+                    return ACCEPT;
+                }
+            }
+            return ARGUMENT_ERR;
+        } else {
+            return NO_MATCH;
+        }
     }
 }
 
