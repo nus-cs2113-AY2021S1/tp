@@ -37,6 +37,7 @@ public abstract class Task extends CalendarItem {
         return (isDone ? TICK_SYMBOL : CROSS_SYMBOL); //return tick or X symbols
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
