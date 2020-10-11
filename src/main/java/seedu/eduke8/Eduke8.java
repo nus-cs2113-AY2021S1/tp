@@ -1,22 +1,30 @@
 package seedu.eduke8;
 
-import seedu.eduke8.storage.Storage;
+import org.json.simple.parser.ParseException;
+import seedu.eduke8.parser.MenuParser;
+import seedu.eduke8.storage.TopicsStorage;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
-public class Eduke8 {
-    private static final String FILE_PATH = "data";
+import java.io.IOException;
 
-    private Parser parser;
-    private Storage storage;
+public class Eduke8 {
+    private static final String FILE_PATH = "data/test/example.json"; // Real path will be data/main/topics.json
+
+    private MenuParser menuParser;
+    private TopicsStorage topicsStorage;
     private TopicList topicList;
     private Ui ui;
 
     private Eduke8(String filePath) {
-        parser = new Parser();
-        storage = new Storage(filePath);
+        menuParser = new MenuParser();
+        topicsStorage = new TopicsStorage(filePath);
         ui = new Ui();
-        topicList = new TopicList(storage.load());
+        try {
+            topicList = new TopicList(topicsStorage.load());
+        } catch (ParseException | IOException e) {
+            ui.printError();
+        }
     }
 
     private void run() {
@@ -30,18 +38,19 @@ public class Eduke8 {
     }
 
     private void runCommandLoopUntilExit() {
-        //boolean isExit = false;
+        boolean isExit = false;
 
-        //while(!isExit) {
-        String userInput = ui.getInputFromUser();
-        parser.parseCommand(topicList, userInput);
-        //isExit = parser.parseCommand(userInput);
-
-        //}
+        while (!isExit) {
+            String userInput = ui.getInputFromUser();
+            Command command = menuParser.parseCommand(topicList, userInput);
+            // command.execute(topicList, ui);
+            isExit = true; //command.isExit();
+        }
     }
 
     private void exit() {
         ui.printExitMessage();
+        System.exit(0);
     }
 
     public static void main(String[] args) {
