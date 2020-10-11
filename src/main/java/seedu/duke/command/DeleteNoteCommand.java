@@ -59,8 +59,8 @@ public class DeleteNoteCommand extends Command {
         try {
             // If there is no title, delete note by index
             if (title.isBlank()) {
-                String deletedTitle = notebook.getNotes().get(index - 1).getTitle();
-                notebook.deleteNote(index - 1);
+                String deletedTitle = notebook.getNotes().get(index).getTitle();
+                notebook.deleteNote(index);
                 return COMMAND_SUCCESSFUL_MESSAGE + deletedTitle;
             } else {
                 deletedListTitle = (ArrayList<Note>) notebook.getNotes().stream()

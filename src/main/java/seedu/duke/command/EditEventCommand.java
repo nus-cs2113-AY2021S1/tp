@@ -38,7 +38,7 @@ public class EditEventCommand extends Command {
      * @param index of the Event to be edited.
      */
     public EditEventCommand(int index) {
-        this.index = index - 1;
+        this.index = index;
     }
 
     @Override

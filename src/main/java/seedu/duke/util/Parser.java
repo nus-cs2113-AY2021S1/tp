@@ -430,7 +430,7 @@ public class Parser {
                 if (index <= NULL_INDEX) {
                     throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
                 }
-                return new DeleteNoteCommand(index);
+                return new DeleteNoteCommand(index - 1);
             }
         } catch (ArrayIndexOutOfBoundsException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);

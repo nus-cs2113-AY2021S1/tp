@@ -36,7 +36,7 @@ public class EditNoteCommand extends Command {
      * @param index of the Note to be edited.
      */
     public EditNoteCommand(int index) {
-        this.index = index - 1;
+        this.index = index;
     }
 
     @Override
