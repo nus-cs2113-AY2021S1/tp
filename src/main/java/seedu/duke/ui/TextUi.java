@@ -49,8 +49,13 @@ public class TextUi {
     private static final String BOOKMARK_SIZE_MESSAGE = "You have a total of %d bookmark(s) recorded.";
     private static final String LIST_BOOKMARKS_MESSAGE = "Here is the list of all bookmark(s) recorded:";
     private static final String DELETE_BOOKMARKS_MESSAGE = "The bookmark [%s] has been removed!";
-    private static final String LIST_QUOTES = "Here are the quotes:";
+    private static final String LIST_ALL_QUOTES = "Here are all your quotes:";
     private static final String DELETE_QUOTE_MESSAGE = "The quote \"%s\" has been deleted!";
+    private static final String LIST_NO_QUOTES_SAVED_MESSAGE = "You have no saved quotes!";
+    private static final String LIST_NO_QUOTES_FOUND_MESSAGE = "I could not find any that matched your specifications.";
+    private static final String LIST_QUOTES_BY_AUTHOR_MESSAGE = "Here is a list of quotes by %s:";
+    private static final String LIST_QUOTES_BY_REFERENCE_MESSAGE = "Here is a list of quotes from %s:";
+    private static final String LIST_QUOTES_BY_AUTHOR_AND_REFERENCE_MESSAGE = "Here is a list of quotes from %s by %s:";
 
     private final Scanner in;
 
@@ -91,7 +96,7 @@ public class TextUi {
     }
 
     public void printAllQuotes(QuoteList quotes) {
-        System.out.println(LIST_QUOTES);
+        System.out.println(LIST_ALL_QUOTES);
         System.out.println(quotes);
     }
 
@@ -147,29 +152,56 @@ public class TextUi {
     }
 
     public void printAllQuotesByAuthor(QuoteList quoteList, String authorName) {
-        System.out.println(LIST_QUOTES);
-        for (Quote quote : quoteList.getList()) {
-            if (quote.getAuthorName().equals(authorName)) {
-                System.out.println(quote.toString());
+        boolean hasResult = false;
+        if (quoteList.getSize() >= 1) {
+            System.out.printf((LIST_QUOTES_BY_AUTHOR_MESSAGE) + "\n", authorName);
+            for (Quote quote : quoteList.getList()) {
+                if (quote.getAuthorName().equals(authorName)) {
+                    System.out.print(quote.toString());
+                    hasResult = true;
+                }
             }
+            if (!hasResult) {
+                System.out.println(LIST_NO_QUOTES_FOUND_MESSAGE);
+            }
+        } else {
+            System.out.println(LIST_NO_QUOTES_SAVED_MESSAGE);
         }
     }
 
     public void printAllQuotesByReference(QuoteList quoteList, String reference) {
-        System.out.println(LIST_QUOTES);
-        for (Quote quote : quoteList.getList()) {
-            if (quote.getReference().equals(reference)) {
-                System.out.println(quote.toString());
+        boolean hasResult = false;
+        if (quoteList.getSize() >= 1) {
+            System.out.printf((LIST_QUOTES_BY_REFERENCE_MESSAGE) + "\n", reference);
+            for (Quote quote : quoteList.getList()) {
+                if (quote.getReference().equals(reference)) {
+                    System.out.print(quote.toString());
+                    hasResult = true;
+                }
             }
+            if (!hasResult) {
+                System.out.println(LIST_NO_QUOTES_FOUND_MESSAGE);
+            }
+        } else {
+            System.out.println(LIST_NO_QUOTES_SAVED_MESSAGE);
         }
     }
 
     public void printAllQuotesByReferenceAndAuthor(QuoteList quoteList, String reference, String authorName) {
-        System.out.println(LIST_QUOTES);
-        for (Quote quote : quoteList.getList()) {
-            if (quote.getReference().equals(reference) && quote.getAuthorName().equals(authorName)) {
-                System.out.println(quote.toString());
+        boolean hasResult = false;
+        if (quoteList.getSize() >= 1) {
+            System.out.printf((LIST_QUOTES_BY_AUTHOR_AND_REFERENCE_MESSAGE) + "\n", reference, authorName);
+            for (Quote quote : quoteList.getList()) {
+                if (quote.getReference().equals(reference) && quote.getAuthorName().equals(authorName)) {
+                    System.out.print(quote.toString());
+                    hasResult = true;
+                }
             }
+            if (!hasResult) {
+                System.out.println(LIST_NO_QUOTES_FOUND_MESSAGE);
+            }
+        } else {
+            System.out.println(LIST_NO_QUOTES_SAVED_MESSAGE);
         }
     }
 
