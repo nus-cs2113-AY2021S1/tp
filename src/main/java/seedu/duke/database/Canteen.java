@@ -7,20 +7,21 @@ public class Canteen {
     private final String name;
     private final ArrayList<Store> storeList;
 
-    public Canteen(String name){
+    public Canteen(String name) {
         this.name = name;
         this.storeList = new ArrayList<>();
     }
 
-    /***
-     * name of the canteen is for filtering purposes
+    /**
+     * Name of the canteen is for filtering purposes.
+     *
      * @return name of canteen
      */
     public String getName() {
         return name;
     }
 
-    public void addStore(Store store){
+    public void addStore(Store store) {
         storeList.add(store);
     }
 
