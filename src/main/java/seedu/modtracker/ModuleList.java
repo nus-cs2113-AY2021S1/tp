@@ -53,7 +53,7 @@ public class ModuleList {
         } else {
             int index = modList.indexOf(currentMod);
             int expectedTime = Integer.parseInt(modInfo[2]);
-            modList.get(index).expected = expectedTime;
+            modList.get(index).setExpectedWorkload(expectedTime);
         }
         if (toPrint) {
             ui.printAdd(currentMod);
@@ -92,7 +92,7 @@ public class ModuleList {
         if (checkModuleIfExist(modInfo[1])) {
             Module inputMod = new Module(modInfo[1]);
             int index = modList.indexOf(inputMod);
-            modList.get(index).expected = -1;
+            modList.get(index).setExpectedWorkload(-1);
             if (toPrint) {
                 ui.printDeleteExp(modInfo[1]);
             }

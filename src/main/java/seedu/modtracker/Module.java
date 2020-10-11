@@ -8,9 +8,9 @@ import java.util.Arrays;
  */
 public class Module {
 
-    protected String moduleCode;
-    protected int expected = -1;
-    protected double[] actualTime = new double[13];
+    private String moduleCode;
+    private int expected = -1;
+    private double[] actualTime = new double[13];
 
     public Module(String mod) {
         moduleCode = mod;
@@ -38,6 +38,10 @@ public class Module {
 
     public int getExpectedWorkload() {
         return expected;
+    }
+
+    public void setExpectedWorkload(int expected) {
+        this.expected = expected;
     }
 
     public double[] getActualTime() {
