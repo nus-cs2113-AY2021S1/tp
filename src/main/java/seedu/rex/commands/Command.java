@@ -47,20 +47,45 @@ public abstract class Command {
     }
 
     /**
-     * Checks if a given <code>String</code> consists of only numeric characters.
+     * Checks if a given <code>String</code> consists of only integer characters.
+     *
      * @param string The <code>String</code> to be checked.
-     * @return <code>true</code> if the string contains only numeric characters; <code>false</code>
-     *     otherwise.
+     * @return <code>true</code> if the string contains only integer characters; <code>false</code> otherwise.
      */
-    public boolean isNumeric(String string) {
+    public boolean isInteger(String string) {
         if (string == null) {
             return false;
         }
         try {
-            double stringAsDouble = Double.parseDouble(string);
+            int stringAsInteger = Integer.parseInt(string);
         } catch (NumberFormatException e) {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Extracts the NRIC from command inputted by the user.
+     *
+     * @param trimmedCommand Command that was trimmed.
+     * @param commandWord    Command that was called.
+     * @return Patient's NRIC as a String.
+     * @throws RexException If the NRIC inputted by the user is invalid.
+     */
+    public String extractNric(String trimmedCommand, String commandWord) throws RexException {
+        String nric = trimmedCommand.replaceFirst("(?i)" + commandWord, "").trim().toUpperCase();
+        if (nric.isBlank()) {
+            throw new RexException("Please enter a valid NRIC after '" + commandWord + "'.");
+        } else if (nric.length() != LEGAL_NRIC_LENGTH) {
+            throw new RexException("Invalid NRIC length!");
+        } else if (!LEGAL_NRIC_STATUSES.contains(nric.charAt(0))) {
+            throw new RexException("Beginning character of NRIC must be 'S', 'T', 'F', or 'G'!");
+        } else if (!isInteger(nric.substring(1, LEGAL_NRIC_LENGTH - 1))) {
+            throw new RexException("Number sequence of NRIC is invalid!");
+        } else if (!Character.isLetter(nric.charAt(nric.length() - 1))) {
+            throw new RexException("Final character of NRIC must be an English alphabet!");
+        } else {
+            return nric;
+        }
     }
 }

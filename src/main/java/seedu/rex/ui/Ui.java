@@ -2,12 +2,12 @@ package seedu.rex.ui;
 
 import seedu.rex.commands.Command;
 import seedu.rex.commands.ExitCommand;
-import seedu.rex.storage.Storage;
 import seedu.rex.data.hospital.Patient;
+import seedu.rex.storage.Storage;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
-import java.time.LocalDate;
 
 /**
  * Interacts with user.
@@ -84,6 +84,7 @@ public class Ui {
 
     /**
      * Prints a message to indicate successful addition of a patient.
+     *
      * @param patient The newly added <code>Patient</code>.
      */
     public void showPatientAdded(Patient patient) {
@@ -104,6 +105,7 @@ public class Ui {
 
     /**
      * Reads the name of a new patient from the user.
+     *
      * @return The name of the patient to be added.
      */
     public String getPatientName() {
@@ -113,6 +115,7 @@ public class Ui {
 
     /**
      * Reads the date of birth of a new patient from the user.
+     *
      * @return The date of birth of the patient.
      */
     public LocalDate getPatientDateOfBirth() {
@@ -126,5 +129,15 @@ public class Ui {
                 showLine();
             }
         }
+    }
+
+    /**
+     * Shows patient details.
+     *
+     * @param patient Patient to show.
+     */
+    public void showPatient(Patient patient) {
+        printWithIndent("Patient Details: ");
+        printWithIndent(patient.toString());
     }
 }

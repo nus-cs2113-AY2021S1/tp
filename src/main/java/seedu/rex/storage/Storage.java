@@ -14,6 +14,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * Loads and saves data to file.
+ */
 public class Storage {
     public static final String LOAD_ERROR = "Error loading file.";
     private static final String READ_ERROR = "Error reading file.";

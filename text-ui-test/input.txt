@@ -1,2 +1,13 @@
 James Gosling
+add
+add S9Z
+add B1234422B
+add S123B422Z
+add S123B4222
+add S9123456Z
+Trump
+06-06-1960
+1960-06-14
+retrieve S9993222A
+retrieve S9123456Z
 bye
