@@ -35,7 +35,7 @@ public class ModTracker {
      *
      * @return name of user
      */
-    public String startAndGetName() {
+    private String startAndGetName() {
         ui.printWelcomeScreen();
         return ui.printNamePrompt();
     }
@@ -45,11 +45,11 @@ public class ModTracker {
      *
      * @param name name of user
      */
-    public void runCommandLoopUntilExitCommand(String name) {
+    private void runCommandLoopUntilExitCommand(String name) {
         Parser parser = new Parser();
         while (!parser.isExit()) {
             String input = ui.readCommand();
-            parser.parse(input, modList, name, storage, false);
+            parser.parse(input, modList, name, storage, true);
         }
     }
 
@@ -59,7 +59,7 @@ public class ModTracker {
             Scanner reader = storage.getReader();
             while (reader.hasNext()) {
                 String input = reader.nextLine();
-                parser.parse(input, modList, "", storage, true);
+                parser.parse(input, modList, "", storage, false);
             }
         } catch (FileNotFoundException e) {
             ui.printErrorMessage(e.getMessage());

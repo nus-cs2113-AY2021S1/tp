@@ -17,8 +17,9 @@ public class ModuleList {
      *
      * @param input module code typed in by user
      * @param toPrint whether the UI should print the output
+     * @param storage storage object where data is stored
      */
-    public void addMod(String input, boolean toPrint) {
+    public void addMod(String input, boolean toPrint, Storage storage) {
         String[] modInfo = input.split(" ", 2);
         modInfo[1] = modInfo[1].toUpperCase();
 
@@ -33,6 +34,7 @@ public class ModuleList {
         modList.add(currentModule);
         if (toPrint) {
             ui.printAdd(currentModule);
+            storage.appendToFile(input);
         }
     }
 
@@ -43,8 +45,9 @@ public class ModuleList {
      *
      * @param input module code and expected time typed in by user
      * @param toPrint whether the UI should print the output
+     * @param storage storage object where data is stored
      */
-    public void addExp(String input, boolean toPrint) {
+    public void addExp(String input, boolean toPrint, Storage storage) {
         String[] modInfo = input.split(" ", 3);
         modInfo[1] = modInfo[1].toUpperCase();
         Module currentMod = new Module(modInfo[1], modInfo[2]);
@@ -57,6 +60,7 @@ public class ModuleList {
         }
         if (toPrint) {
             ui.printAdd(currentMod);
+            storage.appendToFile(input);
         }
     }
 
@@ -65,8 +69,9 @@ public class ModuleList {
      *
      * @param input module code typed in by user
      * @param toPrint whether the UI should print the output
+     * @param storage storage object where data is stored
      */
-    public void deleteMod(String input, boolean toPrint) {
+    public void deleteMod(String input, boolean toPrint, Storage storage) {
         String[] modInfo = input.split(" ", 2);
         modInfo[1] = modInfo[1].toUpperCase();
         if (checkModuleIfExist(modInfo[1])) {
@@ -74,6 +79,7 @@ public class ModuleList {
             modList.remove(inputMod);
             if (toPrint) {
                 ui.printDelete(modInfo[1]);
+                storage.appendToFile(input);
             }
         } else if (toPrint) {
             ui.printNotExist(modInfo[1]);
@@ -85,8 +91,9 @@ public class ModuleList {
      *
      * @param input module code and expected time typed in by user
      * @param toPrint whether the UI should print the output
+     * @param storage storage object where data is stored
      */
-    public void deleteExp(String input, boolean toPrint) {
+    public void deleteExp(String input, boolean toPrint, Storage storage) {
         String[] modInfo = input.split(" ", 2);
         modInfo[1] = modInfo[1].toUpperCase();
         if (checkModuleIfExist(modInfo[1])) {
@@ -95,6 +102,7 @@ public class ModuleList {
             modList.get(index).setExpectedWorkload(-1);
             if (toPrint) {
                 ui.printDeleteExp(modInfo[1]);
+                storage.appendToFile(input);
             }
         } else if (toPrint) {
             ui.printNotExist(modInfo[1]);
@@ -117,7 +125,7 @@ public class ModuleList {
         return false;
     }
 
-    public void addTime(String input, boolean toPrint) {
+    public void addTime(String input, boolean toPrint, Storage storage) {
         String[] commandInfo = input.split(" ", 4);
         commandInfo[1] = commandInfo[1].toUpperCase();
         Module currentModule = new Module(commandInfo[1]);
@@ -125,16 +133,18 @@ public class ModuleList {
         modList.get(index).addActualTime(commandInfo[2], commandInfo[3]);
         if (toPrint) {
             System.out.println(commandInfo[2] + " hours are added to " + commandInfo[1] + System.lineSeparator());
+            storage.appendToFile(input);
         }
     }
 
-    public void minusTime(String input, boolean toPrint) {
+    public void minusTime(String input, boolean toPrint, Storage storage) {
         String[] commandInfo = input.split(" ", 4);
         commandInfo[1] = commandInfo[1].toUpperCase();
         int index = modList.indexOf(commandInfo[1]);
         modList.get(index).minusActualTime(commandInfo[2], commandInfo[3]);
         if (toPrint) {
             System.out.println(commandInfo[2] + " hours are removed from " + commandInfo[1] + System.lineSeparator());
+            storage.appendToFile(input);
         }
     }
 

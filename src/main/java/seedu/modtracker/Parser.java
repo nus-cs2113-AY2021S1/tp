@@ -13,48 +13,30 @@ public class Parser {
      * @param modList module list
      * @param name name entered by the user
      * @param storage storage object to load and store data
-     * @param isSetup true if data is being loaded
+     * @param toPrint whether the UI should print the output
      */
-    public void parse(String input, ModuleList modList, String name, Storage storage, boolean isSetup) {
+    public void parse(String input, ModuleList modList, String name, Storage storage, boolean toPrint) {
         Ui ui = new Ui();
         String[] command = input.trim().split(" ");
 
         switch (command[0].toLowerCase()) {
         case "addmod":
-            modList.addMod(input, !isSetup);
-            if (!isSetup) {
-                storage.appendToFile(input);
-            }
+            modList.addMod(input, toPrint, storage);
             break;
         case "addtime":
-            modList.addTime(input, !isSetup);
-            if (!isSetup) {
-                storage.appendToFile(input);
-            }
+            modList.addTime(input, toPrint, storage);
             break;
         case "addexp":
-            modList.addExp(input, !isSetup);
-            if (!isSetup) {
-                storage.appendToFile(input);
-            }
+            modList.addExp(input, toPrint, storage);
             break;
         case "deletemod":
-            modList.deleteMod(input, !isSetup);
-            if (!isSetup) {
-                storage.appendToFile(input);
-            }
+            modList.deleteMod(input, toPrint, storage);
             break;
         case "deleteexp":
-            modList.deleteExp(input, !isSetup);
-            if (!isSetup) {
-                storage.appendToFile(input);
-            }
+            modList.deleteExp(input, toPrint, storage);
             break;
         case "minus":
-            modList.minusTime(input, !isSetup);
-            if (!isSetup) {
-                storage.appendToFile(input);
-            }
+            modList.minusTime(input, toPrint, storage);
             break;
         case "compare":
             //methods
