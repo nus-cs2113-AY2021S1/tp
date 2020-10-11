@@ -3,8 +3,6 @@ package seedu.duke;
 import seedu.duke.classes.Storage;
 import seedu.duke.utility.ShowList;
 import seedu.duke.utility.Ui;
-import seedu.duke.utility.InputParser;
-import java.util.Scanner;
 
 public class Duke {
     /**
