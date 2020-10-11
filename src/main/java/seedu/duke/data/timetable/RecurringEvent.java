@@ -8,8 +8,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public abstract class RecurringEvent extends Event {
-    private final LocalDate endRecurrence;
-    private final String recurrenceType;
+    private final LocalDate END_RECURRENCE_DATE;
+    private final String RECURRENCE_TYPE;
 
     public static final LocalDate DEFAULT_END_RECURRENCE = LocalDate.of(3000, 12, 31);
     public static final String DAILY_RECURRENCE_TYPE = "daily";
@@ -17,14 +17,14 @@ public abstract class RecurringEvent extends Event {
     public static final String MONTHLY_RECURRENCE_TYPE = "monthly";
     public static final String YEARLY_RECURRENCE_TYPE = "yearly";
 
-    public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence,
+    public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrenceDate,
                           String recurrenceType) {
         super(title, dateTime, isToRemind, true);
-        if (endRecurrence == null) {
-            endRecurrence = DEFAULT_END_RECURRENCE;
+        if (endRecurrenceDate == null) {
+            endRecurrenceDate = DEFAULT_END_RECURRENCE;
         }
-        this.endRecurrence = endRecurrence;
-        this.recurrenceType = recurrenceType;
+        this.END_RECURRENCE_DATE = endRecurrenceDate;
+        this.RECURRENCE_TYPE = recurrenceType;
     }
 
     public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, String recurrenceType) {
@@ -38,7 +38,7 @@ public abstract class RecurringEvent extends Event {
      * @return Whether to re-occur or not.
      */
     public boolean checkAfterEndRecurrence(LocalDate date) {
-        return (endRecurrence.compareTo(date) < 0);
+        return (END_RECURRENCE_DATE.compareTo(date) < 0);
     }
 
     /**
@@ -67,12 +67,12 @@ public abstract class RecurringEvent extends Event {
     @Override
     public String toString() {
         String endRecurrenceString = "Until: ";
-        if (!endRecurrence.equals(DEFAULT_END_RECURRENCE)) {
-            endRecurrenceString += endRecurrence.toString();
+        if (!END_RECURRENCE_DATE.equals(DEFAULT_END_RECURRENCE)) {
+            endRecurrenceString += END_RECURRENCE_DATE.toString();
         } else {
             endRecurrenceString += "Forever";
         }
-        return super.toString() + String.format(" (%s)", recurrenceType) + InterfaceManager.LS + endRecurrenceString;
+        return super.toString() + String.format(" (%s)", RECURRENCE_TYPE) + InterfaceManager.LS + endRecurrenceString;
     }
 
     /**

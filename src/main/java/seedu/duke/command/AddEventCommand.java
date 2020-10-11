@@ -42,9 +42,9 @@ public class AddEventCommand extends Command {
     }
 
     /**
-     * Provides how the command should be used.
+     * Provides a description of how the command should be used.
      *
-     * @return How the command should be used.
+     * @return A string description of the command should be used.
      */
     public static String getCommandUsage() {
         return COMMAND_USAGE;
