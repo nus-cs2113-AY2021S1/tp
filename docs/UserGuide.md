@@ -29,6 +29,18 @@ Example of usage:
 
 `todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
 
+### Exiting the program: `bye`
+
+Exits the program.
+
+Format: `bye`
+
+### Saving the data
+
+The user's profile, food consumed and exercises done are saved automatically after any command that changes the data. 
+There is no need to save manually.
+
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -37,6 +49,6 @@ Example of usage:
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+Action | Format | Examples
+------ | ------ | --------
+bye | `bye`
