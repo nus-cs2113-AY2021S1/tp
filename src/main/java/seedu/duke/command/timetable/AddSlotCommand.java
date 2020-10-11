@@ -6,6 +6,8 @@ import seedu.duke.Ui;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
+import seedu.duke.bookmark.Bookmark;
+import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.slot.Slot;
 import seedu.duke.slot.SlotList;
 
