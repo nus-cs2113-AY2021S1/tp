@@ -5,9 +5,13 @@ import seedu.duke.Finance.CommandFinanceAdd;
 import seedu.duke.Finance.CommandFinanceDel;
 import seedu.duke.Finance.CommandFinanceSummary;
 import seedu.duke.Finance.FinanceLog;
+import seedu.duke.DukeArgumentException;
+import seedu.duke.DukeNoMatchException;
+import seedu.duke.hr.CommandAddMember;
+import seedu.duke.hr.CommandDelMember;
+import seedu.duke.hr.CommandViewMember;
 import seedu.duke.others.CommandBye;
 import seedu.duke.others.CommandHelp;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -33,25 +37,29 @@ public class Ui {
         System.out.println("Command: "+userInput.getCommand());
         System.out.println("Num Args: "+userInput.getNumArgs());
         System.out.println("Args: "+userInput.getArgs());*/
-        Command cmd = findCommand(userInput);
-        if (cmd != null) {
+        try {
+            Command cmd = findCommand(userInput);
             printOutput(cmd.execute());
-        } else {
+        } catch (DukeArgumentException ae) {
+            // Placeholder if additional routine is required when user enters incorrect parameters
+        } catch (DukeNoMatchException ne) {
             printOutput("No such command. Try 'help' for a list of commands.");
+        } catch (Exception e) {
+            printOutput("Command execution failed with an unhandled error!", true);
         }
     }
 
-    public Command findCommand(UserInput ui) {
+    public Command findCommand(UserInput ui) throws DukeArgumentException, DukeNoMatchException {
         for (Command c : commandList) {
             int result = c.validate(ui);
             if (result == Command.ARGUMENT_ERR) {
                 printError(c.help());
-                return null;
+                throw new DukeArgumentException();
             } else if (result == Command.ACCEPT) {
                 return c;
             }
         }
-        return null;
+        throw new DukeNoMatchException();
     }
 
     /**
@@ -119,5 +127,8 @@ public class Ui {
         commandList.add(new CommandFinanceSummary(fl));
         commandList.add(new CommandFinanceAdd(fl));
         commandList.add(new CommandFinanceDel(fl));
+        commandList.add(new CommandAddMember());
+        commandList.add(new CommandViewMember());
+        commandList.add(new CommandDelMember());
     }
 }
