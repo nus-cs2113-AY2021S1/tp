@@ -37,12 +37,8 @@ public class HistoryLoader {
         String fileLine = "";
         String username = "temp";
 
-        try {
-            while(s.hasNext()) {
+        while(s.hasNext()) {
 
-            }
-        } catch (SettingObjectWrongFormatException e) {
-            System.out.printf(ERROR_READING_FILE_ON_LINE_MSG_FORMAT, fileLine);
         }
     }
 

@@ -44,7 +44,6 @@ public class Duke {
 
         System.out.println("Write a story with\n" + Logos.BIG_FLUFFLE_LOGO);
         printHelloMessage(username);
-        boolean isExit = false;
 
         String userInput;
         CommandChecker commandChecker = UNRECOGNISED;
