@@ -5,19 +5,23 @@ import seedu.eduke8.exception.Eduke8Exception;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.logging.Logger;
+// import java.util.logging.Logger;
 
-public class QuizQuestionList {
+public class QuizQuestionsManager {
     private static final String INVALID_QUIZ_QUESTION_NUMBER = "Number of quiz questions must be more than 1";
+    private static final String INSUFFICIENT_TOPIC_QUESTIONS_FOR_QUIZ =
+            "There is not enough questions in the topic for the quiz!";
 
-    private ArrayList<Question> quizQuestions;
+
+    private ArrayList<Question> quizQuestions = null;
     private int currentQuestionNumber;
 
     private static final Random RANDOM = new Random();
 
-    public QuizQuestionList() {
-        quizQuestions = null;
+    public QuizQuestionsManager(int numberOfQuestionsForQuiz,
+                                ArrayList<Displayable> questionsInTopic) throws Eduke8Exception {
         currentQuestionNumber = 0;
+        setQuizQuestions(numberOfQuestionsForQuiz, questionsInTopic);
     }
 
     public void setQuizQuestions(int numberOfQuestionsForQuiz,
@@ -26,6 +30,10 @@ public class QuizQuestionList {
 
         if (numberOfQuestionsForQuiz <= 0) {
             throw new Eduke8Exception(INVALID_QUIZ_QUESTION_NUMBER);
+        }
+
+        if (numberOfQuestionsForQuiz > questionsInTopic.size()) {
+            throw new Eduke8Exception(INSUFFICIENT_TOPIC_QUESTIONS_FOR_QUIZ);
         }
 
         int numberOfQuestionsSelected = 0;

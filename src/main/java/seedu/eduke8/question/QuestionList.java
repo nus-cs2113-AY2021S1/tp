@@ -2,7 +2,6 @@ package seedu.eduke8.question;
 
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.common.DisplayableList;
-import seedu.eduke8.exception.Eduke8Exception;
 
 import java.util.ArrayList;
 
@@ -14,12 +13,14 @@ public class QuestionList implements DisplayableList {
         this.questions = questions;
     }
 
-    public QuizQuestionList getQuizQuestionList(int numberOfQuestionsForQuiz) throws Eduke8Exception {
-        QuizQuestionList quizQuestionList = new QuizQuestionList();
-        quizQuestionList.setQuizQuestions(numberOfQuestionsForQuiz, questions);
+    /*
+    public QuizQuestionsManager getQuizQuestionList(int numberOfQuestionsForQuiz) throws Eduke8Exception {
+        QuizQuestionsManager quizQuestionsManager = new QuizQuestionsManager();
+        quizQuestionsManager.setQuizQuestions(numberOfQuestionsForQuiz, questions);
 
-        return quizQuestionList;
+        return quizQuestionsManager;
     }
+    */
 
     @Override
     public int getCount() {
