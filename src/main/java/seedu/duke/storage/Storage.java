@@ -150,7 +150,7 @@ public class Storage {
             Path subjectPath = Paths.get(getBaseDir().toString(), subject.getTitle());
             Files.createDirectories(subjectPath);
 
-            saveTopics(subjectPath, subject.getTopics());
+            saveTopics(subjectPath, subject.getTopics().getList());
         }
     }
 

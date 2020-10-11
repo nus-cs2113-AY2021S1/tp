@@ -81,7 +81,7 @@ class StorageTest {
             File subjectDir = Paths.get(storage.getBaseDir().toString(), subject.getTitle()).toFile();
             assertTrue(subjectDir.exists());
             assertTrue(subjectDir.isDirectory());
-            assertTrue(isDirectoryEmpty(subjectDir)); // TODO: change this after task is stored
+            assertTrue(isDirectoryEmpty(subjectDir));
         }
     }
 
@@ -90,7 +90,7 @@ class StorageTest {
         // populate subjects
         for (Subject subject : subjects) {
             for (Topic topic : topics) {
-                subject.addTopic(topic);
+                subject.getTopics().add(topic);
             }
         }
 
@@ -103,7 +103,7 @@ class StorageTest {
             // check if subdirectories are created
             File[] topicDirs = subjectDir.listFiles(File::isDirectory);
             assertNotNull(topicDirs);
-            assertEquals(subject.getTopics().size(), topicDirs.length);
+            assertEquals(subject.getTopics().getList().size(), topicDirs.length);
         }
     }
 
@@ -173,8 +173,8 @@ class StorageTest {
         List<Subject> loadedSubjects = storage.loadSubjects();
         assertEquals(loadedSubjects.size(), subjects.size());
         for (Subject subject : loadedSubjects) {
-            assertEquals(subject.getTopics().size(), topics.size());
-            for (Topic topic : subject.getTopics()) {
+            assertEquals(subject.getTopics().getList().size(), topics.size());
+            for (Topic topic : subject.getTopics().getList()) {
                 assertEquals(topic.getFlashcards().size(), flashcards.size());
             }
         }
