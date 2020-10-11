@@ -34,6 +34,7 @@ public class AddCommand extends Command {
     @Override
     public void execute() {
         sortIntoType();
+        ui.showToUser("Adding " + type + ": " + name + " (" + power + "W) in " + location + ".....ADDED!");
     }
 
     public void sortIntoType() {
