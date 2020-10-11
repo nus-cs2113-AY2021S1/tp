@@ -2,6 +2,7 @@ package seedu.duke.card;
 
 import seedu.duke.task.TaskList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Subject {
@@ -10,7 +11,12 @@ public class Subject {
     private TaskList tasks;
 
     public Subject(String title) {
+        this(title, new ArrayList<>());
+    }
+
+    public Subject(String title, List<Topic> topics) {
         this.title = title;
+        this.topics = topics;
     }
 
     public void printSubject(SubjectList subjectList) {
