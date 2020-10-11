@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import static seedu.messages.Messages.HELP_MESSAGE;
 import static seedu.messages.Messages.LS;
 import static seedu.messages.Messages.WELCOME_MESSAGE;
 
@@ -50,10 +49,6 @@ public class Ui {
 
     public void showWelcomeMessage() {
         showMessage(WELCOME_MESSAGE);
-    }
-
-    public void showCommands() {
-        showMessage(HELP_MESSAGE);
     }
 
     public void showMessage(String message) {

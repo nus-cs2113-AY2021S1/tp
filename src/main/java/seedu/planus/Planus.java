@@ -9,11 +9,7 @@ import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.UnknowCommandException;
 import seedu.parser.Parser;
 import seedu.storage.Storage;
-import seedu.task.Task;
 import seedu.ui.Ui;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Planus {
     /**
