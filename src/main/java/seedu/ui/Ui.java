@@ -7,8 +7,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import static seedu.messages.Messages.LS;
-import static seedu.messages.Messages.WELCOME_MESSAGE;
+import static seedu.messages.Messages.*;
 
 
 public class Ui {
@@ -22,6 +21,8 @@ public class Ui {
     private Ui(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
+        //        // Set default printing color
+        //        out.print(DEFAULT_STRING_COLOR);
     }
 
     public String getUserInput() {
