@@ -2,6 +2,8 @@ package seedu.duke.ui;
 
 import seedu.duke.card.Subject;
 import seedu.duke.card.SubjectList;
+import seedu.duke.card.Topic;
+import seedu.duke.card.TopicList;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
@@ -89,7 +91,7 @@ public class Ui {
 
     public static void printNoSubjectError() {
         System.out.println("____________________________________________________________\n"
-                + " ☹ OOPS!!! I'm sorry, but subject is not found :-(\n"
+                + " ☹ OOPS!!! I'm sorry, but I can't find that subject :-(\n"
                 + "____________________________________________________________");
     }
 
@@ -119,7 +121,13 @@ public class Ui {
 
     public static void printIndexError() {
         System.out.println("____________________________________________________________\n"
-                + " ☹ OOPS!!! Invalid index format entered\n"
+                + " ☹ OOPS!!! Invalid index format entered.\n"
+                + "____________________________________________________________");
+    }
+
+    public static void printOutOfBoundsError() {
+        System.out.println("____________________________________________________________\n"
+                + " ☹ OOPS!!! The index you entered does not exist.\n"
                 + "____________________________________________________________");
     }
 
@@ -176,7 +184,7 @@ public class Ui {
 
     public static void printGoToSubject(Subject subject) {
         System.out.println("____________________________________________________________\n"
-                + "You are currently looking at the " + subject.toString() + " subject\n"
+                + "You are currently looking at the subject: " + subject.toString() + "\n"
                 + "____________________________________________________________\n");
     }
 
@@ -184,5 +192,67 @@ public class Ui {
         System.out.println("____________________________________________________________\n"
                 + "Going back to the main screen.\n"
                 + "____________________________________________________________\n");
+    }
+
+    public static void printTopicList(Subject subject) {
+        int index = 1;
+        TopicList topicList = subject.getTopics();
+        System.out.println("____________________________________________________________\n"
+                + "Here are the topic(s) under " + subject.getTitle() + ": ");
+        for (Topic t : topicList.getList()) {
+            System.out.println(index + "." + t);
+            index++;
+        }
+        System.out.println("____________________________________________________________");
+        
+    }
+
+    public static void printTopicMatch(int taskPresent) {
+        if (taskPresent == 0) {
+            System.out.println("____________________________________________________________\n"
+                    + " Here are the matching topic(s) in your list:");
+        }
+    }
+
+    public static void printFindTopic(TopicList topicList, String query) {
+        int taskPresent = 0;
+        for (Topic topic : topicList.getList()) {
+            if (topic.toString().contains(query)) {
+                Ui.printTopicMatch(taskPresent);
+                System.out.println(topic);
+                taskPresent = 1;
+            }
+        }
+        if (taskPresent == 0) {
+            System.out.println("____________________________________________________________\n"
+                    + " Sorry! I could not find any subjects with " + query + " in the list");
+        }
+        System.out.println("____________________________________________________________");
+    }
+
+    public static void printGoToTopic(Topic topic) {
+        System.out.println("____________________________________________________________\n"
+                + "You are currently looking at the topic: " + topic.getTitle() + "\n"
+                + "____________________________________________________________\n");
+    }
+
+    public static void printNoTopicError() {
+        System.out.println("____________________________________________________________\n"
+                + " ☹ OOPS!!! I'm sorry, but I can't find that topic :-(\n"
+                + "____________________________________________________________");
+    }
+
+    public static void printRepeatedTopicError() {
+        System.out.println("____________________________________________________________\n"
+                + " ☹ OOPS!!! I'm sorry, but that topic is already in the list :-(\n"
+                + "____________________________________________________________");
+    }
+
+    public static void printTopicDelete(Topic topic, int total) {
+        System.out.println("____________________________________________________________\n"
+                + " Noted. I've removed this topic:\n   "
+                + topic + "\n"
+                + " Now you have " + total + (total == 1 ? " task in the list.\n" : " tasks in the list.\n")
+                + "____________________________________________________________");
     }
 }

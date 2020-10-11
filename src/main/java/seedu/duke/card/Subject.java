@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Subject {
     private String title;
-    private List<Topic> topics;
+    private TopicList topics = new TopicList(new ArrayList<>());
     private TaskList tasks;
 
     public Subject(String title) {
@@ -15,6 +15,11 @@ public class Subject {
     }
 
     public Subject(String title, List<Topic> topics) {
+        this.title = title;
+        this.topics = topics;
+    }
+
+    public Subject(String title, TopicList topics) {
         this.title = title;
         this.topics = topics;
     }
@@ -27,23 +32,11 @@ public class Subject {
                 + "____________________________________________________________");
     }
 
-    public void addTopic(Topic topic) {
-        topics.add(topic);
-    }
-
-    public boolean removeTopic(Topic topic) {
-        return topics.remove(topic);
-    }
-
-    public Topic removeTopic(int index) {
-        return topics.remove(index);
-    }
-
     public String getTitle() {
         return title;
     }
 
-    public List<Topic> getTopics() {
+    public TopicList getTopics() {
         return topics;
     }
 
