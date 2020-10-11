@@ -119,10 +119,7 @@ public class Timetable {
         LocalDate startDate = LocalDate.of(year, month, 1);
         LocalDate endDate = startDate.withDayOfMonth(startDate.lengthOfMonth());
         ArrayList<Event> eventSet = new ArrayList<>();
-        eventSet.addAll(getAllRecurringEvents(startDate, endDate, dailyEvents));
-        eventSet.addAll(getAllRecurringEvents(startDate, endDate, weeklyEvents));
-        eventSet.addAll(getAllRecurringEvents(startDate, endDate, monthlyEvents));
-        eventSet.addAll(getAllRecurringEvents(startDate, endDate, yearlyEvents));
+        eventSet = getAllRecurringEvents(startDate, endDate, dailyEvents, weeklyEvents, monthlyEvents, yearlyEvents);
         eventSet.addAll(nonRecurringEvents);
 
         int numDays = startDate.lengthOfMonth();
@@ -146,7 +143,7 @@ public class Timetable {
      * @param events List of events that are recurrent.
      * @return An ArrayList of Events of all events that will occur between the two specified time periods.
      */
-    public ArrayList<Event> getAllRecurringEvents(LocalDate startDate, LocalDate endDate,
+    public ArrayList<Event> getRecurringEvents(LocalDate startDate, LocalDate endDate,
                                                   ArrayList<? extends RecurringEvent> events) {
         ArrayList<Event> eventList = new ArrayList<>();
         for (RecurringEvent event : events) {
@@ -154,4 +151,20 @@ public class Timetable {
         }
         return eventList;
     }
+
+    @SafeVarargs
+    public final ArrayList<Event> getAllRecurringEvents(LocalDate startDate, LocalDate endDate,
+                                                  ArrayList<? extends RecurringEvent>... eventsSet) {
+        ArrayList<Event> eventList = new ArrayList<>();
+        for (ArrayList<? extends RecurringEvent> events : eventsSet) {
+            eventList.addAll(getRecurringEvents(startDate, endDate, events));
+        }
+        return eventList;
+    }
+
+    public ArrayList<Event> getReminder(LocalDate today) {
+        ArrayList<Event> eventList = getAllRecurringEvents(today, today, dailyEvents, weeklyEvents, monthlyEvents, yearlyEvents);
+        return eventList;
+    }
+
 }

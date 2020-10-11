@@ -38,7 +38,8 @@ public abstract class RecurringEvent extends Event {
                 return eventSet;
             }
             LocalDateTime dateTime = LocalDateTime.of(startDate, timing);
-            Event e = new Event(getTitle(), dateTime, getToRemind(), false);
+            Event e = new Event(getTitle(), dateTime, getToRemind(), false,
+                    getTimeBeforeReminder(), getTimeUnit());
             eventSet.add(e);
             startDate = timeStep(startDate);
         }
