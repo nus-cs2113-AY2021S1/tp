@@ -182,10 +182,10 @@ public class Storage {
     public void saveFlashcards(Path topicPath, List<Flashcard> flashcards) throws IOException {
         File file = Paths.get(topicPath.toString(), getFlashcardFilename()).toFile();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        FileWriter fileWriter = new FileWriter(file);
-        gson.toJson(flashcards, fileWriter);  // store the json to file
-        fileWriter.flush();  // flush to actually write the content
-        fileWriter.close();
+        try (FileWriter fileWriter = new FileWriter(file)) {
+            gson.toJson(flashcards, fileWriter);  // store the json to file
+            fileWriter.flush();  // flush to actually write the content
+        }
     }
 
     /**
@@ -197,20 +197,20 @@ public class Storage {
      */
     public void saveTasks(Path subjectPath, List<Task> tasks) throws IOException {
         File taskFile = new File(subjectPath.toString(), getTaskFilename());
-        FileWriter fileWriter = new FileWriter(taskFile);
-        for (Task task : tasks) {
-            if (task instanceof Todo) {
-                fileWriter.write("T | " + (task.getIsDone() ? "1" : "0") + " | "
-                        + task.getDescription() + "\n");
-            } else if (task instanceof Deadline) {
-                fileWriter.write("D | " + (task.getIsDone() ? "1" : "0") + " | "
-                        + task.getDescription() + " | " + ((Deadline) task).getBy() + "\n");
-            } else if (task instanceof Event) {
-                fileWriter.write("E | " + (task.getIsDone() ? "1" : "0") + " | "
-                        + task.getDescription() + " | " + ((Event) task).getAt() + "\n");
+        try (FileWriter fileWriter = new FileWriter(taskFile)) {
+            for (Task task : tasks) {
+                if (task instanceof Todo) {
+                    fileWriter.write("T | " + (task.getIsDone() ? "1" : "0") + " | "
+                            + task.getDescription() + "\n");
+                } else if (task instanceof Deadline) {
+                    fileWriter.write("D | " + (task.getIsDone() ? "1" : "0") + " | "
+                            + task.getDescription() + " | " + ((Deadline) task).getBy() + "\n");
+                } else if (task instanceof Event) {
+                    fileWriter.write("E | " + (task.getIsDone() ? "1" : "0") + " | "
+                            + task.getDescription() + " | " + ((Event) task).getAt() + "\n");
+                }
             }
         }
-        fileWriter.close();
     }
 
     /**
