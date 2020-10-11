@@ -1,6 +1,6 @@
 package seedu.duke.bookmark;
 
-import seedu.duke.command.AddBookmarkCommand;
+import seedu.duke.command.bookmark.AddBookmarkCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 import java.io.IOException;

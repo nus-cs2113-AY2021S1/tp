@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class BookmarkList extends ItemList {
     private ArrayList<Bookmark> bookmarks;
+    private final String LS = System.lineSeparator();
 
     /**
      * Constructs a BookmarkList object with an empty ArrayList to store Bookmark objects.
@@ -105,6 +106,19 @@ public class BookmarkList extends ItemList {
 
 
     /**
+     * This method shows all the bookmarks from the list.
+     *
+     * @return The string message containing the matching bookmarks
+     */
+    public String showBookmarks() {
+        String message = "\tHere are the bookmarks in your list:" + LS;
+        for (int i = 0; i < bookmarks.size(); i++) {
+            message = message + "\t" + (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + LS;
+        }
+        return message;
+    }
+
+    /**
      * This method searches the bookmarks from the list with matching module
      * and description.
      *
@@ -123,14 +137,14 @@ public class BookmarkList extends ItemList {
         for (int i = 0; i < bookmarks.size(); i++) {
             if (bookmarks.get(i).getModule().toUpperCase().contains(module)
                     && bookmarks.get(i).getDescription().toUpperCase().contains(description)) {
-                message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + "\n";
+                message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + LS;
             }
         }
 
         if (message.isEmpty()) {
-            return  "No tasks contain the specified keyword!" + "\n";
+            return  "No bookmarks contain the specified keyword!" + LS;
         }
-        return "Here are your matching bookmarks" + "\n" + message;
+        return "Here are your matching bookmarks" + LS + message;
     }
 
     /**
@@ -152,7 +166,7 @@ public class BookmarkList extends ItemList {
         for (int i = 0; i < bookmarks.size(); i++) {
             if (bookmarks.get(i).getModule().toUpperCase().contains(module)
                     && bookmarks.get(i).getDescription().toUpperCase().contains(description)) {
-                message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + "\n";
+                message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + LS;
                 try {
                     bookmarks.get(i).launch();
                 } catch (DukeException e) {
@@ -162,8 +176,8 @@ public class BookmarkList extends ItemList {
         }
 
         if (message.isEmpty()) {
-            return  "No tasks contain the specified keyword!" + "\n";
+            return  "No bookmarks contain the specified keyword!" + LS;
         }
-        return "Launched these bookmarks:" + "\n" + message;
+        return "Launched these bookmarks:" + LS + message;
     }
 }

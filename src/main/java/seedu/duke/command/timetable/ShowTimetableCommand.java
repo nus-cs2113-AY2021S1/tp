@@ -1,10 +1,9 @@
-package seedu.duke.command;
+package seedu.duke.command.timetable;
 
-import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
-import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
+import seedu.duke.command.Command;
 import seedu.duke.slot.Slot;
 import seedu.duke.slot.SlotList;
 import seedu.duke.exception.DukeException;
@@ -21,7 +20,7 @@ public class ShowTimetableCommand extends Command {
     }
 
     @Override
-    public void execute(ItemList items, SlotList slotList, Ui ui, 
+    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
                         Storage bookmarkStorage, Storage slotStorage) throws DukeException {
         slotList.printLessonAtTime(slotList.getSlotList(), day);
     }

@@ -1,10 +1,11 @@
-package seedu.duke.command;
+package seedu.duke.command.bookmark;
 
 import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
+import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 import seedu.duke.slot.SlotList;
@@ -36,13 +37,12 @@ public class DeleteBookmarkCommand extends Command {
     /**
      * Deletes the bookmark in the bookmark list.
      *
-     * @param items The list of bookmarks.
+     * @param bookmarks The list of bookmarks.
      * @param ui The user interface.
      */
     @Override
-    public void execute(ItemList items, SlotList slotList, Ui ui, 
+    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
                         Storage bookmarkStorage, Storage slotStorage) throws DukeException {
-        BookmarkList bookmarks = (BookmarkList) items;
         try {
             Bookmark bookmark = bookmarks.getBookmark(index);
             bookmarks.deleteBookmark(bookmarks.getBookmark(index));

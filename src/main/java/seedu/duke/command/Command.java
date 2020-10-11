@@ -15,7 +15,7 @@ public abstract class Command {
     /**
      * Execution of command depends on which command subclass the command belongs to.
      */
-    public abstract void execute(ItemList items, SlotList slotList, Ui ui, 
+    public abstract void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
                                  Storage bookmarkStorage, Storage slotStorage) throws DukeException;
 
     /**
