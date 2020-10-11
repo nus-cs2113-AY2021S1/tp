@@ -7,7 +7,8 @@ ________                __                .__  _____
 Welcome to Quotesify!
 
 What would you like to do with Quotesify?
-Invalid command!
+I don't understand you.
+Maybe type "help" for usage instructions?
 
 What would you like to do with Quotesify?
 The book [book1 by me] has been added!
@@ -58,3 +59,4 @@ What would you like to do with Quotesify?
 The book [book1 by me] has been deleted!
 
 What would you like to do with Quotesify?
+Alright, have a nice day!

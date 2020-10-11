@@ -81,7 +81,10 @@ public class TextUi {
 
     public String getUserCommand() {
         System.out.println(PROMPT_MESSAGE);
-        return in.nextLine().trim();
+        if (in.hasNextLine()) {
+            return in.nextLine().trim();
+        }
+        return "bye";
     }
 
     public void printAddBook(Book book) {
