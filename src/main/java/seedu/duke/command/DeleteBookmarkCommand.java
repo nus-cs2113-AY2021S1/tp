@@ -7,6 +7,7 @@ import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
+import seedu.duke.slot.SlotList;
 
 public class DeleteBookmarkCommand extends Command {
     public static final String DEL_KW = "delete";
@@ -37,16 +38,16 @@ public class DeleteBookmarkCommand extends Command {
      *
      * @param items The list of bookmarks.
      * @param ui The user interface.
-     * @param storage The storage for saving and loading.
      */
     @Override
-    public void execute(ItemList items, Ui ui, Storage storage) throws DukeException {
+    public void execute(ItemList items, SlotList slotList, Ui ui, 
+                        Storage bookmarkStorage, Storage slotStorage) throws DukeException {
         BookmarkList bookmarks = (BookmarkList) items;
         try {
             Bookmark bookmark = bookmarks.getBookmark(index);
             bookmarks.deleteBookmark(bookmarks.getBookmark(index));
             ui.print(getMessage(bookmark));
-            //storage.save(taskList.getData());
+            //bookmarkStorage.save(taskList.getData());
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(DukeExceptionType.INVALID_BOOKMARK_NUMBER);
         }

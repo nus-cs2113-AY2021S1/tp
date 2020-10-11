@@ -53,11 +53,7 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                if (c instanceof AddSlotCommand || c instanceof DeleteSlotCommand) {
-                    c.execute(slots, ui, slotStorage);
-                } else {
-                    c.execute(bookmarks, ui, bookmarkStorage);
-                }
+                c.execute(bookmarks, slots, ui, bookmarkStorage, slotStorage);
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showErrorMessage(e);

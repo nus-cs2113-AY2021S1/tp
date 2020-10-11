@@ -6,6 +6,7 @@ public abstract class ItemList {
 
     private ArrayList<Object> items;
 
+
     /**
      * Constructs a itemList object with an empty ArrayList to store item objects.
      */

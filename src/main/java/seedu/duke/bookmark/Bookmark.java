@@ -30,7 +30,7 @@ public class Bookmark {
         this.description = description.trim();
         this.url = url.trim();
     }
-    
+
     /**
      * Returns the topic, URL and description that can be detected from the given input.
      *
@@ -143,5 +143,4 @@ public class Bookmark {
         Bookmark bookmark = new Bookmark(module, description, url);
         return bookmark;
     }
-
 }

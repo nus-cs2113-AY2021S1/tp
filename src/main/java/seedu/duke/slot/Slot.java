@@ -77,22 +77,6 @@ public class Slot {
         return new Slot(startTime, endTime, day, title);
     }
 
-    public static void printSlotsInADay(ArrayList<Slot> slots, String day) {
-        for (Slot s: slots) {
-            if (s.getDay().equals(day)) {
-                System.out.println(s);
-            }
-        }
-    }
-
-    public static void printTimetable(ArrayList<Slot> slots) {
-        for (String d: days) {
-            System.out.println(d);
-            printSlotsInADay(slots, d);
-            System.out.println("");
-        }
-    }
-
     @Override
     public String toString() {
         return String.format(startTime.toString() + "-" + endTime.toString() + " " + title);
