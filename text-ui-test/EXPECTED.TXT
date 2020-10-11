@@ -9,3 +9,4 @@ Hello from
                                     |_|
 
 Please enter the project details for instantiation.
+Project successfully created.
