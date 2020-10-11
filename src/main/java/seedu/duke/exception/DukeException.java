@@ -17,6 +17,12 @@ public class DukeException extends Exception {
         this.dukeExceptionType = dukeExceptionType;
     }
 
+    /**
+     * Constructs a new DukeException instance by storing the given DukeExceptionType and message
+     *
+     * @param dukeExceptionType The type of dukeException.
+     * @param info Additional information of the exception.
+     */
     public DukeException(DukeExceptionType dukeExceptionType, String info) {
         this.dukeExceptionType = dukeExceptionType;
         this.info = info;

@@ -1,14 +1,14 @@
 package seedu.duke;
 
-import seedu.duke.command.AddBookmarkCommand;
-import seedu.duke.command.AddSlotCommand;
-import seedu.duke.command.DeleteBookmarkCommand;
-import seedu.duke.command.DeleteSlotCommand;
-import seedu.duke.command.LaunchBookmarkCommand;
-import seedu.duke.command.FindBookmarkCommand;
-import seedu.duke.command.ShowTimetableCommand;
+import seedu.duke.command.bookmark.AddBookmarkCommand;
+import seedu.duke.command.timetable.AddSlotCommand;
+import seedu.duke.command.bookmark.DeleteBookmarkCommand;
+import seedu.duke.command.timetable.DeleteSlotCommand;
+import seedu.duke.command.bookmark.LaunchBookmarkCommand;
+import seedu.duke.command.bookmark.FindBookmarkCommand;
+import seedu.duke.command.timetable.ShowTimetableCommand;
 import seedu.duke.command.ExitCommand;
-import seedu.duke.command.ListCommand;
+import seedu.duke.command.bookmark.ListCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.ChangeModeCommand;
 

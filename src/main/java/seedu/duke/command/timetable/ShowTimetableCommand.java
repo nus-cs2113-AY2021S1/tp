@@ -1,10 +1,8 @@
-package seedu.duke.command.slot;
+package seedu.duke.command.timetable;
 
 import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
-import seedu.duke.bookmark.Bookmark;
-import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.command.Command;
 import seedu.duke.slot.Slot;
 import seedu.duke.slot.SlotList;

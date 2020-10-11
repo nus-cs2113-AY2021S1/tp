@@ -1,4 +1,4 @@
-package seedu.duke.command.slot;
+package seedu.duke.command.timetable;
 
 import seedu.duke.ItemList;
 import seedu.duke.Storage;

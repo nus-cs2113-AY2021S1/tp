@@ -5,6 +5,8 @@ import seedu.duke.ItemList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class represents the bookmark list used to store and organize bookmarks.
@@ -105,10 +107,9 @@ public class BookmarkList extends ItemList {
 
 
     /**
-     * This method searches the bookmarks from the list with matching module
-     * and description.
+     * This method searches the bookmarks from the list with matching module and description.
      *
-     * @param list The List<String></String> containing the module and description to be searched
+     * @param list The list of strings containing the module and description to be searched
      * @return The string message containing the matching bookmarks
      */
     public String findBookmarks(List<String> list) {
