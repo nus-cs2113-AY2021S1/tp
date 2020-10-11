@@ -1,6 +1,9 @@
 package seedu.duke.data.timetable;
 
+import seedu.duke.ui.InterfaceManager;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /**
@@ -38,10 +41,14 @@ public class Event {
      * @param isToRemind status of the event.
      * @param isRecurring status of the event.
      */
-    public Event(String title, LocalDate date, LocalTime time, Boolean isToRemind, Boolean isRecurring) {
+    public Event(String title, LocalDate date, LocalTime time, boolean isToRemind, boolean isRecurring) {
         this(title, date, time);
         this.isToRemind = isToRemind;
         this.isRecurring = isRecurring;
+    }
+
+    public Event(String title, LocalDateTime dateTime, boolean isToRemind, boolean isRecurring) {
+        this(title, dateTime.toLocalDate(), dateTime.toLocalTime(), isToRemind, isRecurring);
     }
 
     public String getTitle() {
@@ -68,19 +75,25 @@ public class Event {
         this.time = time;
     }
 
-    public Boolean getToRemind() {
+    public boolean getToRemind() {
         return isToRemind;
     }
 
-    public void setToRemind(Boolean toRemind) {
+    public void setToRemind(boolean toRemind) {
         isToRemind = toRemind;
     }
 
-    public Boolean getRecurring() {
+    public boolean getRecurring() {
         return isRecurring;
     }
 
-    public void setRecurring(Boolean recurring) {
+    public void setRecurring(boolean recurring) {
         isRecurring = recurring;
+    }
+
+    public String toString() {
+        String lineSep = InterfaceManager.LS;
+        return String.format("Event: %s%sDate: %s%sTime: %s%sRepeating: %b", title, lineSep, date.toString(), lineSep,
+                time.toString(), lineSep, isRecurring);
     }
 }
