@@ -257,7 +257,7 @@ public class TextUi {
     public void printRandomQuote(ListManager listManager) {
         QuoteList quotes = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
         Random rand = new Random();
-        int randomQuoteNumber = rand.nextInt(quotes.getSize()-1);
+        int randomQuoteNumber = rand.nextInt(quotes.getSize() - 1);
         Quote quoteToPrint = quotes.getQuote(randomQuoteNumber);
         System.out.println(PRINT_RANDOM_QUOTE + System.lineSeparator() + quoteToPrint.toString());
     }
