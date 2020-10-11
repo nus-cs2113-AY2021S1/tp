@@ -18,7 +18,7 @@ public class DukeException extends Exception {
     }
 
     /**
-     * Constructs a new DukeException instance by storing the given DukeExceptionType and message
+     * Constructs a new DukeException instance by storing the given DukeExceptionType and message.
      *
      * @param dukeExceptionType The type of dukeException.
      * @param info Additional information of the exception.

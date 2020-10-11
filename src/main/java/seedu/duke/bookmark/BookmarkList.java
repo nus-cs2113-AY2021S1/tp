@@ -1,7 +1,7 @@
 package seedu.duke.bookmark;
 
-import seedu.duke.exception.DukeException;
 import seedu.duke.ItemList;
+import seedu.duke.exception.DukeException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,7 @@ import java.util.logging.Logger;
  */
 public class BookmarkList extends ItemList {
     private ArrayList<Bookmark> bookmarks;
+    private static Logger logger = Logger.getLogger(BookmarkList.class.getName());
 
     /**
      * Constructs a BookmarkList object with an empty ArrayList to store Bookmark objects.
@@ -48,11 +49,14 @@ public class BookmarkList extends ItemList {
     }
 
     private void loadBookmark(String line) {
+        logger.entering(getClass().getName(), "loadBookmark");
         try {
             bookmarks.add(Bookmark.initBookmark(line));
         } catch (IndexOutOfBoundsException | DukeException e) {
             // Invalid task data, skips to the next entry
+            logger.log(Level.WARNING, "invalid bookmark data found in file: " + line, e);
         }
+        logger.exiting(getClass().getName(), "loadBookmark");
     }
 
     /**
