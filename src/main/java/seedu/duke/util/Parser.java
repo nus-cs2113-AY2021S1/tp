@@ -154,13 +154,13 @@ public class Parser {
      * string trimmed.
      *
      * @param input Input to be checked.
-     * @param e ExceptionType to be thrown
-     * @return Trimmed non-blank string
+     * @param exceptionType ExceptionType to be thrown.
+     * @return Trimmed non-blank string.
      * @throws SystemException Occurs when input is blank.
      */
-    private String checkBlank(String input, SystemException.ExceptionType e) throws SystemException {
+    private String checkBlank(String input, SystemException.ExceptionType exceptionType) throws SystemException {
         if (input.isBlank()) {
-            throw new SystemException(e);
+            throw new SystemException(exceptionType);
         } else {
             return input.trim();
         }
@@ -200,7 +200,7 @@ public class Parser {
      * Prepare userInput into Note before adding into Notebook.
      *
      * @param userMessage Original string user inputs.
-     * @return Result of the add note command
+     * @return Result of the add note command.
      * @throws SystemException if an error occurs.
      */
     private Command prepareAddNote(String userMessage) throws SystemException {
@@ -264,8 +264,8 @@ public class Parser {
      * Takes the format "add-e /t {Title} /timing {YYYY-MM-DD HH:MM} [/rem [How much earlier to remind]]
      * [/rec {How often to re-occur}] [/stop {YYYY-MM-DD HH:MM}]
      *
-     * @param userMessage User input message
-     * @return Returns an AddEventCommand to be executed by Duke
+     * @param userMessage User input message.
+     * @return Returns an AddEventCommand to be executed by Duke.
      * @throws SystemException Information provided by the tags are blank, wrong or do not have a default value.
      */
     private Command prepareAddEvent(String userMessage) throws SystemException {
@@ -319,7 +319,7 @@ public class Parser {
             if (dateTime == null) {
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_TIMING);
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
         }
 
@@ -352,7 +352,7 @@ public class Parser {
     /**
      * Used for input of note content and processing the input into a readable data.
      *
-     * @return A string of converted content input
+     * @return A string of converted content input.
      * @throws StringIndexOutOfBoundsException if an error occurs.
      */
     public String inputContent() throws StringIndexOutOfBoundsException {
@@ -397,7 +397,7 @@ public class Parser {
      * Prepare userInput into a int before deletion.
      *
      * @param userMessage Original string user inputs.
-     * @return Result of the delete note command
+     * @return Result of the delete note command.
      * @throws SystemException if an error occurs.
      */
     private Command prepareDeleteNote(String userMessage) throws SystemException {
@@ -507,9 +507,9 @@ public class Parser {
 
     /**
      * Parses the variables in userMessage to a form that is used in DeleteEventCommand.
-     * @param userMessage User Input without the action word
-     * @return Returns a DeleteEventCommand to be executed by Duke
-     * @throws SystemException When the index is not numeric (e.g. index = 1%s)
+     * @param userMessage User Input without the action word.
+     * @return Returns a DeleteEventCommand to be executed by Duke.
+     * @throws SystemException When the index is not numeric (e.g. index = 1%s).
      */
     private Command prepareDeleteEvent(String userMessage) throws SystemException {
         int index;
