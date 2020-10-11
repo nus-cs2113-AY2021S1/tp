@@ -14,13 +14,20 @@ public class Planus {
     private static final String COMMAND_ADD = "add";
     private static final String COMMAND_LIST = "list";
     private static final String COMMAND_BYE = "bye";
+    private static final String COMMAND_EDIT = "edit";
+    private static final String COMMAND_CLEAR = "clear";
     // Default date: day that the task is created, default priority: 0 (low to high: 0 - 4)
     private static final Pattern TASK_PATTERN = Pattern.compile(
-            "^(?<description>(\\w+\\s*)+\\w*)"
-            + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
-            + "( t/(?<time>\\d{4}))?"
-            + "( p/(?<priority>\\d))?$");
-
+            "^(?<description>(\\w+\\s*)+\\w+)"
+                    + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
+                    + "( t/(?<time>\\d{4}))?"
+                    + "( p/(?<priority>\\d))?$");
+    private static final Pattern EDIT_TASK_PATTERN = Pattern.compile(
+            "^(?<index>\\d+)"
+                    + "( des/(?<description>(\\w+\\s*)+\\w*))?"
+                    + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
+                    + "( t/(?<time>\\d{4}))?"
+                    + "( p/(?<priority>\\d))?$");
     private final ArrayList<Task> tasks = new ArrayList<>();
     private boolean isExit;
     private Storage storage;
@@ -49,13 +56,14 @@ public class Planus {
     private void executeCommand(String userInput) {
         String[] commandTypeAndParams = splitCommandWordAndArgs(userInput);
         String commandType = commandTypeAndParams[0];
+        String commandArgs;
 
         switch (commandType) {
         case COMMAND_HELP:
             ui.showCommands();
             break;
         case COMMAND_ADD:
-            String commandArgs = commandTypeAndParams[1];
+            commandArgs = commandTypeAndParams[1];
             executeAddTask(commandArgs);
             break;
         case COMMAND_LIST:
@@ -63,6 +71,13 @@ public class Planus {
             break;
         case COMMAND_BYE:
             exitProgram();
+            break;
+        case COMMAND_EDIT:
+            commandArgs = commandTypeAndParams[1];
+            editTask(commandArgs, tasks);
+            break;
+        case COMMAND_CLEAR:
+            clearTasks(tasks);
             break;
         default:
             System.out.println("Invalid command");
@@ -98,5 +113,41 @@ public class Planus {
         isExit = true;
         storage.writeTasksToFile(tasks);
         System.out.println("\nBye! See you again!");
+    }
+
+    private void editTask(String commandArgs, ArrayList<Task> tasks) {
+        Matcher matcher = EDIT_TASK_PATTERN.matcher(commandArgs);
+        if (matcher.find()) {
+            String indexString = matcher.group("index");
+            String description = matcher.group("description");
+            String dateString = matcher.group("date");
+            String timeString = matcher.group("time");
+            String priorityString = matcher.group("priority");
+
+            int index = Integer.parseInt(indexString) - 1;
+            if (description != null) {
+                tasks.get(index).setDescription(description);
+            }
+            if (dateString != null) {
+                tasks.get(index).setDate(dateString);
+            }
+            if (timeString != null) {
+                tasks.get(index).setTime(timeString);
+            }
+            if (priorityString != null) {
+                tasks.get(index).setPriority(priorityString);
+            }
+            System.out.println("\nTask edited:");
+            System.out.println(indexString + ". " + tasks.get(index).toString() + "\n");
+        } else {
+            // TODO throw new InvalidCommandException();
+            System.out.println("Invalid command!");
+            return;
+        }
+    }
+
+    private void clearTasks(ArrayList<Task> tasks) {
+        tasks.clear();
+        System.out.println("\nAll tasks cleared.\n");
     }
 }
