@@ -25,23 +25,28 @@ public class Ui {
         System.out.println("List of available commands:\n"
                 + "1. todo <task description>\n"
                 + "2. deadline <task description> /by ddMMyy\n"
-                + "3. activity <activity description> <venue> /at ddMMyy\n"
+                + "3. activity <activity description> /at ddMMyy HHmm <venue>\n"
                 + "4. exam <module code> <venue> /at ddMMyy HHmm\n"
                 + "5. lecture <module code> <venue> /at ddMMyy HHmm\n"
                 + "6. tutorial <module code> <venue> /at ddMMyy HHmm\n"
                 + "7. lab <module code> <venue> /at ddMMyy HHmm\n"
                 + "8. done <task number>\n"
-                + "9. delete <task number>\n"
-                + "10. find <keyword>\n"
-                + "11. print list\n"
-                + "12. print events\n"
-                + "13. print timeline\n"
-                + "14. print progress"
+                + "9. -t <task number>\n"
+                + "10. -e <event number>\n"
+                + "11. find <keyword>\n"
+                + "12. print list\n"
+                + "13. print events\n"
+                + "14. print timeline\n"
+                + "15. print progress"
         );
     }
 
     public static void printDateParseError() {
         System.out.println("Unable to parse date");
+    }
+
+    public static void printTotalTaskNumber(CalendarList calendarList) {
+        System.out.println("Your total task(s): " + calendarList.getTotalTasks());
     }
 
     /**
@@ -57,17 +62,36 @@ public class Ui {
      * Prints the Duke welcome message.
      */
     public static void printWelcomeMessage() {
-        printDukeBorder(true);
-        String logo = " ____        _\n"
-                + "|  _ \\ _   _| | _____\n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("____________________________________________________________\n"
-                + " Hello! I'm Duke\n"
-                + " What can I do for you?");
-        printDukeBorder(false);
+        System.out.println("Printing of 25/7 logo!!!!");
+        System.out.println("========================================================================\n"
+            + "Welcome to 25/7 Task Manager!\n"
+            + "What can I do for you?\n"
+            + "Enter 'help' for the list of commands.\n"
+            + "==========================================================================\n");
+
+        /**
+//        String[]  HELLO_MESSAGE = {
+//                "=================================================================================================",
+//                "   .-----------------.     .-----------------.              //    .-------------------.",
+//                "   |______________.  |     |  _______________|             //     |______________.   |",
+//                "                  |  |     |  |                           //                    /   /",
+//                "                  |  |     |  |                          //                    /   /",
+//                "   .---------------  |     |  |---------------.         //                    /   /",
+//                "   | ________________|     |________________  |        //                    /   /",
+//                "   | |                                     |  |       //                    /   /",
+//                "   | |                                     |  |      //                    /   /",
+//                "   | ----------------.     .---------------|  |     //                    /   /",
+//                "   |_________________|     |__________________|    //                    /___/",
+//                " ",
+//                "=================================================================================================",
+//                " Welcome to 25/7 Task Manager!",
+//                " What can I do for you?",
+//                " Enter 'help' for the list of commands.",
+//                "================================================================================================="
+//        };
+//        System.out.println(String.join("\n", HELLO_MESSAGE));
+         */
+
     }
 
     /**
@@ -84,22 +108,20 @@ public class Ui {
      */
     public static void printDukeBorder(boolean top) {
         if (top) {
-            System.out.println("............. DUKE CHAT BOX ^^ ............");
+            System.out.println("..................... DUKE CHAT BOX ^^ ....................");
         } else {
-            System.out.println("...........................................");
+            System.out.println("...........................................................");
         }
     }
 
     /**
      * Shows the task deleted and the number of tasks left in the list.
      *
-     * @param taskNumberDelete task number of the task to be deleted.
-     * @param calendarList     task list of the task to be deleted.
+     * @param numberDelete task number of the task to be deleted.
+     * @param calendarList task list of the task to be deleted.
      */
-    public static void printDeleteTaskMessage(int taskNumberDelete, CalendarList calendarList) {
-        /* - 1 is catered for array list's index starting from 0. */
-        System.out.println("Task deleted:\n" + calendarList.getCalendarList().get(taskNumberDelete - 1));
-        System.out.println("Your total tasks: " + (calendarList.getTotalTasks() - 1));
+    public static void printDeleteMessage(int numberDelete, CalendarList calendarList) {
+        System.out.println("Deleted:\n" + calendarList.getCalendarList().get(numberDelete));
     }
 
     /**
@@ -110,7 +132,7 @@ public class Ui {
      */
     public static void printTaskListView(CalendarList calendarList) {
         System.out.println("This is your list of task(s):");
-        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
             System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", i + 1);
         }
     }
@@ -124,7 +146,7 @@ public class Ui {
     public static void printEventsListView(CalendarList calendarList) {
         int eventCounts = 0;
         System.out.println("This is your list of event(s):");
-        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
             if (calendarList.getCalendarList().get(i) instanceof Event) {
                 eventCounts++;
                 System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", eventCounts);
@@ -138,13 +160,13 @@ public class Ui {
     /**
      * Shows the user the task (that was indicated by the user) that was marked as done .
      *
-     * @param calendarList        calendar list that has the task marked as done.
-     * @param taskNumberCompleted task number indicated by the user as done.
+     * @param calendarNumberCompleted calendar number of the task set as done.
+     * @param calendarList            calendar list that has the task marked as done.
      */
-    public static void printCompleteTaskMessage(int taskNumberCompleted, CalendarList calendarList) {
+    public static void printCompleteTaskMessage(int calendarNumberCompleted, CalendarList calendarList) {
         System.out.println(
                 "Good work! I've marked this task as done:\n"
-                        + calendarList.getCalendarList().get(taskNumberCompleted - 1));
+                        + calendarList.getCalendarList().get(calendarNumberCompleted));
     }
 
     /**
@@ -152,13 +174,13 @@ public class Ui {
      *
      * @param calendarList the calendar list that the task was added to.
      */
-    public static void printAddTaskMessage(CalendarList calendarList) {
+    public static void printAddMessage(CalendarList calendarList) {
         System.out.println("Got it. I've added this task:");
 
         /* - 1 is catered for array list's index starting from 0. */
-        System.out.println(calendarList.getCalendarList().get(calendarList.getCalendarList().size() - 1));
+        int lastCalendarItemIndex = calendarList.getCalendarList().size() - 1;
 
-        System.out.println("Your total tasks: " + calendarList.getTotalTasks());
+        System.out.println(calendarList.getCalendarList().get(lastCalendarItemIndex));
     }
 
     /**
@@ -171,10 +193,10 @@ public class Ui {
     public static void printFindTaskMessage(CalendarList calendarList, String keyword) throws DukeException {
         boolean isFound = false;
 
-        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
             CalendarItem item = calendarList.getCalendarList().get(i);
             if (item instanceof Task) {
-                if (((Task) item).getDescription().contains(keyword)) {
+                if (item.getDescription().contains(keyword)) {
                     if (!isFound) { // first instance when keyword is found
                         System.out.println("Here are the matching tasks in your list:");
                     }
@@ -196,12 +218,12 @@ public class Ui {
     public static void printProgress(CalendarList calendarList) {
         int numFinished = 0;
         int numTotal = 0;
-        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
             CalendarItem item = calendarList.getCalendarList().get(i);
             if (!(item instanceof Task)) {
                 continue;
             }
-            if (((Task)item).getTaskType().equals("D") || ((Task)item).getTaskType().equals("T")) {
+            if (((Task) item).getTaskType().equals("D") || ((Task) item).getTaskType().equals("T")) {
                 numTotal++;
                 if (((Task) item).getIsDone()) {
                     numFinished++;
@@ -233,18 +255,18 @@ public class Ui {
             System.out.println("Error: Please key in the deadline in this format: deadline ... /by ddMMyy");
             break;
         case "activity":
-            System.out.println("Error: Please key in the event in this format: event ... /at ddMMyy");
+            System.out.println("Error: Please key in the activity in this format: activity ... /at ddMMyy");
             break;
         case "lecture":
-            System.out.println("Error: Please key in the lecture in this format: lecture <module code> <venue? /at "
+            System.out.println("Error: Please key in the lecture in this format: lecture <module code> <venue> /at "
                     + "ddMMyy HHmm");
             break;
         case "tutorial":
-            System.out.println("Error: Please key in the tutorial in this format: tutorial <module code> <venue? /at "
+            System.out.println("Error: Please key in the tutorial in this format: tutorial <module code> <venue> /at "
                     + "ddMMyy HHmm");
             break;
         case "lab":
-            System.out.println("Error: Please key in the lab in this format: lab <module code> <venue? /at "
+            System.out.println("Error: Please key in the lab in this format: lab <module code> <venue> /at "
                     + "ddMMyy HHmm");
             break;
         case "exam":
@@ -258,14 +280,21 @@ public class Ui {
         case "invalid task action":
             System.out.println("Error: Total task(s): " + calendarList.getTotalTasks());
             break;
+        case "invalid event action":
+            System.out.println("Error: Total event(s): " + calendarList.getTotalEvents());
+            break;
         case "done":
             System.out.println("Error: Please key in the command in this format: done <task number>");
             break;
         case "delete":
-            System.out.println("Error: Please key in the command in this format: delete <task number>");
+            System.out.println("Error: Please key in the command in this format: -t <task number> "
+                    + "OR -e <event number>");
             break;
         case "keyword not found":
             System.out.println("There are no tasks matching this keyword. Check that you have spelt it correctly.");
+            break;
+        case "file not found":
+            System.out.println("The file can not be found");
             break;
         case "invalid done number":
             System.out.println("You can only mark a task as done. An event cannot be marked as done.");

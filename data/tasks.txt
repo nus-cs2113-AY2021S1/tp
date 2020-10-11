@@ -1,5 +1,7 @@
-LEC cs2113|2020-10-08|16:00
-TUT cs2113|2020-10-08|16:00
-LAB cs1010|2020-10-10|10:00
-T|false|homework
-null
+EXAM|false|cs2113|2020-10-10|12:30|nus
+T|true|homework
+LEC|false|cs1221|2020-10-10|14:00|nus
+LAB|false|cg2028|2020-10-20|14:00|nus
+TUT|false|cg2020|2020-10-20|15:00|nus
+LEC|false|css92r|2002-02-20|12:00|feio
+T|true|eionre

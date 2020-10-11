@@ -1,7 +1,5 @@
 package seedu.duke.calendar.event;
 
-import seedu.duke.calendar.task.Task;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -21,9 +19,9 @@ public class Tutorial extends SchoolEvent {
      * A Constructor of a tutorial object.
      *
      * @param moduleCode module code of the tutorial
-     * @param date date of the tutorial
-     * @param time time of the tutorial
-     * @param venue venue of the tutorial
+     * @param date       date of the tutorial
+     * @param time       time of the tutorial
+     * @param venue      venue of the tutorial
      */
     public Tutorial(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
@@ -61,7 +59,7 @@ public class Tutorial extends SchoolEvent {
      */
     @Override
     public String toString() {
-        return "[TUT]" +  "[" + getIcon() + "] " + moduleCode + " "
+        return "[TUT]" + "[" + getIcon() + "] " + moduleCode + " "
                 + date.format(DateTimeFormatter.ofPattern("dd-MM-yy E"))
                 + " " + time.format(DateTimeFormatter.ofPattern("h:mma"))
                 + " (" + venue + ")";
@@ -74,8 +72,8 @@ public class Tutorial extends SchoolEvent {
      */
     @Override
     public String printIntoFile() {
-        return TUTORIAL_FILE_SYMBOL + " " + moduleCode
-                + SEPARATOR + this.date + SEPARATOR + this.time;
+        return TUTORIAL_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
+                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue;
     }
 
     /**
@@ -94,6 +92,12 @@ public class Tutorial extends SchoolEvent {
     @Override
     public LocalDate getDate() {
         return date;
+    }
+
+    @Override
+    public String getDescription() {
+        return "[TUT]" +  "[" + getIcon() + "] " + moduleCode + " "
+                + " (" + venue + ")";
     }
 
     /**

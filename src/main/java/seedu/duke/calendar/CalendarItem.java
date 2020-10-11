@@ -9,4 +9,6 @@ public abstract class CalendarItem {
     public abstract LocalTime getTime();
 
     public abstract LocalDate getDate();
+
+    public abstract String getDescription();
 }

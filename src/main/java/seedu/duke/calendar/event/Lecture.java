@@ -19,9 +19,9 @@ public class Lecture extends SchoolEvent {
      * A Constructor of a lecture object.
      *
      * @param moduleCode module code of the lecture
-     * @param date date of the lecture
-     * @param time time of the lecture
-     * @param venue venue of the lecture
+     * @param date       date of the lecture
+     * @param time       time of the lecture
+     * @param venue      venue of the lecture
      */
     public Lecture(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
@@ -74,8 +74,8 @@ public class Lecture extends SchoolEvent {
      */
     @Override
     public String printIntoFile() {
-        return LECTURE_FILE_SYMBOL + " " + moduleCode
-                + SEPARATOR + this.date + SEPARATOR + this.time;
+        return LECTURE_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
+                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue;
     }
 
     /**
@@ -86,6 +86,12 @@ public class Lecture extends SchoolEvent {
     @Override
     public LocalDate getDate() {
         return date;
+    }
+
+    @Override
+    public String getDescription() {
+        return "[LEC]" + "[" + getIcon() + "] " + moduleCode + " "
+                + " (" + venue + ")";
     }
 
     @Override

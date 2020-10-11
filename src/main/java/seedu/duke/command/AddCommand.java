@@ -6,12 +6,12 @@ import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.event.Activity;
-import seedu.duke.calendar.event.Lecture;
-import seedu.duke.calendar.task.Deadline;
-import seedu.duke.calendar.task.Exam;
 import seedu.duke.calendar.event.Lab;
-import seedu.duke.calendar.task.Todo;
+import seedu.duke.calendar.event.Lecture;
 import seedu.duke.calendar.event.Tutorial;
+import seedu.duke.calendar.task.Deadline;
+import seedu.duke.calendar.event.Exam;
+import seedu.duke.calendar.task.Todo;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -51,6 +51,7 @@ public class AddCommand extends Command {
         LocalTime time;
         String venue;
         String moduleCode;
+        boolean isTask = false;
 
         command = userInput.split(" ", 2);
         String commandType = command[0];
@@ -59,11 +60,11 @@ public class AddCommand extends Command {
         case TODO:
             try {
                 taskDescription = command[1].trim();
-
                 if (taskDescription.isEmpty()) {
                     throw new DukeException("todo");
                 } else {
                     calendarList.addTask(new Todo(taskDescription));
+                    isTask = true;
                 }
             } catch (Exception e) {
                 throw new DukeException("todo");
@@ -79,6 +80,7 @@ public class AddCommand extends Command {
                     throw new DukeException("deadline");
                 } else {
                     calendarList.addTask(new Deadline(taskDescription, date));
+                    isTask = true;
                 }
             } catch (Exception e) {
                 throw new DukeException("deadline");
@@ -86,7 +88,7 @@ public class AddCommand extends Command {
             break;
         case ACTIVITY:
             /**
-             * User input for Activity event example: run training /at 020202 1200 sentosa
+             * User input for Activity event example: activity run training /at 020202 1200 sentosa
              */
             try {
                 command = command[1].split("/at");
@@ -200,8 +202,11 @@ public class AddCommand extends Command {
         default:
             throw new DukeException("invalid command");
         }
+        Ui.printAddMessage(calendarList);
+        if (isTask) {
+            Ui.printTotalTaskNumber(calendarList);
+        }
 
-        Ui.printAddTaskMessage(calendarList);
         storage.writeToFile(calendarList);
     }
 }

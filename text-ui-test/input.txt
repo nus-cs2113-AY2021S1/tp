@@ -7,4 +7,10 @@ todo homework
 exam cs2113t finals /at 201020 1230
 print list
 print events
+deadline <task description> /by 101020
+done 2
+done 3
+-t1
+-e2
+-e999
 bye
