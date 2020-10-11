@@ -13,12 +13,11 @@ public class HelpMessage extends Ui {
             + "5 flashcard  - flashcards to revise your study materials";
 
     public static void printHelpMessage() {
-        Mode currentMode = StudyIt.getCurrentMode();
-
         System.out.println(LINE_DIVIDER);
         System.out.println(generalCommands);
-
         System.lineSeparator();
+
+        Mode currentMode = StudyIt.getCurrentMode();
         if (currentMode == Mode.BOOKMARK) {
             printBookmarkHelp();
         } else if (currentMode == Mode.TIMETABLE) {
@@ -28,21 +27,29 @@ public class HelpMessage extends Ui {
         } else if (currentMode == Mode.FLASHCARD) {
             printFlashcardHelp();
         }
-        System.lineSeparator();
 
+        System.lineSeparator();
         System.out.println(currentModes);
         System.out.println(LINE_DIVIDER);
     }
 
     //TODO: Fill this up after you're done
-    public static void printBookmarkHelp() {}
+    public static void printBookmarkHelp() {
+
+    }
 
     //TODO: Fill this up after you're done
-    public static void printTimetableHelp() {}
+    public static void printTimetableHelp() {
+
+    }
 
     //TODO: Fill this up after you're done
-    public static void printAcademicHelp() {}
+    public static void printAcademicHelp() {
+
+    }
 
     //TODO: Fill this up after you're done
-    public static void printFlashcardHelp() {}
+    public static void printFlashcardHelp() {
+
+    }
 }

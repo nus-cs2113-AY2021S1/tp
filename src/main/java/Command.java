@@ -10,7 +10,7 @@ public class Command {
             Ui.changeModeCommand(command);
         } else if (commandType == CommandType.HELP) {
             HelpMessage.printHelpMessage();
-        } else if (StudyIt.getCurrentMode() != Mode.MENU){
+        } else if (StudyIt.getCurrentMode() != Mode.MENU) {
             handleNonGeneralCommand();
         } else {
             ErrorMessage.printUnidentifiableCommand();
@@ -35,11 +35,19 @@ public class Command {
         }
     }
 
-    public static void executeBookmarkModeCommand() throws InvalidCommandException {}
+    public static void executeBookmarkModeCommand() throws InvalidCommandException {
 
-    public static void executeTimetableModeCommand() throws InvalidCommandException {}
+    }
 
-    public static void executeAcademicModeCommand() throws InvalidCommandException {}
+    public static void executeTimetableModeCommand() throws InvalidCommandException {
 
-    public static void executeFlashcardCommand() throws InvalidCommandException {}
+    }
+
+    public static void executeAcademicModeCommand() throws InvalidCommandException {
+
+    }
+
+    public static void executeFlashcardCommand() throws InvalidCommandException {
+
+    }
 }
