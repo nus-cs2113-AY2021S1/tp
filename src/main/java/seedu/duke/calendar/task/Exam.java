@@ -34,7 +34,8 @@ public class Exam extends SchoolEvent {
 
     @Override
     public String printIntoFile() {
-        return EXAM_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode + SEPARATOR + date + SEPARATOR + time + SEPARATOR + venue;
+        return EXAM_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR +
+                moduleCode + SEPARATOR + date + SEPARATOR + time + SEPARATOR + venue;
     }
 
     @Override
