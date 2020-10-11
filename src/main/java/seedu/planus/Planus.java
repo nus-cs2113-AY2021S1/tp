@@ -1,6 +1,9 @@
 package seedu.planus;
 
 import seedu.data.TaskList;
+import seedu.exceptions.InvalidCommandException;
+import seedu.exceptions.InvalidPriorityException;
+import seedu.exceptions.UnknowCommandException;
 import seedu.storage.Storage;
 import seedu.task.Task;
 import seedu.ui.Ui;
@@ -37,7 +40,11 @@ public class Planus {
         ui.showWelcomeMessage();
         while (!isExit) {
             String userInput = ui.getUserInput();
-            executeCommand(userInput);
+            try {
+                executeCommand(userInput);
+            } catch (InvalidCommandException | InvalidPriorityException | UnknowCommandException e) {
+                ui.showException(e);
+            }
         }
     }
 
@@ -48,7 +55,8 @@ public class Planus {
         ui = new Ui();
     }
 
-    private void executeCommand(String userInput) {
+    private void executeCommand(String userInput) throws
+            InvalidCommandException, InvalidPriorityException, UnknowCommandException {
         String[] commandTypeAndParams = splitCommandWordAndArgs(userInput);
         String commandType = commandTypeAndParams[0];
 
@@ -67,8 +75,7 @@ public class Planus {
             exitProgram();
             break;
         default:
-            System.out.println("Invalid command");
-            break;
+            throw new UnknowCommandException();
         }
     }
 
@@ -76,7 +83,8 @@ public class Planus {
         return userInput.split(" ", 2);
     }
 
-    private void executeAddTask(String commandArgs) {
+    private void executeAddTask(String commandArgs) throws
+            InvalidCommandException, InvalidPriorityException {
         Matcher matcher = TASK_PATTERN.matcher(commandArgs);
         Task task;
         if (matcher.find()) {
@@ -86,9 +94,7 @@ public class Planus {
             String priorityString = matcher.group("priority");
             task = new Task(description, dateString, timeString, priorityString);
         } else {
-            // TODO throw new InvalidCommandException();
-            System.out.println("Invalid command!");
-            return;
+            throw new InvalidCommandException();
         }
         tasks.addTask(task);
         System.out.println("\nTask added:");

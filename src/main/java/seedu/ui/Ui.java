@@ -63,4 +63,12 @@ public class Ui {
         out.println("- list: show list of tasks");
         out.println("- bye: exit the program" + LS);
     }
+
+    public void showMessage(String message) {
+        out.println(message);
+    }
+
+    public void showException(Exception e) {
+        out.println(e);
+    }
 }

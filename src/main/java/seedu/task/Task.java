@@ -1,5 +1,7 @@
 package seedu.task;
 
+import seedu.exceptions.InvalidPriorityException;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -9,9 +11,10 @@ public class Task {
     private String description;
     private LocalDate date;
     private LocalTime time;
-    private Integer priority;
+    private Priority priority;
 
-    public Task(String description, String dateString, String timeString, String priorityString) {
+    public Task(String description, String dateString,
+                String timeString, String priorityString) throws InvalidPriorityException {
         this.description = description;
         date = dateStringToDate(dateString);
         time = timeStringToTime(timeString);
@@ -39,11 +42,25 @@ public class Task {
         return LocalTime.of(hour, minute);
     }
 
-    private Integer priorityStringToPriority(String priorityString) {
+    private Priority priorityStringToPriority(String priorityString) throws InvalidPriorityException {
         if (priorityString == null) {
-            return 0;
+            return Priority.LOW;
         }
-        return Integer.parseInt(priorityString);
+        Priority priority;
+        switch (priorityString) {
+        case "0":
+            priority = Priority.LOW;
+            break;
+        case "1":
+            priority = Priority.MEDIUM;
+            break;
+        case "2":
+            priority = Priority.HIGH;
+            break;
+        default:
+            throw new InvalidPriorityException();
+        }
+        return priority;
     }
 
     private String dateToString(LocalDate date) {
@@ -62,7 +79,7 @@ public class Task {
         }
     }
 
-    private String priorityToString(Integer priority) {
+    private String priorityToString(Priority priority) {
         return " " + priority.toString();
     }
 
@@ -90,11 +107,11 @@ public class Task {
         this.time = time;
     }
 
-    public Integer getPriority() {
+    public Priority getPriority() {
         return priority;
     }
 
-    public void setPriority(Integer priority) {
+    public void setPriority(Priority priority) {
         this.priority = priority;
     }
 
