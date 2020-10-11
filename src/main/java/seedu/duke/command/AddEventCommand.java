@@ -19,7 +19,6 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "add-e";
-
     private static final String COMMAND_USAGE = COMMAND_WORD + ": Adds an event to the timetable. Parameters:"
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE "
             + PREFIX_DELIMITER + PREFIX_TIMING + " TIMING (Format: " + DateTimeManager.DATEFORMAT + ") "
@@ -29,7 +28,6 @@ public class AddEventCommand extends Command {
             RecurringEvent.MONTHLY_RECURRENCE_TYPE, RecurringEvent.YEARLY_RECURRENCE_TYPE)
             + "[" + PREFIX_DELIMITER + PREFIX_REMIND + " [Days before (Default: 1)]" + "] "
             + "[" + PREFIX_DELIMITER + PREFIX_STOP_RECURRING + " TIMING (Format: " + DateTimeManager.DATEFORMAT + ")]";
-
     private Event event;
 
     /**
