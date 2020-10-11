@@ -10,6 +10,7 @@ class DukeTest {
             + "    | | | | | | | |/ / _ \\\n"
             + "    | |_| | |_| |   <  __/\n"
             + "    |____/ \\__,_|_|\\_\\___|\n";
+
     @Test
     public void sampleTest() {
         assertTrue(true);
