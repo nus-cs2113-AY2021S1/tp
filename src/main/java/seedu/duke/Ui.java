@@ -196,7 +196,7 @@ public class Ui {
     public static void printProgress(CalendarList calendarList) {
         int numFinished = 0;
         int numTotal = 0;
-        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
             CalendarItem item = calendarList.getCalendarList().get(i);
             if (!(item instanceof Task)) {
                 continue;

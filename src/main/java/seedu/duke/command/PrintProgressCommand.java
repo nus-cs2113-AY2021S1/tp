@@ -7,8 +7,8 @@ import seedu.duke.calendar.CalendarList;
 /**
  * Show the progress of todos and deadlines to the user.
  */
-public class ProgressCommand extends Command {
-    public ProgressCommand(String userInput) {
+public class PrintProgressCommand extends Command {
+    public PrintProgressCommand(String userInput) {
         super(userInput);
     }
 
