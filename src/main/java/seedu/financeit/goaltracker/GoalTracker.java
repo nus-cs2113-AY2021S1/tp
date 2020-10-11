@@ -3,8 +3,9 @@ package seedu.financeit.goaltracker;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.Goal;
+import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.UiManager;
-import seedu.financeit.goaltracker.TotalGoal;
+
 import java.util.Scanner;
 
 
@@ -26,7 +27,9 @@ public class GoalTracker {
         UiManager.printWithStatusIcon(Constants.PrintType.INSTRUCTION, "Input either expense/income "
                 + "to set goals for it."
         );
-        cmdPacket = UiManager.handleInput();
+
+        input = UiManager.handleInput();
+        cmdPacket = new InputParser().parseInput(input.toLowerCase());
         while (!exitTracker) {
             switch (cmdPacket.getCommandString()) {
             case "expense":
@@ -40,7 +43,8 @@ public class GoalTracker {
                 break;
             default:
                 System.out.println("Invalid Command");
-                cmdPacket = UiManager.handleInput();
+                input = UiManager.handleInput();
+                cmdPacket = new InputParser().parseInput(input.toLowerCase());
                 break;
             }
         }
@@ -70,7 +74,8 @@ public class GoalTracker {
 
         if (backToMenu == true && exitTracker == false) {
             System.out.println("Do you want to exit Expense Goal Tracker? y/n ");
-            cmdPacket = UiManager.handleInput();
+            input = UiManager.handleInput();
+            cmdPacket = new InputParser().parseInput(input.toLowerCase());
             if (cmdPacket.getCommandString().equals("y")) {
                 main();
             } else {
@@ -103,7 +108,8 @@ public class GoalTracker {
 
         if (backToMenu == true && exitTracker == false) {
             System.out.println("Do you want to exit Income Goal Tracker? y/n ");
-            cmdPacket = UiManager.handleInput();
+            input = UiManager.handleInput();
+            cmdPacket = cmdPacket = new InputParser().parseInput(input.toLowerCase());
             if (cmdPacket.getCommandString().equals("y")) {
                 main();
             } else {
