@@ -2,10 +2,13 @@ package seedu.financeit;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.manualtracker.ManualTracker;
+import seedu.financeit.goaltracker.GoalTracker;
+import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.RegexMatcher;
 import seedu.financeit.utils.SaveManager;
+import seedu.financeit.financetools.FinanceTools;
 
 public class Financeit {
 
@@ -18,9 +21,10 @@ public class Financeit {
                 MenuPrinter.prompt = "An exception has occurred: " + m;
             }
             MenuPrinter.printMainMenu();
-            CommandPacket input = UiManager.handleInput();
+            String input = UiManager.handleInput();
+            CommandPacket packet = new InputParser().parseInput(input);
             UiManager.refreshPage();
-            switch (input.getCommandString()) {
+            switch (packet.getCommandString()) {
                 case "manual":
                     ManualTracker.main();
                     break;
@@ -29,8 +33,10 @@ public class Financeit {
                 case "acc": //AccSummary.main();
                     break;
                 case "goal": //GoalTracker.main();
+                    GoalTracker.main();
                     break;
                 case "financial": //FinancialCalculator.main();
+                    FinanceTools.main();
                     break;
                 case "exit":
                     try {
@@ -47,5 +53,3 @@ public class Financeit {
         }
     }
 }
-
-// This prints a table in case we need it

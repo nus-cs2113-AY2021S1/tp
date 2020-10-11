@@ -56,7 +56,7 @@ public class SaveManager {
                 if (buffer[3].length() >= 4) {
                     buffer[3] = charRemoveAt(buffer[3], 2);
                 }
-                EntryTracker.setCurrLedger((Ledger) ManualTracker.getLedgerList().getLedgerByIndex(ledger_index));
+                EntryTracker.setCurrLedger((Ledger) ManualTracker.getLedgerList().getItemFromIndex(ledger_index));
                 EntryTracker.setCommandPacket(in.parseInput("entry new /time " + buffer[3] + " /cat " + buffer[1] + " /desc " + buffer[4] + " /amt " + buffer[2] + buffer[0]));
                 EntryTracker.CreateEntry();
             } else {
