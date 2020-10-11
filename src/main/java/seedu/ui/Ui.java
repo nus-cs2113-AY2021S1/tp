@@ -1,4 +1,8 @@
-package seedu.planus;
+package seedu.ui;
+
+import seedu.task.DateSorter;
+import seedu.task.PrioritySorter;
+import seedu.task.Task;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -11,28 +15,26 @@ public class Ui {
     private static final String LS = System.lineSeparator();
     private final Scanner in;
     private final PrintStream out;
-    private ArrayList<Task> tasks;
 
-    public Ui(ArrayList<Task> tasks) {
-        this(System.in, System.out, tasks);
+    public Ui() {
+        this(System.in, System.out);
     }
 
-    private Ui(InputStream in, PrintStream out, ArrayList<Task> tasks) {
+    private Ui(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
-        this.tasks = tasks;
     }
 
     public String getUserInput() {
         return in.nextLine();
     }
 
-    public void displayAll() {
+    public void displayAll(ArrayList<Task> tasks) {
         // Basic adding sequence
         displayTasks(tasks);
     }
 
-    public void displayAllByTime() {
+    public void displayAllByTime(ArrayList<Task> tasks) {
         // Sort by datetime, default display mode
         List<Task> sorted = tasks.stream()
                 .sorted(new DateSorter())
@@ -40,7 +42,7 @@ public class Ui {
         displayTasks((ArrayList<Task>) sorted);
     }
 
-    public void displayAllByPriority() {
+    public void displayAllByPriority(ArrayList<Task> tasks) {
         // Sort by priority, same priority then datetime
         List<Task> sorted = tasks.stream()
                 .sorted(new DateSorter())

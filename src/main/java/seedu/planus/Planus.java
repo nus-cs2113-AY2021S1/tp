@@ -1,8 +1,10 @@
 package seedu.planus;
 
+import seedu.storage.Storage;
+import seedu.task.Task;
+import seedu.ui.Ui;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -43,7 +45,7 @@ public class Planus {
         storage = new Storage();
         storage.loadTasks(tasks);
         isExit = false;
-        ui = new Ui(tasks);
+        ui = new Ui();
     }
 
     private void executeCommand(String userInput) {
@@ -59,7 +61,7 @@ public class Planus {
             executeAddTask(commandArgs);
             break;
         case COMMAND_LIST:
-            ui.displayAll();
+            ui.displayAll(tasks);
             break;
         case COMMAND_BYE:
             exitProgram();

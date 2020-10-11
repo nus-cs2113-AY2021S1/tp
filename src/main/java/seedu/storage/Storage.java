@@ -1,7 +1,8 @@
-package seedu.planus;
+package seedu.storage;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import seedu.task.Task;
 
 import java.io.File;
 import java.io.FileNotFoundException;
