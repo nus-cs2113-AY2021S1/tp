@@ -90,7 +90,7 @@ public class Ui {
     }
 
     public void printPriorityChanged(Task task) {
-        System.out.println("The task" + task.getTitle() + "has its priority changed to:");
+        System.out.println("The task " + task.getTitle() + "has its priority changed to:");
         System.out.println("\t" + task.getPriority());
     }
 

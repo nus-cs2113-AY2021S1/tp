@@ -61,7 +61,7 @@ public class TaskCommand {
                 try {
                     int backlogId = Integer.parseInt(id) - offset;
                     if (backlogId < proj.backlog.size()) {
-                        ui.printTaskRemoved(proj.backlog.backlogTasks.get(backlogId));
+                        ui.printTaskRemoved(proj.backlog.getTask(backlogId));
                         proj.backlog.backlogTasks.remove(backlogId);
                         offset++;
                     } else {
@@ -120,7 +120,7 @@ public class TaskCommand {
             try {
                 task = proj.backlog.getTask(id);
                 task.setPriority(priority);
-                ui.printPriorityChanged(proj.backlog.backlogTasks.get(id));
+                ui.printPriorityChanged(proj.backlog.getTask(id));
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("Task ID entered is out of bounds!");
             } catch (IllegalArgumentException e) {
@@ -142,7 +142,7 @@ public class TaskCommand {
                     if (backlogId < proj.backlog.backlogTasks.size()) {
                         task = proj.backlog.getTask(backlogId);
                         task.setAsDone();
-                        Ui.displayTaskDone(proj.backlog.backlogTasks.get(backlogId), backlogId + 1);
+                        Ui.displayTaskDone(proj.backlog.getTask(backlogId), backlogId + 1);
                     } else {
                         Ui.displayInvalidId();
                     }

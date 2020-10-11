@@ -3,19 +3,19 @@ package seedu.duke.task;
 public enum Priority {
     HIGH {
         public String toString() {
-            return "high priority";
+            return "High priority";
         }
     },
 
     MEDIUM {
         public String toString() {
-            return "medium priority";
+            return "Medium priority";
         }
     },
 
     LOW {
         public String toString() {
-            return "low priority";
+            return "Low priority";
         }
     }
 }
