@@ -5,36 +5,37 @@ public class Member {
     protected String memberName;
     protected int memberPhone;
     protected String memberEmail;
-    protected String[] memberRoles;
+    protected String memberRole;
 
-    public Member(String name, int phone, String email){
+    public Member(String name, int phone, String email, String role) {
         this.memberName = name;
         this.memberPhone = phone;
         this.memberEmail = email;
+        this.memberRole = role;
         numOfMembers += 1;
     }
 
     public int getMemberPhone() {
+
         return this.memberPhone;
     }
 
     public String getMemberEmail() {
+
         return this.memberEmail;
     }
 
-    public void setMemberRole (String role) {
-        memberRoles[memberRoles.length] = role;
-    }
+    public String getMemberRole() {
 
-    public String[] getMemberRole() {
-        return this.memberRoles;
+        return this.memberRole;
     }
 
     /**
      * Prints task data in the desired form to be printed for user interaction.
      * */
-    public void printMember() {
-        System.out.format("name: %s |phone: %d |email: %s%n", this.memberName, this.getMemberPhone(), this.getMemberEmail());
+    public String toString() {
+        return "name: " + this.memberName + " |phone: " + this.getMemberPhone() + " |email: " + this.getMemberEmail()
+                + " |role: " + this.getMemberRole();
     }
 
 }

@@ -1,108 +1,69 @@
 package seedu.duke.hr;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MemberList {
     public static ArrayList<Member> members = new ArrayList<>();
 
-    public MemberList() {
-    }
-
     /**
-     * Add member to the list of tasks.
-     *
-     * @param line user input.
+     * Adds member to the arraylist.
+     * @param m member to be added.
      */
-    public static void addMember(String line) {
-        try {
-            String[] memberDescription = line.split("n/|p/|e/", 3);
-            Member d = new Member(memberDescription[0], Integer.parseInt(memberDescription[1]), memberDescription[2]);
-            addMemberToList(d);
-        } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException | IOException e) {
-            System.out.println("    OOPS!!! The description of a member is incomplete.");
-        }
-    }
+    public static void addToList(Member m) {
 
-    /**
-     * Add ToDo object to the list of tasks.
-     *
-     * @param m Member object to be added.
-     * @throws IOException if any in/output error occurs.
-     */
-    public static void addMemberToList(Member m) throws IOException {
         members.add(m);
-
-        System.out.println("    " + "Got it. I've added this member: ");
-
-        System.out.format("    ");
-        m.printMember();
-
-        System.out.format("    Now you have %d member%s in your list.%n", Member.numOfMembers,
-                (Member.numOfMembers == 1) ? "" : "s");
     }
 
     /**
-     * Delete object from the list of tasks, based on task index.
-     *
-     * @param line user input.
+     * Returns the list of members.
+     * @return output error message or member list
      */
-    public static void deleteTask(String line) {
-        try {
-            line = line.trim();
-            int startOfTaskIndex = line.indexOf(' ') + 1;
-            int taskIndex = Integer.parseInt(line.substring(startOfTaskIndex)) - 1;
-
-            printRemovingTaskMessage();
-            System.out.format("    ");
-            members.get(taskIndex).printMember();;
-            members.remove(taskIndex);
-
-            Member.numOfMembers--;
-            printTaskRemovedMessage();
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("");
-            printTaskNotExistMessage();
-        }
-    }
-
-    /**
-     * Prints the existing task list.
-     */
-    public static void printList(ArrayList<Member> tasks) {
-        if (Member.numOfMembers==0) {
-            //EmptyListException
-            System.out.println("    Dude, the list is empty! o_O");
+    public static String listMembers() {
+        String output;
+        if (Member.numOfMembers == 0) {
+            output = "Dude, the member list is empty! o_O";
         } else {
-            System.out.println("    Here is the list of your tasks: ");
+            output = "Here is the list of members in your CCA:\n";
             for (int i = 0; i < Member.numOfMembers; i++) {
-                int index = i+1;
-                System.out.format("    %d.", index);
-                members.get(i).printMember();
+                int index = i + 1;
+                output = output.concat(index + ".");
+                output = output.concat(members.get(i).toString() + "\n");
             }
         }
+        return output;
     }
 
     /**
-     * Prints the messages to show that the task the user referred to is invalid.
+     * Deletes the member from the arraylist.
+     * @param index index of member to be deleted.
+     * @return output error message or info of deleted member.
      */
-    public static void printTaskNotExistMessage() {
-        System.out.println("    OOPS!!! The member does not exist.");
+    public static String deleteFromList(int index) {
+        String output;
+        try {
+            output = "Noted. I'll remove this member:\n";
+            output = output.concat(members.get(index).toString() + "\n");
+            members.remove(index);
+            Member.numOfMembers--;
+            output = output.concat("Now you have " + Member.numOfMembers + " member");
+            output = output.concat(((Member.numOfMembers > 1) ? "s" : "") + " in the list.\n");
+        } catch (IndexOutOfBoundsException e) {
+            output = "OOPS!!! The member does not exist.\n";
+        }
+        return output;
     }
 
     /**
-     * Prints the messages to show that the task is successfully removed.
+     * Checks whether input can be parsed into an integer.
+     * @param s input to be checked
+     * @return true if input can be parsed as an integer, false if input cannot be parsed as an integer.
      */
-    public static void printTaskRemovedMessage() {
-        System.out.println("    Task removed successfully!");
-        System.out.println("    Now you have " + Member.numOfMembers + " member" + (Member.numOfMembers>1?"s":"") + " in the list.");
+    public static boolean isInteger(String s) {
+        try {
+            int index = Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
-
-    /**
-     * Prints the messages to show that the program is attempting to remove the task.
-     */
-    public static void printRemovingTaskMessage() {
-        System.out.println("    Noted. I'll removed this member: ");
-    }
-
 }
