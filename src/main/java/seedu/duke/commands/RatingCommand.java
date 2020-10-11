@@ -10,7 +10,7 @@ public class RatingCommand {
         this.showName = showName;
     }
 
-    public void rate(String showToBeRated, int rating) {
+    public void rateShow(String showToBeRated, int rating) {
         Show show = ShowList.getShow(showToBeRated);
         show.setRating(rating);
         ShowList.setShow(showName,show);
