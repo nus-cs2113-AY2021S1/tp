@@ -1,6 +1,5 @@
 package seedu.duke.utility;
 
-
 import java.util.Scanner;
 
 /**
@@ -13,6 +12,7 @@ public class Ui {
     public static final String ANSI_REVERSE = "\u001b[7m";
     public static final String ANSI_BOLD = "\u001b[1m";
     public static final String SAVE_DIRECTORY = "data/showList.txt";
+
     private Scanner scan;
 
     public Ui() {
@@ -58,6 +58,7 @@ public class Ui {
                 + "|   __   | |   __|  |  |     |   ___/  \n"
                 + "|  |  |  | |  |____ |  `----.|  |      \n"
                 + "|__|  |__| |_______||_______|| _|      \n";
+
         System.out.println(ANSI_GREEN + helpIcon + ANSI_RESET);
         System.out.println("The following options are available:");
         System.out.println("`help` - Views help\n"
@@ -81,7 +82,7 @@ public class Ui {
                 + "`bye` - Exits the program\n");
         printLine();
     }
-
+    
     public String getUserCommand() {
         String userInput = scan.nextLine();
 
@@ -148,7 +149,7 @@ public class Ui {
         printLine();
         System.out.println("Your watchlist has been saved in the file with path <filepath>.");
     }
-  
+
     public static void printIoException() {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_IO_EXCEPTION);
     }

@@ -11,4 +11,5 @@ public interface SaveState {
     void saveState(HashMap<String, Show> showList) throws IOException;
     
     HashMap<String, Show> loadState() throws FileNotFoundException;
+
 }

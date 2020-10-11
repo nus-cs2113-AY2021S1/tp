@@ -20,31 +20,24 @@ public class Storage implements SaveState {
 
     @Override
     public void saveState(HashMap<String, Show> showList) throws IOException {
-
-        FileWriter fw;
-        try {
-            fw = new FileWriter(this.filePath); //overwrite existing file contents when called
-        } catch (IOException e) {
-            throw new IOException();
-        }
+        FileWriter fw = new FileWriter(filePath);
         int index = 1;
-        for (Map.Entry<String,Show> entry : showList.entrySet()) {
+        for (Map.Entry<String, Show> entry : showList.entrySet()) {
             fw.write(index + ". " + entry.getValue().getName() + System.lineSeparator());
             fw.write("      Season: " + entry.getValue().getNumSeasons() + System.lineSeparator());
             String episodes = "";
-            for (int i = 1;i <= entry.getValue().getNumSeasons();i++) {
+            for (int i = 1; i <= entry.getValue().getNumSeasons(); i++) {
                 episodes = episodes + entry.getValue().getEpisodesForSeason(i) + " ";
             }
             fw.write("      Episodes: " + episodes + System.lineSeparator());
             fw.write("      Rating: " + entry.getValue().getRating() + System.lineSeparator());
-
             index++;
 
             //this is another save format
             /*
             String textToAdd=index+". "+entry.getValue().getName()+" | Season: "+entry.getValue().getNumSeasons()
-                    +" | Episodes: " +entry.getValue().getEpisodesForSeason(entry.getValue().getNumSeasons())
-                    + " | Rating: "+entry.getValue().getRating();
+                    +" | Episodes: " +entry.getValue().getEpisodesForSeason(entry.getValue().getNumSeasons())+" |
+                    Rating: "+entry.getValue().getRating();
             fw.write(textToAdd);
              */
         }
@@ -75,14 +68,18 @@ public class Storage implements SaveState {
             String[] splitEpisodes = s.nextLine().split("Episodes: ");
             String[] episodeString = splitEpisodes[1].split(" ");
             int[] episodes = new int[20];
-            for (int i = 0;i < season;i++) {
+
+            for (int i = 0; i < season; i++) {
+
                 episodes[i] = Integer.parseInt(episodeString[i]);
             }
 
             String[] splitRating = s.nextLine().split("Rating: ");
             int rating = Integer.parseInt(splitRating[1]);
 
-            showList.put(name, new Show(name,season,episodes));
+
+            showList.put(name, new Show(name, season, episodes));
+
             showList.get(name).setRating(rating);
 
 
