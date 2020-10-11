@@ -3,7 +3,7 @@ package seedu.duke;
 import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.event.Activity;
-import seedu.duke.calendar.event.Event;
+import seedu.duke.calendar.task.Event;
 import seedu.duke.calendar.event.Lab;
 import seedu.duke.calendar.event.Lecture;
 import seedu.duke.calendar.event.Tutorial;

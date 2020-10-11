@@ -1,7 +1,8 @@
 package seedu.duke.calendar.event;
 
 
-import java.lang.annotation.Inherited;
+import seedu.duke.calendar.task.Event;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
