@@ -31,9 +31,9 @@ public class CreateCommand extends Command {
     public void insertLocation() {
         try {
             homeLocationsList.addLocation(usersEnteredLocation);
+            ui.showToUser("Creating Location \"" + usersEnteredLocation + "\".....CREATED!");
         } catch (InvalidAddtionOfLocation e) {
             ui.showToUser(MESSAGE_LOCATION_EXIST);
         }
     }
-
 }

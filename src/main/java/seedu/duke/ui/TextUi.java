@@ -72,7 +72,6 @@ public class TextUi {
      * Generates and prints the Goodbye message upon the end of the application.
      */
     public void showGoodByeMessage() {
-        showToUser(Messages.MESSAGE_EXPORT);
         showToUser(Messages.MESSAGE_GOODBYE);
     }
 

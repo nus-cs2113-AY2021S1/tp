@@ -2,10 +2,12 @@ package seedu.duke;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.common.Messages;
 import seedu.duke.data.ApplianceList;
 import seedu.duke.data.HomeLocations;
 import seedu.duke.ui.TextUi;
 import seedu.duke.storage.StorageFile;
+
 
 /**
  * Entry point of the SmartHome application.
@@ -42,6 +44,7 @@ public class SmartHomeBot {
 
     /** Prints the Goodbye message and exits. */
     private void exit() {
+        ui.showToUser(Messages.MESSAGE_EXPORT);
         ui.showGoodByeMessage();
         System.exit(0);
     }
