@@ -24,7 +24,7 @@ public class WordsFilter {
      * @param isNewFilter Creates new filter thread
      * @param types Types of words need filtering
      */
-    public static void filterByType (boolean isNewFilter, String[] types) {
+    public static void filterByType(boolean isNewFilter, String[] types) {
         if (isNewFilter) {
             ArrayList<Words> words = WordList.wordList;
             filteredWords.clear();
@@ -46,7 +46,7 @@ public class WordsFilter {
     }
 
     // not ready to use
-    public static void filterByStartingString (boolean isNewFilter, String[] startStrings) {
+    public static void filterByStartingString(boolean isNewFilter, String[] startStrings) {
         if (isNewFilter) {
             ArrayList<Words> words = WordList.wordList;
             filteredWords.clear();

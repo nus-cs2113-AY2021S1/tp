@@ -10,9 +10,4 @@ class DukeTest {
     public void sampleTest() {
         assertTrue(true);
     }
-
-    @Test
-    public void mockTest() {
-        assertAll();
-    }
 }

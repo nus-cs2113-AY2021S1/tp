@@ -3,7 +3,7 @@ package seedu.duke.bunny;
 import java.util.ArrayList;
 
 /**
- * Class for plot bunny
+ * Class for plot bunny.
  */
 public class Bunny {
     /** A brief description of the idea. */
@@ -13,7 +13,7 @@ public class Bunny {
     /** The Characters used in the idea. */
     private ArrayList<Character> characters;
 
-    public Bunny(String idea){
+    public Bunny(String idea) {
         setIdea(idea);
     }
 
@@ -49,7 +49,7 @@ public class Bunny {
 
     public String getDescription() {
         String description = "  idea: " + idea + "\n";
-        if (!genre.isBlank()){
+        if (!genre.isBlank()) {
             description = description + "  genre: " + genre + "\n";
         }
 

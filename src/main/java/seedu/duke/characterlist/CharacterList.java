@@ -1,8 +1,6 @@
-package seedu.duke.characterList;
+package seedu.duke.characterlist;
 
-import seedu.duke.bunny.Bunny;
 import seedu.duke.character.Character;
-import seedu.duke.exceptions.BunnyIdeaMissingException;
 import seedu.duke.exceptions.CharacterNameMissingException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
 import seedu.duke.exceptions.MissingParamsException;
@@ -11,14 +9,14 @@ import seedu.duke.ui.UI;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static seedu.duke.constants.Tags.AGE_TAG;
 import static seedu.duke.constants.Tags.NAME_TAG;
 import static seedu.duke.parsers.Parsers.parseSingleCharacterTaggedParamsFromUserInput;
 
 public class CharacterList {
     public static ArrayList<Character> characters = new ArrayList<>();
 
-    public static void addCharacter(String userInput) throws CommandMissingArgumentsException, CharacterNameMissingException {
+    public static void addCharacter(String userInput)
+            throws CommandMissingArgumentsException, CharacterNameMissingException {
         // for returning filter options parsed from the user input
         HashMap<String, String> commandArguments = new HashMap<>();
         String name;

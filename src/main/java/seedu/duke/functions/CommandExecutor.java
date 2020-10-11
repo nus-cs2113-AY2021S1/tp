@@ -1,6 +1,6 @@
 package seedu.duke.functions;
 
-import seedu.duke.bunnyList.BunnyList;
+import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.commands.CommandChecker;
 
 import seedu.duke.exceptions.BunnyIdeaMissingException;
@@ -9,7 +9,6 @@ import seedu.duke.filters.FilterExecutor;
 import seedu.duke.ui.UI;
 
 import seedu.duke.wordlist.WordList;
-import seedu.duke.filters.FilterExecutor;
 
 import static seedu.duke.ui.UI.printHelpMessage;
 

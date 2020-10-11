@@ -37,7 +37,7 @@ public class HistoryLoader {
         String fileLine = "";
         String username = "temp";
 
-        while(s.hasNext()) {
+        while (s.hasNext()) {
 
         }
     }

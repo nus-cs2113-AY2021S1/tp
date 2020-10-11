@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 public class FilterCommandSlicer {
 
-    public static boolean continueLastFilter (String command) {
+    public static boolean continueLastFilter(String command) {
         return !command.toLowerCase().contains(" -continue");
     }
 
-    public static FilterType getTypeOfFilter (String command) throws FilterCommandException {
+    public static FilterType getTypeOfFilter(String command) throws FilterCommandException {
         if (!command.toLowerCase().contains("by\\")) {
             throw new FilterCommandException();
         }
@@ -32,7 +32,7 @@ public class FilterCommandSlicer {
         return filterType;
     }
 
-    public static String[] getTargetedWordType (String command) throws FilterCommandException {
+    public static String[] getTargetedWordType(String command) throws FilterCommandException {
         ArrayList<String> types = new ArrayList<>();
         if (command.toLowerCase().contains(" -noun")) {
             types.add("noun");

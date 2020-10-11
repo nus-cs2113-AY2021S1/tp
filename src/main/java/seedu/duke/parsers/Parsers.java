@@ -1,8 +1,10 @@
 package seedu.duke.parsers;
 
-import seedu.duke.exceptions.*;
+import seedu.duke.exceptions.SettingObjectWrongFormatException;
+import seedu.duke.exceptions.MissingParamsException;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Scanner;
 
 import static seedu.duke.constants.InputMarkers.INPUT_COMMENT_MARKER;
 import static seedu.duke.constants.RegexStrings.BLANK_STRING_REGEX;
@@ -54,7 +56,7 @@ public class Parsers {
     }
 
     /**
-     * Parse parameters for double letter tags
+     * Parse parameters for double letter tags.
      *
      * @param userInput    line read from the console
      * @param parsedParams parameters parsed from the line with the tag as key and argument as value
@@ -68,7 +70,7 @@ public class Parsers {
         String optionIndicator;
 
         int startPositionIndex = 0;
-        int endPositionIndex = 0;
+        int endPositionIndex;
 
         // clear filter options
         parsedParams.clear();
@@ -100,7 +102,7 @@ public class Parsers {
     }
 
     /**
-     * Parse parameters for single letter tags
+     * Parse parameters for single letter tags.
      *
      * @param userInput    line read from the console
      * @param parsedParams parameters parsed from the line with the tag as key and argument as value
@@ -114,7 +116,7 @@ public class Parsers {
         String optionIndicator;
 
         int startPositionIndex = 0;
-        int endPositionIndex = 0;
+        int endPositionIndex;
 
         // clear filter options
         parsedParams.clear();
