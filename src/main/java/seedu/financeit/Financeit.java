@@ -2,6 +2,7 @@ package seedu.financeit;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.manualtracker.ManualTracker;
+import seedu.financeit.goaltracker.GoalTracker;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
@@ -24,7 +25,8 @@ public class Financeit {
                 break;
             case "acc": //AccSummary.main();
                 break;
-            case "goal": //GoalTracker.main();
+            case "goal":
+                GoalTracker.main();
                 break;
             case "financial": //FinancialCalculator.main();
                 FinanceTools.main();
