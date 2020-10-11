@@ -186,7 +186,7 @@ public class Parser {
         }
 
         // Split into the tag name and tag color.
-        String[] tagInfo = tagsInfo.split(" ", 2);
+        String[] tagInfo = tagsInfo.split("\\s+", 2);
 
         tagName = checkBlank(tagInfo[0], ExceptionType.EXCEPTION_MISSING_TAG);
 
