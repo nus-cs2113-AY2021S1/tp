@@ -1,5 +1,7 @@
 package scheduler;
 
+import manager.card.Card;
+
 import java.time.LocalDate;
 import java.lang.Math;
 
@@ -10,6 +12,9 @@ public class Scheduler {
     public static final int MAX_INTERVAL = 365;
 
     public static boolean isDeadlineDue(LocalDate dueBy) {
+        if (dueBy == null) {
+            return true;
+        }
         return dueBy.isBefore(getCurrentDate()) || dueBy.isEqual(getCurrentDate());
     }
 
@@ -26,9 +31,12 @@ public class Scheduler {
         }
     }
 
-    public static LocalDate computeEasyDeadline(int previousInterval) {
+    public static LocalDate computeEasyDeadline(Card c, int previousInterval) {
         int interval = computeEasyInterval(previousInterval);
-        return getCurrentDate().plusDays(interval);
+        if (c.getDueBy() == null) {
+            return getCurrentDate().plusDays(interval);
+        }
+        return c.getDueBy().plusDays(interval);
     }
 
     public static int computeMediumInterval(int previousInterval) {
@@ -40,9 +48,12 @@ public class Scheduler {
         }
     }
 
-    public static LocalDate computeMediumDeadline(int previousInterval) {
+    public static LocalDate computeMediumDeadline(Card c, int previousInterval) {
         int interval = computeMediumInterval(previousInterval);
-        return getCurrentDate().plusDays(interval);
+        if (c.getDueBy() == null) {
+            return getCurrentDate().plusDays(interval);
+        }
+        return c.getDueBy().plusDays(interval);
     }
 
     public static int computeHardInterval(int previousInterval) {
@@ -54,9 +65,12 @@ public class Scheduler {
         }
     }
 
-    public static LocalDate computeHardDeadline(int previousInterval) {
+    public static LocalDate computeHardDeadline(Card c, int previousInterval) {
         int interval = computeHardInterval(previousInterval);
-        return getCurrentDate().plusDays(interval);
+        if (c.getDueBy() == null) {
+            return getCurrentDate().plusDays(interval);
+        }
+        return c.getDueBy().plusDays(interval);
     }
 
     public static int computeDeckInterval(double totalMultiplier, int cardCount, int previousInterval) {

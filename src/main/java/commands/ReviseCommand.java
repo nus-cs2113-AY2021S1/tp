@@ -51,7 +51,7 @@ public class ReviseCommand extends Command {
         for (Card c : allCards) {
             if (Scheduler.isDeadlineDue(c.getDueBy())) {
                 ui.showToUser("\nQuestion " + count + ":");
-                ui.showCard(c);
+                ui.showCardRevision(c);
                 String input = ui.getRating();
                 repeatCards = rateCard(ui, repeatCards, c, input);
                 count++;
@@ -71,15 +71,15 @@ public class ReviseCommand extends Command {
         while (isInvalid) {
             switch (input.toLowerCase()) {
             case EASY:
-                c.setDueBy(Scheduler.computeEasyDeadline(c.getPreviousInterval()));
+                c.setDueBy(Scheduler.computeEasyDeadline(c, c.getPreviousInterval()));
                 isInvalid = false;
                 break;
             case MEDIUM:
-                c.setDueBy(Scheduler.computeMediumDeadline(c.getPreviousInterval()));
+                c.setDueBy(Scheduler.computeMediumDeadline(c, c.getPreviousInterval()));
                 isInvalid = false;
                 break;
             case HARD:
-                c.setDueBy(Scheduler.computeHardDeadline(c.getPreviousInterval()));
+                c.setDueBy(Scheduler.computeHardDeadline(c, c.getPreviousInterval()));
                 isInvalid = false;
                 break;
             case CANNOT_ANSWER:
@@ -100,7 +100,7 @@ public class ReviseCommand extends Command {
             ArrayList<Card> repeatCards = new ArrayList<>();
             for (Card c : cards) {
                 ui.showToUser("\nQuestion " + count + ":");
-                ui.showCard(c);
+                ui.showCardRevision(c);
                 String input = ui.getRating();
                 repeatCards = rateCard(ui, repeatCards, c, input);
                 count++;
