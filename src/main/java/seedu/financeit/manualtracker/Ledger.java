@@ -61,7 +61,7 @@ public class Ledger extends Item {
     }
 
     @Override
-    public void handleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
+    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case ParamChecker.PARAM_DATE:
             dateTime = paramChecker.checkAndReturnDateTime(paramType, defaultDateTimeFormat);

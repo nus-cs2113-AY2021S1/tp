@@ -45,7 +45,7 @@ public class LedgerList extends ItemList {
     }
 
     @Override
-    public void handleParam(CommandPacket packet, String paramType)
+    public void handleSingleParam(CommandPacket packet, String paramType)
         throws ParseFailParamException, ItemNotFoundException, ConflictingItemReference {
         switch (paramType) {
         case ParamChecker.PARAM_DATE:

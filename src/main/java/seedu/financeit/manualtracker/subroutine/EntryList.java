@@ -46,7 +46,7 @@ public class EntryList extends ItemList {
     }
 
     @Override
-    public void handleParam(CommandPacket packet, String paramType)
+    public void handleSingleParam(CommandPacket packet, String paramType)
         throws ParseFailParamException {
         switch (paramType) {
         case ParamChecker.PARAM_INDEX:

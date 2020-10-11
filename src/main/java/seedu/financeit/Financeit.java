@@ -3,18 +3,21 @@ package seedu.financeit;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.manualtracker.ManualTracker;
 import seedu.financeit.goaltracker.GoalTracker;
+import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.RegexMatcher;
+import seedu.financeit.financetools.FinanceTools;
 
 public class Financeit {
     public static void main(String[] args) {
         System.out.println(RegexMatcher.alphabetMatcher("abc").find());
         while (true) {
             MenuPrinter.printMainMenu();
-            CommandPacket input = UiManager.handleInput();
+            String input = UiManager.handleInput();
+            CommandPacket packet = new InputParser().parseInput(input);
             UiManager.refreshPage();
-            switch (input.getCommandString()) {
+            switch (packet.getCommandString()) {
             case "manual":
                 ManualTracker.main();
                 break;
@@ -26,6 +29,7 @@ public class Financeit {
                 GoalTracker.main();
                 break;
             case "financial": //FinancialCalculator.main();
+                FinanceTools.main();
                 break;
             case "exit":
                 return;
