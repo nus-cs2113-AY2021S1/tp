@@ -11,7 +11,12 @@ import seedu.financeit.ui.UiManager;
 
 import java.util.ArrayList;
 
-import static seedu.financeit.utils.ParamChecker.*;
+import static seedu.financeit.utils.ParamChecker.PARAM_AMOUNT;
+import static seedu.financeit.utils.ParamChecker.PARAM_AUTO;
+import static seedu.financeit.utils.ParamChecker.PARAM_DAY;
+import static seedu.financeit.utils.ParamChecker.PARAM_DESCRIPTION;
+import static seedu.financeit.utils.ParamChecker.PARAM_EXP;
+import static seedu.financeit.utils.ParamChecker.PARAM_INC;
 
 public class RecurringEntry extends Item {
     private int day;
