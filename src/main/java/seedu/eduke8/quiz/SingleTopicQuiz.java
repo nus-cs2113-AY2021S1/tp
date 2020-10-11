@@ -2,6 +2,7 @@ package seedu.eduke8.quiz;
 
 import seedu.eduke8.command.Command;
 import seedu.eduke8.common.Displayable;
+import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.option.OptionList;
 import seedu.eduke8.parser.QuizParser;
@@ -25,9 +26,10 @@ public class SingleTopicQuiz implements Quiz {
     }
 
     @Override
-    public void startQuiz(Ui ui) {
+    public void startQuiz(Ui ui) throws Eduke8Exception {
         ui.printStartQuizPage(numberOfQuestions, topic.getDescription());
         TopicQuestionList topicQuestionList = topic.getQuestionList();
+
         QuizQuestionList quizQuestionList = topicQuestionList.getQuizQuestionList(numberOfQuestions);
 
         goThroughQuizQuestions(ui, quizQuestionList);

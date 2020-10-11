@@ -2,17 +2,19 @@ package seedu.eduke8.question;
 
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.common.DisplayableList;
+import seedu.eduke8.exception.Eduke8Exception;
 
 import java.util.ArrayList;
 
 public class TopicQuestionList implements DisplayableList {
+
     private ArrayList<Displayable> questions;  // list of questions for the particular topic
 
     public TopicQuestionList(ArrayList<Displayable> questions) {
         this.questions = questions;
     }
 
-    public QuizQuestionList getQuizQuestionList(int numberOfQuestionsForQuiz) {
+    public QuizQuestionList getQuizQuestionList(int numberOfQuestionsForQuiz) throws Eduke8Exception {
         QuizQuestionList quizQuestionList = new QuizQuestionList();
         quizQuestionList.setQuizQuestions(numberOfQuestionsForQuiz, questions);
 

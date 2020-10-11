@@ -1,12 +1,15 @@
 package seedu.eduke8.question;
 
 import seedu.eduke8.common.Displayable;
+import seedu.eduke8.exception.Eduke8Exception;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Logger;
 
 public class QuizQuestionList {
+    private static final String INVALID_QUIZ_QUESTION_NUMBER = "Number of quiz questions must be more than 1";
+
     private ArrayList<Question> quizQuestions;
     private int currentQuestionNumber;
 
@@ -17,8 +20,13 @@ public class QuizQuestionList {
         currentQuestionNumber = 0;
     }
 
-    public void setQuizQuestions(int numberOfQuestionsForQuiz, ArrayList<Displayable> questionsInTopic) {
+    public void setQuizQuestions(int numberOfQuestionsForQuiz,
+                                 ArrayList<Displayable> questionsInTopic) throws Eduke8Exception {
         // Logger logger = Logger.getLogger("main");
+
+        if (numberOfQuestionsForQuiz <= 0) {
+            throw new Eduke8Exception(INVALID_QUIZ_QUESTION_NUMBER);
+        }
 
         int numberOfQuestionsSelected = 0;
 
