@@ -8,6 +8,8 @@ import commands.HelpCommand;
 import commands.ReviseCommand;
 
 import manager.card.Card;
+import manager.chapter.Chapter;
+import manager.module.Module;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -106,5 +108,17 @@ public class Ui {
         out.println("3. " + HelpCommand.MESSAGE_USAGE);
         out.println("4. " + AddCommand.MESSAGE_USAGE);
         out.println("5. " + ExitCommand.MESSAGE_USAGE);
+    }
+
+    public void showModuleAdded(Module module, int moduleCount) {
+        out.println("    Got it. I've added this module:");
+        out.println("    " + module);
+        out.println("    Now you have " + moduleCount + " modules in the list.");
+    }
+
+    public void showChapterAdded(Chapter chapter, int chapterCount) {
+        out.println("    Got it. I've added this chapter:");
+        out.println("    " + chapter);
+        out.println("    Now you have " + chapterCount + " chapters in the list.");
     }
 }
