@@ -74,8 +74,8 @@ public class Tutorial extends SchoolEvent {
      */
     @Override
     public String printIntoFile() {
-        return TUTORIAL_FILE_SYMBOL + " " + moduleCode
-                + SEPARATOR + this.date + SEPARATOR + this.time;
+        return TUTORIAL_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
+                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue;
     }
 
     /**

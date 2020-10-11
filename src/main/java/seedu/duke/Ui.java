@@ -57,17 +57,30 @@ public class Ui {
      * Prints the Duke welcome message.
      */
     public static void printWelcomeMessage() {
-        printDukeBorder(true);
-        String logo = " ____        _\n"
-                + "|  _ \\ _   _| | _____\n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("____________________________________________________________\n"
-                + " Hello! I'm Duke\n"
-                + " What can I do for you?");
-        printDukeBorder(false);
+        System.out.println("Printing of 25/7 logo!!!!");
+        /**
+//        String[]  HELLO_MESSAGE = {
+//                "=================================================================================================",
+//                "   .-----------------.     .-----------------.              //    .-------------------.",
+//                "   |______________.  |     |  _______________|             //     |______________.   |",
+//                "                  |  |     |  |                           //                    /   /",
+//                "                  |  |     |  |                          //                    /   /",
+//                "   .---------------  |     |  |---------------.         //                    /   /",
+//                "   | ________________|     |________________  |        //                    /   /",
+//                "   | |                                     |  |       //                    /   /",
+//                "   | |                                     |  |      //                    /   /",
+//                "   | ----------------.     .---------------|  |     //                    /   /",
+//                "   |_________________|     |__________________|    //                    /___/",
+//                " ",
+//                "=================================================================================================",
+//                " Welcome to 25/7 Task Manager!",
+//                " What can I do for you?",
+//                " Enter 'help' for the list of commands.",
+//                "================================================================================================="
+//        };
+//        System.out.println(String.join("\n", HELLO_MESSAGE));
+         */
+
     }
 
     /**
@@ -84,9 +97,9 @@ public class Ui {
      */
     public static void printDukeBorder(boolean top) {
         if (top) {
-            System.out.println("............. DUKE CHAT BOX ^^ ............");
+            System.out.println("..................... DUKE CHAT BOX ^^ ....................");
         } else {
-            System.out.println("...........................................");
+            System.out.println("...........................................................");
         }
     }
 
@@ -99,7 +112,7 @@ public class Ui {
     public static void printDeleteTaskMessage(int taskNumberDelete, CalendarList calendarList) {
         /* - 1 is catered for array list's index starting from 0. */
         System.out.println("Task deleted:\n" + calendarList.getCalendarList().get(taskNumberDelete - 1));
-        System.out.println("Your total tasks: " + (calendarList.getTotalTasks() - 1));
+        System.out.println("Your total tasks: " + (calendarList.getTotalItems() - 1));
     }
 
     /**
@@ -110,7 +123,7 @@ public class Ui {
      */
     public static void printTaskListView(CalendarList calendarList) {
         System.out.println("This is your list of task(s):");
-        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
             System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", i + 1);
         }
     }
@@ -124,7 +137,7 @@ public class Ui {
     public static void printEventsListView(CalendarList calendarList) {
         int eventCounts = 0;
         System.out.println("This is your list of event(s):");
-        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
             if (calendarList.getCalendarList().get(i) instanceof Event) {
                 eventCounts++;
                 System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", eventCounts);
@@ -158,7 +171,7 @@ public class Ui {
         /* - 1 is catered for array list's index starting from 0. */
         System.out.println(calendarList.getCalendarList().get(calendarList.getCalendarList().size() - 1));
 
-        System.out.println("Your total tasks: " + calendarList.getTotalTasks());
+        System.out.println("Your total tasks: " + calendarList.getTotalItems());
     }
 
     /**
@@ -196,7 +209,7 @@ public class Ui {
     public static void printProgress(CalendarList calendarList) {
         int numFinished = 0;
         int numTotal = 0;
-        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
             CalendarItem item = calendarList.getCalendarList().get(i);
             if (!(item instanceof Task)) {
                 continue;
@@ -266,6 +279,9 @@ public class Ui {
             break;
         case "keyword not found":
             System.out.println("There are no tasks matching this keyword. Check that you have spelt it correctly.");
+            break;
+        case "file not found":
+            System.out.println("The file can not be found");
             break;
         case "invalid done number":
             System.out.println("You can only mark a task as done. An event cannot be marked as done.");
