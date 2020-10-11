@@ -14,7 +14,6 @@ public abstract class Command {
 
     public static final String ERROR_INVALID_QUOTE_NUM = "Invalid quote number specified!";
     public static final String ERROR_INVALID_TODO_NUM = "Invalid task number specified!";
-
     public static final String ERROR_NO_BOOK_FOUND = "There is no such book!";
     public static final String ERROR_NO_BOOKS_IN_LIST = "There are no books in the list!";
     public static final String ERROR_NO_BOOKS_BY_AUTHOR = "There are no books by this author!";
@@ -24,17 +23,16 @@ public abstract class Command {
     public static final String ERROR_RATING_NOT_FOUND = "This book has not been rated!";
     public static final String ERROR_TODO_NOT_FOUND = "There is no such task!";
     public static final String ERROR_BOOKMARK_NOT_FOUND = "There is no such bookmark!";
-
-    public abstract void execute(TextUi ui, ListManager listManager);
+    public static final String ERROR_LIST_UNKNOWN_COMMAND = "I do not understand that command. Try again";
+    public static final String ERROR_MISSING_BOOK_OR_QUOTE = "Please specify a book title or quote number!";
 
     public static final String FLAG_AUTHOR = "/by";
     public static final String FLAG_REFERENCE = "/from";
     public static final String FLAG_DELIMITER = "/";
-
     public static final String REFERENCE_KEYWORD = "reference";
     public static final String AUTHORNAME_KEYWORD = "authorName";
 
-    public static final String ERROR_LIST_UNKNOWN_COMMAND = "I do not understand that command. Try again";
+    public abstract void execute(TextUi ui);
 
     public abstract boolean isExit();
 }

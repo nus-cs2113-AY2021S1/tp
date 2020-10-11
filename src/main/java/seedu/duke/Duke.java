@@ -5,7 +5,6 @@ import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.category.CategoryList;
 import seedu.duke.commands.Command;
 import seedu.duke.lists.ListManager;
-import seedu.duke.lists.QuotesifyList;
 import seedu.duke.parser.Parser;
 import seedu.duke.quote.QuoteList;
 import seedu.duke.rating.RatingList;
@@ -24,8 +23,6 @@ public class Duke {
     private ToDoList toDos;
     private BookmarkList bookmarks;
 
-    private final ListManager listManager = new ListManager();
-
     public Duke() {
         ui = new TextUi();
         books = new BookList();
@@ -35,12 +32,12 @@ public class Duke {
         toDos = new ToDoList();
         bookmarks = new BookmarkList();
 
-        listManager.addToList(ListManager.BOOK_LIST, books);
-        listManager.addToList(ListManager.QUOTE_LIST, quotes);
-        listManager.addToList(ListManager.CATEGORY_LIST, categories);
-        listManager.addToList(ListManager.RATING_LIST, ratings);
-        listManager.addToList(ListManager.TODO_LIST, toDos);
-        listManager.addToList(ListManager.BOOKMARK_LIST, bookmarks);
+        ListManager.addToList(ListManager.BOOK_LIST, books);
+        ListManager.addToList(ListManager.QUOTE_LIST, quotes);
+        ListManager.addToList(ListManager.CATEGORY_LIST, categories);
+        ListManager.addToList(ListManager.RATING_LIST, ratings);
+        ListManager.addToList(ListManager.TODO_LIST, toDos);
+        ListManager.addToList(ListManager.BOOKMARK_LIST, bookmarks);
     }
 
     public void start() {
@@ -49,7 +46,7 @@ public class Duke {
     }
 
     public void exit() {
-        ui.printRandomQuote(listManager);
+        ui.printRandomQuote();
         ui.showGoodbyeMessage();
     }
 
@@ -62,7 +59,7 @@ public class Duke {
                 System.out.println("Invalid command!");
                 continue;
             }
-            command.execute(ui, listManager);
+            command.execute(ui);
             isExit = command.isExit();
         }
     }

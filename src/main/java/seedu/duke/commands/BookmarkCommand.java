@@ -4,7 +4,6 @@ import seedu.duke.book.Book;
 import seedu.duke.book.BookList;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
-import seedu.duke.commands.Command;
 import seedu.duke.lists.ListManager;
 import seedu.duke.ui.TextUi;
 
@@ -24,11 +23,11 @@ public class BookmarkCommand extends Command {
     }
 
     @Override
-    public void execute(TextUi ui, ListManager listManager) {
+    public void execute(TextUi ui) {
         switch (type) {
         case TAG_BOOK:
-            BookList books = (BookList) listManager.getList(ListManager.BOOK_LIST);
-            BookmarkList bookmarks = (BookmarkList) listManager.getList(ListManager.BOOKMARK_LIST);
+            BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+            BookmarkList bookmarks = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
             handleBookmark(books, bookmarks, ui);
             break;
         default:

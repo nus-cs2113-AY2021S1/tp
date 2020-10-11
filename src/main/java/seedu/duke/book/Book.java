@@ -46,7 +46,7 @@ public class Book {
     @Override
     public String toString() {
         if (category != null) {
-            return title + " by " + author.getName() + " -" + category;
+            return title + " by " + author.getName() + " -" + category.getCategoryName();
         }
 
         return title + " by " + author.getName();

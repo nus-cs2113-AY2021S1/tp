@@ -20,10 +20,10 @@ public class DoneCommand extends Command {
         information = details[1];
     }
 
-    public void execute(TextUi ui, ListManager listManager) {
+    public void execute(TextUi ui) {
         switch (type) {
         case TAG_TODO:
-            ToDoList toDos = (ToDoList) listManager.getList(ListManager.TODO_LIST);
+            ToDoList toDos = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
             int index = computeToDoIndex(information.trim());
             doneToDo(toDos,index,ui);
             break;
