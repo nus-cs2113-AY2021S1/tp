@@ -8,7 +8,11 @@ public class CardList {
     private final ArrayList<Card> cards;
 
     public CardList() {
-        cards = new ArrayList<>();
+        this.cards = new ArrayList<>();
+    }
+
+    public CardList(ArrayList<Card> cards) {
+        this.cards = new ArrayList<>(cards);
     }
 
     public void addCard(Card card) {

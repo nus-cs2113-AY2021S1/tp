@@ -30,44 +30,71 @@ public class Storage {
     //create the folder --> 'data/admin'
     public void createAdmin() {
         File f = new File(filePath);
-        boolean success = f.getParentFile().mkdir();
-        System.out.println(filePath);
-        if (success) {
-            System.out.println("Successfully created new directory");
+        System.out.println("Filepath: " + filePath);
+
+        boolean dataDirExists = f.getParentFile().exists();
+        boolean dataDirCreated = false;
+        if (!dataDirExists) {
+            dataDirCreated = f.getParentFile().mkdir();
         } else {
-            System.out.println("Failed to create new directory");
+            System.out.println("Directory " + f.getParentFile().getName() + " already exists");
+        }
+        if (dataDirCreated) {
+            System.out.println("Successfully created new directory " + f.getParentFile().getName());
+        }
+
+        boolean adminDirExists = f.exists();
+        boolean adminDirCreated = false;
+        if (!adminDirExists) {
+            adminDirCreated = f.mkdir();
+        } else {
+            System.out.println("Directory " + f + " already exists");
+        }
+        if (adminDirCreated) {
+            System.out.println("Successfully created new directory " + f);
         }
     }
 
     public void createModule(String moduleName) {
         File f = new File(filePath + "/" + moduleName);
-        boolean success = f.getParentFile().mkdir();
-        //File f1 = f.getParentFile();
-        //String v = f1.getAbsolutePath();
-        //System.out.println("    getParentFile: " + v);
-        //System.out.println("    filePath: " + f.getPath());
-        if (success) {
-            System.out.println("    Successfully created new directory " + moduleName);
+        boolean moduleDirExists = f.exists();
+        boolean moduleDirCreated = false;
+        if (!moduleDirExists) {
+            moduleDirCreated = f.mkdir();
         } else {
-            System.out.println("    Failed to create new directory");
+            System.out.println("    Directory " + f + " already exists");
+        }
+        if (moduleDirCreated) {
+            System.out.println("    Successfully created new directory " + f);
         }
     }
 
     public void createChapter(String chapterName, String moduleName) {
-        File f = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
-        boolean success = f.getParentFile().mkdir();
-        if (success) {
-            System.out.println("    Successfully created new directory " + chapterName);
-        } else {
-            System.out.println("    Failed to create new directory");
+        try {
+            File f = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
+            boolean chapterFileExists = f.exists();
+            boolean chapterFileCreated = false;
+            if (!chapterFileExists) {
+                chapterFileCreated = f.createNewFile();
+            } else {
+                System.out.println("    File " + f + " already exists");
+            }
+            if (chapterFileCreated) {
+                System.out.println("    Successfully created new file " + chapterName + ".txt");
+            }
+        } catch (IOException e) {
+            System.out.println("Error creating the file.");
         }
     }
 
     public ArrayList<Module> loadModule() throws FileNotFoundException {
         File f = new File(filePath);
-        ArrayList<Module> modules = new ArrayList<Module>();
-        Scanner s = new Scanner(f);
+        boolean dirExists = f.exists();
+        if (!dirExists) {
+            throw new FileNotFoundException();
+        }
 
+        ArrayList<Module> modules = new ArrayList<>();
         String[] contents = f.list();
         System.out.println("List of files and directories in the specified directory:");
         for (int i = 0; i < contents.length; i++) {
@@ -79,9 +106,16 @@ public class Storage {
 
     public ArrayList<Chapter> loadChapter(String module) throws FileNotFoundException {
         File f = new File(filePath + "/" + module);
-        ArrayList<Chapter> chapters = new ArrayList<Chapter>();
-        Scanner s = new Scanner(f);
+        boolean dirExists = f.exists();
+        if (!dirExists) {
+            throw new FileNotFoundException();
+        }
+
+        ArrayList<Chapter> chapters = new ArrayList<>();
         String[] contents = f.list();
+        if (contents.length == 0) {
+            return chapters;
+        }
         System.out.println("List of files and directories in the specified directory:");
         for (int i = 0; i < contents.length; i++) {
             String target = contents[i].replace(".txt", "");
@@ -93,7 +127,12 @@ public class Storage {
 
     public ArrayList<Card> loadCard(String module, String chapter) throws FileNotFoundException {
         File f = new File(filePath + "/" + module + "/" + chapter + ".txt");
-        ArrayList<Card> cards = new ArrayList<Card>();
+        boolean fileExists = f.exists();
+        if (!fileExists) {
+            throw new FileNotFoundException();
+        }
+
+        ArrayList<Card> cards = new ArrayList<>();
         Scanner s = new Scanner(f);
         int totalCards = 0;
         while (s.hasNext()) {

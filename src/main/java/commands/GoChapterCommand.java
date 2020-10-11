@@ -1,8 +1,10 @@
 package commands;
 
+import manager.card.Card;
 import manager.chapter.CardList;
 import access.Access;
 import manager.chapter.Chapter;
+import manager.module.ChapterList;
 import storage.Storage;
 import ui.Ui;
 
@@ -20,19 +22,21 @@ public class GoChapterCommand extends Command {
     @Override
     public void execute(CardList cards, Ui ui, Access access, Storage storage) {
         boolean isLevelExist = false;
-        ArrayList<Chapter> chapters = access.getModule().getChapter();
-        for (Chapter chapter : chapters) {
-            if (chapterCode.equalsIgnoreCase(chapter.getChapter())) {
+        ChapterList chapters = access.getModule().getChapters();
+        ArrayList<Chapter> allChapters = chapters.getAllChapters();
+        for (Chapter chapter : allChapters) {
+            if (chapterCode.equalsIgnoreCase(chapter.getChapterName())) {
                 access.setChapterLevel(chapterCode);
                 isLevelExist = true;
                 try {
-                    Chapter newChapter = new Chapter(chapter.getChapter(),
-                            storage.loadCard(access.getModuleLevel(), chapter.getChapter()));
-                    access.setChapter(newChapter);
+                    ArrayList<Card> allCards = storage.loadCard(access.getModuleLevel(), chapter.getChapterName());
+                    if (allCards.size() == 0) {
+                        System.out.println("This is a new chapter, you can try to add flashcards inside!");
+                    }
+                    chapter.setCards(allCards);
+                    access.setChapter(chapter);
                 } catch (FileNotFoundException e) {
-                    Chapter newChapter = new Chapter(chapter.getChapter());
-                    access.setChapter(newChapter);
-                    System.out.println("Hihi, seems like it is a new module, you can try to add chapter inside!");
+                    System.out.println("The chapter file cannot be found.");
                 }
                 break;
             }
@@ -47,3 +51,4 @@ public class GoChapterCommand extends Command {
         return false;
     }
 }
+

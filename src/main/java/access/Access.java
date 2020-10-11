@@ -12,6 +12,9 @@ public class Access {
     protected Chapter chapter;
     protected Module module;
     protected Admin admin;
+    protected boolean isAdminLevel;
+    protected boolean isModuleLevel;
+    protected boolean isChapterLevel;
 
     public Access(Admin admin) {
         this.admin = admin;
@@ -21,6 +24,9 @@ public class Access {
         this.adminLevel = "admin";
         this.moduleLevel = "";
         this.chapterLevel = "";
+        this.isAdminLevel = true;
+        this.isModuleLevel = false;
+        this.isChapterLevel = false;
     }
 
     public Access() {
@@ -31,6 +37,9 @@ public class Access {
         this.module = null;
         this.chapter = null;
         this.admin = new Admin();
+        this.isAdminLevel = true;
+        this.isModuleLevel = false;
+        this.isChapterLevel = false;
     }
 
     public String getModuleLevel() {
@@ -69,47 +78,84 @@ public class Access {
         this.chapter = chapter;
     }
 
+    public boolean isAdminLevel() {
+        return isAdminLevel;
+    }
+
+    public boolean isModuleLevel() {
+        return isModuleLevel;
+    }
+
+    public boolean isChapterLevel() {
+        return isChapterLevel;
+    }
+
     public void setModuleLevel(String moduleLevel) {
-        if (!(this.chapterLevel.equals(""))) {
-            System.out.println("Sorry, you currently are in the chapter level, "
-                    + "please go back to admin level first.");
-        } else if (!(this.moduleLevel.equals(""))) {
-            if (moduleLevel.equals("")) {
-                String replacement = "/" + this.moduleLevel;
-                this.level = level.replace(replacement, "");
-                this.moduleLevel = moduleLevel;
-                this.module = null;
-            } else {
+        if (isChapterLevel) {
+            System.out.println("Sorry, you currently are in the chapter level.");
+            return;
+        }
+
+        if (isModuleLevel) {
+            if (!(moduleLevel.equals(""))) {
                 System.out.println("Sorry, you are already in the module level, "
                         + "please go back to admin level first.");
+                return;
             }
-        } else {
+
+            String replacement = "/" + this.moduleLevel;
+            this.level = level.replace(replacement, "");
+            this.moduleLevel = moduleLevel;
+            this.module = null;
+            this.isModuleLevel = false;
+            this.isAdminLevel = true;
+            return;
+        }
+
+        if (isAdminLevel) {
+            if (moduleLevel.equals("")) {
+                System.out.println("Sorry, you are already in the admin level.");
+                return;
+            }
             this.moduleLevel = moduleLevel;
             this.level = level + "/" + moduleLevel;
             this.module = new Module(moduleLevel);
+            this.isModuleLevel = true;
+            this.isAdminLevel = false;
         }
     }
 
     public void setChapterLevel(String chapterLevel) {
-        if (this.moduleLevel == "") { //wrong level
-            System.out.println("Sorry, you currently are in the admin level, please enter module level first.");
-        } else {
-            if (this.chapterLevel != "") {
-                if (chapterLevel == "") {
-                    String replacement = "/" + this.chapterLevel;
-                    this.level = level.replace(replacement, "");
-                    this.chapterLevel = chapterLevel;
-                    this.chapter = null;
-                } else {
-                    System.out.println("Sorry, you are already in the chapter level, "
-                            + "please go back to module level first.");
-                }
-            } else {
-                this.chapterLevel = chapterLevel;
-                this.level = level + "/" + chapterLevel;
-                this.chapter = new Chapter(chapterLevel);
+        if (isAdminLevel) { //wrong level
+            System.out.println("Sorry, you currently are in the admin level.");
+            return;
+        }
+
+        if (isChapterLevel) {
+            if (!(chapterLevel.equals(""))) {
+                System.out.println("Sorry, you are already in the chapter level, "
+                        + "please go back to module level first.");
+                return;
             }
+            String replacement = "/" + this.chapterLevel;
+            this.level = level.replace(replacement, "");
+            this.chapterLevel = chapterLevel;
+            this.chapter = null;
+            this.isChapterLevel = false;
+            this.isModuleLevel = true;
+            return;
+        }
+
+        if (isModuleLevel) {
+            if (chapterLevel.equals("")) {
+                System.out.println("Sorry, you are already in the module level.");
+                return;
+            }
+            this.chapterLevel = chapterLevel;
+            this.level = level + "/" + chapterLevel;
+            this.chapter = new Chapter(chapterLevel);
+            this.isChapterLevel = true;
+            this.isModuleLevel = false;
         }
     }
-
 }
