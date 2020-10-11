@@ -88,7 +88,7 @@ public class AddCommand extends Command {
             break;
         case ACTIVITY:
             /**
-             * User input for Activity event example: run training /at 020202 1200 sentosa
+             * User input for Activity event example: activity run training /at 020202 1200 sentosa
              */
             try {
                 command = command[1].split("/at");
