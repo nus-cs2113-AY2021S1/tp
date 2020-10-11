@@ -30,4 +30,19 @@ public class OptionList implements DisplayableList {
     public void delete(int index) {
         options.remove(index);
     }
+
+    @Override
+    public Displayable find(String description) {
+        for (Displayable option : options) {
+            if (description.equals(option.getDescription())) {
+                return option;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public int getCount() {
+        return options.size();
+    }
 }

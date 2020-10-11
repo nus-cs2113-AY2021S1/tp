@@ -34,16 +34,17 @@ public class TopicList implements DisplayableList {
         topics.remove(index);
     }
 
-    public Topic findTopic(String topicName) {
+    @Override
+    public Displayable find(String topicName) {
         for (Displayable topic : topics) {
             if (topicName.equals(topic.getDescription())) {
-                return (Topic) topic;
+                return topic;
             }
         }
         return null;
     }
 
-    public int getTopicCount() {
+    public int getCount() {
         return topics.size();
     }
 }

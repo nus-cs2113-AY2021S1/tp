@@ -52,7 +52,7 @@ public class MenuParser implements Parser {
 
     // Should move this to its own Command class
     private void parseQuizCommand(TopicList topicList, int numOfQuestions, String topicName, Ui ui) {
-        Topic topic = topicList.findTopic(topicName);
+        Topic topic = (Topic) topicList.find(topicName);
         SingleTopicQuiz singleTopicQuiz = new SingleTopicQuiz(topic, numOfQuestions);
         singleTopicQuiz.startQuiz(ui);
     }

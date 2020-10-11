@@ -41,7 +41,8 @@ public class QuestionList implements DisplayableList {
         }
     }
 
-    public int getNumberOfQuestionsInQuiz() {
+    @Override
+    public int getCount() {
         return quizQuestions.size();
     }
 
@@ -76,4 +77,15 @@ public class QuestionList implements DisplayableList {
     public void delete(int index) {
         allQuestions.remove(index);
     }
+
+    @Override
+    public Displayable find(String description) {
+        for (Displayable question : allQuestions) {
+            if (description.equals(question.getDescription())) {
+                return question;
+            }
+        }
+        return null;
+    }
+
 }

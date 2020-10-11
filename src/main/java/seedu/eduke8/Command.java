@@ -4,9 +4,17 @@ import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.ui.Ui;
 
 
-public interface Command {
-    void execute(DisplayableList displayableList, Ui ui);
+public abstract class Command {
+    private boolean isExit;
 
-    boolean isExit();
+    public Command() {
+        isExit = false;
+    }
+
+    public abstract void execute(DisplayableList displayableList, Ui ui);
+
+    public boolean isExit() {
+        return isExit;
+    };
 
 }

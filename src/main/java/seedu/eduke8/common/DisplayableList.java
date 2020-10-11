@@ -8,4 +8,8 @@ public interface DisplayableList {
     void add(Displayable displayable);
 
     void delete(int index);
+
+    Displayable find(String description);
+
+    int getCount();
 }
