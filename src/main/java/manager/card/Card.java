@@ -11,9 +11,17 @@ public class Card {
     public Card(String question, String answer) {
         this.question = question;
         this.answer = answer;
-        this.dueBy = LocalDate.now();
+        this.dueBy = null;
         this.previousInterval = 1;
     }
+
+    public Card(String question, String answer, LocalDate dueBy, int previousInterval) {
+        this.question = question;
+        this.answer = answer;
+        this.dueBy = dueBy;
+        this.previousInterval = previousInterval;
+    }
+
 
     public void setQuestion(String question) {
         this.question = question;
@@ -24,18 +32,10 @@ public class Card {
     }
 
     public String getQuestion() {
-        return question;
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public String getQuestionWithPrefix() {
         return "[Q] " + question;
     }
 
-    public String getAnswerWithPrefix() {
+    public String getAnswer() {
         return "[A] " + answer;
     }
 

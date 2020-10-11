@@ -5,28 +5,19 @@ import manager.module.Module;
 import java.util.ArrayList;
 
 public class Admin {
-    protected ArrayList<Module> modules;
-    protected int moduleAmount = 0;
+    protected ModuleList modules;
 
     //if there is no storage
     public Admin() {
-        modules = new ArrayList<>();
-        moduleAmount = 0;
+        modules = new ModuleList();
     }
 
     //if there is storage
     public Admin(ArrayList<Module> modules) {
-        this.modules = new ArrayList<>(modules);
-        moduleAmount = modules.size();
+        this.modules = new ModuleList(modules);
     }
 
-    public ArrayList<Module> getModules() {
+    public ModuleList getModules() {
         return modules;
-    }
-
-    public void add(Module module) {
-        modules.add(module);
-        modules.get(moduleAmount).doneAddModule();
-        moduleAmount++;
     }
 }

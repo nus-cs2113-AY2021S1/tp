@@ -1,7 +1,9 @@
 package commands;
 
 import access.Access;
+import manager.admin.ModuleList;
 import manager.chapter.CardList;
+import manager.chapter.Chapter;
 import manager.module.Module;
 import storage.Storage;
 import ui.Ui;
@@ -20,18 +22,21 @@ public class GoModuleCommand extends Command {
     @Override
     public void execute(CardList cards, Ui ui, Access access, Storage storage) {
         boolean isLevelExist = false;
-        ArrayList<Module> modules = access.getAdmin().getModules();
-        for (Module module : modules) {
-            if (moduleCode.equalsIgnoreCase(module.getModule())) {
+        ModuleList modules = access.getAdmin().getModules();
+        ArrayList<Module> allModules = modules.getAllModules();
+        for (Module module : allModules) {
+            if (moduleCode.equalsIgnoreCase(module.getModuleName())) {
                 access.setModuleLevel(moduleCode);
                 isLevelExist = true;
                 try {
-                    Module newModule = new Module(module.getModule(), storage.loadChapter(module.getModule()));
-                    access.setModule(newModule);
+                    ArrayList<Chapter> chapters = storage.loadChapter(module.getModuleName());
+                    if (chapters.size() == 0) {
+                        System.out.println("This is a new module, you can try to add chapters inside!");
+                    }
+                    module.setChapters(chapters);
+                    access.setModule(module);
                 } catch (FileNotFoundException e) {
-                    Module newModule = new Module(module.getModule());
-                    access.setModule(newModule);
-                    System.out.println("Hihi, seems like it is a new module, you can try to add chapter inside!");
+                    System.out.println("The module folder cannot be found.");
                 }
                 break;
             }

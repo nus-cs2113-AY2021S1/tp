@@ -9,6 +9,8 @@ import commands.ReviseCommand;
 import commands.EditCommand;
 
 import manager.card.Card;
+import manager.chapter.Chapter;
+import manager.module.Module;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -77,8 +79,8 @@ public class Ui {
         out.println(message);
     }
 
-    public void showCard(Card c) {
-        out.println(c.getQuestionWithPrefix() + MESSAGE_SHOW_ANSWER_PROMPT);
+    public void showCardRevision(Card c) {
+        out.println(c.getQuestion() + MESSAGE_SHOW_ANSWER_PROMPT);
         getAnswerInput(c);
     }
 
@@ -88,7 +90,7 @@ public class Ui {
             out.println("You have entered an invalid input, please try again.");
             input = in.nextLine();
         }
-        out.println(c.getAnswerWithPrefix());
+        out.println(c.getAnswer());
     }
 
     public String getRating() {
@@ -118,5 +120,17 @@ public class Ui {
     public void showEditedCardContent(Card card) {
         out.println("Edited card:");
         out.println(card);
+    }
+
+    public void showModuleAdded(Module module, int moduleCount) {
+        out.println("    Got it. I've added this module:");
+        out.println("    " + module);
+        out.println("    Now you have " + moduleCount + " modules in the list.");
+    }
+
+    public void showChapterAdded(Chapter chapter, int chapterCount) {
+        out.println("    Got it. I've added this chapter:");
+        out.println("    " + chapter);
+        out.println("    Now you have " + chapterCount + " chapters in the list.");
     }
 }
