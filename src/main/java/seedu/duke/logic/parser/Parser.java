@@ -27,12 +27,9 @@ public class Parser {
 
     public boolean extractType() throws CustomException {
 
-<<<<<<< HEAD
-        String command = splitCommands()[0];
-        String userParams = splitCommands()[1];
-=======
+
         String command = splitCommands(2)[0];
->>>>>>> 8eb7e276851c9c6abada200769d9232ff657f464
+
 
         switch (command) {
         //        case "/route":
