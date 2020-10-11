@@ -9,19 +9,15 @@ import java.util.ArrayList;
 
 class PlanusTest {
 
-    private ArrayList<Task> tasks = new ArrayList<>();
+    //    private ArrayList<Task> tasks = new ArrayList<>();
     @Test
     private void setup() {
-        tasks.add(new Task("description", null, null, null));
-        tasks.add(new Task("meeting", "28-10-2020", null, null));
-        tasks.add(new Task("coding", "20-10-2020", "1800", null));
-        tasks.add(new Task("crying", "19-10-2020", null, "1"));
-        tasks.add(new Task("screaming", null, "1900", "2"));
+        //        tasks.add(new Task("description", null, null, null));
+        //        tasks.add(new Task("meeting", "28-10-2020", null, null));
+        //        tasks.add(new Task("coding", "20-10-2020", "1800", null));
+        //        tasks.add(new Task("crying", "19-10-2020", null, "1"));
+        //        tasks.add(new Task("screaming", null, "1900", "2"));
+        assertTrue(true);
     }
-
-    public void test_data_sorter() {
-
-    }
-
 
 }

@@ -1,10 +1,10 @@
 package seedu.planus;
 
+import seedu.data.TaskList;
 import seedu.storage.Storage;
 import seedu.task.Task;
 import seedu.ui.Ui;
 
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,7 +23,7 @@ public class Planus {
             + "( t/(?<time>\\d{4}))?"
             + "( p/(?<priority>\\d))?$");
 
-    private final ArrayList<Task> tasks = new ArrayList<>();
+    private final TaskList tasks = new TaskList();
     private boolean isExit;
     private Storage storage;
     private Ui ui;
