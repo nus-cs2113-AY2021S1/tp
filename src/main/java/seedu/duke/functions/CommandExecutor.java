@@ -8,6 +8,7 @@ import seedu.duke.exceptions.CommandMissingArgumentsException;
 import seedu.duke.ui.UI;
 
 import seedu.duke.wordlist.WordList;
+import seedu.duke.filters.FilterExecutor;
 
 import static seedu.duke.ui.UI.printHelpMessage;
 
