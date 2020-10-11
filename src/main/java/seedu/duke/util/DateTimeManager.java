@@ -15,6 +15,7 @@ public class DateTimeManager {
 
     /**
      * Parses a user input into the relevant datetime format specified in the manager.
+
      * @param input User input to be parsed
      * @return DateTime representation of the user input
      * @throws SystemException Occurs when the format of the input is wrong and in the specified format.
