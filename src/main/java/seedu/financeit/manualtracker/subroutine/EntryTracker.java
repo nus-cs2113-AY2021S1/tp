@@ -16,7 +16,7 @@ import seedu.financeit.utils.FiniteStateMachine;
 public class EntryTracker {
     private static Ledger currLedger;
     private static EntryList entryList;
-    private static CommandPacket packet;
+    public static CommandPacket packet;
     private static TotalGoal totalGoal = new TotalGoal();
 
     public static void setCurrLedger(Ledger ledger) {
