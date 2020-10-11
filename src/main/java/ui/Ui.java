@@ -76,7 +76,7 @@ public class Ui {
         out.println(message);
     }
 
-    public void showCard(Card c) {
+    public void showCardRevision(Card c) {
         out.println(c.getQuestion() + MESSAGE_SHOW_ANSWER_PROMPT);
         getAnswerInput(c);
     }
