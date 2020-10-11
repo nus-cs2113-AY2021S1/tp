@@ -30,6 +30,7 @@ public class Question implements Displayable {
      */
     @Override
     public String getDescription() {
+        wasShown = true;
         return description;
     }
 
@@ -43,9 +44,6 @@ public class Question implements Displayable {
         return wasShown;
     }
 
-    public void markAsShown() {
-        wasShown = true;
-    }
 
     /**
      * Returns the multiple options of the question.
