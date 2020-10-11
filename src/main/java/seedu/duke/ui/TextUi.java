@@ -173,7 +173,7 @@ public class TextUi {
         }
     }
 
-    public  void printDeleteQuote (String quote) {
+    public  void printDeleteQuote(String quote) {
         System.out.printf((DELETE_QUOTE_MESSAGE) + "\n", quote);
     }
 

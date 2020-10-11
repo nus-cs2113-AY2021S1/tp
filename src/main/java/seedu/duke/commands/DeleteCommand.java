@@ -64,6 +64,7 @@ public class DeleteCommand extends Command {
         case TAG_QUOTE:
             QuoteList quotes = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
             deleteQuote(quotes, ui, information);
+            break;
         default:
         }
     }
