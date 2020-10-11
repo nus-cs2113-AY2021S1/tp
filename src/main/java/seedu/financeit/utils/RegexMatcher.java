@@ -13,6 +13,7 @@ public class RegexMatcher {
     }
 
     public static Matcher paramMatcher(String inputString) {
+        //Matches <space><PARAMS_PREFIX><string><space>
         String regex = String.format("(\\s)([%s]{1})(\\w+)(\\s)",
                 String.join("", Constants.DEFAULT_PARAMS_PREFIX));
         Matcher matcher = regexMatcher(inputString, regex);
