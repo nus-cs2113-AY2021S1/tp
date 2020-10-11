@@ -1,4 +1,4 @@
-package seedu.duke.Event;
+package seedu.duke.event;
 
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;

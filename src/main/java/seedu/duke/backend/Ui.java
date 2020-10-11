@@ -1,9 +1,9 @@
 package seedu.duke.backend;
 
 import seedu.duke.Command;
-import seedu.duke.Event.CommandEventAdd;
-import seedu.duke.Event.CommandEventDel;
-import seedu.duke.Event.CommandEventList;
+import seedu.duke.event.CommandEventAdd;
+import seedu.duke.event.CommandEventDel;
+import seedu.duke.event.CommandEventList;
 import seedu.duke.others.CommandBye;
 import seedu.duke.others.CommandHelp;
 
@@ -82,7 +82,9 @@ public class Ui {
      * @param isInstant whether the string is printed instantly
      */
     private static void printOutput(String text, boolean isInstant) {
-        if(text == null) return;
+        if(text == null) {
+            return;
+        }
         System.out.println(UNDERSCORES);
         // Split text according to the lines to format.
         String[] lines = text.split("\\r?\\n");

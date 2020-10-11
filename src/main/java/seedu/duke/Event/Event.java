@@ -1,4 +1,4 @@
-package seedu.duke.Event;
+package seedu.duke.event;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -9,10 +9,10 @@ public class Event {
     protected LocalDate date;
 
 
-    public Event(String name, String Date, String time){
+    public Event(String name, String date, String time) {
         this.eventName = name;
         this.eventTime = time;
-        this.setEventDate(LocalDate.parse(Date));
+        this.setEventDate(LocalDate.parse(date));
     }
 
 
@@ -27,7 +27,8 @@ public class Event {
      * @return String format of event.
      */
     public String printEvent() {
-        return "Event Name: " + this.eventName +  "\nDate: " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\nTime: " + this.eventTime +"\n";
+        return "Event Name: " + this.eventName +  "\nDate: " +
+                date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\nTime: " + this.eventTime + "\n";
     }
 
 }

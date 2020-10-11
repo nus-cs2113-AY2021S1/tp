@@ -1,4 +1,4 @@
-package seedu.duke.Event;
+package seedu.duke.event;
 
 
 import java.util.ArrayList;
@@ -20,9 +20,8 @@ public class EventList {
     }
 
     /**
-     *
+     * To delete an event based on the given index
      * @param index index to be deleted from list
-     *
      */
     public static String deleteEvent(int index) {
         String userOutput;

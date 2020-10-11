@@ -1,4 +1,4 @@
-package seedu.duke.Event;
+package seedu.duke.event;
 
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
@@ -10,7 +10,7 @@ public class CommandEventDel extends Command {
     @Override
     public String execute() {
         index = Integer.parseInt(userInput.getArg(""));
-        String output = EventList.deleteEvent(index-1);
+        String output = EventList.deleteEvent(index - 1);
         return output;
     }
 
@@ -24,7 +24,7 @@ public class CommandEventDel extends Command {
         userInput = ui;
         if (ui.getCategory().equals("event") && ui.getCommand().equalsIgnoreCase("delEvent")) {
             if (ui.getNumArgs() == 1) {
-                if ((ui.getArg("") != null)){
+                if ((ui.getArg("") != null)) {
                     return ACCEPT;
                 }
             }

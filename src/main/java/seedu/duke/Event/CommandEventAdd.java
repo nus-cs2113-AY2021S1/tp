@@ -1,10 +1,10 @@
-package seedu.duke.Event;
+package seedu.duke.event;
 
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
 
-public class CommandEventAdd extends Command{
+public class CommandEventAdd extends Command {
     private UserInput userInput;
 
     @Override
@@ -19,7 +19,7 @@ public class CommandEventAdd extends Command{
         userInput = ui;
         if (userInput.getCategory().equals("event") && userInput.getCommand().equalsIgnoreCase("addEvent")) {
             if (ui.getNumArgs() == 3) {
-                if ((ui.getArg("n") != null) && (ui.getArg("d") != null) && (ui.getArg("t") != null)){
+                if ((ui.getArg("n") != null) && (ui.getArg("d") != null) && (ui.getArg("t") != null)) {
                     return ACCEPT;
                 }
             }
