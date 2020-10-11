@@ -18,13 +18,19 @@ import seedu.duke.todo.ToDo;
 import seedu.duke.todo.ToDoList;
 import seedu.duke.ui.TextUi;
 
+import java.util.logging.*;
+
 import java.util.ArrayList;
 
 public class AddCommand extends Command {
     private String type;
     private String information;
 
+    public static Logger addLogger = Logger.getLogger("Add");
+
     public AddCommand(String arguments) {
+        addLogger.setLevel(Level.INFO);
+
         String[] details = arguments.split(" ", 2);
 
         // if user did not provide arguments, let details[1] be empty string
@@ -51,8 +57,10 @@ public class AddCommand extends Command {
             addCategoryToBookOrQuote(categories, ui, listManager);
             break;
         case TAG_RATING:
+            addLogger.log(Level.INFO, "going to add rating to book");
             RatingList ratings = (RatingList) listManager.getList(ListManager.RATING_LIST);
             addRating(ratings, ui, listManager);
+            addLogger.log(Level.INFO, "rating of book has completed");
             break;
         case TAG_TODO:
             ToDoList toDos = (ToDoList) listManager.getList(ListManager.TODO_LIST);
@@ -180,6 +188,7 @@ public class AddCommand extends Command {
             }
         }
         if (!doesExist) {
+            addLogger.log(Level.INFO, "book does not exist");
             System.out.println(ERROR_BOOK_TO_RATE_NOT_FOUND);
         }
         return doesExist;
@@ -197,6 +206,7 @@ public class AddCommand extends Command {
         }
 
         if (isRated) {
+            addLogger.log(Level.INFO, "book has been rated");
             System.out.println(ERROR_RATING_EXIST);
             return true;
         }
