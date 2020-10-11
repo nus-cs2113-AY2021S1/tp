@@ -1,9 +1,10 @@
 package seedu.duke.list;
+
 import seedu.duke.food.Food;
 
 
 /**
- * Data class to story both serving sizes and a food object as a single object
+ * Data class to story both serving sizes and a food object as a single object.
  */
 public class FoodEntry {
     private int portionSize;
@@ -17,7 +18,7 @@ public class FoodEntry {
     public FoodEntry(int portionSize, String name, int calorie, 
             int carbohydrate, int protein, int fat) {
         this.portionSize = portionSize;
-        this.food = new Food (name, calorie, carbohydrate, protein, fat);
+        this.food = new Food(name, calorie, carbohydrate, protein, fat);
     }
 
     public Food getFood() {

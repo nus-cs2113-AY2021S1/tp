@@ -24,7 +24,7 @@ public class FoodListManager {
 
     protected static ArrayList<Food> listToFoods(ArrayList<FoodEntry> list) {
         ArrayList<Food> foods = new ArrayList<>();
-        list.forEach( x -> {
+        list.forEach(x -> {
             foods.add(x.getFood());
         });
         return foods;
@@ -34,8 +34,7 @@ public class FoodListManager {
         int indexToDelete = index - 1;
         try {
             return list.remove(indexToDelete).getFood();
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw e;
         }
     }
