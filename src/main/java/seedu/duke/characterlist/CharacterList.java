@@ -15,7 +15,8 @@ import static seedu.duke.parsers.Parsers.parseSingleCharacterTaggedParamsFromUse
 public class CharacterList {
     public static ArrayList<Character> characters = new ArrayList<>();
 
-    public static void addCharacter(String userInput) throws CommandMissingArgumentsException, CharacterNameMissingException {
+    public static void addCharacter(String userInput)
+            throws CommandMissingArgumentsException, CharacterNameMissingException {
         // for returning filter options parsed from the user input
         HashMap<String, String> commandArguments = new HashMap<>();
         String name;
