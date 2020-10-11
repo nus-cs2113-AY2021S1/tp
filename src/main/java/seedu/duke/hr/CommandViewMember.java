@@ -2,6 +2,10 @@ package seedu.duke.hr;
 
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
+
+/**
+ * Represents view member command.
+ */
 public class CommandViewMember extends Command {
 
     private UserInput savedInput;
@@ -24,6 +28,7 @@ public class CommandViewMember extends Command {
 
     @Override
     public String help() {
-        return "";
+
+        return "You can use 'hr list' command this way:\n" + "hr list\n";
     }
 }

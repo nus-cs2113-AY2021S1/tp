@@ -2,6 +2,12 @@ package seedu.duke.hr;
 
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
+import static seedu.duke.hr.MemberList.isInteger;
+
+/**
+ * Represents add member command.
+ */
+
 public class CommandAddMember extends Command {
 
     private UserInput savedInput;
@@ -12,7 +18,7 @@ public class CommandAddMember extends Command {
         if (input.getCategory().equals("hr") && input.getCommand().equalsIgnoreCase("add")) {
             if (input.getNumArgs() == 4) {
                 if ((input.getArg("n")!= null)&&(input.getArg("p")!= null)&&(input.getArg("e")!= null)
-                        &&(input.getArg("r")!= null)) {
+                        &&(input.getArg("r")!= null) && isInteger(input.getArg("p"))) {
                     return ACCEPT;
                 }
             }
@@ -35,6 +41,7 @@ public class CommandAddMember extends Command {
 
     @Override
     public String help() {
-        return "";
+
+        return "You can use 'hr add' command this way:\n" + "hr add /n NAME /p PHONE_NUMBER (INTEGER) /e EMAIL /ROLE\n";
     }
 }
