@@ -10,5 +10,5 @@ import java.util.HashMap;
 public interface SaveState {
     void saveState(HashMap<String, Show> showList) throws IOException;
     
-    void loadState( HashMap<String, Show> showList) throws FileNotFoundException;
+    void loadState(HashMap<String, Show> showList) throws FileNotFoundException;
 }
