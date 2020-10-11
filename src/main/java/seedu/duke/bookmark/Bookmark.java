@@ -26,4 +26,9 @@ public class Bookmark {
     public void setPageNum(int pageNum) {
         this.pageNum = pageNum;
     }
+
+    @Override
+    public String toString() {
+        return book.getTitle() + " / " + Integer.toString(pageNum);
+    }
 }

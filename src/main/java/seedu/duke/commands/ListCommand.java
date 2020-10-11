@@ -1,5 +1,7 @@
 package seedu.duke.commands;
 
+import seedu.duke.bookmark.BookmarkList;
+import seedu.duke.category.Category;
 import seedu.duke.book.BookList;
 import seedu.duke.category.CategoryList;
 import seedu.duke.exception.QuotesifyException;
@@ -9,6 +11,7 @@ import seedu.duke.quote.QuoteParser;
 import seedu.duke.rating.Rating;
 import seedu.duke.rating.RatingList;
 import seedu.duke.rating.RatingParser;
+import seedu.duke.todo.ToDoList;
 import seedu.duke.ui.TextUi;
 
 import java.util.ArrayList;
@@ -41,6 +44,14 @@ public class ListCommand extends Command {
         case TAG_RATING:
             RatingList ratingList = (RatingList) listManager.getList(ListManager.RATING_LIST);
             listRatings(ratingList, ui);
+            break;
+        case TAG_TODO:
+            ToDoList toDoList = (ToDoList) listManager.getList(ListManager.TODO_LIST);
+            listToDos(toDoList,ui);
+            break;
+        case TAG_BOOKMARK:
+            BookmarkList bookmarkList = (BookmarkList) listManager.getList(ListManager.BOOKMARK_LIST);
+            listBookmarks(bookmarkList, ui);
             break;
         case TAG_QUOTE:
             QuoteList quoteListList = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
@@ -166,6 +177,14 @@ public class ListCommand extends Command {
         } catch (NullPointerException e) {
             ui.printErrorMessage(e.getMessage());
         }
+    }
+
+    private void listToDos(ToDoList toDoList, TextUi ui) {
+        ui.printAllToDos(toDoList);
+    }
+
+    private void listBookmarks(BookmarkList bookmarkList, TextUi ui) {
+        ui.printAllBookmarks(bookmarkList);
     }
 
     @Override

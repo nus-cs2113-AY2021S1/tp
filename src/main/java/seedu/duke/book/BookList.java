@@ -56,6 +56,15 @@ public class BookList extends QuotesifyList<Book> {
         return filteredBooks;
     }
 
+    public Book findByTitle(String title) {
+        for (Book book : books) {
+            if (book.getTitle().equals(title)) {
+                return book;
+            }
+        }
+        return null;
+    }
+
     public BookList filterByAuthor(String authorName) {
         ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
                 .filter(book -> {

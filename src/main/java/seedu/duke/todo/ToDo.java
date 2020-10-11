@@ -1,12 +1,14 @@
 package seedu.duke.todo;
 
 public class ToDo {
-    String name;
-    String deadline;
+    private String name;
+    private String deadline;
+    private boolean isDone;
 
     public ToDo(String name, String deadline) {
         this.name = name;
         this.deadline = deadline;
+        this.isDone = false;
     }
 
     public String getName() {
@@ -23,5 +25,19 @@ public class ToDo {
 
     public void setDeadline(String deadline) {
         this.deadline = deadline;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
+    @Override
+    public String toString() {
+        return "T | " + ((this.isDone) ? "1" : "0")
+                + " | " + this.name + " | " + this.deadline;
     }
 }
