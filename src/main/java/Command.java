@@ -4,6 +4,10 @@ public class Command {
             Ui.printExit();
         } else if (commandType == CommandType.LOCATION) {
             Ui.printLocation();
+        } else if (commandType == CommandType.CHANGE_DIRECTORY) {
+            Ui.changeMode(command);
+        } else {
+            ErrorMessage.printUnidentifiableCommand();
         }
     }
 }

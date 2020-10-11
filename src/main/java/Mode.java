@@ -1,3 +1,7 @@
 public enum Mode {
-    INITIAL,
+    MENU,
+    BOOKMARK,
+    TIMETABLE,
+    ACADEMIC,
+    FLASHCARD
 }

@@ -30,10 +30,21 @@ public class Ui {
     }
 
     public static void printLocation() {
-        if (StudyIt.mode == Mode.INITIAL) {
+        if (StudyIt.getCurrentMode() == Mode.MENU) {
             printLine("You are currently at the main menu!");
         } else {
             printLine("Location not found, there's issues with the program"); //TODO: Change this
+        }
+    }
+
+    public static void changeMode(String command) {
+        try {
+            Mode newMode = CommandParser.getDestinationMode(command);
+            StudyIt.changeMode(newMode);
+            printLine("You are now at: " + ModeNames.getCurrentModeName() );
+        } catch (InvalidModeException e) {
+            printLine("Invalid mode name! Please try again.\n" +
+                    "You are still at: " + ModeNames.getCurrentModeName());
         }
     }
 }
