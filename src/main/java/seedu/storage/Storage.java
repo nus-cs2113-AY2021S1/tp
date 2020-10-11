@@ -73,7 +73,7 @@ public class Storage {
         Scanner scanner = new Scanner(file);
         Type type = new TypeToken<Task>(){}.getType();
         while (scanner.hasNextLine()) {
-            tasks.add(gson.fromJson(scanner.nextLine(), type));
+            tasks.addTask(gson.fromJson(scanner.nextLine(), type));
         }
     }
 }

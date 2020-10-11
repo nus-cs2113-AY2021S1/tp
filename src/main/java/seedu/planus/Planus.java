@@ -90,7 +90,7 @@ public class Planus {
             System.out.println("Invalid command!");
             return;
         }
-        tasks.add(task);
+        tasks.addTask(task);
         System.out.println("\nTask added:");
         System.out.println(task.toString());
         System.out.println("Now you have " + tasks.size() + " task(s) in your list.\n");

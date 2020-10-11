@@ -10,14 +10,22 @@ import java.util.stream.Collectors;
 
 public class TaskList {
 
-    private ArrayList<Task> tasks;
+    private final ArrayList<Task> tasks;
 
     public TaskList() {
         tasks = new ArrayList<>();
     }
 
-    public void add(Task task) {
+    public TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public void addTask(Task task) {
         tasks.add(task);
+    }
+
+    public void addTasks(ArrayList<Task> tasks) {
+        this.tasks.addAll(tasks);
     }
 
     public int size() {
@@ -28,12 +36,16 @@ public class TaskList {
         return tasks.get(index);
     }
 
+    public boolean contains(Task task) {
+        return tasks.contains(task);
+    }
+
     public TaskList sortListByDate() {
         // Sort by date
         List<Task> sorted = tasks.stream()
                 .sorted(new DateSorter())
                 .collect(Collectors.toList());
-        return (TaskList) sorted;
+        return new TaskList((ArrayList<Task>) sorted);
     }
 
     public TaskList sortListByPriority() {
@@ -42,7 +54,7 @@ public class TaskList {
                 .sorted(new DateSorter())
                 .sorted(new PrioritySorter())
                 .collect(Collectors.toList());
-        return (TaskList) sorted;
+        return new TaskList((ArrayList<Task>) sorted);
     }
 
 }
