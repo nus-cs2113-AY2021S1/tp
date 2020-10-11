@@ -1,6 +1,6 @@
 package seedu.eduke8.parser;
 
-import seedu.eduke8.command.Command;
+import seedu.eduke8.command.*;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.quiz.SingleTopicQuiz;
 import seedu.eduke8.topic.Topic;
@@ -26,34 +26,21 @@ public class MenuParser implements Parser {
         Ui ui = new Ui();
         switch (commandArr[0]) {
         case "about":
-            ui.printAbout();
-            break;
+            return new AboutCommand();
         case "help":
-            ui.printHelp();
-            break;
+            return new HelpCommand();
         case "topics":
-            ((TopicList) topicList).showTopics();
-            break;
+            return new TopicsCommand();
         case "textbook":
-            ui.printTextbook();
-            break;
+            return new TextbookCommand();
         case "quiz":
-            parseQuizCommand((TopicList) topicList, numOfQuestions, topicName, ui);
-            break;
+            return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui);
         case "exit":
-            System.exit(0);
-            break;
+            return new ExitCommand();
         default:
             break;
         }
 
         return null; // Return command object instead
-    }
-
-    // Should move this to its own Command class
-    private void parseQuizCommand(TopicList topicList, int numOfQuestions, String topicName, Ui ui) {
-        Topic topic = (Topic) topicList.find(topicName);
-        SingleTopicQuiz singleTopicQuiz = new SingleTopicQuiz(topic, numOfQuestions);
-        singleTopicQuiz.startQuiz(ui);
     }
 }

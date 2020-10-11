@@ -5,7 +5,7 @@ import seedu.eduke8.ui.Ui;
 
 
 public abstract class Command {
-    private boolean isExit;
+    protected boolean isExit;
 
     public Command() {
         isExit = false;
