@@ -67,7 +67,7 @@ public abstract class Command {
     /**
      * Extracts the NRIC from command inputted by the user.
      *
-     * @param trimmedCommand String after command word.
+     * @param trimmedCommand Command that was trimmed.
      * @param commandWord    Command that was called.
      * @return Patient's NRIC as a String.
      * @throws RexException If the NRIC inputted by the user is invalid.
