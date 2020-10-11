@@ -1,0 +1,4 @@
+LEC|false|cs2113|2020-10-08|16:00|lt12
+TUT|false|cs2113|2020-10-08|16:00|lt11
+EXAM|false|cs2113t|2020-10-20|12:30|finals
+D|true|<task description>|2020-10-10
