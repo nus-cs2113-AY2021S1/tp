@@ -9,15 +9,15 @@ import java.time.LocalTime;
  */
 public class Activity extends Event {
     private String details;
-    protected String taskType;
+    protected String eventType;
 
-    private static final String EVENT_FILE_SYMBOL = "E";
+    private static final String EVENT_FILE_SYMBOL = "ACT";
     private static final String SEPARATOR = "|";
 
     public Activity(String details, LocalDate date, LocalTime time, String venue) {
         super(date, time, venue);
         this.details = details;
-        taskType = "ACT";
+        eventType = "ACT";
     }
 
 
@@ -30,14 +30,15 @@ public class Activity extends Event {
     }
 
     @Override
-    /** Returns the respective task type. */
-    public String getTaskType() {
-        return taskType;
+    /** Returns the respective event type. */
+    public String getType() {
+        return eventType;
     }
 
     @Override
     public String printIntoFile() {
-        return EVENT_FILE_SYMBOL + SEPARATOR + details + SEPARATOR + this.date;
+        return EVENT_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + details
+                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue;
     }
 
     @Override

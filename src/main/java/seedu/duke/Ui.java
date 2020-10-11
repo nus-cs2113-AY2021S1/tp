@@ -28,8 +28,8 @@ public class Ui {
                 + "3. activity <activity description> <venue> /at ddMMyy\n"
                 + "4. exam <module code> <venue> /at ddMMyy HHmm\n"
                 + "5. lecture <module code> <venue> /at ddMMyy HHmm\n"
-                + "6. tutorial ... / date time\n"
-                + "7. lab ... / date time\n"
+                + "6. tutorial <module code> <venue> /at ddMMyy HHmm\n"
+                + "7. lab <module code> <venue> /at ddMMyy HHmm\n"
                 + "8. done <task number>\n"
                 + "9. delete <task number>\n"
                 + "10. find <keyword>\n"
@@ -112,7 +112,7 @@ public class Ui {
     public static void printDeleteTaskMessage(int taskNumberDelete, CalendarList calendarList) {
         /* - 1 is catered for array list's index starting from 0. */
         System.out.println("Task deleted:\n" + calendarList.getCalendarList().get(taskNumberDelete - 1));
-        System.out.println("Your total tasks: " + (calendarList.getTotalTasks() - 1));
+        System.out.println("Your total tasks: " + (calendarList.getTotalItems() - 1));
     }
 
     /**
@@ -123,7 +123,7 @@ public class Ui {
      */
     public static void printTaskListView(CalendarList calendarList) {
         System.out.println("This is your list of task(s):");
-        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
             System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", i + 1);
         }
     }
@@ -137,7 +137,7 @@ public class Ui {
     public static void printEventsListView(CalendarList calendarList) {
         int eventCounts = 0;
         System.out.println("This is your list of event(s):");
-        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
             if (calendarList.getCalendarList().get(i) instanceof Event) {
                 eventCounts++;
                 System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", eventCounts);
@@ -171,7 +171,7 @@ public class Ui {
         /* - 1 is catered for array list's index starting from 0. */
         System.out.println(calendarList.getCalendarList().get(calendarList.getCalendarList().size() - 1));
 
-        System.out.println("Your total tasks: " + calendarList.getTotalTasks());
+        System.out.println("Your total tasks: " + calendarList.getTotalItems());
     }
 
     /**
@@ -209,14 +209,15 @@ public class Ui {
     public static void printProgress(CalendarList calendarList) {
         int numFinished = 0;
         int numTotal = 0;
-        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
             CalendarItem item = calendarList.getCalendarList().get(i);
-            if (item instanceof Task) {
-                if (((Task) item).getTaskType().equals("E") || ((Task) item).getTaskType().equals("D")) {
-                    numTotal++;
-                    if (((Task) item).getIsDone()) {
-                        numFinished++;
-                    }
+            if (!(item instanceof Task)) {
+                continue;
+            }
+            if (((Task)item).getTaskType().equals("D") || ((Task)item).getTaskType().equals("T")) {
+                numTotal++;
+                if (((Task) item).getIsDone()) {
+                    numFinished++;
                 }
             }
         }
@@ -248,13 +249,16 @@ public class Ui {
             System.out.println("Error: Please key in the event in this format: event ... /at ddMMyy");
             break;
         case "lecture":
-            System.out.println("Error: Please key in the lecture in this format: lecture ... / date time");
+            System.out.println("Error: Please key in the lecture in this format: lecture <module code> <venue? /at "
+                    + "ddMMyy HHmm");
             break;
         case "tutorial":
-            System.out.println("Error: Please key in the tutorial in this format: tutorial ... / date time");
+            System.out.println("Error: Please key in the tutorial in this format: tutorial <module code> <venue? /at "
+                    + "ddMMyy HHmm");
             break;
         case "lab":
-            System.out.println("Error: Please key in the lab in this format: lab ... / date time");
+            System.out.println("Error: Please key in the lab in this format: lab <module code> <venue? /at "
+                    + "ddMMyy HHmm");
             break;
         case "exam":
             System.out.println("Error: Please key in the exam in this format: exam <module code> <exam details> /at "
@@ -275,6 +279,9 @@ public class Ui {
             break;
         case "keyword not found":
             System.out.println("There are no tasks matching this keyword. Check that you have spelt it correctly.");
+            break;
+        case "file not found":
+            System.out.println("The file can not be found");
             break;
         case "invalid done number":
             System.out.println("You can only mark a task as done. An event cannot be marked as done.");
