@@ -62,4 +62,30 @@ public class PatientList {
     public void addNewPatient(String name, String nric, LocalDate dateOfBirth) {
         addPatient(new Patient(name, nric, dateOfBirth));
     }
+
+    /**
+     * Checks if the NRIC entered by the user already exists in the patient list.
+     *
+     * @param nric The NRIC entered by the user.
+     * @return <code>true</code> if NRIC already exists; <code>false</code> otherwise.
+     */
+    public boolean isExistingPatient(String nric) {
+        return getExistingPatient(nric) > -1;
+    }
+
+    /**
+     * Finds NRIC entered by the user from the patient list.
+     * Returns -1 if not found.
+     *
+     * @param nric The NRIC entered by the user.
+     * @return index of the patient with the NRIC; -1 otherwise.
+     */
+    public int getExistingPatient(String nric) {
+        for (int i = 0; i < getSize(); i++) {
+            if (getPatientUsingIndex(i).getNric().equals(nric)) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
