@@ -1,3 +1,7 @@
+import academic.Grade;
+import academic.GradeBook;
+import  academic.Person;
+import academic.PersonBook;
 
 public class Command {
     public static void executeCommand(String command, CommandType commandType) {
@@ -44,16 +48,21 @@ public class Command {
 
     }
 
-    public static void executeAcademicModeCommand(String command
-            ,CommandType commandType) throws InvalidCommandException {
+    public static void executeAcademicModeCommand(String command,
+            CommandType commandType) throws InvalidCommandException {
+
         if (commandType == CommandType.ADD_CONTACT) {
             Ui.printLine("Adding Contact"); //TODO: Remove placeholder line.
+            PersonBook.addPerson(CommandParser.getContact(command));
         } else if (commandType == CommandType.CHECK_CONTACT) {
             Ui.printLine("Checking Contact"); //TODO: Remove placeholder line.
+            Ui.printLine(PersonBook.printPersonBook());
         } else if (commandType == CommandType.ADD_GRADE) {
             Ui.printLine("Adding Grade"); //TODO: Remove placeholder line.
+            GradeBook.addGrade(CommandParser.getGrade(command));
         } else if (commandType == CommandType.CHECK_GRADE) {
-            Ui.printLine("Checking Contact"); //TODO: Remove placeholder line.
+            Ui.printLine("Checking Grade"); //TODO: Remove placeholder line.
+            Ui.printLine(GradeBook.printCap());
         } else {
             ErrorMessage.printUnidentifiableCommand();
         }

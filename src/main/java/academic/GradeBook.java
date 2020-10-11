@@ -6,19 +6,20 @@ import java.util.ArrayList;
  * Represents a grade book in study-it.
  */
 public class GradeBook {
-    protected ArrayList<Grade> currentGrade;
+    public static ArrayList<Grade> currentGrade = new ArrayList<>();
 
-    public void addGrade(Grade grade){
-        this.currentGrade.add(grade);
+    public static void addGrade(String[] args) {
+        GradeBook.currentGrade.add(new Grade(args[0],Integer.parseInt(args[1]),args[2]));
     }
 
-    public static String printCap(GradeBook gradeBook){
+    public static String printCap() {
         double totalGradeScore = 0;
         int totalCredits = 0;
-        for (Grade item : gradeBook.currentGrade) {
-            totalCredits+= item.getModuleCredits();
-            totalGradeScore += item.convertLetterToCredit()* item.getModuleCredits();
+        for (Grade item : GradeBook.currentGrade) {
+
+            totalCredits += Grade.getModuleCredits(item);
+            totalGradeScore += Grade.convertLetterToCredit(Grade.getModuleGrade(item)) * Grade.getModuleCredits(item);
         }
-        return "Current CAP is"+ totalGradeScore/totalCredits + ".";
+        return "Current CAP is " + totalGradeScore / totalCredits + ".";
     }
 }

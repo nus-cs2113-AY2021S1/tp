@@ -8,42 +8,42 @@ public class Grade {
     protected Integer moduleCredits;
     protected String moduleGrade;
 
-    public Grade(String name, Integer credits, String grade){
+    public Grade(String name, Integer credits, String grade) {
         this.moduleName = name;
         this.moduleCredits = credits;
         this.moduleGrade = grade;
     }
 
-    public Integer getModuleCredits() {
-        return moduleCredits;
+    public static Integer getModuleCredits(Grade grade) {
+        return grade.moduleCredits;
     }
 
-    public String getModuleGrade() {
-        return moduleGrade;
+    public static String getModuleGrade(Grade grade) {
+        return grade.moduleGrade;
     }
 
-    public double convertLetterToCredit(){
-        switch (this.moduleGrade){
-        case "A+":
-        case "A":
+    public static double convertLetterToCredit(String input) {
+        switch (input.trim()) {
+        case "a+":
+        case "a":
             return 5.0;
-        case "A-":
+        case "a-":
             return 4.5;
-        case "B+":
+        case "b+":
             return 4.0;
-        case "B":
+        case "b":
             return 3.5;
-        case "B-":
+        case "b-":
             return 3.0;
-        case "C+":
+        case "c+":
             return 2.5;
-        case "C":
+        case "c":
             return 2.0;
-        case "D+":
+        case "d+":
             return 1.5;
-        case "D":
+        case "d":
             return 1.0;
-        case "F":
+        case "f":
             return 0;
         default:
             return 0;
