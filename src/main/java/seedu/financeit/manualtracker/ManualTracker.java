@@ -93,7 +93,7 @@ public class ManualTracker {
         }
     }
 
-    private static FiniteStateMachine.State handleCreateLedger() {
+    public static FiniteStateMachine.State handleCreateLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Ledger ledger = null;
         try {
