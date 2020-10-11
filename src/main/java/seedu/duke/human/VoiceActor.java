@@ -1,4 +1,6 @@
-package seedu.duke;
+package seedu.duke.human;
+
+import seedu.duke.exception.AniException;
 
 import java.util.ArrayList;
 
