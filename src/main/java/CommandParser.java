@@ -15,6 +15,8 @@ public class CommandParser {
             return CommandType.LOCATION;
         } else if (commandModified.startsWith("cd")) {
             return CommandType.CHANGE_MODE;
+        } else if (commandModified.equals("help")) {
+            return CommandType.HELP;
         } else {
             return CommandType.UNIDENTIFIABLE;
         }

@@ -38,7 +38,7 @@ public class Ui {
         }
     }
 
-    public static void changeMode(String command) {
+    public static void changeModeCommand(String command) {
         try {
             Mode newMode = CommandParser.getDestinationMode(command);
             StudyIt.changeMode(newMode);
@@ -50,7 +50,10 @@ public class Ui {
     }
 
     public static void exitMode() {
+        System.out.println(LINE_DIVIDER);
         System.out.println("Exited " + ModeNames.getCurrentModeName() + "!");
-        changeMode("cd menu"); //TODO: Check UI
+        StudyIt.changeMode(Mode.MENU); //TODO: Check UI
+        System.out.println("You are now back at: " + ModeNames.getCurrentModeName());
+        System.out.println(LINE_DIVIDER);
     }
 }

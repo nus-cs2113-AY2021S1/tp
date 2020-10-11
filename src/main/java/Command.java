@@ -7,7 +7,9 @@ public class Command {
         } else if (commandType == CommandType.LOCATION) {
             Ui.printLocation();
         } else if (commandType == CommandType.CHANGE_MODE) {
-            Ui.changeMode(command);
+            Ui.changeModeCommand(command);
+        } else if (commandType == CommandType.HELP) {
+            HelpMessage.printHelpMessage();
         } else {
             ErrorMessage.printUnidentifiableCommand();
         }

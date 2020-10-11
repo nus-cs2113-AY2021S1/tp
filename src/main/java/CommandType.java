@@ -3,5 +3,6 @@ public enum CommandType {
     EXIT_MODE,
     LOCATION,
     CHANGE_MODE,
-    UNIDENTIFIABLE
+    UNIDENTIFIABLE,
+    HELP
 }
