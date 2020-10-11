@@ -5,6 +5,7 @@ import seedu.financeit.manualtracker.ManualTracker;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.RegexMatcher;
+import seedu.financeit.financetools.FinanceTools;
 
 public class Financeit {
     public static void main(String[] args) {
@@ -24,6 +25,7 @@ public class Financeit {
             case "goal": //GoalTracker.main();
                 break;
             case "financial": //FinancialCalculator.main();
+                FinanceTools.main();
                 break;
             case "exit":
                 return;
