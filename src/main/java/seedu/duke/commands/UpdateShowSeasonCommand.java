@@ -1,25 +1,27 @@
 package seedu.duke.commands;
 
 import seedu.duke.classes.Show;
+import seedu.duke.utility.ErrorHandling;
 import seedu.duke.utility.ShowList;
 
 public class UpdateShowSeasonCommand extends Command {
 
     java.util.ArrayList<String> inputs;
-    boolean hasEpisodeData;
 
-    public UpdateShowSeasonCommand(String description, java.util.ArrayList<String> inputs) {
+    public UpdateShowSeasonCommand(String description, java.util.ArrayList<String> inputs) throws NullPointerException {
         super(description);
         this.inputs = inputs;
-        hasEpisodeData = inputs.size() >= 3;
+        if (inputs.size() < 3) {
+            throw new NullPointerException();   //insufficient input elements
+        }
     }
 
-    //INPUT : season "show" "season" "episode (optional)z"
+    //INPUT : season "show" "season" "episode (optional)"
     public void processCommand() {
-        if (hasEpisodeData) {
-            updateSeasonAndEpisode();
-        } else {
+        if (inputs.size() == 3) {
             updateSeasonOnly();
+        } else {
+            updateSeasonAndEpisode();
         }
     }
 
