@@ -128,6 +128,6 @@ public class Ui {
         commandList.add(new CommandAddMember());
         commandList.add(new CommandViewMember());
         commandList.add(new CommandDelMember());
-   
+    }
 }
 
