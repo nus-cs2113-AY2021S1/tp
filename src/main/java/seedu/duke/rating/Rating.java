@@ -24,4 +24,9 @@ public class Rating {
     public void setRating(int rating) {
         this.rating = rating;
     }
+
+    @Override
+    public String toString() {
+        return titleOfRatedBook + ": " + rating + " star" + System.lineSeparator();
+    }
 }

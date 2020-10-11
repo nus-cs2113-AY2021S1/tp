@@ -26,8 +26,10 @@ public class TextUi {
             + "       \\__>                      \\/     \\/          \\/    ";
 
     private static final String WELCOME_MESSAGE = "Welcome to Quotesify!";
-    private static final String GOODBYE_MESSAGE = "Have a nice day!";
+    private static final String GOODBYE_MESSAGE = "Alright, have a nice day!";
     private static final String PROMPT_MESSAGE = "\nWhat would you like to do with Quotesify?";
+    private static final String INVALID_QUOTESIFY_COMMAND = "I don't understand you." + System.lineSeparator()
+            + "Maybe type \"help\" for usage instructions?";
     private static final String ADD_BOOK_MESSAGE = "The book [%s] has been added!";
     private static final String DELETE_BOOK_MESSAGE = "The book [%s] has been deleted!";
     private static final String LIST_BOOKS_MESSAGE = "Here is a list of all books:";
@@ -40,7 +42,9 @@ public class TextUi {
     public static final String DELETE_RATING_MESSAGE = "Rating for %s has been deleted!";
     private static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
             + " Here are your rated books!";
+    private static final String LIST_NO_RATINGS_FOUND_MESSAGE = "None of the books are rated yet!";
     private static final String LIST_SPECIFIED_RATING_MESSAGE = "Here are the books you rated as %d star!";
+    private static final String LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE = "I can't find any books rated %d star!";
     private static final String ADD_TODO_MESSAGE = "The task [%s] has been added!";
     private static final String TODO_SIZE_MESSAGE = "You have a total of %d task(s) recorded.";
     private static final String LIST_TODOS_MESSAGE = "Here is the list of all task(s) recorded:";
@@ -77,7 +81,10 @@ public class TextUi {
 
     public String getUserCommand() {
         System.out.println(PROMPT_MESSAGE);
-        return in.nextLine().trim();
+        if (in.hasNextLine()) {
+            return in.nextLine().trim();
+        }
+        return "bye";
     }
 
     public void printAddBook(Book book) {
@@ -141,11 +148,19 @@ public class TextUi {
     }
 
     public void printAllRatings(RatingList ratingList) {
+        if (ratingList.getList().size() == 0) {
+            System.out.println(LIST_NO_RATINGS_FOUND_MESSAGE);
+            return;
+        }
         System.out.println(LIST_ALL_RATINGS_MESSAGE);
         System.out.println(ratingList.toString());
     }
 
     public void printSpecifiedRating(RatingList ratings, int ratingToList) {
+        if (ratings.getList().size() == 0) {
+            System.out.printf((LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE) + "\n", ratingToList);
+            return;
+        }
         System.out.printf((LIST_SPECIFIED_RATING_MESSAGE) + "\n", ratingToList);
         for (Rating rating : ratings.getList()) {
             if (rating.getRating() == ratingToList) {
@@ -257,8 +272,16 @@ public class TextUi {
     public void printRandomQuote(ListManager listManager) {
         QuoteList quotes = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
         Random rand = new Random();
-        int randomQuoteNumber = rand.nextInt(quotes.getSize() - 1);
-        Quote quoteToPrint = quotes.getQuote(randomQuoteNumber);
-        System.out.println(PRINT_RANDOM_QUOTE + System.lineSeparator() + quoteToPrint.toString());
+        try {
+            int randomQuoteNumber = rand.nextInt(quotes.getSize() - 1);
+            Quote quoteToPrint = quotes.getQuote(randomQuoteNumber);
+            System.out.println(PRINT_RANDOM_QUOTE + System.lineSeparator() + quoteToPrint.toString());
+        } catch (IllegalArgumentException e) {
+            return;
+        }
+    }
+
+    public void printInvalidQuotesifyCommand() {
+        System.out.println(INVALID_QUOTESIFY_COMMAND);
     }
 }
