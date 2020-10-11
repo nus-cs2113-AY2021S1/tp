@@ -1,5 +1,6 @@
 package seedu.duke.storage;
 
+import seedu.duke.common.Messages;
 import seedu.duke.exceptions.EmptyParameterException;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
@@ -7,6 +8,7 @@ import seedu.duke.commands.CreateCommand;
 import seedu.duke.data.ApplianceList;
 import seedu.duke.data.HomeLocations;
 import seedu.duke.exceptions.FileCorrupted;
+import seedu.duke.exceptions.InvalidAddtionOfLocation;
 import seedu.duke.ui.TextUi;
 
 import java.io.File;
@@ -16,8 +18,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-import static seedu.duke.common.Messages.MESSAGE_FILE_CORRUPTED;
-import static seedu.duke.common.Messages.MESSAGE_IMPORT;
 
 public class StorageFile {
 
@@ -60,12 +60,12 @@ public class StorageFile {
             try {
                 convertTextToLocationList(locationList);
                 convertTextToApplianceList(i, myReader);
+                ui.showToUser(Messages.MESSAGE_IMPORT);
             } catch (FileCorrupted e) {
-                ui.showToUser(MESSAGE_FILE_CORRUPTED);
+                ui.showToUser(Messages.MESSAGE_FILE_CORRUPTED);
             }
 
             myReader.close();
-            ui.showToUser(MESSAGE_IMPORT);
         } catch (FileNotFoundException | EmptyParameterException e) {
             System.out.println("Load File Does not Exist. No contents will be loaded.");
         }
@@ -102,11 +102,12 @@ public class StorageFile {
             String when = locationList.substring(start, end);
             String[] stringSplit = when.split(",");
             for (int j = 0; j < stringSplit.length; j++) {
-                CreateCommand newLocation = new CreateCommand(stringSplit[j].trim());
-                newLocation.setData(appliances, homeLocations);
-                newLocation.insertLocation();
+                //CreateCommand newLocation = new CreateCommand(stringSplit[j].trim());
+                //newLocation.setData(appliances, homeLocations);
+                //newLocation.insertLocation();
+                homeLocations.addLocation(stringSplit[j].trim());
             }
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | InvalidAddtionOfLocation e) {
             throw new FileCorrupted();
         }
 
