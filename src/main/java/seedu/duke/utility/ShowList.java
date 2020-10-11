@@ -24,7 +24,7 @@ public class ShowList {
         showList.put(showName, show);
     }
 
-    public HashMap<String, Show> getShowList() {
+    public static HashMap<String, Show> getShowList() {
         return showList;
     }
 }
