@@ -110,7 +110,8 @@ public class InputParser {
             return;
 
         case "list":
-            parseListCommand(ShowList.getShowList());
+            Ui.printShowList();
+            //parseListCommand(ShowList.getShowList());
             return;
 
         case "changerating":

@@ -1,5 +1,7 @@
 package seedu.duke.utility;
 
+import seedu.duke.classes.Show;
+
 import java.util.Scanner;
 
 /**
@@ -54,11 +56,11 @@ public class Ui {
         // TODO load from txt file if possible instead of writing out one whole chunk in the future
         String helpIcon =
                 " __    __   _______  __      .______   \n"
-                + "|  |  |  | |   ____||  |     |   _  \\  \n"
-                + "|  |__|  | |  |__   |  |     |  |_)  | \n"
-                + "|   __   | |   __|  |  |     |   ___/  \n"
-                + "|  |  |  | |  |____ |  `----.|  |      \n"
-                + "|__|  |__| |_______||_______|| _|      \n";
+                        + "|  |  |  | |   ____||  |     |   _  \\  \n"
+                        + "|  |__|  | |  |__   |  |     |  |_)  | \n"
+                        + "|   __   | |   __|  |  |     |   ___/  \n"
+                        + "|  |  |  | |  |____ |  `----.|  |      \n"
+                        + "|__|  |__| |_______||_______|| _|      \n";
 
         System.out.println(ANSI_GREEN + helpIcon + ANSI_RESET);
         System.out.println("The following options are available:");
@@ -83,7 +85,7 @@ public class Ui {
                 + "`bye` - Exits the program\n");
         printLine();
     }
-    
+
     public String getUserCommand() {
         String userInput = scan.nextLine();
 
@@ -111,9 +113,12 @@ public class Ui {
         System.out.println("Enter a command: ");
     }
 
-    public static void printShowList(ShowList showList) {
+    public static void printShowList() {
         printLine();
         System.out.println("Your watchlist:");
+        for (Show show : ShowList.showList.values()) {
+            System.out.println(show.toString());
+        }
     }
 
     public static void printShowRating(String showName, String rating) {

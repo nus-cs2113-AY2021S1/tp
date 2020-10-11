@@ -1,7 +1,6 @@
 package seedu.duke.commands;
 
 import seedu.duke.classes.Show;
-import seedu.duke.utility.ErrorHandling;
 import seedu.duke.utility.ShowList;
 
 public class UpdateShowSeasonCommand extends Command {
