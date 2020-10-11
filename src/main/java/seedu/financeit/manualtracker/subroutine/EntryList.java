@@ -3,11 +3,13 @@ package seedu.financeit.manualtracker.subroutine;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.ItemList;
+import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class EntryList extends ItemList {
@@ -43,6 +45,17 @@ public class EntryList extends ItemList {
     @Override
     public boolean isValidItem() {
         return (this.itemQueue.size() == 1);
+    }
+
+    public Entry getItemFromDate(LocalTime time) throws ItemNotFoundException {
+        Entry output;
+        for (Object i : this.items) {
+            output = (Entry)i;
+            if ((output.getTime().equals(time))) {
+                return output;
+            }
+        }
+        throw new ItemNotFoundException();
     }
 
     @Override

@@ -2,25 +2,33 @@ package seedu.financeit.parser;
 
 import seedu.financeit.common.Constants;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
  * Class that stores and manages the output of Datetime classes.
  */
 public class DateTimeManager {
-    private LocalDateTime dateTime;
+    private LocalDate date;
+    private LocalTime time;
 
-    public DateTimeManager(String startDate) {
-        this.setDateTime(startDate);
+    public DateTimeManager(){
+
     }
 
     public DateTimeManager(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+        this.time = dateTime.toLocalTime();
+        this.date = dateTime.toLocalDate();
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = this.dateTime.parse(dateTime);
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
     /**
@@ -28,33 +36,46 @@ public class DateTimeManager {
      * @param whichFormat Format to determine output of dateTime.
      * @return Formatted dateTime string
      */
-    public String getDateFormatted(String whichFormat) {
+
+    public String getSingleDateFormatted(String whichFormat) {
         String output = "";
 
         switch (whichFormat) {
         case "date":
             // May 27 2020
-            output = this.dateTime.toLocalDate().format(DateTimeFormatter.ofPattern("MMM d YYYY"));
+            output = this.date.format(DateTimeFormatter.ofPattern("MMM d YYYY"));
             break;
         case "day":
             // Tuesday
-            output = this.dateTime.getDayOfWeek().toString();
+            output = this.date.getDayOfWeek().toString();
             break;
         case "month":
             // May
-            output = this.dateTime.getMonth().toString();
+            output = this.date.getMonth().toString();
             break;
         case "year":
             // 2020
-            output = Integer.toString(dateTime.getYear());
-            break;
-        case "time":
-            //00:00
-            output = this.dateTime.toLocalTime().toString();
+            output = Integer.toString(date.getYear());
             break;
         default:
             // Show all information
-            output = this.dateTime.format(DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm:ss"));
+            output = this.date.format(DateTimeFormatter.ofPattern("YYYY/MM/dd"));
+            break;
+        }
+        return output;
+    }
+
+    public String getSingleTimeFormatted(String whichFormat) {
+        String output = "";
+
+        switch (whichFormat) {
+        case "time":
+            // 2020
+            output = time.toString();
+            break;
+        default:
+            // Show all information
+            output = this.time.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
             break;
         }
         return output;
@@ -66,33 +87,35 @@ public class DateTimeManager {
      * @param whichFormat Format to determine output of dateTime
      * @return Formatted dateTime string
      */
-    public String getDateFormatted(String[] whichFormat) {
+    public String getDateTimeFormatted(String[] whichFormat) {
         String[] token = new String[Constants.MAX_ARRAY_LEN];
-        String dateTime;
+        String outputDate;
+        String outputTime;
         String output = "";
 
         if (whichFormat == null) {
-            return getDateFormatted("dateTime");
+            return getSingleDateFormatted(" ")
+                + getSingleTimeFormatted(" ");
         }
 
         for (String format : whichFormat) {
-            dateTime = getDateFormatted(format);
+            outputDate = getSingleDateFormatted(format);
+            outputTime = getSingleTimeFormatted(format);
             switch (format) {
             case "day":
-                token[0] = dateTime;
+                token[0] = outputDate;
                 break;
             case "month":
-                token[2] = dateTime;
+                token[2] = outputDate;
                 break;
             case "year":
-                token[3] = dateTime;
+                token[3] = outputDate;
                 break;
             case "time":
-                token[4] = dateTime;
+                token[4] = outputTime;
                 break;
             default:
                 // Fall-through
-                token[1] = dateTime;
                 break;
             }
         }

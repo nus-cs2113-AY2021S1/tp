@@ -71,6 +71,9 @@ public class EntryTracker {
         return FiniteStateMachine.State.MAIN_MENU;
     }
 
+    public static EntryList getEntryList() {
+        return entryList;
+    }
 
     private static FiniteStateMachine.State handleMainMenu() {
         UiManager.printSpace();

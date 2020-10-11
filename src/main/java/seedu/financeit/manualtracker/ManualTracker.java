@@ -57,7 +57,9 @@ public class ManualTracker {
     }
 
 
-    public static LedgerList getLedgerList(){ return ledgerList; }
+    public static LedgerList getLedgerList() {
+        return ledgerList;
+    }
 
     public static void setCommandPacket(CommandPacket p){
         packet = p;
