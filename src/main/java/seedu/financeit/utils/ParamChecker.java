@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class ParamChecker {
     public static final String PARAM_DATE = "/date";
+    public static final String PARAM_DAY = "/day";
     public static final String PARAM_TIME = "/time";
     public static final String PARAM_INDEX = "/id";
     public static final String PARAM_DESCRIPTION = "/desc";
@@ -23,6 +24,7 @@ public class ParamChecker {
     public static final String PARAM_AMOUNT = "/amt";
     public static final String PARAM_INC = "-i";
     public static final String PARAM_EXP = "-e";
+    public static final String PARAM_AUTO = "-auto";
 
     CommandPacket packet;
 
@@ -147,6 +149,24 @@ public class ParamChecker {
         } catch (NumberFormatException | NullPointerException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 "Cannot parse your input. Please enter valid 2 d.p input!");
+        }
+
+        if (!parseSuccess) {
+            throw new ParseFailParamException(paramType);
+        }
+        return output;
+    }
+
+    public int checkAndReturnInt(String paramType) throws ParseFailParamException {
+        String input = packet.getParam(paramType);
+        boolean parseSuccess = false;
+        int output = -1;
+        try {
+            output = Integer.parseInt(input);
+            parseSuccess = true;
+        } catch (NumberFormatException | NullPointerException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    "Cannot parse your input. Please enter valid integer input!");
         }
 
         if (!parseSuccess) {

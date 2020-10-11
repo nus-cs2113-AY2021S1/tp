@@ -21,7 +21,7 @@ public abstract class ParamHandler {
         this.paramChecker = new ParamChecker(packet);
         for (String paramType : packet.getParamTypes()) {
             try {
-                handleParam(packet, paramType);
+                handleSingleParam(packet, paramType);
             } catch (ParseFailParamException exception) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     paramChecker.getParseFailParamMessage(paramType));
@@ -47,6 +47,6 @@ public abstract class ParamHandler {
 
     public abstract boolean isValidItem();
 
-    public abstract void handleParam(CommandPacket packet, String paramType)
+    public abstract void handleSingleParam(CommandPacket packet, String paramType)
         throws ParseFailParamException, ItemNotFoundException, ConflictingItemReference;
 }

@@ -2,6 +2,7 @@ package seedu.financeit;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.manualtracker.ManualTracker;
+import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.RegexMatcher;
@@ -11,9 +12,10 @@ public class Financeit {
         System.out.println(RegexMatcher.alphabetMatcher("abc").find());
         while (true) {
             MenuPrinter.printMainMenu();
-            CommandPacket input = UiManager.handleInput();
+            String input = UiManager.handleInput();
+            CommandPacket packet = new InputParser().parseInput(input);
             UiManager.refreshPage();
-            switch (input.getCommandString()) {
+            switch (packet.getCommandString()) {
             case "manual":
                 ManualTracker.main();
                 break;

@@ -67,7 +67,7 @@ public class ParamsParser {
 
             try {
                 //Throws IllegalStateException if no more params are present after current param
-                paramArgumentExist = matcher.start() == 0;
+                paramArgumentExist = matcher.start() > 0;
             } catch (java.lang.IllegalStateException e) {
                 //No further params
                 paramArgument = paramSubstring.trim();

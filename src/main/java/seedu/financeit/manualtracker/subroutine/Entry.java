@@ -91,7 +91,7 @@ public class Entry extends Item {
     }
 
     @Override
-    public void handleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
+    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case PARAM_TIME:
             LocalDateTime dateTime = paramChecker.checkAndReturnDateTime(paramType, defaultDateTimeFormat);
