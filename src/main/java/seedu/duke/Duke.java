@@ -1,21 +1,22 @@
 package seedu.duke;
 
-import java.util.Scanner;
+import seedu.duke.timeTable.*;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+        DateList event = new DateList();
+        Event lesson = new Lesson("CS2113", "www.zoom.com", true);
+        lesson.addPeriod(new Duration(LocalDateTime.of(2020, 10,12,11,00)));
+        event.addLesson(lesson);
+        System.out.println(event.dateList.get(0).events.get(0).periods.get(0).timeSlot);
+        System.out.println(LocalDate.now());
+        Table.printTable(event.dateList);
     }
 }
