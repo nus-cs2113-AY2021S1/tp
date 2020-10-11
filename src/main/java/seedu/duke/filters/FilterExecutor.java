@@ -2,7 +2,7 @@ package seedu.duke.filters;
 
 import seedu.duke.exceptions.FilterCommandException;
 
-import static seedu.duke.filters.FilterCommandSlicer.continueLastFilter;
+import static seedu.duke.filters.FilterCommandSlicer.startsNewFilter;
 import static seedu.duke.filters.FilterCommandSlicer.getTargetedStringTags;
 import static seedu.duke.filters.FilterCommandSlicer.getTargetedWordType;
 import static seedu.duke.filters.FilterCommandSlicer.getTypeOfFilter;
@@ -16,7 +16,7 @@ public class FilterExecutor {
         try {
             FilterType filterType = getTypeOfFilter(command);
             String[] tags;
-            boolean isNewFilter = continueLastFilter(command);
+            boolean isNewFilter = startsNewFilter(command);
             switch (filterType) {
             case WORD_TYPE:
                 tags = getTargetedWordType(command);
