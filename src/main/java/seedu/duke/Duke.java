@@ -1,21 +1,43 @@
 package seedu.duke;
 
-import java.util.Scanner;
+import seedu.duke.classes.Storage;
+import seedu.duke.utility.ShowList;
+import seedu.duke.utility.Ui;
 
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+    private Storage storage;
+    //public ShowList shows;
+    private Ui ui;
+
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            new ShowList(/*storage.loadState()*/);
+        } catch (Exception e) {
+            //ui.showLoadingError();
+            new ShowList();
+        }
+    }
+
+    public void run() {
+        //...
+        /*ui.hello();
+        Scanner scan = new Scanner(System.in);
+        InputParser parseManager = new InputParser();
+        while (!parseManager.isByeTime()) {
+            Ui.printLineIcon();
+            String input = scan.nextLine();
+            parseManager.parseInput(input);
+        }*/
+    }
+
+    public static void main(String[] args) {
+        new Duke("data/tasks.txt").run();
     }
 }
+
