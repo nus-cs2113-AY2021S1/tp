@@ -1,4 +1,4 @@
-package seedu.duke.essay;
+package seedu.duke.writing;
 
 import seedu.duke.history.History;
 import seedu.duke.writing.Writings;

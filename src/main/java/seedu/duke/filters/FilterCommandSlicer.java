@@ -55,7 +55,6 @@ public class FilterCommandSlicer {
         int index = command.indexOf("-");
         while (index >= 0) {
             int nextIndex = command.indexOf("-", index + 1);
-            String stringToFilter;
             if (nextIndex != -1) {
                 targetedStrings.add(command.substring(index + 1, nextIndex).trim());
             } else {

@@ -5,6 +5,7 @@ import seedu.duke.commands.CommandChecker;
 
 import seedu.duke.exceptions.BunnyIdeaMissingException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
+import seedu.duke.filters.FilterExecutor;
 import seedu.duke.ui.UI;
 
 import seedu.duke.wordlist.WordList;
