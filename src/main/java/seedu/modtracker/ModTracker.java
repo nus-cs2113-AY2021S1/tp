@@ -7,20 +7,25 @@ import java.util.Scanner;
  * Main entry-point for the java.seedu.modtracker application.
  */
 public class ModTracker {
+    private Ui ui;
+    private ModuleList modList;
     private Storage storage;
-    private Ui ui = new Ui();
-    private ModuleList modList = new ModuleList();
 
     public static void main(String[] args) {
         new ModTracker().run();
+    }
+
+    public ModTracker() {
+        ui = new Ui();
+        modList = new ModuleList();
+        storage = new Storage("data/modtracker.txt");
     }
 
     /**
      * Runs the program until termination.
      */
     public void run() {
-        String name = start();
-        storage = new Storage("data/modtracker.txt");
+        String name = startAndGetName();
         loadData();
         runCommandLoopUntilExitCommand(name);
     }
@@ -30,7 +35,7 @@ public class ModTracker {
      *
      * @return name of user
      */
-    public String start() {
+    public String startAndGetName() {
         ui.printWelcomeScreen();
         return ui.printNamePrompt();
     }

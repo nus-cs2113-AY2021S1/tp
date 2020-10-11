@@ -27,6 +27,5 @@ public class HelpList {
                 + "8. compare <module code>\n"
                 + "   example: compare CS2113T\n"
                 + "9. exit\n");
-
     }
 }

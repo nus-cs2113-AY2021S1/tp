@@ -21,14 +21,18 @@ public class ModuleList {
     public void addMod(String input, boolean toPrint) {
         String[] modInfo = input.split(" ", 2);
         modInfo[1] = modInfo[1].toUpperCase();
-        if (!checkModuleIfExist(modInfo[1])) {
-            Module currentModule = new Module(modInfo[1]);
-            modList.add(currentModule);
+
+        if (checkModuleIfExist(modInfo[1])) {
             if (toPrint) {
-                ui.printAdd(currentModule);
+                ui.printExist(modInfo[1]);
             }
-        } else if (toPrint) {
-            ui.printExist(modInfo[1]);
+            return;
+        }
+
+        Module currentModule = new Module(modInfo[1]);
+        modList.add(currentModule);
+        if (toPrint) {
+            ui.printAdd(currentModule);
         }
     }
 
