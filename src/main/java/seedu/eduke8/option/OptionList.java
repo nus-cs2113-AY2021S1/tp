@@ -23,7 +23,7 @@ public class OptionList implements DisplayableList {
 
     @Override
     public void add(Displayable option) {
-        options.remove(option);
+        options.add(option);
     }
 
     @Override
