@@ -12,7 +12,6 @@ import seedu.duke.hr.CommandDelMember;
 import seedu.duke.hr.CommandViewMember;
 import seedu.duke.others.CommandBye;
 import seedu.duke.others.CommandHelp;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -131,7 +130,6 @@ public class Ui {
         commandList.add(new CommandAddMember());
         commandList.add(new CommandViewMember());
         commandList.add(new CommandDelMember());
-
     }
 }
 
