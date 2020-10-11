@@ -66,6 +66,7 @@ public class Ledger extends Item {
         case ParamChecker.PARAM_DATE:
             dateTime = paramChecker.checkAndReturnDateTime(paramType, defaultDateTimeFormat);
             this.setDateTime(dateTime);
+            this.parseSuccessParams.add(paramType);
             break;
 
         default:

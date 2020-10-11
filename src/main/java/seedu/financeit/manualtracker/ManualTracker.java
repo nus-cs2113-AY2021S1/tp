@@ -93,7 +93,7 @@ public class ManualTracker {
         }
     }
 
-    private static FiniteStateMachine.State handleCreateLedger() {
+    public static FiniteStateMachine.State handleCreateLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Ledger ledger = null;
         try {
@@ -155,9 +155,17 @@ public class ManualTracker {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 "Input failed due to param error.");
             return state;
-        } catch (InsufficientParamsException | ItemNotFoundException | ConflictingItemReference exception) {
+        } catch (InsufficientParamsException | ConflictingItemReference exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 exception.getMessage());
+            return state;
+        } catch (ItemNotFoundException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                exception.getMessage());
+            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+                "Generating new ledger...");
+            handleCreateLedger();
+            state = FiniteStateMachine.State.OPEN_LEDGER;
             return state;
         }
         return EntryTracker.main();
