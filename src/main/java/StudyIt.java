@@ -1,7 +1,15 @@
 import java.util.Scanner;
 
 public class StudyIt {
-    public static Mode mode = Mode.INITIAL;
+    private static Mode currentMode = Mode.MENU;
+
+    public static void changeMode(Mode destinationMode) {
+        currentMode = destinationMode;
+    }
+
+    public static Mode getCurrentMode() {
+        return currentMode;
+    }
 
     public static void main(String[] args) {
         MainMenu.printWelcome();

@@ -1,3 +1,6 @@
 public enum CommandType {
-    EXIT
+    EXIT,
+    LOCATION,
+    CHANGE_DIRECTORY,
+    UNIDENTIFIABLE
 }
