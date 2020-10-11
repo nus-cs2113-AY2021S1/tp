@@ -25,10 +25,9 @@ public enum CommandChecker {
     STATS,
     DELETE,
     EXIT,
+    SCENE,
+    TOPIC,
     UNRECOGNISED;
-
-    public static CommandChecker commandChecker;
-    private static final Scanner SCANNER = new Scanner(System.in);
 
     /**
      *  Figures out the command type from userInput.
@@ -59,6 +58,10 @@ public enum CommandChecker {
             return CommandChecker.LIST_BUNNY;
         } else if (userInput.toLowerCase().trim().startsWith("exit")) {
             return CommandChecker.EXIT;
+        } else if (userInput.equalsIgnoreCase("scene")) {
+            return CommandChecker.SCENE;
+        } else if (userInput.equalsIgnoreCase("topic")) {
+            return CommandChecker.TOPIC;
         } else {
             return CommandChecker.UNRECOGNISED;
         }
