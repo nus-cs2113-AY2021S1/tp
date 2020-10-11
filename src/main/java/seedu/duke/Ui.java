@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import java.util.ArrayList;
+
 /**
  * Represents a text user interface.
  * A <code>Ui</code> objects deals with user interaction by showing users the appropriate messages after a
@@ -144,15 +146,15 @@ public class Ui {
      * Prints all the food items in the food list in the order that they were added or a message stating
      * that the food list is empty if there are no food items.
      *
-     * @param foodList The food list containing all the food items.
+     * @param foodList The arraylist containing all the food items.
      */
-    public void printFoodList(FoodList foodList) {
-        if (foodList.getFoods().isEmpty()) {
+    public void printFoodList(ArrayList<Food> foodList) {
+        if (foodList.isEmpty()) {
             print("DietBook is currently empty.");
         } else {
             String allFood = "";
             int foodItemNumber = 1;
-            for (Food food : foodList.getFoods()) {
+            for (Food food : foodList) {
                 allFood += LINE_SEPARATOR + "  " + foodItemNumber + "." + food;
                 foodItemNumber++;
             }
@@ -178,11 +180,11 @@ public class Ui {
     /**
      * Prints all the information related to the user.
      *
-     * @param person The user.
+     * @param personInformation The user's personal information.
      */
-    public void printPersonInformation(Person person) {
+    public void printPersonInformation(String personInformation) {
         print("Here is your information:" + LINE_SEPARATOR
-                + person);
+                + personInformation);
     }
 
     /**
