@@ -60,48 +60,20 @@ ____________________________________________________________
 [ TODO           ]: Enter a command! 
                     Input "commands" for list of commands.
 ____________________________________________________________
->>> ledger new /date 200404
+>>> ledger open /date 201212
 
 
 
 
-[ SYSTEM MESSAGE ]: Ledger 1 : [ Apr 4 2020 ] created!
+[ ERROR          ]: The object cannot be found!
+[ SYSTEM MESSAGE ]: Generating new ledger...
+[ SYSTEM MESSAGE ]: Ledger 1 : [ Dec 12 2020 ] created!
+[ SYSTEM MESSAGE ]: Ledger 1 : [ Dec 12 2020 ] opened!
 
 
-[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
-[ TODO           ]: Enter a command! 
-                    Input "commands" for list of commands.
-____________________________________________________________
->>> ledger new /date 200504
-
-
-
-
-[ SYSTEM MESSAGE ]: Ledger 2 : [ May 4 2020 ] created!
-
-
-[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
-[ TODO           ]: Enter a command! 
-                    Input "commands" for list of commands.
-____________________________________________________________
->>> ledger open /date 202020
-
-
-
-
-[ ERROR          ]: Not a valid date on the Gregorian Calendar!
-                    Check your input again against the following format!
-                    Date format: YYMMDD
-                    Time format: HHMM
-[ ERROR          ]: The param type cannot be parsed: "/date"
-[ ERROR          ]: Cannot parse your input. Please enter a positive integer!
-                    The range is from 1 to 2
-[ ERROR          ]: The param type cannot be parsed: "/id"
-[ ERROR          ]: The following params require input: /date, /id
-
-
-[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
-[ TODO           ]: Enter a command! 
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
                     Input "commands" for list of commands.
 ____________________________________________________________
 >>> ledger list
@@ -109,19 +81,64 @@ ____________________________________________________________
 
 
 
-==================================
-= List of Ledgers                =
-==================================
-| Ledger Number  | Ledger Date    |
-----------------------------------
-| 1              | Apr 4 2020     |
- - - - - - - - - - - - - - - - - -
-| 2              | May 4 2020     |
- - - - - - - - - - - - - - - - - -
+Command not recognised. Try again.
 
 
-[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
-[ TODO           ]: Enter a command! 
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> ledger new /date 200404
+
+
+
+
+Command not recognised. Try again.
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> ledger new /date 200504
+
+
+
+
+Command not recognised. Try again.
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> ledger open /date 202020
+
+
+
+
+Command not recognised. Try again.
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
+                    Input "commands" for list of commands.
+____________________________________________________________
+>>> ledger list
+
+
+
+
+Command not recognised. Try again.
+
+
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
+                    Enter command!
                     Input "commands" for list of commands.
 ____________________________________________________________
 >>> ledger open /date 200404
@@ -129,19 +146,15 @@ ____________________________________________________________
 
 
 
-lol
-[ ERROR          ]: Cannot parse your input. Please enter a positive integer!
-                    The range is from 1 to 2
-[ ERROR          ]: The param type cannot be parsed: "/id"
-[ SYSTEM MESSAGE ]: Ledger 1 : [ Apr 4 2020 ] opened!
+Command not recognised. Try again.
 
 
-[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Apr 4 2020)
-[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Apr 4 2020]!
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
                     Enter command!
                     Input "commands" for list of commands.
 ____________________________________________________________
->>> entry new /time /desc /cat /amt
+>>> entry new /time /desc /cat /amt 1500
 
 
 
@@ -152,13 +165,11 @@ ____________________________________________________________
 [ ERROR          ]: "" is not a valid category input!
                     Input "exp cat" to show valid categories!
 [ ERROR          ]: The param type cannot be parsed: "/cat"
-[ ERROR          ]: Cannot parse your input. Please enter valid 2 d.p input!
-[ ERROR          ]: The param type cannot be parsed: "/amt"
-[ ERROR          ]: The following params require input: /time, /cat, /amt
+[ ERROR          ]: The following params require input: /time, /cat, -i, -e, /id
 
 
-[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Apr 4 2020)
-[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Apr 4 2020]!
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
                     Enter command!
                     Input "commands" for list of commands.
 ____________________________________________________________
@@ -170,8 +181,8 @@ ____________________________________________________________
 [ SYSTEM MESSAGE ]: Entry 1 : [ 15:00 ] [ go to the poll ] created!
 
 
-[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Apr 4 2020)
-[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Apr 4 2020]!
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
                     Enter command!
                     Input "commands" for list of commands.
 ____________________________________________________________
@@ -183,8 +194,8 @@ ____________________________________________________________
 [ SYSTEM MESSAGE ]: Entry 2 : [ 15:00 ] [ go to the poll ] created!
 
 
-[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Apr 4 2020)
-[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Apr 4 2020]!
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
                     Enter command!
                     Input "commands" for list of commands.
 ____________________________________________________________
@@ -196,8 +207,8 @@ ____________________________________________________________
 [ SYSTEM MESSAGE ]: Entry 3 : [ 15:00 ] [ go to the poll where>1.the rainbow used to be nice>2. and colorful, haha ] created!
 
 
-[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Apr 4 2020)
-[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Apr 4 2020]!
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
                     Enter command!
                     Input "commands" for list of commands.
 ____________________________________________________________
@@ -209,8 +220,8 @@ ____________________________________________________________
 [ SYSTEM MESSAGE ]: Entry 4 : [ 15:00 ] [ go to the pole ] created!
 
 
-[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Apr 4 2020)
-[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Apr 4 2020]!
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
                     Enter command!
                     Input "commands" for list of commands.
 ____________________________________________________________
@@ -219,11 +230,12 @@ ____________________________________________________________
 
 
 
+[ ERROR          ]: The param type is not recognized: "/slowbro"
 [ ERROR          ]: Entry specified already exists in the list!
 
 
-[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Apr 4 2020)
-[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Apr 4 2020]!
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
                     Enter command!
                     Input "commands" for list of commands.
 ____________________________________________________________
@@ -232,16 +244,11 @@ ____________________________________________________________
 
 
 
-[ ERROR          ]: "null" is not a valid category input!
-                    Input "exp cat" to show valid categories!
-[ ERROR          ]: The param type cannot be parsed: "/cat"
-[ ERROR          ]: Cannot parse your input. Please enter valid 2 d.p input!
-[ ERROR          ]: The param type cannot be parsed: "/amt"
-[ SYSTEM MESSAGE ]: Entry 1 : [ 16:00 ] [ null ] edited!
+[ SYSTEM MESSAGE ]: Entry 1 : [ 16:00 ] [ go to the poll ] edited!
 
 
-[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Apr 4 2020)
-[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Apr 4 2020]!
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
                     Enter command!
                     Input "commands" for list of commands.
 ____________________________________________________________
@@ -251,24 +258,24 @@ ____________________________________________________________
 
 
 ======================================================================================================================
-= List of Entries for Ledger [Apr 4 2020]                                                                            =
+= List of Entries for Ledger [Dec 12 2020]                                                                           =
 ======================================================================================================================
 | Entry Number   | Entry Type     | Category       | Amount         | Time           | Description                    |
 ----------------------------------------------------------------------------------------------------------------------
-| 1              | Expense        | TRANSPORT      | 1500.0         | 16:00          | null                           |
+| 1              | Income         | TRANSPORT      | 1500.0         | 16:00          | go to the poll                 |
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-| 2              | Expense        | TRANSPORT      | 1501.0         | 15:00          | go to the poll                 |
+| 2              | Income         | TRANSPORT      | 1501.0         | 15:00          | go to the poll                 |
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-| 3              | Expense        | TRANSPORT      | 1503.0         | 15:00          | go to the poll where           |
+| 3              | Income         | TRANSPORT      | 1503.0         | 15:00          | go to the poll where           |
 |                |                |                |                |                | 1.the rainbow used to be nice  |
 |                |                |                |                |                | 2. and colorful, haha          |
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-| 4              | Expense        | TRANSPORT      | 1501.0         | 15:00          | go to the pole                 |
+| 4              | Income         | TRANSPORT      | 1501.0         | 15:00          | go to the pole                 |
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Apr 4 2020)
-[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Apr 4 2020]!
+[ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Dec 12 2020)
+[ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [Dec 12 2020]!
                     Enter command!
                     Input "commands" for list of commands.
 ____________________________________________________________
@@ -289,11 +296,10 @@ ____________________________________________________________
 
 
 
-lol
-[ ERROR          ]: Cannot parse your input. Please enter a positive integer!
-                    The range is from 1 to 2
-[ ERROR          ]: The param type cannot be parsed: "/id"
-[ SYSTEM MESSAGE ]: Ledger 1 : [ Apr 4 2020 ] opened!
+[ ERROR          ]: The object cannot be found!
+[ SYSTEM MESSAGE ]: Generating new ledger...
+[ SYSTEM MESSAGE ]: Ledger 2 : [ Apr 4 2020 ] created!
+[ SYSTEM MESSAGE ]: Ledger 2 : [ Apr 4 2020 ] opened!
 
 
 [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER Apr 4 2020)
@@ -311,15 +317,8 @@ ____________________________________________________________
 ======================================================================================================================
 | Entry Number   | Entry Type     | Category       | Amount         | Time           | Description                    |
 ----------------------------------------------------------------------------------------------------------------------
-| 1              | Expense        | TRANSPORT      | 1500.0         | 16:00          | null                           |
- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-| 2              | Expense        | TRANSPORT      | 1501.0         | 15:00          | go to the poll                 |
- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-| 3              | Expense        | TRANSPORT      | 1503.0         | 15:00          | go to the poll where           |
-|                |                |                |                |                | 1.the rainbow used to be nice  |
-|                |                |                |                |                | 2. and colorful, haha          |
- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-| 4              | Expense        | TRANSPORT      | 1501.0         | 15:00          | go to the pole                 |
+| No entries     |
+| created        |
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

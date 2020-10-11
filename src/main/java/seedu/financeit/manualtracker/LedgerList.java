@@ -50,7 +50,6 @@ public class LedgerList extends ItemList {
         switch (paramType) {
         case ParamChecker.PARAM_DATE:
             LocalDateTime dateTime = paramChecker.checkAndReturnDateTime(paramType, this.defaultDateTimeFormat);
-            System.out.println("lol");
             this.itemQueue.add(this.getItemFromDateTime(dateTime));
             break;
         case ParamChecker.PARAM_INDEX:
