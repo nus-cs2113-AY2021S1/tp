@@ -4,7 +4,6 @@ import seedu.duke.calendar.CalendarList;
 import seedu.duke.command.Command;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 /**
  * Entry point of the Duke application.

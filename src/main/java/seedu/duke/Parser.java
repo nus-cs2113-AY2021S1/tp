@@ -17,7 +17,7 @@ import seedu.duke.command.PrintProgressCommand;
  */
 public class Parser {
 
-    public static final String COMMAND_DELETE = "delete";
+    public static final String COMMAND_DELETE = "-";
     public static final String COMMAND_DONE = "done";
     public static final String COMMAND_EXIT = "bye";
     public static final String COMMAND_FIND = "find";
