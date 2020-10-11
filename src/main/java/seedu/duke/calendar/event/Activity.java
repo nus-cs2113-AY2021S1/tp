@@ -11,7 +11,7 @@ public class Activity extends Event {
     private String details;
     protected String eventType;
 
-    private static final String EVENT_FILE_SYMBOL = "E";
+    private static final String EVENT_FILE_SYMBOL = "ACT";
     private static final String SEPARATOR = "|";
 
     public Activity(String details, LocalDate date, LocalTime time, String venue) {
@@ -37,7 +37,8 @@ public class Activity extends Event {
 
     @Override
     public String printIntoFile() {
-        return EVENT_FILE_SYMBOL + SEPARATOR + details + SEPARATOR + this.date;
+        return EVENT_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + details
+                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue;
     }
 
     @Override

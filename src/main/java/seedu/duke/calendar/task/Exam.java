@@ -11,6 +11,9 @@ import java.time.LocalTime;
 public class Exam extends SchoolEvent {
     protected String taskType;
 
+    private static final String EXAM_FILE_SYMBOL = "EXAM";
+    private static final String SEPARATOR = "|";
+
     public Exam(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
     }
@@ -31,7 +34,8 @@ public class Exam extends SchoolEvent {
 
     @Override
     public String printIntoFile() {
-        return null;
+        return EXAM_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR
+                + moduleCode + SEPARATOR + date + SEPARATOR + time + SEPARATOR + venue;
     }
 
     @Override

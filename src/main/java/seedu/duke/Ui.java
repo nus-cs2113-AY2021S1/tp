@@ -99,7 +99,7 @@ public class Ui {
     public static void printDeleteTaskMessage(int taskNumberDelete, CalendarList calendarList) {
         /* - 1 is catered for array list's index starting from 0. */
         System.out.println("Task deleted:\n" + calendarList.getCalendarList().get(taskNumberDelete - 1));
-        System.out.println("Your total tasks: " + (calendarList.getTotalTasks() - 1));
+        System.out.println("Your total tasks: " + (calendarList.getTotalItems() - 1));
     }
 
     /**
@@ -110,7 +110,7 @@ public class Ui {
      */
     public static void printTaskListView(CalendarList calendarList) {
         System.out.println("This is your list of task(s):");
-        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
             System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", i + 1);
         }
     }
@@ -124,7 +124,7 @@ public class Ui {
     public static void printEventsListView(CalendarList calendarList) {
         int eventCounts = 0;
         System.out.println("This is your list of event(s):");
-        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
             if (calendarList.getCalendarList().get(i) instanceof Event) {
                 eventCounts++;
                 System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", eventCounts);
@@ -158,7 +158,7 @@ public class Ui {
         /* - 1 is catered for array list's index starting from 0. */
         System.out.println(calendarList.getCalendarList().get(calendarList.getCalendarList().size() - 1));
 
-        System.out.println("Your total tasks: " + calendarList.getTotalTasks());
+        System.out.println("Your total tasks: " + calendarList.getTotalItems());
     }
 
     /**
@@ -266,6 +266,9 @@ public class Ui {
             break;
         case "keyword not found":
             System.out.println("There are no tasks matching this keyword. Check that you have spelt it correctly.");
+            break;
+        case "file not found":
+            System.out.println("The file can not be found");
             break;
         case "invalid done number":
             System.out.println("You can only mark a task as done. An event cannot be marked as done.");
