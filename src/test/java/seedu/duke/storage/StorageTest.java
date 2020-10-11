@@ -163,10 +163,10 @@ class StorageTest {
                 File flashcardFile = Paths.get(topicPath.toString(), storage.getFlashcardFilename()).toFile();
 
                 // write flashcards to file
-                FileWriter fileWriter = new FileWriter(flashcardFile);
-                gson.toJson(flashcards, fileWriter);  // store the json to file
-                fileWriter.flush();  // flush to actually write the content
-                fileWriter.close();
+                try (FileWriter fileWriter = new FileWriter(flashcardFile)) {
+                    gson.toJson(flashcards, fileWriter);  // store the json to file
+                    fileWriter.flush();  // flush to actually write the content
+                }
             }
         }
 
@@ -186,11 +186,12 @@ class StorageTest {
         storage.saveTasks(subjectPath, tasks);
         File writtenFile = new File(subjectPath.toString(), storage.getTaskFilename());
 
-        Scanner scanner = new Scanner(writtenFile);
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            System.out.println(line);
-            assertTrue(tasksStr.stream().anyMatch(s -> s.equals(line)));
+        try (Scanner scanner = new Scanner(writtenFile)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                System.out.println(line);
+                assertTrue(tasksStr.stream().anyMatch(s -> s.equals(line)));
+            }
         }
     }
 
@@ -198,11 +199,11 @@ class StorageTest {
     void loadTasks_taskFile_correctlyParsedTasks() throws IOException {
         Path subjectPath = storage.getBaseDir().toPath();
         File taskFile = new File(subjectPath.toString(), storage.getTaskFilename());
-        FileWriter fileWriter = new FileWriter(taskFile);
-        for (String taskStr : tasksStr) {
-            fileWriter.write(taskStr + "\n");
+        try (FileWriter fileWriter = new FileWriter(taskFile)) {
+            for (String taskStr : tasksStr) {
+                fileWriter.write(taskStr + "\n");
+            }
         }
-        fileWriter.close();
 
         List<Task> savedTasks = storage.loadTasks(subjectPath);
         for (int i = 0; i < savedTasks.size(); i++) {
@@ -219,8 +220,11 @@ class StorageTest {
     }
 
     private boolean isDirectoryEmpty(File directory) throws IOException {
-        DirectoryStream<Path> stream = Files.newDirectoryStream(directory.toPath());
-        return !stream.iterator().hasNext();
+        boolean isEmpty = true;
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(directory.toPath())) {
+            isEmpty = !stream.iterator().hasNext();
+        }
+        return isEmpty;
     }
 
 }

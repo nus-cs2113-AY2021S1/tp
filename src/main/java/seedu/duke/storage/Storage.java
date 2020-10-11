@@ -124,12 +124,11 @@ public class Storage {
     private List<Flashcard> loadFlashcards(File flashcardFile) throws FlashcardSyntaxException {
         Gson gson = new Gson();
         List<Flashcard> flashcards;
-        Type objectType = new TypeToken<ArrayList<Flashcard>>() {
-        }.getType();
+        Type objectType = new TypeToken<ArrayList<Flashcard>>() {}.getType();
 
-        try {
-            flashcards = gson.fromJson(new FileReader(flashcardFile), objectType);
-        } catch (FileNotFoundException e) {  // file may have been deleted by the user
+        try (FileReader fileReader = new FileReader(flashcardFile)) {
+            flashcards = gson.fromJson(fileReader, objectType);
+        } catch (IOException e) {  // file may have been deleted by the user
             flashcards = new ArrayList<>();
         } catch (JsonSyntaxException e) {
             throw new FlashcardSyntaxException("Error reading the flashcard data at " + flashcardFile.getAbsolutePath()
@@ -223,24 +222,25 @@ public class Storage {
     public List<Task> loadTasks(Path subjectPath) throws FileNotFoundException {
         File taskFile = new File(subjectPath.toString(), getTaskFilename());
         List<Task> tasks = new ArrayList<>();
-        Scanner scan = new Scanner(taskFile);
 
-        while (scan.hasNextLine()) {
-            String content = scan.nextLine();
-            String[] contents = content.split("\\s\\|\\s");
-            String legend = contents[0].trim();
-            boolean done = Integer.parseInt(contents[1].trim()) == 1;
-            String action = contents[2].trim();
-            String action2 = "";
-            if (legend.equals("D") || legend.equals("E")) {
-                action2 = contents[3].trim();
-            }
-            if (legend.equals("T")) {
-                tasks.add(new Todo(action, done));
-            } else if (legend.equals("D")) {
-                tasks.add(new Deadline(action, done, action2));
-            } else if (legend.equals("E")) {
-                tasks.add(new Event(action, done, action2));
+        try (Scanner scan = new Scanner(taskFile)) {
+            while (scan.hasNextLine()) {
+                String content = scan.nextLine();
+                String[] contents = content.split("\\s\\|\\s");
+                String legend = contents[0].trim();
+                boolean done = Integer.parseInt(contents[1].trim()) == 1;
+                String action = contents[2].trim();
+                String action2 = "";
+                if (legend.equals("D") || legend.equals("E")) {
+                    action2 = contents[3].trim();
+                }
+                if (legend.equals("T")) {
+                    tasks.add(new Todo(action, done));
+                } else if (legend.equals("D")) {
+                    tasks.add(new Deadline(action, done, action2));
+                } else if (legend.equals("E")) {
+                    tasks.add(new Event(action, done, action2));
+                }
             }
         }
         return tasks;
