@@ -1,11 +1,11 @@
-package seedu.financeit.autotracker;
+package seedu.financeit.recurringtracker;
 
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.UiManager;
 
-public class AutoTracker {
+public class RecurringTracker {
     static String WelcomeMessage = "Welcome to Auto Tracker!";
     static String DirectoryMainMenu = "[ MAIN_MENU -> AUTO_TRACKER ]";
 

@@ -7,6 +7,7 @@ import seedu.financeit.common.exceptions.DuplicateInputException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.manualtracker.subroutine.EntryTracker;
+import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.FiniteStateMachine;
@@ -57,12 +58,10 @@ public class ManualTracker {
     private static FiniteStateMachine.State handleMainMenu() {
         UiManager.printSpace();
         UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY, "[ MAIN_MENU -> MANUAL_TRACKER_MENU ]");
-        UiManager.printWithStatusIcon(Constants.PrintType.INSTRUCTION,
-                "Enter a command! ",
-                "Input \"commands\" for list of commands."
-        );
+        UiManager.printInputPromptMessage();
 
-        packet = UiManager.handleInput();
+        String input = UiManager.handleInput();
+        packet = new InputParser().parseInput(input);
         // System.out.println(packet);
         UiManager.refreshPage();
         switch (packet.getCommandString()) {

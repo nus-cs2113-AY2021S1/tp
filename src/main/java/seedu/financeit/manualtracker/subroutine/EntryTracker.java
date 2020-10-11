@@ -7,6 +7,7 @@ import seedu.financeit.common.exceptions.DuplicateInputException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.manualtracker.Ledger;
+import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.FiniteStateMachine;
@@ -69,7 +70,8 @@ public class EntryTracker {
                 "Input \"commands\" for list of commands."
         );
 
-        packet = UiManager.handleInput();
+        String input = UiManager.handleInput();
+        packet = new InputParser().parseInput(input);
         UiManager.refreshPage();
         switch (packet.getCommandString()) {
         case "entry edit":
