@@ -15,6 +15,6 @@ public class ExitCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage, Watchlist currentWatchlist,
                         ArrayList<Watchlist> watchlists) {
-        new Ui().printGoodbyeMessage();
+        ui.printGoodbyeMessage();
     }
 }
