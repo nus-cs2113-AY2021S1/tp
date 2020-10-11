@@ -14,9 +14,9 @@ What is your name?
 Hello James Gosling!
 What can I do for you?
 
-CS1000 already exists.
+CS1000 is added.
 
-CS2113T already exists.
+CS2113T is added.
 
 CS3000, Expected Workload: 6h is added.
 
@@ -33,6 +33,10 @@ CS3200, Expected Workload: 8h is added.
 +------+---------+----------+----------+
 |  02  | CS3200  |     8    | No Input |
 +------+---------+----------+----------+
+
+CS1000 is removed.
+
+CS2113T is removed.
 
 All changes saved.
 Bye James Gosling. Hope to see you again soon!
