@@ -5,6 +5,9 @@ import seedu.rex.data.exception.RexException;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
+/**
+ * Retrieves patient details.
+ */
 public class RetrieveCommand extends Command {
 
     public static final String COMMAND_WORD = "retrieve";

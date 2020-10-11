@@ -5,6 +5,9 @@ import seedu.rex.data.hospital.Patient;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Contains ArrayList of patients.
+ */
 public class PatientList {
 
     private final ArrayList<Patient> patients;

@@ -7,6 +7,9 @@ import seedu.rex.parser.Parser;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
+/**
+ * Main class.
+ */
 public class Rex {
 
     private final Storage storage;
@@ -14,7 +17,7 @@ public class Rex {
     private PatientList patients;
 
     /**
-     * Initializes chat bot.
+     * Initializes Rex.
      *
      * @param filePath Path to store and load patients.
      */

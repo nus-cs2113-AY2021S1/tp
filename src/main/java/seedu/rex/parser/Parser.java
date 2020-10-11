@@ -9,7 +9,17 @@ import seedu.rex.data.hospital.Patient;
 
 import java.time.LocalDate;
 
+/**
+ * Makes sense of user command.
+ */
 public class Parser {
+
+    /**
+     * Reads inputted patient details and return the patient.
+     *
+     * @param line Input line to parse to patient details.
+     * @return Patient object with patient details.
+     */
     public static Patient readPatient(String line) {
         StringBuilder record = new StringBuilder(line);
         String name = record.substring(0, record.indexOf(", "));
@@ -22,6 +32,13 @@ public class Parser {
         return new Patient(name, nric, dateOfBirth);
     }
 
+    /**
+     * Reads and parse command.
+     *
+     * @param fullCommand Input string.
+     * @return Command to be ran.
+     * @throws RexException if command does not exist.
+     */
     public static Command parse(String fullCommand) throws RexException {
         String trimmedCommand = fullCommand.trim().toLowerCase();
         Command command;

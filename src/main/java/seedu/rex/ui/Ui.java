@@ -131,6 +131,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Shows patient details.
+     *
+     * @param patient Patient to show.
+     */
     public void showPatient(Patient patient) {
         printWithIndent("Patient Details: ");
         printWithIndent(patient.toString());
