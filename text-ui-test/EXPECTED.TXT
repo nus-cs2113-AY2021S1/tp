@@ -9,7 +9,21 @@ ____________________________________________________________
   No such command. Try 'help' for a list of commands.
 ____________________________________________________________
 ____________________________________________________________
-  Commands: hr add, hr delete, events add, events delete, finance add, finance delete, help, bye
+  Commands: hr add, hr delete, hr list, events add, events delete, finance add, finance delete, help, bye
+____________________________________________________________
+____________________________________________________________
+  Got it. I've added this member:
+  name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member
+  Now you have 1 member in the list.
+____________________________________________________________
+____________________________________________________________
+  Here is the list of members in your CCA:
+  1.name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member
+____________________________________________________________
+____________________________________________________________
+  Noted. I'll remove this member:
+  name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member
+  Now you have 0 member in the list.
 ____________________________________________________________
 ____________________________________________________________
   See you next time!

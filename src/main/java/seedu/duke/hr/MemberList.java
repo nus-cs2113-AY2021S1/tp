@@ -45,7 +45,6 @@ public class MemberList {
             output = output.concat(members.get(index).toString() + "\n");
             members.remove(index);
             Member.numOfMembers--;
-            System.out.println("numOfMember = " + Member.numOfMembers + "\n");
             output = output.concat("Now you have " + Member.numOfMembers + " member");
             output = output.concat(((Member.numOfMembers > 1)?"s":"") + " in the list.\n");
         } catch (IndexOutOfBoundsException e) {
