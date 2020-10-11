@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class FilterCommandSlicer {
 
-    public static boolean continueLastFilter(String command) {
+    public static boolean startsNewFilter(String command) {
         return !command.toLowerCase().contains(" -continue");
     }
 
