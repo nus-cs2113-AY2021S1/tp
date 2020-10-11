@@ -47,7 +47,7 @@ public class Question implements Displayable {
     /**
      * Returns the multiple options of the question.
      *
-     * @return An arraylist of options.
+     * @return A list of options pertaining to this question.
      */
     public OptionList getOptionList() {
         return optionList;
@@ -63,9 +63,9 @@ public class Question implements Displayable {
     }
 
     /**
-     * Returns the description of the question.
+     * Returns a boolean variable indicating if the user had requested for a hint for this question.
      *
-     * @return Question information.
+     * @return Indication of whether the hint for this question was shown before,
      */
     public boolean wasHintShown() {
         return hint.wasShown();
@@ -80,8 +80,10 @@ public class Question implements Displayable {
         return wasAnsweredCorrectly;
     }
 
+    /**
+     * Marks this question as answered correctly.
+     */
     public void markAsAnsweredCorrectly() {
         wasAnsweredCorrectly = true;
     }
-
 }
