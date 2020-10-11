@@ -33,10 +33,7 @@ public class RatingList extends QuotesifyList<Rating> {
     public String toString() {
         String ratingsToReturn = "";
         for (Rating rating : ratings) {
-            String titleOfRatedBook = rating.getTitleOfRatedBook();
-            int ratingScore = rating.getRating();
-            ratingsToReturn += titleOfRatedBook + ": " + ratingScore + " star"
-                    + System.lineSeparator();
+            ratingsToReturn += rating.toString();
         }
         return ratingsToReturn;
     }
