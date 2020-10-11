@@ -45,9 +45,11 @@ public class Duke {
 
     public void start() {
         ui.showWelcomeMessage();
+        //Print random quote - After storage implementation
     }
 
     public void exit() {
+        ui.printRandomQuote(listManager);
         ui.showGoodbyeMessage();
     }
 
