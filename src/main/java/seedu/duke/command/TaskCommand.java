@@ -43,7 +43,8 @@ public class TaskCommand {
             Task task = new Task(title, description, priority);
             proj.backlog.addTask(task);
 
-            ui.printTaskAdded(proj.backlog.backlogTasks.get(proj.backlog.size() - 1));
+            ui.printTaskAdded(proj.backlog.getTask(proj.backlog.size() - 1));
+
         } catch (IndexOutOfBoundsException e) {
             Ui.printError("There are no projects! Please create a project first.");
         }
@@ -54,14 +55,15 @@ public class TaskCommand {
 
         try {
             Project proj = projectList.get(0);
-            Collections.sort(taskId); //sort array so that it deletes the largest number first
-            Collections.reverse(taskId); //but the remove print message is in reverse
+            Collections.sort(taskId);
+            int offset = 1;
             for (String id : taskId) {
                 try {
-                    int backlogId = Integer.parseInt(id) - 1;
+                    int backlogId = Integer.parseInt(id) - offset;
                     if (backlogId < proj.backlog.size()) {
                         ui.printTaskRemoved(proj.backlog.backlogTasks.get(backlogId));
                         proj.backlog.backlogTasks.remove(backlogId);
+                        offset++;
                     } else {
                         Ui.displayInvalidId();
                     }
