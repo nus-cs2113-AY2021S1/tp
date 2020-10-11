@@ -78,6 +78,7 @@ public class CalendarList {
      *
      * @param taskNumber   task index
      * @param calendarList calendar list of the task.
+     *
      * @return calendar index of the task
      */
     public static int convertTaskNumberToCalendarNumber(int taskNumber, CalendarList calendarList) {
@@ -102,6 +103,7 @@ public class CalendarList {
      *
      * @param eventNumber  event index
      * @param calendarList calendar list of the task.
+     *
      * @return calendar index of the event
      */
     public static int convertEventNumberToCalendarNumber(int eventNumber, CalendarList calendarList) {
