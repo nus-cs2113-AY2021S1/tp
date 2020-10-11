@@ -39,13 +39,13 @@ public class Event {
     }
 
     /**
-     * Creates an Event object with its title, date, time, isToRemind and isRecurring provided. Has default
-     * reminder time of 1 day before the event.
+     * Creates an Event object with its title, date, time, isToRemind and isRecurring provided.
+     *
      * @param title Title of the event.
      * @param date Date of the event.
      * @param time Time of the event.
-     * @param isToRemind Whether event is set to remind.
-     * @param isRecurring Whether event is set to re-occur.
+     * @param isToRemind Whether the event requires a reminder.
+     * @param isRecurring Whether the event will re-occur.
      */
     public Event(String title, LocalDate date, LocalTime time, boolean isToRemind, boolean isRecurring) {
         this(title, date, time);
@@ -56,6 +56,7 @@ public class Event {
     /**
      * Creates an Event object with its title, date, time, isToRemind, isRecurring as well as time before reminder and
      * time unit provided.
+     * 
      * @param title Title of the event.
      * @param date Date of the event.
      * @param time Time of the event.
@@ -76,6 +77,7 @@ public class Event {
     /**
      * Creates an Event object with its title, dateTime, isToRemind and isRecurring provided. Used for event
      * constructing with user input. Has default reminder time of 1 day before event.
+     *
      * @param title Title of event.
      * @param dateTime LocalDateTime provided by user input.
      * @param isToRemind Whether event is set to remind.
@@ -171,8 +173,12 @@ public class Event {
     }
 
     public String toString() {
-        String lineSep = InterfaceManager.LS;
-        return String.format("Event: %s%sDate: %s%sTime: %s%sRepeating: %b", title, lineSep, date.toString(), lineSep,
-                time.toString(), lineSep, isRecurring);
+        String titleString = "Event: " + title;
+        String dateString = "Date: " + date.toString() + "\tTime: " + time.toString();
+        String remindString = "Reminder: " + isToRemind;
+        String repeatingString = "Repeating: " + isRecurring;
+        String lineSeparator = InterfaceManager.LS;
+        return titleString + lineSeparator + dateString + lineSeparator + remindString
+                + lineSeparator + repeatingString;
     }
 }

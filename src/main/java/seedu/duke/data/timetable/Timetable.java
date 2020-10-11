@@ -78,6 +78,7 @@ public class Timetable {
      * Removes an event from the timetable.
      *
      * @param index Index to be removed.
+     * @throws SystemException Occurs when index provides is less than 0 or >= size of the list.
      */
     public Event deleteEvent(int index) throws SystemException {
         if (index >= events.size() || index < 0) {
@@ -110,6 +111,7 @@ public class Timetable {
 
     /**
      * Gets the timetable for a specified month and year. Includes multiple recurrent events.
+     *
      * @param year Year to check for timetable
      * @param month Month to check for timetable
      * @return A HashMap that maps the date to an ArrayList of all events that occurs on the day.
@@ -137,7 +139,8 @@ public class Timetable {
     }
 
     /**
-     * Given an ArrayList of events, get all events that will be occur will occur during the specified time period.
+     * Given an ArrayList of events, get all events that will occur during the specified time period.
+     *
      * @param startDate Start date of the period to check for recurrence. Inclusive of the date.
      * @param endDate End date of the period to check for recurrence. Inclusive of the date.
      * @param events List of events that are recurrent.

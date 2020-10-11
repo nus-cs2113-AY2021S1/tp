@@ -12,6 +12,7 @@ public class PrefixSyntax {
     public static final String PREFIX_TIMING = "timing";
     public static final String PREFIX_RECURRING = "rec";
     public static final String PREFIX_REMIND = "rem";
+    public static final String PREFIX_STOP_RECURRING = "stop";
     public static final String PREFIX_END = "/end";
     public static final String PREFIX_DATETIME = "/d";
     public static final String PREFIX_INDEX = "i";

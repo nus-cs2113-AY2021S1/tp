@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.timetable.Event;
+import seedu.duke.ui.InterfaceManager;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,6 +23,11 @@ public class ListEventCommand extends Command {
     private LocalDate date;
     private boolean isListByDate;
 
+    /**
+     * Gets how the command is expected to be used.
+     *
+     * @return String representation of how the command is to be used.
+     */
     public static String getCommandUsage() {
         return COMMAND_USAGE;
     }
@@ -52,7 +58,7 @@ public class ListEventCommand extends Command {
         int i = 1;
         for (Event event : events) {
             if (!first) {
-                result += "\n\n";
+                result += InterfaceManager.LS + InterfaceManager.LS;
             }
             first = false;
             result += String.format("%d.", i++) + event.toString();
