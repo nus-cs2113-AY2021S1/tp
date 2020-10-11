@@ -14,7 +14,13 @@ public class ParamsParser {
     }
 
     public String getSeparator(String input) {
-        return String.valueOf(input.charAt(matcher.start() + 1));
+        //Matcher gives index of space before the param, so (matched index + 1) gives the separator
+        int separatorIndex = matcher.start() + 1;
+        return String.valueOf(input.charAt(separatorIndex));
+    }
+
+    String prependAppendSpaces(String str) {
+        return " " + str + " ";
     }
 
     /**
@@ -33,45 +39,54 @@ public class ParamsParser {
         HashMap<String, String> params = new HashMap<>();
         String[] buffer;
         String paramArgument = "";
+        boolean paramArgumentExist;
 
         do {
             paramSubstring += " ";
             paramArgument = "";
+
             //Separate into [paramType, rest of string]
             buffer = paramSubstring.split(" ", 2);
             String paramType = buffer[0];
-            //System.out.println("paramt " + paramType);
-            paramSubstring = " " + buffer[1] + " ";
-            matcher = RegexMatcher.paramMatcher(paramSubstring);
-            //Separate into [paramArgument, rest of string]
-            //System.out.println("paramsub " + paramSubstring);
+            buffer[1] = buffer[1].trim();
 
-            try {
-                if (buffer[1].trim().length() == 0) {
-                    throw new java.lang.IllegalStateException();
-                }
-                // If there are param content before the next paramType
-                if (matcher.start() > 0) {
-                    String separator = getSeparator(paramSubstring);
-                    buffer = paramSubstring.trim().split(separator, 2);
-                    buffer[1] = separator + buffer[1];
-                    paramArgument = buffer[0].trim();
-                    paramSubstring = buffer[1].trim();
-                } else {
-                    paramSubstring = paramSubstring.trim();
-                }
+            /*
+            * Process param argument and check whether more params exist
+            */
+
+            boolean isRestOfStringEmpty = buffer[1].length() == 0;
+            if(isRestOfStringEmpty) {
+                //No param argument, no further params
                 params.put(paramType, paramArgument);
-                //System.out.println(params);
-            } catch (java.lang.IllegalStateException exception) {
-                //This point is reached when there are no more params to parse.
-
-                //If there is a param type registered earlier
-                if (paramType.length() > 0) {
-                    paramArgument = paramSubstring.trim();
-                    params.put(paramType, paramArgument);
-                }
                 break;
             }
+
+            //Matcher requires a leading and trailing blank space to successfully match a param
+            paramSubstring = " " + buffer[1] + " ";
+            matcher = RegexMatcher.paramMatcher(paramSubstring);
+
+            try {
+                //Throws IllegalStateException if no more params are present after current param
+                paramArgumentExist = matcher.start() > 0;
+            } catch (java.lang.IllegalStateException e) {
+                //No further params
+                paramArgument = paramSubstring.trim();
+                params.put(paramType, paramArgument);
+                break;
+            }
+
+            if(paramArgumentExist) {
+                //Split into [paramArgument, rest of string]
+                String separator = getSeparator(paramSubstring);
+                buffer = paramSubstring.trim().split(separator, 2);
+                buffer[1] = separator + buffer[1];
+                paramArgument = buffer[0].trim();
+                paramSubstring = buffer[1].trim();
+            } else {
+                //Nothing more to process for current param
+                paramSubstring = paramSubstring.trim();
+            }
+            params.put(paramType, paramArgument);
         } while (true);
         return params;
     }

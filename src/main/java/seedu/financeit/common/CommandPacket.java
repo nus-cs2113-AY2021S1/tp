@@ -1,9 +1,10 @@
 package seedu.financeit.common; /**
  * Organises data from input string into distinct data types and structure.
- * For scalability purposes, a hash table is implemented to map param type to its corresponding params.
+ * For scalability purposes, a hashmap is implemented to map param type to its corresponding params.
  */
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class   CommandPacket {
     private String commandString;
@@ -21,13 +22,14 @@ public class   CommandPacket {
     public String getParam(String paramType) {
         if (!paramMap.containsKey(paramType)) {
             return null;
-        } else {
-            return (String) paramMap.get(paramType);
         }
+
+        return (String) paramMap.get(paramType);
     }
 
-    public String[] getParamTypes() {
-        return (String[]) paramMap.keySet().toArray(new String[0]);
+    public Set<String> getParamTypes() {
+//        return (String[]) paramMap.keySet().toArray(new String[0]);
+        return paramMap.keySet();
     }
 
     public String getCommandString() {

@@ -1,6 +1,5 @@
 package seedu.financeit.ui;
 
-import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.parser.InputParser;
 
@@ -13,7 +12,8 @@ public class UiManager {
     private static InputParser inputParser = new InputParser();
 
     public static String getLineWithSymbol(int width, String symbol) {
-        return new String(new char[width]).replace("\0", symbol);
+//        return new String(new char[width]).replace("\0", symbol);
+        return symbol.repeat(width);
     }
 
     public static void printLineWithSymbol(int width, String symbol) {
@@ -46,17 +46,17 @@ public class UiManager {
         System.out.print(">>> ");
     }
 
-    public static CommandPacket handleInput() {
+    public static String handleInput() {
         return handleInput("echo");
     }
 
-    public static CommandPacket handleInput(String mode) {
+    public static String handleInput(String mode) {
         UiManager.printInputPrompt();
         String input = scanner.nextLine();
         if (mode.equals("echo")) {
             System.out.println(input);
         }
-        return inputParser.parseInput(input.toLowerCase());
+        return input.toLowerCase();
     }
 
     public static void printWithStatusIcon(Constants.PrintType printType, String... messages) {
@@ -67,6 +67,13 @@ public class UiManager {
                 System.out.println(String.format("%-20s%s", " ", messages[i]));
             }
         }
+    }
+
+    public static void printInputPromptMessage() {
+        printWithStatusIcon(Constants.PrintType.INSTRUCTION,
+                "Enter a command! ",
+                "Input \"commands\" for list of commands."
+        );
     }
 
     public static void printSpace() {

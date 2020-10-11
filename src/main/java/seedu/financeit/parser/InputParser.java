@@ -19,16 +19,17 @@ public class InputParser {
     }
 
     public String getSeparator(String input) {
-        return String.valueOf(input.charAt(matcher.start() + 1));
+        //Matcher matches <space><separator><paramType><space>, so (matched index + 1) gives the separator
+        int separatorIndex = matcher.start() + 1;
+        return String.valueOf(input.charAt(separatorIndex));
     }
 
     /**
-     * Example input: deadline do homework /by tomorrow /note skip page 70.
+     * Example input: deadline /by tomorrow /note skip page 70.
      * commandString: "deadline"
      * CommandPacket created:
      * {
      *  commandType: ADD_DEADLINE
-     *  commandContent: "do homework"
      *  params: HashMap< String, String >
      *  {
      *   "by": "tomorrow"
@@ -37,12 +38,9 @@ public class InputParser {
      * }
      */
     public CommandPacket parseInput(String input) {
-        String commandContent = "";
         String commandString = "";
-        String restOfCommand;
-        CommandPacket packet;
         HashMap<String, String> params = new HashMap<>();
-        String[] buffer = null;
+        String[] buffer;
         String separator = "";
         boolean paramsExist = false;
 
@@ -51,27 +49,25 @@ public class InputParser {
 
         try {
             input = " " + input + " ";
-            this.matcher = RegexMatcher.paramMatcher(input);
-            separator = this.getSeparator(input);
-            paramsExist = true;
-
+            matcher = RegexMatcher.paramMatcher(input);
+            separator = getSeparator(input);
         } catch (java.lang.IllegalStateException exception) {
+            //No params provided
             commandString = input;
             return new CommandPacket(commandString, params);
         }
 
         try {
+            //Split into [<command>, <params string>]
             buffer = input.split(separator, 2);
             if (buffer[0].equals(" ")) {
                 throw new EmptyCommandStringException();
             }
-            //command , /a param
-            buffer[1] = separator + buffer[1];
             commandString = buffer[0];
-            String paramSubstring = buffer[1];
+            String paramSubstring = separator + buffer[1];
             params = new ParamsParser(paramSubstring).parseParams();
-        } catch (EmptyCommandStringException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, exception.getMessage());
+        } catch (EmptyCommandStringException e) {
+            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, e.getMessage());
         }
         return new CommandPacket(commandString, params);
     }
