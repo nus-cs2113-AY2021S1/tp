@@ -25,7 +25,7 @@ class ShowTest {
 
     @Test
     void getEpisodesForSeason() {
-        assertEquals(10, show.getEpisodesForSeason(1));
+        assertEquals(21, show.getEpisodesForSeason(1));
     }
 
     @Test
