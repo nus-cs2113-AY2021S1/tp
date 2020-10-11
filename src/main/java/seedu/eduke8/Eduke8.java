@@ -1,6 +1,7 @@
 package seedu.eduke8;
 
 import org.json.simple.parser.ParseException;
+import seedu.eduke8.command.Command;
 import seedu.eduke8.parser.MenuParser;
 import seedu.eduke8.storage.TopicsStorage;
 import seedu.eduke8.topic.TopicList;
