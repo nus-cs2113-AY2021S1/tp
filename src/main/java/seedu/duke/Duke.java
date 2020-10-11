@@ -53,7 +53,9 @@ public class Duke {
             String userInput = ui.readUserInput(userProfile.getFancyName(), currentWatchlist.getName());
             try {
                 command = Parser.getCommand(userInput);
-                command.execute();
+                // now passing in many parameters into execute, 
+                // but maybe can reduce in the future after refactoring?
+                command.execute(ui, storage, currentWatchlist, watchlists);
             } catch (AniException exception) {
                 ui.printErrorMessage(exception.getMessage());
             }
@@ -102,8 +104,6 @@ public class Duke {
         return newProfile;
     }
 
-    
-
     // Sample usage of Anime Class [To Be Deleted]
     private void addAnime() {
         System.out.println("===Running Sample Anime Class===");
@@ -118,20 +118,6 @@ public class Duke {
                 rating, genre, avgEpisodeLength, totalEpisodes);
         System.out.println("Release Date in String: " + testAnime.getReleaseDateInString());
         System.out.println("===End of Sample Anime Class===");
-    }
-
-    private void createWatchlist(String description) {
-        String[] descriptionSplit = description.split(" ", 2);
-        String commandOption = descriptionSplit[0];
-        String watchlistName = descriptionSplit[1];
-
-        if (commandOption.equals("-n")) {
-            Watchlist newWatchlist = new Watchlist(watchlistName);
-            watchlists.add(newWatchlist);
-        }
-
-        storage.writeWatchlistFile(ui, watchlists);
-        ui.printMessage("Watchlist created successfully!");
     }
 
     /**

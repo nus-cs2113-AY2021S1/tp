@@ -1,6 +1,14 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.*;
+import seedu.duke.command.Command;
+import seedu.duke.command.AddProfileCommand;
+import seedu.duke.command.EditProfileCommand;
+import seedu.duke.command.BrowseAnimeCommand;
+import seedu.duke.command.CreateWatchlistCommand;
+import seedu.duke.command.AddToWatchlistCommand;
+import seedu.duke.command.BookmarkAnimeCommand;
+import seedu.duke.command.HelpCommand;
+import seedu.duke.command.ExitCommand;
 import seedu.duke.exception.AniException;
 
 public class Parser {
@@ -18,32 +26,32 @@ public class Parser {
         }
 
         switch (command) {
-            case "addprofile":
-                return new AddProfileCommand(description);
+        case "addprofile":
+            return new AddProfileCommand(description);
                 
-            case "editprofile":
-                return new EditProfileCommand(description);
+        case "editprofile":
+            return new EditProfileCommand(description);
  
-            case "browse":
-                return new BrowseAnimeCommand(description);
+        case "browse":
+            return new BrowseAnimeCommand(description);
      
-            case "watchlist":
-                return new CreateWatchlistCommand(description);
+        case "watchlist":
+            return new CreateWatchlistCommand(description);
            
-            case "add":
-                return new AddToWatchlistCommand(description);
+        case "add":
+            return new AddToWatchlistCommand(description);
 
-            case "bookmark":
-                return new BookmarkAnimeCommand(description);
+        case "bookmark":
+            return new BookmarkAnimeCommand(description);
                 
-            case "help":
-                return new HelpCommand();
+        case "help":
+            return new HelpCommand();
 
-            case "exit":
-                return new ExitCommand();
+        case "exit":
+            return new ExitCommand();
                 
-            default:
-                throw new AniException("Unknown command");
+        default:
+            throw new AniException("Unknown command");
         }
     }
 
