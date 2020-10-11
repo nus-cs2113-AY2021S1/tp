@@ -38,6 +38,7 @@ public class BusRoute {
         "Opp Kent Ridge MRT Station",
         "PGPR"
     };
+
     public static String selectBusRoute(String busNumber) throws CustomException {
         String fullBusRoute;
         switch (busNumber) {
@@ -51,6 +52,7 @@ public class BusRoute {
             throw new CustomException(ExceptionType.INVALID_COMMAND);
         }
     }
+
     private static String getBusRoute(String[] routeName) {
         String busRoute = "";
         for (int i = 0; i < routeName.length; i++) {

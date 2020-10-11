@@ -4,10 +4,10 @@ import seedu.duke.BusRoute;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.ui.Ui;
 
-public class RouteMapCommand extends Command{
+public class RouteMapCommand extends Command {
 
     @Override
-    public void executeCommand(){
+    public void executeCommand() {
         try {
             Ui.printRouteSelectionMessage();
             String userBusRouteSelection = Ui.getCommand().trim().toLowerCase();

@@ -35,10 +35,9 @@ public class Parser {
         //        case "/route":
         //
         //            break;
-                case "/routemap":
-                    com = new RouteMapCommand();
-
-                    break;
+        case "/routemap":
+            com = new RouteMapCommand();
+            break;
         //        case "/bus":
         //
         //            break;
