@@ -23,18 +23,22 @@ public class AddCommand extends Command {
     private final String location;
     private final String power;
     private final String type;
+    private boolean noError;
 
     public AddCommand(String name, String location, String power, String type) {
         this.name = name;
         this.location = location;
         this.power = power;
         this.type = type;
+        this.noError = false;
     }
 
     @Override
     public void execute() {
         sortIntoType();
-        ui.showToUser("Adding " + type + ": " + name + " (" + power + "W) in " + location + ".....ADDED!");
+        if (noError == true) {
+            ui.showToUser("Adding " + type + ": " + name + " (" + power + "W) in " + location + ".....ADDED!");
+        }
     }
 
     public void sortIntoType() {
@@ -44,18 +48,22 @@ public class AddCommand extends Command {
                 case Fan.TYPE_WORD:
                     Fan fan = new Fan(name, location, power);
                     appliances.addAppliance(fan);
+                    noError = true;
                     break;
                 case AirConditioner.TYPE_WORD:
                     AirConditioner ac = new AirConditioner(name, location, power);
                     appliances.addAppliance(ac);
+                    noError = true;
                     break;
                 case Lights.TYPE_WORD:
                     Lights light = new Lights(name, location, power);
                     appliances.addAppliance(light);
+                    noError = true;
                     break;
                 case WaterHeater.TYPE_WORD:
                     WaterHeater waterheater = new WaterHeater(name, location, power);
                     appliances.addAppliance(waterheater);
+                    noError = true;
                     break;
                 default:
                     ui.showToUser(MESSAGE_APPLIANCE_TYPE_NOT_EXIST);
