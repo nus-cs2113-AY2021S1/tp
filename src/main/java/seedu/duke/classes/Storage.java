@@ -20,6 +20,7 @@ public class Storage implements SaveState {
 
     @Override
     public void saveState(HashMap<String, Show> showList) throws IOException {
+
         FileWriter fw;
         try {
             fw = new FileWriter(this.filePath); //overwrite existing file contents when called
@@ -36,6 +37,7 @@ public class Storage implements SaveState {
             }
             fw.write("      Episodes: " + episodes + System.lineSeparator());
             fw.write("      Rating: " + entry.getValue().getRating() + System.lineSeparator());
+
             index++;
 
             //this is another save format
@@ -65,7 +67,6 @@ public class Storage implements SaveState {
         HashMap<String, Show> showList = new java.util.HashMap<>();
         // we just assume that users will not change the contain in the file then the format will be fixed
         while (s.hasNext()) {
-
             String name = s.nextLine().substring(3);
 
             String[] splitSeason = s.nextLine().split("Season: ");
