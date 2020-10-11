@@ -50,7 +50,7 @@ public class BookmarkList extends ItemList {
     private void loadBookmark(String line) {
         try {
             bookmarks.add(Bookmark.initBookmark(line));
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | DukeException e) {
             // Invalid task data, skips to the next entry
         }
     }

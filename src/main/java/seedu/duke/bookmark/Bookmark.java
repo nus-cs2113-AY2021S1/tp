@@ -139,11 +139,14 @@ public class Bookmark {
         return module + SEPARATOR + description + SEPARATOR + url;
     }
 
-    public static Bookmark initBookmark(String data) {
+    public static Bookmark initBookmark(String data) throws DukeException {
         List<String> details =  Arrays.asList(data.split("\\|"));
         String module = details.get(0).trim();
         String description = details.get(1).trim();
         String url = details.get(2).trim();
+        if (!isUrlValid(url)) {
+            throw new DukeException(DukeExceptionType.INVALID_URL);
+        }
         Bookmark bookmark = new Bookmark(module, description, url);
         return bookmark;
     }
