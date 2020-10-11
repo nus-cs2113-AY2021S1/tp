@@ -1,4 +1,6 @@
-package seedu.duke;
+package seedu.duke.parser;
+
+import seedu.duke.exception.AniException;
 
 public class Parser {
 

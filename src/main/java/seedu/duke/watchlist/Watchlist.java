@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.watchlist;
 
 import java.util.ArrayList;
 
@@ -14,6 +14,10 @@ public class Watchlist {
     public Watchlist(String name, ArrayList<String> animeList) {
         this.name = name;
         this.animeList = animeList;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void addAnimeToList(String animeName) {
