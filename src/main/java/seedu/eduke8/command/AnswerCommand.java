@@ -22,5 +22,6 @@ public class AnswerCommand extends Command {
         } else {
             ui.printAnswerIsWrong();
         }
+        question.markAsShown();
     }
 }
