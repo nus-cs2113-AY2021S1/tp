@@ -50,18 +50,24 @@ public class FilterCommandSlicer {
         return types.toArray(new String[0]);
     }
 
-    public static String[] getTargetedStringTags (String command) throws FilterCommandException {
-        ArrayList<String> startStrings = new ArrayList<>();
+    public static String[] getTargetedStringTags(String command) throws FilterCommandException {
+        ArrayList<String> targetedStrings = new ArrayList<>();
         int index = command.indexOf("-");
         while (index >= 0) {
-            startStrings.add(command.substring(index + 1, index + 2));
+            int nextIndex = command.indexOf("-", index + 1);
+            String stringToFilter;
+            if (nextIndex != -1) {
+                targetedStrings.add(command.substring(index + 1, nextIndex).trim());
+            } else {
+                targetedStrings.add(command.substring(index + 1));
+            }
             index = command.indexOf("-", index + 1);
         }
 
-        if (startStrings.size() == 0) {
+        if (targetedStrings.size() == 0) {
             throw new FilterCommandException();
         }
-        return startStrings.toArray(new String[0]);
+        return targetedStrings.toArray(new String[0]);
     }
 
 }

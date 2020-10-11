@@ -7,7 +7,6 @@ Sample filter commands:
 - filter [-continue] by\include -string -string
  */
 
-import seedu.duke.database.WordsLoader;
 import seedu.duke.wordlist.WordList;
 import seedu.duke.words.Words;
 
@@ -60,6 +59,7 @@ public class WordsFilter {
                 }
             }
         } else {
+            ArrayList<Words> wordsToRemove = new ArrayList<>();
             for (Words word : filteredWords) {
                 boolean keepsWord = false;
                 for (String startString : startStrings) {
@@ -69,8 +69,11 @@ public class WordsFilter {
                     }
                 }
                 if (!keepsWord) {
-                    filteredWords.remove(word);
+                    wordsToRemove.add(word);
                 }
+            }
+            for (Words wordToRemove : wordsToRemove) {
+                filteredWords.remove(wordToRemove);
             }
         }
 
@@ -91,6 +94,7 @@ public class WordsFilter {
                 }
             }
         } else {
+            ArrayList<Words> wordsToRemove = new ArrayList<>();
             for (Words word : filteredWords) {
                 boolean keepsWord = false;
                 for (String includedString : includedStrings) {
@@ -100,8 +104,11 @@ public class WordsFilter {
                     }
                 }
                 if (!keepsWord) {
-                    filteredWords.remove(word);
+                    wordsToRemove.add(word);
                 }
+            }
+            for (Words wordToRemove : wordsToRemove) {
+                filteredWords.remove(wordToRemove);
             }
         }
 
@@ -114,7 +121,7 @@ public class WordsFilter {
         } else {
             System.out.println("Words filtered by indicated type are: ");
             for (Words word : filteredWords) {
-                System.out.println(word.getDescription());
+                System.out.println(word.getDescription() + ": " + word.getDefinition());
             }
         }
     }
