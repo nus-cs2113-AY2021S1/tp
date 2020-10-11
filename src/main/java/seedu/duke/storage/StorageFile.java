@@ -18,8 +18,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-import static seedu.duke.common.Messages.MESSAGE_FILE_CORRUPTED;
-import static seedu.duke.common.Messages.MESSAGE_IMPORT;
 
 public class StorageFile {
 
@@ -64,7 +62,7 @@ public class StorageFile {
                 convertTextToApplianceList(i, myReader);
                 ui.showToUser(Messages.MESSAGE_IMPORT);
             } catch (FileCorrupted e) {
-                ui.showToUser(MESSAGE_FILE_CORRUPTED);
+                ui.showToUser(Messages.MESSAGE_FILE_CORRUPTED);
             }
 
             myReader.close();
