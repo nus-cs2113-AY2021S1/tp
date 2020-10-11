@@ -19,7 +19,8 @@ import java.time.LocalDateTime;
 public class ManualTracker {
     private static Ledger currLedger;
     private static LedgerList ledgerList = new LedgerList();
-    public static CommandPacket packet;
+    private static CommandPacket packet;
+
 
     public static void main() {
         boolean endTracker = false;
@@ -62,6 +63,14 @@ public class ManualTracker {
 
     public static LedgerList getLedgerList(){ return ledgerList; }
 
+    public static void setCommandPacket(CommandPacket p){
+        packet = p;
+    }
+
+    public static void CreateLedger(){
+        handleCreateLedger();
+    }
+
     private static FiniteStateMachine.State handleMainMenu() {
         UiManager.printSpace();
         UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY, "[ MAIN_MENU -> MANUAL_TRACKER_MENU ]");
@@ -101,7 +110,7 @@ public class ManualTracker {
         }
     }
 
-    public static FiniteStateMachine.State handleCreateLedger() {
+    private static FiniteStateMachine.State handleCreateLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Ledger ledger = null;
         try {
