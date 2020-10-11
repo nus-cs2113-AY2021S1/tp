@@ -1,3 +1,6 @@
 James Gosling
 help
+hr add /n James Gosling /p 11111111 /e 111111@gmail.com /r member
+hr list
+hr delete 1
 bye
