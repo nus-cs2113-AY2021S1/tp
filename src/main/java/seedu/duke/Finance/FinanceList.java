@@ -59,8 +59,8 @@ public class FinanceList {
         }
         String output = "Here is the list:\n";
         for (int i = 0;i < FinanceLog.getSize();i++) {
-            output = output.concat("\t"+(i + 1)+"." + financeLogs.get(i).getLog() + " $" +
-                    financeLogs.get(i).getLogVal() + "\n");
+            output = output.concat("\t" + (i + 1) + "." + financeLogs.get(i).getLog() + " $"
+                    + financeLogs.get(i).getLogVal() + "\n");
         }
         output = output.concat("Total budget: $" + String.format("%.2f",FinanceLog.getSum()) + "\n");
         return output;
