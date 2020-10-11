@@ -112,12 +112,12 @@ public class Ui {
         out.println("6. " + EditCommand.MESSAGE_USAGE);
     }
 
-    public void showCardContent(Card card) {
+    public void showCardUnedited(Card card) {
         out.println("The following card will be edited:");
         out.println(card);
     }
 
-    public void showEditedCardContent(Card card) {
+    public void showCardEdited(Card card) {
         out.println("Edited card:");
         out.println(card);
     }
@@ -132,5 +132,9 @@ public class Ui {
         out.println("    Got it. I've added this chapter:");
         out.println("    " + chapter);
         out.println("    Now you have " + chapterCount + " chapters in the list.");
+    }
+
+    public void showError(String error) {
+        out.println(error);
     }
 }

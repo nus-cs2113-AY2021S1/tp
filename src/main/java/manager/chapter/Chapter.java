@@ -1,6 +1,7 @@
 package manager.chapter;
 
 import manager.card.Card;
+import manager.module.ChapterList;
 
 import java.util.ArrayList;
 
@@ -15,6 +16,10 @@ public class Chapter {
 
     public String getChapterName() {
         return chapterName;
+    }
+
+    public CardList getCards() {
+        return cards;
     }
 
     public void setCards(ArrayList<Card> cards) {

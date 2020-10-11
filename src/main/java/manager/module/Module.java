@@ -13,12 +13,6 @@ public class Module {
         chapters = new ChapterList();
     }
 
-    public Module(String moduleName, ArrayList<Chapter> chapters) {
-        this.moduleName = moduleName;
-        this.chapters = new ChapterList(chapters);
-    }
-
-
     public String getModuleName() {
         return moduleName;
     }

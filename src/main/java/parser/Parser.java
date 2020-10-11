@@ -1,5 +1,6 @@
 package parser;
 
+import access.Access;
 import commands.Command;
 import commands.ListCommand;
 import commands.AddChapterCommand;
@@ -15,6 +16,7 @@ import commands.GoModuleCommand;
 import commands.BackModuleCommand;
 import commands.EditCommand;
 
+import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import storage.Storage;
@@ -25,7 +27,8 @@ public class Parser {
     public static final String QUESTION_PREFIX = "q:";
     public static final String ANSWER_PREFIX = "a:";
 
-    public static Command parse(String fullCommand) throws InvalidInputException {
+    public static Command parse(String fullCommand, Access access)
+            throws InvalidInputException, IncorrectAccessLevelException {
         String[] commandTypeAndArgs = splitCommandTypeAndArgs(fullCommand);
         String commandType = commandTypeAndArgs[0].trim().toLowerCase();
         String commandArgs = commandTypeAndArgs[1].trim();
@@ -56,7 +59,7 @@ public class Parser {
         case GoChapterCommand.COMMAND_WORD:
             return prepareGoChapter(commandArgs);
         case EditCommand.COMMAND_WORD:
-            return prepareEdit(commandArgs);
+            return prepareEdit(commandArgs, access);
         default:
             throw new InvalidInputException();
         }
@@ -146,7 +149,16 @@ public class Parser {
         return new RemoveCommand(removeIndex);
     }
 
-    private static Command prepareEdit(String commandArgs) throws InvalidInputException {
+    private static Command prepareEdit(String commandArgs, Access access)
+            throws InvalidInputException, IncorrectAccessLevelException {
+        if (access.isChapterLevel()) {
+            return prepareEditCard(commandArgs);
+        } else {
+            throw new IncorrectAccessLevelException("Edit command cannot be called at this level.");
+        }
+    }
+
+    private static Command prepareEditCard(String commandArgs) throws InvalidInputException {
         try {
             String[] args = commandArgs.split(" ", 2);
             if (args[0].trim().isEmpty()) {
@@ -160,18 +172,20 @@ public class Parser {
             String answer = parseAnswer(questionAndAnswer[1]);
 
             if (question.isEmpty() && answer.isEmpty()) {
-                throw new InvalidInputException();
+                throw new InvalidInputException("The content for question and answer are both empty.");
             }
 
             return new EditCommand(editIndex, question, answer);
-        } catch (NumberFormatException | InvalidInputException | IndexOutOfBoundsException e) {
-            throw new InvalidInputException();
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException("The flashcard number needs to be an integer.");
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidInputException("The format for the edit command is incorrect.");
         }
     }
 
     private static String parseQuestion(String arg) throws InvalidInputException {
         if (!(arg.trim().toLowerCase().startsWith(QUESTION_PREFIX))) {
-            throw new InvalidInputException();
+            throw new InvalidInputException("The format to input question needs to start with q:");
         }
 
         return arg.substring(2).trim();
@@ -179,7 +193,7 @@ public class Parser {
 
     private static String parseAnswer(String arg) throws InvalidInputException {
         if (!(arg.trim().toLowerCase().startsWith(ANSWER_PREFIX))) {
-            throw new InvalidInputException();
+            throw new InvalidInputException("The format to input question needs to start with a:");
         }
 
         return arg.substring(2).trim();
