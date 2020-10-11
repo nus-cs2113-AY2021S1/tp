@@ -51,6 +51,7 @@ public class AddCommand extends Command {
         LocalTime time;
         String venue;
         String moduleCode;
+        boolean isTask = false;
 
         command = userInput.split(" ", 2);
         String commandType = command[0];
@@ -63,6 +64,7 @@ public class AddCommand extends Command {
                     throw new DukeException("todo");
                 } else {
                     calendarList.addTask(new Todo(taskDescription));
+                    isTask = true;
                 }
             } catch (Exception e) {
                 throw new DukeException("todo");
@@ -78,6 +80,7 @@ public class AddCommand extends Command {
                     throw new DukeException("deadline");
                 } else {
                     calendarList.addTask(new Deadline(taskDescription, date));
+                    isTask = true;
                 }
             } catch (Exception e) {
                 throw new DukeException("deadline");
@@ -199,8 +202,11 @@ public class AddCommand extends Command {
         default:
             throw new DukeException("invalid command");
         }
+        Ui.printAddMessage(calendarList);
+        if (isTask) {
+            Ui.printTotalTaskNumber(calendarList);
+        }
 
-        Ui.printAddTaskMessage(calendarList);
         storage.writeToFile(calendarList);
     }
 }

@@ -45,8 +45,8 @@ public class Ui {
         System.out.println("Unable to parse date");
     }
 
-    public static void printTotalTaskNumber(int totalTasks) {
-        System.out.println("Current total task(s): " + totalTasks);
+    public static void printTotalTaskNumber(CalendarList calendarList) {
+        System.out.println("Your total task(s): " + calendarList.getTotalTasks());
     }
 
     /**
@@ -155,13 +155,13 @@ public class Ui {
      *
      * @param calendarList the calendar list that the task was added to.
      */
-    public static void printAddTaskMessage(CalendarList calendarList) {
+    public static void printAddMessage(CalendarList calendarList) {
         System.out.println("Got it. I've added this task:");
 
         /* - 1 is catered for array list's index starting from 0. */
-        System.out.println(calendarList.getCalendarList().get(calendarList.getCalendarList().size() - 1));
+        int lastCalendarItemIndex = calendarList.getCalendarList().size() - 1;
 
-        System.out.println("Your total tasks: " + calendarList.getTotalItems());
+        System.out.println(calendarList.getCalendarList().get(lastCalendarItemIndex));
     }
 
     /**

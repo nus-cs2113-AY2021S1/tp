@@ -45,8 +45,8 @@ public class DeleteCommand extends Command {
             }
             calendarNumber = CalendarList.convertTaskNumberToCalendarNumber(numberDelete, calendarList);
             Ui.printDeleteMessage(calendarNumber, calendarList);
-            Ui.printTotalTaskNumber(calendarList.getTotalTasks());
             calendarList.deleteTask(calendarNumber);
+            Ui.printTotalTaskNumber(calendarList);
 
         } else {
             if (numberDelete > calendarList.getTotalEvents() || numberDelete <= 0) {
