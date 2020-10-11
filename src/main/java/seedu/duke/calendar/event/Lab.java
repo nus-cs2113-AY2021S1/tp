@@ -74,8 +74,8 @@ public class Lab extends SchoolEvent {
      */
     @Override
     public String printIntoFile() {
-        return LAB_FILE_SYMBOL + " " + moduleCode
-                + SEPARATOR + this.date + SEPARATOR + this.time;
+        return LAB_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
+                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue;
     }
 
     /**
