@@ -26,8 +26,7 @@ public class HelpCommand extends Command {
                 + AddEventCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
                 + CreateTagCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
                 + DeleteNoteCommand.getCommandUsageNote() + InterfaceManager.LS + COLOR_WHITE_STRING
-                /*
-                + DeleteNoteCommand.getCommandUsageEvent() + InterfaceManager.LS + COLOR_CYAN_STRING*/
+                + DeleteEventCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
                 + DeleteTagCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
                 + EditCommand.getCommandUsageNote() + InterfaceManager.LS + COLOR_CYAN_STRING
                 + EditCommand.getCommandUsageEvent() + InterfaceManager.LS + COLOR_WHITE_STRING
