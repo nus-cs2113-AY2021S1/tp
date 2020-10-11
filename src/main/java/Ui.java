@@ -47,4 +47,9 @@ public class Ui {
                     "You are still at: " + ModeNames.getCurrentModeName());
         }
     }
+
+    public static void exitMode() {
+        System.out.println("Exited " + ModeNames.getCurrentModeName() + "!");
+        changeMode("cd menu"); //TODO: Check UI
+    }
 }

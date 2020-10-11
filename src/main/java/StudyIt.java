@@ -25,6 +25,6 @@ public class StudyIt {
             commandType = CommandParser.getCommandType(command);
 
             Command.executeCommand(command, commandType);
-        } while (commandType != CommandType.EXIT);
+        } while (commandType != CommandType.EXIT_PROGRAM);
     }
 }
