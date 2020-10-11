@@ -117,13 +117,14 @@ public class ParamChecker {
 
         try {
             index = Integer.parseInt(packet.getParam(paramType));
-            if (index < -1 || index >= list.getItemsSize()) {
+            index -= 1;
+            if (index < 0 || index >= list.getItemsSize()) {
                 throw new IndexOutOfBoundsException();
             }
             parseSuccess = true;
         } catch (IndexOutOfBoundsException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                "Index input is out of bounds!",
+                String.format("Index input \"%s\" is out of bounds!", index),
                 message);
         } catch (NumberFormatException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
@@ -135,7 +136,7 @@ public class ParamChecker {
             throw new ParseFailParamException(paramType);
         }
 
-        return index - 1;
+        return index;
     }
 
     public int checkAndReturnIndex(String paramType, ArrayList list) throws ParseFailParamException {
@@ -153,13 +154,14 @@ public class ParamChecker {
 
         try {
             index = Integer.parseInt(packet.getParam(paramType));
-            if (index < -1 || index >= list.size()) {
+            index = index - 1;
+            if (index < 0 || index >= list.size()) {
                 throw new IndexOutOfBoundsException();
             }
             parseSuccess = true;
         } catch (IndexOutOfBoundsException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                "Index input is out of bounds!",
+                String.format("Index input \"%s\" is out of bounds!", index),
                 message);
         } catch (NumberFormatException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
@@ -171,7 +173,7 @@ public class ParamChecker {
             throw new ParseFailParamException(paramType);
         }
 
-        return index - 1;
+        return index;
     }
 
     public double checkAndReturnDouble(String paramType) throws ParseFailParamException {

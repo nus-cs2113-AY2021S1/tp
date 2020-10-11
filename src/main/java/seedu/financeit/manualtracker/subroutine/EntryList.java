@@ -47,7 +47,7 @@ public class EntryList extends ItemList {
         return (this.itemQueue.size() == 1);
     }
 
-    public Entry getItemFromDate(LocalTime time) throws ItemNotFoundException {
+    public Entry getItemFromTime(LocalTime time) throws ItemNotFoundException {
         Entry output;
         for (Object i : this.items) {
             output = (Entry)i;
@@ -64,7 +64,7 @@ public class EntryList extends ItemList {
         switch (paramType) {
         case ParamChecker.PARAM_INDEX:
             int index = paramChecker.checkAndReturnIndex(paramType, this.items);
-            this.itemQueue.add(this.getItemFromIndex(index));
+            this.itemQueue.add(super.getItemFromIndex(index));
             this.parseSuccessParams.add(paramType);
             break;
         default:
