@@ -14,20 +14,20 @@ What is your name?
 Hello James Gosling!
 What can I do for you?
 
-CS1000 is added
+CS1000 is added.
 
-CS2113t is added
+CS2113T is added.
 
-CS3000, Expected Workload: 6h is added
+CS3000, Expected Workload: 6h is added.
 
-CS3200, Expected Workload: 8h is added
+CS3200, Expected Workload: 8h is added.
 
 +------+---------+----------+----------+
 | Week | Module  | Expected |  Actual  |
 +------+---------+----------+----------+
 |  02  | CS1000  | No Input | No Input |
 +------+---------+----------+----------+
-|  02  | CS2113t | No Input | No Input |
+|  02  | CS2113T | No Input | No Input |
 +------+---------+----------+----------+
 |  02  | CS3000  |     6    | No Input |
 +------+---------+----------+----------+

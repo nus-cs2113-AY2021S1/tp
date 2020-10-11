@@ -84,4 +84,39 @@ public class Ui {
         HelpList help = new HelpList();
         help.listCommands();
     }
+
+    /**
+     * Prints the message when module does not exist.
+     */
+    public void printNotExist(String moduleCode) {
+        System.out.println(moduleCode + " does not exist." + System.lineSeparator());
+    }
+
+    /**
+     * Prints the message when module exists.
+     */
+    public void printExist(String moduleCode) {
+        System.out.println(moduleCode + " already exists." + System.lineSeparator());
+    }
+
+    /**
+     * Prints the message when module is deleted.
+     */
+    public void printDelete(String moduleCode) {
+        System.out.println(moduleCode + " is removed." + System.lineSeparator());
+    }
+
+    /**
+     * Prints the message when module is deleted.
+     */
+    public void printDeleteExp(String moduleCode) {
+        System.out.println("Expected Workload of " + moduleCode + " is removed." + System.lineSeparator());
+    }
+
+    /**
+     * Prints the message when module is added to modList.
+     */
+    public void printAdd(Module moduleDetail) {
+        System.out.println(moduleDetail + " is added." + System.lineSeparator());
+    }
 }

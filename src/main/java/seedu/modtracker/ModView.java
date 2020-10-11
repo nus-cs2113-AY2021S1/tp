@@ -176,10 +176,10 @@ public class ModView {
             } else {
                 out = out.replace("    YY    ", " No Input ");
             }
-            double actualTime = m.getActualTime()[week - 1];
-            if (actualTime != -1) {
-                actualTime = round(actualTime, 1);
-                String actualWorkLoad = ((actualTime > 10) ? "" : " ") + Double.toString(actualTime);
+            double[] actualTime = m.getActualTime();
+            if (actualTime[week] != -1) {
+                actualTime[week] = round(actualTime[week], 1);
+                String actualWorkLoad = ((actualTime[week] > 10) ? "" : " ") + Double.toString(actualTime[week]);
                 out = out.replace("ZZZZ", actualWorkLoad);
             } else {
                 out = out.replace("   ZZZZ   ", " No Input ");
