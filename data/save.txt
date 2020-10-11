@@ -1,0 +1,5 @@
+Oct 10 2020
+Expense;TRANSPORT;10000.0;09:26;you die
+Income;TRANSPORT;32000.0;09:30;hahahaha
+Oct 11 2020
+Expense;TRANSPORT;12000.0;21:39;jasjanf

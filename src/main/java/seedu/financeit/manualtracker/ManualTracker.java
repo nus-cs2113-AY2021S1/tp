@@ -15,7 +15,7 @@ import seedu.financeit.utils.FiniteStateMachine;
 public class ManualTracker {
     private static Ledger currLedger;
     private static LedgerList ledgerList = new LedgerList();
-    private static CommandPacket packet;
+    public static CommandPacket packet;
 
     public static void main() {
         boolean endTracker = false;
@@ -54,6 +54,9 @@ public class ManualTracker {
             fsm.transitionState();
         }
     }
+
+
+    public static LedgerList getLedgerList(){ return ledgerList; }
 
     private static FiniteStateMachine.State handleMainMenu() {
         UiManager.printSpace();

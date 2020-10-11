@@ -62,6 +62,9 @@ public class EntryTracker {
         return FiniteStateMachine.State.MAIN_MENU;
     }
 
+
+    public static EntryList getEntryList(){ return entryList; }
+
     private static FiniteStateMachine.State handleMainMenu() {
         UiManager.printSpace();
         UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY,
@@ -130,7 +133,22 @@ public class EntryTracker {
         return FiniteStateMachine.State.MAIN_MENU;
     }
 
-    private static FiniteStateMachine.State handleCreateEntry() {
+    public static Constants.EntryType getEntryType() {
+        for (String paramType : packet.getParamTypes()) {
+            switch (paramType) {
+            case "-i":
+                return Constants.EntryType.INC;
+            case "-e":
+                return Constants.EntryType.EXP;
+            default:
+                System.out.println("Command failed.");
+                break;
+            }
+        }
+        return null;
+    }
+
+    public static FiniteStateMachine.State handleCreateEntry() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry entry;
 
