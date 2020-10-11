@@ -25,21 +25,6 @@ public class TagManager {
     }
 
     /**
-     * Returns if a tag with the tag name exists.
-     *
-     * @param tagName name of the Tag to check.
-     * @return true if Tag exists, false otherwise.
-     */
-    private boolean containsTag(String tagName) {
-        for (Tag t : tagMap.keySet()) {
-            if (t.getTagName().equalsIgnoreCase(tagName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      * Returns the Tag that matches the tag name.
      *
      * @param tagName name of the Tag to check.
@@ -52,36 +37,6 @@ public class TagManager {
             }
         }
         return null;
-    }
-
-    /**
-     * Creates a Tag with the provided name.
-     *
-     * @param tagName name of the Tag.
-     */
-    public void createTag(String tagName) {
-        boolean isTagExist = containsTag(tagName);
-
-        if (!isTagExist) {
-            tagMap.put(new Tag(tagName), new ArrayList<>());
-        }
-    }
-
-    /**
-     * Creates a Tag with the provided name and color.
-     *
-     * @param tagName name of the Tag.
-     * @param tagColor color of the Tag.
-     * @return true if new Tag is created, false otherwise.
-     */
-    public boolean createTag(String tagName, String tagColor) {
-        if (!containsTag(tagName)) {
-            tagMap.put(new Tag(tagName, tagColor), new ArrayList<>());
-            return true;
-        } else {
-            getTag(tagName).setTagColor(tagColor);
-            return false;
-        }
     }
 
     /**
@@ -107,40 +62,6 @@ public class TagManager {
         }
     }
 
-    /*public void tagNote(Note note, String tagName) {
-        boolean isTagExist = containsTag(tagName);
-
-        if(!isTagExist) {
-            createTag(tagName);
-        }
-
-        for(Tag t : tagMap.keySet()) {
-            if(t.getTagName().equalsIgnoreCase(tagName)) {
-                //note.getTags().add(t);
-                tagMap.get(t).add(note);
-                break;
-            }
-        }
-    }*/
-
-    /**
-     * Tags a Note with the provided name. Creates a new Tag if the Tag does not exist.
-     *
-     * @param note Note to be tagged.
-     * @param tagName name of the Tag.
-     * @param tagColor color of the Tag.
-     */
-    public void tagNote(Note note, String tagName, String tagColor) {
-        boolean isTagExist = containsTag(tagName);
-
-        if (!isTagExist) {
-            createTag(tagName, tagColor);
-        }
-
-        Tag tag = getTag(tagName);
-        tagNote(note, tag);
-    }
-
     /**
      * Tags a Note with the provided Tag.
      *
@@ -156,21 +77,7 @@ public class TagManager {
      * Removes a Tag from the Note.
      *
      * @param note Note to be untagged.
-     * @param tagName name of the Tag.
-     */
-    public void removeTag(Note note, String tagName) {
-        Tag tag = getTag(tagName);
-
-        if (tag != null) {
-            removeTag(note, tag);
-        }
-    }
-
-    /**
-     * Removes a Tag from the Note.
-     *
-     * @param note Note to be untagged.
-     * @param tag to be removed.
+     * @param tag Tag to be removed.
      */
     public void removeTag(Note note, Tag tag) {
         tagMap.remove(tag, note);
@@ -180,27 +87,7 @@ public class TagManager {
     /**
      * Deletes a Tag from the Map. Notes that have the Tag will be untagged.
      *
-     * @param tagName name of the Tag to be deleted.
-     * @return true if there exist the tag and is deleted, false otherwise.
-     */
-    public boolean deleteTag(String tagName) {
-        Tag tag = getTag(tagName);
-
-        if (tag == null) {
-            return false;
-        }
-
-        for (Note n : tagMap.get(tag)) {
-            n.getTags().remove(tag);
-        }
-        tagMap.remove(tag);
-        return true;
-    }
-
-    /**
-     * Deletes a Tag from the Map. Notes that have the Tag will be untagged.
-     *
-     * @param tag to be deleted.
+     * @param tag Tag to be deleted.
      * @return true if there exist the tag and is deleted, false otherwise.
      */
     public boolean deleteTag(Tag tag) {
@@ -240,7 +127,7 @@ public class TagManager {
     /**
      * Rebinds all the tags in the note to the existing tags in the database.
      *
-     * @param note the note to have the tags rebind.
+     * @param note Note to have the tags rebind.
      */
     public void rebindTags(Note note) {
         int numTagsToCheck = note.getTags().size();

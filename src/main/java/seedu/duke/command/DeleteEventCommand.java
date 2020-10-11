@@ -14,10 +14,9 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 public class DeleteEventCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-e";
-    private static final String COMMAND_SUCCESSFUL_MESSAGE = "Event deleted:" + InterfaceManager.LS;
+
     private static final String COMMAND_USAGE = COMMAND_WORD + ": Deletes an event. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
-    private int index;
 
     /**
      * Gets how the command is expected to be used.
@@ -27,6 +26,10 @@ public class DeleteEventCommand extends Command {
     public static String getCommandUsage() {
         return COMMAND_USAGE;
     }
+
+    private static final String COMMAND_SUCCESSFUL_MESSAGE = "Event deleted:" + InterfaceManager.LS;
+
+    private int index;
 
     public DeleteEventCommand(int index) {
         this.index = index;

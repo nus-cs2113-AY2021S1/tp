@@ -1,12 +1,19 @@
 package seedu.duke.data.exception;
 
+import seedu.duke.command.HelpCommand;
+import seedu.duke.ui.InterfaceManager;
+
 /**
  * Signals the different type of possible exceptions.
  */
 public class SystemException extends Exception {
     /** Types of exception. */
     public enum ExceptionType {
+        EXCEPTION_INVALID_COMMAND(InterfaceManager.LS + "Invalid Command. "
+                + "Please try again or enter help to get a list of valid commands." + InterfaceManager.LS),
         EXCEPTION_WRONG_PREFIX("Type of prefix not recognized!"),
+        EXCEPTION_MISSING_MESSAGE_AFTER_COMMAND("Please provide the necessary information! Type: \""
+                + HelpCommand.COMMAND_WORD + "\" for more details."),
         EXCEPTION_MISSING_DESCRIPTION("Missing description!"),
         EXCEPTION_MISSING_TITLE_PREFIX("Missing title prefix!"),
         EXCEPTION_MISSING_TITLE("Missing title!"),

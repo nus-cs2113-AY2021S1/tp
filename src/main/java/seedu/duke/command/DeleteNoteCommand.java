@@ -1,6 +1,5 @@
 package seedu.duke.command;
 
-import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Note;
 
 import java.util.ArrayList;
@@ -16,24 +15,25 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 public class DeleteNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-n";
-    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Note deleted: ";
-    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook! ";
 
-    public static final String COMMAND_USAGE_NOTE = COMMAND_WORD + ": Deletes a note. Parameters: "
+    private static final String COMMAND_USAGE = COMMAND_WORD + ": Deletes a note. Parameters: "
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE or "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
 
-    private int index;
-    private String title = "";
-
-    public static String getCommandUsageNote() {
-        return COMMAND_USAGE_NOTE;
+    /**
+     * Gets how the command is expected to be used.
+     *
+     * @return String representation of how the command is to be used.
+     */
+    public static String getCommandUsage() {
+        return COMMAND_USAGE;
     }
 
-    /*
-    public static String getCommandUsageEvent() {
-        return COMMAND_USAGE_EVENT;
-    } TBR*/
+    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Note deleted: ";
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook! ";
+
+    private int index;
+    private String title = "";
 
     /**
      * Constructs a DeleteNoteCommand to delete a Note or an Event.

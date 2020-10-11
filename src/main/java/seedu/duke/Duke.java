@@ -21,7 +21,6 @@ public class Duke {
     private TagManager tagManager;
 
     private static final String WELCOME_MSG_STRING = "Hi";
-    private static final String END_MSG_STRING = "Goodbye";
     private static final String ENTER_COMMAND_MSG = "Enter command:";
 
     /**
@@ -54,7 +53,6 @@ public class Duke {
      * Exits the application.
      */
     private void exit() {
-        interfaceManager.prints(END_MSG_STRING);
     }
 
     /** Runs the program until termination. */
