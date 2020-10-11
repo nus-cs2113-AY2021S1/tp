@@ -61,7 +61,23 @@ public class DeleteCommand extends Command {
             String title = information.trim();
             deleteBookmark(bookList, bookmarks, title, ui);
             break;
+        case TAG_QUOTE:
+            QuoteList quotes = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
+            deleteQuote(quotes, ui, information);
         default:
+        }
+    }
+
+    private void deleteQuote(QuoteList quotes, TextUi ui, String information) {
+        try {
+            int quoteNumber = Integer.parseInt(information.trim()) - 1;
+            Quote quoteToBeDeleted = quotes.getQuote(quoteNumber);
+            quotes.delete(quoteNumber);
+            ui.printDeleteQuote(quoteToBeDeleted.getQuote());
+        } catch (NumberFormatException e) {
+            System.out.println(ERROR_INVALID_QUOTE_NUM);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(ERROR_INVALID_QUOTE_NUM);
         }
     }
 
