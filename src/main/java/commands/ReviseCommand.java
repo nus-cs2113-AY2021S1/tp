@@ -71,15 +71,15 @@ public class ReviseCommand extends Command {
         while (isInvalid) {
             switch (input.toLowerCase()) {
             case EASY:
-                c.setDueBy(Scheduler.computeEasyDeadline(c.getPreviousInterval()));
+                c.setDueBy(Scheduler.computeEasyDeadline(c, c.getPreviousInterval()));
                 isInvalid = false;
                 break;
             case MEDIUM:
-                c.setDueBy(Scheduler.computeMediumDeadline(c.getPreviousInterval()));
+                c.setDueBy(Scheduler.computeMediumDeadline(c, c.getPreviousInterval()));
                 isInvalid = false;
                 break;
             case HARD:
-                c.setDueBy(Scheduler.computeHardDeadline(c.getPreviousInterval()));
+                c.setDueBy(Scheduler.computeHardDeadline(c, c.getPreviousInterval()));
                 isInvalid = false;
                 break;
             case CANNOT_ANSWER:
