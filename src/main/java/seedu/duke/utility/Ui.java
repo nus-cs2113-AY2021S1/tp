@@ -1,6 +1,8 @@
 package seedu.duke.utility;
 
 
+import java.util.Scanner;
+
 /**
  * Represents a Ui class that is responsible for Input/Output operations.
  */
@@ -11,6 +13,11 @@ public class Ui {
     public static final String ANSI_REVERSE = "\u001b[7m";
     public static final String ANSI_BOLD = "\u001b[1m";
     public static final String SAVE_DIRECTORY = "data/showList.txt";
+    private Scanner scan;
+
+    public Ui() {
+        scan = new Scanner(System.in);
+    }
 
     public static void printLogo() {
         String logo = " __          __  _______ _____ _    _ _   _ ________   _________ \n"
@@ -73,6 +80,21 @@ public class Ui {
                 + "\n"
                 + "`bye` - Exits the program\n");
         printLine();
+    }
+
+    public String getUserCommand() {
+        String userInput = scan.nextLine();
+
+        //Take out all empty/whitespace lines
+        while (isInputEmpty(userInput)) {
+            userInput = scan.nextLine();
+        }
+
+        return userInput;
+    }
+
+    private boolean isInputEmpty(String rawInput) {
+        return rawInput.trim().isEmpty();
     }
 
     public static String toReverse(String input) {
