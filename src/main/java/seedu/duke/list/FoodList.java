@@ -55,7 +55,7 @@ public class FoodList {
 
 
     public String delete(int index) throws IndexOutOfBoundsException {
-        try{
+        try {
             return FoodListManager.deleteEntry(foodEntries, index).toString();
         } catch (IndexOutOfBoundsException e) {
             throw e;
