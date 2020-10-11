@@ -14,6 +14,8 @@ import seedu.duke.quote.QuoteParser;
 import seedu.duke.rating.Rating;
 import seedu.duke.rating.RatingList;
 import seedu.duke.rating.RatingParser;
+import seedu.duke.todo.ToDo;
+import seedu.duke.todo.ToDoList;
 import seedu.duke.ui.TextUi;
 
 import java.util.ArrayList;
@@ -51,6 +53,11 @@ public class AddCommand extends Command {
         case TAG_RATING:
             RatingList ratings = (RatingList) listManager.getList(ListManager.RATING_LIST);
             addRating(ratings, ui, listManager);
+            break;
+        case TAG_TODO:
+            ToDoList toDos = (ToDoList) listManager.getList(ListManager.TODO_LIST);
+            ToDo newToDo = addToDo(toDos);
+            ui.printAddToDo(newToDo);
             break;
         default:
         }
@@ -190,6 +197,16 @@ public class AddCommand extends Command {
             return true;
         }
         return false;
+    }
+
+    private ToDo addToDo(ToDoList toDos) {
+        String[] taskNameAndDeadline = information.split("/by", 2);
+        String taskName = taskNameAndDeadline[0].trim();
+        String deadline = taskNameAndDeadline[1].trim();
+        ToDo newToDo = new ToDo(taskName,deadline);
+        toDos.add(newToDo);
+
+        return newToDo;
     }
 
     public boolean isExit() {

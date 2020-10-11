@@ -1,14 +1,18 @@
 package seedu.duke.ui;
 
 import seedu.duke.book.Book;
+import seedu.duke.bookmark.Bookmark;
+import seedu.duke.bookmark.BookmarkList;
+import seedu.duke.book.BookList;
 import seedu.duke.category.Category;
 import seedu.duke.category.CategoryList;
 import seedu.duke.quote.Quote;
 import seedu.duke.quote.QuoteList;
 import seedu.duke.rating.Rating;
 import seedu.duke.rating.RatingList;
+import seedu.duke.todo.ToDo;
+import seedu.duke.todo.ToDoList;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TextUi {
@@ -22,8 +26,10 @@ public class TextUi {
     private static final String WELCOME_MESSAGE = "Welcome to Quotesify!";
     private static final String GOODBYE_MESSAGE = "Have a nice day!";
     private static final String PROMPT_MESSAGE = "\nWhat would you like to do with Quotesify?";
-    private static final String ADD_BOOK = "The book [%s] has been added!";
-    private static final String DELETE_BOOK = "The book [%s] has been deleted!";
+    private static final String ADD_BOOK_MESSAGE = "The book [%s] has been added!";
+    private static final String DELETE_BOOK_MESSAGE = "The book [%s] has been deleted!";
+    private static final String LIST_BOOKS_MESSAGE = "Here is a list of all books:";
+    private static final String LIST_BOOKS_BY_AUTHOR_MESSAGE = "Here is a list of books by %s:";
     private static final String ADD_CATEGORY_MESSAGE = "I have tagged \"%s\" category to \"%s\"!";
     private static final String DELETE_CATEGORY_MESSAGE = "I have removed \"%s\" category from \"%s\"!";
     private static final String CATEGORY_SIZE_MESSAGE = "You have a total of %d item(s) tagged as \"%s\".";
@@ -33,7 +39,18 @@ public class TextUi {
     private static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
             + " Here are your rated books!";
     private static final String LIST_SPECIFIED_RATING_MESSAGE = "Here are the books you rated as %d star!";
+    private static final String ADD_TODO_MESSAGE = "The task [%s] has been added!";
+    private static final String TODO_SIZE_MESSAGE = "You have a total of %d task(s) recorded.";
+    private static final String LIST_TODOS_MESSAGE = "Here is the list of all task(s) recorded:";
+    private static final String DELETE_TODO_MESSAGE = "The Task [%s] has been deleted!";
+    private static final String DONE_TODO_MESSAGE = "The Task [%s] has been marked as done!";
+    private static final String ADD_BOOKMARK_MESSAGE = "The bookmark [%s] has been added!";
+    private static final String UPDATE_BOOKMARK_MESSAGE = "The bookmark [%s] has been updated";
+    private static final String BOOKMARK_SIZE_MESSAGE = "You have a total of %d bookmark(s) recorded.";
+    private static final String LIST_BOOKMARKS_MESSAGE = "Here is the list of all bookmark(s) recorded:";
+    private static final String DELETE_BOOKMARKS_MESSAGE = "The bookmark [%s] has been removed!";
     private static final String LIST_QUOTES = "Here are the quotes:";
+    private static final String DELETE_QUOTE_MESSAGE = "The quote \"%s\" has been deleted!";
 
     private final Scanner in;
 
@@ -56,11 +73,21 @@ public class TextUi {
     }
 
     public void printAddBook(Book book) {
-        System.out.printf(ADD_BOOK + "\n", book.toString());
+        System.out.printf(ADD_BOOK_MESSAGE + "\n", book.toString());
     }
 
     public void printDeleteBook(Book book) {
-        System.out.printf(DELETE_BOOK + "\n", book.toString());
+        System.out.printf(DELETE_BOOK_MESSAGE + "\n", book.toString());
+    }
+
+    public void printAllBooks(BookList bookList) {
+        System.out.println(LIST_BOOKS_MESSAGE);
+        System.out.println(bookList.toString());
+    }
+
+    public void printBooksByAuthor(BookList bookList, String authorName) {
+        System.out.printf(LIST_BOOKS_BY_AUTHOR_MESSAGE + "\n", authorName);
+        System.out.println(bookList.toString());
     }
 
     public void printAllQuotes(QuoteList quotes) {
@@ -99,10 +126,6 @@ public class TextUi {
 
     public void printErrorMessage(String message) {
         System.out.println(message);
-    }
-
-    public void printBook(Book book) {
-        System.out.println(book.toString());
     }
 
     public void printAddRatingToBook(int ratingScore, String titleOfBookToRate) {
@@ -150,7 +173,49 @@ public class TextUi {
         }
     }
 
+    public  void printDeleteQuote(String quote) {
+        System.out.printf((DELETE_QUOTE_MESSAGE) + "\n", quote);
+    }
+
     public void printDeleteRating(String bookTitle) {
         System.out.printf((DELETE_RATING_MESSAGE) + "\n", bookTitle);
+    }
+
+    public void printAddToDo(ToDo toDo) {
+        System.out.printf(ADD_TODO_MESSAGE + "\n", toDo.toString());
+    }
+
+    public void printToDo(ToDo toDo) {
+        System.out.println(toDo.toString());
+    }
+
+    public void printAllToDos(ToDoList toDoList) {
+        System.out.println(LIST_TODOS_MESSAGE);
+        System.out.println(toDoList.toString());
+    }
+
+    public void printDeleteToDo(ToDo  toDo) {
+        System.out.printf(DELETE_TODO_MESSAGE + "\n", toDo.toString());
+    }
+
+    public void printDoneToDo(ToDo  toDo) {
+        System.out.printf(DONE_TODO_MESSAGE + "\n", toDo.toString());
+    }
+
+    public void printAddBookmark(Bookmark bookmark) {
+        System.out.printf(ADD_BOOKMARK_MESSAGE + "\n", bookmark.toString());
+    }
+
+    public void printUpdateBookmark(Bookmark bookmark) {
+        System.out.printf(UPDATE_BOOKMARK_MESSAGE + "\n", bookmark.toString());
+    }
+
+    public void printDeleteBookmark(Bookmark bookmark) {
+        System.out.printf(DELETE_BOOKMARKS_MESSAGE + "\n", bookmark.toString());
+    }
+
+    public void printAllBookmarks(BookmarkList bookmarkList) {
+        System.out.println(LIST_BOOKMARKS_MESSAGE);
+        System.out.println(bookmarkList.toString());
     }
 }
