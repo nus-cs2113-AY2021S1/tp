@@ -1,2 +1,2 @@
-package PACKAGE_NAME;public class InvalidModeException {
+public class InvalidModeException extends Exception {
 }
