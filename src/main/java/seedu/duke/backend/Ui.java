@@ -1,6 +1,8 @@
 package seedu.duke.backend;
 
 import seedu.duke.Command;
+import seedu.duke.DukeArgumentException;
+import seedu.duke.DukeNoMatchException;
 import seedu.duke.others.CommandBye;
 import seedu.duke.others.CommandHelp;
 
@@ -27,25 +29,27 @@ public class Ui {
         System.out.println("Command: "+userInput.getCommand());
         System.out.println("Num Args: "+userInput.getNumArgs());
         System.out.println("Args: "+userInput.getArgs());*/
-        Command cmd = findCommand(userInput);
-        if (cmd != null) {
+        try {
+            Command cmd = findCommand(userInput);
             printOutput(cmd.execute());
-        } else {
+        } catch (DukeArgumentException ae) {
+            // Placeholder if additional routine is required when user enters incorrect parameters
+        } catch (DukeNoMatchException ne){
             printOutput("No such command. Try 'help' for a list of commands.");
         }
     }
 
-    public Command findCommand(UserInput ui) {
+    public Command findCommand(UserInput ui) throws DukeArgumentException, DukeNoMatchException {
         for (Command c : commandList) {
             int result = c.validate(ui);
             if (result == Command.ARGUMENT_ERR) {
                 printError(c.help());
-                return null;
+                throw new DukeArgumentException();
             } else if (result == Command.ACCEPT) {
                 return c;
             }
         }
-        return null;
+        throw new DukeNoMatchException();
     }
 
     /**
