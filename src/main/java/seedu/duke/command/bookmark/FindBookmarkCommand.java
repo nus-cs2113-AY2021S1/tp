@@ -44,7 +44,8 @@ public class FindBookmarkCommand extends Command {
      * @param slotStorage The storage for saving and loading.
      */
     @Override
-    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage) {
+    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
+                        Storage bookmarkStorage, Storage slotStorage) {
         ui.print(bookmarks.findBookmarks(moduleAndDescription));
     }
 

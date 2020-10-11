@@ -26,14 +26,13 @@ public class Ui {
     public String readCommand() {
         if (Parser.getProgramMode() == 0) {
             System.out.print("[Main Menu] Input: ");
-        }
-        else if (Parser.getProgramMode() == 1) {
+        } else if (Parser.getProgramMode() == 1) {
             System.out.print("[Bookmark mode] Input: ");
-        }
-        else if (Parser.getProgramMode() == 2) {
+        } else if (Parser.getProgramMode() == 2) {
             System.out.print("[Timetable mode] Input: ");
+        } else {
+            System.out.print("[An error has occurred] ");
         }
-        else System.out.print("[An error has occurred] ");
 
         return scanner.nextLine().trim();
     }

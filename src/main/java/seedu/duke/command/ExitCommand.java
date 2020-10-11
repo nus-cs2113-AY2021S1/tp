@@ -26,7 +26,8 @@ public class ExitCommand extends Command {
      * @param ui The user interface.
      */
     @Override
-    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage) {
+    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
+                        Storage bookmarkStorage, Storage slotStorage) {
         ui.showExitScreen();
     }
 }

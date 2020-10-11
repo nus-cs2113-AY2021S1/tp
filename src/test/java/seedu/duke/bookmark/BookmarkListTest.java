@@ -2,19 +2,18 @@ package seedu.duke.bookmark;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.duke.exception.DukeException;
-import seedu.duke.exception.DukeExceptionType;
 
-import java.awt.print.Book;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 class BookmarkListTest {
 
     private BookmarkList bookmarks;
     private final Bookmark bookmark = new Bookmark("CS2113T", "tutorial", "www.google.com");
-    private final String LS = System.lineSeparator();
+    private final String lineSeparator = System.lineSeparator();
 
 
     @BeforeEach
@@ -118,6 +117,7 @@ class BookmarkListTest {
                 "[GEH1049] lecture https://www.stackoverflow.com/" + System.lineSeparator());
 
     }
+
     @Test
     void showBookmark() {
         ArrayList<String> input = new ArrayList<>();
@@ -125,9 +125,9 @@ class BookmarkListTest {
         input.add("CS2113T | lecture | www.yahoo.com");
 
         BookmarkList bookmarks = new BookmarkList(input);
-        assertEquals(bookmarks.showBookmarks(), "\tHere are the bookmarks in your list:" + LS
-                + "\t" + (1) + "." + "[CS2113T] tutorial www.google.com" + System.lineSeparator() + LS
-                + "\t" + (2) + "." + "[CS2113T] lecture www.yahoo.com" + System.lineSeparator() + LS);
+        assertEquals(bookmarks.showBookmarks(), "\tHere are the bookmarks in your list:" + lineSeparator
+                + "\t" + (1) + "." + "[CS2113T] tutorial www.google.com" + System.lineSeparator() + lineSeparator
+                + "\t" + (2) + "." + "[CS2113T] lecture www.yahoo.com" + System.lineSeparator() + lineSeparator);
     }
 
     @Test
@@ -141,8 +141,8 @@ class BookmarkListTest {
         findTerm.add("lecture");
 
         BookmarkList bookmarks = new BookmarkList(input);
-        assertEquals(bookmarks.findBookmarks(findTerm), "Here are your matching bookmarks" + LS
-                + (2) + "." + bookmarks.getBookmark(1).getBookmarkAsString() + LS);
+        assertEquals(bookmarks.findBookmarks(findTerm), "Here are your matching bookmarks" + lineSeparator
+                + (2) + "." + bookmarks.getBookmark(1).getBookmarkAsString() + lineSeparator);
     }
 
     @Test
@@ -156,7 +156,7 @@ class BookmarkListTest {
         findTerm.add("NONMATCHINGTERM");
 
         BookmarkList bookmarks = new BookmarkList(input);
-        assertEquals(bookmarks.findBookmarks(findTerm), "No bookmarks contain the specified keyword!" + LS);
+        assertEquals(bookmarks.findBookmarks(findTerm), "No bookmarks contain the specified keyword!" + lineSeparator);
     }
 
     @Test
@@ -170,8 +170,8 @@ class BookmarkListTest {
         findTerm.add("lecture");
 
         BookmarkList bookmarks = new BookmarkList(input);
-        assertEquals(bookmarks.findBookmarks(findTerm), "Here are your matching bookmarks" + LS
-                + (2) + "." + bookmarks.getBookmark(1).getBookmarkAsString() + LS);
+        assertEquals(bookmarks.findBookmarks(findTerm), "Here are your matching bookmarks" + lineSeparator
+                + (2) + "." + bookmarks.getBookmark(1).getBookmarkAsString() + lineSeparator);
     }
 
 
@@ -186,6 +186,7 @@ class BookmarkListTest {
         findTerm.add("NONMATCHINGTERM");
 
         BookmarkList bookmarks = new BookmarkList(input);
-        assertEquals(bookmarks.launchBookmarks(findTerm), "No bookmarks contain the specified keyword!" + LS);
+        assertEquals(bookmarks.launchBookmarks(findTerm),
+                "No bookmarks contain the specified keyword!" + lineSeparator);
     }
 }
