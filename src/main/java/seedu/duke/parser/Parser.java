@@ -1,10 +1,53 @@
 package seedu.duke.parser;
 
+import seedu.duke.command.*;
 import seedu.duke.exception.AniException;
 
 public class Parser {
 
-    public String[] parseUserInput(String input) throws AniException {
+    /**
+     * Prints the main menu of the application
+     * and requests for command.
+     */
+    public static Command getCommand(String fullCommand) throws AniException {
+        String[] fullCommandSplit = parseUserInput(fullCommand);
+        String description = "";
+        String command = fullCommandSplit[0];
+        if (fullCommandSplit.length > 1) {
+            description = fullCommandSplit[1];
+        }
+
+        switch (command) {
+            case "addprofile":
+                return new AddProfileCommand(description);
+                
+            case "editprofile":
+                return new EditProfileCommand(description);
+ 
+            case "browse":
+                return new BrowseAnimeCommand(description);
+     
+            case "watchlist":
+                return new CreateWatchlistCommand(description);
+           
+            case "add":
+                return new AddToWatchlistCommand(description);
+
+            case "bookmark":
+                return new BookmarkAnimeCommand(description);
+                
+            case "help":
+                return new HelpCommand();
+
+            case "exit":
+                return new ExitCommand();
+                
+            default:
+                throw new AniException("Unknown command");
+        }
+    }
+
+    public static String[] parseUserInput(String input) throws AniException {
         if (input == null || input.isEmpty()) {
             throw new AniException("Input is empty");
         }
