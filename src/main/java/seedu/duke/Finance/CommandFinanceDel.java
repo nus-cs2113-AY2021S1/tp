@@ -4,22 +4,19 @@ import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
 public class CommandFinanceDel extends Command {
-    FinanceLog finLog;
     UserInput userinput;
-    public CommandFinanceDel(FinanceLog fl) {
-        finLog=fl;
-    }
+
     @Override
     public String execute() {
         String input=userinput.getArg("");
         int index=Integer.parseInt(input.trim());
-        finLog.delFin(index);
-        return null;
+        String output = FinanceList.dellog(index);
+        return output;
     }
 
     @Override
     public String help() {
-        return null;
+        return "The format of input to delete a log is: finance delLog index";
     }
 
     public int validate(UserInput ui) {

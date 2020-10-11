@@ -4,20 +4,17 @@ import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
 public class CommandFinanceSummary extends Command {
-    FinanceLog finlog;
     UserInput userinput;
-    public CommandFinanceSummary(FinanceLog fl) {
-        finlog=fl;
-    }
+
     @Override
     public String execute() {
-        finlog.summary();
-        return null;
+        String output = FinanceList.summary();
+        return output;
     }
 
     @Override
     public String help() {
-        return null;
+        return "The format of input to show finance list is: finance summary";
     }
 
     public int validate(UserInput ui) {

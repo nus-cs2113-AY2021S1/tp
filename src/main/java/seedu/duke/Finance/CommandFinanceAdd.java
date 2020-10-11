@@ -4,22 +4,21 @@ import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
 public class CommandFinanceAdd extends Command {
-    FinanceLog finLog;
+
     UserInput userinput;
-    public CommandFinanceAdd(FinanceLog fl) {
-        finLog=fl;
-    }
+
     @Override
     public String execute() {
         String input=userinput.getArg("");
         String[] contents=input.trim().split(" ");
-        finLog.addFin(contents[0],Double.parseDouble(contents[1]));
-        return null;
+        FinanceLog fl = new FinanceLog(contents[0],Double.parseDouble(contents[1]));
+        String output = FinanceList.addLog(fl);
+        return output;
     }
 
     @Override
     public String help() {
-        return null;
+        return "The format input to add a finance log is: hr addLog title value";
     }
 
     public int validate(UserInput ui) {

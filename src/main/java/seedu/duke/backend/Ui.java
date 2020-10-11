@@ -26,7 +26,6 @@ public class Ui {
     public Ui() {
         sc = new Scanner(System.in);
         parser = new Parser();
-        fl=new FinanceLog();
         initializeCommands();
     }
 
@@ -44,9 +43,9 @@ public class Ui {
             // Placeholder if additional routine is required when user enters incorrect parameters
         } catch (DukeNoMatchException ne) {
             printOutput("No such command. Try 'help' for a list of commands.");
-        } catch (Exception e) {
+        } /*catch (Exception e) {
             printOutput("Command execution failed with an unhandled error!", true);
-        }
+        }*/
     }
 
     public Command findCommand(UserInput ui) throws DukeArgumentException, DukeNoMatchException {
@@ -124,9 +123,9 @@ public class Ui {
     private static void initializeCommands() {
         commandList.add(new CommandHelp());
         commandList.add(new CommandBye());
-        commandList.add(new CommandFinanceSummary(fl));
-        commandList.add(new CommandFinanceAdd(fl));
-        commandList.add(new CommandFinanceDel(fl));
+        commandList.add(new CommandFinanceSummary());
+        commandList.add(new CommandFinanceAdd());
+        commandList.add(new CommandFinanceDel());
         commandList.add(new CommandAddMember());
         commandList.add(new CommandViewMember());
         commandList.add(new CommandDelMember());
