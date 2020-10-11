@@ -44,6 +44,7 @@ public class Ui {
 
     public static void printByeMessage() {
         printLine();
+        printSavedList();
         System.out.println(" Bye. Thank you for using WatchNext <3");
         printLine();
     }

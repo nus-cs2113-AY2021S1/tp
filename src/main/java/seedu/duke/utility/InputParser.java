@@ -4,10 +4,9 @@ import seedu.duke.classes.Show;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.ChangeRatingCommand;
 import seedu.duke.commands.DeleteRatingCommand;
+import seedu.duke.commands.RatingCommand;
 import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
 import seedu.duke.commands.UpdateShowSeasonCommand;
-import seedu.duke.commands.RatingCommand;
-import seedu.duke.commands.Command;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -141,16 +140,19 @@ public class InputParser {
 
 
     //todo: differentiate between show and movie soon
+    //todo fix error handling for parsing - follow episode and season
 
     private static void parseAddRatingCommand(String input) {
+        input = removeFirstWord(input);
         String[] tokenizedInput = input.split(" ");
         int showRating = Integer.parseInt(tokenizedInput[1]);
         RatingCommand newShowRating = new RatingCommand(tokenizedInput[0]);
         newShowRating.rateShow(tokenizedInput[0], showRating);
         Ui.printShowRating(tokenizedInput[0], tokenizedInput[1]);
     }
-
+//todo fix deleterating, currently deletes the show rather than its rating
     private static void parseDeleteRatingCommand(String input) {
+        input = removeFirstWord(input);
         DeleteRatingCommand deleteShowRating = new DeleteRatingCommand(input);
         deleteShowRating.delete(input);
         Ui.printDeleteRating(input);
@@ -165,18 +167,25 @@ public class InputParser {
         changeShowRating.changeRating(showRating);
         Ui.printChangeRating(tokenizedInput[0], tokenizedInput[1]);
     }
-
+//todo move this over to new class ListCommand
     private static void parseListCommand(HashMap<String, Show> showList) {
         // idk how to do this btw
         int index = 1;
+        String rating = null;
         for (Entry<String, Show> entry : showList.entrySet()) {
-            System.out.print(index + ". " + entry.getValue().getName() + "|" + entry.getValue().getNumSeasons()
-                    + "|" + entry.getValue().getEpisodesForSeason(index) + entry.getValue().getRating());
+            if(entry.getValue().getRating()!=-1){
+                rating = String.valueOf(entry.getValue().getRating());
+            }
+            else{
+                rating = "Not added.";
+            }
+            System.out.println(index + ". " + entry.getValue().getName() + " | " + "Season " + entry.getValue().getNumSeasons()
+                    + " | " + "Episode " + entry.getValue().getEpisodesForSeason(index) + " | " + "Rating: " + rating);
             index++;
         }
     }
 
-
+ //todo check on the correct layout of add command, currently does not gve correct output
     private static void parseAddCommand(String input) {
         //catch for 1)too many/not enough inputs , 2)invalid input, 3)show alr added
         //maybe last arg is optional? idk cos user might not wanna put rating yet
