@@ -38,7 +38,7 @@ public class Show {
 
     public int getEpisodesForSeason(int season) {
         //TODO : Add the exception for bounds checking
-        return numEpisodesForSeasons[season];
+        return numEpisodesForSeasons[season-1];
     }
 
     public String getReview() {
