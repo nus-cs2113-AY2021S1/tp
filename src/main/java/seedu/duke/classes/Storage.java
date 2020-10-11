@@ -45,12 +45,21 @@ public class Storage implements SaveState {
     }
 
     @Override
-    public void loadState(HashMap<String, Show> showList) throws FileNotFoundException {
+    public java.util.HashMap<String, Show> loadState() throws FileNotFoundException {
+        File directory = new File("data");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
         File f = new File(filePath);
+        try {
+            f.createNewFile();
+        } catch (IOException ex) {
+            seedu.duke.utility.Ui.showCreateFileError();
+        }
         Scanner s = new Scanner(f);
+        HashMap<String, Show> showList = new java.util.HashMap<>();
         // we just assume that users will not change the contain in the file then the format will be fixed
         while (s.hasNext()) {
-
             String name = s.nextLine().substring(3);
 
             String[] splitSeason = s.nextLine().split("Season: ");
@@ -59,14 +68,18 @@ public class Storage implements SaveState {
             String[] splitEpisodes = s.nextLine().split("Episodes: ");
             String[] episodeString = splitEpisodes[1].split(" ");
             int[] episodes = new int[20];
+
             for (int i = 0; i < season; i++) {
+
                 episodes[i] = Integer.parseInt(episodeString[i]);
             }
 
             String[] splitRating = s.nextLine().split("Rating: ");
             int rating = Integer.parseInt(splitRating[1]);
 
+
             showList.put(name, new Show(name, season, episodes));
+
             showList.get(name).setRating(rating);
 
 
@@ -84,6 +97,6 @@ public class Storage implements SaveState {
              */
 
         }
-
+        return showList;
     }
 }

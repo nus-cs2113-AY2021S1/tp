@@ -1,17 +1,24 @@
 package seedu.duke.utility;
 
 /*TODO include more parser classes (storage.parser, command.parser etc in the future)
- *  Use save/load function to load help commands to user instead
- * */
+
 
 import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
 import seedu.duke.commands.UpdateShowSeasonCommand;
+
+import seedu.duke.classes.Show;
+import seedu.duke.commands.ChangeRatingCommand;
+import seedu.duke.commands.DeleteRatingCommand;
+import seedu.duke.commands.RatingCommand;
+
+import java.util.HashMap;
+import java.util.Map.Entry;
+
 
 /**
  * Represents a parser to process the commands inputted by the user.
  */
 public class InputParser {
-    private static final String PATH_MANUAL = "manual.txt";
     private boolean isBye;
 
     public InputParser() {
@@ -20,29 +27,6 @@ public class InputParser {
 
     public boolean isByeTime() {
         return isBye;
-    }
-
-    /*
-     * In case i need to use it for future commands, might need to see how the others do their commands
-     * */
-    private static java.util.ArrayList<String> tokenizeToStringArray(String input, String[] argumentDelimiters) {
-        int argumentDelimitersIndex = 0;
-        String[] inputSplit = input.split(" ");
-        java.util.ArrayList<String> argumentArray = new java.util.ArrayList<>();
-        StringBuilder argument = new StringBuilder();
-        for (int index = 0; index < inputSplit.length; index++) {
-            if (argumentDelimitersIndex >= argumentDelimiters.length) {
-                argument.append(inputSplit[index]).append(" ");
-            } else if (inputSplit[index].equals(argumentDelimiters[argumentDelimitersIndex])) {
-                argumentArray.add(argument.toString().trim());
-                argumentDelimitersIndex++;
-                argument = new StringBuilder();
-            } else {
-                argument.append(inputSplit[index]).append(" ");
-            }
-        }
-        argumentArray.add(argument.toString().trim());
-        return argumentArray;
     }
 
     private static java.util.ArrayList<String> tokenizeStringArray(String input) {
@@ -84,8 +68,6 @@ public class InputParser {
     public void parseInput(String input) {
 
         String command = getFirstWord(input);
-        input = removeFirstWord(input);
-
         switch (command.toLowerCase()) {
         case "bye":
             Ui.printByeMessage();
@@ -107,6 +89,23 @@ public class InputParser {
             UpdateShowSeasonCommand updateShowSeason = new UpdateShowSeasonCommand(command, seasonInputs);
             updateShowSeason.processCommand();
             return;
+
+        case "rating":
+            parseAddRatingCommand(input);
+            return;
+
+        case "deleterating":
+            parseDeleteRatingCommand(input);
+            return;
+
+        case "list":
+            parseListCommand(ShowList.getShowList());
+            return;
+
+        case "changerating":
+            parseChangeRatingCommand(input);
+            return;
+
         /*case "add":
 
             return parseAddCommand(input);
@@ -115,28 +114,9 @@ public class InputParser {
 
             return parseEditCommand();
 
-        case "rating":
-
-            return parseRatingCommand();
-
-        case "list":
-
-            return parseListCommand();
-
         case "delete":
 
-            return parseDeleteCommand();
-
-        case "deleterating":
-
-            return parseDeleteRatingCommand();
-
-        case "changerating":
-
-            return parseChangeRatingCommand(input);
-
-        case "save":
-            return parseSaveCommand();*/
+            return parseDeleteCommand();*/
 
         case "":
             Ui.printNoInputException();
@@ -147,7 +127,42 @@ public class InputParser {
         }
     }
 
-    //todo: how to differentiate between show and movie HOW??HOW??HOW??HOW??HOW??
+
+    //todo: differentiate between show and movie soontm
+
+    private static void parseAddRatingCommand(String input) {
+        String[] tokenizedInput = input.split(" ");
+        int showRating = Integer.parseInt(tokenizedInput[1]);
+        RatingCommand newShowRating = new RatingCommand(tokenizedInput[0]);
+        newShowRating.rate(tokenizedInput[0], showRating);
+        Ui.printShowRating(tokenizedInput[0], tokenizedInput[1]);
+    }
+
+    private static void parseDeleteRatingCommand(String input) {
+        DeleteRatingCommand deleteShowRating = new DeleteRatingCommand(input);
+        deleteShowRating.delete(input);
+        Ui.printDeleteRating(input);
+    }
+
+    private static void parseChangeRatingCommand(String input) {
+        // catch exceptions for 1)not enough inputs, 2)invalid args, 3)invalid rating
+        // split input using tokenizer
+        String[] tokenizedInput = input.split(" ");
+        int showRating = Integer.parseInt(tokenizedInput[1]);
+        ChangeRatingCommand changeShowRating = new ChangeRatingCommand(tokenizedInput[0]);
+        changeShowRating.changeRating(showRating);
+        Ui.printChangeRating(tokenizedInput[0], tokenizedInput[1]);
+    }
+
+    private static void parseListCommand(HashMap<String, Show> showList) {
+        // idk how to do this btw
+        int index = 1;
+        for (Entry<String,Show> entry : showList.entrySet()) {
+            System.out.print(index + ". " + entry.getValue().getName() + "|" + entry.getValue().getNumSeasons()
+                    + "|" + entry.getValue().getEpisodesForSeason(index) + entry.getValue().getRating());
+            index++;
+        }
+    }
 
     /*
     private static void parseAddCommand(String input) {
@@ -174,45 +189,9 @@ public class InputParser {
 
     }
 
-    private static Command parseAddRatingCommand(String input) {
-        // catch exceptions for 1)not enough inputs, 2)invalid args,
-        // 3)invalid rating , if rating alr exists change it
-        // split input using tokenizer
-        String[] tokenizedInput = input.split(" ");
-        int showRating = Integer.parseInt(tokenizedInput[1]);
-        Ui.printShowRating(tokenizedInput[0] , tokenizedInput[1]);
-    }
-    private static Command parseListCommand() {
-        // idk how to do this btw
-        Ui.printSavedList();
-    }
     private static void parseDeleteCommand(String input) {
         //catch for 1)show not found , 2) invalid no. of args
         Ui.printDeleteShow(input);
-    }
-
-    private static void parseDeleteRatingCommand(String input) {
-        // catch exceptions for 1)not enough inputs, 2)invalid args
-        // check if use same class as ChangeRatingCommand
-        // make rating 0 or delete??
-        ChangeRatingCommand changeShowRating = new ChangeRatingCommand(input);
-        changeShowRating.changeRating(0);
-        Ui.printDeleteRating(input);
-    }
-
-    private static void parseChangeRatingCommand(String input) {
-        // catch exceptions for 1)not enough inputs, 2)invalid args, 3)invalid rating
-        // split input using tokenizer
-        String[] tokenizedInput = input.split(" ");
-        int showRating = Integer.parseInt(tokenizedInput[1]);
-        ChangeRatingCommand changeShowRating = new ChangeRatingCommand(tokenizedInput[0]);
-        changeShowRating.changeRating(showRating);
-        Ui.printChangeRating(tokenizedInput[0] , tokenizedInput[1]);
-    }
-
-    private static void parseSaveCommand() {
-        // run save method
-        Ui.printSavedList();
     }*/
 
 }

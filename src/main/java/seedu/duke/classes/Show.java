@@ -51,6 +51,7 @@ public class Show {
 
     public int getCurrentEpisode() {
         return currentEpisode;
+
     }
 
     public String getReview() {
