@@ -198,35 +198,31 @@ public class Parser {
         ArrayList<Tag> tags = new ArrayList<>();
 
         try {
+            // Get prefix
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
 
             for (String[] infoDetails : splitInfo) {
                 String prefix = infoDetails[0];
+                ExceptionType e;
                 switch (prefix) {
                 case PREFIX_TITLE:
-                    if (infoDetails[1].isBlank()) {
-                        throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
-                    }
-                    title = infoDetails[1].trim();
+                    e = ExceptionType.EXCEPTION_MISSING_TITLE;
+                    title = checkBlank(infoDetails[1], e);
                     break;
                 case PREFIX_TAG:
                     Tag tag = handleTagPrefix(infoDetails);
                     tags.add(tag);
                     break;
                 case PREFIX_PIN:
-                    if (infoDetails[1].isBlank()) {
-                        throw new SystemException(ExceptionType.EXCEPTION_MISSING_PIN);
-                    }
-                    isPinned = Boolean.parseBoolean(infoDetails[1].trim());
+                    e = ExceptionType.EXCEPTION_MISSING_PIN;
+                    isPinned = Boolean.parseBoolean(checkBlank(infoDetails[1], e));
                     break;
                 default:
                     break;
                 }
             }
 
-            if (title.isBlank()) {
-                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
-            }
+            title = checkBlank(title, ExceptionType.EXCEPTION_MISSING_TITLE);
 
             // Get Content
             do {
@@ -379,19 +375,19 @@ public class Parser {
             commandInput.append(input.nextLine());
 
             // Add next line when user press enter
-            if (!commandInput.toString().equals(PREFIX_END)) {
+            if (!commandInput.toString().equals(PREFIX_DELIMITER + PREFIX_END)) {
                 commandInput.append(STRING_NEW_LINE);
             }
 
             // "/del" Delete previous line if there user makes mistakes
-            if (commandInput.toString().contains(PREFIX_DELETE_LINE)) {
-                deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELETE_LINE + STRING_NEW_LINE, 0);
+            if (commandInput.toString().contains(PREFIX_DELIMITER + PREFIX_DELETE_LINE)) {
+                deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELIMITER + PREFIX_DELETE_LINE + STRING_NEW_LINE, 0);
                 deleteLine(commandInput, STRING_NEW_LINE, 1);
             }
-        } while (!commandInput.toString().contains(PREFIX_END)); // "/end" to end input note
+        } while (!commandInput.toString().contains(PREFIX_DELIMITER + PREFIX_END)); // "/end" to end input note
 
         // Delete "/end" command when user ends the edit
-        deleteLine(commandInput, STRING_NEW_LINE + PREFIX_END + STRING_NEW_LINE, 0);
+        deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELIMITER + PREFIX_END + STRING_NEW_LINE, 0);
 
         return commandInput.toString();
     }
@@ -421,6 +417,7 @@ public class Parser {
         String prefix = "";
 
         try {
+            // Get prefix
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
 
             for (String[] infoDetails : splitInfo) {
@@ -442,6 +439,7 @@ public class Parser {
                 }
             }
 
+            // If prefix is title, delete note by title. Else delete index.
             if (prefix.equalsIgnoreCase(PREFIX_TITLE)) {
                 return new DeleteNoteCommand(title);
             } else {

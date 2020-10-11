@@ -30,11 +30,6 @@ public class DeleteNoteCommand extends Command {
         return COMMAND_USAGE_NOTE;
     }
 
-    /*
-    public static String getCommandUsageEvent() {
-        return COMMAND_USAGE_EVENT;
-    } TBR*/
-
     /**
      * Constructs a DeleteNoteCommand to delete a Note or an Event.
      *
@@ -57,7 +52,7 @@ public class DeleteNoteCommand extends Command {
     public String execute() {
         ArrayList<Note> deletedListTitle;
         try {
-            // If there is no title, delete note by index
+            // If there is no title, delete note by index. Else delete by title.
             if (title.isBlank()) {
                 String deletedTitle = notebook.getNotes().get(index - 1).getTitle();
                 notebook.deleteNote(index - 1);

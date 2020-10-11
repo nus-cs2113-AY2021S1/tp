@@ -13,7 +13,7 @@ public class PrefixSyntax {
     public static final String PREFIX_RECURRING = "rec";
     public static final String PREFIX_REMIND = "rem";
     public static final String PREFIX_STOP_RECURRING = "stop";
-    public static final String PREFIX_END = "/end";
+    public static final String PREFIX_END = "end";
     public static final String PREFIX_DATETIME = "/d";
     public static final String PREFIX_INDEX = "i";
     public static final String PREFIX_CONTENT = "/c";
@@ -21,5 +21,5 @@ public class PrefixSyntax {
     public static final String PREFIX_DELIMITER = "/";
     public static final String STRING_SPLIT_DELIMITER = " ";
     public static final String STRING_NEW_LINE = "\n";
-    public static final String PREFIX_DELETE_LINE = "/del";
+    public static final String PREFIX_DELETE_LINE = "del";
 }
