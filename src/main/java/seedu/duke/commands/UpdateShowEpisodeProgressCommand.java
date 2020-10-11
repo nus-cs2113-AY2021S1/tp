@@ -3,12 +3,12 @@ package seedu.duke.commands;
 import seedu.duke.classes.Show;
 import seedu.duke.utility.ShowList;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class UpdateShowEpisodeProgressCommand extends Command {
-    java.util.ArrayList<String> inputs;
+    ArrayList<String> inputs;
 
-    public UpdateShowEpisodeProgressCommand(String description, java.util.ArrayList<String> inputs) {
+    public UpdateShowEpisodeProgressCommand(String description, ArrayList<String> inputs) {
         super(description);
         this.inputs = inputs;
     }
