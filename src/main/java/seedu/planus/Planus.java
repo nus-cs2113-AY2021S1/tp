@@ -1,9 +1,13 @@
 package seedu.planus;
 
+import seedu.commands.Bye;
+import seedu.commands.Command;
+import seedu.commands.CommandResult;
 import seedu.data.TaskList;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.UnknowCommandException;
+import seedu.parser.Parser;
 import seedu.storage.Storage;
 import seedu.task.Task;
 import seedu.ui.Ui;
@@ -15,21 +19,12 @@ public class Planus {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    private static final String COMMAND_HELP = "help";
-    private static final String COMMAND_ADD = "add";
-    private static final String COMMAND_LIST = "list";
-    private static final String COMMAND_BYE = "bye";
-    // Default date: day that the task is created, default priority: 0 (low to high: 0 - 4)
-    private static final Pattern TASK_PATTERN = Pattern.compile(
-            "^(?<description>(\\w+\\s*)+\\w*)"
-            + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
-            + "( t/(?<time>\\d{4}))?"
-            + "( p/(?<priority>\\d))?$");
 
     private final TaskList tasks = new TaskList();
     private boolean isExit;
     private Storage storage;
     private Ui ui;
+    private Parser parser;
 
     public static void main(String[] args) {
         new Planus().run();
@@ -41,7 +36,13 @@ public class Planus {
         while (!isExit) {
             String userInput = ui.getUserInput();
             try {
-                executeCommand(userInput);
+                Command command = parser.processRaw(userInput);
+                CommandResult result = command.execute(tasks);
+                ui.showCommandResult(result);
+                if (command instanceof Bye) {
+                    isExit = true;
+                    storage.writeTasksToFile(tasks);
+                }
             } catch (InvalidCommandException | InvalidPriorityException | UnknowCommandException e) {
                 ui.showException(e);
             }
@@ -53,58 +54,6 @@ public class Planus {
         storage.loadTasks(tasks);
         isExit = false;
         ui = new Ui();
-    }
-
-    private void executeCommand(String userInput) throws
-            InvalidCommandException, InvalidPriorityException, UnknowCommandException {
-        String[] commandTypeAndParams = splitCommandWordAndArgs(userInput);
-        String commandType = commandTypeAndParams[0];
-
-        switch (commandType) {
-        case COMMAND_HELP:
-            ui.showCommands();
-            break;
-        case COMMAND_ADD:
-            String commandArgs = commandTypeAndParams[1];
-            executeAddTask(commandArgs);
-            break;
-        case COMMAND_LIST:
-            ui.displayAll(tasks);
-            break;
-        case COMMAND_BYE:
-            exitProgram();
-            break;
-        default:
-            throw new UnknowCommandException();
-        }
-    }
-
-    private String[] splitCommandWordAndArgs(String userInput) {
-        return userInput.split(" ", 2);
-    }
-
-    private void executeAddTask(String commandArgs) throws
-            InvalidCommandException, InvalidPriorityException {
-        Matcher matcher = TASK_PATTERN.matcher(commandArgs);
-        Task task;
-        if (matcher.find()) {
-            String description = matcher.group("description");
-            String dateString = matcher.group("date");
-            String timeString = matcher.group("time");
-            String priorityString = matcher.group("priority");
-            task = new Task(description, dateString, timeString, priorityString);
-        } else {
-            throw new InvalidCommandException();
-        }
-        tasks.addTask(task);
-        System.out.println("\nTask added:");
-        System.out.println(task.toString());
-        System.out.println("Now you have " + tasks.size() + " task(s) in your list.\n");
-    }
-
-    private void exitProgram() {
-        isExit = true;
-        storage.writeTasksToFile(tasks);
-        System.out.println("\nBye! See you again!");
+        parser = new Parser();
     }
 }
