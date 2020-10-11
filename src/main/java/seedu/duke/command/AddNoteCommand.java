@@ -18,7 +18,7 @@ public class AddNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "add-n";
 
-    private static final String COMMAND_USAGE_NOTE = COMMAND_WORD + ": Adds a note to notebook. Parameters: "
+    private static final String COMMAND_USAGE = COMMAND_WORD + ": Adds a note to notebook. Parameters: "
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE "
             + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR "
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...] "
@@ -29,8 +29,8 @@ public class AddNoteCommand extends Command {
      *
      * @return A string description of the command should be used.
      */
-    public static String getCommandUsageNote() {
-        return COMMAND_USAGE_NOTE;
+    public static String getCommandUsage() {
+        return COMMAND_USAGE;
     }
 
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "New note added: ";

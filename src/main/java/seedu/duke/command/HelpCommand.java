@@ -21,7 +21,7 @@ public class HelpCommand extends Command {
     @Override
     public String execute() {
         return HELP_STRING + InterfaceManager.LS + COLOR_WHITE_STRING
-                + AddNoteCommand.getCommandUsageNote() + InterfaceManager.LS + COLOR_CYAN_STRING
+                + AddNoteCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
                 + AddEventCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
                 + CreateTagCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
                 + DeleteNoteCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
