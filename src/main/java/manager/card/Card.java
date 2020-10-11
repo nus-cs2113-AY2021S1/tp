@@ -11,9 +11,15 @@ public class Card {
     public Card(String question, String answer) {
         this.question = question;
         this.answer = answer;
-        this.dueBy = LocalDate.now();
         this.dueBy = null;
         this.previousInterval = 1;
+    }
+
+    public Card(String question, String answer, LocalDate dueBy, int previousInterval) {
+        this.question = question;
+        this.answer = answer;
+        this.dueBy = dueBy;
+        this.previousInterval = previousInterval;
     }
 
     public String getQuestion() {
