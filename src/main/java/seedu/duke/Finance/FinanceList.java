@@ -32,7 +32,6 @@ public class FinanceList {
      */
     public static String dellog(int index) {
         try {
-            String output1 = "Got it! I've removed this from list.\n";
             financeLogs.remove(index - 1);
             FinanceLog.finSize--;
             String output2;
@@ -41,10 +40,10 @@ public class FinanceList {
             } else {
                 output2 = "There is " + FinanceLog.finSize + " log in the list now.\n";
             }
+            String output1 = "Got it! I've removed this from list.\n";
             String output = output1 + output2;
             return output;
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             System.out.println("Your index input does not exist in the list");
         }
         return null;
@@ -60,10 +59,10 @@ public class FinanceList {
         }
         String output = "Here is the list:\n";
         for (int i = 0;i < FinanceLog.getSize();i++) {
-            output = output.concat("\t"+(i+1)+"." +financeLogs.get(i).getLog()+" $"+
-                    financeLogs.get(i).getLogVal()+"\n");
+            output = output.concat("\t"+(i + 1)+"." + financeLogs.get(i).getLog() + " $" +
+                    financeLogs.get(i).getLogVal() + "\n");
         }
-        output = output.concat("Total budget: $"+String.format("%.2f",FinanceLog.getSum())+"\n");
+        output = output.concat("Total budget: $" + String.format("%.2f",FinanceLog.getSum()) + "\n");
         return output;
     }
 }

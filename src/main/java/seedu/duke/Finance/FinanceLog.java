@@ -3,8 +3,8 @@ package seedu.duke.finance;
 public class FinanceLog {
     private String finLog;
     private double finLogVal;
-    public static int finSize=0;
-    public static double sum=0;
+    public static int finSize = 0;
+    public static double sum = 0;
 
     /**
      * Create a new finance log.
@@ -55,6 +55,6 @@ public class FinanceLog {
      * @return the string of a formatted finance log
      */
     public String toString() {
-        return "\t"+ finSize +"."+finLog+" $"+finLogVal+"\n";
+        return "\t" + finSize + "." + finLog + " $" + finLogVal + "\n";
     }
 }
