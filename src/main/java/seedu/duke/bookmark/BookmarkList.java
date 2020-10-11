@@ -111,6 +111,7 @@ public class BookmarkList extends ItemList {
         bookmarks.remove(bookmark);
     }
 
+    /**
      * This method shows all the bookmarks from the list.
      *
      * @return The string message containing the matching bookmarks
