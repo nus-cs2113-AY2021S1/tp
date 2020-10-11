@@ -34,8 +34,8 @@ public class Member {
      * Prints task data in the desired form to be printed for user interaction.
      * */
     public String toString() {
-        return "name: " + this.memberName + " |phone: " + this.getMemberPhone() + " |email: " + this.getMemberEmail() +
-                " |role: " + this.getMemberRole();
+        return "name: " + this.memberName + " |phone: " + this.getMemberPhone() + " |email: " + this.getMemberEmail()
+                + " |role: " + this.getMemberRole();
     }
 
 }

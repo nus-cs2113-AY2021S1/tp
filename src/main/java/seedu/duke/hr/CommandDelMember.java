@@ -32,7 +32,7 @@ public class CommandDelMember extends Command {
     @Override
     public String execute() {
         index = Integer.parseInt(savedInput.getArg(""));
-        String output = MemberList.deleteFromList(index-1);
+        String output = MemberList.deleteFromList(index - 1);
         return output;
     }
 
