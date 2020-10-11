@@ -235,9 +235,7 @@ public class Parser {
                 }
             }
 
-            if (title.isBlank()) {
-                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
-            }
+            title = checkBlank(title, ExceptionType.EXCEPTION_MISSING_TITLE);
 
             // Get Content
             do {
@@ -316,10 +314,9 @@ public class Parser {
                     throw new SystemException(SystemException.ExceptionType.EXCEPTION_WRONG_PREFIX);
                 }
             }
+            title = checkBlank(title, ExceptionType.EXCEPTION_MISSING_TITLE);
 
-            if (title.isBlank()) {
-                throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_TITLE);
-            } else if (dateTime == null) {
+            if (dateTime == null) {
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_TIMING);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -345,7 +342,6 @@ public class Parser {
                 break;
             default:
                 throw new SystemException(ExceptionType.EXCEPTION_WRONG_RECURRING_TYPE);
-
             }
         } else {
             event = new Event(title, dateTime, toRemind, false);
@@ -451,9 +447,7 @@ public class Parser {
      * @throws SystemException for missing keyword.
      */
     private Command prepareFind(String userMessage) throws SystemException {
-        if (userMessage.isBlank()) {
-            throw new SystemException(ExceptionType.EXCEPTION_MISSING_KEYWORD);
-        }
+        userMessage = checkBlank(userMessage, ExceptionType.EXCEPTION_MISSING_KEYWORD);
         return new FindCommand(userMessage);
     }
 
