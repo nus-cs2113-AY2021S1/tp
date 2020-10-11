@@ -20,7 +20,8 @@ public class Duke {
     private Timetable timetable;
     private TagManager tagManager;
 
-    private static final String WELCOME_MSG_STRING = "Hi";
+    private static final String WELCOME_MSG_STRING = "Welcome to NotUS!"
+            + "Type \"help\" if you need to see a list of commands and their usages.";
     private static final String ENTER_COMMAND_MSG = "Enter command:";
 
     /**
