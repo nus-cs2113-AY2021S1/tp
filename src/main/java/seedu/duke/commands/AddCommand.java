@@ -158,6 +158,9 @@ public class AddCommand extends Command {
         String titleOfBookToRate = ratingDetails[1].trim();
 
         int ratingScore = RatingParser.checkFormatOfRatingValue(ratingDetails[0]);
+        if (ratingScore == 0) {
+            return;
+        }
         boolean isValid = RatingParser.checkRangeOfRatingValue(ratingScore);
         if (isValid && !isRated(ratings, titleOfBookToRate) && isExistingBook(listManager, titleOfBookToRate)) {
             ratings.add(new Rating(ratingScore, titleOfBookToRate));

@@ -40,7 +40,9 @@ public class TextUi {
     public static final String DELETE_RATING_MESSAGE = "Rating for %s has been deleted!";
     private static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
             + " Here are your rated books!";
+    private static final String LIST_NO_RATINGS_FOUND_MESSAGE = "None of the books are rated yet!";
     private static final String LIST_SPECIFIED_RATING_MESSAGE = "Here are the books you rated as %d star!";
+    private static final String LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE = "I can't find any books rated %d star!";
     private static final String ADD_TODO_MESSAGE = "The task [%s] has been added!";
     private static final String TODO_SIZE_MESSAGE = "You have a total of %d task(s) recorded.";
     private static final String LIST_TODOS_MESSAGE = "Here is the list of all task(s) recorded:";
@@ -141,11 +143,19 @@ public class TextUi {
     }
 
     public void printAllRatings(RatingList ratingList) {
+        if (ratingList.getList().size() == 0) {
+            System.out.println(LIST_NO_RATINGS_FOUND_MESSAGE);
+            return;
+        }
         System.out.println(LIST_ALL_RATINGS_MESSAGE);
         System.out.println(ratingList.toString());
     }
 
     public void printSpecifiedRating(RatingList ratings, int ratingToList) {
+        if (ratings.getList().size() == 0) {
+            System.out.printf((LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE) + "\n", ratingToList);
+            return;
+        }
         System.out.printf((LIST_SPECIFIED_RATING_MESSAGE) + "\n", ratingToList);
         for (Rating rating : ratings.getList()) {
             if (rating.getRating() == ratingToList) {
