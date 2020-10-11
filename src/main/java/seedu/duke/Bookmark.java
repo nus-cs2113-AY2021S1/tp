@@ -1,46 +1,37 @@
 package seedu.duke;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Bookmark {
-private ArrayList<BookmarkCategory> categories;
+    private ArrayList<BookmarkCategory> categories = new ArrayList<>();
+    private BookmarkUi ui;
 
-public Bookmark(){
-    categories.add(new NUSCategory());
-    categories.add(new ZoomCategory());
-}
+    public Bookmark(){
+        categories.add(new NUSCategory());
+        categories.add(new ZoomCategory());
+        ui = new BookmarkUi();
+    }
 
-
-public void runBookmark(){
-    System.out.println("Welcome to B00KMARK!"); //UI
-    System.out.println("Choose your categories!"); //UI
-    showBookmarkCategoryList(categories); //UI
-    Scanner in = new Scanner(System.in);
-    int categoryNumber = Integer.parseInt(in.nextLine());
-    boolean isExit = false;
-    while (!isExit) {
-        if ( categoryNumber > categories.size() ) {
-            System.out.println("Invalid");
-        } else {
-            showBookmarkList(categories.get(categoryNumber));
+    public void runBookmark() {
+        ui.printLine();
+        ui.printWelcomeBookmarkMessage();
+        ui.showBookmarkCategoryList(categories); //UI
+        ui.printLine();
+        String line = ui.readInput();
+        String upperLine = line.toUpperCase();
+        if (upperLine.startsWith("CD")){
+            int chosenCategory = evaluateCategoryChosen(line.substring(3));
+            ui.showBookmarkLinkList(categories.get(chosenCategory-1).getLinks());
         }
     }
 
-}
-
-public void showBookmarkCategoryList(ArrayList<BookmarkCategory> categories){
-    if ( categories.size() == 0 ){
-        System.out.println("Empty List");
+    public int evaluateCategoryChosen(String line){
+        int chosenCategory = Integer.parseInt(line);
+        if (chosenCategory > categories.size()){
+            return 0;
+        } else {
+            return chosenCategory;
+        }
     }
-    for(BookmarkCategory category: categories){
-        System.out.println(category.getName());
-    }
 }
 
-public void showBookmarkList(BookmarkCategory selectedCategory){
-    //if(selectedCategory.list)
-
-}
-
-}

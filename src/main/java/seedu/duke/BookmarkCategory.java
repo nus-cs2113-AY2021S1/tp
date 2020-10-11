@@ -1,10 +1,8 @@
 package seedu.duke;
 
-public class BookmarkCategory {
-    private String name = "Category";
-    //private BookmarkList list;
+import java.util.ArrayList;
 
-    public String getName() {
-        return name;
-    }
+public abstract class BookmarkCategory {
+    public abstract String getName();
+    public abstract ArrayList<BookmarkList> getLinks();
 }

@@ -4,9 +4,14 @@ import java.util.ArrayList;
 
 public class ZoomCategory extends BookmarkCategory{
     private String name = "Zoom";
-    private String bookmarkList = "https://slahslah";
+    private ArrayList<BookmarkList> links = new ArrayList<>();
 
-    public void getBookmarkList(){
+    public String getName(){
+        return name;
+    }
 
+    public ArrayList<BookmarkList> getLinks(){
+        links.add(new BookmarkList("http"));
+        return links;
     }
 }
