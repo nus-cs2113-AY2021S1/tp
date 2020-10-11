@@ -1,4 +1,4 @@
-package seedu.duke.Finance;
+package seedu.duke.finance;
 
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
@@ -18,8 +18,8 @@ public class CommandFinanceSummary extends Command {
     }
 
     public int validate(UserInput ui) {
-        if (ui.getCategory().equals("finance")&&ui.getCommand().equalsIgnoreCase("summary")) {
-            userinput=ui;
+        if (ui.getCategory().equals("finance") && ui.getCommand().equalsIgnoreCase("summary")) {
+            userinput = ui;
             return ACCEPT;
         }
         return NO_MATCH;

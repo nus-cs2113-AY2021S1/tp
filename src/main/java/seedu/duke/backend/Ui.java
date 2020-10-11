@@ -1,10 +1,10 @@
 package seedu.duke.backend;
 
 import seedu.duke.Command;
-import seedu.duke.Finance.CommandFinanceAdd;
-import seedu.duke.Finance.CommandFinanceDel;
-import seedu.duke.Finance.CommandFinanceSummary;
-import seedu.duke.Finance.FinanceLog;
+import seedu.duke.finance.CommandFinanceAdd;
+import seedu.duke.finance.CommandFinanceDel;
+import seedu.duke.finance.CommandFinanceSummary;
+import seedu.duke.finance.FinanceLog;
 import seedu.duke.event.CommandEventAdd;
 import seedu.duke.event.CommandEventDel;
 import seedu.duke.event.CommandEventList;
@@ -95,7 +95,9 @@ public class Ui {
      * @param isInstant whether the string is printed instantly
      */
     private static void printOutput(String text, boolean isInstant) {
-        if (text==null) return;
+        if (text == null) {
+            return;
+        }
         System.out.println(UNDERSCORES);
         // Split text according to the lines to format.
         String[] lines = text.split("\\r?\\n");

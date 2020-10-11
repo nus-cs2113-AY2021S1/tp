@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.Finance.FinanceList;
-import seedu.duke.Finance.FinanceLog;
+import seedu.duke.finance.FinanceList;
+import seedu.duke.finance.FinanceLog;
 
 class DukeTest {
     static final String LOGO = "    ____        _        \n"

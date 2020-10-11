@@ -1,4 +1,4 @@
-package seedu.duke.Finance;
+package seedu.duke.finance;
 
 public class FinanceLog {
     private String finLog;
@@ -7,7 +7,7 @@ public class FinanceLog {
     public static double sum=0;
 
     /**
-     * Create a new finance log
+     * Create a new finance log.
      * @param log the content of a finance log
      * @param val the value of its budget
      */
@@ -19,7 +19,7 @@ public class FinanceLog {
     }
 
     /**
-     * Gets the log's content
+     * Gets the log's content.
      * @return log's content
      */
     public String getLog() {
@@ -27,7 +27,7 @@ public class FinanceLog {
     }
 
     /**
-     * Get the log's budget amount
+     * Get the log's budget amount.
      * @return log's budget amount
      */
     public double getLogVal() {
@@ -35,7 +35,7 @@ public class FinanceLog {
     }
 
     /**
-     * Gets the size of finance log list
+     * Gets the size of finance log list.
      * @return the size of finance log list
      */
     public static int getSize() {
@@ -43,7 +43,7 @@ public class FinanceLog {
     }
 
     /**
-     * Gets the sum of total budget
+     * Gets the sum of total budget.
      * @return the sum of total budget
      */
     public static double getSum() {
@@ -51,7 +51,7 @@ public class FinanceLog {
     }
 
     /**
-     * Form a formatted string for a finance log
+     * Form a formatted string for a finance log.
      * @return the string of a formatted finance log
      */
     public String toString() {

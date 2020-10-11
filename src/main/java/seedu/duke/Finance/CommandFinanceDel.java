@@ -1,4 +1,4 @@
-package seedu.duke.Finance;
+package seedu.duke.finance;
 
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
@@ -8,8 +8,8 @@ public class CommandFinanceDel extends Command {
 
     @Override
     public String execute() {
-        String input=userinput.getArg("");
-        int index=Integer.parseInt(input.trim());
+        String input = userinput.getArg("");
+        int index = Integer.parseInt(input.trim());
         String output = FinanceList.dellog(index);
         return output;
     }
@@ -20,8 +20,8 @@ public class CommandFinanceDel extends Command {
     }
 
     public int validate(UserInput ui) {
-        if (ui.getCategory().equals("finance")&&ui.getCommand().equalsIgnoreCase("dellog")) {
-            userinput=ui;
+        if (ui.getCategory().equals("finance") && ui.getCommand().equalsIgnoreCase("dellog")) {
+            userinput = ui;
             return ACCEPT;
         }
         return NO_MATCH;
