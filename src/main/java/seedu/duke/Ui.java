@@ -58,6 +58,12 @@ public class Ui {
      */
     public static void printWelcomeMessage() {
         System.out.println("Printing of 25/7 logo!!!!");
+        System.out.println("========================================================================\n"
+            + "Welcome to 25/7 Task Manager!\n"
+            + "What can I do for you?\n"
+            + "Enter 'help' for the list of commands.\n"
+            + "==========================================================================\n");
+
         /**
 //        String[]  HELLO_MESSAGE = {
 //                "=================================================================================================",
@@ -246,18 +252,18 @@ public class Ui {
             System.out.println("Error: Please key in the deadline in this format: deadline ... /by ddMMyy");
             break;
         case "activity":
-            System.out.println("Error: Please key in the event in this format: event ... /at ddMMyy");
+            System.out.println("Error: Please key in the activity in this format: activity ... /at ddMMyy");
             break;
         case "lecture":
-            System.out.println("Error: Please key in the lecture in this format: lecture <module code> <venue? /at "
+            System.out.println("Error: Please key in the lecture in this format: lecture <module code> <venue> /at "
                     + "ddMMyy HHmm");
             break;
         case "tutorial":
-            System.out.println("Error: Please key in the tutorial in this format: tutorial <module code> <venue? /at "
+            System.out.println("Error: Please key in the tutorial in this format: tutorial <module code> <venue> /at "
                     + "ddMMyy HHmm");
             break;
         case "lab":
-            System.out.println("Error: Please key in the lab in this format: lab <module code> <venue? /at "
+            System.out.println("Error: Please key in the lab in this format: lab <module code> <venue> /at "
                     + "ddMMyy HHmm");
             break;
         case "exam":

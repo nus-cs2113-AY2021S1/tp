@@ -1,4 +1,10 @@
 Printing of 25/7 logo!!!!
+========================================================================
+Welcome to 25/7 Task Manager!
+What can I do for you?
+Enter 'help' for the list of commands.
+==========================================================================
+
 ..................... DUKE CHAT BOX ^^ ....................
 Here is your timeline:
 Timeline
