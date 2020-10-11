@@ -6,6 +6,7 @@ import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Hashtable;
 
 import static seedu.duke.command.CommandSummary.PRIORITY;
@@ -22,7 +23,6 @@ public class TaskCommand {
         String description;
         String priority;
 
-
         if (tasks.get(TITLE) != null) {
             title = tasks.get(TITLE);
         } else {
@@ -38,106 +38,121 @@ public class TaskCommand {
         } else {
             throw new DukeException("Please enter a priority!");
         }
-        Project proj = projectList.get(0);
-        Task task = new Task(title, description, priority);
-        proj.backlog.addTask(task);
+        try {
+            Project proj = projectList.get(0);
+            Task task = new Task(title, description, priority);
+            proj.backlog.addTask(task);
+
+            ui.printTaskAdded(proj.backlog.backlogTasks.get(proj.backlog.size() - 1));
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printError("There are no projects! Please create a project first.");
+        }
 
     }
 
     public void deleteTaskCommand(ArrayList<String> taskId, Ui ui, ArrayList<Project> projectList) {
 
-        Project proj = projectList.get(0);
-        for (String id : taskId) {
-            try {
-                int backlogId = Integer.parseInt(id) - 1;
-                if (backlogId < proj.backlog.size()) {
-                    ui.printTaskRemoved(proj.backlog.backlogTasks.get(backlogId));
-                    proj.backlog.backlogTasks.remove(backlogId);
-                } else {
-                    ui.displayInvalidId();
+        try {
+            Project proj = projectList.get(0);
+            Collections.sort(taskId); //sort array so that it deletes the largest number first
+            Collections.reverse(taskId); //but the remove print message is in reverse
+            for (String id : taskId) {
+                try {
+                    int backlogId = Integer.parseInt(id) - 1;
+                    if (backlogId < proj.backlog.size()) {
+                        ui.printTaskRemoved(proj.backlog.backlogTasks.get(backlogId));
+                        proj.backlog.backlogTasks.remove(backlogId);
+                    } else {
+                        Ui.displayInvalidId();
+                    }
+                } catch (NumberFormatException e) {
+                    Ui.printError("Task ID entered is not an integer!");
                 }
-            } catch (NumberFormatException e) {
-                ui.printError("Task id is not an integer.");
             }
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printError("There are no projects! Please create a project first.");
         }
     }
 
     public void viewTaskCommand(ArrayList<String> taskId, Ui ui, ArrayList<Project> projectList) {
 
-        Project proj = projectList.get(0);
-        for (String id : taskId) {
-            Task task = null;
-            try {
-                int backlogId = Integer.parseInt(id) - 1;
-                if (backlogId < proj.backlog.backlogTasks.size()) {
-                    task = proj.backlog.getTask(backlogId);
-                    ui.displayTask(task);
-                } else {
-                    ui.displayInvalidId();
+        try {
+            Project proj = projectList.get(0);
+            for (String id : taskId) {
+                Task task;
+                try {
+                    int backlogId = Integer.parseInt(id) - 1;
+                    if (backlogId < proj.backlog.backlogTasks.size()) {
+                        task = proj.backlog.getTask(backlogId);
+                        ui.displayTask(task);
+                    } else {
+                        Ui.displayInvalidId();
+                    }
+                } catch (NumberFormatException e) {
+                    Ui.printError("Task ID entered is not an integer!");
                 }
-            } catch (NumberFormatException e) {
-                ui.printError("Task id is not an integer.");
             }
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printError("There are no projects! Please create a project first.");
         }
     }
 
-    public void changeTaskPriorityCommand(Hashtable<String, String> tasks, ArrayList<Project> projectList)
+    public void changeTaskPriorityCommand(Hashtable<String, String> tasks, Ui ui, ArrayList<Project> projectList)
             throws DukeException {
-        /*
-        Example of how to use the hashtable and how to throw the exception.
-         */
-        Project proj = projectList.get(0);
+
         Task task;
         int id;
         String priority;
         if (tasks.get(TASK_ID) != null) {
-            id = Integer.parseInt(tasks.get(TASK_ID));
+            id = Integer.parseInt(tasks.get(TASK_ID)) - 1;
         } else {
-            throw new DukeException("invalid task id");
+            throw new DukeException("Task ID entered is invalid!");
         }
         if (tasks.get(PRIORITY) != null) {
-            priority = tasks.get(PRIORITY);
+            priority = tasks.get(PRIORITY).trim();
         } else {
-            throw new DukeException("no priority");
+            throw new DukeException("Please enter a priority!");
         }
-
-        task  = proj.backlog.getTask(id);
-        task.setPriority(priority);
-
-
-        /* Insert actual code for changing seedu.duke.task priority here.
-        .
-        .
-        .
-         */
+        try {
+            Project proj = projectList.get(0);
+            try {
+                task = proj.backlog.getTask(id);
+                task.setPriority(priority);
+                ui.printPriorityChanged(proj.backlog.backlogTasks.get(id));
+            } catch (IndexOutOfBoundsException e) {
+                throw new DukeException("Task ID entered is out of bounds!");
+            } catch (IllegalArgumentException e) {
+                throw new DukeException("Priority entered is invalid!");
+            }
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printError("There are no projects! Please create a project first.");
+        }
     }
 
     public void doneTaskCommand(ArrayList<String> taskId, ArrayList<Project> projectList) {
-        /*
-           For testing purposes only, to be deleted.
-         */
-        Project proj = projectList.get(0);
-        for (String id : taskId) {
-            Task task = null;
-            try {
-                int backlogId = Integer.parseInt(id) - 1;
-                if (backlogId < proj.backlog.backlogTasks.size()) {
-                    task = proj.backlog.getTask(backlogId);
-                    task.setAsDone();
-                    Ui.displayTaskDone(id);
-                } else {
-                    Ui.displayInvalidId();
-                }
-            } catch (NumberFormatException e) {
-                Ui.printError("Task id is not an integer.");
-            }
-        }
 
-        /* Insert actual code for completing tasks here.
-        .
-        .
-        .
-         */
+        try {
+            Project proj = projectList.get(0);
+            for (String id : taskId) {
+                Task task;
+                try {
+                    int backlogId = Integer.parseInt(id) - 1;
+                    if (backlogId < proj.backlog.backlogTasks.size()) {
+                        task = proj.backlog.getTask(backlogId);
+                        task.setAsDone();
+                        Ui.displayTaskDone(proj.backlog.backlogTasks.get(backlogId), backlogId + 1);
+                    } else {
+                        Ui.displayInvalidId();
+                    }
+                } catch (NumberFormatException e) {
+                    Ui.printError("Task ID is not an integer!");
+                } catch (IndexOutOfBoundsException e) {
+                    Ui.printError("Task ID is out of bounds!");
+                }
+            }
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printError("There are no projects! Please create a project first.");
+        }
     }
 }
 

@@ -7,15 +7,18 @@ import java.util.Scanner;
 
 public class Ui {
     private static final Scanner IN = new Scanner(System.in);
-    private static final String LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
+    private static final String LOGO = "   _____  _____ _____  _    _ __  __       _   _  \n"
+            +"  / ____|/ ____|  __ \\| |  | |  \\/  |     | | (_) \n"
+            +" | (___ | |    | |__) | |  | | \\  / |_ __ | |_ _  ___  _   _ ___\n"
+            +"  \\___ \\| |    |  _  /| |  | | |\\/| | '_ \\| __| |/ _ \\| | | / __|\n"
+            +"  ____) | |____| | \\ \\| |__| | |  | | |_) | |_| | (_) | |_| \\__ \\ \n"
+            +" |_____/ \\_____|_|  \\_\\\\____/|_|  |_| .__/ \\__|_|\\___/ \\__,_|___/ \n"
+            +"                                    | |\n"
+            +"                                    |_|\n";
 
-    public static void displayTaskDone(String id) {
+    public static void displayTaskDone(Task task, int id) {
         System.out.println("The following task has been marked as done: ");
-        System.out.println("\t" + id);
+        System.out.println("\t" + id + ": " + task.getTitle());
     }
 
     public void printLogo() {
@@ -27,7 +30,7 @@ public class Ui {
     }
 
     private void printGreeting() {
-        System.out.println("Please enter the project details for instantiation");
+        System.out.println("Please enter the project details for instantiation.");
     }
 
     public static void printError(String s) {
@@ -62,7 +65,11 @@ public class Ui {
     }
 
     public void displayTask(Task task) {
-        System.out.println(task.toString());
+        System.out.println("The details of the task is as follows:");
+        System.out.println("Task title: " + task.getTitle());
+        System.out.println("Task Description: " + task.getDescription());
+        System.out.println("Task Priority: " + task.getPriority());
+        System.out.println("Is it done: " + task.getDone());
     }
 
     public void invalidCommand() {
@@ -70,11 +77,21 @@ public class Ui {
     }
 
     public static void displayInvalidId() {
-        System.out.println("The following task id doesn't exist in backlog.\n Please enter a valid id.");
+        System.out.println("The following task ID doesn't exist in backlog.\nPlease enter a valid ID.");
     }
 
     public void printTaskRemoved(Task task) {
-        System.out.println("The corresponding task " + task.toString() + " has been removed.");
+        //System.out.println("The corresponding task " + task.toString() + " has been removed.");
+        System.out.println("The corresponding task " + task.getTitle() + "has been removed.");
+    }
+
+    public void printTaskAdded(Task task) {
+        System.out.println("The task " + task.getTitle() + "has been added.");
+    }
+
+    public void printPriorityChanged(Task task) {
+        System.out.println("The task" + task.getTitle() + "has its priority changed to:");
+        System.out.println("\t" + task.getPriority());
     }
 
     public void removeMember(String s) {

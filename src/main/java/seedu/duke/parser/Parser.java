@@ -114,7 +114,7 @@ public class Parser {
                     break;
                 case PRIORITY:
                     try {
-                        new TaskCommand().changeTaskPriorityCommand(parameters, projectList);
+                        new TaskCommand().changeTaskPriorityCommand(parameters, ui, projectList);
                     } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
@@ -124,7 +124,7 @@ public class Parser {
                     break;
                 default:
                     try {
-                        throw new DukeException("Invalid action");
+                        throw new DukeException("Invalid action!");
                     } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
