@@ -1,9 +1,9 @@
 package seedu.duke.util;
 
-
-import seedu.duke.command.AddEventCommand;
 import seedu.duke.command.Command;
+import seedu.duke.command.AddEventCommand;
 import seedu.duke.command.CreateTagCommand;
+import seedu.duke.command.DeleteEventCommand;
 import seedu.duke.command.DeleteTagCommand;
 import seedu.duke.command.AddNoteCommand;
 import seedu.duke.command.DeleteNoteCommand;
@@ -19,34 +19,35 @@ import seedu.duke.command.PinCommand;
 import seedu.duke.command.RemindCommand;
 import seedu.duke.command.TagCommand;
 import seedu.duke.command.ViewNoteCommand;
+
 import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.exception.SystemException.ExceptionType;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
 import seedu.duke.data.timetable.Event;
+import seedu.duke.data.timetable.RecurringEvent;
+import seedu.duke.data.timetable.DailyEvent;
+import seedu.duke.data.timetable.WeeklyEvent;
+import seedu.duke.data.timetable.MonthlyEvent;
+import seedu.duke.data.timetable.YearlyEvent;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 import seedu.duke.ui.InterfaceManager;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_END;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELETE_LINE;
+import static seedu.duke.util.PrefixSyntax.PREFIX_RECURRING;
+import static seedu.duke.util.PrefixSyntax.PREFIX_REMIND;
+import static seedu.duke.util.PrefixSyntax.PREFIX_STOP_RECURRING;
 import static seedu.duke.util.PrefixSyntax.STRING_NEW_LINE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
-import static seedu.duke.util.PrefixSyntax.PREFIX_RECURRING;
-import static seedu.duke.util.PrefixSyntax.PREFIX_REMIND;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TIMING;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
@@ -87,7 +88,7 @@ public class Parser {
             case ListNoteCommand.COMMAND_WORD:
                 return prepareListNote(userMessage);
             case ListEventCommand.COMMAND_WORD:
-                // return prepareListEvent(userMessage);
+                return prepareListEvent(userMessage);
             case ViewNoteCommand.COMMAND_WORD:
                 // return prepareViewNote(userMessage);
             case EditCommand.COMMAND_WORD_NOTE:
@@ -96,8 +97,8 @@ public class Parser {
                 // return prepareEditEvent(userMessage);
             case DeleteNoteCommand.COMMAND_WORD:
                 return prepareDeleteNote(userMessage);
-            /*case DeleteNoteCommand.COMMAND_WORD:
-             return prepareDeleteEvent(userMessage);*/
+            case DeleteEventCommand.COMMAND_WORD:
+                return prepareDeleteEvent(userMessage);
             case FindCommand.COMMAND_WORD:
                 return prepareFind(userMessage);
             case PinCommand.COMMAND_WORD:
@@ -249,6 +250,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if an input string if blank. If it is, throw the provided system exception. If it is not, return that
+     * string trimmed.
+     *
+     * @param input Input to be checked.
+     * @param e ExceptionType to be thrown
+     * @return Trimmed non-blank string
+     * @throws SystemException Occurs when input is blank.
+     */
     private String checkBlank(String input, SystemException.ExceptionType e) throws SystemException {
         if (input.isBlank()) {
             throw new SystemException(e);
@@ -257,34 +267,58 @@ public class Parser {
         }
     }
 
+    /**
+     * Takes a user string designated to add an event and prepares it by extracting relevant information from the
+     * provided required and optional tags. It requires a title tag and a timing tag (/t and /timing). Other tags allow
+     * for it to be recurring and to set reminders of the event.
+     * Takes the format "add-e /t {Title} /timing {YYYY-MM-DD HH:MM} [/rem [How much earlier to remind]]
+     * [/rec {How often to re-occur}] [/stop {YYYY-MM-DD HH:MM}]
+     *
+     * @param userMessage User input message
+     * @return Returns an AddEventCommand to be executed by Duke
+     * @throws SystemException Information provided by the tags are blank, wrong or do not have a default value.
+     */
     private Command prepareAddEvent(String userMessage) throws SystemException {
-        // add-e eventTitle /t timing /r occurrance /a time before (default same day)
+        // add-e eventTitle /t timing /rec occurrence /rem time before (default same day)
 
         String title = "";
         LocalDateTime dateTime = null;
+        LocalDateTime recurringEndTime = null;
         boolean toRemind = false;
         boolean isRecurring = false;
+        String recurringType = "";
 
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
             for (String[] infoDetails : splitInfo) {
-                String prefix = infoDetails[0];
+                String prefix = infoDetails[0].toLowerCase();
                 ExceptionType e;
                 switch (prefix) {
                 case PREFIX_TITLE:
-                    e = SystemException.ExceptionType.EXCEPTION_MISSING_TITLE;
+                    e = ExceptionType.EXCEPTION_MISSING_TITLE;
                     title = checkBlank(infoDetails[1], e);
                     break;
                 case PREFIX_TIMING:
-                    e = SystemException.ExceptionType.EXCEPTION_MISSING_TIMING;
+                    e = ExceptionType.EXCEPTION_MISSING_TIMING;
                     String timingString = checkBlank(infoDetails[1], e);
-                    dateTime = dateTimeParser(timingString);
+                    dateTime = DateTimeManager.dateTimeParser(timingString);
                     break;
                 case PREFIX_REMIND:
                     toRemind = true;
                     break;
                 case PREFIX_RECURRING:
                     isRecurring = true;
+                    e = ExceptionType.EXCEPTION_MISSING_RECURRING_TYPE;
+                    try {
+                        recurringType = checkBlank(infoDetails[1], e).toLowerCase();
+                    } catch (ArrayIndexOutOfBoundsException ex) {
+                        recurringType = RecurringEvent.DAILY_RECURRENCE_TYPE;
+                    }
+                    break;
+                case PREFIX_STOP_RECURRING:
+                    e = ExceptionType.EXCEPTION_MISSING_RECURRING_END_TIME;
+                    String endTimingString = checkBlank(infoDetails[1], e);
+                    recurringEndTime = DateTimeManager.dateTimeParser(endTimingString);
                     break;
                 default:
                     throw new SystemException(SystemException.ExceptionType.EXCEPTION_WRONG_PREFIX);
@@ -302,20 +336,32 @@ public class Parser {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
         }
 
+        Event event;
 
-        Event event = new Event(title, dateTime, toRemind, isRecurring);
-        return new AddEventCommand(event);
-    }
+        if (isRecurring) {
+            LocalDate date = (recurringEndTime != null) ? recurringEndTime.toLocalDate() : null;
+            switch (recurringType) {
+            case RecurringEvent.DAILY_RECURRENCE_TYPE:
+                event = new DailyEvent(title, dateTime, toRemind, date);
+                break;
+            case RecurringEvent.WEEKLY_RECURRENCE_TYPE:
 
-    private LocalDateTime dateTimeParser(String input) throws SystemException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dateTime;
-        try {
-            dateTime = LocalDateTime.parse(input, formatter);
-        } catch (DateTimeParseException e) {
-            throw new SystemException(SystemException.ExceptionType.EXCEPTION_WRONG_TIMING);
+                event = new WeeklyEvent(title, dateTime, toRemind, date);
+                break;
+            case RecurringEvent.MONTHLY_RECURRENCE_TYPE:
+                event = new MonthlyEvent(title, dateTime, toRemind, date);
+                break;
+            case RecurringEvent.YEARLY_RECURRENCE_TYPE:
+                event = new YearlyEvent(title, dateTime, toRemind, date);
+                break;
+            default:
+                throw new SystemException(ExceptionType.EXCEPTION_WRONG_RECURRING_TYPE);
+
+            }
+        } else {
+            event = new Event(title, dateTime, toRemind, isRecurring);
         }
-        return dateTime;
+        return new AddEventCommand(event);
     }
 
     /**
@@ -478,15 +524,27 @@ public class Parser {
 
     }
 
-    /*
-    private Command prepareAddEvent(String userMessage) {
-    return new AddNoteCommand(event);
-    }
-
     private Command prepareListEvent(String userMessage) {
         return new ListEventCommand();
     }
 
+    /**
+     * Parses the variables in userMessage to a form that is used in DeleteEventCommand.
+     * @param userMessage User Input without the action word
+     * @return Returns a DeleteEventCommand to be executed by Duke
+     * @throws SystemException When the index is not numeric (e.g. index = 1%s)
+     */
+    private Command prepareDeleteEvent(String userMessage) throws SystemException {
+        int index;
+        try {
+            index = Integer.parseInt(checkBlank(userMessage, SystemException.ExceptionType.EXCEPTION_MISSING_INDEX));
+        } catch (NumberFormatException e) {
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
+        }
+        // Convert from human-readable index to index in array.
+        return new DeleteEventCommand(index - 1);
+    }
+    /*
     private Command prepareViewNote(String userMessage) {
        return new ViewNoteCommand();
     }
@@ -497,10 +555,6 @@ public class Parser {
 
     private Command prepareEditEvent(String userMessage) {
        return new EditCommand(index, event);
-    }
-
-    private Command prepareDeleteEvent(String userMessage) {
-       return new EditCommand(index, false);
     }
 
     private Command preparePin(String userMessage) {
