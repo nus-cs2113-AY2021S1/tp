@@ -6,7 +6,8 @@ import seedu.eduke8.option.Option;
 import seedu.eduke8.option.OptionList;
 import seedu.eduke8.parser.QuizParser;
 import seedu.eduke8.question.Question;
-import seedu.eduke8.question.QuestionList;
+import seedu.eduke8.question.TopicQuestionList;
+import seedu.eduke8.question.QuizQuestionList;
 import seedu.eduke8.topic.Topic;
 import seedu.eduke8.ui.Ui;
 
@@ -26,18 +27,18 @@ public class SingleTopicQuiz implements Quiz {
     @Override
     public void startQuiz(Ui ui) {
         ui.printStartQuizPage(numberOfQuestions, topic.getDescription());
-        QuestionList questionList = topic.getQuestionList();
-        questionList.setQuizQuestions(numberOfQuestions);
+        TopicQuestionList topicQuestionList = topic.getQuestionList();
+        QuizQuestionList quizQuestionList = topicQuestionList.getQuizQuestionList(numberOfQuestions);
 
-        goThroughQuizQuestions(ui, questionList);
+        goThroughQuizQuestions(ui, quizQuestionList);
 
         ui.printEndQuizPage();
     }
 
-    private void goThroughQuizQuestions(Ui ui, QuestionList questionList) {
-        while (!questionList.areAllQuestionsAnswered()) {
-            Question question = questionList.getNextQuestion();
-            ui.printQuestion(question, questionList.getCurrentQuestionNumber());
+    private void goThroughQuizQuestions(Ui ui, QuizQuestionList quizQuestionList) {
+        while (!quizQuestionList.areAllQuestionsAnswered()) {
+            Question question = quizQuestionList.getNextQuestion();
+            ui.printQuestion(question, quizQuestionList.getCurrentQuestionNumber());
 
             OptionList optionList = question.getOptionList();
 
