@@ -91,7 +91,7 @@ public class Ui {
      * @param isInstant whether the string is printed instantly
      */
     private static void printOutput(String text, boolean isInstant) {
-        if(text == null) {
+        if (text == null) {
             return;
         }
         System.out.println(UNDERSCORES);

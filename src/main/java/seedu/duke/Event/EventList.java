@@ -20,7 +20,7 @@ public class EventList {
     }
 
     /**
-     * To delete an event based on the given index
+     * To delete an event based on the given index.
      * @param index index to be deleted from list
      */
     public static String deleteEvent(int index) {
