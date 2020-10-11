@@ -1,10 +1,9 @@
 package seedu.eduke8.quiz;
 
-import seedu.eduke8.Command;
+import seedu.eduke8.command.Command;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.option.OptionList;
-import seedu.eduke8.parser.Parser;
 import seedu.eduke8.parser.QuizParser;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
@@ -16,11 +15,12 @@ import java.util.ArrayList;
 public class SingleTopicQuiz implements Quiz {
     private Topic topic;
     private int numberOfQuestions;
-    private Parser quizParser = new QuizParser();
+    private QuizParser quizParser;
 
     public SingleTopicQuiz(Topic topic, int numberOfQuestions) {
         this.topic = topic;
         this.numberOfQuestions = numberOfQuestions;
+        quizParser = new QuizParser();
     }
 
     @Override
@@ -49,9 +49,10 @@ public class SingleTopicQuiz implements Quiz {
 
             String userInput = ui.getInputFromUser();
 
-            Command answerCommand = quizParser.parseCommand(optionList, userInput);
+            quizParser.setQuestion(question);
+            Command command = quizParser.parseCommand(optionList, userInput);
 
-            // answerCommand.execute(questionList, ui);
+            command.execute(optionList, ui);
         }
     }
 }
