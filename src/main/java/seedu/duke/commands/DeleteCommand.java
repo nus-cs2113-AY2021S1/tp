@@ -1,6 +1,5 @@
 package seedu.duke.commands;
 
-import com.sun.jdi.event.StepEvent;
 import seedu.duke.book.Book;
 import seedu.duke.book.BookList;
 import seedu.duke.bookmark.Bookmark;
@@ -17,6 +16,7 @@ import seedu.duke.todo.ToDo;
 import seedu.duke.todo.ToDoList;
 import seedu.duke.ui.TextUi;
 
+import javax.print.attribute.standard.NumberUp;
 import java.util.ArrayList;
 
 public class DeleteCommand extends Command {
@@ -35,34 +35,34 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TextUi ui, ListManager listManager) {
+    public void execute(TextUi ui) {
         switch (type) {
         case TAG_CATEGORY:
-            CategoryList categories = (CategoryList) listManager.getList(ListManager.CATEGORY_LIST);
-            deleteCategoryFromBookOrQuote(categories, ui, listManager);
+            CategoryList categories = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
+            deleteCategoryFromBookOrQuote(categories, ui);
             break;
         case TAG_BOOK:
-            BookList books = (BookList) listManager.getList(ListManager.BOOK_LIST);
-            deleteBook(books, ui, listManager);
+            BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+            deleteBook(books, ui);
             break;
         case TAG_RATING:
-            RatingList ratings = (RatingList) listManager.getList(ListManager.RATING_LIST);
+            RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
             String bookTitle = information.trim();
             deleteRating(ratings, ui, bookTitle);
             break;
         case TAG_TODO:
-            ToDoList toDos = (ToDoList) listManager.getList(ListManager.TODO_LIST);
+            ToDoList toDos = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
             int index = computeToDoIndex(information.trim());
             deleteToDo(toDos, index, ui);
             break;
         case TAG_BOOKMARK:
-            BookList bookList = (BookList) listManager.getList(ListManager.BOOK_LIST);
-            BookmarkList bookmarks = (BookmarkList) listManager.getList(ListManager.BOOKMARK_LIST);
+            BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+            BookmarkList bookmarks = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
             String title = information.trim();
             deleteBookmark(bookList, bookmarks, title, ui);
             break;
         case TAG_QUOTE:
-            QuoteList quotes = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
+            QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
             deleteQuote(quotes, ui, information);
             break;
         default:
@@ -98,11 +98,11 @@ public class DeleteCommand extends Command {
         ui.printDeleteRating(bookTitle);
     }
 
-    private void deleteBook(BookList books, TextUi ui, ListManager listManager) {
+    private void deleteBook(BookList books, TextUi ui) {
         String[] titleAndAuthor = information.split(FLAG_AUTHOR);
         String bookTitle = titleAndAuthor[0].trim();
 
-        RatingList ratings = (RatingList) listManager.getList(ListManager.RATING_LIST);
+        RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
         Rating ratingToBeDeleted;
         for (Rating rating : ratings.getList()) {
             if (rating.getTitleOfRatedBook().equals(bookTitle)) {
@@ -121,63 +121,72 @@ public class DeleteCommand extends Command {
         }
     }
 
-    private void deleteCategoryFromBookOrQuote(CategoryList categories, TextUi ui, ListManager listManager) {
+    private void deleteCategoryFromBookOrQuote(CategoryList categories, TextUi ui) {
         String[] tokens = information.split(" ");
         String[] parameters = CategoryParser.getRequiredParameters(tokens);
-        executeParameters(categories, parameters, ui, listManager);
+        executeParameters(categories, parameters, ui);
     }
 
-    private void executeParameters(CategoryList categories, String[] parameters, TextUi ui, ListManager listManager) {
+    private void executeParameters(CategoryList categories, String[] parameters, TextUi ui) {
         try {
             String categoryName = parameters[0];
             String bookTitle = parameters[1];
             int quoteNum = Integer.parseInt(parameters[2]) - 1;
             Category category = categories.getCategoryByName(categoryName);
 
-            if (deleteCategoryFromBook(category, bookTitle, listManager)) {
+            if (quoteNum == -2 && bookTitle == null) {
+                ui.printErrorMessage(ERROR_MISSING_BOOK_OR_QUOTE);
+                return;
+            }
+
+            if (deleteCategoryFromBook(category, bookTitle)) {
                 ui.printRemoveCategoryFromBook(bookTitle, categoryName);
             }
 
-            if (deleteCategoryFromQuote(category, quoteNum, listManager)) {
-                QuoteList quoteList = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
+            if (deleteCategoryFromQuote(category, quoteNum)) {
+                QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
                 ArrayList<Quote> quotes = quoteList.getList();
                 ui.printRemoveCategoryFromQuote(quotes.get(quoteNum).getQuote(), categoryName);
             }
-            ui.printCategorySize(category);
+            // ui.printCategorySize(category);
         } catch (NumberFormatException e) {
             System.out.println(ERROR_INVALID_QUOTE_NUM);
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    private boolean deleteCategoryFromBook(Category category, String bookTitle, ListManager listManager) {
+    private boolean deleteCategoryFromBook(Category category, String bookTitle) {
         if (bookTitle == null || category == null) {
             return false;
         }
 
-        BookList bookList = (BookList) listManager.getList(ListManager.BOOK_LIST);
-        ArrayList<Book> books = bookList.getList();
-        for (Book book : books) {
-            if (book.getTitle().equals(bookTitle)) {
+        BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+        try {
+            Book book = bookList.findByTitle(bookTitle);
+            if (book.getCategory().equals(category)) {
                 book.setCategory(null);
-                category.getBooks().getList().remove(book);
-                return true;
             }
+        } catch (NullPointerException e) {
+            System.out.println(ERROR_NO_BOOK_FOUND);
+            return false;
         }
-        return false;
+        return true;
     }
 
-    private boolean deleteCategoryFromQuote(Category category, int quoteNum, ListManager listManager) {
+    private boolean deleteCategoryFromQuote(Category category, int quoteNum) {
         if (quoteNum < 0 || category == null) {
             return false;
         }
 
-        QuoteList quoteList = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
+        QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
         ArrayList<Quote> quotes = quoteList.getList();
 
         try {
             Quote quote = quotes.get(quoteNum);
-            quote.setCategory(null);
-            category.getQuotes().getList().remove(quote);
+            if (quote.getCategory().equals(category)) {
+                quote.setCategory(null);
+            }
         } catch (IndexOutOfBoundsException e) {
             System.out.println(ERROR_INVALID_QUOTE_NUM);
             return false;

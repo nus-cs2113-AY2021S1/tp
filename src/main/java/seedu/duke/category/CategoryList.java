@@ -1,7 +1,9 @@
 package seedu.duke.category;
 
-import seedu.duke.exception.QuotesifyException;
+import seedu.duke.book.BookList;
+import seedu.duke.lists.ListManager;
 import seedu.duke.lists.QuotesifyList;
+import seedu.duke.quote.QuoteList;
 
 import java.util.ArrayList;
 
@@ -32,6 +34,16 @@ public class CategoryList extends QuotesifyList<Category> {
             }
         }
         throw new NullPointerException("\"" + name + "\" does not exist!");
+    }
+
+    public void updateListsInCategory() {
+        BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+        QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+
+        for (Category category : categories) {
+            category.setBookList(bookList.filterByCategory(category.getCategoryName()));
+            category.setQuoteList(quoteList.filterByCategory(category.getCategoryName()));
+        }
     }
 
     @Override

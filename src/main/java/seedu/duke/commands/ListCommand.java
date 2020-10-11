@@ -1,7 +1,6 @@
 package seedu.duke.commands;
 
 import seedu.duke.bookmark.BookmarkList;
-import seedu.duke.category.Category;
 import seedu.duke.book.BookList;
 import seedu.duke.category.CategoryList;
 import seedu.duke.exception.QuotesifyException;
@@ -35,30 +34,30 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute(TextUi ui, ListManager listManager) {
+    public void execute(TextUi ui) {
         switch (type) {
         case TAG_CATEGORY:
-            CategoryList categoryList = (CategoryList) listManager.getList(ListManager.CATEGORY_LIST);
+            CategoryList categoryList = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
             listCategories(categoryList, ui);
             break;
         case TAG_RATING:
-            RatingList ratingList = (RatingList) listManager.getList(ListManager.RATING_LIST);
+            RatingList ratingList = (RatingList) ListManager.getList(ListManager.RATING_LIST);
             listRatings(ratingList, ui);
             break;
         case TAG_TODO:
-            ToDoList toDoList = (ToDoList) listManager.getList(ListManager.TODO_LIST);
+            ToDoList toDoList = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
             listToDos(toDoList,ui);
             break;
         case TAG_BOOKMARK:
-            BookmarkList bookmarkList = (BookmarkList) listManager.getList(ListManager.BOOKMARK_LIST);
+            BookmarkList bookmarkList = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
             listBookmarks(bookmarkList, ui);
             break;
         case TAG_QUOTE:
-            QuoteList quoteListList = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
+            QuoteList quoteListList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
             listQuotes(quoteListList, ui);
             break;
         case TAG_BOOK:
-            BookList bookList = (BookList) listManager.getList(ListManager.BOOK_LIST);
+            BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
             listBooks(bookList, ui);
             break;
         default:
@@ -160,10 +159,11 @@ public class ListCommand extends Command {
     }
 
     private void listCategories(CategoryList categoryList, TextUi ui) {
+        categoryList.updateListsInCategory();
         if ((information.isEmpty())) {
             listAllCategories(categoryList, ui);
         } else {
-            listCategory(categoryList, ui);
+            listAllInCategory(categoryList, ui);
         }
     }
 
@@ -171,9 +171,9 @@ public class ListCommand extends Command {
         ui.printAllCategories(categoryList);
     }
 
-    private void listCategory(CategoryList categoryList, TextUi ui) {
+    private void listAllInCategory(CategoryList categoryList, TextUi ui) {
         try {
-            ui.printCategory(categoryList.getCategoryByName(information));
+            ui.printAllInCategory(categoryList.getCategoryByName(information));
         } catch (NullPointerException e) {
             ui.printErrorMessage(e.getMessage());
         }

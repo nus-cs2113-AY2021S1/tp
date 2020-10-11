@@ -35,27 +35,27 @@ public class AddCommand extends Command {
         information = details[1];
     }
 
-    public void execute(TextUi ui, ListManager listManager) {
+    public void execute(TextUi ui) {
         switch (type) {
         case TAG_BOOK:
-            BookList books = (BookList) listManager.getList(ListManager.BOOK_LIST);
+            BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
             Book newBook = addBook(books);
             ui.printAddBook(newBook);
             break;
         case TAG_QUOTE:
-            QuoteList quotes = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
+            QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
             addQuote(quotes, ui);
             break;
         case TAG_CATEGORY:
-            CategoryList categories = (CategoryList) listManager.getList(ListManager.CATEGORY_LIST);
-            addCategoryToBookOrQuote(categories, ui, listManager);
+            CategoryList categories = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
+            addCategoryToBookOrQuote(categories, ui);
             break;
         case TAG_RATING:
-            RatingList ratings = (RatingList) listManager.getList(ListManager.RATING_LIST);
-            addRating(ratings, ui, listManager);
+            RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
+            addRating(ratings, ui);
             break;
         case TAG_TODO:
-            ToDoList toDos = (ToDoList) listManager.getList(ListManager.TODO_LIST);
+            ToDoList toDos = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
             ToDo newToDo = addToDo(toDos);
             ui.printAddToDo(newToDo);
             break;
@@ -82,33 +82,40 @@ public class AddCommand extends Command {
         }
     }
 
-    private void addCategoryToBookOrQuote(CategoryList categories, TextUi ui, ListManager listManager) {
+    private void addCategoryToBookOrQuote(CategoryList categories, TextUi ui) {
         String[] tokens = information.split(" ");
         String[] parameters = CategoryParser.getRequiredParameters(tokens);
-        executeParameters(categories, parameters, ui, listManager);
+        executeParameters(categories, parameters, ui);
     }
 
-    private void executeParameters(CategoryList categories, String[] parameters, TextUi ui, ListManager listManager) {
+    private void executeParameters(CategoryList categories, String[] parameters, TextUi ui) {
         try {
             String categoryName = parameters[0];
             String bookTitle = parameters[1];
             int quoteNum = Integer.parseInt(parameters[2]) - 1;
 
+            if (quoteNum == -2 && bookTitle == null) {
+                ui.printErrorMessage(ERROR_MISSING_BOOK_OR_QUOTE);
+                return;
+            }
+
             addCategoryToList(categories, categoryName);
 
             Category category = categories.getCategoryByName(categoryName);
-            if (addCategoryToBook(category, bookTitle, listManager)) {
+            if (addCategoryToBook(category, bookTitle)) {
                 ui.printAddCategoryToBook(bookTitle, category.getCategoryName());
             }
 
-            if (addCategoryToQuote(category, quoteNum, listManager)) {
-                QuoteList quoteList = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
+            if (addCategoryToQuote(category, quoteNum)) {
+                QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
                 ArrayList<Quote> quotes = quoteList.getList();
                 ui.printAddCategoryToQuote(quotes.get(quoteNum).getQuote(), category.getCategoryName());
             }
-            ui.printCategorySize(category);
+            // ui.printCategorySize(category);
         } catch (NumberFormatException e) {
             System.out.println(ERROR_INVALID_QUOTE_NUM);
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -118,34 +125,32 @@ public class AddCommand extends Command {
         }
     }
 
-    private boolean addCategoryToBook(Category category, String bookTitle, ListManager listManager) {
+    private boolean addCategoryToBook(Category category, String bookTitle) {
         if (bookTitle == null || category == null) {
             return false;
         }
 
-        BookList bookList = (BookList) listManager.getList(ListManager.BOOK_LIST);
-        ArrayList<Book> books = bookList.getList();
-        for (Book book : books) {
-            if (book.getTitle().equals(bookTitle)) {
-                book.setCategory(category);
-                category.getBooks().add(book);
-                return true;
-            }
+        BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+        try {
+            Book book = bookList.findByTitle(bookTitle);
+            book.setCategory(category);
+        } catch (NullPointerException e) {
+            System.out.println(ERROR_NO_BOOK_FOUND);
+            return false;
         }
-        return false;
+        return true;
     }
 
-    private boolean addCategoryToQuote(Category category, int quoteNum, ListManager listManager) {
+    private boolean addCategoryToQuote(Category category, int quoteNum) {
         if (quoteNum < 0 || category == null) {
             return false;
         }
 
-        QuoteList quoteList = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
+        QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
         ArrayList<Quote> quotes = quoteList.getList();
         try {
             Quote quote = quotes.get(quoteNum);
             quote.setCategory(category);
-            category.getQuotes().add(quote);
         } catch (IndexOutOfBoundsException e) {
             System.out.println(ERROR_INVALID_QUOTE_NUM);
             return false;
@@ -153,20 +158,20 @@ public class AddCommand extends Command {
         return true;
     }
 
-    private void addRating(RatingList ratings, TextUi ui, ListManager listManager) {
+    private void addRating(RatingList ratings, TextUi ui) {
         String[] ratingDetails = information.split(" ", 2);
         String titleOfBookToRate = ratingDetails[1].trim();
 
         int ratingScore = RatingParser.checkFormatOfRatingValue(ratingDetails[0]);
         boolean isValid = RatingParser.checkRangeOfRatingValue(ratingScore);
-        if (isValid && !isRated(ratings, titleOfBookToRate) && isExistingBook(listManager, titleOfBookToRate)) {
+        if (isValid && !isRated(ratings, titleOfBookToRate) && isExistingBook(titleOfBookToRate)) {
             ratings.add(new Rating(ratingScore, titleOfBookToRate));
             ui.printAddRatingToBook(ratingScore, titleOfBookToRate);
         }
     }
 
-    private boolean isExistingBook(ListManager listManager, String titleOfBookToRate) {
-        BookList bookList = (BookList) listManager.getList(ListManager.BOOK_LIST);
+    private boolean isExistingBook(String titleOfBookToRate) {
+        BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         ArrayList<Book> existingBooks = bookList.getList();
         boolean doesExist = false;
         for (Book existingBook : existingBooks) {

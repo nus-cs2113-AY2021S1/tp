@@ -5,14 +5,14 @@ import seedu.duke.quote.QuoteList;
 
 public class Category {
     private String category;
-    private BookList books;
-    private QuoteList quotes;
+    private BookList bookList;
+    private QuoteList quoteList;
     private int size;
 
     public Category(String category) {
         this.category = category;
-        books = new BookList();
-        quotes = new QuoteList();
+        bookList = new BookList();
+        quoteList = new QuoteList();
         size = 0;
     }
 
@@ -25,23 +25,27 @@ public class Category {
     }
 
     public int getSize() {
-        return books.getList().size() + quotes.getList().size();
+        return bookList.getList().size() + quoteList.getList().size();
     }
 
-    public BookList getBooks() {
-        return books;
+    public void setSize(int size) {
+        this.size = size;
     }
 
-    public void setBooks(BookList books) {
-        this.books = books;
+    public BookList getBookList() {
+        return bookList;
     }
 
-    public QuoteList getQuotes() {
-        return quotes;
+    public void setBookList(BookList books) {
+        this.bookList = books;
     }
 
-    public void setQuotes(QuoteList quotes) {
-        this.quotes = quotes;
+    public QuoteList getQuoteList() {
+        return quoteList;
+    }
+
+    public void setQuoteList(QuoteList quoteList) {
+        this.quoteList = quoteList;
     }
 
     @Override
