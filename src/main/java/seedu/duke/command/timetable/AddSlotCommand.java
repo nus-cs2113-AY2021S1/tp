@@ -1,8 +1,9 @@
-package seedu.duke.command;
+package seedu.duke.command.slot;
 
 import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
+import seedu.duke.command.Command;
 import seedu.duke.exception.DukeExceptionType;
 import seedu.duke.slot.Slot;
 import seedu.duke.exception.DukeException;

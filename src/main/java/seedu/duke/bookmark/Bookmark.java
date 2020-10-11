@@ -26,6 +26,10 @@ public class Bookmark {
      * @param description The description of the webpage.
      */
     public Bookmark(String module, String description, String url) {
+        assert module != null : "module is not null";
+        assert description != null : "description is not null";
+        assert url != null : "url is not null";
+
         this.module = module.trim();
         this.description = description.trim();
         this.url = url.trim();
@@ -38,6 +42,7 @@ public class Bookmark {
      * @return a list of strings containing the topic, URL and the description
      */
     public static List<String> extractModuleDescriptionAndUrl(String input) throws DukeException {
+        assert input.startsWith(AddBookmarkCommand.ADD_KW) : "input should always start with \"add\"";
         input = input.substring(AddBookmarkCommand.ADD_KW.length()).trim();
         List<String> moduleDescriptionUrl = new ArrayList<>(Arrays.asList(input.split(" ", 3)));
         if (moduleDescriptionUrl.size() == 2) {
@@ -52,7 +57,6 @@ public class Bookmark {
         if (!isUrlValid(moduleDescriptionUrl.get(2))) {
             throw new DukeException(DukeExceptionType.INVALID_URL);
         }
-
         return moduleDescriptionUrl;
     }
 
@@ -65,7 +69,7 @@ public class Bookmark {
     }
 
     /**
-     * This method opens a web browser and open the URL of the bookmark.
+     * This method opens the URL of the bookmark in a web browser.
      */
     public void launch() throws DukeException {
         try {
