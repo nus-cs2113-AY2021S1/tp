@@ -29,7 +29,7 @@ public class AddCommand extends Command {
     @Override
     public void execute(PatientList patients, Ui ui, Storage storage) throws RexException {
         String nric = extractNric(trimmedCommand, COMMAND_WORD);
-        if (isExistingPatient(patients, nric)) {
+        if (patients.isExistingPatient(nric)) {
             throw new RexException("A patient with this NRIC is already registered!");
         }
 

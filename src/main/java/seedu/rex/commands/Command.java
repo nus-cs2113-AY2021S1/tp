@@ -57,7 +57,7 @@ public abstract class Command {
             return false;
         }
         try {
-            double stringAsInteger = Integer.parseInt(string);
+            int stringAsInteger = Integer.parseInt(string);
         } catch (NumberFormatException e) {
             return false;
         }
@@ -87,33 +87,5 @@ public abstract class Command {
         } else {
             return nric;
         }
-    }
-
-    /**
-     * Checks if the NRIC entered by the user already exists in the patient list.
-     *
-     * @param patients The list of patients.
-     * @param nric     The NRIC entered by the user.
-     * @return <code>true</code> if NRIC already exists; <code>false</code> otherwise.
-     */
-    public boolean isExistingPatient(PatientList patients, String nric) {
-        return getExistingPatient(patients, nric) > -1;
-    }
-
-    /**
-     * Finds NRIC entered by the user from the patient list.
-     * Returns -1 if not found.
-     *
-     * @param patients The list of patients.
-     * @param nric     The NRIC entered by the user.
-     * @return index of the patient with the NRIC; -1 otherwise.
-     */
-    public int getExistingPatient(PatientList patients, String nric) {
-        for (int i = 0; i < patients.getSize(); i++) {
-            if (patients.getPatientUsingIndex(i).getNric().equals(nric)) {
-                return i;
-            }
-        }
-        return -1;
     }
 }
