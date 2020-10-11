@@ -1,10 +1,6 @@
 package seedu.parser;
 
-import seedu.commands.Add;
-import seedu.commands.Bye;
-import seedu.commands.Command;
-import seedu.commands.Help;
-import seedu.commands.List;
+import seedu.commands.*;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.UnknowCommandException;
 
@@ -20,6 +16,8 @@ public class Parser {
             return new List();
         } else if (rawInput.startsWith(Bye.COMMAND_WORD)) {
             return new Bye();
+        } else if (rawInput.startsWith(Edit.COMMAND_WORD)) {
+            return new Edit(rawInput);
         } else {
             throw new UnknowCommandException();
         }

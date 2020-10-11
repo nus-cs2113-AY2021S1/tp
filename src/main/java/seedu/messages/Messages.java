@@ -6,6 +6,7 @@ public class Messages {
     public static final String INVALID_PRIORITY = "Invalid priority!";
     public static final String INVALID_COMMAND = "Invalid command!";
     public static final String UNKNOWN_COMMAND = "Unknown command!";
+    public static final String INVALID_TASK_NUMBER = "Invalid task number!";
 
     public static final String WELCOME_MESSAGE = "Welcome to" + LS
             + "    ____  __      _   ____  _______" + LS
@@ -21,5 +22,6 @@ public class Messages {
             + "- bye: exit the program";
     public static final String BYE_MESSAGE = "Bye! See you again!";
     public static final String LIST_MESSAGE = "Here is your list of tasks:";
-    public static final String ADD_MESSAGE = "Task added:";
+    public static final String ADD_MESSAGE = "Task added.";
+    public static final String EDIT_MESSAGE = "Task edited.";
 }

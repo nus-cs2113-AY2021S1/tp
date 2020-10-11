@@ -6,6 +6,7 @@ import seedu.commands.CommandResult;
 import seedu.data.TaskList;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidPriorityException;
+import seedu.exceptions.InvalidTaskNumberException;
 import seedu.exceptions.UnknowCommandException;
 import seedu.parser.Parser;
 import seedu.storage.Storage;
@@ -39,7 +40,7 @@ public class Planus {
                     isExit = true;
                     storage.writeTasksToFile(tasks);
                 }
-            } catch (InvalidCommandException | InvalidPriorityException | UnknowCommandException e) {
+            } catch (Exception e) {
                 ui.showException(e);
             }
         }

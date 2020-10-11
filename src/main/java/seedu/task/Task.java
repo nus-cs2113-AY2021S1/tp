@@ -99,6 +99,10 @@ public class Task {
         this.date = date;
     }
 
+    public void setDate(String dateString) {
+        date = dateStringToDate(dateString);
+    }
+
     public LocalTime getTime() {
         return time;
     }
@@ -107,12 +111,20 @@ public class Task {
         this.time = time;
     }
 
+    public void setTime(String timeString) {
+        time = timeStringToTime(timeString);
+    }
+
     public Priority getPriority() {
         return priority;
     }
 
     public void setPriority(Priority priority) {
         this.priority = priority;
+    }
+
+    public void setPriority(String priorityString) throws InvalidPriorityException {
+        priority = priorityStringToPriority(priorityString);
     }
 
     public String toString() {
