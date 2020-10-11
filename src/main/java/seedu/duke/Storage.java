@@ -1,13 +1,8 @@
 package seedu.duke;
 
-import seedu.duke.task.Deadline;
-import seedu.duke.task.Event;
-import seedu.duke.task.Lab;
-import seedu.duke.task.Lecture;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
-import seedu.duke.task.Todo;
-import seedu.duke.task.Tutorial;
+import seedu.duke.calendar.CalendarItem;
+import seedu.duke.calendar.CalendarList;
+import seedu.duke.calendar.task.Task;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,7 +22,7 @@ public class Storage {
     private static final int DATE = 3;
     private static final int TIME = 4;
     private static final int IS_DONE = 1;
-    private static ArrayList<Task> taskArrayList;
+    private static ArrayList<CalendarItem> taskArrayList;
     private static String filePath;
     private static LocalDate date;
     public static int countFileTasks = 0;
@@ -65,16 +60,16 @@ public class Storage {
     /**
      * Write the data from taskList into file.
      *
-     * @param tasks the taskList that the data is stored during running the program.
+     * @param calendarList the calendar list that the data is stored during running the program.
      */
-    public static void writeToFile(TaskList tasks) {
+    public static void writeToFile(CalendarList calendarList) {
         try {
             File output = new File(filePath);
             createFile(output);
             FileWriter fw = new FileWriter(output);
-            taskArrayList = tasks.getTaskList();
-            for (Task task : taskArrayList) {
-                fw.write(task.printIntoFile() + "\n");
+            taskArrayList = calendarList.getCalendarList();
+            for (CalendarItem item : taskArrayList) {
+                fw.write(item.printIntoFile() + "\n");
             }
             fw.close();
         } catch (IOException e) {
@@ -85,15 +80,16 @@ public class Storage {
     /**
      * Read data from file and store the data into the taskList.
      *
-     * @param tasks A taskList that store the data read from file.
+     * @param calendarList A taskList that store the data read from file.
      */
-    public static int readFromFile(TaskList tasks) throws FileNotFoundException {
+    public static int readFromFile(CalendarList calendarList) throws FileNotFoundException {
         File input = new File(filePath);
         createFile(input);
 
         try {
             Scanner sc = new Scanner(input);
             Task task;
+            /*
             while (sc.hasNext()) {
                 String[] taskInFile = sc.nextLine().split("\\|");
                 if (taskInFile[TYPE].equals("T")) {
@@ -103,7 +99,7 @@ public class Storage {
                     task = new Deadline(taskInFile[DESCRIPTION], date);
                 } else if (taskInFile[TYPE].equals("E")) {
                     date = LocalDate.parse(taskInFile[DATE].trim());
-                    task = new Event(taskInFile[DESCRIPTION], date);
+                    task = new Activity(taskInFile[DESCRIPTION], date);
                 } else if (taskInFile[TYPE].equals("LEC")) {
                     task = new Lecture(taskInFile[DESCRIPTION], taskInFile[DATE], taskInFile[TIME]);
                 } else if (taskInFile[TYPE].equals("TUT")) {
@@ -115,8 +111,9 @@ public class Storage {
                 if (taskInFile[IS_DONE].equals("true")) {
                     task.markAsDone();
                 }
-                tasks.addTask(task);
+                calendarList.addTask(task);
             }
+            */
         } catch (Exception e) {
             System.out.println("Wrong format of date");
         }

@@ -1,5 +1,5 @@
-T|false|1
-D|false|wkejw|2002-02-02
-Task|false|CS2113
-Task|false|open
-Task|false|CS2113
+LEC cs2113|2020-10-08|16:00
+TUT cs2113|2020-10-08|16:00
+LAB cs1010|2020-10-10|10:00
+T|false|homework
+null
