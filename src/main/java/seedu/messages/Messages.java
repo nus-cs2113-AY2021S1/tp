@@ -1,9 +1,11 @@
 package seedu.messages;
 
-import static seedu.font.Colors.*;
+import static seedu.font.Colors.ANSI_CYAN;
+import static seedu.font.Colors.ANSI_RESET;
+import static seedu.font.Colors.ANSI_YELLOW;
 
 public class Messages {
-//    public static final String DEFAULT_STRING_COLOR = ANSI_YELLOW;
+    //    public static final String DEFAULT_STRING_COLOR = ANSI_YELLOW;
     public static final String LS = System.lineSeparator();
 
     public static final String INVALID_PRIORITY = "Invalid priority!";

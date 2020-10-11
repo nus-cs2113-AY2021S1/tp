@@ -5,22 +5,26 @@ import seedu.data.TaskList;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-import static seedu.messages.Messages.*;
+import static seedu.messages.Messages.LS;
+import static seedu.messages.Messages.WELCOME_MESSAGE;
 
 
 public class Ui {
     private final Scanner in;
     private final PrintStream out;
 
-    public Ui() {
-        this(System.in, System.out);
-    }
+    //    public Ui() {
+    //        this(System.in, System.out);
+    //    }
 
-    private Ui(InputStream in, PrintStream out) {
-        this.in = new Scanner(in);
-        this.out = out;
+    public Ui() {
+        this.in = new Scanner(System.in);
+        this.out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
+
         //        // Set default printing color
         //        out.print(DEFAULT_STRING_COLOR);
     }
