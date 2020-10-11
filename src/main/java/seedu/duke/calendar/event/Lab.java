@@ -94,6 +94,13 @@ public class Lab extends SchoolEvent {
         return date;
     }
 
+    @Override
+    public String getDescription() {
+        return "[LAB]" + "[" + getIcon() + "] "
+                + moduleCode + " "
+                + " (" + venue + ")";
+    }
+
     /**
      * Get the time of the lab.
      *
