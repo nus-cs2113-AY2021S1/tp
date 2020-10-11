@@ -172,6 +172,7 @@ public class AddCommand extends Command {
         BookList bookList = (BookList) listManager.getList(ListManager.BOOK_LIST);
         ArrayList<Book> existingBooks = bookList.getList();
         boolean doesExist = false;
+        assert existingBooks.size() != 0 : "List of books should not be empty";
         for (Book existingBook : existingBooks) {
             if (existingBook.getTitle().equals(titleOfBookToRate)) {
                 doesExist = true;
