@@ -22,7 +22,6 @@ public abstract class ParamHandler {
         for (String paramType : packet.getParamTypes()) {
             try {
                 handleParam(packet, paramType);
-                this.parseSuccessParams.add(paramType);
             } catch (ParseFailParamException exception) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     paramChecker.getParseFailParamMessage(paramType));

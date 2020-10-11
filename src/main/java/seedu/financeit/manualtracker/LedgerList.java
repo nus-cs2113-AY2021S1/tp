@@ -51,10 +51,15 @@ public class LedgerList extends ItemList {
         case ParamChecker.PARAM_DATE:
             LocalDateTime dateTime = paramChecker.checkAndReturnDateTime(paramType, this.defaultDateTimeFormat);
             this.itemQueue.add(this.getItemFromDateTime(dateTime));
+            this.parseSuccessParams.add("/date");
+            this.parseSuccessParams.add("/id");
+
             break;
         case ParamChecker.PARAM_INDEX:
             int index = paramChecker.checkAndReturnIndex(paramType, this.items);
             this.itemQueue.add(this.getItemFromIndex(index));
+            this.parseSuccessParams.add("/date");
+            this.parseSuccessParams.add("/id");
             break;
         default:
             if (!super.requiredParams.contains(paramType)) {
