@@ -26,8 +26,10 @@ public class TextUi {
             + "       \\__>                      \\/     \\/          \\/    ";
 
     private static final String WELCOME_MESSAGE = "Welcome to Quotesify!";
-    private static final String GOODBYE_MESSAGE = "Have a nice day!";
+    private static final String GOODBYE_MESSAGE = "Alright, have a nice day!";
     private static final String PROMPT_MESSAGE = "\nWhat would you like to do with Quotesify?";
+    private static final String INVALID_QUOTESIFY_COMMAND = "I don't understand you." + System.lineSeparator()
+            + "Maybe type \"help\" for usage instructions?";
     private static final String ADD_BOOK_MESSAGE = "The book [%s] has been added!";
     private static final String DELETE_BOOK_MESSAGE = "The book [%s] has been deleted!";
     private static final String LIST_BOOKS_MESSAGE = "Here is a list of all books:";
@@ -267,8 +269,16 @@ public class TextUi {
     public void printRandomQuote(ListManager listManager) {
         QuoteList quotes = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
         Random rand = new Random();
-        int randomQuoteNumber = rand.nextInt(quotes.getSize() - 1);
-        Quote quoteToPrint = quotes.getQuote(randomQuoteNumber);
-        System.out.println(PRINT_RANDOM_QUOTE + System.lineSeparator() + quoteToPrint.toString());
+        try {
+            int randomQuoteNumber = rand.nextInt(quotes.getSize() - 1);
+            Quote quoteToPrint = quotes.getQuote(randomQuoteNumber);
+            System.out.println(PRINT_RANDOM_QUOTE + System.lineSeparator() + quoteToPrint.toString());
+        } catch (IllegalArgumentException e) {
+            return;
+        }
+    }
+
+    public void printInvalidQuotesifyCommand() {
+        System.out.println(INVALID_QUOTESIFY_COMMAND);
     }
 }
