@@ -10,6 +10,7 @@ public class CommandHelp extends Command {
                 + "help, bye";
     }
 
+    @Override
     public int validate(UserInput input) {
         if (input.getCategory().equals("") && input.getCommand().equalsIgnoreCase("help")) {
             return ACCEPT;

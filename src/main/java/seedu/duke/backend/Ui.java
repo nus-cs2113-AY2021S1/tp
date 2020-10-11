@@ -5,6 +5,9 @@ import seedu.duke.Finance.CommandFinanceAdd;
 import seedu.duke.Finance.CommandFinanceDel;
 import seedu.duke.Finance.CommandFinanceSummary;
 import seedu.duke.Finance.FinanceLog;
+import seedu.duke.event.CommandEventAdd;
+import seedu.duke.event.CommandEventDel;
+import seedu.duke.event.CommandEventList;
 import seedu.duke.DukeArgumentException;
 import seedu.duke.DukeNoMatchException;
 import seedu.duke.hr.CommandAddMember;
@@ -126,8 +129,12 @@ public class Ui {
         commandList.add(new CommandFinanceSummary());
         commandList.add(new CommandFinanceAdd());
         commandList.add(new CommandFinanceDel());
+        commandList.add(new CommandEventAdd());
+        commandList.add(new CommandEventDel());
+        commandList.add(new CommandEventList());
         commandList.add(new CommandAddMember());
         commandList.add(new CommandViewMember());
         commandList.add(new CommandDelMember());
     }
 }
+
