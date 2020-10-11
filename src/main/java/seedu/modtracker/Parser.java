@@ -31,12 +31,12 @@ public class Parser {
             storage.appendToFile(input);
             break;
         case "deletemod":
-            //methods
-            //storage.appendToFile(input);
+            modList.deleteMod(input);
+            storage.appendToFile(input);
             break;
         case "deleteexp":
-            //methods
-            //storage.appendToFile(input);
+            modList.deleteExp(input);
+            storage.appendToFile(input);
             break;
         case "minus":
             modList.minusTime(input);
