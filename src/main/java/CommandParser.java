@@ -7,12 +7,14 @@ public class CommandParser {
     public static CommandType getCommandType(String command) {
         String commandModified = standardizeCommand(command);
 
-        if (commandModified.equals("exit")) {
-            return CommandType.EXIT;
+        if ((StudyIt.getCurrentMode() == Mode.MENU) && (commandModified.equals("exit"))) {
+            return CommandType.EXIT_PROGRAM;
+        } else if (commandModified.equals("exit")) {
+            return CommandType.EXIT_MODE;
         } else if (commandModified.equals("location")) {
             return CommandType.LOCATION;
         } else if (commandModified.startsWith("cd")) {
-            return CommandType.CHANGE_DIRECTORY;
+            return CommandType.CHANGE_MODE;
         } else {
             return CommandType.UNIDENTIFIABLE;
         }
