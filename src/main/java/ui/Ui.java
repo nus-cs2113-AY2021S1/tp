@@ -1,7 +1,12 @@
 package ui;
 
 import access.Access;
-import commands.*;
+import commands.AddCommand;
+import commands.ExitCommand;
+import commands.ListCommand;
+import commands.HelpCommand;
+import commands.ReviseCommand;
+import commands.EditCommand;
 
 import manager.card.Card;
 
