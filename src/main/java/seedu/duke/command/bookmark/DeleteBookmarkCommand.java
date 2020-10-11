@@ -37,6 +37,7 @@ public class DeleteBookmarkCommand extends Command {
     /**
      * Deletes the bookmark in the bookmark list.
      *
+
      * @param bookmarks The list of bookmarks.
      * @param ui The user interface.
      */
@@ -47,7 +48,7 @@ public class DeleteBookmarkCommand extends Command {
             Bookmark bookmark = bookmarks.getBookmark(index);
             bookmarks.deleteBookmark(bookmarks.getBookmark(index));
             ui.print(getMessage(bookmark));
-            //bookmarkStorage.save(taskList.getData());
+            bookmarkStorage.save(bookmarks.getData());
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(DukeExceptionType.INVALID_BOOKMARK_NUMBER);
         }

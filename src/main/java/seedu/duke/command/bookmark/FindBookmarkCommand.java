@@ -48,5 +48,4 @@ public class FindBookmarkCommand extends Command {
                         Storage bookmarkStorage, Storage slotStorage) {
         ui.print(bookmarks.findBookmarks(moduleAndDescription));
     }
-
 }

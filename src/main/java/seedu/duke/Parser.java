@@ -11,7 +11,6 @@ import seedu.duke.command.ExitCommand;
 import seedu.duke.command.bookmark.ShowBookmarkCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.ChangeModeCommand;
-
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 
@@ -59,7 +58,7 @@ public class Parser {
 
     private static Command createBookmarkCommand(String input) throws DukeException {
         Command command;
-
+      
         if (input.compareToIgnoreCase(ShowBookmarkCommand.LIST_KW) == 0) {
             return new ShowBookmarkCommand();
         } else if (input.startsWith(DeleteBookmarkCommand.DEL_KW)) {
