@@ -5,7 +5,7 @@ import seedu.duke.exceptions.FilterCommandException;
 import static seedu.duke.filters.FilterCommandSlicer.startsNewFilter;
 import static seedu.duke.filters.FilterCommandSlicer.getTargetedStringTags;
 import static seedu.duke.filters.FilterCommandSlicer.getTargetedWordType;
-import static seedu.duke.filters.FilterCommandSlicer.getTypeOfFilter;
+import static seedu.duke.filters.FilterType.getTypeOfFilter;
 import static seedu.duke.filters.WordsFilter.filterByType;
 import static seedu.duke.filters.WordsFilter.filterByStartingString;
 import static seedu.duke.filters.WordsFilter.filterByIncludedString;
