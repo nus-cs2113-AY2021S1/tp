@@ -18,7 +18,7 @@ public class CommandDelMember extends Command {
         this.savedInput = input;
         if (input.getCategory().equals("hr") && input.getCommand().equalsIgnoreCase("delete")) {
             if (input.getNumArgs() == 1) {
-                if ((input.getArg("")!= null) && isInteger(input.getArg(""))) {
+                if ((input.getArg("") != null) && isInteger(input.getArg(""))) {
 
                     return ACCEPT;
                 }

@@ -25,7 +25,7 @@ public class MemberList {
         } else {
             output = "Here is the list of members in your CCA: \n";
             for (int i = 0; i < Member.numOfMembers; i++) {
-                int index = i+1;
+                int index = i + 1;
                 output = output.concat(index + ".");
                 output = output.concat(members.get(i).toString() + "\n");
             }
@@ -62,7 +62,7 @@ public class MemberList {
         try{
             int index = Integer.parseInt(s);
             return true;
-        }catch (NumberFormatException ex) {
+        }catch (NumberFormatException e) {
             return false;
         }
     }

@@ -7,7 +7,7 @@ public class Member {
     protected String memberEmail;
     protected String memberRole;
 
-    public Member(String name, int phone, String email, String role){
+    public Member(String name, int phone, String email, String role) {
         this.memberName = name;
         this.memberPhone = phone;
         this.memberEmail = email;
@@ -16,14 +16,17 @@ public class Member {
     }
 
     public int getMemberPhone() {
+
         return this.memberPhone;
     }
 
     public String getMemberEmail() {
+
         return this.memberEmail;
     }
 
     public String getMemberRole() {
+
         return this.memberRole;
     }
 
@@ -31,7 +34,8 @@ public class Member {
      * Prints task data in the desired form to be printed for user interaction.
      * */
     public String toString() {
-        return "name: "+ this.memberName + " |phone: "+ this.getMemberPhone()+ " |email: "+this.getMemberEmail()+ " |role: " + this.getMemberRole();
+        return "name: " + this.memberName + " |phone: " + this.getMemberPhone() + " |email: " + this.getMemberEmail() +
+                " |role: " + this.getMemberRole();
     }
 
 }

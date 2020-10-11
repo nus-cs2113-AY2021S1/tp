@@ -17,8 +17,8 @@ public class CommandAddMember extends Command {
         this.savedInput = input;
         if (input.getCategory().equals("hr") && input.getCommand().equalsIgnoreCase("add")) {
             if (input.getNumArgs() == 4) {
-                if ((input.getArg("n")!= null)&&(input.getArg("p")!= null)&&(input.getArg("e")!= null)
-                        &&(input.getArg("r")!= null) && isInteger(input.getArg("p"))) {
+                if ((input.getArg("n")!= null) && (input.getArg("p") != null) && (input.getArg("e") != null)
+                        && (input.getArg("r") != null) && isInteger(input.getArg("p"))) {
                     return ACCEPT;
                 }
             }
@@ -31,7 +31,7 @@ public class CommandAddMember extends Command {
     @Override
     public String execute() {
         int phone = Integer.parseInt(savedInput.getArg("p"));
-        Member m = new Member(savedInput.getArg("n"),phone, savedInput.getArg("e"), savedInput.getArg("r"));
+        Member m = new Member(savedInput.getArg("n"), phone, savedInput.getArg("e"), savedInput.getArg("r"));
         MemberList.addToList(m);
         String output = "Got it. I've added this member: \n" + m.toString() + "\n"
                 + "Now you have " + Member.numOfMembers + " member" + ((Member.numOfMembers == 1) ? "" : "s")
