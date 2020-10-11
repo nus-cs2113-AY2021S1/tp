@@ -24,8 +24,8 @@ public class FindCommand extends Command {
         return COMMAND_USAGE;
     }
 
-    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "There are no matching notes. Please try another search "
-            + "query.";
+    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "There are no matching notes. "
+            + "Please try another search query.";
     private static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the matching notes in your list:";
 
     private String keywords;
