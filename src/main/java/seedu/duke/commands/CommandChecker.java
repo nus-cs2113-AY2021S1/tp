@@ -56,11 +56,13 @@ public enum CommandChecker {
             return CommandChecker.BUNNY;
         } else if (userInput.toLowerCase().trim().startsWith("list bunny")) {
             return CommandChecker.LIST_BUNNY;
+        } else if (userInput.toLowerCase().trim().startsWith("filter bunny")) {
+            return CommandChecker.FILTER_BUNNY;
         } else if (userInput.toLowerCase().trim().startsWith("exit")) {
             return CommandChecker.EXIT;
-        } else if (userInput.equalsIgnoreCase("scene")) {
+        } else if (userInput.toLowerCase().trim().startsWith("scene")) {
             return CommandChecker.SCENE;
-        } else if (userInput.equalsIgnoreCase("topic")) {
+        } else if (userInput.toLowerCase().trim().startsWith("topic")) {
             return CommandChecker.TOPIC;
         } else {
             return CommandChecker.UNRECOGNISED;

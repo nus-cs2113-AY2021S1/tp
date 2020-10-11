@@ -145,6 +145,26 @@ public class UI {
         System.out.println(currentLineDivider);
     }
 
+    public static void addBunnyMessage(String bunny) {
+        System.out.println(ClickerMessages.ADD_BUNNY_MSG + "\n" + bunny);
+    }
+
+    public static void bunnyWrongFormat() {
+        System.out.println(ClickerMessages.BUNNY_WRONG_FORMAT);
+    }
+
+    public static void bunnyMissingIdea() {
+        System.out.println(ClickerMessages.BUNNY_MISSING_IDEA_MSG);
+    }
+
+    public static void listBunnyMessage() {
+        System.out.println(ClickerMessages.LIST_BUNNY_MSG);
+    }
+
+    public static void listCharacterMessage() {
+        System.out.println(ClickerMessages.LIST_CHARACTER_MSG);
+    }
+
     public static void addNounMessage(String noun) {
         System.out.println(ClickerMessages.ADD_NOUN_MSG + noun);
     }

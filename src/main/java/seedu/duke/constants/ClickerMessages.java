@@ -35,9 +35,23 @@ public class ClickerMessages {
     public static final String FILE_PATH_TO_DIRECTORY_INVALID_MSG = "File path to directory invalid!";
     public static final String FILE_NOT_FOUND_MSG = "File does not exist.";
     public static final String FILE_AUTO_CREATED_MSG = "Auto creating new file";
+
+    /** New word added messages. */
     public static final String ADD_NOUN_MSG = "Added the following noun:";
     public static final String ADD_VERB_MSG = "Added the following verb:";
     public static final String ADD_ADJECTIVE_MSG = "Added the following adjective:";
     public static final String LIST_WORDS_MSG = "Here are the words stored in the program:";
+
+    /** New bunny added messages. */
+    public static final String ADD_BUNNY_MSG = "New bunny added!";
+    public static final String LIST_BUNNY_MSG = "Here are the bunnies stored in the program:";
+    public static final String BUNNY_WRONG_FORMAT = "Bunny command wrong format";
+    public static final String BUNNY_MISSING_IDEA_MSG = "Bunny command missing idea?";
+
+    /** New character added messages. */
+    public static final String ADD_CHARACTER_MSG = "New character added!";
+    public static final String LIST_CHARACTER_MSG = "Here are the characters stored in the program:";
+    public static final String BUNNY_CHARACTER_FORMAT = "Character command wrong format";
+
 
 }

@@ -1,8 +1,8 @@
 package seedu.duke.parsers;
 
-import seedu.duke.exceptions.SettingObjectWrongFormatException;
+import seedu.duke.exceptions.*;
 
-import java.util.Scanner;
+import java.util.*;
 
 import static seedu.duke.constants.InputMarkers.INPUT_COMMENT_MARKER;
 import static seedu.duke.constants.RegexStrings.BLANK_STRING_REGEX;
@@ -52,4 +52,98 @@ public class Parsers {
                 || userInput.startsWith(INPUT_COMMENT_MARKER));
         return userInput;
     }
+
+    /**
+     * Parse parameters for double letter tags
+     *
+     * @param userInput    line read from the console
+     * @param parsedParams parameters parsed from the line with the tag as key and argument as value
+     * @throws MissingParamsException line has no missing parameters
+     */
+    public static void parseDoubleCharacterTaggedParamsFromUserInput(String userInput,
+                                                                     HashMap<String, String> parsedParams)
+            throws MissingParamsException {
+
+        String parsedOption;
+        String optionIndicator;
+
+        int startPositionIndex = 0;
+        int endPositionIndex = 0;
+
+        // clear filter options
+        parsedParams.clear();
+
+        if (!userInput.contains("/")) {
+            throw new MissingParamsException();
+        }
+
+        while (userInput.indexOf("/", startPositionIndex) != -1) {
+            // identify placement
+            startPositionIndex = userInput.indexOf("/", startPositionIndex + 1);
+            endPositionIndex = userInput.indexOf("/", startPositionIndex + 1);
+            // if reached end of string
+            if (endPositionIndex == -1) {
+                break;
+            }
+            // extract the option
+            parsedOption = userInput.substring(startPositionIndex + 1, endPositionIndex - 2);
+            optionIndicator = userInput.substring(startPositionIndex - 2, startPositionIndex);
+            // store the option
+            parsedParams.put(optionIndicator, parsedOption);
+        }
+
+        // extract the option
+        parsedOption = userInput.substring(startPositionIndex + 1);
+        optionIndicator = userInput.substring(startPositionIndex - 2, startPositionIndex);
+        // store the option
+        parsedParams.put(optionIndicator.toLowerCase(), parsedOption);
+    }
+
+    /**
+     * Parse parameters for single letter tags
+     *
+     * @param userInput    line read from the console
+     * @param parsedParams parameters parsed from the line with the tag as key and argument as value
+     * @throws MissingParamsException line has no missing parameters
+     */
+    public static void parseSingleCharacterTaggedParamsFromUserInput(String userInput,
+                                                                     HashMap<String, String> parsedParams)
+            throws MissingParamsException {
+
+        String parsedOption;
+        String optionIndicator;
+
+        int startPositionIndex = 0;
+        int endPositionIndex = 0;
+
+        // clear filter options
+        parsedParams.clear();
+
+        if (!userInput.contains("/")) {
+            throw new MissingParamsException();
+        }
+
+        while (userInput.indexOf("/", startPositionIndex) != -1) {
+            // identify placement
+            startPositionIndex = userInput.indexOf("/", startPositionIndex + 1);
+            endPositionIndex = userInput.indexOf("/", startPositionIndex + 1);
+            // if reached end of string
+            if (endPositionIndex == -1) {
+                break;
+            }
+            // extract the option
+            parsedOption = userInput.substring(startPositionIndex + 1, endPositionIndex - 1);
+            optionIndicator = userInput.substring(startPositionIndex - 1, startPositionIndex);
+            // store the option
+            parsedParams.put(optionIndicator, parsedOption);
+        }
+
+        // extract the option
+        parsedOption = userInput.substring(startPositionIndex + 1);
+        optionIndicator = userInput.substring(startPositionIndex - 1, startPositionIndex);
+        // store the option
+        parsedParams.put(optionIndicator.toLowerCase(), parsedOption);
+    }
+
+
 }
