@@ -1,18 +1,17 @@
 package seedu.duke.utility;
 
-/*TODO include more parser classes (storage.parser, command.parser etc in the future)
-
-
-import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
-import seedu.duke.commands.UpdateShowSeasonCommand;
-
 import seedu.duke.classes.Show;
 import seedu.duke.commands.ChangeRatingCommand;
 import seedu.duke.commands.DeleteRatingCommand;
 import seedu.duke.commands.RatingCommand;
+import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
+import seedu.duke.commands.UpdateShowSeasonCommand;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
+
+//TODO include more parser classes (storage.parser, command.parser etc in the future)
 
 
 /**
@@ -29,8 +28,8 @@ public class InputParser {
         return isBye;
     }
 
-    private static java.util.ArrayList<String> tokenizeStringArray(String input) {
-        java.util.ArrayList<String> inputArray = new java.util.ArrayList<>();
+    private static ArrayList<String> tokenizeStringArray(String input) {
+        ArrayList<String> inputArray = new java.util.ArrayList<>();
         for (String token : input.split(" ")) {
             inputArray.add(token);
         }
@@ -79,13 +78,13 @@ public class InputParser {
             return;
 
         case "episode":
-            java.util.ArrayList<String> updateInputs = tokenizeStringArray(input);
+            ArrayList<String> updateInputs = tokenizeStringArray(input);
             UpdateShowEpisodeProgressCommand updateShowProgress =
                     new UpdateShowEpisodeProgressCommand(command, updateInputs);
             updateShowProgress.processCommand();
             return;
         case "season":
-            java.util.ArrayList<String> seasonInputs = tokenizeStringArray(input);
+            ArrayList<String> seasonInputs = tokenizeStringArray(input);
             UpdateShowSeasonCommand updateShowSeason = new UpdateShowSeasonCommand(command, seasonInputs);
             updateShowSeason.processCommand();
             return;
@@ -134,7 +133,7 @@ public class InputParser {
         String[] tokenizedInput = input.split(" ");
         int showRating = Integer.parseInt(tokenizedInput[1]);
         RatingCommand newShowRating = new RatingCommand(tokenizedInput[0]);
-        newShowRating.rate(tokenizedInput[0], showRating);
+        newShowRating.rateShow(tokenizedInput[0], showRating);
         Ui.printShowRating(tokenizedInput[0], tokenizedInput[1]);
     }
 
@@ -157,7 +156,7 @@ public class InputParser {
     private static void parseListCommand(HashMap<String, Show> showList) {
         // idk how to do this btw
         int index = 1;
-        for (Entry<String,Show> entry : showList.entrySet()) {
+        for (Entry<String, Show> entry : showList.entrySet()) {
             System.out.print(index + ". " + entry.getValue().getName() + "|" + entry.getValue().getNumSeasons()
                     + "|" + entry.getValue().getEpisodesForSeason(index) + entry.getValue().getRating());
             index++;
