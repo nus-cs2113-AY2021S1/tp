@@ -52,6 +52,7 @@ public class EntryList extends ItemList {
         case ParamChecker.PARAM_INDEX:
             int index = paramChecker.checkAndReturnIndex(paramType, this.items);
             this.itemQueue.add(this.getItemFromIndex(index));
+            this.parseSuccessParams.add(paramType);
             break;
         default:
             if (!super.requiredParams.contains(paramType)) {

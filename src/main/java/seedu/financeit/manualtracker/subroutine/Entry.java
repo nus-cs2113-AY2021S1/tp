@@ -96,23 +96,29 @@ public class Entry extends Item {
         case PARAM_TIME:
             LocalDateTime dateTime = paramChecker.checkAndReturnDateTime(paramType, defaultDateTimeFormat);
             this.setDateTime(dateTime);
+            this.parseSuccessParams.add(paramType);
             break;
         case PARAM_AMOUNT:
             Double amount = paramChecker.checkAndReturnDouble(paramType);
             this.setAmount(amount);
+            this.parseSuccessParams.add(paramType);
             break;
         case PARAM_INC:
             this.setEntryType(Constants.EntryType.INC);
+            this.parseSuccessParams.add(paramType);
             break;
         case PARAM_EXP:
             this.setEntryType(Constants.EntryType.EXP);
+            this.parseSuccessParams.add(paramType);
             break;
         case PARAM_DESCRIPTION:
             this.setDescription(packet.getParam(paramType));
+            this.parseSuccessParams.add(paramType);
             break;
         case PARAM_CATEGORY:
             String category = paramChecker.checkAndReturnCategory(paramType);
             this.setCategory(category);
+            this.parseSuccessParams.add(paramType);
             break;
         default:
             if (!super.requiredParams.contains(paramType)) {
