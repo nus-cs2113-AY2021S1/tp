@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class FilterCommandSlicer {
 
     public static boolean continueLastFilter (String command) {
-        return command.toLowerCase().contains(" -continue");
+        return !command.toLowerCase().contains(" -continue");
     }
 
     public static FilterType getTypeOfFilter (String command) throws FilterCommandException {
@@ -47,7 +47,7 @@ public class FilterCommandSlicer {
         if (types.size() == 0) {
             throw new FilterCommandException();
         }
-        return (String[]) types.toArray();
+        return types.toArray(new String[0]);
     }
 
     public static String[] getTargetedStringTags (String command) throws FilterCommandException {
@@ -61,7 +61,7 @@ public class FilterCommandSlicer {
         if (startStrings.size() == 0) {
             throw new FilterCommandException();
         }
-        return (String[]) startStrings.toArray();
+        return startStrings.toArray(new String[0]);
     }
 
 }

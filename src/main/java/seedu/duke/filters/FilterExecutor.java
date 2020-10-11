@@ -14,19 +14,19 @@ public class FilterExecutor {
         try {
             FilterType filterType = getTypeOfFilter(command);
             String[] tags;
-            boolean continueLastFilter = continueLastFilter(command);
+            boolean isNewFilter = continueLastFilter(command);
             switch (filterType) {
             case WORD_TYPE:
                 tags = getTargetedWordType(command);
-                filterByType(continueLastFilter, tags);
+                filterByType(isNewFilter, tags);
                 break;
             case STARTING_STRING:
                 tags = getTargetedStringTags(command);
-                filterByStartingString(continueLastFilter, tags);
+                filterByStartingString(isNewFilter, tags);
                 break;
             case CONTAINING_STRING:
                 tags = getTargetedStringTags(command);
-                filterByIncludedString(continueLastFilter, tags);
+                filterByIncludedString(isNewFilter, tags);
                 break;
             default:
                 System.out.println("Filter type was not recognized in the command");
