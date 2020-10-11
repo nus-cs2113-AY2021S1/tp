@@ -58,6 +58,12 @@ public class Ui {
      */
     public static void printWelcomeMessage() {
         System.out.println("Printing of 25/7 logo!!!!");
+        System.out.println("========================================================================\n"
+            + "Welcome to 25/7 Task Manager!\n"
+            + "What can I do for you?\n"
+            + "Enter 'help' for the list of commands.\n"
+            + "==========================================================================\n");
+
         /**
 //        String[]  HELLO_MESSAGE = {
 //                "=================================================================================================",
