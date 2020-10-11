@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.classes.Storage;
+import seedu.duke.utility.InputParser;
 import seedu.duke.utility.ShowList;
 import seedu.duke.utility.Ui;
 
@@ -26,14 +27,18 @@ public class Duke {
     }
 
     public void run() {
-        /*ui.hello();
-        Scanner scan = new Scanner(System.in);
+        ui.hello();
         InputParser parseManager = new InputParser();
         while (!parseManager.isByeTime()) {
             Ui.printLineIcon();
-            String input = scan.nextLine();
+            try {
+                storage.saveState(ShowList.getShowList());
+            } catch (java.io.IOException e) {
+                e.printStackTrace();
+            }
+            String input = ui.getUserCommand();
             parseManager.parseInput(input);
-        }*/
+        }
     }
 
     public static void main(String[] args) {
