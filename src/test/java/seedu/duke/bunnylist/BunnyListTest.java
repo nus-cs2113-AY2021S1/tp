@@ -1,8 +1,6 @@
-package seedu.duke.bunnyList;
+package seedu.duke.bunnylist;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BunnyListTest {
 

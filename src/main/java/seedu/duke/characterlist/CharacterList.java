@@ -1,8 +1,6 @@
-package seedu.duke.characterList;
+package seedu.duke.characterlist;
 
-import seedu.duke.bunny.Bunny;
 import seedu.duke.character.Character;
-import seedu.duke.exceptions.BunnyIdeaMissingException;
 import seedu.duke.exceptions.CharacterNameMissingException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
 import seedu.duke.exceptions.MissingParamsException;
@@ -11,7 +9,6 @@ import seedu.duke.ui.UI;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static seedu.duke.constants.Tags.AGE_TAG;
 import static seedu.duke.constants.Tags.NAME_TAG;
 import static seedu.duke.parsers.Parsers.parseSingleCharacterTaggedParamsFromUserInput;
 
