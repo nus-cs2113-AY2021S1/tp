@@ -8,7 +8,7 @@ public class AddCommand extends Command {
     public void execute(FoodList foodlist,ExerciseList exerciseList, Storage storage) {
         String type = command.split(" ", 2)[0];
         command = command.split(" ", 2)[1];
-        if (type.equals("food")) {
+        if (type.equalsIgnoreCase("food")) {
             try {
                 String nameOfFood = command.split("/", 2)[0];
                 command = command.split("/", 2)[1];
@@ -25,7 +25,7 @@ public class AddCommand extends Command {
             } catch (ArrayIndexOutOfBoundsException e){
                 System.out.print("Please key in the correct format");
             }
-        } else if (type.equals("exercise")) {
+        } else if (type.equalsIgnoreCase("exercise")) {
             try {
                 String nameOfExercise = command.split("/", 2)[0];
                 command = command.split("/", 2)[1];
