@@ -1,5 +1,7 @@
 package seedu.duke.data.exception;
 
+import seedu.duke.data.timetable.Event;
+
 /**
  * Signals the different type of possible exceptions.
  */
@@ -15,8 +17,16 @@ public class SystemException extends Exception {
         EXCEPTION_MISSING_TIMING("This event does not have a timing specified!"),
         EXCEPTION_MISSING_RECURRING_END_TIME("Please specify until when do you want "
                 + "this event to repeat."),
+        EXCEPTION_EARLY_REMINDER("Please limit your reminders to at most 1 week earlier."),
         EXCEPTION_WRONG_TIMING("Your input has a wrong format for the date time input. "
                 + "Please follow the yyyy-MM-dd HH:mm format with the \"-\" and \":\" in 24-Hour Clock format"),
+        EXCEPTION_MISSING_TIMING_PREFIX("Please include the timing prefix."),
+        EXCEPTION_WRONG_LIST_TIMING_FORMAT("Your input list timing query has a wrong format. "
+                + "Try YYYY-MM"),
+        EXCEPTION_WRONG_REMINDER_FORMAT("Your input has a wrong format for the time before reminder. "
+                + "Please follow [NumberOfUnits-Units] format where NumberOfUnits > 0 and units = "
+                + Event.REMINDER_DAY + " or " + Event.REMINDER_WEEK + "."),
+        EXCEPTION_SEARCH_DATE_OUT_OF_RANGE("Your query is out of range for our system."),
         EXCEPTION_MISSING_RECURRING_TYPE("Please indicate whether you would like to have the event "
                 + "repeat daily, weekly, monthly or yearly"),
         EXCEPTION_WRONG_RECURRING_TYPE("There are only the following recurring types: "

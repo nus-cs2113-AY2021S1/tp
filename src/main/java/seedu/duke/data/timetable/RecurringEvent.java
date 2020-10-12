@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class RecurringEvent extends Event {
     private LocalDate endRecurrenceDate;
@@ -18,8 +19,8 @@ public abstract class RecurringEvent extends Event {
     public static final String YEARLY_RECURRENCE_TYPE = "yearly";
 
     public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrenceDate,
-                          String recurrenceType) {
-        super(title, dateTime, isToRemind, true);
+                          String recurrenceType, ArrayList<Integer> timePeriods, ArrayList<String> timeUnits) {
+        super(title, dateTime, isToRemind, true, timePeriods, timeUnits);
         if (endRecurrenceDate == null) {
             endRecurrenceDate = DEFAULT_END_RECURRENCE;
         }
@@ -27,8 +28,24 @@ public abstract class RecurringEvent extends Event {
         this.recurrenceType = recurrenceType;
     }
 
-    public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, String recurrenceType) {
-        this(title, dateTime, isToRemind, DEFAULT_END_RECURRENCE, recurrenceType);
+    public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, String recurrenceType,
+                          ArrayList<Integer> timePeriods, ArrayList<String> timeUnits) {
+        this(title, dateTime, isToRemind, DEFAULT_END_RECURRENCE, recurrenceType, timePeriods, timeUnits);
+    }
+
+    public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrenceDate,
+                          String recurrenceType, HashMap<String, ArrayList<Integer>> reminderPeriods) {
+        super(title, dateTime, isToRemind, true, reminderPeriods);
+        if (endRecurrenceDate == null) {
+            endRecurrenceDate = DEFAULT_END_RECURRENCE;
+        }
+        this.endRecurrenceDate = endRecurrenceDate;
+        this.recurrenceType = recurrenceType;
+    }
+
+    public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, String recurrenceType,
+                          HashMap<String, ArrayList<Integer>> reminderPeriods) {
+        this(title, dateTime, isToRemind, DEFAULT_END_RECURRENCE, recurrenceType, reminderPeriods);
     }
 
     /**
@@ -51,18 +68,30 @@ public abstract class RecurringEvent extends Event {
      */
     public ArrayList<Event> getRecurrences(LocalDate startDate, LocalDate endDate) {
         ArrayList<Event> eventSet = new ArrayList<>();
-        LocalTime timing = getTime();
         while (startDate.compareTo(endDate) <= 0) {
             if (checkAfterEndRecurrence(startDate)) {
                 return eventSet;
             }
-            LocalDateTime dateTime = LocalDateTime.of(startDate, timing);
-            Event e = new Event(getTitle(), dateTime, getToRemind(), false,
-                    getTimeBeforeReminder(), getTimeUnit());
-            eventSet.add(e);
-            startDate = timeStep(startDate);
+            if (toReoccur(startDate)) {
+                LocalDateTime dateTime = LocalDateTime.of(startDate, getTime());
+                Event e = new Event(getTitle(), dateTime, getToRemind(), false, getReminderPeriod());
+                eventSet.add(e);
+            }
+            startDate = startDate.plusDays(1);
         }
         return eventSet;
+    }
+
+    public boolean toReoccur(LocalDate date) {
+        LocalDate eventDate = getDate();
+        while (eventDate.compareTo(date) < 0) {
+            eventDate = timeStep(eventDate);
+        }
+        if (eventDate.equals(date)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -75,13 +104,6 @@ public abstract class RecurringEvent extends Event {
         }
         return super.toString() + String.format(" (%s)", recurrenceType) + InterfaceManager.LS + endRecurrenceString;
     }
-
-    /**
-     * Provide a time step of the current event by one time unit and return it as a immutable object.
-     *
-     * @return RecurringEvent with one time step forward.
-     */
-    public abstract RecurringEvent stepOneTimePeriod();
 
     /**
      * Provides a time step of a specified date by one time unit and return it as a LocalDate object.

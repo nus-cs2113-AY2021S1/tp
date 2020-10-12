@@ -1,19 +1,22 @@
 package seedu.duke.data.timetable;
 
-import seedu.duke.data.exception.SystemException;
 import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.DateComparator;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 /**
  * Represents an Event. Contains all the information of an Event.
  */
-public class Event {
-    private static final String REMINDER_DAY = "day";
-    private static final String REMINDER_WEEK = "week";
-    private static final String REMINDER_MONTH = "month";
+public class Event implements Comparable<Event> {
+    public static final String REMINDER_DAY = "day";
+    public static final String REMINDER_WEEK = "week";
 
     private String title;
     // Can be combined into LocalDateTime
@@ -21,8 +24,7 @@ public class Event {
     private LocalTime time;
     private Boolean isToRemind;
     private Boolean isRecurring;
-    private int timeBeforeReminder = 1;
-    private String timeUnit = REMINDER_DAY;
+    private HashMap<String, ArrayList<Integer>> reminderPeriods = new HashMap<>();
 
     /**
      * Creates an Event object with its title, date and time provided.
@@ -63,16 +65,39 @@ public class Event {
      * @param time Time of the event.
      * @param isToRemind Whether event is set to remind.
      * @param isRecurring Whether event is set to re-occur.
-     * @param timeBeforeReminder How much time units before event date to remind the user.
-     * @param timeUnit What time unit to use.
+     * @param timePeriods Time periods to remind about this event before it occurs.
+     * @param timeUnits Time units to remind about this event before it occurs.
      */
     public Event(String title, LocalDate date, LocalTime time, boolean isToRemind, boolean isRecurring,
-                 int timeBeforeReminder, String timeUnit) {
+                 ArrayList<Integer> timePeriods, ArrayList<String> timeUnits) {
         this(title, date, time);
         this.isToRemind = isToRemind;
         this.isRecurring = isRecurring;
-        this.timeBeforeReminder = timeBeforeReminder;
-        this.timeUnit = timeUnit;
+
+        assert timePeriods.size() == timeUnits.size() : "Something is wrong with the parser! Check it out.";
+
+        for (int i = 0; i < timePeriods.size(); i++) {
+            String timeUnit = timeUnits.get(i);
+            ArrayList<Integer> storedReminders = reminderPeriods.get(timeUnit);
+            if (storedReminders == null) {
+                storedReminders = new ArrayList<>();
+            }
+            storedReminders.add(timePeriods.get(i));
+            Collections.sort(storedReminders);
+            reminderPeriods.put(timeUnit, storedReminders);
+        }
+
+    }
+
+    public Event(String title, LocalDate date, LocalTime time, boolean isToRemind, boolean isRecurring,
+                 HashMap<String, ArrayList<Integer>> reminderPeriods) {
+        this(title, date, time, isToRemind, isRecurring);
+        this.reminderPeriods = reminderPeriods;
+    }
+
+    public Event(String title, LocalDateTime dateTime, boolean isToRemind, boolean isRecurring,
+                  HashMap<String, ArrayList<Integer>> reminderPeriods) {
+        this(title, dateTime.toLocalDate(), dateTime.toLocalTime(), isToRemind, isRecurring, reminderPeriods);
     }
 
     /**
@@ -95,13 +120,12 @@ public class Event {
      * @param dateTime LocalDateTime provided by user input.
      * @param isToRemind Whether event is set to remind.
      * @param isRecurring Whether event is set to re-occur.
-     * @param timeBeforeReminder How many time units before event date to remind the user.
-     * @param timeUnit Expected to be day, week, month.
+     * @param timePeriods Time periods to remind about this event before it occurs.
+     * @param timeUnits Time units to remind about this event before it occurs.
      */
-    public Event(String title, LocalDateTime dateTime, boolean isToRemind, boolean isRecurring, int timeBeforeReminder,
-                 String timeUnit) {
-        this(title, dateTime.toLocalDate(), dateTime.toLocalTime(), isToRemind, isRecurring, timeBeforeReminder,
-                timeUnit);
+    public Event(String title, LocalDateTime dateTime, boolean isToRemind, boolean isRecurring,
+                 ArrayList<Integer> timePeriods, ArrayList<String> timeUnits) {
+        this(title, dateTime.toLocalDate(), dateTime.toLocalTime(), isToRemind, isRecurring, timePeriods, timeUnits);
     }
 
     public String getTitle() {
@@ -136,43 +160,39 @@ public class Event {
         isToRemind = toRemind;
     }
 
+    public HashMap<String, ArrayList<Integer>> getReminderPeriod() {
+        return this.reminderPeriods;
+    }
+
     public boolean getRecurring() {
         return isRecurring;
-    }
-
-    public int getTimeBeforeReminder() {
-        return timeBeforeReminder;
-    }
-
-    public String getTimeUnit() {
-        return timeUnit;
     }
 
     public void setRecurring(boolean recurring) {
         isRecurring = recurring;
     }
 
-    public boolean checkTimeToRemind(LocalDate currentDate) throws SystemException {
-        switch (timeUnit) {
-        case REMINDER_DAY:
-            if (currentDate.plusDays(timeBeforeReminder).equals(date)) {
-                return true;
+    public ArrayList<LocalDate> getReminderDates() {
+        ArrayList<LocalDate> dates = new ArrayList<>();
+        for (String unit : reminderPeriods.keySet()) {
+            ArrayList<Integer> timePeriodsInUnit = reminderPeriods.get(unit);
+            LocalDate date = this.date;
+            for (Integer timePeriod : timePeriodsInUnit) {
+                switch (unit) {
+                case REMINDER_DAY:
+                    date = date.plusDays(-timePeriod);
+                    break;
+                case REMINDER_WEEK:
+                    date = date.plusWeeks(-timePeriod);
+                    break;
+                default:
+                    break;
+                }
+                dates.add(date);
             }
-            break;
-        case REMINDER_WEEK:
-            if (currentDate.plusWeeks(timeBeforeReminder).equals(date)) {
-                return true;
-            }
-            break;
-        case REMINDER_MONTH:
-            if (currentDate.plusMonths(timeBeforeReminder).equals(date)) {
-                return true;
-            }
-            break;
-        default:
-            throw new SystemException(SystemException.ExceptionType.EXCEPTION_WRONG_TIME_UNIT);
         }
-        return false;
+        dates.sort(new DateComparator());
+        return dates;
     }
 
     public String toReminderString() {
@@ -190,5 +210,20 @@ public class Event {
         String lineSeparator = InterfaceManager.LS;
         return titleString + lineSeparator + dateString + lineSeparator + remindString
                 + lineSeparator + repeatingString;
+    }
+
+    @Override
+    public int compareTo(Event o) {
+        int comp = date.compareTo(o.date);
+        if (comp != 0) {
+            return comp;
+        } else {
+            comp = time.compareTo(o.time);
+            if (comp != 0) {
+                return comp;
+            } else {
+                return title.compareTo(o.title);
+            }
+        }
     }
 }

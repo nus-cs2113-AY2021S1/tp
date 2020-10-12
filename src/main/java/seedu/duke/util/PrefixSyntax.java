@@ -19,6 +19,7 @@ public class PrefixSyntax {
     public static final String PREFIX_CONTENT = "/c";
     public static final String PREFIX_LINE = "/ln";
     public static final String PREFIX_DELIMITER = "/";
+    public static final String TIMING_SPLIT_DELIMITER = "-";
     public static final String STRING_SPLIT_DELIMITER = " ";
     public static final String STRING_NEW_LINE = "\n";
     public static final String PREFIX_DELETE_LINE = "/del";

@@ -37,6 +37,7 @@ import java.time.LocalDateTime;
 import seedu.duke.ui.InterfaceManager;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
@@ -52,6 +53,7 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TIMING;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.duke.util.PrefixSyntax.STRING_SPLIT_DELIMITER;
+import static seedu.duke.util.PrefixSyntax.TIMING_SPLIT_DELIMITER;
 
 /**
  * Parses user input.
@@ -112,7 +114,7 @@ public class Parser {
             case TagCommand.COMMAND_WORD:
                 return prepareTag(userMessage);
             case RemindCommand.COMMAND_WORD:
-                // return prepareRemind(userMessage);
+                 return prepareRemind(userMessage);
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
             case HelpCommand.COMMAND_WORD:
@@ -125,6 +127,10 @@ public class Parser {
         } catch (SystemException exception) {
             return new IncorrectCommand(exception.getMessage());
         }
+    }
+
+    private Command prepareRemind(String userMessage) {
+        return new RemindCommand();
     }
 
     /**
@@ -287,6 +293,8 @@ public class Parser {
         boolean toRemind = false;
         boolean isRecurring = false;
         String recurringType = "";
+        ArrayList<Integer> timePeriods = new ArrayList<>();
+        ArrayList<String> timeUnits = new ArrayList<>();
 
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
@@ -305,6 +313,39 @@ public class Parser {
                     break;
                 case PREFIX_REMIND:
                     toRemind = true;
+                    if (infoDetails.length == 1 || infoDetails[1].isBlank()) {
+                        timeUnits.add(Event.REMINDER_DAY);
+                        timePeriods.add(1);
+                        break;
+                    }
+                    String[] reminderDetails = infoDetails[1].split(STRING_SPLIT_DELIMITER);
+                    for (int i = 0; i < reminderDetails.length; i++) {
+                        String[] timeStrings = reminderDetails[i].split(TIMING_SPLIT_DELIMITER);
+                        if (timeStrings.length != 2) {
+                            throw new SystemException(ExceptionType.EXCEPTION_WRONG_REMINDER_FORMAT);
+                        }
+                        Integer timePeriod;
+                        String timeUnit;
+                        try {
+                            timePeriod = Integer.parseInt(timeStrings[0]);
+                            timeUnit = timeStrings[1];
+                            if ((!timeUnit.equals(Event.REMINDER_DAY) && !timeUnit.equals(Event.REMINDER_WEEK))
+                                    || timePeriod < 1) {
+                                throw new SystemException(ExceptionType.EXCEPTION_WRONG_REMINDER_FORMAT);
+                            }
+
+                            ExceptionType exception = ExceptionType.EXCEPTION_EARLY_REMINDER;
+                            if (timeUnit.equals(Event.REMINDER_WEEK) && timePeriod > 1) {
+                                throw new SystemException(exception);
+                            } else if (timeUnit.equals(Event.REMINDER_DAY) && timePeriod > 7) {
+                                throw new SystemException(exception);
+                            }
+                        } catch (NumberFormatException exception) {
+                            throw new SystemException(ExceptionType.EXCEPTION_WRONG_REMINDER_FORMAT);
+                        }
+                        timeUnits.add(timeUnit);
+                        timePeriods.add(timePeriod);
+                    }
                     break;
                 case PREFIX_RECURRING:
                     isRecurring = true;
@@ -342,24 +383,24 @@ public class Parser {
             LocalDate date = (recurringEndTime != null) ? recurringEndTime.toLocalDate() : null;
             switch (recurringType) {
             case RecurringEvent.DAILY_RECURRENCE_TYPE:
-                event = new DailyEvent(title, dateTime, toRemind, date);
+                event = new DailyEvent(title, dateTime, toRemind, date, timePeriods, timeUnits);
                 break;
             case RecurringEvent.WEEKLY_RECURRENCE_TYPE:
 
-                event = new WeeklyEvent(title, dateTime, toRemind, date);
+                event = new WeeklyEvent(title, dateTime, toRemind, date, timePeriods, timeUnits);
                 break;
             case RecurringEvent.MONTHLY_RECURRENCE_TYPE:
-                event = new MonthlyEvent(title, dateTime, toRemind, date);
+                event = new MonthlyEvent(title, dateTime, toRemind, date, timePeriods, timeUnits);
                 break;
             case RecurringEvent.YEARLY_RECURRENCE_TYPE:
-                event = new YearlyEvent(title, dateTime, toRemind, date);
+                event = new YearlyEvent(title, dateTime, toRemind, date, timePeriods, timeUnits);
                 break;
             default:
                 throw new SystemException(ExceptionType.EXCEPTION_WRONG_RECURRING_TYPE);
 
             }
         } else {
-            event = new Event(title, dateTime, toRemind, isRecurring);
+            event = new Event(title, dateTime, toRemind, isRecurring, timePeriods, timeUnits);
         }
         return new AddEventCommand(event);
     }
@@ -524,8 +565,52 @@ public class Parser {
 
     }
 
-    private Command prepareListEvent(String userMessage) {
-        return new ListEventCommand();
+    private Command prepareListEvent(String userMessage) throws SystemException {
+        if (userMessage == null) {
+            return new ListEventCommand();
+        } else {
+            ArrayList<String[]> splitInfoDetails = splitInfoDetails(userMessage);
+            String details = "";
+            int year;
+            int month;
+
+            if (splitInfoDetails.size() == 0) {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TIMING_PREFIX);
+            }
+
+            for (String[] infoDetails : splitInfoDetails) {
+                String prefix = infoDetails[0].toLowerCase();
+                switch (prefix) {
+                case PREFIX_TIMING:
+                    ExceptionType exception = ExceptionType.EXCEPTION_WRONG_LIST_TIMING_FORMAT;
+                    details = checkBlank(infoDetails[1], exception);
+                    break;
+                default:
+                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
+                }
+            }
+            try {
+                String[] timings = details.split(TIMING_SPLIT_DELIMITER);
+                if (timings.length == 1) {
+                    year = Integer.parseInt(timings[0]);
+                    if (year <= 1000 || year > 3000) {
+                        throw new SystemException(ExceptionType.EXCEPTION_SEARCH_DATE_OUT_OF_RANGE);
+                    } else {
+                        return new ListEventCommand(year);
+                    }
+                } else {
+                    year = Integer.parseInt(timings[0]);
+                    month = Integer.parseInt(timings[1]);
+                }
+                if (year <= 1000 || year > 3000 || month < 0 || month > 12) {
+                    throw new SystemException(ExceptionType.EXCEPTION_SEARCH_DATE_OUT_OF_RANGE);
+                }
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException exception) {
+                throw new SystemException(ExceptionType.EXCEPTION_WRONG_LIST_TIMING_FORMAT);
+            }
+
+            return new ListEventCommand(year, month);
+        }
     }
 
     /**

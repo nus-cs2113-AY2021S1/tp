@@ -2,6 +2,7 @@ package seedu.duke.data.timetable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
  * Subclass of RecurringEvent that re-occurs every day.
@@ -17,8 +18,10 @@ public class DailyEvent extends RecurringEvent {
      * @param isToRemind Whether the Event requires reminders.
      * @param endRecurrence When the Event should stop re-occurring.
      */
-    public DailyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence) {
-        super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.DAILY_RECURRENCE_TYPE);
+    public DailyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence,
+                      ArrayList<Integer> timePeriods, ArrayList<String> timeUnits) {
+        super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.DAILY_RECURRENCE_TYPE,
+                timePeriods, timeUnits);
     }
 
     /**
@@ -28,15 +31,12 @@ public class DailyEvent extends RecurringEvent {
      * @param dateTime DateTime of Event
      * @param isToRemind Whether the Event requires reminders.
      */
-    public DailyEvent(String title, LocalDateTime dateTime, boolean isToRemind) {
-        super(title, dateTime, isToRemind, RecurringEvent.DAILY_RECURRENCE_TYPE);
+    public DailyEvent(String title, LocalDateTime dateTime, boolean isToRemind,
+                      ArrayList<Integer> timePeriods, ArrayList<String> timeUnits) {
+        super(title, dateTime, isToRemind, RecurringEvent.DAILY_RECURRENCE_TYPE, timePeriods, timeUnits);
     }
 
-    @Override
-    public RecurringEvent stepOneTimePeriod() {
-        LocalDate date = getDate().plusDays(TIME_STEP);
-        return new DailyEvent(getTitle(), LocalDateTime.of(date, getTime()), getToRemind());
-    }
+
 
     @Override
     public LocalDate timeStep(LocalDate date) {

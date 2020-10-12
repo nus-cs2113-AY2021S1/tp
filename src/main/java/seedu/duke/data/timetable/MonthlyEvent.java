@@ -2,6 +2,7 @@ package seedu.duke.data.timetable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
  * Subclass of RecurringEvent that re-occurs every month.
@@ -9,18 +10,15 @@ import java.time.LocalDateTime;
 public class MonthlyEvent extends RecurringEvent {
     private static final int TIME_STEP = 1;
 
-    public MonthlyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence) {
-        super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.MONTHLY_RECURRENCE_TYPE);
+    public MonthlyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence,
+                        ArrayList<Integer> timePeriods, ArrayList<String> timeUnits) {
+        super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.MONTHLY_RECURRENCE_TYPE,
+                timePeriods, timeUnits);
     }
 
-    public MonthlyEvent(String title, LocalDateTime dateTime, boolean isToRemind) {
-        super(title, dateTime, isToRemind, RecurringEvent.MONTHLY_RECURRENCE_TYPE);
-    }
-
-    @Override
-    public RecurringEvent stepOneTimePeriod() {
-        LocalDate date = timeStep(getDate());
-        return new MonthlyEvent(getTitle(), LocalDateTime.of(date, getTime()), getToRemind());
+    public MonthlyEvent(String title, LocalDateTime dateTime, boolean isToRemind,
+                        ArrayList<Integer> timePeriods, ArrayList<String> timeUnits) {
+        super(title, dateTime, isToRemind, RecurringEvent.MONTHLY_RECURRENCE_TYPE, timePeriods, timeUnits);
     }
 
     @Override

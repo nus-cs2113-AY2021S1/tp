@@ -1,10 +1,15 @@
 package seedu.duke.command;
 
+import seedu.duke.data.timetable.Reminder;
+import seedu.duke.ui.InterfaceManager;
+
+import java.util.ArrayList;
+
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 
 /**
- * Sets the reminder status of an Event.
+ * Returns all the reminders that should occur today.
  */
 public class RemindCommand extends Command {
 
@@ -21,18 +26,28 @@ public class RemindCommand extends Command {
     }
 
     /**
-     * Constructs a RemindCommand to set the reminder status of an Event.
-     *
-     * @param index of the Event.
-     * @param isToRemind the reminder status of the Event.
+     * Default constructor of RemindEvent. No arguments are expected as we are only looking at reminders today.
      */
-    public RemindCommand(int index, boolean isToRemind) {
-        this.index = index;
-        this.isToRemind = isToRemind;
+    public RemindCommand() {
+
     }
 
     @Override
     public String execute() {
-        return null;
+        ArrayList<Reminder> reminders = timetable.getReminders();
+        String result = "Reminders:" + InterfaceManager.LS;
+        if (reminders.size() == 0) {
+            result += "No reminders today!";
+        } else {
+            boolean first = true;
+            for (Reminder reminder : reminders) {
+                if (!first) {
+                    result += InterfaceManager.LS;
+                }
+                first = false;
+                result += reminder.toString();
+            }
+        }
+        return result;
     }
 }
