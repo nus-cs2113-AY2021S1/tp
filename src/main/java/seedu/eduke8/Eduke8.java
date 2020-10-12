@@ -2,6 +2,7 @@ package seedu.eduke8;
 
 import org.json.simple.parser.ParseException;
 import seedu.eduke8.command.Command;
+import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.parser.MenuParser;
 import seedu.eduke8.storage.TopicsStorage;
 import seedu.eduke8.topic.TopicList;
@@ -43,9 +44,14 @@ public class Eduke8 {
 
         while (!isExit) {
             String userInput = ui.getInputFromUser();
-            Command command = menuParser.parseCommand(topicList, userInput);
-            command.execute(topicList, ui);
-            isExit = command.isExit();
+
+            try {
+                Command command = menuParser.parseCommand(topicList, userInput);
+                command.execute(topicList, ui);
+                isExit = command.isExit();
+            } catch (Eduke8Exception e) {
+                ui.printError();        // able to call ui.printError(e.getMessage()) too if implemented
+            }
         }
     }
 

@@ -8,6 +8,7 @@ import seedu.eduke8.command.QuizCommand;
 import seedu.eduke8.command.TextbookCommand;
 import seedu.eduke8.command.TopicsCommand;
 import seedu.eduke8.common.DisplayableList;
+import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
@@ -17,7 +18,7 @@ public class MenuParser implements Parser {
     }
 
     @Override
-    public Command parseCommand(DisplayableList topicList, String userInput) {
+    public Command parseCommand(DisplayableList topicList, String userInput) throws Eduke8Exception {
         int numOfQuestions = 0;
         String topicName = "";
         String[] commandArr = userInput.trim().split(" ", 0);
@@ -44,7 +45,6 @@ public class MenuParser implements Parser {
         default:
             break;
         }
-
         return null; // Return command object instead
     }
 }
