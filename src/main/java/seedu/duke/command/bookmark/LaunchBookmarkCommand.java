@@ -36,8 +36,6 @@ public class LaunchBookmarkCommand extends Command {
         try {
             index = Integer.parseInt(details.trim()) - 1;
             launchTypeFlag = 1; // (flag to launch bookmark at specified index)
-        } catch (NullPointerException | IndexOutOfBoundsException e) {
-            throw new DukeException(DukeExceptionType.INVALID_BOOKMARK_NUMBER);
         } catch (NumberFormatException e) {
             moduleAndDescription = new ArrayList<>(Arrays.asList(details.trim().split(" ", 2)));
             if (moduleAndDescription.size() == 1) {
@@ -66,7 +64,7 @@ public class LaunchBookmarkCommand extends Command {
                 bookmark.launch();
                 ui.print(getMessage(bookmark));
             } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(DukeExceptionType.INVALID_BOOKMARK_NUMBER, ""
+                throw new DukeException(DukeExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS, ""
                         + bookmarks.getBookmarkList().size());
             }
             return;

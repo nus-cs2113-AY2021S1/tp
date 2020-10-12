@@ -47,7 +47,8 @@ public class BookmarkList extends ItemList {
      *
      * @param bookmark the bookmark to be added to the list.
      */
-    public void addBookmark(Bookmark bookmark)  {
+    public void addBookmark(Bookmark bookmark) {
+        assert bookmark != null : "Added bookmark should not be null!";
         bookmarks.add(bookmark);
     }
 
@@ -87,16 +88,10 @@ public class BookmarkList extends ItemList {
      *
      * @param index The index of the bookmark in the list.
      * @return The bookmark with the corresponding index in the list.
-     * @throws DukeException if the index is out of range.
+     * @throws IndexOutOfBoundsException if the index is out of range.
      */
-    public Bookmark getBookmark(int index) throws DukeException {
-        Bookmark bookmark;
-        try {
-            bookmark = bookmarks.get(index);
-        } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(DukeExceptionType.INVALID_BOOKMARK_NUMBER);
-        }
-        return bookmark;
+    public Bookmark getBookmark(int index) throws IndexOutOfBoundsException {
+        return bookmarks.get(index);
     }
 
     /**
@@ -114,12 +109,10 @@ public class BookmarkList extends ItemList {
      * @param bookmark The bookmark to be deleted.
      * @throws NullPointerException if the bookmark does not exist in the list.
      */
-    public void deleteBookmark(Bookmark bookmark) throws DukeException {
-        try {
-            bookmarks.remove(bookmark);
-        } catch (NullPointerException e) {
-            throw new DukeException(DukeExceptionType.INVALID_BOOKMARK_NUMBER);
-        }
+    public void deleteBookmark(Bookmark bookmark) {
+        assert bookmarks.contains(bookmark) : "Bookmark to be"
+                + "deleted not in list!";
+        bookmarks.remove(bookmark);
     }
 
     /**
@@ -162,6 +155,7 @@ public class BookmarkList extends ItemList {
     }
 
     private String getMatchingBookmarks(String module, String description) {
+        assert !description.equals("") : "Description should not be empty!";
         String message = "";
         for (int i = 0; i < bookmarks.size(); i++) {
             if (bookmarks.get(i).getModule().toUpperCase().contains(module)
@@ -199,6 +193,7 @@ public class BookmarkList extends ItemList {
     }
 
     private String launchMatchingBookmarks(String module, String description) {
+        assert !description.equals("") : "Description should not be empty!";
         String message = "";
         String errorMessage = "";
         for (int i = 0; i < bookmarks.size(); i++) {
