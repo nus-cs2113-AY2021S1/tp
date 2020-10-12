@@ -61,7 +61,8 @@ public class EditCommand extends Command {
             ui.showCardEdited(card);
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             throw new InvalidInputException("The flashcard number needs to be within the range "
-                    + " of the total number of flashcards");
+                    + " of the total number of flashcards\n"
+                    + MESSAGE_USAGE);
         }
     }
 

@@ -154,7 +154,8 @@ public class Parser {
         if (access.isChapterLevel()) {
             return prepareEditCard(commandArgs);
         } else {
-            throw new IncorrectAccessLevelException("Edit command cannot be called at this level.");
+            throw new IncorrectAccessLevelException("Edit command can only be called at admin, "
+                    + "module and chapter level.\n");
         }
     }
 
@@ -162,7 +163,8 @@ public class Parser {
         try {
             String[] args = commandArgs.split(" ", 2);
             if (args[0].trim().isEmpty()) {
-                throw new InvalidInputException();
+                throw new InvalidInputException("The flashcard number is missing.\n"
+                        + EditCommand.MESSAGE_USAGE);
             }
 
             int editIndex = Integer.parseInt(args[0].trim()) - 1;
@@ -172,14 +174,17 @@ public class Parser {
             String answer = parseAnswer(questionAndAnswer[1]);
 
             if (question.isEmpty() && answer.isEmpty()) {
-                throw new InvalidInputException("The content for question and answer are both empty.");
+                throw new InvalidInputException("The content for question and answer are both empty.\n"
+                        + EditCommand.MESSAGE_USAGE);
             }
 
             return new EditCommand(editIndex, question, answer);
         } catch (NumberFormatException e) {
-            throw new InvalidInputException("The flashcard number needs to be an integer.");
+            throw new InvalidInputException("The flashcard number needs to be an integer.\n"
+                    + EditCommand.MESSAGE_USAGE);
         } catch (IndexOutOfBoundsException e) {
-            throw new InvalidInputException("The format for the edit command is incorrect.");
+            throw new InvalidInputException("The format for the edit command is incorrect.\n"
+                    + EditCommand.MESSAGE_USAGE);
         }
     }
 
