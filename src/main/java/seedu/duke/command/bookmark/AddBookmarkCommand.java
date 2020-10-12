@@ -41,15 +41,11 @@ public class AddBookmarkCommand extends Command {
      */
     @Override
     public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
-                        Storage bookmarkStorage, Storage slotStorage) {
+                        Storage bookmarkStorage, Storage slotStorage) throws DukeException {
         Bookmark bookmark = new Bookmark(module, description, url);
         bookmarks.addBookmark(bookmark);
         ui.print("Added bookmark: " + "[" + module + "] "
                 + description + " " +  url + System.lineSeparator());
-        try {
-            bookmarkStorage.save(bookmarks.getData());
-        } catch (DukeException e) {
-            e.printStackTrace();
-        }
+        bookmarkStorage.save(bookmarks.getData());
     }
 }

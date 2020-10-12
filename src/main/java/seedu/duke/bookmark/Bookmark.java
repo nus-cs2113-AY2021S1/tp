@@ -45,11 +45,16 @@ public class Bookmark {
         assert input.startsWith(AddBookmarkCommand.ADD_KW) : "input should always start with \"add\"";
         input = input.substring(AddBookmarkCommand.ADD_KW.length()).trim();
         List<String> moduleDescriptionUrl = new ArrayList<>(Arrays.asList(input.split(" ", 3)));
+        input = input.substring(AddBookmarkCommand.ADD_KW.length());
+        if (!input.startsWith(" ")) {
+            throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
+        }
+        List<String> moduleDescriptionUrl = new ArrayList<>(Arrays.asList(input.trim().split(" ", 3)));
         if (moduleDescriptionUrl.size() == 2) {
             moduleDescriptionUrl.add(0, "");  // No entry for module
         }
         if (moduleDescriptionUrl.size() != 3) {
-            throw new DukeException(DukeExceptionType.INVALID_BOOKMARK_INPUT);
+            throw new DukeException(DukeExceptionType.INVALID_ADD_BOOKMARK_INPUT);
         }
         if (moduleDescriptionUrl.get(1).isBlank()) {
             throw new DukeException(DukeExceptionType.EMPTY_DESCRIPTION);

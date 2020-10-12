@@ -1,6 +1,5 @@
 package seedu.duke.command.bookmark;
 
-import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.bookmark.Bookmark;
@@ -12,8 +11,7 @@ import seedu.duke.slot.SlotList;
 
 public class DeleteBookmarkCommand extends Command {
     public static final String DEL_KW = "delete";
-    private int index;
-
+    private final int index;
 
     /**
      * Constructs a new DeleteBookmarkCommand instance and stores the information of the bookmark given by the input.
@@ -28,7 +26,7 @@ public class DeleteBookmarkCommand extends Command {
         }
         try {
             index = Integer.parseInt(details.trim()) - 1;
-        } catch (NullPointerException | NumberFormatException | IndexOutOfBoundsException e) {
+        } catch (NumberFormatException e) {
             throw new DukeException(DukeExceptionType.INVALID_BOOKMARK_NUMBER);
         }
     }
@@ -46,10 +44,10 @@ public class DeleteBookmarkCommand extends Command {
                         Storage bookmarkStorage, Storage slotStorage) throws DukeException {
         try {
             Bookmark bookmark = bookmarks.getBookmark(index);
-            bookmarks.deleteBookmark(bookmarks.getBookmark(index));
+            bookmarks.deleteBookmark(bookmark);
             ui.print(getMessage(bookmark));
             bookmarkStorage.save(bookmarks.getData());
-        } catch (IndexOutOfBoundsException e) {
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
             throw new DukeException(DukeExceptionType.INVALID_BOOKMARK_NUMBER);
         }
     }
