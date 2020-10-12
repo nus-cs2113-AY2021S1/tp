@@ -134,6 +134,12 @@ public class Ui {
 
     }
 
+    public static void printEditShow(String showName) {
+        printLine();
+        System.out.println("Updated show details.");
+
+    }
+
     public static void printChangeSeason(String showName) {
         printLine();
         System.out.println("Updated current season : " + ShowList.getShow(showName).toString());
