@@ -1,6 +1,5 @@
 package seedu.duke.command;
 
-import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.timetable.Event;
 import seedu.duke.ui.InterfaceManager;
 
