@@ -1,1 +1,1 @@
-James Gosling
+project /create -title book1 -desc big book -end 3 -duration 15 -sd 6
