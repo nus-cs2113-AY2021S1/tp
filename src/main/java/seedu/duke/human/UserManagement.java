@@ -30,6 +30,10 @@ public class UserManagement {
         currentUser = inputUser;
     }
 
+    public int getTotalUsers() {
+        return userList.size();
+    }
+
     public User addUser(String name, String dob, String gender) throws ParseException, AniException {
         User newUser = new User(name, dob, gender);
 
