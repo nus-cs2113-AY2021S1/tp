@@ -151,8 +151,8 @@ public class Storage {
         return cards;
     }
 
-    public static void saveCards(CardList cards, String module, String chapter) throws IOException {
-        FileWriter fw = new FileWriter(FILE_PATHWAY);
+    public void saveCards(CardList cards, String module, String chapter) throws IOException {
+        FileWriter fw = new FileWriter(filePath + "/" + module + "/" + chapter + ".txt");
         for (int i = 0; i < cards.getCardCount(); i++) {
             fw.write(cards.getCard(i).toString() + "\n");
         }

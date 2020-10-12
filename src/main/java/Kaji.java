@@ -1,7 +1,6 @@
 import access.Access;
 import commands.Command;
 import exception.IncorrectAccessLevelException;
-import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import manager.admin.Admin;
 import manager.chapter.CardList;
@@ -44,7 +43,7 @@ public class Kaji {
                 c.execute(cards, ui, access, storage);
                 ui.printEmptyLine();
                 isExit = c.isExit();
-            } catch (InvalidInputException | IncorrectAccessLevelException e) {
+            } catch (InvalidInputException | IncorrectAccessLevelException | IOException e) {
                 ui.showError(e.getMessage());
             }
         }

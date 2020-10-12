@@ -60,7 +60,6 @@ public class Card {
     }
 
     public String toString() {
-        String dueDate = dueBy.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-        return "[Q] " + question + " | [A] " + answer +"(due date:" + dueDate +")";
+        return "[Q] " + question + " | [A] " + answer +" | [D] " + dueBy;
     }
 }
