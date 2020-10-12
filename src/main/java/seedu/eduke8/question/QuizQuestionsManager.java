@@ -8,12 +8,12 @@ import java.util.Random;
 // import java.util.logging.Logger;
 
 public class QuizQuestionsManager {
-    private static final String INVALID_QUIZ_QUESTION_NUMBER = "Number of quiz questions must be more than 1";
-    private static final String INSUFFICIENT_TOPIC_QUESTIONS_FOR_QUIZ =
+    public static final String INVALID_QUIZ_QUESTION_NUMBER = "Number of quiz questions must be more than 1";
+    public static final String INSUFFICIENT_TOPIC_QUESTIONS_FOR_QUIZ =
             "There is not enough questions in the topic for the quiz!";
 
 
-    private ArrayList<Question> quizQuestions = null;
+    protected ArrayList<Question> quizQuestions = null;
     private int currentQuestionNumber;
 
     private static final Random RANDOM = new Random();
@@ -70,5 +70,9 @@ public class QuizQuestionsManager {
 
     public boolean areAllQuestionsAnswered() {
         return currentQuestionNumber == quizQuestions.size();
+    }
+
+    public int getQuizQuestionsCount() {
+        return quizQuestions.size();
     }
 }
