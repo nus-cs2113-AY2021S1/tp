@@ -1,5 +1,8 @@
 package seedu.duke.ui;
 
+import seedu.duke.Bus;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -29,5 +32,14 @@ public class Ui {
 
     public static void printExitMessage() {
         System.out.println("So long buddy!");
+    }
+
+    public static void printRouteMessage(ArrayList<Bus> options) {
+        int i = 1;
+        System.out.println("\nThe buses you can take are: ");
+        for (Bus option: options) {
+            System.out.println(i + ". " + option.toString());
+            i++;
+        }
     }
 }
