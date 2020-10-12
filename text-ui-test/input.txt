@@ -1,1 +1,6 @@
+todo homework
+deadline project /by 101020
+help
+print events
+print tasks
 bye
