@@ -13,13 +13,13 @@ public class Messages {
     public static final String UNKNOWN_COMMAND = "Unknown command!";
     public static final String INVALID_TASK_NUMBER = "Invalid task number!";
 
-    public static final String WELCOME_MESSAGE = ANSI_YELLOW + "Welcome to" + ANSI_RESET + LS + ANSI_CYAN
+    public static final String WELCOME_MESSAGE = "Welcome to" + LS
             + "    ____  __      _   ____  _______" + LS
             + "   / __ \\/ /___ _/ | / / / / / ___/" + LS
             + "  / /_/ / / __ `/  |/ / / / /\\__ \\ " + LS
             + " / ____/ / /_/ / /|  / /_/ /___/ / " + LS
             + "/_/   /_/\\__,_/_/ |_/\\____//____/  "
-            + "v1.0" + ANSI_RESET;
+            + "v1.0";
     public static final String HELP_MESSAGE = "List of available commands:" + LS
             + "- help: show list of available commands" + LS
             + "- add: add a task" + LS
