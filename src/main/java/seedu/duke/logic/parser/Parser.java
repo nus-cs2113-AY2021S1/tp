@@ -4,11 +4,8 @@ import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
 import seedu.duke.logic.commands.Command;
 import seedu.duke.logic.commands.ExitCommand;
-<<<<<<< HEAD
 import seedu.duke.logic.commands.RouteMapCommand;
-=======
 import seedu.duke.logic.commands.RouteCommand;
->>>>>>> master
 
 public class Parser {
 
@@ -31,31 +28,19 @@ public class Parser {
 
     public boolean extractType() throws CustomException {
 
-<<<<<<< HEAD
 
-        String command = splitCommands(2)[0];
-=======
         String[] parts = splitCommands(2, "\\s+");
         String command = parts[0];
->>>>>>> master
 
 
         switch (command) {
-<<<<<<< HEAD
-        //        case "/route":
-        //
-        //            break;
+
         case "/routemap":
             com = new RouteMapCommand();
             break;
-=======
         case "/route":
             com = new RouteCommand(parts[1]);
             break;
-        //        case "/routemap":
-        //
-        //            break;
->>>>>>> master
         //        case "/bus":
         //
         //            break;

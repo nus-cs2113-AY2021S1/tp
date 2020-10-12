@@ -3,6 +3,9 @@ package seedu.duke;
 import java.util.ArrayList;
 
 public class BusData {
+    /*Constants*/
+    private static final String ROUTE_AA1 = "aa1";
+    private static final String ROUTE_AA2 = "aa2";
 
     private static ArrayList<Bus> buses = new ArrayList<>();
 
@@ -21,4 +24,12 @@ public class BusData {
         return busOptions;
     }
 
+    public static Bus selectBus(String busCode) throws NullPointerException {
+        for (Bus bus: buses) {
+            if (bus.getBusNumber().equals(busCode.toUpperCase())) {
+                return bus;
+            }
+        }
+        return null;
+    }
 }
