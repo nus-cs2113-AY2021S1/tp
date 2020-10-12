@@ -1,0 +1,7 @@
+LAB|false|cs1010|2020-10-10|10:00|lt11
+T|false|homework
+D|false|project|2020-10-10
+LEC|false|cs2113|2020-10-08|16:00|lt12
+TUT|false|cs2113|2020-10-08|16:00|com1
+LAB|false|cs1010|2020-10-10|10:00|com1-bi-12
+EXAM|false|cs2113|2020-10-20|12:30|mpsh
