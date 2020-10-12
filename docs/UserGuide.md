@@ -40,7 +40,7 @@ Ensure that you have Java 11 installed in your Computer.
 5.You should see something like this below:
 
  
-<img src = "images/quickstart.PNG" width = "400">
+<img src = "images/quickstart.PNG" width = "500">
  
 &nbsp;  
 
@@ -65,7 +65,7 @@ The maximum length for a Show or Movie’s `NAME` is 100 characters.
   
 Expected outcome:
  
-<img src = "images/help.PNG" width = "400">
+<img src = "images/help.PNG" width = "500">
  
 &nbsp;
 
@@ -80,7 +80,7 @@ Expected outcome:
  
  Expected outcome:
   
- <img src = "images/add.PNG" width = "400">
+ <img src = "images/add.PNG" width = "500">
   
  &nbsp;
  
@@ -103,7 +103,7 @@ Expected outcome:
    
    Expected outcome:
     
-   <img src = "images/rating.PNG" width = "400">
+   <img src = "images/rating.PNG" width = "500">
     
    &nbsp;
  
@@ -118,7 +118,7 @@ This command displays all existing shows in your watchlist in an easy-to-read fo
    
    Expected outcome:
     
-   <img src = "images/list.PNG" width = "400">
+   <img src = "images/list.PNG" width = "500">
     
    &nbsp;
 
@@ -133,7 +133,8 @@ This command displays all existing shows in your watchlist in an easy-to-read fo
  
  Expected outcome:
   
-  
+ <img src = "images/delete.PNG" width = "500">
+
  &nbsp;
   
  
@@ -148,7 +149,8 @@ This command deletes the rating for an existing show in the watchlist.
  
  Expected outcome:
   
-  
+ <img src = "images/deleterating.PNG" width = "500">
+
  &nbsp;
 
 ### 4.h `changerating` - Changes rating of your show
@@ -162,7 +164,7 @@ This command changes the rating for an existing show which already has a rating 
  
  Expected outcome:
   
- <img src = "images/changerating.PNG" width = "400">
+ <img src = "images/changerating.PNG" width = "500">
   
  &nbsp;
 
@@ -177,7 +179,7 @@ This command updates the episode for an existing show that you currently have in
  
  Expected outcome:
   
- <img src = "images/episode.PNG" width = "400">
+ <img src = "images/episode.PNG" width = "500">
   
  &nbsp;
  
@@ -192,7 +194,7 @@ This command updates the season for an existing show that you currently have in 
  
  Expected outcome:
   
- <img src = "images/season.PNG" width = "400">
+ <img src = "images/season.PNG" width = "500">
   
  &nbsp;
  
@@ -207,7 +209,7 @@ Example of usage:
 
 Expected outcome:
  
-<img src = "images/bye.PNG" width = "400">
+<img src = "images/bye.PNG" width = "500">
  
 &nbsp;
 

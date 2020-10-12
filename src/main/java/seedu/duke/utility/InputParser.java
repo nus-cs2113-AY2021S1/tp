@@ -2,6 +2,7 @@ package seedu.duke.utility;
 
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.ChangeRatingCommand;
+import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.DeleteRatingCommand;
 import seedu.duke.commands.RatingCommand;
 import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
@@ -103,14 +104,16 @@ public class InputParser {
         case "add":
             parseAddCommand(input);
             return;
+
+
+        case "delete":
+            parseDeleteCommand(input);
+            return;
         /*
         case "edit":
 
             return parseEditCommand();
-
-        case "delete":
-
-            return parseDeleteCommand();*/
+*/
 
         case "":
             Ui.printNoInputException();
@@ -185,6 +188,15 @@ public class InputParser {
         //add show detail into appropriate class
         Ui.printShowAdded(tokenizedInput[1]);
     }
+
+    private static void parseDeleteCommand(String input) {
+        //catch for 1)show not found , 2) invalid no. of args
+        input = removeFirstWord(input);
+        DeleteCommand deletingShow = new DeleteCommand(input);
+        deletingShow.delete(input);
+        Ui.printDeleteShow(input);
+    }
+
     /*
     private static seedu.duke.commands.Command parseEditCommand(String input) {
         //this one might need check agn, the current i/o is a yikes imo
@@ -220,10 +232,7 @@ public class InputParser {
     }
 
 
-    private static void parseDeleteCommand(String input) {
-        //catch for 1)show not found , 2) invalid no. of args
-        Ui.printDeleteShow(input);
-    }*/
+*/
 
 }
 
