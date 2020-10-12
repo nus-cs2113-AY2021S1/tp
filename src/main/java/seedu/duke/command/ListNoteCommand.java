@@ -27,6 +27,9 @@ public class ListNoteCommand extends Command {
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG1...] "
             + "[up/down]";
 
+    public static final String UNSUCCESFUL_MESSAGE = "Your tags return no result."
+            + " Please try an alternative tag or check your spellings";
+
     private ArrayList<String> tags;
     private boolean isSorted;
     private Boolean isAscendingOrder;
@@ -110,11 +113,16 @@ public class ListNoteCommand extends Command {
             return noteString.toString();
         }
 
+        // Obtaining ArrayList<String> of tags and parsing it to get an ArrayList<Tag> of tags
         Map<Tag, ArrayList<Note>> tagMap = tagManager.getTagMap();
         ArrayList<Tag> tagList = new ArrayList<>();
 
         for (String tag : tags) {
-            tagList.add(tagManager.getTag(tag));
+            Tag currentTag = tagManager.getTag(tag);
+
+            if (tag != null) {
+                tagList.add(currentTag);
+            }
         }
 
         // Based on user inputted tags, will store the respective values in an ArrayList
@@ -132,6 +140,11 @@ public class ListNoteCommand extends Command {
                     notes.add(note);
                 }
             }
+        }
+
+        // Checking for empty notes List
+        if (notes.isEmpty()) {
+            return String.valueOf(noteString.append(UNSUCCESFUL_MESSAGE));
         }
 
         // Sort the tagged notes
