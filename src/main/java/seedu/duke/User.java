@@ -14,6 +14,9 @@ public class User {
     public Scanner in = new Scanner(System.in);
     private static boolean isConfig = false;
 
+    /**
+     * Setup configures user profile for first time use.
+     */
     public void setup() {
         System.out.println("Hi there, before we begin, let me get to know you :)");
         System.out.println("Please enter your name:");
@@ -165,4 +168,9 @@ public class User {
         this.weight = weight;
         this.gender = gender;
     }
+
+    public double getBmi() {
+        return weight / ((height) * (height));
+    }
+
 }
