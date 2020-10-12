@@ -4,5 +4,7 @@ addmod CS2113t
 addexp CS3000 6
 addexp CS3200 8
 list 2
+deletemod CS1000
+deletemod cs2113t
 exit
 
