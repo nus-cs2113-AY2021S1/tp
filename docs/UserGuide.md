@@ -57,6 +57,7 @@ The maximum length for a Show or Movie’s `NAME` is 100 characters.
  
 #### 4.a `help` - Views help
  The help list contains information about all accepted commands.
+ 
  Format:
   `help`
   
@@ -92,11 +93,15 @@ Expected outcome:
      
    Example of usage:
     `edit Friends`
+    
  Then you will be prompted to enter the fields you want to change such as:
  name, season, episode
+ 
     Example of usage:
      `name F.r.i.e.n.d.s` , `season 2`, `episode 10,11`
+     
  When you have completed all changes, use `done`.
+ 
  Expected outcome:
   
  <img src = "images/edit.PNG" width = "500">
