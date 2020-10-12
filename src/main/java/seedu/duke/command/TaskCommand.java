@@ -16,7 +16,7 @@ import static seedu.duke.command.CommandSummary.TASK_ID;
 
 
 public class TaskCommand {
-    public void addTaskCommand(Hashtable<String, String> tasks, ArrayList<Project> projectList)
+    public void addTaskCommand(Hashtable<String, String> tasks, Ui ui, ArrayList<Project> projectList)
             throws DukeException {
 
         String title;
