@@ -1,0 +1,50 @@
+Oct 12, 2020 3:52:11 PM seedu.duke.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 12, 2020 3:52:11 PM seedu.duke.commands.AddCommand executeParameters
+INFO: add category to book success
+Oct 12, 2020 3:52:11 PM seedu.duke.commands.AddCommand executeParameters
+INFO: add category to quote failed
+Oct 12, 2020 4:01:39 PM seedu.duke.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 12, 2020 4:01:39 PM seedu.duke.commands.AddCommand executeParameters
+WARNING: no book or quote specified
+Oct 12, 2020 4:03:38 PM seedu.duke.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 12, 2020 4:03:38 PM seedu.duke.commands.AddCommand executeParameters
+INFO: add category to book success
+Oct 12, 2020 4:03:38 PM seedu.duke.commands.AddCommand executeParameters
+INFO: add category to quote failed
+Oct 12, 2020 4:04:51 PM seedu.duke.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 12, 2020 4:04:51 PM seedu.duke.commands.AddCommand executeParameters
+WARNING: no book or quote specified
+Oct 12, 2020 4:05:32 PM seedu.duke.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 12, 2020 4:05:53 PM seedu.duke.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 12, 2020 4:06:14 PM seedu.duke.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 12, 2020 4:06:14 PM seedu.duke.commands.AddCommand addCategoryToBook
+WARNING: There is no such book!
+Oct 12, 2020 4:06:14 PM seedu.duke.commands.AddCommand executeParameters
+INFO: add category to book failed
+Oct 12, 2020 4:06:14 PM seedu.duke.commands.AddCommand executeParameters
+INFO: add category to quote failed
+Oct 12, 2020 4:06:19 PM seedu.duke.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 12, 2020 4:06:19 PM seedu.duke.commands.AddCommand addCategoryToBook
+WARNING: There is no such book!
+Oct 12, 2020 4:06:19 PM seedu.duke.commands.AddCommand executeParameters
+INFO: add category to book failed
+Oct 12, 2020 4:06:19 PM seedu.duke.commands.AddCommand executeParameters
+INFO: add category to quote failed
+Oct 12, 2020 4:06:52 PM seedu.duke.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 12, 2020 4:06:52 PM seedu.duke.commands.AddCommand executeParameters
+INFO: add category to book success
+Oct 12, 2020 4:06:52 PM seedu.duke.commands.AddCommand executeParameters
+INFO: add category to quote failed
+Oct 12, 2020 4:29:27 PM seedu.duke.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 12, 2020 4:29:47 PM seedu.duke.commands.AddCommand execute
+INFO: going to add category to book/quote

@@ -11,6 +11,12 @@ import seedu.duke.rating.RatingList;
 import seedu.duke.todo.ToDoList;
 import seedu.duke.ui.TextUi;
 
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
@@ -22,6 +28,7 @@ public class Duke {
     private RatingList ratings;
     private ToDoList toDos;
     private BookmarkList bookmarks;
+    private final static Logger logger = Logger.getLogger("QuotesifyLogger");
 
     public Duke() {
         ui = new TextUi();
@@ -38,6 +45,8 @@ public class Duke {
         ListManager.addToList(ListManager.RATING_LIST, ratings);
         ListManager.addToList(ListManager.TODO_LIST, toDos);
         ListManager.addToList(ListManager.BOOKMARK_LIST, bookmarks);
+
+        setupLogger();
     }
 
     public void start() {
@@ -72,5 +81,18 @@ public class Duke {
 
     public static void main(String[] args) {
         new Duke().run();
+    }
+
+    private static void setupLogger() {
+        logger.setUseParentHandlers(false);
+        logger.setLevel(Level.INFO);
+        try {
+            FileHandler fileHandler = new FileHandler("quotesify.log", true);
+            // remove this if you want to view logs in XML format
+            fileHandler.setFormatter(new SimpleFormatter());
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

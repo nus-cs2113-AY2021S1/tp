@@ -18,7 +18,7 @@ public class CategoryList extends QuotesifyList<Category> {
         super(categories);
     }
 
-    public boolean doesCategoryExist(String name) {
+    public boolean isExistingCategory(String name) {
         for (Category category : categories) {
             if (category.getCategoryName().equals(name)) {
                 return true;
