@@ -27,13 +27,9 @@ public class AddCommand extends Command {
     private String type;
     private String information;
 
-    public static Logger addLogger = Logger.getLogger("Add");
+    public static Logger addLogger = Logger.getLogger("QuotesifyLogger");
 
     public AddCommand(String arguments) {
-
-        addLogger.setUseParentHandlers(false);
-        addLogger.setLevel(Level.INFO);
-
         String[] details = arguments.split(" ", 2);
 
         // if user did not provide arguments, let details[1] be empty string
@@ -56,6 +52,7 @@ public class AddCommand extends Command {
             addQuote(quotes, ui);
             break;
         case TAG_CATEGORY:
+            addLogger.log(Level.INFO, "going to add category to book/quote");
             CategoryList categories = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
             addCategoryToBookOrQuote(categories, ui);
             break;
@@ -96,42 +93,48 @@ public class AddCommand extends Command {
     private void addCategoryToBookOrQuote(CategoryList categories, TextUi ui) {
         String[] tokens = information.split(" ");
         String[] parameters = CategoryParser.getRequiredParameters(tokens);
-        executeParameters(categories, parameters, ui);
+        if (CategoryParser.isValidParameters(parameters)) {
+            executeParameters(categories, parameters, ui);
+        }
     }
 
     private void executeParameters(CategoryList categories, String[] parameters, TextUi ui) {
         try {
             String categoryName = parameters[0];
-            String bookTitle = parameters[1];
-            int quoteNum = Integer.parseInt(parameters[2]) - 1;
-
-            if (quoteNum == -2 && bookTitle == null) {
-                ui.printErrorMessage(ERROR_MISSING_BOOK_OR_QUOTE);
-                return;
-            }
+            assert !categoryName.isEmpty() : "category name should not be empty";
 
             addCategoryToList(categories, categoryName);
-
             Category category = categories.getCategoryByName(categoryName);
+
+            String bookTitle = parameters[1];
             if (addCategoryToBook(category, bookTitle)) {
                 ui.printAddCategoryToBook(bookTitle, category.getCategoryName());
+                addLogger.log(Level.INFO, "add category to book success");
+            } else {
+                addLogger.log(Level.INFO, "add category to book failed");
             }
 
+            int quoteNum = Integer.parseInt(parameters[2]) - 1;
             if (addCategoryToQuote(category, quoteNum)) {
                 QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
                 ArrayList<Quote> quotes = quoteList.getList();
                 ui.printAddCategoryToQuote(quotes.get(quoteNum).getQuote(), category.getCategoryName());
+                addLogger.log(Level.INFO, "add category to quote success");
+            } else {
+                addLogger.log(Level.INFO, "add category to quote failed");
             }
             // ui.printCategorySize(category);
         } catch (NumberFormatException e) {
+            addLogger.log(Level.WARNING, ERROR_INVALID_QUOTE_NUM);
             System.out.println(ERROR_INVALID_QUOTE_NUM);
         } catch (NullPointerException e) {
+            addLogger.log(Level.WARNING, e.getMessage());
             System.out.println(e.getMessage());
         }
     }
 
     private void addCategoryToList(CategoryList categories, String categoryName) {
-        if (!categories.doesCategoryExist(categoryName)) {
+        if (!categories.isExistingCategory(categoryName)) {
             categories.add(new Category(categoryName));
         }
     }
@@ -146,6 +149,7 @@ public class AddCommand extends Command {
             Book book = bookList.findByTitle(bookTitle);
             book.setCategory(category);
         } catch (NullPointerException e) {
+            addLogger.log(Level.WARNING, ERROR_NO_BOOK_FOUND);
             System.out.println(ERROR_NO_BOOK_FOUND);
             return false;
         }
@@ -163,6 +167,7 @@ public class AddCommand extends Command {
             Quote quote = quotes.get(quoteNum);
             quote.setCategory(category);
         } catch (IndexOutOfBoundsException e) {
+            addLogger.log(Level.WARNING, ERROR_INVALID_QUOTE_NUM);
             System.out.println(ERROR_INVALID_QUOTE_NUM);
             return false;
         }

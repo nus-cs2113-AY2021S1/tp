@@ -16,7 +16,6 @@ import seedu.duke.todo.ToDo;
 import seedu.duke.todo.ToDoList;
 import seedu.duke.ui.TextUi;
 
-import javax.print.attribute.standard.NumberUp;
 import java.util.ArrayList;
 
 public class DeleteCommand extends Command {
@@ -122,25 +121,23 @@ public class DeleteCommand extends Command {
     private void deleteCategoryFromBookOrQuote(CategoryList categories, TextUi ui) {
         String[] tokens = information.split(" ");
         String[] parameters = CategoryParser.getRequiredParameters(tokens);
-        executeParameters(categories, parameters, ui);
+        if (CategoryParser.isValidParameters(parameters)) {
+            executeParameters(categories, parameters, ui);
+        }
     }
 
     private void executeParameters(CategoryList categories, String[] parameters, TextUi ui) {
         try {
             String categoryName = parameters[0];
+            assert !categoryName.isEmpty() : "category name should not be empty";
+
             String bookTitle = parameters[1];
-            int quoteNum = Integer.parseInt(parameters[2]) - 1;
             Category category = categories.getCategoryByName(categoryName);
-
-            if (quoteNum == -2 && bookTitle == null) {
-                ui.printErrorMessage(ERROR_MISSING_BOOK_OR_QUOTE);
-                return;
-            }
-
             if (deleteCategoryFromBook(category, bookTitle)) {
                 ui.printRemoveCategoryFromBook(bookTitle, categoryName);
             }
 
+            int quoteNum = Integer.parseInt(parameters[2]) - 1;
             if (deleteCategoryFromQuote(category, quoteNum)) {
                 QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
                 ArrayList<Quote> quotes = quoteList.getList();
