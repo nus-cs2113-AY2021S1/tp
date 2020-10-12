@@ -28,7 +28,7 @@ public class DeleteEventCommand extends Command {
 
     private static final String COMMAND_SUCCESSFUL_MESSAGE = "Event deleted:" + InterfaceManager.LS;
     private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Event failed to delete: " + InterfaceManager.LS;
-    private static final String INDEX_OUT_OF_RANGE = "Index is out of range.";
+    private static final String INDEX_OUT_OF_RANGE_MESSAGE = "Index is out of range.";
 
     private int index;
 
