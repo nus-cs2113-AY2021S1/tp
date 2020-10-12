@@ -43,6 +43,7 @@ public class FoodList {
 
     /**
      * Food database search functionality support.
+     * Not expected to function. Added for completeness.
      * Currently just throws a not found exception when called in this manner.
      * @param portionSize integer to designate number of servings
      * @param name food object to be added
@@ -61,12 +62,17 @@ public class FoodList {
             throw e;
         }
     }
-
+    
     public boolean clear() {
         this.foodEntries = new ArrayList<>();
         return true;
     }
 
+    /**
+     * Obtain the food objects in Foodlist as an ArrayList.
+     * For other classes that wish to operate on the Food items directly.
+     * @return Arraylist of ordered Food objects in Foodlist's foodEntries.
+     */
     public ArrayList<Food> getFoods() {
         return FoodListManager.listToFoods(foodEntries);
     }

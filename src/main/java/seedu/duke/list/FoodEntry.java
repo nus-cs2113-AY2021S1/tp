@@ -4,7 +4,7 @@ import seedu.duke.food.Food;
 
 
 /**
- * Data class to story both serving sizes and a food object as a single object.
+ * Data class to store both serving sizes and a food object as a single object.
  */
 public class FoodEntry {
     private int portionSize;
@@ -25,7 +25,7 @@ public class FoodEntry {
         return food;
     }
 
-    public int portionSize() {
+    public int getPortionSize() {
         return portionSize;
     }
 

@@ -11,17 +11,25 @@ import java.util.ArrayList;
  */
 public class FoodListManager {
     
+    /**
+     * Internal helper method to convert the items in the arraylist into enumed strings.
+     * Primarily used to obtain String representations of the list.
+     */
     protected static String listToString(ArrayList<FoodEntry> list) {
         String listString = "";
 
         for (int i = 1; i <= list.size(); i++) {
-            FoodEntry task = list.get(i - 1);
+            FoodEntry entry = list.get(i - 1);
             listString += i + ". "
-                    + task.toString() + "\n";
+                    + entry.toString() + "\n";
         }
         return listString;
     }
 
+    /**
+     * Similar to listToString.
+     * Extracts only the Food component from FoodEntries.
+     */
     protected static ArrayList<Food> listToFoods(ArrayList<FoodEntry> list) {
         ArrayList<Food> foods = new ArrayList<>();
         list.forEach(x -> {
