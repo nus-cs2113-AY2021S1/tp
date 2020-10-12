@@ -13,7 +13,9 @@ import java.util.logging.Logger;
  */
 public class BookmarkList extends ItemList {
     private ArrayList<Bookmark> bookmarks;
+    private final String lineSeparator = System.lineSeparator();
     private static Logger logger = Logger.getLogger(BookmarkList.class.getName());
+
 
     /**
      * Constructs a BookmarkList object with an empty ArrayList to store Bookmark objects.
@@ -109,9 +111,22 @@ public class BookmarkList extends ItemList {
         bookmarks.remove(bookmark);
     }
 
+    /**
+     * This method shows all the bookmarks from the list.
+     *
+     * @return The string message containing the matching bookmarks
+     */
+    public String showBookmarks() {
+        String message = "\tHere are the bookmarks in your list:" + lineSeparator;
+        for (int i = 0; i < bookmarks.size(); i++) {
+            message = message + "\t" + (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + lineSeparator;
+        }
+        return message;
+    }
 
     /**
-     * This method searches the bookmarks from the list with matching module and description.
+     * This method searches the bookmarks from the list with matching module
+     * and description.
      *
      * @param list The list of strings containing the module and description to be searched
      * @return The string message containing the matching bookmarks
@@ -128,14 +143,14 @@ public class BookmarkList extends ItemList {
         for (int i = 0; i < bookmarks.size(); i++) {
             if (bookmarks.get(i).getModule().toUpperCase().contains(module)
                     && bookmarks.get(i).getDescription().toUpperCase().contains(description)) {
-                message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + "\n";
+                message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + lineSeparator;
             }
         }
 
         if (message.isEmpty()) {
-            return  "No tasks contain the specified keyword!" + "\n";
+            return  "No bookmarks contain the specified keyword!" + lineSeparator;
         }
-        return "Here are your matching bookmarks" + "\n" + message;
+        return "Here are your matching bookmarks" + lineSeparator + message;
     }
 
     /**
@@ -157,7 +172,7 @@ public class BookmarkList extends ItemList {
         for (int i = 0; i < bookmarks.size(); i++) {
             if (bookmarks.get(i).getModule().toUpperCase().contains(module)
                     && bookmarks.get(i).getDescription().toUpperCase().contains(description)) {
-                message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + "\n";
+                message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + lineSeparator;
                 try {
                     bookmarks.get(i).launch();
                 } catch (DukeException e) {
@@ -167,8 +182,8 @@ public class BookmarkList extends ItemList {
         }
 
         if (message.isEmpty()) {
-            return  "No tasks contain the specified keyword!" + "\n";
+            return  "No bookmarks contain the specified keyword!" + lineSeparator;
         }
-        return "Launched these bookmarks:" + "\n" + message;
+        return "Launched these bookmarks:" + lineSeparator + message;
     }
 }
