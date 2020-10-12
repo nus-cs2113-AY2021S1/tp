@@ -99,7 +99,9 @@ public class ListNoteCommand extends Command {
 
             if (isAscendingOrder == null) {
                 for (int i = 0; i < notebook.getNotes().size(); i++) {
-                    noteString.append(i + 1).append(".").append(notebook.getNotes().get(i).getTitle()).append(InterfaceManager.LS);
+                    noteString.append(i + 1).append(".")
+                            .append(notebook.getNotes().get(i).getTitle())
+                            .append(InterfaceManager.LS);
                 }
             } else {
                 noteString = new StringBuilder(getSortedString(noteString.toString(), sortedNotes));
@@ -162,20 +164,22 @@ public class ListNoteCommand extends Command {
         if (!isAscendingOrder) {
             int j = 1;
 
-            StringBuilder noteStringBuilder = new StringBuilder(noteString);
+            StringBuilder noteStrBuilder = new StringBuilder(noteString);
             for (int i = sortedNotes.size() - 1; i >= 0; i--) {
-                noteStringBuilder.append(j).append(".").append(sortedNotes.get(i).getTitle()).append(InterfaceManager.LS);
+                noteStrBuilder.append(j).append(".").append(sortedNotes.get(i).getTitle()).append(InterfaceManager.LS);
                 j++;
             }
-            noteString = noteStringBuilder.toString();
+            noteString = noteStrBuilder.toString();
 
         } else if (isAscendingOrder) {
 
-            StringBuilder noteStringBuilder = new StringBuilder(noteString);
+            StringBuilder noteStrBuilder = new StringBuilder(noteString);
             for (int i = 0; i < sortedNotes.size(); i++) {
-                noteStringBuilder.append(i + 1).append(".").append(sortedNotes.get(i).getTitle()).append(InterfaceManager.LS);
+                noteStrBuilder.append(i + 1).append(".")
+                        .append(sortedNotes.get(i).getTitle())
+                        .append(InterfaceManager.LS);
             }
-            noteString = noteStringBuilder.toString();
+            noteString = noteStrBuilder.toString();
         }
         return noteString;
     }
