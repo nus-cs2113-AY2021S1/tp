@@ -3,6 +3,7 @@ package seedu.duke;
 import seedu.duke.anime.Anime;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.bookmark.Bookmark;
+import seedu.duke.command.Command;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.UserProfile;
 import seedu.duke.parser.Parser;
@@ -26,8 +27,6 @@ public class Duke {
     private final Watchlist currentWatchlist;
     private final ArrayList<Watchlist> watchlists;
 
-    private boolean shouldExit = false;
-
     public Duke() {
         ui = new Ui();
         parser = new Parser();
@@ -45,18 +44,22 @@ public class Duke {
     }
 
     public void run() {
+        Command command = null;
         if (userProfile == null) {
             userProfile = quickStart();
         }
 
-        while (!shouldExit) {
+        do {
             String userInput = ui.readUserInput(userProfile.getFancyName(), currentWatchlist.getName());
             try {
-                getCommand(userInput);
+                command = Parser.getCommand(userInput);
+                // now passing in many parameters into execute, 
+                // but maybe can reduce in the future after refactoring?
+                command.execute(ui, storage, currentWatchlist, watchlists);
             } catch (AniException exception) {
                 ui.printErrorMessage(exception.getMessage());
             }
-        }
+        } while (!Command.isExit(command));
     }
 
     public static void main(String[] args) {
@@ -101,49 +104,6 @@ public class Duke {
         return newProfile;
     }
 
-    /**
-     * Prints the main menu of the application
-     * and requests for command.
-     */
-    private void getCommand(String fullCommand) throws AniException {
-        String[] fullCommandSplit = parser.parseUserInput(fullCommand);
-        String description = "";
-        String command = fullCommandSplit[0];
-        if (fullCommandSplit.length > 1) {
-            description = fullCommandSplit[1];
-        }
-
-        switch (command) {
-        case "addprofile":
-            addProfile(description);
-            break;
-        case "editprofile":
-            editProfile(description);
-            break;
-        case "browse":
-            browseAnime(description);
-            break;
-        case "watchlist":
-            createWatchlist(description);
-            break;
-        case "add":
-            addToWatchlist(description);
-            break;
-        case "bookmark":
-            bookmarkAnime(description);
-            break;
-        case "help":
-            showHelp();
-            break;
-        case "exit":
-            ui.printGoodbyeMessage();
-            shouldExit = true;
-            return;
-        default:
-            throw new AniException("Unknown command");
-        }
-    }
-
     // Sample usage of Anime Class [To Be Deleted]
     private void addAnime() {
         System.out.println("===Running Sample Anime Class===");
@@ -158,20 +118,6 @@ public class Duke {
                 rating, genre, avgEpisodeLength, totalEpisodes);
         System.out.println("Release Date in String: " + testAnime.getReleaseDateInString());
         System.out.println("===End of Sample Anime Class===");
-    }
-
-    private void createWatchlist(String description) {
-        String[] descriptionSplit = description.split(" ", 2);
-        String commandOption = descriptionSplit[0];
-        String watchlistName = descriptionSplit[1];
-
-        if (commandOption.equals("-n")) {
-            Watchlist newWatchlist = new Watchlist(watchlistName);
-            watchlists.add(newWatchlist);
-        }
-
-        storage.writeWatchlistFile(ui, watchlists);
-        ui.printMessage("Watchlist created successfully!");
     }
 
     /**
@@ -276,29 +222,6 @@ public class Duke {
     }
 
     /**
-     * Adds an anime to current watchlist.
-     */
-    private void addToWatchlist(String description) {
-        String[] descriptionSplit = description.split(" ", 2);
-
-        try {
-            String commandOption = descriptionSplit[0];
-            String animeName = descriptionSplit[1];
-
-            if (commandOption.equals("-a") && animeName != null && !animeName.trim().isEmpty()) {
-                // currently only adding anime to default watchlist before
-                // implementing the selecting of watchlist
-                Watchlist currentWatchlist = watchlists.get(0);
-                currentWatchlist.addAnimeToList(animeName);
-            } else {
-                ui.showInvalidDescription("addToWatchlist");
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            ui.showInvalidDescription("addToWatchlist");
-        }
-    }
-
-    /**
      * Bookmarks an anime.
      */
     private void bookmarkAnime(String description) {
@@ -371,17 +294,7 @@ public class Duke {
         }
         return true;
     }
-
-    /**
-     * Shows help function.
-     */
-    private void showHelp() {
-        // Code to be added
-
-        // Print for testing
-        System.out.println("Help showed");
-    }
-
+    
     //Sample Usage of AnimeList Class [To Be Deleted]
     private void createAnimeList() {
         System.out.println("===Running Sample Anime List Class===");
