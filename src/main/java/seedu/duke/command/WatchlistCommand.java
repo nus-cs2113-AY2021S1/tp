@@ -1,5 +1,7 @@
 package seedu.duke.command;
 
+import seedu.duke.anime.AnimeData;
+import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.AniException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -23,8 +25,8 @@ public class WatchlistCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Storage storage, Watchlist activeWatchlist,
-                        ArrayList<Watchlist> watchlists) throws AniException {
+    public void execute(Ui ui, Storage storage, AnimeData animeData, Watchlist currentWatchlist,
+                        ArrayList<Watchlist> watchlists, Bookmark bookmark) throws AniException {
         if (CREATE_OPTION.equals(option)) {
             createWatchlist(ui, storage, watchlists);
         } else {
