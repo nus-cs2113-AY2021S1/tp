@@ -1,9 +1,10 @@
 package seedu.duke;
 
-public class AddExerciseCommand extends Command{
-    public AddExerciseCommand(String command){
+public class AddExerciseCommand extends Command {
+    public AddExerciseCommand(String command) {
         this.command = command;
     }
+
     @Override
     public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage) {
         command = command.split(" ", 2)[1];
@@ -23,7 +24,7 @@ public class AddExerciseCommand extends Command{
             }
         } catch (NumberFormatException | NullPointerException e) {
             System.out.println("Sorry calories have to be a number");
-        } catch (ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             System.out.print("Please key in the correct format");
         }
     }

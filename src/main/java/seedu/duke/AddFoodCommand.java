@@ -1,9 +1,10 @@
 package seedu.duke;
 
-public class AddFoodCommand extends Command{
-    public AddFoodCommand(String command){
+public class AddFoodCommand extends Command {
+    public AddFoodCommand(String command) {
         this.command = command;
     }
+
     @Override
     public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage) {
         command = command.split(" ", 2)[1];
