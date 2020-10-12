@@ -148,7 +148,13 @@ public class Parsers {
         parsedParams.put(optionIndicator.toLowerCase(), parsedOption);
     }
 
-    /** Parse an integer from a string containing an integer */
+    /**
+     * Parse an integer from a string containing an integer.
+     *
+     * @param stringContainingInt string that contains an integer value
+     * @return the interger value parsed
+     * @throws NumberFormatException unable to parse integer from given string
+     */
     public static int getIntFromString(String stringContainingInt) throws NumberFormatException {
         return Integer.parseInt(stringContainingInt.replaceAll("[\\D]", ""));
     }

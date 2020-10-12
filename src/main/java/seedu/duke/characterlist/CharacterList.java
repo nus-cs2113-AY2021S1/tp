@@ -43,7 +43,7 @@ public class CharacterList {
         }
 
         // check that character doesn't already exist in the list
-        if (characterNameInList(name)){
+        if (characterNameInList(name)) {
             throw new CharacterAlreadyExistException();
         }
 
@@ -61,7 +61,7 @@ public class CharacterList {
     }
 
     public static boolean characterNameInList(String name) {
-        for (Character character : characters){
+        for (Character character : characters) {
             if (name.equals(character.getCharacterName())) {
                 return true;
             }

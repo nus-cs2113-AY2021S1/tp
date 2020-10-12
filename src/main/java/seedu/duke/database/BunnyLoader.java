@@ -73,14 +73,16 @@ public class BunnyLoader {
                 }
 
                 // todo: implement characters collection in version 2
-//                // read characters (names pipe separated, find the character in the character list)
-//                String charactersString = "";
-//                fileLine = readFileUntilLineContainsString(BUNNY_IDEA_TAG, bunnyFileScanner);
-//                parsedString = Parsers.parseFileObject(fileLine, BUNNY_IDEA_TAG);
-//                if (!parsedString.isBlank()) {
-//                    // parse the charactersString into list of names
-//                    // for each name retrieve the corresponding character (loaded from the character list)
-//                }
+                // read characters (names pipe separated, find the character in the character list)
+                /*
+                String charactersString = "";
+                fileLine = readFileUntilLineContainsString(BUNNY_IDEA_TAG, bunnyFileScanner);
+                parsedString = Parsers.parseFileObject(fileLine, BUNNY_IDEA_TAG);
+                if (!parsedString.isBlank()) {
+                    // parse the charactersString into list of names
+                    // for each name retrieve the corresponding character (loaded from the character list)
+                }
+                 */
 
                 // add new bunny to list
                 Bunny newBunny = new Bunny(idea.trim(), genre.trim());
