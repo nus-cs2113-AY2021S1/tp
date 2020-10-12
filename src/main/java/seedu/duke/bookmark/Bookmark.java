@@ -26,9 +26,9 @@ public class Bookmark {
      * @param description The description of the webpage.
      */
     public Bookmark(String module, String description, String url) {
-        assert module != null : "module is not null";
-        assert description != null : "description is not null";
-        assert url != null : "url is not null";
+        assert module != null : "module should not be null";
+        assert description != null : "description should not be null";
+        assert url != null : "url should not be null";
 
         this.module = module.trim();
         this.description = description.trim();
@@ -51,7 +51,7 @@ public class Bookmark {
         if (moduleDescriptionUrl.size() != 3) {
             throw new DukeException(DukeExceptionType.INVALID_BOOKMARK_INPUT);
         }
-        if (moduleDescriptionUrl.get(1).isBlank() || moduleDescriptionUrl.get(2).isBlank()) {
+        if (moduleDescriptionUrl.get(1).isBlank()) {
             throw new DukeException(DukeExceptionType.EMPTY_DESCRIPTION);
         }
         if (!isUrlValid(moduleDescriptionUrl.get(2))) {

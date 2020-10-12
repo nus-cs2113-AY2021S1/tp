@@ -51,14 +51,12 @@ public class BookmarkList extends ItemList {
     }
 
     private void loadBookmark(String line) {
-        logger.entering(getClass().getName(), "loadBookmark");
         try {
             bookmarks.add(Bookmark.initBookmark(line));
         } catch (IndexOutOfBoundsException | DukeException e) {
             // Invalid task data, skips to the next entry
             logger.log(Level.WARNING, "invalid bookmark data found in file: " + line, e);
         }
-        logger.exiting(getClass().getName(), "loadBookmark");
     }
 
     /**
