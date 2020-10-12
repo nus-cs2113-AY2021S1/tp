@@ -25,7 +25,7 @@ public class Ui {
         System.out.println("List of available commands:\n"
                 + "1. todo <task description>\n"
                 + "2. deadline <task description> /by ddMMyy\n"
-                + "3. activity <activity description> <venue> /at ddMMyy\n"
+                + "3. activity <activity description> /at ddMMyy HHmm <venue>\n"
                 + "4. exam <module code> <venue> /at ddMMyy HHmm\n"
                 + "5. lecture <module code> <venue> /at ddMMyy HHmm\n"
                 + "6. tutorial <module code> <venue> /at ddMMyy HHmm\n"
@@ -193,10 +193,10 @@ public class Ui {
     public static void printFindTaskMessage(CalendarList calendarList, String keyword) throws DukeException {
         boolean isFound = false;
 
-        for (int i = 0; i < calendarList.getTotalTasks(); i++) {
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
             CalendarItem item = calendarList.getCalendarList().get(i);
             if (item instanceof Task) {
-                if (((Task) item).getDescription().contains(keyword)) {
+                if (item.getDescription().contains(keyword)) {
                     if (!isFound) { // first instance when keyword is found
                         System.out.println("Here are the matching tasks in your list:");
                     }

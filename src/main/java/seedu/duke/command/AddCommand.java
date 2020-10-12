@@ -10,7 +10,7 @@ import seedu.duke.calendar.event.Lab;
 import seedu.duke.calendar.event.Lecture;
 import seedu.duke.calendar.event.Tutorial;
 import seedu.duke.calendar.task.Deadline;
-import seedu.duke.calendar.task.Exam;
+import seedu.duke.calendar.event.Exam;
 import seedu.duke.calendar.task.Todo;
 
 import java.time.LocalDate;
@@ -88,7 +88,7 @@ public class AddCommand extends Command {
             break;
         case ACTIVITY:
             /**
-             * User input for Activity event example: run training /at 020202 1200 sentosa
+             * User input for Activity event example: activity run training /at 020202 1200 sentosa
              */
             try {
                 command = command[1].split("/at");
