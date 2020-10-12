@@ -48,7 +48,7 @@ public class ModView {
      * Prints the week number, module code, expected workload and actual time spent
      * in the specified week for all the modules taken.
      *
-     * @param list    list class containing all the modules taken.
+     * @param list       list class containing all the modules taken.
      * @param weekNumber specified week number.
      */
     public void printAllModuleInformation(ModuleList list, int weekNumber) {
@@ -83,7 +83,7 @@ public class ModView {
 
         String border = FIRST_PART_OF_BORDER + dashToBeAdded + SECOND_PART_OF_BORDER;
         String header = FIRST_PART_OF_HEADER + spaceToBeAdded + SECOND_PART_OF_HEADER;
-        String contents = FIRST_PART_OF_CONTENT + crossToBeAdded +  SECOND_PART_OF_CONTENT;
+        String contents = FIRST_PART_OF_CONTENT + crossToBeAdded + SECOND_PART_OF_CONTENT;
 
         System.out.print(border + header + border);
 
