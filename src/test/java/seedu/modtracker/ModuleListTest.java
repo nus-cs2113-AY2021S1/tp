@@ -8,15 +8,17 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class ModuleListTest {
+    private static final String TEST_DATA_FILEPATH = "test/data/modlist.txt";
+    Storage storage = new Storage(TEST_DATA_FILEPATH);
 
     @Test
     public void addModule_emptyModuleList_newModuleAdded() {
         ArrayList<Module> testList = new ArrayList<>();
-        Module testMod = new Module("CS1010");
+        Module testMod = new Module("CS5000");
         testList.add(testMod);
 
         ModuleList modules = new ModuleList();
-        modules.addMod("addMod CS1010");
+        modules.addMod("addMod CS5000", true, storage);
         assertArrayEquals(testList.toArray(), modules.modList.toArray());
     }
 
@@ -27,7 +29,7 @@ class ModuleListTest {
         testList.add(testMod);
 
         ModuleList modules = new ModuleList();
-        modules.addMod("addMod");
+        modules.addMod("addMod", true, storage);
         assertNotEquals(testList.toArray(), modules.modList.toArray());
     }
 
@@ -38,7 +40,8 @@ class ModuleListTest {
         testList.add(testMod);
 
         ModuleList modules = new ModuleList();
-        modules.addExp("addExp CS3030 4");
+        modules.addExp("addExp CS3030 4", true, storage);
         assertArrayEquals(testList.toArray(), modules.modList.toArray());
     }
+
 }
