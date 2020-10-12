@@ -28,7 +28,7 @@ public class Ui {
         System.out.println("____________________________________________________________\n"
                 + " Hello! I'm revisED\n"
                 + " What can I do for you?\n"
-                + "____________________________________________________________");
+                + "____________________________________________________________\n");
     }
 
     public static void printSubjectList(List<Subject> list) {
