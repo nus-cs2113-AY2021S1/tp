@@ -18,16 +18,10 @@ public class DeleteNoteCommand extends Command {
     public static final String COMMAND_WORD = "delete-n";
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Note deleted: ";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook! ";
-    /*
-    public static final String COMMAND_WORD_EVENT = "delete-e"; TBR*/
 
     public static final String COMMAND_USAGE_NOTE = COMMAND_WORD + ": Deletes a note. Parameters: "
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE or "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
-
-    /*
-    private static final String COMMAND_USAGE_EVENT = COMMAND_WORD_EVENT + ": Deletes an event. Parameters: "
-            + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX"; TBR*/
 
     private int index;
     private String title = "";
