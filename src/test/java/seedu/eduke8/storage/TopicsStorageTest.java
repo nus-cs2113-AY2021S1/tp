@@ -37,7 +37,7 @@ class TopicsStorageTest {
             assertEquals(firstTopic.getDescription(), "OOP");
 
             QuestionList firstQuestionList = firstTopic.getQuestionList();
-            assertEquals(firstQuestionList.getNumberOfQuestionsInTopic(), 2);
+            assertEquals(firstQuestionList.getCount(), 2);
         } catch (ParseException | IOException e) {
             e.printStackTrace();
         }

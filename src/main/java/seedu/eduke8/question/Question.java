@@ -44,6 +44,7 @@ public class Question implements Displayable {
         return wasShown;
     }
 
+
     /**
      * Returns the multiple options of the question.
      *
