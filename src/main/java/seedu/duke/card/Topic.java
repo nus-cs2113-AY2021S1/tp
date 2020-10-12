@@ -20,7 +20,7 @@ public class Topic {
         return title;
     }
 
-    public void addFlashCard(Flashcard flashcard) {
+    public void addFlashcard(Flashcard flashcard) {
         flashcards.add(flashcard);
     }
 

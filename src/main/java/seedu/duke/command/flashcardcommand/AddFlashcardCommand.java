@@ -31,7 +31,7 @@ public class AddFlashcardCommand extends FlashcardCommand {
             }
         }
         Flashcard t = new Flashcard(question, answer);
-        topic.addFlashCard(t);
+        topic.addFlashcard(t);
         t.printFlashcard(topic.getFlashcards());
         return t;
     }
