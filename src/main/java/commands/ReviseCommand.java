@@ -52,7 +52,6 @@ public class ReviseCommand extends Command {
     private ArrayList<Card> getCards(Ui ui, Access access, Storage storage, Chapter toRevise) {
         ArrayList<Card> allCards;
         try {
-            access.setChapterLevel(toRevise.getChapterName());
             allCards = storage.loadCard(access.getModuleLevel(), toRevise.getChapterName());
             toRevise.setCards(allCards);
         } catch (FileNotFoundException e) {
@@ -76,7 +75,6 @@ public class ReviseCommand extends Command {
         int cardCount = cards.getCardCount();
         if (cardCount == 0) {
             ui.showToUser(String.format(MESSAGE_NO_CARDS_IN_CHAPTER, toRevise));
-            access.setChapterLevel("");
             return;
         }
         int count = 1;
@@ -94,13 +92,11 @@ public class ReviseCommand extends Command {
         }
         if (count == 1) {
             ui.showToUser(String.format(MESSAGE_NO_CARDS_DUE, toRevise));
-            access.setChapterLevel("");
             return;
         }
 
         repeatRevision(ui, repeatCards, count);
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
-        access.setChapterLevel("");
     }
 
     public static ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards, Card c, String input) {
