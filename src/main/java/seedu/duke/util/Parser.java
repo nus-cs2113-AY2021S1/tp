@@ -603,7 +603,7 @@ public class Parser {
                     index = Integer.parseInt(checkBlank(infoDetails[1], exception));
                     return new PinCommand(index - 1);
                 default:
-                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
         } catch (ArrayIndexOutOfBoundsException exception) {
