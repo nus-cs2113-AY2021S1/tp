@@ -14,7 +14,7 @@ public enum BusStops {
     UNIVERSITYHEALTHCENTRE("University Health Centre","UHC, where students can get MC"),
     OPPKENTRIDGEMRTSTATION("Opp Kent Ridge MRT station","MRT"),
     RAFFLESHALL("Raffles Hall","Hall located nearby Faculty of Engineering"),
-    KENTVALE("Kent Vale","somewhere"),
+    KENTVALE("Kent Vale","Accommodation for visiting faculty guests"),
     EA("EA","located in Faculty of Engineering"),
     NUSIT("NUS IT","Opposite Central library"),
     PGPR("PGPR","prince george residence");
