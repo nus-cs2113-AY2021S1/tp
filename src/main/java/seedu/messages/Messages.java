@@ -29,5 +29,6 @@ public class Messages {
     public static final String LIST_MESSAGE = "Here is your list of tasks:";
     public static final String ADD_MESSAGE = "Task added.";
     public static final String EDIT_MESSAGE = "Task edited.";
+    public static final String CLEAR_MESSAGE = "All tasks cleared.";
 
 }

@@ -2,6 +2,7 @@ package seedu.parser;
 
 import seedu.commands.Add;
 import seedu.commands.Bye;
+import seedu.commands.Clear;
 import seedu.commands.Command;
 import seedu.commands.Edit;
 import seedu.commands.Help;
@@ -23,6 +24,8 @@ public class Parser {
             return new Bye();
         } else if (rawInput.startsWith(Edit.COMMAND_WORD)) {
             return new Edit(rawInput);
+        } else if (rawInput.startsWith(Clear.COMMAND_WORD)) {
+            return new Clear();
         } else {
             throw new UnknowCommandException();
         }
