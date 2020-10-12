@@ -9,14 +9,14 @@ import seedu.duke.ui.TextUi;
 import java.time.LocalDate;
 import java.util.Hashtable;
 
-public class DeleteSprintTaskCommand extends SprintCommand{
+public class DeleteSprintTaskCommand extends SprintCommand {
     SprintList allSprint;
 
     public DeleteSprintTaskCommand(Hashtable<String, String> parameters) {
         super(parameters);
     }
 
-    public boolean execute(Project proj, TextUi ui) {//need to validate task exist
+    public boolean execute(Project proj, TextUi ui) {
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();

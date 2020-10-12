@@ -20,10 +20,10 @@ public class AllocateSprintTaskCommand extends SprintCommand {
     public boolean execute(Project proj, TextUi ui) {
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
-            if (validateParams()) { //need to validate user exist
+            if (validateParams()) {
                 String taskId = parameters.get("taskid");
                 ArrayList<String> users = new ArrayList<>();
-                for (int i = 0; i < parameters.size() - 1; i++){
+                for (int i = 0; i < parameters.size() - 1; i++) {
                     users.add(parameters.get(Integer.toString(i)));
                 }
 

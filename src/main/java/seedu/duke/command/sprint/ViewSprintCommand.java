@@ -47,7 +47,7 @@ public class ViewSprintCommand extends SprintCommand {
 
     private void printSprintTask(Project proj, Sprint sprint, TextUi ui) {
         Hashtable<Integer, ArrayList<String>> sprintTasks = sprint.getAllSprintTask();
-        if (sprintTasks.size() == 0){
+        if (sprintTasks.size() == 0) {
             System.out.println("No task allocated to current sprint.");
             return;
         }
@@ -55,7 +55,7 @@ public class ViewSprintCommand extends SprintCommand {
         Set<Integer> keys = sprintTasks.keySet();
 
         System.out.println("Sprint Tasks: " + keys.size());
-        for(int key: keys){
+        for (int key: keys) {
             proj.getProjectBacklog().viewTask(Integer.toString(key), ui);
             users = sprintTasks.get(key);
             if (users.size() == 0) {
