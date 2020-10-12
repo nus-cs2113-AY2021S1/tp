@@ -3,7 +3,8 @@ package seedu.duke.filters;
 import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.FilterCommandException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class FilterTypeTest {
 

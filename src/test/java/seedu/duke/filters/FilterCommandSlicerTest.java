@@ -5,7 +5,9 @@ import seedu.duke.exceptions.FilterCommandException;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FilterCommandSlicerTest {
 
@@ -39,7 +41,7 @@ class FilterCommandSlicerTest {
     @Test
     public void getTargetedWordType_noWordTypeFound_filterCommandExceptionThrown() {
         assertThrows(FilterCommandException.class,
-                () -> FilterCommandSlicer.getTargetedWordType("filter by\\type -adverb -preposition"));
+            () -> FilterCommandSlicer.getTargetedWordType("filter by\\type -adverb -preposition"));
     }
 
     @Test
@@ -77,6 +79,7 @@ class FilterCommandSlicerTest {
     @Test
     public void getTargetedStringTags_noStringTagProvided_filterCommandExceptionThrown() {
         assertThrows(FilterCommandException.class,
-                () -> FilterCommandSlicer.getTargetedStringTags("filter by\\start - "));
+            () -> FilterCommandSlicer.getTargetedStringTags("filter by\\start - "));
     }
+
 }

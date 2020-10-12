@@ -3,9 +3,7 @@ package seedu.duke.filters;
 import org.junit.jupiter.api.Test;
 import seedu.duke.wordlist.WordList;
 
-import java.util.logging.Filter;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WordsFilterTest {
 
