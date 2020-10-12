@@ -2,8 +2,6 @@ package seedu.duke.logic.parser;
 
 public class RouteParser extends Parser {
 
-    private String rawMessage;
-
     public RouteParser(String message) {
         super(message);
     }
