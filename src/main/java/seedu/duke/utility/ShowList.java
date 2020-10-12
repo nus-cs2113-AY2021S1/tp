@@ -8,6 +8,7 @@ public class ShowList {
     public static HashMap<String, Show> showList;
 
     public ShowList() {
+        showList = new HashMap<>();
     }
 
     public ShowList(HashMap<String, Show> showList) {
@@ -24,7 +25,8 @@ public class ShowList {
         showList.put(showName, show);
     }
 
-    public HashMap<String, Show> getShowList() {
+    public static HashMap<String, Show> getShowList() {
         return showList;
     }
+
 }

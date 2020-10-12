@@ -10,6 +10,9 @@ public class Show {
     protected int rating;
     protected String review;
     protected LocalDateTime showTime;   //The time of the show, maybe include date
+    protected int currentSeason;    //to keep track of watch progress
+    protected int currentEpisode;
+
 
     public Show(String name, int numSeasons, int[] numEpisodesForSeasons) {
         this.name = name;
@@ -17,6 +20,8 @@ public class Show {
         this.numEpisodesForSeasons = numEpisodesForSeasons;
         this.rating = -1;
         this.review = "null";
+        this.currentEpisode = 1;
+        this.currentSeason = 1;
     }
 
 
@@ -38,7 +43,16 @@ public class Show {
 
     public int getEpisodesForSeason(int season) {
         //TODO : Add the exception for bounds checking
-        return numEpisodesForSeasons[season-1];
+        return numEpisodesForSeasons[season - 1];
+    }
+
+    public int getCurrentSeason() {
+        return currentSeason;
+    }
+
+    public int getCurrentEpisode() {
+        return currentEpisode;
+
     }
 
     public String getReview() {
@@ -59,5 +73,42 @@ public class Show {
 
     public void setNumEpisodesForSeasons(int[] numEpisodesForSeasons) {
         this.numEpisodesForSeasons = numEpisodesForSeasons;
+    }
+
+    public void setEpisodeWatched(int watchedEpisode) {
+        this.currentEpisode = watchedEpisode;
+    }
+
+    public void setCurrentSeason(int season) {
+        this.currentSeason = season;
+        this.currentEpisode = 1;
+    }
+
+    /**
+     * Overload/overwrite? the previous setCurrentSeason method signature.
+     * Should check with user if they want to input an episode else default it to 1
+     * as in the previous declaration of setCurrentSeason
+     *
+     * @param season  season num
+     * @param episode episode num
+     */
+    public void setCurrentSeason(int season, int episode) {
+        this.currentEpisode = episode;
+        this.currentSeason = season;
+    }
+
+    @Override
+    public String toString() {
+        String des = name + " | ";
+        des += "WatchHistory : S";
+        des += Integer.toString(currentSeason);
+        des += "E";
+        des += Integer.toString(currentEpisode);
+        if (rating != -1) {
+            //TODO : make sure a review is always passed in with a rating
+            des += "| Rating: ";
+            des += Integer.toString(rating);
+        }
+        return des;
     }
 }

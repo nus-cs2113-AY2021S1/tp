@@ -1,5 +1,8 @@
 package seedu.duke.utility;
 
+import seedu.duke.classes.Show;
+
+import java.util.Scanner;
 
 /**
  * Represents a Ui class that is responsible for Input/Output operations.
@@ -10,6 +13,13 @@ public class Ui {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_REVERSE = "\u001b[7m";
     public static final String ANSI_BOLD = "\u001b[1m";
+    public static final String SAVE_DIRECTORY = "data/showList.txt";
+
+    private Scanner scan;
+
+    public Ui() {
+        scan = new Scanner(System.in);
+    }
 
     public static void printLogo() {
         String logo = " __          __  _______ _____ _    _ _   _ ________   _________ \n"
@@ -45,11 +55,12 @@ public class Ui {
         // TODO load from txt file if possible instead of writing out one whole chunk in the future
         String helpIcon =
                 " __    __   _______  __      .______   \n"
-                + "|  |  |  | |   ____||  |     |   _  \\  \n"
-                + "|  |__|  | |  |__   |  |     |  |_)  | \n"
-                + "|   __   | |   __|  |  |     |   ___/  \n"
-                + "|  |  |  | |  |____ |  `----.|  |      \n"
-                + "|__|  |__| |_______||_______|| _|      \n";
+                        + "|  |  |  | |   ____||  |     |   _  \\  \n"
+                        + "|  |__|  | |  |__   |  |     |  |_)  | \n"
+                        + "|   __   | |   __|  |  |     |   ___/  \n"
+                        + "|  |  |  | |  |____ |  `----.|  |      \n"
+                        + "|__|  |__| |_______||_______|| _|      \n";
+
         System.out.println(ANSI_GREEN + helpIcon + ANSI_RESET);
         System.out.println("The following options are available:");
         System.out.println("`help` - Views help\n"
@@ -58,7 +69,7 @@ public class Ui {
                 + " \n"
                 + "`edit` - Edits your show details\n"
                 + " \n"
-                + "`rating` - Modifies rating of your show\n"
+                + "`rating` - Set rating of your show\n"
                 + "\n"
                 + "`list` - Displays all your shows in list\n"
                 + "\n"
@@ -74,6 +85,21 @@ public class Ui {
         printLine();
     }
 
+    public String getUserCommand() {
+        String userInput = scan.nextLine();
+
+        //Take out all empty/whitespace lines
+        while (isInputEmpty(userInput)) {
+            userInput = scan.nextLine();
+        }
+
+        return userInput;
+    }
+
+    private boolean isInputEmpty(String rawInput) {
+        return rawInput.trim().isEmpty();
+    }
+
     public static String toReverse(String input) {
         return ANSI_REVERSE + input + ANSI_RESET;
     }
@@ -86,14 +112,29 @@ public class Ui {
         System.out.println("Enter a command: ");
     }
 
-    public static void printShowList(ShowList showList) {
+    public static void printShowList() {
         printLine();
         System.out.println("Your watchlist:");
+        for (Show show : ShowList.showList.values()) {
+            System.out.println(show.toString());
+        }
     }
 
     public static void printShowRating(String showName, String rating) {
         printLine();
         System.out.println("The rating for " + toBold(showName) + " has been updated to " + toBold(rating));
+    }
+
+    public static void printChangeEpisode(String showName) {
+        printLine();
+        System.out.println("Updated current episode : " + ShowList.getShow(showName).toString());
+
+    }
+
+    public static void printChangeSeason(String showName) {
+        printLine();
+        System.out.println("Updated current season : " + ShowList.getShow(showName).toString());
+
     }
 
     public static void printChangeRating(String showName, String rating) {
@@ -125,7 +166,7 @@ public class Ui {
         printLine();
         System.out.println("Your watchlist has been saved in the file with path <filepath>.");
     }
-  
+
     public static void printIoException() {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_IO_EXCEPTION);
     }
@@ -152,6 +193,10 @@ public class Ui {
 
     public static void printBadInputException() {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_INPUT);
+    }
+
+    public static void showCreateFileError() {
+        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_CREATE_FILE_ERROR);
     }
 
 }

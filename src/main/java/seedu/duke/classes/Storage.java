@@ -1,6 +1,7 @@
 package seedu.duke.classes;
 
 import seedu.duke.utility.SaveState;
+import seedu.duke.utility.ShowList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,24 +20,25 @@ public class Storage implements SaveState {
     }
 
     @Override
-    public void saveState(HashMap<String, Show> showList) throws IOException{
+    public void saveState() throws IOException {
         FileWriter fw = new FileWriter(filePath);
-        int index=1;
-        for(Map.Entry<String,Show> entry : showList.entrySet()){
-            fw.write(index+". "+entry.getValue().getName()+System.lineSeparator());
-            fw.write("      Season: "+entry.getValue().getNumSeasons()+System.lineSeparator());
+        int index = 1;
+        for (Map.Entry<String, Show> entry : ShowList.getShowList().entrySet()) {
+            fw.write(index + ". " + entry.getValue().getName() + System.lineSeparator());
+            fw.write("      Season: " + entry.getValue().getNumSeasons() + System.lineSeparator());
             String episodes = "";
-            for(int i=1;i<=entry.getValue().getNumSeasons();i++){
-                episodes=episodes+entry.getValue().getEpisodesForSeason(i)+" ";
+            for (int i = 1; i <= entry.getValue().getNumSeasons(); i++) {
+                episodes = episodes + entry.getValue().getEpisodesForSeason(i) + " ";
             }
-            fw.write("      Episodes: "+episodes+System.lineSeparator());
-            fw.write("      Rating: "+entry.getValue().getRating()+System.lineSeparator());
+            fw.write("      Episodes: " + episodes + System.lineSeparator());
+            fw.write("      Rating: " + entry.getValue().getRating() + System.lineSeparator());
             index++;
 
             //this is another save format
             /*
             String textToAdd=index+". "+entry.getValue().getName()+" | Season: "+entry.getValue().getNumSeasons()
-                    +" | Episodes: " +entry.getValue().getEpisodesForSeason(entry.getValue().getNumSeasons())+" | Rating: "+entry.getValue().getRating();
+                    +" | Episodes: " +entry.getValue().getEpisodesForSeason(entry.getValue().getNumSeasons())+" |
+                    Rating: "+entry.getValue().getRating();
             fw.write(textToAdd);
              */
         }
@@ -44,28 +46,41 @@ public class Storage implements SaveState {
     }
 
     @Override
-    public void loadState(HashMap<String, Show> showList) throws FileNotFoundException {
-        File f= new File(filePath);
-        Scanner s= new Scanner(f);
+    public java.util.HashMap<String, Show> loadState() throws FileNotFoundException {
+        File directory = new File("data");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+        File f = new File(filePath);
+        try {
+            f.createNewFile();
+        } catch (IOException ex) {
+            seedu.duke.utility.Ui.showCreateFileError();
+        }
+        Scanner s = new Scanner(f);
+        HashMap<String, Show> showList = new java.util.HashMap<>();
         // we just assume that users will not change the contain in the file then the format will be fixed
-        while(s.hasNext()){
-
+        while (s.hasNext()) {
             String name = s.nextLine().substring(3);
 
             String[] splitSeason = s.nextLine().split("Season: ");
-            int season=Integer.parseInt(splitSeason[1]);
+            int season = Integer.parseInt(splitSeason[1]);
 
             String[] splitEpisodes = s.nextLine().split("Episodes: ");
-            String[] episodeString=splitEpisodes[1].split(" ");
-            int[] episodes=new int[20];
-            for(int i=0;i<season;i++){
-                episodes[i]=Integer.parseInt(episodeString[i]);
+            String[] episodeString = splitEpisodes[1].split(" ");
+            int[] episodes = new int[20];
+
+            for (int i = 0; i < season; i++) {
+
+                episodes[i] = Integer.parseInt(episodeString[i]);
             }
 
             String[] splitRating = s.nextLine().split("Rating: ");
-            int rating=Integer.parseInt(splitRating[1]);
+            int rating = Integer.parseInt(splitRating[1]);
 
-            showList.put(name, new Show(name,season,episodes));
+
+            showList.put(name, new Show(name, season, episodes));
+
             showList.get(name).setRating(rating);
 
 
@@ -83,6 +98,6 @@ public class Storage implements SaveState {
              */
 
         }
-
+        return showList;
     }
 }
