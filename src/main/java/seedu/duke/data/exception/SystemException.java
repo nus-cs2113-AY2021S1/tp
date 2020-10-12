@@ -16,8 +16,6 @@ public class SystemException extends Exception {
         EXCEPTION_MISSING_DESCRIPTION("Missing description!"),
         EXCEPTION_MISSING_TITLE_PREFIX("Missing title prefix!"),
         EXCEPTION_MISSING_TITLE("Missing title!"),
-        EXCEPTION_DUPLICATE_NOTE("This note already exists in the notebook!"),
-        EXCEPTION_MISSING_NOTE("This note does not exists in the notebook!"),
         EXCEPTION_MISSING_TIMING("This event does not have a timing specified!"),
         EXCEPTION_MISSING_RECURRING_END_TIME("Please specify until when do you want "
                 + "this event to repeat."),

@@ -218,26 +218,23 @@ public class Parser {
 
             for (String[] infoDetails : splitInfo) {
                 String prefix = infoDetails[0].toLowerCase();
-                ExceptionType exception;
                 switch (prefix) {
                 case PREFIX_TITLE:
-                    exception = ExceptionType.EXCEPTION_MISSING_TITLE;
-                    title = checkBlank(infoDetails[1], exception);
+                    title = checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_TITLE);
                     break;
                 case PREFIX_TAG:
                     Tag tag = handleTagPrefix(infoDetails);
                     tags.add(tag);
                     break;
                 case PREFIX_PIN:
-                    exception = ExceptionType.EXCEPTION_MISSING_PIN;
-                    isPinned = Boolean.parseBoolean(checkBlank(infoDetails[1], exception));
+                    isPinned = Boolean.parseBoolean(checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_PIN));
                     break;
                 default:
                     throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
                 }
             }
 
-            title = checkBlank(title, ExceptionType.EXCEPTION_MISSING_TITLE);
+            title = checkBlank(title, ExceptionType.EXCEPTION_MISSING_TITLE_PREFIX);
 
             // Get Content
             do {
@@ -402,9 +399,10 @@ public class Parser {
      * @throws SystemException if an error occurs.
      */
     private Command prepareDeleteNote(String userMessage) throws SystemException {
-        int index = NULL_INDEX;
-        String title = "";
-        String prefix = "";
+        int index;
+        String title;
+        String prefix;
+        boolean isIndex = false;
 
         try {
             // Get prefix
@@ -412,35 +410,32 @@ public class Parser {
 
             for (String[] infoDetails : splitInfo) {
                 prefix = infoDetails[0].toLowerCase();
-                ExceptionType exception;
                 switch (prefix) {
                 case PREFIX_INDEX:
-                    exception = ExceptionType.EXCEPTION_MISSING_INDEX;
-                    index = Integer.parseInt(checkBlank(infoDetails[1], exception));
-                    break;
+                    isIndex = true;
+                    index = Integer.parseInt(checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_INDEX));
+
+                    if (index <= NULL_INDEX) {
+                        throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+                    }
+                    return new DeleteNoteCommand(index - 1);
                 case PREFIX_TITLE:
-                    exception = ExceptionType.EXCEPTION_MISSING_TITLE;
-                    title = checkBlank(infoDetails[1], exception);
-                    break;
+                    title = checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_TITLE);
+                    return new DeleteNoteCommand(title);
                 default:
                     throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
                 }
             }
-
-            // If prefix is title, delete note by title. Else delete index.
-            if (prefix.equalsIgnoreCase(PREFIX_TITLE)) {
-                return new DeleteNoteCommand(title);
-            } else {
-                if (index <= NULL_INDEX) {
-                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
-                }
-                return new DeleteNoteCommand(index - 1);
-            }
         } catch (ArrayIndexOutOfBoundsException exception) {
-            throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
+            if (isIndex) {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
+            } else {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
+            }
         } catch (NumberFormatException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
         }
+        return new IncorrectCommand(ExceptionType.EXCEPTION_INVALID_INPUT_FORMAT.toString());
     }
 
     /**
