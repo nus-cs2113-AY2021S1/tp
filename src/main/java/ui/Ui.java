@@ -1,12 +1,20 @@
 package ui;
 
 import access.Access;
-import commands.AddCommand;
+import commands.RemoveCommand;
+import commands.add.AddChapterCommand;
+import commands.add.AddCommand;
 import commands.ExitCommand;
-import commands.ListCommand;
+import commands.add.AddModuleCommand;
+import commands.back.BackChapterCommand;
+import commands.go.GoChapterCommand;
+import commands.go.GoModuleCommand;
+import commands.list.ListChapterCommand;
+import commands.list.ListCommand;
 import commands.HelpCommand;
 import commands.ReviseCommand;
 
+import commands.list.ListModuleCommand;
 import manager.card.Card;
 import manager.chapter.Chapter;
 import manager.module.Module;
@@ -103,11 +111,21 @@ public class Ui {
 
     public void showHelpList() {
         out.println("Here is a list of commands available:" + "\n");
-        out.println("1. " + ListCommand.MESSAGE_USAGE);
-        out.println("2. " + ReviseCommand.MESSAGE_USAGE);
-        out.println("3. " + HelpCommand.MESSAGE_USAGE);
-        out.println("4. " + AddCommand.MESSAGE_USAGE);
-        out.println("5. " + ExitCommand.MESSAGE_USAGE);
+        out.println("1.  " + ListCommand.MESSAGE_USAGE);
+        out.println("2.  " + ReviseCommand.MESSAGE_USAGE);
+        out.println("3.  " + HelpCommand.MESSAGE_USAGE);
+        out.println("4.  " + AddCommand.MESSAGE_USAGE);
+        out.println("5.  " + ExitCommand.MESSAGE_USAGE);
+        out.println("6.  " + RemoveCommand.MESSAGE_USAGE);
+        out.println("7.  " + GoChapterCommand.MESSAGE_USAGE);
+        out.println("8.  " + GoModuleCommand.MESSAGE_USAGE);
+        out.println("9.  " + BackChapterCommand.MESSAGE_USAGE);
+        out.println("10. " + GoModuleCommand.MESSAGE_USAGE);
+        out.println("11. " + ListChapterCommand.MESSAGE_USAGE);
+        out.println("12. " + ListModuleCommand.MESSAGE_USAGE);
+        out.println("13. " + AddChapterCommand.MESSAGE_USAGE);
+        out.println("14. " + AddModuleCommand.MESSAGE_USAGE);
+
     }
 
     public void showModuleAdded(Module module, int moduleCount) {
@@ -120,5 +138,27 @@ public class Ui {
         out.println("    Got it. I've added this chapter:");
         out.println("    " + chapter);
         out.println("    Now you have " + chapterCount + " chapters in the list.");
+    }
+
+    public void showChapterList(ArrayList<Chapter> chapters, int chapterCount) {
+        if (chapterCount == 0) {
+            out.println("There are no chapters in your list.");
+            return;
+        }
+        out.println("Here are the chapters in your list:");
+        for (Chapter c : chapters) {
+            out.println((chapters.indexOf(c) + 1) + "." + c);
+        }
+    }
+
+    public void showModuleList(ArrayList<Module> modules, int moduleCount) {
+        if (moduleCount == 0) {
+            out.println("There are no modules in your list.");
+            return;
+        }
+        out.println("Here are the modules in your list:");
+        for (Module m : modules) {
+            out.println((modules.indexOf(m) + 1) + "." + m);
+        }
     }
 }

@@ -1,19 +1,21 @@
 package parser;
 
 import commands.Command;
-import commands.ListCommand;
-import commands.AddChapterCommand;
-import commands.AddCommand;
-import commands.AddModuleCommand;
-import commands.BackChapterCommand;
-import commands.GoChapterCommand;
+import commands.list.ListChapterCommand;
+import commands.list.ListCommand;
+import commands.add.AddChapterCommand;
+import commands.add.AddCommand;
+import commands.add.AddModuleCommand;
+import commands.back.BackChapterCommand;
+import commands.go.GoChapterCommand;
 import commands.HelpCommand;
 import commands.RemoveCommand;
 import commands.ReviseCommand;
 import commands.ExitCommand;
-import commands.GoModuleCommand;
-import commands.BackModuleCommand;
+import commands.go.GoModuleCommand;
+import commands.back.BackModuleCommand;
 
+import commands.list.ListModuleCommand;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import storage.Storage;
@@ -50,6 +52,10 @@ public class Parser {
             return prepareGoModule(commandArgs);
         case GoChapterCommand.COMMAND_WORD:
             return prepareGoChapter(commandArgs);
+        case ListModuleCommand.COMMAND_WORD:
+            return prepareListModule(commandArgs);
+        case ListChapterCommand.COMMAND_WORD:
+            return prepareListChapter(commandArgs);
         default:
             throw new InvalidInputException();
         }
@@ -96,6 +102,21 @@ public class Parser {
         }
         return new AddModuleCommand(commandArgs);
     }
+
+    private static Command prepareListChapter(String commandArgs) throws InvalidInputException {
+        if (!commandArgs.isEmpty()) {
+            throw new InvalidInputException();
+        }
+        return new ListChapterCommand();
+    }
+
+    private static Command prepareListModule(String commandArgs) throws InvalidInputException {
+        if (!commandArgs.isEmpty()) {
+            throw new InvalidInputException();
+        }
+        return new ListChapterCommand();
+    }
+
 
     private static String[] splitCommandTypeAndArgs(String userCommand) {
         String[] commandTypeAndParams = userCommand.trim().split(" ", 2);

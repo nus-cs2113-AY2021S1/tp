@@ -1,6 +1,7 @@
-package commands;
+package commands.list;
 
 import access.Access;
+import commands.Command;
 import manager.card.Card;
 import manager.chapter.CardList;
 import storage.Storage;

@@ -1,5 +1,6 @@
-package commands;
+package commands.go;
 
+import commands.Command;
 import manager.card.Card;
 import manager.chapter.CardList;
 import access.Access;
@@ -14,6 +15,9 @@ import java.util.ArrayList;
 public class GoChapterCommand extends Command {
     public static final String COMMAND_WORD = "gochapter";
     String chapterCode;
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Goes to chapter level. \n"
+            + "Example: " + COMMAND_WORD + "\n";
 
     public GoChapterCommand(String chapterCode) {
         this.chapterCode = chapterCode;
