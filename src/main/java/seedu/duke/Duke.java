@@ -56,7 +56,7 @@ public class Duke {
             String userCommandText = ui.getUserCommand();
             Command command = new Parser().parseUserCommand(userCommandText);
             if (command == null) {
-                System.out.println("Invalid command!");
+                ui.printInvalidQuotesifyCommand();
                 continue;
             }
             command.execute(ui);

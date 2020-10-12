@@ -29,6 +29,7 @@ public class ListCommand extends Command {
         if (details.length == 1) {
             details = new String[]{details[0], ""};
         }
+        assert details.length == 2;
         type = details[0];
         information = details[1];
     }
@@ -140,7 +141,7 @@ public class ListCommand extends Command {
         ArrayList<Rating> ratings = ratingList.getList();
         ratings.sort(Comparator.comparing(Rating::getRating));
         Collections.reverse(ratings);
-        if (information.equals("")) {
+        if (information.isEmpty()) {
             listAllRatings(ratingList, ui);
         } else {
             listSpecifiedRating(ratingList, ui);
@@ -152,7 +153,11 @@ public class ListCommand extends Command {
     }
 
     private void listSpecifiedRating(RatingList ratings, TextUi ui) {
+        assert information.isEmpty() : "Rating details should not be empty";
         int ratingToList = RatingParser.checkFormatOfRatingValue(information);
+        if (ratingToList == 0) {
+            return;
+        }
         if (RatingParser.checkRangeOfRatingValue(ratingToList)) {
             ui.printSpecifiedRating(ratings, ratingToList);
         }

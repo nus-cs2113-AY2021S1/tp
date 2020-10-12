@@ -1,5 +1,9 @@
 package seedu.duke.rating;
 
+import seedu.duke.commands.AddCommand;
+
+import java.util.logging.Level;
+
 public class RatingParser {
 
     public static final int RATING_ONE = 1;
@@ -12,6 +16,7 @@ public class RatingParser {
         try {
             ratingToList = Integer.parseInt(rating);
         } catch (NumberFormatException e) {
+            AddCommand.addLogger.log(Level.WARNING, "format error", e);
             System.out.println(ERROR_INVALID_FORMAT_RATING);
         }
         return ratingToList;
@@ -19,6 +24,7 @@ public class RatingParser {
 
     public static boolean checkRangeOfRatingValue(int rating) {
         if (!(rating >= RATING_ONE && rating <= RATING_FIVE)) {
+            AddCommand.addLogger.log(Level.INFO, "rating score out of range");
             System.out.println(ERROR_INVALID_RATING_SCORE);
             return false;
         }

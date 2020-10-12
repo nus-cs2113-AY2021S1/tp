@@ -75,9 +75,7 @@ public class DeleteCommand extends Command {
             Quote quoteToBeDeleted = quotes.getQuote(quoteNumber);
             quotes.delete(quoteNumber);
             ui.printDeleteQuote(quoteToBeDeleted.getQuote());
-        } catch (NumberFormatException e) {
-            System.out.println(ERROR_INVALID_QUOTE_NUM);
-        } catch (IndexOutOfBoundsException e) {
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             System.out.println(ERROR_INVALID_QUOTE_NUM);
         }
     }
