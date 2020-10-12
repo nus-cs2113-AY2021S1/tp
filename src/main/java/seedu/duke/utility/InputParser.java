@@ -1,6 +1,5 @@
 package seedu.duke.utility;
 
-import seedu.duke.classes.Show;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.ChangeRatingCommand;
 import seedu.duke.commands.DeleteRatingCommand;
@@ -9,8 +8,6 @@ import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
 import seedu.duke.commands.UpdateShowSeasonCommand;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map.Entry;
 
 //TODO include more parser classes (storage.parser, command.parser etc in the future)
 
@@ -79,26 +76,11 @@ public class InputParser {
             return;
 
         case "episode":
-            ArrayList<String> updateInputs = tokenizeStringArray(input);
-            UpdateShowEpisodeProgressCommand updateShowProgress;
-            try {
-                updateShowProgress = new UpdateShowEpisodeProgressCommand(command, updateInputs);
-            } catch (NullPointerException e) {
-                Ui.printBadInputException();
-                return;
-            }
-            updateShowProgress.processCommand();
+            parseEpisodeUpdateCommand(input, command);
+
             return;
         case "season":
-            ArrayList<String> seasonInputs = tokenizeStringArray(input);
-            UpdateShowSeasonCommand updateShowSeason;
-            try {
-                updateShowSeason = new UpdateShowSeasonCommand(command, seasonInputs);
-            } catch (NullPointerException e) {
-                Ui.printBadInputException();
-                return;
-            }
-            updateShowSeason.processCommand();
+            parseSeasonUpdateCommand(input, command);
             return;
 
         case "rating":
@@ -143,6 +125,31 @@ public class InputParser {
     //todo: differentiate between show and movie soon
     //todo fix error handling for parsing - follow episode and season
 
+    private static void parseEpisodeUpdateCommand(String input, String command) {
+        ArrayList<String> updateInputs = tokenizeStringArray(input);
+        UpdateShowEpisodeProgressCommand updateShowProgress;
+        try {
+            updateShowProgress = new UpdateShowEpisodeProgressCommand(command, updateInputs);
+        } catch (NullPointerException e) {
+            Ui.printBadInputException();
+            return;
+        }
+        updateShowProgress.processCommand();
+
+    }
+
+    private static void parseSeasonUpdateCommand(String input, String command) {
+        ArrayList<String> seasonInputs = tokenizeStringArray(input);
+        UpdateShowSeasonCommand updateShowSeason;
+        try {
+            updateShowSeason = new UpdateShowSeasonCommand(command, seasonInputs);
+        } catch (NullPointerException e) {
+            Ui.printBadInputException();
+            return;
+        }
+        updateShowSeason.processCommand();
+    }
+
     private static void parseAddRatingCommand(String input) {
         input = removeFirstWord(input);
         String[] tokenizedInput = input.split(" ");
@@ -168,25 +175,7 @@ public class InputParser {
         changeShowRating.changeRating(showRating);
         Ui.printChangeRating(tokenizedInput[0], tokenizedInput[1]);
     }
-//todo move this over to new class ListCommand
-    private static void parseListCommand(HashMap<String, Show> showList) {
-        // idk how to do this btw
-        int index = 1;
-        String rating = null;
-        for (Entry<String, Show> entry : showList.entrySet()) {
-            if(entry.getValue().getRating()!=-1){
-                rating = String.valueOf(entry.getValue().getRating());
-            }
-            else{
-                rating = "Not added.";
-            }
-            System.out.println(index + ". " + entry.getValue().getName() + " | " + "Season " + entry.getValue().getNumSeasons()
-                    + " | " + "Episode " + entry.getValue().getEpisodesForSeason(index) + " | " + "Rating: " + rating);
-            index++;
-        }
-    }
 
- //todo check on the correct layout of add command, currently does not gve correct output
     private static void parseAddCommand(String input) {
         //catch for 1)too many/not enough inputs , 2)invalid input, 3)show alr added
         //maybe last arg is optional? idk cos user might not wanna put rating yet
@@ -211,6 +200,24 @@ public class InputParser {
         }
 
     }
+
+    private static void parseListCommand(HashMap<String, Show> showList) {
+        // idk how to do this btw
+        int index = 1;
+        String rating = null;
+        for (Entry<String, Show> entry : showList.entrySet()) {
+            if(entry.getValue().getRating()!=-1){
+                rating = String.valueOf(entry.getValue().getRating());
+            }
+            else{
+                rating = "Not added.";
+            }
+            System.out.println(index + ". " + entry.getValue().getName() + " | " + "Season " + entry.getValue().getNumSeasons()
+                    + " | " + "Episode " + entry.getValue().getEpisodesForSeason(index) + " | " + "Rating: " + rating);
+            index++;
+        }
+    }
+
 
     private static void parseDeleteCommand(String input) {
         //catch for 1)show not found , 2) invalid no. of args
