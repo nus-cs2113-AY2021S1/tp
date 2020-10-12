@@ -2,6 +2,7 @@ package seedu.eduke8.parser;
 
 import seedu.eduke8.command.Command;
 import seedu.eduke8.common.DisplayableList;
+import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.quiz.SingleTopicQuiz;
 import seedu.eduke8.topic.Topic;
 import seedu.eduke8.topic.TopicList;
@@ -13,7 +14,7 @@ public class MenuParser implements Parser {
     }
 
     @Override
-    public Command parseCommand(DisplayableList topicList, String userInput) {
+    public Command parseCommand(DisplayableList topicList, String userInput) throws Eduke8Exception {
         int numOfQuestions = 0;
         String topicName = "";
         String[] commandArr = userInput.trim().split(" ", 0);
@@ -51,7 +52,8 @@ public class MenuParser implements Parser {
     }
 
     // Should move this to its own Command class
-    private void parseQuizCommand(TopicList topicList, int numOfQuestions, String topicName, Ui ui) {
+    private void parseQuizCommand(TopicList topicList, int numOfQuestions,
+                                  String topicName, Ui ui) throws Eduke8Exception {
         Topic topic = (Topic) topicList.find(topicName);
         SingleTopicQuiz singleTopicQuiz = new SingleTopicQuiz(topic, numOfQuestions);
         singleTopicQuiz.startQuiz(ui);
