@@ -18,7 +18,7 @@ public class PinCommand extends Command {
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE]";
 
     private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook";
-    
+
     private int index;
     private String title;
     private boolean isPinByIndex;
