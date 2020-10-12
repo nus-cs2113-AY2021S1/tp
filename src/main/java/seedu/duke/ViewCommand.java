@@ -15,9 +15,9 @@ public class ViewCommand extends Command {
         } else if (command.equalsIgnoreCase("view exercise")) {
             viewExercise(exerciseList);
         } else if (command.equalsIgnoreCase("view summary")) {
-            viewSummary(foodList, exerciseList, storage);
+            viewSummary(foodList, exerciseList);
         } else if (command.equalsIgnoreCase("view bmi")) {
-            viewBMI(user);
+            viewBmi(user);
         } else if (command.equalsIgnoreCase("view profile")) {
             viewProfile(user);
         } else {
@@ -27,7 +27,7 @@ public class ViewCommand extends Command {
 
     //View food
     public void viewFood(FoodList foodList) {
-        if(foodList.getSize()==0) {
+        if (foodList.getSize() == 0) {
             System.out.println("The food list is empty...");
         } else {
             int index = 0;
@@ -44,7 +44,7 @@ public class ViewCommand extends Command {
 
     //View exercise
     public void viewExercise(ExerciseList exerciseList) {
-        if(exerciseList.getSize()==0){
+        if (exerciseList.getSize() == 0) {
             System.out.println("The exercise list is empty...");
         } else {
             int index = 0;
@@ -61,7 +61,7 @@ public class ViewCommand extends Command {
     }
 
     //View summary of total amount of calories consumed and burnt.
-    public void viewSummary(FoodList foodList, ExerciseList exerciseList, Storage storage) {
+    public void viewSummary(FoodList foodList, ExerciseList exerciseList) {
         System.out.println("Total calorie consumed:");
         System.out.println(user.calculateCalorieConsumed(foodList).get());
         System.out.println("Total calorie burnt:");
@@ -70,9 +70,9 @@ public class ViewCommand extends Command {
         System.out.println(user.calculateCalorie(foodList, exerciseList).get());
     }
 
-    public void viewBMI(User user) {
+    public void viewBmi(User user) {
         System.out.println("Your BMI is:");
-        System.out.println(user.getBMI());
+        System.out.println(user.getBmi());
     }
 
     public void viewProfile(User user) {
