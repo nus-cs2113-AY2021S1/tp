@@ -50,24 +50,21 @@ public class PinCommand extends Command {
 
     @Override
     public String execute() {
-        Note note = new Note("", "", false);
-        boolean noteExists = false;
+        Note note = null;
         if (isPinByIndex) {
             try {
                 note = notebook.getNotes().get(index);
             } catch (IndexOutOfBoundsException exception) {
                 return "Note with this index does not exists in the notebook";
             }
-            noteExists = true;
         } else {
             for (Note notes : notebook.getNotes()) {
                 if (notes.getTitle().equals(title)) {
                     note = notes;
-                    noteExists = true;
                 }
             }
         }
-        if (!noteExists) {
+        if (note == null) {
             return "This note does not exists in the notebook";
         }
 
