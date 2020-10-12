@@ -5,7 +5,7 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.command.Command;
 import seedu.duke.exception.AniException;
-import seedu.duke.human.User;
+import seedu.duke.human.UserManagement;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -22,17 +22,18 @@ public class Duke {
     private final Ui ui;
     private final Parser parser;
     private final Storage storage;
-    private User user;
+    private UserManagement userManagement;
     private final Watchlist currentWatchlist;
     private final ArrayList<Watchlist> watchlists;
 
     public Duke() {
         ui = new Ui();
+        userManagement = new UserManagement(ui);
         parser = new Parser();
         storage = new Storage(USER_PROFILE_FILE_NAME, WATCHLIST_FILE_NAME);
 
         ui.printWelcomeMessage();
-        user = storage.readUserProfileFile(ui);
+        userManagement.setUser(storage.readUserProfileFile(ui));
         watchlists = storage.readWatchlistFile(ui);
 
         if (watchlists.isEmpty()) {
@@ -44,12 +45,12 @@ public class Duke {
 
     public void run() {
         Command command = null;
-        if (user == null) {
-            user = ui.createUser();
+        if (userManagement.getUser() == null) {
+            userManagement.createUser();
         }
 
         do {
-            String userInput = ui.readUserInput(user.getFancyName(), currentWatchlist.getName());
+            String userInput = ui.readUserInput(userManagement.getUser().getFancyName(), currentWatchlist.getName());
             try {
                 command = Parser.getCommand(userInput);
                 // now passing in many parameters into execute, 

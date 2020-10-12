@@ -7,7 +7,7 @@ import java.text.ParseException;
 import java.util.Scanner;
 
 public class Ui {
-    private static final Scanner CONSOLE = new Scanner(System.in);
+    private static Scanner CONSOLE = new Scanner(System.in);
     private static final String LOGO =
             "                 _  _____ _\n"
             + "      /\\         (_)/ ____| |\n"
@@ -37,35 +37,15 @@ public class Ui {
         return userInput;
     }
 
+    public String readInput() {
+        return CONSOLE.nextLine();
+    }
+
     public String readUserInput(String userName, String watchlistName) {
         System.out.print(System.lineSeparator() + " " + userName + "(" + watchlistName + ") #> ");
         String userInput = CONSOLE.nextLine();
         return userInput;
     }
-
-    public User createUser() {
-        User user = null;
-        boolean userCreated = false;
-
-        while (!userCreated) {
-            try {
-                printMessage("What's your name?");
-                String name = CONSOLE.nextLine();
-                printMessage("Hello " + name + "! What might your date of birth be? (DD/MM/YYYY)");
-                String dob = CONSOLE.nextLine();
-                printMessage("What might your gender be? (Male/Female/Others)");
-                String gender = CONSOLE.nextLine();
-
-                user = new User(name, dob, gender);
-                userCreated = true;
-            } catch (ParseException | AniException exception) {
-                printErrorMessage(exception.getMessage());
-            }
-        }
-
-        return user;
-    }
-
 
     /**
      * Greets new user upon opening up application.
