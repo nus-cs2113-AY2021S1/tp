@@ -111,6 +111,12 @@ public class Show {
             des += "| Rating: ";
             des += Integer.toString(rating);
         }
+        des += " | : ";
+        des += ("Seasons" + numSeasons + " | Episodes: ");
+        for (int episode : numEpisodesForSeasons) {
+            des += Integer.toString(episode);
+            des += " ";
+        }
         return des;
     }
 

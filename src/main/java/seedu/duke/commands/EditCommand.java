@@ -16,7 +16,28 @@ public class EditCommand {
 
     }
 
-    public static void processCommand() {
+    public static void editSeasons(String editCommand) {
+        int numSeasons = Integer.parseInt(editCommand.substring(7));
+        show.setNumSeasons(numSeasons);
+        int[] episodes;
+        if (numSeasons > show.getNumSeasons()) {
+            episodes = new int[numSeasons];
+            for (int i = 0; i < show.getNumSeasons(); i++) {
+                episodes[i] = show.getEpisodesForSeason(i);
+            }
+            for (int i = show.getNumSeasons(); i < numSeasons; i++) {
+                episodes[i] = 1;
+            }
+        } else {
+            episodes = new int[numSeasons];
+            for (int i = 0; i < show.getNumSeasons(); i++) {
+                episodes[i] = show.getEpisodesForSeason(i);
+            }
+        }
+        show.setNumEpisodesForSeasons(episodes);
+    }
+
+    public static void processCommand() throws NullPointerException {
         Scanner in = new Scanner(System.in);
         System.out.println("What do you want to change , input done to stop editing");
         System.out.println("{name,season,episode}");
@@ -32,9 +53,13 @@ public class EditCommand {
                     intNumOfEpisodes[i] = Integer.parseInt(s);
                     i++;
                 }
+                //I put this below for now in case we need to add checks to ensure numOfEpisodes is not empty
+                if (i == 0 || numOfEpisodes.length != show.getNumSeasons()) {
+                    throw new NullPointerException();
+                }
                 show.setNumEpisodesForSeasons(intNumOfEpisodes);
             } else if (editCommand.startsWith("season")) {
-                show.setNumSeasons(Integer.parseInt(editCommand.substring(7)));
+                editSeasons(editCommand);
             } else if (editCommand.equals("done")) {
                 break;
             }

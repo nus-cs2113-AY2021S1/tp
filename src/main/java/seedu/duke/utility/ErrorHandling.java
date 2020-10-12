@@ -15,7 +15,9 @@ public class ErrorHandling extends Exception {
         EXCEPTION_NOT_FOUND_EXCEPTION("\tHey buddy, it seems like we don't have what you're looking for!"),
         EXCEPTION_INVALID_INPUT("\tI don't know what you just said.Try " + Ui.toReverse("help")
                 + " for a list of commands."),
-        EXCEPTION_CREATE_FILE_ERROR("\tError creating file.");
+        EXCEPTION_CREATE_FILE_ERROR("\tError creating file."),
+        EXCEPTION_INVALID_EPISODES_INPUT_EXCEPTION("\tThe number of episodes input doesn't match "
+                + "the number of seasons");
 
         private String exception;
 
