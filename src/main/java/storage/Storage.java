@@ -21,7 +21,6 @@ public class Storage {
     public static final String QUESTION_ANSWER_PREFIX = " \\| ";
     public static final String QUESTION_PREFIX = "[Q]";
     public static final String ANSWER_PREFIX = "[A]";
-    public static final String DUE_DATE_PREFIX = "[D]";
 
     protected String filePath;
 
@@ -144,9 +143,7 @@ public class Storage {
             String[] args = fileCommand.split(QUESTION_ANSWER_PREFIX, 2);
             String question = Parser.parseQuestioninFile(args[0]);
             String answer = Parser.parseAnswerinFile(args[1]);
-            String dueDate = Parser.parseDueDateinFile(args[2]);
-            LocalDate dueBy = LocalDate.parse(dueDate);
-            Card card = new Card(question, answer, dueBy);
+            Card card = new Card(question, answer);
             cards.add(card);
         }
         return cards;

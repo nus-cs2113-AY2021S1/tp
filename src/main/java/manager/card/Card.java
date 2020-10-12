@@ -16,13 +16,6 @@ public class Card {
         this.previousInterval = 1;
     }
 
-    public Card(String question, String answer, LocalDate dueBy) {
-        this.question = question;
-        this.answer = answer;
-        this.dueBy = dueBy;
-        this.previousInterval = 1;
-    }
-
     public Card(String question, String answer, LocalDate dueBy, int previousInterval) {
         this.question = question;
         this.answer = answer;
@@ -60,6 +53,6 @@ public class Card {
     }
 
     public String toString() {
-        return "[Q] " + question + " | [A] " + answer + " | [D] " + dueBy;
+        return "[Q] " + question + " | [A] " + answer;
     }
 }
