@@ -41,5 +41,6 @@ public class UpdateShowSeasonCommand extends Command {
         Show show = ShowList.getShow(showName);
         show.setCurrentSeason(season);
         ShowList.setShow(showName, show);
+        Ui.printChangeSeason(showName);
     }
 }

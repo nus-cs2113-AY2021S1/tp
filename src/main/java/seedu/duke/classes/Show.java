@@ -13,7 +13,6 @@ public class Show {
     protected int currentSeason;    //to keep track of watch progress
     protected int currentEpisode;
 
-
     public Show(String name, int numSeasons, int[] numEpisodesForSeasons) {
         this.name = name;
         this.numSeasons = numSeasons;
@@ -23,7 +22,6 @@ public class Show {
         this.currentEpisode = 1;
         this.currentSeason = 1;
     }
-
 
     public String getName() {
         return name;
@@ -111,4 +109,5 @@ public class Show {
         }
         return des;
     }
+
 }
