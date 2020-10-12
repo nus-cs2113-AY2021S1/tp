@@ -1,4 +1,4 @@
-package seedu.duke.data;
+package seedu.duke.model;
 
 public class Task {
 

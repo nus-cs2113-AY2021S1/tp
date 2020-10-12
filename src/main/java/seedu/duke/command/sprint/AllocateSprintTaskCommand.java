@@ -1,8 +1,8 @@
-package seedu.duke.commands.sprintcommands;
+package seedu.duke.command.sprint;
 
-import seedu.duke.data.Project;
-import seedu.duke.data.Sprint;
-import seedu.duke.data.SprintList;
+import seedu.duke.model.Project;
+import seedu.duke.model.Sprint;
+import seedu.duke.model.SprintList;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.ui.TextUi;
 
@@ -20,7 +20,7 @@ public class AllocateSprintTaskCommand extends SprintCommand {
     public boolean execute(Project proj, TextUi ui) {
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
-            if (validateParams()) {
+            if (validateParams()) { //need to validate user exist
                 String taskId = parameters.get("taskid");
                 ArrayList<String> users = new ArrayList<>();
                 for (int i = 0; i < parameters.size() - 1; i++){

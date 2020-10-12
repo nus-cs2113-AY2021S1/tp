@@ -1,8 +1,8 @@
-package seedu.duke.commands.sprintcommands;
+package seedu.duke.command.sprint;
 
-import seedu.duke.data.Project;
-import seedu.duke.data.Sprint;
-import seedu.duke.data.SprintList;
+import seedu.duke.model.Project;
+import seedu.duke.model.Sprint;
+import seedu.duke.model.SprintList;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.ui.TextUi;
 
@@ -16,7 +16,7 @@ public class DeleteSprintTaskCommand extends SprintCommand{
         super(parameters);
     }
 
-    public boolean execute(Project proj, TextUi ui) {
+    public boolean execute(Project proj, TextUi ui) {//need to validate task exist
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();

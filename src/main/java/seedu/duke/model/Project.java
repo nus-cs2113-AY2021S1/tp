@@ -1,7 +1,6 @@
-package seedu.duke.data;
+package seedu.duke.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Project {
 

@@ -1,8 +1,7 @@
-package seedu.duke.data;
+package seedu.duke.model;
 
 import seedu.duke.ui.TextUi;
 
-import javax.swing.plaf.TextUI;
 import java.util.ArrayList;
 import java.util.List;
 

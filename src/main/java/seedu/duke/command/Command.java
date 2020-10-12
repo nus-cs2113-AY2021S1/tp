@@ -1,6 +1,6 @@
-package seedu.duke.commands;
+package seedu.duke.command;
 
-import seedu.duke.data.Project;
+import seedu.duke.model.Project;
 import seedu.duke.ui.TextUi;
 
 import java.util.Hashtable;

@@ -1,7 +1,7 @@
-package seedu.duke.commands.sprintcommands;
+package seedu.duke.command.sprint;
 
-import seedu.duke.commands.Command;
-import seedu.duke.data.Project;
+import seedu.duke.command.Command;
+import seedu.duke.model.Project;
 import seedu.duke.ui.TextUi;
 
 import java.util.Hashtable;

@@ -1,11 +1,10 @@
 package seedu.duke;
 
-import seedu.duke.commands.Command;
-import seedu.duke.commands.sprintcommands.*;
-import seedu.duke.data.Member;
-import seedu.duke.data.Project;
-import seedu.duke.data.ProjectBacklog;
-import seedu.duke.data.Task;
+import seedu.duke.command.Command;
+import seedu.duke.command.sprint.*;
+import seedu.duke.model.Project;
+import seedu.duke.model.ProjectBacklog;
+import seedu.duke.model.Task;
 import seedu.duke.ui.TextUi;
 
 import java.util.Arrays;
