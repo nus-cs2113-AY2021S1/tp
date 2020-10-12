@@ -1,6 +1,5 @@
-package commands.go;
+package commands;
 
-import commands.Command;
 import manager.card.Card;
 import manager.chapter.CardList;
 import access.Access;
@@ -45,7 +44,7 @@ public class GoChapterCommand extends Command {
                 break;
             }
         }
-        if (isLevelExist == false) {
+        if (!isLevelExist) {
             System.out.println("Sorry, I cannot find this chapter, please add this chapter first");
         }
     }

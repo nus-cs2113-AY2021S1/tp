@@ -1,7 +1,6 @@
-package commands.add;
+package commands;
 
 import access.Access;
-import commands.Command;
 import manager.admin.Admin;
 import manager.admin.ModuleList;
 import manager.chapter.CardList;

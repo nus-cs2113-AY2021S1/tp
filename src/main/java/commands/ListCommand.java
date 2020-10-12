@@ -2,8 +2,12 @@ package commands;
 
 import access.Access;
 import exception.IncorrectAccessLevelException;
+import manager.admin.ModuleList;
 import manager.card.Card;
 import manager.chapter.CardList;
+import manager.chapter.Chapter;
+import manager.module.ChapterList;
+import manager.module.Module;
 import storage.Storage;
 import ui.Ui;
 
@@ -20,7 +24,12 @@ public class ListCommand extends Command {
     public void execute(CardList cards, Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException {
         if (access.isChapterLevel()) {
             listCards(ui, access);
-        } else {
+        } else if (access.isModuleLevel()) {
+            listChapters(ui, access);
+        } else if (access.isAdminLevel()) {
+            listModules(ui, access);
+        }
+        else {
             throw new IncorrectAccessLevelException("List command can only be called at admin, "
                     + "module and chapter level.\n");
         }
@@ -32,6 +41,21 @@ public class ListCommand extends Command {
         int cardCount = cards.getCardCount();
         ui.showCardList(allCards, cardCount);
     }
+
+    private void listModules(Ui ui, Access access) {
+        ModuleList modules = access.getAdmin().getModules();
+        ArrayList<Module> allModules = modules.getAllModules();
+        int chapterCount = modules.getModuleCount();
+        ui.showModuleList(allModules, chapterCount);
+    }
+
+    private void listChapters(Ui ui, Access access) {
+        ChapterList chapters = access.getModule().getChapters();
+        ArrayList<Chapter> allChapters = chapters.getAllChapters();
+        int chapterCount = chapters.getChapterCount();
+        ui.showChapterList(allChapters, chapterCount);
+    }
+
 
     @Override
     public boolean isExit() {

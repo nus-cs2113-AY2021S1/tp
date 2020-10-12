@@ -1,7 +1,6 @@
-package commands.add;
+package commands;
 
 import access.Access;
-import commands.Command;
 import manager.card.Card;
 import manager.chapter.CardList;
 import storage.Storage;
@@ -17,7 +16,7 @@ public class AddCommand extends Command {
             + "Parameters:" + MODULE_PARAMETERS + "\n"
             + "           " + CHAPTER_PARAMETERS + "\n"
             + "           " + CARD_PARAMETERS + "\n"
-            + "Example: " + COMMAND_WORD + " CS2113T"
+            + "Example: " + COMMAND_WORD + " CS2113T\n"
             + "         " + COMMAND_WORD + " Chapter 1\n"
             + "         " + COMMAND_WORD + " q:What is the result of one plus one | a:two\n";
 

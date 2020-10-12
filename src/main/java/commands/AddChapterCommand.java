@@ -1,6 +1,5 @@
-package commands.add;
+package commands;
 
-import commands.Command;
 import manager.chapter.CardList;
 import manager.chapter.Chapter;
 import manager.module.ChapterList;

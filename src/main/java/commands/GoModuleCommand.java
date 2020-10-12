@@ -1,7 +1,6 @@
-package commands.go;
+package commands;
 
 import access.Access;
-import commands.Command;
 import manager.admin.ModuleList;
 import manager.chapter.CardList;
 import manager.chapter.Chapter;
@@ -45,7 +44,7 @@ public class GoModuleCommand extends Command {
                 break;
             }
         }
-        if (isLevelExist == false) {
+        if (!isLevelExist) {
             System.out.println("Sorry, I cannot find this module, please add this module first");
         }
     }
