@@ -21,8 +21,8 @@ public class WordsFilter {
     /**
      * Prints word filtered by type.
      *
-     * @param isNewFilter Creates new filter thread
-     * @param types Types of words need filtering
+     * @param isNewFilter Clears last filter and creates new filter.
+     * @param types Types of words need filtering.
      */
     public static void filterByType(boolean isNewFilter, String[] types) {
         if (isNewFilter) {
@@ -45,7 +45,12 @@ public class WordsFilter {
         printFilterResult();
     }
 
-    // not ready to use
+    /**
+     * Filters words by starting strings and prints them.
+     *
+     * @param isNewFilter Clears last filter and creates new filter.
+     * @param startStrings Array of strings that need filtering.
+     */
     public static void filterByStartingString(boolean isNewFilter, String[] startStrings) {
         if (isNewFilter) {
             ArrayList<Words> words = WordList.wordList;
@@ -80,7 +85,12 @@ public class WordsFilter {
         printFilterResult();
     }
 
-    // not ready to use
+    /**
+     * Filters words by indicated including strings and prints them.
+     *
+     * @param isNewFilter Clears last filter and creates new filter.
+     * @param includedStrings Array of strings that needs filtering.
+     */
     public static void filterByIncludedString(boolean isNewFilter, String[] includedStrings) {
         if (isNewFilter) {
             ArrayList<Words> words = WordList.wordList;
