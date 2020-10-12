@@ -8,27 +8,27 @@ import java.util.Arrays;
  */
 public class Module {
 
-    protected String moduleCode;
-    protected int expected = -1;
-    protected double[] actualTime = new double[13];
+    private String moduleCode;
+    private int expected = -1;
+    private double[] actualTime = new double[13];
 
     public Module(String mod) {
-        this.moduleCode = mod;
-        Arrays.fill(this.actualTime, -1);
+        moduleCode = mod;
+        Arrays.fill(actualTime, -1);
     }
 
     public Module(String mod, String expected) {
-        this.moduleCode = mod;
+        moduleCode = mod;
         this.expected = Integer.parseInt(expected);
         Arrays.fill(actualTime, -1);
     }
 
     @Override
     public String toString() {
-        if (this.expected == -1) {
-            return this.moduleCode;
+        if (expected == -1) {
+            return moduleCode;
         } else {
-            return this.moduleCode + ", Expected Workload: " + this.expected + "h";
+            return moduleCode + ", Expected Workload: " + expected + "h";
         }
     }
 
@@ -38,6 +38,10 @@ public class Module {
 
     public int getExpectedWorkload() {
         return expected;
+    }
+
+    public void setExpectedWorkload(int expected) {
+        this.expected = expected;
     }
 
     public double[] getActualTime() {
@@ -57,7 +61,9 @@ public class Module {
     public void minusActualTime(String time, String week) {
         double d = Double.parseDouble(time);
         int i = Integer.parseInt(week);
-        this.actualTime[i] -= d;
+        if (this.actualTime[i] != -1) {
+            this.actualTime[i] -= d;
+        }
     }
 
     @Override
@@ -69,7 +75,6 @@ public class Module {
             return false;
         }
         Module m = (Module) obj;
-
         return moduleCode.equals(m.moduleCode);
     }
 

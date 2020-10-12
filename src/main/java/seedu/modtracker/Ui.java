@@ -119,4 +119,12 @@ public class Ui {
     public void printAdd(Module moduleDetail) {
         System.out.println(moduleDetail + " is added." + System.lineSeparator());
     }
+
+    /**
+     * Prints the given error message.
+     */
+    public void printErrorMessage(String message) {
+        System.out.println("There was an error :(");
+        System.out.println(message);
+    }
 }
