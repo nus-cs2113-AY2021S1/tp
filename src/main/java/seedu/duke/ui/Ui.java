@@ -1,8 +1,14 @@
 package seedu.duke.ui;
 
+<<<<<<< HEAD
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
 
+=======
+import seedu.duke.Bus;
+
+import java.util.ArrayList;
+>>>>>>> master
 import java.util.Scanner;
 
 public class Ui {
@@ -42,8 +48,25 @@ public class Ui {
         System.out.println("So long buddy!");
     }
 
+<<<<<<< HEAD
     public static void printRouteSelectionMessage() {
         System.out.println("What bus routes would you like to see?\nCurrently, we have two bus routes available for"
                 + "your viewing \n1.AA1 \n2.AA2 \nType the name to view:");
+=======
+    public static void printRouteMessage(ArrayList<Bus> options) {
+        int optionNo = 1;
+        boolean isPossible = false;
+        System.out.println("\nThe buses you can take are: ");
+        for (Bus option: options) {
+            if (option.toString() != null) {
+                System.out.println(optionNo + ". " + option.toString());
+                optionNo++;
+                isPossible = true;
+            }
+        }
+        if (!isPossible) {
+            System.out.println("none.\n\tThere are no direct bus routes. :(");
+        }
+>>>>>>> master
     }
 }
