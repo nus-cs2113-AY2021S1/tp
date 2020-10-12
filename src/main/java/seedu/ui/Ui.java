@@ -40,14 +40,15 @@ public class Ui {
 
     private void displayTasks(TaskList tasks) {
         // Header
-        String format = "%-10s%-15s%-15s%-10s%-10s" + LS;
-        out.format(format, "Index", "Description", "Date", "Time", "Priority");
+        String format = "%-10s%-15s%-15s%-10s%-10s%-10s" + LS;
+        out.format(format, "Index", "Description", "Date", "Start", "End", "Priority");
         for (int i = 0; i < tasks.size(); i++) {
             out.format(format,
                     i + 1,
                     tasks.get(i).getDescription(),
                     tasks.get(i).getDate(),
-                    tasks.get(i).getTime() == null ? "" : tasks.get(i).getTime(),
+                    tasks.get(i).getStartTime() == null ? "" : tasks.get(i).getStartTime(),
+                    tasks.get(i).getEndTime() == null ? "" : tasks.get(i).getEndTime(),
                     tasks.get(i).getPriority());
         }
     }

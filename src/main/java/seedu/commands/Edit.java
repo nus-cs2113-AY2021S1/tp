@@ -17,12 +17,14 @@ public class Edit extends Command {
             "^edit (?<index>\\d+)"
                     + "( des/(?<description>(\\w+\\s*)+\\w*))?"
                     + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
-                    + "( t/(?<time>\\d{4}))?"
+                    + "( st/(?<st>\\d{4}))?"
+                    + "( et/(?<et>\\d{4}))?"
                     + "( p/(?<priority>\\d))?$");
     private final int index;
     private final String description;
     private final String date;
-    private final String time;
+    private final String startTime;
+    private final String endTime;
     private final String priority;
 
     public Edit(String rawInput) throws InvalidCommandException {
@@ -31,7 +33,8 @@ public class Edit extends Command {
             index = Integer.parseInt(matcher.group("index"));
             description = matcher.group("description");
             date = matcher.group("date");
-            time = matcher.group("time");
+            startTime = matcher.group("st");
+            endTime = matcher.group("et");
             priority = matcher.group("priority");
         } else {
             throw new InvalidCommandException();
@@ -53,12 +56,15 @@ public class Edit extends Command {
         if (date != null) {
             task.setDate(date);
         }
-        if (time != null) {
-            task.setTime(time);
+        if (startTime != null) {
+            task.setStartTime(startTime);
+        }
+        if (endTime != null) {
+            task.setEndTime(endTime);
         }
         if (priority != null) {
             task.setPriority(priority);
         }
-        return new CommandResult(EDIT_MESSAGE);
+        return new CommandResult(EDIT_MESSAGE, tasks);
     }
 }
