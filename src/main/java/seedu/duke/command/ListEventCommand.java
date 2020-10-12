@@ -1,8 +1,10 @@
 package seedu.duke.command;
 
-import java.time.LocalDate;
+import seedu.duke.data.timetable.Event;
+import seedu.duke.ui.InterfaceManager;
 
-import static seedu.duke.util.PrefixSyntax.PREFIX_DATETIME;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * Lists all the Events in the Timetable.
@@ -11,15 +13,22 @@ public class ListEventCommand extends Command {
 
     public static final String COMMAND_WORD = "list-e";
 
-    private static final String COMMAND_USAGE = COMMAND_WORD + ": List all the events in the Timetable. Parameters: "
-            + "[" + PREFIX_DATETIME + " DATE_TIME]";
+    private static final String COMMAND_USAGE = COMMAND_WORD + ": List all the events in the Timetable.";
 
-    private LocalDate date;
-    private boolean isListByDate;
+    //private static final String COMMAND_USAGE = COMMAND_WORD + ": List all the events in the Timetable. Parameters: "
+    //        + "[" + PREFIX_DATETIME + " DATE_TIME]";
 
+    /**
+     * Gets how the command is expected to be used.
+     *
+     * @return String representation of how the command is to be used.
+     */
     public static String getCommandUsage() {
         return COMMAND_USAGE;
     }
+
+    private LocalDate date;
+    private boolean isListByDate;
 
     /**
      * Constructs a ListEventCommand to list all the Events in the Timetable.
@@ -41,6 +50,17 @@ public class ListEventCommand extends Command {
 
     @Override
     public String execute() {
-        return null;
+        String result = "";
+        ArrayList<Event> events = timetable.getEvents();
+        boolean first = true;
+        int i = 1;
+        for (Event event : events) {
+            if (!first) {
+                result += InterfaceManager.LS + InterfaceManager.LS;
+            }
+            first = false;
+            result += String.format("%d.", i++) + event.toString();
+        }
+        return result;
     }
 }

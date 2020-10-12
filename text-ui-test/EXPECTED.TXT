@@ -1,3 +1,27 @@
+Welcome to NotUS! Type "help" if you need to see a list of commands and their usages.
+Enter command:
+
+The recognized commands and their usages are listed below. Parameters listed in brackets, [ ] represent optional inputs.
+
+[30madd-n: Adds a note to notebook. Parameters: /t TITLE [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...] [/pin PIN]
+[36madd-e: Adds an event to the timetable. Parameters:/t TITLE /timing TIMING (Format: yyyy-MM-dd HH:mm) [/rec Frequency (daily, weekly, monthly, yearly)] [/rem [Days before (Default: 1)]] [/stop TIMING (Format: yyyy-MM-dd HH:mm)]
+[30mcreate-t: Creates a tag. Parameters: /tag TAG NAME [TAG COLOR][0m
+(Available colors: [30mWHITE, [31mRED, [32mGREEN, [34mBLUE, [33mYELLOW, [36mCYAN, [35mPURPLE[0m)
+[36mdelete-n: Deletes a note. Parameters: /t TITLE or /i INDEX
+[30mdelete-e: Deletes an event. Parameters: /i INDEX
+[36mdelete-t: Deletes a tag. Parameters: /tag TAG [/tag TAG1...]
+[30medit-n: Edits a note in the notebook. Parameters: /i INDEX [/t TITLE] [/ln LINE][/c CONTENT][/tag TAG TAG_COLOR/tag TAG1 TAG_COLOR...]
+[36medit-e: Edits an event in the timetable. Parameters: /i INDEX [/t TITLE] [/d DATE_TIME][/rec RECURRING] [/rem REMIND]
+[30mexit: Exits the program.
+[36mfind-n: Finds a note. Parameters: KEYWORDS
+[30mlist-e: List all the events in the Timetable.
+[36mlist-n: Lists all the notes in the Notebook. Parameters: [/tag TAG /tag TAG1...] [up/down]
+[30mlist-t: Lists all the tags.
+[36mpin-n: Pins or unpins a note. Parameters: [/i INDEX] [/t TITLE]
+[30mremind-e: Set a reminder for an event. Parameters: /i INDEX
+[36mtag: Tags or untags a note. Parameters: /i INDEX /tag TAG TAG_COLOR [/tag TAG1 TAG_COLOR...]
+[30mview-n: Views a note. Parameters: [/i INDEX] [/t TITLE]
+[0m
 Enter command:
 
 Invalid Command. Please try again or enter help to get a list of valid commands.
@@ -7,5 +31,4 @@ Enter command:
 Invalid Command. Please try again or enter help to get a list of valid commands.
 
 Enter command:
-null
-BYE
+Bye!

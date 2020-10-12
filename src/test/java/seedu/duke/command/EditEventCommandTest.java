@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
 
-class EditCommandTest {
+class EditEventCommandTest {
 
     @Test
     void execute() {

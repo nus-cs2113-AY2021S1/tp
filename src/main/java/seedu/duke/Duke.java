@@ -2,7 +2,6 @@ package seedu.duke;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.ExitCommand;
-import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.timetable.Timetable;
@@ -21,6 +20,10 @@ public class Duke {
     private Timetable timetable;
     private TagManager tagManager;
 
+    private static final String WELCOME_MSG_STRING = "Welcome to NotUS! "
+            + "Type \"help\" if you need to see a list of commands and their usages.";
+    private static final String ENTER_COMMAND_MSG = "Enter command:";
+
     /**
      * Initializes the required managers.
      */
@@ -30,31 +33,31 @@ public class Duke {
         this.notebook = new Notebook();
         this.timetable = new Timetable();
         this.tagManager = new TagManager();
+
+        interfaceManager.prints(WELCOME_MSG_STRING);
     }
 
     /** Reads the user command and executes it until the user exits the program. */
-    private void runCommandLoop() throws SystemException {
+    private void runCommandLoop() {
         Command command;
 
         do {
-            interfaceManager.prints("Enter command:");
+            interfaceManager.prints(ENTER_COMMAND_MSG);
             String userCommandText = interfaceManager.getUserCommandInput();
             command = new Parser().parseCommand(userCommandText);
             String result = executeCommand(command);
             interfaceManager.prints(result);
         } while (!ExitCommand.isExit(command));
-        interfaceManager.prints("BYE");
     }
 
     /**
      * Exits the application.
      */
     private void exit() {
-
     }
 
     /** Runs the program until termination. */
-    private void run() throws SystemException {
+    private void run() {
         init();
         runCommandLoop();
         exit();
@@ -70,18 +73,7 @@ public class Duke {
     /**
      * Main entry-point for the application.
      */
-    public static void main(String[] args) throws SystemException {
-        /*String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
-        Scanner in = new Scanner(System.in);
-
-        System.out.println("Hello " + in.nextLine());*/
+    public static void main(String[] args) {
         new Duke().run();
     }
 }
