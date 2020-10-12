@@ -13,7 +13,7 @@ public class QuizQuestionsManager {
             "There is not enough questions in the topic for the quiz!";
 
 
-    protected ArrayList<Question> quizQuestions = null;
+    private ArrayList<Question> quizQuestions = new ArrayList<>();
     private int currentQuestionNumber;
 
     private static final Random RANDOM = new Random();

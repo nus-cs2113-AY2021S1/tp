@@ -10,6 +10,9 @@ import seedu.eduke8.option.OptionList;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 class QuizQuestionsManagerTest {
 
@@ -21,11 +24,13 @@ class QuizQuestionsManagerTest {
     private static final int QUIZ_QUESTIONS_COUNT = 2;
 
 
+    // This test tests for getQuizQuestionsCount() method too
     @Test
     void quizQuestionsManagerConstructor_twoQuizQuestionsFromThreeTopicQuestions_returnsCountOfTwo()
             throws Eduke8Exception {
         QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
 
+        // Creating a quiz with 2 questions selected from a total of 3 questions from the topic
         QuizQuestionsManager quizQuestionsManager =
                 new QuizQuestionsManager(QUIZ_QUESTIONS_COUNT, topicQuestionList.getInnerList());
 
@@ -33,16 +38,55 @@ class QuizQuestionsManagerTest {
     }
 
     @Test
-    void getNextQuestion() {
+    void quizQuestionsManagerConstructor_lessThanZeroNumberOfQuizQuestions_expectsException() {
+        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+
+        assertThrows(Eduke8Exception.class, () -> {
+            QuizQuestionsManager quizQuestionsManager =
+                    new QuizQuestionsManager(-1, topicQuestionList.getInnerList());
+        });
+    }
+
+    // Number of quiz questions requested by user exceeds the number of questions in the topic
+    @Test
+    void quizQuestionsManagerConstructor_invalidNumberOfQuizQuestions_expectsException() {
+        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+
+        assertThrows(Eduke8Exception.class, () -> {
+            QuizQuestionsManager quizQuestionsManager =
+                    new QuizQuestionsManager(TOPIC_QUESTIONS_COUNT + 1, topicQuestionList.getInnerList());
+        });
+    }
+
+
+    // This test tests for getCurrentQuestionNumber() method too
+    @Test
+    void getNextQuestion_currentQuestionNumberAtZero_returnsCurrentQuestionNumberAtOne()
+            throws Eduke8Exception {
+        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+
+        // Creating a quiz with 2 questions selected from a total of 3 questions from the topic
+        QuizQuestionsManager quizQuestionsManager =
+                new QuizQuestionsManager(QUIZ_QUESTIONS_COUNT, topicQuestionList.getInnerList());
+
+        quizQuestionsManager.getNextQuestion();
+        assertEquals(1, quizQuestionsManager.getCurrentQuestionNumber());
     }
 
     @Test
-    void getCurrentQuestionNumber() {
+    void areAllQuestionsAnswered_fullyAnsweredQuiz_expectsTrue() throws Eduke8Exception {
+        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+
+        // Creating a quiz with 2 questions selected from a total of 3 questions from the topic
+        QuizQuestionsManager quizQuestionsManager =
+                new QuizQuestionsManager(QUIZ_QUESTIONS_COUNT, topicQuestionList.getInnerList());
+
+        quizQuestionsManager.getNextQuestion();     // Displays first question to user
+        quizQuestionsManager.getNextQuestion();     // Displays second question to user
+
+        assertTrue(quizQuestionsManager.areAllQuestionsAnswered());
     }
 
-    @Test
-    void areAllQuestionsAnswered() {
-    }
 
 
     // Creates a question list that holds two questions, each with a unique description
