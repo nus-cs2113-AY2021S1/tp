@@ -136,7 +136,16 @@ public class Storage {
         Scanner s = new Scanner(f);
         int totalCards = 0;
         while (s.hasNext()) {
-            //to read the card
+            try {
+                String fileCommand = s.nextLine();
+                String[] args = fileCommand.split(QUESTION_ANSWER_PREFIX, 2);
+                String question = Parser.parseQuestioninFile(args[0]);
+                String answer = Parser.parseAnswerinFile(args[1]);
+                Card card = new Card(question, answer);
+                cards.add(card);
+            } catch (InvalidFileFormatException e) {
+                System.out.println("The format of some commands in the file is invalid");
+            }
         }
         return cards;
     }

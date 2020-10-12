@@ -26,4 +26,8 @@ public class ChapterList {
     public int getChapterCount() {
         return chapters.size();
     }
+
+    public Chapter getChapter(int chapterIndex) {
+        return chapters.get(chapterIndex);
+    }
 }

@@ -8,6 +8,7 @@ import scheduler.Scheduler;
 import storage.Storage;
 import ui.Ui;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 
@@ -18,7 +19,7 @@ public class ReviseCommand extends Command {
     public static final String COMMAND_WORD = "revise";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Starts revision based on a particular chapter. \n"
-            + "Parameters: CHAPTER_NAME\n" + "Example: " + COMMAND_WORD + " Polymorphism\n";
+            + "Parameters: INDEX_OF_CHAPTER\n" + "Example: " + COMMAND_WORD + " 2\n";
 
     public static final String MESSAGE_SUCCESS = "You have completed revision for %1$s.";
     public static final String MESSAGE_NO_CARDS_IN_CHAPTER = "You currently have no cards in %1$s.";
@@ -33,23 +34,34 @@ public class ReviseCommand extends Command {
 
     private final Chapter toRevise;
 
-    public ReviseCommand(String toRevise) {
-        this.toRevise = new Chapter(toRevise);
+    public ReviseCommand(Chapter toRevise) {
+        this.toRevise = toRevise;
     }
 
     @Override
     public void execute(CardList cards, Ui ui, Access access, Storage storage) {
-        ArrayList<Card> allCards = cards.getAllCards();
+        ArrayList<Card> allCards;
+        try {
+            access.setChapterLevel(toRevise.getChapterName());
+            allCards = storage.loadCard(access.getModuleLevel(), toRevise.getChapterName());
+            toRevise.setCards(allCards);
+        } catch (FileNotFoundException e) {
+            ui.showError("File is not found.");
+            return;
+        }
         ArrayList<Card> repeatCards = new ArrayList<>();
         int cardCount = cards.getCardCount();
         if (cardCount == 0) {
             ui.showToUser(String.format(MESSAGE_NO_CARDS_IN_CHAPTER, toRevise));
+            access.setChapterLevel("");
             return;
         }
-        ui.showToUser("The revision for " + toRevise + " will start now:");
         int count = 1;
         for (Card c : allCards) {
             if (Scheduler.isDeadlineDue(c.getDueBy())) {
+                if (count == 1) {
+                    ui.showToUser("The revision for " + toRevise + " will start now:");
+                }
                 ui.showToUser("\nQuestion " + count + ":");
                 ui.showCardRevision(c);
                 String input = ui.getRating();
@@ -59,15 +71,18 @@ public class ReviseCommand extends Command {
         }
         if (count == 1) {
             ui.showToUser(String.format(MESSAGE_NO_CARDS_DUE, toRevise));
+            access.setChapterLevel("");
             return;
         }
 
         repeatRevision(ui, repeatCards, count);
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
+        access.setChapterLevel("");
     }
 
     public static ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards, Card c, String input) {
         boolean isInvalid = true;
+
         while (isInvalid) {
             switch (input.toLowerCase()) {
             case EASY:
