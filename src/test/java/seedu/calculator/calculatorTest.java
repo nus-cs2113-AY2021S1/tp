@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class calculatorTest {
 
+
+
     @Test
     void calculateCalorie_foodListOfThreeItems_sumOfCalorie() {
         ArrayList<Food> foodList = new ArrayList<>();
@@ -25,7 +27,7 @@ class calculatorTest {
         foodList.add(new Food("pancake", 150, 16, 0, 0));
         foodList.add(new Food("bao", 290, 0, 16, 0));
         calculator calculator = new calculator(foodList);
-        assertEquals(55 + 16, calculator.calculateCarbs());
+        assertEquals(55 + 16, calculator.calculateCarb());
     }
 
     @Test
@@ -45,6 +47,6 @@ class calculatorTest {
         foodList.add(new Food("pancake", 150, 16, 0, 0));
         foodList.add(new Food("bao", 290, 0, 16, 0));
         calculator calculator = new calculator(foodList);
-        assertEquals(0, calculator.calculateFats());
+        assertEquals(0, calculator.calculateFat());
     }
 }

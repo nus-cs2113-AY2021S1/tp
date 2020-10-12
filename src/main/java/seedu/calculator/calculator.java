@@ -7,10 +7,10 @@ import java.util.ArrayList;
  * Represents a calculator of food items in foodList.
  */
 public class calculator {
-    private static int totalCalorie = 0;
-    private static int totalCarbohydrate = 0;
-    private static int totalProtein = 0;
-    private static int totalFats = 0;
+    private int totalCalorie = 0;
+    private int totalCarbohydrate = 0;
+    private int totalProtein = 0;
+    private int totalFat = 0;
 
     /**
      * Construct a calculator taking in a foodList. Add up calories,
@@ -24,7 +24,7 @@ public class calculator {
                 totalCalorie += foodList.get(i).getCalorie();
                 totalCarbohydrate += foodList.get(i).getCarbohydrate();
                 totalProtein += foodList.get(i).getProtein();
-                totalFats += foodList.get(i).getFats();
+                totalFat += foodList.get(i).getFats();
             }
         } catch (NullPointerException e) {
             System.out.println("Ops, This foodList is null!");
@@ -45,7 +45,7 @@ public class calculator {
      *
      * @return the value of total carbs of food items in foodList.
      */
-    public int calculateCarbs(){
+    public int calculateCarb(){
         return totalCarbohydrate;
     }
 
@@ -63,7 +63,7 @@ public class calculator {
      *
      * @return the value of total fats of food items in foodList.
      */
-    public int calculateFats(){
-        return totalFats;
+    public int calculateFat(){
+        return totalFat;
     }
 }
