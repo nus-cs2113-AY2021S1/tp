@@ -3,9 +3,6 @@ package seedu.duke;
 import java.util.ArrayList;
 
 public class BusData {
-    /*Constants*/
-    private static final String ROUTE_AA1 = "aa1";
-    private static final String ROUTE_AA2 = "aa2";
 
     private static ArrayList<Bus> buses = new ArrayList<>();
 
@@ -15,7 +12,7 @@ public class BusData {
 
     public static ArrayList<Bus> possibleBuses(String startingLoc, String destination) {
         ArrayList<Bus> busOptions = new ArrayList<>();
-        for (Bus bus: buses) {
+        for (Bus bus : buses) {
             ArrayList<BusStops> route = bus.getPossibleRoute(startingLoc, destination);
             if (route != null) {
                 busOptions.add(new Bus(bus.busNumber, route));
@@ -31,5 +28,9 @@ public class BusData {
             }
         }
         return null;
+    }
+
+    public static ArrayList<Bus> listOfAllBuses() {
+        return buses;
     }
 }

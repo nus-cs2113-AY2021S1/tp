@@ -50,7 +50,7 @@ public class Ui {
         int optionNo = 1;
         boolean isPossible = false;
         System.out.println("\nThe buses you can take are: ");
-        for (Bus option: options) {
+        for (Bus option : options) {
             if (option.toString() != null) {
                 System.out.println(optionNo + ". " + option.toString());
                 optionNo++;
@@ -64,5 +64,12 @@ public class Ui {
 
     public static void printFullRoute(Bus busCode) {
         System.out.println("Here is the " + busCode.getBusNumber() + " route that you have requested:\n" + busCode);
+    }
+
+    public static void printAllBusMessage(ArrayList<Bus> allBuses) {
+        System.out.println("\nThe buses available in NUS are: ");
+        for (Bus bus : allBuses) {
+            System.out.println(bus.toString());
+        }
     }
 }
