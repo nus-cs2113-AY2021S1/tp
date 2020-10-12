@@ -21,7 +21,7 @@ public class Duke {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
-            this.shows = new ShowList(storage.loadState());
+            this.shows = storage.loadState();
         } catch (Exception e) {
             this.shows = new ShowList();
         }

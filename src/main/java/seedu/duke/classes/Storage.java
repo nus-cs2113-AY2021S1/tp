@@ -46,7 +46,7 @@ public class Storage implements SaveState {
     }
 
     @Override
-    public java.util.HashMap<String, Show> loadState() throws FileNotFoundException {
+    public ShowList loadState() throws FileNotFoundException {
         File directory = new File("data");
         if (!directory.exists()) {
             directory.mkdir();
@@ -58,7 +58,8 @@ public class Storage implements SaveState {
             seedu.duke.utility.Ui.showCreateFileError();
         }
         Scanner s = new Scanner(f);
-        HashMap<String, Show> showList = new java.util.HashMap<>();
+        ShowList shows = new ShowList();
+        //HashMap<String, Show> showList = new java.util.HashMap<>();
         // we just assume that users will not change the contain in the file then the format will be fixed
         while (s.hasNext()) {
             String name = s.nextLine().substring(3);
@@ -79,9 +80,10 @@ public class Storage implements SaveState {
             int rating = Integer.parseInt(splitRating[1]);
 
 
-            showList.put(name, new Show(name, season, episodes));
-
-            showList.get(name).setRating(rating);
+            shows.setShow(name,new Show(name,season,episodes));
+            //shows(name, new Show(name, season, episodes));
+            shows.getShow(name).setRating(rating);
+            //showList.get(name).setRating(rating);
 
 
             //another load format which corresponding to the backup save format
@@ -98,6 +100,6 @@ public class Storage implements SaveState {
              */
 
         }
-        return showList;
+        return shows;
     }
 }
