@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class calculatorTest {
 
     @Test
-    void calculateCalorie() {
+    void calculateCalorie_foodListOfThreeItems_sumOfCalorie() {
         ArrayList<Food> foodList = new ArrayList<>();
         foodList.add(new Food("chicken rice", 666, 55, 30, 0));
         foodList.add(new Food("pancake", 150, 16, 0, 0));
@@ -19,7 +19,7 @@ class calculatorTest {
     }
 
     @Test
-    void calculateCarbs() {
+    void calculateCarbs_foodListOfThreeItems_sumOfCarbs() {
         ArrayList<Food> foodList = new ArrayList<>();
         foodList.add(new Food("chicken rice", 666, 55, 30, 0));
         foodList.add(new Food("pancake", 150, 16, 0, 0));
@@ -29,7 +29,7 @@ class calculatorTest {
     }
 
     @Test
-    void calculateProtein() {
+    void calculateProtein_foodListOfThreeItems_sumOfProtein() {
         ArrayList<Food> foodList = new ArrayList<>();
         foodList.add(new Food("chicken rice", 666, 55, 30, 0));
         foodList.add(new Food("pancake", 150, 16, 0, 0));
@@ -39,7 +39,7 @@ class calculatorTest {
     }
 
     @Test
-    void calculateFats() {
+    void calculateFats_foodListOfThreeItems_sumOfFats() {
         ArrayList<Food> foodList = new ArrayList<>();
         foodList.add(new Food("chicken rice", 666, 55, 30, 0));
         foodList.add(new Food("pancake", 150, 16, 0, 0));
