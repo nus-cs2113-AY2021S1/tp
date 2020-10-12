@@ -1,6 +1,11 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.flashcardcommand.*;
+import seedu.duke.command.flashcardcommand.AddFlashcardCommand;
+import seedu.duke.command.flashcardcommand.ExitFlashcardCommand;
+import seedu.duke.command.flashcardcommand.FlashcardCommand;
+import seedu.duke.command.flashcardcommand.ListFlashcardCommand;
+import seedu.duke.command.flashcardcommand.DeleteFlashcardCommand;
+import seedu.duke.command.flashcardcommand.SorryFlashcardCommand;
 
 public class FlashcardParser {
 
