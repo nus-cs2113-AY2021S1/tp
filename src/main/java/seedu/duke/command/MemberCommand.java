@@ -21,7 +21,7 @@ public class MemberCommand {
                 }
             }
         } catch (IndexOutOfBoundsException e) {
-           // Ui.printError("Required index of project not found. Please create before proceeding.");
+            // Ui.printError("Required index of project not found. Please create before proceeding.");
         }
     }
 
@@ -32,9 +32,9 @@ public class MemberCommand {
             for (String s : userId) {
                 if (proj.members.memberList.contains(new Member(s))) {
                     proj.members.memberList.remove(new Member(s));
-                   // Ui.removeMember(s);
+                    // Ui.removeMember(s);
                 } else {
-                   // Ui.memberNotFound(s);
+                    // Ui.memberNotFound(s);
                 }
             }
         } catch (IndexOutOfBoundsException e) {

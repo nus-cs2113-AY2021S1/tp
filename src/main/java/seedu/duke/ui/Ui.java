@@ -13,24 +13,6 @@ public class Ui {
     private static final Scanner in = new Scanner(System.in);
     private static final PrintStream out = System.out;
 
-//    /**
-//     * Create a Ui object with default system streams.
-//     */
-//    public Ui() {
-//        this(System.in, System.out);
-//    }
-//
-//    /**
-//     * Create a Ui object.
-//     *
-//     * @param in Input stream to read inputs from the user
-//     * @param out Output stream to print to the user
-//     */
-//    public Ui(InputStream in, PrintStream out) {
-//        this.in = new Scanner(in);
-//        this.out = out;
-//    }
-
     /**
      * Prints welcome message.
      */
