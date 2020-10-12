@@ -43,6 +43,12 @@ public class RepeatCommand extends Command {
         }
     }
 
+    /**
+     * Static parser for repeat command creation. Distinguish between adding repeated dates or listing current repeats.
+     *
+     * @param input String containing user inputs
+     * @return RepeatCommand set to either add additional dates or set to list out current dates in event
+     */
     public static Command parse(String input) {
         String[] words = input.split(" ");
         switch (words.length) {
@@ -64,11 +70,22 @@ public class RepeatCommand extends Command {
         }
     }
 
+    /**
+     * Change the name of the list to ensure the first character is capitalised.
+     *
+     * @param name String containing name of list for the first character to be capitalised
+     * @return String with first character capitalised
+     */
     private static String formatListName(String name) {
         name = name.toLowerCase();
         return name.substring(0, 1).toUpperCase() + name.substring(1);
     }
 
+    /**
+     * Checks if the string can be converted to an integer.
+     *
+     * @param number String containing the String form of an integer
+     */
     private static void isValidNumber(String number) {
         try {
             Integer.parseInt(number);
@@ -78,6 +95,12 @@ public class RepeatCommand extends Command {
         }
     }
 
+    /**
+     * List command. Used to show dates of repeated events.
+     *
+     * @param data location where all user event information is stored
+     * @param ui User Interface class for printing on screens
+     */
     private void executeList(UserData data, Ui ui) {
         String[] words = command.split(" ");
         EventList eventList = data.getEventList(words[0]);
@@ -86,6 +109,13 @@ public class RepeatCommand extends Command {
         ui.printRepeatList(repeatEvent);
     }
 
+    /**
+     * Add command. Used to add repeated dates to an event.
+     *
+     * @param data location where all user event information is stored
+     * @param ui User Interface class for printing on screens
+     * @param storage File storage location on computer
+     */
     private void executeAdd(UserData data, Ui ui, Storage storage) {
         String[] words = command.split(" ");
         EventList eventList = data.getEventList(words[0]);
