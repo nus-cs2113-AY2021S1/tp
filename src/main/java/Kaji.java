@@ -35,7 +35,6 @@ public class Kaji {
         ui.showWelcome();
         ui.showHelpList();
         boolean isExit = false;
-        Storage.getFileContents(cards);
         while (!isExit) {
             try {
                 ui.showLevel(access);
@@ -43,13 +42,10 @@ public class Kaji {
                 Command c = Parser.parse(fullCommand, access);
                 c.execute(cards, ui, access, storage);
                 ui.printEmptyLine();
-                Storage.writeToFile(cards);
                 isExit = c.isExit();
-            } catch (InvalidInputException | IncorrectAccessLevelException |
-                    IndexOutOfBoundsException | FileNotFoundException e) {
+            } catch (InvalidInputException | IncorrectAccessLevelException | IOException 
+                     | IndexOutOfBoundsException | FileNotFoundException e) {
                 ui.showError(e.getMessage());
-            } catch (IOException e) {
-                System.out.println("     Something went wrong: " + e.getMessage());
             }
         }
     }

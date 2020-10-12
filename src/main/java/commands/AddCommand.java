@@ -6,6 +6,7 @@ import manager.chapter.CardList;
 import storage.Storage;
 import ui.Ui;
 
+
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
     public static final String MODULE_PARAMETERS = " MODULE_NAME";
@@ -16,7 +17,7 @@ public class AddCommand extends Command {
             + "Parameters:" + MODULE_PARAMETERS + "\n"
             + "           " + CHAPTER_PARAMETERS + "\n"
             + "           " + CARD_PARAMETERS + "\n"
-            + "Example: " + COMMAND_WORD + " CS2113T"
+            + "Example: " + COMMAND_WORD + " CS2113T\n"
             + "         " + COMMAND_WORD + " Chapter 1\n"
             + "         " + COMMAND_WORD + " q:What is the result of one plus one | a:two\n";
 

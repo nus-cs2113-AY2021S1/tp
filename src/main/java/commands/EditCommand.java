@@ -42,7 +42,7 @@ public class EditCommand extends Command {
             editCard(ui, access);
         } else {
             throw new IncorrectAccessLevelException("Sorry, you are currently at " + access.getLevel()
-                    + ", please go to " + accessLevel + " level first.");
+                    + ", please go to " + accessLevel + " level first.\n");
         }
     }
 

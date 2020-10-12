@@ -8,11 +8,13 @@ import storage.Storage;
 import ui.Ui;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public abstract class Command {
 
     public abstract void execute(CardList cards, Ui ui, Access access, Storage storage)
-            throws InvalidInputException, IncorrectAccessLevelException, FileNotFoundException;
+            throws InvalidInputException, IncorrectAccessLevelException, 
+            IOException, FileNotFoundException;
 
     public abstract boolean isExit();
 }
