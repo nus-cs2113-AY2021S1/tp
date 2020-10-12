@@ -4,6 +4,7 @@ import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
 import seedu.duke.logic.commands.Command;
 import seedu.duke.logic.commands.ExitCommand;
+import seedu.duke.logic.commands.RouteCommand;
 
 public class Parser {
 
@@ -19,19 +20,20 @@ public class Parser {
      *
      * @return String Array with two element: Command and the rest of the user input
      */
-    private String[] splitCommands(int length) {
-        final String[] split = userInput.trim().split("\\s+", length);
+    String[] splitCommands(int length, String delimiter) {
+        final String[] split = userInput.trim().split(delimiter, length);
         return split.length == length ? split : new String[]{split[0], " "};
     }
 
     public boolean extractType() throws CustomException {
 
-        String command = splitCommands(2)[0];
+        String[] parts = splitCommands(2, "\\s+");
+        String command = parts[0];
 
         switch (command) {
-        //        case "/route":
-        //
-        //            break;
+        case "/route":
+            com = new RouteCommand(parts[1]);
+            break;
         //        case "/routemap":
         //
         //            break;
