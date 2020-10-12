@@ -83,6 +83,7 @@ public class Show {
         this.currentSeason = season;
         this.currentEpisode = 1;
     }
+
     /**
      * Overload/overwrite? the previous setCurrentSeason method signature.
      * Should check with user if they want to input an episode else default it to 1
