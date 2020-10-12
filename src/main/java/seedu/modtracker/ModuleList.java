@@ -10,6 +10,59 @@ public class ModuleList {
 
     public Ui ui = new Ui();
     public static ArrayList<Module> modList = new ArrayList<>();
+    private static final String MODULECODE_SPACING = "Please type module code without any spacing.";
+    private static final String MODULECODE_LENGTH = "The module code should have 6 - 8 characters without any spacing.";
+    private static final String INVALID_MODULECODE = "Please check module code again.";
+    private static final String INVALID_HOURS = "Please input a valid number of hours.";
+    private static final String ERROR_ADDMOD = "Please type addmod <module code>";
+    private static final String ERROR_ADDEXP = "Please type addexp <module code> <expected workload>";
+    private static final String ERROR_DELETEMOD = "Please type deletemod <module code>";
+    private static final String ERROR_DELETEEXP = "Please type deleteexp <module code>";
+
+
+    /**
+     * Checks if the module exists in the list of modules.
+     *
+     * @param input module code typed in by user
+     * @return the existence of module in the list of modules.
+     */
+    public boolean checkIfModuleExist(String input) {
+        Module currentMod = new Module(input);
+        for (Module mod: modList) {
+            if (mod.equals(currentMod)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkIfModuleValid(String module, boolean toPrint) {
+        String trimmedMod = module.trim();
+        if (trimmedMod.contains(" ")) {
+            if (toPrint) {
+                System.out.println(MODULECODE_SPACING + System.lineSeparator());
+            }
+            return false;
+        } else if (trimmedMod.length() < 6 || trimmedMod.length() > 8) {
+            if (toPrint) {
+                System.out.println(INVALID_MODULECODE + MODULECODE_LENGTH + System.lineSeparator());
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean checkIfTimeValid(double hours, boolean toPrint) {
+        if (hours < 0) {
+            if (toPrint) {
+                System.out.println(INVALID_HOURS + System.lineSeparator());
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     /**
      * Creates a module and adds the module to the list of modules if the module
@@ -20,21 +73,29 @@ public class ModuleList {
      * @param storage storage object where data is stored
      */
     public void addMod(String input, boolean toPrint, Storage storage) {
-        String[] modInfo = input.split(" ", 2);
-        modInfo[1] = modInfo[1].toUpperCase();
+        try {
+            String[] modInfo = input.split(" ", 2);
+            modInfo[1] = modInfo[1].toUpperCase();
 
-        if (checkModuleIfExist(modInfo[1])) {
-            if (toPrint) {
-                ui.printExist(modInfo[1]);
+            if (!checkIfModuleValid(modInfo[1], toPrint)) {
+                return;
             }
-            return;
-        }
-
-        Module currentModule = new Module(modInfo[1]);
-        modList.add(currentModule);
-        if (toPrint) {
-            ui.printAdd(currentModule);
-            storage.appendToFile(input);
+            if (checkIfModuleExist(modInfo[1])) {
+                if (toPrint) {
+                    ui.printExist(modInfo[1]);
+                }
+            } else {
+                Module currentModule = new Module(modInfo[1]);
+                modList.add(currentModule);
+                if (toPrint) {
+                    ui.printAdd(currentModule);
+                    storage.appendToFile(input);
+                }
+            }
+        } catch (IndexOutOfBoundsException e) {
+            if (toPrint) {
+                System.out.println(ERROR_ADDMOD + System.lineSeparator());
+            }
         }
     }
 
@@ -48,19 +109,35 @@ public class ModuleList {
      * @param storage storage object where data is stored
      */
     public void addExp(String input, boolean toPrint, Storage storage) {
-        String[] modInfo = input.split(" ", 3);
-        modInfo[1] = modInfo[1].toUpperCase();
-        Module currentMod = new Module(modInfo[1], modInfo[2]);
-        if (!checkModuleIfExist(modInfo[1])) {
-            modList.add(currentMod);
-        } else {
-            int index = modList.indexOf(currentMod);
+        try {
+            String[] modInfo = input.split(" ", 3);
+            modInfo[1] = modInfo[1].toUpperCase();
+            if (!checkIfModuleValid(modInfo[1], toPrint)) {
+                return;
+            }
             int expectedTime = Integer.parseInt(modInfo[2]);
-            modList.get(index).setExpectedWorkload(expectedTime);
-        }
-        if (toPrint) {
-            ui.printAdd(currentMod);
-            storage.appendToFile(input);
+            if (!checkIfTimeValid(expectedTime, toPrint)) {
+                return;
+            }
+            Module currentMod = new Module(modInfo[1], modInfo[2]);
+            if (!checkIfModuleExist(modInfo[1])) {
+                modList.add(currentMod);
+            } else {
+                int index = modList.indexOf(currentMod);
+                modList.get(index).setExpectedWorkload(expectedTime);
+            }
+            if (toPrint) {
+                ui.printAdd(currentMod);
+                storage.appendToFile(input);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            if (toPrint) {
+                System.out.println(ERROR_ADDEXP + System.lineSeparator());
+            }
+        } catch (NumberFormatException nfe) {
+            if (toPrint) {
+                System.out.println("NumberFormatException: " + nfe.getMessage() + System.lineSeparator());
+            }
         }
     }
 
@@ -72,17 +149,28 @@ public class ModuleList {
      * @param storage storage object where data is stored
      */
     public void deleteMod(String input, boolean toPrint, Storage storage) {
-        String[] modInfo = input.split(" ", 2);
-        modInfo[1] = modInfo[1].toUpperCase();
-        if (checkModuleIfExist(modInfo[1])) {
-            Module inputMod = new Module(modInfo[1]);
-            modList.remove(inputMod);
-            if (toPrint) {
-                ui.printDelete(modInfo[1]);
-                storage.appendToFile(input);
+        try {
+            String[] modInfo = input.split(" ", 2);
+            modInfo[1] = modInfo[1].toUpperCase();
+            if (!checkIfModuleValid(modInfo[1], toPrint)) {
+                return;
             }
-        } else if (toPrint) {
-            ui.printNotExist(modInfo[1]);
+            if (checkIfModuleExist(modInfo[1])) {
+                Module inputMod = new Module(modInfo[1]);
+                modList.remove(inputMod);
+                if (toPrint) {
+                    ui.printDelete(modInfo[1]);
+                    storage.appendToFile(input);
+                }
+            } else {
+                if (toPrint) {
+                    ui.printNotExist(modInfo[1]);
+                }
+            }
+        } catch (IndexOutOfBoundsException e) {
+            if (toPrint) {
+                System.out.println(ERROR_DELETEMOD + System.lineSeparator());
+            }
         }
     }
 
@@ -94,35 +182,30 @@ public class ModuleList {
      * @param storage storage object where data is stored
      */
     public void deleteExp(String input, boolean toPrint, Storage storage) {
-        String[] modInfo = input.split(" ", 2);
-        modInfo[1] = modInfo[1].toUpperCase();
-        if (checkModuleIfExist(modInfo[1])) {
-            Module inputMod = new Module(modInfo[1]);
-            int index = modList.indexOf(inputMod);
-            modList.get(index).setExpectedWorkload(-1);
+        try {
+            String[] modInfo = input.split(" ", 2);
+            modInfo[1] = modInfo[1].toUpperCase();
+            if (!checkIfModuleValid(modInfo[1], toPrint)) {
+                return;
+            }
+            if (checkIfModuleExist(modInfo[1])) {
+                Module inputMod = new Module(modInfo[1]);
+                int index = modList.indexOf(inputMod);
+                modList.get(index).setExpectedWorkload(-1);
+                if (toPrint) {
+                    ui.printDeleteExp(modInfo[1]);
+                    storage.appendToFile(input);
+                }
+            } else {
+                if (toPrint) {
+                    ui.printNotExist(modInfo[1]);
+                }
+            }
+        } catch (IndexOutOfBoundsException e) {
             if (toPrint) {
-                ui.printDeleteExp(modInfo[1]);
-                storage.appendToFile(input);
-            }
-        } else if (toPrint) {
-            ui.printNotExist(modInfo[1]);
-        }
-    }
-
-    /**
-     * Checks if the module exists in the list of modules.
-     *
-     * @param input module code typed in by user
-     * @return the existence of module in the list of modules.
-     */
-    public boolean checkModuleIfExist(String input) {
-        Module currentMod = new Module(input);
-        for (Module mod: modList) {
-            if (mod.equals(currentMod)) {
-                return true;
+                System.out.println(ERROR_DELETEEXP + System.lineSeparator());
             }
         }
-        return false;
     }
 
     public void addTime(String input, boolean toPrint, Storage storage) {
