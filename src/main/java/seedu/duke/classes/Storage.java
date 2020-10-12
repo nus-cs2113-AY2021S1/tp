@@ -1,12 +1,12 @@
 package seedu.duke.classes;
 
 import seedu.duke.utility.SaveState;
+import seedu.duke.utility.ShowList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -19,10 +19,10 @@ public class Storage implements SaveState {
     }
 
     @Override
-    public void saveState(HashMap<String, Show> showList) throws IOException {
+    public void saveState() throws IOException {
         FileWriter fw = new FileWriter(filePath);
         int index = 1;
-        for (Map.Entry<String, Show> entry : showList.entrySet()) {
+        for (Map.Entry<String, Show> entry : ShowList.getShowList().entrySet()) {
             fw.write(index + ". " + entry.getValue().getName() + System.lineSeparator());
             fw.write("      Season: " + entry.getValue().getNumSeasons() + System.lineSeparator());
             String episodes = "";
@@ -31,6 +31,8 @@ public class Storage implements SaveState {
             }
             fw.write("      Episodes: " + episodes + System.lineSeparator());
             fw.write("      Rating: " + entry.getValue().getRating() + System.lineSeparator());
+            fw.write("      Current Season: " + entry.getValue().getCurrentSeason() + System.lineSeparator());
+            fw.write("      Current Episode: " + entry.getValue().getCurrentEpisode() + System.lineSeparator());
             index++;
 
             //this is another save format
@@ -45,7 +47,7 @@ public class Storage implements SaveState {
     }
 
     @Override
-    public java.util.HashMap<String, Show> loadState() throws FileNotFoundException {
+    public ShowList loadState() throws FileNotFoundException {
         File directory = new File("data");
         if (!directory.exists()) {
             directory.mkdir();
@@ -57,7 +59,8 @@ public class Storage implements SaveState {
             seedu.duke.utility.Ui.showCreateFileError();
         }
         Scanner s = new Scanner(f);
-        HashMap<String, Show> showList = new java.util.HashMap<>();
+        ShowList shows = new ShowList();
+        //HashMap<String, Show> showList = new java.util.HashMap<>();
         // we just assume that users will not change the contain in the file then the format will be fixed
         while (s.hasNext()) {
             String name = s.nextLine().substring(3);
@@ -77,10 +80,18 @@ public class Storage implements SaveState {
             String[] splitRating = s.nextLine().split("Rating: ");
             int rating = Integer.parseInt(splitRating[1]);
 
+            shows.setShow(name,new Show(name,season,episodes));
+            //shows(name, new Show(name, season, episodes));
+            shows.getShow(name).setRating(rating);
 
-            showList.put(name, new Show(name, season, episodes));
+            String[] splitCurrentSeason = s.nextLine().split("Current Season: ");
+            int currentSeason = Integer.parseInt(splitCurrentSeason[1]);
+            shows.getShow(name).setCurrentSeason(currentSeason);
 
-            showList.get(name).setRating(rating);
+            String[] splitCurrentEpisode = s.nextLine().split("Current Episode: ");
+            int currentEpisode = Integer.parseInt(splitCurrentEpisode[1]);
+            shows.getShow(name).setEpisodeWatched(currentEpisode);
+            //showList.get(name).setRating(rating);
 
 
             //another load format which corresponding to the backup save format
@@ -97,6 +108,6 @@ public class Storage implements SaveState {
              */
 
         }
-        return showList;
+        return shows;
     }
 }

@@ -1,5 +1,7 @@
 package seedu.duke.utility;
 
+import seedu.duke.classes.Show;
+
 import java.util.Scanner;
 
 /**
@@ -43,7 +45,7 @@ public class Ui {
     }
 
     public static void printByeMessage() {
-        printLine();
+        printSavedList();
         System.out.println(" Bye. Thank you for using WatchNext <3");
         printLine();
     }
@@ -53,36 +55,39 @@ public class Ui {
         // TODO load from txt file if possible instead of writing out one whole chunk in the future
         String helpIcon =
                 " __    __   _______  __      .______   \n"
-                + "|  |  |  | |   ____||  |     |   _  \\  \n"
-                + "|  |__|  | |  |__   |  |     |  |_)  | \n"
-                + "|   __   | |   __|  |  |     |   ___/  \n"
-                + "|  |  |  | |  |____ |  `----.|  |      \n"
-                + "|__|  |__| |_______||_______|| _|      \n";
+                        + "|  |  |  | |   ____||  |     |   _  \\  \n"
+                        + "|  |__|  | |  |__   |  |     |  |_)  | \n"
+                        + "|   __   | |   __|  |  |     |   ___/  \n"
+                        + "|  |  |  | |  |____ |  `----.|  |      \n"
+                        + "|__|  |__| |_______||_______|| _|      \n";
 
         System.out.println(ANSI_GREEN + helpIcon + ANSI_RESET);
         System.out.println("The following options are available:");
-        System.out.println("`help` - Views help\n"
+        System.out.println(toBold("help") + " - Views help\n"
                 + " \n"
-                + "'add` - Adds a show\n"
+                + toBold("add") + " - Adds a show\n"
                 + " \n"
-                + "`edit` - Edits your show details\n"
+                + toBold("edit") + " - Edits your show details\n"
                 + " \n"
-                + "`rating` - Set rating of your show\n"
+                + toBold("rating") + " - Set rating of your show\n"
                 + "\n"
-                + "`list` - Displays all your shows in list\n"
+                + toBold("list") + " - Displays all your shows in list\n"
                 + "\n"
-                + "`delete` - Deletes your show\n"
+                + toBold("delete") + " - Deletes your show\n"
                 + " \n"
-                + "`deleterating` - Deletes rating of your show\n"
+                + toBold("deleterating") + " - Deletes rating of your show\n"
                 + "\n"
-                + "`changerating` - Changes rating of your show\n"
+                + toBold("changerating") + " - Changes rating of your show\n"
                 + "\n"
-                + "`save` - Saves your shows\n"
+                + toBold("episode") + " - Update your episode progress\n"
                 + "\n"
-                + "`bye` - Exits the program\n");
+                + toBold("season") + " - Update your season progress\n"
+                + "\n"
+                + toBold("bye") + " - Exits the program\n");
+        System.out.println("Refer to our user guide for more help!");
         printLine();
     }
-    
+
     public String getUserCommand() {
         String userInput = scan.nextLine();
 
@@ -110,14 +115,35 @@ public class Ui {
         System.out.println("Enter a command: ");
     }
 
-    public static void printShowList(ShowList showList) {
+    public static void printShowList() {
         printLine();
         System.out.println("Your watchlist:");
+        for (Show show : ShowList.showList.values()) {
+            System.out.println(show.toString());
+        }
     }
 
     public static void printShowRating(String showName, String rating) {
         printLine();
         System.out.println("The rating for " + toBold(showName) + " has been updated to " + toBold(rating));
+    }
+
+    public static void printChangeEpisode(String showName) {
+        printLine();
+        System.out.println("Updated current episode : " + ShowList.getShow(showName).toString());
+
+    }
+
+    public static void printEditShow(String showName) {
+        printLine();
+        System.out.println("Updated show details.");
+
+    }
+
+    public static void printChangeSeason(String showName) {
+        printLine();
+        System.out.println("Updated current season : " + ShowList.getShow(showName).toString());
+
     }
 
     public static void printChangeRating(String showName, String rating) {
@@ -147,7 +173,7 @@ public class Ui {
 
     public static void printSavedList() {
         printLine();
-        System.out.println("Your watchlist has been saved in the file with path <filepath>.");
+        System.out.println("Your watchlist has been saved.");
     }
 
     public static void printIoException() {

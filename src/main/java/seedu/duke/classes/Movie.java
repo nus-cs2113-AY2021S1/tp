@@ -2,7 +2,7 @@ package seedu.duke.classes;
 
 import java.time.LocalDateTime;
 
-public class Movie extends Show {
+public class Movie {
     String name;
     String genre;
 
