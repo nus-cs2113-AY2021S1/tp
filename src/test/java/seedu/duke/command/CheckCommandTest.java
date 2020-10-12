@@ -43,7 +43,10 @@ class CheckCommandTest {
         checkCommand.execute(data, ui, storage);
 
         EventList personalList =  data.getEventList("Personal");
-        assertEquals(personalList.getEvents().get(0).toString(), outputStreamCaptor.toString().trim());
+        String expectedString = "Here is a list of your coinciding events:\n"
+                + "1. [P][✕] Go out for dinner on 2020-05-05, 12:00\n"
+                + "_________________________________";
+        assertEquals(expectedString, outputStreamCaptor.toString().trim());
     }
 
     @Test
@@ -64,7 +67,9 @@ class CheckCommandTest {
         Command checkCommand  = new CheckCommand(inputString);
         checkCommand.execute(data, ui, storage);
 
-        assertEquals("There are no events going on during that period.", outputStreamCaptor.toString().trim());
+        String expectedString = "You have no coinciding events!\n"
+                + "_________________________________";
+        assertEquals(expectedString, outputStreamCaptor.toString().trim());
     }
 
     @AfterEach

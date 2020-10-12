@@ -30,8 +30,7 @@ public class CheckCommand extends Command {
 
     @Override
     public void execute(UserData data, Ui ui, Storage storage) {
-        String checkDate = command.replaceFirst("check", "").trim();
-        String[] datesAndTime = checkDate.split(";");
+        String[] datesAndTime = command.split(";");
 
         LocalDate startDate = getDate(datesAndTime[0].trim());
         LocalDate endDate = getDate(datesAndTime[2].trim());
@@ -45,16 +44,9 @@ public class CheckCommand extends Command {
             EventList eventsList = data.getEventList(type);
             eventsInTimeRange.addAll(eventsList.checkEventsInTimeRange(startDate, endDate, startTime, endTime));
         }
+        EventList coinciding = new EventList("coinciding", eventsInTimeRange);
 
-        //in place of a UI function
-        if (eventsInTimeRange.size() > 0) {
-            for (Event event: eventsInTimeRange) {
-                System.out.println(event);
-            }
-        } else {
-            ui.printNoEventInTimeRangeMessage();
-        }
-
+        ui.printList(coinciding);
     }
 
     private LocalDate getDate(String stringDate) {
@@ -71,7 +63,7 @@ public class CheckCommand extends Command {
             }
         }
 
-        System.out.println("Input does not match any date formats.");
+        // if it reaches this point, the input does not match the given date formats
         date = LocalDate.now();
 
         return date;
@@ -91,7 +83,7 @@ public class CheckCommand extends Command {
             }
         }
 
-        System.out.println("Input does not match any time formats.");
+        //if it reaches this point, the input does not match any time formats.");
         time = LocalTime.now();
 
         return time;
