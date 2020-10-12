@@ -161,7 +161,7 @@ public class InputParser {
         newShowRating.rateShow(tokenizedInput[0], showRating);
         Ui.printShowRating(tokenizedInput[0], tokenizedInput[1]);
     }
-//todo fix deleterating, currently deletes the show rather than its rating
+
     private static void parseDeleteRatingCommand(String input) {
         input = removeFirstWord(input);
         DeleteRatingCommand deleteShowRating = new DeleteRatingCommand(input);
@@ -213,24 +213,6 @@ public class InputParser {
         }
 
     }
-
-    private static void parseListCommand(HashMap<String, Show> showList) {
-        // idk how to do this btw
-        int index = 1;
-        String rating = null;
-        for (Entry<String, Show> entry : showList.entrySet()) {
-            if(entry.getValue().getRating()!=-1){
-                rating = String.valueOf(entry.getValue().getRating());
-            }
-            else{
-                rating = "Not added.";
-            }
-            System.out.println(index + ". " + entry.getValue().getName() + " | " + "Season " + entry.getValue().getNumSeasons()
-                    + " | " + "Episode " + entry.getValue().getEpisodesForSeason(index) + " | " + "Rating: " + rating);
-            index++;
-        }
-    }
-
 
 */
 
