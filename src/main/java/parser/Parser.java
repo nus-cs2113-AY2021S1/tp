@@ -21,11 +21,14 @@ import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import storage.Storage;
 
+import java.time.LocalDate;
+
 
 public class Parser {
-    private static final String QUESTION_ANSWER_PREFIX = " \\| ";
+    private static final String QUESTION_ANSWER_DUE_DATE_PREFIX = " \\| ";
     private static final String QUESTION_PREFIX = "q:";
     private static final String ANSWER_PREFIX = "a:";
+    private static final String DUE_DATE_PREFIX= "d:";
 
     private static final String ADMIN_LEVEL = "admin";
     private static final String MODULE_LEVEL = "module";
@@ -128,13 +131,15 @@ public class Parser {
 
     private static Command prepareAdd(String commandArgs) throws InvalidInputException {
         try {
-            String[] args = commandArgs.split(QUESTION_ANSWER_PREFIX, 2);
+            String[] args = commandArgs.split(QUESTION_ANSWER_DUE_DATE_PREFIX, 3);
             String question = parseQuestion(args[0]);
             String answer = parseAnswer(args[1]);
-            if (question.isEmpty() || answer.isEmpty()) {
+            String dueDate = parseDueDate(args[2]);
+            if (question.isEmpty() || answer.isEmpty() || dueDate.isEmpty()) {
                 throw new InvalidInputException();
             }
-            return new AddCommand(question, answer);
+            LocalDate dueBy = LocalDate.parse(dueDate);
+            return new AddCommand(question, answer, dueBy);
         } catch (IndexOutOfBoundsException | InvalidInputException e) {
             throw new InvalidInputException();
         }
@@ -173,7 +178,7 @@ public class Parser {
 
             int editIndex = Integer.parseInt(args[0].trim()) - 1;
 
-            String[] questionAndAnswer = args[1].trim().split(QUESTION_ANSWER_PREFIX, 2);
+            String[] questionAndAnswer = args[1].trim().split(QUESTION_ANSWER_DUE_DATE_PREFIX, 2);
             String question = parseQuestion(questionAndAnswer[0]);
             String answer = parseAnswer(questionAndAnswer[1]);
 
@@ -205,6 +210,16 @@ public class Parser {
     private static String parseAnswer(String arg) throws InvalidInputException {
         if (!(arg.trim().toLowerCase().startsWith(ANSWER_PREFIX))) {
             throw new InvalidInputException("There needs to be a \"a:\" prefix before the answer.\n"
+                    + "Example: " + AddCommand.COMMAND_WORD + AddCommand.CARD_PARAMETERS + "\n"
+                    + "         " + EditCommand.COMMAND_WORD + EditCommand.CARD_PARAMETERS);
+        }
+
+        return arg.substring(2).trim();
+    }
+
+    private static String parseDueDate(String arg) throws InvalidInputException {
+        if (!(arg.trim().toLowerCase().startsWith(DUE_DATE_PREFIX))) {
+            throw new InvalidInputException("There needs to be a \"d:\" prefix before the due date.\n"
                     + "Example: " + AddCommand.COMMAND_WORD + AddCommand.CARD_PARAMETERS + "\n"
                     + "         " + EditCommand.COMMAND_WORD + EditCommand.CARD_PARAMETERS);
         }
@@ -257,5 +272,18 @@ public class Parser {
         }
 
         return answer;
+    }
+
+    public static String parseDueDateinFile(String arg) throws InvalidFileFormatException {
+        if (!(arg.trim().startsWith(Storage.DUE_DATE_PREFIX))) {
+            throw new InvalidFileFormatException();
+        }
+
+        String dueDate = arg.substring(3).trim();
+        if (dueDate.isEmpty()) {
+            throw new InvalidFileFormatException();
+        }
+
+        return dueDate;
     }
 }

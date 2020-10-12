@@ -6,11 +6,13 @@ import manager.chapter.CardList;
 import storage.Storage;
 import ui.Ui;
 
+import java.time.LocalDate;
+
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
     public static final String MODULE_PARAMETERS = " MODULE_NAME";
     public static final String CHAPTER_PARAMETERS = " CHAPTER_NAME";
-    public static final String CARD_PARAMETERS = " q:QUESTION | a:ANSWER";
+    public static final String CARD_PARAMETERS = " q:QUESTION | a:ANSWER | d:DUE_DATE";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a module / chapter / flashcard.\n"
             + "Parameters:" + MODULE_PARAMETERS + "\n"
@@ -18,12 +20,12 @@ public class AddCommand extends Command {
             + "           " + CARD_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " CS2113T\n"
             + "         " + COMMAND_WORD + " Chapter 1\n"
-            + "         " + COMMAND_WORD + " q:What is the result of one plus one | a:two\n";
+            + "         " + COMMAND_WORD + " q:What is the result of one plus one | a:two | d:2020-10-01\n";
 
     private final Card card;
 
-    public AddCommand(String question, String answer) {
-        this.card = new Card(question, answer);
+    public AddCommand(String question, String answer, LocalDate dueBy) {
+        this.card = new Card(question, answer, dueBy);
     }
 
     @Override

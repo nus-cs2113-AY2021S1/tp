@@ -1,5 +1,6 @@
 package commands;
 
+import exception.InvalidFileFormatException;
 import manager.card.Card;
 import manager.chapter.CardList;
 import access.Access;
@@ -40,6 +41,8 @@ public class GoChapterCommand extends Command {
                     access.setChapter(chapter);
                 } catch (FileNotFoundException e) {
                     System.out.println("The chapter file cannot be found.");
+                } catch (InvalidFileFormatException e) {
+                    System.out.println("The format of some commands in the file is invalid");
                 }
                 break;
             }

@@ -1,6 +1,7 @@
 package manager.card;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Card {
     private String question;
@@ -12,6 +13,13 @@ public class Card {
         this.question = question;
         this.answer = answer;
         this.dueBy = null;
+        this.previousInterval = 1;
+    }
+
+    public Card(String question, String answer, LocalDate dueBy) {
+        this.question = question;
+        this.answer = answer;
+        this.dueBy = dueBy;
         this.previousInterval = 1;
     }
 
@@ -52,6 +60,7 @@ public class Card {
     }
 
     public String toString() {
-        return "[Q] " + question + " | [A] " + answer;
+        String dueDate = dueBy.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        return "[Q] " + question + " | [A] " + answer +"(due date:" + dueDate +")";
     }
 }

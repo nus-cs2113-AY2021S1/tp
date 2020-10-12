@@ -12,7 +12,7 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
     public static final String MODULE_PARAMETERS = " MODULE_NUMBER MODULE_NAME";
     public static final String CHAPTER_PARAMETERS = " CHAPTER_NUMBER CHAPTER_NAME";
-    public static final String CARD_PARAMETERS = " FLASHCARD_NUMBER q:QUESTION | a:ANSWER";
+    public static final String CARD_PARAMETERS = " FLASHCARD_NUMBER q:QUESTION | a:ANSWER | d:DUE_DATE";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edit the module name / chapter name / flashcard content.\n"
@@ -21,7 +21,7 @@ public class EditCommand extends Command {
             + "           " + CARD_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " 1 CS2113T\n"
             + "         " + COMMAND_WORD + " 2 Chapter 2\n"
-            + "         " + COMMAND_WORD + " 3 q:What is the result of one plus one | a:two\n";
+            + "         " + COMMAND_WORD + " 3 q:What is the result of one plus one | a:two | d:2020-10-01\n";
 
     private final int editIndex;
     private final String question;
