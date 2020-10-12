@@ -58,7 +58,7 @@ public class WordsFilter {
             for (String startString : startStrings) {
                 String string = startString.toLowerCase();
                 for (int i = 0; i < WordList.getNumberOfWords(); i++) {
-                    if (words.get(i).getDescription().startsWith(string)) {
+                    if (words.get(i).getDescription().startsWith(string) && !filteredWords.contains(words.get(i))) {
                         filteredWords.add(words.get(i));
                     }
                 }
@@ -98,7 +98,7 @@ public class WordsFilter {
             for (String includedString : includedStrings) {
                 String string = includedString.toLowerCase();
                 for (int i = 0; i < WordList.getNumberOfWords(); i++) {
-                    if (words.get(i).getDescription().contains(string)) {
+                    if (words.get(i).getDescription().contains(string) && !filteredWords.contains(words.get(i))) {
                         filteredWords.add(words.get(i));
                     }
                 }
@@ -118,7 +118,9 @@ public class WordsFilter {
                 }
             }
             for (Words wordToRemove : wordsToRemove) {
-                filteredWords.remove(wordToRemove);
+                while (filteredWords.contains(wordToRemove)) {
+                    filteredWords.remove(wordToRemove);
+                }
             }
         }
 
