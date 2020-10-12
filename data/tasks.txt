@@ -1,7 +1,10 @@
 EXAM|false|cs2113|2020-10-10|12:30|nus
-T|true|homework
 LEC|false|cs1221|2020-10-10|14:00|nus
 LAB|false|cg2028|2020-10-20|14:00|nus
 TUT|false|cg2020|2020-10-20|15:00|nus
-LEC|false|css92r|2002-02-20|12:00|feio
-T|true|eionre
+EXAM|false|CS2113|2002-02-02|12:00|BLK:EA LT2
+T|false|hi
+ACT|false|swimming in the pool|2002-02-20|12:00|Sentosa beach
+ACT|false|swimming in the pool|2002-02-20|12:00|Sentosa beach
+ACT|false|swimming in the pool|2002-02-20|12:00|Sentosa beach
+T|false|homework

@@ -34,7 +34,7 @@ public class Ui {
                 + "9. -t <task number>\n"
                 + "10. -e <event number>\n"
                 + "11. find <keyword>\n"
-                + "12. print list\n"
+                + "12. print tasks\n"
                 + "13. print events\n"
                 + "14. print timeline\n"
                 + "15. print progress"
@@ -63,11 +63,11 @@ public class Ui {
      */
     public static void printWelcomeMessage() {
         System.out.println("Printing of 25/7 logo!!!!");
-        System.out.println("========================================================================\n"
+        System.out.println("===========================================================================\n"
             + "Welcome to 25/7 Task Manager!\n"
             + "What can I do for you?\n"
             + "Enter 'help' for the list of commands.\n"
-            + "==========================================================================\n");
+            + "===========================================================================");
 
         /**
 //        String[]  HELLO_MESSAGE = {
@@ -108,9 +108,9 @@ public class Ui {
      */
     public static void printDukeBorder(boolean top) {
         if (top) {
-            System.out.println("..................... DUKE CHAT BOX ^^ ....................");
+            System.out.println("............................. DUKE CHAT BOX ^^ ............................");
         } else {
-            System.out.println("...........................................................");
+            System.out.println("...........................................................................");
         }
     }
 
@@ -131,9 +131,13 @@ public class Ui {
      * @param calendarList tasks retrieved from this task list.
      */
     public static void printTaskListView(CalendarList calendarList) {
+        int taskCounts = 0;
         System.out.println("This is your list of task(s):");
         for (int i = 0; i < calendarList.getTotalItems(); i++) {
-            System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", i + 1);
+            if (calendarList.getCalendarList().get(i) instanceof Task) {
+                taskCounts++;
+                System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", taskCounts);
+            }
         }
     }
 
