@@ -213,30 +213,28 @@ public class Parser {
         ArrayList<Tag> tags = new ArrayList<>();
 
         try {
+            // Get prefix
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
 
             for (String[] infoDetails : splitInfo) {
                 String prefix = infoDetails[0].toLowerCase();
-                ExceptionType exception;
                 switch (prefix) {
                 case PREFIX_TITLE:
-                    exception = ExceptionType.EXCEPTION_MISSING_TITLE;
-                    title = checkBlank(infoDetails[1], exception);
+                    title = checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_TITLE);
                     break;
                 case PREFIX_TAG:
                     Tag tag = handleTagPrefix(infoDetails);
                     tags.add(tag);
                     break;
                 case PREFIX_PIN:
-                    exception = ExceptionType.EXCEPTION_MISSING_PIN;
-                    isPinned = Boolean.parseBoolean(checkBlank(infoDetails[1], exception));
+                    isPinned = Boolean.parseBoolean(checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_PIN));
                     break;
                 default:
                     throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
                 }
             }
 
-            title = checkBlank(title, ExceptionType.EXCEPTION_MISSING_TITLE);
+            title = checkBlank(title, ExceptionType.EXCEPTION_MISSING_TITLE_PREFIX);
 
             // Get Content
             do {
@@ -364,19 +362,19 @@ public class Parser {
             commandInput.append(input.nextLine());
 
             // Add next line when user press enter
-            if (!commandInput.toString().equals(PREFIX_END)) {
+            if (!commandInput.toString().equals(PREFIX_DELIMITER + PREFIX_END)) {
                 commandInput.append(STRING_NEW_LINE);
             }
 
             // "/del" Delete previous line if there user makes mistakes
-            if (commandInput.toString().contains(PREFIX_DELETE_LINE)) {
-                deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELETE_LINE + STRING_NEW_LINE, 0);
+            if (commandInput.toString().contains(PREFIX_DELIMITER + PREFIX_DELETE_LINE)) {
+                deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELIMITER + PREFIX_DELETE_LINE + STRING_NEW_LINE, 0);
                 deleteLine(commandInput, STRING_NEW_LINE, 1);
             }
-        } while (!commandInput.toString().contains(PREFIX_END)); // "/end" to end input note
+        } while (!commandInput.toString().contains(PREFIX_DELIMITER + PREFIX_END)); // "/end" to end input note
 
         // Delete "/end" command when user ends the edit
-        deleteLine(commandInput, STRING_NEW_LINE + PREFIX_END + STRING_NEW_LINE, 0);
+        deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELIMITER + PREFIX_END + STRING_NEW_LINE, 0);
 
         return commandInput.toString();
     }
@@ -401,43 +399,43 @@ public class Parser {
      * @throws SystemException if an error occurs.
      */
     private Command prepareDeleteNote(String userMessage) throws SystemException {
-        int index = NULL_INDEX;
-        String title = "";
-        String prefix = "";
+        int index;
+        String title;
+        String prefix;
+        boolean isIndex = false;
 
         try {
+            // Get prefix
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
 
             for (String[] infoDetails : splitInfo) {
                 prefix = infoDetails[0].toLowerCase();
-                ExceptionType exception;
                 switch (prefix) {
                 case PREFIX_INDEX:
-                    exception = ExceptionType.EXCEPTION_MISSING_INDEX;
-                    index = Integer.parseInt(checkBlank(infoDetails[1], exception));
-                    break;
+                    isIndex = true;
+                    index = Integer.parseInt(checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_INDEX));
+
+                    if (index <= NULL_INDEX) {
+                        throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+                    }
+                    return new DeleteNoteCommand(index - 1);
                 case PREFIX_TITLE:
-                    exception = ExceptionType.EXCEPTION_MISSING_TITLE;
-                    title = checkBlank(infoDetails[1], exception);
-                    break;
+                    title = checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_TITLE);
+                    return new DeleteNoteCommand(title);
                 default:
                     throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
                 }
             }
-
-            if (prefix.equalsIgnoreCase(PREFIX_TITLE)) {
-                return new DeleteNoteCommand(title);
-            } else {
-                if (index <= NULL_INDEX) {
-                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
-                }
-                return new DeleteNoteCommand(index - 1);
-            }
         } catch (ArrayIndexOutOfBoundsException exception) {
-            throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
+            if (isIndex) {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
+            } else {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
+            }
         } catch (NumberFormatException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
         }
+        return new IncorrectCommand(ExceptionType.EXCEPTION_INVALID_INPUT_FORMAT.toString());
     }
 
     /**

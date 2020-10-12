@@ -49,22 +49,18 @@ public class AddNoteCommand extends Command {
 
     @Override
     public String execute() {
-        try {
-            // Search for duplicates
-            ArrayList<Note> filteredTaskList = (ArrayList<Note>) notebook.getNotes().stream()
-                    .filter((s) -> s.getTitle().equals(note.getTitle()))
-                    .collect(toList());
+        // Search for duplicates
+        ArrayList<Note> filteredTaskList = (ArrayList<Note>) notebook.getNotes().stream()
+                .filter((s) -> s.getTitle().equals(note.getTitle()))
+                .collect(toList());
 
-            if (!filteredTaskList.isEmpty()) {
-                throw new SystemException(SystemException.ExceptionType.valueOf(COMMAND_UNSUCCESSFUL_MESSAGE));
-            }
-
-            // Rebind the tags if there are duplicated tags
-            tagManager.rebindTags(note);
-            notebook.addNote(note);
-            return COMMAND_SUCCESSFUL_MESSAGE + note.getTitle();
-        } catch (SystemException exception) {
-            return exception.getMessage();
+        if (!filteredTaskList.isEmpty()) {
+            return COMMAND_UNSUCCESSFUL_MESSAGE;
         }
+
+        // Rebind the tags if there are duplicated tags
+        tagManager.rebindTags(note);
+        notebook.addNote(note);
+        return COMMAND_SUCCESSFUL_MESSAGE + note.getTitle();
     }
 }
