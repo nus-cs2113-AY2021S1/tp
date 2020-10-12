@@ -1,14 +1,15 @@
-package seedu.planus;
+package seedu.storage;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import seedu.data.TaskList;
+import seedu.task.Task;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
@@ -21,10 +22,10 @@ public class Storage {
      *
      * @param tasks latest TaskList object after modification.
      */
-    public void writeTasksToFile(ArrayList<Task> tasks) {
+    public void writeTasksToFile(TaskList tasks) {
         try (FileWriter file = new FileWriter(DIRECTORY_NAME + "/" + FILE_NAME)) {
-            for (Task t : tasks) {
-                file.write(gson.toJson(t) + System.lineSeparator());
+            for (int i = 0; i < tasks.size(); i++) {
+                file.write(gson.toJson(tasks.get(i)) + System.lineSeparator());
             }
         } catch (IOException e) {
             System.out.println("IO EXCEPTION");
@@ -34,7 +35,7 @@ public class Storage {
     /**
      * Load data from file and add tasks to TaskList.
      */
-    public void loadTasks(ArrayList<Task> tasks) {
+    public void loadTasks(TaskList tasks) {
         if (!createDirectory()) {
             try {
                 readTasksFromFile(tasks);
@@ -67,12 +68,12 @@ public class Storage {
     /**
      * Read lines from file and process each line.
      */
-    private void readTasksFromFile(ArrayList<Task> tasks) throws FileNotFoundException {
+    private void readTasksFromFile(TaskList tasks) throws FileNotFoundException {
         File file = new File(DIRECTORY_NAME + "/" + FILE_NAME);
         Scanner scanner = new Scanner(file);
         Type type = new TypeToken<Task>(){}.getType();
         while (scanner.hasNextLine()) {
-            tasks.add(gson.fromJson(scanner.nextLine(), type));
+            tasks.addTask(gson.fromJson(scanner.nextLine(), type));
         }
     }
 }

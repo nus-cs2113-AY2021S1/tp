@@ -1,15 +1,27 @@
 package seedu.planus;
 
+import seedu.commands.Bye;
+import seedu.commands.Command;
+import seedu.commands.CommandResult;
+import seedu.data.TaskList;
+import seedu.exceptions.InvalidCommandException;
+import seedu.exceptions.InvalidPriorityException;
+import seedu.exceptions.UnknowCommandException;
+import seedu.parser.Parser;
+import seedu.storage.Storage;
+import seedu.task.Task;
+import seedu.ui.Ui;
 
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static seedu.messages.Messages.HELP_MESSAGE;
 
 public class Planus {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
+
     private static final String COMMAND_HELP = "help";
     private static final String COMMAND_ADD = "add";
     private static final String COMMAND_LIST = "list";
@@ -28,10 +40,12 @@ public class Planus {
                     + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
                     + "( t/(?<time>\\d{4}))?"
                     + "( p/(?<priority>\\d))?$");
-    private final ArrayList<Task> tasks = new ArrayList<>();
+
+    private final TaskList tasks = new TaskList();
     private boolean isExit;
     private Storage storage;
     private Ui ui;
+    private Parser parser;
 
     public static void main(String[] args) {
         new Planus().run();
@@ -42,7 +56,17 @@ public class Planus {
         ui.showWelcomeMessage();
         while (!isExit) {
             String userInput = ui.getUserInput();
-            executeCommand(userInput);
+            try {
+                Command command = parser.processRaw(userInput);
+                CommandResult result = command.execute(tasks);
+                ui.showCommandResult(result);
+                if (command instanceof Bye) {
+                    isExit = true;
+                    storage.writeTasksToFile(tasks);
+                }
+            } catch (InvalidCommandException | InvalidPriorityException | UnknowCommandException e) {
+                ui.showException(e);
+            }
         }
     }
 
@@ -50,24 +74,24 @@ public class Planus {
         storage = new Storage();
         storage.loadTasks(tasks);
         isExit = false;
-        ui = new Ui(tasks);
+        ui = new Ui();
     }
 
-    private void executeCommand(String userInput) {
+    private void executeCommand(String userInput) throws InvalidPriorityException {
         String[] commandTypeAndParams = splitCommandWordAndArgs(userInput);
         String commandType = commandTypeAndParams[0];
         String commandArgs;
 
         switch (commandType) {
         case COMMAND_HELP:
-            ui.showCommands();
+            ui.showMessage(HELP_MESSAGE);
             break;
         case COMMAND_ADD:
             commandArgs = commandTypeAndParams[1];
             executeAddTask(commandArgs);
             break;
         case COMMAND_LIST:
-            ui.displayAll();
+            ui.displayAll(tasks);
             break;
         case COMMAND_BYE:
             exitProgram();
@@ -89,7 +113,7 @@ public class Planus {
         return userInput.split(" ", 2);
     }
 
-    private void executeAddTask(String commandArgs) {
+    private void executeAddTask(String commandArgs) throws InvalidPriorityException {
         Matcher matcher = TASK_PATTERN.matcher(commandArgs);
         Task task;
         if (matcher.find()) {
@@ -103,7 +127,7 @@ public class Planus {
             System.out.println("Invalid command!");
             return;
         }
-        tasks.add(task);
+        tasks.addTask(task);
         System.out.println("\nTask added:");
         System.out.println(task.toString());
         System.out.println("Now you have " + tasks.size() + " task(s) in your list.\n");
@@ -113,9 +137,11 @@ public class Planus {
         isExit = true;
         storage.writeTasksToFile(tasks);
         System.out.println("\nBye! See you again!");
+        ui = new Ui();
+        parser = new Parser();
     }
 
-    private void editTask(String commandArgs, ArrayList<Task> tasks) {
+    private void editTask(String commandArgs, TaskList tasks) throws InvalidPriorityException {
         Matcher matcher = EDIT_TASK_PATTERN.matcher(commandArgs);
         if (matcher.find()) {
             String indexString = matcher.group("index");
@@ -146,7 +172,7 @@ public class Planus {
         }
     }
 
-    private void clearTasks(ArrayList<Task> tasks) {
+    private void clearTasks(TaskList tasks) {
         tasks.clear();
         System.out.println("\nAll tasks cleared.\n");
     }
