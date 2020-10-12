@@ -32,6 +32,7 @@ public class Duke {
     private ArrayList<Watchlist> watchlists;
     private AnimeData animeData;
     private Bookmark bookmark;
+    private Watchlist activeWatchlist;
 
     public Duke() {
         ui = new Ui();
@@ -48,9 +49,11 @@ public class Duke {
             e.printStackTrace();
         }
         if (watchlists.isEmpty()) {
-            currentWatchlist = new Watchlist("Default");
+            activeWatchlist = new Watchlist("Default");
+            watchlists.add(activeWatchlist);
+            storage.writeWatchlistFile(ui, watchlists);
         } else {
-            currentWatchlist = watchlists.get(0);
+            activeWatchlist = watchlists.get(0);
         }
 
     }
@@ -62,10 +65,10 @@ public class Duke {
         }
 
         do {
-            String userInput = ui.readUserInput(userProfile.getFancyName(), currentWatchlist.getName());
+            String userInput = ui.readUserInput(userProfile.getFancyName(), activeWatchlist.getName());
             try {
                 command = Parser.getCommand(userInput);
-                // now passing in many parameters into execute, 
+                // now passing in many parameters into execute,
                 // but maybe can reduce in the future after refactoring?
                 command.execute(ui, storage, animeData, currentWatchlist, watchlists, bookmark);
             } catch (AniException exception) {
