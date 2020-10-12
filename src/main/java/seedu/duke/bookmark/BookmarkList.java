@@ -87,8 +87,8 @@ public class BookmarkList extends ItemList {
      *
      * @param index The index of the bookmark in the list.
      * @return The bookmark with the corresponding index in the list.
+     * @throws DukeException if the index is out of range.
      */
-    public Bookmark getBookmark(int index) {
     public Bookmark getBookmark(int index) throws DukeException {
         Bookmark bookmark;
         try {
@@ -112,6 +112,7 @@ public class BookmarkList extends ItemList {
      * This method deletes the bookmark from the list.
      *
      * @param bookmark The bookmark to be deleted.
+     * @throws NullPointerException if the bookmark does not exist in the list.
      */
     public void deleteBookmark(Bookmark bookmark) throws DukeException {
         try {

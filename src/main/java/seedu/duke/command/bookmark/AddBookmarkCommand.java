@@ -23,7 +23,7 @@ public class AddBookmarkCommand extends Command {
      * Constructs a new AddBookmarkCommand instance and stores the information of the bookmark given by the input.
      *
      * @param command The user input command.
-     * @throws DukeException thrown if input command is invalid.
+     * @throws DukeException if input command is invalid, if the description is empty or if the url is invalid.
      */
     public AddBookmarkCommand(String command) throws DukeException {
         List<String> descAndAt = Bookmark.extractModuleDescriptionAndUrl(command);
@@ -36,8 +36,11 @@ public class AddBookmarkCommand extends Command {
      * Adds the bookmark to the bookmark list and saves the bookmarks list in the text file.
      *
      * @param bookmarks The list of bookmarks.
+     * @param slotList The list of slots.
      * @param ui The user interface.
-     * @param bookmarkStorage The storage for saving and loading.
+     * @param bookmarkStorage The storage for saving and loading bookmarks.
+     * @param slotStorage The storage for saving and loading slots.
+     * @throws DukeException if there is an error when saving the bookmark.
      */
     @Override
     public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,

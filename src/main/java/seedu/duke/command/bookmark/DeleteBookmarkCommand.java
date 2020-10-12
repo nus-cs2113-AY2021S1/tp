@@ -17,7 +17,7 @@ public class DeleteBookmarkCommand extends Command {
      * Constructs a new DeleteBookmarkCommand instance and stores the information of the bookmark given by the input.
      *
      * @param command The user input command.
-     * @throws DukeException thrown if input command is invalid.
+     * @throws DukeException thrown if input command is invalid or if the bookmark number is invalid.
      */
     public DeleteBookmarkCommand(String command) throws DukeException {
         String details = command.substring(DEL_KW.length());
@@ -31,13 +31,15 @@ public class DeleteBookmarkCommand extends Command {
         }
     }
 
-
     /**
      * Deletes the bookmark in the bookmark list.
      *
-
      * @param bookmarks The list of bookmarks.
+     * @param slotList The list of slots.
      * @param ui The user interface.
+     * @param bookmarkStorage The storage for saving and loading bookmarks.
+     * @param slotStorage The storage for saving and loading slots.
+     * @throws DukeException if the bookmark number is invalid or if there is an error when saving the bookmark.
      */
     @Override
     public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
