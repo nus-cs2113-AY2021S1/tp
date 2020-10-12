@@ -6,7 +6,6 @@ import seedu.duke.command.SprintCommand;
 import seedu.duke.command.TaskCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
-import seedu.duke.ui.old.Ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,8 +36,7 @@ public class Parser {
     private  ArrayList<String> params = new ArrayList<>();
 
 
-    public void parser(Ui ui, ArrayList<Project> projectList) {
-        String userInput = ui.readLine();
+    public void parser(String userInput, ArrayList<Project> projectList) {
 
         if (userInput.equals(BYE)) {
             System.out.println(BYE);
@@ -67,7 +65,7 @@ public class Parser {
                 switch (action.toLowerCase()) {
                 case CREATE:
                     try {
-                        new ProjectCommand().createProjectCommand(parameters, ui, projectList);
+                        new ProjectCommand().createProjectCommand(parameters, projectList);
                     } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
@@ -83,10 +81,10 @@ public class Parser {
             case MEMBER:
                 switch (action.toLowerCase()) {
                 case ADD:
-                    new MemberCommand().addMemberCommand(params, ui, projectList);
+                    new MemberCommand().addMemberCommand(params, projectList);
                     break;
                 case DELETE:
-                    new MemberCommand().deleteMemberCommand(params, ui, projectList);
+                    new MemberCommand().deleteMemberCommand(params, projectList);
                     break;
                 default:
                     try {
@@ -100,20 +98,20 @@ public class Parser {
                 switch (action.toLowerCase()) {
                 case ADD:
                     try {
-                        new TaskCommand().addTaskCommand(parameters, ui, projectList);
+                        new TaskCommand().addTaskCommand(parameters, projectList);
                     } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
                     break;
                 case DELETE:
-                    new TaskCommand().deleteTaskCommand(params, ui, projectList);
+                    new TaskCommand().deleteTaskCommand(params, projectList);
                     break;
                 case VIEW:
-                    new TaskCommand().viewTaskCommand(params, ui, projectList);
+                    new TaskCommand().viewTaskCommand(params, projectList);
                     break;
                 case PRIORITY:
                     try {
-                        new TaskCommand().changeTaskPriorityCommand(parameters, ui, projectList);
+                        new TaskCommand().changeTaskPriorityCommand(parameters, projectList);
                     } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
