@@ -4,7 +4,7 @@ import seedu.duke.model.Project;
 import seedu.duke.model.Sprint;
 import seedu.duke.model.SprintList;
 import seedu.duke.parser.DateTimeParser;
-import seedu.duke.ui.TextUi;
+import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class AllocateSprintTaskCommand extends SprintCommand {
         super(parameters);
     }
 
-    public boolean execute(Project proj, TextUi ui) {
+    public boolean execute(Project proj, Ui ui) {
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
             if (validateParams()) {
@@ -41,7 +41,7 @@ public class AllocateSprintTaskCommand extends SprintCommand {
         return !parameters.get("taskid").isEmpty() && !parameters.get("0").isEmpty();
     }
 
-    private void checkReason(Project proj, TextUi ui) {
+    private void checkReason(Project proj, Ui ui) {
         if (allSprint.size() == 0) {
             ui.showToUser("You have yet to create your sprint.");
             return;

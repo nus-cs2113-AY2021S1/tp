@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.model.Project;
-import seedu.duke.ui.TextUi;
+import seedu.duke.ui.Ui;
 
 import java.util.Hashtable;
 
@@ -41,7 +41,7 @@ public abstract class Command {
      * @param ui UI that handles user interaction
      * @return Boolean - True if Bye command is executed
      */
-    public abstract boolean execute(Project proj, TextUi ui);
+    public abstract boolean execute(Project proj, Ui ui);
 
     /**
      * Getters and Setters.

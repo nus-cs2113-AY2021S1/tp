@@ -1,24 +1,29 @@
 package seedu.duke.model;
 
+import com.github.cliftonlabs.json_simple.JsonArray;
+import com.github.cliftonlabs.json_simple.JsonObject;
+import com.github.cliftonlabs.json_simple.Jsonable;
+
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.time.LocalDate;
 
-public class Project {
+public class Project implements Jsonable {
 
     protected SprintList allSprints;
     protected ProjectBacklog backlog;
-    protected ProjectMember members;
+    protected ProjectMembers members;
     protected String title;
     protected String description;
     protected int projectDuration;
     protected int sprintLength;
 
-
-
     protected LocalDate startDate = null;
     protected LocalDate endDate = null;
 
 
-    public ProjectMember getMembers() {
+    public ProjectMembers getMembers() {
         return members;
     }
 
@@ -28,7 +33,7 @@ public class Project {
         this.projectDuration = Integer.parseInt(projectDuration);
         this.sprintLength = Integer.parseInt(sprintLength);
         backlog = new ProjectBacklog();
-        members = new ProjectMember();
+        members = new ProjectMembers();
         allSprints = new SprintList();
     }
 
@@ -38,10 +43,6 @@ public class Project {
 
     public SprintList getAllSprints() {
         return allSprints;
-    }
-
-    public void setAllSprints(SprintList allSprints) {
-        this.allSprints = allSprints;
     }
 
     public int getProjectDuration() {
@@ -89,6 +90,33 @@ public class Project {
                 System.out.println("\t" + (i + 1) + ". " + backlog.getTask(i).title);
             }
         }
+    }
+
+    @Override
+    public String toJson() {
+        final StringWriter writeable = new StringWriter();
+        try {
+            this.toJson(writeable);
+        } catch (IOException e) {
+            System.out.println("[Error] Cannot convert this project to JSON");
+            e.printStackTrace();
+        }
+        return writeable.toString();
+    }
+
+    @Override
+    public void toJson(Writer writer) throws IOException {
+        final JsonObject json = new JsonObject();
+        json.put("title", this.title);
+        json.put("description", this.description);
+        json.put("duration", this.projectDuration);
+        json.put("sprint_length", this.sprintLength);
+        json.put("start_date", this.startDate == null ? null : this.startDate.toString());
+        json.put("end_date", this.endDate == null ? null : this.startDate.toString());
+        //TODO Make backlog and members parsable
+        json.put("backlog", new JsonArray());
+        json.put("members", new JsonArray());
+        json.toJson(writer);
     }
 
 }

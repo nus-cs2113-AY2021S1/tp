@@ -1,6 +1,6 @@
 package seedu.duke.project;
 
-import seedu.duke.Member;
+import seedu.duke.model.Member;
 
 import java.util.ArrayList;
 import java.util.List;

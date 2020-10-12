@@ -4,7 +4,7 @@ import seedu.duke.model.Project;
 import seedu.duke.model.Sprint;
 import seedu.duke.model.SprintList;
 import seedu.duke.parser.DateTimeParser;
-import seedu.duke.ui.TextUi;
+import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class ViewSprintCommand extends SprintCommand {
      * @param ui UI that handles user interaction
      * @return Boolean - True if Bye command is executed
      */
-    public boolean execute(Project proj, TextUi ui) {
+    public boolean execute(Project proj, Ui ui) {
 
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
@@ -45,7 +45,7 @@ public class ViewSprintCommand extends SprintCommand {
         return false;
     }
 
-    private void printSprintTask(Project proj, Sprint sprint, TextUi ui) {
+    private void printSprintTask(Project proj, Sprint sprint, Ui ui) {
         Hashtable<Integer, ArrayList<String>> sprintTasks = sprint.getAllSprintTask();
         if (sprintTasks.size() == 0) {
             System.out.println("No task allocated to current sprint.");
@@ -66,7 +66,7 @@ public class ViewSprintCommand extends SprintCommand {
         }
     }
 
-    private void checkReason(Project proj, TextUi ui) {
+    private void checkReason(Project proj, Ui ui) {
         if (allSprint.size() == 0) {
             ui.showToUser("You have yet to create your sprint.");
             return;

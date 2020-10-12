@@ -1,6 +1,6 @@
 package seedu.duke.model;
 
-import seedu.duke.ui.TextUi;
+import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class ProjectBacklog {
         return backlogTasks.get(i);
     }
 
-    public void viewTask(String id, TextUi ui) {
+    public void viewTask(String id, Ui ui) {
         Task task;
         try {
             int backlogId = Integer.parseInt(id) - 1;
@@ -43,7 +43,7 @@ public class ProjectBacklog {
         }
     }
 
-    public void deleteTask(List<String> taskId, TextUi ui) {
+    public void deleteTask(List<String> taskId, Ui ui) {
 
         for (String id : taskId) {
             try {

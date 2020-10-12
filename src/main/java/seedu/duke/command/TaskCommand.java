@@ -3,7 +3,7 @@ package seedu.duke.command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
-import seedu.duke.ui.Ui;
+import seedu.duke.ui.old.Ui;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,7 +46,7 @@ public class TaskCommand {
             ui.printTaskAdded(proj.backlog.getTask(proj.backlog.size() - 1));
 
         } catch (IndexOutOfBoundsException e) {
-            Ui.printError("There are no projects! Please create a project first.");
+            ui.printError("There are no projects! Please create a project first.");
         }
 
     }

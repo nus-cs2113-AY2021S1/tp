@@ -5,7 +5,7 @@ import seedu.duke.model.Project;
 import seedu.duke.model.Sprint;
 import seedu.duke.model.SprintList;
 import seedu.duke.parser.DateTimeParser;
-import seedu.duke.ui.TextUi;
+import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.Hashtable;
@@ -26,7 +26,7 @@ public class CreateSprintCommand extends SprintCommand {
      * @param ui UI that handles user interaction
      * @return Boolean - True if Bye command is executed
      */
-    public boolean execute(Project proj, TextUi ui) {
+    public boolean execute(Project proj, Ui ui) {
         if (validateParams()) {
             allSprint = proj.getAllSprints();
             if (allSprint.size() == 0) {
@@ -38,7 +38,7 @@ public class CreateSprintCommand extends SprintCommand {
         return false;
     }
 
-    private void createFirstSprint(Project proj, TextUi ui) {
+    private void createFirstSprint(Project proj, Ui ui) {
 
         LocalDate sprintStart = LocalDate.now();
         if (!parameters.get("start").isEmpty()) {
@@ -58,7 +58,7 @@ public class CreateSprintCommand extends SprintCommand {
 
     }
 
-    private void createSubsequentSprint(Project proj, TextUi ui) {
+    private void createSubsequentSprint(Project proj, Ui ui) {
 
         String sprintGoal = parameters.get("goal");
         Sprint prevSprint = allSprint.getSprint(allSprint.size() - 1);
@@ -79,7 +79,7 @@ public class CreateSprintCommand extends SprintCommand {
         return !parameters.get("goal").isEmpty();
     }
 
-    private void printCreatedSprint(TextUi ui) {
+    private void printCreatedSprint(Ui ui) {
         Sprint created = allSprint.getSprint(allSprint.size() - 1);
         ui.showToUser("\n--- New Sprint ---");
         ui.showToUser("Goal: " + created.getGoal());

@@ -2,10 +2,9 @@ package seedu.duke;
 
 import seedu.duke.parser.Parser;
 import seedu.duke.project.Project;
-import seedu.duke.ui.Ui;
+import seedu.duke.ui.old.Ui;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Duke {
     /**
@@ -13,6 +12,7 @@ public class Duke {
      */
 
     static Ui ui = new Ui();
+    private static Parser parser = new Parser();
 
     public static void main(String[] args) {
         ArrayList<Project> projectList = new ArrayList<>(10);

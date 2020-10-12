@@ -6,7 +6,7 @@ import seedu.duke.command.SprintCommand;
 import seedu.duke.command.TaskCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
-import seedu.duke.ui.Ui;
+import seedu.duke.ui.old.Ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +26,6 @@ import static seedu.duke.command.CommandSummary.VIEW;
 import static seedu.duke.command.CommandSummary.DONE;
 import static seedu.duke.command.CommandSummary.PRIORITY;
 import static seedu.duke.command.CommandSummary.ASSIGN;
-import static seedu.duke.command.CommandSummary.TASK_ID;
 
 
 public class Parser {

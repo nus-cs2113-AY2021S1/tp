@@ -1,8 +1,8 @@
 package seedu.duke.command;
 
-import seedu.duke.Member;
+import seedu.duke.model.Member;
 import seedu.duke.project.Project;
-import seedu.duke.ui.Ui;
+import seedu.duke.ui.old.Ui;
 
 import java.util.ArrayList;
 
