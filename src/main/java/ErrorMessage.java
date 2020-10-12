@@ -14,14 +14,17 @@ public class ErrorMessage extends Ui {
         printLine("Sorry that's not an available input! Please try again\n"
                 + "or you can type \"help\" for more information");
     }
+
     public static void printInvalidNumber() {
         printLine("Please enter a number when applicable!\n"
                 + "or you can type \"help\" for more information");
     }
+
     public static void printInvalidGrade() {
         printLine("Please enter a valid grade!\n"
                 + "or you can type \"help\" for more information");
     }
+    
     public static void printInvalidMc() {
         printLine("MC cannot be zero!\n"
                 + "or you can type \"help\" for more information");
