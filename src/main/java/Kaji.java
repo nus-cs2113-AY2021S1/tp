@@ -1,5 +1,6 @@
 import access.Access;
 import commands.Command;
+import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 import manager.admin.Admin;
 import manager.chapter.CardList;
@@ -39,13 +40,13 @@ public class Kaji {
             try {
                 ui.showLevel(access);
                 String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
+                Command c = Parser.parse(fullCommand, access);
                 c.execute(cards, ui, access, storage);
                 ui.printEmptyLine();
                 Storage.writeToFile(cards);
                 isExit = c.isExit();
-            } catch (InvalidInputException e) {
-                System.out.println("Invalid input given.\n");
+            } catch (InvalidInputException | IncorrectAccessLevelException e) {
+                ui.showError(e.getMessage());
             } catch (IOException e) {
                 System.out.println("     Something went wrong: " + e.getMessage());
             }
