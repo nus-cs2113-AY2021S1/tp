@@ -3,6 +3,7 @@ package seedu.duke.command.timetable;
 import org.junit.jupiter.api.Test;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
+import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 import seedu.duke.slot.Slot;
@@ -41,7 +42,7 @@ class DeleteSlotCommandTest {
         String input = DeleteSlotCommand.DEL_KW + " 1";
         try {
             DeleteSlotCommand command = new DeleteSlotCommand(input);
-            command.execute(slots, slots, new Ui(), new Storage("test.txt"), new Storage("test.txt"));
+            command.execute(new BookmarkList(), slots, new Ui(), new Storage("test.txt"), new Storage("test.txt"));
         } catch (DukeException e) {
             fail(e.getMessage());
         }

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
+import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 import seedu.duke.slot.Slot;
@@ -55,7 +56,7 @@ class AddSlotCommandTest {
 
         try {
             command = new AddSlotCommand(input);
-            command.execute(slots,
+            command.execute(new BookmarkList(),
                     slots,
                     new Ui(),
                     new Storage("test.txt"),
