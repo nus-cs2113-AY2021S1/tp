@@ -90,7 +90,10 @@ public class Ui {
         case EMPTY_DESCRIPTION:
             printEmptyBookmarkDescriptionMessage();
             break;
-        case INVALID_BOOKMARK_NUMBER:
+        case NON_INTEGER_INPUT:
+            printUseIntegerAsInput();
+            break;
+        case BOOKMARK_NUMBER_OUT_OF_BOUNDS:
             printUseValidBookmarkNumberMessage(dukeException.getInfo());
             break;
         case INVALID_URL:
@@ -120,6 +123,11 @@ public class Ui {
     private void printErrorWritingToFile() {
         print("Error writing to file.\n");
     }
+
+    private void printUseIntegerAsInput() {
+        print("Please enter an integer with the command\n");
+    }
+
 
     private void printUseValidBookmarkNumberMessage(String info) {
         print("Please enter a valid index number between 1 and " + info + "\n");
