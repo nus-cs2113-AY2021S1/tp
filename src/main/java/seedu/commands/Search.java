@@ -29,7 +29,7 @@ public class Search extends Command {
     @Override
     public CommandResult execute(TaskList tasks) {
         TaskList found = tasks.searchDescription(toSearch);
-        if (found != null) {
+        if (found.size() > 0) {
             return new CommandResult(SEARCH_FOUND_MESSAGE, found);
         } else {
             return new CommandResult(SEARCH_NOT_FOUND_MESSAGE);
