@@ -43,7 +43,9 @@ public class FinanceTools {
 
     public static void main() {
 
-        while (true) {
+        boolean endTracker = true;
+
+        while (endTracker) {
             printMenu();
             String input = UiManager.handleInput();
             CommandPacket packet = new InputParser().parseInput(input.toLowerCase());
@@ -56,8 +58,11 @@ public class FinanceTools {
                 System.out.print("Total Cashback Earned: ");
                 System.out.println('$' + Double.toString(handleCashback(packet)));
                 break;
+            case "exit":
+                System.out.println("Exiting Finance Tools ...");
+                endTracker = false;
             default:
-                MenuPrinter.prompt = "Invalid Command";
+                System.out.println("Invalid Command");
                 break;
             }
         }
