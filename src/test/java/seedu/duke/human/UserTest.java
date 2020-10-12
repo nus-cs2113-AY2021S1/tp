@@ -12,6 +12,8 @@ class UserTest {
     @Test
     public void testProfileCreation() throws ParseException, AniException {
         User testProfile = new User("Tim", "1/11/1960", "Other");
-        assertEquals("\nName: Tim\nBirthdate: 01/11/1960\nGender: Other", testProfile);
+
+        assertEquals("Tim-san", testProfile.getName());
+        assertEquals("1/11/1960", testProfile.getDobString());
     }
 }
