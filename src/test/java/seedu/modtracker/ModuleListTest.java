@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ModuleListTest {
-    private static final String TEST_DATA_FILEPATH = "test/data/modlist.txt";
-    Storage storage = new Storage(TEST_DATA_FILEPATH);
+    private static final String TEST_FILEPATH = "test/data/modlist.txt";
+    Storage storage = new Storage(TEST_FILEPATH);
 
     @Test
     public void addExp_emptyModuleList_newModuleWithExpTimeAdded() {
