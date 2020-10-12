@@ -45,7 +45,8 @@ public class Kaji {
                 ui.printEmptyLine();
                 Storage.writeToFile(cards);
                 isExit = c.isExit();
-            } catch (InvalidInputException | IncorrectAccessLevelException e) {
+            } catch (InvalidInputException | IncorrectAccessLevelException |
+                    IndexOutOfBoundsException | FileNotFoundException e) {
                 ui.showError(e.getMessage());
             } catch (IOException e) {
                 System.out.println("     Something went wrong: " + e.getMessage());

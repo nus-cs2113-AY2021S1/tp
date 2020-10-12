@@ -38,35 +38,31 @@ public class ReviseCommand extends Command {
         this.reviseIndex = reviseIndex;
     }
 
-    public Chapter getChapter(int reviseIndex, Access access, Ui ui) {
+    public Chapter getChapter(int reviseIndex, Access access, Ui ui) throws IndexOutOfBoundsException {
         Chapter chapter;
         try {
             chapter = access.getModule().getChapters().getChapter(reviseIndex);
             return chapter;
         } catch (IndexOutOfBoundsException e) {
-            ui.showError("The chapter is not found.");
-            return null;
+            throw new IndexOutOfBoundsException("The chapter is not found.\n");
         }
     }
 
-    private ArrayList<Card> getCards(Ui ui, Access access, Storage storage, Chapter toRevise) {
+    private ArrayList<Card> getCards(Ui ui, Access access, Storage storage, Chapter toRevise)
+            throws FileNotFoundException {
         ArrayList<Card> allCards;
         try {
             allCards = storage.loadCard(access.getModuleLevel(), toRevise.getChapterName());
             toRevise.setCards(allCards);
         } catch (FileNotFoundException e) {
-            ui.showError("File is not found.");
-            return null;
+            throw new FileNotFoundException("File is not found.\n");
         }
         return allCards;
     }
 
     @Override
-    public void execute(CardList cards, Ui ui, Access access, Storage storage) {
+    public void execute(CardList cards, Ui ui, Access access, Storage storage) throws FileNotFoundException {
         Chapter toRevise = getChapter(reviseIndex, access, ui);
-        if (toRevise == null) {
-            return;
-        }
         ArrayList<Card> allCards = getCards(ui, access, storage, toRevise);
         if (allCards == null) {
             return;
