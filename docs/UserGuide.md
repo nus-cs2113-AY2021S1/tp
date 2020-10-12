@@ -85,7 +85,16 @@ Expected outcome:
  &nbsp;
  
 #### 4.c `edit` - Edits your show details
- 
+ The `edit` command edits the name or number of seasons/episodes an existing show in your watchlist.
+  
+   Format:
+     `edit <SHOWNAME>`
+     
+   Example of usage:
+    `rating Friends`
+ Then you will be prompted to enter the fields you want to change such as:
+ name, season, episode
+ When you have completed all changes, use `done`.
  Expected outcome:
   
 
