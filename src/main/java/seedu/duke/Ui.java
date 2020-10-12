@@ -1,5 +1,8 @@
 package seedu.duke;
 
+import seedu.duke.food.Food;
+import seedu.duke.person.ActivityLevel;
+
 import java.util.List;
 
 /**
