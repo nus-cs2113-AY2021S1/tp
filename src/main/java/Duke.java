@@ -1,5 +1,3 @@
-package seedu.duke;
-
 import java.awt.print.Book;
 import java.util.Scanner;
 

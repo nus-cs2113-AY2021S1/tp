@@ -1,5 +1,3 @@
-package seedu.duke;
-
 public class BookmarkList {
     private String link;
 
@@ -9,4 +7,5 @@ public class BookmarkList {
     public String getLink(){
         return link;
     }
+
 }

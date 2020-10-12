@@ -1,6 +1,3 @@
-package seedu.duke;
-
-import java.awt.print.Book;
 import java.util.ArrayList;
 
 public class NUSCategory extends BookmarkCategory{
@@ -15,5 +12,12 @@ public class NUSCategory extends BookmarkCategory{
         links.add(new BookmarkList("http"));
         links.add(new BookmarkList( "HUhuhu"));
         return links;
+    }
+    public void addLink(String link){
+        links.add(new BookmarkList(link));
+    }
+
+    public void removeLink(int number){
+        links.remove(number-1);
     }
 }

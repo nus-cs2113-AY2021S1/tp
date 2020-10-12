@@ -1,4 +1,3 @@
-package seedu.duke;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,6 +8,7 @@ public class BookmarkUi {
     public BookmarkUi(){
         this.in = new Scanner(System.in);
     }
+
     public void printWelcomeBookmarkMessage(){
         printLine();
         System.out.println("Welcome to B00KMARK!");
