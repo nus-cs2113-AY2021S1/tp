@@ -114,7 +114,7 @@ public class Parser {
             case TagCommand.COMMAND_WORD:
                 return prepareTag(userMessage);
             case RemindCommand.COMMAND_WORD:
-                 return prepareRemind(userMessage);
+                return prepareRemind(userMessage);
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
             case HelpCommand.COMMAND_WORD:
