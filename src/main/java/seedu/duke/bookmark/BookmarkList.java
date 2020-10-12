@@ -155,7 +155,7 @@ public class BookmarkList extends ItemList {
             if (!message.isEmpty()) {
                 message = "Here are your matching bookmarks" + lineSeparator + message;
             } else {
-                message = "No bookmarks contain the specified keyword(s)!" + lineSeparator;
+                message = "No bookmarks contain the specified keyword!" + lineSeparator;
             }
         }
         return message;
@@ -192,7 +192,7 @@ public class BookmarkList extends ItemList {
             if (!message.isEmpty()) {
                 message = "Launched these bookmarks:" + lineSeparator + message;
             } else {
-                message = "No bookmarks contain the specified keyword(s)!" + lineSeparator;
+                message = "No bookmarks contain the specified keyword!" + lineSeparator;
             }
         }
         return message;
