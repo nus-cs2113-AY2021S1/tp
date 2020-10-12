@@ -225,17 +225,13 @@ public class Parser {
                     + ReviseCommand.MESSAGE_USAGE);
         }
         int chapterIndex;
-        Chapter chapter;
         try {
             chapterIndex = Integer.parseInt(commandArgs) - 1;
-            chapter = access.getModule().getChapters().getChapter(chapterIndex);
         } catch (NumberFormatException e) {
             throw new IncorrectAccessLevelException("The index for chapter should be an integer.\n"
                     + ReviseCommand.MESSAGE_USAGE);
-        } catch (IndexOutOfBoundsException e) {
-            throw new IncorrectAccessLevelException("The chapter is not found.\n");
         }
-        return new ReviseCommand(chapter);
+        return new ReviseCommand(chapterIndex);
     }
 
     private static Command prepareExit(String commandArgs) throws InvalidInputException {

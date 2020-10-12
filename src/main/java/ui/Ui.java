@@ -87,8 +87,9 @@ public class Ui {
 
     public void getAnswerInput(Card c) {
         String input = in.nextLine();
-        while (!input.equalsIgnoreCase("s")) {
+        while (!input.trim().equalsIgnoreCase("s")) {
             out.println("You have entered an invalid input, please try again.");
+
             input = in.nextLine();
         }
         out.println(c.getAnswer());
