@@ -7,8 +7,7 @@ import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.UiManager;
-
-import java.util.ArrayList;
+import seedu.financeit.utils.ParamChecker;
 
 public class SimpleInterest extends ParamHandler {
 
@@ -17,12 +16,15 @@ public class SimpleInterest extends ParamHandler {
 
     public SimpleInterest() {
         super();
-        super.requiredParams = new ArrayList<>() {
-            {
-                add("/amount");
-                add("/ir");
-            }
-        };
+    }
+
+    public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
+        this.paramChecker = new ParamChecker(packet);
+        try {
+            this.handleParams(packet);
+        } catch (ItemNotFoundException exception) {
+            // Fall-through
+        }
     }
 
     public SimpleInterest(CommandPacket packet) throws InsufficientParamsException {

@@ -35,7 +35,7 @@ public class RecurringEntry extends Item {
         };
     }
 
-    public RecurringEntry(CommandPacket packet) throws AssertionError, InsufficientParamsException {
+    public RecurringEntry(CommandPacket packet) throws InsufficientParamsException {
         try {
             handleParams(packet);
         } catch (ItemNotFoundException exception) {

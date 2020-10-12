@@ -3,13 +3,11 @@ package seedu.financeit.financetools;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.ParamHandler;
-import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.UiManager;
-
-import java.util.ArrayList;
+import seedu.financeit.utils.ParamChecker;
 
 public class Cashback extends ParamHandler {
 
@@ -19,20 +17,22 @@ public class Cashback extends ParamHandler {
 
     public Cashback() {
         super();
-        super.requiredParams = new ArrayList<>() {
-            {
-                add("/amount");
-                add("/cashback");
-                add("/cap");
-            }
-        };
+    }
+
+    public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
+        this.paramChecker = new ParamChecker(packet);
+        try {
+            this.handleParams(packet);
+        } catch (ItemNotFoundException exception) {
+            // Fall-through
+        }
     }
 
     public Cashback(CommandPacket packet) throws InsufficientParamsException {
         this();
         try {
             handleParams(packet);
-        } catch (ItemNotFoundException | ConflictingItemReference exception) {
+        } catch (ItemNotFoundException exception) {
             // Fall-through
         }
     }
@@ -54,13 +54,7 @@ public class Cashback extends ParamHandler {
     }
 
     @Override
-    public boolean isValidItem() {
-        return ((amount != -1) && (cashbackRate != -1) && (monthlyCap != - 1));
-    }
-
-    @Override
-    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
-            ItemNotFoundException, ConflictingItemReference {
+    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case "/amount":
             this.amount = paramChecker.checkAndReturnDouble(paramType);
