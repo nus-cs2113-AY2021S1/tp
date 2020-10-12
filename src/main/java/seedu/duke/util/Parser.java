@@ -528,7 +528,7 @@ public class Parser {
 
     private Command prepareListEvent(String userMessage) {
         return new ListEventCommand();
-    }*/
+    }
 
     private Command prepareViewNote(String userMessage) throws SystemException {
         String title;
@@ -560,6 +560,8 @@ public class Parser {
         } catch (NumberFormatException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
         }
+        throw new SystemException(ExceptionType.EXCEPTION_INVALID_INPUT_FORMAT);
+    }
 
     /**
      * Parses the variables in userMessage to a form that is used in DeleteEventCommand.
@@ -578,8 +580,6 @@ public class Parser {
         return new DeleteEventCommand(index - 1);
     }
 
-        return new IncorrectCommand("Incorrect format for viewing notes");
-    }
     /*
     private Command prepareEditNote(String userMessage) {
        return new EditCommand(index, note);
