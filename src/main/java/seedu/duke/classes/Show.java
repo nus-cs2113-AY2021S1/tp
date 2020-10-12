@@ -77,13 +77,13 @@ public class Show {
         this.currentEpisode = watchedEpisode;
     }
 
+    public void setName(String newName) {
+        this.name = newName;
+    }
+
     public void setCurrentSeason(int season) {
         this.currentSeason = season;
         this.currentEpisode = 1;
-    }
-
-    public void setName (String newName) {
-        this.name = newName;
     }
 
     /**
