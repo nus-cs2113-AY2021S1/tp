@@ -38,8 +38,13 @@ public class Ui {
         int i = 1;
         System.out.println("\nThe buses you can take are: ");
         for (Bus option: options) {
-            System.out.println(i + ". " + option.toString());
-            i++;
+            if (option.toString() != null) {
+                System.out.println(i + ". " + option.toString());
+                i++;
+            }
+        }
+        if (i == 1) {
+            System.out.println("none.\n\tThere are no direct bus routes. :(");
         }
     }
 }

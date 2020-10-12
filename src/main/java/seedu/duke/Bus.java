@@ -37,7 +37,10 @@ public class Bus {
 
     @Override
     public String toString() {
-        String printableRoute = String.join("-> ", route);
-        return busNumber + ":\n\t" + printableRoute;
+        if (route.size() > 0) {
+            String printableRoute = String.join("-> ", route);
+            return busNumber + ":\n\t" + printableRoute;
+        }
+        return null;
     }
 }
