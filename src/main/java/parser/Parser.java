@@ -19,10 +19,12 @@ import commands.EditCommand;
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
+import manager.chapter.Chapter;
+import manager.module.ChapterList;
 import storage.Storage;
 
+import java.util.ArrayList;
 import java.time.LocalDate;
-
 
 public class Parser {
     private static final String QUESTION_ANSWER_PREFIX = " \\| ";
@@ -47,7 +49,7 @@ public class Parser {
         case RemoveCommand.COMMAND_WORD:
             return prepareRemove(commandArgs);
         case ReviseCommand.COMMAND_WORD:
-            return prepareRevise(commandArgs);
+            return prepareRevise(commandArgs, access);
         case ExitCommand.COMMAND_WORD:
             return prepareExit(commandArgs);
         case HelpCommand.COMMAND_WORD:
@@ -214,11 +216,22 @@ public class Parser {
         return arg.substring(2).trim();
     }
 
-    private static Command prepareRevise(String commandArgs) throws InvalidInputException {
-        if (commandArgs.isEmpty()) {
-            throw new InvalidInputException();
+    private static Command prepareRevise(String commandArgs, Access access)
+            throws InvalidInputException, IncorrectAccessLevelException {
+        if (access.isAdminLevel() || access.isChapterLevel()) {
+            throw new IncorrectAccessLevelException("Revise command can only be called at module level.\n");
+        } else if (commandArgs.isEmpty()) {
+            throw new InvalidInputException("The index for chapter to revise should be provided.\n"
+                    + ReviseCommand.MESSAGE_USAGE);
         }
-        return new ReviseCommand(commandArgs);
+        int chapterIndex;
+        try {
+            chapterIndex = Integer.parseInt(commandArgs) - 1;
+        } catch (NumberFormatException e) {
+            throw new IncorrectAccessLevelException("The index for chapter should be an integer.\n"
+                    + ReviseCommand.MESSAGE_USAGE);
+        }
+        return new ReviseCommand(chapterIndex);
     }
 
     private static Command prepareExit(String commandArgs) throws InvalidInputException {

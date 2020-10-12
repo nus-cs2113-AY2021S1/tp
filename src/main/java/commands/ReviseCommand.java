@@ -1,6 +1,7 @@
 package commands;
 
 import access.Access;
+import exception.InvalidFileFormatException;
 import manager.card.Card;
 import manager.chapter.CardList;
 import manager.chapter.Chapter;
@@ -8,6 +9,7 @@ import scheduler.Scheduler;
 import storage.Storage;
 import ui.Ui;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 
@@ -18,7 +20,7 @@ public class ReviseCommand extends Command {
     public static final String COMMAND_WORD = "revise";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Starts revision based on a particular chapter. \n"
-            + "Parameters: CHAPTER_NAME\n" + "Example: " + COMMAND_WORD + " Polymorphism\n";
+            + "Parameters: INDEX_OF_CHAPTER\n" + "Example: " + COMMAND_WORD + " 2\n";
 
     public static final String MESSAGE_SUCCESS = "You have completed revision for %1$s.";
     public static final String MESSAGE_NO_CARDS_IN_CHAPTER = "You currently have no cards in %1$s.";
@@ -31,25 +33,53 @@ public class ReviseCommand extends Command {
     public static final String HARD = "h";
     public static final String CANNOT_ANSWER = "c";
 
-    private final Chapter toRevise;
+    private final int reviseIndex;
 
-    public ReviseCommand(String toRevise) {
-        this.toRevise = new Chapter(toRevise);
+    public ReviseCommand(int reviseIndex) {
+        this.reviseIndex = reviseIndex;
+    }
+
+    public Chapter getChapter(int reviseIndex, Access access, Ui ui) throws IndexOutOfBoundsException {
+        Chapter chapter;
+        try {
+            chapter = access.getModule().getChapters().getChapter(reviseIndex);
+            return chapter;
+        } catch (IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("The chapter is not found.\n");
+        } 
+    }
+
+    private ArrayList<Card> getCards(Ui ui, Access access, Storage storage, Chapter toRevise)
+            throws FileNotFoundException, InvalidFileFormatException {
+        ArrayList<Card> allCards;
+        try {
+            allCards = storage.loadCard(access.getModuleLevel(), toRevise.getChapterName());
+            toRevise.setCards(allCards);
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException("File is not found.\n");
+        } catch (InvalidFileFormatException e) {
+            throw new InvalidFileFormatException();
+        }
+        return allCards;
     }
 
     @Override
-    public void execute(CardList cards, Ui ui, Access access, Storage storage) {
-        ArrayList<Card> allCards = cards.getAllCards();
+    public void execute(CardList cards, Ui ui, Access access, Storage storage) 
+        throws FileNotFoundException, InvalidFileFormatException {
+        Chapter toRevise = getChapter(reviseIndex, access, ui);
+        ArrayList<Card> allCards = getCards(ui, access, storage, toRevise);
         ArrayList<Card> repeatCards = new ArrayList<>();
         int cardCount = cards.getCardCount();
         if (cardCount == 0) {
             ui.showToUser(String.format(MESSAGE_NO_CARDS_IN_CHAPTER, toRevise));
             return;
         }
-        ui.showToUser("The revision for " + toRevise + " will start now:");
         int count = 1;
         for (Card c : allCards) {
             if (Scheduler.isDeadlineDue(c.getDueBy())) {
+                if (count == 1) {
+                    ui.showToUser("The revision for " + toRevise + " will start now:");
+                }
                 ui.showToUser("\nQuestion " + count + ":");
                 ui.showCardRevision(c);
                 String input = ui.getRating();
@@ -68,8 +98,9 @@ public class ReviseCommand extends Command {
 
     public static ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards, Card c, String input) {
         boolean isInvalid = true;
+
         while (isInvalid) {
-            switch (input.toLowerCase()) {
+            switch (input.trim().toLowerCase()) {
             case EASY:
                 c.setDueBy(Scheduler.computeEasyDeadline(c, c.getPreviousInterval()));
                 isInvalid = false;
@@ -96,7 +127,6 @@ public class ReviseCommand extends Command {
 
     private void repeatRevision(Ui ui, ArrayList<Card> cards, int count) {
         while (cards.size() != 0) {
-            System.out.println(cards.size());
             ArrayList<Card> repeatCards = new ArrayList<>();
             for (Card c : cards) {
                 ui.showToUser("\nQuestion " + count + ":");
