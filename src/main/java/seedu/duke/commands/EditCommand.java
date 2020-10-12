@@ -50,7 +50,11 @@ public class EditCommand {
                 int i = 0;
                 int[] intNumOfEpisodes = new int[show.getNumSeasons()];
                 for (String s : numOfEpisodes) {
-                    intNumOfEpisodes[i] = Integer.parseInt(s);
+                    try {
+                        intNumOfEpisodes[i] = Integer.parseInt(s);
+                    } catch (Exception e) {
+                        throw new NullPointerException();
+                    }
                     i++;
                 }
                 //I put this below for now in case we need to add checks to ensure numOfEpisodes is not empty
