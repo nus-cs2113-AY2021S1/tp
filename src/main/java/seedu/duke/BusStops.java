@@ -5,9 +5,9 @@ import java.util.EnumSet;
 
 public enum BusStops {
     PGP("PGP","prince george residence"),
-    KENTRIDGEMRTSTATION ("Kent Ridge MRT Station","mrt"),
-    OPPUNIVERSITYHEALTHCENTRE( "Opp University Health Centre","opposite UHC, where students can get MC"),
-    YUSOFISHAKHOUSE ("Yusof Ishak House", "Location with student service center and restaurants"),
+    KENTRIDGEMRTSTATION("Kent Ridge MRT Station","mrt"),
+    OPPUNIVERSITYHEALTHCENTRE("Opp University Health Centre","opposite UHC, where students can get MC"),
+    YUSOFISHAKHOUSE("Yusof Ishak House", "Location with student service center and restaurants"),
     CENTRALLIBRARY("Central Library","also known as CLB"),
     KENTRIDGE("Kent Ridge","idk"),
     MUSEUM("Museum", "Opposite Faculty of Engineering"),
@@ -22,20 +22,21 @@ public enum BusStops {
 
     private final String description;
     private final String name;
-    BusStops( String name,String description) {
+
+    BusStops(String name,String description) {
         this.description = description;
         this.name = name;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public static void listStops(){
+    public static void listStops() {
         for (BusStops info : EnumSet.allOf(BusStops.class)) {
             System.out.println(info.name + " : " + info.description);
         }
