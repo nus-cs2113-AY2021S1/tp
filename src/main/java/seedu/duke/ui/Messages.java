@@ -1,4 +1,4 @@
-package seedu.duke.common;
+package seedu.duke.ui;
 
 /**
  * Container for user visible messages.
