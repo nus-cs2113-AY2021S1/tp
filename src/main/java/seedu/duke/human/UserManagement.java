@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class UserManagement {
     // Add Watchlist & Bookmarks here
 
-    
+
     Ui ui;
     Storage storage;
     protected ArrayList<User> userList = new ArrayList<>();
@@ -49,7 +49,7 @@ public class UserManagement {
                 String name = ui.readInput();
                 ui.printMessage("Hello " + name + "! What might your date of birth be? (DD/MM/YYYY)");
                 String dob = ui.readInput();
-                ui.printMessage("What might your gender be? (Male/Female/Others)");
+                ui.printMessage("What might your gender be? (Male/Female/Other)");
                 String gender = ui.readInput();
 
                 currentUser = addUser(name, dob, gender);
