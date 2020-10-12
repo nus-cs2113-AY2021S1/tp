@@ -6,39 +6,48 @@ import java.util.Arrays;
 public class Bus {
 
     String busNumber;
-    ArrayList<String> route = new ArrayList<>();
+    ArrayList<BusStops> route = new ArrayList<>();
 
-    public Bus(String busNo, String[] stops) {
+    public Bus(String busNo, BusStops[] stops) {
         busNumber = busNo;
         route.addAll(Arrays.asList(stops));
     }
 
-    public Bus(String busNo, ArrayList<String> route) {
+    public Bus(String busNo, ArrayList<BusStops> stops) {
         busNumber = busNo;
-        this.route.addAll(route);
+        route.addAll(stops);
     }
 
-    ArrayList<String> getPossibleRoute(String startingLoc, String destination) {
+    public ArrayList<String> getStopNames() {
 
-        ArrayList<String> allStopsFromStart = new ArrayList<>();
-        ArrayList<String> finalRoute = new ArrayList<>();
-        if (route.contains(startingLoc)) {
-            int startingIndex = route.indexOf(startingLoc) + 1;
-            int size = route.size();
+        ArrayList<String> routeNames = new ArrayList<>();
+        route.forEach(stop -> routeNames.add(stop.getName()));
+        return routeNames;
+    }
+
+    ArrayList<BusStops> getPossibleRoute(String startingLoc, String destination) {
+        ArrayList<BusStops> allStopsFromStart = new ArrayList<>();
+        ArrayList<BusStops> finalRoute = new ArrayList<>();
+        ArrayList<String> allStopNamesFromStart = new ArrayList<>();
+        ArrayList<String> routeNames = new ArrayList<>(getStopNames());
+
+        if (routeNames.contains(startingLoc)) {
+            int startingIndex = routeNames.indexOf(startingLoc) + 1;
+            int size = routeNames.size();
+            allStopNamesFromStart.addAll(routeNames.subList(startingIndex, size));
             allStopsFromStart.addAll(route.subList(startingIndex, size));
-            if (allStopsFromStart.contains(destination)) {
-                int endIndex = allStopsFromStart.indexOf(destination);
+            if (allStopNamesFromStart.contains(destination)) {
+                int endIndex = allStopNamesFromStart.indexOf(destination);
                 finalRoute.addAll(allStopsFromStart.subList(0, endIndex));
             }
         }
         return finalRoute;
-
     }
 
     @Override
     public String toString() {
         if (route.size() > 0) {
-            String printableRoute = String.join("-> ", route);
+            String printableRoute = String.join("-> ", getStopNames());
             return busNumber + ":\n\t" + printableRoute;
         }
         return null;

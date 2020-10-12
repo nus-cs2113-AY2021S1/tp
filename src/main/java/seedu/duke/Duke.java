@@ -12,32 +12,32 @@ public class Duke {
     private static ArrayList<Bus> busesInZoneA = new ArrayList<>();
     private static final String[] ZONE_A = {"AA1", "AA2"};
 
-    private static final String[] AA1 = {
-        "PGP",
-        "Kent Ridge MRT Station",
-        "Opp University Health Center",
-        "Yusof Ishak House",
-        "Central Library",
-        "Kent Ridge",
-        "Museum",
-        "University Town",
-        "University Health Centre",
-        "Opp Kent RIdge MRT station",
-        "PGPR"
+    private static final BusStops[] AA1 = {
+        BusStops.PGP,
+        BusStops.KENTRIDGEMRTSTATION,
+        BusStops.OPPUNIVERSITYHEALTHCENTRE,
+        BusStops.YUSOFISHAKHOUSE,
+        BusStops.CENTRALLIBRARY,
+        BusStops.KENTRIDGE,
+        BusStops.MUSEUM,
+        BusStops.UNIVERSITYTOWN,
+        BusStops.UNIVERSITYHEALTHCENTRE,
+        BusStops.OPPKENTRIDGEMRTSTATION,
+        BusStops.PGPR
     };
 
-    private static final String[] AA2 = {
-        "PGP",
-        "Kent Ridge MRT Station",
-        "Opp University Health Centre",
-        "University Town",
-        "Raffles Hall",
-        "Kent Vale",
-        "EA",
-        "NUS IT",
-        "University Health Centre",
-        "Opp Kent Ridge MRT Station",
-        "PGPR"
+    private static final BusStops[] AA2 = {
+        BusStops.PGP,
+        BusStops.KENTRIDGEMRTSTATION,
+        BusStops.OPPUNIVERSITYHEALTHCENTRE,
+        BusStops.UNIVERSITYTOWN,
+        BusStops.RAFFLESHALL,
+        BusStops.KENTVALE,
+        BusStops.EA,
+        BusStops.NUSIT,
+        BusStops.UNIVERSITYHEALTHCENTRE,
+        BusStops.OPPKENTRIDGEMRTSTATION,
+        BusStops.PGPR
     };
 
     public Duke() {
@@ -56,9 +56,7 @@ public class Duke {
 
         new Duke();
         boolean isOngoing = true;
-
         Ui.printWelcomeMessage();
-
         while (isOngoing) {
             try {
                 String fullCommand = Ui.getCommand();
