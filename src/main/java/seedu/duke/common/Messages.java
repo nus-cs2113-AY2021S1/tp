@@ -1,7 +1,5 @@
 package seedu.duke.common;
 
-import static seedu.duke.common.Commands.*;
-
 /**
  * Container for user visible messages.
  */
@@ -11,8 +9,10 @@ public class Messages {
     public static final String MESSAGE_BYE = "Bye. Hope to see you again soon!";
 
     public static final String FORMAT_FOOD = "food <Name of food> / <Number of Calories> <Quantity (Optional)>";
-    public static final String FORMAT_EXERCISE = "exercise <Name of exercise> / <Number of Calories> <Quantity (Optional)>";
-    public static final String FORMAT_DELETE ="delete food <Index from Food List> or delete exercise <Index from Exercise List>";
+    public static final String FORMAT_EXERCISE = "exercise <Name of exercise> / "
+            + "<Number of Calories> <Quantity (Optional)>";
+    public static final String FORMAT_DELETE = "delete food <Index from Food List> "
+            + "or delete exercise <Index from Exercise List>";
 
     public static final String INPUT_NAME = "Please enter your name:\n";
     public static final String INPUT_AGE = "Please enter your age:\n";

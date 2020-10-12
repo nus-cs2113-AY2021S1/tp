@@ -70,7 +70,7 @@ public class UI {
     }
 
     public static void printFormatError(String command) {
-        if(command.equals(COMMAND_VIEW)) {
+        if (command.equals(COMMAND_VIEW)) {
             printCustomError(ERROR_INVALID_COMMAND);
             System.out.printf(SPACE, COMMAND_VIEW_FOOD, "View food entries");
             System.out.printf(SPACE, COMMAND_VIEW_EXERCISE, "View exercise entries");
@@ -88,6 +88,8 @@ public class UI {
             break;
         case COMMAND_DELETE:
             printCustomError(FORMAT_DELETE);
+            break;
+        default:
             break;
         }
     }
