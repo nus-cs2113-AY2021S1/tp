@@ -1,6 +1,10 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
+import seedu.duke.data.notebook.Tag;
+import seedu.duke.ui.InterfaceManager;
+
+import java.util.ArrayList;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
@@ -17,6 +21,12 @@ public class ViewNoteCommand extends Command {
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Views a note. Parameters: "
             + "[" + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX] "
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE]";
+    
+    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook";
+
+    public static String getCommandUsage() {
+        return COMMAND_USAGE;
+    }
 
     private int index;
     private String title;
@@ -39,7 +49,6 @@ public class ViewNoteCommand extends Command {
      * @param title of the Note.
      */
     public ViewNoteCommand(String title) {
-        this.index = NULL_INT;
         this.title = title;
         this.isViewByIndex = false;
     }
@@ -52,7 +61,7 @@ public class ViewNoteCommand extends Command {
             try {
                 note = notebook.getNotes().get(index);
             } catch (IndexOutOfBoundsException exception) {
-                return "Note with this index does not exists in the notebook";
+                return COMMAND_UNSUCCESSFUL_MESSAGE;
             }
             noteExists = true;
         } else {
@@ -64,8 +73,17 @@ public class ViewNoteCommand extends Command {
             }
         }
         if (!noteExists) {
-            return "This note does not exists in the notebook";
+            return COMMAND_UNSUCCESSFUL_MESSAGE;
         }
-        return note.getContent();
+        ArrayList<Tag> noteTags = note.getTags();
+
+        // format output string
+        String stringToPrint = note.getTitle();
+        for (Tag tag:noteTags) {
+            stringToPrint += tag.toString();
+        }
+
+        stringToPrint += InterfaceManager.LS + note.getContent();
+        return stringToPrint;
     }
 }

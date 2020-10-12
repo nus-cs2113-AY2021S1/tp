@@ -40,7 +40,6 @@ public class PinCommand extends Command {
      * @param title of the Note.
      */
     public PinCommand(String title) {
-        this.index = NULL_INT;
         this.title = title;
         this.isPinByIndex = false;
     }
@@ -63,11 +62,10 @@ public class PinCommand extends Command {
         }
 
         if (note == null) {
-            return "This note does not exists in the notebook";
+            return COMMAND_UNSUCCESSFUL_MESSAGE;
         }
 
-        boolean pinStatus = note.getPinned().equals("Y");
-        note.setPinned(!pinStatus);
+        note.togglePinned();
 
         return note.getTitle() + " pinned: " + note.getPinned();
     }
