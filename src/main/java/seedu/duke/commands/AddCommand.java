@@ -30,6 +30,8 @@ public class AddCommand extends Command {
     public static Logger addLogger = Logger.getLogger("Add");
 
     public AddCommand(String arguments) {
+
+        addLogger.setUseParentHandlers(false);
         addLogger.setLevel(Level.INFO);
 
         String[] details = arguments.split(" ", 2);

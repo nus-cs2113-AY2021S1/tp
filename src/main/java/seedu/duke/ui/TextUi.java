@@ -175,15 +175,23 @@ public class TextUi {
     }
 
     public void printSpecifiedRating(RatingList ratings, int ratingToList) {
-        if (ratings.getList().size() == 0) {
-            System.out.printf((LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE) + "\n", ratingToList);
-            return;
-        }
-        System.out.printf((LIST_SPECIFIED_RATING_MESSAGE) + "\n", ratingToList);
+        boolean doesExist = false;
         for (Rating rating : ratings.getList()) {
             if (rating.getRating() == ratingToList) {
-                System.out.println(rating.getTitleOfRatedBook());
+                doesExist = true;
+                break;
             }
+        }
+        if (doesExist) {
+            System.out.printf((LIST_SPECIFIED_RATING_MESSAGE) + "\n", ratingToList);
+            for (Rating rating : ratings.getList()) {
+                if (rating.getRating() == ratingToList) {
+                    System.out.println(rating.getTitleOfRatedBook());
+                }
+            }
+        } else {
+            System.out.printf((LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE) + "\n", ratingToList);
+            return;
         }
     }
 
