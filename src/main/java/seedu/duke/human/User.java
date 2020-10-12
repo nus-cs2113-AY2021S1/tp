@@ -18,6 +18,8 @@ public class User extends Human {
     }
 
     public void setGender(String genderString) throws AniException {
+        genderString = genderString.toLowerCase();
+
         switch (genderString) {
         case "male":
             gender = Gender.Male;

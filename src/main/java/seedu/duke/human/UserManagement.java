@@ -27,8 +27,10 @@ public class UserManagement {
     }
 
     public User addUser(String name, String dob, String gender) throws ParseException, AniException {
-        User newUser = new User(name, dob, gender.toLowerCase());
+        User newUser = new User(name, dob, gender);
+
         userList.add(newUser);
+        storage.writeUserProfileFile(ui, newUser);
 
         ui.printMessage("Successfully added new user: " + newUser);
         return newUser;
@@ -47,7 +49,6 @@ public class UserManagement {
                 String gender = ui.readInput();
 
                 currentUser = addUser(name, dob, gender);
-                storage.writeUserProfileFile(ui, currentUser);
 
                 userCreated = true;
             } catch (ParseException | AniException exception) {

@@ -61,6 +61,7 @@ public class Duke {
         Command command = null;
         if (userManagement.getCurrentUser() == null) {
             userManagement.addUserDialogue();
+            assert userManagement.getCurrentUser() != null;
         }
         do {
             String userInput = ui.readUserInput(userManagement.getCurrentUser().getName(), activeWatchlist.getName());

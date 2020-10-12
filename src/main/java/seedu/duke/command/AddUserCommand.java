@@ -20,12 +20,18 @@ public class AddUserCommand extends Command {
         String[] descriptionSplit = description.split(" ", 7);
 
         for (int i = 0; i < descriptionSplit.length - 1; i++) {
-            if (descriptionSplit[i].equals("-n")) {
+            switch (descriptionSplit[i]) {
+            case "-n":
                 name = descriptionSplit[i + 1];
-            } else if (descriptionSplit[i].equals("-dob")) {
+                break;
+            case "-dob":
                 dob = descriptionSplit[i + 1];
-            } else if (descriptionSplit[i].equals("-g")) {
+                break;
+            case "-g":
                 gender = descriptionSplit[i + 1];
+                break;
+            default:
+                continue;
             }
         }
     }
@@ -40,7 +46,7 @@ public class AddUserCommand extends Command {
         if (name.isEmpty() || dob.isEmpty() || gender.isEmpty()) {
             throw new AniException("Invalid parameters detected!");
         }
-
+        
         try {
             userManagement.addUser(name, dob, gender);
         } catch (ParseException e) {
