@@ -39,7 +39,7 @@ public class DeleteSlotCommand extends Command {
     /**
      * Deletes the Slot in the Slot list.
      *
-     * @param slotList The list of Slots.
+     * @param slots The list of Slots.
      * @param ui The user interface.
      */
     @Override
