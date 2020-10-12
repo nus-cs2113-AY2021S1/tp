@@ -60,8 +60,8 @@ public class TaskList {
 
     public TaskList searchDescription(String toSearch) {
         List<Task> found = tasks.stream()
-            .filter(task -> task.getDescription().contains(toSearch))
-            .collect(Collectors.toList());
+                .filter(task -> task.getDescription().contains(toSearch))
+                .collect(Collectors.toList());
         return new TaskList((ArrayList<Task>) found);
     }
 
@@ -69,6 +69,8 @@ public class TaskList {
         tasks.clear();
     }
 
-    public void delete(int index){ tasks.remove(index); }
+    public void delete(int index) {
+        tasks.remove(index);
+    }
 
 }

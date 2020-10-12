@@ -24,7 +24,8 @@ public class Parser {
             return new Search(rawInput);
         } else if (rawInput.startsWith(Delete.COMMAND_WORD)) {
             return new Delete(rawInput);
-        }{
+        } 
+        {
             throw new UnknowCommandException();
         }
     }
