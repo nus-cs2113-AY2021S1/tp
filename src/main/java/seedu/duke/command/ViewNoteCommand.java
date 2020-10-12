@@ -78,12 +78,12 @@ public class ViewNoteCommand extends Command {
         ArrayList<Tag> noteTags = note.getTags();
 
         // format output string
-        String stringToPrint = note.getTitle() + InterfaceManager.LS;
+        String stringToPrint = note.getTitle();
         for (Tag tag:noteTags) {
-            stringToPrint += tag.toString() + InterfaceManager.LS;
+            stringToPrint += tag.toString();
         }
 
-        stringToPrint += note.getContent();
+        stringToPrint += InterfaceManager.LS + note.getContent();
         return stringToPrint;
     }
 }
