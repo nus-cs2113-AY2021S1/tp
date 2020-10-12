@@ -11,9 +11,17 @@ public class Subject {
     private TaskList tasks;
 
     public Subject(String title) {
+        this(title, new ArrayList<>());
+    }
+
+    public Subject(String title, List<Topic> topics) {
         this.title = title;
+<<<<<<< HEAD
         topics = new TopicList(new ArrayList<>());
         tasks = new TaskList(new ArrayList<>());
+=======
+        this.topics = new TopicList(topics);
+>>>>>>> eef3c4c3c4a9d3618c576c5b74b7e6e99955419d
     }
 
     public Subject(String title, TopicList topics) {
