@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
+import seedu.duke.data.notebook.TagManager;
 import seedu.duke.ui.InterfaceManager;
 
 import java.util.Comparator;
@@ -107,13 +108,18 @@ public class ListNoteCommand extends Command {
             return noteString.toString();
         }
 
-        Map<Tag, ArrayList<Note>> tag = tagManager.getTagMap();
+        Map<Tag, ArrayList<Note>> tagMap = tagManager.getTagMap();
+        ArrayList<Tag> tagList = new ArrayList<>();
+
+        for (String tag : tags) {
+            tagList.add(tagManager.getTag(tag));
+        }
 
         // Based on user inputted tags, will store the respective values in an ArrayList
         // E.g. if user input 2 tags, CS2113 and important, will have 2 ArrayList
         //      1 for the values corresponding to CS2113 and the other for important tag
-        List<ArrayList<Note>> values = tags.stream()
-                .map(tag::get)
+        List<ArrayList<Note>> values = tagList.stream()
+                .map(tagMap::get)
                 .collect(Collectors.toList());
 
         for (ArrayList<Note> value : values) {
