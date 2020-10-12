@@ -17,6 +17,7 @@ public class PinCommand extends Command {
             + "[" + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX] "
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE]";
 
+    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook";
 
     public static String getCommandUsage() {
         return COMMAND_USAGE;
@@ -55,7 +56,7 @@ public class PinCommand extends Command {
             try {
                 note = notebook.getNotes().get(index);
             } catch (IndexOutOfBoundsException exception) {
-                return "Note with this index does not exists in the notebook";
+                return COMMAND_UNSUCCESSFUL_MESSAGE;
             }
         } else {
             for (Note notes : notebook.getNotes()) {
@@ -64,6 +65,7 @@ public class PinCommand extends Command {
                 }
             }
         }
+
         if (note == null) {
             return "This note does not exists in the notebook";
         }
