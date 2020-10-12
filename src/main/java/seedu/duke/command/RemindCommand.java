@@ -18,12 +18,17 @@ public class RemindCommand extends Command {
     private static final String COMMAND_USAGE = COMMAND_WORD + ": Set a reminder for an event. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
 
-    private int index;
-    private boolean isToRemind;
-
+    /**
+     * Gets how the command is expected to be used.
+     *
+     * @return String representation of how the command is to be used.
+     */
     public static String getCommandUsage() {
         return COMMAND_USAGE;
     }
+
+    private int index;
+    private boolean isToRemind;
 
     /**
      * Default constructor of RemindEvent. No arguments are expected as we are only looking at reminders today.

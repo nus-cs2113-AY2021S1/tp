@@ -14,18 +14,16 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
  */
 public class CreateTagCommand extends Command {
 
-    public static final String COLOR_RED_STRING = TagColor.COLOR_RED.getColor();
-    public static final String COLOR_GREEN_STRING = TagColor.COLOR_GREEN.getColor();
-    public static final String COLOR_BLUE_STRING = TagColor.COLOR_BLUE.getColor();
-    public static final String COLOR_YELLOW_STRING = TagColor.COLOR_YELLOW.getColor();
-    public static final String COLOR_PURPLE_STRING = TagColor.COLOR_PURPLE.getColor();
-    public static final String COLOR_CYAN_STRING = TagColor.COLOR_CYAN.getColor();
-    public static final String COLOR_WHITE_STRING = TagColor.COLOR_WHITE.getColor();
-    public static final String COLOR_RESET_STRING = TagColor.COLOR_RESET.getColor();
-
     public static final String COMMAND_WORD = "create-t";
-    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Created a tag! ";
-    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Tag already exists! ";
+
+    private static final String COLOR_RED_STRING = TagColor.COLOR_RED.getColor();
+    private static final String COLOR_GREEN_STRING = TagColor.COLOR_GREEN.getColor();
+    private static final String COLOR_BLUE_STRING = TagColor.COLOR_BLUE.getColor();
+    private static final String COLOR_YELLOW_STRING = TagColor.COLOR_YELLOW.getColor();
+    private static final String COLOR_PURPLE_STRING = TagColor.COLOR_PURPLE.getColor();
+    private static final String COLOR_CYAN_STRING = TagColor.COLOR_CYAN.getColor();
+    private static final String COLOR_WHITE_STRING = TagColor.COLOR_WHITE.getColor();
+    private static final String COLOR_RESET_STRING = TagColor.COLOR_RESET.getColor();
 
     private static final String COMMAND_USAGE = COMMAND_WORD + ": Creates a tag. Parameters: "
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG NAME [TAG COLOR]"
@@ -39,9 +37,17 @@ public class CreateTagCommand extends Command {
             + COLOR_PURPLE_STRING + Tag.COLOR_PURPLE_STRING
             + COLOR_RESET_STRING + ")";
 
+    /**
+     * Provides a description of how the command should be used.
+     *
+     * @return A string description of the command should be used.
+     */
     public static String getCommandUsage() {
         return COMMAND_USAGE;
     }
+
+    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Created a tag! ";
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Tag already exists! ";
 
     private ArrayList<Tag> tags;
 

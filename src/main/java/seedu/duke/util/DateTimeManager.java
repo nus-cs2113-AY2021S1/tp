@@ -11,8 +11,8 @@ import java.time.format.DateTimeParseException;
  * Represents a DateTimeManager. Manages the date and time info.
  */
 public class DateTimeManager {
-    public static final String DATEFORMAT = "yyyy-MM-dd HH:mm";
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATEFORMAT);
+    public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
     /**
      * Parses a user input into the relevant datetime format specified in the manager.

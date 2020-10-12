@@ -5,10 +5,14 @@ import seedu.duke.util.DateTimeManager;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
+=======
+import java.util.HashMap;
+>>>>>>> master
 
 /**
  * Represents a TimeTable object. Contains all the events.
@@ -92,7 +96,11 @@ public class Timetable {
         } else if (event instanceof MonthlyEvent) {
             monthlyEvents.remove(event);
         } else if (event instanceof YearlyEvent) {
+<<<<<<< HEAD
             yearlyEvents.remove((event));
+=======
+            yearlyEvents.remove(event);
+>>>>>>> master
         } else {
             nonRecurringEvents.remove(event);
         }

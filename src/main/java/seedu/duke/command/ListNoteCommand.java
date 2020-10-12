@@ -23,13 +23,17 @@ public class ListNoteCommand extends Command {
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG1...] "
             + "[up/down]";
 
-    private ArrayList<String> tags;
-    private boolean isSorted;
-    private Boolean isAscendingOrder;
-
+    /**
+     * Gets how the command is expected to be used.
+     *
+     * @return String representation of how the command is to be used.
+     */
     public static String getCommandUsage() {
         return COMMAND_USAGE;
     }
+
+    private ArrayList<String> tags;
+    private Boolean isAscendingOrder;
 
     /**
      * Constructs a ListCommand to list all the Notes in the Notebook in a sorted order.
@@ -38,7 +42,6 @@ public class ListNoteCommand extends Command {
      */
     public ListNoteCommand(Boolean isAscendingOrder) {
         this.tags = null;
-        this.isSorted = true;
         this.isAscendingOrder = isAscendingOrder;
     }
 
@@ -47,7 +50,6 @@ public class ListNoteCommand extends Command {
      */
     public ListNoteCommand() {
         this.tags = null;
-        this.isSorted = false;
         this.isAscendingOrder = null;
     }
 
@@ -79,7 +81,7 @@ public class ListNoteCommand extends Command {
      * The method will then merge the notes in the ArrayLists into 1 large ArrayList.
      * ArrayList is then sorted and returned for the respective up/down commands
      *
-     * @returns noteString String containing the (filtered) notes (un)sorted
+     * @return noteString String containing the (filtered) notes (un)sorted
      */
     @Override
     public String execute() {
@@ -145,7 +147,7 @@ public class ListNoteCommand extends Command {
      * The ArrayList has already been sorted
      * Method returns either top to bottom or bottom to top to account for ascending/descending sorting
      *
-     * @returns noteString String containing the notes sorted either ascending ot descending
+     * @return noteString String containing the notes sorted either ascending ot descending
      */
     private String getSortedString(String noteString, ArrayList<Note> sortedNotes) {
         if (!isAscendingOrder) {

@@ -1,6 +1,5 @@
 package seedu.duke.command;
 
-import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.ui.InterfaceManager;
 
@@ -16,9 +15,18 @@ public class FindCommand extends Command {
 
     private static final String COMMAND_USAGE = COMMAND_WORD + ": Finds a note. Parameters: KEYWORDS";
 
+    /**
+     * Gets how the command is expected to be used.
+     *
+     * @return String representation of how the command is to be used.
+     */
     public static String getCommandUsage() {
         return COMMAND_USAGE;
     }
+
+    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "There are no matching notes. "
+            + "Please try another search query.";
+    private static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the matching notes in your list:";
 
     private String keywords;
 
@@ -50,9 +58,9 @@ public class FindCommand extends Command {
         }
 
         if (filteredNotes.isEmpty()) {
-            return "There are no matching notes. Please try another search query." + InterfaceManager.LS;
+            return COMMAND_UNSUCCESSFUL_MESSAGE + InterfaceManager.LS;
         }
 
-        return "Here are the matching notes in your list:" + InterfaceManager.LS + notes;
+        return COMMAND_SUCCESSFUL_MESSAGE + InterfaceManager.LS + notes;
     }
 }
