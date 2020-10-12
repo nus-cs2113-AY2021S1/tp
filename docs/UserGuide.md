@@ -91,13 +91,15 @@ Expected outcome:
      `edit <SHOWNAME>`
      
    Example of usage:
-    `rating Friends`
+    `edit Friends`
  Then you will be prompted to enter the fields you want to change such as:
  name, season, episode
+    Example of usage:
+     `name F.r.i.e.n.d.s` , `season 2`, `episode 10,11`
  When you have completed all changes, use `done`.
  Expected outcome:
   
-
+ <img src = "images/edit.PNG" width = "500">
   
  &nbsp;
  
@@ -127,7 +129,7 @@ This command displays all existing shows in your watchlist in an easy-to-read fo
    
    Expected outcome:
     
-   <img src = "images/list.PNG" width = "500">
+   <img src = "images/list.PNG" width = "450">
     
    &nbsp;
 
@@ -142,7 +144,7 @@ This command displays all existing shows in your watchlist in an easy-to-read fo
  
  Expected outcome:
   
- <img src = "images/delete.PNG" width = "500">
+ <img src = "images/delete.PNG" width = "450">
 
  &nbsp;
   
@@ -234,7 +236,7 @@ Expected outcome:
 
 * Add show   `add Friends 2 10,10`
 
-* Edit show   `edit`
+* Edit show   `edit Friends`
 
 * Add rating  `rating Friends 9`
 

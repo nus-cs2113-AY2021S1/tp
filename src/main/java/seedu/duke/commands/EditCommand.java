@@ -2,6 +2,8 @@ package seedu.duke.commands;
 
 import seedu.duke.classes.Show;
 import seedu.duke.utility.ShowList;
+import seedu.duke.utility.Ui;
+
 import java.util.Scanner;
 
 public class EditCommand {
@@ -38,5 +40,6 @@ public class EditCommand {
             }
             ShowList.setShow(showName, show);
         }
+        Ui.printEditShow(showName);
     }
 }
