@@ -1,3 +1,6 @@
 James Gosling
 01/02/1999
 Male
+watchlist -n a
+watchlist -n b
+exit
