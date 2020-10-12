@@ -78,4 +78,11 @@ public class Module {
         return moduleCode.equals(m.moduleCode);
     }
 
+    public boolean doesExpectedWorkLoadExist() {
+        return (expected != -1);
+    }
+
+    public boolean doesActualTimeExist(int weekNumber) {
+        return (actualTime[weekNumber] != -1);
+    }
 }
