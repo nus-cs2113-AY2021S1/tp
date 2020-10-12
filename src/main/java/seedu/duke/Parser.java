@@ -2,7 +2,7 @@ package seedu.duke;
 
 public class Parser {
     public static Command parse(String userInput) {
-        String[] fullCommand = userInput.split("\\s+")；
+        String[] fullCommand = userInput.split("\\s+");
         switch (fullCommand[0].toLowerCase()) {
         case "food":
             if (fullCommand.length == 1) {
