@@ -22,7 +22,7 @@ public class ChangeModeCommand extends Command {
 
 
     @Override
-    public void execute(ItemList items, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage)
+    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage)
             throws DukeException {
         if (setToMode == 1) {
             Parser.programMode = 1;
@@ -38,6 +38,7 @@ public class ChangeModeCommand extends Command {
     public int getModeFromCommand(String input) {
         int outputData;
 
+        assert input.startsWith(ChangeModeCommand.MODE_KW) : "input should always start with \"mode\"";
         if (input.length() <= 5) {
             return 0;
         }

@@ -5,6 +5,8 @@ import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.command.Command;
 import seedu.duke.slot.Slot;
+import seedu.duke.bookmark.Bookmark;
+import seedu.duke.bookmark.BookmarkList;
 
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
@@ -35,11 +37,11 @@ public class DeleteSlotCommand extends Command {
     /**
      * Deletes the Slot in the Slot list.
      *
-     * @param items The list of Slots.
+     * @param slotList The list of Slots.
      * @param ui The user interface.
      */
     @Override
-    public void execute(ItemList items, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage)
+    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage)
             throws DukeException {
         SlotList slots = (SlotList) slotList;
         try {

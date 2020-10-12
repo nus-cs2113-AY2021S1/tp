@@ -96,7 +96,13 @@ public class Bookmark {
     }
 
     private void launchUrlForMac(Runtime rt) throws IOException {
-        rt.exec("open " + url);
+        String link;
+        if (url.startsWith("www.")) {
+            link = "https://" + url;
+        } else {
+            link = url;
+        }
+        rt.exec("open " + link);
     }
 
     private void launchUrlForLinux(Runtime rt) throws IOException {

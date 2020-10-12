@@ -6,11 +6,14 @@ import seedu.duke.Ui;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
+import seedu.duke.bookmark.Bookmark;
+import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.slot.Slot;
 import seedu.duke.slot.SlotList;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+
 
 /**
  * Represents the user command exit the Duke program.
@@ -45,12 +48,12 @@ public class AddSlotCommand extends Command {
     /**
      * Adds the slot to the slot list and saves the slots list in the text file.
      *
-     * @param items The list of slots.
+     * @param bookmarks The list of slots.
      * @param ui The user interface.
      * @param slotStorage The storage for saving and loading.
      */
     @Override
-    public void execute(ItemList items, SlotList slotList, Ui ui, Storage bookmarkStorage, 
+    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui, Storage bookmarkStorage,
                         Storage slotStorage) throws DukeException {
         SlotList slots = (SlotList) slotList;
         Slot slot = new Slot(startTime, endTime, day, title);
