@@ -13,9 +13,6 @@ public class Show {
     protected int currentSeason;    //to keep track of watch progress
     protected int currentEpisode;
 
-    public Show() {
-
-    }
 
     public Show(String name, int numSeasons, int[] numEpisodesForSeasons) {
         this.name = name;
@@ -92,11 +89,26 @@ public class Show {
      * Should check with user if they want to input an episode else default it to 1
      * as in the previous declaration of setCurrentSeason
      *
-     * @param season season num
+     * @param season  season num
      * @param episode episode num
      */
     public void setCurrentSeason(int season, int episode) {
         this.currentEpisode = episode;
         this.currentSeason = season;
+    }
+
+    @Override
+    public String toString() {
+        String des = name + " | ";
+        des += "WatchHistory : S";
+        des += Integer.toString(currentSeason);
+        des += "E";
+        des += Integer.toString(currentEpisode);
+        if (rating != -1) {
+            //TODO : make sure a review is always passed in with a rating
+            des += "| Rating: ";
+            des += Integer.toString(rating);
+        }
+        return des;
     }
 }
