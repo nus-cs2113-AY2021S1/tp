@@ -8,10 +8,9 @@ import seedu.duke.command.bookmark.LaunchBookmarkCommand;
 import seedu.duke.command.bookmark.FindBookmarkCommand;
 import seedu.duke.command.timetable.ShowTimetableCommand;
 import seedu.duke.command.ExitCommand;
-import seedu.duke.command.bookmark.ListCommand;
+import seedu.duke.command.bookmark.ShowBookmarkCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.ChangeModeCommand;
-
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 
@@ -59,9 +58,9 @@ public class Parser {
 
     private static Command createBookmarkCommand(String input) throws DukeException {
         Command command;
-
-        if (input.compareToIgnoreCase(ListCommand.LIST_KW) == 0) {
-            return new ListCommand();
+      
+        if (input.compareToIgnoreCase(ShowBookmarkCommand.LIST_KW) == 0) {
+            return new ShowBookmarkCommand();
         } else if (input.startsWith(DeleteBookmarkCommand.DEL_KW)) {
             return new DeleteBookmarkCommand(input);
         } else if (input.startsWith(AddBookmarkCommand.ADD_KW)) {
@@ -93,4 +92,9 @@ public class Parser {
 
         return command;
     }
+
+    public static int getProgramMode() {
+        return programMode;
+    }
+
 }

@@ -1,9 +1,7 @@
 package seedu.duke.command.bookmark;
 
-import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
-import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
@@ -41,19 +39,13 @@ public class FindBookmarkCommand extends Command {
     /**
      * prints the matching bookmark.
      *
-     * @param items The list of bookmarks.
+     * @param bookmarks The list of bookmarks.
      * @param ui The user interface.
      * @param slotStorage The storage for saving and loading.
      */
     @Override
-    public void execute(ItemList items, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage) {
-        BookmarkList bookmarks = (BookmarkList) items;
+    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
+                        Storage bookmarkStorage, Storage slotStorage) {
         ui.print(bookmarks.findBookmarks(moduleAndDescription));
-    }
-
-    private String getMessage(Bookmark bookmark) {
-        String message = "\tNice! I've launched this bookmark!:\n"
-                + "\t  [" + bookmark.getModule() + "] " + bookmark.getDescription() + " " + bookmark.getUrl() + "\n";
-        return message;
     }
 }

@@ -22,11 +22,12 @@ public class ExitCommand extends Command {
     /**
      * Prints the exit screen before the program exits.
      *
-     * @param items The list of bookmarks.
+     * @param bookmarks The list of bookmarks.
      * @param ui The user interface.
      */
     @Override
-    public void execute(ItemList items, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage) {
+    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
+                        Storage bookmarkStorage, Storage slotStorage) {
         ui.showExitScreen();
     }
 }

@@ -37,13 +37,13 @@ public class DeleteBookmarkCommand extends Command {
     /**
      * Deletes the bookmark in the bookmark list.
      *
-     * @param items The list of bookmarks.
+
+     * @param bookmarks The list of bookmarks.
      * @param ui The user interface.
      */
     @Override
-    public void execute(ItemList items, SlotList slotList, Ui ui, 
+    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
                         Storage bookmarkStorage, Storage slotStorage) throws DukeException {
-        BookmarkList bookmarks = (BookmarkList) items;
         try {
             Bookmark bookmark = bookmarks.getBookmark(index);
             bookmarks.deleteBookmark(bookmarks.getBookmark(index));

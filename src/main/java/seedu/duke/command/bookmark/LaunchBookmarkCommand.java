@@ -1,6 +1,5 @@
 package seedu.duke.command.bookmark;
 
-import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.bookmark.Bookmark;
@@ -52,13 +51,12 @@ public class LaunchBookmarkCommand extends Command {
      * Launches the bookmark based on the launchTypeFlag previously determined
      * in LaunchBookmarkCommand initialization.
      *
-     * @param items The list of bookmarks.
+     * @param bookmarks The list of bookmarks.
      * @param ui The user interface.
      */
     @Override
-    public void execute(ItemList items, SlotList slotList, Ui ui, 
+    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
                         Storage bookmarkStorage, Storage slotStorage) throws DukeException {
-        BookmarkList bookmarks = (BookmarkList) items;
         if (launchTypeFlag == 1) { // Launch based on index
             try {
                 Bookmark bookmark = bookmarks.getBookmark(index);
