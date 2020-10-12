@@ -6,6 +6,7 @@ import commands.ExitCommand;
 import commands.ListCommand;
 import commands.HelpCommand;
 import commands.ReviseCommand;
+import commands.EditCommand;
 
 import manager.card.Card;
 import manager.chapter.Chapter;
@@ -108,6 +109,17 @@ public class Ui {
         out.println("3. " + HelpCommand.MESSAGE_USAGE);
         out.println("4. " + AddCommand.MESSAGE_USAGE);
         out.println("5. " + ExitCommand.MESSAGE_USAGE);
+        out.println("6. " + EditCommand.MESSAGE_USAGE);
+    }
+
+    public void showCardUnedited(Card card) {
+        out.println("The following card will be edited:");
+        out.println(card);
+    }
+
+    public void showCardEdited(Card card) {
+        out.println("Edited card:");
+        out.println(card);
     }
 
     public void showModuleAdded(Module module, int moduleCount) {
@@ -120,5 +132,9 @@ public class Ui {
         out.println("    Got it. I've added this chapter:");
         out.println("    " + chapter);
         out.println("    Now you have " + chapterCount + " chapters in the list.");
+    }
+
+    public void showError(String error) {
+        out.println(error);
     }
 }

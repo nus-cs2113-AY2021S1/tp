@@ -1,6 +1,7 @@
-package commands;
+package commands.add;
 
 import access.Access;
+import commands.Command;
 import manager.admin.Admin;
 import manager.admin.ModuleList;
 import manager.chapter.CardList;
@@ -11,6 +12,10 @@ import ui.Ui;
 public class AddModuleCommand extends Command {
     public static final String COMMAND_WORD = "addmodule";
     private final Module module;
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new module. \n"
+            + "Parameters: MODULE_NAME\n"
+            + "Example: " + COMMAND_WORD + " CS2113T\n";
 
     public AddModuleCommand(String moduleCode) {
         this.module = new Module(moduleCode);

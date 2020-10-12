@@ -1,5 +1,6 @@
 package parser;
 
+import access.Access;
 import commands.Command;
 import commands.ListCommand;
 import commands.AddChapterCommand;
@@ -13,14 +14,25 @@ import commands.ReviseCommand;
 import commands.ExitCommand;
 import commands.GoModuleCommand;
 import commands.BackModuleCommand;
+import commands.EditCommand;
 
+import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import storage.Storage;
 
 
 public class Parser {
-    public static Command parse(String fullCommand) throws InvalidInputException {
+    private static final String QUESTION_ANSWER_PREFIX = " \\| ";
+    private static final String QUESTION_PREFIX = "q:";
+    private static final String ANSWER_PREFIX = "a:";
+
+    private static final String ADMIN_LEVEL = "admin";
+    private static final String MODULE_LEVEL = "module";
+    private static final String CHAPTER_LEVEL = "chapter";
+
+    public static Command parse(String fullCommand, Access access)
+            throws InvalidInputException, IncorrectAccessLevelException {
         String[] commandTypeAndArgs = splitCommandTypeAndArgs(fullCommand);
         String commandType = commandTypeAndArgs[0].trim().toLowerCase();
         String commandArgs = commandTypeAndArgs[1].trim();
@@ -50,6 +62,8 @@ public class Parser {
             return prepareGoModule(commandArgs);
         case GoChapterCommand.COMMAND_WORD:
             return prepareGoChapter(commandArgs);
+        case EditCommand.COMMAND_WORD:
+            return prepareEdit(commandArgs, access);
         default:
             throw new InvalidInputException();
         }
@@ -107,16 +121,19 @@ public class Parser {
 
     private static Command prepareList(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
-            throw new InvalidInputException();
+            throw new InvalidInputException("There should not be any arguments for list.");
         }
         return new ListCommand();
     }
 
     private static Command prepareAdd(String commandArgs) throws InvalidInputException {
         try {
-            String[] args = commandArgs.split(AddCommand.QUESTION_ANSWER_PREFIX, 2);
+            String[] args = commandArgs.split(QUESTION_ANSWER_PREFIX, 2);
             String question = parseQuestion(args[0]);
             String answer = parseAnswer(args[1]);
+            if (question.isEmpty() || answer.isEmpty()) {
+                throw new InvalidInputException();
+            }
             return new AddCommand(question, answer);
         } catch (IndexOutOfBoundsException | InvalidInputException e) {
             throw new InvalidInputException();
@@ -136,30 +153,63 @@ public class Parser {
         return new RemoveCommand(removeIndex);
     }
 
+    private static Command prepareEdit(String commandArgs, Access access)
+            throws InvalidInputException, IncorrectAccessLevelException {
+        if (access.isChapterLevel()) {
+            return prepareEditCard(commandArgs);
+        } else {
+            throw new IncorrectAccessLevelException("Edit command can only be called at admin, "
+                    + "module and chapter level.\n");
+        }
+    }
+
+    private static Command prepareEditCard(String commandArgs) throws InvalidInputException {
+        try {
+            String[] args = commandArgs.split(" ", 2);
+            if (args[0].trim().isEmpty()) {
+                throw new InvalidInputException("The flashcard number is missing.\n"
+                        + EditCommand.MESSAGE_USAGE);
+            }
+
+            int editIndex = Integer.parseInt(args[0].trim()) - 1;
+
+            String[] questionAndAnswer = args[1].trim().split(QUESTION_ANSWER_PREFIX, 2);
+            String question = parseQuestion(questionAndAnswer[0]);
+            String answer = parseAnswer(questionAndAnswer[1]);
+
+            if (question.isEmpty() && answer.isEmpty()) {
+                throw new InvalidInputException("The content for question and answer are both empty.\n"
+                        + EditCommand.MESSAGE_USAGE);
+            }
+
+            return new EditCommand(editIndex, question, answer, CHAPTER_LEVEL);
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException("The flashcard number needs to be an integer.\n"
+                    + EditCommand.MESSAGE_USAGE);
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidInputException("The format for the edit command is incorrect.\n"
+                    + EditCommand.MESSAGE_USAGE);
+        }
+    }
+
     private static String parseQuestion(String arg) throws InvalidInputException {
-        if (!(arg.trim().toLowerCase().startsWith(AddCommand.QUESTION_PREFIX))) {
-            throw new InvalidInputException();
+        if (!(arg.trim().toLowerCase().startsWith(QUESTION_PREFIX))) {
+            throw new InvalidInputException("There needs to be a \"q:\" prefix before the question.\n"
+                    + "Example: " + AddCommand.COMMAND_WORD + AddCommand.CARD_PARAMETERS + "\n"
+                    + "         " + EditCommand.COMMAND_WORD + EditCommand.CARD_PARAMETERS);
         }
 
-        String question = arg.substring(2).trim();
-        if (question.isEmpty()) {
-            throw new InvalidInputException();
-        }
-
-        return question;
+        return arg.substring(2).trim();
     }
 
     private static String parseAnswer(String arg) throws InvalidInputException {
-        if (!(arg.trim().toLowerCase().startsWith(AddCommand.ANSWER_PREFIX))) {
-            throw new InvalidInputException();
+        if (!(arg.trim().toLowerCase().startsWith(ANSWER_PREFIX))) {
+            throw new InvalidInputException("There needs to be a \"a:\" prefix before the answer.\n"
+                    + "Example: " + AddCommand.COMMAND_WORD + AddCommand.CARD_PARAMETERS + "\n"
+                    + "         " + EditCommand.COMMAND_WORD + EditCommand.CARD_PARAMETERS);
         }
 
-        String answer = arg.substring(2).trim();
-        if (answer.isEmpty()) {
-            throw new InvalidInputException();
-        }
-
-        return answer;
+        return arg.substring(2).trim();
     }
 
     private static Command prepareRevise(String commandArgs) throws InvalidInputException {

@@ -1,6 +1,7 @@
-package commands;
+package commands.go;
 
 import access.Access;
+import commands.Command;
 import manager.admin.ModuleList;
 import manager.chapter.CardList;
 import manager.chapter.Chapter;
@@ -14,6 +15,9 @@ import java.util.ArrayList;
 public class GoModuleCommand extends Command {
     public static final String COMMAND_WORD = "gomodule";
     String moduleCode;
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Goes to module level. \n"
+            + "Example: " + COMMAND_WORD + "\n";
 
     public GoModuleCommand(String moduleCode) {
         this.moduleCode = moduleCode;

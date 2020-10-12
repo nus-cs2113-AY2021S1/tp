@@ -1,5 +1,6 @@
-package commands;
+package commands.add;
 
+import commands.Command;
 import manager.chapter.CardList;
 import manager.chapter.Chapter;
 import manager.module.ChapterList;
@@ -11,6 +12,10 @@ import ui.Ui;
 public class AddChapterCommand extends Command {
     public static final String COMMAND_WORD = "addchapter";
     private final Chapter chapter;
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a chapter to the module. \n"
+            + "Parameters: CHAPTER_NAME\n"
+            + "Example: " + COMMAND_WORD + " Chapter 1\n";
 
     public AddChapterCommand(String chapterCode) {
         this.chapter = new Chapter(chapterCode);
