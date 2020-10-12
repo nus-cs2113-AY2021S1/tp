@@ -16,7 +16,7 @@ class calculatorTest {
         foodList.add(new Food("chicken rice", 666, 55, 30, 0));
         foodList.add(new Food("pancake", 150, 16, 0, 0));
         foodList.add(new Food("bao", 290, 0, 16, 0));
-        calculator calculator = new calculator(foodList);
+        Calculator calculator = new Calculator(foodList);
         assertEquals(666 + 150 + 290, calculator.calculateCalorie());
     }
 
@@ -26,7 +26,7 @@ class calculatorTest {
         foodList.add(new Food("chicken rice", 666, 55, 30, 0));
         foodList.add(new Food("pancake", 150, 16, 0, 0));
         foodList.add(new Food("bao", 290, 0, 16, 0));
-        calculator calculator = new calculator(foodList);
+        Calculator calculator = new Calculator(foodList);
         assertEquals(55 + 16, calculator.calculateCarb());
     }
 
@@ -36,7 +36,7 @@ class calculatorTest {
         foodList.add(new Food("chicken rice", 666, 55, 30, 0));
         foodList.add(new Food("pancake", 150, 16, 0, 0));
         foodList.add(new Food("bao", 290, 0, 16, 0));
-        calculator calculator = new calculator(foodList);
+        Calculator calculator = new Calculator(foodList);
         assertEquals(30 + 16, calculator.calculateProtein());
     }
 
@@ -46,7 +46,7 @@ class calculatorTest {
         foodList.add(new Food("chicken rice", 666, 55, 30, 0));
         foodList.add(new Food("pancake", 150, 16, 0, 0));
         foodList.add(new Food("bao", 290, 0, 16, 0));
-        calculator calculator = new calculator(foodList);
+        Calculator calculator = new Calculator(foodList);
         assertEquals(0, calculator.calculateFat());
     }
 }

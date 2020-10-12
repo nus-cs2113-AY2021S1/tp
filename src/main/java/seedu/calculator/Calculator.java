@@ -1,12 +1,14 @@
 package seedu.calculator;
 
 import java.util.ArrayList;
-//import seedu.foodList;
+
+import seedu.duke.Ui;
+import seedu.duke.Food;
 
 /**
  * Represents a calculator of food items in foodList.
  */
-public class calculator {
+public class Calculator {
     private int totalCalorie = 0;
     private int totalCarbohydrate = 0;
     private int totalProtein = 0;
@@ -18,7 +20,7 @@ public class calculator {
      *
      * @param foodList foodList containing food items to calculate.
      */
-    public calculator(ArrayList<Food> foodList){
+    public Calculator(ArrayList<Food> foodList){
         try {
             for(int i=0; i< foodList.size(); i++){
                 totalCalorie += foodList.get(i).getCalorie();
@@ -27,7 +29,7 @@ public class calculator {
                 totalFat += foodList.get(i).getFats();
             }
         } catch (NullPointerException e) {
-            System.out.println("Ops, This foodList is null!");
+            Ui.printErrorMessage("the foodList is null");
         }
     }
 
