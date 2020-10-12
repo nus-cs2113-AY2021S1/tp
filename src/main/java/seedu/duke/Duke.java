@@ -63,7 +63,7 @@ public class Duke {
             userManagement.addUserDialogue();
         }
         do {
-            String userInput = ui.readUserInput(userManagement.getCurrentUser().getFancyName(), activeWatchlist.getName());
+            String userInput = ui.readUserInput(userManagement.getCurrentUser().getName(), activeWatchlist.getName());
 
             try {
                 command = Parser.getCommand(userInput);

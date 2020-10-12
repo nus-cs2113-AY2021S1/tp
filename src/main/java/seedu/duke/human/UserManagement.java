@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 public class UserManagement {
+    protected ArrayList<User> userList = new ArrayList<>();
     protected User currentUser;
     Ui ui;
     Storage storage;
@@ -26,7 +27,11 @@ public class UserManagement {
     }
 
     public User addUser(String name, String dob, String gender) throws ParseException, AniException {
-        return new User(name, dob, gender);
+        User newUser = new User(name, dob, gender.toLowerCase());
+        userList.add(newUser);
+
+        ui.printMessage("Successfully added new user: " + newUser);
+        return newUser;
     }
 
     public void addUserDialogue() {

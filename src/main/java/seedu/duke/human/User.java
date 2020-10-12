@@ -19,13 +19,13 @@ public class User extends Human {
 
     public void setGender(String genderString) throws AniException {
         switch (genderString) {
-        case "Male":
+        case "male":
             gender = Gender.Male;
             break;
-        case "Female":
+        case "female":
             gender = Gender.Female;
             break;
-        case "Other":
+        case "other":
             gender = Gender.Other;
             break;
         default:
@@ -50,7 +50,7 @@ public class User extends Human {
      *
      * @return name of user with honorifics.
      */
-    public String getFancyName() {
+    public String getName() {
         if (gender == Gender.Female) {
             return name + "-chan";
         } else {
