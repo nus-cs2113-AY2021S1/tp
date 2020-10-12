@@ -21,6 +21,9 @@ public class DeleteBookmarkCommand extends Command {
      */
     public DeleteBookmarkCommand(String command) throws DukeException {
         String details = command.substring(DEL_KW.length());
+        if (details.isBlank()) {
+            throw new DukeException(DukeExceptionType.EMPTY_COMMAND, DEL_KW);
+        }
         if (!details.startsWith(" ")) {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
         }

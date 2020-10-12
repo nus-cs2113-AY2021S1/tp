@@ -90,6 +90,9 @@ public class Ui {
         case EMPTY_DESCRIPTION:
             printEmptyBookmarkDescriptionMessage();
             break;
+        case EMPTY_COMMAND:
+            printEmptyCommandMessage(dukeException.getInfo());
+            break;
         case NON_INTEGER_INPUT:
             printUseIntegerAsInput();
             break;
@@ -125,7 +128,7 @@ public class Ui {
     }
 
     private void printUseIntegerAsInput() {
-        print("Please enter an integer with the command\n");
+        print("Command requires an integer input\n");
     }
 
 
@@ -138,15 +141,21 @@ public class Ui {
     }
 
     private void printInvalidUrl() {
-        print("Invalid url\n");
+        print("Invalid URL" + "\n" + "URL must start with either 'www.'"
+                + " or 'https://' and have no spaces\n");
     }
 
     private void printInvalidAddBookmarkInputMessage() {
-        print("Invalid bookmark input\n");
+        print("Invalid bookmark input\n"
+                + "Format: add {module(optional)} {description} {URL}\n");
     }
 
     private void printEmptyBookmarkDescriptionMessage() {
-        print("Empty description\n");
+        print("Bookmark description required!\n");
+    }
+
+    private void printEmptyCommandMessage(String info) {
+        print("Please enter " + info + " with input!\n");
     }
 
     private void printUnknownInputMessage() {

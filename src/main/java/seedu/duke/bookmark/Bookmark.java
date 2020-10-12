@@ -45,6 +45,9 @@ public class Bookmark {
     public static List<String> extractModuleDescriptionAndUrl(String input) throws DukeException {
         assert input.startsWith(AddBookmarkCommand.ADD_KW) : "input should always start with \"add\"";
         input = input.substring(AddBookmarkCommand.ADD_KW.length());
+        if (input.isBlank()) {
+            throw new DukeException(DukeExceptionType.EMPTY_COMMAND, AddBookmarkCommand.ADD_KW);
+        }
         if (!input.startsWith(" ")) {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
         }
@@ -65,11 +68,10 @@ public class Bookmark {
     }
 
     private static Boolean isUrlValid(String url) {
-        boolean isValid = false;
-        if (url.startsWith("www.") || url.startsWith("https://") || url.contains(" ")) {
-            isValid = true;
+        if (url.contains(" ")) {
+            return false;
         }
-        return isValid;
+        return url.startsWith("www.") || url.startsWith("https://");
     }
 
     /**

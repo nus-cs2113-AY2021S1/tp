@@ -48,18 +48,21 @@ ____________________________________________________________
 
 [Bookmark mode] Input: ____________________________________________________________
 Invalid bookmark input
+Format: add {module(optional)} {description} {URL}
 ____________________________________________________________
 
 [Bookmark mode] Input: ____________________________________________________________
-Invalid url
+Invalid URL
+URL must start with either 'www.' or 'https://' and have no spaces
 ____________________________________________________________
 
 [Bookmark mode] Input: ____________________________________________________________
-Invalid url
+Invalid URL
+URL must start with either 'www.' or 'https://' and have no spaces
 ____________________________________________________________
 
 [Bookmark mode] Input: ____________________________________________________________
-Empty description
+Bookmark description required!
 ____________________________________________________________
 
 [Bookmark mode] Input: ____________________________________________________________
