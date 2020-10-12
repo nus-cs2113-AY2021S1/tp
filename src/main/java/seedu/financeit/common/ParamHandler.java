@@ -17,7 +17,7 @@ public abstract class ParamHandler {
     protected String defaultDateTimeFormat = null;
 
     public void handleParams(CommandPacket packet)
-        throws InsufficientParamsException, ItemNotFoundException, ConflictingItemReference {
+        throws AssertionError, InsufficientParamsException, ItemNotFoundException, ConflictingItemReference {
         this.paramChecker = new ParamChecker(packet);
         for (String paramType : packet.getParamTypes()) {
             try {

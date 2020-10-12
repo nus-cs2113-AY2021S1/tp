@@ -17,6 +17,7 @@ public class ManualTracker {
     private static LedgerList ledgerList = new LedgerList();
     private static CommandPacket packet;
 
+
     public static void main() {
         boolean endTracker = false;
         FiniteStateMachine fsm = new FiniteStateMachine(FiniteStateMachine.State.MAIN_MENU);
@@ -113,21 +114,19 @@ public class ManualTracker {
             ledgerList.addItem(ledger);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                 String.format("%s created!", ledger.getName()));
+        } catch (AssertionError error) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    "Input failed due to param error.");
         } catch (DuplicateInputException | InsufficientParamsException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
-        } finally {
-            if (ledger == null) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Input failed due to param error.");
-            }
         }
         return state;
     }
 
     private static FiniteStateMachine.State handleDeleteLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        Ledger ledger = null;
+        Ledger ledger;
         try {
             ledgerList.setItemQueue(packet);
             ledger = (Ledger) ledgerList.getItemQueue();
@@ -135,14 +134,12 @@ public class ManualTracker {
             ledgerList.removeItem(ledger);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                 String.format("%s deleted!", ledger.getName()));
+        } catch (AssertionError error) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                "Input failed due to param error.");
         } catch (InsufficientParamsException | ItemNotFoundException | ConflictingItemReference exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 exception.getMessage());
-        } finally {
-            if (ledger == null) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Input failed due to param error.");
-            }
         }
         return state;
     }
@@ -159,7 +156,7 @@ public class ManualTracker {
 
     private static FiniteStateMachine.State handleOpenLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        Ledger ledger = null;
+        Ledger ledger;
 
         try {
             ledgerList.setItemQueue(packet);
@@ -167,6 +164,10 @@ public class ManualTracker {
             EntryTracker.setCurrLedger(ledger);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                 String.format("%s opened!", ledger.getName()));
+        } catch (AssertionError error) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                "Input failed due to param error.");
+            return state;
         } catch (InsufficientParamsException | ConflictingItemReference exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 exception.getMessage());
@@ -179,11 +180,6 @@ public class ManualTracker {
             handleCreateLedger();
             state = FiniteStateMachine.State.OPEN_LEDGER;
             return state;
-        } finally {
-            if (ledger == null) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Input failed due to param error.");
-            }
         }
         return EntryTracker.main();
     }
