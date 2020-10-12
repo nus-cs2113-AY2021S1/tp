@@ -16,7 +16,3 @@ bin/
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
 
-# For merge
-src/main/java/seedu.duke/Duke.class
-src/main/java/seedu.duke/model
-
