@@ -5,6 +5,7 @@ import commands.AddCommand;
 import commands.ExitCommand;
 import commands.ListCommand;
 import commands.HelpCommand;
+import commands.RemoveCommand;
 import commands.ReviseCommand;
 import commands.EditCommand;
 
@@ -110,6 +111,7 @@ public class Ui {
         out.println("4. " + AddCommand.MESSAGE_USAGE);
         out.println("5. " + ExitCommand.MESSAGE_USAGE);
         out.println("6. " + EditCommand.MESSAGE_USAGE);
+        out.println("7. " + RemoveCommand.MESSAGE_USAGE);
     }
 
     public void showCardUnedited(Card card) {
