@@ -1,7 +1,9 @@
 package seedu.duke.ui;
 
+import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
 
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class Ui {
@@ -25,7 +27,7 @@ public class Ui {
     }
 
     public void printErrorMessage(String errorMessage) {
-        System.out.println(" ☹ OOPS!!!" + errorMessage);
+        System.out.println(" ☹ OOPS!!! " + errorMessage);
     }
 
     // TEMPORARY, REMOVED WHEN DONE REFACTORING!
@@ -40,6 +42,30 @@ public class Ui {
         String userInput = CONSOLE.nextLine();
         return userInput;
     }
+
+    public User createUser() {
+        User user = null;
+        boolean userCreated = false;
+
+        while (!userCreated) {
+            try {
+                printMessage("What's your name?");
+                String name = CONSOLE.nextLine();
+                printMessage("Hello " + name + "! What might your date of birth be? (DD/MM/YYYY)");
+                String dob = CONSOLE.nextLine();
+                printMessage("What might your gender be? (Male/Female/Others)");
+                String gender = CONSOLE.nextLine();
+
+                user = new User(name, dob, gender);
+                userCreated = true;
+            } catch (ParseException | AniException exception) {
+                printErrorMessage(exception.getMessage());
+            }
+        }
+
+        return user;
+    }
+
 
     /**
      * Greets new user upon opening up application.

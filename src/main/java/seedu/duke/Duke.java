@@ -11,7 +11,6 @@ import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -46,7 +45,7 @@ public class Duke {
     public void run() {
         Command command = null;
         if (user == null) {
-            user = quickStart();
+            user = ui.createUser();
         }
 
         do {
@@ -73,36 +72,6 @@ public class Duke {
     private static Bookmark bookmark;
     private static final Scanner CONSOLE = new Scanner(System.in);
 
-    private User quickStart() {
-        User user = null;
-        boolean profileMade = false;
-        while (!profileMade) {
-            try {
-                user = createProfile();
-                profileMade = true;
-                storage.writeUserProfileFile(ui, user);
-            } catch (ParseException e) {
-                ui.printErrorMessage("Is your date in dd/MM/yyyy format?");
-            } catch (AniException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return user;
-    }
-
-    private User createProfile() throws ParseException, AniException {
-        ui.printMessage("What's your name?");
-        String name = ui.readQuickStartInput();
-        ui.printMessage("Hello " + name + "! What might your date of birth be?");
-        String dob = ui.readQuickStartInput();
-        ui.printMessage("What might your gender be? (Male/Female/Others)");
-        String gender = ui.readQuickStartInput();
-
-        User newProfile = new User(name, dob, gender);
-        ui.printMessage(newProfile.toString());
-        return newProfile;
-    }
 
     // Sample usage of Anime Class [To Be Deleted]
     private void addAnime() {
@@ -120,25 +89,6 @@ public class Duke {
         System.out.println("===End of Sample Anime Class===");
     }
 
-    /**
-     * Adds a new user profile.
-     */
-    private void addProfile(String description) {
-        // Code to be added
-
-        // Print for testing
-        System.out.println("New profile added!");
-    }
-
-    /**
-     * Edits an existing user profile.
-     */
-    private void editProfile(String description) {
-        // Code to be added
-
-        // Print for testing
-        System.out.println("Profile edited!");
-    }
 
     /**
      * Browses the list of anime.

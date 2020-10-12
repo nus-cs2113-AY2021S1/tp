@@ -17,7 +17,7 @@ public class User extends Human {
         setGender(gender);
     }
 
-    public void setGender(String genderString) {
+    public void setGender(String genderString) throws AniException {
         switch (genderString) {
         case "Male":
             gender = Gender.Male;
@@ -25,8 +25,11 @@ public class User extends Human {
         case "Female":
             gender = Gender.Female;
             break;
-        default:
+        case "Other":
             gender = Gender.Other;
+            break;
+        default:
+            throw new AniException("Unexpected gender: " + genderString);
         }
     }
 
