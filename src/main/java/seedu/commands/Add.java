@@ -14,7 +14,7 @@ public class Add extends Command {
     public static final String COMMAND_WORD = "add";
     // Default date: day that the task is created, default priority: 0 (low to high: 0 - 2)
     private static final Pattern COMMAND_PATTERN = Pattern.compile(
-            "^(?<description>(\\w+\\s*)+\\w*)"
+            "^add (?<description>(\\w+\\s*)+\\w*)"
                     + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
                     + "( t/(?<time>\\d{4}))?"
                     + "( p/(?<priority>\\d))?$");

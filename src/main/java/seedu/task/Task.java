@@ -95,28 +95,30 @@ public class Task {
         return date;
     }
 
+
     public void setDate(String dateString) {
-        this.date = dateStringToDate(dateString);
+        date = dateStringToDate(dateString);
     }
 
     public LocalTime getTime() {
         return time;
     }
 
+
     public void setTime(String timeString) {
-        this.time = timeStringToTime(timeString);
+        time = timeStringToTime(timeString);
     }
 
     public Priority getPriority() {
         return priority;
     }
 
-    public void setPriority(String priorityString) throws InvalidPriorityException {
-        priority = priorityStringToPriority(priorityString);
-    }
-
     public void setPriority(Priority priority) {
         this.priority = priority;
+    }
+
+    public void setPriority(String priorityString) throws InvalidPriorityException {
+        priority = priorityStringToPriority(priorityString);
     }
 
     public String toString() {
