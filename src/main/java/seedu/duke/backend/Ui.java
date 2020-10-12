@@ -46,9 +46,9 @@ public class Ui {
             // Placeholder if additional routine is required when user enters incorrect parameters
         } catch (DukeNoMatchException ne) {
             printOutput("No such command. Try 'help' for a list of commands.");
-        } /*catch (Exception e) {
+        } catch (Exception e) {
             printOutput("Command execution failed with an unhandled error!", true);
-        }*/
+        }
     }
 
     public Command findCommand(UserInput ui) throws DukeArgumentException, DukeNoMatchException {
