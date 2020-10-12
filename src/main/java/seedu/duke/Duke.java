@@ -1,6 +1,5 @@
 package seedu.duke;
 
-import seedu.duke.command.Command;
 import seedu.duke.parser.Parser;
 import seedu.duke.project.Project;
 import seedu.duke.ui.Ui;
