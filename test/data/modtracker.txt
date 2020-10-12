@@ -1,2 +1,0 @@
-addmod CS1000
-addmod EE2000
