@@ -3,7 +3,6 @@ package seedu.financeit.manualtracker;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.DateTimeItem;
-import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
@@ -12,30 +11,22 @@ import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Ledger extends DateTimeItem {
     protected LocalDate date = null;
-    public EntryList entryList = new EntryList();
+    public EntryList entryList = new EntryList(this);
     private ParamChecker paramChecker;
 
     public Ledger() {
         super();
-        super.requiredParams = new ArrayList<>() {
-            {
-                add("/date");
-                add("/id");
-            }
-        };
         super.setDefaultDateTimeFormat("date");
     }
 
-    public Ledger(CommandPacket packet) throws InsufficientParamsException {
-        this();
+    public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
         this.paramChecker = new ParamChecker(packet);
         try {
             this.handleParams(packet);
-        } catch (ItemNotFoundException | ConflictingItemReference exception) {
+        } catch (ItemNotFoundException exception) {
             // Fall-through
         }
     }
@@ -43,7 +34,7 @@ public class Ledger extends DateTimeItem {
     @Override
     public String getName() {
         return String.format("Ledger %d : [ %s ]", this.index + 1,
-            this.dateTimeManager.getSingleDateFormatted("date"));
+            this.dateTimeOutputManager.getSingleDateFormatted("date"));
     }
 
     @Override
@@ -58,17 +49,11 @@ public class Ledger extends DateTimeItem {
     }
 
     @Override
-    public boolean isValidItem() {
-        return (this.date != null);
-    }
-
-    @Override
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case ParamChecker.PARAM_DATE:
             date = paramChecker.checkAndReturnDate(paramType);
             this.setDate(date);
-            this.parseSuccessParams.add(paramType);
             break;
 
         default:

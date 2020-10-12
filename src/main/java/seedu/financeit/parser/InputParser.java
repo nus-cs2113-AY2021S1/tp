@@ -15,12 +15,6 @@ public class InputParser {
     public InputParser() {
     }
 
-    public String getSeparator(String input) {
-        //Matcher matches <space><separator><paramType><space>, so (matched index + 1) gives the separator
-        int separatorIndex = matcher.start() + 1;
-        return String.valueOf(input.charAt(separatorIndex));
-    }
-
     /**
      * Example input: deadline /by tomorrow /note skip page 70.
      * commandString: "deadline"
@@ -67,5 +61,11 @@ public class InputParser {
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, e.getMessage());
         }
         return new CommandPacket(commandString, params);
+    }
+
+    public String getSeparator(String input) {
+        //Matcher matches <space><separator><paramType><space>, so (matched index + 1) gives the separator
+        int separatorIndex = matcher.start() + 1;
+        return String.valueOf(input.charAt(separatorIndex));
     }
 }

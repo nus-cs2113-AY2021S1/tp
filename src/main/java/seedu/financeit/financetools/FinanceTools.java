@@ -4,15 +4,20 @@ import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.parser.InputParser;
-import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 
 public class FinanceTools {
 
     public static double handleCashback(CommandPacket packet) {
+        Cashback tool = new Cashback();
+        tool.setRequiredParams(
+            "/amount",
+            "/cap",
+            "/cashback"
+        );
         try {
-            Cashback tool = new Cashback(packet);
+            tool.handlePacket(packet);
             return (tool.calculateCashback());
         } catch (AssertionError error) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
@@ -25,15 +30,19 @@ public class FinanceTools {
     }
 
     public static double handleSimpleInterest(CommandPacket packet) {
-        SimpleInterest tool = null;
+        SimpleInterest tool = new SimpleInterest();
+        tool.setRequiredParams(
+            "/amount",
+            "/ir"
+        );
         try {
-            tool = new SimpleInterest(packet);
+            tool.handlePacket(packet);
             return (tool.calculateSimpleInterest());
         } catch (InsufficientParamsException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         }  finally {
-            if (tool == null) {
+            if (!tool.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }

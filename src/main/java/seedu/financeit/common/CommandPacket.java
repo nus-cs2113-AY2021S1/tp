@@ -1,15 +1,15 @@
-package seedu.financeit.common; /**
- * Organises data from input string into distinct data types and structure.
- * For scalability purposes, a hashmap is implemented to map param type to its corresponding params.
- */
+package seedu.financeit.common;
 
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * Organises data from input string into distinct data types and structure.
+ * For scalability purposes, a hashmap is implemented to map param type to its corresponding params.
+ */
 public class   CommandPacket {
     private String commandString;
     private HashMap paramMap;
-    private String rawInput;
 
     // Constructors
     public CommandPacket(String taskType, HashMap paramMap) {
