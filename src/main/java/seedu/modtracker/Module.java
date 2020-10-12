@@ -9,6 +9,7 @@ import java.util.Arrays;
 public class Module {
 
     public static final int NO_INPUT = -1;
+    public static final int INDEX_OFFSET = 1;
     private final String moduleCode;
     private int expected = NO_INPUT;
     private final double[] actualTime = new double[13];
@@ -52,18 +53,18 @@ public class Module {
     public void addActualTime(String time, String week) {
         double d = Double.parseDouble(time);
         int i = Integer.parseInt(week);
-        if (this.actualTime[i] == NO_INPUT) {
-            this.actualTime[i] = d;
+        if (this.actualTime[i - INDEX_OFFSET] == NO_INPUT) {
+            this.actualTime[i - INDEX_OFFSET] = d;
         } else {
-            this.actualTime[i] += d;
+            this.actualTime[i - INDEX_OFFSET] += d;
         }
     }
 
     public void minusActualTime(String time, String week) {
         double d = Double.parseDouble(time);
         int i = Integer.parseInt(week);
-        if (this.actualTime[i] != NO_INPUT) {
-            this.actualTime[i] -= d;
+        if (this.actualTime[i - INDEX_OFFSET] != NO_INPUT) {
+            this.actualTime[i - INDEX_OFFSET] -= d;
         }
     }
 
@@ -89,6 +90,6 @@ public class Module {
     }
 
     public boolean doesActualTimeExist(int weekNumber) {
-        return (actualTime[weekNumber] != NO_INPUT);
+        return (actualTime[weekNumber - INDEX_OFFSET] != NO_INPUT);
     }
 }

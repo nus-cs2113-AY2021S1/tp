@@ -25,8 +25,10 @@ public class ModView {
     public static final String REPLACE_BY_NO_EXPECTED_WORKLOAD_FOUND = "    YY    ";
     public static final String REPLACE_BY_ACTUAL_WORKLOAD = "ZZZZ";
     public static final String REPLACE_BY_NO_ACTUAL_WORKLOAD_FOUND = "   ZZZZ   ";
-    public static final String SECOND_PART_OF_CONTENT = REPLACE_BY_NO_EXPECTED_WORKLOAD_FOUND
+    public static final String SECOND_PART_OF_CONTENT = " |" + REPLACE_BY_NO_EXPECTED_WORKLOAD_FOUND
             + "|" + REPLACE_BY_NO_ACTUAL_WORKLOAD_FOUND + "|" + "\n";
+    public static final String INVALID_WEEK_NUMBER = "Please input a week number between 1 and 13 inclusive.";
+    public static final String EMPTY_MODULE_LIST = "The module list is empty. Please input some modules to be tracked.";
 
     /**
      * Displays all the modules taken by the user.
@@ -34,7 +36,7 @@ public class ModView {
      * @param modList list containing all the modules taken.
      * @return a list containing all the modules.
      */
-    public ArrayList<String> getModuleCode(ArrayList<Module> modList) {
+    private ArrayList<String> getModuleCode(ArrayList<Module> modList) {
         ArrayList<String> output = new ArrayList<>();
         for (Module m : modList) {
             output.add(m.getModuleCode());
@@ -46,7 +48,7 @@ public class ModView {
      * Prints the week number, module code, expected workload and actual time spent
      * in the specified week for all the modules taken.
      *
-     * @param list    list class containing all the modules taken.
+     * @param list       list class containing all the modules taken.
      * @param weekNumber specified week number.
      */
     public void printAllModuleInformation(ModuleList list, int weekNumber) {
@@ -54,10 +56,14 @@ public class ModView {
         ArrayList<String> moduleCodes = getModuleCode(modList);
 
         if (weekNumber < MIN_WEEK_VALUE || weekNumber > MAX_WEEK_VALUE) {
-            //print error message
+            System.out.println(INVALID_WEEK_NUMBER);
             return;
         }
 
+        if (modList.isEmpty()) {
+            System.out.println(EMPTY_MODULE_LIST);
+            return;
+        }
         int maxLength = 0;
         for (String s : moduleCodes) {
             if (s.length() > maxLength) {
@@ -77,7 +83,7 @@ public class ModView {
 
         String border = FIRST_PART_OF_BORDER + dashToBeAdded + SECOND_PART_OF_BORDER;
         String header = FIRST_PART_OF_HEADER + spaceToBeAdded + SECOND_PART_OF_HEADER;
-        String contents = FIRST_PART_OF_CONTENT + crossToBeAdded + " |" + SECOND_PART_OF_CONTENT;
+        String contents = FIRST_PART_OF_CONTENT + crossToBeAdded + SECOND_PART_OF_CONTENT;
 
         System.out.print(border + header + border);
 
