@@ -85,6 +85,8 @@ public class PatientList {
      * @return index of the patient with the NRIC; -1 otherwise.
      */
     public int getExistingPatient(String nric) {
+        assert nric != null;
+
         for (int i = 0; i < getSize(); i++) {
             if (getPatientUsingIndex(i).getNric().equals(nric)) {
                 return i;

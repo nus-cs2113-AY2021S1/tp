@@ -137,6 +137,8 @@ public class Ui {
      * @param patient Patient to show.
      */
     public void showPatient(Patient patient) {
+        assert patient != null;
+
         printWithIndent("Patient Details: ");
         printWithIndent(patient.toString());
     }

@@ -22,6 +22,8 @@ public class Rex {
      * @param filePath Path to store and load patients.
      */
     public Rex(String filePath) {
+        assert filePath != null;
+
         ui = new Ui();
         storage = new Storage(filePath);
         try {
@@ -45,6 +47,10 @@ public class Rex {
      * Runs Rex.
      */
     public void run() {
+        assert ui != null;
+        assert patients != null;
+        assert storage != null;
+
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {
