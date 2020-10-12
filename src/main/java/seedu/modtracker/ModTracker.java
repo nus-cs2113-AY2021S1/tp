@@ -12,13 +12,13 @@ public class ModTracker {
     private Storage storage;
 
     public static void main(String[] args) {
-        new ModTracker().run();
+        new ModTracker("data/modtracker.txt").run();
     }
 
-    public ModTracker() {
+    public ModTracker(String filePath) {
         ui = new Ui();
         modList = new ModuleList();
-        storage = new Storage("data/modtracker.txt");
+        storage = new Storage(filePath);
     }
 
     /**
