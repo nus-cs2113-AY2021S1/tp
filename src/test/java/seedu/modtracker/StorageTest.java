@@ -1,0 +1,30 @@
+package seedu.modtracker;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class StorageTest {
+    private static final String TEST_DATA_FILEPATH = "test/data/modtracker.txt";
+
+    @Test
+    public void constructor_nullFilePath_exceptionThrown() {
+        assertThrows(NullPointerException.class, () -> new Storage(null));
+    }
+
+    @Test
+    public void load_validFormat_success() throws Exception {
+        ModuleList expectedModList = new ModuleList();
+        expectedModList.addMod("addmod CS1000", false, null);
+        expectedModList.addMod("addmod EE2000", false, null);
+
+        ModTracker modTracker = new ModTracker(TEST_DATA_FILEPATH);
+        modTracker.loadData();
+        ModuleList actualModList = modTracker.getModList();
+
+        assertEquals(expectedModList.getSize(), actualModList.getSize());
+        assertTrue(actualModList.checkModuleIfExist("CS1000"));
+        assertTrue(actualModList.checkModuleIfExist("EE2000"));
+        assertFalse(actualModList.checkModuleIfExist("CS1231"));
+    }
+}

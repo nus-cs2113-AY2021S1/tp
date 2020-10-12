@@ -53,7 +53,7 @@ public class ModTracker {
         }
     }
 
-    private void loadData() {
+    protected void loadData() {
         try {
             Parser parser = new Parser();
             Scanner reader = storage.getReader();
@@ -64,6 +64,10 @@ public class ModTracker {
         } catch (FileNotFoundException e) {
             ui.printErrorMessage(e.getMessage());
         }
+    }
+
+    public ModuleList getModList() {
+        return modList;
     }
 
 }

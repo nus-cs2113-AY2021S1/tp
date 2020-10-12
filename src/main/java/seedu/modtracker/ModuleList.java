@@ -151,5 +151,9 @@ public class ModuleList {
     public ArrayList<Module> getData() {
         return modList;
     }
+
+    public int getSize() {
+        return modList.size();
+    }
 }
 
