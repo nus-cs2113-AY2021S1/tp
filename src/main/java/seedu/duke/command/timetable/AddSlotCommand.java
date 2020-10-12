@@ -32,6 +32,8 @@ public class AddSlotCommand extends Command {
      * @throws DukeException thrown if input command is invalid.
      */
     public AddSlotCommand(String command) throws DukeException {
+        assert command.startsWith(ADD_KW);
+
         String[] parts = command.split(" ");
         try {
             startTime = LocalTime.parse(parts[1]);

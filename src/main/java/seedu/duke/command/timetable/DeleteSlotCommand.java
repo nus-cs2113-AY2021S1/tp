@@ -23,6 +23,8 @@ public class DeleteSlotCommand extends Command {
      * @throws DukeException thrown if input command is invalid.
      */
     public DeleteSlotCommand(String command) throws DukeException {
+        assert command.startsWith(DEL_KW);
+
         String details = command.substring(DEL_KW.length());
         if (!details.startsWith(" ")) {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
