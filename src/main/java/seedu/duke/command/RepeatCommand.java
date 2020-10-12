@@ -82,7 +82,7 @@ public class RepeatCommand extends Command {
     }
 
     /**
-     * Checks if the string can be converted to an integer
+     * Checks if the string can be converted to an integer.
      *
      * @param number String containing the String form of an integer
      */
