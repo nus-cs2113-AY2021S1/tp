@@ -17,20 +17,26 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
 public class AddNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "add-n";
-    public static final String COMMAND_SUCCESSFUL_MESSAGE = "New note added: ";
-    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note already exists in the notebook! ";
 
-    private static final String COMMAND_USAGE_NOTE = COMMAND_WORD + ": Adds a note to notebook. Parameters: "
+    private static final String COMMAND_USAGE = COMMAND_WORD + ": Adds a note to notebook. Parameters: "
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE "
             + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR "
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...] "
             + "[" + PREFIX_DELIMITER + PREFIX_PIN + " PIN]";
 
-    private Note note;
-
-    public static String getCommandUsageNote() {
-        return COMMAND_USAGE_NOTE;
+    /**
+     * Provides a description of how the command should be used.
+     *
+     * @return A string description of the command should be used.
+     */
+    public static String getCommandUsage() {
+        return COMMAND_USAGE;
     }
+
+    public static final String COMMAND_SUCCESSFUL_MESSAGE = "New note added: ";
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note already exists in the notebook! ";
+
+    private Note note;
 
     /**
      * Constructs an AddNoteCommand to add a Note into the Notebook.

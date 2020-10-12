@@ -6,8 +6,6 @@ import seedu.duke.ui.InterfaceManager;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static seedu.duke.util.PrefixSyntax.PREFIX_DATETIME;
-
 /**
  * Lists all the Events in the Timetable.
  */
@@ -20,9 +18,6 @@ public class ListEventCommand extends Command {
     //private static final String COMMAND_USAGE = COMMAND_WORD + ": List all the events in the Timetable. Parameters: "
     //        + "[" + PREFIX_DATETIME + " DATE_TIME]";
 
-    private LocalDate date;
-    private boolean isListByDate;
-
     /**
      * Gets how the command is expected to be used.
      *
@@ -31,6 +26,9 @@ public class ListEventCommand extends Command {
     public static String getCommandUsage() {
         return COMMAND_USAGE;
     }
+
+    private LocalDate date;
+    private boolean isListByDate;
 
     /**
      * Constructs a ListEventCommand to list all the Events in the Timetable.

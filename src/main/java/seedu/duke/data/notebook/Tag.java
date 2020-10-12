@@ -40,11 +40,6 @@ public class Tag {
     private String tagName;
     private TagColor tagColor;
 
-    public Tag(String tagName) {
-        setTagName(tagName);
-        setTagColor(TagColor.COLOR_RESET);
-    }
-
     /**
      * Overloaded constructor to take in the color of the tag.
      *
