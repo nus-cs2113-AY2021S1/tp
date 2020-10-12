@@ -6,6 +6,7 @@ import seedu.duke.commands.Command;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.DoneCommand;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.ListCommand;
 
 public class Parser {
@@ -16,6 +17,7 @@ public class Parser {
     private static final String COMMAND_BOOKMARK = "bookmark";
     private static final String COMMAND_DONE = "done";
     private static final String COMMAND_BYE = "bye";
+    private static final String COMMAND_HELP = "help";
 
     public Command parseUserCommand(String input) {
         String[] tokens = input.split(" ", 2);
@@ -42,6 +44,8 @@ public class Parser {
             return new DoneCommand(arguments);
         case COMMAND_BYE:
             return new ExitCommand();
+        case COMMAND_HELP:
+            return new HelpCommand();
         default:
             // can consider throwing an exception here for invalid command
         }

@@ -310,4 +310,39 @@ public class TextUi {
     public void printInvalidQuotesifyCommand() {
         System.out.println(INVALID_QUOTESIFY_COMMAND);
     }
+
+    public void printHelpPage() {
+        System.out.println("Feeling stuck? Well here are the things you can do with Quotesify:"
+                + System.lineSeparator());
+        System.out.println("1. Book Management");
+        System.out.println("Add book: " + "add -b BOOK_TITLE /by AUTHOR");
+        System.out.println("Delete book: " + "delete -b BOOK_TITLE /by AUTHOR");
+        System.out.println("List books: " + "list -b [/by AUTHOR]");
+        System.out.println(System.lineSeparator() + "2. Quote Management");
+        System.out.println("Add quote: " + "add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]");
+        System.out.println("Delete quote:" + "delete -q QUOTE_NUMBER");
+        System.out.println("List quotes: " + "list -q [/by AUTHOR] [/from BOOK_TITLE]");
+        System.out.println(System.lineSeparator() + "3a. Bookmark Tracker");
+        System.out.println("Add bookmark: " + "bookmark -b BOOK_TITLE /pg PAGE_NUMBER");
+        System.out.println("Update bookmark: " + "bookmark -b BOOK_TITLE /pg PAGE_NUMBER");
+        System.out.println("Delete bookmark: " + "delete -bm BOOK_TITLE");
+        System.out.println("List bookmarks: " + "list -bm");
+        System.out.println(System.lineSeparator() + "3b. Task Tracker");
+        System.out.println("Add task: " + "add -t TASK /by DEADLINE");
+        System.out.println("Mark task as done: " + "done -t TASK_NUMBER");
+        System.out.println("Delete task: " + "delete -t TASK_NUMBER");
+        System.out.println("List tasks: " + "list -t");
+        System.out.println(System.lineSeparator() + "4. Category Management");
+        System.out.println("Add category: " + "add -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}");
+        System.out.println("Delete category: " + "delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}");
+        System.out.println("List categories: " + "list -c [CATEGORY]");
+        System.out.println(System.lineSeparator() + "5. Rating System");
+        System.out.println("Add rating: " + "add -r RATING_SCORE BOOK_TITLE");
+        System.out.println("Delete rating: " + "delete -r BOOK_TITLE");
+        System.out.println("List ratings: " + "list -r [/RATING_SCORE]");
+
+        System.out.println(System.lineSeparator() + "Remember: words in [] are optional, "
+                + "and words in CAPS are your own input" + System.lineSeparator()
+                + "Hope this helps!");
+    }
 }
