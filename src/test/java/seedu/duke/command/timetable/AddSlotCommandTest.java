@@ -1,7 +1,6 @@
 package seedu.duke.command.timetable;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.bookmark.BookmarkList;
