@@ -12,9 +12,6 @@ class UserTest {
     @Test
     public void testProfileCreation() throws ParseException, AniException {
         User testProfile = new User("Tim", "1/11/1960", "Other");
-        assertEquals(" Successfully added new user: \n"
-                + "Name: Tim\n"
-                + "Birthdate: 01/11/1960\n"
-                + "Gender: Other", testProfile);
+        assertEquals("\nName: Tim\nBirthdate: 01/11/1960\nGender: Other", testProfile);
     }
 }
