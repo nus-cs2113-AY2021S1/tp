@@ -138,5 +138,50 @@ class RepeatCommandTest {
                 outputStreamCaptor.toString());
     }
 
+    @Test
+    void repeat_personalEventRepeatDailyMonthlyChange_personalEventDailyToMonthly() {
+
+        //create repeat command for daily
+        String inputString = "personal 1 daily 4";
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
+
+        Command repeatCommand = RepeatCommand.parse(inputString);
+        repeatCommand.execute(data, ui, storage);
+        assertEquals("[P][✕] party on 2000-10-09, 13:00" + System.lineSeparator()
+                        + "is now repeating daily for 4 times." + System.lineSeparator()
+                        + "_________________________________" + System.lineSeparator(),
+                outputStreamCaptor.toString());
+
+        //clear screen and now test changing repeat from daily 4 to monthly 2
+        outputStreamCaptor.reset();
+        inputString = "personal 1 monthly 2";
+
+        repeatCommand = RepeatCommand.parse(inputString);
+        repeatCommand.execute(data, ui, storage);
+
+        assertEquals("[P][✕] party on 2000-10-09, 13:00" + System.lineSeparator()
+                        + "is now repeating monthly for 2 times." + System.lineSeparator()
+                        + "_________________________________" + System.lineSeparator(),
+                outputStreamCaptor.toString());
+
+        //clear screen and check if monthly repeats were successfully recorded
+        outputStreamCaptor.reset();
+        inputString = "personal 1";
+
+        repeatCommand = RepeatCommand.parse(inputString);
+        repeatCommand.execute(data, ui, storage);
+
+        assertEquals("[P][✕] party on 2000-10-09, 13:00 is also on:"
+                        + System.lineSeparator()
+                        + "09 Nov 2000 1:00 PM [✕]" + System.lineSeparator()
+                        + "09 Dec 2000 1:00 PM [✕]" + System.lineSeparator()
+                        + "_________________________________" + System.lineSeparator(),
+                outputStreamCaptor.toString());
+
+
+
+    }
+
 
 }
