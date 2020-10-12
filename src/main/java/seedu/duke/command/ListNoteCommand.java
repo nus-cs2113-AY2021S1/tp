@@ -27,7 +27,7 @@ public class ListNoteCommand extends Command {
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG1...] "
             + "[up/down]";
 
-    public static final String UNSUCCESFUL_MESSAGE = "Your tags return no result."
+    public static final String COMMAND_MESSAGE_UNSUCCESSFUL = "Your tags return no result."
             + " Please try an alternative tag or check your spellings";
 
     private ArrayList<String> tags;
@@ -140,7 +140,7 @@ public class ListNoteCommand extends Command {
 
         // Checking for empty notes List
         if (notes.isEmpty()) {
-            return String.valueOf(noteString.append(UNSUCCESFUL_MESSAGE));
+            return String.valueOf(noteString.append(COMMAND_MESSAGE_UNSUCCESSFUL));
         }
 
         // Sort the tagged notes
