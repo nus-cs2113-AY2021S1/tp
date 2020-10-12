@@ -10,7 +10,7 @@ public class DeleteRatingCommand {
         this.showName = showName;
     }
 
-    public void delete(String showRatingToBeDeleted) {
+    public void deleteRating(String showRatingToBeDeleted) {
         Show show = ShowList.getShow(showRatingToBeDeleted);
         show.setRating(-1);
         ShowList.setShow(showRatingToBeDeleted,show);
