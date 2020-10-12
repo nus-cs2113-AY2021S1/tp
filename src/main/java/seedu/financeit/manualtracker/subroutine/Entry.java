@@ -25,6 +25,7 @@ public class Entry extends DateTimeItem {
     private String category = null;
     private Constants.EntryType entryType = null;
     private double amount = -1;
+    // Allows the entry to be have access to the date of its conception from its "parent" ledger.
     private Ledger ledger = null;
 
     public Entry() {
@@ -130,7 +131,7 @@ public class Entry extends DateTimeItem {
     @Override
     public String getName() {
         return String.format("Entry %d : [ %s ] [ %s ]", this.getIndex() + 1,
-            this.dateTimeManager.getSingleTimeFormatted("time"), this.description);
+            this.dateTimeOutputManager.getSingleTimeFormatted("time"), this.description);
     }
 
     @Override
@@ -147,13 +148,5 @@ public class Entry extends DateTimeItem {
             && (this.entryType.equals(entry.entryType))
             && (this.time.equals(entry.time))
             && (this.amount == entry.amount);
-    }
-
-    @Override
-    public boolean isValidItem() {
-        return (this.category != null)
-            && (this.entryType != null)
-            && (this.time != null)
-            && (this.amount != -1);
     }
 }

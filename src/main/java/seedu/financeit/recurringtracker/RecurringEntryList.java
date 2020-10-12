@@ -31,11 +31,6 @@ public class RecurringEntryList extends ItemList {
     }
 
     @Override
-    public boolean isValidItem() {
-        return false;
-    }
-
-    @Override
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
         ItemNotFoundException, ConflictingItemReference {
     }

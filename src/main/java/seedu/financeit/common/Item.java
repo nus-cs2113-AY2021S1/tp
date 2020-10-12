@@ -1,5 +1,8 @@
 package seedu.financeit.common;
 
+/**
+ * Item is a class that is element to ItemList
+ */
 public abstract class Item extends ParamHandler {
 
     protected int index = -1;

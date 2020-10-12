@@ -124,8 +124,8 @@ public class EntryTracker {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry entry = null;
         try {
-            entryList.setItemQueue(packet);
-            entry = (Entry) entryList.getItemQueue();
+            entryList.setCurrItemFromPacket(packet);
+            entry = (Entry) entryList.getCurrItem();
             entryList.removeItem(entry);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s deleted!", entry.getName()));
@@ -142,7 +142,7 @@ public class EntryTracker {
     }
 
     private static FiniteStateMachine.State handleShowEntry() {
-        entryList.printList(currLedger.toString());
+        entryList.printList();
         return FiniteStateMachine.State.MAIN_MENU;
     }
 
@@ -167,7 +167,7 @@ public class EntryTracker {
 
         try {
             entry = new Entry(packet);
-            entryList.addItem(entry);
+            entryList.addEntry(entry);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s created!", entry.getName()));
         } catch (DuplicateInputException exception) {
@@ -190,8 +190,8 @@ public class EntryTracker {
         Entry entry = null;
 
         try {
-            entryList.setItemQueue(packet);
-            entry = (Entry) entryList.getItemQueue();
+            entryList.setCurrItemFromPacket(packet);
+            entry = (Entry) entryList.getCurrItem();
             entry.handleParams(packet);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s edited!", entry.getName()));

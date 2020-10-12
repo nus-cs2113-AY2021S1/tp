@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class Ledger extends DateTimeItem {
     protected LocalDate date = null;
-    public EntryList entryList = new EntryList();
+    public EntryList entryList = new EntryList(this);
     private ParamChecker paramChecker;
 
     public Ledger() {
@@ -35,7 +35,7 @@ public class Ledger extends DateTimeItem {
         this.paramChecker = new ParamChecker(packet);
         try {
             this.handleParams(packet);
-        } catch (ItemNotFoundException | ConflictingItemReference exception) {
+        } catch (ItemNotFoundException exception) {
             // Fall-through
         }
     }
@@ -43,7 +43,7 @@ public class Ledger extends DateTimeItem {
     @Override
     public String getName() {
         return String.format("Ledger %d : [ %s ]", this.index + 1,
-            this.dateTimeManager.getSingleDateFormatted("date"));
+            this.dateTimeOutputManager.getSingleDateFormatted("date"));
     }
 
     @Override
@@ -55,11 +55,6 @@ public class Ledger extends DateTimeItem {
     @Override
     public String toString() {
         return super.getDateFormatted();
-    }
-
-    @Override
-    public boolean isValidItem() {
-        return (this.date != null);
     }
 
     @Override

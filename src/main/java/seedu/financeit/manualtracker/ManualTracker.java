@@ -129,8 +129,8 @@ public class ManualTracker {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Ledger ledger = null;
         try {
-            ledgerList.setItemQueue(packet);
-            ledger = (Ledger) ledgerList.getItemQueue();
+            ledgerList.setCurrItemFromPacket(packet);
+            ledger = (Ledger) ledgerList.getCurrItem();
             System.out.println(ledger.getName());
             ledgerList.removeItem(ledger);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
@@ -162,8 +162,8 @@ public class ManualTracker {
         Ledger ledger = null;
 
         try {
-            ledgerList.setItemQueue(packet);
-            ledger = (Ledger) ledgerList.getItemQueue();
+            ledgerList.setCurrItemFromPacket(packet);
+            ledger = (Ledger) ledgerList.getCurrItem();
             EntryTracker.setCurrLedger(ledger);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                 String.format("%s opened!", ledger.getName()));

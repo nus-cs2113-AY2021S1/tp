@@ -10,15 +10,15 @@ import java.time.format.DateTimeFormatter;
 /**
  * Class that stores and manages the output of Datetime classes.
  */
-public class DateTimeManager {
+public class DateTimeOutputManager {
     private LocalDate date;
     private LocalTime time;
 
-    public DateTimeManager(){
+    public DateTimeOutputManager(){
 
     }
 
-    public DateTimeManager(LocalDateTime dateTime) {
+    public DateTimeOutputManager(LocalDateTime dateTime) {
         this.time = dateTime.toLocalTime();
         this.date = dateTime.toLocalDate();
     }
