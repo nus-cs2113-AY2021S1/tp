@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
+import seedu.duke.ui.InterfaceManager;
 
 import java.util.ArrayList;
 
@@ -74,11 +75,11 @@ public class ViewNoteCommand extends Command {
         if (!noteExists) {
             return COMMAND_UNSUCCESSFUL_MESSAGE;
         }
-        ArrayList<Tag> notetags = note.getTags();
+        ArrayList<Tag> noteTags = note.getTags();
 
         // format output string
         String stringToPrint = note.getTitle() + InterfaceManager.LS;
-        for (Tag tag:notetags) {
+        for (Tag tag:noteTags) {
             stringToPrint += tag.toString() + InterfaceManager.LS;
         }
 
