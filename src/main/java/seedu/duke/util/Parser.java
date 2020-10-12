@@ -102,7 +102,7 @@ public class Parser {
             case FindCommand.COMMAND_WORD:
                 return prepareFind(userMessage);
             case PinCommand.COMMAND_WORD:
-                // return preparePin(userMessage);
+                return preparePin(userMessage);
             case CreateTagCommand.COMMAND_WORD:
                 return prepareCreateOrDeleteTag(userMessage, true);
             case DeleteTagCommand.COMMAND_WORD:
@@ -567,11 +567,37 @@ public class Parser {
     private Command prepareEditEvent(String userMessage) {
        return new EditCommand(index, event);
     }
-
-    private Command preparePin(String userMessage) {
-       return new PinCommand(index);
-    }
     */
+    private Command preparePin(String userMessage) throws SystemException {
+        String title;
+        int index;
+
+        try {
+            ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
+
+            for (String[] infoDetails : splitInfo) {
+                String prefix = infoDetails[0].toLowerCase();
+                ExceptionType exception;
+                switch (prefix) {
+                case PREFIX_TITLE:
+                    exception = ExceptionType.EXCEPTION_MISSING_TITLE;
+                    title = checkBlank(infoDetails[1],exception);
+                    return new PinCommand(title);
+                case PREFIX_INDEX:
+                    exception = ExceptionType.EXCEPTION_MISSING_INDEX;
+                    index = Integer.parseInt(checkBlank(infoDetails[1], exception));
+                    return new PinCommand(index - 1);
+                default:
+                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+        } catch (NumberFormatException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
+        }
+        throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
+    }
 
     /**
      * Returns a CreateTagCommand or a DeleteTagCommand based on the user message.
