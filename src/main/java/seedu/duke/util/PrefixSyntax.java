@@ -30,6 +30,6 @@ public class PrefixSyntax {
 
     /** Note content related prefix. */
     public static final String STRING_NEW_LINE = "\n";
-    public static final String PREFIX_END = "/end";
-    public static final String PREFIX_DELETE_LINE = "/del";
+    public static final String PREFIX_END = "end";
+    public static final String PREFIX_DELETE_LINE = "del";
 }

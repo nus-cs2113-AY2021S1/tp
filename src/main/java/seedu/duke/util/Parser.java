@@ -213,6 +213,7 @@ public class Parser {
         ArrayList<Tag> tags = new ArrayList<>();
 
         try {
+            // Get prefix
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
 
             for (String[] infoDetails : splitInfo) {
@@ -364,19 +365,19 @@ public class Parser {
             commandInput.append(input.nextLine());
 
             // Add next line when user press enter
-            if (!commandInput.toString().equals(PREFIX_END)) {
+            if (!commandInput.toString().equals(PREFIX_DELIMITER + PREFIX_END)) {
                 commandInput.append(STRING_NEW_LINE);
             }
 
             // "/del" Delete previous line if there user makes mistakes
-            if (commandInput.toString().contains(PREFIX_DELETE_LINE)) {
-                deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELETE_LINE + STRING_NEW_LINE, 0);
+            if (commandInput.toString().contains(PREFIX_DELIMITER + PREFIX_DELETE_LINE)) {
+                deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELIMITER + PREFIX_DELETE_LINE + STRING_NEW_LINE, 0);
                 deleteLine(commandInput, STRING_NEW_LINE, 1);
             }
-        } while (!commandInput.toString().contains(PREFIX_END)); // "/end" to end input note
+        } while (!commandInput.toString().contains(PREFIX_DELIMITER + PREFIX_END)); // "/end" to end input note
 
         // Delete "/end" command when user ends the edit
-        deleteLine(commandInput, STRING_NEW_LINE + PREFIX_END + STRING_NEW_LINE, 0);
+        deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELIMITER + PREFIX_END + STRING_NEW_LINE, 0);
 
         return commandInput.toString();
     }
@@ -406,6 +407,7 @@ public class Parser {
         String prefix = "";
 
         try {
+            // Get prefix
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
 
             for (String[] infoDetails : splitInfo) {
@@ -425,6 +427,7 @@ public class Parser {
                 }
             }
 
+            // If prefix is title, delete note by title. Else delete index.
             if (prefix.equalsIgnoreCase(PREFIX_TITLE)) {
                 return new DeleteNoteCommand(title);
             } else {
