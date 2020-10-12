@@ -180,4 +180,8 @@ public class UI {
     public static void listWordsMessage() {
         System.out.println(ClickerMessages.LIST_WORDS_MSG);
     }
+
+    public static void commandNotRecognisedMsg() {
+        System.out.println(ClickerMessages.COMMAND_UNRECOGNISED_MSG);
+    }
 }

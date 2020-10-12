@@ -53,5 +53,8 @@ public class ClickerMessages {
     public static final String LIST_CHARACTER_MSG = "Here are the characters stored in the program:";
     public static final String BUNNY_CHARACTER_FORMAT = "Character command wrong format";
 
+    /** Command not recognised message. */
+    public static final String COMMAND_UNRECOGNISED_MSG = "Command not recognised?";
+
 
 }

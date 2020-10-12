@@ -64,7 +64,7 @@ public class CommandExecutor {
             //close the program
             break;
         default:
-            //print confused message
+            UI.commandNotRecognisedMsg();
         }
     }
 }

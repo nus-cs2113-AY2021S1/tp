@@ -42,7 +42,7 @@ public class BunnyList {
 
         ArrayList<Character> characters = new ArrayList<>();
         Bunny newBunny;
-        newBunny = new Bunny(idea, genre, characters);
+        newBunny = new Bunny(idea.trim(), genre.trim(), characters);
         bunniesList.add(newBunny);
         UI.addBunnyMessage(newBunny.getDescription());
 
