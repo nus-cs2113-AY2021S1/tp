@@ -23,7 +23,7 @@ public class Duke {
         try {
             this.shows = new ShowList(storage.loadState());
         } catch (Exception e) {
-            this.shows =  new ShowList();
+            this.shows = new ShowList();
         }
     }
 
@@ -34,7 +34,7 @@ public class Duke {
         while (!parseManager.isByeTime()) {
             Ui.printLineIcon();
             try {
-                storage.saveState(ShowList.getShowList());
+                storage.saveState();
             } catch (java.io.IOException e) {
                 e.printStackTrace();
             }

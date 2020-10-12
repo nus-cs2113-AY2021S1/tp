@@ -80,26 +80,11 @@ public class InputParser {
             return;
 
         case "episode":
-            ArrayList<String> updateInputs = tokenizeStringArray(input);
-            UpdateShowEpisodeProgressCommand updateShowProgress;
-            try {
-                updateShowProgress = new UpdateShowEpisodeProgressCommand(command, updateInputs);
-            } catch (NullPointerException e) {
-                Ui.printBadInputException();
-                return;
-            }
-            updateShowProgress.processCommand();
+            parseEpisodeUpdateCommand(input, command);
+
             return;
         case "season":
-            ArrayList<String> seasonInputs = tokenizeStringArray(input);
-            UpdateShowSeasonCommand updateShowSeason;
-            try {
-                updateShowSeason = new UpdateShowSeasonCommand(command, seasonInputs);
-            } catch (NullPointerException e) {
-                Ui.printBadInputException();
-                return;
-            }
-            updateShowSeason.processCommand();
+            parseSeasonUpdateCommand(input, command);
             return;
 
         case "rating":
@@ -111,7 +96,8 @@ public class InputParser {
             return;
 
         case "list":
-            parseListCommand(ShowList.getShowList());
+            Ui.printShowList();
+            //parseListCommand(ShowList.getShowList());
             return;
 
         case "changerating":
@@ -142,6 +128,31 @@ public class InputParser {
 
     //todo: differentiate between show and movie soon
 
+    private static void parseEpisodeUpdateCommand(String input, String command) {
+        ArrayList<String> updateInputs = tokenizeStringArray(input);
+        UpdateShowEpisodeProgressCommand updateShowProgress;
+        try {
+            updateShowProgress = new UpdateShowEpisodeProgressCommand(command, updateInputs);
+        } catch (NullPointerException e) {
+            Ui.printBadInputException();
+            return;
+        }
+        updateShowProgress.processCommand();
+
+    }
+
+    private static void parseSeasonUpdateCommand(String input, String command) {
+        ArrayList<String> seasonInputs = tokenizeStringArray(input);
+        UpdateShowSeasonCommand updateShowSeason;
+        try {
+            updateShowSeason = new UpdateShowSeasonCommand(command, seasonInputs);
+        } catch (NullPointerException e) {
+            Ui.printBadInputException();
+            return;
+        }
+        updateShowSeason.processCommand();
+    }
+
     private static void parseAddRatingCommand(String input) {
         String[] tokenizedInput = input.split(" ");
         int showRating = Integer.parseInt(tokenizedInput[1]);
@@ -164,16 +175,6 @@ public class InputParser {
         ChangeRatingCommand changeShowRating = new ChangeRatingCommand(tokenizedInput[0]);
         changeShowRating.changeRating(showRating);
         Ui.printChangeRating(tokenizedInput[0], tokenizedInput[1]);
-    }
-
-    private static void parseListCommand(HashMap<String, Show> showList) {
-        // idk how to do this btw
-        int index = 1;
-        for (Entry<String, Show> entry : showList.entrySet()) {
-            System.out.print(index + ". " + entry.getValue().getName() + "|" + entry.getValue().getNumSeasons()
-                    + "|" + entry.getValue().getEpisodesForSeason(index) + entry.getValue().getRating());
-            index++;
-        }
     }
 
 
@@ -201,6 +202,17 @@ public class InputParser {
         }
 
     }
+
+     private static void parseListCommand(HashMap<String, Show> showList) {
+        // idk how to do this btw
+        int index = 1;
+        for (Entry<String, Show> entry : showList.entrySet()) {
+            System.out.print(index + ". " + entry.getValue().getName() + "|" + entry.getValue().getNumSeasons()
+                    + "|" + entry.getValue().getEpisodesForSeason(index) + entry.getValue().getRating());
+            index++;
+        }
+    }
+
 
     private static void parseDeleteCommand(String input) {
         //catch for 1)show not found , 2) invalid no. of args
