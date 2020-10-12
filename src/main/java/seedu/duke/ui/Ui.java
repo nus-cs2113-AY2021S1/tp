@@ -49,4 +49,11 @@ public class Ui {
             System.out.println("none.\n\tThere are no direct bus routes. :(");
         }
     }
+
+    public static void printAllBusMessage(ArrayList<Bus> allBuses){
+        System.out.println("\nThe buses available in NUS are: ");
+        for (Bus bus: allBuses){
+            System.out.println(bus.toString());
+        }
+    }
 }
