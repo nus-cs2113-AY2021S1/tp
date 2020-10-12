@@ -1,12 +1,18 @@
 package seedu.duke.data.exception;
 
+import seedu.duke.command.HelpCommand;
+import seedu.duke.ui.InterfaceManager;
+
 /**
  * Signals the different type of possible exceptions.
  */
 public class SystemException extends Exception {
     /** Types of exception. */
     public enum ExceptionType {
+        EXCEPTION_INVALID_COMMAND(InterfaceManager.LS + "Invalid Command. "
+                + "Please try again or enter help to get a list of valid commands." + InterfaceManager.LS),
         EXCEPTION_WRONG_PREFIX("Type of prefix not recognized!"),
+        EXCEPTION_MISSING_MESSAGE_AFTER_COMMAND("Missing information! Please provide the necessary information!"),
         EXCEPTION_MISSING_DESCRIPTION("Missing description!"),
         EXCEPTION_MISSING_TITLE_PREFIX("Missing title prefix!"),
         EXCEPTION_MISSING_TITLE("Missing title!"),
@@ -32,7 +38,8 @@ public class SystemException extends Exception {
         EXCEPTION_INVALID_INDEX_FORMAT("Invalid index format!"),
         EXCEPTION_INVALID_INDEX_VALUE("Invalid index value!"),
         EXCEPTION_FILE_CREATION_ERROR("Unable to create a file!"),
-        EXCEPTION_INVALID_END_INPUT("Input /end on a new line!");
+        EXCEPTION_INVALID_END_INPUT("Input /end on a new line!"),
+        EXCEPTION_INVALID_INPUT_FORMAT("Format of input is not valid!");
 
         /** The exception message. */
         private final String exceptionMessage;
