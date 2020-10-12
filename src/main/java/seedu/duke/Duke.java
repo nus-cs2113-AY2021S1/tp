@@ -64,9 +64,8 @@ public class Duke {
     }
 
     private String executeCommand(Command command) {
-        command.setData(notebook, timetable, tagManager);
+        command.setData(notebook, timetable, tagManager, storageManager);
         String result = command.execute();
-        //storageManager.saveAll(notebook, timetable);
         return result;
     }
 
