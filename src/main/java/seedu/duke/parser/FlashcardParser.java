@@ -19,8 +19,6 @@ public class FlashcardParser {
 			return new AddFlashcardCommand(fullCommand);
 		} else if (fullCommand.startsWith("delete ")) {
 			return new DeleteFlashcardCommand(fullCommand);
-		} else if (fullCommand.startsWith("flashcard")) {
-			return new ReturnFlashcardCommand(fullCommand);
 		} else {
 			return new SorryFlashcardCommand();
 		}

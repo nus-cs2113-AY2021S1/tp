@@ -1,9 +1,6 @@
 package seedu.duke.ui;
 
-import seedu.duke.card.Subject;
-import seedu.duke.card.SubjectList;
-import seedu.duke.card.Topic;
-import seedu.duke.card.TopicList;
+import seedu.duke.card.*;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
@@ -254,5 +251,24 @@ public class Ui {
                 + topic + "\n"
                 + " Now you have " + total + (total == 1 ? " task in the list.\n" : " tasks in the list.\n")
                 + "____________________________________________________________");
+    }
+
+	public static void printFlashcardDelete(Flashcard flashcard, int total) {
+        System.out.println("____________________________________________________________\n"
+                + " Noted. I've removed this flashcard:\n   "
+                + flashcard.getQuestion() + "; " + flashcard.getAnswer() + "\n"
+                + " Now you have " + total + (total == 1 ? " flashcard in the list.\n" : " flashcards in the list.\n")
+                + "____________________________________________________________");
+	}
+
+    public static void printFlashcardList(Topic topic) {
+        int index = 1;
+        System.out.println("____________________________________________________________\n"
+                + "Here are the flashcard(s) under " + topic.getTitle() + ": ");
+        for (Flashcard t : topic.getFlashcards()) {
+            System.out.println(index + "." + t.getQuestion() + "; " + t.getAnswer());
+            index++;
+        }
+        System.out.println("____________________________________________________________");
     }
 }

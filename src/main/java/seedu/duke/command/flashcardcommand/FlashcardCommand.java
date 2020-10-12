@@ -7,7 +7,7 @@ import seedu.duke.exception.NoSubjectException;
 import seedu.duke.exception.RepeatedSubjectException;
 
 public class FlashcardCommand {
-	public Flashcard execute(Subject subject) throws NoSubjectException, RepeatedSubjectException {
+	public Flashcard execute(Topic topic) throws NoSubjectException, RepeatedSubjectException {
 		return null;
 	}
 
