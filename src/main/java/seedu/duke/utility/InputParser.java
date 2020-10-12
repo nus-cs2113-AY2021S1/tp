@@ -162,7 +162,7 @@ public class InputParser {
     private static void parseDeleteRatingCommand(String input) {
         input = removeFirstWord(input);
         DeleteRatingCommand deleteShowRating = new DeleteRatingCommand(input);
-        deleteShowRating.delete(input);
+        deleteShowRating.deleteRating(input);
         Ui.printDeleteRating(input);
     }
 
