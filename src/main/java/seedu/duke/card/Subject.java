@@ -17,11 +17,19 @@ public class Subject {
     public Subject(String title, List<Topic> topics) {
         this.title = title;
         this.topics = new TopicList(topics);
+        tasks = new TaskList(new ArrayList<>());
     }
 
     public Subject(String title, TopicList topics) {
         this.title = title;
         this.topics = topics;
+        tasks = new TaskList(new ArrayList<>());
+    }
+
+    public Subject(String title, TopicList topics, TaskList tasks) {
+        this.title = title;
+        this.topics = topics;
+        this.tasks = tasks;
     }
 
     public void printSubject(SubjectList subjectList) {
@@ -44,6 +52,7 @@ public class Subject {
         return tasks;
     }
 
+    @Override
     public String toString() {
         return this.title;
     }
