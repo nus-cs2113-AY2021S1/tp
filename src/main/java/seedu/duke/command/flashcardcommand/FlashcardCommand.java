@@ -7,11 +7,11 @@ import seedu.duke.exception.NoSubjectException;
 import seedu.duke.exception.RepeatedSubjectException;
 
 public class FlashcardCommand {
-	public Flashcard execute(Topic topic) throws NoSubjectException, RepeatedSubjectException {
-		return null;
-	}
+    public Flashcard execute(Topic topic) throws NoSubjectException, RepeatedSubjectException {
+        return null;
+    }
 
-	public boolean isExit() {
-		return false;
-	}
+    public boolean isExit() {
+        return false;
+    }
 }
