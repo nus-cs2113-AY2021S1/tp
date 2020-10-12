@@ -4,6 +4,7 @@ import seedu.commands.Add;
 import seedu.commands.Bye;
 import seedu.commands.Clear;
 import seedu.commands.Command;
+import seedu.commands.Delete;
 import seedu.commands.Edit;
 import seedu.commands.Help;
 import seedu.commands.List;
@@ -29,7 +30,10 @@ public class Parser {
             return new Clear();
         } else if (rawInput.startsWith(Search.COMMAND_WORD)) {
             return new Search(rawInput);
-        } else {
+        } else if (rawInput.startsWith(Delete.COMMAND_WORD)) {
+            return new Delete(rawInput);
+        }
+        {
             throw new UnknowCommandException();
         }
     }
