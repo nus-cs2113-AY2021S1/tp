@@ -6,7 +6,7 @@ public class Food {
     protected int amountOfFood = 1; // Amount of food in grams, if not it will be taken as arbritary unit e.g, 1 banana
     protected int caloricRate;// Caloric Rate of the food, if amount is not given we will take it as a whole unit.
 
-    public Food(String nameOfExercise,Calorie calories,int amount) {
+    public Food(String nameOfFood,Calorie calories,int amount) {
         this.nameOfFood = nameOfFood;
         this.caloriesInFood = calories;
         this.amountOfFood = amount;

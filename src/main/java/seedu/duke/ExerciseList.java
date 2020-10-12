@@ -24,4 +24,8 @@ public class ExerciseList {
     public Exercise deleteExercise(int index) {
         return exerciseList.remove(index);
     }
+
+    public int getSize() {
+        return exerciseList.size();
+    }
 }

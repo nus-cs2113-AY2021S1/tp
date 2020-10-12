@@ -24,4 +24,8 @@ public class FoodList {
     public Food deleteFood(int index) {
         return foodList.remove(index);
     }
+
+    public int getSize() {
+        return foodList.size();
+    }
 }
