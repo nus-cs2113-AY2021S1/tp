@@ -1,4 +1,4 @@
-package seedu.duke.command;
+package seedu.duke.command.member;
 
 import seedu.duke.model.Member;
 import seedu.duke.project.Project;

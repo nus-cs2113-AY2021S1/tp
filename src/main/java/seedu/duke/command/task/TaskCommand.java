@@ -1,4 +1,4 @@
-package seedu.duke.command;
+package seedu.duke.command.task;
 
 import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;

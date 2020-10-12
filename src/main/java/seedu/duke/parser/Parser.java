@@ -1,9 +1,8 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.MemberCommand;
-import seedu.duke.command.ProjectCommand;
-import seedu.duke.command.SprintCommand;
-import seedu.duke.command.TaskCommand;
+import seedu.duke.command.member.MemberCommand;
+import seedu.duke.command.project.ProjectCommand;
+import seedu.duke.command.task.TaskCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
 
@@ -130,19 +129,19 @@ public class Parser {
             case SPRINT:
                 switch (action.toLowerCase()) {
                 case CREATE:
-                    new SprintCommand().createSprintCommand(params);
+                    //new SprintCommand().createSprintCommand(params);
                     break;
                 case ADD:
-                    new SprintCommand().addSprintTaskCommand(params);
+                    //new SprintCommand().addSprintTaskCommand(params);
                     break;
                 case DELETE:
-                    new SprintCommand().deleteSprintTaskCommand(params);
+                    //new SprintCommand().deleteSprintTaskCommand(params);
                     break;
                 case VIEW:
-                    new SprintCommand().viewSprintCommand(params);
+                    //new SprintCommand().viewSprintCommand(params);
                     break;
                 case ASSIGN:
-                    new SprintCommand().assignSprintTaskCommand(params);
+                    //new SprintCommand().assignSprintTaskCommand(params);
                     break;
                 default:
                     try {
