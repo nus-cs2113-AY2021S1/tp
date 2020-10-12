@@ -1,9 +1,10 @@
 package seedu.duke;
 
 public class AddCommand extends Command {
-    public AddCommand(String command){
+    public AddCommand(String command) {
         this.command = command;
     }
+
     @Override
     public void execute(FoodList foodlist,ExerciseList exerciseList, Storage storage) {
         String type = command.split(" ", 2)[0];
@@ -22,7 +23,7 @@ public class AddCommand extends Command {
                 }
             } catch (NumberFormatException | NullPointerException e) {
                 System.out.println("Sorry calories have to be a number");
-            } catch (ArrayIndexOutOfBoundsException e){
+            } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.print("Please key in the correct format");
             }
         } else if (type.equalsIgnoreCase("exercise")) {
@@ -39,7 +40,7 @@ public class AddCommand extends Command {
                 }
             } catch (NumberFormatException | NullPointerException e) {
                 System.out.println("Sorry calories have to be a number");
-            } catch (ArrayIndexOutOfBoundsException e){
+            } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.print("Please key in the correct format");
             }
         }
