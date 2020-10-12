@@ -7,6 +7,7 @@ import seedu.commands.Command;
 import seedu.commands.Edit;
 import seedu.commands.Help;
 import seedu.commands.List;
+import seedu.commands.Search;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.UnknowCommandException;
 
@@ -26,6 +27,8 @@ public class Parser {
             return new Edit(rawInput);
         } else if (rawInput.startsWith(Clear.COMMAND_WORD)) {
             return new Clear();
+        } else if (rawInput.startsWith(Search.COMMAND_WORD)) {
+            return new Search(rawInput);
         } else {
             throw new UnknowCommandException();
         }

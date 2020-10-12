@@ -5,6 +5,7 @@ import seedu.task.PrioritySorter;
 import seedu.task.Task;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,6 +56,14 @@ public class TaskList {
                 .sorted(new PrioritySorter())
                 .collect(Collectors.toList());
         return new TaskList((ArrayList<Task>) sorted);
+    }
+
+    public TaskList searchDescription(String toSearch) {
+        List<Task> found = Collections.singletonList(tasks.stream()
+            .filter(task -> task.getDescription().contains(toSearch))
+            .findAny()
+            .orElse(null));
+        return new TaskList((ArrayList<Task>) found);
     }
 
     public void clear() {

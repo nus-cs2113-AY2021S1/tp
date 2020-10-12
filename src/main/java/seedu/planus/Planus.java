@@ -4,25 +4,15 @@ import seedu.commands.Bye;
 import seedu.commands.Command;
 import seedu.commands.CommandResult;
 import seedu.data.TaskList;
-import seedu.exceptions.InvalidCommandException;
-import seedu.exceptions.InvalidPriorityException;
-import seedu.exceptions.InvalidTaskNumberException;
-import seedu.exceptions.UnknowCommandException;
 import seedu.parser.Parser;
 import seedu.storage.Storage;
-import seedu.task.Task;
 import seedu.ui.Ui;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static seedu.messages.Messages.HELP_MESSAGE;
 
 public class Planus {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-
     private final TaskList tasks = new TaskList();
     private boolean isExit;
     private Storage storage;
@@ -58,10 +48,5 @@ public class Planus {
         isExit = false;
         ui = new Ui();
         parser = new Parser();
-    }
-
-    private void clearTasks(TaskList tasks) {
-        tasks.clear();
-        System.out.println("\nAll tasks cleared.\n");
     }
 }
