@@ -1,6 +1,6 @@
 package seedu.duke;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a text user interface.
@@ -26,7 +26,7 @@ public class Ui {
                 + "|  |  |  |  |  |___   |  |  |  |__|  |  |  |  |  |  |  |  |/  /"  + LINE_SEPARATOR
                 + "|  |  |  |  |   ___|  |  |  |   __  <|  |  |  |  |  |  |     /" + LINE_SEPARATOR
                 + "|  |__|  |  |  |___   |  |  |  |__|  |  |__|  |  |  |  |  |\\  \\" + LINE_SEPARATOR
-                + "|_______/|__|______|  |__|  |_______/ \\______/ \\______/|__| \\__\" + LINE_SEPARATOR";
+                + "|_______/|__|______|  |__|  |_______/ \\______/ \\______/|__| \\__\\" + LINE_SEPARATOR;
         print(logo + LINE_SEPARATOR
                 + "Hello! Welcome to DietBook!" + LINE_SEPARATOR
                 + "I am Diet, your guide to using DietBook. What is your name?" + LINE_SEPARATOR
@@ -40,32 +40,28 @@ public class Ui {
      *
      * @param name The name of the user.
      */
-    public void printAskUserForPersonalInformationMessage(String name) {
+    public void printAskForUserInfoMessage(String name) {
         print("Hi " + name + "!" + LINE_SEPARATOR
                 + "Before we get started, I would like to know about about you so that I can make more "
-                + "accurate calculations for you :)" + LINE_SEPARATOR
-                + "Therefore, could you please share with me the following:" + LINE_SEPARATOR
-                + "1. Your gender either F for female or M for male." + LINE_SEPARATOR
-                + "2. Your age which is a positive integer." + LINE_SEPARATOR
-                + "3. Your height in cm." + LINE_SEPARATOR
-                + "4. Your original weight in kg." + LINE_SEPARATOR
-                + "5. Your target weight in kg, or your original weight if your original weight is also "
-                + "your target weight." + LINE_SEPARATOR
-                + "6. Activity level from 1 to 5." + LINE_SEPARATOR
-                + "  1. " + ActivityLevel.NONE.getDescription() + LINE_SEPARATOR
-                + "  2. " + ActivityLevel.LOW.getDescription() + LINE_SEPARATOR
-                + "  3. " + ActivityLevel.MEDIUM.getDescription() + LINE_SEPARATOR
-                + "  4. " + ActivityLevel.HIGH.getDescription() + LINE_SEPARATOR
-                + "  5. " + ActivityLevel.EXTREME.getDescription() + LINE_SEPARATOR + LINE_SEPARATOR
+                + LINE_SEPARATOR
+                + "accurate calculations for you :). Therefore, could you please share with me the "
+                + "following:" + LINE_SEPARATOR
+                + "- Your gender either F for female or M for male." + LINE_SEPARATOR
+                + "- Your age which is a positive integer." + LINE_SEPARATOR
+                + "- Your height in cm." + LINE_SEPARATOR
+                + "- Your original weight in kg." + LINE_SEPARATOR
+                + "- Your target weight in kg, or your original weight if that is also your target weight."
+                + LINE_SEPARATOR
+                + "- Your activity level, represented by a number from 1 to 5." + LINE_SEPARATOR
+                + "  1 = " + ActivityLevel.NONE.getDescription() + LINE_SEPARATOR
+                + "  2 = " + ActivityLevel.LOW.getDescription() + LINE_SEPARATOR
+                + "  3 = " + ActivityLevel.MEDIUM.getDescription() + LINE_SEPARATOR
+                + "  4 = " + ActivityLevel.HIGH.getDescription() + LINE_SEPARATOR
+                + "  5 = " + ActivityLevel.EXTREME.getDescription() + LINE_SEPARATOR + LINE_SEPARATOR
                 + "Please input your details in the following format:" + LINE_SEPARATOR
-                + "  info g/GENDER a/AGE h/HEIGHT l/ACTIVITY_LEVEL o/ORIGINAL_WEIGHT t/TARGET_WEIGHT"
+                + "  info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT t/TARGET_WEIGHT l/ACTIVITY_LEVEL"
                         + LINE_SEPARATOR
-                + "  Example: info g/F a/21 h/165 l/2 o/65 t/55");
-        //"4. Your current weight in kg."
-        //"5. Your target weight in kg, or your current weight if your current weight is also your target
-        // weight.";
-        //"  info g/GENDER a/AGE h/HEIGHT l/ACTIVITY_LEVEL c/CURRENT_WEIGHT t/TARGET_WEIGHT");
-        //"  Example: info g/F a/21 h/165 l/2 c/65 t/55";
+                + "  Example: info g/F a/21 h/165 o/65 t/55 l/2");
     }
 
 //    public void printWelcomeMessage() {
@@ -93,11 +89,11 @@ public class Ui {
 //        System.out.println("6. Your target weight in kg, or your current weight if your "
 //                + "current weight is also your target weight.");
 //        System.out.println("7. Activity level from 1 to 5.");
-//        System.out.println("  1. " + ActvityLevel.NONE.getDescription());
-//        System.out.println("  2. " + ActvityLevel.LOW.getDescription());
-//        System.out.println("  3. " + ActvityLevel.MEDIUM.getDescription());
-//        System.out.println("  4. " + ActvityLevel.HIGH.getDescription());
-//        System.out.println("  5. " + ActvityLevel.EXTEREME.getDescription());
+//        System.out.println("  1. " + ActivityLevel.NONE.getDescription());
+//        System.out.println("  2. " + ActivityLevel.LOW.getDescription());
+//        System.out.println("  3. " + ActivityLevel.MEDIUM.getDescription());
+//        System.out.println("  4. " + ActivityLevel.HIGH.getDescription());
+//        System.out.println("  5. " + ActivityLevel.EXTREME.getDescription());
 //        System.out.println(LINE_SEPARATOR);
 //        System.out.println("Please input your details in the following format:");
 //        System.out.println("  info n/NAME g/GENDER a/AGE h/HEIGHT l/ACTIVITY_LEVEL o/ORIGINAL_WEIGHT "
@@ -116,13 +112,13 @@ public class Ui {
     public void printTutorialMessage() {
         print("Thank you! DietBook has been initialised and you may start by entering any of the commands "
                 + "listed below." + LINE_SEPARATOR + LINE_SEPARATOR
-                + "To add you own food: add n/FOOD_NAME x/PORTION_SIZE k/CALORIE [c/CARB] [p/PROTEIN] "
-                + "[f/FAT]" + LINE_SEPARATOR
+                + "To add a food from the database: add n/FOOD_NAME x/PORTION_SIZE" + LINE_SEPARATOR
+                + "To view all food in the database: data" + LINE_SEPARATOR
+                + "To add you own food: add n/FOOD_NAME x/PORTION_SIZE k/CALORIE [c/CARBOHYDRATE] "
+                + "[p/PROTEIN] [f/FAT]" + LINE_SEPARATOR
                 + "To view all food in DietBook: list" + LINE_SEPARATOR
                 + "To delete a food from DietBook: delete INDEX" + LINE_SEPARATOR
                 + "To delete all food items from the DietBook: clear" + LINE_SEPARATOR
-                + "To add a food from the database: add n/FOOD_NAME x/PORTION_SIZE\n" + LINE_SEPARATOR
-                + "To view all food in the database: data" + LINE_SEPARATOR
                 + "To show user information: userinfo" + LINE_SEPARATOR
                 + "To calculate carbohydrate intake: calculate carbohydrate" + LINE_SEPARATOR
                 + "To calculate calorie intake: calculate calorie" + LINE_SEPARATOR
@@ -135,9 +131,9 @@ public class Ui {
     /**
      * Prints a message to show that the food specified has been added to the food list.
      *
-     * @param newFood The new food item that was added to the food list.
+     * @param newFood The string representation of the new food item that was added to the food list.
      */
-    public void printNewFood(Food newFood) {
+    public void printNewFood(String newFood) {
         print("Got it! I've added this food item:" + LINE_SEPARATOR
                 + "  " + newFood);
     }
@@ -146,19 +142,13 @@ public class Ui {
      * Prints all the food items in the food list in the order that they were added or a message stating
      * that the food list is empty if there are no food items.
      *
-     * @param foodList The arraylist containing all the food items.
+     * @param allFood The string representation of all the food items in the food list.
      */
-    public void printFoodList(ArrayList<Food> foodList) {
-        if (foodList.isEmpty()) {
+    public void printFoodList(String allFood) {
+        if (allFood.length() < 1) {
             print("DietBook is currently empty.");
         } else {
-            String allFood = "";
-            int foodItemNumber = 1;
-            for (Food food : foodList) {
-                allFood += LINE_SEPARATOR + "  " + foodItemNumber + "." + food;
-                foodItemNumber++;
-            }
-            print("Here are the food items in DietBook:" + allFood);
+            print("Here are the food items in DietBook:" + LINE_SEPARATOR + allFood);
         }
     }
 
@@ -246,9 +236,9 @@ public class Ui {
     /**
      * Prints a message to show that the food specified has been deleted from the food list.
      *
-     * @param deletedFood The food that was deleted from the food list.
+     * @param deletedFood The string representation of the food that was deleted from the food list.
      */
-    public void printDeletedFood(Food deletedFood) {
+    public void printDeletedFood(String deletedFood) {
         print("Noted. I've removed this food item:" + LINE_SEPARATOR
                 + "  " + deletedFood);
     }
@@ -287,7 +277,7 @@ public class Ui {
     public void print(String message) {
         String divider =
                 "__________________________________________________________________________________________"
-                + "__________";
+                + "______________________________________________________";
 
         System.out.println(divider + LINE_SEPARATOR
                 + message + LINE_SEPARATOR
