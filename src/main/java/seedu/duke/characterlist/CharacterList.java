@@ -47,9 +47,8 @@ public class CharacterList {
             throw new CharacterAlreadyExistException();
         }
 
-        newCharacter = new Character(name);
-        characters.add(newCharacter);
-        UI.addBunnyMessage(newCharacter.getCharacterName());
+        characters.add(new Character(name));
+        UI.addBunnyMessage(name);
 
     }
 
