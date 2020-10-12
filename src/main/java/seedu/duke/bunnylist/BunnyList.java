@@ -40,9 +40,9 @@ public class BunnyList {
             genre = commandArguments.get(GENRE_TAG);
         }
 
-        ArrayList<Character> characters = new ArrayList<>();
-        Bunny newBunny;
-        newBunny = new Bunny(idea, genre, characters);
+        // todo: add the character list to bunny in ver 2
+        //ArrayList<Character> characters = new ArrayList<>();
+        Bunny newBunny = new Bunny(idea.trim(), genre.trim());
         bunniesList.add(newBunny);
         UI.addBunnyMessage(newBunny.getDescription());
 

@@ -11,4 +11,18 @@ Hello User! Welcome to Fluffle!
 What can I do for you?
 --------------------------------------------------------------
 --------------------------------------------------------------
+Type 'help c\<function name here>' to view help for each command.
+Available commands:
+add
+settings
+list
+history
+stats
+review
+quiz
+clear
+exit
 --------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+Bye User! Hope to see you again soon!

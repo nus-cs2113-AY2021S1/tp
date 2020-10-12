@@ -21,6 +21,10 @@ public enum CommandChecker {
     LIST_BUNNY,
     FILTER_BUNNY,
 
+    CHARACTER,
+    LIST_CHARACTER,
+    FILTER_CHARACTER,
+
     STATS,
     DELETE,
     EXIT,
