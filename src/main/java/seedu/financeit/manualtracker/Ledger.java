@@ -30,7 +30,7 @@ public class Ledger extends DateTimeItem {
         super.setDefaultDateTimeFormat("date");
     }
 
-    public Ledger(CommandPacket packet) throws InsufficientParamsException {
+    public Ledger(CommandPacket packet) throws AssertionError, InsufficientParamsException {
         this();
         this.paramChecker = new ParamChecker(packet);
         try {

@@ -69,18 +69,6 @@ public class UiManager {
         }
     }
 
-    public static String getStringPrintWithStatusIcon(Constants.PrintType printType, String... messages) {
-        String message = "";
-        for (int i = 0; i < messages.length; i++) {
-            if (i == 0) {
-                message += String.format("[ %-15s]: %s", printType, messages[i]);
-            } else {
-                message += String.format("%-20s%s", " ", messages[i]);
-            }
-        }
-        return message;
-    }
-
     public static void printInputPromptMessage() {
         printWithStatusIcon(Constants.PrintType.INSTRUCTION,
                 "Enter a command! ",

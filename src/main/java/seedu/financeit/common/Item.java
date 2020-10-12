@@ -12,7 +12,6 @@ public abstract class Item extends ParamHandler {
     }
 
     public int getIndex() {
-        assert this.index != 1;
         return this.index;
     }
 

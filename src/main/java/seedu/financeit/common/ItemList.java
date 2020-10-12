@@ -28,7 +28,6 @@ public abstract class ItemList extends ParamHandler {
     public Item getItemQueue() {
         Item output =  this.itemQueue.remove(0);
         itemQueue.clear();
-        assert itemQueue.size() == 0;
         return output;
     }
 

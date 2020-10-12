@@ -43,7 +43,7 @@ public class Entry extends DateTimeItem {
         super.setDefaultDateTimeFormat("time");
     }
 
-    public Entry(CommandPacket packet) throws InsufficientParamsException {
+    public Entry(CommandPacket packet) throws AssertionError, InsufficientParamsException {
         this();
         try {
             this.handleParams(packet);

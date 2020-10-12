@@ -11,18 +11,15 @@ import seedu.financeit.ui.UiManager;
 public class FinanceTools {
 
     public static double handleSimpleInterest(CommandPacket packet) {
-        SimpleInterest tool = null;
         try {
-            tool = new SimpleInterest(packet);
+            SimpleInterest tool = new SimpleInterest(packet);
             return (tool.calculateSimpleInterest());
+        } catch (AssertionError error) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    "Input failed due to param error.");
         } catch (InsufficientParamsException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
-        }  finally {
-            if (tool == null) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Input failed due to param error.");
-            }
         }
         return 0;
     }
