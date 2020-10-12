@@ -21,9 +21,8 @@ public class StorageTest {
         modTracker.loadData();
         ModuleList actualModList = modTracker.getModList();
 
-        assertEquals(2, actualModList.getSize());
-        assertTrue(actualModList.checkModuleIfExist("CS1000"));
-        assertTrue(actualModList.checkModuleIfExist("EE2000"));
-        assertFalse(actualModList.checkModuleIfExist("CS1231"));
+        assertTrue(actualModList.checkIfModuleExist("CS1000"));
+        assertTrue(actualModList.checkIfModuleExist("EE2000"));
+        assertFalse(actualModList.checkIfModuleExist("CS1231"));
     }
 }
