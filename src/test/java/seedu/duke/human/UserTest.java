@@ -14,6 +14,6 @@ class UserTest {
         User testProfile = new User("Tim", "1/11/1960", "Other");
 
         assertEquals("Tim-san", testProfile.getName());
-        assertEquals("1/11/1960", testProfile.getDobString());
+        assertEquals("01/11/1960", testProfile.getDobString());
     }
 }
