@@ -19,6 +19,10 @@ public class Storage {
      * @param filePath File path whereby data is loaded from and stored at.
      */
     public Storage(String filePath) {
+        if (filePath == null) {
+            throw new NullPointerException();
+        }
+
         this.filePath = filePath;
         try {
             file = new File(filePath);
