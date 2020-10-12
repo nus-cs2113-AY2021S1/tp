@@ -69,6 +69,6 @@ public class TaskList {
         tasks.clear();
     }
 
-    public void delete(int i){ tasks.remove(i); }
+    public void delete(int index){ tasks.remove(index); }
 
 }

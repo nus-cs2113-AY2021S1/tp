@@ -30,7 +30,7 @@ public class Messages {
     public static final String ADD_MESSAGE = "Task added.";
     public static final String EDIT_MESSAGE = "Task edited.";
     public static final String CLEAR_MESSAGE = "All tasks cleared." + LS;
-    public static final String DELETE_MESSAGE = "Task deleted" + LS;
+    public static final String DELETE_MESSAGE = "Task deleted." + LS;
     public static final String SEARCH_NOT_FOUND_MESSAGE = "No matched item found." + LS;
     public static final String SEARCH_FOUND_MESSAGE = "Here is your list of tasks"
             + " which contain the word/letters:";

@@ -13,17 +13,12 @@ public class Delete extends Command {
     public static final String COMMAND_WORD = "delete";
     private final int index;
     private static final Pattern COMMAND_PATTERN = Pattern.compile(
-            "^delete (?<index>\\d+)"
-                    + "( des/(?<description>(\\w+\\s*)+\\w*))?"
-                    + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
-                    + "( st/(?<st>\\d{4}))?"
-                    + "( et/(?<et>\\d{4}))?"
-                    + "( p/(?<priority>\\d))?$");
+            "^delete (?<index>\\d+)");
 
     public Delete(String rawInput) throws InvalidCommandException {
         Matcher matcher = COMMAND_PATTERN.matcher(rawInput);
         if (matcher.find()) {
-            index = Integer.parseInt(matcher.group("index"))-1;
+            index = Integer.parseInt(matcher.group("index"));
         } else {
             throw new InvalidCommandException();
         }
@@ -31,10 +26,10 @@ public class Delete extends Command {
 
     @Override
     public CommandResult execute(TaskList tasks) throws InvalidTaskNumberException {
-        if (index <= 0 || index >= tasks.size()) {
+        if (index <= 0 || index - 1 >= tasks.size()) {
             throw new InvalidTaskNumberException();
         }
-        tasks.delete(index);
+        tasks.delete(index - 1);
         return new CommandResult(DELETE_MESSAGE);
     }
 }
