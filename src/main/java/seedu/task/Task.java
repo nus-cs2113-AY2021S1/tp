@@ -10,14 +10,16 @@ import java.time.format.DateTimeFormatter;
 public class Task {
     private String description;
     private LocalDate date;
-    private LocalTime time;
+    private LocalTime startTime;
+    private LocalTime endTime;
     private Priority priority;
 
     public Task(String description, String dateString,
-                String timeString, String priorityString) throws InvalidPriorityException {
+                String startTime, String endTime, String priorityString) throws InvalidPriorityException {
         this.description = description;
         date = dateStringToDate(dateString);
-        time = timeStringToTime(timeString);
+        this.startTime = timeStringToTime(startTime);
+        this.endTime = timeStringToTime(endTime);
         priority = priorityStringToPriority(priorityString);
     }
 
@@ -100,13 +102,32 @@ public class Task {
         date = dateStringToDate(dateString);
     }
 
-    public LocalTime getTime() {
-        return time;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
+    public LocalTime getStartTime() {
+        return startTime;
+    }
 
-    public void setTime(String timeString) {
-        time = timeStringToTime(timeString);
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = timeStringToTime(startTime);
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = timeStringToTime(endTime);
     }
 
     public Priority getPriority() {
@@ -122,6 +143,7 @@ public class Task {
     }
 
     public String toString() {
-        return description + dateToString(date) + timeToString(time) + priorityToString(priority);
+        return description + dateToString(date) + timeToString(startTime)
+                + timeToString(endTime) + priorityToString(priority);
     }
 }

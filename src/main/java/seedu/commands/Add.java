@@ -16,11 +16,13 @@ public class Add extends Command {
     private static final Pattern COMMAND_PATTERN = Pattern.compile(
             "^add (?<description>(\\w+\\s*)+\\w*)"
                     + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
-                    + "( t/(?<time>\\d{4}))?"
+                    + "( st/(?<st>\\d{4}))?"
+                    + "( et/(?<et>\\d{4}))?"
                     + "( p/(?<priority>\\d))?$");
     private final String description;
     private final String date;
-    private final String time;
+    private final String startTime;
+    private final String endTime;
     private final String priority;
 
     public Add(String rawInput) throws InvalidCommandException {
@@ -28,7 +30,8 @@ public class Add extends Command {
         if (matcher.find()) {
             description = matcher.group("description");
             date = matcher.group("date");
-            time = matcher.group("time");
+            startTime = matcher.group("st");
+            endTime = matcher.group("et");
             priority = matcher.group("priority");
         } else {
             throw new InvalidCommandException();
@@ -37,8 +40,9 @@ public class Add extends Command {
 
     @Override
     public CommandResult execute(TaskList tasks) throws InvalidPriorityException {
-        Task task = new Task(description, date, time, priority);
+        Task task = new Task(description, date, startTime, endTime, priority);
         tasks.addTask(task);
+        // task arg not in used, in case want change display message.
         return new CommandResult(ADD_MESSAGE, tasks, task);
     }
 }

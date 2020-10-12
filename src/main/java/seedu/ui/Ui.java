@@ -5,8 +5,6 @@ import seedu.data.TaskList;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 import static seedu.messages.Messages.LS;
@@ -17,15 +15,15 @@ public class Ui {
     private final Scanner in;
     private final PrintStream out;
 
-    //    public Ui() {
-    //        this(System.in, System.out);
-    //    }
-
     public Ui() {
-        this.in = new Scanner(System.in);
-        this.out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
+        this(System.in, System.out);
+    }
 
-        //        // Set default printing color
+    public Ui(InputStream in, PrintStream out) {
+        this.in = new Scanner(System.in);
+        //        this.out = new PrintStream(System.out, true, StandardCharsets.ISO_8859_1);
+        this.out = out;
+        // Set default printing color
         //        out.print(DEFAULT_STRING_COLOR);
     }
 
@@ -40,14 +38,15 @@ public class Ui {
 
     private void displayTasks(TaskList tasks) {
         // Header
-        String format = "%-10s%-15s%-15s%-10s%-10s" + LS;
-        out.format(format, "Index", "Description", "Date", "Time", "Priority");
+        String format = "%-10s%-15s%-15s%-10s%-10s%-10s" + LS;
+        out.format(format, "Index", "Description", "Date", "Start", "End", "Priority");
         for (int i = 0; i < tasks.size(); i++) {
             out.format(format,
                     i + 1,
                     tasks.get(i).getDescription(),
                     tasks.get(i).getDate(),
-                    tasks.get(i).getTime() == null ? "" : tasks.get(i).getTime(),
+                    tasks.get(i).getStartTime() == null ? "" : tasks.get(i).getStartTime(),
+                    tasks.get(i).getEndTime() == null ? "" : tasks.get(i).getEndTime(),
                     tasks.get(i).getPriority());
         }
     }
