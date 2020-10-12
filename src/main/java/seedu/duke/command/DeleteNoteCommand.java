@@ -16,18 +16,9 @@ public class DeleteNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-n";
 
-    private static final String COMMAND_USAGE = COMMAND_WORD + ": Deletes a note. Parameters: "
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Deletes a note. Parameters: "
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE or "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
-
-    /**
-     * Gets how the command is expected to be used.
-     *
-     * @return String representation of how the command is to be used.
-     */
-    public static String getCommandUsage() {
-        return COMMAND_USAGE;
-    }
 
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Note deleted: ";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook! ";

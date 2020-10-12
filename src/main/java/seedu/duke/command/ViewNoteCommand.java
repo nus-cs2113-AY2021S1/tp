@@ -14,13 +14,9 @@ public class ViewNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "view-n";
 
-    private static final String COMMAND_USAGE = COMMAND_WORD + ": Views a note. Parameters: "
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Views a note. Parameters: "
             + "[" + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX] "
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE]";
-
-    public static String getCommandUsage() {
-        return COMMAND_USAGE;
-    }
 
     private int index;
     private String title;

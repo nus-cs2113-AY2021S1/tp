@@ -44,6 +44,7 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TIMING;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
+import static seedu.duke.util.PrefixSyntax.PREFIX_SORT;
 import static seedu.duke.util.PrefixSyntax.STRING_SPLIT_DELIMITER;
 
 import java.time.LocalDate;
@@ -230,7 +231,7 @@ public class Parser {
                     isPinned = Boolean.parseBoolean(checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_PIN));
                     break;
                 default:
-                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
 
@@ -309,7 +310,7 @@ public class Parser {
                     recurringEndTime = DateTimeManager.dateTimeParser(endTimingString);
                     break;
                 default:
-                    throw new SystemException(SystemException.ExceptionType.EXCEPTION_WRONG_PREFIX);
+                    throw new SystemException(SystemException.ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
             title = checkBlank(title, ExceptionType.EXCEPTION_MISSING_TITLE);
@@ -339,7 +340,7 @@ public class Parser {
                 event = new YearlyEvent(title, dateTime, toRemind, date);
                 break;
             default:
-                throw new SystemException(ExceptionType.EXCEPTION_WRONG_RECURRING_TYPE);
+                throw new SystemException(ExceptionType.EXCEPTION_INVALID_RECURRING_TYPE);
             }
         } else {
             event = new Event(title, dateTime, toRemind, false);
@@ -423,7 +424,7 @@ public class Parser {
                     title = checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_TITLE);
                     return new DeleteNoteCommand(title);
                 default:
-                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
         } catch (ArrayIndexOutOfBoundsException exception) {
@@ -468,26 +469,40 @@ public class Parser {
 
         Boolean isAscending = null;
         ArrayList<String> tags = new ArrayList<>();
-        String[] words = userMessage.split("\\S");
 
-        // May have multiple tags that need to be accounted for
-        if (userMessage.contains("/tag")) {
-            for (int i = 0; i < words.length; i++) {
-                if (words[i].equals("/tag")) {
-                    tags.add(words[i + 1]);
+        try {
+            ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
+
+            for (String[] infoDetails : splitInfo) {
+                String prefix = infoDetails[0].toLowerCase();
+                ExceptionType exception;
+
+                switch (prefix) {
+                case PREFIX_TAG:
+                    exception = ExceptionType.EXCEPTION_MISSING_TAG;
+                    checkBlank(infoDetails[1], exception);
+                    tags.add(infoDetails[1]);
+                    break;
+                case PREFIX_SORT:
+                    exception = ExceptionType.EXCEPTION_MISSING_SORT;
+                    checkBlank(infoDetails[1], exception);
+                    if (infoDetails[1].equals("up")) {
+                        isAscending = true;
+                    } else if (infoDetails[1].equals("down")) {
+                        isAscending = false;
+                    } else {
+                        throw new SystemException(ExceptionType.EXCEPTION_INVALID_SORT_TYPE);
+                    }
+                    break;
+                default:
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
+        } catch (SystemException e) {
+            e.printStackTrace();
         }
-
-        for (String word : words) {
-            if (word.equals("up")) {
-                isAscending = true;
-            } else if (word.equals("down")) {
-                isAscending = false;
-            }
-        }
-
-        // No optional parameters case already accounted
+        
+        // No optional parameters case as it is already accounted
         // Minimally if no tag, will have up/down and vice versa
         if (tags.isEmpty()) {
             return new ListNoteCommand(isAscending);
@@ -524,7 +539,7 @@ public class Parser {
                     index = Integer.parseInt(checkBlank(infoDetails[1], exception));
                     return new ViewNoteCommand(index - 1);
                 default:
-                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
         } catch (ArrayIndexOutOfBoundsException exception) {
@@ -586,7 +601,7 @@ public class Parser {
                     index = Integer.parseInt(checkBlank(infoDetails[1], exception));
                     return new PinCommand(index - 1);
                 default:
-                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
         } catch (ArrayIndexOutOfBoundsException exception) {
@@ -617,7 +632,7 @@ public class Parser {
                     Tag tag = handleTagPrefix(infoDetails);
                     tags.add(tag);
                 } else {
-                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
             // Ensures that there is at least 1 tag to be created or deleted.
@@ -661,7 +676,7 @@ public class Parser {
                     index = Integer.parseInt(checkBlank(infoDetails[1].trim(), exception));
                     break;
                 default:
-                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
 

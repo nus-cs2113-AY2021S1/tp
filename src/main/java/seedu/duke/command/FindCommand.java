@@ -13,16 +13,7 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find-n";
 
-    private static final String COMMAND_USAGE = COMMAND_WORD + ": Finds a note. Parameters: KEYWORDS";
-
-    /**
-     * Gets how the command is expected to be used.
-     *
-     * @return String representation of how the command is to be used.
-     */
-    public static String getCommandUsage() {
-        return COMMAND_USAGE;
-    }
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Finds a note. Parameters: KEYWORDS";
 
     private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "There are no matching notes. "
             + "Please try another search query.";
@@ -47,14 +38,14 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute() {
-        String notes = "";
+        StringBuilder notes = new StringBuilder();
 
         ArrayList<Note> filteredNotes = (ArrayList<Note>) notebook.getNotes().stream()
                 .filter((s) -> s.getTitle().contains(keywords))
                 .collect(Collectors.toList());
 
         for (int i = 0; i < filteredNotes.size(); i++) {
-            notes += (i + 1) + "." + filteredNotes.get(i).toString();
+            notes.append(i + 1).append(".").append(filteredNotes.get(i).getTitle()).append(InterfaceManager.LS);
         }
 
         if (filteredNotes.isEmpty()) {
