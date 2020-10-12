@@ -57,4 +57,8 @@ public class TaskList {
         return new TaskList((ArrayList<Task>) sorted);
     }
 
+    public void clear() {
+        tasks.clear();
+    }
+
 }
