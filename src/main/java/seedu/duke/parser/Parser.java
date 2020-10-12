@@ -4,7 +4,7 @@ import seedu.duke.command.Command;
 import seedu.duke.command.AddUserCommand;
 import seedu.duke.command.EditProfileCommand;
 import seedu.duke.command.BrowseAnimeCommand;
-import seedu.duke.command.CreateWatchlistCommand;
+import seedu.duke.command.WatchlistCommand;
 import seedu.duke.command.AddToWatchlistCommand;
 import seedu.duke.command.BookmarkAnimeCommand;
 import seedu.duke.command.HelpCommand;
@@ -36,7 +36,7 @@ public class Parser {
             return new BrowseAnimeCommand(description);
      
         case "watchlist":
-            return new CreateWatchlistCommand(description);
+            return new WatchlistCommand(description);
            
         case "add":
             return new AddToWatchlistCommand(description);

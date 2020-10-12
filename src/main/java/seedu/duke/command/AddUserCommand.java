@@ -1,5 +1,8 @@
 package seedu.duke.command;
 
+import seedu.duke.anime.AnimeData;
+import seedu.duke.bookmark.Bookmark;
+import seedu.duke.exception.AniException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
@@ -16,7 +19,8 @@ public class AddUserCommand extends Command {
      * Adds an anime to current watchlist.
      */
     @Override
-    public void execute(Ui ui, Storage storage, Watchlist currentWatchlist, ArrayList<Watchlist> watchlists) {
+    public void execute(Ui ui, Storage storage, AnimeData animeData, Watchlist currentWatchlist,
+                        ArrayList<Watchlist> watchlists, Bookmark bookmark) {
         String[] descriptionSplit = description.split(" ", 2);
 
         try {

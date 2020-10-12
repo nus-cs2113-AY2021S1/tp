@@ -1,13 +1,10 @@
 package seedu.duke.ui;
 
-import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
-
-import java.text.ParseException;
 import java.util.Scanner;
 
 public class Ui {
-    private static Scanner CONSOLE = new Scanner(System.in);
+    private static final Scanner CONSOLE = new Scanner(System.in);
     private static final String LOGO =
             "                 _  _____ _\n"
             + "      /\\         (_)/ ____| |\n"
@@ -22,19 +19,17 @@ public class Ui {
         System.out.println(" " + message);
     }
 
-    public void printHorizontalLine() {
-        System.out.println(HORIZONTAL_LINE);
-    }
-
     public void printErrorMessage(String errorMessage) {
         System.out.println(" ☹ OOPS!!! " + errorMessage);
     }
 
-    // TEMPORARY, REMOVED WHEN DONE REFACTORING!
-    public String readQuickStartInput() {
-        System.out.print(" ");
-        String userInput = CONSOLE.nextLine();
-        return userInput;
+    public void printWelcomeMessage() {
+        printMessage("Welcome to AniChan!");
+        printMessage(LOGO);
+    }
+
+    public void printHorizontalLine() {
+        System.out.println(HORIZONTAL_LINE);
     }
 
     public String readInput() {
@@ -47,14 +42,7 @@ public class Ui {
         return userInput;
     }
 
-    /**
-     * Greets new user upon opening up application.
-     */
-    public void printWelcomeMessage() {
-        printMessage("Welcome to AniChan!");
-        printMessage(LOGO);
-    }
-
+    // TEMPORARY, REMOVED WHEN DONE REFACTORING!
     /**
      * Greets existing user upon opening up application.
      */
