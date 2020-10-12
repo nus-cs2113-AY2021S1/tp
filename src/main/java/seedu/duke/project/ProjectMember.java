@@ -21,6 +21,10 @@ public class ProjectMember {
         return memberList.get(id);
     }
 
+    public void addMember(Member m) {
+        memberList.add(m);
+    }
+
     //    public void addMember(List<String> userId) {
     //        Member m;
     //        for (String s : userId) {
@@ -44,6 +48,14 @@ public class ProjectMember {
                 System.out.println("This member is not associated with this project: " + new Member(s).userId);
             }
         }
+    }
+
+    public boolean containMember(Member member) {
+        return memberList.contains(member);
+    }
+
+    public void removeMember(Member member) {
+        memberList.remove(member);
     }
 
 }

@@ -8,6 +8,7 @@
                                     |_|
 
 WELCOME TO SCRUMPTIOUS
-command> 
-command> 
+command>
+Project successfully created.
+command>
 bye
