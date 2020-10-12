@@ -44,7 +44,7 @@ public class Kaji {
                 ui.printEmptyLine();
                 isExit = c.isExit();
             } catch (InvalidInputException | IncorrectAccessLevelException | IOException 
-                     | IndexOutOfBoundsException | FileNotFoundException e) {
+                     | IndexOutOfBoundsException e) {
                 ui.showError(e.getMessage());
             }
         }
