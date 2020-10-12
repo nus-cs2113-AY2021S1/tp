@@ -1,5 +1,6 @@
 package seedu.duke.data.timetable;
 
+import seedu.duke.data.exception.SystemException;
 import seedu.duke.ui.InterfaceManager;
 
 import java.time.LocalDate;
@@ -10,9 +11,9 @@ import java.time.LocalTime;
  * Represents an Event. Contains all the information of an Event.
  */
 public class Event {
-    public final String REMINDER_TYPE_DAY = "day";
-    public final String REMINDER_TYPE_WEEK = "week";
-    public final String REMINDER_TYPE_MONTH = "month";
+    private static final String REMINDER_DAY = "day";
+    private static final String REMINDER_WEEK = "week";
+    private static final String REMINDER_MONTH = "month";
 
     private String title;
     // Can be combined into LocalDateTime
@@ -21,7 +22,7 @@ public class Event {
     private Boolean isToRemind;
     private Boolean isRecurring;
     private int timeBeforeReminder = 1;
-    private String timeUnit = REMINDER_TYPE_DAY;
+    private String timeUnit = REMINDER_DAY;
 
     /**
      * Creates an Event object with its title, date and time provided.
@@ -151,27 +152,36 @@ public class Event {
         isRecurring = recurring;
     }
 
-    public boolean checkTimeToRemind(LocalDate currentDate) {
+    public boolean checkTimeToRemind(LocalDate currentDate) throws SystemException {
         switch (timeUnit) {
-        case REMINDER_TYPE_DAY:
+        case REMINDER_DAY:
             if (currentDate.plusDays(timeBeforeReminder).equals(date)) {
                 return true;
             }
             break;
-        case REMINDER_TYPE_WEEK:
+        case REMINDER_WEEK:
             if (currentDate.plusWeeks(timeBeforeReminder).equals(date)) {
                 return true;
             }
             break;
-        case REMINDER_TYPE_MONTH:
+        case REMINDER_MONTH:
             if (currentDate.plusMonths(timeBeforeReminder).equals(date)) {
                 return true;
             }
             break;
+        default:
+            throw new SystemException(SystemException.ExceptionType.EXCEPTION_WRONG_TIME_UNIT);
         }
         return false;
     }
 
+    public String toReminderString() {
+        String titleString = "Event: " + title;
+        String dateString = "Date: " + date.toString() + "\tTime: " + time.toString();
+        return titleString + InterfaceManager.LS + dateString;
+    }
+
+    @Override
     public String toString() {
         String titleString = "Event: " + title;
         String dateString = "Date: " + date.toString() + "\tTime: " + time.toString();
