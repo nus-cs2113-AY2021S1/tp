@@ -13,9 +13,6 @@ public class Show {
     protected int currentSeason;    //to keep track of watch progress
     protected int currentEpisode;
 
-    public Show() {
-
-    }
 
     @Override
     public String toString() {

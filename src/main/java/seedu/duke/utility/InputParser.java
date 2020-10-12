@@ -167,15 +167,6 @@ public class InputParser {
         Ui.printChangeRating(tokenizedInput[0], tokenizedInput[1]);
     }
 
-    private static void parseListCommand(HashMap<String, Show> showList) {
-        // idk how to do this btw
-        int index = 1;
-        for (Entry<String, Show> entry : showList.entrySet()) {
-            System.out.print(index + ". " + entry.getValue().getName() + "|" + entry.getValue().getNumSeasons()
-                    + "|" + entry.getValue().getEpisodesForSeason(index) + entry.getValue().getRating());
-            index++;
-        }
-    }
 
 
     private static void parseAddCommand(String input) {
@@ -202,6 +193,17 @@ public class InputParser {
         }
 
     }
+
+     private static void parseListCommand(HashMap<String, Show> showList) {
+        // idk how to do this btw
+        int index = 1;
+        for (Entry<String, Show> entry : showList.entrySet()) {
+            System.out.print(index + ". " + entry.getValue().getName() + "|" + entry.getValue().getNumSeasons()
+                    + "|" + entry.getValue().getEpisodesForSeason(index) + entry.getValue().getRating());
+            index++;
+        }
+    }
+
 
     private static void parseDeleteCommand(String input) {
         //catch for 1)show not found , 2) invalid no. of args

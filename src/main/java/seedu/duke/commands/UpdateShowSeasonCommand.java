@@ -1,7 +1,6 @@
 package seedu.duke.commands;
 
 import seedu.duke.classes.Show;
-import seedu.duke.utility.ErrorHandling;
 import seedu.duke.utility.ShowList;
 
 public class UpdateShowSeasonCommand extends Command {
@@ -26,17 +25,17 @@ public class UpdateShowSeasonCommand extends Command {
     }
 
     public void updateSeasonAndEpisode() {
-        String showName = inputs.get(0);
-        int season = Integer.parseInt(inputs.get(1));
-        int episode = Integer.parseInt(inputs.get(2));
+        String showName = inputs.get(1);
+        int season = Integer.parseInt(inputs.get(2));
+        int episode = Integer.parseInt(inputs.get(3));
         Show show = ShowList.getShow(showName);
         show.setCurrentSeason(season, episode);
         ShowList.setShow(showName, show);
     }
 
     public void updateSeasonOnly() {
-        String showName = inputs.get(0);
-        int season = Integer.parseInt(inputs.get(1));
+        String showName = inputs.get(1);
+        int season = Integer.parseInt(inputs.get(2));
         Show show = ShowList.getShow(showName);
         show.setCurrentSeason(season);
         ShowList.setShow(showName, show);
