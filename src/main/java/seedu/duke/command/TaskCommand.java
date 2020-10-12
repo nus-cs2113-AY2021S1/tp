@@ -62,7 +62,7 @@ public class TaskCommand {
                     int backlogId = Integer.parseInt(id) - offset;
                     if (backlogId < proj.backlog.size()) {
                         ui.printTaskRemoved(proj.backlog.getTask(backlogId));
-                        proj.backlog.backlogTasks.remove(backlogId);
+                        proj.backlog.removeTask(backlogId);
                         offset++;
                     } else {
                         Ui.displayInvalidId();

@@ -26,6 +26,9 @@ public class ProjectBacklog {
     public Task getTask(int i) {
         return backlogTasks.get(i);
     }
+    public Task removeTask(int i) {
+        return backlogTasks.remove(i);
+    }
 
     //    public void viewTask(String id, Ui ui) {
     //        Task task = null;
