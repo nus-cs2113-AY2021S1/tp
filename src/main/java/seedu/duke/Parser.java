@@ -5,9 +5,9 @@ public class Parser {
         String[] fullCommand = userInput.split("\\s+");
         switch (fullCommand[0].toLowerCase()) {
         case "food":
-            return new AddCommand(userInput);
+            return new AddFoodCommand(userInput);
         case "exercise":
-            return new AddCommand(userInput);
+            return new AddExerciseCommand(userInput);
         case "view":
             return new ViewCommand(userInput);
         case "delete":

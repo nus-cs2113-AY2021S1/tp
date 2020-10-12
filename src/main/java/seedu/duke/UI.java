@@ -63,4 +63,9 @@ public class UI {
     public static void showError(String message) {
         System.out.println("Error! Error!");
     }
+
+    public static void showAdd(String message) {
+        System.out.println(message);
+    }
+
 }
