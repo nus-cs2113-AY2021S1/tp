@@ -22,7 +22,7 @@ public class Show {
         this.currentEpisode = 1;
         this.currentSeason = 1;
     }
-    
+
     public String getName() {
         return name;
     }

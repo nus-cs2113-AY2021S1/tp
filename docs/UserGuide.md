@@ -4,17 +4,19 @@
 * [2. Quick Start](#2-quick-start)
 * [3. Command Format](#3-command-format)
 * [4. Features](#4-features)
-    + [4.1. Viewing Help](#41-help---views-help)
-    + [4.2. Adding shows](#42-add---adds-a-show)
-    + [4.3. Editing shows](#43-edit---edits-your-show-details)
-    + [4.4. Adding/editing ratings](#44-rating---modifies-rating-of-your-show)
-    + [4.5. List shows](#45-list---displays-all-your-shows-in-list)
-    + [4.6. Deleting shows](#46-delete---deletes-your-show)
-    + [4.2. Deleting ratings](#47-deleterating---deletes-rating-of-your-show)
-    + [4.3. Change Rating](#48-changerating---changes-rating-of-your-show)
-    + [4.4. Saving shows](#49-save---saves-your-shows)
-    + [4.6. Exiting WatchNext](#499-bye---exits-the-program)
-- [5. Command Summary](#5-command-summary)   
+    + [4.a. Viewing Help](#4a-help---views-help)
+    + [4.b. Adding shows](#4b-add---adds-a-show)
+    + [4.c. Editing shows](#4c-edit---edits-your-show-details)
+    + [4.d. Adding ratings](#4d-rating---modifies-rating-of-your-show)
+    + [4.e. List shows](#4e-list---displays-all-your-shows-in-list)
+    + [4.f. Deleting shows](#4f-delete---deletes-your-show)
+    + [4.g. Deleting ratings](#4g-deleterating---deletes-rating-of-your-show)
+    + [4.h. Change Rating](#4h-changerating---changes-rating-of-your-show)
+    + [4.i. Update episode](#4i-episode---changes-the-episode-of-the-show-you-are-currently-watching)
+    + [4.j. Update season](#4j-season---changes-the-season-of-the-show-you-are-currently-watching)
+    + [4.k. Exiting WatchNext](#4k-bye---exits-the-program)
+- [5. Frequently Asked Questions](#5-faq)   
+- [6. Command Summary](#6-command-summary)   
 
 
 
@@ -33,25 +35,19 @@ Ensure that you have Java 11 installed in your Computer.
 
 3.Open a command window in that folder.
 
-4.Run the command `Goodbye world`.
+4.Run the command `java -jar Watchnext.jar`.
 
 5.You should see something like this below:
-   ```
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-___________________________________________________
-Hello! I'm Duke
-What can I do for you?
-___________________________________________________
 
-   ```    
+ 
+<img src = "images/quickstart.PNG" width = "400">
+ 
+&nbsp;  
+
 
 ## 3. Command Format
 
-Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. rating `NAME SCORE`.
+Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. rating `SCORE`.
 
 The maximum length for a Show or Movie’s `NAME` is 100 characters.
 
@@ -59,66 +55,193 @@ The maximum length for a Show or Movie’s `NAME` is 100 characters.
 
 ## 4. Features
  
-#### 4.1 `help` - Views help
- 
-#### 4.2 `add` - Adds a show
- 
-#### 4.3 `edit` - Edits your show details
- 
-### 4.4 `rating` - Modifies rating of your show
-
-### 4.5 `list` - Displays all your shows in list
-
-### 4.6 `delete` - Deletes your show
- 
-### 4.7 `deleterating` - Deletes rating of your show
-
-### 4.8 `changerating` - Changes rating of your show
-
-### 4.9 `save` - Saves your shows
-
-### 4.99 `bye` - Exits the program
-
-
-## 5. Command Summary 
+#### 4.a `help` - Views help
+ The help list contains information about all accepted commands.
+ Format:
+  `help`
   
-## Introduction
+ Example of usage:
+ `help`
+  
+Expected outcome:
+ 
+<img src = "images/help.PNG" width = "400">
+ 
+&nbsp;
 
-{Give a product intro}
+#### 4.b `add` - Adds a show
+ The `add` command adds a show into your existing watchlist.
+ 
+  Format:
+   `add <SHOWNAME> <SEASON> <NUMBER OF EPISODES>,<EPISODE YOU ARE WATCHING>`
+   
+  Example of usage:
+  `add Friends 2 10,10`
+ 
+ Expected outcome:
+  
+ <img src = "images/add.PNG" width = "400">
+  
+ &nbsp;
+ 
+#### 4.c `edit` - Edits your show details
+ 
+ Expected outcome:
+  
 
-## Quick Start
+  
+ &nbsp;
+ 
+### 4.d `rating` - Modifies rating of your show
+ The `rating` command gives a rating (out of 10) for an existing show in your watchlist.
+ 
+   Format:
+    `rating <SHOWNAME> <SCORE>`
+    
+   Example of usage:
+   `rating Friends 9`
+   
+   Expected outcome:
+    
+   <img src = "images/rating.PNG" width = "400">
+    
+   &nbsp;
+ 
+### 4.e `list` - Displays all your shows in list
+This command displays all existing shows in your watchlist in an easy-to-read format, including the episode and season that you are currently at.
 
-{Give steps to get started quickly}
+   Format:
+    `list`
+    
+   Example of usage:
+   `list`
+   
+   Expected outcome:
+    
+   <img src = "images/list.PNG" width = "400">
+    
+   &nbsp;
 
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+### 4.f `delete` - Deletes your show
+ This command removes a specified show from the watchlist.
+ 
+ Format:
+  `delete <SHOWNAME>`
+  
+ Example of usage:
+ `delete Friends`
+ 
+ Expected outcome:
+  
+  
+ &nbsp;
+  
+ 
+### 4.g `deleterating` - Deletes rating of your show
+This command deletes the rating for an existing show in the watchlist.
 
-## Features 
+ Format:
+  `deleterating <SHOWNAME>`
+  
+ Example of usage:
+ `deleterating Friends`
+ 
+ Expected outcome:
+  
+  
+ &nbsp;
 
-{Give detailed description of each feature}
+### 4.h `changerating` - Changes rating of your show
+This command changes the rating for an existing show which already has a rating in the watchlist.
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+ Format:
+  `changerating <SHOWNAME> <NEWSCORE>`
+  
+ Example of usage:
+ `changerating Friends 10`
+ 
+ Expected outcome:
+  
+ <img src = "images/changerating.PNG" width = "400">
+  
+ &nbsp;
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+### 4.i `episode` - Changes the episode of the show you are currently watching
+This command updates the episode for an existing show that you currently have in your watchlist.
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+ Format:
+  `episode <SHOWNAME> <EPISODE>`
+  
+ Example of usage:
+ `episode Friends 10`
+ 
+ Expected outcome:
+  
+ <img src = "images/episode.PNG" width = "400">
+  
+ &nbsp;
+ 
+### 4.j `season` - Changes the season of the show you are currently watching
+This command updates the season for an existing show that you currently have in your watchlist.
 
-Example of usage: 
+ Format:
+  `season <SHOWNAME> <SEASON>`
+  
+ Example of usage:
+ `season Friends 3`
+ 
+ Expected outcome:
+  
+ <img src = "images/season.PNG" width = "400">
+  
+ &nbsp;
+ 
+### 4.k `bye` - Exits the program
+This command exits the program.
 
-`todo n/Write the rest of the User Guide d/next week`
+Format:
+ `bye`
+ 
+Example of usage:
+`bye`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+Expected outcome:
+ 
+<img src = "images/bye.PNG" width = "400">
+ 
+&nbsp;
 
-## FAQ
+### 5. FAQ
 
-**Q**: How do I transfer my data to another computer? 
+**Q**: Is my watchlist saved after i exit the program?
 
-**A**: {your answer here}
+**A**: Of course! The watchlist is saved into a local storage file after every input entered by the user.The same file will be loaded up when you start Watchnext again.
 
-## Command Summary
+### 6. Command Summary
 
-{Give a 'cheat sheet' of commands here}
+* Display help  `help`
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+* Add show   `add Friends 2 10,10`
+
+* Edit show   `edit`
+
+* Add rating  `rating Friends 9`
+
+* Show watchlist  `list`
+
+* Delete show   `delete Friends`
+
+* Change rating   `changerating Friends 10`
+
+* Delete rating  `deleterating Friends`
+
+* Update episode  `episode Friends 10`
+
+* Update season   `season Friends 3`
+
+* Exit program  `bye`
+
+
+
+
+

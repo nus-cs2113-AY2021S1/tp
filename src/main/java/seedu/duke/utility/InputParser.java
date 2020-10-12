@@ -169,6 +169,7 @@ public class InputParser {
     private static void parseChangeRatingCommand(String input) {
         // catch exceptions for 1)not enough inputs, 2)invalid args, 3)invalid rating
         // split input using tokenizer
+        input = removeFirstWord(input);
         String[] tokenizedInput = input.split(" ");
         int showRating = Integer.parseInt(tokenizedInput[1]);
         ChangeRatingCommand changeShowRating = new ChangeRatingCommand(tokenizedInput[0]);

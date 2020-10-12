@@ -45,7 +45,6 @@ public class Ui {
     }
 
     public static void printByeMessage() {
-        printLine();
         printSavedList();
         System.out.println(" Bye. Thank you for using WatchNext <3");
         printLine();
@@ -64,25 +63,28 @@ public class Ui {
 
         System.out.println(ANSI_GREEN + helpIcon + ANSI_RESET);
         System.out.println("The following options are available:");
-        System.out.println("`help` - Views help\n"
+        System.out.println(toBold("help") + " - Views help\n"
                 + " \n"
-                + "'add` - Adds a show\n"
+                + toBold("add") + " - Adds a show\n"
                 + " \n"
-                + "`edit` - Edits your show details\n"
+                + toBold("edit") + " - Edits your show details\n"
                 + " \n"
-                + "`rating` - Set rating of your show\n"
+                + toBold("rating") + " - Set rating of your show\n"
                 + "\n"
-                + "`list` - Displays all your shows in list\n"
+                + toBold("list") + " - Displays all your shows in list\n"
                 + "\n"
-                + "`delete` - Deletes your show\n"
+                + toBold("delete") + " - Deletes your show\n"
                 + " \n"
-                + "`deleterating` - Deletes rating of your show\n"
+                + toBold("deleterating") + " - Deletes rating of your show\n"
                 + "\n"
-                + "`changerating` - Changes rating of your show\n"
+                + toBold("changerating") + " - Changes rating of your show\n"
                 + "\n"
-                + "`save` - Saves your shows\n"
+                + toBold("episode") + " - Update your episode progress\n"
                 + "\n"
-                + "`bye` - Exits the program\n");
+                + toBold("season") + " - Update your season progress\n"
+                + "\n"
+                + toBold("bye") + " - Exits the program\n");
+        System.out.println("Refer to our user guide for more help!");
         printLine();
     }
 
@@ -165,7 +167,7 @@ public class Ui {
 
     public static void printSavedList() {
         printLine();
-        System.out.println("Your watchlist has been saved in the file with path <filepath>.");
+        System.out.println("Your watchlist has been saved.");
     }
 
     public static void printIoException() {
