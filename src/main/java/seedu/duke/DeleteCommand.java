@@ -12,11 +12,13 @@ public class DeleteCommand extends Command {
             String type = command.split(" ", 2)[0];
             if (type.equals("food")) {
                 int deletionIndex = Integer.parseInt(command.split(" ", 2)[1]);
-                System.out.println("The following has been deleted from the list of food consumed: " + foodlist.getFood(deletionIndex - 1).getFoodName());
+                System.out.println("The following has been deleted from the list of food consumed: "
+                        + foodlist.getFood(deletionIndex - 1).getFoodName());
                 foodlist.deleteFood(deletionIndex - 1);
             } else if (type.equals("exercise")) {
                 int deletionIndex = Integer.parseInt(command.split(" ", 2)[1]);
-                System.out.println("The following has been deleted from the list of food consumed: " + exerciseList.getExercise(deletionIndex - 1).getNameOfExercise());
+                System.out.println("The following has been deleted from the list of food consumed: "
+                        + exerciseList.getExercise(deletionIndex - 1).getNameOfExercise());
                 exerciseList.deleteExercise(deletionIndex - 1);
             }
         } catch (IndexOutOfBoundsException e) {
