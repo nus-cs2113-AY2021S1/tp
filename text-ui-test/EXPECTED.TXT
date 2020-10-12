@@ -1,4 +1,4 @@
-Welcome to NotUS!Type "help" if you need to see a list of commands and their usages.
+Welcome to NotUS! Type "help" if you need to see a list of commands and their usages.
 Enter command:
 
 The recognized commands and their usages are listed below. Parameters listed in brackets, [ ] represent optional inputs.

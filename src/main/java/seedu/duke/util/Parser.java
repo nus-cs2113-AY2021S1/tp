@@ -77,7 +77,7 @@ public class Parser {
         } catch (ArrayIndexOutOfBoundsException exception) {
             userMessage = null;
         }
-
+        
         try {
             switch (commandString.toLowerCase()) {
             case AddNoteCommand.COMMAND_WORD:
@@ -89,6 +89,7 @@ public class Parser {
             case ListEventCommand.COMMAND_WORD:
                 return prepareListEvent(userMessage);
             case ViewNoteCommand.COMMAND_WORD:
+                return prepareViewNote(userMessage);
                 // return prepareViewNote(userMessage);
             case EditNoteCommand.COMMAND_WORD:
                 // return prepareEditNote(userMessage);
@@ -144,7 +145,7 @@ public class Parser {
             // Remove the first element as it is always empty
             splitMessageContent.remove(0);
             return splitMessageContent;
-        } catch (NullPointerException exception) {
+        } catch (NullPointerException | IndexOutOfBoundsException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_MESSAGE_AFTER_COMMAND);
         }
     }
@@ -270,7 +271,6 @@ public class Parser {
      */
     private Command prepareAddEvent(String userMessage) throws SystemException {
         // add-e eventTitle /t timing /rec occurrence /rem time before (default same day)
-
         String title = "";
         LocalDateTime dateTime = null;
         LocalDateTime recurringEndTime = null;
@@ -421,6 +421,7 @@ public class Parser {
                     title = checkBlank(infoDetails[1], exception);
                     break;
                 default:
+                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
                 }
             }
 
@@ -505,6 +506,37 @@ public class Parser {
         return new ListEventCommand();
     }
 
+    private Command prepareViewNote(String userMessage) throws SystemException {
+        String title;
+        int index;
+
+        try {
+            ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
+
+            for (String[] infoDetails : splitInfo) {
+                String prefix = infoDetails[0].toLowerCase();
+                ExceptionType exception;
+                switch (prefix) {
+                case PREFIX_TITLE:
+                    exception = ExceptionType.EXCEPTION_MISSING_TITLE;
+                    title = checkBlank(infoDetails[1],exception);
+                    return new ViewNoteCommand(title);
+                case PREFIX_INDEX:
+                    exception = ExceptionType.EXCEPTION_MISSING_INDEX;
+                    index = Integer.parseInt(checkBlank(infoDetails[1], exception));
+                    return new ViewNoteCommand(index - 1);
+                default:
+                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+        } catch (NumberFormatException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
+        }
+        throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
+    }
+
     /**
      * Parses the variables in userMessage to a form that is used in DeleteEventCommand.
      * @param userMessage User Input without the action word.
@@ -514,7 +546,7 @@ public class Parser {
     private Command prepareDeleteEvent(String userMessage) throws SystemException {
         int index;
         try {
-            index = Integer.parseInt(checkBlank(userMessage, SystemException.ExceptionType.EXCEPTION_MISSING_INDEX));
+            index = Integer.parseInt(checkBlank(userMessage, ExceptionType.EXCEPTION_MISSING_INDEX));
         } catch (NumberFormatException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
         }
@@ -526,11 +558,8 @@ public class Parser {
         // Convert from human-readable index to index in array.
         return new DeleteEventCommand(index - 1);
     }
-    /*
-    private Command prepareViewNote(String userMessage) {
-       return new ViewNoteCommand();
-    }
 
+    /*
     private Command prepareEditNote(String userMessage) {
        return new EditCommand(index, note);
     }
@@ -563,6 +592,8 @@ public class Parser {
                 if (prefix.equalsIgnoreCase(PREFIX_TAG)) {
                     Tag tag = handleTagPrefix(infoDetails);
                     tags.add(tag);
+                } else {
+                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
                 }
             }
             // Ensures that there is at least 1 tag to be created or deleted.
