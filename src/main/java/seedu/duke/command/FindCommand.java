@@ -13,16 +13,7 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find-n";
 
-    private static final String COMMAND_USAGE = COMMAND_WORD + ": Finds a note. Parameters: KEYWORDS";
-
-    /**
-     * Gets how the command is expected to be used.
-     *
-     * @return String representation of how the command is to be used.
-     */
-    public static String getCommandUsage() {
-        return COMMAND_USAGE;
-    }
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Finds a note. Parameters: KEYWORDS";
 
     private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "There are no matching notes. "
             + "Please try another search query.";

@@ -20,7 +20,7 @@ public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "add-e";
 
-    private static final String COMMAND_USAGE = COMMAND_WORD + ": Adds an event to the timetable. Parameters:"
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Adds an event to the timetable. Parameters:"
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE "
             + PREFIX_DELIMITER + PREFIX_TIMING + " TIMING (Format: " + DateTimeManager.DATE_FORMAT + ") "
             + "[" + PREFIX_DELIMITER + PREFIX_RECURRING
@@ -29,15 +29,6 @@ public class AddEventCommand extends Command {
             RecurringEvent.MONTHLY_RECURRENCE_TYPE, RecurringEvent.YEARLY_RECURRENCE_TYPE)
             + "[" + PREFIX_DELIMITER + PREFIX_REMIND + " [Days before (Default: 1)]" + "] "
             + "[" + PREFIX_DELIMITER + PREFIX_STOP_RECURRING + " TIMING (Format: " + DateTimeManager.DATE_FORMAT + ")]";
-
-    /**
-     * Provides a description of how the command should be used.
-     *
-     * @return A string description of the command should be used.
-     */
-    public static String getCommandUsage() {
-        return COMMAND_USAGE;
-    }
 
     private static final String COMMAND_SUCCESSFUL_MESSAGE = "Added the following!";
 

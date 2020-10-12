@@ -15,17 +15,8 @@ public class DeleteEventCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-e";
 
-    private static final String COMMAND_USAGE = COMMAND_WORD + ": Deletes an event. Parameters: "
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Deletes an event. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
-
-    /**
-     * Gets how the command is expected to be used.
-     *
-     * @return String representation of how the command is to be used.
-     */
-    public static String getCommandUsage() {
-        return COMMAND_USAGE;
-    }
 
     private static final String COMMAND_SUCCESSFUL_MESSAGE = "Event deleted:" + InterfaceManager.LS;
 

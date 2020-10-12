@@ -14,29 +14,29 @@ public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
 
-    private static final String HELP_STRING = InterfaceManager.LS
+    public static final String HELP_STRING = InterfaceManager.LS
             + "The recognized commands and their usages are listed below. "
             + "Parameters listed in brackets, [ ] represent optional inputs." + InterfaceManager.LS;
 
     @Override
     public String execute() {
         return HELP_STRING + InterfaceManager.LS + COLOR_WHITE_STRING
-                + AddNoteCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
-                + AddEventCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
-                + CreateTagCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
-                + DeleteNoteCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
-                + DeleteEventCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
-                + DeleteTagCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
-                + EditNoteCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
-                + EditEventCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
-                + ExitCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
-                + FindCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
-                + ListEventCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
-                + ListNoteCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
-                + ListTagCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
-                + PinCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
-                + RemindCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
-                + TagCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
-                + ViewNoteCommand.getCommandUsage() + InterfaceManager.LS + COLOR_RESET_STRING;
+                + AddNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
+                + AddEventCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
+                + CreateTagCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
+                + DeleteNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
+                + DeleteEventCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
+                + DeleteTagCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
+                + EditNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
+                + EditEventCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
+                + ExitCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
+                + FindCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
+                + ListEventCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
+                + ListNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
+                + ListTagCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
+                + PinCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
+                + RemindCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
+                + TagCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
+                + ViewNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_RESET_STRING;
     }
 }

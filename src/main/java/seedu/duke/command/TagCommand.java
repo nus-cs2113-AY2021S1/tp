@@ -17,19 +17,10 @@ public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "tag";
 
-    private static final String COMMAND_USAGE = COMMAND_WORD + ": Tags or untags a note. Parameters: "
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Tags or untags a note. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR "
             + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...]";
-
-    /**
-     * Gets how the command is expected to be used.
-     *
-     * @return String representation of how the command is to be used.
-     */
-    public static String getCommandUsage() {
-        return COMMAND_USAGE;
-    }
 
     private static final String ADD_TAG_MESSAGE = "Added the tag to the note! ";
     private static final String REMOVE_TAG_MESSAGE = "Removed the tag from the note! ";

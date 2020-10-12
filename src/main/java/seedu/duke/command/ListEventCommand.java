@@ -13,19 +13,10 @@ public class ListEventCommand extends Command {
 
     public static final String COMMAND_WORD = "list-e";
 
-    private static final String COMMAND_USAGE = COMMAND_WORD + ": List all the events in the Timetable.";
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": List all the events in the Timetable.";
 
-    //private static final String COMMAND_USAGE = COMMAND_WORD + ": List all the events in the Timetable. Parameters: "
+    //public static final String COMMAND_USAGE = COMMAND_WORD + ": List all the events in the Timetable. Parameters: "
     //        + "[" + PREFIX_DATETIME + " DATE_TIME]";
-
-    /**
-     * Gets how the command is expected to be used.
-     *
-     * @return String representation of how the command is to be used.
-     */
-    public static String getCommandUsage() {
-        return COMMAND_USAGE;
-    }
 
     private LocalDate date;
     private boolean isListByDate;

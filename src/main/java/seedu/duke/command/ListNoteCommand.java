@@ -22,7 +22,7 @@ public class ListNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "list-n";
 
-    private static final String COMMAND_USAGE = COMMAND_WORD + ": Lists all the notes in the Notebook. Parameters: "
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Lists all the notes in the Notebook. Parameters: "
             + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG "
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG1...] "
             + "[up/down]";
@@ -33,10 +33,6 @@ public class ListNoteCommand extends Command {
     private ArrayList<String> tags;
     private boolean isSorted;
     private Boolean isAscendingOrder;
-
-    public static String getCommandUsage() {
-        return COMMAND_USAGE;
-    }
 
     /**
      * Constructs a ListCommand to list all the Notes in the Notebook in a sorted order.

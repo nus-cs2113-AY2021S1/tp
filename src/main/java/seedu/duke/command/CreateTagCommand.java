@@ -25,7 +25,7 @@ public class CreateTagCommand extends Command {
     private static final String COLOR_WHITE_STRING = TagColor.COLOR_WHITE.getColor();
     private static final String COLOR_RESET_STRING = TagColor.COLOR_RESET.getColor();
 
-    private static final String COMMAND_USAGE = COMMAND_WORD + ": Creates a tag. Parameters: "
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Creates a tag. Parameters: "
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG NAME [TAG COLOR]"
             + COLOR_RESET_STRING + InterfaceManager.LS + "(Available colors: "
             + COLOR_WHITE_STRING + Tag.COLOR_WHITE_STRING + ", "
@@ -36,15 +36,6 @@ public class CreateTagCommand extends Command {
             + COLOR_CYAN_STRING + Tag.COLOR_CYAN_STRING + ", "
             + COLOR_PURPLE_STRING + Tag.COLOR_PURPLE_STRING
             + COLOR_RESET_STRING + ")";
-
-    /**
-     * Provides a description of how the command should be used.
-     *
-     * @return A string description of the command should be used.
-     */
-    public static String getCommandUsage() {
-        return COMMAND_USAGE;
-    }
 
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Created a tag! ";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Tag already exists! ";
