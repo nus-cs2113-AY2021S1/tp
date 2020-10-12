@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
 
-class DeleteCommandTest {
+class DeleteNoteCommandTest {
 
     @Test
     void execute() {

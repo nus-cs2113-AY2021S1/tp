@@ -8,9 +8,9 @@ import seedu.duke.ui.InterfaceManager;
  */
 public class HelpCommand extends Command {
 
-    public static final String COLOR_CYAN_STRING = TagColor.COLOR_CYAN.getColor();
-    public static final String COLOR_WHITE_STRING = TagColor.COLOR_WHITE.getColor();
-    public static final String COLOR_RESET_STRING = TagColor.COLOR_RESET.getColor();
+    private static final String COLOR_CYAN_STRING = TagColor.COLOR_CYAN.getColor();
+    private static final String COLOR_WHITE_STRING = TagColor.COLOR_WHITE.getColor();
+    private static final String COLOR_RESET_STRING = TagColor.COLOR_RESET.getColor();
 
     public static final String COMMAND_WORD = "help";
 
@@ -20,15 +20,15 @@ public class HelpCommand extends Command {
 
     @Override
     public String execute() {
-        String helpList = HELP_STRING + InterfaceManager.LS + COLOR_WHITE_STRING
-                + AddCommand.getCommandUsageNote() + InterfaceManager.LS + COLOR_CYAN_STRING
-                + AddCommand.getCommandUsageEvent() + InterfaceManager.LS + COLOR_WHITE_STRING
+        return HELP_STRING + InterfaceManager.LS + COLOR_WHITE_STRING
+                + AddNoteCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
+                + AddEventCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
                 + CreateTagCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
-                + DeleteCommand.getCommandUsageNote() + InterfaceManager.LS + COLOR_WHITE_STRING
-                + DeleteCommand.getCommandUsageEvent() + InterfaceManager.LS + COLOR_CYAN_STRING
+                + DeleteNoteCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
+                + DeleteEventCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
                 + DeleteTagCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
-                + EditCommand.getCommandUsageNote() + InterfaceManager.LS + COLOR_CYAN_STRING
-                + EditCommand.getCommandUsageEvent() + InterfaceManager.LS + COLOR_WHITE_STRING
+                + EditNoteCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
+                + EditEventCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
                 + ExitCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
                 + FindCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
                 + ListEventCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
@@ -38,7 +38,5 @@ public class HelpCommand extends Command {
                 + RemindCommand.getCommandUsage() + InterfaceManager.LS + COLOR_CYAN_STRING
                 + TagCommand.getCommandUsage() + InterfaceManager.LS + COLOR_WHITE_STRING
                 + ViewNoteCommand.getCommandUsage() + InterfaceManager.LS + COLOR_RESET_STRING;
-
-        return helpList;
     }
 }
