@@ -10,5 +10,23 @@ Hello! I'm E-Duke-8
 What can I do for you?
 -------------------------------------------------------------------
 -------------------------------------------------------------------
+E-Duke-8 is a desktop app that helps CS2113/T students learn and understand software engineering and OOP principles through a gamified platform and enhance their learning experience. It also consolidates key concepts for easy revision.
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+These are the commands that you can used:
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+1) about
+2) help
+3) topics
+4) textbook
+5) quiz
+6) stats
+7) exit
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+The textbook for this module is available at:  https://nus-cs2113-ay2021s1.github.io/website/se-book-adapted/index.html
+-------------------------------------------------------------------
+-------------------------------------------------------------------
 Bye bye. Hope you have a nice day and see you soon!
 -------------------------------------------------------------------

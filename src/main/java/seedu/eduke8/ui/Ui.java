@@ -24,7 +24,7 @@ public class Ui {
     private static final String HORIZONTAL_LINE = "-------------------------------------------------------------------";
     private static final String MESSAGE_ABOUT = "E-Duke-8 is a desktop app that helps CS2113/T students learn and "
             + "understand software engineering and OOP principles through a gamified platform and enhance their "
-            + "learning experience. It also consolidates key concepts for easy revision. ";
+            + "learning experience. It also consolidates key concepts for easy revision.";
     private static final String MESSAGE_GREETINGS = "Hello! I'm E-Duke-8\nWhat can I do for you?";
     private static final String MESSAGE_EXIT = "Bye bye. Hope you have a nice day and see you soon!";
     private static final String MESSAGE_HELP = "These are the commands that you can used:";
@@ -129,7 +129,7 @@ public class Ui {
     }
 
     private void printStartQuizQuestions(int numberOfQuestionsChosen) {
-        System.out.println("You have chosen to complete " + numberOfQuestionsChosen + "question");
+        System.out.print("You have chosen to complete " + numberOfQuestionsChosen + " question");
         if (numberOfQuestionsChosen < 2) {
             System.out.println(".");
         } else {
