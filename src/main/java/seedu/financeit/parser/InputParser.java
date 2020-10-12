@@ -50,7 +50,7 @@ public class InputParser {
             separator = getSeparator(input);
         } catch (java.lang.IllegalStateException exception) {
             //No params provided
-            commandString = input;
+            commandString = input.toLowerCase();
             return new CommandPacket(commandString, params);
         }
 
@@ -60,7 +60,7 @@ public class InputParser {
             if (buffer[0].equals(" ")) {
                 throw new EmptyCommandStringException();
             }
-            commandString = buffer[0];
+            commandString = buffer[0].toLowerCase();
             String paramSubstring = separator + buffer[1];
             params = new ParamsParser(paramSubstring).parseParams();
         } catch (EmptyCommandStringException e) {

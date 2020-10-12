@@ -9,22 +9,21 @@ import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.UiManager;
 
+import java.time.Month;
 import java.util.ArrayList;
 
-import static seedu.financeit.utils.ParamChecker.PARAM_AMOUNT;
-import static seedu.financeit.utils.ParamChecker.PARAM_AUTO;
-import static seedu.financeit.utils.ParamChecker.PARAM_DAY;
-import static seedu.financeit.utils.ParamChecker.PARAM_DESCRIPTION;
-import static seedu.financeit.utils.ParamChecker.PARAM_EXP;
-import static seedu.financeit.utils.ParamChecker.PARAM_INC;
+import static seedu.financeit.utils.ParamChecker.*;
 
 public class RecurringEntry extends Item {
     private int day;
-    private String description;
-    private double amount;
+    private String description = "";
     private Constants.EntryType entryType;
-    private String notes;
+    private double amount;
+    private Month start = Month.of(1);
+    private Month end  = Month.of(12);
     private boolean auto = false;
+    private String notes = "";
+
 
     public RecurringEntry() {
         requiredParams = new ArrayList<>() {
@@ -37,6 +36,7 @@ public class RecurringEntry extends Item {
     }
 
     public RecurringEntry(CommandPacket packet) throws AssertionError, InsufficientParamsException {
+        this();
         try {
             handleParams(packet);
         } catch (ItemNotFoundException | ConflictingItemReference exception) {
@@ -66,6 +66,9 @@ public class RecurringEntry extends Item {
         case PARAM_AUTO:
             auto = true;
             break;
+        case PARAM_NOTES:
+            notes = packet.getParam(paramType);
+            break;
         default:
             validParam = false;
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
@@ -78,13 +81,31 @@ public class RecurringEntry extends Item {
 
     @Override
     public String getName() {
-        return String.format("Entry: [ %s ] [ %s ]",
-                day, description);
+        return String.format("Entry: [ %s ] on day [ %s ] ",
+                description, day);
+    }
+
+    public int getDay() {
+        return day;
     }
 
     @Override
     public boolean isValidItem() {
-        return (entryType != null)
-                && (this.amount != -1);
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        String expenditureAmount = this.entryType == Constants.EntryType.EXP ? "-$" + this.amount : "";
+        String incomeAmount = this.entryType == Constants.EntryType.INC ? "+$" + this.amount : "";
+        String duration;
+        if (this.start.getValue() == 1 && this.end.getValue() == 12) {
+            duration = "Every month";
+        } else {
+            duration = start + " to " + end;
+        }
+        String payment = this.auto ? "Auto deduction" : "Manual payment";
+        return String.format("%s;%s;%s;%s;%s;%s;%s", this.day, this.description, expenditureAmount, incomeAmount,
+                duration, payment, this.notes);
     }
 }

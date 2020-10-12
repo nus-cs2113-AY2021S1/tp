@@ -22,12 +22,12 @@ public class SaveManager {
         StringBuilder str = new StringBuilder();
         int size = ledList.getItemsSize();
         for (int i = 0; i < size; i++) {
-            Ledger led = (Ledger) ledList.getItemFromIndex(i);
+            Ledger led = (Ledger) ledList.getItemAtIndex(i);
             str.append(led.toString() + System.lineSeparator());
             EntryList entList = led.entryList;
             int entsize = entList.getItemsSize();
             for (int x = 0; x < entsize; x++) {
-                Entry ent = (Entry) entList.getItemFromIndex(x);
+                Entry ent = (Entry) entList.getItemAtIndex(x);
                 str.append(ent.toString() + System.lineSeparator());
             }
         }
@@ -56,7 +56,7 @@ public class SaveManager {
                 if (buffer[3].length() >= 4) {
                     buffer[3] = charRemoveAt(buffer[3], 2);
                 }
-                EntryTracker.setCurrLedger((Ledger) ManualTracker.getLedgerList().getItemFromIndex(ledgerIndex));
+                EntryTracker.setCurrLedger((Ledger) ManualTracker.getLedgerList().getItemAtIndex(ledgerIndex));
                 EntryTracker.setCommandPacket(in.parseInput("entry new /time " + buffer[3] + " /cat "
                     + buffer[1] + " /desc " + buffer[4] + " /amt " + buffer[2] + buffer[0]));
                 EntryTracker.createEntry();

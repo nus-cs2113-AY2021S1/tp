@@ -68,7 +68,7 @@ public class LedgerList extends ItemList {
             break;
         case ParamChecker.PARAM_INDEX:
             int index = paramChecker.checkAndReturnIndex(paramType, this.items);
-            this.itemQueue.add(this.getItemFromIndex(index));
+            this.itemQueue.add(this.getItemAtIndex(index));
             this.parseSuccessParams.add("/date");
             this.parseSuccessParams.add("/id");
             break;

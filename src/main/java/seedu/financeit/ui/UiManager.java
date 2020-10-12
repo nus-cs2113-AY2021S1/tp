@@ -56,7 +56,7 @@ public class UiManager {
         if (mode.equals("echo")) {
             System.out.println(input);
         }
-        return input.toLowerCase();
+        return input;
     }
 
     public static void printWithStatusIcon(Constants.PrintType printType, String... messages) {

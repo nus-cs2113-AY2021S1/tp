@@ -5,6 +5,7 @@ import seedu.financeit.financetools.FinanceTools;
 import seedu.financeit.goaltracker.GoalTracker;
 import seedu.financeit.manualtracker.ManualTracker;
 import seedu.financeit.parser.InputParser;
+import seedu.financeit.recurringtracker.RecurringTracker;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
@@ -36,7 +37,8 @@ public class Financeit {
             case "manual":
                 ManualTracker.main();
                 break;
-            case "auto": //AutoTracker.main();
+            case "recur":
+                RecurringTracker.main();
                 break;
             case "acc": //AccSummary.main();
                 break;

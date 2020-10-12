@@ -24,6 +24,7 @@ public class ParamChecker {
     public static final String PARAM_DESCRIPTION = "/desc";
     public static final String PARAM_CATEGORY = "/cat";
     public static final String PARAM_AMOUNT = "/amt";
+    public static final String PARAM_NOTES = "/notes";
     public static final String PARAM_INC = "-i";
     public static final String PARAM_EXP = "-e";
     public static final String PARAM_AUTO = "-auto";
