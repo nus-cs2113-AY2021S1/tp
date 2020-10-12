@@ -13,8 +13,6 @@ public abstract class Command {
     protected Timetable timetable;
     protected TagManager tagManager;
 
-    protected static final int NULL_INT = -1;
-
     protected Command() {
     }
 
