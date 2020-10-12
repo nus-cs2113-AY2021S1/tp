@@ -10,30 +10,29 @@ import ui.Ui;
 
 public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
+    public static final String MODULE_PARAMETERS = " MODULE_NUMBER MODULE_NAME";
+    public static final String CHAPTER_PARAMETERS = " CHAPTER_NUMBER CHAPTER_NAME";
+    public static final String CARD_PARAMETERS = " FLASHCARD_NUMBER q:QUESTION | a:ANSWER";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edit the module name / chapter name / flashcard content. \n"
-            + "Parameters: " + COMMAND_WORD + " MODULE_NUMBER MODULE_NAME\n"
-            + "            " + COMMAND_WORD + " CHAPTER_NUMBER CHAPTER_NAME\n"
-            + "            " + COMMAND_WORD + " FLASHCARD_NUMBER q:QUESTION | a:ANSWER\n"
+            + ": Edit the module name / chapter name / flashcard content.\n"
+            + "Parameters:" + MODULE_PARAMETERS + "\n"
+            + "           " + CHAPTER_PARAMETERS + "\n"
+            + "           " + CARD_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " 1 CS2113T\n"
             + "         " + COMMAND_WORD + " 2 Chapter 2\n"
             + "         " + COMMAND_WORD + " 3 q:What is the result of one plus one | a:two\n";
-
-    private static final String ADMIN_LEVEL = "admin";
-    private static final String MODULE_LEVEL = "module";
-    private static final String CHAPTER_LEVEL = "chapter";
 
     private final int editIndex;
     private final String question;
     private final String answer;
     private final String accessLevel;
 
-    public EditCommand(int editIndex, String question, String answer) {
+    public EditCommand(int editIndex, String question, String answer, String accessLevel) {
         this.editIndex = editIndex;
         this.question = question;
         this.answer = answer;
-        this.accessLevel = CHAPTER_LEVEL;
+        this.accessLevel = accessLevel;
     }
 
     @Override
@@ -48,9 +47,9 @@ public class EditCommand extends Command {
     }
 
     private void editCard(Ui ui, Access access) throws InvalidInputException {
-        CardList allCards = access.getChapter().getCards();
+        CardList cards = access.getChapter().getCards();
         try {
-            Card card = allCards.getCard(editIndex);
+            Card card = cards.getCard(editIndex);
             ui.showCardUnedited(card);
             if (!(question.isEmpty())) {
                 card.setQuestion(question);

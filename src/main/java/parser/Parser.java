@@ -23,9 +23,13 @@ import storage.Storage;
 
 
 public class Parser {
-    public static final String QUESTION_ANSWER_PREFIX = " \\| ";
-    public static final String QUESTION_PREFIX = "q:";
-    public static final String ANSWER_PREFIX = "a:";
+    private static final String QUESTION_ANSWER_PREFIX = " \\| ";
+    private static final String QUESTION_PREFIX = "q:";
+    private static final String ANSWER_PREFIX = "a:";
+
+    private static final String ADMIN_LEVEL = "admin";
+    private static final String MODULE_LEVEL = "module";
+    private static final String CHAPTER_LEVEL = "chapter";
 
     public static Command parse(String fullCommand, Access access)
             throws InvalidInputException, IncorrectAccessLevelException {
@@ -178,7 +182,7 @@ public class Parser {
                         + EditCommand.MESSAGE_USAGE);
             }
 
-            return new EditCommand(editIndex, question, answer);
+            return new EditCommand(editIndex, question, answer, CHAPTER_LEVEL);
         } catch (NumberFormatException e) {
             throw new InvalidInputException("The flashcard number needs to be an integer.\n"
                     + EditCommand.MESSAGE_USAGE);
@@ -190,7 +194,9 @@ public class Parser {
 
     private static String parseQuestion(String arg) throws InvalidInputException {
         if (!(arg.trim().toLowerCase().startsWith(QUESTION_PREFIX))) {
-            throw new InvalidInputException("The format to input question needs to start with q:");
+            throw new InvalidInputException("There needs to be a \"q:\" prefix before the question.\n"
+                    + "Example: " + AddCommand.COMMAND_WORD + AddCommand.CARD_PARAMETERS + "\n"
+                    + "         " + EditCommand.COMMAND_WORD + EditCommand.CARD_PARAMETERS);
         }
 
         return arg.substring(2).trim();
@@ -198,7 +204,9 @@ public class Parser {
 
     private static String parseAnswer(String arg) throws InvalidInputException {
         if (!(arg.trim().toLowerCase().startsWith(ANSWER_PREFIX))) {
-            throw new InvalidInputException("The format to input question needs to start with a:");
+            throw new InvalidInputException("There needs to be a \"a:\" prefix before the answer.\n"
+                    + "Example: " + AddCommand.COMMAND_WORD + AddCommand.CARD_PARAMETERS + "\n"
+                    + "         " + EditCommand.COMMAND_WORD + EditCommand.CARD_PARAMETERS);
         }
 
         return arg.substring(2).trim();
