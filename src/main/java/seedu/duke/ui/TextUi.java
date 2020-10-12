@@ -34,10 +34,11 @@ public class TextUi {
     private static final String DELETE_BOOK_MESSAGE = "The book [%s] has been deleted!";
     private static final String LIST_BOOKS_MESSAGE = "Here is a list of all books:";
     private static final String LIST_BOOKS_BY_AUTHOR_MESSAGE = "Here is a list of books by %s:";
-    private static final String ADD_CATEGORY_MESSAGE = "I have tagged \"%s\" category to \"%s\"!";
-    private static final String DELETE_CATEGORY_MESSAGE = "I have removed \"%s\" category from \"%s\"!";
-    private static final String CATEGORY_SIZE_MESSAGE = "You have a total of %d item(s) tagged as \"%s\".";
+    private static final String ADD_CATEGORY_MESSAGE = "I have tagged [%s] category to \"%s\"!";
+    private static final String DELETE_CATEGORY_MESSAGE = "I have removed [%s] category from \"%s\"!";
+    private static final String CATEGORY_SIZE_MESSAGE = "You have a total of %d item(s) tagged as [%s].";
     private static final String LIST_CATEGORIES_MESSAGE = "Here is the list of all categories:";
+    private static final String LIST_ALL_IN_CATEGORIES_MESSAGE = "Here are the list of items tagged as [%s]:";
     private static final String ADD_RATING_MESSAGE = "You have just rated %s %d star!";
     public static final String DELETE_RATING_MESSAGE = "Rating for %s has been deleted!";
     private static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
@@ -135,8 +136,25 @@ public class TextUi {
         System.out.println(categoryList.toString());
     }
 
-    public void printCategory(Category category) {
-        System.out.println(category.toString());
+    public void printAllInCategory(Category category) {
+        String categoryName = category.getCategoryName();
+        System.out.printf(LIST_ALL_IN_CATEGORIES_MESSAGE + "\n", categoryName);
+
+        BookList bookList = category.getBookList();
+        System.out.println("BOOKS:");
+        for (int i = 0; i < bookList.getList().size(); i++) {
+            Book book = bookList.getList().get(i);
+            System.out.println((i + 1) + ". " + book.toString());
+        }
+
+        System.out.println(System.lineSeparator());
+
+        QuoteList quoteList = category.getQuoteList();
+        System.out.println("QUOTES:");
+        for (int i = 0; i < quoteList.getList().size(); i++) {
+            Quote quote = quoteList.getList().get(i);
+            System.out.println((i + 1) + ". " + quote.toString());
+        }
     }
 
     public void printErrorMessage(String message) {
@@ -269,8 +287,8 @@ public class TextUi {
         System.out.println(bookmarkList.toString());
     }
 
-    public void printRandomQuote(ListManager listManager) {
-        QuoteList quotes = (QuoteList) listManager.getList(ListManager.QUOTE_LIST);
+    public void printRandomQuote() {
+        QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
         Random rand = new Random();
         try {
             int randomQuoteNumber = rand.nextInt(quotes.getSize() - 1);

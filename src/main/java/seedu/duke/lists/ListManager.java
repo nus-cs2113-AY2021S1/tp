@@ -10,17 +10,13 @@ public class ListManager {
     public static final int RATING_LIST = 4;
     public static final int TODO_LIST = 5;
 
-    private HashMap<Integer, QuotesifyList<?>> listManager;
+    private static HashMap<Integer, QuotesifyList<?>> listManager = new HashMap<>();
 
-    public ListManager() {
-        listManager = new HashMap<>();
-    }
-
-    public void addToList(int type, QuotesifyList<?> list) {
+    public static void addToList(int type, QuotesifyList<?> list) {
         listManager.put(type, list);
     }
 
-    public QuotesifyList<?> getList(int type) {
+    public static QuotesifyList<?> getList(int type) {
         return listManager.get(type);
     }
 }

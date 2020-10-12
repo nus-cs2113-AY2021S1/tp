@@ -1,9 +1,9 @@
 package seedu.duke.book;
 
 import seedu.duke.author.Author;
+import seedu.duke.category.Category;
 import seedu.duke.lists.QuotesifyList;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -72,5 +72,19 @@ public class BookList extends QuotesifyList<Book> {
                     return bookAuthor.getName().equals(authorName);
                 }).collect(Collectors.toList());
         return new BookList(filteredBooks);
+    }
+
+    public BookList filterByCategory(String categoryName) {
+        try {
+            ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
+                    .filter(book -> {
+                        Category category = book.getCategory();
+                        return category.getCategoryName().equals(categoryName);
+                    }).collect(Collectors.toList());
+            return new BookList(filteredBooks);
+        } catch (NullPointerException e) {
+            // Do nothing
+        }
+        return new BookList();
     }
 }
