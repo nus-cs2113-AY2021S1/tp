@@ -60,6 +60,6 @@ public class Card {
     }
 
     public String toString() {
-        return "[Q] " + question + " | [A] " + answer +" | [D] " + dueBy;
+        return "[Q] " + question + " | [A] " + answer + " | [D] " + dueBy;
     }
 }

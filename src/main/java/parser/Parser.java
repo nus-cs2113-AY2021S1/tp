@@ -28,7 +28,7 @@ public class Parser {
     private static final String QUESTION_ANSWER_DUE_DATE_PREFIX = " \\| ";
     private static final String QUESTION_PREFIX = "q:";
     private static final String ANSWER_PREFIX = "a:";
-    private static final String DUE_DATE_PREFIX= "d:";
+    private static final String DUE_DATE_PREFIX = "d:";
 
     private static final String ADMIN_LEVEL = "admin";
     private static final String MODULE_LEVEL = "module";

@@ -28,8 +28,7 @@ public class ListCommand extends Command {
             listChapters(ui, access);
         } else if (access.isAdminLevel()) {
             listModules(ui, access);
-        }
-        else {
+        } else {
             throw new IncorrectAccessLevelException("List command can only be called at admin, "
                     + "module and chapter level.\n");
         }

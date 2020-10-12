@@ -128,7 +128,8 @@ public class Storage {
         return chapters;
     }
 
-    public ArrayList<Card> loadCard(String module, String chapter) throws FileNotFoundException, InvalidFileFormatException {
+    public ArrayList<Card> loadCard(String module, String chapter)
+            throws FileNotFoundException, InvalidFileFormatException {
         File f = new File(filePath + "/" + module + "/" + chapter + ".txt");
         boolean fileExists = f.exists();
         if (!fileExists) {
