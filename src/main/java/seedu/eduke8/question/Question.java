@@ -44,6 +44,7 @@ public class Question implements Displayable {
         return wasShown;
     }
 
+
     /**
      * Returns the multiple options of the question.
      *
@@ -54,12 +55,12 @@ public class Question implements Displayable {
     }
 
     /**
-     * Returns the description of the hint tied to the question.
+     * Returns the hint tied to the question.
      *
      * @return Details of the hint.
      */
-    public String getHint() {
-        return hint.getDescription();
+    public Hint getHint() {
+        return hint;
     }
 
     /**
