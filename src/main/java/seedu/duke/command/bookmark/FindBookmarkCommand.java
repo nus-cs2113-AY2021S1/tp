@@ -26,6 +26,9 @@ public class FindBookmarkCommand extends Command {
      */
     public FindBookmarkCommand(String command) throws DukeException {
         String details = command.substring(FIND_KW.length());
+        if (details.isBlank()) {
+            throw new DukeException(DukeExceptionType.EMPTY_COMMAND, FIND_KW);
+        }
         if (!details.startsWith(" ")) {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
         }

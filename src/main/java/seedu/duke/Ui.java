@@ -90,6 +90,9 @@ public class Ui {
         case EMPTY_DESCRIPTION:
             printEmptyBookmarkDescriptionMessage();
             break;
+        case EMPTY_COMMAND:
+            printEmptyCommandMessage(dukeException.getInfo());
+            break;
         case NON_INTEGER_INPUT:
             printUseIntegerAsInput();
             break;
@@ -125,7 +128,7 @@ public class Ui {
     }
 
     private void printUseIntegerAsInput() {
-        print("Please enter an integer with the command\n");
+        print("Command requires an integer input\n");
     }
 
 
@@ -138,19 +141,45 @@ public class Ui {
     }
 
     private void printInvalidUrl() {
-        print("Invalid url\n");
+        print("Invalid URL" + "\n" + "URL must start with either 'www.'"
+                + " or 'https://' and have no spaces\n");
     }
 
     private void printInvalidAddBookmarkInputMessage() {
-        print("Invalid bookmark input\n");
+        print("Invalid bookmark input\n"
+                + "Format: add {module(optional)} {description} {URL}\n");
     }
 
     private void printEmptyBookmarkDescriptionMessage() {
-        print("Empty description\n");
+        print("Bookmark description required!\n");
+    }
+
+    private void printEmptyCommandMessage(String info) {
+        print("Please enter " + info + " with input!\n");
     }
 
     private void printUnknownInputMessage() {
-        print("Unknown input\n");
+        if (Parser.programMode == 0) {
+            print("Unknown input\n" + "Available inputs in Main menu are\n"
+                    + "1) mode {bookmark/timetable}\n"
+                    + "2) exit\n");
+        } else if (Parser.programMode == 1) {
+            print("Unknown input\n" + "Available inputs in Bookmark mode are\n"
+                    + "1) add\n"
+                    + "2) delete\n"
+                    + "3) show\n"
+                    + "4) find\n"
+                    + "5) launch\n"
+                    + "6) mode timetable\n"
+                    + "7) exit\n");
+        } else if (Parser.programMode == 2) {
+            print("Unknown input\n" + "Available inputs in Timetable mode are\n"
+                    + "1) slotadd\n"
+                    + "2) slotdelete\n"
+                    + "3) show\n"
+                    + "4) mode bookmark\n"
+                    + "5) exit\n");
+        }
     }
 
     private void printUnknownModeMessage() {

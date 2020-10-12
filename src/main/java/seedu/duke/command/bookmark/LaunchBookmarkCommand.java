@@ -30,6 +30,9 @@ public class LaunchBookmarkCommand extends Command {
      */
     public LaunchBookmarkCommand(String command) throws DukeException {
         String details = command.substring(LAUNCH_KW.length());
+        if (details.isBlank()) {
+            throw new DukeException(DukeExceptionType.EMPTY_COMMAND, LAUNCH_KW);
+        }
         if (!details.startsWith(" ")) {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
         }

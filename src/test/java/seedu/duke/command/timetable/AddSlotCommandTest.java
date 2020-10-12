@@ -24,7 +24,7 @@ class AddSlotCommandTest {
             AddSlotCommand command = new AddSlotCommand(input);
             fail();
         } catch (DukeException e) {
-            assertEquals(e.getError(), DukeExceptionType.INVALID_SLOT_INPUT);
+            assertEquals(e.getError(), DukeExceptionType.EMPTY_COMMAND);
         }
 
         input = AddSlotCommand.ADD_KW + "1111 12:00 mon CS1231 lecture";
