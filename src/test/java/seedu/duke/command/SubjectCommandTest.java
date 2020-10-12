@@ -39,14 +39,14 @@ public class SubjectCommandTest {
     public void addSubject() throws NoSubjectException, RepeatedSubjectException {
         addCommand = new AddSubjectCommand("add Maths");
         addCommand.execute(subjects);
-        assertEquals(subjects.getList().get(3).getTitle(),"Maths");
+        assertEquals("Maths",subjects.getList().get(3).getTitle());
     }
 
     @Test
     public void deleteSubject() {
         deleteCommand = new DeleteSubjectCommand("delete 2");
         deleteCommand.execute(subjects);
-        assertEquals(subjects.getList().size(),Integer.valueOf("2"));
+        assertEquals(Integer.valueOf("2"),subjects.getList().size());
     }
 
     @Test
@@ -65,6 +65,6 @@ public class SubjectCommandTest {
     public void returnSubject() throws NoSubjectException {
         returnCommand = new ReturnSubjectCommand("subject Chinese");
         Subject testSubject = returnCommand.execute(subjects);
-        assertEquals(testSubject.getTitle(),"Chinese");
+        assertEquals("Chinese",testSubject.getTitle());
     }
 }
