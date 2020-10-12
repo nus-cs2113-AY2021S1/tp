@@ -6,12 +6,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class UserProfile extends Human {
+public class User extends Human {
     private static final SimpleDateFormat DATE_MONTH_YEAR = new SimpleDateFormat("dd/MM/yyyy");
     protected Date birthdate;
     protected Gender gender;
 
-    public UserProfile(String name, String birthdate, String gender) throws ParseException, AniException {
+    public User(String name, String birthdate, String gender) throws ParseException, AniException {
         super(name);
         setBirthdate(birthdate);
         setGender(gender);

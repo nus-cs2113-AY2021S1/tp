@@ -5,7 +5,7 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.command.Command;
 import seedu.duke.exception.AniException;
-import seedu.duke.human.UserProfile;
+import seedu.duke.human.User;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -23,7 +23,7 @@ public class Duke {
     private final Ui ui;
     private final Parser parser;
     private final Storage storage;
-    private UserProfile userProfile;
+    private User user;
     private final Watchlist currentWatchlist;
     private final ArrayList<Watchlist> watchlists;
 
@@ -33,7 +33,7 @@ public class Duke {
         storage = new Storage(USER_PROFILE_FILE_NAME, WATCHLIST_FILE_NAME);
 
         ui.printWelcomeMessage();
-        userProfile = storage.readUserProfileFile(ui);
+        user = storage.readUserProfileFile(ui);
         watchlists = storage.readWatchlistFile(ui);
 
         if (watchlists.isEmpty()) {
@@ -45,12 +45,12 @@ public class Duke {
 
     public void run() {
         Command command = null;
-        if (userProfile == null) {
-            userProfile = quickStart();
+        if (user == null) {
+            user = quickStart();
         }
 
         do {
-            String userInput = ui.readUserInput(userProfile.getFancyName(), currentWatchlist.getName());
+            String userInput = ui.readUserInput(user.getFancyName(), currentWatchlist.getName());
             try {
                 command = Parser.getCommand(userInput);
                 // now passing in many parameters into execute, 
@@ -73,14 +73,14 @@ public class Duke {
     private static Bookmark bookmark;
     private static final Scanner CONSOLE = new Scanner(System.in);
 
-    private UserProfile quickStart() {
-        UserProfile userProfile = null;
+    private User quickStart() {
+        User user = null;
         boolean profileMade = false;
         while (!profileMade) {
             try {
-                userProfile = createProfile();
+                user = createProfile();
                 profileMade = true;
-                storage.writeUserProfileFile(ui, userProfile);
+                storage.writeUserProfileFile(ui, user);
             } catch (ParseException e) {
                 ui.printErrorMessage("Is your date in dd/MM/yyyy format?");
             } catch (AniException e) {
@@ -88,10 +88,10 @@ public class Duke {
             }
         }
 
-        return userProfile;
+        return user;
     }
 
-    private UserProfile createProfile() throws ParseException, AniException {
+    private User createProfile() throws ParseException, AniException {
         ui.printMessage("What's your name?");
         String name = ui.readQuickStartInput();
         ui.printMessage("Hello " + name + "! What might your date of birth be?");
@@ -99,7 +99,7 @@ public class Duke {
         ui.printMessage("What might your gender be? (Male/Female/Others)");
         String gender = ui.readQuickStartInput();
 
-        UserProfile newProfile = new UserProfile(name, dob, gender);
+        User newProfile = new User(name, dob, gender);
         ui.printMessage(newProfile.toString());
         return newProfile;
     }

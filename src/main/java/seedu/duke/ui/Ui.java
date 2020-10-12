@@ -1,6 +1,6 @@
 package seedu.duke.ui;
 
-import seedu.duke.human.UserProfile;
+import seedu.duke.human.User;
 
 import java.util.Scanner;
 
@@ -52,8 +52,8 @@ public class Ui {
     /**
      * Greets existing user upon opening up application.
      */
-    public void greetExisting(UserProfile userProfile) {
-        String userName = userProfile.getFancyName();
+    public void greetExisting(User user) {
+        String userName = user.getFancyName();
         System.out.println("Welcome Back, " + userName);
         System.out.println();
     }

@@ -3,7 +3,7 @@ package seedu.duke.storage;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
 import seedu.duke.exception.AniException;
-import seedu.duke.human.UserProfile;
+import seedu.duke.human.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,24 +25,24 @@ public class Storage {
         watchlistFilePath = storageDirectory + watchlistFileName;
     }
 
-    public UserProfile readUserProfileFile(Ui ui) {
-        UserProfile userProfile = null;
+    public User readUserProfileFile(Ui ui) {
+        User user = null;
         try {
             String fileString = readFile(ui, userProfileFilePath);
             if (fileString.isBlank()) {
-                return userProfile;
+                return user;
             }
 
             String[] fileStringParts = fileString.split(FILE_LINE_DELIMITER);
             String name = fileStringParts[0];
             String birthDate = fileStringParts[1];
             String gender = fileStringParts[2];
-            userProfile = new UserProfile(name, birthDate, gender);
+            user = new User(name, birthDate, gender);
         } catch (AniException | ParseException exception) {
             ui.printMessage("User profile object creation has failed.");
         }
 
-        return userProfile;
+        return user;
     }
 
     public ArrayList<Watchlist> readWatchlistFile(Ui ui) {
@@ -95,8 +95,8 @@ public class Storage {
         return sbFileString.toString();
     }
 
-    public void writeUserProfileFile(Ui ui, UserProfile userProfile) {
-        String userProfileString = userProfile.toFileString();
+    public void writeUserProfileFile(Ui ui, User user) {
+        String userProfileString = user.toFileString();
         writeFile(ui, userProfileFilePath, userProfileString);
     }
 
