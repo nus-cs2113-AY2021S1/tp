@@ -122,19 +122,21 @@ public class EntryTracker {
 
     private static FiniteStateMachine.State handleDeleteEntry() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        Entry entry;
+        Entry entry = null;
         try {
             entryList.setItemQueue(packet);
             entry = (Entry) entryList.getItemQueue();
             entryList.removeItem(entry);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s deleted!", entry.getName()));
-        } catch (AssertionError error) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Input failed due to param error.");
         } catch (InsufficientParamsException | ItemNotFoundException | ConflictingItemReference exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
+        } finally {
+            if (entry == null) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    "Input failed due to param error.");
+            }
         }
         return state;
     }
@@ -161,29 +163,31 @@ public class EntryTracker {
 
     private static FiniteStateMachine.State handleCreateEntry() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        Entry entry;
+        Entry entry = null;
 
         try {
             entry = new Entry(packet);
             entryList.addItem(entry);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s created!", entry.getName()));
-        } catch (AssertionError error) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Input failed due to param error.");
         } catch (DuplicateInputException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     "Entry specified already exists in the list!");
         } catch (InsufficientParamsException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
+        } finally {
+            if (entry == null) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    "Input failed due to param error.");
+            }
         }
         return state;
     }
 
     private static FiniteStateMachine.State handleEditEntry() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        Entry entry;
+        Entry entry = null;
 
         try {
             entryList.setItemQueue(packet);
@@ -191,12 +195,14 @@ public class EntryTracker {
             entry.handleParams(packet);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s edited!", entry.getName()));
-        } catch (AssertionError error) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Input failed due to param error.");
         } catch (InsufficientParamsException | ItemNotFoundException | ConflictingItemReference exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
+        }  finally {
+            if (entry == null) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    "Input failed due to param error.");
+            }
         }
         return state;
     }

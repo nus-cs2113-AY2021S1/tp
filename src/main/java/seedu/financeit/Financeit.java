@@ -7,22 +7,30 @@ import seedu.financeit.manualtracker.ManualTracker;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
-import seedu.financeit.utils.RegexMatcher;
+import seedu.financeit.utils.ParamChecker;
 import seedu.financeit.utils.SaveManager;
+
+import java.util.logging.Level;
 
 public class Financeit {
 
     public static void main(String[] args) {
-        System.out.println(RegexMatcher.alphabetMatcher("abc").find());
+
+        String input = "";
+        CommandPacket packet = null;
+        Level mode = Level.OFF;
+        ParamChecker.logger.setLevel(mode);
+        try {
+            SaveManager.load();
+        } catch (Exception m) {
+            MenuPrinter.prompt = "An exception has occurred: " + m;
+        }
+
         while (true) {
-            try {
-                SaveManager.load();
-            } catch (Exception m) {
-                MenuPrinter.prompt = "An exception has occurred: " + m;
-            }
             MenuPrinter.printMainMenu();
-            String input = UiManager.handleInput();
-            CommandPacket packet = new InputParser().parseInput(input);
+            input = UiManager.handleInput();
+            packet = new InputParser().parseInput(input);
+            packet = new InputParser().parseInput(input);
             UiManager.refreshPage();
             switch (packet.getCommandString()) {
             case "manual":
@@ -38,6 +46,13 @@ public class Financeit {
             case "financial": //FinancialCalculator.main();
                 FinanceTools.main();
                 break;
+            case "logger":
+                mode = (mode == Level.OFF) ? Level.ALL : Level.OFF;
+                MenuPrinter.prompt = (mode == Level.OFF)
+                    ? "Logger is off."
+                    : "Logger is on.";
+                ParamChecker.logger.setLevel(mode);
+                break;
             case "exit":
                 try {
                     SaveManager.save();
@@ -48,7 +63,6 @@ public class Financeit {
             default:
                 MenuPrinter.prompt = "Invalid Command";
                 break;
-
             }
         }
     }
