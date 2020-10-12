@@ -78,7 +78,7 @@ public class Parser {
         } catch (ArrayIndexOutOfBoundsException exception) {
             userMessage = null;
         }
-
+        
         try {
             switch (commandString.toLowerCase()) {
             case AddNoteCommand.COMMAND_WORD:
@@ -90,7 +90,7 @@ public class Parser {
             case ListEventCommand.COMMAND_WORD:
                 return prepareListEvent(userMessage);
             case ViewNoteCommand.COMMAND_WORD:
-                // return prepareViewNote(userMessage);
+                return prepareViewNote(userMessage);
             case EditCommand.COMMAND_WORD_NOTE:
                 // return prepareEditNote(userMessage);
             case EditCommand.COMMAND_WORD_EVENT:
@@ -126,6 +126,8 @@ public class Parser {
             return new IncorrectCommand(exception.getMessage());
         }
     }
+
+
 
     /**
      * Splits the userMessage into the respective info by the delimiter.
@@ -528,6 +530,39 @@ public class Parser {
         return new ListEventCommand();
     }
 
+    private Command prepareViewNote(String userMessage) throws SystemException {
+        String title;
+        int index;
+
+        try {
+            ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
+
+            for (String[] infoDetails : splitInfo) {
+                String prefix = infoDetails[0];
+                if (infoDetails[1].isBlank()) {
+                    throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
+                }
+                switch (prefix) {
+                case PREFIX_TITLE:
+                    title = infoDetails[1].trim();
+                    return new ViewNoteCommand(title);
+                case PREFIX_INDEX:
+                    index = Integer.parseInt(infoDetails[1].trim());
+                    return new ViewNoteCommand(index);
+                default:
+                    throw new SystemException(SystemException.ExceptionType.EXCEPTION_MISSING_TAG);
+                }
+            }
+        } catch (NullPointerException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG_PREFIX);
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+        } catch (NumberFormatException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
+        }
+        throw new SystemException(ExceptionType.EXCEPTION_INVALID_INPUT_FORMAT);
+    }
+
     /**
      * Parses the variables in userMessage to a form that is used in DeleteEventCommand.
      * @param userMessage User Input without the action word
@@ -544,11 +579,8 @@ public class Parser {
         // Convert from human-readable index to index in array.
         return new DeleteEventCommand(index - 1);
     }
-    /*
-    private Command prepareViewNote(String userMessage) {
-       return new ViewNoteCommand();
-    }
 
+    /*
     private Command prepareEditNote(String userMessage) {
        return new EditCommand(index, note);
     }

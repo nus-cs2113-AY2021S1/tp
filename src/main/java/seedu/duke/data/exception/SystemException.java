@@ -32,7 +32,8 @@ public class SystemException extends Exception {
         EXCEPTION_INVALID_INDEX_FORMAT("Invalid index format!"),
         EXCEPTION_INVALID_INDEX_VALUE("Invalid index value!"),
         EXCEPTION_FILE_CREATION_ERROR("Unable to create a file!"),
-        EXCEPTION_INVALID_END_INPUT("Input /end on a new line!");
+        EXCEPTION_INVALID_END_INPUT("Input /end on a new line!"),
+        EXCEPTION_INVALID_INPUT_FORMAT("Format of input is not valid!");
 
         /** The exception message. */
         private final String exceptionMessage;
