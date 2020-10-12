@@ -10,7 +10,7 @@ public enum BusStops {
     CENTRALLIBRARY("Central Library","also known as CLB"),
     KENTRIDGE("Kent Ridge","idk"),
     MUSEUM("Museum", "Opposite Faculty of Engineering"),
-    UNIVERSITYTOWN("University Town","place full of fun"),
+    UNIVERSITYTOWN("University Town","Place full of fun"),
     UNIVERSITYHEALTHCENTRE("University Health Centre","UHC, where students can get MC"),
     OPPKENTRIDGEMRTSTATION("Opp Kent Ridge MRT station","MRT"),
     RAFFLESHALL("Raffles Hall","Hall located nearby Faculty of Engineering"),
