@@ -18,6 +18,11 @@ public class ListEventCommand extends Command {
     //private static final String COMMAND_USAGE = COMMAND_WORD + ": List all the events in the Timetable. Parameters: "
     //        + "[" + PREFIX_DATETIME + " DATE_TIME]";
 
+    private static final String COMMAND_SUCCESS_MESSAGE = "These are the events in the specified time period: "
+            + InterfaceManager.LS;
+    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Failed to find any events in the specified time period."
+            + InterfaceManager.LS;
+
     /**
      * Gets how the command is expected to be used.
      *
@@ -54,6 +59,9 @@ public class ListEventCommand extends Command {
         ArrayList<Event> events = timetable.getEvents();
         boolean first = true;
         int i = 1;
+        if (events.size() == 0) {
+            return COMMAND_UNSUCCESSFUL_MESSAGE;
+        }
         for (Event event : events) {
             if (!first) {
                 result += InterfaceManager.LS + InterfaceManager.LS;
@@ -61,6 +69,6 @@ public class ListEventCommand extends Command {
             first = false;
             result += String.format("%d.", i++) + event.toString();
         }
-        return result;
+        return COMMAND_SUCCESS_MESSAGE + result;
     }
 }
