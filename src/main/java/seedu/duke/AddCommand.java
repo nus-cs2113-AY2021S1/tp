@@ -6,7 +6,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodlist,ExerciseList exerciseList, Storage storage) {
+    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage) {
         String type = command.split(" ", 2)[0];
         command = command.split(" ", 2)[1];
         if (type.equalsIgnoreCase("food")) {
