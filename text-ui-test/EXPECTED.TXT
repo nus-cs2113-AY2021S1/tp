@@ -14,7 +14,7 @@ The recognized commands and their usages are listed below. Parameters listed in 
 [36medit-e: Edits an event in the timetable. Parameters: /i INDEX [/t TITLE] [/d DATE_TIME][/rec RECURRING] [/rem REMIND]
 [30mexit: Exits the program.
 [36mfind-n: Finds a note. Parameters: KEYWORDS
-[30mlist-e: List all the events in the Timetable.
+[30mlist-e: List all the events in the Timetable. Parameters: [/timing YEAR-MONTH(1-12)]
 [36mlist-n: Lists all the notes in the Notebook. Parameters: [/tag TAG /tag TAG1...] [up/down]
 [30mlist-t: Lists all the tags.
 [36mpin-n: Pins or unpins a note. Parameters: [/i INDEX] [/t TITLE]
