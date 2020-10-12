@@ -6,30 +6,8 @@ import java.util.ArrayList;
 
 public class FilterCommandSlicer {
 
-    public static boolean continueLastFilter(String command) {
+    public static boolean isNewFilter(String command) {
         return !command.toLowerCase().contains(" -continue");
-    }
-
-    public static FilterType getTypeOfFilter(String command) throws FilterCommandException {
-        if (!command.toLowerCase().contains("by\\")) {
-            throw new FilterCommandException();
-        }
-
-        int indexOfTypeTag = command.indexOf("by\\");
-        String cutCommand = command.substring(indexOfTypeTag);
-        cutCommand = cutCommand.replace("by\\", "");
-        FilterType filterType;
-        if (cutCommand.toLowerCase().trim().startsWith("type")) {
-            filterType = FilterType.WORD_TYPE;
-        } else if (cutCommand.toLowerCase().trim().startsWith("start")) {
-            filterType = FilterType.STARTING_STRING;
-        } else if (cutCommand.toLowerCase().trim().startsWith("include")) {
-            filterType = FilterType.CONTAINING_STRING;
-        } else {
-            throw new FilterCommandException();
-        }
-
-        return filterType;
     }
 
     public static String[] getTargetedWordType(String command) throws FilterCommandException {
