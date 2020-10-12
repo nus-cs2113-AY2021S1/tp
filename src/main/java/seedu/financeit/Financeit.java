@@ -48,9 +48,9 @@ public class Financeit {
                 break;
             case "logger":
                 mode = (mode == Level.OFF) ? Level.ALL : Level.OFF;
-                MenuPrinter.prompt = (mode == Level.OFF) ?
-                    "Logger is off." :
-                    "Logger is on.";
+                MenuPrinter.prompt = (mode == Level.OFF)
+                    ? "Logger is off."
+                    : "Logger is on.";
                 ParamChecker.logger.setLevel(mode);
                 break;
             case "exit":
