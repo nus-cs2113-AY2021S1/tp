@@ -13,11 +13,37 @@ public class Activity extends Event {
 
     private static final String EVENT_FILE_SYMBOL = "ACT";
     private static final String SEPARATOR = "|";
+    public static final String TICK_SYMBOL = "/";
+    public static final String CROSS_SYMBOL = "X";
 
     public Activity(String details, LocalDate date, LocalTime time, String venue) {
         super(date, time, venue);
         this.details = details;
         eventType = "ACT";
+    }
+
+    /**
+     * Check whether the activity is over.
+     *
+     * @return whether the activity is over
+     */
+    public boolean getIsOver() {
+        if (date.isBefore(LocalDate.now())) {
+            return true;
+        } else if (date.isEqual(LocalDate.now()) && time.isBefore(LocalTime.now())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Show whether the activity is over.
+     *
+     * @return whether the activity is over
+     */
+    public String getIcon() {
+        return (getIsOver() ? TICK_SYMBOL : CROSS_SYMBOL);
     }
 
 
@@ -26,7 +52,7 @@ public class Activity extends Event {
      */
     @Override
     public String toString() {
-        return "[A] " + details + " " + super.toString();
+        return "[A][" + getIcon() + "] " + details + " " + super.toString();
     }
 
     @Override

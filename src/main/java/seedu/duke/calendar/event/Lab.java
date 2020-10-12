@@ -59,10 +59,7 @@ public class Lab extends SchoolEvent {
      */
     @Override
     public String toString() {
-        return "[LAB]" + "[" + getIcon() + "] "
-                + moduleCode + " " + date.format(DateTimeFormatter.ofPattern("dd-MM-yy E"))
-                + " " + time.format(DateTimeFormatter.ofPattern("h:mma"))
-                + " (" + venue + ")";
+        return "[LAB]" + "[" + getIcon() + "] " + super.toString();
     }
 
     /**

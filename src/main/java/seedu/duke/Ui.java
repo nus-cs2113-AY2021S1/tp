@@ -258,19 +258,19 @@ public class Ui {
             System.out.println("Error: Please key in the activity in this format: activity ... /at ddMMyy");
             break;
         case "lecture":
-            System.out.println("Error: Please key in the lecture in this format: lecture <module code> <venue> /at "
+            System.out.println("Error: Please key in the lecture in this format: lecture <module code> @<venue> /"
                     + "ddMMyy HHmm");
             break;
         case "tutorial":
-            System.out.println("Error: Please key in the tutorial in this format: tutorial <module code> <venue> /at "
+            System.out.println("Error: Please key in the tutorial in this format: tutorial <module code> @<venue> /"
                     + "ddMMyy HHmm");
             break;
         case "lab":
-            System.out.println("Error: Please key in the lab in this format: lab <module code> <venue> /at "
+            System.out.println("Error: Please key in the lab in this format: lab <module code> @<venue> /"
                     + "ddMMyy HHmm");
             break;
         case "exam":
-            System.out.println("Error: Please key in the exam in this format: exam <module code> <exam details> /at "
+            System.out.println("Error: Please key in the exam in this format: exam <module code> @<exam venue> /"
                     + "ddMMyy HHmm");
             break;
         case "invalid command":
