@@ -40,7 +40,7 @@ public class AddEventCommand extends Command {
     }
 
     private static final String COMMAND_SUCCESSFUL_MESSAGE = "Added the following!";
-    // Command not expected to fail at this stage
+    // No COMMAND_UNSUCCESSFUL_MESSAGE as we do not expect failure to occur at this stage.
 
     private Event event;
 

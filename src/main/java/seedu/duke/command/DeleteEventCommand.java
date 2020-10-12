@@ -39,7 +39,7 @@ public class DeleteEventCommand extends Command {
     @Override
     public String execute() {
         if (index < 0 || index >= timetable.getEvents().size()) {
-            return COMMAND_UNSUCCESSFUL_MESSAGE + INDEX_OUT_OF_RANGE;
+            return COMMAND_UNSUCCESSFUL_MESSAGE + INDEX_OUT_OF_RANGE_MESSAGE;
         }
         Event event = timetable.getEvent(index);
         timetable.deleteEvent(index);
