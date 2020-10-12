@@ -11,8 +11,6 @@ import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
-
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -29,7 +27,6 @@ public class Duke {
     private Storage storage;
     private UserManagement userManagement;
     private AnimeStorage animeStorage;
-    private Watchlist currentWatchlist;
     private ArrayList<Watchlist> watchlists;
     private AnimeData animeData;
     private Bookmark bookmark;
@@ -40,8 +37,8 @@ public class Duke {
         ui.printWelcomeMessage();
         parser = new Parser();
         storage = new Storage(USER_PROFILE_FILE_NAME, WATCHLIST_FILE_NAME);
-        userManagement = new UserManagement(ui);
-        userManagement.setUser(storage.readUserProfileFile(ui));
+        userManagement = new UserManagement(ui, storage);
+        userManagement.setCurrentUser(storage.readUserProfileFile(ui));
         watchlists = storage.readWatchlistFile(ui);
         bookmark = new Bookmark();
 
@@ -62,18 +59,17 @@ public class Duke {
 
     public void run() {
         Command command = null;
-        if (userManagement.getUser() == null) {
-            userManagement.createUser();
+        if (userManagement.getCurrentUser() == null) {
+            userManagement.addUserDialogue();
         }
-
         do {
-            String userInput = ui.readUserInput(userManagement.getUser().getFancyName(), currentWatchlist.getName());
+            String userInput = ui.readUserInput(userManagement.getCurrentUser().getFancyName(), activeWatchlist.getName());
 
             try {
                 command = Parser.getCommand(userInput);
                 // now passing in many parameters into execute,
                 // but maybe can reduce in the future after refactoring?
-                command.execute(ui, storage, animeData, currentWatchlist, watchlists, bookmark);
+                command.execute(ui, storage, animeData, activeWatchlist, watchlists, bookmark, userManagement);
             } catch (AniException exception) {
                 ui.printErrorMessage(exception.getMessage());
             }

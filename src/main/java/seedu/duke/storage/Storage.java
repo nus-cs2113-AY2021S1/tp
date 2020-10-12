@@ -37,6 +37,7 @@ public class Storage {
             String name = fileStringParts[0];
             String birthDate = fileStringParts[1];
             String gender = fileStringParts[2];
+            gender = gender.replaceAll("(\\r|\\n)", "");
             user = new User(name, birthDate, gender);
         } catch (AniException | ParseException exception) {
             ui.printMessage("User profile object creation has failed.");

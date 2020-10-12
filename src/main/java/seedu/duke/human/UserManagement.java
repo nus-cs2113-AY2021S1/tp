@@ -1,27 +1,35 @@
 package seedu.duke.human;
 
 import seedu.duke.exception.AniException;
+import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 public class UserManagement {
     protected User currentUser;
     Ui ui;
+    Storage storage;
 
-    public UserManagement(Ui ui) {
+    public UserManagement(Ui ui, Storage storage) {
         this.ui = ui;
+        this.storage = storage;
         currentUser = null;
     }
 
-    public User getUser() {
+    public User getCurrentUser() {
         return currentUser;
     }
 
-    public void setUser(User inputUser) {
+    public void setCurrentUser(User inputUser) {
         currentUser = inputUser;
     }
 
-    public void createUser() {
+    public User addUser(String name, String dob, String gender) throws ParseException, AniException {
+        return new User(name, dob, gender);
+    }
+
+    public void addUserDialogue() {
         boolean userCreated = false;
 
         while (!userCreated) {
@@ -33,11 +41,15 @@ public class UserManagement {
                 ui.printMessage("What might your gender be? (Male/Female/Others)");
                 String gender = ui.readInput();
 
-                currentUser = new User(name, dob, gender);
+                currentUser = addUser(name, dob, gender);
+                storage.writeUserProfileFile(ui, currentUser);
+
                 userCreated = true;
             } catch (ParseException | AniException exception) {
                 ui.printErrorMessage(exception.getMessage());
             }
         }
     }
+
+
 }

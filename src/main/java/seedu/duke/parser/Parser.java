@@ -26,7 +26,7 @@ public class Parser {
         }
 
         switch (command) {
-        case "addprofile":
+        case "adduser":
             return new AddUserCommand(description);
                 
         case "editprofile":
