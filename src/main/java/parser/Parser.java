@@ -121,7 +121,7 @@ public class Parser {
 
     private static Command prepareList(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
-            throw new InvalidInputException();
+            throw new InvalidInputException("There should not be any arguments for list.");
         }
         return new ListCommand();
     }
