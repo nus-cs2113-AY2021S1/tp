@@ -28,7 +28,7 @@ public class Duke {
     private RatingList ratings;
     private ToDoList toDos;
     private BookmarkList bookmarks;
-    private final static Logger logger = Logger.getLogger("QuotesifyLogger");
+    private final Logger logger = Logger.getLogger("QuotesifyLogger");
 
     public Duke() {
         ui = new TextUi();
@@ -83,7 +83,7 @@ public class Duke {
         new Duke().run();
     }
 
-    private static void setupLogger() {
+    private void setupLogger() {
         logger.setUseParentHandlers(false);
         logger.setLevel(Level.INFO);
         try {

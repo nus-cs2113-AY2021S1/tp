@@ -101,14 +101,12 @@ public class AddCommand extends Command {
     private void executeParameters(CategoryList categories, String[] parameters, TextUi ui) {
         try {
             String categoryName = parameters[0];
-            String bookTitle = parameters[1];
-            int quoteNum = Integer.parseInt(parameters[2]) - 1;
-
             assert !categoryName.isEmpty() : "category name should not be empty";
 
             addCategoryToList(categories, categoryName);
             Category category = categories.getCategoryByName(categoryName);
 
+            String bookTitle = parameters[1];
             if (addCategoryToBook(category, bookTitle)) {
                 ui.printAddCategoryToBook(bookTitle, category.getCategoryName());
                 addLogger.log(Level.INFO, "add category to book success");
@@ -116,6 +114,7 @@ public class AddCommand extends Command {
                 addLogger.log(Level.INFO, "add category to book failed");
             }
 
+            int quoteNum = Integer.parseInt(parameters[2]) - 1;
             if (addCategoryToQuote(category, quoteNum)) {
                 QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
                 ArrayList<Quote> quotes = quoteList.getList();

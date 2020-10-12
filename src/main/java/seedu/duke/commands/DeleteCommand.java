@@ -129,16 +129,15 @@ public class DeleteCommand extends Command {
     private void executeParameters(CategoryList categories, String[] parameters, TextUi ui) {
         try {
             String categoryName = parameters[0];
-            String bookTitle = parameters[1];
-            int quoteNum = Integer.parseInt(parameters[2]) - 1;
-
             assert !categoryName.isEmpty() : "category name should not be empty";
 
+            String bookTitle = parameters[1];
             Category category = categories.getCategoryByName(categoryName);
             if (deleteCategoryFromBook(category, bookTitle)) {
                 ui.printRemoveCategoryFromBook(bookTitle, categoryName);
             }
 
+            int quoteNum = Integer.parseInt(parameters[2]) - 1;
             if (deleteCategoryFromQuote(category, quoteNum)) {
                 QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
                 ArrayList<Quote> quotes = quoteList.getList();
