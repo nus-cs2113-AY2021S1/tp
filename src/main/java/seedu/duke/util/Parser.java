@@ -203,26 +203,31 @@ public class Parser {
 
             for (String[] infoDetails : splitInfo) {
                 String prefix = infoDetails[0];
-                ExceptionType e;
                 switch (prefix) {
                 case PREFIX_TITLE:
-                    e = ExceptionType.EXCEPTION_MISSING_TITLE;
-                    title = checkBlank(infoDetails[1], e);
+                    if (infoDetails[1].isBlank()) {
+                        throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
+                    }
+                    title = infoDetails[1].trim();
                     break;
                 case PREFIX_TAG:
                     Tag tag = handleTagPrefix(infoDetails);
                     tags.add(tag);
                     break;
                 case PREFIX_PIN:
-                    e = ExceptionType.EXCEPTION_MISSING_PIN;
-                    isPinned = Boolean.parseBoolean(checkBlank(infoDetails[1], e));
+                    if (infoDetails[1].isBlank()) {
+                        throw new SystemException(ExceptionType.EXCEPTION_MISSING_PIN);
+                    }
+                    isPinned = Boolean.parseBoolean(infoDetails[1].trim());
                     break;
                 default:
                     break;
                 }
             }
 
-            title = checkBlank(title, ExceptionType.EXCEPTION_MISSING_TITLE);
+            if (title.isBlank()) {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
+            }
 
             // Get Content
             do {
