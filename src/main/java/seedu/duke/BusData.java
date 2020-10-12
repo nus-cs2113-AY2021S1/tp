@@ -21,4 +21,8 @@ public class BusData {
         return busOptions;
     }
 
+    public static ArrayList<Bus> listOfAllBuses(){
+        return buses;
+    }
+
 }
