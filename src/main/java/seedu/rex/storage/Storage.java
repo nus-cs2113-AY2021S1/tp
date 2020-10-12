@@ -32,7 +32,7 @@ public class Storage {
      * @param filePath Full file path.
      */
     public Storage(String filePath) {
-        assert filePath != null;
+        assert filePath != null && !filePath.equals("") : "Invalid filepath";
 
         int index = filePath.lastIndexOf("/");
         folder = filePath.substring(0, index);
@@ -77,7 +77,7 @@ public class Storage {
      * @throws RexException If there is problem writing or saving file.
      */
     public void save(PatientList patients) throws RexException {
-        assert patients != null;
+        assert patients != null : "Saving null patients ArrayList";
 
         StringBuilder fileContent = new StringBuilder();
 

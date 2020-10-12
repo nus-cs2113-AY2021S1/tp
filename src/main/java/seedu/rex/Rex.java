@@ -22,7 +22,7 @@ public class Rex {
      * @param filePath Path to store and load patients.
      */
     public Rex(String filePath) {
-        assert filePath != null;
+        assert filePath != null && !filePath.equals("") : "File path cannot be empty!";
 
         ui = new Ui();
         storage = new Storage(filePath);
@@ -47,9 +47,9 @@ public class Rex {
      * Runs Rex.
      */
     public void run() {
-        assert ui != null;
-        assert patients != null;
-        assert storage != null;
+        assert ui != null : "ui is null";
+        assert patients != null : "patient ArrayList is null";
+        assert storage != null : "storage is null";
 
         ui.showWelcome();
         boolean isExit = false;
