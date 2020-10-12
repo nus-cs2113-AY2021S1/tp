@@ -10,6 +10,6 @@ import java.util.HashMap;
 public interface SaveState {
     void saveState() throws IOException;
 
-    HashMap<String, Show> loadState() throws FileNotFoundException;
+    ShowList loadState() throws FileNotFoundException;
 
 }
