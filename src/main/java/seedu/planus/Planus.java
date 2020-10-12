@@ -40,7 +40,6 @@ public class Planus {
                     + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
                     + "( t/(?<time>\\d{4}))?"
                     + "( p/(?<priority>\\d))?$");
-
     private final TaskList tasks = new TaskList();
     private boolean isExit;
     private Storage storage;
@@ -75,6 +74,7 @@ public class Planus {
         storage.loadTasks(tasks);
         isExit = false;
         ui = new Ui();
+        parser = new Parser();
     }
 
     private void executeCommand(String userInput) throws InvalidPriorityException {
@@ -137,8 +137,6 @@ public class Planus {
         isExit = true;
         storage.writeTasksToFile(tasks);
         System.out.println("\nBye! See you again!");
-        ui = new Ui();
-        parser = new Parser();
     }
 
     private void editTask(String commandArgs, TaskList tasks) throws InvalidPriorityException {
@@ -148,7 +146,6 @@ public class Planus {
             String description = matcher.group("description");
             String dateString = matcher.group("date");
             String timeString = matcher.group("time");
-            String priorityString = matcher.group("priority");
 
             int index = Integer.parseInt(indexString) - 1;
             if (description != null) {
@@ -160,6 +157,7 @@ public class Planus {
             if (timeString != null) {
                 tasks.get(index).setTime(timeString);
             }
+            String priorityString = matcher.group("priority");
             if (priorityString != null) {
                 tasks.get(index).setPriority(priorityString);
             }
@@ -168,7 +166,6 @@ public class Planus {
         } else {
             // TODO throw new InvalidCommandException();
             System.out.println("Invalid command!");
-            return;
         }
     }
 
