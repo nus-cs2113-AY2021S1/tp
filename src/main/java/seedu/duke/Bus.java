@@ -6,13 +6,11 @@ import java.util.Arrays;
 public class Bus {
 
     String busNumber;
-    ArrayList<String> route = new ArrayList<>();
+    ArrayList<BusStops> route = new ArrayList<>();
 
-    public Bus(String busNo, String[] stops) {
+    public Bus(String busNo, BusStops[] stops) {
         busNumber = busNo;
         route.addAll(Arrays.asList(stops));
     }
-
-
 
 }
