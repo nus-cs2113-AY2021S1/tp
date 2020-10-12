@@ -36,11 +36,9 @@ public class Ui {
      * Prints a message after starting the program.
      */
     public void showWelcomeScreen() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        String logo = "___  ____ ____ _  _ ____ ____ ___ ____ ____ \n"
+                    + "  /  |  | |  | |\\/| |__| [__   |  |___ |__/ \n"
+                    + " /__ |__| |__| |  | |  | ___]  |  |___ |  \\\n";
         String message = "Hello from\n" + logo;
         print(message);
     }
