@@ -124,7 +124,8 @@ public class Storage {
     private List<Flashcard> loadFlashcards(File flashcardFile) throws FlashcardSyntaxException {
         Gson gson = new Gson();
         List<Flashcard> flashcards;
-        Type objectType = new TypeToken<ArrayList<Flashcard>>() {}.getType();
+        Type objectType = new TypeToken<ArrayList<Flashcard>>() {
+        }.getType();
 
         try (FileReader fileReader = new FileReader(flashcardFile)) {
             flashcards = gson.fromJson(fileReader, objectType);
@@ -135,6 +136,7 @@ public class Storage {
                     + ". Make sure the syntax is correct if you changed it manually.", e);
         }
 
+        assert flashcards != null;
         return flashcards;
     }
 
@@ -234,12 +236,18 @@ public class Storage {
                 if (legend.equals("D") || legend.equals("E")) {
                     action2 = contents[3].trim();
                 }
-                if (legend.equals("T")) {
+                switch (legend) {
+                case "T":
                     tasks.add(new Todo(action, done));
-                } else if (legend.equals("D")) {
+                    break;
+                case "D":
                     tasks.add(new Deadline(action, done, action2));
-                } else if (legend.equals("E")) {
+                    break;
+                case "E":
                     tasks.add(new Event(action, done, action2));
+                    break;
+                default:
+                    assert false : legend;
                 }
             }
         }
