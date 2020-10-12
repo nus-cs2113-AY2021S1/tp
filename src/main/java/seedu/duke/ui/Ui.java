@@ -20,19 +20,17 @@ public class Ui {
         System.out.println(" " + message);
     }
 
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(" ☹ OOPS!!! " + errorMessage);
+    }
+
+    public void printWelcomeMessage() {
+        printMessage("Welcome to AniChan!");
+        printMessage(LOGO);
+    }
+
     public void printHorizontalLine() {
         System.out.println(HORIZONTAL_LINE);
-    }
-
-    public void printErrorMessage(String errorMessage) {
-        System.out.println(" ☹ OOPS!!!" + errorMessage);
-    }
-
-    // TEMPORARY, REMOVED WHEN DONE REFACTORING!
-    public String readQuickStartInput() {
-        System.out.print(" ");
-        String userInput = CONSOLE.nextLine();
-        return userInput;
     }
 
     public String readUserInput(String userName, String watchlistName) {
@@ -41,12 +39,11 @@ public class Ui {
         return userInput;
     }
 
-    /**
-     * Greets new user upon opening up application.
-     */
-    public void printWelcomeMessage() {
-        printMessage("Welcome to AniChan!");
-        printMessage(LOGO);
+    // TEMPORARY, REMOVED WHEN DONE REFACTORING!
+    public String readQuickStartInput() {
+        System.out.print(" ");
+        String userInput = CONSOLE.nextLine();
+        return userInput;
     }
 
     /**

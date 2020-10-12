@@ -24,7 +24,7 @@ public class Duke {
     private final Parser parser;
     private final Storage storage;
     private UserProfile userProfile;
-    private final Watchlist currentWatchlist;
+    private final Watchlist activeWatchlist;
     private final ArrayList<Watchlist> watchlists;
 
     public Duke() {
@@ -37,9 +37,11 @@ public class Duke {
         watchlists = storage.readWatchlistFile(ui);
 
         if (watchlists.isEmpty()) {
-            currentWatchlist = new Watchlist("Default");
+            activeWatchlist = new Watchlist("Default");
+            watchlists.add(activeWatchlist);
+            storage.writeWatchlistFile(ui, watchlists);
         } else {
-            currentWatchlist = watchlists.get(0);
+            activeWatchlist = watchlists.get(0);
         }
     }
 
@@ -50,12 +52,12 @@ public class Duke {
         }
 
         do {
-            String userInput = ui.readUserInput(userProfile.getFancyName(), currentWatchlist.getName());
+            String userInput = ui.readUserInput(userProfile.getFancyName(), activeWatchlist.getName());
             try {
                 command = Parser.getCommand(userInput);
-                // now passing in many parameters into execute, 
+                // now passing in many parameters into execute,
                 // but maybe can reduce in the future after refactoring?
-                command.execute(ui, storage, currentWatchlist, watchlists);
+                command.execute(ui, storage, activeWatchlist, watchlists);
             } catch (AniException exception) {
                 ui.printErrorMessage(exception.getMessage());
             }
