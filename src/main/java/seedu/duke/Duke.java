@@ -5,7 +5,6 @@ import seedu.duke.logic.parser.Parser;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Duke {
 

@@ -10,4 +10,15 @@ public class BusData {
         buses.addAll(busList);
     }
 
+    public static ArrayList<Bus> possibleBuses(String startingLoc, String destination) {
+        ArrayList<Bus> busOptions = new ArrayList<>();
+        for (Bus bus: buses) {
+            ArrayList<BusStops> route = bus.getPossibleRoute(startingLoc, destination);
+            if (route != null) {
+                busOptions.add(new Bus(bus.busNumber, route));
+            }
+        }
+        return busOptions;
+    }
+
 }
