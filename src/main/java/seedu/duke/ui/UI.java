@@ -184,4 +184,8 @@ public class UI {
     public static void commandNotRecognisedMsg() {
         System.out.println(ClickerMessages.COMMAND_UNRECOGNISED_MSG);
     }
+
+    public static void numBunnyLoaded(int numBunnies, int numBunniesLoaded) {
+        System.out.println(String.format("%1$s of %2$s bunnies loaded!", numBunniesLoaded, numBunnies));
+    }
 }

@@ -1,10 +1,10 @@
 number of plot bunnies: 2
 --------------------------------------------------------------
-idea:
-genre:
+idea: test bunny idea 1
+genre: none
 characters: -na-
 --------------------------------------------------------------
-idea:
-genre:
+idea: test bunny idea 2
+genre: none
 characters: -na-
 --------------------------------------------------------------

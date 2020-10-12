@@ -1,6 +1,7 @@
 package seedu.duke.characterlist;
 
 import seedu.duke.character.Character;
+import seedu.duke.exceptions.CharacterAlreadyExistException;
 import seedu.duke.exceptions.CharacterNameMissingException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
 import seedu.duke.exceptions.MissingParamsException;
@@ -16,7 +17,10 @@ public class CharacterList {
     public static ArrayList<Character> characters = new ArrayList<>();
 
     public static void addCharacter(String userInput)
-            throws CommandMissingArgumentsException, CharacterNameMissingException {
+            throws CommandMissingArgumentsException,
+            CharacterNameMissingException,
+            CharacterAlreadyExistException {
+
         // for returning filter options parsed from the user input
         HashMap<String, String> commandArguments = new HashMap<>();
         String name;
@@ -38,6 +42,11 @@ public class CharacterList {
             throw new CharacterNameMissingException();
         }
 
+        // check that character doesn't already exist in the list
+        if (characterNameInList(name)){
+            throw new CharacterAlreadyExistException();
+        }
+
         newCharacter = new Character(name);
         characters.add(newCharacter);
         UI.addBunnyMessage(newCharacter.getCharacterName());
@@ -49,5 +58,14 @@ public class CharacterList {
         for (int i = 0; i < characters.size(); i++) {
             System.out.println((i + 1) + ".\n" + characters.get(i).getCharacterName());
         }
+    }
+
+    public static boolean characterNameInList(String name) {
+        for (Character character : characters){
+            if (name.equals(character.getCharacterName())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -64,4 +64,11 @@ public class Character {
     public int getAge() {
         return age;
     }
+
+    // todo: add other aspects in print out later on
+    public String getDescription() {
+        String description = "  name: " + characterName + "\n";
+
+        return description;
+    }
 }
