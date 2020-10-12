@@ -16,8 +16,12 @@ public class Question implements Displayable {
     private boolean wasShown;
 
     public Question(String description, OptionList optionList, Hint hint) {
+        // assert description != null;     // for another pull request.
         this.description = description;
+
+        // assert optionList != null;       // for another pull request.
         this.optionList = optionList;
+
         this.hint = hint;
         wasAnsweredCorrectly = false;
         wasShown = false;
@@ -48,7 +52,7 @@ public class Question implements Displayable {
     /**
      * Returns the multiple options of the question.
      *
-     * @return A list of options pertaining to this question.
+     * @return An  arraylist of options pertaining to this question.
      */
     public OptionList getOptionList() {
         return optionList;
