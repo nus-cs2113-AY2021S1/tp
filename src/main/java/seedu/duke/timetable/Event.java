@@ -1,4 +1,4 @@
-package seedu.duke.timeTable;
+package seedu.duke.timetable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ public abstract class Event {
     public String linkOrVenue;
     public List<Duration> periods;
 
-    public Event(String name, boolean isOnline, String linkOrVenue){
+    public Event(String name, boolean isOnline, String linkOrVenue) {
         this.name = name;
         this.isOnline = isOnline;
         this.linkOrVenue = linkOrVenue;

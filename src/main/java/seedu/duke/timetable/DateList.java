@@ -1,4 +1,4 @@
-package seedu.duke.timeTable;
+package seedu.duke.timetable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,16 +10,16 @@ public class DateList {
         dateList = new ArrayList<>();
     }
 
-    public void addLesson(Event lesson){
-        for(Duration duration: lesson.periods){
+    public void addLesson(Event lesson) {
+        for (Duration duration: lesson.periods) {
             boolean existList = false;
-            for(EventList eventList: dateList){
-                if(eventList.dateTag == duration.startDateTime.toLocalDate()){
+            for (EventList eventList: dateList) {
+                if (eventList.dateTag == duration.startDateTime.toLocalDate()) {
                     eventList.addEvent(lesson);
                     existList = true;
                 }
             }
-            if(!existList) {
+            if (!existList) {
                 EventList newList = new EventList(duration.startDateTime);
                 newList.addEvent(lesson);
                 dateList.add(newList);

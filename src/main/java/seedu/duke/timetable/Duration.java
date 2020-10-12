@@ -1,4 +1,4 @@
-package seedu.duke.timeTable;
+package seedu.duke.timetable;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -9,36 +9,36 @@ public class Duration {
     public LocalDateTime endDateTime;
     public List<Integer> timeSlot;
 
-    public Duration(LocalDateTime startDateTime, LocalDateTime endDateTime){
+    public Duration(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         timeSlot = new ArrayList<>();
         int start = getTime(startDateTime);
         int end = getTime(endDateTime);
-        for (int time = start; time < end; time+=100){
+        for (int time = start; time < end; time += 100) {
             timeSlot.add(time);
         }
     }
 
-    public Duration(LocalDateTime startDateTime){
+    public Duration(LocalDateTime startDateTime) {
         this.startDateTime = startDateTime;
         this.endDateTime = startDateTime.plusHours(1);
         timeSlot = new ArrayList<>();
         int start = getTime(startDateTime);
         int end = getTime(endDateTime);
-        for (int time = start; time < end; time+=100) {
+        for (int time = start; time < end; time += 100) {
             timeSlot.add(time);
         }
     }
 
-    private int getTime(LocalDateTime dateTime){
-        return dateTime.getHour()*100 + dateTime.getMinute();
+    private int getTime(LocalDateTime dateTime) {
+        return dateTime.getHour() * 100 + dateTime.getMinute();
     }
 
-    public boolean containTimeSlot(int timeSlot){
-        if(this.timeSlot.contains(timeSlot)){
+    public boolean containTimeSlot(int timeSlot) {
+        if (this.timeSlot.contains(timeSlot)) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }

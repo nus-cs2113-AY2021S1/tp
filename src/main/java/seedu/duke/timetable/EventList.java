@@ -1,4 +1,4 @@
-package seedu.duke.timeTable;
+package seedu.duke.timetable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,12 +9,12 @@ public class EventList {
     public LocalDate dateTag;
     public List<Event> events;
 
-    public EventList(LocalDateTime dateTime){
+    public EventList(LocalDateTime dateTime) {
         dateTag = dateTime.toLocalDate();
         events = new ArrayList<>();
     }
 
-    public void addEvent(Event event){
+    public void addEvent(Event event) {
         events.add(event);
     }
 }
