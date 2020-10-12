@@ -12,7 +12,7 @@
 -------------------------------------------------------------
  What's your name?
  Hello Abec! What might your date of birth be? (DD/MM/YYYY)
- What might your gender be? (Male/Female/Others)
+ What might your gender be? (Male/Female/Other)
  Successfully added new user: 
 Name: Abec
 Birthdate: 01/02/1996
