@@ -27,8 +27,13 @@ public class RetrieveCommand extends Command {
      */
     @Override
     public void execute(PatientList patients, Ui ui, Storage storage) throws RexException {
+        assert patients != null : "patient ArrayList is null";
+        assert ui != null : "ui is null";
+        assert storage != null : "storage is null";
+
         String nric = extractNric(trimmedCommand, COMMAND_WORD);
         int index = patients.getExistingPatient(nric);
+        assert index > -2 : "Unexpected index!";
         if (index < 0) {
             throw new RexException("No such patient!");
         }

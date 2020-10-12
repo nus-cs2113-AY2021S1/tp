@@ -21,6 +21,8 @@ public class Parser {
      * @return Patient object with patient details.
      */
     public static Patient readPatient(String line) {
+        assert line != null && !line.equals("") : "No patients to read!";
+
         StringBuilder record = new StringBuilder(line);
         String name = record.substring(0, record.indexOf(", "));
         // Deletes first comma separator.
@@ -40,6 +42,8 @@ public class Parser {
      * @throws RexException if command does not exist.
      */
     public static Command parse(String fullCommand) throws RexException {
+        assert fullCommand != null && !fullCommand.equals("") : "No command to parse!";
+
         String trimmedCommand = fullCommand.trim().toLowerCase();
         Command command;
         if (trimmedCommand.equals(ExitCommand.COMMAND_WORD)) {
