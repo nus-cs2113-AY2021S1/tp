@@ -8,37 +8,39 @@ import seedu.duke.parser.DateTimeParser;
 import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class CreateSprintCommand extends SprintCommand {
-    SprintList allSprint;
+    private SprintList allSprint;
+    private ArrayList<Project> projectList;
+    private Project proj;
 
     /**
      * Creates a new DELETE command with arguments.
      */
-    public CreateSprintCommand(Hashtable<String, String> parameters) {
+    public CreateSprintCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList) {
         super(parameters);
+        this.projectList = projectList;
     }
 
     /**
      * Abstract method that execute the command.
      *
-     * @param ui UI that handles user interaction
-     * @return Boolean - True if Bye command is executed
      */
-    public boolean execute(Project proj, Ui ui) {
+    public void execute() {
+        proj = projectList.get(0);
         if (validateParams()) {
             allSprint = proj.getAllSprints();
             if (allSprint.size() == 0) {
-                createFirstSprint(proj, ui);
+                createFirstSprint();
             } else {
-                createSubsequentSprint(proj, ui);
+                createSubsequentSprint();
             }
         }
-        return false;
     }
 
-    private void createFirstSprint(Project proj, Ui ui) {
+    private void createFirstSprint() {
 
         LocalDate sprintStart = LocalDate.now();
         if (!parameters.get("start").isEmpty()) {
@@ -52,38 +54,38 @@ public class CreateSprintCommand extends SprintCommand {
         proj.setStartDate(sprintStart);
         proj.setEndDate(projEndDate);
 
-        ui.showToUser("Project will start along with the newly created sprint");
+        Ui.showToUser("Project will start along with the newly created sprint");
         System.out.println("Project period: " + sprintStart + " to " + projEndDate);
-        printCreatedSprint(ui);
+        printCreatedSprint();
 
     }
 
-    private void createSubsequentSprint(Project proj, Ui ui) {
+    private void createSubsequentSprint() {
 
         String sprintGoal = parameters.get("goal");
         Sprint prevSprint = allSprint.getSprint(allSprint.size() - 1);
         LocalDate sprintStart = prevSprint.getEndDate().plusDays(1);
         if (DateTimeParser.diff(proj.getEndDate(),sprintStart) >= 0) {
-            ui.showToUser("\nAll sprints are already created.");
+            Ui.showToUser("\nAll sprints are already created.");
             return;
         }
         LocalDate sprintEnd = sprintStart.plusDays(proj.getSprintLength() - 1);
         allSprint.addSprint(sprintGoal, sprintStart, sprintEnd);
         if (!parameters.get("start").isEmpty()) {
-            ui.showToUser(Messages.MESSAGE_CREATE_SUB_SPRINT);
+            Ui.showToUser(Messages.MESSAGE_CREATE_SUB_SPRINT);
         }
-        printCreatedSprint(ui);
+        printCreatedSprint();
     }
 
     private boolean validateParams() {
         return !parameters.get("goal").isEmpty();
     }
 
-    private void printCreatedSprint(Ui ui) {
+    private void printCreatedSprint() {
         Sprint created = allSprint.getSprint(allSprint.size() - 1);
-        ui.showToUser("\n--- New Sprint ---");
-        ui.showToUser("Goal: " + created.getGoal());
-        ui.showToUser("Start Date: " + created.getStartDate());
-        ui.showToUser("End Date: " + created.getEndDate());
+        Ui.showToUser("\n--- New Sprint ---");
+        Ui.showToUser("Goal: " + created.getGoal());
+        Ui.showToUser("Start Date: " + created.getStartDate());
+        Ui.showToUser("End Date: " + created.getEndDate());
     }
 }

@@ -15,12 +15,7 @@ public abstract class SprintCommand extends Command {
         super(parameters);
     }
 
-    /**
-     * Abstract method that execute the command.
-     *
-     * @param ui UI that handles user interaction
-     * @return Boolean - True if Bye command is executed
-     */
-    public abstract boolean execute(Project proj, Ui ui);
+
+    public abstract void execute();
 
 }

@@ -11,13 +11,17 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class AllocateSprintTaskCommand extends SprintCommand {
-    SprintList allSprint;
+    private SprintList allSprint;
+    private ArrayList<Project> projectList;
+    private Project proj;
 
-    public AllocateSprintTaskCommand(Hashtable<String, String> parameters) {
+    public AllocateSprintTaskCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList) {
         super(parameters);
+        this.projectList = projectList;
     }
 
-    public boolean execute(Project proj, Ui ui) {
+    public void execute() {
+        proj = projectList.get(0);
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
             if (validateParams()) {
@@ -32,39 +36,38 @@ public class AllocateSprintTaskCommand extends SprintCommand {
                 currentSprint.allocateSprintTask(Integer.parseInt(taskId), users);
             }
         } else {
-            checkReason(proj,ui);
+            checkReason();
         }
-        return false;
     }
 
     private boolean validateParams() {
         return !parameters.get("taskid").isEmpty() && !parameters.get("0").isEmpty();
     }
 
-    private void checkReason(Project proj, Ui ui) {
+    private void checkReason() {
         if (allSprint.size() == 0) {
-            ui.showToUser("You have yet to create your sprint.");
+            Ui.showToUser("You have yet to create your sprint.");
             return;
         }
 
         Sprint latestSprint = allSprint.getSprint(allSprint.size() - 1);
         if (DateTimeParser.diff(LocalDate.now(), proj.getEndDate()) == 0) {
-            ui.showToUser("Project already ended on " + proj.getEndDate());
+            Ui.showToUser("Project already ended on " + proj.getEndDate());
             return;
         } else if (DateTimeParser.diff(LocalDate.now(), proj.getStartDate()) > 0) {
-            ui.showToUser("Project will start on " + proj.getStartDate());
+            Ui.showToUser("Project will start on " + proj.getStartDate());
             return;
         }
 
         if (DateTimeParser.diff(latestSprint.getEndDate(), LocalDate.now()) >= 0) {
-            ui.showToUser("Latest sprint ended on " + latestSprint.getEndDate());
-            ui.showToUser("Please create new sprint.");
+            Ui.showToUser("Latest sprint ended on " + latestSprint.getEndDate());
+            Ui.showToUser("Please create new sprint.");
             return;
         }
 
         Sprint current = allSprint.getSprint(0);
         if (DateTimeParser.diff(LocalDate.now(), current.getStartDate()) < 0) {
-            ui.showToUser("First sprint will start on " + current.getStartDate());
+            Ui.showToUser("First sprint will start on " + current.getStartDate());
         }
     }
 }
