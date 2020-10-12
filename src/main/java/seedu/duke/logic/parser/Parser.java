@@ -4,6 +4,7 @@ import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
 import seedu.duke.logic.commands.Command;
 import seedu.duke.logic.commands.ExitCommand;
+import seedu.duke.logic.commands.RouteMapCommand;
 
 public class Parser {
 
@@ -26,15 +27,17 @@ public class Parser {
 
     public boolean extractType() throws CustomException {
 
+
         String command = splitCommands(2)[0];
+
 
         switch (command) {
         //        case "/route":
         //
         //            break;
-        //        case "/routemap":
-        //
-        //            break;
+        case "/routemap":
+            com = new RouteMapCommand();
+            break;
         //        case "/bus":
         //
         //            break;
