@@ -1,6 +1,8 @@
 package seedu.eduke8.command;
 
+import seedu.eduke8.Eduke8;
 import seedu.eduke8.common.DisplayableList;
+import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.quiz.SingleTopicQuiz;
 import seedu.eduke8.topic.Topic;
 import seedu.eduke8.topic.TopicList;
@@ -21,8 +23,12 @@ public class QuizCommand extends Command {
 
     @Override
     public void execute(DisplayableList displayableList, Ui ui) {
-        Topic topic = (Topic) topicList.find(topicName);
-        SingleTopicQuiz singleTopicQuiz = new SingleTopicQuiz(topic, numOfQuestions);
-        singleTopicQuiz.startQuiz(ui);
+        try {
+            Topic topic = (Topic) topicList.find(topicName);
+            SingleTopicQuiz singleTopicQuiz = new SingleTopicQuiz(topic, numOfQuestions);
+            singleTopicQuiz.startQuiz(ui);
+        } catch (Eduke8Exception ee) {
+            ui.printError(); //to implement in ui: specific error for QuizCommand issues
+        }
     }
 }

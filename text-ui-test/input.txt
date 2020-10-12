@@ -1,1 +1,4 @@
+about
+help
+textbook
 exit
