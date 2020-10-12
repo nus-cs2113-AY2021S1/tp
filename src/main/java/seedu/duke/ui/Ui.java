@@ -1,17 +1,7 @@
 package seedu.duke.ui;
 
-<<<<<<< HEAD
-
 import seedu.duke.Bus;
-import seedu.duke.exceptions.CustomException;
-import seedu.duke.exceptions.ExceptionType;
-
 import java.util.ArrayList;
-=======
-import seedu.duke.exceptions.CustomException;
-import seedu.duke.exceptions.ExceptionType;
-
->>>>>>> 637c5325eb4fb5eb8d7c8408ba4927f49fecf2b1
 import java.util.Scanner;
 
 public class Ui {
@@ -36,7 +26,7 @@ public class Ui {
         System.out.println(error);
     }
 
-    public static void commandHelp() {
+    public static void printHelp() {
         System.out.println("Here are the range of commands:\n"
                 + "1./route : Displays possible direct bus from point to point\n"
                 + "2./routemap: Displays the route map with its intermediate bus stops\n"
@@ -53,7 +43,6 @@ public class Ui {
 
     public static void printRouteSelectionMessage() {
         System.out.println("What bus routes would you like to see?\nCurrently, we have two bus routes available for"
-<<<<<<< HEAD
                 + " your viewing \n1.AA1 \n2.AA2 \nType the name to view:");
     }
 
@@ -75,8 +64,5 @@ public class Ui {
 
     public static void printFullRoute(Bus busCode) {
         System.out.println("Here is the " + busCode.getBusNumber() + " route that you have requested:\n" + busCode);
-=======
-                + "your viewing \n1.AA1 \n2.AA2 \nType the name to view:");
->>>>>>> 637c5325eb4fb5eb8d7c8408ba4927f49fecf2b1
     }
 }
