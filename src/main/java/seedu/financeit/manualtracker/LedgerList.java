@@ -11,16 +11,10 @@ import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class LedgerList extends ItemList {
     public LedgerList() {
-        super.requiredParams = new ArrayList<>() {
-            {
-                add("/date");
-                add("/id");
-            }
-        };
+
     }
 
     public Ledger getItemFromDate(LocalDate date) throws ItemNotFoundException {
@@ -55,16 +49,10 @@ public class LedgerList extends ItemList {
         case ParamChecker.PARAM_DATE:
             LocalDate date = paramChecker.checkAndReturnDate(paramType);
             this.setCurrItem(this.getItemFromDate(date));
-            // Both params are added because the item specified has been identified,
-            // therefore params processing was successful.
-            this.parseSuccessParams.add("/date");
-            this.parseSuccessParams.add("/id");
             break;
         case ParamChecker.PARAM_INDEX:
             int index = paramChecker.checkAndReturnIndex(paramType, this.items);
             this.setCurrItem(this.getItemFromIndex(index));
-            this.parseSuccessParams.add("/date");
-            this.parseSuccessParams.add("/id");
             break;
         default:
             if (!super.requiredParams.contains(paramType)) {

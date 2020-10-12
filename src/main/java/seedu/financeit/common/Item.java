@@ -1,7 +1,7 @@
 package seedu.financeit.common;
 
 /**
- * Item is a class that is element to ItemList
+ * Item is a class that is element to ItemList.
  */
 public abstract class Item extends ParamHandler {
 

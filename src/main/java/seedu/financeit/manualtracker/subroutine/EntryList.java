@@ -11,28 +11,17 @@ import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class EntryList extends ItemList {
     Ledger ledger;
+
     public EntryList(Ledger ledger) {
         this.setLedger(ledger);
-        super.requiredParams = new ArrayList<>() {
-            {
-                add("/time");
-                add("/cat");
-                add("/amt");
-                add("-i");
-                add("-e");
-                add("/id");
-                add("/desc");
-            }
-        };
     }
 
     public void addEntry(Entry entry) {
         entry.setLedger(this.ledger);
-        this.addEntry(entry);
+        this.addItem(entry);
     }
 
     @Override
@@ -71,7 +60,6 @@ public class EntryList extends ItemList {
         case ParamChecker.PARAM_INDEX:
             int index = paramChecker.checkAndReturnIndex(paramType, this.items);
             super.setCurrItem(super.getItemFromIndex(index));
-            this.parseSuccessParams.add(paramType);
             break;
         default:
             if (!super.requiredParams.contains(paramType)) {

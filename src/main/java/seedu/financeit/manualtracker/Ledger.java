@@ -3,7 +3,6 @@ package seedu.financeit.manualtracker;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.DateTimeItem;
-import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
@@ -12,7 +11,6 @@ import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Ledger extends DateTimeItem {
     protected LocalDate date = null;
@@ -21,17 +19,10 @@ public class Ledger extends DateTimeItem {
 
     public Ledger() {
         super();
-        super.requiredParams = new ArrayList<>() {
-            {
-                add("/date");
-                add("/id");
-            }
-        };
         super.setDefaultDateTimeFormat("date");
     }
 
-    public Ledger(CommandPacket packet) throws InsufficientParamsException {
-        this();
+    public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
         this.paramChecker = new ParamChecker(packet);
         try {
             this.handleParams(packet);
@@ -63,7 +54,6 @@ public class Ledger extends DateTimeItem {
         case ParamChecker.PARAM_DATE:
             date = paramChecker.checkAndReturnDate(paramType);
             this.setDate(date);
-            this.parseSuccessParams.add(paramType);
             break;
 
         default:

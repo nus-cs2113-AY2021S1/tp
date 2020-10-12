@@ -3,7 +3,6 @@ package seedu.financeit.financetools;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.ParamHandler;
-import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
@@ -30,7 +29,7 @@ public class SimpleInterest extends ParamHandler {
         this();
         try {
             handleParams(packet);
-        } catch (ItemNotFoundException | ConflictingItemReference exception) {
+        } catch (ItemNotFoundException exception) {
             // Fall-through
         }
     }
@@ -48,13 +47,8 @@ public class SimpleInterest extends ParamHandler {
     }
 
     @Override
-    public boolean isValidItem() {
-        return ((amount != -1) && (interestRate != -1));
-    }
-
-    @Override
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
-            ItemNotFoundException, ConflictingItemReference {
+            ItemNotFoundException {
         switch (paramType) {
         case "/amount":
             this.amount = paramChecker.checkAndReturnDouble(paramType);

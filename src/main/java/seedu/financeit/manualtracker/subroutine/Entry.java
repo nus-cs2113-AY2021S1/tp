@@ -1,17 +1,17 @@
 package seedu.financeit.manualtracker.subroutine;
 
+import seedu.financeit.common.CategoryMap;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.DateTimeItem;
-import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.manualtracker.Ledger;
 import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.ParamChecker;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 import static seedu.financeit.utils.ParamChecker.PARAM_AMOUNT;
 import static seedu.financeit.utils.ParamChecker.PARAM_CATEGORY;
@@ -30,25 +30,14 @@ public class Entry extends DateTimeItem {
 
     public Entry() {
         super();
-        super.requiredParams = new ArrayList<>() {
-            {
-                add("/time");
-                add("/cat");
-                add("/amt");
-                add("-i");
-                add("-e");
-                add("/id");
-                add("/desc");
-            }
-        };
         super.setDefaultDateTimeFormat("time");
     }
 
-    public Entry(CommandPacket packet) throws InsufficientParamsException {
-        this();
+    public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
+        this.paramChecker = new ParamChecker(packet);
         try {
             this.handleParams(packet);
-        } catch (ItemNotFoundException | ConflictingItemReference exception) {
+        } catch (ItemNotFoundException exception) {
             // Fall-through
         }
     }
@@ -74,7 +63,7 @@ public class Entry extends DateTimeItem {
     }
 
     public void setCategory(String category) {
-        this.category = Constants.categoryMap.get(category);
+        this.category = CategoryMap.getCategoryFromInput(category);
     }
 
     public String getCategory() {
@@ -95,29 +84,23 @@ public class Entry extends DateTimeItem {
         case PARAM_TIME:
             LocalTime time = paramChecker.checkAndReturnTime(paramType);
             super.setTime(time);
-            this.parseSuccessParams.add(paramType);
             break;
         case PARAM_AMOUNT:
             Double amount = paramChecker.checkAndReturnDouble(paramType);
             this.setAmount(amount);
-            this.parseSuccessParams.add(paramType);
             break;
         case PARAM_INC:
             this.setEntryType(Constants.EntryType.INC);
-            this.parseSuccessParams.add(paramType);
             break;
         case PARAM_EXP:
             this.setEntryType(Constants.EntryType.EXP);
-            this.parseSuccessParams.add(paramType);
             break;
         case PARAM_DESCRIPTION:
             this.setDescription(packet.getParam(paramType));
-            this.parseSuccessParams.add(paramType);
             break;
         case PARAM_CATEGORY:
             String category = paramChecker.checkAndReturnCategory(paramType);
             this.setCategory(category);
-            this.parseSuccessParams.add(paramType);
             break;
         default:
             if (!super.requiredParams.contains(paramType)) {

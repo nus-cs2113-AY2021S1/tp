@@ -3,7 +3,6 @@ package seedu.financeit.recurringtracker;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.Item;
-import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
@@ -39,7 +38,7 @@ public class RecurringEntry extends Item {
     public RecurringEntry(CommandPacket packet) throws AssertionError, InsufficientParamsException {
         try {
             handleParams(packet);
-        } catch (ItemNotFoundException | ConflictingItemReference exception) {
+        } catch (ItemNotFoundException exception) {
             // Fall-through
         }
     }
@@ -80,11 +79,5 @@ public class RecurringEntry extends Item {
     public String getName() {
         return String.format("Entry: [ %s ] [ %s ]",
                 day, description);
-    }
-
-    @Override
-    public boolean isValidItem() {
-        return (entryType != null)
-                && (this.amount != -1);
     }
 }

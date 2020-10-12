@@ -1,6 +1,5 @@
 package seedu.financeit.common;
 
-import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 
@@ -23,16 +22,22 @@ public abstract class ItemList extends ParamHandler {
     }
 
     public void setCurrItemFromPacket(CommandPacket packet)
-        throws InsufficientParamsException, ItemNotFoundException, ConflictingItemReference {
+        throws InsufficientParamsException, ItemNotFoundException {
         handleParams(packet);
     }
 
     public Item getCurrItem() {
-        return currItem;
+        return this.currItem;
     }
 
     public void setCurrItem(Item item) {
-        currItem = item;
+        this.currItem = item;
+    }
+
+    public Item popCurrItem() {
+        Item tempItem = this.currItem;
+        this.currItem = null;
+        return tempItem;
     }
 
     public int getItemsSize() {

@@ -1,5 +1,6 @@
 package seedu.financeit.utils;
 
+import seedu.financeit.common.CategoryMap;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.exceptions.EmptyParamException;
@@ -224,7 +225,7 @@ public class ParamChecker {
 
         logger.log(Level.INFO, "Checking input Category...");
         try {
-            if (!Constants.categoryMap.containsKey(category)) {
+            if (! CategoryMap.inputToCategoryMap.containsKey(category)) {
                 throw new InvalidCategoryException(category);
             }
             parseSuccess = true;

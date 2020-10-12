@@ -41,11 +41,11 @@ public class CategoryMap {
     };
 
     public static String getInputFromCategory(String input) {
-        return inputToCategoryMap.get(input);
+        return categoryToInputMap.get(input);
     }
 
     public static String getCategoryFromInput(String input) {
-        return categoryToInputMap.get(input);
+        return inputToCategoryMap.get(input);
     }
 
     public void addNewCategory(String shortcut, String category) {

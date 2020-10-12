@@ -2,7 +2,6 @@ package seedu.financeit.recurringtracker;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.ItemList;
-import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.TablePrinter;
@@ -13,10 +12,6 @@ public class RecurringEntryList extends ItemList {
     }
 
     @Override
-    public void printList(String... itemName) {
-
-    }
-
     public void printList() {
         TablePrinter.setTitle(String.format("List of Recurring entries"));
         TablePrinter.addRow("Day;Description;Expenditure amount;Income amount;Payment;Notes                    ");
@@ -32,6 +27,6 @@ public class RecurringEntryList extends ItemList {
 
     @Override
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
-        ItemNotFoundException, ConflictingItemReference {
+        ItemNotFoundException {
     }
 }

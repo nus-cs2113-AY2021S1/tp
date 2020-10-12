@@ -19,7 +19,7 @@ public class FinanceTools {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         }  finally {
-            if (tool == null) {
+            if (!tool.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }

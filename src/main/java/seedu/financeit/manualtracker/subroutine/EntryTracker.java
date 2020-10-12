@@ -1,9 +1,8 @@
 package seedu.financeit.manualtracker.subroutine;
 
+import seedu.financeit.common.CategoryMap;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
-import seedu.financeit.common.exceptions.ConflictingItemReference;
-import seedu.financeit.common.exceptions.DuplicateInputException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.goaltracker.TotalGoal;
@@ -13,6 +12,9 @@ import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.FiniteStateMachine;
 
+/**
+ * Class to handle routine for manual entry management.
+ */
 public class EntryTracker {
     private static Ledger currLedger;
     private static EntryList entryList;
@@ -122,18 +124,20 @@ public class EntryTracker {
 
     private static FiniteStateMachine.State handleDeleteEntry() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        Entry entry = null;
+        Entry entry = new Entry();
+        entryList.setRequiredParams(
+            "/id");
         try {
             entryList.setCurrItemFromPacket(packet);
             entry = (Entry) entryList.getCurrItem();
             entryList.removeItem(entry);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s deleted!", entry.getName()));
-        } catch (InsufficientParamsException | ItemNotFoundException | ConflictingItemReference exception) {
+        } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {
-            if (entry == null) {
+            if (!entry.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
@@ -163,21 +167,24 @@ public class EntryTracker {
 
     private static FiniteStateMachine.State handleCreateEntry() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        Entry entry = null;
+        Entry entry = new Entry();
+        entry.setRequiredParams(
+            "/time",
+            "/desc",
+            "/cat",
+            "/amt",
+            "-i or -e");
 
         try {
-            entry = new Entry(packet);
+            entry.handlePacket(packet);
             entryList.addEntry(entry);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s created!", entry.getName()));
-        } catch (DuplicateInputException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Entry specified already exists in the list!");
         } catch (InsufficientParamsException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {
-            if (entry == null) {
+            if (!entry.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
@@ -187,19 +194,20 @@ public class EntryTracker {
 
     private static FiniteStateMachine.State handleEditEntry() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
-        Entry entry = null;
-
+        Entry entry;
+        entryList.setRequiredParams(
+            "/id");
         try {
             entryList.setCurrItemFromPacket(packet);
             entry = (Entry) entryList.getCurrItem();
             entry.handleParams(packet);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s edited!", entry.getName()));
-        } catch (InsufficientParamsException | ItemNotFoundException | ConflictingItemReference exception) {
+        } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         }  finally {
-            if (entry == null) {
+            if (!entryList.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
@@ -221,8 +229,8 @@ public class EntryTracker {
     private static void printValidCategories() {
         TablePrinter.setTitle("List of Valid Categories");
         TablePrinter.addRow("Category;Input");
-        for (String i : Constants.categoryMap.keySet()) {
-            TablePrinter.addRow(String.format("%s;%s", i, Constants.categoryMap.get(i)));
+        for (String i : CategoryMap.inputToCategoryMap.keySet()) {
+            TablePrinter.addRow(String.format("%s;%s", i, CategoryMap.getCategoryFromInput(i)));
         }
         TablePrinter.printList();
     }
