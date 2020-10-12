@@ -8,7 +8,6 @@ public class HelpCommand extends Command {
         ui.printHelpPage();
     }
 
-
     public boolean isExit() {
         return false;
     }
