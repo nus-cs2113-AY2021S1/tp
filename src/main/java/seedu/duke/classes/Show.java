@@ -13,22 +13,6 @@ public class Show {
     protected int currentSeason;    //to keep track of watch progress
     protected int currentEpisode;
 
-
-    @Override
-    public String toString() {
-        String des = name + " | ";
-        des += "WatchHistory : S";
-        des += Integer.toString(currentSeason);
-        des += "E";
-        des += Integer.toString(currentEpisode);
-        if (rating != -1) {
-            //TODO : make sure a review is always passed in with a rating
-            des += "| Rating: ";
-            des += Integer.toString(rating);
-        }
-        return des;
-    }
-
     public Show(String name, int numSeasons, int[] numEpisodesForSeasons) {
         this.name = name;
         this.numSeasons = numSeasons;
@@ -38,8 +22,7 @@ public class Show {
         this.currentEpisode = 1;
         this.currentSeason = 1;
     }
-
-
+    
     public String getName() {
         return name;
     }
@@ -111,5 +94,20 @@ public class Show {
         this.currentEpisode = episode;
         this.currentSeason = season;
     }
-    
+
+    @Override
+    public String toString() {
+        String des = name + " | ";
+        des += "WatchHistory : S";
+        des += Integer.toString(currentSeason);
+        des += "E";
+        des += Integer.toString(currentEpisode);
+        if (rating != -1) {
+            //TODO : make sure a review is always passed in with a rating
+            des += "| Rating: ";
+            des += Integer.toString(rating);
+        }
+        return des;
+    }
+
 }
