@@ -15,13 +15,14 @@ public class PinCommand extends Command {
             + "[" + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX] "
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE]";
 
-    private int index;
-    private String title;
-    private boolean isPinByIndex;
 
     public static String getCommandUsage() {
         return COMMAND_USAGE;
     }
+
+    private int index;
+    private String title;
+    private boolean isPinByIndex;
 
     /**
      * Constructs a PinCommand to pin or unpin a Note in the Notebook by the index.

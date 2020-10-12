@@ -3,12 +3,8 @@ package seedu.duke.data.timetable;
 import seedu.duke.data.exception.SystemException;
 
 import java.time.LocalDate;
-import java.time.Year;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
-import java.util.PriorityQueue;
 
 /**
  * Represents a TimeTable object. Contains all the events.
@@ -87,13 +83,13 @@ public class Timetable {
         Event event = events.get(index);
         events.remove(index);
         if (event instanceof DailyEvent) {
-            dailyEvents.remove((DailyEvent) event);
+            dailyEvents.remove(event);
         } else if (event instanceof WeeklyEvent) {
-            weeklyEvents.remove((WeeklyEvent) event);
+            weeklyEvents.remove(event);
         } else if (event instanceof MonthlyEvent) {
-            monthlyEvents.remove((MonthlyEvent) event);
+            monthlyEvents.remove(event);
         } else if (event instanceof YearlyEvent) {
-            yearlyEvents.remove((YearlyEvent) event);
+            yearlyEvents.remove(event);
         } else {
             nonRecurringEvents.remove(event);
         }

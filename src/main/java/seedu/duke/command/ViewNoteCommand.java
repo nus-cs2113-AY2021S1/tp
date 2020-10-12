@@ -18,13 +18,13 @@ public class ViewNoteCommand extends Command {
             + "[" + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX] "
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE]";
 
-    private int index;
-    private String title;
-    private boolean isViewByIndex;
-
     public static String getCommandUsage() {
         return COMMAND_USAGE;
     }
+
+    private int index;
+    private String title;
+    private boolean isViewByIndex;
 
     /**
      * Constructs a ViewNoteCommand to view a Note by the index.
@@ -32,7 +32,7 @@ public class ViewNoteCommand extends Command {
      * @param index of the Note.
      */
     public ViewNoteCommand(int index) {
-        this.index = index - 1;
+        this.index = index;
         this.title = null;
         this.isViewByIndex = true;
     }
@@ -44,7 +44,7 @@ public class ViewNoteCommand extends Command {
      */
     public ViewNoteCommand(String title) {
         this.index = NULL_INT;
-        this.title = title.trim();
+        this.title = title;
         this.isViewByIndex = false;
     }
 

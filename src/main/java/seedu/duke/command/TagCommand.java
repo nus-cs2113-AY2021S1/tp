@@ -16,19 +16,27 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "tag";
-    private static final String ADD_TAG_MESSAGE = "Added the tag to the note! ";
-    private static final String REMOVE_TAG_MESSAGE = "Removed the tag from the note! ";
 
     private static final String COMMAND_USAGE = COMMAND_WORD + ": Tags or untags a note. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
-            + PREFIX_DELIMITER + PREFIX_TAG + " TAG_NAME [TAG_COLOR]";
+            + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR "
+            + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...]";
 
-    private int index;
-    private ArrayList<Tag> tags;
-
+    /**
+     * Gets how the command is expected to be used.
+     *
+     * @return String representation of how the command is to be used.
+     */
     public static String getCommandUsage() {
         return COMMAND_USAGE;
     }
+
+    private static final String ADD_TAG_MESSAGE = "Added the tag to the note! ";
+    private static final String REMOVE_TAG_MESSAGE = "Removed the tag from the note! ";
+    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Invalid index input!";
+
+    private int index;
+    private ArrayList<Tag> tags;
 
     /**
      * Constructs a TagCommand to tag or untag a Note.
@@ -43,7 +51,7 @@ public class TagCommand extends Command {
         String executeMessage = "";
 
         try {
-            Note note = notebook.getNotes().get(index - 1);
+            Note note = notebook.getNotes().get(index);
             for (Tag t : tags) {
                 // Tries to get the tag from the database
                 Tag existingTag = tagManager.getTag(t.getTagName());
@@ -62,7 +70,7 @@ public class TagCommand extends Command {
             }
             executeMessage = executeMessage + InterfaceManager.LS;
         } catch (IndexOutOfBoundsException exception) {
-            executeMessage = "Invalid index input!";
+            executeMessage = COMMAND_UNSUCCESSFUL_MESSAGE;
         }
         return executeMessage.trim();
     }
