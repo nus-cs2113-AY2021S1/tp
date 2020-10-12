@@ -15,6 +15,9 @@ public class GoModuleCommand extends Command {
     public static final String COMMAND_WORD = "gomodule";
     String moduleCode;
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Goes to module level. \n"
+            + "Example: " + COMMAND_WORD + "\n";
+
     public GoModuleCommand(String moduleCode) {
         this.moduleCode = moduleCode;
     }
@@ -41,7 +44,7 @@ public class GoModuleCommand extends Command {
                 break;
             }
         }
-        if (isLevelExist == false) {
+        if (!isLevelExist) {
             System.out.println("Sorry, I cannot find this module, please add this module first");
         }
     }

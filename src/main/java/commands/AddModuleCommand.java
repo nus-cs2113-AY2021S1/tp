@@ -12,6 +12,10 @@ public class AddModuleCommand extends Command {
     public static final String COMMAND_WORD = "addmodule";
     private final Module module;
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new module. \n"
+            + "Parameters: MODULE_NAME\n"
+            + "Example: " + COMMAND_WORD + " CS2113T\n";
+
     public AddModuleCommand(String moduleCode) {
         this.module = new Module(moduleCode);
     }

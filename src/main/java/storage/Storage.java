@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -39,6 +40,7 @@ public class Storage {
         } else {
             System.out.println("Directory " + f.getParentFile().getName() + " already exists");
         }
+
         if (dataDirCreated) {
             System.out.println("Successfully created new directory " + f.getParentFile().getName());
         }
@@ -125,7 +127,8 @@ public class Storage {
         return chapters;
     }
 
-    public ArrayList<Card> loadCard(String module, String chapter) throws FileNotFoundException {
+    public ArrayList<Card> loadCard(String module, String chapter)
+            throws FileNotFoundException, InvalidFileFormatException {
         File f = new File(filePath + "/" + module + "/" + chapter + ".txt");
         boolean fileExists = f.exists();
         if (!fileExists) {
@@ -134,41 +137,23 @@ public class Storage {
 
         ArrayList<Card> cards = new ArrayList<>();
         Scanner s = new Scanner(f);
-        int totalCards = 0;
         while (s.hasNext()) {
             //to read the card
+            String fileCommand = s.nextLine();
+            String[] args = fileCommand.split(QUESTION_ANSWER_PREFIX, 2);
+            String question = Parser.parseQuestioninFile(args[0]);
+            String answer = Parser.parseAnswerinFile(args[1]);
+            Card card = new Card(question, answer);
+            cards.add(card);
         }
         return cards;
     }
 
-    public static void getFileContents(CardList cards) {
-        try {
-            File f = new File(FILE_PATHWAY);    // create a File for the given file path
-            Scanner s = new Scanner(f);     // create a Scanner using the File as the source
-            while (s.hasNext()) {
-                String fileCommand = s.nextLine();
-                String[] args = fileCommand.split(QUESTION_ANSWER_PREFIX, 2);
-                String question = Parser.parseQuestioninFile(args[0]);
-                String answer = Parser.parseAnswerinFile(args[1]);
-                Card card = new Card(question, answer);
-                cards.addCard(card);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        } catch (InvalidFileFormatException e) {
-            System.out.println("The format of some commands in the file is invalid");
-        }
-    }
-
-    public static void writeToFile(CardList cards) throws IOException {
-        FileWriter fw = new FileWriter(FILE_PATHWAY);
+    public void saveCards(CardList cards, String module, String chapter) throws IOException {
+        FileWriter fw = new FileWriter(filePath + "/" + module + "/" + chapter + ".txt");
         for (int i = 0; i < cards.getCardCount(); i++) {
             fw.write(cards.getCard(i).toString() + "\n");
         }
         fw.close();
-    }
-
-    public String getFilePath() {
-        return filePath;
     }
 }

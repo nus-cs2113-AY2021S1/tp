@@ -1,5 +1,6 @@
 package commands;
 
+import exception.InvalidFileFormatException;
 import manager.card.Card;
 import manager.chapter.CardList;
 import access.Access;
@@ -14,6 +15,9 @@ import java.util.ArrayList;
 public class GoChapterCommand extends Command {
     public static final String COMMAND_WORD = "gochapter";
     String chapterCode;
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Goes to chapter level. \n"
+            + "Example: " + COMMAND_WORD + "\n";
 
     public GoChapterCommand(String chapterCode) {
         this.chapterCode = chapterCode;
@@ -37,11 +41,13 @@ public class GoChapterCommand extends Command {
                     access.setChapter(chapter);
                 } catch (FileNotFoundException e) {
                     System.out.println("The chapter file cannot be found.");
+                } catch (InvalidFileFormatException e) {
+                    System.out.println("The format of some commands in the file is invalid");
                 }
                 break;
             }
         }
-        if (isLevelExist == false) {
+        if (!isLevelExist) {
             System.out.println("Sorry, I cannot find this chapter, please add this chapter first");
         }
     }
