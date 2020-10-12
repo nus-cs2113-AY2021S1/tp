@@ -21,7 +21,7 @@ public class Topic {
         return title;
     }
 
-    public void addFlashcard(Flashcard flashcard) {
+    public void addFlashCard(Flashcard flashcard) {
         flashcards.add(flashcard);
     }
 
