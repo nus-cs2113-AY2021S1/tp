@@ -3,7 +3,7 @@ Printing of 25/7 logo!!!!
 Welcome to 25/7 Task Manager!
 What can I do for you?
 Enter 'help' for the list of commands.
-==========================================================================
+===========================================================================
 ............................. DUKE CHAT BOX ^^ ............................
 Got it. I've added this task:
 [T][X] homework
@@ -53,11 +53,10 @@ List of available commands:
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
 This is your list of event(s):
-1.[LAB][/] cs1010 10-Oct-2020 Sat 10:00AM (lt11)
-2.[LEC][/] cs2113 08-Oct-2020 Thu 4:00PM (lt12)
-3.[TUT][/] cs2113 08-Oct-2020 Thu 4:00PM (com1)
-4.[LAB][/] cs1010 10-Oct-2020 Sat 10:00AM (com1-bi-12)
-5.[Exam][X] cs2113 20-Oct-2020 Tue 12:30PM (mpsh)
+1.[LEC][/] cs2113 08-Oct-2020 Thu 4:00PM (lt12)
+2.[TUT][/] cs2113 08-Oct-2020 Thu 4:00PM (com1)
+3.[LAB][/] cs1010 10-Oct-2020 Sat 10:00AM (com1-bi-12)
+4.[Exam][X] cs2113 20-Oct-2020 Tue 12:30PM (mpsh)
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
 This is your list of task(s):

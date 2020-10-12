@@ -31,7 +31,7 @@ public class Activity extends Event {
     public boolean getIsOver() {
         if (date.isBefore(LocalDate.now())) {
             return true;
-        } else if (date.isEqual(LocalDate.now()) && time.isBefore(LocalTime.now())){
+        } else if (date.isEqual(LocalDate.now()) && time.isBefore(LocalTime.now())) {
             return true;
         } else {
             return false;
