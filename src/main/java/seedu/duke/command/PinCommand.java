@@ -13,15 +13,11 @@ public class PinCommand extends Command {
 
     public static final String COMMAND_WORD = "pin-n";
 
-    private static final String COMMAND_USAGE = COMMAND_WORD + ": Pins or unpins a note. Parameters: "
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Pins or unpins a note. Parameters: "
             + "[" + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX] "
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE]";
 
     private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook";
-
-    public static String getCommandUsage() {
-        return COMMAND_USAGE;
-    }
 
     private int index;
     private String title;

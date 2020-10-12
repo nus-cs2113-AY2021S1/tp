@@ -14,21 +14,12 @@ public class EditEventCommand extends Command {
 
     public static final String COMMAND_WORD = "edit-e";
 
-    private static final String COMMAND_USAGE = COMMAND_WORD + ": Edits an event in the timetable. "
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Edits an event in the timetable. "
             + "Parameters: " + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE] "
             + "[" + PREFIX_DELIMITER + PREFIX_DATETIME + " DATE_TIME]"
             + "[" + PREFIX_DELIMITER + PREFIX_RECURRING + " RECURRING] "
             + "[" + PREFIX_DELIMITER + PREFIX_REMIND + " REMIND]";
-
-    /**
-     * Gets how the command is expected to be used.
-     *
-     * @return String representation of how the command is to be used.
-     */
-    public static String getCommandUsage() {
-        return COMMAND_USAGE;
-    }
 
     private int index;
 
