@@ -49,6 +49,7 @@ public class Ui {
                     tasks.get(i).getEndTime() == null ? "" : tasks.get(i).getEndTime(),
                     tasks.get(i).getPriority());
         }
+        out.println();
     }
 
     public void showWelcomeMessage() {

@@ -59,10 +59,9 @@ public class TaskList {
     }
 
     public TaskList searchDescription(String toSearch) {
-        List<Task> found = Collections.singletonList(tasks.stream()
+        List<Task> found = tasks.stream()
             .filter(task -> task.getDescription().contains(toSearch))
-            .findAny()
-            .orElse(null));
+            .collect(Collectors.toList());
         return new TaskList((ArrayList<Task>) found);
     }
 
