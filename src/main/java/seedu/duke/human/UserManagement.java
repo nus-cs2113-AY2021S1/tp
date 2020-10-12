@@ -7,9 +7,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 public class UserManagement {
-    // Add Watchlist & Bookmarks here
-
-
     Ui ui;
     Storage storage;
     protected ArrayList<User> userList = new ArrayList<>();

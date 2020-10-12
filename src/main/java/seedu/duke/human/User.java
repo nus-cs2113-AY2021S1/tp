@@ -7,6 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class User extends Human {
+    // Add Watchlist & Bookmarks here and/or UserManagement
+
+
     private static final SimpleDateFormat DATE_MONTH_YEAR = new SimpleDateFormat("dd/MM/yyyy");
     protected Date birthdate;
     protected Gender gender;
