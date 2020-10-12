@@ -89,7 +89,7 @@ public class Parser {
         if (!commandArgs.isEmpty()) {
             throw new InvalidInputException();
         }
-        return new BackChapterCommand(commandArgs);
+        return new BackChapterCommand();
     }
 
     private static Command prepareBackModule(String commandArgs) throws InvalidInputException {
