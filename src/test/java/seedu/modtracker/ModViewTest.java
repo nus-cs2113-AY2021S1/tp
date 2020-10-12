@@ -57,6 +57,7 @@ class ModViewTest {
         outContent.reset();
         ModuleList filledList = new ModuleList();
         ArrayList<Module> modList = filledList.getData();
+        modList.clear();
         modList.add(new Module("CS1231"));
 
         String expected = ModView.FIRST_PART_OF_BORDER + ModView.SECOND_PART_OF_BORDER
