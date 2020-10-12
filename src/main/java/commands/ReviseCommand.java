@@ -49,7 +49,7 @@ public class ReviseCommand extends Command {
     }
 
     private ArrayList<Card> getCards(Ui ui, Access access, Storage storage, Chapter toRevise)
-            throws FileNotFoundException, InvalidFileFormatExcpetion {
+            throws FileNotFoundException, InvalidFileFormatException {
         ArrayList<Card> allCards;
         try {
             allCards = storage.loadCard(access.getModuleLevel(), toRevise.getChapterName());
@@ -67,9 +67,6 @@ public class ReviseCommand extends Command {
         throws FileNotFoundException, InvalidFileFormatException {
         Chapter toRevise = getChapter(reviseIndex, access, ui);
         ArrayList<Card> allCards = getCards(ui, access, storage, toRevise);
-        if (allCards == null) {
-            return;
-        }
         ArrayList<Card> repeatCards = new ArrayList<>();
         int cardCount = cards.getCardCount();
         if (cardCount == 0) {
