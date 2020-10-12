@@ -44,6 +44,8 @@ public class Ui {
      * @param name The name of the user.
      */
     public void printAskForUserInfoMessage(String name) {
+        assert name != null : "Name should not be null";
+        assert name.trim().length() > 0 : "Name should not be an empty string";
         print("Hi " + name + "!" + LINE_SEPARATOR
                 + "Before we get started, I would like to know about about you so that I can make more "
                 + LINE_SEPARATOR
@@ -137,6 +139,9 @@ public class Ui {
      * @param newFood The string representation of the new food item that was added to the food list.
      */
     public void printNewFood(String newFood) {
+        assert newFood != null : "String representation of the food that was added should not be null";
+        assert newFood.trim().length() > 0 : "String representation of the food that was added should not "
+                + "be an empty string";
         print("Got it! I've added this food item:" + LINE_SEPARATOR
                 + "  " + newFood);
     }
@@ -148,7 +153,8 @@ public class Ui {
      * @param allFood The string representation of all the food items in the food list.
      */
     public void printFoodList(String allFood) {
-        if (allFood.length() < 1) {
+        assert allFood != null : "String representation of all food in food list should not be null";
+        if (allFood.trim().length() < 1) {
             print("DietBook is currently empty.");
         } else {
             print("Here are the food items in DietBook:" + LINE_SEPARATOR + allFood);
@@ -161,6 +167,8 @@ public class Ui {
      * @param foodDatabase The list containing all the food items stored in the database.
      */
     public void printDatabase(List<Food> foodDatabase) {
+        assert foodDatabase != null : "Food database should not be null";
+        assert foodDatabase.size() > 0 : "Food database should not be empty";
         String allFood = "";
         int foodItemNumber = 1;
         for (Food food: foodDatabase) {
@@ -173,11 +181,13 @@ public class Ui {
     /**
      * Prints all the information related to the user.
      *
-     * @param personInformation The user's personal information.
+     * @param personInfo The user's personal information.
      */
-    public void printPersonInformation(String personInformation) {
+    public void printPersonInfo(String personInfo) {
+        assert personInfo != null : "Person information should not be null";
+        assert personInfo.trim().length() > 0 : "Person information should not be an empty string";
         print("Here is your information:" + LINE_SEPARATOR
-                + personInformation);
+                + personInfo);
     }
 
     /**
@@ -186,6 +196,7 @@ public class Ui {
      * @param carbohydrateIntake The total amount of carbohydrates of all the food in the food list.
      */
     public void printCarbohydrateIntake(int carbohydrateIntake) {
+        assert carbohydrateIntake >= 0 : "Total carbohydrate intake should be equals to or greater than 0";
         print("Total carbohydrate intake: " + carbohydrateIntake + "g");
     }
 
@@ -195,6 +206,7 @@ public class Ui {
      * @param calorieIntake The total amount of calories of all the food in the food list.
      */
     public void printCalorieIntake(int calorieIntake) {
+        assert calorieIntake >= 0 : "Total calorie intake should be equals to or greater than 0";
         print("Total calorie intake: " + calorieIntake + "kcal");
     }
 
@@ -204,6 +216,7 @@ public class Ui {
      * @param proteinIntake The total amount of proteins of all the food in the food list.
      */
     public void printProteinIntake(int proteinIntake) {
+        assert proteinIntake >= 0 : "Total protein intake should be equals to or greater than 0 ";
         print("Total protein intake: " + proteinIntake + "g");
     }
 
@@ -213,6 +226,7 @@ public class Ui {
      * @param fatIntake The total amount of fats of all the food in the food list.
      */
     public void printFatIntake(int fatIntake) {
+        assert fatIntake >= 0 : "Total fat intake should be equals to or greater than 0";
         print("Total fat intake: " + fatIntake + "g");
     }
 
@@ -226,6 +240,11 @@ public class Ui {
      */
     public void printAllNutrientIntake(int calorieIntake, int carbohydrateIntake, int proteinIntake,
                                        int fatIntake) {
+        assert carbohydrateIntake >= 0 : "Total carbohydrate intake should be equals to or greater than 0";
+        assert calorieIntake >= 0 : "Total calorie intake should be equals to or greater than 0";
+        assert proteinIntake >= 0 : "Total protein intake should be equals to or greater than 0 ";
+        assert fatIntake >= 0 : "Total fat intake should be equals to or greater than 0";
+
         print("Total calorie intake: " + calorieIntake + "kcal" + LINE_SEPARATOR
                 + "Total carbohydrate intake: " + carbohydrateIntake + "g" + LINE_SEPARATOR
                 + "Total protein intake: " + proteinIntake + "g" + LINE_SEPARATOR
@@ -242,6 +261,9 @@ public class Ui {
      * @param deletedFood The string representation of the food that was deleted from the food list.
      */
     public void printDeletedFood(String deletedFood) {
+        assert deletedFood != null : "String representation of the food that was deleted should not be null";
+        assert deletedFood.trim().length() > 0 : "String representation of the food that was deleted should"
+                + " not be an empty string";
         print("Noted. I've removed this food item:" + LINE_SEPARATOR
                 + "  " + deletedFood);
     }
@@ -260,6 +282,8 @@ public class Ui {
      * @param name The name of the user.
      */
     public void printExitMessage(String name) {
+        assert name != null : "Name should not be null";
+        assert name.trim().length() > 0 : "Name should not be an empty string";
         print("Bye " + name + "! Hope to see you again soon!");
     }
 
@@ -269,6 +293,8 @@ public class Ui {
      * @param errorMessage Message detailing what or where the error is.
      */
     public void printErrorMessage(String errorMessage) {
+        assert errorMessage != null : "Error message should not be null";
+        assert errorMessage.trim().length() > 0 : "Error message should not be an empty string";
         print(":( Oh no..." + errorMessage);
     }
 
