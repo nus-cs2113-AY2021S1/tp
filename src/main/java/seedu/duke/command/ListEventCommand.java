@@ -35,7 +35,7 @@ public class ListEventCommand extends Command {
     private int year;
     private int month;
     private boolean isListByDate;
-    
+
     /**
      * Constructs a ListEventCommand to list all the Events in the Timetable.
      */
