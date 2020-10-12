@@ -115,13 +115,15 @@ public class AddCommand extends Command {
              * User input for Exam task example: exam CS2113 BLK:EA LT2 /at 020202 1200
              */
             try {
-                command = command[1].trim().split(" ", 2); // splits to CS2113 and BLK:EA LT2...
+                command = command[1].trim().split(" ", 2);
                 moduleCode = command[0];
-                command = command[1].split("/at");
-                venue = command[0].trim();
+                command = command[1].split("/", 2);
+                String[] temp = command[0].split("@");
+                venue = temp[1].trim();
                 dateTime = command[1].trim().split(" ", 2);
                 date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
                 time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
+
 
 
                 if (moduleCode.isEmpty()) {
@@ -138,16 +140,17 @@ public class AddCommand extends Command {
              * User input for Lecture task example: lecture CS2113 LT2 /at 020202 1200
              */
             try {
-                command = command[1].trim().split(" ", 2); // splits to CS2113 and open book...
+                command = command[1].trim().split(" ", 2);
                 moduleCode = command[0];
-                command = command[1].split("/at");
-                venue = command[0].trim();
+                command = command[1].split("/", 2);
+                String[] temp = command[0].split("@");
+                venue = temp[1].trim();
                 dateTime = command[1].trim().split(" ", 2);
                 date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
                 time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
 
                 if (moduleCode.isEmpty()) {
-                    throw new DukeException("exam");
+                    throw new DukeException("lecture");
                 } else {
                     calendarList.addEvent(new Lecture(moduleCode, date, time, venue));
                 }
@@ -162,14 +165,16 @@ public class AddCommand extends Command {
             try {
                 command = command[1].trim().split(" ", 2);
                 moduleCode = command[0];
-                command = command[1].split("/at");
-                venue = command[0].trim();
+                command = command[1].split("/", 2);
+                String[] temp = command[0].split("@");
+                venue = temp[1].trim();
                 dateTime = command[1].trim().split(" ", 2);
                 date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
                 time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
 
+
                 if (moduleCode.isEmpty()) {
-                    throw new DukeException("exam");
+                    throw new DukeException("tutorial");
                 } else {
                     calendarList.addEvent(new Tutorial(moduleCode, date, time, venue));
                 }
@@ -184,19 +189,20 @@ public class AddCommand extends Command {
             try {
                 command = command[1].trim().split(" ", 2);
                 moduleCode = command[0];
-                command = command[1].split("/at");
-                venue = command[0].trim();
+                command = command[1].split("/", 2);
+                String[] temp = command[0].split("@");
+                venue = temp[1].trim();
                 dateTime = command[1].trim().split(" ", 2);
                 date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
                 time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
 
                 if (moduleCode.isEmpty()) {
-                    throw new DukeException("exam");
+                    throw new DukeException("lab");
                 } else {
                     calendarList.addEvent(new Lab(moduleCode, date, time, venue));
                 }
             } catch (Exception e) {
-                throw new DukeException("tutorial");
+                throw new DukeException("lab");
             }
             break;
         default:
