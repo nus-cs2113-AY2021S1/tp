@@ -189,7 +189,6 @@ class StorageTest {
         try (Scanner scanner = new Scanner(writtenFile)) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                System.out.println(line);
                 assertTrue(tasksStr.stream().anyMatch(s -> s.equals(line)));
             }
         }
