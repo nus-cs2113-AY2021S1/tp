@@ -35,4 +35,35 @@ class AddSlotCommandTest {
             assertEquals(e.getError(), DukeExceptionType.INVALID_TIME_FORMAT);
         }
     }
+
+    @Test
+    void execute_validInput_addsSlotInSlotSlit() {
+        String startTime = "10:00";
+        String endTime = "12:00";
+        String title = "CS1231 Lecture";
+        String input = AddSlotCommand.ADD_KW + " " + startTime + " " + endTime + " " + Slot.FRI + " " + title;
+
+        SlotList expectedSlots = new SlotList();
+        expectedSlots.addSlot(new Slot(LocalTime.parse(startTime),
+                LocalTime.parse(endTime),
+                Slot.FRI,
+                title
+                ));
+
+        AddSlotCommand command;
+        SlotList slots = new SlotList();
+
+        try {
+            command = new AddSlotCommand(input);
+            command.execute(slots,
+                    slots,
+                    new Ui(),
+                    new Storage("test.txt"),
+                    new Storage("test.txt"));
+        } catch (DukeException e) {
+            fail(e.getMessage());
+        }
+
+        assertEquals(expectedSlots.getData(), slots.getData());
+    }
 }
