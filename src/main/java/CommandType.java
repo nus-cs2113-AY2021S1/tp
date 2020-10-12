@@ -5,8 +5,4 @@ public enum CommandType {
     CHANGE_MODE,
     UNIDENTIFIABLE,
     HELP,
-    ADD_CONTACT,
-    CHECK_CONTACT,
-    ADD_GRADE,
-    CHECK_GRADE
 }
