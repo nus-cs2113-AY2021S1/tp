@@ -82,6 +82,10 @@ public class Show {
         this.currentEpisode = 1;
     }
 
+    public void setName (String newName) {
+        this.name = newName;
+    }
+
     /**
      * Overload/overwrite? the previous setCurrentSeason method signature.
      * Should check with user if they want to input an episode else default it to 1

@@ -7,7 +7,7 @@ import seedu.duke.commands.DeleteRatingCommand;
 import seedu.duke.commands.RatingCommand;
 import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
 import seedu.duke.commands.UpdateShowSeasonCommand;
-
+import seedu.duke.commands.EditCommand;
 import java.util.ArrayList;
 
 //TODO include more parser classes (storage.parser, command.parser etc in the future)
@@ -109,11 +109,17 @@ public class InputParser {
         case "delete":
             parseDeleteCommand(input);
             return;
-        /*
-        case "edit":
 
-            return parseEditCommand();
-*/
+        case "edit":
+            ArrayList<String> tokenizedString = tokenizeStringArray(input);
+            try {
+                EditCommand edit = new EditCommand(tokenizedString.get(1));
+                edit.processCommand();
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Please specify show name");
+            }
+            return;
+
 
         case "":
             Ui.printNoInputException();
