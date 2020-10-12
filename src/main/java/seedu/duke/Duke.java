@@ -6,7 +6,6 @@ import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.EnumSet;
 
 public class Duke {
 

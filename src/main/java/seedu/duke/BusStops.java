@@ -1,6 +1,5 @@
 package seedu.duke;
 
-
 import java.util.EnumSet;
 
 public enum BusStops {
