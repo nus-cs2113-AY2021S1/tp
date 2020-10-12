@@ -60,7 +60,7 @@ public class User extends Human {
 
     @Override
     public String toString() {
-        return "Name= " + name + ", birthdate= " + getDobString() + ", gender= " + getGender();
+        return "\nName: " + name + "\nBirthdate: " + getDobString() + "\nGender: " + getGender();
     }
 
     public String toFileString() {
