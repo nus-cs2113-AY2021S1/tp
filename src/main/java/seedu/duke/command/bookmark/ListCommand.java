@@ -1,10 +1,11 @@
-package seedu.duke.command;
+package seedu.duke.command.bookmark;
 
 import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
+import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.slot.SlotList;
 
@@ -27,7 +28,8 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute(ItemList items, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage) throws DukeException {
+    public void execute(ItemList items, SlotList slotList, Ui ui, 
+                        Storage bookmarkStorage, Storage slotStorage) throws DukeException {
         BookmarkList bookmarks = (BookmarkList) items;
         String message = getMessage(bookmarks);
         ui.print(message);

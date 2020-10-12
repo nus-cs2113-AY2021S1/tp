@@ -1,7 +1,10 @@
 package seedu.duke.slot;
 
+import java.time.DateTimeException;
 import java.time.LocalTime;
 import seedu.duke.ItemList;
+
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import seedu.duke.exception.DukeException;
@@ -49,7 +52,7 @@ public class SlotList extends ItemList {
     private void loadSlot(String line) {
         try {
             slots.add(Slot.initSlot(line));
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | DateTimeParseException e) {
             // TODO: to be fixed
             System.out.println("Error");
         }
@@ -59,7 +62,7 @@ public class SlotList extends ItemList {
      * Returns the the data of all Slots in the list to be saved in the text file.
      *
      * @return the data of all the Slots.
-     */
+     */ 
     public String getData() {
         StringBuilder data = new StringBuilder();
         for (Slot slot : slots) {
@@ -135,7 +138,7 @@ public class SlotList extends ItemList {
             throw new DukeException(DukeExceptionType.EMPTY_TIMETABLE);
         } else if (dayInput == null) {
             throw new DukeException(DukeExceptionType.INVALID_TIMETABLE_DAY);
-        } else if(dayInput.equals("ALL") == true) {
+        } else if (dayInput.equals("ALL") == true) {
             printTimetable(slots);
             return;
         }

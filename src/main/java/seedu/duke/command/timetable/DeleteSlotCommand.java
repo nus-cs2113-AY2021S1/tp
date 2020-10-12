@@ -1,15 +1,16 @@
-package seedu.duke.command;
+package seedu.duke.command.timetable;
 
 import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
+import seedu.duke.command.Command;
 import seedu.duke.slot.Slot;
 
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 import seedu.duke.slot.SlotList;
 
-public class DeleteSlotCommand extends Command {    
+public class DeleteSlotCommand extends Command {
     public static final String DEL_KW = "slotdelete";
     private int index;
 
@@ -36,7 +37,6 @@ public class DeleteSlotCommand extends Command {
      *
      * @param items The list of Slots.
      * @param ui The user interface.
-     * @param storage The storage for saving and loading.
      */
     @Override
     public void execute(ItemList items, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage)

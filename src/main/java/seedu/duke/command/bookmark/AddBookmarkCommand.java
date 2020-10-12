@@ -1,10 +1,11 @@
-package seedu.duke.command;
+package seedu.duke.command.bookmark;
 
 import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
+import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.slot.SlotList;
 
@@ -37,7 +38,7 @@ public class AddBookmarkCommand extends Command {
      *
      * @param items The list of bookmarks.
      * @param ui The user interface.
-     * @param storage The storage for saving and loading.
+     * @param bookmarkStorage The storage for saving and loading.
      */
     @Override
     public void execute(ItemList items, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage) {

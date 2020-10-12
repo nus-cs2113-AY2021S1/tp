@@ -2,7 +2,6 @@ package seedu.duke;
 
 import seedu.duke.exception.DukeException;
 
-
 import java.util.Scanner;
 
 /**
@@ -37,11 +36,9 @@ public class Ui {
      * Prints a message after starting the program.
      */
     public void showWelcomeScreen() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        String logo = "___  ____ ____ _  _ ____ ____ ___ ____ ____ \n"
+                    + "  /  |  | |  | |\\/| |__| [__   |  |___ |__/ \n"
+                    + " /__ |__| |__| |  | |  | ___]  |  |___ |  \\\n";
         String message = "Hello from\n" + logo;
         print(message);
     }
@@ -79,7 +76,7 @@ public class Ui {
             printUseValidTaskNumberMessage(dukeException.getInfo());
             break;
         case WRITE_FILE_ERROR:
-            //printErrorWritingToFile();
+            printErrorWritingToFile();
             break;
         case EMPTY_DESCRIPTION:
             printEmptyBookmarkDescriptionMessage();
@@ -114,6 +111,10 @@ public class Ui {
         }
     }
 
+    private void printErrorWritingToFile() {
+        print("Error writing to file.\n");
+    }
+
     private void printUseValidTaskNumberMessage(String info) {
         print("Please enter a valid index number between 1 and " + info + "\n");
     }
@@ -139,15 +140,15 @@ public class Ui {
     }
 
     private void printUnknownModeMessage() {
-        print("Unknown mode input\n" + "Valid modes: bookmark, timetable");
+        print("Unknown mode input\n" + "Valid modes: bookmark, timetable\n");
     }
 
     private void printUnknownDayMessage() {
-        print("Unknown day input\n" +
-                "Valid days: monday, tuesday, wednesday, thursday, friday, saturday, sunday\n");
+        print("Unknown day input\n" 
+              + "Valid days: monday, tuesday, wednesday, thursday, friday, saturday, sunday\n");
     }
 
-    private void printEmptyTimetableMessage () {
+    private void printEmptyTimetableMessage() {
         print("Timetable is empty\n");
     }
 
