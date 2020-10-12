@@ -10,6 +10,14 @@ public class FilterCommandSlicer {
         return !command.toLowerCase().contains(" -continue");
     }
 
+    /**
+     * Gets the word types need filtering (noun, verb, adjective).
+     * Invalid word type will not be recognized for this version.
+     *
+     * @param command Contains the word types need filtering.
+     * @return Array of strings referring to word types.
+     * @throws FilterCommandException When no word type is found in the command.
+     */
     public static String[] getTargetedWordType(String command) throws FilterCommandException {
         ArrayList<String> types = new ArrayList<>();
         if (command.toLowerCase().contains(" -noun")) {
@@ -34,9 +42,19 @@ public class FilterCommandSlicer {
         while (index >= 0) {
             int nextIndex = command.indexOf("-", index + 1);
             if (nextIndex != -1) {
-                targetedStrings.add(command.substring(index + 1, nextIndex).trim());
+                String stringToAdd = command.substring(index + 1, nextIndex).trim();
+                if (stringToAdd.length() != 0) {
+                    targetedStrings.add(stringToAdd);
+                } else {
+                    throw new FilterCommandException();
+                }
             } else {
-                targetedStrings.add(command.substring(index + 1));
+                String stringToAdd = command.substring(index + 1).trim();
+                if (stringToAdd.length() != 0) {
+                    targetedStrings.add(stringToAdd);
+                } else {
+                    throw new FilterCommandException();
+                }
             }
             index = command.indexOf("-", index + 1);
         }

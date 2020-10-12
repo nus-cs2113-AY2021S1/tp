@@ -5,7 +5,8 @@ import seedu.duke.exceptions.FilterCommandException;
 public enum FilterType {
     WORD_TYPE,
     STARTING_STRING,
-    CONTAINING_STRING;
+    INCLUDING_STRING,
+    UNKNOWN;
 
     public static FilterType getTypeOfFilter(String command) throws FilterCommandException {
         if (!command.toLowerCase().contains("by\\")) {
@@ -21,8 +22,9 @@ public enum FilterType {
         } else if (cutCommand.toLowerCase().trim().startsWith("start")) {
             filterType = FilterType.STARTING_STRING;
         } else if (cutCommand.toLowerCase().trim().startsWith("include")) {
-            filterType = FilterType.CONTAINING_STRING;
+            filterType = FilterType.INCLUDING_STRING;
         } else {
+            filterType = FilterType.UNKNOWN;
             throw new FilterCommandException();
         }
 

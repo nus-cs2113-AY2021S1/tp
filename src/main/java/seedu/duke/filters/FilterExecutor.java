@@ -26,7 +26,7 @@ public class FilterExecutor {
                 tags = getTargetedStringTags(command);
                 filterByStartingString(isNewFilter, tags);
                 break;
-            case CONTAINING_STRING:
+            case INCLUDING_STRING:
                 tags = getTargetedStringTags(command);
                 filterByIncludedString(isNewFilter, tags);
                 break;
