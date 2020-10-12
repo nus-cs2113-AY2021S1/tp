@@ -1,3 +1,5 @@
+import exceptions.InvalidModeException;
+
 import java.util.Scanner;
 
 public class Ui {

@@ -4,4 +4,8 @@ public class ErrorMessage extends Ui {
         printLine("Sorry that's not an available command! Please try again\n"
                 + "or you can type \"help\" for more information");
     }
+
+    public static void printInvalidMode() {
+        printLine("The current mode is invalid");
+    }
 }
