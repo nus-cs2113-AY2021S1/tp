@@ -13,7 +13,8 @@ import java.io.IOException;
 public abstract class Command {
 
     public abstract void execute(CardList cards, Ui ui, Access access, Storage storage)
-            throws InvalidInputException, IncorrectAccessLevelException, IOException;
+            throws InvalidInputException, IncorrectAccessLevelException, 
+            IOException, InvalidFileFormatException;
 
     public abstract boolean isExit();
 }
