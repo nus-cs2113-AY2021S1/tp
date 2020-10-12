@@ -47,14 +47,14 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute() {
-        String notes = "";
+        StringBuilder notes = new StringBuilder();
 
         ArrayList<Note> filteredNotes = (ArrayList<Note>) notebook.getNotes().stream()
                 .filter((s) -> s.getTitle().contains(keywords))
                 .collect(Collectors.toList());
 
         for (int i = 0; i < filteredNotes.size(); i++) {
-            notes += (i + 1) + "." + filteredNotes.get(i).toString();
+            notes.append(i + 1).append(".").append(filteredNotes.get(i).getTitle()).append(InterfaceManager.LS);
         }
 
         if (filteredNotes.isEmpty()) {

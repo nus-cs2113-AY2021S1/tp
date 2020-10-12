@@ -470,7 +470,7 @@ public class Parser {
 
         Boolean isAscending = null;
         ArrayList<String> tags = new ArrayList<>();
-        String[] words = userMessage.split("\\S");
+        String[] words = userMessage.split("\\s+");
 
         // May have multiple tags that need to be accounted for
         if (userMessage.contains("/tag")) {
