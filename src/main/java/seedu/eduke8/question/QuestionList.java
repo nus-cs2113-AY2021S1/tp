@@ -13,15 +13,6 @@ public class QuestionList implements DisplayableList {
         this.questions = questions;
     }
 
-    /*
-    public QuizQuestionsManager getQuizQuestionList(int numberOfQuestionsForQuiz) throws Eduke8Exception {
-        QuizQuestionsManager quizQuestionsManager = new QuizQuestionsManager();
-        quizQuestionsManager.setQuizQuestions(numberOfQuestionsForQuiz, questions);
-
-        return quizQuestionsManager;
-    }
-    */
-
     @Override
     public int getCount() {
         return questions.size();
