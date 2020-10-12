@@ -26,6 +26,9 @@ public class DeleteSlotCommand extends Command {
         assert command.startsWith(DEL_KW);
 
         String details = command.substring(DEL_KW.length());
+        if (details.isBlank()) {
+            throw new DukeException(DukeExceptionType.EMPTY_COMMAND, DEL_KW);
+        }
         if (!details.startsWith(" ")) {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
         }

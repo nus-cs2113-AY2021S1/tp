@@ -159,7 +159,27 @@ public class Ui {
     }
 
     private void printUnknownInputMessage() {
-        print("Unknown input\n");
+        if (Parser.programMode == 0) {
+            print("Unknown input\n" + "Available inputs in Main menu are\n"
+                    + "1) mode {bookmark/timetable}\n"
+                    + "2) exit\n");
+        } else if (Parser.programMode == 1) {
+            print("Unknown input\n" + "Available inputs in Bookmark mode are\n"
+                    + "1) add\n"
+                    + "2) delete\n"
+                    + "3) show\n"
+                    + "4) find\n"
+                    + "5) launch\n"
+                    + "6) mode timetable\n"
+                    + "7) exit\n");
+        } else if (Parser.programMode == 2) {
+            print("Unknown input\n" + "Available inputs in Timetable mode are\n"
+                    + "1) slotadd\n"
+                    + "2) slotdelete\n"
+                    + "3) show\n"
+                    + "4) mode bookmark\n"
+                    + "5) exit\n");
+        }
     }
 
     private void printUnknownModeMessage() {

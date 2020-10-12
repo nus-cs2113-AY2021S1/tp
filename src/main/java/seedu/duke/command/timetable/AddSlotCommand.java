@@ -33,6 +33,11 @@ public class AddSlotCommand extends Command {
      */
     public AddSlotCommand(String command) throws DukeException {
         assert command.startsWith(ADD_KW);
+        String details = command.substring(ADD_KW.length());
+        if (details.isBlank()) {
+            throw new DukeException(DukeExceptionType.EMPTY_COMMAND, ADD_KW);
+        }
+
 
         String[] parts = command.split(" ");
         try {
