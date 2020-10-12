@@ -99,15 +99,6 @@ public class Timetable {
         return event;
     }
 
-    public int getDay() {
-        LocalDate today = LocalDate.now();
-        return today.getDayOfWeek().getValue();
-    }
-
-    public int getDay(LocalDate date) {
-        return date.getDayOfWeek().getValue();
-    }
-
     /**
      * Gets the timetable for a specified year. Includes multiple recurrent events.
      *
@@ -140,7 +131,7 @@ public class Timetable {
     }
 
     /**
-     * Gets the timetable for a specified time period. Includes multiple recurrent events.
+     * Gets the timetable for a specified time period. Includes multiple recurrent events. Sorting does not work yet.
      *
      * @param startDate Date to start checking for events.
      * @param endDate Date to stop checking for events.
@@ -169,6 +160,7 @@ public class Timetable {
                 dailyEvents = new ArrayList<>();
             }
             dailyEvents.add(event);
+            // Sorting doesn't work.
             Collections.sort(dailyEvents);
 
             monthEvents.put(date, dailyEvents);
@@ -222,6 +214,16 @@ public class Timetable {
         return eventList;
     }
 
+    /**
+     * Gets all instances of events that will reoccur between the specified time period. Provides a Varargs signature
+     * of getRecurringEvents, thus simplifying getting all events in the timetable in a time period.
+     *
+     * @param startDate Start of the time period. Inclusive.
+     * @param endDate End of the time period. Inclusive.
+     * @param eventsSet ArrayList of Events that should extend from RecurringEvent.
+     * @return ArrayList of Events that will occur during the time period. If recurring events are set, they will be
+     *      in the arraylist as a Event, not as an extension of RecurringEvent.
+     */
     @SafeVarargs
     protected final ArrayList<Event> getAllRecurringEvents(LocalDate startDate, LocalDate endDate,
                                                   ArrayList<? extends RecurringEvent>... eventsSet) {
@@ -232,6 +234,12 @@ public class Timetable {
         return eventList;
     }
 
+    /**
+     * Returns a PriorityQueue of Reminders from a set of events. PriorityQueue is sorted by their dates.
+     *
+     * @param setOfEvents Set of Events to search from.
+     * @return PriorityQueue of Reminder from all provided events.
+     */
     public PriorityQueue<Reminder> getEventSetReminder(ArrayList<Event> setOfEvents) {
         Comparator<Reminder> reminderComparator = new Comparator<Reminder>() {
             @Override
@@ -249,13 +257,21 @@ public class Timetable {
     }
 
 
+    /**
+     * A method that gets all reminders that should go off today. It takes in events for the next 1 month and gets all
+     * their reminders.
+     *
+     * @return An ArrayList that contains all the reminders to go off today.
+     */
     public ArrayList<Reminder> getReminders() {
         LocalDate today = LocalDate.now();
+        // As reminders are set to maximum 1 week earlier,
+        // we play it safe by looking for all 1 events in a one month time period.
         LocalDate endDate = today.plusMonths(1);
         ArrayList<Event> eventSet = getAllEvents(today, endDate);
-        ArrayList<Reminder> todayReminders = new ArrayList<Reminder>();
+        ArrayList<Reminder> todayReminders = new ArrayList<>();
         PriorityQueue<Reminder> reminders = getEventSetReminder(eventSet);
-        while (reminders.size() > 0 && reminders.peek().getDateToRemind().equals(today)) {
+        while (reminders.size() > 0 && reminders.peek().toRemind(today)) {
             todayReminders.add(reminders.poll());
         }
         return todayReminders;
