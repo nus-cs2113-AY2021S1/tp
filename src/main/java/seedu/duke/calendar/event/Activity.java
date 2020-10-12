@@ -27,10 +27,11 @@ public class Activity extends Event {
      *
      * @return whether the activity is over
      */
+
     public boolean getIsOver() {
         if (date.isBefore(LocalDate.now())) {
             return true;
-        } else if (date.isEqual(LocalDate.now()) && time.isBefore(LocalTime.now())) {
+        } else if (date.isEqual(LocalDate.now()) && time.isBefore(LocalTime.now())){
             return true;
         } else {
             return false;
@@ -42,6 +43,7 @@ public class Activity extends Event {
      *
      * @return whether the activity is over
      */
+
     public String getIcon() {
         return (getIsOver() ? TICK_SYMBOL : CROSS_SYMBOL);
     }

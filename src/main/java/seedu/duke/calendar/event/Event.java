@@ -28,6 +28,7 @@ public abstract class Event extends CalendarItem {
         this.venue = venue;
     }
 
+
     /**
      * Describe the event.
      *

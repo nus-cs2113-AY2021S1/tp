@@ -36,9 +36,9 @@ public class Exam extends SchoolEvent {
     }
 
     /**
-     * Show whether the lab is over.
+     * Show whether the exam is over.
      *
-     * @return whether the lab is over
+     * @return whether the exam is over
      */
     public String getIcon() {
         return (getIsOver() ? TICK_SYMBOL : CROSS_SYMBOL);
