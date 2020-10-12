@@ -1,13 +1,16 @@
 package seedu.calculator;
 
 import java.util.ArrayList;
-import seedu.foodList;
+//import seedu.foodList;
 
 /**
  * Represents a calculator of food items in foodList.
  */
 public class calculator {
-    private static Food total = new Food (total, 1, 0, 0, 0, 0);
+    private static int totalCalorie = 0;
+    private static int totalCarbohydrate = 0;
+    private static int totalProtein = 0;
+    private static int totalFats = 0;
 
     /**
      * Construct a calculator taking in a foodList. Add up calories,
@@ -18,10 +21,10 @@ public class calculator {
     public calculator(ArrayList<Food> foodList){
         try {
             for(int i=0; i< foodList.size(); i++){
-                total.calorie += foodList.get(i).portionSize * foodList.get(i).calorie;
-                total.carbs += foodList.get(i).portionSize * foodList.get(i).carbs(i);
-                total.protein += foodList.get(i).portionSize * foodList.get(i).protein(i);
-                total.fats += foodList.get(i).portionSize * foodList.get(i).fats(i);
+                totalCalorie += foodList.get(i).getCalorie();
+                totalCarbohydrate += foodList.get(i).getCarbohydrate();
+                totalProtein += foodList.get(i).getProtein();
+                totalFats += foodList.get(i).getFats();
             }
         } catch (NullPointerException e) {
             System.out.println("Ops, This foodList is null!");
@@ -34,7 +37,7 @@ public class calculator {
      * @return the value of total calorie of food items in foodList.
      */
     public int calculateCalorie(){
-        return total.calorie;
+        return totalCalorie;
     }
 
     /**
@@ -43,7 +46,7 @@ public class calculator {
      * @return the value of total carbs of food items in foodList.
      */
     public int calculateCarbs(){
-        return total.carbs;
+        return totalCarbohydrate;
     }
 
     /**
@@ -52,7 +55,7 @@ public class calculator {
      * @return the value of total protein of food items in foodList.
      */
     public int calculateProtein(){
-        return total.protein;
+        return totalProtein;
     }
 
     /**
@@ -61,6 +64,6 @@ public class calculator {
      * @return the value of total fats of food items in foodList.
      */
     public int calculateFats(){
-        return total.fats;
+        return totalFats;
     }
 }
