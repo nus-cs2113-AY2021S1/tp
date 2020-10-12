@@ -35,15 +35,17 @@ public class Ui {
     }
 
     public static void printRouteMessage(ArrayList<Bus> options) {
-        int i = 1;
+        int optionNo = 1;
+        boolean isPossible = false;
         System.out.println("\nThe buses you can take are: ");
         for (Bus option: options) {
             if (option.toString() != null) {
-                System.out.println(i + ". " + option.toString());
-                i++;
+                System.out.println(optionNo + ". " + option.toString());
+                optionNo++;
+                isPossible = true;
             }
         }
-        if (i == 1) {
+        if (!isPossible) {
             System.out.println("none.\n\tThere are no direct bus routes. :(");
         }
     }
