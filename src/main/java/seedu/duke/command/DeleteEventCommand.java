@@ -17,6 +17,8 @@ public class DeleteEventCommand extends Command {
 
     private static final String COMMAND_USAGE = COMMAND_WORD + ": Deletes an event. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
+    private static final String INDEX_OUT_OF_RANGE_MESSAGE = "The index you specified is out of range. Please specify "
+            + "the index that is indicated when you print the event list";
 
     /**
      * Gets how the command is expected to be used.
@@ -37,12 +39,12 @@ public class DeleteEventCommand extends Command {
 
     @Override
     public String execute() {
-        Event event;
-        try {
-            event = timetable.deleteEvent(index);
-        } catch (SystemException e) {
-            return e.getMessage();
+        if (index < 0 || index >= timetable.getEvents().size()) {
+            return INDEX_OUT_OF_RANGE_MESSAGE;
         }
+        Event event = timetable.getEvent(index);
+        timetable.deleteEvent(index);
+
         return COMMAND_SUCCESSFUL_MESSAGE + event.toString();
     }
 }

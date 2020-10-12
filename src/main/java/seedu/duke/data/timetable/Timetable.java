@@ -47,6 +47,10 @@ public class Timetable {
         return events;
     }
 
+    public Event getEvent(int index) {
+        return events.get(index);
+    }
+
     public void setEvents(ArrayList<Event> events) {
         this.events = events;
     }
@@ -79,10 +83,7 @@ public class Timetable {
      * @param index Index to be removed.
      * @throws SystemException Occurs when index provides is less than 0 or >= size of the list.
      */
-    public Event deleteEvent(int index) throws SystemException {
-        if (index >= events.size() || index < 0) {
-            throw new SystemException(SystemException.ExceptionType.EXCEPTION_INDEX_OUT_OF_RANGE);
-        }
+    public void deleteEvent(int index) {
         Event event = events.get(index);
         events.remove(index);
         if (event instanceof DailyEvent) {
@@ -96,7 +97,6 @@ public class Timetable {
         } else {
             nonRecurringEvents.remove(event);
         }
-        return event;
     }
 
     /**
