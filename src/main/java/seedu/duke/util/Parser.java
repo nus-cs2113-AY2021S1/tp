@@ -581,7 +581,7 @@ public class Parser {
                 switch (prefix) {
                 case PREFIX_TITLE:
                     exception = ExceptionType.EXCEPTION_MISSING_TITLE;
-                    title = checkBlank(infoDetails[1],exception);
+                    title = checkBlank(infoDetails[1], exception);
                     return new PinCommand(title);
                 case PREFIX_INDEX:
                     exception = ExceptionType.EXCEPTION_MISSING_INDEX;
