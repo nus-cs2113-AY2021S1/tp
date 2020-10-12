@@ -7,10 +7,14 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 public class UserManagement {
-    protected ArrayList<User> userList = new ArrayList<>();
-    protected User currentUser;
+    // Add Watchlist & Bookmarks here
+
+    
     Ui ui;
     Storage storage;
+    protected ArrayList<User> userList = new ArrayList<>();
+    protected User currentUser;
+
 
     public UserManagement(Ui ui, Storage storage) {
         this.ui = ui;

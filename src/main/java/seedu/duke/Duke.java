@@ -55,6 +55,9 @@ public class Duke {
         } else {
             activeWatchlist = watchlists.get(0);
         }
+
+        // Assert
+        assert userManagement != null;
     }
 
     public void run() {

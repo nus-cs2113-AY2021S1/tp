@@ -31,14 +31,12 @@ public class AddUserCommand extends Command {
                 gender = descriptionSplit[i + 1];
                 break;
             default:
-                continue;
+                // Continue!
             }
         }
     }
 
-    /**
-     * Adds an anime to current watchlist.
-     */
+
     @Override
     public void execute(Ui ui, Storage storage, AnimeData animeData, Watchlist currentWatchlist,
                         ArrayList<Watchlist> watchlists, Bookmark bookmark, UserManagement userManagement)
@@ -46,7 +44,7 @@ public class AddUserCommand extends Command {
         if (name.isEmpty() || dob.isEmpty() || gender.isEmpty()) {
             throw new AniException("Invalid parameters detected!");
         }
-        
+
         try {
             userManagement.addUser(name, dob, gender);
         } catch (ParseException e) {

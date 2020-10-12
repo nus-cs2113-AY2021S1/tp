@@ -37,6 +37,7 @@ public class User extends Human {
 
     public void setBirthdate(String birthdateString) throws ParseException {
         birthdate = DATE_MONTH_YEAR.parse(birthdateString);
+        assert birthdate != null;
     }
 
     public String getDobString() {
