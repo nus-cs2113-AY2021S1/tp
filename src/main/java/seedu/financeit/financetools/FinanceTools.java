@@ -61,6 +61,7 @@ public class FinanceTools {
             case "exit":
                 System.out.println("Exiting Finance Tools ...");
                 endTracker = false;
+                break;
             default:
                 System.out.println("Invalid Command");
                 break;
