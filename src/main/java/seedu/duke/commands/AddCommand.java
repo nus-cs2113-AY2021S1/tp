@@ -58,14 +58,10 @@ public class AddCommand extends Command {
             addCategoryToBookOrQuote(categories, ui);
             break;
         case TAG_RATING:
+            addLogger.log(Level.INFO, "going to add rating to book");
             RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
             addRating(ratings, ui);
-
-            addLogger.log(Level.INFO, "going to add rating to book");
-            RatingList ratings = (RatingList) listManager.getList(ListManager.RATING_LIST);
-            addRating(ratings, ui, listManager);
             addLogger.log(Level.INFO, "rating of book has completed");
-
             break;
         case TAG_TODO:
             ToDoList toDos = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
