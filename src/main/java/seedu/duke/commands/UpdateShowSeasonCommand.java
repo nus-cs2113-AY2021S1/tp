@@ -2,6 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.classes.Show;
 import seedu.duke.utility.ShowList;
+import seedu.duke.utility.Ui;
 
 public class UpdateShowSeasonCommand extends Command {
 
@@ -31,6 +32,7 @@ public class UpdateShowSeasonCommand extends Command {
         Show show = ShowList.getShow(showName);
         show.setCurrentSeason(season, episode);
         ShowList.setShow(showName, show);
+        Ui.printChangeSeason(showName);
     }
 
     public void updateSeasonOnly() {

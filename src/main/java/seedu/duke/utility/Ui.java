@@ -125,6 +125,18 @@ public class Ui {
         System.out.println("The rating for " + toBold(showName) + " has been updated to " + toBold(rating));
     }
 
+    public static void printChangeEpisode(String showName) {
+        printLine();
+        System.out.println("Updated current episode : " + ShowList.getShow(showName).toString());
+
+    }
+
+    public static void printChangeSeason(String showName) {
+        printLine();
+        System.out.println("Updated current season : " + ShowList.getShow(showName).toString());
+
+    }
+
     public static void printChangeRating(String showName, String rating) {
         printLine();
         System.out.println("The rating for " + toBold(showName) + " has been updated to " + toBold(rating));

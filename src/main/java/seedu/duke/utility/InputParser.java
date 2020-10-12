@@ -80,26 +80,11 @@ public class InputParser {
             return;
 
         case "episode":
-            ArrayList<String> updateInputs = tokenizeStringArray(input);
-            UpdateShowEpisodeProgressCommand updateShowProgress;
-            try {
-                updateShowProgress = new UpdateShowEpisodeProgressCommand(command, updateInputs);
-            } catch (NullPointerException e) {
-                Ui.printBadInputException();
-                return;
-            }
-            updateShowProgress.processCommand();
+            parseEpisodeUpdateCommand(input, command);
+
             return;
         case "season":
-            ArrayList<String> seasonInputs = tokenizeStringArray(input);
-            UpdateShowSeasonCommand updateShowSeason;
-            try {
-                updateShowSeason = new UpdateShowSeasonCommand(command, seasonInputs);
-            } catch (NullPointerException e) {
-                Ui.printBadInputException();
-                return;
-            }
-            updateShowSeason.processCommand();
+            parseSeasonUpdateCommand(input, command);
             return;
 
         case "rating":
@@ -143,6 +128,31 @@ public class InputParser {
 
     //todo: differentiate between show and movie soon
 
+    private static void parseEpisodeUpdateCommand(String input, String command) {
+        ArrayList<String> updateInputs = tokenizeStringArray(input);
+        UpdateShowEpisodeProgressCommand updateShowProgress;
+        try {
+            updateShowProgress = new UpdateShowEpisodeProgressCommand(command, updateInputs);
+        } catch (NullPointerException e) {
+            Ui.printBadInputException();
+            return;
+        }
+        updateShowProgress.processCommand();
+
+    }
+
+    private static void parseSeasonUpdateCommand(String input, String command) {
+        ArrayList<String> seasonInputs = tokenizeStringArray(input);
+        UpdateShowSeasonCommand updateShowSeason;
+        try {
+            updateShowSeason = new UpdateShowSeasonCommand(command, seasonInputs);
+        } catch (NullPointerException e) {
+            Ui.printBadInputException();
+            return;
+        }
+        updateShowSeason.processCommand();
+    }
+
     private static void parseAddRatingCommand(String input) {
         String[] tokenizedInput = input.split(" ");
         int showRating = Integer.parseInt(tokenizedInput[1]);
@@ -166,7 +176,6 @@ public class InputParser {
         changeShowRating.changeRating(showRating);
         Ui.printChangeRating(tokenizedInput[0], tokenizedInput[1]);
     }
-
 
 
     private static void parseAddCommand(String input) {

@@ -1,6 +1,7 @@
 package seedu.duke.classes;
 
 import seedu.duke.utility.SaveState;
+import seedu.duke.utility.ShowList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,10 +20,10 @@ public class Storage implements SaveState {
     }
 
     @Override
-    public void saveState(HashMap<String, Show> showList) throws IOException {
+    public void saveState() throws IOException {
         FileWriter fw = new FileWriter(filePath);
         int index = 1;
-        for (Map.Entry<String, Show> entry : showList.entrySet()) {
+        for (Map.Entry<String, Show> entry : ShowList.getShowList().entrySet()) {
             fw.write(index + ". " + entry.getValue().getName() + System.lineSeparator());
             fw.write("      Season: " + entry.getValue().getNumSeasons() + System.lineSeparator());
             String episodes = "";
