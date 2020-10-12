@@ -3,13 +3,18 @@ package seedu.duke.command.subjectcommand;
 import seedu.duke.card.Subject;
 import seedu.duke.card.Topic;
 import seedu.duke.card.TopicList;
+import seedu.duke.command.Command;
 import seedu.duke.command.taskcommand.TaskCommand;
+import seedu.duke.command.topiccommand.ListTopicCommand;
 import seedu.duke.command.topiccommand.ReturnTopicCommand;
 import seedu.duke.command.topiccommand.TopicCommand;
-import seedu.duke.exception.NoSubjectException;
 import seedu.duke.card.SubjectList;
+import seedu.duke.exception.NoSubjectException;
 import seedu.duke.exception.RepeatedSubjectException;
+import seedu.duke.exception.TaskDeadlineException;
+import seedu.duke.exception.TaskEventException;
 import seedu.duke.exception.TaskException;
+import seedu.duke.exception.TaskTodoException;
 import seedu.duke.parser.SubjectParser;
 import seedu.duke.parser.TaskParser;
 import seedu.duke.parser.TopicParser;
@@ -21,8 +26,6 @@ import java.util.ArrayList;
 
 public class ReturnSubjectCommand extends SubjectCommand {
     private String fullcommand;
-    private TaskList taskList;
-    private TopicList topicList;
 
     public ReturnSubjectCommand(String fullcommand) {
         this.fullcommand = fullcommand;
@@ -44,17 +47,19 @@ public class ReturnSubjectCommand extends SubjectCommand {
 
     public void goToSubject(Subject subject, TaskList tasks) {
         Ui.printGoToSubject(subject);
-        topicList = subject.getTopics();
         boolean isSubjectExit = false;
         while (!isSubjectExit) {
             try {
                 String fullCommand = Ui.readCommand();
-                TopicCommand c = TopicParser.parse(fullCommand);
+                Command c =  TopicParser.parse(fullCommand);
                 if (c instanceof ReturnTopicCommand) {
-                    Topic topic = c.execute(subject);
+                    Topic topic = ((ReturnTopicCommand) c).execute(subject);
                     ((ReturnTopicCommand) c).goToTopic(topic, subject);
-                } else {
-                    c.execute(subject);
+                } else if (c instanceof TopicCommand) {
+                    ((TopicCommand) c).execute(subject);
+                } else if (c instanceof TaskCommand) {
+                    TaskList taskList = subject.getTasks();
+                    ((TaskCommand) c).execute(taskList);
                 }
                 isSubjectExit = c.isExit();
                 //TODO: implement the storage methods for Topic
@@ -69,6 +74,14 @@ public class ReturnSubjectCommand extends SubjectCommand {
                 Ui.printRepeatedTopicError();
             } catch (IndexOutOfBoundsException e) {
                 Ui.printOutOfBoundsError();
+            } catch (TaskTodoException e) {
+                Ui.printTodoError();
+            } catch (TaskDeadlineException e) {
+                Ui.printDeadlineError();
+            } catch (TaskEventException e) {
+                Ui.printEventError();
+            } catch (TaskException e) {
+                Ui.printError();
             }
         }
         Ui.printExitToMain();

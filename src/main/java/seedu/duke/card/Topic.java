@@ -8,8 +8,7 @@ public class Topic {
     private List<Flashcard> flashcards;
 
     public Topic(String title) {
-        this.title = title;
-        this.flashcards = new ArrayList<>();
+        this(title, new ArrayList<>());
     }
 
     public Topic(String title, List<Flashcard> flashcards) {
@@ -43,5 +42,10 @@ public class Topic {
                 + "Now you have " + topicList.getList().size() + (topicList.getList().size() == 1
                 ? " topic in the list.\n" : " topics in the list.\n")
                 + "____________________________________________________________");
+    }
+
+    @Override
+    public String toString() {
+        return this.title;
     }
 }

@@ -2,6 +2,7 @@ package seedu.duke.task;
 
 public class Task {
     protected String description;
+
     protected boolean isDone;
 
     public Task(String description, boolean isDone) {
@@ -33,6 +34,14 @@ public class Task {
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean getIsDone() {
+        return isDone;
     }
 }
 

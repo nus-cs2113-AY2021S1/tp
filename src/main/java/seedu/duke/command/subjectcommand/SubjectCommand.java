@@ -15,4 +15,5 @@ public class SubjectCommand extends Command {
     public boolean isExit() {
         return false;
     }
+
 }
