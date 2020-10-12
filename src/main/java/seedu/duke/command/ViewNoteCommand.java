@@ -77,9 +77,9 @@ public class ViewNoteCommand extends Command {
         ArrayList<Tag> notetags = note.getTags();
 
         // format output string
-        String stringToPrint = note.getTitle() + "\n";
+        String stringToPrint = note.getTitle() + InterfaceManager.LS;
         for (Tag tag:notetags) {
-            stringToPrint += tag.toString() + "\n";
+            stringToPrint += tag.toString() + InterfaceManager.LS;
         }
 
         stringToPrint += note.getContent();
