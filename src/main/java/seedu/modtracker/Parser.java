@@ -42,7 +42,7 @@ public class Parser {
             //methods
             break;
         case "list":
-            ui.printTable(modList.getData(), Integer.parseInt(command[1]));
+            ui.printTable(modList, Integer.parseInt(command[1]));
             break;
         case "help":
             ui.printHelpList();
