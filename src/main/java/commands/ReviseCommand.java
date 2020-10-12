@@ -45,23 +45,26 @@ public class ReviseCommand extends Command {
             return chapter;
         } catch (IndexOutOfBoundsException e) {
             throw new IndexOutOfBoundsException("The chapter is not found.\n");
-        }
+        } 
     }
 
     private ArrayList<Card> getCards(Ui ui, Access access, Storage storage, Chapter toRevise)
-            throws FileNotFoundException {
+            throws FileNotFoundException, InvalidFileFormatExcpetion {
         ArrayList<Card> allCards;
         try {
             allCards = storage.loadCard(access.getModuleLevel(), toRevise.getChapterName());
             toRevise.setCards(allCards);
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("File is not found.\n");
+        } catch (InvalidFileFormatException e) {
+            throw new InvalidFileFormatException();
         }
         return allCards;
     }
 
     @Override
-    public void execute(CardList cards, Ui ui, Access access, Storage storage) throws FileNotFoundException {
+    public void execute(CardList cards, Ui ui, Access access, Storage storage) 
+        throws FileNotFoundException, InvalidFileFormatException {
         Chapter toRevise = getChapter(reviseIndex, access, ui);
         ArrayList<Card> allCards = getCards(ui, access, storage, toRevise);
         if (allCards == null) {
