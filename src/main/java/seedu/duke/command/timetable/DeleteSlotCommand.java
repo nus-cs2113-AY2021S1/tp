@@ -20,7 +20,7 @@ public class DeleteSlotCommand extends Command {
      * Constructs a new DeleteSlotCommand instance and stores the information of the Slot given by the input.
      *
      * @param command The user input command.
-     * @throws DukeException thrown if input command is invalid.
+     * @throws DukeException if input command is invalid.
      */
     public DeleteSlotCommand(String command) throws DukeException {
         assert command.startsWith(DEL_KW);
@@ -43,9 +43,8 @@ public class DeleteSlotCommand extends Command {
      * @param ui The user interface.
      */
     @Override
-    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage)
+    public void execute(BookmarkList bookmarks, SlotList slots, Ui ui, Storage bookmarkStorage, Storage slotStorage)
             throws DukeException {
-        SlotList slots = (SlotList) slotList;
         try {
             Slot slot = slots.getSlot(index);
             slots.deleteSlot(slots.getSlot(index));
