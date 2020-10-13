@@ -80,7 +80,7 @@ public class TagManager {
      * @param tag Tag to be removed.
      */
     public void removeTag(Note note, Tag tag) {
-        tagMap.remove(tag, note);
+        tagMap.get(tag).remove(note);
         note.getTags().remove(tag);
     }
 

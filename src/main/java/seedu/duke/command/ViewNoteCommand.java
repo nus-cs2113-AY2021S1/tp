@@ -1,15 +1,11 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
-import seedu.duke.data.notebook.Tag;
 import seedu.duke.ui.InterfaceManager;
-
-import java.util.ArrayList;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
-
 
 /**
  * Views a specific Note in the Notebook.
@@ -75,13 +71,9 @@ public class ViewNoteCommand extends Command {
         if (!noteExists) {
             return COMMAND_UNSUCCESSFUL_MESSAGE;
         }
-        ArrayList<Tag> noteTags = note.getTags();
 
         // format output string
-        String stringToPrint = note.getTitle();
-        for (Tag tag:noteTags) {
-            stringToPrint += tag.toString();
-        }
+        String stringToPrint = note.getTitle() + " " + note.getTagsName();
 
         stringToPrint += InterfaceManager.LS + note.getContent();
         return stringToPrint;

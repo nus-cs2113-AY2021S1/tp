@@ -46,6 +46,8 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_TIMING;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_SORT;
 import static seedu.duke.util.PrefixSyntax.STRING_SPLIT_DELIMITER;
+import static seedu.duke.util.PrefixSyntax.STRING_SORT_ASCENDING;
+import static seedu.duke.util.PrefixSyntax.STRING_SORT_DESCENDING;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -188,7 +190,7 @@ public class Parser {
         }
 
         // Split into the tag name and tag color.
-        String[] tagInfo = tagsInfo.split("\\s+", 2);
+        String[] tagInfo = tagsInfo.split(STRING_SPLIT_DELIMITER, 2);
 
         tagName = checkBlank(tagInfo[0], ExceptionType.EXCEPTION_MISSING_TAG);
 
@@ -461,14 +463,16 @@ public class Parser {
      * @param userMessage user's input of the keyword.
      * @return new ListNoteCommand Command.
      */
-    private Command prepareListNote(String userMessage) {
+    private Command prepareListNote(String userMessage) throws SystemException {
         // If no optional parameters, return default display of list note
         if (userMessage == null) {
             return new ListNoteCommand();
         }
 
+        String tagName;
+        String sort;
         Boolean isAscending = null;
-        ArrayList<String> tags = new ArrayList<>();
+        ArrayList<String> tagsName = new ArrayList<>();
 
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
@@ -480,15 +484,15 @@ public class Parser {
                 switch (prefix) {
                 case PREFIX_TAG:
                     exception = ExceptionType.EXCEPTION_MISSING_TAG;
-                    checkBlank(infoDetails[1], exception);
-                    tags.add(infoDetails[1]);
+                    tagName = checkBlank(infoDetails[1], exception);
+                    tagsName.add(tagName);
                     break;
                 case PREFIX_SORT:
                     exception = ExceptionType.EXCEPTION_MISSING_SORT;
-                    checkBlank(infoDetails[1], exception);
-                    if (infoDetails[1].equals("up")) {
+                    sort = checkBlank(infoDetails[1], exception);
+                    if (sort.equalsIgnoreCase(STRING_SORT_ASCENDING)) {
                         isAscending = true;
-                    } else if (infoDetails[1].equals("down")) {
+                    } else if (sort.equalsIgnoreCase(STRING_SORT_DESCENDING)) {
                         isAscending = false;
                     } else {
                         throw new SystemException(ExceptionType.EXCEPTION_INVALID_SORT_TYPE);
@@ -498,19 +502,19 @@ public class Parser {
                     throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
-        } catch (SystemException e) {
-            e.printStackTrace();
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
         }
         
         // No optional parameters case as it is already accounted
         // Minimally if no tag, will have up/down and vice versa
-        if (tags.isEmpty()) {
+        if (tagsName.isEmpty()) {
             return new ListNoteCommand(isAscending);
         } else {
             if (isAscending == null) {
-                return new ListNoteCommand(tags);
+                return new ListNoteCommand(tagsName);
             } else {
-                return new ListNoteCommand(isAscending, tags);
+                return new ListNoteCommand(isAscending, tagsName);
             }
         }
     }
