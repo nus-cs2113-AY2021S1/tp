@@ -43,7 +43,7 @@ public class QuizQuestionsManager {
 
         while (numberOfQuestionsSelected < numberOfQuestionsForQuiz) {
             // get a random question that is within the bounds of the size of the available question list
-            int randomQuestionIndex = RANDOM.nextInt(questionsInTopic.size() - 1);
+            int randomQuestionIndex = RANDOM.nextInt(questionsInTopic.size());
 
             // if the number is already selected - the question is already selected, we re run the loop
             // to select another random number
