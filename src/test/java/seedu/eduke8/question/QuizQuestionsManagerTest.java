@@ -22,6 +22,7 @@ class QuizQuestionsManagerTest {
     private static final String PLACEHOLDER_HINT_DESCRIPTION = "Please check the textbook page 88";
     private static final int TOPIC_QUESTIONS_COUNT = 3;
     private static final int QUIZ_QUESTIONS_COUNT = 2;
+    private static final int QUIZ_QUESTIONS_COUNT_MAX = 3;
 
 
     // This test tests for getQuizQuestionsCount() method too
@@ -36,6 +37,20 @@ class QuizQuestionsManagerTest {
 
         assertEquals(QUIZ_QUESTIONS_COUNT, quizQuestionsManager.getQuizQuestionsCount());
     }
+
+    
+    @Test
+    void quizQuestionsManagerConstructor_threeQuizQuestionsFromThreeTopicQuestions_returnsCountOfTwo()
+            throws Eduke8Exception {
+        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+
+        // Creating a quiz with 3 questions selected from a total of 3 questions from the topic
+        QuizQuestionsManager quizQuestionsManager =
+                new QuizQuestionsManager(QUIZ_QUESTIONS_COUNT_MAX, topicQuestionList.getInnerList());
+
+        assertEquals(QUIZ_QUESTIONS_COUNT_MAX, quizQuestionsManager.getQuizQuestionsCount());
+    }
+
 
     @Test
     void quizQuestionsManagerConstructor_lessThanZeroNumberOfQuizQuestions_expectsException() {
