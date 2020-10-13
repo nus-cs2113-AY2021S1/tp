@@ -16,8 +16,8 @@ public class AddUserCommand extends Command {
     public AddUserCommand(String userInput) {
         String[] parametersSplit = userInput.split("-");
 
-        for (int i = 0; i < parametersSplit.length; i++) {
-            String[] parameterTextSplit = parametersSplit[i].split(" ", 2);
+        for (String s : parametersSplit) {
+            String[] parameterTextSplit = s.split(" ", 2);
 
             if (!parameterTextSplit[0].isEmpty()) {
                 switch (parameterTextSplit[0]) {

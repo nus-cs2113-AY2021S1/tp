@@ -24,8 +24,10 @@ public class UserManagement {
     }
 
     public void setActiveUser(User inputUser) {
-        logger.log(Level.INFO, "User switched: " + inputUser.getName());
-        activeUser = inputUser;
+        if (activeUser != null) {
+            logger.log(Level.INFO, "User switched: " + inputUser.getName());
+            activeUser = inputUser;
+        }
     }
 
     public int getTotalUsers() {
@@ -38,6 +40,11 @@ public class UserManagement {
 
     public User addUser(String name, String dob, String gender) throws ParseException, AniException {
         User newUser = new User(name, dob, gender);
+
+        if (checkIfUserExist(name)) {
+            throw new AniException("A user with " + name + " already exist. Choose a different name!");
+        }
+
         userList.add(newUser);
         storage.saveUser(newUser);
 
@@ -45,8 +52,19 @@ public class UserManagement {
         return newUser;
     }
 
+    private boolean checkIfUserExist(String name) throws AniException {
+        for (User existingUser : userList) {
+            if (existingUser.getName().equals(name)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void addUserDialogue(Ui ui) {
         boolean userCreated = false;
+        logger.log(Level.WARNING, "No existing user found, prompting user to create one!");
 
         while (!userCreated) {
             try {
