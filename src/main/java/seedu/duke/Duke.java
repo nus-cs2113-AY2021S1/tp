@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import flashcard.FlashcardDeck;
+
 import java.util.Scanner;
 
 public class Duke {
@@ -17,6 +19,8 @@ public class Duke {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
+        FlashcardDeck flashcardDeck = new FlashcardDeck();
     }
+
 }
 

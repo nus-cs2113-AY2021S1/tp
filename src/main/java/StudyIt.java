@@ -1,4 +1,5 @@
-
+import flashcard.Flashcard;
+import flashcard.FlashcardRun;
 import bookmark.BookmarkCategory;
 import bookmark.BookmarkUi;
 import bookmark.NusCategory;
@@ -23,6 +24,8 @@ public class StudyIt {
         return currentMode;
     }
 
+    public static FlashcardRun flashcardRun = new FlashcardRun();
+
     public StudyIt() {
         bookmarkCategories.add(new NusCategory());
         bookmarkCategories.add(new ZoomCategory());
@@ -42,8 +45,7 @@ public class StudyIt {
             // Collect user's command & identify the type
             String command = Ui.inputCommand();
             commandType = CommandParser.getCommandType(command);
-            Command.executeCommand(command, commandType,bookmarkCategories,bookmarkUi,bookmarkParser);
-
+            Command.executeCommand(command, commandType,bookmarkCategories,bookmarkUi,bookmarkParser,flashcardRun);
         } while (commandType != CommandType.EXIT_PROGRAM);
     }
 }
