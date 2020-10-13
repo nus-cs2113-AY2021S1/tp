@@ -43,11 +43,6 @@ This is your list of event(s):
 4.[LAB][/] cs1010 10-Oct-2020 Sat 10:00AM (com1-bi-12)
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
-1. [LEC][/] cs2113 08-Oct-2020 Thu 4:00PM (lt12)
-2. [TUT][/] cs2113 08-Oct-2020 Thu 4:00PM (com1)
-3. [LAB][/] cs1010 10-Oct-2020 Sat 10:00AM (com1-bi-12)
-4. [A][/] CCA 10-Oct-2020 Sat 12:30PM (NUS)
-5. [D][X] project (by: 10-Oct-2020)
 Here is your timeline:
 Timeline
 |

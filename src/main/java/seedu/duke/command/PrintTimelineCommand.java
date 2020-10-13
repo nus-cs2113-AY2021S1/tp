@@ -32,11 +32,6 @@ public class PrintTimelineCommand extends Command {
 
         CalendarList sortedList = sortByDateTime(timelineList);
         int numberOfItems = sortedList.getTotalItems();
-        int inde = 1;
-        for (int i=0; i<numberOfItems; i++) {
-            System.out.println(inde + ". "+ sortedList.getItem(i).toString());
-            inde ++;
-        }
 
         System.out.println("Here is your timeline:");
         System.out.println("Timeline\n|");
@@ -49,13 +44,11 @@ public class PrintTimelineCommand extends Command {
         System.out.println("|                     |_____ " + sortedList.getItem(0).getDescription());
 
         for (int i = 1; i < numberOfItems; i++) {
-            LocalTime thisTime = (sortedList.getItem(i).getTime() == null? LocalTime.of(23, 59) : sortedList.getItem(i).getTime());
-            LocalTime prevTime = (sortedList.getItem(i-1).getTime() == null? LocalTime.of(23, 59) : sortedList.getItem(i-1).getTime());
-
+            LocalTime thisTime = (sortedList.getItem(i).getTime() == null ? LocalTime.of(23, 59) : sortedList.getItem(i).getTime());
+            LocalTime prevTime = (sortedList.getItem(i-1).getTime() == null ? LocalTime.of(23, 59) : sortedList.getItem(i-1).getTime());
             if (!(sortedList.getItem(i - 1).getDate().isEqual(sortedList.getItem(i).getDate()))) {
                 System.out.println("|__ " + sortedList.getItem(i).getDate() + " " + sortedList.getItem(i).getDate().getDayOfWeek());
             }
-
             if (!thisTime.equals(prevTime)) {
                 System.out.println("|            |_____ " + thisTime);
             }
@@ -64,8 +57,8 @@ public class PrintTimelineCommand extends Command {
 
         System.out.println("|__________________ Todo items");
         int index = 1;
-        for (int i=0; i<todoList.getTotalItems(); i++) {
-            System.out.println("|                     |_____ " + index + ". "+ todoList.getItem(i).toString());
+        for (int i = 0; i<todoList.getTotalItems(); i++) {
+            System.out.println("|                     |_____ " + index + ". " + todoList.getItem(i).toString());
             index ++;
         }
     }
@@ -83,8 +76,8 @@ public class PrintTimelineCommand extends Command {
                     if (calendarList.getItem(j).getDate().isBefore(calendarList.getItem(i).getDate())) {
                         sortingList.swapTasks(i, j);
                     } else if (calendarList.getItem(j).getDate().isEqual(calendarList.getItem(i).getDate())) {
-                        LocalTime iTime = (calendarList.getItem(i).getTime() == null? LocalTime.of(23, 59) : calendarList.getItem(i).getTime());
-                        LocalTime jTime = (calendarList.getItem(j).getTime() == null? LocalTime.of(23, 59) : calendarList.getItem(j).getTime());
+                        LocalTime iTime = (calendarList.getItem(i).getTime() == null ? LocalTime.of(23, 59) : calendarList.getItem(i).getTime());
+                        LocalTime jTime = (calendarList.getItem(j).getTime() == null ? LocalTime.of(23, 59) : calendarList.getItem(j).getTime());
                         if (jTime.isBefore(iTime)) {
                             sortingList.swapTasks(i, j);
                         }
