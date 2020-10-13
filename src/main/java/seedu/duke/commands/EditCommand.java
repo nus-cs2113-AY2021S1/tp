@@ -41,8 +41,7 @@ public class EditCommand {
 
     public static void processCommand() throws NullPointerException {
         Scanner in = new Scanner(System.in);
-        System.out.println("What do you want to change , input done to stop editing");
-        System.out.println("{name,season,episode}");
+        Ui.printEditPrompt();
         while (true) {
             String editCommand = in.nextLine();
             if (editCommand.startsWith("name")) {
