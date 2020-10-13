@@ -41,6 +41,14 @@ public class Quote {
         return author.getName();
     }
 
+    public boolean hasAuthor() {
+        if (author != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public String getQuote() {
         return quote;
     }
@@ -55,6 +63,14 @@ public class Quote {
 
     public void setReference(String reference) {
         this.reference = reference;
+    }
+
+    public boolean hasReference() {
+        if (reference != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Category getCategory() {

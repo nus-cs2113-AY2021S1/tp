@@ -196,16 +196,12 @@ public class TextUi {
     }
 
     public void printAllQuotesByAuthor(QuoteList quoteList, String authorName) {
-        boolean hasResult = false;
-        if (quoteList.getSize() >= 1) {
-            System.out.printf((LIST_QUOTES_BY_AUTHOR_MESSAGE) + "\n", authorName);
-            for (Quote quote : quoteList.getList()) {
-                if (quote.getAuthorName().equals(authorName)) {
-                    System.out.print(quote.toString());
-                    hasResult = true;
-                }
-            }
-            if (!hasResult) {
+        if (quoteList.getSize() > 0) {
+            String listToPrint = quoteList.getAllQuotesByAuthor(quoteList, authorName);
+            if (!listToPrint.isEmpty()) {
+                System.out.printf((LIST_QUOTES_BY_AUTHOR_MESSAGE) + "\n", authorName);
+                System.out.println(listToPrint);
+            } else {
                 System.out.println(LIST_NO_QUOTES_FOUND_MESSAGE);
             }
         } else {
@@ -214,16 +210,12 @@ public class TextUi {
     }
 
     public void printAllQuotesByReference(QuoteList quoteList, String reference) {
-        boolean hasResult = false;
-        if (quoteList.getSize() >= 1) {
-            System.out.printf((LIST_QUOTES_BY_REFERENCE_MESSAGE) + "\n", reference);
-            for (Quote quote : quoteList.getList()) {
-                if (quote.getReference().equals(reference)) {
-                    System.out.print(quote.toString());
-                    hasResult = true;
-                }
-            }
-            if (!hasResult) {
+        if (quoteList.getSize() > 0) {
+            String listToPrint = quoteList.getAllQuotesByReference(quoteList, reference);
+            if (!listToPrint.isEmpty()) {
+                System.out.printf((LIST_QUOTES_BY_REFERENCE_MESSAGE) + "\n", reference);
+                System.out.println(listToPrint);
+            } else {
                 System.out.println(LIST_NO_QUOTES_FOUND_MESSAGE);
             }
         } else {
@@ -232,16 +224,12 @@ public class TextUi {
     }
 
     public void printAllQuotesByReferenceAndAuthor(QuoteList quoteList, String reference, String authorName) {
-        boolean hasResult = false;
-        if (quoteList.getSize() >= 1) {
-            System.out.printf((LIST_QUOTES_BY_AUTHOR_AND_REFERENCE_MESSAGE) + "\n", reference, authorName);
-            for (Quote quote : quoteList.getList()) {
-                if (quote.getReference().equals(reference) && quote.getAuthorName().equals(authorName)) {
-                    System.out.print(quote.toString());
-                    hasResult = true;
-                }
-            }
-            if (!hasResult) {
+        if (quoteList.getSize() > 0) {
+            String listToPrint = quoteList.getAllQuotesByReferenceAndAuthor(quoteList, reference, authorName);
+            if (!listToPrint.isEmpty()) {
+                System.out.printf((LIST_QUOTES_BY_AUTHOR_AND_REFERENCE_MESSAGE) + "\n", reference, authorName);
+                System.out.println(listToPrint);
+            } else {
                 System.out.println(LIST_NO_QUOTES_FOUND_MESSAGE);
             }
         } else {
@@ -296,15 +284,9 @@ public class TextUi {
     }
 
     public void printRandomQuote() {
-        QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
-        Random rand = new Random();
-        try {
-            int randomQuoteNumber = rand.nextInt(quotes.getSize() - 1);
-            Quote quoteToPrint = quotes.getQuote(randomQuoteNumber);
-            System.out.println(PRINT_RANDOM_QUOTE + System.lineSeparator() + quoteToPrint.toString());
-        } catch (IllegalArgumentException e) {
-            return;
-        }
+        QuoteList quotelist = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+        String randomQuote = quotelist.getRandomQuote();
+        System.out.println(PRINT_RANDOM_QUOTE + System.lineSeparator() + randomQuote);
     }
 
     public void printInvalidQuotesifyCommand() {

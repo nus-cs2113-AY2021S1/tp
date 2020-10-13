@@ -1,3 +1,4 @@
+bye
 Oct 12, 2020 3:52:11 PM seedu.duke.commands.AddCommand execute
 INFO: going to add category to book/quote
 Oct 12, 2020 3:52:11 PM seedu.duke.commands.AddCommand executeParameters
@@ -104,3 +105,333 @@ Oct 13, 2020 2:38:14 PM seedu.duke.commands.AddCommand execute
 INFO: going to add book to booklist
 Oct 13, 2020 2:38:14 PM seedu.duke.commands.AddCommand execute
 INFO: added book to booklist
+Oct 13, 2020 4:07:33 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:07:33 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 4:07:53 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:07:53 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list failed
+Oct 13, 2020 4:07:53 PM seedu.duke.commands.AddCommand addQuote
+WARNING: I don't see the quote anywhere
+Oct 13, 2020 4:08:17 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:08:17 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list failed
+Oct 13, 2020 4:08:17 PM seedu.duke.commands.AddCommand addQuote
+WARNING: Reference field cannot be empty if "/from" flag is present
+Oct 13, 2020 4:35:46 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:35:46 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 4:35:48 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:35:48 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 4:44:13 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:44:13 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 4:44:32 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:44:32 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 4:44:40 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:44:40 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 4:44:46 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:44:46 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 4:49:33 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:49:33 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 4:49:37 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:49:37 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 4:49:47 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:49:47 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 4:49:54 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:49:54 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 4:51:07 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:51:07 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 4:59:19 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:59:19 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 4:59:26 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:59:26 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 4:59:42 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:59:42 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 4:59:50 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 4:59:50 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:23:38 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:23:38 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:24:47 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:24:47 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:24:50 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:24:50 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:24:56 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:24:56 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:25:03 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:25:03 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:25:08 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:25:08 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:28:15 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:28:15 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:28:24 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:28:24 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:28:28 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:28:28 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:28:47 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:28:47 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:28:53 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:28:53 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:32:17 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:32:17 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:32:25 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:32:25 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:32:29 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:32:29 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:32:40 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:32:40 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:32:43 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:32:43 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:37:14 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:37:14 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:37:30 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:37:30 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:39:55 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:39:55 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:40:21 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:40:21 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:40:28 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:40:29 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:40:35 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:40:35 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:40:56 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:40:56 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:42:09 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:42:09 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:42:17 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:42:17 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:42:22 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:42:22 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:42:27 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:42:27 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:42:45 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:42:45 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:44:29 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:44:29 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:44:45 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:44:45 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:44:51 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:44:51 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:45:17 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:45:17 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:45:22 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:45:22 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:45:25 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:45:25 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:45:32 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:45:32 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:46:13 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:46:13 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:46:18 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:46:18 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:46:22 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:46:22 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:46:33 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:46:33 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:46:52 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:46:52 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:47:00 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:47:00 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:47:10 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:47:10 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:51:17 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:51:17 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:51:21 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:51:21 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list failed
+Oct 13, 2020 5:51:21 PM seedu.duke.commands.AddCommand addQuote
+WARNING: I don't see the quote anywhere
+Oct 13, 2020 5:51:33 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:51:33 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:51:38 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:51:38 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:51:47 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:51:47 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:51:53 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:51:53 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:52:02 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:52:02 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:52:08 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:52:08 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:52:15 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:52:15 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:52:37 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:52:37 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:54:43 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:54:43 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:54:50 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:54:50 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:54:53 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:54:53 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:54:58 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:54:58 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:55:04 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:55:04 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:55:15 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:55:15 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:55:22 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:55:22 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:55:28 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:55:28 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:55:34 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:55:34 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:56:06 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:56:06 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 13, 2020 5:56:33 PM seedu.duke.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 13, 2020 5:56:33 PM seedu.duke.commands.AddCommand addQuote
+INFO: add quote to quote list success
