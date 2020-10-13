@@ -1,4 +1,4 @@
-package seedu.duke.model;
+package seedu.duke.sprint;
 
 public class Task {
 

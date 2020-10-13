@@ -5,11 +5,11 @@ import seedu.duke.sprint.Member;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectMember {
+public class ProjectMembers {
 
     public ArrayList<Member> memberList;
 
-    public ProjectMember() {
+    public ProjectMembers() {
         memberList = new ArrayList<>(100);
     }
 

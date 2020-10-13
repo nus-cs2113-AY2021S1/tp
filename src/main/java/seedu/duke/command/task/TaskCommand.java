@@ -41,7 +41,7 @@ public class TaskCommand {
         try {
             Project proj = projectList.get(0);
             Task task = new Task(title, description, priority);
-            proj.backlog.addTask(task);
+            proj.getProjectBacklog().addTask(task);
 
             Ui.showToUserLn(task.getTitle() + " has been added.");
 
@@ -60,10 +60,10 @@ public class TaskCommand {
             for (String id : taskId) {
                 try {
                     int backlogId = Integer.parseInt(id) - offset;
-                    if (backlogId < proj.backlog.size()) {
-                        Task task = proj.backlog.getTask(backlogId);
+                    if (backlogId < proj.getProjectBacklog().size()) {
+                        Task task = proj.getProjectBacklog().getTask(backlogId);
                         Ui.showToUserLn("The corresponding task " + task.getTitle() + "has been removed.");
-                        proj.backlog.removeTask(backlogId);
+                        proj.getProjectBacklog().removeTask(backlogId);
 
                         offset++;
                     } else {
@@ -87,8 +87,8 @@ public class TaskCommand {
                 Task task;
                 try {
                     int backlogId = Integer.parseInt(id) - 1;
-                    if (backlogId < proj.backlog.backlogTasks.size()) {
-                        task = proj.backlog.getTask(backlogId);
+                    if (backlogId < proj.getProjectBacklog().backlogTasks.size()) {
+                        task = proj.getProjectBacklog().getTask(backlogId);
                         Ui.showToUserLn("\t Title: " + task.getTitle());
                     } else {
                         Ui.showError(Messages.MESSAGE_INVALID_ID);
@@ -121,7 +121,7 @@ public class TaskCommand {
         try {
             Project proj = projectList.get(0);
             try {
-                task = proj.backlog.getTask(id);
+                task = proj.getProjectBacklog().getTask(id);
                 task.setPriority(priority);
                 Ui.showToUserLn("The task " + task.getTitle() + "has its priority changed to:");
                 Ui.showToUserLn("\t" + task.getPriority());
@@ -143,8 +143,8 @@ public class TaskCommand {
                 Task task;
                 try {
                     int backlogId = Integer.parseInt(id) - 1;
-                    if (backlogId < proj.backlog.backlogTasks.size()) {
-                        task = proj.backlog.getTask(backlogId);
+                    if (backlogId < proj.getProjectBacklog().backlogTasks.size()) {
+                        task = proj.getProjectBacklog().getTask(backlogId);
                         task.setAsDone();
                         Ui.showToUserLn(task.getTitle() + "has been marked as done.");
                     } else {
@@ -157,7 +157,7 @@ public class TaskCommand {
                 }
             }
         } catch (IndexOutOfBoundsException e) {
-            //Ui.printError("There are no projects! Please create a project first.");
+            Ui.showError("There are no projects! Please create a project first.");
         }
     }
 }

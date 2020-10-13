@@ -1,4 +1,4 @@
-package seedu.duke.model;
+package seedu.duke.sprint;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
