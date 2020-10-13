@@ -1,14 +1,14 @@
-package seedu.financeit.utils;
+package seedu.financeit.utils.storage;
 
 import java.io.IOException;
 
-public class SSHGT extends SaveStateHandler{
+public class SaveStateHandlerRecurringTracker extends SaveStateHandler {
 
-    public SSHGT (){
+    public SaveStateHandlerRecurringTracker(){
         super();
     }
 
-    public SSHGT (String filepath, String directory){
+    public SaveStateHandlerRecurringTracker(String filepath, String directory){
         super(filepath, directory);
     }
 
