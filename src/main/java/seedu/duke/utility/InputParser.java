@@ -130,11 +130,17 @@ public class InputParser {
 
     private static void parseAddRatingCommand(String input) {
         input = StringOperations.removeFirstWord(input);
-        String[] tokenizedInput = input.split(" ");
-        int showRating = Integer.parseInt(tokenizedInput[1]);
-        RatingCommand newShowRating = new RatingCommand(tokenizedInput[0]);
-        newShowRating.rateShow(tokenizedInput[0], showRating);
-        Ui.printShowRating(tokenizedInput[0], tokenizedInput[1]);
+        try {
+            String[] tokenizedInput = input.split(" ");
+            int showRating = Integer.parseInt(tokenizedInput[1]);
+            RatingCommand newShowRating = new RatingCommand(tokenizedInput[0]);
+            newShowRating.rateShow(tokenizedInput[0], showRating);
+            Ui.printShowRating(tokenizedInput[0], tokenizedInput[1]);
+        } catch (NullPointerException e) {
+            Ui.printBadInputException();
+            return;
+        }
+
     }
 
     private static void parseDeleteRatingCommand(String input) {
@@ -150,11 +156,16 @@ public class InputParser {
 
     private static void parseChangeRatingCommand(String input) {
         input = StringOperations.removeFirstWord(input);
-        String[] tokenizedInput = input.split(" ");
-        int showRating = Integer.parseInt(tokenizedInput[1]);
-        ChangeRatingCommand changeShowRating = new ChangeRatingCommand(tokenizedInput[0]);
-        changeShowRating.changeRating(showRating);
-        Ui.printChangeRating(tokenizedInput[0], tokenizedInput[1]);
+        try {
+            String[] tokenizedInput = input.split(" ");
+            int showRating = Integer.parseInt(tokenizedInput[1]);
+            ChangeRatingCommand changeShowRating = new ChangeRatingCommand(tokenizedInput[0]);
+            changeShowRating.changeRating(showRating);
+            Ui.printChangeRating(tokenizedInput[0], tokenizedInput[1]);
+        } catch (NullPointerException e) {
+            Ui.printBadInputException();
+            return;
+        }
     }
 
     private static void parseAddCommand(String input) {

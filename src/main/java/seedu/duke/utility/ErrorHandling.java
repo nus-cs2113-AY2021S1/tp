@@ -13,11 +13,11 @@ public class ErrorHandling extends Exception {
         EXCEPTION_IO_EXCEPTION("\tIO Error"),
         EXCEPTION_INVALID_SEARCH_DATE("\tWhen is that???!!! Please put in a proper date in the format : 'yyyy-mm-dd'"),
         EXCEPTION_NOT_FOUND_EXCEPTION("\tHey buddy, it seems like we don't have what you're looking for!"),
-        EXCEPTION_INVALID_INPUT("\tI don't know what you just said.Try " + Ui.toReverse("help")
+        EXCEPTION_INVALID_INPUT("\tI don't know what you just said.Try " + ("help")
                 + " for a list of commands."),
         EXCEPTION_CREATE_FILE_ERROR("\tError creating file."),
         EXCEPTION_INVALID_EPISODES_INPUT_EXCEPTION("\tThe number of episodes input doesn't match "
-                + "the number of seasons.Use the " + Ui.toBold("edit") + " command to change the number of seasons.");
+                + "the number of seasons.Use the " + ("edit") + " command to change the number of seasons.");
 
         private String exception;
 
