@@ -3,6 +3,8 @@ import flashcard.FlashcardRun;
 import academic.GradeBook;
 import academic.PersonBook;
 import exceptions.InvalidCommandException;
+import exceptions.InvalidModeException;
+import timetable.TimeTableRun;
 import bookmark.BookmarkCategory;
 import bookmark.commands.BookmarkCommand;
 import bookmark.InvalidBookmarkCommandException;
@@ -15,7 +17,8 @@ public class Command {
 
     public static void executeCommand(String command, CommandType commandType,
                                       ArrayList<BookmarkCategory> bookmarkCategories, BookmarkUi bookmarkUi,
-                                      BookmarkParser bookmarkParser, FlashcardRun flashcardRun) {
+                                      BookmarkParser bookmarkParser, FlashcardRun flashcardRun,
+                                      TimeTableRun timeTableRun) {
         if (commandType == CommandType.EXIT_PROGRAM) {
             Ui.printExit();
         } else if (commandType == CommandType.EXIT_MODE) {
@@ -27,7 +30,8 @@ public class Command {
         } else if (commandType == CommandType.HELP) {
             HelpMessage.printHelpMessage();
         } else if (StudyIt.getCurrentMode() != Mode.MENU) {
-            handleNonGeneralCommand(command,commandType,bookmarkCategories,bookmarkUi,bookmarkParser,flashcardRun);
+            handleNonGeneralCommand(command,commandType,bookmarkCategories,bookmarkUi,bookmarkParser,flashcardRun,
+                                    timeTableRun);
         } else {
             ErrorMessage.printUnidentifiableCommand();
         }
@@ -36,12 +40,12 @@ public class Command {
     public static void handleNonGeneralCommand(String command, CommandType commandType,
                                                ArrayList<BookmarkCategory> bookmarkCategories,
                                                BookmarkUi bookmarkUi,BookmarkParser bookmarkParser,
-                                               FlashcardRun flashcardRun) {
+                                               FlashcardRun flashcardRun, TimeTableRun timeTableRun) {
         Mode currentMode = StudyIt.getCurrentMode();
         if (currentMode == Mode.BOOKMARK) {
             executeBookmarkModeCommand(command,bookmarkCategories,bookmarkUi,bookmarkParser);
         } else if (currentMode == Mode.TIMETABLE) {
-            executeTimetableModeCommand();
+            executeTimetableModeCommand(command, timeTableRun);
         } else if (currentMode == Mode.ACADEMIC) {
             executeAcademicModeCommand(command);
         } else if (currentMode == Mode.FLASHCARD) {
@@ -59,8 +63,8 @@ public class Command {
         }
     }
 
-    public static void executeTimetableModeCommand() {
-
+    public static void executeTimetableModeCommand(String command, TimeTableRun timeTableRun) {
+        timeTableRun.run(command);
     }
 
     public static void executeAcademicModeCommand(String command) {

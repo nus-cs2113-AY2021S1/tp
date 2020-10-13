@@ -21,6 +21,5 @@ public class Duke {
         System.out.println("Hello " + in.nextLine());
         FlashcardDeck flashcardDeck = new FlashcardDeck();
     }
-
 }
 
