@@ -8,7 +8,9 @@ import seedu.duke.commands.RatingCommand;
 import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
 import seedu.duke.commands.UpdateShowSeasonCommand;
 import seedu.duke.commands.EditCommand;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 
 //TODO include more parser classes (storage.parser, command.parser etc in the future)
 
@@ -27,115 +29,93 @@ public class InputParser {
         return isBye;
     }
 
-    private static ArrayList<String> tokenizeStringArray(String input) {
-        ArrayList<String> inputArray = new java.util.ArrayList<>();
-        for (String token : input.split(" ")) {
-            inputArray.add(token);
-        }
-        int size = 0;
-        try {
-            size = inputArray.size();
-        } catch (NullPointerException e) {
-            Ui.printBadInputException();
-        }
-        if (size > 0) {
-            return inputArray;
-        } else {
-            return null;
-        }
-    }
 
-    private static String getFirstWord(String input) {
-        int index = input.indexOf(' ');
-        if (index == -1) { // Input only contains a single word
-            return input;
-        } else {
-            return input.substring(0, index).trim(); // Extracts first word.
+    public String parseInput(String input) {
+
+        String[] singleWordInputs = new String[]{"bye", "list", "help"};
+        String command = StringOperations.getFirstWord(input).toLowerCase();
+
+        String[] splitInput = input.split(" ");
+        if (splitInput.length < 2) {
+            if (!Arrays.asList(singleWordInputs).contains(splitInput[0])) {
+                Ui.printInvalidFormatException();
+                return command;
+            }
+
         }
-    }
+        switch (command) {
 
-    private static String removeFirstWord(String input) {
-        int index = input.indexOf(' ');
-        if (index == -1) { // Input only contains a single word
-            return "";
-        } else {
-            return input.substring(index + 1).trim(); // Extracts after space.
-        }
-    }
-
-    public void parseInput(String input) {
-
-        String command = getFirstWord(input);
-        switch (command.toLowerCase()) {
         case "bye":
             Ui.printByeMessage();
             this.isBye = true;
-            return;
+            return command;
 
         case "help":
             Ui.printHelp();
-            return;
+            return command;
 
         case "episode":
             parseEpisodeUpdateCommand(input, command);
+            return command;
 
-            return;
         case "season":
             parseSeasonUpdateCommand(input, command);
-            return;
+            return command;
 
         case "rating":
             parseAddRatingCommand(input);
-            return;
+            return command;
 
         case "deleterating":
             parseDeleteRatingCommand(input);
-            return;
+            return command;
 
         case "list":
             Ui.printShowList();
-            //parseListCommand(ShowList.getShowList());
-            return;
+            return command;
 
         case "changerating":
             parseChangeRatingCommand(input);
-            return;
+            return command;
 
         case "add":
             parseAddCommand(input);
-            return;
-
+            return command;
 
         case "delete":
             parseDeleteCommand(input);
-            return;
+            return command;
 
         case "edit":
-            ArrayList<String> tokenizedString = tokenizeStringArray(input);
-            try {
-                EditCommand edit = new EditCommand(tokenizedString.get(1));
-                edit.processCommand();
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Please specify show name");
-            }
-            return;
-
+            parseEditCommand(input);
+            return command;
 
         case "":
             Ui.printNoInputException();
-            return;
+            return command;
 
         default:
             Ui.printBadInputException();
+            return command;
         }
     }
 
-
-    //todo: differentiate between show and movie soon
-    //todo fix error handling for parsing - follow episode and season
+    private static void parseEditCommand(String input) {
+        ArrayList<String> tokenizedString = StringOperations.tokenizeStringArray(input);
+        try {
+            EditCommand edit = new EditCommand(tokenizedString.get(1));
+            edit.processCommand();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Please specify show name");
+            return;
+        } catch (NullPointerException e) {
+            Ui.printInvalidEpisodesInputException();
+            return;
+        }
+    }
 
     private static void parseEpisodeUpdateCommand(String input, String command) {
-        ArrayList<String> updateInputs = tokenizeStringArray(input);
+        ArrayList<String> updateInputs = StringOperations.tokenizeStringArray(input);
         UpdateShowEpisodeProgressCommand updateShowProgress;
         try {
             updateShowProgress = new UpdateShowEpisodeProgressCommand(command, updateInputs);
@@ -148,7 +128,7 @@ public class InputParser {
     }
 
     private static void parseSeasonUpdateCommand(String input, String command) {
-        ArrayList<String> seasonInputs = tokenizeStringArray(input);
+        ArrayList<String> seasonInputs = StringOperations.tokenizeStringArray(input);
         UpdateShowSeasonCommand updateShowSeason;
         try {
             updateShowSeason = new UpdateShowSeasonCommand(command, seasonInputs);
@@ -160,67 +140,69 @@ public class InputParser {
     }
 
     private static void parseAddRatingCommand(String input) {
-        input = removeFirstWord(input);
-        String[] tokenizedInput = input.split(" ");
-        int showRating = Integer.parseInt(tokenizedInput[1]);
-        RatingCommand newShowRating = new RatingCommand(tokenizedInput[0]);
-        newShowRating.rateShow(tokenizedInput[0], showRating);
-        Ui.printShowRating(tokenizedInput[0], tokenizedInput[1]);
+        input = StringOperations.removeFirstWord(input);
+        try {
+            String[] tokenizedInput = input.split(" ");
+            int showRating = Integer.parseInt(tokenizedInput[1]);
+            RatingCommand newShowRating = new RatingCommand(tokenizedInput[0]);
+            newShowRating.rateShow(tokenizedInput[0], showRating);
+            Ui.printShowRating(tokenizedInput[0], tokenizedInput[1]);
+        } catch (NullPointerException e) {
+            Ui.printBadInputException();
+            return;
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printInvalidRatingInput();
+        }
     }
 
     private static void parseDeleteRatingCommand(String input) {
-        input = removeFirstWord(input);
+        input = StringOperations.removeFirstWord(input);
         DeleteRatingCommand deleteShowRating = new DeleteRatingCommand(input);
-        deleteShowRating.deleteRating(input);
-        Ui.printDeleteRating(input);
+        try {
+            deleteShowRating.deleteRating(input);
+            Ui.printDeleteRating(input);
+        } catch (Exception e) {
+            Ui.printNotFoundException();
+        }
     }
 
     private static void parseChangeRatingCommand(String input) {
-        // catch exceptions for 1)not enough inputs, 2)invalid args, 3)invalid rating
-        // split input using tokenizer
-        input = removeFirstWord(input);
-        String[] tokenizedInput = input.split(" ");
-        int showRating = Integer.parseInt(tokenizedInput[1]);
-        ChangeRatingCommand changeShowRating = new ChangeRatingCommand(tokenizedInput[0]);
-        changeShowRating.changeRating(showRating);
-        Ui.printChangeRating(tokenizedInput[0], tokenizedInput[1]);
+        input = StringOperations.removeFirstWord(input);
+        try {
+            String[] tokenizedInput = input.split(" ");
+            int showRating = Integer.parseInt(tokenizedInput[1]);
+            ChangeRatingCommand changeShowRating = new ChangeRatingCommand(tokenizedInput[0]);
+            changeShowRating.changeRating(showRating);
+            Ui.printChangeRating(tokenizedInput[0], tokenizedInput[1]);
+        } catch (NullPointerException e) {
+            Ui.printBadInputException();
+            return;
+        }
     }
 
     private static void parseAddCommand(String input) {
-        //catch for 1)too many/not enough inputs , 2)invalid input, 3)show alr added
-        //maybe last arg is optional? idk cos user might not wanna put rating yet
         String[] tokenizedInput = input.split(" ");
-        new AddCommand(tokenizedInput);
-        //add show detail into appropriate class
+        try {
+            new AddCommand(tokenizedInput);
+        } catch (NullPointerException e) {
+            Ui.printInvalidEpisodesInputException();
+            return;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Ui.printInvalidFormatException();
+            return;
+        }
         Ui.printShowAdded(tokenizedInput[1]);
     }
 
     private static void parseDeleteCommand(String input) {
-        //catch for 1)show not found , 2) invalid no. of args
-        input = removeFirstWord(input);
+        input = StringOperations.removeFirstWord(input);
         DeleteCommand deletingShow = new DeleteCommand(input);
-        deletingShow.delete(input);
-        Ui.printDeleteShow(input);
-    }
-
-    /*
-    private static seedu.duke.commands.Command parseEditCommand(String input) {
-        //this one might need check agn, the current i/o is a yikes imo
-        seedu.duke.utility.Ui.queryEditShow(input);
-        java.util.Scanner scan = null;
-        boolean isEditFinished = false;
-        while (!isEditFinished)){
-            System.out.println("Name: (Press enter to skip)");
-            //edit name
-            System.out.println("Episodes: (Press enter to skip or done to exit)");
-            //edit episode
-            System.out.println("Seasons: (Press enter to skip or done to exit)");
-            //edit seasons
+        try {
+            deletingShow.delete(input);
+            Ui.printDeleteShow(input);
+        } catch (Exception e) {
+            Ui.printNotFoundException();
         }
-
     }
-
-*/
-
 }
 

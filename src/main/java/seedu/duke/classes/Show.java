@@ -44,6 +44,11 @@ public class Show {
         return numEpisodesForSeasons[season - 1];
     }
 
+    public int getRawEpisodesForSeason(int season) {
+        //TODO : Add the exception for bounds checking
+        return numEpisodesForSeasons[season];
+    }
+
     public int getCurrentSeason() {
         return currentSeason;
     }
@@ -110,6 +115,12 @@ public class Show {
             //TODO : make sure a review is always passed in with a rating
             des += "| Rating: ";
             des += Integer.toString(rating);
+        }
+        des += " | : ";
+        des += ("Seasons " + numSeasons + " | Episodes: ");
+        for (int episode : numEpisodesForSeasons) {
+            des += Integer.toString(episode);
+            des += " ";
         }
         return des;
     }
