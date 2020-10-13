@@ -58,7 +58,7 @@ public class DeleteSlotCommand extends Command {
     }
 
     private String getMessage(Slot slot) {
-        String message = "\tI've deleted this slot!:\n\t"
+        String message = "\tI've deleted this slot!:\n"
                 + slot.getDay() + " [" + slot.getStartTime()
                 + "-" + slot.getEndTime() + "] " + slot.getTitle() + System.lineSeparator();
         return message;
