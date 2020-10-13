@@ -35,7 +35,7 @@ public class Parser {
     private  ArrayList<String> params = new ArrayList<>();
 
 
-    public void parser(String userInput, ArrayList<Project> projectList) {
+    public String parser(String userInput, ArrayList<Project> projectList) {
 
         if (userInput.equals(BYE)) {
             System.out.println(BYE);
@@ -152,10 +152,11 @@ public class Parser {
                 }
                 break;
             default:
-                System.out.println("Invalid command!");
+                return "Invalid command!";
             }
         } else {
-            System.out.println("Invalid command!");
+            return "Invalid command!";
         }
+        return null;
     }
 }

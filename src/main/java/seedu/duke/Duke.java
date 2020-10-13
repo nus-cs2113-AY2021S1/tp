@@ -41,7 +41,10 @@ public class Duke {
         String input;
         while (true) {
             input = Ui.getUserCommand();
-            parser.parser(input, projectList);
+            String parserOutput = parser.parser(input, projectList);
+            if (parserOutput != null) {
+                System.out.println(parserOutput);
+            }
         }
     }
 }
