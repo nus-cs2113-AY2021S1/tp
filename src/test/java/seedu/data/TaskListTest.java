@@ -58,6 +58,18 @@ class TaskListTest {
         assertEquals(lecture, sortedPriority.get(2));
         assertEquals(reading, sortedPriority.get(3));
     }
+    
+    @Test
+    void clearTask() {
+        addTask();
+        tasks.clear() ;
+        assertEquals(0, tasks.size());
+        assertFalse(tasks.contains(meeting));
+        assertFalse(tasks.contains(reading));
+        assertFalse(tasks.contains(lecture));
+        assertFalse(tasks.contains(tutorial));
+    }
+
     @Test
     void deleteTask() throws InvalidTaskNumberException{
         addTask();
