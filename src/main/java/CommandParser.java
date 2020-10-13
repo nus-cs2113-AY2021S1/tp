@@ -1,3 +1,5 @@
+import exceptions.InvalidModeException;
+
 public class CommandParser {
 
     public static String standardizeCommand(String text) {
