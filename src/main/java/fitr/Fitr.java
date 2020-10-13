@@ -25,6 +25,7 @@ public class Fitr {
                 user.setup();
                 storage.writeUserConfigFile(user);
             }
+            Ui.printSuggestQuestion();
             foodList = new FoodList(storage.loadFoodList());
             exerciseList = new ExerciseList(storage.loadExerciseList());
         } catch (IOException e) {

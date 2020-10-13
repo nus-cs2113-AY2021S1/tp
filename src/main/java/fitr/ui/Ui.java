@@ -12,14 +12,13 @@ import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
 import static fitr.common.Commands.COMMAND_DELETE;
 import static fitr.common.Commands.COMMAND_BYE;
 import static fitr.common.Commands.COMMAND_VIEW;
-import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
-import static fitr.common.Commands.COMMAND_VIEW_BMI;
 
 import static fitr.common.Messages.FORMAT_FOOD;
 import static fitr.common.Messages.FORMAT_EXERCISE;
 import static fitr.common.Messages.FORMAT_DELETE;
 
 import static fitr.common.Messages.MESSAGE_GREET;
+import static fitr.common.Messages.MESSAGE_SUGGEST_QUESTION;
 import static fitr.common.Messages.MESSAGE_BYE;
 import static fitr.common.Messages.ERROR_INVALID_COMMAND;
 import static fitr.common.Messages.ERROR_INVALID_INDEX;
@@ -52,6 +51,10 @@ public class Ui {
         printCustomMessage(MESSAGE_GREET);
     }
 
+    public static void printSuggestQuestion() {
+        printCustomMessage(MESSAGE_SUGGEST_QUESTION);
+    }
+
     public static void printExitMessage() {
         printCustomMessage(MESSAGE_BYE);
     }
@@ -66,12 +69,10 @@ public class Ui {
         System.out.printf(SPACE, COMMAND_EXERCISE, "Adds exercise entry to Fitr program");
         printCustomMessage(FORMAT + FORMAT_EXERCISE);
 
-        System.out.printf(SPACE, COMMAND_VIEW_PROFILE, "View your profile");
+        System.out.printf(SPACE, COMMAND_VIEW_PROFILE, "View your profile information");
         System.out.printf(SPACE, COMMAND_VIEW_BMI, "View your BMI");
         System.out.printf(SPACE, COMMAND_VIEW_FOOD, "View food entries");
         System.out.printf(SPACE, COMMAND_VIEW_EXERCISE, "View exercise entries");
-        System.out.printf(SPACE, COMMAND_VIEW_BMI, "View your BMI");
-        System.out.printf(SPACE, COMMAND_VIEW_PROFILE, "View your profile information");
         System.out.printf(SPACE, COMMAND_VIEW_SUMMARY, "View calorie summary");
 
         System.out.printf(SPACE, COMMAND_DELETE, "Deletes selected entry");
