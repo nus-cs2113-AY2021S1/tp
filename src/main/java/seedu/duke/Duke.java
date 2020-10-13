@@ -65,6 +65,6 @@ public class Duke {
      * @param args Unused.
      */
     public static void main(String[] args) {
-        new Duke("./data/data.txt", "./data/slot.txt").run();
+        new Duke("./data/bookmarks.txt", "./data/slots.txt").run();
     }
 }
