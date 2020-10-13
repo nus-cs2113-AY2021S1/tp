@@ -31,10 +31,10 @@ public class ModView {
     public static final String EMPTY_MODULE_LIST = "The module list is empty. Please input some modules to be tracked.";
 
     /**
-     * Displays all the modules taken by the user.
+     * Gets all the module codes of modules taken by the user.
      *
      * @param modList list containing all the modules taken.
-     * @return a list containing all the modules.
+     * @return a list containing all the modules codes.
      */
     private ArrayList<String> getModuleCode(ArrayList<Module> modList) {
         ArrayList<String> output = new ArrayList<>();
@@ -46,7 +46,7 @@ public class ModView {
 
     /**
      * Prints the week number, module code, expected workload and actual time spent
-     * in the specified week for all the modules taken.
+     * in the specified week for all the modules taken in a table format.
      *
      * @param list       list class containing all the modules taken.
      * @param weekNumber specified week number.
@@ -64,6 +64,11 @@ public class ModView {
             System.out.println(EMPTY_MODULE_LIST);
             return;
         }
+
+        assert weekNumber >= MIN_WEEK_VALUE: "week number should be between 1 and 13 inclusive";
+        assert weekNumber <= MAX_WEEK_VALUE: "week number should be between 1 and 13 inclusive";
+        assert !modList.isEmpty() : "modList should not be empty";
+
         int maxLength = 0;
         for (String s : moduleCodes) {
             if (s.length() > maxLength) {

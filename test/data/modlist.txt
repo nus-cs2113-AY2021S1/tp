@@ -1,0 +1,2 @@
+addExp CS3030 4
+addMod CS5000
