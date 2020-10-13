@@ -4,11 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.card.Subject;
 import seedu.duke.card.SubjectList;
-import seedu.duke.command.subjectcommand.AddSubjectCommand;
-import seedu.duke.command.subjectcommand.DeleteSubjectCommand;
-import seedu.duke.command.subjectcommand.FindSubjectCommand;
-import seedu.duke.command.subjectcommand.ListSubjectCommand;
-import seedu.duke.command.subjectcommand.ReturnSubjectCommand;
+import seedu.duke.command.subjectcommand.*;
 import seedu.duke.exception.NoSubjectException;
 import seedu.duke.exception.RepeatedSubjectException;
 
@@ -16,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SubjectCommandTest {
     private SubjectList subjects;
@@ -60,6 +57,14 @@ public class SubjectCommandTest {
         listCommand = new ListSubjectCommand();
         listCommand.execute(subjects);
     }
+
+    @Test
+    public void quizSubject_command_throwsException() throws NoSubjectException {
+        QuizSubjectCommand quiz =new QuizSubjectCommand("quiz Maths");
+        assertThrows(NoSubjectException.class, () ->quiz.execute(subjects) );
+
+    }
+
 
     @Test
     public void returnSubject() throws NoSubjectException {
