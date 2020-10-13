@@ -24,25 +24,25 @@ class StorageManagerTest {
     private static final Path TEST_FILEPATH = Paths.get(TEST_FILEPATH_STR);
 
     private static final JsonArray SAVE_EXPECTED_1 = Jsoner.deserialize(
-            "[{\"title\":\"Game\",\"description\":\"Among Us\",\"deadline\":\"29/12/12\","
+            "[{\"title\":\"Game\",\"description\":\"Among Us\",\"duration\":100,"
                     + "\"sprint_length\":9,\"start_date\":null,\"backlog\":[],\"members\":[]}]",
             new JsonArray());
     private static final JsonArray SAVE_EXPECTED_2 = Jsoner.deserialize(
-            String.format("[{\"title\":\"Game\",\"description\":\"Among Us\",\"deadline\":\"29/12/12\","
+            String.format("[{\"title\":\"Game\",\"description\":\"Among Us\",\"duration\":100,"
                             + "\"sprint_length\":9,\"start_date\":null,\"backlog\":[],\"members\":[]},"
-                            + "{\"title\":\"Webpage\",\"description\":\"Beautifying\",\"deadline\":\"23/05/19\","
+                            + "{\"title\":\"Webpage\",\"description\":\"Beautifying\",\"duration\":99,"
                             + "\"sprint_length\":10,\"start_date\":\"%s\",\"backlog\":[],\"members\":[]}]",
                     LocalDate.now().toString()),
             new JsonArray());
     private static final JsonArray LOAD_ERROR_1 = Jsoner.deserialize(
-            String.format("[{\"title\":\"Game\",\"description\":\"Among Us\",\"deadline\":\"29/12/12\""
+            String.format("[{\"title\":\"Game\",\"description\":\"Among Us\",\"duration\":100"
                             + ",\"sprint_length\":9,\"start_date\":null,\"backlog\":[],\"members\":[]},"
-                            + "{\"title\":\"Webpage\",\"description\":\"Beautifying\",\"deadline\":\"23/05/19\","
+                            + "{\"title\":\"Webpage\",\"description\":\"Beautifying\",\"duration\":99,"
                             + "\"sprint_length\":10,\"start_date\":\"%s\",\"backlog\":[],\"members\":[]},1]",
                     LocalDate.now().toString()),
             new JsonArray());
     private static final JsonObject LOAD_ERROR_2 = Jsoner.deserialize(
-            "{\"title\":\"Game\",\"description\":\"Among Us\",\"deadline\":\"29/12/12\","
+            "{\"title\":\"Game\",\"description\":\"Among Us\",\"duration\":100,"
                     + "\"sprint_length\":9,\"start_date\":null,\"backlog\":[],\"members\":[]}",
             new JsonObject());
 
@@ -73,13 +73,13 @@ class StorageManagerTest {
         try {
             ArrayList<Project> projList = new ArrayList<>();
             StorageManager sm = new StorageManager(TEST_FILENAME, projList);
-            Project p1 = new Project("Game", "Among Us", "29/12/12", "9");
+            Project p1 = new Project("Game", "Among Us", "100", "9");
             projList.add(p1);
             sm.save();
             String fileData = Files.readString(TEST_FILEPATH);
             assertEquals(SAVE_EXPECTED_1.toJson(), fileData); //1st assertion
             //Add a second object compare the changes
-            Project p2 = new Project("Webpage", "Beautifying", "23/05/19", "10");
+            Project p2 = new Project("Webpage", "Beautifying", "99", "10");
             p2.setStartDate();
             projList.add(p2);
             sm.save();
