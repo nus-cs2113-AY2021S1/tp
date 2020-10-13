@@ -78,6 +78,7 @@ public class Storage {
      */
     public static void writeToFile(CalendarList calendarList) {
         try {
+            assert filePath != null : "filePath should not be null";
             File output = new File(filePath);
             createFile(output);
             FileWriter fw = new FileWriter(output);
@@ -105,6 +106,7 @@ public class Storage {
         CalendarItem item = null;
         while (sc.hasNext()) {
             String[] taskInFile = sc.nextLine().split("\\|");
+            assert taskInFile[TYPE] != null : "the type of the task should not be null";
             switch (taskInFile[TYPE]) {
             case "T":
                 item = new Todo(taskInFile[TASK_DESCRIPTION]);
