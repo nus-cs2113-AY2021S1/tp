@@ -24,6 +24,7 @@ public class EntryList extends ItemList {
         this.addItem(entry);
     }
 
+
     @Override
     public void printList() {
         TablePrinter.setTitle(String.format("List of Entries for Ledger [%s]", this.ledger));
