@@ -15,6 +15,7 @@ public class Result {
     public double getScore() {
         return score;
     }
+
     public double getMaxScore() {
         return maxScore;
     }

@@ -91,7 +91,7 @@ public class ReturnSubjectCommand extends SubjectCommand {
                 Ui.printNoFlashcards();
             }
         }
-            Ui.printBackToSubjects();
+        Ui.printBackToSubjects();
 
     }
 

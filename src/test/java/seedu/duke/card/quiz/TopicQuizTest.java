@@ -2,14 +2,17 @@ package seedu.duke.card.quiz;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.duke.card.*;
+import seedu.duke.card.Flashcard;
+import seedu.duke.card.Topic;
+import seedu.duke.card.TopicList;
 import seedu.duke.exception.NoFlashCardException;
 import seedu.duke.exception.NoTopicException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TopicQuizTest {
     private TopicList topics;
@@ -45,7 +48,7 @@ class TopicQuizTest {
             throws NoFlashCardException {
         TopicQuiz topicQuiz = new TopicQuiz(topics.get(1));
         topicQuiz.setUpQuiz();
-        assertEquals(topicQuiz.result.getMaxScore() , 2);
+        assertEquals(topicQuiz.result.getMaxScore(), 2);
 
     }
 

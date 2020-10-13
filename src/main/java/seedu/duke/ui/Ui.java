@@ -288,7 +288,7 @@ public class Ui {
         System.out.println("Here are the questions which you got wrong.\n"
                 + "____________________________________________________________");
 
-        for (int i = 0; i < incorrectAnswers.size() ; i += 3) {
+        for (int i = 0; i < incorrectAnswers.size(); i += 3) {
             System.out.println("Question:" + incorrectAnswers.get(i));
             System.out.println("Correct Answer: " + incorrectAnswers.get(i + 1));
             System.out.println("Your Answer: " + incorrectAnswers.get(i + 2));

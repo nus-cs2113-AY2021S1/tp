@@ -11,19 +11,20 @@ public class QuizSubjectCommand extends SubjectCommand {
     public QuizSubjectCommand(String fullcommand) {
         this.fullcommand = fullcommand;
     }
-    public String getFullcommand(){
+
+    public String getFullcommand() {
         return this.fullcommand;
     }
-    
+
     public Subject execute(SubjectList subjectList) throws NoSubjectException {
         String[] message = this.fullcommand.split(" ");
         Subject quizSubject = null;
-        for(Subject subject: subjectList.getList()){
+        for (Subject subject : subjectList.getList()) {
             if (subject.toString().contains(message[1])) {
-                quizSubject=subject;
+                quizSubject = subject;
             }
         }
-        if(quizSubject == null){
+        if (quizSubject == null) {
             throw new NoSubjectException();
         }
         return quizSubject;

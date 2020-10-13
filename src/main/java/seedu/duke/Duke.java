@@ -6,8 +6,12 @@ import seedu.duke.card.quiz.SubjectQuiz;
 import seedu.duke.command.subjectcommand.QuizSubjectCommand;
 import seedu.duke.command.subjectcommand.ReturnSubjectCommand;
 import seedu.duke.command.subjectcommand.SubjectCommand;
-import seedu.duke.exception.*;
+import seedu.duke.exception.NoFlashCardException;
+import seedu.duke.exception.NoSubjectException;
+import seedu.duke.exception.NoTopicException;
+
 import seedu.duke.card.SubjectList;
+import seedu.duke.exception.RepeatedSubjectException;
 import seedu.duke.parser.SubjectParser;
 import seedu.duke.storage.SubjectStorage;
 import seedu.duke.task.Task;
@@ -51,12 +55,11 @@ public class Duke {
                 if (c instanceof ReturnSubjectCommand) {
                     Subject subject = c.execute(subjects);
                     ((ReturnSubjectCommand) c).goToSubject(subject, tasks);
-                } else if(c instanceof QuizSubjectCommand) {
+                } else if (c instanceof QuizSubjectCommand) {
                     Subject subject = c.execute(subjects);
                     SubjectQuiz subjectQuiz = new SubjectQuiz(subject);
                     subjectQuiz.startQuiz(results);
-                }
-                else {
+                } else {
                     c.execute(subjects);
                 }
                 isExit = c.isExit();

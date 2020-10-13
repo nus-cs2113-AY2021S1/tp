@@ -8,8 +8,8 @@ import java.util.List;
 public class ResultList {
     private List<Result> resultList;
 
-    public ResultList(List<Result> resultList){
-        this.resultList=resultList;
+    public ResultList(List<Result> resultList) {
+        this.resultList = resultList;
 
     }
 
@@ -17,7 +17,7 @@ public class ResultList {
         this.resultList.add(result);
     }
 
-    public List<Result> getList(){
+    public List<Result> getList() {
         return this.resultList;
     }
 

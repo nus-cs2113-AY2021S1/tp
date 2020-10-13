@@ -35,6 +35,7 @@ public class AddFlashcardCommand extends FlashcardCommand {
         t.printFlashcard(topic.getFlashcards());
         return t;
     }
+
     public boolean isExit() {
         return false;
     }

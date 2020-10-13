@@ -65,12 +65,11 @@ public class TopicQuiz extends Quiz {
         if (!answer.equals("stop")) {
             Ui.printEndQuiz();
             Ui.printScore(this.result);
-            if(this.result.getScore() < this.result.getMaxScore()) {
+            if (this.result.getScore() < this.result.getMaxScore()) {
                 Ui.printIncorrectAnswers(this.incorrectAnswers);
             }
 
         }
-
 
 
         this.topic.getResults().add(this.result);

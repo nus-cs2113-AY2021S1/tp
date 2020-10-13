@@ -63,18 +63,16 @@ public class SubjectQuiz extends Quiz {
                 checkAnswer(answer, flashcard);
             }
         }
-        assert answer!=null;
+        assert answer != null;
         if (!answer.equals("stop")) {
             Ui.printEndQuiz();
             Ui.printScore(this.result);
-            if(this.result.getScore() < this.result.getMaxScore()) {
+            if (this.result.getScore() < this.result.getMaxScore()) {
                 Ui.printIncorrectAnswers(this.incorrectAnswers);
             }
 
         }
         this.subject.getResults().add(this.result);
-
-
 
 
     }
