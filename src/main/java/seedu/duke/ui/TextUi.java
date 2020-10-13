@@ -25,7 +25,7 @@ public class TextUi {
             + "\\_____\\ \\_/____/ \\____/|__|  \\___  >____  >__||__|  / ____|\n"
             + "       \\__>                      \\/     \\/          \\/    ";
 
-    private static final String WELCOME_MESSAGE = "Welcome to Quotesify!";
+    private static final String WELCOME_MESSAGE = "Welcome to Quotesify v1.0!";
     private static final String GOODBYE_MESSAGE = "Alright, have a nice day!";
     private static final String PROMPT_MESSAGE = "\nWhat would you like to do with Quotesify?";
     private static final String INVALID_QUOTESIFY_COMMAND = "I don't understand you." + System.lineSeparator()
@@ -312,7 +312,7 @@ public class TextUi {
     }
 
     public void printHelpPage() {
-        System.out.println("Feeling stuck? Well here are the things you can do with Quotesify:"
+        System.out.println("Feeling stuck? Well here are the things you can do with Quotesify v1.0:"
                 + System.lineSeparator());
 
         System.out.println("1. Book Management");
@@ -354,5 +354,7 @@ public class TextUi {
         System.out.println(System.lineSeparator() + "Remember: words in [] are optional, "
                 + "and words in CAPS are your own input" + System.lineSeparator()
                 + "Hope this helps!");
+
+        System.out.println(System.lineSeparator() + "~ Your friends from Quotesify");
     }
 }
