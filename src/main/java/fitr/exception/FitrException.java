@@ -1,4 +1,4 @@
-package seedu.duke;
+package fitr.exception;
 
 public class FitrException extends Exception {
 }

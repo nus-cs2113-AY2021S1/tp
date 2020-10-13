@@ -1,4 +1,9 @@
-package seedu.duke;
+package fitr.command;
+
+import fitr.list.ExerciseList;
+import fitr.list.FoodList;
+import fitr.storage.Storage;
+import fitr.user.User;
 
 public class ViewCommand extends Command {
     private User user;
