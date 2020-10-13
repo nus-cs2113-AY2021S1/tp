@@ -11,8 +11,8 @@ import java.util.Map;
  */
 public class TagManager {
 
-    private static final String STRING_TAG_EMPTY = "There are no tags!";
-    private static final String STRING_TAG_LIST = "Here are the available tags:" + InterfaceManager.LS;
+    public static final String STRING_TAG_EMPTY = "There are no tags!";
+    public static final String STRING_TAG_LIST = "Here are the available tags:" + InterfaceManager.LS;
 
     private Map<Tag, ArrayList<Note>> tagMap;
 

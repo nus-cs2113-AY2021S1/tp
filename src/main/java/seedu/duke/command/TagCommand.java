@@ -22,9 +22,9 @@ public class TagCommand extends Command {
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR "
             + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...]";
 
-    private static final String ADD_TAG_MESSAGE = "Added the tag to the note! ";
-    private static final String REMOVE_TAG_MESSAGE = "Removed the tag from the note! ";
-    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Invalid index input!";
+    public static final String ADD_TAG_MESSAGE = "Added the tag to the note! ";
+    public static final String REMOVE_TAG_MESSAGE = "Removed the tag from the note! ";
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Invalid index input!";
 
     private int index;
     private ArrayList<Tag> tags;
