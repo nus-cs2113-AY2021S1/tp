@@ -1,6 +1,5 @@
 package event;
 
-
 import location.Location;
 
 import java.time.LocalDate;

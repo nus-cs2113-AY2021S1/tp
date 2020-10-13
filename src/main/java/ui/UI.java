@@ -159,7 +159,7 @@ public class UI {
         System.out.println("Got it. I've added this Event: ");
         System.out.println(EventAdded.toString());
     }
-    
+
     /**
      * Prints all the Events of the filtered list with labels, based on the input list.
      *
