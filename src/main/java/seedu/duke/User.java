@@ -1,35 +1,51 @@
 package seedu.duke;
 
 import java.util.Scanner;
+import static seedu.duke.common.Messages.USER_SETUP_GREET;
+import static seedu.duke.common.Messages.INPUT_NAME;
+import static seedu.duke.common.Messages.INPUT_AGE;
+import static seedu.duke.common.Messages.INPUT_HEIGHT;
+import static seedu.duke.common.Messages.INPUT_WEIGHT;
+import static seedu.duke.common.Messages.INPUT_GENDER;
+import static seedu.duke.common.Messages.SETUP_COMPLETE;
+import static seedu.duke.common.Messages.ERROR_INVALID_AGE_INPUT;
+import static seedu.duke.common.Messages.ERROR_INVALID_GENDER_INPUT;
+import static seedu.duke.common.Messages.ERROR_INVALID_HEIGHT_INPUT;
+import static seedu.duke.common.Messages.ERROR_INVALID_WEIGHT_INPUT;
 
 /**
  * User class keeps track of user's personal information.
  */
 public class User {
+    private static final String MALE_SYMBOL = "M";
+    private static final String FEMALE_SYMBOL = "F";
+    private static final String MALE_STRING = "Male";
+    private static final String FEMALE_STRING = "Female";
     public static String name;
     public static Integer age;
     public static Double height;
     public static Double weight;
     public static String gender;
     public Scanner in = new Scanner(System.in);
+    private static UI ui = new UI();
     private static boolean isConfig = false;
 
     /**
      * Setup configures user profile for first time use.
      */
     public void setup() {
-        System.out.println("Hi there, before we begin, let me get to know you :)");
-        System.out.println("Please enter your name:");
+        ui.printCustomMessage(USER_SETUP_GREET);
+        ui.printCustomMessage(INPUT_NAME);
         setName();
-        System.out.println("Please enter your age:");
+        ui.printCustomMessage(INPUT_AGE);
         setupAge();
-        System.out.println("Please enter your height (in m):");
+        ui.printCustomMessage(INPUT_HEIGHT);
         setupHeight();
-        System.out.println("Please enter your weight (in kg):");
+        ui.printCustomMessage(INPUT_WEIGHT);
         setupWeight();
-        System.out.println("Please enter your gender (Enter 'm' for Male or 'f' for Female):");
+        ui.printCustomMessage(INPUT_GENDER);
         setupGender();
-        System.out.println("Setup complete!");
+        ui.printCustomMessage(SETUP_COMPLETE);
         isConfig = true;
     }
 
@@ -63,12 +79,10 @@ public class User {
             try {
                 ageInput = Integer.parseInt(in.nextLine());
                 if (ageInput <= 0) {
-                    System.out.println("Oops that is an invalid age input.\n"
-                            + "Please enter your age:");
+                    ui.printCustomMessage(ERROR_INVALID_AGE_INPUT + INPUT_AGE);
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Oops that is an invalid age input.\n"
-                        + "Please enter your age:");
+                ui.printCustomMessage(ERROR_INVALID_AGE_INPUT + INPUT_AGE);
                 ageInput = 0;
             }
         }
@@ -82,12 +96,10 @@ public class User {
             try {
                 heightInput = Double.parseDouble(in.nextLine());
                 if (heightInput <= 0.00) {
-                    System.out.println("Oops that is an invalid height input.\n"
-                            + "Please enter your height (in m):");
+                    ui.printCustomMessage(ERROR_INVALID_HEIGHT_INPUT + INPUT_HEIGHT);
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Oops that is an invalid height input.\n"
-                        + "Please enter your height (in m):");
+                ui.printCustomMessage(ERROR_INVALID_HEIGHT_INPUT + INPUT_HEIGHT);
                 heightInput = 0.00;
             }
         }
@@ -101,12 +113,10 @@ public class User {
             try {
                 weightInput = Double.parseDouble(in.nextLine());
                 if (weightInput <= 0.00) {
-                    System.out.println("Oops that is an invalid weight input\n"
-                            + "Please enter your weight (in kg):");
+                    ui.printCustomMessage(ERROR_INVALID_WEIGHT_INPUT + INPUT_WEIGHT);
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Oops that is an invalid weight input.\n"
-                        + "Please enter your weight (in kg):");
+                ui.printCustomMessage(ERROR_INVALID_WEIGHT_INPUT + INPUT_WEIGHT);
                 weightInput = 0.00;
             }
         }
@@ -116,14 +126,13 @@ public class User {
     public void setupGender() {
         String genderInput = in.nextLine();
         while (!genderInput.equalsIgnoreCase("m") && !genderInput.equalsIgnoreCase("f")) {
-            System.out.println("oops that is an invalid Gender input.\n"
-                    + "Please enter your gender (Enter 'm' for Male or 'f' for Female):");
+            ui.printCustomMessage(ERROR_INVALID_GENDER_INPUT + INPUT_GENDER);
             genderInput = in.nextLine();
         }
-        if (genderInput.equalsIgnoreCase("m")) {
-            gender = "Male";
-        } else if (genderInput.equalsIgnoreCase("f")) {
-            gender = "Female";
+        if (genderInput.equalsIgnoreCase(MALE_SYMBOL)) {
+            gender = MALE_STRING;
+        } else if (genderInput.equalsIgnoreCase(FEMALE_SYMBOL)) {
+            gender = FEMALE_STRING;
         }
     }
 

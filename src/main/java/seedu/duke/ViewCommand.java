@@ -1,7 +1,19 @@
 package seedu.duke;
 
+import static seedu.duke.common.Messages.ERROR_INVALID_VIEW_COMMAND;
+import static seedu.duke.common.Messages.EMPTY_FOOD_LIST;
+import static seedu.duke.common.Messages.EMPTY_EXERCISE_LIST;
+import static seedu.duke.common.Messages.FOOD_LIST_HEADER;
+import static seedu.duke.common.Messages.EXERCISE_LIST_HEADER;
+import static seedu.duke.common.Messages.CALORIE_CONSUMED_HEADER;
+import static seedu.duke.common.Messages.CALORIE_BURNT_HEADER;
+import static seedu.duke.common.Messages.NET_CALORIE_HEADER;
+import static seedu.duke.common.Messages.BMI_HEADER;
+import static seedu.duke.common.Messages.USER_PROFILE_HEADER;
+
 public class ViewCommand extends Command {
     private User user;
+    private static UI ui = new UI();
 
     public ViewCommand(String command) {
         this.command = command;
@@ -21,18 +33,18 @@ public class ViewCommand extends Command {
         } else if (command.equalsIgnoreCase("view profile")) {
             viewProfile(user);
         } else {
-            System.out.println("Invalid view command!");
+            ui.printCustomMessage(ERROR_INVALID_VIEW_COMMAND);
         }
     }
 
     //View food
     public void viewFood(FoodList foodList) {
         if (foodList.getSize() == 0) {
-            System.out.println("The food list is empty...");
+            ui.printCustomMessage(EMPTY_FOOD_LIST);
         } else {
             int index = 0;
             int printIndex = index + 1;
-            System.out.println("Here is the list of your food:");
+            ui.printCustomMessage(FOOD_LIST_HEADER);
             while (index < foodList.getSize()) {
                 System.out.println("[" + printIndex + "] " + "Food: " + foodList.getFood(index).getFoodName()
                         + "\n    Cal: " + foodList.getFood(index).getCalories());
@@ -45,11 +57,11 @@ public class ViewCommand extends Command {
     //View exercise
     public void viewExercise(ExerciseList exerciseList) {
         if (exerciseList.getSize() == 0) {
-            System.out.println("The exercise list is empty...");
+            ui.printCustomMessage(EMPTY_EXERCISE_LIST);
         } else {
             int index = 0;
             int printIndex = index + 1;
-            System.out.println("Here is the list of your exercises:");
+            ui.printCustomMessage(EXERCISE_LIST_HEADER);
             while (index < exerciseList.getSize()) {
                 System.out.println("[" + printIndex + "] " + "Exercise: "
                         + exerciseList.getExercise(index).getNameOfExercise()
@@ -62,21 +74,21 @@ public class ViewCommand extends Command {
 
     //View summary of total amount of calories consumed and burnt.
     public void viewSummary(FoodList foodList, ExerciseList exerciseList) {
-        System.out.println("Total calorie consumed:");
+        ui.printCustomMessage(CALORIE_CONSUMED_HEADER);
         System.out.println(user.calculateCalorieConsumed(foodList).get());
-        System.out.println("Total calorie burnt:");
+        ui.printCustomMessage(CALORIE_BURNT_HEADER);
         System.out.println(user.calculateCalorieBurnt(exerciseList).get());
-        System.out.println("Net calorie:");
+        ui.printCustomMessage(NET_CALORIE_HEADER);
         System.out.println(user.calculateCalorie(foodList, exerciseList).get());
     }
 
     public void viewBmi(User user) {
-        System.out.println("Your BMI is:");
+        ui.printCustomMessage(BMI_HEADER);
         System.out.println(user.getBmi());
     }
 
     public void viewProfile(User user) {
-        System.out.println("User profile:");
+        ui.printCustomMessage(USER_PROFILE_HEADER);
         System.out.println(user);
     }
 
