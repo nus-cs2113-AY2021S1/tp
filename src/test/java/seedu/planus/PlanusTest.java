@@ -10,5 +10,4 @@ class PlanusTest {
     public void sampleTest() {
         assertTrue(true);
     }
-
 }

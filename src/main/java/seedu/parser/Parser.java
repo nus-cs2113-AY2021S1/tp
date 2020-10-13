@@ -10,12 +10,13 @@ import seedu.commands.Help;
 import seedu.commands.List;
 import seedu.commands.Search;
 import seedu.exceptions.InvalidCommandException;
+import seedu.exceptions.InvalidTaskNumberException;
 import seedu.exceptions.UnknowCommandException;
 
 public class Parser {
 
     public Command processRaw(String rawInput) throws
-            UnknowCommandException, InvalidCommandException {
+            UnknowCommandException, InvalidCommandException, InvalidTaskNumberException {
         if (rawInput.startsWith(Help.COMMAND_WORD)) {
             return new Help();
         } else if (rawInput.startsWith(Add.COMMAND_WORD)) {
