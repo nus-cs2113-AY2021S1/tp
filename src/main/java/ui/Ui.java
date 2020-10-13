@@ -10,7 +10,6 @@ import commands.ExitCommand;
 import commands.EditCommand;
 import commands.RemoveCommand;
 
-import commands.ReviseCommand;
 import manager.card.Card;
 import manager.chapter.Chapter;
 import manager.module.Module;
@@ -117,16 +116,6 @@ public class Ui {
         out.println("7. " + RemoveCommand.MESSAGE_USAGE);
     }
 
-    public void showCardUnedited(Card card) {
-        out.println("The following card will be edited:");
-        out.println(card);
-    }
-
-    public void showCardEdited(Card card) {
-        out.println("Edited card:");
-        out.println(card);
-    }
-
     public void showModuleAdded(Module module, int moduleCount) {
         out.println("    Got it. I've added this module:");
         out.println("    " + module);
@@ -163,5 +152,15 @@ public class Ui {
 
     public void showError(String error) {
         out.println(error);
+    }
+
+    public void showUnedited(String type, String content) {
+        out.println("The following " + type + " will be edited:");
+        out.println(content);
+    }
+
+    public void showEdited(String type, String content) {
+        out.println("Edited " + type + ":");
+        out.println(content);
     }
 }
