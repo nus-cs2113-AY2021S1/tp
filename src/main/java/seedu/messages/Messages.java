@@ -23,10 +23,8 @@ public class Messages {
             + "/_/   /_/\\__,_/_/ |_/\\____//____/  "
             + "v1.0" + ANSI_RESET + LS;
     public static final String HELP_MESSAGE = "List of available commands:" + LS
-            + "Notes: " + LS
-            + "1. Command end with space is invalid." + LS
-            + "2. One space between options." + LS
-            + "3. Square bracket input is optional." + LS
+            + "Note: " + LS
+            + "1. Square bracket input is optional." + LS
             + "- help: show list of available commands" + LS
             + "format: " + ANSI_PURPLE + "help" + ANSI_RESET + LS
             + "- add: add a task" + LS

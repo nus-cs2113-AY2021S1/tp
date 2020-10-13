@@ -28,10 +28,14 @@ public class Edit extends Command {
     private final String endTime;
     private final String priority;
 
-    public Edit(String rawInput) throws InvalidCommandException {
+    public Edit(String rawInput) throws InvalidCommandException, InvalidTaskNumberException {
         Matcher matcher = COMMAND_PATTERN.matcher(rawInput);
         if (matcher.find()) {
-            index = Integer.parseInt(matcher.group("index"));
+            try {
+                index = Integer.parseInt(matcher.group("index"));
+            } catch (NumberFormatException e) {
+                throw new InvalidTaskNumberException();
+            }
             description = matcher.group("description");
             date = matcher.group("date");
             startTime = matcher.group("st");
