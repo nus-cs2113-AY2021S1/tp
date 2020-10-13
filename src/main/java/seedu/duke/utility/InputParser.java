@@ -173,8 +173,12 @@ public class InputParser {
         //catch for 1)show not found , 2) invalid no. of args
         input = StringOperations.removeFirstWord(input);
         DeleteCommand deletingShow = new DeleteCommand(input);
-        deletingShow.delete(input);
-        Ui.printDeleteShow(input);
+        try {
+            deletingShow.delete(input);
+            Ui.printDeleteShow(input);
+        } catch (Exception e) {
+            Ui.printNotFoundException();
+        }
     }
 
     /*
