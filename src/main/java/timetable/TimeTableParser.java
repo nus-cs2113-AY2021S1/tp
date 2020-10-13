@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 public class TimeTableParser {
     public static void commandParser(String command, DateList dateList, TimeTableStorage storage) {
         if (command.equals("show schedule")) {
+            System.out.println(Message.printShowSchedule);
             Table.printTable(dateList.dateList);
             return;
         } else if (command.equals("exit")) {
@@ -22,6 +23,7 @@ public class TimeTableParser {
                 Lesson lesson = addClass(words[2]);
                 dateList.addLesson(lesson);
                 storage.writeFile(lesson);
+                System.out.println(Message.printSuccessfulClassAddition);
             }
                 break;
             default: System.out.println(("☹ OOPS!!! I'm sorry, but I don't know what that means :-("));
