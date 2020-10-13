@@ -33,9 +33,10 @@ public abstract class ParamHandler {
      */
     public void handleParams(CommandPacket packet)
         throws InsufficientParamsException, ItemNotFoundException {
+        // Reset Sequence
+        this.resetAllParamCollections();
         this.hasParsedAllRequiredParams = false;
         this.paramChecker = new ParamChecker(packet);
-        boolean paramHasNotBeenEntered;
 
         // Handle each param using individual handleSingleParam of subclass
         for (String paramType : packet.getParamTypes()) {
@@ -43,16 +44,15 @@ public abstract class ParamHandler {
                 handleSingleParam(packet, paramType);
                 // ParamTypes that are parsed correctly
                 // (i.e. no exception thrown) will be recorded
-                this.paramsSuccessfullyParsed.add(paramType);
+                this.paramsSuccessfullyParsed.add(paramType);;
             } catch (ParseFailParamException exception) {
                 // Report paramTypes that failed to parse.
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     paramChecker.getParseFailParamMessage(paramType));
             }
         }
-
         this.hasParsedAllRequiredParams = checkParseFailedParams();
-
+        this.requiredParams.clear();
         if (!this.hasParsedAllRequiredParams) {
             throw new InsufficientParamsException(this.missingRequiredParams);
         }
@@ -68,10 +68,17 @@ public abstract class ParamHandler {
      * @param paramTypes - all params that are required
      */
     public void setRequiredParams(String... paramTypes) {
-        this.requiredParams.clear();
         for (String paramType : paramTypes) {
             this.requiredParams.add(paramType);
         }
+    }
+
+    /**
+     * Clears params assigned to required params.
+     */
+    public void resetAllParamCollections() {
+        this.missingRequiredParams.clear();
+        this.paramsSuccessfullyParsed.clear();
     }
 
     /**
@@ -83,7 +90,6 @@ public abstract class ParamHandler {
     protected boolean checkParseFailedParams() {
         for (String param: this.requiredParams) {
             boolean isRequiredParamParsed = checkParamRequirementSatisfied(param);
-
             if (!isRequiredParamParsed) {
                 this.missingRequiredParams.add(param);
             }

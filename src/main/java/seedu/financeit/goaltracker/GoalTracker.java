@@ -1,17 +1,15 @@
 package seedu.financeit.goaltracker;
 
 import seedu.financeit.common.CommandPacket;
-import seedu.financeit.common.Goal;
 import seedu.financeit.common.Constants;
-import seedu.financeit.goaltracker.TotalGoalList;
+import seedu.financeit.common.Goal;
 import seedu.financeit.manualtracker.Ledger;
+import seedu.financeit.manualtracker.LedgerList;
 import seedu.financeit.manualtracker.ManualTracker;
+import seedu.financeit.manualtracker.subroutine.Entry;
 import seedu.financeit.manualtracker.subroutine.EntryList;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.UiManager;
-import seedu.financeit.manualtracker.subroutine.Entry;
-import seedu.financeit.manualtracker.LedgerList;
-
 
 import java.util.Scanner;
 
@@ -151,7 +149,7 @@ public class GoalTracker {
             LedgerList ledgerList = ManualTracker.getLedgerList();
             int ledgerSize = ledgerList.getItemsSize();
             for (int i = ledgerSize - 1; i < ledgerSize; i++) {
-                Ledger ledger = (Ledger) ledgerList.getItemFromIndex(i);
+                Ledger ledger = (Ledger) ledgerList.getItemAtIndex(i);
                 EntryList entryList = ledger.entryList;
                 int entrySize = entryList.getItemsSize();
                 for (int x = entrySize - 1; x < entrySize; x++) {
@@ -185,7 +183,7 @@ public class GoalTracker {
             LedgerList ledgerList = ManualTracker.getLedgerList();
             int ledgerSize = ledgerList.getItemsSize();
             for (int i = ledgerSize - 1; i < ledgerSize; i++) {
-                Ledger ledger = (Ledger) ledgerList.getItemFromIndex(i);
+                Ledger ledger = (Ledger) ledgerList.getItemAtIndex(i);
                 EntryList entryList = ledger.entryList;
                 int entrySize = entryList.getItemsSize();
                 for (int x = entrySize - 1; x < entrySize; x++) {
