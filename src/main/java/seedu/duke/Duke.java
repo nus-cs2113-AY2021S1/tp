@@ -20,9 +20,9 @@ public class Duke {
         TimeTableStorage storage = new TimeTableStorage("storage.txt", events);
         Scanner in = new Scanner(System.in);
         String command;
-        do{
+        do {
             command = in.nextLine();
             TimeTableParser.commandParser(command, events,storage);
-        }while (!command.equals("exit"));
+        } while (!command.equals("exit"));
     }
 }
