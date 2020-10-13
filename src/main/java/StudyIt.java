@@ -1,3 +1,6 @@
+import academic.Person;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudyIt {

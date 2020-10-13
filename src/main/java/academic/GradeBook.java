@@ -22,4 +22,22 @@ public class GradeBook {
         }
         return "Current CAP is " + totalGradeScore / totalCredits + ".";
     }
+
+    public static String printListOfGrades() {
+        int listIndex = 0;
+        StringBuilder listToPrint = new StringBuilder();
+        for (Grade grade : GradeBook.currentGrade) {
+            if (grade != null) {
+                listToPrint.append(listIndex + 1);
+                listToPrint.append(". [" + grade.moduleName + "]");
+                listToPrint.append(" [" + grade.moduleCredits + "MC]");
+                listToPrint.append(" [" + grade.moduleGrade + "]");
+                listIndex++;
+                if (GradeBook.currentGrade.size() != listIndex) {
+                    listToPrint.append("\n");
+                }
+            }
+        }
+        return listToPrint.toString();
+    }
 }

@@ -65,6 +65,10 @@ public class Command {
                 Ui.printLine("Checking Grade"); //TODO: Remove placeholder line.
                 Ui.printLine(GradeBook.printCap());
 
+            } else if (commandType == AcademicCommandType.LIST_GRADE) {
+                Ui.printLine("Listing Grade"); //TODO: Remove placeholder line.
+                Ui.printLine(GradeBook.printListOfGrades());
+
             }
         } catch (InvalidCommandException e) {
             ErrorMessage.printUnidentifiableCommand();
