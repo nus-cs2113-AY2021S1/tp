@@ -1,14 +1,14 @@
-package seedu.financeit.utils;
+package seedu.financeit.utils.storage;
 
 import java.io.IOException;
 
-public class SSHAT extends SaveStateHandler {
+public class SaveStateHandlerGoalTracker extends SaveStateHandler{
 
-    public SSHAT (){
+    public SaveStateHandlerGoalTracker(){
         super();
     }
 
-    public SSHAT (String filepath, String directory){
+    public SaveStateHandlerGoalTracker(String filepath, String directory){
         super(filepath, directory);
     }
 

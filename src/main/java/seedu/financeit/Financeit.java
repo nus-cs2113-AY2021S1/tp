@@ -8,9 +8,9 @@ import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
-import seedu.financeit.utils.SSHMT;
-import seedu.financeit.utils.SSHAT;
-import seedu.financeit.utils.SSHGT;
+import seedu.financeit.utils.storage.SaveStateHandlerManualTracker;
+import seedu.financeit.utils.storage.SaveStateHandlerRecurringTracker;
+import seedu.financeit.utils.storage.SaveStateHandlerGoalTracker;
 
 import java.util.logging.Level;
 
@@ -22,9 +22,9 @@ public class Financeit {
         CommandPacket packet = null;
         Level mode = Level.OFF;
         ParamChecker.logger.setLevel(mode);
-        SSHMT mt = new SSHMT("./data/save.txt", "./data");
-        SSHGT gt = new SSHGT("./data/save1.txt", "./data");
-        SSHAT at = new SSHAT("./data/save2.txt", "./data");
+        SaveStateHandlerManualTracker mt = new SaveStateHandlerManualTracker("./data/save.txt", "./data");
+        SaveStateHandlerGoalTracker gt = new SaveStateHandlerGoalTracker("./data/save1.txt", "./data");
+        SaveStateHandlerRecurringTracker at = new SaveStateHandlerRecurringTracker("./data/save2.txt", "./data");
 
         try {
             mt.load();

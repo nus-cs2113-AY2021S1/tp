@@ -1,4 +1,4 @@
-package seedu.financeit.utils;
+package seedu.financeit.utils.storage;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,6 +12,7 @@ public abstract class SaveStateHandler {
     public SaveStateHandler(){
 
     }
+
     public SaveStateHandler(String filepath, String directory){
         fullpath = filepath;
         dir_path = directory;
