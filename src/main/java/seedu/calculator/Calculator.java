@@ -3,7 +3,7 @@ package seedu.calculator;
 import java.util.ArrayList;
 
 import seedu.duke.Ui;
-import seedu.duke.Food;
+import seedu.duke.Food; 
 
 /**
  * Represents a calculator of food items in foodList.
