@@ -43,7 +43,7 @@ public class ReturnSubjectCommand extends SubjectCommand {
         throw new NoSubjectException();
     }
 
-    public void goToSubject(Subject subject, TaskList tasks) {
+    public void goToSubject(Subject subject) {
         Ui.printGoToSubject(subject);
         boolean isSubjectExit = false;
         while (!isSubjectExit) {

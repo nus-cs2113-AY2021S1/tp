@@ -57,6 +57,10 @@ public class Storage {
      *                                  of wrong user manipulation.
      */
     public List<Subject> loadSubjects() throws DataLoadingException, FlashcardSyntaxException {
+        if (!baseDir.exists()) {  // if the data hasn't been saved before
+            return new ArrayList<>();
+        }
+
         File[] subjectDirs = baseDir.listFiles(File::isDirectory);
         if (subjectDirs == null) {  // error in getting the directories even if they may exist
             throw new DataLoadingException("Error loading saved data from the disk.");
@@ -84,7 +88,13 @@ public class Storage {
             }
 
             List<Topic> topics = loadTopics(topicDirs);
-            Subject subject = new Subject(subjectDir.getName(), topics);
+            List<Task> tasks;
+            try {
+                tasks = loadTasks(subjectDir.toPath());
+            } catch (FileNotFoundException e) {
+                tasks = new ArrayList<>();  // task file may have been deleted by the user
+            }
+            Subject subject = new Subject(subjectDir.getName(), topics, tasks);
             subjects.add(subject);
         }
         subjects.sort(Comparator.comparing(Subject::getTitle));
@@ -151,6 +161,7 @@ public class Storage {
             Path subjectPath = Paths.get(getBaseDir().toString(), subject.getTitle());
             Files.createDirectories(subjectPath);
 
+            saveTasks(subjectPath, subject.getTasks().getList());
             saveTopics(subjectPath, subject.getTopics().getList());
         }
     }
@@ -219,7 +230,7 @@ public class Storage {
      *
      * @param subjectPath subject directory where the tasks were stored under
      * @return a list of previously saved tasks
-     * @throws FileNotFoundException When there are no files found
+     * @throws FileNotFoundException when there are no files found
      */
     public List<Task> loadTasks(Path subjectPath) throws FileNotFoundException {
         File taskFile = new File(subjectPath.toString(), getTaskFilename());
