@@ -1,5 +1,7 @@
 package seedu.eduke8.quiz;
 
+import seedu.eduke8.command.AnswerCommand;
+import seedu.eduke8.command.HintCommand;
 import seedu.eduke8.command.Command;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.exception.Eduke8Exception;
@@ -33,6 +35,8 @@ public class SingleTopicQuiz implements Quiz {
         QuizQuestionsManager quizQuestionsManager =
                 new QuizQuestionsManager(numberOfQuestions, topicQuestionList.getInnerList());
 
+        assert !quizQuestionsManager.areAllQuestionsAnswered();
+
         goThroughQuizQuestions(ui, quizQuestionsManager);
 
         ui.printEndQuizPage();
@@ -55,6 +59,8 @@ public class SingleTopicQuiz implements Quiz {
 
             quizParser.setQuestion(question);
             Command command = quizParser.parseCommand(optionList, userInput);
+
+            assert (command instanceof AnswerCommand || command instanceof HintCommand);
 
             command.execute(optionList, ui);
         }
