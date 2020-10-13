@@ -1,4 +1,4 @@
-package NUSchedule.exception;
+package exception;
 
 /**
  * Represents the exception when the user edit the file in a wrong way.

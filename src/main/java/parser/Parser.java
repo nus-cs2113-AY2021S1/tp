@@ -1,9 +1,9 @@
-package NUSchedule.parser;
+package parser;
 
 
-import NUSchedule.command.Command;
-import NUSchedule.command.ExitCommand;
-import NUSchedule.command.PrintFullListCommand;
+import command.Command;
+import command.ExitCommand;
+import command.PrintFullListCommand;
 
 /**
  * This class contains one function -- parse, to call the respective command function according to the user input.

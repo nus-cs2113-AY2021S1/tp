@@ -1,7 +1,7 @@
-package NUSchedule.ui;
+package ui;
 
 
-import NUSchedule.event.Event;
+import event.Event;
 
 
 import java.util.ArrayList;
@@ -12,15 +12,16 @@ import java.util.Scanner;
  */
 public class UI {
 
-    public static final String LOGO = " _       _ _        _   ____       _                    _        _     \n"
-                                    + "| |     | | |      | | / ___|     | |                  | |      | |   \n"
-                                    + "|  \\    | | |      | |/ /         | |                  | |      | |\n"
-                                    + "| |\\\\   | | |      | |\\ \\         | |        ___       | |      | | ___ \n"
-                                    + "| | \\\\  | | |      | | \\ \\     ___| |______ /___\\  ____| |_    _| |/___\\       \n"
-                                    + "| |  \\\\ | | |      | |  \\ \\   /___|  ____  ||___|||  __  | |  | | ||___|| \n"
-                                    + "| |   \\\\| | |      | |   \\ \\ //   | |    | | ___/ | |  | | |  | | | ___/    \n"
-                                    + "| |    \\  | |______| |___/ / \\\\___| |    | |\\____ | |__| | |__| | |\\____\n"
-                                    + "|_|     |_|__________|____/   \\___|_|    |_|\\___/ |______|\\___,_|_|\\___/           \n";
+    public static final String LOGO =
+            " _       _ _        _   ____       _                    _        _     \n"
+                    + "| |     | | |      | | / ___|     | |                  | |      | |   \n"
+                    + "|  \\    | | |      | |/ /         | |                  | |      | |\n"
+                    + "| |\\\\   | | |      | |\\ \\         | |        ___       | |      | | ___ \n"
+                    + "| | \\\\  | | |      | | \\ \\     ___| |______ /___\\  ____| |_    _| |/___\\       \n"
+                    + "| |  \\\\ | | |      | |  \\ \\   /___|  ____  ||___|||  __  | |  | | ||___|| \n"
+                    + "| |   \\\\| | |      | |   \\ \\ //   | |    | | ___/ | |  | | |  | | | ___/    \n"
+                    + "| |    \\  | |______| |___/ / \\\\___| |    | |\\____ | |__| | |__| | |\\____\n"
+                    + "|_|     |_|__________|____/   \\___|_|    |_|\\___/ |______|\\___,_|_|\\___/           \n";
     public static final String LINE_DIVIDER = "____________________________________________________________";
     public static final String EXIT_MESSAGE = "Bye. Hope to see you again soon!";
     private final Scanner in;
@@ -73,15 +74,15 @@ public class UI {
     /**
      * Prints all the Events of the filtered list with labels, based on the input list.
      *
-     * @param Events an <\code>ArrayList</\code> of Events to be printed one by one
+     * @param events an <\code>ArrayList</\code> of Events to be printed one by one
      */
-    public void printFilteredEventList(ArrayList<Event> Events) {
+    public void printFilteredEventList(ArrayList<Event> events) {
         int numPrintedEvents = 0;
 
         System.out.println(" Here are the matching Events in your list:");
-        for (Event Event : Events) {
+        for (Event event : events) {
             numPrintedEvents++;
-            System.out.println(numPrintedEvents + ". " + Event.toString());
+            System.out.println(numPrintedEvents + ". " + event.toString());
         }
     }
 
@@ -158,6 +159,7 @@ public class UI {
         System.out.println("Got it. I've added this Event: ");
         System.out.println(EventAdded.toString());
     }
+    
     /**
      * Prints all the Events of the filtered list with labels, based on the input list.
      *
@@ -167,14 +169,11 @@ public class UI {
         int numPrintedEvents = 0;
 
         System.out.println(" Here are the Events on the given date in your list:");
-        for (Event Event : filteredEventList) {
+        for (Event event : filteredEventList) {
             numPrintedEvents++;
-            System.out.println(numPrintedEvents + ". " + Event.toString());
+            System.out.println(numPrintedEvents + ". " + event.toString());
         }
     }
-
-
-
 
 
 }

@@ -1,10 +1,10 @@
-package NUSchedule.storage;
+package storage;
 
 
-import NUSchedule.event.Event;
-import NUSchedule.exception.CreatingFileException;
-import NUSchedule.exception.LoadingException;
-import NUSchedule.exception.WritingFileException;
+import event.Event;
+import exception.CreatingFileException;
+import exception.LoadingException;
+import exception.WritingFileException;
 
 import java.io.File;
 import java.io.FileWriter;

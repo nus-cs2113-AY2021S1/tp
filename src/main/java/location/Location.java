@@ -1,4 +1,4 @@
-package NUSchedule.location;
+package location;
 
 public class Location {
     private String location="";

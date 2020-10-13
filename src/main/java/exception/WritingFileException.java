@@ -1,4 +1,4 @@
-package NUSchedule.exception;
+package exception;
 
 /**
  * Represents the exception when the file is not correctly written.

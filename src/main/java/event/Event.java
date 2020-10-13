@@ -1,7 +1,7 @@
-package NUSchedule.event;
+package event;
 
 
-import NUSchedule.location.Location;
+import location.Location;
 
 import java.time.LocalDate;
 
