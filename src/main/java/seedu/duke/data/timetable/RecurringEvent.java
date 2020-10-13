@@ -4,7 +4,6 @@ import seedu.duke.ui.InterfaceManager;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -74,8 +73,8 @@ public abstract class RecurringEvent extends Event {
             }
             if (toReoccur(startDate)) {
                 LocalDateTime dateTime = LocalDateTime.of(startDate, getTime());
-                Event e = new Event(getTitle(), dateTime, getToRemind(), false, getReminderPeriod());
-                eventSet.add(e);
+                Event event = new Event(getTitle(), dateTime, getToRemind(), false, getReminderPeriod());
+                eventSet.add(event);
             }
             startDate = startDate.plusDays(1);
         }
@@ -87,11 +86,7 @@ public abstract class RecurringEvent extends Event {
         while (eventDate.compareTo(date) < 0) {
             eventDate = timeStep(eventDate);
         }
-        if (eventDate.equals(date)) {
-            return true;
-        } else {
-            return false;
-        }
+        return eventDate.equals(date);
     }
 
     @Override

@@ -10,7 +10,7 @@ public class Reminder implements Comparable<Reminder> {
      * Constructor for a Reminder. Includes what event to remind about as well as what date to remind on.
      *
      * @param event Event to remind
-     * @param dateToRemind When to remind
+     * @param dateToRemind Date to remind.
      */
     public Reminder(Event event, LocalDate dateToRemind) {
         this.event = event;

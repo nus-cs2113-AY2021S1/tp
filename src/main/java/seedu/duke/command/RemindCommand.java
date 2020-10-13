@@ -15,20 +15,8 @@ public class RemindCommand extends Command {
 
     public static final String COMMAND_WORD = "remind-e";
 
-    private static final String COMMAND_USAGE = COMMAND_WORD + ": Set a reminder for an event. Parameters: "
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Set a reminder for an event. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
-
-    /**
-     * Gets how the command is expected to be used.
-     *
-     * @return String representation of how the command is to be used.
-     */
-    public static String getCommandUsage() {
-        return COMMAND_USAGE;
-    }
-
-    private int index;
-    private boolean isToRemind;
 
     /**
      * Default constructor of RemindEvent. No arguments are expected as we are only looking at reminders today.
@@ -40,19 +28,15 @@ public class RemindCommand extends Command {
     @Override
     public String execute() {
         ArrayList<Reminder> reminders = timetable.getReminders();
-        String result = "Reminders:" + InterfaceManager.LS;
+        StringBuilder result = new StringBuilder("Reminders:" + InterfaceManager.LS);
         if (reminders.size() == 0) {
-            result += "No reminders today!";
-        } else {
-            boolean first = true;
-            for (Reminder reminder : reminders) {
-                if (!first) {
-                    result += InterfaceManager.LS;
-                }
-                first = false;
-                result += reminder.toString();
-            }
+            result.append("No reminders today!");
         }
-        return result;
+        String lineSep = "";
+        for (Reminder reminder : reminders) {
+            result.append(lineSep).append(reminder.toString());
+            lineSep = InterfaceManager.LS;
+        }
+        return result.toString();
     }
 }

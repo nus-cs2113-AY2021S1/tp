@@ -64,6 +64,10 @@ public class Note {
         return (isPinned ? "Y" : "N");
     }
 
+    public void togglePinned() {
+        isPinned = !isPinned;
+    }
+
     public void setPinned(Boolean pinned) {
         isPinned = pinned;
     }

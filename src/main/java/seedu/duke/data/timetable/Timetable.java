@@ -1,6 +1,5 @@
 package seedu.duke.data.timetable;
 
-import seedu.duke.data.exception.SystemException;
 import seedu.duke.util.DateTimeManager;
 
 import java.time.LocalDate;
@@ -81,7 +80,6 @@ public class Timetable {
      * Removes an event from the timetable.
      *
      * @param index Index to be removed.
-     * @throws SystemException Occurs when index provides is less than 0 or >= size of the list.
      */
     public void deleteEvent(int index) {
         Event event = events.get(index);
@@ -241,13 +239,7 @@ public class Timetable {
      * @return PriorityQueue of Reminder from all provided events.
      */
     public PriorityQueue<Reminder> getEventSetReminder(ArrayList<Event> setOfEvents) {
-        Comparator<Reminder> reminderComparator = new Comparator<Reminder>() {
-            @Override
-            public int compare(Reminder o1, Reminder o2) {
-                return o1.getDateToRemind().compareTo(o2.getDateToRemind());
-            }
-        };
-        PriorityQueue<Reminder> reminders = new PriorityQueue<>(reminderComparator);
+        PriorityQueue<Reminder> reminders = new PriorityQueue<>(Reminder::compareTo);
         for (Event event : setOfEvents) {
             for (LocalDate reminderDate : event.getReminderDates()) {
                 reminders.add(new Reminder(event, reminderDate));

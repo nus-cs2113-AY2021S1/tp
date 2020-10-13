@@ -26,7 +26,7 @@ public class DateTimeManager {
         try {
             dateTime = LocalDateTime.parse(input, FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new SystemException(SystemException.ExceptionType.EXCEPTION_WRONG_TIMING);
+            throw new SystemException(SystemException.ExceptionType.EXCEPTION_INVALID_TIMING_FORMAT);
         }
         return dateTime;
     }

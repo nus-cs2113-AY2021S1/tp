@@ -1,14 +1,13 @@
 package seedu.duke.data.timetable;
 
 import seedu.duke.ui.InterfaceManager;
-import seedu.duke.util.DateComparator;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 /**
@@ -156,20 +155,12 @@ public class Event implements Comparable<Event> {
         return isToRemind;
     }
 
-    public void setToRemind(boolean toRemind) {
-        isToRemind = toRemind;
-    }
-
     public HashMap<String, ArrayList<Integer>> getReminderPeriod() {
         return this.reminderPeriods;
     }
 
     public boolean getRecurring() {
         return isRecurring;
-    }
-
-    public void setRecurring(boolean recurring) {
-        isRecurring = recurring;
     }
 
     public ArrayList<LocalDate> getReminderDates() {
@@ -191,7 +182,7 @@ public class Event implements Comparable<Event> {
                 dates.add(date);
             }
         }
-        dates.sort(new DateComparator());
+        dates.sort(LocalDate::compareTo);
         return dates;
     }
 
@@ -217,13 +208,11 @@ public class Event implements Comparable<Event> {
         int comp = date.compareTo(o.date);
         if (comp != 0) {
             return comp;
-        } else {
-            comp = time.compareTo(o.time);
-            if (comp != 0) {
-                return comp;
-            } else {
-                return title.compareTo(o.title);
-            }
         }
+        comp = time.compareTo(o.time);
+        if (comp != 0) {
+            return comp;
+        }
+        return title.compareTo(o.title);
     }
 }
