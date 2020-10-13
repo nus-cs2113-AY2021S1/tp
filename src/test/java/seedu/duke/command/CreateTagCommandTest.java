@@ -46,15 +46,13 @@ class CreateTagCommandTest {
 
         String result = getCommandExecutionString(tagManager, tags);
 
+        assertEquals(COMMAND_SUCCESSFUL_MESSAGE + tagRed + InterfaceManager.LS
+                + COMMAND_SUCCESSFUL_MESSAGE + tagGreen + InterfaceManager.LS
+                + COMMAND_SUCCESSFUL_MESSAGE + tagBlue, result);
         assertTrue(tagManager.getTagMap().containsKey(tagRed));
         assertTrue(tagManager.getTagMap().containsKey(tagGreen));
         assertTrue(tagManager.getTagMap().containsKey(tagBlue));
         assertEquals(tagManager.getTagMap().size(), 3);
-
-        assertEquals(COMMAND_SUCCESSFUL_MESSAGE + tagRed + InterfaceManager.LS
-                + COMMAND_SUCCESSFUL_MESSAGE + tagGreen + InterfaceManager.LS
-                + COMMAND_SUCCESSFUL_MESSAGE + tagBlue
-                , result);
     }
 
     @Test
@@ -71,16 +69,14 @@ class CreateTagCommandTest {
 
         String result = getCommandExecutionString(tagManager, tags);
 
+        assertEquals(COMMAND_UNSUCCESSFUL_MESSAGE + tagRedToYellow + InterfaceManager.LS
+                + COMMAND_UNSUCCESSFUL_MESSAGE + tagGreenToPurple, result);
         assertTrue(tagManager.getTagMap().containsKey(tagRed));
         assertTrue(tagManager.getTagMap().containsKey(tagGreen));
         assertTrue(tagManager.getTagMap().containsKey(tagBlue));
         assertEquals(tagManager.getTag(tagRedToYellow.getTagName()), tagRed);
         assertEquals(tagManager.getTag(tagGreenToPurple.getTagName()), tagGreen);
         assertEquals(tagManager.getTagMap().size(), 3);
-
-        assertEquals(COMMAND_UNSUCCESSFUL_MESSAGE + tagRedToYellow + InterfaceManager.LS
-                        + COMMAND_UNSUCCESSFUL_MESSAGE + tagGreenToPurple
-                , result);
     }
 
     @Test
@@ -101,17 +97,15 @@ class CreateTagCommandTest {
 
         String result = getCommandExecutionString(tagManager, tags);
 
+        assertEquals(COMMAND_UNSUCCESSFUL_MESSAGE + tagRedToYellow + InterfaceManager.LS
+                + COMMAND_UNSUCCESSFUL_MESSAGE + tagGreenToPurple + InterfaceManager.LS
+                + COMMAND_SUCCESSFUL_MESSAGE + tagBlue, result);
         assertTrue(tagManager.getTagMap().containsKey(tagRed));
         assertTrue(tagManager.getTagMap().containsKey(tagGreen));
         assertTrue(tagManager.getTagMap().containsKey(tagBlue));
         assertEquals(tagManager.getTag(tagRedToYellow.getTagName()), tagRed);
         assertEquals(tagManager.getTag(tagGreenToPurple.getTagName()), tagGreen);
         assertEquals(tagManager.getTagMap().size(), 3);
-
-        assertEquals(COMMAND_UNSUCCESSFUL_MESSAGE + tagRedToYellow + InterfaceManager.LS
-                        + COMMAND_UNSUCCESSFUL_MESSAGE + tagGreenToPurple + InterfaceManager.LS
-                        + COMMAND_SUCCESSFUL_MESSAGE + tagBlue
-                , result);
     }
 
     private String getCommandExecutionString(TagManager tagManager, ArrayList<Tag> tags) {

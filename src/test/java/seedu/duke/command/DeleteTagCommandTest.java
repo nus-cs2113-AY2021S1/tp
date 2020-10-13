@@ -51,9 +51,8 @@ class DeleteTagCommandTest {
         String result = getCommandExecutionString(tagManager, tags);
 
         assertEquals(COMMAND_UNSUCCESSFUL_MESSAGE + tagRed + InterfaceManager.LS
-                        + COMMAND_UNSUCCESSFUL_MESSAGE + tagGreen + InterfaceManager.LS
-                        + COMMAND_UNSUCCESSFUL_MESSAGE + tagBlue
-                , result);
+                + COMMAND_UNSUCCESSFUL_MESSAGE + tagGreen + InterfaceManager.LS
+                + COMMAND_UNSUCCESSFUL_MESSAGE + tagBlue, result);
     }
 
     @Test
@@ -82,8 +81,7 @@ class DeleteTagCommandTest {
         String result = getCommandExecutionString(tagManager, tags);
 
         assertEquals(COMMAND_SUCCESSFUL_MESSAGE + tagRed + InterfaceManager.LS
-                        + COMMAND_SUCCESSFUL_MESSAGE + tagGreen
-                , result);
+                + COMMAND_SUCCESSFUL_MESSAGE + tagGreen, result);
 
         assertEquals(defaultNote.getTags().size(), 0);
         assertEquals(tagManager.getTagMap().size(), 0);
@@ -116,14 +114,11 @@ class DeleteTagCommandTest {
         String result = getCommandExecutionString(tagManager, tags);
 
         assertEquals(COMMAND_SUCCESSFUL_MESSAGE + tagRed + InterfaceManager.LS
-                        + COMMAND_SUCCESSFUL_MESSAGE + tagGreen + InterfaceManager.LS
-                + COMMAND_UNSUCCESSFUL_MESSAGE + tagBlue
-                , result);
+                + COMMAND_SUCCESSFUL_MESSAGE + tagGreen + InterfaceManager.LS
+                + COMMAND_UNSUCCESSFUL_MESSAGE + tagBlue, result);
 
         assertEquals(defaultNote.getTags().size(), 0);
         assertEquals(tagManager.getTagMap().size(), 0);
-
-
     }
 
     private String getCommandExecutionString(TagManager tagManger, ArrayList<Tag> tags) {
