@@ -2,17 +2,24 @@ package seedu.duke.command;
 
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
+import seedu.duke.exception.DateErrorException;
+import seedu.duke.exception.DukeException;
+import seedu.duke.exception.TimeErrorException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Year;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 
 import seedu.duke.data.UserData;
+
+import static seedu.duke.parser.DateTimeParser.timeParser;
 
 /**
  * Command to check availability.
@@ -29,9 +36,8 @@ public class CheckCommand extends Command {
     }
 
     @Override
-    public void execute(UserData data, Ui ui, Storage storage) {
-        String checkDate = command.replaceFirst("check", "").trim();
-        String[] datesAndTime = checkDate.split(";");
+    public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
+        String[] datesAndTime = command.split(";");
 
         LocalDate startDate = getDate(datesAndTime[0].trim());
         LocalDate endDate = getDate(datesAndTime[2].trim());
@@ -45,55 +51,81 @@ public class CheckCommand extends Command {
             EventList eventsList = data.getEventList(type);
             eventsInTimeRange.addAll(eventsList.checkEventsInTimeRange(startDate, endDate, startTime, endTime));
         }
+        EventList coinciding = new EventList("coinciding", eventsInTimeRange);
 
-        //in place of a UI function
-        if (eventsInTimeRange.size() > 0) {
-            for (Event event: eventsInTimeRange) {
-                System.out.println(event);
-            }
-        } else {
-            ui.printNoEventInTimeRangeMessage();
-        }
-
+        ui.printList(coinciding);
     }
 
-    private LocalDate getDate(String stringDate) {
-        String[] dateFormats = new String[]{"dd/MM/yy", "MM/yy", "yy"};
+    private LocalDate getDate(String stringDate) throws DateErrorException {
+
+        String[] dateFields = stringDate.replace("-","/").split("/");
+
         LocalDate date;
+        LocalDate currentDate = LocalDate.now();
 
-        for (String format : dateFormats) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
-            try {
-                date = LocalDate.parse(stringDate.trim(), formatter);
-                return date;
-            } catch (DateTimeParseException e) {
-                //ignore
-            }
+        if (stringDate.isBlank()) { // if date is blank, defaults to current date
+            return currentDate;
         }
 
-        System.out.println("Input does not match any date formats.");
-        date = LocalDate.now();
-
-        return date;
+        try {
+            switch (dateFields.length) {
+            case 1: // only year is given
+                DateTimeFormatter yearFormat = DateTimeFormatter.ofPattern("yy");
+                Year givenYear = Year.parse(stringDate, yearFormat);
+                date = currentDate.with(givenYear);
+                return date;
+            case 2: // month and year is given
+                DateTimeFormatter yearMonthFormat = DateTimeFormatter.ofPattern("M/yy");
+                YearMonth givenYearMonth = YearMonth.parse(stringDate, yearMonthFormat);
+                date = currentDate.with(givenYearMonth);
+                return date;
+            case 3: // day, month and year given
+                DateTimeFormatter dayMonthYearFormat = DateTimeFormatter.ofPattern("d/M/yy");
+                date = LocalDate.parse(stringDate, dayMonthYearFormat);
+                return date;
+            default:
+                throw new DateErrorException("Something is wrong with the date!");
+            }
+        } catch (DateTimeParseException e) {
+            throw new DateErrorException("Something is wrong with the date!");
+        }
     }
 
-    private LocalTime getTime(String stringTime) {
-        String[] timeFormats = new String[]{"HH:mm", "HH", "hh:mm a", "hh a"};
+    private LocalTime getTime(String stringTime) throws TimeErrorException {
         LocalTime time;
-
-        for (String format : timeFormats) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
-            try {
-                time = LocalTime.parse(stringTime.trim(), formatter);
-                return time;
-            } catch (DateTimeParseException e) {
-                //ignore
-            }
+        if (stringTime.isBlank()) { // if blank time is provided, default to current time
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("h:m a");
+            String currentTime = LocalTime.now().format(timeFormatter);
+            time = LocalTime.parse(currentTime, timeFormatter);
+            return time;
         }
 
-        System.out.println("Input does not match any time formats.");
-        time = LocalTime.now();
+        String[] stringTimeArray = stringTime.split(" ");
 
-        return time;
+        try {
+            if (stringTimeArray.length == 2) { // 12 hour format hh a
+                int givenTwelveHour = Integer.parseInt(stringTimeArray[0]);
+                String amPmIndicator = stringTimeArray[1];
+                if (givenTwelveHour >= 0 & givenTwelveHour <= 12) {
+                    time = timeParser(givenTwelveHour + ":00 " + amPmIndicator); // default to minute 00
+                    return time;
+                } else {
+                    throw new TimeErrorException("AM/PM format time requires hours between 1-12.");
+                }
+            } else if (stringTimeArray.length == 1) { // 24 hour format HH
+                int givenTwentyFourHour = Integer.parseInt(stringTimeArray[0]);
+                if (givenTwentyFourHour >= 0 & givenTwentyFourHour <= 24) {
+                    time = timeParser(givenTwentyFourHour + ":00"); // default to minute 00
+                    return time;
+                } else {
+                    throw new TimeErrorException("24 hour format time requires hours between 0-23.");
+                }
+            } else {
+                throw new TimeErrorException("Something is wrong with the time!");
+            }
+        } catch (NumberFormatException e) { // if hh:mm, HH:mm or other invalid non integers is given
+            time = timeParser(stringTime); // exception will be thrown if invalid non-integer is given
+            return time;
+        }
     }
 }

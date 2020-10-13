@@ -3,6 +3,7 @@ package seedu.duke;
 import seedu.duke.command.Command;
 import seedu.duke.data.UserData;
 import seedu.duke.event.EventList;
+import seedu.duke.exception.DukeException;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -50,7 +51,11 @@ public class Duke {
             ui.printDividerLine();
             Command c = currentParse.parse(userInput);
             isExit = c.isExit();
-            c.execute(data, ui, storage);
+            try {
+                c.execute(data, ui, storage);
+            } catch (DukeException e) {
+                e.printErrorMessage();
+            }
         }
         ui.printByeMessage();
 

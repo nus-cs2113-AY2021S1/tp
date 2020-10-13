@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
+import seedu.duke.exception.DukeException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -24,7 +25,7 @@ class RepeatCommandTest {
     private Storage storage = new Storage("data");
 
     @BeforeEach
-    void setupEventLists() {
+    void setupEventLists() throws DukeException {
         // Add Personal event to data
         String personalInput = "personal party; 09/10/2000; 1300";
         Command addCommand = new AddCommand(personalInput);
@@ -46,7 +47,7 @@ class RepeatCommandTest {
 
 
     @Test
-    void repeat_personalEventMonthly_personalEventRepeatedMonthly() {
+    void repeat_personalEventMonthly_personalEventRepeatedMonthly() throws DukeException {
 
 
         // Create Repeat Command
@@ -78,7 +79,7 @@ class RepeatCommandTest {
     }
 
     @Test
-    void repeat_zoomEventWeekly_zoomEventRepeatedWeekly() {
+    void repeat_zoomEventWeekly_zoomEventRepeatedWeekly() throws DukeException {
 
         //creating repeat command
         String inputString = "zoom 1 weekly 3";
@@ -108,7 +109,7 @@ class RepeatCommandTest {
     }
 
     @Test
-    void repeat_timeTableEventDaily_timeTableEventRepeatedDaily() {
+    void repeat_timeTableEventDaily_timeTableEventRepeatedDaily() throws DukeException {
 
         //creating repeat command
         String inputString = "timetable 1 daily 3";
@@ -139,7 +140,7 @@ class RepeatCommandTest {
     }
 
     @Test
-    void repeat_personalEventRepeatDailyMonthlyChange_personalEventDailyToMonthly() {
+    void repeat_personalEventRepeatDailyMonthlyChange_personalEventDailyToMonthly() throws DukeException {
 
         //create repeat command for daily
         String inputString = "personal 1 daily 4";
