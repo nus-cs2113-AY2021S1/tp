@@ -27,15 +27,6 @@ public class SimpleInterest extends ParamHandler {
         }
     }
 
-    public SimpleInterest(CommandPacket packet) throws InsufficientParamsException {
-        this();
-        try {
-            handleParams(packet);
-        } catch (ItemNotFoundException exception) {
-            // Fall-through
-        }
-    }
-
     public void setAmount(Double amount) {
         this.amount = amount;
     }

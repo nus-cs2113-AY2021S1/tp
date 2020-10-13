@@ -1,2 +1,0 @@
-Oct 10 2020
-Income;null;1500.0;16:00;hullo
