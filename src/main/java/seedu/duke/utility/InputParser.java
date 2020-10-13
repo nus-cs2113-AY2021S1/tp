@@ -35,9 +35,12 @@ public class InputParser {
 
         String[] splitInput = input.split(" ");
         //TODO : Clean this portion
-        if (!splitInput[0].equals("bye") && !splitInput[0].equals("help") && splitInput.length < 2) {
-            Ui.printInvalidFormatException();
-            return command;
+        if (splitInput.length < 2) {
+            if (!splitInput[0].equals("bye") && !splitInput[0].equals("help") && !splitInput[0].equals("list")) {
+                Ui.printInvalidFormatException();
+                return command;
+            }
+
         }
         switch (command) {
 
