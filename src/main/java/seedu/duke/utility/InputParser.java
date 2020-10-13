@@ -10,6 +10,7 @@ import seedu.duke.commands.UpdateShowSeasonCommand;
 import seedu.duke.commands.EditCommand;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 //TODO include more parser classes (storage.parser, command.parser etc in the future)
 
@@ -31,12 +32,13 @@ public class InputParser {
 
     public String parseInput(String input) {
 
+        String[] singleWordInputs = new String[]{"bye", "list", "help"};
         String command = StringOperations.getFirstWord(input).toLowerCase();
 
         String[] splitInput = input.split(" ");
         //TODO : Clean this portion
         if (splitInput.length < 2) {
-            if (!splitInput[0].equals("bye") && !splitInput[0].equals("help") && !splitInput[0].equals("list")) {
+            if (!Arrays.asList(singleWordInputs).contains(splitInput[0])) {
                 Ui.printInvalidFormatException();
                 return command;
             }
