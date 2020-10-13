@@ -10,13 +10,14 @@ import java.util.ArrayList;
 
 public abstract class Command {
     protected String description;
-    
+    private boolean isExit = false;
+
     public Command(String description) {
         setDescription(description);
     }
-    
+
     public Command() {
-        
+
     }
     
     public void setDescription(String description) {
@@ -33,7 +34,11 @@ public abstract class Command {
         throw new AniException("This method should be implemented in the child class");
     }
 
-    public static boolean isExit(Command command) {
-        return command instanceof ExitCommand;
+    public boolean isExit() {
+        return isExit;
+    }
+
+    public void setExit() {
+        this.isExit = true;
     }
 }

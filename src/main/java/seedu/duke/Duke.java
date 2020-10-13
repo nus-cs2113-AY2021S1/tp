@@ -72,19 +72,18 @@ public class Duke {
     }
 
     public void run() {
-        Command command = null;
+        boolean shouldExit = false;
         do {
             String userInput = ui.readUserInput(userManagement.getCurrentUser().getName(), activeWatchlist.getName());
             try {
-                command = parser.getCommand(userInput);
-                // now passing in many parameters into execute,
-                // but maybe can reduce in the future after refactoring?
+                Command command = parser.getCommand(userInput);
                 String output = command.execute(animeData, activeWatchlist, watchlists, bookmark, userManagement);
                 ui.printCommandOutput(output);
+                shouldExit = command.isExit();
             } catch (AniException exception) {
                 ui.printErrorMessage(exception.getMessage());
             }
-        } while (!Command.isExit(command));
+        } while (!shouldExit);
 
         //Program Terminates here
         ui.printGoodbyeMessage();
