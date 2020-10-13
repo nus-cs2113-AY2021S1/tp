@@ -10,7 +10,7 @@ public class Module {
 
     public static final int NO_INPUT = -1;
     public static final int INDEX_OFFSET = 1;
-    private final String moduleCode;
+    private String moduleCode;
     private int expected = NO_INPUT;
     private final double[] actualTime = new double[13];
 

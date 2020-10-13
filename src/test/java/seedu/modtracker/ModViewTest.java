@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ModViewTest {
+    private final ModView view = new ModView();
 
     @Test
     void printAllModuleInformation_emptyList_emptyModuleList() {
@@ -16,7 +17,6 @@ class ModViewTest {
         System.setOut(new PrintStream(outContent));
 
         outContent.reset();
-        ModView view = new ModView();
         ModuleList emptyList = new ModuleList();
         emptyList.getData().clear();
         view.printAllModuleInformation(emptyList, 1);
@@ -30,7 +30,6 @@ class ModViewTest {
         System.setOut(new PrintStream(outContent));
 
         outContent.reset();
-        ModView view = new ModView();
         ModuleList emptyList = new ModuleList();
         emptyList.getData().clear();
 
@@ -56,9 +55,9 @@ class ModViewTest {
         System.setOut(new PrintStream(outContent));
 
         outContent.reset();
-        ModView view = new ModView();
         ModuleList filledList = new ModuleList();
         ArrayList<Module> modList = filledList.getData();
+        modList.clear();
         modList.add(new Module("CS1231"));
 
         String expected = ModView.FIRST_PART_OF_BORDER + ModView.SECOND_PART_OF_BORDER
@@ -77,7 +76,6 @@ class ModViewTest {
         System.setOut(new PrintStream(outContent));
 
         outContent.reset();
-        ModView view = new ModView();
         ModuleList filledList = new ModuleList();
         ArrayList<Module> modList = filledList.getData();
         modList.clear();
@@ -99,7 +97,6 @@ class ModViewTest {
         System.setOut(new PrintStream(outContent));
 
         outContent.reset();
-        ModView view = new ModView();
         ModuleList filledList = new ModuleList();
         ArrayList<Module> modList = filledList.getData();
         modList.clear();
@@ -121,13 +118,13 @@ class ModViewTest {
         System.setOut(new PrintStream(outContent));
 
         outContent.reset();
-        ModView view = new ModView();
         ModuleList filledList = new ModuleList();
         ArrayList<Module> modList = filledList.getData();
         modList.clear();
         Module mod = new Module("GER1000H");
         mod.addActualTime("8", "1");
         modList.add(mod);
+
 
         String expected = ModView.FIRST_PART_OF_BORDER + "--" + ModView.SECOND_PART_OF_BORDER
                 + ModView.FIRST_PART_OF_HEADER + "  " + ModView.SECOND_PART_OF_HEADER
