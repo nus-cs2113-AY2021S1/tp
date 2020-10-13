@@ -1,32 +1,32 @@
 import command.Command;
-import eventList.EventList;
+import eventlist.EventList;
 import exception.CreatingFileException;
-import exception.NUScheduleException;
+import exception.NuScheduleException;
 import parser.Parser;
 import storage.Storage;
 import ui.UI;
 
-public class NUSchedule {
+public class NuSchedule {
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Main entry-point for the NUSchedule application.
      */
     private Storage storage;
     private EventList events;
     private UI ui;
 
-    public NUSchedule(String filePath) {
+    public NuSchedule(String filePath) {
         ui = new UI();
         try {
             storage = new Storage(filePath);
         } catch (CreatingFileException e) {
             ui.showError(e.getMessage());
         }
-//        try {todo after implement load, uncomment it
-//            Events = new EventList(storage.load());
-//        } catch (NUScheduleException e) {
-//            ui.showLoadingError();
-//            Events = new EventList();
-//        }
+        try {
+            events = new EventList(storage.load());
+        } catch (NuScheduleException e) {
+            ui.showLoadingError();
+            events = new EventList();
+        }
     }
 
     /**
@@ -42,7 +42,7 @@ public class NUSchedule {
                 Command c = Parser.parse(fullCommand);
                 c.execute(events, ui, storage);
                 isExit = c.isExit();
-            } catch (NUScheduleException e) {
+            } catch (NuScheduleException e) {
                 ui.showError(e.getMessage());
             } finally {
                 ui.printLine();
@@ -51,6 +51,6 @@ public class NUSchedule {
     }
 
     public static void main(String[] args) {
-        new NUSchedule("data/events.txt").run();
+        new NuSchedule("data/events.txt").run();
     }
 }
