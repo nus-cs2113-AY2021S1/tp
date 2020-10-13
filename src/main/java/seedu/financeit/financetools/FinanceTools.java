@@ -67,6 +67,10 @@ public class FinanceTools {
                 System.out.print("Total Cashback Earned: ");
                 System.out.println('$' + Double.toString(handleCashback(packet)));
                 break;
+            case "milescalc":
+                System.out.print("Total Miles Earned: ");
+                System.out.println('$' + Double.toString(handleMilesCredit(packet)));
+                break;
             case "exit":
                 System.out.println("Exiting Finance Tools ...");
                 endTracker = false;
