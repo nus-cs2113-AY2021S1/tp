@@ -37,7 +37,7 @@ public class BrowseCommand extends Command {
 
     @Override
     public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
-                          Bookmark bookmark, UserManagement userManagement) throws AniException {
+                          UserManagement userManagement) throws AniException {
         //Parameter Parser for Browse Command
         String[] paramGiven = description.split("-");
         if (paramGiven.length > 1) {
@@ -45,7 +45,7 @@ public class BrowseCommand extends Command {
             logger.log(Level.INFO, "Default values modified");
         }
         //else use default values
-        ArrayList<Anime> usableList = animeData.animeDataList;
+        ArrayList<Anime> usableList = animeData.getAnimeDataList();
 
         int indexToPrint = (page - 1) * 20;
         if (indexToPrint >= usableList.size()) {

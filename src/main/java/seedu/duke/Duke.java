@@ -28,7 +28,6 @@ public class Duke {
 
     private AnimeStorage animeStorage;
     private AnimeData animeData;
-    private Bookmark bookmark;
 
     private UserManagement userManagement;
     private User activeUser;
@@ -40,7 +39,6 @@ public class Duke {
         parser = new Parser();
         storage = new Storage(USER_PROFILE_FILE_NAME, WATCHLIST_FILE_NAME);
         userManagement = new UserManagement(storage);
-        bookmark = new Bookmark();
 
         // Load user and watchlist list.
         ui.printWelcomeMessage();
@@ -86,8 +84,7 @@ public class Duke {
             try {
                 String userInput = ui.readUserInput(activeUser.getFancyName(), activeWatchlist.getName());
                 Command command = parser.getCommand(userInput);
-                String commandOutput = command.execute(animeData, activeWatchlistList, activeWatchlist,
-                        bookmark, userManagement);
+                String commandOutput = command.execute(animeData, activeWatchlistList, activeWatchlist, userManagement);
                 ui.printMessage(commandOutput);
                 shouldExit = command.getShouldExit();
             } catch (AniException exception) {
