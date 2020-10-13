@@ -9,7 +9,9 @@ import seedu.financeit.recurringtracker.RecurringTracker;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
-import seedu.financeit.utils.SaveManager;
+import seedu.financeit.utils.SSHMT;
+import seedu.financeit.utils.SSHAT;
+import seedu.financeit.utils.SSHGT;
 
 import java.util.logging.Level;
 
@@ -21,8 +23,14 @@ public class Financeit {
         CommandPacket packet = null;
         Level mode = Level.OFF;
         ParamChecker.logger.setLevel(mode);
+        SSHMT mt = new SSHMT("./data/save.txt", "./data");
+        SSHGT gt = new SSHGT("./data/save1.txt", "./data");
+        SSHAT at = new SSHAT("./data/save2.txt", "./data");
+
         try {
-            SaveManager.load();
+            mt.load();
+            gt.load();
+            at.load();
         } catch (Exception m) {
             MenuPrinter.prompt = "An exception has occurred: " + m;
         }
@@ -30,7 +38,6 @@ public class Financeit {
         while (true) {
             MenuPrinter.printMainMenu();
             input = UiManager.handleInput();
-            packet = new InputParser().parseInput(input);
             packet = new InputParser().parseInput(input);
             UiManager.refreshPage();
             switch (packet.getCommandString()) {
@@ -57,7 +64,9 @@ public class Financeit {
                 break;
             case "exit":
                 try {
-                    SaveManager.save();
+                    mt.save();
+                    gt.save();
+                    at.save();
                 } catch (Exception m) {
                     System.out.println("An exception has occurred: " + m);
                 }

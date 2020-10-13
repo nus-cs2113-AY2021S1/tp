@@ -1,5 +1,6 @@
 package seedu.financeit.utils;
 
+import seedu.financeit.common.CategoryMap;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.exceptions.EmptyParamException;
@@ -15,6 +16,12 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+/**
+ * Class that handles error handling of params
+ * and throws only ParseFailParamsException to be handled in
+ * the user classes.
+ */
 
 public class ParamChecker {
     public static final String PARAM_DATE = "/date";
@@ -64,8 +71,7 @@ public class ParamChecker {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 "Input format is not recognised.",
                 "Check your input again against the following format!",
-                "Date format: YYMMDD",
-                "Time format: HHMM");
+                "Date format: YYMMDD");
         } catch (EmptyParamException exception) {
             logger.log(Level.WARNING,
                 String.format("No date input supplied... Err: %s", exception.getMessage()));
@@ -100,7 +106,6 @@ public class ParamChecker {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 "Time is out of range!",
                 "Check your input again against the following format!",
-                "Date format: YYMMDD",
                 "Time format: HHMM");
         } catch (InvalidParameterException exception) {
             logger.log(Level.WARNING,
@@ -221,7 +226,7 @@ public class ParamChecker {
 
         logger.log(Level.INFO, "Checking input Category...");
         try {
-            if (!Constants.categoryMap.containsKey(category)) {
+            if (! CategoryMap.inputToCategoryMap.containsKey(category)) {
                 throw new InvalidCategoryException(category);
             }
             parseSuccess = true;

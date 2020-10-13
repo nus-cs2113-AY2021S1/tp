@@ -4,7 +4,6 @@ import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.Item;
 import seedu.financeit.common.ItemList;
-import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.TablePrinter;
@@ -12,17 +11,10 @@ import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class LedgerList extends ItemList {
     public LedgerList() {
-        defaultDateTimeFormat = "date";
-        super.requiredParams = new ArrayList<>() {
-            {
-                add("/date");
-                add("/id");
-            }
-        };
+
     }
 
     public Ledger getItemFromDate(LocalDate date) throws ItemNotFoundException {
@@ -37,7 +29,7 @@ public class LedgerList extends ItemList {
     }
 
     @Override
-    public void printList(String... ledgerName) {
+    public void printList() {
         TablePrinter.setTitle("List of Ledgers");
         TablePrinter.addRow("Ledger Number;Ledger Date");
         if (super.getItemsSize() == 0) {
@@ -51,26 +43,16 @@ public class LedgerList extends ItemList {
     }
 
     @Override
-    public boolean isValidItem() {
-        return (this.itemQueue.size() == 1);
-    }
-
-    @Override
     public void handleSingleParam(CommandPacket packet, String paramType)
-        throws ParseFailParamException, ItemNotFoundException, ConflictingItemReference {
+        throws ParseFailParamException, ItemNotFoundException {
         switch (paramType) {
         case ParamChecker.PARAM_DATE:
             LocalDate date = paramChecker.checkAndReturnDate(paramType);
-            this.itemQueue.add(this.getItemFromDate(date));
-            this.parseSuccessParams.add("/date");
-            this.parseSuccessParams.add("/id");
-
+            this.setCurrItem(this.getItemFromDate(date));
             break;
         case ParamChecker.PARAM_INDEX:
             int index = paramChecker.checkAndReturnIndex(paramType, this.items);
-            this.itemQueue.add(this.getItemAtIndex(index));
-            this.parseSuccessParams.add("/date");
-            this.parseSuccessParams.add("/id");
+            this.setCurrItem(this.getItemAtIndex(index));
             break;
         default:
             if (!super.requiredParams.contains(paramType)) {
@@ -78,9 +60,6 @@ public class LedgerList extends ItemList {
                     paramChecker.getUnrecognizedParamMessage(paramType));
             }
             break;
-        }
-        if (itemQueue.size() > 1) {
-            throw new ConflictingItemReference(itemQueue);
         }
     }
 }

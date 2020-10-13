@@ -3,7 +3,6 @@ package seedu.financeit.recurringtracker;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.Item;
-import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
@@ -35,11 +34,10 @@ public class RecurringEntry extends Item {
         };
     }
 
-    public RecurringEntry(CommandPacket packet) throws AssertionError, InsufficientParamsException {
-        this();
+    public RecurringEntry(CommandPacket packet) throws InsufficientParamsException {
         try {
             handleParams(packet);
-        } catch (ItemNotFoundException | ConflictingItemReference exception) {
+        } catch (ItemNotFoundException exception) {
             // Fall-through
         }
     }
@@ -89,10 +87,6 @@ public class RecurringEntry extends Item {
         return day;
     }
 
-    @Override
-    public boolean isValidItem() {
-        return true;
-    }
 
     @Override
     public String toString() {
@@ -108,4 +102,5 @@ public class RecurringEntry extends Item {
         return String.format("%s;%s;%s;%s;%s;%s;%s", this.day, this.description, expenditureAmount, incomeAmount,
                 duration, payment, this.notes);
     }
+
 }

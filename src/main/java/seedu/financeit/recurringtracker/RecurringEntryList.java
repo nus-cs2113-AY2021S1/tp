@@ -4,7 +4,6 @@ import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.Item;
 import seedu.financeit.common.ItemList;
-import seedu.financeit.common.exceptions.ConflictingItemReference;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
@@ -21,11 +20,6 @@ public class RecurringEntryList extends ItemList {
     }
 
 
-    @Override
-    public boolean isValidItem() {
-        return true;
-    }
-
     /**
      * Handles params given to the list e.g. index of entry to modify/delete
      * @param packet Command packet
@@ -35,7 +29,7 @@ public class RecurringEntryList extends ItemList {
     public void handleParams(CommandPacket packet) throws InsufficientParamsException {
         try {
             super.handleParams(packet);
-        } catch (ItemNotFoundException | ConflictingItemReference exception) {
+        } catch (ItemNotFoundException exception) {
             // Fall-through
         }
     }
@@ -56,7 +50,7 @@ public class RecurringEntryList extends ItemList {
     }
 
     @Override
-    public void printList(String... itemName) {
+    public void printList() {
         TablePrinter.setTitle(String.format("List of Recurring entries"));
         TablePrinter.addRow("No.;Day;Description;Expenditure amount;Income amount;" +
                 "Duration;Payment type;Notes                    ");

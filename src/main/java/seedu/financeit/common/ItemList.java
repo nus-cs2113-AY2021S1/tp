@@ -1,23 +1,24 @@
 package seedu.financeit.common;
 
-import seedu.financeit.common.exceptions.ConflictingItemReference;
-import seedu.financeit.common.exceptions.DuplicateInputException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * List class that stores Item instances as its elements.
+ * Extends ParamHandler so it is able to handle params from a CommandPacket.
+ */
 public abstract class ItemList extends ParamHandler {
-    protected ArrayList<Item> itemQueue = new ArrayList<>();
+    protected Item currItem;
     protected ArrayList<Item> items = new ArrayList<>();
     protected int indexToModify;
 
     public ItemList() {
     }
 
-    public void addItem(Item item) throws DuplicateInputException {
-        //checkDuplicates(item);
+    public void addItem(Item item) {
         item.setIndex(this.getItemsSize());
         this.items.add(item);
     }
@@ -33,15 +34,23 @@ public abstract class ItemList extends ParamHandler {
         items.sort(comparator);
     }
 
-    public void setItemQueue(CommandPacket packet)
-        throws InsufficientParamsException, ItemNotFoundException, ConflictingItemReference {
+    public void setCurrItemFromPacket(CommandPacket packet)
+        throws InsufficientParamsException, ItemNotFoundException {
         handleParams(packet);
     }
 
-    public Item getItemQueue() {
-        Item output =  this.itemQueue.remove(0);
-        itemQueue.clear();
-        return output;
+    public Item getCurrItem() {
+        return this.currItem;
+    }
+
+    public void setCurrItem(Item item) {
+        this.currItem = item;
+    }
+
+    public Item popCurrItem() {
+        Item tempItem = this.currItem;
+        this.currItem = null;
+        return tempItem;
     }
 
     public int getItemsSize() {
@@ -63,14 +72,6 @@ public abstract class ItemList extends ParamHandler {
         return this.items.get(index);
     }
 
-    public void checkDuplicates(Item item) throws DuplicateInputException {
-        for (Item i : items) {
-            if (i.equals(item)) {
-                throw new DuplicateInputException(item.getName());
-            }
-        }
-    }
-
     public void removeItem(Item item) {
         this.items.remove(item);
     }
@@ -88,6 +89,8 @@ public abstract class ItemList extends ParamHandler {
     public void removeItemAtIndex(int index) {
         this.items.remove(index);
     }
-
-    public abstract void printList(String... itemName);
+    /**
+     * Prints all items that are in the ItemList instance.
+     */
+    public abstract void printList();
 }
