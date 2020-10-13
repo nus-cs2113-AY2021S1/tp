@@ -162,8 +162,12 @@ public class InputParser {
     private static void parseDeleteCommand(String input) {
         input = StringOperations.removeFirstWord(input);
         DeleteCommand deletingShow = new DeleteCommand(input);
-        deletingShow.delete(input);
-        Ui.printDeleteShow(input);
+        try {
+            deletingShow.delete(input);
+            Ui.printDeleteShow(input);
+        } catch (Exception e) {
+            Ui.printNotFoundException();
+        }
     }
 
 }
