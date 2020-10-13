@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
 import seedu.duke.event.EventList;
 import seedu.duke.event.Personal;
+import seedu.duke.exception.DukeException;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -25,7 +26,7 @@ class CheckCommandTest {
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     @Test
-    void execute_eventInTimeRange_printEventsInTimeRange() {
+    void execute_eventInTimeRange_printEventsInTimeRange() throws DukeException {
         UserData data = new UserData();
         Ui ui = new Ui();
         Storage storage = new Storage("data");
@@ -50,7 +51,7 @@ class CheckCommandTest {
     }
 
     @Test
-    void execute_eventOutsideTimeRange_printEventsInTimeRange() {
+    void execute_eventOutsideTimeRange_printEventsInTimeRange() throws DukeException {
         UserData data = new UserData();
         Ui ui = new Ui();
         Storage storage = new Storage("data");

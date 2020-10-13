@@ -65,10 +65,12 @@ public class CheckCommand extends Command {
         LocalDate date;
         LocalDate currentDate = LocalDate.now();
 
+        if (stringDate.isBlank()) { // if date is blank, defaults to current date
+            return currentDate;
+        }
+
         try {
             switch (dateFields.length) {
-            case 0: // empty date field
-                return currentDate;
             case 1: // only year is given
                 DateTimeFormatter yearFormat = DateTimeFormatter.ofPattern("yy");
                 Year givenYear = Year.parse(stringDate, yearFormat);
@@ -93,38 +95,39 @@ public class CheckCommand extends Command {
 
     private LocalTime getTime(String stringTime) throws TimeErrorException {
         LocalTime time;
+        if (stringTime.isBlank()) { // if blank time is provided, default to current time
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("h:m a");
+            String currentTime = LocalTime.now().format(timeFormatter);
+            time = LocalTime.parse(currentTime, timeFormatter);
+            return time;
+        }
 
-        int givenHour;
         String[] stringTimeArray = stringTime.split(" ");
-        givenHour = Integer.parseInt(stringTimeArray[0]);
 
-        String upperCaseStringTime = stringTime.toUpperCase();
-
-        if (upperCaseStringTime.contains("AM") || upperCaseStringTime.contains("PM")) { // 12 hour format
-            try { // if hh a is given
+        try {
+            if (stringTimeArray.length == 2) { // 12 hour format hh a
+                int givenTwelveHour = Integer.parseInt(stringTimeArray[0]);
                 String amPmIndicator = stringTimeArray[1];
-                if (givenHour >= 0 & givenHour <= 12) {
-                    time = timeParser(givenHour + ":00 " + amPmIndicator); // default to minute 00
+                if (givenTwelveHour >= 0 & givenTwelveHour <= 12) {
+                    time = timeParser(givenTwelveHour + ":00 " + amPmIndicator); // default to minute 00
                     return time;
                 } else {
                     throw new TimeErrorException("AM/PM format time requires hours between 1-12.");
                 }
-            } catch (NumberFormatException e) { // if hh:mm a or invalid hour is given
-                time = timeParser(stringTime); // exception will be thrown if invalid hour is given
-                return time;
-            }
-        } else { // 24 hour format
-            try { // if HH is given
-                if (givenHour >= 0 & givenHour <= 24) {
-                    time = timeParser(givenHour + ":00"); // default to minute 00
+            } else if (stringTimeArray.length == 1) { // 24 hour format HH
+                int givenTwentyFourHour = Integer.parseInt(stringTimeArray[0]);
+                if (givenTwentyFourHour >= 0 & givenTwentyFourHour <= 24) {
+                    time = timeParser(givenTwentyFourHour + ":00"); // default to minute 00
                     return time;
                 } else {
                     throw new TimeErrorException("24 hour format time requires hours between 0-23.");
                 }
-            } catch (NumberFormatException e) { // if HH:mm or invalid number is given
-                time = timeParser(stringTime); // exception will be thrown if invalid hour is given
-                return time;
+            } else {
+                throw new TimeErrorException("Something is wrong with the time!");
             }
+        } catch (NumberFormatException e) { // if hh:mm, HH:mm or other invalid non integers is given
+            time = timeParser(stringTime); // exception will be thrown if invalid non-integer is given
+            return time;
         }
     }
 }

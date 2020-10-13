@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
+import seedu.duke.exception.DukeException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -28,7 +29,7 @@ class DeadlineCommandTest {
     }
 
     @Test
-    public void execute_withDate_printDeadline() {
+    public void execute_withDate_printDeadline() throws DukeException {
         String input = "personal sleep";
         Command addPersonalEvent = new AddCommand(input);
         addPersonalEvent.execute(data, ui, storage);
@@ -49,7 +50,7 @@ class DeadlineCommandTest {
     }
 
     @Test
-    public void execute_withDateAndTime_printDeadline() {
+    public void execute_withDateAndTime_printDeadline() throws DukeException {
         String input = "personal sleep";
         Command addPersonalEvent = new AddCommand(input);
         addPersonalEvent.execute(data, ui, storage);
