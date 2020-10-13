@@ -17,6 +17,8 @@ public class DailyEvent extends RecurringEvent {
      * @param dateTime DateTime of Event
      * @param isToRemind Whether the Event requires reminders.
      * @param endRecurrence When the Event should stop re-occurring.
+     * @param timePeriods Number of units of time before an event for a reminder.
+     * @param timeUnits Units of time before an event for a reminder. (Day, Week)
      */
     public DailyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence,
                       ArrayList<Integer> timePeriods, ArrayList<String> timeUnits) {
@@ -30,6 +32,8 @@ public class DailyEvent extends RecurringEvent {
      * @param title Title of Event
      * @param dateTime DateTime of Event
      * @param isToRemind Whether the Event requires reminders.
+     * @param timePeriods Number of units of time before an event for a reminder.
+     * @param timeUnits Units of time before an event for a reminder. (Day, Week)
      */
     public DailyEvent(String title, LocalDateTime dateTime, boolean isToRemind,
                       ArrayList<Integer> timePeriods, ArrayList<String> timeUnits) {

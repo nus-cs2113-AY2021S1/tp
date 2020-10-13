@@ -2,6 +2,9 @@ package seedu.duke.data.timetable;
 
 import java.time.LocalDate;
 
+/**
+ * A reminder class that holds the event to remind as well as the date to remind.
+ */
 public class Reminder implements Comparable<Reminder> {
     private Event event;
     private LocalDate dateToRemind;

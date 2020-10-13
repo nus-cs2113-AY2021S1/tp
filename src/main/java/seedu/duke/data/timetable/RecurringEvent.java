@@ -32,6 +32,7 @@ public abstract class RecurringEvent extends Event {
         this(title, dateTime, isToRemind, DEFAULT_END_RECURRENCE, recurrenceType, timePeriods, timeUnits);
     }
 
+
     public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrenceDate,
                           String recurrenceType, HashMap<String, ArrayList<Integer>> reminderPeriods) {
         super(title, dateTime, isToRemind, true, reminderPeriods);
@@ -81,6 +82,12 @@ public abstract class RecurringEvent extends Event {
         return eventSet;
     }
 
+    /**
+     * Check if the event is to reoccur on a specific date.
+     *
+     * @param date Date to check.
+     * @return Whether it will reoccur
+     */
     public boolean toReoccur(LocalDate date) {
         LocalDate eventDate = getDate();
         while (eventDate.compareTo(date) < 0) {

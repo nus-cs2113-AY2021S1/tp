@@ -115,6 +115,7 @@ public class Event implements Comparable<Event> {
     /**
      * Creates an Event object with its title, dateTime, isToRemind, isRecurring as well as time before reminder and
      * the time unit provided. Used for event construction with user input.
+     *
      * @param title Title of event.
      * @param dateTime LocalDateTime provided by user input.
      * @param isToRemind Whether event is set to remind.
@@ -163,8 +164,17 @@ public class Event implements Comparable<Event> {
         return isRecurring;
     }
 
+    /**
+     * Get all the reminder dates from that this Event would have.
+     *
+     * @return An ArrayList of Dates that reminders of this event should show.
+     */
+
     public ArrayList<LocalDate> getReminderDates() {
         ArrayList<LocalDate> dates = new ArrayList<>();
+        if (!isToRemind) {
+            return dates;
+        }
         for (String unit : reminderPeriods.keySet()) {
             ArrayList<Integer> timePeriodsInUnit = reminderPeriods.get(unit);
             LocalDate date = this.date;
@@ -186,6 +196,11 @@ public class Event implements Comparable<Event> {
         return dates;
     }
 
+    /**
+     * Converts an Event to a format for a reminder.
+     *
+     * @return Reduced String representation of an Event.
+     */
     public String toReminderString() {
         String titleString = "Event: " + title;
         String dateString = "Date: " + date.toString() + "\tTime: " + time.toString();
