@@ -9,6 +9,7 @@ public class PersonBook {
     public static ArrayList<Person> listOfPerson = new ArrayList<>(); //TODO change to local storage
 
     public static void addPerson(String[] args) {
+
         PersonBook.listOfPerson.add(new Person(args[0],args[1],args[2]));
     }
 

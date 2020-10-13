@@ -21,6 +21,8 @@ public class AcademicCommandParser extends CommandParser {
             return AcademicCommandType.ADD_GRADE;
         } else if (commandModified.startsWith("check grade")) {
             return AcademicCommandType.CHECK_GRADE;
+        } else if (commandModified.equalsIgnoreCase("list grade")) {
+            return AcademicCommandType.LIST_GRADE;
         } else {
             throw new InvalidCommandException();
         }
