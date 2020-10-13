@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class FlashcardRun {
+    public static final String TEST = "test";
     public FlashcardDeck flashcardDeck;
     public FlashcardStorage storage;
     public static final String ADD = "add";
@@ -30,7 +31,9 @@ public class FlashcardRun {
                 break;
             case LIST: flashcardDeck.listCards();
                 break;
-            default: System.out.println("Invalid command. Valid commands are 'add', 'list'." +
+            case TEST: flashcardDeck.testRandomCard();
+                break;
+            default: System.out.println("Invalid command. Valid commands are 'add', 'list'. " +
                     "Use 'exit' to exit the flashcard mode.");
             }
         } while (!command.equals(EXIT));
