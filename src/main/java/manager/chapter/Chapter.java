@@ -18,6 +18,10 @@ public class Chapter {
         return chapterName;
     }
 
+    public void setChapterName(String chapterName) {
+        this.chapterName = chapterName;
+    }
+
     public CardList getCards() {
         return cards;
     }

@@ -3,8 +3,12 @@ package commands;
 import access.Access;
 import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
+import manager.admin.ModuleList;
 import manager.card.Card;
 import manager.chapter.CardList;
+import manager.chapter.Chapter;
+import manager.module.ChapterList;
+import manager.module.Module;
 import storage.Storage;
 import ui.Ui;
 
@@ -26,9 +30,16 @@ public class EditCommand extends Command {
             + "         " + COMMAND_WORD + " 3 q:What is the result of one plus one | a:two\n";
 
     private final int editIndex;
-    private final String question;
-    private final String answer;
+    private String moduleOrChapter;
+    private String question;
+    private String answer;
     private final String accessLevel;
+
+    public EditCommand(int editIndex, String moduleOrChapter, String accessLevel) {
+        this.editIndex = editIndex;
+        this.moduleOrChapter = moduleOrChapter;
+        this.accessLevel = accessLevel;
+    }
 
     public EditCommand(int editIndex, String question, String answer, String accessLevel) {
         this.editIndex = editIndex;
@@ -42,6 +53,10 @@ public class EditCommand extends Command {
             throws InvalidInputException, IncorrectAccessLevelException, IOException {
         if (access.isChapterLevel()) {
             editCard(ui, access, storage);
+        } else if (access.isAdminLevel()) {
+            editModule(ui, access, storage);
+        } else if (access.isModuleLevel()) {
+            editChapter(ui, access, storage);
         } else {
             throw new IncorrectAccessLevelException("Sorry, you are currently at " + access.getLevel()
                     + ", please go to " + accessLevel + " level first.\n");
@@ -63,7 +78,35 @@ public class EditCommand extends Command {
             storage.saveCards(cards, access.getModule().getModuleName(), access.getChapter().getChapterName());
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             throw new InvalidInputException("The flashcard number needs to be within the range "
-                    + " of the total number of flashcards\n"
+                    + "of the total number of flashcards\n"
+                    + MESSAGE_USAGE);
+        }
+    }
+
+    private void editModule(Ui ui, Access access, Storage storage) throws InvalidInputException, IOException {
+        ModuleList modules = access.getAdmin().getModules();
+        try {
+            Module module = modules.getModule(editIndex);
+            ui.showModuleUnedited(module);
+            module.setModuleName(moduleOrChapter);
+            ui.showModuleEdited(module);
+        } catch (IndexOutOfBoundsException | NullPointerException e) {
+            throw new InvalidInputException("The module number needs to be within the range "
+                    + "of the total number of modules\n"
+                    + MESSAGE_USAGE);
+        }
+    }
+
+    private void editChapter(Ui ui, Access access, Storage storage) throws InvalidInputException, IOException {
+        ChapterList chapters = access.getModule().getChapters();
+        try {
+            Chapter chapter = chapters.getChapter(editIndex);
+            ui.showChapterUnedited(chapter);
+            chapter.setChapterName(moduleOrChapter);
+            ui.showChapterEdited(chapter);
+        } catch (IndexOutOfBoundsException | NullPointerException e) {
+            throw new InvalidInputException("The chapter number needs to be within the range "
+                    + "of the total number of chapters\n"
                     + MESSAGE_USAGE);
         }
     }

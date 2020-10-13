@@ -164,4 +164,24 @@ public class Ui {
     public void showError(String error) {
         out.println(error);
     }
+
+    public void showModuleUnedited(Module module) {
+        out.println("The following module will be edited:");
+        out.println(module);
+    }
+
+    public void showModuleEdited(Module module) {
+        out.println("Edited module:");
+        out.println(module);
+    }
+
+    public void showChapterUnedited(Chapter chapter) {
+        out.println("The following chapter will be edited:");
+        out.println(chapter);
+    }
+
+    public void showChapterEdited(Chapter chapter) {
+        out.println("Edited chapter:");
+        out.println(chapter);
+    }
 }

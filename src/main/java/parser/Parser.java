@@ -19,12 +19,7 @@ import commands.EditCommand;
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
-import manager.chapter.Chapter;
-import manager.module.ChapterList;
 import storage.Storage;
-
-import java.util.ArrayList;
-import java.time.LocalDate;
 
 public class Parser {
     private static final String QUESTION_ANSWER_PREFIX = " \\| ";
@@ -176,8 +171,17 @@ public class Parser {
 
     private static Command prepareEdit(String commandArgs, Access access)
             throws InvalidInputException, IncorrectAccessLevelException {
+        if (commandArgs.isEmpty()) {
+            throw new InvalidInputException("The arguments are missing.\n"
+                    + EditCommand.MESSAGE_USAGE);
+        }
+
         if (access.isChapterLevel()) {
             return prepareEditCard(commandArgs);
+        } else if (access.isAdminLevel()) {
+            return prepareEditModuleOrChapter(commandArgs, ADMIN_LEVEL);
+        } else if (access.isModuleLevel()) {
+            return prepareEditModuleOrChapter(commandArgs, MODULE_LEVEL);
         } else {
             throw new IncorrectAccessLevelException("Edit command can only be called at admin, "
                     + "module and chapter level.\n");
@@ -206,6 +210,43 @@ public class Parser {
             return new EditCommand(editIndex, question, answer, CHAPTER_LEVEL);
         } catch (NumberFormatException e) {
             throw new InvalidInputException("The flashcard number needs to be an integer.\n"
+                    + EditCommand.MESSAGE_USAGE);
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidInputException("The format for the edit command is incorrect.\n"
+                    + EditCommand.MESSAGE_USAGE);
+        }
+    }
+
+    private static Command prepareEditModuleOrChapter(String commandArgs, String accessLevel)
+            throws InvalidInputException, IncorrectAccessLevelException {
+        String type = "";
+        if (accessLevel.equals(ADMIN_LEVEL)) {
+            type = "module";
+        }
+        if (accessLevel.equals(MODULE_LEVEL)) {
+            type = "chapter";
+        }
+
+        try {
+            String[] args = commandArgs.split(" ", 2);
+            if (args[0].trim().isEmpty()) {
+                throw new InvalidInputException("The " + type + " number is missing.\n"
+                        + EditCommand.MESSAGE_USAGE);
+            }
+
+            if (args[1].trim().isEmpty()) {
+                throw new InvalidInputException("The " + type + " name is missing.\n"
+                        + EditCommand.MESSAGE_USAGE);
+            }
+
+            if (args[1].trim().contains("q:") || args[1].trim().contains("a:")) {
+                throw new IncorrectAccessLevelException("This command should be called at chapter level only.\n");
+            }
+
+            int editIndex = Integer.parseInt(args[0].trim()) - 1;
+            return new EditCommand(editIndex, args[1].trim().toLowerCase(), accessLevel);
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException("The " + type + " number needs to be an integer.\n"
                     + EditCommand.MESSAGE_USAGE);
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidInputException("The format for the edit command is incorrect.\n"
