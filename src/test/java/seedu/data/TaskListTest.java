@@ -2,6 +2,7 @@ package seedu.data;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.InvalidTaskNumberException;
 import seedu.task.Task;
@@ -17,7 +18,7 @@ class TaskListTest {
     private Task tutorial;
 
     @BeforeEach
-    public void setup() throws InvalidPriorityException {
+    public void setup() throws InvalidPriorityException, InvalidDatetimeException {
         tasks = new TaskList();
         meeting = new Task("meeting", "13-10-2020", "2000", "2200", "2");
         reading = new Task("reading", "21-10-2020", null, null, null);

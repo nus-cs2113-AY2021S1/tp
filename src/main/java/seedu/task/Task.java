@@ -1,7 +1,9 @@
 package seedu.task;
 
+import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -14,8 +16,8 @@ public class Task {
     private LocalTime endTime;
     private Priority priority;
 
-    public Task(String description, String dateString,
-                String startTime, String endTime, String priorityString) throws InvalidPriorityException {
+    public Task(String description, String dateString, String startTime, String endTime, String priorityString)
+        throws InvalidPriorityException, InvalidDatetimeException {
         this.description = description;
         date = dateStringToDate(dateString);
         this.startTime = timeStringToTime(startTime);
@@ -23,7 +25,7 @@ public class Task {
         priority = priorityStringToPriority(priorityString);
     }
 
-    private LocalDate dateStringToDate(String dateString) {
+    private LocalDate dateStringToDate(String dateString) throws InvalidDatetimeException {
         if (dateString == null) {
             return LocalDate.now();
         }
@@ -31,17 +33,28 @@ public class Task {
         int day = Integer.parseInt(dateParts[0]);
         int month = Integer.parseInt(dateParts[1]);
         int year = Integer.parseInt(dateParts[2]);
-        return LocalDate.of(year, month, day);
+
+        try {
+            return LocalDate.of(year, month, day);
+        } catch (DateTimeException e) {
+            throw new InvalidDatetimeException();
+        }
+
     }
 
-    private LocalTime timeStringToTime(String timeString) {
+    private LocalTime timeStringToTime(String timeString) throws InvalidDatetimeException {
         if (timeString == null) {
             return null;
         }
         int time = Integer.parseInt(timeString);
         int hour = time / 100;
         int minute = time % 100;
-        return LocalTime.of(hour, minute);
+
+        try {
+            return LocalTime.of(hour, minute);
+        } catch (DateTimeException e) {
+            throw new InvalidDatetimeException();
+        }
     }
 
     private Priority priorityStringToPriority(String priorityString) throws InvalidPriorityException {
@@ -50,13 +63,13 @@ public class Task {
         }
         Priority priority;
         switch (priorityString) {
-        case "0":
+        case "1":
             priority = Priority.LOW;
             break;
-        case "1":
+        case "2":
             priority = Priority.MEDIUM;
             break;
-        case "2":
+        case "3":
             priority = Priority.HIGH;
             break;
         default:
@@ -98,7 +111,7 @@ public class Task {
     }
 
 
-    public void setDate(String dateString) {
+    public void setDate(String dateString) throws InvalidDatetimeException {
         date = dateStringToDate(dateString);
     }
 
@@ -114,7 +127,7 @@ public class Task {
         this.startTime = startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(String startTime) throws InvalidDatetimeException {
         this.startTime = timeStringToTime(startTime);
     }
 
@@ -126,7 +139,7 @@ public class Task {
         this.endTime = endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(String endTime) throws InvalidDatetimeException {
         this.endTime = timeStringToTime(endTime);
     }
 

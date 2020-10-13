@@ -2,6 +2,7 @@ package seedu.commands;
 
 import seedu.data.TaskList;
 import seedu.exceptions.InvalidCommandException;
+import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.InvalidTaskNumberException;
 import seedu.task.Task;
@@ -27,10 +28,14 @@ public class Edit extends Command {
     private final String endTime;
     private final String priority;
 
-    public Edit(String rawInput) throws InvalidCommandException {
+    public Edit(String rawInput) throws InvalidCommandException, InvalidTaskNumberException {
         Matcher matcher = COMMAND_PATTERN.matcher(rawInput);
         if (matcher.find()) {
-            index = Integer.parseInt(matcher.group("index"));
+            try {
+                index = Integer.parseInt(matcher.group("index"));
+            } catch (NumberFormatException e) {
+                throw new InvalidTaskNumberException();
+            }
             description = matcher.group("description");
             date = matcher.group("date");
             startTime = matcher.group("st");
@@ -43,7 +48,7 @@ public class Edit extends Command {
 
     @Override
     public CommandResult execute(TaskList tasks)
-            throws InvalidTaskNumberException, InvalidPriorityException {
+        throws InvalidTaskNumberException, InvalidPriorityException, InvalidDatetimeException {
         // Check range
         if (index <= 0 || index > tasks.size()) {
             throw new InvalidTaskNumberException();

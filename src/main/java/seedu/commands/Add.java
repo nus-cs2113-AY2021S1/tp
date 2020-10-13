@@ -2,6 +2,7 @@ package seedu.commands;
 
 import seedu.data.TaskList;
 import seedu.exceptions.InvalidCommandException;
+import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.task.Task;
 
@@ -39,7 +40,7 @@ public class Add extends Command {
     }
 
     @Override
-    public CommandResult execute(TaskList tasks) throws InvalidPriorityException {
+    public CommandResult execute(TaskList tasks) throws InvalidPriorityException, InvalidDatetimeException {
         Task task = new Task(description, date, startTime, endTime, priority);
         tasks.addTask(task);
         // task arg not in used, in case want change display message.
