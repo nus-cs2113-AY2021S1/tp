@@ -8,24 +8,26 @@ import java.util.Arrays;
  */
 public class Module {
 
+    public static final int NO_INPUT = -1;
+    public static final int INDEX_OFFSET = 1;
     private String moduleCode;
-    private int expected = -1;
-    private double[] actualTime = new double[13];
+    private int expected = NO_INPUT;
+    private final double[] actualTime = new double[13];
 
     public Module(String mod) {
         moduleCode = mod;
-        Arrays.fill(actualTime, -1);
+        Arrays.fill(actualTime, NO_INPUT);
     }
 
     public Module(String mod, String expected) {
         moduleCode = mod;
         this.expected = Integer.parseInt(expected);
-        Arrays.fill(actualTime, -1);
+        Arrays.fill(actualTime, NO_INPUT);
     }
 
     @Override
     public String toString() {
-        if (expected == -1) {
+        if (expected == NO_INPUT) {
             return moduleCode;
         } else {
             return moduleCode + ", Expected Workload: " + expected + "h";
@@ -51,18 +53,18 @@ public class Module {
     public void addActualTime(String time, String week) {
         double d = Double.parseDouble(time);
         int i = Integer.parseInt(week);
-        if (this.actualTime[i] == -1) {
-            this.actualTime[i] = d;
+        if (this.actualTime[i - INDEX_OFFSET] == NO_INPUT) {
+            this.actualTime[i - INDEX_OFFSET] = d;
         } else {
-            this.actualTime[i] += d;
+            this.actualTime[i - INDEX_OFFSET] += d;
         }
     }
 
     public void minusActualTime(String time, String week) {
         double d = Double.parseDouble(time);
         int i = Integer.parseInt(week);
-        if (this.actualTime[i] != -1) {
-            this.actualTime[i] -= d;
+        if (this.actualTime[i - INDEX_OFFSET] != NO_INPUT) {
+            this.actualTime[i - INDEX_OFFSET] -= d;
         }
     }
 
@@ -84,10 +86,10 @@ public class Module {
     }
 
     public boolean doesExpectedWorkLoadExist() {
-        return (expected != -1);
+        return (expected != NO_INPUT);
     }
 
     public boolean doesActualTimeExist(int weekNumber) {
-        return (actualTime[weekNumber] != -1);
+        return (actualTime[weekNumber - INDEX_OFFSET] != NO_INPUT);
     }
 }
