@@ -52,9 +52,9 @@ class DukeTest {
         arg1.put("", "2");
         UserInput expected1 = new UserInput("foo", arg1);
         expected1.setCategory("");
-        assertEquals(p.parse(test1).getArgs(),expected1.getArgs());
-        assertEquals(p.parse(test1).getCategory(),expected1.getCategory());
-        assertEquals(p.parse(test1).getCommand(),expected1.getCommand());
+        assertEquals(p.parse(test1).getArgs(), expected1.getArgs());
+        assertEquals(p.parse(test1).getCategory(), expected1.getCategory());
+        assertEquals(p.parse(test1).getCommand(), expected1.getCommand());
 
         // Space & Repetition test
         String test2 = "fOo 2 2 2";
@@ -62,9 +62,9 @@ class DukeTest {
         arg2.put("", "2 2 2");
         UserInput expected2 = new UserInput("fOo", arg2);
         expected2.setCategory("");
-        assertEquals(p.parse(test2).getArgs(),expected2.getArgs());
-        assertEquals(p.parse(test2).getCategory(),expected2.getCategory());
-        assertEquals(p.parse(test2).getCommand(),expected2.getCommand());
+        assertEquals(p.parse(test2).getArgs(), expected2.getArgs());
+        assertEquals(p.parse(test2).getCategory(), expected2.getCategory());
+        assertEquals(p.parse(test2).getCommand(), expected2.getCommand());
 
         // Category and extra argument test
         String test3 = "hr do something /a1 2 3";
@@ -73,9 +73,9 @@ class DukeTest {
         arg3.put("a1", "2 3");
         UserInput expected3 = new UserInput("do", arg3);
         expected3.setCategory("hr");
-        assertEquals(p.parse(test3).getArgs(),expected3.getArgs());
-        assertEquals(p.parse(test3).getCategory(),expected3.getCategory());
-        assertEquals(p.parse(test3).getCommand(),expected3.getCommand());
+        assertEquals(p.parse(test3).getArgs(), expected3.getArgs());
+        assertEquals(p.parse(test3).getCategory(), expected3.getCategory());
+        assertEquals(p.parse(test3).getCommand(), expected3.getCommand());
 
         // Capitalization & trimming test
         String test4 = "  eVeNt AdD     mYeVenT     9000  /  arg  some  arg /a2 /a3 another";
@@ -86,9 +86,9 @@ class DukeTest {
         arg4.put("a3", "another");
         UserInput expected4 = new UserInput("AdD", arg4);
         expected4.setCategory("event");
-        assertEquals(p.parse(test4).getArgs(),expected4.getArgs());
-        assertEquals(p.parse(test4).getCategory(),expected4.getCategory());
-        assertEquals(p.parse(test4).getCommand(),expected4.getCommand());
+        assertEquals(p.parse(test4).getArgs(), expected4.getArgs());
+        assertEquals(p.parse(test4).getCategory(), expected4.getCategory());
+        assertEquals(p.parse(test4).getCommand(), expected4.getCommand());
 
         // Shorthand category, Accented Character and Argument Precedence test
         String test5 = "  f testCase\350  \350" +
@@ -98,8 +98,8 @@ class DukeTest {
         arg5.put("arg", "precedence test");
         UserInput expected5 = new UserInput("testCase\350", arg5);
         expected5.setCategory("finance");
-        assertEquals(p.parse(test5).getArgs(),expected5.getArgs());
-        assertEquals(p.parse(test5).getCategory(),expected5.getCategory());
-        assertEquals(p.parse(test5).getCommand(),expected5.getCommand());
+        assertEquals(p.parse(test5).getArgs(), expected5.getArgs());
+        assertEquals(p.parse(test5).getCategory(), expected5.getCategory());
+        assertEquals(p.parse(test5).getCommand(), expected5.getCommand());
     }
 }
