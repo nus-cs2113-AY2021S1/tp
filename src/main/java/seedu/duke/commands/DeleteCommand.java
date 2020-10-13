@@ -7,6 +7,7 @@ import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.category.Category;
 import seedu.duke.category.CategoryList;
 import seedu.duke.category.CategoryParser;
+import seedu.duke.exception.QuotesifyException;
 import seedu.duke.lists.ListManager;
 import seedu.duke.quote.Quote;
 import seedu.duke.quote.QuoteList;
@@ -131,62 +132,56 @@ public class DeleteCommand extends Command {
             String categoryName = parameters[0];
             assert !categoryName.isEmpty() : "category name should not be empty";
 
-            String bookTitle = parameters[1];
             Category category = categories.getCategoryByName(categoryName);
-            if (deleteCategoryFromBook(category, bookTitle)) {
-                ui.printRemoveCategoryFromBook(bookTitle, categoryName);
-            }
 
-            int quoteNum = Integer.parseInt(parameters[2]) - 1;
-            if (deleteCategoryFromQuote(category, quoteNum)) {
-                QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
-                ArrayList<Quote> quotes = quoteList.getList();
-                ui.printRemoveCategoryFromQuote(quotes.get(quoteNum).getQuote(), categoryName);
-            }
-            // ui.printCategorySize(category);
-        } catch (NumberFormatException e) {
-            System.out.println(ERROR_INVALID_QUOTE_NUM);
-        } catch (NullPointerException e) {
-            System.out.println(e.getMessage());
+            String bookTitle = parameters[1];
+            String quoteNum = parameters[2];
+
+            deleteCategoryFromBook(category, bookTitle, ui);
+            deleteCategoryFromQuote(category, quoteNum, ui);
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
         }
     }
 
-    private boolean deleteCategoryFromBook(Category category, String bookTitle) {
-        if (bookTitle == null || category == null) {
-            return false;
+    private void deleteCategoryFromBook(Category category, String bookTitle, TextUi ui) {
+        // ignore this action if user did not provide book title
+        if (bookTitle.isEmpty()) {
+            return;
         }
 
-        BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+        BookList bookList = category.getBookList();
         try {
             Book book = bookList.findByTitle(bookTitle);
             if (book.getCategory().equals(category)) {
                 book.setCategory(null);
             }
+            ui.printRemoveCategoryFromBook(bookTitle, category.getCategoryName());
         } catch (NullPointerException e) {
-            System.out.println(ERROR_NO_BOOK_FOUND);
-            return false;
+            ui.printErrorMessage(ERROR_NO_BOOK_FOUND + "\b tagged as [" + category.getCategoryName() + "]!");
         }
-        return true;
     }
 
-    private boolean deleteCategoryFromQuote(Category category, int quoteNum) {
-        if (quoteNum < 0 || category == null) {
-            return false;
+    private void deleteCategoryFromQuote(Category category, String index, TextUi ui) {
+        // ignore this action if user did not provide quote number
+        if (index.isEmpty()) {
+            return;
         }
 
-        QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+        QuoteList quoteList = category.getQuoteList();
         ArrayList<Quote> quotes = quoteList.getList();
-
         try {
+            int quoteNum = Integer.parseInt(index) - 1;
             Quote quote = quotes.get(quoteNum);
             if (quote.getCategory().equals(category)) {
                 quote.setCategory(null);
             }
+            ui.printRemoveCategoryFromQuote(quote.getQuote(), category.getCategoryName());
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(ERROR_INVALID_QUOTE_NUM);
-            return false;
+            ui.printErrorMessage(ERROR_NO_QUOTE_FOUND + "\b tagged as [" + category.getCategoryName() + "]!");
+        } catch (NumberFormatException e) {
+            ui.printErrorMessage(ERROR_INVALID_QUOTE_NUM);
         }
-        return true;
     }
 
     private void deleteToDo(ToDoList toDos, int index, TextUi ui) {
