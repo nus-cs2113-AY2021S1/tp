@@ -1,4 +1,4 @@
-# Duke
+# NUSchedule
 
 {Give product intro here}
 
