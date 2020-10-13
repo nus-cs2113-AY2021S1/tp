@@ -28,7 +28,10 @@ import static fitr.common.Messages.ERROR_INVALID_CALORIES;
  */
 public class Ui {
     private static final String SPACE = "%-18s%s%n";
-    private static final String FORMAT = " ".repeat(18) + "\033[0;32mFormat: \033[0m";
+    private static final String GREEN_COLOUR = "\033[0;32m";
+    private static final String RED_COLOUR = "\033[0;31m";
+    private static final String RESET_COLOUR = "\033[0m";
+    private static final String FORMAT = " ".repeat(18) + GREEN_COLOUR + "Format: " + RESET_COLOUR;
 
     public static String read() {
         Scanner sc = new Scanner(System.in);
@@ -40,7 +43,7 @@ public class Ui {
     }
 
     public static void printCustomError(String errorMessage) {
-        System.out.println("\033[0;31m" + errorMessage + "\033[0m");
+        System.out.println(RED_COLOUR + errorMessage + RESET_COLOUR);
     }
 
     public static void printGreetingMessage() {
