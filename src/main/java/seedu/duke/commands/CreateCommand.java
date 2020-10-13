@@ -14,9 +14,10 @@ public class CreateCommand extends Command {
             + "Example: " + COMMAND_WORD
             + " Bedroom 1";
     private final String usersEnteredLocation;
+    private final Boolean toPrint;
 
-
-    public CreateCommand(String location) throws EmptyParameterException {
+    public CreateCommand(String location, Boolean toPrint) throws EmptyParameterException {
+        this.toPrint = toPrint;
         if (location.isEmpty()) {
             throw new EmptyParameterException();
         }
@@ -25,10 +26,6 @@ public class CreateCommand extends Command {
 
     @Override
     public void execute() {
-        insertLocation();
-    }
-
-    public void insertLocation() {
         try {
             homeLocationsList.addLocation(usersEnteredLocation);
             ui.showToUser("Creating Location \"" + usersEnteredLocation + "\".....CREATED!");

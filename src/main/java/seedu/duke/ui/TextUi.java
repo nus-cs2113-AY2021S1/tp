@@ -1,10 +1,19 @@
 package seedu.duke.ui;
 
-import seedu.duke.common.Messages;
+import seedu.duke.data.framework.Appliance;
 
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
+
+import static seedu.duke.common.Messages.DIVIDER;
+import static seedu.duke.common.Messages.MESSAGE_DISPLAY_LOCATION;
+import static seedu.duke.common.Messages.MESSAGE_DISPLAY_STATUS;
+import static seedu.duke.common.Messages.MESSAGE_DISPLAY_USAGE;
+import static seedu.duke.common.Messages.MESSAGE_DISPLAY_WATT;
+import static seedu.duke.common.Messages.MESSAGE_DISPLAY_TYPE;
+import static seedu.duke.common.Messages.MESSAGE_GOODBYE;
+import static seedu.duke.common.Messages.MESSAGE_WELCOME;
 
 /**
  * Text UI of the application.
@@ -25,6 +34,51 @@ public class TextUi {
     public TextUi(InputStream in, PrintStream out) {
         this.in = new Scanner(System.in);
         this.out = out;
+    }
+
+    /**
+     * Shows message(s) to the user.
+     */
+    public static void showToUser(String message) {
+        out.println(message);
+    }
+
+    /**
+     * Print a divider.
+     */
+    private static void printDivider() {
+        showToUser(DIVIDER);
+    }
+
+    /** Find length of longest appliance name and location for formatting. */
+    public void showWithUsageFormat(int displayIndex,
+                                    String applianceName,
+                                    String location,
+                                    String status,
+                                    double powerUsage) {
+        String formattedIndex = String.format("%d. ", displayIndex);
+        String formattedName = String.format("%-" + Appliance.getMaxNameLength() + "s", applianceName);
+        String formattedLocation =  MESSAGE_DISPLAY_LOCATION
+                + String.format("%-" + Appliance.getMaxLocationLength() + "s", location);
+        String formattedStatus = MESSAGE_DISPLAY_STATUS + String.format("%-3s", status);
+        String formattedUsage =  MESSAGE_DISPLAY_USAGE + String.format("%.2f kWh", powerUsage);
+        String result = formattedIndex + formattedName + formattedLocation + formattedStatus + formattedUsage;
+        showToUser(result);
+    }
+
+    /** Find length of longest appliance name and location for formatting. */
+    public void showWithListFormat(int displayIndex, String applianceName, String location, String status, String power, String type) {
+
+        String formattedIndex = String.format("%d. ", displayIndex);
+        String formattedName = String.format("%-" + Appliance.getMaxNameLength() + "s", applianceName);
+        String formattedLocation = MESSAGE_DISPLAY_LOCATION +  String.format("%-" + Appliance.getMaxLocationLength()
+                + "s", location);
+        String formattedStatus = MESSAGE_DISPLAY_STATUS + String.format("%-3s",  status);
+        String formattedUsage = MESSAGE_DISPLAY_WATT + String.format("%-4sW", power);
+        String formattedType = MESSAGE_DISPLAY_TYPE + String.format("%s",  type);
+        String result = formattedIndex + formattedName + formattedLocation
+                + formattedStatus + formattedUsage + formattedType;
+        showToUser(result);
     }
 
     /**
@@ -65,27 +119,13 @@ public class TextUi {
 
     public void showWelcomeMessage() {
         printDivider();
-        showToUser(Messages.MESSAGE_WELCOME);
+        showToUser(MESSAGE_WELCOME);
     }
 
     /**
      * Generates and prints the Goodbye message upon the end of the application.
      */
     public void showGoodByeMessage() {
-        showToUser(Messages.MESSAGE_GOODBYE);
-    }
-
-    /**
-     * Shows message(s) to the user.
-     */
-    public static void showToUser(String message) {
-        out.println(message);
-    }
-
-    /**
-     * Print a divider.
-     */
-    private static void printDivider() {
-        showToUser(Messages.DIVIDER);
+        showToUser(MESSAGE_GOODBYE);
     }
 }
