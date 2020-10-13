@@ -8,6 +8,8 @@ import seedu.duke.command.subjectcommand.ListSubjectCommand;
 import seedu.duke.command.subjectcommand.ReturnSubjectCommand;
 import seedu.duke.command.subjectcommand.SorrySubjectCommand;
 import seedu.duke.command.subjectcommand.SubjectCommand;
+import seedu.duke.command.subjectcommand.QuizSubjectCommand;
+import seedu.duke.command.subjectcommand.ResultSubjectCommand;
 
 /**
  * Allows the parsing of inputs provided by the user.
@@ -33,6 +35,10 @@ public class SubjectParser {
             return new FindSubjectCommand(fullCommand);
         } else if (fullCommand.startsWith("subject")) {
             return new ReturnSubjectCommand(fullCommand);
+        } else if (fullCommand.startsWith("quiz")) {
+            return new QuizSubjectCommand(fullCommand);
+        } else if (fullCommand.startsWith("results")) {
+            return new ResultSubjectCommand(fullCommand);
         } else {
             return new SorrySubjectCommand();
         }
