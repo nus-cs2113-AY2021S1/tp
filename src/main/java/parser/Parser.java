@@ -1,20 +1,7 @@
 package parser;
 
 import access.Access;
-import commands.Command;
-import commands.ListCommand;
-import commands.AddChapterCommand;
-import commands.AddCommand;
-import commands.AddModuleCommand;
-import commands.BackChapterCommand;
-import commands.GoChapterCommand;
-import commands.HelpCommand;
-import commands.RemoveCommand;
-import commands.ReviseCommand;
-import commands.ExitCommand;
-import commands.GoModuleCommand;
-import commands.BackModuleCommand;
-import commands.EditCommand;
+import commands.*;
 
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
@@ -22,6 +9,7 @@ import exception.InvalidInputException;
 import manager.chapter.Chapter;
 import manager.module.ChapterList;
 import storage.Storage;
+import ui.Ui;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
@@ -68,6 +56,8 @@ public class Parser {
             return prepareGoChapter(commandArgs);
         case EditCommand.COMMAND_WORD:
             return prepareEdit(commandArgs, access);
+        case ListDueCommand.COMMAND_WORD:
+            return prepareListDue(commandArgs);
         default:
             throw new InvalidInputException();
         }
@@ -248,7 +238,7 @@ public class Parser {
         return new HelpCommand();
     }
 
-    public static String parseQuestioninFile(String arg) throws InvalidFileFormatException {
+    public static String parseQuestionInFile(String arg) throws InvalidFileFormatException {
         if (!(arg.trim().startsWith(Storage.QUESTION_PREFIX))) {
             throw new InvalidFileFormatException();
         }
@@ -261,7 +251,7 @@ public class Parser {
         return question;
     }
 
-    public static String parseAnswerinFile(String arg) throws InvalidFileFormatException {
+    public static String parseAnswerInFile(String arg) throws InvalidFileFormatException {
         if (!(arg.trim().startsWith(Storage.ANSWER_PREFIX))) {
             throw new InvalidFileFormatException();
         }
@@ -273,4 +263,47 @@ public class Parser {
 
         return answer;
     }
+
+    public static boolean chooseNewDeckRating() {
+        System.out.println("Would you like to rate this new Chapter?");
+        Ui ratingUi = new Ui();
+        String userChoice = ratingUi.readCommand();
+        while (!userChoice.equalsIgnoreCase("Y") && !userChoice.equalsIgnoreCase("N")) {
+            userChoice = ratingUi.readCommand();
+        }
+        return userChoice.equalsIgnoreCase("Y");
+    }
+
+    public static boolean validDeckRating(String rating) {
+        switch (rating.toUpperCase()) {
+        case "E":
+        case "M":
+        case "H":
+            return true;
+        default:
+            return false;
+        }
+    }
+
+    public static String getChoiceOfNewDeckRating() {
+        System.out.println("Please rate this new Chapter!");
+        System.out.println("You have the options of: Easy(E), Medium(M) or Hard(H)");
+        System.out.println("Would your choice be E, M or H?");
+        Ui ratingUi = new Ui();
+        String userChoice = ratingUi.readCommand();
+        while (!validDeckRating(userChoice)) {
+            userChoice = ratingUi.readCommand();
+        }
+        return userChoice.toUpperCase();
+    }
+
+    private static Command prepareListDue(String commandArgs) throws InvalidInputException {
+        if (!commandArgs.isEmpty()) {
+            throw new InvalidInputException("There should not be any arguments for list.");
+        }
+        return new ListCommand();
+    }
+
 }
+
+

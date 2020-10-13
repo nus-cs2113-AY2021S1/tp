@@ -20,6 +20,7 @@ public class ListCommand extends Command {
             + ": Shows a list of modules / chapters / flashcards available. \n"
             + "Example: " + COMMAND_WORD + "\n";
 
+
     @Override
     public void execute(CardList cards, Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException {
         if (access.isChapterLevel()) {

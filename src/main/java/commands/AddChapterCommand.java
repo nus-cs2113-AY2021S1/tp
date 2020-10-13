@@ -17,7 +17,7 @@ public class AddChapterCommand extends Command {
             + "Example: " + COMMAND_WORD + " Chapter 1\n";
 
     public AddChapterCommand(String chapterCode) {
-        this.chapter = new Chapter(chapterCode);
+        this.chapter = new Chapter(chapterCode, Chapter.rateChapter());
     }
 
     @Override
