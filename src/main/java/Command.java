@@ -35,7 +35,8 @@ public class Command {
 
     public static void handleNonGeneralCommand(String command, CommandType commandType,
                                                ArrayList<BookmarkCategory> bookmarkCategories,
-                                               BookmarkUi bookmarkUi,BookmarkParser bookmarkParser, FlashcardRun flashcardRun) {
+                                               BookmarkUi bookmarkUi,BookmarkParser bookmarkParser,
+                                               FlashcardRun flashcardRun) {
         Mode currentMode = StudyIt.getCurrentMode();
         if (currentMode == Mode.BOOKMARK) {
             executeBookmarkModeCommand(command,bookmarkCategories,bookmarkUi,bookmarkParser);
