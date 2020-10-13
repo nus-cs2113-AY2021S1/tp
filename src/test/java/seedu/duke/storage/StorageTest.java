@@ -125,7 +125,7 @@ class StorageTest {
         // populate topics with flashcards
         for (Topic topic : topics) {
             for (Flashcard flashcard : flashcards) {
-                topic.addFlashCard(flashcard);
+                topic.addFlashcard(flashcard);
             }
         }
 

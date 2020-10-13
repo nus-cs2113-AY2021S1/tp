@@ -8,7 +8,8 @@ public class Topic {
     private List<Flashcard> flashcards;
 
     public Topic(String title) {
-        this(title, new ArrayList<>());
+        this.title = title;
+        this.flashcards = new ArrayList<>();
     }
 
     public Topic(String title, List<Flashcard> flashcards) {
@@ -20,7 +21,7 @@ public class Topic {
         return title;
     }
 
-    public void addFlashCard(Flashcard flashcard) {
+    public void addFlashcard(Flashcard flashcard) {
         flashcards.add(flashcard);
     }
 
@@ -33,7 +34,7 @@ public class Topic {
     }
 
     public List<Flashcard> getFlashcards() {
-        return flashcards;
+        return this.flashcards;
     }
 
     public void printTopic(TopicList topicList) {
