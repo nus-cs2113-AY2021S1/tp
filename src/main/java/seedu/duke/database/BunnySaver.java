@@ -20,7 +20,7 @@ public class BunnySaver {
             throws IOException {
         File allTasksFile = new File(DEFAULT_BUNNY_FILE_PATH);
 
-        if (allTasksFile.createNewFile()){
+        if (allTasksFile.createNewFile()) {
             UI.createNewBunnyFile();
         }
 
@@ -33,7 +33,7 @@ public class BunnySaver {
         FileFunctions.appendsStringToFile(PLAIN_TEXT_DIVIDER, DEFAULT_BUNNY_FILE_PATH);
         FileFunctions.appendsStringToFile(NEWLINE, DEFAULT_BUNNY_FILE_PATH);
 
-        for (int i = 0; i < bunniesList.size(); i++){
+        for (int i = 0; i < bunniesList.size(); i++) {
             String printOut = "";
             printOut = (i + 1) + ".\n" + bunniesList.get(i).getDescription();
             FileFunctions.appendsStringToFile(printOut,DEFAULT_BUNNY_FILE_PATH);

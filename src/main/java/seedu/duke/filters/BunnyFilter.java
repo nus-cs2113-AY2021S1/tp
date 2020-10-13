@@ -17,7 +17,8 @@ import static seedu.duke.parsers.Parsers.parseSingleCharacterTaggedParamsFromUse
 import static seedu.duke.ui.UI.printFilteredBunny;
 
 public class BunnyFilter {
-    public static void filterBunny(String userInput, ArrayList<Bunny> bunniesList) throws MissingFilterOptionsException, NoFilteredItemsException {
+    public static void filterBunny(String userInput, ArrayList<Bunny> bunniesList)
+            throws MissingFilterOptionsException, NoFilteredItemsException {
         // for returning filter options parsed from the user input
         HashMap<String, String> filterOptions = new HashMap<>();
         String componentUserInput;
