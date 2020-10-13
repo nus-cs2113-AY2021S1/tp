@@ -192,6 +192,10 @@ public class Ui {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_SEARCH_DATE);
     }
 
+    public static void printInvalidFormatException() {
+        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_FORMAT);
+    }
+
     public static void printNotFoundException() {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_NOT_FOUND_EXCEPTION);
     }

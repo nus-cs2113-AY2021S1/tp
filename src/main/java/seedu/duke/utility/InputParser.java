@@ -10,6 +10,7 @@ import seedu.duke.commands.UpdateShowSeasonCommand;
 import seedu.duke.commands.EditCommand;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 //TODO include more parser classes (storage.parser, command.parser etc in the future)
 
@@ -31,9 +32,19 @@ public class InputParser {
 
     public String parseInput(String input) {
 
+        String[] singleWordInputs = new String[]{"bye", "list", "help"};
         String command = StringOperations.getFirstWord(input).toLowerCase();
 
+        String[] splitInput = input.split(" ");
+        if (splitInput.length < 2) {
+            if (!Arrays.asList(singleWordInputs).contains(splitInput[0])) {
+                Ui.printInvalidFormatException();
+                return command;
+            }
+
+        }
         switch (command) {
+
         case "bye":
             Ui.printByeMessage();
             this.isBye = true;
@@ -171,7 +182,15 @@ public class InputParser {
 
     private static void parseAddCommand(String input) {
         String[] tokenizedInput = input.split(" ");
-        new AddCommand(tokenizedInput);
+        try {
+            new AddCommand(tokenizedInput);
+        } catch (NullPointerException e) {
+            Ui.printInvalidEpisodesInputException();
+            return;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Ui.printInvalidFormatException();
+            return;
+        }
         Ui.printShowAdded(tokenizedInput[1]);
     }
 
@@ -185,6 +204,5 @@ public class InputParser {
             Ui.printNotFoundException();
         }
     }
-
 }
 

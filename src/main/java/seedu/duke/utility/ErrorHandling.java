@@ -15,9 +15,11 @@ public class ErrorHandling extends Exception {
         EXCEPTION_NOT_FOUND_EXCEPTION("\tHey buddy, it seems like we don't have what you're looking for!"),
         EXCEPTION_INVALID_INPUT("\tI don't know what you just said.Try " + ("help")
                 + " for a list of commands."),
+        EXCEPTION_INVALID_FORMAT("\tIt seems like the format of the command is wrong, Try " + ("help")
+                + " for an explanation of the commands."),
         EXCEPTION_CREATE_FILE_ERROR("\tError creating file."),
         EXCEPTION_INVALID_EPISODES_INPUT_EXCEPTION("\tThe number of episodes input doesn't match "
-                + "the number of seasons.Use the " + ("edit") + " command to change the number of seasons."),
+                + "the number of seasons. The show was not added"),
         EXCEPTION_INVALID_RATING_INPUT("\tSorry! This is an invalid rating! Try again!");
 
         private String exception;
