@@ -40,10 +40,7 @@ public class UserManagement {
 
     public User addUser(String name, String dob, String gender) throws ParseException, AniException {
         User newUser = new User(name, dob, gender);
-
-        if (checkIfUserExist(name)) {
-            throw new AniException("A user with " + name + " already exist. Choose a different name!");
-        }
+        checkIfUserExist(name);
 
         userList.add(newUser);
         storage.saveUser(newUser);
@@ -52,14 +49,12 @@ public class UserManagement {
         return newUser;
     }
 
-    private boolean checkIfUserExist(String name) throws AniException {
+    private void checkIfUserExist(String name) throws AniException {
         for (User existingUser : userList) {
             if (existingUser.getName().equals(name)) {
-                return true;
+                throw new AniException("A user with " + name + " already exist. Choose a different name!");
             }
         }
-
-        return false;
     }
 
     public void addUserDialogue(Ui ui) {
