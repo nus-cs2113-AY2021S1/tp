@@ -1,6 +1,8 @@
-package seedu.duke;
+package fitr.list;
 
 import org.junit.jupiter.api.Test;
+import fitr.Calorie;
+import fitr.Exercise;
 
 import java.util.ArrayList;
 

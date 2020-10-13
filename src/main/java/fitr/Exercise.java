@@ -1,4 +1,4 @@
-package seedu.duke;
+package fitr;
 
 public class Exercise {
     protected String nameOfExercise; // The name of the Exercise

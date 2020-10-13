@@ -1,4 +1,8 @@
-package seedu.duke;
+package fitr.command;
+
+import fitr.list.ExerciseList;
+import fitr.list.FoodList;
+import fitr.storage.Storage;
 
 public class DeleteCommand extends Command {
     public DeleteCommand(String command) {
@@ -6,7 +10,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodlist,ExerciseList exerciseList, Storage storage) {
+    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage) {
         try {
             command = command.split(" ", 2)[1];
             String type = command.split(" ", 2)[0];

@@ -1,30 +1,30 @@
-package seedu.duke;
+package fitr.ui;
 
 import java.util.Scanner;
 
-import static seedu.duke.common.Commands.COMMAND_FOOD;
-import static seedu.duke.common.Commands.COMMAND_EXERCISE;
-import static seedu.duke.common.Commands.COMMAND_VIEW_FOOD;
-import static seedu.duke.common.Commands.COMMAND_VIEW_EXERCISE;
-import static seedu.duke.common.Commands.COMMAND_VIEW_SUMMARY;
-import static seedu.duke.common.Commands.COMMAND_DELETE;
-import static seedu.duke.common.Commands.COMMAND_EXIT;
-import static seedu.duke.common.Commands.COMMAND_VIEW;
+import static fitr.common.Commands.COMMAND_FOOD;
+import static fitr.common.Commands.COMMAND_EXERCISE;
+import static fitr.common.Commands.COMMAND_VIEW_FOOD;
+import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
+import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
+import static fitr.common.Commands.COMMAND_DELETE;
+import static fitr.common.Commands.COMMAND_EXIT;
+import static fitr.common.Commands.COMMAND_VIEW;
 
-import static seedu.duke.common.Messages.FORMAT_FOOD;
-import static seedu.duke.common.Messages.FORMAT_EXERCISE;
-import static seedu.duke.common.Messages.FORMAT_DELETE;
+import static fitr.common.Messages.FORMAT_FOOD;
+import static fitr.common.Messages.FORMAT_EXERCISE;
+import static fitr.common.Messages.FORMAT_DELETE;
 
-import static seedu.duke.common.Messages.MESSAGE_GREET;
-import static seedu.duke.common.Messages.MESSAGE_BYE;
-import static seedu.duke.common.Messages.ERROR_INVALID_COMMAND;
-import static seedu.duke.common.Messages.ERROR_INVALID_INDEX;
-import static seedu.duke.common.Messages.ERROR_INVALID_CALORIES;
+import static fitr.common.Messages.MESSAGE_GREET;
+import static fitr.common.Messages.MESSAGE_BYE;
+import static fitr.common.Messages.ERROR_INVALID_COMMAND;
+import static fitr.common.Messages.ERROR_INVALID_INDEX;
+import static fitr.common.Messages.ERROR_INVALID_CALORIES;
 
 /**
  * Prints messages.
  */
-public class UI {
+public class Ui {
     private static final String SPACE = "%-18s%s%n";
     private static final String FORMAT = " ".repeat(18) + "\033[0;32mFormat: \033[0m";
 

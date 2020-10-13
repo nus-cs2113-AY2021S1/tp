@@ -1,4 +1,8 @@
-package seedu.duke;
+package fitr.command;
+
+import fitr.list.ExerciseList;
+import fitr.list.FoodList;
+import fitr.storage.Storage;
 
 public class ExitCommand extends Command {
     public ExitCommand(String command) {

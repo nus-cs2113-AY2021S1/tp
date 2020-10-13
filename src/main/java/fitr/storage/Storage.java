@@ -1,4 +1,11 @@
-package seedu.duke;
+package fitr.storage;
+
+import fitr.Calorie;
+import fitr.Exercise;
+import fitr.Food;
+import fitr.list.ExerciseList;
+import fitr.list.FoodList;
+import fitr.user.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,15 +13,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 /**
  * Handles the loading and saving of data to a file.
  */
-public class Storage {
+public class  Storage {
     private static final String DEFAULT_EXERCISE_LIST_FILEPATH = "exercises.txt";
     private static final String DEFAULT_FOOD_LIST_FILEPATH = "food.txt";
     private static final String DEFAULT_USER_CONFIG_FILEPATH = "user.txt";
     private static final String COMMA_SEPARATOR = ",";
+
+    private static final Logger logger = Logger.getLogger(Storage.class.getName());
 
     private final String exerciseListPath;
     private final String foodListPath;
@@ -96,6 +106,7 @@ public class Storage {
      * @throws IOException if an I/O error has occurred
      */
     public void writeUserConfigFile(User user) throws IOException {
+        logger.fine("Attempting to write to file: " + userConfigPath);
         FileWriter file = new FileWriter(userConfigPath);
 
         file.write(User.getName()
@@ -114,6 +125,7 @@ public class Storage {
      * @throws FileNotFoundException if the file is not found
      */
     public ArrayList<Food> loadFoodList() throws FileNotFoundException {
+        logger.fine("Attempting to read file: " + foodListPath);
         ArrayList<Food> foodList = new ArrayList<>();
         String line;
         String[] arguments;
@@ -137,6 +149,7 @@ public class Storage {
      * @throws IOException if an I/O error has occurred
      */
     public void writeFoodList(FoodList foodList) throws IOException {
+        logger.fine("Attempting to write to file: " + foodListPath);
         FileWriter file = new FileWriter(foodListPath);
         Food food;
 
@@ -157,6 +170,7 @@ public class Storage {
      * @throws FileNotFoundException if the file is not found
      */
     public ArrayList<Exercise> loadExerciseList() throws FileNotFoundException {
+        logger.fine("Attempting to read file: " + exerciseListPath);
         ArrayList<Exercise> exerciseList = new ArrayList<>();
         String line;
         String[] arguments;
@@ -180,6 +194,7 @@ public class Storage {
      * @throws IOException if an I/O error has occurred
      */
     public void writeExerciseList(ExerciseList exerciseList) throws IOException {
+        logger.fine("Attempting to write to file: " + exerciseListPath);
         FileWriter file = new FileWriter(exerciseListPath);
         Exercise exercise;
 
