@@ -69,47 +69,6 @@ public class Ui {
                 + "  Example: info g/F a/21 h/165 o/65 t/55 l/2");
     }
 
-//    public void printWelcomeMessage() {
-//        String logo = " _______  __ ______ ________ _______   ______   ______  __    __" + LINE_SEPARATOR
-//                + "|   __  \\|  |   ___|__    __|   __  \\ /  __  \\ /  __  \\|  | /  /" + LINE_SEPARATOR
-//                + "|  |  |  |  |  |___   |  |  |  |__|  |  |  |  |  |  |  |  |/  /"  + LINE_SEPARATOR
-//                + "|  |  |  |  |   ___|  |  |  |   __  <|  |  |  |  |  |  |     /" + LINE_SEPARATOR
-//                + "|  |__|  |  |  |___   |  |  |  |__|  |  |__|  |  |  |  |  |\\  \\" + LINE_SEPARATOR
-//                + "|_______/|__|______|  |__|  |_______/ \\______/ \\______/|__| \\__\" + LINE_SEPARATOR";
-//        System.out.println(DIVIDER);
-//        System.out.println(logo);
-//        System.out.println("Hello! Welcome to DietBook!");
-//        System.out.println("I am Diet, your guide to using DietBook.");
-//        System.out.println("Before we get started, I would like to know about about you so that I can make "
-//                + "more accurate calculations for you :)");
-//        System.out.println("Therefore, could you please share with me the following:");
-//        System.out.println("1. Your name.");
-//        System.out.println("2. Your gender either F for female or M for male".);
-//        System.out.println("3. Your age which is a positive integer.");
-//        System.out.println("4. Your height in cm.");
-//        System.out.println("5. Your current weight in kg.");
-//        System.out.println("5. Your original weight in kg.");
-//        System.out.println("6. Your target weight in kg, or your original weight if your "
-//                + "original weight is also your target weight.");
-//        System.out.println("6. Your target weight in kg, or your current weight if your "
-//                + "current weight is also your target weight.");
-//        System.out.println("7. Activity level from 1 to 5.");
-//        System.out.println("  1. " + ActivityLevel.NONE.getDescription());
-//        System.out.println("  2. " + ActivityLevel.LOW.getDescription());
-//        System.out.println("  3. " + ActivityLevel.MEDIUM.getDescription());
-//        System.out.println("  4. " + ActivityLevel.HIGH.getDescription());
-//        System.out.println("  5. " + ActivityLevel.EXTREME.getDescription());
-//        System.out.println(LINE_SEPARATOR);
-//        System.out.println("Please input your details in the following format:");
-//        System.out.println("  info n/NAME g/GENDER a/AGE h/HEIGHT l/ACTIVITY_LEVEL o/ORIGINAL_WEIGHT "
-//                + "t/TARGET_WEIGHT");
-//        System.out.println("  info n/name g/GENDER a/AGE h/HEIGHT l/ACTIVITY_LEVEL c/CURRENT_WEIGHT "
-//                + "t/TARGET_WEIGHT");
-//        System.out.println("  Example: info n/Suzy g/F a/21 h/165 l/2 o/65 t/55");
-//        System.out.println("  Example: info n/Suzy g/F a/21 h/165 l/2 c/65 t/55");
-//        System.out.println(DIVIDER);
-//    }
-
     /**
      * Prints a message that notifies the user that DietBook has been initialised and shows a list of user
      * commands that the user can input.
@@ -250,10 +209,6 @@ public class Ui {
                 + "Total protein intake: " + proteinIntake + "g" + LINE_SEPARATOR
                 + "Total fat intake: " + fatIntake + "g");
     }
-
-//    public void printNutrientIntake(String nutritionalIntake) {
-//        print(nutritionalIntake);
-//    }
 
     /**
      * Prints a message to show that the food specified has been deleted from the food list.
