@@ -1,6 +1,5 @@
 package seedu.duke.command;
 
-import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.timetable.Event;
 import seedu.duke.ui.InterfaceManager;
 
@@ -19,6 +18,8 @@ public class DeleteEventCommand extends Command {
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
 
     private static final String COMMAND_SUCCESSFUL_MESSAGE = "Event deleted:" + InterfaceManager.LS;
+    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Event failed to delete: " + InterfaceManager.LS;
+    private static final String INDEX_OUT_OF_RANGE_MESSAGE = "Index is out of range.";
 
     private int index;
 
@@ -28,12 +29,11 @@ public class DeleteEventCommand extends Command {
 
     @Override
     public String execute() {
-        Event event;
-        try {
-            event = timetable.deleteEvent(index);
-        } catch (SystemException e) {
-            return e.getMessage();
+        if (index < 0 || index >= timetable.getEvents().size()) {
+            return COMMAND_UNSUCCESSFUL_MESSAGE + INDEX_OUT_OF_RANGE_MESSAGE;
         }
+        Event event = timetable.getEvent(index);
+        timetable.deleteEvent(index);
         return COMMAND_SUCCESSFUL_MESSAGE + event.toString();
     }
 }
