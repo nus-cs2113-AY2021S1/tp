@@ -3,10 +3,8 @@ package seedu.duke.data;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.event.Goal;
-import seedu.duke.event.Personal;
+import seedu.duke.exception.InvalidListException;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class UserData {
@@ -34,7 +32,7 @@ public class UserData {
                 return e;
             }
         }
-        return null; //change this to throw exception, list not found.
+        return null;
     }
 
     public ArrayList<EventList> getAllEventLists() {

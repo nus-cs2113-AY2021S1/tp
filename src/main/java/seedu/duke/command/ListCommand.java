@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.event.EventList;
+import seedu.duke.exception.DukeException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.UserData;
@@ -21,7 +22,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute(UserData data, Ui ui, Storage storage) {
+    public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
         ArrayList<EventList> eventLists = data.getAllEventLists();
         if (command == null) {
             ui.printAvailableList(eventLists);
