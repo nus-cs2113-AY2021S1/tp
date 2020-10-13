@@ -29,7 +29,7 @@ public class AddToWatchlistCommand extends Command {
      */
     @Override
     public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
-                          Bookmark bookmark, UserManagement userManagement) throws AniException {
+                          UserManagement userManagement) throws AniException {
         if (!option.equals(ADD_OPTION)) {
             throw new AniException("Watchlist command only accepts the option: \"-a\".");
         }
