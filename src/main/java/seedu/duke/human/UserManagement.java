@@ -9,19 +9,19 @@ import java.util.ArrayList;
 public class UserManagement {
     Storage storage;
     protected ArrayList<User> userList = new ArrayList<>();
-    protected User currentUser;
+    protected User activeUser;
 
     public UserManagement(Storage storage) {
         this.storage = storage;
-        currentUser = null;
+        activeUser = null;
     }
 
-    public User getCurrentUser() {
-        return currentUser;
+    public User getActiveUser() {
+        return activeUser;
     }
 
-    public void setCurrentUser(User inputUser) {
-        currentUser = inputUser;
+    public void setActiveUser(User inputUser) {
+        activeUser = inputUser;
     }
 
     public int getTotalUsers() {
@@ -35,8 +35,7 @@ public class UserManagement {
     public User addUser(String name, String dob, String gender) throws ParseException, AniException {
         User newUser = new User(name, dob, gender);
         userList.add(newUser);
-        storage.writeUserProfileFile(newUser);
-
+        storage.saveUser(newUser);
         return newUser;
     }
 
@@ -53,15 +52,15 @@ public class UserManagement {
                 ui.printMessage("What might your gender be? (Male/Female/Other)");
                 String gender = ui.readInput();
 
-                currentUser = addUser(name, dob, gender);
-                ui.printMessage("Successfully added new user:" + currentUser.toString());
-
+                activeUser = addUser(name, dob, gender);
+                ui.printMessage(" Successfully added new user:");
+                ui.printMessage(activeUser.getName());
+                ui.printMessage(activeUser.getDobString());
+                ui.printMessage(activeUser.getGender().toString());
                 userCreated = true;
             } catch (ParseException | AniException exception) {
                 ui.printErrorMessage(exception.getMessage());
             }
         }
     }
-
-
 }

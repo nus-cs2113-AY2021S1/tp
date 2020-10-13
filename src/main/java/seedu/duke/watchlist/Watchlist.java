@@ -49,8 +49,4 @@ public class Watchlist {
     public String toString() {
         return name + System.lineSeparator() + animeListToString();
     }
-
-    public String toFileString() {
-        return name + " | " + animeList.toString();
-    }
 }
