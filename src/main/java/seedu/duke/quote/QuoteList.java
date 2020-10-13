@@ -63,7 +63,7 @@ public class QuoteList extends QuotesifyList<Quote> {
     }
 
     public String getRandomQuote() {
-        try{
+        try {
             Random rand = new Random();
             int randomQuoteNumber = rand.nextInt(getSize() - 1);
             Quote quoteToPrint = getQuote(randomQuoteNumber);
