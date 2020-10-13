@@ -5,12 +5,15 @@ import seedu.eduke8.exception.Eduke8Exception;
 
 import java.util.ArrayList;
 import java.util.Random;
-// import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class QuizQuestionsManager {
     public static final String INVALID_QUIZ_QUESTION_NUMBER = "Number of quiz questions must be more than 1";
     public static final String INSUFFICIENT_TOPIC_QUESTIONS_FOR_QUIZ =
             "There is not enough questions in the topic for the quiz!";
+
+    private static Logger logger = Logger.getLogger("Main");
 
 
     private ArrayList<Question> quizQuestions = new ArrayList<>();
@@ -26,7 +29,6 @@ public class QuizQuestionsManager {
 
     public void setQuizQuestions(int numberOfQuestionsForQuiz,
                                  ArrayList<Displayable> questionsInTopic) throws Eduke8Exception {
-        // Logger logger = Logger.getLogger("main");
 
         if (numberOfQuestionsForQuiz <= 0) {
             throw new Eduke8Exception(INVALID_QUIZ_QUESTION_NUMBER);
@@ -36,31 +38,27 @@ public class QuizQuestionsManager {
             throw new Eduke8Exception(INSUFFICIENT_TOPIC_QUESTIONS_FOR_QUIZ);
         }
 
-        int numberOfQuestionsSelected = 0;
-
-        // prevent repeated questionsInTopic from being selected again
+        // Stores the questions' indexes selected from the topic question list
         ArrayList<Integer> integersChosen = new ArrayList<>();
 
-        while (numberOfQuestionsSelected < numberOfQuestionsForQuiz) {
-            // get a random question that is within the bounds of the size of the available question list
-            int randomQuestionIndex = RANDOM.nextInt(questionsInTopic.size() - 1);
+        while (quizQuestions.size() < numberOfQuestionsForQuiz) {
+            // Gets a random question that is within the bounds of the size of the available question list
+            int randomQuestionIndex = RANDOM.nextInt(questionsInTopic.size());
 
-            // if the number is already selected - the question is already selected, we re run the loop
-            // to select another random number
+            // To ensure we do not pick the same question again
             if (integersChosen.contains(randomQuestionIndex)) {
-                // logger.info("chosen a repeated question");
+                logger.log(Level.INFO, "Chosen a repeated question");
                 continue;
             }
 
             // choose a random question from the question list and add it to the questionsInTopic for quiz
             quizQuestions.add((Question) questionsInTopic.get(randomQuestionIndex));
-            numberOfQuestionsSelected++;
             integersChosen.add(randomQuestionIndex);
         }
     }
 
     public Question getNextQuestion() {
-        // Gets current question and increment count for number of questions shown to user
+        // Automatically increases question count when a question is shown to the user
         return quizQuestions.get(currentQuestionNumber++);
     }
 
