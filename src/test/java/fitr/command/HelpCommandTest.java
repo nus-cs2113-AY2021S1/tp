@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class HelpCommandTest {
     @Test
-    public void TestHelp() {
+    public void testHelp() {
         Command help = new HelpCommand("help");
         assertFalse(help.isExit());
     }

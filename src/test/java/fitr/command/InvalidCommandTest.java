@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class InvalidCommandTest {
     @Test
-    public void TestHelp() {
-        Command invalid = new HelpCommand("haha");
+    public void testInvalid() {
+        Command invalid = new InvalidCommand("haha");
         assertFalse(invalid.isExit());
     }
 }
