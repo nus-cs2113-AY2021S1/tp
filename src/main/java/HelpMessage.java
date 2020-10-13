@@ -12,6 +12,14 @@ public class HelpMessage extends Ui {
             + "4 academic   - track your academic details\n"
             + "5 flashcard  - flashcards to revise your study materials";
 
+    private static final String academicCommands = "Here are the academic commands available:\n"
+            + "add contact c/CONTACT  m/MOBILE  e/EMAIL  - adds a contact\n"
+            + "check contact                             - prints the list of contact currently stored\n"
+            + "add grade n/MODULE NAME  m/MC  g/GRADE    - adds a grade\n"
+            + "check grade                               - prints the current CAP based on grade stored\n";
+
+
+
     public static void printHelpMessage() {
         System.out.println(LINE_DIVIDER);
         System.out.println(generalCommands);
@@ -45,7 +53,7 @@ public class HelpMessage extends Ui {
 
     //TODO: Fill this up after you're done
     public static void printAcademicHelp() {
-
+        System.out.println(academicCommands);
     }
 
     //TODO: Fill this up after you're done
