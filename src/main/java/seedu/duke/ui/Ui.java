@@ -74,30 +74,6 @@ public class Ui {
     }
 
     /**
-     * Prints out a line telling a user that
-     * an invalid command was given.
-     */
-    public void showInvalidCommand() {
-        System.out.println("Please enter a valid command!");
-        System.out.println();
-    }
-
-    /**
-     * Tells the user that the input given is wrong
-     * and shows the correct form of the command.
-     */
-    public void showInvalidDescription(String command) {
-        switch (command) {
-        case("addToWatchlist"):
-            System.out.println("The input needs to be of the form \"add -a AnimeName\"! ");
-            break;
-        default:
-            System.out.println("Please enter a valid input!");
-        }
-        System.out.println();
-    }
-
-    /**
      * Prints out bye message.
      */
     public void printGoodbyeMessage() {

@@ -9,9 +9,18 @@ import seedu.duke.watchlist.Watchlist;
 import java.util.ArrayList;
 
 public class AddToWatchlistCommand extends Command {
+    private final String ADD_OPTION = "-a";
+    
+    private String option;
+    private String animeName = "";
 
     public AddToWatchlistCommand(String description) {
-        super(description);
+        String[] descriptionSplit = description.split(" ", 2);
+        
+        option = descriptionSplit[0];
+        if(descriptionSplit.length == 2) {
+            animeName = descriptionSplit[1];
+        }
     }
 
     /**
@@ -21,20 +30,20 @@ public class AddToWatchlistCommand extends Command {
     public String execute(AnimeData animeData, Watchlist currentWatchlist,
                         ArrayList<Watchlist> watchlists, Bookmark bookmark,
                         UserManagement userManagement) throws AniException {
-        String[] descriptionSplit = description.split(" ", 2);
-
-        try {
-            String commandOption = descriptionSplit[0];
-            String animeName = descriptionSplit[1];
-            if (commandOption.equals("-a") && animeName != null && !animeName.trim().isEmpty()) {
-                currentWatchlist.addAnimeToList(animeName);
-            } else {
-                throw new AniException("addToWatchlist");
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new AniException("addToWatchlist");
+        if (!option.equals(ADD_OPTION)) {
+            throw new AniException("Watchlist command only accepts the option: \"-a\".");
         }
 
+        addToWatchlist(currentWatchlist);
+
         return "Anime added to watchlist";
+    }
+    
+    public void addToWatchlist(Watchlist currentWatchlist) throws AniException { 
+        if(animeName == null || animeName.trim().isEmpty()) {
+            throw new AniException("Anime name cannot be empty.");
+        }
+        
+        currentWatchlist.addAnimeToList(animeName);
     }
 }
