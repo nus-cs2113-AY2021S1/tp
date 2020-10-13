@@ -1,8 +1,8 @@
-package NUSchedule;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
+package NuSchedule;
 
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class NuScheduleTest {
     @Test
