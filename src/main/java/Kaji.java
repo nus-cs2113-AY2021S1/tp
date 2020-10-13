@@ -4,6 +4,7 @@ import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 import exception.InvalidFileFormatException;
 import manager.admin.Admin;
+import manager.admin.ModuleList;
 import manager.chapter.CardList;
 import parser.Parser;
 import storage.Storage;
@@ -24,7 +25,7 @@ public class Kaji {
         cards = new CardList();
         storage = new Storage(filePath);
         try {
-            Admin admin = new Admin(storage.loadModule());
+            Admin admin = new Admin(new ModuleList(storage.loadModule()));
             access = new Access(admin);
         } catch (FileNotFoundException e) {
             storage.createAdmin();

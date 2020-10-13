@@ -20,7 +20,7 @@ public class ListDueCommand extends Command {
 
     private void loadAllChapters(Storage storage, Ui ui) {
         try {
-            modules = storage.loadModule().getAllModules();
+            modules = storage.loadModule();
             for (Module module : modules) {
                 ArrayList<Chapter> loadedChapters = storage.loadChapter(module.toString());
                 allChapters.addAll(loadedChapters);
