@@ -17,9 +17,9 @@ class FoodTest {
 
     @Test
     public void footTest() {
-        assertEquals(testFood.getCalorie(), 480);
-        assertEquals(testFood.getCarbohydrate(), 50);
-        assertEquals(testFood.getProtein(), 40);
-        assertEquals(testFood.getFats(),30);
+        assertEquals(480, testFood.getCalorie());
+        assertEquals(50, testFood.getCarbohydrate());
+        assertEquals(40, testFood.getProtein());
+        assertEquals(30, testFood.getFats());
     }
 }
