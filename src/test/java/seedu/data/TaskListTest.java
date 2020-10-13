@@ -3,11 +3,10 @@ package seedu.data;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.exceptions.InvalidPriorityException;
+import seedu.exceptions.InvalidTaskNumberException;
 import seedu.task.Task;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class TaskListTest {
     private TaskList tasks;
@@ -59,4 +58,14 @@ class TaskListTest {
         assertEquals(lecture, sortedPriority.get(2));
         assertEquals(reading, sortedPriority.get(3));
     }
+    @Test
+    void deleteTask() throws InvalidTaskNumberException{
+        addTask();
+        tasks.delete(1);
+        assertFalse(tasks.contains(reading));
+        tasks.delete(1);
+        assertFalse(tasks.contains(lecture));
+        assertEquals(2,tasks.size());
+    }
+
 }
