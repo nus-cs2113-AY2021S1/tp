@@ -34,9 +34,7 @@ public class SystemException extends Exception {
                 + "repeat daily, weekly, monthly or yearly"),
         EXCEPTION_INVALID_RECURRING_TYPE("There are only the following recurring types: "
                 + "daily, weekly, monthly or yearly"),
-        EXCEPTION_INDEX_OUT_OF_RANGE("The index you specified is out of range. Please specify "
-                + "the index that is indicated when you print the event list"),
-        EXCEPTION_WRONG_TIME_UNIT("That time unit is not accepted!"),
+        EXCEPTION_INVALID_TIME_UNIT("That time unit is not accepted!"),
         EXCEPTION_MISSING_TAG_PREFIX("Missing tag prefix!"),
         EXCEPTION_MISSING_TAG("Missing tag name!"),
         EXCEPTION_MISSING_SORT("Missing sort order! Please specify how you would like to sort. "
