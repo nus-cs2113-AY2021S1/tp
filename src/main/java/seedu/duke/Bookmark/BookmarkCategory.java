@@ -1,3 +1,5 @@
+package seedu.duke.Bookmark;
+
 import java.util.ArrayList;
 
 public abstract class BookmarkCategory {

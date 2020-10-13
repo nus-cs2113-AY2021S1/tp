@@ -1,3 +1,5 @@
+package seedu.duke.Bookmark;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,7 +12,6 @@ public class BookmarkUi {
     }
 
     public void printWelcomeBookmarkMessage(){
-        printLine();
         System.out.println("Welcome to B00KMARK!");
         System.out.println("Choose your categories!");
     }
@@ -37,6 +38,10 @@ public class BookmarkUi {
             System.out.println(i +"." + link.getLink());
             i++;
         }
+    }
+
+    public void printGoodbyeMessage(){
+        System.out.println("EXITED from bookmark");
     }
 
 }

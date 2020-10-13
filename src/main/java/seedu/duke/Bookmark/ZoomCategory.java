@@ -1,7 +1,12 @@
+package seedu.duke.Bookmark;
+
+import seedu.duke.Bookmark.BookmarkCategory;
+import seedu.duke.Bookmark.BookmarkList;
+
 import java.util.ArrayList;
 
-public class NUSCategory extends BookmarkCategory{
-    private String name = "NUS";
+public class ZoomCategory extends BookmarkCategory {
+    private String name = "Zoom";
     private ArrayList<BookmarkList> links = new ArrayList<>();
 
     public String getName(){
@@ -9,15 +14,13 @@ public class NUSCategory extends BookmarkCategory{
     }
 
     public ArrayList<BookmarkList> getLinks(){
-        links.add(new BookmarkList("http"));
-        links.add(new BookmarkList( "HUhuhu"));
         return links;
     }
     public void addLink(String link){
         links.add(new BookmarkList(link));
     }
-
     public void removeLink(int number){
         links.remove(number-1);
     }
+
 }

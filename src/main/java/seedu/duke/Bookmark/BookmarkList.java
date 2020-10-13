@@ -1,3 +1,5 @@
+package seedu.duke.Bookmark;
+
 public class BookmarkList {
     private String link;
 
