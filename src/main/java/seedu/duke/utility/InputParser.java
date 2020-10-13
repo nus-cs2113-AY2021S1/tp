@@ -36,7 +36,6 @@ public class InputParser {
         String command = StringOperations.getFirstWord(input).toLowerCase();
 
         String[] splitInput = input.split(" ");
-        //TODO : Clean this portion
         if (splitInput.length < 2) {
             if (!Arrays.asList(singleWordInputs).contains(splitInput[0])) {
                 Ui.printInvalidFormatException();
