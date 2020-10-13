@@ -25,6 +25,10 @@ public class Bus {
         return routeNames;
     }
 
+    public String getBusNumber() {
+        return this.busNumber;
+    }
+
     ArrayList<BusStops> getPossibleRoute(String startingLoc, String destination) {
         ArrayList<BusStops> allStopsFromStart = new ArrayList<>();
         ArrayList<BusStops> finalRoute = new ArrayList<>();
