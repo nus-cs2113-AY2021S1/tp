@@ -1,1 +1,4 @@
-James Gosling
+about
+help
+textbook
+exit

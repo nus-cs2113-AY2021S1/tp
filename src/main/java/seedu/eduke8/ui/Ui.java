@@ -1,12 +1,12 @@
 package seedu.eduke8.ui;
 
-import seedu.eduke8.hint.HintInterface;
-import seedu.eduke8.question.QuestionInterface;
-import seedu.eduke8.option.OptionInterface;
+import seedu.eduke8.hint.Hint;
+import seedu.eduke8.option.Option;
+import seedu.eduke8.question.Question;
 
 import java.util.Scanner;
 
-public class Ui implements UiInterface {
+public class Ui {
 
 
     private static final int LAST_OPTION = 4;
@@ -24,8 +24,8 @@ public class Ui implements UiInterface {
     private static final String HORIZONTAL_LINE = "-------------------------------------------------------------------";
     private static final String MESSAGE_ABOUT = "E-Duke-8 is a desktop app that helps CS2113/T students learn and "
             + "understand software engineering and OOP principles through a gamified platform and enhance their "
-            + "learning experience. It also consolidates key concepts for easy revision. ";
-    private static final String MESSAGE_GREETINGS = "Hello! I'm E-Duke-8\n What can I do for you?";
+            + "learning experience. It also consolidates key concepts for easy revision.";
+    private static final String MESSAGE_GREETINGS = "Hello! I'm E-Duke-8\nWhat can I do for you?";
     private static final String MESSAGE_EXIT = "Bye bye. Hope you have a nice day and see you soon!";
     private static final String MESSAGE_HELP = "These are the commands that you can used:";
     private static final String MESSAGE_COMMANDS = "1) about\n2) help\n3) topics\n4) textbook\n5) quiz\n6) stats\n"
@@ -56,20 +56,20 @@ public class Ui implements UiInterface {
         printMessage(MESSAGE_EXIT);
     }
 
-    public void printOption(OptionInterface option, int optionNumber) {
-        System.out.println(optionNumber + ") " + option.getOptionDescription());
+    public void printOption(Option option, int optionNumber) {
+        System.out.println(optionNumber + ") " + option.getDescription());
         if (optionNumber == LAST_OPTION) {
             System.out.println(HORIZONTAL_LINE);
         }
     }
 
-    public void printQuestion(QuestionInterface question, int questionNumber) {
+    public void printQuestion(Question question, int questionNumber) {
         System.out.println(HORIZONTAL_LINE);
-        System.out.println(questionNumber + ". " + question.getQuestionDescription());
+        System.out.println(questionNumber + ". " + question.getDescription());
     }
 
-    public void printHint(HintInterface hint) {
-        System.out.println("Hint: " + hint);
+    public void printHint(Hint hint) {
+        System.out.println("Hint: " + hint.getDescription());
     }
 
     //Formatting of topicsChosen: separated by ","
@@ -129,7 +129,7 @@ public class Ui implements UiInterface {
     }
 
     private void printStartQuizQuestions(int numberOfQuestionsChosen) {
-        System.out.println("You have chosen to complete " + numberOfQuestionsChosen + "question");
+        System.out.print("You have chosen to complete " + numberOfQuestionsChosen + " question");
         if (numberOfQuestionsChosen < 2) {
             System.out.println(".");
         } else {
