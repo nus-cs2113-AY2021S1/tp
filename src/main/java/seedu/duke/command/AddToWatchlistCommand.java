@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AddToWatchlistCommand extends Command {
-    private final String ADD_OPTION = "-a";
+    private static final String ADD_OPTION = "-a";
     
     private String option;
     private String animeName = "";
@@ -21,7 +21,7 @@ public class AddToWatchlistCommand extends Command {
         String[] descriptionSplit = description.split(" ", 2);
         
         option = descriptionSplit[0];
-        if(descriptionSplit.length == 2) {
+        if (descriptionSplit.length == 2) {
             animeName = descriptionSplit[1];
         }
     }
@@ -44,7 +44,7 @@ public class AddToWatchlistCommand extends Command {
     
     public void addToWatchlist(Storage storage, ArrayList<Watchlist> activeWatchlistList, 
                                Watchlist activeWatchlist) throws AniException { 
-        if(animeName == null || animeName.trim().isEmpty()) {
+        if (animeName == null || animeName.trim().isEmpty()) {
             logger.log(Level.WARNING, "Anime name is empty, exception thrown");
             throw new AniException("Anime name cannot be empty.");
         }
