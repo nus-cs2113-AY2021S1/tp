@@ -147,7 +147,7 @@ public class Ui {
         int taskPresent = 0;
         for (Task task : taskList.getList()) {
             if (task.toString().contains(find)) {
-                Ui.printMatch(taskPresent);
+                Ui.printTaskMatch();
                 System.out.println(task);
                 taskPresent = 1;
             }
@@ -160,26 +160,28 @@ public class Ui {
     }
 
     public static void printFindSubject(SubjectList subjectList, String find) {
-        int taskPresent = 0;
+        int subjectPresent = 0;
         for (Subject subject : subjectList.getList()) {
             if (subject.toString().contains(find)) {
-                Ui.printMatch(taskPresent);
+                Ui.printSubjectMatch();
                 System.out.println(subject);
-                taskPresent = 1;
+                subjectPresent = 1;
             }
         }
-        assert (taskPresent == 1 || taskPresent == 0);
-        if (taskPresent == 0) {
+        assert (subjectPresent == 1 || subjectPresent == 0);
+        if (subjectPresent == 0) {
             System.out.println("____________________________________________________________\n"
                     + " Sorry! I could not find any subjects with " + find + " in the list.");
         }
         System.out.println("____________________________________________________________");
     }
 
-    public static void printMatch(int taskPresent) {
-        if (taskPresent == 0) {
-            System.out.println(" Here are the matching task(s) in your list:");
-        }
+    public static void printSubjectMatch() {
+        System.out.println(" Here are the matching subject(s) in your list:");
+    }
+
+    public static void printTaskMatch() {
+        System.out.println(" Here are the matching task(s) in your list:");
     }
 
     public static void fileNotFoundError() {
@@ -219,24 +221,23 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
-    public static void printTopicMatch(int taskPresent) {
-        if (taskPresent == 0) {
-            System.out.println("____________________________________________________________\n"
-                    + " Here are the matching topic(s) in your list:");
-        }
+    public static void printTopicMatch() {
+        System.out.println("____________________________________________________________\n"
+                + " Here are the matching topic(s) in your list:");
     }
 
+
     public static void printFindTopic(TopicList topicList, String query) {
-        int taskPresent = 0;
+        int topicPresent = 0;
         for (Topic topic : topicList.getList()) {
             if (topic.toString().contains(query)) {
-                Ui.printTopicMatch(taskPresent);
+                Ui.printTopicMatch();
                 System.out.println(topic);
-                taskPresent = 1;
+                topicPresent = 1;
             }
         }
-        assert (taskPresent == 1 || taskPresent == 0);
-        if (taskPresent == 0) {
+        assert (topicPresent == 1 || topicPresent == 0);
+        if (topicPresent == 0) {
             System.out.println("____________________________________________________________\n"
                     + " Sorry! I could not find any topics with " + query + " in the list.");
         }
@@ -337,7 +338,7 @@ public class Ui {
         for (Result result : subject.getResults().getList()) {
             assert index > 0;
             System.out.println("Quiz " + index + ": " + result);
-            index = index + 1;
+            index++;
         }
         System.out.println("____________________________________________________________");
     }
@@ -348,7 +349,7 @@ public class Ui {
         for (Result result : topic.getResults().getList()) {
             assert index > 0;
             System.out.println("Quiz " + index + ": " + result);
-            index = index + 1;
+            index++;
 
         }
         System.out.println("____________________________________________________________");
