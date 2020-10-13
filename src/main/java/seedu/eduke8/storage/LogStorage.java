@@ -3,7 +3,6 @@ package seedu.eduke8.storage;
 import org.json.simple.parser.ParseException;
 import seedu.eduke8.common.Displayable;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.ConsoleHandler;
@@ -17,11 +16,7 @@ public class LogStorage extends LocalStorage {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public LogStorage(String filePath) {
-        // Use relative path for Unix systems
-        String[] filePathSplit = filePath.split("/");
-        for (String path: filePathSplit) {
-            this.filePath += File.separator + path;
-        }
+        super(filePath);
     }
 
     // Set up save to file inside of print to console

@@ -12,7 +12,6 @@ import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.topic.Topic;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,12 +19,9 @@ import java.util.ArrayList;
 import static java.util.stream.Collectors.toList;
 
 public class TopicsStorage extends LocalStorage {
+
     public TopicsStorage(String filePath) {
-        // Use relative path for Unix systems
-        String[] filePathSplit = filePath.split("/");
-        for (String path: filePathSplit) {
-            this.filePath += File.separator + path;
-        }
+        super(filePath);
     }
 
     @Override
