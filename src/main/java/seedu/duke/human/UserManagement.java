@@ -5,9 +5,12 @@ import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserManagement {
     Storage storage;
+    private static final Logger logger = Logger.getLogger("UserLogger");
     protected ArrayList<User> userList = new ArrayList<>();
     protected User activeUser;
 
@@ -21,6 +24,7 @@ public class UserManagement {
     }
 
     public void setActiveUser(User inputUser) {
+        logger.log(Level.INFO, "User switched: " + inputUser.getName());
         activeUser = inputUser;
     }
 
@@ -36,10 +40,11 @@ public class UserManagement {
         User newUser = new User(name, dob, gender);
         userList.add(newUser);
         storage.saveUser(newUser);
+
+        logger.log(Level.INFO, "User created: " + name + " | " + dob + " | " + gender);
         return newUser;
     }
 
-    //TODO: Find a proper place for this, it should be moved out of UserManagement
     public void addUserDialogue(Ui ui) {
         boolean userCreated = false;
 

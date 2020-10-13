@@ -6,11 +6,14 @@ import seedu.duke.exception.AniException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+
+
 
 public class User extends Human {
     // Add Watchlist & Bookmarks here and/or UserManagement
     public Bookmark bookmark;
-
 
     private static final SimpleDateFormat DATE_MONTH_YEAR = new SimpleDateFormat("dd/MM/yyyy");
     protected Date birthdate;
@@ -58,14 +61,12 @@ public class User extends Human {
         return name;
     }
 
-
-
     /**
      * Provides the name of the user with Japanese honorifics depending on his gender.
      *
      * @return name of user with honorifics.
      */
-    public String getFancyName() {
+    public String getHonorificName() {
         if (gender == Gender.Female) {
             return name + "-chan";
         } else {
