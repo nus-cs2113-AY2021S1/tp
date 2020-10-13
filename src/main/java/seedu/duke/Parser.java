@@ -76,7 +76,7 @@ public class Parser {
         }
 
         if (powerIsNumeric(power)) {
-            return new AddCommand(name, location, power, type);
+            return new AddCommand(name, location, power, type, true);
         } else {
             return new InvalidCommand(Messages.MESSAGE_POWER_NOT_NUMBER);
         }

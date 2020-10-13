@@ -80,9 +80,9 @@ public class StorageFile {
                         || splitString[2].isEmpty() || splitString[3].isEmpty()) {
                     throw new FileCorrupted();
                 }
-                AddCommand add = new AddCommand(splitString[1], splitString[0], splitString[2], splitString[3]);
+                AddCommand add = new AddCommand(splitString[1], splitString[0], splitString[2], splitString[3], false);
                 add.setData(appliances, homeLocations);
-                add.sortIntoType();
+                add.execute();
                 appliances.getAppliance(i).updatePowerConsumption(splitString[5]);
                 if (splitString[4].toLowerCase().equals("on")) {
                     appliances.getAppliance(i).switchOn();
