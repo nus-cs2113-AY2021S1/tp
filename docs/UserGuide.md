@@ -140,7 +140,21 @@ Example of usage:
   <br/><br/> 
 <a name="timetablemode"></a>  
 ### Timetable mode    
+
+#### Add time slot: `add`  
+Add a time slot with start and end time, day of week, and title.  
   
+    Format: add {START TIME} {END TIME} {DAY} {TITLE}
+ 
+* The `START TIME` and `END TIME` is the format `HH:mm`.  
+* The `DAY` can be one of `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`.  
+* There should be strictly one space between each parameter.    
+  
+Example of usage:   
+
+`add 10:00 12:00 mon CS1231 Lecture`  
+  
+`add 14:00 16:00 tue CG1111 Tutorial`
   
 ## FAQ  
   
@@ -162,6 +176,6 @@ Example of usage:
 **find**|`find {MODULE} {DESCRIPTION(optional)}` <br>example: `find CS2113 tutorial`
 **launch**|`launch {MODULE} {DESCRIPTION(optional)}` <br>example: `launch CS2113`
 **Timetable Mode**|
-**slotadd**|`before  <yyyyMMdd HHmm>`<br>example: `before 20210909 1159`
-**slotdel**|`after <yyyyMMdd HHmm>`<br>example: `after 19990101 0100`
+**add**|`add {START TIME} {END TIME} {DAY} {TITLE}` <br>example: `add 10:00 12:00 mon CS1231 Lecture` 
+**delete**|`after <yyyyMMdd HHmm>`<br>example: `after 19990101 0100`
 **show**|`today`
