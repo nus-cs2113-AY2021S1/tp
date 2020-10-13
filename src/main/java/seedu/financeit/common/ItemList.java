@@ -58,7 +58,8 @@ public abstract class ItemList extends ParamHandler {
      *                                   it attempts to access index null
      */
     public Item getItemAtIndex() throws IndexOutOfBoundsException {
-        return this.items.get(indexToModify);
+        int index = indexToModify;
+        return this.items.get(index);
     }
 
     //Manually specify index in the code, if necessary
