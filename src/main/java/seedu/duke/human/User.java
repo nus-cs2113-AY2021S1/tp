@@ -11,7 +11,6 @@ public class User extends Human {
     // Add Watchlist & Bookmarks here and/or UserManagement
     public Bookmark bookmark;
 
-
     private static final SimpleDateFormat DATE_MONTH_YEAR = new SimpleDateFormat("dd/MM/yyyy");
     protected Date birthdate;
     protected Gender gender;
@@ -58,14 +57,12 @@ public class User extends Human {
         return name;
     }
 
-
-
     /**
      * Provides the name of the user with Japanese honorifics depending on his gender.
      *
      * @return name of user with honorifics.
      */
-    public String getFancyName() {
+    public String getHonorificName() {
         if (gender == Gender.Female) {
             return name + "-chan";
         } else {
