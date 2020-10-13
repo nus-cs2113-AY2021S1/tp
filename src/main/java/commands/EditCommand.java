@@ -29,6 +29,10 @@ public class EditCommand extends Command {
             + "         " + COMMAND_WORD + " 2 Chapter 2\n"
             + "         " + COMMAND_WORD + " 3 q:What is the result of one plus one | a:two\n";
 
+    private static final String MODULE = "module";
+    private static final String CHAPTER = "chapter";
+    private static final String CARD = "card";
+
     private final int editIndex;
     private String moduleOrChapter;
     private String question;
@@ -67,47 +71,44 @@ public class EditCommand extends Command {
         CardList cards = access.getChapter().getCards();
         try {
             Card card = cards.getCard(editIndex);
-            ui.showCardUnedited(card);
+            ui.showUnedited(CARD, card.toString());
             if (!(question.isEmpty())) {
                 card.setQuestion(question);
             }
             if (!(answer.isEmpty())) {
                 card.setAnswer(answer);
             }
-            ui.showCardEdited(card);
+            ui.showEdited(CARD, card.toString());
             storage.saveCards(cards, access.getModule().getModuleName(), access.getChapter().getChapterName());
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             throw new InvalidInputException("The flashcard number needs to be within the range "
-                    + "of the total number of flashcards\n"
-                    + MESSAGE_USAGE);
+                    + "of the total number of flashcards\n");
         }
     }
 
-    private void editModule(Ui ui, Access access, Storage storage) throws InvalidInputException, IOException {
+    private void editModule(Ui ui, Access access, Storage storage) throws InvalidInputException {
         ModuleList modules = access.getAdmin().getModules();
         try {
             Module module = modules.getModule(editIndex);
-            ui.showModuleUnedited(module);
+            ui.showUnedited(MODULE, module.toString());
             module.setModuleName(moduleOrChapter);
-            ui.showModuleEdited(module);
+            ui.showEdited(MODULE, module.toString());
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             throw new InvalidInputException("The module number needs to be within the range "
-                    + "of the total number of modules\n"
-                    + MESSAGE_USAGE);
+                    + "of the total number of modules\n");
         }
     }
 
-    private void editChapter(Ui ui, Access access, Storage storage) throws InvalidInputException, IOException {
+    private void editChapter(Ui ui, Access access, Storage storage) throws InvalidInputException {
         ChapterList chapters = access.getModule().getChapters();
         try {
             Chapter chapter = chapters.getChapter(editIndex);
-            ui.showChapterUnedited(chapter);
+            ui.showUnedited(CHAPTER, chapter.toString());
             chapter.setChapterName(moduleOrChapter);
-            ui.showChapterEdited(chapter);
+            ui.showEdited(CHAPTER, chapter.toString());
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             throw new InvalidInputException("The chapter number needs to be within the range "
-                    + "of the total number of chapters\n"
-                    + MESSAGE_USAGE);
+                    + "of the total number of chapters\n");
         }
     }
 

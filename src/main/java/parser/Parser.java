@@ -64,7 +64,7 @@ public class Parser {
         case EditCommand.COMMAND_WORD:
             return prepareEdit(commandArgs, access);
         default:
-            throw new InvalidInputException();
+            throw new InvalidInputException("There is no such command type.\n");
         }
     }
 
@@ -136,7 +136,7 @@ public class Parser {
             return prepareAddCard(commandArgs);
         } else {
             throw new IncorrectAccessLevelException("Add command can only be called at admin, "
-                    + "module and chapter level.\n");
+                    + "module and chapter level.");
         }
     }
 
@@ -184,7 +184,7 @@ public class Parser {
             return prepareEditModuleOrChapter(commandArgs, MODULE_LEVEL);
         } else {
             throw new IncorrectAccessLevelException("Edit command can only be called at admin, "
-                    + "module and chapter level.\n");
+                    + "module and chapter level.");
         }
     }
 
@@ -294,7 +294,7 @@ public class Parser {
 
     private static Command prepareExit(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
-            throw new InvalidInputException();
+            throw new InvalidInputException("There should not be any arguments for exit.");
         }
         return new ExitCommand();
     }

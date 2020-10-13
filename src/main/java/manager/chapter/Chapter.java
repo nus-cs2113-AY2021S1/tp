@@ -1,7 +1,6 @@
 package manager.chapter;
 
 import manager.card.Card;
-import manager.module.ChapterList;
 
 import java.util.ArrayList;
 
