@@ -20,9 +20,9 @@ If you can type fast, Zoomaster can help fetch useful website links for you quic
     * [Find bookmark:](#findbookmark)  **find**
     * [Launch bookmark:](#launchbookmark)  **launch**
   * [Timetable mode](#timetablemode)
-    * [Show timetable:](#showtimtetable) **show**
+    * [Show timetable:](#showtimetable) **show**
     * [Add slot:](#addtimeslot) **add**
-    * [Delete slot:](#deleteslot)  **delete**
+    * [Delete slot:](#deletetimeslot)  **delete**
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
   
