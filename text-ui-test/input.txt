@@ -1,5 +1,6 @@
 todo homework
 deadline project /by 101020
+activity CCA @NUS /101020 1230
 lecture cs2113 @lt12 /081020 1600
 tutorial cs2113 @com1 /081020 1600
 lab cs1010 @com1-bi-12 /101020 1000

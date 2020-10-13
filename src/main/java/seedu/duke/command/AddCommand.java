@@ -47,6 +47,7 @@ public class AddCommand extends Command {
         String[] command;
         String[] dateTime;
         String taskDescription;
+        String eventDescription;
         LocalDate date;
         LocalTime time;
         String venue;
@@ -88,22 +89,22 @@ public class AddCommand extends Command {
             break;
         case ACTIVITY:
             /**
-             * User input for Activity event example: activity run training /at 020202 1200 sentosa
+             * User input for Activity event example: activity run training @sentosa / 020202 1200
              */
             try {
-                command = command[1].split("/at");
-                taskDescription = command[0].trim();
-                String[] dateTimeVenue;
-                dateTimeVenue = command[1].trim().split(" ", 3);
-                date = DateTimeParser.inputDateProcessor(dateTimeVenue[0].trim());
-                time = DateTimeParser.inputTimeProcessor(dateTimeVenue[1].trim());
-                venue = dateTimeVenue[2].trim();
+                command = command[1].trim().split("@", 2);
+                eventDescription = command[0].trim();
+                command = command[1].trim().split("/", 2);
+                venue = command[0].trim();
+                dateTime = command[1].trim().split(" ", 2);
+                date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
+                time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
 
 
-                if (taskDescription.isEmpty()) {
+                if (eventDescription.isEmpty()) {
                     throw new DukeException("activity");
                 } else {
-                    calendarList.addEvent(new Activity(taskDescription, date, time, venue));
+                    calendarList.addEvent(new Activity(eventDescription, date, time, venue));
                 }
             } catch (Exception e) {
                 throw new DukeException("activity");
@@ -123,8 +124,6 @@ public class AddCommand extends Command {
                 dateTime = command[1].trim().split(" ", 2);
                 date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
                 time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
-
-
 
                 if (moduleCode.isEmpty()) {
                     throw new DukeException("exam");
