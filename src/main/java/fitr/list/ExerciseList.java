@@ -1,4 +1,6 @@
-package seedu.duke;
+package fitr.list;
+
+import fitr.Exercise;
 
 import java.util.ArrayList;
 
@@ -27,5 +29,9 @@ public class ExerciseList {
 
     public int getSize() {
         return exerciseList.size();
+    }
+
+    public void clearList() {
+        exerciseList.clear();
     }
 }

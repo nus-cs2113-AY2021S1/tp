@@ -1,4 +1,4 @@
-package seedu.duke.common;
+package fitr.common;
 
 /**
  * Container for commands.

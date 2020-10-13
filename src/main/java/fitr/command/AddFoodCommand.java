@@ -1,4 +1,11 @@
-package seedu.duke;
+package fitr.command;
+
+import fitr.Calorie;
+import fitr.Food;
+import fitr.list.ExerciseList;
+import fitr.list.FoodList;
+import fitr.storage.Storage;
+import fitr.ui.Ui;
 
 public class AddFoodCommand extends Command {
     public AddFoodCommand(String command) {
@@ -15,12 +22,12 @@ public class AddFoodCommand extends Command {
             if (command.split(" ").length == 1) {
                 Calorie amountOfCalories = new Calorie(Integer.parseInt(command.split(" ")[0]));
                 foodlist.addFood(new Food(nameOfFood, amountOfCalories));
-                UI.showAdd("The following food has been added: " + nameOfFood);
+                Ui.showAdd("The following food has been added: " + nameOfFood);
             } else if (command.split(" ").length == 2) {
                 Calorie amountOfCalories = new Calorie(Integer.parseInt(command.split(" ")[0]));
                 int amountOfFood = Integer.parseInt(command.split(" ", 2)[1]);
                 foodlist.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood));
-                UI.showAdd("The following food has been added: " + nameOfFood);
+                Ui.showAdd("The following food has been added: " + nameOfFood);
             }
         } catch (NumberFormatException | NullPointerException e) {
             System.out.println("Sorry calories have to be a number");

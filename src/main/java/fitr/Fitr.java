@@ -1,4 +1,12 @@
-package seedu.duke;
+package fitr;
+
+import fitr.command.Command;
+import fitr.list.ExerciseList;
+import fitr.list.FoodList;
+import fitr.storage.Storage;
+import fitr.ui.Ui;
+import fitr.user.User;
+import fitr.parser.Parser;
 
 import java.io.IOException;
 
@@ -11,7 +19,7 @@ public class Fitr {
     public Fitr(String filePathOfUserConfig, String filePathOfFoodList, String filePathOfExerciseList) {
         try {
             user = new User();
-            UI.printGreetingMessage();
+            Ui.printGreetingMessage();
             storage = new Storage(filePathOfUserConfig, filePathOfFoodList, filePathOfExerciseList);
             if (!storage.readUserConfigFile(user)) {
                 user.setup();
@@ -27,12 +35,12 @@ public class Fitr {
     public void run() {
         boolean isExit = false;
         while (!isExit) {
-            String userInput = UI.read();
+            String userInput = Ui.read();
             Command c = Parser.parse(userInput);
             c.execute(foodList, exerciseList, storage);
             isExit = c.isExit();
         }
-        UI.printExitMessage();
+        Ui.printExitMessage();
     }
 
     public static void main(String[] args) {
