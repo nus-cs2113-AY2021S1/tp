@@ -1,4 +1,5 @@
 package fitr.command;
+
 import fitr.parser.Parser;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertSame;
