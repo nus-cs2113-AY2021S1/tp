@@ -11,12 +11,15 @@
  Watchlist file is not found.
 -------------------------------------------------------------
  What's your name?
-  Hello James Gosling! What might your date of birth be?
-  What might your gender be? (Male/Female/Others)
-  Name= James Gosling, birthdate= 01/02/1999, gender= Male
+ Hello Abec! What might your date of birth be? (DD/MM/YYYY)
+ What might your gender be? (Male/Female/Other)
+ Successfully added new user: 
+Name: Abec
+Birthdate: 01/02/1996
+Gender: Female
 
- James Gosling-san(Default) #>  Watchlist created successfully!
+ Abec-chan(Default) #>  Watchlist created successfully!
 
- James Gosling-san(Default) #>  Watchlist created successfully!
+ Abec-chan(Default) #>  Watchlist created successfully!
 
- James Gosling-san(Default) #> Sayonara!
+ Abec-chan(Default) #> Sayonara!

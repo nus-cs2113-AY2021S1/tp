@@ -1,7 +1,7 @@
 package seedu.duke.parser;
 
 import seedu.duke.command.Command;
-import seedu.duke.command.AddProfileCommand;
+import seedu.duke.command.AddUserCommand;
 import seedu.duke.command.EditProfileCommand;
 import seedu.duke.command.BrowseAnimeCommand;
 import seedu.duke.command.WatchlistCommand;
@@ -26,8 +26,8 @@ public class Parser {
         }
 
         switch (command) {
-        case "addprofile":
-            return new AddProfileCommand(description);
+        case "adduser":
+            return new AddUserCommand(description);
                 
         case "editprofile":
             return new EditProfileCommand(description);

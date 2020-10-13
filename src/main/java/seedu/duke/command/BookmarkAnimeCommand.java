@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.anime.Anime;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.bookmark.Bookmark;
+import seedu.duke.human.UserManagement;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
@@ -18,7 +19,7 @@ public class BookmarkAnimeCommand extends Command {
 
     @Override
     public void execute(Ui ui, Storage storage, AnimeData animeData, Watchlist currentWatchlist,
-                        ArrayList<Watchlist> watchlists, Bookmark bookmark) {
+                        ArrayList<Watchlist> watchlists, Bookmark bookmark, UserManagement userManagement) {
         if (description.contains(" ")) {
             String[] descriptionSplit = description.split(" ", 2);
             // Code to be added

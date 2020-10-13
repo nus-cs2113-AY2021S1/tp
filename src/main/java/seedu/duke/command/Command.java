@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.AniException;
+import seedu.duke.human.UserManagement;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
@@ -29,7 +30,8 @@ public abstract class Command {
     }
 
     public void execute(Ui ui, Storage storage, AnimeData animeData, Watchlist currentWatchlist,
-                        ArrayList<Watchlist> watchlists, Bookmark bookmark) throws AniException {
+                        ArrayList<Watchlist> watchlists, Bookmark bookmark, UserManagement userManagement)
+            throws AniException {
         throw new AniException("This method should be implemented in the child class");
     }
 

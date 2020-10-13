@@ -1,7 +1,6 @@
 package seedu.duke.ui;
 
-import seedu.duke.human.UserProfile;
-
+import seedu.duke.human.User;
 import java.util.Scanner;
 
 public class Ui {
@@ -33,6 +32,10 @@ public class Ui {
         System.out.println(HORIZONTAL_LINE);
     }
 
+    public String readInput() {
+        return CONSOLE.nextLine();
+    }
+
     public String readUserInput(String userName, String watchlistName) {
         System.out.print(System.lineSeparator() + " " + userName + "(" + watchlistName + ") #> ");
         String userInput = CONSOLE.nextLine();
@@ -40,17 +43,11 @@ public class Ui {
     }
 
     // TEMPORARY, REMOVED WHEN DONE REFACTORING!
-    public String readQuickStartInput() {
-        System.out.print(" ");
-        String userInput = CONSOLE.nextLine();
-        return userInput;
-    }
-
     /**
      * Greets existing user upon opening up application.
      */
-    public void greetExisting(UserProfile userProfile) {
-        String userName = userProfile.getFancyName();
+    public void greetExisting(User user) {
+        String userName = user.getName();
         System.out.println("Welcome Back, " + userName);
         System.out.println();
     }

@@ -6,14 +6,12 @@ import seedu.duke.anime.AnimeStorage;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.command.Command;
 import seedu.duke.exception.AniException;
-import seedu.duke.human.UserProfile;
+import seedu.duke.human.UserManagement;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
-
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -23,12 +21,12 @@ public class Duke {
     private static final String WATCHLIST_FILE_NAME = "watchlist.txt";
     private static final String ANIME_DATA_SOURCE_FOLDER = "/data/AniListData";
 
+
     private Ui ui;
     private Parser parser;
     private Storage storage;
+    private UserManagement userManagement;
     private AnimeStorage animeStorage;
-    private UserProfile userProfile;
-    private Watchlist currentWatchlist;
     private ArrayList<Watchlist> watchlists;
     private AnimeData animeData;
     private Bookmark bookmark;
@@ -39,9 +37,11 @@ public class Duke {
         ui.printWelcomeMessage();
         parser = new Parser();
         storage = new Storage(USER_PROFILE_FILE_NAME, WATCHLIST_FILE_NAME);
-        userProfile = storage.readUserProfileFile(ui);
+        userManagement = new UserManagement(ui, storage);
+        userManagement.setCurrentUser(storage.readUserProfileFile(ui));
         watchlists = storage.readWatchlistFile(ui);
         bookmark = new Bookmark();
+
         try {
             animeStorage = new AnimeStorage(ANIME_DATA_SOURCE_FOLDER);
             animeData = new AnimeData(animeStorage.readAnimeDatabase());
@@ -56,21 +56,27 @@ public class Duke {
             activeWatchlist = watchlists.get(0);
         }
 
+        // Assert
+        assert userManagement != null;
     }
 
     public void run() {
         Command command = null;
-        if (userProfile == null) {
-            userProfile = quickStart();
+        if (userManagement.getCurrentUser() == null) {
+            userManagement.addUserDialogue();
+            assert userManagement.getCurrentUser() != null;
         }
 
+
+
         do {
-            String userInput = ui.readUserInput(userProfile.getFancyName(), activeWatchlist.getName());
+            String userInput = ui.readUserInput(userManagement.getCurrentUser().getName(), activeWatchlist.getName());
+
             try {
                 command = Parser.getCommand(userInput);
                 // now passing in many parameters into execute,
                 // but maybe can reduce in the future after refactoring?
-                command.execute(ui, storage, animeData, currentWatchlist, watchlists, bookmark);
+                command.execute(ui, storage, animeData, activeWatchlist, watchlists, bookmark, userManagement);
             } catch (AniException exception) {
                 ui.printErrorMessage(exception.getMessage());
             }
@@ -87,36 +93,6 @@ public class Duke {
 
     private static final Scanner CONSOLE = new Scanner(System.in);
 
-    private UserProfile quickStart() {
-        UserProfile userProfile = null;
-        boolean profileMade = false;
-        while (!profileMade) {
-            try {
-                userProfile = createProfile();
-                profileMade = true;
-                storage.writeUserProfileFile(ui, userProfile);
-            } catch (ParseException e) {
-                ui.printErrorMessage("Is your date in dd/MM/yyyy format?");
-            } catch (AniException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return userProfile;
-    }
-
-    private UserProfile createProfile() throws ParseException, AniException {
-        ui.printMessage("What's your name?");
-        String name = ui.readQuickStartInput();
-        ui.printMessage("Hello " + name + "! What might your date of birth be?");
-        String dob = ui.readQuickStartInput();
-        ui.printMessage("What might your gender be? (Male/Female/Others)");
-        String gender = ui.readQuickStartInput();
-
-        UserProfile newProfile = new UserProfile(name, dob, gender);
-        ui.printMessage(newProfile.toString());
-        return newProfile;
-    }
 
     // Sample usage of Anime Class [To Be Deleted]
     private void addAnime() {
@@ -134,25 +110,6 @@ public class Duke {
         System.out.println("===End of Sample Anime Class===");
     }
 
-    /**
-     * Adds a new user profile.
-     */
-    private void addProfile(String description) {
-        // Code to be added
-
-        // Print for testing
-        System.out.println("New profile added!");
-    }
-
-    /**
-     * Edits an existing user profile.
-     */
-    private void editProfile(String description) {
-        // Code to be added
-
-        // Print for testing
-        System.out.println("Profile edited!");
-    }
 
     /**
      * Browses the list of anime.
