@@ -115,4 +115,9 @@ public class UI {
     public static void printInvalidCommandError() {
         printCustomError(ERROR_INVALID_COMMAND);
     }
+
+    public static void showAdd(String message) {
+        System.out.println(message);
+    }
+
 }
