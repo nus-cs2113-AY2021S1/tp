@@ -10,6 +10,7 @@ public class QuestionList implements DisplayableList {
     private ArrayList<Displayable> questions;  // list of questions for the particular topic
 
     public QuestionList(ArrayList<Displayable> questions) {
+        // assert questions.size() > 0;     // for another pull request
         this.questions = questions;
     }
 
