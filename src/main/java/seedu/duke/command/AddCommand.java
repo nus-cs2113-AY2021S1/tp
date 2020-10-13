@@ -24,9 +24,9 @@ public class AddCommand extends Command {
 
     public static final String TODO = "todo";
     public static final String DEADLINE = "deadline";
-    public static final String ACTIVITY = "activity";
-    public static final String LECTURE = "lecture";
-    public static final String TUTORIAL = "tutorial";
+    public static final String ACTIVITY = "act";
+    public static final String LECTURE = "lect";
+    public static final String TUTORIAL = "tut";
     public static final String LAB = "lab";
     public static final String EXAM = "exam";
 
@@ -73,7 +73,7 @@ public class AddCommand extends Command {
             break;
         case DEADLINE:
             try {
-                command = command[1].split("/by");
+                command = command[1].split("/");
                 taskDescription = command[0].trim();
                 date = DateTimeParser.inputDateProcessor(command[1].trim());
 
