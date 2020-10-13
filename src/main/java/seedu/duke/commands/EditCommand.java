@@ -18,20 +18,22 @@ public class EditCommand {
 
     public static void editSeasons(String editCommand) {
         int numSeasons = Integer.parseInt(editCommand.substring(7));
+        int initialNumSeasons = show.getNumSeasons();
         show.setNumSeasons(numSeasons);
         int[] episodes;
-        if (numSeasons > show.getNumSeasons()) {
+        if (numSeasons > initialNumSeasons) {
             episodes = new int[numSeasons];
-            for (int i = 0; i < show.getNumSeasons(); i++) {
-                episodes[i] = show.getEpisodesForSeason(i);
+            for (int i = 0; i < initialNumSeasons; i++) {
+                episodes[i] = show.getRawEpisodesForSeason(i);
             }
-            for (int i = show.getNumSeasons(); i < numSeasons; i++) {
+            for (int i = initialNumSeasons; i < numSeasons; i++) {
                 episodes[i] = 1;
             }
         } else {
             episodes = new int[numSeasons];
-            for (int i = 0; i < show.getNumSeasons(); i++) {
-                episodes[i] = show.getEpisodesForSeason(i);
+            //Started for 1 to reference the correct season number
+            for (int i = 0; i < numSeasons; i++) {
+                episodes[i] = show.getRawEpisodesForSeason(i);
             }
         }
         show.setNumEpisodesForSeasons(episodes);
