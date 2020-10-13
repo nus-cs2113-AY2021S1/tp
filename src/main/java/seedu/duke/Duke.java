@@ -13,7 +13,6 @@ import seedu.duke.exception.NoTopicException;
 import seedu.duke.card.SubjectList;
 import seedu.duke.exception.RepeatedSubjectException;
 import seedu.duke.parser.SubjectParser;
-import seedu.duke.storage.SubjectStorage;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
@@ -24,7 +23,6 @@ import java.util.ArrayList;
 public class Duke {
     public static String FILENAME = "data/duke.txt";
 
-    private SubjectStorage subjectStorage;
     private SubjectList subjects;
     private TaskList tasks;
     private ResultList results;
@@ -35,11 +33,9 @@ public class Duke {
      * @param filename of the <code>File</code> that stores the text data of the to-do list
      */
     public Duke(String filename) {
-        subjectStorage = new SubjectStorage(filename);
         subjects = new SubjectList(new ArrayList<>());
         tasks = new TaskList(new ArrayList<>());
         results = new ResultList(new ArrayList<>());
-        subjectStorage.load(subjects);
     }
 
     /**
@@ -63,9 +59,6 @@ public class Duke {
                     c.execute(subjects);
                 }
                 isExit = c.isExit();
-                subjects.saveSubject(subjectStorage.getFileName());
-            } catch (IOException e) {
-                Ui.printWritingError();
             } catch (NumberFormatException e) {
                 Ui.printIndexError();
             } catch (NoSubjectException e) {
