@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
+import seedu.exceptions.InvalidTaskNumberException;
 import seedu.task.Task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -60,4 +61,26 @@ class TaskListTest {
         assertEquals(lecture, sortedPriority.get(2));
         assertEquals(reading, sortedPriority.get(3));
     }
+    
+    @Test
+    void clearTask() {
+        addTask();
+        tasks.clear();
+        assertEquals(0, tasks.size());
+        assertFalse(tasks.contains(meeting));
+        assertFalse(tasks.contains(reading));
+        assertFalse(tasks.contains(lecture));
+        assertFalse(tasks.contains(tutorial));
+    }
+
+    @Test
+    void deleteTask() throws InvalidTaskNumberException {
+        addTask();
+        tasks.delete(1);
+        assertFalse(tasks.contains(reading));
+        tasks.delete(1);
+        assertFalse(tasks.contains(lecture));
+        assertEquals(2,tasks.size());
+    }
+
 }
