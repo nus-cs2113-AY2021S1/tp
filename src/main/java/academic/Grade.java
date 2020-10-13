@@ -8,6 +8,8 @@ public class Grade {
     protected Integer moduleCredits;
     protected String moduleGrade;
 
+    public static String[] listOfGrades = new String[]{"a+","a","a-","b+","b","b-","c+","c","d+","d","f"};
+
     public Grade(String name, Integer credits, String grade) {
         this.moduleName = name;
         this.moduleCredits = credits;
@@ -23,7 +25,7 @@ public class Grade {
     }
 
     public static double convertLetterToCredit(String input) {
-        switch (input.trim()) {
+        switch (input.trim().toLowerCase()) {
         case "a+":
         case "a":
             return 5.0;

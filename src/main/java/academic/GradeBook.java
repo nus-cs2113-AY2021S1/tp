@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Represents a grade book in study-it.
  */
 public class GradeBook {
-    public static ArrayList<Grade> currentGrade = new ArrayList<>();
+    public static ArrayList<Grade> currentGrade = new ArrayList<>();//TODO change to local storage
 
     public static void addGrade(String[] args) {
         GradeBook.currentGrade.add(new Grade(args[0],Integer.parseInt(args[1]),args[2]));

@@ -1,6 +1,8 @@
 import academic.GradeBook;
 import academic.PersonBook;
 import exceptions.InvalidCommandException;
+import exceptions.InvalidGradeException;
+import exceptions.InvalidMcException;
 import exceptions.InvalidModeException;
 
 public class Command {
@@ -50,18 +52,30 @@ public class Command {
             if (commandType == AcademicCommandType.ADD_CONTACT) {
                 Ui.printLine("Adding Contact"); //TODO: Remove placeholder line.
                 PersonBook.addPerson(AcademicCommandParser.getContact(command));
+
             } else if (commandType == AcademicCommandType.CHECK_CONTACT) {
                 Ui.printLine("Checking Contact"); //TODO: Remove placeholder line.
                 Ui.printLine(PersonBook.printPersonBook());
+
             } else if (commandType == AcademicCommandType.ADD_GRADE) {
                 Ui.printLine("Adding Grade"); //TODO: Remove placeholder line.
                 GradeBook.addGrade(AcademicCommandParser.getGrade(command));
+
             } else if (commandType == AcademicCommandType.CHECK_GRADE) {
                 Ui.printLine("Checking Grade"); //TODO: Remove placeholder line.
                 Ui.printLine(GradeBook.printCap());
+
             }
         } catch (InvalidCommandException e) {
             ErrorMessage.printUnidentifiableCommand();
+        } catch (StringIndexOutOfBoundsException e) {
+            ErrorMessage.printUnidentifiableInput();
+        } catch (NumberFormatException e) {
+            ErrorMessage.printInvalidNumber();
+        } catch (InvalidGradeException e) {
+            ErrorMessage.printInvalidGrade();
+        } catch (InvalidMcException e) {
+            ErrorMessage.printInvalidMc();
         }
     }
 
