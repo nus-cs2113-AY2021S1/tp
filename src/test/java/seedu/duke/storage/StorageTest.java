@@ -75,13 +75,15 @@ class StorageTest {
     }
 
     @Test
-    void saveSubjects_subjectsWithoutTopics_EmptyDirectoriesWithSubjectTitlesCreated() throws IOException {
+    void saveSubjects_subjectsWithoutTopics_DirectoriesWithSubjectTitlesAndTasksFileCreated() throws IOException {
         storage.saveSubjects(subjects);
         for (Subject subject : subjects) {
             File subjectDir = Paths.get(storage.getBaseDir().toString(), subject.getTitle()).toFile();
             assertTrue(subjectDir.exists());
             assertTrue(subjectDir.isDirectory());
-            assertTrue(isDirectoryEmpty(subjectDir));
+
+            File taskFile = new File(subjectDir, storage.getTaskFilename());
+            assertTrue(taskFile.exists());
         }
     }
 
@@ -100,6 +102,8 @@ class StorageTest {
             assertTrue(subjectDir.exists());
             assertTrue(subjectDir.isDirectory());
 
+            File taskFile = new File(subjectDir, storage.getTaskFilename());
+            assertTrue(taskFile.exists());
             // check if subdirectories are created
             File[] topicDirs = subjectDir.listFiles(File::isDirectory);
             assertNotNull(topicDirs);
@@ -149,6 +153,11 @@ class StorageTest {
 
         assertTrue(file.toFile().exists());
         assertEquals(gson.toJson(flashcards), Files.readString(file));
+    }
+
+    @Test
+    void loadSubjects_noSavedData_emptyListOfSubjectsReturned() throws FlashcardSyntaxException, DataLoadingException {
+        assertTrue(storage.loadSubjects().isEmpty());
     }
 
     @Test
@@ -218,12 +227,5 @@ class StorageTest {
         }
     }
 
-    private boolean isDirectoryEmpty(File directory) throws IOException {
-        boolean isEmpty = true;
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(directory.toPath())) {
-            isEmpty = !stream.iterator().hasNext();
-        }
-        return isEmpty;
-    }
 
 }
