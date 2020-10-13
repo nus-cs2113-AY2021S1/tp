@@ -60,7 +60,7 @@ Exits the application
 ```
 Format: exit    
 ```
-## 
+---
 
 <a name="bookmarkmode"></a>  
 ### Bookmark Mode  
@@ -182,17 +182,17 @@ Start the application and all the data should be loaded.
   
 
 ## Command Summary
-| **Action** | **Format, Examples**
-| ------------ | -------------
-| **mode** | `mode {bookmark/timetable}`<br>example: `mode bookmark`
-| **exit** | `exit`
-| **Bookmark Mode** |
-| **show** | `show`
-| **add** | `add {MODULE(optional)} {DESCRIPTON} {URL}` example: `add CS2113T tutorial www.yahoo.com`
-| **delete** | `delete {INDEX}`<br>example: `delete 2`
-| **find** | `find {MODULE} {DESCRIPTION(optional)}` example: `find CS2113 tutorial`
-| **launch** | `launch {MODULE} {DESCRIPTION(optional)}` example: `launch CS2113`
-| **Timetable Mode** |
-| **add** | `add {START TIME} {END TIME} {DAY} {TITLE}` example: `add 10:00 12:00 mon CS1231 Lecture` 
-| **delete** | `delete {INDEX}` example: `delete 1`
-| **show** | `show {DAY(optional)}` example: `show tue`
+| **Action** | **Format, Examples** |
+| ------------ | ------------- |
+| **mode** | `mode {bookmark/timetable}`<br>example: `mode bookmark` |
+| **exit** | `exit` |
+| **Bookmark Mode** | |
+| **show** | `show` |
+| **add** | `add {MODULE(optional)} {DESCRIPTON} {URL}` example: `add CS2113T tutorial www.yahoo.com` |
+| **delete** | `delete {INDEX}`<br>example: `delete 2` |
+| **find** | `find {MODULE} {DESCRIPTION(optional)}` example: `find CS2113 tutorial` |
+| **launch** | `launch {MODULE} {DESCRIPTION(optional)}` example: `launch CS2113` |
+| **Timetable Mode** | |
+| **add** | `add {START TIME} {END TIME} {DAY} {TITLE}` example: `add 10:00 12:00 mon CS1231 Lecture` |
+| **delete** | `delete {INDEX}` example: `delete 1` |
+| **show** | `show {DAY(optional)}` example: `show tue` |
