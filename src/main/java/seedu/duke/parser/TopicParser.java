@@ -7,13 +7,7 @@ import seedu.duke.command.taskcommand.AddEventCommand;
 import seedu.duke.command.taskcommand.AddTodoCommand;
 import seedu.duke.command.taskcommand.DeleteTaskCommand;
 import seedu.duke.command.taskcommand.DoneTaskCommand;
-import seedu.duke.command.topiccommand.AddTopicCommand;
-import seedu.duke.command.topiccommand.ExitTopicCommand;
-import seedu.duke.command.topiccommand.ListTopicCommand;
-import seedu.duke.command.topiccommand.DeleteTopicCommand;
-import seedu.duke.command.topiccommand.FindTopicCommand;
-import seedu.duke.command.topiccommand.ReturnTopicCommand;
-import seedu.duke.command.topiccommand.SorryTopicCommand;
+import seedu.duke.command.topiccommand.*;
 
 import java.util.Arrays;
 
@@ -31,8 +25,8 @@ public class TopicParser {
     public static Command parse(String fullCommand) {
         String[] message = fullCommand.split(" ");
         switch (message[0]) {
-        case "bye":
-            if (fullCommand.equals("bye")) {
+        case "exit":
+            if (fullCommand.equals("exit")) {
                 return new ExitTopicCommand();
             } else {
                 return new SorryTopicCommand();
@@ -66,6 +60,10 @@ public class TopicParser {
             return new AddEventCommand(fullCommand);
         case "done":
             return new DoneTaskCommand(fullCommand);
+        case "quiz":
+            return new QuizTopicCommand(fullCommand);
+        case "results":
+            return new ResultTopicCommand(fullCommand);
         default:
             return new SorryTopicCommand();
         }
