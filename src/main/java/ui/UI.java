@@ -46,7 +46,7 @@ public class UI {
         printLine();
 
         System.out.println("Hello from\n" + LOGO);
-        System.out.println("What can I do for you?");
+        System.out.println("What can I do for you?\n");
     }
 
     /**
