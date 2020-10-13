@@ -8,17 +8,12 @@ import seedu.duke.watchlist.Watchlist;
 import java.util.ArrayList;
 
 public class ExitCommand extends Command {
-
     protected static final String NULL_STRING = "";
 
-    public ExitCommand() {
-        
-    }
-
     @Override
-    public String execute(AnimeData animeData, Watchlist currentWatchlist, ArrayList<Watchlist> watchlists,
+    public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
                           Bookmark bookmark, UserManagement userManagement) {
-        setExit();
+        setShouldExit();
         return NULL_STRING;
     }
 }
