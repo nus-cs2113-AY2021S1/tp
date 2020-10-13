@@ -1,259 +1,125 @@
 package seedu.duke;
 
+import seedu.duke.anime.Anime;
+import seedu.duke.anime.AnimeData;
+import seedu.duke.anime.AnimeStorage;
+import seedu.duke.bookmark.Bookmark;
+import seedu.duke.command.Command;
+import seedu.duke.exception.AniException;
+import seedu.duke.human.UserManagement;
+import seedu.duke.parser.Parser;
+import seedu.duke.storage.Storage;
+import seedu.duke.ui.Ui;
+import seedu.duke.watchlist.Watchlist;
+
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    private static ArrayList<Watchlist> watchlists;
-    private static Ui ui;
-    private static Storage storage;
     private static final String USER_PROFILE_FILE_NAME = "userprofile.txt";
     private static final String WATCHLIST_FILE_NAME = "watchlist.txt";
-    private static final Scanner CONSOLE = new Scanner(System.in);
+    private static final String ANIME_DATA_SOURCE_FOLDER = "/data/AniListData";
 
+    private Ui ui;
+    private Parser parser;
+    private Storage storage;
+    private UserManagement userManagement;
+    private AnimeStorage animeStorage;
+    private Bookmark bookmark;
+    private ArrayList<Watchlist> watchlists;
+    private Watchlist activeWatchlist;
+    private AnimeData animeData;
 
-    /**
-     * Main entry-point for the java.duke.Duke application.
-     */
-    public static void main(String[] args) {
+    public Duke() {
         ui = new Ui();
+        ui.printWelcomeMessage(); //TODO: Move this out of constructor
+        parser = new Parser();
         storage = new Storage(USER_PROFILE_FILE_NAME, WATCHLIST_FILE_NAME);
+        userManagement = new UserManagement(storage);
+        userManagement.setCurrentUser(storage.readUserProfileFile(ui));
+        watchlists = storage.readWatchlistFile(ui);
 
-        UserProfile userProfile = null;
-        try {
-            userProfile = storage.readUserProfileFile();
-        } catch (ParseException | DukeException exception) {
-            System.out.println("User profile data is corrupted or not found!");
-        }
-
-        watchlists = storage.readWatchlistFile();
-        if (userProfile == null) {
-            userProfile = quickStart();
-            storage.writeUserProfileFile(userProfile);
-        }
-
-        addAnime();
+        //Initial SET UP for AnimeStorage / WatchLists / UserManagement / bookmark
+        bookmark = new Bookmark();
 
         try {
-            System.out.println("===Running Anime Data Print check===");
-            AnimeStorage animeStorage = new AnimeStorage("/data/AniListData");
-            AnimeData animeData = new AnimeData(animeStorage.readAnimeDatabase());
-            //animeData.printAll();
-            //animeData.printOne(1);
-            System.out.println("===End of Anime Data Print check===");
+            animeStorage = new AnimeStorage(ANIME_DATA_SOURCE_FOLDER);
+            animeData = new AnimeData(animeStorage.readAnimeDatabase());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        createAnimeList();
-        getCommand();
-    }
-
-    private static UserProfile quickStart() {
-        String logo = "                 _  _____ _                 \n"
-                + "     /\\         (_)/ ____| |                \n"
-                + "    /  \\   _ __  _| |    | |__   __ _ _ __  \n"
-                + "   / /\\ \\ | '_ \\| | |    | '_ \\ / _` | '_ \\ \n"
-                + "  / ____ \\| | | | | |____| | | | (_| | | | |\n"
-                + " /_/    \\_\\_| |_|_|\\_____|_| |_|\\__,_|_| |_|\n"
-                + "                                            \n"
-                + "                                            ";
-        System.out.println("Hello welcome to AniChan\n" + logo);
-        System.out.println("Before we start, let me learn more about you!");
-
-        UserProfile userProfile = null;
-        boolean profileMade = false;
-        while (!profileMade) {
+        if (watchlists.isEmpty()) {
+            activeWatchlist = new Watchlist("Default");
+            watchlists.add(activeWatchlist);
             try {
-                userProfile = createProfile();
-                profileMade = true;
-            } catch (ParseException e) {
-                System.out.println("Is your date in dd/MM/yyyy format?");
-            } catch (DukeException e) {
-                System.out.println("Is your name empty?");
+                storage.writeWatchlistFile(watchlists);
+            } catch (AniException exception) {
+                ui.printErrorMessage(exception.getMessage());
             }
+        } else {
+            activeWatchlist = watchlists.get(0);
         }
 
-        return userProfile;
+        // Assert
+        assert userManagement != null;
+        // Creates new User if no detected user
+        if (userManagement.getCurrentUser() == null) {
+            userManagement.addUserDialogue(ui);
+            assert userManagement.getCurrentUser() != null;
+        }
     }
 
-    private static UserProfile createProfile() throws ParseException, DukeException {
-        System.out.println("What's your name?");
-        String name = CONSOLE.nextLine();
-        System.out.println("Hello " + name + "! What might your date of birth be?");
-        String dob = CONSOLE.nextLine();
-        System.out.println("What might your gender be? (Male/Female/Others)");
-        String gender = CONSOLE.nextLine();
-
-        UserProfile newProfile = new UserProfile(name, dob, gender);
-        System.out.println(newProfile);
-        return newProfile;
-    }
-
-    /**
-     * Prints the main menu of the application
-     * and requests for command.
-     */
-    private static void getCommand() {
-        System.out.println("What would you like to do today?");
-        Parser parser = new Parser();
-        ui.showMainMenu();
-
-        while (CONSOLE.hasNextLine()) {
-            String fullCommand = CONSOLE.nextLine();
+    public void run() {
+        boolean shouldExit = false;
+        do {
+            String userInput = ui.readUserInput(userManagement.getCurrentUser().getName(), activeWatchlist.getName());
             try {
-                String[] fullCommandSplit = parser.parseUserInput(fullCommand);
-
-                String description = "";
-                String command = fullCommandSplit[0];
-                if (fullCommandSplit.length > 1) {
-                    description = fullCommandSplit[1];
-                }
-
-                switch (command) {
-                case "addprofile":
-                    addProfile(description);
-                    break;
-                case "editprofile":
-                    editProfile(description);
-                    break;
-                case "browse":
-                    browseAnime(description);
-                    break;
-                case "watchlist":
-                    createWatchlist(description);
-                    break;
-                case "add":
-                    addToWatchlist(description);
-                    break;
-                case "bookmark":
-                    bookmarkAnime(description);
-                    break;
-                case "help":
-                    showHelp();
-                    break;
-                case "exit":
-                    ui.bye();
-                    return;
-                default:
-                    System.out.println("??");
-                    throw new DukeException();
-                }
-            } catch (DukeException e) {
-                ui.showInvalidCommand();
+                Command command = parser.getCommand(userInput);
+                String output = command.execute(animeData, activeWatchlist, watchlists, bookmark, userManagement);
+                ui.printCommandOutput(output);
+                shouldExit = command.isExit();
+            } catch (AniException exception) {
+                ui.printErrorMessage(exception.getMessage());
             }
-        }
+        } while (!shouldExit);
+
+        //Program Terminates here
+        ui.printGoodbyeMessage();
     }
 
-    // Sample usage of Anime Class [To Be Deleted]
-    private static void addAnime() {
-        System.out.println("===Running Sample Anime Class===");
-        String[] releaseDate = {"2020", "12", "30"};
-        String[] genre = {"Science", "Action", "Dance"};
-        String animeName = "Adventures of Adventurers";
-        int rating = 65;
-        int avgEpisodeLength = 30;
-        int totalEpisodes = 24;
-        Anime testAnime = new Anime(animeName, releaseDate, rating, genre, avgEpisodeLength, totalEpisodes);
-        System.out.println("Release Date in String: " + testAnime.getReleaseDateInString());
-        System.out.println("===End of Sample Anime Class===");
+    public static void main(String[] args) {
+        new Duke().run();
     }
 
-    private static void createWatchlist(String description) {
-        String[] descriptionSplit = description.split(" ", 2);
-        String commandOption = descriptionSplit[0];
-        String watchlistName = descriptionSplit[1];
-
-        if (commandOption.equals("-n")) {
-            Watchlist newWatchlist = new Watchlist(watchlistName);
-            watchlists.add(newWatchlist);
-        }
-
-        storage.writeWatchlistFile(watchlists);
-        System.out.println("Watchlist created successfully!");
-    }
-
-    /**
-     * Adds a new user profile.
-     */
-    private static void addProfile(String description) {
-        // Code to be added
-
-        // Print for testing
-        System.out.println("New profile added!");
-    }
-
-    /**
-     * Edits an existing user profile.
-     */
-    private static void editProfile(String description) {
-        // Code to be added
-
-        // Print for testing
-        System.out.println("Profile edited!");
-    }
-
-    /**
-     * Browses the list of anime.
-     */
-    private static void browseAnime(String description) {
-        // Code to be added
-
-        // Print for testing
-        System.out.println("Anime browsed!");
-    }
-
-    /**
-     * Adds an anime to current watchlist.
-     */
-    private static void addToWatchlist(String description) {
-        // Code to be added
-
-        // Print for testing
-        System.out.println("Anime added");
-    }
-
-    /**
-     * Bookmarks an anime.
-     */
-    private static void bookmarkAnime(String description) {
-        // Code to be added
-
-        // Print for testing
-        System.out.println("Anime bookmarked");
-    }
-
-    /**
-     * Shows help function.
-     */
-    private static void showHelp() {
-        // Code to be added
-
-        // Print for testing
-        System.out.println("Help showed");
-    }
+    // TODO: Organize the methods below to their respective class.
+    // TEMPORARY, REMOVE ALL BELOW WHEN DONE REFACTORING!
+    private static final Scanner CONSOLE = new Scanner(System.in);
 
     //Sample Usage of AnimeList Class [To Be Deleted]
-    private static void createAnimeList() {
+    private void createAnimeList() {
         System.out.println("===Running Sample Anime List Class===");
         ArrayList<Anime> animeStorageList = new ArrayList<>();
         String[] releaseDate = {"2020", "12", "30"};
         String[] genre = {"Science", "Action", "Dance"};
         String animeName = "Adventures of Adventurers";
+        int animeID = 1;
         int rating = 65;
         int avgEpisodeLength = 30;
         int totalEpisodes = 24;
-        Anime testAnime = new Anime(animeName, releaseDate, rating, genre, avgEpisodeLength, totalEpisodes);
+        Anime testAnime = new Anime(animeName, releaseDate, rating, genre,
+                avgEpisodeLength, totalEpisodes);
 
         String[] releaseDate2 = {"1997", "4", "15"};
         String[] genre2 = {"Adventure", "Action", "Dance"};
         String animeName2 = "Actions in Action";
+        animeID = 2;
         int rating2 = 80;
         int avgEpisodeLength2 = 20;
         int totalEpisodes2 = 13;
-        Anime testAnime2 = new Anime(animeName2, releaseDate2, rating2, genre2, avgEpisodeLength2, totalEpisodes2);
+        Anime testAnime2 = new Anime(animeName2, releaseDate2, rating2, genre2,
+                avgEpisodeLength2, totalEpisodes2);
 
         animeStorageList.add(testAnime);
         animeStorageList.add(testAnime2);
