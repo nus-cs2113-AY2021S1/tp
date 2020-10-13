@@ -15,10 +15,14 @@ public class Delete extends Command {
     private static final Pattern COMMAND_PATTERN = Pattern.compile(
             "^delete (?<index>\\d+)$");
 
-    public Delete(String rawInput) throws InvalidCommandException {
+    public Delete(String rawInput) throws InvalidCommandException, InvalidTaskNumberException {
         Matcher matcher = COMMAND_PATTERN.matcher(rawInput);
         if (matcher.find()) {
-            index = Integer.parseInt(matcher.group("index"));
+            try {
+                index = Integer.parseInt(matcher.group("index"));
+            } catch (NumberFormatException e) {
+                throw new InvalidTaskNumberException();
+            }
         } else {
             throw new InvalidCommandException();
         }
