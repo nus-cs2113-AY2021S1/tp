@@ -5,7 +5,7 @@ import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
-import seedu.financeit.goaltracker.TotalGoal;
+import seedu.financeit.goaltracker.GoalTracker;
 import seedu.financeit.manualtracker.Ledger;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
@@ -28,7 +28,7 @@ public class EntryTracker {
         handleCreateEntry();
     }
 
-    private static TotalGoal totalGoal = new TotalGoal();
+    private static GoalTracker goalTracker = new GoalTracker();
 
     public static void setCurrLedger(Ledger ledger) {
         currLedger = ledger;
@@ -178,6 +178,7 @@ public class EntryTracker {
         try {
             entry.handlePacket(packet);
             entryList.addEntry(entry);
+            goalTracker.targetGoalTracker(entry);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s created!", entry.getName()));
         } catch (InsufficientParamsException exception) {
