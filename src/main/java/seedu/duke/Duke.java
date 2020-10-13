@@ -50,9 +50,9 @@ public class Duke {
         ui.printHorizontalLine();
 
         // Initial SET UP for AnimeStorage / WatchLists / UserManagement / bookmark
-        // Assert
+
         assert userManagement != null;
-        // Creates new User if no detected user
+        // Create new user if no existing user detected
         activeUser = userManagement.getActiveUser();
         if (activeUser == null) {
             userManagement.addUserDialogue(ui);
@@ -83,8 +83,8 @@ public class Duke {
     public void run() {
         boolean shouldExit = false;
         while (!shouldExit) {
-            String userInput = ui.readUserInput(activeUser.getFancyName(), activeWatchlist.getName());
             try {
+                String userInput = ui.readUserInput(activeUser.getFancyName(), activeWatchlist.getName());
                 Command command = parser.getCommand(userInput);
                 String commandOutput = command.execute(animeData, activeWatchlistList, activeWatchlist,
                         bookmark, userManagement);
