@@ -1,2 +1,4 @@
-[bedroom 2, BR3]
-BR3|Fan 1|50|Fan|On|0.0
+[br1]
+br1|this is a vbe|1000|Fan|Off|0.0
+br1|asdfasdfasdfsdf|500|Fan|Off|0.0
+br1|sdfsadfsadf|123123123|Fan|Off|0.0

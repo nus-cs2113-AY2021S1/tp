@@ -3,6 +3,12 @@ package seedu.duke.commands;
 import seedu.duke.data.framework.Appliance;
 
 import static seedu.duke.common.Messages.LINE;
+import static seedu.duke.common.Messages.MESSAGE_LIST_NO_APPLIANCES;
+import static seedu.duke.common.Messages.MESSAGE_POWER_USAGE;
+
+/**
+ * Usage command of the application to show power usage.
+ */
 
 public class UsageCommand extends Command {
 
@@ -11,37 +17,20 @@ public class UsageCommand extends Command {
     @Override
     public void execute() {
         double totalUsage = 0;
-        System.out.print(LINE);
-        int maxLengthName = 0;
-        int maxLengthLocation = 0;
-        boolean maxNameValue = true;
-        boolean maxLocationValue = true;
-        String applianceName;
-        String location;
-        String status;
+        int index = 1;
 
-        /** Find length of longest appliance name and location for formatting. */
-        for (Appliance a : appliances.getAllAppliance()) {
-            applianceName = a.getName();
-            location = a.getLocation();
-            maxLengthName = (maxNameValue) ? applianceName.length() : Math.max(maxLengthName, applianceName.length());
-            maxNameValue = false;
-            maxLengthLocation = (maxLocationValue) ? location.length() : Math.max(maxLengthLocation, location.length());
-            maxLocationValue = false;
+        if (appliances.getAllAppliance().size() == 0) {
+            ui.showToUser(LINE + MESSAGE_LIST_NO_APPLIANCES);
+        } else {
+            ui.showToUser(LINE + MESSAGE_POWER_USAGE);
+            for (Appliance a : appliances.getAllAppliance()) {
+                double appliancePower = a.measureConsumption();
+                totalUsage += appliancePower;
+                ui.showWithUsageFormat(index, a.getName(), a.getLocation(), a.getStatus(), a.measureConsumption());
+                index++;
+            }
+            String formattedUsage = String.format("%.2f kWh", totalUsage);
+            ui.showToUser("\nTotal power consumption: " + formattedUsage);
         }
-
-        for (int i = 0; i < appliances.getAllAppliance().size(); i++) {
-            status = appliances.getAppliance(i).getStatus();
-            applianceName = appliances.getAppliance(i).getName();
-            location = appliances.getAppliance(i).getLocation();
-            double appliancePower = appliances.getAppliance(i).measureConsumption();
-            totalUsage += appliancePower;
-            String format = "%d. %-" + maxLengthName
-                    + "s | Location: %-" + maxLengthLocation
-                    + "s | Status: %s | Usage: %.2f kWh \n";
-            System.out.printf(format, i + 1, applianceName, location, status, appliancePower);
-        }
-        System.out.format("\nTotal power consumption: %.2f kWh \n", totalUsage);
     }
-
 }

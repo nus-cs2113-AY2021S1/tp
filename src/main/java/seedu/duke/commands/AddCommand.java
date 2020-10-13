@@ -1,6 +1,5 @@
 package seedu.duke.commands;
 
-import seedu.duke.common.Messages;
 import seedu.duke.data.AirConditioner;
 import seedu.duke.data.Fan;
 import seedu.duke.data.Lights;
@@ -9,6 +8,7 @@ import seedu.duke.exceptions.InvalidAdditionOfAppliance;
 
 import static seedu.duke.common.Messages.MESSAGE_APPLIANCE_EXIST;
 import static seedu.duke.common.Messages.MESSAGE_APPLIANCE_TYPE_NOT_EXIST;
+import static seedu.duke.common.Messages.MESSAGE_LOCATION_NOT_EXIST;
 
 
 public class AddCommand extends Command {
@@ -24,14 +24,12 @@ public class AddCommand extends Command {
     private final String power;
     private final String type;
     private final boolean toPrint;
-    private boolean noError;
 
     public AddCommand(String name, String location, String power, String type, Boolean toPrint) {
         this.name = name;
         this.location = location;
         this.power = power;
         this.type = type;
-        this.noError = false;
         this.toPrint = toPrint;
     }
 
@@ -79,7 +77,7 @@ public class AddCommand extends Command {
 
         } else {
             if (this.toPrint) {
-                ui.showToUser(Messages.MESSAGE_LOCATION_NOT_EXIST);
+                ui.showToUser(MESSAGE_LOCATION_NOT_EXIST);
             }
         }
 

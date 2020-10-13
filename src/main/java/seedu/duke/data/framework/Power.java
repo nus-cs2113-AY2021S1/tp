@@ -1,6 +1,5 @@
 package seedu.duke.data.framework;
 
-import seedu.duke.common.Messages;
 import seedu.duke.ui.TextUi;
 
 import java.text.ParseException;
@@ -10,20 +9,21 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import static seedu.duke.common.Messages.LINE;
+import static seedu.duke.common.Messages.MESSAGE_TIME_FORMAT_ERROR;
 
 public class Power {
 
-    private final int power;
     private static final String TIME_DATE_FORMAT = "dd/MM/yyyy | HH:mm:ss";
-    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(TIME_DATE_FORMAT);
-    LocalDateTime currentTime;
+    private static TextUi ui = new TextUi();
+    private final int power;
     private String offTime;
     private String onTime;
     private double powerUsed;
     private double totalHours;
     private Boolean isOn;
     private double totalPowerConsumption;
-    private static TextUi ui = new TextUi();
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(TIME_DATE_FORMAT);
+    LocalDateTime currentTime;
 
     public Power(String power) {
         this.power = Integer.parseInt(power);
@@ -34,28 +34,37 @@ public class Power {
 
     /**
      * Appliance only can be switched on if it was 'off' previously.
-     * @return
+     *
+     * @return true if appliance turn on successfully
      */
-    public void onAppliance() {
+    public boolean onAppliance() {
         if (!isOn) {
             this.isOn = true;
             onTime = getCurrentTime();
+            return true;
         } else {
-            ui.showToUser(Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON);
+            return false;
         }
     }
 
-    public void offAppliance() {
+    /**
+     * Appliance only can be switched off if it was 'on' previously.
+     * Compute the total power consumption once appliance is off.
+     *
+     * @return true if appliance turn off successfully
+     */
+    public boolean offAppliance() {
         if (isOn) {
             this.isOn = false;
             offTime = getCurrentTime();
             try {
                 calculatePowerConsumed();
             } catch (ParseException e) {
-                ui.showToUser(LINE + Messages.MESSAGE_TIME_FORMAT_ERROR);
+                ui.showToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
             }
+            return true;
         } else {
-            ui.showToUser(Messages.MESSAGE_APPLIANCE_PREVIOUSLY_OFF);
+            return false;
         }
     }
 
@@ -104,7 +113,7 @@ public class Power {
 
     private void calculatePowerConsumed() throws ParseException {
         calculateTimeUsed();
-        // convert to kWh
+        // Convert power unit to kWh
         powerUsed = totalHours * power / 1000.00;
         totalPowerConsumption += powerUsed;
     }
@@ -117,7 +126,7 @@ public class Power {
         try {
             calculatePowerConsumed();
         } catch (ParseException e) {
-            System.out.println(LINE + Messages.MESSAGE_TIME_FORMAT_ERROR);
+            ui.showToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
         }
         return this.totalPowerConsumption;
     }
