@@ -107,8 +107,7 @@ public class Parser {
         try {
             int powerValue = Integer.parseInt(power);
             // Common appliance should not exceed 9999 watts
-            if ((powerValue > 1) && (powerValue < 10000)) {
-            } else {
+            if ((powerValue < 1) || (powerValue > 9999)) {
                 throw new PowerValueExceed();
             }
         } catch (NumberFormatException e) {

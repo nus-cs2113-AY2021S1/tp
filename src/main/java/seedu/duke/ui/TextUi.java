@@ -56,6 +56,7 @@ public class TextUi {
                                     String location,
                                     String status,
                                     double powerUsage) {
+
         String formattedIndex = String.format("%d. ", displayIndex);
         String formattedName = String.format("%-" + Appliance.getMaxNameLength() + "s", applianceName);
         String formattedLocation =  MESSAGE_DISPLAY_LOCATION
@@ -67,7 +68,12 @@ public class TextUi {
     }
 
     /** Find length of longest appliance name and location for formatting. */
-    public void showWithListFormat(int displayIndex, String applianceName, String location, String status, String power, String type) {
+    public void showWithListFormat(int displayIndex,
+                                   String applianceName,
+                                   String location,
+                                   String status,
+                                   String power,
+                                   String type) {
 
         String formattedIndex = String.format("%d. ", displayIndex);
         String formattedName = String.format("%-" + Appliance.getMaxNameLength() + "s", applianceName);

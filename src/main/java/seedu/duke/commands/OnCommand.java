@@ -9,7 +9,10 @@ import static seedu.duke.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
 public class OnCommand extends Command {
 
     public static final String COMMAND_WORD = "on";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Turns on specified appliance by its indicated NAME \n" + "Parameters: NAME \n" + "Example: " + COMMAND_WORD + " Aircon 1 ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Turns on specified appliance by its indicated NAME \n"
+            + "Parameters: NAME \n"
+            + "Example: " + COMMAND_WORD + " Aircon 1 ";
     private final String name;
 
     public OnCommand(String name) throws EmptyParameterException {

@@ -9,7 +9,10 @@ import static seedu.duke.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
 public class OffCommand extends Command {
 
     public static final String COMMAND_WORD = "off";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Turns off specified appliance by its indicated NAME \n" + "Parameters: NAME\n" + "Example: " + COMMAND_WORD + " Fan 1";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Turns off specified appliance by its indicated NAME \n"
+            + "Parameters: NAME\n"
+            + "Example: " + COMMAND_WORD + " Fan 1";
     private final String name;
 
     public OffCommand(String name) throws EmptyParameterException {
