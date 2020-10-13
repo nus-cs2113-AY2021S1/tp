@@ -11,12 +11,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class UiTest {
     @Test
     public void readUserInput() {
-        Ui text = new Ui();
+        Ui uiText = new Ui();
 
         String input = "add 5";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        assertEquals("add 5", text.read());
+        assertEquals("add 5", uiText.read());
     }
 }
