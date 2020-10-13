@@ -17,7 +17,7 @@ public class ErrorHandling extends Exception {
                 + " for a list of commands."),
         EXCEPTION_CREATE_FILE_ERROR("\tError creating file."),
         EXCEPTION_INVALID_EPISODES_INPUT_EXCEPTION("\tThe number of episodes input doesn't match "
-                + "the number of seasons");
+                + "the number of seasons.Use the " + Ui.toBold("edit") + " command to change the number of seasons.");
 
         private String exception;
 

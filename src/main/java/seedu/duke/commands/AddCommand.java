@@ -1,7 +1,6 @@
 package seedu.duke.commands;
 
 import seedu.duke.classes.Show;
-import seedu.duke.utility.ErrorHandling;
 import seedu.duke.utility.ShowList;
 import seedu.duke.utility.Ui;
 
@@ -21,7 +20,7 @@ public class AddCommand extends Command {
             seasonEpisodes[i] = Integer.parseInt(s);
             i++;
             //check that the episodes do not exceed seasons
-            if (i == numSeasons) {
+            if (i != numSeasons) {
                 Ui.printInvalidEpisodesInputException();
                 break;
             }
