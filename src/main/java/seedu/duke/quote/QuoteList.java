@@ -7,6 +7,7 @@ import seedu.duke.lists.QuotesifyList;
 import seedu.duke.ui.TextUi;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class QuoteList extends QuotesifyList<Quote> {
@@ -59,5 +60,48 @@ public class QuoteList extends QuotesifyList<Quote> {
             // Do nothing
         }
         return new QuoteList();
+    }
+
+    public String getRandomQuote() {
+        try {
+            Random rand = new Random();
+            int randomQuoteNumber = rand.nextInt(getSize() - 1);
+            Quote quoteToPrint = getQuote(randomQuoteNumber);
+            return quoteToPrint.toString();
+        } catch (IllegalArgumentException e) {
+            return "*Inserts inspirational quote here*";
+        }
+    }
+
+    public String getAllQuotesByAuthor(QuoteList quoteList, String authorName) {
+        String listToReturn = "";
+        for (Quote quote : quoteList.getList()) {
+            if (quote.hasAuthor() && quote.getAuthorName().equals(authorName)) {
+                listToReturn += quote.toString() + System.lineSeparator();
+            }
+        }
+        return listToReturn;
+    }
+
+    public String getAllQuotesByReference(QuoteList quoteList, String reference) {
+        String listToReturn = "";
+        for (Quote quote : quoteList.getList()) {
+            if (quote.hasReference() && quote.getReference().equals(reference)) {
+                listToReturn += quote.toString() + System.lineSeparator();
+            }
+        }
+        return listToReturn;
+    }
+
+    public String getAllQuotesByReferenceAndAuthor(QuoteList quoteList, String reference, String authorName) {
+        String listToReturn = "";
+        for (Quote quote : quoteList.getList()) {
+            if (quote.hasReference() && quote.getReference().equals(reference)) {
+                if (quote.hasAuthor() && quote.getAuthorName().equals(authorName)) {
+                    listToReturn += quote.toString() + System.lineSeparator();
+                }
+            }
+        }
+        return listToReturn;
     }
 }
