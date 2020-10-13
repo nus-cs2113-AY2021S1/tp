@@ -20,7 +20,7 @@ import seedu.duke.ui.Ui;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Duke {
+public class Revised {
     public static final String BASE_DIR = "data";
     public static final String FLASHCARD_FILENAME = "flashcards.txt";
     public static final String TASK_FILENAME = "tasks.txt";
@@ -36,7 +36,7 @@ public class Duke {
      * @param flashcardFilename the name of the file to store all the flashcard info
      * @param taskFilename      the name of the file to store all the tasks under a subject
      */
-    public Duke(String baseDir, String flashcardFilename, String taskFilename)
+    public Revised(String baseDir, String flashcardFilename, String taskFilename)
             throws FlashcardSyntaxException, DataLoadingException {
         storage = new Storage(baseDir, flashcardFilename, taskFilename);
         subjects = new SubjectList(storage.loadSubjects());
@@ -90,7 +90,7 @@ public class Duke {
 
     public static void main(String[] args) {
         try {
-            new Duke(BASE_DIR, FLASHCARD_FILENAME, TASK_FILENAME).run();
+            new Revised(BASE_DIR, FLASHCARD_FILENAME, TASK_FILENAME).run();
         } catch (FlashcardSyntaxException | DataLoadingException e) {
             Ui.printError(e);
         }
