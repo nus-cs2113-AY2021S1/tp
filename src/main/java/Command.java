@@ -1,3 +1,4 @@
+import Flashcard.FlashcardDeck;
 import academic.GradeBook;
 import academic.PersonBook;
 import exceptions.InvalidCommandException;
@@ -66,6 +67,6 @@ public class Command {
     }
 
     public static void executeFlashcardCommand() {
-
+        FlashcardDeck flashcardDeck = new FlashcardDeck();
     }
 }
