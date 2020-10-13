@@ -9,6 +9,7 @@ import seedu.revised.command.subjectcommand.ReturnSubjectCommand;
 import seedu.revised.command.subjectcommand.SubjectCommand;
 import seedu.revised.exception.DataLoadingException;
 import seedu.revised.exception.FlashcardSyntaxException;
+import seedu.revised.exception.InvalidSubjectCommand;
 import seedu.revised.exception.NoFlashCardException;
 import seedu.revised.exception.NoSubjectException;
 import seedu.revised.exception.NoTopicException;
@@ -76,6 +77,8 @@ public class Revised {
                 Ui.printNoFlashcards();
             } catch (NoTopicException e) {
                 Ui.printNoTopics();
+            } catch (InvalidSubjectCommand i) {
+                Ui.printInvalidSubjectCommand();
             }
         }
 
