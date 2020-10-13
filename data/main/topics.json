@@ -1,0 +1,100 @@
+[
+  {
+    "topic": "OOP",
+    "questions": [
+      {
+        "description": "What is encapsulation?",
+        "hint": "check the textbook",
+        "options": [
+          {
+            "description": "A",
+            "correct": true
+          },
+          {
+            "description": "B",
+            "correct": false
+          },
+          {
+            "description": "C",
+            "correct": false
+          },
+          {
+            "description": "D",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "What is abstraction?",
+        "hint": "check the textbook",
+        "options": [
+          {
+            "description": "A",
+            "correct": false
+          },
+          {
+            "description": "B",
+            "correct": true
+          },
+          {
+            "description": "C",
+            "correct": false
+          },
+          {
+            "description": "D",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "Style",
+    "questions": [
+      {
+        "description": "How do you name classes?",
+        "hint": "check the textbook",
+        "options": [
+          {
+            "description": "A",
+            "correct": true
+          },
+          {
+            "description": "B",
+            "correct": false
+          },
+          {
+            "description": "C",
+            "correct": false
+          },
+          {
+            "description": "D",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "What is the appropriate indentation?",
+        "hint": "check the textbook",
+        "options": [
+          {
+            "description": "A",
+            "correct": false
+          },
+          {
+            "description": "B",
+            "correct": true
+          },
+          {
+            "description": "C",
+            "correct": false
+          },
+          {
+            "description": "D",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  }
+]
