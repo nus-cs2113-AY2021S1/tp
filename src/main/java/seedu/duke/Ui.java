@@ -310,42 +310,12 @@ public class Ui {
     }
 
     /**
-     * Shows the user the exception that occurred when saving data to storage file.
-     *
-     * @param e exception message.
-     */
-    public static void printSaveDataErrorMessage(IOException e) {
-        System.out.println("Unable to save data. Error: " + e.getMessage());
-    }
-
-    /**
-     * Prints the message to inform the user that no data was imported.
-     */
-    public static void printNoImportDataMessage() {
-        System.out.println("No existing data imported.");
-    }
-
-    /**
-     * Prints the message to inform the user that existing data was imported.
-     */
-    public static void printImportDataSuccessMessage() {
-        System.out.println("Existing data imported.");
-    }
-
-    /**
      * Shows the user the exception that occurred when creating a storage file.
      *
      * @param e exception message.
      */
     public static void printFileCreateErrorMessage(IOException e) {
         System.out.println("Cannot create file; reason: " + e.getMessage());
-    }
-
-    /**
-     * Prints the message to inform the user that an output file is created.
-     */
-    public static void printFileCreatedMessage() {
-        System.out.println("New output file created.");
     }
 
 }
