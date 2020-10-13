@@ -1,2 +1,4 @@
-Oct 10 2020
-Income;null;1500.0;16:00;hullo
+Ledger;2020-04-04
+Ledger;2020-05-05
+Ledger;2020-06-06
+Entry;Income;TRANSPORT;1500.0;15:00;go to the polls

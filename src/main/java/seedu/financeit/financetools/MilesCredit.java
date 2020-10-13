@@ -7,21 +7,19 @@ import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.UiManager;
-import seedu.financeit.utils.ParamChecker;
 
-public class SimpleInterest extends ParamHandler {
+public class MilesCredit extends ParamHandler {
 
     private double amount = -1;
-    private double interestRate = -1;
+    private double milesRate = -1;
 
-    public SimpleInterest() {
+    public MilesCredit() {
         super();
     }
 
     public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
-        this.paramChecker = new ParamChecker(packet);
         try {
-            this.handleParams(packet);
+            handleParams(packet);
         } catch (ItemNotFoundException exception) {
             // Fall-through
         }
@@ -31,12 +29,12 @@ public class SimpleInterest extends ParamHandler {
         this.amount = amount;
     }
 
-    public void setInterestRate(Double interestRate) {
-        this.interestRate = interestRate;
+    public void setMilesRate(Double milesRate) {
+        this.milesRate = milesRate;
     }
 
-    public double calculateSimpleInterest() {
-        return this.amount * (this.interestRate / 100);
+    public double calculateMiles() {
+        return this.amount * this.milesRate;
     }
 
     @Override
@@ -46,8 +44,8 @@ public class SimpleInterest extends ParamHandler {
         case "/amount":
             this.amount = paramChecker.checkAndReturnDouble(paramType);
             break;
-        case "/ir":
-            this.interestRate = paramChecker.checkAndReturnDouble(paramType);
+        case "/miles":
+            this.milesRate = paramChecker.checkAndReturnDouble(paramType);
             break;
         default:
             if (!super.requiredParams.contains(paramType)) {

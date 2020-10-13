@@ -8,7 +8,9 @@ import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
-import seedu.financeit.utils.SaveManager;
+import seedu.financeit.utils.storage.SaveStateHandlerManualTracker;
+import seedu.financeit.utils.storage.SaveStateHandlerRecurringTracker;
+import seedu.financeit.utils.storage.SaveStateHandlerGoalTracker;
 
 import java.util.logging.Level;
 
@@ -20,8 +22,14 @@ public class Financeit {
         CommandPacket packet = null;
         Level mode = Level.OFF;
         ParamChecker.logger.setLevel(mode);
+        SaveStateHandlerManualTracker mt = new SaveStateHandlerManualTracker("./data/save.txt", "./data");
+        SaveStateHandlerGoalTracker gt = new SaveStateHandlerGoalTracker("./data/save1.txt", "./data");
+        SaveStateHandlerRecurringTracker at = new SaveStateHandlerRecurringTracker("./data/save2.txt", "./data");
+
         try {
-            SaveManager.load();
+            mt.load();
+            gt.load();
+            at.load();
         } catch (Exception m) {
             MenuPrinter.prompt = "An exception has occurred: " + m;
         }
@@ -29,7 +37,6 @@ public class Financeit {
         while (true) {
             MenuPrinter.printMainMenu();
             input = UiManager.handleInput();
-            packet = new InputParser().parseInput(input);
             packet = new InputParser().parseInput(input);
             UiManager.refreshPage();
             switch (packet.getCommandString()) {
@@ -55,7 +62,9 @@ public class Financeit {
                 break;
             case "exit":
                 try {
-                    SaveManager.save();
+                    mt.save();
+                    gt.save();
+                    at.save();
                 } catch (Exception m) {
                     System.out.println("An exception has occurred: " + m);
                 }
