@@ -3,7 +3,7 @@ package exception;
 /**
  * Represents the exception when the file is not correctly written.
  */
-public class WritingFileException extends NUScheduleException {
+public class WritingFileException extends NuScheduleException {
     /**
      * Prepare the message to be printed when this exception is experienced.
      *

@@ -52,14 +52,14 @@ public class Storage {
     /**
      * Save the data of the Event list to the file.
      *
-     * @param Events the list of Events provided by a variable from a EventList object
+     * @param events the list of Events provided by a variable from a EventList object
      * @throws WritingFileException represents the file is not correctly written
      */
-    public void writeFile(ArrayList<Event> Events) throws WritingFileException {
+    public void writeFile(ArrayList<Event> events) throws WritingFileException {
         try {
             FileWriter fw = new FileWriter(filePath);
-            for (Event Event : Events) {
-                fw.write(Event.fileString());
+            for (Event event : events) {
+                fw.write(event.fileString());
                 fw.write(System.lineSeparator());
             }
             fw.close();
@@ -74,7 +74,8 @@ public class Storage {
      * @return the Events in an ArrayList
      * @throws LoadingException represents the <code>Events</code> is not correctly created
      */
-//    public ArrayList<Event> load() throws LoadingException {
-//todo to be implement
-//    }
+    public ArrayList<Event> load() throws LoadingException {
+        return null;
+        //to be implemented
+    }
 }

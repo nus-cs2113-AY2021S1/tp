@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-class NUScheduleTest {
+class NuScheduleTest {
     @Test
     public void sampleTest() {
         assertTrue(true);

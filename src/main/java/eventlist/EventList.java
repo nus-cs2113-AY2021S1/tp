@@ -1,4 +1,4 @@
-package eventList;
+package eventlist;
 
 
 import event.Event;
@@ -44,20 +44,21 @@ public class EventList {
      * Mark a event as done.
      *
      * @param eventIndex the index of the event being done
-//     * @throws DoneUndefinedEventException the event is not defined but the user want to mark it as done
+     *                   //     * @throws DoneUndefinedEventException the event is not defined but
+     *                   // the user want to mark it as done
      */
     public void doneEvent(int eventIndex) /*throws DoneUndefinedEventException*/ {
-//        try {
+        try {
             events.get(eventIndex).markAsDone();
-//        } catch (IndexOutOfBoundsException e) {
-//            throw new DoneUndefinedEventException(eventIndex);
-//        }
+        } catch (IndexOutOfBoundsException e) {
+            //throw new DoneUndefinedEventException(eventIndex);
+        }
     }
 
     /**
      * Gives the access to the list of events.
      *
-     * @return the <code>ArrayList<event></code> object to be printed
+     * @return the list to be printed.
      */
     public ArrayList<Event> getEventList() {
         return events;
@@ -66,7 +67,7 @@ public class EventList {
     /**
      * Returns how many events are in the list.
      *
-     * @return the size of the ArrayList in the EventList object
+     * @return the size of the ArrayList in the EventList object.
      */
     public int size() {
         return events.size();
@@ -82,8 +83,8 @@ public class EventList {
     /**
      * Returns the element at the specified position in this list.
      *
-     * @param eventIndex index of the event to return
-     * @return the event at the specified position in this list
+     * @param eventIndex index of the event to return.
+     * @return the event at the specified position in this list.
      */
     public Event get(int eventIndex) {
         return events.get(eventIndex);
@@ -92,8 +93,8 @@ public class EventList {
     /**
      * Filter the event list to find the events contain the information looking for by the user.
      *
-     * @param filterString the keyword that the user is looking for
-     * @return the filtered list. this list contains only the events that satisfy the requirement
+     * @param filterString the keyword that the user is looking for.
+     * @return the filtered list. this list contains only the events that satisfy the requirement.
      */
     public ArrayList<Event> filterWith(String filterString) {
         ArrayList<Event> filteredEventList = (ArrayList<Event>) events.stream()
@@ -102,11 +103,12 @@ public class EventList {
 
         return filteredEventList;
     }
+
     /**
      * Filter the event list to find the events happen on the date looking for by the user.
      *
-     * @param date the date that the user is looking for
-     * @return the filtered list. this list contains only the events that satisfy the requirement
+     * @param date the date that the user is looking for.
+     * @return the filtered list. this list contains only the events that satisfy the requirement.
      */
     public ArrayList<Event> filterDateWith(LocalDate date) {
         ArrayList<Event> filteredEventList = (ArrayList<Event>) events.stream()

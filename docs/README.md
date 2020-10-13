@@ -1,4 +1,4 @@
-# NUSchedule
+# NuSchedule
 
 {Give product intro here}
 

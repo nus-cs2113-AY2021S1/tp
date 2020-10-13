@@ -1,6 +1,6 @@
 package command;
 
-import eventList.EventList;
+import eventlist.EventList;
 import storage.Storage;
 import ui.UI;
 

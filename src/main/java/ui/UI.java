@@ -59,22 +59,22 @@ public class UI {
     /**
      * Prints all the events with labels, based on the input list.
      *
-     * @param Events an <\code>ArrayList</\code> of events to be printed one by one.
+     * @param events an <\code>ArrayList<\code> of events to be printed one by one.
      */
-    public void printEventList(ArrayList<Event> Events) {
+    public void printEventList(ArrayList<Event> events) {
         int numPrintedEvents = 0;
 
         System.out.println(" Here are the Events in your list:");
-        for (Event Event : Events) {
+        for (Event event : events) {
             numPrintedEvents++;
-            System.out.println(numPrintedEvents + ". " + Event.toString());
+            System.out.println(numPrintedEvents + ". " + event.toString());
         }
     }
 
     /**
      * Prints all the Events of the filtered list with labels, based on the input list.
      *
-     * @param events an <\code>ArrayList</\code> of Events to be printed one by one
+     * @param events an <\code>ArrayList<\code> of Events to be printed one by one.
      */
     public void printFilteredEventList(ArrayList<Event> events) {
         int numPrintedEvents = 0;
@@ -89,7 +89,7 @@ public class UI {
     /**
      * Shows the error message when experiencing exceptions.
      *
-     * @param message the message get from the error
+     * @param message the message get from the error.
      */
     public void showError(String message) {
         System.out.println(message);
@@ -115,7 +115,7 @@ public class UI {
     }
 
     /**
-     * Call when exit the program
+     * Call when exit the program.
      */
     public void printExitMessage() {
         System.out.println(EXIT_MESSAGE);
@@ -124,7 +124,7 @@ public class UI {
     /**
      * Take in a size and prints the total number of Events.
      *
-     * @param size get by calling <code>ArrayList<Event>::Size()</code>
+     * @param size number of events in the list.
      */
     public void printNumEvent(int size) {
         System.out.println("Now you have " + size + " Events in the list.");
@@ -133,37 +133,37 @@ public class UI {
     /**
      * Prints the message when the user mark some Event as done.
      *
-     * @param Event the Event being done
+     * @param event the Event being done
      */
-    public void printDoneMessage(Event Event) {
+    public void printDoneMessage(Event event) {
         System.out.println("Nice! I've marked this Event as done: ");
-        System.out.println(Event.toString());
+        System.out.println(event.toString());
     }
 
     /**
      * Prints the message when the user deletes some Event.
      *
-     * @param Event the Event being deleted
+     * @param event the Event being deleted
      */
-    public void printDeleteMessage(Event Event) {
+    public void printDeleteMessage(Event event) {
         System.out.println("Noted. I've removed this Event: ");
-        System.out.println(Event.toString());
+        System.out.println(event.toString());
     }
 
     /**
      * Prints the message when the user adds some Event.
      *
-     * @param EventAdded the Event being added
+     * @param eventAdded the Event being added
      */
-    public void printAddEventMessage(Event EventAdded) {
+    public void printAddEventMessage(Event eventAdded) {
         System.out.println("Got it. I've added this Event: ");
-        System.out.println(EventAdded.toString());
+        System.out.println(eventAdded.toString());
     }
 
     /**
      * Prints all the Events of the filtered list with labels, based on the input list.
      *
-     * @param filteredEventList an <\code>ArrayList</\code> of Events to be printed one by one
+     * @param filteredEventList an <\code>ArrayList<\code> of Events to be printed one by one.
      */
     public void printFilteredDateEventList(ArrayList<Event> filteredEventList) {
         int numPrintedEvents = 0;
