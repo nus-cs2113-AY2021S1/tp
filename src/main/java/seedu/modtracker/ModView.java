@@ -53,7 +53,6 @@ public class ModView {
      */
     public void printAllModuleInformation(ModuleList list, int weekNumber) {
         ArrayList<Module> modList = list.getData();
-        ArrayList<String> moduleCodes = getModuleCode(modList);
 
         if (weekNumber < MIN_WEEK_VALUE || weekNumber > MAX_WEEK_VALUE) {
             System.out.println(INVALID_WEEK_NUMBER);
@@ -65,10 +64,11 @@ public class ModView {
             return;
         }
 
-        assert weekNumber >= MIN_WEEK_VALUE: "week number should be between 1 and 13 inclusive";
-        assert weekNumber <= MAX_WEEK_VALUE: "week number should be between 1 and 13 inclusive";
+        assert weekNumber >= MIN_WEEK_VALUE : "week number should be between 1 and 13 inclusive";
+        assert weekNumber <= MAX_WEEK_VALUE : "week number should be between 1 and 13 inclusive";
         assert !modList.isEmpty() : "modList should not be empty";
 
+        ArrayList<String> moduleCodes = getModuleCode(modList);
         int maxLength = 0;
         for (String s : moduleCodes) {
             if (s.length() > maxLength) {
