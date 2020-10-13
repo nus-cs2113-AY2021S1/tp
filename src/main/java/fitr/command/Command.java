@@ -1,4 +1,8 @@
-package seedu.duke;
+package fitr.command;
+
+import fitr.storage.Storage;
+import fitr.list.ExerciseList;
+import fitr.list.FoodList;
 
 public abstract class Command {
     protected String command;

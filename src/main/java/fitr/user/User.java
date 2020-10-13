@@ -1,4 +1,8 @@
-package seedu.duke;
+package fitr.user;
+
+import fitr.list.ExerciseList;
+import fitr.list.FoodList;
+import fitr.Calorie;
 
 import java.util.Scanner;
 import static seedu.duke.common.Messages.USER_SETUP_GREET;

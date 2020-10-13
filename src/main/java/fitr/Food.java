@@ -1,4 +1,4 @@
-package seedu.duke;
+package fitr;
 
 public class Food {
     protected String nameOfFood; // The name of the Food

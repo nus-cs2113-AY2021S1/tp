@@ -1,4 +1,4 @@
-package seedu.duke;
+package fitr;
 
 public class Calorie {
     protected int amountOfCalories;

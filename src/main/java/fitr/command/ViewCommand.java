@@ -1,4 +1,9 @@
-package seedu.duke;
+package fitr.command;
+
+import fitr.list.ExerciseList;
+import fitr.list.FoodList;
+import fitr.storage.Storage;
+import fitr.user.User;
 
 import static seedu.duke.common.Messages.ERROR_INVALID_VIEW_COMMAND;
 import static seedu.duke.common.Messages.EMPTY_FOOD_LIST;

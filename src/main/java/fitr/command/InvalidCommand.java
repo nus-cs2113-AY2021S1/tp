@@ -1,4 +1,9 @@
-package seedu.duke;
+package fitr.command;
+
+import fitr.ui.Ui;
+import fitr.list.ExerciseList;
+import fitr.list.FoodList;
+import fitr.storage.Storage;
 
 public class InvalidCommand extends Command {
 
@@ -8,7 +13,7 @@ public class InvalidCommand extends Command {
 
     @Override
     public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage) {
-        UI.printInvalidCommandError();
+        Ui.printInvalidCommandError();
     }
 
     @Override

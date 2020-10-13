@@ -1,4 +1,6 @@
-package seedu.duke;
+package fitr.list;
+
+import fitr.Food;
 
 import java.util.ArrayList;
 
@@ -27,5 +29,9 @@ public class FoodList {
 
     public int getSize() {
         return foodList.size();
+    }
+
+    public void clearList() {
+        foodList.clear();
     }
 }

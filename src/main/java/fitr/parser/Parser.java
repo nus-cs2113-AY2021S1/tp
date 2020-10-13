@@ -1,4 +1,13 @@
-package seedu.duke;
+package fitr.parser;
+
+import fitr.command.AddExerciseCommand;
+import fitr.command.AddFoodCommand;
+import fitr.command.Command;
+import fitr.command.DeleteCommand;
+import fitr.command.ExitCommand;
+import fitr.command.HelpCommand;
+import fitr.command.InvalidCommand;
+import fitr.command.ViewCommand;
 
 public class Parser {
     public static Command parse(String userInput) {
@@ -8,14 +17,16 @@ public class Parser {
             if (fullCommand.length == 1) {
                 return new InvalidCommand(userInput);
             }
-            return new AddCommand(userInput);
+            return new AddFoodCommand(userInput);
         case "exercise":
             if (fullCommand.length == 1) {
                 return new InvalidCommand(userInput);
             }
-            return new AddCommand(userInput);
+            return new AddExerciseCommand(userInput);
         case "view":
             return new ViewCommand(userInput);
+        case "help":
+            return new HelpCommand(userInput);
         case "delete":
             if (fullCommand.length == 1) {
                 return new InvalidCommand(userInput);
