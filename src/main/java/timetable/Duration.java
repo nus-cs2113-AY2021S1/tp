@@ -1,4 +1,4 @@
-package seedu.duke.timetable;
+package timetable;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

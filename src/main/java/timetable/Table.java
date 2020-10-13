@@ -1,4 +1,4 @@
-package seedu.duke.timetable;
+package timetable;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -25,7 +25,8 @@ public class Table {
                             Event current = dateList.get(dateListIndex).events.get(eventListIndex);
                             boolean isFree = true;
                             for (Duration period: current.periods) {
-                                if (period.containTimeSlot(j * 100)) {
+                                if (period.containTimeSlot(j * 100) && period.startDateTime
+                                        .toLocalDate().equals(dateList.get(dateListIndex).dateTag)) {
                                     System.out.printf("|%-30s", current.name);
                                     isFree = false;
                                 }

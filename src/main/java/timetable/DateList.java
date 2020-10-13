@@ -1,4 +1,4 @@
-package seedu.duke.timetable;
+package timetable;
 
 import java.util.ArrayList;
 import java.util.List;
