@@ -20,7 +20,7 @@ public class AddCommand extends Command {
             seasonEpisodes[i] = Integer.parseInt(s);
             i++;
             //check that the episodes do not exceed seasons
-            if (i != numSeasons) {
+            if (i == numSeasons) {
                 Ui.printInvalidEpisodesInputException();
                 break;
             }
