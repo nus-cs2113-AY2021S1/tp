@@ -1,12 +1,7 @@
-import Flashcard.Flashcard;
-import Flashcard.FlashcardRun;
-import Flashcard.FlashcardDeck;
+import flashcard.FlashcardRun;
 import academic.GradeBook;
 import academic.PersonBook;
 import exceptions.InvalidCommandException;
-import exceptions.InvalidModeException;
-
-import java.io.IOException;
 
 public class Command {
     public static void executeCommand(String command, CommandType commandType) {

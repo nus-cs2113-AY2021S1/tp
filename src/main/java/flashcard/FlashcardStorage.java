@@ -1,4 +1,4 @@
-package Flashcard;
+package flashcard;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,32 +10,32 @@ import java.util.Scanner;
 public class FlashcardStorage {
 
     public ArrayList<Flashcard> flashcardDeck;
-    private final File f;
+    private final File file;
     private final String filePath;
     public int fileFlashcardsCounter = 0;
 
     public FlashcardStorage(String filePath) throws IOException {
-        f = new File(filePath);
+        file = new File(filePath);
         this.filePath = filePath;
     }
 
     public void writeToFile(FlashcardDeck flashcardDeck) {
         try {
             FileWriter fw = new FileWriter(filePath);
-            for(Flashcard flashcard : flashcardDeck.flashcardDeck) {
+            for (Flashcard flashcard : flashcardDeck.flashcardDeck) {
                 fw.write(flashcard.writeToFile());
             }
             fw.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println("Something went wrong!" + e.getMessage());
         }
     }
 
     public void readFromFile(FlashcardDeck flashcardDeck) {
         try {
-            Scanner s = new Scanner(f);
+            Scanner s = new Scanner(file);
             Flashcard flashcard;
-            while(s.hasNext()) {
+            while (s.hasNext()) {
                 String[] parseCard = s.nextLine().split("\\|");
                 String question = parseCard[0];
                 String answer = parseCard[1];

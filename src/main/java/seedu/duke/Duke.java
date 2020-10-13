@@ -1,6 +1,6 @@
 package seedu.duke;
 
-import Flashcard.FlashcardDeck;
+import flashcard.FlashcardDeck;
 
 import java.util.Scanner;
 
