@@ -41,12 +41,16 @@ public class Rex {
         try {
             logger.log(Level.INFO, "going to load patients");
             patients = new PatientList(storage.load());
-            appointments = storage.loadAppointments();
             logger.log(Level.INFO, "loaded patients");
-        } catch (RexException | FileNotFoundException e) {
-            logger.log(Level.INFO, "patients or appointments loading error");
+            appointments = storage.loadAppointments();
+            logger.log(Level.INFO, "loaded appointments");
+        } catch (RexException e) {
+            logger.log(Level.INFO, "patients loading error");
             ui.showLoadingError();
             patients = new PatientList();
+        } catch (FileNotFoundException e) {
+            logger.log(Level.INFO, "No appointments found. Creating new appointments list.");
+            appointments = new ArrayList<>();
         }
     }
 

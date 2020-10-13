@@ -65,6 +65,10 @@ public class Appointment {
         this.prescription = prescription;
     }
 
+    public Boolean isBooked() {
+        return isBooked;
+    }
+
     public void book(Patient patient) {
         this.patient = patient;
         isBooked = true;

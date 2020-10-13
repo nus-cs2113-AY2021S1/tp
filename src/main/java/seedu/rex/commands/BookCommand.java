@@ -7,6 +7,8 @@ import seedu.rex.data.hospital.Appointment;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class BookCommand extends Command {
@@ -24,7 +26,20 @@ public class BookCommand extends Command {
         if (!patients.isExistingPatient(nric)) {
             ui.printPatientNotFound(nric);
             patients.addNewPatient(ui.getPatientName(), nric, ui.getPatientDateOfBirth());
+            ui.showPatientAdded(patients.getPatientUsingIndex(patients.getSize() - 1));
+            storage.save(patients);
             ui.showLine();
+        }
+        String dateSelected = ui.getAppointmentToBook(appointments);
+        try {
+            for (Appointment appointment : appointments) {
+                if (appointment.getDate().equals(LocalDate.parse(dateSelected))) {
+                    appointment.book(patients.getPatientFromNric(nric));
+                    ui.showAppointmentBookedMessage(appointment);
+                }
+            }
+        } catch (DateTimeParseException e) {
+            ui.showDateInputError();
         }
 
 
