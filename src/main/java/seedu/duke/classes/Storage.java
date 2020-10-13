@@ -70,7 +70,7 @@ public class Storage implements SaveState {
 
             String[] splitEpisodes = s.nextLine().split("Episodes: ");
             String[] episodeString = splitEpisodes[1].split(" ");
-            int[] episodes = new int[20];
+            int[] episodes = new int[season];
 
             for (int i = 0; i < season; i++) {
 
@@ -80,7 +80,7 @@ public class Storage implements SaveState {
             String[] splitRating = s.nextLine().split("Rating: ");
             int rating = Integer.parseInt(splitRating[1]);
 
-            shows.setShow(name,new Show(name,season,episodes));
+            shows.setShow(name, new Show(name, season, episodes));
             //shows(name, new Show(name, season, episodes));
             shows.getShow(name).setRating(rating);
 
