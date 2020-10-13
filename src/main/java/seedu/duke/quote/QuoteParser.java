@@ -14,6 +14,7 @@ public class QuoteParser {
             + "\"/by\" flag and \"/from\" flag are present";
 
     public static Quote parseAddParameters(String userInput) throws QuotesifyException {
+        assert !userInput.isEmpty() : "field should not be empty";
         if (userInput.contains(Command.FLAG_REFERENCE) && userInput.contains(Command.FLAG_AUTHOR)) {
             return parseQuoteWithReferenceAndAuthor(userInput);
         } else if (userInput.contains(Command.FLAG_REFERENCE)) {
@@ -61,9 +62,13 @@ public class QuoteParser {
             if (referenceAndAuthor[0].startsWith("from")) {
                 reference = referenceAndAuthor[0].substring(5).trim();
                 authorName = referenceAndAuthor[1].substring(3).trim();
+                assert !reference.isEmpty() : "reference field should not be empty";
+                assert !authorName.isEmpty() : "author field should not be empty";
             } else {
                 reference = referenceAndAuthor[1].substring(5).trim();
                 authorName = referenceAndAuthor[0].substring(3).trim();
+                assert !reference.isEmpty() : "reference field should not be empty";
+                assert !authorName.isEmpty() : "author field should not be empty";
             }
         } catch (StringIndexOutOfBoundsException e) {
             throw new QuotesifyException(ERROR_MISSING_REFERENCE_OR_AUTHOR);
@@ -91,6 +96,7 @@ public class QuoteParser {
     }
 
     public static String trimAndCheckEmptyQuote(String quote) throws QuotesifyException {
+        assert !quote.isEmpty() : "quote field should not be empty";
         quote = quote.trim();
         if (!quote.isEmpty()) {
             return quote;
@@ -100,6 +106,7 @@ public class QuoteParser {
     }
 
     public static Author trimAndCheckEmptyAuthor(String authorName) throws QuotesifyException {
+        assert !authorName.isEmpty() : "author field should not be empty";
         authorName = authorName.trim();
         if (!authorName.isEmpty()) {
             return new Author(authorName);
@@ -109,6 +116,7 @@ public class QuoteParser {
     }
 
     public static String trimAndCheckEmptyReference(String reference) throws QuotesifyException {
+        assert !reference.isEmpty() : "reference field should not be empty";
         reference = reference.trim();
         if (!reference.isEmpty()) {
             return reference;
