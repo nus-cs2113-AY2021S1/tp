@@ -16,7 +16,7 @@ public class FlashcardParser {
      * @return returns a command instance to execute a command
      */
     public static FlashcardCommand parse(String fullCommand) {
-        if (fullCommand.equals("bye")) {
+        if (fullCommand.equals("exit")) {
             return new ExitFlashcardCommand();
         } else if (fullCommand.equals("list")) {
             return new ListFlashcardCommand();

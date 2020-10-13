@@ -1,20 +1,25 @@
 package seedu.duke.card;
 
+import seedu.duke.card.quiz.ResultList;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Topic {
     private String title;
     private List<Flashcard> flashcards;
+    private ResultList results;
 
     public Topic(String title) {
         this.title = title;
         this.flashcards = new ArrayList<>();
+        results = new ResultList(new ArrayList<>());
     }
 
     public Topic(String title, List<Flashcard> flashcards) {
         this.title = title;
         this.flashcards = flashcards;
+        results = new ResultList(new ArrayList<>());
     }
 
     public String getTitle() {
@@ -35,6 +40,10 @@ public class Topic {
 
     public List<Flashcard> getFlashcards() {
         return this.flashcards;
+    }
+
+    public ResultList getResults() {
+        return results;
     }
 
     public void printTopic(TopicList topicList) {
