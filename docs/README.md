@@ -1,4 +1,4 @@
-# NuSchedule
+# test
 
 {Give product intro here}
 
