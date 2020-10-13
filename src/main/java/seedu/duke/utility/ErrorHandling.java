@@ -17,7 +17,8 @@ public class ErrorHandling extends Exception {
                 + " for a list of commands."),
         EXCEPTION_CREATE_FILE_ERROR("\tError creating file."),
         EXCEPTION_INVALID_EPISODES_INPUT_EXCEPTION("\tThe number of episodes input doesn't match "
-                + "the number of seasons.Use the " + ("edit") + " command to change the number of seasons.");
+                + "the number of seasons.Use the " + ("edit") + " command to change the number of seasons."),
+        EXCEPTION_INVALID_RATING_INPUT("\tSorry! This is an invalid rating! Try again!");
 
         private String exception;
 

@@ -204,5 +204,9 @@ public class Ui {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_CREATE_FILE_ERROR);
     }
 
+    public static void printInvalidRatingInput() {
+        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_RATING_INPUT);
+    }
+
 }
 
