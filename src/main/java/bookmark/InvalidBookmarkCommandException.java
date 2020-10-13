@@ -1,4 +1,4 @@
-package seedu.duke.Bookmark;
+package bookmark;
 
 public class InvalidBookmarkCommandException extends Exception{
 }

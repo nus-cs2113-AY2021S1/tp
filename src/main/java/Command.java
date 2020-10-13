@@ -1,14 +1,13 @@
 import academic.GradeBook;
 import academic.PersonBook;
 import exceptions.InvalidCommandException;
-import seedu.duke.Bookmark.BookmarkCategory;
-import seedu.duke.Bookmark.Commands.BookmarkCommand;
-import seedu.duke.Bookmark.InvalidBookmarkCommandException;
+import bookmark.BookmarkCategory;
+import bookmark.commands.BookmarkCommand;
+import bookmark.InvalidBookmarkCommandException;
 import java.util.ArrayList;
-import seedu.duke.Bookmark.BookmarkUi;
+import bookmark.BookmarkUi;
 import exceptions.InvalidGradeException;
 import exceptions.InvalidMcException;
-import exceptions.InvalidModeException;
 
 public class Command {
 
@@ -49,11 +48,11 @@ public class Command {
 
     public static void executeBookmarkModeCommand(String command, ArrayList<BookmarkCategory> categories,
                                                   BookmarkUi ui, BookmarkParser parser) {
-        try{
-            BookmarkCommand c = parser.evaluateInput(command);
+        try {
+            BookmarkCommand c = parser.evaluateInput(command,ui, categories);
             c.executeCommand(ui,categories);
-        } catch (InvalidBookmarkCommandException e){
-            System.out.println("Invalid Bookmark commands");
+        } catch (InvalidBookmarkCommandException e) {
+            ui.showInvalidBookmarkCommand();
         }
     }
 

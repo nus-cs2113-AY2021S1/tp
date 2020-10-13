@@ -1,16 +1,15 @@
-import seedu.duke.Bookmark.BookmarkCategory;
-import seedu.duke.Bookmark.BookmarkUi;
-import seedu.duke.Bookmark.NUSCategory;
-import seedu.duke.Bookmark.ZoomCategory;
-
-import java.lang.reflect.Array;
+import bookmark.BookmarkCategory;
+import bookmark.BookmarkUi;
+import bookmark.NusCategory;
+import bookmark.ZoomCategory;
 import java.util.ArrayList;
 
 public class StudyIt {
     private ArrayList<BookmarkCategory> bookmarkCategories = new ArrayList<>();
     private BookmarkUi bookmarkUi;
-    private static Mode currentMode = Mode.MENU;
     private BookmarkParser bookmarkParser;
+    private static Mode currentMode = Mode.MENU;
+
 
     public static void changeMode(Mode destinationMode) {
         currentMode = destinationMode;
@@ -20,8 +19,8 @@ public class StudyIt {
         return currentMode;
     }
 
-    public StudyIt(){
-        bookmarkCategories.add(new NUSCategory());
+    public StudyIt() {
+        bookmarkCategories.add(new NusCategory());
         bookmarkCategories.add(new ZoomCategory());
         bookmarkUi = new BookmarkUi();
         bookmarkParser = new BookmarkParser();
@@ -39,8 +38,8 @@ public class StudyIt {
             // Collect user's command & identify the type
             String command = Ui.inputCommand();
             commandType = CommandParser.getCommandType(command);
-
             Command.executeCommand(command, commandType,bookmarkCategories,bookmarkUi,bookmarkParser);
+
         } while (commandType != CommandType.EXIT_PROGRAM);
     }
 }
