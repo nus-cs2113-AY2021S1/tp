@@ -2,6 +2,7 @@ import academic.GradeBook;
 import academic.PersonBook;
 import exceptions.InvalidCommandException;
 import exceptions.InvalidModeException;
+import timetable.TimeTableRun;
 
 public class Command {
     public static void executeCommand(String command, CommandType commandType) {
@@ -40,7 +41,8 @@ public class Command {
     }
 
     public static void executeTimetableModeCommand() {
-
+        TimeTableRun timeTableRun = new TimeTableRun();
+        timeTableRun.run();
     }
 
     public static void executeAcademicModeCommand(String command) {

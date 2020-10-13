@@ -7,7 +7,7 @@ public class TimeTableRun {
     public DateList events;
     public TimeTableStorage storage;
 
-    TimeTableRun(){
+    public TimeTableRun(){
         events = new DateList();
         storage = new TimeTableStorage("TimeTable.txt", events);
     }
