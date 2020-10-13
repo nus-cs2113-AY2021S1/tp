@@ -19,7 +19,7 @@ import java.time.format.DateTimeParseException;
  * Represents the user command exit the Duke program.
  */
 public class AddSlotCommand extends Command {
-    public static final String ADD_KW = "slotadd";
+    public static final String ADD_KW = "add";
     public LocalTime startTime;
     public LocalTime endTime;
     public String day;

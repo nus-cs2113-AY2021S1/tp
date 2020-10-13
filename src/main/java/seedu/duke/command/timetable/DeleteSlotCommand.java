@@ -13,7 +13,7 @@ import seedu.duke.exception.DukeExceptionType;
 import seedu.duke.slot.SlotList;
 
 public class DeleteSlotCommand extends Command {
-    public static final String DEL_KW = "slotdelete";
+    public static final String DEL_KW = "delete";
     private int index;
 
     /**
