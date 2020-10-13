@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class UserTest {
     @Test
     //BMI test
-    public void testBmiCalculation_positiveInputs_correctResult(){
+    public void testBmiCalculation_positiveInputs_correctResult() {
         User user = new User();
         user.setHeight(2.00);
         user.setWeight(4.00);
@@ -21,19 +21,19 @@ public class UserTest {
 
     @Test
     //user configuration test
-    public void configureUserInformation_validInput_userConfigurationSuccess(){
+    public void configureUserInformation_validInput_userConfigurationSuccess() {
         User user = new User();
         user.loadUserData("Bob", 20, 2.00, 8.00, "Male");
         assertEquals("Bob", user.getName());
         assertEquals(20, user.getAge());
         assertEquals(2.00, user.getHeight());
-        assertEquals(8.00,user.getWeight());
+        assertEquals(8.00, user.getWeight());
         assertEquals("Male", user.getGender());
     }
 
     @Test
     //Calorie test
-    public void testCalorieCalculation_positiveInputs_correctResult(){
+    public void testCalorieCalculation_positiveInputs_correctResult() {
         User user = new User();
         FoodList foodList = new FoodList();
         ExerciseList exerciseList = new ExerciseList();

@@ -4,7 +4,9 @@ import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.Calorie;
 import fitr.ui.Ui;
+
 import java.util.Scanner;
+
 import static fitr.common.Messages.USER_SETUP_GREET;
 import static fitr.common.Messages.INPUT_NAME;
 import static fitr.common.Messages.INPUT_AGE;
@@ -83,7 +85,7 @@ public class User {
         name = in.nextLine();
     }
 
-    public void setAge(Integer age){
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -91,11 +93,11 @@ public class User {
         this.height = height;
     }
 
-    public void setWeight(Double weight){
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 
-    public void setGender(String gender){
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
