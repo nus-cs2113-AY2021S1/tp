@@ -142,4 +142,19 @@ public class Ui {
         printWithIndent("Patient Details: ");
         printWithIndent(patient.toString());
     }
+
+    public void printPatientNotFound(String nric) {
+        printWithIndent("Patient " + nric + " not found in database!");
+    }
+
+    public String getNewAppointmentDate() {
+        printWithIndent("Please enter the date of appointment in YYYY-MM-DD.");
+        showLine();
+        return in.nextLine();
+    }
+
+    public void showAppointmentCreatedMessage() {
+        showLine();
+        printWithIndent("New appointment created!");
+    }
 }

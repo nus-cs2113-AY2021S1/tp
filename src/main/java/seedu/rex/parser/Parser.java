@@ -1,9 +1,6 @@
 package seedu.rex.parser;
 
-import seedu.rex.commands.AddCommand;
-import seedu.rex.commands.Command;
-import seedu.rex.commands.ExitCommand;
-import seedu.rex.commands.RetrieveCommand;
+import seedu.rex.commands.*;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Patient;
 
@@ -52,6 +49,10 @@ public class Parser {
             command = new AddCommand(trimmedCommand);
         } else if (trimmedCommand.contains(RetrieveCommand.COMMAND_WORD)) {
             command = new RetrieveCommand(trimmedCommand);
+        } else if (trimmedCommand.contains(BookCommand.COMMAND_WORD)) {
+            command = new BookCommand(trimmedCommand);
+        } else if (trimmedCommand.contains(CreateAppointmentCommand.COMMAND_WORD)) {
+            command = new CreateAppointmentCommand(trimmedCommand);
         } else {
             throw new RexException(Command.COMMAND_ERROR);
         }
