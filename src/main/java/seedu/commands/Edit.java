@@ -2,6 +2,7 @@ package seedu.commands;
 
 import seedu.data.TaskList;
 import seedu.exceptions.InvalidCommandException;
+import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.InvalidTaskNumberException;
 import seedu.task.Task;
@@ -43,7 +44,7 @@ public class Edit extends Command {
 
     @Override
     public CommandResult execute(TaskList tasks)
-            throws InvalidTaskNumberException, InvalidPriorityException {
+        throws InvalidTaskNumberException, InvalidPriorityException, InvalidDatetimeException {
         // Check range
         if (index <= 0 || index > tasks.size()) {
             throw new InvalidTaskNumberException();

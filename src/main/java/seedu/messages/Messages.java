@@ -12,6 +12,7 @@ public class Messages {
     public static final String INVALID_COMMAND = "Invalid command!" + LS;
     public static final String UNKNOWN_COMMAND = "Unknown command!" + LS;
     public static final String INVALID_TASK_NUMBER = "Invalid task number!" + LS;
+    public static final String INVALID_DATETIME = "Invalid datetime!" + LS;
 
     public static final String WELCOME_MESSAGE = ANSI_YELLOW + "Welcome to" + LS + ANSI_CYAN
             + "    ____  __      _   ____  _______" + LS
