@@ -5,7 +5,7 @@ import exceptions.InvalidModeException;
 import timetable.TimeTableRun;
 
 public class Command {
-    public static void executeCommand(String command, CommandType commandType) {
+    public static void executeCommand(String command, CommandType commandType, TimeTableRun timeTableRun) {
         if (commandType == CommandType.EXIT_PROGRAM) {
             Ui.printExit();
         } else if (commandType == CommandType.EXIT_MODE) {
@@ -17,18 +17,18 @@ public class Command {
         } else if (commandType == CommandType.HELP) {
             HelpMessage.printHelpMessage();
         } else if (StudyIt.getCurrentMode() != Mode.MENU) {
-            handleNonGeneralCommand(command, commandType);
+            handleNonGeneralCommand(command, commandType, timeTableRun);
         } else {
             ErrorMessage.printUnidentifiableCommand();
         }
     }
 
-    public static void handleNonGeneralCommand(String command, CommandType commandType) {
+    public static void handleNonGeneralCommand(String command, CommandType commandType, TimeTableRun timeTableRun) {
         Mode currentMode = StudyIt.getCurrentMode();
         if (currentMode == Mode.BOOKMARK) {
             executeBookmarkModeCommand();
         } else if (currentMode == Mode.TIMETABLE) {
-            executeTimetableModeCommand();
+            executeTimetableModeCommand(command, timeTableRun);
         } else if (currentMode == Mode.ACADEMIC) {
             executeAcademicModeCommand(command);
         } else if (currentMode == Mode.FLASHCARD) {
@@ -40,9 +40,8 @@ public class Command {
 
     }
 
-    public static void executeTimetableModeCommand() {
-        TimeTableRun timeTableRun = new TimeTableRun();
-        timeTableRun.run();
+    public static void executeTimetableModeCommand(String command, TimeTableRun timeTableRun) {
+        timeTableRun.run(command);
     }
 
     public static void executeAcademicModeCommand(String command) {

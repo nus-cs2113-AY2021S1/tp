@@ -7,15 +7,15 @@ public class Table {
     private static final String space = " ";
 
     public static void printTable(List<EventList> dateList) {
-        System.out.printf("%30s", space);
+        System.out.printf("%10s", space);
         for (int i = 0; i < 2400; i += 100) {
             String time = String.format("%04d", i);
-            System.out.printf("|%-30s", time);
+            System.out.printf("|%-10s", time);
         }
         System.out.println("|");
 
         for (int i = 0; i < 7; i++) {
-            System.out.printf("%-30s", LocalDate.now().plusDays(i).getDayOfWeek().name());
+            System.out.printf("%-10s", LocalDate.now().plusDays(i).getDayOfWeek().name());
             boolean skip = false;
             for (int dateListIndex = 0; dateListIndex < dateList.size() && !skip; dateListIndex++) {
                 if (dateList.get(dateListIndex).dateTag.equals(LocalDate.now().plusDays(i))) {
@@ -27,12 +27,12 @@ public class Table {
                             for (Duration period: current.periods) {
                                 if (period.containTimeSlot(j * 100) && period.startDateTime
                                         .toLocalDate().equals(dateList.get(dateListIndex).dateTag)) {
-                                    System.out.printf("|%-30s", current.name);
+                                    System.out.printf("|%-10s", current.name);
                                     isFree = false;
                                 }
                             }
                             if (isFree) {
-                                System.out.printf("|%-30s", space);
+                                System.out.printf("|%-10s", space);
                             }
                         }
                     }
@@ -40,7 +40,7 @@ public class Table {
                 }
             }
             for (int j = 0; j < 24 && !skip; j++) {
-                System.out.printf("|%-30s", space);
+                System.out.printf("|%-10s", space);
             }
             System.out.println("|");
         }

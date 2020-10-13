@@ -12,12 +12,7 @@ public class TimeTableRun {
         storage = new TimeTableStorage("TimeTable.txt", events);
     }
 
-    public void run() {
-        Scanner in = new Scanner(System.in);
-        String command;
-        do {
-            command = in.nextLine();
-            TimeTableParser.commandParser(command, events, storage);
-        } while (!command.equals("exit"));
+    public void run(String command) {
+        TimeTableParser.commandParser(command, events, storage);
     }
 }

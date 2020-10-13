@@ -3,7 +3,7 @@ package timetable;
 public class Message {
 
     public static final String printSuccessfulClassAddition = "This class has been added successfully! "
-            + "Use 'show schedule' to view your timetable.\n";
+            + "Use 'show schedule' to view your timetable.";
 
 
     public static final String printShowSchedule = "This is your schedule for the next 7 days.";

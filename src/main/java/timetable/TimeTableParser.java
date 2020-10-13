@@ -9,29 +9,32 @@ public class TimeTableParser {
             System.out.println(Message.printShowSchedule);
             Table.printTable(dateList.dateList);
             return;
-        } else if (command.equals("exit")) {
-            return;
         }
-        String[] words = command.split(" ",3);
-        String action = words[0];
-        String type = words[1];
-        if (action.equals("add")) {
-            switch (type) {
-            case "activity":
+        try {
+            String[] words = command.split(" ", 3);
+            String action = words[0];
+            String type = words[1];
+            if (action.equals("add")) {
+                switch (type) {
+                case "activity":
+                    break;
+                case "class": {
+                    Lesson lesson = addClass(words[2]);
+                    dateList.addLesson(lesson);
+                    storage.writeFile(lesson);
+                    System.out.println(Message.printSuccessfulClassAddition);
+                }
                 break;
-            case "class": {
-                Lesson lesson = addClass(words[2]);
-                dateList.addLesson(lesson);
-                storage.writeFile(lesson);
-                System.out.println(Message.printSuccessfulClassAddition);
+                default:
+                    System.out.println(("☹ OOPS!!! I'm sorry, but I don't know what that means :-("));
+                }
             }
-                break;
-            default: System.out.println(("☹ OOPS!!! I'm sorry, but I don't know what that means :-("));
-            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(Message.printInvalidEvent);
         }
     }
 
-    private static Lesson addClass(String classInfo) {
+    private static Lesson addClass(String classInfo) throws ArrayIndexOutOfBoundsException{
         String [] phrase = classInfo.substring(1).split(" /");
         String moduleCode = phrase[0];
         boolean isOnline;
@@ -71,7 +74,7 @@ public class TimeTableParser {
         EventType eventType = EventType.valueOf(words[0]);
         String name = words[1];
         String linkOrVenue = words[2];
-        Boolean isOnline = Boolean.parseBoolean(words[3]);
+        boolean isOnline = Boolean.parseBoolean(words[3]);
         int numPerWeek = Integer.parseInt(words[4]);
         switch (eventType) {
         case L: {
@@ -102,7 +105,6 @@ public class TimeTableParser {
     private static LocalDateTime getDateTime(String command)throws ArrayIndexOutOfBoundsException {
         String[] dateTime;
         String[] date;
-        String time;
         int fromIndex = command.indexOf("from");
         dateTime = command.substring(fromIndex + 5).split(" ");
         date = dateTime[0].split("/");

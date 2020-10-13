@@ -1,3 +1,5 @@
+import timetable.TimeTableRun;
+
 import java.util.Scanner;
 
 public class StudyIt {
@@ -10,6 +12,8 @@ public class StudyIt {
     public static Mode getCurrentMode() {
         return currentMode;
     }
+
+    public static TimeTableRun timeTableRun = new TimeTableRun();
 
     public static void main(String[] args) {
         MainMenu.printWelcome();
@@ -24,7 +28,7 @@ public class StudyIt {
             String command = Ui.inputCommand();
             commandType = CommandParser.getCommandType(command);
 
-            Command.executeCommand(command, commandType);
+            Command.executeCommand(command, commandType, timeTableRun);
         } while (commandType != CommandType.EXIT_PROGRAM);
     }
 }
