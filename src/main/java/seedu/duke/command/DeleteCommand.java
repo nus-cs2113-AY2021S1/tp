@@ -40,24 +40,34 @@ public class DeleteCommand extends Command {
         }
 
         if (isTask) {
-            if (numberDelete > calendarList.getTotalTasks() || numberDelete <= 0) {
-                throw new DukeException("invalid task action");
-            }
-            calendarNumber = CalendarList.convertTaskNumberToCalendarNumber(numberDelete, calendarList);
-            Ui.printDeleteMessage(calendarNumber, calendarList);
-            calendarList.deleteTask(calendarNumber);
-            Ui.printTotalTaskNumber(calendarList);
+            deleteTask(calendarList, numberDelete);
 
         } else {
-            if (numberDelete > calendarList.getTotalEvents() || numberDelete <= 0) {
-                throw new DukeException("invalid event action");
-            }
-            calendarNumber = CalendarList.convertEventNumberToCalendarNumber(numberDelete, calendarList);
-            Ui.printDeleteMessage(calendarNumber, calendarList);
-            calendarList.deleteEvent(numberDelete);
+            deleteEvent(calendarList, numberDelete);
         }
 
         storage.writeToFile(calendarList);
 
+    }
+
+    private void deleteEvent(CalendarList calendarList, int numberDelete) throws DukeException {
+        int calendarNumber;
+        if (numberDelete > calendarList.getTotalEvents() || numberDelete <= 0) {
+            throw new DukeException("invalid event action");
+        }
+        calendarNumber = CalendarList.convertEventNumberToCalendarNumber(numberDelete, calendarList);
+        Ui.printDeleteMessage(calendarNumber, calendarList);
+        calendarList.deleteEvent(numberDelete);
+    }
+
+    private void deleteTask(CalendarList calendarList, int numberDelete) throws DukeException {
+        int calendarNumber;
+        if (numberDelete > calendarList.getTotalTasks() || numberDelete <= 0) {
+            throw new DukeException("invalid task action");
+        }
+        calendarNumber = CalendarList.convertTaskNumberToCalendarNumber(numberDelete, calendarList);
+        Ui.printDeleteMessage(calendarNumber, calendarList);
+        calendarList.deleteTask(calendarNumber);
+        Ui.printTotalTaskNumber(calendarList);
     }
 }

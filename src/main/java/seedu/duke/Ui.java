@@ -5,6 +5,7 @@ import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.event.Event;
 import seedu.duke.calendar.task.Task;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -310,29 +311,6 @@ public class Ui {
     }
 
     /**
-     * Shows the user the exception that occurred when saving data to storage file.
-     *
-     * @param e exception message.
-     */
-    public static void printSaveDataErrorMessage(IOException e) {
-        System.out.println("Unable to save data. Error: " + e.getMessage());
-    }
-
-    /**
-     * Prints the message to inform the user that no data was imported.
-     */
-    public static void printNoImportDataMessage() {
-        System.out.println("No existing data imported.");
-    }
-
-    /**
-     * Prints the message to inform the user that existing data was imported.
-     */
-    public static void printImportDataSuccessMessage() {
-        System.out.println("Existing data imported.");
-    }
-
-    /**
      * Shows the user the exception that occurred when creating a storage file.
      *
      * @param e exception message.
@@ -342,10 +320,19 @@ public class Ui {
     }
 
     /**
-     * Prints the message to inform the user that an output file is created.
+     * Shows the user the exception that occurred when saving data to storage file.
+     *
+     * @param e exception message.
      */
-    public static void printFileCreatedMessage() {
-        System.out.println("New output file created.");
+    public static void printSaveDataErrorMessage(IOException e) {
+        System.out.println("Unable to save data. Error: " + e.getMessage());
     }
 
+    public static void printFileNotFoundErrorMessage() {
+        System.out.println("File not found.");
+    }
+
+    public static void printInvalidFileCommandMessage() {
+        System.out.println("Invalid file command input");
+    }
 }
