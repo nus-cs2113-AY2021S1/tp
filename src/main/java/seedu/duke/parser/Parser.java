@@ -11,7 +11,6 @@ import seedu.duke.command.HelpCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.exception.AniException;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Parser {
@@ -60,12 +59,11 @@ public class Parser {
     }
 
     public static String[] parseUserInput(String input) throws AniException {
-        logger.log(Level.INFO, "Starting parser processing");
         if (input == null || input.isEmpty()) {
-            logger.log(Level.WARNING, "Exception occurred");
+            logger.warning("Exception occurred");
             throw new AniException("Input is empty");
         }
-        logger.log(Level.INFO, "End of parser processing");
+        logger.info("Parser processing succeeded");
 
         String[] inputSplit = input.split(" ", 2);
         return inputSplit;

@@ -4,6 +4,7 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.UserManagement;
+import seedu.duke.storage.Storage;
 import seedu.duke.watchlist.Watchlist;
 
 import java.util.ArrayList;
@@ -33,16 +34,18 @@ public class AddToWatchlistCommand extends Command {
             throw new AniException("Watchlist command only accepts the option: \"-a\".");
         }
 
-        addToWatchlist(activeWatchlist);
+        addToWatchlist(userManagement.getStorage(), activeWatchlistList, activeWatchlist);
 
         return "Anime added to watchlist";
     }
     
-    public void addToWatchlist(Watchlist currentWatchlist) throws AniException { 
+    public void addToWatchlist(Storage storage, ArrayList<Watchlist> activeWatchlistList, 
+                               Watchlist activeWatchlist) throws AniException { 
         if(animeName == null || animeName.trim().isEmpty()) {
             throw new AniException("Anime name cannot be empty.");
         }
         
-        currentWatchlist.addAnimeToList(animeName);
+        activeWatchlist.addAnimeToList(animeName);
+        storage.saveWatchlist(activeWatchlistList);
     }
 }
