@@ -1,13 +1,23 @@
+import flashcard.FlashcardRun;
 import academic.GradeBook;
 import academic.PersonBook;
 import exceptions.InvalidCommandException;
+import bookmark.BookmarkCategory;
+import bookmark.commands.BookmarkCommand;
+import bookmark.InvalidBookmarkCommandException;
+import java.util.ArrayList;
+import bookmark.BookmarkUi;
 import exceptions.InvalidGradeException;
 import exceptions.InvalidMcException;
-import exceptions.InvalidModeException;
 import timetable.TimeTableRun;
 
+
 public class Command {
-    public static void executeCommand(String command, CommandType commandType, TimeTableRun timeTableRun) {
+
+    public static void executeCommand(String command, CommandType commandType,
+                                      ArrayList<BookmarkCategory> bookmarkCategories, BookmarkUi bookmarkUi,
+                                      BookmarkParser bookmarkParser, FlashcardRun flashcardRun,
+                                      TimeTableRun timeTableRun) {
         if (commandType == CommandType.EXIT_PROGRAM) {
             Ui.printExit();
         } else if (commandType == CommandType.EXIT_MODE) {
@@ -19,27 +29,38 @@ public class Command {
         } else if (commandType == CommandType.HELP) {
             HelpMessage.printHelpMessage();
         } else if (StudyIt.getCurrentMode() != Mode.MENU) {
-            handleNonGeneralCommand(command, commandType, timeTableRun);
+            handleNonGeneralCommand(command,commandType,bookmarkCategories,bookmarkUi,bookmarkParser,
+                    flashcardRun, timeTableRun);
         } else {
             ErrorMessage.printUnidentifiableCommand();
         }
     }
 
-    public static void handleNonGeneralCommand(String command, CommandType commandType, TimeTableRun timeTableRun) {
+    public static void handleNonGeneralCommand(String command, CommandType commandType,
+                                               ArrayList<BookmarkCategory> bookmarkCategories,
+                                               BookmarkUi bookmarkUi,BookmarkParser bookmarkParser,
+                                               FlashcardRun flashcardRun, TimeTableRun timeTableRun) {
+
         Mode currentMode = StudyIt.getCurrentMode();
         if (currentMode == Mode.BOOKMARK) {
-            executeBookmarkModeCommand();
+            executeBookmarkModeCommand(command,bookmarkCategories,bookmarkUi,bookmarkParser);
         } else if (currentMode == Mode.TIMETABLE) {
             executeTimetableModeCommand(command, timeTableRun);
         } else if (currentMode == Mode.ACADEMIC) {
             executeAcademicModeCommand(command);
         } else if (currentMode == Mode.FLASHCARD) {
-            executeFlashcardCommand();
+            executeFlashcardCommand(command, flashcardRun);
         }
     }
 
-    public static void executeBookmarkModeCommand() {
-
+    public static void executeBookmarkModeCommand(String command, ArrayList<BookmarkCategory> categories,
+                                                  BookmarkUi ui, BookmarkParser parser) {
+        try {
+            BookmarkCommand c = parser.evaluateInput(command,ui, categories);
+            c.executeCommand(ui,categories);
+        } catch (InvalidBookmarkCommandException e) {
+            ui.showInvalidBookmarkCommand();
+        }
     }
 
     public static void executeTimetableModeCommand(String command, TimeTableRun timeTableRun) {
@@ -84,7 +105,7 @@ public class Command {
         }
     }
 
-    public static void executeFlashcardCommand() {
-
+    public static void executeFlashcardCommand(String command, FlashcardRun flashcardRun) {
+        flashcardRun.run(command);
     }
 }

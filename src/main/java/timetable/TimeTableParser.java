@@ -34,7 +34,7 @@ public class TimeTableParser {
         }
     }
 
-    private static Lesson addClass(String classInfo) throws ArrayIndexOutOfBoundsException{
+    private static Lesson addClass(String classInfo) throws ArrayIndexOutOfBoundsException {
         String [] phrase = classInfo.substring(1).split(" /");
         String moduleCode = phrase[0];
         boolean isOnline;
