@@ -9,10 +9,6 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    public static final String ANSI_GREEN = "\u001B[92m";
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_REVERSE = "\u001b[7m";
-    public static final String ANSI_BOLD = "\u001b[1m";
     public static final String SAVE_DIRECTORY = "data/showList.txt";
 
     private Scanner scan;
@@ -29,7 +25,7 @@ public class Ui {
                 + "    \\  /\\  / ____ \\| | | |____| |  | | |\\  | |____ / . \\   | |   \n"
                 + "     \\/  \\/_/    \\_\\_|  \\_____|_|  |_|_| \\_|______/_/ \\_\\  |_|   \n";
 
-        System.out.println(ANSI_GREEN + logo + ANSI_RESET);
+        System.out.println(logo);
     }
 
     public void hello() {
@@ -37,7 +33,7 @@ public class Ui {
         printLogo();
         printLine();
         System.out.println("Welcome to WatchNext");
-        System.out.println("Type " + toReverse("help") + " to get started!\n");
+        System.out.println("Type " + ("help") + " to get started!\n");
     }
 
     public static void printLine() {
@@ -60,29 +56,29 @@ public class Ui {
                         + "|  |  |  | |  |____ |  `----.|  |      \n"
                         + "|__|  |__| |_______||_______|| _|      \n";
 
-        System.out.println(ANSI_GREEN + helpIcon + ANSI_RESET);
+        System.out.println(helpIcon);
         System.out.println("The following options are available:");
-        System.out.println(toBold("help") + " - Views help\n"
+        System.out.println(("help") + " - Views help\n"
                 + " \n"
-                + toBold("add") + " - Adds a show\n"
+                + ("add") + " - Adds a show\n"
                 + " \n"
-                + toBold("edit") + " - Edits your show details\n"
+                + ("edit") + " - Edits your show details\n"
                 + " \n"
-                + toBold("rating") + " - Set rating of your show\n"
+                + ("rating") + " - Set rating of your show\n"
                 + "\n"
-                + toBold("list") + " - Displays all your shows in list\n"
+                + ("list") + " - Displays all your shows in list\n"
                 + "\n"
-                + toBold("delete") + " - Deletes your show\n"
+                + ("delete") + " - Deletes your show\n"
                 + " \n"
-                + toBold("deleterating") + " - Deletes rating of your show\n"
+                + ("deleterating") + " - Deletes rating of your show\n"
                 + "\n"
-                + toBold("changerating") + " - Changes rating of your show\n"
+                + ("changerating") + " - Changes rating of your show\n"
                 + "\n"
-                + toBold("episode") + " - Update your episode progress\n"
+                + ("episode") + " - Update your episode progress\n"
                 + "\n"
-                + toBold("season") + " - Update your season progress\n"
+                + ("season") + " - Update your season progress\n"
                 + "\n"
-                + toBold("bye") + " - Exits the program\n");
+                + ("bye") + " - Exits the program\n");
         System.out.println("Refer to our user guide for more help!");
         printLine();
     }
@@ -102,14 +98,6 @@ public class Ui {
         return rawInput.trim().isEmpty();
     }
 
-    public static String toReverse(String input) {
-        return ANSI_REVERSE + input + ANSI_RESET;
-    }
-
-    public static String toBold(String input) {
-        return ANSI_BOLD + input + ANSI_RESET;
-    }
-
     public static void printLineIcon() {
         System.out.println("Enter a command: ");
     }
@@ -124,7 +112,7 @@ public class Ui {
 
     public static void printShowRating(String showName, String rating) {
         printLine();
-        System.out.println("The rating for " + toBold(showName) + " has been updated to " + toBold(rating));
+        System.out.println("The rating for " + (showName) + " has been updated to " + (rating));
     }
 
     public static void printChangeEpisode(String showName) {
@@ -152,27 +140,27 @@ public class Ui {
 
     public static void printChangeRating(String showName, String rating) {
         printLine();
-        System.out.println("The rating for " + toBold(showName) + " has been updated to " + toBold(rating));
+        System.out.println("The rating for " + (showName) + " has been updated to " + (rating));
     }
 
     public static void printDeleteRating(String showName) {
         printLine();
-        System.out.println("The rating for " + toBold(showName) + " has been deleted.");
+        System.out.println("The rating for " + (showName) + " has been deleted.");
     }
 
     public static void printDeleteShow(String showName) {
         printLine();
-        System.out.println(toBold(showName) + " has been deleted.");
+        System.out.println((showName) + " has been deleted.");
     }
 
     public static void printShowAdded(String showName) {
         printLine();
-        System.out.println(toBold(showName) + " was added to your watchlist.");
+        System.out.println((showName) + " was added to your watchlist.");
     }
 
     public static void queryEditShow(String showName) {
         printLine();
-        System.out.println("What details would you like to edit for " + toBold(showName) + "?");
+        System.out.println("What details would you like to edit for " + (showName) + "?");
     }
 
     public static void printSavedList() {
