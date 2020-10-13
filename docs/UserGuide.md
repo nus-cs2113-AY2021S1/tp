@@ -184,12 +184,12 @@ Start the application and all the data should be loaded.
 ## Command Summary
 | **Action** | **Format, Examples** |
 | ------------ | ------------- |
-| **mode** | `mode {bookmark/timetable}`<br>example: `mode bookmark` |
+| **mode** | `mode {bookmark/timetable}` example: `mode bookmark` |
 | **exit** | `exit` |
 | **Bookmark Mode** | |
 | **show** | `show` |
 | **add** | `add {MODULE(optional)} {DESCRIPTON} {URL}` example: `add CS2113T tutorial www.yahoo.com` |
-| **delete** | `delete {INDEX}`<br>example: `delete 2` |
+| **delete** | `delete {INDEX}` example: `delete 2` |
 | **find** | `find {MODULE} {DESCRIPTION(optional)}` example: `find CS2113 tutorial` |
 | **launch** | `launch {MODULE} {DESCRIPTION(optional)}` example: `launch CS2113` |
 | **Timetable Mode** | |
