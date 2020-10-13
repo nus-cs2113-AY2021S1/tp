@@ -20,6 +20,7 @@ public enum CommandChecker {
     BUNNY,
     LIST_BUNNY,
     FILTER_BUNNY,
+    SAVE_BUNNY,
 
     CHARACTER,
     LIST_CHARACTER,
@@ -59,6 +60,8 @@ public enum CommandChecker {
             return CommandChecker.LIST_BUNNY;
         } else if (userInput.toLowerCase().trim().startsWith("filter bunny")) {
             return CommandChecker.FILTER_BUNNY;
+        } else if (userInput.toLowerCase().trim().startsWith("save bunny")) {
+            return CommandChecker.SAVE_BUNNY;
         } else if (userInput.toLowerCase().trim().startsWith("exit")) {
             return CommandChecker.EXIT;
         } else if (userInput.toLowerCase().trim().startsWith("scene")) {

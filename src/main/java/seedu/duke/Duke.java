@@ -1,6 +1,5 @@
 package seedu.duke;
 
-import java.lang.ref.PhantomReference;
 import java.util.ArrayList;
 import java.util.Scanner;
 
