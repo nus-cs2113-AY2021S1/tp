@@ -31,11 +31,11 @@ public class PrintTimelineCommand extends Command {
         }
 
         CalendarList sortedList = sortByDateTime(timelineList);
-        int numberOfItems = sortedList.getTotalItems();
 
         System.out.println("Here is your timeline:");
         System.out.println("Timeline\n|");
-        System.out.println("|__ " + sortedList.getItem(0).getDate() + " " + sortedList.getItem(0).getDate().getDayOfWeek());
+        System.out.println("|__ " + sortedList.getItem(0).getDate()
+                + " " + sortedList.getItem(0).getDate().getDayOfWeek());
         if (sortedList.getItem(0).getTime() == null) {
             System.out.println("|            |_____ " + "23:59");
         } else {
@@ -43,23 +43,28 @@ public class PrintTimelineCommand extends Command {
         }
         System.out.println("|                     |_____ " + sortedList.getItem(0).getDescription());
 
-        for (int i = 1; i < numberOfItems; i++) {
-            LocalTime thisTime = (sortedList.getItem(i).getTime() == null ? LocalTime.of(23, 59) : sortedList.getItem(i).getTime());
-            LocalTime prevTime = (sortedList.getItem(i-1).getTime() == null ? LocalTime.of(23, 59) : sortedList.getItem(i-1).getTime());
+        for (int i = 1; i < sortedList.getTotalItems(); i++) {
+            LocalTime thisTime = (sortedList.getItem(i).getTime() == null
+                    ? LocalTime.of(23, 59) : sortedList.getItem(i).getTime());
+            LocalTime prevTime = (sortedList.getItem(i - 1).getTime() == null
+                    ? LocalTime.of(23, 59) : sortedList.getItem(i - 1).getTime());
             if (!(sortedList.getItem(i - 1).getDate().isEqual(sortedList.getItem(i).getDate()))) {
-                System.out.println("|__ " + sortedList.getItem(i).getDate() + " " + sortedList.getItem(i).getDate().getDayOfWeek());
+                System.out.println("|__ " + sortedList.getItem(i).getDate()
+                        + " " + sortedList.getItem(i).getDate().getDayOfWeek());
             }
             if (!thisTime.equals(prevTime)) {
                 System.out.println("|            |_____ " + thisTime);
             }
-            System.out.println("|                     |_____ " + sortedList.getItem(i).getDescription());
+            System.out.println("|                     |_____ "
+                    + sortedList.getItem(i).getDescription());
         }
 
         System.out.println("|__________________ Todo items");
         int index = 1;
-        for (int i = 0; i<todoList.getTotalItems(); i++) {
-            System.out.println("|                     |_____ " + index + ". " + todoList.getItem(i).toString());
-            index ++;
+        for (int i = 0; i < todoList.getTotalItems(); i++) {
+            System.out.println("|                     |_____ "
+                    + index + ". " + todoList.getItem(i).toString());
+            index++;
         }
     }
 
@@ -76,9 +81,11 @@ public class PrintTimelineCommand extends Command {
                     if (calendarList.getItem(j).getDate().isBefore(calendarList.getItem(i).getDate())) {
                         sortingList.swapTasks(i, j);
                     } else if (calendarList.getItem(j).getDate().isEqual(calendarList.getItem(i).getDate())) {
-                        LocalTime iTime = (calendarList.getItem(i).getTime() == null ? LocalTime.of(23, 59) : calendarList.getItem(i).getTime());
-                        LocalTime jTime = (calendarList.getItem(j).getTime() == null ? LocalTime.of(23, 59) : calendarList.getItem(j).getTime());
-                        if (jTime.isBefore(iTime)) {
+                        LocalTime timeOfi = (calendarList.getItem(i).getTime() == null
+                                ? LocalTime.of(23, 59) : calendarList.getItem(i).getTime());
+                        LocalTime timeOfj = (calendarList.getItem(j).getTime() == null
+                                ? LocalTime.of(23, 59) : calendarList.getItem(j).getTime());
+                        if (timeOfj.isBefore(timeOfi)) {
                             sortingList.swapTasks(i, j);
                         }
                     }
