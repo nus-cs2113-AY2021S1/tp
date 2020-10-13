@@ -8,6 +8,8 @@ import manager.chapter.CardList;
 import storage.Storage;
 import ui.Ui;
 
+import java.io.IOException;
+
 public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
     public static final String MODULE_PARAMETERS = " MODULE_NUMBER MODULE_NAME";
@@ -37,16 +39,16 @@ public class EditCommand extends Command {
 
     @Override
     public void execute(CardList cards, Ui ui, Access access, Storage storage)
-            throws InvalidInputException, IncorrectAccessLevelException {
+            throws InvalidInputException, IncorrectAccessLevelException, IOException {
         if (access.isChapterLevel()) {
-            editCard(ui, access);
+            editCard(ui, access, storage);
         } else {
             throw new IncorrectAccessLevelException("Sorry, you are currently at " + access.getLevel()
                     + ", please go to " + accessLevel + " level first.\n");
         }
     }
 
-    private void editCard(Ui ui, Access access) throws InvalidInputException {
+    private void editCard(Ui ui, Access access, Storage storage) throws InvalidInputException, IOException {
         CardList cards = access.getChapter().getCards();
         try {
             Card card = cards.getCard(editIndex);
@@ -58,6 +60,7 @@ public class EditCommand extends Command {
                 card.setAnswer(answer);
             }
             ui.showCardEdited(card);
+            storage.saveCards(cards, access.getModule().getModuleName(), access.getChapter().getChapterName());
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             throw new InvalidInputException("The flashcard number needs to be within the range "
                     + " of the total number of flashcards\n"

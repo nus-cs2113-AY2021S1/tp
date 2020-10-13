@@ -90,6 +90,24 @@ public class Access {
         return isChapterLevel;
     }
 
+    public void setIsAdminLevel() {
+        this.isAdminLevel = true;
+        this.isModuleLevel = false;
+        this.isChapterLevel = false;
+    }
+
+    public void setIsModuleLevel() {
+        this.isAdminLevel = false;
+        this.isModuleLevel = true;
+        this.isChapterLevel = false;
+    }
+
+    public void setIsChapterLevel() {
+        this.isAdminLevel = false;
+        this.isModuleLevel = false;
+        this.isChapterLevel = true;
+    }
+
     public void setModuleLevel(String moduleLevel) {
         if (isChapterLevel) {
             System.out.println("Sorry, you currently are in the chapter level.");

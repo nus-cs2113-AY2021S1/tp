@@ -11,6 +11,7 @@ class ParserTest {
     public void parse_addCommandInvalidArgs_expectException() {
         Parser parser = new Parser();
         Access access = new Access();
+        access.setIsChapterLevel();
         final String[] inputs = {
             "add",
             "add ",
