@@ -1,5 +1,11 @@
+import academic.Grade;
 import exceptions.InvalidCommandException;
+import exceptions.InvalidGradeException;
+import exceptions.InvalidMcException;
 import exceptions.InvalidModeException;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class AcademicCommandParser extends CommandParser {
 
@@ -15,28 +21,39 @@ public class AcademicCommandParser extends CommandParser {
             return AcademicCommandType.ADD_GRADE;
         } else if (commandModified.startsWith("check grade")) {
             return AcademicCommandType.CHECK_GRADE;
+        } else if (commandModified.equalsIgnoreCase("list grade")) {
+            return AcademicCommandType.LIST_GRADE;
         } else {
             throw new InvalidCommandException();
         }
     }
 
-    public static String[] getContact(String command) {
-        String commandModified = standardizeCommand(command);
-        String name = commandModified.substring(commandModified.indexOf("c/") + 2,
-                commandModified.indexOf("m/")).trim();
-        String number = commandModified.substring(commandModified.indexOf("m/") + 2,
-                commandModified.indexOf("e/")).trim();
-        String email = commandModified.substring(commandModified.indexOf("e/") + 2);
+    public static String[] getContact(String command) throws NumberFormatException {
+        //String commandModified = standardizeCommand(command);
+        String name = command.substring(command.indexOf("c/") + 2,
+                command.indexOf("m/")).trim();
+        String number = command.substring(command.indexOf("m/") + 2,
+                command.indexOf("e/")).trim();
+        String email = command.substring(command.indexOf("e/") + 2);
+        int numberFormatTest = Integer.parseInt(number);
         return new String[]{name, number, email};
     }
 
-    public static String[] getGrade(String command) {
-        String commandModified = standardizeCommand(command);
-        String name = commandModified.substring(commandModified.indexOf("n/") + 2,
-                commandModified.indexOf("m/")).trim();
-        String mc = commandModified.substring(commandModified.indexOf("m/") + 2,
-                commandModified.indexOf("g/")).trim();
-        String grade = commandModified.substring(commandModified.indexOf("g/") + 2);
+    public static String[] getGrade(String command) throws InvalidGradeException, InvalidMcException {
+        //String commandModified = standardizeCommand(command);
+        String name = command.substring(command.indexOf("n/") + 2,
+                command.indexOf("m/")).trim();
+        String mc = command.substring(command.indexOf("m/") + 2,
+                command.indexOf("g/")).trim();
+        String grade = command.substring(command.indexOf("g/") + 2);
+
+        List<String> list = Arrays.asList(Grade.listOfGrades);
+        if (!list.contains(grade.toLowerCase())) {
+            throw new InvalidGradeException();
+        } else if (mc.equals("0")) {
+            throw new InvalidMcException();
+        }
+
         return new String[]{name, mc, grade};
     }
 }

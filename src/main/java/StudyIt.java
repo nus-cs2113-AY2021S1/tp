@@ -1,7 +1,5 @@
 import timetable.TimeTableRun;
 
-import java.util.Scanner;
-
 public class StudyIt {
     private static Mode currentMode = Mode.MENU;
 
