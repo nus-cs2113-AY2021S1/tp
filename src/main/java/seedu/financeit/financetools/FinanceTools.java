@@ -9,6 +9,27 @@ import seedu.financeit.ui.UiManager;
 
 public class FinanceTools {
 
+    public static double handleMilesCredit(CommandPacket packet) {
+        MilesCredit tool = new MilesCredit();
+        tool.setRequiredParams(
+            "/amount",
+            "/miles"
+        );
+        try {
+            tool.handlePacket(packet);
+            return (tool.calculateMiles());
+        } catch (InsufficientParamsException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    exception.getMessage());
+        } finally {
+            if (!tool.getHasParsedAllRequiredParams()) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    "Input failed due to param error.");
+            }
+        }
+        return 0;
+    }
+
     public static double handleCashback(CommandPacket packet) {
         Cashback tool = new Cashback();
         tool.setRequiredParams(
@@ -19,12 +40,14 @@ public class FinanceTools {
         try {
             tool.handlePacket(packet);
             return (tool.calculateCashback());
-        } catch (AssertionError error) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Input failed due to param error.");
         } catch (InsufficientParamsException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
+        } finally {
+            if (!tool.getHasParsedAllRequiredParams()) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    "Input failed due to param error.");
+            }
         }
         return 0;
     }
@@ -66,6 +89,10 @@ public class FinanceTools {
             case "cashbackcalc":
                 System.out.print("Total Cashback Earned: ");
                 System.out.println('$' + Double.toString(handleCashback(packet)));
+                break;
+            case "milescalc":
+                System.out.print("Total Miles Earned: ");
+                System.out.println('$' + Double.toString(handleMilesCredit(packet)));
                 break;
             case "exit":
                 System.out.println("Exiting Finance Tools ...");

@@ -23,7 +23,6 @@ public class Ledger extends DateTimeItem {
     }
 
     public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
-        this.paramChecker = new ParamChecker(packet);
         try {
             this.handleParams(packet);
         } catch (ItemNotFoundException exception) {

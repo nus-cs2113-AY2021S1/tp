@@ -9,7 +9,6 @@ import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.manualtracker.Ledger;
 import seedu.financeit.ui.UiManager;
-import seedu.financeit.utils.ParamChecker;
 
 import java.time.LocalTime;
 
@@ -34,7 +33,6 @@ public class Entry extends DateTimeItem {
     }
 
     public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
-        this.paramChecker = new ParamChecker(packet);
         try {
             this.handleParams(packet);
         } catch (ItemNotFoundException exception) {

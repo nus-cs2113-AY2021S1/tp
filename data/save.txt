@@ -5,3 +5,4 @@ Income;TRANSPORT;32000.0;09:30;hahahaha
 Expense;TRANSPORT;12000.0;21:39;jasjanf
 201013
 Expense;TRANSPORT;32000.0;14:04;hahaha
+
