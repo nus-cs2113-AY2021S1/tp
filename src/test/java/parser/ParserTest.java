@@ -10,17 +10,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ParserTest {
     @Test
     public void parse_addCommandEmptyArgs_expectException() {
-        Parser parser = new Parser();
         Access access = new Access();
         final String[] inputs = {"add", "add "};
         for (String input : inputs) {
-            assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
+            assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
         }
     }
 
     @Test
     public void parse_addCardInvalidArgs_expectException() {
-        Parser parser = new Parser();
         Access access = new Access();
         access.setIsChapterLevel();
         final String[] inputs = {
@@ -39,24 +37,22 @@ class ParserTest {
             "add q:1+1 | 2",
         };
         for (String input : inputs) {
-            assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
+            assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
         }
     }
 
     @Test
     public void parse_listCommandWithArgs_expectException() {
-        Parser parser = new Parser();
         Access access = new Access();
         final String input = "list args";
-        assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
+        assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
     }
 
     @Test
     public void parse_exitCommandWithArgs_expectException() {
-        Parser parser = new Parser();
         Access access = new Access();
         final String input = "exit args";
-        assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
+        assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
     }
 
     @Test
@@ -64,8 +60,8 @@ class ParserTest {
         Parser parser = new Parser();
         Access access = new Access();
         final String[] inputs = {
-                "remove",
-                "remove ",
+            "remove",
+            "remove ",
         };
         for (String input : inputs) {
             assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
@@ -82,17 +78,15 @@ class ParserTest {
 
     @Test
     public void parse_editCommandEmptyArgs_expectException() {
-        Parser parser = new Parser();
         Access access = new Access();
         final String[] inputs = {"edit", "edit "};
         for (String input : inputs) {
-            assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
+            assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
         }
     }
 
     @Test
     public void parse_editCardInvalidArgs_expectException() {
-        Parser parser = new Parser();
         Access access = new Access();
         access.setIsChapterLevel();
         final String[] inputs = {
@@ -111,63 +105,59 @@ class ParserTest {
             "add q:1+1 | 2",
         };
         for (String input : inputs) {
-            assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
+            assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
         }
     }
 
     @Test
     public void parse_editModuleInvalidArgs_expectException() {
-        Parser parser = new Parser();
         Access access = new Access();
         access.setIsAdminLevel();
         final String[] inputs = {
-                "edit wrong args format",
-                // module number is not integer
-                "edit two cs2113",
-                // no module number
-                "edit cs2113",
-                // no content for module name
-                "edit 1",
+            "edit wrong args format",
+            // module number is not integer
+            "edit two cs2113",
+            // no module number
+            "edit cs2113",
+            // no content for module name
+            "edit 1",
         };
         for (String input : inputs) {
-            assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
+            assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
         }
     }
 
     @Test
     public void parse_editModuleInvalidCommandFormat_expectException() {
-        Parser parser = new Parser();
         Access access = new Access();
         access.setIsAdminLevel();
         String input = "edit 1 q:1+1 | a:";
-        assertThrows(IncorrectAccessLevelException.class, () -> parser.parse(input, access));
+        assertThrows(IncorrectAccessLevelException.class, () -> Parser.parse(input, access));
     }
 
     @Test
     public void parse_editChapterInvalidArgs_expectException() {
-        Parser parser = new Parser();
         Access access = new Access();
         access.setIsModuleLevel();
         final String[] inputs = {
-                "edit wrong args format",
-                // chapter number is not integer
-                "edit two chapter 1",
-                // no chapter number
-                "edit chapter 1",
-                // no content for chapter name
-                "edit 1",
+            "edit wrong args format",
+            // chapter number is not integer
+            "edit two chapter 1",
+            // no chapter number
+            "edit chapter 1",
+            // no content for chapter name
+            "edit 1",
         };
         for (String input : inputs) {
-            assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
+            assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
         }
     }
 
     @Test
     public void parse_editChapterInvalidCommandFormat_expectException() {
-        Parser parser = new Parser();
         Access access = new Access();
         access.setIsModuleLevel();
         String input = "edit 1 q:1+1 | a:";
-        assertThrows(IncorrectAccessLevelException.class, () -> parser.parse(input, access));
+        assertThrows(IncorrectAccessLevelException.class, () -> Parser.parse(input, access));
     }
 }
