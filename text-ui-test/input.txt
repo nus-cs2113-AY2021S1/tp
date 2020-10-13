@@ -1,6 +1,7 @@
-James Gosling
-01/02/1999
-Male
+Abec
+01/02/1996
+Female
 watchlist -n a
 watchlist -n b
+add -a MyFirstAnime
 exit
