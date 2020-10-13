@@ -1,3 +1,6 @@
+import flashcard.Flashcard;
+import flashcard.FlashcardRun;
+
 public class StudyIt {
     private static Mode currentMode = Mode.MENU;
 
@@ -8,6 +11,8 @@ public class StudyIt {
     public static Mode getCurrentMode() {
         return currentMode;
     }
+
+    public static FlashcardRun flashcardRun = new FlashcardRun();
 
     public static void main(String[] args) {
         MainMenu.printWelcome();
@@ -22,7 +27,7 @@ public class StudyIt {
             String command = Ui.inputCommand();
             commandType = CommandParser.getCommandType(command);
 
-            Command.executeCommand(command, commandType);
+            Command.executeCommand(command, commandType, flashcardRun);
         } while (commandType != CommandType.EXIT_PROGRAM);
     }
 }

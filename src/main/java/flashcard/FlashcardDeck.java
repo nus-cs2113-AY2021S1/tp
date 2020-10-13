@@ -1,6 +1,7 @@
 package flashcard;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -26,7 +27,6 @@ public class FlashcardDeck {
     }
 
     public void listCards() {
-        Scanner in = new Scanner(System.in);
         System.out.println("Here is the list of flashcards you have: ");
         int cardIndex = 1;
         for (Flashcard flashcard: flashcardDeck) {
@@ -36,16 +36,24 @@ public class FlashcardDeck {
     }
 
     public void testRandomCard() {
-        Random random = new Random();
-        int randomIndex = random.nextInt(flashcardDeck.size());
-        System.out.println("What is the answer to this question?");
-        System.out.println(flashcardDeck.get(randomIndex).question);
         Scanner in = new Scanner(System.in);
-        String attempt = in.nextLine();
-        while (!attempt.equals(flashcardDeck.get(randomIndex).answer)) {
-            System.out.println("Incorrect! Try again?");
+        String attempt = "null";
+        System.out.println("You have entered the test mode.");
+        while (!attempt.equals("exit")) {
+            Random random = new Random();
+            int randomIndex = random.nextInt(flashcardDeck.size());
+            System.out.println("What is the answer to this question?");
+            System.out.println(flashcardDeck.get(randomIndex).question);
             attempt = in.nextLine();
+            while (!attempt.equals(flashcardDeck.get(randomIndex).answer) && !attempt.equals("exit")) {
+                System.out.println("Incorrect! Try again?");
+                attempt = in.nextLine();
+            }
+            if (attempt.equals("exit")) {
+                System.out.println("Exiting test mode...");
+            } else {
+                System.out.println("This is the right answer!");
+            }
         }
-        System.out.println("This is the right answer!");
     }
 }

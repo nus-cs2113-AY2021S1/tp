@@ -21,22 +21,21 @@ public class FlashcardRun {
         storage.readFromFile(flashcardDeck);
     }
 
-    public void run() {
-        Scanner in = new Scanner(System.in);
-        String command;
-        do {
-            command = in.nextLine();
+    public void run(String command) {
             switch (command) {
-            case ADD: flashcardDeck.addCards();
+            case ADD:
+                flashcardDeck.addCards();
                 break;
-            case LIST: flashcardDeck.listCards();
+            case LIST:
+                flashcardDeck.listCards();
                 break;
-            case TEST: flashcardDeck.testRandomCard();
+            case TEST:
+                flashcardDeck.testRandomCard();
                 break;
-            default: System.out.println("Invalid command. Valid commands are 'add', 'list'. "
-                    + "Use 'exit' to exit the flashcard mode.");
+            default:
+                System.out.println("Invalid command. Valid commands are 'add', 'list'. "
+                        + "Use 'exit' to exit the flashcard mode.");
             }
-        } while (!command.equals(EXIT));
         storage.writeToFile(flashcardDeck);
     }
 }

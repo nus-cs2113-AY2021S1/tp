@@ -1,10 +1,11 @@
+import flashcard.Flashcard;
 import flashcard.FlashcardRun;
 import academic.GradeBook;
 import academic.PersonBook;
 import exceptions.InvalidCommandException;
 
 public class Command {
-    public static void executeCommand(String command, CommandType commandType) {
+    public static void executeCommand(String command, CommandType commandType, FlashcardRun flashcardRun) {
         if (commandType == CommandType.EXIT_PROGRAM) {
             Ui.printExit();
         } else if (commandType == CommandType.EXIT_MODE) {
@@ -16,13 +17,13 @@ public class Command {
         } else if (commandType == CommandType.HELP) {
             HelpMessage.printHelpMessage();
         } else if (StudyIt.getCurrentMode() != Mode.MENU) {
-            handleNonGeneralCommand(command, commandType);
+            handleNonGeneralCommand(command, commandType,flashcardRun);
         } else {
             ErrorMessage.printUnidentifiableCommand();
         }
     }
 
-    public static void handleNonGeneralCommand(String command, CommandType commandType) {
+    public static void handleNonGeneralCommand(String command, CommandType commandType, FlashcardRun flashcardRun) {
         Mode currentMode = StudyIt.getCurrentMode();
         if (currentMode == Mode.BOOKMARK) {
             executeBookmarkModeCommand();
@@ -31,7 +32,7 @@ public class Command {
         } else if (currentMode == Mode.ACADEMIC) {
             executeAcademicModeCommand(command);
         } else if (currentMode == Mode.FLASHCARD) {
-            executeFlashcardCommand();
+            executeFlashcardCommand(command, flashcardRun);
         }
     }
 
@@ -65,8 +66,7 @@ public class Command {
         }
     }
 
-    public static void executeFlashcardCommand() {
-        FlashcardRun flashcardRun = new FlashcardRun();
-        flashcardRun.run();
+    public static void executeFlashcardCommand(String command, FlashcardRun flashcardRun) {
+        flashcardRun.run(command);
     }
 }
