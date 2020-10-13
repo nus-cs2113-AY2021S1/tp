@@ -34,13 +34,13 @@ public class UserTest {
     @Test
     //Calorie test
     public void testCalorieCalculation_positiveInputs_correctResult() {
-        User user = new User();
         FoodList foodList = new FoodList();
         ExerciseList exerciseList = new ExerciseList();
         foodList.addFood(new Food("Chicken", new Calorie(200), 1));
         foodList.addFood(new Food("Duck", new Calorie(200), 1));
         exerciseList.addExercise(new Exercise("Squats", new Calorie(100), 1));
         exerciseList.addExercise(new Exercise("Running", new Calorie(100), 1));
+        User user = new User();
         assertEquals(200, user.calculateCalorieBurnt(exerciseList).get());
         assertEquals(400, user.calculateCalorieConsumed(foodList).get());
         assertEquals(200, user.calculateCalorie(foodList, exerciseList).get());
