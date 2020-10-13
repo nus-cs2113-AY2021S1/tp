@@ -41,7 +41,54 @@ The expected outcome:
 
 
 ### 3.3 Browse through all anime: `browse`
+Browse through all anime from the source. It can be displayed in sorted order.
 
+Format: `browse [-s SORT_CATEGORY] [-o DISLAY_ORDER] [-p PAGE_NUMBER`]
+
+Note: 
+
+`-s name` will sort the list by alphabetical order
+
+`-s rating` will sort the list by rating
+
+`-o asc` will arrange it in ascending order
+
+`-o dsc` will arrange it in descending order
+
+`-p <N>` will display page N of the list
+
+`-p <N>` N must be a positive integer value
+
+The order of the parameter does not matter
+
+If no parameters or only `-o` is specified then it will display in its anime id order.
+
+Sample Input: `browse -s name -p 1 -o dsc`
+
+The expected outcome:
+```
+1. .hack//Gift
+2. .hack//Legend Of The Twilight
+3. .hack//Liminality
+4. .hack//Sign
+5. 3x3 Eyes
+6. A Chinese Ghost Story
+7. ARIA The ANIMATION
+8. Abashiri Ikka
+9. Ace wo Nerae!
+10. Ace wo Nerae! 2
+11. Ace wo Nerae: Final Stage
+12. After War Gundam X
+13. Agatha Christie's Great Detectives Poirot and Marple
+14. Agent Aika
+15. Ah! My Goddess: The Movie
+16. Ai Yori Aoshi
+17. Ai Yori Aoshi: Enishi
+18. Aim for the Ace! (1979)
+19. Air
+20. Air Master
+Browsing Page: 1
+```
 ### 3.4 Create an Anime watchlist: `watchlist`
 
 ### 3.5 Add an Anime to the select watchlist: `add`
