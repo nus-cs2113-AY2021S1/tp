@@ -2,6 +2,7 @@ import flashcard.FlashcardRun;
 import academic.GradeBook;
 import academic.PersonBook;
 import exceptions.InvalidCommandException;
+import timetable.TimeTableRun;
 import bookmark.BookmarkCategory;
 import bookmark.commands.BookmarkCommand;
 import bookmark.InvalidBookmarkCommandException;
@@ -40,7 +41,6 @@ public class Command {
                                                ArrayList<BookmarkCategory> bookmarkCategories,
                                                BookmarkUi bookmarkUi,BookmarkParser bookmarkParser,
                                                FlashcardRun flashcardRun, TimeTableRun timeTableRun) {
-
         Mode currentMode = StudyIt.getCurrentMode();
         if (currentMode == Mode.BOOKMARK) {
             executeBookmarkModeCommand(command,bookmarkCategories,bookmarkUi,bookmarkParser);

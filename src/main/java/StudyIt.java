@@ -22,7 +22,6 @@ public class StudyIt {
         return currentMode;
     }
 
-
     public static TimeTableRun timeTableRun = new TimeTableRun();
     public static FlashcardRun flashcardRun = new FlashcardRun();
 
@@ -47,6 +46,7 @@ public class StudyIt {
             commandType = CommandParser.getCommandType(command);
             Command.executeCommand(command, commandType,bookmarkCategories,bookmarkUi,bookmarkParser,flashcardRun,
                     timeTableRun);
+
         } while (commandType != CommandType.EXIT_PROGRAM);
     }
 }
