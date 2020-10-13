@@ -1,4 +1,6 @@
-package seedu.duke;
+package seedu.duke.human;
+
+import seedu.duke.exception.AniException;
 
 public abstract class Human {
     protected String name;

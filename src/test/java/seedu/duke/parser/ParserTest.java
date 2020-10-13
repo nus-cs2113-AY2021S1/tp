@@ -1,6 +1,8 @@
-package seedu.duke;
+package seedu.duke.parser;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.exception.AniException;
+import seedu.duke.parser.Parser;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;

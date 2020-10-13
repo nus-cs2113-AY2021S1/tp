@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.bookmark;
 
 import java.util.ArrayList;
 

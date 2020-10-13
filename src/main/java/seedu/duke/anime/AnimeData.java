@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.anime;
 
 import java.util.ArrayList;
 import java.util.Arrays;

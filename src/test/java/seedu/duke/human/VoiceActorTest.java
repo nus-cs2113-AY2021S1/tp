@@ -1,6 +1,9 @@
-package seedu.duke;
+package seedu.duke.human;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.exception.AniException;
+import seedu.duke.human.Character;
+import seedu.duke.human.VoiceActor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
