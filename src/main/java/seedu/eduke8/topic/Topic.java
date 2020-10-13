@@ -16,6 +16,7 @@ public class Topic implements Displayable {
 
     @Override
     public String getDescription() {
+        wasShown = true;
         return description;
     }
 
