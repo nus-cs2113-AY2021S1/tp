@@ -25,13 +25,13 @@ public class AddExerciseCommand extends Command {
                 Calorie amountOfCaloriesBurnt = new Calorie(Integer.parseInt(command.split(" ")[0]));
                 exerciseList.addExercise(new Exercise(nameOfExercise, amountOfCaloriesBurnt));
                 storage.writeExerciseList(exerciseList);
-                Ui.showAdd("The following execise has been added: " + nameOfExercise);
+                Ui.showAdd("The following exercise has been added: " + nameOfExercise);
             } else if (command.split(" ").length == 2) {
                 Calorie amountOfCaloriesBurnt = new Calorie(Integer.parseInt(command.split(" ")[0]));
                 int durationOfExercise = Integer.parseInt(command.split(" ", 2)[1]);
                 exerciseList.addExercise(new Exercise(nameOfExercise, amountOfCaloriesBurnt, durationOfExercise));
                 storage.writeExerciseList(exerciseList);
-                Ui.showAdd("The following execise has been added: " + nameOfExercise);
+                Ui.showAdd("The following exercise has been added: " + nameOfExercise);
             }
         } catch (NumberFormatException | NullPointerException e) {
             Ui.printCustomError("Sorry calories have to be a number");
