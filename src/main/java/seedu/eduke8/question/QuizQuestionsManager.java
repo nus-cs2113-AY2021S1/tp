@@ -36,15 +36,14 @@ public class QuizQuestionsManager {
             throw new Eduke8Exception(INSUFFICIENT_TOPIC_QUESTIONS_FOR_QUIZ);
         }
 
-        // prevent repeated questionsInTopic from being selected again
+        // Stores the questions' indexes selected from the topic question list
         ArrayList<Integer> integersChosen = new ArrayList<>();
 
         while (quizQuestions.size() < numberOfQuestionsForQuiz) {
-            // get a random question that is within the bounds of the size of the available question list
+            // Gets a random question that is within the bounds of the size of the available question list
             int randomQuestionIndex = RANDOM.nextInt(questionsInTopic.size() - 1);
 
-            // if the number is already selected - the question is already selected, we re run the loop
-            // to select another random number
+            // To ensure we do not pick the same question again
             if (integersChosen.contains(randomQuestionIndex)) {
                 // logger.info("chosen a repeated question");
                 continue;
@@ -57,7 +56,7 @@ public class QuizQuestionsManager {
     }
 
     public Question getNextQuestion() {
-        // Gets current question and increment count for number of questions shown to user
+        // Automatically increases question count when a question is shown to the user
         return quizQuestions.get(currentQuestionNumber++);
     }
 

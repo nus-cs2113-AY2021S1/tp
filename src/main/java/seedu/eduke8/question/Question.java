@@ -16,10 +16,10 @@ public class Question implements Displayable {
     private boolean wasShown;
 
     public Question(String description, OptionList optionList, Hint hint) {
-        // assert description != null;     // for another pull request.
+        assert description != null;     // A question must have its description
         this.description = description;
 
-        // assert optionList != null;       // for another pull request.
+        assert optionList != null;       // A question must have some options
         this.optionList = optionList;
 
         this.hint = hint;
