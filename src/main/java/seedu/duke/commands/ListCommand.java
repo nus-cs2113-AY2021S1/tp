@@ -164,7 +164,7 @@ public class ListCommand extends Command {
     }
 
     private void listCategories(CategoryList categoryList, TextUi ui) {
-        categoryList.updateListsInCategory();
+        categoryList.updateListsInAllCategories();
         if ((information.isEmpty())) {
             listAllCategories(categoryList, ui);
         } else {
@@ -179,7 +179,7 @@ public class ListCommand extends Command {
     private void listAllInCategory(CategoryList categoryList, TextUi ui) {
         try {
             ui.printAllInCategory(categoryList.getCategoryByName(information));
-        } catch (NullPointerException e) {
+        } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
         }
     }

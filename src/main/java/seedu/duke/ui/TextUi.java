@@ -39,6 +39,8 @@ public class TextUi {
     private static final String CATEGORY_SIZE_MESSAGE = "You have a total of %d item(s) tagged as [%s].";
     private static final String LIST_CATEGORIES_MESSAGE = "Here is the list of all categories:";
     private static final String LIST_ALL_IN_CATEGORIES_MESSAGE = "Here are the list of items tagged as [%s]:";
+    private static final String EMPTY_CATEGORY_LIST_MESSAGE = "There are no categories created!";
+    private static final String NO_ITEMS_IN_CATEGORY_MESSAGE = "There are no items tagged as [%s].";
     private static final String ADD_RATING_MESSAGE = "You have just rated %s %d star!";
     public static final String DELETE_RATING_MESSAGE = "Rating for %s has been deleted!";
     private static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
@@ -132,28 +134,46 @@ public class TextUi {
     }
 
     public void printAllCategories(CategoryList categoryList) {
+        if (categoryList.getList().size() == 0) {
+            System.out.println(EMPTY_CATEGORY_LIST_MESSAGE);
+            return;
+        }
         System.out.println(LIST_CATEGORIES_MESSAGE);
         System.out.println(categoryList.toString());
     }
 
     public void printAllInCategory(Category category) {
         String categoryName = category.getCategoryName();
-        System.out.printf(LIST_ALL_IN_CATEGORIES_MESSAGE + "\n", categoryName);
-
-        BookList bookList = category.getBookList();
-        System.out.println("BOOKS:");
-        for (int i = 0; i < bookList.getList().size(); i++) {
-            Book book = bookList.getList().get(i);
-            System.out.println((i + 1) + ". " + book.toString());
+        if (category.getSize() == 0) {
+            System.out.printf(NO_ITEMS_IN_CATEGORY_MESSAGE + "\n", categoryName);
+            return;
         }
 
-        System.out.println(System.lineSeparator());
+        System.out.printf(LIST_ALL_IN_CATEGORIES_MESSAGE + "\n", categoryName);
+        printAllBooksInCategory(category);
+        System.out.println("");
+        printAllQuotesInCategory(category);
+    }
 
+    public void printAllBooksInCategory(Category category) {
+        BookList bookList = category.getBookList();
+        if (bookList.getList().size() > 0) {
+            System.out.println("BOOKS:");
+            for (int i = 0; i < bookList.getList().size(); i++) {
+                Book book = bookList.getList().get(i);
+                System.out.println((i + 1) + ". " + book.toString());
+            }
+        }
+    }
+
+    public void printAllQuotesInCategory(Category category) {
         QuoteList quoteList = category.getQuoteList();
-        System.out.println("QUOTES:");
-        for (int i = 0; i < quoteList.getList().size(); i++) {
-            Quote quote = quoteList.getList().get(i);
-            System.out.println((i + 1) + ". " + quote.toString());
+        if (quoteList.getList().size() > 0) {
+            System.out.println("QUOTES:");
+            for (int i = 0; i < quoteList.getList().size(); i++) {
+                Quote quote = quoteList.getList().get(i);
+                System.out.println((i + 1) + ". " + quote.toString());
+            }
         }
     }
 
