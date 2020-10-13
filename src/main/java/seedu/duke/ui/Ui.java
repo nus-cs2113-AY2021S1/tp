@@ -4,7 +4,11 @@ import seedu.duke.card.Subject;
 import seedu.duke.card.SubjectList;
 import seedu.duke.card.Topic;
 import seedu.duke.card.TopicList;
+
 import seedu.duke.card.Flashcard;
+
+import seedu.duke.card.quiz.Result;
+
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
@@ -187,9 +191,9 @@ public class Ui {
                 + "____________________________________________________________\n");
     }
 
-    public static void printExitToMain() {
+    public static void printBackToSubjects() {
         System.out.println("____________________________________________________________\n"
-                + "Going back to the main screen.\n"
+                + "Going back to the subjects list.\n"
                 + "____________________________________________________________\n");
     }
 
@@ -254,6 +258,7 @@ public class Ui {
                 + "____________________________________________________________");
     }
 
+
     public static void printFlashcardDelete(Flashcard flashcard, int total) {
         System.out.println("____________________________________________________________\n"
                 + " Noted. I've removed this flashcard:\n   "
@@ -271,5 +276,91 @@ public class Ui {
             index++;
         }
         System.out.println("____________________________________________________________");
+    }
+
+    public static void printScore(Result result) {
+        System.out.println("____________________________________________________________\n"
+                + "Result:" + result + "\n"
+                + "____________________________________________________________");
+    }
+
+    public static void printIncorrectAnswers(List<String> incorrectAnswers) {
+        System.out.println("Here are the questions which you got wrong.\n"
+                + "____________________________________________________________");
+
+        for (int i = 0; i < incorrectAnswers.size() ; i += 3) {
+            System.out.println("Question:" + incorrectAnswers.get(i));
+            System.out.println("Correct Answer: " + incorrectAnswers.get(i + 1));
+            System.out.println("Your Answer: " + incorrectAnswers.get(i + 2));
+            System.out.println("____________________________________________________________");
+        }
+
+    }
+
+    public static void printStartSubjectQuiz(Subject subject) {
+        System.out.println("____________________________________________________________\n"
+                + "You are about to begin the quiz for " + subject + ".You have 2 minutes.\n"
+                + "____________________________________________________________\n");
+    }
+
+    public static void printStartTopicQuiz(Topic topic) {
+        System.out.println("____________________________________________________________\n"
+                + "You are about to begin the quiz for " + topic + ".You have 1 minute.\n"
+                + "____________________________________________________________\n");
+    }
+
+    public static void printStopQuiz() {
+        System.out.println("____________________________________________________________\n"
+                + "The quiz has been stopped!");
+    }
+
+    public static void printEndQuiz() {
+        System.out.println("____________________________________________________________\n"
+                + "The quiz has ended!");
+    }
+
+    public static void printSubjectResults(Subject subject) {
+        System.out.println("____________________________________________________________");
+        int index = 1;
+        for (Result result : subject.getResults().getList()) {
+            System.out.println("Quiz " + index + ": " + result);
+            index = index + 1;
+        }
+        System.out.println("____________________________________________________________");
+    }
+
+    public static void printTopicResults(Topic topic) {
+        System.out.println("____________________________________________________________");
+        int index = 1;
+        for (Result result : topic.getResults().getList()) {
+            System.out.println("Quiz " + index + ": " + result);
+            index = index + 1;
+
+        }
+        System.out.println("____________________________________________________________");
+    }
+
+    public static void printQuestion(String question) {
+        System.out.println("Question: " + question);
+
+
+    }
+
+    public static void printBackToTopicsAndTasks() {
+        System.out.println("____________________________________________________________\n"
+                + "Going back to the topics and tasks list.\n"
+                + "____________________________________________________________\n");
+    }
+
+    public static void printNoFlashcards() {
+        System.out.println("____________________________________________________________\n"
+                + "There are no flashcards present yet!\n"
+                + "____________________________________________________________\n");
+    }
+
+    public static void printNoTopics() {
+        System.out.println("____________________________________________________________\n"
+                + "There are no topics present yet!\n"
+                + "____________________________________________________________\n");
     }
 }
