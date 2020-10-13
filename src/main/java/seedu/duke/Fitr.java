@@ -11,6 +11,7 @@ public class Fitr {
     public Fitr(String filePathOfUserConfig, String filePathOfFoodList, String filePathOfExerciseList) {
         try {
             user = new User();
+            UI.printGreetingMessage();
             storage = new Storage(filePathOfUserConfig, filePathOfFoodList, filePathOfExerciseList);
             if (!storage.readUserConfigFile(user)) {
                 user.setup();

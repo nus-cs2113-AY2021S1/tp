@@ -16,6 +16,8 @@ public class Parser {
             return new AddExerciseCommand(userInput);
         case "view":
             return new ViewCommand(userInput);
+        case "help":
+            return new HelpCommand(userInput);
         case "delete":
             if (fullCommand.length == 1) {
                 return new InvalidCommand(userInput);
