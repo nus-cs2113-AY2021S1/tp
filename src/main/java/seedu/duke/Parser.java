@@ -8,12 +8,12 @@ public class Parser {
             if (fullCommand.length == 1) {
                 return new InvalidCommand(userInput);
             }
-            return new AddCommand(userInput);
+            return new AddFoodCommand(userInput);
         case "exercise":
             if (fullCommand.length == 1) {
                 return new InvalidCommand(userInput);
             }
-            return new AddCommand(userInput);
+            return new AddExerciseCommand(userInput);
         case "view":
             return new ViewCommand(userInput);
         case "delete":
