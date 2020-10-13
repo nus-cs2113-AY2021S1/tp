@@ -5,6 +5,7 @@ import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.event.Event;
 import seedu.duke.calendar.task.Task;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -318,4 +319,20 @@ public class Ui {
         System.out.println("Cannot create file; reason: " + e.getMessage());
     }
 
+    /**
+     * Shows the user the exception that occurred when saving data to storage file.
+     *
+     * @param e exception message.
+     */
+    public static void printSaveDataErrorMessage(IOException e) {
+        System.out.println("Unable to save data. Error: " + e.getMessage());
+    }
+
+    public static void printFileNotFoundErrorMessage() {
+        System.out.println("File not found.");
+    }
+
+    public static void printInvalidFileCommandMessage() {
+        System.out.println("Invalid file command input");
+    }
 }

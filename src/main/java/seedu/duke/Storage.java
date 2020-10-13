@@ -88,7 +88,7 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
-            System.out.println("Error writing file");
+            Ui.printSaveDataErrorMessage(e);
         }
     }
 
@@ -141,7 +141,7 @@ public class Storage {
                 item = new Exam(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
                 break;
             default:
-                System.out.println("Invalid file command input");
+                Ui.printInvalidFileCommandMessage();
             }
             countFileTasks++;
             if (taskInFile[TASK_IS_DONE].equals("true")) {
