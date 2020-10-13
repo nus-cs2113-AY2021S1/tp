@@ -1,8 +1,12 @@
+import Flashcard.Flashcard;
+import Flashcard.FlashcardRun;
 import Flashcard.FlashcardDeck;
 import academic.GradeBook;
 import academic.PersonBook;
 import exceptions.InvalidCommandException;
 import exceptions.InvalidModeException;
+
+import java.io.IOException;
 
 public class Command {
     public static void executeCommand(String command, CommandType commandType) {
@@ -67,6 +71,7 @@ public class Command {
     }
 
     public static void executeFlashcardCommand() {
-        FlashcardDeck flashcardDeck = new FlashcardDeck();
+        FlashcardRun flashcardRun = new FlashcardRun();
+        flashcardRun.run();
     }
 }

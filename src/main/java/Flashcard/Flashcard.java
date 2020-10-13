@@ -11,6 +11,6 @@ public class Flashcard {
     }
 
     public String writeToFile() {
-        return "write to file";
+        return question + "|" + answer + "\n";
     }
 }
