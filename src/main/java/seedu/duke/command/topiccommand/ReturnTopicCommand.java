@@ -1,12 +1,11 @@
 package seedu.duke.command.topiccommand;
 
 import seedu.duke.card.Subject;
-import seedu.duke.card.SubjectList;
 import seedu.duke.card.Topic;
-import seedu.duke.command.taskcommand.TaskCommand;
+import seedu.duke.command.flashcardcommand.FlashcardCommand;
 import seedu.duke.exception.NoSubjectException;
-import seedu.duke.exception.TaskException;
-import seedu.duke.parser.TaskParser;
+import seedu.duke.exception.RepeatedSubjectException;
+import seedu.duke.parser.FlashcardParser;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
@@ -34,20 +33,24 @@ public class ReturnTopicCommand extends TopicCommand {
 
     public void goToTopic(Topic topic, Subject subject) {
         Ui.printGoToTopic(topic);
-        boolean isSubjectExit = false;
-        while (!isSubjectExit) {
-            // TODO: implement the same thing in Duke run in here, but for Tasks instead, Suganda fix this shit please
+        boolean isTopicExit = false;
+        while (!isTopicExit) {
             String fullCommand = Ui.readCommand();
-            TaskCommand c = TaskParser.parse(fullCommand);
-            isSubjectExit = c.isExit();
+            FlashcardCommand c = FlashcardParser.parse(fullCommand);
+            isTopicExit = c.isExit();
             try {
-                c.execute(tasks);
-            } catch (TaskException e) {
-                Ui.printError();
+                c.execute(topic);
+            }  catch (NumberFormatException e) {
+                Ui.printIndexError();
+            } catch (NoSubjectException e) {
+                Ui.printNoTopicError();
+            } catch (RepeatedSubjectException e) {
+                Ui.printRepeatedTopicError();
+            } catch (IndexOutOfBoundsException e) {
+                Ui.printOutOfBoundsError();
             }
         }
-        Ui.printExitToMain();
-
+        Ui.printBackToTopicsAndTasks();
     }
 
     public boolean isExit() {

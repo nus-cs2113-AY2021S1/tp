@@ -16,6 +16,6 @@ public class ExitTaskCommand extends TaskCommand {
      * @return <code>true</code> if user exits the program
      */
     public boolean isExit() {
-        return true;
+        return false;
     }
 }

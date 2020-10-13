@@ -1,13 +1,17 @@
 package seedu.duke;
 
 import seedu.duke.card.Subject;
+import seedu.duke.card.quiz.ResultList;
+import seedu.duke.card.quiz.SubjectQuiz;
+import seedu.duke.command.subjectcommand.QuizSubjectCommand;
 import seedu.duke.command.subjectcommand.ReturnSubjectCommand;
 import seedu.duke.command.subjectcommand.SubjectCommand;
+import seedu.duke.exception.NoFlashCardException;
 import seedu.duke.exception.NoSubjectException;
-import seedu.duke.exception.RepeatedSubjectException;
-import seedu.duke.exception.SubjectException;
-import seedu.duke.exception.TaskException;
+import seedu.duke.exception.NoTopicException;
+
 import seedu.duke.card.SubjectList;
+import seedu.duke.exception.RepeatedSubjectException;
 import seedu.duke.parser.SubjectParser;
 import seedu.duke.storage.SubjectStorage;
 import seedu.duke.task.Task;
@@ -23,6 +27,7 @@ public class Duke {
     private SubjectStorage subjectStorage;
     private SubjectList subjects;
     private TaskList tasks;
+    private ResultList results;
 
     /**
      * Initialises Duke.
@@ -33,6 +38,7 @@ public class Duke {
         subjectStorage = new SubjectStorage(filename);
         subjects = new SubjectList(new ArrayList<>());
         tasks = new TaskList(new ArrayList<>());
+        results = new ResultList(new ArrayList<>());
         subjectStorage.load(subjects);
     }
 
@@ -49,6 +55,10 @@ public class Duke {
                 if (c instanceof ReturnSubjectCommand) {
                     Subject subject = c.execute(subjects);
                     ((ReturnSubjectCommand) c).goToSubject(subject, tasks);
+                } else if (c instanceof QuizSubjectCommand) {
+                    Subject subject = c.execute(subjects);
+                    SubjectQuiz subjectQuiz = new SubjectQuiz(subject);
+                    subjectQuiz.startQuiz(results);
                 } else {
                     c.execute(subjects);
                 }
@@ -64,6 +74,10 @@ public class Duke {
                 Ui.printRepeatedSubjectError();
             } catch (IndexOutOfBoundsException e) {
                 Ui.printOutOfBoundsError();
+            } catch (NoFlashCardException e) {
+                Ui.printNoFlashcards();
+            } catch (NoTopicException e) {
+                Ui.printNoTopics();
             }
         }
         Ui.printBye();
