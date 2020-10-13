@@ -1,7 +1,9 @@
 package seedu.rex.parser;
 
+import seedu.rex.Rex;
 import seedu.rex.commands.*;
 import seedu.rex.data.exception.RexException;
+import seedu.rex.data.hospital.Appointment;
 import seedu.rex.data.hospital.Patient;
 
 import java.time.LocalDate;
@@ -29,6 +31,18 @@ public class Parser {
         record.delete(0, record.indexOf(", ") + 2);
         LocalDate dateOfBirth = LocalDate.parse(record.toString());
         return new Patient(name, nric, dateOfBirth);
+    }
+
+    public static Appointment readAppointment(String line) {
+        String[] appointmentComponents = line.split(", ");
+        LocalDate date = LocalDate.parse(appointmentComponents[0]);
+        String bookedStatus = appointmentComponents[1];
+        String nric = appointmentComponents[2];
+        Appointment appointment = new Appointment(date);
+        if (bookedStatus.equals("booked")) {
+            appointment.book(Rex.getPatients().getPatientUsingIndex(Rex.getPatients().getExistingPatient(nric)));
+        }
+        return appointment;
     }
 
     /**

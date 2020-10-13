@@ -9,6 +9,7 @@ import seedu.rex.parser.Parser;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -21,7 +22,7 @@ public class Rex {
 
     private final Storage storage;
     private final Ui ui;
-    private PatientList patients;
+    private static PatientList patients;
     private ArrayList<Appointment> appointments;
     private static Logger logger;
 
@@ -36,13 +37,14 @@ public class Rex {
         ui = new Ui();
         storage = new Storage(filePath);
         logger = Logger.getLogger("Rex");
-        appointments = new ArrayList<>();
+
         try {
             logger.log(Level.INFO, "going to load patients");
             patients = new PatientList(storage.load());
+            appointments = storage.loadAppointments();
             logger.log(Level.INFO, "loaded patients");
-        } catch (RexException e) {
-            logger.log(Level.INFO, "patients loading error");
+        } catch (RexException | FileNotFoundException e) {
+            logger.log(Level.INFO, "patients or appointments loading error");
             ui.showLoadingError();
             patients = new PatientList();
         }
@@ -85,5 +87,9 @@ public class Rex {
         } catch (IOException e) {
             ui.showError(e.getMessage());
         }
+    }
+
+    public static PatientList getPatients() {
+        return patients;
     }
 }
