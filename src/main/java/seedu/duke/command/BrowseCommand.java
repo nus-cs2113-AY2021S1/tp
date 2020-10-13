@@ -57,8 +57,9 @@ public class BrowseCommand extends Command {
         }
 
         //Assert to ensure that sortType and orderType are all usable int
-        assert(sortType < 3);
-        assert(order < 2);
+        assert (sortType < 3) : "sortType should be < 3";
+
+        assert (order < 2) : "order should be < 2";
         sortBrowseList(usableList);
         //else no sort ascending
 
@@ -96,9 +97,8 @@ public class BrowseCommand extends Command {
     private void parameterParser(String[] paramGiven) throws AniException {
         for (String param : paramGiven) {
             String[] paramParts = param.split(" ");
-            switch(paramParts[0].trim()) {
+            switch (paramParts[0].trim()) {
             case "": //skip the first empty param
-                //assert(paramParts[1].equals(""));
                 break;
             case "s":
                 paramLengthCheck(paramParts);
@@ -184,7 +184,7 @@ public class BrowseCommand extends Command {
     }
 
     /**
-     * Checks if String is a parsable int
+     * Checks if String is a parsable int.
      *
      * @param checkStr string to check
      * @return true if parsable int
