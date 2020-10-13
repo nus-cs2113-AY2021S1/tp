@@ -31,6 +31,7 @@ public class AddEventCommand extends Command {
             + "[" + PREFIX_DELIMITER + PREFIX_STOP_RECURRING + " TIMING (Format: " + DateTimeManager.DATE_FORMAT + ")]";
 
     private static final String COMMAND_SUCCESSFUL_MESSAGE = "Added the following!";
+    // No COMMAND_UNSUCCESSFUL_MESSAGE as we do not expect failure to occur at this stage.
 
     private Event event;
 
