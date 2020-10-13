@@ -1,10 +1,7 @@
 package seedu.duke.project;
 
-import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
-import seedu.duke.project.ProjectBacklog;
-import seedu.duke.project.ProjectMembers;
 import seedu.duke.sprint.SprintList;
 
 import java.io.IOException;
@@ -83,7 +80,6 @@ public class Project implements Jsonable {
     }
 
 
-
     public ProjectBacklog getProjectBacklog() {
         return backlog;
     }
@@ -104,8 +100,6 @@ public class Project implements Jsonable {
     }
 
 
-
-
     @Override
     public String toJson() {
         final StringWriter writeable = new StringWriter();
@@ -120,15 +114,14 @@ public class Project implements Jsonable {
 
     @Override
     public void toJson(Writer writer) throws IOException {
-        final JsonObject json = new JsonObject();
-        json.put("title", this.title);
-        json.put("description", this.description);
-        json.put("duration", this.projectDuration);
-        json.put("sprint_length", this.sprintLength);
-        json.put("start_date", this.startDate == null ? null : this.startDate.toString());
-        //TODO Make backlog and members parsable
-        json.put("backlog", new JsonArray());
-        json.put("members", new JsonArray());
-        json.toJson(writer);
+        final JsonObject jObj = new JsonObject();
+        jObj.put("title", this.title);
+        jObj.put("description", this.description);
+        jObj.put("duration", this.projectDuration);
+        jObj.put("sprint_length", this.sprintLength);
+        jObj.put("start_date", this.startDate == null ? null : this.startDate.toString());
+        jObj.put("backlog", backlog);
+        jObj.put("members", members);
+        jObj.toJson(writer);
     }
 }

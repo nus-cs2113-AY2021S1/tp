@@ -1,6 +1,11 @@
 package seedu.duke.task;
 
-public class Task {
+import com.github.cliftonlabs.json_simple.JsonObject;
+import com.github.cliftonlabs.json_simple.Jsonable;
+
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 
 public class Task implements Jsonable {
 
@@ -57,6 +62,28 @@ public class Task implements Jsonable {
     @Override
     public String toString() {
         return title + " " + priority + " " + isDone;
+    }
+
+    @Override
+    public String toJson() {
+        final StringWriter writeable = new StringWriter();
+        try {
+            this.toJson(writeable);
+        } catch (IOException e) {
+            System.out.println("[Error] Cannot convert this project to JSON");
+            e.printStackTrace();
+        }
+        return writeable.toString();
+    }
+
+    @Override
+    public void toJson(Writer writable) throws IOException {
+        final JsonObject jTask = new JsonObject();
+        jTask.put("id", id);
+        jTask.put("title", title);
+        jTask.put("description", description);
+        jTask.put("priority", priority);
+        jTask.put("isDone", isDone);
     }
 
 

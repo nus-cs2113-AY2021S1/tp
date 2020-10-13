@@ -1,11 +1,16 @@
 package seedu.duke.project;
 
+import com.github.cliftonlabs.json_simple.JsonArray;
+import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
 
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 
-public class ProjectBacklog {
+public class ProjectBacklog implements Jsonable {
 
     public ArrayList<Task> backlogTasks;
     int size;
@@ -52,6 +57,24 @@ public class ProjectBacklog {
         } catch (NumberFormatException e) {
             ui.showToUser("Task id is not an integer.");
         }
+    }
+
+    @Override
+    public String toJson() {
+        final StringWriter writeable = new StringWriter();
+        try {
+            this.toJson(writeable);
+        } catch (IOException e) {
+            System.out.println("[Error] Cannot convert this project to JSON");
+            e.printStackTrace();
+        }
+        return writeable.toString();
+    }
+
+    @Override
+    public void toJson(Writer writer) throws IOException {
+        final JsonArray jTasks = new JsonArray(backlogTasks);
+        jTasks.toJson(writer);
     }
     //    public void viewTask(String id, Ui ui) {
     //        Task task = null;
