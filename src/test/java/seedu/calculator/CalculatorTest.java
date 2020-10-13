@@ -22,7 +22,7 @@ class CalculatorTest {
     }
 
     @Test
-    void calculateCarbs_foodListOfThreeItems_sumOfCarbs() {
+    void calculateCarb_foodListOfThreeItems_sumOfCarb() {
         ArrayList<Food> foodList = new ArrayList<>();
         foodList.add(new Food("chicken rice", 666, 55, 30, 0));
         foodList.add(new Food("pancake", 150, 16, 0, 0));
@@ -42,7 +42,7 @@ class CalculatorTest {
     }
 
     @Test
-    void calculateFats_foodListOfThreeItems_sumOfFats() {
+    void calculateFat_foodListOfThreeItems_sumOfFat() {
         ArrayList<Food> foodList = new ArrayList<>();
         foodList.add(new Food("chicken rice", 666, 55, 30, 0));
         foodList.add(new Food("pancake", 150, 16, 0, 0));
