@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class UserManagement {
     Storage storage;
-    private static final Logger logger = Logger.getLogger("UserLogger");
+    private static final Logger LOGGER = Logger.getLogger(UserManagement.class.getName());
     protected ArrayList<User> userList = new ArrayList<>();
     protected User activeUser;
 
@@ -24,9 +24,10 @@ public class UserManagement {
     }
 
     public void setActiveUser(User inputUser) {
+        activeUser = inputUser;
+
         if (activeUser != null) {
-            logger.log(Level.INFO, "User switched: " + inputUser.getName());
-            activeUser = inputUser;
+            LOGGER.log(Level.INFO, "User switched: " + inputUser.getName());
         }
     }
 
@@ -45,7 +46,7 @@ public class UserManagement {
         userList.add(newUser);
         storage.saveUser(newUser);
 
-        logger.log(Level.INFO, "User created: " + name + " | " + dob + " | " + gender);
+        LOGGER.log(Level.INFO, "User created: " + name + " | " + dob + " | " + gender);
         return newUser;
     }
 
@@ -59,7 +60,7 @@ public class UserManagement {
 
     public void addUserDialogue(Ui ui) {
         boolean userCreated = false;
-        logger.log(Level.WARNING, "No existing user found, prompting user to create one!");
+        LOGGER.log(Level.WARNING, "No existing user found, prompting user to create one!");
 
         while (!userCreated) {
             try {
