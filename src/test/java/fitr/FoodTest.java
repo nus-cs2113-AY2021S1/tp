@@ -1,4 +1,4 @@
-package fitr.user;
+package fitr;
 
 import fitr.Calorie;
 import fitr.Food;
@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FoodTest {
     Calorie tempCalorie = new Calorie(500);
+
     @Test
     public void getCaloriesConsumed_validFoodAndCalorie_success() {
         Food tempExercise = new Food("food",tempCalorie);

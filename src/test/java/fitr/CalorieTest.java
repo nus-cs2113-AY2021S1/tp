@@ -1,4 +1,4 @@
-package fitr.user;
+package fitr;
 
 import fitr.Calorie;
 import org.junit.jupiter.api.Test;
