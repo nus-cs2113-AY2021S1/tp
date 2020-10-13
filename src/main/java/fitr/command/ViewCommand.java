@@ -104,7 +104,9 @@ public class ViewCommand extends Command {
     }
 
     public void viewBmi(User user) {
-        ui.printCustomMessage(BMI_HEADER + String.valueOf(user.getBmi()));
+        ui.printCustomMessage(BMI_HEADER);
+        String bmiString = String.format("%.2f", user.getBmi());
+        ui.printCustomMessage(bmiString);
     }
 
     public void viewProfile(User user) {
