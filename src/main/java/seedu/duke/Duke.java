@@ -3,7 +3,6 @@ package seedu.duke;
 import seedu.duke.anime.Anime;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.anime.AnimeStorage;
-import seedu.duke.bookmark.Bookmark;
 import seedu.duke.command.Command;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
@@ -28,7 +27,6 @@ public class Duke {
 
     private AnimeStorage animeStorage;
     private AnimeData animeData;
-    private Bookmark bookmark;
 
     private UserManagement userManagement;
     private User activeUser;
@@ -40,7 +38,6 @@ public class Duke {
         parser = new Parser();
         storage = new Storage(USER_PROFILE_FILE_NAME, WATCHLIST_FILE_NAME);
         userManagement = new UserManagement(storage);
-        bookmark = new Bookmark();
 
         // Load user and watchlist list.
         ui.printWelcomeMessage();
@@ -84,10 +81,9 @@ public class Duke {
         boolean shouldExit = false;
         while (!shouldExit) {
             try {
-                String userInput = ui.readUserInput(activeUser.getFancyName(), activeWatchlist.getName());
+                String userInput = ui.readUserInput(activeUser.getHonorificName(), activeWatchlist.getName());
                 Command command = parser.getCommand(userInput);
-                String commandOutput = command.execute(animeData, activeWatchlistList, activeWatchlist,
-                        bookmark, userManagement);
+                String commandOutput = command.execute(animeData, activeWatchlistList, activeWatchlist, userManagement);
                 ui.printMessage(commandOutput);
                 shouldExit = command.getShouldExit();
             } catch (AniException exception) {

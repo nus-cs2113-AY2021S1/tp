@@ -33,7 +33,7 @@ public class AddToWatchlistCommand extends Command {
         if (!option.equals(ADD_OPTION)) {
             throw new AniException("Watchlist command only accepts the option: \"-a\".");
         }
-
+        
         addToWatchlist(userManagement.getStorage(), activeWatchlistList, activeWatchlist);
 
         return "Anime added to watchlist";

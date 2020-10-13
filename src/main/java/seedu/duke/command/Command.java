@@ -21,7 +21,7 @@ public abstract class Command {
     }
 
     public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
-                          Bookmark bookmark, UserManagement userManagement) throws AniException {
+                          UserManagement userManagement) throws AniException {
         throw new AniException("This method should be implemented in the child class");
     }
 }

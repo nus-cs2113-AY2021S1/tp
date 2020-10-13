@@ -6,10 +6,8 @@ import seedu.duke.human.User;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
 
-import java.io.File;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 

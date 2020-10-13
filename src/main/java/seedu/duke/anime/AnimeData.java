@@ -25,6 +25,10 @@ public class AnimeData {
         return animeDataList.size();
     }
 
+    public ArrayList<Anime> getAnimeDataList() {
+        return animeDataList;
+    }
+
     public void printAll() {
         int i = 1;
         for (Anime anime : animeDataList) {

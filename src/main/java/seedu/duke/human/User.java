@@ -1,5 +1,6 @@
 package seedu.duke.human;
 
+import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.AniException;
 
 import java.text.ParseException;
@@ -8,7 +9,7 @@ import java.util.Date;
 
 public class User extends Human {
     // Add Watchlist & Bookmarks here and/or UserManagement
-
+    public Bookmark bookmark;
 
     private static final SimpleDateFormat DATE_MONTH_YEAR = new SimpleDateFormat("dd/MM/yyyy");
     protected Date birthdate;
@@ -18,6 +19,7 @@ public class User extends Human {
         super(name);
         setBirthdate(birthdate);
         setGender(gender);
+        bookmark = new Bookmark();
     }
 
     public void setGender(String genderString) throws AniException {
@@ -60,7 +62,7 @@ public class User extends Human {
      *
      * @return name of user with honorifics.
      */
-    public String getFancyName() {
+    public String getHonorificName() {
         if (gender == Gender.Female) {
             return name + "-chan";
         } else {
