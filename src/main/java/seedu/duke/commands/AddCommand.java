@@ -43,9 +43,10 @@ public class AddCommand extends Command {
     public void execute(TextUi ui) {
         switch (type) {
         case TAG_BOOK:
+            addLogger.log(Level.INFO, "going to add book to booklist");
             BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
-            Book newBook = addBook(books);
-            ui.printAddBook(newBook);
+            addBook(books, ui);
+            addLogger.log(Level.INFO, "added book to booklist");
             break;
         case TAG_QUOTE:
             QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
