@@ -15,23 +15,9 @@ public abstract class Quiz {
 
     public abstract void startQuiz(ResultList resultList) throws NoFlashCardException, NoTopicException;
 
-    public List<Flashcard> getFlashcards() {
-        return flashcards;
-    }
-
-    public void setFlashcards(List<Flashcard> flashcards) {
-        this.flashcards = flashcards;
-    }
-
     public List<String> getIncorrectAnswers() {
         return incorrectAnswers;
     }
-
-    public void setIncorrectAnswers(List<String> incorrectAnswers) {
-        this.incorrectAnswers = incorrectAnswers;
-    }
-
-
 
     public void checkAnswer(String answer, Flashcard flashcard) {
 

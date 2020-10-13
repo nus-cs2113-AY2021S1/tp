@@ -11,12 +11,10 @@ public class Subject {
     private String title;
     private TopicList topics;
     private TaskList tasks;
-    private List<Flashcard> flashcards;
     private ResultList results;
 
     public Subject(String title) {
         this.title = title;
-        this.flashcards = new ArrayList<>();
         this.topics = new TopicList(new ArrayList<>());
         results = new ResultList(new ArrayList<>());
         tasks = new TaskList(new ArrayList<>());
