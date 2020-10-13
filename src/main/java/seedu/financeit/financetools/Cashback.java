@@ -28,15 +28,6 @@ public class Cashback extends ParamHandler {
         }
     }
 
-    public Cashback(CommandPacket packet) throws InsufficientParamsException {
-        this();
-        try {
-            handleParams(packet);
-        } catch (ItemNotFoundException exception) {
-            // Fall-through
-        }
-    }
-
     public void setAmount(Double amount) {
         this.amount = amount;
     }

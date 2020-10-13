@@ -8,8 +8,6 @@ import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.UiManager;
 
-import java.util.ArrayList;
-
 public class MilesCredit extends ParamHandler {
 
     private double amount = -1;
@@ -17,16 +15,9 @@ public class MilesCredit extends ParamHandler {
 
     public MilesCredit() {
         super();
-        super.requiredParams = new ArrayList<>() {
-            {
-                add("/amount");
-                add("/miles");
-            }
-        };
     }
 
-    public MilesCredit(CommandPacket packet) throws InsufficientParamsException {
-        this();
+    public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
         try {
             handleParams(packet);
         } catch (ItemNotFoundException exception) {
