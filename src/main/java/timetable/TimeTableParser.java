@@ -82,11 +82,12 @@ public class TimeTableParser {
             Lesson lesson = new Lesson(name, linkOrVenue, isOnline, numPerWeek);
             for (int i = 0; i < durationNum; i++) {
                 LocalDateTime start = LocalDateTime.parse(words[5 + 2 * i + 1]);
+                System.out.println(words[5 + 2 * i + 1]);
                 LocalDateTime end = LocalDateTime.parse(words[5 + 2 * i + 2]);
                 Duration duration = new Duration(start, end);
                 lesson.addPeriod(duration);
-                dateList.addLesson(lesson);
             }
+            dateList.addLesson(lesson);
         }
             break;
         case A: {
