@@ -2,6 +2,7 @@ package seedu.data;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.exceptions.InvalidPriorityException;
 import seedu.task.Task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,12 +18,12 @@ class TaskListTest {
     private Task tutorial;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws InvalidPriorityException {
         tasks = new TaskList();
-        meeting = new Task("meeting", "13-10-2020", "2000", "2");
-        reading = new Task("reading", "21-10-2020", null, null);
-        lecture = new Task("lecture", "20-10-2020", "1800", null);
-        tutorial = new Task("tutorial", "19-10-2020", null, "1");
+        meeting = new Task("meeting", "13-10-2020", "2000", "2200", "2");
+        reading = new Task("reading", "21-10-2020", null, null, null);
+        lecture = new Task("lecture", "20-10-2020", "1800", null, null);
+        tutorial = new Task("tutorial", "19-10-2020", "1500", null, "1");
     }
 
     @Test

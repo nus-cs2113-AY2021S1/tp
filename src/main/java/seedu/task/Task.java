@@ -1,5 +1,7 @@
 package seedu.task;
 
+import seedu.exceptions.InvalidPriorityException;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -8,13 +10,16 @@ import java.time.format.DateTimeFormatter;
 public class Task {
     private String description;
     private LocalDate date;
-    private LocalTime time;
-    private Integer priority;
+    private LocalTime startTime;
+    private LocalTime endTime;
+    private Priority priority;
 
-    public Task(String description, String dateString, String timeString, String priorityString) {
+    public Task(String description, String dateString,
+                String startTime, String endTime, String priorityString) throws InvalidPriorityException {
         this.description = description;
         date = dateStringToDate(dateString);
-        time = timeStringToTime(timeString);
+        this.startTime = timeStringToTime(startTime);
+        this.endTime = timeStringToTime(endTime);
         priority = priorityStringToPriority(priorityString);
     }
 
@@ -39,11 +44,25 @@ public class Task {
         return LocalTime.of(hour, minute);
     }
 
-    private Integer priorityStringToPriority(String priorityString) {
+    private Priority priorityStringToPriority(String priorityString) throws InvalidPriorityException {
         if (priorityString == null) {
-            return 0;
+            return Priority.LOW;
         }
-        return Integer.parseInt(priorityString);
+        Priority priority;
+        switch (priorityString) {
+        case "1":
+            priority = Priority.LOW;
+            break;
+        case "2":
+            priority = Priority.MEDIUM;
+            break;
+        case "3":
+            priority = Priority.HIGH;
+            break;
+        default:
+            throw new InvalidPriorityException();
+        }
+        return priority;
     }
 
     private String dateToString(LocalDate date) {
@@ -62,7 +81,7 @@ public class Task {
         }
     }
 
-    private String priorityToString(Integer priority) {
+    private String priorityToString(Priority priority) {
         return " " + priority.toString();
     }
 
@@ -78,27 +97,53 @@ public class Task {
         return date;
     }
 
+
+    public void setDate(String dateString) {
+        date = dateStringToDate(dateString);
+    }
+
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public LocalTime getTime() {
-        return time;
+    public LocalTime getStartTime() {
+        return startTime;
     }
 
-    public void setTime(LocalTime time) {
-        this.time = time;
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
     }
 
-    public Integer getPriority() {
+    public void setStartTime(String startTime) {
+        this.startTime = timeStringToTime(startTime);
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = timeStringToTime(endTime);
+    }
+
+    public Priority getPriority() {
         return priority;
     }
 
-    public void setPriority(Integer priority) {
+    public void setPriority(Priority priority) {
         this.priority = priority;
     }
 
+    public void setPriority(String priorityString) throws InvalidPriorityException {
+        priority = priorityStringToPriority(priorityString);
+    }
+
     public String toString() {
-        return description + dateToString(date) + timeToString(time) + priorityToString(priority);
+        return description + dateToString(date) + timeToString(startTime)
+                + timeToString(endTime) + priorityToString(priority);
     }
 }

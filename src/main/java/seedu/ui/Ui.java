@@ -1,14 +1,17 @@
 package seedu.ui;
 
+import seedu.commands.CommandResult;
 import seedu.data.TaskList;
 
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import static seedu.messages.Messages.LS;
+import static seedu.messages.Messages.WELCOME_MESSAGE;
+
 
 public class Ui {
-    private static final String LS = System.lineSeparator();
     private final Scanner in;
     private final PrintStream out;
 
@@ -16,9 +19,12 @@ public class Ui {
         this(System.in, System.out);
     }
 
-    private Ui(InputStream in, PrintStream out) {
-        this.in = new Scanner(in);
+    public Ui(InputStream in, PrintStream out) {
+        this.in = new Scanner(System.in);
+        //        this.out = new PrintStream(System.out, true, StandardCharsets.ISO_8859_1);
         this.out = out;
+        // Set default printing color
+        //        out.print(DEFAULT_STRING_COLOR);
     }
 
     public String getUserInput() {
@@ -32,35 +38,36 @@ public class Ui {
 
     private void displayTasks(TaskList tasks) {
         // Header
-        out.println(LS + "Here is your list of tasks:");
-        String format = "%-10s%-15s%-15s%-10s%-10s" + LS;
-        out.format(format, "Index", "Description", "Date", "Time", "Priority");
+        String format = "%-10s%-15s%-15s%-10s%-10s%-10s" + LS;
+        out.format(format, "Index", "Description", "Date", "Start", "End", "Priority");
         for (int i = 0; i < tasks.size(); i++) {
             out.format(format,
                     i + 1,
                     tasks.get(i).getDescription(),
                     tasks.get(i).getDate(),
-                    tasks.get(i).getTime() == null ? "" : tasks.get(i).getTime(),
+                    tasks.get(i).getStartTime() == null ? "" : tasks.get(i).getStartTime(),
+                    tasks.get(i).getEndTime() == null ? "" : tasks.get(i).getEndTime(),
                     tasks.get(i).getPriority());
         }
         out.println();
     }
 
     public void showWelcomeMessage() {
-        out.println(LS + "Welcome to" + LS
-                + "    ____  __      _   ____  _______" + LS
-                + "   / __ \\/ /___ _/ | / / / / / ___/" + LS
-                + "  / /_/ / / __ `/  |/ / / / /\\__ \\ " + LS
-                + " / ____/ / /_/ / /|  / /_/ /___/ / " + LS
-                + "/_/   /_/\\__,_/_/ |_/\\____//____/  "
-                + "v1.0" + LS);
+        showMessage(WELCOME_MESSAGE);
     }
 
-    public void showCommands() {
-        out.println(LS + "List of available commands:");
-        out.println("- help: show list of available commands");
-        out.println("- add: add a task");
-        out.println("- list: show list of tasks");
-        out.println("- bye: exit the program" + LS);
+    public void showMessage(String message) {
+        out.println(message);
+    }
+
+    public void showException(Exception e) {
+        out.println(e);
+    }
+
+    public void showCommandResult(CommandResult result) {
+        showMessage(result.getMessage());
+        if (result.getTasks() != null) {
+            displayAll(result.getTasks());
+        }
     }
 }
