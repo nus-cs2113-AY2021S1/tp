@@ -1,36 +1,27 @@
 package seedu.duke.Bookmark.Commands;
 
 import seedu.duke.Bookmark.BookmarkCategory;
-import seedu.duke.Bookmark.BookmarkMode;
 import seedu.duke.Bookmark.BookmarkUi;
 
 import java.util.ArrayList;
 
 public class BackCommand extends BookmarkCommand {
-    BookmarkMode currentMode;
+    private int categoryNumber;
 
-    public BackCommand(BookmarkMode currentMode){
-        this.currentMode = currentMode;
+    public BackCommand(int categoryNumber){
+        this.categoryNumber = categoryNumber;
     }
 
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories) {
-        if (currentMode == BookmarkMode.BOOKMARK_MAIN){
+        if (categoryNumber == 0){
             ui.printGoodbyeMessage();
         } else {
-            currentMode = BookmarkMode.BOOKMARK_MAIN;
+            categoryNumber = 0;
             ui.showBookmarkCategoryList(categories);
         }
     }
 
-    public boolean isExit(){
-        if (currentMode == BookmarkMode.BOOKMARK_MAIN){
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public BookmarkMode getCurrentMode() {
-        return BookmarkMode.BOOKMARK_MAIN;
+    public int getCategoryNumber(){
+        return categoryNumber;
     }
 }

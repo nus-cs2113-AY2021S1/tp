@@ -1,10 +1,18 @@
 import academic.GradeBook;
 import academic.PersonBook;
 import exceptions.InvalidCommandException;
-import exceptions.InvalidModeException;
+import seedu.duke.Bookmark.BookmarkCategory;
+import seedu.duke.Bookmark.Commands.BookmarkCommand;
+import seedu.duke.Bookmark.InvalidBookmarkCommandException;
+import java.util.ArrayList;
+import seedu.duke.Bookmark.BookmarkUi;
+
 
 public class Command {
-    public static void executeCommand(String command, CommandType commandType) {
+
+    public static void executeCommand(String command, CommandType commandType,
+                                      ArrayList<BookmarkCategory> bookmarkCategories, BookmarkUi bookmarkUi,
+                                      BookmarkParser bookmarkParser) {
         if (commandType == CommandType.EXIT_PROGRAM) {
             Ui.printExit();
         } else if (commandType == CommandType.EXIT_MODE) {
@@ -16,16 +24,18 @@ public class Command {
         } else if (commandType == CommandType.HELP) {
             HelpMessage.printHelpMessage();
         } else if (StudyIt.getCurrentMode() != Mode.MENU) {
-            handleNonGeneralCommand(command, commandType);
+            handleNonGeneralCommand(command,commandType,bookmarkCategories,bookmarkUi,bookmarkParser);
         } else {
             ErrorMessage.printUnidentifiableCommand();
         }
     }
 
-    public static void handleNonGeneralCommand(String command, CommandType commandType) {
+    public static void handleNonGeneralCommand(String command, CommandType commandType,
+                                               ArrayList<BookmarkCategory> bookmarkCategories,
+                                               BookmarkUi bookmarkUi,BookmarkParser bookmarkParser) {
         Mode currentMode = StudyIt.getCurrentMode();
         if (currentMode == Mode.BOOKMARK) {
-            executeBookmarkModeCommand();
+            executeBookmarkModeCommand(command,bookmarkCategories,bookmarkUi,bookmarkParser);
         } else if (currentMode == Mode.TIMETABLE) {
             executeTimetableModeCommand();
         } else if (currentMode == Mode.ACADEMIC) {
@@ -35,9 +45,14 @@ public class Command {
         }
     }
 
-    public static void executeBookmarkModeCommand() {
-        Bookmark bookmark= new Bookmark();
-        bookmark.runBookmark();
+    public static void executeBookmarkModeCommand(String command, ArrayList<BookmarkCategory> categories,
+                                                  BookmarkUi ui, BookmarkParser parser) {
+        try{
+            BookmarkCommand c = parser.evaluateInput(command);
+            c.executeCommand(ui,categories);
+        } catch (InvalidBookmarkCommandException e){
+            System.out.println("Invalid Bookmark commands");
+        }
     }
 
     public static void executeTimetableModeCommand() {

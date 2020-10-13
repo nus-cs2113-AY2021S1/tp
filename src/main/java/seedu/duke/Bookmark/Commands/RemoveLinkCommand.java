@@ -1,41 +1,25 @@
 package seedu.duke.Bookmark.Commands;
 
 import seedu.duke.Bookmark.BookmarkCategory;
-import seedu.duke.Bookmark.BookmarkMode;
 import seedu.duke.Bookmark.BookmarkUi;
-import seedu.duke.Bookmark.Commands.BookmarkCommand;
 
 import java.util.ArrayList;
 
 public class RemoveLinkCommand extends BookmarkCommand {
     private int linkNumber;
-    private BookmarkMode currentMode;
+    private int categoryNumber;
 
-    public RemoveLinkCommand(BookmarkMode currentMode, String line){
-        this.currentMode = currentMode;
+    public RemoveLinkCommand(String line, int categoryNumber){
+        this.categoryNumber = categoryNumber;
         linkNumber = Integer.parseInt(line.substring(3));
     }
 
-    public boolean isExit(){
-        return true;
-    }
-
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories) {
-        int categoryNumber = evaluateCategoryNumber();
-        categories.get(categoryNumber).removeLink(linkNumber);
-        ui.showBookmarkLinkList(categories.get(categoryNumber).getLinks());
+        categories.get(categoryNumber-1).removeLink(linkNumber);
+        ui.showBookmarkLinkList(categories.get(categoryNumber-1).getLinks());
     }
 
-    public BookmarkMode getCurrentMode(){
-        return currentMode;
-    }
-
-    private int evaluateCategoryNumber(){
-        if (currentMode == BookmarkMode.ZOOM){
-            return 1;
-        } else if (currentMode == BookmarkMode.NUS){
-            return 0;
-        }
-        return 0;
+    public int getCategoryNumber(){
+        return categoryNumber;
     }
 }
