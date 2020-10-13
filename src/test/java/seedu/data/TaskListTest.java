@@ -5,9 +5,7 @@ import org.junit.jupiter.api.Test;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.task.Task;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class TaskListTest {
     private TaskList tasks;
@@ -58,5 +56,16 @@ class TaskListTest {
         assertEquals(tutorial, sortedPriority.get(1));
         assertEquals(lecture, sortedPriority.get(2));
         assertEquals(reading, sortedPriority.get(3));
+    }
+
+    @Test
+    void clearTask() {
+        addTask();
+        tasks.clear() ;
+        assertEquals(0, tasks.size());
+        assertFalse(tasks.contains(meeting));
+        assertFalse(tasks.contains(reading));
+        assertFalse(tasks.contains(lecture));
+        assertFalse(tasks.contains(tutorial));
     }
 }
