@@ -140,8 +140,12 @@ public class InputParser {
     private static void parseDeleteRatingCommand(String input) {
         input = StringOperations.removeFirstWord(input);
         DeleteRatingCommand deleteShowRating = new DeleteRatingCommand(input);
-        deleteShowRating.deleteRating(input);
-        Ui.printDeleteRating(input);
+        try {
+            deleteShowRating.deleteRating(input);
+            Ui.printDeleteRating(input);
+        } catch (Exception e) {
+            Ui.printNotFoundException();
+        }
     }
 
     private static void parseChangeRatingCommand(String input) {
@@ -162,8 +166,12 @@ public class InputParser {
     private static void parseDeleteCommand(String input) {
         input = StringOperations.removeFirstWord(input);
         DeleteCommand deletingShow = new DeleteCommand(input);
-        deletingShow.delete(input);
-        Ui.printDeleteShow(input);
+        try {
+            deletingShow.delete(input);
+            Ui.printDeleteShow(input);
+        } catch (Exception e) {
+            Ui.printNotFoundException();
+        }
     }
 
 }
