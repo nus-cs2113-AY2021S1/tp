@@ -1,10 +1,13 @@
 package commands;
 
 import access.Access;
+import exception.IncorrectAccessLevelException;
 import manager.card.Card;
 import manager.chapter.CardList;
 import storage.Storage;
 import ui.Ui;
+
+import java.io.IOException;
 
 
 public class AddCommand extends Command {
@@ -22,20 +25,30 @@ public class AddCommand extends Command {
             + "         " + COMMAND_WORD + " q:What is the result of one plus one | a:two\n";
 
     private final Card card;
+    private final String accessLevel;
 
-    public AddCommand(String question, String answer) {
+    public AddCommand(String question, String answer, String accessLevel) {
         this.card = new Card(question, answer);
+        this.accessLevel = accessLevel;
     }
 
     @Override
-    public void execute(CardList cards, Ui ui, Access access, Storage storage) {
-        if (access.getChapterLevel().equals("")) {
-            System.out.println("Sorry, you currently are in the wrong level, please enter chapter level first.");
-            return;
+    public void execute(CardList cards, Ui ui, Access access, Storage storage)
+            throws IncorrectAccessLevelException, IOException {
+        if (access.isChapterLevel()) {
+            addCard(ui, access, storage);
+        } else {
+            throw new IncorrectAccessLevelException("Sorry, you are currently at " + access.getLevel()
+                    + ", please go to " + accessLevel + " level first.\n");
         }
+    }
+
+    private void addCard(Ui ui, Access access, Storage storage) throws IOException {
+        CardList cards = access.getChapter().getCards();
         cards.addCard(card);
         int cardCount = cards.getCardCount();
         ui.showCardAdded(cards.getCard(cardCount - 1), cardCount);
+        storage.saveCards(cards, access.getModule().getModuleName(), access.getChapter().getChapterName());
     }
 
     @Override

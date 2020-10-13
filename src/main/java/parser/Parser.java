@@ -45,7 +45,7 @@ public class Parser {
         case ListCommand.COMMAND_WORD:
             return prepareList(commandArgs);
         case AddCommand.COMMAND_WORD:
-            return prepareAdd(commandArgs);
+            return prepareAdd(commandArgs, access);
         case RemoveCommand.COMMAND_WORD:
             return prepareRemove(commandArgs);
         case ReviseCommand.COMMAND_WORD:
@@ -130,17 +130,34 @@ public class Parser {
         return new ListCommand();
     }
 
-    private static Command prepareAdd(String commandArgs) throws InvalidInputException {
+    private static Command prepareAdd(String commandArgs, Access access)
+            throws InvalidInputException, IncorrectAccessLevelException {
+        if (commandArgs.isEmpty()) {
+            throw new InvalidInputException("The arguments are missing.\n"
+                    + AddCommand.MESSAGE_USAGE);
+        }
+
+        if (access.isChapterLevel()) {
+            return prepareAddCard(commandArgs);
+        } else {
+            throw new IncorrectAccessLevelException("Add command can only be called at admin, "
+                    + "module and chapter level.\n");
+        }
+    }
+
+    private static Command prepareAddCard(String commandArgs) throws InvalidInputException {
         try {
             String[] args = commandArgs.split(QUESTION_ANSWER_PREFIX, 2);
             String question = parseQuestion(args[0]);
             String answer = parseAnswer(args[1]);
             if (question.isEmpty() || answer.isEmpty()) {
-                throw new InvalidInputException();
+                throw new InvalidInputException("The content for question / answer is empty.\n"
+                        + AddCommand.MESSAGE_USAGE);
             }
-            return new AddCommand(question, answer);
-        } catch (IndexOutOfBoundsException | InvalidInputException e) {
-            throw new InvalidInputException();
+            return new AddCommand(question, answer, CHAPTER_LEVEL);
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidInputException("The format for the add command is incorrect.\n"
+                    + AddCommand.MESSAGE_USAGE);
         }
     }
 
