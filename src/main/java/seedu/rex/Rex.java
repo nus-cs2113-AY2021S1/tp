@@ -7,6 +7,9 @@ import seedu.rex.parser.Parser;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Main class.
  */
@@ -15,6 +18,7 @@ public class Rex {
     private final Storage storage;
     private final Ui ui;
     private PatientList patients;
+    private static Logger logger;
 
     /**
      * Initializes Rex.
@@ -26,9 +30,13 @@ public class Rex {
 
         ui = new Ui();
         storage = new Storage(filePath);
+        logger = Logger.getLogger("Rex");
         try {
+            logger.log(Level.INFO, "going to load patients");
             patients = new PatientList(storage.load());
+            logger.log(Level.INFO, "loaded patients");
         } catch (RexException e) {
+            logger.log(Level.INFO, "patients loading error");
             ui.showLoadingError();
             patients = new PatientList();
         }
