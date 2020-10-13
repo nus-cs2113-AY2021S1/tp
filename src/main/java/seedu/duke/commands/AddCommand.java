@@ -50,6 +50,7 @@ public class AddCommand extends Command {
             addLogger.log(Level.INFO, "added book to booklist");
             break;
         case TAG_QUOTE:
+            addLogger.log(Level.INFO, "going to add quote to quote list");
             QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
             addQuote(quotes, ui);
             break;
@@ -102,8 +103,11 @@ public class AddCommand extends Command {
             Quote quote = QuoteParser.parseAddParameters(information);
             quotes.add(quote);
             ui.printAllQuotes(quotes);
+            addLogger.log(Level.INFO, "add quote to quote list success");
         } catch (QuotesifyException e) {
             System.out.println(e.getMessage());
+            addLogger.log(Level.INFO, "add quote to quote list failed");
+            addLogger.log(Level.WARNING, e.getMessage());
         }
     }
 
