@@ -335,23 +335,33 @@ public class Ui {
     public static void printSubjectResults(Subject subject) {
         System.out.println("____________________________________________________________");
         int index = 1;
-        for (Result result : subject.getResults().getList()) {
-            assert index > 0;
-            System.out.println("Quiz " + index + ": " + result);
-            index++;
+        if (subject.getResults().getList().size() == 0) {
+            System.out.println("You do not have any results!");
+        } else {
+            for (Result result : subject.getResults().getList()) {
+                assert index > 0;
+                System.out.println("Quiz " + index + ": " + result);
+                index++;
+            }
         }
+
         System.out.println("____________________________________________________________");
     }
 
     public static void printTopicResults(Topic topic) {
         System.out.println("____________________________________________________________");
         int index = 1;
-        for (Result result : topic.getResults().getList()) {
-            assert index > 0;
-            System.out.println("Quiz " + index + ": " + result);
-            index++;
+        if (topic.getResults().getList().size() == 0) {
+            System.out.println("You do not have any results!");
+        } else {
+            for (Result result : topic.getResults().getList()) {
+                assert index > 0;
+                System.out.println("Quiz " + index + ": " + result);
+                index++;
 
+            }
         }
+
         System.out.println("____________________________________________________________");
     }
 
@@ -378,4 +388,17 @@ public class Ui {
                 + "There are no topics present yet!\n"
                 + "____________________________________________________________\n");
     }
+
+    public static void printInvalidSubjectCommand() {
+        System.out.println("____________________________________________________________\n"
+                + "Please enter a subject!\n"
+                + "____________________________________________________________\n");
+    }
+
+    public static void printEnterTopic() {
+        System.out.println("____________________________________________________________\n"
+                + "Please enter a topic!\n"
+                + "____________________________________________________________\n");
+    }
 }
+

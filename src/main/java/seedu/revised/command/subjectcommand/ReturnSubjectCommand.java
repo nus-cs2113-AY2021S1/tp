@@ -9,7 +9,9 @@ import seedu.revised.command.topiccommand.QuizTopicCommand;
 import seedu.revised.command.topiccommand.ReturnTopicCommand;
 import seedu.revised.command.topiccommand.TopicCommand;
 import seedu.revised.card.SubjectList;
+import seedu.revised.exception.InvalidTopicCommand;
 import seedu.revised.exception.NoSubjectException;
+import seedu.revised.exception.NoTopicException;
 import seedu.revised.exception.RepeatedSubjectException;
 import seedu.revised.exception.TaskDeadlineException;
 import seedu.revised.exception.TaskEventException;
@@ -70,7 +72,7 @@ public class ReturnSubjectCommand extends SubjectCommand {
 
             } catch (NumberFormatException e) {
                 Ui.printIndexError();
-            } catch (NoSubjectException e) {
+            } catch (NoSubjectException | NoTopicException e) {
                 Ui.printNoTopicError();
             } catch (RepeatedSubjectException e) {
                 Ui.printRepeatedTopicError();
@@ -86,6 +88,8 @@ public class ReturnSubjectCommand extends SubjectCommand {
                 Ui.printError();
             } catch (NoFlashCardException e) {
                 Ui.printNoFlashcards();
+            } catch (InvalidTopicCommand invalidTopicCommand) {
+                Ui.printEnterTopic();
             }
         }
         Ui.printBackToSubjects();

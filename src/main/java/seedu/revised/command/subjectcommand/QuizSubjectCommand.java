@@ -2,6 +2,8 @@ package seedu.revised.command.subjectcommand;
 
 import seedu.revised.card.Subject;
 import seedu.revised.card.SubjectList;
+import seedu.revised.exception.InvalidSubjectCommand;
+import seedu.revised.exception.InvalidSubjectCommand;
 import seedu.revised.exception.NoSubjectException;
 
 public class QuizSubjectCommand extends SubjectCommand {
@@ -15,9 +17,12 @@ public class QuizSubjectCommand extends SubjectCommand {
         return this.fullcommand;
     }
 
-    public Subject execute(SubjectList subjectList) throws NoSubjectException {
+    public Subject execute(SubjectList subjectList) throws NoSubjectException, InvalidSubjectCommand {
         String[] message = this.fullcommand.split(" ");
         Subject quizSubject = null;
+        if (message.length == 1) {
+            throw new InvalidSubjectCommand();
+        }
         for (Subject subject : subjectList.getList()) {
             if (subject.toString().contains(message[1])) {
                 quizSubject = subject;
