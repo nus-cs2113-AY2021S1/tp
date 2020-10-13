@@ -37,7 +37,7 @@ class CheckCommandTest {
         addCommand.execute(data, ui, storage);
 
         // Execute check command
-        String inputString = "check 04/05/20; 13:00; 05/05/20; 14:00";
+        String inputString = "04/05/20; 13:00; 05/05/20; 14:00";
         System.setOut(new PrintStream(outputStreamCaptor));
 
         Command checkCommand  = new CheckCommand(inputString);
@@ -62,7 +62,7 @@ class CheckCommandTest {
         addCommand.execute(data, ui, storage);
 
         // Execute check command
-        String inputString = "check 04/05/20; 13:00; 04/05/20; 14:00";
+        String inputString = "04/05/20; 13:00; 04/05/20; 14:00";
         System.setOut(new PrintStream(outputStreamCaptor));
 
         Command checkCommand  = new CheckCommand(inputString);

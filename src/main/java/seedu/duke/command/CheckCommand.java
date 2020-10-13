@@ -39,10 +39,8 @@ public class CheckCommand extends Command {
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
         String[] datesAndTime = command.split(";");
 
-
         LocalDate startDate = getDate(datesAndTime[0].trim());
         LocalDate endDate = getDate(datesAndTime[2].trim());
-
 
         LocalTime startTime = getTime(datesAndTime[1].trim());
         LocalTime endTime = getTime(datesAndTime[3].trim());
