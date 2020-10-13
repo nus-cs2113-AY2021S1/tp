@@ -6,10 +6,6 @@ import seedu.duke.exception.AniException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Logger;
-import java.util.logging.Level;
-
-
 
 public class User extends Human {
     // Add Watchlist & Bookmarks here and/or UserManagement

@@ -1,7 +1,6 @@
 package seedu.duke.command;
 
 import seedu.duke.anime.AnimeData;
-import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.UserManagement;
 import seedu.duke.watchlist.Watchlist;
@@ -14,22 +13,26 @@ public class AddUserCommand extends Command {
     String dob = null;
     String gender = null;
 
-    public AddUserCommand(String description) {
-        String[] descriptionSplit = description.split(" ", 7);
+    public AddUserCommand(String userInput) {
+        String[] parametersSplit = userInput.split("-");
 
-        for (int i = 0; i < descriptionSplit.length - 1; i++) {
-            switch (descriptionSplit[i]) {
-            case "-n":
-                name = descriptionSplit[i + 1];
-                break;
-            case "-dob":
-                dob = descriptionSplit[i + 1];
-                break;
-            case "-g":
-                gender = descriptionSplit[i + 1];
-                break;
-            default:
-                // Continue!
+        for (int i = 0; i < parametersSplit.length; i++) {
+            String[] parameterTextSplit = parametersSplit[i].split(" ", 2);
+
+            if (!parameterTextSplit[0].isEmpty()) {
+                switch (parameterTextSplit[0]) {
+                case "n":
+                    name = parameterTextSplit[1];
+                    break;
+                case "dob":
+                    dob = parameterTextSplit[1];
+                    break;
+                case "g":
+                    gender = parameterTextSplit[1];
+                    break;
+                default:
+                    // Continue!
+                }
             }
         }
     }
