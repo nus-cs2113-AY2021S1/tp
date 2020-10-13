@@ -9,6 +9,20 @@ import seedu.financeit.ui.UiManager;
 
 public class FinanceTools {
 
+    public static double handleMilesCredit(CommandPacket packet) {
+        try {
+            MilesCredit tool = new MilesCredit(packet);
+            return (tool.calculateMiles());
+        } catch (AssertionError error) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    "Input failed due to param error.");
+        } catch (InsufficientParamsException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    exception.getMessage());
+        }
+        return 0;
+    }
+
     public static double handleCashback(CommandPacket packet) {
         Cashback tool = new Cashback();
         tool.setRequiredParams(
