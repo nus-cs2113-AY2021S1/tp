@@ -21,6 +21,7 @@ public class DeleteSubjectCommand extends SubjectCommand {
         String[] message = this.fullCommand.split(" ");
         int number = Integer.valueOf(message[1]);
         Subject subject = subjectList.getList().get(number - 1);
+        assert !(number <= 0 && number > subjectList.getList().size());
         subjectList.getList().remove(number - 1);
         Ui.printSubjectDelete(subject, subjectList.getList().size());
         return null;

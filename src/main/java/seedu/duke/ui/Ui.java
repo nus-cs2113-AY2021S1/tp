@@ -53,6 +53,7 @@ public class Ui {
         TaskList taskList = subject.getTasks();
         System.out.println("Here are the tasks(s) under " + subject.getTitle() + ": ");
         for (Task t : taskList.getList()) {
+            assert index > 0;
             System.out.println(index + "." + t);
             index++;
         }
@@ -151,6 +152,7 @@ public class Ui {
                 taskPresent = 1;
             }
         }
+        assert (taskPresent == 1 || taskPresent == 0);
         if (taskPresent == 0) {
             System.out.println(" Sorry! I could not find any task with " + find + " in the list.");
         }
@@ -166,6 +168,7 @@ public class Ui {
                 taskPresent = 1;
             }
         }
+        assert (taskPresent == 1 || taskPresent == 0);
         if (taskPresent == 0) {
             System.out.println("____________________________________________________________\n"
                     + " Sorry! I could not find any subjects with " + find + " in the list.");
@@ -209,6 +212,7 @@ public class Ui {
         System.out.println("____________________________________________________________\n"
                 + "Here are the topic(s) under " + subject.getTitle() + ": ");
         for (Topic t : topicList.getList()) {
+            assert index > 0;
             System.out.println(index + "." + t);
             index++;
         }
@@ -231,6 +235,7 @@ public class Ui {
                 taskPresent = 1;
             }
         }
+        assert (taskPresent == 1 || taskPresent == 0);
         if (taskPresent == 0) {
             System.out.println("____________________________________________________________\n"
                     + " Sorry! I could not find any topics with " + query + " in the list.");
@@ -278,6 +283,7 @@ public class Ui {
         System.out.println("____________________________________________________________\n"
                 + "Here are the flashcard(s) under " + topic.getTitle() + ": ");
         for (Flashcard t : topic.getFlashcards()) {
+            assert index > 0;
             System.out.println(index + "." + t.getQuestion() + "; " + t.getAnswer());
             index++;
         }
@@ -329,6 +335,7 @@ public class Ui {
         System.out.println("____________________________________________________________");
         int index = 1;
         for (Result result : subject.getResults().getList()) {
+            assert index > 0;
             System.out.println("Quiz " + index + ": " + result);
             index = index + 1;
         }
@@ -339,6 +346,7 @@ public class Ui {
         System.out.println("____________________________________________________________");
         int index = 1;
         for (Result result : topic.getResults().getList()) {
+            assert index > 0;
             System.out.println("Quiz " + index + ": " + result);
             index = index + 1;
 
