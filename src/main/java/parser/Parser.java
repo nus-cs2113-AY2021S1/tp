@@ -239,7 +239,7 @@ public class Parser {
                         + EditCommand.MESSAGE_USAGE);
             }
 
-            if (args[1].trim().contains("q:") || args[1].trim().contains("a:")) {
+            if (args[1].trim().toLowerCase().contains("q:") || args[1].trim().toLowerCase().contains("a:")) {
                 throw new IncorrectAccessLevelException("This command should be called at chapter level only.\n");
             }
 
