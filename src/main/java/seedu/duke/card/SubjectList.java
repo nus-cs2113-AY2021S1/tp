@@ -1,10 +1,5 @@
 package seedu.duke.card;
 
-import seedu.duke.card.Subject;
-import seedu.duke.task.Task;
-
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 
 public class SubjectList {
@@ -32,16 +27,4 @@ public class SubjectList {
         return this.subjectList;
     }
 
-    /**
-     * Saves the Tasks in a <code>TaskList</code> into a <code>File</code>.
-     *
-     * @param filename of the <code>File</code> to write to
-     * @throws IOException if there is an error writing to the file
-     */
-    public void saveSubject(String filename) throws IOException {
-        FileWriter fileWriter = new FileWriter(filename);
-        for (Subject subject : this.subjectList) {
-        }
-        fileWriter.close();
-    }
 }

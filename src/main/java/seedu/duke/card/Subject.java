@@ -1,5 +1,8 @@
 package seedu.duke.card;
 
+import seedu.duke.card.quiz.Result;
+import seedu.duke.card.quiz.ResultList;
+import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
 import java.util.ArrayList;
@@ -9,27 +12,34 @@ public class Subject {
     private String title;
     private TopicList topics;
     private TaskList tasks;
+    private ResultList results;
 
     public Subject(String title) {
-        this(title, new ArrayList<>());
+        this.title = title;
+        this.topics = new TopicList(new ArrayList<>());
+        results = new ResultList(new ArrayList<>());
+        tasks = new TaskList(new ArrayList<>());
     }
 
     public Subject(String title, List<Topic> topics) {
         this.title = title;
         this.topics = new TopicList(topics);
         tasks = new TaskList(new ArrayList<>());
+        results = new ResultList(new ArrayList<>());
     }
 
-    public Subject(String title, TopicList topics) {
+    public Subject(String title, List<Topic> topics, List<Task> tasks) {
         this.title = title;
-        this.topics = topics;
-        tasks = new TaskList(new ArrayList<>());
+        this.topics = new TopicList(topics);
+        this.tasks = new TaskList(tasks);
+        this.results = new ResultList(new ArrayList<>());
     }
 
-    public Subject(String title, TopicList topics, TaskList tasks) {
+    public Subject(String title, TopicList topics, TaskList tasks, ResultList results) {
         this.title = title;
         this.topics = topics;
         this.tasks = tasks;
+        this.results = results;
     }
 
     public void printSubject(SubjectList subjectList) {
@@ -52,8 +62,14 @@ public class Subject {
         return tasks;
     }
 
+    public ResultList getResults() {
+        return results;
+    }
+
     @Override
     public String toString() {
         return this.title;
     }
+
+
 }
