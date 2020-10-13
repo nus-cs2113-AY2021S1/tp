@@ -36,12 +36,10 @@ public class QuizQuestionsManager {
             throw new Eduke8Exception(INSUFFICIENT_TOPIC_QUESTIONS_FOR_QUIZ);
         }
 
-        int numberOfQuestionsSelected = 0;
-
         // prevent repeated questionsInTopic from being selected again
         ArrayList<Integer> integersChosen = new ArrayList<>();
 
-        while (numberOfQuestionsSelected < numberOfQuestionsForQuiz) {
+        while (quizQuestions.size() < numberOfQuestionsForQuiz) {
             // get a random question that is within the bounds of the size of the available question list
             int randomQuestionIndex = RANDOM.nextInt(questionsInTopic.size() - 1);
 
@@ -54,7 +52,6 @@ public class QuizQuestionsManager {
 
             // choose a random question from the question list and add it to the questionsInTopic for quiz
             quizQuestions.add((Question) questionsInTopic.get(randomQuestionIndex));
-            numberOfQuestionsSelected++;
             integersChosen.add(randomQuestionIndex);
         }
     }
