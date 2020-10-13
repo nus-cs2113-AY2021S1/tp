@@ -1,6 +1,5 @@
 package seedu.duke.storage;
 
-import seedu.duke.human.Gender;
 import seedu.duke.human.User;
 import seedu.duke.watchlist.Watchlist;
 
@@ -10,10 +9,11 @@ public class Encoder {
     private static final String FILE_LINE_DELIMITER = " | ";
 
     public String encodeUser(User user) throws NullPointerException {
-        String name = user.getName().trim();
-        String birthDate = user.getDobString().trim();
-        Gender gender = user.getGender();
+        String name = user.getName();
+        String birthDate = user.getDobString();
+        String gender = user.getGender().toString();
 
+        assert (name != null && birthDate != null && gender != null) : "User details should not have any null.";
         return name + FILE_LINE_DELIMITER + birthDate + FILE_LINE_DELIMITER + gender;
     }
 
@@ -26,6 +26,8 @@ public class Encoder {
             sbWatchlist.append(System.lineSeparator());
         }
 
-        return sbWatchlist.toString();
+        String watchlistString = sbWatchlist.toString();
+        assert (!watchlistString.isBlank()) : "Encoded watchlist string should not be blank.";
+        return watchlistString;
     }
 }

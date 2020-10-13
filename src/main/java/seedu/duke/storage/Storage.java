@@ -47,6 +47,7 @@ public class Storage {
     public void saveUser(User user) throws AniException {
         try {
             String userString = encoder.encodeUser(user);
+            assert userString != null : "Encoded user string should not be null.";
             writeFile(userFilePath, userString);
         } catch (NullPointerException exception) {
             throw new AniException("AniChan could not save this user.");
@@ -56,6 +57,7 @@ public class Storage {
     public void saveWatchlist(ArrayList<Watchlist> watchlists) throws AniException {
         try {
             String watchlistString = encoder.encodeWatchlist(watchlists);
+            assert watchlistString != null : "Encoded watchlist string should not be null.";
             writeFile(watchlistFilePath, watchlistString);
         } catch (NullPointerException exception) {
             throw new AniException("AniChan could not save the watchlist.");

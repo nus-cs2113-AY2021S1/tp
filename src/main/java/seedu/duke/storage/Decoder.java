@@ -29,6 +29,7 @@ public class Decoder {
 
     public ArrayList<Watchlist> decodeWatchlistString(Ui ui, String fileString) {
         ArrayList<Watchlist> watchlists = new ArrayList<>();
+        assert fileString != null : "fileString should not be null.";
         String[] fileStringLines = fileString.split(System.lineSeparator());
 
         boolean hasCorruptedWatchlist = false;
@@ -47,6 +48,7 @@ public class Decoder {
         } else {
             ui.printMessage("AniChan successfully loaded all of the saved watchlist(s).");
         }
+
         return watchlists;
     }
 
