@@ -108,42 +108,4 @@ public class SlotList extends ItemList {
         slots.remove(slot);
     }
 
-    public static void printSlotsInADay(ArrayList<Slot> slots, String day) {
-        boolean hasSlotOnDay = false;
-
-        System.out.println(day);
-
-        for (Slot s: slots) {
-            if (s.getDay().equals(day)) {
-                System.out.println(s.toString());
-                hasSlotOnDay = true;
-            }
-        }
-
-        if (hasSlotOnDay == false) {
-            System.out.println("No lessons");
-        }
-
-        System.out.println();
-    }
-
-    public void printTimetable(ArrayList<Slot> slots) {
-        for (String d: Slot.days) {
-            printSlotsInADay(slots, d);
-        }
-    }
-
-    public void printLessonAtTime(ArrayList<Slot> slots, String dayInput) throws DukeException {
-        if (slots.size() == 0) {
-            throw new DukeException(DukeExceptionType.EMPTY_TIMETABLE);
-        } else if (dayInput == null) {
-            throw new DukeException(DukeExceptionType.INVALID_TIMETABLE_DAY);
-        } else if (dayInput.equals("ALL") == true) {
-            printTimetable(slots);
-            return;
-        }
-
-        System.out.println("Lessons for " + dayInput);
-        printSlotsInADay(slots, dayInput);
-    }
 }

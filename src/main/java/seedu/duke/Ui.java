@@ -12,6 +12,11 @@ import seedu.duke.command.timetable.DeleteSlotCommand;
 import seedu.duke.command.timetable.ShowTimetableCommand;
 import seedu.duke.exception.DukeException;
 
+import seedu.duke.exception.DukeException;
+import seedu.duke.exception.DukeExceptionType;
+import seedu.duke.slot.Slot;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -197,7 +202,7 @@ public class Ui {
     }
 
     private void printUnknownDayMessage() {
-        print("Unknown day input\n" 
+        print("Unknown day input\n"
               + "Valid days: monday, tuesday, wednesday, thursday, friday, saturday, sunday\n");
     }
 
@@ -211,6 +216,41 @@ public class Ui {
 
     private void printInvalidTimeFormat() {
         print("Invalid time format\n");
+    }
+
+    private static void printSlotsInADay(ArrayList<Slot> slots, String day) {
+        boolean hasSlotOnDay = false;
+        for (Slot s: slots) {
+            if (s.getDay().equals(day)) {
+                System.out.println(s.toString());
+                hasSlotOnDay = true;
+            }
+        }
+        if (!hasSlotOnDay) {
+            System.out.println("No lessons");
+        }
+        System.out.println();
+    }
+
+    private void printTimetable(ArrayList<Slot> slots) {
+        for (String d: Slot.days) {
+            System.out.println(d);
+            printSlotsInADay(slots, d);
+        }
+    }
+
+    public void printLessonAtTime(ArrayList<Slot> slots, String dayInput) throws DukeException {
+        if (slots.size() == 0) {
+            throw new DukeException(DukeExceptionType.EMPTY_TIMETABLE);
+        } else if (dayInput == null) {
+            throw new DukeException(DukeExceptionType.INVALID_TIMETABLE_DAY);
+        } else if (dayInput.equals("ALL")) {
+            printTimetable(slots);
+            return;
+        }
+
+        System.out.println("Lessons for " + dayInput);
+        printSlotsInADay(slots, dayInput);
     }
 
 }
