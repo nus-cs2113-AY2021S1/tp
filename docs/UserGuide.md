@@ -53,6 +53,7 @@ Example of usage:
 * `mode bookmark`
 * `mode timetable` 
 
+<br/><br/> 
 <a name="exit"></a>  
 #### Exit the app: `exit`  
 Exits the application 
@@ -61,7 +62,7 @@ Exits the application
 Format: exit    
 ```
 ---
-
+<br/><br/> 
 <a name="bookmarkmode"></a>  
 ### Bookmark Mode  
 
@@ -71,7 +72,7 @@ Prints all bookmark in the bookmark list
 ```
 Format: show
 ```
-
+<br/><br/> 
 <a name="addbookmark"></a>  
 #### Add bookmark: `add`  
 Add a URL bookmark under a certain topic and description.  
@@ -87,6 +88,7 @@ Example of usage:
 * `add CS2113T tutorial www.cs2113t.nus.edu.sg/`  
 * `add website https://cs2113t.nus.edu.sg/`  
 
+<br/><br/> 
 <a name="deletebookmark"></a>  
 #### Delete bookmarks: `delete`  
 Deletes a bookmark with the specified index.  The index will correspond to the index of that bookmark in the list. You can do a `show` command to check the bookmark indexes.  
@@ -99,6 +101,7 @@ Example of usage:
 * `delete 2`  
 * `delete 4`  
 
+<br/><br/> 
 <a name="findbookmark"></a>  
 #### Find bookmarks: `find`  
 Finds bookmarks with matching module and description and prints them
@@ -114,6 +117,8 @@ Example of usage:
 * `find CS2113 tutorial`
 * `find CS2113`  
 
+
+<br/><br/> 
 <a name="launchbookmark"></a>  
 #### Launch bookmarks: `launch`  
 Launches bookmarks in the default browser using either:
@@ -136,6 +141,7 @@ Example of usage:
   
 ---
 
+<br/><br/> 
 <a name="timetablemode"></a>  
 ### Timetable mode    
 
@@ -149,6 +155,7 @@ Example of usage:
 * `show`
 * `show mon`
 
+<br/><br/> 
 <a name="addtimeslot"></a>
 #### Add time slot: `add`  
 Add a time slot with start and end time, day of week, and title.  
@@ -163,6 +170,7 @@ Example of usage:
 * `add 10:00 12:00 mon CS1231 Lecture`  
 * `add 14:00 16:00 tue CG1111 Tutorial`
 
+<br/><br/> 
 <a name="deletetimeslot"></a>
 #### Delete time slot: `delete`  
 Delete a time slot with the specified index.
@@ -182,17 +190,18 @@ Start the application and all the data should be loaded.
   
 
 ## Command Summary
-| **Action** | **Format, Examples** |
-| ------------ | ------------- |
-| **mode** | `mode {bookmark/timetable}` example: `mode bookmark` |
-| **exit** | `exit` |
-| **Bookmark Mode** | |
-| **show** | `show` |
-| **add** | `add {MODULE(optional)} {DESCRIPTON} {URL}` example: `add CS2113T tutorial www.yahoo.com` |
-| **delete** | `delete {INDEX}` example: `delete 2` |
-| **find** | `find {MODULE} {DESCRIPTION(optional)}` example: `find CS2113 tutorial` |
-| **launch** | `launch {MODULE} {DESCRIPTION(optional)}` example: `launch CS2113` |
-| **Timetable Mode** | |
-| **add** | `add {START TIME} {END TIME} {DAY} {TITLE}` example: `add 10:00 12:00 mon CS1231 Lecture` |
-| **delete** | `delete {INDEX}` example: `delete 1` |
-| **show** | `show {DAY(optional)}` example: `show tue` |
+**Action** | **Format, Examples**
+------------ | -------------
+**mode**|`mode {bookmark/timetable}`<br>example: `mode bookmark`
+**exit**|`exit`
+**Bookmark Mode**|
+**show**|`show`
+**add**|`add {MODULE(optional)} {DESCRIPTON} {URL}` <br>example: `add CS2113T tutorial www.yahoo.com`
+**delete**|`delete {INDEX}`<br>example: `delete 2`
+**find**|`find {MODULE} {DESCRIPTION(optional)}` <br>example: `find CS2113 tutorial`
+**launch**|`launch {MODULE} {DESCRIPTION(optional)}` <br>example: `launch CS2113`
+**Timetable Mode**|
+**slotadd**|`before  <yyyyMMdd HHmm>`<br>example: `before 20210909 1159`
+**slotdel**|`after <yyyyMMdd HHmm>`<br>example: `after 19990101 0100`
+**show**|`today`
+
