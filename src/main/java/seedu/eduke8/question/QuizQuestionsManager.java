@@ -5,12 +5,15 @@ import seedu.eduke8.exception.Eduke8Exception;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class QuizQuestionsManager {
     public static final String INVALID_QUIZ_QUESTION_NUMBER = "Number of quiz questions must be more than 1";
     public static final String INSUFFICIENT_TOPIC_QUESTIONS_FOR_QUIZ =
             "There is not enough questions in the topic for the quiz!";
+
+    private static Logger logger = Logger.getLogger("Main");
 
 
     private ArrayList<Question> quizQuestions = new ArrayList<>();
@@ -26,7 +29,6 @@ public class QuizQuestionsManager {
 
     public void setQuizQuestions(int numberOfQuestionsForQuiz,
                                  ArrayList<Displayable> questionsInTopic) throws Eduke8Exception {
-        Logger logger = Logger.getLogger("main");
 
         if (numberOfQuestionsForQuiz <= 0) {
             throw new Eduke8Exception(INVALID_QUIZ_QUESTION_NUMBER);
@@ -41,11 +43,11 @@ public class QuizQuestionsManager {
 
         while (quizQuestions.size() < numberOfQuestionsForQuiz) {
             // Gets a random question that is within the bounds of the size of the available question list
-            int randomQuestionIndex = RANDOM.nextInt(questionsInTopic.size() - 1);
+            int randomQuestionIndex = RANDOM.nextInt(questionsInTopic.size());
 
             // To ensure we do not pick the same question again
             if (integersChosen.contains(randomQuestionIndex)) {
-                logger.info("Chosen a repeated question");
+                logger.log(Level.INFO, "Chosen a repeated question");
                 continue;
             }
 
