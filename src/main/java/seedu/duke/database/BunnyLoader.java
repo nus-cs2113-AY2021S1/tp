@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 import static seedu.duke.constants.ClickerMessages.ERROR_READING_FILE_ON_LINE_MSG_FORMAT;
 import static seedu.duke.constants.FilePaths.DEFAULT_BUNNY_FILE_PATH;
-import static seedu.duke.constants.FilePaths.DEFAULT_USER_SETTINGS_FILE_PATH;
 import static seedu.duke.constants.Tags.BUNNY_GENRE_TAG;
 import static seedu.duke.constants.Tags.BUNNY_IDEA_TAG;
 import static seedu.duke.constants.Tags.NUM_BUNNY_TAG;

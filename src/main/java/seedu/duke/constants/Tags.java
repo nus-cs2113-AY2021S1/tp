@@ -21,6 +21,7 @@ public class Tags {
     public static final String GENRE_TAG = "g";
     public static final String CHARACTER_TAG = "g";
 
+
     /** Tags for character command. */
     public static final String NAME_TAG = "na";
     public static final String AGE_TAG = "ag";

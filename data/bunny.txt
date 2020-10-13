@@ -1,10 +1,14 @@
-number of plot bunnies: 2
+number of plot bunnies: 3
 --------------------------------------------------------------
-idea: test bunny idea 1
-genre: none
-characters: -na-
+1.
+  idea: test bunny idea 1
+  genre: none
 --------------------------------------------------------------
-idea: test bunny idea 2
-genre: none
-characters: -na-
+2.
+  idea: test bunny idea 2
+  genre: none
+--------------------------------------------------------------
+3.
+  idea: idea number 3
+  genre: ideas
 --------------------------------------------------------------

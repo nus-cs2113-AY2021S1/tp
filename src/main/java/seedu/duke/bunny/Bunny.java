@@ -57,6 +57,8 @@ public class Bunny {
         String description = "  idea: " + idea + "\n";
         if (!genre.isBlank()) {
             description = description + "  genre: " + genre + "\n";
+        } else {
+            description = description + "  genre: none";
         }
 
         return description;
