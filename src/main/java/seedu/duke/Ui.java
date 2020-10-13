@@ -24,11 +24,11 @@ public class Ui {
     public static void printHelpCommand() {
         System.out.println("List of available commands:\n"
                 + "1. todo <task description>\n"
-                + "2. deadline <task description> /by ddMMyy\n"
-                + "3. activity <activity description> /at ddMMyy HHmm <venue>\n"
+                + "2. deadline <task description> /ddMMyy\n"
+                + "3. act <activity description> @<venue> /ddMMyy HHmm\n"
                 + "4. exam <module code> @<venue> /ddMMyy HHmm\n"
-                + "5. lecture <module code> @<venue> /ddMMyy HHmm\n"
-                + "6. tutorial <module code> @<venue> /ddMMyy HHmm\n"
+                + "5. lect <module code> @<venue> /ddMMyy HHmm\n"
+                + "6. tut <module code> @<venue> /ddMMyy HHmm\n"
                 + "7. lab <module code> @<venue> /ddMMyy HHmm\n"
                 + "8. done <task number>\n"
                 + "9. -t <task number>\n"
@@ -256,18 +256,17 @@ public class Ui {
             System.out.println("Error: The description of todo cannot be empty.");
             break;
         case "deadline":
-            System.out.println("Error: Please key in the deadline in this format: deadline ... /by ddMMyy");
+            System.out.println("Error: Please key in the deadline in this format: deadline <task description> /ddMMyy");
             break;
         case "activity":
-            System.out.println("Error: Please follow this format: activity <activity description> "
-                    + "@<venue> /ddMMyy HHmm");
+            System.out.println("Error: Please follow this format: act <activity description> @<venue> /ddMMyy HHmm");
             break;
         case "lecture":
-            System.out.println("Error: Please key in the lecture in this format: lecture <module code> @<venue> /"
+            System.out.println("Error: Please key in the lecture in this format: lect <module code> @<venue> /"
                     + "ddMMyy HHmm");
             break;
         case "tutorial":
-            System.out.println("Error: Please key in the tutorial in this format: tutorial <module code> @<venue> /"
+            System.out.println("Error: Please key in the tutorial in this format: tut <module code> @<venue> /"
                     + "ddMMyy HHmm");
             break;
         case "lab":
