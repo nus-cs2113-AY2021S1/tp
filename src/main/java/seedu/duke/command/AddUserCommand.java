@@ -36,9 +36,8 @@ public class AddUserCommand extends Command {
 
 
     @Override
-    public String execute(AnimeData animeData, Watchlist currentWatchlist,
-                        ArrayList<Watchlist> watchlists, Bookmark bookmark, UserManagement userManagement)
-            throws AniException {
+    public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
+                          Bookmark bookmark, UserManagement userManagement) throws AniException {
         if (name.isEmpty() || dob.isEmpty() || gender.isEmpty()) {
             throw new AniException("Invalid parameters detected!");
         }

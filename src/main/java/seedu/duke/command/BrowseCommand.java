@@ -21,7 +21,7 @@ public class BrowseCommand extends Command {
 
 
     public BrowseCommand(String description) {
-        super(description);
+        this.description = description;
         //Default values for browse command
         this.sortType = 0;
         this.order = 1;
@@ -36,9 +36,8 @@ public class BrowseCommand extends Command {
     }
 
     @Override
-    public String execute(AnimeData animeData,
-                        Watchlist currentWatchlist, ArrayList<Watchlist> watchlists,
-                        Bookmark bookmark, UserManagement userManagement) throws AniException {
+    public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
+                          Bookmark bookmark, UserManagement userManagement) throws AniException {
         //Parameter Parser for Browse Command
         String[] paramGiven = description.split("-");
         if (paramGiven.length > 1) {

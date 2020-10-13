@@ -16,12 +16,8 @@ public class Ui {
             "-------------------------------------------------------------";
 
     public void printMessage(String message) {
-        System.out.println(" " + message);
-    }
-
-    public void printCommandOutput(String output) {
-        if (!output.equals("")) {
-            System.out.println(output);
+        if (!message.isBlank()) {
+            System.out.println(" " + message);
         }
     }
 
@@ -39,11 +35,12 @@ public class Ui {
     }
 
     public String readInput() {
+        System.out.print(" #> ");
         return CONSOLE.nextLine();
     }
 
     public String readUserInput(String userName, String watchlistName) {
-        System.out.print(System.lineSeparator() + " " + userName + "(" + watchlistName + ") #> ");
+        System.out.print(System.lineSeparator() + " " + userName + " (" + watchlistName + ") #> ");
         String userInput = CONSOLE.nextLine();
         return userInput;
     }
@@ -79,8 +76,4 @@ public class Ui {
     public void printGoodbyeMessage() {
         System.out.println("Sayonara!");
     }
-
-
-
-
 }

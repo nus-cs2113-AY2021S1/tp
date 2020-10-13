@@ -10,35 +10,18 @@ import java.util.ArrayList;
 
 public abstract class Command {
     protected String description;
-    private boolean isExit = false;
+    private boolean shouldExit = false;
 
-    public Command(String description) {
-        setDescription(description);
+    public boolean getShouldExit() {
+        return shouldExit;
     }
 
-    public Command() {
-
-    }
-    
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    public String getDescription() {
-        return this.description;
+    public void setShouldExit() {
+        this.shouldExit = true;
     }
 
-    public String execute(AnimeData animeData, Watchlist currentWatchlist,
-                          ArrayList<Watchlist> watchlists,
+    public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
                           Bookmark bookmark, UserManagement userManagement) throws AniException {
         throw new AniException("This method should be implemented in the child class");
-    }
-
-    public boolean isExit() {
-        return isExit;
-    }
-
-    public void setExit() {
-        this.isExit = true;
     }
 }

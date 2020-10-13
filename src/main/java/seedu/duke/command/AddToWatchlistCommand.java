@@ -27,14 +27,13 @@ public class AddToWatchlistCommand extends Command {
      * Adds an anime to current watchlist.
      */
     @Override
-    public String execute(AnimeData animeData, Watchlist currentWatchlist,
-                        ArrayList<Watchlist> watchlists, Bookmark bookmark,
-                        UserManagement userManagement) throws AniException {
+    public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
+                          Bookmark bookmark, UserManagement userManagement) throws AniException {
         if (!option.equals(ADD_OPTION)) {
             throw new AniException("Watchlist command only accepts the option: \"-a\".");
         }
 
-        addToWatchlist(currentWatchlist);
+        addToWatchlist(activeWatchlist);
 
         return "Anime added to watchlist";
     }

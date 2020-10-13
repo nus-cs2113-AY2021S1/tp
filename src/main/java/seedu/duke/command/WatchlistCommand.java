@@ -13,7 +13,7 @@ public class WatchlistCommand extends Command {
     private static final String CREATE_OPTION = "-n";
 
     private final String option;
-    private String optionInformation = "";
+    private String optionInformation;
 
     public WatchlistCommand(String description) {
         String[] descriptionSplit = description.split(" ", 2);
@@ -25,24 +25,23 @@ public class WatchlistCommand extends Command {
     }
 
     @Override
-    public String execute(AnimeData animeData, Watchlist currentWatchlist,
-                        ArrayList<Watchlist> watchlists, Bookmark bookmark, UserManagement userManagement)
-            throws AniException {
+    public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
+                          Bookmark bookmark, UserManagement userManagement) throws AniException {
         if (CREATE_OPTION.equals(option)) {
-            createWatchlist(userManagement.getStorage(), watchlists);
+            createWatchlist(userManagement.getStorage(), activeWatchlistList);
             return "Watchlist created successfully!";
         } else {
             throw new AniException("Watchlist command only accepts the option: \"-n\".");
         }
     }
 
-    public void createWatchlist(Storage storage, ArrayList<Watchlist> watchlists) throws AniException {
+    public void createWatchlist(Storage storage, ArrayList<Watchlist> activeWatchlistList) throws AniException {
         if (optionInformation.isBlank()) {
             throw new AniException("Watchlist name cannot be empty.");
         }
 
         Watchlist newWatchlist = new Watchlist(optionInformation);
-        watchlists.add(newWatchlist);
-        storage.writeWatchlistFile(watchlists);
+        activeWatchlistList.add(newWatchlist);
+        storage.saveWatchlist(activeWatchlistList);
     }
 }

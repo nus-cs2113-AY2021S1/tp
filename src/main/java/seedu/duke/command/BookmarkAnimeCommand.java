@@ -11,13 +11,12 @@ import java.util.ArrayList;
 public class BookmarkAnimeCommand extends Command {
 
     public BookmarkAnimeCommand(String description) {
-        super(description);
+        this.description = description;
     }
 
-
     @Override
-    public String execute(AnimeData animeData, Watchlist currentWatchlist,
-                        ArrayList<Watchlist> watchlists, Bookmark bookmark, UserManagement userManagement) {
+    public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
+                          Bookmark bookmark, UserManagement userManagement) {
         String result = "";
         if (description.contains(" ")) {
             String[] descriptionSplit = description.split(" ", 2);

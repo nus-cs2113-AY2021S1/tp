@@ -51,12 +51,16 @@ public class User extends Human {
         return gender;
     }
 
+    public String getName() {
+        return name;
+    }
+
     /**
      * Provides the name of the user with Japanese honorifics depending on his gender.
      *
      * @return name of user with honorifics.
      */
-    public String getName() {
+    public String getFancyName() {
         if (gender == Gender.Female) {
             return name + "-chan";
         } else {
@@ -67,9 +71,5 @@ public class User extends Human {
     @Override
     public String toString() {
         return "\nName: " + name + "\nBirthdate: " + getDobString() + "\nGender: " + getGender();
-    }
-
-    public String toFileString() {
-        return name + " | " + DATE_MONTH_YEAR.format(birthdate) + " | " + gender;
     }
 }
