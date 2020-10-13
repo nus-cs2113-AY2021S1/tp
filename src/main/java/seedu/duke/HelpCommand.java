@@ -1,6 +1,6 @@
 package seedu.duke;
 
-public class HelpCommand extends Command{
+public class HelpCommand extends Command {
     public HelpCommand(String userInput) {
         this.command = userInput;
     }
