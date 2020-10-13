@@ -47,6 +47,12 @@ public class RecurringTracker {
 
     static void handleNewEntry(CommandPacket packet) {
         RecurringEntry entry = null;
+        entries.setRequiredParams(
+                "/-i or -e",
+                "/desc",
+                "/amt",
+                "/day"
+        );
         try {
             entry = new RecurringEntry(packet);
             entries.addItem(entry);
@@ -65,8 +71,12 @@ public class RecurringTracker {
     }
 
     static void handleDeleteEntry(CommandPacket packet) {
+        entries.setRequiredParams(
+                "/id"
+        );
         try {
-            //Inputted index is parsed and stored in entries.indexToModify (private)
+            //User-inputted index ("/id") is parsed, converted to zero-based index
+            //and stored in entries.indexToModify (private)
             entries.handleParams(packet);
             RecurringEntry entry = (RecurringEntry) entries.getItemAtIndex();
             String entryName = entry.getName();

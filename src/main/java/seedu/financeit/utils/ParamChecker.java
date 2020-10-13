@@ -130,6 +130,14 @@ public class ParamChecker {
         return time;
     }
 
+    /**
+     * Checks if user-inputted index is valid, and converts it to zero-based index form.
+     * @param paramType - paramType that has index as paramArgument
+     * @param list - list of items to select from
+     * @return zero-based index (i.e. user-inputted index - 1)
+     * @throws ParseFailParamException If index was not parsed successfully,
+     *                                 for example due to error thrown
+     */
     public int checkAndReturnIndex(String paramType, ArrayList list) throws ParseFailParamException {
         String message;
         int index = -1;
@@ -146,8 +154,7 @@ public class ParamChecker {
 
         try {
             index = Integer.parseInt(packet.getParam(paramType));
-            index = index - 1;
-            if (index < 0 || index >= list.size()) {
+            if (index < 1 || index > list.size()) {
                 throw new IndexOutOfBoundsException();
             }
             parseSuccess = true;
@@ -171,7 +178,7 @@ public class ParamChecker {
             throw new ParseFailParamException(paramType);
         }
 
-        return index;
+        return index - 1;
     }
 
     public double checkAndReturnDouble(String paramType) throws ParseFailParamException {

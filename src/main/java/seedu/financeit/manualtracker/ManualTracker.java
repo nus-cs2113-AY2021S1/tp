@@ -134,10 +134,10 @@ public class ManualTracker {
             "/id or /date"
         );
         try {
-            ledgerList.setCurrItemFromPacket(packet);
-            ledger = (Ledger) ledgerList.getCurrItem();
+            ledgerList.handleParams(packet);
+            ledger = (Ledger) ledgerList.getItemAtIndex();
             System.out.println(ledger.getName());
-            ledgerList.removeItem(ledger);
+            ledgerList.removeItemAtIndex();
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                 String.format("%s deleted!", ledger.getName()));
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
@@ -169,8 +169,8 @@ public class ManualTracker {
             "/id or /date"
         );
         try {
-            ledgerList.setCurrItemFromPacket(packet);
-            ledger = (Ledger) ledgerList.getCurrItem();
+            ledgerList.handleParams(packet);
+            ledger = (Ledger) ledgerList.getItemAtIndex();
             EntryTracker.setCurrLedger(ledger);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                 String.format("%s opened!", ledger.getName()));
@@ -191,7 +191,6 @@ public class ManualTracker {
                     "Input failed due to param error.");
             }
         }
-        ledgerList.popCurrItem();
         return EntryTracker.main();
     }
 

@@ -48,10 +48,8 @@ public class MilesCredit extends ParamHandler {
             this.milesRate = paramChecker.checkAndReturnDouble(paramType);
             break;
         default:
-            if (!super.requiredParams.contains(paramType)) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                        paramChecker.getUnrecognizedParamMessage(paramType));
-            }
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    paramChecker.getUnrecognizedParamMessage(paramType));
             break;
         }
     }

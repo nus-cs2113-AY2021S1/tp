@@ -2,7 +2,6 @@ package seedu.financeit.manualtracker;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
-import seedu.financeit.common.Item;
 import seedu.financeit.common.ItemList;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
@@ -17,12 +16,18 @@ public class LedgerList extends ItemList {
 
     }
 
-    public Ledger getItemFromDate(LocalDate date) throws ItemNotFoundException {
-        Ledger output;
-        for (Item i : this.items) {
-            output = (Ledger)i;
-            if ((output.getDate().equals(date))) {
-                return output;
+    /**
+     * Given a date, returns the zero-based index of the ledger for that date.
+     *
+     * @param date Date of ledger
+     * @return Zero-based index of ledger
+     * @throws ItemNotFoundException When there is no ledger for that date
+     */
+    public int getIndexFromDate(LocalDate date) throws ItemNotFoundException {
+        for (int i = 0; i < super.getItemsSize(); i++) {
+            Ledger ledger = (Ledger) super.items.get(i);
+            if (ledger.getDate().equals(date)) {
+                return i;
             }
         }
         throw new ItemNotFoundException();
@@ -45,21 +50,22 @@ public class LedgerList extends ItemList {
     @Override
     public void handleSingleParam(CommandPacket packet, String paramType)
         throws ParseFailParamException, ItemNotFoundException {
+        int index;
         switch (paramType) {
         case ParamChecker.PARAM_DATE:
             LocalDate date = paramChecker.checkAndReturnDate(paramType);
-            this.setCurrItem(this.getItemFromDate(date));
+            index = this.getIndexFromDate(date);
+            super.indexToModify = index;
             break;
         case ParamChecker.PARAM_INDEX:
-            int index = paramChecker.checkAndReturnIndex(paramType, this.items);
-            this.setCurrItem(this.getItemAtIndex(index));
+            index = paramChecker.checkAndReturnIndex(paramType, this.items);
+            super.indexToModify = index;
             break;
         default:
-            if (!super.requiredParams.contains(paramType)) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    paramChecker.getUnrecognizedParamMessage(paramType));
-            }
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                paramChecker.getUnrecognizedParamMessage(paramType));
             break;
         }
+
     }
 }

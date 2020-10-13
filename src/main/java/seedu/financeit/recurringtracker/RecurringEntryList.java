@@ -22,6 +22,7 @@ public class RecurringEntryList extends ItemList {
 
     /**
      * Handles params given to the list e.g. index of entry to modify/delete
+     *
      * @param packet Command packet
      * @throws InsufficientParamsException When not all required params are provided
      */
@@ -34,6 +35,13 @@ public class RecurringEntryList extends ItemList {
         }
     }
 
+    /**
+     * Handles a single param from the packet.
+     *
+     * @param packet    input CommandPacket obtained from parsing user input.
+     * @param paramType paramType of param that is currently being validated and processed.
+     * @throws ParseFailParamException When param parsing fails
+     */
     @Override
     public void handleSingleParam(CommandPacket packet, String paramType)
             throws ParseFailParamException {
@@ -41,7 +49,6 @@ public class RecurringEntryList extends ItemList {
         case ParamChecker.PARAM_INDEX:
             int index = paramChecker.checkAndReturnIndex(paramType, super.items);
             super.indexToModify = index;
-            super.parseSuccessParams.add(paramType);
             break;
         default:
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
@@ -52,10 +59,10 @@ public class RecurringEntryList extends ItemList {
     @Override
     public void printList() {
         TablePrinter.setTitle(String.format("List of Recurring entries"));
-        TablePrinter.addRow("No.;Day;Description;Expenditure amount;Income amount;" +
-                "Duration;Payment type;Notes                    ");
+        TablePrinter.addRow("No.;Day;Description;Expenditure amount;Income amount;"
+                + "Duration;Payment type;Notes                    ");
         if (super.items.isEmpty()) {
-            TablePrinter.addRow("No entries created               ");
+            TablePrinter.addRow("No entries created;               ");
         } else {
             for (int i = 0; i < super.items.size(); i++) {
                 RecurringEntry entry = (RecurringEntry) super.items.get(i);

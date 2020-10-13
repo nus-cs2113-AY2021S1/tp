@@ -80,11 +80,11 @@ public class Entry extends DateTimeItem {
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case PARAM_TIME:
-            LocalTime time = paramChecker.checkAndReturnTime(paramType);
+            LocalTime time = super.paramChecker.checkAndReturnTime(paramType);
             super.setTime(time);
             break;
         case PARAM_AMOUNT:
-            Double amount = paramChecker.checkAndReturnDouble(paramType);
+            Double amount = super.paramChecker.checkAndReturnDouble(paramType);
             this.setAmount(amount);
             break;
         case PARAM_INC:
@@ -97,14 +97,12 @@ public class Entry extends DateTimeItem {
             this.setDescription(packet.getParam(paramType));
             break;
         case PARAM_CATEGORY:
-            String category = paramChecker.checkAndReturnCategory(paramType);
+            String category = super.paramChecker.checkAndReturnCategory(paramType);
             this.setCategory(category);
             break;
         default:
-            if (!super.requiredParams.contains(paramType)) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    paramChecker.getUnrecognizedParamMessage(paramType));
-            }
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                super.paramChecker.getUnrecognizedParamMessage(paramType));
             break;
         }
     }

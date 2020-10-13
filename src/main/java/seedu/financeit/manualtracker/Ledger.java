@@ -15,7 +15,6 @@ import java.time.LocalDate;
 public class Ledger extends DateTimeItem {
     protected LocalDate date = null;
     public EntryList entryList = new EntryList(this);
-    private ParamChecker paramChecker;
 
     public Ledger() {
         super();
@@ -44,22 +43,19 @@ public class Ledger extends DateTimeItem {
 
     @Override
     public String toString() {
-        return super.getDateFormatted();
+        return String.format("%s", this.getDate());
     }
 
     @Override
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case ParamChecker.PARAM_DATE:
-            date = paramChecker.checkAndReturnDate(paramType);
-            this.setDate(date);
+            this.date = super.paramChecker.checkAndReturnDate(paramType);
+            this.setDate(this.date);
             break;
-
         default:
-            if (!super.requiredParams.contains(paramType)) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    paramChecker.getUnrecognizedParamMessage(paramType));
-            }
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                paramChecker.getUnrecognizedParamMessage(paramType));
             break;
         }
     }
