@@ -72,7 +72,7 @@ public class Ui {
      * @param modList list of modules.
      * @param week specified week number.
      */
-    public void printTable(ArrayList<Module> modList, int week) {
+    public void printTable(ModuleList modList, int week) {
         ModView view = new ModView();
         view.printAllModuleInformation(modList,week);
     }

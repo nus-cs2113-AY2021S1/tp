@@ -49,7 +49,7 @@ public class Parser {
             modList.minusTime(input, toPrint, storage);
             break;
         case COMMAND_LIST:
-            ui.printTable(modList.getData(), Integer.parseInt(command[1]));
+            ui.printTable(modList, Integer.parseInt(command[1]));
             break;
         case COMMAND_HELP:
             ui.printHelpList();
