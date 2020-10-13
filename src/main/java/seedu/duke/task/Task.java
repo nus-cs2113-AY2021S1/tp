@@ -77,13 +77,14 @@ public class Task implements Jsonable {
     }
 
     @Override
-    public void toJson(Writer writable) throws IOException {
+    public void toJson(Writer writer) throws IOException {
         final JsonObject jTask = new JsonObject();
         jTask.put("id", id);
         jTask.put("title", title);
         jTask.put("description", description);
         jTask.put("priority", priority);
         jTask.put("isDone", isDone);
+        jTask.toJson(writer);
     }
 
 
