@@ -17,6 +17,7 @@ public class ProjectBacklog {
 
     public void addTask(Task task) {
         backlogTasks.add(task);
+        task.setId(backlogTasks.size() - 1);
         size++;
     }
 
@@ -29,7 +30,13 @@ public class ProjectBacklog {
     }
 
     public Task removeTask(int i) {
-        return backlogTasks.remove(i);
+        Task removedObj = backlogTasks.remove(i);
+        //update the rest of the ID since array has shifted
+        for (int j = i; j < backlogTasks.size(); j++) {
+            Task task = backlogTasks.get(j);
+            task.setId(j);
+        }
+        return removedObj;
     }
 
     public void viewTask(String id, Ui ui) {

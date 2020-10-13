@@ -2,16 +2,28 @@ package seedu.duke.task;
 
 public class Task {
 
+public class Task implements Jsonable {
+
+    protected int id;
     protected String title;
     protected String description;
     protected Priority priority;
     protected boolean isDone;
 
     public Task(String title, String description, String level) {
+        this(-1, title, description, level, false);
+    }
+
+    public Task(int id, String title, String description, String level, boolean isDone) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.priority = Priority.valueOf(level);
         this.isDone = false;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setAsDone() {
@@ -20,6 +32,10 @@ public class Task {
 
     public void setPriority(String input) {
         priority = Priority.valueOf(input);
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getDescription() {
