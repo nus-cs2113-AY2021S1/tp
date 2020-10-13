@@ -94,6 +94,12 @@ public class Ui {
                 + "____________________________________________________________");
     }
 
+    public static void printError(Exception err) {
+        System.out.println("____________________________________________________________\n"
+                + err.getMessage() + "\n"
+                + "____________________________________________________________");
+    }
+
     public static void printNoSubjectError() {
         System.out.println("____________________________________________________________\n"
                 + " ☹ OOPS!!! I'm sorry, but I can't find that subject :-(\n"

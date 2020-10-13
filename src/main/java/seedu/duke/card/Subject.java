@@ -2,6 +2,7 @@ package seedu.duke.card;
 
 import seedu.duke.card.quiz.Result;
 import seedu.duke.card.quiz.ResultList;
+import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
 import java.util.ArrayList;
@@ -27,11 +28,11 @@ public class Subject {
         results = new ResultList(new ArrayList<>());
     }
 
-    public Subject(String title, TopicList topics) {
+    public Subject(String title, List<Topic> topics, List<Task> tasks) {
         this.title = title;
-        this.topics = topics;
-        tasks = new TaskList(new ArrayList<>());
-        results = new ResultList(new ArrayList<>());
+        this.topics = new TopicList(topics);
+        this.tasks = new TaskList(tasks);
+        this.results = new ResultList(new ArrayList<>());
     }
 
     public Subject(String title, TopicList topics, TaskList tasks, ResultList results) {

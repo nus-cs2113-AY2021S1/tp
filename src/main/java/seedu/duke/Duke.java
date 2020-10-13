@@ -1,40 +1,45 @@
 package seedu.duke;
 
 import seedu.duke.card.Subject;
+import seedu.duke.card.SubjectList;
 import seedu.duke.card.quiz.ResultList;
 import seedu.duke.card.quiz.SubjectQuiz;
 import seedu.duke.command.subjectcommand.QuizSubjectCommand;
 import seedu.duke.command.subjectcommand.ReturnSubjectCommand;
 import seedu.duke.command.subjectcommand.SubjectCommand;
+import seedu.duke.exception.DataLoadingException;
+import seedu.duke.exception.FlashcardSyntaxException;
 import seedu.duke.exception.NoFlashCardException;
 import seedu.duke.exception.NoSubjectException;
 import seedu.duke.exception.NoTopicException;
-
-import seedu.duke.card.SubjectList;
 import seedu.duke.exception.RepeatedSubjectException;
 import seedu.duke.parser.SubjectParser;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
+import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class Duke {
-    public static String FILENAME = "data/duke.txt";
+    public static final String BASE_DIR = "data";
+    public static final String FLASHCARD_FILENAME = "flashcards.txt";
+    public static final String TASK_FILENAME = "tasks.txt";
 
+    private Storage storage;
     private SubjectList subjects;
-    private TaskList tasks;
     private ResultList results;
 
     /**
-     * Initialises Duke.
+     * Initialises Duke by loading saved data from the disk, if any.
      *
-     * @param filename of the <code>File</code> that stores the text data of the to-do list
+     * @param baseDir           the name of the directory to store the data into
+     * @param flashcardFilename the name of the file to store all the flashcard info
+     * @param taskFilename      the name of the file to store all the tasks under a subject
      */
-    public Duke(String filename) {
-        subjects = new SubjectList(new ArrayList<>());
-        tasks = new TaskList(new ArrayList<>());
+    public Duke(String baseDir, String flashcardFilename, String taskFilename)
+            throws FlashcardSyntaxException, DataLoadingException {
+        storage = new Storage(baseDir, flashcardFilename, taskFilename);
+        subjects = new SubjectList(storage.loadSubjects());
         results = new ResultList(new ArrayList<>());
     }
 
@@ -50,7 +55,7 @@ public class Duke {
                 SubjectCommand c = SubjectParser.parse(fullCommand);
                 if (c instanceof ReturnSubjectCommand) {
                     Subject subject = c.execute(subjects);
-                    ((ReturnSubjectCommand) c).goToSubject(subject, tasks);
+                    ((ReturnSubjectCommand) c).goToSubject(subject);
                 } else if (c instanceof QuizSubjectCommand) {
                     Subject subject = c.execute(subjects);
                     SubjectQuiz subjectQuiz = new SubjectQuiz(subject);
@@ -73,10 +78,21 @@ public class Duke {
                 Ui.printNoTopics();
             }
         }
+
+        try {
+            storage.saveSubjects(subjects.getList());
+        } catch (IOException e) {
+            Ui.printWritingError();
+        }
+
         Ui.printBye();
     }
 
     public static void main(String[] args) {
-        new Duke(FILENAME).run();
+        try {
+            new Duke(BASE_DIR, FLASHCARD_FILENAME, TASK_FILENAME).run();
+        } catch (FlashcardSyntaxException | DataLoadingException e) {
+            Ui.printError(e);
+        }
     }
 }
