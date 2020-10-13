@@ -16,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 class StorageTest {
     private static final String INVALID_USER_PROFILE_FILE = "a/b/c/invalid_userprofile.txt";
     private static final String INVALID_WATCHLIST_FILE = "a/b/c/invalid_watchlist.txt";
-    private static final String TEST_DIRECTORY = ".." + File.separator + ".." + File.separator +
-                                                 "src" + File.separator + "test" + File.separator +
-                                                 "data" + File.separator + "StorageTest" + File.separator;
+    private static final String TEST_DIRECTORY = ".." + File.separator + ".." + File.separator
+                                                 + "src" + File.separator + "test" + File.separator
+                                                 + "data" + File.separator + "StorageTest" + File.separator;
     private static final String TEST_USER_PROFILE_FILE = TEST_DIRECTORY + "userprofile.txt";
     private static final String TEST_WATCHLIST_FILE = TEST_DIRECTORY + "watchlist.txt";
 
