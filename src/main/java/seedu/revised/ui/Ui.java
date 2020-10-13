@@ -79,7 +79,7 @@ public class Ui {
         System.out.println("____________________________________________________________\n"
                 + " Noted. I've removed this subject:\n   "
                 + subject + "\n"
-                + " Now you have " + total + (total == 1 ? " task in the list.\n" : " tasks in the list.\n")
+                + " Now you have " + total + (total == 1 ? " subject in the list.\n" : " subjects in the list.\n")
                 + "____________________________________________________________");
     }
 
@@ -171,7 +171,7 @@ public class Ui {
         assert (subjectPresent == 1 || subjectPresent == 0);
         if (subjectPresent == 0) {
             System.out.println("____________________________________________________________\n"
-                    + " Sorry! I could not find any subjects with " + find + " in the list.");
+                    + " Sorry! I could not find any subject with " + find + " in the list.");
         }
         System.out.println("____________________________________________________________");
     }
