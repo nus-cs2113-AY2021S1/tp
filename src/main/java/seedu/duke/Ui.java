@@ -1,5 +1,15 @@
 package seedu.duke;
 
+import seedu.duke.command.ChangeModeCommand;
+import seedu.duke.command.ExitCommand;
+import seedu.duke.command.bookmark.AddBookmarkCommand;
+import seedu.duke.command.bookmark.DeleteBookmarkCommand;
+import seedu.duke.command.bookmark.FindBookmarkCommand;
+import seedu.duke.command.bookmark.LaunchBookmarkCommand;
+import seedu.duke.command.bookmark.ShowBookmarkCommand;
+import seedu.duke.command.timetable.AddSlotCommand;
+import seedu.duke.command.timetable.DeleteSlotCommand;
+import seedu.duke.command.timetable.ShowTimetableCommand;
 import seedu.duke.exception.DukeException;
 
 import java.util.Scanner;
@@ -165,20 +175,20 @@ public class Ui {
                     + "2) exit\n");
         } else if (Parser.programMode == 1) {
             print("Unknown input\n" + "Available inputs in Bookmark mode are\n"
-                    + "1) add\n"
-                    + "2) delete\n"
-                    + "3) show\n"
-                    + "4) find\n"
-                    + "5) launch\n"
-                    + "6) mode timetable\n"
-                    + "7) exit\n");
+                    + "1) " + AddBookmarkCommand.ADD_KW + "\n"
+                    + "2) " + DeleteBookmarkCommand.DEL_KW + "\n"
+                    + "3) " + ShowBookmarkCommand.LIST_KW + "\n"
+                    + "4) " + FindBookmarkCommand.FIND_KW + "\n"
+                    + "5) " + LaunchBookmarkCommand.LAUNCH_KW + "\n"
+                    + "6) " + ChangeModeCommand.MODE_KW + " timetable\n"
+                    + "7) " + ExitCommand.BYE_KW + "\n");
         } else if (Parser.programMode == 2) {
             print("Unknown input\n" + "Available inputs in Timetable mode are\n"
-                    + "1) slotadd\n"
-                    + "2) slotdelete\n"
-                    + "3) show\n"
-                    + "4) mode bookmark\n"
-                    + "5) exit\n");
+                    + "1) " + AddSlotCommand.ADD_KW + "\n"
+                    + "2) " + DeleteSlotCommand.DEL_KW + "\n"
+                    + "3) " + ShowTimetableCommand.SHOW_KW + "\n"
+                    + "4) " + ChangeModeCommand.MODE_KW + " bookmark\n"
+                    + "5) " + ExitCommand.BYE_KW + "\n");
         }
     }
 
