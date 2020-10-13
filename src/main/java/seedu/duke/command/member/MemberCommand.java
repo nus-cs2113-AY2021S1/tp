@@ -1,6 +1,6 @@
 package seedu.duke.command.member;
 
-import seedu.duke.model.Member;
+import seedu.duke.sprint.Member;
 import seedu.duke.project.Project;
 import seedu.duke.ui.Ui;
 
@@ -12,11 +12,11 @@ public class MemberCommand {
         try {
             Project proj = projectList.get(0);
             for (String s : userId) {
-                if (proj.members.containMember(new Member(s))) {
+                if (proj.getProjectMember().containMember(new Member(s))) {
                     Ui.showToUserLn(s + " is already associated to the project.");
                 } else {
                     m = new Member(s);
-                    proj.members.addMember(m);
+                    proj.getProjectMember().addMember(m);
                     Ui.showToUserLn(s + " has been added to the project.");
                 }
             }
@@ -30,8 +30,8 @@ public class MemberCommand {
         try {
             proj = projectList.get(0);
             for (String s : userId) {
-                if (proj.members.containMember(new Member(s))) {
-                    proj.members.removeMember(new Member(s));
+                if (proj.getProjectMember().containMember(new Member(s))) {
+                    proj.getProjectMember().removeMember(new Member(s));
                     Ui.showToUserLn(s + " has been removed from the project.");
                 } else {
                     Ui.showToUserLn(s + " is not associated with the project.");

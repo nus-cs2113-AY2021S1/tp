@@ -1,4 +1,4 @@
-package seedu.duke.model;
+package seedu.duke.sprint;
 
 import seedu.duke.parser.DateTimeParser;
 

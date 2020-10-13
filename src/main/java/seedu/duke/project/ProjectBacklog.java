@@ -1,6 +1,7 @@
 package seedu.duke.project;
 
 import seedu.duke.task.Task;
+import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 
@@ -31,6 +32,20 @@ public class ProjectBacklog {
         return backlogTasks.remove(i);
     }
 
+    public void viewTask(String id, Ui ui) {
+        Task task;
+        try {
+            int backlogId = Integer.parseInt(id) - 1;
+            if (backlogId < size) {
+                task = backlogTasks.get(backlogId);
+                ui.showToUser(task.toString());
+            } else {
+                ui.showToUser("The following task id doesn't exist in backlog.\n Please enter a valid id.");
+            }
+        } catch (NumberFormatException e) {
+            ui.showToUser("Task id is not an integer.");
+        }
+    }
     //    public void viewTask(String id, Ui ui) {
     //        Task task = null;
     //        try {
