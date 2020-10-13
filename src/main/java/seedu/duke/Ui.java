@@ -259,7 +259,8 @@ public class Ui {
             System.out.println("Error: Please key in the deadline in this format: deadline ... /by ddMMyy");
             break;
         case "activity":
-            System.out.println("Error: Please key in the activity in this format: activity ... /at ddMMyy");
+            System.out.println("Error: Please follow this format: activity <activity description> "
+                    + "@<venue> /ddMMyy HHmm");
             break;
         case "lecture":
             System.out.println("Error: Please key in the lecture in this format: lecture <module code> @<venue> /"

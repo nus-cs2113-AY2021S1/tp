@@ -1,1 +1,6 @@
 LAB|false|cs1010|2020-10-10|10:00|lt11
+EXAM|false|cs1010|2020-10-10|12:30|nus
+LEC|false|cs1010|2020-10-10|12:30|nus
+TUT|false|cs1010|2020-10-10|12:30|nus
+ACT|false|CCA|2020-10-10|12:30|nus
+ACT|false|cca|2020-10-10|12:30|nus
