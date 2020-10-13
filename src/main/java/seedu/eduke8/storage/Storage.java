@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public interface Storage {
-    void save(ArrayList<Displayable> displayables) throws IOException;
+    void save() throws IOException;
 
     ArrayList<Displayable> load() throws IOException, ParseException;
 

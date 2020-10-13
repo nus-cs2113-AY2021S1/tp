@@ -19,9 +19,7 @@ import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toList;
 
-public class TopicsStorage implements Storage {
-    private String filePath = new File("").getAbsolutePath();
-
+public class TopicsStorage extends LocalStorage {
     public TopicsStorage(String filePath) {
         // Use relative path for Unix systems
         String[] filePathSplit = filePath.split("/");
@@ -31,7 +29,7 @@ public class TopicsStorage implements Storage {
     }
 
     @Override
-    public void save(ArrayList<Displayable> displayables) throws IOException {
+    public void save() throws IOException {
         createFileIfNotExists();
 
         // For adding and removing questions for v2
@@ -99,13 +97,5 @@ public class TopicsStorage implements Storage {
         }
 
         return optionAsObject;
-    }
-
-    private void createFileIfNotExists() throws  IOException {
-        File f = new File(filePath);
-        if (!f.exists()) {
-            f.getParentFile().mkdirs();
-            f.createNewFile();
-        }
     }
 }
