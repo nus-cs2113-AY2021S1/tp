@@ -7,21 +7,21 @@
   /_/    \_\_| |_|_|\_____|_| |_|\__,_|_| |_|
 
 -------------------------------------------------------------
- User profile file is not found.
- Watchlist file is not found.
+ User file is not found, let's start afresh.
+ Watchlist file is not found, let's start a afresh.
 -------------------------------------------------------------
  What's your name?
- Hello Abec! What might your date of birth be? (DD/MM/YYYY)
- What might your gender be? (Male/Female/Other)
- Successfully added new user:
-Name: Abec
-Birthdate: 01/02/1996
-Gender: Female
+ #>  Hello Abec! What might your date of birth be? (DD/MM/YYYY)
+ #>  What might your gender be? (Male/Female/Other)
+ #>   Successfully added new user:
+ Abec
+ 01/02/1996
+ Female
 
- Abec-chan(Default) #> Watchlist created successfully!
+ Abec-chan (Default) #>  Watchlist created successfully!
 
- Abec-chan(Default) #> Watchlist created successfully!
+ Abec-chan (Default) #>  Watchlist created successfully!
 
- Abec-chan(Default) #> Anime added to watchlist
+ Abec-chan (Default) #>  Anime added to watchlist
 
- Abec-chan(Default) #> Sayonara!
+ Abec-chan (Default) #> Sayonara!
