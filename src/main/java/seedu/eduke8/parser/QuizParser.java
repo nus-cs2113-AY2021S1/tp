@@ -3,6 +3,7 @@ package seedu.eduke8.parser;
 import seedu.eduke8.command.AnswerCommand;
 import seedu.eduke8.command.Command;
 import seedu.eduke8.command.HintCommand;
+import seedu.eduke8.command.IncorrectCommand;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.option.Option;
@@ -24,16 +25,16 @@ public class QuizParser implements Parser {
             return new HintCommand(question.getHint());
         case "back":
             // To be implemented in v2
-            return null;
+            return new IncorrectCommand("Not implemented yet");
         default:
             try {
                 ArrayList<Displayable> options = optionList.getInnerList();
-                int chosenIndex = Integer.parseInt(userInput);
+                int chosenIndex = Integer.parseInt(userInput) - 1;
                 Option chosenOption = (Option) options.get(chosenIndex);
 
                 return new AnswerCommand(chosenOption, question);
             } catch (NumberFormatException e) {
-                return null;
+                return new IncorrectCommand("Please choose the answer by index");
             }
         }
     }

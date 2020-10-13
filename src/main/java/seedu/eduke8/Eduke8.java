@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Eduke8 {
-    private static final String DATA_PATH = "data/test/example.json"; // Real path will be data/main/topics.json
+    private static final String DATA_PATH = "data/main/topics.json";
     private static final LocalDateTime DATE_TIME_NOW = LocalDateTime.now();
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
     private static final String LOG_PATH = "data/logs/" + DATE_TIME_NOW.format(DATE_TIME_FORMATTER) + ".log";
