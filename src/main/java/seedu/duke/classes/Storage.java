@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -32,6 +31,8 @@ public class Storage implements SaveState {
             }
             fw.write("      Episodes: " + episodes + System.lineSeparator());
             fw.write("      Rating: " + entry.getValue().getRating() + System.lineSeparator());
+            fw.write("      Current Season: " + entry.getValue().getCurrentSeason() + System.lineSeparator());
+            fw.write("      Current Episode: " + entry.getValue().getCurrentEpisode() + System.lineSeparator());
             index++;
 
             //this is another save format
@@ -79,10 +80,17 @@ public class Storage implements SaveState {
             String[] splitRating = s.nextLine().split("Rating: ");
             int rating = Integer.parseInt(splitRating[1]);
 
-
             shows.setShow(name,new Show(name,season,episodes));
             //shows(name, new Show(name, season, episodes));
             shows.getShow(name).setRating(rating);
+
+            String[] splitCurrentSeason = s.nextLine().split("Current Season: ");
+            int currentSeason = Integer.parseInt(splitCurrentSeason[1]);
+            shows.getShow(name).setCurrentSeason(currentSeason);
+
+            String[] splitCurrentEpisode = s.nextLine().split("Current Episode: ");
+            int currentEpisode = Integer.parseInt(splitCurrentEpisode[1]);
+            shows.getShow(name).setEpisodeWatched(currentEpisode);
             //showList.get(name).setRating(rating);
 
 
