@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.Storage;
+import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
 
 /**
@@ -13,7 +14,7 @@ public class PrintEventsCommand extends Command {
     }
 
     /**
-     * Lists all event type of tasks (such as lecture, lab, tutorial and events)
+     * Lists all event (such as lecture, lab, tutorial, exam and activities)
      * in the calendar list to the user.
      *
      * @param calendarList the calendar list to list from.
@@ -21,6 +22,6 @@ public class PrintEventsCommand extends Command {
      */
     @Override
     public void execute(CalendarList calendarList, Storage storage) {
-        /* Ui.printEventsListView(calendarList); */
+        Ui.printEventsListView(calendarList);
     }
 }

@@ -1,13 +1,65 @@
-............. DUKE CHAT BOX ^^ ............
-Hello from
- ____        _
-|  _ \ _   _| | _____
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
-____________________________________________________________
- Hello! I'm Duke
- What can I do for you?
-...........................................
-...........................................
+Printing of 25/7 logo!!!!
+===========================================================================
+Welcome to 25/7 Task Manager!
+What can I do for you?
+Enter 'help' for the list of commands.
+===========================================================================
+............................. DUKE CHAT BOX ^^ ............................
+Got it. I've added this task:
+[T][X] homework
+Your total task(s): 1
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+Got it. I've added this task:
+[D][X] project (by: 10-Oct-2020)
+Your total task(s): 2
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+Got it. I've added this task:
+[A][/] CCA 10-Oct-2020 Sat 12:30PM (NUS)
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+Got it. I've added this task:
+[LEC][/] cs2113 08-Oct-2020 Thu 4:00PM (lt12)
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+Got it. I've added this task:
+[TUT][/] cs2113 08-Oct-2020 Thu 4:00PM (com1)
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+Got it. I've added this task:
+[LAB][/] cs1010 10-Oct-2020 Sat 10:00AM (com1-bi-12)
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+List of available commands:
+1. todo <task description>
+2. deadline <task description> /ddMMyy
+3. act <activity description> @<venue> /ddMMyy HHmm
+4. exam <module code> @<venue> /ddMMyy HHmm
+5. lect <module code> @<venue> /ddMMyy HHmm
+6. tut <module code> @<venue> /ddMMyy HHmm
+7. lab <module code> @<venue> /ddMMyy HHmm
+8. done <task number>
+9. -t <task number>
+10. -e <event number>
+11. find <keyword>
+12. print tasks
+13. print events
+14. print timeline
+15. print progress
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+This is your list of event(s):
+1.[A][/] CCA 10-Oct-2020 Sat 12:30PM (NUS)
+2.[LEC][/] cs2113 08-Oct-2020 Thu 4:00PM (lt12)
+3.[TUT][/] cs2113 08-Oct-2020 Thu 4:00PM (com1)
+4.[LAB][/] cs1010 10-Oct-2020 Sat 10:00AM (com1-bi-12)
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+This is your list of task(s):
+1.[T][X] homework
+2.[D][X] project (by: 10-Oct-2020)
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+Bye. Hope to see you again soon!
+...........................................................................

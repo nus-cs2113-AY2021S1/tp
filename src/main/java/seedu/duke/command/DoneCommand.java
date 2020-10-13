@@ -34,10 +34,10 @@ public class DoneCommand extends Command {
         if (taskNumberCompleted > calendarList.getTotalTasks() || taskNumberCompleted <= 0) {
             throw new DukeException("invalid task action");
         }
+        int calendarNumberCompleted = CalendarList.convertTaskNumberToCalendarNumber(taskNumberCompleted, calendarList);
 
-        calendarList.markTaskAsDone(taskNumberCompleted);
-
-        Ui.printCompleteTaskMessage(taskNumberCompleted, calendarList);
+        calendarList.markTaskAsDone(calendarNumberCompleted);
+        Ui.printCompleteTaskMessage(calendarNumberCompleted, calendarList);
 
         storage.writeToFile(calendarList);
     }
