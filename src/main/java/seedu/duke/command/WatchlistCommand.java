@@ -26,7 +26,7 @@ public class WatchlistCommand extends Command {
 
     @Override
     public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
-                          Bookmark bookmark, UserManagement userManagement) throws AniException {
+                          UserManagement userManagement) throws AniException {
         if (CREATE_OPTION.equals(option)) {
             createWatchlist(userManagement.getStorage(), activeWatchlistList);
             return "Watchlist created successfully!";

@@ -12,7 +12,7 @@ public class ExitCommand extends Command {
 
     @Override
     public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
-                          Bookmark bookmark, UserManagement userManagement) {
+                          UserManagement userManagement) {
         setShouldExit();
         return NULL_STRING;
     }

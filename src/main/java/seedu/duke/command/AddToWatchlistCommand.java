@@ -19,7 +19,7 @@ public class AddToWatchlistCommand extends Command {
      */
     @Override
     public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
-                          Bookmark bookmark, UserManagement userManagement) throws AniException {
+                          UserManagement userManagement) throws AniException {
         String[] descriptionSplit = description.split(" ", 2);
 
         try {

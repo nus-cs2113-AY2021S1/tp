@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.anime.Anime;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.bookmark.Bookmark;
+import seedu.duke.exception.AniException;
 import seedu.duke.human.UserManagement;
 import seedu.duke.watchlist.Watchlist;
 
@@ -16,15 +17,16 @@ public class BookmarkAnimeCommand extends Command {
 
     @Override
     public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
-                          Bookmark bookmark, UserManagement userManagement) {
+                          UserManagement userManagement) {
         String result = "";
+        Bookmark bookmark = userManagement.getActiveUser().bookmark;
         if (description.contains(" ")) {
             String[] descriptionSplit = description.split(" ", 2);
             // Code to be added
             String commandOption = descriptionSplit[0];
             String commandArgument = descriptionSplit[1];
             if (commandOption.equals("-a")) {
-                if (isInteger(commandArgument)) {
+                if (isInt(commandArgument)) {
                     int animeDataListIndex = Integer.parseInt(commandArgument);
                     Anime anime = animeData.getAnimeByID(animeDataListIndex);
                     result = "Saving " + anime.getAnimeID() + ". " + anime.getAnimeName() + " " + " to bookmark.";
@@ -67,25 +69,53 @@ public class BookmarkAnimeCommand extends Command {
         return result;
     }
 
-    public boolean isInteger(String str) {
-        int length = str.length();
-        if (length == 0) {
-            return false;
-        }
-        int i = 0;
-        if (str.charAt(0) == '-') {
-            if (length == 1) {
-                return false;
+    private void parameterParser(String[] paramGiven) throws AniException {
+        for (String param : paramGiven) {
+            String[] paramParts = param.split(" ");
+            switch (paramParts[0].trim()) {
+            case "": //skip the first empty param
+                break;
+            case "s":
+                paramLengthCheck(paramParts);
+
+                break;
+            case "f":
+                paramLengthCheck(paramParts);
+
+                break;
+            case "o":
+                paramLengthCheck(paramParts);
+                break;
+            case "p":
+                paramLengthCheck(paramParts);
+                break;
+            default:
+                String invalidParameter = "-" + param + " is an invalid parameter!";
+                throw new AniException(invalidParameter);
             }
-            i = 1;
         }
-        for (; i < length; i++) {
-            char c = str.charAt(i);
-            if (c < '0' || c > '9') {
-                return false;
-            }
+    }
+
+    private void paramLengthCheck(String[] paramParts) throws AniException {
+        // Parameter Additional Field Check
+        if (paramParts.length < 2) {
+            String invalidParameter = "Parameter : " + paramParts[0] + " requires an additional field";
+            throw new AniException(invalidParameter);
+        } else if (paramParts.length > 2) {
+            String invalidParameter = "Parameter : " + paramParts[0] + " has too much fields";
+            throw new AniException(invalidParameter);
         }
-        return true;
+    }
+
+
+    /**
+     * Checks if String is a parsable int.
+     *
+     * @param checkStr string to check
+     * @return true if parsable int
+     */
+    public boolean isInt(String checkStr) {
+        return checkStr.matches("-?\\d+(\\.\\d+)?");
     }
 
 }
