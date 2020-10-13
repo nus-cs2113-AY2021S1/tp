@@ -1,13 +1,13 @@
-package seedu.duke;
+package fitr.command;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class HelpCommandTest {
     @Test
     public void TestHelp() {
         Command help = new HelpCommand("help");
-        assertEquals(false, help.isExit());
+        assertFalse(help.isExit());
     }
 }

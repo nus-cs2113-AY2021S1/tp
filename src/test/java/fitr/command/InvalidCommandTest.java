@@ -1,13 +1,13 @@
-package seedu.duke;
+package fitr.command;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class InvalidCommandTest {
     @Test
     public void TestHelp() {
         Command invalid = new HelpCommand("haha");
-        assertEquals(false, invalid.isExit());
+        assertFalse(invalid.isExit());
     }
 }
