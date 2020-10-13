@@ -14,7 +14,7 @@ public class HelpCommand extends Command {
      */
     @Override
     public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
-                          Bookmark bookmark, UserManagement userManagement) {
+                          UserManagement userManagement) {
         // Code to be added
 
         // Print for testing
