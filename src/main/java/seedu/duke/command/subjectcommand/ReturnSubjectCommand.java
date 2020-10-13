@@ -53,7 +53,6 @@ public class ReturnSubjectCommand extends SubjectCommand {
                 if (c instanceof ReturnTopicCommand) {
                     Topic topic = ((ReturnTopicCommand) c).execute(subject);
                     ((ReturnTopicCommand) c).goToTopic(topic, subject);
-
                 } else if (c instanceof QuizTopicCommand) {
                     Topic topic = ((QuizTopicCommand) c).execute(subject);
                     TopicQuiz topicQuiz = new TopicQuiz(topic);
