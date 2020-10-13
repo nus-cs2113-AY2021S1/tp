@@ -16,7 +16,9 @@ public class HelpMessage extends Ui {
             + "add contact c/CONTACT  m/MOBILE  e/EMAIL  - adds a contact\n"
             + "check contact                             - prints the list of contact currently stored\n"
             + "add grade n/MODULE NAME  m/MC  g/GRADE    - adds a grade\n"
-            + "check grade                               - prints the current CAP based on grade stored\n";
+            + "check grade                               - prints the current CAP based on grade stored\n"
+            + "list grade                                - prints the list of grades currently stored\n";
+
 
     private static final String bookmarkCommands = "Here are the bookmark commands available:\n"
             + "bm NUMBER     - changes mode from bookmark main into a category \n"

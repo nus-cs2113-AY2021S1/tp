@@ -1,8 +1,12 @@
+
 import bookmark.BookmarkCategory;
 import bookmark.BookmarkUi;
 import bookmark.NusCategory;
 import bookmark.ZoomCategory;
 import java.util.ArrayList;
+import academic.Person;
+import java.util.Scanner;
+
 
 public class StudyIt {
     private ArrayList<BookmarkCategory> bookmarkCategories = new ArrayList<>();
