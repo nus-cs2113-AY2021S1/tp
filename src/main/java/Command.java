@@ -1,3 +1,8 @@
+import academic.GradeBook;
+import academic.PersonBook;
+import exceptions.InvalidCommandException;
+import exceptions.InvalidModeException;
+
 public class Command {
     public static void executeCommand(String command, CommandType commandType) {
         if (commandType == CommandType.EXIT_PROGRAM) {
@@ -11,44 +16,57 @@ public class Command {
         } else if (commandType == CommandType.HELP) {
             HelpMessage.printHelpMessage();
         } else if (StudyIt.getCurrentMode() != Mode.MENU) {
-            handleNonGeneralCommand();
+            handleNonGeneralCommand(command, commandType);
         } else {
             ErrorMessage.printUnidentifiableCommand();
         }
     }
 
-    public static void handleNonGeneralCommand() {
+    public static void handleNonGeneralCommand(String command, CommandType commandType) {
         Mode currentMode = StudyIt.getCurrentMode();
-        try {
-            if (currentMode == Mode.BOOKMARK) {
-                executeBookmarkModeCommand();
-            } else if (currentMode == Mode.TIMETABLE) {
-                executeTimetableModeCommand();
-            } else if (currentMode == Mode.ACADEMIC) {
-                executeAcademicModeCommand();
-            } else if (currentMode == Mode.FLASHCARD) {
-                executeFlashcardCommand();
-            }
-        } catch (InvalidCommandException e) {
-            // TODO: This part can be changed depending on what exception you guys will have later
-            ErrorMessage.printUnidentifiableCommand();
+        if (currentMode == Mode.BOOKMARK) {
+            executeBookmarkModeCommand();
+        } else if (currentMode == Mode.TIMETABLE) {
+            executeTimetableModeCommand();
+        } else if (currentMode == Mode.ACADEMIC) {
+            executeAcademicModeCommand(command);
+        } else if (currentMode == Mode.FLASHCARD) {
+            executeFlashcardCommand();
         }
     }
 
-    public static void executeBookmarkModeCommand() throws InvalidCommandException {
+    public static void executeBookmarkModeCommand() {
         Bookmark bookmark= new Bookmark();
         bookmark.runBookmark();
     }
 
-    public static void executeTimetableModeCommand() throws InvalidCommandException {
+    public static void executeTimetableModeCommand() {
 
     }
 
-    public static void executeAcademicModeCommand() throws InvalidCommandException {
+    public static void executeAcademicModeCommand(String command) {
+        try {
+            AcademicCommandType commandType = AcademicCommandParser.getAcademicCommandType(command);
 
+            if (commandType == AcademicCommandType.ADD_CONTACT) {
+                Ui.printLine("Adding Contact"); //TODO: Remove placeholder line.
+                PersonBook.addPerson(AcademicCommandParser.getContact(command));
+            } else if (commandType == AcademicCommandType.CHECK_CONTACT) {
+                Ui.printLine("Checking Contact"); //TODO: Remove placeholder line.
+                Ui.printLine(PersonBook.printPersonBook());
+            } else if (commandType == AcademicCommandType.ADD_GRADE) {
+                Ui.printLine("Adding Grade"); //TODO: Remove placeholder line.
+                GradeBook.addGrade(AcademicCommandParser.getGrade(command));
+            } else if (commandType == AcademicCommandType.CHECK_GRADE) {
+                Ui.printLine("Checking Grade"); //TODO: Remove placeholder line.
+                Ui.printLine(GradeBook.printCap());
+            }
+        } catch (InvalidCommandException e) {
+            ErrorMessage.printUnidentifiableCommand();
+        }
     }
 
-    public static void executeFlashcardCommand() throws InvalidCommandException {
+    public static void executeFlashcardCommand() {
 
     }
 }
