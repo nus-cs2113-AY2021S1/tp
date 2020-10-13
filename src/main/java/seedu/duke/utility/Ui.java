@@ -133,6 +133,11 @@ public class Ui {
 
     }
 
+    public static void printEditPrompt() {
+        System.out.println("What do you want to change , input done to stop editing");
+        System.out.println("{name,season,episode}");
+    }
+
     public static void printEditShow(String showName) {
         printLine();
         System.out.println("Updated show details.");
