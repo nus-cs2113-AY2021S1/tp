@@ -50,13 +50,13 @@ public class Task {
         }
         Priority priority;
         switch (priorityString) {
-        case "0":
+        case "1":
             priority = Priority.LOW;
             break;
-        case "1":
+        case "2":
             priority = Priority.MEDIUM;
             break;
-        case "2":
+        case "3":
             priority = Priority.HIGH;
             break;
         default:
