@@ -60,14 +60,11 @@ public class EntryList extends ItemList {
         switch (paramType) {
         case ParamChecker.PARAM_INDEX:
             int index = paramChecker.checkAndReturnIndex(paramType, this.items);
-            super.setCurrItem(super.getItemFromIndex(index));
+            super.indexToModify = index;
             break;
         default:
-            if (!super.requiredParams.contains(paramType)) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    paramChecker.getUnrecognizedParamMessage(paramType));
-            }
-            break;
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                paramChecker.getUnrecognizedParamMessage(paramType));
         }
     }
 }

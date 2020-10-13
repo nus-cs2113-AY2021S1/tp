@@ -126,11 +126,12 @@ public class EntryTracker {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry entry = new Entry();
         entryList.setRequiredParams(
-            "/id");
+            "/id"
+        );
         try {
-            entryList.setCurrItemFromPacket(packet);
-            entry = (Entry) entryList.getCurrItem();
-            entryList.removeItem(entry);
+            entryList.handleParams(packet);
+            entry = (Entry) entryList.getItemAtIndex();
+            entryList.removeItemAtIndex();
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s deleted!", entry.getName()));
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
@@ -173,7 +174,8 @@ public class EntryTracker {
             "/desc",
             "/cat",
             "/amt",
-            "-i or -e");
+            "-i or -e"
+        );
 
         try {
             entry.handlePacket(packet);
@@ -197,10 +199,11 @@ public class EntryTracker {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry entry;
         entryList.setRequiredParams(
-            "/id");
+            "/id"
+        );
         try {
-            entryList.setCurrItemFromPacket(packet);
-            entry = (Entry) entryList.getCurrItem();
+            entryList.handleParams(packet);
+            entry = (Entry) entryList.getItemAtIndex();
             entry.handleParams(packet);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s edited!", entry.getName()));
