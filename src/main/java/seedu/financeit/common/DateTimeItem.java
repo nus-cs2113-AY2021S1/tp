@@ -1,6 +1,6 @@
 package seedu.financeit.common;
 
-import seedu.financeit.parser.DateTimeManager;
+import seedu.financeit.parser.DateTimeOutputManager;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -8,7 +8,7 @@ import java.time.LocalTime;
 public abstract class DateTimeItem extends Item {
     protected LocalDate date;
     protected LocalTime time;
-    protected DateTimeManager dateTimeManager = new DateTimeManager();
+    protected DateTimeOutputManager dateTimeOutputManager = new DateTimeOutputManager();
     protected String defaultDateTimeFormat;
 
     public DateTimeItem() {
@@ -16,8 +16,8 @@ public abstract class DateTimeItem extends Item {
 
     public void setDate(LocalDate date) {
         this.date = date;
-        this.dateTimeManager = new DateTimeManager();
-        this.dateTimeManager.setDate(date);
+        this.dateTimeOutputManager = new DateTimeOutputManager();
+        this.dateTimeOutputManager.setDate(date);
     }
 
     public LocalDate getDate() {
@@ -26,8 +26,8 @@ public abstract class DateTimeItem extends Item {
 
     public void setTime(LocalTime time) {
         this.time = time;
-        this.dateTimeManager = new DateTimeManager();
-        this.dateTimeManager.setTime(time);
+        this.dateTimeOutputManager = new DateTimeOutputManager();
+        this.dateTimeOutputManager.setTime(time);
     }
 
     public LocalTime getTime() {
@@ -39,10 +39,10 @@ public abstract class DateTimeItem extends Item {
     }
 
     public String getDateFormatted() {
-        return this.dateTimeManager.getSingleDateFormatted(this.defaultDateTimeFormat);
+        return this.dateTimeOutputManager.getSingleDateFormatted(this.defaultDateTimeFormat);
     }
 
     public String getTimeFormatted() {
-        return this.dateTimeManager.getSingleTimeFormatted(this.defaultDateTimeFormat);
+        return this.dateTimeOutputManager.getSingleTimeFormatted(this.defaultDateTimeFormat);
     }
 }

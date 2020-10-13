@@ -9,12 +9,13 @@ import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
-public class SimpleInterest extends ParamHandler {
+public class Cashback extends ParamHandler {
 
     private double amount = -1;
-    private double interestRate = -1;
+    private double cashbackRate = -1;
+    private double monthlyCap = -1;
 
-    public SimpleInterest() {
+    public Cashback() {
         super();
     }
 
@@ -27,7 +28,7 @@ public class SimpleInterest extends ParamHandler {
         }
     }
 
-    public SimpleInterest(CommandPacket packet) throws InsufficientParamsException {
+    public Cashback(CommandPacket packet) throws InsufficientParamsException {
         this();
         try {
             handleParams(packet);
@@ -40,23 +41,29 @@ public class SimpleInterest extends ParamHandler {
         this.amount = amount;
     }
 
-    public void setInterestRate(Double interestRate) {
-        this.interestRate = interestRate;
+    public void setCashbackRate(Double cashbackRate) {
+        this.cashbackRate = cashbackRate;
     }
 
-    public double calculateSimpleInterest() {
-        return this.amount * (this.interestRate / 100);
+    public double calculateCashback() {
+        Double cashbackEarned = this.amount * (this.cashbackRate / 100);
+        if (cashbackEarned > this.monthlyCap) {
+            cashbackEarned = this.monthlyCap;
+        }
+        return cashbackEarned;
     }
 
     @Override
-    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
-            ItemNotFoundException {
+    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case "/amount":
             this.amount = paramChecker.checkAndReturnDouble(paramType);
             break;
-        case "/ir":
-            this.interestRate = paramChecker.checkAndReturnDouble(paramType);
+        case "/cashback":
+            this.cashbackRate = paramChecker.checkAndReturnDouble(paramType);
+            break;
+        case "/cap":
+            this.monthlyCap = paramChecker.checkAndReturnDouble(paramType);
             break;
         default:
             if (!super.requiredParams.contains(paramType)) {

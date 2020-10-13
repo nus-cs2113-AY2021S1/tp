@@ -5,32 +5,28 @@ import seedu.financeit.common.Constants;
 import seedu.financeit.common.ItemList;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
+import seedu.financeit.manualtracker.Ledger;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class EntryList extends ItemList {
-    public EntryList() {
-        defaultDateTimeFormat = "time";
-        super.requiredParams = new ArrayList<>() {
-            {
-                add("/time");
-                add("/cat");
-                add("/amt");
-                add("-i");
-                add("-e");
-                add("/id");
-                add("/desc");
-            }
-        };
+    Ledger ledger;
+
+    public EntryList(Ledger ledger) {
+        this.setLedger(ledger);
+    }
+
+    public void addEntry(Entry entry) {
+        entry.setLedger(this.ledger);
+        this.addItem(entry);
     }
 
     @Override
-    public void printList(String... ledgerDate) {
-        TablePrinter.setTitle(String.format("List of Entries for Ledger [%s]", ledgerDate[0]));
+    public void printList() {
+        TablePrinter.setTitle(String.format("List of Entries for Ledger [%s]", this.ledger));
         TablePrinter.addRow("Entry Number;Entry Type;Category;Amount;Time;Description                    ");
         if (super.getItemsSize() == 0) {
             TablePrinter.addRow("No entries created               ");
@@ -42,9 +38,8 @@ public class EntryList extends ItemList {
         TablePrinter.printList();
     }
 
-    @Override
-    public boolean isValidItem() {
-        return (this.itemQueue.size() == 1);
+    public void setLedger(Ledger ledger) {
+        this.ledger = ledger;
     }
 
     public Entry getItemFromTime(LocalTime time) throws ItemNotFoundException {
@@ -64,8 +59,7 @@ public class EntryList extends ItemList {
         switch (paramType) {
         case ParamChecker.PARAM_INDEX:
             int index = paramChecker.checkAndReturnIndex(paramType, this.items);
-            this.itemQueue.add(super.getItemFromIndex(index));
-            this.parseSuccessParams.add(paramType);
+            super.setCurrItem(super.getItemFromIndex(index));
             break;
         default:
             if (!super.requiredParams.contains(paramType)) {

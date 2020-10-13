@@ -7,6 +7,10 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Class parses date and time inputs to output corresponding LocalDate and LocalTime.
+ */
+
 public class DateTimeParser {
     public static LocalDate parseLocalDate(String input) throws InvalidParameterException,
         NullPointerException, DateTimeException {
