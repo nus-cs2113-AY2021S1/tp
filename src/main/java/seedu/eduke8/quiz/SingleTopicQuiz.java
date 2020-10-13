@@ -29,13 +29,14 @@ public class SingleTopicQuiz implements Quiz {
 
     @Override
     public void startQuiz(Ui ui) throws Eduke8Exception {
-        ui.printStartQuizPage(numberOfQuestions, topic.getDescription());
         QuestionList topicQuestionList = topic.getQuestionList();
 
         QuizQuestionsManager quizQuestionsManager =
                 new QuizQuestionsManager(numberOfQuestions, topicQuestionList.getInnerList());
 
         assert !quizQuestionsManager.areAllQuestionsAnswered();
+
+        ui.printStartQuizPage(numberOfQuestions, topic.getDescription());
 
         goThroughQuizQuestions(ui, quizQuestionsManager);
 
@@ -55,14 +56,28 @@ public class SingleTopicQuiz implements Quiz {
                 ui.printOption((Option) options.get(i), i + 1);
             }
 
-            String userInput = ui.getInputFromUser();
-
             quizParser.setQuestion(question);
-            Command command = quizParser.parseCommand(optionList, userInput);
+            Command command;
+
+            command = getCommand(ui, optionList);
 
             assert (command instanceof AnswerCommand || command instanceof HintCommand);
 
+            while (command instanceof HintCommand) {
+                command.execute(optionList, ui);
+                command = getCommand(ui, optionList);
+            }
+
+            assert command instanceof AnswerCommand;
+
             command.execute(optionList, ui);
         }
+    }
+
+    private Command getCommand(Ui ui, OptionList optionList) {
+        Command command;
+        String userInput = ui.getInputFromUser();
+        command = quizParser.parseCommand(optionList, userInput);
+        return command;
     }
 }

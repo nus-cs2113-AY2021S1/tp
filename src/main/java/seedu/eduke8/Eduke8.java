@@ -11,7 +11,7 @@ import seedu.eduke8.ui.Ui;
 import java.io.IOException;
 
 public class Eduke8 {
-    private static final String FILE_PATH = "data/test/example.json"; // Real path will be data/main/topics.json
+    private static final String FILE_PATH = "data/main/topics.json"; // Real path will be data/main/topics.json
 
     private MenuParser menuParser;
     private TopicsStorage topicsStorage;

@@ -16,7 +16,7 @@ public class QuizQuestionsManager {
     private static Logger logger = Logger.getLogger("Main");
 
 
-    private ArrayList<Question> quizQuestions = new ArrayList<>();
+    private ArrayList<Question> quizQuestions;
     private int currentQuestionNumber;
 
     private static final Random RANDOM = new Random();
@@ -24,6 +24,7 @@ public class QuizQuestionsManager {
     public QuizQuestionsManager(int numberOfQuestionsForQuiz,
                                 ArrayList<Displayable> questionsInTopic) throws Eduke8Exception {
         currentQuestionNumber = 0;
+        quizQuestions = new ArrayList<>();
         setQuizQuestions(numberOfQuestionsForQuiz, questionsInTopic);
     }
 
