@@ -1,10 +1,15 @@
 package seedu.eduke8.parser;
 
 import seedu.eduke8.command.Command;
+import seedu.eduke8.command.AboutCommand;
+import seedu.eduke8.command.ExitCommand;
+import seedu.eduke8.command.HelpCommand;
+import seedu.eduke8.command.IncorrectCommand;
+import seedu.eduke8.command.TextbookCommand;
+import seedu.eduke8.command.TopicsCommand;
+import seedu.eduke8.command.QuizCommand;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.exception.Eduke8Exception;
-import seedu.eduke8.quiz.SingleTopicQuiz;
-import seedu.eduke8.topic.Topic;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
@@ -15,47 +20,33 @@ public class MenuParser implements Parser {
 
     @Override
     public Command parseCommand(DisplayableList topicList, String userInput) throws Eduke8Exception {
-        int numOfQuestions = 0;
-        String topicName = "";
         String[] commandArr = userInput.trim().split(" ", 0);
-        if (commandArr.length == 3 && commandArr[0].equals("quiz")) {
-            numOfQuestions = Integer.parseInt(commandArr[2].substring(2));
-            topicName = commandArr[1].substring(2);
-        }
 
-        // Move all these executions with Ui to Command classes and pass Ui to the execute method
         Ui ui = new Ui();
         switch (commandArr[0]) {
         case "about":
-            ui.printAbout();
-            break;
+            return new AboutCommand();
         case "help":
-            ui.printHelp();
-            break;
+            return new HelpCommand();
         case "topics":
-            ((TopicList) topicList).showTopics();
-            break;
+            return new TopicsCommand();
         case "textbook":
-            ui.printTextbook();
-            break;
+            return new TextbookCommand();
         case "quiz":
-            parseQuizCommand((TopicList) topicList, numOfQuestions, topicName, ui);
-            break;
+            int numOfQuestions = 0;
+            String topicName = "";
+            if (commandArr.length == 3) {
+                numOfQuestions = Integer.parseInt(commandArr[2].substring(2));
+                topicName = commandArr[1].substring(2);
+            } else if (commandArr.length < 3) {
+                return new IncorrectCommand("empty");
+            }
+            return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui);
         case "exit":
-            System.exit(0);
-            break;
+            return new ExitCommand();
         default:
             break;
         }
-
-        return null; // Return command object instead
-    }
-
-    // Should move this to its own Command class
-    private void parseQuizCommand(TopicList topicList, int numOfQuestions,
-                                  String topicName, Ui ui) throws Eduke8Exception {
-        Topic topic = (Topic) topicList.find(topicName);
-        SingleTopicQuiz singleTopicQuiz = new SingleTopicQuiz(topic, numOfQuestions);
-        singleTopicQuiz.startQuiz(ui);
+        return new IncorrectCommand("unrecognised");
     }
 }
