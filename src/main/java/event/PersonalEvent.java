@@ -1,4 +1,4 @@
-package NUSchedule.event;
+package event;
 
 
 import java.time.LocalDate;

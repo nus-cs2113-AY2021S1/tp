@@ -1,19 +1,17 @@
-package NUSchedule;
-
-import NUSchedule.command.Command;
-import NUSchedule.eventList.EventList;
-import NUSchedule.exception.CreatingFileException;
-import NUSchedule.exception.NUScheduleException;
-import NUSchedule.parser.Parser;
-import NUSchedule.storage.Storage;
-import NUSchedule.ui.UI;
+import command.Command;
+import eventList.EventList;
+import exception.CreatingFileException;
+import exception.NUScheduleException;
+import parser.Parser;
+import storage.Storage;
+import ui.UI;
 
 public class NUSchedule {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
     private Storage storage;
-    private EventList Events;
+    private EventList events;
     private UI ui;
 
     public NUSchedule(String filePath) {
@@ -42,7 +40,7 @@ public class NUSchedule {
                 String fullCommand = ui.readCommand();
                 ui.printLine(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand);
-                c.execute(Events, ui, storage);
+                c.execute(events, ui, storage);
                 isExit = c.isExit();
             } catch (NUScheduleException e) {
                 ui.showError(e.getMessage());

@@ -1,7 +1,7 @@
-package NUSchedule.eventList;
+package eventList;
 
 
-import NUSchedule.event.Event;
+import event.Event;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class EventList {
      * When loading from the file, create the list as provided in the file.
      *
      * @param events provided by <code>Storage::load()</code>
-     * @see NUSchedule.storage.Storage
+     * @see storage.Storage
      */
     public EventList(ArrayList<Event> events) {
         this.events = events;

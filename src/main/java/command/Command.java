@@ -1,9 +1,9 @@
-package NUSchedule.command;
+package command;
 
-import NUSchedule.storage.Storage;
-import NUSchedule.eventList.EventList;
-import NUSchedule.ui.UI;
-import NUSchedule.exception.NUScheduleException;
+import storage.Storage;
+import eventList.EventList;
+import ui.UI;
+import exception.NUScheduleException;
 
 /**
  * Represents the command to be executed.
@@ -17,7 +17,8 @@ public abstract class Command {
      * @param Events   the list of Events.
      * @param ui      do outputs.
      * @param storage store the data.
-     * @throws NUScheduleException the exceptions can happen in this program, to be handled based on the specific exception.
+     * @throws NUScheduleException the exceptions can happen in this program,
+     * to be handled based on the specific exception.
      */
     public abstract void execute(EventList Events, UI ui, Storage storage) throws NUScheduleException;
 
