@@ -21,9 +21,25 @@ AniChan is an all-rounded tool to effectively create and organize anime lists wi
 
 
 ## 3. Features 
+Some notes about the command format:
 
-{Give detailed description of each feature}
+- Words in UPPERCASE are values that can be supplied by the user.
+E.g. in `browse -s SORT_CATEGORY -p PAGE_NUMBER` where SORT_CATEGORY and PAGE_NUMBER are 
+parameters that can be used as `browse -s name -o asc`.
+
+- Square brackets indicate optional parameters.
+E.g. `browse [-s SORT_CATEGORY]` can be used simply as `browse` or `browse -s name`.
+  
+- The order of parameters are not important.
+E.g. Both `-n USERNAME -dob DATE_FORMAT` and `-dob DATE_FORMAT -n USERNAME` are 
+both acceptable and will produce the same output.  
+
+
 ### 3.1 View the help: `help`
+This command will provide the details of all available commands and their usage. 
+This is done by displaying the ‘Command Summary’ as listed below to the user. 
+
+Format: `help`
 
 ### 3.2 Adding a User: `adduser`
 Adds a new user.
@@ -107,8 +123,12 @@ The expected outcome:
 Sayonara!
 ```
 ## 4. FAQ
+1. 
+
 
 ## 5. Command Summary
 
 |Feature|Command|
 |---    |---|
+|Help| `help`|
+|Browse | `browse -s [name/rating] -p <1-26> -o [asc/dsc]` |
