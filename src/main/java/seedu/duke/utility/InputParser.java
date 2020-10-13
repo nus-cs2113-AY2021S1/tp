@@ -33,7 +33,14 @@ public class InputParser {
 
         String command = StringOperations.getFirstWord(input).toLowerCase();
 
+        String[] splitInput = input.split(" ");
+        //TODO : Clean this portion
+        if (!splitInput[0].equals("bye") && !splitInput[0].equals("help") && splitInput.length < 2) {
+            Ui.printInvalidFormatException();
+            return command;
+        }
         switch (command) {
+
         case "bye":
             Ui.printByeMessage();
             this.isBye = true;
@@ -171,7 +178,15 @@ public class InputParser {
 
     private static void parseAddCommand(String input) {
         String[] tokenizedInput = input.split(" ");
-        new AddCommand(tokenizedInput);
+        try {
+            new AddCommand(tokenizedInput);
+        } catch (NullPointerException e) {
+            Ui.printInvalidEpisodesInputException();
+            return;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Ui.printInvalidFormatException();
+            return;
+        }
         Ui.printShowAdded(tokenizedInput[1]);
     }
 
@@ -185,6 +200,5 @@ public class InputParser {
             Ui.printNotFoundException();
         }
     }
-
 }
 
