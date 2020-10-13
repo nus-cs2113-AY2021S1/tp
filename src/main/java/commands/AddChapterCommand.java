@@ -13,7 +13,7 @@ public class AddChapterCommand extends Command {
     private final Chapter chapter;
 
     public AddChapterCommand(String chapterCode) {
-        this.chapter = new Chapter(chapterCode);
+        this.chapter = new Chapter(chapterCode, Chapter.rateChapter());
     }
 
     @Override

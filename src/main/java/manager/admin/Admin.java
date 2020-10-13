@@ -13,8 +13,8 @@ public class Admin {
     }
 
     //if there is storage
-    public Admin(ArrayList<Module> modules) {
-        this.modules = new ModuleList(modules);
+    public Admin(ModuleList modules) {
+        this.modules = modules;
     }
 
     public ModuleList getModules() {

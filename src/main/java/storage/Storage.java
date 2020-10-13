@@ -1,6 +1,7 @@
 package storage;
 
 import exception.InvalidFileFormatException;
+import manager.admin.ModuleList;
 import manager.card.Card;
 import manager.chapter.CardList;
 import manager.chapter.Chapter;
@@ -20,6 +21,7 @@ public class Storage {
     public static final String QUESTION_ANSWER_PREFIX = " \\| ";
     public static final String QUESTION_PREFIX = "[Q]";
     public static final String ANSWER_PREFIX = "[A]";
+    public static final String DEFAULT_FILE_PATH = "data/admin";
 
     protected String filePath;
 
@@ -87,19 +89,19 @@ public class Storage {
         }
     }
 
-    public ArrayList<Module> loadModule() throws FileNotFoundException {
+    public ModuleList loadModule() throws FileNotFoundException {
         File f = new File(filePath);
         boolean dirExists = f.exists();
         if (!dirExists) {
             throw new FileNotFoundException();
         }
 
-        ArrayList<Module> modules = new ArrayList<>();
+        ModuleList modules = new ModuleList();
         String[] contents = f.list();
         System.out.println("List of files and directories in the specified directory:");
         for (int i = 0; i < contents.length; i++) {
             System.out.println(contents[i]);
-            modules.add(new Module(contents[i]));
+            modules.addModule(new Module(contents[i]));
         }
         return modules;
     }
@@ -148,8 +150,8 @@ public class Storage {
             while (s.hasNext()) {
                 String fileCommand = s.nextLine();
                 String[] args = fileCommand.split(QUESTION_ANSWER_PREFIX, 2);
-                String question = Parser.parseQuestioninFile(args[0]);
-                String answer = Parser.parseAnswerinFile(args[1]);
+                String question = Parser.parseQuestionInFile(args[0]);
+                String answer = Parser.parseAnswerInFile(args[1]);
                 Card card = new Card(question, answer);
                 cards.addCard(card);
             }
