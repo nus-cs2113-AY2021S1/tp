@@ -4,9 +4,35 @@ import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.storage.Storage;
 import fitr.user.User;
+import fitr.ui.Ui;
+
+import static fitr.common.Messages.ERROR_INVALID_VIEW_COMMAND;
+import static fitr.common.Messages.EMPTY_FOOD_LIST;
+import static fitr.common.Messages.EMPTY_EXERCISE_LIST;
+import static fitr.common.Messages.FOOD_LIST_HEADER;
+import static fitr.common.Messages.EXERCISE_LIST_HEADER;
+import static fitr.common.Messages.CALORIE_CONSUMED_HEADER;
+import static fitr.common.Messages.CALORIE_BURNT_HEADER;
+import static fitr.common.Messages.NET_CALORIE_HEADER;
+import static fitr.common.Messages.BMI_HEADER;
+import static fitr.common.Messages.USER_PROFILE_HEADER;
+import static fitr.common.Messages.OPEN_SQUARE_BRACKET;
+import static fitr.common.Messages.CLOSE_SQUARE_BRACKET;
+import static fitr.common.Messages.FOOD_HEADER;
+import static fitr.common.Messages.SPACE_FORMATTING;
+import static fitr.common.Messages.CAL_HEADER;
+import static fitr.common.Messages.EXERCISE_HEADER;
+import static fitr.common.Messages.BURNT_CAL_HEADER;
+
+import static fitr.common.Commands.COMMAND_VIEW_FOOD;
+import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
+import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
+import static fitr.common.Commands.COMMAND_VIEW_BMI;
+import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
 
 public class ViewCommand extends Command {
     private User user;
+    private static Ui ui = new Ui();
 
     public ViewCommand(String command) {
         this.command = command;
@@ -15,32 +41,33 @@ public class ViewCommand extends Command {
     @Override
     public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage) {
         user = new User();
-        if (command.equalsIgnoreCase("view food")) {
+        if (command.equalsIgnoreCase(COMMAND_VIEW_FOOD)) {
             viewFood(foodList);
-        } else if (command.equalsIgnoreCase("view exercise")) {
+        } else if (command.equalsIgnoreCase(COMMAND_VIEW_EXERCISE)) {
             viewExercise(exerciseList);
-        } else if (command.equalsIgnoreCase("view summary")) {
+        } else if (command.equalsIgnoreCase(COMMAND_VIEW_SUMMARY)) {
             viewSummary(foodList, exerciseList);
-        } else if (command.equalsIgnoreCase("view bmi")) {
+        } else if (command.equalsIgnoreCase(COMMAND_VIEW_BMI)) {
             viewBmi(user);
-        } else if (command.equalsIgnoreCase("view profile")) {
+        } else if (command.equalsIgnoreCase(COMMAND_VIEW_PROFILE)) {
             viewProfile(user);
         } else {
-            System.out.println("Invalid view command!");
+            ui.printCustomError(ERROR_INVALID_VIEW_COMMAND);
         }
     }
 
     //View food
     public void viewFood(FoodList foodList) {
         if (foodList.getSize() == 0) {
-            System.out.println("The food list is empty...");
+            ui.printCustomMessage(EMPTY_FOOD_LIST);
         } else {
             int index = 0;
             int printIndex = index + 1;
-            System.out.println("Here is the list of your food:");
+            ui.printCustomMessage(FOOD_LIST_HEADER);
             while (index < foodList.getSize()) {
-                System.out.println("[" + printIndex + "] " + "Food: " + foodList.getFood(index).getFoodName()
-                        + "\n    Cal: " + foodList.getFood(index).getCalories());
+                ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
+                        + FOOD_HEADER + foodList.getFood(index).getFoodName()
+                        + SPACE_FORMATTING + CAL_HEADER + foodList.getFood(index).getCalories());
                 index++;
                 printIndex++;
             }
@@ -50,15 +77,16 @@ public class ViewCommand extends Command {
     //View exercise
     public void viewExercise(ExerciseList exerciseList) {
         if (exerciseList.getSize() == 0) {
-            System.out.println("The exercise list is empty...");
+            ui.printCustomMessage(EMPTY_EXERCISE_LIST);
         } else {
             int index = 0;
             int printIndex = index + 1;
-            System.out.println("Here is the list of your exercises:");
+            ui.printCustomMessage(EXERCISE_LIST_HEADER);
             while (index < exerciseList.getSize()) {
-                System.out.println("[" + printIndex + "] " + "Exercise: "
-                        + exerciseList.getExercise(index).getNameOfExercise()
-                        + "\n    Burnt Cal: " + exerciseList.getExercise(index).getCalories());
+                ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
+                        + EXERCISE_HEADER + exerciseList.getExercise(index).getNameOfExercise()
+                        + SPACE_FORMATTING + BURNT_CAL_HEADER
+                        + exerciseList.getExercise(index).getCalories());
                 index++;
                 printIndex++;
             }
@@ -67,22 +95,22 @@ public class ViewCommand extends Command {
 
     //View summary of total amount of calories consumed and burnt.
     public void viewSummary(FoodList foodList, ExerciseList exerciseList) {
-        System.out.println("Total calorie consumed:");
-        System.out.println(user.calculateCalorieConsumed(foodList).get());
-        System.out.println("Total calorie burnt:");
-        System.out.println(user.calculateCalorieBurnt(exerciseList).get());
-        System.out.println("Net calorie:");
-        System.out.println(user.calculateCalorie(foodList, exerciseList).get());
+        ui.printCustomMessage(CALORIE_CONSUMED_HEADER);
+        ui.printCustomMessage(String.valueOf(user.calculateCalorieConsumed(foodList).get()));
+        ui.printCustomMessage(CALORIE_BURNT_HEADER);
+        ui.printCustomMessage(String.valueOf(user.calculateCalorieBurnt(exerciseList).get()));
+        ui.printCustomMessage(NET_CALORIE_HEADER);
+        ui.printCustomMessage(String.valueOf(user.calculateCalorie(foodList, exerciseList).get()));
     }
 
     public void viewBmi(User user) {
-        System.out.println("Your BMI is:");
-        System.out.println(user.getBmi());
+        ui.printCustomMessage(BMI_HEADER);
+        ui.printCustomMessage(String.valueOf(user.getBmi()));
     }
 
     public void viewProfile(User user) {
-        System.out.println("User profile:");
-        System.out.println(user);
+        ui.printCustomMessage(USER_PROFILE_HEADER);
+        ui.printCustomMessage(user.toString());
     }
 
     @Override

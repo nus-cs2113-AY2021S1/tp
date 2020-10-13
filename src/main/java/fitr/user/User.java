@@ -3,8 +3,31 @@ package fitr.user;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.Calorie;
+import fitr.ui.Ui;
 
 import java.util.Scanner;
+
+import static fitr.common.Messages.USER_SETUP_GREET;
+import static fitr.common.Messages.INPUT_NAME;
+import static fitr.common.Messages.INPUT_AGE;
+import static fitr.common.Messages.INPUT_HEIGHT;
+import static fitr.common.Messages.INPUT_WEIGHT;
+import static fitr.common.Messages.INPUT_GENDER;
+import static fitr.common.Messages.SETUP_COMPLETE;
+import static fitr.common.Messages.ERROR_INVALID_AGE_INPUT;
+import static fitr.common.Messages.ERROR_INVALID_GENDER_INPUT;
+import static fitr.common.Messages.ERROR_INVALID_HEIGHT_INPUT;
+import static fitr.common.Messages.ERROR_INVALID_WEIGHT_INPUT;
+import static fitr.common.Messages.NAME_OUTPUT_HEADER;
+import static fitr.common.Messages.AGE_OUTPUT_HEADER;
+import static fitr.common.Messages.GENDER_OUTPUT_HEADER;
+import static fitr.common.Messages.HEIGHT_OUTPUT_HEADER;
+import static fitr.common.Messages.WEIGHT_OUTPUT_HEADER;
+import static fitr.common.Messages.LINE_BREAK;
+import static fitr.common.Messages.MALE_SYMBOL;
+import static fitr.common.Messages.FEMALE_SYMBOL;
+import static fitr.common.Messages.MALE_STRING;
+import static fitr.common.Messages.FEMALE_STRING;
 
 /**
  * User class keeps track of user's personal information.
@@ -16,24 +39,25 @@ public class User {
     public static Double weight;
     public static String gender;
     public Scanner in = new Scanner(System.in);
+    private static Ui ui = new Ui();
     private static boolean isConfig = false;
 
     /**
      * Setup configures user profile for first time use.
      */
     public void setup() {
-        System.out.println("Hi there, before we begin, let me get to know you :)");
-        System.out.println("Please enter your name:");
+        ui.printCustomMessage(USER_SETUP_GREET);
+        ui.printCustomMessage(INPUT_NAME);
         setName();
-        System.out.println("Please enter your age:");
+        ui.printCustomMessage(INPUT_AGE);
         setupAge();
-        System.out.println("Please enter your height (in m):");
+        ui.printCustomMessage(INPUT_HEIGHT);
         setupHeight();
-        System.out.println("Please enter your weight (in kg):");
+        ui.printCustomMessage(INPUT_WEIGHT);
         setupWeight();
-        System.out.println("Please enter your gender (Enter 'm' for Male or 'f' for Female):");
+        ui.printCustomMessage(INPUT_GENDER);
         setupGender();
-        System.out.println("Setup complete!");
+        ui.printCustomMessage(SETUP_COMPLETE);
         isConfig = true;
     }
 
@@ -61,22 +85,36 @@ public class User {
         name = in.nextLine();
     }
 
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public void setupAge() {
         Integer ageInput = 0;
         while (ageInput <= 0) {
             try {
                 ageInput = Integer.parseInt(in.nextLine());
                 if (ageInput <= 0) {
-                    System.out.println("Oops that is an invalid age input.\n"
-                            + "Please enter your age:");
+                    ui.printCustomMessage(ERROR_INVALID_AGE_INPUT + INPUT_AGE);
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Oops that is an invalid age input.\n"
-                        + "Please enter your age:");
+                ui.printCustomMessage(ERROR_INVALID_AGE_INPUT + INPUT_AGE);
                 ageInput = 0;
             }
         }
-        age = ageInput;
+        setAge(ageInput);
     }
 
     public void setupHeight() {
@@ -86,16 +124,14 @@ public class User {
             try {
                 heightInput = Double.parseDouble(in.nextLine());
                 if (heightInput <= 0.00) {
-                    System.out.println("Oops that is an invalid height input.\n"
-                            + "Please enter your height (in m):");
+                    ui.printCustomMessage(ERROR_INVALID_HEIGHT_INPUT + INPUT_HEIGHT);
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Oops that is an invalid height input.\n"
-                        + "Please enter your height (in m):");
+                ui.printCustomMessage(ERROR_INVALID_HEIGHT_INPUT + INPUT_HEIGHT);
                 heightInput = 0.00;
             }
         }
-        height = heightInput;
+        setHeight(heightInput);
     }
 
     public void setupWeight() {
@@ -105,36 +141,34 @@ public class User {
             try {
                 weightInput = Double.parseDouble(in.nextLine());
                 if (weightInput <= 0.00) {
-                    System.out.println("Oops that is an invalid weight input\n"
-                            + "Please enter your weight (in kg):");
+                    ui.printCustomMessage(ERROR_INVALID_WEIGHT_INPUT + INPUT_WEIGHT);
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Oops that is an invalid weight input.\n"
-                        + "Please enter your weight (in kg):");
+                ui.printCustomMessage(ERROR_INVALID_WEIGHT_INPUT + INPUT_WEIGHT);
                 weightInput = 0.00;
             }
         }
-        weight = weightInput;
+        setWeight(weightInput);
     }
 
     public void setupGender() {
         String genderInput = in.nextLine();
         while (!genderInput.equalsIgnoreCase("m") && !genderInput.equalsIgnoreCase("f")) {
-            System.out.println("oops that is an invalid Gender input.\n"
-                    + "Please enter your gender (Enter 'm' for Male or 'f' for Female):");
+            ui.printCustomMessage(ERROR_INVALID_GENDER_INPUT + INPUT_GENDER);
             genderInput = in.nextLine();
         }
-        if (genderInput.equalsIgnoreCase("m")) {
-            gender = "Male";
-        } else if (genderInput.equalsIgnoreCase("f")) {
-            gender = "Female";
+        if (genderInput.equalsIgnoreCase(MALE_SYMBOL)) {
+            setGender(MALE_STRING);
+        } else if (genderInput.equalsIgnoreCase(FEMALE_SYMBOL)) {
+            setGender(FEMALE_STRING);
         }
     }
 
     @Override
     public String toString() {
-        return "Name:\n" + getName() + "\n" + "Age:\n" + getAge() + "\n" + "Gender:\n" + getGender()
-                + "\n" + "Height:\n" + getHeight() + "\n" + "Weight:\n" + getWeight() + "\n";
+        return NAME_OUTPUT_HEADER + getName() + LINE_BREAK + AGE_OUTPUT_HEADER + getAge() + LINE_BREAK
+                + GENDER_OUTPUT_HEADER + getGender() + LINE_BREAK + HEIGHT_OUTPUT_HEADER + getHeight()
+                + LINE_BREAK + WEIGHT_OUTPUT_HEADER + getWeight() + LINE_BREAK;
     }
 
     public Calorie calculateCalorieBurnt(ExerciseList exerciseList) {
