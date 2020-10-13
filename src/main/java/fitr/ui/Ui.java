@@ -10,7 +10,7 @@ import static fitr.common.Commands.COMMAND_VIEW_FOOD;
 import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
 import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
 import static fitr.common.Commands.COMMAND_DELETE;
-import static fitr.common.Commands.COMMAND_EXIT;
+import static fitr.common.Commands.COMMAND_BYE;
 import static fitr.common.Commands.COMMAND_VIEW;
 
 import static fitr.common.Messages.FORMAT_FOOD;
@@ -70,7 +70,7 @@ public class Ui {
         System.out.printf(SPACE, COMMAND_DELETE, "Deletes selected entry");
         printCustomMessage(FORMAT + FORMAT_DELETE);
 
-        System.out.printf(SPACE, COMMAND_EXIT, "Exits the program");
+        System.out.printf(SPACE, COMMAND_BYE, "Exits the program");
     }
 
     public static void printFormatError(String command) {

@@ -13,5 +13,5 @@ public class Commands {
     public static final String COMMAND_VIEW_BMI = "view bmi";
     public static final String COMMAND_VIEW_PROFILE = "view profile";
     public static final String COMMAND_DELETE = "delete";
-    public static final String COMMAND_EXIT = "exit";
+    public static final String COMMAND_BYE = "bye";
 }
