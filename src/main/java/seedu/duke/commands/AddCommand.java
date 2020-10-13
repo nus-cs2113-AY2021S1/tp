@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 
 import java.util.ArrayList;
+import java.util.regex.PatternSyntaxException;
 
 public class AddCommand extends Command {
     private String type;
@@ -43,9 +44,10 @@ public class AddCommand extends Command {
     public void execute(TextUi ui) {
         switch (type) {
         case TAG_BOOK:
+            addLogger.log(Level.INFO, "going to add book to booklist");
             BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
-            Book newBook = addBook(books);
-            ui.printAddBook(newBook);
+            addBook(books, ui);
+            addLogger.log(Level.INFO, "added book to booklist");
             break;
         case TAG_QUOTE:
             QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
@@ -71,13 +73,28 @@ public class AddCommand extends Command {
         }
     }
 
-    private Book addBook(BookList books) {
-        String[] titleAndAuthor = information.split(Command.FLAG_AUTHOR, 2);
-        Author author = new Author(titleAndAuthor[1].trim());
-        Book newBook = new Book(author, titleAndAuthor[0].trim());
-        books.add(newBook);
+    private void addBook(BookList books, TextUi ui) {
+        try {
+            String[] titleAndAuthor = information.split(Command.FLAG_AUTHOR, 2);
 
-        return newBook;
+            // if user did not provide author, let titleAndAuthor[1] be empty string
+            if (titleAndAuthor.length == 1) {
+                titleAndAuthor = new String[]{titleAndAuthor[0], ""};
+            }
+
+            if (titleAndAuthor[1].isEmpty()) {
+                throw new QuotesifyException(ERROR_NO_AUTHOR_NAME);
+            }
+
+            Author author = new Author(titleAndAuthor[1].trim());
+            Book newBook = new Book(author, titleAndAuthor[0].trim());
+            books.add(newBook);
+            ui.printAddBook(newBook);
+
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(ERROR_NO_AUTHOR_NAME);
+            addLogger.log(Level.INFO, "add book to booklist failed");
+        }
     }
 
     private void addQuote(QuoteList quotes, TextUi ui) {
