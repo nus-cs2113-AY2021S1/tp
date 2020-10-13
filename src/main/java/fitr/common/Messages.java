@@ -26,11 +26,11 @@ public class Messages {
     public static final String ERROR_INVALID_GENDER_INPUT = "Oops! That is an invalid gender input.\n";
     public static final String ERROR_INVALID_HEIGHT_INPUT = "Oops! That is an invalid height input.\n";
     public static final String ERROR_INVALID_WEIGHT_INPUT = "Oops! That is an invalid weight input.\n";
-    public static final String NAME_OUTPUT_HEADER = "Name:";
-    public static final String AGE_OUTPUT_HEADER = "Age:";
-    public static final String GENDER_OUTPUT_HEADER = "Gender:";
-    public static final String HEIGHT_OUTPUT_HEADER = "Height (in m):";
-    public static final String WEIGHT_OUTPUT_HEADER = "Weight (in kg):";
+    public static final String NAME_OUTPUT_HEADER = "Name: ";
+    public static final String AGE_OUTPUT_HEADER = "Age: ";
+    public static final String GENDER_OUTPUT_HEADER = "Gender: ";
+    public static final String HEIGHT_OUTPUT_HEADER = "Height (in m): ";
+    public static final String WEIGHT_OUTPUT_HEADER = "Weight (in kg): ";
     public static final String LINE_BREAK = "\n";
     public static final String MALE_SYMBOL = "M";
     public static final String FEMALE_SYMBOL = "F";
@@ -51,7 +51,7 @@ public class Messages {
     public static final String CALORIE_CONSUMED_HEADER = "Total calorie consumed:";
     public static final String CALORIE_BURNT_HEADER = "Total calorie burnt:";
     public static final String NET_CALORIE_HEADER = "Net calorie:";
-    public static final String BMI_HEADER = "Your BMI is:";
+    public static final String BMI_HEADER = "Your BMI is: ";
     public static final String USER_PROFILE_HEADER = "User profile:";
     public static final String OPEN_SQUARE_BRACKET = "[";
     public static final String CLOSE_SQUARE_BRACKET = "] ";
