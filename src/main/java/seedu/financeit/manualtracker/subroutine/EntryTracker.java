@@ -168,6 +168,7 @@ public class EntryTracker {
         try {
             entry = new Entry(packet);
             entryList.addItem(entry);
+            totalGoal.setTotalGoal();
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s created!", entry.getName()));
         } catch (DuplicateInputException exception) {
