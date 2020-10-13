@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.command.repeatExceptions.WrongNumberOfArgumentsException;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
@@ -49,7 +50,7 @@ public class RepeatCommand extends Command {
      * @param input String containing user inputs
      * @return RepeatCommand set to either add additional dates or set to list out current dates in event
      */
-    public static Command parse(String input) {
+    public static Command parse(String input) throws WrongNumberOfArgumentsException, NumberFormatException {
         String[] words = input.split(" ");
         switch (words.length) {
         case 2:
@@ -65,8 +66,10 @@ public class RepeatCommand extends Command {
             input = String.join(" ", words);
             return new RepeatCommand(input, COMMANDTYPE_ADD);
         default:
-            System.out.println("Invalid repeat command");
-            return null; //to change to throw exception or print help for repeat
+            String errorMessage = "Wrong number of arguments provided";
+            WrongNumberOfArgumentsException e = new WrongNumberOfArgumentsException(errorMessage);
+            throw e;
+
         }
     }
 
@@ -86,12 +89,12 @@ public class RepeatCommand extends Command {
      *
      * @param number String containing the String form of an integer
      */
-    private static void isValidNumber(String number) {
+    private static void isValidNumber(String number) throws NumberFormatException{
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            //to throw exception
             System.out.println("Not a number");
+            throw e;
         }
     }
 
