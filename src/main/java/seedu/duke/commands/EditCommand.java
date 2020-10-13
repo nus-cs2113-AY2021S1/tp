@@ -16,7 +16,30 @@ public class EditCommand {
 
     }
 
-    public static void processCommand() {
+    public static void editSeasons(String editCommand) {
+        int numSeasons = Integer.parseInt(editCommand.substring(7));
+        int initialNumSeasons = show.getNumSeasons();
+        show.setNumSeasons(numSeasons);
+        int[] episodes;
+        if (numSeasons > initialNumSeasons) {
+            episodes = new int[numSeasons];
+            for (int i = 0; i < initialNumSeasons; i++) {
+                episodes[i] = show.getRawEpisodesForSeason(i);
+            }
+            for (int i = initialNumSeasons; i < numSeasons; i++) {
+                episodes[i] = 1;
+            }
+        } else {
+            episodes = new int[numSeasons];
+            //Started for 1 to reference the correct season number
+            for (int i = 0; i < numSeasons; i++) {
+                episodes[i] = show.getRawEpisodesForSeason(i);
+            }
+        }
+        show.setNumEpisodesForSeasons(episodes);
+    }
+
+    public static void processCommand() throws NullPointerException {
         Scanner in = new Scanner(System.in);
         System.out.println("What do you want to change , input done to stop editing");
         System.out.println("{name,season,episode}");
@@ -29,12 +52,20 @@ public class EditCommand {
                 int i = 0;
                 int[] intNumOfEpisodes = new int[show.getNumSeasons()];
                 for (String s : numOfEpisodes) {
-                    intNumOfEpisodes[i] = Integer.parseInt(s);
+                    try {
+                        intNumOfEpisodes[i] = Integer.parseInt(s);
+                    } catch (Exception e) {
+                        throw new NullPointerException();
+                    }
                     i++;
+                }
+                //I put this below for now in case we need to add checks to ensure numOfEpisodes is not empty
+                if (i == 0 || numOfEpisodes.length != show.getNumSeasons()) {
+                    throw new NullPointerException();
                 }
                 show.setNumEpisodesForSeasons(intNumOfEpisodes);
             } else if (editCommand.startsWith("season")) {
-                show.setNumSeasons(Integer.parseInt(editCommand.substring(7)));
+                editSeasons(editCommand);
             } else if (editCommand.equals("done")) {
                 break;
             }

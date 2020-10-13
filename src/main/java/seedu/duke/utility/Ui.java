@@ -180,6 +180,10 @@ public class Ui {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_IO_EXCEPTION);
     }
 
+    public static void printInvalidEpisodesInputException() {
+        System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_EPISODES_INPUT_EXCEPTION);
+    }
+
     public static void printNoDescriptionException() {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_NO_DESCRIPTION);
     }
