@@ -12,7 +12,6 @@ public class Food {
     private final int protein;
     private final int fats;
 
-
     public Food(String name, int calorie, int carbohydrate, int protein, int fats) {
         this.name = name;
         this.calorie = calorie;
