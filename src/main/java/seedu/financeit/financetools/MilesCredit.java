@@ -20,7 +20,7 @@ public class MilesCredit extends ParamHandler {
         super.requiredParams = new ArrayList<>() {
             {
                 add("/amount");
-                add("/rate");
+                add("/miles");
             }
         };
     }
