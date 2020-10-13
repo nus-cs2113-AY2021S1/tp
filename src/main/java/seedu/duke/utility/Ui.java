@@ -52,7 +52,6 @@ public class Ui {
 
     public static void printHelp() {
         printLine();
-        // TODO load from txt file if possible instead of writing out one whole chunk in the future
         String helpIcon =
                 " __    __   _______  __      .______   \n"
                         + "|  |  |  | |   ____||  |     |   _  \\  \n"
