@@ -1,6 +1,6 @@
 # Duke
 
-{Give product intro here}
+{Paper trading command line app}
 
 Useful links:
 * [User Guide](UserGuide.md)

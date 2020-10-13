@@ -36,7 +36,7 @@ public class StockPriceFetcher {
 
             return stockData.get(0);
         } catch (AlphaVantageException e) {
-            throw new DukeException("Failed to retrieve price! Please try again later.");
+            throw new DukeException("Failed to retrieve price! Please try again.");
         }
     }
 
