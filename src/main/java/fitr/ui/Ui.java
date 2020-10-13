@@ -10,6 +10,8 @@ import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
 import static fitr.common.Commands.COMMAND_DELETE;
 import static fitr.common.Commands.COMMAND_EXIT;
 import static fitr.common.Commands.COMMAND_VIEW;
+import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
+import static fitr.common.Commands.COMMAND_VIEW_BMI;
 
 import static fitr.common.Messages.FORMAT_FOOD;
 import static fitr.common.Messages.FORMAT_EXERCISE;
@@ -61,6 +63,8 @@ public class Ui {
 
         System.out.printf(SPACE, COMMAND_VIEW_FOOD, "View food entries");
         System.out.printf(SPACE, COMMAND_VIEW_EXERCISE, "View exercise entries");
+        System.out.printf(SPACE, COMMAND_VIEW_BMI, "View your BMI");
+        System.out.printf(SPACE, COMMAND_VIEW_PROFILE, "View your profile information");
         System.out.printf(SPACE, COMMAND_VIEW_SUMMARY, "View calorie summary");
 
         System.out.printf(SPACE, COMMAND_DELETE, "Deletes selected entry");

@@ -26,6 +26,17 @@ public class Messages {
     public static final String ERROR_INVALID_GENDER_INPUT = "Oops! That is an invalid gender input.\n";
     public static final String ERROR_INVALID_HEIGHT_INPUT = "Oops! That is an invalid height input.\n";
     public static final String ERROR_INVALID_WEIGHT_INPUT = "Oops! That is an invalid weight input.\n";
+    public static final String NAME_OUTPUT_HEADER = "Name:\n";
+    public static final String AGE_OUTPUT_HEADER = "Age:\n";
+    public static final String GENDER_OUTPUT_HEADER = "Gender:\n";
+    public static final String HEIGHT_OUTPUT_HEADER = "Height (in m):\n";
+    public static final String WEIGHT_OUTPUT_HEADER = "Weight (in kg):\n";
+    public static final String LINE_BREAK = "\n";
+    public static final String MALE_SYMBOL = "M";
+    public static final String FEMALE_SYMBOL = "F";
+    public static final String MALE_STRING = "Male";
+    public static final String FEMALE_STRING = "Female";
+
 
     public static final String ERROR_INVALID_COMMAND = "Sorry this is an invalid command!\n";
     public static final String ERROR_INVALID_INDEX = "Please input a valid index!\n";
@@ -33,14 +44,20 @@ public class Messages {
 
     //ViewCommand class messages
     public static final String ERROR_INVALID_VIEW_COMMAND = "Sorry this is an invalid view command!\n";
-    public static final String EMPTY_FOOD_LIST = "The food list is empty...\n";
-    public static final String EMPTY_EXERCISE_LIST = "The exercise list is empty...\n";
-    public static final String FOOD_LIST_HEADER = "Here is the list of your food:\n";
-    public static final String EXERCISE_LIST_HEADER = "Here is the list of your exercises:\n";
-    public static final String CALORIE_CONSUMED_HEADER = "Total calorie consumed:\n";
-    public static final String CALORIE_BURNT_HEADER = "Total calorie burnt:\n";
-    public static final String NET_CALORIE_HEADER = "Net calorie:\n";
-    public static final String BMI_HEADER = "Your BMI is:\n";
-    public static final String USER_PROFILE_HEADER = "User profile:\n";
-
+    public static final String EMPTY_FOOD_LIST = "The food list is empty...";
+    public static final String EMPTY_EXERCISE_LIST = "The exercise list is empty...";
+    public static final String FOOD_LIST_HEADER = "Here is the list of your food:";
+    public static final String EXERCISE_LIST_HEADER = "Here is the list of your exercises:";
+    public static final String CALORIE_CONSUMED_HEADER = "Total calorie consumed:";
+    public static final String CALORIE_BURNT_HEADER = "Total calorie burnt:";
+    public static final String NET_CALORIE_HEADER = "Net calorie:";
+    public static final String BMI_HEADER = "Your BMI is:";
+    public static final String USER_PROFILE_HEADER = "User profile:";
+    public static final String OPEN_SQUARE_BRACKET = "[";
+    public static final String CLOSE_SQUARE_BRACKET = "] ";
+    public static final String FOOD_HEADER = "Food: ";
+    public static final String EXERCISE_HEADER = "Exercise: ";
+    public static final String SPACE_FORMATTING = "\n    ";
+    public static final String CAL_HEADER = "Cal: ";
+    public static final String BURNT_CAL_HEADER = "Burnt Cal: ";
 }
