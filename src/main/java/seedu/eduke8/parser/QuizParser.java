@@ -10,11 +10,17 @@ import seedu.eduke8.option.Option;
 import seedu.eduke8.question.Question;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class QuizParser implements Parser {
+    private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
     private Question question;
 
     public void setQuestion(Question question) {
+        assert question != null;
+
         this.question = question;
     }
 
@@ -34,6 +40,7 @@ public class QuizParser implements Parser {
 
                 return new AnswerCommand(chosenOption, question);
             } catch (NumberFormatException e) {
+                LOGGER.log(Level.WARNING, "A non-number was given when answering question.");
                 return new IncorrectCommand("Please choose the answer by index");
             }
         }
