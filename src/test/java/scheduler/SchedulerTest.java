@@ -47,16 +47,6 @@ class SchedulerTest {
     }
 
     @Test
-    void computeDeckDeadline_newIntervalOverLimit_intervalUnchanged() {
-        assertEquals(LocalDate.now().plusDays(333), Scheduler.computeDeckDeadline(20, 1, 333));
-    }
-
-    @Test
-    void computeDeckDeadline_newIntervalWithinLimit_increasedInterval() {
-        assertEquals(LocalDate.now().plusDays(20), Scheduler.computeDeckDeadline(20, 1, 1));
-    }
-
-    @Test
     void isDeadlineDue_deadlineIsDue_true() {
         assertTrue(Scheduler.isDeadlineDue(Scheduler.getCurrentDate().minusDays(1)));
     }
