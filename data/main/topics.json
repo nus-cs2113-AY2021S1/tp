@@ -96,5 +96,120 @@
         ]
       }
     ]
+  },
+  {
+    "topic": "Revision Control",
+    "questions": [
+      {
+        "description": "Which of these is not considered a benefit of a typical RCS?",
+        "hint": "Typical RCS may not use any graphics",
+        "options": [
+          {
+            "description": "Help a single user manage revisions of a single file",
+            "correct": false
+          },
+          {
+            "description": "Depicts information about tasks and their details in terms of subtasks",
+            "correct": true
+          },
+          {
+            "description": "Makes it easier for a group of developers to collaborate on a project",
+            "correct": false
+          },
+          {
+            "description": "Detect when multiple developers make incompatible changes to the same file",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Merge conflicts can occur when:",
+        "hint": "Conflicts can normally occur when different developer change the same line of code",
+        "options": [
+          {
+            "description": "team members don't like each other",
+            "correct": false
+          },
+          {
+            "description": "changes happen at different locations in the codebase",
+            "correct": false
+          },
+          {
+            "description": "git cannot create a fast forward merge",
+            "correct": false
+          },
+          {
+            "description": "a developer deletes a file while others were modifying it",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "Git:",
+        "hint": "Git can be quite flexible in its use",
+        "options": [
+          {
+            "description": "supports distributed revision control",
+            "correct": true
+          },
+          {
+            "description": "is centralized revision control",
+            "correct": false
+          },
+          {
+            "description": "is distributed revision control",
+            "correct": false
+          },
+          {
+            "description": "requires a remote repo on GitHub",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Your local repository can communicate with ___ remote repositories:",
+        "hint": "Recall adding remote repositories through git",
+        "options": [
+          {
+            "description": "zero",
+            "correct": false
+          },
+          {
+            "description": "only one",
+            "correct": false
+          },
+          {
+            "description": "only two",
+            "correct": false
+          },
+          {
+            "description": "any number of",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "What is branching?",
+        "hint": "Think about the use of branching for your team project",
+        "options": [
+          {
+            "description": "Restoring the state of the working directory at a point in the past",
+            "correct": false
+          },
+          {
+            "description": "Saving a snapshot of the current state of the tracked files in the revision control history",
+            "correct": false
+          },
+          {
+            "description": "The process of evolving multiple versions of the software in parallel",
+            "correct": true
+          },
+          {
+            "description": "Making a remote copy of a remote repo",
+            "correct": false
+          }
+        ]
+      }
+    ]
   }
 ]
