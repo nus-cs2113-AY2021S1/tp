@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
-    private static FinanceLog fl;
     private Scanner sc;
     private Parser parser;
     private static ArrayList<Command> commandList = new ArrayList<>();
