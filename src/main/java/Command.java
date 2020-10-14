@@ -1,9 +1,7 @@
-import flashcard.Flashcard;
 import flashcard.FlashcardRun;
 import academic.GradeBook;
 import academic.PersonBook;
 import exceptions.InvalidCommandException;
-import exceptions.InvalidModeException;
 import timetable.TimeTableRun;
 import bookmark.BookmarkCategory;
 import bookmark.commands.BookmarkCommand;
@@ -12,6 +10,8 @@ import java.util.ArrayList;
 import bookmark.BookmarkUi;
 import exceptions.InvalidGradeException;
 import exceptions.InvalidMcException;
+import timetable.TimeTableRun;
+
 
 public class Command {
 
@@ -30,8 +30,8 @@ public class Command {
         } else if (commandType == CommandType.HELP) {
             HelpMessage.printHelpMessage();
         } else if (StudyIt.getCurrentMode() != Mode.MENU) {
-            handleNonGeneralCommand(command,commandType,bookmarkCategories,bookmarkUi,bookmarkParser,flashcardRun,
-                                    timeTableRun);
+            handleNonGeneralCommand(command,commandType,bookmarkCategories,bookmarkUi,bookmarkParser,
+                    flashcardRun, timeTableRun);
         } else {
             ErrorMessage.printUnidentifiableCommand();
         }
