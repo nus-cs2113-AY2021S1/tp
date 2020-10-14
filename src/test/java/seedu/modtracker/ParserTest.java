@@ -19,7 +19,7 @@ public class ParserTest {
 
         String input = "exit addmod ";
         parser.parse(input, modList, null, null, true);
-        String expected = Ui.INVALID_COMMAND + System.lineSeparator();
+        String expected = Ui.INVALID_COMMAND + System.lineSeparator() + Ui.ENTER_HELP + System.lineSeparator();
 
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
@@ -31,7 +31,7 @@ public class ParserTest {
 
         String input = "";
         parser.parse(input, modList, null, null, true);
-        String expected = Ui.INVALID_COMMAND + System.lineSeparator();
+        String expected = Ui.INVALID_COMMAND + System.lineSeparator() + Ui.ENTER_HELP + System.lineSeparator();
 
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
