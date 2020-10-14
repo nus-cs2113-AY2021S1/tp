@@ -26,6 +26,7 @@ public class EventTest {
     @Test
     void getReminderDates() {
         ArrayList<LocalDate> reminderDates = event.getReminderDates();
+        reminderDates.sort(LocalDate::compareTo);
         int i = 0;
         for (Integer daysBefore : TEST_TIME_PERIODS) {
             LocalDate dateTime = TEST_DATE_TIME.minusDays(daysBefore).toLocalDate();
