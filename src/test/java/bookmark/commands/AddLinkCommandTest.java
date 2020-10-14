@@ -1,11 +1,13 @@
 package bookmark.commands;
-
-import bookmark.*;
+import bookmark.BookmarkCategory;
+import bookmark.BookmarkUi;
+import bookmark.NusCategory;
+import bookmark.ZoomCategory;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddLinkCommandTest {
     private BookmarkUi ui = new BookmarkUi();
