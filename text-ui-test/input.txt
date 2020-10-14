@@ -1,4 +1,13 @@
-Abec
+FAKE
+111111
+Male
+BAD INPUT 2
+1/2/3
+FEMAL
+BAD INPUT 3 !@#$%^^(*%$(*#$ adsd453
+1/4/4
+11111
+Abec Steiner 33rd
 01/02/1996
 Female
 watchlist -n a

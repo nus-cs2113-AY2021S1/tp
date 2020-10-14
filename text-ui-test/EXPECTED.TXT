@@ -8,25 +8,38 @@
 
 -------------------------------------------------------------
  User file is not found, let's start afresh.
- Watchlist file is not found, let's start a afresh.
+ AniChan successfully loaded all of the saved watchlist(s).
 -------------------------------------------------------------
  What's your name?
- #>  Hello Abec! What might your date of birth be? (DD/MM/YYYY)
+ #>  Hello FAKE! What might your date of birth be? (DD/MM/YYYY)
  #>  What might your gender be? (Male/Female/Other)
- #>   Successfully added new user:
- Abec
- 01/02/1996
- Female
+ #>  ☹ OOPS!!! Unparseable date: "111111"
+ What's your name?
+ #>  Hello BAD INPUT 2! What might your date of birth be? (DD/MM/YYYY)
+ #>  What might your gender be? (Male/Female/Other)
+ #>  ☹ OOPS!!! Unexpected gender: femal
+ What's your name?
+ #>  Hello BAD INPUT 3 !@#$%^^(*%$(*#$ adsd453! What might your date of birth be? (DD/MM/YYYY)
+ #>  What might your gender be? (Male/Female/Other)
+ #>  ☹ OOPS!!! Unexpected gender: 11111
+ What's your name?
+ #>  Hello Abec Steiner 33rd! What might your date of birth be? (DD/MM/YYYY)
+ #>  What might your gender be? (Male/Female/Other)
+ #>  Successfully added new user:
+ 
+ Name: Abec Steiner 33rd
+ Birthdate: 01/02/1996
+ Gender: Female
 
- Abec-chan (Default) #>  Watchlist created successfully!
+ Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! You already have a watchlist named "a".
 
- Abec-chan (Default) #>  Watchlist created successfully!
+ Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! You already have a watchlist named "b".
 
- Abec-chan (Default) #>  Currently, you have 3 watchlist(s):
+ Abec Steiner 33rd-chan (Default) #>  Currently, you have 3 watchlist(s):
 	1. Default
 	2. a
 	3. b
 
- Abec-chan (Default) #>  Anime added to watchlist!
+ Abec Steiner 33rd-chan (Default) #>  Anime added to watchlist!
 
- Abec-chan (Default) #>  Sayonara!
+ Abec Steiner 33rd-chan (Default) #>  Sayonara Abec Steiner 33rd-chan!
