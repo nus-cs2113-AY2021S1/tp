@@ -37,9 +37,6 @@ public abstract class Command {
 
     /**
      * Abstract method that execute the command.
-     *
-     * @param ui UI that handles user interaction
-     * @return Boolean - True if Bye command is executed
      */
     public abstract void execute();
 
