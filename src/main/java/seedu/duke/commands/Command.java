@@ -15,6 +15,7 @@ public abstract class Command {
     public static final String ERROR_INVALID_QUOTE_NUM = "Invalid quote number specified!";
     public static final String ERROR_INVALID_TODO_NUM = "Invalid task number specified!";
     public static final String ERROR_NO_BOOK_FOUND = "There is no such book!";
+    public static final String ERROR_BOOK_ALREADY_EXISTS = "The book already exists!";
     public static final String ERROR_NO_QUOTE_FOUND = "There is no such quote!";
     public static final String ERROR_NO_BOOKS_IN_LIST = "There are no books in the list!";
     public static final String ERROR_NO_BOOKS_BY_AUTHOR = "There are no books by this author!";
