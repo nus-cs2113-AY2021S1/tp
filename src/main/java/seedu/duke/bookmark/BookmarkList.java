@@ -6,7 +6,7 @@ import seedu.duke.lists.QuotesifyList;
 import java.util.ArrayList;
 
 public class BookmarkList extends QuotesifyList<Bookmark> {
-    private ArrayList<Bookmark> bookmarks;
+    private ArrayList<Bookmark> bookmarks = super.getList();
 
     public BookmarkList() {
         super(new ArrayList<>());

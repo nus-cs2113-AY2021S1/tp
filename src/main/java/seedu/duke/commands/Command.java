@@ -19,6 +19,7 @@ public abstract class Command {
     public static final String ERROR_NO_BOOKS_IN_LIST = "There are no books in the list!";
     public static final String ERROR_NO_BOOKS_BY_AUTHOR = "There are no books by this author!";
     public static final String ERROR_NO_AUTHOR_NAME = "Please type in the author name.";
+    public static final String ERROR_NO_PAGE_FOUND = "There is no page number provided!";
     public static final String ERROR_RATING_EXIST = "This book has already been rated!";
     public static final String ERROR_BOOK_TO_RATE_NOT_FOUND = "I can't find this book to rate!";
     public static final String ERROR_RATING_NOT_FOUND = "This book has not been rated!";

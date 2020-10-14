@@ -20,24 +20,28 @@ public class ToDoList extends QuotesifyList<ToDo> {
     }
 
     public ToDo find(int taskNum) {
-        if (taskNum <= todos.size()) {
-            return todos.get(taskNum);
+        int indexNum = taskNum - 1;
+        if (taskNum <= todos.size() && indexNum >= 0 && todos.size() > 0) {
+            return todos.get(indexNum);
         } else {
             return null;
         }
     }
 
     @Override
-    public void delete(int index) {
-        todos.remove(index);
+    public void delete(int taskNum) {
+        int indexNum = taskNum - 1;
+        todos.remove(indexNum);
     }
 
     @Override
     public String toString() {
         String toDosToReturn = "";
+        int taskNum = 0;
 
         for (ToDo toDo : todos) {
-            toDosToReturn += toDo.toString() + System.lineSeparator();
+            taskNum++;
+            toDosToReturn +=  taskNum + "." + toDo.toString() + System.lineSeparator();
         }
 
         return toDosToReturn;
