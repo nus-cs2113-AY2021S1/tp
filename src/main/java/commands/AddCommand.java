@@ -18,17 +18,17 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String CHAPTER_PARAMETERS = " CHAPTER_NAME";
-    public static final String MESSAGE_CHAPTER_USAGE = COMMAND_WORD + ": Adds a chapter to the module. \n"
+    public static final String CHAPTER_MESSAGE_USAGE = COMMAND_WORD + ": Adds a chapter to the module. \n"
             + "Parameters:" + CHAPTER_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " Chapter 1\n";
 
     public static final String MODULE_PARAMETERS = " MODULE_NAME";
-    public static final String MESSAGE_MODULE_USAGE = COMMAND_WORD + ": Adds a new module. \n"
+    public static final String MODULE_MESSAGE_USAGE = COMMAND_WORD + ": Adds a new module. \n"
             + "Parameters:" + MODULE_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " CS2113T\n";
 
     public static final String CARD_PARAMETERS = " q:QUESTION | a:ANSWER";
-    public static final String MESSAGE_CARD_USAGE = COMMAND_WORD + ": Add a flashcard.\n"
+    public static final String CARD_MESSAGE_USAGE = COMMAND_WORD + ": Add a flashcard.\n"
             + "Parameters:" + CARD_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " q:What is the result of one plus one | a:two\n";
 
@@ -54,7 +54,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cards, Ui ui, Access access, Storage storage)
+    public void execute(Ui ui, Access access, Storage storage)
             throws IncorrectAccessLevelException, IOException {
         if (access.isChapterLevel()) {
             addCard(ui, access, storage);
@@ -86,6 +86,7 @@ public class AddCommand extends Command {
     }
 
     private void addCard(Ui ui, Access access, Storage storage) throws IOException {
+        assert access.isChapterLevel() : "Not chapter level";
         CardList cards = access.getChapter().getCards();
         cards.addCard(card);
         int cardCount = cards.getCardCount();

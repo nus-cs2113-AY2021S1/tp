@@ -12,7 +12,7 @@ public class BackCommand extends Command {
             + "Example: " + COMMAND_WORD + "\n";
 
     @Override
-    public void execute(CardList cards, Ui ui, Access access, Storage storage) {
+    public void execute(Ui ui, Access access, Storage storage) {
         if (access.isChapterLevel()) {
             access.setChapterLevel("");
         } else if (access.isModuleLevel()) {
