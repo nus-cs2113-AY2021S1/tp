@@ -14,7 +14,6 @@ public class BackCommand extends BookmarkCommand {
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories) {
         if (backCommand.equals("Goodbye")) {
             ui.printGoodbyeMessage();
-            //Ui.exitMode();
         } else {
             ui.showBookmarkCategoryList(categories);
         }

@@ -21,11 +21,11 @@ public class HelpMessage extends Ui {
 
 
     private static final String bookmarkCommands = "Here are the bookmark commands available:\n"
-            + "bm NUMBER     - changes mode from bookmark main into a category \n"
-            + "add LINK      - add bookmark link into a specific category\n"
-            + "rm NUMBER     - remove a bookmark link into a specific category\n"
-            + "list          - prints the list of categories and respective list of links\n"
-            + "back          - go back to bookmark main\n";
+            + "bm <category index>  - changes mode from bookmark main into a category \n"
+            + "add <link>           - add bookmark link into a specific category\n"
+            + "rm <index number>    - remove a bookmark link into a specific category\n"
+            + "list                 - prints the list of categories and respective list of links\n"
+            + "back                 - go back to bookmark main\n";
 
 
 
