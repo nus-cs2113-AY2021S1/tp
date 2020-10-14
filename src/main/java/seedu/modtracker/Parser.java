@@ -66,14 +66,14 @@ public class Parser {
             }
             break;
         case COMMAND_HELP:
-            if (input.trim().length() > COMMAND_HELP.length()) {
+            if (!input.toLowerCase().trim().equals(COMMAND_HELP)) {
                 ui.printInvalidCommand();
             } else {
                 ui.printHelpList();
             }
             break;
         case COMMAND_EXIT:
-            if (input.trim().length() > COMMAND_EXIT.length()) {
+            if (!input.toLowerCase().trim().equals(COMMAND_EXIT)) {
                 ui.printInvalidCommand();
             } else {
                 ui.printExitScreen(name);
