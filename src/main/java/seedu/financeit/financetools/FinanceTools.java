@@ -135,11 +135,13 @@ public class FinanceTools {
 
     public static void printMenu() {
         TablePrinter.setTitle("Finance Tools");
-        TablePrinter.addRow("No; Finance Tool                  ");
-        TablePrinter.addRow("1; Simple Interest Calculator");
-        TablePrinter.addRow("2; Compound Interest Calculator");
-        TablePrinter.addRow("3; Cashback Calculator");
-        TablePrinter.addRow("4; Miles Credit Calculator");
+        TablePrinter.addRow("No; Finance Tool             ;Input Format                                          ");
+        TablePrinter.addRow("1; Simple Interest Calculator; simplecalc /amount {AMOUNT} /ir {INTEREST_RATE} ");
+        TablePrinter.addRow("2; Compound Interest Calculator; compoundcalc /amount {AMOUNT} /ir {INTEREST_RATE} "
+                + "/period {YEARS}");
+        TablePrinter.addRow("3; Cashback Calculator; milescalc /amount {AMOUNT} /miles {MILES RATE}");
+        TablePrinter.addRow("4; Miles Credit Calculator; cashbackcalc /amount {AMOUNT} /cashback {CASHBACK_RATE} "
+                + "/cap {CASHBACK_CAP}");
         TablePrinter.printList();
     }
 }
