@@ -1,9 +1,15 @@
+import academic.Grade;
 import academic.Person;
-
+import timetable.TimeTableRun;
+import flashcard.FlashcardRun;
+import bookmark.BookmarkCategory;
+import bookmark.NusCategory;
+import bookmark.ZoomCategory;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class StudyIt {
+    public static ArrayList<BookmarkCategory> bookmarkCategories = new ArrayList<>();
     private static Mode currentMode = Mode.MENU;
 
     public static void changeMode(Mode destinationMode) {
@@ -14,20 +20,31 @@ public class StudyIt {
         return currentMode;
     }
 
-    public static void main(String[] args) {
-        MainMenu.printWelcome();
-        run();
+    public static TimeTableRun timeTableRun = new TimeTableRun();
+    public static FlashcardRun flashcardRun = new FlashcardRun();
+    public static ArrayList<Grade> currentGrades = new ArrayList<>();//TODO change to local storage
+    public static ArrayList<Person> listOfPerson = new ArrayList<>(); //TODO change to local storage
+
+    public StudyIt() {
+        bookmarkCategories.add(new NusCategory());
+        bookmarkCategories.add(new ZoomCategory());
     }
 
-    public static void run() {
+    public static void main(String[] args) {
+        MainMenu.printWelcome();
+        new StudyIt().run();
+    }
+
+    public void run() {
         CommandType commandType;
         // Repeatedly receive & process user command until "exit" is given
         do {
             // Collect user's command & identify the type
             String command = Ui.inputCommand();
             commandType = CommandParser.getCommandType(command);
+            Command.executeCommand(command, commandType, bookmarkCategories, flashcardRun,
+                    timeTableRun, currentGrades, listOfPerson);
 
-            Command.executeCommand(command, commandType);
         } while (commandType != CommandType.EXIT_PROGRAM);
     }
 }
