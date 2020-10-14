@@ -79,6 +79,7 @@ public class RecurringTracker {
         entries.setRequiredParams(
                 "/id"
         );
+
         try {
             //User-inputted index ("/id") is parsed, converted to zero-based index
             //and stored in entries.indexToModify (private)
@@ -106,6 +107,7 @@ public class RecurringTracker {
         entries.setRequiredParams(
                 "/id"
         );
+
         try {
             entries.handleParams(packet);
             entry = (RecurringEntry) entries.getItemAtIndex();
@@ -118,6 +120,11 @@ public class RecurringTracker {
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
+        } finally {
+            if (!entries.getHasParsedAllRequiredParams()) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                        "Input failed due to param error.");
+            }
         }
         return entry;
     }
