@@ -62,7 +62,7 @@ public class AddCommand extends Command {
             Module module = new Module(moduleOrChapter);
             addModule(ui, access, storage, module);
         } else if (access.isModuleLevel()) {
-            Chapter chapter = new Chapter(moduleOrChapter);
+            Chapter chapter = new Chapter(moduleOrChapter, Chapter.rateChapter());
             addChapter(ui, access, storage, chapter);
         } else {
             throw new IncorrectAccessLevelException("Sorry, you are currently at " + access.getLevel()
