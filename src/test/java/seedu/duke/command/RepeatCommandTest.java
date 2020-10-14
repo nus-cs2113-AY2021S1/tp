@@ -30,6 +30,10 @@ class RepeatCommandTest {
         Command addCommand = new AddCommand(personalInput);
         addCommand.execute(data, ui, storage);
 
+        personalInput = "personal surprise";
+        addCommand = new AddCommand(personalInput);
+        addCommand.execute(data, ui, storage);
+
         //Add Zoom event to data
         // Add zoom event to data
         String zoomInput = "zoom Math class; zoom.com; 09/10/2000; 1300";
@@ -180,6 +184,36 @@ class RepeatCommandTest {
                 outputStreamCaptor.toString());
 
 
+
+    }
+
+    @Test
+    void repeat_repeatingEventNoDeadline_missingDeadlineExceptionThrown() {
+
+    }
+
+    @Test
+    void repeat_repeatingEventWrongIndex_indexOutOfBoundsExceptionThrown() {
+
+    }
+
+    @Test
+    void repeat_repeatingEventWrongUnit_invalidTimeUnitExceptionThrown() {
+
+    }
+
+    @Test
+    void repeat_tooLittleArgumentsProvided_wrongNumberOfArgumentsExceptionThrown() {
+
+    }
+
+    @Test
+    void repeat_repeatingEventWrongType_invalidEventListTypeExceptionThrown() {
+
+    }
+
+    @Test
+    void repeat_userTypeWrongNumber_NumberFormatExceptionThrown() {
 
     }
 

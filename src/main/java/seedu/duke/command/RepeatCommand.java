@@ -1,5 +1,8 @@
 package seedu.duke.command;
 
+import seedu.duke.command.repeatExceptions.InvalidEventListTypeException;
+import seedu.duke.command.repeatExceptions.InvalidTypeException;
+import seedu.duke.command.repeatExceptions.MissingDeadlineRepeatException;
 import seedu.duke.command.repeatExceptions.WrongNumberOfArgumentsException;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
@@ -33,18 +36,29 @@ public class RepeatCommand extends Command {
 
     @Override
     public void execute(UserData data, Ui ui, Storage storage) {
-        switch (commandType) {
-        case COMMANDTYPE_ADD:
-            executeAdd(data, ui, storage);
-            break;
-        case COMMANDTYPE_LIST:
-            executeList(data, ui);
-            break;
-        case COMMANDTYPE_ERROR:
+        try {
+            switch (commandType) {
+            case COMMANDTYPE_ADD:
+                executeAdd(data, ui, storage);
+                break;
+            case COMMANDTYPE_LIST:
+                executeList(data, ui);
+                break;
+            case COMMANDTYPE_ERROR:
+                executeNull(data, ui, storage);
+            default:
+                //do nothing
+            }
+        } catch (IndexOutOfBoundsException e) {
+            this.command = "Error! Index out of bounds!";
+            this.commandType = COMMANDTYPE_ERROR;
             executeNull(data, ui, storage);
-        default:
-            //do nothing
+        } catch (Exception e) {
+            this.command = e.getMessage();
+            this.commandType = COMMANDTYPE_ERROR;
+            executeNull(data, ui, storage);
         }
+
     }
 
     /**
@@ -54,8 +68,9 @@ public class RepeatCommand extends Command {
      * @return RepeatCommand set to either add additional dates or set to list out current dates in event
      */
     public static Command parse(String input) {
+        String[] words = input.split(" ");
         try {
-            String[] words = input.split(" ");
+
             switch (words.length) {
             case 2:
                 words[0] = formatListName(words[0]);
@@ -71,16 +86,17 @@ public class RepeatCommand extends Command {
                 return new RepeatCommand(input, COMMANDTYPE_ADD);
             default:
                 String errorMessage = "Wrong number of arguments provided";
-                WrongNumberOfArgumentsException e = new WrongNumberOfArgumentsException(errorMessage);
-                throw e;
+                throw new WrongNumberOfArgumentsException(errorMessage);
+
             }
         } catch (WrongNumberOfArgumentsException e) {
             String errorMessage = e.getMessage();
             return new RepeatCommand(errorMessage, COMMANDTYPE_ERROR);
-        } //index not in numeric form
-        //index not in range
-        //no such time unit for the repeat
-        //no deadline given to repeat
+        } catch (NumberFormatException e) {
+            String errorMessage = words[1] + " is not in numeric form";
+            return new RepeatCommand(errorMessage, COMMANDTYPE_ERROR);
+        }
+
         
 
     }
@@ -102,12 +118,7 @@ public class RepeatCommand extends Command {
      * @param number String containing the String form of an integer
      */
     private static void isValidNumber(String number) throws NumberFormatException{
-        try {
-            Integer.parseInt(number);
-        } catch (NumberFormatException e) {
-            System.out.println("Not a number");
-            throw e;
-        }
+        Integer.parseInt(number);
     }
 
     /**
@@ -131,15 +142,19 @@ public class RepeatCommand extends Command {
      * @param ui User Interface class for printing on screens
      * @param storage File storage location on computer
      */
-    private void executeAdd(UserData data, Ui ui, Storage storage) {
+    private void executeAdd(UserData data, Ui ui, Storage storage)
+            throws MissingDeadlineRepeatException, InvalidTypeException, IndexOutOfBoundsException {
         String[] words = command.split(" ");
         EventList eventList = data.getEventList(words[0]);
+
+        if (eventList == null) {
+            throw new InvalidEventListTypeException(words[0]);
+        }
         int index = Integer.parseInt(words[1]) - 1;
         Event eventToRepeat = eventList.getEventByIndex(index);
         LocalDate startDate = eventToRepeat.getDate();
         if (startDate == null) {
-            System.out.println("Unable to repeat an event with no date.");
-            //to change to throw exception
+            throw new MissingDeadlineRepeatException();
         }
         LocalTime startTime = eventToRepeat.getTime();
         int count = Integer.parseInt(words[3]);

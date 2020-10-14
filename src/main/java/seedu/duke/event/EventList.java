@@ -57,17 +57,7 @@ public class EventList {
 
     public Event getEventByIndex(int index) {
 
-        try {
-
-            return events.get(index);
-
-        } catch (IndexOutOfBoundsException e) {
-
-            System.out.println("Error, no such index is available!");
-
-        }
-        //event not found
-        return null;
+        return events.get(index);
     }
 
     public ArrayList<Event> getEvents() {

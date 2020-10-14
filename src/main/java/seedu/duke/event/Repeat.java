@@ -1,5 +1,8 @@
 package seedu.duke.event;
 
+import seedu.duke.command.repeatExceptions.InvalidTimeUnitException;
+import seedu.duke.command.repeatExceptions.InvalidTypeException;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -20,15 +23,17 @@ public class Repeat {
      * @param repeatType String indicating how far to advance each date for each repetition
      * @param count Integer containing the number of repetition to makes
      */
-    public Repeat(LocalDate startDate, LocalTime startTime, String repeatType, int count) {
+    public Repeat(LocalDate startDate, LocalTime startTime, String repeatType, int count) throws InvalidTypeException {
         for (int i = 1; i <= count; i++) {
             LocalDate repeatDate;
             if (repeatType.equals(MONTHLY)) {
                 repeatDate = startDate.plusMonths(i);
             } else if (repeatType.equals(WEEKLY)) {
                 repeatDate = startDate.plusWeeks(i);
-            } else {
+            } else if (repeatType.equals(DAILY)){
                 repeatDate = startDate.plusDays(i);
+            } else {
+                throw new InvalidTimeUnitException(repeatType);
             }
             DateStatusPair pair = new DateStatusPair(repeatDate, startTime);
             repeatList.add(pair);
