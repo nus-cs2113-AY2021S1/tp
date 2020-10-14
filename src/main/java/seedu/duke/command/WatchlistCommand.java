@@ -32,6 +32,7 @@ public class WatchlistCommand extends Command {
         ArrayList<Watchlist> activeWatchlistList = activeUser.getWatchlistList();
 
         String commandOutput = "";
+        assert option != null : "Command option cannot be null.";
         switch (option) {
         case CREATE_OPTION:
             commandOutput = createWatchlist(storage, activeWatchlistList);
@@ -80,6 +81,7 @@ public class WatchlistCommand extends Command {
         }
 
         String watchlistList = sbWatchlistList.toString();
+        assert !(watchlistList.isBlank()) : "The String that list watchlist(s) cannot be empty.";
         return watchlistList;
     }
 }
