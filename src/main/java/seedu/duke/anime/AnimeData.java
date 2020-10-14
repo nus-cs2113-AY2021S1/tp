@@ -67,7 +67,8 @@ public class AnimeData {
         }
         return findList;
     }
-    //Functions below use original data list
+
+    //Functions below uses original data list
     public Anime getAnimeByID(Integer animeIndex) throws IndexOutOfBoundsException, NullPointerException {
         try {
             return animeOriginalDataList.get(animeIndex);

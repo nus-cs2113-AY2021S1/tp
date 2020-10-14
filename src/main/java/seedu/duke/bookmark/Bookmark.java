@@ -14,7 +14,7 @@ public class Bookmark {
         this.animeBookmarkList = new ArrayList<>();
     }
 
-     public Bookmark(ArrayList<Integer> animeBookmarkList, ArrayList<Integer> animeEpisode) {
+    public Bookmark(ArrayList<Integer> animeBookmarkList, ArrayList<Integer> animeEpisode) {
         this.animeBookmarkList = animeBookmarkList;
         this.animeEpisode = animeEpisode;
     }
@@ -38,15 +38,19 @@ public class Bookmark {
         return animeData.getAnimeByID(animeIndex);
     }
 
+    public int getBookmarkSize() {
+        return animeBookmarkList.size();
+    }
+
     public String animeListInString(AnimeData animeData) {
         StringBuilder sbAnimeList = new StringBuilder(System.lineSeparator());
         if (animeBookmarkList.size() == 0) {
-            sbAnimeList.append("Uhh.. It's empty.. :(");
+            sbAnimeList.append("\tUhh.. It's empty.. :(");
             sbAnimeList.append(System.lineSeparator());
         }
         for (int i = 0; i < animeBookmarkList.size(); i++) {
             sbAnimeList.append("\t");
-            sbAnimeList.append( i + 1);
+            sbAnimeList.append(i + 1);
             sbAnimeList.append(". ");
             int animeIndex = this.animeBookmarkList.get(i);
             sbAnimeList.append(animeData.getAnimeByID(animeIndex));
