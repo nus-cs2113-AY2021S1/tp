@@ -32,11 +32,11 @@ public class ViewSprintCommand extends SprintCommand {
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
             Sprint currentSprint = allSprint.getSprint(currentSprintNo);
-            Ui.showToUser("------ Current Sprint ------");
-            Ui.showToUser("Sprint number: " + (currentSprintNo + 1));
-            Ui.showToUser("Sprint Goal: " + currentSprint.getGoal());
-            Ui.showToUser("Sprint period: " + currentSprint.getStartDate() + " to " + currentSprint.getEndDate());
-            Ui.showToUser("Days left: " + currentSprint.getEndDate().compareTo(LocalDate.now()));
+            Ui.showToUserLn("------ Current Sprint ------");
+            Ui.showToUserLn("Sprint number: " + (currentSprintNo + 1));
+            Ui.showToUserLn("Sprint Goal: " + currentSprint.getGoal());
+            Ui.showToUserLn("Sprint period: " + currentSprint.getStartDate() + " to " + currentSprint.getEndDate());
+            Ui.showToUserLn("Days left: " + currentSprint.getEndDate().compareTo(LocalDate.now()));
             printSprintTask(currentSprint);
 
         } else {
@@ -48,48 +48,48 @@ public class ViewSprintCommand extends SprintCommand {
     private void printSprintTask(Sprint sprint) {
         Hashtable<Integer, ArrayList<String>> sprintTasks = sprint.getAllSprintTask();
         if (sprintTasks.size() == 0) {
-            Ui.showToUser("No task allocated to current sprint.");
+            Ui.showToUserLn("No task allocated to current sprint.");
             return;
         }
         ArrayList<String> users;
         Set<Integer> keys = sprintTasks.keySet();
 
-        Ui.showToUser("Sprint Tasks: " + keys.size());
+        Ui.showToUserLn("Sprint Tasks: " + keys.size());
         for (int key: keys) {
-            Ui.showToUser(proj.getProjectBacklog().getTask(key).toString());
+            Ui.showToUserLn(proj.getProjectBacklog().getTask(key).toString());
             users = sprintTasks.get(key);
             if (users.size() == 0) {
-                Ui.showToUser("No allocation.");
+                Ui.showToUserLn("No allocation.");
             } else {
-                Ui.showToUser("Allocated to:" + Arrays.toString(users.toArray()));
+                Ui.showToUserLn("Allocated to:" + Arrays.toString(users.toArray()));
             }
         }
     }
 
     private void checkReason() {
         if (allSprint.size() == 0) {
-            Ui.showToUser("You have yet to create your sprint.");
+            Ui.showToUserLn("You have yet to create your sprint.");
             return;
         }
 
         Sprint latestSprint = allSprint.getSprint(allSprint.size() - 1);
         if (DateTimeParser.diff(LocalDate.now(), proj.getEndDate()) == 0) {
-            Ui.showToUser("Project already ended on " + proj.getEndDate());
+            Ui.showToUserLn("Project already ended on " + proj.getEndDate());
             return;
         } else if (DateTimeParser.diff(LocalDate.now(), proj.getStartDate()) > 0) {
-            Ui.showToUser("Project will start on " + proj.getStartDate());
+            Ui.showToUserLn("Project will start on " + proj.getStartDate());
             return;
         }
 
         if (DateTimeParser.diff(latestSprint.getEndDate(), LocalDate.now()) >= 0) {
-            Ui.showToUser("Latest sprint ended on " + latestSprint.getEndDate());
-            Ui.showToUser("Please create new sprint.");
+            Ui.showToUserLn("Latest sprint ended on " + latestSprint.getEndDate());
+            Ui.showToUserLn("Please create new sprint.");
             return;
         }
 
         Sprint current = allSprint.getSprint(0);
         if (DateTimeParser.diff(LocalDate.now(), current.getStartDate()) < 0) {
-            Ui.showToUser("First sprint will start on " + current.getStartDate());
+            Ui.showToUserLn("First sprint will start on " + current.getStartDate());
         }
     }
 }

@@ -54,7 +54,7 @@ public class CreateSprintCommand extends SprintCommand {
         proj.setStartDate(sprintStart);
         proj.setEndDate(projEndDate);
 
-        Ui.showToUser("Project will start along with the newly created sprint");
+        Ui.showToUserLn("Project will start along with the newly created sprint");
         System.out.println("Project period: " + sprintStart + " to " + projEndDate);
         printCreatedSprint();
 
@@ -66,13 +66,13 @@ public class CreateSprintCommand extends SprintCommand {
         Sprint prevSprint = allSprint.getSprint(allSprint.size() - 1);
         LocalDate sprintStart = prevSprint.getEndDate().plusDays(1);
         if (DateTimeParser.diff(proj.getEndDate(),sprintStart) >= 0) {
-            Ui.showToUser("\nAll sprints are already created.");
+            Ui.showToUserLn("\nAll sprints are already created.");
             return;
         }
         LocalDate sprintEnd = sprintStart.plusDays(proj.getSprintLength() - 1);
         allSprint.addSprint(sprintGoal, sprintStart, sprintEnd);
-        if (!parameters.get("start").isEmpty()) {
-            Ui.showToUser(Messages.MESSAGE_CREATE_SUB_SPRINT);
+        if (!parameters.containsKey("start")) {
+            Ui.showToUserLn(Messages.MESSAGE_CREATE_SUB_SPRINT);
         }
         printCreatedSprint();
     }
@@ -83,9 +83,9 @@ public class CreateSprintCommand extends SprintCommand {
 
     private void printCreatedSprint() {
         Sprint created = allSprint.getSprint(allSprint.size() - 1);
-        Ui.showToUser("\n--- New Sprint ---");
-        Ui.showToUser("Goal: " + created.getGoal());
-        Ui.showToUser("Start Date: " + created.getStartDate());
-        Ui.showToUser("End Date: " + created.getEndDate());
+        Ui.showToUserLn("\n--- New Sprint ---");
+        Ui.showToUserLn("Goal: " + created.getGoal());
+        Ui.showToUserLn("Start Date: " + created.getStartDate());
+        Ui.showToUserLn("End Date: " + created.getEndDate());
     }
 }

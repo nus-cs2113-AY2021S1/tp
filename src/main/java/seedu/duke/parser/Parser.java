@@ -11,9 +11,7 @@ import seedu.duke.command.task.TaskCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Hashtable;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,7 +31,7 @@ import static seedu.duke.command.CommandSummary.ASSIGN;
 
 public class Parser {
     //Groups of 3: (command) (action) (options)
-    private static final Pattern CMD_PATTERN = Pattern.compile("(\\w+)\\s\\/(\\w+)\\s(.+)");
+    private static final Pattern CMD_PATTERN = Pattern.compile("(\\w+)\\s\\/(\\w+)\\s*(.*)");
     //Groups of 2: (option name) (option value)
     private static final Pattern ARGS_PATTERN = Pattern.compile("-(\\w+)\\s([^-]+)");
     private final Hashtable<String, String> parameters = new Hashtable<>();
@@ -41,7 +39,6 @@ public class Parser {
 
 
     public String parser(String userInput, ArrayList<Project> projectList) {
-
         if (userInput.equals(BYE)) {
             System.out.println(BYE);
             System.exit(0);
@@ -51,6 +48,8 @@ public class Parser {
         if (cmdMatcher.matches()) { //Need to check if it matches, groupCount will always show 3
             String command = cmdMatcher.group(1); //capture first group (command)
             String action = cmdMatcher.group(2); //capture 2nd group (action)
+
+            System.out.println(action);
             String rawArgs = cmdMatcher.group(3); //capture 3rd group (options)
             Matcher parameterMatcher = ARGS_PATTERN.matcher(rawArgs); //match the option
 
@@ -58,6 +57,7 @@ public class Parser {
                 String[] arguments = rawArgs.split(" ");
                 params.addAll(Arrays.asList(arguments));
             } else {
+                parameters.clear();
                 while (parameterMatcher.find()) { //go through each occurrence of options
                     //put the options into the hashtable (similar to dictionary)
                     parameters.put(parameterMatcher.group(1), parameterMatcher.group(2));
@@ -136,31 +136,30 @@ public class Parser {
 
                 switch (action.toLowerCase()) {
                 case CREATE:
-                    HCparameters.put("goal", "fakegoal");
-                    HCparameters.put("start", "20201010");
-                    new CreateSprintCommand(HCparameters, projectList).execute();
+                    new CreateSprintCommand(parameters, projectList).execute();
                     break;
                 case ADD:
-                    HCparameters.put("0", "1");
-                    HCparameters.put("1", "2");
-                    HCparameters.put("2", "4");
-                    HCparameters.put("3", "6");
-                    new AddSprintTaskCommand(HCparameters, projectList).execute();
+//                    HCparameters.put("0", "1");
+//                    HCparameters.put("1", "2");
+//                    HCparameters.put("2", "4");
+//                    HCparameters.put("3", "6");
+//                    new AddSprintTaskCommand(HCparameters, projectList).execute();
                     break;
                 case DELETE:
-                    HCparameters.put("0", "2");
-                    new DeleteSprintTaskCommand(HCparameters, projectList).execute();
+//                    HCparameters.put("0", "2");
+//                    new DeleteSprintTaskCommand(HCparameters, projectList).execute();
                     break;
                 case VIEW:
-                    new ViewSprintCommand(HCparameters, projectList).execute();
+                    new ViewSprintCommand(parameters, projectList).execute();
                     break;
                 case ASSIGN:
-                    HCparameters.put("taskid", "1");
-                    HCparameters.put("0", "amy");
-                    HCparameters.put("1", "john");
-                    new AllocateSprintTaskCommand(HCparameters, projectList).execute();
+//                    HCparameters.put("taskid", "1");
+//                    HCparameters.put("0", "amy");
+//                    HCparameters.put("1", "john");
+//                    new AllocateSprintTaskCommand(HCparameters, projectList).execute();
                     break;
                 default:
+                    System.out.println(action.toLowerCase());
                     try {
                         throw new DukeException("Invalid action!");
                     } catch (DukeException e) {

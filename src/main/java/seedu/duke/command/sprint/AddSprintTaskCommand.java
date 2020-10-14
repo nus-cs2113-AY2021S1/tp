@@ -28,10 +28,10 @@ public class AddSprintTaskCommand extends SprintCommand {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
             Sprint currentSprint = allSprint.getSprint(currentSprintNo);
 
-            Ui.showToUser("Tasks added: ");
+            Ui.showToUserLn("Tasks added: ");
             for (int i = 0; i < parameters.size(); i++) {
                 currentSprint.addSprintTask(i);
-                Ui.showToUser(proj.getProjectBacklog().getTask(i).toString());
+                Ui.showToUserLn(proj.getProjectBacklog().getTask(i).toString());
 
             }
         } else {
@@ -41,28 +41,28 @@ public class AddSprintTaskCommand extends SprintCommand {
 
     public void checkReason() {
         if (allSprint.size() == 0) {
-            Ui.showToUser("You have yet to create your sprint.");
+            Ui.showToUserLn("You have yet to create your sprint.");
             return;
         }
 
         Sprint latestSprint = allSprint.getSprint(allSprint.size() - 1);
         if (DateTimeParser.diff(LocalDate.now(), proj.getEndDate()) == 0) {
-            Ui.showToUser("Project already ended on " + proj.getEndDate());
+            Ui.showToUserLn("Project already ended on " + proj.getEndDate());
             return;
         } else if (DateTimeParser.diff(LocalDate.now(), proj.getStartDate()) > 0) {
-            Ui.showToUser("Project will start on " + proj.getStartDate());
+            Ui.showToUserLn("Project will start on " + proj.getStartDate());
             return;
         }
 
         if (DateTimeParser.diff(latestSprint.getEndDate(), LocalDate.now()) >= 0) {
-            Ui.showToUser("Latest sprint ended on " + latestSprint.getEndDate());
-            Ui.showToUser("Please create new sprint.");
+            Ui.showToUserLn("Latest sprint ended on " + latestSprint.getEndDate());
+            Ui.showToUserLn("Please create new sprint.");
             return;
         }
 
         Sprint current = allSprint.getSprint(0);
         if (DateTimeParser.diff(LocalDate.now(), current.getStartDate()) < 0) {
-            Ui.showToUser("First sprint will start on " + current.getStartDate());
+            Ui.showToUserLn("First sprint will start on " + current.getStartDate());
         }
     }
 

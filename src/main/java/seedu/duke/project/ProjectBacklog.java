@@ -50,12 +50,12 @@ public class ProjectBacklog implements Jsonable {
             int backlogId = Integer.parseInt(id) - 1;
             if (backlogId < size) {
                 task = backlogTasks.get(backlogId);
-                Ui.showToUser(task.toString());
+                Ui.showToUserLn(task.toString());
             } else {
-                Ui.showToUser("The following task id doesn't exist in backlog.\n Please enter a valid id.");
+                Ui.showToUserLn("The following task id doesn't exist in backlog.\n Please enter a valid id.");
             }
         } catch (NumberFormatException e) {
-            Ui.showToUser("Task id is not an integer.");
+            Ui.showToUserLn("Task id is not an integer.");
         }
     }
 
