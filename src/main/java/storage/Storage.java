@@ -28,6 +28,10 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    public String getFilePath() {
+        return filePath;
+    }
+
     //create the folder --> 'data/admin'
     public void createAdmin() {
         File f = new File(filePath);
@@ -146,6 +150,7 @@ public class Storage {
             Card card = new Card(question, answer);
             cards.add(card);
         }
+        s.close();
         return cards;
     }
 
@@ -155,5 +160,15 @@ public class Storage {
             fw.write(cards.getCard(i).toString() + "\n");
         }
         fw.close();
+    }
+
+    public boolean deleteDirectory(File directoryToBeDeleted) {
+        File[] allContents = directoryToBeDeleted.listFiles();
+        if (allContents != null) {
+            for (File file : allContents) {
+                deleteDirectory(file);
+            }
+        }
+        return directoryToBeDeleted.delete();
     }
 }

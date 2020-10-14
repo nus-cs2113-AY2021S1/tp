@@ -159,12 +159,14 @@ public class Parser {
     private static Command prepareRemove(String commandArgs) throws InvalidInputException {
         int removeIndex;
         if (commandArgs.isEmpty()) {
-            throw new InvalidInputException();
+            throw new InvalidInputException("The index for module / chapter / flashcard is missing.\n"
+                    + RemoveCommand.MESSAGE_USAGE);
         }
         try {
             removeIndex = Integer.parseInt(commandArgs) - 1;
         } catch (NumberFormatException e) {
-            throw new InvalidInputException();
+            throw new InvalidInputException("The index for module / chapter / flashcard should be an integer.\n"
+                    + RemoveCommand.MESSAGE_USAGE);
         }
         return new RemoveCommand(removeIndex);
     }
@@ -279,7 +281,7 @@ public class Parser {
         if (access.isAdminLevel() || access.isChapterLevel()) {
             throw new IncorrectAccessLevelException("Revise command can only be called at module level.\n");
         } else if (commandArgs.isEmpty()) {
-            throw new InvalidInputException("The index for chapter to revise should be provided.\n"
+            throw new InvalidInputException("The index for chapter to revise is missing.\n"
                     + ReviseCommand.MESSAGE_USAGE);
         }
         int chapterIndex;
