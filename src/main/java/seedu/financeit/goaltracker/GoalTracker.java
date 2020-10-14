@@ -64,6 +64,27 @@ public class GoalTracker {
         }
     }
 
+    public static int getExpenseGoal(){
+        return expenseGoal;
+    }
+
+    public static int getIncomeGoal(){
+        return incomeGoal;
+    }
+
+    public static void setGoals(int expense, int income){
+        if (expense != 0){
+            expenseGoal = expense;
+            goalSetter = new Goal(expenseGoal, "Expense");
+            totalGoalList.addGoal(goalSetter);
+        }
+        if (income != 0) {
+            incomeGoal = income;
+            goalSetter = new Goal(incomeGoal, "Income");
+            totalGoalList.addGoal(goalSetter);
+        }
+    }
+
     private static void setExpenseGoal() {
         backToMenu = false;
         while (!backToMenu && exitTracker == false) {

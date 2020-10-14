@@ -28,8 +28,8 @@ public class Financeit {
         SaveStateHandlerRecurringTracker at = new SaveStateHandlerRecurringTracker("./data/save2.txt", "./data");
 
         try {
-            mt.load();
             gt.load();
+            mt.load();
             at.load();
         } catch (Exception m) {
             MenuPrinter.prompt = "An exception has occurred: " + m;
