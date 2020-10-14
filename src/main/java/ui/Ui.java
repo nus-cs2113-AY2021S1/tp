@@ -36,6 +36,39 @@ public class Ui {
         this.out = out;
     }
 
+    public static boolean chooseToRateNewDeck() {
+        System.out.println("Would you like to rate this new Chapter?");
+        Ui ratingUi = new Ui();
+        String userChoice = ratingUi.readCommand();
+        while (!userChoice.equalsIgnoreCase("Y") && !userChoice.equalsIgnoreCase("N")) {
+            userChoice = ratingUi.readCommand();
+        }
+        return userChoice.equalsIgnoreCase("Y");
+    }
+
+    public static boolean validDeckRating(String rating) {
+        switch (rating.toUpperCase()) {
+        case "E":
+        case "M":
+        case "H":
+            return true;
+        default:
+            return false;
+        }
+    }
+
+    public static String getChoiceOfNewDeckRating() {
+        System.out.println("Please rate this new Chapter!");
+        System.out.println("You have the options of: Easy(E), Medium(M) or Hard(H)");
+        System.out.println("Would your choice be E, M or H?");
+        Ui ratingUi = new Ui();
+        String userChoice = ratingUi.readCommand();
+        while (!validDeckRating(userChoice)) {
+            userChoice = ratingUi.readCommand();
+        }
+        return userChoice.toUpperCase();
+    }
+
     public String readCommand() {
         String userCommand = in.nextLine();
         while (userCommand.trim().isEmpty()) {

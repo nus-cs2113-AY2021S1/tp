@@ -1,25 +1,27 @@
 package parser;
 
 import access.Access;
-import commands.Command;
-import commands.ListCommand;
 import commands.AddChapterCommand;
 import commands.AddCommand;
 import commands.AddModuleCommand;
 import commands.BackChapterCommand;
-import commands.GoChapterCommand;
-import commands.HelpCommand;
-import commands.RemoveCommand;
-import commands.ReviseCommand;
-import commands.ExitCommand;
-import commands.GoModuleCommand;
 import commands.BackModuleCommand;
 import commands.EditCommand;
+import commands.ExitCommand;
+import commands.GoChapterCommand;
+import commands.GoModuleCommand;
+import commands.HelpCommand;
+import commands.ListCommand;
+import commands.ListDueCommand;
+import commands.RemoveCommand;
+import commands.ReviseCommand;
+import commands.Command;
 
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import storage.Storage;
+import ui.Ui;
 
 public class Parser {
     private static final String QUESTION_ANSWER_PREFIX = " \\| ";
@@ -63,6 +65,8 @@ public class Parser {
             return prepareGoChapter(commandArgs);
         case EditCommand.COMMAND_WORD:
             return prepareEdit(commandArgs, access);
+        case ListDueCommand.COMMAND_WORD:
+            return prepareListDue(commandArgs);
         default:
             throw new InvalidInputException("There is no such command type.\n");
         }
@@ -308,7 +312,7 @@ public class Parser {
         return new HelpCommand();
     }
 
-    public static String parseQuestioninFile(String arg) throws InvalidFileFormatException {
+    public static String parseQuestionInFile(String arg) throws InvalidFileFormatException {
         if (!(arg.trim().startsWith(Storage.QUESTION_PREFIX))) {
             throw new InvalidFileFormatException();
         }
@@ -321,7 +325,7 @@ public class Parser {
         return question;
     }
 
-    public static String parseAnswerinFile(String arg) throws InvalidFileFormatException {
+    public static String parseAnswerInFile(String arg) throws InvalidFileFormatException {
         if (!(arg.trim().startsWith(Storage.ANSWER_PREFIX))) {
             throw new InvalidFileFormatException();
         }
@@ -333,4 +337,14 @@ public class Parser {
 
         return answer;
     }
+
+    private static Command prepareListDue(String commandArgs) throws InvalidInputException {
+        if (!commandArgs.isEmpty()) {
+            throw new InvalidInputException("There should not be any arguments for list.");
+        }
+        return new ListDueCommand();
+    }
+
 }
+
+

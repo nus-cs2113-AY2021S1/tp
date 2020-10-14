@@ -48,6 +48,10 @@ public class Card {
         return previousInterval;
     }
 
+    public void setPreviousInterval(int newInterval) {
+        this.previousInterval = newInterval;
+    }
+
     public void setDueBy(LocalDate newDueBy) {
         dueBy = newDueBy;
     }
