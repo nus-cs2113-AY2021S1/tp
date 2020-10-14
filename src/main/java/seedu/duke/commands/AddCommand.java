@@ -9,6 +9,7 @@ import seedu.duke.exceptions.InvalidAdditionOfAppliance;
 
 import static seedu.duke.common.Messages.MESSAGE_APPLIANCE_EXIST;
 import static seedu.duke.common.Messages.MESSAGE_APPLIANCE_TYPE_NOT_EXIST;
+import static seedu.duke.common.Messages.MESSAGE_LOCATION_NOT_EXIST;
 
 
 public class AddCommand extends Command {
@@ -23,12 +24,20 @@ public class AddCommand extends Command {
     private final String location;
     private final String power;
     private final String type;
+    private final boolean toPrint;
 
-    public AddCommand(String name, String location, String power, String type) {
+    public AddCommand(String name, String location, String power, String type, Boolean toPrint) {
         this.name = name;
         this.location = location;
         this.power = power;
         this.type = type;
+        this.toPrint = toPrint;
+    }
+
+    private void feedbackAddToUser() {
+        if (this.toPrint) {
+            ui.showToUser("Adding " + type + ": " + name + " (" + power + "W) in " + location + ".....ADDED!");
+        }
     }
 
     @Override
@@ -39,29 +48,41 @@ public class AddCommand extends Command {
                 case Fan.TYPE_WORD:
                     Fan fan = new Fan(name, location, power);
                     appliances.addAppliance(fan);
+                    feedbackAddToUser();
                     break;
                 case AirConditioner.TYPE_WORD:
                     AirConditioner ac = new AirConditioner(name, location, power);
                     appliances.addAppliance(ac);
+                    feedbackAddToUser();
                     break;
                 case Lights.TYPE_WORD:
                     Lights light = new Lights(name, location, power);
                     appliances.addAppliance(light);
+                    feedbackAddToUser();
                     break;
                 case WaterHeater.TYPE_WORD:
                     WaterHeater waterheater = new WaterHeater(name, location, power);
                     appliances.addAppliance(waterheater);
+                    feedbackAddToUser();
                     break;
                 default:
-                    ui.showToUser(MESSAGE_APPLIANCE_TYPE_NOT_EXIST);
+                    if (this.toPrint) {
+                        ui.showToUser(MESSAGE_APPLIANCE_TYPE_NOT_EXIST);
+                    }
                 }
             } catch (InvalidAdditionOfAppliance e) {
-                ui.showToUser(MESSAGE_APPLIANCE_EXIST);
+                if (this.toPrint) {
+                    ui.showToUser(MESSAGE_APPLIANCE_EXIST);
+                }
             }
 
         } else {
-            ui.showToUser(Messages.MESSAGE_LOCATION_NOT_EXIST);
+            if (this.toPrint) {
+                ui.showToUser(MESSAGE_LOCATION_NOT_EXIST);
+            }
         }
+
     }
+
 
 }

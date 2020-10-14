@@ -4,6 +4,8 @@ import seedu.duke.exceptions.InvalidAddtionOfLocation;
 
 import java.util.ArrayList;
 
+import static seedu.duke.common.Messages.LINE;
+
 public class HomeLocations {
 
     private ArrayList<String> locations = new ArrayList<>();
@@ -18,7 +20,6 @@ public class HomeLocations {
         if (!isLocationCreated(location)) {
             this.locations.add(location);
         } else {
-            // Will be replaced with throwing an exception
             throw new InvalidAddtionOfLocation();
         }
     }
@@ -39,6 +40,8 @@ public class HomeLocations {
                 locationIndex++;
             }
         }
+
+        System.out.printf(LINE + "Removing LOCATION \"%s\"......REMOVED!\n", location);
         locations.remove(removeIndex);
     }
 

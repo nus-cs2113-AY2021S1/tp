@@ -14,16 +14,21 @@ import seedu.duke.commands.RemoveCommand;
 import seedu.duke.commands.UsageCommand;
 import seedu.duke.common.Messages;
 import seedu.duke.exceptions.EmptyParameterException;
+import seedu.duke.exceptions.InvalidPowerNumber;
+import seedu.duke.exceptions.PowerValueExceed;
 import seedu.duke.ui.TextUi;
 
-import static seedu.duke.ui.TextUi.showToUser;
+import static seedu.duke.common.Messages.MESSAGE_INVALID_ADD_COMMAND;
+import static seedu.duke.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.duke.common.Messages.MESSAGE_INVALID_LIST_COMMAND;
+import static seedu.duke.common.Messages.MESSAGE_POWER_EXCEEDED;
+import static seedu.duke.common.Messages.MESSAGE_POWER_NOT_NUMBER;
 
 
 public class Parser {
 
     private static final String APPLIANCE_TYPE = "appliance";
     private static final String LOCATION_TYPE = "location";
-    private static final TextUi ui = new TextUi();
 
     public static Command parseCommand(String userInput) {
         String[] words = userInput.trim().split(" ", 2);
@@ -34,7 +39,7 @@ public class Parser {
             case HelpCommand.COMMAND_WORD:
                 return new HelpCommand();
             case CreateCommand.COMMAND_WORD:
-                return new CreateCommand(arguments);
+                return new CreateCommand(arguments, true);
             case RemoveCommand.COMMAND_WORD:
                 return new RemoveCommand(arguments);
             case AddCommand.COMMAND_WORD:
@@ -52,7 +57,7 @@ public class Parser {
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
             default:
-                return new InvalidCommand(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+                return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
             }
         } catch (EmptyParameterException e) {
             return new InvalidCommand("The parameter of " + commandWord + " cannot be empty.");
@@ -82,20 +87,27 @@ public class Parser {
         String power;
         String type;
 
+
         if (indexLocation < indexPower && indexPower < indexType) {
             name = arguments.substring(0, indexLocation).trim();
             location = arguments.substring(indexLocation + 2, indexPower).trim();
             power = arguments.substring(indexPower + 2, indexType).trim();
             type = arguments.substring(indexType + 2).toLowerCase().trim();
         } else {
-            return new InvalidCommand(Messages.MESSAGE_INVALID_ADD_COMMAND);
+            return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND);
         }
 
-        if (powerIsNumeric(power)) {
-            return new AddCommand(name, location, power, type);
-        } else {
-            return new InvalidCommand(Messages.MESSAGE_POWER_NOT_NUMBER);
+        try {
+            testPowerValidity(power);
+            return new AddCommand(name, location, power, type, true);
+
+        } catch (InvalidPowerNumber e) {
+            return new InvalidCommand(MESSAGE_POWER_NOT_NUMBER);
+
+        } catch (PowerValueExceed e) {
+            return new InvalidCommand(MESSAGE_POWER_EXCEEDED);
         }
+
 
     }
 
@@ -103,18 +115,21 @@ public class Parser {
         if (arguments.equals(APPLIANCE_TYPE) || arguments.equals(LOCATION_TYPE)) {
             return new ListCommand(arguments);
         } else {
-            return new InvalidCommand(Messages.MESSAGE_INVALID_LIST_COMMAND);
+            return new InvalidCommand(MESSAGE_INVALID_LIST_COMMAND);
         }
     }
 
-    private static boolean powerIsNumeric(String power) {
+    private static void testPowerValidity(String power) throws PowerValueExceed, InvalidPowerNumber {
         try {
-            Double.parseDouble(power);
-            return true;
+            int powerValue = Integer.parseInt(power);
+            // Common appliance should not exceed 9999 watts
+            if ((powerValue < 1) || (powerValue > 9999)) {
+                throw new PowerValueExceed();
+            }
         } catch (NumberFormatException e) {
-            ui.showToUser(Messages.MESSAGE_POWER_NOT_NUMBER);
-            return false;
+            throw new InvalidPowerNumber();
         }
     }
 
 }
+

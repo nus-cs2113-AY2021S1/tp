@@ -7,6 +7,9 @@ import seedu.duke.data.HomeLocations;
 import seedu.duke.ui.TextUi;
 import seedu.duke.storage.StorageFile;
 
+import static seedu.duke.common.Messages.MESSAGE_EXPORT;
+
+
 /**
  * Entry point of the SmartHome application.
  * Initializes the application and starts the interaction with the user.
@@ -42,6 +45,7 @@ public class SmartHomeBot {
 
     /** Prints the Goodbye message and exits. */
     private void exit() {
+        ui.showToUser(MESSAGE_EXPORT);
         ui.showGoodByeMessage();
         System.exit(0);
     }

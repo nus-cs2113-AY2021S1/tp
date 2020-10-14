@@ -7,6 +7,8 @@ import seedu.duke.data.framework.Appliance;
 import seedu.duke.exceptions.InvalidParameter;
 
 import static seedu.duke.common.Messages.LINE;
+import static seedu.duke.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
+import static seedu.duke.ui.TextUi.showToUser;
 
 public class OnCommand extends Command {
 
@@ -40,9 +42,11 @@ public class OnCommand extends Command {
                 i.switchOn();
                 System.out.println(i);
                 return;
+            } else {
+                showToUser(LINE + MESSAGE_APPLIANCE_PREVIOUSLY_ON);
             }
         }
-        ui.showToUser(LINE + name + " does not exist.");
+        showToUser(LINE + name + " does not exist.");
     }
 
     private Appliance setACTemperature(Appliance i) {
