@@ -71,6 +71,27 @@ class ModViewTest {
     }
 
     @Test
+    void printAllModuleInformation_7CharLongModuleCode_tableAdjustedTo7Char() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        outContent.reset();
+        ModuleList filledList = new ModuleList();
+        ArrayList<Module> modList = filledList.getData();
+        modList.clear();
+        modList.add(new Module("GER1000"));
+
+        String expected = ModView.FIRST_PART_OF_BORDER + "-" + ModView.SECOND_PART_OF_BORDER
+                + ModView.FIRST_PART_OF_HEADER + " " + ModView.SECOND_PART_OF_HEADER
+                + ModView.FIRST_PART_OF_BORDER + "-" + ModView.SECOND_PART_OF_BORDER
+                + "|  01  | GER1000 | No Input | No Input |\n"
+                + ModView.FIRST_PART_OF_BORDER + "-" + ModView.SECOND_PART_OF_BORDER;
+        view.printAllModuleInformation(filledList, 1);
+        assertEquals(expected + System.lineSeparator(),
+                outContent.toString());
+    }
+
+    @Test
     void printAllModuleInformation_8CharLongModuleCode_tableAdjustedTo8Char() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
