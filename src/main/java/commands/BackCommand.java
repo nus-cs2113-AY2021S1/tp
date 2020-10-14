@@ -13,14 +13,13 @@ public class BackCommand extends Command {
             + "Example: " + COMMAND_WORD + "\n";
 
     @Override
-    public void execute(CardList cards, Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException {
+    public void execute(CardList cards, Ui ui, Access access, Storage storage) {
         if (access.isChapterLevel()) {
             access.setChapterLevel("");
         } else if (access.isModuleLevel()) {
             access.setModuleLevel("");
         } else {
-            throw new IncorrectAccessLevelException
-                    ("Back command can only be called at admin module and chapter level.\n");
+            System.out.println("Back command can only be called at admin module and chapter level.");
         }
     }
 
