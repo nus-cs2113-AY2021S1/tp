@@ -29,7 +29,7 @@ public abstract class SchoolEvent extends Event {
 
     @Override
     public String getDescription() {
-        return moduleCode + " " + super.toString();
+        return moduleCode + " " + super.getDescription();
     }
 
     public abstract String printIntoFile();
