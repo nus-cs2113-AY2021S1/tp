@@ -86,8 +86,10 @@ public class Parser {
         try {
             testPowerValidity(power);
             return new AddCommand(name, location, power, type, true);
+
         } catch (InvalidPowerNumber e) {
             return new InvalidCommand(MESSAGE_POWER_NOT_NUMBER);
+
         } catch (PowerValueExceed e) {
             return new InvalidCommand(MESSAGE_POWER_EXCEEDED);
         }

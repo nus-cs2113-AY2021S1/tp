@@ -4,6 +4,7 @@ import seedu.duke.exceptions.EmptyParameterException;
 import seedu.duke.exceptions.InvalidAddtionOfLocation;
 
 import static seedu.duke.common.Messages.MESSAGE_LOCATION_EXIST;
+import static seedu.duke.ui.TextUi.showToUser;
 
 public class CreateCommand extends Command {
 
@@ -28,9 +29,11 @@ public class CreateCommand extends Command {
     public void execute() {
         try {
             homeLocationsList.addLocation(usersEnteredLocation);
-            ui.showToUser("Creating Location \"" + usersEnteredLocation + "\".....CREATED!");
+            if (this.toPrint) {
+                showToUser("Creating Location \"" + usersEnteredLocation + "\".....CREATED!");
+            }
         } catch (InvalidAddtionOfLocation e) {
-            ui.showToUser(MESSAGE_LOCATION_EXIST);
+            showToUser(MESSAGE_LOCATION_EXIST);
         }
     }
 }

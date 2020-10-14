@@ -10,26 +10,38 @@ import java.util.Date;
 
 import static seedu.duke.common.Messages.LINE;
 import static seedu.duke.common.Messages.MESSAGE_TIME_FORMAT_ERROR;
+import static seedu.duke.ui.TextUi.showToUser;
 
+/**
+ * Class representing the power consumption of appliances.
+ */
 public class Power {
 
     private static final String TIME_DATE_FORMAT = "dd/MM/yyyy | HH:mm:ss";
-    private static TextUi ui = new TextUi();
     private final int power;
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(TIME_DATE_FORMAT);
+    LocalDateTime currentTime;
     private String offTime;
     private String onTime;
     private double powerUsed;
     private double totalHours;
-    private Boolean isOn;
+    private Boolean status;
     private double totalPowerConsumption;
-    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(TIME_DATE_FORMAT);
-    LocalDateTime currentTime;
 
     public Power(String power) {
         this.power = Integer.parseInt(power);
-        this.isOn = false;
+        this.status = false;
         totalPowerConsumption = 0;
         totalHours = 0;
+    }
+
+    /**
+     * Gets the status of the appliance.
+     *
+     * @return the status of the appliance in Boolean.
+     */
+    public Boolean getStatus() {
+        return this.status;
     }
 
     /**
@@ -38,8 +50,8 @@ public class Power {
      * @return true if appliance turn on successfully
      */
     public boolean onAppliance() {
-        if (!isOn) {
-            this.isOn = true;
+        if (!status) {
+            this.status = true;
             onTime = getCurrentTime();
             return true;
         } else {
@@ -54,13 +66,13 @@ public class Power {
      * @return true if appliance turn off successfully
      */
     public boolean offAppliance() {
-        if (isOn) {
-            this.isOn = false;
+        if (status) {
+            this.status = false;
             offTime = getCurrentTime();
             try {
                 calculatePowerConsumed();
             } catch (ParseException e) {
-                ui.showToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
+                showToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
             }
             return true;
         } else {
@@ -69,10 +81,36 @@ public class Power {
     }
 
     /**
-     * Gets the system current time.
+     * Gets the power consumption of appliance.
      *
-     * @return currentTime in string with the format defined
+     * @return the power consumption in double.
      */
+    public double getPower() {
+        try {
+            calculatePowerConsumed();
+        } catch (ParseException e) {
+            showToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
+        }
+        return this.totalPowerConsumption;
+    }
+
+    /**
+     * Computes power consumption from loaded file.
+     */
+    public void loadConsumptionFromFile(double powerConsumption) {
+        powerUsed = powerConsumption;
+        totalPowerConsumption += powerUsed;
+    }
+
+    /**
+     * Gets the power consumption in String.
+     *
+     * @return the power consumption in String.
+     */
+    public String toString() {
+        return String.valueOf(this.totalPowerConsumption);
+    }
+
     private String getCurrentTime() {
         currentTime = LocalDateTime.now();
         return dateTimeFormatter.format(currentTime);
@@ -85,15 +123,11 @@ public class Power {
         double timeUsed;
         boolean isOnOnce;
 
-        if (onTime != null) {
-            isOnOnce = true;
-        } else {
-            isOnOnce = false;
-        }
+        isOnOnce = onTime != null;
 
         if (isOnOnce) {
             onTimeValue = timeFormat.parse(onTime);
-            if (!this.isOn) {
+            if (!this.status) {
                 offTimeValue = timeFormat.parse(offTime);
                 timeUsed = offTimeValue.getTime() - onTimeValue.getTime();
                 onTime = offTime;
@@ -116,28 +150,6 @@ public class Power {
         // Convert power unit to kWh
         powerUsed = totalHours * power / 1000.00;
         totalPowerConsumption += powerUsed;
-    }
-
-    public Boolean getStatus() {
-        return this.isOn;
-    }
-
-    public double getPower() {
-        try {
-            calculatePowerConsumed();
-        } catch (ParseException e) {
-            ui.showToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
-        }
-        return this.totalPowerConsumption;
-    }
-
-    public void computeFromFile(double powerComsumption) {
-        powerUsed = powerComsumption;
-        totalPowerConsumption += powerUsed;
-    }
-
-    public String toString() {
-        return String.valueOf(this.totalPowerConsumption);
     }
 
 }

@@ -6,7 +6,6 @@ import seedu.duke.commands.CreateCommand;
 import seedu.duke.data.ApplianceList;
 import seedu.duke.data.HomeLocations;
 import seedu.duke.exceptions.FileCorrupted;
-import seedu.duke.ui.TextUi;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,18 +16,18 @@ import java.util.Scanner;
 
 import static seedu.duke.common.Messages.MESSAGE_FILE_CORRUPTED;
 import static seedu.duke.common.Messages.MESSAGE_IMPORT;
+import static seedu.duke.ui.TextUi.showToUser;
 
 
 public class StorageFile {
 
-    private static String filePath = "data/SmartHomeBot.txt";
+    private static final String filePath = "data/SmartHomeBot.txt";
     private static ApplianceList appliances;
     private static HomeLocations homeLocations;
-    private static TextUi ui = new TextUi();
 
     public StorageFile(ApplianceList appliances, HomeLocations homeLocations) {
-        this.homeLocations = homeLocations;
-        this.appliances = appliances;
+        StorageFile.homeLocations = homeLocations;
+        StorageFile.appliances = appliances;
     }
 
     public static void writeToFile() {
@@ -40,14 +39,14 @@ public class StorageFile {
             for (int i = 0; i < appliances.getAllAppliance().size(); i++) {
                 myWriter.write(appliances.getAppliance(i).getLocation()
                         + "|" + appliances.getAppliance(i).getName()
-                        + "|" + appliances.getAppliance(i).getStringPower()
+                        + "|" + appliances.getAppliance(i).getPower()
                         + "|" + appliances.getAppliance(i).getType()
                         + "|" + appliances.getAppliance(i).getStatus()
                         + "|" + appliances.getAppliance(i).getPowerConsumption() + "\n");
             }
             myWriter.close();
         } catch (IOException e) {
-            ui.showToUser("An error occur");
+            showToUser("An error occur");
         }
     }
 
@@ -60,14 +59,14 @@ public class StorageFile {
             try {
                 convertTextToLocationList(locationList);
                 convertTextToApplianceList(i, myReader);
-                ui.showToUser(MESSAGE_IMPORT);
+                showToUser(MESSAGE_IMPORT);
             } catch (FileCorrupted e) {
-                ui.showToUser(MESSAGE_FILE_CORRUPTED);
+                showToUser(MESSAGE_FILE_CORRUPTED);
             }
 
             myReader.close();
         } catch (FileNotFoundException | EmptyParameterException e) {
-            ui.showToUser("Load File Does not Exist. No contents will be loaded.");
+            showToUser("Load File Does not Exist. No contents will be loaded.");
         }
     }
 
@@ -83,7 +82,7 @@ public class StorageFile {
                 AddCommand add = new AddCommand(splitString[1], splitString[0], splitString[2], splitString[3], false);
                 add.setData(appliances, homeLocations);
                 add.execute();
-                appliances.getAppliance(i).updatePowerConsumption(splitString[5]);
+                appliances.getAppliance(i).loadConsumptionFromFile(splitString[5]);
                 if (splitString[4].toLowerCase().equals("on")) {
                     appliances.getAppliance(i).switchOn();
                 }
@@ -101,8 +100,8 @@ public class StorageFile {
             int end = locationList.indexOf("]");
             String when = locationList.substring(start, end);
             String[] stringSplit = when.split(",");
-            for (int j = 0; j < stringSplit.length; j++) {
-                CreateCommand newLocation = new CreateCommand(stringSplit[j].trim(),false);
+            for (String s : stringSplit) {
+                CreateCommand newLocation = new CreateCommand(s.trim(), false);
                 newLocation.setData(appliances, homeLocations);
                 newLocation.execute();
             }
@@ -125,7 +124,7 @@ public class StorageFile {
             }
 
         } catch (IOException e) {
-            ui.showToUser("An error occurred");
+            showToUser("An error occurred");
         }
     }
 
@@ -135,7 +134,7 @@ public class StorageFile {
             writer.print("");
             writer.close();
         } catch (FileNotFoundException e) {
-            ui.showToUser("File is empty");
+            showToUser("File is empty");
         }
     }
 }
