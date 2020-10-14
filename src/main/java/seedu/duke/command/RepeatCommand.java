@@ -1,15 +1,14 @@
 package seedu.duke.command;
 
-import seedu.duke.command.repeatexception.InvalidEventListTypeException;
-import seedu.duke.command.repeatexception.InvalidTypeException;
-import seedu.duke.command.repeatexception.MissingDeadlineRepeatException;
-import seedu.duke.command.repeatexception.WrongNumberOfArgumentsException;
+import seedu.duke.Duke;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.event.Repeat;
 import seedu.duke.exception.DukeException;
-import seedu.duke.exception.InvalidIndexException;
+import seedu.duke.exception.InvalidListException;
+import seedu.duke.exception.MissingDeadlineRepeatException;
+import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -37,31 +36,23 @@ public class RepeatCommand extends Command {
     }
 
     @Override
-    public void execute(UserData data, Ui ui, Storage storage) {
-        try {
-            switch (commandType) {
-            case COMMANDTYPE_ADD:
-                executeAdd(data, ui, storage);
-                break;
-            case COMMANDTYPE_LIST:
-                executeList(data, ui);
-                break;
-            case COMMANDTYPE_ERROR:
-                executeNull(data, ui, storage);
-                break;
-            default:
-                break;
-            }
-        } catch (DukeException e) {
-            this.command = e.getMessage();
-            this.commandType = COMMANDTYPE_ERROR;
+    public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
+        switch (commandType) {
+        case COMMANDTYPE_ADD:
+            executeAdd(data, ui, storage);
+            break;
+        case COMMANDTYPE_LIST:
+            executeList(data, ui);
+            break;
+        case COMMANDTYPE_ERROR:
             executeNull(data, ui, storage);
-        } catch (Exception e) {
-            this.command = e.getMessage();
-            this.commandType = COMMANDTYPE_ERROR;
-            executeNull(data, ui, storage);
-
+            break;
+        default:
+            break;
         }
+
+
+
 
     }
 
@@ -71,37 +62,25 @@ public class RepeatCommand extends Command {
      * @param input String containing user inputs
      * @return RepeatCommand set to either add additional dates or set to list out current dates in event
      */
-    public static Command parse(String input) {
+    public static Command parse(String input) throws DukeException {
         String[] words = input.split(" ");
-        try {
-
-            switch (words.length) {
-            case 2:
-                words[0] = formatListName(words[0]);
-                isValidNumber(words[1]);
-                input = String.join(" ", words);
-                return new RepeatCommand(input, COMMANDTYPE_LIST);
-            case 4:
-                words[0] = formatListName(words[0]);
-                isValidNumber(words[1]);
-                words[2] = words[2].toUpperCase();
-                isValidNumber(words[3]);
-                input = String.join(" ", words);
-                return new RepeatCommand(input, COMMANDTYPE_ADD);
-            default:
-                String errorMessage = "Wrong number of arguments provided";
-                throw new WrongNumberOfArgumentsException(errorMessage);
-
-            }
-        } catch (WrongNumberOfArgumentsException e) {
-            String errorMessage = e.getMessage();
-            return new RepeatCommand(errorMessage, COMMANDTYPE_ERROR);
-        } catch (NumberFormatException e) {
-            String errorMessage =  "Numbers are not in numeric form";
-            return new RepeatCommand(errorMessage, COMMANDTYPE_ERROR);
+        switch (words.length) {
+        case 2:
+            words[0] = formatListName(words[0]);
+            isValidNumber(words[1]);
+            input = String.join(" ", words);
+            return new RepeatCommand(input, COMMANDTYPE_LIST);
+        case 4:
+            words[0] = formatListName(words[0]);
+            isValidNumber(words[1]);
+            words[2] = words[2].toUpperCase();
+            isValidNumber(words[3]);
+            input = String.join(" ", words);
+            return new RepeatCommand(input, COMMANDTYPE_ADD);
+        default:
+            String errorMessage = "Wrong number of arguments provided";
+            throw new WrongNumberOfArgumentsException(errorMessage);
         }
-
-        
 
     }
 
@@ -147,13 +126,13 @@ public class RepeatCommand extends Command {
      * @param storage File storage location on computer
      */
 
-    private void executeAdd(UserData data, Ui ui, Storage storage)
-            throws MissingDeadlineRepeatException, InvalidTypeException, InvalidIndexException {
+    private void executeAdd(UserData data, Ui ui, Storage storage) throws DukeException {
         String[] words = command.split(" ");
         EventList eventList = data.getEventList(words[0]);
 
         if (eventList == null) {
-            throw new InvalidEventListTypeException(words[0]);
+            throw new InvalidListException(words[0]
+                    + "not a valid event type. Valid types are: personal, timetable, zoom");
         }
         int index = Integer.parseInt(words[1]) - 1;
         Event eventToRepeat = eventList.getEventByIndex(index);
@@ -169,7 +148,6 @@ public class RepeatCommand extends Command {
     }
 
     private void executeNull(UserData data, Ui ui, Storage storage) {
-        //print the error message of the command
-        ui.printExceptionMessage(this.command);
+        //do nothing
     }
 }

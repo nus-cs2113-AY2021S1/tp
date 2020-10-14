@@ -5,6 +5,11 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.InvalidIndexException;
+import seedu.duke.exception.InvalidListException;
+import seedu.duke.exception.InvalidTimeUnitException;
+import seedu.duke.exception.MissingDeadlineRepeatException;
+import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -14,6 +19,7 @@ import java.io.PrintStream;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RepeatCommandTest {
 
@@ -195,16 +201,14 @@ class RepeatCommandTest {
         PrintStream outputLoc = new PrintStream(outputStreamCaptor);
         System.setOut(outputLoc);
 
-        Command repeatCommand = RepeatCommand.parse(inputString);
-        try {
+
+
+        assertThrows(MissingDeadlineRepeatException.class, () -> {
+            Command repeatCommand = RepeatCommand.parse(inputString);
             repeatCommand.execute(data, ui, storage);
-        } catch (DukeException e) {
-            e.printStackTrace();
-        }
-        assertEquals("_________________________________" + System.lineSeparator()
-                        + "Error! You cannot repeat an event that has no deadline!" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
-                outputStreamCaptor.toString());
+        });
+
+
 
 
     }
@@ -216,16 +220,14 @@ class RepeatCommandTest {
         PrintStream outputLoc = new PrintStream(outputStreamCaptor);
         System.setOut(outputLoc);
 
-        Command repeatCommand = RepeatCommand.parse(inputString);
-        try {
+
+
+        assertThrows(InvalidIndexException.class, () -> {
+            Command repeatCommand = RepeatCommand.parse(inputString);
             repeatCommand.execute(data, ui, storage);
-        } catch (DukeException e) {
-            e.printStackTrace();
-        }
-        assertEquals("_________________________________" + System.lineSeparator()
-                        + "Error, no such index is available!" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
-                outputStreamCaptor.toString());
+        });
+
+
     }
 
     @Test
@@ -235,17 +237,13 @@ class RepeatCommandTest {
         PrintStream outputLoc = new PrintStream(outputStreamCaptor);
         System.setOut(outputLoc);
 
-        Command repeatCommand = RepeatCommand.parse(inputString);
-        try {
+
+
+        assertThrows(InvalidTimeUnitException.class, () -> {
+            Command repeatCommand = RepeatCommand.parse(inputString);
             repeatCommand.execute(data, ui, storage);
-        } catch (DukeException e) {
-            e.printStackTrace();
-        }
-        assertEquals("_________________________________" + System.lineSeparator()
-                        + "FORTNIGHTLY is not a valid time unit. Valid types are: daily, weekly, monthly"
-                        + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
-                outputStreamCaptor.toString());
+        });
+
     }
 
     @Test
@@ -255,16 +253,11 @@ class RepeatCommandTest {
         PrintStream outputLoc = new PrintStream(outputStreamCaptor);
         System.setOut(outputLoc);
 
-        Command repeatCommand = RepeatCommand.parse(inputString);
-        try {
-            repeatCommand.execute(data, ui, storage);
-        } catch (DukeException e) {
-            e.printStackTrace();
-        }
-        assertEquals("_________________________________" + System.lineSeparator()
-                        + "Wrong number of arguments provided" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
-                outputStreamCaptor.toString());
+
+        assertThrows(WrongNumberOfArgumentsException.class, () -> {
+            Command repeatCommand = RepeatCommand.parse(inputString);
+        });
+
     }
 
     @Test
@@ -275,17 +268,12 @@ class RepeatCommandTest {
         PrintStream outputLoc = new PrintStream(outputStreamCaptor);
         System.setOut(outputLoc);
 
-        Command repeatCommand = RepeatCommand.parse(inputString);
-        try {
+
+
+        assertThrows(InvalidListException.class, () -> {
+            Command repeatCommand = RepeatCommand.parse(inputString);
             repeatCommand.execute(data, ui, storage);
-        } catch (DukeException e) {
-            e.printStackTrace();
-        }
-        assertEquals("_________________________________" + System.lineSeparator()
-                        + "Holiday is not a valid event type. Valid types are: personal, timetable, zoom"
-                        + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
-                outputStreamCaptor.toString());
+        });
     }
 
     @Test
@@ -296,16 +284,11 @@ class RepeatCommandTest {
         PrintStream outputLoc = new PrintStream(outputStreamCaptor);
         System.setOut(outputLoc);
 
-        Command repeatCommand = RepeatCommand.parse(inputString);
-        try {
+
+        assertThrows(NumberFormatException.class, () -> {
+            Command repeatCommand = RepeatCommand.parse(inputString);
             repeatCommand.execute(data, ui, storage);
-        } catch (DukeException e) {
-            e.printStackTrace();
-        }
-        assertEquals("_________________________________" + System.lineSeparator()
-                        + "Numbers are not in numeric form" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
-                outputStreamCaptor.toString());
+        });
 
     }
 
