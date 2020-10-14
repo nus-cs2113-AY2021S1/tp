@@ -26,6 +26,7 @@ public class Watchlist {
 
     public void addAnimeToList(String animeName) {
         this.animeList.add(animeName);
+        assert this.animeList.contains(animeName) == true : "Watchlist should now contain new anime";
     }
 
     public String animeListToString() {
@@ -48,5 +49,15 @@ public class Watchlist {
     @Override
     public String toString() {
         return name + System.lineSeparator() + animeListToString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (getClass().equals(obj.getClass())) {
+            Watchlist watchlist = (Watchlist) obj;
+            return this.getName().equals(watchlist.getName());
+        }
+
+        return false;
     }
 }
