@@ -1,7 +1,21 @@
 package parser;
 
 import access.Access;
-import commands.*;
+import commands.AddChapterCommand;
+import commands.AddCommand;
+import commands.AddModuleCommand;
+import commands.BackChapterCommand;
+import commands.BackModuleCommand;
+import commands.EditCommand;
+import commands.ExitCommand;
+import commands.GoChapterCommand;
+import commands.GoModuleCommand;
+import commands.HelpCommand;
+import commands.ListCommand;
+import commands.ListDueCommand;
+import commands.RemoveCommand;
+import commands.ReviseCommand;
+import commands.Command;
 
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
