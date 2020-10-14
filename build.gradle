@@ -45,3 +45,13 @@ run{
     standardInput = System.in
     enableAssertions = true
 }
+
+jar {
+    manifest {
+        attributes "Main-Class": "seedu.quotesify.Quotesify"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
