@@ -19,6 +19,7 @@ class WatchlistCommandTest {
     AnimeData animeData;
     UserManagement userManagement;
 
+    //@@author OngDeZhi
     @BeforeEach
     void setUp() throws ParseException, AniException {
         animeData = new AnimeData(new ArrayList<>());
@@ -26,20 +27,15 @@ class WatchlistCommandTest {
         userManagement = new UserManagement(storage);
 
         User activeUser = new User("Testing", "01/01/2000", "Male");
-        Watchlist activeWatchlist = new Watchlist("Default");
-        activeUser.setActiveWatchlist(activeWatchlist);
+        userManagement.setActiveUser(activeUser);
 
         Watchlist secondWatchlist = new Watchlist("Second");
         secondWatchlist.addAnimeToList("The Slayers Next");
         secondWatchlist.addAnimeToList("Pokémon");
 
-        ArrayList<Watchlist> watchlists = new ArrayList<>();
-        watchlists.add(activeWatchlist);
+        ArrayList<Watchlist> watchlists = activeUser.getWatchlistList();
         watchlists.add(secondWatchlist);
-
-        activeUser.setActiveWatchlist(activeWatchlist);
         activeUser.setWatchlistList(watchlists);
-        userManagement.setActiveUser(activeUser);
     }
 
     @Test
