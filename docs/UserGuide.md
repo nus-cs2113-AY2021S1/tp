@@ -6,38 +6,38 @@ Duke is a command line trading simulator that lets you try your hand at trading 
 
 ## Quick Start
 
+{Give steps to get started quickly}
+
 1. Ensure that you have Java 11 or above installed.
 1. Down the latest version of `Duke` from [here](http://link.to/duke).
 
 ## Features 
 
-### Buying a stock: `buy /aapl 5`
+### Buying a stock: `buy /aapl`
 Buys the specified stock at market price
 
-Format: `buy /STOCK_TICKER QUANTITY`
+Format: `buy /STOCK_TICKER`
 
 * The `STOCK_TICKER` is the stock's short form
-* The `QUANTITY` is the number of shares you want to buy
 
 Example of usage: 
 
-`buy /fb 10`
+`buy /fb`
 
-`buy /tsla 1`
+`buy /tsla`
 
-### Selling a stock: `sell /aapl 5`
+### Selling a stock: `sell /aapl`
 Sells the specified stock at market price
 
-Format: `sell /STOCK_TICKER QUANTITY`
+Format: `sell /STOCK_TICKER`
 
 * The `STOCK_TICKER` is the stock's short form
-* The `QUANTITY` is the number of shares you want to sell
 
 Example of usage: 
 
-`sell /goog 20`
+`sell /goog`
 
-`sell /amzn 100`
+`sell /amzn`
 
 ### Searching for info about a stock: `search /aapl`
 Shows information about a stock like price and volume
@@ -52,6 +52,15 @@ Example of usage:
 
 `search /shop`
 
+### View your portfolio: `view`
+Shows the stocks you have, its quantity and current price. Also shows transaction history.
+
+Format: `view`
+
+Example of usage: 
+
+`view`
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -60,6 +69,9 @@ Example of usage:
 
 ## Command Summary
 
-* Buy a stock `buy /aapl 10`
-* Sell a stock `sell /aapl 10`
+{Give a 'cheat sheet' of commands here}
+
+* Buy a stock `buy /aapl`
+* Sell a stock `sell /aapl`
 * Search for a stock's info `search /aapl`
+* View portfolio `view`
