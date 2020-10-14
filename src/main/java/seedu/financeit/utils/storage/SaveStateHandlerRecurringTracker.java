@@ -58,7 +58,9 @@ public class SaveStateHandlerRecurringTracker extends SaveStateHandler {
             } else {
                 classContents[5] = "";
             }
-            inputString = "add " + incomeExpense + classContents[5] + "/desc " + classContents[1] + " /amt " + classContents[2] + classContents[3] + " /day " + classContents[0] + " /notes " + classContents[6];
+            inputString = "add " + incomeExpense + classContents[5] + "/desc " + classContents[1]
+                + " /amt " + classContents[2] + classContents[3] + " /day " + classContents[0]
+                + " /notes " + classContents[6];
             RecurringTracker.loadEntry(in.parseInput(inputString));
         }
     }

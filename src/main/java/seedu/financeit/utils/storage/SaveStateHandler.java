@@ -26,6 +26,10 @@ public abstract class SaveStateHandler {
 
     }
 
+    public String getSaveString(Object object) {
+        return object.getClass().getSimpleName() + ";" + object + System.lineSeparator();
+    }
+
     public void setPath(String filepath, String directory) {
         fullPath = filepath;
         dirPath = directory;

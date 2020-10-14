@@ -26,10 +26,6 @@ public class SaveStateHandlerManualTracker extends SaveStateHandler {
         super(filepath, directory);
     }
 
-    public String getSaveString(Object object) {
-        return object.getClass().getSimpleName() + ";" + object + System.lineSeparator();
-    }
-
     public void save() throws IOException {
         buildFile();
         LedgerList ledList = ManualTracker.getLedgerList();
