@@ -16,6 +16,7 @@ entry new /time 1500 /desc Go to the poll where>1.the rainbow used to be nice>2.
 entry new /time 1500 /desc Go to the pole -i /cat tpt /amt 1501
 entry new /time 1500 /desc Go to the pole -i /cat tpt /amt 1501 /slowbro ddffsfs
 entry edit /id 1 /time 1600
+entry edit /id
 entry list
 exit
 ledger open /date 200404
