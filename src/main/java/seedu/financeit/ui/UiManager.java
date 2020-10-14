@@ -73,9 +73,9 @@ public class UiManager {
         String message = "";
         for (int i = 0; i < messages.length; i++) {
             if (i == 0) {
-                message += String.format("[ %-15s]: %s", printType, messages[i]);
+                message += String.format("[ %-15s]: %s\n", printType, messages[i]);
             } else {
-                message += String.format("%-20s%s", " ", messages[i]);
+                message += String.format("%-20s%s\n", " ", messages[i]);
             }
         }
         return message;

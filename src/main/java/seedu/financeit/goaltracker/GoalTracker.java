@@ -64,6 +64,27 @@ public class GoalTracker {
         }
     }
 
+    public static int getExpenseGoal() {
+        return expenseGoal;
+    }
+
+    public static int getIncomeGoal() {
+        return incomeGoal;
+    }
+
+    public static void setGoals(int expense, int income) {
+        if (expense != 0) {
+            expenseGoal = expense;
+            goalSetter = new Goal(expenseGoal, "Expense");
+            totalGoalList.addGoal(goalSetter);
+        }
+        if (income != 0) {
+            incomeGoal = income;
+            goalSetter = new Goal(incomeGoal, "Income");
+            totalGoalList.addGoal(goalSetter);
+        }
+    }
+
     private static void setExpenseGoal() {
         backToMenu = false;
         while (!backToMenu && exitTracker == false) {
@@ -145,18 +166,18 @@ public class GoalTracker {
     }
 
     public static void handleExpenseGoal() {
-            LedgerList ledgerList = ManualTracker.getLedgerList();
-            int ledgerSize = ledgerList.getItemsSize();
-            for (int i = ledgerSize - 1; i < ledgerSize; i++) {
-                Ledger ledger = (Ledger) ledgerList.getItemAtIndex(i);
-                EntryList entryList = ledger.entryList;
-                int entrySize = entryList.getItemsSize();
-                for (int x = entrySize - 1; x < entrySize; x++) {
-                    expenses = entryData.getAmount();
-                    totalExpenses += expenses;
-                }
+        LedgerList ledgerList = ManualTracker.getLedgerList();
+        int ledgerSize = ledgerList.getItemsSize();
+        for (int i = ledgerSize - 1; i < ledgerSize; i++) {
+            Ledger ledger = (Ledger) ledgerList.getItemAtIndex(i);
+            EntryList entryList = ledger.entryList;
+            int entrySize = entryList.getItemsSize();
+            for (int x = entrySize - 1; x < entrySize; x++) {
+                expenses = entryData.getAmount();
+                totalExpenses += expenses;
             }
-            printExpenseGoal();
+        }
+        printExpenseGoal();
     }
 
     public static void printExpenseGoal() {
@@ -182,18 +203,18 @@ public class GoalTracker {
     }
 
     public static void handleIncomeGoal() {
-            LedgerList ledgerList = ManualTracker.getLedgerList();
-            int ledgerSize = ledgerList.getItemsSize();
-            for (int i = ledgerSize - 1; i < ledgerSize; i++) {
-                Ledger ledger = (Ledger) ledgerList.getItemAtIndex(i);
-                EntryList entryList = ledger.entryList;
-                int entrySize = entryList.getItemsSize();
-                for (int x = entrySize - 1; x < entrySize; x++) {
-                    incomes = entryData.getAmount();
-                    totalIncomes += incomes;
-                }
+        LedgerList ledgerList = ManualTracker.getLedgerList();
+        int ledgerSize = ledgerList.getItemsSize();
+        for (int i = ledgerSize - 1; i < ledgerSize; i++) {
+            Ledger ledger = (Ledger) ledgerList.getItemAtIndex(i);
+            EntryList entryList = ledger.entryList;
+            int entrySize = entryList.getItemsSize();
+            for (int x = entrySize - 1; x < entrySize; x++) {
+                incomes = entryData.getAmount();
+                totalIncomes += incomes;
             }
-            printIncomeGoal();
+        }
+        printIncomeGoal();
     }
 
     public static void printIncomeGoal() {

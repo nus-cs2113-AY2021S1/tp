@@ -22,9 +22,13 @@ public class RecurringEntry extends Item {
     String notes = "";
 
 
-    public RecurringEntry(CommandPacket packet) throws InsufficientParamsException {
+    public RecurringEntry() {
+        super();
+    }
+
+    public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
         try {
-            handleParams(packet);
+            super.handleParams(packet);
         } catch (ItemNotFoundException exception) {
             // Fall-through
         }

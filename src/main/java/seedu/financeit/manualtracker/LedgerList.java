@@ -56,11 +56,11 @@ public class LedgerList extends ItemList {
             LocalDate date = paramChecker.checkAndReturnDate(paramType);
             index = this.getIndexFromDate(date);
             super.indexToModify = index;
-            break;
+            return;
         case ParamChecker.PARAM_INDEX:
             index = paramChecker.checkAndReturnIndex(paramType, this.items);
             super.indexToModify = index;
-            break;
+            return;
         default:
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 paramChecker.getUnrecognizedParamMessage(paramType));

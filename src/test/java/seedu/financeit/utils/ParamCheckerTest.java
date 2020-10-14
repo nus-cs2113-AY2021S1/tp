@@ -115,7 +115,6 @@ public class ParamCheckerTest {
                 paramCheckerUnderTest.checkAndReturnDate(testParam);
                 fail();
             } catch (ParseFailParamException exception) {
-                System.out.println(errorInput[i]);
                 assertEquals(
                     "Failed to parse the following param: " + testParam,
                     exception.getMessage()

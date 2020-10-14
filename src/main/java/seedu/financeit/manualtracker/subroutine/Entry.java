@@ -9,15 +9,10 @@ import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.manualtracker.Ledger;
 import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.ParamChecker;
 
 import java.time.LocalTime;
-
-import static seedu.financeit.utils.ParamChecker.PARAM_AMOUNT;
-import static seedu.financeit.utils.ParamChecker.PARAM_CATEGORY;
-import static seedu.financeit.utils.ParamChecker.PARAM_DESCRIPTION;
-import static seedu.financeit.utils.ParamChecker.PARAM_EXP;
-import static seedu.financeit.utils.ParamChecker.PARAM_INC;
-import static seedu.financeit.utils.ParamChecker.PARAM_TIME;
+import java.util.Arrays;
 
 public class Entry extends DateTimeItem {
     private String description = " ";
@@ -79,38 +74,61 @@ public class Entry extends DateTimeItem {
     @Override
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
-        case PARAM_TIME:
+        case ParamChecker.PARAM_TIME:
             LocalTime time = super.paramChecker.checkAndReturnTime(paramType);
             super.setTime(time);
             break;
-        case PARAM_AMOUNT:
+        case ParamChecker.PARAM_AMOUNT:
             Double amount = super.paramChecker.checkAndReturnDouble(paramType);
             this.setAmount(amount);
             break;
-        case PARAM_INC:
+        case ParamChecker.PARAM_INC:
             this.setEntryType(Constants.EntryType.INC);
             break;
-        case PARAM_EXP:
+        case ParamChecker.PARAM_EXP:
             this.setEntryType(Constants.EntryType.EXP);
             break;
-        case PARAM_DESCRIPTION:
+        case ParamChecker.PARAM_DESCRIPTION:
             this.setDescription(packet.getParam(paramType));
             break;
-        case PARAM_CATEGORY:
+        case ParamChecker.PARAM_CATEGORY:
             String category = super.paramChecker.checkAndReturnCategory(paramType);
             this.setCategory(category);
             break;
         default:
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                super.paramChecker.getUnrecognizedParamMessage(paramType));
+            String[] ignoreParams = {
+                "/id"
+            };
+            if (!Arrays.asList(ignoreParams).contains(paramType)) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    paramChecker.getUnrecognizedParamMessage(paramType));
+            }
             break;
         }
+    }
+
+    private String retrieveLastWord(String input) {
+        input = input.replaceAll(">", " ");
+        String[] tokens = input.split(" ");
+        return tokens[tokens.length - 1];
+    }
+
+    private String getShortFormDesc(String description) {
+        int maxDescLength = 20;
+        maxDescLength = Math.min(maxDescLength, description.length());
+        String shortFormDescription = description.substring(0, maxDescLength);
+        if (description.length() > maxDescLength) {
+            shortFormDescription += "... ";
+            shortFormDescription += retrieveLastWord(description);
+        }
+        return shortFormDescription;
     }
 
     @Override
     public String getName() {
         return String.format("Entry %d : [ %s ] [ %s ]", this.getIndex() + 1,
-            this.dateTimeOutputManager.getSingleTimeFormatted("time"), this.description);
+            this.dateTimeOutputManager.getSingleTimeFormatted("time"),
+            this.getShortFormDesc(this.description));
     }
 
     @Override

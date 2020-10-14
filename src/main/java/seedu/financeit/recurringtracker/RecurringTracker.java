@@ -47,17 +47,16 @@ public class RecurringTracker {
         } while (!endTracker);
     }
 
-
     static RecurringEntry handleNewEntry(CommandPacket packet) {
-        RecurringEntry entry = null;
-        entries.setRequiredParams(
-                "/-i or -e",
+        RecurringEntry entry = new RecurringEntry();
+        entry.setRequiredParams(
+                "-i or -e",
                 "/desc",
                 "/amt",
                 "/day"
         );
         try {
-            entry = new RecurringEntry(packet);
+            entry.handlePacket(packet);
             entries.addItem(entry);
             String entryName = entry.getName();
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
@@ -65,11 +64,11 @@ public class RecurringTracker {
         } catch (InsufficientParamsException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
-        }
-
-        if (entry == null) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+        } finally {
+            if (!entry.getHasParsedAllRequiredParams()) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
+            }
         }
         return entry;
     }
@@ -91,6 +90,11 @@ public class RecurringTracker {
         } catch (InsufficientParamsException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
+        } finally {
+            if (!entries.getHasParsedAllRequiredParams()) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    "Input failed due to param error.");
+            }
         }
 
         return entry;
