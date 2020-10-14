@@ -27,6 +27,9 @@ public class PrefixSyntax {
     public static final String PREFIX_DATETIME = "d";
 
     public static final String STRING_SPLIT_DELIMITER = " ";
+    public static final String STRING_SORT_ASCENDING = "up";
+    public static final String STRING_SORT_DESCENDING = "down";
+    public static final String SUFFIX_INDEX = ". ";
     public static final String TIMING_SPLIT_DELIMITER = "-";
 
     /** Note content related prefix. */

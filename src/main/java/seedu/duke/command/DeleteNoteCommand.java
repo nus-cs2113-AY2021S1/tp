@@ -21,7 +21,7 @@ public class DeleteNoteCommand extends Command {
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
 
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Note deleted: ";
-    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook! ";
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exist in the notebook! ";
 
     private int index;
     private String title = "";

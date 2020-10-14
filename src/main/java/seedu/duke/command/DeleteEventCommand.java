@@ -17,9 +17,9 @@ public class DeleteEventCommand extends Command {
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Deletes an event. Parameters: "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
 
-    private static final String COMMAND_SUCCESSFUL_MESSAGE = "Event deleted:" + InterfaceManager.LS;
-    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Event failed to delete: " + InterfaceManager.LS;
-    private static final String INDEX_OUT_OF_RANGE_MESSAGE = "The index you specified is out of range. "
+    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Event deleted:" + InterfaceManager.LS;
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Event failed to delete: " + InterfaceManager.LS;
+    public static final String INDEX_OUT_OF_RANGE_MESSAGE = "The index you specified is out of range. "
             + "Please specify the index that is indicated when you print the event list";
 
     private int index;

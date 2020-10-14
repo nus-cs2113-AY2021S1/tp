@@ -1,15 +1,11 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
-import seedu.duke.data.notebook.Tag;
 import seedu.duke.ui.InterfaceManager;
-
-import java.util.ArrayList;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
-
 
 /**
  * Views a specific Note in the Notebook.
@@ -23,10 +19,6 @@ public class ViewNoteCommand extends Command {
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE]";
     
     private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook";
-
-    public static String getCommandUsage() {
-        return COMMAND_USAGE;
-    }
 
     private int index;
     private String title;
@@ -66,7 +58,7 @@ public class ViewNoteCommand extends Command {
             noteExists = true;
         } else {
             for (Note notes : notebook.getNotes()) {
-                if (notes.getTitle().equals(title)) {
+                if (notes.getTitle().equalsIgnoreCase(title)) {
                     note = notes;
                     noteExists = true;
                 }
@@ -75,13 +67,9 @@ public class ViewNoteCommand extends Command {
         if (!noteExists) {
             return COMMAND_UNSUCCESSFUL_MESSAGE;
         }
-        ArrayList<Tag> noteTags = note.getTags();
 
         // format output string
-        String stringToPrint = note.getTitle();
-        for (Tag tag:noteTags) {
-            stringToPrint += tag.toString();
-        }
+        String stringToPrint = note.getTitle() + " " + note.getTagsName();
 
         stringToPrint += InterfaceManager.LS + note.getContent();
         return stringToPrint;

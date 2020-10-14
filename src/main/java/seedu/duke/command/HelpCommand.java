@@ -16,27 +16,27 @@ public class HelpCommand extends Command {
 
     public static final String HELP_STRING = InterfaceManager.LS
             + "The recognized commands and their usages are listed below. "
-            + "Parameters listed in brackets, [ ] represent optional inputs." + InterfaceManager.LS;
+            + "Parameters listed in brackets, [ ] represent optional inputs." + InterfaceManager.LS + COLOR_WHITE_STRING
+            + AddNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
+            + AddEventCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
+            + CreateTagCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
+            + DeleteNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
+            + DeleteEventCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
+            + DeleteTagCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
+            + EditNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
+            + EditEventCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
+            + ExitCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
+            + FindCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
+            + ListEventCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
+            + ListNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
+            + ListTagCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
+            + PinCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
+            + RemindCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
+            + TagCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
+            + ViewNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_RESET_STRING;
 
     @Override
     public String execute() {
-        return HELP_STRING + InterfaceManager.LS + COLOR_WHITE_STRING
-                + AddNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
-                + AddEventCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
-                + CreateTagCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
-                + DeleteNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
-                + DeleteEventCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
-                + DeleteTagCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
-                + EditNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
-                + EditEventCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
-                + ExitCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
-                + FindCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
-                + ListEventCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
-                + ListNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
-                + ListTagCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
-                + PinCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
-                + RemindCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
-                + TagCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
-                + ViewNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_RESET_STRING;
+        return HELP_STRING;
     }
 }

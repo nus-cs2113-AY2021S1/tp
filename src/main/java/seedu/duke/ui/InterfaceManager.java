@@ -1,8 +1,5 @@
 package seedu.duke.ui;
 
-import seedu.duke.data.notebook.Notebook;
-import seedu.duke.data.timetable.Timetable;
-
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;

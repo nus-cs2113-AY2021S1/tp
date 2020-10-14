@@ -2,7 +2,6 @@ package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
-import seedu.duke.ui.InterfaceManager;
 
 import java.util.ArrayList;
 
@@ -22,9 +21,9 @@ public class TagCommand extends Command {
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG TAG_COLOR "
             + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG1 TAG_COLOR...]";
 
-    private static final String ADD_TAG_MESSAGE = "Added the tag to the note! ";
-    private static final String REMOVE_TAG_MESSAGE = "Removed the tag from the note! ";
-    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Invalid index input!";
+    public static final String TAG_NOTE_MESSAGE = "Added the tag to the note! ";
+    public static final String UNTAG_NOTE_MESSAGE = "Removed the tag from the note! ";
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Invalid index input!";
 
     private int index;
     private ArrayList<Tag> tags;
@@ -39,30 +38,11 @@ public class TagCommand extends Command {
 
     @Override
     public String execute() {
-        String executeMessage = "";
-
         try {
             Note note = notebook.getNotes().get(index);
-            for (Tag t : tags) {
-                // Tries to get the tag from the database
-                Tag existingTag = tagManager.getTag(t.getTagName());
-
-                // Check if the note contains such tag
-                if (note.getTags().contains(existingTag)) {
-                    tagManager.removeTag(note, existingTag);
-                    executeMessage = executeMessage.concat(REMOVE_TAG_MESSAGE + existingTag + InterfaceManager.LS);
-                } else {
-                    // Run the create tag in case existingTag is null, if it is not null, it updates the tag
-                    tagManager.createTag(t, false);
-                    existingTag = tagManager.getTag(t.getTagName());
-                    tagManager.tagNote(note, existingTag);
-                    executeMessage = executeMessage.concat(ADD_TAG_MESSAGE + existingTag + InterfaceManager.LS);
-                }
-            }
-            executeMessage = executeMessage + InterfaceManager.LS;
+            return tagManager.tagAndUntagNote(note, tags, TAG_NOTE_MESSAGE, UNTAG_NOTE_MESSAGE);
         } catch (IndexOutOfBoundsException exception) {
-            executeMessage = COMMAND_UNSUCCESSFUL_MESSAGE;
+            return COMMAND_UNSUCCESSFUL_MESSAGE;
         }
-        return executeMessage.trim();
     }
 }
