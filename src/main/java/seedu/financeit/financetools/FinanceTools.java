@@ -1,9 +1,7 @@
 package seedu.financeit.financetools;
 
-import seedu.financeit.Financeit;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
-import seedu.financeit.common.ParamHandler;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
@@ -109,13 +107,13 @@ public class FinanceTools {
             CommandPacket packet = new InputParser().parseInput(input.toLowerCase());
             switch (packet.getCommandString()) {
             case "simplecalc":
-                System.out.print("Total Interest Earned: $" + Double.toString(handleSimpleInterest(packet)));
+                System.out.print("Total Interest Earned: $" + handleSimpleInterest(packet));
                 break;
             case "cashbackcalc":
-                System.out.print("Total Cashback Earned: $" + Double.toString(handleCashback(packet)));
+                System.out.print("Total Cashback Earned: $" + handleCashback(packet));
                 break;
             case "milescalc":
-                System.out.print("Total Miles Earned: " + Double.toString(handleMilesCredit(packet)));
+                System.out.print("Total Miles Earned: " + handleMilesCredit(packet));
                 break;
             case "compoundcalc":
                 System.out.printf("Compound Interval: Yearly\n"
