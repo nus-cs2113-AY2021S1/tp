@@ -27,15 +27,16 @@ public class EventTest {
     void getReminderDates() {
         ArrayList<LocalDate> reminderDates = event.getReminderDates();
         reminderDates.sort(LocalDate::compareTo);
+        ArrayList<Integer> timePeriods = new ArrayList<>(TEST_TIME_PERIODS);
+        timePeriods.sort(Integer::compareTo);
         int i = 0;
-        for (Integer daysBefore : TEST_TIME_PERIODS) {
+        for (Integer daysBefore : timePeriods) {
             LocalDate dateTime = TEST_DATE_TIME.minusDays(daysBefore).toLocalDate();
             assertReminderDate(reminderDates.get(i), dateTime);
             i++;
         }
     }
 
-    @Test
     void assertReminderDate(LocalDate generatedDate, LocalDate correctDate) {
         assertEquals(generatedDate, correctDate);
     }
