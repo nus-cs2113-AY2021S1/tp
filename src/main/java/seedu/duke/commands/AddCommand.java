@@ -97,6 +97,12 @@ public class AddCommand extends Command {
         }
     }
 
+    private void ensureNoSimilarBooks(BookList books, String title, String authorName) throws QuotesifyException {
+        ArrayList<Book> similarBooks = books.find(title, authorName);
+        if (!similarBooks.isEmpty()) {
+            throw new QuotesifyException(ERROR_BOOK_ALREADY_EXISTS);
+        }
+    }
     private void addQuote(QuoteList quotes, TextUi ui) {
         try {
             Quote quote = QuoteParser.parseAddParameters(information);
