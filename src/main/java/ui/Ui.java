@@ -152,8 +152,6 @@ public class Ui {
         out.println("8. " + BackCommand.MESSAGE_USAGE);
     }
 
-
-
     public void showError(String error) {
         out.println(error);
     }

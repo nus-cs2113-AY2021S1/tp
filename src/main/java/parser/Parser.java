@@ -6,14 +6,13 @@ import commands.ListCommand;
 import commands.AddChapterCommand;
 import commands.AddCommand;
 import commands.AddModuleCommand;
-import commands.GoChapterCommand;
 import commands.HelpCommand;
 import commands.RemoveCommand;
 import commands.ReviseCommand;
 import commands.ExitCommand;
-import commands.GoModuleCommand;
 import commands.EditCommand;
 import commands.BackCommand;
+import commands.GoCommand;
 
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
@@ -52,31 +51,22 @@ public class Parser {
             return prepareAddModule(commandArgs);
         case AddChapterCommand.COMMAND_WORD:
             return prepareAddChapter(commandArgs);
-        case GoModuleCommand.COMMAND_WORD:
-            return prepareGoModule(commandArgs);
-        case GoChapterCommand.COMMAND_WORD:
-            return prepareGoChapter(commandArgs);
         case EditCommand.COMMAND_WORD:
             return prepareEdit(commandArgs, access);
         case BackCommand.COMMAND_WORD:
             return prepareBack(commandArgs);
+        case GoCommand.COMMAND_WORD:
+            return prepareGo(commandArgs);
         default:
             throw new InvalidInputException("There is no such command type.\n");
         }
     }
 
-    private static Command prepareGoChapter(String commandArgs) throws InvalidInputException {
+    private static Command prepareGo(String commandArgs) throws InvalidInputException {
         if (commandArgs.isEmpty()) {
             throw new InvalidInputException();
         }
-        return new GoChapterCommand(commandArgs);
-    }
-
-    private static Command prepareGoModule(String commandArgs) throws InvalidInputException {
-        if (commandArgs.isEmpty()) {
-            throw new InvalidInputException();
-        }
-        return new GoModuleCommand(commandArgs);
+        return new GoCommand(commandArgs);
     }
 
     private static Command prepareBack(String commandArgs) throws InvalidInputException {

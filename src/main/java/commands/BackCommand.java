@@ -1,7 +1,6 @@
 package commands;
 
 import access.Access;
-import exception.IncorrectAccessLevelException;
 import manager.chapter.CardList;
 import storage.Storage;
 import ui.Ui;
@@ -19,7 +18,7 @@ public class BackCommand extends Command {
         } else if (access.isModuleLevel()) {
             access.setModuleLevel("");
         } else {
-            System.out.println("Back command can only be called at admin module and chapter level.");
+            System.out.println("Back command can only be called at module and chapter level.");
         }
     }
 
