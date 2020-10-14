@@ -31,8 +31,8 @@ public class Eduke8 {
         logStorage = new LogStorage(logPath);
         ui = new Ui();
         try {
-            topicList = new TopicList(topicsStorage.load());
             logStorage.save();
+            topicList = new TopicList(topicsStorage.load());
         } catch (ParseException | IOException e) {
             ui.printError();
         }

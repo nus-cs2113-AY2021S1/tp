@@ -15,6 +15,8 @@ public class QuizParser implements Parser {
     private Question question;
 
     public void setQuestion(Question question) {
+        assert question != null;
+
         this.question = question;
     }
 

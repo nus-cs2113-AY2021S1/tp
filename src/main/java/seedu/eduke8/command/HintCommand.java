@@ -14,5 +14,7 @@ public class HintCommand extends Command {
     @Override
     public void execute(DisplayableList displayableList, Ui ui) {
         ui.printHint(hint);
+
+        assert hint.wasShown();
     }
 }

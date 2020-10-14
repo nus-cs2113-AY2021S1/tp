@@ -19,8 +19,10 @@ public class AnswerCommand extends Command {
         if (option.isCorrectAnswer()) {
             ui.printAnswerIsCorrect();
             question.markAsAnsweredCorrectly();
+            assert question.wasAnsweredCorrectly();
         } else {
             ui.printAnswerIsWrong();
+            assert !question.wasAnsweredCorrectly();
         }
     }
 }
