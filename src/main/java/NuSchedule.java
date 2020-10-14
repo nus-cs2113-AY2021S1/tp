@@ -2,6 +2,8 @@ import command.Command;
 import eventlist.EventList;
 import exception.CreatingFileException;
 import exception.NuScheduleException;
+import locationlist.BusStopList;
+import locationlist.LocationList;
 import parser.Parser;
 import storage.Storage;
 import ui.UI;
@@ -12,6 +14,8 @@ public class NuSchedule {
      */
     private Storage storage;
     private EventList events;
+    private static BusStopList busStops;
+    private static LocationList locations;
     private UI ui;
 
     public NuSchedule(String filePath) {
@@ -33,6 +37,10 @@ public class NuSchedule {
      * Runs the program until termination.
      */
     public void run() {
+        busStops = new BusStopList();
+        locations = new LocationList();
+        // busStops.loadBusStopData();
+        // locations.loadLocationData();
         ui.printGreetingMessage();
         boolean isExit = false;
         while (!isExit) {
