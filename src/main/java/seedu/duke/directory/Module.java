@@ -10,6 +10,16 @@ public class Module extends Directory {
     private String description;
     private TaskManager tasks;
 
+    /**
+     * Constructs the module but with limited information.
+     *
+     * @param moduleCode
+     *  The module code of the module
+     */
+    public Module(String moduleCode) {
+        this(moduleCode, "", "NIL");
+    }
+
     public Module(String moduleCode, String title, String description) {
         super(root);
         this.moduleCode = moduleCode.toUpperCase();

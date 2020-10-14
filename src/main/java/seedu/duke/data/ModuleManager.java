@@ -13,6 +13,21 @@ public class ModuleManager {
     private static HashMap<String, String> modulesMap;
 
     /**
+     * Initialises the ModuleManager class.
+     *
+     * @param modulesMap
+     *  The hash map containing NUS provided modules
+     */
+    public static void initialise(HashMap<String, String> modulesMap) {
+        if (modulesMap == null) {
+            ModuleManager.modulesMap = new HashMap<>();
+        } else {
+            ModuleManager.modulesMap = modulesMap;
+        }
+        moduleList = new ArrayList<>();
+    }
+
+    /**
      *  Finds a module with the specified module code in the Module List.
      *
      * @param moduleCode
@@ -70,6 +85,34 @@ public class ModuleManager {
             }
         }
         return false;
+    }
+
+    /**
+     * Returns the modules map
+     *
+     * @return modules map
+     */
+    public static HashMap<String, String> getModulesMap() {
+        return modulesMap;
+    }
+
+    /**
+     * Add a module to the Module List.
+     *
+     * @param toAdd
+     *  The module to be added
+     */
+    public static void add(Module toAdd) throws DuplicateModuleException, ModuleNotProvidedException {
+        //check duplicate
+        if (contains(toAdd.getModuleCode())) {
+            throw new DuplicateModuleException();
+        } else if (modulesMap.size() > 0 && !modulesMap.containsKey(toAdd.getModuleCode())) {
+            throw new ModuleNotProvidedException();
+        } else {
+            String moduleTitle = modulesMap.get(toAdd.getModuleCode());
+            toAdd.setTitle(moduleTitle);
+            moduleList.add(toAdd);
+        }
     }
 
     public static class ModuleNotFoundException extends DataNotFoundException {

@@ -2,15 +2,19 @@ package seedu.duke.parser;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.IncorrectCommand;
+import seedu.duke.command.addcommand.AddModuleCommand;
+import seedu.duke.exception.InvalidFormatException;
 
 import java.security.InvalidParameterException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static seedu.duke.util.ExceptionMessage.MESSAGE_DUPLICATE_PREFIX_FOUND;
 import static seedu.duke.util.ExceptionMessage.MESSAGE_INVALID_PARAMETERS;
 import static seedu.duke.util.Message.MESSAGE_CHECK_COMMAND_FORMAT;
 import static seedu.duke.util.Message.MESSAGE_EMPTY_INPUT;
 import static seedu.duke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.duke.util.Message.MESSAGE_MISSING_MODULE_CODE;
 import static seedu.duke.util.Message.MESSAGE_NO_EDIT_MODULE;
 
 public class Parser {
@@ -52,13 +56,43 @@ public class Parser {
 
         try {
             switch (commandWord){
+            case AddModuleCommand.COMMAND_WORD:
+                return prepareAddModuleCommand(parameters);
             default:
-                return null;
+                return new IncorrectCommand("Wrong!");
             }
         } catch (InvalidParameterException e) {
             return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
+        } catch (DuplicatePrefixException e) {
+            return new IncorrectCommand(String.format("%s%s\n", MESSAGE_DUPLICATE_PREFIX_FOUND, e.getMessage()));
+        }
+    }
+
+    /**
+     * Prepares the command to add a module.
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to add a module
+     */
+    private Command prepareAddModuleCommand(String parameters)
+            throws InvalidParameterException, DuplicatePrefixException {
+        Matcher matcher = AddModuleCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher);
+
+        String invalid = matcher.group(INVALID_GROUP).trim();
+        if (!invalid.isEmpty()) {
+            return new IncorrectCommand(String.format("%s%s\n\n%s%s\n",
+                    MESSAGE_INVALID_COMMAND_FORMAT, invalid, MESSAGE_CHECK_COMMAND_FORMAT, AddModuleCommand.FORMAT));
         }
 
+        String moduleCode = matcher.group(IDENTIFIER_GROUP).trim();
+        if (moduleCode.isEmpty()) {
+            return new IncorrectCommand(MESSAGE_MISSING_MODULE_CODE);
+        }
+
+        return new AddModuleCommand(moduleCode);
     }
 
     /**
@@ -96,5 +130,18 @@ public class Parser {
             }
         }
         return true;
+    }
+
+    public static class DuplicatePrefixException extends InvalidFormatException {
+        private String message;
+
+        public DuplicatePrefixException(String message) {
+            this.message = message;
+        }
+
+        @Override
+        public String getMessage() {
+            return message;
+        }
     }
 }

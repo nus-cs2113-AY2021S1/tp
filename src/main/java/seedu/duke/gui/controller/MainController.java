@@ -26,9 +26,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import seedu.duke.Executor;
 import seedu.duke.PacApp;
+import seedu.duke.command.Command;
+import seedu.duke.command.CommandResult;
 import seedu.duke.command.PromptType;
 import seedu.duke.gui.component.DialogBox;
+import seedu.duke.parser.Parser;
 
 import java.io.IOException;
 import java.net.URL;
@@ -111,6 +115,11 @@ public class MainController implements Initializable {
     }
 
     private String getResponse(String userInput) {
-        return userInput;
+        Command parsedCommand = new Parser().parseCommand(userInput);
+        //promptType = parsedCommand.getPromptType();
+        CommandResult commandResult;
+        commandResult = Executor.executeCommand(parsedCommand);
+        //CommandManager.add(userInput);
+        return commandResult.getFeedbackToUser();
     }
 }

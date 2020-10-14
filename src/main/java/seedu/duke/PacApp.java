@@ -27,15 +27,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.duke.data.IoManager;
 import seedu.duke.data.ModuleLoader;
+import seedu.duke.data.ModuleManager;
 import seedu.duke.data.StoragePath;
 
 import java.io.IOException;
 import java.util.HashMap;
-
-import static seedu.duke.util.Constant.DEFAULT_DIALOG_FONT;
-import static seedu.duke.util.Constant.DEFAULT_DIALOG_SIZE;
-import static seedu.duke.util.Message.DUCK_LOGIN;
-import static seedu.duke.util.Message.INCORRECT_USER_OR_PW;
 
 /**
  * Runs the application.
@@ -56,6 +52,7 @@ public class PacApp extends Application {
         //SystemSetting.initialise();
         //TaskManager.initialise();
         HashMap<String, String> modulesMap = ModuleLoader.load(StoragePath.NUS_MODULE_LIST_PATH);
+        ModuleManager.initialise(modulesMap);
         //IOManager.loadList();
         //StateManager.initialise();
     }
