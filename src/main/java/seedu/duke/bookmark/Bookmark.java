@@ -29,6 +29,6 @@ public class Bookmark {
 
     @Override
     public String toString() {
-        return book.getTitle() + " / " + Integer.toString(pageNum);
+        return "\"" + book.getTitle() + "\"" + " at page: " + Integer.toString(pageNum);
     }
 }

@@ -4,12 +4,18 @@ import seedu.duke.book.Book;
 import seedu.duke.book.BookList;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
+import seedu.duke.exception.QuotesifyException;
 import seedu.duke.lists.ListManager;
 import seedu.duke.ui.TextUi;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BookmarkCommand extends Command {
     private String type;
     private String information;
+
+    public static Logger addLogger = Logger.getLogger("QuotesifyLogger");
 
     public BookmarkCommand(String arguments) {
         String[] details = arguments.split(" ", 2);
@@ -37,15 +43,23 @@ public class BookmarkCommand extends Command {
 
     public void handleBookmark(BookList books, BookmarkList bookmarks, TextUi ui) {
         String[] titleAndPage = information.split("/pg");
-        String title = titleAndPage[0].trim();
-        String page = titleAndPage[1].trim();
-        Book bookToMark = null;
 
-        bookToMark = books.findByTitle(title);
-        if (bookToMark != null) {
-            addBookmarkToBook(bookToMark, bookmarks, page, ui);
-        } else {
-            System.out.println(ERROR_NO_BOOK_FOUND);
+        try {
+            if (titleAndPage.length == 1) {
+                throw new QuotesifyException(ERROR_NO_PAGE_FOUND);
+            }
+
+            String title = titleAndPage[0].trim();
+            String page = titleAndPage[1].trim();
+            Book bookToMark = books.findByTitle(title);
+            if (bookToMark != null) {
+                addBookmarkToBook(bookToMark, bookmarks, page, ui);
+            } else {
+                System.out.println(ERROR_NO_BOOK_FOUND);
+            }
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(ERROR_NO_PAGE_FOUND);
+            addLogger.log(Level.INFO, "add bookmark to bookmarkList failed");
         }
 
     }

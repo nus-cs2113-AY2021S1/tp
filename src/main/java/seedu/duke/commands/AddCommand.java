@@ -66,7 +66,7 @@ public class AddCommand extends Command {
             break;
         case TAG_TODO:
             ToDoList toDos = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
-            ToDo newToDo = addToDo(toDos);
+            ToDo newToDo = addToDo(toDos, ui);
             ui.printAddToDo(newToDo);
             break;
         default:
@@ -251,11 +251,17 @@ public class AddCommand extends Command {
         return false;
     }
 
-    private ToDo addToDo(ToDoList toDos) {
+    private ToDo addToDo(ToDoList toDos, TextUi ui) {
         String[] taskNameAndDeadline = information.split("/by", 2);
+
+        // if user did not provide deadline, let titleAndAuthor[1] be "not specified"
+        if (taskNameAndDeadline.length == 1) {
+            taskNameAndDeadline = new String[] {taskNameAndDeadline[0], "not specified" };
+        }
+
         String taskName = taskNameAndDeadline[0].trim();
         String deadline = taskNameAndDeadline[1].trim();
-        ToDo newToDo = new ToDo(taskName,deadline);
+        ToDo newToDo = new ToDo(taskName, deadline);
         toDos.add(newToDo);
 
         return newToDo;

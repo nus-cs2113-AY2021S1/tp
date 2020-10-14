@@ -37,7 +37,13 @@ public class ToDo {
 
     @Override
     public String toString() {
-        return "T | " + ((this.isDone) ? "1" : "0")
-                + " | " + this.name + " | " + this.deadline;
+        return  "[" + this.getStatusIcon() + "] "
+                + this.name + " (by: " + this.deadline + ")";
+    }
+
+    public String getStatusIcon() {
+        String signTick = "v";
+        String signCross = "x";
+        return (isDone ? signTick : signCross);
     }
 }
