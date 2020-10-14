@@ -43,11 +43,11 @@ public class CreateSprintCommand extends SprintCommand {
     private void createFirstSprint(Project proj) {
 
         LocalDate sprintStart = LocalDate.now();
-        if (!parameters.get("start").isEmpty()) {
-            sprintStart = DateTimeParser.parseDate(parameters.get("start"));
+        if (!this.parametersInHT.get("start").isEmpty()) {
+            sprintStart = DateTimeParser.parseDate(this.parametersInHT.get("start"));
         }
         LocalDate sprintEnd = sprintStart.plusDays(proj.getSprintLength() - 1);
-        String sprintGoal = parameters.get("goal");
+        String sprintGoal = this.parametersInHT.get("goal");
         allSprint.addSprint(proj, sprintGoal, sprintStart, sprintEnd);
 
         LocalDate projEndDate = sprintStart.plusDays(proj.getProjectDuration() - 1);
@@ -62,7 +62,7 @@ public class CreateSprintCommand extends SprintCommand {
 
     private void createSubsequentSprint(Project proj) {
 
-        String sprintGoal = parameters.get("goal");
+        String sprintGoal = this.parametersInHT.get("goal");
         Sprint prevSprint = allSprint.getSprint(allSprint.size() - 1);
         LocalDate sprintStart = prevSprint.getEndDate().plusDays(1);
         if (DateTimeParser.diff(proj.getEndDate(),sprintStart) >= 0) {
@@ -71,21 +71,18 @@ public class CreateSprintCommand extends SprintCommand {
         }
         LocalDate sprintEnd = sprintStart.plusDays(proj.getSprintLength() - 1);
         allSprint.addSprint(proj, sprintGoal, sprintStart, sprintEnd);
-        if (!parameters.containsKey("start")) {
+        if (!this.parametersInHT.containsKey("start")) {
             Ui.showToUserLn(Messages.MESSAGE_CREATE_SUB_SPRINT);
         }
         printCreatedSprint();
     }
 
     private boolean validateParams() {
-        return !parameters.get("goal").isEmpty();
+        return !this.parametersInHT.get("goal").isEmpty();
     }
 
     private void printCreatedSprint() {
-        Sprint created = allSprint.getSprint(allSprint.size() - 1);
-        Ui.showToUserLn("\n--- New Sprint ---");
-        Ui.showToUserLn("Goal: " + created.getGoal());
-        Ui.showToUserLn("Start Date: " + created.getStartDate());
-        Ui.showToUserLn("End Date: " + created.getEndDate());
+        Sprint createdSprint = allSprint.getSprint(allSprint.size() - 1);
+        Ui.showToUserLn(createdSprint.toString());
     }
 }

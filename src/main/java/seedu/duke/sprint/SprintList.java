@@ -17,8 +17,8 @@ public class SprintList implements Jsonable {
     private int currentSprintIndex;
 
     public SprintList() {
-        sprintList = new ArrayList<>();
-        currentSprintIndex = -1;
+        this.sprintList = new ArrayList<>();
+        setCurrentSprintIndex(-1);
     }
 
     public int size() {
@@ -30,7 +30,8 @@ public class SprintList implements Jsonable {
     }
 
     public void addSprint(Project proj, String goal, LocalDate start, LocalDate end) {
-        sprintList.add(new Sprint(proj, goal, start, end));
+        int newSprintID = this.size();
+        sprintList.add(new Sprint(newSprintID, proj, goal, start, end));
     }
 
     public int getCurrentSprintIndex() {

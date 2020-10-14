@@ -15,7 +15,7 @@ public class DeleteSprintTaskCommand extends SprintCommand {
     private ArrayList<Project> projectList;
     private Project proj;
 
-    public DeleteSprintTaskCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList) {
+    public DeleteSprintTaskCommand(ArrayList<String> parameters, ArrayList<Project> projectList) {
         super(parameters);
         this.projectList = projectList;
     }
@@ -27,11 +27,11 @@ public class DeleteSprintTaskCommand extends SprintCommand {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
             Sprint currentSprint = allSprint.getSprint(currentSprintNo);
 
-            Ui.showToUserLn("Tasks deleted: ");
-            for (int i = 0; i < parameters.size(); i++) {
-                Ui.showToUserLn(proj.getProjectBacklog().getTask(i).toString());
-                currentSprint.removeSprintTask(i);
-            }
+            //            Ui.showToUserLn("Tasks deleted: ");
+            //            for (int i = 0; i < parameters.size(); i++) {
+            //                Ui.showToUserLn(proj.getProjectBacklog().getTask(i).toString());
+            //                currentSprint.removeSprintTask(i);
+            //            }
         } else {
             checkReason();
         }

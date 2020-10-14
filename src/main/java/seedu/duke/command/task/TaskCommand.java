@@ -40,10 +40,9 @@ public class TaskCommand {
         }
         try {
             Project proj = projectList.get(0);
-            Task task = new Task(title, description, priority);
-            proj.getProjectBacklog().addTask(task);
-
-            Ui.showToUserLn(task.getTitle() + " has been added.");
+            proj.getProjectBacklog().addTask(title, description, priority);
+            Task addedTask =  proj.getProjectBacklog().getTask(proj.getProjectBacklog().size() - 1);
+            Ui.showToUserLn(addedTask.getTitle() + " has been added.");
 
         } catch (IndexOutOfBoundsException e) {
             Ui.showError("There are no projects! Please create a project first.");

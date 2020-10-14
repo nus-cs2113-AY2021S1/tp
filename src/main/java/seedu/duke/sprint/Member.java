@@ -24,7 +24,7 @@ public class Member implements Jsonable {
         return userId;
     }
 
-    public void allocatedTask(int taskid){
+    public void allocateTask(int taskid) {
         allocatedTaskIds.add(taskid);
     }
 

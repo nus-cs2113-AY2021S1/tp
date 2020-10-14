@@ -1,6 +1,7 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.project.Project;
+import seedu.duke.sprint.Member;
 import seedu.duke.sprint.Sprint;
 import seedu.duke.sprint.SprintList;
 import seedu.duke.parser.DateTimeParser;
@@ -8,6 +9,7 @@ import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 
 public class AllocateSprintTaskCommand extends SprintCommand {
@@ -25,15 +27,21 @@ public class AllocateSprintTaskCommand extends SprintCommand {
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
             if (validateParams()) {
-                String taskId = parameters.get("taskid");
-                ArrayList<String> users = new ArrayList<>();
-                for (int i = 0; i < parameters.size() - 1; i++) {
-                    users.add(parameters.get(Integer.toString(i)));
+                int taskId = Integer.parseInt(this.parametersInHT.get("task").trim());
+                String[] userIds = this.parametersInHT.get("user").split(" ");
+                for (String id: userIds) {
+                    Member mem = proj.getProjectMember().getMember(id.trim());
+                    if (mem == null) {
+                        Ui.showError("User not found.");
+                        return;
+                    } else {
+                        mem.allocateTask(taskId);
+                        proj.getProjectBacklog().getTask(taskId).allocateToMember(mem.getUserId());
+                    }
                 }
-
-                int currentSprintNo = allSprint.getCurrentSprintIndex();
-                Sprint currentSprint = allSprint.getSprint(currentSprintNo);
-                currentSprint.allocateSprintTask(Integer.parseInt(taskId), users);
+                Ui.showToUserLn(proj.getProjectBacklog().getTask(taskId).getTitle()
+                        + " assigned to "
+                        + Arrays.toString(userIds));
             }
         } else {
             checkReason();
@@ -41,7 +49,7 @@ public class AllocateSprintTaskCommand extends SprintCommand {
     }
 
     private boolean validateParams() {
-        return !parameters.get("taskid").isEmpty() && !parameters.get("0").isEmpty();
+        return !this.parametersInHT.get("task").isEmpty() && !this.parametersInHT.get("user").isEmpty();
     }
 
     private void checkReason() {

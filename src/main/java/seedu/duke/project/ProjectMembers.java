@@ -22,8 +22,17 @@ public class ProjectMembers implements Jsonable {
         return memberList.size();
     }
 
-    public Member getMember(int id) {
-        return memberList.get(id);
+    public ArrayList<Member> getAllMembers() {
+        return this.memberList;
+    }
+
+    public Member getMember(String userid) {
+        for (Member mem: memberList) {
+            if (mem.getUserId().equals(userid)) {
+                return mem;
+            }
+        }
+        return null;
     }
 
     public void addMember(Member m) {

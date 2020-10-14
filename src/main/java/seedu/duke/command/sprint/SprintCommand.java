@@ -4,6 +4,7 @@ import seedu.duke.command.Command;
 import seedu.duke.project.Project;
 import seedu.duke.ui.Ui;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 public abstract class SprintCommand extends Command {
@@ -12,6 +13,10 @@ public abstract class SprintCommand extends Command {
      */
 
     public SprintCommand(Hashtable<String, String> parameters) {
+        super(parameters);
+    }
+
+    public SprintCommand(ArrayList<String> parameters) {
         super(parameters);
     }
 

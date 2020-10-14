@@ -14,6 +14,7 @@ public class CommandSummary {
      */
     public static final String CREATE = "create";
     public static final String ADD = "add";
+    public static final String ADDTASK = "addtask";
     public static final String DELETE = "del";
     public static final String VIEW = "view";
     public static final String DONE = "done";

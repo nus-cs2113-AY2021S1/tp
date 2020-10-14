@@ -20,27 +20,22 @@ public class ProjectBacklog implements Jsonable {
         size = 0;
     }
 
-    public void addTask(Task task) {
-        backlogTasks.add(task);
-        task.setId(backlogTasks.size() - 1);
-        size++;
+    public void addTask(String title, String description, String priority) {
+        int newTaskId = size++;
+        backlogTasks.add(new Task(newTaskId, title, description, priority));
     }
 
     public int size() {
         return size;
     }
 
-    public Task getTaskByID(int id) {
-        for(Task task: backlogTasks){
-            if (task.getId() == id){
+    public Task getTask(int id) {
+        for (Task task: backlogTasks) {
+            if (task.getId() == id) {
                 return task;
             }
         }
         return null;
-    }
-
-    public Task getTask(int i) {
-        return backlogTasks.get(i);
     }
 
     public Task removeTask(int i) {

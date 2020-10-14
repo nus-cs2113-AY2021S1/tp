@@ -16,7 +16,7 @@ public class AddSprintTaskCommand extends SprintCommand {
     private Project proj;
 
 
-    public AddSprintTaskCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList) {
+    public AddSprintTaskCommand(ArrayList<String> parameters, ArrayList<Project> projectList) {
         super(parameters);
         this.projectList = projectList;
     }
@@ -28,11 +28,10 @@ public class AddSprintTaskCommand extends SprintCommand {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
             Sprint currentSprint = allSprint.getSprint(currentSprintNo);
 
-            Ui.showToUserLn("Tasks added: ");
-            for (int i = 0; i < parameters.size(); i++) {
-                currentSprint.addSprintTask(i);
-                Ui.showToUserLn(proj.getProjectBacklog().getTask(i).toString());
-
+            for (String entry: this.parametersInAL) {
+                int taskId = Integer.parseInt(entry);
+                currentSprint.addSprintTask(taskId);
+                Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + "added to sprint.\n");
             }
         } else {
             checkReason();

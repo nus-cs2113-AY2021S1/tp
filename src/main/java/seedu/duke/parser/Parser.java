@@ -11,11 +11,14 @@ import seedu.duke.command.task.TaskCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Hashtable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static seedu.duke.command.CommandSummary.ADD;
+import static seedu.duke.command.CommandSummary.ADDTASK;
 import static seedu.duke.command.CommandSummary.BYE;
 import static seedu.duke.command.CommandSummary.CREATE;
 import static seedu.duke.command.CommandSummary.DELETE;
@@ -35,7 +38,7 @@ public class Parser {
     //Groups of 2: (option name) (option value)
     private static final Pattern ARGS_PATTERN = Pattern.compile("-(\\w+)\\s([^-]+)");
     private final Hashtable<String, String> parameters = new Hashtable<>();
-    private  ArrayList<String> params = new ArrayList<>();
+    private ArrayList<String> params = new ArrayList<>();
 
 
     public String parser(String userInput, ArrayList<Project> projectList) {
@@ -48,12 +51,11 @@ public class Parser {
         if (cmdMatcher.matches()) { //Need to check if it matches, groupCount will always show 3
             String command = cmdMatcher.group(1); //capture first group (command)
             String action = cmdMatcher.group(2); //capture 2nd group (action)
-
-            System.out.println(action);
             String rawArgs = cmdMatcher.group(3); //capture 3rd group (options)
             Matcher parameterMatcher = ARGS_PATTERN.matcher(rawArgs); //match the option
 
             if (!rawArgs.contains("-")) {
+                params.clear();
                 String[] arguments = rawArgs.split(" ");
                 params.addAll(Arrays.asList(arguments));
             } else {
@@ -132,34 +134,24 @@ public class Parser {
                 }
                 break;
             case SPRINT:
-                Hashtable<String, String> HCparameters = new Hashtable<>();
 
                 switch (action.toLowerCase()) {
                 case CREATE:
                     new CreateSprintCommand(parameters, projectList).execute();
                     break;
-                case ADD:
-//                    HCparameters.put("0", "1");
-//                    HCparameters.put("1", "2");
-//                    HCparameters.put("2", "4");
-//                    HCparameters.put("3", "6");
-//                    new AddSprintTaskCommand(HCparameters, projectList).execute();
+                case ADDTASK:
+                    new AddSprintTaskCommand(params, projectList).execute();
                     break;
                 case DELETE:
-//                    HCparameters.put("0", "2");
-//                    new DeleteSprintTaskCommand(HCparameters, projectList).execute();
+                    new DeleteSprintTaskCommand(params, projectList).execute();
                     break;
                 case VIEW:
                     new ViewSprintCommand(parameters, projectList).execute();
                     break;
                 case ASSIGN:
-//                    HCparameters.put("taskid", "1");
-//                    HCparameters.put("0", "amy");
-//                    HCparameters.put("1", "john");
-//                    new AllocateSprintTaskCommand(HCparameters, projectList).execute();
+                    new AllocateSprintTaskCommand(parameters, projectList).execute();
                     break;
                 default:
-                    System.out.println(action.toLowerCase());
                     try {
                         throw new DukeException("Invalid action!");
                     } catch (DukeException e) {

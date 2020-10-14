@@ -8,13 +8,11 @@ import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Hashtable;
-import java.util.Set;
 
 public class ViewSprintCommand extends SprintCommand {
     private SprintList allSprint;
-    private ArrayList<Project> projectList;
+    private final ArrayList<Project> projectList;
     private Project proj;
 
     public ViewSprintCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList) {
@@ -24,7 +22,6 @@ public class ViewSprintCommand extends SprintCommand {
 
     /**
      * Abstract method that execute the command.
-     *
      */
     public void execute() {
         proj = projectList.get(0);
@@ -32,12 +29,14 @@ public class ViewSprintCommand extends SprintCommand {
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
             Sprint currentSprint = allSprint.getSprint(currentSprintNo);
-            Ui.showToUserLn("------ Current Sprint ------");
-            Ui.showToUserLn("Sprint number: " + (currentSprintNo + 1));
-            Ui.showToUserLn("Sprint Goal: " + currentSprint.getGoal());
-            Ui.showToUserLn("Sprint period: " + currentSprint.getStartDate() + " to " + currentSprint.getEndDate());
-            Ui.showToUserLn("Days left: " + currentSprint.getEndDate().compareTo(LocalDate.now()));
-            //printSprintTask(currentSprint);
+            Ui.showToUser(currentSprint.toString());
+            //            Ui.showToUserLn("------ Current Sprint ------");
+            //            Ui.showToUserLn("Sprint number: " + (currentSprintNo + 1));
+            //            Ui.showToUserLn("Sprint Goal: " + currentSprint.getGoal());
+            //            Ui.showToUserLn("Sprint period: " + currentSprint.getStartDate() + " to "
+            //            + currentSprint.getEndDate());
+            //            Ui.showToUserLn("Days left: " + currentSprint.getEndDate().compareTo(LocalDate.now()));
+            //            printSprintTask(currentSprint);
 
         } else {
             checkReason();
@@ -45,26 +44,26 @@ public class ViewSprintCommand extends SprintCommand {
 
     }
 
-//    private void printSprintTask(Sprint sprint) {
-//        Hashtable<Integer, ArrayList<String>> sprintTasks = sprint.getAllSprintTask();
-//        if (sprintTasks.size() == 0) {
-//            Ui.showToUserLn("No task allocated to current sprint.");
-//            return;
-//        }
-//        ArrayList<String> users;
-//        Set<Integer> keys = sprintTasks.keySet();
-//
-//        Ui.showToUserLn("Sprint Tasks: " + keys.size());
-//        for (int key: keys) {
-//            Ui.showToUserLn(proj.getProjectBacklog().getTask(key).toString());
-//            users = sprintTasks.get(key);
-//            if (users.size() == 0) {
-//                Ui.showToUserLn("No allocation.");
-//            } else {
-//                Ui.showToUserLn("Allocated to:" + Arrays.toString(users.toArray()));
-//            }
-//        }
-//    }
+    //    private void printSprintTask(Sprint sprint) {
+    //        Hashtable<Integer, ArrayList<String>> sprintTasks = sprint.getAllSprintTask();
+    //        if (sprintTasks.size() == 0) {
+    //            Ui.showToUserLn("No task allocated to current sprint.");
+    //            return;
+    //        }
+    //        ArrayList<String> users;
+    //        Set<Integer> keys = sprintTasks.keySet();
+    //
+    //        Ui.showToUserLn("Sprint Tasks: " + keys.size());
+    //        for (int key: keys) {
+    //            Ui.showToUserLn(proj.getProjectBacklog().getTask(key).toString());
+    //            users = sprintTasks.get(key);
+    //            if (users.size() == 0) {
+    //                Ui.showToUserLn("No allocation.");
+    //            } else {
+    //                Ui.showToUserLn("Allocated to:" + Arrays.toString(users.toArray()));
+    //            }
+    //        }
+    //    }
 
     private void checkReason() {
         if (allSprint.size() == 0) {
