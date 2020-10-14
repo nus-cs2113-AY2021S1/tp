@@ -156,11 +156,11 @@ public class ParamChecker {
         logger.log(Level.INFO, "Checking index validity...");
 
         if (list.size() == 0) {
-            message = "There are no items in the list.";
+            message = getMessageNoItemsInList();
         } else if (list.size() == 1) {
-            message = "The only valid item index is 1.";
+            message = getMessageOneItemInList();
         } else {
-            message = String.format("The range is from 1 to %d", list.size());
+            message = getMessageListRangeIndex(list.size());
         }
 
         try {
@@ -302,6 +302,18 @@ public class ParamChecker {
             "Time format: HHMM");
     }
 
+    public static String getMessageListRangeIndex(int size) {
+        return String.format("The range is from 1 to %d", size);
+    }
+
+    public String getMessageOneItemInList() {
+        return "The only valid item index is 1.";
+    }
+
+    public String getMessageNoItemsInList() {
+        return "There are no items in the list.";
+    }
+
     public static String getErrorMessageListNumberFormatException(String message) {
         return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
             "Cannot parse your input. Please enter a positive integer!",
@@ -310,7 +322,7 @@ public class ParamChecker {
 
     public static String getErrorMessageListIndexOutOfBounds(String message, int index) {
         return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-            String.format("Index input \"%s\" is out of bounds!", index),
+            getMessageListRangeIndex(index),
             message);
     }
 
