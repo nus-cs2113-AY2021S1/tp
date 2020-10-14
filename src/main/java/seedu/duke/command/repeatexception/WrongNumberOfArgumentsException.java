@@ -1,6 +1,6 @@
-package seedu.duke.command.repeatExceptions;
+package seedu.duke.command.repeatexception;
 
-public class WrongNumberOfArgumentsException extends Exception{
+public class WrongNumberOfArgumentsException extends Exception {
 
     private String message;
 

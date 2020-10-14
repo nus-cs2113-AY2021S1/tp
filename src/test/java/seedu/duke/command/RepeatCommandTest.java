@@ -229,7 +229,8 @@ class RepeatCommandTest {
         Command repeatCommand = RepeatCommand.parse(inputString);
         repeatCommand.execute(data, ui, storage);
         assertEquals("_________________________________" + System.lineSeparator()
-                        + "FORTNIGHTLY is not a valid time unit. Valid types are: daily, weekly, monthly" + System.lineSeparator()
+                        + "FORTNIGHTLY is not a valid time unit. Valid types are: daily, weekly, monthly"
+                        + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),
                 outputStreamCaptor.toString());
     }
@@ -260,7 +261,8 @@ class RepeatCommandTest {
         Command repeatCommand = RepeatCommand.parse(inputString);
         repeatCommand.execute(data, ui, storage);
         assertEquals("_________________________________" + System.lineSeparator()
-                        + "Holiday is not a valid event type. Valid types are: personal, timetable, zoom" + System.lineSeparator()
+                        + "Holiday is not a valid event type. Valid types are: personal, timetable, zoom"
+                        + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),
                 outputStreamCaptor.toString());
     }

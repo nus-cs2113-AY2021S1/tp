@@ -1,4 +1,4 @@
-package seedu.duke.command.repeatExceptions;
+package seedu.duke.command.repeatexception;
 
 public class InvalidTypeException extends Exception {
 

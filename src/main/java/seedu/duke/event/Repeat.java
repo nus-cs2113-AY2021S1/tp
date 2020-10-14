@@ -1,7 +1,7 @@
 package seedu.duke.event;
 
-import seedu.duke.command.repeatExceptions.InvalidTimeUnitException;
-import seedu.duke.command.repeatExceptions.InvalidTypeException;
+import seedu.duke.command.repeatexception.InvalidTimeUnitException;
+import seedu.duke.command.repeatexception.InvalidTypeException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -30,7 +30,7 @@ public class Repeat {
                 repeatDate = startDate.plusMonths(i);
             } else if (repeatType.equals(WEEKLY)) {
                 repeatDate = startDate.plusWeeks(i);
-            } else if (repeatType.equals(DAILY)){
+            } else if (repeatType.equals(DAILY)) {
                 repeatDate = startDate.plusDays(i);
             } else {
                 throw new InvalidTimeUnitException(repeatType);

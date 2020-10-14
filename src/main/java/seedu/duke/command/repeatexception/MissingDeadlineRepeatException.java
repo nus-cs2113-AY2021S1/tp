@@ -1,6 +1,6 @@
-package seedu.duke.command.repeatExceptions;
+package seedu.duke.command.repeatexception;
 
-public class MissingDeadlineRepeatException extends Exception{
+public class MissingDeadlineRepeatException extends Exception {
 
     private String message;
 

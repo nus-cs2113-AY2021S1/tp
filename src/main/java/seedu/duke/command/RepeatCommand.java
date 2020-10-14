@@ -1,9 +1,9 @@
 package seedu.duke.command;
 
-import seedu.duke.command.repeatExceptions.InvalidEventListTypeException;
-import seedu.duke.command.repeatExceptions.InvalidTypeException;
-import seedu.duke.command.repeatExceptions.MissingDeadlineRepeatException;
-import seedu.duke.command.repeatExceptions.WrongNumberOfArgumentsException;
+import seedu.duke.command.repeatexception.InvalidEventListTypeException;
+import seedu.duke.command.repeatexception.InvalidTypeException;
+import seedu.duke.command.repeatexception.MissingDeadlineRepeatException;
+import seedu.duke.command.repeatexception.WrongNumberOfArgumentsException;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
@@ -46,8 +46,9 @@ public class RepeatCommand extends Command {
                 break;
             case COMMANDTYPE_ERROR:
                 executeNull(data, ui, storage);
+                break;
             default:
-                //do nothing
+                break;
             }
         } catch (IndexOutOfBoundsException e) {
             this.command = "Error! Index out of bounds!";
@@ -117,7 +118,7 @@ public class RepeatCommand extends Command {
      *
      * @param number String containing the String form of an integer
      */
-    private static void isValidNumber(String number) throws NumberFormatException{
+    private static void isValidNumber(String number) throws NumberFormatException {
         Integer.parseInt(number);
     }
 
