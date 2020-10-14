@@ -135,7 +135,6 @@ public class ParamCheckerTest {
         ArrayList testList = new ArrayList(Arrays.asList(errorInput));
 
         for (int i = 0; i < errorInput.length; i++) {
-            int index = Integer.parseInt(errorInput[i]);
             testPacket = TestUtil.createCommandPacket(
                 "",
                 new String[][]{
@@ -152,6 +151,7 @@ public class ParamCheckerTest {
                     exception.getMessage()
                 );
             }
+            int index = Integer.parseInt(errorInput[i]);
             assertCorrectErrorMessage(
                 paramCheckerUnderTest,
                 ParamChecker.getErrorMessageListIndexOutOfBounds(
