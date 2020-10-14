@@ -66,10 +66,16 @@ public class Ui {
         } else {
             System.out.println("You have no goal! Why not set one now?");
         }
+        printDividerLine();
     }
 
     public void printChangeGoalMessage(Event goal) {
-        System.out.println("Goal changed to: " + goal);
+        if (goal != null) {
+            System.out.println("Goal changed to: " + goal);
+        } else {
+            System.out.println("No more goal!");
+        }
+        printDividerLine();
     }
 
     public void printCheckMessage() {

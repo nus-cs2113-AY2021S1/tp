@@ -30,20 +30,33 @@ class GoalCommandTest {
         Ui ui = new Ui();
         Command command = new GoalCommand(inputString);
         command.execute(data, ui, null);
-        assertEquals("Goal changed to: " + inputString, outputStreamCaptor.toString().trim());
+        StringWriter expectedStringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(expectedStringWriter);
+        printWriter.println("Goal changed to: " + inputString);
+        printWriter.println("_________________________________");
+        printWriter.close();
+        String expected = expectedStringWriter.toString();
+        assertEquals(expected, outputStreamCaptor.toString());
     }
 
     @Test
-    void execute_nullInput_printGoal() throws DukeException {
+    void execute_blankInput_printGoal() throws DukeException {
+        String inputString = "";
         UserData data = new UserData();
         Ui ui = new Ui();
-        Command command = new GoalCommand(null);
+        Command command = new GoalCommand(inputString);
         command.execute(data, ui, null);
-        assertEquals("You have no goal! Why not set one now?", outputStreamCaptor.toString().trim());
+        StringWriter expectedStringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(expectedStringWriter);
+        printWriter.println("You have no goal! Why not set one now?");
+        printWriter.println("_________________________________");
+        printWriter.close();
+        String expected = expectedStringWriter.toString();
+        assertEquals(expected, outputStreamCaptor.toString());
     }
 
     @Test
-    void execute_twoSeparateStringThenNullInput_printChangeGoal() throws DukeException {
+    void execute_twoSeparateStringThenBlankInput_printChangeGoal() throws DukeException {
         UserData data = new UserData();
         Ui ui = new Ui();
         String inputString1 = "Fly like a butterfly";
@@ -52,13 +65,17 @@ class GoalCommandTest {
         String inputString2 = "Float like a bumblebee";
         command = new GoalCommand(inputString2);
         command.execute(data, ui, null);
-        command = new GoalCommand(null);
+        String blankString = "";
+        command = new GoalCommand(blankString);
         command.execute(data, ui, null);
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("Goal changed to: " + inputString1);
+        printWriter.println("_________________________________");
         printWriter.println("Goal changed to: " + inputString2);
+        printWriter.println("_________________________________");
         printWriter.println("Goal: " + inputString2);
+        printWriter.println("_________________________________");
         printWriter.close();
         String expected = expectedStringWriter.toString();
         assertEquals(expected, outputStreamCaptor.toString());

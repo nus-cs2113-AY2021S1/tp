@@ -15,18 +15,26 @@ public class GoalCommand extends Command {
      * @param command from user input
      */
     public GoalCommand(String command) {
+        assert (command != null);
         this.isExit = false;
         this.command = command;
     }
 
     @Override
     public void execute(UserData data, Ui ui, Storage storage) {
-        if (command == null) {
+        if (command.isBlank()) {
             Goal goal = data.getGoal();
             ui.printGoalMessage(goal);
         } else {
-            Goal goal = new Goal(command);
-            data.setGoal(goal);
+            Goal goal = null;
+            switch (command.toLowerCase()) {
+            case "na": case "nil": case "delete":
+                data.setGoal(null);
+                break;
+            default:
+                goal = new Goal(command);
+                data.setGoal(goal);
+            }
             ui.printChangeGoalMessage(goal);
             //update storage
         }
