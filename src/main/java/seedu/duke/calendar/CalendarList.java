@@ -78,7 +78,6 @@ public class CalendarList {
      *
      * @param taskNumber   task index
      * @param calendarList calendar list of the task.
-     *
      * @return calendar index of the task
      */
     public static int convertTaskNumberToCalendarNumber(int taskNumber, CalendarList calendarList) {
@@ -103,7 +102,6 @@ public class CalendarList {
      *
      * @param eventNumber  event index
      * @param calendarList calendar list of the task.
-     *
      * @return calendar index of the event
      */
     public static int convertEventNumberToCalendarNumber(int eventNumber, CalendarList calendarList) {
@@ -138,28 +136,52 @@ public class CalendarList {
 
     }
 
+    /**
+     * Swaps two tasks with index i and index j.
+     *
+     * @param i the index of the first task to be swapped.
+     * @param j the index of the second task to be swapped.
+     */
     public void swapTasks(int i, int j) {
         if (calendarList.get(i) != null && calendarList.get(j) != null) {
             Collections.swap(calendarList, i, j);
         }
     }
 
+    /**
+     * Returns the total number of items in calendarList.
+     */
     public int getTotalItems() {
         return totalItems;
     }
 
+    /**
+     * Returns the total number of tasks in calendarList.
+     */
     public int getTotalTasks() {
         return totalTasks;
     }
 
+    /**
+     * Returns the total number of events in the calendarList.
+     */
     public int getTotalEvents() {
         return totalEvents;
     }
 
+    /**
+     * Returns the whole calendarList.
+     */
     public ArrayList<CalendarItem> getCalendarList() {
         return calendarList;
     }
 
+    /**
+     * Returns the specific item with index i.
+     *
+     * @param i the index of the item wanted.
+     * @return the item with index i.
+     */
     public CalendarItem getItem(int i) {
         return calendarList.get(i);
     }

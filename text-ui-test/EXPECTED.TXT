@@ -15,53 +15,50 @@ Got it. I've added this task:
 Your total task(s): 2
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
-Got it. I've added this task:
+Got it. I've added this event:
+[A][/] CCA 10-Oct-2020 Sat 12:30PM (NUS)
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+Got it. I've added this event:
 [LEC][/] cs2113 08-Oct-2020 Thu 4:00PM (lt12)
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
-Got it. I've added this task:
+Got it. I've added this event:
 [TUT][/] cs2113 08-Oct-2020 Thu 4:00PM (com1)
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
-Got it. I've added this task:
+Got it. I've added this event:
 [LAB][/] cs1010 10-Oct-2020 Sat 10:00AM (com1-bi-12)
-...........................................................................
-............................. DUKE CHAT BOX ^^ ............................
-You have finished 0/2 (0.00%) deadlines and todos.
-...........................................................................
-............................. DUKE CHAT BOX ^^ ............................
-Got it. I've added this task:
-[Exam][X] cs2113 20-Oct-2020 Tue 12:30PM (mpsh)
-...........................................................................
-............................. DUKE CHAT BOX ^^ ............................
-List of available commands:
-1. todo <task description>
-2. deadline <task description> /by ddMMyy
-3. activity <activity description> /at ddMMyy HHmm <venue>
-4. exam <module code> @<venue> /ddMMyy HHmm
-5. lecture <module code> @<venue> /ddMMyy HHmm
-6. tutorial <module code> @<venue> /ddMMyy HHmm
-7. lab <module code> @<venue> /ddMMyy HHmm
-8. done <task number>
-9. -t <task number>
-10. -e <event number>
-11. find <keyword>
-12. print tasks
-13. print events
-14. print timeline
-15. print progress
-...........................................................................
-............................. DUKE CHAT BOX ^^ ............................
-This is your list of event(s):
-1.[LEC][/] cs2113 08-Oct-2020 Thu 4:00PM (lt12)
-2.[TUT][/] cs2113 08-Oct-2020 Thu 4:00PM (com1)
-3.[LAB][/] cs1010 10-Oct-2020 Sat 10:00AM (com1-bi-12)
-4.[Exam][X] cs2113 20-Oct-2020 Tue 12:30PM (mpsh)
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
 This is your list of task(s):
 1.[T][X] homework
 2.[D][X] project (by: 10-Oct-2020)
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+This is your list of event(s):
+1.[A][/] CCA 10-Oct-2020 Sat 12:30PM (NUS)
+2.[LEC][/] cs2113 08-Oct-2020 Thu 4:00PM (lt12)
+3.[TUT][/] cs2113 08-Oct-2020 Thu 4:00PM (com1)
+4.[LAB][/] cs1010 10-Oct-2020 Sat 10:00AM (com1-bi-12)
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+Here is your timeline:
+Timeline
+|
+|__ 2020-10-08 THURSDAY
+|            |_____ 16:00
+|                     |_____ [LEC][/] cs2113  (lt12)
+|                     |_____ [TUT][/] cs2113  (com1)
+|__ 2020-10-10 SATURDAY
+|            |_____ 10:00
+|                     |_____ [LAB][/] cs1010  (com1-bi-12)
+|            |_____ 12:30
+|                     |_____ [A][/] CCA  (NUS)
+|            |_____ 23:59
+|                     |_____ [D][X] project
+|__________________ Todo items
+|                     |_____ 1. [T][X] homework
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
 Bye. Hope to see you again soon!

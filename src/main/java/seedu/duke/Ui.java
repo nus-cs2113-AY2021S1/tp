@@ -12,6 +12,9 @@ import java.util.Scanner;
  * Text UI of the application.
  */
 public class Ui {
+    public static final String COMMAND_FIND_EVENT = "/fe";
+    public static final String COMMAND_FIND_TASK = "/ft";
+    public static final String COMMAND_FIND_EVENT_OR_TASK = "/f";
     private Scanner in;
 
     public Ui() {
@@ -24,16 +27,18 @@ public class Ui {
     public static void printHelpCommand() {
         System.out.println("List of available commands:\n"
                 + "1. todo <task description>\n"
-                + "2. deadline <task description> /by ddMMyy\n"
-                + "3. activity <activity description> /at ddMMyy HHmm <venue>\n"
+                + "2. deadline <task description> /ddMMyy\n"
+                + "3. act <activity description> @<venue> /ddMMyy HHmm\n"
                 + "4. exam <module code> @<venue> /ddMMyy HHmm\n"
-                + "5. lecture <module code> @<venue> /ddMMyy HHmm\n"
-                + "6. tutorial <module code> @<venue> /ddMMyy HHmm\n"
+                + "5. lect <module code> @<venue> /ddMMyy HHmm\n"
+                + "6. tut <module code> @<venue> /ddMMyy HHmm\n"
                 + "7. lab <module code> @<venue> /ddMMyy HHmm\n"
                 + "8. done <task number>\n"
                 + "9. -t <task number>\n"
                 + "10. -e <event number>\n"
-                + "11. find <keyword>\n"
+                + "11. /f <keyword of task/event>\n"
+                + "12. /ft <keyword of task>\n"
+                + "11. /fe <keyword of event>\n"
                 + "12. print tasks\n"
                 + "13. print events\n"
                 + "14. print timeline\n"
@@ -64,32 +69,35 @@ public class Ui {
     public static void printWelcomeMessage() {
         System.out.println("Printing of 25/7 logo!!!!");
         System.out.println("===========================================================================\n"
-            + "Welcome to 25/7 Task Manager!\n"
-            + "What can I do for you?\n"
-            + "Enter 'help' for the list of commands.\n"
-            + "===========================================================================");
+                + "Welcome to 25/7 Task Manager!\n"
+                + "What can I do for you?\n"
+                + "Enter 'help' for the list of commands.\n"
+                + "===========================================================================");
 
         /**
-//        String[]  HELLO_MESSAGE = {
-//                "=================================================================================================",
-//                "   .-----------------.     .-----------------.              //    .-------------------.",
-//                "   |______________.  |     |  _______________|             //     |______________.   |",
-//                "                  |  |     |  |                           //                    /   /",
-//                "                  |  |     |  |                          //                    /   /",
-//                "   .---------------  |     |  |---------------.         //                    /   /",
-//                "   | ________________|     |________________  |        //                    /   /",
-//                "   | |                                     |  |       //                    /   /",
-//                "   | |                                     |  |      //                    /   /",
-//                "   | ----------------.     .---------------|  |     //                    /   /",
-//                "   |_________________|     |__________________|    //                    /___/",
-//                " ",
-//                "=================================================================================================",
-//                " Welcome to 25/7 Task Manager!",
-//                " What can I do for you?",
-//                " Enter 'help' for the list of commands.",
-//                "================================================================================================="
-//        };
-//        System.out.println(String.join("\n", HELLO_MESSAGE));
+         //        String[]  HELLO_MESSAGE = {
+         //
+         "=================================================================================================",
+         //                "   .-----------------.     .-----------------.              //    .-------------------.",
+         //                "   |______________.  |     |  _______________|             //     |______________.   |",
+         //                "                  |  |     |  |                           //                    /   /",
+         //                "                  |  |     |  |                          //                    /   /",
+         //                "   .---------------  |     |  |---------------.         //                    /   /",
+         //                "   | ________________|     |________________  |        //                    /   /",
+         //                "   | |                                     |  |       //                    /   /",
+         //                "   | |                                     |  |      //                    /   /",
+         //                "   | ----------------.     .---------------|  |     //                    /   /",
+         //                "   |_________________|     |__________________|    //                    /___/",
+         //                " ",
+         //
+         "=================================================================================================",
+         //                " Welcome to 25/7 Task Manager!",
+         //                " What can I do for you?",
+         //                " Enter 'help' for the list of commands.",
+         //
+         "================================================================================================="
+         //        };
+         //        System.out.println(String.join("\n", HELLO_MESSAGE));
          */
 
     }
@@ -139,6 +147,9 @@ public class Ui {
                 System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", taskCounts);
             }
         }
+        if (taskCounts == 0) {
+            System.out.println("Oops, there are no tasks stored in your list!");
+        }
     }
 
     /**
@@ -174,12 +185,18 @@ public class Ui {
     }
 
     /**
-     * Shows the user the task that was added and the total number of tasks in the task list.
+     * Shows the user the task/event that was added.
      *
      * @param calendarList the calendar list that the task was added to.
      */
-    public static void printAddMessage(CalendarList calendarList) {
-        System.out.println("Got it. I've added this task:");
+    public static void printAddMessage(CalendarList calendarList, boolean isTask) {
+        String calendarItem;
+        if (isTask) {
+            calendarItem = "task";
+        } else {
+            calendarItem = "event";
+        }
+        System.out.println("Got it. I've added this " + calendarItem + ":");
 
         /* - 1 is catered for array list's index starting from 0. */
         int lastCalendarItemIndex = calendarList.getCalendarList().size() - 1;
@@ -188,30 +205,35 @@ public class Ui {
     }
 
     /**
-     * Prints all tasks that contains the keyword, including the task index in the task list.
+     * Prints the calendar task/event/item for FindCommand.
      *
-     * @param calendarList the list of tasks being searched.
-     * @param keyword      keyword indicated by user.
-     * @throws DukeException if there are no tasks that contains the keyword.
+     * @param command        command type.
+     * @param calendarList   the calendar list to search from.
+     * @param isFound        true if the first item has been found and printed.
+     * @param itemIndex      item index in the calendar list.
+     * @param printNumbering item index printed to the user.
      */
-    public static void printFindTaskMessage(CalendarList calendarList, String keyword) throws DukeException {
-        boolean isFound = false;
+    public static void printFindTaskMessage(String command, CalendarList calendarList, boolean isFound,
+                                            int itemIndex, int printNumbering) {
 
-        for (int i = 0; i < calendarList.getTotalItems(); i++) {
-            CalendarItem item = calendarList.getCalendarList().get(i);
-            if (item instanceof Task) {
-                if (item.getDescription().contains(keyword)) {
-                    if (!isFound) { // first instance when keyword is found
-                        System.out.println("Here are the matching tasks in your list:");
-                    }
-                    isFound = true;
-                    System.out.println((i + 1) + "." + item);
-                }
+        if (!isFound) { // first instance when keyword is found
+            String itemType = "";
+            switch (command) {
+            case COMMAND_FIND_EVENT:
+                itemType = "event(s)";
+                break;
+            case COMMAND_FIND_TASK:
+                itemType = "task(s)";
+                break;
+            case COMMAND_FIND_EVENT_OR_TASK:
+                itemType = "item(s)";
+                break;
+            default:
+                break;
             }
+            System.out.println("Here are the matching " + itemType + " in your calendar:");
         }
-        if (!isFound) {
-            throw new DukeException("keyword not found");
-        }
+        System.out.printf("%d." + calendarList.getCalendarList().get(itemIndex) + "\n", printNumbering);
     }
 
     /**
@@ -256,17 +278,17 @@ public class Ui {
             System.out.println("Error: The description of todo cannot be empty.");
             break;
         case "deadline":
-            System.out.println("Error: Please key in the deadline in this format: deadline ... /by ddMMyy");
+            System.out.println("Error: Please key in the deadline in this format: deadline <task description> /ddMMyy");
             break;
         case "activity":
-            System.out.println("Error: Please key in the activity in this format: activity ... /at ddMMyy");
+            System.out.println("Error: Please follow this format: act <activity description> @<venue> /ddMMyy HHmm");
             break;
         case "lecture":
-            System.out.println("Error: Please key in the lecture in this format: lecture <module code> @<venue> /"
+            System.out.println("Error: Please key in the lecture in this format: lect <module code> @<venue> /"
                     + "ddMMyy HHmm");
             break;
         case "tutorial":
-            System.out.println("Error: Please key in the tutorial in this format: tutorial <module code> @<venue> /"
+            System.out.println("Error: Please key in the tutorial in this format: tut <module code> @<venue> /"
                     + "ddMMyy HHmm");
             break;
         case "lab":
@@ -310,29 +332,6 @@ public class Ui {
     }
 
     /**
-     * Shows the user the exception that occurred when saving data to storage file.
-     *
-     * @param e exception message.
-     */
-    public static void printSaveDataErrorMessage(IOException e) {
-        System.out.println("Unable to save data. Error: " + e.getMessage());
-    }
-
-    /**
-     * Prints the message to inform the user that no data was imported.
-     */
-    public static void printNoImportDataMessage() {
-        System.out.println("No existing data imported.");
-    }
-
-    /**
-     * Prints the message to inform the user that existing data was imported.
-     */
-    public static void printImportDataSuccessMessage() {
-        System.out.println("Existing data imported.");
-    }
-
-    /**
      * Shows the user the exception that occurred when creating a storage file.
      *
      * @param e exception message.
@@ -342,10 +341,25 @@ public class Ui {
     }
 
     /**
-     * Prints the message to inform the user that an output file is created.
+     * Shows the user the exception that occurred when saving data to storage file.
+     *
+     * @param e exception message.
      */
-    public static void printFileCreatedMessage() {
-        System.out.println("New output file created.");
+    public static void printSaveDataErrorMessage(IOException e) {
+        System.out.println("Unable to save data. Error: " + e.getMessage());
     }
 
+    /**
+     * Shows the user the exception that occurred when finding the storage file.
+     */
+    public static void printFileNotFoundErrorMessage() {
+        System.out.println("File not found.");
+    }
+
+    /**
+     * Shows the user the exception that occurred when when there is an invalid command message.
+     */
+    public static void printInvalidFileCommandMessage() {
+        System.out.println("Invalid file command input");
+    }
 }

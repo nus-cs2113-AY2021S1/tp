@@ -2,7 +2,6 @@ package seedu.duke.calendar.event;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a tutorial event.
@@ -29,7 +28,7 @@ public class Tutorial extends SchoolEvent {
     }
 
     /**
-     * Check whether the tutorial is over.
+     * Checks whether the tutorial is over.
      *
      * @return whether the tutorial is over
      */
@@ -44,7 +43,7 @@ public class Tutorial extends SchoolEvent {
     }
 
     /**
-     * Show whether the tutorial is over.
+     * Shows whether the tutorial is over.
      *
      * @return whether the tutorial is over
      */
@@ -53,7 +52,7 @@ public class Tutorial extends SchoolEvent {
     }
 
     /**
-     * Describe the tutorial event.
+     * Describes the tutorial event.
      *
      * @Return a string to describe the tutorial event.
      */
@@ -63,7 +62,17 @@ public class Tutorial extends SchoolEvent {
     }
 
     /**
-     * Save the tutorial event into files.
+     * Gets the description of the tutorial.
+     *
+     * @return the description of the tutorial.
+     */
+    @Override
+    public String getDescription() {
+        return "[TUT]" + "[" + getIcon() + "] " + super.getDescription();
+    }
+
+    /**
+     * Saves the tutorial event into files.
      *
      * @return string contains the information about the tutorial event.
      */
@@ -82,23 +91,18 @@ public class Tutorial extends SchoolEvent {
     }
 
     /**
-     * Get the date of the tutorial.
+     * Gets the date of the tutorial.
      *
-     * @return date of the tutorial
+     * @return date of the tutorial.
      */
     @Override
     public LocalDate getDate() {
         return date;
     }
 
-    @Override
-    public String getDescription() {
-        return "[TUT]" +  "[" + getIcon() + "] " + moduleCode + " "
-                + " (" + venue + ")";
-    }
 
     /**
-     * Get the time of the tutorial.
+     * Gets the time of the tutorial.
      *
      * @return time of the tutorial
      */
