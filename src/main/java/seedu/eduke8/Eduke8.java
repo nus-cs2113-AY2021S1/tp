@@ -12,12 +12,15 @@ import seedu.eduke8.ui.Ui;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Eduke8 {
     private static final String DATA_PATH = "data/main/topics.json";
     private static final LocalDateTime DATE_TIME_NOW = LocalDateTime.now();
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
     private static final String LOG_PATH = "data/logs/" + DATE_TIME_NOW.format(DATE_TIME_FORMATTER) + ".log";
+    private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     private MenuParser menuParser;
     private TopicsStorage topicsStorage;
@@ -31,10 +34,11 @@ public class Eduke8 {
         logStorage = new LogStorage(logPath);
         ui = new Ui();
         try {
-            topicList = new TopicList(topicsStorage.load());
             logStorage.save();
+            topicList = new TopicList(topicsStorage.load());
         } catch (ParseException | IOException e) {
             ui.printError();
+            LOGGER.log(Level.WARNING, "Error reading or writing local files.");
         }
     }
 
