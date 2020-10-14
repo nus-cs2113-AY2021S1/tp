@@ -14,7 +14,6 @@ public class Parser {
     public static final String COMMAND_LIST = "list";
     public static final String COMMAND_HELP = "help";
     public static final String COMMAND_EXIT = "exit";
-    public static final int COMMAND_EXIT_LENGTH = 4;
 
     /**
      * Parses user inputs.
@@ -52,10 +51,14 @@ public class Parser {
             ui.printTable(modList, Integer.parseInt(command[1]));
             break;
         case COMMAND_HELP:
-            ui.printHelpList();
+            if (input.trim().length() > COMMAND_HELP.length()) {
+                ui.printInvalidCommand();
+            } else {
+                ui.printHelpList();
+            }
             break;
         case COMMAND_EXIT:
-            if (input.trim().length() > COMMAND_EXIT_LENGTH) {
+            if (input.trim().length() > COMMAND_EXIT.length()) {
                 ui.printInvalidCommand();
             } else {
                 ui.printExitScreen(name);
