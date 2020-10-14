@@ -124,7 +124,7 @@ public class StorageFile {
             }
 
         } catch (IOException e) {
-            showToUser("An error occurred");
+            showToUser("Unable to create file.");
         }
     }
 
@@ -134,7 +134,7 @@ public class StorageFile {
             writer.print("");
             writer.close();
         } catch (FileNotFoundException e) {
-            showToUser("File is empty");
+            showToUser("File is empty.");
         }
     }
 }

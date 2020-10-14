@@ -121,11 +121,8 @@ public class Power {
         Date onTimeValue;
         Date offTimeValue;
         double timeUsed;
-        boolean isOnOnce;
 
-        isOnOnce = onTime != null;
-
-        if (isOnOnce) {
+        if (onTime != null) {
             onTimeValue = timeFormat.parse(onTime);
             if (!this.status) {
                 offTimeValue = timeFormat.parse(offTime);
