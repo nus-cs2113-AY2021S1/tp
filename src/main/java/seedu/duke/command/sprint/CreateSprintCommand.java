@@ -33,14 +33,14 @@ public class CreateSprintCommand extends SprintCommand {
         if (validateParams()) {
             allSprint = proj.getAllSprints();
             if (allSprint.size() == 0) {
-                createFirstSprint();
+                createFirstSprint(proj);
             } else {
-                createSubsequentSprint();
+                createSubsequentSprint(proj);
             }
         }
     }
 
-    private void createFirstSprint() {
+    private void createFirstSprint(Project proj) {
 
         LocalDate sprintStart = LocalDate.now();
         if (!parameters.get("start").isEmpty()) {
@@ -48,7 +48,7 @@ public class CreateSprintCommand extends SprintCommand {
         }
         LocalDate sprintEnd = sprintStart.plusDays(proj.getSprintLength() - 1);
         String sprintGoal = parameters.get("goal");
-        allSprint.addSprint(sprintGoal, sprintStart, sprintEnd);
+        allSprint.addSprint(proj, sprintGoal, sprintStart, sprintEnd);
 
         LocalDate projEndDate = sprintStart.plusDays(proj.getProjectDuration() - 1);
         proj.setStartDate(sprintStart);
@@ -60,7 +60,7 @@ public class CreateSprintCommand extends SprintCommand {
 
     }
 
-    private void createSubsequentSprint() {
+    private void createSubsequentSprint(Project proj) {
 
         String sprintGoal = parameters.get("goal");
         Sprint prevSprint = allSprint.getSprint(allSprint.size() - 1);
@@ -70,7 +70,7 @@ public class CreateSprintCommand extends SprintCommand {
             return;
         }
         LocalDate sprintEnd = sprintStart.plusDays(proj.getSprintLength() - 1);
-        allSprint.addSprint(sprintGoal, sprintStart, sprintEnd);
+        allSprint.addSprint(proj, sprintGoal, sprintStart, sprintEnd);
         if (!parameters.containsKey("start")) {
             Ui.showToUserLn(Messages.MESSAGE_CREATE_SUB_SPRINT);
         }

@@ -1,40 +1,45 @@
 package seedu.duke.sprint;
 
-import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
+import seedu.duke.project.Project;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class Sprint implements Jsonable {
 
-
+    private int id;
     private String goal;
     private LocalDate startDate;
     private LocalDate endDate;
-    private Hashtable<Integer, ArrayList<String>> sprintTasks;
-    //private ArrayList<Integer> sprintTasks;
+    private ArrayList<Integer> sprintTaskIds;
 
-    public Sprint(String goal) {
-        this(goal, null, null);
+    public Sprint(Project proj, String goal) {
+        this(proj, goal, null, null);
     }
 
-    public Sprint(String goal, LocalDate startDate) {
-        this(goal, startDate, null);
+    public Sprint(Project proj, String goal, LocalDate startDate) {
+        this(proj, goal, startDate, null);
     }
 
-    public Sprint(String goal, LocalDate startDate, LocalDate endDate) {
+    public Sprint(Project proj, String goal, LocalDate startDate, LocalDate endDate) {
+        setId(this.getId()+1);
         setGoal(goal);
         setStartDate(startDate);
         setEndDate(endDate);
-        sprintTasks = new Hashtable<>();
+        this.sprintTaskIds = new ArrayList<>();
+    }
+    public int getId() {
+        return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getGoal() {
         return goal;
     }
@@ -60,19 +65,16 @@ public class Sprint implements Jsonable {
     }
 
     public void addSprintTask(int taskId) {
-        this.sprintTasks.put(taskId, new ArrayList<>());
+        this.sprintTaskIds.add(taskId);
     }
 
     public void removeSprintTask(int taskId) {
-        this.sprintTasks.remove(taskId);
+        this.sprintTaskIds.remove(taskId);
     }
 
-    public void allocateSprintTask(int taskId, ArrayList<String> users) {
-        this.sprintTasks.put(taskId, users);
-    }
 
-    public Hashtable<Integer, ArrayList<String>> getAllSprintTask() {
-        return this.sprintTasks;
+    public ArrayList<Integer> getAllSprintTaskIds() {
+        return this.sprintTaskIds;
     }
 
     @Override
@@ -94,10 +96,10 @@ public class Sprint implements Jsonable {
         jObj.put("startDate", startDate == null ? null : startDate.toString());
         jObj.put("endDate", endDate == null ? null : endDate.toString());
         final JsonObject jsonSprintTasks = new JsonObject();
-        for (Integer key : sprintTasks.keySet()) {
-            JsonArray jsonTask = new JsonArray(sprintTasks.get(key));
-            jsonSprintTasks.put(key.toString(), jsonTask);
-        }
+//        for (Integer key : sprintTasks.keySet()) {
+//            JsonArray jsonTask = new JsonArray(sprintTasks.get(key));
+//            jsonSprintTasks.put(key.toString(), jsonTask);
+//        }
         jObj.put("sprintTasks", jsonSprintTasks);
         jObj.toJson(writer);
     }

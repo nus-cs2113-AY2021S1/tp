@@ -3,7 +3,6 @@ package seedu.duke.sprint;
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
-import seedu.duke.task.Task;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -11,17 +10,22 @@ import java.io.Writer;
 import java.util.ArrayList;
 
 public class Member implements Jsonable {
-    public String userId;
-    ArrayList<Task> allocatedTask;
+
+    private String userId;
+    private ArrayList<Integer> allocatedTaskIds;
 
     public Member(String userId) {
         this.userId = userId;
-        allocatedTask = new ArrayList<>(100);
+        allocatedTaskIds = new ArrayList<>();
 
     }
 
     public String getUserId() {
         return userId;
+    }
+
+    public void allocatedTask(int taskid){
+        allocatedTaskIds.add(taskid);
     }
 
     @Override
@@ -34,10 +38,6 @@ public class Member implements Jsonable {
         Member v = (Member) o;
         // Compare the userId of members and return accordingly
         return userId.equals(v.userId);
-    }
-
-    public void addMemberTask(Task task) {
-        allocatedTask.add(task);
     }
 
     @Override
@@ -57,8 +57,8 @@ public class Member implements Jsonable {
         final JsonObject jMember = new JsonObject();
         jMember.put("id", userId);
         final JsonArray jTasks = new JsonArray();
-        for (Task task : allocatedTask) { //Add only the ID that reference to the actual task in ProjectBacklog
-            jTasks.add(task.getId());
+        for (int taskId : allocatedTaskIds) { //Add only the ID that reference to the actual task in ProjectBacklog
+            jTasks.add(taskId);
         }
         jMember.toJson(writer);
     }

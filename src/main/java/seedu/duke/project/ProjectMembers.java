@@ -50,7 +50,7 @@ public class ProjectMembers implements Jsonable {
                 memberList.remove(new Member(s));
                 System.out.println("The user associated with " + s + " has been removed from the project");
             } else {
-                System.out.println("This member is not associated with this project: " + new Member(s).userId);
+                System.out.println("This member is not associated with this project: " + new Member(s).getUserId());
             }
         }
     }

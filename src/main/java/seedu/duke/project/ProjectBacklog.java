@@ -30,6 +30,15 @@ public class ProjectBacklog implements Jsonable {
         return size;
     }
 
+    public Task getTaskByID(int id) {
+        for(Task task: backlogTasks){
+            if (task.getId() == id){
+                return task;
+            }
+        }
+        return null;
+    }
+
     public Task getTask(int i) {
         return backlogTasks.get(i);
     }
