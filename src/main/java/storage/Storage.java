@@ -1,5 +1,6 @@
 package storage;
 
+import access.Access;
 import exception.InvalidFileFormatException;
 import manager.card.Card;
 import manager.chapter.CardList;
@@ -155,7 +156,7 @@ public class Storage {
     }
 
     public void saveCards(CardList cards, String module, String chapter) throws IOException {
-        FileWriter fw = new FileWriter(filePath + "/" + module + "/" + chapter + ".txt");
+        FileWriter fw = new FileWriter(getFilePath() + "/" + module + "/" + chapter + ".txt");
         for (int i = 0; i < cards.getCardCount(); i++) {
             fw.write(cards.getCard(i).toString() + "\n");
         }
@@ -170,5 +171,21 @@ public class Storage {
             }
         }
         return directoryToBeDeleted.delete();
+    }
+
+    public boolean renameChapter(String newChapterName, Access access, Chapter chapter) {
+        File file = new File(getFilePath()
+                + "/" + access.getModule()
+                + "/" + chapter.toString() + ".txt");
+        boolean success = file.renameTo(new File(getFilePath()
+                + "/" + access.getModule()
+                + "/" + newChapterName + ".txt"));
+        return success;
+    }
+
+    public boolean renameModule(String newModuleName, Module module) {
+        File file = new File(getFilePath() + "/" + module.toString());
+        boolean success = file.renameTo(new File(getFilePath() + "/" + newModuleName));
+        return success;
     }
 }
