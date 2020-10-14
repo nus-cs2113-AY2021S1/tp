@@ -15,8 +15,6 @@ public abstract class Command {
     protected TagManager tagManager;
     protected StorageManager storageManager;
 
-    protected static final int NULL_INT = -1;
-
     protected Command() {
     }
 

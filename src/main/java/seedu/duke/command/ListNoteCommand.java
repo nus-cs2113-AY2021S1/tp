@@ -2,14 +2,18 @@ package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
+import seedu.duke.ui.InterfaceManager;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
+import static seedu.duke.util.PrefixSyntax.SUFFIX_INDEX;
 
 /**
  * Lists all the Notes in the Notebook.
@@ -18,21 +22,18 @@ public class ListNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "list-n";
 
-    private static final String COMMAND_USAGE = COMMAND_WORD + ": Lists all the notes in the Notebook. Parameters: "
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Lists all the notes in the Notebook. Parameters: "
             + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG "
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG1...] "
-            + "[up/down]";
+            + "[/sort up OR down]";
 
-    /**
-     * Gets how the command is expected to be used.
-     *
-     * @return String representation of how the command is to be used.
-     */
-    public static String getCommandUsage() {
-        return COMMAND_USAGE;
-    }
+    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the list of notes: " + InterfaceManager.LS;
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE_INVALID_TAG = "Your tags return no result."
+            + " Please try an alternative tag or check your spellings";
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK = "The notebook is empty!";
 
     private ArrayList<String> tags;
+    private boolean isSorted;
     private Boolean isAscendingOrder;
 
     /**
@@ -42,6 +43,7 @@ public class ListNoteCommand extends Command {
      */
     public ListNoteCommand(Boolean isAscendingOrder) {
         this.tags = null;
+        this.isSorted = true;
         this.isAscendingOrder = isAscendingOrder;
     }
 
@@ -50,6 +52,7 @@ public class ListNoteCommand extends Command {
      */
     public ListNoteCommand() {
         this.tags = null;
+        this.isSorted = false;
         this.isAscendingOrder = null;
     }
 
@@ -85,61 +88,91 @@ public class ListNoteCommand extends Command {
      */
     @Override
     public String execute() {
-        String noteString = "";
+        StringBuilder noteString = new StringBuilder();
         ArrayList<Note> notes = new ArrayList<>();
 
         ArrayList<Note> sortedNotes = (ArrayList<Note>) notebook.getNotes().stream()
-                .filter((s) -> s instanceof Note)
-                .sorted((a, b) -> a.getTitle().toLowerCase().compareTo(b.getTitle().toLowerCase()))
+                .filter(Objects::nonNull)
+                .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
                 .collect(Collectors.toList());
 
         if (tags == null) {
-
             if (isAscendingOrder == null) {
                 for (int i = 0; i < notebook.getNotes().size(); i++) {
-                    noteString += (i + 1) + "." + notebook.getNotes().get(i).toString();
+                    noteString.append(i + 1).append(SUFFIX_INDEX)
+                            .append(notebook.getNotes().get(i).getTitle())
+                            .append(" ")
+                            .append(notebook.getNotes().get(i).getTagsName())
+                            .append(InterfaceManager.LS);
                 }
             } else {
-                noteString = getSortedString(noteString, sortedNotes);
-            }
-        } else {
-            Map<Tag, ArrayList<Note>> tag = tagManager.getTagMap();
-
-            // Based on user inputted tags, will store the respective values in an ArrayList
-            // E.g. if user input 2 tags, CS2113 and important, will have 2 ArrayList
-            //      1 for the values corresponding to CS2113 and the other for important tag
-            List<ArrayList<Note>> values = tags.stream()
-                    .map(tag::get)
-                    .collect(Collectors.toList());
-
-            for (int i = 0; i < values.size(); i++) {
-                for (int j = 0; j < values.get(i).size(); j++) {
-                    // Account for duplicates.
-                    // In case an item has both CS2113 and Important tag
-                    if (!notes.contains(values.get(i).get(j))) {
-                        notes.add(values.get(i).get(j));
-                    }
-                }
+                noteString = new StringBuilder(getSortedString(noteString.toString(), sortedNotes));
             }
 
-            // Sort the tagged notes
-            ArrayList<Note> sortedTaggedNotes = (ArrayList<Note>) notes.stream()
-                    .filter((s) -> s instanceof Note)
-                    .sorted((a, b) -> a.getTitle().toLowerCase().compareTo(b.getTitle().toLowerCase()))
-                    .collect(Collectors.toList());
+            if (noteString.toString().isBlank()) {
+                return COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK;
+            }
+            return COMMAND_SUCCESSFUL_MESSAGE + noteString.toString();
+        }
 
+        // Obtaining ArrayList<String> of tags and parsing it to get an ArrayList<Tag> of tags
+        Map<Tag, ArrayList<Note>> tagMap = tagManager.getTagMap();
+        ArrayList<Tag> tagList = new ArrayList<>();
 
-            if (isAscendingOrder == null) {
-                for (int i = 0; i < notes.size(); i++) {
-                    noteString += (i + 1) + "." + notes.get(i).toString();
-                }
-            } else {
-                noteString = getSortedString(noteString, sortedTaggedNotes);
+        for (String tag : tags) {
+            Tag currentTag = tagManager.getTag(tag);
 
+            if (currentTag != null) {
+                tagList.add(currentTag);
             }
         }
 
-        return noteString;
+        // If the user inputted tags does not match any of the existing tags.
+        if (tagList.isEmpty()) {
+            return COMMAND_UNSUCCESSFUL_MESSAGE_INVALID_TAG;
+        }
+
+        // Based on user inputted tags, will store the respective values in an ArrayList
+        // E.g. if user input 2 tags, CS2113 and important, will have 2 ArrayList
+        //      1 for the values corresponding to CS2113 and the other for important tag
+        List<ArrayList<Note>> values = tagList.stream()
+                .map(tagMap::get)
+                .collect(Collectors.toList());
+
+        for (ArrayList<Note> value : values) {
+            for (Note note : value) {
+                // Account for duplicates.
+                // In case an item has both CS2113 and Important tag
+                if (!notes.contains(note)) {
+                    notes.add(note);
+                }
+            }
+        }
+
+        // Checking for empty notes List
+        if (notes.isEmpty()) {
+            return COMMAND_UNSUCCESSFUL_MESSAGE_INVALID_TAG;
+        }
+
+        // Sort the tagged notes
+        ArrayList<Note> sortedTaggedNotes = (ArrayList<Note>) notes.stream()
+                .filter(Objects::nonNull)
+                .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
+                .collect(Collectors.toList());
+
+        if (isAscendingOrder == null) {
+            for (int i = 0; i < notes.size(); i++) {
+                noteString.append(i + 1)
+                        .append(SUFFIX_INDEX)
+                        .append(notes.get(i).toString())
+                        .append(" ")
+                        .append(notes.get(i).getTagsName())
+                        .append(InterfaceManager.LS);
+            }
+        } else {
+            noteString = new StringBuilder(getSortedString(noteString.toString(), sortedTaggedNotes));
+        }
+        return COMMAND_SUCCESSFUL_MESSAGE + noteString.toString();
     }
 
     /**
@@ -153,16 +186,30 @@ public class ListNoteCommand extends Command {
         if (!isAscendingOrder) {
             int j = 1;
 
-            for (int i = sortedNotes.size(); i > 0; i--) {
-                noteString += (j) + "." + sortedNotes.get(i).toString();
+            StringBuilder noteStrBuilder = new StringBuilder(noteString);
+            for (int i = sortedNotes.size() - 1; i >= 0; i--) {
+                noteStrBuilder.append(j)
+                        .append(SUFFIX_INDEX)
+                        .append(sortedNotes.get(i).getTitle())
+                        .append(" ")
+                        .append(sortedNotes.get(i).getTagsName())
+                        .append(InterfaceManager.LS);
                 j++;
             }
+            noteString = noteStrBuilder.toString();
 
         } else if (isAscendingOrder) {
 
+            StringBuilder noteStrBuilder = new StringBuilder(noteString);
             for (int i = 0; i < sortedNotes.size(); i++) {
-                noteString += (i + 1) + "." + sortedNotes.get(i).toString();
+                noteStrBuilder.append(i + 1)
+                        .append(SUFFIX_INDEX)
+                        .append(sortedNotes.get(i).getTitle())
+                        .append(" ")
+                        .append(sortedNotes.get(i).getTagsName())
+                        .append(InterfaceManager.LS);
             }
+            noteString = noteStrBuilder.toString();
         }
         return noteString;
     }

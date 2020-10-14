@@ -32,6 +32,12 @@ import seedu.duke.data.timetable.WeeklyEvent;
 import seedu.duke.data.timetable.MonthlyEvent;
 import seedu.duke.data.timetable.YearlyEvent;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_END;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELETE_LINE;
@@ -44,13 +50,11 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TIMING;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
+import static seedu.duke.util.PrefixSyntax.PREFIX_SORT;
 import static seedu.duke.util.PrefixSyntax.STRING_SPLIT_DELIMITER;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
-import java.util.ArrayList;
-import java.util.Scanner;
+import static seedu.duke.util.PrefixSyntax.STRING_SORT_ASCENDING;
+import static seedu.duke.util.PrefixSyntax.STRING_SORT_DESCENDING;
+import static seedu.duke.util.PrefixSyntax.TIMING_SPLIT_DELIMITER;
 
 /**
  * Parses user input.
@@ -112,7 +116,7 @@ public class Parser {
             case TagCommand.COMMAND_WORD:
                 return prepareTag(userMessage);
             case RemindCommand.COMMAND_WORD:
-                // return prepareRemind(userMessage);
+                return new RemindCommand();
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
             case HelpCommand.COMMAND_WORD:
@@ -123,6 +127,15 @@ public class Parser {
         } catch (SystemException exception) {
             return new IncorrectCommand(exception.getMessage());
         }
+    }
+
+    /**
+     * Creates a new RemindCommand.
+     *
+     * @return A new RemindCommand Object.
+     */
+    private Command prepareRemind() {
+        return new RemindCommand();
     }
 
     /**
@@ -187,7 +200,7 @@ public class Parser {
         }
 
         // Split into the tag name and tag color.
-        String[] tagInfo = tagsInfo.split("\\s+", 2);
+        String[] tagInfo = tagsInfo.split(STRING_SPLIT_DELIMITER, 2);
 
         tagName = checkBlank(tagInfo[0], ExceptionType.EXCEPTION_MISSING_TAG);
 
@@ -213,30 +226,28 @@ public class Parser {
         ArrayList<Tag> tags = new ArrayList<>();
 
         try {
+            // Get prefix
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
 
             for (String[] infoDetails : splitInfo) {
                 String prefix = infoDetails[0].toLowerCase();
-                ExceptionType exception;
                 switch (prefix) {
                 case PREFIX_TITLE:
-                    exception = ExceptionType.EXCEPTION_MISSING_TITLE;
-                    title = checkBlank(infoDetails[1], exception);
+                    title = checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_TITLE);
                     break;
                 case PREFIX_TAG:
                     Tag tag = handleTagPrefix(infoDetails);
                     tags.add(tag);
                     break;
                 case PREFIX_PIN:
-                    exception = ExceptionType.EXCEPTION_MISSING_PIN;
-                    isPinned = Boolean.parseBoolean(checkBlank(infoDetails[1], exception));
+                    isPinned = Boolean.parseBoolean(checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_PIN));
                     break;
                 default:
-                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
 
-            title = checkBlank(title, ExceptionType.EXCEPTION_MISSING_TITLE);
+            title = checkBlank(title, ExceptionType.EXCEPTION_MISSING_TITLE_PREFIX);
 
             // Get Content
             do {
@@ -277,6 +288,8 @@ public class Parser {
         boolean toRemind = false;
         boolean isRecurring = false;
         String recurringType = "";
+        ArrayList<Integer> timePeriods = new ArrayList<>();
+        ArrayList<String> timeUnits = new ArrayList<>();
 
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
@@ -295,6 +308,39 @@ public class Parser {
                     break;
                 case PREFIX_REMIND:
                     toRemind = true;
+                    if (infoDetails.length == 1 || infoDetails[1].isBlank()) {
+                        timeUnits.add(Event.REMINDER_DAY);
+                        timePeriods.add(1);
+                        break;
+                    }
+                    String[] reminderDetails = infoDetails[1].split(STRING_SPLIT_DELIMITER);
+                    for (String reminderDetail : reminderDetails) {
+                        String[] timeStrings = reminderDetail.split(TIMING_SPLIT_DELIMITER);
+                        if (timeStrings.length != 2) {
+                            throw new SystemException(ExceptionType.EXCEPTION_INVALID_REMINDER_FORMAT);
+                        }
+                        int timePeriod;
+                        String timeUnit;
+                        try {
+                            timePeriod = Integer.parseInt(timeStrings[0]);
+                            timeUnit = timeStrings[1];
+                            if ((!timeUnit.equals(Event.REMINDER_DAY) && !timeUnit.equals(Event.REMINDER_WEEK))
+                                    || timePeriod < 1) {
+                                throw new SystemException(ExceptionType.EXCEPTION_INVALID_REMINDER_FORMAT);
+                            }
+
+                            exception = ExceptionType.EXCEPTION_EARLY_REMINDER;
+                            if (timeUnit.equals(Event.REMINDER_WEEK) && timePeriod > 1) {
+                                throw new SystemException(exception);
+                            } else if (timeUnit.equals(Event.REMINDER_DAY) && timePeriod > 7) {
+                                throw new SystemException(exception);
+                            }
+                        } catch (NumberFormatException exceptionNumFormat) {
+                            throw new SystemException(ExceptionType.EXCEPTION_INVALID_REMINDER_FORMAT);
+                        }
+                        timeUnits.add(timeUnit);
+                        timePeriods.add(timePeriod);
+                    }
                     break;
                 case PREFIX_RECURRING:
                     isRecurring = true;
@@ -311,7 +357,7 @@ public class Parser {
                     recurringEndTime = DateTimeManager.dateTimeParser(endTimingString);
                     break;
                 default:
-                    throw new SystemException(SystemException.ExceptionType.EXCEPTION_WRONG_PREFIX);
+                    throw new SystemException(SystemException.ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
             title = checkBlank(title, ExceptionType.EXCEPTION_MISSING_TITLE);
@@ -329,22 +375,22 @@ public class Parser {
             LocalDate date = (recurringEndTime != null) ? recurringEndTime.toLocalDate() : null;
             switch (recurringType) {
             case RecurringEvent.DAILY_RECURRENCE_TYPE:
-                event = new DailyEvent(title, dateTime, toRemind, date);
+                event = new DailyEvent(title, dateTime, toRemind, date, timePeriods, timeUnits);
                 break;
             case RecurringEvent.WEEKLY_RECURRENCE_TYPE:
-                event = new WeeklyEvent(title, dateTime, toRemind, date);
+                event = new WeeklyEvent(title, dateTime, toRemind, date, timePeriods, timeUnits);
                 break;
             case RecurringEvent.MONTHLY_RECURRENCE_TYPE:
-                event = new MonthlyEvent(title, dateTime, toRemind, date);
+                event = new MonthlyEvent(title, dateTime, toRemind, date, timePeriods, timeUnits);
                 break;
             case RecurringEvent.YEARLY_RECURRENCE_TYPE:
-                event = new YearlyEvent(title, dateTime, toRemind, date);
+                event = new YearlyEvent(title, dateTime, toRemind, date, timePeriods, timeUnits);
                 break;
             default:
-                throw new SystemException(ExceptionType.EXCEPTION_WRONG_RECURRING_TYPE);
+                throw new SystemException(ExceptionType.EXCEPTION_INVALID_RECURRING_TYPE);
             }
         } else {
-            event = new Event(title, dateTime, toRemind, false);
+            event = new Event(title, dateTime, toRemind, isRecurring, timePeriods, timeUnits);
         }
         return new AddEventCommand(event);
     }
@@ -364,19 +410,19 @@ public class Parser {
             commandInput.append(input.nextLine());
 
             // Add next line when user press enter
-            if (!commandInput.toString().equals(PREFIX_END)) {
+            if (!commandInput.toString().equals(PREFIX_DELIMITER + PREFIX_END)) {
                 commandInput.append(STRING_NEW_LINE);
             }
 
             // "/del" Delete previous line if there user makes mistakes
-            if (commandInput.toString().contains(PREFIX_DELETE_LINE)) {
-                deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELETE_LINE + STRING_NEW_LINE, 0);
+            if (commandInput.toString().contains(PREFIX_DELIMITER + PREFIX_DELETE_LINE)) {
+                deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELIMITER + PREFIX_DELETE_LINE + STRING_NEW_LINE, 0);
                 deleteLine(commandInput, STRING_NEW_LINE, 1);
             }
-        } while (!commandInput.toString().contains(PREFIX_END)); // "/end" to end input note
+        } while (!commandInput.toString().contains(PREFIX_DELIMITER + PREFIX_END)); // "/end" to end input note
 
         // Delete "/end" command when user ends the edit
-        deleteLine(commandInput, STRING_NEW_LINE + PREFIX_END + STRING_NEW_LINE, 0);
+        deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELIMITER + PREFIX_END + STRING_NEW_LINE, 0);
 
         return commandInput.toString();
     }
@@ -401,43 +447,43 @@ public class Parser {
      * @throws SystemException if an error occurs.
      */
     private Command prepareDeleteNote(String userMessage) throws SystemException {
-        int index = NULL_INDEX;
-        String title = "";
-        String prefix = "";
+        int index;
+        String title;
+        String prefix;
+        boolean isIndex = false;
 
         try {
+            // Get prefix
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
 
             for (String[] infoDetails : splitInfo) {
                 prefix = infoDetails[0].toLowerCase();
-                ExceptionType exception;
                 switch (prefix) {
                 case PREFIX_INDEX:
-                    exception = ExceptionType.EXCEPTION_MISSING_INDEX;
-                    index = Integer.parseInt(checkBlank(infoDetails[1], exception));
-                    break;
-                case PREFIX_TITLE:
-                    exception = ExceptionType.EXCEPTION_MISSING_TITLE;
-                    title = checkBlank(infoDetails[1], exception);
-                    break;
-                default:
-                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
-                }
-            }
+                    isIndex = true;
+                    index = Integer.parseInt(checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_INDEX));
 
-            if (prefix.equalsIgnoreCase(PREFIX_TITLE)) {
-                return new DeleteNoteCommand(title);
-            } else {
-                if (index <= NULL_INDEX) {
-                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+                    if (index <= NULL_INDEX) {
+                        throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+                    }
+                    return new DeleteNoteCommand(index - 1);
+                case PREFIX_TITLE:
+                    title = checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_TITLE);
+                    return new DeleteNoteCommand(title);
+                default:
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
-                return new DeleteNoteCommand(index - 1);
             }
         } catch (ArrayIndexOutOfBoundsException exception) {
-            throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
+            if (isIndex) {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
+            } else {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
+            }
         } catch (NumberFormatException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
         }
+        return new IncorrectCommand(ExceptionType.EXCEPTION_INVALID_INPUT_FORMAT.toString());
     }
 
     /**
@@ -462,48 +508,107 @@ public class Parser {
      * @param userMessage user's input of the keyword.
      * @return new ListNoteCommand Command.
      */
-    private Command prepareListNote(String userMessage) {
+    private Command prepareListNote(String userMessage) throws SystemException {
         // If no optional parameters, return default display of list note
         if (userMessage == null) {
             return new ListNoteCommand();
         }
 
+        String tagName;
+        String sort;
         Boolean isAscending = null;
-        ArrayList<String> tags = new ArrayList<>();
-        String[] words = userMessage.split("\\S");
+        ArrayList<String> tagsName = new ArrayList<>();
 
-        // May have multiple tags that need to be accounted for
-        if (userMessage.contains("/tag")) {
-            for (int i = 0; i < words.length; i++) {
-                if (words[i].equals("/tag")) {
-                    tags.add(words[i + 1]);
+        try {
+            ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
+
+            for (String[] infoDetails : splitInfo) {
+                String prefix = infoDetails[0].toLowerCase();
+                ExceptionType exception;
+
+                switch (prefix) {
+                case PREFIX_TAG:
+                    exception = ExceptionType.EXCEPTION_MISSING_TAG;
+                    tagName = checkBlank(infoDetails[1], exception);
+                    tagsName.add(tagName);
+                    break;
+                case PREFIX_SORT:
+                    exception = ExceptionType.EXCEPTION_MISSING_SORT;
+                    sort = checkBlank(infoDetails[1], exception);
+                    if (sort.equalsIgnoreCase(STRING_SORT_ASCENDING)) {
+                        isAscending = true;
+                    } else if (sort.equalsIgnoreCase(STRING_SORT_DESCENDING)) {
+                        isAscending = false;
+                    } else {
+                        throw new SystemException(ExceptionType.EXCEPTION_INVALID_SORT_TYPE);
+                    }
+                    break;
+                default:
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
         }
-
-        for (String word : words) {
-            if (word.equals("up")) {
-                isAscending = true;
-            } else if (word.equals("down")) {
-                isAscending = false;
-            }
-        }
-
-        // No optional parameters case already accounted
+        
+        // No optional parameters case as it is already accounted
         // Minimally if no tag, will have up/down and vice versa
-        if (tags.isEmpty()) {
+        if (tagsName.isEmpty()) {
             return new ListNoteCommand(isAscending);
         } else {
             if (isAscending == null) {
-                return new ListNoteCommand(tags);
+                return new ListNoteCommand(tagsName);
             } else {
-                return new ListNoteCommand(isAscending, tags);
+                return new ListNoteCommand(isAscending, tagsName);
             }
         }
     }
 
-    private Command prepareListEvent(String userMessage) {
-        return new ListEventCommand();
+    private Command prepareListEvent(String userMessage) throws SystemException {
+        if (userMessage == null) {
+            return new ListEventCommand();
+        } else {
+            ArrayList<String[]> splitInfoDetails = splitInfoDetails(userMessage);
+            String details = "";
+            int year;
+            int month;
+
+            if (splitInfoDetails.size() == 0) {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TIMING_PREFIX);
+            }
+
+            for (String[] infoDetails : splitInfoDetails) {
+                String prefix = infoDetails[0].toLowerCase();
+                if (PREFIX_TIMING.equals(prefix)) {
+                    ExceptionType exception = ExceptionType.EXCEPTION_INVALID_LIST_TIMING_FORMAT;
+                    details = checkBlank(infoDetails[1], exception);
+                } else {
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
+                }
+            }
+            try {
+                String[] timings = details.split(TIMING_SPLIT_DELIMITER);
+                if (timings.length == 1) {
+                    year = Integer.parseInt(timings[0]);
+                    if (year <= 1000 || year > 3000) {
+                        throw new SystemException(ExceptionType.EXCEPTION_SEARCH_DATE_OUT_OF_RANGE);
+                    } else {
+                        return new ListEventCommand(year);
+                    }
+                } else {
+                    year = Integer.parseInt(timings[0]);
+                    month = Integer.parseInt(timings[1]);
+                }
+                if (year <= ListEventCommand.SMALLEST_YEAR || year >= ListEventCommand.LARGEST_YEAR
+                        || month <= ListEventCommand.SMALLEST_MONTH || month >= ListEventCommand.LARGEST_MONTH) {
+                    throw new SystemException(ExceptionType.EXCEPTION_SEARCH_DATE_OUT_OF_RANGE);
+                }
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException exception) {
+                throw new SystemException(ExceptionType.EXCEPTION_INVALID_LIST_TIMING_FORMAT);
+            }
+
+            return new ListEventCommand(year, month);
+        }
     }
 
     private Command prepareViewNote(String userMessage) throws SystemException {
@@ -526,7 +631,7 @@ public class Parser {
                     index = Integer.parseInt(checkBlank(infoDetails[1], exception));
                     return new ViewNoteCommand(index - 1);
                 default:
-                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
         } catch (ArrayIndexOutOfBoundsException exception) {
@@ -588,7 +693,7 @@ public class Parser {
                     index = Integer.parseInt(checkBlank(infoDetails[1], exception));
                     return new PinCommand(index - 1);
                 default:
-                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
         } catch (ArrayIndexOutOfBoundsException exception) {
@@ -619,7 +724,7 @@ public class Parser {
                     Tag tag = handleTagPrefix(infoDetails);
                     tags.add(tag);
                 } else {
-                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
             // Ensures that there is at least 1 tag to be created or deleted.
@@ -663,7 +768,7 @@ public class Parser {
                     index = Integer.parseInt(checkBlank(infoDetails[1].trim(), exception));
                     break;
                 default:
-                    throw new SystemException(ExceptionType.EXCEPTION_WRONG_PREFIX);
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
 

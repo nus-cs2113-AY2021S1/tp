@@ -64,12 +64,25 @@ public class Note {
         return (isPinned ? "Y" : "N");
     }
 
+    public void togglePinned() {
+        isPinned = !isPinned;
+    }
+
     public void setPinned(Boolean pinned) {
         isPinned = pinned;
     }
 
     public ArrayList<Tag> getTags() {
         return this.tags;
+    }
+
+    public String getTagsName() {
+        String tagsName = "";
+
+        for (Tag t : tags) {
+            tagsName = tagsName.concat(t.toString());
+        }
+        return tagsName;
     }
 
     public void setTags(ArrayList<Tag> tags) {
