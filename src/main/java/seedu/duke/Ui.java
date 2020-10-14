@@ -147,6 +147,9 @@ public class Ui {
                 System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", taskCounts);
             }
         }
+        if (taskCounts == 0) {
+            System.out.println("Oops, there are no tasks stored in your list!");
+        }
     }
 
     /**
@@ -182,12 +185,18 @@ public class Ui {
     }
 
     /**
-     * Shows the user the task that was added and the total number of tasks in the task list.
+     * Shows the user the task/event that was added.
      *
      * @param calendarList the calendar list that the task was added to.
      */
-    public static void printAddMessage(CalendarList calendarList) {
-        System.out.println("Got it. I've added this task:");
+    public static void printAddMessage(CalendarList calendarList, boolean isTask) {
+        String calendarItem;
+        if (isTask) {
+            calendarItem = "task";
+        } else {
+            calendarItem = "event";
+        }
+        System.out.println("Got it. I've added this " + calendarItem + ":");
 
         /* - 1 is catered for array list's index starting from 0. */
         int lastCalendarItemIndex = calendarList.getCalendarList().size() - 1;

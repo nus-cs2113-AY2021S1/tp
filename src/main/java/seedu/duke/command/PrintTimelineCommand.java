@@ -1,11 +1,9 @@
 package seedu.duke.command;
 
-import seedu.duke.DateTimeParser;
 import seedu.duke.DukeException;
 import seedu.duke.Storage;
 import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
-import seedu.duke.calendar.task.Task;
 import seedu.duke.calendar.task.Todo;
 
 import java.time.LocalTime;
@@ -70,6 +68,7 @@ public class PrintTimelineCommand extends Command {
 
     /**
      * Sort the items in a CalendarList in time sequence.
+     *
      * @param calendarList list to be sorted.
      * @return sorted CalendarList.
      */
