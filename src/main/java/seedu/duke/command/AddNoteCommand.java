@@ -1,6 +1,5 @@
 package seedu.duke.command;
 
-import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Note;
 
 import java.util.ArrayList;
@@ -52,6 +51,7 @@ public class AddNoteCommand extends Command {
         // Rebind the tags if there are duplicated tags
         tagManager.rebindTags(note);
         notebook.addNote(note);
-        return COMMAND_SUCCESSFUL_MESSAGE + note.getTitle();
+
+        return COMMAND_SUCCESSFUL_MESSAGE + note.getTitle() + " " + note.getTagsName();
     }
 }

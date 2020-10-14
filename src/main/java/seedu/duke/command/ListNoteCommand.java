@@ -2,7 +2,6 @@ package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
-import seedu.duke.data.notebook.TagManager;
 import seedu.duke.ui.InterfaceManager;
 
 import java.util.Comparator;
@@ -14,6 +13,7 @@ import java.util.stream.Collectors;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
+import static seedu.duke.util.PrefixSyntax.SUFFIX_INDEX;
 
 /**
  * Lists all the Notes in the Notebook.
@@ -25,10 +25,12 @@ public class ListNoteCommand extends Command {
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Lists all the notes in the Notebook. Parameters: "
             + "[" + PREFIX_DELIMITER + PREFIX_TAG + " TAG "
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG1...] "
-            + "[up/down]";
+            + "[/sort up OR down]";
 
-    private static final String COMMAND_MESSAGE_UNSUCCESSFUL = "Your tags return no result."
+    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the list of notes: " + InterfaceManager.LS;
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE_INVALID_TAG = "Your tags return no result."
             + " Please try an alternative tag or check your spellings";
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK = "The notebook is empty!";
 
     private ArrayList<String> tags;
     private boolean isSorted;
@@ -95,18 +97,22 @@ public class ListNoteCommand extends Command {
                 .collect(Collectors.toList());
 
         if (tags == null) {
-
             if (isAscendingOrder == null) {
                 for (int i = 0; i < notebook.getNotes().size(); i++) {
-                    noteString.append(i + 1).append(".")
+                    noteString.append(i + 1).append(SUFFIX_INDEX)
                             .append(notebook.getNotes().get(i).getTitle())
+                            .append(" ")
+                            .append(notebook.getNotes().get(i).getTagsName())
                             .append(InterfaceManager.LS);
                 }
             } else {
                 noteString = new StringBuilder(getSortedString(noteString.toString(), sortedNotes));
             }
 
-            return noteString.toString();
+            if (noteString.toString().isBlank()) {
+                return COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK;
+            }
+            return COMMAND_SUCCESSFUL_MESSAGE + noteString.toString();
         }
 
         // Obtaining ArrayList<String> of tags and parsing it to get an ArrayList<Tag> of tags
@@ -116,9 +122,14 @@ public class ListNoteCommand extends Command {
         for (String tag : tags) {
             Tag currentTag = tagManager.getTag(tag);
 
-            if (tag != null) {
+            if (currentTag != null) {
                 tagList.add(currentTag);
             }
+        }
+
+        // If the user inputted tags does not match any of the existing tags.
+        if (tagList.isEmpty()) {
+            return COMMAND_UNSUCCESSFUL_MESSAGE_INVALID_TAG;
         }
 
         // Based on user inputted tags, will store the respective values in an ArrayList
@@ -140,7 +151,7 @@ public class ListNoteCommand extends Command {
 
         // Checking for empty notes List
         if (notes.isEmpty()) {
-            return COMMAND_MESSAGE_UNSUCCESSFUL;
+            return COMMAND_UNSUCCESSFUL_MESSAGE_INVALID_TAG;
         }
 
         // Sort the tagged notes
@@ -149,17 +160,19 @@ public class ListNoteCommand extends Command {
                 .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
                 .collect(Collectors.toList());
 
-
         if (isAscendingOrder == null) {
             for (int i = 0; i < notes.size(); i++) {
-                noteString.append(i + 1).append(".").append(notes.get(i).toString());
+                noteString.append(i + 1)
+                        .append(SUFFIX_INDEX)
+                        .append(notes.get(i).toString())
+                        .append(" ")
+                        .append(notes.get(i).getTagsName())
+                        .append(InterfaceManager.LS);
             }
         } else {
             noteString = new StringBuilder(getSortedString(noteString.toString(), sortedTaggedNotes));
-
         }
-
-        return noteString.toString();
+        return COMMAND_SUCCESSFUL_MESSAGE + noteString.toString();
     }
 
     /**
@@ -175,7 +188,12 @@ public class ListNoteCommand extends Command {
 
             StringBuilder noteStrBuilder = new StringBuilder(noteString);
             for (int i = sortedNotes.size() - 1; i >= 0; i--) {
-                noteStrBuilder.append(j).append(".").append(sortedNotes.get(i).getTitle()).append(InterfaceManager.LS);
+                noteStrBuilder.append(j)
+                        .append(SUFFIX_INDEX)
+                        .append(sortedNotes.get(i).getTitle())
+                        .append(" ")
+                        .append(sortedNotes.get(i).getTagsName())
+                        .append(InterfaceManager.LS);
                 j++;
             }
             noteString = noteStrBuilder.toString();
@@ -184,8 +202,11 @@ public class ListNoteCommand extends Command {
 
             StringBuilder noteStrBuilder = new StringBuilder(noteString);
             for (int i = 0; i < sortedNotes.size(); i++) {
-                noteStrBuilder.append(i + 1).append(".")
+                noteStrBuilder.append(i + 1)
+                        .append(SUFFIX_INDEX)
                         .append(sortedNotes.get(i).getTitle())
+                        .append(" ")
+                        .append(sortedNotes.get(i).getTagsName())
                         .append(InterfaceManager.LS);
             }
             noteString = noteStrBuilder.toString();

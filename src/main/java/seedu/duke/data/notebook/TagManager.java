@@ -11,8 +11,8 @@ import java.util.Map;
  */
 public class TagManager {
 
-    private static final String STRING_TAG_EMPTY = "There are no tags!";
-    private static final String STRING_TAG_LIST = "Here are the available tags:" + InterfaceManager.LS;
+    public static final String STRING_TAG_EMPTY = "There are no tags!";
+    public static final String STRING_TAG_LIST = "Here are the available tags:" + InterfaceManager.LS;
 
     private Map<Tag, ArrayList<Note>> tagMap;
 
@@ -63,6 +63,27 @@ public class TagManager {
     }
 
     /**
+     * Handles creation of multiple tags and returns the result of each creation.
+     *
+     * @param tags List of tags to be created.
+     * @param createSuccessfulString String for successful creation of tag.
+     * @param createUnsuccessfulString String for unsuccessful creation of tag
+     * @return Result of all tag creation.
+     */
+    public String createTag(ArrayList<Tag> tags, String createSuccessfulString, String createUnsuccessfulString) {
+        String result = "";
+        for (Tag t : tags) {
+            if (createTag(t, true)) {
+                result = result.concat(createSuccessfulString);
+            } else {
+                result = result.concat(createUnsuccessfulString);
+            }
+            result = result.concat(getTag(t.getTagName()) + InterfaceManager.LS);
+        }
+        return result.trim();
+    }
+
+    /**
      * Tags a Note with the provided Tag.
      *
      * @param note Note to be tagged.
@@ -80,7 +101,7 @@ public class TagManager {
      * @param tag Tag to be removed.
      */
     public void removeTag(Note note, Tag tag) {
-        tagMap.remove(tag, note);
+        tagMap.get(tag).remove(note);
         note.getTags().remove(tag);
     }
 
@@ -103,6 +124,30 @@ public class TagManager {
         tagMap.remove(existingTag);
         return true;
     }
+
+    /**
+     * Handles deletion of multiple tags and returns the result of each deletion.
+     *
+     * @param tags List of tags to be created.
+     * @param deleteSuccessfulString String for successful deletion of tag.
+     * @param deleteUnsuccessfulString String for unsuccessful deletion of tag.
+     * @return Result of all tag creation.
+     */
+    public String deleteTag(ArrayList<Tag> tags, String deleteSuccessfulString, String deleteUnsuccessfulString) {
+        String result = "";
+        for (Tag t : tags) {
+            Tag existingTag = getTag(t.getTagName());
+            if (deleteTag(t)) {
+                result = result.concat(deleteSuccessfulString + existingTag);
+            } else {
+                result = result.concat(deleteUnsuccessfulString + t);
+            }
+            result = result.concat(InterfaceManager.LS);
+        }
+
+        return result.trim();
+    }
+
 
     /**
      * Lists all the Tags in the map.
@@ -149,5 +194,37 @@ public class TagManager {
                 tagNote(note, existingTag);
             }
         }
+    }
+
+    /**
+     * Handles tagging and untagging of note with the given list of tags. If the note already has the tag, untags it,
+     * else tags the note. Returns the result of each tagging and untagging operation.
+     *
+     * @param note Note to be tagged or untagged.
+     * @param tags List of tags.
+     * @param tagNoteString String for tagging of note.
+     * @param untagNoteString String for untagging of note.
+     * @return Result of all tagging and untagging operation.
+     */
+    public String tagAndUntagNote(Note note, ArrayList<Tag> tags, String tagNoteString, String untagNoteString) {
+        String result = "";
+
+        for (Tag t : tags) {
+            // Tries to get the tag from the map
+            Tag existingTag = getTag(t.getTagName());
+
+            // check if the note contains such tag
+            if (note.getTags().contains(existingTag)) {
+                removeTag(note, existingTag);
+                result = result.concat(untagNoteString + existingTag + InterfaceManager.LS);
+            } else {
+                // runs the create tag in case existing tag is null, if it is not null, updates the tag
+                createTag(t, false);
+                existingTag = getTag(t.getTagName());
+                tagNote(note, existingTag);
+                result = result.concat(tagNoteString + existingTag + InterfaceManager.LS);
+            }
+        }
+        return result.trim();
     }
 }

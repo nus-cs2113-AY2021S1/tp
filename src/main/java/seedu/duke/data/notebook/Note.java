@@ -76,6 +76,15 @@ public class Note {
         return this.tags;
     }
 
+    public String getTagsName() {
+        String tagsName = "";
+
+        for (Tag t : tags) {
+            tagsName = tagsName.concat(t.toString());
+        }
+        return tagsName;
+    }
+
     public void setTags(ArrayList<Tag> tags) {
         this.tags = tags;
     }
