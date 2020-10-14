@@ -58,6 +58,11 @@ public class Activity extends Event {
     }
 
     @Override
+    public String getDescription() {
+        return "[A][" + getIcon() + "] " + details + " " + super.getDescription();
+    }
+
+    @Override
     /** Returns the respective event type. */
     public String getType() {
         return eventType;
@@ -78,10 +83,4 @@ public class Activity extends Event {
     public LocalDate getDate() {
         return this.date;
     }
-
-    @Override
-    public String getDescription() {
-        return details;
-    }
-
 }

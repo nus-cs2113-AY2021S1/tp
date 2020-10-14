@@ -30,16 +30,16 @@ public abstract class Task extends CalendarItem {
         return "[" + this.getStatusIcon() + "] " + this.description;
     }
 
+    @Override
+    public String getDescription() {
+        return "[" + this.getStatusIcon() + "] " + this.description;
+    }
+
     /**
      * Returns a tick if the task is done. Returns a cross if the task is not done.
      */
     public String getStatusIcon() {
         return (isDone ? TICK_SYMBOL : CROSS_SYMBOL); //return tick or X symbols
-    }
-
-    @Override
-    public String getDescription() {
-        return description;
     }
 
     /**

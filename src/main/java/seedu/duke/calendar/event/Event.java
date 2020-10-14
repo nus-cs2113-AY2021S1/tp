@@ -41,6 +41,12 @@ public abstract class Event extends CalendarItem {
                 + " (" + venue + ")";
     }
 
+    @Override
+    public String getDescription() {
+        return " (" + venue + ")";
+    }
+
+
     public abstract String getType();
 
     public LocalDate getDate() {
