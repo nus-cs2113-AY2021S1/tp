@@ -86,7 +86,17 @@ public class MainController implements Initializable {
             handleUserInput();
         });
         aboutUs.setOnAction((event) -> {
-            handleUserInput();
+            FXMLLoader sceneLoader = new FXMLLoader(getClass().getResource("/aboutWindow.fxml"));
+            Parent mainRoot = null;
+            try {
+                mainRoot = sceneLoader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene main = new Scene(mainRoot);
+            Stage primaryStage = new Stage();
+            primaryStage.setScene(main);
+            primaryStage.show();
         });
 
     }
