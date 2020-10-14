@@ -2,11 +2,13 @@ package seedu.rex.ui;
 
 import seedu.rex.commands.Command;
 import seedu.rex.commands.ExitCommand;
+import seedu.rex.data.hospital.Appointment;
 import seedu.rex.data.hospital.Patient;
 import seedu.rex.storage.Storage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -141,5 +143,41 @@ public class Ui {
 
         printWithIndent("Patient Details: ");
         printWithIndent(patient.toString());
+    }
+
+    public void printPatientNotFound(String nric) {
+        printWithIndent("Patient " + nric + " not found in database!");
+    }
+
+    public String getNewAppointmentDate() {
+        printWithIndent("Please enter the date of appointment in YYYY-MM-DD.");
+        showLine();
+        return in.nextLine();
+    }
+
+    public void showAppointmentCreatedMessage() {
+        showLine();
+        printWithIndent("New appointment created!");
+    }
+
+    public String getAppointmentToBook(ArrayList<Appointment> appointments) {
+        showLine();
+        printWithIndent("Here are the list of available appointments.");
+        int counter = 1;
+        for (Appointment appointment : appointments) {
+            if (!appointment.isBooked()) {
+                printWithIndent(String.valueOf(counter) + ". " + appointment.getDate().toString());
+                counter++;
+            }
+        }
+        printWithIndent("Please enter the date of appointment to book in YYYY-MM-DD");
+        showLine();
+        return in.nextLine();
+    }
+
+    public void showAppointmentBookedMessage(Appointment appointment) {
+        showLine();
+        printWithIndent("Appointment on " + appointment.getDate().toString() + " booked!");
+
     }
 }

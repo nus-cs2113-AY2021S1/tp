@@ -1,18 +1,20 @@
 package seedu.rex.storage;
 
+import seedu.rex.Rex;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
+import seedu.rex.data.hospital.Appointment;
 import seedu.rex.data.hospital.Patient;
 import seedu.rex.parser.Parser;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Vector;
 
 /**
  * Loads and saves data to file.
@@ -25,6 +27,7 @@ public class Storage {
 
     private final String folder;
     private final String file;
+    private static final String APPOINTMENTS_FILE = "appointments.txt";
 
     /**
      * Initializes path of folder and file.
@@ -79,12 +82,13 @@ public class Storage {
     public void save(PatientList patients) throws RexException {
         assert patients != null : "Saving null patients ArrayList";
 
-        StringBuilder fileContent = new StringBuilder();
+        StringBuilder patientsFileContent = new StringBuilder();
 
         for (int i = 0; i < patients.getSize(); i++) {
             // Need to format tasks
-            fileContent.append(patients.getPatientUsingIndex(i));
-            fileContent.append('\n');
+            patientsFileContent.append(patients.getPatientUsingIndex(i));
+            patientsFileContent.append('\n');
+            Vector<Appointment> patientAppointments = patients.getPatientUsingIndex(i).getAppointmentHistory();
         }
 
         Path folderPath = Paths.get(folder);
@@ -95,10 +99,34 @@ public class Storage {
         Path filePath = Paths.get(folder, file);
         try {
             BufferedWriter bufferedWriter = Files.newBufferedWriter(filePath);
-            bufferedWriter.write(fileContent.toString());
+            bufferedWriter.write(patientsFileContent.toString());
             bufferedWriter.close();
         } catch (IOException e) {
             throw new RexException(WRITE_ERROR);
         }
+    }
+
+    public void saveAppointments(ArrayList<Appointment> appointments) throws IOException {
+        StringBuilder textToWrite = new StringBuilder();
+        for (Appointment appointment : appointments) {
+            textToWrite.append(appointment.toString());
+            textToWrite.append(System.lineSeparator());
+        }
+        String appointmentsFilePath = folder + "/" + APPOINTMENTS_FILE;
+
+        FileWriter fw = new FileWriter(appointmentsFilePath);
+        fw.write(String.valueOf(textToWrite));
+        fw.close();
+    }
+
+    public ArrayList<Appointment> loadAppointments() throws FileNotFoundException {
+        ArrayList<Appointment> appointments = new ArrayList<>();
+        File appointmentsFile = new File(folder + "/" + APPOINTMENTS_FILE);
+        Scanner s = new Scanner(appointmentsFile);
+        while (s.hasNext()) {
+            Appointment appointment = Parser.readAppointment(s.nextLine());
+            appointments.add(appointment);
+        }
+        return appointments;
     }
 }

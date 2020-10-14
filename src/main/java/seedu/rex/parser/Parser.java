@@ -1,10 +1,9 @@
 package seedu.rex.parser;
 
-import seedu.rex.commands.AddCommand;
-import seedu.rex.commands.Command;
-import seedu.rex.commands.ExitCommand;
-import seedu.rex.commands.RetrieveCommand;
+import seedu.rex.Rex;
+import seedu.rex.commands.*;
 import seedu.rex.data.exception.RexException;
+import seedu.rex.data.hospital.Appointment;
 import seedu.rex.data.hospital.Patient;
 
 import java.time.LocalDate;
@@ -34,6 +33,18 @@ public class Parser {
         return new Patient(name, nric, dateOfBirth);
     }
 
+    public static Appointment readAppointment(String line) {
+        String[] appointmentComponents = line.split(", ");
+        LocalDate date = LocalDate.parse(appointmentComponents[0]);
+        String bookedStatus = appointmentComponents[1];
+        String nric = appointmentComponents[2];
+        Appointment appointment = new Appointment(date);
+        if (bookedStatus.equals("booked")) {
+            appointment.book(Rex.getPatients().getPatientUsingIndex(Rex.getPatients().getExistingPatient(nric)));
+        }
+        return appointment;
+    }
+
     /**
      * Reads and parse command.
      *
@@ -52,6 +63,10 @@ public class Parser {
             command = new AddCommand(trimmedCommand);
         } else if (trimmedCommand.contains(RetrieveCommand.COMMAND_WORD)) {
             command = new RetrieveCommand(trimmedCommand);
+        } else if (trimmedCommand.contains(BookCommand.COMMAND_WORD)) {
+            command = new BookCommand(trimmedCommand);
+        } else if (trimmedCommand.contains(CreateAppointmentCommand.COMMAND_WORD)) {
+            command = new CreateAppointmentCommand(trimmedCommand);
         } else {
             throw new RexException(Command.COMMAND_ERROR);
         }
