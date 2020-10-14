@@ -129,11 +129,6 @@ public class RepeatCommand extends Command {
     private void executeAdd(UserData data, Ui ui, Storage storage) throws DukeException {
         String[] words = command.split(" ");
         EventList eventList = data.getEventList(words[0]);
-
-        if (eventList == null) {
-            throw new InvalidListException(words[0]
-                    + "not a valid event type. Valid types are: personal, timetable, zoom");
-        }
         int index = Integer.parseInt(words[1]) - 1;
         Event eventToRepeat = eventList.getEventByIndex(index);
         LocalDate startDate = eventToRepeat.getDate();

@@ -15,7 +15,7 @@ public class GoalCommand extends Command {
      * @param command from user input
      */
     public GoalCommand(String command) {
-        assert (command != null);
+        assert command != null : "String for goal command should not be null";
         this.isExit = false;
         this.command = command;
     }

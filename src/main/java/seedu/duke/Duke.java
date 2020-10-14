@@ -55,7 +55,7 @@ public class Duke {
 
                 c.execute(data, ui, storage);
             } catch (DukeException e) {
-                e.printErrorMessage();
+                ui.printErrorMessage(e.getMessage());
             }
         }
         ui.printByeMessage();

@@ -133,28 +133,13 @@ public class Ui {
         System.out.println("The file does not exist or has been corrupted!");
     }
 
-    public void printInvalidDateMessage() {
-        System.out.println("The date entered is invalid!");
-    }
-
-    public void printInvalidCommandMessage() {
-        System.out.println("Sorry, I did not understand your command!");
-    }
-
-    public void printNoEventInTimeRangeMessage() {
-        System.out.println("There are no events going on during that period.");
-    }
-
     /**
      * Prints exception message.
      *
      * @param exceptionMessage String of warning message from various exceptions.
      */
-    public void printExceptionMessage(String exceptionMessage) {
-        printDividerLine();
+    public void printErrorMessage(String exceptionMessage) {
         System.out.println(exceptionMessage);
         printDividerLine();
     }
-
-
 }
