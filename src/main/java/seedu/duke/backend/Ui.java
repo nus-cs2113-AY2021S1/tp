@@ -1,20 +1,21 @@
 package seedu.duke.backend;
 
 import seedu.duke.Command;
-import seedu.duke.finance.CommandFinanceAdd;
-import seedu.duke.finance.CommandFinanceDel;
-import seedu.duke.finance.CommandFinanceSummary;
-import seedu.duke.finance.FinanceLog;
+import seedu.duke.DukeArgumentException;
+import seedu.duke.DukeFinanceAddDescriptionLostException;
+import seedu.duke.DukeNoMatchException;
 import seedu.duke.event.CommandEventAdd;
 import seedu.duke.event.CommandEventDel;
 import seedu.duke.event.CommandEventList;
-import seedu.duke.DukeArgumentException;
-import seedu.duke.DukeNoMatchException;
+import seedu.duke.finance.CommandFinanceAdd;
+import seedu.duke.finance.CommandFinanceDel;
+import seedu.duke.finance.CommandFinanceSummary;
 import seedu.duke.hr.CommandAddMember;
 import seedu.duke.hr.CommandDelMember;
 import seedu.duke.hr.CommandViewMember;
 import seedu.duke.others.CommandBye;
 import seedu.duke.others.CommandHelp;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -45,6 +46,9 @@ public class Ui {
             // Placeholder if additional routine is required when user enters incorrect parameters
         } catch (DukeNoMatchException ne) {
             printOutput("No such command. Try 'help' for a list of commands.");
+        } catch (DukeFinanceAddDescriptionLostException e) {
+            printOutput("Please enter the complete command. Format is:"
+                    + "finance addLog content number");
         } catch (Exception e) {
             printOutput("Command execution failed with an unhandled error!", true);
         }

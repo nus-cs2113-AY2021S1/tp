@@ -4,7 +4,7 @@ import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
 public class CommandFinanceDel extends Command {
-    UserInput userinput;
+    private UserInput userinput;
 
     @Override
     public String execute() {
