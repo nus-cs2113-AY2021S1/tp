@@ -252,17 +252,17 @@ any command that changes the data. There is no need to save manually.
 that contains the data of your previous Duke home folder.
 
 ## Command summary
-| Function | Format | Example |
-| -------- | ------ | ------- |
-| Help | `help` |
-| Create location | `create [LOCATION_NAME]` | `create Bedroom 1` |
-| Remove location | `remove [LOCATION_NAME]` | `remove Bedroom 1` |
-| Add appliance | `add [APPLIANCE_NAME] l/[LOCATION_NAME] w/[WATTAGE] t/[TYPE_OF_APPLIANCE]` | `add AIRCON1 l/Bedroom 1 w/3500 t/airconditioner` |
-| Delete appliance | `delete [APPLIANCE_NAME]` | `delete AIRCON1` |
-| Switch On | `on [APPLIANCE_NAME]` | `on AIRCON1` |
-| Switch Off | `off [APPLIANCE_NAME]` | `off AIRCON1` |
-| List | `list appliance` or `list location` |
-| Usage | `usage` |
-| Exit | `exit` |
+Function | Format | Example 
+-------- |--------|-------- 
+Help|`help`
+Create location|`create [LOCATION_NAME]`|`create Bedroom 1`
+Remove location|`remove [LOCATION_NAME]`|`remove Bedroom 1`
+Add appliance|`add [APPLIANCE_NAME] l/[LOCATION_NAME] w/[WATTAGE] t/[TYPE_OF_APPLIANCE]`|`add AIRCON1 l/Bedroom 1 w/3500 t/airconditioner`
+Delete appliance|`delete [APPLIANCE_NAME]`|`delete AIRCON1`
+Switch On|`on [APPLIANCE_NAME]`|`on AIRCON1`
+Switch Off|`off [APPLIANCE_NAME]`|`off AIRCON1`
+List|`list appliance` or `list location`
+Usage|`usage`
+Exit|`exit`
 
 
