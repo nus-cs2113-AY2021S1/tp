@@ -1,7 +1,7 @@
 package seedu.eduke8.parser;
 
 import org.junit.jupiter.api.Test;
-import seedu.eduke8.command.*;
+import seedu.eduke8.command.Command;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
@@ -20,7 +20,8 @@ public class MenuParserTest {
             assertThrows(Eduke8Exception.class, () -> {
                 badCommand.execute(topicList, ui);
             });
-        } catch (Exception ignored) {
+        } catch (Eduke8Exception ee) {
+            ee.printStackTrace();
         }
     }
 }
