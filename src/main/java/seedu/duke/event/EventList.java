@@ -31,32 +31,6 @@ public class EventList {
         return name;
     }
 
-    public ArrayList<Event> checkEventsInTimeRange(LocalDate startDate, LocalDate endDate,
-                                                   LocalTime startTime, LocalTime endTime) {
-        ArrayList<Event> eventsInTimeRange = new ArrayList<>();
-
-        for (Event event : events) {
-            boolean eventIsBetweenDate = event.date.isAfter(startDate) && event.date.isBefore(endDate);
-
-            boolean eventIsBetweenTime;
-            if (eventIsBetweenDate) {
-                eventIsBetweenTime = true;
-            } else if (event.date.isEqual(startDate)) {
-                eventIsBetweenTime = !(event.time.isBefore(startTime));
-            } else if (event.date.isEqual(endDate)) {
-                eventIsBetweenTime = !(event.time.isAfter(endTime));
-            } else {
-                eventIsBetweenTime = false;
-            }
-
-            if (eventIsBetweenTime) {
-                eventsInTimeRange.add(event);
-            }
-        }
-
-        return eventsInTimeRange;
-    }
-
     public Event getEventByIndex(int index) throws InvalidIndexException {
 
         try {
