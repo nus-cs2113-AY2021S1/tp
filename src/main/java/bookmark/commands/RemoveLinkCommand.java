@@ -18,4 +18,7 @@ public class RemoveLinkCommand extends BookmarkCommand {
         categories.get(categoryNumber - 1).removeLink(linkNumber);
         ui.showBookmarkLinkList(categories.get(categoryNumber - 1).getLinks());
     }
+
+    //Todo throw exceptions for invalid input, not a number
+    //Todo throw exceptions for input number = 0 or input number > size
 }
