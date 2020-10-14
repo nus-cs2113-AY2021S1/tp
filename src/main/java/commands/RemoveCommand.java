@@ -44,7 +44,7 @@ public class RemoveCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cards, Ui ui, Access access, Storage storage)
+    public void execute(Ui ui, Access access, Storage storage)
             throws IncorrectAccessLevelException, IOException {
         if (access.isAdminLevel()) {
             removeModule(ui, access, storage);

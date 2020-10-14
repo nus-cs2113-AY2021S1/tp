@@ -3,7 +3,6 @@ package commands;
 import access.Access;
 import exception.InvalidFileFormatException;
 import manager.card.Card;
-import manager.chapter.CardList;
 import manager.chapter.Chapter;
 import scheduler.Scheduler;
 import storage.Storage;
@@ -62,7 +61,7 @@ public class ReviseCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cards, Ui ui, Access access, Storage storage) 
+    public void execute(Ui ui, Access access, Storage storage)
         throws FileNotFoundException, InvalidFileFormatException {
         Chapter toRevise = getChapter(reviseIndex, access, ui);
         if (!Scheduler.isDeadlineDue(toRevise.getDueBy())) {
