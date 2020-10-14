@@ -14,6 +14,5 @@ public class HelpCommand extends Command {
 
         // Print for testing
         return "Help showed";
-        //System.out.println("Help showed");
     }
 }

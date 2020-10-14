@@ -15,7 +15,7 @@ public class BrowseCommand extends Command {
     private int order;
     private int page;
     private String filter;
-    private static Logger logger = Logger.getLogger("BrowseLogger");
+    private static Logger LOGGER = Logger.getLogger(Command.class.getName());
 
 
     public BrowseCommand(String description) {
@@ -39,14 +39,14 @@ public class BrowseCommand extends Command {
         String[] paramGiven = description.split("-");
         if (paramGiven.length > 1) {
             parameterParser(paramGiven);
-            logger.log(Level.INFO, "Default values modified");
+            LOGGER.log(Level.INFO, "Default values modified");
         }
         //else use default values
         ArrayList<Anime> usableList = animeData.getAnimeDataList();
 
         int indexToPrint = (page - 1) * 20;
         if (indexToPrint >= usableList.size()) {
-            logger.log(Level.SEVERE, "Getting page: Tried to start at index: " + indexToPrint);
+            LOGGER.log(Level.SEVERE, "Getting page: Tried to start at index: " + indexToPrint);
             throw new AniException("Invalid Page size!");
         }
 
@@ -62,7 +62,7 @@ public class BrowseCommand extends Command {
             result += Integer.toString(i + 1) + ". " + browseAnime.getAnimeName() + System.lineSeparator();
             //System.out.println(i + 1 + ". " + browseAnime.getAnimeName());
             if (i + 1 >= usableList.size()) {
-                logger.log(Level.WARNING, "Printing Last Anime Series from source");
+                LOGGER.log(Level.WARNING, "Printing Last Anime Series from source");
                 break;
             }
         }
@@ -74,19 +74,19 @@ public class BrowseCommand extends Command {
 
     private void sortBrowseList(ArrayList<Anime> usableList) {
         if (sortType == 0 && order == 0) {
-            //logger.log(Level.INFO, "Sorting by ID descending");
+            //LOGGER.log(Level.INFO, "Sorting by ID descending");
             usableList.sort(Comparator.comparing(Anime::getAnimeID).reversed());
         } else if (sortType == 1 && order == 0) {
-            //logger.log(Level.INFO, "Sorting by Name Ascending (Z to A)");
+            //LOGGER.log(Level.INFO, "Sorting by Name Ascending (Z to A)");
             usableList.sort(Comparator.comparing(Anime::getAnimeName).reversed());
         } else if (sortType == 1) {
-            //logger.log(Level.INFO, "Sorting by Name Ascending (A to Z)");
+            //LOGGER.log(Level.INFO, "Sorting by Name Ascending (A to Z)");
             usableList.sort(Comparator.comparing(Anime::getAnimeName));
         } else if (sortType == 2 && order == 0) {
-            //logger.log(Level.INFO, "Sorting by Rating Ascending (low to high)");
+            //LOGGER.log(Level.INFO, "Sorting by Rating Ascending (low to high)");
             usableList.sort(Comparator.comparing(Anime::getRating));
         } else if (sortType == 2) {
-            //logger.log(Level.INFO, "Sorting by Rating Descending (high to low)");
+            //LOGGER.log(Level.INFO, "Sorting by Rating Descending (high to low)");
             usableList.sort(Comparator.comparing(Anime::getRating).reversed());
         }
     }

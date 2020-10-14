@@ -22,11 +22,11 @@
 
  Abec-chan (Default) #>  Watchlist created successfully!
 
- Abec-chan (Default) #>  Currently, you have 3 watchlists:
+ Abec-chan (Default) #>  Currently, you have 3 watchlist(s):
 	1. Default
 	2. a
 	3. b
 
- Abec-chan (Default) #>  Anime added to watchlist
+ Abec-chan (Default) #>  Anime added to watchlist!
 
  Abec-chan (Default) #>  Sayonara!

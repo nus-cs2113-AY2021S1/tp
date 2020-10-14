@@ -24,10 +24,7 @@ public class Duke {
 
     private AnimeStorage animeStorage;
     private AnimeData animeData;
-
     private UserManagement userManagement;
-    private User activeUser;
-    private Watchlist activeWatchlist;
 
     public Duke() {
         ui = new Ui();
@@ -39,33 +36,34 @@ public class Duke {
         ui.printWelcomeMessage();
         ui.printHorizontalLine();
         userManagement.setActiveUser(storage.loadUser(ui));
-        ArrayList<Watchlist> activeWatchlistList = storage.loadWatchlist(ui);
+        final ArrayList<Watchlist> watchlistList = storage.loadWatchlist(ui);
         ui.printHorizontalLine();
 
-        // Initial SET UP for AnimeStorage / WatchLists / UserManagement / bookmark
+        // Initial Set up
 
         assert userManagement != null;
-        activeUser = userManagement.getActiveUser();
+        User activeUser = userManagement.getActiveUser();
         if (activeUser == null) {
             userManagement.addUserDialogue(ui);
             activeUser = userManagement.getActiveUser();
             assert userManagement.getActiveUser() != null;
         }
 
-        activeUser.setWatchlistList(activeWatchlistList);
-        if (activeWatchlistList.isEmpty()) {
-            activeWatchlist = new Watchlist("Default");
-            activeWatchlistList.add(activeWatchlist);
+        activeUser.setWatchlistList(watchlistList);
+        if (watchlistList.isEmpty()) {
+            Watchlist activeWatchlist = new Watchlist("Default");
+            watchlistList.add(activeWatchlist);
             activeUser.setActiveWatchlist(activeWatchlist);
-            activeUser.setWatchlistList(activeWatchlistList);
+            activeUser.setWatchlistList(watchlistList);
 
             try {
-                storage.saveWatchlist(activeWatchlistList);
+                storage.saveWatchlist(watchlistList);
             } catch (AniException exception) {
                 ui.printErrorMessage(exception.getMessage());
             }
         } else {
-            activeUser.setActiveWatchlist(activeWatchlistList.get(0));
+            activeUser.setActiveWatchlist(watchlistList.get(0));
+            assert activeUser.getActiveWatchlist() != null : "Active watchlist should not be null.";
         }
 
         try {
@@ -80,7 +78,7 @@ public class Duke {
         boolean shouldExit = false;
         while (!shouldExit) {
             try {
-                String userInput = ui.readUserInput(activeUser.getFancyName(), activeUser.getActiveWatchlistName());
+                String userInput = ui.readUserInput(userManagement.getActiveUser());
                 Command command = parser.getCommand(userInput);
                 String commandOutput = command.execute(animeData, userManagement);
                 

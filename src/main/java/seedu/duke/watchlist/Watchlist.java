@@ -26,6 +26,7 @@ public class Watchlist {
 
     public void addAnimeToList(String animeName) {
         this.animeList.add(animeName);
+        assert this.animeList.contains(animeName) == true : "Watchlist should now contain new anime";
     }
 
     public String animeListToString() {

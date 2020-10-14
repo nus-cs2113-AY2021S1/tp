@@ -75,8 +75,7 @@ public class WatchlistCommand extends Command {
         for (int i = 0; i < activeWatchlistList.size(); i++) {
             Watchlist watchlist = activeWatchlistList.get(i);
             sbWatchlistList.append(System.lineSeparator());
-            sbWatchlistList.append("\t");
-            sbWatchlistList.append(i + 1).append(". ");
+            sbWatchlistList.append("\t").append(i + 1).append(". ");
             sbWatchlistList.append(watchlist.getName());
         }
 

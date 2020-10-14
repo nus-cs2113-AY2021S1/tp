@@ -11,23 +11,31 @@ public class AddUserCommand extends Command {
     String dob = null;
     String gender = null;
 
-    public AddUserCommand(String description) {
-        String[] descriptionSplit = description.split(" ", 7);
+    public AddUserCommand(String userInput) throws AniException {
+        try {
+            String[] parametersSplit = userInput.split("-");
 
-        for (int i = 0; i < descriptionSplit.length - 1; i++) {
-            switch (descriptionSplit[i]) {
-            case "-n":
-                name = descriptionSplit[i + 1];
-                break;
-            case "-dob":
-                dob = descriptionSplit[i + 1];
-                break;
-            case "-g":
-                gender = descriptionSplit[i + 1];
-                break;
-            default:
-                // Continue!
+            for (String s : parametersSplit) {
+                String[] parameterTextSplit = s.split(" ", 2);
+
+                if (parameterTextSplit.length == 2 && !parameterTextSplit[0].isEmpty()) {
+                    switch (parameterTextSplit[0]) {
+                    case "n":
+                        name = parameterTextSplit[1];
+                        break;
+                    case "dob":
+                        dob = parameterTextSplit[1];
+                        break;
+                    case "g":
+                        gender = parameterTextSplit[1];
+                        break;
+                    default:
+                        // Continue!
+                    }
+                }
             }
+        } catch (IndexOutOfBoundsException e) {
+            throw new AniException("Invalid parameters detected!");
         }
     }
 

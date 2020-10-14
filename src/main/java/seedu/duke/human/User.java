@@ -88,7 +88,7 @@ public class User extends Human {
      *
      * @return name of user with honorifics.
      */
-    public String getFancyName() {
+    public String getHonorificName() {
         if (gender == Gender.Female) {
             return name + "-chan";
         } else {

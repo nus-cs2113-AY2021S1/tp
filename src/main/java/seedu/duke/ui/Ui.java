@@ -1,16 +1,18 @@
 package seedu.duke.ui;
 
+import seedu.duke.human.User;
+
 import java.util.Scanner;
 
 public class Ui {
     private static final Scanner CONSOLE = new Scanner(System.in);
     private static final String LOGO =
             "                 _  _____ _\n"
-            + "      /\\         (_)/ ____| |\n"
-            + "     /  \\   _ __  _| |    | |__   __ _ _ __\n"
-            + "    / /\\ \\ | '_ \\| | |    | '_ \\ / _` | '_ \\\n"
-            + "   / ____ \\| | | | | |____| | | | (_| | | | |\n"
-            + "  /_/    \\_\\_| |_|_|\\_____|_| |_|\\__,_|_| |_|\n";
+                    + "      /\\         (_)/ ____| |\n"
+                    + "     /  \\   _ __  _| |    | |__   __ _ _ __\n"
+                    + "    / /\\ \\ | '_ \\| | |    | '_ \\ / _` | '_ \\\n"
+                    + "   / ____ \\| | | | | |____| | | | (_| | | | |\n"
+                    + "  /_/    \\_\\_| |_|_|\\_____|_| |_|\\__,_|_| |_|\n";
     private static final String HORIZONTAL_LINE =
             "-------------------------------------------------------------";
 
@@ -42,7 +44,9 @@ public class Ui {
         return CONSOLE.nextLine();
     }
 
-    public String readUserInput(String userName, String watchlistName) {
+    public String readUserInput(User activeUser) {
+        String userName = activeUser.getHonorificName();
+        String watchlistName = activeUser.getActiveWatchlistName();
         System.out.print(System.lineSeparator() + " " + userName + " (" + watchlistName + ") #> ");
         String userInput = CONSOLE.nextLine();
         return userInput;
