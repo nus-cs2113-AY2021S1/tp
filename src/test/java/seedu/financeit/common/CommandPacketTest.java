@@ -6,8 +6,8 @@ package seedu.financeit.common; /**
 import java.util.HashMap;
 
 public class CommandPacketTest {
-    private String commandString;
-    private HashMap paramMap;
+    private String commandString = null;
+    private HashMap paramMap = null;
     private String rawInput;
 
     // Constructors

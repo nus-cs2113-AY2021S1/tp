@@ -26,4 +26,10 @@ public class RegexMatcher {
         Matcher matcher = regexMatcher(inputString, regex);
         return matcher;
     }
+
+    public static Matcher numberMatcher(String inputString) {
+        String regex = "[0-9]+";
+        Matcher matcher = regexMatcher(inputString, regex);
+        return matcher;
+    }
 }

@@ -6,17 +6,18 @@ import java.nio.file.Paths;
 
 public abstract class SaveStateHandler {
 
-    protected String fullpath;
-    protected String dir_path;
+    protected String fullPath;
+    protected String dirPath;
 
     public SaveStateHandler(){
 
     }
 
-    public SaveStateHandler(String filepath, String directory){
-        fullpath = filepath;
-        dir_path = directory;
+    public SaveStateHandler(String filepath, String directory) {
+        fullPath = filepath;
+        dirPath = directory;
     }
+
     public void save() throws IOException {
 
     }
@@ -26,16 +27,16 @@ public abstract class SaveStateHandler {
     }
 
     public void setPath(String filepath, String directory) {
-        fullpath = filepath;
-        dir_path = directory;
+        fullPath = filepath;
+        dirPath = directory;
     }
 
     protected void buildFile() throws IOException {
-        if (!Files.exists(Paths.get(dir_path))) {
-            Files.createDirectory(Paths.get(dir_path));
+        if (!Files.exists(Paths.get(dirPath))) {
+            Files.createDirectory(Paths.get(dirPath));
         }
-        if (!Files.exists(Paths.get(fullpath))) {
-            Files.createFile(Paths.get(fullpath));
+        if (!Files.exists(Paths.get(fullPath))) {
+            Files.createFile(Paths.get(fullPath));
         }
     }
 }
