@@ -31,6 +31,36 @@
  Birthdate: 01/02/1996
  Gender: Female
 
+ Abec Steiner 33rd-chan (Default) #>  Successfully added new user: 
+ Name: John Doe 3rd
+ Birthdate: 12/12/1997
+ Gender: Male
+
+ Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! A user with John Doe 3rd already exist. Choose a different name!
+
+ Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! Unexpected gender: fe
+
+ Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! Unexpected gender: 
+
+ Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! Invalid parameters detected!
+
+ Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! Invalid parameters detected!
+
+ Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! Invalid parameters detected!
+
+ Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! Invalid parameters detected!
+
+ Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! Invalid parameters detected!
+
+ Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! Invalid parameters detected!
+
+ Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! Invalid parameters detected!
+
+ Abec Steiner 33rd-chan (Default) #>  Successfully added new user: 
+ Name: GOOD PERson 1234
+ Birthdate: 26/04/2001
+ Gender: Female
+
  Abec Steiner 33rd-chan (Default) #>  Watchlist created successfully!
 
  Abec Steiner 33rd-chan (Default) #>  Watchlist created successfully!
