@@ -57,10 +57,8 @@ public class Cashback extends ParamHandler {
             this.monthlyCap = paramChecker.checkAndReturnDouble(paramType);
             break;
         default:
-            if (!super.requiredParams.contains(paramType)) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                        paramChecker.getUnrecognizedParamMessage(paramType));
-            }
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    paramChecker.getUnrecognizedParamMessage(paramType));
             break;
         }
     }

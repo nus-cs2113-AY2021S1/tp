@@ -101,10 +101,8 @@ public class Entry extends DateTimeItem {
             this.setCategory(category);
             break;
         default:
-            if (!super.requiredParams.contains(paramType)) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    super.paramChecker.getUnrecognizedParamMessage(paramType));
-            }
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                super.paramChecker.getUnrecognizedParamMessage(paramType));
             break;
         }
     }

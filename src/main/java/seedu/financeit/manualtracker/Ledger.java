@@ -53,12 +53,9 @@ public class Ledger extends DateTimeItem {
             this.date = super.paramChecker.checkAndReturnDate(paramType);
             this.setDate(this.date);
             break;
-
         default:
-            if (!super.requiredParams.contains(paramType)) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    paramChecker.getUnrecognizedParamMessage(paramType));
-            }
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                paramChecker.getUnrecognizedParamMessage(paramType));
             break;
         }
     }

@@ -9,7 +9,7 @@ public class MenuPrinter {
         TablePrinter.setTitle("Welcome to Main Menu");
         TablePrinter.addRow("No.; Feature                                           ; Commands                    ");
         TablePrinter.addRow("[1]; Manual Income/Expense Tracker; manual");
-        TablePrinter.addRow("[2]; Auto Income/Expense Tracker; auto");
+        TablePrinter.addRow("[2]; Recurring Income/Expense Tracker; recur");
         TablePrinter.addRow("[3]; Account Summary; acc");
         TablePrinter.addRow("[4]; Goals Tracker; goal");
         TablePrinter.addRow("[5]; Financial Calculator; financial");

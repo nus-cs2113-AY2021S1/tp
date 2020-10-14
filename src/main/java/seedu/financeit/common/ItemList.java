@@ -1,9 +1,7 @@
 package seedu.financeit.common;
 
-import seedu.financeit.common.exceptions.InsufficientParamsException;
-import seedu.financeit.common.exceptions.ItemNotFoundException;
-
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * List class that stores Item instances as its elements.
@@ -12,6 +10,7 @@ import java.util.ArrayList;
 public abstract class ItemList extends ParamHandler {
     protected Item currItem;
     protected ArrayList<Item> items = new ArrayList<>();
+    protected int indexToModify;
 
     public ItemList() {
     }
@@ -21,9 +20,15 @@ public abstract class ItemList extends ParamHandler {
         this.items.add(item);
     }
 
-    public void setCurrItemFromPacket(CommandPacket packet)
-        throws InsufficientParamsException, ItemNotFoundException {
-        handleParams(packet);
+    /**
+     * Add the given item and sort the list according to the given comparator.
+     *
+     * @param item - Item to be added
+     * @param comparator - Comparator object to determine sort order
+     */
+    public void addItemAndSort(Item item, Comparator comparator) {
+        this.items.add(item);
+        items.sort(comparator);
     }
 
     public Item getCurrItem() {
@@ -44,12 +49,43 @@ public abstract class ItemList extends ParamHandler {
         return this.items.size();
     }
 
-    public Item getItemFromIndex(int index) {
+    /**
+     * Provides a reference to the specified item at the zero-based index.
+     * Requires index to have been parsed from user-input, else it will
+     * attempt to access index null or previously stored index, causing bugs
+     *
+     * @throws IndexOutOfBoundsException If no index has been parsed yet and
+     *                                   it attempts to access index null
+     */
+    public Item getItemAtIndex() throws IndexOutOfBoundsException {
+        int index = indexToModify;
+        return this.items.get(index);
+    }
+
+    //Manually specify index in the code, if necessary
+    public Item getItemAtIndex(int index) throws IndexOutOfBoundsException {
         return this.items.get(index);
     }
 
     public void removeItem(Item item) {
         this.items.remove(item);
+    }
+
+    /**
+     * Removes the specified item at the index. Requires index to have been
+     * parsed from user-input, else it will attempt to access index null or
+     * previously stored index, causing bugs
+     *
+     * @throws IndexOutOfBoundsException If no index has been parsed yet and
+     *                                   it attempts to access index null
+     */
+    public void removeItemAtIndex() throws IndexOutOfBoundsException {
+        this.items.remove(indexToModify);
+    }
+
+    //Manually specify index in the code, if necessary
+    public void removeItemAtIndex(int index) throws IndexOutOfBoundsException {
+        this.items.remove(index);
     }
 
     /**
