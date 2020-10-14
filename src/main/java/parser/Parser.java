@@ -1,10 +1,10 @@
 package parser;
 
 import access.Access;
-import commands.AddChapterCommand;
+
 import commands.AddCommand;
-import commands.AddModuleCommand;
 import commands.BackCommand;
+import commands.Command;
 import commands.EditCommand;
 import commands.ExitCommand;
 import commands.GoCommand;
@@ -13,8 +13,6 @@ import commands.ListCommand;
 import commands.ListDueCommand;
 import commands.RemoveCommand;
 import commands.ReviseCommand;
-import commands.Command;
-
 
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
@@ -50,10 +48,6 @@ public class Parser {
             return prepareExit(commandArgs);
         case HelpCommand.COMMAND_WORD:
             return prepareHelp(commandArgs);
-        case AddModuleCommand.COMMAND_WORD:
-            return prepareAddModule(commandArgs);
-        case AddChapterCommand.COMMAND_WORD:
-            return prepareAddChapter(commandArgs);
         case EditCommand.COMMAND_WORD:
             return prepareEdit(commandArgs, access);
         case BackCommand.COMMAND_WORD:
@@ -81,20 +75,6 @@ public class Parser {
         return new BackCommand();
     }
 
-    private static Command prepareAddChapter(String commandArgs) throws InvalidInputException {
-        if (commandArgs.isEmpty()) {
-            throw new InvalidInputException();
-        }
-        return new AddChapterCommand(commandArgs);
-    }
-
-    private static Command prepareAddModule(String commandArgs) throws InvalidInputException {
-        if (commandArgs.isEmpty()) {
-            throw new InvalidInputException();
-        }
-        return new AddModuleCommand(commandArgs);
-    }
-
     private static String[] splitCommandTypeAndArgs(String userCommand) {
         String[] commandTypeAndParams = userCommand.trim().split(" ", 2);
         if (commandTypeAndParams.length != 2) {
@@ -112,13 +92,24 @@ public class Parser {
 
     private static Command prepareAdd(String commandArgs, Access access)
             throws InvalidInputException, IncorrectAccessLevelException {
-        if (commandArgs.isEmpty()) {
-            throw new InvalidInputException("The arguments are missing.\n"
-                    + AddCommand.MESSAGE_USAGE);
-        }
-
         if (access.isChapterLevel()) {
+            if (commandArgs.isEmpty()) {
+                throw new InvalidInputException("The arguments are missing.\n"
+                        + AddCommand.MESSAGE_CARD_USAGE);
+            }
             return prepareAddCard(commandArgs);
+        } else if (access.isModuleLevel()) {
+            if (commandArgs.isEmpty()) {
+                throw new InvalidInputException("The arguments are missing.\n"
+                        + AddCommand.MESSAGE_CHAPTER_USAGE);
+            }
+            return prepareAddChapter(commandArgs);
+        } else if (access.isAdminLevel()) {
+            if (commandArgs.isEmpty()) {
+                throw new InvalidInputException("The arguments are missing.\n"
+                        + AddCommand.MESSAGE_MODULE_USAGE);
+            }
+            return prepareAddModule(commandArgs);
         } else {
             throw new IncorrectAccessLevelException("Add command can only be called at admin, "
                     + "module and chapter level.");
@@ -132,13 +123,21 @@ public class Parser {
             String answer = parseAnswer(args[1]);
             if (question.isEmpty() || answer.isEmpty()) {
                 throw new InvalidInputException("The content for question / answer is empty.\n"
-                        + AddCommand.MESSAGE_USAGE);
+                        + AddCommand.MESSAGE_CARD_USAGE);
             }
             return new AddCommand(question, answer, CHAPTER_LEVEL);
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidInputException("The format for the add command is incorrect.\n"
-                    + AddCommand.MESSAGE_USAGE);
+                    + AddCommand.MESSAGE_CARD_USAGE);
         }
+    }
+
+    private static Command prepareAddChapter(String commandArgs) {
+        return new AddCommand(commandArgs);
+    }
+
+    private static Command prepareAddModule(String commandArgs) {
+        return new AddCommand(commandArgs);
     }
 
     private static Command prepareRemove(String commandArgs) throws InvalidInputException {
