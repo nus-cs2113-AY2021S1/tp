@@ -6,6 +6,7 @@ import seedu.duke.command.addcommand.AddModuleCommand;
 import seedu.duke.command.filtercommand.FilterCommand;
 import seedu.duke.command.filtercommand.deletecommand.DeleteModuleCommand;
 import seedu.duke.command.filtercommand.listcommand.ListModuleCommand;
+import seedu.duke.command.misc.ChangeDirectoryCommand;
 import seedu.duke.exception.InvalidFormatException;
 
 import java.security.InvalidParameterException;
@@ -15,6 +16,7 @@ import java.util.regex.Pattern;
 
 import static seedu.duke.util.ExceptionMessage.MESSAGE_DUPLICATE_PREFIX_FOUND;
 import static seedu.duke.util.ExceptionMessage.MESSAGE_INVALID_PARAMETERS;
+import static seedu.duke.util.ExceptionMessage.MESSAGE_MISSING_DIRECTORY_NAME;
 import static seedu.duke.util.Message.MESSAGE_CHECK_COMMAND_FORMAT;
 import static seedu.duke.util.Message.MESSAGE_EMPTY_INPUT;
 import static seedu.duke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -66,6 +68,10 @@ public class Parser {
                 return prepareListModuleCommand(parameters);
             case DeleteModuleCommand.COMMAND_WORD:
                 return prepareDeleteModuleCommand(parameters);
+
+            case ChangeDirectoryCommand.COMMAND_WORD:
+                return prepareChangeDirectoryCommand(parameters);
+
             default:
                 return new IncorrectCommand("Wrong!");
             }
@@ -130,6 +136,24 @@ public class Parser {
             return new DeleteModuleCommand(moduleCode);
         } catch (NumberFormatException pe) {
             return new IncorrectCommand(MESSAGE_MISSING_MODULE_CODE);
+        }
+    }
+
+    /**
+     * Prepares the command to change the current directory.
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to change the current directory
+     */
+    private Command prepareChangeDirectoryCommand(String parameters) {
+        if (parameters.isBlank()) {
+            return new IncorrectCommand(MESSAGE_MISSING_DIRECTORY_NAME);
+        } else if (parameters.trim().equals("..")) {
+            return new ChangeDirectoryCommand();
+        } else {
+            return new ChangeDirectoryCommand(parameters.trim());
         }
     }
 
