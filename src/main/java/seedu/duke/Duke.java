@@ -1,10 +1,10 @@
-//for pull request
+package seedu.duke;//for pull request
 
 import java.util.Scanner;
 
 public class Duke {
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Main entry-point for the java.duke.seedu.duke.Duke application.
      */
     public static void main(String[] args) {
         String logo = " ____        _        \n"
