@@ -1,11 +1,17 @@
-package seedu.duke.model;
+package seedu.duke.sprint;
 
+import com.github.cliftonlabs.json_simple.JsonArray;
+import com.github.cliftonlabs.json_simple.JsonObject;
+import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.parser.DateTimeParser;
 
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class SprintList {
+public class SprintList implements Jsonable {
     private ArrayList<Sprint> sprintList;
     private int currentSprintIndex;
 
@@ -45,5 +51,26 @@ public class SprintList {
             }
         }
         return false;
+    }
+
+    @Override
+    public String toJson() {
+        final StringWriter writeable = new StringWriter();
+        try {
+            this.toJson(writeable);
+        } catch (IOException e) {
+            System.out.println("[Error] Cannot convert this project to JSON");
+            e.printStackTrace();
+        }
+        return writeable.toString();
+    }
+
+    @Override
+    public void toJson(Writer writer) throws IOException {
+        final JsonObject jSprintObj = new JsonObject();
+        final JsonArray jSprintList = new JsonArray(sprintList);
+        jSprintObj.put("list", jSprintList);
+        jSprintObj.put("currentSprintIndex", currentSprintIndex);
+        jSprintObj.toJson(writer);
     }
 }

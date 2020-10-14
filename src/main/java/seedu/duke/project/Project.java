@@ -1,10 +1,8 @@
 package seedu.duke.project;
 
-import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
-import seedu.duke.model.ProjectMembers;
-import seedu.duke.model.SprintList;
+import seedu.duke.sprint.SprintList;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -13,22 +11,22 @@ import java.time.LocalDate;
 
 public class Project implements Jsonable {
 
-    public ProjectBacklog backlog;
-    public ProjectMembers members;
-    String title;
-    String description;
-    int projectDuration;
-    int sprintLength;
+    protected SprintList allSprints;
+    protected ProjectBacklog backlog;
+    protected ProjectMembers members;
+    protected String title;
+    protected String description;
+    protected int projectDuration;
+    protected int sprintLength;
 
+    protected LocalDate startDate = null;
+    protected LocalDate endDate = null;
 
-    LocalDate startDate = null;
-    LocalDate endDate = null;
-    SprintList allSprints;
 
     public Project(String title, String description, String projectDuration, String sprintLength) {
         this.title = title;
         this.description = description;
-        this.projectDuration = Integer.parseInt(projectDuration.strip());
+        this.projectDuration = Integer.parseInt(projectDuration.trim());
         this.sprintLength = Integer.parseInt(sprintLength);
         backlog = new ProjectBacklog();
         members = new ProjectMembers();
@@ -43,28 +41,34 @@ public class Project implements Jsonable {
         return allSprints;
     }
 
-    public int getSprintLength() {
-        return sprintLength;
+    public ProjectMembers getProjectMember() {
+        return members;
     }
 
     public int getProjectDuration() {
         return projectDuration;
     }
 
+    public int getSprintLength() {
+        return sprintLength;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
     public LocalDate getStartDate() {
         return startDate;
     }
 
+    // Call this function every time a new sprint object is instantiated.
+    // sets the start date the first time.
     public void setStartDate() {
-        this.setStartDate(LocalDate.now());
+        setStartDate(LocalDate.now());
     }
 
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
-    }
-
-    public ProjectBacklog getProjectBacklog() {
-        return backlog;
     }
 
     public LocalDate getEndDate() {
@@ -75,8 +79,9 @@ public class Project implements Jsonable {
         this.endDate = endDate;
     }
 
-    public String getTitle() {
-        return title;
+
+    public ProjectBacklog getProjectBacklog() {
+        return backlog;
     }
 
     public String getDescription() {
@@ -94,6 +99,7 @@ public class Project implements Jsonable {
         }
     }
 
+
     @Override
     public String toJson() {
         final StringWriter writeable = new StringWriter();
@@ -108,15 +114,14 @@ public class Project implements Jsonable {
 
     @Override
     public void toJson(Writer writer) throws IOException {
-        final JsonObject json = new JsonObject();
-        json.put("title", this.title);
-        json.put("description", this.description);
-        json.put("duration", this.projectDuration);
-        json.put("sprint_length", this.sprintLength);
-        json.put("start_date", this.startDate == null ? null : this.startDate.toString());
-        //TODO Make backlog and members parsable
-        json.put("backlog", new JsonArray());
-        json.put("members", new JsonArray());
-        json.toJson(writer);
+        final JsonObject jObj = new JsonObject();
+        jObj.put("title", this.title);
+        jObj.put("description", this.description);
+        jObj.put("duration", this.projectDuration);
+        jObj.put("sprint_length", this.sprintLength);
+        jObj.put("start_date", this.startDate == null ? null : this.startDate.toString());
+        jObj.put("backlog", backlog);
+        jObj.put("members", members);
+        jObj.toJson(writer);
     }
 }
