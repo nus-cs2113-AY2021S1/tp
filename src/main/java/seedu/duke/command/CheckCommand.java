@@ -2,7 +2,11 @@ package seedu.duke.command;
 
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
-import seedu.duke.exception.*;
+import seedu.duke.exception.DateErrorException;
+import seedu.duke.exception.DukeException;
+import seedu.duke.exception.TimeErrorException;
+import seedu.duke.exception.TryRegularParserException;
+import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
