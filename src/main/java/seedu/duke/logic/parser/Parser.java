@@ -66,4 +66,7 @@ public class Parser {
 
     }
 
+    public String getUserInput() {
+        return userInput;
+    }
 }

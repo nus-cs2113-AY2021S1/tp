@@ -49,7 +49,7 @@ public class Ui {
     public static void printRouteMessage(ArrayList<Bus> options) {
         int optionNo = 1;
         boolean isPossible = false;
-        System.out.println("\nThe buses you can take are: ");
+        System.out.println("\nThe buses you can take with their intermediate stops are: ");
         for (Bus option : options) {
             if (option.toString() != null) {
                 System.out.println(optionNo + ". " + option.toString());
