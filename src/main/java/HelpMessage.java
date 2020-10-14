@@ -27,6 +27,12 @@ public class HelpMessage extends Ui {
             + "list          - prints the list of categories and respective list of links\n"
             + "back          - go back to bookmark main\n";
 
+    private static final String timetableCommand =  "Here are the timetable commands available:\n"
+            + "add class /MODULE CODE /ONLINE or OFFLINE\n"
+            + "/ZOOM LINK or VENUE /DAYS at TIME /NUMBER OF WEEKS                - add a class \n"
+            + "add activity /ONLINE or OFFLINE /ZOOM LINK or VENUE /DATE at TIME - add an activity\n"
+            + "show schedule                                                     - display schedule";
+
 
 
 
@@ -58,6 +64,7 @@ public class HelpMessage extends Ui {
 
     //TODO: Fill this up after you're done
     public static void printTimetableHelp() {
+        System.out.println(timetableCommand);
     }
 
     //TODO: Fill this up after you're done
