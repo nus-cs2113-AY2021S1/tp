@@ -17,7 +17,7 @@ The recognized commands and their usages are listed below. Parameters listed in 
 [36mlist-n: Lists all the notes in the Notebook. Parameters: [/tag TAG /tag TAG1...] [/sort up OR down]
 [30mlist-t: Lists all the tags.
 [36mpin-n: Pins or unpins a note. Parameters: [/i INDEX] [/t TITLE]
-[30mremind-e: Set a reminder for an event. Parameters: /i INDEX
+[30mremind-e: Shows the reminders for today.
 [36mtag: Tags or untags a note. Parameters: /i INDEX /tag TAG TAG_COLOR [/tag TAG1 TAG_COLOR...]
 [30mview-n: Views a note. Parameters: [/i INDEX] [/t TITLE]
 [0m
