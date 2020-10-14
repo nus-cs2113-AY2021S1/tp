@@ -61,6 +61,11 @@ public class Tutorial extends SchoolEvent {
         return "[TUT]" + "[" + getIcon() + "] " + super.toString();
     }
 
+    @Override
+    public String getDescription() {
+        return "[TUT]" + "[" + getIcon() + "] " + super.getDescription();
+    }
+
     /**
      * Save the tutorial event into files.
      *
@@ -88,12 +93,6 @@ public class Tutorial extends SchoolEvent {
     @Override
     public LocalDate getDate() {
         return date;
-    }
-
-    @Override
-    public String getDescription() {
-        return "[TUT]" + "[" + getIcon() + "] " + moduleCode + " "
-                + " (" + venue + ")";
     }
 
     /**
