@@ -204,9 +204,6 @@ public class EntryTracker {
         try {
             entryList.handleParams(packet);
             entry = (Entry) entryList.getItemAtIndex();
-            //Remove "/id" so it doesn't get parsed by entry and lead to
-            //printing of UnrecognizedParamMessage
-            packet.removeParamsFromMap("/id");
             entry.handleParams(packet);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s edited!", entry.getName()));
@@ -225,10 +222,10 @@ public class EntryTracker {
     private static void printCommandList() {
         TablePrinter.setTitle("List of Commands");
         TablePrinter.addRow("No.;Command                 ;Input Format                                               ");
-        TablePrinter.addRow("1.;New entry;entry new /time {HHMM} /info {string} /cat {category} -[i/e]");
-        TablePrinter.addRow("2.;Edit entry;entry edit {parameter to edit}");
+        TablePrinter.addRow("1.;New entry;entry new /time {HHMM} /desc {string} /cat {category} -[i/e]");
+        TablePrinter.addRow("2.;Edit entry;entry edit /id {integer} {param-type/parameter to edit}");
         TablePrinter.addRow("3.;list entries;entry list");
-        TablePrinter.addRow("4.;delete entry;entry delete /time {HHMM}");
+        TablePrinter.addRow("4.;delete entry;entry delete /id {integer}");
         TablePrinter.addRow("5.;exit to manual tracker;exit");
         TablePrinter.printList();
     }
