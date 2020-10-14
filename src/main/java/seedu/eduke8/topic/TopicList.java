@@ -12,13 +12,6 @@ public class TopicList implements DisplayableList {
         this.topics = topics;
     }
 
-    public void showTopics() {
-        System.out.println("These are the available topics:");
-        for (int i = 0; i < topics.size(); i++) {
-            System.out.println(topics.get(i).getDescription());
-        }
-    }
-
     @Override
     public ArrayList<Displayable> getInnerList() {
         return topics;

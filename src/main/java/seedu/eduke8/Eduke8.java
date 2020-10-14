@@ -2,6 +2,7 @@ package seedu.eduke8;
 
 import org.json.simple.parser.ParseException;
 import seedu.eduke8.command.Command;
+import seedu.eduke8.command.IncorrectCommand;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.parser.MenuParser;
 import seedu.eduke8.storage.TopicsStorage;
@@ -9,6 +10,8 @@ import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
 import java.io.IOException;
+
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_STORAGE_FAIL;
 
 public class Eduke8 {
     private static final String FILE_PATH = "data/main/topics.json"; // Real path will be data/main/topics.json
@@ -25,7 +28,7 @@ public class Eduke8 {
         try {
             topicList = new TopicList(topicsStorage.load());
         } catch (ParseException | IOException e) {
-            ui.printError();
+            new IncorrectCommand(ERROR_STORAGE_FAIL);
         }
     }
 
@@ -50,7 +53,7 @@ public class Eduke8 {
                 command.execute(topicList, ui);
                 isExit = command.isExit();
             } catch (Eduke8Exception e) {
-                ui.printError();        // able to call ui.printError(e.getMessage()) too if implemented
+                new IncorrectCommand(e.getMessage());
             }
         }
     }

@@ -3,11 +3,20 @@ package seedu.eduke8.ui;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.question.Question;
+import seedu.eduke8.topic.TopicList;
 
 import java.util.Scanner;
 
-public class Ui {
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_STORAGE_FAIL;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_INSUFFICIENT_TOPIC_QUESTIONS;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_INVALID_QUESTION_NUMBER;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAND;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNKNOWN;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_ANSWER_NOT_INDEX;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_WRONG_FORMAT;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_COMMAND_NOT_IMPLEMENTED;
 
+public class Ui {
 
     private static final int LAST_OPTION = 4;
     private static final String TEXTBOOK_WEBSITE =
@@ -18,24 +27,23 @@ public class Ui {
             + "| |___ |  _ \\| |_| |\n"
             + "|  ___|| | | |  _  |\n"
             + "| |___ | |_| | |_| |\n"
-            + "|_____||____/|_____|\n";
+            + "|_____||____/|_____|";
 
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String HORIZONTAL_LINE = "-------------------------------------------------------------------";
-    private static final String MESSAGE_ABOUT = "E-Duke-8 is a desktop app that helps CS2113/T students learn and "
-            + "understand software engineering and OOP principles through a gamified platform and enhance their "
-            + "learning experience. It also consolidates key concepts for easy revision.";
+    private static final String MESSAGE_ABOUT = "E-Duke-8 is a desktop app that helps CS2113/T students learn and\n"
+            + "understand software engineering and OOP principles through a\ngamified platform and enhance their "
+            + "learning experience. It also\nconsolidates key concepts for easy revision.";
     private static final String MESSAGE_GREETINGS = "Hello! I'm E-Duke-8\nWhat can I do for you?";
     private static final String MESSAGE_EXIT = "Bye bye. Hope you have a nice day and see you soon!";
-    private static final String MESSAGE_HELP = "These are the commands that you can used:";
-    private static final String MESSAGE_COMMANDS = "1) about\n2) help\n3) topics\n4) textbook\n5) quiz\n6) stats\n"
-            + "7) exit";
+    private static final String MESSAGE_HELP = "These are the commands that you can used:\n1) about\n2) help\n"
+            + "3) topics\n4) textbook\n5) quiz t/<topic> n/<number of questions>\n6) exit";
     private static final String MESSAGE_QUIZ_START = "Start of quiz:";
     private static final String MESSAGE_QUIZ_END = "This is the end of the quiz!\nHope you have learnt something new!";
     private static final String MESSAGE_ANSWER_WRONG = "Oops! Please try again! Do visit the textbook to read up more.";
     private static final String MESSAGE_ANSWER_CORRECT = "Congrats! This answer is correct! Well Done!";
-    private static final String MESSAGE_TEXTBOOK = "The textbook for this module is available at:  " + TEXTBOOK_WEBSITE;
-
+    private static final String MESSAGE_TEXTBOOK = "The textbook for this module is available at:\n" + TEXTBOOK_WEBSITE;
+    private static final String MESSAGE_HINT = "Hint: ";
 
     public String getInputFromUser() {
         return SCANNER.nextLine();
@@ -64,12 +72,13 @@ public class Ui {
     }
 
     public void printQuestion(Question question, int questionNumber) {
-        System.out.println(HORIZONTAL_LINE);
         System.out.println(questionNumber + ". " + question.getDescription());
     }
 
     public void printHint(Hint hint) {
-        System.out.println("Hint: " + hint.getDescription());
+        System.out.println(HORIZONTAL_LINE);
+        System.out.println(MESSAGE_HINT + hint.getDescription());
+        System.out.println(HORIZONTAL_LINE);
     }
 
     //Formatting of topicsChosen: separated by ","
@@ -87,7 +96,8 @@ public class Ui {
     }
 
     public void printEndQuizPage() {
-        printMessage(MESSAGE_QUIZ_END);
+        System.out.println(MESSAGE_QUIZ_END);
+        System.out.println(HORIZONTAL_LINE);
     }
 
     public void printAnswerIsWrong() {
@@ -98,23 +108,56 @@ public class Ui {
         printMessage(MESSAGE_ANSWER_CORRECT);
     }
 
-    //Shows list of commands that can be used.
     public void printHelp() {
         printMessage(MESSAGE_HELP);
-        printMessage(MESSAGE_COMMANDS);
     }
 
     public void printAbout() {
         printMessage(MESSAGE_ABOUT);
     }
 
+    public void printAllTopics(TopicList topics) {
+        System.out.println(HORIZONTAL_LINE);
+
+        System.out.println("These are the available topics:");
+        for (int i = 0; i < topics.getCount(); i++) {
+            System.out.println(i + 1 + ") " + topics.getInnerList().get(i).getDescription());
+        }
+
+        System.out.println(HORIZONTAL_LINE);
+    }
+
     public void printTextbook() {
         printMessage(MESSAGE_TEXTBOOK);
     }
 
-    public void printError() {
-        //Writing messages for the different errors
-        //Completed when more error handling are done
+    public void printError(String errorType) {
+        switch (errorType) {
+        case ERROR_STORAGE_FAIL:
+            printMessage(ERROR_STORAGE_FAIL);
+            break;
+        case ERROR_UNRECOGNIZED_COMMAND:
+            printMessage(ERROR_UNRECOGNIZED_COMMAND);
+            break;
+        case ERROR_QUIZ_WRONG_FORMAT:
+            printMessage(ERROR_QUIZ_WRONG_FORMAT);
+            break;
+        case ERROR_QUIZ_COMMAND_NOT_IMPLEMENTED:
+            printMessage(ERROR_QUIZ_COMMAND_NOT_IMPLEMENTED);
+            break;
+        case ERROR_QUIZ_ANSWER_NOT_INDEX:
+            printMessage(ERROR_QUIZ_ANSWER_NOT_INDEX);
+            break;
+        case ERROR_QUIZ_INVALID_QUESTION_NUMBER:
+            printMessage(ERROR_QUIZ_INVALID_QUESTION_NUMBER);
+            break;
+        case ERROR_QUIZ_INSUFFICIENT_TOPIC_QUESTIONS:
+            printMessage(ERROR_QUIZ_INSUFFICIENT_TOPIC_QUESTIONS);
+            break;
+        default:
+            printMessage(ERROR_UNKNOWN);
+            break;
+        }
     }
 
     private void printStartQuizTopics(String topicsChosen) {

@@ -7,6 +7,6 @@ import seedu.eduke8.ui.Ui;
 public class TopicsCommand extends Command {
     @Override
     public void execute(DisplayableList displayableList, Ui ui) {
-        ((TopicList) displayableList).showTopics();
+        ui.printAllTopics((TopicList) displayableList);
     }
 }

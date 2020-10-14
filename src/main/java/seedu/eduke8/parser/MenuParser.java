@@ -13,6 +13,9 @@ import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_WRONG_FORMAT;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAND;
+
 public class MenuParser implements Parser {
 
     public MenuParser() {
@@ -39,7 +42,7 @@ public class MenuParser implements Parser {
                 numOfQuestions = Integer.parseInt(commandArr[2].substring(2));
                 topicName = commandArr[1].substring(2);
             } else if (commandArr.length < 3) {
-                return new IncorrectCommand("empty");
+                return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
             }
             return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui);
         case "exit":
@@ -47,6 +50,6 @@ public class MenuParser implements Parser {
         default:
             break;
         }
-        return new IncorrectCommand("unrecognised");
+        return new IncorrectCommand(ERROR_UNRECOGNIZED_COMMAND);
     }
 }
