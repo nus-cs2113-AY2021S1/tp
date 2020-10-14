@@ -25,7 +25,7 @@ public abstract class Command {
      * Runs the actual command processing.
      * @return String message to be printed to the user.
      */
-    public abstract String execute();
+    public abstract String execute() throws DukeFinanceAddDescriptionLostException;
 
     /**
      * Provides information about command usage.

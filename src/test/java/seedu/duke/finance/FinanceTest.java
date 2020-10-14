@@ -1,30 +1,12 @@
-package seedu.duke;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+package seedu.duke.finance;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.backend.UserInput;
-import seedu.duke.finance.FinanceList;
-import seedu.duke.finance.FinanceLog;
 
-import java.util.HashMap;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-class DukeTest {
-    static final String LOGO = "    ____        _        \n"
-            + "    |  _ \\ _   _| | _____ \n"
-            + "    | | | | | | | |/ / _ \\\n"
-            + "    | |_| | |_| |   <  __/\n"
-            + "    |____/ \\__,_|_|\\_\\___|\n";
-
+class FinanceTest {
     @Test
-    public void sampleTest() {
-        assertTrue(true);
-    }
-
-    @Test
-    public void testFinance() {
+    void testver1Finance() {
         String expected1 = "Got it! I've added this to the list.\n"
                 + "\t1.write $12.5\n"
                 + "There is 1 log in the list now.\n";
