@@ -26,12 +26,11 @@ public class DeleteSprintTaskCommand extends SprintCommand {
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
             Sprint currentSprint = allSprint.getSprint(currentSprintNo);
-
-            //            Ui.showToUserLn("Tasks deleted: ");
-            //            for (int i = 0; i < parameters.size(); i++) {
-            //                Ui.showToUserLn(proj.getProjectBacklog().getTask(i).toString());
-            //                currentSprint.removeSprintTask(i);
-            //            }
+            for (String entry: this.parametersInAL) {
+                int taskId = Integer.parseInt(entry);
+                Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + "removed from sprint.\n");
+                currentSprint.removeSprintTask(taskId);
+            }
         } else {
             checkReason();
         }

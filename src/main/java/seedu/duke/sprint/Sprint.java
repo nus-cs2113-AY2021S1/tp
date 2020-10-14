@@ -75,7 +75,7 @@ public class Sprint implements Jsonable {
     }
 
     public void removeSprintTask(int taskId) {
-        this.sprintTaskIds.remove(taskId);
+        this.sprintTaskIds.remove((Object)taskId);
     }
 
 

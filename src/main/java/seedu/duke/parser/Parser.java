@@ -22,6 +22,7 @@ import static seedu.duke.command.CommandSummary.ADDTASK;
 import static seedu.duke.command.CommandSummary.BYE;
 import static seedu.duke.command.CommandSummary.CREATE;
 import static seedu.duke.command.CommandSummary.DELETE;
+import static seedu.duke.command.CommandSummary.DELETETASK;
 import static seedu.duke.command.CommandSummary.PROJECT;
 import static seedu.duke.command.CommandSummary.TASK;
 import static seedu.duke.command.CommandSummary.MEMBER;
@@ -142,7 +143,7 @@ public class Parser {
                 case ADDTASK:
                     new AddSprintTaskCommand(params, projectList).execute();
                     break;
-                case DELETE:
+                case DELETETASK:
                     new DeleteSprintTaskCommand(params, projectList).execute();
                     break;
                 case VIEW:
