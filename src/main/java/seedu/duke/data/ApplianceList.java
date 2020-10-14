@@ -32,7 +32,7 @@ public class ApplianceList {
                 String type = getAppliance(i).getType();
                 String name = getAppliance(i).getName();
                 String power = getAppliance(i).getPower();
-                String result = String.format(LINE + "Deleting %s: %s (%s) in %s......DELETED!\n",
+                String result = String.format(LINE + "Deleting %s: %s (%s) in %s......DELETED!",
                         type, name, power, location);
                 ui.showToUser(result);
                 appliances.remove(i);

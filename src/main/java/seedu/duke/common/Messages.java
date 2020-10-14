@@ -17,9 +17,9 @@ public class Messages {
     public static final String MESSAGE_DISPLAY_USAGE = " | Usage: ";
     public static final String MESSAGE_DISPLAY_WATT = " | Watt: ";
     public static final String MESSAGE_DISPLAY_TYPE = " | Type: ";
-    public static final String MESSAGE_LIST_LOCATIONS = "Here are the location you have entered.\n";
-    public static final String MESSAGE_LIST_APPLIANCES = "Here are the appliances in your list.\n";
-    public static final String MESSAGE_POWER_USAGE = "Here are the power usage consumption.\n";
+    public static final String MESSAGE_LIST_LOCATIONS = "Here are the location you have entered.";
+    public static final String MESSAGE_LIST_APPLIANCES = "Here are the appliances in your list.";
+    public static final String MESSAGE_POWER_USAGE = "Here are the power usage consumption.";
     public static final String MESSAGE_LIST_NO_LOCATIONS = "There is currently no locations in the list.";
     public static final String MESSAGE_LIST_NO_APPLIANCES = "There is currently no appliances in the list.";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT =  "Invalid Command Format";
