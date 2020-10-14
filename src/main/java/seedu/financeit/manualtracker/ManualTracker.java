@@ -69,7 +69,6 @@ public class ManualTracker {
     }
 
     private static FiniteStateMachine.State handleMainMenu() {
-        UiManager.printSpace();
         UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY, "[ MAIN_MENU -> MANUAL_TRACKER_MENU ]");
         UiManager.printInputPromptMessage();
 

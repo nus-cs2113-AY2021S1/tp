@@ -36,6 +36,8 @@ public class Financeit {
         }
 
         while (true) {
+            UiManager.refreshPage();
+            UiManager.printLogo();
             MenuPrinter.printMainMenu();
             input = UiManager.handleInput();
             packet = new InputParser().parseInput(input);

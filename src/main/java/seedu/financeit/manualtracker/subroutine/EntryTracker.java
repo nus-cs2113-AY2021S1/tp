@@ -79,7 +79,6 @@ public class EntryTracker {
     }
 
     private static FiniteStateMachine.State handleMainMenu() {
-        UiManager.printSpace();
         UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY,
                 String.format("[ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER %s)", currLedger));
         UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
