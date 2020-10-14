@@ -10,4 +10,23 @@ Trump
 1960-06-14
 retrieve S9993222A
 retrieve S9123456Z
+edit S9992222A
+edit S9123456Z
+Donald
+1962-06-14
+add S9993222A
+John
+1985-06-14
+delete S9992222A
+delete S9993222A
+book S9123456Z
+create
+2020-10-40
+create
+2020-10-10
+book S9123456Z
+0
+book S9123456Z
+1
+book S9123456Z
 bye
