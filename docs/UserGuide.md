@@ -60,8 +60,6 @@ Example of usage:
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
 * Buy a stock `buy /aapl 10`
 * Sell a stock `sell /aapl 10`
 * Search for a stock's info `search /aapl`
