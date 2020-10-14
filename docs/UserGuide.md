@@ -52,6 +52,15 @@ Example of usage:
 
 `search /shop`
 
+### View your portfolio: `view`
+Shows the stocks you have, its quantity and current price. Also shows transaction history.
+
+Format: `view`
+
+Example of usage: 
+
+`view`
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -65,3 +74,4 @@ Example of usage:
 * Buy a stock `buy /aapl`
 * Sell a stock `sell /aapl`
 * Search for a stock's info `search /aapl`
+* View portfolio `view`
