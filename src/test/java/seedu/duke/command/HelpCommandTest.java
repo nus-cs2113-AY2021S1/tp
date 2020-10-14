@@ -3,14 +3,16 @@ package seedu.duke.command;
 import org.junit.jupiter.api.Test;
 
 import seedu.duke.ui.InterfaceManager;
+import seedu.duke.data.notebook.Tag.TagColor;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HelpCommandTest {
 
-    private static final String COLOR_WHITE = "\u001B[30m";
-    private static final String COLOR_CYAN = "\u001B[36m";
-    private static final String COLOR_RESET = "\u001B[0m";
+    private static final String COLOR_WHITE = TagColor.COLOR_WHITE.getColor();
+    private static final String COLOR_CYAN = TagColor.COLOR_CYAN.getColor();
+    private static final String COLOR_RESET = TagColor.COLOR_RESET.getColor();
 
     private static final String HELP_STRING = InterfaceManager.LS
             + "The recognized commands and their usages are listed below. "
