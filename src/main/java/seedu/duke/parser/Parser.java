@@ -3,11 +3,14 @@ package seedu.duke.parser;
 import seedu.duke.command.Command;
 import seedu.duke.command.IncorrectCommand;
 import seedu.duke.command.addcommand.AddModuleCommand;
+import seedu.duke.command.addcommand.AddTaskCommand;
 import seedu.duke.command.filtercommand.FilterCommand;
 import seedu.duke.command.filtercommand.deletecommand.DeleteModuleCommand;
 import seedu.duke.command.filtercommand.listcommand.ListModuleCommand;
 import seedu.duke.command.misc.ChangeDirectoryCommand;
 import seedu.duke.exception.InvalidFormatException;
+import seedu.duke.util.DateTime;
+import seedu.duke.util.DateTimeFormat;
 
 import java.security.InvalidParameterException;
 import java.text.ParseException;
@@ -15,12 +18,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static seedu.duke.util.ExceptionMessage.MESSAGE_DUPLICATE_PREFIX_FOUND;
+import static seedu.duke.util.ExceptionMessage.MESSAGE_INVALID_DATETIME_FORMAT;
 import static seedu.duke.util.ExceptionMessage.MESSAGE_INVALID_PARAMETERS;
+import static seedu.duke.util.ExceptionMessage.MESSAGE_INVALID_PRIORITY;
 import static seedu.duke.util.ExceptionMessage.MESSAGE_MISSING_DIRECTORY_NAME;
 import static seedu.duke.util.Message.MESSAGE_CHECK_COMMAND_FORMAT;
 import static seedu.duke.util.Message.MESSAGE_EMPTY_INPUT;
 import static seedu.duke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.duke.util.Message.MESSAGE_MISSING_MODULE_CODE;
+import static seedu.duke.util.Message.MESSAGE_MISSING_TASK_DESCRIPTION;
 import static seedu.duke.util.Message.MESSAGE_NO_EDIT_MODULE;
 
 public class Parser {
@@ -33,9 +39,12 @@ public class Parser {
     private static final String PARAMETERS_GROUP = "parameters";
     private static final String IDENTIFIER_GROUP = "identifier";
     private static final String MODULE_GROUP = "moduleCode";
+    private static final String DEADLINE_GROUP = "deadline";
+    private static final String PRIORITY_GROUP = "priority";
     private static final String NONE = "";
     private static final String INVALID_GROUP = "invalid";
     public static final String MODULE_PREFIX = "-m";
+    public static final String DEADLINE_PREFIX = "-d";
 
     /**
      * Parses the input string read by the <b>UI</b> and converts the string into a specific <b>Command</b>, which is
@@ -64,6 +73,8 @@ public class Parser {
             switch (commandWord){
             case AddModuleCommand.COMMAND_WORD:
                 return prepareAddModuleCommand(parameters);
+            case AddTaskCommand.COMMAND_WORD:
+                return prepareAddTaskCommand(parameters);
             case ListModuleCommand.COMMAND_WORD:
                 return prepareListModuleCommand(parameters);
             case DeleteModuleCommand.COMMAND_WORD:
@@ -108,6 +119,48 @@ public class Parser {
 
         return new AddModuleCommand(moduleCode);
     }
+
+    /**
+     * Prepares the command to add a task.
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to add a task
+     */
+    private Command prepareAddTaskCommand(String parameters)
+            throws InvalidParameterException {
+        Matcher matcher = AddTaskCommand.REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher,
+                DEADLINE_PREFIX);
+
+        String invalid = matcher.group(INVALID_GROUP).trim();
+        if (!invalid.isEmpty()) {
+            return new IncorrectCommand(String.format("%s%s\n\n%s\n",
+                    MESSAGE_INVALID_COMMAND_FORMAT, invalid, MESSAGE_CHECK_COMMAND_FORMAT));
+        }
+
+        String taskDescription = matcher.group(IDENTIFIER_GROUP).trim();
+        if (taskDescription.isEmpty()) {
+            return new IncorrectCommand(MESSAGE_MISSING_TASK_DESCRIPTION);
+        }
+
+        String deadline = matcher.group(DEADLINE_GROUP).replace(DEADLINE_PREFIX, NONE).trim();
+
+        DateTime deadlineToSet;
+        try {
+            deadlineToSet = DateTimeFormat.stringToDateTime(deadline);
+        } catch (DateTimeFormat.InvalidDateTimeException e) {
+            return new IncorrectCommand(MESSAGE_INVALID_DATETIME_FORMAT);
+        }
+
+        try {
+            return new AddTaskCommand(taskDescription, deadlineToSet);
+        } catch (NumberFormatException e) {
+            return new IncorrectCommand(MESSAGE_INVALID_PRIORITY);
+        }
+    }
+
 
     /* Prepare Delete and List Commands */
 

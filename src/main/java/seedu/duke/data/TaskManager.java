@@ -20,6 +20,10 @@ public class TaskManager {
         taskList = new ArrayList<>();
     }
 
+    public TaskManager(ArrayList<Task> taskList) {
+        this.taskList = taskList;
+    }
+
     /**
      * Returns the entire Task List.
      *

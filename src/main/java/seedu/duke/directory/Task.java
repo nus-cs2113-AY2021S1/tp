@@ -9,14 +9,12 @@ public class Task extends Directory {
     private String description;
     private boolean isDone;
     private DateTime deadline;
-    private int priority;
 
-    public Task(Module module, String description, DateTime deadline, int priority) {
+    public Task(Directory module, String description, DateTime deadline) {
         super(module);
         this.description = description;
         this.isDone = false;
         this.deadline = deadline;
-        this.priority = priority;
     }
 
     public DateTime getDeadline() {
@@ -35,10 +33,6 @@ public class Task extends Directory {
         return (isDone ? YES_ICON : NO_ICON);
     }
 
-    public int getPriority() {
-        return priority;
-    }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -49,10 +43,6 @@ public class Task extends Directory {
 
     public void setDeadline(DateTime deadline) {
         this.deadline = deadline;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
     }
 
     public boolean isSameTask(String taskDescription) {

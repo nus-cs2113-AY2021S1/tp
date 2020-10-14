@@ -25,6 +25,7 @@ public class Module extends Directory {
         this.moduleCode = moduleCode.toUpperCase();
         this.title = title;
         this.description = description;
+        tasks = new TaskManager();
     }
 
     public String getModuleCode() {

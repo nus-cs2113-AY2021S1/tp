@@ -20,13 +20,9 @@ public class ModuleManager {
      * @param modulesMap
      *  The hash map containing NUS provided modules
      */
-    public static void initialise(HashMap<String, String> modulesMap) {
-        if (modulesMap == null) {
-            ModuleManager.modulesMap = new HashMap<>();
-        } else {
-            ModuleManager.modulesMap = modulesMap;
-        }
-        moduleList = new ArrayList<>();
+    public static void initialise(HashMap<String, String> modulesMap, ArrayList<Module> moduleList) {
+        ModuleManager.modulesMap = modulesMap;
+        ModuleManager.moduleList = moduleList;
     }
 
     /**

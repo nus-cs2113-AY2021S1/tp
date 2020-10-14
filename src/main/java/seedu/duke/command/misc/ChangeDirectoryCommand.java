@@ -23,9 +23,7 @@ public class ChangeDirectoryCommand extends Command {
                     + "Format: %s\n"
                     + "Example: cd Tutorial;\tcd ..\n",
             COMMAND_WORD, FORMAT);
-    private static final int ROOT_LEVEL = 0;
-    private static final int MODULE_LEVEL = 1;
-    private static final int TASK_LEVEL = 2;
+
     private String nextDirectoryName;
     private Directory directory;
 

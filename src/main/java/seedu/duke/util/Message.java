@@ -139,23 +139,6 @@ public class Message {
     }
 
     /**
-     * Creates the message to prompt user to enter the indices of the modules to be deleted from the list.
-     *
-     * @param filteredModules
-     *  The filtered list of modules to be deleted
-     * @return
-     *  The message to prompt the user to enter the indices
-     */
-    public static String messagePromptDeleteModuleIndices(ArrayList<Directory> filteredModules) {
-        ArrayList<Module> modules = filteredModules.stream()
-                .map(Module.class::cast)
-                .collect(Collectors.toCollection(ArrayList::new));
-        return "Multiple matching modules were found.\n"
-                + ListCreator.createModuleListTable(modules)
-                + "\nEnter the list number(s) of the modules to delete.\n";
-    }
-
-    /**
      * Creates the message to confirm deletion of a task.
      *
      * @param toDelete
@@ -186,23 +169,7 @@ public class Message {
         }
         return promptMessage.toString();
     }
-
-    /**
-     * Creates the message to prompt user to enter the indices of the tasks to be deleted from the list.
-     *
-     * @param filteredTasks
-     *  The filtered list of tasks to be deleted
-     * @return
-     *  The message to prompt the user to enter the indices
-     */
-    public static String messagePromptDeleteTaskIndices(ArrayList<Directory> filteredTasks) {
-        ArrayList<Task> tasks = filteredTasks.stream()
-                .map(Task.class::cast)
-                .collect(Collectors.toCollection(ArrayList::new));
-        return "Multiple matching tasks were found.\n"
-                + ListCreator.createTaskListTable(tasks)
-                + "\nEnter the list number(s) of the tasks to delete.\n";
-    }
+    
 
     public static final String MESSAGE_PROMPT_FORMAT = "Enter 'yes' to confirm or 'no' to abort.\n";
     public static final String MESSAGE_INVALID_DELETE_INDICES = "Deletion aborted due to invalid index provided.\n";

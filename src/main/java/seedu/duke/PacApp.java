@@ -29,6 +29,7 @@ import seedu.duke.data.IoManager;
 import seedu.duke.data.ModuleLoader;
 import seedu.duke.data.ModuleManager;
 import seedu.duke.data.StoragePath;
+import seedu.duke.data.SystemSetting;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -51,8 +52,7 @@ public class PacApp extends Application {
         //todo initialize
         //SystemSetting.initialise();
         //TaskManager.initialise();
-        HashMap<String, String> modulesMap = ModuleLoader.load(StoragePath.NUS_MODULE_LIST_PATH);
-        ModuleManager.initialise(modulesMap);
+        SystemSetting.initialise();
         //IOManager.loadList();
         //StateManager.initialise();
     }

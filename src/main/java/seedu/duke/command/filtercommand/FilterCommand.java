@@ -46,14 +46,8 @@ public abstract class FilterCommand extends Command {
                 Comparator.comparing(Task::getDescription);
         Comparator<Task> sortByDeadline =
                 Comparator.comparing(task -> task.getDeadline().getDateTimeInSortFormat());
-        Comparator<Task> sortByPriority =
-                Comparator.comparing(Task::getPriority, Comparator.reverseOrder());
-
         if (isSortDeadline) {
-            toSort.sort(sortByDeadline.thenComparing(sortByPriority).thenComparing(sortByModule)
-                    .thenComparing(sortByTask));
-        } else if (isSortPriority) {
-            toSort.sort(sortByPriority.thenComparing(sortByDeadline).thenComparing(sortByModule)
+            toSort.sort(sortByDeadline.thenComparing(sortByModule)
                     .thenComparing(sortByTask));
         } else {
             toSort.sort(sortByModule.thenComparing(sortByTask));
