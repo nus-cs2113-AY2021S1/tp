@@ -25,19 +25,24 @@ public class Bus {
         return routeNames;
     }
 
+    public String getBusNumber() {
+        return this.busNumber;
+    }
+
     ArrayList<BusStops> getPossibleRoute(String startingLoc, String destination) {
         ArrayList<BusStops> allStopsFromStart = new ArrayList<>();
         ArrayList<BusStops> finalRoute = new ArrayList<>();
         ArrayList<String> allStopNamesFromStart = new ArrayList<>();
         ArrayList<String> routeNames = new ArrayList<>(getStopNames());
+        routeNames.replaceAll(String::toLowerCase);
 
-        if (routeNames.contains(startingLoc)) {
-            int startingIndex = routeNames.indexOf(startingLoc) + 1;
+        if (routeNames.contains(startingLoc.toLowerCase())) {
+            int startingIndex = routeNames.indexOf(startingLoc.toLowerCase()) + 1;
             int size = routeNames.size();
             allStopNamesFromStart.addAll(routeNames.subList(startingIndex, size));
             allStopsFromStart.addAll(route.subList(startingIndex, size));
-            if (allStopNamesFromStart.contains(destination)) {
-                int endIndex = allStopNamesFromStart.indexOf(destination);
+            if (allStopNamesFromStart.contains(destination.toLowerCase())) {
+                int endIndex = allStopNamesFromStart.indexOf(destination.toLowerCase());
                 finalRoute.addAll(allStopsFromStart.subList(0, endIndex));
             }
         }
@@ -48,7 +53,7 @@ public class Bus {
     public String toString() {
         if (route.size() > 0) {
             String printableRoute = String.join("-> ", getStopNames());
-            return busNumber + ":\n\t" + printableRoute;
+            return busNumber + "\n\t" + printableRoute;
         }
         return null;
     }
