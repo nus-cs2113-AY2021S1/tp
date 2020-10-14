@@ -6,21 +6,26 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 import seedu.duke.backend.FileManager;
 
-import java.io.File;
+
 import java.io.IOException;
-import java.nio.file.*;
+
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
 public class FileManagerTest {
 
     @Test
-    public void FileManagerBasicTest() {
+    public void fileManagerBasicTest() {
         // Set up test folder
-        String path = (int)(Math.random() * 1000000) + "/";
+        String path = (int) (Math.random() * 1000000) + "/";
         FileManager fm = new FileManager(path);
         // Test 1, basic write
         try {
-            FileManager.saveFile(path+"Test1.txt","Sample 1");
+            FileManager.saveFile(path + "Test1.txt", "Sample 1");
         } catch (IOException e) {
             e.printStackTrace();
             fail("Test 01: Saving to file failed!");
@@ -28,24 +33,24 @@ public class FileManagerTest {
 
         // Test 2, Read fail
         try {
-            assertEquals(3,fm.readAll());
-        } catch (Exception e){
+            assertEquals(3, fm.readAll());
+        } catch (Exception e) {
             e.printStackTrace();
             fail("Test 02: Reading non-existent data failed!");
         }
 
         // Test 3, Empty write
-        try{
+        try {
             fm.saveAll();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             fail("Test 03: Empty write failed!");
         }
 
         // Test 4, Empty read
         try {
-            assertEquals(0,fm.readAll());
-        } catch (Exception e){
+            assertEquals(0, fm.readAll());
+        } catch (Exception e) {
             e.printStackTrace();
             fail("Test 04: Reading file with no data failed!");
         }
