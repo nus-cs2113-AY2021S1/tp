@@ -12,14 +12,25 @@ import manager.module.Module;
 import storage.Storage;
 import ui.Ui;
 
-import java.io.File;
 import java.io.IOException;
 
 public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
+
     public static final String MODULE_PARAMETERS = " MODULE_NUMBER MODULE_NAME";
+    public static final String MODULE_MESSAGE_USAGE = COMMAND_WORD + ": Edit the module name.\n"
+            + "Parameters:" + MODULE_PARAMETERS + "\n"
+            + "Example: " + COMMAND_WORD + " 1 CS2113T\n";
+
     public static final String CHAPTER_PARAMETERS = " CHAPTER_NUMBER CHAPTER_NAME";
+    public static final String CHAPTER_MESSAGE_USAGE = COMMAND_WORD + ": Edit the chapter name.\n"
+            + "Parameters:" + CHAPTER_PARAMETERS + "\n"
+            + "Example: " + COMMAND_WORD + " 2 Chapter 2\n";
+
     public static final String CARD_PARAMETERS = " FLASHCARD_NUMBER q:QUESTION | a:ANSWER";
+    public static final String CARD_MESSAGE_USAGE = COMMAND_WORD + ": Edit the flashcard content.\n"
+            + "Parameters:" + CARD_PARAMETERS + "\n"
+            + "Example: " + COMMAND_WORD + " 3 q:What is the result of one plus one | a:two\n";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edit the module name / chapter name / flashcard content.\n"
@@ -54,7 +65,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cards, Ui ui, Access access, Storage storage)
+    public void execute(Ui ui, Access access, Storage storage)
             throws InvalidInputException, IncorrectAccessLevelException, IOException {
         if (access.isChapterLevel()) {
             editCard(ui, access, storage);
@@ -69,6 +80,8 @@ public class EditCommand extends Command {
     }
 
     private void editCard(Ui ui, Access access, Storage storage) throws InvalidInputException, IOException {
+        assert access.isChapterLevel() : "Not chapter level";
+        assert question.isEmpty() && answer.isEmpty() : "The content for question and answer are both empty.";
         CardList cards = access.getChapter().getCards();
         try {
             Card card = cards.getCard(editIndex);
@@ -88,6 +101,8 @@ public class EditCommand extends Command {
     }
 
     private void editModule(Ui ui, Access access, Storage storage) throws InvalidInputException {
+        assert access.isAdminLevel() : "Not admin level";
+        assert moduleOrChapter.isEmpty() : "The module name is missing.";
         ModuleList modules = access.getAdmin().getModules();
         try {
             Module module = modules.getModule(editIndex);
@@ -104,6 +119,8 @@ public class EditCommand extends Command {
     }
 
     private void editChapter(Ui ui, Access access, Storage storage) throws InvalidInputException {
+        assert access.isModuleLevel() : "Not module level";
+        assert moduleOrChapter.isEmpty() : "The chapter name is missing.";
         ChapterList chapters = access.getModule().getChapters();
         try {
             Chapter chapter = chapters.getChapter(editIndex);

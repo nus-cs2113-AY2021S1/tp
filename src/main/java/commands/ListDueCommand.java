@@ -1,8 +1,10 @@
 package commands;
 
 import access.Access;
+
 import manager.chapter.CardList;
 import manager.chapter.DueChapter;
+
 import scheduler.Scheduler;
 import storage.Storage;
 import ui.Ui;
@@ -26,7 +28,7 @@ public class ListDueCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cards, Ui ui, Access access, Storage storage) {
+    public void execute(Ui ui, Access access, Storage storage) {
         loadAllChapters(storage, ui);
 
         for (DueChapter chapter : allChapters) {
