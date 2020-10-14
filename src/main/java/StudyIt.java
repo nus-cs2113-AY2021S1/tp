@@ -1,18 +1,14 @@
 import timetable.TimeTableRun;
 import flashcard.FlashcardRun;
 import bookmark.BookmarkCategory;
-import bookmark.BookmarkUi;
 import bookmark.NusCategory;
 import bookmark.ZoomCategory;
 import java.util.ArrayList;
 
 
 public class StudyIt {
-    private ArrayList<BookmarkCategory> bookmarkCategories = new ArrayList<>();
-    private BookmarkUi bookmarkUi;
-    private BookmarkParser bookmarkParser;
+    public static ArrayList<BookmarkCategory> bookmarkCategories = new ArrayList<>();
     private static Mode currentMode = Mode.MENU;
-
 
     public static void changeMode(Mode destinationMode) {
         currentMode = destinationMode;
@@ -28,8 +24,6 @@ public class StudyIt {
     public StudyIt() {
         bookmarkCategories.add(new NusCategory());
         bookmarkCategories.add(new ZoomCategory());
-        bookmarkUi = new BookmarkUi();
-        bookmarkParser = new BookmarkParser();
     }
 
     public static void main(String[] args) {
@@ -44,7 +38,7 @@ public class StudyIt {
             // Collect user's command & identify the type
             String command = Ui.inputCommand();
             commandType = CommandParser.getCommandType(command);
-            Command.executeCommand(command, commandType,bookmarkCategories,bookmarkUi,bookmarkParser,flashcardRun,
+            Command.executeCommand(command, commandType, bookmarkCategories, flashcardRun,
                     timeTableRun);
 
         } while (commandType != CommandType.EXIT_PROGRAM);

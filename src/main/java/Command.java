@@ -1,3 +1,4 @@
+import bookmark.BookmarkUi;
 import flashcard.FlashcardRun;
 import academic.GradeBook;
 import academic.PersonBook;
@@ -7,22 +8,21 @@ import bookmark.BookmarkCategory;
 import bookmark.commands.BookmarkCommand;
 import bookmark.InvalidBookmarkCommandException;
 import java.util.ArrayList;
-import bookmark.BookmarkUi;
+
 import exceptions.InvalidGradeException;
 import exceptions.InvalidMcException;
-import timetable.TimeTableRun;
 
 
 public class Command {
 
     public static void executeCommand(String command, CommandType commandType,
-                                      ArrayList<BookmarkCategory> bookmarkCategories, BookmarkUi bookmarkUi,
-                                      BookmarkParser bookmarkParser, FlashcardRun flashcardRun,
+                                      ArrayList<BookmarkCategory> bookmarkCategories, FlashcardRun flashcardRun,
                                       TimeTableRun timeTableRun) {
         if (commandType == CommandType.EXIT_PROGRAM) {
             Ui.printExit();
         } else if (commandType == CommandType.EXIT_MODE) {
             Ui.exitMode();
+            BookmarkParser.resetBookmarkCategory();
         } else if (commandType == CommandType.LOCATION) {
             Ui.printLocation();
         } else if (commandType == CommandType.CHANGE_MODE) {
@@ -30,8 +30,8 @@ public class Command {
         } else if (commandType == CommandType.HELP) {
             HelpMessage.printHelpMessage();
         } else if (StudyIt.getCurrentMode() != Mode.MENU) {
-            handleNonGeneralCommand(command,commandType,bookmarkCategories,bookmarkUi,bookmarkParser,
-                    flashcardRun, timeTableRun);
+            // Run the mode specific commands if the input is none of the general command
+            handleNonGeneralCommand(command, commandType, bookmarkCategories, flashcardRun, timeTableRun);
         } else {
             ErrorMessage.printUnidentifiableCommand();
         }
@@ -39,11 +39,10 @@ public class Command {
 
     public static void handleNonGeneralCommand(String command, CommandType commandType,
                                                ArrayList<BookmarkCategory> bookmarkCategories,
-                                               BookmarkUi bookmarkUi,BookmarkParser bookmarkParser,
                                                FlashcardRun flashcardRun, TimeTableRun timeTableRun) {
         Mode currentMode = StudyIt.getCurrentMode();
         if (currentMode == Mode.BOOKMARK) {
-            executeBookmarkModeCommand(command,bookmarkCategories,bookmarkUi,bookmarkParser);
+            executeBookmarkModeCommand(command, bookmarkCategories);
         } else if (currentMode == Mode.TIMETABLE) {
             executeTimetableModeCommand(command, timeTableRun);
         } else if (currentMode == Mode.ACADEMIC) {
@@ -53,13 +52,14 @@ public class Command {
         }
     }
 
-    public static void executeBookmarkModeCommand(String command, ArrayList<BookmarkCategory> categories,
-                                                  BookmarkUi ui, BookmarkParser parser) {
+    public static void executeBookmarkModeCommand(String command, ArrayList<BookmarkCategory> bookmarkCategories) {
+        BookmarkUi bookmarkUi = new BookmarkUi();
+        BookmarkParser bookmarkParser = new BookmarkParser();
         try {
-            BookmarkCommand c = parser.evaluateInput(command,ui, categories);
-            c.executeCommand(ui,categories);
+            BookmarkCommand c = bookmarkParser.evaluateInput(command, bookmarkUi, bookmarkCategories);
+            c.executeCommand(bookmarkUi, bookmarkCategories);
         } catch (InvalidBookmarkCommandException e) {
-            ui.showInvalidBookmarkCommand();
+            bookmarkUi.showInvalidBookmarkCommand();
         }
     }
 
