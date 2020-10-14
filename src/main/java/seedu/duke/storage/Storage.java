@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Storage {
@@ -22,6 +23,7 @@ public class Storage {
     private static final Logger LOGGER = Logger.getLogger(Storage.class.getName());
 
     public Storage(String userFileName, String watchlistFileName) {
+        LOGGER.setLevel(Level.WARNING);
         encoder = new Encoder();
         decoder = new Decoder();
         userFilePath = storageDirectory + userFileName;

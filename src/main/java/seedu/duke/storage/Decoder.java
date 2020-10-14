@@ -7,11 +7,16 @@ import seedu.duke.watchlist.Watchlist;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Decoder {
     private static final String FILE_LINE_DELIMITER = " \\| ";
     private static final Logger LOGGER = Logger.getLogger(Storage.class.getName());
+
+    public Decoder() {
+        LOGGER.setLevel(Level.WARNING);
+    }
 
     public User decodeUserString(Ui ui, String fileString) {
         User user = null;
