@@ -1,56 +1,54 @@
 package bookmark;
 
+import bookmark.BookmarkCategory;
+import bookmark.BookmarkList;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BookmarkUi {
-    public static final String LINE = "=======================================================================";
     private Scanner in;
 
     public BookmarkUi() {
         this.in = new Scanner(System.in);
     }
 
-    public void printWelcomeBookmarkMessage() {
+    public static void printWelcomeBookmarkMessage() {
         System.out.println("Welcome to B00KMARK!");
-        System.out.println("Choose your categories!");
+        System.out.println("Choose your category by typing \"bm <category index>!\"");
     }
 
-    public void printLine() {
-        System.out.println(LINE);
-    }
-
-    public void showBookmarkCategoryList(ArrayList<BookmarkCategory> categories) {
-        System.out.println("Printing bookmark categories");
+    public static void showBookmarkCategoryList(ArrayList<BookmarkCategory> bookmarkCategories) {
+        System.out.println("Here are the categories available:");
         int i = 1;
-        for (BookmarkCategory category: categories) {
+        for (BookmarkCategory category: bookmarkCategories) {
             System.out.println(i + "." + category.getName());
             i++;
         }
     }
 
     public void showBookmarkLinkList(ArrayList<BookmarkList> links) {
+        System.out.println("Bookmarks:");
         if (links.size() == 0) {
-            System.out.println("Empty List");
+            System.out.println("<empty>");
         } else {
-            System.out.println("Printing bookmark list");
             int i = 1;
             for (BookmarkList link: links) {
                 System.out.println(i + "." + link.getLink());
                 i++;
             }
         }
-
     }
 
     public void printGoodbyeMessage() {
-        System.out.println("EXITED from bookmark");
+        System.out.println("Use \"exit\" to exit the mode or enter another category\n"
+                + "using \"bm <category index>\"");
     }
 
     public void showBookmarkList(ArrayList<BookmarkCategory> categories) {
         System.out.println("Here is the list");
         for (int i = 0; i < categories.size(); i++) {
-            System.out.println(categories.get(i).getName());
+            System.out.println("Category: " + categories.get(i).getName());
             showBookmarkLinkList(categories.get(i).getLinks());
         }
     }
