@@ -49,6 +49,15 @@ public class RecurringEntryList extends ItemList {
             int index = paramChecker.checkAndReturnIndex(paramType, super.items);
             super.indexToModify = index;
             break;
+        //Params for RecurringEntry to parse;
+        //leave them alone without throwing UnrecognizedParamMessage
+        case ParamChecker.PARAM_DAY:
+        case ParamChecker.PARAM_AMOUNT:
+        case ParamChecker.PARAM_INC:
+        case ParamChecker.PARAM_EXP:
+        case ParamChecker.PARAM_DESCRIPTION:
+        case ParamChecker.PARAM_AUTO:
+        case ParamChecker.PARAM_NOTES:
         default:
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     paramChecker.getUnrecognizedParamMessage(paramType));
