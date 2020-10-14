@@ -2,10 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
-import seedu.duke.exception.DateErrorException;
-import seedu.duke.exception.DukeException;
-import seedu.duke.exception.TimeErrorException;
-import seedu.duke.exception.TryRegularParserException;
+import seedu.duke.exception.*;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -40,21 +37,25 @@ public class CheckCommand extends Command {
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
         String[] datesAndTime = command.split(";");
 
-        LocalDate startDate = getDate(datesAndTime[0].trim());
-        LocalDate endDate = getDate(datesAndTime[2].trim());
+        try {
+            LocalDate startDate = getDate(datesAndTime[0].trim());
+            LocalDate endDate = getDate(datesAndTime[2].trim());
 
-        LocalTime startTime = getTime(datesAndTime[1].trim());
-        LocalTime endTime = getTime(datesAndTime[3].trim());
+            LocalTime startTime = getTime(datesAndTime[1].trim());
+            LocalTime endTime = getTime(datesAndTime[3].trim());
 
-        ArrayList<Event> eventsInTimeRange = new ArrayList<>();
-        String[] eventTypes = new String[]{"Personal", "Timetable", "Zoom"};
-        for (String type: eventTypes) {
-            EventList eventsList = data.getEventList(type);
-            eventsInTimeRange.addAll(checkEventsInTimeRange(eventsList, startDate, endDate, startTime, endTime));
+            ArrayList<Event> eventsInTimeRange = new ArrayList<>();
+            String[] eventTypes = new String[]{"Personal", "Timetable", "Zoom"};
+            for (String type: eventTypes) {
+                EventList eventsList = data.getEventList(type);
+                eventsInTimeRange.addAll(checkEventsInTimeRange(eventsList, startDate, endDate, startTime, endTime));
+            }
+            EventList coinciding = new EventList("coinciding", eventsInTimeRange);
+
+            ui.printList(coinciding);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new WrongNumberOfArgumentsException("Insufficient fields provided to check events.");
         }
-        EventList coinciding = new EventList("coinciding", eventsInTimeRange);
-
-        ui.printList(coinciding);
     }
 
     private LocalDate getDate(String stringDate) throws DateErrorException {
