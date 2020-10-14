@@ -3,6 +3,8 @@ package seedu.duke.parser;
 import seedu.duke.command.Command;
 import seedu.duke.command.IncorrectCommand;
 import seedu.duke.command.addcommand.AddModuleCommand;
+import seedu.duke.command.filtercommand.FilterCommand;
+import seedu.duke.command.filtercommand.listcommand.ListModuleCommand;
 import seedu.duke.exception.InvalidFormatException;
 
 import java.security.InvalidParameterException;
@@ -58,6 +60,8 @@ public class Parser {
             switch (commandWord){
             case AddModuleCommand.COMMAND_WORD:
                 return prepareAddModuleCommand(parameters);
+            case ListModuleCommand.COMMAND_WORD:
+                return prepareListModuleCommand(parameters);
             default:
                 return new IncorrectCommand("Wrong!");
             }
@@ -93,6 +97,21 @@ public class Parser {
         }
 
         return new AddModuleCommand(moduleCode);
+    }
+
+    /* Prepare Delete and List Commands */
+
+    /**
+     * Prepares the command to delete modules or show filtered modules.
+     *
+     * @param parameters
+     *  The parameters given by the user
+     * @return
+     *  The command to delete modules or show filtered modules
+     */
+    private Command prepareListModuleCommand(String parameters)
+            throws InvalidParameterException {
+        return new ListModuleCommand(parameters, false);
     }
 
     /**

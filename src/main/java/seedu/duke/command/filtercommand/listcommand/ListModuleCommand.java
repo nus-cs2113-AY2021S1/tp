@@ -1,6 +1,7 @@
 package seedu.duke.command.filtercommand.listcommand;
 
 import seedu.duke.command.CommandResult;
+import seedu.duke.data.ModuleManager;
 import seedu.duke.directory.DirectoryLevel;
 import seedu.duke.directory.Module;
 import seedu.duke.ui.TextUi;
@@ -45,11 +46,16 @@ public class ListModuleCommand extends ListCommand {
      */
     @Override
     public CommandResult execute() {
-        ArrayList<Module> filteredModuleList = createFilteredModuleList(moduleKeyWord, isExact);
-        if (filteredModuleList.isEmpty()) {
-            return new CommandResult(MESSAGE_NO_MODULES_TO_SHOW);
+        ArrayList<Module> filteredModuleList;
+        if (moduleKeyWord.isEmpty()){
+            filteredModuleList = ModuleManager.getModuleList();
+        } else {
+            filteredModuleList = createFilteredModuleList(moduleKeyWord, isExact);
+            if (filteredModuleList.isEmpty()) {
+                return new CommandResult(MESSAGE_NO_MODULES_TO_SHOW);
+            }
+            sortModuleList(filteredModuleList);
         }
-        sortModuleList(filteredModuleList);
         var listMessage = TextUi.getAppendedModules(filteredModuleList);
         return new CommandResult(listMessage);
     }

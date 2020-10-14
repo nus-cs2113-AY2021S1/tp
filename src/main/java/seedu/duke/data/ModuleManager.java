@@ -163,6 +163,10 @@ public class ModuleManager {
         return filteredModuleList;
     }
 
+    public static ArrayList<Module> getModuleList() {
+        return moduleList;
+    }
+
     public static class ModuleNotFoundException extends DataNotFoundException {
     }
 
