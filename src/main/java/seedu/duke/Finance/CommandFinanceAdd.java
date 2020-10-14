@@ -2,6 +2,7 @@ package seedu.duke.finance;
 
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
+//import seedu.duke.finance.financelog;
 
 public class CommandFinanceAdd extends Command {
     UserInput userinput;
