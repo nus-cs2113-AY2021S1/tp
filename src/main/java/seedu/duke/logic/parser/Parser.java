@@ -2,11 +2,7 @@ package seedu.duke.logic.parser;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
-import seedu.duke.logic.commands.AllBusCommand;
-import seedu.duke.logic.commands.Command;
-import seedu.duke.logic.commands.ExitCommand;
-import seedu.duke.logic.commands.RouteMapCommand;
-import seedu.duke.logic.commands.RouteCommand;
+import seedu.duke.logic.commands.*;
 import seedu.duke.ui.Ui;
 
 
@@ -43,9 +39,9 @@ public class Parser {
         case "/routemap":
             com = new RouteMapCommand();
             break;
-        //        case "/bus":
-        //
-        //            break;
+        case "/bus":
+            com = new BusCommand(parts[1]);
+            break;
         case "/allbus":
             com = new AllBusCommand();
             break;
