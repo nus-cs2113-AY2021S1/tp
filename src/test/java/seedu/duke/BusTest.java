@@ -28,8 +28,7 @@ class BusTest {
         String startingLoc = "centrAL LibraRy";
         String destination = "University health cenTre";
         Bus newBus = new Bus("AA1", AA1);
-        ArrayList<BusStops> route = new ArrayList<>();
-        route.addAll(Arrays.asList(AA1).subList(5, 8));
+        ArrayList<BusStops> route = new ArrayList<>(Arrays.asList(AA1).subList(5, 8));
         assertEquals(route, newBus.getPossibleRoute(startingLoc, destination));
     }
 
