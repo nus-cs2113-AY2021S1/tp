@@ -33,6 +33,7 @@ public class RemoveCommand extends Command {
             homeLocationsList.removeLocation(this.usersEnteredLocation);
         } else {
             ui.showToUser(MESSAGE_LOCATION_NOT_EXIST + " Nothing will be deleted.");
+            throw new IndexOutOfBoundsException();
         }
 
     }
