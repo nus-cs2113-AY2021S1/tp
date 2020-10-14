@@ -36,6 +36,7 @@ public class ListCommand extends Command {
     }
 
     private void listCards(Ui ui, Access access) {
+        assert access.isChapterLevel() : "Not chapter level";
         CardList cards = access.getChapter().getCards();
         ArrayList<Card> allCards = cards.getAllCards();
         int cardCount = cards.getCardCount();

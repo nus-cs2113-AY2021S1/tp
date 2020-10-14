@@ -80,6 +80,8 @@ public class EditCommand extends Command {
     }
 
     private void editCard(Ui ui, Access access, Storage storage) throws InvalidInputException, IOException {
+        assert access.isChapterLevel() : "Not chapter level";
+        assert question.isEmpty() && answer.isEmpty() : "The content for question and answer are both empty.";
         CardList cards = access.getChapter().getCards();
         try {
             Card card = cards.getCard(editIndex);
@@ -99,6 +101,8 @@ public class EditCommand extends Command {
     }
 
     private void editModule(Ui ui, Access access, Storage storage) throws InvalidInputException {
+        assert access.isAdminLevel() : "Not admin level";
+        assert moduleOrChapter.isEmpty() : "The module name is missing.";
         ModuleList modules = access.getAdmin().getModules();
         try {
             Module module = modules.getModule(editIndex);
@@ -115,6 +119,8 @@ public class EditCommand extends Command {
     }
 
     private void editChapter(Ui ui, Access access, Storage storage) throws InvalidInputException {
+        assert access.isModuleLevel() : "Not module level";
+        assert moduleOrChapter.isEmpty() : "The chapter name is missing.";
         ChapterList chapters = access.getModule().getChapters();
         try {
             Chapter chapter = chapters.getChapter(editIndex);
