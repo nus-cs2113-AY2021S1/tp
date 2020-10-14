@@ -1,6 +1,5 @@
 package seedu.rex.commands;
 
-import seedu.rex.data.AppointmentList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
@@ -30,7 +29,8 @@ public class RetrieveCommand extends Command {
      * @throws RexException If there is issue executing command.
      */
     @Override
-    public void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage) throws RexException {
+    public void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage)
+            throws RexException {
         assert patients != null : "patient ArrayList is null";
         assert ui != null : "ui is null";
         assert storage != null : "storage is null";

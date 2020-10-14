@@ -1,7 +1,6 @@
 package seedu.rex;
 
 import seedu.rex.commands.Command;
-import seedu.rex.data.AppointmentList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
@@ -20,11 +19,11 @@ import java.util.logging.Logger;
  */
 public class Rex {
 
+    private static PatientList patients;
+    private static Logger logger;
     private final Storage storage;
     private final Ui ui;
-    private static PatientList patients;
     private ArrayList<Appointment> appointments;
-    private static Logger logger;
 
     /**
      * Initializes Rex.
@@ -63,6 +62,10 @@ public class Rex {
         new Rex("data/patients.txt").run();
     }
 
+    public static PatientList getPatients() {
+        return patients;
+    }
+
     /**
      * Runs Rex.
      */
@@ -91,9 +94,5 @@ public class Rex {
         } catch (IOException e) {
             ui.showError(e.getMessage());
         }
-    }
-
-    public static PatientList getPatients() {
-        return patients;
     }
 }

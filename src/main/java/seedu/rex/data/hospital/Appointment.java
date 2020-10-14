@@ -82,7 +82,8 @@ public class Appointment {
     @Override
     public String toString() {
         String date = this.date.toString();
-        String bookedStatus, patientNric;
+        String bookedStatus;
+        String patientNric;
         if (isBooked) {
             bookedStatus = "booked";
         } else {

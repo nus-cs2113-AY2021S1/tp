@@ -1,17 +1,20 @@
 package seedu.rex.storage;
 
-import seedu.rex.Rex;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
 import seedu.rex.data.hospital.Patient;
 import seedu.rex.parser.Parser;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
@@ -24,10 +27,9 @@ public class Storage {
     private static final String READ_ERROR = "Error reading file.";
     private static final String DIRECTORY_ERROR = "Error creating directory.";
     private static final String WRITE_ERROR = "Error writing file.";
-
+    private static final String APPOINTMENTS_FILE = "appointments.txt";
     private final String folder;
     private final String file;
-    private static final String APPOINTMENTS_FILE = "appointments.txt";
 
     /**
      * Initializes path of folder and file.
