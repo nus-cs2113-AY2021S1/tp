@@ -8,6 +8,7 @@ import commands.ExitCommand;
 import commands.HelpCommand;
 import commands.ListCommand;
 import commands.RemoveCommand;
+import commands.ReviseCommand;
 import commands.BackCommand;
 
 import manager.card.Card;
