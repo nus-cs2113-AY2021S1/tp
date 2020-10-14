@@ -64,16 +64,16 @@ public class GoalTracker {
         }
     }
 
-    public static int getExpenseGoal(){
+    public static int getExpenseGoal() {
         return expenseGoal;
     }
 
-    public static int getIncomeGoal(){
+    public static int getIncomeGoal() {
         return incomeGoal;
     }
 
-    public static void setGoals(int expense, int income){
-        if (expense != 0){
+    public static void setGoals(int expense, int income) {
+        if (expense != 0) {
             expenseGoal = expense;
             goalSetter = new Goal(expenseGoal, "Expense");
             totalGoalList.addGoal(goalSetter);
