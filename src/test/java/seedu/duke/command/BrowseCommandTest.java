@@ -90,7 +90,7 @@ class BrowseCommandTest {
     }
 
     @Test
-    void execute_differentParameterOrder_identicalBrowseSetting() {
+    void execute_differentParameterOrder_identicalBrowseSettings() {
         BrowseCommand testBrowse = new BrowseCommand(DIFF_ORDER_TEST);
         BrowseCommand testBrowse2 = new BrowseCommand(DIFF_ORDER_TEST2);
 
@@ -101,8 +101,10 @@ class BrowseCommandTest {
     }
 
     @Test
-    void execute_noParam_ThrowsAniException() {
+    void execute_noParam_identicalBrowseSettings() {
         BrowseCommand testBrowse = new BrowseCommand(NO_PARAM_TEST);
+
+        //Performs test against default settings
         assertEquals(testBrowse.getPage(), 1);
         assertEquals(testBrowse.getSortType(), 0);
         assertEquals(testBrowse.getOrder(), 1);
