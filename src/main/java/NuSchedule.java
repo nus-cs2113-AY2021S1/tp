@@ -6,6 +6,8 @@ import parser.Parser;
 import storage.Storage;
 import ui.UI;
 
+import exception.LoadingException;
+
 public class NuSchedule {
     /**
      * Main entry-point for the NUSchedule application.
@@ -16,17 +18,17 @@ public class NuSchedule {
 
     public NuSchedule(String filePath) {
         ui = new UI();
-        try {
-            storage = new Storage(filePath);
-        } catch (CreatingFileException e) {
-            ui.showError(e.getMessage());
-        }
-        try {
-            events = new EventList(storage.load());
-        } catch (NuScheduleException e) {
-            ui.showLoadingError();
+//        try {
+//            storage = new Storage(filePath);
+//        } catch (CreatingFileException e) {
+//            ui.showError(e.getMessage());
+//        }
+//        try {
+//            events = new EventList(storage.load());
+//        } catch (LoadingException e) {
+//            ui.showLoadingError();
             events = new EventList();
-        }
+     //   }
     }
 
     /**
@@ -50,7 +52,7 @@ public class NuSchedule {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         new NuSchedule("data/events.txt").run();
     }
 }

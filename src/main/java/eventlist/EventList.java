@@ -34,7 +34,7 @@ public class EventList {
     /**
      * Adds an event to the list.
      *
-     * @param eventToBeAdded may be Todo/Event/Deadline based on the usage
+     * @param eventToBeAdded may be Assignment/Class/Personal Event based on the usage
      */
     public void addEvent(Event eventToBeAdded) {
         events.add(eventToBeAdded);
@@ -69,7 +69,7 @@ public class EventList {
      *
      * @return the size of the ArrayList in the EventList object.
      */
-    public int size() {
+    public int getSize() {
         return events.size();
     }
 

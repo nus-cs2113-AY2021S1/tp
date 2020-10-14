@@ -3,7 +3,6 @@ package ui;
 
 import event.Event;
 
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -63,11 +62,18 @@ public class UI {
      */
     public void printEventList(ArrayList<Event> events) {
         int numPrintedEvents = 0;
-
-        System.out.println(" Here are the Events in your list:");
-        for (Event event : events) {
-            numPrintedEvents++;
-            System.out.println(numPrintedEvents + ". " + event.toString());
+        if (events.size() == 0){
+            System.out.println("The list is empty.");
+        } else {
+            try {
+                System.out.println("Here are the Events in your list:");
+                for (Event event : events) {
+                    numPrintedEvents++;
+                    System.out.println(numPrintedEvents + ". " + event.toString());
+                }
+            } catch (NullPointerException e){
+                System.out.println("The list is empty.");
+            }
         }
     }
 

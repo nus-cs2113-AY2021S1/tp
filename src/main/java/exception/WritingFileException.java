@@ -10,6 +10,6 @@ public class WritingFileException extends NuScheduleException {
      * @return the message
      */
     public String getMessage() {
-        return "something went wrong when writing to file";
+        return "Something went wrong when writing to the file.";
     }
 }
