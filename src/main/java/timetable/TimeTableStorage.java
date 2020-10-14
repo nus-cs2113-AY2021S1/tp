@@ -10,11 +10,11 @@ public class TimeTableStorage {
 
     private static File taskFile;
     private final String filePath;
-    private final String DIR_PATH = "data";
+    private final String dirPath = "data";
 
     public TimeTableStorage(String filePath, DateList dateList) {
         // Creates data directory
-        File fileDir = new File(DIR_PATH);
+        File fileDir = new File(dirPath);
 
         if (!fileDir.exists()) {
             fileDir.mkdir();
