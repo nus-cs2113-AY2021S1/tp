@@ -1,12 +1,9 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.data.notebook.Notebook;
-import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.timetable.DailyEvent;
 import seedu.duke.data.timetable.Event;
 import seedu.duke.data.timetable.Timetable;
-import seedu.duke.storage.StorageManager;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -29,10 +26,7 @@ class AddEventCommandTest {
     private final Event event = new DailyEvent(TEST_TITLE, TEST_DATE_TIME,
             TEST_REMINDER, TEST_TIME_PERIODS, TEST_TIME_UNITS);
 
-    private static final StorageManager STORAGE_MANAGER = new StorageManager();
-    private static final Notebook NOTEBOOK = new Notebook();
     private static final Timetable TIMETABLE = new Timetable();
-    private static final TagManager TAG_MANAGER = new TagManager();
 
 
 
@@ -43,7 +37,7 @@ class AddEventCommandTest {
      */
     @Test
     void execute_singleEvent_success() {
-        command.setData(NOTEBOOK, TIMETABLE, TAG_MANAGER, STORAGE_MANAGER);
+        command.setData(null, TIMETABLE, null, null);
         command.execute();
         assertTrue(command.timetable.getEvent(0) == (event));
     }
