@@ -20,7 +20,6 @@ public class HomeLocations {
         if (!isLocationCreated(location)) {
             this.locations.add(location);
         } else {
-            // Will be replaced with throwing an exception
             throw new InvalidAddtionOfLocation();
         }
     }

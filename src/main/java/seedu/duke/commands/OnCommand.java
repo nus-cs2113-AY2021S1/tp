@@ -5,6 +5,7 @@ import seedu.duke.data.framework.Appliance;
 
 import static seedu.duke.common.Messages.LINE;
 import static seedu.duke.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
+import static seedu.duke.ui.TextUi.showToUser;
 
 public class OnCommand extends Command {
 
@@ -24,19 +25,19 @@ public class OnCommand extends Command {
 
     @Override
     public void execute() {
-        for (Appliance i : appliances.getAllAppliance()) {
-            String location = i.getLocation();
-            if (i.getName().equals((this.name))) {
-                if (i.switchOn()) {
+        for (Appliance appliance : appliances.getAllAppliance()) {
+            String location = appliance.getLocation();
+            if (appliance.getName().equals((this.name))) {
+                if (appliance.switchOn()) {
                     String result = String.format("Switching on %s in %s ......ON!\n", name, location);
-                    ui.showToUser(LINE + result);
+                    showToUser(LINE + result);
                 } else {
-                    ui.showToUser(LINE + MESSAGE_APPLIANCE_PREVIOUSLY_ON);
+                    showToUser(LINE + MESSAGE_APPLIANCE_PREVIOUSLY_ON);
                 }
                 return;
             }
         }
-        ui.showToUser(LINE + name + " does not exist.");
+        showToUser(LINE + name + " does not exist.");
     }
 
 }
