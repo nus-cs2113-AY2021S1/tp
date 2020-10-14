@@ -173,8 +173,7 @@ public class Parser {
             ui.printDatabase(manager.getDataBase().getFoodList());
             return;
         case COMMAND_DELETE:
-            ui.printDeletedFood(manager.getFoodList().getFoods().get(getCommandIndex(userInput)).toString());
-            manager.getFoodList().delete(getCommandIndex(userInput));
+            ui.printDeletedFood(manager.getFoodList().delete(getCommandIndex(userInput)));
             return;
         case COMMAND_CLEAR:
             ui.printClearFoodListMessage();
