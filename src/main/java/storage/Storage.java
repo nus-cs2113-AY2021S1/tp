@@ -173,19 +173,19 @@ public class Storage {
         return directoryToBeDeleted.delete();
     }
 
-    public boolean renameChapter(String newChapterName, Access access, Storage storage, Chapter chapter) {
-        File file = new File(storage.getFilePath()
+    public boolean renameChapter(String newChapterName, Access access, Chapter chapter) {
+        File file = new File(getFilePath()
                 + "/" + access.getModule()
                 + "/" + chapter.toString() + ".txt");
-        boolean success = file.renameTo(new File(storage.getFilePath()
+        boolean success = file.renameTo(new File(getFilePath()
                 + "/" + access.getModule()
                 + "/" + newChapterName + ".txt"));
         return success;
     }
 
-    public boolean renameModule(String newModuleName, Storage storage, Module module) {
-        File file = new File(storage.getFilePath() + "/" + module.toString());
-        boolean success = file.renameTo(new File(storage.getFilePath() + "/" + newModuleName));
+    public boolean renameModule(String newModuleName, Module module) {
+        File file = new File(getFilePath() + "/" + module.toString());
+        boolean success = file.renameTo(new File(getFilePath() + "/" + newModuleName));
         return success;
     }
 }
