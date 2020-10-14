@@ -33,6 +33,7 @@ public abstract class Command {
      * Executes command.
      *
      * @param patients PatientList object.
+     * @param appointments ArrayList of Appointment
      * @param ui       Ui object.
      * @param storage  Storage object.
      * @throws RexException If there is issue executing command.

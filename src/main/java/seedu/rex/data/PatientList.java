@@ -121,5 +121,21 @@ public class PatientList {
         return null;
     }
 
+    /**
+     * Deletes Patient with the NRIC entered by the user
+     *
+     * @param nric NRIC entered by the user
+     * @return the deleted <code>Patient</code> Object
+     */
+    public Patient deletePatient(String nric){
+        int i;
+        for (i = 0; i < getSize(); i++){
+            if (getPatientUsingIndex(i).getNric().equals(nric)) {
+                break;
+            }
+        }
+        return patients.remove(i);
+    }
+
 
 }
