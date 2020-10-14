@@ -111,11 +111,16 @@ public class DeleteCommand extends Command {
         }
 
         try {
+            if (titleAndAuthor[1].isEmpty()) {
+                throw new QuotesifyException(ERROR_NO_AUTHOR_NAME);
+            }
             ArrayList<Book> filteredBooks = books.find(bookTitle, titleAndAuthor[1].trim());
             books.deleteByBook(filteredBooks.get(0));
             ui.printDeleteBook(filteredBooks.get(0));
         } catch (IndexOutOfBoundsException e) {
             ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
         }
     }
 
