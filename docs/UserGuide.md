@@ -21,22 +21,23 @@ Format: `buy /STOCK_TICKER QUANTITY`
 
 Example of usage: 
 
-`buy /fb`
+`buy /fb 10`
 
-`buy /tsla`
+`buy /tsla 1`
 
-### Selling a stock: `sell /aapl`
+### Selling a stock: `sell /aapl 5`
 Sells the specified stock at market price
 
-Format: `sell /STOCK_TICKER`
+Format: `sell /STOCK_TICKER QUANTITY`
 
 * The `STOCK_TICKER` is the stock's short form
+* The `QUANTITY` is the number of shares you want to sell
 
 Example of usage: 
 
-`sell /goog`
+`sell /goog 20`
 
-`sell /amzn`
+`sell /amzn 100`
 
 ### Searching for info about a stock: `search /aapl`
 Shows information about a stock like price and volume
@@ -61,6 +62,6 @@ Example of usage:
 
 {Give a 'cheat sheet' of commands here}
 
-* Buy a stock `buy /aapl`
-* Sell a stock `sell /aapl`
+* Buy a stock `buy /aapl 10`
+* Sell a stock `sell /aapl 10`
 * Search for a stock's info `search /aapl`
