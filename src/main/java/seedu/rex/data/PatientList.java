@@ -68,6 +68,23 @@ public class PatientList {
     }
 
     /**
+     * Edit an existing patient with given details to <code>patients</code> ArrayList.
+     *
+     * @param name        Name of the patient.
+     * @param nric        NRIC of the patient.
+     * @param dateOfBirth Patient's date of birth.
+     */
+    public int editExistingPatient(String name, String nric, LocalDate dateOfBirth) {
+        int idx = getExistingPatient(nric);
+        patients.remove(idx);
+        Patient patient = (new Patient(name, nric, dateOfBirth));
+        patients.add(idx,patient);
+        return idx;
+    }
+
+
+
+    /**
      * Checks if the NRIC entered by the user already exists in the patient list.
      *
      * @param nric The NRIC entered by the user.
