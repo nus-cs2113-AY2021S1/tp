@@ -5,8 +5,12 @@ import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
+
 import java.util.ArrayList;
 
+/**
+ * Book appointments.
+ */
 public class BookCommand extends Command {
 
     public static final String COMMAND_WORD = "book";
@@ -16,6 +20,15 @@ public class BookCommand extends Command {
         this.trimmedCommand = trimmedCommand;
     }
 
+    /**
+     * Book appointment for patients.
+     *
+     * @param patients     PatientList object.
+     * @param appointments ArrayList of appointment.
+     * @param ui           Ui object.
+     * @param storage      Storage object.
+     * @throws RexException If appointment cannot be booked.
+     */
     @Override
     public void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage)
             throws RexException {

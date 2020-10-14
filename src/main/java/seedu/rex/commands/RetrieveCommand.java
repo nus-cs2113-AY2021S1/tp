@@ -16,8 +16,8 @@ import java.util.logging.Logger;
 public class RetrieveCommand extends Command {
 
     public static final String COMMAND_WORD = "retrieve";
-    private final String trimmedCommand;
     private static Logger logger;
+    private final String trimmedCommand;
 
     public RetrieveCommand(String trimmedCommand) {
         this.trimmedCommand = trimmedCommand;
@@ -27,9 +27,10 @@ public class RetrieveCommand extends Command {
     /**
      * Retrieves patient from patient list using details inputted by the user.
      *
-     * @param patients PatientList object.
-     * @param ui       Ui object.
-     * @param storage  Storage object.
+     * @param patients     PatientList object.
+     * @param appointments ArrayList of appointment.
+     * @param ui           Ui object.
+     * @param storage      Storage object.
      * @throws RexException If there is issue executing command.
      */
     @Override

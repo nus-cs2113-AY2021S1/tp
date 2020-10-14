@@ -12,7 +12,6 @@ import java.util.ArrayList;
 /**
  * Deletes a <code>Patient</code>'s data based on his NRIC.
  */
-
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     private final String trimmedCommand;
@@ -21,6 +20,15 @@ public class DeleteCommand extends Command {
         this.trimmedCommand = trimmedCommand;
     }
 
+    /**
+     * Delete patients using NRIC.
+     *
+     * @param patients     PatientList object.
+     * @param appointments ArrayList of appointment.
+     * @param ui           Ui object.
+     * @param storage      Storage object.
+     * @throws RexException If NRIC has issues.
+     */
     @Override
     public void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage)
             throws RexException {
