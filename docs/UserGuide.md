@@ -252,8 +252,8 @@ any command that changes the data. There is no need to save manually.
 that contains the data of your previous Duke home folder.
 
 ## Command summary
-Function  | Format | Example
---------- | ------ | -------
+Function | Format | Example
+-------- | ------ | -------
 Help | `help`
 Create location | `create [LOCATION_NAME]` | `create Bedroom 1`
 Remove location | `remove [LOCATION_NAME]` | `remove Bedroom 1`
