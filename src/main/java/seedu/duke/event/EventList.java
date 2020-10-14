@@ -14,7 +14,7 @@ public class EventList {
         String userOutput;
         events.add(event);
         userOutput = "Got it. I've added this Event:\n" + event.printEvent() + "\n"
-                + "Now you have " + events.size() + " events in the list.\n";
+                + "Now you have " + events.size() + " event in the list.\n";
 
         return userOutput;
     }
@@ -29,7 +29,7 @@ public class EventList {
             userOutput = "I'll remove this Event:\n";
             userOutput = userOutput.concat(events.get(index).printEvent() + "\n");
             events.remove(index);
-            userOutput = userOutput.concat("Now you have " + events.size() + " event in the list");
+            userOutput = userOutput.concat("Now you have " + events.size() + " event in the list.");
         } catch (IndexOutOfBoundsException e) {
             userOutput = "OOPS!!! The event does not exist.Please try our help command!\n";
         }
