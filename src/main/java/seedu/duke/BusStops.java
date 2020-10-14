@@ -39,8 +39,8 @@ public enum BusStops {
     }
 
     public static String formatName(String input) throws CustomException {
-        for (BusStops info: EnumSet.allOf(BusStops.class)){
-            if(info.getName().equalsIgnoreCase(input)) {
+        for (BusStops info: EnumSet.allOf(BusStops.class)) {
+            if (info.getName().equalsIgnoreCase(input)) {
                 return info.getName();
             }
         }
