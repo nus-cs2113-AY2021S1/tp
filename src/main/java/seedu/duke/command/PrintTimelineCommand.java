@@ -14,8 +14,14 @@ public class PrintTimelineCommand extends Command {
         super(userInput);
     }
 
+    /**
+     * Prints out timeline of all items in calendarList.
+     *
+     * @param calendarList the calendar list to print the timeline from.
+     * @param storage the storage to input the data from.
+     */
     @Override
-    public void execute(CalendarList calendarList, Storage storage) throws DukeException {
+    public void execute(CalendarList calendarList, Storage storage) {
         CalendarList timelineList = new CalendarList();
         CalendarList todoList = new CalendarList();
 

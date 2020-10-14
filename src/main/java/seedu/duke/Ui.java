@@ -12,6 +12,9 @@ import java.util.Scanner;
  * Text UI of the application.
  */
 public class Ui {
+    public static final String COMMAND_FIND_EVENT = "/fe";
+    public static final String COMMAND_FIND_TASK = "/ft";
+    public static final String COMMAND_FIND_EVENT_OR_TASK = "/f";
     private Scanner in;
 
     public Ui() {
@@ -33,7 +36,9 @@ public class Ui {
                 + "8. done <task number>\n"
                 + "9. -t <task number>\n"
                 + "10. -e <event number>\n"
-                + "11. find <keyword>\n"
+                + "11. /f <keyword of task/event>\n"
+                + "12. /ft <keyword of task>\n"
+                + "11. /fe <keyword of event>\n"
                 + "12. print tasks\n"
                 + "13. print events\n"
                 + "14. print timeline\n"
@@ -200,30 +205,35 @@ public class Ui {
     }
 
     /**
-     * Prints all tasks that contains the keyword, including the task index in the task list.
+     * Prints the calendar task/event/item for FindCommand.
      *
-     * @param calendarList the list of tasks being searched.
-     * @param keyword      keyword indicated by user.
-     * @throws DukeException if there are no tasks that contains the keyword.
+     * @param command        command type.
+     * @param calendarList   the calendar list to search from.
+     * @param isFound        true if the first item has been found and printed.
+     * @param itemIndex      item index in the calendar list.
+     * @param printNumbering item index printed to the user.
      */
-    public static void printFindTaskMessage(CalendarList calendarList, String keyword) throws DukeException {
-        boolean isFound = false;
+    public static void printFindTaskMessage(String command, CalendarList calendarList, boolean isFound,
+                                            int itemIndex, int printNumbering) {
 
-        for (int i = 0; i < calendarList.getTotalItems(); i++) {
-            CalendarItem item = calendarList.getCalendarList().get(i);
-            if (item instanceof Task) {
-                if (item.getDescription().contains(keyword)) {
-                    if (!isFound) { // first instance when keyword is found
-                        System.out.println("Here are the matching tasks in your list:");
-                    }
-                    isFound = true;
-                    System.out.println((i + 1) + "." + item);
-                }
+        if (!isFound) { // first instance when keyword is found
+            String itemType = "";
+            switch (command) {
+            case COMMAND_FIND_EVENT:
+                itemType = "event(s)";
+                break;
+            case COMMAND_FIND_TASK:
+                itemType = "task(s)";
+                break;
+            case COMMAND_FIND_EVENT_OR_TASK:
+                itemType = "item(s)";
+                break;
+            default:
+                break;
             }
+            System.out.println("Here are the matching " + itemType + " in your calendar:");
         }
-        if (!isFound) {
-            throw new DukeException("keyword not found");
-        }
+        System.out.printf("%d." + calendarList.getCalendarList().get(itemIndex) + "\n", printNumbering);
     }
 
     /**
@@ -339,10 +349,16 @@ public class Ui {
         System.out.println("Unable to save data. Error: " + e.getMessage());
     }
 
+    /**
+     * Shows the user the exception that occurred when finding the storage file.
+     */
     public static void printFileNotFoundErrorMessage() {
         System.out.println("File not found.");
     }
 
+    /**
+     * Shows the user the exception that occurred when when there is an invalid command message.
+     */
     public static void printInvalidFileCommandMessage() {
         System.out.println("Invalid file command input");
     }
