@@ -252,6 +252,7 @@ any command that changes the data. There is no need to save manually.
 that contains the data of your previous Duke home folder.
 
 ## Command summary
+
 Function | Format | Example 
 -------- |--------|-------- 
 Help|`help`
@@ -264,5 +265,3 @@ Switch Off|`off [APPLIANCE_NAME]`|`off AIRCON1`
 List|`list appliance` or `list location`
 Usage|`usage`
 Exit|`exit`
-
-
