@@ -58,7 +58,7 @@ public class ViewNoteCommand extends Command {
             noteExists = true;
         } else {
             for (Note notes : notebook.getNotes()) {
-                if (notes.getTitle().equals(title)) {
+                if (notes.getTitle().equalsIgnoreCase(title)) {
                     note = notes;
                     noteExists = true;
                 }

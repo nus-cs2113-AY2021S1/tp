@@ -43,13 +43,14 @@ public class FindCommand extends Command {
         StringBuilder notes = new StringBuilder();
 
         ArrayList<Note> filteredNotes = (ArrayList<Note>) notebook.getNotes().stream()
-                .filter((s) -> s.getTitle().contains(keywords))
+                .filter((s) -> s.getTitle().toLowerCase().contains(keywords.toLowerCase()))
                 .collect(Collectors.toList());
 
         for (int i = 0; i < filteredNotes.size(); i++) {
             notes.append(i + 1)
                     .append(SUFFIX_INDEX)
                     .append(filteredNotes.get(i).getTitle())
+                    .append(" ")
                     .append(filteredNotes.get(i).getTagsName())
                     .append(InterfaceManager.LS);
         }

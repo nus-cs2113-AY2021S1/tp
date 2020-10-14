@@ -27,9 +27,10 @@ public class ListNoteCommand extends Command {
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG1...] "
             + "[/sort up OR down]";
 
-    private static final String COMMAND_UNSUCCESSFUL_MESSAGE_INVALID_TAG = "Your tags return no result."
+    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the list of notes: " + InterfaceManager.LS;
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE_INVALID_TAG = "Your tags return no result."
             + " Please try an alternative tag or check your spellings";
-    private static final String COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK = "The notebook is empty!";
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK = "The notebook is empty!";
 
     private ArrayList<String> tags;
     private boolean isSorted;
@@ -111,7 +112,7 @@ public class ListNoteCommand extends Command {
             if (noteString.toString().isBlank()) {
                 return COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK;
             }
-            return noteString.toString();
+            return COMMAND_SUCCESSFUL_MESSAGE + noteString.toString();
         }
 
         // Obtaining ArrayList<String> of tags and parsing it to get an ArrayList<Tag> of tags
@@ -171,7 +172,7 @@ public class ListNoteCommand extends Command {
         } else {
             noteString = new StringBuilder(getSortedString(noteString.toString(), sortedTaggedNotes));
         }
-        return noteString.toString();
+        return COMMAND_SUCCESSFUL_MESSAGE + noteString.toString();
     }
 
     /**
