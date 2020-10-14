@@ -9,8 +9,8 @@ import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 
 public class RecurringTracker {
-    static String WelcomeMessage = "Welcome to Auto Tracker!";
-    static String DirectoryMainMenu = "[ MAIN_MENU -> AUTO_TRACKER ]";
+    static String WelcomeMessage = "Welcome to Recurring Tracker!";
+    static String DirectoryMainMenu = "[ MAIN_MENU -> RECURRING_TRACKER ]";
     static RecurringEntryList entries = new RecurringEntryList();
 
     public static void main() {
@@ -138,9 +138,10 @@ public class RecurringTracker {
         TablePrinter.addRow("No.;Command                 ;Input Format                                               ");
         TablePrinter.addRow("1.;New expenditure (-e) or income (-i);add -[e/i] [-auto] >/desc {DESCRIPTION} "
                 + ">/amt {AMOUNT} >/day {DAY_OF_MONTH} >[/notes {NOTES}]");
-        TablePrinter.addRow("2.;List entries;list");
-        TablePrinter.addRow("3.;Delete entry;delete >/id {INDEX}");
-        TablePrinter.addRow("4.;Exit to main menu;exit");
+        TablePrinter.addRow("2.;Edit entry;edit {parameter to edit}");
+        TablePrinter.addRow("3.;List entries;list");
+        TablePrinter.addRow("4.;Delete entry;delete >/id {INDEX}");
+        TablePrinter.addRow("5.;Exit to main menu;exit");
         TablePrinter.printList();
     }
 
