@@ -1,10 +1,11 @@
 package seedu.duke.finance;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
+import java.util.logging.Logger;
 
 public class FinanceList {
     public static ArrayList<FinanceLog>  financeLogs = new ArrayList<FinanceLog>();
+    public static Logger logger = Logger.getGlobal();
 
     /**
      * Add one log into the finance list.
@@ -32,6 +33,8 @@ public class FinanceList {
      */
     public static String dellog(int index) {
         try {
+            logger.info("Start deleting...\n");
+            assert index > 0 : "The index must > 0";
             financeLogs.remove(index - 1);
             FinanceLog.finSize--;
             String output2;
@@ -42,11 +45,12 @@ public class FinanceList {
             }
             String output1 = "Got it! I've removed this from list.\n";
             String output = output1 + output2;
+            logger.info("End deleting...\n");
             return output;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Your index input does not exist in the list");
+            logger.warning("The index is out of bound.\n");
+            return "Your index input does not exist in the list";
         }
-        return null;
     }
 
     /**
@@ -54,7 +58,9 @@ public class FinanceList {
      * @return the finance list
      */
     public static String summary() {
+        logger.info("Start listing summary...\n");
         if (FinanceLog.getSize() == 0) {
+            logger.warning("The list is empty.\n");
             return "Sorry, your finance list is empty.\n";
         }
         String output = "Here is the list:\n";
@@ -63,6 +69,7 @@ public class FinanceList {
                     + financeLogs.get(i).getLogVal() + "\n");
         }
         output = output.concat("Total budget: $" + String.format("%.2f",FinanceLog.getSum()) + "\n");
+        logger.info("End processing...");
         return output;
     }
 }
