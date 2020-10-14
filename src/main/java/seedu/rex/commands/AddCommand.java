@@ -23,9 +23,10 @@ public class AddCommand extends Command {
     /**
      * Adds a new patient to the patient list using details inputted by the user.
      *
-     * @param patients List of patients.
-     * @param ui       Ui object of the program.
-     * @param storage  Storage object used for saving data to files.
+     * @param patients     List of patients.
+     * @param ui           Ui object of the program.
+     * @param appointments ArrayList of appointment.
+     * @param storage      Storage object used for saving data to files.
      * @throws RexException If there is an error in the NRIC inputted by the user, the data fails
      *                      to save successfully, or the NRIC already exists in the patient list.
      */

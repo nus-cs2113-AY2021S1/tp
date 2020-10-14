@@ -2,6 +2,9 @@ package seedu.rex.data.hospital;
 
 import java.time.LocalDate;
 
+/**
+ * Appointment class.
+ */
 public class Appointment {
 
     private LocalDate date;
@@ -65,10 +68,20 @@ public class Appointment {
         this.prescription = prescription;
     }
 
+    /**
+     * Checks if appointment is booked.
+     *
+     * @return If appointment is booked.
+     */
     public Boolean isBooked() {
         return isBooked;
     }
 
+    /**
+     * Books an appointment for the patient.
+     *
+     * @param patient Patient to schedule appointment with.
+     */
     public void book(Patient patient) {
         this.patient = patient;
         isBooked = true;
@@ -79,6 +92,11 @@ public class Appointment {
         isBooked = false;
     }
 
+    /**
+     * Formats appointment to a string.
+     *
+     * @return String formatted.
+     */
     @Override
     public String toString() {
         String date = this.date.toString();

@@ -3,6 +3,9 @@ package seedu.rex.data.hospital;
 import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 
+/**
+ * Hospital class.
+ */
 public class Hospital {
     private String name;
     private PatientList patients;

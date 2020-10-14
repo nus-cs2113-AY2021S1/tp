@@ -1,5 +1,8 @@
 package seedu.rex.data.hospital;
 
+/**
+ * Doctor class.
+ */
 public class Doctor {
     private String name;
 

@@ -4,6 +4,9 @@ import seedu.rex.data.hospital.Appointment;
 
 import java.util.ArrayList;
 
+/**
+ * Contains ArrayList of appointments.
+ */
 public class AppointmentList {
 
     private final ArrayList<Appointment> appointments;

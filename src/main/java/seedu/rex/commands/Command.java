@@ -32,10 +32,10 @@ public abstract class Command {
     /**
      * Executes command.
      *
-     * @param patients PatientList object.
-     * @param appointments ArrayList of Appointment
-     * @param ui       Ui object.
-     * @param storage  Storage object.
+     * @param patients     PatientList object.
+     * @param appointments ArrayList of appointment.
+     * @param ui           Ui object.
+     * @param storage      Storage object.
      * @throws RexException If there is issue executing command.
      */
     public abstract void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage)
@@ -61,7 +61,7 @@ public abstract class Command {
             return false;
         }
         try {
-            int stringAsInteger = Integer.parseInt(string);
+            Integer.parseInt(string);
         } catch (NumberFormatException e) {
             return false;
         }

@@ -73,7 +73,7 @@ public class Parser {
         } else if (trimmedCommand.contains(BookCommand.COMMAND_WORD)) {
             command = new BookCommand(trimmedCommand);
         } else if (trimmedCommand.contains(CreateAppointmentCommand.COMMAND_WORD)) {
-            command = new CreateAppointmentCommand(trimmedCommand);
+            command = new CreateAppointmentCommand();
         } else if (trimmedCommand.contains(EditCommand.COMMAND_WORD)) {
             command = new EditCommand(trimmedCommand);
         } else if (trimmedCommand.contains(DeleteCommand.COMMAND_WORD)) {
