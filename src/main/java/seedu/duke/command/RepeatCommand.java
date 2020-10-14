@@ -93,7 +93,7 @@ public class RepeatCommand extends Command {
             String errorMessage = e.getMessage();
             return new RepeatCommand(errorMessage, COMMANDTYPE_ERROR);
         } catch (NumberFormatException e) {
-            String errorMessage = words[1] + " is not in numeric form";
+            String errorMessage =  "Numbers are not in numeric form";
             return new RepeatCommand(errorMessage, COMMANDTYPE_ERROR);
         }
 

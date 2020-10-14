@@ -189,31 +189,96 @@ class RepeatCommandTest {
 
     @Test
     void repeat_repeatingEventNoDeadline_missingDeadlineExceptionThrown() {
+        //create repeat command for event with no deadline
+        String inputString = "personal 2 daily 4";
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
+
+        Command repeatCommand = RepeatCommand.parse(inputString);
+        repeatCommand.execute(data, ui, storage);
+        assertEquals("_________________________________" + System.lineSeparator()
+                        + "Error! You cannot repeat an event that has no deadline!" + System.lineSeparator()
+                        + "_________________________________" + System.lineSeparator(),
+                outputStreamCaptor.toString());
+
 
     }
 
     @Test
     void repeat_repeatingEventWrongIndex_indexOutOfBoundsExceptionThrown() {
+        //create repeat command for an index which does not exist
+        String inputString = "personal 5 daily 4";
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
 
+        Command repeatCommand = RepeatCommand.parse(inputString);
+        repeatCommand.execute(data, ui, storage);
+        assertEquals("_________________________________" + System.lineSeparator()
+                        + "Error! Index out of bounds!" + System.lineSeparator()
+                        + "_________________________________" + System.lineSeparator(),
+                outputStreamCaptor.toString());
     }
 
     @Test
     void repeat_repeatingEventWrongUnit_invalidTimeUnitExceptionThrown() {
+        //create repeat command for event using wrong time unit
+        String inputString = "personal 1 fortnightly 4";
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
 
+        Command repeatCommand = RepeatCommand.parse(inputString);
+        repeatCommand.execute(data, ui, storage);
+        assertEquals("_________________________________" + System.lineSeparator()
+                        + "FORTNIGHTLY is not a valid time unit. Valid types are: daily, weekly, monthly" + System.lineSeparator()
+                        + "_________________________________" + System.lineSeparator(),
+                outputStreamCaptor.toString());
     }
 
     @Test
     void repeat_tooLittleArgumentsProvided_wrongNumberOfArgumentsExceptionThrown() {
+        //create repeat command for event with too little information
+        String inputString = "personal";
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
 
+        Command repeatCommand = RepeatCommand.parse(inputString);
+        repeatCommand.execute(data, ui, storage);
+        assertEquals("_________________________________" + System.lineSeparator()
+                        + "Wrong number of arguments provided" + System.lineSeparator()
+                        + "_________________________________" + System.lineSeparator(),
+                outputStreamCaptor.toString());
     }
 
     @Test
     void repeat_repeatingEventWrongType_invalidEventListTypeExceptionThrown() {
 
+        //create repeat command for an event type that does not exist
+        String inputString = "holiday 5 daily 4";
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
+
+        Command repeatCommand = RepeatCommand.parse(inputString);
+        repeatCommand.execute(data, ui, storage);
+        assertEquals("_________________________________" + System.lineSeparator()
+                        + "Holiday is not a valid event type. Valid types are: personal, timetable, zoom" + System.lineSeparator()
+                        + "_________________________________" + System.lineSeparator(),
+                outputStreamCaptor.toString());
     }
 
     @Test
     void repeat_userTypeWrongNumber_NumberFormatExceptionThrown() {
+
+        //create repeat command using wrong number writing format
+        String inputString = "personal 1 weekly three";
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
+
+        Command repeatCommand = RepeatCommand.parse(inputString);
+        repeatCommand.execute(data, ui, storage);
+        assertEquals("_________________________________" + System.lineSeparator()
+                        + "Numbers are not in numeric form" + System.lineSeparator()
+                        + "_________________________________" + System.lineSeparator(),
+                outputStreamCaptor.toString());
 
     }
 
