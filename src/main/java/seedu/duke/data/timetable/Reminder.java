@@ -51,11 +51,7 @@ public class Reminder implements Comparable<Reminder> {
             return true;
         } else if (o instanceof Reminder) {
             Reminder r = ((Reminder) o);
-            if (r.dateToRemind.equals(dateToRemind) && r.event.getTitle().equals(event.getTitle())) {
-                return true;
-            } else {
-                return false;
-            }
+            return r.dateToRemind.equals(dateToRemind) && r.event.getTitle().equals(event.getTitle());
         } else {
             return false;
         }

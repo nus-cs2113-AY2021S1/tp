@@ -20,8 +20,8 @@ public class DeleteNoteCommand extends Command {
             + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE or "
             + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
 
-    private static final String COMMAND_SUCCESSFUL_MESSAGE = "Note deleted: ";
-    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exist in the notebook! ";
+    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Note deleted: ";
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exist in the notebook! ";
 
     private int index;
     private String title = "";
