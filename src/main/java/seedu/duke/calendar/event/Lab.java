@@ -2,7 +2,6 @@ package seedu.duke.calendar.event;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a lab event.
@@ -29,7 +28,7 @@ public class Lab extends SchoolEvent {
     }
 
     /**
-     * Check whether the lab is over.
+     * Checks whether the lab is over.
      *
      * @return whether the lab is over
      */
@@ -44,7 +43,7 @@ public class Lab extends SchoolEvent {
     }
 
     /**
-     * Show whether the lab is over.
+     * Shows whether the lab is over.
      *
      * @return whether the lab is over
      */
@@ -53,20 +52,22 @@ public class Lab extends SchoolEvent {
     }
 
     /**
-     * Describe the lab event.
+     * Describes the lab event.
      *
      * @return a string containing the information about the lab event
      */
     @Override
     public String toString() {
-        return "[LAB]" + "[" + getIcon() + "] "
-                + moduleCode + " " + date.format(DateTimeFormatter.ofPattern("dd-MM-yy E"))
-                + " " + time.format(DateTimeFormatter.ofPattern("h:mma"))
-                + " (" + venue + ")";
+        return "[LAB]" + "[" + getIcon() + "] " + super.toString();
+    }
+
+    @Override
+    public String getDescription() {
+        return "[LAB]" + "[" + getIcon() + "] " + super.getDescription();
     }
 
     /**
-     * Save the lab event into files.
+     * Saves the lab event into files.
      *
      * @return string contains the information about the lab event.
      */
@@ -92,13 +93,6 @@ public class Lab extends SchoolEvent {
     @Override
     public LocalDate getDate() {
         return date;
-    }
-
-    @Override
-    public String getDescription() {
-        return "[LAB]" + "[" + getIcon() + "] "
-                + moduleCode + " "
-                + " (" + venue + ")";
     }
 
     /**

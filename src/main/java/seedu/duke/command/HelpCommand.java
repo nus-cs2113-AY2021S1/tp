@@ -1,6 +1,5 @@
 package seedu.duke.command;
 
-import seedu.duke.DukeException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
@@ -18,7 +17,7 @@ public class HelpCommand extends Command {
      * @param storage      not required.
      */
     @Override
-    public void execute(CalendarList calendarList, Storage storage) throws DukeException {
+    public void execute(CalendarList calendarList, Storage storage) {
         Ui.printHelpCommand();
     }
 }

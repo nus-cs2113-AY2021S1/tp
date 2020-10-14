@@ -7,8 +7,8 @@ import seedu.duke.calendar.CalendarList;
 /**
  * Lists all tasks in the calendar list to the user.
  */
-public class PrintListCommand extends Command {
-    public PrintListCommand(String userInput) {
+public class PrintTasksCommand extends Command {
+    public PrintTasksCommand(String userInput) {
         super(userInput);
     }
 

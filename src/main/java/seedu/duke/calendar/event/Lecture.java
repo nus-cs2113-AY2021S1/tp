@@ -2,7 +2,6 @@ package seedu.duke.calendar.event;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a lecture event.
@@ -30,7 +29,7 @@ public class Lecture extends SchoolEvent {
     }
 
     /**
-     * Check whether the lecture is over.
+     * Checks whether the lecture is over.
      *
      * @return whether the tutorial is over
      */
@@ -45,7 +44,7 @@ public class Lecture extends SchoolEvent {
     }
 
     /**
-     * Show whether the lab is over.
+     * Shows whether the lab is over.
      *
      * @return whether the lab is over
      */
@@ -54,21 +53,26 @@ public class Lecture extends SchoolEvent {
     }
 
     /**
-     * Describe the lecture event.
+     * Describes the lecture event.
      *
      * @Return a string to describe the lecture event.
      */
     @Override
     public String toString() {
+        return "[LEC]" + "[" + getIcon() + "] " + super.toString();
+    }
 
-        return "[LEC]" + "[" + getIcon() + "] " + moduleCode + " "
-                + date.format(DateTimeFormatter.ofPattern("dd-MM-yy E"))
-                + " " + time.format(DateTimeFormatter.ofPattern("h:mma"))
-                + " (" + venue + ")";
+
+    /**
+     * Returns the description of the lecture.
+     */
+    @Override
+    public String getDescription() {
+        return "[LEC]" + "[" + getIcon() + "] " + super.getDescription();
     }
 
     /**
-     * Save the lecture event into files.
+     * Saves the lecture event into files.
      *
      * @return string contains the information about the lecture event.
      */
@@ -79,7 +83,7 @@ public class Lecture extends SchoolEvent {
     }
 
     /**
-     * Get the date of the lecture.
+     * Gets the date of the lecture.
      *
      * @return date of the lecture
      */
@@ -88,12 +92,9 @@ public class Lecture extends SchoolEvent {
         return date;
     }
 
-    @Override
-    public String getDescription() {
-        return "[LEC]" + "[" + getIcon() + "] " + moduleCode + " "
-                + " (" + venue + ")";
-    }
-
+    /**
+     * Returns the time of the lecture.
+     */
     @Override
     public LocalTime getTime() {
         return time;

@@ -27,7 +27,7 @@ public class Duke {
         try {
             storage.readFromFile(calendarList);
         } catch (FileNotFoundException e) {
-            System.out.println("file not found");
+            Ui.printFileNotFoundErrorMessage();
         }
     }
 
