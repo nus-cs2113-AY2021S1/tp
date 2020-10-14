@@ -14,7 +14,7 @@ public class FlashcardRun {
     public FlashcardRun() {
         flashcardDeck = new FlashcardDeck();
         try {
-            storage = new FlashcardStorage("flashcard.txt");
+            storage = new FlashcardStorage("data/flashcard.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
