@@ -260,8 +260,5 @@ public class ModuleList {
         return modList;
     }
 
-    public int getSize() {
-        return modList.size();
-    }
 }
 

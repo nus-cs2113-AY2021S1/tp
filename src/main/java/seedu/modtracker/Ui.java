@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Ui {
     private static final Scanner in = new Scanner(System.in);
     public static final String INVALID_COMMAND = "OOPS!!! I'm sorry, but I don't know what that means :-(";
+    public static final String ENTER_HELP = "Enter <help> for a quick view of available commands.";
     public static final String HELP_LIST = "Available Commands:\n"
             + "1. addmod <module code>\n"
             + "   example: addmod CS2113T\n"
@@ -44,7 +45,8 @@ public class Ui {
      * Prints the invalid command line.
      */
     public void printInvalidCommand() {
-        System.out.println(INVALID_COMMAND + System.lineSeparator());
+        System.out.println(INVALID_COMMAND);
+        System.out.println(ENTER_HELP + System.lineSeparator());
     }
 
     /**
@@ -53,7 +55,7 @@ public class Ui {
     public void printWelcomeScreen() {
         System.out.println("Hello from" + System.lineSeparator() + LOGO);
         System.out.println("Full user guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/");
-        System.out.println("Enter <help> for a quick view of available commands." + System.lineSeparator());
+        System.out.println(ENTER_HELP + System.lineSeparator());
     }
 
     /**
@@ -140,5 +142,6 @@ public class Ui {
     public void printErrorMessage(String message) {
         System.out.println("There was an error :(");
         System.out.println(message);
+        System.out.println(ENTER_HELP);
     }
 }
