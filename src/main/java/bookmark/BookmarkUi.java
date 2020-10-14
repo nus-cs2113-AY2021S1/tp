@@ -41,8 +41,8 @@ public class BookmarkUi {
     }
 
     public void printGoodbyeMessage() {
-        System.out.println("Use \"exit\" to exit the mode or enter another category\n" +
-                "using \"bm <category index>\"");
+        System.out.println("Use \"exit\" to exit the mode or enter another category\n"
+                + "using \"bm <category index>\"");
     }
 
     public void showBookmarkList(ArrayList<BookmarkCategory> categories) {
