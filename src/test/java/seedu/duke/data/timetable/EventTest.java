@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Test Driver for all functionality of EventClass.
+ */
 public class EventTest {
     private static final String TEST_TITLE = "CS2113 Tutorial";
     private static final LocalDateTime TEST_DATE_TIME = LocalDateTime.of(2020, 8, 27, 13,0);
@@ -24,6 +27,9 @@ public class EventTest {
     Event event = new Event(TEST_TITLE, TEST_DATE_TIME, TEST_REMINDER, TEST_RECURRING,
             TEST_TIME_PERIODS, TEST_TIME_UNITS);
 
+    /**
+     * Test if you can get all the reminder dates that's needed from an event.
+     */
     @Test
     void getReminderDates() {
         ArrayList<LocalDate> reminderDates = event.getReminderDates();
@@ -39,6 +45,11 @@ public class EventTest {
         }
     }
 
+    /**
+     * Wrapper around assertEquals for code readbility.
+     * @param correctDate Expected date.
+     * @param generatedDate Actual date.
+     */
     void assertReminderDate(LocalDate correctDate, LocalDate generatedDate) {
         assertEquals(correctDate, generatedDate);
     }
