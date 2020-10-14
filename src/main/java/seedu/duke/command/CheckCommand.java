@@ -124,7 +124,8 @@ public class CheckCommand extends Command {
             } else {
                 throw new TimeErrorException("Something is wrong with the time!");
             }
-        } catch (NumberFormatException | TryRegularParserException e) { // if hh:mm, HH:mm or other invalid non integers is given
+        } catch (NumberFormatException | TryRegularParserException e) {
+            // if hh:mm, HH:mm or other invalid non integers is given
             time = timeParser(stringTime); // exception will be thrown if invalid non-integer is given
             return time;
         }
