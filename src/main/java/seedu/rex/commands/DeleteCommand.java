@@ -41,5 +41,6 @@ public class DeleteCommand extends Command {
         } else {
             ui.printPatientNotFound(nric);
         }
+        storage.save(patients);
     }
 }

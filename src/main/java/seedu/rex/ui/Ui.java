@@ -2,6 +2,7 @@ package seedu.rex.ui;
 
 import seedu.rex.commands.Command;
 import seedu.rex.commands.ExitCommand;
+import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
 import seedu.rex.data.hospital.Patient;
 import seedu.rex.storage.Storage;
@@ -181,17 +182,20 @@ public class Ui {
         printWithIndent("New appointment created!");
     }
 
-    public String getAppointmentToBook(ArrayList<Appointment> appointments) {
+    public String getAppointmentToBook(ArrayList<Appointment> appointments) throws RexException {
         showLine();
         printWithIndent("Here are the list of available appointments.");
-        int counter = 1;
+        int counter = 0;
         for (Appointment appointment : appointments) {
             if (!appointment.isBooked()) {
-                printWithIndent(counter + ". " + appointment.getDate().toString());
                 counter++;
+                printWithIndent(counter + ". " + appointment.getDate().toString());
             }
         }
-        printWithIndent("Please enter the date of appointment to book in YYYY-MM-DD");
+        if (counter == 0) {
+            throw new RexException("No appointments available!");
+        }
+        printWithIndent("Please enter the index of appointment to book");
         showLine();
         return in.nextLine();
     }
@@ -204,5 +208,9 @@ public class Ui {
 
     public void showCreatePatientMessage(String nric) {
         printWithIndent("Creating patient " + nric);
+    }
+
+    public void showAppointmentError() {
+        printWithIndent("No such appointment!");
     }
 }

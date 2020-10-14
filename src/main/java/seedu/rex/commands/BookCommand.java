@@ -5,9 +5,6 @@ import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class BookCommand extends Command {
@@ -29,27 +26,19 @@ public class BookCommand extends Command {
         if (!patients.isExistingPatient(nric)) {
             ui.printPatientNotFound(nric);
             ui.showCreatePatientMessage(nric);
-            /*patients.addNewPatient(ui.getPatientName(), nric, ui.getPatientDateOfBirth());
-            ui.showPatientAdded(patients.getPatientUsingIndex(patients.getSize() - 1));
-            storage.save(patients);*/
             new AddCommand("add " + nric).execute(patients, appointments, ui, storage);
             ui.showLine();
         }
-        String dateSelected = ui.getAppointmentToBook(appointments);
+        String indexSelected = ui.getAppointmentToBook(appointments);
         try {
-            boolean isAppointment = false;
-            for (Appointment appointment : appointments) {
-                if (appointment.getDate().equals(LocalDate.parse(dateSelected))) {
-                    appointment.book(patients.getPatientFromNric(nric));
-                    ui.showAppointmentBookedMessage(appointment);
-                    isAppointment = true;
-                }
+            int index = Integer.parseInt(indexSelected) - 1;
+            if (index < 0 || index >= appointments.size()) {
+                throw new RexException("Index error!");
             }
-            if (!isAppointment) {
-                throw new RexException("No such date available!");
-            }
-        } catch (DateTimeParseException e) {
-            ui.showDateInputError();
+            appointments.get(index).book(patients.getPatientFromNric(nric));
+            ui.showAppointmentBookedMessage(appointments.get(index));
+        } catch (NumberFormatException e) {
+            throw new RexException("Index error!");
         }
 
 
