@@ -39,17 +39,17 @@ public class FlashcardDeck {
         Scanner in = new Scanner(System.in);
         String attempt = "null";
         System.out.println("You have entered the test mode.");
-        while (!attempt.equals("exit")) {
+        while (!attempt.equals("back")) {
             Random random = new Random();
             int randomIndex = random.nextInt(flashcardDeck.size());
             System.out.println("What is the answer to this question?");
             System.out.println(flashcardDeck.get(randomIndex).question);
             attempt = in.nextLine();
-            while (!attempt.equals(flashcardDeck.get(randomIndex).answer) && !attempt.equals("exit")) {
+            while (!attempt.equals(flashcardDeck.get(randomIndex).answer) && !attempt.equals("back")) {
                 System.out.println("Incorrect! Try again?");
                 attempt = in.nextLine();
             }
-            if (attempt.equals("exit")) {
+            if (attempt.equals("back")) {
                 System.out.println("Exiting test mode...");
             } else {
                 System.out.println("This is the right answer!");
