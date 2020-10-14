@@ -15,6 +15,7 @@ public class Parser {
      * @return UserInput object containing the command, category and all arguments
      */
     public UserInput parse(String input) {
+
         String userInput;
 
         userInput = sanitize(input);
@@ -35,8 +36,8 @@ public class Parser {
             String tmp = output[0].trim();
             String cmd;
             if (tmp.indexOf(' ') != -1) {
-                String arg = tmp.substring(tmp.indexOf(' ') + 1);
-                cmd = tmp.substring(0, tmp.indexOf(' '));
+                String arg = tmp.substring(tmp.indexOf(' ') + 1).trim();
+                cmd = tmp.substring(0, tmp.indexOf(' ')).trim();
                 map.put("", arg);
             } else {
                 cmd = tmp;
@@ -45,8 +46,8 @@ public class Parser {
         } else {
             String base = output[0].trim();
             if (base.indexOf(' ') != -1) {
-                String arg = base.substring(base.indexOf(' ') + 1);
-                base = base.substring(0, base.indexOf(' '));
+                String arg = base.substring(base.indexOf(' ') + 1).trim();
+                base = base.substring(0, base.indexOf(' ')).trim();
                 map.put("", arg);
             }
             // Convert the / arguments into a map
@@ -98,4 +99,7 @@ public class Parser {
     public String sanitize(String s) {
         return s;
     }
+
 }
+
+
