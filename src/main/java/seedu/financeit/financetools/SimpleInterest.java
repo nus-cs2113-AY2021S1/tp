@@ -36,6 +36,9 @@ public class SimpleInterest extends ParamHandler {
     }
 
     public double calculateSimpleInterest() {
+        assert this.amount >= 0 : "Amount should not be a negative number";
+        assert this.interestRate >= 0 : "Interest rate should not be a negative number";
+
         return this.amount * (this.interestRate / 100);
     }
 

@@ -34,6 +34,10 @@ public class CompoundInterest extends ParamHandler {
     }
 
     public double calculateCompoundInterest() {
+        assert this.amount >= 0 : "Amount should not be a negative number";
+        assert this.interestRate >= 0 : "Interest rate should not be a negative number";
+        assert this.calculationPeriod >= 0 : "Calculation period should not be a negative number";
+
         double interestRate = this.interestRate / 100;
         int period = this.calculationPeriod;
         int compoundInterval = 1;
