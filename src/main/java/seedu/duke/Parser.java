@@ -141,7 +141,7 @@ public class Parser {
             throw new DietException("☹ OOPS!!! Missing index of duke.task!");
         }
         try {
-            return Integer.parseInt(userInput.split(" ")[1]) - 1;
+            return Integer.parseInt(userInput.split(" ")[1]);
         } catch (NumberFormatException e) {
             throw new DietException("☹ OOPS!!! No integer index detected!");
         }
