@@ -28,6 +28,9 @@ public class Parser {
         Ui ui = new Ui();
         String[] command = input.trim().split(" ");
 
+        assert input != null;
+        assert name != null;
+
         switch (command[0].toLowerCase()) {
         case COMMAND_ADDMOD:
             modList.addMod(input, toPrint, storage);
