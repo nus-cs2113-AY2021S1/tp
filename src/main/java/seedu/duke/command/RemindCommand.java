@@ -15,8 +15,7 @@ public class RemindCommand extends Command {
 
     public static final String COMMAND_WORD = "remind-e";
 
-    public static final String COMMAND_USAGE = COMMAND_WORD + ": Set a reminder for an event. Parameters: "
-            + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX";
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Shows the reminders for today.";
 
     /**
      * Default constructor of RemindEvent. No arguments are expected as we are only looking at reminders today.

@@ -17,9 +17,9 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Finds a note. Parameters: KEYWORDS";
 
-    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "There are no matching notes. "
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "There are no matching notes. "
             + "Please try another search query.";
-    private static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the matching notes in your list:";
+    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the matching notes in your list:";
 
     private String keywords;
 
