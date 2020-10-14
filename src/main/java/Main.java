@@ -67,7 +67,21 @@ public class Main {
                 orderedDishes.add(dishChoosed);
             }
 
-            Order order = new Order(customer, arriveTime, canteenChoosed, stallChoosed, orderedDishes);
+            System.out.println("Please choose your order type:\n\t1.Dine in.\n\t2.Take away.\n\t3.delevery.");
+            int typeChoosed = sc.nextInt();
+            if (typeChoosed == 1) {
+                String orderType = "Dine in";
+            }
+            else if (typeChoosed == 2) {
+                String orderType = "Take away";
+            }
+            else {
+                String orderType = "Delevery";
+            }
+
+
+            //Order order = new Order(customer, arriveTime, canteenChoosed, stallChoosed, orderedDishes);
+            customer.order()
 
             System.out.println("Your order created! Thanks."); 
         }
