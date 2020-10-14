@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
-import seedu.exceptions.InvalidTaskNumberException;
 import seedu.task.Task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -74,7 +73,7 @@ class TaskListTest {
     }
 
     @Test
-    void deleteTask() throws InvalidTaskNumberException {
+    void deleteTask() {
         addTask();
         tasks.delete(1);
         assertFalse(tasks.contains(reading));
