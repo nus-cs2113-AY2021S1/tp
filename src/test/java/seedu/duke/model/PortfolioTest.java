@@ -11,10 +11,10 @@ class PortfolioTest {
 
     @Test
     void searchStock_invalidStock_expectException() {
-        Controller c = new Controller();
+        StockPriceFetcher stockPriceFetcher = new StockPriceFetcher();
         String symbol = "zzzzzzz";
         assertThrows(DukeException.class, () -> {
-            c.searchSymbol(symbol);
+            stockPriceFetcher.fetchLatestStockData(symbol);
         });
     }
 
