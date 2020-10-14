@@ -2,8 +2,10 @@ package seedu.duke.project;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
+import seedu.duke.sprint.Sprint;
 import seedu.duke.sprint.SprintList;
 import seedu.duke.task.Task;
+import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -41,9 +43,23 @@ public class Project implements Jsonable {
         projectInString.append("\n================= PROJECT =================\n");
         projectInString.append(String.format("[Title: %s]\n", this.title));
         projectInString.append(String.format("[Description: %s]\n", this.description));
-        projectInString.append(String.format("[Period: %s - %s] \n", this.startDate, this.endDate));
-        projectInString.append(this.backlog.toString());
-        projectInString.append(this.allSprints.getSprint(this.allSprints.getCurrentSprintIndex()).toSimplifiedString());
+        if (this.startDate != null) {
+            projectInString.append(String.format("[Period: %s - %s] \n", this.startDate, this.endDate));
+        } else {
+            projectInString.append("Project will start along with the first sprint.\n");
+        }
+        if (!this.backlog.backlogTasks.isEmpty()) {
+            projectInString.append(this.backlog.toString());
+        } else {
+            projectInString.append("Project backlog is empty.\n");
+        }
+        if (this.allSprints.size() != 0) {
+            int currentSprintIndex = this.allSprints.getCurrentSprintIndex();
+            Sprint currentSprint = this.allSprints.getSprint(currentSprintIndex);
+            projectInString.append(currentSprint.toSimplifiedString());
+        } else {
+            projectInString.append("There are no Sprints.\n");
+        }
         projectInString.append("\n===============================================\n");
         return projectInString.toString();
     }

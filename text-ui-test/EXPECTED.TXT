@@ -9,4 +9,248 @@
 
 WELCOME TO SCRUMPTIOUS
 command>Project successfully created.
+command>
+================= PROJECT =================
+[Title: MeTube ]
+[Description: video streaming software ]
+Project will start along with the first sprint.
+Project backlog is empty.
+There are no Sprints.
+
+===============================================
+
+command>amy has been added to the project.
+john has been added to the project.
+bob has been added to the project.
+command>Add parser  has been added.
+command>Del UI  has been added.
+command> UI  has been added.
+command>Add4 UI  has been added.
+command>Add5 UI  has been added.
+command>Add6 UI  has been added.
+command>Project will start along with the newly created sprint
+Project period: 2020-10-10 to 2020-11-08
+
+----------------- SPRINT -----------------
+[ID: 1]
+[Goal: goal1 ]
+[Period: 2020-10-10 - 2020-10-19] 
+[No allocated tasks]
+
+------------------------------------------
+
+command>Newly created sprint will automatically start after the previous sprint ends.
+
+----------------- SPRINT -----------------
+[ID: 2]
+[Goal: goal2]
+[Period: 2020-10-20 - 2020-10-29] 
+[No allocated tasks]
+
+------------------------------------------
+
+command>Newly created sprint will automatically start after the previous sprint ends.
+
+----------------- SPRINT -----------------
+[ID: 3]
+[Goal: goal3]
+[Period: 2020-10-30 - 2020-11-08] 
+[No allocated tasks]
+
+------------------------------------------
+
+command>
+All sprints are already created.
+command>
+All sprints are already created.
+command>
+All sprints are already created.
+command>
+----------------- SPRINT -----------------
+[ID: 1]
+[Goal: goal1 ]
+[Period: 2020-10-10 - 2020-10-19] 
+[Remaining: 5 days]
+[No allocated tasks]
+
+------------------------------------------
+command>Add parser added to sprint.
+Del UI added to sprint.
+ UI added to sprint.
+Add4 UI added to sprint.
+Add5 UI added to sprint.
+Add6 UI added to sprint.
+command>
+----------------- SPRINT -----------------
+[ID: 1]
+[Goal: goal1 ]
+[Period: 2020-10-10 - 2020-10-19] 
+[Remaining: 5 days]
+
+[Task]
+	ID: 1
+	Title: Add parser 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 2
+	Title: Del UI 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 3
+	Title:  UI 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 4
+	Title: Add4 UI 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 5
+	Title: Add5 UI 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 6
+	Title: Add6 UI 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+------------------------------------------
+command>Add parser  assigned to [amy]
+command> UI  assigned to [amy, john]
+command>Add parser  assigned to [bob]
+command>
+----------------- SPRINT -----------------
+[ID: 1]
+[Goal: goal1 ]
+[Period: 2020-10-10 - 2020-10-19] 
+[Remaining: 5 days]
+
+[Task]
+	ID: 1
+	Title: Add parser 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Incomplete
+	Assigned to: amy bob 
+[Task]
+	ID: 2
+	Title: Del UI 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 3
+	Title:  UI 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Incomplete
+	Assigned to: amy john 
+[Task]
+	ID: 4
+	Title: Add4 UI 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 5
+	Title: Add5 UI 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 6
+	Title: Add6 UI 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+------------------------------------------
+command>Add4 UI removed from sprint.
+ UI removed from sprint.
+command>
+----------------- SPRINT -----------------
+[ID: 1]
+[Goal: goal1 ]
+[Period: 2020-10-10 - 2020-10-19] 
+[Remaining: 5 days]
+
+[Task]
+	ID: 1
+	Title: Add parser 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Incomplete
+	Assigned to: amy bob 
+[Task]
+	ID: 2
+	Title: Del UI 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 5
+	Title: Add5 UI 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 6
+	Title: Add6 UI 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+------------------------------------------
+command>
+================= PROJECT =================
+[Title: MeTube ]
+[Description: video streaming software ]
+[Period: 2020-10-10 - 2020-11-08] 
+
+----------------- BACKLOG -----------------
+
+[Task]	ID: 1	Title: Add parser 	Completion: Incomplete
+
+[Task]	ID: 2	Title: Del UI 	Completion: Incomplete
+
+[Task]	ID: 3	Title:  UI 	Completion: Incomplete
+
+[Task]	ID: 4	Title: Add4 UI 	Completion: Incomplete
+
+[Task]	ID: 5	Title: Add5 UI 	Completion: Incomplete
+
+[Task]	ID: 6	Title: Add6 UI 	Completion: Incomplete
+
+------------------------------------------
+
+----------------- SPRINT -----------------
+[ID: 1]
+[Goal: goal1 ]
+[Period: 2020-10-10 - 2020-10-19] 
+[Remaining: 5 days]
+
+------------------------------------------
+
+===============================================
+
 command>bye
