@@ -2,7 +2,7 @@ package seedu.duke;
 
 public class DukeMemberNotFoundException extends DukeException {
 
-    public void DukeMemberNotFoundException() {
+    public DukeMemberNotFoundException() {
         printMessage();
     }
 

@@ -4,7 +4,7 @@ import seedu.duke.DukeException;
 
 public class DukeMemberListEmptyException extends DukeException {
 
-    public void DukeMemberListEmptyException() {
+    public DukeMemberListEmptyException() {
         printMessage();
     }
 
