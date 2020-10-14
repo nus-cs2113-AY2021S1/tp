@@ -43,7 +43,7 @@ public class Exam extends SchoolEvent {
     }
 
     /**
-     * Returns a [Ex] icon to indicate task as a Exam task.
+     * Returns a [Exam] icon to indicate task as a Exam task.
      */
     @Override
     public String toString() {
