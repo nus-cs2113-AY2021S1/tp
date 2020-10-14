@@ -13,6 +13,7 @@ public class AddUserCommand extends Command {
     public static final String PARAMETER_NAME = "n";
     public static final String PARAMETER_DATE_OF_BIRTH = "dob";
     public static final String PARAMETER_GENDER = "g";
+
     String name;
     String dob;
     String gender;
@@ -44,7 +45,6 @@ public class AddUserCommand extends Command {
             throw new AniException(EXCEPTION_INVALID_PARAMETERS);
         }
     }
-
 
     @Override
     public String execute(AnimeData animeData, UserManagement userManagement) throws AniException {

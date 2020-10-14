@@ -77,6 +77,7 @@ public class UserManagement {
                 return existingUser;
             }
         }
+
         throw new AniException("No such user!");
     }
 
