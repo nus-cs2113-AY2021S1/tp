@@ -13,9 +13,10 @@ command>
 ================= PROJECT =================
 [Title: MeTube ]
 [Description: video streaming software ]
-Project will start along with the first sprint.
-Project backlog is empty.
-There are no Sprints.
+[No members added]
+[Project will start along with the first sprint]
+[Project backlog is empty]
+[There are no Sprints]
 
 ===============================================
 
@@ -225,6 +226,7 @@ command>
 ================= PROJECT =================
 [Title: MeTube ]
 [Description: video streaming software ]
+[Members: amy john bob]
 [Period: 2020-10-10 - 2020-11-08] 
 
 ----------------- BACKLOG -----------------

@@ -27,7 +27,7 @@ public class ProjectMembers implements Jsonable {
     }
 
     public Member getMember(String userid) {
-        for (Member mem: memberList) {
+        for (Member mem : memberList) {
             if (mem.getUserId().equals(userid)) {
                 return mem;
             }
@@ -70,6 +70,16 @@ public class ProjectMembers implements Jsonable {
 
     public void removeMember(Member member) {
         memberList.remove(member);
+    }
+
+    public String toString() {
+        StringBuilder membersString = new StringBuilder();
+        membersString.append("[Members:");
+        for (Member mem : memberList) {
+            membersString.append(String.format(" %s", mem.getUserId()));
+        }
+        membersString.append("]\n");
+        return membersString.toString();
     }
 
     @Override

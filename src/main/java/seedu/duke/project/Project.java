@@ -43,22 +43,28 @@ public class Project implements Jsonable {
         projectInString.append("\n================= PROJECT =================\n");
         projectInString.append(String.format("[Title: %s]\n", this.title));
         projectInString.append(String.format("[Description: %s]\n", this.description));
+        if (!members.getAllMembers().isEmpty()) {
+            projectInString.append(members.toString());
+        } else {
+            projectInString.append("[No members added]\n");
+        }
         if (this.startDate != null) {
             projectInString.append(String.format("[Period: %s - %s] \n", this.startDate, this.endDate));
         } else {
-            projectInString.append("Project will start along with the first sprint.\n");
+            projectInString.append("[Project will start along with the first sprint]\n");
         }
+
         if (!this.backlog.backlogTasks.isEmpty()) {
             projectInString.append(this.backlog.toString());
         } else {
-            projectInString.append("Project backlog is empty.\n");
+            projectInString.append("[Project backlog is empty]\n");
         }
         if (this.allSprints.size() != 0) {
             int currentSprintIndex = this.allSprints.getCurrentSprintIndex();
             Sprint currentSprint = this.allSprints.getSprint(currentSprintIndex);
             projectInString.append(currentSprint.toSimplifiedString());
         } else {
-            projectInString.append("There are no Sprints.\n");
+            projectInString.append("[There are no Sprints]\n");
         }
         projectInString.append("\n===============================================\n");
         return projectInString.toString();
