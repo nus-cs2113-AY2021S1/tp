@@ -15,6 +15,7 @@ public class Parser {
      * @return UserInput object containing the command, category and all arguments
      */
     public UserInput parse(String input) {
+
         String userInput;
 
         userInput = sanitize(input);
@@ -99,4 +100,3 @@ public class Parser {
         return s;
     }
 }
-
