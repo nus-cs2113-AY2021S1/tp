@@ -101,7 +101,7 @@ public class DataBase {
     }
 
     /**
-     * Debugging function prints out all contents.
+     * Debugging function that prints out all contents of the foods stored in the data base.
      */
     public void printAllData() {
         System.out.println("Printing out all data");
