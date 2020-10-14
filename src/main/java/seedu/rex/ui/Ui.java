@@ -105,6 +105,16 @@ public class Ui {
         printWithIndent(patient.toString());
     }
 
+    /**
+     * Prints a message to indicate successful deletion of a patient.
+     *
+     * @param patient The deleted <code>Patient</code>.
+     */
+    public void showPatientDeleted(Patient patient) {
+        printWithIndent("Patient successfully deleted: ");
+        printWithIndent(patient.toString());
+    }
+
 
     /**
      * Reads command from user.
