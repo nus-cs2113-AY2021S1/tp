@@ -54,6 +54,11 @@ public class Exam extends SchoolEvent {
      * Returns the type of the event.
      */
     @Override
+    public String getDescription() {
+        return "[Exam][" + getIcon() + "] " + super.getDescription();
+    }
+
+    @Override
     public String getType() {
         return eventType;
     }
@@ -84,5 +89,4 @@ public class Exam extends SchoolEvent {
     public LocalTime getTime() {
         return this.time;
     }
-
 }

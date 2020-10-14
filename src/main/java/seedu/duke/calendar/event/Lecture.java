@@ -59,8 +59,16 @@ public class Lecture extends SchoolEvent {
      */
     @Override
     public String toString() {
-
         return "[LEC]" + "[" + getIcon() + "] " + super.toString();
+    }
+
+
+    /**
+     * Returns the description of the lecture.
+     */
+    @Override
+    public String getDescription() {
+        return "[LEC]" + "[" + getIcon() + "] " + super.getDescription();
     }
 
     /**
@@ -82,15 +90,6 @@ public class Lecture extends SchoolEvent {
     @Override
     public LocalDate getDate() {
         return date;
-    }
-
-    /**
-     * Returns the description of the lecture.
-     */
-    @Override
-    public String getDescription() {
-        return "[LEC]" + "[" + getIcon() + "] " + moduleCode + " "
-                + " (" + venue + ")";
     }
 
     /**

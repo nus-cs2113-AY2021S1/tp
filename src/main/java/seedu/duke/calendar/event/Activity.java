@@ -56,13 +56,20 @@ public class Activity extends Event {
         return (getIsOver() ? TICK_SYMBOL : CROSS_SYMBOL);
     }
 
-
     /**
      * Returns a [A] icon to indicate task as a event task.
      */
     @Override
     public String toString() {
         return "[A][" + getIcon() + "] " + details + " " + super.toString();
+    }
+
+    /**
+     * Returns the activity description.
+     */
+    @Override
+    public String getDescription() {
+        return "[A][" + getIcon() + "] " + details + " " + super.getDescription();
     }
 
     /** Returns the respective event type. */
@@ -96,14 +103,6 @@ public class Activity extends Event {
     @Override
     public LocalDate getDate() {
         return this.date;
-    }
-
-    /**
-     * Returns the activity description.
-     */
-    @Override
-    public String getDescription() {
-        return details;
     }
 
 }

@@ -61,6 +61,11 @@ public class Lab extends SchoolEvent {
         return "[LAB]" + "[" + getIcon() + "] " + super.toString();
     }
 
+    @Override
+    public String getDescription() {
+        return "[LAB]" + "[" + getIcon() + "] " + super.getDescription();
+    }
+
     /**
      * Save the lab event into files.
      *
@@ -88,13 +93,6 @@ public class Lab extends SchoolEvent {
     @Override
     public LocalDate getDate() {
         return date;
-    }
-
-    @Override
-    public String getDescription() {
-        return "[LAB]" + "[" + getIcon() + "] "
-                + moduleCode + " "
-                + " (" + venue + ")";
     }
 
     /**

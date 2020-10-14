@@ -62,6 +62,16 @@ public class Tutorial extends SchoolEvent {
     }
 
     /**
+     * Gets the description of the tutorial.
+     *
+     * @return the description of the tutorial.
+     */
+    @Override
+    public String getDescription() {
+        return "[TUT]" + "[" + getIcon() + "] " + super.getDescription();
+    }
+
+    /**
      * Save the tutorial event into files.
      *
      * @return string contains the information about the tutorial event.
@@ -90,16 +100,6 @@ public class Tutorial extends SchoolEvent {
         return date;
     }
 
-    /**
-     * Gets the description of the tutorial.
-     *
-     * @return the description of the tutorial.
-     */
-    @Override
-    public String getDescription() {
-        return "[TUT]" + "[" + getIcon() + "] " + moduleCode + " "
-                + " (" + venue + ")";
-    }
 
     /**
      * Get the time of the tutorial.
