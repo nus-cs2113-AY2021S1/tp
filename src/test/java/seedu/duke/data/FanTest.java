@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class FanTest {
 
     @Test
-    void getType() {
+    void getType_nullInput_returnsFan() {
         assertEquals("Fan", new Fan("Fan 1", "bedroom 1", "200").getType());
     }
 
