@@ -57,7 +57,7 @@ public class DeleteCommand extends Command {
         }
         calendarNumber = CalendarList.convertEventNumberToCalendarNumber(numberDelete, calendarList);
         Ui.printDeleteMessage(calendarNumber, calendarList);
-        calendarList.deleteEvent(numberDelete);
+        calendarList.deleteEvent(calendarNumber);
     }
 
     private void deleteTask(CalendarList calendarList, int numberDelete) throws DukeException {

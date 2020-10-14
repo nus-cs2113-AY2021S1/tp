@@ -2,7 +2,6 @@ package seedu.duke.calendar.event;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a lecture event.
