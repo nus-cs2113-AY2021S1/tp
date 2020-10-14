@@ -2,6 +2,7 @@ package seedu.duke.ui;
 
 import seedu.duke.model.Stock;
 import seedu.duke.model.Transaction;
+import seedu.duke.parser.Parser;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -45,9 +46,21 @@ public class Ui {
             print("You currently have an empty portfolio. Try buying a stock!");
         }
         for (int i = 0; i < stocks.size(); i++) {
-            print((i + 1) + ". " + stocks.get(i).toString());
+            print((i + 1) + ". " + stocks.get(i).toString()) ;
+            double totalCost = 0;
+            double totalAsset = stocks.get(i).getLatestPrice()*stocks.get(i).getTotalQuantity();
             for (Transaction t: stocks.get(i).getTransactions()) {
                 print("\t" + t.toString());
+                totalCost += t.getUnitPrice()*t.getQuantity();
+            }
+            print("Total revenue = $" + Parser.parsePrice(totalAsset));
+            print("Total cost = $" + Parser.parsePrice(totalCost));
+
+            if (totalAsset != 0){
+                double earnings = Parser.parsePrice(totalAsset) - Parser.parsePrice(totalCost);
+                print("Total Profit/Loss = $" + earnings);
+            }else{
+                print("Total Profit/Loss = error!");
             }
         }
         print(dividerLine);

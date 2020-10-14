@@ -19,6 +19,9 @@ public class Transaction {
         return quantity;
     }
 
+    public double getUnitPrice(){
+        return unitPrice;
+    }
     public TransactionType getTransactionType() {
         return transactionType;
     }
