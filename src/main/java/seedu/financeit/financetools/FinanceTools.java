@@ -1,13 +1,35 @@
 package seedu.financeit.financetools;
 
+import seedu.financeit.Financeit;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
+import seedu.financeit.common.ParamHandler;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 
 public class FinanceTools {
+
+    public static double handleCompoundInterest(CommandPacket packet) {
+        CompoundInterest tool = new CompoundInterest();
+        tool.setRequiredParams(
+                "/amount",
+                "/ir",
+                "/period"
+        );
+        try {
+            tool.handlePacket(packet);
+            return (tool.calculateCompoundInterest());
+        } catch (AssertionError error) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    "Input failed due to param error.");
+        } catch (InsufficientParamsException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    exception.getMessage());
+        }
+        return 0;
+    }
 
     public static double handleMilesCredit(CommandPacket packet) {
         MilesCredit tool = new MilesCredit();
@@ -93,6 +115,12 @@ public class FinanceTools {
             case "milescalc":
                 System.out.print("Total Miles Earned: ");
                 System.out.println('$' + Double.toString(handleMilesCredit(packet)));
+                break;
+            case "compoundcalc":
+                System.out.println("Compound Interval: Yearly");
+                System.out.print("Total Interest Earned: $");
+                System.out.printf("%.2f", handleCompoundInterest(packet));
+                System.out.println();
                 break;
             case "exit":
                 System.out.println("Exiting Finance Tools ...");
