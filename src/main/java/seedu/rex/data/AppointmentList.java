@@ -1,7 +1,6 @@
 package seedu.rex.data;
 
 import seedu.rex.data.hospital.Appointment;
-import seedu.rex.data.hospital.Patient;
 
 import java.util.ArrayList;
 

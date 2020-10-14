@@ -166,7 +166,7 @@ public class Ui {
         int counter = 1;
         for (Appointment appointment : appointments) {
             if (!appointment.isBooked()) {
-                printWithIndent(String.valueOf(counter) + ". " + appointment.getDate().toString());
+                printWithIndent(counter + ". " + appointment.getDate().toString());
                 counter++;
             }
         }

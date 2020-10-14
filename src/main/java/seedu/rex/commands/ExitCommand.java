@@ -1,6 +1,5 @@
 package seedu.rex.commands;
 
-import seedu.rex.data.AppointmentList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.hospital.Appointment;
 import seedu.rex.storage.Storage;

@@ -1,6 +1,5 @@
 package seedu.rex.commands;
 
-import seedu.rex.data.AppointmentList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
@@ -22,7 +21,8 @@ public class CreateAppointmentCommand extends Command {
 
 
     @Override
-    public void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage) throws RexException {
+    public void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage)
+            throws RexException {
         String date = ui.getNewAppointmentDate();
         try {
             Appointment newAppointment = new Appointment(LocalDate.parse(date));
