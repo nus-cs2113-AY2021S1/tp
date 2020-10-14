@@ -23,20 +23,30 @@ public class BookCommand extends Command {
     public void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage)
             throws RexException {
         String nric = extractNric(trimmedCommand, COMMAND_WORD);
+        if (appointments.isEmpty()) {
+            throw new RexException("No appointment sessions!");
+        }
         if (!patients.isExistingPatient(nric)) {
             ui.printPatientNotFound(nric);
-            patients.addNewPatient(ui.getPatientName(), nric, ui.getPatientDateOfBirth());
+            ui.showCreatePatientMessage(nric);
+            /*patients.addNewPatient(ui.getPatientName(), nric, ui.getPatientDateOfBirth());
             ui.showPatientAdded(patients.getPatientUsingIndex(patients.getSize() - 1));
-            storage.save(patients);
+            storage.save(patients);*/
+            new AddCommand("add " + nric).execute(patients, appointments, ui, storage);
             ui.showLine();
         }
         String dateSelected = ui.getAppointmentToBook(appointments);
         try {
+            boolean isAppointment = false;
             for (Appointment appointment : appointments) {
                 if (appointment.getDate().equals(LocalDate.parse(dateSelected))) {
                     appointment.book(patients.getPatientFromNric(nric));
                     ui.showAppointmentBookedMessage(appointment);
+                    isAppointment = true;
                 }
+            }
+            if (!isAppointment) {
+                throw new RexException("No such date available!");
             }
         } catch (DateTimeParseException e) {
             ui.showDateInputError();

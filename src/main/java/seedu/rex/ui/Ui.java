@@ -122,7 +122,7 @@ public class Ui {
      * @return String command from user.
      */
     public String readCommand() {
-        System.out.println();
+        System.out.println("Enter command: ");
         return in.nextLine();
     }
 
@@ -200,5 +200,9 @@ public class Ui {
         showLine();
         printWithIndent("Appointment on " + appointment.getDate().toString() + " booked!");
 
+    }
+
+    public void showCreatePatientMessage(String nric) {
+        printWithIndent("Creating patient " + nric);
     }
 }
