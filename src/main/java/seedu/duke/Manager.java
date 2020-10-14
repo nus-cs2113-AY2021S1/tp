@@ -1,6 +1,15 @@
 package seedu.duke;
 
+import seedu.duke.list.FoodList;
+import seedu.duke.person.ActivityLevel;
+import seedu.duke.person.Person;
+import seedu.calculator.Calculator;
+import seedu.duke.database.DataBase;
+import seedu.duke.person.Gender;
+
+
 import java.util.Scanner;
+
 
 public class Manager {
     private Person person;
@@ -12,10 +21,10 @@ public class Manager {
 
     public Manager(FoodList foodlist, DataBase dataBase) {
         this.name = "John Doe";
-        this.person = new Person();
+        this.person = new Person(this.name, Gender.MALE, 0,0,0,0, ActivityLevel.LOW);
         this.foodList = foodlist;
         this.dataBase = dataBase;
-        this.calculator = new Calculator(0,0,0,0);
+        this.calculator = new Calculator(foodList.getFoods());
     }
 
     public String readCommand() {
@@ -30,8 +39,8 @@ public class Manager {
         return this.person;
     }
 
-    public void setPerson(String gender, String age,String height,String actLvl,String orgWeight,String targWeight) {
-        this.person = new Person(gender, age, height, actLvl, orgWeight, targWeight);
+    public void setPerson(String name, Gender gender, int age,int height,int orgWeight,int targWeight, ActivityLevel actLvl) {
+        this.person = new Person(name, gender, age, height, orgWeight, targWeight, actLvl);
     }
 
     public Calculator getCalculator() {

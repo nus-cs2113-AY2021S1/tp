@@ -1,5 +1,9 @@
 package seedu.duke;
-import java.util.Arrays;
+
+import seedu.calculator.Calculator;
+import seedu.duke.list.FoodList;
+import seedu.duke.person.Gender;
+import seedu.duke.person.ActivityLevel;
 
 public class Parser {
     public static final String COMMAND_NAME = "name";
@@ -14,6 +18,7 @@ public class Parser {
     public static final String COMMAND_USERINFO = "userinfo";
     public static final String[] PARAM_CALCULATE = {"fat", "carbohydrate","protein", "calorie", "all"};
     public static final String[] PARAM_INFO = {"g/","a/","h/","l/","o/","t/"};
+    public static final String[] PARAM_ADD = {"n/","x/","k/","f/","p/","c/"};
 
 
     /**
@@ -48,21 +53,79 @@ public class Parser {
                         return userInput.split(" ")[1];
                     }
                 }
-                throw new DietException("☹ Oops! Incorrect nutrient type");
+                throw new DietException("☹ Incorrect nutrient type");
             case COMMAND_ADD:
-                if (!userInput.contains("n/") || !userInput.contains("x/") || !userInput.contains("k/")) {
-                    throw new DietException("☹ Oh no... Missing or incorrect add statement");
+                for (String param: PARAM_ADD) {
+                    if (!userInput.contains(param)) {
+                        throw new DietException("☹ Missing or incorrect add statement");
+                    }
                 }
                 return userInput.substring(userInput.indexOf(' ') + 1);
             case COMMAND_INFO:
-                if (!Arrays.asList(input).containsAll(Arrays.asList(PARAM_INFO))) {
-                    throw new DietException("☹ Oh no... Missing or incorrect info statement");
+                for (String param: PARAM_INFO) {
+                    if (!userInput.contains(param)) {
+                        throw new DietException("☹ Missing or incorrect info statement");
+                    }
                 }
                 return userInput.substring(userInput.indexOf(' ') + 1);
             default:
                 return null;
             }
         }
+    }
+
+    /**
+     * Processes the parameters for <code>add</code> command of user input and adds a <code>Food</code> object.
+     * @param userInput user input.
+     * @param foodList the FoodList object.
+     * @return name of the food that was added.
+     * @throws DietException when the user input is of a wrong format.
+     */
+    private static String getProcessedAdd(String userInput, FoodList foodList) throws DietException {
+        String[] processedParam = getCommandParam(userInput).split(" ");
+        int portionSize = Integer.parseInt(processedParam[0].substring(processedParam[0].indexOf("/") + 1));
+        String foodName = processedParam[1].substring(processedParam[1].indexOf("/") + 1);
+        int calorie = Integer.parseInt(processedParam[2].substring(processedParam[2].indexOf("/") + 1));
+        int carb = Integer.parseInt(processedParam[3].substring(processedParam[3].indexOf("/") + 1));
+        int protein = Integer.parseInt(processedParam[4].substring(processedParam[4].indexOf("/") + 1));
+        int fat = Integer.parseInt(processedParam[5].substring(processedParam[5].indexOf("/") + 1));
+        foodList.addFood(portionSize, foodName, calorie, carb, protein, fat);
+        return foodName;
+    }
+
+    /**
+     * Processes the parameters for <code>info</code> command of user input and updates the <code>Person</code> object.
+     * @param userInput user input.
+     * @param manager the manager object.
+     * @throws DietException when the user input is of a wrong format.
+     */
+    private static void executeProcessedInfo(String userInput, Manager manager) throws DietException {
+        Gender gender;
+        ActivityLevel actLvl;
+        String[] processedParam = getCommandParam(userInput).split(" ");
+        String processGender = processedParam[0].substring(processedParam[0].indexOf("/") + 1);
+        if (processGender.equals("M")) {
+            gender = Gender.MALE;
+        } else {
+            gender = Gender.FEMALE;
+        }
+        int age = Integer.parseInt(processedParam[1].substring(processedParam[1].indexOf("/") + 1));
+        int height = Integer.parseInt(processedParam[2].substring(processedParam[2].indexOf("/") + 1));
+        int orgWeight = Integer.parseInt(processedParam[3].substring(processedParam[3].indexOf("/") + 1));
+        int tarWeight = Integer.parseInt(processedParam[4].substring(processedParam[4].indexOf("/") + 1));
+        String processActLvl = processedParam[5].substring(processedParam[5].indexOf("/") + 1);
+        if (processActLvl.equals("1")) {
+            actLvl = ActivityLevel.NONE;
+        } else if (processActLvl.equals("2")) {
+            actLvl = ActivityLevel.LOW;
+        } else if (processActLvl.equals("3")) {
+            actLvl = ActivityLevel.MEDIUM;
+        } else if (processActLvl.equals("4")) {
+            actLvl = ActivityLevel.HIGH;
+        } else {
+            actLvl = ActivityLevel.EXTREME;
+        }
+        manager.setPerson(manager.getName(), gender, age, height, orgWeight, tarWeight, actLvl);
     }
 
     /**
@@ -94,28 +157,28 @@ public class Parser {
         switch (getCommand(userInput)) {
         case COMMAND_NAME:
             manager.setName(getCommandParam(userInput));
-            ui.printAskForUserInfoMessage(manager.getName())
+            ui.printAskForUserInfoMessage(manager.getName());
             return;
         case COMMAND_EXIT:
             ui.printExitMessage(manager.getName());
             DietBook.isExit = true;
             return;
         case COMMAND_LIST:
-            ui.printFoodList(manager.getFoodList());
+            ui.printFoodList(manager.getFoodList().toString());
             return;
         case COMMAND_USERINFO:
-            ui.printPersonInformation(personInformation);
+            ui.printPersonInfo(manager.getPerson().toString());
             return;
         case COMMAND_DATA:
-            manager.getDataBase().printAllData();
+            ui.printDatabase(manager.getDataBase().getFoodList());
             return;
         case COMMAND_DELETE:
-            ui.printDeletedFood(manager.getFoodList().get(getCommandIndex(userInput)));
+            ui.printDeletedFood(manager.getFoodList().getFoods().get(getCommandIndex(userInput)).toString());
             manager.getFoodList().delete(getCommandIndex(userInput));
             return;
         case COMMAND_CLEAR:
             ui.printClearFoodListMessage();
-            manager.getFoodList().clear;
+            manager.getFoodList().clear();
             return;
         case COMMAND_CALCULATE:
             if (getCommandParam(userInput).equals("all")) {
@@ -132,17 +195,11 @@ public class Parser {
             }
             return;
         case COMMAND_INFO:
-            String[] processedParam = getCommandParam(userInput).split(" ");
-            String gender = processedParam[0].substring(processedParam[0].indexOf("/") + 1);
-            String age = processedParam[1].substring(processedParam[1].indexOf("/") + 1);
-            String height = processedParam[2].substring(processedParam[2].indexOf("/") + 1);
-            String actLvl = processedParam[3].substring(processedParam[3].indexOf("/") + 1);
-            String orgWeight = processedParam[4].substring(processedParam[4].indexOf("/") + 1);
-            String tarWeight = processedParam[5].substring(processedParam[5].indexOf("/") + 1);
-            manager.setPerson(gender, age, height, actLvl, orgWeight, tarWeight);
+            executeProcessedInfo(userInput, manager);
             ui.printTutorialMessage();
             return;
         case COMMAND_ADD:
+            ui.printNewFood(getProcessedAdd(userInput, manager.getFoodList()));
             return;
         default:
             throw new DietException("☹ There's no such command!");

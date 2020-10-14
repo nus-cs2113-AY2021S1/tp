@@ -1,5 +1,8 @@
 package seedu.duke;
+
 import java.io.IOException;
+import seedu.duke.database.DataBase;
+import seedu.duke.list.FoodList;
 
 public class DietBook {
     private FoodList foodList;
@@ -9,12 +12,12 @@ public class DietBook {
     public static boolean isExit = false;
 
     /**
-     * Constructor for new DietBook
+     * Constructor for new DietBook.
      */
     public DietBook() {
         ui = new Ui();
         foodList = new FoodList();
-        dataBase = new Database();
+        dataBase = new DataBase();
         manager = new Manager(foodList, dataBase);
     }
 
@@ -31,11 +34,8 @@ public class DietBook {
                 Parser.parse(userInput, dietBook.manager, dietBook.ui);
             } catch (DietException e) {
                 dietBook.ui.printErrorMessage(e.getMessage());
-            } catch (IOException e) {
-                dietBook.ui.printErrorMessage(e.getMessage());
-                break;
             } finally {
-                dietBook.ui.divider();
+                System.out.println("__________________");
             }
         }
     }

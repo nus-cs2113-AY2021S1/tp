@@ -78,7 +78,7 @@ public class Ui {
                 + "listed below." + LINE_SEPARATOR + LINE_SEPARATOR
                 + "To add a food from the database: add n/FOOD_NAME x/PORTION_SIZE" + LINE_SEPARATOR
                 + "To view all food in the database: data" + LINE_SEPARATOR
-                + "To add you own food: add n/FOOD_NAME x/PORTION_SIZE k/CALORIE [c/CARBOHYDRATE] "
+                + "To add you own food: add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] "
                 + "[p/PROTEIN] [f/FAT]" + LINE_SEPARATOR
                 + "To view all food in DietBook: list" + LINE_SEPARATOR
                 + "To delete a food from DietBook: delete INDEX" + LINE_SEPARATOR
