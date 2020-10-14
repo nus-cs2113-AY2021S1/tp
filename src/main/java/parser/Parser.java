@@ -1,8 +1,22 @@
 package parser;
 
 import access.Access;
-import commands.*;
 
+import commands.AddCardCommand;
+import commands.AddChapterCommand;
+import commands.AddCommand;
+import commands.AddModuleCommand;
+import commands.BackChapterCommand;
+import commands.BackModuleCommand;
+import commands.Command;
+import commands.EditCommand;
+import commands.ExitCommand;
+import commands.GoChapterCommand;
+import commands.GoModuleCommand;
+import commands.HelpCommand;
+import commands.ListCommand;
+import commands.RemoveCommand;
+import commands.ReviseCommand;
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
@@ -103,7 +117,7 @@ public class Parser {
                         + AddCardCommand.MESSAGE_USAGE);
             }
             return prepareAddCard(commandArgs);
-        } else if (access.isModuleLevel()){
+        } else if (access.isModuleLevel()) {
             if (commandArgs.isEmpty()) {
                 throw new InvalidInputException("The arguments are missing.\n"
                         + AddChapterCommand.MESSAGE_USAGE);
