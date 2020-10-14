@@ -11,31 +11,31 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class BusDataTest {
 
     private static final BusStops[] AA1 = {
-            BusStops.PGP,
-            BusStops.KENTRIDGEMRTSTATION,
-            BusStops.OPPUNIVERSITYHEALTHCENTRE,
-            BusStops.YUSOFISHAKHOUSE,
-            BusStops.CENTRALLIBRARY,
-            BusStops.KENTRIDGE,
-            BusStops.MUSEUM,
-            BusStops.UNIVERSITYTOWN,
-            BusStops.UNIVERSITYHEALTHCENTRE,
-            BusStops.OPPKENTRIDGEMRTSTATION,
-            BusStops.PGPR
+        BusStops.PGP,
+        BusStops.KENTRIDGEMRTSTATION,
+        BusStops.OPPUNIVERSITYHEALTHCENTRE,
+        BusStops.YUSOFISHAKHOUSE,
+        BusStops.CENTRALLIBRARY,
+        BusStops.KENTRIDGE,
+        BusStops.MUSEUM,
+        BusStops.UNIVERSITYTOWN,
+        BusStops.UNIVERSITYHEALTHCENTRE,
+        BusStops.OPPKENTRIDGEMRTSTATION,
+        BusStops.PGPR
     };
 
     private static final BusStops[] AA2 = {
-            BusStops.PGP,
-            BusStops.KENTRIDGEMRTSTATION,
-            BusStops.OPPUNIVERSITYHEALTHCENTRE,
-            BusStops.UNIVERSITYTOWN,
-            BusStops.RAFFLESHALL,
-            BusStops.KENTVALE,
-            BusStops.EA,
-            BusStops.NUSIT,
-            BusStops.UNIVERSITYHEALTHCENTRE,
-            BusStops.OPPKENTRIDGEMRTSTATION,
-            BusStops.PGPR
+        BusStops.PGP,
+        BusStops.KENTRIDGEMRTSTATION,
+        BusStops.OPPUNIVERSITYHEALTHCENTRE,
+        BusStops.UNIVERSITYTOWN,
+        BusStops.RAFFLESHALL,
+        BusStops.KENTVALE,
+        BusStops.EA,
+        BusStops.NUSIT,
+        BusStops.UNIVERSITYHEALTHCENTRE,
+        BusStops.OPPKENTRIDGEMRTSTATION,
+        BusStops.PGPR
     };
 
     static ArrayList<Bus> busesInZoneA = new ArrayList<>(Arrays.asList(new Bus("AA1", AA1),

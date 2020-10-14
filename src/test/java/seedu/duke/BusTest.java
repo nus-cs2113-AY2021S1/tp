@@ -10,17 +10,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class BusTest {
 
     private static final BusStops[] AA1 = {
-            BusStops.PGP,
-            BusStops.KENTRIDGEMRTSTATION,
-            BusStops.OPPUNIVERSITYHEALTHCENTRE,
-            BusStops.YUSOFISHAKHOUSE,
-            BusStops.CENTRALLIBRARY,
-            BusStops.KENTRIDGE,
-            BusStops.MUSEUM,
-            BusStops.UNIVERSITYTOWN,
-            BusStops.UNIVERSITYHEALTHCENTRE,
-            BusStops.OPPKENTRIDGEMRTSTATION,
-            BusStops.PGPR
+        BusStops.PGP,
+        BusStops.KENTRIDGEMRTSTATION,
+        BusStops.OPPUNIVERSITYHEALTHCENTRE,
+        BusStops.YUSOFISHAKHOUSE,
+        BusStops.CENTRALLIBRARY,
+        BusStops.KENTRIDGE,
+        BusStops.MUSEUM,
+        BusStops.UNIVERSITYTOWN,
+        BusStops.UNIVERSITYHEALTHCENTRE,
+        BusStops.OPPKENTRIDGEMRTSTATION,
+        BusStops.PGPR
     };
 
     @Test
