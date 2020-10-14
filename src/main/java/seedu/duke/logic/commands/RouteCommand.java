@@ -22,9 +22,9 @@ public class RouteCommand extends Command {
     @Override
     public void executeCommand() throws CustomException {
         String [] locations = parser.getLocations();
-        if(locations[0].trim().length()==0 || locations[1].trim().length()==0) {
+        if (locations[0].trim().length() == 0 || locations[1].trim().length() == 0) {
             throw new CustomException(ExceptionType.NO_LOCATIONS);
-        } else if(locations[0].trim().equalsIgnoreCase(locations[1].trim())) {
+        } else if (locations[0].trim().equalsIgnoreCase(locations[1].trim())) {
             throw new CustomException(ExceptionType.SAME_LOCATIONS);
         }
         ArrayList<Bus> busOptions = BusData.possibleBuses(locations[0].trim(), locations[1].trim());

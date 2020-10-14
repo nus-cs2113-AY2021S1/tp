@@ -13,9 +13,9 @@ public class RouteParser extends Parser {
 
     public String[] getLocations() throws CustomException {
         try {
-            if(super.getUserInput().trim().length()==0) {
+            if (super.getUserInput().trim().length() == 0) {
                 throw new CustomException(ExceptionType.NO_LOCATIONS);
-            } else if(super.getUserInput().contains(DELIMITER)) {
+            } else if (super.getUserInput().contains(DELIMITER)) {
                 String[] components = super.splitCommands(2, DELIMITER);
                 return new String[]{components[0], components[1]};
             } else {
