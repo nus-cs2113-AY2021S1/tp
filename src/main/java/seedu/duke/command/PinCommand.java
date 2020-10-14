@@ -17,7 +17,7 @@ public class PinCommand extends Command {
             + "[" + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX] "
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE]";
 
-    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook";
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook";
 
     private int index;
     private String title;
@@ -66,7 +66,6 @@ public class PinCommand extends Command {
         }
 
         note.togglePinned();
-
         return note.getTitle() + " pinned: " + note.getPinned();
     }
 }
