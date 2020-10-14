@@ -8,6 +8,8 @@ public class HintCommand extends Command {
     private Hint hint;
 
     public HintCommand(Hint hint) {
+        assert hint != null;
+
         this.hint = hint;
     }
 

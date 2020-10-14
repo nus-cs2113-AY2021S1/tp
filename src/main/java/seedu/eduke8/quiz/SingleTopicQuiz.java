@@ -70,9 +70,8 @@ public class SingleTopicQuiz implements Quiz {
             }
 
             quizParser.setQuestion(question);
-            Command command;
 
-            command = getCommand(ui, optionList);
+            Command command = getCommand(ui, optionList);
 
             assert (command instanceof AnswerCommand || command instanceof HintCommand);
 

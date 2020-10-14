@@ -10,6 +10,8 @@ public class AnswerCommand extends Command {
     private Question question;
 
     public AnswerCommand(Option option, Question question) {
+        assert option != null && question != null;
+
         this.option = option;
         this.question = question;
     }
