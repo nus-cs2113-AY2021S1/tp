@@ -33,20 +33,6 @@ public class DeleteTagCommand extends Command {
 
     @Override
     public String execute() {
-        boolean executeSuccessful;
-        String executeMessage = "";
-
-        // Deletes all the tags in the given list
-        for (Tag t : tags) {
-            Tag existingTag = tagManager.getTag(t.getTagName());
-            executeSuccessful = tagManager.deleteTag(t);
-            if (executeSuccessful) {
-                executeMessage = executeMessage.concat(COMMAND_SUCCESSFUL_MESSAGE + existingTag);
-            } else {
-                executeMessage = executeMessage.concat(COMMAND_UNSUCCESSFUL_MESSAGE + t);
-            }
-            executeMessage = executeMessage + InterfaceManager.LS;
-        }
-        return executeMessage.trim();
+        return tagManager.deleteTag(tags, COMMAND_SUCCESSFUL_MESSAGE, COMMAND_UNSUCCESSFUL_MESSAGE);
     }
 }

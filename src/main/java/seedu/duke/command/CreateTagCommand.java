@@ -51,19 +51,6 @@ public class CreateTagCommand extends Command {
 
     @Override
     public String execute() {
-        boolean executeSuccessful;
-        String executeMessage = "";
-
-        // Creates all the tags in the given list
-        for (Tag t : tags) {
-            executeSuccessful = tagManager.createTag(t, true);
-            if (executeSuccessful) {
-                executeMessage = executeMessage.concat(COMMAND_SUCCESSFUL_MESSAGE);
-            } else {
-                executeMessage = executeMessage.concat(COMMAND_UNSUCCESSFUL_MESSAGE);
-            }
-            executeMessage = executeMessage.concat(tagManager.getTag(t.getTagName()) + InterfaceManager.LS);
-        }
-        return executeMessage.trim();
+        return tagManager.createTag(tags, COMMAND_SUCCESSFUL_MESSAGE, COMMAND_UNSUCCESSFUL_MESSAGE);
     }
 }
