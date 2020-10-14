@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Parser {
-    private static Logger LOGGER = Logger.getLogger("ParserLogger");
+    private static Logger LOGGER = Logger.getLogger(Command.class.getName());
 
     /**
      * Prints the main menu of the application
