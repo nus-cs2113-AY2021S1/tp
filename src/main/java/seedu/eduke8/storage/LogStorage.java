@@ -13,8 +13,6 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 public class LogStorage extends LocalStorage {
-    private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
     public LogStorage(String filePath) {
         super(filePath);
     }
@@ -37,6 +35,8 @@ public class LogStorage extends LocalStorage {
         fh.setFormatter(new SimpleFormatter());
         fh.setLevel(Level.ALL);
         LOGGER.addHandler(fh);
+
+        LOGGER.log(Level.INFO, "Logging to file started");
     }
 
     @Override
