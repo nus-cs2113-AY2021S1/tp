@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class ParamCheckerTest {
     private ParamChecker paramCheckerUnderTest;
     CommandPacket testPacket;
-    private final int NUM_ERROR_INPUTS = 5;
 
     @Test
     public void testDateCorrectParseWrongDate() {
