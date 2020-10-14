@@ -5,6 +5,7 @@ import seedu.rex.commands.AddCommand;
 import seedu.rex.commands.BookCommand;
 import seedu.rex.commands.Command;
 import seedu.rex.commands.CreateAppointmentCommand;
+import seedu.rex.commands.EditCommand;
 import seedu.rex.commands.ExitCommand;
 import seedu.rex.commands.RetrieveCommand;
 import seedu.rex.data.exception.RexException;
@@ -72,6 +73,8 @@ public class Parser {
             command = new BookCommand(trimmedCommand);
         } else if (trimmedCommand.contains(CreateAppointmentCommand.COMMAND_WORD)) {
             command = new CreateAppointmentCommand(trimmedCommand);
+        } else if (trimmedCommand.contains(EditCommand.COMMAND_WORD)) {
+            command = new EditCommand(trimmedCommand);
         } else {
             throw new RexException(Command.COMMAND_ERROR);
         }

@@ -94,6 +94,17 @@ public class Ui {
         printWithIndent(patient.toString());
     }
 
+    /**
+     * Prints a message to indicate successful editting of a patient.
+     *
+     * @param patient The newly editted <code>Patient</code>.
+     */
+
+    public void showPatientEditted(Patient patient) {
+        printWithIndent("Patient successfully editted: ");
+        printWithIndent(patient.toString());
+    }
+
 
     /**
      * Reads command from user.
