@@ -89,8 +89,4 @@ public class SaveStateHandlerManualTracker extends SaveStateHandler {
             }
         }
     }
-
-    private String charRemoveAt(String str, int p) {
-        return str.substring(0, p) + str.substring(p + 1);
-    }
 }
