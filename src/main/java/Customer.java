@@ -62,13 +62,13 @@ public class Customer {
             Scanner s = new Scanner(System.in);
             int phoneNum = s.nextInt();
             String address = s.nextLine();
-            return new deliveryOrder(canteen,stall,dish,true,address,phoneNum);
+            return new deliveryOrder(canteen,stall,dish,this,true,address,phoneNum);
         }
         if(typeOfOrder.compareTo("dine in")==0){
-            return new dineInOrder(canteen,stall,dish,true);
+            return new dineInOrder(canteen,stall,dish,this,true);
         }
         if(typeOfOrder.compareTo("take away")==0){
-            return new takeAwayOrder(canteen,stall,dish,true);
+            return new takeAwayOrder(canteen,stall,dish,this,true);
         }
         return  null;
     }

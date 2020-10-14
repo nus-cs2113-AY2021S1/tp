@@ -7,10 +7,10 @@ public class deliveryOrder extends Order {
 
     private boolean isDeliveryOrder;
     private String address;
-    private String phoneNumber;
+    private int phoneNumber;
 
     deliveryOrder(Canteen canteen, Stall stall, List<Dish> dishes, Customer customer, boolean isDeliveryOrder,
-                  String address, String phoneNumber) {
+                  String address, int phoneNumber) {
         super(canteen, stall, dishes, customer);
         this.isDeliveryOrder = isDeliveryOrder;
         this.address = address;
@@ -33,7 +33,7 @@ public class deliveryOrder extends Order {
         return this.address;
     }
 
-    public String getPhoneNumber() {
+    public int getPhoneNumber() {
         return this.phoneNumber;
     }
 
