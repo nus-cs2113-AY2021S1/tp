@@ -1,10 +1,12 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.timetable.Timetable;
+
 import seedu.duke.storage.StorageManager;
 
 import java.util.ArrayList;
