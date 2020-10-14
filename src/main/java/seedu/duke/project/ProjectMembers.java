@@ -22,8 +22,17 @@ public class ProjectMembers implements Jsonable {
         return memberList.size();
     }
 
-    public Member getMember(int id) {
-        return memberList.get(id);
+    public ArrayList<Member> getAllMembers() {
+        return this.memberList;
+    }
+
+    public Member getMember(String userid) {
+        for (Member mem : memberList) {
+            if (mem.getUserId().equals(userid)) {
+                return mem;
+            }
+        }
+        return null;
     }
 
     public void addMember(Member m) {
@@ -50,7 +59,7 @@ public class ProjectMembers implements Jsonable {
                 memberList.remove(new Member(s));
                 System.out.println("The user associated with " + s + " has been removed from the project");
             } else {
-                System.out.println("This member is not associated with this project: " + new Member(s).userId);
+                System.out.println("This member is not associated with this project: " + new Member(s).getUserId());
             }
         }
     }
@@ -61,6 +70,16 @@ public class ProjectMembers implements Jsonable {
 
     public void removeMember(Member member) {
         memberList.remove(member);
+    }
+
+    public String toString() {
+        StringBuilder membersString = new StringBuilder();
+        membersString.append("[Members:");
+        for (Member mem : memberList) {
+            membersString.append(String.format(" %s", mem.getUserId()));
+        }
+        membersString.append("]\n");
+        return membersString.toString();
     }
 
     @Override

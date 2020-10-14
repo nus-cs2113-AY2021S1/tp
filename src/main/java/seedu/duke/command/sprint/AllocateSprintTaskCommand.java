@@ -1,6 +1,7 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.project.Project;
+import seedu.duke.sprint.Member;
 import seedu.duke.sprint.Sprint;
 import seedu.duke.sprint.SprintList;
 import seedu.duke.parser.DateTimeParser;
@@ -8,63 +9,73 @@ import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 
 public class AllocateSprintTaskCommand extends SprintCommand {
-    SprintList allSprint;
+    private SprintList allSprint;
+    private ArrayList<Project> projectList;
+    private Project proj;
 
-    public AllocateSprintTaskCommand(Hashtable<String, String> parameters) {
+    public AllocateSprintTaskCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList) {
         super(parameters);
+        this.projectList = projectList;
     }
 
-    public boolean execute(Project proj, Ui ui) {
+    public void execute() {
+        proj = projectList.get(0);
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
             if (validateParams()) {
-                String taskId = parameters.get("taskid");
-                ArrayList<String> users = new ArrayList<>();
-                for (int i = 0; i < parameters.size() - 1; i++) {
-                    users.add(parameters.get(Integer.toString(i)));
+                int taskId = Integer.parseInt(this.parametersInHT.get("task").trim());
+                String[] userIds = this.parametersInHT.get("user").split(" ");
+                for (String id: userIds) {
+                    Member mem = proj.getProjectMember().getMember(id.trim());
+                    if (mem == null) {
+                        Ui.showError("User not found.");
+                        return;
+                    } else {
+                        mem.allocateTask(taskId);
+                        proj.getProjectBacklog().getTask(taskId).allocateToMember(mem.getUserId());
+                    }
                 }
-
-                int currentSprintNo = allSprint.getCurrentSprintIndex();
-                Sprint currentSprint = allSprint.getSprint(currentSprintNo);
-                currentSprint.allocateSprintTask(Integer.parseInt(taskId), users);
+                Ui.showToUserLn(proj.getProjectBacklog().getTask(taskId).getTitle()
+                        + " assigned to "
+                        + Arrays.toString(userIds));
             }
         } else {
-            checkReason(proj,ui);
+            checkReason();
         }
-        return false;
     }
 
     private boolean validateParams() {
-        return !parameters.get("taskid").isEmpty() && !parameters.get("0").isEmpty();
+        return !this.parametersInHT.get("task").isEmpty() && !this.parametersInHT.get("user").isEmpty();
     }
 
-    private void checkReason(Project proj, Ui ui) {
+    private void checkReason() {
         if (allSprint.size() == 0) {
-            ui.showToUser("You have yet to create your sprint.");
+            Ui.showToUserLn("You have yet to create your sprint.");
             return;
         }
 
         Sprint latestSprint = allSprint.getSprint(allSprint.size() - 1);
         if (DateTimeParser.diff(LocalDate.now(), proj.getEndDate()) == 0) {
-            ui.showToUser("Project already ended on " + proj.getEndDate());
+            Ui.showToUserLn("Project already ended on " + proj.getEndDate());
             return;
         } else if (DateTimeParser.diff(LocalDate.now(), proj.getStartDate()) > 0) {
-            ui.showToUser("Project will start on " + proj.getStartDate());
+            Ui.showToUserLn("Project will start on " + proj.getStartDate());
             return;
         }
 
         if (DateTimeParser.diff(latestSprint.getEndDate(), LocalDate.now()) >= 0) {
-            ui.showToUser("Latest sprint ended on " + latestSprint.getEndDate());
-            ui.showToUser("Please create new sprint.");
+            Ui.showToUserLn("Latest sprint ended on " + latestSprint.getEndDate());
+            Ui.showToUserLn("Please create new sprint.");
             return;
         }
 
         Sprint current = allSprint.getSprint(0);
         if (DateTimeParser.diff(LocalDate.now(), current.getStartDate()) < 0) {
-            ui.showToUser("First sprint will start on " + current.getStartDate());
+            Ui.showToUserLn("First sprint will start on " + current.getStartDate());
         }
     }
 }

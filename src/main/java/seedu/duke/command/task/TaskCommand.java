@@ -1,6 +1,6 @@
 package seedu.duke.command.task;
 
-import seedu.duke.common.Messages;
+import seedu.duke.ui.Messages;
 import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
@@ -40,10 +40,9 @@ public class TaskCommand {
         }
         try {
             Project proj = projectList.get(0);
-            Task task = new Task(title, description, priority);
-            proj.getProjectBacklog().addTask(task);
-
-            Ui.showToUserLn(task.getTitle() + " has been added.");
+            proj.getProjectBacklog().addTask(title, description, priority);
+            Task addedTask =  proj.getProjectBacklog().getTask(proj.getProjectBacklog().getNextId() - 1);
+            Ui.showToUserLn(addedTask.getTitle() + " has been added.");
 
         } catch (IndexOutOfBoundsException e) {
             Ui.showError("There are no projects! Please create a project first.");
@@ -52,20 +51,17 @@ public class TaskCommand {
     }
 
     public void deleteTaskCommand(ArrayList<String> taskId, ArrayList<Project> projectList) {
-
         try {
             Project proj = projectList.get(0);
-            Collections.sort(taskId);
-            int offset = 1;
             for (String id : taskId) {
                 try {
-                    int backlogId = Integer.parseInt(id) - offset;
-                    if (backlogId < proj.getProjectBacklog().size()) {
+                    int backlogId = Integer.parseInt(id);
+                    if (proj.getProjectBacklog().checkTaskExist(backlogId)) {
                         Task task = proj.getProjectBacklog().getTask(backlogId);
-                        Ui.showToUserLn("The corresponding task " + task.getTitle() + "has been removed.");
+                        Ui.showToUserLn("The corresponding task "
+                                + task.getTitle()
+                                + "has been removed from project.");
                         proj.getProjectBacklog().removeTask(backlogId);
-
-                        offset++;
                     } else {
                         Ui.showError(Messages.MESSAGE_INVALID_ID);
                     }
@@ -89,7 +85,8 @@ public class TaskCommand {
                     int backlogId = Integer.parseInt(id) - 1;
                     if (backlogId < proj.getProjectBacklog().backlogTasks.size()) {
                         task = proj.getProjectBacklog().getTask(backlogId);
-                        Ui.showToUserLn("\t Title: " + task.getTitle());
+                        Ui.showToUserLn(task.toString());
+                        //Ui.showToUserLn("\t Title: " + task.getTitle());
                     } else {
                         Ui.showError(Messages.MESSAGE_INVALID_ID);
                     }
@@ -142,8 +139,8 @@ public class TaskCommand {
             for (String id : taskId) {
                 Task task;
                 try {
-                    int backlogId = Integer.parseInt(id) - 1;
-                    if (backlogId < proj.getProjectBacklog().backlogTasks.size()) {
+                    int backlogId = Integer.parseInt(id);
+                    if (backlogId <= proj.getProjectBacklog().backlogTasks.size()) {
                         task = proj.getProjectBacklog().getTask(backlogId);
                         task.setAsDone();
                         Ui.showToUserLn(task.getTitle() + "has been marked as done.");

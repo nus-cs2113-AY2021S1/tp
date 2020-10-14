@@ -2,12 +2,16 @@ package seedu.duke.project;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
+import seedu.duke.sprint.Sprint;
 import seedu.duke.sprint.SprintList;
+import seedu.duke.task.Task;
+import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Project implements Jsonable {
 
@@ -28,13 +32,42 @@ public class Project implements Jsonable {
         this.description = description;
         this.projectDuration = Integer.parseInt(projectDuration.trim());
         this.sprintLength = Integer.parseInt(sprintLength);
-        backlog = new ProjectBacklog();
+        backlog = new ProjectBacklog(this);
         members = new ProjectMembers();
         allSprints = new SprintList();
     }
 
+    @Override
     public String toString() {
-        return "Project title: " + title + "\nProject description " + description;
+        StringBuilder projectInString = new StringBuilder();
+        projectInString.append("\n================= PROJECT =================\n");
+        projectInString.append(String.format("[Title: %s]\n", this.title));
+        projectInString.append(String.format("[Description: %s]\n", this.description));
+        if (!members.getAllMembers().isEmpty()) {
+            projectInString.append(members.toString());
+        } else {
+            projectInString.append("[No members added]\n");
+        }
+        if (this.startDate != null) {
+            projectInString.append(String.format("[Period: %s - %s] \n", this.startDate, this.endDate));
+        } else {
+            projectInString.append("[Project will start along with the first sprint]\n");
+        }
+
+        if (!this.backlog.backlogTasks.isEmpty()) {
+            projectInString.append(this.backlog.toString());
+        } else {
+            projectInString.append("[Project backlog is empty]\n");
+        }
+        if (this.allSprints.size() != 0) {
+            int currentSprintIndex = this.allSprints.getCurrentSprintIndex();
+            Sprint currentSprint = this.allSprints.getSprint(currentSprintIndex);
+            projectInString.append(currentSprint.toSimplifiedString());
+        } else {
+            projectInString.append("[There are no Sprints]\n");
+        }
+        projectInString.append("\n===============================================\n");
+        return projectInString.toString();
     }
 
     public SprintList getAllSprints() {
@@ -89,11 +122,11 @@ public class Project implements Jsonable {
     }
 
     public void displayProjectBacklog() {
-        if (backlog.size() == 0) {
+        if (backlog.getNextId() == 0) {
             System.out.println("No tasks currently added to project backlog.");
         } else {
             System.out.println("Current tasks in your project backlog");
-            for (int i = 0; i < backlog.size(); i++) {
+            for (int i = 0; i < backlog.getNextId(); i++) {
                 System.out.println("\t" + (i + 1) + ". " + backlog.getTask(i).getTitle());
             }
         }

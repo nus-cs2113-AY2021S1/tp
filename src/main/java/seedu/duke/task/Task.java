@@ -6,6 +6,8 @@ import com.github.cliftonlabs.json_simple.Jsonable;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Task implements Jsonable {
 
@@ -14,17 +16,38 @@ public class Task implements Jsonable {
     protected String description;
     protected Priority priority;
     protected boolean isDone;
+    protected ArrayList<String> membersAllocatedTo;
+    protected ArrayList<Integer> sprintAllocatedTo;
 
-    public Task(String title, String description, String level) {
-        this(-1, title, description, level, false);
+
+    public Task(int id, String title, String description, String priority) {
+        this(id, title, description, priority, false);
     }
 
-    public Task(int id, String title, String description, String level, boolean isDone) {
+    public Task(int id, String title, String description, String priority, boolean isDone) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.priority = Priority.valueOf(level);
+        this.priority = Priority.valueOf(priority);
         this.isDone = false;
+        this.membersAllocatedTo = new ArrayList<>();
+        this.sprintAllocatedTo = new ArrayList<>();
+    }
+
+    public void allocateToMember(String memberId) {
+        membersAllocatedTo.add(memberId);
+    }
+
+    public ArrayList<String> getAllocatedMembers() {
+        return membersAllocatedTo;
+    }
+
+    public void allocateToSprint(int sprintId) {
+        sprintAllocatedTo.add(sprintId);
+    }
+
+    public ArrayList<Integer> getAllocatedSprints() {
+        return sprintAllocatedTo;
     }
 
     public void setId(int id) {
@@ -59,9 +82,25 @@ public class Task implements Jsonable {
         return isDone;
     }
 
+    public String toSimplifiedString() {
+        StringBuilder taskString = new StringBuilder();
+        taskString.append(String.format("\n[Task]"));
+        taskString.append(String.format("\tID: %d", this.id));
+        taskString.append(String.format("\tTitle: %s", this.title));
+        taskString.append(String.format("\tCompletion: %s\n", this.isDone ? "Completed" : "Incomplete"));
+        return taskString.toString();
+    }
+
     @Override
     public String toString() {
-        return title + " " + priority + " " + isDone;
+        StringBuilder taskString = new StringBuilder();
+        taskString.append(String.format("\n[Task]\n"));
+        taskString.append(String.format("\tID: %d\n", this.id));
+        taskString.append(String.format("\tTitle: %s\n", this.title));
+        taskString.append(String.format("\tDescription: %s\n", this.description));
+        taskString.append(String.format("\tPriority: %s\n", this.priority));
+        taskString.append(String.format("\tCompletion: %s\n", this.isDone ? "Completed" : "Incomplete"));
+        return taskString.toString();
     }
 
     @Override

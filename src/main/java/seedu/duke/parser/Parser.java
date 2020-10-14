@@ -2,6 +2,11 @@ package seedu.duke.parser;
 
 import seedu.duke.command.member.MemberCommand;
 import seedu.duke.command.project.ProjectCommand;
+import seedu.duke.command.sprint.AllocateSprintTaskCommand;
+import seedu.duke.command.sprint.ViewSprintCommand;
+import seedu.duke.command.sprint.AddSprintTaskCommand;
+import seedu.duke.command.sprint.CreateSprintCommand;
+import seedu.duke.command.sprint.DeleteSprintTaskCommand;
 import seedu.duke.command.task.TaskCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
@@ -13,9 +18,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static seedu.duke.command.CommandSummary.ADD;
+import static seedu.duke.command.CommandSummary.ADDTASK;
 import static seedu.duke.command.CommandSummary.BYE;
 import static seedu.duke.command.CommandSummary.CREATE;
 import static seedu.duke.command.CommandSummary.DELETE;
+import static seedu.duke.command.CommandSummary.DELETETASK;
 import static seedu.duke.command.CommandSummary.PROJECT;
 import static seedu.duke.command.CommandSummary.TASK;
 import static seedu.duke.command.CommandSummary.MEMBER;
@@ -28,15 +35,14 @@ import static seedu.duke.command.CommandSummary.ASSIGN;
 
 public class Parser {
     //Groups of 3: (command) (action) (options)
-    private static final Pattern CMD_PATTERN = Pattern.compile("(\\w+)\\s\\/(\\w+)\\s(.+)");
+    private static final Pattern CMD_PATTERN = Pattern.compile("(\\w+)\\s\\/(\\w+)\\s*(.*)");
     //Groups of 2: (option name) (option value)
     private static final Pattern ARGS_PATTERN = Pattern.compile("-(\\w+)\\s([^-]+)");
     private final Hashtable<String, String> parameters = new Hashtable<>();
-    private  ArrayList<String> params = new ArrayList<>();
+    private ArrayList<String> params = new ArrayList<>();
 
 
     public String parser(String userInput, ArrayList<Project> projectList) {
-
         if (userInput.equals(BYE)) {
             System.out.println(BYE);
             System.exit(0);
@@ -50,9 +56,11 @@ public class Parser {
             Matcher parameterMatcher = ARGS_PATTERN.matcher(rawArgs); //match the option
 
             if (!rawArgs.contains("-")) {
+                params.clear();
                 String[] arguments = rawArgs.split(" ");
                 params.addAll(Arrays.asList(arguments));
             } else {
+                parameters.clear();
                 while (parameterMatcher.find()) { //go through each occurrence of options
                     //put the options into the hashtable (similar to dictionary)
                     parameters.put(parameterMatcher.group(1), parameterMatcher.group(2));
@@ -65,6 +73,13 @@ public class Parser {
                 case CREATE:
                     try {
                         new ProjectCommand().createProjectCommand(parameters, projectList);
+                    } catch (DukeException e) {
+                        e.printExceptionMessage();
+                    }
+                    break;
+                case VIEW:
+                    try {
+                        new ProjectCommand().viewProjectCommand(projectList);
                     } catch (DukeException e) {
                         e.printExceptionMessage();
                     }
@@ -127,21 +142,22 @@ public class Parser {
                 }
                 break;
             case SPRINT:
+
                 switch (action.toLowerCase()) {
                 case CREATE:
-                    //new SprintCommand().createSprintCommand(params);
+                    new CreateSprintCommand(parameters, projectList).execute();
                     break;
-                case ADD:
-                    //new SprintCommand().addSprintTaskCommand(params);
+                case ADDTASK:
+                    new AddSprintTaskCommand(params, projectList).execute();
                     break;
-                case DELETE:
-                    //new SprintCommand().deleteSprintTaskCommand(params);
+                case DELETETASK:
+                    new DeleteSprintTaskCommand(params, projectList).execute();
                     break;
                 case VIEW:
-                    //new SprintCommand().viewSprintCommand(params);
+                    new ViewSprintCommand(parameters, projectList).execute();
                     break;
                 case ASSIGN:
-                    //new SprintCommand().assignSprintTaskCommand(params);
+                    new AllocateSprintTaskCommand(parameters, projectList).execute();
                     break;
                 default:
                     try {

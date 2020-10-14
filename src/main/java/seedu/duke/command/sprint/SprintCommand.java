@@ -4,6 +4,7 @@ import seedu.duke.command.Command;
 import seedu.duke.project.Project;
 import seedu.duke.ui.Ui;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 public abstract class SprintCommand extends Command {
@@ -15,12 +16,11 @@ public abstract class SprintCommand extends Command {
         super(parameters);
     }
 
-    /**
-     * Abstract method that execute the command.
-     *
-     * @param ui UI that handles user interaction
-     * @return Boolean - True if Bye command is executed
-     */
-    public abstract boolean execute(Project proj, Ui ui);
+    public SprintCommand(ArrayList<String> parameters) {
+        super(parameters);
+    }
+
+
+    public abstract void execute();
 
 }

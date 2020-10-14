@@ -1,8 +1,5 @@
 package seedu.duke.ui;
 
-import seedu.duke.common.Messages;
-import java.io.InputStream;
-
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -28,7 +25,7 @@ public class Ui {
      */
     public static String getUserCommand() {
         showToUser(Messages.MESSAGE_PROMPT_INPUT.trim());
-        String input = in.nextLine().strip();
+        String input = in.nextLine().trim();
         while (input.isEmpty()) {
             input = in.nextLine().trim();
         }
@@ -40,17 +37,19 @@ public class Ui {
      *
      * @param messages Specify messages to print
      */
+    public static void showToUser(String... messages) {
+        for (String message : messages) {
+            out.print(message);
+        }
+    }
+
     public static void showToUserLn(String... messages) {
         for (String message : messages) {
             out.println(message);
         }
     }
 
-    public static void showToUser(String... messages) {
-        for (String message : messages) {
-            out.println(message);
-        }
-    }
+
 
     public static void showError(String... messages) {
         for (String message : messages) {

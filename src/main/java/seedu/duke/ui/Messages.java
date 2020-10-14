@@ -1,4 +1,4 @@
-package seedu.duke.common;
+package seedu.duke.ui;
 
 /**
  * Container for user visible messages.
@@ -20,7 +20,7 @@ public class Messages {
     public static final String MESSAGE_PROMPT_INPUT = "command> ";
     public static final String MESSAGE_CREATE_SUB_SPRINT = "Newly created sprint will automatically start after "
                                                    + "the previous sprint ends.";
-    public static final String MESSAGE_INVALID_ID = "The following task ID doesn't exist in backlog.\\nPlease enter a"
+    public static final String MESSAGE_INVALID_ID = "The following task ID doesn't exist in backlog.\nPlease enter a"
             + " valid ID.";
     public static final String MESSAGE_INVALID_IDTYPE = "Task ID entered is not an integer!";
 }
