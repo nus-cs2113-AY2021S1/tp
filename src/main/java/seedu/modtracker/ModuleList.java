@@ -247,7 +247,8 @@ public class ModuleList {
     public void minusTime(String input, boolean toPrint, Storage storage) {
         String[] commandInfo = input.split(" ", 4);
         commandInfo[1] = commandInfo[1].toUpperCase();
-        int index = modList.indexOf(commandInfo[1]);
+        Module currentModule = new Module(commandInfo[1]);
+        int index = modList.indexOf(currentModule);
         modList.get(index).minusActualTime(commandInfo[2], commandInfo[3]);
         if (toPrint) {
             System.out.println(commandInfo[2] + " hours are removed from " + commandInfo[1] + System.lineSeparator());
