@@ -36,30 +36,21 @@ Here is the list of all categories:
 
 
 What would you like to do with Quotesify?
-I have removed [action] category from "book1"!
+There is no such book! tagged as [action]!
 
 What would you like to do with Quotesify?
-Here are the list of items tagged as [action]:
-BOOKS:
-
-
-QUOTES:
+There are no items tagged as [action].
 
 What would you like to do with Quotesify?
-I have removed [motivational] category from "quote1"!
+There is no such quote! tagged as [motivational]!
 
 What would you like to do with Quotesify?
-Here are the list of items tagged as [motivational]:
-BOOKS:
-
-
-QUOTES:
+There are no items tagged as [motivational].
 
 What would you like to do with Quotesify?
 Here are the list of items tagged as [nice]:
 BOOKS:
 1. book1 by me -nice
-
 
 QUOTES:
 1. "quote1"

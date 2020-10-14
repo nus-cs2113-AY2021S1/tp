@@ -22,7 +22,6 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 
 import java.util.ArrayList;
-import java.util.regex.PatternSyntaxException;
 
 public class AddCommand extends Command {
     private String type;
@@ -128,29 +127,13 @@ public class AddCommand extends Command {
             Category category = categories.getCategoryByName(categoryName);
 
             String bookTitle = parameters[1];
-            if (addCategoryToBook(category, bookTitle)) {
-                ui.printAddCategoryToBook(bookTitle, category.getCategoryName());
-                addLogger.log(Level.INFO, "add category to book success");
-            } else {
-                addLogger.log(Level.INFO, "add category to book failed");
-            }
+            String quoteNum = parameters[2];
 
-            int quoteNum = Integer.parseInt(parameters[2]) - 1;
-            if (addCategoryToQuote(category, quoteNum)) {
-                QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
-                ArrayList<Quote> quotes = quoteList.getList();
-                ui.printAddCategoryToQuote(quotes.get(quoteNum).getQuote(), category.getCategoryName());
-                addLogger.log(Level.INFO, "add category to quote success");
-            } else {
-                addLogger.log(Level.INFO, "add category to quote failed");
-            }
-            // ui.printCategorySize(category);
-        } catch (NumberFormatException e) {
-            addLogger.log(Level.WARNING, ERROR_INVALID_QUOTE_NUM);
-            System.out.println(ERROR_INVALID_QUOTE_NUM);
-        } catch (NullPointerException e) {
+            addCategoryToBook(category, bookTitle, ui);
+            addCategoryToQuote(category, quoteNum, ui);
+        } catch (QuotesifyException e) {
             addLogger.log(Level.WARNING, e.getMessage());
-            System.out.println(e.getMessage());
+            ui.printErrorMessage(e.getMessage());
         }
     }
 
@@ -160,39 +143,45 @@ public class AddCommand extends Command {
         }
     }
 
-    private boolean addCategoryToBook(Category category, String bookTitle) {
-        if (bookTitle == null || category == null) {
-            return false;
+    private void addCategoryToBook(Category category, String bookTitle, TextUi ui) {
+        // ignore this action if user did not provide book title
+        if (bookTitle.isEmpty()) {
+            return;
         }
 
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         try {
             Book book = bookList.findByTitle(bookTitle);
             book.setCategory(category);
+            addLogger.log(Level.INFO, "add category to book success");
+            ui.printAddCategoryToBook(bookTitle, category.getCategoryName());
         } catch (NullPointerException e) {
             addLogger.log(Level.WARNING, ERROR_NO_BOOK_FOUND);
-            System.out.println(ERROR_NO_BOOK_FOUND);
-            return false;
+            ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
         }
-        return true;
     }
 
-    private boolean addCategoryToQuote(Category category, int quoteNum) {
-        if (quoteNum < 0 || category == null) {
-            return false;
+    private void addCategoryToQuote(Category category, String index, TextUi ui) {
+        // ignore this action if user did not provide quote number
+        if (index.isEmpty()) {
+            return;
         }
 
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
         ArrayList<Quote> quotes = quoteList.getList();
         try {
+            int quoteNum = Integer.parseInt(index) - 1;
             Quote quote = quotes.get(quoteNum);
             quote.setCategory(category);
+            ui.printAddCategoryToQuote(quotes.get(quoteNum).getQuote(), category.getCategoryName());
+            addLogger.log(Level.INFO, "add category to quote success");
         } catch (IndexOutOfBoundsException e) {
+            addLogger.log(Level.WARNING, ERROR_NO_QUOTE_FOUND);
+            ui.printErrorMessage(ERROR_NO_QUOTE_FOUND);
+        } catch (NumberFormatException e) {
             addLogger.log(Level.WARNING, ERROR_INVALID_QUOTE_NUM);
-            System.out.println(ERROR_INVALID_QUOTE_NUM);
-            return false;
+            ui.printErrorMessage(ERROR_INVALID_QUOTE_NUM);
         }
-        return true;
     }
 
     private void addRating(RatingList ratings, TextUi ui) {

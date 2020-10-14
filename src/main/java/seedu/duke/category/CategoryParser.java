@@ -19,8 +19,8 @@ public class CategoryParser {
 
     public static String[] getRequiredParameters(String[] tokens) {
         String categoryName;
-        String bookTitle = null;
-        String quoteNum = "0";
+        String bookTitle = "";
+        String quoteNum = "";
 
         Stack<String> parameters = convertStringArrayToStack(tokens);
         String line = "";
@@ -45,14 +45,14 @@ public class CategoryParser {
     public static boolean isValidParameters(String[] parameters) {
         String categoryName = parameters[0];
         String bookTitle = parameters[1];
-        int quoteNum = Integer.parseInt(parameters[2]) - 1;
+        String quoteNum = parameters[2];
 
         if (categoryName.isEmpty()) {
             System.out.println(ERROR_MISSING_CATEGORY);
             return false;
         }
 
-        if (quoteNum < 0 && bookTitle == null) {
+        if (quoteNum.isEmpty() && bookTitle.isEmpty()) {
             System.out.println(ERROR_MISSING_BOOK_OR_QUOTE);
             return false;
         }
