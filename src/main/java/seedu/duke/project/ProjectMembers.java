@@ -1,11 +1,16 @@
 package seedu.duke.project;
 
+import com.github.cliftonlabs.json_simple.JsonArray;
+import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.sprint.Member;
 
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectMembers {
+public class ProjectMembers implements Jsonable {
 
     public ArrayList<Member> memberList;
 
@@ -58,4 +63,21 @@ public class ProjectMembers {
         memberList.remove(member);
     }
 
+    @Override
+    public String toJson() {
+        final StringWriter writeable = new StringWriter();
+        try {
+            this.toJson(writeable);
+        } catch (IOException e) {
+            System.out.println("[Error] Cannot convert this project to JSON");
+            e.printStackTrace();
+        }
+        return writeable.toString();
+    }
+
+    @Override
+    public void toJson(Writer writer) throws IOException {
+        final JsonArray jMemberList = new JsonArray(memberList);
+        jMemberList.toJson(writer);
+    }
 }
