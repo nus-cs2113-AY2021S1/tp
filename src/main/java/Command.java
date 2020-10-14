@@ -49,7 +49,7 @@ public class Command {
     public static void executeBookmarkModeCommand(String command, ArrayList<BookmarkCategory> categories,
                                                   BookmarkUi ui, BookmarkParser parser) {
         try {
-            BookmarkCommand c = parser.evaluateInput(command,ui, categories);
+            BookmarkCommand c = parser.evaluateInput(command);
             c.executeCommand(ui,categories);
         } catch (InvalidBookmarkCommandException e) {
             ui.showInvalidBookmarkCommand();

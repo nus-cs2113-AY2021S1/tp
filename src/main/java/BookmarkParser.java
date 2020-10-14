@@ -16,8 +16,11 @@ public class BookmarkParser extends CommandParser {
     public BookmarkParser() {
     }
 
-    public BookmarkCommand evaluateInput(String line, BookmarkUi ui, ArrayList<BookmarkCategory> categories)
+    public BookmarkCommand evaluateInput(String line)
             throws InvalidBookmarkCommandException {
+        if (line == null){
+            throw new InvalidBookmarkCommandException();
+        }
         String upperLine = line.toUpperCase();
         if (upperLine.startsWith("BM")) {
             getChosenCategory(line);
@@ -29,14 +32,14 @@ public class BookmarkParser extends CommandParser {
         } else if (upperLine.startsWith("LIST")) {
             return new ListCommand(chosenCategory);
         } else if (upperLine.startsWith("BACK")) {
-            String backCommand = updateChosenCategory(ui, categories);
+            String backCommand = updateChosenCategory();
             return new BackCommand(backCommand);
         } else {
             throw new InvalidBookmarkCommandException();
         }
     }
 
-    private String updateChosenCategory(BookmarkUi ui, ArrayList<BookmarkCategory> categories) {
+    private String updateChosenCategory() {
         if (chosenCategory == 0) {
             return "Goodbye";
         } else {
