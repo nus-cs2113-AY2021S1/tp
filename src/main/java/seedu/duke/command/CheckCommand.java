@@ -5,6 +5,7 @@ import seedu.duke.event.EventList;
 import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.TimeErrorException;
+import seedu.duke.exception.TryRegularParserException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -49,7 +50,7 @@ public class CheckCommand extends Command {
         String[] eventTypes = new String[]{"Personal", "Timetable", "Zoom"};
         for (String type: eventTypes) {
             EventList eventsList = data.getEventList(type);
-            eventsInTimeRange.addAll(eventsList.checkEventsInTimeRange(startDate, endDate, startTime, endTime));
+            eventsInTimeRange.addAll(checkEventsInTimeRange(eventsList, startDate, endDate, startTime, endTime));
         }
         EventList coinciding = new EventList("coinciding", eventsInTimeRange);
 
@@ -110,7 +111,7 @@ public class CheckCommand extends Command {
                     time = timeParser(givenTwelveHour + ":00 " + amPmIndicator); // default to minute 00
                     return time;
                 } else {
-                    throw new TimeErrorException("AM/PM format time requires hours between 1-12.");
+                    throw new TryRegularParserException("hh a format time requires hours between 1-12.");
                 }
             } else if (stringTimeArray.length == 1) { // 24 hour format HH
                 int givenTwentyFourHour = Integer.parseInt(stringTimeArray[0]);
@@ -118,14 +119,41 @@ public class CheckCommand extends Command {
                     time = timeParser(givenTwentyFourHour + ":00"); // default to minute 00
                     return time;
                 } else {
-                    throw new TimeErrorException("24 hour format time requires hours between 0-23.");
+                    throw new TryRegularParserException("HH format time requires hours between 0-23.");
                 }
             } else {
                 throw new TimeErrorException("Something is wrong with the time!");
             }
-        } catch (NumberFormatException e) { // if hh:mm, HH:mm or other invalid non integers is given
+        } catch (NumberFormatException | TryRegularParserException e) {
+            // if hh:mm, HH:mm or other invalid non integers is given
             time = timeParser(stringTime); // exception will be thrown if invalid non-integer is given
             return time;
         }
+    }
+
+    public ArrayList<Event> checkEventsInTimeRange(EventList eventsList, LocalDate startDate, LocalDate endDate,
+                                                   LocalTime startTime, LocalTime endTime) {
+        ArrayList<Event> eventsInTimeRange = new ArrayList<>();
+
+        for (Event event : eventsList.getEvents()) {
+            boolean eventIsBetweenDate = event.getDate().isAfter(startDate) && event.getDate().isBefore(endDate);
+
+            boolean eventIsBetweenTime;
+            if (eventIsBetweenDate) {
+                eventIsBetweenTime = true;
+            } else if (event.getDate().isEqual(startDate)) {
+                eventIsBetweenTime = !(event.getTime().isBefore(startTime));
+            } else if (event.getDate().isEqual(endDate)) {
+                eventIsBetweenTime = !(event.getTime().isAfter(endTime));
+            } else {
+                eventIsBetweenTime = false;
+            }
+
+            if (eventIsBetweenTime) {
+                eventsInTimeRange.add(event);
+            }
+        }
+
+        return eventsInTimeRange;
     }
 }
