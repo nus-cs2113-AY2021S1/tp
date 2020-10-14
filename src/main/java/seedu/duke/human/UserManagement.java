@@ -31,9 +31,10 @@ public class UserManagement {
 
         if (activeUser != null) {
             //Loading of changed active user should be done here. For now set to empty
-            ArrayList<Watchlist> watchlistLists = new ArrayList<Watchlist>();
-            Watchlist watchLists = new Watchlist("Default");
-            inputUser.setActiveWatchlist(watchLists);
+            ArrayList<Watchlist> watchlistLists = new ArrayList<>();
+            Watchlist watchlist = new Watchlist("Default");
+            watchlistLists.add(watchlist);
+            inputUser.setActiveWatchlist(watchlist);
             inputUser.setWatchlistList(watchlistLists);
             LOGGER.log(Level.INFO, "User switched: " + inputUser.getName());
         }
