@@ -11,7 +11,7 @@ public class TextUi {
     public static final int LIST_INDEX_OFFSET = 1;
     public static final int INDEX_OFF_SET = -1;
     public static final String MESSAGE_LIST_RESPOND_FORMAT = "%s";
-    public static final String MESSAGE_MODULE_LIST = "%d.%s %s";
+    public static final String MESSAGE_MODULE_LIST = "%d. %s %s";
     private static StringBuilder tasksMessages;
     /**
      * Return the message of all modules in a specific task list
@@ -47,7 +47,7 @@ public class TextUi {
                                 MESSAGE_MODULE_LIST,
                                 index,
                                 module.getModuleCode(),
-                                module.getDescription())
+                                module.getTitle())
                 )
         ).append(NEWLINE);
     }
