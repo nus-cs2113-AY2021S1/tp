@@ -1,5 +1,9 @@
 package seedu.duke.model;
 
+import seedu.duke.api.StockPriceFetcher;
+import seedu.duke.data.exception.DukeException;
+import seedu.duke.ui.Ui;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -40,8 +44,21 @@ public class Stock implements Serializable {
         return totalQuantity;
     }
 
+    public double getLatestPrice() {
+        StockPriceFetcher stockPriceFetcher = new StockPriceFetcher();
+        Ui ui = new Ui();
+        try {
+            double price = stockPriceFetcher.fetchLatestPrice(getSymbol());
+            return price;
+        } catch (DukeException e) {
+            ui.print(e.getMessage());
+            return 0;
+        }
+    }
+
     @Override
     public String toString() {
-        return "Symbol: " + getSymbol() + ", total quantity: " + getTotalQuantity();
+        return "Symbol: " + getSymbol() + ", total quantity: " + getTotalQuantity() + ", Current Price: "
+                + getLatestPrice();
     }
 }

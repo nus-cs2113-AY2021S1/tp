@@ -90,4 +90,10 @@ public class Parser {
         return searchCommand;
     }
 
+    public static double parsePrice(double price) {
+        String strPrice = String.format("%.2f", price);
+        double formattedPrice = Double.parseDouble(strPrice);
+        return formattedPrice;
+    }
+
 }
