@@ -50,6 +50,13 @@ public class DeleteCommand extends Command {
 
     }
 
+    /**
+     * Deletes the event of event number specified by the user.
+     *
+     * @param calendarList the calendar list to delete the event from.
+     * @param numberDelete the delete event number specified by the user.
+     * @throws DukeException if the delete command input is invalid.
+     */
     private void deleteEvent(CalendarList calendarList, int numberDelete) throws DukeException {
         int calendarNumber;
         if (numberDelete > calendarList.getTotalEvents() || numberDelete <= 0) {
@@ -60,6 +67,13 @@ public class DeleteCommand extends Command {
         calendarList.deleteEvent(calendarNumber);
     }
 
+    /**
+     * Deletes the task of task number specified by the user.
+     *
+     * @param calendarList the calendar list to delete the task from.
+     * @param numberDelete the delete task number specified by the user.
+     * @throws DukeException if the delete command input is invalid.
+     */
     private void deleteTask(CalendarList calendarList, int numberDelete) throws DukeException {
         int calendarNumber;
         if (numberDelete > calendarList.getTotalTasks() || numberDelete <= 0) {

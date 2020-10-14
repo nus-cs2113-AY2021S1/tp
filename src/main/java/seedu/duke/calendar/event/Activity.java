@@ -16,6 +16,14 @@ public class Activity extends Event {
     public static final String TICK_SYMBOL = "/";
     public static final String CROSS_SYMBOL = "X";
 
+    /**
+     * A constructor of an activity object.
+     *
+     * @param details the description of the activity.
+     * @param date date of the activity.
+     * @param time time of the activity.
+     * @param venue venue of the activity.
+     */
     public Activity(String details, LocalDate date, LocalTime time, String venue) {
         super(date, time, venue);
         this.details = details;
@@ -23,7 +31,7 @@ public class Activity extends Event {
     }
 
     /**
-     * Check whether the activity is over.
+     * Checks whether the activity is over.
      *
      * @return whether the activity is over
      */
@@ -39,7 +47,7 @@ public class Activity extends Event {
     }
 
     /**
-     * Show whether the activity is over.
+     * Shows whether the activity is over.
      *
      * @return whether the activity is over
      */
@@ -47,7 +55,6 @@ public class Activity extends Event {
     public String getIcon() {
         return (getIsOver() ? TICK_SYMBOL : CROSS_SYMBOL);
     }
-
 
     /**
      * Returns a [A] icon to indicate task as a event task.
@@ -57,30 +64,45 @@ public class Activity extends Event {
         return "[A][" + getIcon() + "] " + details + " " + super.toString();
     }
 
+    /**
+     * Returns the activity description.
+     */
     @Override
     public String getDescription() {
         return "[A][" + getIcon() + "] " + details + " " + super.getDescription();
     }
 
-    @Override
     /** Returns the respective event type. */
+    @Override
     public String getType() {
         return eventType;
     }
 
+    /**
+     * Saves the activity into files.
+     *
+     * @return string contains the information about the activity event.
+     */
     @Override
     public String printIntoFile() {
         return EVENT_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + details
                 + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue;
     }
 
+    /**
+     * Returns the activity time.
+     */
     @Override
     public LocalTime getTime() {
         return this.time;
     }
 
+    /**
+     * Returns the activity date.
+     */
     @Override
     public LocalDate getDate() {
         return this.date;
     }
+
 }

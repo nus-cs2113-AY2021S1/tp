@@ -339,10 +339,16 @@ public class Ui {
         System.out.println("Unable to save data. Error: " + e.getMessage());
     }
 
+    /**
+     * Shows the user the exception that occurred when finding the storage file.
+     */
     public static void printFileNotFoundErrorMessage() {
         System.out.println("File not found.");
     }
 
+    /**
+     * Shows the user the exception that occurred when when there is an invalid command message.
+     */
     public static void printInvalidFileCommandMessage() {
         System.out.println("Invalid file command input");
     }
