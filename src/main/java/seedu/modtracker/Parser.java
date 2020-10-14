@@ -32,9 +32,6 @@ public class Parser {
         case COMMAND_ADDMOD:
             modList.addMod(input, toPrint, storage);
             break;
-        case COMMAND_ADDTIME:
-            modList.addTime(input, toPrint, storage);
-            break;
         case COMMAND_ADDEXP:
             modList.addExp(input, toPrint, storage);
             break;
@@ -44,11 +41,29 @@ public class Parser {
         case COMMAND_DELETEEXP:
             modList.deleteExp(input, toPrint, storage);
             break;
+        case COMMAND_ADDTIME:
+            try {
+                modList.addTime(input, toPrint, storage);
+            } catch (Exception e) {
+                ui.printErrorMessage(e.getMessage());
+                System.out.println("");
+            }
+            break;
         case COMMAND_MINUS:
-            modList.minusTime(input, toPrint, storage);
+            try {
+                modList.minusTime(input, toPrint, storage);
+            } catch (Exception e) {
+                ui.printErrorMessage(e.getMessage());
+                System.out.println("");
+            }
             break;
         case COMMAND_LIST:
-            ui.printTable(modList, Integer.parseInt(command[1]));
+            try {
+                ui.printTable(modList, Integer.parseInt(command[1]));
+            } catch (Exception e) {
+                ui.printErrorMessage(e.getMessage());
+                System.out.println("");
+            }
             break;
         case COMMAND_HELP:
             if (input.trim().length() > COMMAND_HELP.length()) {
