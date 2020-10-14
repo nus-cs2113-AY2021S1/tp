@@ -24,8 +24,6 @@ public class HelpList {
                 + "   example: deleteexp CS2113T\n"
                 + "7. minus <module code> <time> <week number>\n"
                 + "   example: minus CS2113T 2 1\n"
-                + "8. compare <module code>\n"
-                + "   example: compare CS2113T\n"
-                + "9. exit\n");
+                + "8. exit\n");
     }
 }

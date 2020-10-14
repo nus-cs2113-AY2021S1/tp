@@ -1,6 +1,5 @@
 package seedu.modtracker;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -8,6 +7,7 @@ import java.util.Scanner;
  */
 public class Ui {
     private static final Scanner in = new Scanner(System.in);
+    public static final String INVALID_COMMAND = "OOPS!!! I'm sorry, but I don't know what that means :-(";
 
     /**
      * Reads input entered by the user.
@@ -22,7 +22,7 @@ public class Ui {
      * Prints the invalid command line.
      */
     public void printInvalidCommand() {
-        System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(" + System.lineSeparator());
+        System.out.println(INVALID_COMMAND + System.lineSeparator());
     }
 
     /**
