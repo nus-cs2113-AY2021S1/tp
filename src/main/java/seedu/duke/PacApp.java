@@ -25,8 +25,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import seedu.duke.data.IoManager;
+import seedu.duke.data.ModuleLoader;
+import seedu.duke.data.StoragePath;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import static seedu.duke.util.Constant.DEFAULT_DIALOG_FONT;
 import static seedu.duke.util.Constant.DEFAULT_DIALOG_SIZE;
@@ -51,7 +55,7 @@ public class PacApp extends Application {
         //todo initialize
         //SystemSetting.initialise();
         //TaskManager.initialise();
-        //IOManager.initialise();
+        HashMap<String, String> modulesMap = ModuleLoader.load(StoragePath.NUS_MODULE_LIST_PATH);
         //IOManager.loadList();
         //StateManager.initialise();
     }
@@ -60,8 +64,6 @@ public class PacApp extends Application {
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("INFI-NUKE");
         primaryStage.getIcons().add(new Image("images/venus_icon.png"));
-//        primaryStage.setMinWidth(1250);
-//        primaryStage.setMinHeight(700);
         //todo save data when closing
 
         FXMLLoader sceneLoader = new FXMLLoader(getClass().getResource("/MainWindow.fxml"));
