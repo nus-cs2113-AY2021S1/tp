@@ -64,7 +64,7 @@ public class Lecture extends SchoolEvent {
     }
 
     /**
-     * Save the lecture event into files.
+     * Saves the lecture event into files.
      *
      * @return string contains the information about the lecture event.
      */
@@ -75,7 +75,7 @@ public class Lecture extends SchoolEvent {
     }
 
     /**
-     * Get the date of the lecture.
+     * Gets the date of the lecture.
      *
      * @return date of the lecture
      */
@@ -84,12 +84,18 @@ public class Lecture extends SchoolEvent {
         return date;
     }
 
+    /**
+     * Returns the description of the lecture.
+     */
     @Override
     public String getDescription() {
         return "[LEC]" + "[" + getIcon() + "] " + moduleCode + " "
                 + " (" + venue + ")";
     }
 
+    /**
+     * Returns the time of the lecture.
+     */
     @Override
     public LocalTime getTime() {
         return time;

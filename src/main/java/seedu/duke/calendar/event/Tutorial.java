@@ -83,13 +83,18 @@ public class Tutorial extends SchoolEvent {
     /**
      * Get the date of the tutorial.
      *
-     * @return date of the tutorial
+     * @return date of the tutorial.
      */
     @Override
     public LocalDate getDate() {
         return date;
     }
 
+    /**
+     * Gets the description of the tutorial.
+     *
+     * @return the description of the tutorial.
+     */
     @Override
     public String getDescription() {
         return "[TUT]" + "[" + getIcon() + "] " + moduleCode + " "

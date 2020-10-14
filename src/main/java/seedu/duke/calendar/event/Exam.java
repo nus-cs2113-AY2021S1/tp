@@ -50,22 +50,36 @@ public class Exam extends SchoolEvent {
         return "[Exam][" + getIcon() + "] " + super.toString();
     }
 
+    /**
+     * Returns the type of the event.
+     */
     @Override
     public String getType() {
         return eventType;
     }
 
+    /**
+     * Saves exam into files.
+     *
+     * @return string contains the information about the exam.
+     */
     @Override
     public String printIntoFile() {
         return EXAM_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR
                 + moduleCode + SEPARATOR + date + SEPARATOR + time + SEPARATOR + venue;
     }
 
+    /**
+     * Returns the exam date.
+     */
     @Override
     public LocalDate getDate() {
         return this.date;
     }
 
+    /**
+     * Returns the exam time.
+     */
     @Override
     public LocalTime getTime() {
         return this.time;

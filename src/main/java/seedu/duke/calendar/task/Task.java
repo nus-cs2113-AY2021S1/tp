@@ -37,6 +37,9 @@ public abstract class Task extends CalendarItem {
         return (isDone ? TICK_SYMBOL : CROSS_SYMBOL); //return tick or X symbols
     }
 
+    /**
+     * Returns the description of the task.
+     */
     @Override
     public String getDescription() {
         return description;
@@ -59,7 +62,11 @@ public abstract class Task extends CalendarItem {
         this.isDone = true;
     }
 
-
+    /**
+     * Save the task into files.
+     *
+     * @return string contains the information about the activity event.
+     */
     @Override
     public String printIntoFile() {
         return TASK_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description;
@@ -74,11 +81,17 @@ public abstract class Task extends CalendarItem {
         return isDone;
     }
 
+    /**
+     * Returns the date of the task.
+     */
     @Override
     public LocalDate getDate() {
         return null;
     }
 
+    /**
+     * Returns the time of the task.
+     */
     @Override
     public LocalTime getTime() {
         return null;
