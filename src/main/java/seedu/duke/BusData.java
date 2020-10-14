@@ -30,6 +30,20 @@ public class BusData {
         return null;
     }
 
+    public static ArrayList<Bus> busAtStop(String busStop) {
+        ArrayList<Bus> busList = new ArrayList<>();
+        for(Bus bus: buses){
+            ArrayList<String> stopNames = bus.getStopNames();
+            for(String name: stopNames) {
+                if(name.equalsIgnoreCase(busStop)) {
+                    busList.add(bus);
+                    break;
+                }
+            }
+        }
+        return busList;
+    }
+
     public static ArrayList<Bus> listOfAllBuses() {
         return buses;
     }
