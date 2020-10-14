@@ -16,8 +16,10 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeleteTest {
+
     @Test
-    public void deleteApplianceTest() throws InvalidAdditionOfAppliance, InvalidAddtionOfLocation, EmptyParameterException {
+    public void deleteApplianceTest() throws InvalidAdditionOfAppliance, InvalidAddtionOfLocation,
+            EmptyParameterException {
         //Create Sample Locations and empty appliance list
 
         HomeLocations homeLocations = new HomeLocations();

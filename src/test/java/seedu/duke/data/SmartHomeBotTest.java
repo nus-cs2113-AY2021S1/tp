@@ -2,10 +2,17 @@ package seedu.duke.data;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.duke.common.Messages.MESSAGE_LOCATION_NOT_EXIST;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.commands.Command;
+import seedu.duke.commands.RemoveCommand;
+import seedu.duke.exceptions.EmptyParameterException;
 import seedu.duke.exceptions.InvalidAdditionOfAppliance;
 import seedu.duke.exceptions.InvalidAddtionOfLocation;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 
 class SmartHomeBotTest {
