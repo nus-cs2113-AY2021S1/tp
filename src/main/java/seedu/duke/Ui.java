@@ -142,6 +142,9 @@ public class Ui {
                 System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", taskCounts);
             }
         }
+        if (taskCounts == 0) {
+            System.out.println("Oops, there are no tasks stored in your list!");
+        }
     }
 
     /**
