@@ -1,5 +1,7 @@
 package seedu.duke.backend;
 
+import seedu.duke.DukeFileFormatException;
+import seedu.duke.DukeFileHeaderException;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.finance.FinanceList;
@@ -45,6 +47,11 @@ public class FileManager {
         saveMembers(path + "members.csv");
     }
 
+    public void readAll() throws DukeFileFormatException, DukeFileHeaderException, IOException {
+        readEvents(path + "events.csv");
+        readFinance(path + "finance.csv");
+        readMembers(path + "members.csv");
+    }
     /**
      * Saves all the events currently in memory to a csv file.
      * @param fileName The name of the file, including the path if necessary
@@ -111,7 +118,8 @@ public class FileManager {
      * @return A HashMap containing the header and all column entries under the header as an ArrayList
      * @throws IOException If the file cannot be found or a read error is encountered
      */
-    public static HashMap<String, ArrayList<String>> readFile(String filename, String headers) throws IOException {
+    public static HashMap<String, ArrayList<String>> readFile(String filename, String headers)
+            throws IOException, DukeFileHeaderException, DukeFileFormatException {
         BufferedReader csvReader = new BufferedReader(new FileReader(filename));
         HashMap<String, ArrayList<String>> map = new HashMap<>();
         String row;
@@ -123,7 +131,7 @@ public class FileManager {
             if (header) {
                 // Process file header
                 if (!row.equalsIgnoreCase(headers)) {
-                    return null;
+                    throw new DukeFileHeaderException();
                 }
                 for (String s : data) {
                     map.put(s, new ArrayList<String>());
@@ -138,17 +146,19 @@ public class FileManager {
             }
             if (i != headerOrder.length) {
                 // Column mismatch!
-                return null;
+                throw new DukeFileFormatException();
             }
         }
         return map;
     }
 
-    public static HashMap<String, ArrayList<String>> readFile(String filename) throws IOException {
+    public static HashMap<String, ArrayList<String>> readFile(String filename)
+            throws IOException, DukeFileHeaderException, DukeFileFormatException {
         return readFile(filename, null);
     }
 
-    public static void readFinance(String filename) throws IOException {
+    public static void readFinance(String filename)
+            throws IOException, DukeFileHeaderException, DukeFileFormatException {
         HashMap<String, ArrayList<String>> data = readFile(filename);
         // Validate size of any column
         int rows = data.get("Name").size();
@@ -158,7 +168,8 @@ public class FileManager {
         }
     }
 
-    public static void readEvents(String filename) throws IOException {
+    public static void readEvents(String filename)
+            throws IOException, DukeFileHeaderException, DukeFileFormatException {
         HashMap<String, ArrayList<String>> data = readFile(filename);
         // Validate size of any column
         int rows = data.get("Name").size();
@@ -168,7 +179,8 @@ public class FileManager {
         }
     }
 
-    public static void readMembers(String filename) throws IOException {
+    public static void readMembers(String filename)
+            throws IOException, DukeFileHeaderException, DukeFileFormatException {
         HashMap<String, ArrayList<String>> data = readFile(filename);
         // Validate size of any column
         int rows = data.get("Name").size();
