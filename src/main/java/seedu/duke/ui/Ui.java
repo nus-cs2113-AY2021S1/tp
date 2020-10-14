@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Ui {
     private static final Scanner CONSOLE = new Scanner(System.in);
     private static final String LOGO =
-            "                 _  _____ _\n"
+                    "                 _  _____ _\n"
                     + "      /\\         (_)/ ____| |\n"
                     + "     /  \\   _ __  _| |    | |__   __ _ _ __\n"
                     + "    / /\\ \\ | '_ \\| | |    | '_ \\ / _` | '_ \\\n"
