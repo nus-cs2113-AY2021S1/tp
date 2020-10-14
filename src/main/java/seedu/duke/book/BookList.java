@@ -57,8 +57,8 @@ public class BookList extends QuotesifyList<Book> {
                     Author bookAuthor = book.getAuthor();
                     String bookAuthorName = bookAuthor.getName();
                     String bookTitle = book.getTitle();
-                    return bookAuthorName.toLowerCase().equals(lowerCaseAuthor) &&
-                            bookTitle.toLowerCase().equals(lowerCaseTitle);
+                    return bookAuthorName.toLowerCase().equals(lowerCaseAuthor)
+                            && bookTitle.toLowerCase().equals(lowerCaseTitle);
                 }).collect(Collectors.toList());
         return filteredBooks;
     }
