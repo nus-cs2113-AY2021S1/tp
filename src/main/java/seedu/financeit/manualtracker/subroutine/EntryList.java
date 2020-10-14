@@ -11,6 +11,7 @@ import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
 import java.time.LocalTime;
+import java.util.Arrays;
 
 public class EntryList extends ItemList {
     Ledger ledger;
@@ -61,10 +62,20 @@ public class EntryList extends ItemList {
         case ParamChecker.PARAM_INDEX:
             int index = paramChecker.checkAndReturnIndex(paramType, this.items);
             super.indexToModify = index;
-            break;
+            return;
         default:
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                paramChecker.getUnrecognizedParamMessage(paramType));
+            String[] ignoreParams = {
+                "/time",
+                "/desc",
+                "/cat",
+                "-i",
+                "-e"
+            };
+            if (!Arrays.asList(ignoreParams).contains(paramType)) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    paramChecker.getUnrecognizedParamMessage(paramType));
+            }
+            break;
         }
     }
 }
