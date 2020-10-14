@@ -81,6 +81,10 @@ public abstract class Event {
         return this.time;
     }
 
+    public Repeat getRepeat() {
+        return repeat;
+    }
+
     public ArrayList<DateStatusPair> getRepeatList() {
         return repeat.getRepeatList();
     }
