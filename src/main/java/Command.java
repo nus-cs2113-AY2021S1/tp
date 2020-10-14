@@ -17,7 +17,8 @@ public class Command {
 
     public static void executeCommand(String command, CommandType commandType,
                                       ArrayList<BookmarkCategory> bookmarkCategories, FlashcardRun flashcardRun,
-                                      TimeTableRun timeTableRun) {
+                                      TimeTableRun timeTableRun, ArrayList<academic.Grade> currentGrades,
+                                      ArrayList<academic.Person> listOfPerson) {
         if (commandType == CommandType.EXIT_PROGRAM) {
             Ui.printExit();
         } else if (commandType == CommandType.EXIT_MODE) {
@@ -31,7 +32,8 @@ public class Command {
             HelpMessage.printHelpMessage();
         } else if (StudyIt.getCurrentMode() != Mode.MENU) {
             // Run the mode specific commands if the input is none of the general command
-            handleNonGeneralCommand(command, commandType, bookmarkCategories, flashcardRun, timeTableRun);
+            handleNonGeneralCommand(command, commandType, bookmarkCategories, flashcardRun, timeTableRun,
+                    currentGrades, listOfPerson);
         } else {
             ErrorMessage.printUnidentifiableCommand();
         }
@@ -39,14 +41,16 @@ public class Command {
 
     public static void handleNonGeneralCommand(String command, CommandType commandType,
                                                ArrayList<BookmarkCategory> bookmarkCategories,
-                                               FlashcardRun flashcardRun, TimeTableRun timeTableRun) {
+                                               FlashcardRun flashcardRun, TimeTableRun timeTableRun,
+                                               ArrayList<academic.Grade> currentGrades,
+                                               ArrayList<academic.Person> listOfPerson) {
         Mode currentMode = StudyIt.getCurrentMode();
         if (currentMode == Mode.BOOKMARK) {
             executeBookmarkModeCommand(command, bookmarkCategories);
         } else if (currentMode == Mode.TIMETABLE) {
             executeTimetableModeCommand(command, timeTableRun);
         } else if (currentMode == Mode.ACADEMIC) {
-            executeAcademicModeCommand(command);
+            executeAcademicModeCommand(command, currentGrades, listOfPerson);
         } else if (currentMode == Mode.FLASHCARD) {
             executeFlashcardCommand(command, flashcardRun);
         }
@@ -67,29 +71,30 @@ public class Command {
         timeTableRun.run(command);
     }
 
-    public static void executeAcademicModeCommand(String command) {
+    public static void executeAcademicModeCommand(String command, ArrayList<academic.Grade> currentGrades,
+                                                  ArrayList<academic.Person> listOfPerson) {
         try {
             AcademicCommandType commandType = AcademicCommandParser.getAcademicCommandType(command);
 
             if (commandType == AcademicCommandType.ADD_CONTACT) {
                 Ui.printLine("Adding Contact"); //TODO: Remove placeholder line.
-                PersonBook.addPerson(AcademicCommandParser.getContact(command));
+                PersonBook.addPerson(AcademicCommandParser.getContact(command), listOfPerson);
 
             } else if (commandType == AcademicCommandType.CHECK_CONTACT) {
                 Ui.printLine("Checking Contact"); //TODO: Remove placeholder line.
-                Ui.printLine(PersonBook.printPersonBook());
+                Ui.printLine(PersonBook.printPersonBook(listOfPerson));
 
             } else if (commandType == AcademicCommandType.ADD_GRADE) {
                 Ui.printLine("Adding Grade"); //TODO: Remove placeholder line.
-                GradeBook.addGrade(AcademicCommandParser.getGrade(command));
+                GradeBook.addGrade(AcademicCommandParser.getGrade(command), currentGrades);
 
             } else if (commandType == AcademicCommandType.CHECK_GRADE) {
                 Ui.printLine("Checking Grade"); //TODO: Remove placeholder line.
-                Ui.printLine(GradeBook.printCap());
+                Ui.printLine(GradeBook.printCap(currentGrades));
 
             } else if (commandType == AcademicCommandType.LIST_GRADE) {
                 Ui.printLine("Listing Grade"); //TODO: Remove placeholder line.
-                Ui.printLine(GradeBook.printListOfGrades());
+                Ui.printLine(GradeBook.printListOfGrades(currentGrades));
 
             }
         } catch (InvalidCommandException e) {

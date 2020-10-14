@@ -1,3 +1,5 @@
+import academic.Grade;
+import academic.Person;
 import timetable.TimeTableRun;
 import flashcard.FlashcardRun;
 import bookmark.BookmarkCategory;
@@ -20,6 +22,8 @@ public class StudyIt {
 
     public static TimeTableRun timeTableRun = new TimeTableRun();
     public static FlashcardRun flashcardRun = new FlashcardRun();
+    public static ArrayList<Grade> currentGrades = new ArrayList<>();//TODO change to local storage
+    public static ArrayList<Person> listOfPerson = new ArrayList<>(); //TODO change to local storage
 
     public StudyIt() {
         bookmarkCategories.add(new NusCategory());
@@ -39,7 +43,7 @@ public class StudyIt {
             String command = Ui.inputCommand();
             commandType = CommandParser.getCommandType(command);
             Command.executeCommand(command, commandType, bookmarkCategories, flashcardRun,
-                    timeTableRun);
+                    timeTableRun, currentGrades, listOfPerson);
 
         } while (commandType != CommandType.EXIT_PROGRAM);
     }
