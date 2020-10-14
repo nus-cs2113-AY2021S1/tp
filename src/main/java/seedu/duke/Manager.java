@@ -39,7 +39,8 @@ public class Manager {
         return this.person;
     }
 
-    public void setPerson(String name, Gender gender, int age,int height,int orgWeight,int targWeight, ActivityLevel actLvl) {
+    public void setPerson(String name, Gender gender, int age,int height,int orgWeight,
+                          int targWeight, ActivityLevel actLvl) {
         this.person = new Person(name, gender, age, height, orgWeight, targWeight, actLvl);
     }
 
