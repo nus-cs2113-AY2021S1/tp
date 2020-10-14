@@ -13,7 +13,7 @@ public class CommandFinanceAdd extends Command {
     public String execute() throws DukeFinanceAddDescriptionLostException {
         logger.info("Start adding finance log...\n");
         String input = userinput.getArg("");
-        if (input==null) {
+        if (input == null) {
             logger.warning("The input format is wrong.\n");
             throw new DukeFinanceAddDescriptionLostException();
         }

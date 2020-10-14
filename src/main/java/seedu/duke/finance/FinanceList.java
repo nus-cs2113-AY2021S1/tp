@@ -34,7 +34,7 @@ public class FinanceList {
     public static String dellog(int index) {
         try {
             logger.info("Start deleting...\n");
-            assert index>0 : "The index must > 0";
+            assert index > 0 : "The index must > 0";
             financeLogs.remove(index - 1);
             FinanceLog.finSize--;
             String output2;
