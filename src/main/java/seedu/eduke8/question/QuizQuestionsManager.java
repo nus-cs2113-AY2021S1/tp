@@ -12,8 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class QuizQuestionsManager {
-    private static Logger logger = Logger.getLogger("Main");
-
+    private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     private ArrayList<Question> quizQuestions;
     private int currentQuestionNumber;
@@ -47,7 +46,7 @@ public class QuizQuestionsManager {
 
             // To ensure we do not pick the same question again
             if (integersChosen.contains(randomQuestionIndex)) {
-                logger.log(Level.INFO, "Chosen a repeated question");
+                LOGGER.log(Level.INFO, "Chosen a repeated question");
                 continue;
             }
 

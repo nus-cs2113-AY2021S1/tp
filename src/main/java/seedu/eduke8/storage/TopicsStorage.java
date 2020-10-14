@@ -12,26 +12,21 @@ import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.topic.Topic;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import static java.util.stream.Collectors.toList;
 
-public class TopicsStorage implements Storage {
-    private String filePath = new File("").getAbsolutePath();
+public class TopicsStorage extends LocalStorage {
 
     public TopicsStorage(String filePath) {
-        // Use relative path for Unix systems
-        String[] filePathSplit = filePath.split("/");
-        for (String path: filePathSplit) {
-            this.filePath += File.separator + path;
-        }
+        super(filePath);
     }
 
     @Override
-    public void save(ArrayList<Displayable> displayables) throws IOException {
+    public void save() throws IOException {
         createFileIfNotExists();
 
         // For adding and removing questions for v2
@@ -45,12 +40,16 @@ public class TopicsStorage implements Storage {
         FileReader reader = new FileReader(filePath);
 
         //Read JSON file
-        JSONArray topicsArray = (JSONArray) jsonParser.parse(reader);
+        JSONArray topicsAsJsonArray = (JSONArray) jsonParser.parse(reader);
 
         //Iterate over employee array
-        ArrayList<Displayable> topicsAsObjects = (ArrayList<Displayable>) topicsArray.stream()
+        ArrayList<Displayable> topicsAsObjects = (ArrayList<Displayable>) topicsAsJsonArray.stream()
                 .map(topic -> parseToTopicObject((JSONObject) topic))
                 .collect(toList());
+
+        assert topicsAsObjects.get(0) instanceof Topic;
+
+        LOGGER.log(Level.INFO, "Topics loaded from file");
 
         return topicsAsObjects;
     }
@@ -58,24 +57,26 @@ public class TopicsStorage implements Storage {
     private static Topic parseToTopicObject(JSONObject topic) {
         String topicTitle = (String) topic.get("topic");
 
-        JSONArray questionsArray = (JSONArray) topic.get("questions");
-        ArrayList<Displayable> questionsAsObjects = (ArrayList<Displayable>) questionsArray.stream()
+        JSONArray questionsAsJsonArray = (JSONArray) topic.get("questions");
+        ArrayList<Displayable> questionsAsObjects = (ArrayList<Displayable>) questionsAsJsonArray.stream()
                 .map(question -> parseToQuestionObject((JSONObject) question))
                 .collect(toList());
 
+        assert questionsAsObjects.get(0) instanceof Question;
+
         QuestionList questionList = new QuestionList(questionsAsObjects);
 
-        Topic topicAsObject = new Topic(topicTitle, questionList);
-
-        return topicAsObject;
+        return new Topic(topicTitle, questionList);
     }
 
     private static Question parseToQuestionObject(JSONObject question) {
         String questionDescription = (String) question.get("description");
-        JSONArray optionsArray = (JSONArray) question.get("options");
-        ArrayList<Displayable> optionsAsObjects = (ArrayList<Displayable>) optionsArray.stream()
+        JSONArray optionsAsJsonArray = (JSONArray) question.get("options");
+        ArrayList<Displayable> optionsAsObjects = (ArrayList<Displayable>) optionsAsJsonArray.stream()
                 .map(option -> parseToOptionObject((JSONObject) option))
                 .collect(toList());
+
+        assert optionsAsObjects.get(0) instanceof Option;
 
         OptionList optionList = new OptionList(optionsAsObjects);
 
@@ -83,9 +84,7 @@ public class TopicsStorage implements Storage {
 
         Hint hint = new Hint(hintDescription);
 
-        Question questionAsObject = new Question(questionDescription, optionList, hint);
-
-        return questionAsObject;
+        return new Question(questionDescription, optionList, hint);
     }
 
     private static Option parseToOptionObject(JSONObject option) {
@@ -98,14 +97,8 @@ public class TopicsStorage implements Storage {
             optionAsObject.markAsCorrectAnswer();
         }
 
-        return optionAsObject;
-    }
+        assert optionAsObject.isCorrectAnswer() == isCorrectAnswer;
 
-    private void createFileIfNotExists() throws  IOException {
-        File f = new File(filePath);
-        if (!f.exists()) {
-            f.getParentFile().mkdirs();
-            f.createNewFile();
-        }
+        return optionAsObject;
     }
 }
