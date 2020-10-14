@@ -17,6 +17,7 @@ import java.time.LocalTime;
 public class RepeatCommand extends Command {
     private static final String COMMANDTYPE_LIST = "list";
     private static final String COMMANDTYPE_ADD = "add";
+    private static final String COMMANDTYPE_ERROR = "error";
     private String commandType;
 
     /**
@@ -39,6 +40,8 @@ public class RepeatCommand extends Command {
         case COMMANDTYPE_LIST:
             executeList(data, ui);
             break;
+        case COMMANDTYPE_ERROR:
+            executeNull(data, ui, storage);
         default:
             //do nothing
         }
@@ -50,27 +53,36 @@ public class RepeatCommand extends Command {
      * @param input String containing user inputs
      * @return RepeatCommand set to either add additional dates or set to list out current dates in event
      */
-    public static Command parse(String input) throws WrongNumberOfArgumentsException, NumberFormatException {
-        String[] words = input.split(" ");
-        switch (words.length) {
-        case 2:
-            words[0] = formatListName(words[0]);
-            isValidNumber(words[1]);
-            input = String.join(" ", words);
-            return new RepeatCommand(input, COMMANDTYPE_LIST);
-        case 4:
-            words[0] = formatListName(words[0]);
-            isValidNumber(words[1]);
-            words[2] = words[2].toUpperCase();
-            isValidNumber(words[3]);
-            input = String.join(" ", words);
-            return new RepeatCommand(input, COMMANDTYPE_ADD);
-        default:
-            String errorMessage = "Wrong number of arguments provided";
-            WrongNumberOfArgumentsException e = new WrongNumberOfArgumentsException(errorMessage);
-            throw e;
+    public static Command parse(String input) {
+        try {
+            String[] words = input.split(" ");
+            switch (words.length) {
+            case 2:
+                words[0] = formatListName(words[0]);
+                isValidNumber(words[1]);
+                input = String.join(" ", words);
+                return new RepeatCommand(input, COMMANDTYPE_LIST);
+            case 4:
+                words[0] = formatListName(words[0]);
+                isValidNumber(words[1]);
+                words[2] = words[2].toUpperCase();
+                isValidNumber(words[3]);
+                input = String.join(" ", words);
+                return new RepeatCommand(input, COMMANDTYPE_ADD);
+            default:
+                String errorMessage = "Wrong number of arguments provided";
+                WrongNumberOfArgumentsException e = new WrongNumberOfArgumentsException(errorMessage);
+                throw e;
+            }
+        } catch (WrongNumberOfArgumentsException e) {
+            String errorMessage = e.getMessage();
+            return new RepeatCommand(errorMessage, COMMANDTYPE_ERROR);
+        } //index not in numeric form
+        //index not in range
+        //no such time unit for the repeat
+        //no deadline given to repeat
+        
 
-        }
     }
 
     /**
@@ -134,5 +146,10 @@ public class RepeatCommand extends Command {
         Repeat repeat = new Repeat(startDate, startTime, words[2], count);
         eventToRepeat.setRepeat(repeat);
         ui.printRepeatAdd(eventToRepeat);
+    }
+
+    private void executeNull(UserData data, Ui ui, Storage storage) {
+        //print the error message of the command
+        ui.printExceptionMessage(this.command);
     }
 }

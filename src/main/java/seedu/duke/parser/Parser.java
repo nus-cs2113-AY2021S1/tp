@@ -54,12 +54,7 @@ public class Parser {
             return new CheckCommand(argument);
 
         case "repeat":
-            try {
-                return RepeatCommand.parse(argument);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-            return null;
+            return RepeatCommand.parse(argument);
 
         case "goal":
             return new GoalCommand(argument);
