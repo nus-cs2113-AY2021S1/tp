@@ -11,3 +11,4 @@ I am Diet, your guide to using DietBook. What is your name?
 Please input in the following format:
   name YOUR_NAME
 ________________________________________________________________________________________________________________________________________________
+__________________
