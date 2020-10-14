@@ -60,8 +60,8 @@ public class Command {
         BookmarkUi bookmarkUi = new BookmarkUi();
         BookmarkParser bookmarkParser = new BookmarkParser();
         try {
-            BookmarkCommand c = bookmarkParser.evaluateInput(command, bookmarkUi, bookmarkCategories);
-            c.executeCommand(bookmarkUi, bookmarkCategories);
+            BookmarkCommand c = bookmarkParser.evaluateInput(command);
+            c.executeCommand(bookmarkUi,bookmarkCategories);
         } catch (InvalidBookmarkCommandException e) {
             bookmarkUi.showInvalidBookmarkCommand();
         }
