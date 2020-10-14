@@ -19,4 +19,8 @@ public class ChangeModeCommand extends BookmarkCommand {
         ui.showBookmarkLinkList(categories.get(categoryNumber - 1).getLinks());
         System.out.println("Add new bookmarks by using \"add <link>\"");
     }
+
+    //Todo throw exceptions for invalid input
+    //Todo throw exceptions for category number = 0 or category number > size
+    //Todo throw exceptions saying that it is already in the mode
 }

@@ -23,4 +23,7 @@ public class AddLinkCommand extends BookmarkCommand {
             ui.showBookmarkLinkList(categories.get(categoryNumber - 1).getLinks());
         }
     }
+
+    //TODO add empty link exceptions
+    //TODO add invalid link exceptions
 }
