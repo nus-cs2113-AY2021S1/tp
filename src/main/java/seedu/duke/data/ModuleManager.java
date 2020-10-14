@@ -12,6 +12,8 @@ public class ModuleManager {
     private static ArrayList<Module> moduleList;
     private static HashMap<String, String> modulesMap;
 
+    private static final String NO_KEYWORD = "";
+
     /**
      * Initialises the ModuleManager class.
      *
@@ -113,6 +115,52 @@ public class ModuleManager {
             toAdd.setTitle(moduleTitle);
             moduleList.add(toAdd);
         }
+    }
+
+    /**
+     * Filter for modules in the Module List with module code that matches <b>exactly</b> the specified keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param moduleKeyword
+     *  The keyword to filter the modules
+     * @return
+     *  The list of filtered modules
+     */
+    public static ArrayList<Module> filterExact(String moduleKeyword) {
+        // Returns all modules in the Module List if no keyword is provided.
+        if (moduleKeyword.equals(NO_KEYWORD)) {
+            return moduleList;
+        }
+
+        ArrayList<Module> filteredModuleList = new ArrayList<>();
+        for (Module module : moduleList) {
+            if (module.getModuleCode().toLowerCase().equals(moduleKeyword.toLowerCase())) {
+                filteredModuleList.add(module);
+            }
+        }
+        return filteredModuleList;
+    }
+
+    /* Filters for data (module / task / category) that *contains* given keywords (i.e. not exact match)
+     *  in a case-insensitive manner. There may be multiple data that matches. */
+
+    /**
+     * Filter for modules in the Module List with module code that contains the specified keyword.
+     * Filtering is done in a case-insensitive manner.
+     *
+     * @param moduleKeyword
+     *  The keyword to filter the modules
+     * @return
+     *  The list of filtered modules
+     */
+    public static ArrayList<Module> filter(String moduleKeyword) {
+        ArrayList<Module> filteredModuleList = new ArrayList<>();
+        for (Module module : moduleList) {
+            if (module.getModuleCode().toLowerCase().contains(moduleKeyword.toLowerCase())) {
+                filteredModuleList.add(module);
+            }
+        }
+        return filteredModuleList;
     }
 
     public static class ModuleNotFoundException extends DataNotFoundException {

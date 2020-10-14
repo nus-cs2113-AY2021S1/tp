@@ -1,4 +1,4 @@
-package seedu.duke.command.edit;
+package seedu.duke.command.editcommand;
 
 import seedu.duke.command.Command;
 import seedu.duke.directory.Directory;
