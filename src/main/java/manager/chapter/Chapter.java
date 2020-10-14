@@ -25,7 +25,7 @@ public class Chapter {
     }
 
     public static String rateChapter() {
-        if (Parser.chooseNewDeckRating()) {
+        if (Parser.chooseToRateNewDeck()) {
             return Parser.getChoiceOfNewDeckRating();
         } else {
             return null;
@@ -50,6 +50,10 @@ public class Chapter {
 
     public String getChapterName() {
         return chapterName;
+    }
+
+    public void setChapterName(String chapterName) {
+        this.chapterName = chapterName;
     }
 
     public CardList getCards() {

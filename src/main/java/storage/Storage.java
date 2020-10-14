@@ -1,6 +1,7 @@
 package storage;
 
 import exception.InvalidFileFormatException;
+import exception.InvalidInputException;
 import manager.card.Card;
 import manager.chapter.CardList;
 import manager.chapter.Chapter;
@@ -139,10 +140,14 @@ public class Storage {
             //to read the card
             String fileCommand = s.nextLine();
             String[] args = fileCommand.split(QUESTION_ANSWER_PREFIX, 2);
-            String question = Parser.parseQuestionInFile(args[0]);
-            String answer = Parser.parseAnswerInFile(args[1]);
-            Card card = new Card(question, answer);
-            cards.add(card);
+            try {
+                String question = Parser.parseQuestionInFile(args[0]);
+                String answer = Parser.parseAnswerInFile(args[1]);
+                Card card = new Card(question, answer);
+                cards.add(card);
+            } catch (InvalidFileFormatException e) {
+                return null;
+            }
         }
         return cards;
     }
