@@ -1,8 +1,7 @@
-Ledger;2020-01-01
-Entry;Income;TRANSPORT;123457.0;15:00:01;allowance
 Entry;Income;TRANSPORT;123458.0;15:00:01;allowance
 Entry;Income;TRANSPORT;123459.0;15:00:01;allowance
 Entry;Income;TRANSPORT;123410.0;15:00:01;allowance
 Entry;Income;TRANSPORT;123411.0;15:00:01;allowance
 Ledger;2020-05-05
 Ledger;2020-06-06
+

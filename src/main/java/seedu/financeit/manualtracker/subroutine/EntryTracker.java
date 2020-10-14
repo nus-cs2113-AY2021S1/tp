@@ -210,7 +210,7 @@ public class EntryTracker {
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
-        }  finally {
+        } finally {
             if (!entryList.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
@@ -222,10 +222,10 @@ public class EntryTracker {
     private static void printCommandList() {
         TablePrinter.setTitle("List of Commands");
         TablePrinter.addRow("No.;Command                 ;Input Format                                               ");
-        TablePrinter.addRow("1.;New entry;entry new /time <HHMM> /info <string> /cat <category> -[i/e]");
-        TablePrinter.addRow("2.;Edit entry;entry edit <parameter to edit>");
+        TablePrinter.addRow("1.;New entry;entry new /time {HHMM} /info {string} /cat {category} -[i/e]");
+        TablePrinter.addRow("2.;Edit entry;entry edit {parameter to edit}");
         TablePrinter.addRow("3.;list entries;entry list");
-        TablePrinter.addRow("4.;delete entry;entry delete /time <HHMM>");
+        TablePrinter.addRow("4.;delete entry;entry delete /time {HHMM}");
         TablePrinter.addRow("5.;exit to manual tracker;exit");
         TablePrinter.printList();
     }
