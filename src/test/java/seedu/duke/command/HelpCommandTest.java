@@ -14,7 +14,7 @@ class HelpCommandTest {
 
     private static final String HELP_STRING = InterfaceManager.LS
             + "The recognized commands and their usages are listed below. "
-            + "Parameters listed in brackets, [ ] represent optional inputs." + InterfaceManager.LS;
+            + "Parameters listed in brackets, [ ] represent optional inputs.";
 
     private static final String EXPECTED = HELP_STRING + InterfaceManager.LS + COLOR_WHITE
             + AddNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN

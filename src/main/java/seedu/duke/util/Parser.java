@@ -32,12 +32,6 @@ import seedu.duke.data.timetable.WeeklyEvent;
 import seedu.duke.data.timetable.MonthlyEvent;
 import seedu.duke.data.timetable.YearlyEvent;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_END;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELETE_LINE;
@@ -52,8 +46,15 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_TIMING;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_SORT;
 import static seedu.duke.util.PrefixSyntax.STRING_SPLIT_DELIMITER;
+import static seedu.duke.util.PrefixSyntax.STRING_SORT_ASCENDING;
+import static seedu.duke.util.PrefixSyntax.STRING_SORT_DESCENDING;
 import static seedu.duke.util.PrefixSyntax.TIMING_SPLIT_DELIMITER;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Parses user input.
@@ -115,7 +116,6 @@ public class Parser {
             case TagCommand.COMMAND_WORD:
                 return prepareTag(userMessage);
             case RemindCommand.COMMAND_WORD:
-                //return prepareRemind();
                 return new RemindCommand();
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
@@ -127,15 +127,6 @@ public class Parser {
         } catch (SystemException exception) {
             return new IncorrectCommand(exception.getMessage());
         }
-    }
-
-    /**
-     * Creates a new RemindCommand.
-     *
-     * @return A new RemindCommand Object.
-     */
-    private Command prepareRemind() {
-        return new RemindCommand();
     }
 
     /**
@@ -200,7 +191,7 @@ public class Parser {
         }
 
         // Split into the tag name and tag color.
-        String[] tagInfo = tagsInfo.split("\\s+", 2);
+        String[] tagInfo = tagsInfo.split(STRING_SPLIT_DELIMITER, 2);
 
         tagName = checkBlank(tagInfo[0], ExceptionType.EXCEPTION_MISSING_TAG);
 
@@ -324,15 +315,15 @@ public class Parser {
                         try {
                             timePeriod = Integer.parseInt(timeStrings[0]);
                             timeUnit = timeStrings[1];
-                            if ((!timeUnit.equals(Event.REMINDER_DAY) && !timeUnit.equals(Event.REMINDER_WEEK))
-                                    || timePeriod < 1) {
+                            if ((!timeUnit.equalsIgnoreCase(Event.REMINDER_DAY)
+                                    && !timeUnit.equalsIgnoreCase(Event.REMINDER_WEEK)) || timePeriod < 1) {
                                 throw new SystemException(ExceptionType.EXCEPTION_INVALID_REMINDER_FORMAT);
                             }
 
                             exception = ExceptionType.EXCEPTION_EARLY_REMINDER;
-                            if (timeUnit.equals(Event.REMINDER_WEEK) && timePeriod > 1) {
+                            if (timeUnit.equalsIgnoreCase(Event.REMINDER_WEEK) && timePeriod > 1) {
                                 throw new SystemException(exception);
-                            } else if (timeUnit.equals(Event.REMINDER_DAY) && timePeriod > 7) {
+                            } else if (timeUnit.equalsIgnoreCase(Event.REMINDER_DAY) && timePeriod > 7) {
                                 throw new SystemException(exception);
                             }
                         } catch (NumberFormatException exceptionNumFormat) {
@@ -390,7 +381,7 @@ public class Parser {
                 throw new SystemException(ExceptionType.EXCEPTION_INVALID_RECURRING_TYPE);
             }
         } else {
-            event = new Event(title, dateTime, toRemind, isRecurring, timePeriods, timeUnits);
+            event = new Event(title, dateTime, toRemind, false, timePeriods, timeUnits);
         }
         return new AddEventCommand(event);
     }
@@ -410,7 +401,7 @@ public class Parser {
             commandInput.append(input.nextLine());
 
             // Add next line when user press enter
-            if (!commandInput.toString().equals(PREFIX_DELIMITER + PREFIX_END)) {
+            if (!commandInput.toString().equalsIgnoreCase(PREFIX_DELIMITER + PREFIX_END)) {
                 commandInput.append(STRING_NEW_LINE);
             }
 
@@ -483,7 +474,7 @@ public class Parser {
         } catch (NumberFormatException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
         }
-        return new IncorrectCommand(ExceptionType.EXCEPTION_INVALID_INPUT_FORMAT.toString());
+        throw new SystemException(ExceptionType.EXCEPTION_INVALID_INPUT_FORMAT);
     }
 
     /**
@@ -508,14 +499,17 @@ public class Parser {
      * @param userMessage user's input of the keyword.
      * @return new ListNoteCommand Command.
      */
-    private Command prepareListNote(String userMessage) {
+    private Command prepareListNote(String userMessage) throws SystemException {
         // If no optional parameters, return default display of list note
         if (userMessage == null) {
             return new ListNoteCommand();
         }
 
+        String tagName;
+        String sort;
         Boolean isAscending = null;
-        ArrayList<String> tags = new ArrayList<>();
+        ArrayList<String> tagsName = new ArrayList<>();
+        boolean isTag = false;
 
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
@@ -526,16 +520,18 @@ public class Parser {
 
                 switch (prefix) {
                 case PREFIX_TAG:
+                    isTag = true;
                     exception = ExceptionType.EXCEPTION_MISSING_TAG;
-                    checkBlank(infoDetails[1], exception);
-                    tags.add(infoDetails[1]);
+                    tagName = checkBlank(infoDetails[1], exception);
+                    tagsName.add(tagName);
                     break;
                 case PREFIX_SORT:
+                    isTag = false;
                     exception = ExceptionType.EXCEPTION_MISSING_SORT;
-                    checkBlank(infoDetails[1], exception);
-                    if (infoDetails[1].equals("up")) {
+                    sort = checkBlank(infoDetails[1], exception);
+                    if (sort.equalsIgnoreCase(STRING_SORT_ASCENDING)) {
                         isAscending = true;
-                    } else if (infoDetails[1].equals("down")) {
+                    } else if (sort.equalsIgnoreCase(STRING_SORT_DESCENDING)) {
                         isAscending = false;
                     } else {
                         throw new SystemException(ExceptionType.EXCEPTION_INVALID_SORT_TYPE);
@@ -545,19 +541,23 @@ public class Parser {
                     throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
             }
-        } catch (SystemException e) {
-            e.printStackTrace();
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            if (isTag) {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TAG);
+            } else {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_SORT);
+            }
         }
         
         // No optional parameters case as it is already accounted
         // Minimally if no tag, will have up/down and vice versa
-        if (tags.isEmpty()) {
+        if (tagsName.isEmpty()) {
             return new ListNoteCommand(isAscending);
         } else {
             if (isAscending == null) {
-                return new ListNoteCommand(tags);
+                return new ListNoteCommand(tagsName);
             } else {
-                return new ListNoteCommand(isAscending, tags);
+                return new ListNoteCommand(isAscending, tagsName);
             }
         }
     }
@@ -577,7 +577,7 @@ public class Parser {
 
             for (String[] infoDetails : splitInfoDetails) {
                 String prefix = infoDetails[0].toLowerCase();
-                if (PREFIX_TIMING.equals(prefix)) {
+                if (PREFIX_TIMING.equalsIgnoreCase(prefix)) {
                     ExceptionType exception = ExceptionType.EXCEPTION_INVALID_LIST_TIMING_FORMAT;
                     details = checkBlank(infoDetails[1], exception);
                 } else {
@@ -604,7 +604,6 @@ public class Parser {
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException exception) {
                 throw new SystemException(ExceptionType.EXCEPTION_INVALID_LIST_TIMING_FORMAT);
             }
-
             return new ListEventCommand(year, month);
         }
     }
@@ -612,6 +611,7 @@ public class Parser {
     private Command prepareViewNote(String userMessage) throws SystemException {
         String title;
         int index;
+        boolean isTitle = false;
 
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
@@ -621,10 +621,12 @@ public class Parser {
                 ExceptionType exception;
                 switch (prefix) {
                 case PREFIX_TITLE:
+                    isTitle = true;
                     exception = ExceptionType.EXCEPTION_MISSING_TITLE;
                     title = checkBlank(infoDetails[1],exception);
                     return new ViewNoteCommand(title);
                 case PREFIX_INDEX:
+                    isTitle = false;
                     exception = ExceptionType.EXCEPTION_MISSING_INDEX;
                     index = Integer.parseInt(checkBlank(infoDetails[1], exception));
                     return new ViewNoteCommand(index - 1);
@@ -633,11 +635,15 @@ public class Parser {
                 }
             }
         } catch (ArrayIndexOutOfBoundsException exception) {
-            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+            if (isTitle) {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
+            } else {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
+            }
         } catch (NumberFormatException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
         }
-        throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
+        throw new SystemException(ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
     }
 
     /**
@@ -671,9 +677,11 @@ public class Parser {
        return new EditCommand(index, event);
     }
     */
+
     private Command preparePin(String userMessage) throws SystemException {
         String title;
         int index;
+        boolean isTitle = false;
 
         try {
             ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
@@ -683,10 +691,12 @@ public class Parser {
                 ExceptionType exception;
                 switch (prefix) {
                 case PREFIX_TITLE:
+                    isTitle = true;
                     exception = ExceptionType.EXCEPTION_MISSING_TITLE;
                     title = checkBlank(infoDetails[1], exception);
                     return new PinCommand(title);
                 case PREFIX_INDEX:
+                    isTitle = false;
                     exception = ExceptionType.EXCEPTION_MISSING_INDEX;
                     index = Integer.parseInt(checkBlank(infoDetails[1], exception));
                     return new PinCommand(index - 1);
@@ -695,11 +705,15 @@ public class Parser {
                 }
             }
         } catch (ArrayIndexOutOfBoundsException exception) {
-            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+            if (isTitle) {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
+            } else {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
+            }
         } catch (NumberFormatException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
         }
-        throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
+        throw new SystemException(ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
     }
 
     /**
