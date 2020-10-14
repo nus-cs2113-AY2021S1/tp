@@ -1,13 +1,17 @@
+import java.util.List;
+
 public class Order {
 
     private Canteen canteen;
     private Stall stall;
-    private Dish dish;
+    private List<Dish> dishes;
+    private Customer customer;
 
-    Order(Canteen canteen, Stall stall, Dish dish) {
+    Order(Canteen canteen, Stall stall, List<Dish> dishes, Customer customer) {
         this.canteen = canteen;
         this.stall = stall;
-        this.dish = dish;
+        this.dishes = dishes;
+        this.customer = customer;
     }
 
     public Canteen getCanteen() {
@@ -18,8 +22,12 @@ public class Order {
         return this.stall;
     }
 
-    public Dish getDish() {
-        return this.dish;
+    public List<Dish> getDish() {
+        return this.dishes;
+    }
+
+    public String toString() {
+        return this.canteen + "order in " + this.stall + ": " + this.dishes +  " by " + this.customer;
     }
 
 }

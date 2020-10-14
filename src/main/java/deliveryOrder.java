@@ -1,16 +1,18 @@
+import java.util.List;
+
 public class deliveryOrder extends Order {
 
+    private final static double carrierFee = 0.3;
+    private final static double deliveryFee = 2.0;
+
     private boolean isDeliveryOrder;
-    private  double carrierFee;
-    private double deliveryFee;
     private String address;
     private String phoneNumber;
 
-    deliveryOrder(Canteen canteen, Stall stall, Dish dish, boolean isDeliveryOrder,
-                  double carrierFee, double deliveryFee, String address, String phoneNumber) {
-        super(canteen, stall, dish);
+    deliveryOrder(Canteen canteen, Stall stall, List<Dish> dishes, Customer customer, boolean isDeliveryOrder,
+                  String address, String phoneNumber) {
+        super(canteen, stall, dishes, customer);
         this.isDeliveryOrder = isDeliveryOrder;
-        this.carrierFee = carrierFee;
         this.address = address;
         this.phoneNumber = phoneNumber;
     }
@@ -33,6 +35,17 @@ public class deliveryOrder extends Order {
 
     public String getPhoneNumber() {
         return this.phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        if (isDeliveryOrder) {
+            return super.toString() + "(Delivery Order: address is " + this.address + " phone number is "
+                    + this.phoneNumber + ")";
+        }
+        else {
+            return super.toString() + "(Not Delivery Order)";
+        }
     }
 
 }
