@@ -21,12 +21,13 @@ public class PrefixSyntax {
 
     /** Event related prefix. */
     public static final String PREFIX_TIMING = "timing";
-    public static final String PREFIX_RECURRING = "rec";
-    public static final String PREFIX_REMIND = "rem";
+    public static final String PREFIX_RECURRING = "repeat";
+    public static final String PREFIX_REMIND = "remind";
     public static final String PREFIX_STOP_RECURRING = "stop";
     public static final String PREFIX_DATETIME = "d";
 
     public static final String STRING_SPLIT_DELIMITER = " ";
+    public static final String TIMING_SPLIT_DELIMITER = "-";
 
     /** Note content related prefix. */
     public static final String STRING_NEW_LINE = "\n";

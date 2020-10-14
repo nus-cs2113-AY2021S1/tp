@@ -2,6 +2,7 @@ package seedu.duke.util;
 
 import seedu.duke.data.exception.SystemException;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -25,8 +26,12 @@ public class DateTimeManager {
         try {
             dateTime = LocalDateTime.parse(input, FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new SystemException(SystemException.ExceptionType.EXCEPTION_INVALID_TIMING);
+            throw new SystemException(SystemException.ExceptionType.EXCEPTION_INVALID_TIMING_FORMAT);
         }
         return dateTime;
+    }
+
+    public static String getMonthName(LocalDate date) {
+        return date.getMonth().name();
     }
 }
