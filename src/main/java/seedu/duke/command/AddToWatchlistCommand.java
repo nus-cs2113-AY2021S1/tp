@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
+import seedu.duke.human.User;
 import seedu.duke.human.UserManagement;
 import seedu.duke.storage.Storage;
 import seedu.duke.watchlist.Watchlist;
@@ -30,14 +31,18 @@ public class AddToWatchlistCommand extends Command {
      * Adds an anime to current watchlist.
      */
     @Override
-    public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
-                          UserManagement userManagement) throws AniException {
+    public String execute(AnimeData animeData, UserManagement userManagement) throws AniException {
+        Storage storage = userManagement.getStorage();
+        User activeUser = userManagement.getActiveUser();
+        Watchlist activeWatchlist = activeUser.getActiveWatchlist();
+        ArrayList<Watchlist> activeWatchlistList = activeUser.getWatchlistList();
+
         if (!option.equals(ADD_OPTION)) {
             LOGGER.log(Level.WARNING, "Option type given is wrong");
             throw new AniException("Watchlist command only accepts the option: \"-a\".");
         }
         assert option.equals("-a") == true : "option type should have been \"-a\".";
-        addToWatchlist(userManagement.getStorage(), activeWatchlistList, activeWatchlist);
+        addToWatchlist(storage, activeWatchlistList, activeWatchlist);
 
         return "Anime added to watchlist!";
     }
@@ -48,8 +53,11 @@ public class AddToWatchlistCommand extends Command {
             LOGGER.log(Level.WARNING, "Anime name is empty, exception thrown");
             throw new AniException("Anime name cannot be empty.");
         }
-        
+
+        int activeWatchlistIndex = activeWatchlistList.indexOf(activeWatchlist);
         activeWatchlist.addAnimeToList(animeName);
+        activeWatchlistList.set(activeWatchlistIndex, activeWatchlist);
+
         storage.saveWatchlist(activeWatchlistList);
         LOGGER.log(Level.INFO, "Successfully added and stored anime into active watchlist");
     }

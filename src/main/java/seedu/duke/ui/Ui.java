@@ -1,5 +1,7 @@
 package seedu.duke.ui;
 
+import seedu.duke.human.User;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -42,7 +44,9 @@ public class Ui {
         return CONSOLE.nextLine();
     }
 
-    public String readUserInput(String userName, String watchlistName) {
+    public String readUserInput(User activeUser) {
+        String userName = activeUser.getHonorificName();
+        String watchlistName = activeUser.getActiveWatchlistName();
         System.out.print(System.lineSeparator() + " " + userName + " (" + watchlistName + ") #> ");
         String userInput = CONSOLE.nextLine();
         return userInput;

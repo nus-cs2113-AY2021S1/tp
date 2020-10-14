@@ -3,5 +3,6 @@ Abec
 Female
 watchlist -n a
 watchlist -n b
+watchlist -l
 add -a MyFirstAnime
 exit
