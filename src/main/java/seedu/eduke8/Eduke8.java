@@ -63,7 +63,7 @@ public class Eduke8 {
                 command.execute(topicList, ui);
                 isExit = command.isExit();
             } catch (Eduke8Exception e) {
-                ui.printError("runCommandLoopUntilExit() Exception");        // able to call ui.printError(e.getMessage()) too if implemented
+                ui.printError("runCommandLoopUntilExit() Exception");
             }
         }
     }

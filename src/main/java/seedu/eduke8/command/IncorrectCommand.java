@@ -12,6 +12,6 @@ public class IncorrectCommand extends Command {
 
     @Override
     public void execute(DisplayableList displayableList, Ui ui) {
-        ui.printError(errorType); //to implement in ui: print out messages according to string input indicating type of error
+        ui.printError(errorType); 
     }
 }
