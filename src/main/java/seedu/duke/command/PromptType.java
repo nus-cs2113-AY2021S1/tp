@@ -1,4 +1,4 @@
-package seedu.duck.command;
+package seedu.duke.command;
 
 /**
  * Indicates the type of user commands and corresponding command results

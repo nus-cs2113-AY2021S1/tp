@@ -45,6 +45,8 @@ public class AddTaskCommand extends AddCommand {
             return new CommandResult(MESSAGE_DUPLICATE_TASK);
         } catch (IncorrectDirectoryLevelException e) {
             return new CommandResult(MESSAGE_INCORRECT_DIRECTORY_LEVEL);
+        } catch (ModuleManager.ModuleNotFoundException e) {
+            return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
         }
     }
 }

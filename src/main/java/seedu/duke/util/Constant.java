@@ -1,4 +1,4 @@
-package seedu.duck.util;
+package seedu.duke.util;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -25,4 +25,7 @@ public class Constant {
     public static final String DATA_FILE = "duke.json";
     public static final Path PATH_TO_DATA_FOLDER = Paths.get(PROJECT_ROOT, DATA_FOLDER);
     public static final Path PATH_TO_DATA_FILE = Paths.get(PROJECT_ROOT, DATA_FOLDER, DATA_FILE);
+
+    public static final String YES_ICON = "[Y]";
+    public static final String NO_ICON = "[N]";
 }

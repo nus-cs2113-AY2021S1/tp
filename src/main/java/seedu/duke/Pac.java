@@ -1,8 +1,8 @@
 package seedu.duke;
 
-import java.util.Scanner;
+import javafx.application.Application;
 
-public class Duke {
+public class Pac {
     /**
      * The main entry point to the application.
      *
@@ -12,6 +12,6 @@ public class Duke {
      *     Error: JavaFX runtime components are missing, and are required to run this application
      */
     public static void main(String[] args) {
-        Application.launch(DuckApp.class, args);
+        Application.launch(PacApp.class, args);
     }
 }

@@ -1,4 +1,4 @@
 package seedu.duke.exception;
 
-public class DirectoryTraverseOutOfBoundException {
+public class DirectoryTraversalOutOfBoundsException extends Exception {
 }
