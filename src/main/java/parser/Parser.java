@@ -1,20 +1,7 @@
 package parser;
 
 import access.Access;
-import commands.Command;
-import commands.ListCommand;
-import commands.AddChapterCommand;
-import commands.AddCommand;
-import commands.AddModuleCommand;
-import commands.BackChapterCommand;
-import commands.GoChapterCommand;
-import commands.HelpCommand;
-import commands.RemoveCommand;
-import commands.ReviseCommand;
-import commands.ExitCommand;
-import commands.GoModuleCommand;
-import commands.BackModuleCommand;
-import commands.EditCommand;
+import commands.*;
 
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
@@ -49,10 +36,6 @@ public class Parser {
             return prepareExit(commandArgs);
         case HelpCommand.COMMAND_WORD:
             return prepareHelp(commandArgs);
-        case AddModuleCommand.COMMAND_WORD:
-            return prepareAddModule(commandArgs);
-        case AddChapterCommand.COMMAND_WORD:
-            return prepareAddChapter(commandArgs);
         case BackModuleCommand.COMMAND_WORD:
             return prepareBackModule(commandArgs);
         case BackChapterCommand.COMMAND_WORD:
@@ -96,19 +79,6 @@ public class Parser {
         return new BackModuleCommand();
     }
 
-    private static Command prepareAddChapter(String commandArgs) throws InvalidInputException {
-        if (commandArgs.isEmpty()) {
-            throw new InvalidInputException();
-        }
-        return new AddChapterCommand(commandArgs);
-    }
-
-    private static Command prepareAddModule(String commandArgs) throws InvalidInputException {
-        if (commandArgs.isEmpty()) {
-            throw new InvalidInputException();
-        }
-        return new AddModuleCommand(commandArgs);
-    }
 
     private static String[] splitCommandTypeAndArgs(String userCommand) {
         String[] commandTypeAndParams = userCommand.trim().split(" ", 2);
@@ -126,17 +96,25 @@ public class Parser {
     }
 
     private static Command prepareAdd(String commandArgs, Access access)
-            throws InvalidInputException, IncorrectAccessLevelException {
-        if (commandArgs.isEmpty()) {
-            throw new InvalidInputException("The arguments are missing.\n"
-                    + AddCommand.MESSAGE_USAGE);
-        }
-
+            throws InvalidInputException {
         if (access.isChapterLevel()) {
+            if (commandArgs.isEmpty()) {
+                throw new InvalidInputException("The arguments are missing.\n"
+                        + AddCardCommand.MESSAGE_USAGE);
+            }
             return prepareAddCard(commandArgs);
+        } else if (access.isModuleLevel()){
+            if (commandArgs.isEmpty()) {
+                throw new InvalidInputException("The arguments are missing.\n"
+                        + AddChapterCommand.MESSAGE_USAGE);
+            }
+            return prepareAddChapter(commandArgs);
         } else {
-            throw new IncorrectAccessLevelException("Add command can only be called at admin, "
-                    + "module and chapter level.");
+            if (commandArgs.isEmpty()) {
+                throw new InvalidInputException("The arguments are missing.\n"
+                        + AddModuleCommand.MESSAGE_USAGE);
+            }
+            return prepareAddModule(commandArgs);
         }
     }
 
@@ -147,13 +125,21 @@ public class Parser {
             String answer = parseAnswer(args[1]);
             if (question.isEmpty() || answer.isEmpty()) {
                 throw new InvalidInputException("The content for question / answer is empty.\n"
-                        + AddCommand.MESSAGE_USAGE);
+                        + AddCardCommand.MESSAGE_USAGE);
             }
-            return new AddCommand(question, answer, CHAPTER_LEVEL);
+            return new AddCardCommand(question, answer, CHAPTER_LEVEL);
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidInputException("The format for the add command is incorrect.\n"
-                    + AddCommand.MESSAGE_USAGE);
+                    + AddCardCommand.MESSAGE_USAGE);
         }
+    }
+
+    private static Command prepareAddChapter(String commandArgs) {
+        return new AddChapterCommand(commandArgs);
+    }
+
+    private static Command prepareAddModule(String commandArgs) {
+        return new AddModuleCommand(commandArgs);
     }
 
     private static Command prepareRemove(String commandArgs) throws InvalidInputException {
@@ -257,7 +243,7 @@ public class Parser {
     private static String parseQuestion(String arg) throws InvalidInputException {
         if (!(arg.trim().toLowerCase().startsWith(QUESTION_PREFIX))) {
             throw new InvalidInputException("There needs to be a \"q:\" prefix before the question.\n"
-                    + "Example: " + AddCommand.COMMAND_WORD + AddCommand.CARD_PARAMETERS + "\n"
+                    + "Example: " + AddCardCommand.COMMAND_WORD + AddCardCommand.CARD_PARAMETERS + "\n"
                     + "         " + EditCommand.COMMAND_WORD + EditCommand.CARD_PARAMETERS);
         }
 
@@ -267,7 +253,7 @@ public class Parser {
     private static String parseAnswer(String arg) throws InvalidInputException {
         if (!(arg.trim().toLowerCase().startsWith(ANSWER_PREFIX))) {
             throw new InvalidInputException("There needs to be a \"a:\" prefix before the answer.\n"
-                    + "Example: " + AddCommand.COMMAND_WORD + AddCommand.CARD_PARAMETERS + "\n"
+                    + "Example: " + AddCardCommand.COMMAND_WORD + AddCardCommand.CARD_PARAMETERS + "\n"
                     + "         " + EditCommand.COMMAND_WORD + EditCommand.CARD_PARAMETERS);
         }
 

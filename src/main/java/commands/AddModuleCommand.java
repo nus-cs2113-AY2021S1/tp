@@ -8,12 +8,12 @@ import manager.module.Module;
 import storage.Storage;
 import ui.Ui;
 
-public class AddModuleCommand extends Command {
-    public static final String COMMAND_WORD = "addmodule";
+public class AddModuleCommand extends AddCommand {
+    public static final String MODULE_PARAMETERS = " MODULE_NAME";
     private final Module module;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new module. \n"
-            + "Parameters: MODULE_NAME\n"
+            + "Parameters:" + MODULE_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " CS2113T\n";
 
     public AddModuleCommand(String moduleCode) {

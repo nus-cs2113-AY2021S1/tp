@@ -2,7 +2,7 @@ package ui;
 
 import access.Access;
 
-import commands.AddCommand;
+import commands.AddCardCommand;
 import commands.HelpCommand;
 import commands.ReviseCommand;
 import commands.ListCommand;
@@ -110,7 +110,7 @@ public class Ui {
         out.println("1. " + ListCommand.MESSAGE_USAGE);
         out.println("2. " + ReviseCommand.MESSAGE_USAGE);
         out.println("3. " + HelpCommand.MESSAGE_USAGE);
-        out.println("4. " + AddCommand.MESSAGE_USAGE);
+        out.println("4. " + AddCardCommand.MESSAGE_USAGE);
         out.println("5. " + ExitCommand.MESSAGE_USAGE);
         out.println("6. " + EditCommand.MESSAGE_USAGE);
         out.println("7. " + RemoveCommand.MESSAGE_USAGE);
