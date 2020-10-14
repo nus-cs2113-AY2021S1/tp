@@ -2,8 +2,8 @@ package seedu.duke.directory;
 
 import seedu.duke.util.DateTime;
 
-import static seedu.duke.util.Message.NO_ICON;
-import static seedu.duke.util.Message.YES_ICON;
+import static seedu.duke.util.Constant.NO_ICON;
+import static seedu.duke.util.Constant.YES_ICON;
 
 public class Task extends Directory {
     private String description;
@@ -30,6 +30,7 @@ public class Task extends Directory {
     public boolean isDone() {
         return isDone;
     }
+
     public String getStatusIcon() {
         return (isDone ? YES_ICON : NO_ICON);
     }

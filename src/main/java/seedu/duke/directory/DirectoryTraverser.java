@@ -1,5 +1,6 @@
 package seedu.duke.directory;
 
+import seedu.duke.data.ModuleManager;
 import seedu.duke.exception.DataNotFoundException;
 import seedu.duke.exception.DirectoryTraversalOutOfBoundsException;
 import seedu.duke.exception.IncorrectDirectoryLevelException;

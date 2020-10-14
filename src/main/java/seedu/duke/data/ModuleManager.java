@@ -1,5 +1,6 @@
 package seedu.duke.data;
 
+import seedu.duke.directory.Module;
 import seedu.duke.exception.DataNotFoundException;
 import seedu.duke.exception.DuplicateDataException;
 import seedu.duke.exception.ModuleNotProvidedException;

@@ -1,7 +1,7 @@
 package seedu.duke.data;
 
 import com.alibaba.fastjson.JSON;
-import seedu.duke.directory.DummyModule;
+import seedu.duke.util.DummyModule;
 
 import java.io.BufferedReader;
 import java.io.File;
