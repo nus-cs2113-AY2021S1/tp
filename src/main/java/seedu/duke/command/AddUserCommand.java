@@ -47,7 +47,7 @@ public class AddUserCommand extends Command {
         }
 
         try {
-            return "Successfully added new user: " + userManagement.addUser(name, dob, gender);
+            return "Successfully added new user: " + userManagement.addUser(name.trim(), dob, gender);
         } catch (ParseException e) {
             throw new AniException(e.getMessage());
         }
