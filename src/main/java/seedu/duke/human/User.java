@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class User extends Human {
+    public static final String GENDER_MALE = "male";
+    public static final String GENDER_FEMALE = "female";
+    public static final String GENDER_OTHER = "other";
     public Bookmark bookmark;
 
     protected Date birthdate;
@@ -32,13 +35,13 @@ public class User extends Human {
         genderString = genderString.toLowerCase();
 
         switch (genderString) {
-        case "male":
+        case GENDER_MALE:
             gender = Gender.Male;
             break;
-        case "female":
+        case GENDER_FEMALE:
             gender = Gender.Female;
             break;
-        case "other":
+        case GENDER_OTHER:
             gender = Gender.Other;
             break;
         default:
@@ -48,7 +51,7 @@ public class User extends Human {
 
     public void setBirthdate(String birthdateString) throws ParseException {
         birthdate = DATE_MONTH_YEAR.parse(birthdateString);
-        assert birthdate != null;
+        assert birthdate != null : "Birthdate cannot be null";
     }
 
     public void setActiveWatchlist(Watchlist activeWatchlist) {
@@ -98,6 +101,6 @@ public class User extends Human {
 
     @Override
     public String toString() {
-        return "\nName: " + name + "\nBirthdate: " + getDobString() + "\nGender: " + getGender();
+        return "\n Name: " + name + "\n Birthdate: " + getDobString() + "\n Gender: " + getGender();
     }
 }
