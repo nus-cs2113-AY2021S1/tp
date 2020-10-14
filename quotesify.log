@@ -42,3 +42,49 @@ Oct 13, 2020 11:02:04 PM seedu.duke.commands.AddCommand addCategoryToBook
 INFO: add category to book success
 Oct 13, 2020 11:02:04 PM seedu.duke.commands.AddCommand addCategoryToQuote
 INFO: add category to quote success
+Oct 14, 2020 5:48:21 PM seedu.duke.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 14, 2020 5:48:21 PM seedu.duke.commands.AddCommand execute
+INFO: added book to booklist
+Oct 14, 2020 5:49:48 PM seedu.duke.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 14, 2020 5:49:48 PM seedu.duke.commands.AddCommand execute
+INFO: added book to booklist
+Oct 14, 2020 5:50:10 PM seedu.duke.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 14, 2020 5:50:10 PM seedu.duke.commands.AddCommand execute
+INFO: added book to booklist
+Oct 14, 2020 5:50:14 PM seedu.duke.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 14, 2020 5:50:14 PM seedu.duke.commands.AddCommand addBook
+INFO: add book to booklist failed
+Oct 14, 2020 5:50:14 PM seedu.duke.commands.AddCommand execute
+INFO: added book to booklist
+Oct 14, 2020 6:11:31 PM seedu.duke.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 14, 2020 6:11:31 PM seedu.duke.commands.AddCommand execute
+INFO: added book to booklist
+Oct 14, 2020 6:11:37 PM seedu.duke.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 14, 2020 6:11:37 PM seedu.duke.commands.AddCommand addBook
+INFO: add book to booklist failed
+Oct 14, 2020 6:11:37 PM seedu.duke.commands.AddCommand execute
+INFO: added book to booklist
+Oct 14, 2020 6:21:39 PM seedu.duke.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 14, 2020 6:21:39 PM seedu.duke.commands.AddCommand execute
+INFO: added book to booklist
+Oct 14, 2020 6:23:19 PM seedu.duke.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 14, 2020 6:23:19 PM seedu.duke.commands.AddCommand execute
+INFO: added book to booklist
+Oct 14, 2020 6:23:30 PM seedu.duke.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 14, 2020 6:23:30 PM seedu.duke.commands.AddCommand addBook
+INFO: add book to booklist failed
+Oct 14, 2020 6:23:30 PM seedu.duke.commands.AddCommand execute
+INFO: added book to booklist
+Oct 14, 2020 6:23:48 PM seedu.duke.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 14, 2020 6:23:48 PM seedu.duke.commands.AddCommand execute
+INFO: added book to booklist

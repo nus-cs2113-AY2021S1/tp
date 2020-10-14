@@ -47,22 +47,28 @@ public class BookList extends QuotesifyList<Book> {
         return booksToReturn;
     }
 
-    public ArrayList<Book> find(String title, String author) {
-        assert !title.isEmpty() || !author.isEmpty();
+    public ArrayList<Book> find(String title, String authorName) {
+        assert !title.isEmpty() || !authorName.isEmpty();
+        String lowerCaseTitle = title.toLowerCase();
+        String lowerCaseAuthor = authorName.toLowerCase();
 
         ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
                 .filter(book -> {
                     Author bookAuthor = book.getAuthor();
-                    return bookAuthor.getName().equals(author) && book.getTitle().equals(title);
+                    String bookAuthorName = bookAuthor.getName();
+                    String bookTitle = book.getTitle();
+                    return bookAuthorName.toLowerCase().equals(lowerCaseAuthor) &&
+                            bookTitle.toLowerCase().equals(lowerCaseTitle);
                 }).collect(Collectors.toList());
         return filteredBooks;
     }
 
     public Book findByTitle(String title) {
         assert !title.isEmpty();
+        String lowerCaseTitle = title.toLowerCase();
 
         for (Book book : books) {
-            if (book.getTitle().equals(title)) {
+            if (book.getTitle().toLowerCase().equals(lowerCaseTitle)) {
                 return book;
             }
         }
@@ -70,10 +76,13 @@ public class BookList extends QuotesifyList<Book> {
     }
 
     public BookList filterByAuthor(String authorName) {
+        String lowerCaseAuthor = authorName.toLowerCase();
+
         ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
                 .filter(book -> {
                     Author bookAuthor = book.getAuthor();
-                    return bookAuthor.getName().equals(authorName);
+                    String bookAuthorName = bookAuthor.getName();
+                    return bookAuthorName.toLowerCase().equals(lowerCaseAuthor);
                 }).collect(Collectors.toList());
         return new BookList(filteredBooks);
     }
