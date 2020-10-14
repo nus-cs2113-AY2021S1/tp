@@ -6,18 +6,17 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import seedu.duke.storage.Storage;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AnimeStorage {
 
     /* Files */
-    private static final String RELATIVE_DIR = System.getProperty("user.dir");
+    //private static final String RELATIVE_DIR = System.getProperty("user.dir");
     private static final String FILE_SEPARATOR = File.separator;
     private static final Logger LOGGER = Logger.getLogger(Anime.class.getName());
     private File dataFile;
@@ -34,23 +33,23 @@ public class AnimeStorage {
         LOGGER.setLevel(Level.WARNING);
 
         LOGGER.info("Loading filenames from DataSource folder.");
-        this.dataFile = new File(prepareFile(fileFolder));
-        pathnames = dataFile.list();
+//        this.dataFile = new File(prepareFile(fileFolder));
+//        pathnames = dataFile.list();
         LOGGER.info("Loading filenames successful.");
     }
 
-    private String prepareFile(String fileFolder) {
-        return RELATIVE_DIR + fileFolder.replace("\\",FILE_SEPARATOR).replace("/",FILE_SEPARATOR);
-    }
+//    private String prepareFile(String fileFolder) {
+//        return fileFolder.replace("\\",FILE_SEPARATOR).replace("/",FILE_SEPARATOR);
+//    }
 
     public ArrayList<Anime> readAnimeDatabase() throws IOException {
         LOGGER.info("Retrieving information from DataSource.");
         ArrayList<Anime> animeDataList = new ArrayList<>();
-        for (String pathname : pathnames) {
-            LOGGER.info("Currently extracting and parsing from " + dataFile.getPath() + FILE_SEPARATOR
-                    + pathname);
-            FileReader fileData = new FileReader(dataFile.getPath() + FILE_SEPARATOR
-                    + pathname);
+        for (int i = 1 ; i < 6 ; i++) {
+            LOGGER.info("Currently extracting and parsing from /AniListData/AniList-Data" + i + ".json");
+//            FileReader fileData = new FileReader(dataFile.getPath() + FILE_SEPARATOR
+//                    + pathname);
+            String fileData = getDataFromJarFile("/AniListData/AniList-Data" + i + ".json");
             //System.out.println(fileData);
             parseJson(animeDataList, fileData);
         }
@@ -58,13 +57,13 @@ public class AnimeStorage {
         return animeDataList;
     }
 
-    private void parseJson(ArrayList<Anime> animeDataList,FileReader  fileData) {
+    private void parseJson(ArrayList<Anime> animeDataList,String  fileData) {
         JSONParser parser = new JSONParser();
         JSONArray jsonList = new JSONArray();
         try {
             jsonList = (JSONArray) parser.parse(fileData);
 
-        } catch (ParseException | IOException e) {
+        } catch (ParseException e) {
             LOGGER.warning("Parsing file failed!");
             e.printStackTrace();
 
@@ -128,5 +127,25 @@ public class AnimeStorage {
                     animeEpisode);
             animeDataList.add(anime);
         }
+    }
+
+
+    public  String getDataFromJarFile(String filename) throws IOException {
+        InputStream inputStream = AnimeStorage.class.getResourceAsStream(filename);
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        String fileLine = "";
+        String fileData = "";
+        try {
+            while ((fileLine = bufferedReader.readLine()) != null) {
+                fileData += fileLine;
+            }
+            bufferedReader.close();
+            inputStreamReader.close();
+            inputStream.close();
+        } catch (IOException e) {
+            throw e;
+        }
+        return fileData;
     }
 }
