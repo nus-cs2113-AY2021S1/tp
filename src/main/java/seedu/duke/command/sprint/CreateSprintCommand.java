@@ -1,7 +1,7 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.ui.Messages;
-import seedu.duke.model.Project;
+import seedu.duke.project.Project;
 import seedu.duke.model.Sprint;
 import seedu.duke.model.SprintList;
 import seedu.duke.parser.DateTimeParser;

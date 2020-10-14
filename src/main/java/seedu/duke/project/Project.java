@@ -3,6 +3,8 @@ package seedu.duke.project;
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
+import seedu.duke.model.ProjectMembers;
+import seedu.duke.model.SprintList;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -12,31 +14,65 @@ import java.time.LocalDate;
 public class Project implements Jsonable {
 
     public ProjectBacklog backlog;
-    public ProjectMember members;
+    public ProjectMembers members;
     String title;
     String description;
-    String projectDeadline;
+    int projectDuration;
     int sprintLength;
 
 
     LocalDate startDate = null;
+    LocalDate endDate = null;
+    SprintList allSprints;
 
-    public Project(String title, String description, String projectDeadline, String sprintLength) {
+    public Project(String title, String description, String projectDuration, String sprintLength) {
         this.title = title;
         this.description = description;
-        this.projectDeadline = projectDeadline;
+        this.projectDuration = Integer.parseInt(projectDuration.strip());
         this.sprintLength = Integer.parseInt(sprintLength);
         backlog = new ProjectBacklog();
-        members = new ProjectMember();
+        members = new ProjectMembers();
+        allSprints = new SprintList();
     }
 
     public String toString() {
         return "Project title: " + title + "\nProject description " + description;
     }
 
+    public SprintList getAllSprints() {
+        return allSprints;
+    }
 
     public int getSprintLength() {
         return sprintLength;
+    }
+
+    public int getProjectDuration() {
+        return projectDuration;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate() {
+        this.setStartDate(LocalDate.now());
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public ProjectBacklog getProjectBacklog() {
+        return backlog;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public String getTitle() {
@@ -58,18 +94,6 @@ public class Project implements Jsonable {
         }
     }
 
-    // Call this function every time a new sprint object is instantiated.
-    // sets the start date the first time.
-    public void setStartDate() {
-        if (startDate == null) {
-            startDate = LocalDate.now();
-        }
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
     @Override
     public String toJson() {
         final StringWriter writeable = new StringWriter();
@@ -87,7 +111,7 @@ public class Project implements Jsonable {
         final JsonObject json = new JsonObject();
         json.put("title", this.title);
         json.put("description", this.description);
-        json.put("deadline", this.projectDeadline);
+        json.put("duration", this.projectDuration);
         json.put("sprint_length", this.sprintLength);
         json.put("start_date", this.startDate == null ? null : this.startDate.toString());
         //TODO Make backlog and members parsable

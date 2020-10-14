@@ -2,6 +2,11 @@ package seedu.duke.parser;
 
 import seedu.duke.command.member.MemberCommand;
 import seedu.duke.command.project.ProjectCommand;
+import seedu.duke.command.sprint.AllocateSprintTaskCommand;
+import seedu.duke.command.sprint.ViewSprintCommand;
+import seedu.duke.command.sprint.AddSprintTaskCommand;
+import seedu.duke.command.sprint.CreateSprintCommand;
+import seedu.duke.command.sprint.DeleteSprintTaskCommand;
 import seedu.duke.command.task.TaskCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
@@ -127,21 +132,33 @@ public class Parser {
                 }
                 break;
             case SPRINT:
+                Hashtable<String, String> HCparameters = new Hashtable<>();
+
                 switch (action.toLowerCase()) {
                 case CREATE:
-                    //new SprintCommand().createSprintCommand(params);
+                    HCparameters.put("goal", "fakegoal");
+                    HCparameters.put("start", "20201010");
+                    new CreateSprintCommand(HCparameters, projectList).execute();
                     break;
                 case ADD:
-                    //new SprintCommand().addSprintTaskCommand(params);
+                    HCparameters.put("0", "1");
+                    HCparameters.put("1", "2");
+                    HCparameters.put("2", "4");
+                    HCparameters.put("3", "6");
+                    new AddSprintTaskCommand(HCparameters, projectList).execute();
                     break;
                 case DELETE:
-                    //new SprintCommand().deleteSprintTaskCommand(params);
+                    HCparameters.put("0", "2");
+                    new DeleteSprintTaskCommand(HCparameters, projectList).execute();
                     break;
                 case VIEW:
-                    //new SprintCommand().viewSprintCommand(params);
+                    new ViewSprintCommand(HCparameters, projectList).execute();
                     break;
                 case ASSIGN:
-                    //new SprintCommand().assignSprintTaskCommand(params);
+                    HCparameters.put("taskid", "1");
+                    HCparameters.put("0", "amy");
+                    HCparameters.put("1", "john");
+                    new AllocateSprintTaskCommand(HCparameters, projectList).execute();
                     break;
                 default:
                     try {
