@@ -8,6 +8,8 @@ import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.exception.TimeErrorException;
+import seedu.duke.exception.WrongNumberFormatException;
+import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -42,8 +44,9 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
-        parseUserCommand(command, ui, data);
+
         try {
+            parseUserCommand(command, ui, data);
             EventList personalList = data.getEventList("Personal");
             Event updatedEvent = personalList.getEventByIndex(index - 1);
             if (updatedEvent != null) {
@@ -77,16 +80,19 @@ public class DeadlineCommand extends Command {
         command = command.trim();
         String[] commandSplit = command.split(";");
         if (commandSplit.length == 2) {
-            index = Integer.parseInt(commandSplit[0].trim());
             try {
+                index = parsingNumber(commandSplit[0].trim());
                 date = DateTimeParser.dateParser(commandSplit[1].trim());
             } catch (DateErrorException e) {
                 throw new DateErrorException("Something is wrong with the date!");
+            } catch (NumberFormatException e) {
+                throw new WrongNumberFormatException("Index must be numerical format!");
             }
 
         } else if (commandSplit.length == 3) {
-            index = Integer.parseInt(commandSplit[0].trim());
+
             try {
+                index = parsingNumber(commandSplit[0].trim());
                 date = DateTimeParser.dateParser(commandSplit[1].trim());
                 String timeString = commandSplit[2].trim();
                 timeString = timeString.replace(":", "");
@@ -95,7 +101,28 @@ public class DeadlineCommand extends Command {
                 throw new DateErrorException("Something is wrong with the date!");
             } catch (TimeErrorException e) {
                 throw new TimeErrorException("Something is wrong with the time!");
+            } catch (NumberFormatException e) {
+                throw new WrongNumberFormatException("Index must be numerical format!");
             }
+        } else {
+            throw new WrongNumberOfArgumentsException("Incorrect number of parameters for Deadline!");
+
+        }
+
+    }
+
+    /**
+     * Check if index is numerical format.
+     *
+     * @param number index in string format
+     * @return index of event
+     */
+    private int parsingNumber(String number) {
+        try {
+            int index = Integer.parseInt(number);
+            return index;
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Index must be numerical format!");
         }
 
     }

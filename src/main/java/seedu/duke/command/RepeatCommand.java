@@ -1,13 +1,12 @@
 package seedu.duke.command;
 
-import seedu.duke.Duke;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.event.Repeat;
 import seedu.duke.exception.DukeException;
-import seedu.duke.exception.InvalidListException;
 import seedu.duke.exception.MissingDeadlineRepeatException;
+import seedu.duke.exception.WrongNumberFormatException;
 import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -50,8 +49,6 @@ public class RepeatCommand extends Command {
         default:
             break;
         }
-
-
 
 
     }
@@ -100,15 +97,19 @@ public class RepeatCommand extends Command {
      *
      * @param number String containing the String form of an integer
      */
-    private static void isValidNumber(String number) throws NumberFormatException {
-        Integer.parseInt(number);
+    private static void isValidNumber(String number) throws DukeException {
+        try {
+            Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new WrongNumberFormatException("Numbers must be in numerical format");
+        }
     }
 
     /**
      * List command. Used to show dates of repeated events.
      *
      * @param data location where all user event information is stored
-     * @param ui User Interface class for printing on screens
+     * @param ui   User Interface class for printing on screens
      */
     private void executeList(UserData data, Ui ui) throws DukeException {
         String[] words = command.split(" ");
@@ -121,8 +122,8 @@ public class RepeatCommand extends Command {
     /**
      * Add command. Used to add repeated dates to an event.
      *
-     * @param data location where all user event information is stored
-     * @param ui User Interface class for printing on screens
+     * @param data    location where all user event information is stored
+     * @param ui      User Interface class for printing on screens
      * @param storage File storage location on computer
      */
 

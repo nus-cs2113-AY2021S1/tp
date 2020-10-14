@@ -3,20 +3,18 @@ package seedu.duke.command;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
-import seedu.duke.event.Event;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.exception.InvalidListException;
 import seedu.duke.exception.InvalidTimeUnitException;
 import seedu.duke.exception.MissingDeadlineRepeatException;
+import seedu.duke.exception.WrongNumberFormatException;
 import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -285,7 +283,7 @@ class RepeatCommandTest {
         System.setOut(outputLoc);
 
 
-        assertThrows(NumberFormatException.class, () -> {
+        assertThrows(WrongNumberFormatException.class, () -> {
             Command repeatCommand = RepeatCommand.parse(inputString);
             repeatCommand.execute(data, ui, storage);
         });
