@@ -322,7 +322,7 @@ public class Parser {
         return answer;
     }
 
-    public static boolean chooseNewDeckRating() {
+    public static boolean chooseToRateNewDeck() {
         System.out.println("Would you like to rate this new Chapter?");
         Ui ratingUi = new Ui();
         String userChoice = ratingUi.readCommand();

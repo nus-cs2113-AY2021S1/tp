@@ -25,7 +25,7 @@ public class Chapter {
     }
 
     public static String rateChapter() {
-        if (Parser.chooseNewDeckRating()) {
+        if (Parser.chooseToRateNewDeck()) {
             return Parser.getChoiceOfNewDeckRating();
         } else {
             return null;
