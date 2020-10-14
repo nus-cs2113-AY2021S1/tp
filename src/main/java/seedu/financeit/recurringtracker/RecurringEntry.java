@@ -12,14 +12,14 @@ import seedu.financeit.utils.ParamChecker;
 import java.time.Month;
 
 public class RecurringEntry extends Item {
-    private int day;
-    private String description = "";
-    private Constants.EntryType entryType;
-    private double amount;
-    private Month start = Month.of(1);
-    private Month end  = Month.of(12);
-    private boolean auto = false;
-    private String notes = "";
+    int day;
+    String description = "";
+    Constants.EntryType entryType;
+    double amount;
+    Month start = Month.of(1);
+    Month end  = Month.of(12);
+    boolean auto = false;
+    String notes = "";
 
 
     public RecurringEntry() {
@@ -41,7 +41,7 @@ public class RecurringEntry extends Item {
             day = paramChecker.checkAndReturnInt(paramType);
             break;
         case ParamChecker.PARAM_AMOUNT:
-            amount = paramChecker.checkAndReturnInt(paramType);
+            amount = paramChecker.checkAndReturnDouble(paramType);
             break;
         case ParamChecker.PARAM_INC:
             entryType = Constants.EntryType.INC;
@@ -74,9 +74,24 @@ public class RecurringEntry extends Item {
         return day;
     }
 
+    public boolean equals(RecurringEntry entry) {
+        if (entry == this) {
+            return true;
+        }
+
+        return (this.day == entry.day)
+                && (this.description.equals(entry.description))
+                && (this.entryType.equals(entry.entryType))
+                && (this.amount == entry.amount)
+                && (this.auto == entry.auto)
+                && (this.notes.equals(entry.notes));
+    }
+
 
     @Override
     public String toString() {
+
+        //One string is filled and the other is left blank, based on whether the entry is income or expenditure
         String expenditureAmount = this.entryType == Constants.EntryType.EXP ? "-$" + this.amount : "";
         String incomeAmount = this.entryType == Constants.EntryType.INC ? "+$" + this.amount : "";
         String duration;

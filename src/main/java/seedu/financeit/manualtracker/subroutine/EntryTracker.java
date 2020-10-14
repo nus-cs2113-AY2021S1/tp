@@ -204,6 +204,9 @@ public class EntryTracker {
         try {
             entryList.handleParams(packet);
             entry = (Entry) entryList.getItemAtIndex();
+            //Remove "/id" so it doesn't get parsed by entry and lead to
+            //printing of UnrecognizedParamMessage
+            packet.removeParamsFromMap("/id");
             entry.handleParams(packet);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                     String.format("%s edited!", entry.getName()));
