@@ -19,7 +19,6 @@ public class RecurringEntryList extends ItemList {
         super.addItemAndSort(item, new SortByDay());
     }
 
-
     /**
      * Handles params given to the list e.g. index of entry to modify/delete
      *
