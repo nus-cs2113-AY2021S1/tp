@@ -1,8 +1,12 @@
 package seedu.rex.commands;
 
+import seedu.rex.data.AppointmentList;
 import seedu.rex.data.PatientList;
+import seedu.rex.data.hospital.Appointment;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
+
+import java.util.ArrayList;
 
 /**
  * Exits program.
@@ -20,7 +24,7 @@ public class ExitCommand extends Command {
      * @param storage  Storage object.
      */
     @Override
-    public void execute(PatientList patients, Ui ui, Storage storage) {
+    public void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage) {
         isExit = true;
         ui.showExit();
     }

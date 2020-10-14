@@ -10,6 +10,12 @@ public class Appointment {
     private Doctor doctor;
     private String notes;
     private Prescription prescription;
+    private Boolean isBooked;
+
+    public Appointment(LocalDate date) {
+        this.date = date;
+        isBooked = false;
+    }
 
     public LocalDate getDate() {
         return date;
@@ -59,4 +65,34 @@ public class Appointment {
         this.prescription = prescription;
     }
 
+    public Boolean isBooked() {
+        return isBooked;
+    }
+
+    public void book(Patient patient) {
+        this.patient = patient;
+        isBooked = true;
+    }
+
+    public void removeBooking() {
+        this.patient = null;
+        isBooked = false;
+    }
+
+    @Override
+    public String toString() {
+        String date = this.date.toString();
+        String bookedStatus, patientNric;
+        if (isBooked) {
+            bookedStatus = "booked";
+        } else {
+            bookedStatus = "available";
+        }
+        if (patient != null) {
+            patientNric = patient.getNric();
+        } else {
+            patientNric = null;
+        }
+        return date + ", " + bookedStatus + ", " + patientNric;
+    }
 }

@@ -94,4 +94,15 @@ public class PatientList {
         }
         return -1;
     }
+
+    public Patient getPatientFromNric(String nric) {
+        for (Patient patient : patients) {
+            if (patient.getNric().equals(nric)) {
+                return patient;
+            }
+        }
+        return null;
+    }
+
+
 }
