@@ -1,7 +1,6 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
-import seedu.duke.ui.InterfaceManager;
 
 import java.util.ArrayList;
 

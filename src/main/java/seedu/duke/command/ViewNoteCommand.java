@@ -20,10 +20,6 @@ public class ViewNoteCommand extends Command {
     
     private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "This note does not exists in the notebook";
 
-    public static String getCommandUsage() {
-        return COMMAND_USAGE;
-    }
-
     private int index;
     private String title;
     private boolean isViewByIndex;

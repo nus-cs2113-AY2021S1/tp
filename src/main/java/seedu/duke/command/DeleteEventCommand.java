@@ -19,10 +19,16 @@ public class DeleteEventCommand extends Command {
 
     private static final String COMMAND_SUCCESSFUL_MESSAGE = "Event deleted:" + InterfaceManager.LS;
     private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Event failed to delete: " + InterfaceManager.LS;
-    private static final String INDEX_OUT_OF_RANGE_MESSAGE = "Index is out of range.";
+    private static final String INDEX_OUT_OF_RANGE_MESSAGE = "The index you specified is out of range. "
+            + "Please specify the index that is indicated when you print the event list";
 
     private int index;
 
+    /**
+     * Constructs a DeleteEventCommand that specifies which index to delete.
+     *
+     * @param index Index written on list-e -1.
+     */
     public DeleteEventCommand(int index) {
         this.index = index;
     }
