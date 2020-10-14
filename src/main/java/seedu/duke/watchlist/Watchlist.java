@@ -49,4 +49,14 @@ public class Watchlist {
     public String toString() {
         return name + System.lineSeparator() + animeListToString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (getClass().equals(obj.getClass())) {
+            Watchlist watchlist = (Watchlist) obj;
+            return this.getName().equals(watchlist.getName());
+        }
+
+        return false;
+    }
 }

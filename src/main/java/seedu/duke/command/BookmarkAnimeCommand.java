@@ -5,7 +5,6 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.UserManagement;
-import seedu.duke.watchlist.Watchlist;
 
 import java.util.ArrayList;
 
@@ -16,8 +15,7 @@ public class BookmarkAnimeCommand extends Command {
     }
 
     @Override
-    public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
-                          UserManagement userManagement) {
+    public String execute(AnimeData animeData, UserManagement userManagement) {
         String result = "";
         Bookmark bookmark = userManagement.getActiveUser().bookmark;
         if (description.contains(" ")) {

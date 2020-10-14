@@ -2,10 +2,8 @@ package seedu.duke.command;
 
 import seedu.duke.anime.Anime;
 import seedu.duke.anime.AnimeData;
-import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.UserManagement;
-import seedu.duke.watchlist.Watchlist;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -36,8 +34,7 @@ public class BrowseCommand extends Command {
     }
 
     @Override
-    public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
-                          UserManagement userManagement) throws AniException {
+    public String execute(AnimeData animeData, UserManagement userManagement) throws AniException {
         //Parameter Parser for Browse Command
         String[] paramGiven = description.split("-");
         if (paramGiven.length > 1) {

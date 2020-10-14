@@ -1,13 +1,10 @@
 package seedu.duke.command;
 
 import seedu.duke.anime.AnimeData;
-import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.UserManagement;
-import seedu.duke.watchlist.Watchlist;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 
 public class AddUserCommand extends Command {
     String name = null;
@@ -36,8 +33,7 @@ public class AddUserCommand extends Command {
 
 
     @Override
-    public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
-                          UserManagement userManagement) throws AniException {
+    public String execute(AnimeData animeData, UserManagement userManagement) throws AniException {
         if (name.isEmpty() || dob.isEmpty() || gender.isEmpty()) {
             throw new AniException("Invalid parameters detected!");
         }

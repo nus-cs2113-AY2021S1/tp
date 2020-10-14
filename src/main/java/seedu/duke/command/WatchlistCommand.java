@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
+import seedu.duke.human.User;
 import seedu.duke.human.UserManagement;
 import seedu.duke.storage.Storage;
 import seedu.duke.watchlist.Watchlist;
@@ -25,15 +26,25 @@ public class WatchlistCommand extends Command {
     }
 
     @Override
-    public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
-                          UserManagement userManagement) throws AniException {
-        if (option.equals(CREATE_OPTION)) {
-            return createWatchlist(userManagement.getStorage(), activeWatchlistList);
-        } else if (option.equals(LIST_OPTION)) {
-            return listAllWatchlist(activeWatchlistList);
-        } else {
+    public String execute(AnimeData animeData, UserManagement userManagement) throws AniException {
+        Storage storage = userManagement.getStorage();
+        User activeUser = userManagement.getActiveUser();
+        ArrayList<Watchlist> activeWatchlistList = activeUser.getWatchlistList();
+
+        String commandOutput = "";
+        switch (option) {
+        case CREATE_OPTION:
+            commandOutput = createWatchlist(storage, activeWatchlistList);
+            activeUser.setWatchlistList(activeWatchlistList);
+            break;
+        case LIST_OPTION:
+            commandOutput = listAllWatchlist(activeWatchlistList);
+            break;
+        default:
             throw new AniException("Watchlist command only accepts the option: \"-n\" and \"-l\".");
         }
+
+        return commandOutput;
     }
 
     private String createWatchlist(Storage storage, ArrayList<Watchlist> activeWatchlistList) throws AniException {
@@ -42,27 +53,33 @@ public class WatchlistCommand extends Command {
         }
 
         Watchlist newWatchlist = new Watchlist(optionInformation);
+        boolean isWatchlistNameUnique = !activeWatchlistList.contains(newWatchlist);
+        if (!isWatchlistNameUnique) {
+            throw new AniException("You already have a watchlist named \"" + optionInformation + "\".");
+        }
+
         activeWatchlistList.add(newWatchlist);
         storage.saveWatchlist(activeWatchlistList);
         return "Watchlist created successfully!";
     }
 
-    private String listAllWatchlist(ArrayList<Watchlist> watchlists) {
-        if (watchlists.size() == 0) {
-            return "You have no watchlist.";
+    private String listAllWatchlist(ArrayList<Watchlist> activeWatchlistList) {
+        if (activeWatchlistList.size() == 0) {
+            return "You have no watchlist to list.";
         }
 
-        StringBuilder sbWatchlistDisplay = new StringBuilder();
-        sbWatchlistDisplay.append("Currently, you have ");
-        sbWatchlistDisplay.append(watchlists.size()).append(" watchlists:");
-        for (int i = 0; i < watchlists.size(); i++) {
-            Watchlist watchlist = watchlists.get(i);
-            sbWatchlistDisplay.append(System.lineSeparator());
-            sbWatchlistDisplay.append("\t");
-            sbWatchlistDisplay.append(i + 1).append(". ");
-            sbWatchlistDisplay.append(watchlist.getName());
+        StringBuilder sbWatchlistList = new StringBuilder();
+        sbWatchlistList.append("Currently, you have ");
+        sbWatchlistList.append(activeWatchlistList.size()).append(" watchlist(s):");
+        for (int i = 0; i < activeWatchlistList.size(); i++) {
+            Watchlist watchlist = activeWatchlistList.get(i);
+            sbWatchlistList.append(System.lineSeparator());
+            sbWatchlistList.append("\t");
+            sbWatchlistList.append(i + 1).append(". ");
+            sbWatchlistList.append(watchlist.getName());
         }
 
-        return sbWatchlistDisplay.toString();
+        String watchlistList = sbWatchlistList.toString();
+        return watchlistList;
     }
 }
