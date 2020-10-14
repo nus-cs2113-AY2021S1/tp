@@ -8,7 +8,7 @@
 
 -------------------------------------------------------------
  User file is not found, let's start afresh.
- AniChan successfully loaded all of the saved watchlist(s).
+ Watchlist file is not found, let's start a afresh.
 -------------------------------------------------------------
  What's your name?
  #>  Hello FAKE! What might your date of birth be? (DD/MM/YYYY)
@@ -31,9 +31,9 @@
  Birthdate: 01/02/1996
  Gender: Female
 
- Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! You already have a watchlist named "a".
+ Abec Steiner 33rd-chan (Default) #>  Watchlist created successfully!
 
- Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! You already have a watchlist named "b".
+ Abec Steiner 33rd-chan (Default) #>  Watchlist created successfully!
 
  Abec Steiner 33rd-chan (Default) #>  Currently, you have 3 watchlist(s):
 	1. Default
