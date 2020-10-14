@@ -9,10 +9,14 @@ import seedu.duke.finance.FinanceLog;
 import seedu.duke.hr.Member;
 import seedu.duke.hr.MemberList;
 
+
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +31,11 @@ public class FileManager {
 
     public FileManager(String path) {
         this.path = path;
+        try {
+            Files.createDirectories(Paths.get(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getPath() {
@@ -47,18 +56,33 @@ public class FileManager {
         saveMembers(path + "members.csv");
     }
 
-    public void readAll() throws DukeFileFormatException, DukeFileHeaderException, IOException {
-        readEvents(path + "events.csv");
-        readFinance(path + "finance.csv");
-        readMembers(path + "members.csv");
+    public int readAll() throws DukeFileFormatException, DukeFileHeaderException, IOException {
+        int ret = 0;
+        try {
+            readEvents(path + "events.csv");
+        } catch (FileNotFoundException fe) {
+            ret++;
+        }
+        try {
+            readFinance(path + "finance.csv");
+        } catch (FileNotFoundException fe) {
+            ret++;
+        }
+        try {
+            readMembers(path + "members.csv");
+        } catch (FileNotFoundException fe) {
+            ret++;
+        }
+        return ret;
     }
+
     /**
      * Saves all the events currently in memory to a csv file.
      * @param fileName The name of the file, including the path if necessary
      * @throws IOException The file cannot be written to
      */
     public void saveEvent(String fileName) throws IOException {
-        String writeOutput = HEADERS_EVENT;
+        String writeOutput = HEADERS_EVENT + "\n";
         for (Event e : EventList.events) {
             writeOutput += e.getEventName() + ",";
             writeOutput += e.getEventDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ",";
@@ -73,7 +97,7 @@ public class FileManager {
      * @throws IOException The file cannot be written to
      */
     public void saveFinance(String fileName) throws IOException {
-        String writeOutput = HEADERS_FINANCE;
+        String writeOutput = HEADERS_FINANCE + "\n";
         for (FinanceLog f : FinanceList.financeLogs) {
             writeOutput += f.getLog() + ",";
             writeOutput += f.getLogVal() + "\n";
@@ -88,7 +112,7 @@ public class FileManager {
      */
     public void saveMembers(String fileName) throws IOException {
 
-        String writeOutput = HEADERS_MEMBERS;
+        String writeOutput = HEADERS_MEMBERS + "\n";
         for (Member m : MemberList.members) {
             writeOutput += m.getMemberName() + ",";
             writeOutput += m.getMemberPhone() + ",";
@@ -105,6 +129,7 @@ public class FileManager {
      * @throws IOException The file cannot be written to
      */
     public static void saveFile(String fileName, String data) throws IOException {
+
         FileWriter fw = new FileWriter(fileName);
         fw.write(data);
         fw.flush();
@@ -130,7 +155,7 @@ public class FileManager {
             String[] data = row.split(",");
             if (header) {
                 // Process file header
-                if (!row.equalsIgnoreCase(headers)) {
+                if (headers != null && !row.equalsIgnoreCase(headers)) {
                     throw new DukeFileHeaderException();
                 }
                 for (String s : data) {
@@ -143,12 +168,14 @@ public class FileManager {
             int i = 0;
             for (String s : data) {
                 map.get(headerOrder[i]).add(s);
+                i++;
             }
             if (i != headerOrder.length) {
                 // Column mismatch!
                 throw new DukeFileFormatException();
             }
         }
+        csvReader.close();
         return map;
     }
 
