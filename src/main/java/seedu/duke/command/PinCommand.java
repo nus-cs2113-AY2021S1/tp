@@ -55,7 +55,7 @@ public class PinCommand extends Command {
             }
         } else {
             for (Note notes : notebook.getNotes()) {
-                if (notes.getTitle().equals(title)) {
+                if (notes.getTitle().equalsIgnoreCase(title)) {
                     note = notes;
                 }
             }
