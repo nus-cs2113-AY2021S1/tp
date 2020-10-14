@@ -68,7 +68,7 @@ public class PatientList {
     }
 
     /**
-     * Edit an existing patient with given details to <code>patients</code> ArrayList.
+     * Edits an existing patient with given details to <code>patients</code> ArrayList.
      *
      * @param name        Name of the patient.
      * @param nric        NRIC of the patient.
@@ -78,10 +78,9 @@ public class PatientList {
         int idx = getExistingPatient(nric);
         patients.remove(idx);
         Patient patient = (new Patient(name, nric, dateOfBirth));
-        patients.add(idx,patient);
+        patients.add(idx, patient);
         return idx;
     }
-
 
 
     /**
@@ -112,6 +111,12 @@ public class PatientList {
         return -1;
     }
 
+    /**
+     * Gets patient using NRIC.
+     *
+     * @param nric NRIC of patient.
+     * @return patient with given NRIC.
+     */
     public Patient getPatientFromNric(String nric) {
         for (Patient patient : patients) {
             if (patient.getNric().equals(nric)) {

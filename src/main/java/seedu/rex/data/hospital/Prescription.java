@@ -1,5 +1,8 @@
 package seedu.rex.data.hospital;
 
+/**
+ * Prescription class.
+ */
 public class Prescription {
     private String dosage;
     private String frequency;

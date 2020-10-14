@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 /**
- * Create appointment.
+ * Creates appointment.
  */
 public class CreateAppointmentCommand extends Command {
 
@@ -18,7 +18,7 @@ public class CreateAppointmentCommand extends Command {
 
 
     /**
-     * Create appointment using date given.
+     * Creates appointment using date given.
      *
      * @param patients     PatientList object.
      * @param appointments ArrayList of appointment.

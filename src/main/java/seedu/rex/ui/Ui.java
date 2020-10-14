@@ -81,6 +81,9 @@ public class Ui {
         printWithIndent(ExitCommand.MESSAGE);
     }
 
+    /**
+     * Prints date error message.
+     */
     public void showDateInputError() {
         showError(DATE_ERROR);
     }
@@ -100,7 +103,6 @@ public class Ui {
      *
      * @param patient The newly editted <code>Patient</code>.
      */
-
     public void showPatientEditted(Patient patient) {
         printWithIndent("Patient successfully editted: ");
         printWithIndent(patient.toString());
@@ -167,21 +169,41 @@ public class Ui {
         printWithIndent(patient.toString());
     }
 
+    /**
+     * Prints patient not found message.
+     *
+     * @param nric NRIC inputted.
+     */
     public void printPatientNotFound(String nric) {
         printWithIndent("Patient " + nric + " not found in database!");
     }
 
+    /**
+     * Gets appointment date from user.
+     *
+     * @return User input string.
+     */
     public String getNewAppointmentDate() {
         printWithIndent("Please enter the date of appointment in YYYY-MM-DD.");
         showLine();
         return in.nextLine();
     }
 
+    /**
+     * Prints appointment creation message.
+     */
     public void showAppointmentCreatedMessage() {
         showLine();
         printWithIndent("New appointment created!");
     }
 
+    /**
+     * Gets appointment to be booked.
+     *
+     * @param appointments Arraylist of appointments.
+     * @return User input.
+     * @throws RexException If no appointments are available.
+     */
     public String getAppointmentToBook(ArrayList<Appointment> appointments) throws RexException {
         showLine();
         printWithIndent("Here are the list of available appointments.");
@@ -200,17 +222,23 @@ public class Ui {
         return in.nextLine();
     }
 
+    /**
+     * Shows appointment booking message.
+     *
+     * @param appointment appointment that was booked.
+     */
     public void showAppointmentBookedMessage(Appointment appointment) {
         showLine();
-        printWithIndent("Appointment on " + appointment.getDate().toString() + " booked!");
+        printWithIndent("Appointment on " + appointment.getDate() + " booked!");
 
     }
 
+    /**
+     * Prints patient creation message.
+     *
+     * @param nric Patient's NRIC.
+     */
     public void showCreatePatientMessage(String nric) {
         printWithIndent("Creating patient " + nric);
-    }
-
-    public void showAppointmentError() {
-        printWithIndent("No such appointment!");
     }
 }

@@ -9,7 +9,7 @@ import seedu.rex.ui.Ui;
 import java.util.ArrayList;
 
 /**
- * Book appointments.
+ * Books appointments.
  */
 public class BookCommand extends Command {
 
@@ -21,7 +21,7 @@ public class BookCommand extends Command {
     }
 
     /**
-     * Book appointment for patients.
+     * Books appointment for patients.
      *
      * @param patients     PatientList object.
      * @param appointments ArrayList of appointment.

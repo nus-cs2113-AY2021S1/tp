@@ -21,7 +21,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Delete patients using NRIC.
+     * Deletes patients using NRIC.
      *
      * @param patients     PatientList object.
      * @param appointments ArrayList of appointment.

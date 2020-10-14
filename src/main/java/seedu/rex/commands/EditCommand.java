@@ -9,7 +9,7 @@ import seedu.rex.ui.Ui;
 import java.util.ArrayList;
 
 /**
- * Edit a patient from the list of patients.
+ * Edits a patient from the list of patients.
  */
 public class EditCommand extends Command {
 
@@ -21,7 +21,7 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Edit an existing patient to the patient list using details inputted by the user.
+     * Edits an existing patient to the patient list using details inputted by the user.
      *
      * @param patients     List of patients.
      * @param appointments ArrayList of appointment.
