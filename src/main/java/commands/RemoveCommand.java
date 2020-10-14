@@ -36,12 +36,13 @@ public class RemoveCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cards, Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException, IOException {
+    public void execute(CardList cards, Ui ui, Access access, Storage storage)
+            throws IncorrectAccessLevelException, IOException {
         if (access.isAdminLevel()) {
             removeModule(ui, access, storage);
         } else if (access.isModuleLevel()) {
             removeChapter(ui, access, storage);
-        } else if (access.isChapterLevel()){
+        } else if (access.isChapterLevel()) {
             removeCard(ui, access, storage);
         } else {
             throw new IncorrectAccessLevelException("Remove command can only be called at admin, "
