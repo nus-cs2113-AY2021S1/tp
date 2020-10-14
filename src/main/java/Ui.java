@@ -1,9 +1,14 @@
+import bookmark.BookmarkUi;
 import exceptions.InvalidModeException;
 
 import java.util.Scanner;
 
 public class Ui {
     public static final String LINE_DIVIDER = "=======================================================================";
+
+    public static void printDivider() {
+        System.out.println(LINE_DIVIDER);
+    }
 
     /**
      * Receive command input from the user via terminal.
@@ -41,17 +46,27 @@ public class Ui {
             Mode newMode = CommandParser.getDestinationMode(command);
             StudyIt.changeMode(newMode);
             printLine("Mode changed! You are now at: " + ModeNames.getCurrentModeName());
+            printModeIntro(newMode);
         } catch (InvalidModeException e) {
             printLine("Invalid mode name! Please try again.\n"
                     + "You are still at: " + ModeNames.getCurrentModeName());
         }
     }
 
+    public static void printModeIntro(Mode newMode) {
+        // Prints introduction to the mode (if any)
+        if (newMode == Mode.BOOKMARK) {
+            BookmarkUi.printWelcomeBookmarkMessage();
+            BookmarkUi.showBookmarkCategoryList(StudyIt.bookmarkCategories);
+            printDivider();
+        }
+    }
+
     public static void exitMode() {
-        System.out.println(LINE_DIVIDER);
+        printDivider();
         System.out.println("Exited " + ModeNames.getCurrentModeName() + "!");
         StudyIt.changeMode(Mode.MENU); //TODO: Check UI
         System.out.println("You are now back at: " + ModeNames.getCurrentModeName());
-        System.out.println(LINE_DIVIDER);
+        printDivider();
     }
 }
