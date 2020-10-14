@@ -13,12 +13,11 @@ import static seedu.duke.util.Message.MESSAGE_SHOW_LIST;
 
 public class ListModuleCommand extends ListCommand {
     public static final String COMMAND_WORD = "lsm";
-    public static final String FORMAT = COMMAND_WORD + " [ <module keyword> -e -a ]";
+    public static final String FORMAT = COMMAND_WORD ;
     public static final String MESSAGE_USAGE = String.format(
-            "%s - Filter and show module(s)\n"
-                    + "Note: -e to filter for exact keywords\n"
+            "%s -show module(s)\n"
                     + "Format: %s\n"
-                    + "Example: lsm CS -a\n",
+                    + "Example: lsm\n",
             COMMAND_WORD, FORMAT);
 
     private String moduleKeyWord;

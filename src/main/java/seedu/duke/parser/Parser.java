@@ -4,10 +4,12 @@ import seedu.duke.command.Command;
 import seedu.duke.command.IncorrectCommand;
 import seedu.duke.command.addcommand.AddModuleCommand;
 import seedu.duke.command.filtercommand.FilterCommand;
+import seedu.duke.command.filtercommand.deletecommand.DeleteModuleCommand;
 import seedu.duke.command.filtercommand.listcommand.ListModuleCommand;
 import seedu.duke.exception.InvalidFormatException;
 
 import java.security.InvalidParameterException;
+import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -62,6 +64,8 @@ public class Parser {
                 return prepareAddModuleCommand(parameters);
             case ListModuleCommand.COMMAND_WORD:
                 return prepareListModuleCommand(parameters);
+            case DeleteModuleCommand.COMMAND_WORD:
+                return prepareDeleteModuleCommand(parameters);
             default:
                 return new IncorrectCommand("Wrong!");
             }
@@ -112,6 +116,21 @@ public class Parser {
     private Command prepareListModuleCommand(String parameters)
             throws InvalidParameterException {
         return new ListModuleCommand(parameters, false);
+    }
+
+    /**
+     * Return the arguments in the context of the delete person command
+     *
+     * @param parameters full command args string
+     * @return the prepared command
+     */
+    private static Command prepareDeleteModuleCommand(String parameters) {
+        try {
+            final String moduleCode = parameters.trim();
+            return new DeleteModuleCommand(moduleCode);
+        } catch (NumberFormatException pe) {
+            return new IncorrectCommand(MESSAGE_MISSING_MODULE_CODE);
+        }
     }
 
     /**

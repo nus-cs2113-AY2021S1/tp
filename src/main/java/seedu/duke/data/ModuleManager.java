@@ -89,6 +89,13 @@ public class ModuleManager {
         return false;
     }
 
+    public static void remove(String moduleCode) throws ModuleNotFoundException {
+        if (!contains(moduleCode)){
+            throw new ModuleNotFoundException();
+        }
+        moduleList.removeIf(module -> module.getModuleCode().equalsIgnoreCase(moduleCode));
+    }
+
     /**
      * Returns the modules map
      *
