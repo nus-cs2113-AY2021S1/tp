@@ -48,7 +48,15 @@ public class RecurringTracker {
         } while (!endTracker);
     }
 
-    static RecurringEntry handleNewEntry(CommandPacket packet) {
+    public static RecurringEntryList getEntries(){
+        return entries;
+    }
+
+    public static void loadEntry(CommandPacket packet){
+        handleNewEntry(packet);
+    }
+
+    static void handleNewEntry(CommandPacket packet) {
         RecurringEntry entry = new RecurringEntry();
         entry.setRequiredParams(
                 "-i or -e",

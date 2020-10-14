@@ -1,6 +1,11 @@
+Ledger;2020-10-10
+Entry;Income;TRANSPORT;432200.0;12:12;df af afa
+Ledger;2020-10-11
+Entry;Expense;TRANSPORT;320032.0;12:12;a fa f afa
 Ledger;2020-05-05
 Ledger;2020-06-06
 Entry;Income;TRANSPORT;123458.0;15:00:01;allowance
 Entry;Income;TRANSPORT;123457.0;15:00:01;allowance
 Entry;Income;TRANSPORT;123410.0;15:00:01;allowance
 Entry;Income;TRANSPORT;123411.0;15:00:01;allowance
+

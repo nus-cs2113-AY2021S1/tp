@@ -39,4 +39,8 @@ public abstract class SaveStateHandler {
             Files.createFile(Paths.get(fullPath));
         }
     }
+
+    String charRemoveAt(String str, int p) {
+        return str.substring(0, p) + str.substring(p + 1);
+    }
 }
