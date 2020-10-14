@@ -11,7 +11,7 @@ class ParserTest {
     }
 
     /**
-     * Remove command in Note content.
+     * Remove commands in Note content.
      */
     @Test
     void deleteLine_stringBuilder_condenseStringBuilder() {

@@ -15,6 +15,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddNoteCommandTest {
 
+    /**
+     * Asserts that the note can be added successfully.
+     */
     @Test
     public void addCommand_emptyNotebook_notebookContainsPerson() {
         Notebook notebook = new Notebook();
@@ -39,6 +42,10 @@ class AddNoteCommandTest {
         assertEquals(AddNoteCommand.COMMAND_SUCCESSFUL_MESSAGE + note.getTitle(), result);
     }
 
+    /**
+     * Asserts that the note cannot be added when the note
+     * contains the same title.
+     */
     @Test
     public void addCommand_notebookAlreadyContainsTitle_notebookUnmodified() {
         Notebook notebook = new Notebook();

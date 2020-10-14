@@ -32,6 +32,7 @@ class DeleteNoteCommandTest {
         } catch (NullPointerException exception) {
             exception.printStackTrace();
         }
+
         command.setData(notebook, timetable, tagManager, storageManager);
         command.execute();
         deletedNotebook = notebook;
@@ -47,6 +48,9 @@ class DeleteNoteCommandTest {
         expectedNotebook = notebook;
     }
 
+    /**
+     * Delete notes by index and String title of the note.
+     */
     @Test
     public void execute_validIndex_personIsDeleted() {
         assertDeletionSuccessfulInteger(1, notebook);
@@ -54,8 +58,11 @@ class DeleteNoteCommandTest {
     }
 
     /**
-     * Asserts that the person at the specified index can be successfully deleted.
-     * The addressBook passed in will not be modified (no side effects).
+     * Asserts that the note at the specified index can be deleted.
+     * The Notebook passed in will not be modified.
+     *
+     * @param targetVisibleIndex of the item to be deleted.
+     * @param notebook contains list of notes.
      */
     private void assertDeletionSuccessfulInteger(int targetVisibleIndex, Notebook notebook) {
 
@@ -70,8 +77,11 @@ class DeleteNoteCommandTest {
     }
 
     /**
-     * Asserts that the person at the specified index can be successfully deleted.
-     * The addressBook passed in will not be modified (no side effects).
+     * Asserts that the note at can be deleted with the note title.
+     * The Notebook passed in will not be modified.
+     *
+     * @param targetString of the item to be deleted.
+     * @param notebook contains list of notes.
      */
     private void assertDeletionSuccessfulString(String targetString, Notebook notebook) {
 
@@ -95,33 +105,37 @@ class DeleteNoteCommandTest {
     }
 
     /**
-     * Creates a new delete command.
+     * Creates a new delete command using index to delete.
      *
-     * @param targetVisibleIndex of the person that we want to delete
+     * @param targetVisibleIndex of the item to be deleted.
+     * @param notebook contains list of notes.
      */
     private DeleteNoteCommand createDeleteCommand(int targetVisibleIndex, Notebook notebook) {
 
         DeleteNoteCommand command = new DeleteNoteCommand(targetVisibleIndex);
         command.setData(notebook, timetable, tagManager, storageManager);
-
         return command;
     }
 
     /**
-     * Creates a new delete command.
+     * Creates a new delete command using String to delete.
      *
-     * @param targetVisibleString of the person that we want to delete
+     * @param targetVisibleString of the item to be deleted.
+     * @param notebook contains list of notes.
      */
     private DeleteNoteCommand createDeleteCommand(String targetVisibleString, Notebook notebook) {
         DeleteNoteCommand command = new DeleteNoteCommand(targetVisibleString);
         command.setData(notebook, timetable, tagManager, storageManager);
-
         return command;
     }
 
     /**
-     * Asserts that the person at the specified index cannot be deleted, because that person
-     * is not in the address book.
+     * Asserts that the note at the specified index cannot be deleted
+     * due to note not existing in the notebook.
+     * The Notebook passed in will not be modified.
+     *
+     * @param visibleIndex of the item to be deleted.
+     * @param notebook contains list of notes.
      */
     private void assertDeletionFailsDueToNoSuchPersonInteger(int visibleIndex, Notebook notebook) {
         DeleteNoteCommand command = createDeleteCommand(visibleIndex, notebook);
@@ -132,11 +146,15 @@ class DeleteNoteCommandTest {
     }
 
     /**
-     * Asserts that the person at the specified index cannot be deleted, because that person
-     * is not in the address book.
+     * Asserts that the note at the specified index cannot be deleted
+     * due to note not existing in the notebook.
+     * The Notebook passed in will not be modified.
+     *
+     * @param targetVisibleString of the item to be deleted.
+     * @param notebook contains list of notes.
      */
-    private void assertDeletionFailsDueToNoSuchPersonString(String title, Notebook notebook) {
-        DeleteNoteCommand command = createDeleteCommand(title, notebook);
+    private void assertDeletionFailsDueToNoSuchPersonString(String targetVisibleString, Notebook notebook) {
+        DeleteNoteCommand command = createDeleteCommand(targetVisibleString, notebook);
         String result = command.execute();
 
         assertEquals(DeleteNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE, result);
