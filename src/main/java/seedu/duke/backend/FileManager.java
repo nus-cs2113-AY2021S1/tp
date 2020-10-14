@@ -20,13 +20,15 @@ import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FileManager {
     // Todo support RFC 4180 CSV standard and handle rogue characters
     private static final String HEADERS_MEMBERS = "Name,Phone,Email,Role";
     private static final String HEADERS_FINANCE = "Name,Value";
     private static final String HEADERS_EVENT = "Name,Date,Time";
-
+    private static Logger logger = Logger.getLogger("FileLog");
     private String path; // if not the working directory, path should end with a slash
 
     public FileManager(String path) {
@@ -51,28 +53,35 @@ public class FileManager {
      * @throws IOException Any one of the files encounters a write error
      */
     public void saveAll() throws IOException {
+        logger.log(Level.INFO, "Begin Saving All");
         saveEvent(path + "events.csv");
         saveFinance(path + "finance.csv");
         saveMembers(path + "members.csv");
+        logger.log(Level.INFO, "Finished Saving All");
     }
 
     public int readAll() throws DukeFileFormatException, DukeFileHeaderException, IOException {
+        logger.log(Level.INFO, "Begin Loading All");
         int ret = 0;
         try {
             readEvents(path + "events.csv");
         } catch (FileNotFoundException fe) {
             ret++;
+            logger.log(Level.INFO, "Failed to load events");
         }
         try {
             readFinance(path + "finance.csv");
         } catch (FileNotFoundException fe) {
             ret++;
+            logger.log(Level.INFO, "Failed to load finance");
         }
         try {
             readMembers(path + "members.csv");
         } catch (FileNotFoundException fe) {
             ret++;
+            logger.log(Level.INFO, "Failed to load members");
         }
+        logger.log(Level.INFO, "Finished loading all");
         return ret;
     }
 
