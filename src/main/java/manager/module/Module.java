@@ -17,6 +17,10 @@ public class Module {
         return moduleName;
     }
 
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
+    }
+
     public ChapterList getChapters() {
         return chapters;
     }

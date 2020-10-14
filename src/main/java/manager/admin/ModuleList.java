@@ -26,4 +26,8 @@ public class ModuleList {
     public int getModuleCount() {
         return modules.size();
     }
+
+    public Module getModule(int moduleIndex) {
+        return modules.get(moduleIndex);
+    }
 }
