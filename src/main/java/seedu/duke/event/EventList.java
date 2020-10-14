@@ -1,5 +1,7 @@
 package seedu.duke.event;
 
+import seedu.duke.exception.InvalidIndexException;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -55,9 +57,15 @@ public class EventList {
         return eventsInTimeRange;
     }
 
-    public Event getEventByIndex(int index) {
+    public Event getEventByIndex(int index) throws InvalidIndexException {
 
-        return events.get(index);
+        try {
+            return events.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidIndexException("Error, no such index is available!");
+        }
+
+
     }
 
     public ArrayList<Event> getEvents() {

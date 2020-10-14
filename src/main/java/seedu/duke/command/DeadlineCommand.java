@@ -4,6 +4,10 @@ import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.event.Personal;
+import seedu.duke.exception.DateErrorException;
+import seedu.duke.exception.DukeException;
+import seedu.duke.exception.InvalidIndexException;
+import seedu.duke.exception.TimeErrorException;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -37,24 +41,30 @@ public class DeadlineCommand extends Command {
      * @param storage with the save file path to write to.
      */
     @Override
-    public void execute(UserData data, Ui ui, Storage storage) {
+    public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
         parseUserCommand(command, ui, data);
-        EventList personalList = data.getEventList("Personal");
-        Event updatedEvent = personalList.getEventByIndex(index - 1);
-        if (updatedEvent != null) {
-            Personal event = (Personal) updatedEvent;
-            if (time == null) {
-                event.setHasDate(true);
-                event.setHasTime(false);
-                updatedEvent.setDate(date);
-            } else {
-                event.setHasDate(true);
-                event.setHasTime(true);
-                updatedEvent.setDate(date);
-                updatedEvent.setTime(time);
+        try {
+            EventList personalList = data.getEventList("Personal");
+            Event updatedEvent = personalList.getEventByIndex(index - 1);
+            if (updatedEvent != null) {
+                Personal event = (Personal) updatedEvent;
+                if (time == null) {
+                    event.setHasDate(true);
+                    event.setHasTime(false);
+                    updatedEvent.setDate(date);
+                } else {
+                    event.setHasDate(true);
+                    event.setHasTime(true);
+                    updatedEvent.setDate(date);
+                    updatedEvent.setTime(time);
+                }
+                ui.printDeadlineChangedMessage(updatedEvent);
             }
-            ui.printDeadlineChangedMessage(updatedEvent);
+
+        } catch (InvalidIndexException e) {
+            throw new InvalidIndexException("Error, no such index is available!");
         }
+
 
     }
 
@@ -63,15 +73,15 @@ public class DeadlineCommand extends Command {
      *
      * @param command user input arguments
      */
-    private void parseUserCommand(String command, Ui ui, UserData data) {
+    private void parseUserCommand(String command, Ui ui, UserData data) throws DukeException {
         command = command.trim();
         String[] commandSplit = command.split(";");
         if (commandSplit.length == 2) {
             index = Integer.parseInt(commandSplit[0].trim());
             try {
                 date = DateTimeParser.dateParser(commandSplit[1].trim());
-            } catch (Exception e) {
-                ui.printExceptionMessage(e.toString());
+            } catch (DateErrorException e) {
+                throw new DateErrorException("Something is wrong with the date!");
             }
 
         } else if (commandSplit.length == 3) {
@@ -81,8 +91,10 @@ public class DeadlineCommand extends Command {
                 String timeString = commandSplit[2].trim();
                 timeString = timeString.replace(":", "");
                 time = DateTimeParser.timeParser(timeString);
-            } catch (Exception e) {
-                ui.printExceptionMessage(e.toString());
+            } catch (DateErrorException e) {
+                throw new DateErrorException("Something is wrong with the date!");
+            } catch (TimeErrorException e) {
+                throw new TimeErrorException("Something is wrong with the time!");
             }
         }
 

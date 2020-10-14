@@ -1,14 +1,17 @@
 package seedu.duke.parser;
 
+import seedu.duke.exception.DateErrorException;
+import seedu.duke.exception.TimeErrorException;
+
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class DateTimeParser {
-    private static final String[] dateformatStrings = {"yyyy/M/d", "yyyy-M-d", "d/M/yy",
+    private static final String[] dateFormatStrings = {"yyyy/M/d", "yyyy-M-d", "d/M/yy",
         "d/M/yyyy", "d-M-yy", "d-M-yyyy"};
-    private static final String[] timeformatStrings = {"h:m a", "hhmm a", "H:m", "HHmm"};
+    private static final String[] timeFormatStrings = {"h:m a", "hhmm a", "H:m", "HHmm"};
 
     /**
      * Parses the given date through the acceptable formats.
@@ -16,19 +19,19 @@ public class DateTimeParser {
      *
      * @param date given to parse.
      * @return LocalDate object containing given date.
-     * @throws Exception if date format is not accepted.
+     * @throws DateErrorException if date format is not accepted.
      */
-    public static LocalDate dateParser(String date) throws Exception {
+    public static LocalDate dateParser(String date) throws DateErrorException {
         int i = 0;
-        while (i < dateformatStrings.length) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateformatStrings[i]);
+        while (i < dateFormatStrings.length) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormatStrings[i]);
             try {
                 return LocalDate.parse(date, formatter);
             } catch (DateTimeException e) {
                 i++;
             }
         }
-        throw new Exception("Something is wrong with the date!");
+        throw new DateErrorException("Something is wrong with the date!");
     }
 
     /**
@@ -37,19 +40,19 @@ public class DateTimeParser {
      *
      * @param time given to parse.
      * @return LocalTime object containing the given time.
-     * @throws Exception if time format is not accepted.
+     * @throws TimeErrorException if time format is not accepted.
      */
-    public static LocalTime timeParser(String time) throws Exception {
+    public static LocalTime timeParser(String time) throws TimeErrorException {
         time = time.toUpperCase();
         int i = 0;
-        while (i < timeformatStrings.length) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(timeformatStrings[i]);
+        while (i < timeFormatStrings.length) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(timeFormatStrings[i]);
             try {
                 return LocalTime.parse(time, formatter);
             } catch (DateTimeException e) {
                 i++;
             }
         }
-        throw new Exception("Something is wrong with the time!");
+        throw new TimeErrorException("Something is wrong with the time!");
     }
 }

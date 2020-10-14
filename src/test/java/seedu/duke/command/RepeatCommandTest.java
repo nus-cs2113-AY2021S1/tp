@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
+import seedu.duke.exception.DukeException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -24,7 +25,7 @@ class RepeatCommandTest {
     private Storage storage = new Storage("data");
 
     @BeforeEach
-    void setupEventLists() {
+    void setupEventLists() throws DukeException {
         // Add Personal event to data
         String personalInput = "personal party; 09/10/2000; 1300";
         Command addCommand = new AddCommand(personalInput);
@@ -50,7 +51,7 @@ class RepeatCommandTest {
 
 
     @Test
-    void repeat_personalEventMonthly_personalEventRepeatedMonthly() {
+    void repeat_personalEventMonthly_personalEventRepeatedMonthly() throws DukeException {
 
 
         // Create Repeat Command
@@ -82,7 +83,7 @@ class RepeatCommandTest {
     }
 
     @Test
-    void repeat_zoomEventWeekly_zoomEventRepeatedWeekly() {
+    void repeat_zoomEventWeekly_zoomEventRepeatedWeekly() throws DukeException {
 
         //creating repeat command
         String inputString = "zoom 1 weekly 3";
@@ -112,7 +113,7 @@ class RepeatCommandTest {
     }
 
     @Test
-    void repeat_timeTableEventDaily_timeTableEventRepeatedDaily() {
+    void repeat_timeTableEventDaily_timeTableEventRepeatedDaily() throws DukeException {
 
         //creating repeat command
         String inputString = "timetable 1 daily 3";
@@ -143,7 +144,7 @@ class RepeatCommandTest {
     }
 
     @Test
-    void repeat_personalEventRepeatDailyMonthlyChange_personalEventDailyToMonthly() {
+    void repeat_personalEventRepeatDailyMonthlyChange_personalEventDailyToMonthly() throws DukeException {
 
         //create repeat command for daily
         String inputString = "personal 1 daily 4";
@@ -195,7 +196,11 @@ class RepeatCommandTest {
         System.setOut(outputLoc);
 
         Command repeatCommand = RepeatCommand.parse(inputString);
-        repeatCommand.execute(data, ui, storage);
+        try {
+            repeatCommand.execute(data, ui, storage);
+        } catch (DukeException e) {
+            e.printStackTrace();
+        }
         assertEquals("_________________________________" + System.lineSeparator()
                         + "Error! You cannot repeat an event that has no deadline!" + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),
@@ -212,9 +217,13 @@ class RepeatCommandTest {
         System.setOut(outputLoc);
 
         Command repeatCommand = RepeatCommand.parse(inputString);
-        repeatCommand.execute(data, ui, storage);
+        try {
+            repeatCommand.execute(data, ui, storage);
+        } catch (DukeException e) {
+            e.printStackTrace();
+        }
         assertEquals("_________________________________" + System.lineSeparator()
-                        + "Error! Index out of bounds!" + System.lineSeparator()
+                        + "Error, no such index is available!" + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),
                 outputStreamCaptor.toString());
     }
@@ -227,7 +236,11 @@ class RepeatCommandTest {
         System.setOut(outputLoc);
 
         Command repeatCommand = RepeatCommand.parse(inputString);
-        repeatCommand.execute(data, ui, storage);
+        try {
+            repeatCommand.execute(data, ui, storage);
+        } catch (DukeException e) {
+            e.printStackTrace();
+        }
         assertEquals("_________________________________" + System.lineSeparator()
                         + "FORTNIGHTLY is not a valid time unit. Valid types are: daily, weekly, monthly"
                         + System.lineSeparator()
@@ -243,7 +256,11 @@ class RepeatCommandTest {
         System.setOut(outputLoc);
 
         Command repeatCommand = RepeatCommand.parse(inputString);
-        repeatCommand.execute(data, ui, storage);
+        try {
+            repeatCommand.execute(data, ui, storage);
+        } catch (DukeException e) {
+            e.printStackTrace();
+        }
         assertEquals("_________________________________" + System.lineSeparator()
                         + "Wrong number of arguments provided" + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),
@@ -259,7 +276,11 @@ class RepeatCommandTest {
         System.setOut(outputLoc);
 
         Command repeatCommand = RepeatCommand.parse(inputString);
-        repeatCommand.execute(data, ui, storage);
+        try {
+            repeatCommand.execute(data, ui, storage);
+        } catch (DukeException e) {
+            e.printStackTrace();
+        }
         assertEquals("_________________________________" + System.lineSeparator()
                         + "Holiday is not a valid event type. Valid types are: personal, timetable, zoom"
                         + System.lineSeparator()
@@ -276,7 +297,11 @@ class RepeatCommandTest {
         System.setOut(outputLoc);
 
         Command repeatCommand = RepeatCommand.parse(inputString);
-        repeatCommand.execute(data, ui, storage);
+        try {
+            repeatCommand.execute(data, ui, storage);
+        } catch (DukeException e) {
+            e.printStackTrace();
+        }
         assertEquals("_________________________________" + System.lineSeparator()
                         + "Numbers are not in numeric form" + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),

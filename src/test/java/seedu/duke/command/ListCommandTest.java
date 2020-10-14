@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
 import seedu.duke.event.EventList;
+import seedu.duke.exception.DukeException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -45,7 +46,7 @@ class ListCommandTest {
     //    }
 
     @Test
-    void execute_zoomEvent_listZoomEvents() {
+    void execute_zoomEvent_listZoomEvents() throws DukeException {
         UserData data = new UserData();
         Ui ui = new Ui();
         Storage storage = new Storage("data");

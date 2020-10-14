@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
+import seedu.duke.exception.DukeException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -22,7 +23,7 @@ class AddCommandTest {
     }
 
     @Test
-    void execute_timetableEvent_printEventAdded() {
+    void execute_timetableEvent_printEventAdded() throws DukeException {
         UserData data = new UserData();
         Ui ui = new Ui();
         Storage storage = new Storage("data");
@@ -40,7 +41,7 @@ class AddCommandTest {
     }
 
     @Test
-    void execute_invalidPersonalEvent_printZoomEventError() {
+    void execute_invalidPersonalEvent_printZoomEventError() throws DukeException {
         UserData data = new UserData();
         Ui ui = new Ui();
         Storage storage = new Storage("data");

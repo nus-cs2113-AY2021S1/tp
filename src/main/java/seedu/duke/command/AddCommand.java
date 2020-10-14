@@ -4,9 +4,11 @@ import seedu.duke.data.UserData;
 import seedu.duke.event.Personal;
 import seedu.duke.event.Timetable;
 import seedu.duke.event.Zoom;
+import seedu.duke.exception.DukeException;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
@@ -59,7 +61,7 @@ public class AddCommand extends Command {
      * @param storage with the save file path to write to.
      */
     @Override
-    public void execute(UserData data, Ui ui, Storage storage) {
+    public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
         String[] argumentWords = argument.split(";");
         Boolean successfulAdd = false;
 
@@ -93,8 +95,8 @@ public class AddCommand extends Command {
     /**
      * Adds a Timetable event.
      *
-     * @param data object of UserData class containing user's data.
-     * @param ui containing the responses to print.
+     * @param data          object of UserData class containing user's data.
+     * @param ui            containing the responses to print.
      * @param argumentWords String array containing user input arguments
      * @return Boolean that confirms if the event was added
      */
@@ -131,12 +133,12 @@ public class AddCommand extends Command {
     /**
      * Adds a Personal event.
      *
-     * @param data object of UserData class containing user's data.
-     * @param ui containing the responses to print.
+     * @param data          object of UserData class containing user's data.
+     * @param ui            containing the responses to print.
      * @param argumentWords String array containing user input arguments
      * @return Boolean that confirms if the event was added
      */
-    private Boolean addPersonal(UserData data, Ui ui, String[] argumentWords) {
+    private Boolean addPersonal(UserData data, Ui ui, String[] argumentWords) throws DukeException {
         Boolean successfulAdd = false;
         if (argumentWords.length >= 1 && argumentWords.length <= 3) {
             // 3 cases: only description, description and date, description and date and time
@@ -170,12 +172,12 @@ public class AddCommand extends Command {
     /**
      * Adds a Zoom event.
      *
-     * @param data object of UserData class containing user's data.
-     * @param ui containing the responses to print.
+     * @param data          object of UserData class containing user's data.
+     * @param ui            containing the responses to print.
      * @param argumentWords String array containing user input arguments
      * @return Boolean that confirms if the event was added
      */
-    private Boolean addZoom(UserData data, Ui ui, String[] argumentWords) {
+    private Boolean addZoom(UserData data, Ui ui, String[] argumentWords) throws DukeException {
         Boolean successfulAdd = false;
         if (argumentWords.length == 2 || argumentWords.length == 4) {
             // 2 cases: only have description & zoomlink , have description,zoomlink, date,time

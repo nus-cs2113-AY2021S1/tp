@@ -8,6 +8,8 @@ import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.event.Repeat;
+import seedu.duke.exception.DukeException;
+import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -50,14 +52,15 @@ public class RepeatCommand extends Command {
             default:
                 break;
             }
-        } catch (IndexOutOfBoundsException e) {
-            this.command = "Error! Index out of bounds!";
+        } catch (DukeException e) {
+            this.command = e.getMessage();
             this.commandType = COMMANDTYPE_ERROR;
             executeNull(data, ui, storage);
         } catch (Exception e) {
             this.command = e.getMessage();
             this.commandType = COMMANDTYPE_ERROR;
             executeNull(data, ui, storage);
+
         }
 
     }
@@ -128,7 +131,7 @@ public class RepeatCommand extends Command {
      * @param data location where all user event information is stored
      * @param ui User Interface class for printing on screens
      */
-    private void executeList(UserData data, Ui ui) {
+    private void executeList(UserData data, Ui ui) throws DukeException {
         String[] words = command.split(" ");
         EventList eventList = data.getEventList(words[0]);
         int index = Integer.parseInt(words[1]) - 1;
@@ -143,8 +146,9 @@ public class RepeatCommand extends Command {
      * @param ui User Interface class for printing on screens
      * @param storage File storage location on computer
      */
+
     private void executeAdd(UserData data, Ui ui, Storage storage)
-            throws MissingDeadlineRepeatException, InvalidTypeException, IndexOutOfBoundsException {
+            throws MissingDeadlineRepeatException, InvalidTypeException, InvalidIndexException {
         String[] words = command.split(" ");
         EventList eventList = data.getEventList(words[0]);
 

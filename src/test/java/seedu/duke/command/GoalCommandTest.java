@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
+import seedu.duke.exception.DukeException;
 import seedu.duke.ui.Ui;
 
 import java.io.ByteArrayOutputStream;
@@ -23,7 +24,7 @@ class GoalCommandTest {
     }
 
     @Test
-    void execute_oneString_printChangeGoal() {
+    void execute_oneString_printChangeGoal() throws DukeException {
         String inputString = "Fly like a butterfly";
         UserData data = new UserData();
         Ui ui = new Ui();
@@ -33,7 +34,7 @@ class GoalCommandTest {
     }
 
     @Test
-    void execute_nullInput_printGoal() {
+    void execute_nullInput_printGoal() throws DukeException {
         UserData data = new UserData();
         Ui ui = new Ui();
         Command command = new GoalCommand(null);
@@ -42,7 +43,7 @@ class GoalCommandTest {
     }
 
     @Test
-    void execute_twoSeparateStringThenNullInput_printChangeGoal() {
+    void execute_twoSeparateStringThenNullInput_printChangeGoal() throws DukeException {
         UserData data = new UserData();
         Ui ui = new Ui();
         String inputString1 = "Fly like a butterfly";

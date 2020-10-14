@@ -51,7 +51,7 @@ public class Parser {
             return new ByeCommand();
 
         case "check":
-            return new CheckCommand(argument);
+            return new CheckCommand(argument + " ");
 
         case "repeat":
             return RepeatCommand.parse(argument);
