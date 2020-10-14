@@ -1,8 +1,8 @@
 package manager.chapter;
 
 import manager.card.Card;
-import parser.Parser;
 import scheduler.Scheduler;
+import ui.Ui;
 
 import java.time.LocalDate;
 
@@ -25,8 +25,8 @@ public class Chapter {
     }
 
     public static String rateChapter() {
-        if (Parser.chooseToRateNewDeck()) {
-            return Parser.getChoiceOfNewDeckRating();
+        if (Ui.chooseToRateNewDeck()) {
+            return Ui.getChoiceOfNewDeckRating();
         } else {
             return null;
         }

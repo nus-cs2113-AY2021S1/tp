@@ -1,7 +1,6 @@
 package storage;
 
 import exception.InvalidFileFormatException;
-import exception.InvalidInputException;
 import manager.card.Card;
 import manager.chapter.CardList;
 import manager.chapter.Chapter;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
-    public static final String FILE_PATHWAY = "questions.txt";   // file pathway
 
     public static final String QUESTION_ANSWER_PREFIX = " \\| ";
     public static final String QUESTION_PREFIX = "[Q]";
@@ -98,9 +96,9 @@ public class Storage {
         ArrayList<Module> modules = new ArrayList<>();
         String[] contents = f.list();
         System.out.println("List of files and directories in the specified directory:");
-        for (int i = 0; i < contents.length; i++) {
-            System.out.println(contents[i]);
-            modules.add(new Module(contents[i]));
+        for (String content : contents) {
+            System.out.println(content);
+            modules.add(new Module(content));
         }
         return modules;
     }
@@ -118,9 +116,9 @@ public class Storage {
             return chapters;
         }
         System.out.println("List of files and directories in the specified directory:");
-        for (int i = 0; i < contents.length; i++) {
-            String target = contents[i].replace(".txt", "");
-            System.out.println(contents[i]);
+        for (String content : contents) {
+            String target = content.replace(".txt", "");
+            System.out.println(content);
             chapters.add(new Chapter(target));
         }
         return chapters;
@@ -135,7 +133,6 @@ public class Storage {
 
         ArrayList<Card> cards = new ArrayList<>();
         Scanner s = new Scanner(f);
-        int totalCards = 0;
         while (s.hasNext()) {
             //to read the card
             String fileCommand = s.nextLine();
@@ -158,28 +155,5 @@ public class Storage {
             fw.write(cards.getCard(i).toString() + "\n");
         }
         fw.close();
-    }
-
-    public static void getFileContents(CardList cards) {
-        try {
-            File f = new File(FILE_PATHWAY);    // create a File for the given file path
-            Scanner s = new Scanner(f);     // create a Scanner using the File as the source
-            while (s.hasNext()) {
-                String fileCommand = s.nextLine();
-                String[] args = fileCommand.split(QUESTION_ANSWER_PREFIX, 2);
-                String question = Parser.parseQuestionInFile(args[0]);
-                String answer = Parser.parseAnswerInFile(args[1]);
-                Card card = new Card(question, answer);
-                cards.addCard(card);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        } catch (InvalidFileFormatException e) {
-            System.out.println("The format of some commands in the file is invalid");
-        }
-    }
-
-    public String getFilePath() {
-        return filePath;
     }
 }
