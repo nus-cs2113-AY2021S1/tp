@@ -26,13 +26,12 @@ public class DeleteCommand extends Command {
     public void execute(CalendarList calendarList, Storage storage) throws DukeException {
         int numberDelete = 0;
         boolean isTask = false;
-        int calendarNumber;
 
         try {
-            if (userInput.contains("-t")) {
+            if (userInput.startsWith("-t")) {
                 numberDelete = Integer.parseInt(userInput.replace("-t", "").trim());
                 isTask = true;
-            } else if (userInput.contains("-e")) {
+            } else if (userInput.startsWith("-e")) {
                 numberDelete = Integer.parseInt(userInput.replace("-e", "").trim());
             }
         } catch (Exception e) {
