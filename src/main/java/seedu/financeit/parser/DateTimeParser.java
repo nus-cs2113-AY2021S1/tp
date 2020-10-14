@@ -14,7 +14,7 @@ import java.time.LocalTime;
 public class DateTimeParser {
     public static LocalDate parseLocalDate(String input) throws InvalidParameterException,
         NullPointerException, DateTimeException {
-        if (RegexMatcher.alphabetMatcher(input).find()) {
+        if (RegexMatcher.alphabetMatcher(input).find() | !RegexMatcher.numberMatcher(input).find()) {
             throw new InvalidParameterException();
         } else {
             String formattedString = getFormatStringForLocalDateParse(input);
@@ -22,8 +22,9 @@ public class DateTimeParser {
         }
     }
 
-    public static LocalTime parseLocalTime(String input) {
-        if (RegexMatcher.alphabetMatcher(input).find()) {
+    public static LocalTime parseLocalTime(String input) throws InvalidParameterException,
+        NullPointerException, DateTimeException {
+        if (RegexMatcher.alphabetMatcher(input).find() | !RegexMatcher.numberMatcher(input).find()) {
             throw new InvalidParameterException();
         } else {
             String formattedString = getFormatStringForLocalTimeParse(input);

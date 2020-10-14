@@ -4,11 +4,11 @@ import java.io.IOException;
 
 public class SaveStateHandlerRecurringTracker extends SaveStateHandler {
 
-    public SaveStateHandlerRecurringTracker(){
+    public SaveStateHandlerRecurringTracker() {
         super();
     }
 
-    public SaveStateHandlerRecurringTracker(String filepath, String directory){
+    public SaveStateHandlerRecurringTracker(String filepath, String directory) {
         super(filepath, directory);
     }
 

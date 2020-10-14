@@ -2,13 +2,13 @@ package seedu.financeit.utils.storage;
 
 import java.io.IOException;
 
-public class SaveStateHandlerGoalTracker extends SaveStateHandler{
+public class SaveStateHandlerGoalTracker extends SaveStateHandler {
 
-    public SaveStateHandlerGoalTracker(){
+    public SaveStateHandlerGoalTracker() {
         super();
     }
 
-    public SaveStateHandlerGoalTracker(String filepath, String directory){
+    public SaveStateHandlerGoalTracker(String filepath, String directory) {
         super(filepath, directory);
     }
 

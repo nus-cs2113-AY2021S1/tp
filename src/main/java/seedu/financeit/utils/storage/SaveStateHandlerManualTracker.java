@@ -18,11 +18,11 @@ import java.util.Scanner;
 
 public class SaveStateHandlerManualTracker extends SaveStateHandler {
 
-    public SaveStateHandlerManualTracker(){
+    public SaveStateHandlerManualTracker() {
         super();
     }
 
-    public SaveStateHandlerManualTracker(String filepath, String directory){
+    public SaveStateHandlerManualTracker(String filepath, String directory) {
         super(filepath, directory);
     }
 
@@ -45,14 +45,14 @@ public class SaveStateHandlerManualTracker extends SaveStateHandler {
                 saveString.append(this.getSaveString(ent));
             }
         }
-        FileWriter fileWriter = new FileWriter(fullpath);
+        FileWriter fileWriter = new FileWriter(fullPath);
         fileWriter.write(String.valueOf(saveString));
         fileWriter.close();
     }
 
     public void load() throws IOException {
         buildFile();
-        File file = new File(fullpath);
+        File file = new File(fullPath);
         Scanner scanner = new Scanner(file);
         InputParser in = new InputParser();
         String[] classContents;
