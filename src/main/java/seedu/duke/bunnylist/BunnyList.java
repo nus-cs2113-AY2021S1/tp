@@ -49,6 +49,8 @@ public class BunnyList {
     }
 
     public static void listBunny() {
+        assert !(bunniesList.size() == 0) : "No elements in list!";
+
         UI.listBunnyMessage();
         for (int i = 0; i < bunniesList.size(); i++) {
             System.out.println((i + 1) + ".\n" + bunniesList.get(i).getDescription());
