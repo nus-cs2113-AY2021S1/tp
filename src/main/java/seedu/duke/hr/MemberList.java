@@ -10,7 +10,6 @@ public class MemberList {
      * @param m member to be added.
      */
     public static void addToList(Member m) {
-
         members.add(m);
     }
 

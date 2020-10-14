@@ -1,6 +1,13 @@
 package seedu.duke.backend;
 
 import seedu.duke.Command;
+import seedu.duke.finance.CommandFinanceAdd;
+import seedu.duke.finance.CommandFinanceDel;
+import seedu.duke.finance.CommandFinanceSummary;
+import seedu.duke.finance.FinanceLog;
+import seedu.duke.event.CommandEventAdd;
+import seedu.duke.event.CommandEventDel;
+import seedu.duke.event.CommandEventList;
 import seedu.duke.DukeArgumentException;
 import seedu.duke.DukeNoMatchException;
 import seedu.duke.hr.CommandAddMember;
@@ -8,11 +15,11 @@ import seedu.duke.hr.CommandDelMember;
 import seedu.duke.hr.CommandViewMember;
 import seedu.duke.others.CommandBye;
 import seedu.duke.others.CommandHelp;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
+    private static FinanceLog fl;
     private Scanner sc;
     private Parser parser;
     private static ArrayList<Command> commandList = new ArrayList<>();
@@ -88,7 +95,9 @@ public class Ui {
      * @param isInstant whether the string is printed instantly
      */
     private static void printOutput(String text, boolean isInstant) {
-
+        if (text == null) {
+            return;
+        }
         System.out.println(UNDERSCORES);
         // Split text according to the lines to format.
         String[] lines = text.split("\\r?\\n");
@@ -119,8 +128,15 @@ public class Ui {
     private static void initializeCommands() {
         commandList.add(new CommandHelp());
         commandList.add(new CommandBye());
+        commandList.add(new CommandFinanceSummary());
+        commandList.add(new CommandFinanceAdd());
+        commandList.add(new CommandFinanceDel());
+        commandList.add(new CommandEventAdd());
+        commandList.add(new CommandEventDel());
+        commandList.add(new CommandEventList());
         commandList.add(new CommandAddMember());
         commandList.add(new CommandViewMember());
         commandList.add(new CommandDelMember());
     }
 }
+
