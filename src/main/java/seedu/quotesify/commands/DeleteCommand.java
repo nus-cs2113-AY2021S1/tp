@@ -100,6 +100,10 @@ public class DeleteCommand extends Command {
         String[] titleAndAuthor = information.split(FLAG_AUTHOR);
         String bookTitle = titleAndAuthor[0].trim();
 
+        // clear bookmarks before delete the entire book.
+        BookmarkList bookmarks = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
+        clearBookmark(books,bookmarks, bookTitle, ui);
+
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
         Rating ratingToBeDeleted;
         for (Rating rating : ratings.getList()) {
@@ -227,6 +231,21 @@ public class DeleteCommand extends Command {
             ui.printDeleteBookmark(bookmarkToBeDeleted);
         } else {
             System.out.println(ERROR_BOOKMARK_NOT_FOUND);
+        }
+    }
+
+    private void clearBookmark(BookList books, BookmarkList bookmarks, String titleName, TextUi ui) {
+        Book targetBook = books.findByTitle(titleName);
+        if (targetBook != null) {
+            clearBookmarkFromDeletedBook(targetBook, bookmarks, ui);
+        }
+    }
+
+    private void clearBookmarkFromDeletedBook(Book targetBook, BookmarkList bookmarks, TextUi ui) {
+        Bookmark bookmarkToBeDeleted = bookmarks.find(targetBook);
+
+        if (bookmarkToBeDeleted != null) {
+            bookmarks.delete(bookmarkToBeDeleted);
         }
     }
 

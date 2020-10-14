@@ -30,6 +30,10 @@ public class BookmarkList extends QuotesifyList<Bookmark> {
         return null;
     }
 
+    public int getSize() {
+        return bookmarks.size();
+    }
+
     @Override
     public void delete(int index) {
         bookmarks.remove(index);

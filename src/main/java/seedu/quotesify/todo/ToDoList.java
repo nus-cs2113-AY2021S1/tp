@@ -28,6 +28,10 @@ public class ToDoList extends QuotesifyList<ToDo> {
         }
     }
 
+    public int getSize() {
+        return todos.size();
+    }
+
     @Override
     public void delete(int taskNum) {
         int indexNum = taskNum - 1;
