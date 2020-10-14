@@ -131,8 +131,8 @@ public class Ui {
         printMessage(MESSAGE_TEXTBOOK);
     }
 
-    public void printError(String errorType) {
-        switch (errorType) {
+    public void printError(String errorMessage) {
+        switch (errorMessage) {
         case ERROR_STORAGE_FAIL:
             printMessage(ERROR_STORAGE_FAIL);
             break;
