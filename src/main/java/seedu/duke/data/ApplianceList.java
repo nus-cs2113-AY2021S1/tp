@@ -38,6 +38,9 @@ public class ApplianceList {
                 appliances.remove(i);
                 break;
             }
+            if (i == getAllAppliance().size() - 1) {
+                throw new IndexOutOfBoundsException();
+            }
         }
     }
 
