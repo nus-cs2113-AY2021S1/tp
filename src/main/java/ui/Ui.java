@@ -38,10 +38,11 @@ public class Ui {
     }
 
     public static boolean chooseToRateNewDeck() {
-        System.out.println("Would you like to rate this new Chapter?");
+        System.out.println("Would you like to rate this new Chapter? (Y/N)");
         Ui ratingUi = new Ui();
         String userChoice = ratingUi.readCommand();
         while (!userChoice.equalsIgnoreCase("Y") && !userChoice.equalsIgnoreCase("N")) {
+            ratingUi.showToUser("Sorry, that is not a valid input. Please enter \"Y\" or \"N\"");
             userChoice = ratingUi.readCommand();
         }
         return userChoice.equalsIgnoreCase("Y");

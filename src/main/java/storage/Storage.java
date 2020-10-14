@@ -5,8 +5,10 @@ import exception.InvalidFileFormatException;
 import manager.card.Card;
 import manager.chapter.CardList;
 import manager.chapter.Chapter;
+import manager.chapter.DueChapter;
 import parser.Parser;
 import manager.module.Module;
+import scheduler.Scheduler;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -129,6 +131,54 @@ public class Storage {
         return chapters;
     }
 
+    private String retrieveChapterDeadline(String moduleName, String chapterName) {
+        File f = new File(filePath + "/" + moduleName + "/" + chapterName + "due" + ".txt");
+        try {
+            Scanner s = new Scanner(f);
+            if (!s.hasNext()) {
+                return s.nextLine();
+            } else {
+                return "Invalid Date";
+            }
+        } catch (FileNotFoundException e) {
+            return "Does not exist";
+        }
+
+    }
+
+    public ArrayList<DueChapter> loadAllDueChapters() throws FileNotFoundException {
+        //Loading in Modules
+        File f = new File(filePath);
+        boolean moduleExists = f.exists();
+        if (!moduleExists) {
+            throw new FileNotFoundException();
+        }
+
+        String[] modules = f.list();
+        ArrayList<DueChapter> dueChapters = new ArrayList<>();
+        for (String module : modules) {
+
+            //Loading in Chapters for each module
+            File f2 = new File(filePath + "/" + module);
+            boolean chapterExists = f2.exists();
+            if (!chapterExists) {
+                throw new FileNotFoundException();
+            }
+            String[] chapters = f2.list();
+            if (chapters.length == 0) {
+                return dueChapters;
+            }
+            for (String chapter : chapters) {
+                String target = chapter.replace(".txt", "");
+                String deadline = retrieveChapterDeadline(module, target);
+                if (!deadline.equals("Does not exist")) {
+                    dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
+                }
+            }
+        }
+        return dueChapters;
+    }
+
     public ArrayList<Card> loadCard(String module, String chapter) throws FileNotFoundException {
         File f = new File(filePath + "/" + module + "/" + chapter + ".txt");
         boolean fileExists = f.exists();
@@ -161,6 +211,35 @@ public class Storage {
             fw.write(cards.getCard(i).toString() + "\n");
         }
         fw.close();
+    }
+
+    private boolean createChapterDue(String chapterPath) throws IOException {
+        File f = new File(chapterPath);
+        boolean chapterFileExists = f.exists();
+        if (!chapterFileExists) {
+            return f.createNewFile();
+        } else {
+            return true;
+        }
+    }
+
+    private void writeDeadlineToChapterDue(String dueBy, String chapterPath) throws IOException {
+        FileWriter fw = new FileWriter(chapterPath);
+        fw.write(dueBy);
+        fw.close();
+    }
+
+    public void saveChapterDeadline(String dueBy, String moduleName, String chapterName) {
+        try {
+            String chapterPath = filePath + "/" + moduleName + "/" + chapterName + "due" + ".txt";
+            if (createChapterDue(chapterPath)) {
+                writeDeadlineToChapterDue(dueBy, chapterPath);
+            } else {
+                System.out.println("Unable to produce ChapterDue");
+            }
+        } catch (IOException e) {
+            System.out.println("Error in saving chapter deadline");
+        }
     }
 
     public boolean deleteDirectory(File directoryToBeDeleted) {

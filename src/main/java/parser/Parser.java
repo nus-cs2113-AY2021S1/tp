@@ -18,7 +18,6 @@ import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import storage.Storage;
-import ui.Ui;
 
 public class Parser {
     private static final String QUESTION_ANSWER_PREFIX = " \\| ";
@@ -34,6 +33,8 @@ public class Parser {
         String[] commandTypeAndArgs = splitCommandTypeAndArgs(fullCommand);
         String commandType = commandTypeAndArgs[0].trim().toLowerCase();
         String commandArgs = commandTypeAndArgs[1].trim();
+
+        System.out.println("Command Type: " + commandType);
 
         switch (commandType) {
         case ListCommand.COMMAND_WORD:

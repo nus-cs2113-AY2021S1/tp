@@ -4,6 +4,7 @@ import manager.card.Card;
 import manager.chapter.CardList;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.lang.Math;
 
 public class Scheduler {
@@ -14,13 +15,26 @@ public class Scheduler {
 
     public static boolean isDeadlineDue(LocalDate dueBy) {
         if (dueBy == null) {
-            return true;
+            return false;
         }
         return dueBy.isBefore(getCurrentDate()) || dueBy.isEqual(getCurrentDate());
     }
 
     public static LocalDate getCurrentDate() {
         return LocalDate.now();
+    }
+
+    public static LocalDate parseDate(String savedDate) {
+        if (savedDate.equals("Invalid Date")) {
+            return LocalDate.now();
+        } else {
+            return LocalDate.parse(savedDate);
+        }
+    }
+
+    public static String convertDueByToString(LocalDate dueBy) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return dueBy.format(formatter);
     }
 
     public static int computeEasyInterval(int previousInterval) {
