@@ -48,7 +48,7 @@ class WeeklyEventTest {
     }
 
     /**
-     * Tests if the event reoccurs 5 times in 5 weeks
+     * Tests if the event reoccurs 5 times in 5 weeks.
      */
     @Test
     void assertGetRecurrences() {

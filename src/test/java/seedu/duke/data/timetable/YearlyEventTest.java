@@ -48,7 +48,7 @@ class YearlyEventTest {
     }
 
     /**
-     * Tests if the event reoccurs 5 times in 5 years
+     * Tests if the event reoccurs 5 times in 5 years.
      */
     @Test
     void assertGetRecurrences() {

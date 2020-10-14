@@ -45,7 +45,7 @@ class DailyEventTest {
     }
 
     /**
-     * Tests if the event reoccurs 8 times in 1 week and 1 day
+     * Tests if the event reoccurs 8 times in 1 week and 1 day.
      */
     @Test
     void assertGetRecurrences() {

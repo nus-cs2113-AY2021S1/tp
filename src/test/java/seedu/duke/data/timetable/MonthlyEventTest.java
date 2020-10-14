@@ -48,7 +48,7 @@ class MonthlyEventTest {
     }
 
     /**
-     * Tests if the event reoccurs 5 times in 5 months
+     * Tests if the event reoccurs 5 times in 5 months.
      */
     @Test
     void assertGetRecurrences() {
