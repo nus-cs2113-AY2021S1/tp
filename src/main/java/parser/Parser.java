@@ -6,15 +6,14 @@ import commands.ListCommand;
 import commands.AddChapterCommand;
 import commands.AddCommand;
 import commands.AddModuleCommand;
-import commands.BackChapterCommand;
 import commands.GoChapterCommand;
 import commands.HelpCommand;
 import commands.RemoveCommand;
 import commands.ReviseCommand;
 import commands.ExitCommand;
 import commands.GoModuleCommand;
-import commands.BackModuleCommand;
 import commands.EditCommand;
+import commands.BackCommand;
 
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
@@ -53,16 +52,14 @@ public class Parser {
             return prepareAddModule(commandArgs);
         case AddChapterCommand.COMMAND_WORD:
             return prepareAddChapter(commandArgs);
-        case BackModuleCommand.COMMAND_WORD:
-            return prepareBackModule(commandArgs);
-        case BackChapterCommand.COMMAND_WORD:
-            return prepareBackChapter(commandArgs);
         case GoModuleCommand.COMMAND_WORD:
             return prepareGoModule(commandArgs);
         case GoChapterCommand.COMMAND_WORD:
             return prepareGoChapter(commandArgs);
         case EditCommand.COMMAND_WORD:
             return prepareEdit(commandArgs, access);
+        case BackCommand.COMMAND_WORD:
+            return prepareBack(commandArgs);
         default:
             throw new InvalidInputException("There is no such command type.\n");
         }
@@ -82,18 +79,11 @@ public class Parser {
         return new GoModuleCommand(commandArgs);
     }
 
-    private static Command prepareBackChapter(String commandArgs) throws InvalidInputException {
+    private static Command prepareBack(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
             throw new InvalidInputException();
         }
-        return new BackChapterCommand();
-    }
-
-    private static Command prepareBackModule(String commandArgs) throws InvalidInputException {
-        if (!commandArgs.isEmpty()) {
-            throw new InvalidInputException();
-        }
-        return new BackModuleCommand();
+        return new BackCommand();
     }
 
     private static Command prepareAddChapter(String commandArgs) throws InvalidInputException {

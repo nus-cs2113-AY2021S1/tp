@@ -9,6 +9,7 @@ import commands.ListCommand;
 import commands.ExitCommand;
 import commands.EditCommand;
 import commands.RemoveCommand;
+import commands.BackCommand;
 
 import manager.card.Card;
 import manager.chapter.Chapter;
@@ -66,6 +67,18 @@ public class Ui {
         out.println("Now you have " + cardCount + " cards in the list.");
     }
 
+    public void showModuleAdded(Module module, int moduleCount) {
+        out.println("    Got it. I've added this module:");
+        out.println("    " + module);
+        out.println("    Now you have " + moduleCount + " modules in the list.");
+    }
+
+    public void showChapterAdded(Chapter chapter, int chapterCount) {
+        out.println("    Got it. I've added this chapter:");
+        out.println("    " + chapter);
+        out.println("    Now you have " + chapterCount + " chapters in the list.");
+    }
+
     public void showCardList(ArrayList<Card> cards, int cardCount) {
         if (cardCount == 0) {
             out.println("There are no cards in your list.");
@@ -74,6 +87,28 @@ public class Ui {
         out.println("Here are the cards in your list:");
         for (Card c : cards) {
             out.println((cards.indexOf(c) + 1) + "." + c);
+        }
+    }
+
+    public void showModuleList(ArrayList<Module> modules, int moduleCount) {
+        if (moduleCount == 0) {
+            out.println("There are no modules in your list.");
+            return;
+        }
+        out.println("Here are the modules in your list:");
+        for (Module m : modules) {
+            out.println((modules.indexOf(m) + 1) + "." + m);
+        }
+    }
+
+    public void showChapterList(ArrayList<Chapter> chapters, int chapterCount) {
+        if (chapterCount == 0) {
+            out.println("There are no chapters in your list.");
+            return;
+        }
+        out.println("Here are the chapters in your list:");
+        for (Chapter c : chapters) {
+            out.println((chapters.indexOf(c) + 1) + "." + c);
         }
     }
 
@@ -114,41 +149,10 @@ public class Ui {
         out.println("5. " + ExitCommand.MESSAGE_USAGE);
         out.println("6. " + EditCommand.MESSAGE_USAGE);
         out.println("7. " + RemoveCommand.MESSAGE_USAGE);
+        out.println("8. " + BackCommand.MESSAGE_USAGE);
     }
 
-    public void showModuleAdded(Module module, int moduleCount) {
-        out.println("    Got it. I've added this module:");
-        out.println("    " + module);
-        out.println("    Now you have " + moduleCount + " modules in the list.");
-    }
 
-    public void showChapterAdded(Chapter chapter, int chapterCount) {
-        out.println("    Got it. I've added this chapter:");
-        out.println("    " + chapter);
-        out.println("    Now you have " + chapterCount + " chapters in the list.");
-    }
-
-    public void showModuleList(ArrayList<Module> modules, int moduleCount) {
-        if (moduleCount == 0) {
-            out.println("There are no modules in your list.");
-            return;
-        }
-        out.println("Here are the modules in your list:");
-        for (Module m : modules) {
-            out.println((modules.indexOf(m) + 1) + "." + m);
-        }
-    }
-
-    public void showChapterList(ArrayList<Chapter> chapters, int chapterCount) {
-        if (chapterCount == 0) {
-            out.println("There are no chapters in your list.");
-            return;
-        }
-        out.println("Here are the chapters in your list:");
-        for (Chapter c : chapters) {
-            out.println((chapters.indexOf(c) + 1) + "." + c);
-        }
-    }
 
     public void showError(String error) {
         out.println(error);
