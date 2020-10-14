@@ -63,7 +63,7 @@ public abstract class Task extends CalendarItem {
     }
 
     /**
-     * Save the task into files.
+     * Saves the task into files.
      *
      * @return string contains the information about the activity event.
      */
@@ -73,7 +73,7 @@ public abstract class Task extends CalendarItem {
     }
 
     /**
-     * Get the state of the task.
+     * Gets the state of the task.
      *
      * @return the state of the task
      */

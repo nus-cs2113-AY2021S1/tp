@@ -15,7 +15,7 @@ public class PrintTimelineCommand extends Command {
     }
 
     /**
-     * Print out timeline of all items in calendarList.
+     * Prints out timeline of all items in calendarList.
      *
      * @param calendarList the calendar list to print the timeline from.
      * @param storage the storage to input the data from.

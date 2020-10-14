@@ -19,7 +19,7 @@ public class Exam extends SchoolEvent {
     }
 
     /**
-     * Check whether the exam is over.
+     * Checks whether the exam is over.
      *
      * @return whether the exam is over
      */
@@ -34,7 +34,7 @@ public class Exam extends SchoolEvent {
     }
 
     /**
-     * Show whether the exam is over.
+     * Shows whether the exam is over.
      *
      * @return whether the exam is over
      */

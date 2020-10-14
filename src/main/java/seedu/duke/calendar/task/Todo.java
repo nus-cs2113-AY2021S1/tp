@@ -39,7 +39,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Save the todo task into files.
+     * Saves the todo task into files.
      *
      * @return string contains the information about the todo task.
      */

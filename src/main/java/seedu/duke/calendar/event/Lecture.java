@@ -29,7 +29,7 @@ public class Lecture extends SchoolEvent {
     }
 
     /**
-     * Check whether the lecture is over.
+     * Checks whether the lecture is over.
      *
      * @return whether the tutorial is over
      */
@@ -44,7 +44,7 @@ public class Lecture extends SchoolEvent {
     }
 
     /**
-     * Show whether the lab is over.
+     * Shows whether the lab is over.
      *
      * @return whether the lab is over
      */
@@ -53,7 +53,7 @@ public class Lecture extends SchoolEvent {
     }
 
     /**
-     * Describe the lecture event.
+     * Describes the lecture event.
      *
      * @Return a string to describe the lecture event.
      */

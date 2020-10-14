@@ -40,7 +40,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Save the deadline task into files.
+     * Saves the deadline task into files.
      *
      * @return string contains the information about the deadline task.
      */

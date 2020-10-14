@@ -31,7 +31,7 @@ public class Activity extends Event {
     }
 
     /**
-     * Check whether the activity is over.
+     * Checks whether the activity is over.
      *
      * @return whether the activity is over
      */
@@ -47,7 +47,7 @@ public class Activity extends Event {
     }
 
     /**
-     * Show whether the activity is over.
+     * Shows whether the activity is over.
      *
      * @return whether the activity is over
      */
