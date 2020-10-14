@@ -1,9 +1,15 @@
-package seedu.duke;
+package seedu.duke.anime;
+
+import seedu.duke.human.Character;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Anime {
+    private static int totalAnime = 0;
+    private int animeID;
+    private ArrayList<Character> characters = new ArrayList<>();
     private String animeName;
     private Date releaseDate;
     private int rating;
@@ -12,22 +18,44 @@ public class Anime {
     private boolean isCompleted;
     private int totalEpisodes;
 
-    //Default Constructor
+    //Default Constructor to create empty Anime class
     public Anime() {
+        this.animeID = 0;
         this.animeName = "";
         this.rating = 0;
         this.totalEpisodes = 0;
         this.genre = null;
+        totalAnime++;
+        animeID = totalAnime;
     }
 
-    public Anime(String animeName, String[] releaseDate, int rating, String[] genre, int avgEpisodeLength,
-                 int totalEpisodes) {
+    public Anime(String animeName, String[] releaseDate, int rating,
+                 String[] genre, int avgEpisodeLength, int totalEpisodes) {
+        setAnimeID(animeID);
         setAnimeName(animeName);
         setReleaseDate(releaseDate);
         setRating(rating);
         setGenre(genre);
         setAvgEpisodeLength(avgEpisodeLength);
         setTotalEpisodes(totalEpisodes);
+        totalAnime++;
+        animeID = totalAnime;
+    }
+
+    public int getAnimeID() {
+        return animeID;
+    }
+
+    public void setAnimeID(int animeID) {
+        this.animeID = animeID;
+    }
+
+    public void addCharacter(Character newCharacter) {
+        characters.add(newCharacter);
+    }
+
+    public ArrayList<Character> getCharacters() {
+        return characters;
     }
 
     public void setTotalEpisodes(int totalEpisodes) {
