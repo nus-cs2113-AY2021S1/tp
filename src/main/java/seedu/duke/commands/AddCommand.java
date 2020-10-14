@@ -265,7 +265,9 @@ public class AddCommand extends Command {
             }
 
             String taskName = taskNameAndDeadline[0].trim();
+            assert !taskName.isEmpty() : "task name should not be empty";
             String deadline = taskNameAndDeadline[1].trim();
+            assert !deadline.isEmpty() : "deadline should not be empty";
             newToDo = new ToDo(taskName, deadline);
             toDos.add(newToDo);
         } catch (QuotesifyException e) {
