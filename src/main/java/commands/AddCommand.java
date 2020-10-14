@@ -86,6 +86,7 @@ public class AddCommand extends Command {
     }
 
     private void addCard(Ui ui, Access access, Storage storage) throws IOException {
+        assert access.isChapterLevel() : "Not chapter level";
         CardList cards = access.getChapter().getCards();
         cards.addCard(card);
         int cardCount = cards.getCardCount();

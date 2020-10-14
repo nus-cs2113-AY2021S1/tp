@@ -110,6 +110,7 @@ public class Parser {
             }
             return prepareAddModule(commandArgs);
         } else {
+            assert !access.isChapterLevel() && !access.isAdminLevel() && !access.isModuleLevel() : access.getLevel();
             throw new IncorrectAccessLevelException("Add command can only be called at admin, "
                     + "module and chapter level.");
         }
@@ -177,6 +178,7 @@ public class Parser {
         } else if (access.isModuleLevel()) {
             return prepareEditChapter(commandArgs);
         } else {
+            assert !access.isChapterLevel() && !access.isAdminLevel() && !access.isModuleLevel() : access.getLevel();
             throw new IncorrectAccessLevelException("Edit command can only be called at admin, "
                     + "module and chapter level.");
         }
