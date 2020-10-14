@@ -42,6 +42,8 @@ public class MainController implements Initializable {
     private VBox dialogContainer;
     @FXML
     private AnchorPane mainLayout;
+    @FXML
+    private Button sendButton;
 
     private Image user = new Image(this.getClass().getResourceAsStream("/images/original.gif"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/tenor.gif"));
@@ -57,15 +59,15 @@ public class MainController implements Initializable {
         });
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
-        userInput.setOnAction((event) -> {
-            handleUserInput();
-        });
-    }
 
-    private void executeCommand(){
+        //execute command
         userInput.setOnAction((event) -> {
             handleUserInput();
         });
+        sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
+        });
+
     }
 
     private void handleUserInput() {
