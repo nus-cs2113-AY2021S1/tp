@@ -18,13 +18,15 @@ public class ModuleList {
     private static final String ERROR_ADDEXP = "Please type addexp <module code> <expected workload>";
     private static final String ERROR_DELETEMOD = "Please type deletemod <module code>";
     private static final String ERROR_DELETEEXP = "Please type deleteexp <module code>";
-
+    private static final int MIN_MOD_LENGTH = 6;
+    private static final int MAX_MOD_LENGTH = 8;
+    public static final int NO_INPUT = -1;
 
     /**
      * Checks if the module exists in the list of modules.
      *
-     * @param input module code typed in by user
-     * @return the existence of module in the list of modules.
+     * @param input module code typed in by user.
+     * @return true if module is found in the list of modules, false otherwise.
      */
     public boolean checkIfModuleExist(String input) {
         Module currentMod = new Module(input);
@@ -36,6 +38,13 @@ public class ModuleList {
         return false;
     }
 
+    /**
+     * Checks if the module is valid.
+     *
+     * @param module module code typed in by user.
+     * @param toPrint whether the UI should print the output.
+     * @return true if module code is valid, false otherwise.
+     */
     public boolean checkIfModuleValid(String module, boolean toPrint) {
         String trimmedMod = module.trim();
         if (trimmedMod.contains(" ")) {
@@ -43,9 +52,9 @@ public class ModuleList {
                 System.out.println(MODULECODE_SPACING + System.lineSeparator());
             }
             return false;
-        } else if (trimmedMod.length() < 6 || trimmedMod.length() > 8) {
+        } else if (trimmedMod.length() < MIN_MOD_LENGTH || trimmedMod.length() > MAX_MOD_LENGTH) {
             if (toPrint) {
-                System.out.println(INVALID_MODULECODE + MODULECODE_LENGTH + System.lineSeparator());
+                System.out.println(INVALID_MODULECODE + " " + MODULECODE_LENGTH + System.lineSeparator());
             }
             return false;
         } else {
@@ -53,6 +62,13 @@ public class ModuleList {
         }
     }
 
+    /**
+     * Checks if the time is valid.
+     *
+     * @param hours number of hours typed in by user.
+     * @param toPrint whether the UI should print the output.
+     * @return true if number of hours is valid, false otherwise.
+     */
     public boolean checkIfTimeValid(double hours, boolean toPrint) {
         if (hours < 0) {
             if (toPrint) {
@@ -68,24 +84,27 @@ public class ModuleList {
      * Creates a module and adds the module to the list of modules if the module
      * does not exist.
      *
-     * @param input module code typed in by user
-     * @param toPrint whether the UI should print the output
-     * @param storage storage object where data is stored
+     * @param input module code typed in by user.
+     * @param toPrint whether the UI should print the output.
+     * @param storage storage object where data is stored.
      */
     public void addMod(String input, boolean toPrint, Storage storage) {
         try {
             String[] modInfo = input.split(" ", 2);
-            modInfo[1] = modInfo[1].toUpperCase();
+            String modCode = modInfo[1];
+            modCode = modCode.toUpperCase();
 
-            if (!checkIfModuleValid(modInfo[1], toPrint)) {
+            if (!checkIfModuleValid(modCode, toPrint)) {
                 return;
             }
-            if (checkIfModuleExist(modInfo[1])) {
+            assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
+            assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
+            if (checkIfModuleExist(modCode)) {
                 if (toPrint) {
-                    ui.printExist(modInfo[1]);
+                    ui.printExist(modCode);
                 }
             } else {
-                Module currentModule = new Module(modInfo[1]);
+                Module currentModule = new Module(modCode);
                 modList.add(currentModule);
                 if (toPrint) {
                     ui.printAdd(currentModule);
@@ -102,25 +121,28 @@ public class ModuleList {
     /**
      * Creates a module and adds the module with expected time to the
      * list of modules if module does not exist.
-     * If module already exist, update expected time based on user input
+     * If module already exist, update expected time based on user input.
      *
-     * @param input module code and expected time typed in by user
-     * @param toPrint whether the UI should print the output
-     * @param storage storage object where data is stored
+     * @param input module code and expected time typed in by user.
+     * @param toPrint whether the UI should print the output.
+     * @param storage storage object where data is stored.
      */
     public void addExp(String input, boolean toPrint, Storage storage) {
         try {
             String[] modInfo = input.split(" ", 3);
-            modInfo[1] = modInfo[1].toUpperCase();
-            if (!checkIfModuleValid(modInfo[1], toPrint)) {
+            String modCode = modInfo[1];
+            String expTime = modInfo[2];
+            modCode = modCode.toUpperCase();
+            if (!checkIfModuleValid(modCode, toPrint)) {
                 return;
             }
-            int expectedTime = Integer.parseInt(modInfo[2]);
+            int expectedTime = Integer.parseInt(expTime);
             if (!checkIfTimeValid(expectedTime, toPrint)) {
                 return;
             }
-            Module currentMod = new Module(modInfo[1], modInfo[2]);
-            if (!checkIfModuleExist(modInfo[1])) {
+            assert expectedTime >= 0 : "The expected time should be positive";
+            Module currentMod = new Module(modCode, expTime);
+            if (!checkIfModuleExist(modCode)) {
                 modList.add(currentMod);
             } else {
                 int index = modList.indexOf(currentMod);
@@ -144,27 +166,28 @@ public class ModuleList {
     /**
      * Deletes the module if module exists.
      *
-     * @param input module code typed in by user
-     * @param toPrint whether the UI should print the output
-     * @param storage storage object where data is stored
+     * @param input module code typed in by user.
+     * @param toPrint whether the UI should print the output.
+     * @param storage storage object where data is stored.
      */
     public void deleteMod(String input, boolean toPrint, Storage storage) {
         try {
             String[] modInfo = input.split(" ", 2);
-            modInfo[1] = modInfo[1].toUpperCase();
-            if (!checkIfModuleValid(modInfo[1], toPrint)) {
+            String modCode = modInfo[1];
+            modCode = modCode.toUpperCase();
+            if (!checkIfModuleValid(modCode, toPrint)) {
                 return;
             }
-            if (checkIfModuleExist(modInfo[1])) {
-                Module inputMod = new Module(modInfo[1]);
+            if (checkIfModuleExist(modCode)) {
+                Module inputMod = new Module(modCode);
                 modList.remove(inputMod);
                 if (toPrint) {
-                    ui.printDelete(modInfo[1]);
+                    ui.printDelete(modCode);
                     storage.appendToFile(input);
                 }
             } else {
                 if (toPrint) {
-                    ui.printNotExist(modInfo[1]);
+                    ui.printNotExist(modCode);
                 }
             }
         } catch (IndexOutOfBoundsException e) {
@@ -177,28 +200,29 @@ public class ModuleList {
     /**
      * Deletes the expected time of the module if module exists.
      *
-     * @param input module code and expected time typed in by user
-     * @param toPrint whether the UI should print the output
-     * @param storage storage object where data is stored
+     * @param input module code and expected time typed in by user.
+     * @param toPrint whether the UI should print the output.
+     * @param storage storage object where data is stored.
      */
     public void deleteExp(String input, boolean toPrint, Storage storage) {
         try {
             String[] modInfo = input.split(" ", 2);
-            modInfo[1] = modInfo[1].toUpperCase();
-            if (!checkIfModuleValid(modInfo[1], toPrint)) {
+            String modCode = modInfo[1];
+            modCode = modCode.toUpperCase();
+            if (!checkIfModuleValid(modCode, toPrint)) {
                 return;
             }
-            if (checkIfModuleExist(modInfo[1])) {
-                Module inputMod = new Module(modInfo[1]);
+            if (checkIfModuleExist(modCode)) {
+                Module inputMod = new Module(modCode);
                 int index = modList.indexOf(inputMod);
-                modList.get(index).setExpectedWorkload(-1);
+                modList.get(index).setExpectedWorkload(NO_INPUT);
                 if (toPrint) {
-                    ui.printDeleteExp(modInfo[1]);
+                    ui.printDeleteExp(modCode);
                     storage.appendToFile(input);
                 }
             } else {
                 if (toPrint) {
-                    ui.printNotExist(modInfo[1]);
+                    ui.printNotExist(modCode);
                 }
             }
         } catch (IndexOutOfBoundsException e) {

@@ -5,6 +5,15 @@ package seedu.modtracker;
  */
 public class Parser {
     protected static boolean exit = false;
+    public static final String COMMAND_ADDMOD = "addmod";
+    public static final String COMMAND_ADDTIME = "addtime";
+    public static final String COMMAND_ADDEXP = "addexp";
+    public static final String COMMAND_DELETEMOD = "deletemod";
+    public static final String COMMAND_DELETEEXP = "deleteexp";
+    public static final String COMMAND_MINUS = "minus";
+    public static final String COMMAND_LIST = "list";
+    public static final String COMMAND_HELP = "help";
+    public static final String COMMAND_EXIT = "exit";
 
     /**
      * Parses user inputs.
@@ -20,35 +29,36 @@ public class Parser {
         String[] command = input.trim().split(" ");
 
         switch (command[0].toLowerCase()) {
-        case "addmod":
+        case COMMAND_ADDMOD:
             modList.addMod(input, toPrint, storage);
             break;
-        case "addtime":
+        case COMMAND_ADDTIME:
             modList.addTime(input, toPrint, storage);
             break;
-        case "addexp":
+        case COMMAND_ADDEXP:
             modList.addExp(input, toPrint, storage);
             break;
-        case "deletemod":
+        case COMMAND_DELETEMOD:
             modList.deleteMod(input, toPrint, storage);
             break;
-        case "deleteexp":
+        case COMMAND_DELETEEXP:
             modList.deleteExp(input, toPrint, storage);
             break;
-        case "minus":
+        case COMMAND_MINUS:
             modList.minusTime(input, toPrint, storage);
             break;
-        case "compare":
-            //methods
+        case COMMAND_LIST:
+            ui.printTable(modList, Integer.parseInt(command[1]));
             break;
-        case "list":
-            ui.printTable(modList.getData(), Integer.parseInt(command[1]));
+        case COMMAND_HELP:
+            if (input.trim().length() > COMMAND_HELP.length()) {
+                ui.printInvalidCommand();
+            } else {
+                ui.printHelpList();
+            }
             break;
-        case "help":
-            ui.printHelpList();
-            break;
-        case "exit":
-            if (input.trim().length() > 4) {
+        case COMMAND_EXIT:
+            if (input.trim().length() > COMMAND_EXIT.length()) {
                 ui.printInvalidCommand();
             } else {
                 ui.printExitScreen(name);
