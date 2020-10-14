@@ -9,7 +9,7 @@ Duke is a command line trading simulator that lets you try your hand at trading 
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke)(in-progress).
+1. Down the latest version of `Duke` from [here](https://github.com/AY2021S1-CS2113-T16-3/tp/releases/tag/v1.0)(in-progress).
 
 ## Features 
 
