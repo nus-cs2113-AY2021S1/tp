@@ -5,6 +5,10 @@ import seedu.duke.event.Personal;
 import seedu.duke.event.Timetable;
 import seedu.duke.event.Zoom;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.DateErrorException;
+import seedu.duke.exception.TimeErrorException;
+import seedu.duke.exception.WrongNumberOfArgumentsException;
+import seedu.duke.exception.EventAddErrorException;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -45,12 +49,13 @@ public class AddCommand extends Command {
             isInvalidEventType = true;
             break;
         }
-        if (commandWords.length == 1) {
+        if (commandWords.length == 1 && eventType.equals("Personal")) {
+            // empty description, even with valid event types
             isInvalidEventType = true;
+            System.out.println("Empty parameters for Personal event!");
         }
         String[] argumentWords = Arrays.copyOfRange(commandWords, 1, commandWords.length);
         argument = String.join(" ", argumentWords);
-
     }
 
     /**
@@ -63,32 +68,29 @@ public class AddCommand extends Command {
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
         String[] argumentWords = argument.split(";");
-        Boolean successfulAdd = false;
-
         if (!isInvalidEventType) {
-            switch (eventType) {
-            case "Personal":
-                successfulAdd = addPersonal(data, ui, argumentWords);
-                break;
-            case "Zoom":
-                successfulAdd = addZoom(data, ui, argumentWords);
-                break;
-            case "Timetable":
-                successfulAdd = addTimetable(data, ui, argumentWords);
-                break;
-            default:
-                System.out.println("Invalid event type to be added");
-                break;
-            }
-            if (successfulAdd) {
-                ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
-            } else {
-                System.out.println("Error adding " + eventType + " event, please try again!");
-                ui.printDividerLine();
+            try {
+                switch (eventType) {
+                case "Personal":
+                    addPersonal(data, ui, argumentWords);
+                    ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
+                    break;
+                case "Zoom":
+                    addZoom(data, ui, argumentWords);
+                    ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
+                    break;
+                case "Timetable":
+                    addTimetable(data, ui, argumentWords);
+                    ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
+                    break;
+                default:
+                    throw new EventAddErrorException("Invalid event type ot be added!");
+                }
+            } catch (DukeException e) {
+                e.printErrorMessage();
             }
         } else {
-            System.out.println("Invalid add command!");
-            ui.printDividerLine();
+            throw new EventAddErrorException("Invalid event type to add!");
         }
     }
 
@@ -100,8 +102,7 @@ public class AddCommand extends Command {
      * @param argumentWords String array containing user input arguments
      * @return Boolean that confirms if the event was added
      */
-    private Boolean addTimetable(UserData data, Ui ui, String[] argumentWords) {
-        Boolean successfulAdd = false;
+    private void addTimetable(UserData data, Ui ui, String[] argumentWords) throws DukeException {
         if (argumentWords.length == 3 || argumentWords.length == 4) {
             // 2 cases: description & date & time , description & location & date & time
             if (argumentWords.length == 3) {
@@ -109,9 +110,10 @@ public class AddCommand extends Command {
                     LocalDate localDate = DateTimeParser.dateParser(argumentWords[1].trim());
                     LocalTime localTime = DateTimeParser.timeParser(argumentWords[2].trim());
                     data.addToEventList("Timetable", new Timetable(argumentWords[0].trim(), localDate, localTime));
-                    successfulAdd = true;
-                } catch (Exception e) {
-                    ui.printExceptionMessage(e.toString());
+                } catch (DateErrorException e) {
+                    throw new DateErrorException("Something is wrong with the date!");
+                } catch (TimeErrorException e) {
+                    throw new TimeErrorException("Something is wrong with the time!");
                 }
             } else {
                 try {
@@ -119,15 +121,15 @@ public class AddCommand extends Command {
                     LocalTime localTime = DateTimeParser.timeParser(argumentWords[3].trim());
                     data.addToEventList("Timetable", new Timetable(argumentWords[0].trim(),
                             argumentWords[1].trim(), localDate, localTime));
-                    successfulAdd = true;
-                } catch (Exception e) {
-                    ui.printExceptionMessage(e.toString());
+                } catch (DateErrorException e) {
+                    throw new DateErrorException("Something is wrong with the date!");
+                } catch (TimeErrorException e) {
+                    throw new TimeErrorException("Something is wrong with the time!");
                 }
             }
         } else {
-            System.out.println("Incorrect number of parameters for Timetable event!");
+            throw new WrongNumberOfArgumentsException("Incorrect number of parameters for Timetable event!");
         }
-        return successfulAdd;
     }
 
     /**
@@ -138,35 +140,32 @@ public class AddCommand extends Command {
      * @param argumentWords String array containing user input arguments
      * @return Boolean that confirms if the event was added
      */
-    private Boolean addPersonal(UserData data, Ui ui, String[] argumentWords) throws DukeException {
-        Boolean successfulAdd = false;
+    private void addPersonal(UserData data, Ui ui, String[] argumentWords) throws DukeException {
         if (argumentWords.length >= 1 && argumentWords.length <= 3) {
             // 3 cases: only description, description and date, description and date and time
             if (argumentWords.length == 1) {
                 data.addToEventList("Personal", new Personal(argumentWords[0].trim()));
-                successfulAdd = true;
             } else if (argumentWords.length == 2) {
                 try {
                     LocalDate localDate = DateTimeParser.dateParser(argumentWords[1].trim());
                     data.addToEventList("Personal", new Personal(argumentWords[0].trim(), localDate));
-                    successfulAdd = true;
-                } catch (Exception e) {
-                    ui.printExceptionMessage(e.toString());
+                } catch (DateErrorException e) {
+                    throw new DateErrorException("Something is wrong with the date!");
                 }
             } else {
                 try {
                     LocalDate localDate = DateTimeParser.dateParser(argumentWords[1].trim());
                     LocalTime localTime = DateTimeParser.timeParser(argumentWords[2].trim());
                     data.addToEventList("Personal", new Personal(argumentWords[0].trim(), localDate, localTime));
-                    successfulAdd = true;
-                } catch (Exception e) {
-                    ui.printExceptionMessage(e.toString());
+                } catch (DateErrorException e) {
+                    throw new DateErrorException("Something is wrong with the date!");
+                } catch (TimeErrorException e) {
+                    throw new TimeErrorException("Something is wrong with the time!");
                 }
             }
         } else {
-            System.out.println("Incorrect number of parameters for Personal event!");
+            throw new WrongNumberOfArgumentsException("Incorrect number of parameters for Personal event!");
         }
-        return successfulAdd;
     }
 
     /**
@@ -177,27 +176,25 @@ public class AddCommand extends Command {
      * @param argumentWords String array containing user input arguments
      * @return Boolean that confirms if the event was added
      */
-    private Boolean addZoom(UserData data, Ui ui, String[] argumentWords) throws DukeException {
-        Boolean successfulAdd = false;
+    private void addZoom(UserData data, Ui ui, String[] argumentWords) throws DukeException {
         if (argumentWords.length == 2 || argumentWords.length == 4) {
             // 2 cases: only have description & zoomlink , have description,zoomlink, date,time
             if (argumentWords.length == 2) {
                 data.addToEventList("Zoom", new Zoom(argumentWords[0].trim(), argumentWords[1].trim()));
-                successfulAdd = true;
             } else {
                 try {
                     LocalDate localDate = DateTimeParser.dateParser(argumentWords[2].trim());
                     LocalTime localTime = DateTimeParser.timeParser(argumentWords[3].trim());
                     data.addToEventList("Zoom", new Zoom(argumentWords[0].trim(),
                             argumentWords[1].trim(), localDate, localTime));
-                    successfulAdd = true;
-                } catch (Exception e) {
-                    ui.printExceptionMessage(e.toString());
+                } catch (DateErrorException e) {
+                    throw new DateErrorException("Something is wrong with the date!");
+                } catch (TimeErrorException e) {
+                    throw new TimeErrorException("Something is wrong with the time!");
                 }
             }
         } else {
-            System.out.println("Incorrect number of parameters for Zoom event!");
+            throw new WrongNumberOfArgumentsException("Incorrect number of parameters for Zoom event!");
         }
-        return successfulAdd;
     }
 }

@@ -51,9 +51,7 @@ class AddCommandTest {
         Command addCommand = new AddCommand(zoomInput);
         addCommand.execute(data, ui, storage);
 
-        assertEquals("Incorrect number of parameters for Zoom event!" + System.lineSeparator()
-                        + "Error adding Zoom event, please try again!" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+        assertEquals("Incorrect number of parameters for Zoom event!" + System.lineSeparator(),
                 outputStreamCaptor.toString());
     }
 
