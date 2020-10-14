@@ -32,10 +32,7 @@ public class CommandAddMember extends Command {
     public String execute() {
         int phone = Integer.parseInt(savedInput.getArg("p"));
         Member m = new Member(savedInput.getArg("n"), phone, savedInput.getArg("e"), savedInput.getArg("r"));
-        MemberList.addToList(m);
-        String output = "Got it. I've added this member:\n" + m.toString() + "\n"
-                + "Now you have " + Member.numOfMembers + " member" + ((Member.numOfMembers == 1) ? "" : "s")
-                + " in the list.\n";
+        String output = MemberList.addToList(m);
         return output;
     }
 
