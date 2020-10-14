@@ -1,5 +1,6 @@
 package storage;
 
+import access.Access;
 import exception.InvalidFileFormatException;
 import manager.card.Card;
 import manager.chapter.CardList;
@@ -170,5 +171,21 @@ public class Storage {
             }
         }
         return directoryToBeDeleted.delete();
+    }
+
+    public boolean renameChapter(String newChapterName, Access access, Storage storage, Chapter chapter) {
+        File file = new File(storage.getFilePath()
+                + "/" + access.getModule()
+                + "/" + chapter.toString() + ".txt");
+        boolean success = file.renameTo(new File(storage.getFilePath()
+                + "/" + access.getModule()
+                + "/" + newChapterName + ".txt"));
+        return success;
+    }
+
+    public boolean renameModule(String newModuleName, Storage storage, Module module) {
+        File file = new File(storage.getFilePath() + "/" + module.toString());
+        boolean success = file.renameTo(new File(storage.getFilePath() + "/" + newModuleName));
+        return success;
     }
 }

@@ -91,8 +91,7 @@ public class EditCommand extends Command {
         ModuleList modules = access.getAdmin().getModules();
         try {
             Module module = modules.getModule(editIndex);
-            File file = new File(storage.getFilePath() + "/" + module.toString());
-            boolean success = file.renameTo(new File(storage.getFilePath() + "/" + moduleOrChapter));
+            boolean success = storage.renameModule(moduleOrChapter, storage, module);
             if (success) {
                 ui.showUnedited(MODULE, module.toString());
                 module.setModuleName(moduleOrChapter);
@@ -108,12 +107,7 @@ public class EditCommand extends Command {
         ChapterList chapters = access.getModule().getChapters();
         try {
             Chapter chapter = chapters.getChapter(editIndex);
-            File file = new File(storage.getFilePath()
-                    + "/" + access.getModule()
-                    + "/" + chapter.toString() + ".txt");
-            boolean success = file.renameTo(new File(storage.getFilePath()
-                    + "/" + access.getModule()
-                    + "/" + moduleOrChapter + ".txt"));
+            boolean success = storage.renameChapter(moduleOrChapter, access, storage, chapter);
             if (success) {
                 ui.showUnedited(CHAPTER, chapter.toString());
                 chapter.setChapterName(moduleOrChapter);
