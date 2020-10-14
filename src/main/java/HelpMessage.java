@@ -27,14 +27,17 @@ public class HelpMessage extends Ui {
             + "list          - prints the list of categories and respective list of links\n"
             + "back          - go back to bookmark main\n";
 
+    private static final String timetableCommand =  "Here are the timetable commands available:\n"
+            + "add class /MODULE CODE /ONLINE or OFFLINE\n"
+            + "/ZOOM LINK or VENUE /DAYS at TIME /NUMBER OF WEEKS                - add a class \n"
+            + "add activity /ONLINE or OFFLINE /ZOOM LINK or VENUE /DATE at TIME - add an activity\n"
+            + "show schedule                                                     - display schedule";
+
     private static final String flashcardCommands = "Here are the flashcard commands available:\n"
             + "add     - adds a question and answer to the flashcard deck\n"
             + "list    - shows the flashcards that have been added\n"
             + "test    - user can attempt to answer a random question from the flashcard deck\n"
             + "back    - exit test mode and go back to flashcard main\n";
-
-
-
 
     public static void printHelpMessage() {
         System.out.println(LINE_DIVIDER);
@@ -64,6 +67,7 @@ public class HelpMessage extends Ui {
 
     //TODO: Fill this up after you're done
     public static void printTimetableHelp() {
+        System.out.println(timetableCommand);
     }
 
     //TODO: Fill this up after you're done
