@@ -3,7 +3,6 @@ package seedu.duke;
 import seedu.duke.anime.Anime;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.anime.AnimeStorage;
-import seedu.duke.bookmark.Bookmark;
 import seedu.duke.command.Command;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
@@ -82,7 +81,7 @@ public class Duke {
         boolean shouldExit = false;
         while (!shouldExit) {
             try {
-                String userInput = ui.readUserInput(activeUser.getFancyName(), activeWatchlist.getName());
+                String userInput = ui.readUserInput(activeUser.getHonorificName(), activeWatchlist.getName());
                 Command command = parser.getCommand(userInput);
                 String commandOutput = command.execute(animeData, activeWatchlistList, activeWatchlist, userManagement);
                 ui.printMessage(commandOutput);

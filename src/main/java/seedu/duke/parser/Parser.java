@@ -11,7 +11,11 @@ import seedu.duke.command.HelpCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.exception.AniException;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Parser {
+    private static Logger LOGGER = Logger.getLogger(Command.class.getName());
 
     /**
      * Prints the main menu of the application
@@ -57,8 +61,10 @@ public class Parser {
 
     public static String[] parseUserInput(String input) throws AniException {
         if (input == null || input.isEmpty()) {
+            LOGGER.log(Level.WARNING, "Exception occurred");
             throw new AniException("Input is empty");
         }
+        LOGGER.log(Level.INFO, "Parser processing succeeded");
 
         String[] inputSplit = input.split(" ", 2);
         return inputSplit;
