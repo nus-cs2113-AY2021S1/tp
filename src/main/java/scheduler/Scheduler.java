@@ -1,6 +1,7 @@
 package scheduler;
 
 import manager.card.Card;
+import manager.chapter.CardList;
 
 import java.time.LocalDate;
 import java.lang.Math;
@@ -33,10 +34,8 @@ public class Scheduler {
 
     public static LocalDate computeEasyDeadline(Card c, int previousInterval) {
         int interval = computeEasyInterval(previousInterval);
-        if (c.getDueBy() == null) {
-            return getCurrentDate().plusDays(interval);
-        }
-        return c.getDueBy().plusDays(interval);
+        c.setPreviousInterval(interval);
+        return getCurrentDate().plusDays(interval);
     }
 
     public static int computeMediumInterval(int previousInterval) {
@@ -50,10 +49,8 @@ public class Scheduler {
 
     public static LocalDate computeMediumDeadline(Card c, int previousInterval) {
         int interval = computeMediumInterval(previousInterval);
-        if (c.getDueBy() == null) {
-            return getCurrentDate().plusDays(interval);
-        }
-        return c.getDueBy().plusDays(interval);
+        c.setPreviousInterval(interval);
+        return getCurrentDate().plusDays(interval);
     }
 
     public static int computeHardInterval(int previousInterval) {
@@ -67,24 +64,21 @@ public class Scheduler {
 
     public static LocalDate computeHardDeadline(Card c, int previousInterval) {
         int interval = computeHardInterval(previousInterval);
-        if (c.getDueBy() == null) {
-            return getCurrentDate().plusDays(interval);
-        }
-        return c.getDueBy().plusDays(interval);
+        c.setPreviousInterval(interval);
+        return getCurrentDate().plusDays(interval);
     }
 
-    public static int computeDeckInterval(double totalMultiplier, int cardCount, int previousInterval) {
-        double averageMultiplier = (totalMultiplier / cardCount);
-        int newInterval = (int) Math.round(averageMultiplier * previousInterval);
-        if (newInterval > MAX_INTERVAL) {
-            return previousInterval;
-        } else {
-            return newInterval;
+    public static int computeDeckInterval(CardList cards) {
+        double averageInterval = 0;
+        for (Card c : cards.getAllCards()) {
+            averageInterval += c.getPreviousInterval();
         }
+        averageInterval /= cards.getCardCount();
+        return (int) Math.round(averageInterval);
     }
 
-    public static LocalDate computeDeckDeadline(double totalMultiplier, int cardCount, int previousInterval) {
-        int interval = computeDeckInterval(totalMultiplier, cardCount, previousInterval);
+    public static LocalDate computeDeckDeadline(CardList cards) {
+        int interval = computeDeckInterval(cards);
         return getCurrentDate().plusDays(interval);
     }
 }

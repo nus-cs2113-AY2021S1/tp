@@ -57,8 +57,6 @@ public class ReviseCommand extends Command {
             toRevise.setCards(allCards);
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("File is not found.\n");
-        } catch (InvalidFileFormatException e) {
-            throw new InvalidFileFormatException();
         }
         return allCards;
     }
@@ -67,6 +65,10 @@ public class ReviseCommand extends Command {
     public void execute(CardList cards, Ui ui, Access access, Storage storage) 
         throws FileNotFoundException, InvalidFileFormatException {
         Chapter toRevise = getChapter(reviseIndex, access, ui);
+        if (!Scheduler.isDeadlineDue(toRevise.getDueBy())) {
+            return;
+        }
+
         ArrayList<Card> allCards = getCards(ui, access, storage, toRevise);
         ArrayList<Card> repeatCards = new ArrayList<>();
         int cardCount = cards.getCardCount();
@@ -74,26 +76,21 @@ public class ReviseCommand extends Command {
             ui.showToUser(String.format(MESSAGE_NO_CARDS_IN_CHAPTER, toRevise));
             return;
         }
+
+        ui.showToUser("The revision for " + toRevise + " will start now:");
+
         int count = 1;
         for (Card c : allCards) {
-            if (Scheduler.isDeadlineDue(c.getDueBy())) {
-                if (count == 1) {
-                    ui.showToUser("The revision for " + toRevise + " will start now:");
-                }
-                ui.showToUser("\nQuestion " + count + ":");
-                ui.showCardRevision(c);
-                String input = ui.getRating();
-                repeatCards = rateCard(ui, repeatCards, c, input);
-                count++;
-            }
+            ui.showToUser("\nQuestion " + count + ":");
+            ui.showCardRevision(c);
+            String input = ui.getRating();
+            repeatCards = rateCard(ui, repeatCards, c, input);
+            count++;
         }
-        if (count == 1) {
-            ui.showToUser(String.format(MESSAGE_NO_CARDS_DUE, toRevise));
-            return;
-        }
-
         repeatRevision(ui, repeatCards, count);
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
+        toRevise.setDueBy(Scheduler.computeDeckDeadline(toRevise.getCards()));
+
     }
 
     public static ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards, Card c, String input) {

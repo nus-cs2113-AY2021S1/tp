@@ -3,21 +3,22 @@ package parser;
 import access.Access;
 
 import commands.AddCommand;
-import commands.BackChapterCommand;
-import commands.BackModuleCommand;
+import commands.BackCommand;
 import commands.Command;
 import commands.EditCommand;
 import commands.ExitCommand;
-import commands.GoChapterCommand;
-import commands.GoModuleCommand;
+import commands.GoCommand;
 import commands.HelpCommand;
 import commands.ListCommand;
+import commands.ListDueCommand;
 import commands.RemoveCommand;
 import commands.ReviseCommand;
+
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import storage.Storage;
+import ui.Ui;
 
 public class Parser {
     private static final String QUESTION_ANSWER_PREFIX = " \\| ";
@@ -47,49 +48,32 @@ public class Parser {
             return prepareExit(commandArgs);
         case HelpCommand.COMMAND_WORD:
             return prepareHelp(commandArgs);
-        case BackModuleCommand.COMMAND_WORD:
-            return prepareBackModule(commandArgs);
-        case BackChapterCommand.COMMAND_WORD:
-            return prepareBackChapter(commandArgs);
-        case GoModuleCommand.COMMAND_WORD:
-            return prepareGoModule(commandArgs);
-        case GoChapterCommand.COMMAND_WORD:
-            return prepareGoChapter(commandArgs);
         case EditCommand.COMMAND_WORD:
             return prepareEdit(commandArgs, access);
+        case BackCommand.COMMAND_WORD:
+            return prepareBack(commandArgs);
+        case GoCommand.COMMAND_WORD:
+            return prepareGo(commandArgs);
+        case ListDueCommand.COMMAND_WORD:
+            return prepareListDue(commandArgs);
         default:
             throw new InvalidInputException("There is no such command type.\n");
         }
     }
 
-    private static Command prepareGoChapter(String commandArgs) throws InvalidInputException {
+    private static Command prepareGo(String commandArgs) throws InvalidInputException {
         if (commandArgs.isEmpty()) {
             throw new InvalidInputException();
         }
-        return new GoChapterCommand(commandArgs);
+        return new GoCommand(commandArgs);
     }
 
-    private static Command prepareGoModule(String commandArgs) throws InvalidInputException {
-        if (commandArgs.isEmpty()) {
-            throw new InvalidInputException();
-        }
-        return new GoModuleCommand(commandArgs);
-    }
-
-    private static Command prepareBackChapter(String commandArgs) throws InvalidInputException {
+    private static Command prepareBack(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
             throw new InvalidInputException();
         }
-        return new BackChapterCommand();
+        return new BackCommand();
     }
-
-    private static Command prepareBackModule(String commandArgs) throws InvalidInputException {
-        if (!commandArgs.isEmpty()) {
-            throw new InvalidInputException();
-        }
-        return new BackModuleCommand();
-    }
-
 
     private static String[] splitCommandTypeAndArgs(String userCommand) {
         String[] commandTypeAndParams = userCommand.trim().split(" ", 2);
@@ -159,12 +143,14 @@ public class Parser {
     private static Command prepareRemove(String commandArgs) throws InvalidInputException {
         int removeIndex;
         if (commandArgs.isEmpty()) {
-            throw new InvalidInputException();
+            throw new InvalidInputException("The index for module / chapter / flashcard is missing.\n"
+                    + RemoveCommand.MESSAGE_USAGE);
         }
         try {
             removeIndex = Integer.parseInt(commandArgs) - 1;
         } catch (NumberFormatException e) {
-            throw new InvalidInputException();
+            throw new InvalidInputException("The index for module / chapter / flashcard should be an integer.\n"
+                    + RemoveCommand.MESSAGE_USAGE);
         }
         return new RemoveCommand(removeIndex);
     }
@@ -279,7 +265,7 @@ public class Parser {
         if (access.isAdminLevel() || access.isChapterLevel()) {
             throw new IncorrectAccessLevelException("Revise command can only be called at module level.\n");
         } else if (commandArgs.isEmpty()) {
-            throw new InvalidInputException("The index for chapter to revise should be provided.\n"
+            throw new InvalidInputException("The index for chapter to revise is missing.\n"
                     + ReviseCommand.MESSAGE_USAGE);
         }
         int chapterIndex;
@@ -306,7 +292,7 @@ public class Parser {
         return new HelpCommand();
     }
 
-    public static String parseQuestioninFile(String arg) throws InvalidFileFormatException {
+    public static String parseQuestionInFile(String arg) throws InvalidFileFormatException {
         if (!(arg.trim().startsWith(Storage.QUESTION_PREFIX))) {
             throw new InvalidFileFormatException();
         }
@@ -319,7 +305,7 @@ public class Parser {
         return question;
     }
 
-    public static String parseAnswerinFile(String arg) throws InvalidFileFormatException {
+    public static String parseAnswerInFile(String arg) throws InvalidFileFormatException {
         if (!(arg.trim().startsWith(Storage.ANSWER_PREFIX))) {
             throw new InvalidFileFormatException();
         }
@@ -331,4 +317,14 @@ public class Parser {
 
         return answer;
     }
+
+    private static Command prepareListDue(String commandArgs) throws InvalidInputException {
+        if (!commandArgs.isEmpty()) {
+            throw new InvalidInputException("There should not be any arguments for list.");
+        }
+        return new ListDueCommand();
+    }
+
 }
+
+

@@ -11,12 +11,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
-    public static final String FILE_PATHWAY = "questions.txt";   // file pathway
 
     public static final String QUESTION_ANSWER_PREFIX = " \\| ";
     public static final String QUESTION_PREFIX = "[Q]";
@@ -26,6 +24,10 @@ public class Storage {
 
     public Storage(String filePath) {
         this.filePath = filePath;
+    }
+
+    public String getFilePath() {
+        return filePath;
     }
 
     //create the folder --> 'data/admin'
@@ -40,7 +42,6 @@ public class Storage {
         } else {
             System.out.println("Directory " + f.getParentFile().getName() + " already exists");
         }
-
         if (dataDirCreated) {
             System.out.println("Successfully created new directory " + f.getParentFile().getName());
         }
@@ -99,9 +100,9 @@ public class Storage {
         ArrayList<Module> modules = new ArrayList<>();
         String[] contents = f.list();
         System.out.println("List of files and directories in the specified directory:");
-        for (int i = 0; i < contents.length; i++) {
-            System.out.println(contents[i]);
-            modules.add(new Module(contents[i]));
+        for (String content : contents) {
+            System.out.println(content);
+            modules.add(new Module(content));
         }
         return modules;
     }
@@ -119,16 +120,15 @@ public class Storage {
             return chapters;
         }
         System.out.println("List of files and directories in the specified directory:");
-        for (int i = 0; i < contents.length; i++) {
-            String target = contents[i].replace(".txt", "");
-            System.out.println(contents[i]);
+        for (String content : contents) {
+            String target = content.replace(".txt", "");
+            System.out.println(content);
             chapters.add(new Chapter(target));
         }
         return chapters;
     }
 
-    public ArrayList<Card> loadCard(String module, String chapter)
-            throws FileNotFoundException, InvalidFileFormatException {
+    public ArrayList<Card> loadCard(String module, String chapter) throws FileNotFoundException {
         File f = new File(filePath + "/" + module + "/" + chapter + ".txt");
         boolean fileExists = f.exists();
         if (!fileExists) {
@@ -141,11 +141,16 @@ public class Storage {
             //to read the card
             String fileCommand = s.nextLine();
             String[] args = fileCommand.split(QUESTION_ANSWER_PREFIX, 2);
-            String question = Parser.parseQuestioninFile(args[0]);
-            String answer = Parser.parseAnswerinFile(args[1]);
-            Card card = new Card(question, answer);
-            cards.add(card);
+            try {
+                String question = Parser.parseQuestionInFile(args[0]);
+                String answer = Parser.parseAnswerInFile(args[1]);
+                Card card = new Card(question, answer);
+                cards.add(card);
+            } catch (InvalidFileFormatException e) {
+                return null;
+            }
         }
+        s.close();
         return cards;
     }
 
@@ -155,5 +160,15 @@ public class Storage {
             fw.write(cards.getCard(i).toString() + "\n");
         }
         fw.close();
+    }
+
+    public boolean deleteDirectory(File directoryToBeDeleted) {
+        File[] allContents = directoryToBeDeleted.listFiles();
+        if (allContents != null) {
+            for (File file : allContents) {
+                deleteDirectory(file);
+            }
+        }
+        return directoryToBeDeleted.delete();
     }
 }
