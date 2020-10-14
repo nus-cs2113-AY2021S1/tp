@@ -27,7 +27,7 @@ class DailyEventTest {
      * Tests if the time-step for DailyEvent is still correct (1 day).
      */
     @Test
-    void assertTimeStep() {
+    void timeStep_singleDay_success() {
         LocalDate dateTime = LocalDate.now();
         assertEquals(dateTime.plusDays(1), event.timeStep(dateTime));
     }
@@ -36,7 +36,7 @@ class DailyEventTest {
      * Tests if the event reoccurs when it should.
      */
     @Test
-    void assertToReoccur() {
+    void toReoccur_twoTimeSteps_success() {
         LocalDate startDate = TEST_DATE_TIME.toLocalDate();
         LocalDate testDate = event.timeStep(startDate);
         LocalDate testFutureDate = event.timeStep(testDate);
@@ -48,7 +48,7 @@ class DailyEventTest {
      * Tests if the event reoccurs 8 times in 1 week and 1 day.
      */
     @Test
-    void assertGetRecurrences() {
+    void getRecurrences_oneWeek_success() {
         LocalDate startDate = TEST_DATE_TIME.toLocalDate();
         LocalDate endDate = startDate.plusWeeks(1);
         assertEquals(8, (event.getRecurrences(startDate, endDate).size()));

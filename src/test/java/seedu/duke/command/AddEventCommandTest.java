@@ -14,6 +14,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Driver class of AddEventCommandTest to ensure that adding an event to a timetable is correct. Variables point to the
+ * same object in memory.
+ */
 class AddEventCommandTest {
     private static final String TEST_TITLE = "CS2113 Tutorial";
     private static final LocalDateTime TEST_DATE_TIME = LocalDateTime.of(2020, 8, 27, 13,0);
@@ -38,7 +42,7 @@ class AddEventCommandTest {
      * Test adding an event to an empty timetable and check if it is referencing the same Event in the heap.
      */
     @Test
-    void execute() {
+    void execute_singleEvent_success() {
         command.setData(NOTEBOOK, TIMETABLE, TAG_MANAGER, STORAGE_MANAGER);
         command.execute();
         assertTrue(command.timetable.getEvent(0) == (event));

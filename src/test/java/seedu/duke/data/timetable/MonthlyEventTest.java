@@ -28,7 +28,7 @@ class MonthlyEventTest {
      * Tests if the time-step for MonthlyEvent is still correct (1 month).
      */
     @Test
-    void assertTimeStep() {
+    void timeStep_singleMonth_success() {
         LocalDate dateTime = LocalDate.now();
         assertEquals(dateTime.plusMonths(1), event.timeStep(dateTime));
     }
@@ -37,7 +37,7 @@ class MonthlyEventTest {
      * Tests if the event reoccurs when it should.
      */
     @Test
-    void assertToReoccur() {
+    void toReoccur_twoTimeStepsOneDay_successSuccessFail() {
         LocalDate startDate = TEST_DATE_TIME.toLocalDate();
         LocalDate testDate = event.timeStep(startDate);
         LocalDate testFutureDate = event.timeStep(testDate);
@@ -48,10 +48,10 @@ class MonthlyEventTest {
     }
 
     /**
-     * Tests if the event reoccurs 5 times in 5 months.
+     * Tests if the event reoccurs 5 times in 4 months.
      */
     @Test
-    void assertGetRecurrences() {
+    void getRecurrences_fourMonths_success() {
         LocalDate startDate = TEST_DATE_TIME.toLocalDate();
         LocalDate endDate = startDate.plusMonths(4);
         assertEquals(5, (event.getRecurrences(startDate, endDate).size()));

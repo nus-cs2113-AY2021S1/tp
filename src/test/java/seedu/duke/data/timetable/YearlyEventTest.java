@@ -28,7 +28,7 @@ class YearlyEventTest {
      * Tests if the time-step for YearlyEvent is still correct (1 year).
      */
     @Test
-    void assertTimeStep() {
+    void timeStep_oneYear_success() {
         LocalDate dateTime = LocalDate.now();
         assertEquals(dateTime.plusYears(1), event.timeStep(dateTime));
     }
@@ -37,7 +37,7 @@ class YearlyEventTest {
      * Tests if the event reoccurs when it should.
      */
     @Test
-    void assertToReoccur() {
+    void toReoccur_twoTimeStepsOneDay_successSuccessFail() {
         LocalDate startDate = TEST_DATE_TIME.toLocalDate();
         LocalDate testDate = event.timeStep(startDate);
         LocalDate testFutureDate = event.timeStep(testDate);
@@ -48,10 +48,10 @@ class YearlyEventTest {
     }
 
     /**
-     * Tests if the event reoccurs 5 times in 5 years.
+     * Tests if the event reoccurs 5 times in 4 years.
      */
     @Test
-    void assertGetRecurrences() {
+    void getRecurrences_fourYears_success() {
         LocalDate startDate = TEST_DATE_TIME.toLocalDate();
         LocalDate endDate = startDate.plusYears(4);
         assertEquals(5, (event.getRecurrences(startDate, endDate).size()));

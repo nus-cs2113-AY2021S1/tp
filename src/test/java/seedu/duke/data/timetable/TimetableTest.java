@@ -36,7 +36,7 @@ class TimetableTest {
      * Asserts storing of events in timetable in respective recurrence length is correct.
      */
     @Test
-    void assertAddEvent() {
+    void addEvent_oneDailyThreeOthers_success() {
         Timetable timetable = initializeTimetable();
         assertEquals(4, timetable.getEvents().size());
         assertEquals(1, timetable.getDailyEvents().size());
@@ -47,7 +47,7 @@ class TimetableTest {
      * as well as the sub-arraylist it should be in.
      */
     @Test
-    void assertDeleteEvent() {
+    void deleteEvent_oneDailyThreeOthers_success() {
         Timetable timetable = initializeTimetable();
         timetable.deleteEvent(0);
         assertEquals(3, timetable.getEvents().size());
@@ -58,47 +58,22 @@ class TimetableTest {
      * Asserts that recurring events are displayed properly across the specified year.
      */
     @Test
-    void assertYearlyTimetable() {
-        Timetable timetable = initializeTimetable();
-        assertEquals(5, timetable.getYearTimetable(2020).size());
-        ArrayList<String> keys = new ArrayList<>(timetable.getYearTimetable(2020).keySet());
-        for (String key : keys) {
-            HashMap<Integer, ArrayList<Event>> monthSchedule = timetable.getYearTimetable(2020).get(key);
-            int numDays = 0;
-            if (key.equals(Month.AUGUST.toString())) {
-                numDays = TEST_DATE_TIME.toLocalDate().lengthOfMonth() - TEST_DATE_TIME.getDayOfMonth() + 1;
-            } else if (key.equals(Month.SEPTEMBER.toString()) || key.equals(Month.NOVEMBER.toString())) {
-                numDays = 30;
-            } else if (key.equals(Month.OCTOBER.toString()) || key.equals(Month.DECEMBER.toString())) {
-                numDays = 31;
-            }
-            assertEquals(numDays, monthSchedule.size());
-        }
+    void getAllEvents_dailyEvent_success() {
+        Timetable timetable = initializeTimetable(dailyEvent);
+        LocalDate startDate = TEST_DATE_TIME.withDayOfYear(1).toLocalDate();
+        LocalDate endDate = startDate.withDayOfYear(startDate.lengthOfYear());
+        assertEquals(startDate.lengthOfYear() - TEST_DATE_TIME.getDayOfYear() + 1,
+                timetable.getAllEvents(startDate, endDate).size());
     }
 
     /**
-     * Assert that getAllEvents, getEventSetReminder and getReminders should be working correclty.
+     * Assert that getReminders should work correctly.
      * Correct result should be 2, tomorrow's daily event and three day's from now daily event.
      */
     @Test
-    void assertTodayReminders() {
-        Timetable timetable = initializeTimetable();
-        LocalDate startDate = TEST_DATE_TIME.toLocalDate();
-        LocalDate endDate = startDate.plusMonths(1);
-        ArrayList<Event> eventSet = timetable.getAllEvents(startDate, endDate);
-        assertEquals(40, eventSet.size());
-        PriorityQueue<Reminder> reminders = timetable.getEventSetReminder(eventSet);
-        assertEquals(80, reminders.size());
-        ArrayList<Reminder> todayReminders = new ArrayList<>();
-        while (reminders.size() > 0 && reminders.peek().reminderDue(startDate)) {
-            Reminder reminder = reminders.poll();
-            assertNotNull(reminder);
-            if (reminder.toRemind(startDate)) {
-                todayReminders.add(reminder);
-            }
-        }
-        System.out.println(todayReminders);
-        assertEquals(2, todayReminders.size());
+    void getReminders_dailyEvent_success() {
+        Timetable timetable = initializeTimetable(dailyEvent);
+        assertEquals(2, timetable.getReminders().size());
     }
 
     /**
@@ -111,6 +86,16 @@ class TimetableTest {
         timetable.addEvent(weeklyEvent);
         timetable.addEvent(monthlyEvent);
         timetable.addEvent(yearlyEvent);
+        return timetable;
+    }
+
+    /**
+     * Method to initialize a timetable for testing purposes with 1 event.
+     * @return Instantiated Timetable with 1 event.
+     */
+    private Timetable initializeTimetable(Event event) {
+        Timetable timetable = new Timetable();
+        timetable.addEvent(event);
         return timetable;
     }
 }

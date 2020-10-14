@@ -41,7 +41,7 @@ class RemindCommandTest {
     private RemindCommand command = new RemindCommand();
 
     @Test
-    void execute() {
+    void execute_singleEvent_success() {
         timetable.addEvent(dailyEvent);
         command.setData(NOTEBOOK, timetable, TAG_MANAGER, STORAGE_MANAGER);
         DailyEvent reminderEvent = new DailyEvent(dailyEvent.getTitle(), TEST_DATE_TIME.plusDays(1),

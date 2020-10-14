@@ -28,7 +28,7 @@ class WeeklyEventTest {
      * Tests if the time-step for WeeklyEvent is still correct (1 week).
      */
     @Test
-    void assertTimeStep() {
+    void timeStep_oneWeek_success() {
         LocalDate dateTime = LocalDate.now();
         assertEquals(dateTime.plusWeeks(1), event.timeStep(dateTime));
     }
@@ -37,7 +37,7 @@ class WeeklyEventTest {
      * Tests if the event reoccurs when it should.
      */
     @Test
-    void assertToReoccur() {
+    void toReoccur_twoTimeStepsOneDay_success() {
         LocalDate startDate = TEST_DATE_TIME.toLocalDate();
         LocalDate testDate = event.timeStep(startDate);
         LocalDate testFutureDate = event.timeStep(testDate);
@@ -48,10 +48,10 @@ class WeeklyEventTest {
     }
 
     /**
-     * Tests if the event reoccurs 5 times in 5 weeks.
+     * Tests if the event reoccurs 5 times in 4 weeks.
      */
     @Test
-    void assertGetRecurrences() {
+    void getRecurrences_fourWeeks_success() {
         LocalDate startDate = TEST_DATE_TIME.toLocalDate();
         LocalDate endDate = startDate.plusWeeks(4);
         assertEquals(5, (event.getRecurrences(startDate, endDate).size()));
