@@ -31,6 +31,7 @@ public class RecurringTracker {
                 break;
             case "edit":
                 handleEditEntry(packet);
+                break;
             case "delete":
                 handleDeleteEntry(packet);
                 break;
@@ -105,7 +106,7 @@ public class RecurringTracker {
         entries.setRequiredParams(
                 "/id"
         );
-        try{
+        try {
             entries.handleParams(packet);
             entry = (RecurringEntry) entries.getItemAtIndex();
             //Remove "/id" so it doesn't get parsed by entry and lead to

@@ -26,7 +26,6 @@ public abstract class ItemList extends ParamHandler {
      *
      * @param item - Item to be added
      * @param comparator - Comparator object to determine sort order
-     * @return Index of item after sorting
      */
     public void addItemAndSort(Item item, Comparator comparator) {
         this.items.add(item);

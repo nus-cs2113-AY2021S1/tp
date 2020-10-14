@@ -75,16 +75,16 @@ public class RecurringEntry extends Item {
     }
 
     public boolean equals(RecurringEntry entry) {
-        if(entry == this) {
+        if (entry == this) {
             return true;
         }
 
-        return (this.day == entry.day) &&
-                (this.description.equals(entry.description)) &&
-                (this.entryType.equals(entry.entryType)) &&
-                (this.amount == entry.amount) &&
-                (this.auto == entry.auto) &&
-                (this.notes.equals(entry.notes));
+        return (this.day == entry.day)
+                && (this.description.equals(entry.description))
+                && (this.entryType.equals(entry.entryType))
+                && (this.amount == entry.amount)
+                && (this.auto == entry.auto)
+                && (this.notes.equals(entry.notes));
     }
 
 

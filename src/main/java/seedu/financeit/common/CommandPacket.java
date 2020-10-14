@@ -47,7 +47,7 @@ public class   CommandPacket {
     }
 
     public void removeParamsFromMap(String... paramTypes) {
-        for(String paramType: paramTypes) {
+        for (String paramType: paramTypes) {
             this.paramMap.remove(paramType);
         }
     }
