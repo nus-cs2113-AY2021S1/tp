@@ -135,10 +135,12 @@ public class RecurringTracker {
 
     static void showHelp() {
         TablePrinter.setTitle("List of Commands");
-        TablePrinter.addRow("No.;Command                 ;Input Format                ;Notes                           ");
+        TablePrinter.addRow("No.;Command                 ;Input Format                ;"
+                            + "Notes                           ");
         TablePrinter.addRow("1.;New expenditure (-e) or income (-i).;add -[e/i] [-auto] >/desc {DESCRIPTION} "
-                            + ">/amt {AMOUNT} >/day {DAY_OF_MONTH} >[/notes {NOTES}];Use -auto for income/expenses that "
-                            + "are auto-credited into/auto-deducted from bank account/credit card");
+                            + ">/amt {AMOUNT} >/day {DAY_OF_MONTH} >[/notes {NOTES}];Use -auto for "
+                            + "income/expenses that are auto-credited into/auto-deducted from bank "
+                            + "account/credit card");
         TablePrinter.addRow("2.;Edit entry;edit {parameter to edit};");
         TablePrinter.addRow("3.;List entries;list;");
         TablePrinter.addRow("4.;Delete entry;delete /id {INDEX};");
