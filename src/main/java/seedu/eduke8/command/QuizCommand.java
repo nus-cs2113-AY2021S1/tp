@@ -28,7 +28,7 @@ public class QuizCommand extends Command {
             SingleTopicQuiz singleTopicQuiz = new SingleTopicQuiz(topic, numOfQuestions);
             singleTopicQuiz.startQuiz(ui);
         } catch (Eduke8Exception ee) {
-            ui.printError(); //to implement in ui: specific error for QuizCommand issues
+            ui.printError("QuizCommand execute Exception"); //to implement in ui: specific error for QuizCommand issues
         }
     }
 }

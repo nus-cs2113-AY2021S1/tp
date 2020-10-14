@@ -34,7 +34,7 @@ public class Eduke8 {
             topicList = new TopicList(topicsStorage.load());
             logStorage.save();
         } catch (ParseException | IOException e) {
-            ui.printError();
+            ui.printError("Eduk8 Constructor Exception");
         }
     }
 
@@ -59,7 +59,7 @@ public class Eduke8 {
                 command.execute(topicList, ui);
                 isExit = command.isExit();
             } catch (Eduke8Exception e) {
-                ui.printError();        // able to call ui.printError(e.getMessage()) too if implemented
+                ui.printError("runCommandLoopUntilExit() Exception");        // able to call ui.printError(e.getMessage()) too if implemented
             }
         }
     }

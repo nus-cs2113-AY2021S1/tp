@@ -112,7 +112,32 @@ public class Ui {
         printMessage(MESSAGE_TEXTBOOK);
     }
 
-    public void printError() {
+    public void printError(String errorType) {
+        switch (errorType) {
+        case "unrecognised":
+            printMessage("ERROR: Command received not recognised. Please try again.");
+            break;
+        case "empty":
+            printMessage("ERROR: Command received is missing information. Please try again.");
+            break;
+        case "Eduk8 Constructor Exception":
+            printMessage("ERROR: An exception was thrown while loading the save file from storage.");
+            break;
+        case "runCommandLoopUntilExit() Exception":
+            printMessage("ERROR: An exception was thrown while running the main loop.");
+            break;
+        case "QuizCommand execute Exception":
+            printMessage("ERROR: An exception was thrown while executing the Quiz Command.");
+            break;
+        case "Not implemented yet":
+            printMessage("ERROR: This function has not been implemented yet.");
+            break;
+        case "Please choose the answer by index":
+            printMessage("ERROR: Please choose the answer by using numeric digits as per the choices given.");
+            break;
+        default:
+            break;
+        }
         //Writing messages for the different errors
         //Completed when more error handling are done
     }
