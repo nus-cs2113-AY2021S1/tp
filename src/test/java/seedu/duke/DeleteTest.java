@@ -16,7 +16,7 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeleteTest {
-
+    /*
     @Test
     public void deleteApplianceTest() throws InvalidAdditionOfAppliance, InvalidAddtionOfLocation,
             EmptyParameterException {
@@ -43,5 +43,5 @@ public class DeleteTest {
 
         //compare outputs
         assertEquals("l3 does not exist.", outputString);
-    }
+    }*/
 }

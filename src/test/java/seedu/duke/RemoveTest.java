@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.duke.common.Messages.MESSAGE_LOCATION_NOT_EXIST;
 
 public class RemoveTest {
-    /*
+
     @Test
     public void removeLocationTest() throws InvalidAddtionOfLocation, EmptyParameterException {
         //Create Sample Locations and empty appliance list
@@ -36,5 +36,5 @@ public class RemoveTest {
         String outputString = outContent.toString().replace(System.getProperty("line.separator"), "");
         //compare outputs
         assertEquals(MESSAGE_LOCATION_NOT_EXIST + " Nothing will be deleted.", outputString);
-    }*/
+    }
 }
