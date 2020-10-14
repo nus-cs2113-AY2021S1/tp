@@ -47,11 +47,12 @@ public class Duke {
         ui.printWelcomeMessage();
         boolean isExit = false;
         while (!isExit) {
-            String userInput = ui.receiveCommand();
-            ui.printDividerLine();
-            Command c = currentParse.parse(userInput);
-            isExit = c.isExit();
             try {
+                String userInput = ui.receiveCommand();
+                ui.printDividerLine();
+                Command c = currentParse.parse(userInput);
+                isExit = c.isExit();
+
                 c.execute(data, ui, storage);
             } catch (DukeException e) {
                 e.printErrorMessage();

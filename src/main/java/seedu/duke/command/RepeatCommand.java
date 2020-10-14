@@ -1,11 +1,14 @@
 package seedu.duke.command;
 
+import seedu.duke.Duke;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.event.Repeat;
 import seedu.duke.exception.DukeException;
-import seedu.duke.exception.InvalidIndexException;
+import seedu.duke.exception.InvalidListException;
+import seedu.duke.exception.MissingDeadlineRepeatException;
+import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -18,6 +21,7 @@ import java.time.LocalTime;
 public class RepeatCommand extends Command {
     private static final String COMMANDTYPE_LIST = "list";
     private static final String COMMANDTYPE_ADD = "add";
+    private static final String COMMANDTYPE_ERROR = "error";
     private String commandType;
 
     /**
@@ -40,9 +44,16 @@ public class RepeatCommand extends Command {
         case COMMANDTYPE_LIST:
             executeList(data, ui);
             break;
+        case COMMANDTYPE_ERROR:
+            executeNull(data, ui, storage);
+            break;
         default:
-            //do nothing
+            break;
         }
+
+
+
+
     }
 
     /**
@@ -51,7 +62,7 @@ public class RepeatCommand extends Command {
      * @param input String containing user inputs
      * @return RepeatCommand set to either add additional dates or set to list out current dates in event
      */
-    public static Command parse(String input) {
+    public static Command parse(String input) throws DukeException {
         String[] words = input.split(" ");
         switch (words.length) {
         case 2:
@@ -67,9 +78,10 @@ public class RepeatCommand extends Command {
             input = String.join(" ", words);
             return new RepeatCommand(input, COMMANDTYPE_ADD);
         default:
-            System.out.println("Invalid repeat command");
-            return null; //to change to throw exception or print help for repeat
+            String errorMessage = "Wrong number of arguments provided";
+            throw new WrongNumberOfArgumentsException(errorMessage);
         }
+
     }
 
     /**
@@ -88,13 +100,8 @@ public class RepeatCommand extends Command {
      *
      * @param number String containing the String form of an integer
      */
-    private static void isValidNumber(String number) {
-        try {
-            Integer.parseInt(number);
-        } catch (NumberFormatException e) {
-            //to throw exception
-            System.out.println("Not a number");
-        }
+    private static void isValidNumber(String number) throws NumberFormatException {
+        Integer.parseInt(number);
     }
 
     /**
@@ -118,20 +125,29 @@ public class RepeatCommand extends Command {
      * @param ui User Interface class for printing on screens
      * @param storage File storage location on computer
      */
-    private void executeAdd(UserData data, Ui ui, Storage storage) throws InvalidIndexException {
+
+    private void executeAdd(UserData data, Ui ui, Storage storage) throws DukeException {
         String[] words = command.split(" ");
         EventList eventList = data.getEventList(words[0]);
+
+        if (eventList == null) {
+            throw new InvalidListException(words[0]
+                    + "not a valid event type. Valid types are: personal, timetable, zoom");
+        }
         int index = Integer.parseInt(words[1]) - 1;
         Event eventToRepeat = eventList.getEventByIndex(index);
         LocalDate startDate = eventToRepeat.getDate();
         if (startDate == null) {
-            System.out.println("Unable to repeat an event with no date.");
-            //to change to throw exception
+            throw new MissingDeadlineRepeatException();
         }
         LocalTime startTime = eventToRepeat.getTime();
         int count = Integer.parseInt(words[3]);
         Repeat repeat = new Repeat(startDate, startTime, words[2], count);
         eventToRepeat.setRepeat(repeat);
         ui.printRepeatAdd(eventToRepeat);
+    }
+
+    private void executeNull(UserData data, Ui ui, Storage storage) {
+        //do nothing
     }
 }

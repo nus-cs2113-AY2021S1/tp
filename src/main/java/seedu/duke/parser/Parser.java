@@ -8,6 +8,7 @@ import seedu.duke.command.CheckCommand;
 import seedu.duke.command.RepeatCommand;
 import seedu.duke.command.GoalCommand;
 import seedu.duke.command.DeadlineCommand;
+import seedu.duke.exception.DukeException;
 
 import java.util.Arrays;
 
@@ -26,7 +27,7 @@ public class Parser {
      * @param userInput String containing what is typed by the user on the computer
      * @return Command from what is written by user. Return null if incorrect command
      */
-    public Command parse(String userInput) {
+    public Command parse(String userInput) throws DukeException {
 
         String[] words = userInput.split(" ");
 

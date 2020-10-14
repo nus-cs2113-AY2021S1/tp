@@ -5,6 +5,11 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.InvalidIndexException;
+import seedu.duke.exception.InvalidListException;
+import seedu.duke.exception.InvalidTimeUnitException;
+import seedu.duke.exception.MissingDeadlineRepeatException;
+import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -14,6 +19,7 @@ import java.io.PrintStream;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RepeatCommandTest {
 
@@ -29,6 +35,10 @@ class RepeatCommandTest {
         // Add Personal event to data
         String personalInput = "personal party; 09/10/2000; 1300";
         Command addCommand = new AddCommand(personalInput);
+        addCommand.execute(data, ui, storage);
+
+        personalInput = "personal surprise";
+        addCommand = new AddCommand(personalInput);
         addCommand.execute(data, ui, storage);
 
         //Add Zoom event to data
@@ -181,6 +191,104 @@ class RepeatCommandTest {
                 outputStreamCaptor.toString());
 
 
+
+    }
+
+    @Test
+    void repeat_repeatingEventNoDeadline_missingDeadlineExceptionThrown() {
+        //create repeat command for event with no deadline
+        String inputString = "personal 2 daily 4";
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
+
+
+
+        assertThrows(MissingDeadlineRepeatException.class, () -> {
+            Command repeatCommand = RepeatCommand.parse(inputString);
+            repeatCommand.execute(data, ui, storage);
+        });
+
+
+
+
+    }
+
+    @Test
+    void repeat_repeatingEventWrongIndex_indexOutOfBoundsExceptionThrown() {
+        //create repeat command for an index which does not exist
+        String inputString = "personal 5 daily 4";
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
+
+
+
+        assertThrows(InvalidIndexException.class, () -> {
+            Command repeatCommand = RepeatCommand.parse(inputString);
+            repeatCommand.execute(data, ui, storage);
+        });
+
+
+    }
+
+    @Test
+    void repeat_repeatingEventWrongUnit_invalidTimeUnitExceptionThrown() {
+        //create repeat command for event using wrong time unit
+        String inputString = "personal 1 fortnightly 4";
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
+
+
+
+        assertThrows(InvalidTimeUnitException.class, () -> {
+            Command repeatCommand = RepeatCommand.parse(inputString);
+            repeatCommand.execute(data, ui, storage);
+        });
+
+    }
+
+    @Test
+    void repeat_tooLittleArgumentsProvided_wrongNumberOfArgumentsExceptionThrown() {
+        //create repeat command for event with too little information
+        String inputString = "personal";
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
+
+
+        assertThrows(WrongNumberOfArgumentsException.class, () -> {
+            Command repeatCommand = RepeatCommand.parse(inputString);
+        });
+
+    }
+
+    @Test
+    void repeat_repeatingEventWrongType_invalidEventListTypeExceptionThrown() {
+
+        //create repeat command for an event type that does not exist
+        String inputString = "holiday 5 daily 4";
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
+
+
+
+        assertThrows(InvalidListException.class, () -> {
+            Command repeatCommand = RepeatCommand.parse(inputString);
+            repeatCommand.execute(data, ui, storage);
+        });
+    }
+
+    @Test
+    void repeat_userTypeWrongNumber_NumberFormatExceptionThrown() {
+
+        //create repeat command using wrong number writing format
+        String inputString = "personal 1 weekly three";
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
+
+
+        assertThrows(NumberFormatException.class, () -> {
+            Command repeatCommand = RepeatCommand.parse(inputString);
+            repeatCommand.execute(data, ui, storage);
+        });
 
     }
 

@@ -10,4 +10,9 @@ public class DukeException extends Exception {
     public void printErrorMessage() {
         System.out.println(message);
     }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
 }
