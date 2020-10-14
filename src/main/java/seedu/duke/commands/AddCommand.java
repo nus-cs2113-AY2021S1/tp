@@ -253,16 +253,25 @@ public class AddCommand extends Command {
 
     private ToDo addToDo(ToDoList toDos, TextUi ui) {
         String[] taskNameAndDeadline = information.split("/by", 2);
+        ToDo newToDo = null;
 
-        // if user did not provide deadline, let titleAndAuthor[1] be "not specified"
-        if (taskNameAndDeadline.length == 1) {
-            taskNameAndDeadline = new String[] {taskNameAndDeadline[0], "not specified" };
+        try {
+            // if user did not provide deadline, let titleAndAuthor[1] be "not specified"
+            if (taskNameAndDeadline.length == 1) {
+                taskNameAndDeadline = new String[]{taskNameAndDeadline[0], "not specified"};
+            }
+            if (taskNameAndDeadline[0].isEmpty()) {
+                throw new QuotesifyException(ERROR_NO_TASK_NAME);
+            }
+
+            String taskName = taskNameAndDeadline[0].trim();
+            String deadline = taskNameAndDeadline[1].trim();
+            newToDo = new ToDo(taskName, deadline);
+            toDos.add(newToDo);
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
+            addLogger.log(Level.INFO, "add toDo to toDoList failed");
         }
-
-        String taskName = taskNameAndDeadline[0].trim();
-        String deadline = taskNameAndDeadline[1].trim();
-        ToDo newToDo = new ToDo(taskName, deadline);
-        toDos.add(newToDo);
 
         return newToDo;
     }

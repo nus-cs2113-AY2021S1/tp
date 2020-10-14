@@ -46,7 +46,7 @@ public class BookmarkCommand extends Command {
 
         try {
             if (titleAndPage.length == 1) {
-                throw new QuotesifyException(ERROR_NO_PAGE_FOUND);
+                throw new QuotesifyException(ERROR_NO_PAGE_NUM);
             }
 
             String title = titleAndPage[0].trim();
@@ -58,7 +58,7 @@ public class BookmarkCommand extends Command {
                 System.out.println(ERROR_NO_BOOK_FOUND);
             }
         } catch (QuotesifyException e) {
-            ui.printErrorMessage(ERROR_NO_PAGE_FOUND);
+            ui.printErrorMessage(ERROR_NO_PAGE_NUM);
             addLogger.log(Level.INFO, "add bookmark to bookmarkList failed");
         }
 

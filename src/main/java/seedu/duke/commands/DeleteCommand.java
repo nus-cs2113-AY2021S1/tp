@@ -214,6 +214,8 @@ public class DeleteCommand extends Command {
         Book targetBook = books.findByTitle(titleName);
         if (targetBook != null) {
             removeBookmarkFromBook(targetBook, bookmarks, ui);
+        } else {
+            System.out.println(ERROR_NO_BOOK_FOUND);
         }
     }
 

@@ -266,7 +266,9 @@ public class TextUi {
     }
 
     public void printAddToDo(ToDo toDo) {
-        System.out.printf(ADD_TODO_MESSAGE + "\n", toDo.toString());
+        if (toDo != null) {
+            System.out.printf(ADD_TODO_MESSAGE + "\n", toDo.toString());
+        }
     }
 
     public void printToDo(ToDo toDo) {
