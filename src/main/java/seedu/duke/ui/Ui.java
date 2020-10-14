@@ -111,6 +111,9 @@ public class Ui {
             int index = 1;
             for (Event e : events) {
                 System.out.println(index + ". " + e);
+                if (e.getRepeat() != null) {
+                    System.out.println("   Repeated " + e.getRepeatType() + " for " + e.getRepeatCount() + " times.");
+                }
                 index++;
             }
         }
