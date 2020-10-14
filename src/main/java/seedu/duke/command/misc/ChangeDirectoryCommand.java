@@ -2,11 +2,16 @@ package seedu.duke.command.misc;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.CommandResult;
+import seedu.duke.data.ModuleManager;
 import seedu.duke.directory.Directory;
+import seedu.duke.directory.DirectoryLevel;
 import seedu.duke.directory.DirectoryTraverser;
+import seedu.duke.directory.Module;
 import seedu.duke.exception.DataNotFoundException;
 import seedu.duke.exception.DirectoryTraversalOutOfBoundsException;
+import seedu.duke.ui.TextUi;
 
+import java.util.ArrayList;
 import static seedu.duke.util.ExceptionMessage.MESSAGE_DIRECTORY_NOT_FOUND;
 import static seedu.duke.util.ExceptionMessage.MESSAGE_FAILED_DIRECTORY_TRAVERSAL;
 
@@ -18,6 +23,9 @@ public class ChangeDirectoryCommand extends Command {
                     + "Format: %s\n"
                     + "Example: cd Tutorial;\tcd ..\n",
             COMMAND_WORD, FORMAT);
+    private static final int ROOT_LEVEL = 0;
+    private static final int MODULE_LEVEL = 1;
+    private static final int TASK_LEVEL = 2;
     private String nextDirectoryName;
     private Directory directory;
 
@@ -72,6 +80,11 @@ public class ChangeDirectoryCommand extends Command {
                 DirectoryTraverser.traverseDown(nextDirectory);
             } else {
                 DirectoryTraverser.traverseUp();
+                if(DirectoryTraverser.getCurrentDirectoryLevel() == DirectoryLevel.ROOT){
+                    ArrayList<Module> filteredModuleList = ModuleManager.getModuleList();
+                    var listMessage = TextUi.getAppendedModules(filteredModuleList);
+                    return new CommandResult(listMessage);
+                }
             }
             // No feedback for successful traversal
             return new CommandResult(null);

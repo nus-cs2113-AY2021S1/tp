@@ -13,9 +13,9 @@ public class DirectoryTraverser {
             DirectoryLevel.ROOT, DirectoryLevel.MODULE, DirectoryLevel.TASK
     };
 
-    private static int currentLevel = 0;
+    private static int currentLevel = 0; //root
     private static final int MINIMUM_LEVEL = 0;
-    private static final int MAXIMUM_LEVEL = 2;
+    private static final int MAXIMUM_LEVEL = 2; //task
     private static final int ROOT_LEVEL = 0;
     private static final int MODULE_LEVEL = 1;
     private static final int TASK_LEVEL = 2;
