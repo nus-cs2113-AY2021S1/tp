@@ -33,8 +33,11 @@ public class HelpMessage extends Ui {
             + "add activity /ONLINE or OFFLINE /ZOOM LINK or VENUE /DATE at TIME - add an activity\n"
             + "show schedule                                                     - display schedule";
 
-
-
+    private static final String flashcardCommands = "Here are the flashcard commands available:\n"
+            + "add     - adds a question and answer to the flashcard deck\n"
+            + "list    - shows the flashcards that have been added\n"
+            + "test    - user can attempt to answer a random question from the flashcard deck\n"
+            + "back    - exit test mode and go back to flashcard main\n";
 
     public static void printHelpMessage() {
         System.out.println(LINE_DIVIDER);
@@ -72,8 +75,7 @@ public class HelpMessage extends Ui {
         System.out.println(academicCommands);
     }
 
-    //TODO: Fill this up after you're done
     public static void printFlashcardHelp() {
-
+        System.out.println(flashcardCommands);
     }
 }
