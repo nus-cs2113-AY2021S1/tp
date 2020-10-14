@@ -1,6 +1,8 @@
+import flashcard.FlashcardRun;
 import academic.GradeBook;
 import academic.PersonBook;
 import exceptions.InvalidCommandException;
+import timetable.TimeTableRun;
 import bookmark.BookmarkCategory;
 import bookmark.commands.BookmarkCommand;
 import bookmark.InvalidBookmarkCommandException;
@@ -8,12 +10,15 @@ import java.util.ArrayList;
 import bookmark.BookmarkUi;
 import exceptions.InvalidGradeException;
 import exceptions.InvalidMcException;
+import timetable.TimeTableRun;
+
 
 public class Command {
 
     public static void executeCommand(String command, CommandType commandType,
                                       ArrayList<BookmarkCategory> bookmarkCategories, BookmarkUi bookmarkUi,
-                                      BookmarkParser bookmarkParser) {
+                                      BookmarkParser bookmarkParser, FlashcardRun flashcardRun,
+                                      TimeTableRun timeTableRun) {
         if (commandType == CommandType.EXIT_PROGRAM) {
             Ui.printExit();
         } else if (commandType == CommandType.EXIT_MODE) {
@@ -25,7 +30,8 @@ public class Command {
         } else if (commandType == CommandType.HELP) {
             HelpMessage.printHelpMessage();
         } else if (StudyIt.getCurrentMode() != Mode.MENU) {
-            handleNonGeneralCommand(command,commandType,bookmarkCategories,bookmarkUi,bookmarkParser);
+            handleNonGeneralCommand(command,commandType,bookmarkCategories,bookmarkUi,bookmarkParser,
+                    flashcardRun, timeTableRun);
         } else {
             ErrorMessage.printUnidentifiableCommand();
         }
@@ -33,16 +39,17 @@ public class Command {
 
     public static void handleNonGeneralCommand(String command, CommandType commandType,
                                                ArrayList<BookmarkCategory> bookmarkCategories,
-                                               BookmarkUi bookmarkUi,BookmarkParser bookmarkParser) {
+                                               BookmarkUi bookmarkUi,BookmarkParser bookmarkParser,
+                                               FlashcardRun flashcardRun, TimeTableRun timeTableRun) {
         Mode currentMode = StudyIt.getCurrentMode();
         if (currentMode == Mode.BOOKMARK) {
             executeBookmarkModeCommand(command,bookmarkCategories,bookmarkUi,bookmarkParser);
         } else if (currentMode == Mode.TIMETABLE) {
-            executeTimetableModeCommand();
+            executeTimetableModeCommand(command, timeTableRun);
         } else if (currentMode == Mode.ACADEMIC) {
             executeAcademicModeCommand(command);
         } else if (currentMode == Mode.FLASHCARD) {
-            executeFlashcardCommand();
+            executeFlashcardCommand(command, flashcardRun);
         }
     }
 
@@ -56,8 +63,8 @@ public class Command {
         }
     }
 
-    public static void executeTimetableModeCommand() {
-
+    public static void executeTimetableModeCommand(String command, TimeTableRun timeTableRun) {
+        timeTableRun.run(command);
     }
 
     public static void executeAcademicModeCommand(String command) {
@@ -98,7 +105,7 @@ public class Command {
         }
     }
 
-    public static void executeFlashcardCommand() {
-
+    public static void executeFlashcardCommand(String command, FlashcardRun flashcardRun) {
+        flashcardRun.run(command);
     }
 }

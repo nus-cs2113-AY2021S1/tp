@@ -1,11 +1,10 @@
-
+import timetable.TimeTableRun;
+import flashcard.FlashcardRun;
 import bookmark.BookmarkCategory;
 import bookmark.BookmarkUi;
 import bookmark.NusCategory;
 import bookmark.ZoomCategory;
 import java.util.ArrayList;
-import academic.Person;
-import java.util.Scanner;
 
 
 public class StudyIt {
@@ -22,6 +21,9 @@ public class StudyIt {
     public static Mode getCurrentMode() {
         return currentMode;
     }
+
+    public static TimeTableRun timeTableRun = new TimeTableRun();
+    public static FlashcardRun flashcardRun = new FlashcardRun();
 
     public StudyIt() {
         bookmarkCategories.add(new NusCategory());
@@ -42,7 +44,8 @@ public class StudyIt {
             // Collect user's command & identify the type
             String command = Ui.inputCommand();
             commandType = CommandParser.getCommandType(command);
-            Command.executeCommand(command, commandType,bookmarkCategories,bookmarkUi,bookmarkParser);
+            Command.executeCommand(command, commandType,bookmarkCategories,bookmarkUi,bookmarkParser,flashcardRun,
+                    timeTableRun);
 
         } while (commandType != CommandType.EXIT_PROGRAM);
     }
