@@ -12,6 +12,7 @@ import manager.module.Module;
 import storage.Storage;
 import ui.Ui;
 
+import java.io.File;
 import java.io.IOException;
 
 public class EditCommand extends Command {
@@ -90,9 +91,13 @@ public class EditCommand extends Command {
         ModuleList modules = access.getAdmin().getModules();
         try {
             Module module = modules.getModule(editIndex);
-            ui.showUnedited(MODULE, module.toString());
-            module.setModuleName(moduleOrChapter);
-            ui.showEdited(MODULE, module.toString());
+            File file = new File(storage.getFilePath() + "/" + module.toString());
+            boolean success = file.renameTo(new File(storage.getFilePath() + "/" + moduleOrChapter));
+            if (success) {
+                ui.showUnedited(MODULE, module.toString());
+                module.setModuleName(moduleOrChapter);
+                ui.showEdited(MODULE, module.toString());
+            }
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             throw new InvalidInputException("The module number needs to be within the range "
                     + "of the total number of modules\n");
@@ -103,9 +108,17 @@ public class EditCommand extends Command {
         ChapterList chapters = access.getModule().getChapters();
         try {
             Chapter chapter = chapters.getChapter(editIndex);
-            ui.showUnedited(CHAPTER, chapter.toString());
-            chapter.setChapterName(moduleOrChapter);
-            ui.showEdited(CHAPTER, chapter.toString());
+            File file = new File(storage.getFilePath()
+                    + "/" + access.getModule()
+                    + "/" + chapter.toString() + ".txt");
+            boolean success = file.renameTo(new File(storage.getFilePath()
+                    + "/" + access.getModule()
+                    + "/" + moduleOrChapter + ".txt"));
+            if (success) {
+                ui.showUnedited(CHAPTER, chapter.toString());
+                chapter.setChapterName(moduleOrChapter);
+                ui.showEdited(CHAPTER, chapter.toString());
+            }
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             throw new InvalidInputException("The chapter number needs to be within the range "
                     + "of the total number of chapters\n");
