@@ -22,11 +22,14 @@ public class RemoveCommand extends Command {
             + ": Removes module / chapter / flashcard based on a specified index in the list. \n"
             + "Parameters: INDEX\n" + "Example: " + COMMAND_WORD + " 2\n";
 
-    public static final String MESSAGE_SUCCESS_MODULE = "The module <%1$s> has been removed.";
+    public static final String MESSAGE_SUCCESS_MODULE = "The module <%1$s> has been removed.\n";
+    public static final String MESSAGE_REMAINING_MODULE = "You currently have %1$d module(s).";
     public static final String MESSAGE_INVALID_INDEX_MODULE = "The module is not found, please try again.";
-    public static final String MESSAGE_SUCCESS_CHAPTER = "The chapter <%1$s> has been removed.";
+    public static final String MESSAGE_SUCCESS_CHAPTER = "The chapter <%1$s> has been removed.\n";
+    public static final String MESSAGE_REMAINING_CHAPTER = "You currently have %1$d chapter(s) in this module.";
     public static final String MESSAGE_INVALID_INDEX_CHAPTER = "The chapter is not found, please try again.";
     public static final String MESSAGE_SUCCESS_FLASHCARD = "The following flashcard has been removed:\n";
+    public static final String MESSAGE_REMAINING_FLASHCARD = "You currently have %1$d card(s) in this chapter.";
     public static final String MESSAGE_INVALID_INDEX_FLASHCARD = "The flashcard is not found, please try again.";
 
     private final int removeIndex;
@@ -58,12 +61,11 @@ public class RemoveCommand extends Command {
             File directory = new File(storage.getFilePath() + "/" + module.toString());
             boolean isRemoved = storage.deleteDirectory(directory);
             if (!isRemoved) {
-                ui.showError("There was a problem deleting module in directory.");
-                return;
+                throw new IOException("There was a problem deleting module in directory.");
             }
             String message = String.format(MESSAGE_SUCCESS_MODULE, module.toString());
             allModules.remove(removeIndex);
-            ui.showToUser(message);
+            ui.showToUser(message + String.format(MESSAGE_REMAINING_MODULE, allModules.size()));
         } catch (IndexOutOfBoundsException e) {
             ui.showToUser(MESSAGE_INVALID_INDEX_MODULE);
         }
@@ -78,12 +80,11 @@ public class RemoveCommand extends Command {
                 + "/" + chapter.toString() + ".txt");
             boolean isRemoved = storage.deleteDirectory(directory);
             if (!isRemoved) {
-                ui.showError("There was a problem deleting chapter in directory.");
-                return;
+                throw new IOException("There was a problem deleting chapter in directory.");
             }
             String message = String.format(MESSAGE_SUCCESS_CHAPTER, chapter.toString());
             allChapters.remove(removeIndex);
-            ui.showToUser(message);
+            ui.showToUser(message + String.format(MESSAGE_REMAINING_CHAPTER, allChapters.size()));
         } catch (IndexOutOfBoundsException e) {
             ui.showToUser(MESSAGE_INVALID_INDEX_CHAPTER);
         }
@@ -94,8 +95,9 @@ public class RemoveCommand extends Command {
             CardList cards = access.getChapter().getCards();
             ArrayList<Card> allCards = cards.getAllCards();
             Card card = allCards.get(removeIndex);
-            ui.showToUser(MESSAGE_SUCCESS_FLASHCARD + card.toString());
             cards.removeCard(removeIndex);
+            ui.showToUser(MESSAGE_SUCCESS_FLASHCARD + card.toString() + "\n"
+                    + String.format(MESSAGE_REMAINING_FLASHCARD, cards.getCardCount()));
             storage.saveCards(cards, access.getModule().getModuleName(), access.getChapter().getChapterName());
         } catch (IndexOutOfBoundsException e) {
             ui.showToUser(MESSAGE_INVALID_INDEX_FLASHCARD);
