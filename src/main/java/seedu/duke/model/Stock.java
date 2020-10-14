@@ -44,14 +44,13 @@ public class Stock implements Serializable {
         return totalQuantity;
     }
 
-    public double getLatestPrice(){
+    public double getLatestPrice() {
         StockPriceFetcher stockPriceFetcher = new StockPriceFetcher();
         Ui ui = new Ui();
-
-        try{
+        try {
             double price = stockPriceFetcher.fetchLatestPrice(getSymbol());
             return price;
-        }catch (DukeException e) {
+        } catch (DukeException e) {
             ui.print(e.getMessage());
             return 0;
         }
