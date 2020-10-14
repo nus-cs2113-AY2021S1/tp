@@ -109,22 +109,17 @@ public class FinanceTools {
             CommandPacket packet = new InputParser().parseInput(input.toLowerCase());
             switch (packet.getCommandString()) {
             case "simplecalc":
-                System.out.print("Total Interest Earned: ");
-                System.out.println('$' + Double.toString(handleSimpleInterest(packet)));
+                System.out.print("Total Interest Earned: $" + Double.toString(handleSimpleInterest(packet)));
                 break;
             case "cashbackcalc":
-                System.out.print("Total Cashback Earned: ");
-                System.out.println('$' + Double.toString(handleCashback(packet)));
+                System.out.print("Total Cashback Earned: $" + Double.toString(handleCashback(packet)));
                 break;
             case "milescalc":
-                System.out.print("Total Miles Earned: ");
-                System.out.println('$' + Double.toString(handleMilesCredit(packet)));
+                System.out.print("Total Miles Earned: " + Double.toString(handleMilesCredit(packet)));
                 break;
             case "compoundcalc":
-                System.out.println("Compound Interval: Yearly");
-                System.out.print("Total Interest Earned: $");
-                System.out.printf("%.2f", handleCompoundInterest(packet));
-                System.out.println();
+                System.out.printf("Compound Interval: Yearly\n"
+                        + "Total Interest Earned: $" + "%.2f",handleCompoundInterest(packet));
                 break;
             case "commands":
                 printCommandList();
