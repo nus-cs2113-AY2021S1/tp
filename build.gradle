@@ -29,7 +29,15 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "StudyIt"
+}
+
+jar {
+    manifest {
+        attributes (
+            'Main-Class': 'StudyIt'
+        )
+    }
 }
 
 shadowJar {
