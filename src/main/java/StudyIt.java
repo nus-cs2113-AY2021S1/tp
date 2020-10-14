@@ -1,13 +1,10 @@
 import timetable.TimeTableRun;
-import flashcard.Flashcard;
 import flashcard.FlashcardRun;
 import bookmark.BookmarkCategory;
 import bookmark.BookmarkUi;
 import bookmark.NusCategory;
 import bookmark.ZoomCategory;
 import java.util.ArrayList;
-import academic.Person;
-import java.util.Scanner;
 
 
 public class StudyIt {
@@ -48,7 +45,8 @@ public class StudyIt {
             String command = Ui.inputCommand();
             commandType = CommandParser.getCommandType(command);
             Command.executeCommand(command, commandType,bookmarkCategories,bookmarkUi,bookmarkParser,flashcardRun,
-                                    timeTableRun);
+                    timeTableRun);
+
         } while (commandType != CommandType.EXIT_PROGRAM);
     }
 }
