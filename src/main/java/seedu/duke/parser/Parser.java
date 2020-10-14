@@ -77,6 +77,13 @@ public class Parser {
                         e.printExceptionMessage();
                     }
                     break;
+                case VIEW:
+                    try {
+                        new ProjectCommand().viewProjectCommand(projectList);
+                    } catch (DukeException e) {
+                        e.printExceptionMessage();
+                    }
+                    break;
                 default:
                     try {
                         throw new DukeException("Invalid action");

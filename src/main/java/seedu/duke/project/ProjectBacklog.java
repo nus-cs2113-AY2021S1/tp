@@ -12,25 +12,27 @@ import java.util.ArrayList;
 
 public class ProjectBacklog implements Jsonable {
 
+    private Project proj;
     public ArrayList<Task> backlogTasks;
-    int size;
+    int nextId;
 
-    public ProjectBacklog() {
+    public ProjectBacklog(Project proj) {
+        this.proj = proj;
         backlogTasks = new ArrayList<>(100);
-        size = 0;
+        nextId = 1;
     }
 
     public void addTask(String title, String description, String priority) {
-        int newTaskId = size++;
+        int newTaskId = nextId++;
         backlogTasks.add(new Task(newTaskId, title, description, priority));
     }
 
-    public int size() {
-        return size;
+    public int getNextId() {
+        return nextId;
     }
 
     public Task getTask(int id) {
-        for (Task task: backlogTasks) {
+        for (Task task : backlogTasks) {
             if (task.getId() == id) {
                 return task;
             }
@@ -38,21 +40,24 @@ public class ProjectBacklog implements Jsonable {
         return null;
     }
 
-    public Task removeTask(int i) {
-        Task removedObj = backlogTasks.remove(i);
-        //update the rest of the ID since array has shifted
-        for (int j = i; j < backlogTasks.size(); j++) {
-            Task task = backlogTasks.get(j);
-            task.setId(j);
+    public void removeTask(int taskId) {
+        for (Task task : backlogTasks) {
+            if (task.getId() == taskId) {
+                ArrayList<Integer> allocatedSprint = task.getAllocatedSprints();
+                for (Integer sprintId : allocatedSprint) {
+                    proj.allSprints.getSprint(sprintId).removeSprintTask(taskId);
+                }
+                backlogTasks.remove(task);
+                return;
+            }
         }
-        return removedObj;
     }
 
     public void viewTask(String id, Ui ui) {
         Task task;
         try {
             int backlogId = Integer.parseInt(id) - 1;
-            if (backlogId < size) {
+            if (backlogId < nextId) {
                 task = backlogTasks.get(backlogId);
                 Ui.showToUserLn(task.toString());
             } else {
@@ -61,6 +66,27 @@ public class ProjectBacklog implements Jsonable {
         } catch (NumberFormatException e) {
             Ui.showToUserLn("Task id is not an integer.");
         }
+    }
+
+    public boolean checkTaskExist(int id) {
+        for (Task task : backlogTasks) {
+            if (task.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder backlogString = new StringBuilder();
+        backlogString.append("\n----------------- BACKLOG -----------------\n");
+        for (Task task : backlogTasks) {
+            backlogString.append(task.toSimplifiedString());
+        }
+        backlogString.append("\n------------------------------------------\n");
+        return backlogString.toString();
     }
 
     @Override

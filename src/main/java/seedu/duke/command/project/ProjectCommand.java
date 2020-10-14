@@ -46,4 +46,8 @@ public class ProjectCommand {
         Ui.showToUserLn("Project successfully created.");
         projectList.add(proj);
     }
+
+    public void viewProjectCommand(ArrayList<Project> projectList) throws DukeException {
+        Ui.showToUserLn(projectList.get(0).toString());
+    }
 }

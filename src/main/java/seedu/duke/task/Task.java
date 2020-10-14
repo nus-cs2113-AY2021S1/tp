@@ -17,6 +17,7 @@ public class Task implements Jsonable {
     protected Priority priority;
     protected boolean isDone;
     protected ArrayList<String> membersAllocatedTo;
+    protected ArrayList<Integer> sprintAllocatedTo;
 
 
     public Task(int id, String title, String description, String priority) {
@@ -30,6 +31,7 @@ public class Task implements Jsonable {
         this.priority = Priority.valueOf(priority);
         this.isDone = false;
         this.membersAllocatedTo = new ArrayList<>();
+        this.sprintAllocatedTo = new ArrayList<>();
     }
 
     public void allocateToMember(String memberId) {
@@ -38,6 +40,14 @@ public class Task implements Jsonable {
 
     public ArrayList<String> getAllocatedMembers() {
         return membersAllocatedTo;
+    }
+
+    public void allocateToSprint(int sprintId) {
+        sprintAllocatedTo.add(sprintId);
+    }
+
+    public ArrayList<Integer> getAllocatedSprints() {
+        return sprintAllocatedTo;
     }
 
     public void setId(int id) {
@@ -70,6 +80,15 @@ public class Task implements Jsonable {
 
     public boolean getDone() {
         return isDone;
+    }
+
+    public String toSimplifiedString() {
+        StringBuilder taskString = new StringBuilder();
+        taskString.append(String.format("\n[Task]"));
+        taskString.append(String.format("\tID: %d", this.id));
+        taskString.append(String.format("\tTitle: %s", this.title));
+        taskString.append(String.format("\tCompletion: %s\n", this.isDone ? "Completed" : "Incomplete"));
+        return taskString.toString();
     }
 
     @Override

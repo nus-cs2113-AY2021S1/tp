@@ -75,7 +75,7 @@ public class Sprint implements Jsonable {
     }
 
     public void removeSprintTask(int taskId) {
-        this.sprintTaskIds.remove((Object)taskId);
+        this.sprintTaskIds.remove((Object) taskId);
     }
 
 
@@ -83,10 +83,26 @@ public class Sprint implements Jsonable {
         return this.sprintTaskIds;
     }
 
+    public String toSimplifiedString() {
+        boolean isCurrentSprint;
+        isCurrentSprint = ((this.id - 1) == this.projAllocatedTo.getAllSprints().getCurrentSprintIndex());
+
+        StringBuilder sprintInString = new StringBuilder();
+        sprintInString.append("\n----------------- SPRINT -----------------\n");
+        sprintInString.append(String.format("[ID: %d]\n", this.id));
+        sprintInString.append(String.format("[Goal: %s]\n", this.goal));
+        sprintInString.append(String.format("[Period: %s - %s] \n", this.startDate, this.endDate));
+        if (isCurrentSprint) {
+            sprintInString.append(String.format("[Remaining: %s days]\n", this.endDate.compareTo(LocalDate.now())));
+        }
+        sprintInString.append("\n------------------------------------------\n");
+        return sprintInString.toString();
+    }
+
     @Override
     public String toString() {
         boolean isCurrentSprint;
-        isCurrentSprint = (this.id == this.projAllocatedTo.getAllSprints().getCurrentSprintIndex());
+        isCurrentSprint = ((this.id - 1) == this.projAllocatedTo.getAllSprints().getCurrentSprintIndex());
 
         StringBuilder sprintInString = new StringBuilder();
         sprintInString.append("\n----------------- SPRINT -----------------\n");

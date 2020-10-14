@@ -30,7 +30,7 @@ public class SprintList implements Jsonable {
     }
 
     public void addSprint(Project proj, String goal, LocalDate start, LocalDate end) {
-        int newSprintID = this.size();
+        int newSprintID = this.size() + 1;
         sprintList.add(new Sprint(newSprintID, proj, goal, start, end));
     }
 

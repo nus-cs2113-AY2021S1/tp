@@ -3,11 +3,13 @@ package seedu.duke.project;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.sprint.SprintList;
+import seedu.duke.task.Task;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Project implements Jsonable {
 
@@ -28,13 +30,22 @@ public class Project implements Jsonable {
         this.description = description;
         this.projectDuration = Integer.parseInt(projectDuration.trim());
         this.sprintLength = Integer.parseInt(sprintLength);
-        backlog = new ProjectBacklog();
+        backlog = new ProjectBacklog(this);
         members = new ProjectMembers();
         allSprints = new SprintList();
     }
 
+    @Override
     public String toString() {
-        return "Project title: " + title + "\nProject description " + description;
+        StringBuilder projectInString = new StringBuilder();
+        projectInString.append("\n================= PROJECT =================\n");
+        projectInString.append(String.format("[Title: %s]\n", this.title));
+        projectInString.append(String.format("[Description: %s]\n", this.description));
+        projectInString.append(String.format("[Period: %s - %s] \n", this.startDate, this.endDate));
+        projectInString.append(this.backlog.toString());
+        projectInString.append(this.allSprints.getSprint(this.allSprints.getCurrentSprintIndex()).toSimplifiedString());
+        projectInString.append("\n===============================================\n");
+        return projectInString.toString();
     }
 
     public SprintList getAllSprints() {
@@ -89,11 +100,11 @@ public class Project implements Jsonable {
     }
 
     public void displayProjectBacklog() {
-        if (backlog.size() == 0) {
+        if (backlog.getNextId() == 0) {
             System.out.println("No tasks currently added to project backlog.");
         } else {
             System.out.println("Current tasks in your project backlog");
-            for (int i = 0; i < backlog.size(); i++) {
+            for (int i = 0; i < backlog.getNextId(); i++) {
                 System.out.println("\t" + (i + 1) + ". " + backlog.getTask(i).getTitle());
             }
         }

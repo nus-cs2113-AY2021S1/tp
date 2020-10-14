@@ -31,6 +31,7 @@ public class AddSprintTaskCommand extends SprintCommand {
             for (String entry: this.parametersInAL) {
                 int taskId = Integer.parseInt(entry);
                 currentSprint.addSprintTask(taskId);
+                proj.getProjectBacklog().getTask(taskId).allocateToSprint(currentSprint.getId());
                 Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + "added to sprint.\n");
             }
         } else {
