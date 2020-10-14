@@ -88,6 +88,8 @@ public class FindCommand extends Command {
 
             }
             break;
+        default:
+            break;
         }
 
         if (!isFound) {

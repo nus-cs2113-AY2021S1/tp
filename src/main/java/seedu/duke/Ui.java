@@ -213,8 +213,8 @@ public class Ui {
      * @param itemIndex      item index in the calendar list.
      * @param printNumbering item index printed to the user.
      */
-    public static void printFindTaskMessage(String command, CalendarList calendarList, boolean isFound, int itemIndex
-            , int printNumbering) {
+    public static void printFindTaskMessage(String command, CalendarList calendarList, boolean isFound,
+                                            int itemIndex, int printNumbering) {
 
         if (!isFound) { // first instance when keyword is found
             String itemType = "";
@@ -227,6 +227,8 @@ public class Ui {
                 break;
             case COMMAND_FIND_EVENT_OR_TASK:
                 itemType = "item(s)";
+                break;
+            default:
                 break;
             }
             System.out.println("Here are the matching " + itemType + " in your calendar:");
