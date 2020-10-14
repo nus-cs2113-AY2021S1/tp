@@ -2,10 +2,7 @@ package parser;
 
 import access.Access;
 
-import commands.AddCardCommand;
-import commands.AddChapterCommand;
 import commands.AddCommand;
-import commands.AddModuleCommand;
 import commands.BackChapterCommand;
 import commands.BackModuleCommand;
 import commands.Command;
@@ -110,25 +107,28 @@ public class Parser {
     }
 
     private static Command prepareAdd(String commandArgs, Access access)
-            throws InvalidInputException {
+            throws InvalidInputException, IncorrectAccessLevelException {
         if (access.isChapterLevel()) {
             if (commandArgs.isEmpty()) {
                 throw new InvalidInputException("The arguments are missing.\n"
-                        + AddCardCommand.MESSAGE_USAGE);
+                        + AddCommand.MESSAGE_CARD_USAGE);
             }
             return prepareAddCard(commandArgs);
         } else if (access.isModuleLevel()) {
             if (commandArgs.isEmpty()) {
                 throw new InvalidInputException("The arguments are missing.\n"
-                        + AddChapterCommand.MESSAGE_USAGE);
+                        + AddCommand.MESSAGE_CHAPTER_USAGE);
             }
             return prepareAddChapter(commandArgs);
-        } else {
+        } else if (access.isAdminLevel()) {
             if (commandArgs.isEmpty()) {
                 throw new InvalidInputException("The arguments are missing.\n"
-                        + AddModuleCommand.MESSAGE_USAGE);
+                        + AddCommand.MESSAGE_MODULE_USAGE);
             }
             return prepareAddModule(commandArgs);
+        } else {
+            throw new IncorrectAccessLevelException("Add command can only be called at admin, "
+                    + "module and chapter level.");
         }
     }
 
@@ -139,21 +139,21 @@ public class Parser {
             String answer = parseAnswer(args[1]);
             if (question.isEmpty() || answer.isEmpty()) {
                 throw new InvalidInputException("The content for question / answer is empty.\n"
-                        + AddCardCommand.MESSAGE_USAGE);
+                        + AddCommand.MESSAGE_CARD_USAGE);
             }
-            return new AddCardCommand(question, answer, CHAPTER_LEVEL);
+            return new AddCommand(question, answer, CHAPTER_LEVEL);
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidInputException("The format for the add command is incorrect.\n"
-                    + AddCardCommand.MESSAGE_USAGE);
+                    + AddCommand.MESSAGE_CARD_USAGE);
         }
     }
 
     private static Command prepareAddChapter(String commandArgs) {
-        return new AddChapterCommand(commandArgs);
+        return new AddCommand(commandArgs);
     }
 
     private static Command prepareAddModule(String commandArgs) {
-        return new AddModuleCommand(commandArgs);
+        return new AddCommand(commandArgs);
     }
 
     private static Command prepareRemove(String commandArgs) throws InvalidInputException {
@@ -257,7 +257,7 @@ public class Parser {
     private static String parseQuestion(String arg) throws InvalidInputException {
         if (!(arg.trim().toLowerCase().startsWith(QUESTION_PREFIX))) {
             throw new InvalidInputException("There needs to be a \"q:\" prefix before the question.\n"
-                    + "Example: " + AddCardCommand.COMMAND_WORD + AddCardCommand.CARD_PARAMETERS + "\n"
+                    + "Example: " + AddCommand.COMMAND_WORD + AddCommand.CARD_PARAMETERS + "\n"
                     + "         " + EditCommand.COMMAND_WORD + EditCommand.CARD_PARAMETERS);
         }
 
@@ -267,7 +267,7 @@ public class Parser {
     private static String parseAnswer(String arg) throws InvalidInputException {
         if (!(arg.trim().toLowerCase().startsWith(ANSWER_PREFIX))) {
             throw new InvalidInputException("There needs to be a \"a:\" prefix before the answer.\n"
-                    + "Example: " + AddCardCommand.COMMAND_WORD + AddCardCommand.CARD_PARAMETERS + "\n"
+                    + "Example: " + AddCommand.COMMAND_WORD + AddCommand.CARD_PARAMETERS + "\n"
                     + "         " + EditCommand.COMMAND_WORD + EditCommand.CARD_PARAMETERS);
         }
 
