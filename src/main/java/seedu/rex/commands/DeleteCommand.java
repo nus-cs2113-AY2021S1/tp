@@ -10,10 +10,10 @@ import seedu.rex.ui.Ui;
 import java.util.ArrayList;
 
 /**
- * Deletes a <code>Patient</code>'s data based on his NRIC
+ * Deletes a <code>Patient</code>'s data based on his NRIC.
  */
 
-public class DeleteCommand extends Command{
+public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     private final String trimmedCommand;
 
@@ -22,22 +22,23 @@ public class DeleteCommand extends Command{
     }
 
     @Override
-    public void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage) throws RexException {
+    public void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage)
+            throws RexException {
 
         String nric = extractNric(trimmedCommand, COMMAND_WORD);
-        if (patients.isExistingPatient(nric)){
+        if (patients.isExistingPatient(nric)) {
             Patient deletedPatient = patients.deletePatient(nric);
             ui.showPatientDeleted(deletedPatient);
             int i = 0;
-            while (i< appointments.size()){
+            while (i < appointments.size()) {
                 String tempNric = appointments.get(i).getPatient().getNric();
-                if (tempNric.contentEquals(nric)){
+                if (tempNric.contentEquals(nric)) {
                     appointments.remove(i);
-                }else {
+                } else {
                     i++;
                 }
             }
-        }else {
+        } else {
             ui.printPatientNotFound(nric);
         }
     }

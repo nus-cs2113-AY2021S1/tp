@@ -104,6 +104,7 @@ public class Ui {
         printWithIndent("Patient successfully editted: ");
         printWithIndent(patient.toString());
     }
+
     /**
      * Prints a message to indicate successful deletion of a patient.
      *
