@@ -15,7 +15,7 @@ public class BookmarkParser extends CommandParser {
     }
 
     public BookmarkCommand evaluateInput(String command) throws InvalidBookmarkCommandException {
-        if (command == null){
+        if (command == null) {
             throw new InvalidBookmarkCommandException();
         }
         String commandModified = CommandParser.standardizeCommand(command);

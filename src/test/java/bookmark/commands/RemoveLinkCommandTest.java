@@ -5,9 +5,7 @@ import bookmark.BookmarkUi;
 import bookmark.NusCategory;
 import bookmark.ZoomCategory;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RemoveLinkCommandTest {

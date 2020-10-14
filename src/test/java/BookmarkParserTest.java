@@ -1,13 +1,14 @@
 
 import bookmark.InvalidBookmarkCommandException;
+
 import bookmark.commands.AddLinkCommand;
 import bookmark.commands.BackCommand;
 import bookmark.commands.ChangeModeCommand;
 import bookmark.commands.ListCommand;
 import bookmark.commands.RemoveLinkCommand;
 import bookmark.commands.BookmarkCommand;
-import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -59,8 +60,7 @@ class BookmarkParserTest {
     void evaluateInput_invalidBookmarkCommand_expectExceptions() throws InvalidBookmarkCommandException {
         BookmarkParser parser = new BookmarkParser();
         String input = "huhuhuh";
-        assertThrows(InvalidBookmarkCommandException.class, ()->
-        {
+        assertThrows(InvalidBookmarkCommandException.class, () -> {
             parser.evaluateInput(input);
         });
     }
@@ -69,8 +69,7 @@ class BookmarkParserTest {
     void evaluateInput_nullCommand_expectExceptions() throws InvalidBookmarkCommandException {
         BookmarkParser parser = new BookmarkParser();
         String input = null;
-        assertThrows(InvalidBookmarkCommandException.class, ()->
-        {
+        assertThrows(InvalidBookmarkCommandException.class, () -> {
             parser.evaluateInput(input);
         });
     }
