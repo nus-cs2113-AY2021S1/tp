@@ -1,6 +1,6 @@
-# Hospitalsaurus ReX project template
+# Hospitalsaurus ReX project
 
-This is a project template for a greenfield Java project. Given below are instructions on how to use it.
+This is a Hospitalsaurus ReX project. Given below are instructions on how to use it.
 
 ## Setting up in Intellij
 
@@ -15,16 +15,18 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
    > Task :classes UP-TO-DATE
    
    > Task :Rex.main()
-   Hello from
-     _    _                 _ _        _                                  _____     __   __
-    | |  | |               (_| |      | |                                |  __ \    \ \ / /
-    | |__| | ___  ___ _ __  _| |_ __ _| |___  __ _ _   _ _ __ _   _ ___  | |__) |___ \ V /
-    |  __  |/ _ \/ __| '_ \| | __/ _` | / __|/ _` | | | | '__| | | / __| |  _  // _ \ > <  
-    | |  | | (_) \__ | |_) | | || (_| | \__ | (_| | |_| | |  | |_| \__ \ | | \ |  __// . \
-    |_|  |_|\___/|___| .__/|_|\__\__,_|_|___/\__,_|\__,_|_|   \__,_|___/ |_|  \_\___/_/ \_\
-                     | |                                                                   
-                     |_|
-   What is your name?
+   	____________________________________________________________
+   	  _    _                 _ _        _                                  _____     __   __
+   	 | |  | |               (_| |      | |                                |  __ \    \ \ / /
+   	 | |__| | ___  ___ _ __  _| |_ __ _| |___  __ _ _   _ _ __ _   _ ___  | |__) |___ \ V /
+   	 |  __  |/ _ \/ __| '_ \| | __/ _` | / __|/ _` | | | | '__| | | / __| |  _  // _ \ > <  
+   	 | |  | | (_) \__ | |_) | | || (_| | \__ | (_| | |_| | |  | |_| \__ \ | | \ |  __// . \
+   	 |_|  |_|\___/|___| .__/|_|\__\__,_|_|___/\__,_|\__,_|_|   \__,_|___/ |_|  \_\___/_/ \_\
+   	                  | |                                                                   
+   	                  |_|
+   	 How may i assist you?
+   	____________________________________________________________
+   Enter command: 
    ```
    Type some word and press enter to let the execution proceed to the end.
 
