@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BusStopList {
-    private static final String filePath = "data/BusStops.txt";
+    private static final String filePath = "data/bus_stops.txt";
     private ArrayList<BusStop> busStopList = new ArrayList<>();
 
     public void loadBusStopData() {

@@ -20,6 +20,10 @@ public class NuSchedule {
 
     public NuSchedule(String filePath) {
         ui = new UI();
+        busStops = new BusStopList();
+        locations = new LocationList();
+        busStops.loadBusStopData();
+        locations.loadLocationData();
         try {
             storage = new Storage(filePath);
         } catch (CreatingFileException e) {
@@ -37,10 +41,6 @@ public class NuSchedule {
      * Runs the program until termination.
      */
     public void run() {
-        busStops = new BusStopList();
-        locations = new LocationList();
-        // busStops.loadBusStopData();
-        // locations.loadLocationData();
         ui.printGreetingMessage();
         boolean isExit = false;
         while (!isExit) {
