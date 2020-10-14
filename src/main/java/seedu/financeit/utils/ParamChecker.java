@@ -37,15 +37,30 @@ public class ParamChecker {
     public static final String PARAM_AUTO = "-auto";
     public static Logger logger = Logger.getLogger(ParamChecker.class.getName());
     CommandPacket packet;
+    private static String errorMessage;
 
     public ParamChecker(CommandPacket packet) {
         this.packet = packet;
+    }
+
+    private void printErrorMessage() {
+        System.out.println(errorMessage);
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    private void clearErrorMessage() {
+        errorMessage = "";
     }
 
     public LocalDate checkAndReturnDate(String paramType)
         throws ParseFailParamException {
         LocalDate date = null;
         boolean parseSuccess = false;
+
+        clearErrorMessage();
 
         logger.log(Level.INFO, "Checking date...");
         try {
@@ -59,26 +74,22 @@ public class ParamChecker {
             logger.log(Level.WARNING,
                 String.format("Date parsed but not valid... Err: %s", exception.getMessage()));
 
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                "Not a valid date on the Gregorian Calendar!",
-                "Check your input again against the following format!",
-                "Date format: YYMMDD",
-                "Time format: HHMM");
+            errorMessage = getErrorMessageDateDateTimeException();
+            printErrorMessage();
         } catch (InvalidParameterException exception) {
             logger.log(Level.WARNING,
                 String.format("Date input cannot be parsed... Err: %s", exception.getMessage()));
 
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                "Input format is not recognised.",
-                "Check your input again against the following format!",
-                "Date format: YYMMDD");
+            errorMessage = getErrorMessageDateInvalidFormat();
         } catch (EmptyParamException exception) {
             logger.log(Level.WARNING,
                 String.format("No date input supplied... Err: %s", exception.getMessage()));
 
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            errorMessage = UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 exception.getMessage(),
                 "Enter \"commands\" to check format!");
+        } finally {
+            printErrorMessage();
         }
         if (!parseSuccess) {
             throw new ParseFailParamException(paramType);
@@ -90,6 +101,8 @@ public class ParamChecker {
         throws ParseFailParamException {
         LocalTime time = null;
         boolean parseSuccess = false;
+
+        clearErrorMessage();
 
         logger.log(Level.INFO, "Checking time...");
         try {
@@ -103,26 +116,21 @@ public class ParamChecker {
             logger.log(Level.WARNING,
                 String.format("Time parsed but not valid... Err: %s", exception.getMessage()));
 
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                "Time is out of range!",
-                "Check your input again against the following format!",
-                "Time format: HHMM");
+            errorMessage = getErrorMessageTimeDateTimeException();
         } catch (InvalidParameterException exception) {
             logger.log(Level.WARNING,
                 String.format("Time input cannot be parsed... Err: %s", exception.getMessage()));
 
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                "Input format is not recognised.",
-                "Check your input again against the following format!",
-                "Date format: YYMMDD",
-                "Time format: HHMM");
+            errorMessage = getErrorMessageTimeInvalidFormat();
         } catch (EmptyParamException exception) {
             logger.log(Level.WARNING,
                 String.format("No time input supplied... Err: %s", exception.getMessage()));
 
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            errorMessage = UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
                 exception.getMessage(),
                 "Enter \"commands\" to check format!");
+        } finally {
+            printErrorMessage();
         }
         if (!parseSuccess) {
             throw new ParseFailParamException(paramType);
@@ -143,7 +151,10 @@ public class ParamChecker {
         int index = -1;
         boolean parseSuccess = false;
 
+        clearErrorMessage();
+
         logger.log(Level.INFO, "Checking index validity...");
+
         if (list.size() == 0) {
             message = "There are no items in the list.";
         } else if (list.size() == 1) {
@@ -162,16 +173,14 @@ public class ParamChecker {
             logger.log(Level.WARNING,
                 String.format("Index out of bounds... Err: %s", exception.getMessage()));
 
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                String.format("Index input \"%s\" is out of bounds!", index),
-                message);
+            errorMessage = getErrorMessageListIndexOutOfBounds(message, index);
         } catch (NumberFormatException exception) {
             logger.log(Level.WARNING,
                 String.format("Index cannot be parsed... Err: %s", exception.getMessage()));
 
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                "Cannot parse your input. Please enter a positive integer!",
-                message);
+            errorMessage = getErrorMessageListNumberFormatException(message);
+        } finally {
+            printErrorMessage();
         }
 
         if (!parseSuccess) {
@@ -186,6 +195,8 @@ public class ParamChecker {
         boolean parseSuccess = false;
         double output = -1;
 
+        clearErrorMessage();
+
         logger.log(Level.INFO, "Checking input Double...");
         try {
             output = Double.parseDouble(input);
@@ -194,8 +205,9 @@ public class ParamChecker {
             logger.log(Level.WARNING,
                 String.format("Double not recognised... Err: %s", exception.getMessage()));
 
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                "Cannot parse your input. Please enter valid 2 d.p input!");
+            errorMessage = getErrorMessageDoubleNumberFormatException();
+        } finally {
+            printErrorMessage();
         }
 
         if (!parseSuccess) {
@@ -209,6 +221,8 @@ public class ParamChecker {
         boolean parseSuccess = false;
         int output = -1;
 
+        clearErrorMessage();
+
         logger.log(Level.INFO, "Checking input Integer...");
         try {
             output = Integer.parseInt(input);
@@ -217,8 +231,9 @@ public class ParamChecker {
             logger.log(Level.WARNING,
                 String.format("Int not recognised... Err: %s", exception.getMessage()));
 
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    "Cannot parse your input. Please enter valid integer input!");
+            errorMessage = getErrorMessageNumberFormatException();
+        } finally {
+            printErrorMessage();
         }
 
         if (!parseSuccess) {
@@ -227,9 +242,13 @@ public class ParamChecker {
         return output;
     }
 
+
+
     public String checkAndReturnCategory(String paramType) throws ParseFailParamException {
         boolean parseSuccess = false;
         String category = packet.getParam(paramType);
+
+        clearErrorMessage();
 
         logger.log(Level.INFO, "Checking input Category...");
         try {
@@ -240,15 +259,75 @@ public class ParamChecker {
         } catch (InvalidCategoryException exception) {
             logger.log(Level.WARNING, "Category not recognised...");
 
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                exception.getMessage(),
-                "Input \"exp cat\" to show valid categories!");
+            errorMessage = getErrorMessageInvalidCategoryException(exception);
+        } finally {
+            printErrorMessage();
         }
 
         if (!parseSuccess) {
             throw new ParseFailParamException(paramType);
         }
         return category;
+    }
+
+    /**
+     * List of error messages that are referenced in the above functions.
+     */
+
+    public static String getErrorMessageDateDateTimeException() {
+        return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            "Not a valid date on the Gregorian Calendar!",
+            "Check your input again against the following format!",
+            "Date format: YYMMDD");
+    }
+
+    public static String getErrorMessageDateInvalidFormat() {
+        return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            "Input format is not recognised.",
+            "Check your input again against the following format!",
+            "Date format: YYMMDD");
+    }
+
+    public static String getErrorMessageTimeInvalidFormat() {
+        return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            "Input format is not recognised.",
+            "Check your input again against the following format!",
+            "Time format: HHMM");
+    }
+
+    public static String getErrorMessageTimeDateTimeException() {
+        return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            "Time is out of range!",
+            "Check your input again against the following format!",
+            "Time format: HHMM");
+    }
+
+    public static String getErrorMessageListNumberFormatException(String message) {
+        return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            "Cannot parse your input. Please enter a positive integer!",
+            message);
+    }
+
+    public static String getErrorMessageListIndexOutOfBounds(String message, int index) {
+        return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            String.format("Index input \"%s\" is out of bounds!", index),
+            message);
+    }
+
+    public static String getErrorMessageDoubleNumberFormatException() {
+        return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            "Cannot parse your input. Please enter valid 2 d.p input!");
+    }
+
+    public static String getErrorMessageNumberFormatException() {
+        return UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            "Cannot parse your input. Please enter valid integer input!");
+    }
+
+    public static String getErrorMessageInvalidCategoryException(InvalidCategoryException exception) {
+        return errorMessage = UiManager.getStringPrintWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            exception.getMessage(),
+            "Input \"exp cat\" to show valid categories!");
     }
 
     public String getUnrecognizedParamMessage(String paramType) {

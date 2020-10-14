@@ -17,6 +17,9 @@ public class   CommandPacket {
         this.paramMap = paramMap;
     }
 
+    public CommandPacket() {
+    }
+
     // Param type refers to /.* (eg. /a)
     // Param refers to string following the param type
     public String getParam(String paramType) {
