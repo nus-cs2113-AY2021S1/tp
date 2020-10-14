@@ -64,8 +64,7 @@ public class Parser {
             return new DeadlineCommand(argument);
 
         default:
-            System.out.println("Error! Unrecognised command");
-            return null;
+            throw new DukeException("Invalid Command.");
         }
     }
 
