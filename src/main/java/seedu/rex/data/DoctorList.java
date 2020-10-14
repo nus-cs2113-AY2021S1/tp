@@ -4,6 +4,9 @@ import seedu.rex.data.hospital.Doctor;
 
 import java.util.ArrayList;
 
+/**
+ * Contains ArrayList of doctors.
+ */
 public class DoctorList {
 
     private final ArrayList<Doctor> doctors;

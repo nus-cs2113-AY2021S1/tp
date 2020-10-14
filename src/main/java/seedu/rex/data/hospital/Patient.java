@@ -19,8 +19,6 @@ public class Patient {
         setNric(nric);
         setDateOfBirth(dateOfBirth);
         this.appointmentHistory = new Vector<>();
-
-        // will create an empty appointment history
     }
 
     public LocalDate getDateOfBirth() {

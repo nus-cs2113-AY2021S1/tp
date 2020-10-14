@@ -108,6 +108,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves appointments into file.
+     *
+     * @param appointments ArrayList of appointments to save.
+     * @throws IOException If there is problem writing or saving file.
+     */
     public void saveAppointments(ArrayList<Appointment> appointments) throws IOException {
         StringBuilder textToWrite = new StringBuilder();
         for (Appointment appointment : appointments) {
@@ -121,6 +127,12 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * Loads appointments, stores them into ArrayList and returns the ArrayList.
+     *
+     * @return ArrayList of appointments.
+     * @throws FileNotFoundException If file does not exist.
+     */
     public ArrayList<Appointment> loadAppointments() throws FileNotFoundException {
         ArrayList<Appointment> appointments = new ArrayList<>();
         File appointmentsFile = new File(folder + "/" + APPOINTMENTS_FILE);

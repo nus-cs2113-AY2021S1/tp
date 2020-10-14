@@ -39,6 +39,59 @@ Example of usage:
 
 `retrieve S7423213Z`
 
+### Edit a patient: `edit`
+Edits a patient to the database.
+
+Format: `edit NRIC`
+
+* The `NRIC` must be valid and in the database.
+* Program will prompt name and date of birth to be edited.
+
+Example of usage:
+
+`edit S9922312D`
+
+`edit S7423213Z`
+
+### Delete a patient: `delete`
+Deletes a patient to the database.
+
+Format: `delete NRIC`
+
+* The `NRIC` must be valid and in the database.
+* Program will delete patient with nric as `NRIC`.
+
+Example of usage:
+
+`delete S9922312D`
+
+`delete S7423213Z`
+
+### Create an appointment: `create`
+Creates an appointment date.
+
+Format: `create`
+
+* Program will prompt for date to be inputted.
+
+Example of usage:
+
+`create`
+
+### Create an appointment: `book`
+Books an appointment date.
+
+Format: `book NRIC`
+
+* The `NRIC` should be valid and in the database, else `add` command will run
+* Program will show a lists of available dates and prompt for which date to use.
+
+Example of usage:
+
+`book S9922312D`
+
+`book S7423213Z`
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -49,3 +102,7 @@ Example of usage:
 
 * Add patient `add NRIC`
 * Retrieve patient `retrieve NRIC`
+* Edit patient `edit NRIC`
+* Delete patient `delete NRIC`
+* Create appointment `create`
+* Book appointment `book NRIC`
