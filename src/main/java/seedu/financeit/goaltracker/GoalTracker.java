@@ -145,7 +145,6 @@ public class GoalTracker {
     }
 
     public static void handleExpenseGoal() {
-        try {
             LedgerList ledgerList = ManualTracker.getLedgerList();
             int ledgerSize = ledgerList.getItemsSize();
             for (int i = ledgerSize - 1; i < ledgerSize; i++) {
@@ -158,28 +157,31 @@ public class GoalTracker {
                 }
             }
             printExpenseGoal();
+    }
+
+    public static void printExpenseGoal() {
+        try {
+            expenseGoal = totalGoalList.getGoal().get(0).getExpenseGoal();
+            if (expenseGoal == 0) {
+                expenseGoal = totalGoalList.getGoal().get(1).getExpenseGoal();
+            }
+            double goalDifference = expenseGoal - totalExpenses;
+            if (goalDifference < 0) {
+                UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "Expense Budget Updated, "
+                        + " You have spent $" + totalExpenses + " / $" + expenseGoal + ". You have exceeded your "
+                        + "expense budget.");
+            } else {
+                UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "Expense Budget Updated, "
+                        + "You have spent $" + totalExpenses + " / $" + expenseGoal + " You have not reached your "
+                        + "expense budget." + " You still have $" + goalDifference + " to spend.");
+            }
         } catch (IndexOutOfBoundsException e) {
             UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "You did not set "
                     + "a goal for expense.");
         }
     }
 
-    public static void printExpenseGoal() {
-        expenseGoal = totalGoalList.getGoal().get(0).getExpenseGoal();
-        double goalDifference = expenseGoal - totalExpenses;
-        if (goalDifference < 0) {
-            UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "Expense Budget Updated, "
-                    + " You have spent $" + totalExpenses + " / $" + expenseGoal + ". You have exceeded your "
-                    + "expense budget.");
-        } else {
-            UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "Expense Budget Updated, "
-                    + "You have spent $" + totalExpenses + " / $" + expenseGoal + " You have not reached your "
-                    + "expense budget." + " You still have $" + goalDifference + " to spend.");
-        }
-    }
-
     public static void handleIncomeGoal() {
-        try {
             LedgerList ledgerList = ManualTracker.getLedgerList();
             int ledgerSize = ledgerList.getItemsSize();
             for (int i = ledgerSize - 1; i < ledgerSize; i++) {
@@ -192,23 +194,27 @@ public class GoalTracker {
                 }
             }
             printIncomeGoal();
-        } catch (IndexOutOfBoundsException e) {
-            UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "You did not set "
-                    + "a goal for income.");
-        }
     }
 
     public static void printIncomeGoal() {
-        incomeGoal = totalGoalList.getGoal().get(0).getIncomeGoal();
-        double goalDifference = incomeGoal - totalIncomes;
-        if (goalDifference < 0) {
-            UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "Revenue Goal Updated, "
-                    + " You have saved $" + totalIncomes + " / $" + incomeGoal + ". You have met your "
-                    + "revenue goal.");
-        } else {
-            UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "Revenue Goal Updated, "
-                    + "You have saved $" + totalIncomes + " / $" + incomeGoal + " You have not met your "
-                    + "revenue goal." + " You are $" + goalDifference + " away from your goal.");
+        try {
+            incomeGoal = totalGoalList.getGoal().get(0).getIncomeGoal();
+            if (incomeGoal == 0) {
+                incomeGoal = totalGoalList.getGoal().get(1).getIncomeGoal();
+            }
+            double goalDifference = incomeGoal - totalIncomes;
+            if (goalDifference < 0) {
+                UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "Revenue Goal Updated, "
+                        + " You have saved $" + totalIncomes + " / $" + incomeGoal + ". You have met your "
+                        + "revenue goal.");
+            } else {
+                UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "Revenue Goal Updated, "
+                        + "You have saved $" + totalIncomes + " / $" + incomeGoal + " You have not met your "
+                        + "revenue goal." + " You are $" + goalDifference + " away from your goal.");
+            }
+        } catch (IndexOutOfBoundsException e) {
+            UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "You did not set "
+                    + "a goal for income.");
         }
     }
 }
