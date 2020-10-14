@@ -40,23 +40,23 @@ Invalid command!
 
 Task added.
 Index     Description    Date           Start     End       Priority  
-1         meeting        2020-10-13                         [32mLOW[0m
+1         meeting        2020-10-20                         [32mLOW[0m
 
 Task added.
 Index     Description    Date           Start     End       Priority  
-1         meeting        2020-10-13                         [32mLOW[0m
-2         any field      2020-10-13     20:00               [33mMEDIUM[0m
+1         meeting        2020-10-20                         [32mLOW[0m
+2         any field      2020-10-22     20:00               [33mMEDIUM[0m
 
 Task added.
 Index     Description    Date           Start     End       Priority  
-1         meeting        2020-10-13                         [32mLOW[0m
-2         any field      2020-10-13     20:00               [33mMEDIUM[0m
+1         meeting        2020-10-20                         [32mLOW[0m
+2         any field      2020-10-22     20:00               [33mMEDIUM[0m
 3         test           2020-11-28     14:00     16:00     [31mHIGH[0m
 
 Here is your list of tasks:
 Index     Description    Date           Start     End       Priority  
-1         meeting        2020-10-13                         [32mLOW[0m
-2         any field      2020-10-13     20:00               [33mMEDIUM[0m
+1         meeting        2020-10-20                         [32mLOW[0m
+2         any field      2020-10-22     20:00               [33mMEDIUM[0m
 3         test           2020-11-28     14:00     16:00     [31mHIGH[0m
 
 Unknown command!
@@ -65,7 +65,7 @@ No matched item found.
 
 Here is your list of tasks which contain the word/letters:
 Index     Description    Date           Start     End       Priority  
-1         meeting        2020-10-13                         [32mLOW[0m
+1         meeting        2020-10-20                         [32mLOW[0m
 2         test           2020-11-28     14:00     16:00     [31mHIGH[0m
 
 Invalid command!
@@ -80,7 +80,7 @@ Task deleted.
 
 Here is your list of tasks:
 Index     Description    Date           Start     End       Priority  
-1         any field      2020-10-13     20:00               [33mMEDIUM[0m
+1         any field      2020-10-22     20:00               [33mMEDIUM[0m
 2         test           2020-11-28     14:00     16:00     [31mHIGH[0m
 
 Invalid command!

@@ -33,6 +33,7 @@ public class Ui {
 
     public void displayAll(TaskList tasks) {
         // Basic adding sequence
+        assert tasks != null : "null tasks";
         displayTasks(tasks);
     }
 
@@ -65,6 +66,7 @@ public class Ui {
     }
 
     public void showCommandResult(CommandResult result) {
+        assert result.getMessage() != null : "null message";
         showMessage(result.getMessage());
         if (result.getTasks() != null) {
             displayAll(result.getTasks());

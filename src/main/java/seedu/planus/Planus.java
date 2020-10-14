@@ -28,9 +28,12 @@ public class Planus {
         ui.showWelcomeMessage();
         while (!isExit) {
             String userInput = ui.getUserInput();
+            assert userInput != null : "null input";
             try {
                 Command command = parser.processRaw(userInput);
+                assert command != null : "null command";
                 CommandResult result = command.execute(tasks);
+                assert result != null : "null command result";
                 ui.showCommandResult(result);
                 if (command instanceof Bye) {
                     isExit = true;
