@@ -14,6 +14,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -44,6 +45,14 @@ public class MainController implements Initializable {
     private AnchorPane mainLayout;
     @FXML
     private Button sendButton;
+    @FXML
+    private MenuItem newTask;
+    @FXML
+    private MenuItem allCommands;
+    @FXML
+    private MenuItem aboutUs;
+
+
 
     private Image user = new Image(this.getClass().getResourceAsStream("/images/original.gif"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/tenor.gif"));
@@ -65,6 +74,18 @@ public class MainController implements Initializable {
             handleUserInput();
         });
         sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
+        });
+
+        //menu actions
+        //todo add meaningful operations here
+        newTask.setOnAction((event) -> {
+            handleUserInput();
+        });
+        allCommands.setOnAction((event) -> {
+            handleUserInput();
+        });
+        aboutUs.setOnAction((event) -> {
             handleUserInput();
         });
 

@@ -19,21 +19,21 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seedu.duke.gui.controller.MainController">
    <children>
-      <MenuBar>
+      <MenuBar fx:id="menuBar">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu fx:id="newMenu" mnemonicParsing="false" text="New">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem fx:id="newTask" mnemonicParsing="false" text="New Task" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu fx:id="helpMenu" mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem fx:id="allCommands" mnemonicParsing="false" text="All commands" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu fx:id="aboutMenu" mnemonicParsing="false" text="About">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="aboutUs" mnemonicParsing="false" text="AboutUs" />
             </items>
           </Menu>
         </menus>
