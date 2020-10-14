@@ -27,6 +27,12 @@ public class HelpMessage extends Ui {
             + "list          - prints the list of categories and respective list of links\n"
             + "back          - go back to bookmark main\n";
 
+    private static final String flashcardCommands = "Here are the flashcard commands available:\n"
+            + "add     - adds a question and answer to the flashcard deck\n"
+            + "list    - shows the flashcards that have been added\n"
+            + "test    - user can attempt to answer a random question from the flashcard deck\n"
+            + "back    - exit test mode and go back to flashcard main\n";
+
 
 
 
@@ -65,8 +71,7 @@ public class HelpMessage extends Ui {
         System.out.println(academicCommands);
     }
 
-    //TODO: Fill this up after you're done
     public static void printFlashcardHelp() {
-
+        System.out.println(flashcardCommands);
     }
 }
