@@ -3,6 +3,8 @@ package seedu.duke.human;
 import seedu.duke.exception.AniException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
+import seedu.duke.watchlist.Watchlist;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -23,10 +25,17 @@ public class UserManagement {
         return activeUser;
     }
 
+
     public void setActiveUser(User inputUser) {
         activeUser = inputUser;
 
         if (activeUser != null) {
+            //Loading of changed active user should be done here. For now set to empty
+            ArrayList<Watchlist> watchlistLists = new ArrayList<>();
+            Watchlist watchlist = new Watchlist("Default");
+            watchlistLists.add(watchlist);
+            inputUser.setActiveWatchlist(watchlist);
+            inputUser.setWatchlistList(watchlistLists);
             LOGGER.log(Level.INFO, "User switched: " + inputUser.getName());
         }
     }
@@ -56,6 +65,16 @@ public class UserManagement {
                 throw new AniException("A user with " + name + " already exist. Choose a different name!");
             }
         }
+    }
+
+    //@@author ChanJianHao
+    public User getUser(String name) throws AniException {
+        for (User existingUser : userList) {
+            if (existingUser.getName().equals(name)) {
+                return existingUser;
+            }
+        }
+        throw new AniException("No such user!");
     }
 
     public void addUserDialogue(Ui ui) {
