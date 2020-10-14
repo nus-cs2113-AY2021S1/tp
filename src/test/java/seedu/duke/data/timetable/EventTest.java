@@ -15,9 +15,9 @@ public class EventTest {
     private static final String TEST_TITLE = "CS2113 Tutorial";
     private static final LocalDateTime TEST_DATE_TIME = LocalDateTime.of(2020, 8, 27, 13,0);
     private static final boolean TEST_REMINDER = true;
-    private static final ArrayList<Integer> TEST_TIME_PERIODS = new ArrayList<>(List.of(1, 3));
+    private static final ArrayList<Integer> TEST_TIME_PERIODS = new ArrayList<>(List.of(1));
     private static final ArrayList<String> TEST_TIME_UNITS
-            = new ArrayList<>(List.of(Event.REMINDER_DAY, Event.REMINDER_DAY));
+            = new ArrayList<>(List.of(Event.REMINDER_DAY));
     private static final boolean TEST_RECURRING = false;
 
     Event event = new Event(TEST_TITLE, TEST_DATE_TIME, TEST_REMINDER, TEST_RECURRING,
@@ -37,7 +37,7 @@ public class EventTest {
         }
     }
 
-    void assertReminderDate(LocalDate generatedDate, LocalDate correctDate) {
-        assertEquals(generatedDate, correctDate);
+    void assertReminderDate(LocalDate correctDate, LocalDate generatedDate) {
+        assertEquals(correctDate, generatedDate);
     }
 }
