@@ -61,10 +61,7 @@ public class Lecture extends SchoolEvent {
     @Override
     public String toString() {
 
-        return "[LEC]" + "[" + getIcon() + "] " + moduleCode + " "
-                + date.format(DateTimeFormatter.ofPattern("dd-MM-yy E"))
-                + " " + time.format(DateTimeFormatter.ofPattern("h:mma"))
-                + " (" + venue + ")";
+        return "[LEC]" + "[" + getIcon() + "] " + super.toString();
     }
 
     /**

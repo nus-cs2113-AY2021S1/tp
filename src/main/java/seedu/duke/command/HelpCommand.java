@@ -18,7 +18,7 @@ public class HelpCommand extends Command {
      * @param storage      not required.
      */
     @Override
-    public void execute(CalendarList calendarList, Storage storage) throws DukeException {
+    public void execute(CalendarList calendarList, Storage storage) {
         Ui.printHelpCommand();
     }
 }

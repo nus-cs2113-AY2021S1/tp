@@ -59,10 +59,7 @@ public class Tutorial extends SchoolEvent {
      */
     @Override
     public String toString() {
-        return "[TUT]" + "[" + getIcon() + "] " + moduleCode + " "
-                + date.format(DateTimeFormatter.ofPattern("dd-MM-yy E"))
-                + " " + time.format(DateTimeFormatter.ofPattern("h:mma"))
-                + " (" + venue + ")";
+        return "[TUT]" + "[" + getIcon() + "] " + super.toString();
     }
 
     /**

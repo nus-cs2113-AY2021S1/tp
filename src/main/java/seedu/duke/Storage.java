@@ -78,6 +78,7 @@ public class Storage {
      */
     public static void writeToFile(CalendarList calendarList) {
         try {
+            assert filePath != null : "filePath should not be null";
             File output = new File(filePath);
             createFile(output);
             FileWriter fw = new FileWriter(output);
@@ -87,7 +88,7 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
-            System.out.println("Error writing file");
+            Ui.printSaveDataErrorMessage(e);
         }
     }
 
@@ -105,6 +106,7 @@ public class Storage {
         CalendarItem item = null;
         while (sc.hasNext()) {
             String[] taskInFile = sc.nextLine().split("\\|");
+            assert taskInFile[TYPE] != null : "the type of the task should not be null";
             switch (taskInFile[TYPE]) {
             case "T":
                 item = new Todo(taskInFile[TASK_DESCRIPTION]);
@@ -139,7 +141,7 @@ public class Storage {
                 item = new Exam(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
                 break;
             default:
-                System.out.println("Invalid file command input");
+                Ui.printInvalidFileCommandMessage();
             }
             countFileTasks++;
             if (taskInFile[TASK_IS_DONE].equals("true")) {

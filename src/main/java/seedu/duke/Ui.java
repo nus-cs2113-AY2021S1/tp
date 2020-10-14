@@ -5,6 +5,7 @@ import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.event.Event;
 import seedu.duke.calendar.task.Task;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -24,17 +25,17 @@ public class Ui {
     public static void printHelpCommand() {
         System.out.println("List of available commands:\n"
                 + "1. todo <task description>\n"
-                + "2. deadline <task description> /by ddMMyy\n"
-                + "3. activity <activity description> /at ddMMyy HHmm <venue>\n"
-                + "4. exam <module code> <venue> /at ddMMyy HHmm\n"
-                + "5. lecture <module code> <venue> /at ddMMyy HHmm\n"
-                + "6. tutorial <module code> <venue> /at ddMMyy HHmm\n"
-                + "7. lab <module code> <venue> /at ddMMyy HHmm\n"
+                + "2. deadline <task description> /ddMMyy\n"
+                + "3. act <activity description> @<venue> /ddMMyy HHmm\n"
+                + "4. exam <module code> @<venue> /ddMMyy HHmm\n"
+                + "5. lect <module code> @<venue> /ddMMyy HHmm\n"
+                + "6. tut <module code> @<venue> /ddMMyy HHmm\n"
+                + "7. lab <module code> @<venue> /ddMMyy HHmm\n"
                 + "8. done <task number>\n"
                 + "9. -t <task number>\n"
                 + "10. -e <event number>\n"
                 + "11. find <keyword>\n"
-                + "12. print list\n"
+                + "12. print tasks\n"
                 + "13. print events\n"
                 + "14. print timeline\n"
                 + "15. print progress"
@@ -63,11 +64,11 @@ public class Ui {
      */
     public static void printWelcomeMessage() {
         System.out.println("Printing of 25/7 logo!!!!");
-        System.out.println("========================================================================\n"
+        System.out.println("===========================================================================\n"
             + "Welcome to 25/7 Task Manager!\n"
             + "What can I do for you?\n"
             + "Enter 'help' for the list of commands.\n"
-            + "==========================================================================\n");
+            + "===========================================================================");
 
         /**
 //        String[]  HELLO_MESSAGE = {
@@ -108,9 +109,9 @@ public class Ui {
      */
     public static void printDukeBorder(boolean top) {
         if (top) {
-            System.out.println("..................... DUKE CHAT BOX ^^ ....................");
+            System.out.println("............................. DUKE CHAT BOX ^^ ............................");
         } else {
-            System.out.println("...........................................................");
+            System.out.println("...........................................................................");
         }
     }
 
@@ -131,9 +132,13 @@ public class Ui {
      * @param calendarList tasks retrieved from this task list.
      */
     public static void printTaskListView(CalendarList calendarList) {
+        int taskCounts = 0;
         System.out.println("This is your list of task(s):");
         for (int i = 0; i < calendarList.getTotalItems(); i++) {
-            System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", i + 1);
+            if (calendarList.getCalendarList().get(i) instanceof Task) {
+                taskCounts++;
+                System.out.printf("%d." + calendarList.getCalendarList().get(i) + "\n", taskCounts);
+            }
         }
     }
 
@@ -252,25 +257,25 @@ public class Ui {
             System.out.println("Error: The description of todo cannot be empty.");
             break;
         case "deadline":
-            System.out.println("Error: Please key in the deadline in this format: deadline ... /by ddMMyy");
+            System.out.println("Error: Please key in the deadline in this format: deadline <task description> /ddMMyy");
             break;
         case "activity":
-            System.out.println("Error: Please key in the activity in this format: activity ... /at ddMMyy");
+            System.out.println("Error: Please follow this format: act <activity description> @<venue> /ddMMyy HHmm");
             break;
         case "lecture":
-            System.out.println("Error: Please key in the lecture in this format: lecture <module code> <venue> /at "
+            System.out.println("Error: Please key in the lecture in this format: lect <module code> @<venue> /"
                     + "ddMMyy HHmm");
             break;
         case "tutorial":
-            System.out.println("Error: Please key in the tutorial in this format: tutorial <module code> <venue> /at "
+            System.out.println("Error: Please key in the tutorial in this format: tut <module code> @<venue> /"
                     + "ddMMyy HHmm");
             break;
         case "lab":
-            System.out.println("Error: Please key in the lab in this format: lab <module code> <venue> /at "
+            System.out.println("Error: Please key in the lab in this format: lab <module code> @<venue> /"
                     + "ddMMyy HHmm");
             break;
         case "exam":
-            System.out.println("Error: Please key in the exam in this format: exam <module code> <exam details> /at "
+            System.out.println("Error: Please key in the exam in this format: exam <module code> @<exam venue> /"
                     + "ddMMyy HHmm");
             break;
         case "invalid command":
@@ -306,29 +311,6 @@ public class Ui {
     }
 
     /**
-     * Shows the user the exception that occurred when saving data to storage file.
-     *
-     * @param e exception message.
-     */
-    public static void printSaveDataErrorMessage(IOException e) {
-        System.out.println("Unable to save data. Error: " + e.getMessage());
-    }
-
-    /**
-     * Prints the message to inform the user that no data was imported.
-     */
-    public static void printNoImportDataMessage() {
-        System.out.println("No existing data imported.");
-    }
-
-    /**
-     * Prints the message to inform the user that existing data was imported.
-     */
-    public static void printImportDataSuccessMessage() {
-        System.out.println("Existing data imported.");
-    }
-
-    /**
      * Shows the user the exception that occurred when creating a storage file.
      *
      * @param e exception message.
@@ -338,10 +320,19 @@ public class Ui {
     }
 
     /**
-     * Prints the message to inform the user that an output file is created.
+     * Shows the user the exception that occurred when saving data to storage file.
+     *
+     * @param e exception message.
      */
-    public static void printFileCreatedMessage() {
-        System.out.println("New output file created.");
+    public static void printSaveDataErrorMessage(IOException e) {
+        System.out.println("Unable to save data. Error: " + e.getMessage());
     }
 
+    public static void printFileNotFoundErrorMessage() {
+        System.out.println("File not found.");
+    }
+
+    public static void printInvalidFileCommandMessage() {
+        System.out.println("Invalid file command input");
+    }
 }
