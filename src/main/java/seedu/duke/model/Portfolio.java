@@ -46,4 +46,5 @@ public class Portfolio implements Serializable {
 
         return stocksArrayList;
     }
+
 }
