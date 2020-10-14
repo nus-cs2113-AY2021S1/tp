@@ -37,7 +37,7 @@ public class EditCommand extends Command {
             throw new RexException("A patient with this NRIC has not been registered!");
         }
 
-        int idx = patients.EditExistingPatient(ui.getPatientName(), nric, ui.getPatientDateOfBirth());
+        int idx = patients.editExistingPatient(ui.getPatientName(), nric, ui.getPatientDateOfBirth());
         ui.showLine();
         ui.showPatientEditted(patients.getPatientUsingIndex(idx));
         storage.save(patients);

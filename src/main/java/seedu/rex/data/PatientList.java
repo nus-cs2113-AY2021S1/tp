@@ -74,7 +74,7 @@ public class PatientList {
      * @param nric        NRIC of the patient.
      * @param dateOfBirth Patient's date of birth.
      */
-    public int EditExistingPatient(String name, String nric, LocalDate dateOfBirth) {
+    public int editExistingPatient(String name, String nric, LocalDate dateOfBirth) {
         int idx = getExistingPatient(nric);
         patients.remove(idx);
         Patient patient = (new Patient(name, nric, dateOfBirth));
