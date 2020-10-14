@@ -46,7 +46,7 @@ public class ReviseCommand extends Command {
             return chapter;
         } catch (IndexOutOfBoundsException e) {
             throw new IndexOutOfBoundsException("The chapter is not found.\n");
-        } 
+        }
     }
 
     private ArrayList<Card> getCards(Ui ui, Access access, Storage storage, Chapter toRevise)
@@ -70,8 +70,7 @@ public class ReviseCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cards, Ui ui, Access access, Storage storage) 
-        throws FileNotFoundException {
+    public void execute(Ui ui, Access access, Storage storage) throws FileNotFoundException {
         Chapter toRevise = getChapter(reviseIndex, access, ui);
         if (!Scheduler.isDeadlineDue(toRevise.getDueBy())) {
             return;
@@ -79,8 +78,8 @@ public class ReviseCommand extends Command {
 
         ArrayList<Card> allCards = getCards(ui, access, storage, toRevise);
         ArrayList<Card> repeatCards = new ArrayList<>();
-
         int cardCount = allCards.size();
+        ui.showToUser("card count " + cardCount);
         if (cardCount == 0) {
             ui.showToUser(String.format(MESSAGE_NO_CARDS_IN_CHAPTER, toRevise));
             return;
@@ -89,16 +88,13 @@ public class ReviseCommand extends Command {
         ui.showToUser("The revision for " + toRevise + " will start now:");
 
         int count = 1;
-        ArrayList<Card> allCards = getCards(ui, access, storage, toRevise);
 
         for (Card c : allCards) {
             count = reviseCard(count, c, ui, repeatCards);
         }
-        int remainingCards = repeatRevision(ui, repeatCards, count);
-        assert remainingCards == 0 : "Cards were left in repeat revision";
+        repeatRevision(ui, repeatCards, count);
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
         toRevise.setDueBy(Scheduler.computeDeckDeadline(toRevise.getCards()), storage, access);
-
     }
 
     public static ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards, Card c, String input) {
@@ -130,15 +126,14 @@ public class ReviseCommand extends Command {
         return repeatCards;
     }
 
-    private int repeatRevision(Ui ui, ArrayList<Card> cards, int count) {
+    private void repeatRevision(Ui ui, ArrayList<Card> cards, int count) {
         while (cards.size() != 0) {
             ArrayList<Card> repeatCards = new ArrayList<>();
             for (Card c : cards) {
-                reviseCard(count, c, ui, repeatCards);
+                count = reviseCard(count, c, ui, repeatCards);
             }
             cards = new ArrayList<>(repeatCards);
         }
-        return cards.size();
     }
 
     @Override
