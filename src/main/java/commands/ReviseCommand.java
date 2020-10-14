@@ -77,8 +77,9 @@ public class ReviseCommand extends Command {
             return;
         }
 
+        ArrayList<Card> allCards = getCards(ui, access, storage, toRevise);
         ArrayList<Card> repeatCards = new ArrayList<>();
-        int cardCount = cards.getCardCount();
+        int cardCount = allCards.size();
         ui.showToUser("card count " + cardCount);
         if (cardCount == 0) {
             ui.showToUser(String.format(MESSAGE_NO_CARDS_IN_CHAPTER, toRevise));
@@ -88,7 +89,6 @@ public class ReviseCommand extends Command {
         ui.showToUser("The revision for " + toRevise + " will start now:");
 
         int count = 1;
-        ArrayList<Card> allCards = getCards(ui, access, storage, toRevise);
 
         for (Card c : allCards) {
             count = reviseCard(count, c, ui, repeatCards);
@@ -131,7 +131,7 @@ public class ReviseCommand extends Command {
         while (cards.size() != 0) {
             ArrayList<Card> repeatCards = new ArrayList<>();
             for (Card c : cards) {
-                reviseCard(count, c, ui, repeatCards);
+                count = reviseCard(count, c, ui, repeatCards);
             }
             cards = new ArrayList<>(repeatCards);
         }
