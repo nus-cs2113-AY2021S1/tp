@@ -6,19 +6,18 @@ Duke is a command line trading simulator that lets you try your hand at trading 
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 11 or above installed.
 1. Down the latest version of `Duke` from [here](http://link.to/duke).
 
 ## Features 
 
-### Buying a stock: `buy /aapl`
+### Buying a stock: `buy /aapl 5`
 Buys the specified stock at market price
 
-Format: `buy /STOCK_TICKER`
+Format: `buy /STOCK_TICKER QUANTITY`
 
 * The `STOCK_TICKER` is the stock's short form
+* The `QUANTITY` is the number of shares you want to buy
 
 Example of usage: 
 
