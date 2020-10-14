@@ -46,6 +46,12 @@ public class   CommandPacket {
         this.paramMap.put(paramType, paramString);
     }
 
+    public void removeParamsFromMap(String... paramTypes) {
+        for (String paramType: paramTypes) {
+            this.paramMap.remove(paramType);
+        }
+    }
+
     @Override
     public String toString() {
         return String.format("%s, %s\n", this.commandString, this.paramMap);

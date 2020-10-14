@@ -99,28 +99,30 @@ public class FinanceTools {
 
         boolean endTracker = true;
 
+        UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, "Welcome to Finance Tools!");
+
         while (endTracker) {
-            printMenu();
+            UiManager.printSpace();
+            UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY, "[ MAIN_MENU -> FINANCE_TOOLS_MENU ]");
+            UiManager.printInputPromptMessage();
             String input = UiManager.handleInput();
             CommandPacket packet = new InputParser().parseInput(input.toLowerCase());
             switch (packet.getCommandString()) {
             case "simplecalc":
-                System.out.print("Total Interest Earned: ");
-                System.out.println('$' + Double.toString(handleSimpleInterest(packet)));
+                System.out.print("Total Interest Earned: $" + Double.toString(handleSimpleInterest(packet)));
                 break;
             case "cashbackcalc":
-                System.out.print("Total Cashback Earned: ");
-                System.out.println('$' + Double.toString(handleCashback(packet)));
+                System.out.print("Total Cashback Earned: $" + Double.toString(handleCashback(packet)));
                 break;
             case "milescalc":
-                System.out.print("Total Miles Earned: ");
-                System.out.println('$' + Double.toString(handleMilesCredit(packet)));
+                System.out.print("Total Miles Earned: " + Double.toString(handleMilesCredit(packet)));
                 break;
             case "compoundcalc":
-                System.out.println("Compound Interval: Yearly");
-                System.out.print("Total Interest Earned: $");
-                System.out.printf("%.2f", handleCompoundInterest(packet));
-                System.out.println();
+                System.out.printf("Compound Interval: Yearly\n"
+                        + "Total Interest Earned: $" + "%.2f",handleCompoundInterest(packet));
+                break;
+            case "commands":
+                printCommandList();
                 break;
             case "exit":
                 System.out.println("Exiting Finance Tools ...");
@@ -133,13 +135,15 @@ public class FinanceTools {
         }
     }
 
-    public static void printMenu() {
-        TablePrinter.setTitle("Finance Tools");
-        TablePrinter.addRow("No; Finance Tool                  ");
-        TablePrinter.addRow("1; Simple Interest Calculator");
-        TablePrinter.addRow("2; Compound Interest Calculator");
-        TablePrinter.addRow("3; Cashback Calculator");
-        TablePrinter.addRow("4; Miles Credit Calculator");
+    public static void printCommandList() {
+        TablePrinter.setTitle("printCommandList");
+        TablePrinter.addRow("No; Finance Tool             ;Input Format                                          ");
+        TablePrinter.addRow("1; Simple Interest Calculator; simplecalc /amount {AMOUNT} /ir {INTEREST_RATE} ");
+        TablePrinter.addRow("2; Compound Interest Calculator; compoundcalc /amount {AMOUNT} /ir {INTEREST_RATE} "
+                + "/period {YEARS}");
+        TablePrinter.addRow("3; Cashback Calculator; milescalc /amount {AMOUNT} /miles {MILES RATE}");
+        TablePrinter.addRow("4; Miles Credit Calculator; cashbackcalc /amount {AMOUNT} /cashback {CASHBACK_RATE} "
+                + "/cap {CASHBACK_CAP}");
         TablePrinter.printList();
     }
 }

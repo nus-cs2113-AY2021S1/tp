@@ -3,6 +3,7 @@ package seedu.financeit.recurringtracker;
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
+import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
@@ -27,6 +28,9 @@ public class RecurringTracker {
                 break;
             case "list":
                 showEntries();
+                break;
+            case "edit":
+                handleEditEntry(packet);
                 break;
             case "delete":
                 handleDeleteEntry(packet);
@@ -75,17 +79,20 @@ public class RecurringTracker {
                     "Input failed due to param error.");
             }
         }
+        return entry;
     }
 
-    static void handleDeleteEntry(CommandPacket packet) {
+    static RecurringEntry handleDeleteEntry(CommandPacket packet) {
+        RecurringEntry entry = null;
         entries.setRequiredParams(
                 "/id"
         );
+
         try {
             //User-inputted index ("/id") is parsed, converted to zero-based index
             //and stored in entries.indexToModify (private)
             entries.handleParams(packet);
-            RecurringEntry entry = (RecurringEntry) entries.getItemAtIndex();
+            entry = (RecurringEntry) entries.getItemAtIndex();
             String entryName = entry.getName();
             entries.removeItemAtIndex();
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
@@ -99,6 +106,35 @@ public class RecurringTracker {
                     "Input failed due to param error.");
             }
         }
+
+        return entry;
+    }
+
+    static RecurringEntry handleEditEntry(CommandPacket packet) {
+        RecurringEntry entry = null;
+        entries.setRequiredParams(
+                "/id"
+        );
+
+        try {
+            entries.handleParams(packet);
+            entry = (RecurringEntry) entries.getItemAtIndex();
+            //Remove "/id" so it doesn't get parsed by entry and lead to
+            //printing of UnrecognizedParamMessage
+            packet.removeParamsFromMap("/id");
+            entry.handleParams(packet);
+            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+                    String.format("%s edited!", entry.getName()));
+        } catch (InsufficientParamsException | ItemNotFoundException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    exception.getMessage());
+        } finally {
+            if (!entries.getHasParsedAllRequiredParams()) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                        "Input failed due to param error.");
+            }
+        }
+        return entry;
     }
 
     static void showEntries() {
@@ -111,7 +147,7 @@ public class RecurringTracker {
         TablePrinter.addRow("1.;New expenditure (-e) or income (-i);add -[e/i] [-auto] >/desc {DESCRIPTION} "
                 + ">/amt {AMOUNT} >/day {DAY_OF_MONTH} >[/notes {NOTES}]");
         TablePrinter.addRow("2.;List entries;list");
-        TablePrinter.addRow("3.;Delete entry;delete /id <INDEX>");
+        TablePrinter.addRow("3.;Delete entry;delete >/id {INDEX}");
         TablePrinter.addRow("4.;Exit to main menu;exit");
         TablePrinter.printList();
     }

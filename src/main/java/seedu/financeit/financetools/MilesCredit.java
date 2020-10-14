@@ -34,6 +34,9 @@ public class MilesCredit extends ParamHandler {
     }
 
     public double calculateMiles() {
+        assert this.amount >= 0 : "Amount should not be a negative number";
+        assert this.milesRate >= 0 : "Miles rate should not be a negative number";
+
         return this.amount * this.milesRate;
     }
 
