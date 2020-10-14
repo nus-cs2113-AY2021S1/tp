@@ -69,9 +69,6 @@ public abstract class ItemList extends ParamHandler {
     public Item getItemAtIndex() throws IndexOutOfBoundsException {
         assert this.indexToModify >= 0;
         int index = this.indexToModify;
-        //Reset indexToModify to prevent cases of accidentally accessing
-        //the previously stored value unknowingly, causing bugs
-        this.indexToModify = -1;
         return this.items.get(index);
     }
 
@@ -95,7 +92,6 @@ public abstract class ItemList extends ParamHandler {
     public void removeItemAtIndex() throws IndexOutOfBoundsException {
         assert this.indexToModify >= 0;
         this.items.remove(this.indexToModify);
-        this.indexToModify = -1;
     }
 
     //Manually specify index in the code, if necessary
