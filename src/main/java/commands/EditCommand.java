@@ -65,7 +65,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cards, Ui ui, Access access, Storage storage)
+    public void execute(Ui ui, Access access, Storage storage)
             throws InvalidInputException, IncorrectAccessLevelException, IOException {
         if (access.isChapterLevel()) {
             editCard(ui, access, storage);

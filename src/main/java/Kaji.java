@@ -4,7 +4,6 @@ import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 import exception.InvalidFileFormatException;
 import manager.admin.Admin;
-import manager.chapter.CardList;
 import parser.Parser;
 import storage.Storage;
 import ui.Ui;
@@ -13,7 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Kaji {
-    private CardList cards;
     private Ui ui;
     private Access access;
     private Storage storage;
@@ -21,7 +19,6 @@ public class Kaji {
 
     public Kaji(String filePath) {
         ui = new Ui();
-        cards = new CardList();
         storage = new Storage(filePath);
         try {
             Admin admin = new Admin(storage.loadModule());
@@ -41,7 +38,7 @@ public class Kaji {
                 ui.showLevel(access);
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand, access);
-                c.execute(cards, ui, access, storage);
+                c.execute(ui, access, storage);
                 ui.printEmptyLine();
                 isExit = c.isExit();
             } catch (InvalidInputException | IncorrectAccessLevelException | IOException 

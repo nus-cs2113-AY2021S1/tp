@@ -1,9 +1,7 @@
 package commands;
 
-import exception.InvalidFileFormatException;
 import manager.admin.ModuleList;
 import manager.card.Card;
-import manager.chapter.CardList;
 import access.Access;
 import manager.chapter.Chapter;
 import manager.module.ChapterList;
@@ -26,7 +24,7 @@ public class GoCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cards, Ui ui, Access access, Storage storage) {
+    public void execute(Ui ui, Access access, Storage storage) {
         if (access.isAdminLevel()) {
             goModule(access, storage);
         } else if (access.isModuleLevel()) {
