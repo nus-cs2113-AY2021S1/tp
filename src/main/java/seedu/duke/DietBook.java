@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import seedu.duke.database.DataBase;
 import seedu.duke.list.FoodList;
@@ -12,19 +13,9 @@ public class DietBook {
     public static boolean isExit = false;
 
     /**
-     * Constructor for new DietBook.
-     */
-    public DietBook() {
-        ui = new Ui();
-        foodList = new FoodList();
-        dataBase = new DataBase();
-        manager = new Manager(foodList, dataBase);
-    }
-
-    /**
      * Main method to run the program.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         DietBook dietBook = new DietBook();
         dietBook.ui.printWelcomeMessage();
 
@@ -38,5 +29,15 @@ public class DietBook {
                 System.out.println("__________________");
             }
         }
+    }
+
+    /**
+     * Constructor for new DietBook.
+     */
+    public DietBook() {
+        ui = new Ui();
+        foodList = new FoodList();
+        dataBase = new DataBase();
+        manager = new Manager(foodList, dataBase);
     }
 }

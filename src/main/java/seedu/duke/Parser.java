@@ -5,6 +5,8 @@ import seedu.duke.list.FoodList;
 import seedu.duke.person.Gender;
 import seedu.duke.person.ActivityLevel;
 
+import java.io.FileNotFoundException;
+
 public class Parser {
     public static final String COMMAND_NAME = "name";
     public static final String COMMAND_LIST = "list";
@@ -152,7 +154,7 @@ public class Parser {
      * @param userInput user input.
      * @throws DietException when the program does not recognize the command given.
      */
-    public static void parse(String userInput, Manager manager, Ui ui) throws DietException {
+    public static void parse(String userInput, Manager manager, Ui ui) throws DietException, FileNotFoundException {
         Calculator calculator = manager.getCalculator();
         switch (getCommand(userInput)) {
         case COMMAND_NAME:
@@ -170,6 +172,7 @@ public class Parser {
             ui.printPersonInfo(manager.getPerson().toString());
             return;
         case COMMAND_DATA:
+            manager.getDataBase().init();
             ui.printDatabase(manager.getDataBase().getFoodList());
             return;
         case COMMAND_DELETE:
@@ -180,14 +183,15 @@ public class Parser {
             manager.getFoodList().clear();
             return;
         case COMMAND_CALCULATE:
+            manager.setCalculator();
             if (getCommandParam(userInput).equals("all")) {
                 ui.printAllNutrientIntake(calculator.calculateCalorie(), calculator.calculateCarb(),
                         calculator.calculateProtein(), calculator.calculateFat());
-            } else if (getCommandParam(userInput).equals("calorie")) {
+            } else if (getCommandParam(userInput).contains("calorie")) {
                 ui.printCalorieIntake(calculator.calculateCalorie());
-            } else if (getCommandParam(userInput).equals("carbohydrate")) {
+            } else if (getCommandParam(userInput).contains("carbohydrate")) {
                 ui.printCarbohydrateIntake(calculator.calculateCarb());
-            } else if (getCommandParam(userInput).equals("protein")) {
+            } else if (getCommandParam(userInput).contains("protein")) {
                 ui.printProteinIntake(calculator.calculateProtein());
             } else {
                 ui.printFatIntake(calculator.calculateFat());

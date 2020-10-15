@@ -48,6 +48,10 @@ public class Manager {
         return this.calculator;
     }
 
+    public void setCalculator() {
+        this.calculator = new Calculator(foodList.getFoods());
+    }
+
     public DataBase getDataBase() {
         return this.dataBase;
     }
