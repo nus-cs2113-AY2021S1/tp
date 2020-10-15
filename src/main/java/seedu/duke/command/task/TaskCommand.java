@@ -91,7 +91,7 @@ public class TaskCommand {
             for (String id : taskId) {
                 Task task;
                 try {
-                    int backlogId = Integer.parseInt(id) - 1;
+                    int backlogId = Integer.parseInt(id);
                     if (backlogId < proj.getProjectBacklog().backlogTasks.size()) {
                         task = proj.getProjectBacklog().getTask(backlogId);
                         Ui.showToUserLn(task.toString());
@@ -115,7 +115,7 @@ public class TaskCommand {
         int id;
         String priority;
         if (tasks.get(TASK_ID) != null) {
-            id = Integer.parseInt(tasks.get(TASK_ID)) - 1;
+            id = Integer.parseInt(tasks.get(TASK_ID));
         } else {
             throw new DukeException("Task ID entered is invalid!");
         }

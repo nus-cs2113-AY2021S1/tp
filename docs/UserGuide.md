@@ -109,64 +109,75 @@ Remove team members from the project
 #### Add tasks
 Adds a task to the backlog.
 * Format: `task /add -title <title> -desc <description> -priority <category>`
-* Tags:
-    * `-title`: Specify the task title
-    * `-desc`: Specify the task description
-    * `-priority`: Specify the task priority as HIGH, MEDIUM or LOW.
-* Constraints: All tags are to be specified when adding a new task.
-* Example: `task /add -title Add parser -desc add an interactive UI -priority HIGH`
-* Expected outcome:
-    ```
+* Usage command: `task /add -title Add UI -desc add an interactive UI -priority HIGH`
+    * Adds a task of title `Add UI`, description `add an interactive UI` and priority `HIGH` into the backlog.
     
-    ```
+* Constraints:
+    * The title, description and category must be specified, otherwise the task is not added.
+    * The priority entered must belong to the standard options as prescribed by the enum: [“HIGH”, “MEDIUM”, “LOW”]
+    * The task will be added as "not done" status. Users need to manually mark a task as done after creation.
+    * Tasks can only be created if a project has been created.
+* Expected outcome:
+`Add UI has been added.`
 
-#### View tasks
+#### Viewing task
 Views the specified task.
 * Format: `task /view <taskid>`
-* Constraints:
-    * `task id` must be a positive integer
-    * `task id` must be specified
-* Example: `task /view 3`
-* Expected outcome:
-    ```
+* Usage command: `task /view 3`
+    * Views the third task.
     
-    ```
-  
-#### Delete tasks
+* Constraints:
+    * The task ID entered must be a positive integer smaller or equal to the total number of tasks added, and must be specified.
+* Expected outcome:
+(Assuming the third task have the following attributes: Title: `Add parser`, Description: `add UI`, Priority: `HIGH`, Done: `false`)
+```
+[Task]
+    ID: 1
+    Add parser 
+    Description: add an interactive UI 
+    Priority: High priority
+    Completion: Completed
+ ```
+#### Deleting task
 Deletes the specified task.
-* Format: `task /del <task id> [<task id>...]`
+* Format: `task /del <taskid> [<taskid>...]`
+* Usage command: `task /del 5 7 9`
+    * Deletes the fifth, seventh and ninth task.
+
 * Constraints:
-    * `task id` must be a positive integer
-    * `task id` must be specified
-* Example: `task /del 5 7 9`
+    * There must be at least one supplied task ID for deletion.
+    * All task ID supplied must be a positive integer smaller or equal to the total number of tasks added.
 * Expected outcome:
-    ```
-    
-    ```
-#### Change priority of tasks
+(Assuming the tasks have the following titles, respectively: `Add parser`, `Del UI` and `UI`)
+`The corresponding task Add parser has been removed from project.`
+`The corresponding task Del UI has been removed from project.`
+`The corresponding task UI has been removed from project.`
+
+#### Changing the priority of task
 Change the priority of the specified task.
-* Format: `task /priority -priority <category> -id <task id>`
-* Constraints:
-    * `task id` must be a positive integer
-    * `task id` must be specified
-    * `-category` must be HIGH, MEDIUM or LOW.
-* Example: `task /priority -priority HIGH -id 4`
-* Expected outcome:
-    ```
+* Format: `task /priority -priority <category> -id <taskid>`
+* Usage command: `task /priority -priority HIGH -id 1`
+    * Sets the first task with a priority of HIGH, regardless of its previous priority level
     
-    ```
-  
-#### Mark tasks as complete
+* Constraints:
+    * Task ID and priority level must be entered.
+    * The Task ID entered must be a positive integer smaller or equal to the total number of tasks added.
+    * The priority entered must belong to the standard options as prescribed by the enum: [“HIGH”, “MEDIUM”, “LOW”]
+* Expected outcome: (Assuming task 1 has title `Add parser`)
+```
+The task Add parser has its priority changed to:
+    High priority
+```
+#### Marking task as complete
 Marks specified task as complete.
-* Format: `task /done <task id>`
+* Format: `task /done <taskid>`
+* Usage Command: `task /done <taskid>`
+    * Marks the first task as done.
 * Constraints:
-    * `task id` must be a positive integer
-    * `task id` must be specified
-* Example: `task /done 3`
-* Expected outcome:
-    ```
-    
-    ```
+    * The Task ID must be entered.
+    * The Task ID entered must be a positive integer smaller or equal to the total number of tasks added.
+* Expected outcome: (Assuming task 1 has title `Add parser`)
+`Add parser has been marked as done.`
   
 ### Sprint `sprint`
 #### Create a new sprint
