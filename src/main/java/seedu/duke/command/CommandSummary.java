@@ -21,7 +21,7 @@ public class CommandSummary {
     public static final String DONE = "done";
     public static final String PRIORITY = "priority";
     public static final String ASSIGN = "assign";
-
+    public static final String DURATION = "dur";
     /*
     Parameters
      */

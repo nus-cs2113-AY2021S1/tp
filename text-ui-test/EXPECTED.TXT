@@ -11,6 +11,7 @@ WELCOME TO SCRUMPTIOUS
 command>No projects are created.
 command>Project successfully created.
 
+
 ============================ PROJECT ============================
 [Title: MeTube ]
 [Description: video streaming software ]
@@ -246,7 +247,6 @@ command>
 [Description: video streaming software ]
 [Members: amy john bob]
 [Period: 2020-10-10 - 2020-11-08] 
-
 ---------------------------- BACKLOG ----------------------------
 [Task ID: 1]	[Title: Add UI ]	[Completion: Incomplete]
 [Task ID: 2]	[Title: Add2 UI ]	[Completion: Incomplete]
@@ -254,7 +254,6 @@ command>
 [Task ID: 5]	[Title: Add5 UI ]	[Completion: Incomplete]
 [Task ID: 6]	[Title: Add6 UI ]	[Completion: Incomplete]
 -----------------------------------------------------------------
-
 -------------------------- ALL SPRINTS --------------------------
 [Sprint ID: 1]	[Goal: goal1 ]	[Period: 2020-10-10 - 2020-10-19]
 [Sprint ID: 2]	[Goal: goal2]	[Period: 2020-10-20 - 2020-10-29]
