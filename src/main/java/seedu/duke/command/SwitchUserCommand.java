@@ -18,6 +18,7 @@ public class SwitchUserCommand extends Command {
     protected static final String SWITCH_SUCCESS_HEADER = "Welcome back, ";
 
     public SwitchUserCommand(String description) {
+        LOGGER.setLevel(Level.WARNING);
         this.description = description;
     }
 
