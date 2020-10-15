@@ -1,7 +1,7 @@
 package seedu.duke.data.exception;
 
 import seedu.duke.data.timetable.Event;
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
 
 /**
  * Signals the different type of possible exceptions.
@@ -10,8 +10,8 @@ public class SystemException extends Exception {
     /** Types of exception. */
     public enum ExceptionType {
         // Command related exception type
-        EXCEPTION_INVALID_COMMAND(InterfaceManager.LS + "Invalid Command. "
-                + "Please try again or enter help to get a list of valid commands." + InterfaceManager.LS),
+        EXCEPTION_INVALID_COMMAND(Formatter.LS + "Invalid Command. "
+                + "Please try again or enter help to get a list of valid commands." + Formatter.LS),
 
         EXCEPTION_INVALID_PREFIX("Type of prefix not recognized!"),
         EXCEPTION_MISSING_MESSAGE_AFTER_COMMAND("Missing information! Please provide the necessary information!"),
@@ -29,7 +29,7 @@ public class SystemException extends Exception {
         EXCEPTION_MISSING_SORT("Missing sort order! Please specify how you would like to sort. "
                 + "up or down."),
         EXCEPTION_INVALID_SORT_TYPE("Invalid sort order command!"
-                + "Only \"up\" and \"down\" are recognized as valid commands. " + InterfaceManager.LS
+                + "Only \"up\" and \"down\" are recognized as valid commands. " + Formatter.LS
                 + "Up for ascending and down for descending"),
 
         EXCEPTION_MISSING_INDEX_PREFIX("Missing index prefix!"),

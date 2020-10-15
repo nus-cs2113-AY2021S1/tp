@@ -16,11 +16,13 @@ public class Tag {
     public static final String COLOR_CYAN_STRING = "CYAN";
     public static final String COLOR_WHITE_STRING = "WHITE";
 
+    private static char escape = 27;
+
     /**
      * Types of color.
      */
     public enum TagColor {
-        COLOR_WHITE("\u001B[30m"),
+        COLOR_WHITE("\u001B[97m"),
         COLOR_RED("\u001B[31m"),
         COLOR_GREEN("\u001B[32m"),
         COLOR_YELLOW("\u001B[33m"),

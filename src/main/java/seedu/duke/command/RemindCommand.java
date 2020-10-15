@@ -1,12 +1,9 @@
 package seedu.duke.command;
 
 import seedu.duke.data.timetable.Reminder;
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
 
 import java.util.ArrayList;
-
-import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
-import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 
 /**
  * Returns all the reminders that should occur today.
@@ -27,14 +24,14 @@ public class RemindCommand extends Command {
     @Override
     public String execute() {
         ArrayList<Reminder> reminders = timetable.getReminders();
-        StringBuilder result = new StringBuilder("Reminders:" + InterfaceManager.LS);
+        StringBuilder result = new StringBuilder("Reminders:" + Formatter.LS);
         if (reminders.size() == 0) {
             result.append("No reminders today!");
         }
         String lineSep = "";
         for (Reminder reminder : reminders) {
             result.append(lineSep).append(reminder.toString());
-            lineSep = InterfaceManager.LS;
+            lineSep = Formatter.LS;
         }
         return result.toString();
     }

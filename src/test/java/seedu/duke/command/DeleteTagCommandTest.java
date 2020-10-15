@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.notebook.Tag;
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
+
 import static seedu.duke.command.DeleteTagCommand.COMMAND_SUCCESSFUL_MESSAGE;
 import static seedu.duke.command.DeleteTagCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
 
@@ -50,8 +51,8 @@ class DeleteTagCommandTest {
 
         String result = getCommandExecutionString(tagManager, tags);
 
-        assertEquals(COMMAND_UNSUCCESSFUL_MESSAGE + tagRed + InterfaceManager.LS
-                + COMMAND_UNSUCCESSFUL_MESSAGE + tagGreen + InterfaceManager.LS
+        assertEquals(COMMAND_UNSUCCESSFUL_MESSAGE + tagRed + Formatter.LS
+                + COMMAND_UNSUCCESSFUL_MESSAGE + tagGreen + Formatter.LS
                 + COMMAND_UNSUCCESSFUL_MESSAGE + tagBlue, result);
     }
 
@@ -80,7 +81,7 @@ class DeleteTagCommandTest {
 
         String result = getCommandExecutionString(tagManager, tags);
 
-        assertEquals(COMMAND_SUCCESSFUL_MESSAGE + tagRed + InterfaceManager.LS
+        assertEquals(COMMAND_SUCCESSFUL_MESSAGE + tagRed + Formatter.LS
                 + COMMAND_SUCCESSFUL_MESSAGE + tagGreen, result);
 
         assertEquals(defaultNote.getTags().size(), 0);
@@ -113,8 +114,8 @@ class DeleteTagCommandTest {
 
         String result = getCommandExecutionString(tagManager, tags);
 
-        assertEquals(COMMAND_SUCCESSFUL_MESSAGE + tagRed + InterfaceManager.LS
-                + COMMAND_SUCCESSFUL_MESSAGE + tagGreen + InterfaceManager.LS
+        assertEquals(COMMAND_SUCCESSFUL_MESSAGE + tagRed + Formatter.LS
+                + COMMAND_SUCCESSFUL_MESSAGE + tagGreen + Formatter.LS
                 + COMMAND_UNSUCCESSFUL_MESSAGE + tagBlue, result);
 
         assertEquals(defaultNote.getTags().size(), 0);

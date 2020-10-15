@@ -50,11 +50,18 @@ import static seedu.duke.util.PrefixSyntax.STRING_SORT_ASCENDING;
 import static seedu.duke.util.PrefixSyntax.STRING_SORT_DESCENDING;
 import static seedu.duke.util.PrefixSyntax.TIMING_SPLIT_DELIMITER;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Parses user input.
@@ -485,7 +492,17 @@ public class Parser {
      * @throws SystemException for missing keyword.
      */
     private Command prepareFind(String userMessage) throws SystemException {
-        userMessage = checkBlank(userMessage, ExceptionType.EXCEPTION_MISSING_KEYWORD);
+        Logger loggerFind = Logger.getLogger("ParserPrepareFind");
+        setupLogger(loggerFind, "FindCommandParser.log");
+
+        try {
+            userMessage = checkBlank(userMessage, ExceptionType.EXCEPTION_MISSING_KEYWORD);
+            loggerFind.log(Level.INFO, "If no null pointer, keyword is trimmed.");
+        } catch (NullPointerException exception) {
+            loggerFind.log(Level.INFO, "Null pointer exception caught.");
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_KEYWORD);
+        }
+        loggerFind.log(Level.INFO, "Will execute FindCommand");
         return new FindCommand(userMessage);
     }
 
@@ -797,6 +814,34 @@ public class Parser {
             throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
         }
         return new TagCommand(index - 1, tags);
+    }
+
+    /**
+     * Set Up method for logging
+     * Takes in a Logger variable to ensure that separates loggers can be used
+     * for the respective methods.
+     * Sets up what to be printed to the console (only logs that are severe)
+     * Sets up what to be printed to the file (logs that are of Level.INFO and above)
+     *
+     * @param logger A Logger variable to be used
+     * @param logFileName Name to be given for .log file.
+     */
+    public void setupLogger(Logger logger, String logFileName) {
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.INFO);
+
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.SEVERE);
+        logger.addHandler(consoleHandler);
+
+        try {
+            FileHandler fileHandler = new FileHandler(logFileName);
+            fileHandler.setFormatter(new SimpleFormatter());
+            fileHandler.setLevel(Level.INFO);
+            logger.addHandler(fileHandler);
+        } catch (IOException error) {
+            logger.log(Level.SEVERE, "File logger not working.", error);
+        }
     }
 
     /*
