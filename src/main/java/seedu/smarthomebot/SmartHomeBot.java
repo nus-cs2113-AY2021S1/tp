@@ -70,4 +70,5 @@ public class SmartHomeBot {
             throw new RuntimeException(e);
         }
     }
+
 }

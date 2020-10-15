@@ -55,14 +55,14 @@ public class TextUi {
                                     String applianceName,
                                     String location,
                                     String status,
-                                    double powerUsage) {
+                                    int powerUsage) {
 
         String formattedIndex = String.format("%d. ", displayIndex);
         String formattedName = String.format("%-" + Appliance.getMaxNameLength() + "s", applianceName);
         String formattedLocation =  MESSAGE_DISPLAY_LOCATION
                 + String.format("%-" + Appliance.getMaxLocationLength() + "s", location);
         String formattedStatus = MESSAGE_DISPLAY_STATUS + String.format("%-3s", status);
-        String formattedUsage =  MESSAGE_DISPLAY_USAGE + String.format("%.2f kWh", powerUsage);
+        String formattedUsage =  MESSAGE_DISPLAY_USAGE + String.format("%d kWh", powerUsage);
         String result = formattedIndex + formattedName + formattedLocation + formattedStatus + formattedUsage;
         showToUser(result);
     }
