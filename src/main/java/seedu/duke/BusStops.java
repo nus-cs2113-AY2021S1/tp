@@ -1,5 +1,8 @@
 package seedu.duke;
 
+import seedu.duke.exceptions.CustomException;
+import seedu.duke.exceptions.ExceptionType;
+
 import java.util.EnumSet;
 
 public enum BusStops {
@@ -33,6 +36,15 @@ public enum BusStops {
 
     public String getName() {
         return name;
+    }
+
+    public static String formatName(String input) throws CustomException {
+        for (BusStops info: EnumSet.allOf(BusStops.class)) {
+            if (info.getName().equalsIgnoreCase(input)) {
+                return info.getName();
+            }
+        }
+        throw new CustomException(ExceptionType.INVALID_BUS_STOP);
     }
 
     public static void listStops() {
