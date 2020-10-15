@@ -112,9 +112,10 @@ public class Ui {
         printMessage(MESSAGE_TEXTBOOK);
     }
 
-    public void printError() {
+    public void printError(String errorMessage) {
         //Writing messages for the different errors
         //Completed when more error handling are done
+        printMessage(errorMessage);
     }
 
     private void printStartQuizTopics(String topicsChosen) {
