@@ -15,6 +15,9 @@ import java.util.ArrayList;
 
 public class ListDueCommand extends Command {
     public static final String COMMAND_WORD = "due";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all Chapters that are due by the execution "
+            + "date.\n" + "Example: " + COMMAND_WORD + "\n";
+
     public ArrayList<DueChapter> allChapters;
     public ArrayList<DueChapter> dueChapters = new ArrayList<>();
 
