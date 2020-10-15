@@ -46,6 +46,9 @@ public class TaskCommand {
         }
         try {
             Project proj = projectList.get(0);
+            if(!proj.getProjectBacklog().checkValidPriority(priority)){
+                throw new DukeException("Invalid priority");
+            }
             proj.getProjectBacklog().addTask(title, description, priority);
             Task addedTask = proj.getProjectBacklog().getTask(proj.getProjectBacklog().getNextId() - 1);
             Ui.showToUserLn("Task successfully created.");
@@ -143,6 +146,9 @@ public class TaskCommand {
             Project proj = projectList.get(0);
             try {
                 task = proj.getProjectBacklog().getTask(id);
+                if(!proj.getProjectBacklog().checkValidPriority(priority)){
+                    throw new DukeException("Invalid priority");
+                }
                 task.setPriority(priority);
                 Ui.showToUserLn("The task " + task.getTitle() + "has its priority changed to:");
                 Ui.showToUserLn("\t" + task.getPriority());
