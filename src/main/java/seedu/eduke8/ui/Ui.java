@@ -48,6 +48,7 @@ public class Ui {
         return SCANNER.nextLine();
     }
 
+
     private static void printMessage(String message) {
         System.out.println(HORIZONTAL_LINE);
         System.out.println(message);
