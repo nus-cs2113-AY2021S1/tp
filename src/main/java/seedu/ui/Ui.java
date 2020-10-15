@@ -6,6 +6,7 @@ import seedu.task.Task;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static seedu.messages.Messages.LS;
@@ -37,16 +38,17 @@ public class Ui {
 
     private void displayTasks(TaskMap tasks) {
         // Header
-        String format = "%-10s%-15s%-15s%-10s%-10s%-10s" + LS;
+        String format = "%-10s%-20s%-15s%-10s%-10s%-10s" + LS;
         out.format(format, "Index", "Description", "Date", "Start", "End", "Priority");
         for (Task task : tasks.getValues()) {
             out.format(format,
-                    task.getTaskID(),
-                    task.getDescription(),
-                    task.getDate(),
-                    task.getStartTime() == null ? "" : task.getStartTime(),
-                    task.getEndTime() == null ? "" : task.getEndTime(),
-                    task.getPriority());
+                task.getTaskID(),
+                task.getDescription().length() > 20
+                        ? task.getDescription().substring(0, 16) + "..." : task.getDescription(),
+                task.getDate(),
+                task.getStartTime() == null ? "" : task.getStartTime(),
+                task.getEndTime() == null ? "" : task.getEndTime(),
+                task.getPriority());
         }
         out.println();
     }

@@ -4,21 +4,23 @@ import seedu.task.DateSorter;
 import seedu.task.PrioritySorter;
 import seedu.task.Task;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class TaskMap {
     public static final int MAX_NUM_TASKS = 10000;
-    private final HashMap<Integer, Task> tasksMap;
+    private final LinkedHashMap<Integer, Task> tasksMap;
 
     public TaskMap() {
-        tasksMap = new HashMap<>(MAX_NUM_TASKS);
+        tasksMap = new LinkedHashMap<>(MAX_NUM_TASKS);
     }
 
     public TaskMap(List<Task> tasks) {
-        tasksMap = new HashMap<>(MAX_NUM_TASKS);
+        tasksMap = new LinkedHashMap<>(MAX_NUM_TASKS);
         for (Task task : tasks) {
             tasksMap.put(task.getTaskID(), task);
         }
