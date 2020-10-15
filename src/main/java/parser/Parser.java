@@ -253,9 +253,9 @@ public abstract class Parser {
                 case "L":
                     location = new LectureTheatre(info[1], info[2]);
                     break;
-//                case "OUT":
-//                    location = new OutOfNUS(info[1]);
-//                    break;
+                case "OUT":
+                    location = new OutOfNUS(info[1]);
+                    break;
                 default:
                     location = null;
             }
