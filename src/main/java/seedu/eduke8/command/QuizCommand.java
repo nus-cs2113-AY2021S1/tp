@@ -35,8 +35,12 @@ public class QuizCommand extends Command {
             SingleTopicQuiz singleTopicQuiz = new SingleTopicQuiz(topic, numOfQuestions);
             singleTopicQuiz.startQuiz(ui);
         } catch (Eduke8Exception e) {
-            LOGGER.log(Level.WARNING, "QuizCommand Execution: An error took place.");
             ui.printError(e.getMessage());
+        } catch (NullPointerException e) {
+            LOGGER.log(Level.WARNING, "QuizCommand Execution: A NullPointerException was thrown.");
+            ui.printError("Error! There is no such topic listed in our storage. Please try again.");
         }
+
     }
 }
+
