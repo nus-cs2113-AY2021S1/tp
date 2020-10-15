@@ -1,6 +1,8 @@
 package event;
 
 
+import location.Location;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -31,8 +33,9 @@ public class PersonalEvent extends Event {
         return LocalDate.from(at);
     }
 
-    public PersonalEvent(String description, LocalDateTime at) {
+    public PersonalEvent(String description, Location location, LocalDateTime at) {
         super(description);
+        this.location = location;
         this.at = at;
     }
 

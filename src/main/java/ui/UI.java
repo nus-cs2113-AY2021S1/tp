@@ -2,6 +2,9 @@ package ui;
 
 
 import event.Event;
+import location.BusStop;
+import location.Location;
+import locationlist.LocationList;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -165,7 +168,15 @@ public class UI {
         System.out.println("Got it. I've added this Event: ");
         System.out.println(eventAdded.toString());
     }
-
+    /**
+     * Prints the message when the user adds some Event.
+     *
+     * @param eventEdited the Event being edited
+     */
+    public void printEditEventMessage(Event eventEdited) {
+        System.out.println("Got it. I've edited this Event: ");
+        System.out.println(eventEdited.toString());
+    }
     /**
      * Prints all the Events of the filtered list with labels, based on the input list.
      *
@@ -181,5 +192,33 @@ public class UI {
         }
     }
 
+    /**
+     * Prints all the locations stored in the location list with nearest bus stops
+     *
+     * @param locationsList an Array List of Locations to be printed
+     */
+    public void printLocationList(ArrayList<Location> locationsList) {
+        int i = 1;
+        System.out.println("Lists of locations: ");
+        for (Location location : locationsList) {
+            System.out.println(i + ". " + location);
+            i++;
+        }
+    }
 
+
+    /**
+     * Prints all the bus stops stored in the bus stop list with buses that goes there
+     *
+     * @param busStopList an Array List of Bus Stops to be printed
+     */
+    public void printBusStopList(ArrayList<BusStop> busStopList) {
+        int i = 1;
+        System.out.println("List of bus stops: ");
+        for(BusStop busStop : busStopList) {
+            System.out.println(i + ". " + busStop);
+            i++;
+        }
+    }
 }
+

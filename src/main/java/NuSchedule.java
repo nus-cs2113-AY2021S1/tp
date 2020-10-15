@@ -9,24 +9,26 @@ import storage.Storage;
 import ui.UI;
 
 import exception.LoadingException;
-
+/**
+  * Main entry-point for the NUSchedule application.
+  */
 public class NuSchedule {
-    /**
-     * Main entry-point for the NUSchedule application.
-     */
+    
     private Storage storage;
     private EventList events;
     private static BusStopList busStops;
     private static LocationList locations;
     private UI ui;
+  
 
     public NuSchedule(String filePath) {
         ui = new UI();
 
         busStops = new BusStopList();
         locations = new LocationList();
-        busStops.loadBusStopData();
-        locations.loadLocationData();
+        //busStops.loadBusStopData();
+        //locations.loadLocationData();
+
         try {
             storage = new Storage(filePath);
         } catch (CreatingFileException e) {
@@ -38,6 +40,13 @@ public class NuSchedule {
             ui.showLoadingError();
             events = new EventList();
         }
+
+        events = new EventList();
+        storage.loadBusStopData(busStops.getBusStopList());
+        storage.loadLocationData(locations.getLocationList());
+        // ui.printBusStopList(busStops.getBusStopList());
+        // ui.printLocationList(locations.getLocationList());
+
     }
 
     /**
@@ -51,7 +60,7 @@ public class NuSchedule {
                 String fullCommand = ui.readCommand();
                 ui.printLine(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand);
-                c.execute(events, ui, storage);
+                c.execute(events, locations, busStops, ui, storage);
                 isExit = c.isExit();
             } catch (NuScheduleException e) {
                 ui.showError(e.getMessage());
