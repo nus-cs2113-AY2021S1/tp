@@ -62,7 +62,7 @@ class BusDataTest {
         ArrayList<Bus> routes = new ArrayList<>();
         ArrayList<BusStops> stops = new ArrayList<>();
         routes.add(new Bus("AA1", stops));
-        stops.addAll(Arrays.asList(AA2).subList(7, 9));
+        stops.addAll(Arrays.asList(AA2).subList(6, 10));
         routes.add(new Bus("AA2", stops));
         String startingLoc = "Ea";
         String destination = "Opp kent ridge MRT station";
@@ -73,9 +73,9 @@ class BusDataTest {
     @Test
     void possibleBuses_manyRoutes_returnBusArrayList() {
         ArrayList<Bus> routes = new ArrayList<>();
-        ArrayList<BusStops> stopsAa1 = new ArrayList<>(Arrays.asList(AA2).subList(8, 10));
+        ArrayList<BusStops> stopsAa1 = new ArrayList<>(Arrays.asList(AA1).subList(7, 11));
         routes.add(new Bus("AA1", stopsAa1));
-        ArrayList<BusStops> stopsAa2 = new ArrayList<>(Arrays.asList(AA2).subList(4, 10));
+        ArrayList<BusStops> stopsAa2 = new ArrayList<>(Arrays.asList(AA2).subList(3, 11));
         routes.add(new Bus("AA2", stopsAa2));
         String startingLoc = "UniverSity Town";
         String destination = "PGPr";
