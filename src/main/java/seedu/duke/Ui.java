@@ -3,7 +3,10 @@ package seedu.duke;
 import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.event.Event;
+import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Task;
+import seedu.duke.command.CountdownCommand;
+import seedu.duke.calendar.event.Exam;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -204,6 +207,41 @@ public class Ui {
         System.out.println(calendarList.getCalendarList().get(lastCalendarItemIndex));
     }
 
+    public static void printCountDownItem(int days, CalendarItem item) {
+        if (days < 0) {
+            System.out.println(item.getDescription() + " You have already missed it!");
+        } else if (days == 0) {
+            if (item instanceof Exam) {
+                System.out.println(item.getDescription() + " is today " + item.getTime() + ". Try your best!");
+            } else {
+                System.out.println(item.getDescription() + " is today 23:59. It's time to speed up!");
+            }
+        } else {
+            System.out.println(item.getDescription() + " has " + days + " days left.");
+        }
+    }
+
+    public static void printCountDownMessage(CalendarList calendarList, int type) {
+        switch (type) {
+        case 0:
+            System.out.println("Here is your exams countdown: ");
+            for (int i = 0; i < calendarList.getTotalItems(); i++) {
+                CalendarItem temp = calendarList.getItem(i);
+                Ui.printCountDownItem(((Exam)temp).getCountdown(), temp);
+            }
+            break;
+        case 1:
+            System.out.println("Here is your deadlines countdown: ");
+            for (int i = 0; i < calendarList.getTotalItems(); i++) {
+                CalendarItem temp = calendarList.getItem(i);
+                Ui.printCountDownItem(((Deadline)temp).getCountdown(), temp);
+            }
+            break;
+        default:
+            break;
+        }
+    }
+
     /**
      * Prints the calendar task/event/item for FindCommand.
      *
@@ -302,6 +340,9 @@ public class Ui {
         case "invalid command":
             System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
                     + "Type \"help\" to learn the different commands.");
+            break;
+        case "invalid countdown":
+            System.out.println("Error: invalid countdown. Countdown is only for exams and deadlines.");
             break;
         case "invalid task action":
             System.out.println("Error: Total task(s): " + calendarList.getTotalTasks());
