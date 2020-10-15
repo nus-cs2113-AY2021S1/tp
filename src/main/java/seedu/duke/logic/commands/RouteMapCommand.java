@@ -11,6 +11,10 @@ public class RouteMapCommand extends Command {
     public void executeCommand() throws CustomException {
         Ui.printRouteSelectionMessage();
         String userBusRouteSelection = Ui.getCommand().trim().toLowerCase();
+        selectAndPrintBusRoute(userBusRouteSelection);
+    }
+
+    private void selectAndPrintBusRoute(String userBusRouteSelection) throws CustomException {
         assert !userBusRouteSelection.isBlank() : "User input is empty.";
         try {
             Bus selectedBus = BusData.selectBus(userBusRouteSelection);
