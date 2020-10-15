@@ -2,7 +2,14 @@ package seedu.duke.logic.parser;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
-import seedu.duke.logic.commands.*;
+import seedu.duke.logic.commands.BusCommand;
+import seedu.duke.logic.commands.Command;
+import seedu.duke.logic.commands.RouteCommand;
+import seedu.duke.logic.commands.RouteMapCommand;
+import seedu.duke.logic.commands.ExitCommand;
+import seedu.duke.logic.commands.HelpCommand;
+import seedu.duke.logic.commands.AllBusCommand;
+import seedu.duke.logic.commands.ListStopsCommand;
 
 public class Parser {
 
