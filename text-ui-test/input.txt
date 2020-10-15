@@ -3,4 +3,7 @@ help
 hr add /n James Gosling /p 11111111 /e 111111@gmail.com /r member
 hr list
 hr delete 1
+event addEvent /n arduino course /d 2020-09-16 /t 8pm
+event delEvent 1
+event listEvent
 bye
