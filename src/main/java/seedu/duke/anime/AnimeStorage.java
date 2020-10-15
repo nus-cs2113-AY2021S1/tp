@@ -6,7 +6,10 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import seedu.duke.storage.Storage;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,10 +20,10 @@ public class AnimeStorage {
 
     /* Files */
     //private static final String RELATIVE_DIR = System.getProperty("user.dir");
-    private static final String FILE_SEPARATOR = File.separator;
+    //private static final String FILE_SEPARATOR = File.separator;
+    //private File dataFile;
+    //private String[] pathnames;
     private static final Logger LOGGER = Logger.getLogger(Anime.class.getName());
-    private File dataFile;
-    private String[] pathnames;
 
     //public static void main(String[] args) throws IOException {
     //    AnimeStorage  animeStorage = new AnimeStorage("/data/AniListData");
@@ -33,14 +36,14 @@ public class AnimeStorage {
         LOGGER.setLevel(Level.WARNING);
     }
 
-//    private String prepareFile(String fileFolder) {
-//        return fileFolder.replace("\\",FILE_SEPARATOR).replace("/",FILE_SEPARATOR);
-//    }
+    //private String prepareFile(String fileFolder) {
+    //return fileFolder.replace("\\",FILE_SEPARATOR).replace("/",FILE_SEPARATOR);
+    //}
 
     public ArrayList<Anime> readAnimeDatabase() throws IOException {
         LOGGER.log(Level.INFO,"Retrieving information from DataSource.");
         ArrayList<Anime> animeDataList = new ArrayList<>();
-        for (int i = 1 ; i < 6 ; i++) {
+        for (int i = 1; i < 6; i++) {
             LOGGER.log(Level.INFO,"Currently extracting from /AniListData/AniList-Data" + i + ".json");
             String fileData = getDataFromJarFile("/AniListData/AniList-Data" + i + ".json");
             LOGGER.log(Level.INFO,"Extraction of /AniListData/AniList-Data" + i + ".json successful");

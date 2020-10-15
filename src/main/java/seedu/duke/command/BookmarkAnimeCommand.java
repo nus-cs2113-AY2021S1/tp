@@ -95,14 +95,14 @@ public class BookmarkAnimeCommand extends Command {
     }
 
     private String editBookmarkEpisode(AnimeData animeData, Bookmark bookmark) throws AniException {
-        String result;
+
         if (bookmarkIndex > bookmark.getBookmarkSize() || bookmarkIndex <= 0) {
             String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + "provided is invalid."
                     + System.lineSeparator() + " Bookmark index is outside Bookmark range (too big or too small).";
             LOGGER.log(Level.WARNING,"Bookmark command execute failed:" + invalidBookmarkIndex);
             throw new AniException(invalidBookmarkIndex);
         }
-
+        String result;
         assert bookmarkEpisode >= 0 : "bookmarkEpisode should be positive";
         bookmark.editAnimeBookmarkEpisode(bookmarkIndex - 1, bookmarkEpisode);
         Anime animeToEdit = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
