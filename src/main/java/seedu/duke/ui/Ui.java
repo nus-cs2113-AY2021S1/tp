@@ -1,6 +1,8 @@
 package seedu.duke.ui;
 
 import seedu.duke.Bus;
+import seedu.duke.exceptions.CustomException;
+import seedu.duke.exceptions.ExceptionType;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,11 +17,11 @@ public class Ui {
 
     public static void printWelcomeMessage() {
         printLine();
-        String logo =  " _       _       ____     __       __\n"
-                     + "| |\\ \\  | |     / /\\ \\    \\ \\     / /\n"
-                     + "| | \\ \\ | |    / /__\\ \\    \\ \\   / /\n"
-                     + "| |  \\ \\| |   / /----\\ \\    \\ \\ / /\n"
-                     + "|_|   \\ \\_|  / /      \\ \\    \\_V_/    @NUS\n";
+        String logo = " _       _       ____     __       __\n"
+                + "| |\\ \\  | |     / /\\ \\    \\ \\     / /\n"
+                + "| | \\ \\ | |    / /__\\ \\    \\ \\   / /\n"
+                + "| |  \\ \\| |   / /----\\ \\    \\ \\ / /\n"
+                + "|_|   \\ \\_|  / /      \\ \\    \\_V_/    @NUS\n";
         System.out.println("Hello from\n" + logo);
         System.out.println("How can I help?");
         printLine();
@@ -86,7 +88,9 @@ public class Ui {
     }
 
     public static void printFullRoute(Bus busCode) {
-        printLine();
+        if (busCode != null) {
+            printLine();
+        }
         System.out.println("Here is the " + busCode.getBusNumber() + " route that you have requested:\n" + busCode);
         printLine();
     }
