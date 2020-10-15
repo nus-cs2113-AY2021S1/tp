@@ -73,7 +73,7 @@ public class Power {
             try {
                 calculatePowerConsumed();
             } catch (ParseException e) {
-                ui.showToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
+                ui.printToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
             }
             return true;
         } else {
@@ -90,7 +90,7 @@ public class Power {
         try {
             calculatePowerConsumed();
         } catch (ParseException e) {
-            ui.showToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
+            ui.printToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
         }
         return this.totalPowerConsumption;
     }
