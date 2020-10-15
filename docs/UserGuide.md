@@ -18,7 +18,7 @@ It displays the project backlog, and the details of the ongoing sprint.
 * Constraints:
     * A project must be created by the user before using this command.
 * Expected outcome:
-      ```
+    ```
     ================= PROJECT =================
     [Title: MeTube ]
        [Description: video streaming software ]
@@ -26,7 +26,8 @@ It displays the project backlog, and the details of the ongoing sprint.
        [Project will start along with the first sprint]
        [Project backlog is empty]
        [There are no Sprints]
-    ===============================================```
+    ===============================================
+    ```
     
 #### Create project
 Create a new project.
@@ -48,5 +49,43 @@ Create a new project.
        [Project backlog is empty]
        [There are no Sprints]
     ===============================================```
+    
+### Project Backlog (All features) `task`
+#### Adding task
+Adds a task to the backlog.
+* Format: `task /add -title <title> -desc <description> -priority <category>`
+* Usage command: `task /add -title Add UI -desc add an interactive UI -priority HIGH`
+    * Adds a task of title `Add UI`, description `add an interactive UI` and priority `HIGH` into the backlog.
+    
+* Constraints:
+    * The title, description and category must be specified, otherwise the task is not added.
+    * The priority entered must belong to the standard options as prescribed by the enum: [“HIGH”, “MEDIUM”, “LOW”]
+    * The task will be added as "not done" status. Users need to manually mark a task as done after creation.
+    * Tasks can only be created if a project has been created.
+* Expected outcome:
+`Add UI has been added.`
+
+#### Viewing task
+Views the specified task.
+* Format: `task /view <taskid>`
+* Usage command: `task /view 3`
+    * Views the third task.
+    
+* Constraints:
+    * The task ID entered must be a positive integer smaller or equal to the total number of tasks added, and must be specified.
+* Expected outcome:
+
+Assuming the third task have the following attributes: Title: Add parser, Description: add UI, Priority: HIGH, Done: false.
+```[Task]
+	ID: 1
+	Title: Add parser 
+	Description: add an interactive UI 
+	Priority: High priority
+	Completion: Completed
+ ```
+#### Deleting task
+#### Changing the priority of task
+#### Marking task as complete
+
 
       
