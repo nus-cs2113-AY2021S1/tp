@@ -26,6 +26,6 @@ public class DeleteUndefinedTaskException extends DeleteException {
      * @return the error message
      */
     public String getMessage() {
-        return "☹ OOPS!!! There isn't a task labeled " + label;
+        return "OOPS!!! There isn't a task labeled " + label;
     }
 }

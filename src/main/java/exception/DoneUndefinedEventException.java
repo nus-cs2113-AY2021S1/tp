@@ -4,10 +4,10 @@ package exception;
  * Represents the case when the the user trying to done
  * some tasks that does not exist.
  */
-public class DoneUndefinedTaskException extends DoneException {
+public class DoneUndefinedEventException extends DoneException {
     private int label;//Task label of the task
 
-    public DoneUndefinedTaskException() {
+    public DoneUndefinedEventException() {
     }
 
 
@@ -16,7 +16,7 @@ public class DoneUndefinedTaskException extends DoneException {
      *
      * @param label the label of the task that the user want to mark as done
      */
-    public DoneUndefinedTaskException(int label) {
+    public DoneUndefinedEventException(int label) {
         this.label = label;
     }
 
@@ -26,6 +26,6 @@ public class DoneUndefinedTaskException extends DoneException {
      * @return the error message
      */
     public String getMessage() {
-        return "☹ OOPS!!! There isn't a task labeled " + label;
+        return "OOPS!!! There isn't a task labeled " + label;
     }
 }

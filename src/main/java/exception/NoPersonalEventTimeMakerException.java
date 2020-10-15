@@ -11,6 +11,6 @@ public class NoPersonalEventTimeMakerException extends PersonalEventException {
      * @return the message
      */
     public String getMessage() {
-        return "☹ OOPS!!! You should mark the time for an event with \"/at\"";
+        return "OOPS!!! You should mark the time for an event with \"/at\"";
     }
 }
