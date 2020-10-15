@@ -3,46 +3,112 @@
     "topic": "OOP",
     "questions": [
       {
-        "description": "What is encapsulation?",
-        "hint": "check the textbook",
+        "description": "Choose the correct statements?",
+        "hint": "Recall the differences between the two core OOP concepts: abstraction and encapsulation.",
         "options": [
           {
-            "description": "A",
+            "description": "An object is an encapsulation because it packages data and behavior into one bundle.",
             "correct": true
           },
           {
-            "description": "B",
+            "description": "An object is an encapsulation because it lets us think in terms of higher level concepts \nsuch as Students rather than student-related functions and data separately.",
             "correct": false
           },
           {
-            "description": "C",
+            "description": "Nil",
             "correct": false
           },
           {
-            "description": "D",
+            "description": "Nil",
             "correct": false
           }
         ]
       },
       {
-        "description": "What is abstraction?",
-        "hint": "check the textbook",
+        "description": "OO is a higher level mechanism than the procedural paradigm.",
+        "hint": "OOP four core concepts are: Encapsulation, Abstraction, Inheritance and Polymorphism.",
         "options": [
           {
-            "description": "A",
-            "correct": false
-          },
-          {
-            "description": "B",
+            "description": "True",
             "correct": true
           },
           {
-            "description": "C",
+            "description": "False",
             "correct": false
           },
           {
-            "description": "D",
+            "description": "Nil",
             "correct": false
+          },
+          {
+            "description": "Nil",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Which of the following is NOT a core concept of OOP?",
+        "hint": "Think about what you have done when writing OOP code and what OOP is useful for",
+        "options": [
+          {
+            "description": "Inheritance",
+            "correct": false
+          },
+          {
+            "description": "Abstraction",
+            "correct": false
+          },
+          {
+            "description": "Encapsulation",
+            "correct": false
+          },
+          {
+            "description": "Implementation",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "Choose the WRONG statement",
+        "hint": "We are using OOP to help model solutions like how objects in real world work, in Java",
+        "options": [
+          {
+            "description": "OO is a programming paradigm",
+            "correct": false
+          },
+          {
+            "description": "OO guides us in how to structure the solution",
+            "correct": false
+          },
+          {
+            "description": "OO is mainly an abstraction mechanism",
+            "correct": false
+          },
+          {
+            "description": "OO is a programming language",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "Choose the WRONG statement",
+        "hint": "C language is not an OO language. Java code is able to be written like C code.",
+        "options": [
+          {
+            "description": "Java and C++ are OO languages",
+            "correct": false
+          },
+          {
+            "description": "C language follows the Functional Programming paradigm",
+            "correct": true
+          },
+          {
+            "description": "Java can be used to write procedural code",
+            "correct": false
+          },
+          {
+            "description": "Prolog follows the Logic Programming paradigm",
+            "correct": true
           }
         ]
       }
