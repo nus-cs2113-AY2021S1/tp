@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+import static java.lang.Math.ceil;
 import static seedu.smarthomebot.common.Messages.LINE;
 import static seedu.smarthomebot.common.Messages.MESSAGE_TIME_FORMAT_ERROR;
 
@@ -18,15 +19,15 @@ public class Power {
 
     private static final String TIME_DATE_FORMAT = "dd/MM/yyyy | HH:mm:ss";
     private final int power;
+    private final TextUi ui = new TextUi();
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(TIME_DATE_FORMAT);
     LocalDateTime currentTime;
     private String offTime;
     private String onTime;
-    private double powerUsed;
+    private int powerUsed;
     private double totalHours;
     private Boolean status;
-    private double totalPowerConsumption;
-    private final TextUi ui = new TextUi();
+    private int totalPowerConsumption;
 
     public Power(String power) {
         this.power = Integer.parseInt(power);
@@ -85,7 +86,7 @@ public class Power {
      *
      * @return the power consumption in double.
      */
-    public double getPower() {
+    public int getPower() {
         try {
             calculatePowerConsumed();
         } catch (ParseException e) {
@@ -97,7 +98,7 @@ public class Power {
     /**
      * Computes power consumption from loaded file.
      */
-    public void loadConsumptionFromFile(double powerConsumption) {
+    public void loadConsumptionFromFile(int powerConsumption) {
         powerUsed = powerConsumption;
         totalPowerConsumption += powerUsed;
     }
@@ -127,6 +128,8 @@ public class Power {
             if (!this.status) {
                 offTimeValue = timeFormat.parse(offTime);
                 timeUsed = offTimeValue.getTime() - onTimeValue.getTime();
+                // System time cannot be negative time
+                assert (timeUsed > 0) : "System Time is not correct! " + timeUsed;
                 onTime = offTime;
             } else {
                 Date currentUsedTime = timeFormat.parse(getCurrentTime());
@@ -145,7 +148,8 @@ public class Power {
     private void calculatePowerConsumed() throws ParseException {
         calculateTimeUsed();
         // Convert power unit to kWh
-        powerUsed = totalHours * power / 1000.00;
+        assert (powerUsed >= 0) : "Power usage cannot be negative! " + powerUsed;
+        powerUsed = (int) ceil(totalHours * power / 1000.00);
         totalPowerConsumption += powerUsed;
     }
 
