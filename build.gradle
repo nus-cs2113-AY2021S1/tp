@@ -29,11 +29,11 @@ test {
 }
 
 application {
-    mainClassName = "NUSchedule.Duke"
+    mainClassName = "NuSchedule"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "NUSchedule"
     archiveClassifier = null
 }
 
