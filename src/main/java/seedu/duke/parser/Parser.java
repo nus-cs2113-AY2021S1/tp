@@ -7,7 +7,9 @@ import seedu.duke.command.addcommand.AddModuleCommand;
 import seedu.duke.command.addcommand.AddTaskCommand;
 import seedu.duke.command.editcommand.DoneCommand;
 import seedu.duke.command.filtercommand.FilterCommand;
+import seedu.duke.command.filtercommand.deletecommand.DeleteCommand;
 import seedu.duke.command.filtercommand.deletecommand.DeleteModuleCommand;
+import seedu.duke.command.filtercommand.deletecommand.DeleteTaskCommand;
 import seedu.duke.command.filtercommand.listcommand.ListCommand;
 import seedu.duke.command.filtercommand.listcommand.ListModuleCommand;
 import seedu.duke.command.filtercommand.listcommand.ListTaskCommand;
@@ -25,6 +27,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static seedu.duke.util.ExceptionMessage.MESSAGE_DUPLICATE_PREFIX_FOUND;
+import static seedu.duke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
 import static seedu.duke.util.ExceptionMessage.MESSAGE_INVALID_DATETIME_FORMAT;
 import static seedu.duke.util.ExceptionMessage.MESSAGE_INVALID_PARAMETERS;
 import static seedu.duke.util.ExceptionMessage.MESSAGE_INVALID_PRIORITY;
@@ -82,10 +85,14 @@ public class Parser {
             switch (commandWord){
             case AddCommandGeneric.COMMAND_WORD:
                 return prepareGenericAddCommand(parameters);
+            case DeleteCommand.COMMAND_WORD:
+                return prepareGenericDeleteCommand(parameters);
             case AddModuleCommand.COMMAND_WORD:
                 return prepareAddModuleCommand(parameters);
             case AddTaskCommand.COMMAND_WORD:
                 return prepareAddTaskCommand(parameters);
+            case DeleteTaskCommand.COMMAND_WORD:
+                return prepareDeleteTaskCommand(parameters);
             case ListCommand.COMMAND_WORD:
                 return new ListCommand();
             case ListModuleCommand.COMMAND_WORD:
@@ -123,6 +130,24 @@ public class Parser {
             return prepareAddModuleCommand(parameters);
         case MODULE:
             return prepareAddTaskCommand(parameters);
+        default:
+            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL_GENERIC);
+        }
+    }
+
+    /**
+     * Prepare the command to add the content based on the directory of the user is currently in.
+     * @param parameters The parameters given by the user
+     * @return The command to change the current directory
+     * @throws InvalidParameterException exception is thrown when parameter is invalid.
+     */
+    private Command prepareGenericDeleteCommand(String parameters)
+            throws InvalidParameterException {
+        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+        case ROOT:
+            return prepareDeleteModuleCommand(parameters);
+        case MODULE:
+            return prepareDeleteTaskCommand(parameters);
         default:
             return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL_GENERIC);
         }
@@ -180,6 +205,19 @@ public class Parser {
         }
     }
 
+    private Command prepareDeleteTaskCommand(String parameters)
+            throws InvalidParameterException {
+        if (DirectoryTraverser.getCurrentDirectoryLevel() != DirectoryLevel.MODULE){
+            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL_GENERIC);
+        }
+        try {
+            final int targetIndex = Integer.parseInt(parameters.trim() ) + 1;
+            return new DeleteTaskCommand(targetIndex);
+        } catch (NumberFormatException | StringIndexOutOfBoundsException nfe) {
+            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
+        }
+    }
+
 
     /* Prepare Delete and List Commands */
 
@@ -222,7 +260,7 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL_GENERIC);
         }
         try {
-            final int targetIndex = Integer.parseInt(parameters.trim() + 1);
+            final int targetIndex = Integer.parseInt(parameters.trim()) -1;
             return new DoneCommand(targetIndex);
         } catch (NumberFormatException | StringIndexOutOfBoundsException nfe) {
             return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
