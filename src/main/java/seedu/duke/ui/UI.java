@@ -1,7 +1,11 @@
 package seedu.duke.ui;
 
+import seedu.duke.bunny.Bunny;
 import seedu.duke.constants.ClickerMessages;
 
+import java.util.HashMap;
+
+import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.constants.Logos.CAT_TEXT_DIVIDER;
 import static seedu.duke.constants.Logos.FENCE_TEXT_DIVIDER;
 import static seedu.duke.constants.Logos.PLAIN_TEXT_DIVIDER;
@@ -51,7 +55,7 @@ public class UI {
     }
 
     public static void printHelp() {
-        String[] listCommands = {"add", "settings", "list", "history", "stats", "review", "quiz", "clear", "exit"};
+        String[] listCommands = {"add", "settings", "list", "stats", "review", "start", "clear", "exit"};
         System.out.println("Type 'help c\\<function name here>' to view help for each command.");
         System.out.println("Available commands:");
         for (String listCommand : listCommands) {
@@ -179,5 +183,55 @@ public class UI {
 
     public static void listWordsMessage() {
         System.out.println(ClickerMessages.LIST_WORDS_MSG);
+    }
+
+    public static void commandNotRecognisedMsg() {
+        System.out.println(ClickerMessages.COMMAND_UNRECOGNISED_MSG);
+    }
+
+    public static void numBunnyLoaded(int numBunnies, int numBunniesLoaded) {
+        System.out.println(String.format("%1$s of %2$s bunnies loaded!", numBunniesLoaded, numBunnies));
+    }
+
+    public static void createNewBunnyFile() {
+        System.out.println("Writing to bunny file");
+    }
+
+    public static void failedToSaveBunny() {
+        System.out.println("Failed to save bunny list");
+    }
+
+    public static void bunnySaved() {
+        System.out.println("Bunny list saved!");
+    }
+
+    public static void printFilteredBunny(int numBunny, HashMap<Integer, Bunny> filteredBunny) {
+        int i;
+        int bunnyFiltered = 0;
+        for (i = 1; i <= numBunny; i++) {
+            if (filteredBunny.containsKey(i)) {
+                System.out.println((i) + ".\n" + bunniesList.get(i - 1).getDescription());
+                bunnyFiltered++;
+            }
+        }
+
+        bunnyFilterSummary(bunnyFiltered);
+    }
+
+    private static void bunnyFilterSummary(int bunnyFiltered) {
+        System.out.println("number bunny filtered: " + bunnyFiltered);
+    }
+
+    public static void bunnyMissingFilterOption() {
+        System.out.println("filter bunny command missing filter options.");
+    }
+
+    public static void bunnyFilterNoneFound() {
+        System.out.println("No bunny matching filter options");
+
+    }
+
+    public static void printAskForName(String username) {
+        System.out.print(ClickerMessages.ASK_FOR_NAME);
     }
 }

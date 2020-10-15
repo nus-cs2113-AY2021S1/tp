@@ -20,6 +20,18 @@ public enum CommandChecker {
     BUNNY,
     LIST_BUNNY,
     FILTER_BUNNY,
+    SAVE_BUNNY,
+
+    CHARACTER,
+    LIST_CHARACTER,
+    FILTER_CHARACTER,
+
+    START,
+    TITLE,
+    TYPE,
+    WRITE,
+    FINISH,
+
 
     STATS,
     DELETE,
@@ -55,6 +67,8 @@ public enum CommandChecker {
             return CommandChecker.LIST_BUNNY;
         } else if (userInput.toLowerCase().trim().startsWith("filter bunny")) {
             return CommandChecker.FILTER_BUNNY;
+        } else if (userInput.toLowerCase().trim().startsWith("save bunny")) {
+            return CommandChecker.SAVE_BUNNY;
         } else if (userInput.toLowerCase().trim().startsWith("exit")) {
             return CommandChecker.EXIT;
         } else if (userInput.toLowerCase().trim().startsWith("scene")) {
@@ -69,6 +83,18 @@ public enum CommandChecker {
             return CommandChecker.FILTER_NAMES;
         } else if (userInput.toLowerCase().trim().startsWith("filter")) {
             return CommandChecker.FILTER_WORDS;
+        } else if (userInput.toLowerCase().trim().startsWith("start")) {
+            return CommandChecker.START;
+        } else if (userInput.toLowerCase().trim().startsWith("title")) {
+            return CommandChecker.TITLE;
+        } else if (userInput.toLowerCase().trim().startsWith("type")) {
+            return CommandChecker.TYPE;
+        } else if (userInput.toLowerCase().trim().startsWith("write")) {
+            return CommandChecker.WRITE;
+        } else if (userInput.toLowerCase().trim().startsWith("finish")) {
+            return CommandChecker.FINISH;
+        } else if (userInput.toLowerCase().trim().startsWith("stats")) {
+            return CommandChecker.STATS;
         } else {
             return CommandChecker.UNRECOGNISED;
         }

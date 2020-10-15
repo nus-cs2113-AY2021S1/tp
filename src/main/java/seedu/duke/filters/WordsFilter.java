@@ -21,8 +21,8 @@ public class WordsFilter {
     /**
      * Prints word filtered by type.
      *
-     * @param isNewFilter Creates new filter thread
-     * @param types Types of words need filtering
+     * @param isNewFilter Clears last filter and creates new filter.
+     * @param types Types of words need filtering.
      */
     public static void filterByType(boolean isNewFilter, String[] types) {
         if (isNewFilter) {
@@ -45,7 +45,12 @@ public class WordsFilter {
         printFilterResult();
     }
 
-    // not ready to use
+    /**
+     * Filters words by starting strings and prints them.
+     *
+     * @param isNewFilter Clears last filter and creates new filter.
+     * @param startStrings Array of strings that need filtering.
+     */
     public static void filterByStartingString(boolean isNewFilter, String[] startStrings) {
         if (isNewFilter) {
             ArrayList<Words> words = WordList.wordList;
@@ -53,7 +58,7 @@ public class WordsFilter {
             for (String startString : startStrings) {
                 String string = startString.toLowerCase();
                 for (int i = 0; i < WordList.getNumberOfWords(); i++) {
-                    if (words.get(i).getDescription().startsWith(string)) {
+                    if (words.get(i).getDescription().startsWith(string) && !filteredWords.contains(words.get(i))) {
                         filteredWords.add(words.get(i));
                     }
                 }
@@ -80,7 +85,12 @@ public class WordsFilter {
         printFilterResult();
     }
 
-    // not ready to use
+    /**
+     * Filters words by indicated including strings and prints them.
+     *
+     * @param isNewFilter Clears last filter and creates new filter.
+     * @param includedStrings Array of strings that needs filtering.
+     */
     public static void filterByIncludedString(boolean isNewFilter, String[] includedStrings) {
         if (isNewFilter) {
             ArrayList<Words> words = WordList.wordList;
@@ -88,7 +98,7 @@ public class WordsFilter {
             for (String includedString : includedStrings) {
                 String string = includedString.toLowerCase();
                 for (int i = 0; i < WordList.getNumberOfWords(); i++) {
-                    if (words.get(i).getDescription().contains(string)) {
+                    if (words.get(i).getDescription().contains(string) && !filteredWords.contains(words.get(i))) {
                         filteredWords.add(words.get(i));
                     }
                 }
@@ -108,7 +118,9 @@ public class WordsFilter {
                 }
             }
             for (Words wordToRemove : wordsToRemove) {
-                filteredWords.remove(wordToRemove);
+                while (filteredWords.contains(wordToRemove)) {
+                    filteredWords.remove(wordToRemove);
+                }
             }
         }
 

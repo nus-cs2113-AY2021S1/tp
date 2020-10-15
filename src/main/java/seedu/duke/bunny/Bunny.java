@@ -17,6 +17,11 @@ public class Bunny {
         setIdea(idea);
     }
 
+    public Bunny(String idea, String genre) {
+        setIdea(idea);
+        setGenre(genre);
+    }
+
     public Bunny(String idea, String genre, ArrayList<Character> characters) {
         setIdea(idea);
         setGenre(genre);
@@ -47,10 +52,13 @@ public class Bunny {
         this.characters = characters;
     }
 
+    // todo: add character list in version 2
     public String getDescription() {
         String description = "  idea: " + idea + "\n";
         if (!genre.isBlank()) {
             description = description + "  genre: " + genre + "\n";
+        } else {
+            description = description + "  genre: none";
         }
 
         return description;

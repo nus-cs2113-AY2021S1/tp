@@ -12,6 +12,11 @@ public class FilePaths {
     public static final String DEFAULT_USER_SETTINGS_FILE_PATH = "/data" + File.separator + "userSettings.txt";
 
     /**
+     * Default path to file for saved Bunny ideas.
+     */
+    public static final String DEFAULT_BUNNY_FILE_PATH = "data/bunny.txt";
+
+    /**
      * Test file path to see where the files save.
      */
     public static final String TEST_FILE_PATH = "testFile.txt";

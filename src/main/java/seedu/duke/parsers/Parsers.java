@@ -5,6 +5,7 @@ import seedu.duke.exceptions.MissingParamsException;
 
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static seedu.duke.constants.InputMarkers.INPUT_COMMENT_MARKER;
 import static seedu.duke.constants.RegexStrings.BLANK_STRING_REGEX;
@@ -147,5 +148,15 @@ public class Parsers {
         parsedParams.put(optionIndicator.toLowerCase(), parsedOption);
     }
 
+    /**
+     * Parse an integer from a string containing an integer.
+     *
+     * @param stringContainingInt string that contains an integer value
+     * @return the interger value parsed
+     * @throws NumberFormatException unable to parse integer from given string
+     */
+    public static int getIntFromString(String stringContainingInt) throws NumberFormatException {
+        return Integer.parseInt(stringContainingInt.replaceAll("[\\D]", ""));
+    }
 
 }

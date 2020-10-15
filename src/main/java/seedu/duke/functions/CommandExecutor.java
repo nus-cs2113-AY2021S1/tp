@@ -5,14 +5,25 @@ import seedu.duke.commands.CommandChecker;
 
 import seedu.duke.exceptions.BunnyIdeaMissingException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
+import seedu.duke.exceptions.MissingFilterOptionsException;
+import seedu.duke.exceptions.NoFilteredItemsException;
 import seedu.duke.filters.FilterExecutor;
 import seedu.duke.ui.UI;
 
 import seedu.duke.wordlist.WordList;
 import seedu.duke.filters.FilterExecutor;
 import seedu.duke.names.Names;
+import seedu.duke.writing.Essay;
+import seedu.duke.writing.Poem;
+import seedu.duke.writing.WritingList;
 
 
+import java.io.IOException;
+import java.util.Scanner;
+
+import static seedu.duke.bunnylist.BunnyList.bunniesList;
+import static seedu.duke.database.BunnySaver.saveAllBunny;
+import static seedu.duke.filters.BunnyFilter.filterBunny;
 import static seedu.duke.ui.UI.printHelpMessage;
 
 public class CommandExecutor {
@@ -21,12 +32,12 @@ public class CommandExecutor {
         case HELP:
             printHelpMessage(userInput);
             break;
-        case USERNAME:
-            // change username
-            break;
-        case DIVIDER:
-            // choose divider type
-            break;
+        //case USERNAME:
+        //    // change username
+        //    break;
+        //case DIVIDER:
+        //    // choose divider type
+        //    break;
         case NOUN:
             WordList.addNoun(userInput);
             break;
@@ -55,7 +66,21 @@ public class CommandExecutor {
             BunnyList.listBunny();
             break;
         case FILTER_BUNNY:
-            // filter for bunny
+            try {
+                filterBunny(userInput, bunniesList);
+            } catch (MissingFilterOptionsException e) {
+                UI.bunnyMissingFilterOption();
+            } catch (NoFilteredItemsException e) {
+                UI.bunnyFilterNoneFound();
+            }
+            break;
+        case SAVE_BUNNY:
+            try {
+                saveAllBunny(bunniesList);
+                UI.bunnySaved();
+            } catch (IOException e) {
+                UI.failedToSaveBunny();
+            }
             break;
         case GEN_NAME:
             try {
@@ -71,16 +96,22 @@ public class CommandExecutor {
             Names.listNames();
             break;
         case STATS:
-            //print user stats
+            WritingList.printWritings();
+            break;
+        case START:
+            WritingList.checkStart();
+            break;
+        case TYPE:
+            WritingList.checkType();
             break;
         case DELETE:
-            //clear all quizzes
+
             break;
         case EXIT:
-            //close the program
+            //closes the program
             break;
         default:
-            //print confused message
+            UI.commandNotRecognisedMsg();
         }
     }
 }
