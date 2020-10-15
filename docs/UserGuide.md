@@ -18,6 +18,8 @@ shuttle serviceS.
 * [Command Summary](#command-summary)
 
 ## Quick Start
+The following steps will guide you through the process of running Nav@NUS.
+
 1. Ensure that you have Java `11` or above installed in your computer.
 2. Download the latest `duke.jar` from [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for dude.jar bus application
@@ -27,6 +29,8 @@ shuttle serviceS.
 7. Refer to [Features](#features) below for details of each command
 
 ## Features 
+There are 7 features available in Nav@NUS. The following are instructions for using the features.
+
 >Notes about command format:  
 >
 >1. Words in **bold** are parameters to be provided by the user.
@@ -133,10 +137,14 @@ Here are the range of commands:
 ```
 
 ## FAQ
+Some common questions to aid in possible issues faces.
+
 **Q:** Where can I find the release? <br>
 It can be found at [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
 
 ## Command Summary
+Summary of features and command formats.
+
 >Note: No additional parameter is needed if it is not mentioned. eg help <br>
 
 Command | Format | Example
