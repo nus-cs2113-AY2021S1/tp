@@ -37,7 +37,7 @@ public class User {
     }
 
     public void printInstruction() {
-        System.out.println("Please type in the following commands to proceed!");
+        System.out.println("Please type in \"help\" command for information!");
     }
 
     @Override
