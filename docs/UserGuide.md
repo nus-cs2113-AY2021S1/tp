@@ -46,17 +46,34 @@ Adds a new user.
 
 Format: `adduser -n USERNAME -dob DATE_FORMAT -g GENDER`
 
-Sample Input: `adduser -n TimothyWright -dob 12/12/1997 -g male`
+Sample Input: `adduser -n Timothy Wright -dob 12/12/1997 -g male`
 
 The expected outcome:
 
     Successfully added new user: 
-    Name: TimothyWright
+    Name: Timothy Wright
     Birthdate: 12/12/1997
     Gender: Male
 
+### 3.3 Switching Users: `switchuser`
+Switch the current active user to another user
 
-### 3.3 Browse through all anime: `browse`
+Format: `switchuser -n USERNAME`
+
+Note:
+
+The name in the command prompter has changed as well to reflect the new user.
+
+Sample Input: `Barkley-san (Default) #> switchuser -n Isaac Asimov`
+
+The expected outcome:
+```
+ Welcome back, Isaac Asimov-san
+
+ Isaac Asimov-san (Default) #> 
+```
+
+### 3.4 Browse through all anime: `browse`
 Browse through all anime from the source. It can be displayed in sorted order.
 
 Format: `browse [-s SORT_CATEGORY] [-o DISLAY_ORDER] [-p PAGE_NUMBER`]
@@ -105,13 +122,13 @@ The expected outcome:
 20. Air Master
 Browsing Page: 1
 ```
-### 3.4 Create an Anime watchlist: `watchlist`
+### 3.5 Create an Anime watchlist: `watchlist`
 
-### 3.5 Add an Anime to the select watchlist: `add`
+### 3.6 Add an Anime to the select watchlist: `add`
 
-### 3.6 Bookmark an Anime: `bookmark`
+### 3.7 Bookmark an Anime: `bookmark`
 
-### 3.7 Exit AniChan: `exit`
+### 3.8 Exit AniChan: `exit`
 Exit AniChan 
 
 Format: `exit`
@@ -130,5 +147,7 @@ Sayonara!
 
 |Feature|Command|
 |---    |---|
-|Help| `help`|
-|Browse | `browse -s [name/rating] -p <1-26> -o [asc/dsc]` |
+|Help | `help`|
+|Browse | `browse -s [name/rating] -p <1-26> -o [asc/dsc]`  |
+|Add User | `adduser -n USERNAME -dob DATE_FORMAT -g GENDER ` |
+|Switch User | `switchuser -n USERNAME` |
