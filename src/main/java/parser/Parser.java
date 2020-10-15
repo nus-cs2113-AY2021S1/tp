@@ -1,16 +1,19 @@
 package parser;
 
 
-import command.AddCommand;
-import command.Command;
-import command.ExitCommand;
-import command.PrintFullListCommand;
+import command.*;
 
 import event.Assignment;
 import event.PersonalEvent;
 
-import exception.*;
-import location.*;
+import event.Class;
+import exception.NoEventTimeMarkerException;
+import exception.TimeFormatException;
+import exception.EmptyEventException;
+import exception.NuScheduleException;
+import exception.NoEventTimeException;
+import exception.WrongCommandException;
+
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -21,10 +24,12 @@ import java.time.format.DateTimeParseException;
 public abstract class Parser {
     public static final String EXIT = "bye";
     public static final String PRINT_Event_LIST = "list";
+    public static final String PRINT_LOCATION_LIST = "locations";
+    public static final String LOCATE_EVENT = "locate";
     public static final String Event_DONE = "done";
     public static final String ADD_ASSIGNMENT = "assignment";
     public static final String ADD_CLASS = "class";
-    public static final String ADD_PERSONAL_EVENT = "personalevent";
+    public static final String ADD_PERSONAL_EVENT = "personalEvent";
     public static final String Event_DELETE = "delete";
     public static final String Event_FIND = "find";
     public static final String BY = "/by";
@@ -46,6 +51,8 @@ public abstract class Parser {
             return new ExitCommand();
         } else if (fullCommand.equals(PRINT_Event_LIST)) {
             return new PrintFullListCommand();
+        } else if (fullCommand.equals(PRINT_LOCATION_LIST)) {
+            return new PrintLocationCommand();
         }
 
         String[] words = fullCommand.split(SINGLE_SPACE);
@@ -98,22 +105,108 @@ public abstract class Parser {
         //            return new DeleteCommand(EventIndex);
         //        }
         //
-        //this block deals with add command
-        //we shall check that the user input is not meant for any other command beforehand
-        //because the default block will throw an exception.
-        // i.e. when this block is entered, the parser will not go to any other blocks
-        int timeDividerPosition;
-        int timeDivider;
-        int locationDividerPosition;
-        String dateTime;
-        Location location;
-        switch (words[0]) {
-            case ADD_ASSIGNMENT:
-                timeDividerPosition = fullCommand.indexOf(BY);
-                locationDividerPosition = fullCommand.indexOf(LOCATION);
+      
+                //this block deals with add command
+                //we shall check that the user input is not meant for any other command beforehand
+                //because the default block will throw an exception.
+                // i.e. when this block is entered, the parser will not go to any other blocks
+                int dividerPosition;
+                int timeDivider;
+                String dateTime;
+                switch (words[0]) {
+                    case ADD_ASSIGNMENT:
+                        dividerPosition = fullCommand.indexOf(BY);
 
-                if (fullCommand.substring(10).isBlank()) {
-                    throw new EmptyEventException();
+                        if (fullCommand.substring(10).isBlank()) {
+                            throw new EmptyEventException();
+                        }
+                        if (dividerPosition == -1) {
+                            throw new NoEventTimeMarkerException();
+                        }
+                        if (fullCommand.substring(10, dividerPosition).isBlank()) {
+                            throw new EmptyEventException();
+                        }
+                        try {
+                            fullCommand.substring(dividerPosition + 4);
+                        } catch (StringIndexOutOfBoundsException e) {
+                            throw new NoEventTimeException();
+                        }
+                        try {
+                            timeDivider = fullCommand.substring(dividerPosition + 4).indexOf(SINGLE_SPACE);
+                            dateTime = fullCommand.substring(dividerPosition + 4, dividerPosition + 4 + timeDivider)
+                                    + "T"
+                                    + fullCommand.substring(dividerPosition + 4 + timeDivider + 1);
+                            return new AddCommand(new Assignment(fullCommand.substring(10, dividerPosition)
+                            , LocalDateTime.parse(dateTime)));
+                        } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
+                            throw new TimeFormatException();
+                        }
+
+
+                    case ADD_CLASS:
+                        dividerPosition = fullCommand.indexOf(AT);
+
+                        if (fullCommand.substring(5).isBlank()) {
+                            throw new EmptyEventException();
+                        }
+                        if (dividerPosition == -1) {
+                            throw new NoEventTimeMarkerException();
+                        }
+                        if (fullCommand.substring(5, dividerPosition).isBlank()) {
+                            throw new EmptyEventException();
+                        }
+                        try {
+                            fullCommand.substring(dividerPosition + 4);
+                        } catch (StringIndexOutOfBoundsException e) {
+                            throw new NoEventTimeException();
+                        }
+                        try {
+                            timeDivider = fullCommand.substring(dividerPosition + 4).indexOf(SINGLE_SPACE);
+                            dateTime = fullCommand.substring(dividerPosition + 4, dividerPosition + 4 + timeDivider)
+                                    + "T"
+                                    + fullCommand.substring(dividerPosition + 4 + timeDivider + 1);
+
+                            return new AddCommand(new Class(fullCommand.substring(5, dividerPosition)
+                            , LocalDateTime.parse(dateTime)));
+                        } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
+                            throw new TimeFormatException();
+                        }
+
+                    case ADD_PERSONAL_EVENT:
+                        dividerPosition = fullCommand.indexOf(AT);
+                        if (fullCommand.substring(13).isBlank()) {
+                            throw new EmptyEventException();
+                        }
+                        if (dividerPosition == -1) {
+                        throw new NoEventTimeMarkerException();
+                        }
+                        if (fullCommand.substring(13, dividerPosition).isBlank()) {
+                            throw new EmptyEventException();
+                        }
+                        try {
+                            fullCommand.substring(dividerPosition + 4);
+                        } catch (StringIndexOutOfBoundsException e) {
+                            throw new NoEventTimeException();
+                        }
+                        try {
+                            timeDivider = fullCommand.substring(dividerPosition + 4).indexOf(SINGLE_SPACE);
+                            dateTime = fullCommand.substring(dividerPosition + 4, dividerPosition + 4 + timeDivider)
+                                    + "T"
+                                    + fullCommand.substring(dividerPosition + 4 + timeDivider + 1);
+                            return new AddCommand(new PersonalEvent(fullCommand.substring(13,dividerPosition)
+                                    ,LocalDateTime.parse(dateTime)));
+                        } catch (StringIndexOutOfBoundsException e) {
+                            throw new EmptyEventException();
+                        }
+
+                    case LOCATE_EVENT:
+
+
+                    default:
+                        throw new WrongCommandException();
+
+
+
                 }
                 if (timeDividerPosition == -1 | locationDividerPosition == -1) {
                     throw new NoEventMarkerException();

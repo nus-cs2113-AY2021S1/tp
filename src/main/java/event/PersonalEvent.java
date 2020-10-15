@@ -21,7 +21,7 @@ public class PersonalEvent extends Event {
      * @return the result string to be stored
      */
     public String fileString() {
-        return "E//" + (isDone ? 1 : 0) + "//" + description + "//" + at;
+        return "P//" + (isDone ? 1 : 0) + "//" + description + "//" + at;
     }
 
     /**

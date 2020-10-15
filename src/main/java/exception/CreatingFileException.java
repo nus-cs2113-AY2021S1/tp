@@ -13,7 +13,7 @@ public class CreatingFileException extends NuScheduleException {
     /**
      * Prepare the message to be printed when this exception is experienced.
      *
-     * @return the error message
+     * @return the error message.
      */
     public String getMessage() {
         return "The file \"" + filePath + "\" is not created";

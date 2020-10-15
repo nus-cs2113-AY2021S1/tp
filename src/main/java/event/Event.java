@@ -67,6 +67,10 @@ public abstract class Event {
     public String getDescription() {
         return description;
     }
+
+    public Location getLocation() {
+        return location;
+    }
 }
 
 

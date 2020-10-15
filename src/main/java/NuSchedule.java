@@ -22,22 +22,24 @@ public class NuSchedule {
 
     public NuSchedule(String filePath) {
         ui = new UI();
-
-        busStops = new BusStopList();
-        locations = new LocationList();
-        busStops.loadBusStopData();
-        locations.loadLocationData();
         try {
             storage = new Storage(filePath);
         } catch (CreatingFileException e) {
             ui.showError(e.getMessage());
         }
         try {
-            events = new EventList(storage.load());
+            events = new EventList(storage.loadEvents());
         } catch (NuScheduleException e) {
             ui.showLoadingError();
             events = new EventList();
         }
+
+        busStops = new BusStopList();
+        locations = new LocationList();
+        storage.loadBusStopData(busStops.getBusStopList());
+        storage.loadLocationData(locations.getLocationList());
+        // ui.printBusStopList(busStops.getBusStopList());
+        // ui.printLocationList(locations.getLocationList());
     }
 
     /**
@@ -51,7 +53,7 @@ public class NuSchedule {
                 String fullCommand = ui.readCommand();
                 ui.printLine(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand);
-                c.execute(events, ui, storage);
+                c.execute(events, locations, busStops, ui, storage);
                 isExit = c.isExit();
             } catch (NuScheduleException e) {
                 ui.showError(e.getMessage());
@@ -63,5 +65,6 @@ public class NuSchedule {
 
     public static void main(String[] args){
         new NuSchedule("data/events.txt").run();
+        //todo add more files for different purposes
     }
 }
