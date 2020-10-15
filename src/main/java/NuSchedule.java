@@ -27,6 +27,7 @@ public class NuSchedule {
         locations = new LocationList();
         busStops.loadBusStopData();
         locations.loadLocationData();
+        /*
         try {
             storage = new Storage(filePath);
         } catch (CreatingFileException e) {
@@ -38,6 +39,8 @@ public class NuSchedule {
             ui.showLoadingError();
             events = new EventList();
         }
+        */
+        events = new EventList();
     }
 
     /**

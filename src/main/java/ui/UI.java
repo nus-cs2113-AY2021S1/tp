@@ -165,7 +165,15 @@ public class UI {
         System.out.println("Got it. I've added this Event: ");
         System.out.println(eventAdded.toString());
     }
-
+    /**
+     * Prints the message when the user adds some Event.
+     *
+     * @param eventEdited the Event being edited
+     */
+    public void printEditEventMessage(Event eventEdited) {
+        System.out.println("Got it. I've edited this Event: ");
+        System.out.println(eventEdited.toString());
+    }
     /**
      * Prints all the Events of the filtered list with labels, based on the input list.
      *

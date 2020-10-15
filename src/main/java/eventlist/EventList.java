@@ -54,6 +54,10 @@ public class EventList {
             //throw new DoneUndefinedEventException(eventIndex);
         }
     }
+    
+    public void editEvent(Event event, int index) {
+        events.set(index, event);
+    }
 
     /**
      * Gives the access to the list of events.
