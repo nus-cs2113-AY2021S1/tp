@@ -4,8 +4,11 @@ package parser;
 import command.*;
 
 import event.Assignment;
+import event.Event;
 import event.PersonalEvent;
 
+
+import ui.UI;
 import event.Class;
 import exception.NoEventTimeMarkerException;
 import exception.TimeFormatException;
@@ -15,8 +18,10 @@ import exception.NoEventTimeException;
 import exception.WrongCommandException;
 
 
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+
 
 /**
  * This class contains one function -- parse, to call the respective command function according to the user input.
@@ -32,6 +37,7 @@ public abstract class Parser {
     public static final String ADD_PERSONAL_EVENT = "personalEvent";
     public static final String Event_DELETE = "delete";
     public static final String Event_FIND = "find";
+    public static final String EDIT = "edit";
     public static final String BY = "/by";
     public static final String SINGLE_SPACE = " ";
     public static final String AT = "/at";
@@ -114,6 +120,69 @@ public abstract class Parser {
                 int timeDivider;
                 String dateTime;
                 switch (words[0]) {
+                    case EDIT:
+                        UI ui = new UI();
+                        int index = -1;
+                        if(fullCommand.length() <= 4) {
+                            throw new EmptyEventIndex();
+                        }
+                        if (fullCommand.substring(5).isBlank()) {
+                            throw new EmptyEventIndex();
+                        }
+
+                        try {
+                            index = Integer.parseInt(fullCommand.substring(5)) - 1;
+                        } catch (NumberFormatException e) {
+                            throw new EditIndexException();
+                        }
+                        
+
+
+                        System.out.println("enter new event:");
+                        String newCommand = ui.readCommand();
+                        int firstDivider;
+
+                        if (newCommand.startsWith("assignment")) {
+                            firstDivider = 10;
+                        } else if (newCommand.startsWith("class")) {
+                            firstDivider = 5;
+                        } else if (newCommand.startsWith("personalevent")) {
+                            firstDivider = 13;
+                        } else {
+                            firstDivider = 0;
+                        }
+
+                        if (firstDivider != 0) {
+                            dividerPosition = newCommand.indexOf(BY);
+
+                            if (newCommand.substring(firstDivider).isBlank()) {
+                                throw new EmptyEventException();
+                            }
+                            if (dividerPosition == -1) {
+                                throw new NoEventTimeMarkerException();
+                            }
+                            if (newCommand.substring(firstDivider, dividerPosition).isBlank()) {
+                                throw new EmptyEventException();
+                            }
+                            try {
+                                newCommand.substring(dividerPosition + 4);
+                            } catch (StringIndexOutOfBoundsException e) {
+                                throw new NoEventTimeException();
+                            }
+                            try {
+                                timeDivider = newCommand.substring(dividerPosition + 4).indexOf(SINGLE_SPACE);
+                                dateTime = newCommand.substring(dividerPosition + 4, dividerPosition + 4 + timeDivider)
+                                        + "T"
+                                        + newCommand.substring(dividerPosition + 4 + timeDivider + 1);
+                                return new EditCommand(new Assignment(newCommand.substring(firstDivider, dividerPosition)
+                                        , LocalDateTime.parse(dateTime)), index);
+                            } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
+                                throw new TimeFormatException();
+                            }
+                        }
+
+
+
                     case ADD_ASSIGNMENT:
                         dividerPosition = fullCommand.indexOf(BY);
 

@@ -9,19 +9,26 @@ import storage.Storage;
 import ui.UI;
 
 import exception.LoadingException;
-
+/**
+  * Main entry-point for the NUSchedule application.
+  */
 public class NuSchedule {
-    /**
-     * Main entry-point for the NUSchedule application.
-     */
+    
     private Storage storage;
     private EventList events;
     private static BusStopList busStops;
     private static LocationList locations;
     private UI ui;
+  
 
     public NuSchedule(String filePath) {
         ui = new UI();
+
+        busStops = new BusStopList();
+        locations = new LocationList();
+        //busStops.loadBusStopData();
+        //locations.loadLocationData();
+
         try {
             storage = new Storage(filePath);
         } catch (CreatingFileException e) {
@@ -34,12 +41,12 @@ public class NuSchedule {
             events = new EventList();
         }
 
-        busStops = new BusStopList();
-        locations = new LocationList();
+        events = new EventList();
         storage.loadBusStopData(busStops.getBusStopList());
         storage.loadLocationData(locations.getLocationList());
         // ui.printBusStopList(busStops.getBusStopList());
         // ui.printLocationList(locations.getLocationList());
+
     }
 
     /**
