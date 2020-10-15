@@ -33,6 +33,7 @@ class CreateSprintCommandTest {
         Project proj = new Project(null, null, "90", "10");
         projectList.add(proj);
     }
+
     @Test
     void createSprint_missingFields_returnErrorMessage() {
         setUpStreams();
