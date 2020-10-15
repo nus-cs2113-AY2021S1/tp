@@ -1,5 +1,120 @@
 [
   {
+    "topic": "Requirements",
+    "questions": [
+      {
+        "description": "A software project may come in the form of:",
+        "hint": "Recall the types of software projects that exist.",
+        "options": [
+          {
+            "description": "A brown-field project and a green-field project.",
+            "correct": true
+          },
+          {
+            "description": "A green-field project and a blue-field project.",
+            "correct": false
+          },
+          {
+            "description": "A blue-field project and a red-field project.",
+            "correct": false
+          },
+          {
+            "description": "A red-field project and a brown-field project.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Which of the following is a characteristic of a well-defined requirement?",
+        "hint": "Try to remember about what purpose requirements serve to pick out the correct answer.",
+        "options": [
+          {
+            "description": "Qualitative",
+            "correct": false
+          },
+          {
+            "description": "Unambiguous",
+            "correct": true
+          },
+          {
+            "description": "Idealistic",
+            "correct": false
+          },
+          {
+            "description": "Malleable",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Requirements come from stakeholders.",
+        "hint": "Think about what you have done when writing OOP code and what OOP is useful for",
+        "options": [
+          {
+            "description": "True",
+            "correct": true
+          },
+          {
+            "description": "False",
+            "correct": false
+          },
+          {
+            "description": "NIL",
+            "correct": false
+          },
+          {
+            "description": "NIL",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Requirements should be prioritised based on:",
+        "hint": "Think about how a stakeholder would rank a list of requirements in order.",
+        "options": [
+          {
+            "description": "Order of creation and amount of work needed to be done to complete the requirement.",
+            "correct": false
+          },
+          {
+            "description": "There is no need to prioritise requirements.",
+            "correct": false
+          },
+          {
+            "description": "How much time it takes to implement the requirement and its level of intricacy. ",
+            "correct": false
+          },
+          {
+            "description": "Importance and urgency of the requirement.",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "True or False: I can omit the benefit specified in a User Story if it is obvious.",
+        "hint": "If something is obvious, such that everyone knows what it does, is there a need to state it?",
+        "options": [
+          {
+            "description": "True",
+            "correct": true
+          },
+          {
+            "description": "False",
+            "correct": false
+          },
+          {
+            "description": "NIL",
+            "correct": false
+          },
+          {
+            "description": "NIL",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
     "topic": "OOP",
     "questions": [
       {
@@ -108,7 +223,7 @@
           },
           {
             "description": "Prolog follows the Logic Programming paradigm",
-            "correct": true
+            "correct": false
           }
         ]
       }
