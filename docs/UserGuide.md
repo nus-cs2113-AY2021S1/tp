@@ -94,6 +94,7 @@ Add team members into the project.
   mary has been added to the project.
   ```
 
+
 #### Remove team members from project 
 Remove team members from the project
 * Format: `member /del <username> [<username> ...]`
@@ -247,5 +248,6 @@ Assigning a task to a team member
 |  |  |  |
 |  |  |  |
 |  |  |  |
+
 
       
