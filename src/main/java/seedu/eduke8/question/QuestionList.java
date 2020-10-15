@@ -28,11 +28,13 @@ public class QuestionList implements DisplayableList {
 
     @Override
     public void add(Displayable question) {
+        assert question != null;  // Exception in future if user can add question
         questions.add(question);
     }
 
     @Override
     public void delete(int index) {
+        assert (index > 0 && index < questions.size());   // Exception in future if user can delete question
         questions.remove(index);
     }
 

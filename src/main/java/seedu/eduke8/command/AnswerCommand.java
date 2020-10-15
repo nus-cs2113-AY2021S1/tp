@@ -32,10 +32,10 @@ public class AnswerCommand extends Command {
     }
 
     private int findCorrectOption(DisplayableList optionList) {
-        for(int i=0; i<optionList.getCount(); i++) {
+        for (int i = 0; i < optionList.getCount(); i++) {
             Option option = (Option) optionList.getInnerList().get(i);
             if (option.isCorrectAnswer()) {
-                return (i+1);
+                return (i + 1);
             }
         }
         return 0; //needs to be fixed

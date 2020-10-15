@@ -1,10 +1,11 @@
 package seedu.eduke8.ui;
 
+import seedu.eduke8.common.Displayable;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.question.Question;
-import seedu.eduke8.topic.TopicList;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_STORAGE_FAIL;
@@ -31,19 +32,41 @@ public class Ui {
 
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String HORIZONTAL_LINE = "-------------------------------------------------------------------";
-    private static final String MESSAGE_ABOUT = "E-Duke-8 is a desktop app that helps CS2113/T students learn and\n"
-            + "understand software engineering and OOP principles through a\ngamified platform and enhance their "
-            + "learning experience. It also\nconsolidates key concepts for easy revision.";
-    private static final String MESSAGE_GREETINGS = "Hello! I'm E-Duke-8\nWhat can I do for you?";
+    private static final String MESSAGE_ABOUT = "E-Duke-8 is a desktop app that helps CS2113/T students learn and"
+            + System.lineSeparator()
+            + "understand software engineering and OOP principles through a"
+            + System.lineSeparator()
+            + "gamified platform and enhance their "
+            + "learning experience. It also"
+            + System.lineSeparator()
+            + "consolidates key concepts for easy revision.";
+    private static final String MESSAGE_GREETINGS = "Hello! I'm E-Duke-8"
+            + System.lineSeparator()
+            + "What can I do for you?";
     private static final String MESSAGE_EXIT = "Bye bye. Hope you have a nice day and see you soon!";
-    private static final String MESSAGE_HELP = "These are the commands that you can used:\n1) about\n2) help\n"
-            + "3) topics\n4) textbook\n5) quiz t/<topic> n/<number of questions>\n6) exit";
+    private static final String MESSAGE_HELP = "These are the commands that you can used:"
+            + System.lineSeparator()
+            + "1) about"
+            + System.lineSeparator()
+            + "2) help"
+            + System.lineSeparator()
+            + "3) topics"
+            + System.lineSeparator()
+            + "4) textbook"
+            + System.lineSeparator()
+            + "5) quiz t/<topic> n/<number of questions>"
+            + System.lineSeparator()
+            + "6) exit";
     private static final String MESSAGE_QUIZ_START = "Start of quiz:";
-    private static final String MESSAGE_QUIZ_END = "This is the end of the quiz!\nHope you have learnt something new!";
+    private static final String MESSAGE_QUIZ_END = "This is the end of the quiz!"
+            + System.lineSeparator()
+            + "Hope you have learnt something new!";
     private static final String MESSAGE_ANSWER_WRONG = "Oops! The correct answer is ";
     private static final String MESSAGE_ANSWER_WRONG_SECOND = "! Do visit the textbook to read up more.";
     private static final String MESSAGE_ANSWER_CORRECT = "Congrats! This answer is correct! Well Done!";
-    private static final String MESSAGE_TEXTBOOK = "The textbook for this module is available at:\n" + TEXTBOOK_WEBSITE;
+    private static final String MESSAGE_TEXTBOOK = "The textbook for this module is available at:"
+            + System.lineSeparator()
+            + TEXTBOOK_WEBSITE;
     private static final String MESSAGE_HINT = "Hint: ";
 
     public String getInputFromUser() {
@@ -119,48 +142,23 @@ public class Ui {
         printMessage(MESSAGE_ABOUT);
     }
 
-    public void printAllTopics(TopicList topics) {
-        System.out.println(HORIZONTAL_LINE);
-
-        System.out.println("These are the available topics:");
-        for (int i = 0; i < topics.getCount(); i++) {
-            System.out.println(i + 1 + ") " + topics.getInnerList().get(i).getDescription());
-        }
-
-        System.out.println(HORIZONTAL_LINE);
-    }
-
     public void printTextbook() {
         printMessage(MESSAGE_TEXTBOOK);
     }
 
     public void printError(String errorMessage) {
-        switch (errorMessage) {
-        case ERROR_STORAGE_FAIL:
-            printMessage(ERROR_STORAGE_FAIL);
-            break;
-        case ERROR_UNRECOGNIZED_COMMAND:
-            printMessage(ERROR_UNRECOGNIZED_COMMAND);
-            break;
-        case ERROR_QUIZ_WRONG_FORMAT:
-            printMessage(ERROR_QUIZ_WRONG_FORMAT);
-            break;
-        case ERROR_QUIZ_COMMAND_NOT_IMPLEMENTED:
-            printMessage(ERROR_QUIZ_COMMAND_NOT_IMPLEMENTED);
-            break;
-        case ERROR_QUIZ_ANSWER_NOT_INDEX:
-            printMessage(ERROR_QUIZ_ANSWER_NOT_INDEX);
-            break;
-        case ERROR_QUIZ_INVALID_QUESTION_NUMBER:
-            printMessage(ERROR_QUIZ_INVALID_QUESTION_NUMBER);
-            break;
-        case ERROR_QUIZ_INSUFFICIENT_TOPIC_QUESTIONS:
-            printMessage(ERROR_QUIZ_INSUFFICIENT_TOPIC_QUESTIONS);
-            break;
-        default:
-            printMessage(ERROR_UNKNOWN);
-            break;
+        printMessage(errorMessage);
+    }
+
+    public void printTopicList(ArrayList<Displayable> topics) {
+        System.out.println(HORIZONTAL_LINE);
+
+        System.out.println("These are the available topics:");
+        for (int i = 0; i < topics.size(); i++) {
+            System.out.println(topics.get(i).getDescription());
         }
+
+        System.out.println(HORIZONTAL_LINE);
     }
 
     private void printStartQuizTopics(String topicsChosen) {
@@ -182,5 +180,4 @@ public class Ui {
             System.out.println("s.");
         }
     }
-
 }
