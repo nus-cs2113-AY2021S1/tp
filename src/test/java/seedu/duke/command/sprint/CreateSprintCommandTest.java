@@ -37,7 +37,7 @@ class CreateSprintCommandTest {
 
         String command = "sprint /create";
         parser.parser(command, projectList);
-        String expectedOutput = "What is the goal for this sprint?" + System.lineSeparator();
+        String expectedOutput = "Missing goal for this sprint." + System.lineSeparator();
         assertEquals(expectedOutput, outContent.toString());
 
         restoreStreams();
