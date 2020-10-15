@@ -3,6 +3,8 @@ package command;
 import event.Event;
 import eventlist.EventList;
 import exception.NuScheduleException;
+import locationlist.BusStopList;
+import locationlist.LocationList;
 import storage.Storage;
 import ui.UI;
 
@@ -26,11 +28,13 @@ public class AddCommand extends Command {
      * Adds the appropriate type of event/task to the list.
      *
      * @param events   the list of events.
+     * @param locations the list of Locations
+     * @param busStops the list of BusStops
      * @param ui      do outputs.
      * @param storage store the data.
      */
     @Override
-    public void execute(EventList events, UI ui, Storage storage) throws NuScheduleException{
+    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) throws NuScheduleException{
         events.addEvent(event);
         ui.printAddEventMessage(event);
         ui.printNumEvent(events.getSize());

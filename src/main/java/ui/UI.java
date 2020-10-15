@@ -2,6 +2,9 @@ package ui;
 
 
 import event.Event;
+import location.BusStop;
+import location.Location;
+import locationlist.LocationList;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -181,5 +184,31 @@ public class UI {
         }
     }
 
+    /**
+     * Prints all the locations stored in the location list with nearest bus stops
+     *
+     * @param locationsList an Array List of Locations to be printed
+     */
+    public void printLocationList(ArrayList<Location> locationsList) {
+        int i = 1;
+        System.out.println("Lists of locations: ");
+        for (Location location : locationsList) {
+            System.out.println(i + ". " + location);
+            i++;
+        }
+    }
 
+    /**
+     * Prints all the bus stops stored in the bus stop list with buses that goes there
+     *
+     * @param busStopList an Array List of Bus Stops to be printed
+     */
+    public void printBusStopList(ArrayList<BusStop> busStopList) {
+        int i = 1;
+        System.out.println("List of bus stops: ");
+        for(BusStop busStop : busStopList) {
+            System.out.println(i + ". " + busStop);
+            i++;
+        }
+    }
 }

@@ -1,10 +1,7 @@
 package parser;
 
 
-import command.AddCommand;
-import command.Command;
-import command.ExitCommand;
-import command.PrintFullListCommand;
+import command.*;
 
 import event.Assignment;
 import event.PersonalEvent;
@@ -25,6 +22,8 @@ import java.time.format.DateTimeParseException;
 public abstract class Parser {
     public static final String EXIT = "bye";
     public static final String PRINT_Event_LIST = "list";
+    public static final String PRINT_LOCATION_LIST = "locations";
+    public static final String LOCATE_EVENT = "locate";
     public static final String Event_DONE = "done";
     public static final String ADD_ASSIGNMENT = "assignment";
     public static final String ADD_CLASS = "class";
@@ -49,6 +48,8 @@ public abstract class Parser {
             return new ExitCommand();
         } else if (fullCommand.equals(PRINT_Event_LIST)) {
             return new PrintFullListCommand();
+        } else if (fullCommand.equals(PRINT_LOCATION_LIST)) {
+            return new PrintLocationCommand();
         }
 
         String[] words = fullCommand.split(SINGLE_SPACE);
@@ -194,6 +195,9 @@ public abstract class Parser {
                         } catch (StringIndexOutOfBoundsException e) {
                             throw new EmptyEventException();
                         }
+
+                    case LOCATE_EVENT:
+
 
                     default:
                         throw new WrongCommandException();

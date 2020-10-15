@@ -3,9 +3,14 @@ package location;
 enum locationType {
     BUILDING,
     HOSTEL,
-    LT
+    LT,
+    OUT_OF_NUS
 }
 
+/**
+ * Represents location objects
+ * Contains String name, which is the name of location, and type of location
+ */
 public class Location {
     protected String name;
     protected locationType type;
@@ -15,7 +20,11 @@ public class Location {
         this.name = name;
     }
 
-    public String printType() {
+    public String getName() {
+        return name;
+    }
+
+    protected String printType() {
         String str;
 
         switch (type) {
@@ -28,8 +37,11 @@ public class Location {
             case LT:
                 str = "Lecture Theatre";
                 break;
+            case OUT_OF_NUS:
+                str = "Out of NUS";
+                break;
             default:
-                str = "invalid location type";
+                str = "ERROR";
         }
 
         return str;

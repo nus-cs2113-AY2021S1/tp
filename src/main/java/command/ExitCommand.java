@@ -1,6 +1,8 @@
 package command;
 
 import eventlist.EventList;
+import locationlist.BusStopList;
+import locationlist.LocationList;
 import storage.Storage;
 import ui.UI;
 
@@ -13,11 +15,13 @@ public class ExitCommand extends Command {
      * Also prints the exit message.
      *
      * @param tasks   the list of tasks.
+     * @param locations the list of Locations
+     * @param busStops the list of BusStops
      * @param ui      do outputs.
      * @param storage store the data.
      */
     @Override
-    public void execute(EventList tasks, UI ui, Storage storage) {
+    public void execute(EventList tasks, LocationList locations, BusStopList busStops, UI ui, Storage storage) {
         isExit = true;
         ui.printExitMessage();
 
