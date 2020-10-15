@@ -1,39 +1,36 @@
-
 # AniChan User Guide
 ## Table of Contents
 1. [Introduction](#1-introduction)
-1. [Quick Start](#2-quick-start)
-1. [Features](#3-features)
-1. [FAQ](#4-faq)
-1. [Command Summary](#5-command-summary)
+2. [Quick Start](#2-quick-start)
+3. [Features](#3-features)
+4. [FAQ](#4-faq)
+5. [Command Summary](#5-command-summary)
 
 ## 1. Introduction
 
-AniChan is an all-rounded tool to effectively create and organize anime lists with viewing statistics, efficiency-focused features, and tools to improve anime-watching experience.
+AniChan is an all-rounded tool to effectively create and organize anime lists with viewing statistics, 
+efficiency-focused features, and tools to improve anime-watching experience.
 
 ## 2. Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Download the latest version of `AniChan` from [here](http://link.to/duke).
-1. Copy the file to the folder you want to use as the home folder for your AniChan.
-1. Open cmd and change directory into the folder. Run “java -jar anichan.jar”.
-1. Type a command into the command prompt and press ‘Enter’ to execute it. e.g. typing `help` and pressing ‘Enter’ will display the help message.
-
+2. Download the latest version of `AniChan` from [here](http://link.to/duke).
+3. Copy the file to the folder you want to use as the home folder for your AniChan.
+4. Open cmd and change directory into the folder. Run “java -jar anichan.jar”.
+5. Type a command into the command prompt and press ‘Enter’ to execute it. e.g. typing `help` and pressing ‘Enter’ will display the help message.
 
 ## 3. Features 
-Some notes about the command format:
-
-- Words in UPPERCASE are values that can be supplied by the user.
+**Command Format**
+* Words in UPPERCASE are values that can be supplied by the user.
 E.g. in `browse -s SORT_CATEGORY -p PAGE_NUMBER` where SORT_CATEGORY and PAGE_NUMBER are 
 parameters that can be used as `browse -s name -o asc`.
 
-- Square brackets indicate optional parameters.
+* Square brackets indicate optional parameters.
 E.g. `browse [-s SORT_CATEGORY]` can be used simply as `browse` or `browse -s name`.
   
-- The order of parameters are not important.
+* The order of parameters are not important.
 E.g. Both `-n USERNAME -dob DATE_FORMAT` and `-dob DATE_FORMAT -n USERNAME` are 
 both acceptable and will produce the same output.  
-
 
 ### 3.1 View the help: `help`
 This command will provide the details of all available commands and their usage. 
@@ -46,7 +43,7 @@ Adds a new user.
 
 Format: `adduser -n USERNAME -dob DATE_FORMAT -g GENDER`
 
-Sample Input: `adduser -n Timothy Wright -dob 12/12/1997 -g male`
+Sample input: `adduser -n Timothy Wright -dob 12/12/1997 -g male`
 
 The expected outcome:
 
@@ -64,7 +61,7 @@ Note:
 
 The name in the command prompter has changed as well to reflect the new user.
 
-Sample Input: `Barkley-san (Default) #> switchuser -n Isaac Asimov`
+Sample input: `Barkley-san (Default) #> switchuser -n Isaac Asimov`
 
 The expected outcome:
 ```
@@ -96,7 +93,7 @@ The order of the parameter does not matter
 
 If no parameters or only `-o` is specified then it will display in its anime id order.
 
-Sample Input: `browse -s name -p 1 -o dsc`
+Sample input: `browse -s name -p 1 -o dsc`
 
 The expected outcome:
 ```
@@ -123,6 +120,27 @@ The expected outcome:
 Browsing Page: 1
 ```
 ### 3.5 Create an Anime watchlist: `watchlist`
+This command handles all watchlist management related operations: 
+* Create a new watchlist.
+* List all created watchlist(s).
+* Activate another watchlist to use.    [coming in v2.0]
+* Delete a watchlist that is no longer needed. [coming in v2.0]
+
+Format: 
+
+`watchlist -n <WATCHLIST_NAME>`
+
+`watchlist -l`
+
+`watchlist -s <WATCHLIST_INDEX>` [coming in v2.0]
+
+`watchlist -d <WATCHLIST_INDEX>` [coming in v2.0]
+
+Sample input: `watchlist -n Adventure Anime`
+
+The expected outcome: 
+
+`Watchlist created successfully.`
 
 ### 3.6 Add an Anime to the select watchlist: `add`
 
@@ -133,21 +151,28 @@ Exit AniChan
 
 Format: `exit`
 
-Sample Input: `exit`
+Sample input: `exit`
 
 The expected outcome:
 ```
 Sayonara!
 ```
-## 4. FAQ
-1. 
 
+### 3.9 Saving and loading data
+User profile and watchlist(s) data will be **saved automatically** whenever changes are made to the data, 
+and will also be **loaded automatically** when AniChan is launched.
+
+These data can be found in the folder where AniChan is launched, in the subfolder, `data/AniChan`, 
+saved in their respective file names `userprofile.txt` and `watchlist.txt`.
+
+## 4. FAQ
 
 ## 5. Command Summary
 
 |Feature|Command|
 |---    |---|
 |Help | `help`|
-|Browse | `browse -s [name/rating] -p <1-26> -o [asc/dsc]`  |
 |Add User | `adduser -n USERNAME -dob DATE_FORMAT -g GENDER ` |
 |Switch User | `switchuser -n USERNAME` |
+|Browse | `browse -s [name/rating] -p <1-26> -o [asc/dsc]`  |
+|Watchlist | `watchlist -n <WATCHLIST_NAME>` <br /> `watchlist -l` |
