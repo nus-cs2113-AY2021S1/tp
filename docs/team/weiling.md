@@ -1,4 +1,4 @@
-# Wei LIng - Project Portfolio Page
+# Wei Ling - Project Portfolio Page
 
 ## Overview
 
