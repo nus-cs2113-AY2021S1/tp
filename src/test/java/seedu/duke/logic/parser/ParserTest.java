@@ -48,5 +48,21 @@ class ParserTest {
         boolean isOngoing = p.extractType();
         assertTrue(isOngoing);
     }
-    
+
+    @Test
+    void extractType_routeCommand_returnsTrue() throws CustomException {
+        String command = "/route PGP /to PGPR";
+        Parser p = new Parser(command);
+        boolean isOngoing = p.extractType();
+        assertTrue(isOngoing);
+    }
+
+    @Test
+    void extractType_busCommand_returnsTrue() throws CustomException {
+        String command = "/bus PGP";
+        Parser p = new Parser(command);
+        boolean isOngoing = p.extractType();
+        assertTrue(isOngoing);
+    }
+
 }
