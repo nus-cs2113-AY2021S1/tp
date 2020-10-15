@@ -20,16 +20,6 @@ command>Project successfully created.
 [There are no Sprints]
 =================================================================
 
-
-============================ PROJECT ============================
-[Title: MeTube ]
-[Description: video streaming software ]
-[No members added]
-[Project will start along with the first sprint]
-[Project backlog is empty]
-[There are no Sprints]
-=================================================================
-
 command>amy has been added to the project.
 john has been added to the project.
 bob has been added to the project.
