@@ -12,7 +12,6 @@ public class Fan extends Appliance {
         speed = "1";
     }
 
-
     public String getType() {
         return "Fan";
     }

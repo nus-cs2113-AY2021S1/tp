@@ -30,6 +30,7 @@ public class StorageFile {
 
     public void writeToFile() {
         try {
+            assert filePath.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
             createFile();
             clearFile();
             FileWriter myWriter = new FileWriter(filePath);
@@ -45,6 +46,7 @@ public class StorageFile {
 
     public void readFile() {
         try {
+            assert filePath.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
             int i = 0;
             File myFile = new File(filePath);
             Scanner myReader = new Scanner(myFile);
@@ -106,6 +108,7 @@ public class StorageFile {
 
     public void createFile() {
         try {
+            assert filePath.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
             File myObj = new File(filePath);
             if (!myObj.getParentFile().exists()) {
                 myObj.getParentFile().mkdirs();
@@ -123,6 +126,7 @@ public class StorageFile {
 
     public void clearFile() {
         try {
+            assert filePath.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
             PrintWriter writer = new PrintWriter(filePath);
             writer.print("");
             writer.close();
