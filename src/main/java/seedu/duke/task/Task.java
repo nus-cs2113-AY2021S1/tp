@@ -99,6 +99,15 @@ public class Task implements Jsonable {
         taskString.append(String.format("\tDescription: %s\n", this.description));
         taskString.append(String.format("\tPriority: %s\n", this.priority));
         taskString.append(String.format("\tCompletion: %s\n", this.isDone ? "Completed" : "Incomplete"));
+        if (!membersAllocatedTo.isEmpty()) {
+            taskString.append("\tAssigned to: ");
+            for (String member : membersAllocatedTo) {
+                taskString.append(String.format("%s ", member));
+            }
+            taskString.append("\n");
+        } else {
+            taskString.append("\tTask have yet to be assigned to anyone\n");
+        }
         return taskString.toString();
     }
 

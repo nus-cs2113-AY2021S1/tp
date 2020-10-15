@@ -71,6 +71,15 @@ public class Sprint implements Jsonable {
         this.endDate = endDate;
     }
 
+    public boolean checkTaskExist(int taskId) {
+        for (Integer id : sprintTaskIds) {
+            if (id == taskId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addSprintTask(int taskId) {
         this.sprintTaskIds.add(taskId);
     }
@@ -115,16 +124,8 @@ public class Sprint implements Jsonable {
         } else {
             for (int taskIds : sprintTaskIds) {
                 Task task = projAllocatedTo.getProjectBacklog().getTask(taskIds);
+                System.out.println(taskIds);
                 sprintInString.append(task.toString());
-                ArrayList<String> allocatedMembers = task.getAllocatedMembers();
-                if (!allocatedMembers.isEmpty()) {
-                    sprintInString.append("\tAssigned to: ");
-                    for (String member : allocatedMembers) {
-                        sprintInString.append(String.format("%s ", member));
-                    }
-                } else {
-                    sprintInString.append("\tTask have yet to be assigned to anyone\n");
-                }
             }
         }
         sprintInString.append("=================================================================\n");

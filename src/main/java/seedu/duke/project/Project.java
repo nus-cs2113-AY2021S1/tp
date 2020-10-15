@@ -61,9 +61,6 @@ public class Project implements Jsonable {
         }
         if (this.allSprints.size() != 0) {
             projectInString.append(allSprints.toString());
-//            int currentSprintIndex = this.allSprints.getCurrentSprintIndex();
-//            Sprint currentSprint = this.allSprints.getSprint(currentSprintIndex);
-//            projectInString.append(currentSprint.toSimplifiedString());
         } else {
             projectInString.append("[There are no Sprints]\n");
         }

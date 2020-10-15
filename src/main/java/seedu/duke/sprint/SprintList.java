@@ -14,6 +14,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class SprintList implements Jsonable {
+
+
     private ArrayList<Sprint> sprintList;
     private int currentSprintIndex;
 
@@ -33,6 +35,10 @@ public class SprintList implements Jsonable {
     public void addSprint(Project proj, String goal, LocalDate start, LocalDate end) {
         int newSprintID = this.size() + 1;
         sprintList.add(new Sprint(newSprintID, proj, goal, start, end));
+    }
+
+    public ArrayList<Sprint> getSprintList() {
+        return sprintList;
     }
 
     public int getCurrentSprintIndex() {
@@ -55,6 +61,7 @@ public class SprintList implements Jsonable {
         }
         return false;
     }
+
     @Override
     public String toString() {
         StringBuilder allSprintsInString = new StringBuilder();
