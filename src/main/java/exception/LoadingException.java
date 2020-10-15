@@ -1,9 +1,9 @@
-package NUSchedule.exception;
+package exception;
 
 /**
  * Represents the exception when the user edit the file in a wrong way.
  */
-public class LoadingException extends NUScheduleException {
+public class LoadingException extends NuScheduleException {
     /**
      * Prepare the message to be printed when this exception is experienced.
      *

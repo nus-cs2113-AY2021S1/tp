@@ -1,22 +1,22 @@
-package NUSchedule.event;
+package event;
 
-
-import NUSchedule.location.Location;
+import location.Location;
 
 import java.time.LocalDate;
 
 /**
  * Represents the event objects.
- * Contains a String <\code>description</\code> , which is the description of the event,
- * and a boolean <\code>isDone</\code>, which is the status of the Event.
+ * Contains a String <\code>description<\code> , which is the description of the event,
+ * and a boolean <\code>isDone<\code>, which is the status of the Event.
  * Provides methods to mark an event as done(either during user input or reading from file),
- * get the value of <\code>isDone</\code>,
- * convert the <\code>event</\code> object to a string to be printed out or write to a file.
+ * get the value of <\code>isDone<\code>,
+ * convert the <\code>event<\code> object to a string to be printed out or write to a file.
  */
 public abstract class Event {
     protected String description;
     protected boolean isDone;
     protected Location location;//to be implemented
+
     public Event(String description) {
         this.description = description;
         this.isDone = false;
@@ -37,7 +37,7 @@ public abstract class Event {
      * @return returns a tick if the Event is done, and returns a cross if the Event is not done.
      */
     public String getStatusIcon() {
-        return (isDone ? "\u2713" : "\u2718");
+        return (isDone ? "Done" : "Not Done");
         //return tick or X symbols
     }
 

@@ -1,8 +1,8 @@
-package NUSchedule.command;
+package command;
 
-import NUSchedule.eventList.EventList;
-import NUSchedule.storage.Storage;
-import NUSchedule.ui.UI;
+import eventlist.EventList;
+import storage.Storage;
+import ui.UI;
 
 /**
  * Represents the command call when the user exits this program.

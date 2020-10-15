@@ -1,9 +1,9 @@
-package NUSchedule.exception;
+package exception;
 
 /**
  * Represents the exception happen when the file is not created successfully.
  */
-public class CreatingFileException extends NUScheduleException {
+public class CreatingFileException extends NuScheduleException {
     private final String filePath;
 
     public CreatingFileException(String filePath) {

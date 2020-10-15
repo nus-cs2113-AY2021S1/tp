@@ -1,34 +1,32 @@
-package NUSchedule;
+import command.Command;
+import eventlist.EventList;
+import exception.CreatingFileException;
+import exception.NuScheduleException;
+import parser.Parser;
+import storage.Storage;
+import ui.UI;
 
-import NUSchedule.command.Command;
-import NUSchedule.eventList.EventList;
-import NUSchedule.exception.CreatingFileException;
-import NUSchedule.exception.NUScheduleException;
-import NUSchedule.parser.Parser;
-import NUSchedule.storage.Storage;
-import NUSchedule.ui.UI;
-
-public class NUSchedule {
+public class NuSchedule {
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Main entry-point for the NUSchedule application.
      */
     private Storage storage;
-    private EventList Events;
+    private EventList events;
     private UI ui;
 
-    public NUSchedule(String filePath) {
+    public NuSchedule(String filePath) {
         ui = new UI();
         try {
             storage = new Storage(filePath);
         } catch (CreatingFileException e) {
             ui.showError(e.getMessage());
         }
-//        try {todo after implement load, uncomment it
-//            Events = new EventList(storage.load());
-//        } catch (NUScheduleException e) {
-//            ui.showLoadingError();
-//            Events = new EventList();
-//        }
+        try {
+            events = new EventList(storage.load());
+        } catch (NuScheduleException e) {
+            ui.showLoadingError();
+            events = new EventList();
+        }
     }
 
     /**
@@ -42,9 +40,9 @@ public class NUSchedule {
                 String fullCommand = ui.readCommand();
                 ui.printLine(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand);
-                c.execute(Events, ui, storage);
+                c.execute(events, ui, storage);
                 isExit = c.isExit();
-            } catch (NUScheduleException e) {
+            } catch (NuScheduleException e) {
                 ui.showError(e.getMessage());
             } finally {
                 ui.printLine();
@@ -53,6 +51,6 @@ public class NUSchedule {
     }
 
     public static void main(String[] args) {
-        new NUSchedule("data/events.txt").run();
+        new NuSchedule("data/events.txt").run();
     }
 }
