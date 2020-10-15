@@ -1,5 +1,9 @@
 
 # AniChan User Guide
+
+![AniChan Logo](https://i.imgur.com/VhbC59Q.png)
+
+
 ## Table of Contents
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
