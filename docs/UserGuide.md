@@ -18,7 +18,7 @@ It displays the project backlog, and the details of the ongoing sprint.
 * Constraints:
     * A project must be created by the user before using this command.
 * Expected outcome:
-      ```
+    ```
     ================= PROJECT =================  
     [Title: MeTube ]  
        [Description: video streaming software ]  
@@ -26,7 +26,8 @@ It displays the project backlog, and the details of the ongoing sprint.
        [Project will start along with the first sprint]  
        [Project backlog is empty]  
        [There are no Sprints]  
-    ===============================================```
+    ===============================================
+    ```
     
 #### Create project
 Create a new project.
@@ -39,7 +40,7 @@ Create a new project.
     * Duration and sprint interval must be integers.
     * All the fields must hava an input, else a project is not added.
 * Expected outcome:
-      ```Project successfully created.  
+    ```Project successfully created.  
     ================= PROJECT =================  
     [Title: MeTube ]  
        [Description: video streaming software ]  
@@ -47,6 +48,7 @@ Create a new project.
        [Project will start along with the first sprint]  
        [Project backlog is empty]  
        [There are no Sprints]  
-    ===============================================```
+    ===============================================
+    ```
 
       
