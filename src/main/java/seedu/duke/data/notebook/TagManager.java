@@ -1,6 +1,6 @@
 package seedu.duke.data.notebook;
 
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import java.util.Map;
 public class TagManager {
 
     public static final String STRING_TAG_EMPTY = "There are no tags!";
-    public static final String STRING_TAG_LIST = "Here are the available tags:" + InterfaceManager.LS;
+    public static final String STRING_TAG_LIST = "Here are the available tags:" + Formatter.LS;
 
     private Map<Tag, ArrayList<Note>> tagMap;
 
@@ -78,7 +78,7 @@ public class TagManager {
             } else {
                 result = result.concat(createUnsuccessfulString);
             }
-            result = result.concat(getTag(t.getTagName()) + InterfaceManager.LS);
+            result = result.concat(getTag(t.getTagName()) + Formatter.LS);
         }
         return result.trim();
     }
@@ -142,7 +142,7 @@ public class TagManager {
             } else {
                 result = result.concat(deleteUnsuccessfulString + t);
             }
-            result = result.concat(InterfaceManager.LS);
+            result = result.concat(Formatter.LS);
         }
 
         return result.trim();
@@ -164,7 +164,7 @@ public class TagManager {
         }
 
         for (Tag t : tagMap.keySet()) {
-            tagList = tagList.concat(t.toString() + InterfaceManager.LS);
+            tagList = tagList.concat(t.toString() + Formatter.LS);
         }
         return tagList.trim();
     }
@@ -216,13 +216,13 @@ public class TagManager {
             // check if the note contains such tag
             if (note.getTags().contains(existingTag)) {
                 removeTag(note, existingTag);
-                result = result.concat(untagNoteString + existingTag + InterfaceManager.LS);
+                result = result.concat(untagNoteString + existingTag + Formatter.LS);
             } else {
                 // runs the create tag in case existing tag is null, if it is not null, updates the tag
                 createTag(t, false);
                 existingTag = getTag(t.getTagName());
                 tagNote(note, existingTag);
-                result = result.concat(tagNoteString + existingTag + InterfaceManager.LS);
+                result = result.concat(tagNoteString + existingTag + Formatter.LS);
             }
         }
         return result.trim();

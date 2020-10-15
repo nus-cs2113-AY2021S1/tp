@@ -1,6 +1,6 @@
 package seedu.duke.data.timetable;
 
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -203,7 +203,7 @@ public class Event implements Comparable<Event> {
     public String toReminderString() {
         String titleString = "Event: " + title;
         String dateString = "Date: " + date.toString() + "\tTime: " + time.toString();
-        return titleString + InterfaceManager.LS + dateString;
+        return titleString + Formatter.LS + dateString;
     }
 
     @Override
@@ -212,7 +212,7 @@ public class Event implements Comparable<Event> {
         String dateString = "Date: " + date.toString() + "\tTime: " + time.toString();
         String remindString = "Reminder: " + isToRemind;
         String repeatingString = "Repeating: " + isRecurring;
-        String lineSeparator = InterfaceManager.LS;
+        String lineSeparator = Formatter.LS;
         return titleString + lineSeparator + dateString + lineSeparator + remindString
                 + lineSeparator + repeatingString;
     }

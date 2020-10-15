@@ -7,7 +7,8 @@ import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.notebook.Tag;
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
+
 import static seedu.duke.command.TagCommand.TAG_NOTE_MESSAGE;
 import static seedu.duke.command.TagCommand.UNTAG_NOTE_MESSAGE;
 import static seedu.duke.command.TagCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
@@ -71,7 +72,7 @@ class TagCommandTest {
         notebook.addNote(taggedNote);
 
         String result = getCommandExecutionString(notebook, tagManager, 0, tags);
-        assertEquals(TAG_NOTE_MESSAGE + tagRed + InterfaceManager.LS + TAG_NOTE_MESSAGE + tagBlue, result);
+        assertEquals(TAG_NOTE_MESSAGE + tagRed + Formatter.LS + TAG_NOTE_MESSAGE + tagBlue, result);
         assertEquals(noTagNote.getTags().size(), 2);
         assertTrue(noTagNote.getTags().contains(tagRed));
         assertEquals(tagManager.getTagMap().size(), 2);
@@ -94,7 +95,7 @@ class TagCommandTest {
         tags.add(tagBlueRef);
 
         String result = getCommandExecutionString(notebook, tagManager, 1, tags);
-        assertEquals(UNTAG_NOTE_MESSAGE + tagRed + InterfaceManager.LS + UNTAG_NOTE_MESSAGE + tagBlue, result);
+        assertEquals(UNTAG_NOTE_MESSAGE + tagRed + Formatter.LS + UNTAG_NOTE_MESSAGE + tagBlue, result);
         assertEquals(taggedNote.getTags().size(), 0);
         assertEquals(tagManager.getTagMap().get(tagRed).size(), 0);
         assertEquals(tagManager.getTagMap().get(tagBlue).size(), 0);
@@ -121,7 +122,7 @@ class TagCommandTest {
         tags.add(tagBlueRef);
 
         String result = getCommandExecutionString(notebook, tagManager, 0, tags);
-        assertEquals(TAG_NOTE_MESSAGE + tagRed + InterfaceManager.LS + UNTAG_NOTE_MESSAGE + tagBlue, result);
+        assertEquals(TAG_NOTE_MESSAGE + tagRed + Formatter.LS + UNTAG_NOTE_MESSAGE + tagBlue, result);
         assertEquals(noTagNote.getTags().size(), 1);
         assertEquals(tagManager.getTagMap().get(tagRed).size(), 2);
         assertEquals(tagManager.getTagMap().get(tagBlue).size(), 1);
