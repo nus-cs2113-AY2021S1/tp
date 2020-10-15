@@ -53,7 +53,7 @@ public class AllocateSprintTaskCommand extends SprintCommand {
     }
 
     private boolean validateParams() {
-        return !this.parametersInHT.get("task").isEmpty() && !this.parametersInHT.get("user").isEmpty();
+        return this.parametersInHT.containsKey("task") && this.parametersInHT.containsKey("user");
     }
 
     private void checkReason() {

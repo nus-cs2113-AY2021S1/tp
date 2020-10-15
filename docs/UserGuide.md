@@ -6,41 +6,39 @@ SCRUMptious is a command line software for project management designed for proje
 
 ## Table of Contents
 
-1. Quick Start
-1. Features
-    1. Project `project`
-        1. Create a new project
-        1. View project information
-        1. Add team members
-        1. Remove team members
-    1. Project Backlog `task`
-        1. Create backlog items
-        1. View backlog items
-        1. Add tasks
-        1. View tasks
-        1. Delete tasks
-        1. Change the priority of tasks
-        1. Mark tasks as complete
-    1. Sprint `sprint`
-        1. Create a new sprint
-        1. View sprint information
-        1. Add tasks to the sprint
-        1. Delete tasks from the sprint
-        1. Allocate tasks to team members
-1. Command Summary
+1. [Quick Start](#quick-start) 
+1. [Features](#features) 
+    1. [Project `project`](#project-project)
+        1. [Create a new project](#create-project)
+        1. [View project information](#view-project-information)
+        1. [Add team members](#add-team-members-into-project-member)
+        1. [Remove team members](#remove-team-members-from-project)
+    1. [Project Backlog `task`](#project-backlog-task)
+        1. [Add tasks](#add-tasks)
+        1. [View tasks](#view-tasks)
+        1. [Delete tasks](#delete-tasks)
+        1. [Change the priority of tasks](#change-priority-of-tasks)
+        1. [Mark tasks as complete](#mark-tasks-as-complete)
+    1. [Sprint `sprint`](#sprint-sprint)
+        1. [Create a new sprint](#create-a-new-sprint)
+        1. [View sprint information](#view-the-sprint)
+        1. [Add tasks to the sprint](#add-tasks-to-the-sprint)
+        1. [Delete tasks from the sprint](#delete-tasks-from-the-sprint)
+        1. [Allocate tasks to team members](#allocate-tasks-to-team-members)
+1. [Command Summary](#command-summary)
 
 
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Scrumptious.jar` from [here](http://link.to/duke)
-1. Copy the jar file into an empty folder.
+1. Download the latest version of `Scrumptious.jar` from [here](http://link.to/duke)
+1. Move the jar file into an empty folder.
 1. Ensure that you have a functional Command Line Interface (CLI).
 1. Run the command `java -jar C:\Scrumptious\Scrumptious.jar`. Ensure that the `Scrumptious.jar` filepath is specified 
 correctly according to where you copied it to.
 1. Type the command `project /create -title Scrumptious -desc A java project -end 30 -sd 10` 
 into the command line and press `Enter` to execute it.
-1. If te setup is correct, you should see something like this:
+1. If the setup is correct, you should see something like this:
     ```
    Project successfully created.
    ```
@@ -70,15 +68,14 @@ It displays the project backlog, and the details of the ongoing sprint.
 * Example: `project /view`
 * Expected outcome:
      ```
-    ================= PROJECT =================
+    ====================== PROJECT ======================
     [Title: MeTube ]
     [Description: video streaming software ]
     [No members added]
     [Project will start along with the first sprint]
     [Project backlog is empty]
     [There are no Sprints]
-    
-    ===============================================
+    =====================================================
     ```
   
 #### Add team members into project `member`
@@ -86,7 +83,7 @@ Add team members into the project.
 * Format: `member /add <username> [<username> ...]`
 * Constraints:
     * At least one username must be specified
-    * Username must be an alphanumeric String
+    * Username must be an alphanumeric String without spaces
 * Example: `member /add john mary`
 * Expected outcome:
     ```
@@ -174,59 +171,86 @@ Marks specified task as complete.
 ### Sprint `sprint`
 #### Create a new sprint
 Creates a new sprint for the project.
-* Format: `sprint /create -goal <goal> -start <DDMMYYYY>`
+* Format: `sprint /create -goal <goal_input> -start <start_date>`
+* Tags:
+    * `-goal`: Specify the goal for the sprint
+    * `-start`: Specify the start date of the sprint (Only used for the first sprint)
 * Constraints:
-    * `goal` must be specified
-* Example: `sprint /create Shopping Cart`
+    * `goal_input` must be specified
+    * `start_date` will only be accepted in `YYYYMMDD` format
+* Optional field:
+    * `start_date` will be set as the date of command execution if not specified
+* Example: `sprint /create Shopping Cart -start 20201010`
 * Expected outcome:
     ```
+    Project will start along with the newly created sprint
+    Project period: 2020-10-10 to 2020-11-08
     
+    ============================ SPRINT =============================
+    [ID: 1]
+    [Goal: Shopping Cart ]
+    [Period: 2020-10-10 - 2020-10-19] 
+    [No allocated tasks]
+    =================================================================
     ```
   
 #### View the sprint
-Display the information of the sprint.
+Display the information of the current sprint.
 * Format: `sprint /view`
 * Example: `sprint /view`
 * Expected outcome:
     ```
-    
+    ========================= CURRENT SPRINT ========================
+    [ID: 1]
+    [Goal: Shopping Cart ]
+    [Period: 2020-10-10 - 2020-10-19] 
+    [Remaining: 4 days]
+    [No allocated tasks]
+    =================================================================
     ```
   
 #### Add tasks to the sprint
-Adding the specified task(s) from the backlog items to the current sprint
-* Format: `sprint /addtask <task id> [<task id> …]`
+Add task(s) from the project backlog to the current sprint
+* Format: `sprint /addtask <task_id> [<task_id> ...]`
 * Constraints:
-    * `task id` must be a positive integer
-    * `task id` must be specified
-* Example: `sprint /addtask 123 456 789`
+    * `task_id` must be a positive integer
+    * `task_id` must be specified (1 or more)
+* Example: `sprint /addtask 1 3 4`
 * Expected outcome:
     ```
-    
+    DummyTask1  added to sprint.
+    DummyTask3  added to sprint.
+    DummyTask4  added to sprint.
     ```
   
 #### Delete tasks from the sprint
-Removing the specified task(s) from the sprint
-* Format: `sprint /deltask <task id> [<task id> …]`
+Removing the specified task(s) from the current sprint
+* Format: `sprint /deltask <task_id> [<task_id> ...]`
 * Constraints:
-    * `task id` must be a positive integer
-    * `task id` must be specified
-* Example: `sprint /deltask 123 456 789`
+    * `task_id` must be a positive integer
+    * `task_id` must be specified (1 or more)
+* Example: `sprint /deltask 1 3 4`
 * Expected outcome:
     ```
-    
+    DummyTask1 removed from sprint.
+    DummyTask3 removed from sprint.
+    DummyTask4 removed from sprint.
     ```
   
 #### Allocate tasks to team members
 Assigning a task to a team member
-* Format: `sprint /assign <task id> <user id> [<user id> …]`
+* Format: `sprint /assign -task <task_id> -user <user_id> [<user_id> …]`
+* Tags:
+    * `-task`: Specify the task to be allocated
+    * `-user`: Specify the user(s) to be assign with a task
 * Constraints:
-    * `task id` must be a positive integer
-    * `task id` must be specified
-    * `user id` must be specified
-* Example: `sprint /assign 123 johntan mary jane`
+    * `task_id` must be a positive integer
+    * `task_id` must be specified
+    * `user_id` must be specified (1 or more)
+* Example: `sprint /assign -task 1 -user johntan mary jane`
 * Expected outcome:
     ```
-    
+    DummyTask1  assigned to [johntan, mary, jane]
     ```
 
 ## Command Summary
