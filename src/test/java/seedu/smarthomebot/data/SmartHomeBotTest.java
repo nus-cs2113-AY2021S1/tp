@@ -30,11 +30,11 @@ class SmartHomeBotTest {
     public void addLocationTest() throws InvalidAddtionOfLocation {
         String br1 = "BedRoom 1";
         String br2 = "BedRoom 2";
-        HomeLocations homeLocations = new HomeLocations();
-        homeLocations.addLocation(br1);
-        homeLocations.addLocation(br2);
-        assertEquals("[BedRoom 1, BedRoom 2]", homeLocations.getLocations().toString());
-        assertThrows(InvalidAddtionOfLocation.class, () -> homeLocations.addLocation(br1));
+        LocationList locationList = new LocationList();
+        locationList.addLocation(br1);
+        locationList.addLocation(br2);
+        assertEquals("[BedRoom 1, BedRoom 2]", locationList.getLocations().toString());
+        assertThrows(InvalidAddtionOfLocation.class, () -> locationList.addLocation(br1));
     }
 
     @Test

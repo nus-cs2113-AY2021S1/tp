@@ -1,14 +1,13 @@
 package seedu.smarthomebot;
 
 import seedu.smarthomebot.commands.Command;
+import seedu.smarthomebot.commands.CommandResult;
 import seedu.smarthomebot.commands.ExitCommand;
+import seedu.smarthomebot.common.Messages;
 import seedu.smarthomebot.data.ApplianceList;
-import seedu.smarthomebot.data.HomeLocations;
+import seedu.smarthomebot.data.LocationList;
 import seedu.smarthomebot.ui.TextUi;
 import seedu.smarthomebot.storage.StorageFile;
-
-import static seedu.smarthomebot.common.Messages.MESSAGE_EXPORT;
-
 
 /**
  * Entry point of the SmartHome application.
@@ -17,10 +16,10 @@ import static seedu.smarthomebot.common.Messages.MESSAGE_EXPORT;
 
 public class SmartHomeBot {
 
-    private static TextUi ui = new TextUi();
-    private ApplianceList appliances = new ApplianceList();
-    private HomeLocations homeLocations = new HomeLocations();
-    private StorageFile storage = new StorageFile(appliances, homeLocations);
+    private TextUi ui = new TextUi();
+    private final ApplianceList applianceList = new ApplianceList();
+    private final LocationList locationList = new LocationList();
+    private final StorageFile storage = new StorageFile(applianceList, locationList);
 
     public static void main(String[] args) {
         new SmartHomeBot().run();
@@ -45,7 +44,7 @@ public class SmartHomeBot {
 
     /** Prints the Goodbye message and exits. */
     private void exit() {
-        ui.showToUser(MESSAGE_EXPORT);
+        ui.showToUser(Messages.MESSAGE_EXPORT);
         ui.showGoodByeMessage();
         System.exit(0);
     }
@@ -56,10 +55,19 @@ public class SmartHomeBot {
         do {
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
-            command.setData(appliances, homeLocations);
-            command.execute();
+            CommandResult result = executeCommand(command);
             storage.writeToFile();
         } while (!ExitCommand.isExit(command));
     }
 
+    private CommandResult executeCommand(Command command) {
+        try {
+            command.setData(applianceList, locationList);
+            CommandResult result = command.execute();
+            return result;
+        } catch (Exception e) {
+            ui.showToUser(e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
 }

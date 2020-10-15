@@ -23,20 +23,18 @@ public class OffCommand extends Command {
     }
 
     @Override
-    public void execute() {
-        for (Appliance i : appliances.getAllAppliance()) {
+    public CommandResult execute() {
+        for (Appliance i : applianceList.getAllAppliance()) {
             if (i.getName().equals((this.name))) {
                 if (i.switchOff()) {
                     String location = i.getLocation();
                     String result = String.format("Switching off %s in %s ......OFF!\n", name, location);
-                    ui.showToUser(LINE + result);
+                    return new CommandResult(LINE + result);
                 } else {
-                    ui.showToUser(LINE + MESSAGE_APPLIANCE_PREVIOUSLY_OFF);
+                    return new CommandResult(LINE + MESSAGE_APPLIANCE_PREVIOUSLY_OFF);
                 }
-                return;
             }
         }
-        ui.showToUser(name + " does not exist.");
+        return new CommandResult(name + " does not exist.");
     }
-
 }

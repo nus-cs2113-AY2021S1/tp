@@ -19,14 +19,13 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute() {
-        Boolean isApplianceExist = appliances.isAppliance(this.userEnteredName);
+    public CommandResult execute() {
+        Boolean isApplianceExist = applianceList.isAppliance(this.userEnteredName);
         if (isApplianceExist) {
-            appliances.removeAppliance(this.userEnteredName);
+            applianceList.removeAppliance(this.userEnteredName);
         } else {
-            ui.showToUser(userEnteredName + " does not exist.");
+            return new CommandResult(userEnteredName + " does not exist.");
         }
-
-
+        return null;
     }
 }

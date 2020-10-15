@@ -1,7 +1,7 @@
 package seedu.smarthomebot;
 
 import org.junit.jupiter.api.Test;
-import seedu.smarthomebot.data.HomeLocations;
+import seedu.smarthomebot.data.LocationList;
 import seedu.smarthomebot.exceptions.EmptyParameterException;
 import seedu.smarthomebot.exceptions.InvalidAddtionOfLocation;
 
@@ -13,11 +13,11 @@ public class RemoveTest {
     @Test
     public void removeLocationTest() throws InvalidAddtionOfLocation, EmptyParameterException {
         //Create Sample Locations and empty appliance list
-        HomeLocations homeLocations = new HomeLocations();
-        homeLocations.addLocation("BedRoom1");
-        homeLocations.addLocation("BedRoom3");
+        LocationList locationList = new LocationList();
+        locationList.addLocation("BedRoom1");
+        locationList.addLocation("BedRoom3");
 
         // Prepare to read output of command
-        assertThrows(IndexOutOfBoundsException.class, () -> homeLocations.removeLocation("Bedroom 2"));
+        assertThrows(IndexOutOfBoundsException.class, () -> locationList.removeLocation("Bedroom 2"));
     }
 }

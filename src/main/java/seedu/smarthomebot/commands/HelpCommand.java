@@ -10,8 +10,8 @@ public class HelpCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     @Override
-    public void execute() {
-        ui.showToUser(
+    public CommandResult execute() {
+        return new CommandResult(
                 LINE  + HelpCommand.MESSAGE_USAGE + "\n" + LINE
                       + CreateCommand.MESSAGE_USAGE + "\n" + LINE
                       + RemoveCommand.MESSAGE_USAGE + "\n"  + LINE

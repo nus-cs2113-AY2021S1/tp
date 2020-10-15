@@ -24,8 +24,8 @@ public class TextUi {
     /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
     private static final String ENTER_COMMAND = "Enter command: ";
-    private static Scanner in;
-    private static PrintStream out;
+    private final Scanner in;
+    private final PrintStream out;
 
     public TextUi() {
         this(System.in, System.out);
@@ -39,14 +39,14 @@ public class TextUi {
     /**
      * Shows message(s) to the user.
      */
-    public static void showToUser(String message) {
+    public void showToUser(String message) {
         out.println(message);
     }
 
     /**
      * Print a divider.
      */
-    private static void printDivider() {
+    private void printDivider() {
         showToUser(DIVIDER);
     }
 

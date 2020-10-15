@@ -15,22 +15,22 @@ public class UsageCommand extends Command {
     public static final String COMMAND_WORD = "usage";
 
     @Override
-    public void execute() {
+    public CommandResult execute() {
         double totalUsage = 0;
         int index = 1;
 
-        if (appliances.getAllAppliance().size() == 0) {
-            ui.showToUser(LINE + MESSAGE_LIST_NO_APPLIANCES);
+        if (applianceList.getAllAppliance().size() == 0) {
+            return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
         } else {
             ui.showToUser(LINE + MESSAGE_POWER_USAGE);
-            for (Appliance a : appliances.getAllAppliance()) {
+            for (Appliance a : applianceList.getAllAppliance()) {
                 double appliancePower = a.measureConsumption();
                 totalUsage += appliancePower;
                 ui.showWithUsageFormat(index, a.getName(), a.getLocation(), a.getStatus(), a.measureConsumption());
                 index++;
             }
             String formattedUsage = String.format("%.2f kWh", totalUsage);
-            ui.showToUser("\nTotal power consumption: " + formattedUsage);
+            return new CommandResult("\nTotal power consumption: " + formattedUsage);
         }
     }
 }

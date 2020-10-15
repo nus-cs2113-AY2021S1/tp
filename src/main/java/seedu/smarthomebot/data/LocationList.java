@@ -6,8 +6,7 @@ import java.util.ArrayList;
 
 import static seedu.smarthomebot.common.Messages.LINE;
 
-public class HomeLocations {
-
+public class LocationList {
     private ArrayList<String> locations = new ArrayList<>();
 
     /**
@@ -74,5 +73,4 @@ public class HomeLocations {
         }
         return isValid;
     }
-
 }
