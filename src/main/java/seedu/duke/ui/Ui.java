@@ -28,6 +28,7 @@ public class Ui {
     public static void printLine() {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
+
     public static void showError(Exception error) {
         printLine();
         System.out.println(error);
@@ -97,7 +98,7 @@ public class Ui {
         for (Bus bus : allBuses) {
             System.out.println(bus.toString());
             count--;
-            if(count != 0){
+            if (count != 0) {
                 System.out.println();
             }
         }
