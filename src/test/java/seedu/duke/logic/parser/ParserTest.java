@@ -13,7 +13,7 @@ class ParserTest {
     void extractType_unknownCommand_expectException() {
         String command = "Hello";
         Parser p = new Parser(command);
-        assertThrows(CustomException.class, () -> p.extractType());
+        assertThrows(CustomException.class, p::extractType);
     }
 
     @Test
