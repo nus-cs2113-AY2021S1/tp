@@ -13,4 +13,52 @@ public class Bus {
         route.addAll(Arrays.asList(stops));
     }
 
+    public Bus(String busNo, ArrayList<BusStops> stops) {
+        busNumber = busNo;
+        route.addAll(stops);
+    }
+
+    public ArrayList<String> getStopNames() {
+
+        ArrayList<String> routeNames = new ArrayList<>();
+        route.forEach(stop -> routeNames.add(stop.getName()));
+        return routeNames;
+    }
+
+    public String getBusNumber() {
+        return this.busNumber;
+    }
+
+    ArrayList<BusStops> getPossibleRoute(String startingLoc, String destination) {
+        ArrayList<BusStops> allStopsFromStart = new ArrayList<>();
+        ArrayList<BusStops> finalRoute = new ArrayList<>();
+        ArrayList<String> allStopNamesFromStart = new ArrayList<>();
+        ArrayList<String> routeNames = new ArrayList<>(getStopNames());
+        routeNames.replaceAll(String::toLowerCase);
+
+        if (routeNames.contains(startingLoc.toLowerCase())) {
+            int startingIndex = routeNames.indexOf(startingLoc.toLowerCase()) + 1;
+            assert startingIndex != 0 : "Hmm, seems like the start is not in the list";
+            int size = routeNames.size();
+            assert size != 0 : "The bus route has not stops!";
+            allStopNamesFromStart.addAll(routeNames.subList(startingIndex, size));
+            allStopsFromStart.addAll(route.subList(startingIndex, size));
+            if (allStopNamesFromStart.contains(destination.toLowerCase())) {
+                int endIndex = allStopNamesFromStart.indexOf(destination.toLowerCase());
+                assert endIndex != -1 : "Hmm, seems like the destination is not in the list";
+                finalRoute.addAll(allStopsFromStart.subList(0, endIndex));
+            }
+        }
+        return finalRoute;
+    }
+
+    @Override
+    public String toString() {
+        if (route.size() > 0) {
+            String printableRoute = String.join("-> ", getStopNames());
+            return busNumber + "\n\t" + printableRoute;
+        }
+        return null;
+    }
+
 }

@@ -2,13 +2,17 @@ package seedu.duke.logic.parser;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
+import seedu.duke.logic.commands.BusCommand;
 import seedu.duke.logic.commands.Command;
+import seedu.duke.logic.commands.RouteCommand;
+import seedu.duke.logic.commands.RouteMapCommand;
 import seedu.duke.logic.commands.ExitCommand;
+import seedu.duke.logic.commands.HelpCommand;
+import seedu.duke.logic.commands.AllBusCommand;
 
 public class Parser {
 
     private String userInput;
-    private Command com;
 
     public Parser(String userInput) {
         this.userInput = userInput;
@@ -19,34 +23,36 @@ public class Parser {
      *
      * @return String Array with two element: Command and the rest of the user input
      */
-    private String[] splitCommands(int length) {
-        final String[] split = userInput.trim().split("\\s+", length);
+    String[] splitCommands(int length, String delimiter) {
+        final String[] split = userInput.trim().split(delimiter, length);
         return split.length == length ? split : new String[]{split[0], " "};
     }
 
     public boolean extractType() throws CustomException {
 
-        String command = splitCommands(2)[0];
+        String[] parts = splitCommands(2, "\\s+");
+        String command = parts[0];
 
+        Command com;
         switch (command) {
-        //        case "/route":
-        //
-        //            break;
-        //        case "/routemap":
-        //
-        //            break;
-        //        case "/bus":
-        //
-        //            break;
-        //        case "/allbus":
-        //
-        //            break;
+        case "/route":
+            com = new RouteCommand(parts[1]);
+            break;
+        case "/routemap":
+            com = new RouteMapCommand();
+            break;
+        case "/bus":
+            com = new BusCommand(parts[1]);
+            break;
+        case "/allbus":
+            com = new AllBusCommand();
+            break;
         //        case "/liststops":
         //
         //            break;
-        //        case "/help":
-        //
-        //            break;
+        case "/help":
+            com = new HelpCommand();
+            break;
         case "/exit":
             com = new ExitCommand();
             break;
@@ -58,4 +64,7 @@ public class Parser {
 
     }
 
+    public String getUserInput() {
+        return userInput;
+    }
 }

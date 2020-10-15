@@ -1,5 +1,7 @@
 package seedu.duke.ui;
 
+import seedu.duke.Bus;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -24,10 +26,50 @@ public class Ui {
         System.out.println(error);
     }
 
-    public static void commandList() {
+    public static void printHelp() {
+        System.out.println("Here are the range of commands:\n"
+                + "1./route : Displays possible direct bus from point to point\n"
+                + "2./routemap: Displays the route map with its intermediate bus stops\n"
+                + "3./bus: Displays buses available at each bus stop\n"
+                + "4./allbus: Lists all buses available in NUS Zone a\n"
+                + "5./liststops: Lists all bus stops in NUS Zone a\n"
+                + "6./exit: Exit program\n"
+                + "7./help: List all available commands\n");
     }
 
     public static void printExitMessage() {
         System.out.println("So long buddy!");
+    }
+
+    public static void printRouteSelectionMessage() {
+        System.out.println("What bus routes would you like to see?\nCurrently, we have two bus routes available for"
+                + " your viewing \n1.AA1 \n2.AA2 \nType the name to view:");
+    }
+
+    public static void printRouteMessage(ArrayList<Bus> options) {
+        int optionNo = 1;
+        boolean isPossible = false;
+        System.out.println("\nThe buses you can take with their intermediate stops are: ");
+        for (Bus option : options) {
+            if (option.toString() != null) {
+                System.out.println(optionNo + ". " + option.toString());
+                optionNo++;
+                isPossible = true;
+            }
+        }
+        if (!isPossible) {
+            System.out.println("none.\n\tThere are no direct bus routes. :(");
+        }
+    }
+
+    public static void printFullRoute(Bus busCode) {
+        System.out.println("Here is the " + busCode.getBusNumber() + " route that you have requested:\n" + busCode);
+    }
+
+    public static void printAllBusMessage(ArrayList<Bus> allBuses) {
+        System.out.println("\nThe buses available in NUS are: ");
+        for (Bus bus : allBuses) {
+            System.out.println(bus.toString());
+        }
     }
 }
