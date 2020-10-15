@@ -353,13 +353,25 @@ public class Parser {
         return answer;
     }
 
+    public static String parsePreIntervalInFile(String arg) throws InvalidFileFormatException {
+        if (!(arg.trim().startsWith(Storage.PREVIOUS_INTERVAL_PREFIX))) {
+            throw new InvalidFileFormatException();
+        }
+
+        String preInterval = arg.substring(3).trim();
+        if (preInterval.isEmpty()) {
+            throw new InvalidFileFormatException();
+        }
+
+        return preInterval;
+    }
+
     private static Command prepareListDue(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
             throw new InvalidInputException("There should not be any arguments for list.");
         }
         return new ListDueCommand();
     }
-
 }
 
 

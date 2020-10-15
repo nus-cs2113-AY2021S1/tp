@@ -17,9 +17,10 @@ import java.util.Scanner;
 
 public class Storage {
 
-    public static final String QUESTION_ANSWER_PREFIX = " \\| ";
+    public static final String DELIMITER = " \\| ";
     public static final String QUESTION_PREFIX = "[Q]";
     public static final String ANSWER_PREFIX = "[A]";
+    public static final String PREVIOUS_INTERVAL_PREFIX = "[P]";
 
     protected String filePath;
 
@@ -141,11 +142,14 @@ public class Storage {
         while (s.hasNext()) {
             //to read the card
             String fileCommand = s.nextLine();
-            String[] args = fileCommand.split(QUESTION_ANSWER_PREFIX, 2);
+            String[] args = fileCommand.split(DELIMITER, 3);
             try {
                 String question = Parser.parseQuestionInFile(args[0]);
                 String answer = Parser.parseAnswerInFile(args[1]);
-                Card card = new Card(question, answer);
+                String interval = Parser.parsePreIntervalInFile(args[2]);
+                int preInterval = Integer.parseInt(interval);
+
+                Card card = new Card(question, answer, preInterval);
                 cards.add(card);
             } catch (InvalidFileFormatException e) {
                 return null;
@@ -158,7 +162,8 @@ public class Storage {
     public void saveCards(CardList cards, String module, String chapter) throws IOException {
         FileWriter fw = new FileWriter(getFilePath() + "/" + module + "/" + chapter + ".txt");
         for (int i = 0; i < cards.getCardCount(); i++) {
-            fw.write(cards.getCard(i).toString() + "\n");
+            fw.write(cards.getCard(i).toString()
+                    + " | [P] " + cards.getCard(i).getPreviousInterval() + "\n");
         }
         fw.close();
     }
