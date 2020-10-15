@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import javax.print.attribute.standard.Destination;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CommandParserTest {
 
@@ -17,7 +18,6 @@ class CommandParserTest {
     @Test
     void getCommandType_correctCommandInputs_success() {
         CommandParser commandParser = new CommandParser();
-        StudyIt studyIt = new StudyIt();
 
         // Checks if exit detects correctly when it is in main menu
         assertEquals(CommandType.EXIT_PROGRAM, commandParser.getCommandType("exit"));
@@ -27,6 +27,7 @@ class CommandParserTest {
         assertEquals(CommandType.HELP, commandParser.getCommandType("help"));
 
         // Checks if exit detects exit mode when inside one of the modes
+        StudyIt studyIt = new StudyIt();
         studyIt.changeMode(Mode.ACADEMIC);
         assertEquals(CommandType.EXIT_MODE, commandParser.getCommandType("exit"));
     }
