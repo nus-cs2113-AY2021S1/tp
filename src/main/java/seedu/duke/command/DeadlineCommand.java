@@ -83,6 +83,7 @@ public class DeadlineCommand extends Command {
             try {
                 index = parsingNumber(commandSplit[0].trim());
                 date = DateTimeParser.dateParser(commandSplit[1].trim());
+                assert date != null : "date is not detected after parsing";
             } catch (DateErrorException e) {
                 throw new DateErrorException("Something is wrong with the date!");
             } catch (NumberFormatException e) {
@@ -94,9 +95,11 @@ public class DeadlineCommand extends Command {
             try {
                 index = parsingNumber(commandSplit[0].trim());
                 date = DateTimeParser.dateParser(commandSplit[1].trim());
+                assert date != null : "date is not detected after parsing";
                 String timeString = commandSplit[2].trim();
                 timeString = timeString.replace(":", "");
                 time = DateTimeParser.timeParser(timeString);
+                assert time != null : "time is not detected after parsing";
             } catch (DateErrorException e) {
                 throw new DateErrorException("Something is wrong with the date!");
             } catch (TimeErrorException e) {
