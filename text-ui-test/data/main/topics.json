@@ -1,0 +1,29 @@
+[
+  {
+    "topic": "OOP",
+    "questions": [
+      {
+        "description": "What is encapsulation?",
+        "hint": "check the textbook",
+        "options": [
+          {
+            "description": "A",
+            "correct": true
+          },
+          {
+            "description": "B",
+            "correct": false
+          },
+          {
+            "description": "C",
+            "correct": false
+          },
+          {
+            "description": "D",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  }
+]
