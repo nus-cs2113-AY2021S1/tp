@@ -17,6 +17,7 @@ public class Exam extends SchoolEvent {
 
     public Exam(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
+        this.isOver = getIsOver();
     }
 
     /**

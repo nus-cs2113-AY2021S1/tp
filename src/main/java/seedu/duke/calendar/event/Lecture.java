@@ -25,7 +25,7 @@ public class Lecture extends SchoolEvent {
     public Lecture(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
         eventType = "LEC";
-        isOver = false;
+        this.isOver = getIsOver();
     }
 
     /**
