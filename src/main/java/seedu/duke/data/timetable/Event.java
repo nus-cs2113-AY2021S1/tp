@@ -180,10 +180,10 @@ public class Event implements Comparable<Event> {
             for (Integer timePeriod : timePeriodsInUnit) {
                 switch (unit) {
                 case REMINDER_DAY:
-                    date = date.plusDays(-timePeriod);
+                    date = this.date.plusDays(-timePeriod);
                     break;
                 case REMINDER_WEEK:
-                    date = date.plusWeeks(-timePeriod);
+                    date = this.date.plusWeeks(-timePeriod);
                     break;
                 default:
                     break;

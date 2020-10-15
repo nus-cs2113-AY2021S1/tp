@@ -49,6 +49,14 @@ public class Timetable {
         return events.get(index);
     }
 
+    /**
+     * Getter for JUnit test.
+     * @return Stored daily events.
+     */
+    public ArrayList<DailyEvent> getDailyEvents() {
+        return dailyEvents;
+    }
+
     public void setEvents(ArrayList<Event> events) {
         this.events = events;
     }
@@ -166,7 +174,14 @@ public class Timetable {
         return calendar;
     }
 
-    private ArrayList<Event> getAllEvents(LocalDate startDate, LocalDate endDate) {
+    /**
+     * Provides a method to get all events, including re-occuring events in an arraylist in a specified period.
+     *
+     * @param startDate Start of time period.
+     * @param endDate End of time period.
+     * @return ArrayList of all events. Re-occurring events are initialized as a new event.
+     */
+    public ArrayList<Event> getAllEvents(LocalDate startDate, LocalDate endDate) {
         ArrayList<Event> eventSet = new ArrayList<>();
         eventSet.addAll(getNonRecurringEvents(startDate, endDate, nonRecurringEvents));
         eventSet.addAll(getAllRecurringEvents(startDate, endDate,
@@ -262,8 +277,12 @@ public class Timetable {
         ArrayList<Event> eventSet = getAllEvents(today, endDate);
         ArrayList<Reminder> todayReminders = new ArrayList<>();
         PriorityQueue<Reminder> reminders = getEventSetReminder(eventSet);
-        while (reminders.size() > 0 && reminders.peek().toRemind(today)) {
-            todayReminders.add(reminders.poll());
+        while (reminders.size() > 0 && reminders.peek().reminderDue(today)) {
+            Reminder reminder = reminders.poll();
+            assert reminder != null;
+            if (reminder.toRemind(today)) {
+                todayReminders.add(reminder);
+            }
         }
         return todayReminders;
     }
