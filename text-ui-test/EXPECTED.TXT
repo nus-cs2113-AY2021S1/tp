@@ -9,6 +9,17 @@
 
 WELCOME TO SCRUMPTIOUS
 command>Project successfully created.
+
+================= PROJECT =================
+[Title: MeTube ]
+[Description: video streaming software ]
+[No members added]
+[Project will start along with the first sprint]
+[Project backlog is empty]
+[There are no Sprints]
+
+===============================================
+
 command>
 ================= PROJECT =================
 [Title: MeTube ]
@@ -71,7 +82,7 @@ command>
 [ID: 1]
 [Goal: goal1 ]
 [Period: 2020-10-10 - 2020-10-19] 
-[Remaining: 5 days]
+[Remaining: 4 days]
 [No allocated tasks]
 
 ------------------------------------------
@@ -86,7 +97,7 @@ command>
 [ID: 1]
 [Goal: goal1 ]
 [Period: 2020-10-10 - 2020-10-19] 
-[Remaining: 5 days]
+[Remaining: 4 days]
 
 [Task]
 	ID: 1
@@ -139,7 +150,7 @@ command>
 [ID: 1]
 [Goal: goal1 ]
 [Period: 2020-10-10 - 2020-10-19] 
-[Remaining: 5 days]
+[Remaining: 4 days]
 
 [Task]
 	ID: 1
@@ -191,7 +202,7 @@ command>
 [ID: 1]
 [Goal: goal1 ]
 [Period: 2020-10-10 - 2020-10-19] 
-[Remaining: 5 days]
+[Remaining: 4 days]
 
 [Task]
 	ID: 1
@@ -249,7 +260,7 @@ command>
 [ID: 1]
 [Goal: goal1 ]
 [Period: 2020-10-10 - 2020-10-19] 
-[Remaining: 5 days]
+[Remaining: 4 days]
 
 ------------------------------------------
 
