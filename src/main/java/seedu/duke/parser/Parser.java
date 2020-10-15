@@ -81,11 +81,7 @@ public class Parser {
                     }
                     break;
                 case VIEW:
-                    try {
-                        new ProjectCommand().viewProjectCommand(projectList);
-                    } catch (DukeException e) {
-                        e.printExceptionMessage();
-                    }
+                    new ProjectCommand().viewProjectCommand(projectList);
                     break;
                 default:
                     try {

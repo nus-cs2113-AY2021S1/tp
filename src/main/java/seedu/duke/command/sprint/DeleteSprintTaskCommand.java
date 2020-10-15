@@ -30,9 +30,13 @@ public class DeleteSprintTaskCommand extends SprintCommand {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
             Sprint currentSprint = allSprint.getSprint(currentSprintNo);
             for (String entry : this.parametersInAL) {
-                int taskId = Integer.parseInt(entry);
-                Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + "removed from sprint.\n");
-                currentSprint.removeSprintTask(taskId);
+                try {
+                    int taskId = Integer.parseInt(entry);
+                    Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + "removed from sprint.\n");
+                    currentSprint.removeSprintTask(taskId);
+                } catch (NumberFormatException e) {
+                    Ui.showError("Invalid parameters.");
+                }
             }
         } else {
             checkReason();
