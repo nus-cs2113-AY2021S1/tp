@@ -78,11 +78,11 @@ Views the specified task.
 
 Assuming the third task have the following attributes: Title: Add parser, Description: add UI, Priority: HIGH, Done: false.
 ```[Task]
-        &nbsp;&nbsp;&nbsp;&nbsp;ID: 1
-        &nbsp;&nbsp;&nbsp;&nbsp;Title: Add parser 
-        &nbsp;&nbsp;&nbsp;&nbsp;Description: add an interactive UI 
-        &nbsp;&nbsp;&nbsp;&nbsp;Priority: High priority
-        &nbsp;&nbsp;&nbsp;&nbsp;Completion: Completed
+      ID: 1
+      Add parser 
+      Description: add an interactive UI 
+      Priority: High priority
+      Completion: Completed
  ```
 #### Deleting task
 #### Changing the priority of task
