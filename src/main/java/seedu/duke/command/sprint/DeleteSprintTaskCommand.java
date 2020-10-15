@@ -8,7 +8,6 @@ import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class DeleteSprintTaskCommand extends SprintCommand {
     private SprintList allSprint;

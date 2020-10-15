@@ -7,7 +7,6 @@ import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Hashtable;
 
 import static seedu.duke.command.CommandSummary.PRIORITY;
