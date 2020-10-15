@@ -7,10 +7,10 @@ import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-import static seedu.duke.command.CommandSummary.DEADLINE;
 import static seedu.duke.command.CommandSummary.TITLE;
 import static seedu.duke.command.CommandSummary.DESCRIPTION;
 import static seedu.duke.command.CommandSummary.SPRINT_DURATION;
+import static seedu.duke.command.CommandSummary.DURATION;
 
 public class ProjectCommand {
     public void createProjectCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList)
@@ -31,8 +31,8 @@ public class ProjectCommand {
         } else {
             throw new DukeException("no description");
         }
-        if (parameters.get(DEADLINE) != null) {
-            deadline = parameters.get(DEADLINE);
+        if (parameters.get(DURATION) != null) {
+            deadline = parameters.get(DURATION);
         } else {
             throw new DukeException("no deadline");
         }
@@ -44,6 +44,7 @@ public class ProjectCommand {
 
         Project proj = new Project(title, description, deadline, sd);
         Ui.showToUserLn("Project successfully created.");
+        Ui.showToUserLn(proj.toString());
         projectList.add(proj);
     }
 
