@@ -243,15 +243,15 @@ public class Ui {
     }
 
     /**
-     * Prints patient's appointment list header
+     * Prints patient's appointment list header.
      * @param nric Patient's NRIC
      */
     public void showAppointmentsListHeader(String nric) {
-        printWithIndent("Listing appointments for patient " + nric + ": ") ;
+        printWithIndent("Listing appointments for patient " + nric + ": ");
     }
 
     /**
-     * Prints details of patient's appointment
+     * Prints details of patient's appointment.
      * @param appointment appointment to be printed
      * @param counter appointment counter under patient
      */
@@ -260,7 +260,7 @@ public class Ui {
     }
 
     /**
-     * Prints message if patient has no booked appointments
+     * Prints message if patient has no booked appointments.
      */
     public void showNoBookedAppointmentsMessage() {
         printWithIndent("No booked appointments found!");

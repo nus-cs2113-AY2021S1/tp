@@ -19,7 +19,7 @@ public class ListAppointmentsCommand extends Command {
     }
 
     /**
-     * Lists appointments of a patient
+     * Lists appointments of a patient.
      *
      * @param patients     PatientList object.
      * @param appointments ArrayList of appointment.
