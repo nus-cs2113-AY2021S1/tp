@@ -30,7 +30,7 @@ public class TextUi {
      * get taskList message
      */
     private static void getModuleListMessage(ArrayList<Module> taskListToPrint) {
-        tasksMessages = new StringBuilder();
+        modulesMessages = new StringBuilder();
         for (int index = LIST_INDEX_OFFSET; index <= taskListToPrint.size() ; index++) {
             Module module = taskListToPrint.get(index+ INDEX_OFF_SET);
             appendAllModuleMessage(index, module);

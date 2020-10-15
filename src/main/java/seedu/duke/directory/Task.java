@@ -8,17 +8,11 @@ import static seedu.duke.util.Constant.YES_ICON;
 public class Task extends Directory {
     private String description;
     private boolean isDone;
-    private DateTime deadline;
 
-    public Task(Directory module, String description, DateTime deadline) {
+    public Task(Directory module, String description) {
         super(module);
         this.description = description;
         this.isDone = false;
-        this.deadline = deadline;
-    }
-
-    public DateTime getDeadline() {
-        return deadline;
     }
 
     public String getDescription() {
@@ -39,10 +33,6 @@ public class Task extends Directory {
 
     public void setDone(boolean done) {
         isDone = done;
-    }
-
-    public void setDeadline(DateTime deadline) {
-        this.deadline = deadline;
     }
 
     public boolean isSameTask(String taskDescription) {

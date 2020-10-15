@@ -128,20 +128,17 @@ public class TaskManager {
      *  The task to be edited
      * @param newTaskDescription
      *  The new task description of the task
-     * @param newDeadline
-     *  The new deadline of the task
      * todo @param newPriority
      * The new priority of the task
      * @throws DuplicateTaskException
      *  If there are duplicate tasks with the same task description as the new task description in the Task List
      */
-    public void edit(Task toEdit, String newTaskDescription, DateTime newDeadline)
+    public void edit(Task toEdit, String newTaskDescription)
             throws DuplicateTaskException {
         if (!toEdit.isSameTask(newTaskDescription) && contains(newTaskDescription)) {
             throw new DuplicateTaskException();
         }
         toEdit.setDescription(newTaskDescription);
-        toEdit.setDeadline(newDeadline);
     }
 
     /**
