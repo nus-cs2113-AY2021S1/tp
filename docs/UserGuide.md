@@ -137,13 +137,13 @@ Here are the range of commands:
 ```
 
 ## FAQ
-Here are some commonly asked qns:
+Some common questions to aid in possible issues faces.
 
 **Q:** Where can I find the release? <br>
 It can be found at [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
 
 ## Command Summary
-Summary of features and how to use them.
+Summary of features and command formats.
 
 >Note: No additional parameter is needed if it is not mentioned. eg help <br>
 
