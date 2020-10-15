@@ -15,4 +15,5 @@ class LightsTest {
     void toString_nullInput_returnsName_and_status() {
         assertEquals("light 1: Off", new Lights("light 1", "bedroom 1", "200").toString());
     }
+
 }

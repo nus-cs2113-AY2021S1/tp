@@ -25,4 +25,9 @@ public class WaterHeater extends Appliance {
         this.duration = duration;
     }
 
+    @Override
+    public String writeFileFormat() {
+        return super.writeFileFormat();
+    }
+
 }

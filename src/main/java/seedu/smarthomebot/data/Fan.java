@@ -21,4 +21,8 @@ public class Fan extends Appliance {
         Fan.speed = speed;
     }
 
+    @Override
+    public String writeFileFormat() {
+        return super.writeFileFormat();
+    }
 }
