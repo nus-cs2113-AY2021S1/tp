@@ -137,9 +137,9 @@ public class ListNoteCommand extends Command {
             }
 
             if (noteString.toString().isBlank()) {
-                return COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK;
+                return InterfaceManager.LS + COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK;
             }
-            return COMMAND_SUCCESSFUL_MESSAGE + noteString.toString();
+            return InterfaceManager.LS + COMMAND_SUCCESSFUL_MESSAGE + noteString.toString();
         }
 
         // Obtaining ArrayList<String> of tags and parsing it to get an ArrayList<Tag> of tags
@@ -156,7 +156,7 @@ public class ListNoteCommand extends Command {
 
         // If the user inputted tags does not match any of the existing tags.
         if (tagList.isEmpty()) {
-            return COMMAND_UNSUCCESSFUL_MESSAGE_INVALID_TAG;
+            return InterfaceManager.LS + COMMAND_UNSUCCESSFUL_MESSAGE_INVALID_TAG;
         }
 
         // Based on user inputted tags, will store the respective values in an ArrayList
@@ -192,7 +192,7 @@ public class ListNoteCommand extends Command {
         } else {
             noteString = getSortedString(sortedTaggedNotes);
         }
-        return COMMAND_SUCCESSFUL_MESSAGE + noteString.toString();
+        return InterfaceManager.LS + COMMAND_SUCCESSFUL_MESSAGE + noteString.toString();
     }
 
     /**

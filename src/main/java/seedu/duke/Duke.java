@@ -20,9 +20,32 @@ public class Duke {
     private Timetable timetable;
     private TagManager tagManager;
 
+    private static final String NOTUS_LOGO = InterfaceManager.LS
+            + InterfaceManager.LS
+            + "     .-') _               .-') _                 .-')    "
+            + InterfaceManager.LS
+            + "    ( OO ) )             (  OO) )               ( OO ).  "
+            + InterfaceManager.LS
+            + ",--./ ,--,'  .-'),-----. /     '._ ,--. ,--.   (_)---\\_) "
+            + InterfaceManager.LS
+            + "|   \\ |  |\\ ( OO'  .-.  '|'--...__)|  | |  |   /    _ |  "
+            + InterfaceManager.LS
+            + "|    \\|  | )/   |  | |  |'--.  .--'|  | | .-') \\  :` `.  "
+            + InterfaceManager.LS
+            + "|  .     |/ \\_) |  | |  |   |  |   |  | |( OO ) '..`''.) "
+            + InterfaceManager.LS
+            + "|  |\\    |    \\ |  | |  |   |  |   |  | | `-' /.-._)   \\ "
+            + InterfaceManager.LS
+            + "|  | \\   |     `'  '-'  '   |  |  ('  '-'(_.-' \\       / "
+            + InterfaceManager.LS
+            + "`--'  `--'       `-----'    `--'    `-----'     `-----'  "
+            + InterfaceManager.LS;
+
     private static final String WELCOME_MSG_STRING = "Welcome to NotUS! "
+            + NOTUS_LOGO + InterfaceManager.LS
             + "Type \"help\" if you need to see a list of commands and their usages.";
-    private static final String ENTER_COMMAND_MSG = "Enter command:";
+    private static final String ENTER_COMMAND_MSG = InterfaceManager.LS
+            + "Enter command:";
 
     /**
      * Initializes the required managers.

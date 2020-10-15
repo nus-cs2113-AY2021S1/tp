@@ -42,7 +42,7 @@ public class HelpCommand extends Command {
             + PinCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
             + RemindCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_CYAN_STRING
             + TagCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_WHITE_STRING
-            + ViewNoteCommand.COMMAND_USAGE + InterfaceManager.LS + COLOR_RESET_STRING;
+            + ViewNoteCommand.COMMAND_USAGE + COLOR_RESET_STRING;
 
     @Override
     public String execute() {
