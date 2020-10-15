@@ -1,6 +1,5 @@
 package seedu.eduke8.command;
 
-
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.quiz.SingleTopicQuiz;

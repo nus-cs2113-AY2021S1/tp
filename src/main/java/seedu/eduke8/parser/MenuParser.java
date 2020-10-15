@@ -13,8 +13,13 @@ import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_WRONG_FORMAT;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAND;
+
 
 public class MenuParser implements Parser {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -51,7 +56,7 @@ public class MenuParser implements Parser {
                 topicName = commandArr[1].substring(2);
             } else {
                 LOGGER.log(Level.WARNING, "Parsing Error: Wrong number of fields used in quiz command.");
-                return new IncorrectCommand("Please use the format: quiz t/<topic> n/<number of questions>");
+                return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
             }
             LOGGER.log(Level.INFO, "Parsing complete: quiz command chosen.");
             return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui);
@@ -62,7 +67,7 @@ public class MenuParser implements Parser {
             break;
         }
         LOGGER.log(Level.WARNING, "Parsing Error: Unrecognised command was entered.");
-        return new IncorrectCommand("Please enter in a valid command. Enter 'help' for more info!");
+        return new IncorrectCommand(ERROR_UNRECOGNIZED_COMMAND);
     }
 
 }

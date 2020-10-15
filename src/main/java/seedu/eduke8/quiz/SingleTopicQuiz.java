@@ -86,7 +86,6 @@ public class SingleTopicQuiz implements Quiz {
                 }
             }
 
-            assert command instanceof AnswerCommand;
             LOGGER.log(Level.INFO, "Question answered");
 
             command.execute(optionList, ui);
