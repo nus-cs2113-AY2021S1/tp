@@ -33,8 +33,7 @@ public class Parser {
             return new Search(rawInput);
         } else if (rawInput.startsWith(Delete.COMMAND_WORD)) {
             return new Delete(rawInput);
-        }
-        {
+        } else {
             throw new UnknowCommandException();
         }
     }

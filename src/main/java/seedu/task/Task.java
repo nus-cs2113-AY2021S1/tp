@@ -139,21 +139,12 @@ public class Task {
         return date;
     }
 
-
     public void setDate(String dateString) throws InvalidDatetimeException {
         date = dateStringToDate(dateString);
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
     public LocalTime getStartTime() {
         return startTime;
-    }
-
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
     }
 
     public void setStartTime(String startTime) throws InvalidDatetimeException {
@@ -174,10 +165,6 @@ public class Task {
 
     public Priority getPriority() {
         return priority;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
     }
 
     public void setPriority(String priorityString) throws InvalidPriorityException {
