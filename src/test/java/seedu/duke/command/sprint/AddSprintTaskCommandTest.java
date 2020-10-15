@@ -46,7 +46,6 @@ class AddSprintTaskCommandTest {
         parser.parser(command, projectList);
         String expectedOutput = "Invalid parameters." + System.lineSeparator();
         assertEquals(expectedOutput, outContent.toString());
-
         restoreStreams();
     }
 }

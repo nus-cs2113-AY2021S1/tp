@@ -42,7 +42,7 @@ public class CreateSprintCommand extends SprintCommand {
                 createSubsequentSprint(proj);
             }
         } else {
-            Ui.showToUserLn("Missing goal for this sprint.");
+            Ui.showError("Missing goal for this sprint.");
         }
     }
 

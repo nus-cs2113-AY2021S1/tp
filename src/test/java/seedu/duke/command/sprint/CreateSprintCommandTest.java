@@ -16,6 +16,9 @@ class CreateSprintCommandTest {
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
 
+    private final ArrayList<Project> projectList = new ArrayList<>();
+    private final Parser parser = new Parser();
+
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
@@ -26,15 +29,14 @@ class CreateSprintCommandTest {
         System.setErr(originalErr);
     }
 
+    public void setUpProject() {
+        Project proj = new Project(null, null, "90", "10");
+        projectList.add(proj);
+    }
     @Test
     void createSprint_missingFields_returnErrorMessage() {
         setUpStreams();
-
-        ArrayList<Project> projectList = new ArrayList<>();
-        Parser parser = new Parser();
-        Project proj = new Project(null, null, "90", "10");
-        projectList.add(proj);
-
+        setUpProject();
         String command = "sprint /create";
         parser.parser(command, projectList);
         String expectedOutput = "Missing goal for this sprint." + System.lineSeparator();
