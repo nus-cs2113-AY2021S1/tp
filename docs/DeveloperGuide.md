@@ -1,31 +1,40 @@
 # Developer Guide
 
 ## Table of Contents
-### [1. Design & Implementation](#design)
-### [2. Product Scope](#scope)
-#### [2.1 Target User Profile](#userprofile)
-#### [2.2 Value Proposition](#value)
-### [3. User Stories](#userstories)
-### [4. Non-Functional Requirements](#nfr)
-### [5. Glossary](#gloss)
-### [6. Instructions for Manual Testing](#testinstr)
+### [1. Introduction](#intro)
+### [2. Design & Implementation](#design)
+### [3. Product Scope](#scope)
+#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Target User Profile](#userprofile)
+#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Value Proposition](#value)
+### [4. User Stories](#userstories)
+### [5. Non-Functional Requirements](#nfr)
+### [6. Glossary](#gloss)
+### [7. Instructions for Manual Testing](#testinstr)
 
 
-## <a id="design">1. Design & Implementation</a>
+## <a id="intro">1. Introduction</a>
+NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking application for keyboard-inclined users. NotUS allows for users to categorize notes by tagging as well as pinning the more important notes. NotUS is also designed to assist in planning timetables to highlight possible clashes.
+
+This document describes the design, implementation and architecture of NotUS.
+
+## <a id="design">2. Design & Implementation</a>
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
 
-## <a id="scope">2. Product Scope</a>
-### <a id="userprofile">2.1 Target User Profile</a>
+## <a id="scope">3. Product Scope</a>
+### <a id="userprofile">3.1 Target User Profile</a>
 
-{Describe the target user profile}
+1. NUS students, specifically SOC and CEG students (herein referred to as students) who are comfortable and adept at using CLI.
+2. Students who want to take notes and categorize them so they are not all over the place.
+3. Students who are comfortable with CLI.
 
-### <a id="value">2.2 Value Proposition</a>
+### <a id="value">3.2 Value Proposition</a>
 
-{Describe the value proposition: what problem does it solve?}
+A all-in-one solution for note-taking and managing your schedule.
 
-## <a id="userstories">3. User Stories</a>
+
+## <a id="userstories">4. User Stories</a>
 
 | Version | Target User | Function/Feature | User's Benefit |
 |--------|----------|---------------|------------------|
@@ -33,7 +42,7 @@
 |v1.0|SOC/FOE student|Keep track of my notes|Be organized and find notes easily|
 |v1.0|Meticulous student|Categorize my notes by level of importance|Focus on the important topics|
 |v1.0|Student who is overloading|Categorize my notes by module|Be more aware of which notes are necessary for the upcoming lessons|
-|v1.0|Student who is more visual|Categorize my notes by colour (CLI)|Be able to easily identify which module is which|
+|v1.0|Student who is more visual|Categorize my notes by colour (visible on CLI)|Be able to easily identify which module is which|
 |v1.0|Meticulous student|Create daily and weekly task lists|Keep track of my work progress|
 |v1.0|Forgetful student|To obtain reminders about my schedule for the day|So I do not forget what I have on for the day|
 |v1.0|Busy student|Pin important notes, events and todo list|Focus on the important information|
@@ -49,14 +58,19 @@
 |v2.0|SOC/FOE student|Be able to import my timetable/events|To make adjustments to my schedule|
 |v2.0|SOC/FOE student|Be able to export my timetable/events|To share my schedule with my peers|
 
-## <a id="nfr">4. Non-Functional Requirements</a>
 
-{Give non-functional requirements}
+## <a id="nfr">5. Non-Functional Requirements</a>
 
-## <a id="gloss">5. Glossary</a>
+1. Must have Java 11 installed
+2.
+3.
+
+
+## <a id="gloss">6. Glossary</a>
 
 * *glossary item* - Definition
 
-## <a id="testinstr">6. Instructions for Manual Testing</a>
+
+## <a id="testinstr">7. Instructions for Manual Testing</a>
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
