@@ -90,7 +90,7 @@ public class ModuleList {
      */
     public void addMod(String input, boolean toPrint, Storage storage) {
         try {
-            String[] modInfo = input.split(" ", 2);
+            String[] modInfo = input.trim().split(" ", 2);
             String modCode = modInfo[1];
             modCode = modCode.toUpperCase();
 
@@ -129,7 +129,7 @@ public class ModuleList {
      */
     public void addExp(String input, boolean toPrint, Storage storage) {
         try {
-            String[] modInfo = input.split(" ", 3);
+            String[] modInfo = input.trim().split(" ", 3);
             String modCode = modInfo[1];
             String expTime = modInfo[2];
             modCode = modCode.toUpperCase();
@@ -172,7 +172,7 @@ public class ModuleList {
      */
     public void deleteMod(String input, boolean toPrint, Storage storage) {
         try {
-            String[] modInfo = input.split(" ", 2);
+            String[] modInfo = input.trim().split(" ", 2);
             String modCode = modInfo[1];
             modCode = modCode.toUpperCase();
             if (!checkIfModuleValid(modCode, toPrint)) {
@@ -206,7 +206,7 @@ public class ModuleList {
      */
     public void deleteExp(String input, boolean toPrint, Storage storage) {
         try {
-            String[] modInfo = input.split(" ", 2);
+            String[] modInfo = input.trim().split(" ", 2);
             String modCode = modInfo[1];
             modCode = modCode.toUpperCase();
             if (!checkIfModuleValid(modCode, toPrint)) {
@@ -240,7 +240,7 @@ public class ModuleList {
      * @param storage storage object where data is stored.
      */
     public void addTime(String input, boolean toPrint, Storage storage) {
-        String[] commandInfo = input.split(" ", 4);
+        String[] commandInfo = input.trim().split(" ", 4);
         commandInfo[1] = commandInfo[1].toUpperCase();
         Module currentModule = new Module(commandInfo[1]);
         int index = modList.indexOf(currentModule);
@@ -259,20 +259,22 @@ public class ModuleList {
      * @param storage storage object where data is stored.
      */
     public void minusTime(String input, boolean toPrint, Storage storage) {
-        String[] commandInfo = input.split(" ", 4);
+        String[] commandInfo = input.trim().split(" ", 4);
         commandInfo[1] = commandInfo[1].toUpperCase();
         Module currentModule = new Module(commandInfo[1]);
         int index = modList.indexOf(currentModule);
         int week = Integer.parseInt(commandInfo[3]);
         if (modList.get(index).doesActualTimeExist(week)) {
             modList.get(index).minusActualTime(commandInfo[2], commandInfo[3]);
-            if(toPrint) {
-                System.out.println(commandInfo[2] + " hours are removed from " + commandInfo[1] + System.lineSeparator());
+            if (toPrint) {
+                System.out.println(commandInfo[2] + " hours are removed from "
+                        + commandInfo[1] + System.lineSeparator());
                 storage.appendToFile(input);
             }
         } else {
-            if(toPrint) {
-                System.out.println("No actual time found." + System.lineSeparator());
+            if (toPrint) {
+                System.out.println("Cannot minus actual time as there is no actual time inputted."
+                        + System.lineSeparator());
             }
         }
     }
