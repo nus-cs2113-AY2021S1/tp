@@ -1,4 +1,17 @@
-Welcome to NotUS! Type "help" if you need to see a list of commands and their usages.
+Welcome to NotUS! 
+
+     .-') _               .-') _                 .-')    
+    ( OO ) )             (  OO) )               ( OO ).  
+,--./ ,--,'  .-'),-----. /     '._ ,--. ,--.   (_)---\_) 
+|   \ |  |\ ( OO'  .-.  '|'--...__)|  | |  |   /    _ |  
+|    \|  | )/   |  | |  |'--.  .--'|  | | .-') \  :` `.  
+|  .     |/ \_) |  | |  |   |  |   |  | |( OO ) '..`''.) 
+|  |\    |    \ |  | |  |   |  |   |  | | `-' /.-._)   \ 
+|  | \   |     `'  '-'  '   |  |  ('  '-'(_.-' \       / 
+`--'  `--'       `-----'    `--'    `-----'     `-----'  
+
+Type "help" if you need to see a list of commands and their usages.
+
 Enter command:
 
 The recognized commands and their usages are listed below. Parameters listed in brackets, [ ] represent optional inputs.
@@ -19,15 +32,17 @@ The recognized commands and their usages are listed below. Parameters listed in 
 [36mpin-n: Pins or unpins a note. Parameters: [/i INDEX] [/t TITLE]
 [97mremind-e: Shows the reminders for today.
 [36mtag: Tags or untags a note. Parameters: /i INDEX /tag TAG TAG_COLOR [/tag TAG1 TAG_COLOR...]
-[97mview-n: Views a note. Parameters: [/i INDEX] [/t TITLE]
-[0m
-Enter command:
-
-Invalid Command. Please try again or enter help to get a list of valid commands.
+[97mview-n: Views a note. Parameters: [/i INDEX] [/t TITLE][0m
 
 Enter command:
 
 Invalid Command. Please try again or enter help to get a list of valid commands.
+
+
+Enter command:
+
+Invalid Command. Please try again or enter help to get a list of valid commands.
+
 
 Enter command:
 Bye!
