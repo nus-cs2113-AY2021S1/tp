@@ -12,11 +12,9 @@ Hello User! Welcome to Fluffle!
 What can I do for you?
 --------------------------------------------------------------
 What is your name?
-Fluffle
 Hello Fluffle. Welcome to Fluffle!
 Your registration has been recorded at 2020-10-15
 Please type in "help" command for information!
-help
 --------------------------------------------------------------
 Type 'help c\<function name here>' to view help for each command.
 Available commands:
@@ -29,7 +27,6 @@ start
 clear
 exit
 --------------------------------------------------------------
-exit
 --------------------------------------------------------------
 --------------------------------------------------------------
 Bye Fluffle! Hope to see you again soon!
