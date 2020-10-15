@@ -4,6 +4,7 @@ import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
 import seedu.duke.ui.InterfaceManager;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -89,7 +90,20 @@ public class ListNoteCommand extends Command {
     @Override
     public String execute() {
         StringBuilder noteString = new StringBuilder();
+        StringBuilder pinnedNotesSorted;
+        StringBuilder unpinnedNotesSorted;
         ArrayList<Note> notes = new ArrayList<>();
+        ArrayList<Note> pinnedNotes = new ArrayList<>();
+        ArrayList<Note> unpinnedNotes = new ArrayList<>();
+
+        for (int i = 0; i < notebook.getNotes().size(); i++) {
+            String pinnedNoteStatus = notebook.getNotes().get(i).getPinned();
+            if (pinnedNoteStatus.equals("Y")) {
+                pinnedNotes.add(notebook.getNotes().get(i));
+            } else {
+                unpinnedNotes.add(notebook.getNotes().get(i));
+            }
+        }
 
         ArrayList<Note> sortedNotes = (ArrayList<Note>) notebook.getNotes().stream()
                 .filter(Objects::nonNull)
@@ -97,16 +111,28 @@ public class ListNoteCommand extends Command {
                 .collect(Collectors.toList());
 
         if (tags == null) {
-            if (isAscendingOrder == null) {
-                for (int i = 0; i < notebook.getNotes().size(); i++) {
-                    noteString.append(i + 1).append(SUFFIX_INDEX)
-                            .append(notebook.getNotes().get(i).getTitle())
-                            .append(" ")
-                            .append(notebook.getNotes().get(i).getTagsName())
-                            .append(InterfaceManager.LS);
-                }
+            if (isAscendingOrder == null && pinnedNotes.isEmpty()) {
+                noteString = getNoteString(notebook.getNotes());
+            } else if (isAscendingOrder == null) {
+                noteString.append("Pinned Notes")
+                        .append(InterfaceManager.LS)
+                        .append(getNoteString(pinnedNotes))
+                        .append(InterfaceManager.LS)
+                        .append("Unpinned Notes")
+                        .append(InterfaceManager.LS)
+                        .append(getNoteString(unpinnedNotes));
+            } else if (pinnedNotes.isEmpty()) {
+                noteString = getSortedString(sortedNotes);
             } else {
-                noteString = new StringBuilder(getSortedString(noteString.toString(), sortedNotes));
+                pinnedNotesSorted = getSortedString(pinnedNotes);
+                unpinnedNotesSorted = getSortedString(unpinnedNotes);
+                noteString.append("Pinned Notes")
+                        .append(InterfaceManager.LS)
+                        .append(pinnedNotesSorted)
+                        .append(InterfaceManager.LS)
+                        .append("Unpinned Notes")
+                        .append(InterfaceManager.LS)
+                        .append(unpinnedNotesSorted);
             }
 
             if (noteString.toString().isBlank()) {
@@ -161,16 +187,9 @@ public class ListNoteCommand extends Command {
                 .collect(Collectors.toList());
 
         if (isAscendingOrder == null) {
-            for (int i = 0; i < notes.size(); i++) {
-                noteString.append(i + 1)
-                        .append(SUFFIX_INDEX)
-                        .append(notes.get(i).toString())
-                        .append(" ")
-                        .append(notes.get(i).getTagsName())
-                        .append(InterfaceManager.LS);
-            }
+            noteString = getNoteString(notes);
         } else {
-            noteString = new StringBuilder(getSortedString(noteString.toString(), sortedTaggedNotes));
+            noteString = getSortedString(sortedTaggedNotes);
         }
         return COMMAND_SUCCESSFUL_MESSAGE + noteString.toString();
     }
@@ -180,37 +199,40 @@ public class ListNoteCommand extends Command {
      * The ArrayList has already been sorted
      * Method returns either top to bottom or bottom to top to account for ascending/descending sorting
      *
+     *
      * @return noteString String containing the notes sorted either ascending ot descending
      */
-    private String getSortedString(String noteString, ArrayList<Note> sortedNotes) {
-        if (!isAscendingOrder) {
-            int j = 1;
+    private StringBuilder getSortedString(ArrayList<Note> sortedNotes) {
+        StringBuilder noteStrBuilder = new StringBuilder();
 
-            StringBuilder noteStrBuilder = new StringBuilder(noteString);
-            for (int i = sortedNotes.size() - 1; i >= 0; i--) {
-                noteStrBuilder.append(j)
-                        .append(SUFFIX_INDEX)
-                        .append(sortedNotes.get(i).getTitle())
-                        .append(" ")
-                        .append(sortedNotes.get(i).getTagsName())
-                        .append(InterfaceManager.LS);
-                j++;
-            }
-            noteString = noteStrBuilder.toString();
+        if (!isAscendingOrder) {
+            Collections.reverse(sortedNotes);
+            noteStrBuilder = getNoteString(sortedNotes);
+            //noteString = noteStrBuilder.toString();
 
         } else if (isAscendingOrder) {
-
-            StringBuilder noteStrBuilder = new StringBuilder(noteString);
-            for (int i = 0; i < sortedNotes.size(); i++) {
-                noteStrBuilder.append(i + 1)
-                        .append(SUFFIX_INDEX)
-                        .append(sortedNotes.get(i).getTitle())
-                        .append(" ")
-                        .append(sortedNotes.get(i).getTagsName())
-                        .append(InterfaceManager.LS);
-            }
-            noteString = noteStrBuilder.toString();
+            noteStrBuilder = getNoteString(sortedNotes);
+            //noteString = noteStrBuilder.toString();
         }
+        return noteStrBuilder;
+    }
+
+    /**
+     * Method compiles the ArrayList items and appends the items to a String.
+     *
+     * @return noteString String containing the notes ready to be printed
+     */
+    private StringBuilder getNoteString(ArrayList<Note> notesList) {
+        StringBuilder noteString = new StringBuilder();
+
+        for (int i = 0; i < notesList.size(); i++) {
+            noteString.append(i + 1).append(SUFFIX_INDEX)
+                    .append(notesList.get(i).getTitle())
+                    .append(" Tags: ")
+                    .append(notesList.get(i).getTagsName())
+                    .append(InterfaceManager.LS);
+        }
+
         return noteString;
     }
 }
