@@ -4,14 +4,14 @@ import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.ui.Ui;
 
 public class IncorrectCommand extends Command {
-    String errorType = "";
+    String errorMessage;
 
-    public IncorrectCommand(String errorType) {
-        this.errorType = errorType;
+    public IncorrectCommand(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
     @Override
     public void execute(DisplayableList displayableList, Ui ui) {
-        ui.printError(errorType);
+        ui.printError(errorMessage);
     }
 }

@@ -1,13 +1,14 @@
 package seedu.eduke8.ui;
 
+import seedu.eduke8.common.Displayable;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.question.Question;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
-
 
     private static final int LAST_OPTION = 4;
     private static final String TEXTBOOK_WEBSITE =
@@ -18,24 +19,30 @@ public class Ui {
             + "| |___ |  _ \\| |_| |\n"
             + "|  ___|| | | |  _  |\n"
             + "| |___ | |_| | |_| |\n"
-            + "|_____||____/|_____|\n";
+            + "|_____||____/|_____|";
 
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String HORIZONTAL_LINE = "-------------------------------------------------------------------";
-    private static final String MESSAGE_ABOUT = "E-Duke-8 is a desktop app that helps CS2113/T students learn and "
-            + "understand software engineering and OOP principles through a gamified platform and enhance their "
-            + "learning experience. It also consolidates key concepts for easy revision.";
-    private static final String MESSAGE_GREETINGS = "Hello! I'm E-Duke-8\nWhat can I do for you?";
+    private static final String MESSAGE_ABOUT = "E-Duke-8 is a desktop app that helps CS2113/T students learn and"
+            + System.lineSeparator() + "understand software engineering and OOP principles through a"
+            + System.lineSeparator() + "gamified platform and enhance their " + "learning experience. It also"
+            + System.lineSeparator() + "consolidates key concepts for easy revision.";
+    private static final String MESSAGE_GREETINGS = "Hello! I'm E-Duke-8" + System.lineSeparator()
+            + "What can I do for you?";
     private static final String MESSAGE_EXIT = "Bye bye. Hope you have a nice day and see you soon!";
-    private static final String MESSAGE_HELP = "These are the commands that you can used:";
-    private static final String MESSAGE_COMMANDS = "1) about\n2) help\n3) topics\n4) textbook\n5) quiz\n6) stats\n"
-            + "7) exit";
+    private static final String MESSAGE_HELP = "These are the commands that you can used:"
+            + System.lineSeparator() + "1) about" + System.lineSeparator() + "2) help" + System.lineSeparator()
+            + "3) topics" + System.lineSeparator() + "4) textbook" + System.lineSeparator()
+            + "5) quiz t/<topic> n/<number of questions>" + System.lineSeparator() + "6) exit";
     private static final String MESSAGE_QUIZ_START = "Start of quiz:";
-    private static final String MESSAGE_QUIZ_END = "This is the end of the quiz!\nHope you have learnt something new!";
-    private static final String MESSAGE_ANSWER_WRONG = "Oops! Please try again! Do visit the textbook to read up more.";
+    private static final String MESSAGE_QUIZ_END = "This is the end of the quiz!"
+            + System.lineSeparator() + "Hope you have learnt something new!";
+    private static final String MESSAGE_ANSWER_WRONG = "Oops! The correct answer is ";
+    private static final String MESSAGE_ANSWER_WRONG_SECOND = "! Do visit the textbook to read up more.";
     private static final String MESSAGE_ANSWER_CORRECT = "Congrats! This answer is correct! Well Done!";
-    private static final String MESSAGE_TEXTBOOK = "The textbook for this module is available at:  " + TEXTBOOK_WEBSITE;
-
+    private static final String MESSAGE_TEXTBOOK = "The textbook for this module is available at:"
+            + System.lineSeparator() + TEXTBOOK_WEBSITE;
+    private static final String MESSAGE_HINT = "Hint: ";
 
     public String getInputFromUser() {
         return SCANNER.nextLine();
@@ -64,12 +71,13 @@ public class Ui {
     }
 
     public void printQuestion(Question question, int questionNumber) {
-        System.out.println(HORIZONTAL_LINE);
         System.out.println(questionNumber + ". " + question.getDescription());
     }
 
     public void printHint(Hint hint) {
-        System.out.println("Hint: " + hint.getDescription());
+        System.out.println(HORIZONTAL_LINE);
+        System.out.println(MESSAGE_HINT + hint.getDescription());
+        System.out.println(HORIZONTAL_LINE);
     }
 
     //Formatting of topicsChosen: separated by ","
@@ -87,21 +95,22 @@ public class Ui {
     }
 
     public void printEndQuizPage() {
-        printMessage(MESSAGE_QUIZ_END);
+        System.out.println(MESSAGE_QUIZ_END);
+        System.out.println(HORIZONTAL_LINE);
     }
 
-    public void printAnswerIsWrong() {
-        printMessage(MESSAGE_ANSWER_WRONG);
+    public void printAnswerIsWrong(int correctAnswer) {
+        System.out.println(HORIZONTAL_LINE);
+        System.out.println(MESSAGE_ANSWER_WRONG + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND);
+        System.out.println(HORIZONTAL_LINE);
     }
 
     public void printAnswerIsCorrect() {
         printMessage(MESSAGE_ANSWER_CORRECT);
     }
 
-    //Shows list of commands that can be used.
     public void printHelp() {
         printMessage(MESSAGE_HELP);
-        printMessage(MESSAGE_COMMANDS);
     }
 
     public void printAbout() {
@@ -111,35 +120,20 @@ public class Ui {
     public void printTextbook() {
         printMessage(MESSAGE_TEXTBOOK);
     }
+  
+    public void printError(String errorMessage) {
+        printMessage(errorMessage);
+    }
 
-    public void printError(String errorType) {
-        switch (errorType) {
-        case "unrecognised":
-            printMessage("ERROR: Command received not recognised. Please try again.");
-            break;
-        case "empty":
-            printMessage("ERROR: Command received is missing information. Please try again.");
-            break;
-        case "Eduk8 Constructor Exception":
-            printMessage("ERROR: An exception was thrown while loading the save file from storage.");
-            break;
-        case "runCommandLoopUntilExit() Exception":
-            printMessage("ERROR: An exception was thrown while running the main loop.");
-            break;
-        case "QuizCommand execute Exception":
-            printMessage("ERROR: An exception was thrown while executing the Quiz Command.");
-            break;
-        case "Not implemented yet":
-            printMessage("ERROR: This function has not been implemented yet.");
-            break;
-        case "Please choose the answer by index":
-            printMessage("ERROR: Please choose the answer by using numeric digits as per the choices given.");
-            break;
-        default:
-            break;
+    public void printTopicList(ArrayList<Displayable> topics) {
+        System.out.println(HORIZONTAL_LINE);
+
+        System.out.println("These are the available topics:");
+        for (int i = 0; i < topics.size(); i++) {
+            System.out.println(topics.get(i).getDescription());
         }
-        //Writing messages for the different errors
-        //Completed when more error handling are done
+
+        System.out.println(HORIZONTAL_LINE);
     }
 
     private void printStartQuizTopics(String topicsChosen) {
@@ -161,5 +155,4 @@ public class Ui {
             System.out.println("s.");
         }
     }
-
 }
