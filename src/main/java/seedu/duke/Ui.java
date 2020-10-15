@@ -209,6 +209,12 @@ public class Ui {
         System.out.println(calendarList.getCalendarList().get(lastCalendarItemIndex));
     }
 
+    /**
+     * Prints each item's countdown.
+     *
+     * @param days how many days left.
+     * @param item the item to print the countdown.
+     */
     public static void printCountDownItem(int days, CalendarItem item) {
         if (days < 0) {
             System.out.println(item.getDescription() + " You have already missed it!");
@@ -223,6 +229,12 @@ public class Ui {
         }
     }
 
+    /**
+     * Print the countdown for every item in the calendar list.
+     *
+     * @param calendarList the calendar list we want to print the countdown for.
+     * @param type 0 is for exam events, 1 is for deadline tasks.
+     */
     public static void printCountDownMessage(CalendarList calendarList, int type) {
         switch (type) {
         case 0:
