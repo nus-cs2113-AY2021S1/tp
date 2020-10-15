@@ -44,12 +44,11 @@ public class ProjectCommand {
 
         Project proj = new Project(title, description, deadline, sd);
         Ui.showToUserLn("Project successfully created.");
-        Ui.showToUserLn(proj.toString());
         projectList.add(proj);
         Ui.showToUserLn(projectList.get(0).toString());
     }
 
-    public void viewProjectCommand(ArrayList<Project> projectList) throws DukeException {
+    public void viewProjectCommand(ArrayList<Project> projectList) {
         if (projectList.isEmpty()) {
             Ui.showError("No projects are created.");
         } else {
