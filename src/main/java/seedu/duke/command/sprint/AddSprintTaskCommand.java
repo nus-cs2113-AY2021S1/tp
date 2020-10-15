@@ -1,14 +1,15 @@
 package seedu.duke.command.sprint;
 
+import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
 import seedu.duke.sprint.Sprint;
 import seedu.duke.sprint.SprintList;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.ui.Ui;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class AddSprintTaskCommand extends SprintCommand {
     private SprintList allSprint;
@@ -22,17 +23,27 @@ public class AddSprintTaskCommand extends SprintCommand {
     }
 
     public void execute() {
+        if (projectList.isEmpty()) {
+            Ui.showError("Please create a project first.");
+            return;
+        }
         proj = projectList.get(0);
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
             Sprint currentSprint = allSprint.getSprint(currentSprintNo);
+            if (!parametersInAL.isEmpty()) {
+                for (String entry : this.parametersInAL) {
+                    try {
+                        int taskId = Integer.parseInt(entry);
+                        currentSprint.addSprintTask(taskId);
+                        proj.getProjectBacklog().getTask(taskId).allocateToSprint(currentSprint.getId());
+                        Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + " added to sprint.\n");
+                    } catch (NumberFormatException e) {
+                        Ui.showError("Invalid parameters.");
+                    }
 
-            for (String entry: this.parametersInAL) {
-                int taskId = Integer.parseInt(entry);
-                currentSprint.addSprintTask(taskId);
-                proj.getProjectBacklog().getTask(taskId).allocateToSprint(currentSprint.getId());
-                Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + "added to sprint.\n");
+                }
             }
         } else {
             checkReason();

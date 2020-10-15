@@ -1,5 +1,6 @@
 package seedu.duke.command.sprint;
 
+import seedu.duke.exception.DukeException;
 import seedu.duke.ui.Messages;
 import seedu.duke.project.Project;
 import seedu.duke.sprint.Sprint;
@@ -26,9 +27,12 @@ public class CreateSprintCommand extends SprintCommand {
 
     /**
      * Abstract method that execute the command.
-     *
      */
     public void execute() {
+        if (projectList.isEmpty()) {
+            Ui.showError("Please create a project first.");
+            return;
+        }
         proj = projectList.get(0);
         if (validateParams()) {
             allSprint = proj.getAllSprints();
@@ -37,6 +41,8 @@ public class CreateSprintCommand extends SprintCommand {
             } else {
                 createSubsequentSprint(proj);
             }
+        } else {
+            Ui.showError("Missing goal for this sprint.");
         }
     }
 
@@ -44,7 +50,11 @@ public class CreateSprintCommand extends SprintCommand {
 
         LocalDate sprintStart = LocalDate.now();
         if (!this.parametersInHT.get("start").isEmpty()) {
-            sprintStart = DateTimeParser.parseDate(this.parametersInHT.get("start"));
+            try {
+                sprintStart = DateTimeParser.parseDate(this.parametersInHT.get("start"));
+            } catch (DukeException e) {
+                e.printExceptionMessage();
+            }
         }
         LocalDate sprintEnd = sprintStart.plusDays(proj.getSprintLength() - 1);
         String sprintGoal = this.parametersInHT.get("goal");
@@ -55,7 +65,7 @@ public class CreateSprintCommand extends SprintCommand {
         proj.setEndDate(projEndDate);
 
         Ui.showToUserLn("Project will start along with the newly created sprint");
-        System.out.println("Project period: " + sprintStart + " to " + projEndDate);
+        Ui.showToUserLn("Project period: " + sprintStart + " to " + projEndDate);
         printCreatedSprint();
 
     }
@@ -65,7 +75,7 @@ public class CreateSprintCommand extends SprintCommand {
         String sprintGoal = this.parametersInHT.get("goal");
         Sprint prevSprint = allSprint.getSprint(allSprint.size() - 1);
         LocalDate sprintStart = prevSprint.getEndDate().plusDays(1);
-        if (DateTimeParser.diff(proj.getEndDate(),sprintStart) >= 0) {
+        if (DateTimeParser.diff(proj.getEndDate(), sprintStart) >= 0) {
             Ui.showToUserLn("\nAll sprints are already created.");
             return;
         }
@@ -78,7 +88,7 @@ public class CreateSprintCommand extends SprintCommand {
     }
 
     private boolean validateParams() {
-        return !this.parametersInHT.get("goal").isEmpty();
+        return this.parametersInHT.containsKey("goal");
     }
 
     private void printCreatedSprint() {

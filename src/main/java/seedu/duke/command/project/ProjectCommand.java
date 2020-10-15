@@ -46,9 +46,14 @@ public class ProjectCommand {
         Ui.showToUserLn("Project successfully created.");
         Ui.showToUserLn(proj.toString());
         projectList.add(proj);
+        Ui.showToUserLn(projectList.get(0).toString());
     }
 
     public void viewProjectCommand(ArrayList<Project> projectList) throws DukeException {
-        Ui.showToUserLn(projectList.get(0).toString());
+        if (projectList.isEmpty()) {
+            Ui.showError("No projects are created.");
+        } else {
+            Ui.showToUserLn(projectList.get(0).toString());
+        }
     }
 }

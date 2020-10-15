@@ -5,6 +5,7 @@ import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.project.Project;
+import seedu.duke.task.Task;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -13,6 +14,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class SprintList implements Jsonable {
+
+
     private ArrayList<Sprint> sprintList;
     private int currentSprintIndex;
 
@@ -34,6 +37,10 @@ public class SprintList implements Jsonable {
         sprintList.add(new Sprint(newSprintID, proj, goal, start, end));
     }
 
+    public ArrayList<Sprint> getSprintList() {
+        return sprintList;
+    }
+
     public int getCurrentSprintIndex() {
         return currentSprintIndex;
     }
@@ -53,6 +60,17 @@ public class SprintList implements Jsonable {
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder allSprintsInString = new StringBuilder();
+        allSprintsInString.append("\n-------------------------- ALL SPRINTS --------------------------\n");
+        for (Sprint sprint : sprintList) {
+            allSprintsInString.append(sprint.toSimplifiedString());
+        }
+        allSprintsInString.append("-----------------------------------------------------------------\n");
+        return allSprintsInString.toString();
     }
 
     @Override

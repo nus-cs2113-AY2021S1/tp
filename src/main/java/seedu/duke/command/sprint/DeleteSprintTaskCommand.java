@@ -8,7 +8,6 @@ import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class DeleteSprintTaskCommand extends SprintCommand {
     private SprintList allSprint;
@@ -21,12 +20,16 @@ public class DeleteSprintTaskCommand extends SprintCommand {
     }
 
     public void execute() {
+        if (projectList.isEmpty()) {
+            Ui.showError("Please create a project first.");
+            return;
+        }
         proj = projectList.get(0);
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
             Sprint currentSprint = allSprint.getSprint(currentSprintNo);
-            for (String entry: this.parametersInAL) {
+            for (String entry : this.parametersInAL) {
                 int taskId = Integer.parseInt(entry);
                 Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + "removed from sprint.\n");
                 currentSprint.removeSprintTask(taskId);
