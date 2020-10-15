@@ -20,6 +20,22 @@ public class SprintList implements Jsonable {
         this.sprintList = new ArrayList<>();
         setCurrentSprintIndex(-1);
     }
+    
+    public ArrayList<Sprint> getSprintList() {
+        return sprintList;
+    }
+
+    public void setSprintList(ArrayList<Sprint> sprintList) {
+        this.sprintList = sprintList;
+    }
+
+    public int getCurrentSprintIndex() {
+        return currentSprintIndex;
+    }
+
+    public void setCurrentSprintIndex(int currentSprintIndex) {
+        this.currentSprintIndex = currentSprintIndex;
+    }
 
     public int size() {
         return sprintList.size();
@@ -32,14 +48,6 @@ public class SprintList implements Jsonable {
     public void addSprint(Project proj, String goal, LocalDate start, LocalDate end) {
         int newSprintID = this.size() + 1;
         sprintList.add(new Sprint(newSprintID, proj, goal, start, end));
-    }
-
-    public int getCurrentSprintIndex() {
-        return currentSprintIndex;
-    }
-
-    public void setCurrentSprintIndex(int currentSprintIndex) {
-        this.currentSprintIndex = currentSprintIndex;
     }
 
     public boolean updateCurrentSprint() {
@@ -71,7 +79,7 @@ public class SprintList implements Jsonable {
     public void toJson(Writer writer) throws IOException {
         final JsonObject jSprintObj = new JsonObject();
         final JsonArray jSprintList = new JsonArray(sprintList);
-        jSprintObj.put("list", jSprintList);
+        jSprintObj.put("sprintList", jSprintList);
         jSprintObj.put("currentSprintIndex", currentSprintIndex);
         jSprintObj.toJson(writer);
     }

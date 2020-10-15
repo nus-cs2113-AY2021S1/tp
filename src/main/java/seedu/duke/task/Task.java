@@ -10,7 +10,6 @@ import java.io.Writer;
 import java.util.ArrayList;
 
 public class Task implements Jsonable {
-
     protected int id;
     protected String title;
     protected String description;
@@ -19,6 +18,8 @@ public class Task implements Jsonable {
     protected ArrayList<String> membersAllocatedTo;
     protected ArrayList<Integer> sprintAllocatedTo;
 
+    public Task() {
+    }
 
     public Task(int id, String title, String description, String priority) {
         this(id, title, description, priority, false);
@@ -29,9 +30,49 @@ public class Task implements Jsonable {
         this.title = title;
         this.description = description;
         this.priority = Priority.valueOf(priority);
-        this.isDone = false;
+        this.isDone = isDone;
         this.membersAllocatedTo = new ArrayList<>();
         this.sprintAllocatedTo = new ArrayList<>();
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+    
+    public void setPriority(String input) {
+        priority = Priority.valueOf(input);
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
+    public ArrayList<String> getMembersAllocatedTo() {
+        return membersAllocatedTo;
+    }
+
+    public void setMembersAllocatedTo(ArrayList<String> membersAllocatedTo) {
+        this.membersAllocatedTo = membersAllocatedTo;
+    }
+
+    public ArrayList<Integer> getSprintAllocatedTo() {
+        return sprintAllocatedTo;
+    }
+
+    public void setSprintAllocatedTo(ArrayList<Integer> sprintAllocatedTo) {
+        this.sprintAllocatedTo = sprintAllocatedTo;
     }
 
     public void allocateToMember(String memberId) {
@@ -56,10 +97,6 @@ public class Task implements Jsonable {
 
     public void setAsDone() {
         this.isDone = true;
-    }
-
-    public void setPriority(String input) {
-        priority = Priority.valueOf(input);
     }
 
     public int getId() {
@@ -124,7 +161,8 @@ public class Task implements Jsonable {
         jTask.put("description", description);
         jTask.put("priority", priority.name());
         jTask.put("isDone", isDone);
-        jTask.put("members", members);
+        jTask.put("membersAllocatedTo", members);
+        jTask.put("sprintAllocatedTo", sprintAllocatedTo);
         jTask.toJson(writer);
     }
 

@@ -17,19 +17,34 @@ public class ProjectBacklog implements Jsonable {
     public ArrayList<Task> backlogTasks;
     int nextId;
 
+    public ProjectBacklog() {
+    }
+
     public ProjectBacklog(Project proj) {
         this.proj = proj;
         backlogTasks = new ArrayList<>(100);
         nextId = 1;
     }
 
+    public int getNextId() {
+        return nextId;
+    }
+    
+    public void setProj(Project proj) {
+        this.proj = proj;
+    }
+
+    public void setBacklogTasks(ArrayList<Task> backlogTasks) {
+        this.backlogTasks = backlogTasks;
+    }
+
+    public void setNextId(int nextId) {
+        this.nextId = nextId;
+    }
+    
     public void addTask(String title, String description, String priority) {
         int newTaskId = nextId++;
         backlogTasks.add(new Task(newTaskId, title, description, priority));
-    }
-
-    public int getNextId() {
-        return nextId;
     }
 
     public Task getTask(int id) {
@@ -77,8 +92,7 @@ public class ProjectBacklog implements Jsonable {
         }
         return false;
     }
-
-
+    
     @Override
     public String toString() {
         StringBuilder backlogString = new StringBuilder();
@@ -106,7 +120,7 @@ public class ProjectBacklog implements Jsonable {
     public void toJson(Writer writer) throws IOException {
         final JsonObject jsonBacklog = new JsonObject();
         final JsonArray jsonTasks = new JsonArray(backlogTasks);
-        jsonBacklog.put("tasks", jsonTasks);
+        jsonBacklog.put("backlogTasks", jsonTasks);
         jsonBacklog.put("nextId", nextId);
         jsonBacklog.toJson(writer);
     }

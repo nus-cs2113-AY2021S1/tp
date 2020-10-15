@@ -13,7 +13,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Sprint implements Jsonable {
-
     private int id;
     private String goal;
     private LocalDate startDate;
@@ -21,6 +20,9 @@ public class Sprint implements Jsonable {
     private ArrayList<Integer> sprintTaskIds;
     private Project projAllocatedTo;
 
+    public Sprint() {
+    }
+    
     public Sprint(int sprintID, Project proj, String goal) {
         this(sprintID, proj, goal, null, null);
     }
@@ -38,6 +40,23 @@ public class Sprint implements Jsonable {
         this.projAllocatedTo = proj;
     }
 
+
+    public ArrayList<Integer> getSprintTaskIds() {
+        return sprintTaskIds;
+    }
+
+    public void setSprintTaskIds(ArrayList<Integer> sprintTaskIds) {
+        this.sprintTaskIds = sprintTaskIds;
+    }
+
+    public Project getProjAllocatedTo() {
+        return projAllocatedTo;
+    }
+
+    public void setProjAllocatedTo(Project projAllocatedTo) {
+        this.projAllocatedTo = projAllocatedTo;
+    }
+    
     public int getId() {
         return id;
     }
@@ -77,8 +96,7 @@ public class Sprint implements Jsonable {
     public void removeSprintTask(int taskId) {
         this.sprintTaskIds.remove((Object) taskId);
     }
-
-
+    
     public ArrayList<Integer> getAllSprintTaskIds() {
         return this.sprintTaskIds;
     }
@@ -156,9 +174,7 @@ public class Sprint implements Jsonable {
         jObj.put("startDate", startDate == null ? null : startDate.toString());
         jObj.put("endDate", endDate == null ? null : endDate.toString());
         final JsonArray jsonSprintTaskIds = new JsonArray();
-        for (Integer id : sprintTaskIds) {
-            jsonSprintTaskIds.add(id);
-        }
+        jsonSprintTaskIds.addAll(sprintTaskIds);
         jObj.put("sprintTaskIds", jsonSprintTaskIds);
         jObj.toJson(writer);
     }

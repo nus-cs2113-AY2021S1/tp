@@ -12,7 +12,11 @@ import java.util.ArrayList;
 public class Member implements Jsonable {
 
     private String userId;
+
     private ArrayList<Integer> allocatedTaskIds;
+    
+    public Member() {
+    }
 
     public Member(String userId) {
         this.userId = userId;
@@ -22,6 +26,18 @@ public class Member implements Jsonable {
 
     public String getUserId() {
         return userId;
+    }
+    
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public ArrayList<Integer> getAllocatedTaskIds() {
+        return allocatedTaskIds;
+    }
+
+    public void setAllocatedTaskIds(ArrayList<Integer> allocatedTaskIds) {
+        this.allocatedTaskIds = allocatedTaskIds;
     }
 
     public void allocateTask(int taskid) {
@@ -55,11 +71,10 @@ public class Member implements Jsonable {
     @Override
     public void toJson(Writer writer) throws IOException {
         final JsonObject jMember = new JsonObject();
-        jMember.put("id", userId);
+        jMember.put("userId", userId);
         final JsonArray jTasks = new JsonArray();
-        for (int taskId : allocatedTaskIds) { //Add only the ID that reference to the actual task in ProjectBacklog
-            jTasks.add(taskId);
-        }
+        jTasks.addAll(allocatedTaskIds);
+        jMember.put("allocatedTaskIds", jTasks);
         jMember.toJson(writer);
     }
 }

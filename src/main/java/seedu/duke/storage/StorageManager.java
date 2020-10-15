@@ -1,16 +1,24 @@
 package seedu.duke.storage;
 
 import com.github.cliftonlabs.json_simple.JsonArray;
-import com.github.cliftonlabs.json_simple.JsonException;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsoner;
 import seedu.duke.project.Project;
+import seedu.duke.project.ProjectBacklog;
+import seedu.duke.project.ProjectMembers;
+import seedu.duke.sprint.Member;
+import seedu.duke.sprint.Sprint;
+import seedu.duke.sprint.SprintList;
+import seedu.duke.task.Priority;
+import seedu.duke.task.Task;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static java.lang.System.exit;
@@ -46,7 +54,6 @@ public class StorageManager {
     /**
      * Save all projects into JSON data file.
      * File name of the data file is specified when the StorageManager object is instantiated
-     *
      */
     public void save() {
         try {
@@ -54,6 +61,7 @@ public class StorageManager {
             FileWriter fw = new FileWriter((filepath.toFile()));
             Jsoner.serialize(jsonProjects, fw);
             fw.close();
+            System.out.printf("Data saved to %s%n", filepath.toAbsolutePath().toString());
         } catch (IOException e) {
             System.out.println("[Warning] Cannot save to data file, data will be lost when this program ends!");
             e.printStackTrace();
@@ -70,16 +78,17 @@ public class StorageManager {
         try {
             String rawData = loadRawData();
             JsonArray rawJson = Jsoner.deserialize(rawData, new JsonArray());
-            ArrayList<Project> jsonProjects = parseJsonArray(rawJson);
+            parseJsonArray(rawJson);
         } catch (IOException e) {
             System.out.println("[Error] Unable to load the data file properly, exiting...");
-            e.printStackTrace();
+            //e.printStackTrace();
             throw e;
         } catch (ClassCastException e) {
             System.out.printf("[Error] Cannot parse an element as a JSON object properly!%n");
-            e.printStackTrace();
+            //e.printStackTrace();
             throw e;
         }
+
     }
 
     //Private functions    
@@ -100,18 +109,137 @@ public class StorageManager {
         }
     }
 
-    private ArrayList<Project> parseJsonArray(JsonArray raw) {
+    private void parseJsonArray(JsonArray raw) {
         ArrayList<JsonObject> jsonProjects = new ArrayList<>(raw.size());
-
-        for (int i = 0; i < raw.size(); i++) {
-            jsonProjects.add(raw.getMap(i));
+        for (Object o : raw) {
+            Project project = convertToProject((JsonObject) o);
+            projects.add(project);
         }
-
-        return convertToProject(jsonProjects);
     }
 
-    private ArrayList<Project> convertToProject(ArrayList<JsonObject> jsonProjects) {
-        System.out.println("Convert JsonObject to Project object and its respective object members");
+    private Project convertToProject(JsonObject jsonProject) {
+        Project project = new Project();
+        SprintList allSprints = convertSprintsList((JsonObject) jsonProject.get("allSprints"), project);
+        ProjectBacklog backlog = convertBacklog((JsonObject) jsonProject.get("backlog"), project);
+        ProjectMembers members = convertProjectMembers((JsonArray) jsonProject.get("members"));
+
+        String title = (String) jsonProject.get("title");
+        String description = (String) jsonProject.get("description");
+        int projectDuration = ((BigDecimal) jsonProject.get("projectDuration")).intValue();
+        int sprintLength = ((BigDecimal) jsonProject.get("sprintLength")).intValue();
+
+        project.setTitle(title);
+        project.setDescription(description);
+        project.setProjectDuration(projectDuration);
+        project.setSprintLength(sprintLength);
+        project.setAllSprints(allSprints);
+        project.setBacklog(backlog);
+        project.setMembers(members);
+        project.setStartDate(getDateFromJsonObj(jsonProject, "startDate"));
+        project.setEndDate(getDateFromJsonObj(jsonProject, "endDate"));
+        return project;
+    }
+
+    private ProjectMembers convertProjectMembers(JsonArray rawMembers) {
+        ProjectMembers projectMembers = new ProjectMembers();
+        ArrayList<Member> members = new ArrayList<>();
+        for (Object o : rawMembers) {
+            Member member = new Member();
+            JsonObject rawMember = (JsonObject) o;
+            JsonArray rawAllocatedTaskIds = (JsonArray) rawMember.get("allocatedTaskIds");
+            ArrayList<Integer> allocatedTaskIds = getIntegersFromJsonArray(rawAllocatedTaskIds);
+            String userId = (String) rawMember.get("userId");
+            member.setUserId(userId);
+            member.setAllocatedTaskIds(allocatedTaskIds);
+            members.add(member);
+        }
+        projectMembers.setMemberList(members);
+        return projectMembers;
+    }
+
+    private ProjectBacklog convertBacklog(JsonObject rawBacklog, Project project) {
+        ProjectBacklog backlog = new ProjectBacklog();
+        ArrayList<Task> backlogTasks = new ArrayList<>();
+        JsonArray rawTasks = (JsonArray) rawBacklog.get("backlogTasks");
+        for (Object rawTask : rawTasks) {
+            backlogTasks.add(convertTask((JsonObject) rawTask));
+        }
+        backlog.setNextId(((BigDecimal) rawBacklog.get("nextId")).intValue());
+        backlog.setBacklogTasks(backlogTasks);
+        backlog.setProj(project);
+        return backlog;
+    }
+
+    private Task convertTask(JsonObject jsonObject) {
+        Task task = new Task();
+
+        int id = ((BigDecimal) jsonObject.get("id")).intValue();
+        task.setId(id);
+        String title = (String) jsonObject.get("title");
+        task.setTitle(title);
+        String description = (String) jsonObject.get("description");
+        task.setDescription(description);
+        Priority priority = Priority.valueOf((String) jsonObject.get("priority"));
+        task.setPriority(priority);
+        boolean isDone = (Boolean) jsonObject.get("isDone");
+        task.setDone(isDone);
+
+        ArrayList<String> membersAllocatedTo = new ArrayList<>();
+        task.setMembersAllocatedTo(membersAllocatedTo);
+        JsonArray rawMembersAllocate = (JsonArray) jsonObject.get("membersAllocatedTo");
+        rawMembersAllocate.asCollection(membersAllocatedTo);
+
+        JsonArray rawSprintAllocate = (JsonArray) jsonObject.get("sprintAllocatedTo");
+        ArrayList<Integer> sprintAllocatedTo = getIntegersFromJsonArray(rawSprintAllocate);
+        task.setSprintAllocatedTo(sprintAllocatedTo);
+        return task;
+    }
+
+    private SprintList convertSprintsList(JsonObject rawSprints, Project project) {
+        SprintList sprintList = new SprintList();
+        sprintList.setCurrentSprintIndex(((BigDecimal) rawSprints.get("currentSprintIndex")).intValue());
+        sprintList.setSprintList(convertSprint((JsonArray) rawSprints.get("sprintList"), project));
+        return sprintList;
+    }
+
+    private ArrayList<Sprint> convertSprint(JsonArray sprintList, Project project) {
+        ArrayList<Sprint> sprints = new ArrayList<>();
+
+        for (Object o : sprintList) {
+            Sprint sprint = new Sprint();
+            JsonObject rawSprint = (JsonObject) o;
+
+            int id = ((BigDecimal) rawSprint.get("id")).intValue();
+            String goal = (String) rawSprint.get("goal");
+            JsonArray rawSprintTaskIds = (JsonArray) rawSprint.get("sprintTaskIds");
+            ArrayList<Integer> sprintTaskIds = getIntegersFromJsonArray(rawSprintTaskIds);
+
+            sprint.setId(id);
+            sprint.setGoal(goal);
+            sprint.setStartDate(getDateFromJsonObj(rawSprint, "startDate"));
+            sprint.setEndDate(getDateFromJsonObj(rawSprint, "endDate"));
+            sprint.setSprintTaskIds(sprintTaskIds);
+            sprint.setProjAllocatedTo(project);
+
+            sprints.add(sprint);
+        }
+        return sprints;
+    }
+
+    private ArrayList<Integer> getIntegersFromJsonArray(JsonArray rawIntegers) {
+        ArrayList<Integer> numList = new ArrayList<>();
+        for (Object rawInteger : rawIntegers) {
+            int num = ((BigDecimal) rawInteger).intValue();
+            numList.add(num);
+        }
+        return numList;
+    }
+
+    private LocalDate getDateFromJsonObj(JsonObject obj, String key) {
+        Object rawDate = obj.get(key);
+        if (rawDate != null) {
+            return LocalDate.parse((String) rawDate);
+        }
         return null;
     }
 
