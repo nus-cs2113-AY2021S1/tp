@@ -1,5 +1,8 @@
 package seedu.duke.data.notebook;
 
+//import com.diogonunes.jcolor.Attribute;
+//import static com.diogonunes.jcolor.Ansi.colorize;
+
 /**
  * Represents a tag with respective color bind to it.
  */
@@ -39,6 +42,7 @@ public class Tag {
 
     private String tagName;
     private TagColor tagColor;
+    //private Attribute tagAttribute;
 
     /**
      * Overloaded constructor to take in the color of the tag.
@@ -76,27 +80,35 @@ public class Tag {
         switch (tagColor.toUpperCase()) {
         case COLOR_RED_STRING:
             this.tagColor = TagColor.COLOR_RED;
+            //this.tagAttribute = Attribute.RED_TEXT();
             break;
         case COLOR_GREEN_STRING:
             this.tagColor = TagColor.COLOR_GREEN;
+            //this.tagAttribute = Attribute.GREEN_TEXT();
             break;
         case COLOR_BLUE_STRING:
             this.tagColor = TagColor.COLOR_BLUE;
+            //this.tagAttribute = Attribute.BLUE_TEXT();
             break;
         case COLOR_YELLOW_STRING:
             this.tagColor = TagColor.COLOR_YELLOW;
+            //this.tagAttribute = Attribute.YELLOW_TEXT() ;
             break;
         case COLOR_PURPLE_STRING:
             this.tagColor = TagColor.COLOR_PURPLE;
+            //this.tagAttribute = Attribute.RED_TEXT();
             break;
         case COLOR_CYAN_STRING:
             this.tagColor = TagColor.COLOR_CYAN;
+            //this.tagAttribute = Attribute.CYAN_TEXT();
             break;
         case COLOR_WHITE_STRING:
             this.tagColor = TagColor.COLOR_WHITE;
+            //this.tagAttribute = Attribute.WHITE_TEXT();
             break;
         default:
             this.tagColor = TagColor.COLOR_RESET;
+            //this.tagAttribute = Attribute.CLEAR();
             break;
         }
     }
@@ -108,6 +120,7 @@ public class Tag {
      */
     @Override
     public String toString() {
+        //return colorize("[" + tagName + "]", tagAttribute);
         return tagColor.color + "[" + tagName + "]" + TagColor.COLOR_RESET.color;
     }
 }
