@@ -99,18 +99,18 @@ public abstract class Parser {
         //                dividerPosition = fullCommand.indexOf(AT);
         //
         //                if (fullCommand.substring(5).isBlank()) {
-        //                    throw new EmptyEventException();
+        //                    throw new EmptyPersonalEventException();
         //                }
         //                if (dividerPosition == -1) {
-        //                    throw new NoEventTimeMakerException();
+        //                    throw new NoPersonalEventTimeMakerException();
         //                }
         //                if (fullCommand.substring(5, dividerPosition).isBlank()) {
-        //                    throw new EmptyEventException();
+        //                    throw new EmptyPersonalEventException();
         //                }
         //                try {
         //                    fullCommand.substring(dividerPosition + 4);
         //                } catch (StringIndexOutOfBoundsException e) {
-        //                    throw new NoEventTimeException();
+        //                    throw new NoPersonalEventTimeException();
         //                }
         //                try {
         //                    timeDivider = fullCommand.substring(dividerPosition + 4).indexOf(SINGLE_SPACE);
@@ -129,18 +129,18 @@ public abstract class Parser {
         //                dividerPosition = fullCommand.indexOf(BY);
         //
         //                if (fullCommand.substring(8).isBlank()) {
-        //                    throw new EmptyDeadlineException();
+        //                    throw new EmptyClassException();
         //                }
         //                if (dividerPosition == -1) {
-        //                    throw new NoDeadlineTimeMarkerException();
+        //                    throw new NoClassTimeMarkerException();
         //                }
         //                if (fullCommand.substring(8, dividerPosition).isBlank()) {
-        //                    throw new EmptyDeadlineException();
+        //                    throw new EmptyClassException();
         //                }
         //                try {
         //                    fullCommand.substring(dividerPosition + 4);
         //                } catch (StringIndexOutOfBoundsException e) {
-        //                    throw new NoDeadlineTimeException();
+        //                    throw new NoClassTimeException();
         //                }
         //                try {
         //                    timeDivider = fullCommand.substring(dividerPosition + 4).indexOf(SINGLE_SPACE);
@@ -158,11 +158,11 @@ public abstract class Parser {
         //
         //                try {
         //                    if (fullCommand.substring(5).isBlank()) {
-        //                        throw new EmptyTodoException();
+        //                        throw new EmptyAssignmentException();
         //                    }
         //                    return new AddCommand(new Todo(fullCommand.substring(5)));
         //                } catch (StringIndexOutOfBoundsException e) {
-        //                    throw new EmptyTodoException();
+        //                    throw new EmptyAssignmentException();
         //                }
         //
         //            default:
