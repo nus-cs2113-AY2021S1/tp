@@ -20,7 +20,7 @@ class AnimeDataTest {
         ArrayList<Anime> animeStorageList = new ArrayList<>();
         animeStorageList.add(new Anime());
         animeStorageList.add(new Anime());
-        animeData= new AnimeData(animeStorageList);
+        animeData = new AnimeData(animeStorageList);
     }
 
     @Test
@@ -32,7 +32,7 @@ class AnimeDataTest {
 
     @Test
     void getAnime_nullInput_expectException() {
-         assertThrows(NullPointerException.class, () -> {
+        assertThrows(NullPointerException.class, () -> {
             animeData.getAnime(NULL_PARAM);
         });
     }
