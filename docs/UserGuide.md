@@ -160,6 +160,52 @@ The expected outcome:
 `Anime added to watchlist!`
 
 ### 3.7 Bookmark an Anime: `bookmark`
+This command handles all bookmark related operations: 
+* List all anime within bookmark.
+* Add an anime into bookmark.
+* Delete an anime from bookmark. 
+* Edit episode for an anime within bookmark
+* View details of an anime within bookmark [v2.0]
+
+Format: 
+
+`bookmark -l` will list bookmark
+
+`bookmark -a <ANIME_ID>` will add the Anime into bookmark
+
+`bookmark -d <BOOKMARK_ID>` will delete the Anime with bookmark id from bookmark
+
+`bookmark <BOOKMARK_ID> -e <EPISODE>` will edit the episode for Anime with bookmark id
+
+Sample input: `bookmark -l`
+
+The expected outcome: 
+```
+ Listing all anime in bookmark: 
+	1. InuYasha the Movie 3: Swords of an Honorable Ruler Ep: 5
+	2. To Heart
+```
+
+Sample input: `bookmark -a 410`
+
+The expected outcome: 
+```
+Saving 410. InuYasha the Movie 2: The Castle Beyond the Looking Glass to bookmark.
+```
+
+Sample input: `bookmark -d 1`
+
+The expected outcome: 
+```
+Removing InuYasha the Movie 3: Swords of an Honorable Ruler! :(
+```
+
+Sample input: `bookmark 1 -e 5`
+
+The expected outcome: 
+```
+Editing InuYasha the Movie 3: Swords of an Honorable Ruler to have 5 episode
+```
 
 ### 3.8 Exit AniChan: `exit`
 Exit AniChan 
