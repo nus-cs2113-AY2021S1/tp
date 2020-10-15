@@ -3,7 +3,7 @@
 *Insert NAV@NUS LOGO here 
 ```
 Nav@NUS is a useful CLI application to guide users in navigating around the NUS Kent Ridge campus via the school
-bus.
+shuttle serviceS.
 
 * [Quick Start](#quick-start)
 * [Features](#Features)
