@@ -32,25 +32,4 @@ public abstract class FilterCommand extends Command {
 
         toSort.sort(sortByModule);
     }
-
-    /**
-     * Sorts tasks in a list by their description, deadline or priority.
-     *
-     * @param toSort
-     *  The list of tasks to be sorted
-     */
-    protected void sortTaskList(ArrayList<Task> toSort, boolean isSortDeadline, boolean isSortPriority) {
-        Comparator<Task> sortByModule =
-                Comparator.comparing(task -> task.getParent().getModuleCode());
-        Comparator<Task> sortByTask =
-                Comparator.comparing(Task::getDescription);
-        Comparator<Task> sortByDeadline =
-                Comparator.comparing(task -> task.getDeadline().getDateTimeInSortFormat());
-        if (isSortDeadline) {
-            toSort.sort(sortByDeadline.thenComparing(sortByModule)
-                    .thenComparing(sortByTask));
-        } else {
-            toSort.sort(sortByModule.thenComparing(sortByTask));
-        }
-    }
 }

@@ -164,6 +164,10 @@ public class TaskManager {
      *  The list of filtered tasks
      */
     public ArrayList<Task> filter(String taskKeyword) {
+        String noKeyword = "";
+        if (taskKeyword.equals(noKeyword)) {
+            return this.getTaskList();
+        }
         ArrayList<Task> filteredTaskList = new ArrayList<>();
         for (Task task : taskList) {
             if (task.getDescription().toLowerCase().contains(taskKeyword.toLowerCase())) {

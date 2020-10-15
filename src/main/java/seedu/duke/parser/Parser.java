@@ -7,6 +7,7 @@ import seedu.duke.command.addcommand.AddTaskCommand;
 import seedu.duke.command.filtercommand.FilterCommand;
 import seedu.duke.command.filtercommand.deletecommand.DeleteModuleCommand;
 import seedu.duke.command.filtercommand.listcommand.ListModuleCommand;
+import seedu.duke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.duke.command.misc.ChangeDirectoryCommand;
 import seedu.duke.exception.InvalidFormatException;
 import seedu.duke.util.DateTime;
@@ -77,6 +78,8 @@ public class Parser {
                 return prepareAddTaskCommand(parameters);
             case ListModuleCommand.COMMAND_WORD:
                 return prepareListModuleCommand(parameters);
+            case ListTaskCommand.COMMAND_WORD:
+                return new ListTaskCommand();
             case DeleteModuleCommand.COMMAND_WORD:
                 return prepareDeleteModuleCommand(parameters);
 

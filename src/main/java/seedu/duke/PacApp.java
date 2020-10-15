@@ -59,7 +59,7 @@ public class PacApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setTitle("INFI-NUKE");
+        primaryStage.setTitle("PAC");
         primaryStage.getIcons().add(new Image("images/venus_icon.png"));
         //todo save data when closing
 
