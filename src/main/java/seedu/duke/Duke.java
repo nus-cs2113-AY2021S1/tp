@@ -7,6 +7,7 @@ import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.timetable.Timetable;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
 import seedu.duke.util.Parser;
 
 /**
@@ -22,31 +23,31 @@ public class Duke {
 
     // Character code adapted from http://patorjk.com/software/taag/#p=display&f=Ghost&t=NotUS
     // Slight modifications made to make it easier on the eyes
-    private static final String NOTUS_LOGO = InterfaceManager.LS
-            + InterfaceManager.LS
+    private static final String NOTUS_LOGO = Formatter.LS
+            + Formatter.LS
             + "     .-') _               .-') _                 .-')    "
-            + InterfaceManager.LS
+            + Formatter.LS
             + "    ( OO ) )             (  OO) )               ( OO ).  "
-            + InterfaceManager.LS
+            + Formatter.LS
             + ",--./ ,--,'  .-'),-----. /     '._ ,--. ,--.   (_)---\\_) "
-            + InterfaceManager.LS
+            + Formatter.LS
             + "|   \\ |  |\\ ( OO'  .-.  '|'--...__)|  | |  |   /    _ |  "
-            + InterfaceManager.LS
+            + Formatter.LS
             + "|    \\|  | )/   |  | |  |'--.  .--'|  | | .-') \\  :` `.  "
-            + InterfaceManager.LS
+            + Formatter.LS
             + "|  .     |/ \\_) |  | |  |   |  |   |  | |( OO ) '..`''.) "
-            + InterfaceManager.LS
+            + Formatter.LS
             + "|  |\\    |    \\ |  | |  |   |  |   |  | | `-' /.-._)   \\ "
-            + InterfaceManager.LS
+            + Formatter.LS
             + "|  | \\   |     `'  '-'  '   |  |  ('  '-'(_.-' \\       / "
-            + InterfaceManager.LS
+            + Formatter.LS
             + "`--'  `--'       `-----'    `--'    `-----'     `-----'  "
-            + InterfaceManager.LS;
+            + Formatter.LS;
 
     private static final String WELCOME_MSG_STRING = "Welcome to NotUS! "
-            + NOTUS_LOGO + InterfaceManager.LS
+            + NOTUS_LOGO + Formatter.LS
             + "Type \"help\" if you need to see a list of commands and their usages.";
-    private static final String ENTER_COMMAND_MSG = InterfaceManager.LS
+    private static final String ENTER_COMMAND_MSG = Formatter.LS
             + "Enter command:";
 
     /**
