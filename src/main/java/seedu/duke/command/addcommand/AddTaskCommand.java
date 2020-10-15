@@ -22,23 +22,19 @@ public class AddTaskCommand extends AddCommand {
     public static final String COMMAND_WORD = "addt";
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
-                    + "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
-                    + "(?<invalid>.*)"
     );
     private String description;
-    private DateTime deadline;
 
 
-    public AddTaskCommand(String description, DateTime deadline) {
+    public AddTaskCommand(String description) {
         this.description = description;
-        this.deadline = deadline;
     }
 
     @Override
     public CommandResult execute() {
         try {
             Module parentModule = DirectoryTraverser.getBaseModule();
-            Task toAdd = new Task(parentModule, description, deadline);
+            Task toAdd = new Task(parentModule, description);
             parentModule.getTasks().add(toAdd);
             return new CommandResult(messageAddTaskSuccess(description));
         } catch (TaskManager.DuplicateTaskException e) {

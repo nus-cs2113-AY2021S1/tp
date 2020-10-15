@@ -2,13 +2,16 @@ package seedu.duke.parser;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.IncorrectCommand;
+import seedu.duke.command.addcommand.AddCommandGeneric;
 import seedu.duke.command.addcommand.AddModuleCommand;
 import seedu.duke.command.addcommand.AddTaskCommand;
 import seedu.duke.command.filtercommand.FilterCommand;
 import seedu.duke.command.filtercommand.deletecommand.DeleteModuleCommand;
+import seedu.duke.command.filtercommand.listcommand.ListCommand;
 import seedu.duke.command.filtercommand.listcommand.ListModuleCommand;
 import seedu.duke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.duke.command.misc.ChangeDirectoryCommand;
+import seedu.duke.directory.DirectoryTraverser;
 import seedu.duke.exception.InvalidFormatException;
 import seedu.duke.util.DateTime;
 import seedu.duke.util.DateTimeFormat;
@@ -25,6 +28,7 @@ import static seedu.duke.util.ExceptionMessage.MESSAGE_INVALID_PRIORITY;
 import static seedu.duke.util.ExceptionMessage.MESSAGE_MISSING_DIRECTORY_NAME;
 import static seedu.duke.util.Message.MESSAGE_CHECK_COMMAND_FORMAT;
 import static seedu.duke.util.Message.MESSAGE_EMPTY_INPUT;
+import static seedu.duke.util.Message.MESSAGE_INCORRECT_DIRECTORY_LEVEL_GENERIC;
 import static seedu.duke.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.duke.util.Message.MESSAGE_MISSING_MODULE_CODE;
 import static seedu.duke.util.Message.MESSAGE_MISSING_TASK_DESCRIPTION;
@@ -72,10 +76,14 @@ public class Parser {
 
         try {
             switch (commandWord){
+            case AddCommandGeneric.COMMAND_WORD:
+                return prepareGenericAddCommand(parameters);
             case AddModuleCommand.COMMAND_WORD:
                 return prepareAddModuleCommand(parameters);
             case AddTaskCommand.COMMAND_WORD:
                 return prepareAddTaskCommand(parameters);
+            case ListCommand.COMMAND_WORD:
+                return new ListCommand();
             case ListModuleCommand.COMMAND_WORD:
                 return prepareListModuleCommand(parameters);
             case ListTaskCommand.COMMAND_WORD:
@@ -93,6 +101,25 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
         } catch (DuplicatePrefixException e) {
             return new IncorrectCommand(String.format("%s%s\n", MESSAGE_DUPLICATE_PREFIX_FOUND, e.getMessage()));
+        }
+    }
+
+    /**
+     * Prepare the command to add the content based on the directory of the user is currently in.
+     * @param parameters The parameters given by the user
+     * @return The command to change the current directory
+     * @throws InvalidParameterException exception is thrown when parameter is invalid.
+     * @throws DuplicatePrefixException exception is thrown when duplicated prefix is provided.
+     */
+    private Command prepareGenericAddCommand(String parameters)
+            throws InvalidParameterException, DuplicatePrefixException {
+        switch (DirectoryTraverser.getCurrentDirectoryLevel()) {
+        case ROOT:
+            return prepareAddModuleCommand(parameters);
+        case MODULE:
+            return prepareAddTaskCommand(parameters);
+        default:
+            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL_GENERIC);
         }
     }
 
@@ -134,31 +161,15 @@ public class Parser {
     private Command prepareAddTaskCommand(String parameters)
             throws InvalidParameterException {
         Matcher matcher = AddTaskCommand.REGEX_FORMAT.matcher(parameters);
-        validateParameters(parameters, matcher,
-                DEADLINE_PREFIX);
-
-        String invalid = matcher.group(INVALID_GROUP).trim();
-        if (!invalid.isEmpty()) {
-            return new IncorrectCommand(String.format("%s%s\n\n%s\n",
-                    MESSAGE_INVALID_COMMAND_FORMAT, invalid, MESSAGE_CHECK_COMMAND_FORMAT));
-        }
+        validateParameters(parameters, matcher);
 
         String taskDescription = matcher.group(IDENTIFIER_GROUP).trim();
         if (taskDescription.isEmpty()) {
             return new IncorrectCommand(MESSAGE_MISSING_TASK_DESCRIPTION);
         }
 
-        String deadline = matcher.group(DEADLINE_GROUP).replace(DEADLINE_PREFIX, NONE).trim();
-
-        DateTime deadlineToSet;
         try {
-            deadlineToSet = DateTimeFormat.stringToDateTime(deadline);
-        } catch (DateTimeFormat.InvalidDateTimeException e) {
-            return new IncorrectCommand(MESSAGE_INVALID_DATETIME_FORMAT);
-        }
-
-        try {
-            return new AddTaskCommand(taskDescription, deadlineToSet);
+            return new AddTaskCommand(taskDescription);
         } catch (NumberFormatException e) {
             return new IncorrectCommand(MESSAGE_INVALID_PRIORITY);
         }
