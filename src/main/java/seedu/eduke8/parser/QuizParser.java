@@ -28,6 +28,7 @@ public class QuizParser implements Parser {
     public Command parseCommand(DisplayableList optionList, String userInput) {
         switch (userInput) {
         case "hint":
+            LOGGER.log(Level.INFO, "Parsing complete: hint command chosen.");
             return new HintCommand(question.getHint());
         case "back":
             // To be implemented in v2

@@ -13,24 +13,35 @@ import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class MenuParser implements Parser {
+    private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public MenuParser() {
     }
 
     @Override
     public Command parseCommand(DisplayableList topicList, String userInput) throws Eduke8Exception {
+        assert topicList != null;
+
+        LOGGER.log(Level.INFO, "Begin parsing command.");
         String[] commandArr = userInput.trim().split(" ", 0);
 
         Ui ui = new Ui();
         switch (commandArr[0]) {
         case "about":
+            LOGGER.log(Level.INFO, "Parsing complete: about command chosen.");
             return new AboutCommand();
         case "help":
+            LOGGER.log(Level.INFO, "Parsing complete: help command chosen.");
             return new HelpCommand();
         case "topics":
+            LOGGER.log(Level.INFO, "Parsing complete: topics command chosen.");
             return new TopicsCommand();
         case "textbook":
+            LOGGER.log(Level.INFO, "Parsing complete: textbook command chosen.");
             return new TextbookCommand();
         case "quiz":
             int numOfQuestions = 0;
@@ -38,15 +49,20 @@ public class MenuParser implements Parser {
             if (commandArr.length == 3) {
                 numOfQuestions = Integer.parseInt(commandArr[2].substring(2));
                 topicName = commandArr[1].substring(2);
-            } else if (commandArr.length < 3) {
+            } else {
+                LOGGER.log(Level.WARNING, "Parsing Error: Wrong number of fields used in quiz command.");
                 return new IncorrectCommand("Please use the format: quiz t/<topic> n/<number of questions>");
             }
+            LOGGER.log(Level.INFO, "Parsing complete: quiz command chosen.");
             return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui);
         case "exit":
+            LOGGER.log(Level.INFO, "Parsing complete: exit command chosen.");
             return new ExitCommand();
         default:
             break;
         }
+        LOGGER.log(Level.WARNING, "Parsing Error: Unrecognised command was entered.");
         return new IncorrectCommand("Please enter in a valid command. Enter 'help' for more info!");
     }
+
 }
