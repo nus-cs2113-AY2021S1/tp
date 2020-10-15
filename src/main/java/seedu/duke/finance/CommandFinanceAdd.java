@@ -21,7 +21,7 @@ public class CommandFinanceAdd extends Command {
         int length = contents.length;
         String item = "";
         for (int i = 0;i < length - 1;i++) {
-            if (i == length -2) {
+            if (i == length - 2) {
                 item = item + contents[i];
             } else {
                 item = item + contents[i] + " ";
