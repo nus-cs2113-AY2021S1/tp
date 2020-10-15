@@ -24,6 +24,7 @@ public class UserData {
     }
 
     public void addToEventList(String name, Event e) throws InvalidListException {
+        assert e != null : "event cannot be null";
         getEventList(name).add(e);
     }
 

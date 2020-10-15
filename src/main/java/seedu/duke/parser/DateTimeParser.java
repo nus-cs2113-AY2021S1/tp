@@ -22,6 +22,7 @@ public class DateTimeParser {
      * @throws DateErrorException if date format is not accepted.
      */
     public static LocalDate dateParser(String date) throws DateErrorException {
+        assert date != null : "date cannot be null";
         int i = 0;
         while (i < dateFormatStrings.length) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormatStrings[i]);
@@ -43,6 +44,7 @@ public class DateTimeParser {
      * @throws TimeErrorException if time format is not accepted.
      */
     public static LocalTime timeParser(String time) throws TimeErrorException {
+        assert time != null : "time cannot be null";
         time = time.toUpperCase();
         int i = 0;
         while (i < timeFormatStrings.length) {
