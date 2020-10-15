@@ -30,40 +30,11 @@ public class ViewSprintCommand extends SprintCommand {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
             Sprint currentSprint = allSprint.getSprint(currentSprintNo);
             Ui.showToUser(currentSprint.toString());
-            //            Ui.showToUserLn("------ Current Sprint ------");
-            //            Ui.showToUserLn("Sprint number: " + (currentSprintNo + 1));
-            //            Ui.showToUserLn("Sprint Goal: " + currentSprint.getGoal());
-            //            Ui.showToUserLn("Sprint period: " + currentSprint.getStartDate() + " to "
-            //            + currentSprint.getEndDate());
-            //            Ui.showToUserLn("Days left: " + currentSprint.getEndDate().compareTo(LocalDate.now()));
-            //            printSprintTask(currentSprint);
-
         } else {
             checkReason();
         }
 
     }
-
-    //    private void printSprintTask(Sprint sprint) {
-    //        Hashtable<Integer, ArrayList<String>> sprintTasks = sprint.getAllSprintTask();
-    //        if (sprintTasks.size() == 0) {
-    //            Ui.showToUserLn("No task allocated to current sprint.");
-    //            return;
-    //        }
-    //        ArrayList<String> users;
-    //        Set<Integer> keys = sprintTasks.keySet();
-    //
-    //        Ui.showToUserLn("Sprint Tasks: " + keys.size());
-    //        for (int key: keys) {
-    //            Ui.showToUserLn(proj.getProjectBacklog().getTask(key).toString());
-    //            users = sprintTasks.get(key);
-    //            if (users.size() == 0) {
-    //                Ui.showToUserLn("No allocation.");
-    //            } else {
-    //                Ui.showToUserLn("Allocated to:" + Arrays.toString(users.toArray()));
-    //            }
-    //        }
-    //    }
 
     private void checkReason() {
         if (allSprint.size() == 0) {

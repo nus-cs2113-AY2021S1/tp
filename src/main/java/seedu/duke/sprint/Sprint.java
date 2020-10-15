@@ -155,10 +155,6 @@ public class Sprint implements Jsonable {
         jObj.put("startDate", startDate == null ? null : startDate.toString());
         jObj.put("endDate", endDate == null ? null : endDate.toString());
         final JsonObject jsonSprintTasks = new JsonObject();
-        //        for (Integer key : sprintTasks.keySet()) {
-        //            JsonArray jsonTask = new JsonArray(sprintTasks.get(key));
-        //            jsonSprintTasks.put(key.toString(), jsonTask);
-        //        }
         jObj.put("sprintTasks", jsonSprintTasks);
         jObj.toJson(writer);
     }
