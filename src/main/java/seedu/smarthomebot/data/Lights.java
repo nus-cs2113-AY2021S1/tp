@@ -19,4 +19,9 @@ public class Lights extends Appliance {
         return super.toString();
     }
 
+    @Override
+    public String writeFileFormat() {
+        return super.writeFileFormat();
+    }
+
 }

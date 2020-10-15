@@ -35,12 +35,7 @@ public class StorageFile {
             FileWriter myWriter = new FileWriter(filePath);
             myWriter.write(locationList.getLocations().toString() + "\n");
             for (int i = 0; i < applianceList.getAllAppliance().size(); i++) {
-                myWriter.write(applianceList.getAppliance(i).getLocation()
-                        + "|" + applianceList.getAppliance(i).getName()
-                        + "|" + applianceList.getAppliance(i).getPower()
-                        + "|" + applianceList.getAppliance(i).getType()
-                        + "|" + applianceList.getAppliance(i).getStatus()
-                        + "|" + applianceList.getAppliance(i).getPowerConsumption() + "\n");
+                myWriter.write(applianceList.getAppliance(i).writeFileFormat() + System.lineSeparator());
             }
             myWriter.close();
         } catch (IOException e) {
