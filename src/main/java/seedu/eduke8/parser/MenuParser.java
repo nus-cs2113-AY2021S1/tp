@@ -56,7 +56,9 @@ public class MenuParser implements Parser {
                     numOfQuestions = Integer.parseInt(commandArr[2].substring(2));
                     topicName = commandArr[1].substring(2);
                 } catch (NumberFormatException nfe) {
-                    return new IncorrectCommand("Please choose the answer by index");
+                    return new IncorrectCommand("Oops! The number of questions has been entered "
+                            + "incorrectly.\nPlease enter the command again: quiz t/<topic> n<numberofquestions>\n"
+                            + "Remember that the number of questions has to be typed in numeric form!");
                 }
             } else {
                 LOGGER.log(Level.WARNING, "Parsing Error: Wrong number of fields used in quiz command.");
