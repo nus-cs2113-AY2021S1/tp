@@ -44,9 +44,13 @@ public class CheckCommand extends Command {
         try {
             LocalDate startDate = getDate(datesAndTime[0].trim());
             LocalDate endDate = getDate(datesAndTime[2].trim());
+            assert startDate != null : "null date read for startDate";
+            assert endDate != null : "null date read for endDate";
 
             LocalTime startTime = getTime(datesAndTime[1].trim());
             LocalTime endTime = getTime(datesAndTime[3].trim());
+            assert startTime != null : "null time read for startTime";
+            assert endTime != null : "null time read for endTime";
 
             ArrayList<Event> eventsInTimeRange = new ArrayList<>();
             String[] eventTypes = new String[]{"Personal", "Timetable", "Zoom"};
