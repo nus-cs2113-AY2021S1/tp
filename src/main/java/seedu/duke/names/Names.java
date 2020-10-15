@@ -1,6 +1,7 @@
 package seedu.duke.names;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -22,11 +23,21 @@ public class Names {
         relativePath = Paths.get(filePath);
         //System.out.println("Current relative path is: " + filePath);
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
+        /*
+        File myFile = new File(relativePath.toAbsolutePath().toString());
+        FileOutputStream oFile;
+        try {
+            myFile.createNewFile();
+            oFile = new FileOutputStream(myFile, false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        */
         Charset charset = StandardCharsets.UTF_8;
         try {
             names = Files.readAllLines(relativePath, charset);
-        } catch (IOException ex) {
-            System.out.println(ex);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
