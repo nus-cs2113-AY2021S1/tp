@@ -1,11 +1,11 @@
 package seedu.duke.sprint;
 
+import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
-import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -22,6 +22,9 @@ public class Sprint implements Jsonable {
     private ArrayList<Integer> sprintTaskIds;
     private Project projAllocatedTo;
 
+    public Sprint() {
+    }
+    
     public Sprint(int sprintID, Project proj, String goal) {
         this(sprintID, proj, goal, null, null);
     }
@@ -39,6 +42,23 @@ public class Sprint implements Jsonable {
         this.projAllocatedTo = proj;
     }
 
+
+    public ArrayList<Integer> getSprintTaskIds() {
+        return sprintTaskIds;
+    }
+
+    public void setSprintTaskIds(ArrayList<Integer> sprintTaskIds) {
+        this.sprintTaskIds = sprintTaskIds;
+    }
+
+    public Project getProjAllocatedTo() {
+        return projAllocatedTo;
+    }
+
+    public void setProjAllocatedTo(Project projAllocatedTo) {
+        this.projAllocatedTo = projAllocatedTo;
+    }
+    
     public int getId() {
         return id;
     }
@@ -87,8 +107,7 @@ public class Sprint implements Jsonable {
     public void removeSprintTask(int taskId) {
         this.sprintTaskIds.remove((Object) taskId);
     }
-
-
+    
     public ArrayList<Integer> getAllSprintTaskIds() {
         return this.sprintTaskIds;
     }
@@ -146,11 +165,13 @@ public class Sprint implements Jsonable {
     @Override
     public void toJson(Writer writer) throws IOException {
         final JsonObject jObj = new JsonObject();
+        jObj.put("id", id);
         jObj.put("goal", goal);
         jObj.put("startDate", startDate == null ? null : startDate.toString());
         jObj.put("endDate", endDate == null ? null : endDate.toString());
-        final JsonObject jsonSprintTasks = new JsonObject();
-        jObj.put("sprintTasks", jsonSprintTasks);
+        final JsonArray jsonSprintTaskIds = new JsonArray();
+        jsonSprintTaskIds.addAll(sprintTaskIds);
+        jObj.put("sprintTaskIds", jsonSprintTaskIds);
         jObj.toJson(writer);
     }
 }

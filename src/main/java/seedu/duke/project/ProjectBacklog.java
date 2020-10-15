@@ -1,6 +1,7 @@
 package seedu.duke.project;
 
 import com.github.cliftonlabs.json_simple.JsonArray;
+import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
@@ -16,19 +17,34 @@ public class ProjectBacklog implements Jsonable {
     public ArrayList<Task> backlogTasks;
     int nextId;
 
+    public ProjectBacklog() {
+    }
+
     public ProjectBacklog(Project proj) {
         this.proj = proj;
         backlogTasks = new ArrayList<>(100);
         nextId = 1;
     }
 
+    public int getNextId() {
+        return nextId;
+    }
+    
+    public void setProj(Project proj) {
+        this.proj = proj;
+    }
+
+    public void setBacklogTasks(ArrayList<Task> backlogTasks) {
+        this.backlogTasks = backlogTasks;
+    }
+
+    public void setNextId(int nextId) {
+        this.nextId = nextId;
+    }
+    
     public void addTask(String title, String description, String priority) {
         int newTaskId = nextId++;
         backlogTasks.add(new Task(newTaskId, title, description, priority));
-    }
-
-    public int getNextId() {
-        return nextId;
     }
 
     public Task getTask(int id) {
@@ -76,8 +92,7 @@ public class ProjectBacklog implements Jsonable {
         }
         return false;
     }
-
-
+    
     @Override
     public String toString() {
         StringBuilder backlogString = new StringBuilder();
@@ -103,8 +118,11 @@ public class ProjectBacklog implements Jsonable {
 
     @Override
     public void toJson(Writer writer) throws IOException {
-        final JsonArray jTasks = new JsonArray(backlogTasks);
-        jTasks.toJson(writer);
+        final JsonObject jsonBacklog = new JsonObject();
+        final JsonArray jsonTasks = new JsonArray(backlogTasks);
+        jsonBacklog.put("backlogTasks", jsonTasks);
+        jsonBacklog.put("nextId", nextId);
+        jsonBacklog.toJson(writer);
     }
     //    public void viewTask(String id, Ui ui) {
     //        Task task = null;

@@ -9,7 +9,6 @@ import seedu.duke.ui.Ui;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Hashtable;
 
 import static seedu.duke.command.CommandSummary.PRIORITY;

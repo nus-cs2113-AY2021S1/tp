@@ -1,8 +1,5 @@
 package seedu.duke.command;
 
-import seedu.duke.project.Project;
-import seedu.duke.ui.Ui;
-
 import java.util.ArrayList;
 import java.util.Hashtable;
 

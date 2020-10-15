@@ -12,6 +12,14 @@ import java.util.List;
 
 public class ProjectMembers implements Jsonable {
 
+    public ArrayList<Member> getMemberList() {
+        return memberList;
+    }
+
+    public void setMemberList(ArrayList<Member> memberList) {
+        this.memberList = memberList;
+    }
+
     public ArrayList<Member> memberList;
 
     public ProjectMembers() {

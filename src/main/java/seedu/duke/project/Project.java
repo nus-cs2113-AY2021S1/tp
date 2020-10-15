@@ -4,14 +4,11 @@ import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.sprint.Sprint;
 import seedu.duke.sprint.SprintList;
-import seedu.duke.task.Task;
-import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Project implements Jsonable {
 
@@ -20,12 +17,17 @@ public class Project implements Jsonable {
     protected ProjectMembers members;
     protected String title;
     protected String description;
+
+
     protected int projectDuration;
     protected int sprintLength;
 
     protected LocalDate startDate = null;
     protected LocalDate endDate = null;
-
+    
+    
+    public Project() {
+    }
 
     public Project(String title, String description, String projectDuration, String sprintLength) {
         this.title = title;
@@ -68,6 +70,7 @@ public class Project implements Jsonable {
         return projectInString.toString();
     }
 
+    //Getters
     public SprintList getAllSprints() {
         return allSprints;
     }
@@ -92,8 +95,29 @@ public class Project implements Jsonable {
         return startDate;
     }
 
+    public ProjectBacklog getBacklog() {
+        return backlog;
+    }
+
+    public ProjectMembers getMembers() {
+        return members;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public ProjectBacklog getProjectBacklog() {
+        return backlog;
+    }
+
+    public String getDescription() {
+        return description;
+    }
     // Call this function every time a new sprint object is instantiated.
     // sets the start date the first time.
+    
+    //Setters
     public void setStartDate() {
         setStartDate(LocalDate.now());
     }
@@ -102,21 +126,36 @@ public class Project implements Jsonable {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
-
-
-    public ProjectBacklog getProjectBacklog() {
-        return backlog;
+    
+    public void setAllSprints(SprintList allSprints) {
+        this.allSprints = allSprints;
     }
 
-    public String getDescription() {
-        return description;
+    public void setBacklog(ProjectBacklog backlog) {
+        this.backlog = backlog;
+    }
+
+    public void setMembers(ProjectMembers members) {
+        this.members = members;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setProjectDuration(int projectDuration) {
+        this.projectDuration = projectDuration;
+    }
+
+    public void setSprintLength(int sprintLength) {
+        this.sprintLength = sprintLength;
     }
 
     public void displayProjectBacklog() {
@@ -129,8 +168,7 @@ public class Project implements Jsonable {
             }
         }
     }
-
-
+    
     @Override
     public String toJson() {
         final StringWriter writeable = new StringWriter();
@@ -148,11 +186,13 @@ public class Project implements Jsonable {
         final JsonObject jObj = new JsonObject();
         jObj.put("title", this.title);
         jObj.put("description", this.description);
-        jObj.put("duration", this.projectDuration);
-        jObj.put("sprint_length", this.sprintLength);
-        jObj.put("start_date", this.startDate == null ? null : this.startDate.toString());
+        jObj.put("projectDuration", this.projectDuration);
+        jObj.put("sprintLength", this.sprintLength);
+        jObj.put("startDate", this.startDate == null ? null : this.startDate.toString());
+        jObj.put("endDate", this.endDate == null ? null : this.endDate.toString());
         jObj.put("backlog", backlog);
         jObj.put("members", members);
+        jObj.put("allSprints", allSprints);
         jObj.toJson(writer);
     }
 }
