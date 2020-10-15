@@ -29,11 +29,11 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.SmartHomeBot"
+    mainClassName = "seedu.SmartHomeBot.SmartHomeBot"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "SmartHomeBot"
     archiveClassifier = null
 }
 
