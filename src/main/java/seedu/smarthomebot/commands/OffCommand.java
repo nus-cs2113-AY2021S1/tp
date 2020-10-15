@@ -24,11 +24,12 @@ public class OffCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        for (Appliance i : applianceList.getAllAppliance()) {
-            if (i.getName().equals((this.name))) {
-                if (i.switchOff()) {
-                    String location = i.getLocation();
-                    String result = String.format("Switching off %s in %s ......OFF!\n", name, location);
+        for (Appliance appliance : applianceList.getAllAppliance()) {
+            if (appliance.getName().equals((this.name))) {
+                if (appliance.switchOff()) {
+                    assert !appliance.switchOff() : "Appliance should be already OFF";
+                    String location = appliance.getLocation();
+                    String result = String.format("Switching off %s in %s ......OFF!", name, location);
                     return new CommandResult(LINE + result);
                 } else {
                     return new CommandResult(LINE + MESSAGE_APPLIANCE_PREVIOUSLY_OFF);
