@@ -1,6 +1,8 @@
 package event;
 
 
+import location.Location;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -10,8 +12,9 @@ import java.time.format.DateTimeFormatter;
 public class Class extends Event {
     protected LocalDateTime at;
 
-    public Class(String description, LocalDateTime at) {
+    public Class(String description, Location location, LocalDateTime at) {
         super(description);
+        this.location = location;
         this.at = at;
     }
 
