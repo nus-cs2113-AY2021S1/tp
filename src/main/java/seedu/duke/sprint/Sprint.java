@@ -124,7 +124,6 @@ public class Sprint implements Jsonable {
         } else {
             for (int taskIds : sprintTaskIds) {
                 Task task = projAllocatedTo.getProjectBacklog().getTask(taskIds);
-                System.out.println(taskIds);
                 sprintInString.append(task.toString());
             }
         }

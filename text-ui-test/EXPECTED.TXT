@@ -8,6 +8,7 @@
                                     |_|
 
 WELCOME TO SCRUMPTIOUS
+command>No projects are created.
 command>Project successfully created.
 
 ============================ PROJECT ============================
@@ -127,10 +128,7 @@ command>
 command>Add UI  added to sprint.
 Add3 UI  added to sprint.
 Add4 UI  added to sprint.
-command>1
-3
-4
-
+command>
 ========================= CURRENT SPRINT ========================
 [Remaining: 4 days]
 [ID: 1]
@@ -164,10 +162,7 @@ command>1
 command>Add UI  assigned to [amy]
 command>Add3 UI  assigned to [amy, john]
 command>Add UI  assigned to [bob]
-command>1
-3
-4
-
+command>
 ========================= CURRENT SPRINT ========================
 [Remaining: 4 days]
 [ID: 1]
@@ -222,9 +217,7 @@ command>
 =================================================================
 
 command>The corresponding task Add4 UI has been removed from project.
-command>1
-3
-
+command>
 ========================= CURRENT SPRINT ========================
 [Remaining: 4 days]
 [ID: 1]
