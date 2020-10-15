@@ -2,9 +2,6 @@
 Welcome to your SmartHomeBot V1.0!
 Load File Does not Exist. No contents will be loaded.
 ==================================================
-Enter command: Unable to create file.
-File is empty.
-An error occur
-Exiting SmartHomeBot as requested ...
+Enter command: Exiting SmartHomeBot as requested ...
 Exporting data........Completed!
 Good bye!

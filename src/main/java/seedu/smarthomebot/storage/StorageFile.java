@@ -24,7 +24,7 @@ import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_TYPE_NOT_EXIS
 
 public class StorageFile {
 
-    private static final String filePath = "/data/SmartHomeBot.txt";
+    private static final String filePath = "data/SmartHomeBot.txt";
     private static ApplianceList applianceList;
     private static LocationList locationList;
     private final TextUi ui = new TextUi();
@@ -45,7 +45,7 @@ public class StorageFile {
             }
             myWriter.close();
         } catch (IOException e) {
-            ui.printToUser("An error occur");
+            //ui.printToUser("An error occur");
         }
     }
 
@@ -144,7 +144,7 @@ public class StorageFile {
             }
 
         } catch (IOException e) {
-            ui.printToUser("Unable to create file.");
+            //ui.printToUser("Unable to create file.");
         }
     }
 
@@ -154,7 +154,7 @@ public class StorageFile {
             writer.print("");
             writer.close();
         } catch (FileNotFoundException e) {
-            ui.printToUser("File is empty.");
+            //ui.printToUser("File is empty.");
         }
     }
 }
