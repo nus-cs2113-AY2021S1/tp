@@ -1,8 +1,8 @@
 package exception;
 
 /**
-
  * Represents the exception when an invalid command is inputted.
+ */
 public class WrongCommandException extends InvalidCommandException {
 
     /**

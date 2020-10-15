@@ -11,6 +11,6 @@ public class EmptyFindException extends NuScheduleException {
      * @return the message
      */
     public String getMessage() {
-        return "☹ OOPS!!! You should enter the keyword of the tasks you want to find.";
+        return "OOPS!!! You should enter the keyword of the tasks you want to find.";
     }
 }

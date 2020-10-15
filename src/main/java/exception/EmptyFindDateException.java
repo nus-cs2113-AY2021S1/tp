@@ -10,6 +10,6 @@ public class EmptyFindDateException extends NuScheduleException {
      * @return the message
      */
     public String getMessage() {
-        return "☹ OOPS!!! You should enter the date you are looking for.";
+        return "OOPS!!! You should enter the date you are looking for.";
     }
 }

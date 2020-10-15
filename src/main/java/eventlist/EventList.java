@@ -2,6 +2,7 @@ package eventlist;
 
 
 import event.Event;
+import exception.DoneUndefinedEventException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -47,11 +48,11 @@ public class EventList {
      *                   //     * @throws DoneUndefinedEventException the event is not defined but
      *                   // the user want to mark it as done
      */
-    public void doneEvent(int eventIndex) /*throws DoneUndefinedEventException*/ {
+    public void doneEvent(int eventIndex) throws DoneUndefinedEventException {
         try {
             events.get(eventIndex).markAsDone();
         } catch (IndexOutOfBoundsException e) {
-            //throw new DoneUndefinedEventException(eventIndex);
+            throw new DoneUndefinedEventException(eventIndex);
         }
     }
 

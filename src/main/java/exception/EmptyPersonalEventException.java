@@ -10,6 +10,6 @@ public class EmptyPersonalEventException extends PersonalEventException {
      * @return the message
      */
     public String getMessage() {
-        return "☹ OOPS!!! The description of an event cannot be empty.";
+        return "OOPS!!! The description of an event cannot be empty.";
     }
 }

@@ -11,6 +11,6 @@ public class EmptyDeleteException extends DeleteException {
      * @return the message
      */
     public String getMessage() {
-        return "☹ OOPS!!! You should enter the index of the task you want to delete.";
+        return "OOPS!!! You should enter the index of the task you want to delete.";
     }
 }

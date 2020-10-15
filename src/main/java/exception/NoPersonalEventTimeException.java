@@ -11,6 +11,6 @@ public class NoPersonalEventTimeException extends PersonalEventException {
      * @return the message
      */
     public String getMessage() {
-        return "☹ OOPS!!! You should enter a time for event.";
+        return "OOPS!!! You should enter a time for event.";
     }
 }

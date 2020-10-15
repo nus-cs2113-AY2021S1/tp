@@ -11,6 +11,6 @@ public class NoClassTimeException extends ClassException {
      * @return the message
      */
     public String getMessage() {
-        return "☹ OOPS!!! You should enter a time for deadline.";
+        return "OOPS!!! You should enter a time for deadline.";
     }
 }

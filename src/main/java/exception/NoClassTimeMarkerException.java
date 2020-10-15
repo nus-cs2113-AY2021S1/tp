@@ -11,6 +11,6 @@ public class NoClassTimeMarkerException extends ClassException {
      * @return the message
      */
     public String getMessage() {
-        return "☹ OOPS!!! You should mark the time for a deadline with \"/by\"";
+        return "OOPS!!! You should mark the time for a deadline with \"/by\"";
     }
 }

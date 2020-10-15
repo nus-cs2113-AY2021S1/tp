@@ -10,6 +10,6 @@ public class EmptyAssignmentException extends AssignmentException {
      * @return the message
      */
     public String getMessage() {
-        return "☹ OOPS!!! The description of a todo cannot be empty.";
+        return "OOPS!!! The description of a todo cannot be empty.";
     }
 }

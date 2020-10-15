@@ -11,6 +11,6 @@ public class EmptyDoneException extends DoneException {
      * @return the message
      */
     public String getMessage() {
-        return "☹ OOPS!!! You should enter the index of the task you have done.";
+        return "OOPS!!! You should enter the index of the task you have done.";
     }
 }
