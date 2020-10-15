@@ -241,4 +241,28 @@ public class Ui {
     public void showCreatePatientMessage(String nric) {
         printWithIndent("Creating patient " + nric);
     }
+
+    /**
+     * Prints patient's appointment list header.
+     * @param nric Patient's NRIC
+     */
+    public void showAppointmentsListHeader(String nric) {
+        printWithIndent("Listing appointments for patient " + nric + ": ");
+    }
+
+    /**
+     * Prints details of patient's appointment.
+     * @param appointment appointment to be printed
+     * @param counter appointment counter under patient
+     */
+    public void showAppointmentLine(Appointment appointment, int counter) {
+        printWithIndent(counter + ". " + appointment.getDate());
+    }
+
+    /**
+     * Prints message if patient has no booked appointments.
+     */
+    public void showNoBookedAppointmentsMessage() {
+        printWithIndent("No booked appointments found!");
+    }
 }
