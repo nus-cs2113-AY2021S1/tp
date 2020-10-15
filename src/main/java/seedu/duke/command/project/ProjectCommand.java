@@ -34,7 +34,7 @@ public class ProjectCommand {
         if (parameters.get(DURATION) != null) {
             deadline = parameters.get(DURATION);
         } else {
-            throw new DukeException("no deadline");
+            throw new DukeException("no duration");
         }
         if (parameters.get(SPRINT_DURATION) != null) {
             sd = parameters.get(SPRINT_DURATION);

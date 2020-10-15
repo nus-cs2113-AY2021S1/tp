@@ -9,6 +9,17 @@
 
 WELCOME TO SCRUMPTIOUS
 command>Project successfully created.
+
+================= PROJECT =================
+[Title: MeTube ]
+[Description: video streaming software ]
+[No members added]
+[Project will start along with the first sprint]
+[Project backlog is empty]
+[There are no Sprints]
+
+===============================================
+
 command>
 ================= PROJECT =================
 [Title: MeTube ]
@@ -35,7 +46,7 @@ Project period: 2020-10-10 to 2020-11-08
 ----------------- SPRINT -----------------
 [ID: 1]
 [Goal: goal1 ]
-[Period: 2020-10-10 - 2020-10-19] 
+[Period: 2020-10-10 - 2020-10-19]
 [No allocated tasks]
 
 ------------------------------------------
@@ -45,7 +56,7 @@ command>Newly created sprint will automatically start after the previous sprint 
 ----------------- SPRINT -----------------
 [ID: 2]
 [Goal: goal2]
-[Period: 2020-10-20 - 2020-10-29] 
+[Period: 2020-10-20 - 2020-10-29]
 [No allocated tasks]
 
 ------------------------------------------
@@ -55,7 +66,7 @@ command>Newly created sprint will automatically start after the previous sprint 
 ----------------- SPRINT -----------------
 [ID: 3]
 [Goal: goal3]
-[Period: 2020-10-30 - 2020-11-08] 
+[Period: 2020-10-30 - 2020-11-08]
 [No allocated tasks]
 
 ------------------------------------------
@@ -70,8 +81,8 @@ command>
 ----------------- SPRINT -----------------
 [ID: 1]
 [Goal: goal1 ]
-[Period: 2020-10-10 - 2020-10-19] 
-[Remaining: 5 days]
+[Period: 2020-10-10 - 2020-10-19]
+[Remaining: 4 days]
 [No allocated tasks]
 
 ------------------------------------------
@@ -85,48 +96,48 @@ command>
 ----------------- SPRINT -----------------
 [ID: 1]
 [Goal: goal1 ]
-[Period: 2020-10-10 - 2020-10-19] 
-[Remaining: 5 days]
+[Period: 2020-10-10 - 2020-10-19]
+[Remaining: 4 days]
 
 [Task]
 	ID: 1
-	Title: Add parser 
-	Description: add an interactive UI 
+	Title: Add parser
+	Description: add an interactive UI
 	Priority: High priority
 	Completion: Incomplete
 	Task have yet to be assigned to anyone
 [Task]
 	ID: 2
-	Title: Del UI 
-	Description: add an interactive UI 
+	Title: Del UI
+	Description: add an interactive UI
 	Priority: High priority
 	Completion: Incomplete
 	Task have yet to be assigned to anyone
 [Task]
 	ID: 3
-	Title:  UI 
-	Description: add an interactive UI 
+	Title:  UI
+	Description: add an interactive UI
 	Priority: High priority
 	Completion: Incomplete
 	Task have yet to be assigned to anyone
 [Task]
 	ID: 4
-	Title: Add4 UI 
-	Description: add an interactive UI 
+	Title: Add4 UI
+	Description: add an interactive UI
 	Priority: High priority
 	Completion: Incomplete
 	Task have yet to be assigned to anyone
 [Task]
 	ID: 5
-	Title: Add5 UI 
-	Description: add an interactive UI 
+	Title: Add5 UI
+	Description: add an interactive UI
 	Priority: High priority
 	Completion: Incomplete
 	Task have yet to be assigned to anyone
 [Task]
 	ID: 6
-	Title: Add6 UI 
-	Description: add an interactive UI 
+	Title: Add6 UI
+	Description: add an interactive UI
 	Priority: High priority
 	Completion: Incomplete
 	Task have yet to be assigned to anyone
@@ -138,48 +149,48 @@ command>
 ----------------- SPRINT -----------------
 [ID: 1]
 [Goal: goal1 ]
-[Period: 2020-10-10 - 2020-10-19] 
-[Remaining: 5 days]
+[Period: 2020-10-10 - 2020-10-19]
+[Remaining: 4 days]
 
 [Task]
 	ID: 1
-	Title: Add parser 
-	Description: add an interactive UI 
+	Title: Add parser
+	Description: add an interactive UI
 	Priority: High priority
 	Completion: Incomplete
-	Assigned to: amy bob 
+	Assigned to: amy bob
 [Task]
 	ID: 2
-	Title: Del UI 
-	Description: add an interactive UI 
+	Title: Del UI
+	Description: add an interactive UI
 	Priority: High priority
 	Completion: Incomplete
 	Task have yet to be assigned to anyone
 [Task]
 	ID: 3
-	Title:  UI 
-	Description: add an interactive UI 
+	Title:  UI
+	Description: add an interactive UI
 	Priority: High priority
 	Completion: Incomplete
-	Assigned to: amy john 
+	Assigned to: amy john
 [Task]
 	ID: 4
-	Title: Add4 UI 
-	Description: add an interactive UI 
+	Title: Add4 UI
+	Description: add an interactive UI
 	Priority: High priority
 	Completion: Incomplete
 	Task have yet to be assigned to anyone
 [Task]
 	ID: 5
-	Title: Add5 UI 
-	Description: add an interactive UI 
+	Title: Add5 UI
+	Description: add an interactive UI
 	Priority: High priority
 	Completion: Incomplete
 	Task have yet to be assigned to anyone
 [Task]
 	ID: 6
-	Title: Add6 UI 
-	Description: add an interactive UI 
+	Title: Add6 UI
+	Description: add an interactive UI
 	Priority: High priority
 	Completion: Incomplete
 	Task have yet to be assigned to anyone
@@ -190,34 +201,34 @@ command>
 ----------------- SPRINT -----------------
 [ID: 1]
 [Goal: goal1 ]
-[Period: 2020-10-10 - 2020-10-19] 
-[Remaining: 5 days]
+[Period: 2020-10-10 - 2020-10-19]
+[Remaining: 4 days]
 
 [Task]
 	ID: 1
-	Title: Add parser 
-	Description: add an interactive UI 
+	Title: Add parser
+	Description: add an interactive UI
 	Priority: High priority
 	Completion: Incomplete
-	Assigned to: amy bob 
+	Assigned to: amy bob
 [Task]
 	ID: 2
-	Title: Del UI 
-	Description: add an interactive UI 
+	Title: Del UI
+	Description: add an interactive UI
 	Priority: High priority
 	Completion: Incomplete
 	Task have yet to be assigned to anyone
 [Task]
 	ID: 5
-	Title: Add5 UI 
-	Description: add an interactive UI 
+	Title: Add5 UI
+	Description: add an interactive UI
 	Priority: High priority
 	Completion: Incomplete
 	Task have yet to be assigned to anyone
 [Task]
 	ID: 6
-	Title: Add6 UI 
-	Description: add an interactive UI 
+	Title: Add6 UI
+	Description: add an interactive UI
 	Priority: High priority
 	Completion: Incomplete
 	Task have yet to be assigned to anyone
@@ -227,7 +238,7 @@ command>
 [Title: MeTube ]
 [Description: video streaming software ]
 [Members: amy john bob]
-[Period: 2020-10-10 - 2020-11-08] 
+[Period: 2020-10-10 - 2020-11-08]
 
 ----------------- BACKLOG -----------------
 
@@ -248,8 +259,8 @@ command>
 ----------------- SPRINT -----------------
 [ID: 1]
 [Goal: goal1 ]
-[Period: 2020-10-10 - 2020-10-19] 
-[Remaining: 5 days]
+[Period: 2020-10-10 - 2020-10-19]
+[Remaining: 4 days]
 
 ------------------------------------------
 
