@@ -129,7 +129,7 @@ public class CountdownCommand extends Command {
                 CalendarItem item1 = examList.getCalendarList().get(j);
                 CalendarItem item2 = examList.getCalendarList().get(j + 1);
                 if (((Exam)item1).getCountdown() > ((Exam)item2).getCountdown()) {
-                    examList.swapTasks(i, j);
+                    examList.swapTasks(j, j + 1);
                 }
             }
         }
@@ -162,7 +162,7 @@ public class CountdownCommand extends Command {
                 CalendarItem item1 = deadlineList.getCalendarList().get(j);
                 CalendarItem item2 = deadlineList.getCalendarList().get(j + 1);
                 if (((Exam)item1).getCountdown() > ((Exam)item2).getCountdown()) {
-                    deadlineList.swapTasks(i, j);
+                    deadlineList.swapTasks(j, j + 1);
                 }
             }
         }
