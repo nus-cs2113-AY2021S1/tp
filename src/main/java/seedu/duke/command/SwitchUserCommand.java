@@ -14,6 +14,8 @@ public class SwitchUserCommand extends Command {
     protected static final String NOT_RECOGNISED = " is not recognised!";
 
     private static final Logger LOGGER = Logger.getLogger(SwitchUserCommand.class.getName());
+    protected static final String NO_PARAMETER_PROVIDED = "No Parameter provided";
+    protected static final String SWITCH_SUCCESS_HEADER = "Welcome back, ";
 
     public SwitchUserCommand(String description) {
         this.description = description;
@@ -22,9 +24,10 @@ public class SwitchUserCommand extends Command {
     @Override
     public String execute(AnimeData animeData, UserManagement userManagement) throws AniException {
         String[] paramGiven = description.split("-");
+        String result = "";
         if (description.length() < 2) {
-            LOGGER.log(Level.WARNING, "No Parameter provided");
-            throw new AniException("No Parameter provided");
+            LOGGER.log(Level.WARNING, NO_PARAMETER_PROVIDED);
+            throw new AniException(NO_PARAMETER_PROVIDED);
         }
         for (String param : paramGiven) {
             String[] paramParts = param.split(" ", 2);
@@ -33,16 +36,17 @@ public class SwitchUserCommand extends Command {
                 break;
             case "n": //Name of User
                 paramLengthCheck(paramParts);
-                System.out.println("Trying to switch to: " + paramParts[1]);
+                //Find the user and setActiveUser to it
                 User chgUser = userManagement.getUser(paramParts[1]);
                 userManagement.setActiveUser(chgUser);
+                result = SWITCH_SUCCESS_HEADER + chgUser.getHonorificName();
                 break;
             default:
                 String invalidParameter = PARAMETER_ERROR_HEADER + param + NOT_RECOGNISED;
                 throw new AniException(invalidParameter);
             }
         }
-        return "";
+        return result;
     }
 
     private void paramLengthCheck(String[] paramParts) throws AniException {
