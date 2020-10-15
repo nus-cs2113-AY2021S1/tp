@@ -3,6 +3,7 @@ package seedu.duke.project;
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
+import seedu.duke.task.Priority;
 import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
 
@@ -45,6 +46,15 @@ public class ProjectBacklog implements Jsonable {
     public void addTask(String title, String description, String priority) {
         int newTaskId = nextId++;
         backlogTasks.add(new Task(newTaskId, title, description, priority));
+    }
+
+    public boolean checkValidPriority(String input) {
+        for (Priority priority : Priority.values()) {
+            if (priority.name().equals(input)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Task getTask(int id) {

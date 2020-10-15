@@ -20,6 +20,10 @@ public class ProjectCommand {
         String description;
         String deadline;
         String sd;
+        if (!parameters.containsKey(TITLE) || !parameters.containsKey(DESCRIPTION)
+                || !parameters.containsKey(DURATION) || !parameters.containsKey(SPRINT_DURATION)) {
+            throw new DukeException("Missing parameters.");
+        }
 
         if (parameters.get(TITLE) != null) {
             title = parameters.get(TITLE);

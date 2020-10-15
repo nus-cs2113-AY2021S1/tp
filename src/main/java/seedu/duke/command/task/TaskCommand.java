@@ -7,14 +7,14 @@ import seedu.duke.project.Project;
 import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-import static seedu.duke.command.CommandSummary.PRIORITY;
 import static seedu.duke.command.CommandSummary.TITLE;
 import static seedu.duke.command.CommandSummary.DESCRIPTION;
+import static seedu.duke.command.CommandSummary.PRIORITY;
 import static seedu.duke.command.CommandSummary.TASK_ID;
+
 
 public class TaskCommand {
     public void addTaskCommand(Hashtable<String, String> tasks, ArrayList<Project> projectList)
@@ -23,6 +23,11 @@ public class TaskCommand {
         String title;
         String description;
         String priority;
+
+        if (!tasks.containsKey(TITLE) || !tasks.containsKey(DESCRIPTION)
+                || !tasks.containsKey(PRIORITY)) {
+            throw new DukeException("Missing parameters.");
+        }
 
         if (tasks.get(TITLE) != null) {
             title = tasks.get(TITLE);
@@ -41,6 +46,9 @@ public class TaskCommand {
         }
         try {
             Project proj = projectList.get(0);
+            if (!proj.getProjectBacklog().checkValidPriority(priority)) {
+                throw new DukeException("Invalid priority");
+            }
             proj.getProjectBacklog().addTask(title, description, priority);
             Task addedTask = proj.getProjectBacklog().getTask(proj.getProjectBacklog().getNextId() - 1);
             Ui.showToUserLn("Task successfully created.");
@@ -55,6 +63,9 @@ public class TaskCommand {
     public void deleteTaskCommand(ArrayList<String> taskIdString, ArrayList<Project> projectList) {
         try {
             Project proj = projectList.get(0);
+            if (taskIdString.isEmpty()) {
+                Ui.showError("Missing parameters.");
+            }
             for (String id : taskIdString) {
                 try {
                     int taskId = Integer.parseInt(id);
@@ -86,6 +97,9 @@ public class TaskCommand {
 
         try {
             Project proj = projectList.get(0);
+            if (taskId.isEmpty()) {
+                Ui.showError("Missing parameters.");
+            }
             Ui.showToUserLn("The details of the tasks are as follows: ");
             for (String id : taskId) {
                 Task task;
@@ -113,6 +127,11 @@ public class TaskCommand {
         Task task;
         int id;
         String priority;
+
+        if (!tasks.containsKey(TASK_ID) || !tasks.containsKey(PRIORITY)) {
+            throw new DukeException("Missing parameters.");
+        }
+
         if (tasks.get(TASK_ID) != null) {
             id = Integer.parseInt(tasks.get(TASK_ID));
         } else {
@@ -127,6 +146,9 @@ public class TaskCommand {
             Project proj = projectList.get(0);
             try {
                 task = proj.getProjectBacklog().getTask(id);
+                if (!proj.getProjectBacklog().checkValidPriority(priority)) {
+                    throw new DukeException("Invalid priority");
+                }
                 task.setPriority(priority);
                 Ui.showToUserLn("The task " + task.getTitle() + "has its priority changed to:");
                 Ui.showToUserLn("\t" + task.getPriority());

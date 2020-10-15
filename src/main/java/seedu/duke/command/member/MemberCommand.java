@@ -10,6 +10,13 @@ public class MemberCommand {
     public void addMemberCommand(ArrayList<String> userId, ArrayList<Project> projectList) {
         Member m;
         try {
+            if (projectList.isEmpty()) {
+                Ui.showError("Please create a project first.");
+                return;
+            }
+            if (userId.isEmpty()) {
+                Ui.showError("Missing parameters.");
+            }
             Project proj = projectList.get(0);
             for (String s : userId) {
                 if (proj.getProjectMember().containMember(new Member(s))) {
@@ -28,6 +35,13 @@ public class MemberCommand {
     public void deleteMemberCommand(ArrayList<String> userId, ArrayList<Project> projectList) {
         Project proj;
         try {
+            if (projectList.isEmpty()) {
+                Ui.showError("Please create a project first.");
+                return;
+            }
+            if (userId.isEmpty()) {
+                Ui.showError("Missing parameters.");
+            }
             proj = projectList.get(0);
             for (String s : userId) {
                 if (proj.getProjectMember().containMember(new Member(s))) {
