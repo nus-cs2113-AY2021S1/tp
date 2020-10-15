@@ -56,11 +56,9 @@ public class Duke {
      * Exits when ExitCommand returns "true"
      */
     private static void runInstructions() {
-
         String input;
         while (!parser.isExit()) {
             input = Ui.getUserCommand();
-            assert input == "" : "No input";
             String parserOutput = parser.parser(input, projectList);
             if (parserOutput != null) {
                 System.out.println(parserOutput);
