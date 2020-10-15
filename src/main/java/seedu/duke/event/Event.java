@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Event {
-    public String eventName;
-    public String eventTime;
+    protected String eventName;
+    protected String eventTime;
     protected LocalDate date;
 
 
@@ -20,6 +20,25 @@ public class Event {
         this.date = date;
     }
 
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getEventTime() {
+        return eventTime;
+    }
+
+    public void setEventTime(String eventTime) {
+        this.eventTime = eventTime;
+    }
+
+    public LocalDate getEventDate() {
+        return date;
+    }
 
     /**
      * Returns the string format of the event.

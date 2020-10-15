@@ -39,6 +39,7 @@ public class CommandAddMember extends Command {
     @Override
     public String help() {
 
-        return "You can use 'hr add' command this way:\n" + "hr add /n NAME /p PHONE_NUMBER (INTEGER) /e EMAIL /ROLE\n";
+        return "You can use 'hr add' command this way:\n"
+                + "hr add /n NAME /p PHONE_NUMBER (INTEGER) /e EMAIL /r ROLE\n";
     }
 }
