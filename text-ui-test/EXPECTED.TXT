@@ -1,6 +1,6 @@
 ==================================================
 Welcome to your SmartHomeBot V1.0!
-LoadFile Does not Exist. No contents will be loaded
+LoadFile Does not Exist. No contents will be loaded.
 ==================================================
 Enter command: Unable to create file.
 File is empty.
