@@ -28,7 +28,7 @@ public class MenuParser implements Parser {
     }
 
     @Override
-    public Command parseCommand(DisplayableList topicList, String userInput) throws Eduke8Exception {
+    public Command parseCommand(DisplayableList topicList, String userInput) {
         assert topicList != null;
 
         LOGGER.log(Level.INFO, "Begin parsing command.");
@@ -56,7 +56,7 @@ public class MenuParser implements Parser {
                     numOfQuestions = Integer.parseInt(commandArr[2].substring(2));
                     topicName = commandArr[1].substring(2);
                 } catch (NumberFormatException nfe) {
-                    return new IncorrectCommand("Please choose the answer by index");
+                    return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
                 }
             } else {
                 LOGGER.log(Level.WARNING, "Parsing Error: Wrong number of fields used in quiz command.");
