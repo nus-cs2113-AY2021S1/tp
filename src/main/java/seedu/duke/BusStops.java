@@ -40,8 +40,8 @@ public enum BusStops {
 
     public static String formatName(String input) throws CustomException {
         for (BusStops info: EnumSet.allOf(BusStops.class)) {
-            if (info.getName().equalsIgnoreCase(input)) {
-                return info.getName();
+            if (info.name.equalsIgnoreCase(input)) {
+                return info.name;
             }
         }
         throw new CustomException(ExceptionType.INVALID_BUS_STOP);
