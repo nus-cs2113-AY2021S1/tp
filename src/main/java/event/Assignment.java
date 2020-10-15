@@ -18,7 +18,7 @@ public class Assignment extends Event {
      * @return the result string to be stored
      */
     public String fileString() {
-        return "A//" + (isDone ? 1 : 0) + "//" + description + "//" + by;
+        return "A//" + (isDone ? 1 : 0) + "//" + description + "//" + by + "//" + location;
     }
 
     public Assignment(String description, LocalDateTime by) {

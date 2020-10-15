@@ -28,6 +28,8 @@ public class AddCommand extends Command {
      * Adds the appropriate type of event/task to the list.
      *
      * @param events   the list of events.
+     * @param locations the list of Locations
+     * @param busStops the list of BusStops
      * @param ui      do outputs.
      * @param storage store the data.
      */
