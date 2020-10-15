@@ -25,7 +25,7 @@ public class BookmarkAnimeCommand extends Command {
         String[] paramGiven = getSplitDescription(description);
         parameterParser(paramGiven[1]);
         setFirstParameter(paramGiven[0]);
-        LOGGER.log(Level.INFO,"Successfully loaded fields for Bookmark command.");
+        LOGGER.log(Level.INFO, "Successfully loaded fields for Bookmark command.");
     }
 
     @Override
@@ -35,19 +35,19 @@ public class BookmarkAnimeCommand extends Command {
 
         switch (bookmarkAction) {
         case "e":
-            LOGGER.log(Level.INFO,"Executing Edit Episode.");
+            LOGGER.log(Level.INFO, "Executing Edit Episode.");
             result = editBookmarkEpisode(animeData, bookmark);
             break;
         case "a":
-            LOGGER.log(Level.INFO,"Executing Add Anime to Bookmark.");
+            LOGGER.log(Level.INFO, "Executing Add Anime to Bookmark.");
             result = addBookmarkEntry(animeData, bookmark);
             break;
         case "d":
-            LOGGER.log(Level.INFO,"Executing Delete Anime from Bookmark.");
+            LOGGER.log(Level.INFO, "Executing Delete Anime from Bookmark.");
             result = deleteBookmarkEntry(animeData, bookmark);
             break;
         case "l":
-            LOGGER.log(Level.INFO,"Executing List all anime in Bookmark.");
+            LOGGER.log(Level.INFO, "Executing List all anime in Bookmark.");
             result = "Listing all anime in bookmark: ";
             String bookmarkList = listBookmarkEntries(animeData, bookmark);
             result += bookmarkList;
@@ -55,7 +55,7 @@ public class BookmarkAnimeCommand extends Command {
         default:
             break;
         }
-        LOGGER.log(Level.INFO,"Execute Bookmark command successful.");
+        LOGGER.log(Level.INFO, "Execute Bookmark command successful.");
         return result;
     }
 
@@ -69,7 +69,7 @@ public class BookmarkAnimeCommand extends Command {
         if (bookmarkIndex > bookmark.getBookmarkSize() || bookmarkIndex <= 0) {
             String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + "provided is invalid."
                     + System.lineSeparator() + " Bookmark index is outside Bookmark range (too big or too small).";
-            LOGGER.log(Level.WARNING,"Bookmark command execute failed:" + invalidBookmarkIndex);
+            LOGGER.log(Level.WARNING, "Bookmark command execute failed:" + invalidBookmarkIndex);
             throw new AniException(invalidBookmarkIndex);
         }
         Anime animeToDelete = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
@@ -84,7 +84,7 @@ public class BookmarkAnimeCommand extends Command {
         if (animeIndex > animeData.getSize() || animeIndex <= 0) {
             String invalidAnimeIndex = "Anime index " + animeIndex + "provided is invalid."
                     + System.lineSeparator() + " Anime index is outside AnimeData range (too big or too small).";
-            LOGGER.log(Level.WARNING,"Bookmark command execute failed:" + invalidAnimeIndex);
+            LOGGER.log(Level.WARNING, "Bookmark command execute failed:" + invalidAnimeIndex);
             throw new AniException(invalidAnimeIndex);
         }
 
@@ -99,7 +99,7 @@ public class BookmarkAnimeCommand extends Command {
         if (bookmarkIndex > bookmark.getBookmarkSize() || bookmarkIndex <= 0) {
             String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + "provided is invalid."
                     + System.lineSeparator() + " Bookmark index is outside Bookmark range (too big or too small).";
-            LOGGER.log(Level.WARNING,"Bookmark command execute failed:" + invalidBookmarkIndex);
+            LOGGER.log(Level.WARNING, "Bookmark command execute failed:" + invalidBookmarkIndex);
             throw new AniException(invalidBookmarkIndex);
         }
         String result;
@@ -118,7 +118,7 @@ public class BookmarkAnimeCommand extends Command {
             if (!isValidBookmarkIndex) {
                 String invalidBookmarkIndex = "" + paramGiven + " is an invalid parameter!"
                         + System.lineSeparator() + " Bookmark index for edit episode requires integer.";
-                LOGGER.log(Level.WARNING,"Could not load bookmark command:" + invalidBookmarkIndex);
+                LOGGER.log(Level.WARNING, "Could not load bookmark command:" + invalidBookmarkIndex);
                 throw new AniException(invalidBookmarkIndex);
             }
         } else {
@@ -126,7 +126,7 @@ public class BookmarkAnimeCommand extends Command {
             if (!isEmpty) {
                 String invalidFirstParameter = "" + paramGiven + " is an invalid parameter!"
                         + System.lineSeparator() + " Add or Delete should not have extra param.";
-                LOGGER.log(Level.WARNING,"Could not load bookmark command:" + invalidFirstParameter);
+                LOGGER.log(Level.WARNING, "Could not load bookmark command:" + invalidFirstParameter);
                 throw new AniException(invalidFirstParameter);
             }
         }
@@ -136,11 +136,11 @@ public class BookmarkAnimeCommand extends Command {
         String[] paramGiven = description.split("-");
         if (paramGiven.length > 2) {
             String invalidDescription =  description + " has too many parameter!";
-            LOGGER.log(Level.WARNING,"Could not load bookmark command:" + invalidDescription);
+            LOGGER.log(Level.WARNING, "Could not load bookmark command:" + invalidDescription);
             throw new AniException(invalidDescription);
         } else if (paramGiven.length < 2) {
             String invalidDescription =  description + " has too few parameter!";
-            LOGGER.log(Level.WARNING,"Could not load bookmark command:" + invalidDescription);
+            LOGGER.log(Level.WARNING, "Could not load bookmark command:" + invalidDescription);
             throw new AniException(invalidDescription);
         }
         return paramGiven;
@@ -156,7 +156,7 @@ public class BookmarkAnimeCommand extends Command {
             if (!isValidBookmarkEpisode) {
                 String invalidParameter = "-" + paramGiven + " is an invalid parameter!"
                         + System.lineSeparator() + " Bookmark edit episode param requires integer.";
-                LOGGER.log(Level.WARNING,"Could not load bookmark command:" + invalidParameter);
+                LOGGER.log(Level.WARNING, "Could not load bookmark command:" + invalidParameter);
                 throw new AniException(invalidParameter);
             }
             break;
@@ -167,7 +167,7 @@ public class BookmarkAnimeCommand extends Command {
             if (!isValidAnimeIndex) {
                 String invalidParameter = "-" + paramGiven + " is an invalid parameter!"
                         + System.lineSeparator() + " Bookmark Add param requires integer.";
-                LOGGER.log(Level.WARNING,"Could not load bookmark command:" + invalidParameter);
+                LOGGER.log(Level.WARNING, "Could not load bookmark command:" + invalidParameter);
                 throw new AniException(invalidParameter);
             }
             break;
@@ -178,7 +178,7 @@ public class BookmarkAnimeCommand extends Command {
             if (!isValidBookmarkIndex) {
                 String invalidParameter = "-" + paramGiven + " is an invalid parameter!"
                         + System.lineSeparator() + " Bookmark delete param requires integer.";
-                LOGGER.log(Level.WARNING,"Could not load bookmark command:" + invalidParameter);
+                LOGGER.log(Level.WARNING, "Could not load bookmark command:" + invalidParameter);
                 throw new AniException(invalidParameter);
             }
             break;
@@ -195,11 +195,11 @@ public class BookmarkAnimeCommand extends Command {
         // Parameter Additional Field Check
         if (paramParts.length < 2) {
             String invalidParameter = "Parameter : " + paramParts[0] + " requires an additional field";
-            LOGGER.log(Level.WARNING,"Could not load bookmark command:" + invalidParameter);
+            LOGGER.log(Level.WARNING, "Could not load bookmark command:" + invalidParameter);
             throw new AniException(invalidParameter);
         } else if (paramParts.length > 2) {
             String invalidParameter = "Parameter : " + paramParts[0] + " has too much fields";
-            LOGGER.log(Level.WARNING,"Could not load bookmark command:" + invalidParameter);
+            LOGGER.log(Level.WARNING, "Could not load bookmark command:" + invalidParameter);
             throw new AniException(invalidParameter);
         }
     }
