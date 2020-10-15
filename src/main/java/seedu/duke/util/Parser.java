@@ -492,17 +492,17 @@ public class Parser {
      * @throws SystemException for missing keyword.
      */
     private Command prepareFind(String userMessage) throws SystemException {
-        final Logger LOGGER_FIND = Logger.getLogger("ParserPrepareFind");
-        setupLogger(LOGGER_FIND, "FindCommandParser.log");
+        Logger loggerFind = Logger.getLogger("ParserPrepareFind");
+        setupLogger(loggerFind, "FindCommandParser.log");
 
         try {
             userMessage = checkBlank(userMessage, ExceptionType.EXCEPTION_MISSING_KEYWORD);
-            LOGGER_FIND.log(Level.INFO, "If no null pointer, keyword is trimmed.");
+            loggerFind.log(Level.INFO, "If no null pointer, keyword is trimmed.");
         } catch (NullPointerException exception) {
-            LOGGER_FIND.log(Level.INFO, "Null pointer exception caught.");
+            loggerFind.log(Level.INFO, "Null pointer exception caught.");
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_KEYWORD);
         }
-        LOGGER_FIND.log(Level.INFO, "Will execute FindCommand");
+        loggerFind.log(Level.INFO, "Will execute FindCommand");
         return new FindCommand(userMessage);
     }
 
