@@ -10,11 +10,14 @@ import seedu.eduke8.option.Option;
 import seedu.eduke8.question.Question;
 
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_ANSWER_NOT_INDEX;
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_COMMAND_NOT_IMPLEMENTED;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_ANSWER_INDEX_OUT_OF_BOUNDS;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_ANSWER_NOT_INDEX;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_COMMAND_NOT_IMPLEMENTED;
 
 public class QuizParser implements Parser {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -30,6 +33,7 @@ public class QuizParser implements Parser {
     @Override
     public Command parseCommand(DisplayableList optionList, String userInput) {
         if ("hint".equals(userInput)) {
+            LOGGER.log(Level.INFO, "Parsing complete: hint command chosen.");
             return new HintCommand(question.getHint());
         }
         
@@ -41,10 +45,10 @@ public class QuizParser implements Parser {
             return new AnswerCommand(chosenOption, question);
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, "A non-number was given when answering question.");
-            return new IncorrectCommand("Please choose the answer by index");
+            return new IncorrectCommand(ERROR_QUIZ_ANSWER_NOT_INDEX);
         } catch (IndexOutOfBoundsException e) {
             LOGGER.log(Level.WARNING, "An index out of bounds was given when answering question.");
-            return new IncorrectCommand("Please choose only 1, 2, 3 or 4");
+            return new IncorrectCommand(ERROR_QUIZ_ANSWER_INDEX_OUT_OF_BOUNDS);
         }
     }
 }

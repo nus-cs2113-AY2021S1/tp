@@ -8,6 +8,8 @@ public class Option implements Displayable {
     private boolean wasShown;
 
     public Option(String description) {
+        assert description != null;
+
         this.description = description;
         isCorrectAnswer = false;
         wasShown = false;
