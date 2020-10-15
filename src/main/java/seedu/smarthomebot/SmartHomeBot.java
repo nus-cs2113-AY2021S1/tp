@@ -6,8 +6,8 @@ import seedu.smarthomebot.commands.ExitCommand;
 import seedu.smarthomebot.common.Messages;
 import seedu.smarthomebot.data.ApplianceList;
 import seedu.smarthomebot.data.LocationList;
-import seedu.smarthomebot.ui.TextUi;
 import seedu.smarthomebot.storage.StorageFile;
+import seedu.smarthomebot.ui.TextUi;
 
 /**
  * Entry point of the SmartHome application.

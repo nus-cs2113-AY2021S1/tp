@@ -41,10 +41,12 @@ public class Parser {
             case CreateCommand.COMMAND_WORD:
                 return new CreateCommand(arguments);
             case RemoveCommand.COMMAND_WORD:
+                assert !arguments.isEmpty() : "usersEnteredLocation cannot be empty";
                 return new RemoveCommand(arguments);
             case AddCommand.COMMAND_WORD:
                 return prepareAddCommand(arguments);
             case DeleteCommand.COMMAND_WORD:
+                assert !arguments.isEmpty() : "usersEnteredLocation cannot be empty";
                 return new DeleteCommand(arguments);
             case OnCommand.COMMAND_WORD:
                 return new OnCommand(arguments);
