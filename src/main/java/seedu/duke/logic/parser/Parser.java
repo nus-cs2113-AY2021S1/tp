@@ -9,6 +9,7 @@ import seedu.duke.logic.commands.RouteMapCommand;
 import seedu.duke.logic.commands.ExitCommand;
 import seedu.duke.logic.commands.HelpCommand;
 import seedu.duke.logic.commands.AllBusCommand;
+import seedu.duke.logic.commands.ListStopsCommand;
 
 public class Parser {
 
@@ -47,9 +48,9 @@ public class Parser {
         case "/allbus":
             com = new AllBusCommand();
             break;
-        //        case "/liststops":
-        //
-        //            break;
+        case "/liststops":
+            com = new ListStopsCommand();
+            break;
         case "/help":
             com = new HelpCommand();
             break;
