@@ -1,11 +1,13 @@
 package seedu.duke.command.sprint;
 
+import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
 import seedu.duke.sprint.Sprint;
 import seedu.duke.sprint.SprintList;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.ui.Ui;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -26,12 +28,18 @@ public class AddSprintTaskCommand extends SprintCommand {
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
             Sprint currentSprint = allSprint.getSprint(currentSprintNo);
+            if (!parametersInAL.isEmpty()) {
+                for (String entry : this.parametersInAL) {
+                    try {
+                        int taskId = Integer.parseInt(entry);
+                        currentSprint.addSprintTask(taskId);
+                        proj.getProjectBacklog().getTask(taskId).allocateToSprint(currentSprint.getId());
+                        Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + " added to sprint.\n");
+                    } catch (NumberFormatException e) {
+                        Ui.showError("Invalid parameters.");
+                    }
 
-            for (String entry: this.parametersInAL) {
-                int taskId = Integer.parseInt(entry);
-                currentSprint.addSprintTask(taskId);
-                proj.getProjectBacklog().getTask(taskId).allocateToSprint(currentSprint.getId());
-                Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + "added to sprint.\n");
+                }
             }
         } else {
             checkReason();

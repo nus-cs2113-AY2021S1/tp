@@ -37,6 +37,8 @@ public class CreateSprintCommand extends SprintCommand {
             } else {
                 createSubsequentSprint(proj);
             }
+        } else {
+            Ui.showToUserLn("What is the goal for this sprint?");
         }
     }
 
@@ -59,7 +61,7 @@ public class CreateSprintCommand extends SprintCommand {
         proj.setEndDate(projEndDate);
 
         Ui.showToUserLn("Project will start along with the newly created sprint");
-        System.out.println("Project period: " + sprintStart + " to " + projEndDate);
+        Ui.showToUserLn("Project period: " + sprintStart + " to " + projEndDate);
         printCreatedSprint();
 
     }
@@ -82,7 +84,7 @@ public class CreateSprintCommand extends SprintCommand {
     }
 
     private boolean validateParams() {
-        return !this.parametersInHT.get("goal").isEmpty();
+        return this.parametersInHT.containsKey("goal");
     }
 
     private void printCreatedSprint() {
