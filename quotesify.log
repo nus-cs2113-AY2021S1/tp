@@ -98,3 +98,15 @@ INFO: added book to booklist
 信息: add toDo to toDoList failed
 10月 14, 2020 9:00:21 下午 seedu.duke.commands.AddCommand addToDo
 信息: add toDo to toDoList failed
+10月 14, 2020 11:08:32 下午 seedu.quotesify.commands.AddCommand execute
+信息: going to add book to booklist
+10月 14, 2020 11:08:32 下午 seedu.quotesify.commands.AddCommand execute
+信息: added book to booklist
+10月 14, 2020 11:21:43 下午 seedu.quotesify.commands.AddCommand execute
+信息: going to add book to booklist
+10月 14, 2020 11:21:43 下午 seedu.quotesify.commands.AddCommand execute
+信息: added book to booklist
+10月 14, 2020 11:21:58 下午 seedu.quotesify.commands.AddCommand execute
+信息: going to add book to booklist
+10月 14, 2020 11:21:58 下午 seedu.quotesify.commands.AddCommand execute
+信息: added book to booklist

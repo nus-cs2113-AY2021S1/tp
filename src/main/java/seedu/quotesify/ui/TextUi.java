@@ -52,10 +52,12 @@ public class TextUi {
     private static final String LIST_TODOS_MESSAGE = "Here is the list of all task(s) recorded:";
     private static final String DELETE_TODO_MESSAGE = "The Task [%s] has been deleted!";
     private static final String DONE_TODO_MESSAGE = "The Task [%s] has been marked as done!";
+    private static final String EMPTY_TODO_LIST_MESSAGE = "There are no task created";
     private static final String ADD_BOOKMARK_MESSAGE = "The bookmark [%s] has been added!";
     private static final String UPDATE_BOOKMARK_MESSAGE = "The bookmark [%s] has been updated";
     private static final String BOOKMARK_SIZE_MESSAGE = "You have a total of %d bookmark(s) recorded.";
     private static final String LIST_BOOKMARKS_MESSAGE = "Here is the list of all bookmark(s) recorded:";
+    private static final String EMPTY_BOOKMARK_LIST_MESSAGE = "There are no bookmark created";
     private static final String DELETE_BOOKMARKS_MESSAGE = "The bookmark [%s] has been removed!";
     private static final String LIST_ALL_QUOTES = "Here are all your quotes:";
     private static final String DELETE_QUOTE_MESSAGE = "The quote \"%s\" has been deleted!";
@@ -275,8 +277,12 @@ public class TextUi {
     }
 
     public void printAllToDos(ToDoList toDoList) {
-        System.out.println(LIST_TODOS_MESSAGE);
-        System.out.println(toDoList.toString());
+        if (toDoList.getSize() > 0) {
+            System.out.println(LIST_TODOS_MESSAGE);
+            System.out.println(toDoList.toString());
+        } else {
+            System.out.println(EMPTY_TODO_LIST_MESSAGE);
+        }
     }
 
     public void printDeleteToDo(ToDo  toDo) {
@@ -300,8 +306,12 @@ public class TextUi {
     }
 
     public void printAllBookmarks(BookmarkList bookmarkList) {
-        System.out.println(LIST_BOOKMARKS_MESSAGE);
-        System.out.println(bookmarkList.toString());
+        if (bookmarkList.getSize() > 0) {
+            System.out.println(LIST_BOOKMARKS_MESSAGE);
+            System.out.println(bookmarkList.toString());
+        } else {
+            System.out.println(EMPTY_BOOKMARK_LIST_MESSAGE);
+        }
     }
 
     public void printRandomQuote() {
