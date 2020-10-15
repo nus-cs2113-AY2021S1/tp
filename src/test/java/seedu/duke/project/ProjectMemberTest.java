@@ -3,7 +3,9 @@ package seedu.duke.project;
 import org.junit.jupiter.api.Test;
 import seedu.duke.sprint.Member;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ProjectMemberTest {
     Project project = new Project("SCRUM", "Deliver a cli for agile developers",
