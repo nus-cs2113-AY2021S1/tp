@@ -3,7 +3,6 @@ package seedu.planus;
 import seedu.commands.Bye;
 import seedu.commands.Command;
 import seedu.commands.CommandResult;
-import seedu.data.TaskList;
 import seedu.data.TaskMap;
 import seedu.parser.Parser;
 import seedu.storage.Storage;

@@ -4,6 +4,7 @@ import seedu.data.TaskMap;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
+import seedu.exceptions.InvalidTaskNumberException;
 import seedu.task.Task;
 
 import java.util.regex.Matcher;
@@ -40,9 +41,13 @@ public class Add extends Command {
     }
 
     @Override
-    public CommandResult execute(TaskMap tasks) throws InvalidPriorityException, InvalidDatetimeException {
-        Task task = new Task(description, date, startTime, endTime, priority);
-        // TODO handle collision
+    public CommandResult execute(TaskMap tasks)
+        throws InvalidPriorityException, InvalidDatetimeException, InvalidTaskNumberException {
+        // Handle collision by generating new hashValue if the value is in use.
+        Task task;
+        do {
+            task = new Task(description, date, startTime, endTime, priority);
+        } while (tasks.get(task.getHashValue()) != null);
         tasks.addTask(task);
         // task arg not in used, in case want change display message.
         return new CommandResult(ADD_MESSAGE, tasks, task);

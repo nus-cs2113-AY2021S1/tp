@@ -25,7 +25,7 @@ public class Storage {
     public void writeTasksToFile(TaskMap tasks) {
         try (FileWriter file = new FileWriter(DIRECTORY_NAME + "/" + FILE_NAME)) {
             for (Task task : tasks.getValues()) {
-                file.write(gson.toJson(task.toString() + System.lineSeparator()));
+                file.write(gson.toJson(task) + System.lineSeparator());
             }
         } catch (IOException e) {
             System.out.println("IO EXCEPTION");

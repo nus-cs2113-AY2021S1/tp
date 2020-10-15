@@ -21,11 +21,8 @@ public class Ui {
     }
 
     public Ui(InputStream in, PrintStream out) {
-        this.in = new Scanner(System.in);
-        //        this.out = new PrintStream(System.out, true, StandardCharsets.ISO_8859_1);
+        this.in = new Scanner(in);
         this.out = out;
-        // Set default printing color
-        //        out.print(DEFAULT_STRING_COLOR);
     }
 
     public String getUserInput() {

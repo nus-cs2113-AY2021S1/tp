@@ -33,10 +33,6 @@ public class TaskMap {
         tasksMap.put(task.getHashValue(), task);
     }
 
-    //    public void addTasks(TaskMap tasks) {
-    //        tasksMap.putAll((Map<? extends Integer, ? extends Task>) tasks);
-    //    }
-
     public int size() {
         return tasksMap.size();
     }
@@ -44,10 +40,6 @@ public class TaskMap {
     public Task get(Integer key) {
         return tasksMap.get(key);
     }
-
-    //    public boolean contains(Task task) {
-    //        return tasksMap.contains(task);
-    //    }
 
     public TaskMap sortListByDate() {
         // Sort by date
