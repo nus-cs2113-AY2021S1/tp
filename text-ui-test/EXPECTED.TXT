@@ -119,10 +119,10 @@ command>
 All sprints are already created.
 command>
 ========================= CURRENT SPRINT ========================
-[Remaining: 4 days]
 [ID: 1]
 [Goal: goal1 ]
 [Period: 2020-10-10 - 2020-10-19] 
+[Remaining: 4 days]
 [No allocated tasks]
 =================================================================
 command>Add UI  added to sprint.
@@ -130,10 +130,10 @@ Add3 UI  added to sprint.
 Add4 UI  added to sprint.
 command>
 ========================= CURRENT SPRINT ========================
-[Remaining: 4 days]
 [ID: 1]
 [Goal: goal1 ]
 [Period: 2020-10-10 - 2020-10-19] 
+[Remaining: 4 days]
 
 [Task]
 	ID: 1
@@ -164,10 +164,10 @@ command>Add3 UI  assigned to [amy, john]
 command>Add UI  assigned to [bob]
 command>
 ========================= CURRENT SPRINT ========================
-[Remaining: 4 days]
 [ID: 1]
 [Goal: goal1 ]
 [Period: 2020-10-10 - 2020-10-19] 
+[Remaining: 4 days]
 
 [Task]
 	ID: 1
@@ -219,10 +219,10 @@ command>
 command>The corresponding task Add4 UI has been removed from project.
 command>
 ========================= CURRENT SPRINT ========================
-[Remaining: 4 days]
 [ID: 1]
 [Goal: goal1 ]
 [Period: 2020-10-10 - 2020-10-19] 
+[Remaining: 4 days]
 
 [Task]
 	ID: 1
