@@ -211,5 +211,120 @@
         ]
       }
     ]
+  },
+  {
+    "topic": "Java Basics",
+    "questions": [
+      {
+        "description": "What is the value of the following expression? \n 4 * 5 - 1",
+        "hint": "* has higher precedence than -",
+        "options": [
+          {
+            "description": "19",
+            "correct": true
+          },
+          {
+            "description": "16",
+            "correct": false
+          },
+          {
+            "description": "15",
+            "correct": false
+          },
+          {
+            "description": "4",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "What is the value of the following expression? \n 4 * (5 - 1)",
+        "hint": "Parentheses ( ) have higher precedence than *",
+        "options": [
+          {
+            "description": "19",
+            "correct": false
+          },
+          {
+            "description": "16",
+            "correct": true
+          },
+          {
+            "description": "15",
+            "correct": false
+          },
+          {
+            "description": "4",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "What is the value of the following expression? \n 4 * (5 - 1)",
+        "hint": "Parentheses ( ) have higher precedence than *",
+        "options": [
+          {
+            "description": "19",
+            "correct": false
+          },
+          {
+            "description": "16",
+            "correct": true
+          },
+          {
+            "description": "15",
+            "correct": false
+          },
+          {
+            "description": "4",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Which of the following expressions gives a boolean value of false?",
+        "hint": "What are the precedences of parentheses and conditional operators?",
+        "options": [
+          {
+            "description": "true && true",
+            "correct": false
+          },
+          {
+            "description": "(true || false) && true",
+            "correct": false
+          },
+          {
+            "description": "true && false || true",
+            "correct": false
+          },
+          {
+            "description": "true && false",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "Consider\nint[] scores = new int[4]\nscores[5] = 0\nWhat is the error here?",
+        "hint": "The int array in the question has the size of 4",
+        "options": [
+          {
+            "description": "There is no error here",
+            "correct": false
+          },
+          {
+            "description": "ArrayIndexOutOfBoundsException",
+            "correct": true
+          },
+          {
+            "description": "NullPointerException",
+            "correct": false
+          },
+          {
+            "description": "StackOverflowError",
+            "correct": false
+          }
+        ]
+      }
+    ]
   }
 ]
