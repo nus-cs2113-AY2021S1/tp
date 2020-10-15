@@ -230,48 +230,114 @@
     ]
   },
   {
-    "topic": "Style",
+    "topic": "Code Quality",
     "questions": [
       {
-        "description": "How do you name classes?",
-        "hint": "check the textbook",
+        "description": "What does SLAP stand for?",
+        "hint": "SLAP is used to avoid varying the level of abstraction within a code fragment.",
         "options": [
           {
-            "description": "A",
+            "description": "Single Level of Abstraction Per method",
             "correct": true
           },
           {
-            "description": "B",
+            "description": "Single Level of Abstraction Per class",
             "correct": false
           },
           {
-            "description": "C",
+            "description": "Simple Level of Abstraction Per method",
             "correct": false
           },
           {
-            "description": "D",
+            "description": "Simple Level of Association Per class",
             "correct": false
           }
         ]
       },
       {
-        "description": "What is the appropriate indentation?",
-        "hint": "check the textbook",
+        "description": "Which of the following options is NOT a drawback of optimizing code prematurely?",
+        "hint": "We have to avoid premature optimizations.",
         "options": [
           {
-            "description": "A",
+            "description": "You may not know which parts are the real performance bottlenecks.",
             "correct": false
           },
           {
-            "description": "B",
+            "description": "Optimizing code prematurely allows users to view shorter code.",
             "correct": true
           },
           {
-            "description": "C",
+            "description": "Optimizing can complicate the code.",
             "correct": false
           },
           {
-            "description": "D",
+            "description": "Hand-optimized code can be harder for the compiler to optimize.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Which of the following option should we strive to have in our code?",
+        "hint": "Coders would prefer to have a simple solution in favor of a complicated one.",
+        "options": [
+          {
+            "description": "Arrowhead style code",
+            "correct": false
+          },
+          {
+            "description": "Long methods",
+            "correct": false
+          },
+          {
+            "description": "Magic numbers",
+            "correct": false
+          },
+          {
+            "description": "Keep it simple, stupid (KISS)",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "Which of the following option is true?",
+        "hint": "We should always aim to have excellent documentation value.",
+        "options": [
+          {
+            "description": "Imported classes should always be listed explicitly.",
+            "correct": true
+          },
+          {
+            "description": "There is no need for javadoc header comment.",
+            "correct": false
+          },
+          {
+            "description": "Coders should follow their own coding style so that it can be traced to the author easily.",
+            "correct": false
+          },
+          {
+            "description": "One should never prioritize efficiency or performance over readability.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Which of the following standards is FALSE? ",
+        "hint": "Following coding standards makes it easier for everyone to understand the code.",
+        "options": [
+          {
+            "description": "Line length should be no longer than 120 characters.",
+            "correct": false
+          },
+          {
+            "description": "Indentation for wrapped lines should be 8 spaces.",
+            "correct": false
+          },
+          {
+            "description": "It is not mandatory for the naming of boolean variables to sound like booleans (eg isSet)",
+            "correct": true
+          },
+          {
+            "description": "We should always use Egytian Style.",
             "correct": false
           }
         ]

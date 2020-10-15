@@ -4,6 +4,7 @@ import seedu.eduke8.common.Displayable;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.question.Question;
+import seedu.eduke8.topic.Topic;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -29,7 +30,7 @@ public class Ui {
             + System.lineSeparator() + "consolidates key concepts for easy revision.";
     private static final String MESSAGE_GREETINGS = "Hello! I'm E-Duke-8" + System.lineSeparator()
             + "What can I do for you?";
-    private static final String MESSAGE_EXIT = "Bye bye. Hope you have a nice day and see you soon!";
+    private static final String MESSAGE_EXIT = "Bye bye. Hope you had a fruitful revision and see you soon!";
     private static final String MESSAGE_HELP = "These are the commands that you can used:"
             + System.lineSeparator() + "1) about" + System.lineSeparator() + "2) help" + System.lineSeparator()
             + "3) topics" + System.lineSeparator() + "4) textbook" + System.lineSeparator()
@@ -39,7 +40,7 @@ public class Ui {
             + System.lineSeparator() + "Hope you have learnt something new!";
     private static final String MESSAGE_ANSWER_WRONG = "Oops! The correct answer is ";
     private static final String MESSAGE_ANSWER_WRONG_SECOND = "! Do visit the textbook to read up more.";
-    private static final String MESSAGE_ANSWER_CORRECT = "Congrats! This answer is correct! Well Done!";
+    private static final String MESSAGE_ANSWER_CORRECT = "Great Job! That is the correct answer! Keep it up!";
     private static final String MESSAGE_TEXTBOOK = "The textbook for this module is available at:"
             + System.lineSeparator() + TEXTBOOK_WEBSITE;
     private static final String MESSAGE_HINT = "Hint: ";
@@ -72,7 +73,7 @@ public class Ui {
     }
 
     public void printQuestion(Question question, int questionNumber) {
-        System.out.println(questionNumber + ". " + question.getDescription());
+        System.out.println(questionNumber + ". " + question.getDescription() + System.lineSeparator());
     }
 
     public void printHint(Hint hint) {
@@ -129,9 +130,10 @@ public class Ui {
     public void printTopicList(ArrayList<Displayable> topics) {
         System.out.println(HORIZONTAL_LINE);
 
-        System.out.println("These are the available topics:");
+        System.out.println("These are the available topics and the number of available questions in each:");
         for (int i = 0; i < topics.size(); i++) {
-            System.out.println(topics.get(i).getDescription());
+            Topic topic = (Topic) topics.get(i);
+            System.out.println(topic.getDescription() + "   [" + topic.getQuestionList().getCount() + "]");
         }
 
         System.out.println(HORIZONTAL_LINE);
