@@ -4,10 +4,8 @@ import seedu.duke.Bus;
 import seedu.duke.BusData;
 import seedu.duke.BusStops;
 import seedu.duke.exceptions.CustomException;
-import seedu.duke.exceptions.ExceptionType;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 
 import static seedu.duke.ui.Ui.printLine;
 
@@ -21,6 +19,7 @@ public class BusCommand extends Command {
 
     @Override
     public void executeCommand() {
+        assert !busStop.isBlank() : "Bus stop is empty";
         printLine();
         ArrayList<Bus> busList = BusData.busAtStop(busStop);
         System.out.print(busStop + ":  ");
