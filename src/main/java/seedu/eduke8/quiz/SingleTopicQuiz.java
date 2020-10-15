@@ -3,6 +3,7 @@ package seedu.eduke8.quiz;
 import seedu.eduke8.command.AnswerCommand;
 import seedu.eduke8.command.Command;
 import seedu.eduke8.command.HintCommand;
+import seedu.eduke8.command.IncorrectCommand;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.option.Option;
@@ -75,10 +76,14 @@ public class SingleTopicQuiz implements Quiz {
 
             assert (command instanceof AnswerCommand || command instanceof HintCommand);
 
-            while (command instanceof HintCommand) {
+            while (!(command instanceof AnswerCommand)) {
                 command.execute(optionList, ui);
                 command = getCommand(ui, optionList);
-                LOGGER.log(Level.INFO, "Hint shown");
+                if (command instanceof IncorrectCommand) {
+                    LOGGER.log(Level.INFO, "Invalid answer given for question");
+                } else {
+                    LOGGER.log(Level.INFO, "Hint shown");
+                }
             }
 
             assert command instanceof AnswerCommand;

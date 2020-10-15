@@ -39,7 +39,7 @@ public class MenuParser implements Parser {
                 numOfQuestions = Integer.parseInt(commandArr[2].substring(2));
                 topicName = commandArr[1].substring(2);
             } else if (commandArr.length < 3) {
-                return new IncorrectCommand("empty");
+                return new IncorrectCommand("Please use the format: quiz t/<topic> n/<number of questions>");
             }
             return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui);
         case "exit":
@@ -47,6 +47,6 @@ public class MenuParser implements Parser {
         default:
             break;
         }
-        return new IncorrectCommand("unrecognised");
+        return new IncorrectCommand("Please enter in a valid command. Enter 'help' for more info!");
     }
 }
