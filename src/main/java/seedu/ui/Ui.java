@@ -41,7 +41,7 @@ public class Ui {
         out.format(format, "Index", "Description", "Date", "Start", "End", "Priority");
         for (Task task : tasks.getValues()) {
             out.format(format,
-                    task.getHashValue(),
+                    task.getTaskID(),
                     task.getDescription(),
                     task.getDate(),
                     task.getStartTime() == null ? "" : task.getStartTime(),

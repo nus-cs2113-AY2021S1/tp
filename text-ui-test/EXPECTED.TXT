@@ -40,24 +40,24 @@ Invalid command!
 
 Task added.
 Index     Description    Date           Start     End       Priority  
-436       meeting        2020-10-20                         [32mLOW[0m
+7750      meeting        2020-10-20                         [32mLOW[0m
 
 Task added.
 Index     Description    Date           Start     End       Priority  
-436       meeting        2020-10-20                         [32mLOW[0m
-92        any field      2020-10-22     20:00               [33mMEDIUM[0m
+6032      any field      2020-10-22     20:00               [33mMEDIUM[0m
+7750      meeting        2020-10-20                         [32mLOW[0m
 
 Task added.
 Index     Description    Date           Start     End       Priority  
-436       meeting        2020-10-20                         [32mLOW[0m
-119       test           2020-11-28     14:00     16:00     [31mHIGH[0m
-92        any field      2020-10-22     20:00               [33mMEDIUM[0m
+110       test           2020-11-28     14:00     16:00     [31mHIGH[0m
+6032      any field      2020-10-22     20:00               [33mMEDIUM[0m
+7750      meeting        2020-10-20                         [32mLOW[0m
 
 Here is your list of tasks:
 Index     Description    Date           Start     End       Priority  
-436       meeting        2020-10-20                         [32mLOW[0m
-119       test           2020-11-28     14:00     16:00     [31mHIGH[0m
-92        any field      2020-10-22     20:00               [33mMEDIUM[0m
+110       test           2020-11-28     14:00     16:00     [31mHIGH[0m
+6032      any field      2020-10-22     20:00               [33mMEDIUM[0m
+7750      meeting        2020-10-20                         [32mLOW[0m
 
 Unknown command!
 
@@ -65,8 +65,8 @@ No matched item found.
 
 Here is your list of tasks which contain the word/letters:
 Index     Description    Date           Start     End       Priority  
-436       meeting        2020-10-20                         [32mLOW[0m
-119       test           2020-11-28     14:00     16:00     [31mHIGH[0m
+110       test           2020-11-28     14:00     16:00     [31mHIGH[0m
+7750      meeting        2020-10-20                         [32mLOW[0m
 
 Invalid command!
 
@@ -80,9 +80,9 @@ Invalid task number!
 
 Here is your list of tasks:
 Index     Description    Date           Start     End       Priority  
-436       meeting        2020-10-20                         [32mLOW[0m
-119       test           2020-11-28     14:00     16:00     [31mHIGH[0m
-92        any field      2020-10-22     20:00               [33mMEDIUM[0m
+110       test           2020-11-28     14:00     16:00     [31mHIGH[0m
+6032      any field      2020-10-22     20:00               [33mMEDIUM[0m
+7750      meeting        2020-10-20                         [32mLOW[0m
 
 Invalid command!
 
@@ -96,9 +96,9 @@ Invalid task number!
 
 Here is your list of tasks:
 Index     Description    Date           Start     End       Priority  
-436       meeting        2020-10-20                         [32mLOW[0m
-119       test           2020-11-28     14:00     16:00     [31mHIGH[0m
-92        any field      2020-10-22     20:00               [33mMEDIUM[0m
+110       test           2020-11-28     14:00     16:00     [31mHIGH[0m
+6032      any field      2020-10-22     20:00               [33mMEDIUM[0m
+7750      meeting        2020-10-20                         [32mLOW[0m
 
 All tasks cleared.
 

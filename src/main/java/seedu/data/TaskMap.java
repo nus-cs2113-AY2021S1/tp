@@ -10,18 +10,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TaskMap {
-
+    public static final int MAX_NUM_TASKS = 10000;
     private final HashMap<Integer, Task> tasksMap;
 
-
     public TaskMap() {
-        tasksMap = new HashMap<>();
+        tasksMap = new HashMap<>(MAX_NUM_TASKS);
     }
 
     public TaskMap(List<Task> tasks) {
-        tasksMap = new HashMap<>();
+        tasksMap = new HashMap<>(MAX_NUM_TASKS);
         for (Task task : tasks) {
-            tasksMap.put(task.getHashValue(), task);
+            tasksMap.put(task.getTaskID(), task);
         }
     }
 
@@ -30,7 +29,7 @@ public class TaskMap {
     }
 
     public void addTask(Task task) {
-        tasksMap.put(task.getHashValue(), task);
+        tasksMap.put(task.getTaskID(), task);
     }
 
     public int size() {
