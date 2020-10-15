@@ -9,6 +9,7 @@ import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.event.Exam;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
@@ -77,7 +78,11 @@ public class CountdownCommand extends Command {
         for (int i = 0; i < calendarList.getTotalItems(); i++) {
             CalendarItem item = calendarList.getCalendarList().get(i);
             if (item instanceof Exam) {
-                ((Exam) item).setCountdown(countdown(item));
+                if (item.getTime().isBefore(LocalTime.now())) {
+                    ((Exam) item).setCountdown(countdown(item) - 1);
+                } else {
+                    ((Exam) item).setCountdown(countdown(item));
+                }
             }
         }
         sortExamsAndPrintCountdown(calendarList);

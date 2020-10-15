@@ -1,13 +1,13 @@
-LAB|false|cs1010|2020-10-10|10:00|lt11
+LAB|true|cs1010|2020-10-10|10:00|lt11
 EXAM|true|cs1010|2020-10-18|12:30|nus
-LEC|false|cs1010|2020-10-10|12:30|nus
-TUT|false|cs1010|2020-10-10|12:30|nus
-ACT|false|CCA|2020-10-10|12:30|nus
-ACT|false|cca|2020-10-10|12:30|nus
+LEC|true|cs1010|2020-10-10|12:30|nus
+TUT|true|cs1010|2020-10-10|12:30|nus
+ACT|true|CCA|2020-10-10|12:30|nus
+ACT|true|cca|2020-10-10|12:30|nus
 D|false|ho|2020-10-10
-ACT|false|CCA|2020-10-10|13:20|NUS
+ACT|true|CCA|2020-10-10|13:20|NUS
 EXAM|true|cca|2020-10-15|18:30|nus
 T|false|howmuchareyou paid
-EXAM|false|who1293|2020-10-08|16:00|nus
+EXAM|true|who1293|2020-10-08|16:00|nus
 EXAM|true|cs2020|2020-12-20|15:00|nus
 LEC|true|cs2020|2020-12-20|15:00|nus

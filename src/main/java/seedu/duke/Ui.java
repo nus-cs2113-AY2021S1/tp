@@ -220,9 +220,9 @@ public class Ui {
             System.out.println(item.getDescription() + " You have already missed it!");
         } else if (days == 0) {
             if (item instanceof Exam) {
-                System.out.println(item.getDescription() + " is today " + item.getTime() + ". Try your best!");
+                System.out.println(item.getDescription() + " is in a day. Try your best!");
             } else {
-                System.out.println(item.getDescription() + " is today 23:59. It's time to speed up!");
+                System.out.println(item.getDescription() + " is in a day. It's time to speed up!");
             }
         } else {
             System.out.println(item.getDescription() + " has " + days + " days left.");
