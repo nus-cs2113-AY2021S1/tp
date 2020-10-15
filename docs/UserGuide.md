@@ -76,7 +76,7 @@ Views the specified task.
 * Constraints:
     * The task ID entered must be a positive integer smaller or equal to the total number of tasks added, and must be specified.
 * Expected outcome:
-Assuming the third task have the following attributes: Title: `Add parser`, Description: `add UI`, Priority: `HIGH`, Done: `false`:
+(Assuming the third task have the following attributes: Title: `Add parser`, Description: `add UI`, Priority: `HIGH`, Done: `false`)
 ```
 [Task]
     ID: 1
@@ -95,7 +95,7 @@ Deletes the specified task.
     * There must be at least one supplied task ID for deletion.
     * All task ID supplied must be a positive integer smaller or equal to the total number of tasks added.
 * Expected outcome:
-Assuming the tasks have the following titles, respectively: `Add parser`, `Del UI` and `UI`:
+(Assuming the tasks have the following titles, respectively: `Add parser`, `Del UI` and `UI`)
 `The corresponding task Add parser has been removed from project.`
 `The corresponding task Del UI has been removed from project.`
 `The corresponding task UI has been removed from project.`
@@ -105,16 +105,27 @@ Change the priority of the specified task.
 * Format: `task /priority -priority <category> -id <taskid>`
 * Usage command: `task /priority -priority HIGH -id 1`
     * Sets the first task with a priority of HIGH, regardless of its previous priority level
+    
 * Constraints:
     * Task ID and priority level must be entered.
     * The Task ID entered must be a positive integer smaller or equal to the total number of tasks added.
     * The priority entered must belong to the standard options as prescribed by the enum: [“HIGH”, “MEDIUM”, “LOW”]
-* Expected outcome:
+* Expected outcome: (Assuming task 1 has title `Add parser`)
 ```
 The task Add parser has its priority changed to:
     High priority
 ```
 #### Marking task as complete
+Marks specified task as complete.
+* Format: `task /done <taskid>`
+* Usage Command: `task /done <taskid>`
+    * Marks the first task as done.
+* Constraints:
+    * The Task ID must be entered.
+    * The Task ID entered must be a positive integer smaller or equal to the total number of tasks added.
+* Expected outcome: (Assuming task 1 has title `Add parser`)
+`Add parser has been marked as done.`
+    
 
 
       
