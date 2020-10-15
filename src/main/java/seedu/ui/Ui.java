@@ -6,6 +6,7 @@ import seedu.task.Task;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static seedu.messages.Messages.LS;

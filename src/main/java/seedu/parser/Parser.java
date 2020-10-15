@@ -22,7 +22,7 @@ public class Parser {
         } else if (rawInput.startsWith(Add.COMMAND_WORD)) {
             return new Add(rawInput);
         } else if (rawInput.startsWith(List.COMMAND_WORD)) {
-            return new List();
+            return new List(rawInput);
         } else if (rawInput.startsWith(Bye.COMMAND_WORD)) {
             return new Bye();
         } else if (rawInput.startsWith(Edit.COMMAND_WORD)) {

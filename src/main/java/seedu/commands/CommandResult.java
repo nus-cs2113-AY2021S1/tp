@@ -3,6 +3,8 @@ package seedu.commands;
 import seedu.data.TaskMap;
 import seedu.task.Task;
 
+import java.util.ArrayList;
+
 public class CommandResult {
     private final String message;
     private final TaskMap tasks;
@@ -15,6 +17,7 @@ public class CommandResult {
     public CommandResult(String message, TaskMap tasks) {
         this(message, tasks, null);
     }
+
 
     public CommandResult(String message, TaskMap tasks, Task task) {
         this.message = message;
