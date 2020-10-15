@@ -20,8 +20,8 @@ class ModViewTest {
         ModuleList emptyList = new ModuleList();
         emptyList.getData().clear();
         view.printAllModuleInformation(emptyList, 1);
-        assertEquals(ModView.EMPTY_MODULE_LIST + System.lineSeparator(),
-                outContent.toString());
+        assertEquals(ModView.EMPTY_MODULE_LIST + System.lineSeparator()
+                + System.lineSeparator(), outContent.toString());
     }
 
     @Test
@@ -34,18 +34,18 @@ class ModViewTest {
         emptyList.getData().clear();
 
         view.printAllModuleInformation(emptyList, 0);
-        assertEquals(ModView.INVALID_WEEK_NUMBER + System.lineSeparator(),
-                outContent.toString());
+        assertEquals(ModView.INVALID_WEEK_NUMBER + System.lineSeparator()
+                + System.lineSeparator(), outContent.toString());
 
         outContent.reset();
         view.printAllModuleInformation(emptyList, -1);
-        assertEquals(ModView.INVALID_WEEK_NUMBER + System.lineSeparator(),
-                outContent.toString());
+        assertEquals(ModView.INVALID_WEEK_NUMBER + System.lineSeparator()
+                + System.lineSeparator(), outContent.toString());
 
         outContent.reset();
         view.printAllModuleInformation(emptyList, 14);
-        assertEquals(ModView.INVALID_WEEK_NUMBER + System.lineSeparator(),
-                outContent.toString());
+        assertEquals(ModView.INVALID_WEEK_NUMBER + System.lineSeparator()
+                + System.lineSeparator(), outContent.toString());
 
     }
 

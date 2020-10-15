@@ -55,12 +55,12 @@ public class ModView {
         ArrayList<Module> modList = list.getData();
 
         if (weekNumber < MIN_WEEK_VALUE || weekNumber > MAX_WEEK_VALUE) {
-            System.out.println(INVALID_WEEK_NUMBER);
+            System.out.println(INVALID_WEEK_NUMBER + System.lineSeparator());
             return;
         }
 
         if (modList.isEmpty()) {
-            System.out.println(EMPTY_MODULE_LIST);
+            System.out.println(EMPTY_MODULE_LIST + System.lineSeparator());
             return;
         }
 
