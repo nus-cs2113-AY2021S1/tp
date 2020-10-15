@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2020-10-14T12:19:21.893722600Z</date>
+  <millis>1602677961893</millis>
+  <nanos>722600</nanos>
+  <sequence>0</sequence>
+  <logger>HelpCommand</logger>
+  <level>INFO</level>
+  <class>seedu.duke.command.HelpCommand</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>First log</message>
+</record>
