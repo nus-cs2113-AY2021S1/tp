@@ -78,6 +78,7 @@ class TimetableTest {
 
     /**
      * Method to initialize a timetable for testing purposes with 4 default events.
+     *
      * @return Instantiated Timetable with 4 default events.
      */
     private Timetable initializeTimetable() {
