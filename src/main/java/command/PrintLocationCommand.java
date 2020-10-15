@@ -9,6 +9,7 @@ import ui.UI;
 
 public class PrintLocationCommand extends Command {
     /**
+     * Prints list of locations
      *
      * @param events  the list of Events.
      * @param locations the list of Locations

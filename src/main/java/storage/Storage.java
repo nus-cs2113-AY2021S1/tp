@@ -5,11 +5,14 @@ import event.Event;
 import exception.CreatingFileException;
 import exception.LoadingException;
 import exception.WritingFileException;
+import location.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * This class creates the folder and file path if it's not already created, and
@@ -77,5 +80,71 @@ public class Storage {
     public ArrayList<Event> load() throws LoadingException {
         return null;
         //to be implemented
+    }
+
+    /**
+     * Loads data from bus_stop text file to an ArrayList, which is stored in a BusStopList
+     *
+     * @param busStopList ArrayList of BusStops in BusStopList
+     */
+    public void loadBusStopData(ArrayList<BusStop> busStopList) {
+        File f = new File("data/bus_stops.txt");
+        Scanner s = null;
+        try {
+            s = new Scanner(f);
+        } catch (FileNotFoundException e) {
+            System.out.println(f.getName() + " not found: " + e.getMessage());
+        }
+
+        while(s.hasNext()) {
+            String input = s.nextLine();
+            String[] split = input.split(":",2);
+            String name = split[0];
+            String[] buses = split[1].split(",");
+            BusStop stop = new BusStop(name, buses);
+            busStopList.add(stop);
+        }
+    }
+
+    /**
+     * Loads data from location text file into an ArrayList, which is stored in a LocationList
+     *
+     * @param locationList ArrayList of Locations in LocationList
+     */
+    public void loadLocationData(ArrayList<Location> locationList) {
+        File f = new File("data/locations.txt");
+        Scanner s = null;
+        try {
+            s = new Scanner(f);
+        } catch (FileNotFoundException e) {
+            System.out.println(f.getName() + "not found: " + e.getMessage());
+        }
+
+        while(s.hasNext()) {
+            String input = s.nextLine();
+            // info[0] = type, info[1] = name, info[2] = nearest buildings/bus stops
+            String[] info = input.split("/");
+            String[] additionalInfo = info[2].split(",");
+            Location location = null;
+            switch(info[0]) {
+                case "BLK":
+                    location = new Building(info[1], additionalInfo);
+                    break;
+                case "H":
+                    location = new Hostel(info[1], additionalInfo);
+                    break;
+                case "L":
+                    location = new LectureTheatre(info[1], info[2]);
+                    break;
+                case "OUT":
+                    location = new OutOfNUS(info[1]);
+                    break;
+            }
+            if (location!=null) {
+                locationList.add(location);
+            } else {
+                System.out.println("Invalid Location Type");
+            }
+        }
     }
 }
