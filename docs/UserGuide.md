@@ -74,6 +74,30 @@ Example of usage:
 `event listEvent`
 
 ### 3.5 Finance features `finance` <br/>
+#### Add finance log entry: `addLog` <br/>
+Adds an entry into the finance log. <br/>
+Format: `finance addLog ITEM_NAME ITEM_VALUE` <br/>
+
+Example of usage: <br/>
+`finance addLog have lunch 5.2` <br/>
+`f addlog buy flight ticket 700` <br/>
+
+#### Delete finance log entry: `delLog` <br/>
+Removes an entry from finance log. <br/>
+Format: `finance delLog ITEM_INDEX` <br/>
+
+Example of usage: <br/>
+`finance dellog 3` <br/>
+`f delLog 10` <br/>
+
+#### View financial summary: `summary` <br/>
+Brings up a summary of the financial log and shows the total amount of money expended. <br/>
+Format: `finance summary` <br/>
+
+Example of usage: <br/>
+`finance summary` <br/>
+`f summary` <br/>
+
 
 ##FAQ
 
@@ -86,7 +110,9 @@ hr  | | -
 addEvent | `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME` | `event addEvent /n arduino course /d 2020-09-16 /t 8pm`<br/>
 delEvent | `event delEvent EVENT_INDEX`  | `event delEvent 1`
 listEvent | `event listEvent` | -
-finance | |-
+addLog | `finance addLog ITEM_NAME ITEM_VALUE` | `finance addLog have lunch 5.2`
+delLog | `finance delLog ITEM_INDEX` | `finance delLog 2`
+summary | `finance summary` | -
 
 ##Glossary
 

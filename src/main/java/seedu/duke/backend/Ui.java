@@ -48,7 +48,7 @@ public class Ui {
             printOutput("No such command. Try 'help' for a list of commands.");
         } catch (DukeFinanceAddDescriptionLostException e) {
             printOutput("Please enter the complete command. Format is:"
-                    + "finance addLog content number");
+                    + "finance addLog ITEM_NAME ITEM_VALUE");
         } catch (Exception e) {
             printOutput("Command execution failed with an unhandled error!", true);
         }
