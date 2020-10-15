@@ -3,10 +3,15 @@ package seedu.duke.command;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.human.UserManagement;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class HelpCommand extends Command {
+    private static final Logger LOGGER = Logger.getLogger(HelpCommand.class.getName());
     private static String output;
     
     public HelpCommand() {
+        LOGGER.setLevel(Level.WARNING);
         this.output = buildHelpOutput();
     }
     
@@ -20,6 +25,7 @@ public class HelpCommand extends Command {
     
     private String buildHelpOutput() {
         StringBuilder result = new StringBuilder();
+        LOGGER.log(Level.INFO, "Start of build help output");
         
         result.append("Create a new user profile:");
         result.append(System.lineSeparator());
@@ -86,6 +92,8 @@ public class HelpCommand extends Command {
         result.append(" Edit a bookmark:");
         result.append(System.lineSeparator());
         result.append(" bookmark <BOOKMARK_ID> -e <EPISODE>");
+
+        LOGGER.log(Level.INFO, "End of build help output");
         
         return result.toString();
     }
