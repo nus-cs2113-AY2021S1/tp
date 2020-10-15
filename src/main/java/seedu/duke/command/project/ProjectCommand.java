@@ -48,6 +48,10 @@ public class ProjectCommand {
     }
 
     public void viewProjectCommand(ArrayList<Project> projectList) throws DukeException {
+        if (projectList.size() == 0) {
+            Ui.showToUser("No projects created!" + System.lineSeparator());
+            return;
+        }
         Ui.showToUserLn(projectList.get(0).toString());
     }
 }
