@@ -84,10 +84,9 @@ public class Task implements Jsonable {
 
     public String toSimplifiedString() {
         StringBuilder taskString = new StringBuilder();
-        taskString.append(String.format("\n[Task]"));
-        taskString.append(String.format("\tID: %d", this.id));
-        taskString.append(String.format("\tTitle: %s", this.title));
-        taskString.append(String.format("\tCompletion: %s\n", this.isDone ? "Completed" : "Incomplete"));
+        taskString.append(String.format("[Task ID: %d]", this.id));
+        taskString.append(String.format("\t[Title: %s]", this.title));
+        taskString.append(String.format("\t[Completion: %s]\n", this.isDone ? "Completed" : "Incomplete"));
         return taskString.toString();
     }
 

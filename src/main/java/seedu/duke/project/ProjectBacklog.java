@@ -81,11 +81,11 @@ public class ProjectBacklog implements Jsonable {
     @Override
     public String toString() {
         StringBuilder backlogString = new StringBuilder();
-        backlogString.append("\n----------------- BACKLOG -----------------\n");
+        backlogString.append("\n---------------------------- BACKLOG ----------------------------\n");
         for (Task task : backlogTasks) {
             backlogString.append(task.toSimplifiedString());
         }
-        backlogString.append("\n------------------------------------------\n");
+        backlogString.append("-----------------------------------------------------------------\n");
         return backlogString.toString();
     }
 

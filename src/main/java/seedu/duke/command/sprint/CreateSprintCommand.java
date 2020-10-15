@@ -1,5 +1,6 @@
 package seedu.duke.command.sprint;
 
+import seedu.duke.exception.DukeException;
 import seedu.duke.ui.Messages;
 import seedu.duke.project.Project;
 import seedu.duke.sprint.Sprint;
@@ -26,7 +27,6 @@ public class CreateSprintCommand extends SprintCommand {
 
     /**
      * Abstract method that execute the command.
-     *
      */
     public void execute() {
         proj = projectList.get(0);
@@ -44,7 +44,11 @@ public class CreateSprintCommand extends SprintCommand {
 
         LocalDate sprintStart = LocalDate.now();
         if (!this.parametersInHT.get("start").isEmpty()) {
-            sprintStart = DateTimeParser.parseDate(this.parametersInHT.get("start"));
+            try {
+                sprintStart = DateTimeParser.parseDate(this.parametersInHT.get("start"));
+            } catch (DukeException e) {
+                e.printExceptionMessage();
+            }
         }
         LocalDate sprintEnd = sprintStart.plusDays(proj.getSprintLength() - 1);
         String sprintGoal = this.parametersInHT.get("goal");
@@ -65,7 +69,7 @@ public class CreateSprintCommand extends SprintCommand {
         String sprintGoal = this.parametersInHT.get("goal");
         Sprint prevSprint = allSprint.getSprint(allSprint.size() - 1);
         LocalDate sprintStart = prevSprint.getEndDate().plusDays(1);
-        if (DateTimeParser.diff(proj.getEndDate(),sprintStart) >= 0) {
+        if (DateTimeParser.diff(proj.getEndDate(), sprintStart) >= 0) {
             Ui.showToUserLn("\nAll sprints are already created.");
             return;
         }
