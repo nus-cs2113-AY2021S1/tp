@@ -26,6 +26,7 @@ public class Parser {
      */
     public void parse(String input, ModuleList modList, String name, Storage storage, boolean toPrint) {
         Ui ui = new Ui();
+        assert input != null;
         String[] command = input.trim().split(" ");
 
         switch (command[0].toLowerCase()) {
