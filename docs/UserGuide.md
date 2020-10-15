@@ -41,7 +41,7 @@ Format: `help`
 ### 3.2 Adding a User: `adduser`
 Adds a new user.
 
-Format: `adduser -n USERNAME -dob DATE_FORMAT -g GENDER`
+Format: `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER>`
 
 Sample input: `adduser -n Timothy Wright -dob 12/12/1997 -g male`
 
@@ -55,7 +55,7 @@ The expected outcome:
 ### 3.3 Switching Users: `switchuser`
 Switch the current active user to another user
 
-Format: `switchuser -n USERNAME`
+Format: `switchuser -n <USERNAME>`
 
 Note:
 
@@ -142,7 +142,16 @@ The expected outcome:
 
 `Watchlist created successfully.`
 
-### 3.6 Add an Anime to the select watchlist: `add`
+### 3.6 Add an anime to the select watchlist: `add`
+Add an anime to the currently selected watchlist
+
+Format: `add -a <ANIME_NAME>`
+
+Sample input: `add -a Fullmetal Alchemist: Brotherhood`
+
+The expected outcome: 
+
+`Anime added to watchlist!`
 
 ### 3.7 Bookmark an Anime: `bookmark`
 
@@ -172,7 +181,8 @@ saved in their respective file names `userprofile.txt` and `watchlist.txt`.
 |Feature|Command|
 |---    |---|
 |Help | `help`|
-|Add User | `adduser -n USERNAME -dob DATE_FORMAT -g GENDER ` |
-|Switch User | `switchuser -n USERNAME` |
+|Add User | `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER> ` |
+|Switch User | `switchuser -n <USERNAME>` |
 |Browse | `browse -s [name/rating] -p <1-26> -o [asc/dsc]`  |
 |Watchlist | `watchlist -n <WATCHLIST_NAME>` <br /> `watchlist -l` |
+|Add To Watchlist | `add -a <ANIME_NAME>` |
