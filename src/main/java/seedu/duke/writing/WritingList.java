@@ -7,7 +7,10 @@ import java.util.Scanner;
 
 import static seedu.duke.Duke.user;
 import static seedu.duke.Duke.writings;
-import static seedu.duke.commands.CommandChecker.*;
+import static seedu.duke.commands.CommandChecker.TYPE;
+import static seedu.duke.commands.CommandChecker.UNRECOGNISED;
+import static seedu.duke.commands.CommandChecker.extractCommandType;
+
 import static seedu.duke.constants.Logos.PLAIN_TEXT_DIVIDER;
 import static seedu.duke.functions.CommandExecutor.executeCommand;
 import static seedu.duke.parsers.Parsers.getUserInput;
@@ -65,39 +68,39 @@ public class WritingList {
     }
     
     public static void checkStart() {
-        Scanner SCANNER = new Scanner(System.in);
-        String newnewUserInput = null;
+        Scanner scanner = new Scanner(System.in);
+        String newUserInput = null;
         try {
             CommandChecker commandStartChecker = UNRECOGNISED;
             while (commandStartChecker != TYPE) {
                 System.out.println("Please indicate your type by typing in \"type\" command");
-                newnewUserInput = getUserInput(SCANNER);
-                commandStartChecker = extractCommandType(newnewUserInput);
+                newUserInput = getUserInput(scanner);
+                commandStartChecker = extractCommandType(newUserInput);
             }
-            executeCommand(commandStartChecker, newnewUserInput);
+            executeCommand(commandStartChecker, newUserInput);
         } catch (Exception e) {
             System.out.println(e);
         }
     }
     
     public static void checkType() {
-        Scanner SCANNER = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         String newUserInput = null;
         try {
             String type = "";
             while (! (newUserInput.equals("poem") || newUserInput.equals("essay"))) {
                 WritingList.printAskForType();
-                newUserInput = getUserInput(SCANNER);
+                newUserInput = getUserInput(scanner);
                 type = newUserInput;
             }
             WritingList.printAskForTitle();
-            newUserInput = getUserInput(SCANNER);
+            newUserInput = getUserInput(scanner);
             String title = newUserInput;
             System.out.println("Now you can type your content, terminate by typing \"end\"");
             String content = "";
             while (!newUserInput.equals("end")) {
                 content = content.concat(newUserInput + "\n");
-                newUserInput = getUserInput(SCANNER);
+                newUserInput = getUserInput(scanner);
             }
             if (type.equals("poem")) {
                 writings.add(new Poem(title, 0, "nothing", content, user.getName()));

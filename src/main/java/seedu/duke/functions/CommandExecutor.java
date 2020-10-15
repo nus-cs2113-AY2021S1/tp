@@ -21,18 +21,12 @@ import seedu.duke.writing.WritingList;
 import java.io.IOException;
 import java.util.Scanner;
 
-import static seedu.duke.Duke.user;
-import static seedu.duke.Duke.writings;
 import static seedu.duke.bunnylist.BunnyList.bunniesList;
-import static seedu.duke.commands.CommandChecker.*;
-import static seedu.duke.commands.CommandChecker.extractCommandType;
 import static seedu.duke.database.BunnySaver.saveAllBunny;
 import static seedu.duke.filters.BunnyFilter.filterBunny;
-import static seedu.duke.parsers.Parsers.getUserInput;
 import static seedu.duke.ui.UI.printHelpMessage;
 
 public class CommandExecutor {
-    private static final Scanner SCANNER = new Scanner(System.in);
     public static void executeCommand(CommandChecker commandChecker, String userInput) {
         switch (commandChecker) {
         case HELP:
