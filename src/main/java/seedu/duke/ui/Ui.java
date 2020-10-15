@@ -35,8 +35,8 @@ public class Ui {
         printMessage(LOGO);
     }
 
-    public void printGoodbyeMessage() {
-        printMessage("Sayonara!");
+    public void printGoodbyeMessage(String name) {
+        printMessage("Sayonara " + name + "!");
     }
 
     public String readInput() {
@@ -48,7 +48,6 @@ public class Ui {
         String userName = activeUser.getHonorificName();
         String watchlistName = activeUser.getActiveWatchlistName();
         System.out.print(System.lineSeparator() + " " + userName + " (" + watchlistName + ") #> ");
-        String userInput = CONSOLE.nextLine();
-        return userInput;
+        return CONSOLE.nextLine();
     }
 }

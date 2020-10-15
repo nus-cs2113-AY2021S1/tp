@@ -26,7 +26,7 @@ class DecoderTest {
     void decodeUserProfileString_validString_decodedUserProfileObject() {
         String userString = "Tester | 01/01/2020 | Other";
         User userProfile = decoder.decodeUserString(ui, userString);
-        String expected = "\nName: Tester\nBirthdate: 01/01/2020\nGender: Other";
+        String expected = "\n Name: Tester\n Birthdate: 01/01/2020\n Gender: Other";
         assertEquals(userProfile.toString(), expected);
     }
 

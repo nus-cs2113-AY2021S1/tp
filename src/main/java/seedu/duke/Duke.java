@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class Duke {
     private static final String USER_PROFILE_FILE_NAME = "userprofile.txt";
     private static final String WATCHLIST_FILE_NAME = "watchlist.txt";
-    private static final String ANIME_DATA_SOURCE_FOLDER = "/data/AniListData";
+    private static final String ANIME_DATA_SOURCE_FOLDER = "/AniListData";
 
     private final Ui ui;
     private final Parser parser;
@@ -40,13 +40,12 @@ public class Duke {
         ui.printHorizontalLine();
 
         // Initial Set up
-
-        assert userManagement != null;
+        assert userManagement != null : "User management should not be null!";
         User activeUser = userManagement.getActiveUser();
         if (activeUser == null) {
             userManagement.addUserDialogue(ui);
             activeUser = userManagement.getActiveUser();
-            assert userManagement.getActiveUser() != null;
+            assert userManagement.getActiveUser() != null : "User should have been created";
         }
 
         activeUser.setWatchlistList(watchlistList);
@@ -88,7 +87,9 @@ public class Duke {
                 ui.printErrorMessage(exception.getMessage());
             }
         }
-        ui.printGoodbyeMessage();
+
+        String goodbyeName = userManagement.getActiveUser().getHonorificName();
+        ui.printGoodbyeMessage(goodbyeName);
     }
 
     public static void main(String[] args) {
