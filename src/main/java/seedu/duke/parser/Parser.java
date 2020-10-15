@@ -41,11 +41,14 @@ public class Parser {
     private final Hashtable<String, String> parameters = new Hashtable<>();
     private ArrayList<String> params = new ArrayList<>();
 
+    private boolean exit = false;
+
 
     public String parser(String userInput, ArrayList<Project> projectList) {
         if (userInput.equals(BYE)) {
             System.out.println(BYE);
-            System.exit(0);
+            exit = true;
+            return null;
         }
 
         Matcher cmdMatcher = CMD_PATTERN.matcher(userInput);
@@ -174,5 +177,9 @@ public class Parser {
             return "Invalid command!";
         }
         return null;
+    }
+    
+    public boolean isExit() {
+        return exit;
     }
 }
