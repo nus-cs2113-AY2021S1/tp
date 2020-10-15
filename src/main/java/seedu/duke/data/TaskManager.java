@@ -64,6 +64,20 @@ public class TaskManager {
     }
 
     /**
+     * Finds a task with the specified task id in the Task List.
+     *
+     * @param id
+     *  The description of the task to be found
+     * @return
+     *  The found task with the specified description
+     * @throws IndexOutOfBoundsException
+     *  If the task is not found in the Task List
+     */
+    public Task getTask(int id) throws IndexOutOfBoundsException {
+        return taskList.get(id);
+    }
+
+    /**
      * Checks for duplicates of the same task description in the Task List.
      *
      * @param taskDescription

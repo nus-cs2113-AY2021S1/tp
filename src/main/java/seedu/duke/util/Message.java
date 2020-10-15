@@ -173,6 +173,7 @@ public class Message {
 
     public static final String MESSAGE_PROMPT_FORMAT = "Enter 'yes' to confirm or 'no' to abort.\n";
     public static final String MESSAGE_INVALID_DELETE_INDICES = "Deletion aborted due to invalid index provided.\n";
+    public static final String MESSAGE_INVALID_DONE_INDICES = "Marking aborted due to invalid index provided.\n";
     public static final String MESSAGE_ILLEGAL_DELETE =
             "Attempting to delete the current or its parent's directory.\nPlease move out of the directory first.\n";
     public static final String MESSAGE_MISSING_DIRECTORY_TO_DELETE =

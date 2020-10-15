@@ -5,12 +5,15 @@ import seedu.duke.command.IncorrectCommand;
 import seedu.duke.command.addcommand.AddCommandGeneric;
 import seedu.duke.command.addcommand.AddModuleCommand;
 import seedu.duke.command.addcommand.AddTaskCommand;
+import seedu.duke.command.editcommand.DoneCommand;
 import seedu.duke.command.filtercommand.FilterCommand;
 import seedu.duke.command.filtercommand.deletecommand.DeleteModuleCommand;
 import seedu.duke.command.filtercommand.listcommand.ListCommand;
 import seedu.duke.command.filtercommand.listcommand.ListModuleCommand;
 import seedu.duke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.duke.command.misc.ChangeDirectoryCommand;
+import seedu.duke.directory.Directory;
+import seedu.duke.directory.DirectoryLevel;
 import seedu.duke.directory.DirectoryTraverser;
 import seedu.duke.exception.InvalidFormatException;
 import seedu.duke.util.DateTime;
@@ -40,6 +43,7 @@ public class Parser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT =
             Pattern.compile("(?<commandWord>\\S+)(?<parameters>.*)");
+    public static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
     private static final String COMMAND_WORD_GROUP = "commandWord";
     private static final String PARAMETERS_GROUP = "parameters";
     private static final String IDENTIFIER_GROUP = "identifier";
@@ -90,7 +94,8 @@ public class Parser {
                 return new ListTaskCommand();
             case DeleteModuleCommand.COMMAND_WORD:
                 return prepareDeleteModuleCommand(parameters);
-
+            case DoneCommand.COMMAND_WORD:
+                return prepareDoneCommand(parameters);
             case ChangeDirectoryCommand.COMMAND_WORD:
                 return prepareChangeDirectoryCommand(parameters);
 
@@ -203,6 +208,24 @@ public class Parser {
             return new DeleteModuleCommand(moduleCode);
         } catch (NumberFormatException pe) {
             return new IncorrectCommand(MESSAGE_MISSING_MODULE_CODE);
+        }
+    }
+
+    /**
+     * Return the command parsed from user input argument
+     *
+     * @param parameters user input argument
+     * @return the parsed command
+     */
+    private static Command prepareDoneCommand (String parameters) {
+        if (DirectoryTraverser.getCurrentDirectoryLevel() != DirectoryLevel.MODULE){
+            return new IncorrectCommand(MESSAGE_INCORRECT_DIRECTORY_LEVEL_GENERIC);
+        }
+        try {
+            final int targetIndex = Integer.parseInt(parameters.trim() + 1);
+            return new DoneCommand(targetIndex);
+        } catch (NumberFormatException | StringIndexOutOfBoundsException nfe) {
+            return new IncorrectCommand(MESSAGE_INVALID_PARAMETERS);
         }
     }
 
