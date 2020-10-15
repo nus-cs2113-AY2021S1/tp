@@ -4,6 +4,8 @@ import seedu.duke.Bus;
 import seedu.duke.BusData;
 import seedu.duke.ui.Ui;
 
+import static seedu.duke.ui.Ui.printLine;
+
 
 public class RouteMapCommand extends Command {
 
@@ -16,6 +18,7 @@ public class RouteMapCommand extends Command {
             Ui.printFullRoute(selectedBus);
         } catch (NullPointerException e) {
             System.out.println("The bus code that you have provided is not valid!");
+            printLine();
         }
     }
 }

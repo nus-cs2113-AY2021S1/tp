@@ -2,18 +2,18 @@ package seedu.duke.logic.parser;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
-import seedu.duke.logic.commands.AllBusCommand;
+import seedu.duke.logic.commands.BusCommand;
 import seedu.duke.logic.commands.Command;
-import seedu.duke.logic.commands.ExitCommand;
-import seedu.duke.logic.commands.RouteMapCommand;
 import seedu.duke.logic.commands.RouteCommand;
-import seedu.duke.ui.Ui;
-
+import seedu.duke.logic.commands.RouteMapCommand;
+import seedu.duke.logic.commands.ExitCommand;
+import seedu.duke.logic.commands.HelpCommand;
+import seedu.duke.logic.commands.AllBusCommand;
+import seedu.duke.logic.commands.ListStopsCommand;
 
 public class Parser {
 
     private String userInput;
-    private Command com;
 
     public Parser(String userInput) {
         this.userInput = userInput;
@@ -31,11 +31,10 @@ public class Parser {
 
     public boolean extractType() throws CustomException {
 
-
         String[] parts = splitCommands(2, "\\s+");
         String command = parts[0];
 
-
+        Command com;
         switch (command) {
         case "/route":
             com = new RouteCommand(parts[1]);
@@ -43,17 +42,17 @@ public class Parser {
         case "/routemap":
             com = new RouteMapCommand();
             break;
-        //        case "/bus":
-        //
-        //            break;
+        case "/bus":
+            com = new BusCommand(parts[1]);
+            break;
         case "/allbus":
             com = new AllBusCommand();
             break;
-        //        case "/liststops":
-        //
-        //            break;
+        case "/liststops":
+            com = new ListStopsCommand();
+            break;
         case "/help":
-            Ui.printHelp();
+            com = new HelpCommand();
             break;
         case "/exit":
             com = new ExitCommand();
@@ -66,4 +65,7 @@ public class Parser {
 
     }
 
+    public String getUserInput() {
+        return userInput;
+    }
 }
