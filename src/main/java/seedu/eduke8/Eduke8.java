@@ -15,6 +15,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_STORAGE_FAIL;
+
 public class Eduke8 {
     private static final String DATA_PATH = "data/main/topics.json";
     private static final LocalDateTime DATE_TIME_NOW = LocalDateTime.now();
@@ -37,7 +39,7 @@ public class Eduke8 {
             logStorage.save();
             topicList = new TopicList(topicsStorage.load());
         } catch (ParseException | IOException e) {
-            ui.printError("Eduk8 Constructor Exception");
+            ui.printError(ERROR_STORAGE_FAIL);
             LOGGER.log(Level.WARNING, "Error reading or writing local files.");
         }
     }
@@ -63,7 +65,7 @@ public class Eduke8 {
                 command.execute(topicList, ui);
                 isExit = command.isExit();
             } catch (Eduke8Exception e) {
-                ui.printError("runCommandLoopUntilExit() Exception");
+                ui.printError(e.getMessage());
             }
         }
     }

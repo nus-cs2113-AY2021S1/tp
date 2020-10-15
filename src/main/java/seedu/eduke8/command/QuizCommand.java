@@ -1,6 +1,5 @@
 package seedu.eduke8.command;
 
-import seedu.eduke8.Eduke8;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.quiz.SingleTopicQuiz;
@@ -27,8 +26,8 @@ public class QuizCommand extends Command {
             Topic topic = (Topic) topicList.find(topicName);
             SingleTopicQuiz singleTopicQuiz = new SingleTopicQuiz(topic, numOfQuestions);
             singleTopicQuiz.startQuiz(ui);
-        } catch (Eduke8Exception ee) {
-            ui.printError("QuizCommand execute Exception"); //to implement in ui: specific error for QuizCommand issues
+        } catch (Eduke8Exception e) {
+            ui.printError(e.getMessage());
         }
     }
 }

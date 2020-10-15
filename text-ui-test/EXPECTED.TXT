@@ -4,36 +4,37 @@
 |  ___|| | | |  _  |
 | |___ | |_| | |_| |
 |_____||____/|_____|
-
 -------------------------------------------------------------------
 Hello! I'm E-Duke-8
 What can I do for you?
 -------------------------------------------------------------------
 -------------------------------------------------------------------
-E-Duke-8 is a desktop app that helps CS2113/T students learn and understand software engineering and OOP principles through a gamified platform and enhance their learning experience. It also consolidates key concepts for easy revision.
+E-Duke-8 is a desktop app that helps CS2113/T students learn and
+understand software engineering and OOP principles through a
+gamified platform and enhance their learning experience. It also
+consolidates key concepts for easy revision.
 -------------------------------------------------------------------
 -------------------------------------------------------------------
 These are the commands that you can used:
--------------------------------------------------------------------
--------------------------------------------------------------------
 1) about
 2) help
 3) topics
 4) textbook
-5) quiz
-6) stats
-7) exit
+5) quiz t/<topic> n/<number of questions>
+6) exit
 -------------------------------------------------------------------
 -------------------------------------------------------------------
-The textbook for this module is available at:  https://nus-cs2113-ay2021s1.github.io/website/se-book-adapted/index.html
+The textbook for this module is available at:
+https://nus-cs2113-ay2021s1.github.io/website/se-book-adapted/index.html
+-------------------------------------------------------------------
 -------------------------------------------------------------------
 These are the available topics:
 OOP
 -------------------------------------------------------------------
+-------------------------------------------------------------------
 Start of quiz:
 You have chosen to complete 1 question.
 The topic chosen is: OOP
--------------------------------------------------------------------
 -------------------------------------------------------------------
 1. What is encapsulation?
 1) A
@@ -41,10 +42,11 @@ The topic chosen is: OOP
 3) C
 4) D
 -------------------------------------------------------------------
+-------------------------------------------------------------------
 Hint: check the textbook
 -------------------------------------------------------------------
-Congrats! This answer is correct! Well Done!
 -------------------------------------------------------------------
+Congrats! This answer is correct! Well Done!
 -------------------------------------------------------------------
 This is the end of the quiz!
 Hope you have learnt something new!
@@ -54,7 +56,6 @@ Start of quiz:
 You have chosen to complete 1 question.
 The topic chosen is: OOP
 -------------------------------------------------------------------
--------------------------------------------------------------------
 1. What is encapsulation?
 1) A
 2) B
@@ -62,8 +63,7 @@ The topic chosen is: OOP
 4) D
 -------------------------------------------------------------------
 -------------------------------------------------------------------
-Oops! Please try again! Do visit the textbook to read up more.
--------------------------------------------------------------------
+Oops! The correct answer is 1! Do visit the textbook to read up more.
 -------------------------------------------------------------------
 This is the end of the quiz!
 Hope you have learnt something new!
