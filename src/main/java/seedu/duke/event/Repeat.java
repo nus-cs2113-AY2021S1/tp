@@ -38,6 +38,7 @@ public class Repeat {
             DateStatusPair pair = new DateStatusPair(repeatDate, startTime);
             repeatList.add(pair);
         }
+        assert repeatList.size() == count : "Number of entries do not match.";
         this.repeatType = repeatType;
     }
 
