@@ -20,6 +20,8 @@ public class Duke {
     private Timetable timetable;
     private TagManager tagManager;
 
+    // Character code adapted from http://patorjk.com/software/taag/#p=display&f=Ghost&t=NotUS
+    // Slight modifications made to make it easier on the eyes
     private static final String NOTUS_LOGO = InterfaceManager.LS
             + InterfaceManager.LS
             + "     .-') _               .-') _                 .-')    "
