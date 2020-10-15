@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,7 +28,7 @@ public class ListNoteCommand extends Command {
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG1...] "
             + "[/sort up OR down]";
 
-    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the list of notes: " + InterfaceManager.LS;
+    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the list of notes: " + Formatter.LS;
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE_INVALID_TAG = "Your tags return no result."
             + " Please try an alternative tag or check your spellings";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK = "The notebook is empty!";
@@ -116,11 +116,11 @@ public class ListNoteCommand extends Command {
                 noteString = getNoteString(notebook.getNotes());
             } else if (isAscendingOrder == null) {
                 noteString.append("Pinned Notes")
-                        .append(InterfaceManager.LS)
+                        .append(Formatter.LS)
                         .append(getNoteString(pinnedNotes))
-                        .append(InterfaceManager.LS)
+                        .append(Formatter.LS)
                         .append("Unpinned Notes")
-                        .append(InterfaceManager.LS)
+                        .append(Formatter.LS)
                         .append(getNoteString(unpinnedNotes));
             } else if (pinnedNotes.isEmpty()) {
                 noteString = getSortedString(sortedNotes);
@@ -128,11 +128,11 @@ public class ListNoteCommand extends Command {
                 pinnedNotesSorted = getSortedString(pinnedNotes);
                 unpinnedNotesSorted = getSortedString(unpinnedNotes);
                 noteString.append("Pinned Notes")
-                        .append(InterfaceManager.LS)
+                        .append(Formatter.LS)
                         .append(pinnedNotesSorted)
-                        .append(InterfaceManager.LS)
+                        .append(Formatter.LS)
                         .append("Unpinned Notes")
-                        .append(InterfaceManager.LS)
+                        .append(Formatter.LS)
                         .append(unpinnedNotesSorted);
             }
 
@@ -209,7 +209,6 @@ public class ListNoteCommand extends Command {
         if (!isAscendingOrder) {
             Collections.reverse(sortedNotes);
             noteStrBuilder = getNoteString(sortedNotes);
-
         } else if (isAscendingOrder) {
             noteStrBuilder = getNoteString(sortedNotes);
         }
@@ -230,7 +229,7 @@ public class ListNoteCommand extends Command {
                     .append(notesList.get(i).getTitle())
                     .append(" Tags: ")
                     .append(notesList.get(i).getTagsName())
-                    .append(InterfaceManager.LS);
+                    .append(Formatter.LS);
         }
 
         return noteString;

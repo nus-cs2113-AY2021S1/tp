@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.timetable.Event;
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,9 +26,9 @@ public class ListEventCommand extends Command {
             + "[" + PREFIX_DELIMITER + PREFIX_TIMING + " YYYY or YYYY-MM]";
 
     private static final String COMMAND_SUCCESSFUL_MESSAGE = "These are the events in the specified time period: "
-            + InterfaceManager.LS;
+            + Formatter.LS;
     private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Failed to find any events in the specified time period."
-            + InterfaceManager.LS;
+            + Formatter.LS;
 
     /**
      * Gets how the command is expected to be used.
@@ -86,7 +86,7 @@ public class ListEventCommand extends Command {
             int i = 1;
             for (Event event : events) {
                 if (!first) {
-                    result.append(InterfaceManager.LS.repeat(2));
+                    result.append(Formatter.LS.repeat(2));
                 }
                 first = false;
                 result.append(String.format("%d.", i++)).append(event.toString());
@@ -104,7 +104,7 @@ public class ListEventCommand extends Command {
 
         boolean first = true;
         for (String month : calendar.keySet()) {
-            StringBuilder monthEventsString = new StringBuilder(month + InterfaceManager.LS);
+            StringBuilder monthEventsString = new StringBuilder(month + Formatter.LS);
             HashMap<Integer, ArrayList<Event>> monthCalendar = calendar.get(month);
             ArrayList<Integer> days = new ArrayList<>(monthCalendar.keySet());
             Collections.sort(days);
@@ -123,13 +123,13 @@ public class ListEventCommand extends Command {
                 dailyEvents.sort(eventComparator);
 
                 for (Event event : dailyEvents) {
-                    monthEventsString.append(InterfaceManager.LS)
+                    monthEventsString.append(Formatter.LS)
                             .append(String.format("%d.", i)).append(event.toString());
                     i++;
                 }
             }
             if (!first) {
-                result.append(InterfaceManager.LS.repeat(2));
+                result.append(Formatter.LS.repeat(2));
             }
             first = false;
             result.append(monthEventsString);

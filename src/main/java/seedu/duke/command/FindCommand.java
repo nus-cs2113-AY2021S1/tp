@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class FindCommand extends Command {
                     .append(filteredNotes.get(i).getTitle())
                     .append(" ")
                     .append(filteredNotes.get(i).getTagsName())
-                    .append(InterfaceManager.LS);
+                    .append(Formatter.LS);
         }
 
         LOGGER.log(Level.INFO, "Filtered notes stored as a string to be returned.");
@@ -76,9 +76,8 @@ public class FindCommand extends Command {
             LOGGER.log(Level.INFO, "Filtered notes is empty.");
             return COMMAND_UNSUCCESSFUL_MESSAGE;
         }
-
         LOGGER.log(Level.INFO, "Filtered notes will be returned.");
-        return COMMAND_SUCCESSFUL_MESSAGE + InterfaceManager.LS + notes;
+        return COMMAND_SUCCESSFUL_MESSAGE + Formatter.LS + notes;
     }
 
     public void setupLogger() {
