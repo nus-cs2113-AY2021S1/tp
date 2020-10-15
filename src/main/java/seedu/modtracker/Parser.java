@@ -58,7 +58,7 @@ public class Parser {
             }
             break;
         case COMMAND_LIST:
-            assert toPrint: "toPrint should be true";
+            assert toPrint : "toPrint should be true";
             try {
                 ui.printTable(modList, Integer.parseInt(command[1]));
             } catch (Exception e) {
@@ -67,7 +67,7 @@ public class Parser {
             }
             break;
         case COMMAND_HELP:
-            assert toPrint: "toPrint should be true";
+            assert toPrint : "toPrint should be true";
             if (!input.toLowerCase().trim().equals(COMMAND_HELP)) {
                 ui.printInvalidCommand();
             } else {
@@ -75,7 +75,7 @@ public class Parser {
             }
             break;
         case COMMAND_EXIT:
-            assert toPrint: "toPrint should be true";
+            assert toPrint : "toPrint should be true";
             if (!input.toLowerCase().trim().equals(COMMAND_EXIT)) {
                 ui.printInvalidCommand();
             } else {
@@ -84,7 +84,7 @@ public class Parser {
             }
             break;
         default:
-            assert toPrint: "toPrint should be true";
+            assert toPrint : "toPrint should be true";
             ui.printInvalidCommand();
         }
     }
