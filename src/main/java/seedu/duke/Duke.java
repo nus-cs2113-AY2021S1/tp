@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.logic.parser.Parser;
+import seedu.duke.logic.parser.RouteParser;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -41,10 +42,10 @@ public class Duke {
     };
 
     public Duke() {
-        //open file
         busesInZoneA.add(new Bus(ZONE_A[0], AA1));
         busesInZoneA.add(new Bus(ZONE_A[1], AA2));
         BusData.createBusList(busesInZoneA);
+        RouteParser.initLogger();
     }
 
     /**

@@ -38,11 +38,14 @@ public class Bus {
 
         if (routeNames.contains(startingLoc.toLowerCase())) {
             int startingIndex = routeNames.indexOf(startingLoc.toLowerCase()) + 1;
+            assert startingIndex != 0 : "Hmm, seems like the start is not in the list";
             int size = routeNames.size();
+            assert size != 0 : "The bus route has not stops!";
             allStopNamesFromStart.addAll(routeNames.subList(startingIndex, size));
             allStopsFromStart.addAll(route.subList(startingIndex, size));
             if (allStopNamesFromStart.contains(destination.toLowerCase())) {
                 int endIndex = allStopNamesFromStart.indexOf(destination.toLowerCase());
+                assert endIndex != -1 : "Hmm, seems like the destination is not in the list";
                 finalRoute.addAll(allStopsFromStart.subList(0, endIndex));
             }
         }

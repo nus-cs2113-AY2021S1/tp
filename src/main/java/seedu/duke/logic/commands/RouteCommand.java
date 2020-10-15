@@ -22,13 +22,23 @@ public class RouteCommand extends Command {
     @Override
     public void executeCommand() throws CustomException {
         String [] locations = parser.getLocations();
+        checkLocations(locations);
+        ArrayList<Bus> busOptions = BusData.possibleBuses(locations[0].trim(), locations[1].trim());
+        Ui.printRouteMessage(busOptions);
+    }
+
+    private void checkLocations(String[] locations) throws CustomException {
         if (locations[0].trim().length() == 0 || locations[1].trim().length() == 0) {
             throw new CustomException(ExceptionType.NO_LOCATIONS);
         } else if (locations[0].trim().equalsIgnoreCase(locations[1].trim())) {
+            assert !locations[0].isBlank() : "Location 0 is empty.";
+            assert !locations[1].isBlank() : "Location 1 is empty.";
             throw new CustomException(ExceptionType.SAME_LOCATIONS);
         }
-        ArrayList<Bus> busOptions = BusData.possibleBuses(locations[0].trim(), locations[1].trim());
-        Ui.printRouteMessage(busOptions);
+        assert !locations[0].isBlank() : "Location 0 is empty.";
+        assert !locations[1].isBlank() : "Location 1 is empty.";
+        assert !(locations[0].trim().equalsIgnoreCase(locations[1].trim())) : "Seems like the locations are still "
+                + "the same.";
     }
 
 }
