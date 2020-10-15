@@ -47,6 +47,7 @@ public class EventTest {
 
     /**
      * Wrapper around assertEquals for code readbility.
+     *
      * @param correctDate Expected date.
      * @param generatedDate Actual date.
      */
