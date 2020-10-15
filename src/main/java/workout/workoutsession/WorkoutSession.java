@@ -33,7 +33,7 @@ public class WorkoutSession {
     }
 
     /**
-     * Starts workout session
+     * Starts workout session.
      */
     public void workoutSessionStart() {
 
