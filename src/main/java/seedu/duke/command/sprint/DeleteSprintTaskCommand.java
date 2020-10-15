@@ -32,6 +32,10 @@ public class DeleteSprintTaskCommand extends SprintCommand {
             for (String entry : this.parametersInAL) {
                 try {
                     int taskId = Integer.parseInt(entry);
+                    if (!currentSprint.checkTaskExist(taskId)) {
+                        Ui.showError("This task do not exist.");
+                        return;
+                    }
                     Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + "removed from sprint.\n");
                     currentSprint.removeSprintTask(taskId);
                 } catch (NumberFormatException e) {

@@ -44,6 +44,8 @@ public class AddSprintTaskCommand extends SprintCommand {
                     }
 
                 }
+            } else {
+                Ui.showError("Missing parameters.");
             }
         } else {
             checkReason();
