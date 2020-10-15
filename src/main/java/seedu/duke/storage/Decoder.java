@@ -15,7 +15,7 @@ public class Decoder {
     private static final Logger LOGGER = Logger.getLogger(Storage.class.getName());
 
     public Decoder() {
-        LOGGER.setLevel(Level.INFO);
+        LOGGER.setLevel(Level.WARNING);
     }
 
     public User decodeUserString(Ui ui, String fileString) {
