@@ -9,10 +9,18 @@ ____________________________________________________________
   Oops I was unable to find your saved data!
 ____________________________________________________________
 ____________________________________________________________
-  Welcome to CCA Manager Integrated! Enter any command to begin!
+  Got it. I've added this member:
+  name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member
+  Now you have 1 member in the list.
 ____________________________________________________________
 ____________________________________________________________
-  Commands: hr add, hr delete, hr list, events add, events delete, finance addlog, finance dellog, help, bye
+  Here is the list of members in your CCA:
+  1.name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member
+____________________________________________________________
+____________________________________________________________
+  Noted. I'll remove this member:
+  name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member
+  Now you have 0 member in the list.
 ____________________________________________________________
 ____________________________________________________________
   See you next time!
