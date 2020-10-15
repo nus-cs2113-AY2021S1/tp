@@ -108,7 +108,9 @@ public class AddCommand extends Command {
             if (argumentWords.length == 3) {
                 try {
                     LocalDate localDate = DateTimeParser.dateParser(argumentWords[1].trim());
+                    assert localDate != null : "date is not detected after parsing";
                     LocalTime localTime = DateTimeParser.timeParser(argumentWords[2].trim());
+                    assert localTime != null : "time is not detected after parsing";
                     data.addToEventList("Timetable", new Timetable(argumentWords[0].trim(), localDate, localTime));
                 } catch (DateErrorException e) {
                     throw new DateErrorException("Something is wrong with the date!");
@@ -118,7 +120,9 @@ public class AddCommand extends Command {
             } else {
                 try {
                     LocalDate localDate = DateTimeParser.dateParser(argumentWords[2].trim());
+                    assert localDate != null : "date is not detected after parsing";
                     LocalTime localTime = DateTimeParser.timeParser(argumentWords[3].trim());
+                    assert localTime != null : "time is not detected after parsing";
                     data.addToEventList("Timetable", new Timetable(argumentWords[0].trim(),
                             argumentWords[1].trim(), localDate, localTime));
                 } catch (DateErrorException e) {
@@ -148,6 +152,7 @@ public class AddCommand extends Command {
             } else if (argumentWords.length == 2) {
                 try {
                     LocalDate localDate = DateTimeParser.dateParser(argumentWords[1].trim());
+                    assert localDate != null : "date is not detected after parsing";
                     data.addToEventList("Personal", new Personal(argumentWords[0].trim(), localDate));
                 } catch (DateErrorException e) {
                     throw new DateErrorException("Something is wrong with the date!");
@@ -155,7 +160,9 @@ public class AddCommand extends Command {
             } else {
                 try {
                     LocalDate localDate = DateTimeParser.dateParser(argumentWords[1].trim());
+                    assert localDate != null : "date is not detected after parsing";
                     LocalTime localTime = DateTimeParser.timeParser(argumentWords[2].trim());
+                    assert localTime != null : "time is not detected after parsing";
                     data.addToEventList("Personal", new Personal(argumentWords[0].trim(), localDate, localTime));
                 } catch (DateErrorException e) {
                     throw new DateErrorException("Something is wrong with the date!");
@@ -184,7 +191,9 @@ public class AddCommand extends Command {
             } else {
                 try {
                     LocalDate localDate = DateTimeParser.dateParser(argumentWords[2].trim());
+                    assert localDate != null : "date is not detected after parsing";
                     LocalTime localTime = DateTimeParser.timeParser(argumentWords[3].trim());
+                    assert localTime != null : "time is not detected after parsing";
                     data.addToEventList("Zoom", new Zoom(argumentWords[0].trim(),
                             argumentWords[1].trim(), localDate, localTime));
                 } catch (DateErrorException e) {
