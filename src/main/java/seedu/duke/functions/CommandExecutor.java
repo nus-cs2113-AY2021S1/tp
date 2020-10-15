@@ -108,8 +108,6 @@ public class CommandExecutor {
         case START:
             try {
                 CommandChecker commandStartChecker = UNRECOGNISED;
-                commandStartChecker = extractCommandType(userInput);
-
                 while (commandStartChecker != TYPE) {
                     System.out.println("Please indicate your type by typing in \"type\" command");
                     userInput = getUserInput(SCANNER);
