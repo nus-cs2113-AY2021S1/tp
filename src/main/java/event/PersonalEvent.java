@@ -1,6 +1,8 @@
 package event;
 
 
+import location.Location;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,7 +21,7 @@ public class PersonalEvent extends Event {
      * @return the result string to be stored
      */
     public String fileString() {
-        return "E//" + (isDone ? 1 : 0) + "//" + description + "//" + at;
+        return "P//" + (isDone ? 1 : 0) + "//" + description + "//" + at;
     }
 
     /**
@@ -31,8 +33,9 @@ public class PersonalEvent extends Event {
         return LocalDate.from(at);
     }
 
-    public PersonalEvent(String description, LocalDateTime at) {
+    public PersonalEvent(String description, Location location, LocalDateTime at) {
         super(description);
+        this.location = location;
         this.at = at;
     }
 
