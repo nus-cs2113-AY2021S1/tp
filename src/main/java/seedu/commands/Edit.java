@@ -1,6 +1,6 @@
 package seedu.commands;
 
-import seedu.data.TaskList;
+import seedu.data.TaskMap;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
@@ -47,7 +47,7 @@ public class Edit extends Command {
     }
 
     @Override
-    public CommandResult execute(TaskList tasks)
+    public CommandResult execute(TaskMap tasks)
         throws InvalidTaskNumberException, InvalidPriorityException, InvalidDatetimeException {
         // Check range
         if (index <= 0 || index > tasks.size()) {

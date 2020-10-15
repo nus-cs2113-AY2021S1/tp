@@ -8,8 +8,12 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import static java.lang.Math.pow;
+
 
 public class Task {
+    private static final int HASH_VALUE_DIGITS = 3;
+    private final Integer hashValue;
     private String description;
     private LocalDate date;
     private LocalTime startTime;
@@ -23,6 +27,26 @@ public class Task {
         this.startTime = timeStringToTime(startTime);
         this.endTime = timeStringToTime(endTime);
         priority = priorityStringToPriority(priorityString);
+        hashValue = generateHashValue();
+    }
+
+    public Task(String hashValue, String description, String dateString,
+                String startTime, String endTime, String priorityString)
+        throws InvalidPriorityException, InvalidDatetimeException {
+        this.description = description;
+        date = dateStringToDate(dateString);
+        this.startTime = timeStringToTime(startTime);
+        this.endTime = timeStringToTime(endTime);
+        priority = priorityStringToPriority(priorityString);
+        this.hashValue = Integer.parseInt(hashValue);
+    }
+
+    private int generateHashValue() {
+        return hashCode() % (int) pow(10, HASH_VALUE_DIGITS);
+    }
+
+    public Integer getHashValue() {
+        return hashValue;
     }
 
     private LocalDate dateStringToDate(String dateString) throws InvalidDatetimeException {
@@ -156,7 +180,7 @@ public class Task {
     }
 
     public String toString() {
-        return description + dateToString(date) + timeToString(startTime)
+        return hashValue.toString() + " " + description + dateToString(date) + timeToString(startTime)
                 + timeToString(endTime) + priorityToString(priority);
     }
 }

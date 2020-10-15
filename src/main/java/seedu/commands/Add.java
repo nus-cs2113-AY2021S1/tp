@@ -1,6 +1,6 @@
 package seedu.commands;
 
-import seedu.data.TaskList;
+import seedu.data.TaskMap;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
@@ -40,8 +40,9 @@ public class Add extends Command {
     }
 
     @Override
-    public CommandResult execute(TaskList tasks) throws InvalidPriorityException, InvalidDatetimeException {
+    public CommandResult execute(TaskMap tasks) throws InvalidPriorityException, InvalidDatetimeException {
         Task task = new Task(description, date, startTime, endTime, priority);
+        // TODO handle collision
         tasks.addTask(task);
         // task arg not in used, in case want change display message.
         return new CommandResult(ADD_MESSAGE, tasks, task);

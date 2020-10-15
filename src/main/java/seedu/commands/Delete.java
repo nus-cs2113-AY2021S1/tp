@@ -1,6 +1,6 @@
 package seedu.commands;
 
-import seedu.data.TaskList;
+import seedu.data.TaskMap;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidTaskNumberException;
 
@@ -29,7 +29,7 @@ public class Delete extends Command {
     }
 
     @Override
-    public CommandResult execute(TaskList tasks) throws InvalidTaskNumberException {
+    public CommandResult execute(TaskMap tasks) throws InvalidTaskNumberException {
         if (index <= 0 || index > tasks.size()) {
             throw new InvalidTaskNumberException();
         }
