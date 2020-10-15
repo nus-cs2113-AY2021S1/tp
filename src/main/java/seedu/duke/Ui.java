@@ -45,7 +45,9 @@ public class Ui {
                 + "12. print tasks\n"
                 + "13. print events\n"
                 + "14. print timeline\n"
-                + "15. print progress"
+                + "15. print progress\n"
+                + "16. countdown exams\n"
+                + "17. countdown deadlines"
         );
     }
 
@@ -224,14 +226,14 @@ public class Ui {
     public static void printCountDownMessage(CalendarList calendarList, int type) {
         switch (type) {
         case 0:
-            System.out.println("Here is your exams countdown: ");
+            System.out.println("Here is your exams countdown:");
             for (int i = 0; i < calendarList.getTotalItems(); i++) {
                 CalendarItem temp = calendarList.getItem(i);
                 Ui.printCountDownItem(((Exam)temp).getCountdown(), temp);
             }
             break;
         case 1:
-            System.out.println("Here is your deadlines countdown: ");
+            System.out.println("Here is your deadlines countdown:");
             for (int i = 0; i < calendarList.getTotalItems(); i++) {
                 CalendarItem temp = calendarList.getItem(i);
                 Ui.printCountDownItem(((Deadline)temp).getCountdown(), temp);
