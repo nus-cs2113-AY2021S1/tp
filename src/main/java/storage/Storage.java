@@ -132,10 +132,10 @@ public class Storage {
     }
 
     private String retrieveChapterDeadline(String moduleName, String chapterName) {
-        File f = new File(filePath + "/" + moduleName + "/" + chapterName + "due" + ".txt");
+        File f = new File(filePath + "/" + moduleName + "/" + "dues" + "/" + chapterName + "due" + ".txt");
         try {
             Scanner s = new Scanner(f);
-            if (!s.hasNext()) {
+            if (s.hasNext()) {
                 return s.nextLine();
             } else {
                 return "Invalid Date";
@@ -143,7 +143,11 @@ public class Storage {
         } catch (FileNotFoundException e) {
             return "Does not exist";
         }
+    }
 
+    private boolean missingDueFileCheck(String moduleName, String chapterName) {
+        File f = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
+        return f.exists();
     }
 
     public ArrayList<DueChapter> loadAllDueChapters() throws FileNotFoundException {
@@ -171,7 +175,21 @@ public class Storage {
             for (String chapter : chapters) {
                 String target = chapter.replace(".txt", "");
                 String deadline = retrieveChapterDeadline(module, target);
-                if (!deadline.equals("Does not exist")) {
+                if (deadline.equals("Invalid Date")) {
+                    System.out.println("\nThe chapter:");
+                    System.out.println("Module: " + module + "; " + "Chapter: " + target);
+                    System.out.println("has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
+                    dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
+                } else if (deadline.equals("Does not exist")) {
+                    if (missingDueFileCheck(module, target)) {
+                        deadline = "Invalid Date";
+                        System.out.println("\nThe chapter:");
+                        System.out.println("Module: " + module + "; " + "Chapter: " + target);
+                        System.out.print("has a corrupted deadline. Please revise it ASAP!");
+                        System.out.println(" It will be considered due!\n");
+                        dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
+                    }
+                } else {
                     dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
                 }
             }
@@ -213,11 +231,14 @@ public class Storage {
         fw.close();
     }
 
-    private boolean createChapterDue(String chapterPath) throws IOException {
-        File f = new File(chapterPath);
-        boolean chapterFileExists = f.exists();
-        if (!chapterFileExists) {
-            return f.createNewFile();
+    private boolean createChapterDue(String duePath, String dirPath) throws IOException {
+        File due = new File(duePath);
+        File dir = new File(dirPath);
+        boolean isDirValid = dir.exists() && dir.isDirectory();
+        if (!isDirValid) {
+            return dir.mkdir() && due.createNewFile();
+        } else if (!due.exists()) {
+            return due.createNewFile();
         } else {
             return true;
         }
@@ -231,9 +252,10 @@ public class Storage {
 
     public void saveChapterDeadline(String dueBy, String moduleName, String chapterName) {
         try {
-            String chapterPath = filePath + "/" + moduleName + "/" + chapterName + "due" + ".txt";
-            if (createChapterDue(chapterPath)) {
-                writeDeadlineToChapterDue(dueBy, chapterPath);
+            String dirPath = filePath + "/" + moduleName + "/" + "dues";
+            String duePath = filePath + "/" + moduleName + "/" + "dues" + "/" + chapterName + "due" + ".txt";
+            if (createChapterDue(duePath, dirPath)) {
+                writeDeadlineToChapterDue(dueBy, duePath);
             } else {
                 System.out.println("Unable to produce ChapterDue");
             }

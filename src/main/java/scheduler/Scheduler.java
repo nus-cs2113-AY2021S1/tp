@@ -6,6 +6,7 @@ import manager.chapter.CardList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.lang.Math;
+import java.time.format.DateTimeParseException;
 
 public class Scheduler {
     public static final double EASY_MULTIPLIER = 1.1;
@@ -25,10 +26,14 @@ public class Scheduler {
     }
 
     public static LocalDate parseDate(String savedDate) {
-        if (savedDate.equals("Invalid Date")) {
+        try {
+            if (savedDate.equals("Invalid Date")) {
+                return LocalDate.now();
+            } else {
+                return LocalDate.parse(savedDate);
+            }
+        } catch (DateTimeParseException e) {
             return LocalDate.now();
-        } else {
-            return LocalDate.parse(savedDate);
         }
     }
 
