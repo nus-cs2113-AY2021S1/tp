@@ -40,7 +40,8 @@ public class Ui {
             + "3) topics\n4) textbook\n5) quiz t/<topic> n/<number of questions>\n6) exit";
     private static final String MESSAGE_QUIZ_START = "Start of quiz:";
     private static final String MESSAGE_QUIZ_END = "This is the end of the quiz!\nHope you have learnt something new!";
-    private static final String MESSAGE_ANSWER_WRONG = "Oops! Please try again! Do visit the textbook to read up more.";
+    private static final String MESSAGE_ANSWER_WRONG = "Oops! The correct answer is ";
+    private static final String MESSAGE_ANSWER_WRONG_SECOND = "! Do visit the textbook to read up more.";
     private static final String MESSAGE_ANSWER_CORRECT = "Congrats! This answer is correct! Well Done!";
     private static final String MESSAGE_TEXTBOOK = "The textbook for this module is available at:\n" + TEXTBOOK_WEBSITE;
     private static final String MESSAGE_HINT = "Hint: ";
@@ -100,8 +101,10 @@ public class Ui {
         System.out.println(HORIZONTAL_LINE);
     }
 
-    public void printAnswerIsWrong() {
-        printMessage(MESSAGE_ANSWER_WRONG);
+    public void printAnswerIsWrong(int correctAnswer) {
+        System.out.println(HORIZONTAL_LINE);
+        System.out.println(MESSAGE_ANSWER_WRONG + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND);
+        System.out.println(HORIZONTAL_LINE);
     }
 
     public void printAnswerIsCorrect() {

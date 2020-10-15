@@ -40,7 +40,7 @@ public class Eduke8 {
             logStorage.save();
             topicList = new TopicList(topicsStorage.load());
         } catch (ParseException | IOException e) {
-            new IncorrectCommand(ERROR_STORAGE_FAIL);
+            ui.printError(ERROR_STORAGE_FAIL);
             LOGGER.log(Level.WARNING, "Error reading or writing local files.");
         }
     }
@@ -66,7 +66,7 @@ public class Eduke8 {
                 command.execute(topicList, ui);
                 isExit = command.isExit();
             } catch (Eduke8Exception e) {
-                new IncorrectCommand(e.getMessage());
+                ui.printError(e.getMessage());
             }
         }
     }

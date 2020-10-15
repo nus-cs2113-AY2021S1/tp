@@ -18,13 +18,26 @@ public class AnswerCommand extends Command {
 
     @Override
     public void execute(DisplayableList optionList, Ui ui) {
+        int correctOption; 
+
         if (option.isCorrectAnswer()) {
             ui.printAnswerIsCorrect();
             question.markAsAnsweredCorrectly();
             assert question.wasAnsweredCorrectly();
         } else {
-            ui.printAnswerIsWrong();
+            correctOption = findCorrectOption(optionList);
+            ui.printAnswerIsWrong(correctOption);
             assert !question.wasAnsweredCorrectly();
         }
+    }
+
+    private int findCorrectOption(DisplayableList optionList) {
+        for(int i=0; i<optionList.getCount(); i++) {
+            Option option = (Option) optionList.getInnerList().get(i);
+            if (option.isCorrectAnswer()) {
+                return (i+1);
+            }
+        }
+        return 0; //needs to be fixed
     }
 }
