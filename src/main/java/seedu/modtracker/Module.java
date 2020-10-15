@@ -29,9 +29,8 @@ public class Module {
     public String toString() {
         if (expected == NO_INPUT) {
             return moduleCode;
-        } else {
-            return moduleCode + ", Expected Workload: " + expected + "h";
         }
+        return moduleCode + ", Expected Workload: " + expected + "h";
     }
 
     public String getModuleCode() {
@@ -63,9 +62,8 @@ public class Module {
     public void minusActualTime(String time, String week) {
         double d = Double.parseDouble(time);
         int i = Integer.parseInt(week);
-        if (this.actualTime[i - INDEX_OFFSET] != NO_INPUT) {
-            this.actualTime[i - INDEX_OFFSET] -= d;
-        }
+        assert this.actualTime[i - INDEX_OFFSET] != NO_INPUT : "Cannot minus if actual time is not initialised";
+        this.actualTime[i - INDEX_OFFSET] -= d;
     }
 
     @Override
