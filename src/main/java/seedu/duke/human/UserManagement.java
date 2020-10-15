@@ -17,6 +17,7 @@ public class UserManagement {
     protected User activeUser;
 
     public UserManagement(Storage storage) {
+        LOGGER.setLevel(Level.WARNING);
         this.storage = storage;
         activeUser = null;
     }
@@ -52,6 +53,8 @@ public class UserManagement {
         User newUser = new User(name, dob, gender);
         checkIfUserExist(name);
 
+        assert (name != null && dob != null && gender != null) : "User details should not have any null.";
+
         userList.add(newUser);
         storage.saveUser(newUser);
 
@@ -67,19 +70,20 @@ public class UserManagement {
         }
     }
 
-    //@@author ChanJianHao
+
     public User getUser(String name) throws AniException {
         for (User existingUser : userList) {
             if (existingUser.getName().equals(name)) {
                 return existingUser;
             }
         }
+
         throw new AniException("No such user!");
     }
 
     public void addUserDialogue(Ui ui) {
         boolean userCreated = false;
-        LOGGER.log(Level.WARNING, "No existing user found, prompting user to create one!");
+        LOGGER.log(Level.INFO, "No existing user found, prompting user to create one!");
 
         while (!userCreated) {
             try {
@@ -90,11 +94,9 @@ public class UserManagement {
                 ui.printMessage("What might your gender be? (Male/Female/Other)");
                 String gender = ui.readInput();
 
-                activeUser = addUser(name, dob, gender);
-                ui.printMessage(" Successfully added new user:");
-                ui.printMessage(activeUser.getName());
-                ui.printMessage(activeUser.getDobString());
-                ui.printMessage(activeUser.getGender().toString());
+                activeUser = addUser(name.trim(), dob, gender);
+                ui.printMessage("Successfully added new user:");
+                ui.printMessage(activeUser.toString());
                 userCreated = true;
             } catch (ParseException | AniException exception) {
                 ui.printErrorMessage(exception.getMessage());
