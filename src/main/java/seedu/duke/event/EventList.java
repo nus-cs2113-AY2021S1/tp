@@ -13,7 +13,7 @@ public class EventList {
      * @param event event to be added in the list.
      */
     public static String addEvent(Event event) {
-        logger.info("Adding event\n");
+        logger.info("Adding event to list\n");
         String userOutput;
         events.add(event);
         userOutput = "Got it. I've added this Event:\n" + event.printEvent() + "\n"
