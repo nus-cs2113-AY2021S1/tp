@@ -103,48 +103,12 @@ public class CommandExecutor {
             break;
         case STATS:
             WritingList.printWritings();
-            System.out.println(WritingList.getWritingSize());
             break;
         case START:
-            try {
-                CommandChecker commandStartChecker = UNRECOGNISED;
-                while (commandStartChecker != TYPE) {
-                    System.out.println("Please indicate your type by typing in \"type\" command");
-                    userInput = getUserInput(SCANNER);
-                    commandStartChecker = extractCommandType(userInput);
-                }
-                executeCommand(commandStartChecker, userInput);
-            } catch (Exception e) {
-                System.out.println(e);
-            }
+            WritingList.checkStart();
             break;
         case TYPE:
-            try {
-                String type = "";
-                while (! (userInput.equals("poem") || userInput.equals("essay"))) {
-                    WritingList.printAskForType();
-                    userInput = getUserInput(SCANNER);
-                    type = userInput;
-                }
-                WritingList.printAskForTitle();
-                userInput = getUserInput(SCANNER);
-                String title = userInput;
-                System.out.println("Now you can type your content, terminate by typing \"end\"");
-                String content = "";
-                while (!userInput.equals("end")) {
-                    content = content.concat(userInput + "\n");
-                    userInput = getUserInput(SCANNER);
-                }
-                if (type.equals("poem")) {
-                    writings.add(new Poem(title, 0, "nothing", content, user.getName()));
-                } else if (type.equals("essay")) {
-                    writings.add(new Essay(title, 0, "nothing", content, user.getName()));
-                }
-                System.out.println("Done! We have added your writing to our storage! You can type \"stats\" "
-                        + "for future reference!");
-            } catch (Exception e) {
-                System.out.println(e);
-            }
+            WritingList.checkType();
             break;
         case DELETE:
 
