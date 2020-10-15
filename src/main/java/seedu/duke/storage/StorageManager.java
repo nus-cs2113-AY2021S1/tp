@@ -61,7 +61,6 @@ public class StorageManager {
             FileWriter fw = new FileWriter((filepath.toFile()));
             Jsoner.serialize(jsonProjects, fw);
             fw.close();
-            System.out.printf("Data saved to %s%n", filepath.toAbsolutePath().toString());
         } catch (IOException e) {
             System.out.println("[Warning] Cannot save to data file, data will be lost when this program ends!");
             e.printStackTrace();
@@ -75,6 +74,9 @@ public class StorageManager {
      * @throws IOException Thrown when there is error opening the file or reading to the file.
      */
     public void load() throws IOException {
+        if (!Files.exists(filepath)) {
+            return; //file does not exist, start from a new
+        }
         try {
             String rawData = loadRawData();
             JsonArray rawJson = Jsoner.deserialize(rawData, new JsonArray());
