@@ -66,7 +66,6 @@ public class PinCommand extends Command {
         }
 
         note.togglePinned();
-
         return note.getTitle() + " pinned: " + note.getPinned();
     }
 }
