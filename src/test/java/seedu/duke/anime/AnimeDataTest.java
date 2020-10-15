@@ -1,34 +1,53 @@
 package seedu.duke.anime;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.anime.Anime;
 import seedu.duke.anime.AnimeData;
+import seedu.duke.exception.AniException;
 
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AnimeDataTest {
+    AnimeData animeData;
+    protected static final Integer NEGATIVE_INTEGER = -1;
+    protected static final Integer NULL_PARAM = null;
 
-    @Test
-    void getAnime_negativeInteger_expectException() throws IndexOutOfBoundsException {
+
+    @BeforeEach
+    void setUp() throws AniException {
         ArrayList<Anime> animeStorageList = new ArrayList<>();
         animeStorageList.add(new Anime());
         animeStorageList.add(new Anime());
-        AnimeData animeData = new AnimeData(animeStorageList);
+        animeData= new AnimeData(animeStorageList);
+    }
+
+    @Test
+    void getAnime_negativeInteger_expectException() {
         assertThrows(IndexOutOfBoundsException.class, () -> {
-            animeData.getAnime(-1);
+            animeData.getAnime(NEGATIVE_INTEGER);
         });
     }
 
     @Test
-    void getAnime_nullInput_expectException() throws NullPointerException {
-        ArrayList<Anime> animeStorageList = new ArrayList<>();
-        animeStorageList.add(new Anime());
-        animeStorageList.add(new Anime());
-        AnimeData animeData = new AnimeData(animeStorageList);
+    void getAnime_nullInput_expectException() {
+         assertThrows(NullPointerException.class, () -> {
+            animeData.getAnime(NULL_PARAM);
+        });
+    }
 
+    @Test
+    void getAnimeByID_negativeInteger_expectException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            animeData.getAnimeByID(NEGATIVE_INTEGER);
+        });
+    }
+
+    @Test
+    void getAnimeByID_nullInput_expectException() {
         assertThrows(NullPointerException.class, () -> {
-            animeData.getAnime(null);
+            animeData.getAnimeByID(NULL_PARAM);
         });
     }
 }

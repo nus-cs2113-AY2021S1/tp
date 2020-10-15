@@ -118,6 +118,7 @@ public class BookmarkAnimeCommand extends Command {
             if (!isValidBookmarkIndex) {
                 String invalidBookmarkIndex = "" + paramGiven + " is an invalid parameter!"
                         + System.lineSeparator() + " Bookmark index for edit episode requires integer.";
+                LOGGER.log(Level.WARNING,"Could not load bookmark command:" + invalidBookmarkIndex);
                 throw new AniException(invalidBookmarkIndex);
             }
         } else {
@@ -125,6 +126,7 @@ public class BookmarkAnimeCommand extends Command {
             if (!isEmpty) {
                 String invalidFirstParameter = "" + paramGiven + " is an invalid parameter!"
                         + System.lineSeparator() + " Add or Delete should not have extra param.";
+                LOGGER.log(Level.WARNING,"Could not load bookmark command:" + invalidFirstParameter);
                 throw new AniException(invalidFirstParameter);
             }
         }
