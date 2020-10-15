@@ -2,11 +2,16 @@ package seedu.eduke8.option;
 
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.common.DisplayableList;
+import seedu.eduke8.exception.Eduke8Exception;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class OptionList implements DisplayableList {
     private final ArrayList<Displayable> options;
+    private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private static final String NO_RIGHT_ANSWER_ERROR = "Error with question: No right answer specified";
 
     public OptionList() {
         options = new ArrayList<>();
@@ -41,13 +46,15 @@ public class OptionList implements DisplayableList {
         return null;
     }
 
-    public Displayable findCorrectOption() {
-        for (Displayable option : options) {
-            if (((Option) option).isCorrectAnswer()) {
-                return option;
+    public int findCorrectOptionIndex() throws Eduke8Exception {
+        for (int i = 0; i < getCount(); i++) {
+            if (((Option) options.get(i)).isCorrectAnswer()) {
+                return i;
             }
         }
-        return null;
+
+        LOGGER.log(Level.WARNING, NO_RIGHT_ANSWER_ERROR);
+        throw new Eduke8Exception(NO_RIGHT_ANSWER_ERROR);
     }
 
     @Override

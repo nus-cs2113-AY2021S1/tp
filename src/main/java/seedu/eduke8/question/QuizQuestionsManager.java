@@ -8,13 +8,11 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_INSUFFICIENT_TOPIC_QUESTIONS;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_INVALID_QUESTION_NUMBER;
+
 public class QuizQuestionsManager {
-    public static final String INVALID_QUIZ_QUESTION_NUMBER = "Number of quiz questions must be more than 1";
-    public static final String INSUFFICIENT_TOPIC_QUESTIONS_FOR_QUIZ =
-            "There is not enough questions in the topic for the quiz!";
-
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
 
     private ArrayList<Question> quizQuestions;
     private int currentQuestionNumber;
@@ -32,11 +30,11 @@ public class QuizQuestionsManager {
                                  ArrayList<Displayable> questionsInTopic) throws Eduke8Exception {
 
         if (numberOfQuestionsForQuiz <= 0) {
-            throw new Eduke8Exception(INVALID_QUIZ_QUESTION_NUMBER);
+            throw new Eduke8Exception(ERROR_QUIZ_INVALID_QUESTION_NUMBER);
         }
 
         if (numberOfQuestionsForQuiz > questionsInTopic.size()) {
-            throw new Eduke8Exception(INSUFFICIENT_TOPIC_QUESTIONS_FOR_QUIZ);
+            throw new Eduke8Exception(ERROR_QUIZ_INSUFFICIENT_TOPIC_QUESTIONS);
         }
 
         // Stores the questions' indexes selected from the topic question list
