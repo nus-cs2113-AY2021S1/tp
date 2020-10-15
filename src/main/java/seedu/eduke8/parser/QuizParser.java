@@ -33,6 +33,7 @@ public class QuizParser implements Parser {
     @Override
     public Command parseCommand(DisplayableList optionList, String userInput) {
         if ("hint".equals(userInput)) {
+            LOGGER.log(Level.INFO, "Parsing complete: hint command chosen.");
             return new HintCommand(question.getHint());
         }
         

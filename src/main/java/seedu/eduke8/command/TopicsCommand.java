@@ -7,6 +7,7 @@ import seedu.eduke8.ui.Ui;
 public class TopicsCommand extends Command {
     @Override
     public void execute(DisplayableList displayableList, Ui ui) {
+        assert displayableList != null;
         ((TopicList) displayableList).showTopics(ui);
     }
 }

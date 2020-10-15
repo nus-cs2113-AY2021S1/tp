@@ -4,6 +4,7 @@ import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.ui.Ui;
 
 public class AboutCommand extends Command {
+
     @Override
     public void execute(DisplayableList displayableList, Ui ui) {
         ui.printAbout();
