@@ -51,8 +51,8 @@ Create a new project
 * Format: `project /create -title <title> -desc <description> -dur <duration> -sd <sprint interval>`  
 * Tags:  
     * `-title`: Specify the title of the project
-    * `-esc`: Specify the project description
-    * `dur`: Specify the duration of the project. (Number of days)
+    * `-desc`: Specify the project description
+    * `-dur`: Specify the duration of the project. (Number of days)
     * `-sd`: Specify the duration of a sprint. (Number of days)
 * Constraints: 
     * All tags are to be specified when creating a new project.
@@ -103,14 +103,13 @@ Remove team member(s) from the project
   john has been removed from the project.
   mary has been removed from the project.
   ```
-  
+
 ### Project Backlog `task`
 #### Add tasks
 Add a task to the project backlog.
 * Format: `task /add -title <title> -desc <description> -priority <category>`
-* Usage command: `task /add -title Add UI -desc add an interactive UI -priority HIGH`
+* Example: `task /add -title Add UI -desc add an interactive UI -priority HIGH`
     * Adds a task of title `Add UI`, description `add an interactive UI` and priority `HIGH` into the backlog.
-    
 * Constraints:
     * The title, description and category must be specified, otherwise the task is not added.
     * The priority entered must belong to the standard options as prescribed by the enum: [“HIGH”, “MEDIUM”, “LOW”]
@@ -122,9 +121,8 @@ Add a task to the project backlog.
 #### View task
 Display the information of the specified task.
 * Format: `task /view <taskid>`
-* Usage command: `task /view 3`
-    * Views the third task.
-    
+* Example: `task /view 3`
+    * Views the third task.    
 * Constraints:
     * The task ID entered must be a positive integer smaller or equal to the total number of tasks added, and must be specified.
 * Expected outcome:
@@ -137,12 +135,12 @@ Display the information of the specified task.
     Priority: High priority
     Completion: Completed
  ```
+
 #### Delete task
 Delete the specified task from the project backlog.
 * Format: `task /del <taskid> [<taskid>...]`
-* Usage command: `task /del 5 7 9`
+* Example: `task /del 5 7 9`
     * Deletes the fifth, seventh and ninth task.
-
 * Constraints:
     * There must be at least one supplied task ID for deletion.
     * All task ID supplied must be a positive integer smaller or equal to the total number of tasks added.
@@ -155,9 +153,8 @@ Delete the specified task from the project backlog.
 #### Change the priority of a task
 Change the priority of the specified task.
 * Format: `task /priority -priority <category> -id <taskid>`
-* Usage command: `task /priority -priority HIGH -id 1`
-    * Sets the first task with a priority of HIGH, regardless of its previous priority level
-    
+* Example: `task /priority -priority HIGH -id 1`
+    * Sets the first task with a priority of HIGH, regardless of its previous priority level    
 * Constraints:
     * Task ID and priority level must be entered.
     * The Task ID entered must be a positive integer smaller or equal to the total number of tasks added.
@@ -167,17 +164,18 @@ Change the priority of the specified task.
 The task Add parser has its priority changed to:
     High priority
 ```
+
 #### Mark task as complete
 Mark specified task as complete.
 * Format: `task /done <taskid>`
-* Usage Command: `task /done 1`
+* Example: `task /done 1`
     * Marks the first task as done.
 * Constraints:
     * The Task ID must be entered.
     * The Task ID entered must be a positive integer smaller or equal to the total number of tasks added.
 * Expected outcome: (Assuming task 1 has title `Add parser`)
 `Add parser has been marked as done.`
-  
+
 ### Sprint `sprint`
 #### Create a new sprint
 Create a new sprint for the project.
@@ -186,7 +184,6 @@ Create a new sprint for the project.
     * `-goal`: Specify the goal for the sprint
     * `-start`: Specify the start date of the sprint (Only used for the first sprint)
 * Constraints:
-    * T
     * `goal_input` must be specified
     * `start_date` will only be accepted in `YYYYMMDD` format
 * Optional field:
@@ -282,7 +279,7 @@ Assign a task to a team member(s)
 | Add tasks to sprint | `sprint /addtask <task_id> [<task_id> ...]` | `sprint /addtask 1 3 4` |
 | Delete tasks from sprint | `sprint /deltask <task_id> [<task_id> ...]` | `sprint /deltask 1 3 4` |
 | Allocate tasks to team members | `sprint /assign -task <task_id> -user <user_id> [<user_id> ...]` | `sprint /assign -task 1 -user johntan mary jane` |
-| Exit program | bye | bye |
+| Exit program | `bye` | `bye` |
 
 
       
