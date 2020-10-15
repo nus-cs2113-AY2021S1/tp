@@ -38,16 +38,27 @@ public class Todo extends Task {
         return taskType;
     }
 
+    /**
+     * Saves the todo task into files.
+     *
+     * @return string contains the information about the todo task.
+     */
     @Override
     public String printIntoFile() {
         return TODO_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description;
     }
 
+    /**
+     * Returns the todo task date.
+     */
     @Override
     public LocalDate getDate() {
         return null;
     }
 
+    /**
+     * Returns the todo task time.
+     */
     @Override
     public LocalTime getTime() {
         return null;

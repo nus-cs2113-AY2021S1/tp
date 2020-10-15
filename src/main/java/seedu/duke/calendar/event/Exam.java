@@ -19,7 +19,7 @@ public class Exam extends SchoolEvent {
     }
 
     /**
-     * Check whether the exam is over.
+     * Checks whether the exam is over.
      *
      * @return whether the exam is over
      */
@@ -34,7 +34,7 @@ public class Exam extends SchoolEvent {
     }
 
     /**
-     * Show whether the exam is over.
+     * Shows whether the exam is over.
      *
      * @return whether the exam is over
      */
@@ -43,13 +43,16 @@ public class Exam extends SchoolEvent {
     }
 
     /**
-     * Returns a [Ex] icon to indicate task as a Exam task.
+     * Returns a [Exam] icon to indicate task as a Exam task.
      */
     @Override
     public String toString() {
         return "[Exam][" + getIcon() + "] " + super.toString();
     }
 
+    /**
+     * Returns the type of the event.
+     */
     @Override
     public String getDescription() {
         return "[Exam][" + getIcon() + "] " + super.getDescription();
@@ -60,17 +63,28 @@ public class Exam extends SchoolEvent {
         return eventType;
     }
 
+    /**
+     * Saves exam into files.
+     *
+     * @return string contains the information about the exam.
+     */
     @Override
     public String printIntoFile() {
         return EXAM_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR
                 + moduleCode + SEPARATOR + date + SEPARATOR + time + SEPARATOR + venue;
     }
 
+    /**
+     * Returns the exam date.
+     */
     @Override
     public LocalDate getDate() {
         return this.date;
     }
 
+    /**
+     * Returns the exam time.
+     */
     @Override
     public LocalTime getTime() {
         return this.time;

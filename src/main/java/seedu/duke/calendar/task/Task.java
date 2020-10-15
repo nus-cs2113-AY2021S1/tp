@@ -30,6 +30,9 @@ public abstract class Task extends CalendarItem {
         return "[" + this.getStatusIcon() + "] " + this.description;
     }
 
+    /**
+     * Returns the description of the task.
+     */
     @Override
     public String getDescription() {
         return "[" + this.getStatusIcon() + "] " + this.description;
@@ -59,14 +62,18 @@ public abstract class Task extends CalendarItem {
         this.isDone = true;
     }
 
-
+    /**
+     * Saves the task into files.
+     *
+     * @return string contains the information about the activity event.
+     */
     @Override
     public String printIntoFile() {
         return TASK_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description;
     }
 
     /**
-     * Get the state of the task.
+     * Gets the state of the task.
      *
      * @return the state of the task
      */
@@ -74,11 +81,17 @@ public abstract class Task extends CalendarItem {
         return isDone;
     }
 
+    /**
+     * Returns the date of the task.
+     */
     @Override
     public LocalDate getDate() {
         return null;
     }
 
+    /**
+     * Returns the time of the task.
+     */
     @Override
     public LocalTime getTime() {
         return null;

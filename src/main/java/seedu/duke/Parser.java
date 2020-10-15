@@ -20,7 +20,7 @@ public class Parser {
     public static final String COMMAND_DELETE = "-";
     public static final String COMMAND_DONE = "done";
     public static final String COMMAND_EXIT = "bye";
-    public static final String COMMAND_FIND = "find";
+    public static final String COMMAND_FIND = "/f";
     public static final String COMMAND_HELP = "help";
     public static final String COMMAND_PRINT_EVENTS = "print events";
     public static final String COMMAND_PRINT_TASKS = "print tasks";

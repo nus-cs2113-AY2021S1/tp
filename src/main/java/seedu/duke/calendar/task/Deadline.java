@@ -25,7 +25,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy")) + ")";
+        return "[D]" + super.toString() + " " + by.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
     }
 
     @Override
@@ -39,16 +39,27 @@ public class Deadline extends Task {
         return taskType;
     }
 
+    /**
+     * Saves the deadline task into files.
+     *
+     * @return string contains the information about the deadline task.
+     */
     @Override
     public String printIntoFile() {
         return DEADLINE_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description + SEPARATOR + this.by;
     }
 
+    /**
+     * Returns the date of the deadline.
+     */
     @Override
     public LocalDate getDate() {
         return this.by;
     }
 
+    /**
+     * Returns the time of the deadline.
+     */
     @Override
     public LocalTime getTime() {
         return null;
