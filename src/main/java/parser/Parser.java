@@ -34,6 +34,8 @@ public class Parser {
         String commandType = commandTypeAndArgs[0].trim().toLowerCase();
         String commandArgs = commandTypeAndArgs[1].trim();
 
+        System.out.println("Command Type: " + commandType);
+
         switch (commandType) {
         case ListCommand.COMMAND_WORD:
             return prepareList(commandArgs);
