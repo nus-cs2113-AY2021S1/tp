@@ -9,6 +9,9 @@ import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.question.Question;
 
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_ANSWER_NOT_INDEX;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_COMMAND_NOT_IMPLEMENTED;
+
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +34,7 @@ public class QuizParser implements Parser {
             return new HintCommand(question.getHint());
         case "back":
             // To be implemented in v2
-            return new IncorrectCommand("Not implemented yet");
+            return new IncorrectCommand(ERROR_QUIZ_COMMAND_NOT_IMPLEMENTED);
         default:
             try {
                 ArrayList<Displayable> options = optionList.getInnerList();
@@ -41,7 +44,7 @@ public class QuizParser implements Parser {
                 return new AnswerCommand(chosenOption, question);
             } catch (NumberFormatException e) {
                 LOGGER.log(Level.WARNING, "A non-number was given when answering question.");
-                return new IncorrectCommand("Please choose the answer by index");
+                return new IncorrectCommand(ERROR_QUIZ_ANSWER_NOT_INDEX);
             }
         }
     }
