@@ -16,10 +16,10 @@ public class Card {
         this.previousInterval = 1;
     }
 
-    public Card(String question, String answer, LocalDate dueBy, int previousInterval) {
+    public Card(String question, String answer, int previousInterval) {
         this.question = question;
         this.answer = answer;
-        this.dueBy = dueBy;
+        this.dueBy = null;
         this.previousInterval = previousInterval;
     }
 
