@@ -31,11 +31,6 @@ public class AnimeStorage {
     public AnimeStorage(String fileFolder) {
         // Set log levels
         LOGGER.setLevel(Level.WARNING);
-
-        LOGGER.info("Loading filenames from DataSource folder.");
-//        this.dataFile = new File(prepareFile(fileFolder));
-//        pathnames = dataFile.list();
-        LOGGER.info("Loading filenames successful.");
     }
 
 //    private String prepareFile(String fileFolder) {
@@ -43,17 +38,17 @@ public class AnimeStorage {
 //    }
 
     public ArrayList<Anime> readAnimeDatabase() throws IOException {
-        LOGGER.info("Retrieving information from DataSource.");
+        LOGGER.log(Level.INFO,"Retrieving information from DataSource.");
         ArrayList<Anime> animeDataList = new ArrayList<>();
         for (int i = 1 ; i < 6 ; i++) {
-            LOGGER.info("Currently extracting and parsing from /AniListData/AniList-Data" + i + ".json");
-//            FileReader fileData = new FileReader(dataFile.getPath() + FILE_SEPARATOR
-//                    + pathname);
+            LOGGER.log(Level.INFO,"Currently extracting from /AniListData/AniList-Data" + i + ".json");
             String fileData = getDataFromJarFile("/AniListData/AniList-Data" + i + ".json");
-            //System.out.println(fileData);
+            LOGGER.log(Level.INFO,"Extraction of /AniListData/AniList-Data" + i + ".json successful");
+            LOGGER.log(Level.INFO,"Parsing Json data.");
             parseJson(animeDataList, fileData);
+            LOGGER.info("Parse Successful.");
         }
-        LOGGER.info("Retrieval and Parsing for anime object in DataSource Successful.");
+        LOGGER.log(Level.INFO,"Retrieval and Parsing for anime object in DataSource Successful.");
         return animeDataList;
     }
 
@@ -64,7 +59,7 @@ public class AnimeStorage {
             jsonList = (JSONArray) parser.parse(fileData);
 
         } catch (ParseException e) {
-            LOGGER.warning("Parsing file failed!");
+            LOGGER.log(Level.WARNING,"Parsing file failed!");
             e.printStackTrace();
 
         }
@@ -89,7 +84,7 @@ public class AnimeStorage {
             } else {
                 animeName = (String) jsonTitle.get("english");
             }
-
+            assert animeName != null : "Anime Name should not be null.";
             //getting anime episode
 
             if (jsonObject.get("episodes") != null) {
@@ -101,6 +96,7 @@ public class AnimeStorage {
             String[] animeReleaseDate;
             animeReleaseDate = new String[] { String.valueOf((long) jsonDate.get("year")),
                     String.valueOf((long) jsonDate.get("month")), String.valueOf((long) jsonDate.get("day"))};
+            assert animeReleaseDate != null : "Release date should not be null.";
 
             //getting rating
             if (jsonObject.get("averageScore") != null) {
@@ -117,6 +113,7 @@ public class AnimeStorage {
             String[] animeGenreArray;
             animeGenreArray = new String[animeGenre.size()];
             animeGenreArray = animeGenre.toArray(animeGenreArray);
+            assert animeGenreArray != null : "Genre should not be null.";
 
             //getting duration
             if (jsonObject.get("duration") != null) {
@@ -131,21 +128,24 @@ public class AnimeStorage {
 
 
     public  String getDataFromJarFile(String filename) throws IOException {
-        InputStream inputStream = AnimeStorage.class.getResourceAsStream(filename);
-        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-        String fileLine = "";
-        String fileData = "";
+        assert filename != null : "Filename should not be null.";
         try {
+            InputStream inputStream = AnimeStorage.class.getResourceAsStream(filename);
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String fileLine = "";
+            String fileData = "";
+
             while ((fileLine = bufferedReader.readLine()) != null) {
                 fileData += fileLine;
             }
             bufferedReader.close();
             inputStreamReader.close();
             inputStream.close();
+            return fileData;
         } catch (IOException e) {
             throw e;
         }
-        return fileData;
+
     }
 }
