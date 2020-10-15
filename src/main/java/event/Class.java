@@ -1,13 +1,18 @@
 package event;
 
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents the Class events.
  */
 public class Class extends Event {
+    protected LocalDateTime at;
 
-    public Class(String description) {
+    public Class(String description, LocalDateTime at) {
         super(description);
+        this.at = at;
     }
 
     /**
@@ -26,6 +31,6 @@ public class Class extends Event {
      *         Example of the format: [C][✘]a.
      */
     public String toString() {
-        return "[C]" + super.toString();
+        return "[C]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy HH':'mm")) + ")";
     }
 }

@@ -10,6 +10,6 @@ public class LoadingException extends NuScheduleException {
      * @return the message
      */
     public String getMessage() {
-        return "You edit the file in a wrong format. Please check.";
+        return "You edited the file in a wrong format. Please check.";
     }
 }
