@@ -30,7 +30,7 @@ public class Parser {
     private static final String LOCATION_TYPE = "location";
     private static TextUi ui = new TextUi();
 
-    public static Command parseCommand(String userInput) {
+    public Command parseCommand(String userInput) {
         String[] words = userInput.trim().split(" ", 2);
         final String commandWord = words[0];
         final String arguments = userInput.replaceFirst(commandWord, "").trim();

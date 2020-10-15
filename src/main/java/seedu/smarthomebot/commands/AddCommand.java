@@ -33,55 +33,52 @@ public class AddCommand extends Command {
         this.toPrint = toPrint;
     }
 
-    private void feedbackAddToUser() {
+    private String feedbackAddToUser() {
         if (this.toPrint) {
-            ui.showToUser("Adding " + type + ": " + name + " (" + power + "W) in " + location + ".....ADDED!");
+            return ("Adding " + type + ": " + name + " (" + power + "W) in " + location + ".....ADDED!");
+        } else {
+            return null;
         }
     }
 
     @Override
-    public void execute() {
-        if (homeLocationsList.isLocationCreated(location)) {
+    public CommandResult execute() {
+        if (locationList.isLocationCreated(location)) {
             try {
                 switch (type.toLowerCase()) {
                 case Fan.TYPE_WORD:
                     Fan fan = new Fan(name, location, power);
-                    appliances.addAppliance(fan);
-                    feedbackAddToUser();
-                    break;
+                    applianceList.addAppliance(fan);
+                    return new CommandResult(feedbackAddToUser());
                 case AirConditioner.TYPE_WORD:
                     AirConditioner ac = new AirConditioner(name, location, power);
-                    appliances.addAppliance(ac);
-                    feedbackAddToUser();
-                    break;
+                    applianceList.addAppliance(ac);
+                    return new CommandResult(feedbackAddToUser());
                 case Lights.TYPE_WORD:
                     Lights light = new Lights(name, location, power);
-                    appliances.addAppliance(light);
-                    feedbackAddToUser();
-                    break;
+                    applianceList.addAppliance(light);
+                    return new CommandResult(feedbackAddToUser());
                 case WaterHeater.TYPE_WORD:
                     WaterHeater waterheater = new WaterHeater(name, location, power);
-                    appliances.addAppliance(waterheater);
-                    feedbackAddToUser();
-                    break;
+                    applianceList.addAppliance(waterheater);
+                    return new CommandResult(feedbackAddToUser());
                 default:
                     if (this.toPrint) {
-                        ui.showToUser(MESSAGE_APPLIANCE_TYPE_NOT_EXIST);
+                        return new CommandResult(MESSAGE_APPLIANCE_TYPE_NOT_EXIST);
                     }
                 }
             } catch (InvalidAdditionOfAppliance e) {
                 if (this.toPrint) {
-                    ui.showToUser(MESSAGE_APPLIANCE_EXIST);
+                    return new CommandResult(MESSAGE_APPLIANCE_EXIST);
                 }
             }
 
         } else {
             if (this.toPrint) {
-                ui.showToUser(MESSAGE_LOCATION_NOT_EXIST);
+                return new CommandResult(MESSAGE_LOCATION_NOT_EXIST);
             }
         }
-
+        return null;
     }
-
 
 }

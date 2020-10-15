@@ -22,20 +22,19 @@ public class RemoveCommand extends Command {
     }
 
     @Override
-    public void execute() {
-        Boolean isLocationExist = homeLocationsList.isLocationCreated(this.usersEnteredLocation);
+    public CommandResult execute() {
+        Boolean isLocationExist = locationList.isLocationCreated(this.usersEnteredLocation);
         if (isLocationExist) {
-            for (int x = appliances.getAllAppliance().size() - 1; x >= 0; x--) {
-                if (appliances.getAppliance(x).getLocation().equals(this.usersEnteredLocation)) {
-                    appliances.removeAppliance((appliances.getAppliance(x).getName()));
+            for (int x = applianceList.getAllAppliance().size() - 1; x >= 0; x--) {
+                if (applianceList.getAppliance(x).getLocation().equals(this.usersEnteredLocation)) {
+                    applianceList.removeAppliance((applianceList.getAppliance(x).getName()));
                 }
             }
-            homeLocationsList.removeLocation(this.usersEnteredLocation);
+            locationList.removeLocation(this.usersEnteredLocation);
+            return null;
         } else {
-            ui.showToUser(MESSAGE_LOCATION_NOT_EXIST + " Nothing will be deleted.");
-            throw new IndexOutOfBoundsException();
+            // throw new IndexOutOfBoundsException();
+            return new CommandResult(MESSAGE_LOCATION_NOT_EXIST + " Nothing will be deleted.");
         }
-
     }
-
 }

@@ -1,11 +1,13 @@
 package seedu.smarthomebot.storage;
 
+import seedu.smarthomebot.common.Messages;
+import seedu.smarthomebot.data.LocationList;
 import seedu.smarthomebot.exceptions.EmptyParameterException;
 import seedu.smarthomebot.commands.AddCommand;
 import seedu.smarthomebot.commands.CreateCommand;
 import seedu.smarthomebot.data.ApplianceList;
-import seedu.smarthomebot.data.HomeLocations;
 import seedu.smarthomebot.exceptions.FileCorrupted;
+import seedu.smarthomebot.ui.TextUi;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,43 +16,39 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-import static seedu.smarthomebot.common.Messages.MESSAGE_FILE_CORRUPTED;
-import static seedu.smarthomebot.common.Messages.MESSAGE_IMPORT;
-import static seedu.smarthomebot.ui.TextUi.showToUser;
-
-
 public class StorageFile {
 
     private static final String filePath = "data/SmartHomeBot.txt";
-    private static ApplianceList appliances;
-    private static HomeLocations homeLocations;
+    private static ApplianceList applianceList;
+    private static LocationList locationList;
+    private final TextUi ui = new TextUi();
 
-    public StorageFile(ApplianceList appliances, HomeLocations homeLocations) {
-        StorageFile.homeLocations = homeLocations;
-        StorageFile.appliances = appliances;
+    public StorageFile(ApplianceList applianceList, LocationList locationList) {
+        StorageFile.locationList = locationList;
+        StorageFile.applianceList = applianceList;
     }
 
-    public static void writeToFile() {
+    public void writeToFile() {
         try {
             createFile();
             clearFile();
             FileWriter myWriter = new FileWriter(filePath);
-            myWriter.write(homeLocations.getLocations().toString() + "\n");
-            for (int i = 0; i < appliances.getAllAppliance().size(); i++) {
-                myWriter.write(appliances.getAppliance(i).getLocation()
-                        + "|" + appliances.getAppliance(i).getName()
-                        + "|" + appliances.getAppliance(i).getPower()
-                        + "|" + appliances.getAppliance(i).getType()
-                        + "|" + appliances.getAppliance(i).getStatus()
-                        + "|" + appliances.getAppliance(i).getPowerConsumption() + "\n");
+            myWriter.write(locationList.getLocations().toString() + "\n");
+            for (int i = 0; i < applianceList.getAllAppliance().size(); i++) {
+                myWriter.write(applianceList.getAppliance(i).getLocation()
+                        + "|" + applianceList.getAppliance(i).getName()
+                        + "|" + applianceList.getAppliance(i).getPower()
+                        + "|" + applianceList.getAppliance(i).getType()
+                        + "|" + applianceList.getAppliance(i).getStatus()
+                        + "|" + applianceList.getAppliance(i).getPowerConsumption() + "\n");
             }
             myWriter.close();
         } catch (IOException e) {
-            showToUser("An error occur");
+            ui.showToUser("An error occur");
         }
     }
 
-    public static void readFile() {
+    public void readFile() {
         try {
             int i = 0;
             File myFile = new File(filePath);
@@ -59,32 +57,32 @@ public class StorageFile {
             try {
                 convertTextToLocationList(locationList);
                 convertTextToApplianceList(i, myReader);
-                showToUser(MESSAGE_IMPORT);
+                ui.showToUser(Messages.MESSAGE_IMPORT);
             } catch (FileCorrupted e) {
-                showToUser(MESSAGE_FILE_CORRUPTED);
+                ui.showToUser(Messages.MESSAGE_FILE_CORRUPTED);
             }
 
             myReader.close();
         } catch (FileNotFoundException | EmptyParameterException e) {
-            showToUser("Load File Does not Exist. No contents will be loaded.");
+            ui.showToUser("Load File Does not Exist. No contents will be loaded.");
         }
     }
 
-    private static void convertTextToApplianceList(int i, Scanner myReader) throws FileCorrupted {
+    private void convertTextToApplianceList(int i, Scanner myReader) throws FileCorrupted {
         while (myReader.hasNextLine()) {
             try {
-                String applianceList = myReader.nextLine();
-                String[] splitString = applianceList.split("\\|", 7);
+                String appliance = myReader.nextLine();
+                String[] splitString = appliance.split("\\|", 7);
                 if (splitString[1].isEmpty() || splitString[0].isEmpty()
                         || splitString[2].isEmpty() || splitString[3].isEmpty()) {
                     throw new FileCorrupted();
                 }
                 AddCommand add = new AddCommand(splitString[1], splitString[0], splitString[2], splitString[3], false);
-                add.setData(appliances, homeLocations);
+                add.setData(applianceList, locationList);
                 add.execute();
-                appliances.getAppliance(i).loadConsumptionFromFile(splitString[5]);
+                applianceList.getAppliance(i).loadConsumptionFromFile(splitString[5]);
                 if (splitString[4].toLowerCase().equals("on")) {
-                    appliances.getAppliance(i).switchOn();
+                    applianceList.getAppliance(i).switchOn();
                 }
                 i++;
             } catch (IndexOutOfBoundsException e) {
@@ -94,15 +92,15 @@ public class StorageFile {
         }
     }
 
-    private static void convertTextToLocationList(String locationList) throws EmptyParameterException, FileCorrupted {
+    private void convertTextToLocationList(String location) throws EmptyParameterException, FileCorrupted {
         try {
-            int start = locationList.indexOf("[") + 1;
-            int end = locationList.indexOf("]");
-            String when = locationList.substring(start, end);
+            int start = location.indexOf("[") + 1;
+            int end = location.indexOf("]");
+            String when = location.substring(start, end);
             String[] stringSplit = when.split(",");
             for (String s : stringSplit) {
                 CreateCommand newLocation = new CreateCommand(s.trim(), false);
-                newLocation.setData(appliances, homeLocations);
+                newLocation.setData(applianceList, locationList);
                 newLocation.execute();
             }
         } catch (IndexOutOfBoundsException e) {
@@ -111,7 +109,7 @@ public class StorageFile {
 
     }
 
-    public static void createFile() {
+    public void createFile() {
         try {
             File myObj = new File(filePath);
             if (!myObj.getParentFile().exists()) {
@@ -124,17 +122,17 @@ public class StorageFile {
             }
 
         } catch (IOException e) {
-            showToUser("Unable to create file.");
+            ui.showToUser("Unable to create file.");
         }
     }
 
-    public static void clearFile() {
+    public void clearFile() {
         try {
             PrintWriter writer = new PrintWriter(filePath);
             writer.print("");
             writer.close();
         } catch (FileNotFoundException e) {
-            showToUser("File is empty.");
+            ui.showToUser("File is empty.");
         }
     }
 }

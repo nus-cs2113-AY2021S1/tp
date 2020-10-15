@@ -5,7 +5,6 @@ import seedu.smarthomebot.data.framework.Appliance;
 
 import static seedu.smarthomebot.common.Messages.LINE;
 import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
-import static seedu.smarthomebot.ui.TextUi.showToUser;
 
 public class OnCommand extends Command {
 
@@ -24,20 +23,18 @@ public class OnCommand extends Command {
     }
 
     @Override
-    public void execute() {
-        for (Appliance appliance : appliances.getAllAppliance()) {
+    public CommandResult execute() {
+        for (Appliance appliance : applianceList.getAllAppliance()) {
             if (appliance.getName().equals((this.name))) {
                 if (appliance.switchOn()) {
                     String location = appliance.getLocation();
                     String result = String.format("Switching on %s in %s ......ON!\n", name, location);
-                    showToUser(LINE + result);
+                    return new CommandResult(LINE + result);
                 } else {
-                    showToUser(LINE + MESSAGE_APPLIANCE_PREVIOUSLY_ON);
+                    return new CommandResult(LINE + MESSAGE_APPLIANCE_PREVIOUSLY_ON);
                 }
-                return;
             }
         }
-        showToUser(LINE + name + " does not exist.");
+        return new CommandResult(LINE + name + " does not exist.");
     }
-
 }

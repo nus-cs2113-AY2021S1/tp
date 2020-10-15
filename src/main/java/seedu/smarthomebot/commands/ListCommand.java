@@ -23,29 +23,27 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public CommandResult execute() {
         int index = 1;
         if (parameter.equals(LOCATION_TYPE)) {
-            if (homeLocationsList.getLocations().size() == 0) {
-                ui.showToUser(LINE + MESSAGE_LIST_NO_LOCATIONS);
-                return;
+            if (locationList.getLocations().size() == 0) {
+                return new CommandResult(LINE + MESSAGE_LIST_NO_LOCATIONS);
             }
             ui.showToUser(LINE + MESSAGE_LIST_LOCATIONS);
-            for (String location : homeLocationsList.getLocations()) {
+            for (String location : locationList.getLocations()) {
                 ui.showToUser(index + ": " + location);
                 index++;
             }
         } else if (parameter.equals(APPLIANCE_TYPE)) {
-            if (appliances.getAllAppliance().size() == 0) {
-                ui.showToUser(LINE + MESSAGE_LIST_NO_APPLIANCES);
-                return;
+            if (applianceList.getAllAppliance().size() == 0) {
+                return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
             }
             ui.showToUser(LINE + MESSAGE_LIST_APPLIANCES);
-            for (Appliance a : appliances.getAllAppliance()) {
+            for (Appliance a : applianceList.getAllAppliance()) {
                 ui.showWithListFormat(index, a.getName(), a.getLocation(), a.getStatus(), a.getPower(), a.getType());
                 index++;
             }
         }
+        return null;
     }
-
 }

@@ -4,7 +4,6 @@ import seedu.smarthomebot.exceptions.EmptyParameterException;
 import seedu.smarthomebot.exceptions.InvalidAddtionOfLocation;
 
 import static seedu.smarthomebot.common.Messages.MESSAGE_LOCATION_EXIST;
-import static seedu.smarthomebot.ui.TextUi.showToUser;
 
 public class CreateCommand extends Command {
 
@@ -26,14 +25,15 @@ public class CreateCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public CommandResult execute() {
         try {
-            homeLocationsList.addLocation(usersEnteredLocation);
+            locationList.addLocation(usersEnteredLocation);
             if (this.toPrint) {
-                showToUser("Creating Location \"" + usersEnteredLocation + "\".....CREATED!");
+                return new CommandResult("Creating Location \"" + usersEnteredLocation + "\".....CREATED!");
             }
         } catch (InvalidAddtionOfLocation e) {
-            showToUser(MESSAGE_LOCATION_EXIST);
+            return new CommandResult(MESSAGE_LOCATION_EXIST);
         }
+        return null;
     }
 }

@@ -1,5 +1,7 @@
 package seedu.smarthomebot.data.framework;
 
+import seedu.smarthomebot.ui.TextUi;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -8,7 +10,6 @@ import java.util.Date;
 
 import static seedu.smarthomebot.common.Messages.LINE;
 import static seedu.smarthomebot.common.Messages.MESSAGE_TIME_FORMAT_ERROR;
-import static seedu.smarthomebot.ui.TextUi.showToUser;
 
 /**
  * Class representing the power consumption of appliances.
@@ -25,6 +26,7 @@ public class Power {
     private double totalHours;
     private Boolean status;
     private double totalPowerConsumption;
+    private final TextUi ui = new TextUi();
 
     public Power(String power) {
         this.power = Integer.parseInt(power);
@@ -70,7 +72,7 @@ public class Power {
             try {
                 calculatePowerConsumed();
             } catch (ParseException e) {
-                showToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
+                ui.showToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
             }
             return true;
         } else {
@@ -87,7 +89,7 @@ public class Power {
         try {
             calculatePowerConsumed();
         } catch (ParseException e) {
-            showToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
+            ui.showToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
         }
         return this.totalPowerConsumption;
     }

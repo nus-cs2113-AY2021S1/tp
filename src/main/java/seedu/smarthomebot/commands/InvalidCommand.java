@@ -11,8 +11,8 @@ public class InvalidCommand extends Command {
     }
 
     @Override
-    public void execute() {
-        ui.showToUser(LINE + this.feedbackToUser);
+    public CommandResult execute() {
+        return new CommandResult(LINE + this.feedbackToUser);
     }
 
 }
