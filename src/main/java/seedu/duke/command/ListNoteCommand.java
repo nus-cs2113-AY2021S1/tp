@@ -105,6 +105,7 @@ public class ListNoteCommand extends Command {
             }
         }
 
+        // Takes the notes in the notebook and sorts them according to title, alphabetically (a-z)
         ArrayList<Note> sortedNotes = (ArrayList<Note>) notebook.getNotes().stream()
                 .filter(Objects::nonNull)
                 .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
@@ -199,7 +200,7 @@ public class ListNoteCommand extends Command {
      * The ArrayList has already been sorted
      * Method returns either top to bottom or bottom to top to account for ascending/descending sorting
      *
-     *
+     * @param sortedNotes ArrayList of notes that were already sorted
      * @return noteString String containing the notes sorted either ascending ot descending
      */
     private StringBuilder getSortedString(ArrayList<Note> sortedNotes) {
@@ -208,11 +209,9 @@ public class ListNoteCommand extends Command {
         if (!isAscendingOrder) {
             Collections.reverse(sortedNotes);
             noteStrBuilder = getNoteString(sortedNotes);
-            //noteString = noteStrBuilder.toString();
 
         } else if (isAscendingOrder) {
             noteStrBuilder = getNoteString(sortedNotes);
-            //noteString = noteStrBuilder.toString();
         }
         return noteStrBuilder;
     }
@@ -220,7 +219,8 @@ public class ListNoteCommand extends Command {
     /**
      * Method compiles the ArrayList items and appends the items to a String.
      *
-     * @return noteString String containing the notes ready to be printed
+     * @param notesList ArrayList of notes to obtain note title/tags from
+     * @return noteString StringBuilder containing the notes ready to be printed
      */
     private StringBuilder getNoteString(ArrayList<Note> notesList) {
         StringBuilder noteString = new StringBuilder();
