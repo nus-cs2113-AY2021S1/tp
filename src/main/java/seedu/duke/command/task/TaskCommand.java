@@ -1,11 +1,13 @@
 package seedu.duke.command.task;
 
+import seedu.duke.sprint.Sprint;
 import seedu.duke.ui.Messages;
 import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -40,8 +42,9 @@ public class TaskCommand {
         try {
             Project proj = projectList.get(0);
             proj.getProjectBacklog().addTask(title, description, priority);
-            Task addedTask =  proj.getProjectBacklog().getTask(proj.getProjectBacklog().getNextId() - 1);
-            Ui.showToUserLn(addedTask.getTitle() + " has been added.");
+            Task addedTask = proj.getProjectBacklog().getTask(proj.getProjectBacklog().getNextId() - 1);
+            Ui.showToUserLn("Task successfully created.");
+            Ui.showToUserLn(addedTask.toString());
 
         } catch (IndexOutOfBoundsException e) {
             Ui.showError("There are no projects! Please create a project first.");
@@ -49,18 +52,24 @@ public class TaskCommand {
 
     }
 
-    public void deleteTaskCommand(ArrayList<String> taskId, ArrayList<Project> projectList) {
+    public void deleteTaskCommand(ArrayList<String> taskIdString, ArrayList<Project> projectList) {
         try {
             Project proj = projectList.get(0);
-            for (String id : taskId) {
+            for (String id : taskIdString) {
                 try {
-                    int backlogId = Integer.parseInt(id);
-                    if (proj.getProjectBacklog().checkTaskExist(backlogId)) {
-                        Task task = proj.getProjectBacklog().getTask(backlogId);
+                    int taskId = Integer.parseInt(id);
+                    if (proj.getProjectBacklog().checkTaskExist(taskId)) {
+                        Task task = proj.getProjectBacklog().getTask(taskId);
                         Ui.showToUserLn("The corresponding task "
                                 + task.getTitle()
                                 + "has been removed from project.");
-                        proj.getProjectBacklog().removeTask(backlogId);
+                        proj.getProjectBacklog().removeTask(taskId);
+                        ArrayList<Sprint> allSprints = proj.getAllSprints().getSprintList();
+                        for (Sprint sprint : allSprints) {
+                            if (sprint.checkTaskExist(taskId)) {
+                                sprint.removeSprintTask(taskId);
+                            }
+                        }
                     } else {
                         Ui.showError(Messages.MESSAGE_INVALID_ID);
                     }
@@ -81,7 +90,7 @@ public class TaskCommand {
             for (String id : taskId) {
                 Task task;
                 try {
-                    int backlogId = Integer.parseInt(id) - 1;
+                    int backlogId = Integer.parseInt(id);
                     if (backlogId < proj.getProjectBacklog().backlogTasks.size()) {
                         task = proj.getProjectBacklog().getTask(backlogId);
                         Ui.showToUserLn(task.toString());
@@ -105,7 +114,7 @@ public class TaskCommand {
         int id;
         String priority;
         if (tasks.get(TASK_ID) != null) {
-            id = Integer.parseInt(tasks.get(TASK_ID)) - 1;
+            id = Integer.parseInt(tasks.get(TASK_ID));
         } else {
             throw new DukeException("Task ID entered is invalid!");
         }

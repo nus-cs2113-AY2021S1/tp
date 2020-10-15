@@ -1,9 +1,9 @@
-project /create -title MeTube -desc video streaming software -end 30 -sd 10
 project /view
+project /create -title MeTube -desc video streaming software -dur 30 -sd 10
 member /add amy john bob
-task /add -title Add parser -desc add an interactive UI -priority HIGH
-task /add -title Del UI -desc add an interactive UI -priority HIGH
-task /add -title  UI -desc add an interactive UI -priority HIGH
+task /add -title Add UI -desc add an interactive UI -priority HIGH
+task /add -title Add2 UI -desc add an interactive UI -priority HIGH
+task /add -title Add3 UI -desc add an interactive UI -priority HIGH
 task /add -title Add4 UI -desc add an interactive UI -priority HIGH
 task /add -title Add5 UI -desc add an interactive UI -priority HIGH
 task /add -title Add6 UI -desc add an interactive UI -priority HIGH
@@ -14,13 +14,14 @@ sprint /create -goal goal4
 sprint /create -goal goal5
 sprint /create -goal goal6
 sprint /view
-sprint /addtask 1 2 3 4 5 6
+sprint /addtask 1 3 4
 sprint /view
 sprint /assign -task 1 -user amy
 sprint /assign -task 3 -user amy john
 sprint /assign -task 1 -user bob
 sprint /view
-sprint /deltask 4 3
+project /view
+task /del 4
 sprint /view
 project /view
 bye

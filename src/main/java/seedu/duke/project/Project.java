@@ -42,7 +42,7 @@ public class Project implements Jsonable {
     @Override
     public String toString() {
         StringBuilder projectInString = new StringBuilder();
-        projectInString.append("\n================= PROJECT =================\n");
+        projectInString.append("\n============================ PROJECT ============================\n");
         projectInString.append(String.format("[Title: %s]\n", this.title));
         projectInString.append(String.format("[Description: %s]\n", this.description));
         if (!members.getAllMembers().isEmpty()) {
@@ -62,13 +62,11 @@ public class Project implements Jsonable {
             projectInString.append("[Project backlog is empty]\n");
         }
         if (this.allSprints.size() != 0) {
-            int currentSprintIndex = this.allSprints.getCurrentSprintIndex();
-            Sprint currentSprint = this.allSprints.getSprint(currentSprintIndex);
-            projectInString.append(currentSprint.toSimplifiedString());
+            projectInString.append(allSprints.toString());
         } else {
             projectInString.append("[There are no Sprints]\n");
         }
-        projectInString.append("\n===============================================\n");
+        projectInString.append("=================================================================\n");
         return projectInString.toString();
     }
 

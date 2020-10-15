@@ -1,6 +1,8 @@
 package seedu.duke.parser;
 
 
+import seedu.duke.exception.DukeException;
+
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
@@ -18,31 +20,26 @@ public class DateTimeParser {
      * @param dateTime String in the DATETIME_FORMAT
      * @return LocalDateTime object based on the String
      */
-    public static LocalDateTime parseDateTime(String dateTime) {
+    public static LocalDateTime parseDateTime(String dateTime) throws DukeException {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATETIME_FORMAT);
-        //DateTimeFormatter dateTimeFormatter = DateTimeFormatter.BASIC_ISO_DATE;
         try {
             return LocalDateTime.parse(dateTime, dateTimeFormatter);
         } catch (DateTimeException e) {
-            //throw new Exceptions(e.getMessage());
+            throw new DukeException(e.getMessage());
         }
-        return null;
     }
 
-    public static LocalDate parseDate(String date) {
+    public static LocalDate parseDate(String date) throws DukeException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         try {
             return LocalDate.parse(date, formatter);
         } catch (Exception e) {
-            //throw new Exceptions(e.getMessage());
+            throw new DukeException(e.getMessage());
         }
-        return null;
     }
 
     public static long diff(LocalDate from, LocalDate to) {
         Period period = Period.between(from, to);
         return ChronoUnit.DAYS.between(from, to);
-        //System.out.println(period.getDays());
-        //return period.getDays();
     }
 }

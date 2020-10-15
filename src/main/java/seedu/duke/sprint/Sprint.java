@@ -3,6 +3,7 @@ package seedu.duke.sprint;
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
+import seedu.duke.parser.DateTimeParser;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
 
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Sprint implements Jsonable {
+
     private int id;
     private String goal;
     private LocalDate startDate;
@@ -89,6 +91,15 @@ public class Sprint implements Jsonable {
         this.endDate = endDate;
     }
 
+    public boolean checkTaskExist(int taskId) {
+        for (Integer id : sprintTaskIds) {
+            if (id == taskId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addSprintTask(int taskId) {
         this.sprintTaskIds.add(taskId);
     }
@@ -102,18 +113,10 @@ public class Sprint implements Jsonable {
     }
 
     public String toSimplifiedString() {
-        boolean isCurrentSprint;
-        isCurrentSprint = ((this.id - 1) == this.projAllocatedTo.getAllSprints().getCurrentSprintIndex());
-
         StringBuilder sprintInString = new StringBuilder();
-        sprintInString.append("\n----------------- SPRINT -----------------\n");
-        sprintInString.append(String.format("[ID: %d]\n", this.id));
-        sprintInString.append(String.format("[Goal: %s]\n", this.goal));
-        sprintInString.append(String.format("[Period: %s - %s] \n", this.startDate, this.endDate));
-        if (isCurrentSprint) {
-            sprintInString.append(String.format("[Remaining: %s days]\n", this.endDate.compareTo(LocalDate.now())));
-        }
-        sprintInString.append("\n------------------------------------------\n");
+        sprintInString.append(String.format("[Sprint ID: %d]", this.id));
+        sprintInString.append(String.format("\t[Goal: %s]", this.goal));
+        sprintInString.append(String.format("\t[Period: %s - %s]\n", this.startDate, this.endDate));
         return sprintInString.toString();
     }
 
@@ -123,34 +126,27 @@ public class Sprint implements Jsonable {
         isCurrentSprint = ((this.id - 1) == this.projAllocatedTo.getAllSprints().getCurrentSprintIndex());
 
         StringBuilder sprintInString = new StringBuilder();
-        sprintInString.append("\n----------------- SPRINT -----------------\n");
+        if (isCurrentSprint) {
+            sprintInString.append("\n========================= CURRENT SPRINT ========================\n");
+        } else {
+            sprintInString.append("\n============================ SPRINT =============================\n");
+        }
+
         sprintInString.append(String.format("[ID: %d]\n", this.id));
         sprintInString.append(String.format("[Goal: %s]\n", this.goal));
         sprintInString.append(String.format("[Period: %s - %s] \n", this.startDate, this.endDate));
-
         if (isCurrentSprint) {
-
             sprintInString.append(String.format("[Remaining: %s days]\n", this.endDate.compareTo(LocalDate.now())));
         }
-
         if (sprintTaskIds.size() == 0) {
             sprintInString.append("[No allocated tasks]\n");
         } else {
             for (int taskIds : sprintTaskIds) {
                 Task task = projAllocatedTo.getProjectBacklog().getTask(taskIds);
                 sprintInString.append(task.toString());
-                ArrayList<String> allocatedMembers = task.getAllocatedMembers();
-                if (!allocatedMembers.isEmpty()) {
-                    sprintInString.append("\tAssigned to: ");
-                    for (String member : allocatedMembers) {
-                        sprintInString.append(String.format("%s ", member));
-                    }
-                } else {
-                    sprintInString.append("\tTask have yet to be assigned to anyone");
-                }
             }
         }
-        sprintInString.append("\n------------------------------------------\n");
+        sprintInString.append("=================================================================\n");
         return sprintInString.toString();
     }
 
