@@ -37,14 +37,14 @@ public class Bus {
         routeNames.replaceAll(String::toLowerCase);
 
         if (routeNames.contains(startingLoc.toLowerCase())) {
-            int startingIndex = routeNames.indexOf(startingLoc.toLowerCase()) + 1;
-            assert startingIndex != 0 : "Hmm, seems like the start is not in the list";
+            int startingIndex = routeNames.indexOf(startingLoc.toLowerCase());
+            assert startingIndex != -1 : "Hmm, seems like the start is not in the list";
             int size = routeNames.size();
             assert size != 0 : "The bus route has not stops!";
             allStopNamesFromStart.addAll(routeNames.subList(startingIndex, size));
             allStopsFromStart.addAll(route.subList(startingIndex, size));
             if (allStopNamesFromStart.contains(destination.toLowerCase())) {
-                int endIndex = allStopNamesFromStart.indexOf(destination.toLowerCase());
+                int endIndex = allStopNamesFromStart.indexOf(destination.toLowerCase()) + 1;
                 assert endIndex != -1 : "Hmm, seems like the destination is not in the list";
                 finalRoute.addAll(allStopsFromStart.subList(0, endIndex));
             }
@@ -55,8 +55,8 @@ public class Bus {
     @Override
     public String toString() {
         if (route.size() > 0) {
-            String printableRoute = String.join("-> ", getStopNames());
-            return busNumber + "\n\t" + printableRoute;
+            String printableRoute = String.join(" -> ", getStopNames());
+            return busNumber + "\n" + printableRoute;
         }
         return null;
     }
