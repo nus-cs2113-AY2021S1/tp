@@ -24,6 +24,10 @@ public class ViewSprintCommand extends SprintCommand {
      * Abstract method that execute the command.
      */
     public void execute() {
+        if (projectList.isEmpty()) {
+            Ui.showError("Please create a project first.");
+            return;
+        }
         proj = projectList.get(0);
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {

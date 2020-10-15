@@ -29,6 +29,10 @@ public class CreateSprintCommand extends SprintCommand {
      * Abstract method that execute the command.
      */
     public void execute() {
+        if (projectList.isEmpty()) {
+            Ui.showError("Please create a project first.");
+            return;
+        }
         proj = projectList.get(0);
         if (validateParams()) {
             allSprint = proj.getAllSprints();

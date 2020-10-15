@@ -23,6 +23,10 @@ public class AddSprintTaskCommand extends SprintCommand {
     }
 
     public void execute() {
+        if (projectList.isEmpty()) {
+            Ui.showError("Please create a project first.");
+            return;
+        }
         proj = projectList.get(0);
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {

@@ -1,5 +1,5 @@
 project /view
-project /create -title MeTube -desc video streaming software -end 30 -sd 10
+project /create -title MeTube -desc video streaming software -dur 30 -sd 10
 member /add amy john bob
 task /add -title Add UI -desc add an interactive UI -priority HIGH
 task /add -title Add2 UI -desc add an interactive UI -priority HIGH
