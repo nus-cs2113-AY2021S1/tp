@@ -18,7 +18,7 @@ public class Names {
     public static void readNames() {
         Path relativePath = Paths.get("");
         String filePath = relativePath.toAbsolutePath().toString();
-        filePath = filePath + "\\src\\main\\java\\seedu\\duke\\names\\Names.txt";
+        filePath = filePath + File.separator + "Names.txt";
         relativePath = Paths.get(filePath);
         //System.out.println("Current relative path is: " + filePath);
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
@@ -27,7 +27,7 @@ public class Names {
         try {
             names = Files.readAllLines(relativePath, charset);
         } catch (IOException ex) {
-            System.out.format("I/O Exception", ex);
+            System.out.println(ex);
         }
     }
 
