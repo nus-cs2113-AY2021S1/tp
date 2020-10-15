@@ -5,6 +5,8 @@ import seedu.duke.exceptions.ExceptionType;
 
 import java.util.EnumSet;
 
+import static seedu.duke.ui.Ui.printLine;
+
 public enum BusStops {
     PGP("PGP", "prince george residence"),
     KENTRIDGEMRTSTATION("Kent Ridge MRT Station", "mrt"),
@@ -48,9 +50,11 @@ public enum BusStops {
     }
 
     public static void listStops() {
+        printLine();
         for (BusStops info : EnumSet.allOf(BusStops.class)) {
             System.out.println(info.name + " : " + info.description);
         }
+        printLine();
     }
 
 }

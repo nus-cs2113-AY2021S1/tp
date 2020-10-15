@@ -9,6 +9,8 @@ import seedu.duke.exceptions.ExceptionType;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
+import static seedu.duke.ui.Ui.printLine;
+
 public class BusCommand extends Command {
 
     public String busStop;
@@ -19,11 +21,13 @@ public class BusCommand extends Command {
 
     @Override
     public void executeCommand() {
+        printLine();
         ArrayList<Bus> busList = BusData.busAtStop(busStop);
         System.out.print(busStop + ":  ");
         for (Bus bus: busList) {
             System.out.print(bus.getBusNumber() + "   ");
         }
         System.out.println();
+        printLine();
     }
 }
