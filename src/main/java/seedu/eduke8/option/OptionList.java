@@ -41,6 +41,15 @@ public class OptionList implements DisplayableList {
         return null;
     }
 
+    public Displayable findCorrectOption() {
+        for (Displayable option : options) {
+            if (((Option) option).isCorrectAnswer()) {
+                return option;
+            }
+        }
+        return null;
+    }
+
     @Override
     public int getCount() {
         return options.size();

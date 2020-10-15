@@ -1,7 +1,9 @@
 package seedu.eduke8.command;
 
+import seedu.eduke8.common.Displayable;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.option.Option;
+import seedu.eduke8.option.OptionList;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.ui.Ui;
 
@@ -23,6 +25,7 @@ public class AnswerCommand extends Command {
             question.markAsAnsweredCorrectly();
             assert question.wasAnsweredCorrectly();
         } else {
+            Displayable correctOption = ((OptionList) optionList).findCorrectOption();
             ui.printAnswerIsWrong();
             assert !question.wasAnsweredCorrectly();
         }
