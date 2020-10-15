@@ -1,9 +1,11 @@
 package seedu.eduke8.ui;
 
+import seedu.eduke8.common.Displayable;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.question.Question;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -116,6 +118,13 @@ public class Ui {
         //Writing messages for the different errors
         //Completed when more error handling are done
         printMessage(errorMessage);
+    }
+
+    public void printTopicList(ArrayList<Displayable> topics) {
+        System.out.println("These are the available topics:");
+        for (int i = 0; i < topics.size(); i++) {
+            System.out.println(topics.get(i).getDescription());
+        }
     }
 
     private void printStartQuizTopics(String topicsChosen) {
