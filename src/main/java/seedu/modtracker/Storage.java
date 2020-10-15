@@ -40,6 +40,7 @@ public class Storage {
      * @throws FileNotFoundException If the file cannot be found.
      */
     public Scanner getReader() throws FileNotFoundException {
+        assert file != null : "File should not be null";
         return new Scanner(file);
     }
 
@@ -49,6 +50,8 @@ public class Storage {
      * @param input The input to be appended to the file.
      */
     public void appendToFile(String input) {
+        assert filePath != null : "File path should not be null";
+        assert file != null : "File should not be null";
         try {
             // creates a FileWriter in append mode
             FileWriter fw = new FileWriter(filePath, true);
