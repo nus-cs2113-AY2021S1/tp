@@ -2,6 +2,7 @@ package seedu.duke.sprint;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
+import seedu.duke.parser.DateTimeParser;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
@@ -93,7 +94,7 @@ public class Sprint implements Jsonable {
         sprintInString.append(String.format("[Goal: %s]\n", this.goal));
         sprintInString.append(String.format("[Period: %s - %s] \n", this.startDate, this.endDate));
         if (isCurrentSprint) {
-            sprintInString.append(String.format("[Remaining: %s days]\n", this.endDate.compareTo(LocalDate.now())));
+            sprintInString.append(String.format("[Remaining: %s days]\n", DateTimeParser.diff(LocalDate.now(),this.endDate)));
         }
         sprintInString.append("\n------------------------------------------\n");
         return sprintInString.toString();
