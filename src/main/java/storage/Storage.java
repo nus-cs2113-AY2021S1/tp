@@ -175,6 +175,7 @@ public class Storage {
             for (String chapter : chapters) {
                 String target = chapter.replace(".txt", "");
                 String deadline = retrieveChapterDeadline(module, target);
+                assert !deadline.equals(null) : "Invalid deadline retrieved";
                 if (deadline.equals("Invalid Date")) {
                     System.out.println("\nThe chapter:");
                     System.out.println("Module: " + module + "; " + "Chapter: " + target);
