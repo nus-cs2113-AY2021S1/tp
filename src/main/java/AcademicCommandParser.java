@@ -48,6 +48,7 @@ public class AcademicCommandParser extends CommandParser {
         String grade = command.substring(command.indexOf("g/") + 2);
 
         List<String> list = Arrays.asList(Grade.listOfGrades);
+
         if (!list.contains(grade.toLowerCase())) {
             throw new InvalidGradeException();
         } else if (mc.equals("0")) {
