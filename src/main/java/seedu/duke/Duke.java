@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 import seedu.duke.commands.CommandChecker;
 import seedu.duke.constants.Logos;
-import seedu.duke.history.History;
+import seedu.duke.user.User;
+import seedu.duke.writing.WritingList;
 
 import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.database.BunnyLoader.loadBunnyFile;
@@ -31,8 +32,8 @@ public class Duke {
     private static final int NUMBER_OF_HISTORY = 1;
     public static String username = "User";
     public static ArrayList<String> savedSettings = new ArrayList<>(NUMBER_OF_SETTINGS);
-    public static ArrayList<History> savedHistory = new ArrayList<>(NUMBER_OF_HISTORY);
-
+    public static final WritingList writings = new WritingList();
+    public static final User user = new User(username);
 
     /**
      * Main entry-point for the Fluffle application.
