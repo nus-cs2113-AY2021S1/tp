@@ -1,4 +1,9 @@
+
 # AniChan User Guide
+
+![AniChan Logo](https://i.imgur.com/VhbC59Q.png)
+
+
 ## Table of Contents
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
@@ -8,16 +13,19 @@
 
 ## 1. Introduction
 
-AniChan is an all-rounded tool to effectively create and organize anime lists with viewing statistics, 
-efficiency-focused features, and tools to improve anime-watching experience.
+AniChan is an all-rounded tool to effectively create and organize anime lists with viewing statistics, efficiency-focused features, and tools to improve anime-watching experience.
+
+
 
 ## 2. Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `AniChan` from [here](http://link.to/duke).
+2. Download the latest version of `AniChan` from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/v1.0).
 3. Copy the file to the folder you want to use as the home folder for your AniChan.
 4. Open cmd and change directory into the folder. Run “java -jar anichan.jar”.
 5. Type a command into the command prompt and press ‘Enter’ to execute it. e.g. typing `help` and pressing ‘Enter’ will display the help message.
+
+
 
 ## 3. Features 
 **Command Format**
@@ -38,8 +46,9 @@ This is done by displaying the ‘Command Summary’ as listed below to the user
 
 Format: `help`
 
+
 ### 3.2 Adding a User: `adduser`
-Adds a new user.
+Adds a new user to AniChan.
 
 Format: `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER>`
 
@@ -52,8 +61,9 @@ The expected outcome:
     Birthdate: 12/12/1997
     Gender: Male
 
+
 ### 3.3 Switching Users: `switchuser`
-Switch the current active user to another user
+Switch the current active user to another user.
 
 Format: `switchuser -n <USERNAME>`
 
@@ -154,6 +164,52 @@ The expected outcome:
 `Anime added to watchlist!`
 
 ### 3.7 Bookmark an Anime: `bookmark`
+This command handles all bookmark related operations: 
+* List all anime within bookmark.
+* Add an anime into bookmark.
+* Delete an anime from bookmark. 
+* Edit episode for an anime within bookmark
+* View details of an anime within bookmark [v2.0]
+
+Format: 
+
+`bookmark -l` will list bookmark
+
+`bookmark -a <ANIME_ID>` will add the Anime into bookmark
+
+`bookmark -d <BOOKMARK_ID>` will delete the Anime with bookmark id from bookmark
+
+`bookmark <BOOKMARK_ID> -e <EPISODE>` will edit the episode for Anime with bookmark id
+
+Sample input: `bookmark -l`
+
+The expected outcome: 
+```
+ Listing all anime in bookmark: 
+	1. InuYasha the Movie 3: Swords of an Honorable Ruler Ep: 5
+	2. To Heart
+```
+
+Sample input: `bookmark -a 410`
+
+The expected outcome: 
+```
+Saving 410. InuYasha the Movie 2: The Castle Beyond the Looking Glass to bookmark.
+```
+
+Sample input: `bookmark -d 1`
+
+The expected outcome: 
+```
+Removing InuYasha the Movie 3: Swords of an Honorable Ruler! :(
+```
+
+Sample input: `bookmark 1 -e 5`
+
+The expected outcome: 
+```
+Editing InuYasha the Movie 3: Swords of an Honorable Ruler to have 5 episode
+```
 
 ### 3.8 Exit AniChan: `exit`
 Exit AniChan 
@@ -164,17 +220,19 @@ Sample input: `exit`
 
 The expected outcome:
 ```
-Sayonara!
+Sayonara <NAME>!
 ```
 
-### 3.9 Saving and loading data
-User profile and watchlist(s) data will be **saved automatically** whenever changes are made to the data, 
-and will also be **loaded automatically** when AniChan is launched.
 
-These data can be found in the folder where AniChan is launched, in the subfolder, `data/AniChan`, 
-saved in their respective file names `userprofile.txt` and `watchlist.txt`.
+### 3.9 Saving and loading data
+User profile and watchlist(s) data will be **saved automatically** whenever changes are made to the data, and will also be **loaded automatically** when AniChan is launched.
+
+These data can be found in the folder where AniChan is launched, in the subfolder, `data/AniChan`, saved in their respective file names `userprofile.txt` and `watchlist.txt`.
+
 
 ## 4. FAQ
+Coming soon!
+
 
 ## 5. Command Summary
 
@@ -186,3 +244,6 @@ saved in their respective file names `userprofile.txt` and `watchlist.txt`.
 |Browse | `browse -s [name/rating] -p <1-26> -o [asc/dsc]`  |
 |Watchlist | `watchlist -n <WATCHLIST_NAME>` <br /> `watchlist -l` |
 |Add To Watchlist | `add -a <ANIME_NAME>` |
+
+
+
