@@ -1,9 +1,9 @@
 package seedu.duke.parser;
 
 import seedu.duke.command.Command;
-import seedu.duke.command.AddProfileCommand;
-import seedu.duke.command.EditProfileCommand;
-import seedu.duke.command.BrowseAnimeCommand;
+import seedu.duke.command.AddUserCommand;
+import seedu.duke.command.SwitchUserCommand;
+import seedu.duke.command.BrowseCommand;
 import seedu.duke.command.WatchlistCommand;
 import seedu.duke.command.AddToWatchlistCommand;
 import seedu.duke.command.BookmarkAnimeCommand;
@@ -11,13 +11,17 @@ import seedu.duke.command.HelpCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.exception.AniException;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Parser {
+    private static Logger LOGGER = Logger.getLogger(Command.class.getName());
 
     /**
      * Prints the main menu of the application
      * and requests for command.
      */
-    public static Command getCommand(String fullCommand) throws AniException {
+    public Command getCommand(String fullCommand) throws AniException {
         String[] fullCommandSplit = parseUserInput(fullCommand);
         String description = "";
         String command = fullCommandSplit[0];
@@ -26,14 +30,14 @@ public class Parser {
         }
 
         switch (command) {
-        case "addprofile":
-            return new AddProfileCommand(description);
+        case "adduser":
+            return new AddUserCommand(description);
                 
-        case "editprofile":
-            return new EditProfileCommand(description);
+        case "switchuser":
+            return new SwitchUserCommand(description);
  
         case "browse":
-            return new BrowseAnimeCommand(description);
+            return new BrowseCommand(description);
      
         case "watchlist":
             return new WatchlistCommand(description);
@@ -57,8 +61,10 @@ public class Parser {
 
     public static String[] parseUserInput(String input) throws AniException {
         if (input == null || input.isEmpty()) {
+            LOGGER.log(Level.WARNING, "Exception occurred");
             throw new AniException("Input is empty");
         }
+        LOGGER.log(Level.INFO, "Parser processing succeeded");
 
         String[] inputSplit = input.split(" ", 2);
         return inputSplit;

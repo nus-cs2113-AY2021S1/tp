@@ -1,22 +1,14 @@
 package seedu.duke.command;
 
 import seedu.duke.anime.AnimeData;
-import seedu.duke.bookmark.Bookmark;
-import seedu.duke.storage.Storage;
-import seedu.duke.ui.Ui;
-import seedu.duke.watchlist.Watchlist;
-
-import java.util.ArrayList;
+import seedu.duke.human.UserManagement;
 
 public class ExitCommand extends Command {
-    
-    public ExitCommand() {
-        
-    }
+    protected static final String NULL_STRING = "";
 
     @Override
-    public void execute(Ui ui, Storage storage, AnimeData animeData, Watchlist currentWatchlist,
-                        ArrayList<Watchlist> watchlists, Bookmark bookmark) {
-        ui.printGoodbyeMessage();
+    public String execute(AnimeData animeData, UserManagement userManagement) {
+        setShouldExit();
+        return NULL_STRING;
     }
 }

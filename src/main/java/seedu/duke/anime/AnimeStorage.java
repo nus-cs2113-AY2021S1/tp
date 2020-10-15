@@ -4,19 +4,21 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import seedu.duke.storage.Storage;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AnimeStorage {
 
     /* Files */
-    private static final String RELATIVE_DIR = System.getProperty("user.dir");
+    //private static final String RELATIVE_DIR = System.getProperty("user.dir");
     private static final String FILE_SEPARATOR = File.separator;
-
+    private static final Logger LOGGER = Logger.getLogger(Anime.class.getName());
     private File dataFile;
     private String[] pathnames;
 
@@ -27,32 +29,39 @@ public class AnimeStorage {
     //}
 
     public AnimeStorage(String fileFolder) {
-        this.dataFile = new File(prepareFile(fileFolder));
-        pathnames = dataFile.list();
+        // Set log levels
+        LOGGER.setLevel(Level.WARNING);
     }
 
-    private String prepareFile(String fileFolder) {
-        return RELATIVE_DIR + fileFolder.replace("\\",FILE_SEPARATOR).replace("/",FILE_SEPARATOR);
-    }
+//    private String prepareFile(String fileFolder) {
+//        return fileFolder.replace("\\",FILE_SEPARATOR).replace("/",FILE_SEPARATOR);
+//    }
 
     public ArrayList<Anime> readAnimeDatabase() throws IOException {
+        LOGGER.log(Level.INFO,"Retrieving information from DataSource.");
         ArrayList<Anime> animeDataList = new ArrayList<>();
-        for (String pathname : pathnames) {
-            FileReader fileData = new FileReader(dataFile.getPath() + FILE_SEPARATOR
-                    + pathname);
-            //System.out.println(fileData);
+        for (int i = 1 ; i < 6 ; i++) {
+            LOGGER.log(Level.INFO,"Currently extracting from /AniListData/AniList-Data" + i + ".json");
+            String fileData = getDataFromJarFile("/AniListData/AniList-Data" + i + ".json");
+            LOGGER.log(Level.INFO,"Extraction of /AniListData/AniList-Data" + i + ".json successful");
+            LOGGER.log(Level.INFO,"Parsing Json data.");
             parseJson(animeDataList, fileData);
+            LOGGER.info("Parse Successful.");
         }
+        LOGGER.log(Level.INFO,"Retrieval and Parsing for anime object in DataSource Successful.");
         return animeDataList;
     }
 
-    private void parseJson(ArrayList<Anime> animeDataList,FileReader  fileData) {
+    private void parseJson(ArrayList<Anime> animeDataList,String  fileData) {
         JSONParser parser = new JSONParser();
         JSONArray jsonList = new JSONArray();
         try {
             jsonList = (JSONArray) parser.parse(fileData);
-        } catch (ParseException | IOException e) {
+
+        } catch (ParseException e) {
+            LOGGER.log(Level.WARNING,"Parsing file failed!");
             e.printStackTrace();
+
         }
 
         Iterator iterator = jsonList.iterator();
@@ -75,7 +84,7 @@ public class AnimeStorage {
             } else {
                 animeName = (String) jsonTitle.get("english");
             }
-
+            assert animeName != null : "Anime Name should not be null.";
             //getting anime episode
 
             if (jsonObject.get("episodes") != null) {
@@ -87,6 +96,7 @@ public class AnimeStorage {
             String[] animeReleaseDate;
             animeReleaseDate = new String[] { String.valueOf((long) jsonDate.get("year")),
                     String.valueOf((long) jsonDate.get("month")), String.valueOf((long) jsonDate.get("day"))};
+            assert animeReleaseDate != null : "Release date should not be null.";
 
             //getting rating
             if (jsonObject.get("averageScore") != null) {
@@ -103,6 +113,7 @@ public class AnimeStorage {
             String[] animeGenreArray;
             animeGenreArray = new String[animeGenre.size()];
             animeGenreArray = animeGenre.toArray(animeGenreArray);
+            assert animeGenreArray != null : "Genre should not be null.";
 
             //getting duration
             if (jsonObject.get("duration") != null) {
@@ -113,5 +124,28 @@ public class AnimeStorage {
                     animeEpisode);
             animeDataList.add(anime);
         }
+    }
+
+
+    public  String getDataFromJarFile(String filename) throws IOException {
+        assert filename != null : "Filename should not be null.";
+        try {
+            InputStream inputStream = AnimeStorage.class.getResourceAsStream(filename);
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String fileLine = "";
+            String fileData = "";
+
+            while ((fileLine = bufferedReader.readLine()) != null) {
+                fileData += fileLine;
+            }
+            bufferedReader.close();
+            inputStreamReader.close();
+            inputStream.close();
+            return fileData;
+        } catch (IOException e) {
+            throw e;
+        }
+
     }
 }
