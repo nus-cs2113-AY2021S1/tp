@@ -39,7 +39,7 @@ Expected outcome:
 ```
 The buses you can take with their intermediate stops are: 
 1. AA2
-	Kent Ridge MRT Station-> Opp University Health Centre-> University Town
+Kent Ridge MRT Station-> Opp University Health Centre-> University Town
 ```
 
 ### 2. Check bus route: ```/routemap```
@@ -148,4 +148,3 @@ Command | Format | Example
 /liststops | `liststops`| `/liststops`
 /exit | `/exit` | `/exit`
 /help | `/help` | `/help`
-
