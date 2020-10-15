@@ -43,7 +43,7 @@ public class TaskCommand {
         try {
             Project proj = projectList.get(0);
             proj.getProjectBacklog().addTask(title, description, priority);
-            Task addedTask =  proj.getProjectBacklog().getTask(proj.getProjectBacklog().getNextId() - 1);
+            Task addedTask = proj.getProjectBacklog().getTask(proj.getProjectBacklog().getNextId() - 1);
             Ui.showToUserLn("Task successfully created.");
             Ui.showToUserLn(addedTask.toString());
 
@@ -66,8 +66,8 @@ public class TaskCommand {
                                 + "has been removed from project.");
                         proj.getProjectBacklog().removeTask(taskId);
                         ArrayList<Sprint> allSprints = proj.getAllSprints().getSprintList();
-                        for (Sprint sprint : allSprints){
-                            if(sprint.checkTaskExist(taskId)){
+                        for (Sprint sprint : allSprints) {
+                            if (sprint.checkTaskExist(taskId)) {
                                 sprint.removeSprintTask(taskId);
                             }
                         }
