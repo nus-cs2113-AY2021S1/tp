@@ -40,7 +40,7 @@ Create a new project.
     * Duration and sprint interval must be integers.
     * All the fields must hava an input, else a project is not added.
 * Expected outcome:
-      ```Project successfully created.
+    ```Project successfully created.
     ================= PROJECT =================
     [Title: MeTube ]
        [Description: video streaming software ]
@@ -48,7 +48,8 @@ Create a new project.
        [Project will start along with the first sprint]
        [Project backlog is empty]
        [There are no Sprints]
-    ===============================================```
+    ===============================================
+    ```
     
 ### Project Backlog (All features) `task`
 #### Adding task
@@ -77,7 +78,7 @@ Views the specified task.
 
 Assuming the third task have the following attributes: Title: Add parser, Description: add UI, Priority: HIGH, Done: false.
 ```[Task]
-        ID: 1
+        ```ID: 1
         Title: Add parser 
         Description: add an interactive UI 
         Priority: High priority
