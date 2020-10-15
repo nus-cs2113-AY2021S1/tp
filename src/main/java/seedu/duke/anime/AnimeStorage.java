@@ -41,17 +41,17 @@ public class AnimeStorage {
     //}
 
     public ArrayList<Anime> readAnimeDatabase() throws IOException {
-        LOGGER.log(Level.INFO,"Retrieving information from DataSource.");
+        LOGGER.log(Level.INFO, "Retrieving information from DataSource.");
         ArrayList<Anime> animeDataList = new ArrayList<>();
         for (int i = 1; i < 6; i++) {
-            LOGGER.log(Level.INFO,"Currently extracting from /AniListData/AniList-Data" + i + ".json");
+            LOGGER.log(Level.INFO, "Currently extracting from /AniListData/AniList-Data" + i + ".json");
             String fileData = getDataFromJarFile("/AniListData/AniList-Data" + i + ".json");
-            LOGGER.log(Level.INFO,"Extraction of /AniListData/AniList-Data" + i + ".json successful");
-            LOGGER.log(Level.INFO,"Parsing Json data.");
+            LOGGER.log(Level.INFO, "Extraction of /AniListData/AniList-Data" + i + ".json successful");
+            LOGGER.log(Level.INFO, "Parsing Json data.");
             parseJson(animeDataList, fileData);
-            LOGGER.info("Parse Successful.");
+            LOGGER.log(Level.INFO, "Parse Successful.");
         }
-        LOGGER.log(Level.INFO,"Retrieval and Parsing for anime object in DataSource Successful.");
+        LOGGER.log(Level.INFO, "Retrieval and Parsing for anime object in DataSource Successful.");
         return animeDataList;
     }
 
@@ -62,7 +62,7 @@ public class AnimeStorage {
             jsonList = (JSONArray) parser.parse(fileData);
 
         } catch (ParseException e) {
-            LOGGER.log(Level.WARNING,"Parsing file failed!");
+            LOGGER.log(Level.WARNING, "Parsing file failed!");
             e.printStackTrace();
 
         }
