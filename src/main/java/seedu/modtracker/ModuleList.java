@@ -263,10 +263,17 @@ public class ModuleList {
         commandInfo[1] = commandInfo[1].toUpperCase();
         Module currentModule = new Module(commandInfo[1]);
         int index = modList.indexOf(currentModule);
-        modList.get(index).minusActualTime(commandInfo[2], commandInfo[3]);
-        if (toPrint) {
-            System.out.println(commandInfo[2] + " hours are removed from " + commandInfo[1] + System.lineSeparator());
-            storage.appendToFile(input);
+        int week = Integer.parseInt(commandInfo[3]);
+        if (modList.get(index).doesActualTimeExist(week)) {
+            modList.get(index).minusActualTime(commandInfo[2], commandInfo[3]);
+            if(toPrint) {
+                System.out.println(commandInfo[2] + " hours are removed from " + commandInfo[1] + System.lineSeparator());
+                storage.appendToFile(input);
+            }
+        } else {
+            if(toPrint) {
+                System.out.println("No actual time found." + System.lineSeparator());
+            }
         }
     }
 
