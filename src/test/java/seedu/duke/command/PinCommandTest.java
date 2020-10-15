@@ -34,8 +34,8 @@ class PinCommandTest {
 
     @Test
     void execute_inputIndex_NoteExists_PinsAndUnpinsNotes() {
-        assertEquals(getExecutionStringInputIndex(notebook, 0),NOTE1_TITLE + " pinned: " + 'N');
-        assertEquals(getExecutionStringInputIndex(notebook, 1),NOTE2_TITLE + " pinned: " + 'Y');
+        assertEquals(NOTE1_TITLE + " pinned: " + 'N', getExecutionStringInputIndex(notebook, 0));
+        assertEquals(NOTE2_TITLE + " pinned: " + 'Y', getExecutionStringInputIndex(notebook, 1));
 
         assertTrue(notePinned.getPinned().equals("N"));
         assertTrue(noteNotPinned.getPinned().equals("Y"));
@@ -43,8 +43,8 @@ class PinCommandTest {
 
     @Test
     void execute_inputTitle_NoteExists_PinsAndUnpinsNotes() {
-        assertEquals(getExecutionStringInputTitle(notebook, NOTE1_TITLE),NOTE1_TITLE + " pinned: " + 'N');
-        assertEquals(getExecutionStringInputTitle(notebook, NOTE2_TITLE),NOTE2_TITLE + " pinned: " + 'Y');
+        assertEquals(NOTE1_TITLE + " pinned: " + 'N', getExecutionStringInputTitle(notebook, NOTE1_TITLE));
+        assertEquals(NOTE2_TITLE + " pinned: " + 'Y', getExecutionStringInputTitle(notebook, NOTE2_TITLE));
 
         assertTrue(notePinned.getPinned().equals("N"));
         assertTrue(noteNotPinned.getPinned().equals("Y"));
@@ -52,14 +52,14 @@ class PinCommandTest {
 
     @Test
     void execute_inputIndex_NoteDoesNotExists_returnsUnsuccessful() {
-        assertEquals(getExecutionStringInputIndex(notebook, 5),PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE);
-        assertEquals(getExecutionStringInputIndex(notebook, 3),PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE);
+        assertEquals(PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputIndex(notebook, 5));
+        assertEquals(PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputIndex(notebook, 3));
     }
 
     @Test
     void execute_inputTitle_NoteDoesNotExists_returnsUnsuccessful() {
-        assertEquals(getExecutionStringInputTitle(notebook, "Title"),PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE);
-        assertEquals(getExecutionStringInputTitle(notebook, "Random"),PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE);
+        assertEquals(PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputTitle(notebook, "Title"));
+        assertEquals(PinCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputTitle(notebook, "Random"));
     }
 
     private String getExecutionStringInputIndex(Notebook notebook, int index) {

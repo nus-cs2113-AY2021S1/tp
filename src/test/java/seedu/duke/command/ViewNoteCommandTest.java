@@ -57,8 +57,8 @@ class ViewNoteCommandTest {
         String note1ExpectedOutput = NOTE1_TITLE + " " + InterfaceManager.LS + NOTE1_CONTENT;
         String note2ExpectedOutput = NOTE2_TITLE + " " + tagsName + InterfaceManager.LS + NOTE2_CONTENT;
 
-        assertEquals(getExecutionStringInputIndex(notebook, 0),note1ExpectedOutput);
-        assertEquals(getExecutionStringInputIndex(notebook, 1),note2ExpectedOutput);
+        assertEquals(note1ExpectedOutput, getExecutionStringInputIndex(notebook, 0));
+        assertEquals(note2ExpectedOutput, getExecutionStringInputIndex(notebook, 1));
     }
 
     @Test
@@ -72,20 +72,20 @@ class ViewNoteCommandTest {
         String note1ExpectedOutput = NOTE1_TITLE + " " + InterfaceManager.LS + NOTE1_CONTENT;
         String note2ExpectedOutput = NOTE2_TITLE + " " + tagsName + InterfaceManager.LS + NOTE2_CONTENT;
 
-        assertEquals(getExecutionStringInputTitle(notebook, NOTE1_TITLE),note1ExpectedOutput);
-        assertEquals(getExecutionStringInputTitle(notebook, NOTE2_TITLE),note2ExpectedOutput);
+        assertEquals(note1ExpectedOutput, getExecutionStringInputTitle(notebook, NOTE1_TITLE));
+        assertEquals(note2ExpectedOutput, getExecutionStringInputTitle(notebook, NOTE2_TITLE));
     }
 
     @Test
     void execute_inputIndex_NoteDoesNotExists_returnsUnsuccessful() {
-        assertEquals(getExecutionStringInputIndex(notebook, 5),ViewNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE);
-        assertEquals(getExecutionStringInputIndex(notebook, 3),ViewNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE);
+        assertEquals(ViewNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputIndex(notebook, 5));
+        assertEquals(ViewNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputIndex(notebook, 3));
     }
 
     @Test
     void execute_inputTitle_NoteDoesNotExists_returnsUnsuccessful() {
-        assertEquals(getExecutionStringInputTitle(notebook, "Title"),ViewNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE);
-        assertEquals(getExecutionStringInputTitle(notebook, "Random"),ViewNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE);
+        assertEquals(ViewNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputTitle(notebook, "Title"));
+        assertEquals(ViewNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE, getExecutionStringInputTitle(notebook, "Random"));
     }
 
     private String getExecutionStringInputIndex(Notebook notebook, int index) {
