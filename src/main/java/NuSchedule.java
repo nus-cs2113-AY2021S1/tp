@@ -8,6 +8,8 @@ import parser.Parser;
 import storage.Storage;
 import ui.UI;
 
+import exception.LoadingException;
+
 public class NuSchedule {
     /**
      * Main entry-point for the NUSchedule application.
@@ -20,6 +22,7 @@ public class NuSchedule {
 
     public NuSchedule(String filePath) {
         ui = new UI();
+
         busStops = new BusStopList();
         locations = new LocationList();
         busStops.loadBusStopData();
@@ -58,7 +61,7 @@ public class NuSchedule {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         new NuSchedule("data/events.txt").run();
     }
 }

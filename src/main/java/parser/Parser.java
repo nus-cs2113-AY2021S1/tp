@@ -1,9 +1,23 @@
 package parser;
 
 
+import command.AddCommand;
 import command.Command;
 import command.ExitCommand;
 import command.PrintFullListCommand;
+
+import event.Assignment;
+import event.PersonalEvent;
+
+import exception.NoEventTimeMarkerException;
+import exception.TimeFormatException;
+import exception.EmptyEventException;
+import exception.NuScheduleException;
+import exception.NoEventTimeException;
+import exception.WrongCommandException;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
 /**
  * This class contains one function -- parse, to call the respective command function according to the user input.
@@ -14,7 +28,7 @@ public abstract class Parser {
     public static final String Event_DONE = "done";
     public static final String ADD_ASSIGNMENT = "assignment";
     public static final String ADD_CLASS = "class";
-    public static final String ADD_PERSONAL_EVENT = "personal event";
+    public static final String ADD_PERSONAL_EVENT = "personalevent";
     public static final String Event_DELETE = "delete";
     public static final String Event_FIND = "find";
     public static final String BY = "/by";
@@ -29,7 +43,7 @@ public abstract class Parser {
      * @return the specific <\code>Command<\code> object to perform what the user want to do
      *     //     * @throws NuScheduleException includes all exceptions may happen during parsing
      */
-    public static Command parse(String fullCommand) /*throws NuScheduleException*/ {
+    public static Command parse(String fullCommand) throws NuScheduleException {
         // this block deals with exit and list command
         if (fullCommand.equals(EXIT)) {
             return new ExitCommand();
@@ -87,91 +101,104 @@ public abstract class Parser {
         //            return new DeleteCommand(EventIndex);
         //        }
         //
-        //        //this block deals with add command
-        //        //we shall check that the user input is not meant for any other command beforehand
-        //        //because the default block will throw an exception.
-        //        // i.e. when enter this block, the parser will not go to any other blocks
-        //        int dividerPosition;
-        //        int timeDivider;
-        //        String dateTime;
-        //        switch (words[0]) {
-        //            case ADD_ASSIGNMENT:
-        //                dividerPosition = fullCommand.indexOf(AT);
-        //
-        //                if (fullCommand.substring(5).isBlank()) {
-        //                    throw new EmptyPersonalEventException();
-        //                }
-        //                if (dividerPosition == -1) {
-        //                    throw new NoPersonalEventTimeMakerException();
-        //                }
-        //                if (fullCommand.substring(5, dividerPosition).isBlank()) {
-        //                    throw new EmptyPersonalEventException();
-        //                }
-        //                try {
-        //                    fullCommand.substring(dividerPosition + 4);
-        //                } catch (StringIndexOutOfBoundsException e) {
-        //                    throw new NoPersonalEventTimeException();
-        //                }
-        //                try {
-        //                    timeDivider = fullCommand.substring(dividerPosition + 4).indexOf(SINGLE_SPACE);
-        //                    dateTime = fullCommand.substring(dividerPosition + 4, dividerPosition + 4 + timeDivider)
-        //                            + "T"
-        //                            + fullCommand.substring(dividerPosition + 4 + timeDivider + 1);
-        //                    return new AddCommand(new NuSchedule.Event.
-        //                    PersonalEvent(fullCommand.substring(6, dividerPosition)
-        //                    , LocalDateTime.parse(dateTime)));
-        //                } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
-        //                    throw new TimeFormatException();
-        //                }
-        //
-        //
-        //            case ADD_CLASS:
-        //                dividerPosition = fullCommand.indexOf(BY);
-        //
-        //                if (fullCommand.substring(8).isBlank()) {
-        //                    throw new EmptyClassException();
-        //                }
-        //                if (dividerPosition == -1) {
-        //                    throw new NoClassTimeMarkerException();
-        //                }
-        //                if (fullCommand.substring(8, dividerPosition).isBlank()) {
-        //                    throw new EmptyClassException();
-        //                }
-        //                try {
-        //                    fullCommand.substring(dividerPosition + 4);
-        //                } catch (StringIndexOutOfBoundsException e) {
-        //                    throw new NoClassTimeException();
-        //                }
-        //                try {
-        //                    timeDivider = fullCommand.substring(dividerPosition + 4).indexOf(SINGLE_SPACE);
-        //                    dateTime = fullCommand.substring(dividerPosition + 4, dividerPosition + 4 + timeDivider)
-        //                            + "T"
-        //                            + fullCommand.substring(dividerPosition + 4 + timeDivider + 1);
-        //                    return new AddCommand(new NuSchedule.Event.
-        //                    Assignment(fullCommand.substring(9, dividerPosition)
-        //                    , LocalDateTime.parse(dateTime)));
-        //                } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
-        //                    throw new TimeFormatException();
-        //                }
-        //
-        //            case ADD_PERSONAL_EVENT:
-        //
-        //                try {
-        //                    if (fullCommand.substring(5).isBlank()) {
-        //                        throw new EmptyAssignmentException();
-        //                    }
-        //                    return new AddCommand(new Todo(fullCommand.substring(5)));
-        //                } catch (StringIndexOutOfBoundsException e) {
-        //                    throw new EmptyAssignmentException();
-        //                }
-        //
-        //            default:
-        //                throw new WrongCommandException();
-        //
-        //        }
 
-        return null;
-        //delete later
+                //this block deals with add command
+                //we shall check that the user input is not meant for any other command beforehand
+                //because the default block will throw an exception.
+                // i.e. when this block is entered, the parser will not go to any other blocks
+                int dividerPosition;
+                int timeDivider;
+                String dateTime;
+                switch (words[0]) {
+                    case ADD_ASSIGNMENT:
+                        dividerPosition = fullCommand.indexOf(BY);
+
+                        if (fullCommand.substring(10).isBlank()) {
+                            throw new EmptyEventException();
+                        }
+                        if (dividerPosition == -1) {
+                            throw new NoEventTimeMarkerException();
+                        }
+                        if (fullCommand.substring(10, dividerPosition).isBlank()) {
+                            throw new EmptyEventException();
+                        }
+                        try {
+                            fullCommand.substring(dividerPosition + 4);
+                        } catch (StringIndexOutOfBoundsException e) {
+                            throw new NoEventTimeException();
+                        }
+                        try {
+                            timeDivider = fullCommand.substring(dividerPosition + 4).indexOf(SINGLE_SPACE);
+                            dateTime = fullCommand.substring(dividerPosition + 4, dividerPosition + 4 + timeDivider)
+                                    + "T"
+                                    + fullCommand.substring(dividerPosition + 4 + timeDivider + 1);
+                            return new AddCommand(new Assignment(fullCommand.substring(10, dividerPosition)
+                            , LocalDateTime.parse(dateTime)));
+                        } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
+                            throw new TimeFormatException();
+                        }
+
+
+                    case ADD_CLASS:
+                        dividerPosition = fullCommand.indexOf(AT);
+
+                        if (fullCommand.substring(5).isBlank()) {
+                            throw new EmptyEventException();
+                        }
+                        if (dividerPosition == -1) {
+                            throw new NoEventTimeMarkerException();
+                        }
+                        if (fullCommand.substring(5, dividerPosition).isBlank()) {
+                            throw new EmptyEventException();
+                        }
+                        try {
+                            fullCommand.substring(dividerPosition + 4);
+                        } catch (StringIndexOutOfBoundsException e) {
+                            throw new NoEventTimeException();
+                        }
+                        try {
+                            timeDivider = fullCommand.substring(dividerPosition + 4).indexOf(SINGLE_SPACE);
+                            dateTime = fullCommand.substring(dividerPosition + 4, dividerPosition + 4 + timeDivider)
+                                    + "T"
+                                    + fullCommand.substring(dividerPosition + 4 + timeDivider + 1);
+
+                            return new AddCommand(new event.Class(fullCommand.substring(5, dividerPosition)
+                            , LocalDateTime.parse(dateTime)));
+                        } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
+                            throw new TimeFormatException();
+                        }
+
+                    case ADD_PERSONAL_EVENT:
+                        dividerPosition = fullCommand.indexOf(AT);
+                        if (fullCommand.substring(13).isBlank()) {
+                            throw new EmptyEventException();
+                        }
+                        if (dividerPosition == -1) {
+                        throw new NoEventTimeMarkerException();
+                        }
+                        if (fullCommand.substring(13, dividerPosition).isBlank()) {
+                            throw new EmptyEventException();
+                        }
+                        try {
+                            fullCommand.substring(dividerPosition + 4);
+                        } catch (StringIndexOutOfBoundsException e) {
+                            throw new NoEventTimeException();
+                        }
+                        try {
+                            timeDivider = fullCommand.substring(dividerPosition + 4).indexOf(SINGLE_SPACE);
+                            dateTime = fullCommand.substring(dividerPosition + 4, dividerPosition + 4 + timeDivider)
+                                    + "T"
+                                    + fullCommand.substring(dividerPosition + 4 + timeDivider + 1);
+                            return new AddCommand(new PersonalEvent(fullCommand.substring(13,dividerPosition),LocalDateTime.parse(dateTime)));
+                        } catch (StringIndexOutOfBoundsException e) {
+                            throw new EmptyEventException();
+                        }
+
+                    default:
+                        throw new WrongCommandException();
+
+
+                }
     }
 
 }
