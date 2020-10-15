@@ -35,23 +35,33 @@ public class Reminder implements Comparable<Reminder> {
         return dateToRemind.equals(date);
     }
 
+    /**
+     * Provides a way to check if the reminder should have already been reminded after that date.
+     *
+     * @param date Date to check.
+     * @return Whether the reminder should have already been raised.
+     */
+    public boolean reminderDue(LocalDate date) {
+        return dateToRemind.compareTo(date) <= 0;
+    }
+
     @Override
     public String toString() {
         return event.toReminderString();
     }
 
     @Override
-    public int compareTo(Reminder o) {
-        return dateToRemind.compareTo(o.dateToRemind);
+    public int compareTo(Reminder reminder) {
+        return dateToRemind.compareTo(reminder.dateToRemind);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object object) {
+        if (this == object) {
             return true;
-        } else if (o instanceof Reminder) {
-            Reminder r = ((Reminder) o);
-            return r.dateToRemind.equals(dateToRemind) && r.event.getTitle().equals(event.getTitle());
+        } else if (object instanceof Reminder) {
+            Reminder reminder = ((Reminder) object);
+            return reminder.dateToRemind.equals(dateToRemind) && reminder.event.getTitle().equals(event.getTitle());
         } else {
             return false;
         }
