@@ -14,7 +14,6 @@ public class Parser {
     public static final String COMMAND_LIST = "list";
     public static final String COMMAND_HELP = "help";
     public static final String COMMAND_EXIT = "exit";
-    public static final int COMMAND_EXIT_LENGTH = 4;
 
     /**
      * Parses user inputs.
@@ -33,9 +32,6 @@ public class Parser {
         case COMMAND_ADDMOD:
             modList.addMod(input, toPrint, storage);
             break;
-        case COMMAND_ADDTIME:
-            modList.addTime(input, toPrint, storage);
-            break;
         case COMMAND_ADDEXP:
             modList.addExp(input, toPrint, storage);
             break;
@@ -45,17 +41,39 @@ public class Parser {
         case COMMAND_DELETEEXP:
             modList.deleteExp(input, toPrint, storage);
             break;
+        case COMMAND_ADDTIME:
+            try {
+                modList.addTime(input, toPrint, storage);
+            } catch (Exception e) {
+                ui.printErrorMessage(e.getMessage());
+                System.out.println("");
+            }
+            break;
         case COMMAND_MINUS:
-            modList.minusTime(input, toPrint, storage);
+            try {
+                modList.minusTime(input, toPrint, storage);
+            } catch (Exception e) {
+                ui.printErrorMessage(e.getMessage());
+                System.out.println("");
+            }
             break;
         case COMMAND_LIST:
-            ui.printTable(modList, Integer.parseInt(command[1]));
+            try {
+                ui.printTable(modList, Integer.parseInt(command[1]));
+            } catch (Exception e) {
+                ui.printErrorMessage(e.getMessage());
+                System.out.println("");
+            }
             break;
         case COMMAND_HELP:
-            ui.printHelpList();
+            if (!input.toLowerCase().trim().equals(COMMAND_HELP)) {
+                ui.printInvalidCommand();
+            } else {
+                ui.printHelpList();
+            }
             break;
         case COMMAND_EXIT:
-            if (input.trim().length() > COMMAND_EXIT_LENGTH) {
+            if (!input.toLowerCase().trim().equals(COMMAND_EXIT)) {
                 ui.printInvalidCommand();
             } else {
                 ui.printExitScreen(name);
