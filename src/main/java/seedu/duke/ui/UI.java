@@ -55,7 +55,7 @@ public class UI {
     }
 
     public static void printHelp() {
-        String[] listCommands = {"add", "settings", "list", "history", "stats", "review", "quiz", "clear", "exit"};
+        String[] listCommands = {"add", "settings", "list", "stats", "review", "start", "clear", "exit"};
         System.out.println("Type 'help c\\<function name here>' to view help for each command.");
         System.out.println("Available commands:");
         for (String listCommand : listCommands) {
@@ -229,5 +229,9 @@ public class UI {
     public static void bunnyFilterNoneFound() {
         System.out.println("No bunny matching filter options");
 
+    }
+
+    public static void printAskForName(String username) {
+        System.out.print(ClickerMessages.ASK_FOR_NAME);
     }
 }

@@ -13,9 +13,13 @@ import seedu.duke.ui.UI;
 import seedu.duke.wordlist.WordList;
 import seedu.duke.filters.FilterExecutor;
 import seedu.duke.names.Names;
+import seedu.duke.writing.Essay;
+import seedu.duke.writing.Poem;
+import seedu.duke.writing.WritingList;
 
 
 import java.io.IOException;
+import java.util.Scanner;
 
 import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.database.BunnySaver.saveAllBunny;
@@ -91,12 +95,18 @@ public class CommandExecutor {
         case LIST_NAMES:
             Names.listNames();
             break;
-        //case STATS:
-        //    //print user stats
-        //    break;
-        //case DELETE:
-        //    //
-        //    break;
+        case STATS:
+            WritingList.printWritings();
+            break;
+        case START:
+            WritingList.checkStart();
+            break;
+        case TYPE:
+            WritingList.checkType();
+            break;
+        case DELETE:
+
+            break;
         case EXIT:
             //closes the program
             break;

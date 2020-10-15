@@ -7,8 +7,9 @@ public class ClickerMessages {
     public static final String FAREWELL_GREETING =
             "Bye %1$s! Hope to see you again soon!" + NEWLINE;
     public static final String HELLO_GREETING =
-            "Hello %1$s! Welcome to Fluffle!" + NEWLINE + "What can I do for you?" + NEWLINE;
-
+            "Hello User! Welcome to Fluffle!" + NEWLINE + "What can I do for you?" + NEWLINE;
+    public static final String ASK_FOR_NAME =
+            "What is your name?" + NEWLINE;
     /**
      * Settings loader messages.
      */
