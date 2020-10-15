@@ -18,6 +18,7 @@ public class GradeBook {
             totalCredits += Grade.getModuleCredits(item);
             totalGradeScore += Grade.convertLetterToCredit(Grade.getModuleGrade(item)) * Grade.getModuleCredits(item);
         }
+        assert totalCredits != 0;
         return "Current CAP is " + totalGradeScore / totalCredits + ".";
     }
 
