@@ -23,7 +23,6 @@ public class Names {
         //System.out.println("Current relative path is: " + filePath);
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
         Charset charset = StandardCharsets.UTF_8;
-
         try {
             names = Files.readAllLines(relativePath, charset);
         } catch (IOException ex) {
