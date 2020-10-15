@@ -31,6 +31,7 @@ public class StudyIt {
     }
 
     public static void main(String[] args) {
+        //assert false : "dummy assertion";
         MainMenu.printWelcome();
         new StudyIt().run();
     }
