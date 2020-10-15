@@ -92,6 +92,7 @@ class TimetableTest {
 
     /**
      * Method to initialize a timetable for testing purposes with 1 event.
+     *
      * @return Instantiated Timetable with 1 event.
      */
     private Timetable initializeTimetable(Event event) {
