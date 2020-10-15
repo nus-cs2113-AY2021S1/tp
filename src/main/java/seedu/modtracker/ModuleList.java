@@ -233,9 +233,9 @@ public class ModuleList {
     }
 
     /**
-     * Adds actual workload to an existing module
+     * Adds time to actual workload to an existing module.
      *
-     * @param input module code, actual time spent and week input by user
+     * @param input module code, added time spent and week input by user.
      * @param toPrint whether the UI should print the output.
      * @param storage storage object where data is stored.
      */
@@ -252,9 +252,9 @@ public class ModuleList {
     }
 
     /**
-     * Adds actual workload to an existing module
+     * Minus time from actual workload to an existing module.
      *
-     * @param input module code, actual time spent and week input by user
+     * @param input module code, removed time spent and week input by user.
      * @param toPrint whether the UI should print the output.
      * @param storage storage object where data is stored.
      */
