@@ -17,4 +17,6 @@ public class ExceptionMessages {
             + " must be more than 1!";
     public static final String ERROR_QUIZ_INSUFFICIENT_TOPIC_QUESTIONS =
             "There is not enough questions in the topic for the quiz!";
+    public static final String ERROR_QUIZ_ANSWER_INDEX_OUT_OF_BOUNDS =
+            "Please choose only options 1, 2, 3 or 4";
 }
