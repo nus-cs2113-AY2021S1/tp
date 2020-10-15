@@ -31,12 +31,12 @@ public class RouteCommand extends Command {
         if (locations[0].trim().length() == 0 || locations[1].trim().length() == 0) {
             throw new CustomException(ExceptionType.NO_LOCATIONS);
         } else if (locations[0].trim().equalsIgnoreCase(locations[1].trim())) {
-            assert locations[0].trim().length() != 0 : "Location 0 is empty.";
-            assert locations[1].trim().length() != 0 : "Location 1 is empty.";
+            assert !locations[0].isBlank() : "Location 0 is empty.";
+            assert !locations[1].isBlank() : "Location 1 is empty.";
             throw new CustomException(ExceptionType.SAME_LOCATIONS);
         }
-        assert locations[0].trim().length() != 0 : "Location 0 is empty.";
-        assert locations[1].trim().length() != 0 : "Location 1 is empty.";
+        assert !locations[0].isBlank() : "Location 0 is empty.";
+        assert !locations[1].isBlank() : "Location 1 is empty.";
         assert !(locations[0].trim().equalsIgnoreCase(locations[1].trim())) : "Seems like the locations are still "
                 + "the same.";
     }
