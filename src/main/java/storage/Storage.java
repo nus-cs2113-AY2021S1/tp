@@ -137,8 +137,11 @@ public class Storage {
         try {
             Scanner s = new Scanner(f);
             if (s.hasNext()) {
-                return s.nextLine();
+                String deadline = s.nextLine();
+                s.close();
+                return deadline;
             } else {
+                s.close();
                 return "Invalid Date";
             }
         } catch (FileNotFoundException e) {

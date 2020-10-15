@@ -92,7 +92,8 @@ public class ReviseCommand extends Command {
         for (Card c : allCards) {
             count = reviseCard(count, c, ui, repeatCards);
         }
-        repeatRevision(ui, repeatCards, count);
+        int remainingCards = repeatRevision(ui, repeatCards, count);
+        assert remainingCards == 0 : "Cards were left in repeat revision";
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
         toRevise.setDueBy(Scheduler.computeDeckDeadline(toRevise.getCards()), storage, access);
     }
@@ -126,7 +127,7 @@ public class ReviseCommand extends Command {
         return repeatCards;
     }
 
-    private void repeatRevision(Ui ui, ArrayList<Card> cards, int count) {
+    private int repeatRevision(Ui ui, ArrayList<Card> cards, int count) {
         while (cards.size() != 0) {
             ArrayList<Card> repeatCards = new ArrayList<>();
             for (Card c : cards) {
@@ -134,6 +135,7 @@ public class ReviseCommand extends Command {
             }
             cards = new ArrayList<>(repeatCards);
         }
+        return cards.size();
     }
 
     @Override

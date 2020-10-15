@@ -39,20 +39,20 @@ public class ListDueCommand extends Command {
         }
         if (dueChapters.size() == 0) {
             ui.showToUser("You have no tasks due today! Please check back again tomorrow!");
+            return;
+        }
+        System.out.print("The chapter");
+        if (dueChapters.size() > 1) {
+            System.out.print("s");
+        }
+        System.out.print(" you have due by today ");
+        if (dueChapters.size() > 1) {
+            ui.showToUser("are:");
         } else {
-            System.out.print("The chapter");
-            if (dueChapters.size() > 1) {
-                System.out.print("s");
-            }
-            System.out.print(" you have due by today ");
-            if (dueChapters.size() > 1) {
-                ui.showToUser("are:");
-            } else {
-                ui.showToUser("is:");
-            }
-            for (DueChapter dueChapter : dueChapters) {
-                ui.showToUser(dueChapter.toString());
-            }
+            ui.showToUser("is:");
+        }
+        for (DueChapter dueChapter : dueChapters) {
+            ui.showToUser(dueChapter.toString());
         }
     }
 
