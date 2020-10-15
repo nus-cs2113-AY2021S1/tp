@@ -1,5 +1,8 @@
 package seedu.duke;
 
+import seedu.duke.exceptions.CustomException;
+import seedu.duke.exceptions.ExceptionType;
+
 import java.util.ArrayList;
 
 public class BusData {
