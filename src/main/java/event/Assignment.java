@@ -1,6 +1,8 @@
 package event;
 
 
+import location.Location;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,8 +23,9 @@ public class Assignment extends Event {
         return "A//" + (isDone ? 1 : 0) + "//" + description + "//" + by + "//" + location;
     }
 
-    public Assignment(String description, LocalDateTime by) {
+    public Assignment(String description, Location location, LocalDateTime by) {
         super(description);
+        this.location = location;
         this.by = by;
     }
 
