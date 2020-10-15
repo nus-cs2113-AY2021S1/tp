@@ -1,6 +1,6 @@
 package seedu.duke.data.timetable;
 
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -104,7 +104,7 @@ public abstract class RecurringEvent extends Event {
         } else {
             endRecurrenceString += "Forever";
         }
-        return super.toString() + String.format(" (%s)", recurrenceType) + InterfaceManager.LS + endRecurrenceString;
+        return super.toString() + String.format(" (%s)", recurrenceType) + Formatter.LS + endRecurrenceString;
     }
 
     /**

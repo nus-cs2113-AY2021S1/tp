@@ -8,8 +8,6 @@ import java.util.Scanner;
  * Represents a InterfaceManager. Manages the input and output of the application.
  */
 public class InterfaceManager {
-    /** A platform independent line separator. */
-    public static final String LS = System.lineSeparator();
 
     private final Scanner in;
     private final PrintStream out;

@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
@@ -71,7 +71,7 @@ public class ViewNoteCommand extends Command {
         // format output string
         String stringToPrint = note.getTitle() + " " + note.getTagsName();
 
-        stringToPrint += InterfaceManager.LS + note.getContent();
+        stringToPrint += Formatter.LS + note.getContent();
         return stringToPrint;
     }
 }

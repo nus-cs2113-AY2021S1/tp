@@ -5,12 +5,9 @@ import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.timetable.DailyEvent;
 import seedu.duke.data.timetable.Event;
-import seedu.duke.data.timetable.MonthlyEvent;
 import seedu.duke.data.timetable.Timetable;
-import seedu.duke.data.timetable.WeeklyEvent;
-import seedu.duke.data.timetable.YearlyEvent;
 import seedu.duke.storage.StorageManager;
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -46,7 +43,7 @@ class RemindCommandTest {
         command.setData(NOTEBOOK, timetable, TAG_MANAGER, STORAGE_MANAGER);
         DailyEvent reminderEvent = new DailyEvent(dailyEvent.getTitle(), TEST_DATE_TIME.plusDays(1),
                 TEST_REMINDER, TEST_TIME_PERIODS, TEST_TIME_UNITS);
-        assertEquals("Reminders:" + InterfaceManager.LS + reminderEvent.toReminderString(), command.execute());
+        assertEquals("Reminders:" + Formatter.LS + reminderEvent.toReminderString(), command.execute());
 
     }
 }

@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.Tag;
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
 
 import java.util.ArrayList;
 
@@ -54,8 +54,8 @@ class ViewNoteCommandTest {
             tagsName = tagsName.concat(t.toString());
         }
 
-        String note1ExpectedOutput = NOTE1_TITLE + " " + InterfaceManager.LS + NOTE1_CONTENT;
-        String note2ExpectedOutput = NOTE2_TITLE + " " + tagsName + InterfaceManager.LS + NOTE2_CONTENT;
+        String note1ExpectedOutput = NOTE1_TITLE + " " + Formatter.LS + NOTE1_CONTENT;
+        String note2ExpectedOutput = NOTE2_TITLE + " " + tagsName + Formatter.LS + NOTE2_CONTENT;
 
         assertEquals(note1ExpectedOutput, getExecutionStringInputIndex(notebook, 0));
         assertEquals(note2ExpectedOutput, getExecutionStringInputIndex(notebook, 1));
@@ -69,8 +69,8 @@ class ViewNoteCommandTest {
             tagsName = tagsName.concat(t.toString());
         }
 
-        String note1ExpectedOutput = NOTE1_TITLE + " " + InterfaceManager.LS + NOTE1_CONTENT;
-        String note2ExpectedOutput = NOTE2_TITLE + " " + tagsName + InterfaceManager.LS + NOTE2_CONTENT;
+        String note1ExpectedOutput = NOTE1_TITLE + " " + Formatter.LS + NOTE1_CONTENT;
+        String note2ExpectedOutput = NOTE2_TITLE + " " + tagsName + Formatter.LS + NOTE2_CONTENT;
 
         assertEquals(note1ExpectedOutput, getExecutionStringInputTitle(notebook, NOTE1_TITLE));
         assertEquals(note2ExpectedOutput, getExecutionStringInputTitle(notebook, NOTE2_TITLE));

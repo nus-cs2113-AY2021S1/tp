@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -52,12 +52,12 @@ public class FindCommand extends Command {
                     .append(filteredNotes.get(i).getTitle())
                     .append(" ")
                     .append(filteredNotes.get(i).getTagsName())
-                    .append(InterfaceManager.LS);
+                    .append(Formatter.LS);
         }
 
         if (filteredNotes.isEmpty()) {
             return COMMAND_UNSUCCESSFUL_MESSAGE;
         }
-        return COMMAND_SUCCESSFUL_MESSAGE + InterfaceManager.LS + notes;
+        return COMMAND_SUCCESSFUL_MESSAGE + Formatter.LS + notes;
     }
 }

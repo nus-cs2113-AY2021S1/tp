@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
 
 import java.util.Comparator;
 import java.util.List;
@@ -27,7 +27,7 @@ public class ListNoteCommand extends Command {
             + PREFIX_DELIMITER + PREFIX_TAG + " TAG1...] "
             + "[/sort up OR down]";
 
-    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the list of notes: " + InterfaceManager.LS;
+    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the list of notes: " + Formatter.LS;
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE_INVALID_TAG = "Your tags return no result."
             + " Please try an alternative tag or check your spellings";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK = "The notebook is empty!";
@@ -103,7 +103,7 @@ public class ListNoteCommand extends Command {
                             .append(notebook.getNotes().get(i).getTitle())
                             .append(" ")
                             .append(notebook.getNotes().get(i).getTagsName())
-                            .append(InterfaceManager.LS);
+                            .append(Formatter.LS);
                 }
             } else {
                 noteString = new StringBuilder(getSortedString(noteString.toString(), sortedNotes));
@@ -167,7 +167,7 @@ public class ListNoteCommand extends Command {
                         .append(notes.get(i).toString())
                         .append(" ")
                         .append(notes.get(i).getTagsName())
-                        .append(InterfaceManager.LS);
+                        .append(Formatter.LS);
             }
         } else {
             noteString = new StringBuilder(getSortedString(noteString.toString(), sortedTaggedNotes));
@@ -193,7 +193,7 @@ public class ListNoteCommand extends Command {
                         .append(sortedNotes.get(i).getTitle())
                         .append(" ")
                         .append(sortedNotes.get(i).getTagsName())
-                        .append(InterfaceManager.LS);
+                        .append(Formatter.LS);
                 j++;
             }
             noteString = noteStrBuilder.toString();
@@ -207,7 +207,7 @@ public class ListNoteCommand extends Command {
                         .append(sortedNotes.get(i).getTitle())
                         .append(" ")
                         .append(sortedNotes.get(i).getTagsName())
-                        .append(InterfaceManager.LS);
+                        .append(Formatter.LS);
             }
             noteString = noteStrBuilder.toString();
         }

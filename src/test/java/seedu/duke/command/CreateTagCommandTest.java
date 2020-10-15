@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.notebook.Tag;
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
+
 import static seedu.duke.command.CreateTagCommand.COMMAND_SUCCESSFUL_MESSAGE;
 import static seedu.duke.command.CreateTagCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
 
@@ -46,8 +47,8 @@ class CreateTagCommandTest {
 
         String result = getCommandExecutionString(tagManager, tags);
 
-        assertEquals(COMMAND_SUCCESSFUL_MESSAGE + tagRed + InterfaceManager.LS
-                + COMMAND_SUCCESSFUL_MESSAGE + tagGreen + InterfaceManager.LS
+        assertEquals(COMMAND_SUCCESSFUL_MESSAGE + tagRed + Formatter.LS
+                + COMMAND_SUCCESSFUL_MESSAGE + tagGreen + Formatter.LS
                 + COMMAND_SUCCESSFUL_MESSAGE + tagBlue, result);
         assertTrue(tagManager.getTagMap().containsKey(tagRed));
         assertTrue(tagManager.getTagMap().containsKey(tagGreen));
@@ -69,7 +70,7 @@ class CreateTagCommandTest {
 
         String result = getCommandExecutionString(tagManager, tags);
 
-        assertEquals(COMMAND_UNSUCCESSFUL_MESSAGE + tagRedToYellow + InterfaceManager.LS
+        assertEquals(COMMAND_UNSUCCESSFUL_MESSAGE + tagRedToYellow + Formatter.LS
                 + COMMAND_UNSUCCESSFUL_MESSAGE + tagGreenToPurple, result);
         assertTrue(tagManager.getTagMap().containsKey(tagRed));
         assertTrue(tagManager.getTagMap().containsKey(tagGreen));
@@ -97,8 +98,8 @@ class CreateTagCommandTest {
 
         String result = getCommandExecutionString(tagManager, tags);
 
-        assertEquals(COMMAND_UNSUCCESSFUL_MESSAGE + tagRedToYellow + InterfaceManager.LS
-                + COMMAND_UNSUCCESSFUL_MESSAGE + tagGreenToPurple + InterfaceManager.LS
+        assertEquals(COMMAND_UNSUCCESSFUL_MESSAGE + tagRedToYellow + Formatter.LS
+                + COMMAND_UNSUCCESSFUL_MESSAGE + tagGreenToPurple + Formatter.LS
                 + COMMAND_SUCCESSFUL_MESSAGE + tagBlue, result);
         assertTrue(tagManager.getTagMap().containsKey(tagRed));
         assertTrue(tagManager.getTagMap().containsKey(tagGreen));

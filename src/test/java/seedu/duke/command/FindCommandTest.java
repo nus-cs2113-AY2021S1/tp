@@ -6,7 +6,7 @@ import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Notebook;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -32,11 +32,11 @@ class FindCommandTest {
         String keyword = "Test";
 
         String expected = "Here are the matching notes in your list:"
-                + InterfaceManager.LS
+                + Formatter.LS
                 + "1. TestNote1 "
-                + InterfaceManager.LS
+                + Formatter.LS
                 + "2. TestNote2 "
-                + InterfaceManager.LS;
+                + Formatter.LS;
         String result = getCommandExecutionString(notebook, keyword);
 
         assertEquals(expected, result);
@@ -48,9 +48,9 @@ class FindCommandTest {
         String keyword = "def";
 
         String expected = "Here are the matching notes in your list:"
-                + InterfaceManager.LS
+                + Formatter.LS
                 + "1. Default "
-                + InterfaceManager.LS;
+                + Formatter.LS;
         String result = getCommandExecutionString(notebook, keyword);
 
         assertEquals(expected, result);
