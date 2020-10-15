@@ -101,6 +101,7 @@ public abstract class Parser {
         //            return new DeleteCommand(EventIndex);
         //        }
         //
+
                 //this block deals with add command
                 //we shall check that the user input is not meant for any other command beforehand
                 //because the default block will throw an exception.
@@ -195,6 +196,7 @@ public abstract class Parser {
 
                     default:
                         throw new WrongCommandException();
+
 
                 }
     }
