@@ -3,14 +3,12 @@ package seedu.duke.command.sprint;
 import org.junit.jupiter.api.Test;
 import seedu.duke.parser.Parser;
 import seedu.duke.project.Project;
-import seedu.duke.ui.Ui;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Hashtable;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CreateSprintCommandTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -29,7 +27,7 @@ class CreateSprintCommandTest {
     }
 
     @Test
-    void createSprint_missingFields_returnErrorMessage(){
+    void createSprint_missingFields_returnErrorMessage() {
         setUpStreams();
 
         ArrayList<Project> projectList = new ArrayList<>();
