@@ -3,6 +3,7 @@ package commands;
 import access.Access;
 import exception.InvalidFileFormatException;
 import manager.card.Card;
+import manager.chapter.CardList;
 import manager.chapter.Chapter;
 import scheduler.Scheduler;
 import storage.Storage;
@@ -45,11 +46,11 @@ public class ReviseCommand extends Command {
             return chapter;
         } catch (IndexOutOfBoundsException e) {
             throw new IndexOutOfBoundsException("The chapter is not found.\n");
-        } 
+        }
     }
 
     private ArrayList<Card> getCards(Ui ui, Access access, Storage storage, Chapter toRevise)
-            throws FileNotFoundException, InvalidFileFormatException {
+            throws FileNotFoundException {
         ArrayList<Card> allCards;
         try {
             allCards = storage.loadCard(access.getModuleLevel(), toRevise.getChapterName());
@@ -60,9 +61,16 @@ public class ReviseCommand extends Command {
         return allCards;
     }
 
+    private int reviseCard(int count, Card c, Ui ui, ArrayList<Card> repeatCards) {
+        ui.showToUser("\nQuestion " + count + ":");
+        ui.showCardRevision(c);
+        String input = ui.getRating();
+        rateCard(ui, repeatCards, c, input);
+        return count++;
+    }
+
     @Override
-    public void execute(Ui ui, Access access, Storage storage)
-        throws FileNotFoundException, InvalidFileFormatException {
+    public void execute(Ui ui, Access access, Storage storage) throws FileNotFoundException {
         Chapter toRevise = getChapter(reviseIndex, access, ui);
         if (!Scheduler.isDeadlineDue(toRevise.getDueBy())) {
             return;
@@ -71,6 +79,7 @@ public class ReviseCommand extends Command {
         ArrayList<Card> allCards = getCards(ui, access, storage, toRevise);
         ArrayList<Card> repeatCards = new ArrayList<>();
         int cardCount = allCards.size();
+        ui.showToUser("card count " + cardCount);
         if (cardCount == 0) {
             ui.showToUser(String.format(MESSAGE_NO_CARDS_IN_CHAPTER, toRevise));
             return;
@@ -79,17 +88,13 @@ public class ReviseCommand extends Command {
         ui.showToUser("The revision for " + toRevise + " will start now:");
 
         int count = 1;
+
         for (Card c : allCards) {
-            ui.showToUser("\nQuestion " + count + ":");
-            ui.showCardRevision(c);
-            String input = ui.getRating();
-            repeatCards = rateCard(ui, repeatCards, c, input);
-            count++;
+            count = reviseCard(count, c, ui, repeatCards);
         }
-        int remainingCards = repeatRevision(ui, repeatCards, count);
-        assert remainingCards == 0 : "Cards were left in repeat revision";
+        repeatRevision(ui, repeatCards, count);
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
-        toRevise.setDueBy(Scheduler.computeDeckDeadline(toRevise.getCards()));
+        toRevise.setDueBy(Scheduler.computeDeckDeadline(toRevise.getCards()), storage, access);
     }
 
     public static ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards, Card c, String input) {
@@ -98,15 +103,15 @@ public class ReviseCommand extends Command {
         while (isInvalid) {
             switch (input.trim().toLowerCase()) {
             case EASY:
-                c.setDueBy(Scheduler.computeEasyDeadline(c, c.getPreviousInterval()));
+                c.setPreviousInterval(Scheduler.computeEasyInterval(c.getPreviousInterval()));
                 isInvalid = false;
                 break;
             case MEDIUM:
-                c.setDueBy(Scheduler.computeMediumDeadline(c, c.getPreviousInterval()));
+                c.setPreviousInterval(Scheduler.computeMediumInterval(c.getPreviousInterval()));
                 isInvalid = false;
                 break;
             case HARD:
-                c.setDueBy(Scheduler.computeHardDeadline(c, c.getPreviousInterval()));
+                c.setPreviousInterval(Scheduler.computeHardInterval(c.getPreviousInterval()));
                 isInvalid = false;
                 break;
             case CANNOT_ANSWER:
@@ -121,19 +126,14 @@ public class ReviseCommand extends Command {
         return repeatCards;
     }
 
-    private int repeatRevision(Ui ui, ArrayList<Card> cards, int count) {
+    private void repeatRevision(Ui ui, ArrayList<Card> cards, int count) {
         while (cards.size() != 0) {
             ArrayList<Card> repeatCards = new ArrayList<>();
             for (Card c : cards) {
-                ui.showToUser("\nQuestion " + count + ":");
-                ui.showCardRevision(c);
-                String input = ui.getRating();
-                repeatCards = rateCard(ui, repeatCards, c, input);
-                count++;
+                count = reviseCard(count, c, ui, repeatCards);
             }
             cards = new ArrayList<>(repeatCards);
         }
-        return cards.size();
     }
 
     @Override

@@ -1,7 +1,9 @@
 package manager.chapter;
 
+import access.Access;
 import manager.card.Card;
 import scheduler.Scheduler;
+import storage.Storage;
 import ui.Ui;
 
 import java.time.LocalDate;
@@ -18,33 +20,39 @@ public class Chapter {
         this.cards = new CardList();
     }
 
-    public Chapter(String chapterName, String rating) {
+    public Chapter(String chapterName, LocalDate dueBy) {
         this.chapterName = chapterName;
         this.cards = new CardList();
-        setNewDeckRating(rating);
+        this.dueBy = dueBy;
+    }
+
+    public Chapter(String chapterName, String rating, Storage storage, Access access) {
+        this.chapterName = chapterName;
+        this.cards = new CardList();
+        setNewDeckRating(rating, storage, access);
     }
 
     public static String rateChapter() {
         if (Ui.chooseToRateNewDeck()) {
             return Ui.getChoiceOfNewDeckRating();
         } else {
-            return null;
+            return "N";
         }
     }
 
-    public void setNewDeckRating(String rating) {
+    public void setNewDeckRating(String rating, Storage storage, Access access) {
         switch (rating) {
         case "E":
-            setDueBy(Scheduler.getCurrentDate().plusDays(1));
+            setDueBy(Scheduler.getCurrentDate().plusDays(1), storage, access);
             break;
         case "M":
-            setDueBy(Scheduler.getCurrentDate().plusDays(2));
+            setDueBy(Scheduler.getCurrentDate().plusDays(2), storage, access);
             break;
         case "H":
-            setDueBy(Scheduler.getCurrentDate().plusDays(4));
+            setDueBy(Scheduler.getCurrentDate().plusDays(4), storage, access);
             break;
         default:
-            setDueBy(Scheduler.getCurrentDate());
+            setDueBy(Scheduler.getCurrentDate(), storage, access);
         }
     }
 
@@ -64,8 +72,11 @@ public class Chapter {
         this.cards = new CardList(cards);
     }
 
-    public void setDueBy(LocalDate dueBy) {
+    public void setDueBy(LocalDate dueBy, Storage storage, Access access) {
         this.dueBy = dueBy;
+        dueBy.isEqual(LocalDate.now());
+        String module = access.getModule().toString();
+        storage.saveChapterDeadline(Scheduler.convertDueByToString(dueBy), module, chapterName);
     }
 
     public LocalDate getDueBy() {
