@@ -1,12 +1,12 @@
 package seedu.duke.task;
 
+import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Task implements Jsonable {
@@ -118,11 +118,13 @@ public class Task implements Jsonable {
     @Override
     public void toJson(Writer writer) throws IOException {
         final JsonObject jTask = new JsonObject();
+        final JsonArray members = new JsonArray(membersAllocatedTo);
         jTask.put("id", id);
         jTask.put("title", title);
         jTask.put("description", description);
-        jTask.put("priority", priority);
+        jTask.put("priority", priority.name());
         jTask.put("isDone", isDone);
+        jTask.put("members", members);
         jTask.toJson(writer);
     }
 

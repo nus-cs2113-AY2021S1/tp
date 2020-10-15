@@ -1,6 +1,7 @@
 package seedu.duke.project;
 
 import com.github.cliftonlabs.json_simple.JsonArray;
+import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
@@ -103,8 +104,11 @@ public class ProjectBacklog implements Jsonable {
 
     @Override
     public void toJson(Writer writer) throws IOException {
-        final JsonArray jTasks = new JsonArray(backlogTasks);
-        jTasks.toJson(writer);
+        final JsonObject jsonBacklog = new JsonObject();
+        final JsonArray jsonTasks = new JsonArray(backlogTasks);
+        jsonBacklog.put("tasks", jsonTasks);
+        jsonBacklog.put("nextId", nextId);
+        jsonBacklog.toJson(writer);
     }
     //    public void viewTask(String id, Ui ui) {
     //        Task task = null;

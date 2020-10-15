@@ -4,14 +4,11 @@ import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.sprint.Sprint;
 import seedu.duke.sprint.SprintList;
-import seedu.duke.task.Task;
-import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Project implements Jsonable {
 
@@ -153,8 +150,10 @@ public class Project implements Jsonable {
         jObj.put("duration", this.projectDuration);
         jObj.put("sprint_length", this.sprintLength);
         jObj.put("start_date", this.startDate == null ? null : this.startDate.toString());
+        jObj.put("end_date", this.endDate == null ? null : this.endDate.toString());
         jObj.put("backlog", backlog);
         jObj.put("members", members);
+        jObj.put("sprints", allSprints);
         jObj.toJson(writer);
     }
 }

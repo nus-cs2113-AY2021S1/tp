@@ -1,10 +1,10 @@
 package seedu.duke.sprint;
 
+import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
-import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -151,15 +151,15 @@ public class Sprint implements Jsonable {
     @Override
     public void toJson(Writer writer) throws IOException {
         final JsonObject jObj = new JsonObject();
+        jObj.put("id", id);
         jObj.put("goal", goal);
         jObj.put("startDate", startDate == null ? null : startDate.toString());
         jObj.put("endDate", endDate == null ? null : endDate.toString());
-        final JsonObject jsonSprintTasks = new JsonObject();
-        //        for (Integer key : sprintTasks.keySet()) {
-        //            JsonArray jsonTask = new JsonArray(sprintTasks.get(key));
-        //            jsonSprintTasks.put(key.toString(), jsonTask);
-        //        }
-        jObj.put("sprintTasks", jsonSprintTasks);
+        final JsonArray jsonSprintTaskIds = new JsonArray();
+        for (Integer id : sprintTaskIds) {
+            jsonSprintTaskIds.add(id);
+        }
+        jObj.put("sprintTaskIds", jsonSprintTaskIds);
         jObj.toJson(writer);
     }
 }
