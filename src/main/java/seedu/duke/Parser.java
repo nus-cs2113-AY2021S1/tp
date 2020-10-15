@@ -177,6 +177,7 @@ public class Parser {
             return;
         case COMMAND_DELETE:
             ui.printDeletedFood(manager.getFoodList().delete(getCommandIndex(userInput)));
+            manager.setCalculator();
             return;
         case COMMAND_CLEAR:
             ui.printClearFoodListMessage();
@@ -202,6 +203,7 @@ public class Parser {
             return;
         case COMMAND_ADD:
             ui.printNewFood(getProcessedAdd(userInput, manager.getFoodList()));
+            manager.setCalculator();
             return;
         default:
             throw new DietException("☹ There's no such command!");
