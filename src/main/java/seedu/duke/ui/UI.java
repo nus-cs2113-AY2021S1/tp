@@ -230,4 +230,8 @@ public class UI {
         System.out.println("No bunny matching filter options");
 
     }
+
+    public static void printAskForName(String username) {
+        System.out.print(ClickerMessages.ASK_FOR_NAME);
+    }
 }

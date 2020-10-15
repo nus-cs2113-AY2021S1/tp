@@ -21,6 +21,7 @@ import static seedu.duke.parsers.Parsers.getUserInput;
 import static seedu.duke.ui.UI.printDivider;
 import static seedu.duke.ui.UI.printFarewellMessage;
 import static seedu.duke.ui.UI.printHelloMessage;
+import static seedu.duke.ui.UI.printAskForName;
 
 public class Duke {
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -29,11 +30,10 @@ public class Duke {
      * Settings set to defaults.
      **/
     private static final int NUMBER_OF_SETTINGS = 1; // currently only username
-    private static final int NUMBER_OF_HISTORY = 1;
     public static String username = "User";
     public static ArrayList<String> savedSettings = new ArrayList<>(NUMBER_OF_SETTINGS);
     public static final WritingList writings = new WritingList();
-    public static final User user = new User(username);
+    public static User user;
 
     /**
      * Main entry-point for the Fluffle application.
@@ -47,8 +47,13 @@ public class Duke {
         username = savedSettings.get(0);
 
         System.out.println("Write a story with\n" + Logos.BIG_FLUFFLE_LOGO);
-        printHelloMessage(username);
 
+        printHelloMessage(username);
+        printAskForName(username);
+        username = getUserInput(SCANNER);
+        user = new User(username);
+        user.greetUser();
+        user.printInstruction();
         String userInput;
         CommandChecker commandChecker = UNRECOGNISED;
 
