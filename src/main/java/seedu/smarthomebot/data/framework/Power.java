@@ -151,6 +151,7 @@ public class Power {
         assert (powerUsed >= 0) : "Power usage cannot be negative! " + powerUsed;
         powerUsed = (int) ceil(totalHours * power / 1000.00);
         totalPowerConsumption += powerUsed;
+        assert totalPowerConsumption >= 0 : "totalPowerConsumption cannot be negative";
     }
 
 }
