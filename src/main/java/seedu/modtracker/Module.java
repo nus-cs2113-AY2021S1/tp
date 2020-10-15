@@ -62,8 +62,10 @@ public class Module {
     public void minusActualTime(String time, String week) {
         double d = Double.parseDouble(time);
         int i = Integer.parseInt(week);
-        assert this.actualTime[i - INDEX_OFFSET] != NO_INPUT : "Cannot minus if actual time is not initialised";
-        this.actualTime[i - INDEX_OFFSET] -= d;
+        //assert this.actualTime[i - INDEX_OFFSET] != NO_INPUT : "Cannot minus if actual time is not initialised";
+        if (this.actualTime[i - INDEX_OFFSET] != NO_INPUT) {
+            this.actualTime[i - INDEX_OFFSET] -= d;
+        }
     }
 
     @Override
