@@ -40,7 +40,8 @@ Create a new project.
     * Duration and sprint interval must be integers.
     * All the fields must hava an input, else a project is not added.
 * Expected outcome:
-    ```Project successfully created.
+    ```
+    Project successfully created.
     ================= PROJECT =================
     [Title: MeTube ]
        [Description: video streaming software ]
@@ -77,7 +78,8 @@ Views the specified task.
 * Expected outcome:
 
 Assuming the third task have the following attributes: Title: Add parser, Description: add UI, Priority: HIGH, Done: false.
-```[Task]
+```
+[Task]
       ID: 1
       Add parser 
       Description: add an interactive UI 
