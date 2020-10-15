@@ -4,4 +4,4 @@ bedroom 2|fan2|200|Fan|Off|36.4
 bedroom 1|ac1|1000|AirConditioner|On|256.0
 bedroom 2|ac2|1000|AirConditioner|On|65.0
 bedroom 1|light1|50|Light|Off|0.9
-bedroom 2|ligt2|50|Light|Off|0.45
+bedroom 2|light2|100|Light|Off|0.0
