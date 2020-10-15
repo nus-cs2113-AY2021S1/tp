@@ -28,7 +28,7 @@ public class NuSchedule {
             ui.showError(e.getMessage());
         }
         try {
-            events = new EventList(storage.load());
+            events = new EventList(storage.loadEvents());
         } catch (NuScheduleException e) {
             ui.showLoadingError();
             events = new EventList();
@@ -65,5 +65,6 @@ public class NuSchedule {
 
     public static void main(String[] args){
         new NuSchedule("data/events.txt").run();
+        //todo add more files for different purposes
     }
 }

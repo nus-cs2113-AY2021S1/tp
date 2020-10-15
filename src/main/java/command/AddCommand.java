@@ -38,6 +38,6 @@ public class AddCommand extends Command {
         events.addEvent(event);
         ui.printAddEventMessage(event);
         ui.printNumEvent(events.getSize());
-        //storage.writeFile(tasks.getEventList());
+        storage.writeFile(events.getEventList());
     }
 }

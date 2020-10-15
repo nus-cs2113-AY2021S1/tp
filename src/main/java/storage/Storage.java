@@ -1,7 +1,9 @@
 package storage;
 
-
 import event.Event;
+import event.Assignment;
+import event.Class;
+import event.PersonalEvent;
 import exception.CreatingFileException;
 import exception.LoadingException;
 import exception.WritingFileException;
@@ -11,6 +13,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -77,9 +81,50 @@ public class Storage {
      * @return the Events in an ArrayList
      * @throws LoadingException represents the <code>Events</code> is not correctly created
      */
-    public ArrayList<Event> load() throws LoadingException {
-        return null;
-        //to be implemented
+    public ArrayList<Event> loadEvents() throws LoadingException {
+        ArrayList<Event> events = new ArrayList<Event>();
+        File dataFile = new File(filePath);
+        try {
+            Scanner s = new Scanner(dataFile);
+            while (s.hasNext()) {
+                String[] words = s.nextLine().split(REGEX_IN_FILE);
+                switch (words[0]) {
+                    case "C":
+                        events.add(new Class(words[2],LocalDateTime.parse(words[3])));
+                        if (Integer.parseInt(words[1]) == 1) {
+                            events.get(events.size() - 1).markAsDone();
+                        }
+                        break;
+                    case "A":
+                        try {
+                            events.add(new Assignment(words[2], LocalDateTime.parse(words[3])));
+                        } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
+                            throw new LoadingException();
+                        }
+                        if (Integer.parseInt(words[1]) == 1) {
+                            events.get(events.size() - 1).markAsDone();
+                        }
+                        break;
+                    case "P":
+                        try {
+                            events.add(new PersonalEvent(words[2], LocalDateTime.parse(words[3])));
+                        } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
+                            throw new LoadingException();
+                        }
+                        if (Integer.parseInt(words[1]) == 1) {
+                            events.get(events.size() - 1).markAsDone();
+                        }
+                        break;
+                    default:
+                        throw new LoadingException();
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("file not found");
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
+            throw new LoadingException();
+        }
+        return events;
     }
 
     /**

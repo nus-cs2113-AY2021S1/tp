@@ -5,7 +5,7 @@ import command.*;
 
 import event.Assignment;
 import event.PersonalEvent;
-
+import event.Class;
 import exception.NoEventTimeMarkerException;
 import exception.TimeFormatException;
 import exception.EmptyEventException;
@@ -27,7 +27,7 @@ public abstract class Parser {
     public static final String Event_DONE = "done";
     public static final String ADD_ASSIGNMENT = "assignment";
     public static final String ADD_CLASS = "class";
-    public static final String ADD_PERSONAL_EVENT = "personalevent";
+    public static final String ADD_PERSONAL_EVENT = "personalEvent";
     public static final String Event_DELETE = "delete";
     public static final String Event_FIND = "find";
     public static final String BY = "/by";
@@ -102,6 +102,7 @@ public abstract class Parser {
         //            return new DeleteCommand(EventIndex);
         //        }
         //
+
                 //this block deals with add command
                 //we shall check that the user input is not meant for any other command beforehand
                 //because the default block will throw an exception.
@@ -162,7 +163,7 @@ public abstract class Parser {
                                     + "T"
                                     + fullCommand.substring(dividerPosition + 4 + timeDivider + 1);
 
-                            return new AddCommand(new event.Class(fullCommand.substring(5, dividerPosition)
+                            return new AddCommand(new Class(fullCommand.substring(5, dividerPosition)
                             , LocalDateTime.parse(dateTime)));
                         } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                             throw new TimeFormatException();
@@ -189,7 +190,8 @@ public abstract class Parser {
                             dateTime = fullCommand.substring(dividerPosition + 4, dividerPosition + 4 + timeDivider)
                                     + "T"
                                     + fullCommand.substring(dividerPosition + 4 + timeDivider + 1);
-                            return new AddCommand(new PersonalEvent(fullCommand.substring(13,dividerPosition),LocalDateTime.parse(dateTime)));
+                            return new AddCommand(new PersonalEvent(fullCommand.substring(13,dividerPosition)
+                                    ,LocalDateTime.parse(dateTime)));
                         } catch (StringIndexOutOfBoundsException e) {
                             throw new EmptyEventException();
                         }
@@ -199,6 +201,7 @@ public abstract class Parser {
 
                     default:
                         throw new WrongCommandException();
+
 
                 }
     }
