@@ -1,5 +1,7 @@
 package command;
 
+import locationlist.BusStopList;
+import locationlist.LocationList;
 import storage.Storage;
 import eventlist.EventList;
 import ui.UI;
@@ -20,7 +22,7 @@ public abstract class Command {
      * @throws NuScheduleException the exceptions can happen in this program,
      *                             to be handled based on the specific exception.
      */
-    public abstract void execute(EventList events, UI ui, Storage storage) throws NuScheduleException;
+    public abstract void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) throws NuScheduleException;
 
     public boolean isExit() {
         return isExit;

@@ -1,6 +1,8 @@
 package command;
 
 import exception.NuScheduleException;
+import locationlist.BusStopList;
+import locationlist.LocationList;
 import storage.Storage;
 import eventlist.EventList;
 import ui.UI;
@@ -17,7 +19,7 @@ public class PrintFullListCommand extends Command {
      *                             to be handled based on the specific exception.
      */
     @Override
-    public void execute(EventList events, UI ui, Storage storage) throws NuScheduleException {
+    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) throws NuScheduleException {
         ui.printEventList(events.getEventList());
     }
 }
