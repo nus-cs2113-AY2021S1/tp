@@ -8,15 +8,6 @@ import seedu.eduke8.question.Question;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_STORAGE_FAIL;
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_INSUFFICIENT_TOPIC_QUESTIONS;
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_INVALID_QUESTION_NUMBER;
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAND;
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNKNOWN;
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_ANSWER_NOT_INDEX;
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_WRONG_FORMAT;
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_COMMAND_NOT_IMPLEMENTED;
-
 public class Ui {
 
     private static final int LAST_OPTION = 4;
@@ -33,40 +24,24 @@ public class Ui {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String HORIZONTAL_LINE = "-------------------------------------------------------------------";
     private static final String MESSAGE_ABOUT = "E-Duke-8 is a desktop app that helps CS2113/T students learn and"
-            + System.lineSeparator()
-            + "understand software engineering and OOP principles through a"
-            + System.lineSeparator()
-            + "gamified platform and enhance their "
-            + "learning experience. It also"
-            + System.lineSeparator()
-            + "consolidates key concepts for easy revision.";
-    private static final String MESSAGE_GREETINGS = "Hello! I'm E-Duke-8"
-            + System.lineSeparator()
+            + System.lineSeparator() + "understand software engineering and OOP principles through a"
+            + System.lineSeparator() + "gamified platform and enhance their " + "learning experience. It also"
+            + System.lineSeparator() + "consolidates key concepts for easy revision.";
+    private static final String MESSAGE_GREETINGS = "Hello! I'm E-Duke-8" + System.lineSeparator()
             + "What can I do for you?";
     private static final String MESSAGE_EXIT = "Bye bye. Hope you have a nice day and see you soon!";
     private static final String MESSAGE_HELP = "These are the commands that you can used:"
-            + System.lineSeparator()
-            + "1) about"
-            + System.lineSeparator()
-            + "2) help"
-            + System.lineSeparator()
-            + "3) topics"
-            + System.lineSeparator()
-            + "4) textbook"
-            + System.lineSeparator()
-            + "5) quiz t/<topic> n/<number of questions>"
-            + System.lineSeparator()
-            + "6) exit";
+            + System.lineSeparator() + "1) about" + System.lineSeparator() + "2) help" + System.lineSeparator()
+            + "3) topics" + System.lineSeparator() + "4) textbook" + System.lineSeparator()
+            + "5) quiz t/<topic> n/<number of questions>" + System.lineSeparator() + "6) exit";
     private static final String MESSAGE_QUIZ_START = "Start of quiz:";
     private static final String MESSAGE_QUIZ_END = "This is the end of the quiz!"
-            + System.lineSeparator()
-            + "Hope you have learnt something new!";
+            + System.lineSeparator() + "Hope you have learnt something new!";
     private static final String MESSAGE_ANSWER_WRONG = "Oops! The correct answer is ";
     private static final String MESSAGE_ANSWER_WRONG_SECOND = "! Do visit the textbook to read up more.";
     private static final String MESSAGE_ANSWER_CORRECT = "Congrats! This answer is correct! Well Done!";
     private static final String MESSAGE_TEXTBOOK = "The textbook for this module is available at:"
-            + System.lineSeparator()
-            + TEXTBOOK_WEBSITE;
+            + System.lineSeparator() + TEXTBOOK_WEBSITE;
     private static final String MESSAGE_HINT = "Hint: ";
 
     public String getInputFromUser() {

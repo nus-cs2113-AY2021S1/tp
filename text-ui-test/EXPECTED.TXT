@@ -29,7 +29,7 @@ https://nus-cs2113-ay2021s1.github.io/website/se-book-adapted/index.html
 -------------------------------------------------------------------
 -------------------------------------------------------------------
 These are the available topics:
-1) OOP
+OOP
 -------------------------------------------------------------------
 -------------------------------------------------------------------
 Start of quiz:
@@ -63,7 +63,7 @@ The topic chosen is: OOP
 4) D
 -------------------------------------------------------------------
 -------------------------------------------------------------------
-Oops! Please try again! Do visit the textbook to read up more.
+Oops! The correct answer is 1! Do visit the textbook to read up more.
 -------------------------------------------------------------------
 This is the end of the quiz!
 Hope you have learnt something new!
