@@ -52,8 +52,12 @@ public class MenuParser implements Parser {
             int numOfQuestions = 0;
             String topicName = "";
             if (commandArr.length == 3) {
-                numOfQuestions = Integer.parseInt(commandArr[2].substring(2));
-                topicName = commandArr[1].substring(2);
+                try {
+                    numOfQuestions = Integer.parseInt(commandArr[2].substring(2));
+                    topicName = commandArr[1].substring(2);
+                } catch (NumberFormatException nfe) {
+                    return new IncorrectCommand("Please choose the answer by index");
+                }
             } else {
                 LOGGER.log(Level.WARNING, "Parsing Error: Wrong number of fields used in quiz command.");
                 return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
