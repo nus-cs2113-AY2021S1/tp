@@ -232,6 +232,13 @@ public class ModuleList {
         }
     }
 
+    /**
+     * Adds actual workload to an existing module
+     *
+     * @param input module code, actual time spent and week input by user
+     * @param toPrint whether the UI should print the output.
+     * @param storage storage object where data is stored.
+     */
     public void addTime(String input, boolean toPrint, Storage storage) {
         String[] commandInfo = input.split(" ", 4);
         commandInfo[1] = commandInfo[1].toUpperCase();
@@ -244,6 +251,13 @@ public class ModuleList {
         }
     }
 
+    /**
+     * Adds actual workload to an existing module
+     *
+     * @param input module code, actual time spent and week input by user
+     * @param toPrint whether the UI should print the output.
+     * @param storage storage object where data is stored.
+     */
     public void minusTime(String input, boolean toPrint, Storage storage) {
         String[] commandInfo = input.split(" ", 4);
         commandInfo[1] = commandInfo[1].toUpperCase();
