@@ -1,34 +1,28 @@
 package seedu.duke.human;
 
-import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.AniException;
 import seedu.duke.watchlist.Watchlist;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class User extends Human {
     public static final String GENDER_MALE = "male";
     public static final String GENDER_FEMALE = "female";
     public static final String GENDER_OTHER = "other";
-    public Bookmark bookmark;
+    private static final Logger LOGGER = Logger.getLogger(User.class.getName());
 
-    protected Date birthdate;
     protected Gender gender;
+    protected Workspace activeWorkspace;
+    protected ArrayList<Workspace> workspaceList = new ArrayList<>();
 
-    private Watchlist activeWatchlist;
-    private ArrayList<Watchlist> watchlistList;
-
-    private static final SimpleDateFormat DATE_MONTH_YEAR = new SimpleDateFormat("dd/MM/yyyy");
-
-    public User(String name, String birthdate, String gender) throws ParseException, AniException {
+    public User(String name, String gender) throws AniException {
         super(name);
-        setBirthdate(birthdate);
+        LOGGER.setLevel(Level.WARNING);
+
         setGender(gender);
-        bookmark = new Bookmark();
-        watchlistList = new ArrayList<>();
+        activeWorkspace = null;
     }
 
     public void setGender(String genderString) throws AniException {
@@ -49,41 +43,8 @@ public class User extends Human {
         }
     }
 
-    public void setBirthdate(String birthdateString) throws ParseException {
-        birthdate = DATE_MONTH_YEAR.parse(birthdateString);
-        assert birthdate != null : "Birthdate cannot be null";
-    }
-
-    public void setActiveWatchlist(Watchlist activeWatchlist) {
-        this.activeWatchlist = activeWatchlist;
-    }
-
-    public void setWatchlistList(ArrayList<Watchlist> watchlistList) {
-        this.watchlistList = watchlistList;
-    }
-
-    public String getDobString() {
-        return DATE_MONTH_YEAR.format(birthdate);
-    }
-
     public Gender getGender() {
         return gender;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Watchlist getActiveWatchlist() {
-        return activeWatchlist;
-    }
-
-    public String getActiveWatchlistName() {
-        return activeWatchlist.getName();
-    }
-
-    public ArrayList<Watchlist> getWatchlistList() {
-        return watchlistList;
     }
 
     /**
@@ -99,8 +60,62 @@ public class User extends Human {
         }
     }
 
+
+    public Workspace getActiveWorkspace() {
+        return activeWorkspace;
+    }
+
+    public void setActiveWorkspace(Workspace inputWorkspace) {
+        activeWorkspace = inputWorkspace;
+
+        if (activeWorkspace != null) {
+            //Loading of changed active user should be done here. For now set to empty
+            ArrayList<Watchlist> watchlistLists = new ArrayList<>();
+            Watchlist watchlist = new Watchlist("Default");
+            watchlistLists.add(watchlist);
+            inputWorkspace.setActiveWatchlist(watchlist);
+            inputWorkspace.setWatchlistList(watchlistLists);
+            LOGGER.log(Level.INFO, "Workspace switched: " + inputWorkspace.getName());
+        }
+    }
+
+    public int getTotalWorkspaces() {
+        return workspaceList.size();
+    }
+
+    public Workspace addWorkspace(String name) throws AniException {
+        Workspace newWorkspace = new Workspace(name);
+        checkIfWorkspaceExist(name);
+
+        assert (name != null) : "Workspace details should not have any null.";
+
+        workspaceList.add(newWorkspace);
+
+        LOGGER.log(Level.INFO, "Workspace created: " + name + " | " + gender);
+        return newWorkspace;
+    }
+
+    private void checkIfWorkspaceExist(String name) throws AniException {
+        for (Workspace existingWorkspace : workspaceList) {
+            if (existingWorkspace.getName().equals(name)) {
+                throw new AniException("A workspace with " + name + " already exist. Choose a different name!");
+            }
+        }
+    }
+
+    public Workspace getWorkspace(String name) throws AniException {
+        for (Workspace existingWorkspace : workspaceList) {
+            if (existingWorkspace.getName().equals(name)) {
+                return existingWorkspace;
+            }
+        }
+
+        throw new AniException("No such workspace!");
+    }
+
+
     @Override
     public String toString() {
-        return "\n Name: " + name + "\n Birthdate: " + getDobString() + "\n Gender: " + getGender();
+        return "\n Name: " + getHonorificName() + "\n Gender:" + getGender();
     }
 }

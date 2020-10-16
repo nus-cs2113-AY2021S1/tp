@@ -4,7 +4,7 @@ import seedu.duke.anime.Anime;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.AniException;
-import seedu.duke.human.UserManagement;
+import seedu.duke.human.User;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,9 +29,9 @@ public class BookmarkAnimeCommand extends Command {
     }
 
     @Override
-    public String execute(AnimeData animeData, UserManagement userManagement) throws AniException {
+    public String execute(AnimeData animeData, User user) throws AniException {
         String result = "";
-        Bookmark bookmark = userManagement.getActiveUser().bookmark;
+        Bookmark bookmark = user.getActiveWorkspace().bookmark;
 
         switch (bookmarkAction) {
         case "e":

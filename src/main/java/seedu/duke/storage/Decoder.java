@@ -2,10 +2,10 @@ package seedu.duke.storage;
 
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
+import seedu.duke.human.Workspace;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,13 +23,12 @@ public class Decoder {
         try {
             String[] fileStringParts = fileString.split(FILE_LINE_DELIMITER);
             String name = fileStringParts[0].trim();
-            String birthDate = fileStringParts[1].trim();
-            String gender = fileStringParts[2].trim();
+            String gender = fileStringParts[1].trim();
 
-            user = new User(name, birthDate, gender);
+            user = new User(name, gender);
             ui.printMessage("AniChan successfully loaded the user.");
             LOGGER.log(Level.INFO, "User \"" + name + "\" successfully loaded.");
-        } catch (AniException | ParseException | IndexOutOfBoundsException exception) {
+        } catch (AniException | IndexOutOfBoundsException exception) {
             ui.printErrorMessage("AniChan could not load the saved user.");
             LOGGER.log(Level.WARNING, "Failed to load the user: " + exception.getMessage());
         }

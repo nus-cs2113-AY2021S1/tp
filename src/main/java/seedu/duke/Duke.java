@@ -4,8 +4,8 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.anime.AnimeStorage;
 import seedu.duke.command.Command;
 import seedu.duke.exception.AniException;
+import seedu.duke.human.Workspace;
 import seedu.duke.human.User;
-import seedu.duke.human.UserManagement;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -24,36 +24,47 @@ public class Duke {
 
     private AnimeStorage animeStorage;
     private AnimeData animeData;
-    private UserManagement userManagement;
+    private User user;
 
     public Duke() {
         ui = new Ui();
         parser = new Parser();
         Storage storage = new Storage(USER_PROFILE_FILE_NAME, WATCHLIST_FILE_NAME);
-        userManagement = new UserManagement(storage);
 
         // Load user and watchlist list.
         ui.printWelcomeMessage();
         ui.printHorizontalLine();
-        userManagement.setActiveUser(storage.loadUser(ui));
+        // user.setActiveWorkspace(storage.loadUser(ui));
+        user = storage.loadUser(ui);
         final ArrayList<Watchlist> watchlistList = storage.loadWatchlist(ui);
         ui.printHorizontalLine();
 
-        // Initial Set up
-        assert userManagement != null : "User management should not be null!";
-        User activeUser = userManagement.getActiveUser();
-        if (activeUser == null) {
-            userManagement.addUserDialogue(ui);
-            activeUser = userManagement.getActiveUser();
-            assert userManagement.getActiveUser() != null : "User should have been created";
+        // Setup user and workspace
+
+        if (user == null) {
+            while (true) {
+                try {
+                    String[] userDialogueInput = ui.createUserDialogue();
+                    user = new User(userDialogueInput[0], userDialogueInput[1]);
+                    user.setActiveWorkspace(user.addWorkspace(userDialogueInput[2]));
+                    break;
+                } catch (AniException e) {
+                    ui.printErrorMessage("Invalid input detected!");
+                }
+            }
         }
 
-        activeUser.setWatchlistList(watchlistList);
+        // Get activeWorkspace
+        Workspace activeWorkspace = user.getActiveWorkspace();
+        assert user.getActiveWorkspace() != null : "Workspace should have been created";
+
+
+        activeWorkspace.setWatchlistList(watchlistList);
         if (watchlistList.isEmpty()) {
             Watchlist activeWatchlist = new Watchlist("Default");
             watchlistList.add(activeWatchlist);
-            activeUser.setActiveWatchlist(activeWatchlist);
-            activeUser.setWatchlistList(watchlistList);
+            activeWorkspace.setActiveWatchlist(activeWatchlist);
+            activeWorkspace.setWatchlistList(watchlistList);
 
             try {
                 storage.saveWatchlist(watchlistList);
@@ -61,8 +72,8 @@ public class Duke {
                 ui.printErrorMessage(exception.getMessage());
             }
         } else {
-            activeUser.setActiveWatchlist(watchlistList.get(0));
-            assert activeUser.getActiveWatchlist() != null : "Active watchlist should not be null.";
+            activeWorkspace.setActiveWatchlist(watchlistList.get(0));
+            assert activeWorkspace.getActiveWatchlist() != null : "Active watchlist should not be null.";
         }
 
         try {
@@ -77,10 +88,10 @@ public class Duke {
         boolean shouldExit = false;
         while (!shouldExit) {
             try {
-                String userInput = ui.readUserInput(userManagement.getActiveUser());
+                String userInput = ui.readUserInput(user);
                 Command command = parser.getCommand(userInput);
-                String commandOutput = command.execute(animeData, userManagement);
-                
+                String commandOutput = command.execute(animeData, user);
+
                 ui.printMessage(commandOutput);
                 shouldExit = command.getShouldExit();
             } catch (AniException exception) {
@@ -88,7 +99,7 @@ public class Duke {
             }
         }
 
-        String goodbyeName = userManagement.getActiveUser().getHonorificName();
+        String goodbyeName = user.getHonorificName();
         ui.printGoodbyeMessage(goodbyeName);
     }
 
