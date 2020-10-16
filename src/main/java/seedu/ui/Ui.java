@@ -15,8 +15,8 @@ import static seedu.messages.Messages.WELCOME_MESSAGE;
 public class Ui {
     private final Scanner in;
     private final PrintStream out;
-    private final TaskDisplay taskDisplay;
-    private final DisplayDateStructure displayDateStructure;
+    private TaskDisplay taskDisplay;
+    private DisplayDateStructure displayDateStructure;
 
     public Ui() {
         this(System.in, System.out);
@@ -25,25 +25,30 @@ public class Ui {
     public Ui(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
-        taskDisplay = new TaskDisplay();
-        displayDateStructure = new WeekStructure();
+    //        taskDisplay = new TaskDisplay();
+    //        displayDateStructure = new WeekStructure();
     }
 
     public String getUserInput() {
         return in.nextLine();
     }
 
-    public void displayAll(TaskMap tasks) {
+    private void displayAll(TaskMap tasks) {
         // Basic adding sequence
         assert tasks != null : "null tasks";
         displayTasks(tasks);
-
-        // Weekly view
-        printScreen(tasks);
     }
 
-    private void printScreen(TaskMap tasks) {
+    private void displayByWeek(TaskMap tasks) {
+        // Weekly view
+        displayDateStructure = new WeekStructure();
         displayDateStructure.generateScreen(tasks);
+        printScreen();
+    }
+
+
+
+    private void printScreen() {
         for (char[] arr : displayDateStructure.getScreen()) {
             out.println(arr);
         }
@@ -81,8 +86,11 @@ public class Ui {
     public void showCommandResult(CommandResult result) {
         assert result.getMessage() != null : "null message";
         showMessage(result.getMessage());
-        if (result.getTasks() != null) {
+        if (result.getDisplayMode() == DisplayMode.ALL) {
             displayAll(result.getTasks());
+        } else if (result.getDisplayMode() == DisplayMode.WEEK) {
+            // Weekly view
+            displayByWeek(result.getTasks());
         }
     }
 }

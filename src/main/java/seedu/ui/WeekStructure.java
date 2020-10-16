@@ -9,10 +9,11 @@ import java.util.Arrays;
 public class WeekStructure extends DisplayDateStructure {
     private final int DISPLAY_LENGTH = 140;
     private final int DISPLAY_HEIGHT = 10;
+    private final int DAY_COLUMN_WIDTH = 20;
 
     @Override
     protected void generateScreen(TaskMap tasks) {
-        LocalDate startDate = currentDate.minusDays(currentDateDayOfWeek.getValue());
+        LocalDate startDate = currentDate.minusDays(currentDateDayOfWeek.getValue() - 1);
         LocalDate endDate = startDate.plusDays(DAYS_PER_WEEK);
 
         String monthString = currentMonth.getDisplayName(MONTH_TEXT_STYLE, LOCALE);
@@ -25,31 +26,30 @@ public class WeekStructure extends DisplayDateStructure {
         setEmptyScreen();
 
         // Display month name
-        monthString.getChars(0, monthString.length(), screen[currentRow++],
-            (DISPLAY_LENGTH - monthString.length()) / 2);       // centralise month string
+        putsIntoArrayWithCentrialise(monthString, screen[currentRow++], 0, DISPLAY_LENGTH);
 
         // Display weekdays
         for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(1)) {
-            // for each day
 
+            // for each day
             String dayOfWeek = date.getDayOfWeek().getDisplayName(WEEK_TEXT_STYLE, LOCALE);
-            dayOfWeek.getChars(0, dayOfWeek.length(), screen[currentRow++],
-                (currentCol * 2 + 20 - dayOfWeek.length()) / 2);   // centralise month string
+            putsIntoArrayWithCentrialise(dayOfWeek,
+                screen[currentRow++], currentCol, currentCol + DAY_COLUMN_WIDTH);
 
             String dayOfMonth = String.valueOf(date.getDayOfMonth());
-            dayOfMonth.getChars(0, dayOfMonth.length(), screen[currentRow++],
-                (currentCol * 2 + 20 - dayOfMonth.length()) / 2);   // centralise month string
+            putsIntoArrayWithCentrialise(dayOfMonth,
+                screen[currentRow++], currentCol, currentCol + DAY_COLUMN_WIDTH);
 
             for (Task task : tasks.searchDate(date).getValues()) {
                 String temp;
                 if (currentRow == DISPLAY_HEIGHT - 1) {
                     temp = "...";
-                    temp.getChars(0, temp.length(), screen[currentRow], currentCol);
+                    putsIntoArray(temp, screen[currentRow], currentCol);
                     break;
                 }
                 temp = "#" + task.getTaskID() + " " + task.getDescription();
                 temp = temp.length() > 20 ? temp.substring(0, 16) + "..." : temp;
-                temp.getChars(0, temp.length(), screen[currentRow++], currentCol);
+                putsIntoArray(temp, screen[currentRow++], currentCol);
             }
 
             currentCol += 20;
@@ -62,4 +62,16 @@ public class WeekStructure extends DisplayDateStructure {
             Arrays.fill(screen[i], ' ');
         }
     }
+
+    private void putsIntoArray(String string, char[] arr, int start) {
+        string.getChars(0, string.length(), arr, start);
+    }
+
+    private void putsIntoArrayWithCentrialise(String string, char[] arr, int start, int end) {
+        // assert within range
+        assert (end - start) > string.length();
+        int dstBegin = start + (end - start - string.length()) / 2;
+        string.getChars(0, string.length(), arr, dstBegin);
+    }
+
 }
