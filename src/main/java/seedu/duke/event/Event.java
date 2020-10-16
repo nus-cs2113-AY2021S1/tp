@@ -62,10 +62,13 @@ public class Event {
     public void setDateTime(String dateStr, String timeStr) {
         eventTime = timeStr;
         try {
-            LocalDate.parse(dateStr);
+            date = LocalDate.parse(dateStr);
 
         } catch (DateTimeParseException e) {
             // Ignore
+        }
+        if(date != null){
+            return;
         }
         LocalDateTime start = null;
         if (dateStr.toLowerCase().contains("next")) {
