@@ -18,7 +18,7 @@ class AddCommandTest {
         Show show = new Show("friends", 20, 3, episodes);
         ShowList.setShow("friends", show);
         assertEquals(show, ShowList.getShow("friends"));
-        String[] inputExample = {"add", "friends", "3", "21,10,12"};
+        String[] inputExample = {"add", "friends", "20", "3", "21,10,12"};
         updateObject = new AddCommand(inputExample);
     }
 

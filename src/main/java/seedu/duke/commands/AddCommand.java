@@ -16,8 +16,9 @@ public class AddCommand extends Command {
         if (input.length < 3) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        int numSeasons = Integer.parseInt(input[2]);
-        String[] tokenizedSeasons = input[3].split(",");
+        int showDuration = Integer.parseInt(input[2]);
+        int numSeasons = Integer.parseInt(input[3]);
+        String[] tokenizedSeasons = input[4].split(",");
         int[] seasonEpisodes = new int[numSeasons];
         int i = 0;
         if (tokenizedSeasons.length != numSeasons) {
