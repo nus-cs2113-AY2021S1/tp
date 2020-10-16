@@ -75,14 +75,6 @@ public class Tag {
         this.tagColor = tagColor;
     }
 
-    public Attribute getTagAttribute() {
-        return tagAttribute;
-    }
-
-    public void setTagAttribute(Attribute tagColor) {
-        this.tagAttribute = tagColor;
-    }
-
     /** Setter function for the color of the tag. */
     public void setTagColor(String tagColor) {
         switch (tagColor.toUpperCase()) {
@@ -119,6 +111,14 @@ public class Tag {
             this.tagAttribute = Attribute.CLEAR();
             break;
         }
+    }
+
+    public Attribute getTagAttribute() {
+        return tagAttribute;
+    }
+
+    public void setTagAttribute(Attribute tagColor) {
+        this.tagAttribute = tagColor;
     }
 
     /**
