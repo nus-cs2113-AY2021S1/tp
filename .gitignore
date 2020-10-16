@@ -27,3 +27,8 @@ data/notes/testNote_8.txt
 data/notes/testNote_9.txt
 data/notebook.txt
 data/notes/TestNote.txt
+
+# Logger Files
+FindCommand.log
+HelpCommand.log
+HelopCommand.log.1
