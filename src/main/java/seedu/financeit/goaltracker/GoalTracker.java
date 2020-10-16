@@ -1,6 +1,6 @@
 package seedu.financeit.goaltracker;
 
-import seedu.financeit.common.CommandPacket;
+import java.time.DateTimeException;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.Goal;
 import seedu.financeit.manualtracker.Ledger;
@@ -10,18 +10,18 @@ import seedu.financeit.manualtracker.subroutine.Entry;
 import seedu.financeit.manualtracker.subroutine.EntryList;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.UiManager;
+import java.time.Month;
 
 import java.util.Scanner;
 
 
 public class GoalTracker {
-    private static CommandPacket cmdPacket;
+    private static String[] cmdPacket;
     private static Goal goalSetter;
     private static Scanner scanner = new Scanner(System.in);
     private static int expenseGoal = 0;
     private static int incomeGoal = 0;
     private static String input;
-    private static boolean backToMenu = false;
     private static boolean exitTracker = false;
     private static TotalGoalList totalGoalList = new TotalGoalList();
     private static Entry entryData;
@@ -30,27 +30,33 @@ public class GoalTracker {
     private static double expenses = 0.0;
     private static double incomes = 0.0;
     private static double totalIncomes = 0.0;
+    private static Month month;
+    private static Month ledgerMonth;
 
 
     public static void main() {
         UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, "Welcome to Goals Tracker");
-        System.out.println("[1]. Set goals for Expenses");
-        System.out.println("[2]. Set goals for Income");
-        System.out.println("[3]. Enter <exit> to leave Goals Tracker");
-        UiManager.printWithStatusIcon(Constants.PrintType.INSTRUCTION, "Input either expense/income "
-                + "to set goals for it."
-        );
-        backToMenu = false;
+        UiManager.printWithStatusIcon(Constants.PrintType.INSTRUCTION, "Input the following commands "
+                        + "to set goals for either expense or income.");
+        System.out.println("[1]. expense <amount> for <Month in number form (e.g 01 -> Jan)>");
+        System.out.println("[2]. income <amount> for <Month in number form (e.g 01 -> Jan)>");
+        System.out.println("[3]. To display goals for respective months, enter the following commands"
+                + " display expense/income for <Month in number form (e.g 01 -> Jan)>");
+        System.out.println("[4]. Enter <exit> to leave Goals Tracker");
+
         exitTracker = false;
         input = UiManager.handleInput();
-        cmdPacket = new InputParser().parseInput(input.toLowerCase());
+        cmdPacket = new InputParser().parseGoalCommand(input.toLowerCase());
         while (!exitTracker) {
-            switch (cmdPacket.getCommandString()) {
+            switch (cmdPacket[0]) {
             case "expense":
                 setExpenseGoal();
                 break;
             case "income":
                 setIncomeGoal();
+                break;
+            case "display":
+                displayGoal();
                 break;
             case "exit":
                 exitTracker = true;
@@ -58,7 +64,7 @@ public class GoalTracker {
             default:
                 System.out.println("Invalid Command");
                 input = UiManager.handleInput();
-                cmdPacket = new InputParser().parseInput(input.toLowerCase());
+                cmdPacket = new InputParser().parseGoalCommand(input.toLowerCase());
                 break;
             }
         }
@@ -73,85 +79,87 @@ public class GoalTracker {
     }
 
     public static void setGoals(int expense, int income) {
-        if (expense != 0) {
-            expenseGoal = expense;
-            goalSetter = new Goal(expenseGoal, "Expense");
-            totalGoalList.addGoal(goalSetter);
+        if(expense != 0) {
+            try {
+                month = Month.of(Integer.parseInt(cmdPacket[3]));
+                expenseGoal = expense;
+                goalSetter = new Goal(expenseGoal, "Expense", month);
+                totalGoalList.addGoal(goalSetter);
+            } catch (DateTimeException e) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
+                        + " a valid month");
+           }
         }
         if (income != 0) {
-            incomeGoal = income;
-            goalSetter = new Goal(incomeGoal, "Income");
-            totalGoalList.addGoal(goalSetter);
+            try {
+                month = Month.of(Integer.parseInt(cmdPacket[3]));
+                incomeGoal = income;
+                goalSetter = new Goal(incomeGoal, "Income", month);
+                totalGoalList.addGoal(goalSetter);
+            } catch (DateTimeException e) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
+                        + " a valid month");
+            }
+        }
+    }
+
+    private static void displayGoal() {
+        try {
+            if (cmdPacket[1].equals("expense")) {
+                handleExpenseGoal();
+            } else {
+                handleIncomeGoal();
+            }
+        } catch (IndexOutOfBoundsException e) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Please enter either expense "
+            + "or income");
+            main();
         }
     }
 
     private static void setExpenseGoal() {
-        backToMenu = false;
-        while (!backToMenu && exitTracker == false) {
-            System.out.println("Please enter your goals for your expenses.");
-            System.out.println("However if you wish to go back to Main Menu. Please enter <back>");
-            if (scanner.hasNextInt()) {
-                expenseGoal = scanner.nextInt();
-                System.out.println("You have set $" + expenseGoal + " as your Expense Goals");
-                goalSetter = new Goal(expenseGoal, "Expense");
-                totalGoalList.addGoal(goalSetter);
-                backToMenu = true;
-            } else if (scanner.hasNext()) {
-                input = scanner.next();
-                if (input.equals("back")) {
-                    backToMenu = true;
-                    main();
-                } else {
-                    UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, "Invalid input. Please enter "
-                            + "<back> to go Main Menu or enter a number");
-                }
-            }
-        }
-
-        if (backToMenu == true && exitTracker == false) {
-            System.out.println("Do you want to exit Expense Goal Tracker? y/n ");
-            input = UiManager.handleInput();
-            cmdPacket = new InputParser().parseInput(input.toLowerCase());
-            if (cmdPacket.getCommandString().equals("y")) {
-                main();
-            } else {
-                setExpenseGoal();
-            }
+        try {
+            month = Month.of(Integer.parseInt(cmdPacket[3]));
+            expenseGoal = Integer.parseInt(cmdPacket[1]);
+            goalSetter = new Goal(expenseGoal, "Expense", month);
+            totalGoalList.addGoal(goalSetter);
+            UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "You have set $" + expenseGoal
+                    + " as your Expense Goals for " + month);
+            main();
+        } catch (DateTimeException e) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
+                    + " a valid month");
+            main();
+        } catch (NumberFormatException e) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
+                    + " a valid amount/date");
+            main();
+        } catch (IndexOutOfBoundsException e) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "You are missing params");
+            main();
         }
     }
 
     private static void setIncomeGoal() {
-        backToMenu = false;
-        while (!backToMenu && exitTracker == false) {
-            System.out.println("Please enter your goals for your income");
-            System.out.println("However if you wish to go back to Main Menu. Please enter <back>");
-            if (scanner.hasNextInt()) {
-                incomeGoal = scanner.nextInt();
-                System.out.println("You have set $" + incomeGoal + " as your Income Goals");
-                goalSetter = new Goal(incomeGoal, "Income");
-                totalGoalList.addGoal(goalSetter);
-                backToMenu = true;
-            } else if (scanner.hasNext()) {
-                input = scanner.next();
-                if (input.equals("back")) {
-                    backToMenu = true;
-                    main();
-                } else {
-                    UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, "Invalid input. Please enter "
-                            + "<back> to go Main Menu or enter a number");
-                }
-            }
-        }
-
-        if (backToMenu == true && exitTracker == false) {
-            System.out.println("Do you want to exit Income Goal Tracker? y/n ");
-            input = UiManager.handleInput();
-            cmdPacket = cmdPacket = new InputParser().parseInput(input.toLowerCase());
-            if (cmdPacket.getCommandString().equals("y")) {
-                main();
-            } else {
-                setIncomeGoal();
-            }
+        try {
+            month = Month.of(Integer.parseInt(cmdPacket[3]));
+            incomeGoal = Integer.parseInt(cmdPacket[1]);
+            goalSetter = new Goal(incomeGoal, "Income", month);
+            totalGoalList.addGoal(goalSetter);
+            UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "You have set $" + incomeGoal
+                    + " as your Income Goals for " + month);
+            main();
+        } catch (DateTimeException e) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
+                    + " a valid month");
+            main();
+        } catch (NumberFormatException e) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
+                    + " a valid amount/date");
+            main();
+        } catch (IndexOutOfBoundsException e) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "You are missing params");
+            main();
         }
     }
 
@@ -165,16 +173,26 @@ public class GoalTracker {
         }
     }
 
+    public static void storeLedgerDate(Ledger ledger) {
+        ledgerMonth = ledger.getDate().getMonth();
+    }
+
     public static void handleExpenseGoal() {
+        System.out.println(ledgerMonth);
         LedgerList ledgerList = ManualTracker.getLedgerList();
         int ledgerSize = ledgerList.getItemsSize();
-        for (int i = ledgerSize - 1; i < ledgerSize; i++) {
+        for (int i = 0; i < ledgerSize; i++) {
             Ledger ledger = (Ledger) ledgerList.getItemAtIndex(i);
-            EntryList entryList = ledger.entryList;
-            int entrySize = entryList.getItemsSize();
-            for (int x = entrySize - 1; x < entrySize; x++) {
-                expenses = entryData.getAmount();
-                totalExpenses += expenses;
+            if (ledger.getDate().getMonth().equals(ledgerMonth)) {
+                EntryList entryList = ledger.entryList;
+                int entrySize = entryList.getItemsSize();
+                for (int x = 0; x < entrySize; x++) {
+                  //  System.out.println(entryList.getItems());
+                    Entry entry = (Entry) entryList.getItemAtIndex(x);
+                    expenses = entry.getAmount();
+                  // expenses = getExpenseGoal();
+                    totalExpenses += expenses;
+                }
             }
         }
         printExpenseGoal();
@@ -182,10 +200,17 @@ public class GoalTracker {
 
     public static void printExpenseGoal() {
         try {
-            expenseGoal = totalGoalList.getGoal().get(0).getExpenseGoal();
-            if (expenseGoal == 0) {
-                expenseGoal = totalGoalList.getGoal().get(1).getExpenseGoal();
+            for (int i = 0; i < totalGoalList.getListSize(); i++) {
+                if (totalGoalList.getGoal().get(i).getExpenseMonth().equals(ledgerMonth)) {
+                    expenseGoal = totalGoalList.getGoal().get(i).getExpenseGoal();
+                }
             }
+
+            if (expenseGoal == 0) {
+                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "You did not set a goal"
+                + " for " + ledgerMonth);
+            }
+
             double goalDifference = expenseGoal - totalExpenses;
             if (goalDifference < 0) {
                 UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "Expense Budget Updated, "
@@ -200,6 +225,8 @@ public class GoalTracker {
             UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "You did not set "
                     + "a goal for expense.");
         }
+
+        totalExpenses = 0;
     }
 
     public static void handleIncomeGoal() {

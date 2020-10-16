@@ -9,12 +9,14 @@ import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.FiniteStateMachine;
+import seedu.financeit.goaltracker.GoalTracker;
 
 /**
  * Class to handle routine for manual ledger management.
  */
 public class ManualTracker {
     private static LedgerList ledgerList = new LedgerList();
+    private static GoalTracker goalTrack = new GoalTracker();
     private static CommandPacket packet;
 
     public static void main() {
@@ -113,6 +115,7 @@ public class ManualTracker {
         try {
             ledger.handlePacket(packet);
             ledgerList.addItem(ledger);
+            goalTrack.storeLedgerDate(ledger);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                 String.format("%s created!", ledger.getName()));
         } catch (InsufficientParamsException exception) {
@@ -172,6 +175,7 @@ public class ManualTracker {
             ledgerList.handleParams(packet);
             ledger = (Ledger) ledgerList.getItemAtIndex();
             EntryTracker.setCurrLedger(ledger);
+            goalTrack.storeLedgerDate(ledger);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                 String.format("%s opened!", ledger.getName()));
         } catch (InsufficientParamsException exception) {

@@ -15,6 +15,10 @@ public class InputParser {
     public InputParser() {
     }
 
+    public String[] parseGoalCommand (String userCommand) {
+        String[] newCommand = userCommand.split(" ", 4);
+        return newCommand;
+    }
     /**
      * Example input: deadline /by tomorrow /note skip page 70.
      * commandString: "deadline"
