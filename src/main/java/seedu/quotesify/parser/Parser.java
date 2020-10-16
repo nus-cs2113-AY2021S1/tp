@@ -5,6 +5,7 @@ import seedu.quotesify.commands.AddCommand;
 import seedu.quotesify.commands.Command;
 import seedu.quotesify.commands.DeleteCommand;
 import seedu.quotesify.commands.DoneCommand;
+import seedu.quotesify.commands.EditCommand;
 import seedu.quotesify.commands.ExitCommand;
 import seedu.quotesify.commands.HelpCommand;
 import seedu.quotesify.commands.ListCommand;
@@ -38,6 +39,7 @@ public class Parser {
         case COMMAND_DELETE:
             return new DeleteCommand(arguments);
         case COMMAND_EDIT:
+            return new EditCommand(arguments);
         case COMMAND_LIST:
             return new ListCommand(arguments);
         case COMMAND_DONE:

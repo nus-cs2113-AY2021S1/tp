@@ -46,7 +46,7 @@ public class TextUi {
             + " Here are your rated books!";
     private static final String LIST_NO_RATINGS_FOUND_MESSAGE = "None of the books are rated yet!";
     private static final String LIST_SPECIFIED_RATING_MESSAGE = "Here are the books you rated as %d star!";
-    private static final String LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE = "I can't find any books of this rating!";
+    private static final String EDIT_RATING_MESSAGE = "Ratings for [%s] has been updated to %d star!";
     private static final String ADD_TODO_MESSAGE = "The task [%s] has been added!";
     private static final String TODO_SIZE_MESSAGE = "You have a total of %d task(s) recorded.";
     private static final String LIST_TODOS_MESSAGE = "Here is the list of all task(s) recorded:";
@@ -252,6 +252,10 @@ public class TextUi {
 
     public void printDeleteRating(String bookTitle) {
         System.out.printf((DELETE_RATING_MESSAGE) + "\n", bookTitle);
+    }
+
+    public void printEditRatingToBook(int ratingScore, String titleToUpdate) {
+        System.out.printf((EDIT_RATING_MESSAGE) + "\n", titleToUpdate, ratingScore);
     }
 
     public void printAddToDo(ToDo toDo) {
