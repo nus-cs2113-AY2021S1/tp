@@ -4,6 +4,7 @@ import seedu.task.DateSorter;
 import seedu.task.PrioritySorter;
 import seedu.task.Task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -63,6 +64,13 @@ public class TaskList {
                 .filter(task -> task.getDescription().contains(toSearch))
                 .collect(Collectors.toList());
         return new TaskList((ArrayList<Task>) found);
+    }
+
+    public TaskList getTasksDueToday() {
+        List<Task> dueToday = tasks.stream()
+                .filter(task -> task.getDate().equals(LocalDate.now()))
+                .collect(Collectors.toList());
+        return new TaskList((ArrayList<Task>) dueToday);
     }
 
     public void clear() {

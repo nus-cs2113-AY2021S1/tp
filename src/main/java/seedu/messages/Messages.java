@@ -15,13 +15,16 @@ public class Messages {
     public static final String INVALID_TASK_NUMBER = "Invalid task number!" + LS;
     public static final String INVALID_DATETIME = "Invalid datetime!" + LS;
 
-    public static final String WELCOME_MESSAGE = ANSI_YELLOW + "Welcome to" + LS + ANSI_CYAN
-            + "    ____  __      _   ____  _______" + LS
-            + "   / __ \\/ /___ _/ | / / / / / ___/" + LS
-            + "  / /_/ / / __ `/  |/ / / / /\\__ \\ " + LS
-            + " / ____/ / /_/ / /|  / /_/ /___/ / " + LS
-            + "/_/   /_/\\__,_/_/ |_/\\____//____/  "
-            + "v1.0" + ANSI_RESET + LS;
+    public static final String WELCOME_MESSAGE = " ========================================================== " + LS
+            + "||                                                        ||" + LS
+            + "||         " + ANSI_YELLOW + "Welcome to" + ANSI_RESET + "                                     ||" + LS
+            + "||         " + ANSI_CYAN + "    ____  __      _   ____  _______" + ANSI_RESET + "            ||" + LS
+            + "||         " + ANSI_CYAN + "   / __ \\/ /___ _/ | / / / / / ___/" + ANSI_RESET + "            ||" + LS
+            + "||         " + ANSI_CYAN + "  / /_/ / / __ `/  |/ / / / /\\__ \\ " + ANSI_RESET + "            ||" + LS
+            + "||         " + ANSI_CYAN + " / ____/ / /_/ / /|  / /_/ /___/ / " + ANSI_RESET + "            ||" + LS
+            + "||         " + ANSI_CYAN + "/_/   /_/\\__,_/_/ |_/\\____//____/  " + ANSI_RESET
+            + ANSI_CYAN+ "v1.0" + ANSI_RESET + "        ||" + LS
+            + "||                                                        ||";
     public static final String HELP_MESSAGE = "List of available commands:" + LS
             + "Note: " + LS
             + "1. Square bracket input is optional." + LS
