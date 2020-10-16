@@ -24,7 +24,7 @@ public class ViewSprintCommand extends SprintCommand {
      * Abstract method that execute the command.
      */
     public void execute() {
-        assert projectList.isEmpty() : "No project\n";
+        assert !projectList.isEmpty() : "No project\n";
         if (projectList.isEmpty()) {
             Ui.showError("Please create a project first.");
             return;

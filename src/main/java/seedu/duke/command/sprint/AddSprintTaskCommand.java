@@ -7,19 +7,22 @@ import seedu.duke.sprint.SprintList;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.ui.Ui;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AddSprintTaskCommand extends SprintCommand {
     private SprintList allSprint;
     private ArrayList<Project> projectList;
     private Project proj;
+    private static final Logger LOGGER = Logger.getLogger(AddSprintTaskCommand.class.getName());
 
 
     public AddSprintTaskCommand(ArrayList<String> parameters, ArrayList<Project> projectList) {
         super(parameters);
         this.projectList = projectList;
+        LOGGER.setLevel(Level.WARNING);
     }
 
     public void execute() {
@@ -40,8 +43,12 @@ public class AddSprintTaskCommand extends SprintCommand {
                         currentSprint.addSprintTask(taskId);
                         proj.getProjectBacklog().getTask(taskId).allocateToSprint(currentSprint.getId());
                         Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + " added to sprint.\n");
+                        LOGGER.log(Level.INFO, "AddSprintTaskCommand executed successfully"
+                                + System.lineSeparator()
+                                + proj.getProjectBacklog().getTask(taskId).getTitle());
                     } catch (NumberFormatException e) {
                         Ui.showError("Invalid parameters.");
+                        LOGGER.log(Level.WARNING, "Provided invalid parameters: " + parametersInAL);
                     }
 
                 }
