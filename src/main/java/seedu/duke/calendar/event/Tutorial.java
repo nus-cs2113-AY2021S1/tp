@@ -25,6 +25,7 @@ public class Tutorial extends SchoolEvent {
     public Tutorial(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
         eventType = "TUT";
+        this.isOver = getIsOver();
     }
 
     /**

@@ -149,6 +149,11 @@ public class Storage {
                     ((Task) item).markAsDone();
                 }
             }
+            if (taskInFile[EVENT_IS_OVER].equals("true")) {
+                if (item instanceof Event) {
+                    ((Event) item).markAsOver();
+                }
+            }
             if (item instanceof Task) {
                 calendarList.addTask((Task) item);
             } else if (item instanceof Event) {

@@ -28,6 +28,7 @@ public class Activity extends Event {
         super(date, time, venue);
         this.details = details;
         eventType = "ACT";
+        this.isOver = getIsOver();
     }
 
     /**

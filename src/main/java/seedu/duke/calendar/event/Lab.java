@@ -25,6 +25,7 @@ public class Lab extends SchoolEvent {
     public Lab(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
         eventType = "LAB";
+        this.isOver = getIsOver();
     }
 
     /**
