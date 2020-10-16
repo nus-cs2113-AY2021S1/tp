@@ -3,6 +3,10 @@ package seedu.smarthomebot.commands;
 import seedu.smarthomebot.data.framework.Appliance;
 
 import static seedu.smarthomebot.common.Messages.LINE;
+import static seedu.smarthomebot.common.Messages.MESSAGE_DISPLAY_LOCATION;
+import static seedu.smarthomebot.common.Messages.MESSAGE_DISPLAY_STATUS;
+import static seedu.smarthomebot.common.Messages.MESSAGE_DISPLAY_TYPE;
+import static seedu.smarthomebot.common.Messages.MESSAGE_DISPLAY_WATT;
 import static seedu.smarthomebot.common.Messages.MESSAGE_LIST_APPLIANCES;
 import static seedu.smarthomebot.common.Messages.MESSAGE_LIST_NO_APPLIANCES;
 import static seedu.smarthomebot.common.Messages.MESSAGE_LIST_NO_LOCATIONS;
@@ -19,35 +23,43 @@ public class ListCommand extends Command {
     private final String parameter;
 
     public ListCommand(String arguments) {
-        parameter = arguments;
+        this.parameter = arguments;
     }
 
     @Override
     public CommandResult execute() {
         int index = 1;
-        if (parameter.equals(LOCATION_TYPE)) {
+        switch (parameter) {
+        case LOCATION_TYPE:
             if (locationList.getLocations().size() == 0) {
                 return new CommandResult(LINE + MESSAGE_LIST_NO_LOCATIONS);
             }
-            ui.printToUser(LINE + MESSAGE_LIST_LOCATIONS);
+            String result = LINE + MESSAGE_LIST_LOCATIONS;
             for (String location : locationList.getLocations()) {
-                ui.printToUser(index + ": " + location);
+                result = result.concat(System.lineSeparator() + index + ": " + location);
                 index++;
             }
-            return new CommandResult("LOCATION STRING");
-        } else if (parameter.equals(APPLIANCE_TYPE)) {
+            return new CommandResult(result);
+        case APPLIANCE_TYPE:
             if (applianceList.getAllAppliance().size() == 0) {
                 return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
             }
-            ui.printToUser(LINE + MESSAGE_LIST_APPLIANCES);
+            String formattedResult = (LINE + MESSAGE_LIST_APPLIANCES);
+            String format = "%-2d. %-" + Appliance.getMaxNameLength() + "s"
+                    + MESSAGE_DISPLAY_LOCATION + "%-" + Appliance.getMaxLocationLength() + "s"
+                    + MESSAGE_DISPLAY_STATUS + "%-3s"
+                    + MESSAGE_DISPLAY_WATT + "%-4sW"
+                    + MESSAGE_DISPLAY_TYPE + "%s";
             for (Appliance a : applianceList.getAllAppliance()) {
-                ui.showWithListFormat(index, a.getName(), a.getLocation(), a.getStatus(), a.getPower(), a.getType());
+                formattedResult = formattedResult.concat(System.lineSeparator() + String.format(format, index,
+                        a.getName(), a.getLocation(), a.getStatus(), a.getPower(), a.getType()));
                 index++;
             }
-
-            return new CommandResult("YOUR STRING");
-        } else {
-            return new CommandResult("");
+            return new CommandResult(formattedResult);
+        default:
+            return new CommandResult("To be implemented for V0.2");
         }
+
     }
+
 }

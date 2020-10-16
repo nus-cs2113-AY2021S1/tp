@@ -1,10 +1,10 @@
 # SmartHomeBot User Guide
 
-SmartHomeBot is an **desktop application that consolidates all of the home appliance’s control into a 
-centralized system via a Command Line Interface (CLI)**. Users can switch on and off appliances using this application
+SmartHomeBot is a **desktop application that consolidates all of the home appliance’s control into a 
+centralized system via a Command Line Interface (CLI)**. Users can switch on or off appliances using this application
 and also review and monitor electricity usage; having a clearer picture of their electrical usage patterns.
-SmartHomeBot has an auto-saved feature that will automatically save all the appliances' data
-and export it to a text file. Upon start of the application, it will import the data 
+SmartHomeBot has an auto-save feature that will automatically save all the appliances' data
+and export it to a text file. Upon the start of the application, it will import the data 
 from the text file and loads the appliances' data back.
 
 ## Table of Contents
@@ -27,7 +27,7 @@ from the text file and loads the appliances' data back.
 
 1.  Ensure you have Java `11` or above installed in your Computer.
 
-2.  Download the latest `SmartHomeBot.jar` from here.
+2.  Download the latest `SmartHomeBot.jar` from [here](https://github.com/AY2021S1-CS2113-T14-1/tp/releases/latest). 
 
 3.  Copy the file to the folder you want to use as the home folder for your SmartHomeBot.
 

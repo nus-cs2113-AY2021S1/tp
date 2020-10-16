@@ -1,18 +1,12 @@
 package seedu.smarthomebot.ui;
 
 import seedu.smarthomebot.commands.CommandResult;
-import seedu.smarthomebot.data.framework.Appliance;
 
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
 import static seedu.smarthomebot.common.Messages.DIVIDER;
-import static seedu.smarthomebot.common.Messages.MESSAGE_DISPLAY_LOCATION;
-import static seedu.smarthomebot.common.Messages.MESSAGE_DISPLAY_STATUS;
-import static seedu.smarthomebot.common.Messages.MESSAGE_DISPLAY_USAGE;
-import static seedu.smarthomebot.common.Messages.MESSAGE_DISPLAY_WATT;
-import static seedu.smarthomebot.common.Messages.MESSAGE_DISPLAY_TYPE;
 import static seedu.smarthomebot.common.Messages.MESSAGE_GOODBYE;
 import static seedu.smarthomebot.common.Messages.MESSAGE_WELCOME;
 
@@ -53,43 +47,6 @@ public class TextUi {
      */
     private void printDivider() {
         printToUser(DIVIDER);
-    }
-
-    /** Find length of longest appliance name and location for formatting. */
-    public void showWithUsageFormat(int displayIndex,
-                                    String applianceName,
-                                    String location,
-                                    String status,
-                                    int powerUsage) {
-
-        String formattedIndex = String.format("%d. ", displayIndex);
-        String formattedName = String.format("%-" + Appliance.getMaxNameLength() + "s", applianceName);
-        String formattedLocation =  MESSAGE_DISPLAY_LOCATION
-                + String.format("%-" + Appliance.getMaxLocationLength() + "s", location);
-        String formattedStatus = MESSAGE_DISPLAY_STATUS + String.format("%-3s", status);
-        String formattedUsage =  MESSAGE_DISPLAY_USAGE + String.format("%d kWh", powerUsage);
-        String result = formattedIndex + formattedName + formattedLocation + formattedStatus + formattedUsage;
-        printToUser(result);
-    }
-
-    /** Find length of longest appliance name and location for formatting. */
-    public void showWithListFormat(int displayIndex,
-                                   String applianceName,
-                                   String location,
-                                   String status,
-                                   String power,
-                                   String type) {
-
-        String formattedIndex = String.format("%d. ", displayIndex);
-        String formattedName = String.format("%-" + Appliance.getMaxNameLength() + "s", applianceName);
-        String formattedLocation = MESSAGE_DISPLAY_LOCATION +  String.format("%-" + Appliance.getMaxLocationLength()
-                + "s", location);
-        String formattedStatus = MESSAGE_DISPLAY_STATUS + String.format("%-3s",  status);
-        String formattedUsage = MESSAGE_DISPLAY_WATT + String.format("%-4sW", power);
-        String formattedType = MESSAGE_DISPLAY_TYPE + String.format("%s",  type);
-        String result = formattedIndex + formattedName + formattedLocation
-                + formattedStatus + formattedUsage + formattedType;
-        printToUser(result);
     }
 
     /**

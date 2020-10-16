@@ -6,8 +6,8 @@ package seedu.smarthomebot.data.framework;
 public abstract class Appliance {
     private static final String ON = "On";
     private static final String OFF = "Off";
-    private static int maxNameLength;
-    private static int maxLocationLength;
+    private static int maxNameLength = 0;
+    private static int maxLocationLength = 0;
     protected String name;
     protected String location;
     protected String power;
@@ -18,26 +18,12 @@ public abstract class Appliance {
         this.location = location;
         this.power = power;
         appliancePower = new Power(power);
-        maxLocationLength = 0;
-        maxNameLength = 0;
-    }
-
-    /**
-     * Gets the longest length of name in the appliance class.
-     *
-     * @return the length of the longest name of appliance in integer.
-     */
-    public static int getMaxNameLength() {
-        return maxNameLength;
-    }
-
-    /**
-     * Gets the longest length of name in the location.
-     *
-     * @return the length of the longest name of location in integer.
-     */
-    public static int getMaxLocationLength() {
-        return maxLocationLength;
+        if (this.name.length() > maxNameLength) {
+            maxNameLength = this.name.length();
+        }
+        if (this.location.length() > maxLocationLength) {
+            maxLocationLength = this.location.length();
+        }
     }
 
     /**
@@ -107,9 +93,6 @@ public abstract class Appliance {
      * @return the type of the appliance in String.
      */
     public String getName() {
-        if (this.name.length() > maxNameLength) {
-            maxNameLength = this.name.length();
-        }
         return this.name;
     }
 
@@ -119,10 +102,26 @@ public abstract class Appliance {
      * @return the type of the appliance in String.
      */
     public String getLocation() {
-        if (this.location.length() > maxLocationLength) {
-            maxLocationLength = this.location.length();
-        }
         return this.location;
+    }
+
+
+    /**
+     * Gets the longest length of name in the appliance class.
+     *
+     * @return the length of the longest name of appliance in integer.
+     */
+    public static int getMaxNameLength() {
+        return maxNameLength;
+    }
+
+    /**
+     * Gets the longest length of name in the location.
+     *
+     * @return the length of the longest name of location in integer.
+     */
+    public static int getMaxLocationLength() {
+        return maxLocationLength;
     }
 
     /**

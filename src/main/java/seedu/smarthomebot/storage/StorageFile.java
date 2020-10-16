@@ -12,6 +12,7 @@ import seedu.smarthomebot.exceptions.FileCorrupted;
 import seedu.smarthomebot.exceptions.InvalidAdditionOfAppliance;
 import seedu.smarthomebot.exceptions.InvalidAddtionOfLocation;
 import seedu.smarthomebot.ui.TextUi;
+import java.nio.charset.StandardCharsets;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,7 +40,7 @@ public class StorageFile {
             assert filePath.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
             createFile();
             clearFile();
-            FileWriter myWriter = new FileWriter(filePath);
+            FileWriter myWriter = new FileWriter(filePath, StandardCharsets.UTF_8);
             myWriter.write(locationList.getLocations().toString() + "\n");
             for (int i = 0; i < applianceList.getAllAppliance().size(); i++) {
                 myWriter.write(applianceList.getAppliance(i).writeFileFormat() + System.lineSeparator());
@@ -55,7 +56,7 @@ public class StorageFile {
             assert filePath.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
             int i = 0;
             File myFile = new File(filePath);
-            Scanner myReader = new Scanner(myFile);
+            Scanner myReader = new Scanner(myFile, StandardCharsets.UTF_8);
             String locationList = myReader.nextLine();
             try {
                 convertTextToLocationList(locationList);
@@ -68,6 +69,8 @@ public class StorageFile {
             myReader.close();
         } catch (FileNotFoundException | EmptyParameterException | InvalidAdditionOfAppliance e) {
             ui.printToUser("Load File Does not Exist. No contents will be loaded.");
+        } catch (IOException e) {
+            ui.printToUser("Load File is corrupted.");
         }
     }
 

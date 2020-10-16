@@ -36,7 +36,7 @@ class PowerUsageTest {
 
     @Test
     void powerUsageTest() throws InterruptedException {
-        Fan fan = new Fan("Cooling Fan", "Kitchen", "980");
+        Fan fan = new Fan("Cooling Fan", "Kitchen", "950");
         fan.switchOn();
         // Appliance wil be on for 5000ms which equals to 5hours in SmartHomeBot
         Thread.sleep(5000);
