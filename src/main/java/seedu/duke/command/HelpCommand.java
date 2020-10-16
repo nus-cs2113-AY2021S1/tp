@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.anime.AnimeData;
-import seedu.duke.human.UserManagement;
+import seedu.duke.human.User;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +19,7 @@ public class HelpCommand extends Command {
      * Shows help function.
      */
     @Override
-    public String execute(AnimeData animeData, UserManagement userManagement) {
+    public String execute(AnimeData animeData, User user) {
         return output;
     }
     

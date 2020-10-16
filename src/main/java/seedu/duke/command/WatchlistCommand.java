@@ -3,7 +3,7 @@ package seedu.duke.command;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.Workspace;
-import seedu.duke.human.UserManagement;
+import seedu.duke.human.User;
 import seedu.duke.storage.Storage;
 import seedu.duke.watchlist.Watchlist;
 
@@ -30,16 +30,16 @@ public class WatchlistCommand extends Command {
     }
 
     @Override
-    public String execute(AnimeData animeData, UserManagement userManagement) throws AniException {
-        Storage storage = userManagement.getStorage();
-        Workspace activeWorkspace = userManagement.getActiveUser();
+    public String execute(AnimeData animeData, User user) throws AniException {
+        // Storage storage = user.getStorage();
+        Workspace activeWorkspace = user.getActiveWorkspace();
         ArrayList<Watchlist> activeWatchlistList = activeWorkspace.getWatchlistList();
 
         String commandOutput = "";
         assert option != null : "Command option cannot be null.";
         switch (option) {
         case CREATE_OPTION:
-            commandOutput = createWatchlist(storage, activeWatchlistList);
+            // commandOutput = createWatchlist(storage, activeWatchlistList);
             activeWorkspace.setWatchlistList(activeWatchlistList);
             break;
         case LIST_OPTION:

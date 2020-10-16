@@ -5,7 +5,7 @@ import seedu.duke.anime.AnimeStorage;
 import seedu.duke.command.Command;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.Workspace;
-import seedu.duke.human.UserManagement;
+import seedu.duke.human.User;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -24,29 +24,40 @@ public class Duke {
 
     private AnimeStorage animeStorage;
     private AnimeData animeData;
-    private UserManagement userManagement;
+    private User user;
 
     public Duke() {
         ui = new Ui();
         parser = new Parser();
         Storage storage = new Storage(USER_PROFILE_FILE_NAME, WATCHLIST_FILE_NAME);
-        userManagement = new UserManagement(storage);
 
         // Load user and watchlist list.
         ui.printWelcomeMessage();
         ui.printHorizontalLine();
-        userManagement.setActiveUser(storage.loadUser(ui));
+        // user.setActiveWorkspace(storage.loadUser(ui));
         final ArrayList<Watchlist> watchlistList = storage.loadWatchlist(ui);
         ui.printHorizontalLine();
 
-        // Initial Set up
-        assert userManagement != null : "Workspace management should not be null!";
-        Workspace activeWorkspace = userManagement.getActiveUser();
-        if (activeWorkspace == null) {
-            userManagement.addUserDialogue(ui);
-            activeWorkspace = userManagement.getActiveUser();
-            assert userManagement.getActiveUser() != null : "Workspace should have been created";
+        // Setup user and workspace
+        user = storage.loadUser(ui);
+
+        if (user == null) {
+            while (true) {
+                try {
+                    String[] userDialogueInput = ui.createUserDialogue();
+                    user = new User(userDialogueInput[0], userDialogueInput[1]);
+                    user.setActiveWorkspace(user.addWorkspace(userDialogueInput[2]));
+                    break;
+                } catch (AniException e) {
+                    ui.printErrorMessage("Invalid input detected!");
+                }
+            }
         }
+
+        // Get activeWorkspace
+        Workspace activeWorkspace = user.getActiveWorkspace();
+        assert user.getActiveWorkspace() != null : "Workspace should have been created";
+
 
         activeWorkspace.setWatchlistList(watchlistList);
         if (watchlistList.isEmpty()) {
@@ -77,10 +88,10 @@ public class Duke {
         boolean shouldExit = false;
         while (!shouldExit) {
             try {
-                String userInput = ui.readUserInput(userManagement.getActiveUser());
+                String userInput = ui.readUserInput(user);
                 Command command = parser.getCommand(userInput);
-                String commandOutput = command.execute(animeData, userManagement);
-                
+                String commandOutput = command.execute(animeData, user);
+
                 ui.printMessage(commandOutput);
                 shouldExit = command.getShouldExit();
             } catch (AniException exception) {
@@ -88,7 +99,7 @@ public class Duke {
             }
         }
 
-        String goodbyeName = userManagement.getActiveUser().getHonorificName();
+        String goodbyeName = user.getHonorificName();
         ui.printGoodbyeMessage(goodbyeName);
     }
 

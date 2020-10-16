@@ -24,11 +24,11 @@ class StorageTest {
         invalidStorage = new Storage(INVALID_USER_PROFILE_FILE, INVALID_WATCHLIST_FILE);
     }
 
-    @Test
-    void loadUserProfile_invalidStorage_nullObject() {
-        Workspace workspace = invalidStorage.loadUser(ui);
-        assertNull(workspace);
-    }
+    // @Test
+    //    void loadUserProfile_invalidStorage_nullObject() {
+    //        Workspace workspace = invalidStorage.loadUser(ui);
+    //        assertNull(workspace);
+    //    }
 
     @Test
     void loadWatchlist_invalidStorage_notNullObject() {

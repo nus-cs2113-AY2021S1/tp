@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
-import seedu.duke.human.UserManagement;
+import seedu.duke.human.User;
 
 public abstract class Command {
     protected String description;
@@ -16,7 +16,7 @@ public abstract class Command {
         this.shouldExit = true;
     }
 
-    public String execute(AnimeData animeData, UserManagement userManagement) throws AniException {
+    public String execute(AnimeData animeData, User user) throws AniException {
         throw new AniException("This method should be implemented in the child class");
     }
 }

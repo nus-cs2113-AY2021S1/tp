@@ -10,10 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class WorkspaceTest {
 
     @Test
-    public void testProfileCreation() throws ParseException, AniException {
-        Workspace testProfile = new Workspace("Tim", "Other");
+    public void testWorkspaceCreation() throws ParseException, AniException {
+        Workspace testWorkspace = new Workspace("Translation Company A");
 
-        assertEquals("Tim-san", testProfile.getHonorificName());
-        assertEquals("Other", testProfile.getGender().toString());
+        assertEquals("Translation Company A", testWorkspace.getName());
     }
 }

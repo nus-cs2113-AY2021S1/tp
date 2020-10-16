@@ -1,6 +1,7 @@
 package seedu.duke.storage;
 
 import seedu.duke.exception.AniException;
+import seedu.duke.human.User;
 import seedu.duke.human.Workspace;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
@@ -30,7 +31,7 @@ public class Storage {
         watchlistFilePath = storageDirectory + watchlistFileName;
     }
 
-    public Workspace loadUser(Ui ui) {
+    public User loadUser(Ui ui) {
         String fileString = readFile(ui, userFilePath);
         LOGGER.log(Level.INFO, "From \"" + userFilePath + "\":" + System.lineSeparator() + fileString);
         if (fileString.isBlank()) {
@@ -50,9 +51,9 @@ public class Storage {
         return decoder.decodeWatchlistString(ui, fileString);
     }
 
-    public void saveUser(Workspace workspace) throws AniException {
+    public void saveUser(User user) throws AniException {
         try {
-            String userString = encoder.encodeUser(workspace);
+            String userString = encoder.encodeUser(user);
             assert userString != null : "Encoded workspace string should not be null.";
             LOGGER.log(Level.INFO, "Encoded workspace object string: " + userString);
             writeFile(userFilePath, userString);
@@ -87,8 +88,8 @@ public class Storage {
             }
         } catch (FileNotFoundException exception) {
             if (filePath.equals(userFilePath)) {
-                ui.printMessage("Workspace file is not found, let's start afresh.");
-                LOGGER.log(Level.INFO, "Workspace file does not exist at: " + userFilePath);
+                ui.printMessage("User file is not found, let's start afresh.");
+                LOGGER.log(Level.INFO, "User file does not exist at: " + userFilePath);
             } else {
                 ui.printMessage("Watchlist file is not found, let's start a afresh.");
                 LOGGER.log(Level.INFO, "Watchlist file does not exist at: " + watchlistFilePath);

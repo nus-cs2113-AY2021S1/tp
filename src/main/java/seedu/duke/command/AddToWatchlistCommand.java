@@ -3,7 +3,7 @@ package seedu.duke.command;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.Workspace;
-import seedu.duke.human.UserManagement;
+import seedu.duke.human.User;
 import seedu.duke.storage.Storage;
 import seedu.duke.watchlist.Watchlist;
 
@@ -32,9 +32,9 @@ public class AddToWatchlistCommand extends Command {
      * Adds an anime to current watchlist.
      */
     @Override
-    public String execute(AnimeData animeData, UserManagement userManagement) throws AniException {
-        Storage storage = userManagement.getStorage();
-        Workspace activeWorkspace = userManagement.getActiveUser();
+    public String execute(AnimeData animeData, User user) throws AniException {
+        // Storage storage = user.getStorage();
+        Workspace activeWorkspace = user.getActiveWorkspace();
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
         ArrayList<Watchlist> activeWatchlistList = activeWorkspace.getWatchlistList();
 
@@ -43,7 +43,7 @@ public class AddToWatchlistCommand extends Command {
             throw new AniException("Watchlist command only accepts the option: \"-a\".");
         }
         assert option.equals("-a") == true : "option type should have been \"-a\".";
-        addToWatchlist(storage, activeWatchlistList, activeWatchlist);
+        // addToWatchlist(storage, activeWatchlistList, activeWatchlist);
 
         return "Anime added to watchlist!";
     }
