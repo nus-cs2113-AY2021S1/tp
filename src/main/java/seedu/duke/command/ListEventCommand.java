@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.timetable.Event;
-import seedu.duke.util.Formatter;
+import seedu.duke.ui.Formatter;
 
 import java.util.ArrayList;
 import java.util.Collections;

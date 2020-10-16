@@ -6,7 +6,7 @@ import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Notebook;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.util.Formatter;
+import seedu.duke.ui.Formatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

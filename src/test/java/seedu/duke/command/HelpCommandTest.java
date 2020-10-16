@@ -3,7 +3,7 @@ package seedu.duke.command;
 import org.junit.jupiter.api.Test;
 
 import seedu.duke.data.notebook.Tag.TagColor;
-import seedu.duke.util.Formatter;
+import seedu.duke.ui.Formatter;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
