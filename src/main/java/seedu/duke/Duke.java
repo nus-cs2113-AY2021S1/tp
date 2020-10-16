@@ -9,7 +9,7 @@ import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.timetable.Timetable;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.InterfaceManager;
-import seedu.duke.util.Formatter;
+import seedu.duke.ui.Formatter;
 import seedu.duke.util.Parser;
 
 import com.sun.jna.platform.win32.WinDef;
@@ -28,31 +28,8 @@ public class Duke {
     private Timetable timetable;
     private TagManager tagManager;
 
-    // Character code adapted from http://patorjk.com/software/taag/#p=display&f=Ghost&t=NotUS
-    // Slight modifications made to make it easier on the eyes
-    private static final String NOTUS_LOGO = Formatter.LS
-            + Formatter.LS
-            + "     .-') _               .-') _                 .-')    "
-            + Formatter.LS
-            + "    ( OO ) )             (  OO) )               ( OO ).  "
-            + Formatter.LS
-            + ",--./ ,--,'  .-'),-----. /     '._ ,--. ,--.   (_)---\\_) "
-            + Formatter.LS
-            + "|   \\ |  |\\ ( OO'  .-.  '|'--...__)|  | |  |   /    _ |  "
-            + Formatter.LS
-            + "|    \\|  | )/   |  | |  |'--.  .--'|  | | .-') \\  :` `.  "
-            + Formatter.LS
-            + "|  .     |/ \\_) |  | |  |   |  |   |  | |( OO ) '..`''.) "
-            + Formatter.LS
-            + "|  |\\    |    \\ |  | |  |   |  |   |  | | `-' /.-._)   \\ "
-            + Formatter.LS
-            + "|  | \\   |     `'  '-'  '   |  |  ('  '-'(_.-' \\       / "
-            + Formatter.LS
-            + "`--'  `--'       `-----'    `--'    `-----'     `-----'  "
-            + Formatter.LS;
-
     private static final String WELCOME_MSG_STRING = "Welcome to NotUS! "
-            + NOTUS_LOGO + Formatter.LS
+            + Formatter.getNotusLogo() + Formatter.LS
             + "Type \"help\" if you need to see a list of commands and their usages.";
     private static final String ENTER_COMMAND_MSG = "Enter command:";
 

@@ -1,12 +1,11 @@
 package seedu.duke.command;
 
 import com.diogonunes.jcolor.Attribute;
-import org.junit.jupiter.api.Test;
-
-import seedu.duke.util.Formatter;
-
-
 import static com.diogonunes.jcolor.Ansi.colorize;
+
+import seedu.duke.ui.Formatter;
+
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HelpCommandTest {

@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.util.Formatter;
+import seedu.duke.ui.Formatter;
 
 import java.util.ArrayList;
 
