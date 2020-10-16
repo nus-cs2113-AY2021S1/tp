@@ -65,22 +65,22 @@ public class Storage implements SaveState {
         while (s.hasNext()) {
             String name = s.nextLine().substring(3);
 
+            String[] splitDuration = s.nextLine().split("Duration: ");
+            int duration = Integer.parseInt(splitDuration[1]);
             String[] splitSeason = s.nextLine().split("Season: ");
             int season = Integer.parseInt(splitSeason[1]);
-
             String[] splitEpisodes = s.nextLine().split("Episodes: ");
             String[] episodeString = splitEpisodes[1].split(" ");
             int[] episodes = new int[season];
 
             for (int i = 0; i < season; i++) {
-
                 episodes[i] = Integer.parseInt(episodeString[i]);
             }
 
             String[] splitRating = s.nextLine().split("Rating: ");
             int rating = Integer.parseInt(splitRating[1]);
 
-            shows.setShow(name, new Show(name, season, episodes));
+            shows.setShow(name, new Show(name, duration, season, episodes));
             //shows(name, new Show(name, season, episodes));
             shows.getShow(name).setRating(rating);
 

@@ -18,7 +18,7 @@ class UpdateShowSeasonCommandTest {
     public static void main() {
         new ShowList();
         int[] episodes = new int[]{21, 10, 12};
-        Show show = new Show("friends", 3, episodes);
+        Show show = new Show("friends", 20, 3, episodes);
         ShowList.setShow("friends", show);
         assertEquals(show, ShowList.getShow("friends"));
     }

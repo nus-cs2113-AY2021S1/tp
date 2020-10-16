@@ -29,7 +29,7 @@ public class AddCommand extends Command {
         }
         //check that the episodes do not exceed seasons
 
-        Show show = new Show(input[1], Integer.parseInt(input[2]), seasonEpisodes);
+        Show show = new Show(input[1], Integer.parseInt(input[2]), Integer.parseInt(input[3]), seasonEpisodes);
         String name = input[1];
         ShowList.setShow(name, show);
     }

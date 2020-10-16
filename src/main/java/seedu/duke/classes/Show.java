@@ -12,13 +12,15 @@ public class Show {
     protected LocalDateTime showTime;   //The time of the show, maybe include date
     protected int currentSeason;    //to keep track of watch progress
     protected int currentEpisode;
+    protected int showDuration; //duration of the show in minutes
 
-    public Show(String name, int numSeasons, int[] numEpisodesForSeasons) {
+    public Show(String name, int showDuration, int numSeasons, int[] numEpisodesForSeasons) {
         this.name = name;
         this.numSeasons = numSeasons;
         this.numEpisodesForSeasons = numEpisodesForSeasons;
         this.rating = -1;
         this.review = "null";
+        this.showDuration = showDuration;
         this.currentEpisode = 1;
         this.currentSeason = 1;
     }
@@ -106,11 +108,14 @@ public class Show {
 
     @Override
     public String toString() {
+        //TODO: Bernado&jiqing verify if the new toString works well
         String des = name + " | ";
         des += "WatchHistory : S";
         des += Integer.toString(currentSeason);
         des += "E";
         des += Integer.toString(currentEpisode);
+        des += "| Duration: ";
+        des += Integer.toString(showDuration);
         if (rating != -1) {
             //TODO : make sure a review is always passed in with a rating
             des += "| Rating: ";
