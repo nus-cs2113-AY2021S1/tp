@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import seedu.revised.card.Flashcard;
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
+import seedu.revised.card.quiz.Result;
 import seedu.revised.exception.DataLoadingException;
 import seedu.revised.exception.FlashcardSyntaxException;
 import seedu.revised.task.Deadline;
@@ -32,7 +33,7 @@ public class Storage {
     private final File baseDir;
     private final String flashcardFilename;
     private final String taskFilename;
-
+    private final String resultFilename;
 
     /**
      * Creates a new Storage instance. The same filename string will be used to create files to store the flashcard data
@@ -41,11 +42,13 @@ public class Storage {
      * @param baseDir           the name of the directory to store the data into
      * @param flashcardFilename the name of the file to store all the flashcard info
      * @param taskFilename      the name of the file to store all the tasks under a subject
+     * @param resultFilename    the name of the file to store all the results of quizzes
      */
-    public Storage(String baseDir, String flashcardFilename, String taskFilename) {
+    public Storage(String baseDir, String flashcardFilename, String taskFilename, String resultFilename) {
         this.baseDir = new File(baseDir);
         this.flashcardFilename = flashcardFilename;
         this.taskFilename = taskFilename;
+        this.resultFilename = resultFilename;
     }
 
     /**
@@ -157,6 +160,7 @@ public class Storage {
      * @throws IOException if fails to save to the storage
      */
     public void saveSubjects(List<Subject> subjects) throws IOException {
+        assert subjects != null;
         for (Subject subject : subjects) {
             Path subjectPath = Paths.get(getBaseDir().toString(), subject.getTitle());
             Files.createDirectories(subjectPath);
@@ -175,27 +179,28 @@ public class Storage {
      * @throws IOException if fails to save to the storage
      */
     public void saveTopics(Path subjectPath, List<Topic> topics) throws IOException {
+        assert topics != null;
         for (Topic topic : topics) {
             Path topicPath = Paths.get(subjectPath.toString(), topic.getTitle());
             Files.createDirectories(topicPath);
 
-            saveFlashcards(topicPath, topic.getFlashcards());
+            File flashcardFile = new File(topicPath.toString(), getFlashcardFilename());
+            saveToJson(flashcardFile, topic.getFlashcards());
         }
     }
 
     /**
-     * Save the contents of flashcards to the file with name {@link Storage#getFlashcardFilename()} under the topicPath.
+     * Save the contents of the list of objects to the file path provided.
      * This overwrites the content of the file if it already exists.
      *
-     * @param topicPath  topic directory where flashcards will be stored under
-     * @param flashcards list of flashcards which content will be written to the file
+     * @param jsonFile  File where the objects will be stored into as json
+     * @param objects list of objects
      * @throws IOException if fails to save to the storage
      */
-    public void saveFlashcards(Path topicPath, List<Flashcard> flashcards) throws IOException {
-        File file = Paths.get(topicPath.toString(), getFlashcardFilename()).toFile();
+    public static <T> void saveToJson(File jsonFile, List<T> objects) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        try (FileWriter fileWriter = new FileWriter(file)) {
-            gson.toJson(flashcards, fileWriter);  // store the json to file
+        try (FileWriter fileWriter = new FileWriter(jsonFile)) {
+            gson.toJson(objects, fileWriter);  // store the json to file
             fileWriter.flush();  // flush to actually write the content
         }
     }
@@ -275,5 +280,9 @@ public class Storage {
 
     public String getTaskFilename() {
         return taskFilename;
+    }
+
+    public String getResultFilename() {
+        return resultFilename;
     }
 }

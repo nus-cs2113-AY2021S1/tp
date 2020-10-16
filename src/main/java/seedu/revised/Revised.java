@@ -25,6 +25,7 @@ public class Revised {
     public static final String BASE_DIR = "data";
     public static final String FLASHCARD_FILENAME = "flashcards.txt";
     public static final String TASK_FILENAME = "tasks.txt";
+    public static final String RESULT_FILENAME = "results.txt";
 
     private Storage storage;
     private SubjectList subjects;
@@ -36,10 +37,11 @@ public class Revised {
      * @param baseDir           the name of the directory to store the data into
      * @param flashcardFilename the name of the file to store all the flashcard info
      * @param taskFilename      the name of the file to store all the tasks under a subject
+     * @param resultFilename    the name of the file to store all the results of quizzes
      */
-    public Revised(String baseDir, String flashcardFilename, String taskFilename)
+    public Revised(String baseDir, String flashcardFilename, String taskFilename, String resultFilename)
             throws FlashcardSyntaxException, DataLoadingException {
-        storage = new Storage(baseDir, flashcardFilename, taskFilename);
+        storage = new Storage(baseDir, flashcardFilename, taskFilename, resultFilename);
         subjects = new SubjectList(storage.loadSubjects());
         results = new ResultList(new ArrayList<>());
     }
@@ -93,7 +95,7 @@ public class Revised {
 
     public static void main(String[] args) {
         try {
-            new Revised(BASE_DIR, FLASHCARD_FILENAME, TASK_FILENAME).run();
+            new Revised(BASE_DIR, FLASHCARD_FILENAME, TASK_FILENAME, RESULT_FILENAME).run();
         } catch (FlashcardSyntaxException | DataLoadingException e) {
             Ui.printError(e);
         }

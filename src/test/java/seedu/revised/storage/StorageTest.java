@@ -44,7 +44,7 @@ class StorageTest {
     @BeforeEach
     void setUp() {
         // use tempDir as baseDir to avoid file creation for subjects
-        storage = new Storage(tempDir.toString(), "flashcard.txt", "tasks.txt");
+        storage = new Storage(tempDir.toString(), "flashcard.txt", "tasks.txt", "results.txt");
 
         subjects = new ArrayList<>(List.of(
                 new Subject("subject1"),
@@ -144,14 +144,14 @@ class StorageTest {
     }
 
     @Test
-    void saveFlashcards_validFlashcards_readableJsonIsStored() throws IOException {
+    void saveToJson_validFlashcards_readableJsonIsStored() throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        Path file = Paths.get(tempDir.toString(), storage.getFlashcardFilename());
+        File file = new File(tempDir.toString(), storage.getFlashcardFilename());
 
-        storage.saveFlashcards(tempDir, flashcards);
+        Storage.saveToJson(file, flashcards);
 
-        assertTrue(file.toFile().exists());
-        assertEquals(gson.toJson(flashcards), Files.readString(file));
+        assertTrue(file.exists());
+        assertEquals(gson.toJson(flashcards), Files.readString(file.toPath()));
     }
 
     @Test
