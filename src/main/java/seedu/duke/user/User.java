@@ -33,7 +33,7 @@ public class User {
 
     public void greetUser() {
         System.out.println("Hello " + this.name + ". Welcome to Fluffle!");
-        System.out.println("Your registration has been recorded at " + registeredDate);
+        System.out.println("Your registration has been recorded on " + registeredDate);
     }
 
     public void printInstruction() {

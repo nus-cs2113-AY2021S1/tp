@@ -55,7 +55,7 @@ public class WritingList {
             System.out.println("Written by " + writing.get(i).getAuthor().getName() + "\n");
             System.out.println(writing.get(i).title.toUpperCase() + "\n");
             System.out.println(writing.get(i).content);
-            System.out.println("This writing is created on " + writing.get(i).date);
+            System.out.println("This writing was created on " + writing.get(i).date);
             System.out.println(PLAIN_TEXT_DIVIDER);
         }
     }
