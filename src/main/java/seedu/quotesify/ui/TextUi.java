@@ -41,7 +41,7 @@ public class TextUi {
     private static final String EMPTY_CATEGORY_LIST_MESSAGE = "There are no categories created!";
     private static final String NO_ITEMS_IN_CATEGORY_MESSAGE = "There are no items tagged as [%s].";
     private static final String ADD_RATING_MESSAGE = "You have just rated [%s] %d star!";
-    public static final String DELETE_RATING_MESSAGE = "Rating for %s has been deleted!";
+    public static final String DELETE_RATING_MESSAGE = "Rating for [%s] has been deleted!";
     private static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
             + " Here are your rated books!";
     private static final String LIST_NO_RATINGS_FOUND_MESSAGE = "None of the books are rated yet!";

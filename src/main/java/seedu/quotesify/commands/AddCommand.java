@@ -208,7 +208,7 @@ public class AddCommand extends Command {
             ratingDetails = information.split(" ", 2);
             titleOfBookToRate = ratingDetails[1].trim();
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(ERROR_RATING_IMCOMPLETE_COMMAND);
+            System.out.println(ERROR_RATING_MISSING_BOOK_TITLE_OR_RATING_SCORE);
             return;
         }
 

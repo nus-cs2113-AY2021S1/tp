@@ -47,8 +47,7 @@ public class DeleteCommand extends Command {
             break;
         case TAG_RATING:
             RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
-            String bookTitle = information.trim();
-            deleteRating(ratings, ui, bookTitle);
+            deleteRating(ratings, ui);
             break;
         case TAG_TODO:
             ToDoList toDos = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
@@ -80,11 +79,13 @@ public class DeleteCommand extends Command {
         }
     }
 
-    private void deleteRating(RatingList ratings, TextUi ui, String bookTitle) {
-        if (bookTitle.equals("")) {
-            System.out.println("Book title cannot be empty.");
+    private void deleteRating(RatingList ratings, TextUi ui) {
+        String bookTitle = information.trim();
+        if (bookTitle.isEmpty()) {
+            System.out.println(ERROR_RATING_MISSING_BOOK_TITLE);
             return;
         }
+
         Rating ratingToBeDeleted = null;
         for (Rating rating : ratings.getList()) {
             if (rating.getTitleOfRatedBook().equals(bookTitle)) {
@@ -92,6 +93,7 @@ public class DeleteCommand extends Command {
                 break;
             }
         }
+
         if (ratingToBeDeleted == null) {
             System.out.println(ERROR_RATING_NOT_FOUND);
             return;
