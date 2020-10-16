@@ -18,26 +18,26 @@ public class Formatter {
 
     // Character code adapted from http://patorjk.com/software/taag/#p=display&f=Ghost&t=NotUS
     // Slight modifications made to make it easier on the eyes
-    private static final String NOTUS_LOGO = Formatter.LS
-            + Formatter.LS
+    private static final String NOTUS_LOGO = LS
+            + LS
             + "     .-') _               .-') _                 .-')    "
-            + Formatter.LS
+            + LS
             + "    ( OO ) )             (  OO) )               ( OO ).  "
-            + Formatter.LS
+            + LS
             + ",--./ ,--,'  .-'),-----. /     '._ ,--. ,--.   (_)---\\_) "
-            + Formatter.LS
+            + LS
             + "|   \\ |  |\\ ( OO'  .-.  '|'--...__)|  | |  |   /    _ |  "
-            + Formatter.LS
+            + LS
             + "|    \\|  | )/   |  | |  |'--.  .--'|  | | .-') \\  :` `.  "
-            + Formatter.LS
+            + LS
             + "|  .     |/ \\_) |  | |  |   |  |   |  | |( OO ) '..`''.) "
-            + Formatter.LS
+            + LS
             + "|  |\\    |    \\ |  | |  |   |  |   |  | | `-' /.-._)   \\ "
-            + Formatter.LS
+            + LS
             + "|  | \\   |     `'  '-'  '   |  |  ('  '-'(_.-' \\       / "
-            + Formatter.LS
+            + LS
             + "`--'  `--'       `-----'    `--'    `-----'     `-----'  "
-            + Formatter.LS;
+            + LS;
 
     public static String getNotusLogo() {
         return NOTUS_LOGO;

@@ -4,13 +4,12 @@ import com.diogonunes.jcolor.Attribute;
 
 import seedu.duke.data.notebook.Tag;
 import seedu.duke.ui.Formatter;
-
+import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
+import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 
 import static com.diogonunes.jcolor.Ansi.colorize;
-import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
-import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
 
 /**
  * Creates Tag for the notes.

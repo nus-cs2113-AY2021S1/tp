@@ -1,6 +1,5 @@
 package seedu.duke.command;
 
-
 import seedu.duke.ui.Formatter;
 
 import com.diogonunes.jcolor.Attribute;
