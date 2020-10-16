@@ -50,6 +50,7 @@ public class Ui {
         } catch (InvalidModeException e) {
             printLine("Invalid mode name! Please try again.\n"
                     + "You are still at: " + ModeNames.getCurrentModeName());
+            StudyItLog.logger.fine("Cannot understand mode chosen.");
         }
     }
 

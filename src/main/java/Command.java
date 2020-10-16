@@ -34,6 +34,7 @@ public class Command {
                     currentGrades, listOfPerson);
         } else {
             ErrorMessage.printUnidentifiableCommand();
+            StudyItLog.logger.info("Cannot understand command input.");
         }
     }
 
@@ -51,10 +52,13 @@ public class Command {
             executeAcademicModeCommand(command, currentGrades, listOfPerson);
         } else if (currentMode == Mode.FLASHCARD) {
             executeFlashcardCommand(command, flashcardRun);
+        } else {
+            StudyItLog.logger.severe("Mode is not handled properly.");
         }
     }
 
     public static void executeBookmarkModeCommand(String command, ArrayList<BookmarkCategory> bookmarkCategories) {
+        StudyItLog.logger.info("Processing bookmark mode.");
         BookmarkUi bookmarkUi = new BookmarkUi();
         BookmarkParser bookmarkParser = new BookmarkParser();
         try {
@@ -62,15 +66,18 @@ public class Command {
             c.executeCommand(bookmarkUi,bookmarkCategories);
         } catch (InvalidCommandException e) {
             bookmarkUi.showInvalidBookmarkCommand();
+            StudyItLog.logger.info("Cannot understand bookmark command");
         }
     }
 
     public static void executeTimetableModeCommand(String command, TimeTableRun timeTableRun) {
+        StudyItLog.logger.info("Processing timetable mode.");
         timeTableRun.run(command);
     }
 
     public static void executeAcademicModeCommand(String command, ArrayList<academic.Grade> currentGrades,
                                                   ArrayList<academic.Person> listOfPerson) {
+        StudyItLog.logger.info("Processing academic mode.");
         try {
             AcademicCommandType commandType = AcademicCommandParser.getAcademicCommandType(command);
 
@@ -94,21 +101,29 @@ public class Command {
                 Ui.printLine("Listing Grade"); //TODO: Remove placeholder line.
                 Ui.printLine(GradeBook.printListOfGrades(currentGrades));
 
+            } else {
+                StudyItLog.logger.severe("Invalid command type, check Command Parser");
             }
         } catch (InvalidCommandException e) {
             ErrorMessage.printUnidentifiableCommand();
+            StudyItLog.logger.info("Invalid academic command.");
         } catch (StringIndexOutOfBoundsException e) {
             ErrorMessage.printUnidentifiableInput();
+            StudyItLog.logger.info("Invalid academic command. Sting Index out of bounds.");
         } catch (NumberFormatException e) {
             ErrorMessage.printInvalidNumber();
+            StudyItLog.logger.info("Invalid Number.");
         } catch (InvalidGradeException e) {
             ErrorMessage.printInvalidGrade();
+            StudyItLog.logger.info("Invalid Grade.");
         } catch (InvalidMcException e) {
             ErrorMessage.printInvalidMc();
+            StudyItLog.logger.info("Invalid MC.");
         }
     }
 
     public static void executeFlashcardCommand(String command, FlashcardRun flashcardRun) {
+        StudyItLog.logger.info("Processing flashcard mode.");
         flashcardRun.run(command);
     }
 }

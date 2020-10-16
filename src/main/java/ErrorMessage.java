@@ -5,11 +5,6 @@ public class ErrorMessage extends Ui {
                 + "or you can type \"help\" for more information");
     }
 
-    public static void printInvalidMode() {
-        printLine("The current mode is invalid");
-    }
-
-
     public static void printUnidentifiableInput() {
         printLine("Sorry that's not an available input! Please try again\n"
                 + "or you can type \"help\" for more information");
