@@ -28,27 +28,4 @@ class AddLinkCommandTest {
         command.executeCommand(ui,categories);
         assertEquals(categories.get(categoryNumber - 1).getLinks().size(), 1);
     }
-
-    //public void executeCommand_InValidLinkCommand_expectExceptions() {
-    //    categories.add(new NusCategory());
-    //    categories.add(new ZoomCategory());
-    //    String inputString = "add huhuhuh";
-    //    int categoryNumber = 2;
-    //    AddLinkCommand command = new AddLinkCommand(inputString,categoryNumber);
-    //    assertThrows(InvalidBookmarkLinkException.class, () -> {
-    //        command.executeCommand(ui,categories);
-    //    });
-    //}
-
-    //public void executeCommand_EmptyLinkCommand_expectExceptions() {
-    //    categories.add(new NusCategory());
-    //    categories.add(new ZoomCategory());
-    //    String inputString = "add ";
-    //    int categoryNumber = 2;
-    //    AddLinkCommand command = new AddLinkCommand(inputString,categoryNumber);
-    //    assertThrows(InvalidBookmarkLinkException.class, () -> {
-    //        command.executeCommand(ui,categories);
-    //    });
-    //}
-
 }

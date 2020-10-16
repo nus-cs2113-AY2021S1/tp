@@ -24,16 +24,11 @@ public class AddLinkCommand extends BookmarkCommand {
         try {
             if (categoryNumber == 0) {
                 ui.printChooseCategoryMessage();
-                assert categoryNumber == 0 : "Choose Category message is called when category number is chosen";
-            } else if (line.length() <= ADD_LENGTH) {
-                throw new InvalidEmptyLinkException();
             } else {
-                link = line.substring(ADD_LENGTH);
-                assert link.length() > 0 : "Link should not be empty";
-                Boolean validLink = evaluateLink();
-                if (!validLink) {
-                    throw new InvalidBookmarkLinkException();
-                }
+                assert categoryNumber > 0 : "Category number is not chosen";
+                evaluateCategoryNumber();
+                link = line.substring(ADD_LENGTH).trim();
+                evaluateLink();
                 categories.get(categoryNumber - 1).addLink(link);
                 ui.showBookmarkLinkList(categories.get(categoryNumber - 1).getLinks());
             }
@@ -44,14 +39,21 @@ public class AddLinkCommand extends BookmarkCommand {
         }
     }
 
-    private Boolean evaluateLink() {
-        if (!link.contains("https://") && !link.contains(".") && link.contains(" ")) {
-            return false;
-        } else {
-            assert link.contains("https://") && link.contains(".") && !link.contains(" ") : "Invalid link";
-            return true;
+    private void evaluateLink() throws InvalidBookmarkLinkException {
+        if (!link.contains("https://") || !link.contains(".") || link.contains(" ")) {
+            throw new InvalidBookmarkLinkException();
         }
+        assert link.contains("https://") && link.contains(".") && !link.contains(" ") : "Invalid link";
     }
+
+    private void evaluateCategoryNumber() throws InvalidEmptyLinkException {
+        if (line.length() <= ADD_LENGTH) {
+            throw new InvalidEmptyLinkException();
+        }
+        assert line.length() > 0 : "Link should not be empty";
+
+    }
+
 
     public int getCategoryNumber() {
         return categoryNumber;

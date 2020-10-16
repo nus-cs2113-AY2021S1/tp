@@ -21,34 +21,35 @@ public class ChangeModeCommand extends BookmarkCommand {
 
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories) {
         try {
-            getChosenCategory(line, categories);
-            int categoryNumberInList = categoryNumber - 1;
-            System.out.println("You are now in " + categories.get(categoryNumberInList).getName() + " category");
-            System.out.println("The following are your current bookmarks in this category");
-            ui.showBookmarkLinkList(categories.get(categoryNumber - 1).getLinks());
-            System.out.println("Add new bookmarks by using \"add <link>\"");
+            int category = getChosenCategory(line, categories);
+            if (category == categoryNumber) {
+                ui.showAlreadyInModeMessage();
+            } else {
+                categoryNumber = category;
+                int categoryNumberInList = categoryNumber - 1;
+                ui.showModeChangeMessage(categories, categoryNumberInList);
+                assert category != categoryNumber : "Mode is changed when it is already in the mode";
+            }
         } catch (InvalidEmptyLinkException e) {
-            System.out.println("Empty category number");
+            ui.showEmptyLinkError();
         } catch (NumberFormatException e) {
-            System.out.println("Please enter a number");
-        } catch (InvalidBookmarkLinkException e){
-            System.out.println("Invalid category number");
+            ui.showInvalidNumberError();
+        } catch (InvalidBookmarkLinkException e) {
+            ui.showInvalidLinkError();
         }
     }
 
-    private void getChosenCategory(String line, ArrayList<BookmarkCategory> categories)
+    private int getChosenCategory(String line, ArrayList<BookmarkCategory> categories)
             throws InvalidBookmarkLinkException, InvalidEmptyLinkException, NumberFormatException {
-        if (line.trim().length() <= RM_LENGTH){
+        if (line.trim().length() <= RM_LENGTH) {
             throw new InvalidEmptyLinkException();
         }
         int category = Integer.parseInt(line.substring(RM_LENGTH).trim());
-        if (category == 0 || category > categories.size()){
+        if (category == 0 || category > categories.size()) {
             throw new InvalidBookmarkLinkException();
-        } else if (categoryNumber == category){
-            System.out.println("Already in chosen Category");
-        } else {
-            categoryNumber = category;
         }
+        assert category > 0 && category < categories.size() : "category number out of bounds";
+        return category;
 
     }
 
@@ -56,7 +57,4 @@ public class ChangeModeCommand extends BookmarkCommand {
         return categoryNumber;
     }
 
-    //Todo throw exceptions for invalid input
-    //Todo throw exceptions for category number = 0 or category number > size
-    //Todo throw exceptions saying that it is already in the mode
 }
