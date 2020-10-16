@@ -209,13 +209,6 @@ public class AddCommand extends Command {
             System.out.println("Book title and rating score cannot be empty.");
             return;
         }
-
-
-//        System.out.println(ratingDetails[0]);
-//        System.out.println(ratingDetails[1]);
-
-
-
         int ratingScore = RatingParser.checkFormatOfRatingValue(ratingDetails[0]);
         if (ratingScore == 0) {
             return;
