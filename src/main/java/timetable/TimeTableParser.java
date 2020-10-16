@@ -7,7 +7,7 @@ public class TimeTableParser {
     public static void commandParser(String command, DateList dateList, TimeTableStorage storage) {
         if (command.equals("show schedule")) {
             System.out.println(Message.printShowSchedule);
-            Table.printTable(dateList.dateList);
+            TablePrinter.printTable(dateList.dateList);
             return;
         }
         try {
@@ -26,7 +26,7 @@ public class TimeTableParser {
                 }
                 break;
                 default:
-                    System.out.println(("☹ OOPS!!! I'm sorry, but I don't know what that means :-("));
+                    System.out.println((Message.printInvalidEvent));
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -102,7 +102,7 @@ public class TimeTableParser {
     }
 
 
-    private static LocalDateTime getDateTime(String command)throws ArrayIndexOutOfBoundsException {
+    public static LocalDateTime getDateTime(String command)throws ArrayIndexOutOfBoundsException {
         String[] dateTime;
         String[] date;
         int fromIndex = command.indexOf("from");
