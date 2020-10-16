@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.Tag;
-import seedu.duke.util.Formatter;
+import seedu.duke.ui.Formatter;
 
 import java.util.ArrayList;
 

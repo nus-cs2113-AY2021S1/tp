@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.timetable.Event;
-import seedu.duke.util.Formatter;
+import seedu.duke.ui.Formatter;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;

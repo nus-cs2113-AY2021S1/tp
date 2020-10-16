@@ -7,7 +7,7 @@ import seedu.duke.data.timetable.DailyEvent;
 import seedu.duke.data.timetable.Event;
 import seedu.duke.data.timetable.Timetable;
 import seedu.duke.storage.StorageManager;
-import seedu.duke.util.Formatter;
+import seedu.duke.ui.Formatter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

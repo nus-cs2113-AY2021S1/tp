@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.notebook.Tag;
-import seedu.duke.util.Formatter;
+import seedu.duke.ui.Formatter;
 
 import static seedu.duke.command.CreateTagCommand.COMMAND_SUCCESSFUL_MESSAGE;
 import static seedu.duke.command.CreateTagCommand.COMMAND_UNSUCCESSFUL_MESSAGE;

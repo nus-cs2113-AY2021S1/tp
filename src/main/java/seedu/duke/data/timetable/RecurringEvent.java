@@ -1,6 +1,6 @@
 package seedu.duke.data.timetable;
 
-import seedu.duke.util.Formatter;
+import seedu.duke.ui.Formatter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
