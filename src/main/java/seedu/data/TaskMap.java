@@ -4,6 +4,7 @@ import seedu.task.DateSorter;
 import seedu.task.PrioritySorter;
 import seedu.task.Task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -62,6 +63,13 @@ public class TaskMap {
     public TaskMap searchDescription(String toSearch) {
         List<Task> found = tasksMap.values().stream()
             .filter(task -> task.getDescription().contains(toSearch))
+            .collect(Collectors.toList());
+        return new TaskMap(found);
+    }
+
+    public TaskMap searchDate(LocalDate date) {
+        List<Task> found = tasksMap.values().stream()
+            .filter(task -> task.getDate().isEqual(date))
             .collect(Collectors.toList());
         return new TaskMap(found);
     }

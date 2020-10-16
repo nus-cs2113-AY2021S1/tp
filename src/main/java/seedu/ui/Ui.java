@@ -6,7 +6,6 @@ import seedu.task.Task;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static seedu.messages.Messages.LS;
@@ -16,6 +15,8 @@ import static seedu.messages.Messages.WELCOME_MESSAGE;
 public class Ui {
     private final Scanner in;
     private final PrintStream out;
+    private final TaskDisplay taskDisplay;
+    private final DisplayDateStructure displayDateStructure;
 
     public Ui() {
         this(System.in, System.out);
@@ -24,6 +25,8 @@ public class Ui {
     public Ui(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
+        taskDisplay = new TaskDisplay();
+        displayDateStructure = new WeekStructure();
     }
 
     public String getUserInput() {
@@ -34,6 +37,16 @@ public class Ui {
         // Basic adding sequence
         assert tasks != null : "null tasks";
         displayTasks(tasks);
+
+        // Weekly view
+        printScreen(tasks);
+    }
+
+    private void printScreen(TaskMap tasks) {
+        displayDateStructure.generateScreen(tasks);
+        for (char[] arr : displayDateStructure.getScreen()) {
+            out.println(arr);
+        }
     }
 
     private void displayTasks(TaskMap tasks) {

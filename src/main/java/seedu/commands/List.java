@@ -34,7 +34,6 @@ public class List extends Command {
     @Override
     public CommandResult execute(TaskMap tasks) {
         assert !(dateFlag && priorityFlag);
-        System.out.println(dateFlag + " " + priorityFlag);
         if (dateFlag) {
             return new CommandResult(LIST_MESSAGE, tasks.sortListByDate());
         } else if (priorityFlag) {
