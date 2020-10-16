@@ -15,7 +15,6 @@ public class AddUserCommand extends Command {
     public static final String PARAMETER_GENDER = "g";
 
     String name;
-    String dob;
     String gender;
 
     public AddUserCommand(String userInput) throws AniException {
@@ -29,9 +28,6 @@ public class AddUserCommand extends Command {
                     switch (parameterTextSplit[0]) {
                     case PARAMETER_NAME:
                         name = parameterTextSplit[1];
-                        break;
-                    case PARAMETER_DATE_OF_BIRTH:
-                        dob = parameterTextSplit[1];
                         break;
                     case PARAMETER_GENDER:
                         gender = parameterTextSplit[1];
@@ -49,7 +45,7 @@ public class AddUserCommand extends Command {
     @Override
     public String execute(AnimeData animeData, UserManagement userManagement) throws AniException {
         try {
-            return "Successfully added new user: " + userManagement.addUser(name.trim(), dob, gender);
+            return "Successfully added new user: " + userManagement.addUser(name.trim(), gender);
         } catch (ParseException | NullPointerException e) {
             throw new AniException(EXCEPTION_INVALID_PARAMETERS);
         }

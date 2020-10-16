@@ -21,11 +21,8 @@ public class User extends Human {
     private Watchlist activeWatchlist;
     private ArrayList<Watchlist> watchlistList;
 
-    private static final SimpleDateFormat DATE_MONTH_YEAR = new SimpleDateFormat("dd/MM/yyyy");
-
-    public User(String name, String birthdate, String gender) throws ParseException, AniException {
+    public User(String name, String gender) throws AniException {
         super(name);
-        setBirthdate(birthdate);
         setGender(gender);
         bookmark = new Bookmark();
         watchlistList = new ArrayList<>();
@@ -49,21 +46,12 @@ public class User extends Human {
         }
     }
 
-    public void setBirthdate(String birthdateString) throws ParseException {
-        birthdate = DATE_MONTH_YEAR.parse(birthdateString);
-        assert birthdate != null : "Birthdate cannot be null";
-    }
-
     public void setActiveWatchlist(Watchlist activeWatchlist) {
         this.activeWatchlist = activeWatchlist;
     }
 
     public void setWatchlistList(ArrayList<Watchlist> watchlistList) {
         this.watchlistList = watchlistList;
-    }
-
-    public String getDobString() {
-        return DATE_MONTH_YEAR.format(birthdate);
     }
 
     public Gender getGender() {
@@ -101,6 +89,6 @@ public class User extends Human {
 
     @Override
     public String toString() {
-        return "\n Name: " + name + "\n Birthdate: " + getDobString() + "\n Gender: " + getGender();
+        return "\n Name: " + name + "\n Gender: " + getGender();
     }
 }

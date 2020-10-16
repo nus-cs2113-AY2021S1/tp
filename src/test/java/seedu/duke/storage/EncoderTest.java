@@ -23,7 +23,7 @@ class EncoderTest {
 
     @Test
     void encodeUserProfile_validObject_encodedString() throws ParseException, AniException {
-        User user = new User("Human", "01/01/1990", "Other");
+        User user = new User("Human", "Other");
         String expected = "Human | 01/01/1990 | Other";
         assertEquals(encoder.encodeUser(user), expected);
     }

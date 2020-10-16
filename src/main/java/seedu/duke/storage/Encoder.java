@@ -8,15 +8,14 @@ import java.util.ArrayList;
 public class Encoder {
     private static final String FILE_LINE_DELIMITER = " | ";
 
-    public String encodeUser(User user) throws NullPointerException {
-        String name = user.getName();
-        String birthDate = user.getDobString();
-        String gender = user.getGender().toString();
+        public String encodeUser(User user) throws NullPointerException {
+            String name = user.getName();
+            String gender = user.getGender().toString();
 
-        String encodedUserString = name + FILE_LINE_DELIMITER + birthDate + FILE_LINE_DELIMITER + gender;
-        assert (name != null && birthDate != null && gender != null) : "User details should not have any null.";
-        return encodedUserString;
-    }
+            String encodedUserString = name + FILE_LINE_DELIMITER + gender;
+            assert (name != null && gender != null) : "User details should not have any null.";
+            return encodedUserString;
+        }
 
     public String encodeWatchlist(ArrayList<Watchlist> watchlists) throws NullPointerException {
         StringBuilder sbWatchlist = new StringBuilder();

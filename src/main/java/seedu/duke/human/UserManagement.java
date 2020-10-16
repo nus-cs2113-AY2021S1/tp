@@ -49,16 +49,16 @@ public class UserManagement {
         return storage;
     }
 
-    public User addUser(String name, String dob, String gender) throws ParseException, AniException {
-        User newUser = new User(name, dob, gender);
+    public User addUser(String name, String gender) throws ParseException, AniException {
+        User newUser = new User(name, gender);
         checkIfUserExist(name);
 
-        assert (name != null && dob != null && gender != null) : "User details should not have any null.";
+        assert (name != null && gender != null) : "User details should not have any null.";
 
         userList.add(newUser);
         storage.saveUser(newUser);
 
-        LOGGER.log(Level.INFO, "User created: " + name + " | " + dob + " | " + gender);
+        LOGGER.log(Level.INFO, "User created: " + name + " | " + gender);
         return newUser;
     }
 
@@ -69,7 +69,6 @@ public class UserManagement {
             }
         }
     }
-
 
     public User getUser(String name) throws AniException {
         for (User existingUser : userList) {
@@ -89,12 +88,10 @@ public class UserManagement {
             try {
                 ui.printMessage("What's your name?");
                 String name = ui.readInput();
-                ui.printMessage("Hello " + name + "! What might your date of birth be? (DD/MM/YYYY)");
-                String dob = ui.readInput();
-                ui.printMessage("What might your gender be? (Male/Female/Other)");
+                ui.printMessage("Hello " + name + "! What might your gender be? (Male/Female/Other)");
                 String gender = ui.readInput();
 
-                activeUser = addUser(name.trim(), dob, gender);
+                activeUser = addUser(name.trim(), gender);
                 ui.printMessage("Successfully added new user:");
                 ui.printMessage(activeUser.toString());
                 userCreated = true;

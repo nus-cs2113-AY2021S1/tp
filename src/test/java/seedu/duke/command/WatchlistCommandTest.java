@@ -26,7 +26,7 @@ class WatchlistCommandTest {
         Storage storage = new Storage("profile-test.txt", "watchlist-test.txt");
         userManagement = new UserManagement(storage);
 
-        User activeUser = new User("Testing", "01/01/2000", "Male");
+        User activeUser = new User("Testing", "Male");
         userManagement.setActiveUser(activeUser);
 
         Watchlist secondWatchlist = new Watchlist("Second");

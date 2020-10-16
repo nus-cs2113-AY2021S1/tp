@@ -24,7 +24,7 @@ class UserManagementTest {
         Storage testStorage = new Storage(USER_PROFILE_FILE_NAME, WATCHLIST_FILE_NAME);
         UserManagement userManagement = new UserManagement(testStorage);
 
-        User newUser = userManagement.addUser("Wallace", "14/2/2019", "Male");
-        assertEquals("\n Name: Wallace\n Birthdate: 14/02/2019\n Gender: Male", newUser.toString());
+        User newUser = userManagement.addUser("Wallace", "Male");
+        assertEquals("\n Name: Wallace\n Gender: Male", newUser.toString());
     }
 }
