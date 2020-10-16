@@ -51,7 +51,7 @@ public class Power {
      * @return true if appliance turn on successfully
      */
     public boolean onAppliance() {
-        if (!status) {
+        if (!this.status) {
             this.status = true;
             onTime = getCurrentTime();
             return true;

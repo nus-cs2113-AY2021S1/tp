@@ -24,16 +24,17 @@ public class OnCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        // NEED TO IMPROVE
         for (Appliance appliance : applianceList.getAllAppliance()) {
             if (appliance.getName().equals((this.name))) {
                 if (appliance.switchOn()) {
+                    assert !appliance.switchOn() : "Appliance should be already ON";
                     String location = appliance.getLocation();
-                    String result = String.format("Switching on %s in %s ......ON!\n", name, location);
+                    String result = String.format("Switching on %s in %s ......ON!", name, location);
                     return new CommandResult(LINE + result);
                 } else {
                     return new CommandResult(LINE + MESSAGE_APPLIANCE_PREVIOUSLY_ON);
                 }
+
             }
         }
         return new CommandResult(LINE + name + " does not exist.");
