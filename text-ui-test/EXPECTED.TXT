@@ -1,33 +1,16 @@
-Welcome to NotUS! Type "help" if you need to see a list of commands and their usages.
-Enter command:
+Welcome to NotUS! 
 
-The recognized commands and their usages are listed below. Parameters listed in brackets, [ ] represent optional inputs.
-[97madd-n: Adds a note to notebook. Parameters: /t TITLE [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...] [/pin PIN]
-[36madd-e: Adds an event to the timetable. Parameters:/t TITLE /timing TIMING (Format: yyyy-MM-dd HH:mm) [/repeat Frequency (daily, weekly, monthly, yearly)] [/remind [Days before (Default: 1)]] [/stop TIMING (Format: yyyy-MM-dd HH:mm)]
-[97mcreate-t: Creates a tag. Parameters: /tag TAG NAME [TAG COLOR][0m
-(Available colors: [97mWHITE, [31mRED, [32mGREEN, [34mBLUE, [33mYELLOW, [36mCYAN, [35mPURPLE[0m)
-[36mdelete-n: Deletes a note. Parameters: /t TITLE or /i INDEX
-[97mdelete-e: Deletes an event. Parameters: /i INDEX
-[36mdelete-t: Deletes a tag. Parameters: /tag TAG [/tag TAG1...]
-[97medit-n: Edits a note in the notebook. Parameters: /i INDEX [/t TITLE] [/ln LINE][/c CONTENT][/tag TAG TAG_COLOR/tag TAG1 TAG_COLOR...]
-[36medit-e: Edits an event in the timetable. Parameters: /i INDEX [/t TITLE] [/d DATE_TIME][/repeat RECURRING] [/remind REMIND]
-[97mexit: Exits the program.
-[36mfind-n: Finds a note. Parameters: KEYWORDS
-[97mlist-e: List all the events in the Timetable. Parameters: [/timing YYYY or YYYY-MM]
-[36mlist-n: Lists all the notes in the Notebook. Parameters: [/tag TAG /tag TAG1...] [/sort up OR down]
-[97mlist-t: Lists all the tags.
-[36mpin-n: Pins or unpins a note. Parameters: [/i INDEX] [/t TITLE]
-[97mremind-e: Shows the reminders for today.
-[36mtag: Tags or untags a note. Parameters: /i INDEX /tag TAG TAG_COLOR [/tag TAG1 TAG_COLOR...]
-[97mview-n: Views a note. Parameters: [/i INDEX] [/t TITLE]
-[0m
-Enter command:
+     .-') _               .-') _                 .-')    
+    ( OO ) )             (  OO) )               ( OO ).  
+,--./ ,--,'  .-'),-----. /     '._ ,--. ,--.   (_)---\_) 
+|   \ |  |\ ( OO'  .-.  '|'--...__)|  | |  |   /    _ |  
+|    \|  | )/   |  | |  |'--.  .--'|  | | .-') \  :` `.  
+|  .     |/ \_) |  | |  |   |  |   |  | |( OO ) '..`''.) 
+|  |\    |    \ |  | |  |   |  |   |  | | `-' /.-._)   \ 
+|  | \   |     `'  '-'  '   |  |  ('  '-'(_.-' \       / 
+`--'  `--'       `-----'    `--'    `-----'     `-----'  
 
-Invalid Command. Please try again or enter help to get a list of valid commands.
-
-Enter command:
-
-Invalid Command. Please try again or enter help to get a list of valid commands.
+Type "help" if you need to see a list of commands and their usages.
 
 Enter command:
 Bye!

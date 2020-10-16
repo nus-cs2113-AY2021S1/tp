@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import com.sun.jna.Function;
+import com.sun.jna.platform.win32.Wincon;
 import seedu.duke.command.Command;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.data.notebook.Notebook;
@@ -7,12 +9,18 @@ import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.timetable.Timetable;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.InterfaceManager;
+import seedu.duke.util.Formatter;
 import seedu.duke.util.Parser;
+
+import com.sun.jna.platform.win32.WinDef;
+import com.sun.jna.platform.win32.WinNT;
 
 /**
  * Entry point of the NotUS application.
  */
 public class Duke {
+
+    private static final int ENABLE_VIRTUAL_TERMINAL_PROCESSING = 4;
 
     private InterfaceManager interfaceManager;
     private StorageManager storageManager;
@@ -20,9 +28,34 @@ public class Duke {
     private Timetable timetable;
     private TagManager tagManager;
 
+    // Character code adapted from http://patorjk.com/software/taag/#p=display&f=Ghost&t=NotUS
+    // Slight modifications made to make it easier on the eyes
+    private static final String NOTUS_LOGO = Formatter.LS
+            + Formatter.LS
+            + "     .-') _               .-') _                 .-')    "
+            + Formatter.LS
+            + "    ( OO ) )             (  OO) )               ( OO ).  "
+            + Formatter.LS
+            + ",--./ ,--,'  .-'),-----. /     '._ ,--. ,--.   (_)---\\_) "
+            + Formatter.LS
+            + "|   \\ |  |\\ ( OO'  .-.  '|'--...__)|  | |  |   /    _ |  "
+            + Formatter.LS
+            + "|    \\|  | )/   |  | |  |'--.  .--'|  | | .-') \\  :` `.  "
+            + Formatter.LS
+            + "|  .     |/ \\_) |  | |  |   |  |   |  | |( OO ) '..`''.) "
+            + Formatter.LS
+            + "|  |\\    |    \\ |  | |  |   |  |   |  | | `-' /.-._)   \\ "
+            + Formatter.LS
+            + "|  | \\   |     `'  '-'  '   |  |  ('  '-'(_.-' \\       / "
+            + Formatter.LS
+            + "`--'  `--'       `-----'    `--'    `-----'     `-----'  "
+            + Formatter.LS;
+
     private static final String WELCOME_MSG_STRING = "Welcome to NotUS! "
+            + NOTUS_LOGO + Formatter.LS
             + "Type \"help\" if you need to see a list of commands and their usages.";
-    private static final String ENTER_COMMAND_MSG = "Enter command:";
+    private static final String ENTER_COMMAND_MSG = Formatter.LS
+            + "Enter command:";
 
     /**
      * Initializes the required managers.
@@ -63,15 +96,43 @@ public class Duke {
         exit();
     }
 
+    /**
+     * Calls the execute function of the command.
+     *
+     * @param command The command to be executed.
+     * @return String of the executed command.
+     */
     private String executeCommand(Command command) {
         command.setData(notebook, timetable, tagManager, storageManager);
         return command.execute();
     }
 
     /**
+     * Sets windows console mode to enable virtual terminal processing to allow printing of ansi escape code.
+     */
+    private static void enableVirtualTerminalProcessing() {
+        Function getStdHandleFunc = Function.getFunction("kernel32", "GetStdHandle");
+        WinDef.DWORD stdOutputHandle = new WinDef.DWORD(Wincon.STD_OUTPUT_HANDLE);
+        WinNT.HANDLE outputHandle = (WinNT.HANDLE) getStdHandleFunc.invoke(
+                WinNT.HANDLE.class, new Object[]{stdOutputHandle});
+
+        WinDef.DWORDByReference doubleWord = new WinDef.DWORDByReference(new WinDef.DWORD(0));
+        Function getConsoleModeFunc = Function.getFunction("kernel32", "GetConsoleMode");
+        getConsoleModeFunc.invoke(WinDef.BOOL.class, new Object[]{outputHandle, doubleWord});
+
+        WinDef.DWORD dwMode = doubleWord.getValue();
+        dwMode.setValue(dwMode.intValue() | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+        Function setConsoleModeFunc = Function.getFunction("kernel32", "SetConsoleMode");
+        setConsoleModeFunc.invoke(WinDef.BOOL.class, new Object[]{outputHandle, dwMode});
+    }
+
+    /**
      * Main entry-point for the application.
      */
     public static void main(String[] args) {
+        if (System.getProperty("os.name").startsWith("Windows")) {
+            enableVirtualTerminalProcessing();
+        }
         new Duke().run();
     }
 }
