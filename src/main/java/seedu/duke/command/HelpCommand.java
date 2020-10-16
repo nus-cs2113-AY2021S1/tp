@@ -3,6 +3,8 @@ package seedu.duke.command;
 import seedu.duke.data.notebook.Tag.TagColor;
 import seedu.duke.ui.Formatter;
 
+import com.diogonunes.jcolor.Attribute;
+
 import java.io.IOException;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
@@ -11,39 +13,37 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import static com.diogonunes.jcolor.Ansi.colorize;
+
 /**
  * Lists all the commands and usage.
  */
 public class HelpCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger("HelpCommand");
 
-    private static final String COLOR_CYAN_STRING = TagColor.COLOR_CYAN.getColor();
-    private static final String COLOR_WHITE_STRING = TagColor.COLOR_WHITE.getColor();
-    private static final String COLOR_RESET_STRING = TagColor.COLOR_RESET.getColor();
-
     public static final String COMMAND_WORD = "help";
 
     public static final String HELP_STRING = Formatter.LS
             + "The recognized commands and their usages are listed below. "
             + "Parameters listed in brackets, [ ] represent optional inputs." 
-            + Formatter.LS + COLOR_WHITE_STRING
-            + AddNoteCommand.COMMAND_USAGE + Formatter.LS + COLOR_CYAN_STRING
-            + AddEventCommand.COMMAND_USAGE + Formatter.LS + COLOR_WHITE_STRING
-            + CreateTagCommand.COMMAND_USAGE + Formatter.LS + COLOR_CYAN_STRING
-            + DeleteNoteCommand.COMMAND_USAGE + Formatter.LS + COLOR_WHITE_STRING
-            + DeleteEventCommand.COMMAND_USAGE + Formatter.LS + COLOR_CYAN_STRING
-            + DeleteTagCommand.COMMAND_USAGE + Formatter.LS + COLOR_WHITE_STRING
-            + EditNoteCommand.COMMAND_USAGE + Formatter.LS + COLOR_CYAN_STRING
-            + EditEventCommand.COMMAND_USAGE + Formatter.LS + COLOR_WHITE_STRING
-            + ExitCommand.COMMAND_USAGE + Formatter.LS + COLOR_CYAN_STRING
-            + FindCommand.COMMAND_USAGE + Formatter.LS + COLOR_WHITE_STRING
-            + ListEventCommand.COMMAND_USAGE + Formatter.LS + COLOR_CYAN_STRING
-            + ListNoteCommand.COMMAND_USAGE + Formatter.LS + COLOR_WHITE_STRING
-            + ListTagCommand.COMMAND_USAGE + Formatter.LS + COLOR_CYAN_STRING
-            + PinCommand.COMMAND_USAGE + Formatter.LS + COLOR_WHITE_STRING
-            + RemindCommand.COMMAND_USAGE + Formatter.LS + COLOR_CYAN_STRING
-            + TagCommand.COMMAND_USAGE + Formatter.LS + COLOR_WHITE_STRING
-            + ViewNoteCommand.COMMAND_USAGE + COLOR_RESET_STRING;
+            + Formatter.LS.repeat(2)
+            + colorize(AddNoteCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()) + Formatter.LS
+            + colorize(AddEventCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()) + Formatter.LS
+            + colorize(CreateTagCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()) + Formatter.LS
+            + colorize(DeleteNoteCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()) + Formatter.LS
+            + colorize(DeleteEventCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()) + Formatter.LS
+            + colorize(DeleteTagCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()) + Formatter.LS
+            + colorize(EditNoteCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()) + Formatter.LS
+            + colorize(EditEventCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()) + Formatter.LS
+            + colorize(ExitCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()) + Formatter.LS
+            + colorize(FindCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()) + Formatter.LS
+            + colorize(ListEventCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()) + Formatter.LS
+            + colorize(ListNoteCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()) + Formatter.LS
+            + colorize(ListTagCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()) + Formatter.LS
+            + colorize(PinCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()) + Formatter.LS
+            + colorize(RemindCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT()) + Formatter.LS
+            + colorize(TagCommand.COMMAND_USAGE, Attribute.BRIGHT_CYAN_TEXT()) + Formatter.LS
+            + colorize(ViewNoteCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT());
 
     @Override
     public String execute() {

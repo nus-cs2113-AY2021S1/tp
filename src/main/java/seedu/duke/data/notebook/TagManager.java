@@ -56,7 +56,7 @@ public class TagManager {
             return true;
         } else {
             if (overridesColor) {
-                existingTag.setTagColor(tag.getTagColor());
+                existingTag.setTagAttribute(tag.getTagAttribute());
             }
             return false;
         }
