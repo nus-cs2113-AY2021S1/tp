@@ -2,6 +2,8 @@ package bookmark.commands;
 
 import bookmark.BookmarkCategory;
 import bookmark.BookmarkUi;
+import exceptions.InvalidBookmarkLinkException;
+import exceptions.InvalidEmptyLinkException;
 
 import java.util.ArrayList;
 

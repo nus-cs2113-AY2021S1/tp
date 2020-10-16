@@ -1,12 +1,11 @@
-import bookmark.BookmarkCategory;
-import bookmark.BookmarkUi;
 import bookmark.commands.AddLinkCommand;
 import bookmark.commands.BackCommand;
 import bookmark.commands.BookmarkCommand;
 import bookmark.commands.ChangeModeCommand;
 import bookmark.commands.ListCommand;
 import bookmark.commands.RemoveLinkCommand;
-import bookmark.InvalidBookmarkCommandException;
+import exceptions.InvalidCommandException;
+import exceptions.InvalidEmptyLinkException;
 
 public class BookmarkParser extends CommandParser {
     private static int chosenCategory;
@@ -14,9 +13,9 @@ public class BookmarkParser extends CommandParser {
     public BookmarkParser() {
     }
 
-    public BookmarkCommand evaluateInput(String command) throws InvalidBookmarkCommandException {
+    public BookmarkCommand evaluateInput(String command) throws InvalidCommandException {
         if (command == null) {
-            throw new InvalidBookmarkCommandException();
+            throw new InvalidCommandException();
         }
         String commandModified = CommandParser.standardizeCommand(command);
         if (commandModified.startsWith("bm")) {
@@ -32,7 +31,7 @@ public class BookmarkParser extends CommandParser {
             String backCommand = updateChosenCategory();
             return new BackCommand(backCommand);
         } else {
-            throw new InvalidBookmarkCommandException();
+            throw new InvalidCommandException();
         }
     }
 
