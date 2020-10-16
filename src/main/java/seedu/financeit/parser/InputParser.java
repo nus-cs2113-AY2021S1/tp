@@ -19,6 +19,11 @@ public class InputParser {
         String[] newCommand = userCommand.split(" ", 4);
         return newCommand;
     }
+
+    public String[] parseEditCommand (String userCommand) {
+        String[] newCommand = userCommand.split(" ", 5);
+        return newCommand;
+    }
     /**
      * Example input: deadline /by tomorrow /note skip page 70.
      * commandString: "deadline"

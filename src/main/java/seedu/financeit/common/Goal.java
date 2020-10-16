@@ -5,7 +5,8 @@ import java.time.Month;
 public class Goal {
     private int incomeGoal = 0;
     private int expenseGoal = 0;
-    private Month month;
+    private Month incomeMonth;
+    private Month expenseMonth;
     private String category;
 
     public Goal(int goal, String category, Month month) {
@@ -19,20 +20,20 @@ public class Goal {
         }
     }
 
-    public void setExpenseMonth(Month month) {
-        this.month = month;
+    public void setExpenseMonth(Month expenseMonth) {
+        this.expenseMonth = expenseMonth;
     }
 
     public Month getExpenseMonth() {
-        return this.month;
+        return this.expenseMonth;
     }
 
-    public void setIncomeMonth(Month month) {
-        this.month = month;
+    public void setIncomeMonth(Month incomeMonth) {
+        this.incomeMonth = incomeMonth;
     }
 
     public Month getIncomeMonth() {
-        return this.month;
+        return this.incomeMonth;
     }
 
     public void setIncomeGoal(int incomeGoal) {
