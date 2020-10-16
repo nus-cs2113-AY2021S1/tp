@@ -153,7 +153,7 @@ public class ListCommand extends Command {
     }
 
     private void listSpecifiedRating(RatingList ratings, TextUi ui) {
-        assert information.isEmpty() : "Rating details should not be empty";
+        assert !information.isEmpty() : "Rating details should not be empty";
         int ratingToList = RatingParser.checkFormatOfRatingValue(information);
         if (ratingToList == 0) {
             return;
