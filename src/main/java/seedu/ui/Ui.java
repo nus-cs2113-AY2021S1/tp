@@ -59,10 +59,10 @@ public class Ui {
 
     public void showWelcomeMessage(TaskList tasks) {
         showMessage(WELCOME_MESSAGE);
-        showNotifications(tasks);
+        showReminders(tasks);
     }
 
-    public void showNotifications(TaskList tasks) {
+    public void showReminders(TaskList tasks) {
         TaskList tasksDueToday = tasks.getTasksDueToday();
         TaskList tasksDueTomorrow = tasks.getTasksDueTomorrow();
         String messageFormat = "%-15s%-30s%15s" + LS;
