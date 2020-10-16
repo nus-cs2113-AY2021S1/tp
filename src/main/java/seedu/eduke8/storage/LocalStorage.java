@@ -12,19 +12,29 @@ public abstract class LocalStorage implements Storage {
         assert filePath != null;
 
         // Use relative path for Unix systems
-        String[] filePathSplit = filePath.split("/");
-        for (String path: filePathSplit) {
-            this.filePath += File.separator + path;
-        }
+        this.filePath = appendRelativePath(this.filePath, filePath);
     }
 
-    protected void createFileIfNotExists() throws IOException {
+    private String appendRelativePath(String originalPath, String relativePath) {
+        String fullPath = originalPath;
+        String[] relativePathSplit = relativePath.split("/");
+        for (String path: relativePathSplit) {
+            fullPath += File.separator + path;
+        }
+
+        return fullPath;
+    }
+
+    protected File createFileIfNotExists() throws IOException {
         File file = new File(filePath);
+
         if (!file.exists()) {
             file.getParentFile().mkdirs();
             file.createNewFile();
         }
 
         assert file.exists();
+
+        return file;
     }
 }

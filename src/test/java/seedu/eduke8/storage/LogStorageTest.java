@@ -3,6 +3,7 @@ package seedu.eduke8.storage;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,20 +23,31 @@ public class LogStorageTest {
         LogStorage logStorage = new LogStorage(LOG_PATH);
         logStorage.save();
 
-        String filePath = new File("").getAbsolutePath();
-        String[] logPathSplit = LOG_PATH.split("/");
-        for (String path: logPathSplit) {
-            filePath += File.separator + path;
-        }
-
+        String filePath = appendRelativePath(new File("").getAbsolutePath(), LOG_PATH);
         File logFile = new File(filePath);
+
         assertTrue(logFile.exists());
 
+        String logData = getSecondLineOfLogs(logFile);
+
+        assertEquals(logData, "INFO: Logging to file started");
+    }
+
+    private String getSecondLineOfLogs(File logFile) throws FileNotFoundException {
         Scanner logReader = new Scanner(logFile);
         logReader.nextLine(); // Skip first line with datetime info
         String logData = logReader.nextLine();
         logReader.close();
+        return logData;
+    }
 
-        assertEquals(logData, "INFO: Logging to file started");
+    private String appendRelativePath(String originalPath, String relativePath) {
+        String fullPath = originalPath;
+        String[] relativePathSplit = relativePath.split("/");
+        for (String path: relativePathSplit) {
+            fullPath += File.separator + path;
+        }
+
+        return fullPath;
     }
 }
