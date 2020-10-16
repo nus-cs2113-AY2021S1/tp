@@ -25,7 +25,8 @@ public class HelpCommand extends Command {
 
     public static final String HELP_STRING = Formatter.LS
             + "The recognized commands and their usages are listed below. "
-            + "Parameters listed in brackets, [ ] represent optional inputs." + Formatter.LS + COLOR_WHITE_STRING
+            + "Parameters listed in brackets, [ ] represent optional inputs." 
+            + Formatter.LS + COLOR_WHITE_STRING
             + AddNoteCommand.COMMAND_USAGE + Formatter.LS + COLOR_CYAN_STRING
             + AddEventCommand.COMMAND_USAGE + Formatter.LS + COLOR_WHITE_STRING
             + CreateTagCommand.COMMAND_USAGE + Formatter.LS + COLOR_CYAN_STRING
@@ -42,7 +43,7 @@ public class HelpCommand extends Command {
             + PinCommand.COMMAND_USAGE + Formatter.LS + COLOR_WHITE_STRING
             + RemindCommand.COMMAND_USAGE + Formatter.LS + COLOR_CYAN_STRING
             + TagCommand.COMMAND_USAGE + Formatter.LS + COLOR_WHITE_STRING
-            + ViewNoteCommand.COMMAND_USAGE + Formatter.LS + COLOR_RESET_STRING;
+            + ViewNoteCommand.COMMAND_USAGE + COLOR_RESET_STRING;
 
     @Override
     public String execute() {
