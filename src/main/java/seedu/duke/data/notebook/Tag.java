@@ -75,6 +75,14 @@ public class Tag {
         this.tagColor = tagColor;
     }
 
+    public Attribute getTagAttribute() {
+        return tagAttribute;
+    }
+
+    public void setTagAttribute(Attribute tagColor) {
+        this.tagAttribute = tagColor;
+    }
+
     /** Setter function for the color of the tag. */
     public void setTagColor(String tagColor) {
         switch (tagColor.toUpperCase()) {
@@ -96,7 +104,7 @@ public class Tag {
             break;
         case COLOR_PURPLE_STRING:
             this.tagColor = TagColor.COLOR_PURPLE;
-            this.tagAttribute = Attribute.RED_TEXT();
+            this.tagAttribute = Attribute.MAGENTA_TEXT();
             break;
         case COLOR_CYAN_STRING:
             this.tagColor = TagColor.COLOR_CYAN;
