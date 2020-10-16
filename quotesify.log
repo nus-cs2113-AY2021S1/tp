@@ -110,3 +110,95 @@ INFO: added book to booklist
 信息: going to add book to booklist
 10月 14, 2020 11:21:58 下午 seedu.quotesify.commands.AddCommand execute
 信息: added book to booklist
+Oct 16, 2020 3:28:18 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 16, 2020 3:28:18 PM seedu.quotesify.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 16, 2020 3:28:23 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 16, 2020 3:31:10 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 16, 2020 3:31:10 PM seedu.quotesify.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 16, 2020 3:31:13 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 16, 2020 3:32:23 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 16, 2020 3:32:23 PM seedu.quotesify.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 16, 2020 3:32:29 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 16, 2020 3:32:29 PM seedu.quotesify.commands.AddCommand addCategoryToQuote
+INFO: add category to quote success
+Oct 16, 2020 3:32:29 PM seedu.quotesify.commands.AddCommand addCategoryToQuote
+INFO: add category to quote success
+Oct 16, 2020 3:32:39 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 16, 2020 3:32:39 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 16, 2020 3:32:49 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 16, 2020 3:32:49 PM seedu.quotesify.commands.AddCommand addCategoryToBook
+INFO: add category to book success
+Oct 16, 2020 3:32:49 PM seedu.quotesify.commands.AddCommand addCategoryToBook
+INFO: add category to book success
+Oct 16, 2020 3:32:59 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 16, 2020 3:32:59 PM seedu.quotesify.commands.AddCommand addCategoryToBook
+INFO: add category to book success
+Oct 16, 2020 3:32:59 PM seedu.quotesify.commands.AddCommand addCategoryToQuote
+INFO: add category to quote success
+Oct 16, 2020 3:39:33 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 16, 2020 3:39:33 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 16, 2020 3:39:38 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 16, 2020 3:39:38 PM seedu.quotesify.commands.AddCommand addCategoryToBook
+INFO: add category to book success
+Oct 16, 2020 3:39:38 PM seedu.quotesify.commands.AddCommand addCategoryToBook
+INFO: add category to book success
+Oct 16, 2020 3:39:59 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 16, 2020 3:39:59 PM seedu.quotesify.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 16, 2020 3:40:02 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 16, 2020 3:40:02 PM seedu.quotesify.commands.AddCommand addCategoryToQuote
+INFO: add category to quote success
+Oct 16, 2020 3:40:02 PM seedu.quotesify.commands.AddCommand addCategoryToQuote
+INFO: add category to quote success
+Oct 16, 2020 3:44:59 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 16, 2020 3:44:59 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 16, 2020 3:45:02 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 16, 2020 3:45:02 PM seedu.quotesify.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 16, 2020 3:45:07 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 16, 2020 3:45:07 PM seedu.quotesify.commands.AddCommand addCategoryToBook
+INFO: add category to book success
+Oct 16, 2020 3:45:07 PM seedu.quotesify.commands.AddCommand addCategoryToQuote
+INFO: add category to quote success
+Oct 16, 2020 3:45:07 PM seedu.quotesify.commands.AddCommand addCategoryToBook
+INFO: add category to book success
+Oct 16, 2020 3:45:07 PM seedu.quotesify.commands.AddCommand addCategoryToQuote
+INFO: add category to quote success
+Oct 16, 2020 3:45:38 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 16, 2020 3:45:50 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 16, 2020 3:45:50 PM seedu.quotesify.commands.AddCommand addCategoryToBook
+INFO: add category to book success
+Oct 16, 2020 3:45:50 PM seedu.quotesify.commands.AddCommand addCategoryToQuote
+INFO: add category to quote success
+Oct 16, 2020 3:45:50 PM seedu.quotesify.commands.AddCommand addCategoryToBook
+INFO: add category to book success
+Oct 16, 2020 3:45:50 PM seedu.quotesify.commands.AddCommand addCategoryToQuote
+INFO: add category to quote success
+Oct 16, 2020 3:45:50 PM seedu.quotesify.commands.AddCommand addCategoryToBook
+INFO: add category to book success
+Oct 16, 2020 3:45:50 PM seedu.quotesify.commands.AddCommand addCategoryToQuote
+INFO: add category to quote success
