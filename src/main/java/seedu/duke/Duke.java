@@ -90,19 +90,21 @@ public class Duke {
 
         boolean result = INSTANCE.SetConsoleMode(handle, 4);*/
 
-        Function GetStdHandleFunc = Function.getFunction("kernel32", "GetStdHandle");
-        WinDef.DWORD STD_OUTPUT_HANDLE = new WinDef.DWORD(Wincon.STD_OUTPUT_HANDLE);
-        WinNT.HANDLE hOut = (WinNT.HANDLE)GetStdHandleFunc.invoke(WinNT.HANDLE.class, new Object[]{STD_OUTPUT_HANDLE});
+        if (System.getProperty("os.name").startsWith("Windows")) {
+            Function GetStdHandleFunc = Function.getFunction("kernel32", "GetStdHandle");
+            WinDef.DWORD STD_OUTPUT_HANDLE = new WinDef.DWORD(Wincon.STD_OUTPUT_HANDLE);
+            WinNT.HANDLE hOut = (WinNT.HANDLE) GetStdHandleFunc.invoke(WinNT.HANDLE.class, new Object[]{STD_OUTPUT_HANDLE});
 
-        WinDef.DWORDByReference p_dwMode = new WinDef.DWORDByReference(new WinDef.DWORD(0));
-        Function GetConsoleModeFunc = Function.getFunction("kernel32", "GetConsoleMode");
-        GetConsoleModeFunc.invoke(WinDef.BOOL.class, new Object[]{hOut, p_dwMode});
+            WinDef.DWORDByReference p_dwMode = new WinDef.DWORDByReference(new WinDef.DWORD(0));
+            Function GetConsoleModeFunc = Function.getFunction("kernel32", "GetConsoleMode");
+            GetConsoleModeFunc.invoke(WinDef.BOOL.class, new Object[]{hOut, p_dwMode});
 
-        int ENABLE_VIRTUAL_TERMINAL_PROCESSING = 4;
-        WinDef.DWORD dwMode = p_dwMode.getValue();
-        dwMode.setValue(dwMode.intValue() | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
-        Function SetConsoleModeFunc = Function.getFunction("kernel32", "SetConsoleMode");
-        SetConsoleModeFunc.invoke(WinDef.BOOL.class, new Object[]{hOut, dwMode});
+            int ENABLE_VIRTUAL_TERMINAL_PROCESSING = 4;
+            WinDef.DWORD dwMode = p_dwMode.getValue();
+            dwMode.setValue(dwMode.intValue() | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+            Function SetConsoleModeFunc = Function.getFunction("kernel32", "SetConsoleMode");
+            SetConsoleModeFunc.invoke(WinDef.BOOL.class, new Object[]{hOut, dwMode});
+        }
 
         new Duke().run();
     }
