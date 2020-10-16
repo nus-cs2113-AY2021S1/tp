@@ -18,6 +18,7 @@ public abstract class Command {
     public static final String ERROR_NO_QUOTE_FOUND = "There is no such quote!";
     public static final String ERROR_NO_BOOKS_IN_LIST = "There are no books in the list!";
     public static final String ERROR_NO_BOOKS_BY_AUTHOR = "There are no books by this author!";
+    public static final String LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE = "I can't find any books rated %d star!";
     public static final String ERROR_NO_AUTHOR_NAME = "Please type in the author name.";
     public static final String ERROR_NO_PAGE_NUM = "There is no page number provided!";
     public static final String ERROR_NO_TASK_NAME = "There is no task name provided!";

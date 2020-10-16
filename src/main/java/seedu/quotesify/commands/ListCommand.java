@@ -154,12 +154,24 @@ public class ListCommand extends Command {
 
     private void listSpecifiedRating(RatingList ratings, TextUi ui) {
         assert !information.isEmpty() : "Rating details should not be empty";
-        int ratingToList = RatingParser.checkFormatOfRatingValue(information);
-        if (ratingToList == 0) {
+        int ratingToPrint = RatingParser.checkFormatOfRatingValue(information);
+        if (ratingToPrint == 0) {
             return;
         }
-        if (RatingParser.checkRangeOfRatingValue(ratingToList)) {
-            ui.printSpecifiedRating(ratings, ratingToList);
+        if (RatingParser.checkRangeOfRatingValue(ratingToPrint)) {
+            boolean doesExist = false;
+            for (Rating rating : ratings.getList()) {
+                if (rating.getRating() == ratingToPrint) {
+                    doesExist = true;
+                    break;
+                }
+            }
+            if (doesExist) {
+                ui.printSpecifiedRating(ratings, ratingToPrint);
+            } else {
+                System.out.printf((LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE) + "\n", ratingToPrint);
+            }
+
         }
     }
 
