@@ -7,7 +7,7 @@ import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.notebook.Tag;
-import seedu.duke.util.Formatter;
+import seedu.duke.ui.Formatter;
 
 import static seedu.duke.command.TagCommand.TAG_NOTE_MESSAGE;
 import static seedu.duke.command.TagCommand.UNTAG_NOTE_MESSAGE;

@@ -1,7 +1,7 @@
 package seedu.duke.data.exception;
 
 import seedu.duke.data.timetable.Event;
-import seedu.duke.util.Formatter;
+import seedu.duke.ui.Formatter;
 
 /**
  * Signals the different type of possible exceptions.

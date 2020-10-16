@@ -1,7 +1,8 @@
 package seedu.duke.command;
 
+import seedu.duke.ui.Formatter;
+
 import com.diogonunes.jcolor.Attribute;
-import seedu.duke.util.Formatter;
 
 import java.io.IOException;
 import java.util.logging.ConsoleHandler;
