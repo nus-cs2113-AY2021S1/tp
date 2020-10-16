@@ -2,6 +2,7 @@ package seedu.duke.data.notebook;
 
 import com.diogonunes.jcolor.Attribute;
 import static com.diogonunes.jcolor.Ansi.colorize;
+import org.fusesource.jansi.Ansi.Color;
 
 /**
  * Represents a tag with respective color bind to it.
