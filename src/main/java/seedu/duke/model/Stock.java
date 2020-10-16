@@ -18,7 +18,7 @@ public class Stock implements Serializable {
     }
 
     public void addTransaction(Transaction transaction) {
-        assert transactions != null: "ArrayList of transactions not initialised!";
+        assert transactions != null : "ArrayList of transactions not initialised!";
 
         switch (transaction.getTransactionType()) {
         case BUY:
