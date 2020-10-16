@@ -1,18 +1,7 @@
-LAB|false|cs1010|2020-10-10|10:00|lt11
-EXAM|false|cs1010|2020-10-10|12:30|nus
-LEC|false|cs1010|2020-10-10|12:30|nus
-TUT|false|cs1010|2020-10-10|12:30|nus
-ACT|false|CCA|2020-10-10|12:30|nus
-ACT|false|cca|2020-10-10|12:30|nus
-D|false|ho|2020-10-10
-ACT|false|CCA|2020-10-10|13:20|NUS
-EXAM|false|cca|2020-10-10|12:30|nus
-T|false|howmuchareyou paid
-EXAM|false|who1293|2020-10-08|16:00|nus
-EXAM|false|cs2020|2020-12-20|15:00|nus
-LEC|false|cs2020|2020-12-20|15:00|nus
-D|false|meeting|2020-10-10
-ACT|false|cca|2020-10-10|12:30|nus
-D|false|hi|2020-10-10
-ACT|false|cca|2020-10-10|12:30|nus
-D|false|hi|2020-10-10
+LAB|false|cs1010|2020-10-10|13:30|nus
+LAB|false|cs1010|2020-10-17|13:30|nus
+TUT|false|cs1010|2020-10-10|13:30|nus
+TUT|false|cs1010|2020-10-17|13:30|nus
+TUT|false|cs1010|2020-10-24|13:30|nus
+TUT|false|cs1010|2020-10-31|13:30|nus
+TUT|false|cs1010|2020-11-07|13:30|nus
