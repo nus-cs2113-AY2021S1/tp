@@ -3,8 +3,8 @@ package location;
 import java.util.Arrays;
 
 /**
- * Represents Building objects
- * Contains an array of Strings nearestBusStops which represents the bus stops nearby
+ * Represents Building objects.
+ * Contains an array of Strings nearestBusStops which represents the bus stops nearby.
  */
 public class Building extends Location{
     private String[] nearestBusStops;
@@ -16,9 +16,9 @@ public class Building extends Location{
     }
 
     /**
-     * Prepares string to be printed in a list
+     * Prepares string to be printed in a list.
      *
-     * @return object to be printed in a certain format
+     * @return object to be printed in a certain format.
      */
     @Override
     public String toString() {

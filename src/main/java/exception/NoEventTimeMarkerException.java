@@ -1,13 +1,13 @@
 package exception;
 
 /**
- * Represents the exception where there is no timer marker in the command
+ * Represents the exception where there is no time marker in the command.
  */
-public class NoEventMarkerException extends NuScheduleException {
+public class NoEventTimeMarkerException extends NuScheduleException {
     /**
      * Prepare the message to be printed when this exception is experienced.
      *
-     * @return the message
+     * @return the message.
      */
     public String getMessage() {
         return "Please enter your command in the correct format.";
