@@ -18,12 +18,16 @@ public abstract class Command {
     public static final String ERROR_NO_QUOTE_FOUND = "There is no such quote!";
     public static final String ERROR_NO_BOOKS_IN_LIST = "There are no books in the list!";
     public static final String ERROR_NO_BOOKS_BY_AUTHOR = "There are no books by this author!";
+    public static final String LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE = "I can't find any books rated %d star!";
     public static final String ERROR_NO_AUTHOR_NAME = "Please type in the author name.";
     public static final String ERROR_NO_PAGE_NUM = "There is no page number provided!";
     public static final String ERROR_NO_TASK_NAME = "There is no task name provided!";
     public static final String ERROR_RATING_EXIST = "This book has already been rated!";
     public static final String ERROR_BOOK_TO_RATE_NOT_FOUND = "I can't find this book to rate!";
-    public static final String ERROR_RATING_NOT_FOUND = "This book has not been rated!";
+    public static final String ERROR_RATING_NOT_FOUND = "I can't find ratings for this book!";
+    public static final String ERROR_RATING_MISSING_BOOK_TITLE_OR_RATING_SCORE
+            = "Both book title and rating score cannot be empty.";
+    public static final String ERROR_RATING_MISSING_BOOK_TITLE = "Book title cannot be empty.";
     public static final String ERROR_TODO_NOT_FOUND = "There is no such task!";
     public static final String ERROR_BOOKMARK_NOT_FOUND = "There is no such bookmark!";
     public static final String ERROR_LIST_UNKNOWN_COMMAND = "I do not understand that command. Try again";

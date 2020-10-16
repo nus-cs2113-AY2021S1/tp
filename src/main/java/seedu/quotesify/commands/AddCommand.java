@@ -24,10 +24,10 @@ import java.util.logging.Level;
 import java.util.ArrayList;
 
 public class AddCommand extends Command {
+    public static Logger addLogger = Logger.getLogger("QuotesifyLogger");
+
     private String type;
     private String information;
-
-    public static Logger addLogger = Logger.getLogger("QuotesifyLogger");
 
     public AddCommand(String arguments) {
         String[] details = arguments.split(" ", 2);
@@ -200,21 +200,23 @@ public class AddCommand extends Command {
     }
 
     private void addRating(RatingList ratings, TextUi ui) {
+
         String[] ratingDetails;
         String titleOfBookToRate;
+
         try {
             ratingDetails = information.split(" ", 2);
             titleOfBookToRate = ratingDetails[1].trim();
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Book title and rating score cannot be empty.");
+            System.out.println(ERROR_RATING_MISSING_BOOK_TITLE_OR_RATING_SCORE);
             return;
         }
-        int ratingScore = RatingParser.checkFormatOfRatingValue(ratingDetails[0]);
-        if (ratingScore == 0) {
-            return;
-        }
-        boolean isValid = RatingParser.checkRangeOfRatingValue(ratingScore);
-        if (isValid && !isRated(ratings, titleOfBookToRate) && isExistingBook(titleOfBookToRate)) {
+
+        int ratingScore = RatingParser.checkValidityOfRatingScore(ratingDetails[0]);
+        boolean isValid = ((ratingScore != 0) && (!isRated(ratings, titleOfBookToRate))
+                && isExistingBook(titleOfBookToRate));
+
+        if (isValid) {
             ratings.add(new Rating(ratingScore, titleOfBookToRate));
             ui.printAddRatingToBook(ratingScore, titleOfBookToRate);
         }
@@ -223,27 +225,26 @@ public class AddCommand extends Command {
     private boolean isExistingBook(String titleOfBookToRate) {
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         ArrayList<Book> existingBooks = bookList.getList();
-        boolean doesExist = false;
-        assert existingBooks.size() != 0 : "List of books should not be empty";
+
+        boolean isFound = false;
         for (Book existingBook : existingBooks) {
             if (existingBook.getTitle().equals(titleOfBookToRate)) {
-                doesExist = true;
+                isFound = true;
                 break;
             }
         }
-        if (!doesExist) {
+
+        if (!isFound) {
             addLogger.log(Level.INFO, "book does not exist");
             System.out.println(ERROR_BOOK_TO_RATE_NOT_FOUND);
         }
-        return doesExist;
+        return isFound;
     }
 
     private boolean isRated(RatingList ratings, String titleOfBookToRate) {
         boolean isRated = false;
-        String titleOfRatedBook;
         for (Rating rating : ratings.getList()) {
-            titleOfRatedBook = rating.getTitleOfRatedBook();
-            if (titleOfRatedBook.equals(titleOfBookToRate)) {
+            if (rating.getTitleOfRatedBook().equals(titleOfBookToRate)) {
                 isRated = true;
                 break;
             }
