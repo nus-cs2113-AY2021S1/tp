@@ -69,4 +69,7 @@ public class BookmarkUi {
         System.out.println("Not a valid link, please enter a valid link.");
     }
 
+    public void showInvalidNumberError() {
+        System.out.println("Enter a number");
+    }
 }

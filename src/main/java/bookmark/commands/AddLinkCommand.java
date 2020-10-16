@@ -17,6 +17,7 @@ public class AddLinkCommand extends BookmarkCommand {
         this.categoryNumber = categoryNumber;
         this.line = line.trim();
         assert line.startsWith("add") : "Add link command is called when line does not start with add";
+        assert categoryNumber >= 0 : "Missing category number";
     }
 
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories) {
@@ -47,7 +48,12 @@ public class AddLinkCommand extends BookmarkCommand {
         if (!link.contains("https://") && !link.contains(".") && link.contains(" ")) {
             return false;
         } else {
+            assert link.contains("https://") && link.contains(".") && !link.contains(" ") : "Invalid link";
             return true;
         }
+    }
+
+    public int getCategoryNumber() {
+        return categoryNumber;
     }
 }

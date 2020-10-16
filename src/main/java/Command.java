@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 
 public class Command {
+    public static int chosenCategory = 0;
 
     public static void executeCommand(String command, CommandType commandType,
                                       ArrayList<BookmarkCategory> bookmarkCategories, FlashcardRun flashcardRun,
@@ -21,7 +22,6 @@ public class Command {
             Ui.printExit();
         } else if (commandType == CommandType.EXIT_MODE) {
             Ui.exitMode();
-            BookmarkParser.resetBookmarkCategory();
         } else if (commandType == CommandType.LOCATION) {
             Ui.printLocation();
         } else if (commandType == CommandType.CHANGE_MODE) {
@@ -58,8 +58,9 @@ public class Command {
         BookmarkUi bookmarkUi = new BookmarkUi();
         BookmarkParser bookmarkParser = new BookmarkParser();
         try {
-            BookmarkCommand c = bookmarkParser.evaluateInput(command);
+            BookmarkCommand c = bookmarkParser.evaluateInput(command,chosenCategory);
             c.executeCommand(bookmarkUi,bookmarkCategories);
+            chosenCategory = c.getCategoryNumber();
         } catch (InvalidCommandException e) {
             bookmarkUi.showInvalidBookmarkCommand();
         }

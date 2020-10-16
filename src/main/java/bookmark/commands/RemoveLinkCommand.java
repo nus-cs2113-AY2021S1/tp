@@ -16,6 +16,8 @@ public class RemoveLinkCommand extends BookmarkCommand {
     public RemoveLinkCommand(String line, int categoryNumber) {
         this.categoryNumber = categoryNumber;
         this.line = line.trim();
+        assert line.startsWith("rm") : "Remove link command is called when line does not start with rm";
+        assert categoryNumber >= 0 : "Missing category number";
     }
 
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories) {
@@ -37,7 +39,7 @@ public class RemoveLinkCommand extends BookmarkCommand {
         } catch (InvalidBookmarkLinkException e) {
             ui.showInvalidLinkError();
         } catch (NumberFormatException e) {
-            System.out.println("Enter a number");
+            ui.showInvalidNumberError();
         }
     }
 
@@ -51,7 +53,7 @@ public class RemoveLinkCommand extends BookmarkCommand {
         return linkNum;
     }
 
-    //Todo empty number
-    // Todo throw exceptions for invalid input, not a number
-    //Todo throw exceptions for input number = 0 or input number > size
+    public int getCategoryNumber() {
+        return categoryNumber;
+    }
 }

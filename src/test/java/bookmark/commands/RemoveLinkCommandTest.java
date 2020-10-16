@@ -25,4 +25,8 @@ class RemoveLinkCommandTest {
         removeCommand.executeCommand(ui,categories);
         assertEquals(categories.get(categoryNumber - 1).getLinks().size(),0);
     }
+
+    //Invalid Number test
+    //Invalid link number test
+    //empty input test
 }
