@@ -2,6 +2,8 @@ package seedu.duke.bookmark;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.duke.exception.DukeException;
+import seedu.duke.exception.DukeExceptionType;
 
 import java.util.ArrayList;
 
@@ -24,7 +26,7 @@ class BookmarkListTest {
 
 
     @Test
-    void addBookmark() {
+    void addBookmark() throws IndexOutOfBoundsException {
         BookmarkList bookmarks = new BookmarkList();
         String module = "CS2113T";
         String description = "something";
@@ -35,7 +37,7 @@ class BookmarkListTest {
     }
 
     @Test
-    void initializeBookmarkListWithArrayList_validBookmark_addsToBookmarkList() {
+    void initializeBookmarkListWithArrayList_validBookmark_addsToBookmarkList() throws IndexOutOfBoundsException {
         ArrayList<String> input = new ArrayList<>();
         input.add("CS2113T | tutorial | www.google.com");
         input.add("CS2113T | lecture | www.yahoo.com");
@@ -55,7 +57,6 @@ class BookmarkListTest {
         input.add("CS2113T | tutorial | www.google.com");
         input.add("CS2113T");
         BookmarkList bookmarks = new BookmarkList(input);
-
         assertThrows(IndexOutOfBoundsException.class, () -> bookmarks.getBookmark(1));
     }
 
@@ -81,7 +82,7 @@ class BookmarkListTest {
     }
 
     @Test
-    void getBookmark() {
+    void getBookmark() throws IndexOutOfBoundsException {
         BookmarkList bookmarks = new BookmarkList();
         bookmarks.addBookmark(bookmark);
         assertEquals(bookmarks.getBookmark(0), bookmark);
@@ -98,7 +99,7 @@ class BookmarkListTest {
      * Checks that bookmark at index 2 changes after deletion.
      */
     @Test
-    void deleteBookmark() {
+    void deleteBookmark() throws IndexOutOfBoundsException {
         ArrayList<String> input = new ArrayList<>();
         input.add("CS2113T | tutorial | www.google.com");
         input.add("CS2113T | lecture | www.yahoo.com");
@@ -131,7 +132,7 @@ class BookmarkListTest {
     }
 
     @Test
-    void findBookmark_matchingBookmark() {
+    void findBookmark_matchingBookmark() throws IndexOutOfBoundsException {
         ArrayList<String> input = new ArrayList<>();
         input.add("CS2113T | tutorial | www.google.com");
         input.add("CS2113T | lecture | www.yahoo.com");
@@ -160,7 +161,7 @@ class BookmarkListTest {
     }
 
     @Test
-    void launchBookmark_matchingBookmark() {
+    void launchBookmark_matchingBookmark() throws IndexOutOfBoundsException {
         ArrayList<String> input = new ArrayList<>();
         input.add("CS2113T | tutorial | www.google.com");
         input.add("CS2113T | lecture | www.yahoo.com");

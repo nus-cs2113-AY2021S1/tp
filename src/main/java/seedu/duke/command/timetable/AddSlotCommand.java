@@ -19,7 +19,7 @@ import java.time.format.DateTimeParseException;
  * Represents the user command exit the Duke program.
  */
 public class AddSlotCommand extends Command {
-    public static final String ADD_KW = "slotadd";
+    public static final String ADD_KW = "add";
     public LocalTime startTime;
     public LocalTime endTime;
     public String day;
@@ -29,15 +29,22 @@ public class AddSlotCommand extends Command {
      * Constructs a new AddSlotCommand instance and stores the information of the slot given by the input.
      *
      * @param command The user input command.
-     * @throws DukeException thrown if input command is invalid.
+     * @throws DukeException if input command is invalid.
      */
     public AddSlotCommand(String command) throws DukeException {
+        assert command.startsWith(ADD_KW);
+        String details = command.substring(ADD_KW.length());
+        if (details.isBlank()) {
+            throw new DukeException(DukeExceptionType.EMPTY_COMMAND, ADD_KW);
+        }
+
+
         String[] parts = command.split(" ");
         try {
             startTime = LocalTime.parse(parts[1]);
             endTime = LocalTime.parse(parts[2]);
             day = parts[3];
-            title = command.substring(command.indexOf(parts[3]) + parts[3].length());
+            title = command.substring(command.indexOf(parts[3]) + parts[3].length()).trim();
         } catch (DateTimeParseException e) {
             throw new DukeException(DukeExceptionType.INVALID_TIME_FORMAT);
         } catch (IndexOutOfBoundsException e) {
@@ -48,14 +55,13 @@ public class AddSlotCommand extends Command {
     /**
      * Adds the slot to the slot list and saves the slots list in the text file.
      *
-     * @param bookmarks The list of slots.
+     * @param slots The list of slots.
      * @param ui The user interface.
      * @param slotStorage The storage for saving and loading.
      */
     @Override
-    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui, Storage bookmarkStorage,
+    public void execute(BookmarkList bookmarks, SlotList slots, Ui ui, Storage bookmarkStorage,
                         Storage slotStorage) throws DukeException {
-        SlotList slots = (SlotList) slotList;
         Slot slot = new Slot(startTime, endTime, day, title);
         slots.addSlot(slot);
         ui.print("Added slot: " + day + " [" + startTime + "-" + endTime + "] "

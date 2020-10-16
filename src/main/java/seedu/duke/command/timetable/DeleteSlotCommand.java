@@ -13,17 +13,22 @@ import seedu.duke.exception.DukeExceptionType;
 import seedu.duke.slot.SlotList;
 
 public class DeleteSlotCommand extends Command {
-    public static final String DEL_KW = "slotdelete";
+    public static final String DEL_KW = "delete";
     private int index;
 
     /**
      * Constructs a new DeleteSlotCommand instance and stores the information of the Slot given by the input.
      *
      * @param command The user input command.
-     * @throws DukeException thrown if input command is invalid.
+     * @throws DukeException if input command is invalid.
      */
     public DeleteSlotCommand(String command) throws DukeException {
+        assert command.startsWith(DEL_KW);
+
         String details = command.substring(DEL_KW.length());
+        if (details.isBlank()) {
+            throw new DukeException(DukeExceptionType.EMPTY_COMMAND, DEL_KW);
+        }
         if (!details.startsWith(" ")) {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
         }
@@ -37,13 +42,12 @@ public class DeleteSlotCommand extends Command {
     /**
      * Deletes the Slot in the Slot list.
      *
-     * @param slotList The list of Slots.
+     * @param slots The list of Slots.
      * @param ui The user interface.
      */
     @Override
-    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage)
+    public void execute(BookmarkList bookmarks, SlotList slots, Ui ui, Storage bookmarkStorage, Storage slotStorage)
             throws DukeException {
-        SlotList slots = (SlotList) slotList;
         try {
             Slot slot = slots.getSlot(index);
             slots.deleteSlot(slots.getSlot(index));

@@ -11,6 +11,7 @@ import seedu.duke.exception.DukeException;
 public class ShowTimetableCommand extends Command {
     public static final String SHOW_KW = "show";
     public String day;
+    private final Ui ui = new Ui();
 
     /**
      * Constructs a new ShowTimetableCommand instance.
@@ -22,7 +23,7 @@ public class ShowTimetableCommand extends Command {
     @Override
     public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
                         Storage bookmarkStorage, Storage slotStorage) throws DukeException {
-        slotList.printLessonAtTime(slotList.getSlotList(), day);
+        this.ui.printLessonAtTime(slotList.getSlotList(), day);
     }
 
     public String getDayFromCommand(String input) {
@@ -31,7 +32,7 @@ public class ShowTimetableCommand extends Command {
         assert input.startsWith(ShowTimetableCommand.SHOW_KW) : "input should always start with \"show\"";
         if (input.length() == 4) {
             return "ALL";
-        } else if (input.substring(4, 5).equals(" ") == false) {
+        } else if (input.charAt(4) != ' ') {
             return null;
         }
 

@@ -13,8 +13,8 @@ add noModule inValidUrl
 add empty  description
 list
 mode timetable
-slotadd 10:00 12:00 mon cs1231 lecture
-slotadd 1111
-slotadd 10:00 11:00
-slotdelete 1
+add 10:00 12:00 mon cs1231 lecture
+add 1111
+add 10:00 11:00
+delete 1
 exit

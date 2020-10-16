@@ -11,6 +11,9 @@ ____________________________________________________________
 
 [Main Menu] Input: ____________________________________________________________
 Unknown input
+Available inputs in Main menu are
+1) mode {bookmark/timetable}
+2) exit
 ____________________________________________________________
 
 [Main Menu] Input: ____________________________________________________________
@@ -19,6 +22,14 @@ ____________________________________________________________
 
 [Bookmark mode] Input: ____________________________________________________________
 Unknown input
+Available inputs in Bookmark mode are
+1) add
+2) delete
+3) show
+4) find
+5) launch
+6) mode timetable
+7) exit
 ____________________________________________________________
 
 [Bookmark mode] Input: ____________________________________________________________
@@ -35,6 +46,14 @@ ____________________________________________________________
 
 [Bookmark mode] Input: ____________________________________________________________
 Unknown input
+Available inputs in Bookmark mode are
+1) add
+2) delete
+3) show
+4) find
+5) launch
+6) mode timetable
+7) exit
 ____________________________________________________________
 
 [Bookmark mode] Input: ____________________________________________________________
@@ -44,26 +63,45 @@ ____________________________________________________________
 
 [Bookmark mode] Input: ____________________________________________________________
 Unknown input
+Available inputs in Bookmark mode are
+1) add
+2) delete
+3) show
+4) find
+5) launch
+6) mode timetable
+7) exit
 ____________________________________________________________
 
 [Bookmark mode] Input: ____________________________________________________________
 Invalid bookmark input
+Format: add {module(optional)} {description} {URL}
 ____________________________________________________________
 
 [Bookmark mode] Input: ____________________________________________________________
-Invalid url
+Invalid URL
+URL must start with either 'www.' or 'https://' and have no spaces
 ____________________________________________________________
 
 [Bookmark mode] Input: ____________________________________________________________
-Invalid url
+Invalid URL
+URL must start with either 'www.' or 'https://' and have no spaces
 ____________________________________________________________
 
 [Bookmark mode] Input: ____________________________________________________________
-Empty description
+Bookmark description required!
 ____________________________________________________________
 
 [Bookmark mode] Input: ____________________________________________________________
 Unknown input
+Available inputs in Bookmark mode are
+1) add
+2) delete
+3) show
+4) find
+5) launch
+6) mode timetable
+7) exit
 ____________________________________________________________
 
 [Bookmark mode] Input: ____________________________________________________________
@@ -71,7 +109,7 @@ Changing to timetable mode
 ____________________________________________________________
 
 [Timetable mode] Input: ____________________________________________________________
-Added slot: mon [10:00-12:00]  cs1231 lecture
+Added slot: mon [10:00-12:00] cs1231 lecture
 ____________________________________________________________
 
 [Timetable mode] Input: ____________________________________________________________
@@ -84,7 +122,7 @@ ____________________________________________________________
 
 [Timetable mode] Input: ____________________________________________________________
 	I've deleted this slot!:
-mon [10:00-12:00]  cs1231 lecture
+mon [10:00-12:00] cs1231 lecture
 ____________________________________________________________
 
 [Timetable mode] Input: ____________________________________________________________
