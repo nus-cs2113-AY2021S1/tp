@@ -46,7 +46,12 @@ public class Formatter {
         return formattedString;
     }
 
-    private static String createsHeaderSplit() {
+    public static String formatString(String[] input, boolean hasHeader) {
+        String formattedString = "";
+        return formattedString;
+    }
+
+    private static String createsHeader() {
         String formattedString;
         formattedString = ROW_SPLIT.repeat(MAX_CONTENT_LENGTH);
         return formattedString;
