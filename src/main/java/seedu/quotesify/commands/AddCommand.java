@@ -18,6 +18,7 @@ import seedu.quotesify.todo.ToDo;
 import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
 
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -133,19 +134,22 @@ public class AddCommand extends Command {
         }
     }
 
-    private void executeParameters(CategoryList categories, String[] parameters, TextUi ui) {
+    private void executeParameters(CategoryList categoryList, String[] parameters, TextUi ui) {
         try {
-            String categoryName = parameters[0];
-            assert !categoryName.isEmpty() : "category name should not be empty";
+            String categoryNames = parameters[0];
+            assert !categoryNames.isEmpty() : "category name should not be empty";
 
-            addCategoryToList(categories, categoryName);
-            Category category = categories.getCategoryByName(categoryName);
+            List<String> categories = CategoryParser.parseCategoriesToList(categoryNames);
+            for (String categoryName : categories) {
+                addCategoryToList(categoryList, categoryName);
+                Category category = categoryList.getCategoryByName(categoryName);
 
-            String bookTitle = parameters[1];
-            String quoteNum = parameters[2];
+                String bookTitle = parameters[1];
+                String quoteNum = parameters[2];
 
-            addCategoryToBook(category, bookTitle, ui);
-            addCategoryToQuote(category, quoteNum, ui);
+                addCategoryToBook(category, bookTitle, ui);
+                addCategoryToQuote(category, quoteNum, ui);
+            }
         } catch (QuotesifyException e) {
             addLogger.log(Level.WARNING, e.getMessage());
             ui.printErrorMessage(e.getMessage());
@@ -167,7 +171,7 @@ public class AddCommand extends Command {
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         try {
             Book book = bookList.findByTitle(bookTitle);
-            book.setCategory(category);
+            book.getCategory().add(category.getCategoryName());
             addLogger.log(Level.INFO, "add category to book success");
             ui.printAddCategoryToBook(bookTitle, category.getCategoryName());
         } catch (NullPointerException e) {
@@ -187,7 +191,7 @@ public class AddCommand extends Command {
         try {
             int quoteNum = Integer.parseInt(index) - 1;
             Quote quote = quotes.get(quoteNum);
-            quote.setCategory(category);
+            quote.getCategory().add(category.getCategoryName());
             ui.printAddCategoryToQuote(quotes.get(quoteNum).getQuote(), category.getCategoryName());
             addLogger.log(Level.INFO, "add category to quote success");
         } catch (IndexOutOfBoundsException e) {

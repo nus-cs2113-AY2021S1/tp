@@ -1,7 +1,6 @@
 package seedu.quotesify.book;
 
 import seedu.quotesify.author.Author;
-import seedu.quotesify.category.Category;
 import seedu.quotesify.lists.QuotesifyList;
 
 import java.util.ArrayList;
@@ -88,16 +87,11 @@ public class BookList extends QuotesifyList<Book> {
     }
 
     public BookList filterByCategory(String categoryName) {
-        try {
-            ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
-                    .filter(book -> {
-                        Category category = book.getCategory();
-                        return category.getCategoryName().equals(categoryName);
-                    }).collect(Collectors.toList());
-            return new BookList(filteredBooks);
-        } catch (NullPointerException e) {
-            // Do nothing
-        }
-        return new BookList();
+        ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
+                .filter(book -> {
+                    ArrayList<String> categories = book.getCategory();
+                    return categories.contains(categoryName);
+                }).collect(Collectors.toList());
+        return new BookList(filteredBooks);
     }
 }

@@ -1,6 +1,5 @@
 package seedu.quotesify.quote;
 
-import seedu.quotesify.category.Category;
 import seedu.quotesify.lists.QuotesifyList;
 
 import java.util.ArrayList;
@@ -46,17 +45,12 @@ public class QuoteList extends QuotesifyList<Quote> {
     }
 
     public QuoteList filterByCategory(String categoryName) {
-        try {
-            ArrayList<Quote> filteredQuotes = (ArrayList<Quote>) quotes.stream()
-                    .filter(quote -> {
-                        Category category = quote.getCategory();
-                        return category.getCategoryName().equals(categoryName);
-                    }).collect(Collectors.toList());
-            return new QuoteList(filteredQuotes);
-        } catch (NullPointerException e) {
-            // Do nothing
-        }
-        return new QuoteList();
+        ArrayList<Quote> filteredQuotes = (ArrayList<Quote>) quotes.stream()
+                .filter(quote -> {
+                    ArrayList<String> categories = quote.getCategory();
+                    return categories.contains(categoryName);
+                }).collect(Collectors.toList());
+        return new QuoteList(filteredQuotes);
     }
 
     public String getRandomQuote() {

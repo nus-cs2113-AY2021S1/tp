@@ -1,19 +1,20 @@
 package seedu.quotesify.book;
 
 import seedu.quotesify.author.Author;
-import seedu.quotesify.category.Category;
+
+import java.util.ArrayList;
 
 public class Book {
     private Author author;
     private String title;
-    private Category category;
+    private ArrayList<String> category = new ArrayList<>();
 
     public Book(Author author, String title) {
         this.author = author;
         this.title = title;
     }
 
-    public Book(Author author, String title, Category category) {
+    public Book(Author author, String title, ArrayList<String> category) {
         this.author = author;
         this.title = title;
         this.category = category;
@@ -35,18 +36,18 @@ public class Book {
         this.title = title;
     }
 
-    public Category getCategory() {
+    public ArrayList<String> getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(ArrayList<String> category) {
         this.category = category;
     }
 
     @Override
     public String toString() {
         if (category != null) {
-            return title + " by " + author.getName() + " -" + category.getCategoryName();
+            return title + " by " + author.getName(); // removed display of category
         }
 
         return title + " by " + author.getName();
