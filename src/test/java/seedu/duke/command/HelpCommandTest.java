@@ -35,7 +35,7 @@ class HelpCommandTest {
             + PinCommand.COMMAND_USAGE + Formatter.LS + COLOR_WHITE
             + RemindCommand.COMMAND_USAGE + Formatter.LS + COLOR_CYAN
             + TagCommand.COMMAND_USAGE + Formatter.LS + COLOR_WHITE
-            + ViewNoteCommand.COMMAND_USAGE + Formatter.LS + COLOR_RESET;
+            + ViewNoteCommand.COMMAND_USAGE + COLOR_RESET;
 
     @Test
     void execute_noInput_noErrorThrown() {
