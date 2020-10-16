@@ -17,7 +17,7 @@ class BackCommandTest {
         int categoryNumber = 0;
         BackCommand command = new BackCommand(categoryNumber);
         command.executeCommand(ui,categories);
-        assertEquals(command.getCategoryNumber(), 0);
+        assertEquals(0,command.getCategoryNumber());
     }
 
     @Test
@@ -25,6 +25,6 @@ class BackCommandTest {
         int categoryNumber = 1;
         BackCommand command = new BackCommand(categoryNumber);
         command.executeCommand(ui,categories);
-        assertEquals(command.getCategoryNumber(), 0);
+        assertEquals(0,command.getCategoryNumber());
     }
 }

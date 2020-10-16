@@ -2,8 +2,8 @@ package bookmark.commands;
 
 import bookmark.BookmarkCategory;
 import bookmark.BookmarkUi;
-import exceptions.InvalidBookmarkLinkException;
-import exceptions.InvalidEmptyLinkException;
+import exceptions.InvalidBookmarkException;
+import exceptions.EmptyBookmarkException;
 
 import java.util.ArrayList;
 
@@ -32,23 +32,23 @@ public class AddLinkCommand extends BookmarkCommand {
                 categories.get(categoryNumber - 1).addLink(link);
                 ui.showBookmarkLinkList(categories.get(categoryNumber - 1).getLinks());
             }
-        } catch (InvalidEmptyLinkException e) {
+        } catch (EmptyBookmarkException e) {
             ui.showEmptyLinkError();
-        } catch (InvalidBookmarkLinkException e) {
+        } catch (InvalidBookmarkException e) {
             ui.showInvalidLinkError();
         }
     }
 
-    private void evaluateLink() throws InvalidBookmarkLinkException {
+    private void evaluateLink() throws InvalidBookmarkException {
         if (!link.contains("https://") || !link.contains(".") || link.contains(" ")) {
-            throw new InvalidBookmarkLinkException();
+            throw new InvalidBookmarkException();
         }
         assert link.contains("https://") && link.contains(".") && !link.contains(" ") : "Invalid link";
     }
 
-    private void evaluateCategoryNumber() throws InvalidEmptyLinkException {
+    private void evaluateCategoryNumber() throws EmptyBookmarkException {
         if (line.length() <= ADD_LENGTH) {
-            throw new InvalidEmptyLinkException();
+            throw new EmptyBookmarkException();
         }
         assert line.length() > 0 : "Link should not be empty";
 

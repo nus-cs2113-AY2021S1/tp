@@ -2,8 +2,8 @@ package bookmark.commands;
 
 import bookmark.BookmarkCategory;
 import bookmark.BookmarkUi;
-import exceptions.InvalidBookmarkLinkException;
-import exceptions.InvalidEmptyLinkException;
+import exceptions.InvalidBookmarkException;
+import exceptions.EmptyBookmarkException;
 
 import java.util.ArrayList;
 
@@ -21,34 +21,33 @@ public class ChangeModeCommand extends BookmarkCommand {
 
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories) {
         try {
-            int category = getChosenCategory(line, categories);
+            int category = getChosenCategory(categories);
             if (category == categoryNumber) {
                 ui.showAlreadyInModeMessage();
+                assert category == categoryNumber : "Mode does not change when it is already in the mode";
             } else {
                 categoryNumber = category;
                 int categoryNumberInList = categoryNumber - 1;
                 ui.showModeChangeMessage(categories, categoryNumberInList);
-                assert category != categoryNumber : "Mode is changed when it is already in the mode";
             }
-        } catch (InvalidEmptyLinkException e) {
+        } catch (EmptyBookmarkException e) {
             ui.showEmptyLinkError();
         } catch (NumberFormatException e) {
             ui.showInvalidNumberError();
-        } catch (InvalidBookmarkLinkException e) {
+        } catch (InvalidBookmarkException e) {
             ui.showInvalidLinkError();
         }
     }
 
-    private int getChosenCategory(String line, ArrayList<BookmarkCategory> categories)
-            throws InvalidBookmarkLinkException, InvalidEmptyLinkException, NumberFormatException {
+    private int getChosenCategory(ArrayList<BookmarkCategory> categories)
+            throws InvalidBookmarkException, EmptyBookmarkException, NumberFormatException {
         if (line.trim().length() <= RM_LENGTH) {
-            throw new InvalidEmptyLinkException();
+            throw new EmptyBookmarkException();
         }
         int category = Integer.parseInt(line.substring(RM_LENGTH).trim());
         if (category == 0 || category > categories.size()) {
-            throw new InvalidBookmarkLinkException();
+            throw new InvalidBookmarkException();
         }
-        assert category > 0 && category < categories.size() : "category number out of bounds";
         return category;
 
     }

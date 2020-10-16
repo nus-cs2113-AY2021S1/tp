@@ -2,8 +2,8 @@ package bookmark.commands;
 
 import bookmark.BookmarkCategory;
 import bookmark.BookmarkUi;
-import exceptions.InvalidBookmarkLinkException;
-import exceptions.InvalidEmptyLinkException;
+import exceptions.InvalidBookmarkException;
+import exceptions.EmptyBookmarkException;
 
 import java.util.ArrayList;
 
@@ -26,7 +26,7 @@ public class RemoveLinkCommand extends BookmarkCommand {
                 ui.printChooseCategoryMessage();
                 assert categoryNumber == 0 : "Choose Category message is called when category number is chosen";
             } else if (line.length() <= RM_LENGTH) {
-                throw new InvalidEmptyLinkException();
+                throw new EmptyBookmarkException();
             } else {
                 line = line.substring(RM_LENGTH);
                 assert line.length() > 0 : "Link should not be empty";
@@ -34,9 +34,9 @@ public class RemoveLinkCommand extends BookmarkCommand {
                 categories.get(categoryNumber - 1).removeLink(linkNumber);
                 ui.showBookmarkLinkList(categories.get(categoryNumber - 1).getLinks());
             }
-        } catch (InvalidEmptyLinkException e) {
+        } catch (EmptyBookmarkException e) {
             ui.showEmptyLinkError();
-        } catch (InvalidBookmarkLinkException e) {
+        } catch (InvalidBookmarkException e) {
             ui.showInvalidLinkError();
         } catch (NumberFormatException e) {
             ui.showInvalidNumberError();
@@ -44,11 +44,11 @@ public class RemoveLinkCommand extends BookmarkCommand {
     }
 
     private int evaluateLinkNumber(ArrayList<BookmarkCategory> categories)
-            throws NumberFormatException, InvalidBookmarkLinkException {
+            throws NumberFormatException, InvalidBookmarkException {
         line = line.trim();
         int linkNum = Integer.parseInt(line);
         if (linkNum == 0 || linkNum > categories.get(categoryNumber - 1).getLinks().size()) {
-            throw new InvalidBookmarkLinkException();
+            throw new InvalidBookmarkException();
         }
         return linkNum;
     }
