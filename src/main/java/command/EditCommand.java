@@ -2,8 +2,9 @@ package command;
 
 import event.Event;
 import eventlist.EventList;
-import exception.EditIndexException;
 import exception.NuScheduleException;
+import locationlist.BusStopList;
+import locationlist.LocationList;
 import storage.Storage;
 import ui.UI;
 
@@ -27,7 +28,7 @@ public class EditCommand extends Command{
      * @param storage store the data.
      */
     @Override
-    public void execute(EventList events, UI ui, Storage storage) throws NuScheduleException {
+    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) throws NuScheduleException {
         events.editEvent(this.event, this.index);
         ui.printEditEventMessage(event);
         ui.printNumEvent(events.getSize());
