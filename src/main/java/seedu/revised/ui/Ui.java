@@ -147,7 +147,7 @@ public class Ui {
         int taskPresent = 0;
         for (Task task : taskList.getList()) {
             if (task.toString().contains(find)) {
-                Ui.printTaskMatch();
+                Ui.printTaskMatch(taskPresent);
                 System.out.println(task);
                 taskPresent = 1;
             }
@@ -163,7 +163,7 @@ public class Ui {
         int subjectPresent = 0;
         for (Subject subject : subjectList.getList()) {
             if (subject.toString().contains(find)) {
-                Ui.printSubjectMatch();
+                Ui.printSubjectMatch(subjectPresent);
                 System.out.println(subject);
                 subjectPresent = 1;
             }
@@ -176,12 +176,16 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
-    public static void printSubjectMatch() {
-        System.out.println(" Here are the matching subject(s) in your list:");
+    public static void printSubjectMatch(int subjectPresent) {
+        if (subjectPresent == 0) {
+            System.out.println(" Here are the matching subject(s) in your list:");
+        }
     }
 
-    public static void printTaskMatch() {
-        System.out.println(" Here are the matching task(s) in your list:");
+    public static void printTaskMatch(int taskPresent) {
+        if (taskPresent == 0) {
+            System.out.println(" Here are the matching task(s) in your list:");
+        }
     }
 
     public static void fileNotFoundError() {
@@ -221,9 +225,11 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
-    public static void printTopicMatch() {
-        System.out.println("____________________________________________________________\n"
-                + " Here are the matching topic(s) in your list:");
+    public static void printTopicMatch(int topicPresent) {
+        if (topicPresent == 0) {
+            System.out.println("____________________________________________________________\n"
+                    + " Here are the matching topic(s) in your list:");
+        }
     }
 
 
@@ -231,7 +237,7 @@ public class Ui {
         int topicPresent = 0;
         for (Topic topic : topicList.getList()) {
             if (topic.toString().contains(query)) {
-                Ui.printTopicMatch();
+                Ui.printTopicMatch(topicPresent);
                 System.out.println(topic);
                 topicPresent = 1;
             }
