@@ -19,12 +19,12 @@ public abstract class LocalStorage implements Storage {
     }
 
     protected void createFileIfNotExists() throws IOException {
-        File f = new File(filePath);
-        if (!f.exists()) {
-            f.getParentFile().mkdirs();
-            f.createNewFile();
+        File file = new File(filePath);
+        if (!file.exists()) {
+            file.getParentFile().mkdirs();
+            file.createNewFile();
         }
 
-        assert f.exists();
+        assert file.exists();
     }
 }
