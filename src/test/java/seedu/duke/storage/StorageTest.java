@@ -2,7 +2,7 @@ package seedu.duke.storage;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.duke.human.User;
+import seedu.duke.human.Workspace;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
 
@@ -26,8 +26,8 @@ class StorageTest {
 
     @Test
     void loadUserProfile_invalidStorage_nullObject() {
-        User user = invalidStorage.loadUser(ui);
-        assertNull(user);
+        Workspace workspace = invalidStorage.loadUser(ui);
+        assertNull(workspace);
     }
 
     @Test

@@ -8,7 +8,7 @@ import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class UserManagementTest {
+class WorkspaceManagementTest {
     private static final String USER_PROFILE_FILE_NAME = "userprofileTEST.txt";
     private static final String WATCHLIST_FILE_NAME = "watchlistTEST.txt";
 
@@ -24,7 +24,7 @@ class UserManagementTest {
         Storage testStorage = new Storage(USER_PROFILE_FILE_NAME, WATCHLIST_FILE_NAME);
         UserManagement userManagement = new UserManagement(testStorage);
 
-        User newUser = userManagement.addUser("Wallace", "Male");
-        assertEquals("\n Name: Wallace\n Gender: Male", newUser.toString());
+        Workspace newWorkspace = userManagement.addUser("Wallace", "Male");
+        assertEquals("\n Name: Wallace\n Gender: Male", newWorkspace.toString());
     }
 }

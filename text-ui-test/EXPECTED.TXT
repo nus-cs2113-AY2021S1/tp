@@ -25,18 +25,18 @@
  What's your name?
  #>  Hello Abec Steiner 33rd! What might your date of birth be? (DD/MM/YYYY)
  #>  What might your gender be? (Male/Female/Other)
- #>  Successfully added new user:
+ #>  Successfully added new workspace:
  
  Name: Abec Steiner 33rd
  Birthdate: 01/02/1996
  Gender: Female
 
- Abec Steiner 33rd-chan (Default) #>  Successfully added new user: 
+ Abec Steiner 33rd-chan (Default) #>  Successfully added new workspace:
  Name: John Doe 3rd
  Birthdate: 12/12/1997
  Gender: Male
 
- Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! A user with John Doe 3rd already exist. Choose a different name!
+ Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! A workspace with John Doe 3rd already exist. Choose a different name!
 
  Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! Unexpected gender: fe
 
@@ -56,7 +56,7 @@
 
  Abec Steiner 33rd-chan (Default) #>  ☹ OOPS!!! Invalid parameters detected!
 
- Abec Steiner 33rd-chan (Default) #>  Successfully added new user: 
+ Abec Steiner 33rd-chan (Default) #>  Successfully added new workspace:
  Name: GOOD PERson 1234
  Birthdate: 26/04/2001
  Gender: Female

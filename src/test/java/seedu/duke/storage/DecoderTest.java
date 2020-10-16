@@ -2,7 +2,7 @@ package seedu.duke.storage;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.duke.human.User;
+import seedu.duke.human.Workspace;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
 
@@ -25,16 +25,16 @@ class DecoderTest {
     @Test
     void decodeUserProfileString_validString_decodedUserProfileObject() {
         String userString = "Tester | 01/01/2020 | Other";
-        User userProfile = decoder.decodeUserString(ui, userString);
+        Workspace workspaceProfile = decoder.decodeUserString(ui, userString);
         String expected = "\n Name: Tester\n Birthdate: 01/01/2020\n Gender: Other";
-        assertEquals(userProfile.toString(), expected);
+        assertEquals(workspaceProfile.toString(), expected);
     }
 
     @Test
     void decodeUserProfileString_invalidString_nullObject() {
         String userString = "Tester | 01/01/2020";
-        User user = decoder.decodeUserString(ui, userString);
-        assertNull(user);
+        Workspace workspace = decoder.decodeUserString(ui, userString);
+        assertNull(workspace);
     }
 
     @Test

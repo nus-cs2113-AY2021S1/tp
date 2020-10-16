@@ -7,11 +7,11 @@ import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class UserTest {
+class WorkspaceTest {
 
     @Test
     public void testProfileCreation() throws ParseException, AniException {
-        User testProfile = new User("Tim", "Other");
+        Workspace testProfile = new Workspace("Tim", "Other");
 
         assertEquals("Tim-san", testProfile.getHonorificName());
         assertEquals("Other", testProfile.getGender().toString());

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
-import seedu.duke.human.User;
+import seedu.duke.human.Workspace;
 import seedu.duke.human.UserManagement;
 import seedu.duke.storage.Storage;
 import seedu.duke.watchlist.Watchlist;
@@ -26,16 +26,16 @@ class WatchlistCommandTest {
         Storage storage = new Storage("profile-test.txt", "watchlist-test.txt");
         userManagement = new UserManagement(storage);
 
-        User activeUser = new User("Testing", "Male");
-        userManagement.setActiveUser(activeUser);
+        Workspace activeWorkspace = new Workspace("Testing", "Male");
+        userManagement.setActiveUser(activeWorkspace);
 
         Watchlist secondWatchlist = new Watchlist("Second");
         secondWatchlist.addAnimeToList("The Slayers Next");
         secondWatchlist.addAnimeToList("Pokémon");
 
-        ArrayList<Watchlist> watchlists = activeUser.getWatchlistList();
+        ArrayList<Watchlist> watchlists = activeWorkspace.getWatchlistList();
         watchlists.add(secondWatchlist);
-        activeUser.setWatchlistList(watchlists);
+        activeWorkspace.setWatchlistList(watchlists);
     }
 
     @Test

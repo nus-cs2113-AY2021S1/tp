@@ -1,6 +1,6 @@
 package seedu.duke.ui;
 
-import seedu.duke.human.User;
+import seedu.duke.human.Workspace;
 
 import java.util.Scanner;
 
@@ -44,9 +44,9 @@ public class Ui {
         return CONSOLE.nextLine();
     }
 
-    public String readUserInput(User activeUser) {
-        String userName = activeUser.getHonorificName();
-        String watchlistName = activeUser.getActiveWatchlistName();
+    public String readUserInput(Workspace activeWorkspace) {
+        String userName = activeWorkspace.getHonorificName();
+        String watchlistName = activeWorkspace.getActiveWatchlistName();
         System.out.print(System.lineSeparator() + " " + userName + " (" + watchlistName + ") #> ");
         return CONSOLE.nextLine();
     }

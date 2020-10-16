@@ -1,6 +1,6 @@
 package seedu.duke.storage;
 
-import seedu.duke.human.User;
+import seedu.duke.human.Workspace;
 import seedu.duke.watchlist.Watchlist;
 
 import java.util.ArrayList;
@@ -8,12 +8,12 @@ import java.util.ArrayList;
 public class Encoder {
     private static final String FILE_LINE_DELIMITER = " | ";
 
-        public String encodeUser(User user) throws NullPointerException {
-            String name = user.getName();
-            String gender = user.getGender().toString();
+        public String encodeUser(Workspace workspace) throws NullPointerException {
+            String name = workspace.getName();
+            String gender = workspace.getGender().toString();
 
             String encodedUserString = name + FILE_LINE_DELIMITER + gender;
-            assert (name != null && gender != null) : "User details should not have any null.";
+            assert (name != null && gender != null) : "Workspace details should not have any null.";
             return encodedUserString;
         }
 

@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
-import seedu.duke.human.User;
+import seedu.duke.human.Workspace;
 import seedu.duke.human.UserManagement;
 
 import java.util.logging.Level;
@@ -35,12 +35,12 @@ public class SwitchUserCommand extends Command {
             switch (paramParts[0].trim()) {
             case "": //skip the first empty param
                 break;
-            case "n": //Name of User
+            case "n": //Name of Workspace
                 paramLengthCheck(paramParts);
                 //Find the user and setActiveUser to it
-                User chgUser = userManagement.getUser(paramParts[1]);
-                userManagement.setActiveUser(chgUser);
-                result = SWITCH_SUCCESS_HEADER + chgUser.getHonorificName();
+                Workspace chgWorkspace = userManagement.getUser(paramParts[1]);
+                userManagement.setActiveUser(chgWorkspace);
+                result = SWITCH_SUCCESS_HEADER + chgWorkspace.getHonorificName();
                 break;
             default:
                 String invalidParameter = PARAMETER_ERROR_HEADER + param + NOT_RECOGNISED;

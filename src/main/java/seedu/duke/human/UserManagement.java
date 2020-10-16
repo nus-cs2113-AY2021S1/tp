@@ -13,67 +13,67 @@ import java.util.logging.Logger;
 public class UserManagement {
     Storage storage;
     private static final Logger LOGGER = Logger.getLogger(UserManagement.class.getName());
-    protected ArrayList<User> userList = new ArrayList<>();
-    protected User activeUser;
+    protected ArrayList<Workspace> workspaceList = new ArrayList<>();
+    protected Workspace activeWorkspace;
 
     public UserManagement(Storage storage) {
         LOGGER.setLevel(Level.WARNING);
         this.storage = storage;
-        activeUser = null;
+        activeWorkspace = null;
     }
 
-    public User getActiveUser() {
-        return activeUser;
+    public Workspace getActiveUser() {
+        return activeWorkspace;
     }
 
 
-    public void setActiveUser(User inputUser) {
-        activeUser = inputUser;
+    public void setActiveUser(Workspace inputWorkspace) {
+        activeWorkspace = inputWorkspace;
 
-        if (activeUser != null) {
+        if (activeWorkspace != null) {
             //Loading of changed active user should be done here. For now set to empty
             ArrayList<Watchlist> watchlistLists = new ArrayList<>();
             Watchlist watchlist = new Watchlist("Default");
             watchlistLists.add(watchlist);
-            inputUser.setActiveWatchlist(watchlist);
-            inputUser.setWatchlistList(watchlistLists);
-            LOGGER.log(Level.INFO, "User switched: " + inputUser.getName());
+            inputWorkspace.setActiveWatchlist(watchlist);
+            inputWorkspace.setWatchlistList(watchlistLists);
+            LOGGER.log(Level.INFO, "Workspace switched: " + inputWorkspace.getName());
         }
     }
 
     public int getTotalUsers() {
-        return userList.size();
+        return workspaceList.size();
     }
 
     public Storage getStorage() {
         return storage;
     }
 
-    public User addUser(String name, String gender) throws ParseException, AniException {
-        User newUser = new User(name, gender);
+    public Workspace addUser(String name, String gender) throws ParseException, AniException {
+        Workspace newWorkspace = new Workspace(name, gender);
         checkIfUserExist(name);
 
-        assert (name != null && gender != null) : "User details should not have any null.";
+        assert (name != null && gender != null) : "Workspace details should not have any null.";
 
-        userList.add(newUser);
-        storage.saveUser(newUser);
+        workspaceList.add(newWorkspace);
+        storage.saveUser(newWorkspace);
 
-        LOGGER.log(Level.INFO, "User created: " + name + " | " + gender);
-        return newUser;
+        LOGGER.log(Level.INFO, "Workspace created: " + name + " | " + gender);
+        return newWorkspace;
     }
 
     private void checkIfUserExist(String name) throws AniException {
-        for (User existingUser : userList) {
-            if (existingUser.getName().equals(name)) {
+        for (Workspace existingWorkspace : workspaceList) {
+            if (existingWorkspace.getName().equals(name)) {
                 throw new AniException("A user with " + name + " already exist. Choose a different name!");
             }
         }
     }
 
-    public User getUser(String name) throws AniException {
-        for (User existingUser : userList) {
-            if (existingUser.getName().equals(name)) {
-                return existingUser;
+    public Workspace getUser(String name) throws AniException {
+        for (Workspace existingWorkspace : workspaceList) {
+            if (existingWorkspace.getName().equals(name)) {
+                return existingWorkspace;
             }
         }
 
@@ -91,9 +91,9 @@ public class UserManagement {
                 ui.printMessage("Hello " + name + "! What might your gender be? (Male/Female/Other)");
                 String gender = ui.readInput();
 
-                activeUser = addUser(name.trim(), gender);
+                activeWorkspace = addUser(name.trim(), gender);
                 ui.printMessage("Successfully added new user:");
-                ui.printMessage(activeUser.toString());
+                ui.printMessage(activeWorkspace.toString());
                 userCreated = true;
             } catch (ParseException | AniException exception) {
                 ui.printErrorMessage(exception.getMessage());

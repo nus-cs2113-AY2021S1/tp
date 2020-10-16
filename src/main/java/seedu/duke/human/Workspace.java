@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class User extends Human {
+public class Workspace extends Human {
     public static final String GENDER_MALE = "male";
     public static final String GENDER_FEMALE = "female";
     public static final String GENDER_OTHER = "other";
@@ -21,7 +21,7 @@ public class User extends Human {
     private Watchlist activeWatchlist;
     private ArrayList<Watchlist> watchlistList;
 
-    public User(String name, String gender) throws AniException {
+    public Workspace(String name, String gender) throws AniException {
         super(name);
         setGender(gender);
         bookmark = new Bookmark();

@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
-import seedu.duke.human.User;
+import seedu.duke.human.Workspace;
 import seedu.duke.human.UserManagement;
 import seedu.duke.storage.Storage;
 import seedu.duke.watchlist.Watchlist;
@@ -34,9 +34,9 @@ public class AddToWatchlistCommand extends Command {
     @Override
     public String execute(AnimeData animeData, UserManagement userManagement) throws AniException {
         Storage storage = userManagement.getStorage();
-        User activeUser = userManagement.getActiveUser();
-        Watchlist activeWatchlist = activeUser.getActiveWatchlist();
-        ArrayList<Watchlist> activeWatchlistList = activeUser.getWatchlistList();
+        Workspace activeWorkspace = userManagement.getActiveUser();
+        Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
+        ArrayList<Watchlist> activeWatchlistList = activeWorkspace.getWatchlistList();
 
         if (!option.equals(ADD_OPTION)) {
             LOGGER.log(Level.WARNING, "Option type given is wrong");

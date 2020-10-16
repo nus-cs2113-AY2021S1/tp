@@ -4,7 +4,7 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.anime.AnimeStorage;
 import seedu.duke.command.Command;
 import seedu.duke.exception.AniException;
-import seedu.duke.human.User;
+import seedu.duke.human.Workspace;
 import seedu.duke.human.UserManagement;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
@@ -40,20 +40,20 @@ public class Duke {
         ui.printHorizontalLine();
 
         // Initial Set up
-        assert userManagement != null : "User management should not be null!";
-        User activeUser = userManagement.getActiveUser();
-        if (activeUser == null) {
+        assert userManagement != null : "Workspace management should not be null!";
+        Workspace activeWorkspace = userManagement.getActiveUser();
+        if (activeWorkspace == null) {
             userManagement.addUserDialogue(ui);
-            activeUser = userManagement.getActiveUser();
-            assert userManagement.getActiveUser() != null : "User should have been created";
+            activeWorkspace = userManagement.getActiveUser();
+            assert userManagement.getActiveUser() != null : "Workspace should have been created";
         }
 
-        activeUser.setWatchlistList(watchlistList);
+        activeWorkspace.setWatchlistList(watchlistList);
         if (watchlistList.isEmpty()) {
             Watchlist activeWatchlist = new Watchlist("Default");
             watchlistList.add(activeWatchlist);
-            activeUser.setActiveWatchlist(activeWatchlist);
-            activeUser.setWatchlistList(watchlistList);
+            activeWorkspace.setActiveWatchlist(activeWatchlist);
+            activeWorkspace.setWatchlistList(watchlistList);
 
             try {
                 storage.saveWatchlist(watchlistList);
@@ -61,8 +61,8 @@ public class Duke {
                 ui.printErrorMessage(exception.getMessage());
             }
         } else {
-            activeUser.setActiveWatchlist(watchlistList.get(0));
-            assert activeUser.getActiveWatchlist() != null : "Active watchlist should not be null.";
+            activeWorkspace.setActiveWatchlist(watchlistList.get(0));
+            assert activeWorkspace.getActiveWatchlist() != null : "Active watchlist should not be null.";
         }
 
         try {

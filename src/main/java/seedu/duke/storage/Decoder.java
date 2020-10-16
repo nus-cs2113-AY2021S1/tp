@@ -1,11 +1,10 @@
 package seedu.duke.storage;
 
 import seedu.duke.exception.AniException;
-import seedu.duke.human.User;
+import seedu.duke.human.Workspace;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,22 +17,22 @@ public class Decoder {
         LOGGER.setLevel(Level.WARNING);
     }
 
-    public User decodeUserString(Ui ui, String fileString) {
-        User user = null;
+    public Workspace decodeUserString(Ui ui, String fileString) {
+        Workspace workspace = null;
         try {
             String[] fileStringParts = fileString.split(FILE_LINE_DELIMITER);
             String name = fileStringParts[0].trim();
             String gender = fileStringParts[1].trim();
 
-            user = new User(name, gender);
-            ui.printMessage("AniChan successfully loaded the user.");
-            LOGGER.log(Level.INFO, "User \"" + name + "\" successfully loaded.");
+            workspace = new Workspace(name, gender);
+            ui.printMessage("AniChan successfully loaded the workspace.");
+            LOGGER.log(Level.INFO, "Workspace \"" + name + "\" successfully loaded.");
         } catch (AniException | IndexOutOfBoundsException exception) {
-            ui.printErrorMessage("AniChan could not load the saved user.");
-            LOGGER.log(Level.WARNING, "Failed to load the user: " + exception.getMessage());
+            ui.printErrorMessage("AniChan could not load the saved workspace.");
+            LOGGER.log(Level.WARNING, "Failed to load the workspace: " + exception.getMessage());
         }
 
-        return user;
+        return workspace;
     }
 
     public ArrayList<Watchlist> decodeWatchlistString(Ui ui, String fileString) {
