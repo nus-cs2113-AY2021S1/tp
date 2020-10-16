@@ -1,5 +1,7 @@
 package seedu.quotesify.category;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Stack;
 
 public class CategoryParser {
@@ -18,7 +20,7 @@ public class CategoryParser {
     }
 
     public static String[] getRequiredParameters(String[] tokens) {
-        String categoryName;
+        String categories;
         String bookTitle = "";
         String quoteNum = "";
 
@@ -38,8 +40,8 @@ public class CategoryParser {
             }
             line = item + " " + line;
         }
-        categoryName = line.trim();
-        return new String[]{categoryName, bookTitle, quoteNum};
+        categories = line.trim();
+        return new String[]{categories, bookTitle, quoteNum};
     }
 
     public static boolean isValidParameters(String[] parameters) {
@@ -57,5 +59,9 @@ public class CategoryParser {
             return false;
         }
         return true;
+    }
+
+    public static List<String> parseCategoriesToList(String categories) {
+        return Arrays.asList(categories.split(" "));
     }
 }

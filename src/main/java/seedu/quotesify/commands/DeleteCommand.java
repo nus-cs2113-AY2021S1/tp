@@ -18,6 +18,7 @@ import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DeleteCommand extends Command {
     private String type;
@@ -142,18 +143,21 @@ public class DeleteCommand extends Command {
         }
     }
 
-    private void executeParameters(CategoryList categories, String[] parameters, TextUi ui) {
+    private void executeParameters(CategoryList categoryList, String[] parameters, TextUi ui) {
         try {
-            String categoryName = parameters[0];
-            assert !categoryName.isEmpty() : "category name should not be empty";
+            String categoryNames = parameters[0];
+            assert !categoryNames.isEmpty() : "category name should not be empty";
 
-            Category category = categories.getCategoryByName(categoryName);
+            List<String> categories = CategoryParser.parseCategoriesToList(categoryNames);
+            for (String categoryName : categories) {
+                Category category = categoryList.getCategoryByName(categoryName);
 
-            String bookTitle = parameters[1];
-            String quoteNum = parameters[2];
+                String bookTitle = parameters[1];
+                String quoteNum = parameters[2];
 
-            deleteCategoryFromBook(category, bookTitle, ui);
-            deleteCategoryFromQuote(category, quoteNum, ui);
+                deleteCategoryFromBook(category, bookTitle, ui);
+                deleteCategoryFromQuote(category, quoteNum, ui);
+            }
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
         }
@@ -168,9 +172,8 @@ public class DeleteCommand extends Command {
         BookList bookList = category.getBookList();
         try {
             Book book = bookList.findByTitle(bookTitle);
-            if (book.getCategory().equals(category)) {
-                book.setCategory(null);
-            }
+            ArrayList<String> categories = book.getCategory();
+            categories.remove(category.getCategoryName());
             ui.printRemoveCategoryFromBook(bookTitle, category.getCategoryName());
         } catch (NullPointerException e) {
             ui.printErrorMessage(ERROR_NO_BOOK_FOUND + "\b tagged as [" + category.getCategoryName() + "]!");
@@ -188,9 +191,8 @@ public class DeleteCommand extends Command {
         try {
             int quoteNum = Integer.parseInt(index) - 1;
             Quote quote = quotes.get(quoteNum);
-            if (quote.getCategory().equals(category)) {
-                quote.setCategory(null);
-            }
+            ArrayList<String> categories = quote.getCategory();
+            categories.remove(category.getCategoryName());
             ui.printRemoveCategoryFromQuote(quote.getQuote(), category.getCategoryName());
         } catch (IndexOutOfBoundsException e) {
             ui.printErrorMessage(ERROR_NO_QUOTE_FOUND + "\b tagged as [" + category.getCategoryName() + "]!");
