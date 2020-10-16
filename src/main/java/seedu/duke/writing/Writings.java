@@ -2,6 +2,11 @@ package seedu.duke.writing;
 
 import seedu.duke.user.User;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import static seedu.duke.constants.DataFileConvention.LENGTH_OF_DATE;
+
 public abstract class Writings {
     protected String title;
     protected int id;
@@ -13,6 +18,11 @@ public abstract class Writings {
 
     public String getTitle() {
         return title;
+    }
+
+    public static void createTitle(String input) {
+        String[] words = input.split(" ", 2);
+
     }
 
     public void setTitle(String title) {
@@ -39,8 +49,10 @@ public abstract class Writings {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDate() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDateTime now = LocalDateTime.now();
+        this.date = now.toString().substring(0, LENGTH_OF_DATE);
     }
 
     public String getContent() {
