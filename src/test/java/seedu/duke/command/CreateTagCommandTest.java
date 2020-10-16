@@ -33,7 +33,7 @@ class CreateTagCommandTest {
         tagGreen = new Tag("Green", Tag.COLOR_GREEN_STRING);
         tagBlue  = new Tag("Blue", Tag.COLOR_BLUE_STRING);
         tagRedToYellow = new Tag("Red", Tag.COLOR_YELLOW_STRING);
-        tagGreenToPurple = new Tag("Green", Tag.COLOR_PURPLE_STRING);
+        tagGreenToPurple = new Tag("Green", Tag.COLOR_MAGENTA_STRING);
 
         tags = new ArrayList<>();
         tagManager = new TagManager();

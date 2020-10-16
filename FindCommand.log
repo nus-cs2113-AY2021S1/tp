@@ -1,8 +1,8 @@
-Oct 15, 2020 8:47:45 PM seedu.duke.command.FindCommand execute
+Oct 16, 2020 12:37:10 AM seedu.duke.command.FindCommand execute
 INFO: Logger Setup, will proceed to execute FindCommand.
-Oct 15, 2020 8:47:45 PM seedu.duke.command.FindCommand execute
+Oct 16, 2020 12:37:10 AM seedu.duke.command.FindCommand execute
 INFO: Filtered Notes into an ArrayList of notes. Filtered Notes only has notes with title containing the keyword.
-Oct 15, 2020 8:47:45 PM seedu.duke.command.FindCommand execute
+Oct 16, 2020 12:37:10 AM seedu.duke.command.FindCommand execute
 INFO: Filtered notes stored as a string to be returned.
-Oct 15, 2020 8:47:45 PM seedu.duke.command.FindCommand execute
+Oct 16, 2020 12:37:10 AM seedu.duke.command.FindCommand execute
 INFO: Filtered notes is empty.
