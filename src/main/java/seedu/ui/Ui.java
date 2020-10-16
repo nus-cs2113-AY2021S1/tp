@@ -25,8 +25,8 @@ public class Ui {
     public Ui(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
-    //        taskDisplay = new TaskDisplay();
-    //        displayDateStructure = new WeekStructure();
+        //        taskDisplay = new TaskDisplay();
+        //        displayDateStructure = new WeekStructure();
     }
 
     public String getUserInput() {

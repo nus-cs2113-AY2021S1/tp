@@ -7,14 +7,12 @@ import java.time.LocalDate;
 import java.util.Arrays;
 
 public class WeekStructure extends DisplayDateStructure {
-    private final int DISPLAY_LENGTH = 140;
-    private final int DISPLAY_HEIGHT = 10;
-    private final int DAY_COLUMN_WIDTH = 20;
+    private static final int DISPLAY_LENGTH = 140;
+    private static final int DISPLAY_HEIGHT = 10;
+    private static final int DAY_COLUMN_WIDTH = 20;
 
     @Override
     protected void generateScreen(TaskMap tasks) {
-        LocalDate startDate = currentDate.minusDays(currentDateDayOfWeek.getValue() - 1);
-        LocalDate endDate = startDate.plusDays(DAYS_PER_WEEK);
 
         String monthString = currentMonth.getDisplayName(MONTH_TEXT_STYLE, LOCALE);
 
@@ -29,6 +27,9 @@ public class WeekStructure extends DisplayDateStructure {
         putsIntoArrayWithCentrialise(monthString, screen[currentRow++], 0, DISPLAY_LENGTH);
 
         // Display weekdays
+        LocalDate startDate = currentDate.minusDays(currentDateDayOfWeek.getValue() - 1);
+        LocalDate endDate = startDate.plusDays(DAYS_PER_WEEK);
+
         for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(1)) {
 
             // for each day
