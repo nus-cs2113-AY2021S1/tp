@@ -122,4 +122,11 @@ public class EventList {
 
         return filteredEventList;
     }
+
+    /**
+     * Clear the ArrayList events if it is not empty.
+     */
+    public void clearEvents() {
+        events.clear();
+    }
 }
