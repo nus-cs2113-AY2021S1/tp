@@ -200,8 +200,21 @@ public class AddCommand extends Command {
     }
 
     private void addRating(RatingList ratings, TextUi ui) {
-        String[] ratingDetails = information.split(" ", 2);
-        String titleOfBookToRate = ratingDetails[1].trim();
+        String[] ratingDetails;
+        String titleOfBookToRate;
+        try {
+            ratingDetails = information.split(" ", 2);
+            titleOfBookToRate = ratingDetails[1].trim();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Book title and rating score cannot be empty.");
+            return;
+        }
+
+
+//        System.out.println(ratingDetails[0]);
+//        System.out.println(ratingDetails[1]);
+
+
 
         int ratingScore = RatingParser.checkFormatOfRatingValue(ratingDetails[0]);
         if (ratingScore == 0) {

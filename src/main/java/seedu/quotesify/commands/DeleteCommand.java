@@ -81,6 +81,10 @@ public class DeleteCommand extends Command {
     }
 
     private void deleteRating(RatingList ratings, TextUi ui, String bookTitle) {
+        if (bookTitle.equals("")) {
+            System.out.println("Book title cannot be empty.");
+            return;
+        }
         Rating ratingToBeDeleted = null;
         for (Rating rating : ratings.getList()) {
             if (rating.getTitleOfRatedBook().equals(bookTitle)) {

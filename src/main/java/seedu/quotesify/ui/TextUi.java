@@ -358,7 +358,7 @@ public class TextUi {
         System.out.println(System.lineSeparator() + "5. Rating System");
         System.out.println("Add rating: " + "add -r RATING_SCORE BOOK_TITLE");
         System.out.println("Delete rating: " + "delete -r BOOK_TITLE");
-        System.out.println("List ratings: " + "list -r [/RATING_SCORE]");
+        System.out.println("List ratings: " + "list -r [RATING_SCORE]");
 
         System.out.println(System.lineSeparator() + "Other useful commands");
         System.out.println("Show this help page: " + "help");
