@@ -1,4 +1,4 @@
-# NUSchedule
+# test
 
 {Give product intro here}
 
