@@ -12,7 +12,7 @@ What can I do for you?
 --------------------------------------------------------------
 What is your name?
 Hello Fluffle. Welcome to Fluffle!
-Your registration has been recorded at 2020-10-15
+Your registration has been recorded on 2020-10-16
 Please type in "help" command for information!
 --------------------------------------------------------------
 Type 'help c\<function name here>' to view help for each command.

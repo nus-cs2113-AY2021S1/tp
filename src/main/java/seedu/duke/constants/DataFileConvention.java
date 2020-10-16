@@ -26,4 +26,6 @@ public class DataFileConvention {
     public static final String ESSAY = "Essay";
 
     public static final int LENGTH_OF_DATE = 10;
+
+    public static final int MAX_NUM_WRITINGS = 1000;
 }

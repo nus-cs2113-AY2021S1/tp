@@ -4,16 +4,21 @@ import seedu.duke.commands.CommandChecker;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
 import static seedu.duke.Duke.user;
 import static seedu.duke.Duke.writings;
-import static seedu.duke.commands.CommandChecker.TYPE;
+
 import static seedu.duke.commands.CommandChecker.UNRECOGNISED;
+import static seedu.duke.commands.CommandChecker.TYPE;
+import static seedu.duke.commands.CommandChecker.POEM;
+import static seedu.duke.commands.CommandChecker.ESSAY;
 import static seedu.duke.commands.CommandChecker.extractCommandType;
 
 import static seedu.duke.constants.Logos.PLAIN_TEXT_DIVIDER;
 import static seedu.duke.functions.CommandExecutor.executeCommand;
 import static seedu.duke.parsers.Parsers.getUserInput;
+import static seedu.duke.constants.DataFileConvention.MAX_NUM_WRITINGS;
 
 public class WritingList {
     private int countWriting;
@@ -50,7 +55,7 @@ public class WritingList {
             System.out.println("Written by " + writing.get(i).getAuthor().getName() + "\n");
             System.out.println(writing.get(i).title.toUpperCase() + "\n");
             System.out.println(writing.get(i).content);
-            System.out.println("This writing is created on " + writing.get(i).date);
+            System.out.println("This writing was created on " + writing.get(i).date);
             System.out.println(PLAIN_TEXT_DIVIDER);
         }
     }
@@ -78,6 +83,7 @@ public class WritingList {
                 commandStartChecker = extractCommandType(newUserInput);
             }
             executeCommand(commandStartChecker, newUserInput);
+            //checkType();
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -87,11 +93,11 @@ public class WritingList {
         Scanner scanner = new Scanner(System.in);
         String newUserInput = null;
         try {
-            String type = "";
-            while (! (newUserInput.equals("poem") || newUserInput.equals("essay"))) {
+            CommandChecker commandStartChecker = UNRECOGNISED;
+            while (commandStartChecker != POEM && commandStartChecker != ESSAY) {
                 WritingList.printAskForType();
                 newUserInput = getUserInput(scanner);
-                type = newUserInput;
+                commandStartChecker = extractCommandType(newUserInput);
             }
             WritingList.printAskForTitle();
             newUserInput = getUserInput(scanner);
@@ -102,10 +108,12 @@ public class WritingList {
                 content = content.concat(newUserInput + "\n");
                 newUserInput = getUserInput(scanner);
             }
-            if (type.equals("poem")) {
-                writings.add(new Poem(title, 0, "nothing", content, user.getName()));
-            } else if (type.equals("essay")) {
-                writings.add(new Essay(title, 0, "nothing", content, user.getName()));
+            Random rand = new Random();
+            int newId = rand.nextInt(MAX_NUM_WRITINGS);
+            if (commandStartChecker == POEM) {
+                writings.add(new Poem(title, newId, "nothing", content, user.getName()));
+            } else if (commandStartChecker == ESSAY) {
+                writings.add(new Essay(title, newId, "nothing", content, user.getName()));
             }
             System.out.println("Done! We have added your writing to our storage! You can type \"stats\" "
                     + "for future reference!");
@@ -113,4 +121,6 @@ public class WritingList {
             System.out.println(e);
         }
     }
+
+
 }
