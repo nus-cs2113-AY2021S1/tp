@@ -1,16 +1,14 @@
 import bookmark.BookmarkUi;
+import exceptions.InvalidCommandException;
+import exceptions.InvalidGradeException;
+import exceptions.InvalidMcException;
 import flashcard.FlashcardRun;
 import academic.GradeBook;
 import academic.PersonBook;
-import exceptions.InvalidCommandException;
 import timetable.TimeTableRun;
 import bookmark.BookmarkCategory;
 import bookmark.commands.BookmarkCommand;
-import bookmark.InvalidBookmarkCommandException;
 import java.util.ArrayList;
-
-import exceptions.InvalidGradeException;
-import exceptions.InvalidMcException;
 
 
 public class Command {
@@ -62,7 +60,7 @@ public class Command {
         try {
             BookmarkCommand c = bookmarkParser.evaluateInput(command);
             c.executeCommand(bookmarkUi,bookmarkCategories);
-        } catch (InvalidBookmarkCommandException e) {
+        } catch (InvalidCommandException e) {
             bookmarkUi.showInvalidBookmarkCommand();
         }
     }

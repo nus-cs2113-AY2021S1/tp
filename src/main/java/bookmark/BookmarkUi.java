@@ -61,4 +61,12 @@ public class BookmarkUi {
         System.out.println("Please choose a category.");
     }
 
+    public void showEmptyLinkError() {
+        System.out.println("Empty link :(");
+    }
+
+    public void showInvalidLinkError() {
+        System.out.println("Not a valid link, please enter a valid link.");
+    }
+
 }
