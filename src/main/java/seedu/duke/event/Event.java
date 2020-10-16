@@ -67,7 +67,7 @@ public class Event {
         } catch (DateTimeParseException e) {
             // Ignore
         }
-        if(date != null){
+        if (date != null) {
             return;
         }
         LocalDateTime start = null;
