@@ -35,11 +35,11 @@ public class Duke {
         ui.printWelcomeMessage();
         ui.printHorizontalLine();
         // user.setActiveWorkspace(storage.loadUser(ui));
+        user = storage.loadUser(ui);
         final ArrayList<Watchlist> watchlistList = storage.loadWatchlist(ui);
         ui.printHorizontalLine();
 
         // Setup user and workspace
-        user = storage.loadUser(ui);
 
         if (user == null) {
             while (true) {
