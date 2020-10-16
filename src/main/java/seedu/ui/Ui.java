@@ -39,22 +39,25 @@ public class Ui {
 
     private void displayTasks(TaskList tasks) {
         // Header
-        String format = "%-10s%-15s%-15s%-10s%-10s%-10s" + LS;
-        out.format(format, "Index", "Description", "Date", "Start", "End", "Priority");
+        String format = "%-2s%-10s%-3s%-15s%-3s%-15s%-3s%-10s%-3s%-10s%-3s%-10s%2s" + LS;
+        out.println(" _______________________________________________________________________________________ ");
+        out.format(format, "|", "Index", " | ", "Description", " | ", "Date", " | ", "Start", " | ", "End", " | ", "Priority", "|");
+        out.println(" --------------------------------------------------------------------------------------- ");
         for (int i = 0; i < tasks.size(); i++) {
-            out.format(format,
-                    i + 1,
-                    limitString(tasks.get(i).getDescription(), 15),
-                    tasks.get(i).getDate(),
-                    tasks.get(i).getStartTime() == null ? "" : tasks.get(i).getStartTime(),
-                    tasks.get(i).getEndTime() == null ? "" : tasks.get(i).getEndTime(),
-                    tasks.get(i).getPriority());
+            out.format(format, "|",
+                    i + 1, " | ",
+                    limitString(tasks.get(i).getDescription(), 15), " | ",
+                    tasks.get(i).getDate(), " | ",
+                    tasks.get(i).getStartTime() == null ? "" : tasks.get(i).getStartTime(), " | ",
+                    tasks.get(i).getEndTime() == null ? "" : tasks.get(i).getEndTime(), " | ",
+                    tasks.get(i).getPriority(), "|");
         }
-        out.println();
+        out.println(" --------------------------------------------------------------------------------------- ");
     }
 
-    public void showWelcomeMessage() {
+    public void showWelcomeMessage(TaskList tasks) {
         showMessage(WELCOME_MESSAGE);
+        showNotifications(tasks);
     }
 
     public void showNotifications(TaskList tasks) {
@@ -70,7 +73,7 @@ public class Ui {
                     "             ||");
         }
         out.println("||                                                        ||" + LS
-                + " ========================================================== ");
+                + " ========================================================== " + LS);
     }
 
     public String limitString(String string, int limit) {
