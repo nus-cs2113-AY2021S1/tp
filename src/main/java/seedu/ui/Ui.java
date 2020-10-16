@@ -39,20 +39,22 @@ public class Ui {
 
     private void displayTasks(TaskList tasks) {
         // Header
-        String format = "%-2s%-10s%-3s%-15s%-3s%-15s%-3s%-10s%-3s%-10s%-3s%-10s%2s" + LS;
-        out.println(" _______________________________________________________________________________________ ");
-        out.format(format, "|", "Index", " | ", "Description", " | ", "Date", " | ", "Start", " | ", "End", " | ", "Priority", "|");
-        out.println(" --------------------------------------------------------------------------------------- ");
+        String headerFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-11s |" + LS;
+        String contentFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-20s |" + LS;
+        out.println("   _____________________________________________________________________________________________ ");
+        out.format(headerFormat, "Index", "Description", "Date", "Start", "End", "Priority");
+        out.println("   --------------------------------------------------------------------------------------------- ");
         for (int i = 0; i < tasks.size(); i++) {
-            out.format(format, "|",
-                    i + 1, " | ",
-                    limitString(tasks.get(i).getDescription(), 15), " | ",
-                    tasks.get(i).getDate(), " | ",
-                    tasks.get(i).getStartTime() == null ? "" : tasks.get(i).getStartTime(), " | ",
-                    tasks.get(i).getEndTime() == null ? "" : tasks.get(i).getEndTime(), " | ",
-                    tasks.get(i).getPriority(), "|");
+            out.format(contentFormat,
+                    i + 1,
+                    limitString(tasks.get(i).getDescription(), 20),
+                    tasks.get(i).getDate(),
+                    tasks.get(i).getStartTime() == null ? "" : tasks.get(i).getStartTime(),
+                    tasks.get(i).getEndTime() == null ? "" : tasks.get(i).getEndTime(),
+                    tasks.get(i).getPriority());
         }
-        out.println(" --------------------------------------------------------------------------------------- ");
+        out.println("   --------------------------------------------------------------------------------------------- ");
+        out.println();
     }
 
     public void showWelcomeMessage(TaskList tasks) {
@@ -62,15 +64,28 @@ public class Ui {
 
     public void showNotifications(TaskList tasks) {
         TaskList tasksDueToday = tasks.getTasksDueToday();
-        String format = "%-15s%-30s%-15s" + LS;
+        TaskList tasksDueTomorrow = tasks.getTasksDueTomorrow();
+        String messageFormat = "%-15s%-30s%15s" + LS;
+        String taskFormat = "%-15s%-3s%-18s%-5s%19s" + LS;
         out.println("||                                                        ||");
-        out.format(format, "||             ", "You have " + tasksDueToday.size() + " tasks due today.", "             ||");
+        out.format(messageFormat, "||", "You have " + tasksDueToday.size() + " tasks due today.", "||");
         for (int i = 0; i < tasksDueToday.size(); i++) {
-            out.format(format,
-                    "||             ",
-                    i + 1 + ". " + limitString(tasksDueToday.get(i).getDescription(), 15) + "  "
-                            + (tasksDueToday.get(i).getStartTime() == null ? "" : tasksDueToday.get(i).getStartTime()),
-                    "             ||");
+            out.format(taskFormat,
+                    "||",
+                    i + 1 + ".",
+                    limitString(tasksDueToday.get(i).getDescription(), 17),
+                    (tasksDueToday.get(i).getStartTime() == null ? "" : tasksDueToday.get(i).getStartTime()),
+                    "||");
+        }
+        out.println("||                                                        ||");
+        out.format(messageFormat, "||", "Upcoming tasks tomorrow:", "||");
+        for (int i = 0; i < tasksDueTomorrow.size(); i++) {
+            out.format(taskFormat,
+                    "||",
+                    i + 1 + ".",
+                    limitString(tasksDueTomorrow.get(i).getDescription(), 17),
+                    (tasksDueTomorrow.get(i).getStartTime() == null ? "" : tasksDueTomorrow.get(i).getStartTime()),
+                    "||");
         }
         out.println("||                                                        ||" + LS
                 + " ========================================================== " + LS);

@@ -73,6 +73,13 @@ public class TaskList {
         return new TaskList((ArrayList<Task>) dueToday);
     }
 
+    public TaskList getTasksDueTomorrow() {
+        List<Task> dueTomorrow = tasks.stream()
+                .filter(task -> task.getDate().equals(LocalDate.now().plusDays(1)))
+                .collect(Collectors.toList());
+        return new TaskList((ArrayList<Task>) dueTomorrow);
+    }
+
     public void clear() {
         tasks.clear();
     }
