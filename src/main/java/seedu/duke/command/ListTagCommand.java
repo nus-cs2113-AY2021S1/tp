@@ -1,5 +1,9 @@
 package seedu.duke.command;
 
+import seedu.duke.util.Formatter;
+
+import java.util.ArrayList;
+
 /**
  * Lists all the Tags.
  */
@@ -9,8 +13,18 @@ public class ListTagCommand extends Command {
 
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Lists all the tags.";
 
+    public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "There are no tags!";
+    public static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the list of tags!";
+
     @Override
     public String execute() {
-        return tagManager.listTags();
+        ArrayList<String> executedResult = tagManager.getAllTagsName();
+
+        if (executedResult == null) {
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE, false);
+        } else {
+            executedResult.add(0, COMMAND_SUCCESSFUL_MESSAGE);
+        }
+        return Formatter.formatString(executedResult, true, true);
     }
 }

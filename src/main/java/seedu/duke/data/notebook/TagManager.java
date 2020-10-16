@@ -1,7 +1,5 @@
 package seedu.duke.data.notebook;
 
-import seedu.duke.util.Formatter;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,9 +8,6 @@ import java.util.Map;
  * Represents a TagManager. Manages the tags for the notes.
  */
 public class TagManager {
-
-    public static final String STRING_TAG_EMPTY = "There are no tags!";
-    public static final String STRING_TAG_LIST = "Here are the available tags:" + Formatter.LS;
 
     private Map<Tag, ArrayList<Note>> tagMap;
 
@@ -27,8 +22,8 @@ public class TagManager {
     /**
      * Returns the Tag that matches the tag name.
      *
-     * @param tagName name of the Tag to check.
-     * @return the Tag if it exists, null otherwise.
+     * @param tagName Name of the Tag to check.
+     * @return The tag if it exists, null otherwise.
      */
     public Tag getTag(String tagName) {
         for (Tag t : tagMap.keySet()) {
@@ -42,9 +37,9 @@ public class TagManager {
     /**
      * Creates a Tag with the provided Tag.
      *
-     * @param tag provided Tag.
-     * @param overridesColor determine if the tag color needs to be override.
-     * @return true if new Tag is created, false otherwise.
+     * @param tag Provided Tag.
+     * @param overridesColor Determine if the tag color needs to be override.
+     * @return True if new Tag is created, false otherwise.
      */
     public boolean createTag(Tag tag, boolean overridesColor) {
         // Check if there exist a tag with the same tag name.
@@ -70,17 +65,17 @@ public class TagManager {
      * @param createUnsuccessfulString String for unsuccessful creation of tag
      * @return Result of all tag creation.
      */
-    public String createTag(ArrayList<Tag> tags, String createSuccessfulString, String createUnsuccessfulString) {
-        String result = "";
+    public ArrayList<String> createTag(ArrayList<Tag> tags, String createSuccessfulString,
+                                   String createUnsuccessfulString) {
+        ArrayList<String> result = new ArrayList<>();
         for (Tag t : tags) {
             if (createTag(t, true)) {
-                result = result.concat(createSuccessfulString);
+                result.add(createSuccessfulString + getTag(t.getTagName()));
             } else {
-                result = result.concat(createUnsuccessfulString);
+                result.add(createUnsuccessfulString + getTag(t.getTagName()));
             }
-            result = result.concat(getTag(t.getTagName()) + Formatter.LS);
         }
-        return result.trim();
+        return result;
     }
 
     /**
@@ -109,7 +104,7 @@ public class TagManager {
      * Deletes a Tag from the Map. Notes that have the Tag will be untagged.
      *
      * @param tag Tag to be deleted.
-     * @return true if there exist the tag and is deleted, false otherwise.
+     * @return True if there exist the tag and is deleted, false otherwise.
      */
     public boolean deleteTag(Tag tag) {
         Tag existingTag = getTag(tag.getTagName());
@@ -133,40 +128,35 @@ public class TagManager {
      * @param deleteUnsuccessfulString String for unsuccessful deletion of tag.
      * @return Result of all tag creation.
      */
-    public String deleteTag(ArrayList<Tag> tags, String deleteSuccessfulString, String deleteUnsuccessfulString) {
-        String result = "";
+    public ArrayList<String> deleteTag(ArrayList<Tag> tags, String deleteSuccessfulString,
+                                   String deleteUnsuccessfulString) {
+        ArrayList<String> result = new ArrayList<>();
         for (Tag t : tags) {
             Tag existingTag = getTag(t.getTagName());
             if (deleteTag(t)) {
-                result = result.concat(deleteSuccessfulString + existingTag);
+                result.add(deleteSuccessfulString + existingTag);
             } else {
-                result = result.concat(deleteUnsuccessfulString + t);
+                result.add(deleteUnsuccessfulString + t);
             }
-            result = result.concat(Formatter.LS);
         }
-
-        return result.trim();
+        return result;
     }
 
-
     /**
-     * Lists all the Tags in the map.
+     * Returns an arrayList of existing tags' name in the map.
      *
-     * @return all the Tags as string.
+     * @return ArrayList of existing tags' name.
      */
-    public String listTags() {
-        String tagList;
-
+    public ArrayList<String> getAllTagsName() {
         if (tagMap.isEmpty()) {
-            return STRING_TAG_EMPTY;
-        } else  {
-            tagList = STRING_TAG_LIST;
+            return null;
+        } else {
+            ArrayList<String> result = new ArrayList<>();
+            for (Tag t : tagMap.keySet()) {
+                result.add(t.toString());
+            }
+            return result;
         }
-
-        for (Tag t : tagMap.keySet()) {
-            tagList = tagList.concat(t.toString() + Formatter.LS);
-        }
-        return tagList.trim();
     }
 
     /**
@@ -206,8 +196,9 @@ public class TagManager {
      * @param untagNoteString String for untagging of note.
      * @return Result of all tagging and untagging operation.
      */
-    public String tagAndUntagNote(Note note, ArrayList<Tag> tags, String tagNoteString, String untagNoteString) {
-        String result = "";
+    public ArrayList<String> tagAndUntagNote(Note note, ArrayList<Tag> tags, String tagNoteString,
+                                          String untagNoteString) {
+        ArrayList<String> result = new ArrayList<>();
 
         for (Tag t : tags) {
             // Tries to get the tag from the map
@@ -216,15 +207,15 @@ public class TagManager {
             // check if the note contains such tag
             if (note.getTags().contains(existingTag)) {
                 removeTag(note, existingTag);
-                result = result.concat(untagNoteString + existingTag + Formatter.LS);
+                result.add(untagNoteString + existingTag);
             } else {
                 // runs the create tag in case existing tag is null, if it is not null, updates the tag
                 createTag(t, false);
                 existingTag = getTag(t.getTagName());
                 tagNote(note, existingTag);
-                result = result.concat(tagNoteString + existingTag + Formatter.LS);
+                result.add(tagNoteString + existingTag);
             }
         }
-        return result.trim();
+        return result;
     }
 }

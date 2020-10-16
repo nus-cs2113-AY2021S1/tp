@@ -43,6 +43,8 @@ public class CreateTagCommand extends Command {
 
     @Override
     public String execute() {
-        return tagManager.createTag(tags, COMMAND_SUCCESSFUL_MESSAGE, COMMAND_UNSUCCESSFUL_MESSAGE);
+        ArrayList<String> executedMessage = tagManager.createTag(tags, COMMAND_SUCCESSFUL_MESSAGE,
+                COMMAND_UNSUCCESSFUL_MESSAGE);
+        return Formatter.formatString(executedMessage, false, true);
     }
 }

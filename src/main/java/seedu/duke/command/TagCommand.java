@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
+import seedu.duke.util.Formatter;
 
 import java.util.ArrayList;
 
@@ -40,9 +41,11 @@ public class TagCommand extends Command {
     public String execute() {
         try {
             Note note = notebook.getNotes().get(index);
-            return tagManager.tagAndUntagNote(note, tags, TAG_NOTE_MESSAGE, UNTAG_NOTE_MESSAGE);
+            ArrayList<String> executedMessage = tagManager.tagAndUntagNote(note, tags, TAG_NOTE_MESSAGE,
+                    UNTAG_NOTE_MESSAGE);
+            return Formatter.formatString(executedMessage, false, true);
         } catch (IndexOutOfBoundsException exception) {
-            return COMMAND_UNSUCCESSFUL_MESSAGE;
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE, false);
         }
     }
 }

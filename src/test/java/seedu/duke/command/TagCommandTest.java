@@ -57,7 +57,7 @@ class TagCommandTest {
         tags = new ArrayList<>();
 
         String result = getCommandExecutionString(notebook, tagManager, 3, tags);
-        assertEquals(COMMAND_UNSUCCESSFUL_MESSAGE, result);
+        assertEquals(Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE, false), result);
     }
 
     @Test
@@ -71,8 +71,8 @@ class TagCommandTest {
         notebook.addNote(noTagNote);
         notebook.addNote(taggedNote);
 
-        String result = getCommandExecutionString(notebook, tagManager, 0, tags);
-        assertEquals(TAG_NOTE_MESSAGE + tagRed + Formatter.LS + TAG_NOTE_MESSAGE + tagBlue, result);
+        getCommandExecutionString(notebook, tagManager, 0, tags);
+
         assertEquals(noTagNote.getTags().size(), 2);
         assertTrue(noTagNote.getTags().contains(tagRed));
         assertEquals(tagManager.getTagMap().size(), 2);
@@ -94,8 +94,8 @@ class TagCommandTest {
         tags.add(tagRedRef);
         tags.add(tagBlueRef);
 
-        String result = getCommandExecutionString(notebook, tagManager, 1, tags);
-        assertEquals(UNTAG_NOTE_MESSAGE + tagRed + Formatter.LS + UNTAG_NOTE_MESSAGE + tagBlue, result);
+        getCommandExecutionString(notebook, tagManager, 1, tags);
+
         assertEquals(taggedNote.getTags().size(), 0);
         assertEquals(tagManager.getTagMap().get(tagRed).size(), 0);
         assertEquals(tagManager.getTagMap().get(tagBlue).size(), 0);
@@ -121,8 +121,8 @@ class TagCommandTest {
         tags.add(tagRedRef);
         tags.add(tagBlueRef);
 
-        String result = getCommandExecutionString(notebook, tagManager, 0, tags);
-        assertEquals(TAG_NOTE_MESSAGE + tagRed + Formatter.LS + UNTAG_NOTE_MESSAGE + tagBlue, result);
+        getCommandExecutionString(notebook, tagManager, 0, tags);
+
         assertEquals(noTagNote.getTags().size(), 1);
         assertEquals(tagManager.getTagMap().get(tagRed).size(), 2);
         assertEquals(tagManager.getTagMap().get(tagBlue).size(), 1);

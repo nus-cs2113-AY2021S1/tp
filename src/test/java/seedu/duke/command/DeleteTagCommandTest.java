@@ -49,11 +49,14 @@ class DeleteTagCommandTest {
         tags.add(tagGreen);
         tags.add(tagBlue);
 
+        ArrayList<String> expectedResult = new ArrayList<>();
+        expectedResult.add(COMMAND_UNSUCCESSFUL_MESSAGE + tagRed);
+        expectedResult.add(COMMAND_UNSUCCESSFUL_MESSAGE + tagGreen);
+        expectedResult.add(COMMAND_UNSUCCESSFUL_MESSAGE + tagBlue);
+
         String result = getCommandExecutionString(tagManager, tags);
 
-        assertEquals(COMMAND_UNSUCCESSFUL_MESSAGE + tagRed + Formatter.LS
-                + COMMAND_UNSUCCESSFUL_MESSAGE + tagGreen + Formatter.LS
-                + COMMAND_UNSUCCESSFUL_MESSAGE + tagBlue, result);
+        assertEquals(Formatter.formatString(expectedResult, false, true), result);
     }
 
     @Test
@@ -79,10 +82,7 @@ class DeleteTagCommandTest {
         assertTrue(tagManager.getTagMap().get(tagRed).contains(defaultNote));
         assertTrue(tagManager.getTagMap().get(tagGreen).contains(defaultNote));
 
-        String result = getCommandExecutionString(tagManager, tags);
-
-        assertEquals(COMMAND_SUCCESSFUL_MESSAGE + tagRed + Formatter.LS
-                + COMMAND_SUCCESSFUL_MESSAGE + tagGreen, result);
+        getCommandExecutionString(tagManager, tags);
 
         assertEquals(defaultNote.getTags().size(), 0);
         assertEquals(tagManager.getTagMap().size(), 0);
@@ -112,11 +112,7 @@ class DeleteTagCommandTest {
         assertTrue(tagManager.getTagMap().get(tagRed).contains(defaultNote));
         assertTrue(tagManager.getTagMap().get(tagGreen).contains(defaultNote));
 
-        String result = getCommandExecutionString(tagManager, tags);
-
-        assertEquals(COMMAND_SUCCESSFUL_MESSAGE + tagRed + Formatter.LS
-                + COMMAND_SUCCESSFUL_MESSAGE + tagGreen + Formatter.LS
-                + COMMAND_UNSUCCESSFUL_MESSAGE + tagBlue, result);
+        getCommandExecutionString(tagManager, tags);
 
         assertEquals(defaultNote.getTags().size(), 0);
         assertEquals(tagManager.getTagMap().size(), 0);

@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Tag;
+import seedu.duke.util.Formatter;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,8 @@ public class DeleteTagCommand extends Command {
 
     @Override
     public String execute() {
-        return tagManager.deleteTag(tags, COMMAND_SUCCESSFUL_MESSAGE, COMMAND_UNSUCCESSFUL_MESSAGE);
+        ArrayList<String> executedMessage = tagManager.deleteTag(tags, COMMAND_SUCCESSFUL_MESSAGE,
+                COMMAND_UNSUCCESSFUL_MESSAGE);
+        return Formatter.formatString(executedMessage, false, true);
     }
 }
