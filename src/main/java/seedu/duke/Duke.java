@@ -91,21 +91,21 @@ public class Duke {
         boolean result = INSTANCE.SetConsoleMode(handle, 4);*/
 
         if (System.getProperty("os.name").startsWith("Windows")) {
-            Function GetStdHandleFunc = Function.getFunction("kernel32", "GetStdHandle");
-            WinDef.DWORD STD_OUTPUT_HANDLE = new WinDef.DWORD(Wincon.STD_OUTPUT_HANDLE);
-            WinNT.HANDLE hOut = (WinNT.HANDLE) GetStdHandleFunc.invoke(WinNT.HANDLE.class, new Object[]{STD_OUTPUT_HANDLE});
+            Function getStdHandleFunc = Function.getFunction("kernel32", "GetStdHandle");
+            WinDef.DWORD stdOutputHandle = new WinDef.DWORD(Wincon.STD_OUTPUT_HANDLE);
+            WinNT.HANDLE outputHandle = (WinNT.HANDLE) getStdHandleFunc.invoke(
+                    WinNT.HANDLE.class, new Object[]{stdOutputHandle});
 
-            WinDef.DWORDByReference p_dwMode = new WinDef.DWORDByReference(new WinDef.DWORD(0));
-            Function GetConsoleModeFunc = Function.getFunction("kernel32", "GetConsoleMode");
-            GetConsoleModeFunc.invoke(WinDef.BOOL.class, new Object[]{hOut, p_dwMode});
+            WinDef.DWORDByReference doubleWord = new WinDef.DWORDByReference(new WinDef.DWORD(0));
+            Function getConsoleModeFunc = Function.getFunction("kernel32", "GetConsoleMode");
+            getConsoleModeFunc.invoke(WinDef.BOOL.class, new Object[]{outputHandle, doubleWord});
 
-            int ENABLE_VIRTUAL_TERMINAL_PROCESSING = 4;
-            WinDef.DWORD dwMode = p_dwMode.getValue();
-            dwMode.setValue(dwMode.intValue() | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
-            Function SetConsoleModeFunc = Function.getFunction("kernel32", "SetConsoleMode");
-            SetConsoleModeFunc.invoke(WinDef.BOOL.class, new Object[]{hOut, dwMode});
+            int enableVirtualTerminalProcessing = 4;
+            WinDef.DWORD dwMode = doubleWord.getValue();
+            dwMode.setValue(dwMode.intValue() | enableVirtualTerminalProcessing);
+            Function setConsoleModeFunc = Function.getFunction("kernel32", "SetConsoleMode");
+            setConsoleModeFunc.invoke(WinDef.BOOL.class, new Object[]{outputHandle, dwMode});
         }
-
         new Duke().run();
     }
 }

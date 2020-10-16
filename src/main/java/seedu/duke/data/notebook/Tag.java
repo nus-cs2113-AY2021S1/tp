@@ -92,7 +92,7 @@ public class Tag {
             break;
         case COLOR_YELLOW_STRING:
             this.tagColor = TagColor.COLOR_YELLOW;
-            this.tagAttribute = Attribute.YELLOW_TEXT() ;
+            this.tagAttribute = Attribute.YELLOW_TEXT();
             break;
         case COLOR_PURPLE_STRING:
             this.tagColor = TagColor.COLOR_PURPLE;
