@@ -4,4 +4,3 @@ Entry;Income;TRANSPORT;123457.0;15:00:01;allowance
 Ledger;2020-06-06
 Entry;Income;TRANSPORT;123410.0;15:00:01;allowance
 Entry;Income;TRANSPORT;123411.0;15:00:01;allowance
-

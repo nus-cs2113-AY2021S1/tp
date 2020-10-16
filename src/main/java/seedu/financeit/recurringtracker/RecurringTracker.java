@@ -44,7 +44,6 @@ public class RecurringTracker {
             default:
                 handleInvalidCommand();
             }
-            UiManager.printSpace();
         } while (!endTracker);
     }
 

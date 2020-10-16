@@ -4,7 +4,6 @@ public class MenuPrinter {
     public static String prompt = "";
 
     public static void printMainMenu() {
-        UiManager.refreshPage();
         status();
         TablePrinter.setTitle("Welcome to Main Menu");
         TablePrinter.addRow("No.; Feature                                           ; Commands                    ");

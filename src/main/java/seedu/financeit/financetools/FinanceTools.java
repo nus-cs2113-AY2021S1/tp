@@ -100,7 +100,6 @@ public class FinanceTools {
         UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, "Welcome to Finance Tools!");
 
         while (endTracker) {
-            UiManager.printSpace();
             UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY, "[ MAIN_MENU -> FINANCE_TOOLS_MENU ]");
             UiManager.printInputPromptMessage();
             String input = UiManager.handleInput();

@@ -75,7 +75,6 @@ public class ParamChecker {
                 String.format("Date parsed but not valid... Err: %s", exception.getMessage()));
 
             errorMessage = getErrorMessageDateDateTimeException();
-            printErrorMessage();
         } catch (InvalidParameterException exception) {
             logger.log(Level.WARNING,
                 String.format("Date input cannot be parsed... Err: %s", exception.getMessage()));
