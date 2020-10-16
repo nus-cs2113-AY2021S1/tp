@@ -20,15 +20,15 @@ Got it. I've added this event:
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
 Got it. I've added this event:
-[LEC][/] cs2113 08-Oct-2020 Thu 4:00PM (lt12)
+[LEC][R] cs2113 every THURSDAY 4:00PM (lt12)
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
 Got it. I've added this event:
-[TUT][/] cs2113 08-Oct-2020 Thu 4:00PM (com1)
+[TUT][R] cs2113 every THURSDAY 4:00PM (com1)
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
 Got it. I've added this event:
-[LAB][/] cs1010 10-Oct-2020 Sat 10:00AM (com1-bi-12)
+[LAB][R] cs1010 every SATURDAY 10:00AM (com1-bi-12)
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
 This is your list of task(s):
@@ -39,8 +39,15 @@ This is your list of task(s):
 This is your list of event(s):
 1.[A][/] CCA 10-Oct-2020 Sat 12:30PM (NUS)
 2.[LEC][/] cs2113 08-Oct-2020 Thu 4:00PM (lt12)
-3.[TUT][/] cs2113 08-Oct-2020 Thu 4:00PM (com1)
-4.[LAB][/] cs1010 10-Oct-2020 Sat 10:00AM (com1-bi-12)
+3.[LEC][/] cs2113 15-Oct-2020 Thu 4:00PM (lt12)
+4.[LEC][X] cs2113 22-Oct-2020 Thu 4:00PM (lt12)
+5.[TUT][/] cs2113 08-Oct-2020 Thu 4:00PM (com1)
+6.[TUT][/] cs2113 15-Oct-2020 Thu 4:00PM (com1)
+7.[LAB][/] cs1010 10-Oct-2020 Sat 10:00AM (com1-bi-12)
+8.[LAB][X] cs1010 17-Oct-2020 Sat 10:00AM (com1-bi-12)
+9.[LAB][X] cs1010 24-Oct-2020 Sat 10:00AM (com1-bi-12)
+10.[LAB][X] cs1010 31-Oct-2020 Sat 10:00AM (com1-bi-12)
+11.[LAB][X] cs1010 07-Nov-2020 Sat 10:00AM (com1-bi-12)
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
 Here is your timeline:
@@ -57,6 +64,23 @@ Timeline
 |                     |_____ [A][/] CCA  (NUS)
 |            |_____ 23:59
 |                     |_____ [D][X] project
+|__ 2020-10-15 THURSDAY
+|            |_____ 16:00
+|                     |_____ [TUT][/] cs2113  (com1)
+|                     |_____ [LEC][/] cs2113  (lt12)
+|__ 2020-10-17 SATURDAY
+|            |_____ 10:00
+|                     |_____ [LAB][X] cs1010  (com1-bi-12)
+|__ 2020-10-22 THURSDAY
+|            |_____ 16:00
+|                     |_____ [LEC][X] cs2113  (lt12)
+|__ 2020-10-24 SATURDAY
+|            |_____ 10:00
+|                     |_____ [LAB][X] cs1010  (com1-bi-12)
+|__ 2020-10-31 SATURDAY
+|                     |_____ [LAB][X] cs1010  (com1-bi-12)
+|__ 2020-11-07 SATURDAY
+|                     |_____ [LAB][X] cs1010  (com1-bi-12)
 |__________________ Todo items
 |                     |_____ 1. [T][X] homework
 ...........................................................................
