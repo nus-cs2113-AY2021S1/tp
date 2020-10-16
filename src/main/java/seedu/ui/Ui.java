@@ -1,10 +1,12 @@
 package seedu.ui;
 
 import seedu.commands.CommandResult;
-import seedu.data.TaskList;
+import seedu.data.TaskMap;
+import seedu.task.Task;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static seedu.messages.Messages.LS;
@@ -20,35 +22,33 @@ public class Ui {
     }
 
     public Ui(InputStream in, PrintStream out) {
-        this.in = new Scanner(System.in);
-        //        this.out = new PrintStream(System.out, true, StandardCharsets.ISO_8859_1);
+        this.in = new Scanner(in);
         this.out = out;
-        // Set default printing color
-        //        out.print(DEFAULT_STRING_COLOR);
     }
 
     public String getUserInput() {
         return in.nextLine();
     }
 
-    public void displayAll(TaskList tasks) {
+    public void displayAll(TaskMap tasks) {
         // Basic adding sequence
         assert tasks != null : "null tasks";
         displayTasks(tasks);
     }
 
-    private void displayTasks(TaskList tasks) {
+    private void displayTasks(TaskMap tasks) {
         // Header
-        String format = "%-10s%-15s%-15s%-10s%-10s%-10s" + LS;
+        String format = "%-10s%-20s%-15s%-10s%-10s%-10s" + LS;
         out.format(format, "Index", "Description", "Date", "Start", "End", "Priority");
-        for (int i = 0; i < tasks.size(); i++) {
+        for (Task task : tasks.getValues()) {
             out.format(format,
-                    i + 1,
-                    tasks.get(i).getDescription(),
-                    tasks.get(i).getDate(),
-                    tasks.get(i).getStartTime() == null ? "" : tasks.get(i).getStartTime(),
-                    tasks.get(i).getEndTime() == null ? "" : tasks.get(i).getEndTime(),
-                    tasks.get(i).getPriority());
+                task.getTaskID(),
+                task.getDescription().length() > 20
+                        ? task.getDescription().substring(0, 16) + "..." : task.getDescription(),
+                task.getDate(),
+                task.getStartTime() == null ? "" : task.getStartTime(),
+                task.getEndTime() == null ? "" : task.getEndTime(),
+                task.getPriority());
         }
         out.println();
     }

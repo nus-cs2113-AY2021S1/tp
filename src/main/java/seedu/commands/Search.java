@@ -1,6 +1,6 @@
 package seedu.commands;
 
-import seedu.data.TaskList;
+import seedu.data.TaskMap;
 import seedu.exceptions.InvalidCommandException;
 
 import java.util.regex.Matcher;
@@ -27,8 +27,8 @@ public class Search extends Command {
     }
 
     @Override
-    public CommandResult execute(TaskList tasks) {
-        TaskList found = tasks.searchDescription(toSearch);
+    public CommandResult execute(TaskMap tasks) {
+        TaskMap found = tasks.searchDescription(toSearch);
         if (found.size() > 0) {
             return new CommandResult(SEARCH_FOUND_MESSAGE, found);
         } else {

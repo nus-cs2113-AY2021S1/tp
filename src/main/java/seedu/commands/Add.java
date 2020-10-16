@@ -1,11 +1,14 @@
 package seedu.commands;
 
-import seedu.data.TaskList;
+import seedu.data.TaskMap;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
+import seedu.exceptions.InvalidTaskNumberException;
+import seedu.exceptions.MaxNumTaskException;
 import seedu.task.Task;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,8 +43,20 @@ public class Add extends Command {
     }
 
     @Override
-    public CommandResult execute(TaskList tasks) throws InvalidPriorityException, InvalidDatetimeException {
+    public CommandResult execute(TaskMap tasks)
+        throws InvalidPriorityException, InvalidDatetimeException, MaxNumTaskException {
+        // Handle collision by generating new taskID if the value is in use.
         Task task = new Task(description, date, startTime, endTime, priority);
+        Integer taskID = task.getTaskID();
+        if (tasks.size() == TaskMap.MAX_NUM_TASKS) {
+            throw new MaxNumTaskException();
+        }
+        assert tasks.size() != TaskMap.MAX_NUM_TASKS;
+        // Finding an unused key
+        while (tasks.get(taskID) != null) {
+            taskID = (taskID + 1) % TaskMap.MAX_NUM_TASKS;
+        }
+        task.setTaskID(taskID);
         tasks.addTask(task);
         // task arg not in used, in case want change display message.
         return new CommandResult(ADD_MESSAGE, tasks, task);
