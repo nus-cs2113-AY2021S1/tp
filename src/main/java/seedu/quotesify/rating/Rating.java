@@ -27,6 +27,6 @@ public class Rating {
 
     @Override
     public String toString() {
-        return titleOfRatedBook + ": " + rating + " star" + System.lineSeparator();
+        return titleOfRatedBook + ": " + rating + " star";
     }
 }
