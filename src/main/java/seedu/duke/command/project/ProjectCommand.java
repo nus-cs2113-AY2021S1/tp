@@ -53,7 +53,7 @@ public class ProjectCommand {
     }
 
     public void viewProjectCommand(ArrayList<Project> projectList) {
-        assert projectList.size() != 0 : "No projects created \n." ;
+        assert projectList.size() != 0 : "No projects created \n.";
 
         if (projectList.isEmpty()) {
             Ui.showError("No projects are created.");
