@@ -1,5 +1,9 @@
 package seedu.quotesify.commands;
 
+import org.w3c.dom.Text;
+import seedu.quotesify.book.Book;
+import seedu.quotesify.book.BookList;
+import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
@@ -28,7 +32,35 @@ public class EditCommand extends Command {
             RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
             editRating(ratings, ui);
             break;
+        case TAG_BOOK:
+            BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+            editBook(books, ui);
+            break;
         default:
+        }
+    }
+
+    private void editBook(BookList books, TextUi ui) {
+        try {
+            String[] bookDetails = information.split(FLAG_EDIT, 2);
+            if (bookDetails.length == 1) {
+                bookDetails = new String[]{bookDetails[0], ""};
+            }
+            int bookIndex = Integer.parseInt(bookDetails[0].trim()) - 1;
+            String newTitle = bookDetails[1].trim();
+            if (newTitle.isEmpty()) {
+                throw new QuotesifyException(ERROR_BOOK_TITLE_MISSING);
+            }
+
+            Book book = books.getBook(bookIndex);
+            String oldTitle = book.getTitle();
+            book.setTitle(newTitle);
+            ui.printEditBook(oldTitle, newTitle);
+
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
+            ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
         }
     }
 
