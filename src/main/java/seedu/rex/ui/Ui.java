@@ -2,6 +2,7 @@ package seedu.rex.ui;
 
 import seedu.rex.commands.Command;
 import seedu.rex.commands.ExitCommand;
+import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
 import seedu.rex.data.hospital.Patient;
@@ -266,5 +267,20 @@ public class Ui {
      */
     public void showNoBookedAppointmentsMessage() {
         printWithIndent("No booked appointments found!");
+    }
+
+    /**
+     * Prints all patients.
+     *
+     * @param patients Patients to print.
+     */
+    public void listPatients(PatientList patients) {
+        printWithIndent("List of patients (" + patients.getPatients().size() + " in total):");
+        for (Patient patient: patients.getPatients()) {
+            printWithIndent("");
+            printWithIndent("Name: " + patient.getName());
+            printWithIndent("NRIC: " + patient.getNric());
+            printWithIndent("DOB: " + patient.getDateOfBirth());
+        }
     }
 }
