@@ -23,9 +23,9 @@ import java.util.ArrayList;
 
 public class Revised {
     public static final String BASE_DIR = "data";
-    public static final String FLASHCARD_FILENAME = "flashcards.txt";
+    public static final String FLASHCARD_FILENAME = "flashcards.json";
     public static final String TASK_FILENAME = "tasks.txt";
-    public static final String RESULT_FILENAME = "results.txt";
+    public static final String RESULT_FILENAME = "results.json";
 
     private Storage storage;
     private SubjectList subjects;
