@@ -8,6 +8,7 @@ import exception.CreatingFileException;
 import exception.LoadingException;
 import exception.WritingFileException;
 import location.*;
+import parser.Parser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -90,14 +91,16 @@ public class Storage {
                 String[] words = s.nextLine().split(REGEX_IN_FILE);
                 switch (words[0]) {
                     case "C":
-                        events.add(new Class(words[2],LocalDateTime.parse(words[3])));
+                        events.add(new Class(words[2], Parser.parseLocation(words[4])
+                                , LocalDateTime.parse(words[3])));
                         if (Integer.parseInt(words[1]) == 1) {
                             events.get(events.size() - 1).markAsDone();
                         }
                         break;
                     case "A":
                         try {
-                            events.add(new Assignment(words[2], LocalDateTime.parse(words[3])));
+                            events.add(new Assignment(words[2], Parser.parseLocation(words[4])
+                                    , LocalDateTime.parse(words[3])));
                         } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                             throw new LoadingException();
                         }
@@ -107,7 +110,8 @@ public class Storage {
                         break;
                     case "P":
                         try {
-                            events.add(new PersonalEvent(words[2], LocalDateTime.parse(words[3])));
+                            events.add(new PersonalEvent(words[2], Parser.parseLocation(words[4])
+                                    , LocalDateTime.parse(words[3])));
                         } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                             throw new LoadingException();
                         }
@@ -141,9 +145,9 @@ public class Storage {
             System.out.println(f.getName() + " not found: " + e.getMessage());
         }
 
-        while(s.hasNext()) {
+        while (s.hasNext()) {
             String input = s.nextLine();
-            String[] split = input.split(":",2);
+            String[] split = input.split(":", 2);
             String name = split[0];
             String[] buses = split[1].split(",");
             BusStop stop = new BusStop(name, buses);
@@ -165,13 +169,13 @@ public class Storage {
             System.out.println(f.getName() + "not found: " + e.getMessage());
         }
 
-        while(s.hasNext()) {
+        while (s.hasNext()) {
             String input = s.nextLine();
             // info[0] = type, info[1] = name, info[2] = nearest buildings/bus stops
             String[] info = input.split("/");
             String[] additionalInfo = info[2].split(",");
             Location location = null;
-            switch(info[0]) {
+            switch (info[0]) {
                 case "BLK":
                     location = new Building(info[1], additionalInfo);
                     break;
@@ -185,7 +189,7 @@ public class Storage {
                     location = new OutOfNUS(info[1]);
                     break;
             }
-            if (location!=null) {
+            if (location != null) {
                 locationList.add(location);
             } else {
                 System.out.println("Invalid Location Type");

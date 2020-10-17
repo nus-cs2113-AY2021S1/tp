@@ -10,7 +10,7 @@ public class UndefinedEventException extends NuScheduleException {
     /**
      * Create an exception according to the input of the user.
      *
-     * @param index the label of the event that the user want to operate on。
+     * @param index the label of the event that the user want to operate on.
      */
     public UndefinedEventException(int index) {
         this.index = index;

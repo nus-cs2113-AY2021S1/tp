@@ -7,7 +7,7 @@
 /.gradle/
 /build/
 src/main/resources/docs/
-
+data/events.txt
 # MacOS custom attributes files created by Finder
 .DS_Store
 *.iml
