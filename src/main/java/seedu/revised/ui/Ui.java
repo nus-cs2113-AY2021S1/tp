@@ -406,5 +406,11 @@ public class Ui {
                 + "Please enter a topic!\n"
                 + "____________________________________________________________\n");
     }
+    public static void printInvalidFormat() {
+        System.out.println("____________________________________________________________\n"
+                + "Enter date and time in the following format: HH:MM DD-MM-YYY\n"
+                + "____________________________________________________________\n");
+    }
+
 }
 
