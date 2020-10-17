@@ -83,6 +83,6 @@ public class Tag {
      */
     @Override
     public String toString() {
-        return colorize("[" + tagName + "]", tagAttribute);
+        return colorize("[" + tagName + "] ", tagAttribute);
     }
 }
