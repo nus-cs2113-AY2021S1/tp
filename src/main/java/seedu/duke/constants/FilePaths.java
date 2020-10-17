@@ -24,7 +24,7 @@ public class FilePaths {
     /**
      * Path to store user past history.
      */
-    public static final String HISTORY_FILE_PATH = "data/History.txt";
+    public static final String WRITING_FILE_PATH = "data/writings.txt";
 
     /**
      * The general path to store the statistics of the past quizzes.

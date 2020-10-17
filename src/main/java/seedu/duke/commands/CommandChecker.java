@@ -33,6 +33,7 @@ public enum CommandChecker {
     FINISH,
     POEM,
     ESSAY,
+    COUNT_WRITINGS,
 
     STATS,
     DELETE,
@@ -100,6 +101,8 @@ public enum CommandChecker {
             return CommandChecker.POEM;
         } else if (userInput.toLowerCase().trim().startsWith("essay")) {
             return CommandChecker.ESSAY;
+        } else if (userInput.toLowerCase().trim().startsWith("count writings")) {
+            return CommandChecker.COUNT_WRITINGS;
         } else {
             return CommandChecker.UNRECOGNISED;
         }

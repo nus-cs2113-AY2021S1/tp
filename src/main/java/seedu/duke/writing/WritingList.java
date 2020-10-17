@@ -1,10 +1,12 @@
 package seedu.duke.writing;
 
 import seedu.duke.commands.CommandChecker;
+import seedu.duke.database.FileFunctions;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
+import java.io.File;
 
 import static seedu.duke.Duke.user;
 import static seedu.duke.Duke.writings;
@@ -16,9 +18,11 @@ import static seedu.duke.commands.CommandChecker.ESSAY;
 import static seedu.duke.commands.CommandChecker.extractCommandType;
 
 import static seedu.duke.constants.Logos.PLAIN_TEXT_DIVIDER;
+import static seedu.duke.constants.FilePaths.WRITING_FILE_PATH;
 import static seedu.duke.functions.CommandExecutor.executeCommand;
 import static seedu.duke.parsers.Parsers.getUserInput;
 import static seedu.duke.constants.DataFileConvention.MAX_NUM_WRITINGS;
+import static seedu.duke.database.WritingsLoader.recordListToFile;
 
 public class WritingList {
     private int countWriting;
@@ -91,7 +95,8 @@ public class WritingList {
     
     public static void checkType() {
         Scanner scanner = new Scanner(System.in);
-        String newUserInput = null;
+        String newUserInput;
+        File f = FileFunctions.getFileFromFilePath(WRITING_FILE_PATH);
         try {
             CommandChecker commandStartChecker = UNRECOGNISED;
             while (commandStartChecker != POEM && commandStartChecker != ESSAY) {
@@ -117,6 +122,8 @@ public class WritingList {
             }
             System.out.println("Done! We have added your writing to our storage! You can type \"stats\" "
                     + "for future reference!");
+            recordListToFile(f, writings);
+
         } catch (Exception e) {
             System.out.println(e);
         }

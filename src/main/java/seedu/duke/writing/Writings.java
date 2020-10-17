@@ -67,11 +67,11 @@ public abstract class Writings {
         return author;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
     public String getType() {
         return type;
+    }
+
+    public void setAuthor(String author) {
+        this.author = new User(author);
     }
 }

@@ -16,6 +16,7 @@ import seedu.duke.names.Names;
 import seedu.duke.writing.Essay;
 import seedu.duke.writing.Poem;
 import seedu.duke.writing.WritingList;
+import seedu.duke.writing.Writings;
 
 
 import java.io.IOException;
@@ -104,8 +105,10 @@ public class CommandExecutor {
         case TYPE:
             WritingList.checkType();
             break;
+        case COUNT_WRITINGS:
+            WritingList.getWritingSize();
+            break;
         case DELETE:
-
             break;
         case EXIT:
             //closes the program
