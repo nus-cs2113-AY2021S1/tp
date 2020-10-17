@@ -104,34 +104,33 @@ public class DeleteCommand extends Command {
     }
 
     private void deleteBook(BookList books, TextUi ui) {
-        String[] titleAndAuthor = information.split(FLAG_AUTHOR);
-        String bookTitle = titleAndAuthor[0].trim();
-
-        // clear bookmarks before delete the entire book.
-        BookmarkList bookmarks = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
-        clearBookmark(books,bookmarks, bookTitle, ui);
-
-        RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
-        Rating ratingToBeDeleted;
-        for (Rating rating : ratings.getList()) {
-            if (rating.getTitleOfRatedBook().equals(bookTitle)) {
-                ratingToBeDeleted = rating;
-                ratings.delete(ratings.getList().indexOf(ratingToBeDeleted));
-                break;
-            }
-        }
-
         try {
-            if (titleAndAuthor[1].isEmpty()) {
-                throw new QuotesifyException(ERROR_NO_AUTHOR_NAME);
+            int bookIndex = Integer.parseInt(information.trim()) - 1;
+            Book book = books.getBook(bookIndex);
+            String bookTitle = book.getTitle();
+
+            // clear bookmarks before deleting the entire book.
+            BookmarkList bookmarks = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
+            clearBookmark(books, bookmarks, bookTitle, ui);
+
+            // delete ratings before deleting the entire book.
+            RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
+            Rating ratingToBeDeleted;
+            for (Rating rating : ratings.getList()) {
+                if (rating.getTitleOfRatedBook().equals(bookTitle)) {
+                    ratingToBeDeleted = rating;
+                    ratings.delete(ratings.getList().indexOf(ratingToBeDeleted));
+                    break;
+                }
             }
-            ArrayList<Book> filteredBooks = books.find(bookTitle, titleAndAuthor[1].trim());
-            books.deleteByBook(filteredBooks.get(0));
-            ui.printDeleteBook(filteredBooks.get(0));
+
+            books.delete(bookIndex);
+            ui.printDeleteBook(book);
+            
         } catch (IndexOutOfBoundsException e) {
             ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
-        } catch (QuotesifyException e) {
-            ui.printErrorMessage(e.getMessage());
+        } catch (NumberFormatException e) {
+            ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
         }
     }
 
