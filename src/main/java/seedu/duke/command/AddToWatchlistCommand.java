@@ -2,7 +2,8 @@ package seedu.duke.command;
 
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
-import seedu.duke.human.UserManagement;
+import seedu.duke.human.Workspace;
+import seedu.duke.human.User;
 import seedu.duke.storage.Storage;
 import seedu.duke.watchlist.Watchlist;
 
@@ -15,9 +16,10 @@ public class AddToWatchlistCommand extends Command {
     
     private String option;
     private String animeName = "";
-    private static Logger LOGGER = Logger.getLogger(Command.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(AddToWatchlistCommand.class.getName());
 
     public AddToWatchlistCommand(String description) {
+        LOGGER.setLevel(Level.WARNING);
         String[] descriptionSplit = description.split(" ", 2);
         
         option = descriptionSplit[0];
@@ -30,14 +32,18 @@ public class AddToWatchlistCommand extends Command {
      * Adds an anime to current watchlist.
      */
     @Override
-    public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
-                          UserManagement userManagement) throws AniException {
+    public String execute(AnimeData animeData, User user) throws AniException {
+        // Storage storage = user.getStorage();
+        Workspace activeWorkspace = user.getActiveWorkspace();
+        Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
+        ArrayList<Watchlist> activeWatchlistList = activeWorkspace.getWatchlistList();
+
         if (!option.equals(ADD_OPTION)) {
             LOGGER.log(Level.WARNING, "Option type given is wrong");
             throw new AniException("Watchlist command only accepts the option: \"-a\".");
         }
         assert option.equals("-a") == true : "option type should have been \"-a\".";
-        addToWatchlist(userManagement.getStorage(), activeWatchlistList, activeWatchlist);
+        // addToWatchlist(storage, activeWatchlistList, activeWatchlist);
 
         return "Anime added to watchlist!";
     }
@@ -48,8 +54,11 @@ public class AddToWatchlistCommand extends Command {
             LOGGER.log(Level.WARNING, "Anime name is empty, exception thrown");
             throw new AniException("Anime name cannot be empty.");
         }
-        
+
+        int activeWatchlistIndex = activeWatchlistList.indexOf(activeWatchlist);
         activeWatchlist.addAnimeToList(animeName);
+        activeWatchlistList.set(activeWatchlistIndex, activeWatchlist);
+
         storage.saveWatchlist(activeWatchlistList);
         LOGGER.log(Level.INFO, "Successfully added and stored anime into active watchlist");
     }

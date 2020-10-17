@@ -5,9 +5,11 @@ import java.util.Arrays;
 
 public class AnimeData {
     public ArrayList<Anime> animeDataList;
+    public ArrayList<Anime> animeOriginalDataList;
 
     public AnimeData(ArrayList<Anime> animeDataList) {
         this.animeDataList = animeDataList;
+        this.animeOriginalDataList = new ArrayList<>(this.animeDataList);
     }
 
     public Anime getAnime(Integer animeIndex) throws IndexOutOfBoundsException, NullPointerException {
@@ -57,7 +59,7 @@ public class AnimeData {
     public ArrayList<Anime> findName(String description) {
         ArrayList<Anime> findList = new ArrayList<>();
         System.out.println("Looking for \"" + description + "\"");
-        for (Anime anime : animeDataList) {
+        for (Anime anime : animeOriginalDataList) {
             if (anime.getAnimeName().contains(description)) {
                 findList.add(anime);
             }
@@ -65,14 +67,10 @@ public class AnimeData {
         return findList;
     }
 
+    //Functions below uses original data list
     public Anime getAnimeByID(Integer animeIndex) throws IndexOutOfBoundsException, NullPointerException {
         try {
-            for (Anime anime : animeDataList) {
-                if (anime.getAnimeID() == animeIndex) {
-                    return anime;
-                }
-            }
-            return null;
+            return animeOriginalDataList.get(animeIndex);
         } catch (IndexOutOfBoundsException e) {
             throw e;
         } catch (NullPointerException e) {

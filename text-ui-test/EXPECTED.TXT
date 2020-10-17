@@ -11,17 +11,14 @@
  Watchlist file is not found, let's start a afresh.
 -------------------------------------------------------------
  What's your name?
- #>  Hello Abec! What might your date of birth be? (DD/MM/YYYY)
- #>  What might your gender be? (Male/Female/Other)
- #>   Successfully added new user:
- Abec
- 01/02/1996
- Female
+ #>  Hello Abec Steiner 33rd! What might your gender be? (Male/Female/Other)
+ #>  What do you want your workspace to be called?
+ #> 
+ Crunchyroll Workspace (Default) #> 
+ Crunchyroll Workspace (Default) #> 
+ Crunchyroll Workspace (Default) #>  Currently, you have 1 watchlist(s):
+	1. Default
 
- Abec-chan (Default) #>  Watchlist created successfully!
+ Crunchyroll Workspace (Default) #>  Anime added to watchlist!
 
- Abec-chan (Default) #>  Watchlist created successfully!
-
- Abec-chan (Default) #>  Anime added to watchlist!
-
- Abec-chan (Default) #>  Sayonara!
+ Crunchyroll Workspace (Default) #>  Sayonara Abec Steiner 33rd-chan!

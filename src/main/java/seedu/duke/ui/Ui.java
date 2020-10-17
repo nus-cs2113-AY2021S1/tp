@@ -1,9 +1,14 @@
 package seedu.duke.ui;
 
+import seedu.duke.human.User;
+
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Ui {
     private static final Scanner CONSOLE = new Scanner(System.in);
+    private static final Logger LOGGER = Logger.getLogger(User.class.getName());
     private static final String LOGO =
             "                 _  _____ _\n"
                     + "      /\\         (_)/ ____| |\n"
@@ -13,6 +18,10 @@ public class Ui {
                     + "  /_/    \\_\\_| |_|_|\\_____|_| |_|\\__,_|_| |_|\n";
     private static final String HORIZONTAL_LINE =
             "-------------------------------------------------------------";
+
+    public Ui() {
+        LOGGER.setLevel(Level.WARNING);
+    }
 
     public void printMessage(String message) {
         if (!message.isBlank()) {
@@ -33,8 +42,8 @@ public class Ui {
         printMessage(LOGO);
     }
 
-    public void printGoodbyeMessage() {
-        printMessage("Sayonara!");
+    public void printGoodbyeMessage(String name) {
+        printMessage("Sayonara " + name + "!");
     }
 
     public String readInput() {
@@ -42,9 +51,27 @@ public class Ui {
         return CONSOLE.nextLine();
     }
 
-    public String readUserInput(String userName, String watchlistName) {
-        System.out.print(System.lineSeparator() + " " + userName + " (" + watchlistName + ") #> ");
-        String userInput = CONSOLE.nextLine();
-        return userInput;
+    public String readUserInput(User user) {
+        String workspaceName = user.getActiveWorkspace().getName();
+        String watchlistName = user.getActiveWorkspace().getActiveWatchlistName();
+        System.out.print(System.lineSeparator() + " " + workspaceName + " (" + watchlistName + ") #> ");
+        return CONSOLE.nextLine();
     }
+
+
+    public String[] createUserDialogue() {
+        LOGGER.log(Level.INFO, "No existing user file found, prompting user to create one!");
+        String[] userDialogueInput = new String[3];
+        ;
+
+        printMessage("What's your name?");
+        userDialogueInput[0] = readInput();
+        printMessage("Hello " + userDialogueInput[0] + "! What might your gender be? (Male/Female/Other)");
+        userDialogueInput[1] = readInput();
+        printMessage("What do you want your workspace to be called?");
+        userDialogueInput[2] = readInput();
+
+        return userDialogueInput;
+    }
+
 }

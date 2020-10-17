@@ -1,8 +1,8 @@
 package seedu.duke.parser;
 
 import seedu.duke.command.Command;
-import seedu.duke.command.AddUserCommand;
-import seedu.duke.command.EditProfileCommand;
+import seedu.duke.command.AddWorkspaceCommand;
+import seedu.duke.command.SwitchWorkspaceCommand;
 import seedu.duke.command.BrowseCommand;
 import seedu.duke.command.WatchlistCommand;
 import seedu.duke.command.AddToWatchlistCommand;
@@ -15,13 +15,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Parser {
-    private static Logger LOGGER = Logger.getLogger(Command.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Parser.class.getName());
 
     /**
      * Prints the main menu of the application
      * and requests for command.
      */
     public Command getCommand(String fullCommand) throws AniException {
+        LOGGER.setLevel(Level.WARNING);
         String[] fullCommandSplit = parseUserInput(fullCommand);
         String description = "";
         String command = fullCommandSplit[0];
@@ -31,10 +32,10 @@ public class Parser {
 
         switch (command) {
         case "adduser":
-            return new AddUserCommand(description);
+            return new AddWorkspaceCommand(description);
                 
-        case "editprofile":
-            return new EditProfileCommand(description);
+        case "switchuser":
+            return new SwitchWorkspaceCommand(description);
  
         case "browse":
             return new BrowseCommand(description);

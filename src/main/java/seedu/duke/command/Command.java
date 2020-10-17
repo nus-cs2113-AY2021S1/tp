@@ -1,12 +1,8 @@
 package seedu.duke.command;
 
 import seedu.duke.anime.AnimeData;
-import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.AniException;
-import seedu.duke.human.UserManagement;
-import seedu.duke.watchlist.Watchlist;
-
-import java.util.ArrayList;
+import seedu.duke.human.User;
 
 public abstract class Command {
     protected String description;
@@ -20,8 +16,7 @@ public abstract class Command {
         this.shouldExit = true;
     }
 
-    public String execute(AnimeData animeData, ArrayList<Watchlist> activeWatchlistList, Watchlist activeWatchlist,
-                          UserManagement userManagement) throws AniException {
+    public String execute(AnimeData animeData, User user) throws AniException {
         throw new AniException("This method should be implemented in the child class");
     }
 }

@@ -1,7 +1,8 @@
-Abec
-01/02/1996
+Abec Steiner 33rd
 Female
+Crunchyroll Workspace
 watchlist -n a
 watchlist -n b
+watchlist -l
 add -a MyFirstAnime
 exit
