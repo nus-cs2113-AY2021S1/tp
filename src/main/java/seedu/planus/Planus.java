@@ -25,7 +25,7 @@ public class Planus {
 
     private void run() {
         initProgram();
-        ui.showWelcomeMessage();
+        ui.showWelcomeMessage(tasks);
         while (!isExit) {
             String userInput = ui.getUserInput();
             assert userInput != null : "null input";
