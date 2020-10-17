@@ -22,6 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -62,15 +63,18 @@ class StorageTest {
                 new Flashcard("question2", "answer2"),
                 new Flashcard("question3", "answer3")
         ));
+        String dateTimeInput = "18:00 10-10-2019";
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm d-MM-yyyy");
+        LocalDateTime dateTime = LocalDateTime.parse(dateTimeInput, format);
         tasks = new ArrayList<>(List.of(
                 new Todo("todoTask", false),
-                new Event("eventTask", true, LocalDateTime.now()),
-                new Deadline("deadlineTask", false, LocalDateTime.now())
+                new Event("eventTask", true, dateTime),
+                new Deadline("deadlineTask", false, dateTime)
         ));
         tasksStr = new ArrayList<>(List.of(
                 "T | 0 | todoTask",
-                "E | 1 | eventTask | atTime",
-                "D | 0 | deadlineTask | byTime"
+                "E | 1 | eventTask | 6:00 PM 10 Oct 2019",
+                "D | 0 | deadlineTask | 6:00 PM 10 Oct 2019"
         ));
     }
 
@@ -222,7 +226,7 @@ class StorageTest {
             if (t1 instanceof Event) {
                 assertEquals(((Event) t1).getDateTimeDescription(), ((Event) t2).getDateTimeDescription());
             } else if (t1 instanceof Deadline) {
-                assertEquals(((Deadline) t1).getDateTime(), ((Deadline) t2).getDateTimeDescription());
+                assertEquals(((Deadline) t1).getDateTimeDescription(), ((Deadline) t2).getDateTimeDescription());
             }
         }
     }
