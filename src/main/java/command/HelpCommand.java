@@ -1,20 +1,20 @@
 package command;
 
 import eventlist.EventList;
+import exception.NuScheduleException;
 import locationlist.BusStopList;
 import locationlist.LocationList;
 import storage.Storage;
 import ui.UI;
 
 /**
- * Represents the command call when the user exits this program.
+ * Represents the command call when the user asking for helps.
  */
-public class ExitCommand extends Command {
+public class HelpCommand extends Command {
     /**
-     * Mark the status of the program, isExit, as true.
-     * Also prints the exit message.
+     * Execute the command based on the specific command type.
      *
-     * @param events    the list of tasks.
+     * @param events    the list of Events.
      * @param locations the list of Locations.
      * @param busStops  the list of BusStops.
      * @param ui        do outputs.
@@ -22,8 +22,6 @@ public class ExitCommand extends Command {
      */
     @Override
     public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) {
-        isExit = true;
-        ui.printExitMessage();
-
+        ui.printHelp();
     }
 }

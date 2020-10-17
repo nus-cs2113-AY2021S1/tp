@@ -6,13 +6,13 @@ import java.util.Arrays;
  * Represents Building objects.
  * Contains an array of Strings nearestBusStops which represents the bus stops nearby.
  */
-public class Building extends Location{
-    private String[] nearestBusStops;
+public class Building extends Location {
+    private final String[] nearestBusStops;
 
     public Building(String name, String[] nearestBusStops) {
         super(name);
         this.nearestBusStops = nearestBusStops;
-        this.type = locationType.BUILDING;
+        this.type = LocationType.BUILDING;
     }
 
     /**

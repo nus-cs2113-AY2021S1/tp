@@ -2,6 +2,7 @@ package ui;
 
 
 import event.Event;
+import exception.EmptyEventListException;
 import location.BusStop;
 import location.Location;
 import locationlist.LocationList;
@@ -61,12 +62,12 @@ public class UI {
     /**
      * Prints all the events with labels, based on the input list.
      *
-     * @param events an <\code>ArrayList<\code> of events to be printed one by one.
+     * @param events an ArrayList of events to be printed one by one.
      */
-    public void printEventList(ArrayList<Event> events) {
+    public void printEventList(ArrayList<Event> events) throws EmptyEventListException {
         int numPrintedEvents = 0;
-        if (events.size() == 0){
-            System.out.println("The list is empty.");
+        if (events.size() == 0) {
+            throw new EmptyEventListException();
         } else {
             try {
                 System.out.println("Here are the Events in your list:");
@@ -74,7 +75,7 @@ public class UI {
                     numPrintedEvents++;
                     System.out.println(numPrintedEvents + ". " + event.toString());
                 }
-            } catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 System.out.println("The list is empty.");
             }
         }
@@ -83,7 +84,7 @@ public class UI {
     /**
      * Prints all the Events of the filtered list with labels, based on the input list.
      *
-     * @param events an <\code>ArrayList<\code> of Events to be printed one by one.
+     * @param events an ArrayList of Events to be printed one by one.
      */
     public void printFilteredEventList(ArrayList<Event> events) {
         int numPrintedEvents = 0;
@@ -168,6 +169,7 @@ public class UI {
         System.out.println("Got it. I've added this Event: ");
         System.out.println(eventAdded.toString());
     }
+
     /**
      * Prints the message when the user adds some Event.
      *
@@ -177,10 +179,11 @@ public class UI {
         System.out.println("Got it. I've edited this Event: ");
         System.out.println(eventEdited.toString());
     }
+
     /**
      * Prints all the Events of the filtered list with labels, based on the input list.
      *
-     * @param filteredEventList an <\code>ArrayList<\code> of Events to be printed one by one.
+     * @param filteredEventList an ArrayList of Events to be printed one by one.
      */
     public void printFilteredDateEventList(ArrayList<Event> filteredEventList) {
         int numPrintedEvents = 0;
@@ -193,9 +196,9 @@ public class UI {
     }
 
     /**
-     * Prints all the locations stored in the location list with nearest bus stops
+     * Prints all the locations stored in the location list with nearest bus stops.
      *
-     * @param locationsList an Array List of Locations to be printed
+     * @param locationsList an Array List of Locations to be printed.
      */
     public void printLocationList(ArrayList<Location> locationsList) {
         int i = 1;
@@ -208,25 +211,24 @@ public class UI {
 
 
     /**
-     * Prints all the bus stops stored in the bus stop list with buses that goes there
+     * Prints all the bus stops stored in the bus stop list with buses that goes there.
      *
      * @param busStopList an Array List of Bus Stops to be printed
      */
     public void printBusStopList(ArrayList<BusStop> busStopList) {
         int i = 1;
         System.out.println("List of bus stops: ");
-        for(BusStop busStop : busStopList) {
+        for (BusStop busStop : busStopList) {
             System.out.println(i + ". " + busStop);
             i++;
         }
     }
 
     /**
-     * Prints the help information when user inpur command 'help'
-     * relevant command information with reference to the current user guide draft
+     * Prints the help information when user input command 'help'.
+     * Relevant command information with reference to the current user guide draft.
      */
     public void printHelp() {
-        printLine();
         System.out.println("Below are all the commands and their functions in the form of command - function: ");
         System.out.println("help - view all the commands");
         System.out.println("add - add any type of event");
@@ -234,6 +236,14 @@ public class UI {
         System.out.println("locate - find location information");
         System.out.println("list - view all events added");
         System.out.println("clear - clear all events");
+
+    }
+
+    /**
+     * Prints the message when the user clears the list.
+     */
+    public void printClearEventsSuccessful() {
+        System.out.println("Clear successful. The list is now empty.");
     }
 }
 

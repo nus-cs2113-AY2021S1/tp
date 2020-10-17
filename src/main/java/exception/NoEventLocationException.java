@@ -1,7 +1,7 @@
 package exception;
 
 /**
- * Represents the exception when no location is provided when adding a new event
+ * Represents the exception when no location is provided when adding a new event.
  */
 public class NoEventLocationException extends NuScheduleException {
     /**

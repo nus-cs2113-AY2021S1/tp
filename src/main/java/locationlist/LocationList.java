@@ -6,14 +6,14 @@ import java.util.ArrayList;
 
 public class LocationList {
     private static final String filePath = "data/locations.txt";
-    private ArrayList<Location> locationList = new ArrayList<>();
+    private final ArrayList<Location> locationList = new ArrayList<>();
 
     public ArrayList<Location> getLocationList() {
         return locationList;
     }
 
     /**
-     * Flag to check if location exists
+     * Flag to check if location exists.
      *
      * @param name name of the location to be checked
      * @return boolean value of if the location is found in the location list

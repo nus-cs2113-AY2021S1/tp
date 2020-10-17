@@ -17,7 +17,7 @@ public class Assignment extends Event {
     /**
      * Convert the information about this deadline to a string that is to be stored in a file.
      *
-     * @return the result string to be stored
+     * @return the result string to be stored.
      */
     public String fileString() {
         return "A//" + (isDone ? 1 : 0) + "//" + description + "//" + by + "//" + location;
