@@ -9,9 +9,13 @@ import seedu.revised.card.Flashcard;
 
 import seedu.revised.card.quiz.Result;
 
+import seedu.revised.task.Deadline;
+import seedu.revised.task.Event;
 import seedu.revised.task.Task;
 import seedu.revised.task.TaskList;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,17 +26,24 @@ public class Ui {
         return scan.nextLine();
     }
 
-    public static void printStart() {
+    public static void printStart(SubjectList subjects) {
         String logo = "                               __________\n"
                 + "                              |  __ |  _ \\\n"
                 + " ____  ______      _____      |  |__| | | |\n"
                 + "|  __|/ __ \\ \\    / /| | ____ |   __| | | |\n"
                 + "| |  |  __/ \\ \\__/ / | | \\____|  |__| |_| |\n"
                 + "| |   \\___|  \\____/  |_| ____/|_____|_____/\n";
+
         System.out.println("Hello from\n" + logo);
         System.out.println("____________________________________________________________\n"
                 + " Hello! I'm revisED\n"
-                + " What can I do for you?\n"
+                + "____________________________________________________________\n");
+        if (subjects.getList().size() != 0) {
+            printUpcomingTasks(subjects);
+        }
+
+        System.out.println("____________________________________________________________\n"
+                + "Alright, What can I do for you?\n"
                 + "____________________________________________________________\n");
     }
 
@@ -447,5 +458,30 @@ public class Ui {
                 + "____________________________________________________________\n");
     }
 
+    public static void printUpcomingTasks(SubjectList subjects) {
+        int index = 1;
+        System.out.println("Here are the tasks that are due by next week\n"
+                + "____________________________________________________________");
+        LocalDateTime nextWeek = LocalDateTime.now().plusDays(7);
+        for (Subject subject : subjects.getList()) {
+            System.out.println(subject);
+            if (subject.getTasks().getList().size() == 0) {
+                System.out.println("You do not have any tasks due by next week!");
+
+            } else {
+                for (Task task : subject.getTasks().getList()) {
+                    if (task.getDateTime() != null) {
+                        if (task.getDateTime().isBefore(nextWeek) & task.getDateTime().isAfter(LocalDateTime.now())) {
+                            System.out.println(index + ":" + task);
+                            index = index + 1;
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+    }
 }
 
