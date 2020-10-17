@@ -28,6 +28,11 @@ public class Watchlist {
         this.animeList.add(animeName);
         assert this.animeList.contains(animeName) == true : "Watchlist should now contain new anime";
     }
+    
+    public void removeAnimeFromList(String animeName) {
+        this.animeList.remove(animeName);
+        assert this.animeList.contains(animeName) == false : "Watchlist should now not contain the anime";
+    }
 
     public String animeListToString() {
         StringBuilder sbAnimeList = new StringBuilder();
