@@ -25,11 +25,15 @@
 #### [4. FAQ](#faq)
 #### [5. Command Summary](#command)
 
+<br>
+
 ## 1. <a id="intro">Introduction</a>
 
 NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking application for keyboard-inclined users. NotUS allows for users to categorize notes by tagging as well as pinning the more important notes. NotUS is also designed to assist in planning timetables to highlight possible clashes.
 
 This document describes the features found in NotUS, along with example usages.
+
+<br>
 
 ## 2. <a id="quickstart">Quick Start</a>
 
@@ -37,6 +41,8 @@ This document describes the features found in NotUS, along with example usages.
 1. Down the latest version of `NotUS` from [here](https://github.com/AY2021S1-CS2113-T13-1/tp/releases) or under [releases from the homepage](https://github.com/AY2021S1-CS2113-T13-1/tp).
 1. Go to the folder of the download and open your command terminal. Enter the following `java -jar Notus.jar`. Wait for the program to run.
 1. Use the command `help` to get a list of commands and their usages before using the application (if needed).
+
+<br>
 
 ## 3. <a id="features">Features</a>
 
@@ -340,6 +346,7 @@ Example of usage:
 
 `exit`
 
+<br>
 
 ## <a id="faq">4. FAQ</a>
 
@@ -351,6 +358,7 @@ Example of usage:
 
 **A**: Type the command `help` for a list of useful commands.
 
+<br>
 
 ## <a id="command">5. Command Summary</a>
 
