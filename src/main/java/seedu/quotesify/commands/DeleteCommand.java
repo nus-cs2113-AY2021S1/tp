@@ -66,6 +66,8 @@ public class DeleteCommand extends Command {
             deleteQuote(quotes, ui, information);
             break;
         default:
+            ui.printListOfDeleteCommands();
+            break;
         }
     }
 

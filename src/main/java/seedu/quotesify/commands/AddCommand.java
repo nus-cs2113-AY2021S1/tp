@@ -71,6 +71,8 @@ public class AddCommand extends Command {
             ui.printAddToDo(newToDo);
             break;
         default:
+            ui.printListOfAddComnmands();
+            break;
         }
     }
 

@@ -28,6 +28,7 @@ public class DoneCommand extends Command {
             doneToDo(toDos,index,ui);
             break;
         default:
+            ui.printDoneCommandUsage();
             break;
         }
     }

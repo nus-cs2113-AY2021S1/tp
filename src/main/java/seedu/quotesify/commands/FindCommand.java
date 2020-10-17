@@ -28,6 +28,8 @@ public class FindCommand extends Command {
             findRating(ratings, ui);
             break;
         default:
+            ui.printListOfFindCommands();
+            break;
         }
     }
 

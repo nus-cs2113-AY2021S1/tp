@@ -44,6 +44,8 @@ public class EditCommand extends Command {
             editCategory(categoryList, ui);
             break;
         default:
+            ui.printListOfEditCommands();
+            break;
         }
     }
 
