@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.classes.Storage;
+import seedu.duke.classes.WatchTime;
 import seedu.duke.utility.InputParser;
 import seedu.duke.utility.ShowList;
 import seedu.duke.utility.Ui;
@@ -25,6 +26,9 @@ public class Duke {
         } catch (Exception e) {
             this.shows = new ShowList();
         }
+        //TODO: Update this after state is loaded
+        //watchTime = new WatchTime(LocalDate recordedDate, int durationWatchedToday, int dailyWatchLimit);
+
     }
 
     public void run() {

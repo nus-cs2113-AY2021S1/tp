@@ -212,5 +212,9 @@ public class Ui {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_RATING_INPUT);
     }
 
+    public static void printDailyWatchTimeLeft() {
+        //System.out.println("Showtime left : " + watchTime.userReportString() /*the object*/);
+        //TODO: format the ui to print the time left to the user upon watching a new episode
+    }
 }
 

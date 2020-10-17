@@ -106,23 +106,24 @@ public class Show {
 
     @Override
     public String toString() {
-        String des = name + " | ";
-        des += "WatchHistory : S";
-        des += Integer.toString(currentSeason);
-        des += "E";
-        des += Integer.toString(currentEpisode);
+        //TODO: Bernado&jiqing verify if the new toString works well
+        StringBuilder des = new StringBuilder(name + " | ");
+        des.append("WatchHistory : S");
+        des.append(currentSeason);
+        des.append("E");
+        des.append(currentEpisode);
         if (rating != -1) {
             //TODO : make sure a review is always passed in with a rating
-            des += "| Rating: ";
-            des += Integer.toString(rating);
+            des.append("| Rating: ");
+            des.append(rating);
         }
-        des += " | : ";
-        des += ("Seasons " + numSeasons + " | Episodes: ");
+        des.append(" | : ");
+        des.append("Seasons ").append(numSeasons).append(" | Episodes: ");
         for (int episode : numEpisodesForSeasons) {
-            des += Integer.toString(episode);
-            des += " ";
+            des.append(episode);
+            des.append(" ");
         }
-        return des;
+        return des.toString();
     }
 
 }
