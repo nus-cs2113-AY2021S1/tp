@@ -65,7 +65,7 @@ public class UI {
      */
     public void printEventList(ArrayList<Event> events) {
         int numPrintedEvents = 0;
-        if (events.size() == 0){
+        if (events.size() == 0) {
             System.out.println("The list is empty.");
         } else {
             try {
@@ -74,7 +74,7 @@ public class UI {
                     numPrintedEvents++;
                     System.out.println(numPrintedEvents + ". " + event.toString());
                 }
-            } catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 System.out.println("The list is empty.");
             }
         }
@@ -168,6 +168,7 @@ public class UI {
         System.out.println("Got it. I've added this Event: ");
         System.out.println(eventAdded.toString());
     }
+
     /**
      * Prints the message when the user adds some Event.
      *
@@ -177,6 +178,7 @@ public class UI {
         System.out.println("Got it. I've edited this Event: ");
         System.out.println(eventEdited.toString());
     }
+
     /**
      * Prints all the Events of the filtered list with labels, based on the input list.
      *
@@ -193,9 +195,9 @@ public class UI {
     }
 
     /**
-     * Prints all the locations stored in the location list with nearest bus stops
+     * Prints all the locations stored in the location list with nearest bus stops.
      *
-     * @param locationsList an Array List of Locations to be printed
+     * @param locationsList an Array List of Locations to be printed.
      */
     public void printLocationList(ArrayList<Location> locationsList) {
         int i = 1;
@@ -208,14 +210,14 @@ public class UI {
 
 
     /**
-     * Prints all the bus stops stored in the bus stop list with buses that goes there
+     * Prints all the bus stops stored in the bus stop list with buses that goes there.
      *
      * @param busStopList an Array List of Bus Stops to be printed
      */
     public void printBusStopList(ArrayList<BusStop> busStopList) {
         int i = 1;
         System.out.println("List of bus stops: ");
-        for(BusStop busStop : busStopList) {
+        for (BusStop busStop : busStopList) {
             System.out.println(i + ". " + busStop);
             i++;
         }

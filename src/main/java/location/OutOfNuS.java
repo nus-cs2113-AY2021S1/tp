@@ -1,7 +1,7 @@
 package location;
 
-public class OutOfNUS extends Location {
-    public OutOfNUS(String name) {
+public class OutOfNuS extends Location {
+    public OutOfNuS(String name) {
         super(name);
     }
 

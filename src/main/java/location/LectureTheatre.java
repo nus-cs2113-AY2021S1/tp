@@ -4,12 +4,12 @@ package location;
  * Represents lecture theatre objects.
  * Contains a String nearestBuilding which represents the name of nearest building.
  */
-public class LectureTheatre extends Location{
-    private String nearestBuilding;
+public class LectureTheatre extends Location {
+    private final String nearestBuilding;
 
     public LectureTheatre(String name, String nearestBuilding) {
         super(name);
-        this.type = locationType.LT;
+        this.type = LocationType.LT;
         this.nearestBuilding = nearestBuilding;
     }
 
