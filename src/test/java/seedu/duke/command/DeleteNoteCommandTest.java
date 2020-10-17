@@ -9,6 +9,7 @@ import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.timetable.Timetable;
 
 import seedu.duke.storage.StorageManager;
+import seedu.duke.ui.Formatter;
 
 import java.util.ArrayList;
 
@@ -56,7 +57,7 @@ class DeleteNoteCommandTest {
     @Test
     public void execute_validIndex_personIsDeleted() {
         assertDeletionSuccessfulInteger(1, notebook);
-        assertDeletionSuccessfulString("java", notebook);
+        assertDeletionSuccessfulString("Java OOP", notebook);
     }
 
     /**
@@ -74,7 +75,7 @@ class DeleteNoteCommandTest {
         DeleteNoteCommand command = createDeleteCommand(targetVisibleIndex, notebook);
         String result = command.execute();
 
-        assertEquals(expectedMessage, result);
+        assertEquals(Formatter.formatNote(expectedMessage), result);
         assertEquals(deletedNotebook.getNotes(), notebook.getNotes());
     }
 
@@ -96,7 +97,7 @@ class DeleteNoteCommandTest {
         DeleteNoteCommand command = createDeleteCommand(targetString, notebook);
         String result = command.execute();
 
-        assertEquals(expectedMessage, result);
+        assertEquals(Formatter.formatNote(expectedMessage), result);
         assertEquals(deletedNotebook.getNotes(), notebook.getNotes());
     }
 
@@ -143,7 +144,7 @@ class DeleteNoteCommandTest {
         DeleteNoteCommand command = createDeleteCommand(visibleIndex, notebook);
         String result = command.execute();
 
-        assertEquals(DeleteNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE, result);
+        assertEquals(Formatter.formatNote(DeleteNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE), result);
         assertEquals(expectedNotebook.getNotes(), notebook.getNotes());
     }
 
@@ -159,7 +160,7 @@ class DeleteNoteCommandTest {
         DeleteNoteCommand command = createDeleteCommand(targetVisibleString, notebook);
         String result = command.execute();
 
-        assertEquals(DeleteNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE, result);
+        assertEquals(Formatter.formatNote(DeleteNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE), result);
         assertEquals(expectedNotebook.getNotes(), notebook.getNotes());
     }
 }

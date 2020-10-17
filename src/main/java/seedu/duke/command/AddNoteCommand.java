@@ -42,7 +42,7 @@ public class AddNoteCommand extends Command {
 
     @Override
     public String execute() {
-        String content = "";
+        String content = note.getContent();
         boolean isInputSuccess = false;
 
         // Search for duplicates
@@ -55,15 +55,17 @@ public class AddNoteCommand extends Command {
         }
 
         // Get Content
-        do {
-            System.out.println("Enter Note:");
-            try {
-                content = inputContent();
-                isInputSuccess = true;
-            } catch (StringIndexOutOfBoundsException exception) {
-                System.out.println(SystemException.ExceptionType.EXCEPTION_INVALID_END_INPUT);
-            }
-        } while (!isInputSuccess);
+        if (content.isBlank()) {
+            do {
+                System.out.println("Enter Note:");
+                try {
+                    content = inputContent();
+                    isInputSuccess = true;
+                } catch (StringIndexOutOfBoundsException exception) {
+                    System.out.println(SystemException.ExceptionType.EXCEPTION_INVALID_END_INPUT);
+                }
+            } while (!isInputSuccess);
+        }
 
         // Edit the note
         note.setContent(content);
