@@ -109,14 +109,13 @@ public class User extends Human {
     }
 
     // NOTE: return null and check.
-    public Workspace getWorkspace(String name) {
+    public Workspace getWorkspace(String name) throws AniException {
         for (Workspace existingWorkspace : workspaceList) {
             if (existingWorkspace.getName().equals(name)) {
                 return existingWorkspace;
             }
         }
-
-        return null;
+        throw new AniException("Workspace " + name + " does not exist!");
     }
 
 

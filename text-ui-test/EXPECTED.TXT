@@ -42,7 +42,7 @@ Default (Default) #> Successfully added new workspace:
 Default (Default) #> Successfully added new workspace:
  Workspace: Testing2
 
-Default (Default) #> Welcome back, Abec Steiner 33rd-chan
+Default (Default) #> Workspace changed to Testing1
 
 Testing1 (Default) #> Anime added to watchlist!
 
@@ -56,6 +56,6 @@ Testing1 (Default) #> Listing all anime in bookmark:
 	Uhh.. It's empty.. :(
 
 
-Testing1 (Default) #> Welcome back, Abec Steiner 33rd-chan
+Testing1 (Default) #> Workspace changed to Testing2
 
 Testing2 (Default) #> Sayonara Abec Steiner 33rd-chan!
