@@ -41,9 +41,9 @@ public class Ui {
         // Header
         String headerFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-11s |" + LS;
         String contentFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-20s |" + LS;
-        out.println("   _____________________________________________________________________________________________ ");
+        out.println("   " + padString('_', 93));
         out.format(headerFormat, "Index", "Description", "Date", "Start", "End", "Priority");
-        out.println("   --------------------------------------------------------------------------------------------- ");
+        out.println("   " + padString('-', 93));
         for (int i = 0; i < tasks.size(); i++) {
             out.format(contentFormat,
                     i + 1,
@@ -53,7 +53,7 @@ public class Ui {
                     tasks.get(i).getEndTime() == null ? "" : tasks.get(i).getEndTime(),
                     tasks.get(i).getPriority());
         }
-        out.println("   --------------------------------------------------------------------------------------------- ");
+        out.println("   " + padString('-', 93));
         out.println();
     }
 
@@ -64,35 +64,36 @@ public class Ui {
 
     public void showReminders(TaskList tasks) {
         TaskList tasksDueToday = tasks.getTasksDueToday();
-        TaskList tasksDueTomorrow = tasks.getTasksDueTomorrow();
-        String messageFormat = "%-15s%-30s%15s" + LS;
-        String taskFormat = "%-15s%-3s%-18s%-5s%19s" + LS;
-        out.println("||                                                        ||");
-        out.format(messageFormat, "||", "You have " + tasksDueToday.size() + " tasks due today.", "||");
+        String messageFormat = "||%-13s%-43s||" + LS;
+        String taskFormat = "||%-13s%-3s%-18s%-22s||" + LS;
+        out.println("||" + padString(' ', 56) + "||");
+        out.format(messageFormat, "", "You have " + tasksDueToday.size() + " tasks due today.");
         for (int i = 0; i < tasksDueToday.size(); i++) {
-            out.format(taskFormat,
-                    "||",
+            out.format(taskFormat, "",
                     i + 1 + ".",
                     limitString(tasksDueToday.get(i).getDescription(), 17),
-                    (tasksDueToday.get(i).getStartTime() == null ? "" : tasksDueToday.get(i).getStartTime()),
-                    "||");
+                    (tasksDueToday.get(i).getStartTime() == null ? "" : tasksDueToday.get(i).getStartTime()));
         }
-        out.println("||                                                        ||");
-        out.format(messageFormat, "||", "Upcoming tasks tomorrow:", "||");
+        out.println("||" + padString(' ', 56) + "||");
+
+        TaskList tasksDueTomorrow = tasks.getTasksDueTomorrow();
+        out.format(messageFormat, "", "Upcoming tasks tomorrow:", "");
         for (int i = 0; i < tasksDueTomorrow.size(); i++) {
-            out.format(taskFormat,
-                    "||",
+            out.format(taskFormat, "",
                     i + 1 + ".",
                     limitString(tasksDueTomorrow.get(i).getDescription(), 17),
-                    (tasksDueTomorrow.get(i).getStartTime() == null ? "" : tasksDueTomorrow.get(i).getStartTime()),
-                    "||");
+                    (tasksDueTomorrow.get(i).getStartTime() == null ? "" : tasksDueTomorrow.get(i).getStartTime()));
         }
-        out.println("||                                                        ||" + LS
-                + " ========================================================== " + LS);
+        out.println("||" + padString(' ',56) + "||" + LS
+                + " " + padString('=', 58) + " " + LS);
     }
 
     public String limitString(String string, int limit) {
         return (string.length() > limit) ? (string.substring(0, limit - 3) + "...") : string;
+    }
+
+    public String padString(char pad, int length) {
+        return String.format("%1$" + length + "s", "").replace(' ', pad);
     }
 
     public void showMessage(String message) {
