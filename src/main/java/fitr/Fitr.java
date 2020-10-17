@@ -38,7 +38,7 @@ public class Fitr {
         while (!isExit) {
             String userInput = Ui.read();
             Command c = Parser.parse(userInput);
-            c.execute(foodList, exerciseList, storage);
+            c.execute(foodList, exerciseList, storage, user);
             isExit = c.isExit();
         }
         Ui.printExitMessage();
