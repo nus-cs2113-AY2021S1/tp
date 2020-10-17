@@ -25,8 +25,7 @@ public class Duke {
     private static final String WELCOME_MSG_STRING = "Welcome to NotUS! "
             + Formatter.getNotusLogo() + Formatter.LS
             + "Type \"help\" if you need to see a list of commands and their usages.";
-    private static final String ENTER_COMMAND_MSG = Formatter.LS
-            + "Enter command:";
+    private static final String ENTER_COMMAND_MSG = "Enter command:";
 
     /**
      * Initializes the required managers.

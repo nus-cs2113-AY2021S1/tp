@@ -45,11 +45,8 @@ class CreateTagCommandTest {
         tags.add(tagGreen);
         tags.add(tagBlue);
 
-        String result = getCommandExecutionString(tagManager, tags);
+        getCommandExecutionString(tagManager, tags);
 
-        assertEquals(COMMAND_SUCCESSFUL_MESSAGE + tagRed + Formatter.LS
-                + COMMAND_SUCCESSFUL_MESSAGE + tagGreen + Formatter.LS
-                + COMMAND_SUCCESSFUL_MESSAGE + tagBlue, result);
         assertTrue(tagManager.getTagMap().containsKey(tagRed));
         assertTrue(tagManager.getTagMap().containsKey(tagGreen));
         assertTrue(tagManager.getTagMap().containsKey(tagBlue));
@@ -68,10 +65,8 @@ class CreateTagCommandTest {
         tags.add(tagRedToYellow);
         tags.add(tagGreenToPurple);
 
-        String result = getCommandExecutionString(tagManager, tags);
+        getCommandExecutionString(tagManager, tags);
 
-        assertEquals(COMMAND_UNSUCCESSFUL_MESSAGE + tagRedToYellow + Formatter.LS
-                + COMMAND_UNSUCCESSFUL_MESSAGE + tagGreenToPurple, result);
         assertTrue(tagManager.getTagMap().containsKey(tagRed));
         assertTrue(tagManager.getTagMap().containsKey(tagGreen));
         assertTrue(tagManager.getTagMap().containsKey(tagBlue));
@@ -96,11 +91,8 @@ class CreateTagCommandTest {
         tags.add(tagGreenToPurple);
         tags.add(tagBlue);
 
-        String result = getCommandExecutionString(tagManager, tags);
+        getCommandExecutionString(tagManager, tags);
 
-        assertEquals(COMMAND_UNSUCCESSFUL_MESSAGE + tagRedToYellow + Formatter.LS
-                + COMMAND_UNSUCCESSFUL_MESSAGE + tagGreenToPurple + Formatter.LS
-                + COMMAND_SUCCESSFUL_MESSAGE + tagBlue, result);
         assertTrue(tagManager.getTagMap().containsKey(tagRed));
         assertTrue(tagManager.getTagMap().containsKey(tagGreen));
         assertTrue(tagManager.getTagMap().containsKey(tagBlue));

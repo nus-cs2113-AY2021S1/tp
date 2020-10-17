@@ -9,6 +9,8 @@ import org.fusesource.jansi.Ansi.Color;
  */
 public class Tag {
 
+    public static final int NUM_ANSI_CHAR = 9;
+
     public static final String COLOR_RED_STRING = "RED";
     public static final String COLOR_GREEN_STRING = "GREEN";
     public static final String COLOR_BLUE_STRING = "BLUE";
@@ -23,8 +25,8 @@ public class Tag {
     /**
      * Overloaded constructor to take in the color of the tag.
      *
-     * @param tagName name of the tag.
-     * @param tagColor color of the tag.
+     * @param tagName Name of the tag to be set.
+     * @param tagColor Color of the tag to be set.
      */
     public Tag(String tagName, String tagColor) {
         setTagName(tagName);
@@ -63,10 +65,8 @@ public class Tag {
             this.tagAttribute = Attribute.BRIGHT_CYAN_TEXT();
             break;
         case COLOR_WHITE_STRING:
-            this.tagAttribute = Attribute.BRIGHT_WHITE_TEXT();
-            break;
         default:
-            this.tagAttribute = Attribute.CLEAR();
+            this.tagAttribute = Attribute.BRIGHT_WHITE_TEXT();
             break;
         }
     }
@@ -82,7 +82,7 @@ public class Tag {
     /**
      * Overrides the parent class toString function to return the tag with its tag color.
      *
-     * @return tagName with its respective tag color.
+     * @return tagName with its respective tag attribute.
      */
     @Override
     public String toString() {
