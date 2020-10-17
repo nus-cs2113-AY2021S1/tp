@@ -8,8 +8,6 @@ import static com.diogonunes.jcolor.Ansi.colorize;
  */
 public class Tag {
 
-    public static final int NUM_ANSI_CHAR = 9;
-
     public static final String COLOR_RED_STRING = "RED";
     public static final String COLOR_GREEN_STRING = "GREEN";
     public static final String COLOR_BLUE_STRING = "BLUE";
