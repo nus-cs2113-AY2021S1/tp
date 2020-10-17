@@ -18,13 +18,13 @@ import java.util.logging.Logger;
 /**
  * Handles the loading and saving of data to a file.
  */
-public class  Storage {
+public class Storage {
     private static final String DEFAULT_EXERCISE_LIST_FILEPATH = "exercises.txt";
     private static final String DEFAULT_FOOD_LIST_FILEPATH = "food.txt";
     private static final String DEFAULT_USER_CONFIG_FILEPATH = "user.txt";
     private static final String COMMA_SEPARATOR = ",";
 
-    private static final Logger logger = Logger.getLogger(Storage.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Storage.class.getName());
 
     private final String exerciseListPath;
     private final String foodListPath;
@@ -50,14 +50,17 @@ public class  Storage {
 
         if (!exerciseListFile.exists()) {
             exerciseListFile.createNewFile();
+            LOGGER.fine("Exercise list file created: " + exerciseListPath);
         }
 
         if (!foodListFile.exists()) {
             foodListFile.createNewFile();
+            LOGGER.fine("Food list file created: " + foodListPath);
         }
 
         if (!userConfigFile.exists()) {
             userConfigFile.createNewFile();
+            LOGGER.fine("User profile file created: " + userConfigPath);
         }
     }
 
@@ -73,6 +76,7 @@ public class  Storage {
      * @throws FileNotFoundException if the file is not found
      */
     public boolean readUserConfigFile(User user) throws FileNotFoundException {
+        LOGGER.fine("Attempting to read file: " + userConfigPath);
         boolean isReadSuccess = false;
         File file = new File(userConfigPath);
         Scanner readFile = new Scanner(file);
@@ -96,6 +100,7 @@ public class  Storage {
             isReadSuccess = true;
         }
 
+        LOGGER.fine("User profile file read successfully.");
         return isReadSuccess;
     }
 
@@ -106,7 +111,7 @@ public class  Storage {
      * @throws IOException if an I/O error has occurred
      */
     public void writeUserConfigFile(User user) throws IOException {
-        logger.fine("Attempting to write to file: " + userConfigPath);
+        LOGGER.fine("Attempting to write to file: " + userConfigPath);
         FileWriter file = new FileWriter(userConfigPath);
 
         file.write(User.getName()
@@ -115,6 +120,7 @@ public class  Storage {
                 + COMMA_SEPARATOR + User.getHeight()
                 + COMMA_SEPARATOR + User.getWeight());
 
+        LOGGER.fine("User profile file written successfully.");
         file.close();
     }
 
@@ -125,7 +131,7 @@ public class  Storage {
      * @throws FileNotFoundException if the file is not found
      */
     public ArrayList<Food> loadFoodList() throws FileNotFoundException {
-        logger.fine("Attempting to read file: " + foodListPath);
+        LOGGER.fine("Attempting to read file: " + foodListPath);
         ArrayList<Food> foodList = new ArrayList<>();
         String line;
         String[] arguments;
@@ -139,6 +145,7 @@ public class  Storage {
                     new Calorie(Integer.parseInt(arguments[1])), Integer.parseInt(arguments[2])));
         }
 
+        LOGGER.fine("Food list file read successfully.");
         return foodList;
     }
 
@@ -149,7 +156,7 @@ public class  Storage {
      * @throws IOException if an I/O error has occurred
      */
     public void writeFoodList(FoodList foodList) throws IOException {
-        logger.fine("Attempting to write to file: " + foodListPath);
+        LOGGER.fine("Attempting to write to file: " + foodListPath);
         FileWriter file = new FileWriter(foodListPath);
         Food food;
 
@@ -160,6 +167,7 @@ public class  Storage {
                     + COMMA_SEPARATOR + food.getAmountOfFood() + System.lineSeparator());
         }
 
+        LOGGER.fine("Food list file written successfully.");
         file.close();
     }
 
@@ -170,7 +178,7 @@ public class  Storage {
      * @throws FileNotFoundException if the file is not found
      */
     public ArrayList<Exercise> loadExerciseList() throws FileNotFoundException {
-        logger.fine("Attempting to read file: " + exerciseListPath);
+        LOGGER.fine("Attempting to read file: " + exerciseListPath);
         ArrayList<Exercise> exerciseList = new ArrayList<>();
         String line;
         String[] arguments;
@@ -184,6 +192,7 @@ public class  Storage {
                     new Calorie(Integer.parseInt(arguments[1])), Integer.parseInt(arguments[2])));
         }
 
+        LOGGER.fine("Exercise list file read successfully.");
         return exerciseList;
     }
 
@@ -194,7 +203,7 @@ public class  Storage {
      * @throws IOException if an I/O error has occurred
      */
     public void writeExerciseList(ExerciseList exerciseList) throws IOException {
-        logger.fine("Attempting to write to file: " + exerciseListPath);
+        LOGGER.fine("Attempting to write to file: " + exerciseListPath);
         FileWriter file = new FileWriter(exerciseListPath);
         Exercise exercise;
 
@@ -205,6 +214,7 @@ public class  Storage {
                     + COMMA_SEPARATOR + exercise.getDuration() + System.lineSeparator());
         }
 
+        LOGGER.fine("Exercise list file written successfully.");
         file.close();
     }
 }
