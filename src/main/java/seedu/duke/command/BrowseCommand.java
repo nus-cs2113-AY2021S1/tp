@@ -50,7 +50,7 @@ public class BrowseCommand extends Command {
 
     private static final Logger LOGGER = Logger.getLogger(BrowseCommand.class.getName());
 
-    public BrowseCommand(String description) {
+    public BrowseCommand() {
         this.description = description;
         this.sortType = 0;
         this.order = 1;
@@ -61,12 +61,9 @@ public class BrowseCommand extends Command {
 
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
-        setBrowseOptions();
         ArrayList<Anime> usableList = animeData.getAnimeDataList();
-
         assert (sortType < 3) : ASSERT_SORT_TYPE;
         assert (order < 2) : ASSERT_ORDER_TYPE;
-
         sortBrowseList(usableList);
         String result = buildBrowseOutput(usableList);
         setSortType(3);
@@ -95,14 +92,6 @@ public class BrowseCommand extends Command {
         return result.toString();
     }
 
-    private void setBrowseOptions() throws AniException {
-        String[] paramGiven = description.split("-");
-        if (paramGiven.length > 1) {
-            parameterParser(paramGiven);
-            LOGGER.log(Level.INFO, BROWSE_SETTINGS_CHANGED_INFO);
-        }
-    }
-
     private void sortBrowseList(ArrayList<Anime> usableList) {
         if (sortType == ID_SORT && order == ORDER_DESCENDING) {
             LOGGER.log(Level.INFO, SORT_ID_DESCENDING);
@@ -121,76 +110,6 @@ public class BrowseCommand extends Command {
             usableList.sort(Comparator.comparing(Anime::getRating).reversed());
         } else if (sortType == 3) {
             usableList.sort(Comparator.comparing(Anime::getAnimeID));
-        }
-    }
-
-    private void parameterParser(String[] paramGiven) throws AniException {
-        for (String param : paramGiven) {
-            String[] paramParts = param.split(" ");
-            switch (paramParts[0].trim()) {
-            case "": //skip the first empty param
-                break;
-            case SORT_PARAM:
-                paramLengthCheck(paramParts);
-                checkSortType(paramParts);
-                break;
-            case FILTER_PARAM:
-                paramLengthCheck(paramParts);
-                setFilter(paramParts[1]);
-                break;
-            case ORDER_PARAM:
-                paramLengthCheck(paramParts);
-                checkOrderType(paramParts[1]);
-                break;
-            case PAGE_PARAM:
-                paramLengthCheck(paramParts);
-                if (!isInt(paramParts[1].trim())) {
-                    throw new AniException(NON_INTEGER_PROVIDED);
-                }
-                setPage(Integer.parseInt(paramParts[1].trim()));
-                break;
-            default:
-                String invalidParameter = PARAMETER_ERROR_HEADER + param + NOT_RECOGNISED;
-                throw new AniException(invalidParameter);
-            }
-        }
-    }
-
-    private void checkOrderType(String paramField) throws AniException {
-        switch (paramField.trim()) {
-        case ASCENDING_FIELD:
-            setOrder(0);
-            break;
-        case DESCENDING_FIELD:
-            setOrder(1);
-            break;
-        default:
-            String paramFieldError = paramField + INVALID_OPTION;
-            throw new AniException(paramFieldError);
-        }
-    }
-
-    private void checkSortType(String[] paramParts) throws AniException {
-        switch (paramParts[1].trim()) {
-        case NAME_FIELD:
-            setSortType(1);
-            break;
-        case RATING_FIELD:
-            setSortType(2);
-            break;
-        default:
-            String paramFieldError = paramParts[1] + INVALID_OPTION;
-            throw new AniException(paramFieldError);
-        }
-    }
-
-    private void paramLengthCheck(String[] paramParts) throws AniException {
-        if (paramParts.length < 2) {
-            String invalidParameter = PARAMETER_ERROR_HEADER + paramParts[0] + REQUIRE_ADDITIONAL_FIELD;
-            throw new AniException(invalidParameter);
-        } else if (paramParts.length > 2) {
-            String invalidParameter = PARAMETER_ERROR_HEADER + paramParts[0] + TOO_MUCH_FIELDS;
-            throw new AniException(invalidParameter);
         }
     }
 
@@ -222,13 +141,4 @@ public class BrowseCommand extends Command {
         return order;
     }
 
-    /**
-     * Checks if String is a parsable int.
-     *
-     * @param checkStr string to check
-     * @return true if parsable int
-     */
-    public boolean isInt(String checkStr) {
-        return checkStr.matches("-?\\d+(\\.\\d+)?");
-    }
 }
