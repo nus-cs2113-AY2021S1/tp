@@ -1,5 +1,10 @@
 package seedu.duke.slot;
 
+import seedu.duke.bookmark.Bookmark;
+import seedu.duke.bookmark.BookmarkList;
+import seedu.duke.exception.DukeException;
+import seedu.duke.exception.DukeExceptionType;
+
 import java.util.ArrayList;
 import java.time.LocalTime;
 import java.util.Arrays;
@@ -22,12 +27,52 @@ public class Slot {
     private LocalTime endTime;
     private String day;
     private String title;
+    private BookmarkList bookmarks;
+
+
 
     public Slot(LocalTime startTimeInput, LocalTime endTimeInput, String dayInput, String titleInput) {
         startTime = startTimeInput;
         endTime = endTimeInput;
         day = dayInput;
         title = titleInput;
+        bookmarks = new BookmarkList();
+    }
+
+    public boolean match(String lesson, String day, LocalTime startTime, LocalTime endTime) {
+        if (title.compareTo(lesson) == 0
+                && this.day.compareTo(day) == 0
+                && this.startTime.equals(startTime)
+                && this.endTime.equals(endTime)) {
+            return true;
+        }
+        return false;
+    }
+
+    public Bookmark getBookmark(int index) throws DukeException {
+        Bookmark bookmark;
+        try {
+            bookmark = bookmarks.getBookmark(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(DukeExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS, "" + bookmarks.getSize());
+        }
+        return bookmark;
+    }
+
+    public List<Bookmark> getBookmarkList() {
+        return bookmarks.getBookmarkList();
+    }
+
+    public void removeBookmark(Bookmark bookmark) {
+        bookmarks.deleteBookmark(bookmark);
+    }
+
+    public void removeAllBookmarks() {
+        bookmarks = new BookmarkList();
+    }
+
+    public void addBookmark(Bookmark bookmark) {
+        bookmarks.addBookmark(bookmark);
     }
 
     public void setStartTime(LocalTime timeInput) {

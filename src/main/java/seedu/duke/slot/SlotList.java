@@ -1,12 +1,14 @@
 package seedu.duke.slot;
 
 import java.time.DateTimeException;
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 import seedu.duke.ItemList;
 
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 
@@ -15,12 +17,16 @@ import seedu.duke.exception.DukeExceptionType;
  */
 public class SlotList extends ItemList {
     private ArrayList<Slot> slots;
+    //private ArrayList<Bookmark> bookmarks;
+    private ArrayList<Module> modules;
 
     /**
      * Constructs a SlotList object with an empty ArrayList to store Slot objects.
      */
     public SlotList() {
         this.slots = new ArrayList<>();
+        //this.bookmarks = new ArrayList<>();
+        this.modules = new ArrayList<>();
     }
 
     /**
@@ -39,6 +45,33 @@ public class SlotList extends ItemList {
             loadSlot(slot);
         }
     }
+
+    public boolean moduleExists(String moduleCode) {
+        boolean moduleExists = false;
+        for (Module module : modules) {
+            if (module.isModule(moduleCode)) {
+                moduleExists = true;
+            }
+        }
+        return moduleExists;
+    }
+
+    public Module addModule(String moduleCode) {
+        Module module = new Module(moduleCode);
+        modules.add(module);
+        return module;
+    }
+
+    public Module getModule(String moduleCode) {
+        Module module = null;
+        for (Module mod : modules) {
+            if (moduleCode.compareTo(mod.getModulecode()) == 0) {
+                module = mod;
+            }
+        }
+        return module;
+    }
+
 
     /**
      * This method adds the given Slot object to the timetable.

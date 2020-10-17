@@ -26,6 +26,14 @@ public class Timetable {
         return module;
     }
 
+    public List<Slot> getSlotList() {
+        List<Slot> slotList = new ArrayList<>();
+        for (Module module : modules) {
+            slotList.addAll(module.getSlotList());
+        }
+        return slotList;
+    }
+
     public Module getModule(String moduleCode) {
         Module module = null;
         for (Module mod : modules) {
@@ -33,7 +41,16 @@ public class Timetable {
                 module = mod;
             }
         }
+        assert module != null : "module should not be null";
         return module;
+    }
+
+    public Module getModule(int index) {
+        return modules.get(index);
+    }
+
+    public int getModuleCount() {
+        return modules.size();
     }
 
     public void deleteModule(Module module) {

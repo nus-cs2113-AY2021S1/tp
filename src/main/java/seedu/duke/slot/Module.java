@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Module {
-    String moduleCode;
-    BookmarkList bookmarks;
-    List<Slot> slots;
+    private String moduleCode;
+    private BookmarkList bookmarks;
+    private List<Slot> slots;
 
     public Module(String moduleCode) {
         this.moduleCode = moduleCode.toUpperCase();
@@ -77,6 +77,26 @@ public class Module {
 
     public void removeAllBookmarks() {
         bookmarks = new BookmarkList();
+    }
+
+    public List<Slot> getSlotList() {
+        return slots;
+    }
+
+    public String getBookmarks() {
+        String message = "";
+        List<Bookmark> bookmarkList = bookmarks.getBookmarkList();
+        for (Bookmark bookmark : bookmarkList) {
+            message += bookmark.getBookmarkAsString() + "\n";
+        }
+        for (Slot slot : slots) {
+            message += slot.toString() + "\n";
+            List<Bookmark> slotBookmarkList = slot.getBookmarkList();
+            for (Bookmark bookmark : slotBookmarkList) {
+                message += bookmark.getBookmarkAsString() + "\n";
+            }
+        }
+        return message;
     }
 
     public String getModulecode() {
