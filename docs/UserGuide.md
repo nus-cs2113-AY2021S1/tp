@@ -42,11 +42,192 @@ Example of usage:
 
 `todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
 
-## 4. FAQ
+
+### 3.2 Adding a todo: `todo`
+Adds a new item to the list of todo items.
+
+Format: `todo n/TODO_NAME d/DEADLINE`
+
+* The `DEADLINE` can be in a natural language format.
+* The `TODO_NAME` cannot contain punctuation.  
+
+Example of usage: 
+
+`todo n/Write the rest of the User Guide d/next week`
+
+`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+
+
+### 3.3 Adding a todo: `todo`
+Adds a new item to the list of todo items.
+
+Format: `todo n/TODO_NAME d/DEADLINE`
+
+* The `DEADLINE` can be in a natural language format.
+* The `TODO_NAME` cannot contain punctuation.  
+
+Example of usage: 
+
+`todo n/Write the rest of the User Guide d/next week`
+
+`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+
+
+### 3.4 Adding a todo: `todo`
+Adds a new item to the list of todo items.
+
+Format: `todo n/TODO_NAME d/DEADLINE`
+
+* The `DEADLINE` can be in a natural language format.
+* The `TODO_NAME` cannot contain punctuation.  
+
+Example of usage: 
+
+`todo n/Write the rest of the User Guide d/next week`
+
+`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+
+
+### 3.5 Adding a todo: `todo`
+Adds a new item to the list of todo items.
+
+Format: `todo n/TODO_NAME d/DEADLINE`
+
+* The `DEADLINE` can be in a natural language format.
+* The `TODO_NAME` cannot contain punctuation.  
+
+Example of usage: 
+
+`todo n/Write the rest of the User Guide d/next week`
+
+`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+
+
+### 3.6 Adding a todo: `todo`
+Adds a new item to the list of todo items.
+
+Format: `todo n/TODO_NAME d/DEADLINE`
+
+* The `DEADLINE` can be in a natural language format.
+* The `TODO_NAME` cannot contain punctuation.  
+
+Example of usage: 
+
+`todo n/Write the rest of the User Guide d/next week`
+
+`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+
+
+### 3.7 Adding a todo: `todo`
+Adds a new item to the list of todo items.
+
+Format: `todo n/TODO_NAME d/DEADLINE`
+
+* The `DEADLINE` can be in a natural language format.
+* The `TODO_NAME` cannot contain punctuation.  
+
+Example of usage: 
+
+`todo n/Write the rest of the User Guide d/next week`
+
+`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+
+
+### 3.8 Adding a todo: `todo`
+Adds a new item to the list of todo items.
+
+Format: `todo n/TODO_NAME d/DEADLINE`
+
+* The `DEADLINE` can be in a natural language format.
+* The `TODO_NAME` cannot contain punctuation.  
+
+Example of usage: 
+
+`todo n/Write the rest of the User Guide d/next week`
+
+`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+
+
+### 3.9 Adding a todo: `todo`
+Adds a new item to the list of todo items.
+
+Format: `todo n/TODO_NAME d/DEADLINE`
+
+* The `DEADLINE` can be in a natural language format.
+* The `TODO_NAME` cannot contain punctuation.  
+
+Example of usage: 
+
+`todo n/Write the rest of the User Guide d/next week`
+
+`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+
+
+### 3.10 Adding a todo: `todo`
+Adds a new item to the list of todo items.
+
+Format: `todo n/TODO_NAME d/DEADLINE`
+
+* The `DEADLINE` can be in a natural language format.
+* The `TODO_NAME` cannot contain punctuation.  
+
+Example of usage: 
+
+`todo n/Write the rest of the User Guide d/next week`
+
+`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+
+
+### 3.11 Adding a todo: `todo`
+Adds a new item to the list of todo items.
+
+Format: `todo n/TODO_NAME d/DEADLINE`
+
+* The `DEADLINE` can be in a natural language format.
+* The `TODO_NAME` cannot contain punctuation.  
+
+Example of usage: 
+
+`todo n/Write the rest of the User Guide d/next week`
+
+`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+
+
+### 3.12 Adding a todo: `todo`
+Adds a new item to the list of todo items.
+
+Format: `todo n/TODO_NAME d/DEADLINE`
+
+* The `DEADLINE` can be in a natural language format.
+* The `TODO_NAME` cannot contain punctuation.  
+
+Example of usage: 
+
+`todo n/Write the rest of the User Guide d/next week`
+
+`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+
+
+### 3.13 Adding a todo: `todo`
+Adds a new item to the list of todo items.
+
+Format: `todo n/TODO_NAME d/DEADLINE`
+
+* The `DEADLINE` can be in a natural language format.
+* The `TODO_NAME` cannot contain punctuation.  
+
+Example of usage: 
+
+`todo n/Write the rest of the User Guide d/next week`
+
+`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+
+
+## [4. FAQ](#faq)
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: You can export the file as a human-editable file. You can transfer the file over and load the data.
+**A**: You can export the file as a human-editable file. Once exported, you can transfer the file over to the new computer and load the data.
 
 **Q**: How do I load the data on the new computer? 
 
