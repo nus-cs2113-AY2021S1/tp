@@ -98,16 +98,16 @@ public class Storage {
                 String[] words = s.nextLine().split(REGEX_IN_FILE);
                 switch (words[0]) {
                 case "C":
-                    events.add(new Class(words[2], Parser.parseLocation(words[4])
-                            , LocalDateTime.parse(words[3])));
+                    events.add(new Class(words[2], Parser.parseLocation(words[4]),
+                            LocalDateTime.parse(words[3])));
                     if (Integer.parseInt(words[1]) == 1) {
                         events.get(events.size() - 1).markAsDone();
                     }
                     break;
                 case "A":
                     try {
-                        events.add(new Assignment(words[2], Parser.parseLocation(words[4])
-                                , LocalDateTime.parse(words[3])));
+                        events.add(new Assignment(words[2], Parser.parseLocation(words[4]),
+                                LocalDateTime.parse(words[3])));
                     } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                         throw new LoadingException();
                     }
@@ -117,8 +117,8 @@ public class Storage {
                     break;
                 case "P":
                     try {
-                        events.add(new PersonalEvent(words[2], Parser.parseLocation(words[4])
-                                , LocalDateTime.parse(words[3])));
+                        events.add(new PersonalEvent(words[2], Parser.parseLocation(words[4]),
+                                LocalDateTime.parse(words[3])));
                     } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                         throw new LoadingException();
                     }

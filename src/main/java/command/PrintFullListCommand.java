@@ -13,8 +13,8 @@ public class PrintFullListCommand extends Command {
      * Prints the list of Events.
      *
      * @param events    the list of Events.
-     * @param locations the list of Locations
-     * @param busStops  the list of BusStops
+     * @param locations the list of Locations.
+     * @param busStops  the list of BusStops.
      * @param ui        do outputs.
      * @param storage   store the data.
      */

@@ -208,7 +208,9 @@ public abstract class Parser {
                 } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                     throw new TimeFormatException();
                 }
-            default:
+
+            break;
+                default:
                 throw new WrongCommandException();
             }
         }
