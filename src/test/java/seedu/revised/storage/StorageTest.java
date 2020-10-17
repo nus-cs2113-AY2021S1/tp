@@ -2,14 +2,15 @@ package seedu.revised.storage;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import seedu.revised.card.Flashcard;
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
+import seedu.revised.card.quiz.Result;
 import seedu.revised.exception.DataLoadingException;
-import seedu.revised.exception.FlashcardSyntaxException;
 import seedu.revised.task.Deadline;
 import seedu.revised.task.Event;
 import seedu.revised.task.Task;
@@ -18,6 +19,7 @@ import seedu.revised.task.Todo;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -37,6 +39,7 @@ class StorageTest {
     private List<Flashcard> flashcards;
     private List<Task> tasks;
     private List<String> tasksStr;
+    private List<Result> results;
     private Storage storage;
     @TempDir
     Path tempDir;
@@ -44,7 +47,7 @@ class StorageTest {
     @BeforeEach
     void setUp() {
         // use tempDir as baseDir to avoid file creation for subjects
-        storage = new Storage(tempDir.toString(), "flashcard.txt", "tasks.txt");
+        storage = new Storage(tempDir.toString(), "flashcard.txt", "tasks.txt", "results.txt");
 
         subjects = new ArrayList<>(List.of(
                 new Subject("subject1"),
@@ -66,6 +69,11 @@ class StorageTest {
                 new Event("eventTask", true, "atTime"),
                 new Deadline("deadlineTask", false, "byTime")
         ));
+        results = new ArrayList<>(List.of(
+                new Result(100, 100),
+                new Result(50, 100),
+                new Result(10, 30)
+        ));
         tasksStr = new ArrayList<>(List.of(
                 "T | 0 | todoTask",
                 "E | 1 | eventTask | atTime",
@@ -74,7 +82,8 @@ class StorageTest {
     }
 
     @Test
-    void saveSubjects_subjectsWithoutTopics_DirectoriesWithSubjectTitlesAndTasksFileCreated() throws IOException {
+    void saveSubjects_subjectsWithoutTopics_DirectoriesWithSubjectTitlesAndTasksFileAndResultFileCreated()
+            throws IOException {
         storage.saveSubjects(subjects);
         for (Subject subject : subjects) {
             File subjectDir = Paths.get(storage.getBaseDir().toString(), subject.getTitle()).toFile();
@@ -82,17 +91,20 @@ class StorageTest {
             assertTrue(subjectDir.isDirectory());
 
             File taskFile = new File(subjectDir, storage.getTaskFilename());
+            File resultFile = new File(subjectDir, storage.getResultFilename());
             assertTrue(taskFile.exists());
+            assertTrue(resultFile.exists());
         }
     }
 
     @Test
-    void saveSubjects_subjectsWithTopics_DirectoriesWithEveryHierarchyCreated() throws IOException {
+    void saveSubjects_subjectsWithTopicsAndResults_DirectoriesWithEveryHierarchyCreated() throws IOException {
         // populate subjects
         for (Subject subject : subjects) {
             for (Topic topic : topics) {
                 subject.getTopics().add(topic);
             }
+            results.forEach(result -> subject.getResults().add(result));
         }
 
         storage.saveSubjects(subjects);
@@ -101,78 +113,120 @@ class StorageTest {
             assertTrue(subjectDir.exists());
             assertTrue(subjectDir.isDirectory());
 
+            File resultFile = new File(subjectDir, storage.getResultFilename());
             File taskFile = new File(subjectDir, storage.getTaskFilename());
             assertTrue(taskFile.exists());
+            assertTrue(resultFile.exists());
             // check if subdirectories are created
             File[] topicDirs = subjectDir.listFiles(File::isDirectory);
             assertNotNull(topicDirs);
             assertEquals(subject.getTopics().getList().size(), topicDirs.length);
+            assertNotEquals("[]", Files.readString(resultFile.toPath()));
         }
     }
 
     @Test
-    void saveTopics_topicsWithoutFlashcards_DirectoriesWithTopicTitlesAndEmptyFileCreated() throws IOException {
+    void saveTopics_topicsWithoutFlashcardsAndResult_DirectoriesWithTopicTitlesAndEmptyFileCreated()
+            throws IOException {
         storage.saveTopics(tempDir, topics);
         for (Topic topic : topics) {
             File topicDir = Paths.get(tempDir.toString(), topic.getTitle()).toFile();
-            File flashcardFile = new File(topicDir, storage.getFlashcardFilename());
             assertTrue(topicDir.exists());
             assertTrue(topicDir.isDirectory());
+
+            File flashcardFile = new File(topicDir, storage.getFlashcardFilename());
             assertTrue(flashcardFile.exists());
             assertEquals("[]", Files.readString(flashcardFile.toPath()));
+
+            File resultFile = new File(topicDir, storage.getResultFilename());
+            assertTrue(resultFile.exists());
+            assertEquals("[]", Files.readString(resultFile.toPath()));
         }
     }
 
     @Test
-    void saveTopics_topicsWithFlashcards_DirectoriesWithTopicTitlesAndPopulatedFileCreated() throws IOException {
-        // populate topics with flashcards
+    void saveTopics_topicsWithFlashcardsAndResults_DirectoriesWithTopicTitlesAndPopulatedFilesCreated()
+            throws IOException {
+        // populate topics with flashcards and results
         for (Topic topic : topics) {
             for (Flashcard flashcard : flashcards) {
                 topic.addFlashcard(flashcard);
             }
+            results.forEach(result -> topic.getResults().add(result));
         }
 
         storage.saveTopics(tempDir, topics);
         for (Topic topic : topics) {
             File topicDir = Paths.get(tempDir.toString(), topic.getTitle()).toFile();
-            File flashcardFile = new File(topicDir, storage.getFlashcardFilename());
             assertTrue(topicDir.exists());
             assertTrue(topicDir.isDirectory());
+
+            File flashcardFile = new File(topicDir, storage.getFlashcardFilename());
             assertTrue(flashcardFile.exists());
             assertNotEquals("[]", Files.readString(flashcardFile.toPath()));
+
+            File resultFile = new File(topicDir, storage.getResultFilename());
+            assertTrue(resultFile.exists());
+            assertNotEquals("[]", Files.readString(resultFile.toPath()));
         }
     }
 
     @Test
-    void saveFlashcards_validFlashcards_readableJsonIsStored() throws IOException {
+    void saveToJson_validFlashcards_readableJsonIsStored() throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        Path file = Paths.get(tempDir.toString(), storage.getFlashcardFilename());
+        File file = new File(tempDir.toString(), storage.getFlashcardFilename());
 
-        storage.saveFlashcards(tempDir, flashcards);
+        Storage.saveToJson(file, flashcards);
 
-        assertTrue(file.toFile().exists());
-        assertEquals(gson.toJson(flashcards), Files.readString(file));
+        assertTrue(file.exists());
+        assertEquals(gson.toJson(flashcards), Files.readString(file.toPath()));
     }
 
     @Test
-    void loadSubjects_noSavedData_emptyListOfSubjectsReturned() throws FlashcardSyntaxException, DataLoadingException {
+    void loadFromJson_populatedFile_listWithCorrectTypeOfObjectsReturned() throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        File flashcardFile = Paths.get(tempDir.toString(), storage.getFlashcardFilename()).toFile();
+
+        // write flashcards to file
+        try (FileWriter fileWriter = new FileWriter(flashcardFile)) {
+            gson.toJson(flashcards, fileWriter);  // store the json to file
+            fileWriter.flush();  // flush to actually write the content
+        }
+
+        Type type = new TypeToken<ArrayList<Flashcard>>() {}.getType();
+        List<Flashcard> loadedFlashcards = Storage.loadFromJson(type, flashcardFile);
+
+        assertEquals(flashcards.size(), loadedFlashcards.size());
+        for (Flashcard flashcard : loadedFlashcards) {
+            assertNotNull(flashcard);
+        }
+    }
+
+    @Test
+    void loadSubjects_noSavedData_emptyListOfSubjectsReturned() throws DataLoadingException {
         assertTrue(storage.loadSubjects().isEmpty());
     }
 
     @Test
-    void loadSubjects_validStructure_populatedSubjects() throws IOException, FlashcardSyntaxException,
-            DataLoadingException {
+    void loadSubjects_validStructure_populatedSubjects() throws IOException, DataLoadingException {
         // create valid directory structure
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         for (Subject subject : subjects) {
             for (Topic topic : topics) {
                 Path topicPath = Paths.get(storage.getBaseDir().toString(), subject.getTitle(), topic.getTitle());
                 Files.createDirectories(topicPath);
-                File flashcardFile = Paths.get(topicPath.toString(), storage.getFlashcardFilename()).toFile();
+                File flashcardFile = new File(topicPath.toString(), storage.getFlashcardFilename());
+                File resultFile = new File(topicPath.toString(), storage.getResultFilename());
 
                 // write flashcards to file
                 try (FileWriter fileWriter = new FileWriter(flashcardFile)) {
                     gson.toJson(flashcards, fileWriter);  // store the json to file
+                    fileWriter.flush();  // flush to actually write the content
+                }
+
+                // write results to file
+                try (FileWriter fileWriter = new FileWriter(resultFile)) {
+                    gson.toJson(results, fileWriter);  // store the json to file
                     fileWriter.flush();  // flush to actually write the content
                 }
             }
@@ -184,7 +238,10 @@ class StorageTest {
             assertEquals(subject.getTopics().getList().size(), topics.size());
             for (Topic topic : subject.getTopics().getList()) {
                 assertEquals(topic.getFlashcards().size(), flashcards.size());
+                assertEquals(topic.getResults().getList().size(), results.size());
             }
+            // subject result is not populated
+            assertEquals(subject.getResults().getList().size(), 0);
         }
     }
 
