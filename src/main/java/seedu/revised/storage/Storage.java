@@ -13,6 +13,7 @@ import seedu.revised.task.Deadline;
 import seedu.revised.task.Event;
 import seedu.revised.task.Task;
 import seedu.revised.task.Todo;
+import seedu.revised.ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,6 +24,8 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -96,6 +99,7 @@ public class Storage {
             }
             Subject subject = new Subject(subjectDir.getName(), topics, tasks);
             subjects.add(subject);
+
         }
         subjects.sort(Comparator.comparing(Subject::getTitle));
         return subjects;
@@ -216,10 +220,10 @@ public class Storage {
                             + task.getDescription() + "\n");
                 } else if (task instanceof Deadline) {
                     fileWriter.write("D | " + (task.getIsDone() ? "1" : "0") + " | "
-                            + task.getDescription() + " | " + ((Deadline) task).getBy() + "\n");
+                            + task.getDescription() + " | " + ((Deadline) task).getDateTimeDescription() + "\n");
                 } else if (task instanceof Event) {
                     fileWriter.write("E | " + (task.getIsDone() ? "1" : "0") + " | "
-                            + task.getDescription() + " | " + ((Event) task).getAt() + "\n");
+                            + task.getDescription() + " | " + ((Event) task).getDateTimeDescription() + "\n");
                 }
             }
         }
@@ -244,18 +248,24 @@ public class Storage {
                 boolean done = Integer.parseInt(contents[1].trim()) == 1;
                 String action = contents[2].trim();
                 String action2 = "";
+                LocalDateTime dateTime = null;
+                DateTimeFormatter format = DateTimeFormatter.ofPattern("h:mm a d MMM yyyy");
+
                 if (legend.equals("D") || legend.equals("E")) {
                     action2 = contents[3].trim();
+                    dateTime = LocalDateTime.parse(action2, format);
+
                 }
+
                 switch (legend) {
                 case "T":
                     tasks.add(new Todo(action, done));
                     break;
                 case "D":
-                    tasks.add(new Deadline(action, done, action2));
+                    tasks.add(new Deadline(action, done, dateTime));
                     break;
                 case "E":
-                    tasks.add(new Event(action, done, action2));
+                    tasks.add(new Event(action, done, dateTime));
                     break;
                 default:
                     assert false : legend;

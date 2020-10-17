@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -63,8 +64,8 @@ class StorageTest {
         ));
         tasks = new ArrayList<>(List.of(
                 new Todo("todoTask", false),
-                new Event("eventTask", true, "atTime"),
-                new Deadline("deadlineTask", false, "byTime")
+                new Event("eventTask", true, LocalDateTime.now()),
+                new Deadline("deadlineTask", false, LocalDateTime.now())
         ));
         tasksStr = new ArrayList<>(List.of(
                 "T | 0 | todoTask",
@@ -219,9 +220,9 @@ class StorageTest {
             assertEquals(t1.getDescription(), t2.getDescription());
             assertEquals(t1.getIsDone(), t2.getIsDone());
             if (t1 instanceof Event) {
-                assertEquals(((Event) t1).getAt(), ((Event) t2).getAt());
+                assertEquals(((Event) t1).getDateTimeDescription(), ((Event) t2).getDateTimeDescription());
             } else if (t1 instanceof Deadline) {
-                assertEquals(((Deadline) t1).getBy(), ((Deadline) t2).getBy());
+                assertEquals(((Deadline) t1).getDateTime(), ((Deadline) t2).getDateTimeDescription());
             }
         }
     }
