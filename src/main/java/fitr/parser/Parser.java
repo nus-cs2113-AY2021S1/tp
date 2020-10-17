@@ -1,13 +1,6 @@
 package fitr.parser;
 
-import fitr.command.AddExerciseCommand;
-import fitr.command.AddFoodCommand;
-import fitr.command.Command;
-import fitr.command.DeleteCommand;
-import fitr.command.ExitCommand;
-import fitr.command.HelpCommand;
-import fitr.command.InvalidCommand;
-import fitr.command.ViewCommand;
+import fitr.command.*;
 
 public class Parser {
     public static Command parse(String userInput) {
@@ -32,6 +25,8 @@ public class Parser {
                 return new InvalidCommand(userInput);
             }
             return new DeleteCommand(userInput);
+        case "clear":
+            return new ClearCommand(userInput);
         case "bye":
             return new ExitCommand(userInput);
         default:
