@@ -2,7 +2,10 @@ package seedu.duke.utility;
 
 import seedu.duke.classes.Show;
 
+import java.util.Date;
 import java.util.Scanner;
+
+import static java.util.Calendar.getInstance;
 
 /**
  * Represents a Ui class that is responsible for Input/Output operations.
@@ -32,7 +35,8 @@ public class Ui {
         printLine();
         printLogo();
         printLine();
-        System.out.println("Welcome to WatchNext");
+        System.out.println("Welcome to WatchNext\n");
+        printDailyWatchTracking();
         System.out.println("Type " + ("help") + " to get started!\n");
     }
 
@@ -109,6 +113,19 @@ public class Ui {
             System.out.println(show.toString());
         }
     }
+
+    public static void printDailyWatchTracking() {
+        //Print when user starts program
+        Date date = getInstance().getTime();
+        System.out.println("It is " + date + " today.");
+        System.out.println("Time spent on shows today: ");
+        System.out.println("Watch time remaining ");
+    }
+
+    public static void printDailyWatchTimeRemaining() {
+        //System.out.println("Showtime left : " + watchTime.userReportString() /*the object*/);
+    }
+
 
     public static void printShowRating(String showName, String rating) {
         printLine();
