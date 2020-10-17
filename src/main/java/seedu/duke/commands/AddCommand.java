@@ -16,9 +16,8 @@ public class AddCommand extends Command {
         if (input.length < 3) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        int showDuration = Integer.parseInt(input[2]);
-        int numSeasons = Integer.parseInt(input[3]);
-        String[] tokenizedSeasons = input[4].split(",");
+        int numSeasons = Integer.parseInt(input[2]);
+        String[] tokenizedSeasons = input[3].split(",");
         int[] seasonEpisodes = new int[numSeasons];
         int i = 0;
         if (tokenizedSeasons.length != numSeasons) {
@@ -30,7 +29,7 @@ public class AddCommand extends Command {
         }
         //check that the episodes do not exceed seasons
 
-        Show show = new Show(input[1], Integer.parseInt(input[2]), Integer.parseInt(input[3]), seasonEpisodes);
+        Show show = new Show(input[1], numSeasons, seasonEpisodes);
         String name = input[1];
         ShowList.setShow(name, show);
     }
