@@ -1,11 +1,13 @@
 package seedu.duke.command;
 
+import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.ui.Formatter;
 
 import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toList;
+import static seedu.duke.util.Parser.inputContent;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
@@ -40,14 +42,31 @@ public class AddNoteCommand extends Command {
 
     @Override
     public String execute() {
+        String content = "";
+        boolean isInputSuccess = false;
+
         // Search for duplicates
         ArrayList<Note> filteredTaskList = (ArrayList<Note>) notebook.getNotes().stream()
-                .filter((s) -> s.getTitle().equals(note.getTitle()))
+                .filter((s) -> s.getTitle().equalsIgnoreCase(note.getTitle()))
                 .collect(toList());
 
         if (!filteredTaskList.isEmpty()) {
             return Formatter.formatNote(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
+
+        // Get Content
+        do {
+            System.out.println("Enter Note:");
+            try {
+                content = inputContent();
+                isInputSuccess = true;
+            } catch (StringIndexOutOfBoundsException exception) {
+                System.out.println(SystemException.ExceptionType.EXCEPTION_INVALID_END_INPUT);
+            }
+        } while (!isInputSuccess);
+
+        // Edit the note
+        note.setContent(content);
 
         // Rebind the tags if there are duplicated tags
         tagManager.rebindTags(note);

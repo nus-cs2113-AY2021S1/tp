@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.ui.Formatter;
 
@@ -48,6 +49,7 @@ public class DeleteNoteCommand extends Command {
     @Override
     public String execute() {
         ArrayList<Note> deletedListTitle;
+
         try {
             // If there is no title, delete note by index. Else delete by title.
             if (title.isBlank()) {
@@ -56,14 +58,13 @@ public class DeleteNoteCommand extends Command {
 
                 return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + deletedTitle);
             } else {
-                deletedListTitle = (ArrayList<Note>) notebook.getNotes().stream()
-                        .filter((s) -> s.getTitle().toLowerCase().contains(title.toLowerCase()))
-                        .collect(toList());
-                notebook.deleteNote(deletedListTitle.get(0).getTitle());
+                notebook.deleteNote(title);
 
-                return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + deletedListTitle.get(0).getTitle());
+                return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + title);
             }
-        } catch (IndexOutOfBoundsException | NullPointerException | ClassCastException exception) {
+        } catch (SystemException exception) {
+            return Formatter.formatNote(exception.getMessage());
+        }  catch (IndexOutOfBoundsException exception) {
             return Formatter.formatNote(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
     }

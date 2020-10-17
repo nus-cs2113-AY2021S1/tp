@@ -220,7 +220,6 @@ public class Parser {
         String title = "";
         String content = "";
         boolean isPinned = false;
-        boolean isInputSuccess = false;
         ArrayList<Tag> tags = new ArrayList<>();
 
         try {
@@ -246,17 +245,6 @@ public class Parser {
             }
 
             title = checkBlank(title, ExceptionType.EXCEPTION_MISSING_TITLE_PREFIX);
-
-            // Get Content
-            do {
-                System.out.println("Enter Note:");
-                try {
-                    content = inputContent();
-                    isInputSuccess = true;
-                } catch (StringIndexOutOfBoundsException exception) {
-                    System.out.println(ExceptionType.EXCEPTION_INVALID_END_INPUT);
-                }
-            } while (!isInputSuccess);
 
             // Add to note
             note = tags.isEmpty() ? new Note(title, content, isPinned) : new Note(title, content, isPinned, tags);
@@ -399,7 +387,7 @@ public class Parser {
      * @return A string of converted content input.
      * @throws StringIndexOutOfBoundsException if an error occurs.
      */
-    public String inputContent() throws StringIndexOutOfBoundsException {
+    public static String inputContent() throws StringIndexOutOfBoundsException {
         Scanner input = new Scanner(System.in);
         StringBuilder commandInput = new StringBuilder();
 
@@ -432,7 +420,7 @@ public class Parser {
      * @param characters String of character to be removed.
      * @param noOfChar Number of character. 0 to remove new line, 1 to resume typing on the same line.
      */
-    public void deleteLine(StringBuilder commandInput, String characters, int noOfChar) {
+    public static void deleteLine(StringBuilder commandInput, String characters, int noOfChar) {
         int lastChar = commandInput.lastIndexOf(characters) + noOfChar;
         commandInput.delete(lastChar, commandInput.length());
     }

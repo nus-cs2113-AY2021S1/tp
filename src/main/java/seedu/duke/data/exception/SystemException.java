@@ -39,6 +39,8 @@ public class SystemException extends Exception {
 
         EXCEPTION_MISSING_KEYWORD("No search query input. Please enter a keyword for search results."),
 
+        EXCEPTION_NOTEBOOK_NOT_EXIST("This note does not exist in the notebook! "),
+
         // Note specific exception type
         EXCEPTION_INVALID_END_INPUT("Input /end on a new line!"),
         EXCEPTION_INVALID_INPUT_FORMAT("Format of input is not valid!"),
