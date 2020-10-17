@@ -59,7 +59,7 @@ public class Ui {
             }
 
             double totalAsset = stocks.get(i).getLatestPrice() * stocks.get(i).getTotalQuantity();
-            double weightedAverageCost = (totalCost/totalStocksBought) * stocks.get(i).getTotalQuantity();
+            double weightedAverageCost = (totalCost / totalStocksBought) * stocks.get(i).getTotalQuantity();
             print("Total holding asset = $" + Parser.parsePrice(totalAsset));
             print("Total cost = $" + Parser.parsePrice(weightedAverageCost));
 
