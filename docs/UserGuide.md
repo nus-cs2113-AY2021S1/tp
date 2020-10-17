@@ -40,7 +40,25 @@ This document describes the features found in NotUS, along with example usages.
 1. Ensure that you have Java 11 or above installed.
 1. Down the latest version of `NotUS` from [here](https://github.com/AY2021S1-CS2113-T13-1/tp/releases) or under [releases from the homepage](https://github.com/AY2021S1-CS2113-T13-1/tp).
 1. Go to the folder of the download and open your command terminal. Enter the following `java -jar Notus.jar`. Wait for the program to run.
-1. Use the command `help` to get a list of commands and their usages before using the application (if needed).
+1. If the program is running correctly, you should see the following:
+```
+Welcome to NotUS! 
+ 
+             .-') _               .-') _                 .-')    
+            ( OO ) )             (  OO) )               ( OO ).  
+        ,--./ ,--,'  .-'),-----. /     '._ ,--. ,--.   (_)---\_) 
+        |   \ |  |\ ( OO'  .-.  '|'--...__)|  | |  |   /    _ |  
+        |    \|  | )/   |  | |  |'--.  .--'|  | | .-') \  :` `.  
+        |  .     |/ \_) |  | |  |   |  |   |  | |( OO ) '..`''.) 
+        |  |\    |    \ |  | |  |   |  |   |  | | `-' /.-._)   \ 
+        |  | \   |     `'  '-'  '   |  |  ('  '-'(_.-' \       / 
+        `--'  `--'       `-----'    `--'    `-----'     `-----'  
+ 
+    Type "help" if you need to see a list of commands and their usages.
+ 
+    Enter command:
+```    
+5. Use the command `help` to get a list of commands and their usages before using the application (if needed).
 
 <br>
 
