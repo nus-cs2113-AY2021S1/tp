@@ -1,5 +1,6 @@
 package seedu.rex.commands;
 
+import seedu.rex.Rex;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
@@ -7,6 +8,7 @@ import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 /**
  * Edits a patient from the list of patients.
@@ -33,12 +35,18 @@ public class EditCommand extends Command {
     @Override
     public void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage)
             throws RexException {
+        assert patients != null : "patient ArrayList is null";
+        assert ui != null : "ui is null";
+        assert storage != null : "storage is null";
+        Rex.logger.log(Level.INFO, "going to extract NRIC");
         String nric = extractNric(trimmedCommand, COMMAND_WORD);
+
         if (!patients.isExistingPatient(nric)) {
             throw new RexException("A patient with this NRIC has not been registered!");
         }
 
         int index = patients.editExistingPatient(ui.getPatientName(), nric, ui.getPatientDateOfBirth());
+        assert index > -1 : "Invalid index!";
         ui.showLine();
         ui.showPatientEditted(patients.getPatientUsingIndex(index));
         storage.save(patients);

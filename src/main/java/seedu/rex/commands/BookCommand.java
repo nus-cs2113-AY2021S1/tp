@@ -1,5 +1,6 @@
 package seedu.rex.commands;
 
+import seedu.rex.Rex;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
@@ -8,6 +9,7 @@ import seedu.rex.ui.Ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 /**
  * Books appointments.
@@ -33,7 +35,13 @@ public class BookCommand extends Command {
     @Override
     public void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage)
             throws RexException {
+
+        assert patients != null : "patient ArrayList is null";
+        assert ui != null : "ui is null";
+        assert storage != null : "storage is null";
+        Rex.logger.log(Level.INFO, "going to extract NRIC");
         String nric = extractNric(trimmedCommand, COMMAND_WORD);
+
         if (appointments.isEmpty()) {
             throw new RexException("No appointment sessions!");
         }
@@ -41,6 +49,7 @@ public class BookCommand extends Command {
         if (!patients.isExistingPatient(nric)) {
             ui.printPatientNotFound(nric);
             ui.showCreatePatientMessage(nric);
+            Rex.logger.log(Level.INFO, "going to add patient...");
             new AddCommand("add " + nric).execute(patients, appointments, ui, storage);
             ui.showLine();
         }
@@ -51,8 +60,11 @@ public class BookCommand extends Command {
             if (index < 0 || index >= appointments.size()) {
                 throw new RexException("Index error!");
             }
+            Rex.logger.log(Level.INFO, "booking appointment for patient...");
             appointments.get(index).book(patients.getPatientFromNric(nric));
             ui.showAppointmentBookedMessage(appointments.get(index));
+
+            assert !appointments.isEmpty() : "No appointments!";
             storage.saveAppointments(appointments);
         } catch (NumberFormatException e) {
             throw new RexException("Index error!");
