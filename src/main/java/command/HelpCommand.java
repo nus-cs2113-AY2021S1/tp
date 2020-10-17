@@ -6,6 +6,7 @@ import locationlist.BusStopList;
 import locationlist.LocationList;
 import storage.Storage;
 import ui.UI;
+
 /**
  * Represents the command call when the user asking for helps.
  */
@@ -21,6 +22,6 @@ public class HelpCommand extends Command {
      */
     @Override
     public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) {
-    ui.printHelp();
+        ui.printHelp();
     }
 }
