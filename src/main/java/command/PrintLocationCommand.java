@@ -9,11 +9,11 @@ import ui.UI;
 
 public class PrintLocationCommand extends Command {
     /**
-     * Prints list of locations
+     * Prints list of locations.
      *
      * @param events    the list of Events.
-     * @param locations the list of Locations
-     * @param busStops  the list of BusStops
+     * @param locations the list of Locations.
+     * @param busStops  the list of BusStops.
      * @param ui        do outputs.
      * @param storage   store the data.
      */

@@ -9,7 +9,7 @@ public class LectureTheatre extends Location {
 
     public LectureTheatre(String name, String nearestBuilding) {
         super(name);
-        this.type = locationType.LT;
+        this.type = LocationType.LT;
         this.nearestBuilding = nearestBuilding;
     }
 

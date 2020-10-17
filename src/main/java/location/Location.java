@@ -1,11 +1,6 @@
 package location;
 
-enum locationType {
-    BUILDING,
-    HOSTEL,
-    LT,
-    OUT_OF_NUS
-}
+
 
 /**
  * Represents location objects.
@@ -13,7 +8,7 @@ enum locationType {
  */
 public class Location {
     protected String name;
-    protected locationType type;
+    protected LocationType type;
     // private int[] coordinates = new int[2];  // will implement in version 2.0
 
     public Location(String name) {

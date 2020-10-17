@@ -19,7 +19,7 @@ public class NuSchedule {
     private EventList events;
     private static BusStopList busStops;
     private static LocationList locations;
-    private UI ui;
+    private final UI ui;
 
 
     public NuSchedule(String filePath) {

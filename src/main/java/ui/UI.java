@@ -195,9 +195,9 @@ public class UI {
     }
 
     /**
-     * Prints all the locations stored in the location list with nearest bus stops
+     * Prints all the locations stored in the location list with nearest bus stops.
      *
-     * @param locationsList an Array List of Locations to be printed
+     * @param locationsList an Array List of Locations to be printed.
      */
     public void printLocationList(ArrayList<Location> locationsList) {
         int i = 1;
@@ -210,7 +210,7 @@ public class UI {
 
 
     /**
-     * Prints all the bus stops stored in the bus stop list with buses that goes there
+     * Prints all the bus stops stored in the bus stop list with buses that goes there.
      *
      * @param busStopList an Array List of Bus Stops to be printed
      */

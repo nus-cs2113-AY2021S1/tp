@@ -28,7 +28,8 @@ public class EditCommand extends Command {
      * @param storage store the data.
      */
     @Override
-    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) throws NuScheduleException {
+    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage)
+            throws NuScheduleException {
         events.editEvent(event, index);
         ui.printEditEventMessage(event);
         ui.printNumEvent(events.getSize());

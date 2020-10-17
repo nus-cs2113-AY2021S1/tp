@@ -11,7 +11,7 @@ public class Hostel extends Location {
 
     public Hostel(String name, String[] nearestBusStops) {
         super(name);
-        this.type = locationType.HOSTEL;
+        this.type = LocationType.HOSTEL;
         this.nearestBusStops = nearestBusStops;
     }
 

@@ -13,7 +13,7 @@ public class BusStopList {
     }
 
     /**
-     * Flag to check if the bus stop exists
+     * Flag to check if the bus stop exists.
      *
      * @param name name of bus stop to be checked
      * @return boolean value of if the bus stop exist in the list

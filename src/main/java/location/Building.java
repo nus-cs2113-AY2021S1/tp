@@ -12,7 +12,7 @@ public class Building extends Location {
     public Building(String name, String[] nearestBusStops) {
         super(name);
         this.nearestBusStops = nearestBusStops;
-        this.type = locationType.BUILDING;
+        this.type = LocationType.BUILDING;
     }
 
     /**

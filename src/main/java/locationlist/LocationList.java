@@ -13,7 +13,7 @@ public class LocationList {
     }
 
     /**
-     * Flag to check if location exists
+     * Flag to check if location exists.
      *
      * @param name name of the location to be checked
      * @return boolean value of if the location is found in the location list

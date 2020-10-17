@@ -7,7 +7,14 @@ import event.PersonalEvent;
 import exception.CreatingFileException;
 import exception.LoadingException;
 import exception.WritingFileException;
-import location.*;
+import location.Building;
+import location.BusStop;
+import location.Hostel;
+import location.LectureTheatre;
+import location.Location;
+import location.LocationType;
+
+import location.OutOfNuS;
 import parser.Parser;
 
 import java.io.File;
@@ -133,7 +140,7 @@ public class Storage {
     }
 
     /**
-     * Loads data from bus_stop text file to an ArrayList, which is stored in a BusStopList
+     * Loads data from bus_stop text file to an ArrayList, which is stored in a BusStopList.
      *
      * @param busStopList ArrayList of BusStops in BusStopList
      */
@@ -144,6 +151,7 @@ public class Storage {
             s = new Scanner(f);
         } catch (FileNotFoundException e) {
             System.out.println(f.getName() + " not found: " + e.getMessage());
+            return;
         }
 
         while (s.hasNext()) {
@@ -157,7 +165,7 @@ public class Storage {
     }
 
     /**
-     * Loads data from location text file into an ArrayList, which is stored in a LocationList
+     * Loads data from location text file into an ArrayList, which is stored in a LocationList.
      *
      * @param locationList ArrayList of Locations in LocationList
      */
@@ -168,6 +176,7 @@ public class Storage {
             s = new Scanner(f);
         } catch (FileNotFoundException e) {
             System.out.println(f.getName() + "not found: " + e.getMessage());
+            return;
         }
 
         while (s.hasNext()) {
@@ -187,7 +196,9 @@ public class Storage {
                 location = new LectureTheatre(info[1], info[2]);
                 break;
             case "OUT":
-                location = new OutOfNUS(info[1]);
+                location = new OutOfNuS(info[1]);
+                break;
+            default:
                 break;
             }
             if (location != null) {

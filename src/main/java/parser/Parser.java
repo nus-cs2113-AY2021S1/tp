@@ -1,7 +1,12 @@
 package parser;
 
 
-import command.*;
+import command.AddCommand;
+import command.EditCommand;
+import command.ExitCommand;
+import command.PrintFullListCommand;
+import command.PrintLocationCommand;
+import command.Command;
 
 import event.Assignment;
 import event.PersonalEvent;
@@ -14,7 +19,7 @@ import location.Building;
 import location.Hostel;
 import location.LectureTheatre;
 import location.Location;
-import location.OutOfNUS;
+import location.OutOfNuS;
 import ui.UI;
 import event.Class;
 import exception.NoEventTimeMarkerException;
@@ -55,7 +60,7 @@ public abstract class Parser {
      *
      * @param fullCommand the full string of user input
      * @return the specific <\code>Command<\code> object to perform what the user want to do
-     * //     * @throws NuScheduleException includes all exceptions may happen during parsing
+     * @throws NuScheduleException includes all exceptions may happen during parsing
      */
     public static Command parse(String fullCommand) throws NuScheduleException {
         // this block deals with exit and list command
@@ -183,20 +188,22 @@ public abstract class Parser {
                     timeDivider = fullCommand.substring(timeDividerPosition + 3).indexOf(SINGLE_SPACE);
                     dateTime = fullCommand.substring(timeDividerPosition + 3, timeDividerPosition + 4 + timeDivider)
                             + "T"
-                            + fullCommand.substring(timeDividerPosition + 3 + timeDivider + 1
-                            , locationDividerPosition - 1);
+                            + fullCommand.substring(timeDividerPosition + 3 + timeDivider + 1,
+                            locationDividerPosition - 1);
 
                     location = parseLocation(fullCommand.substring(locationDividerPosition + 3));
                     switch (words[0]) {
                     case ASSIGNMENT:
-                        return new EditCommand(new Assignment(fullCommand.substring(words[0].length() + 1
-                                , timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
+                        return new EditCommand(new Assignment(fullCommand.substring(words[0].length() + 1,
+                                timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
                     case CLASS:
-                        return new EditCommand(new Class(fullCommand.substring(words[0].length() + 1
-                                , timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
+                        return new EditCommand(new Class(fullCommand.substring(words[0].length() + 1,
+                                timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
                     case PERSONAL_EVENT:
-                        return new EditCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1
-                                , timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
+                        return new EditCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1,
+                                timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)), eventIndex);
+                    default:
+                        break;
                     }
                 } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                     throw new TimeFormatException();
@@ -240,20 +247,22 @@ public abstract class Parser {
                 timeDivider = fullCommand.substring(timeDividerPosition + 3).indexOf(SINGLE_SPACE);
                 dateTime = fullCommand.substring(timeDividerPosition + 3, timeDividerPosition + 3 + timeDivider)
                         + "T"
-                        + fullCommand.substring(timeDividerPosition + 3 + timeDivider + 1
-                        , locationDividerPosition - 1);
+                        + fullCommand.substring(timeDividerPosition + 3 + timeDivider + 1,
+                        locationDividerPosition - 1);
                 System.out.println(dateTime);
                 location = parseLocation(fullCommand.substring(locationDividerPosition + 3));
                 switch (words[0]) {
                 case ASSIGNMENT:
-                    return new AddCommand(new Assignment(fullCommand.substring(words[0].length() + 1
-                            , timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)));
+                    return new AddCommand(new Assignment(fullCommand.substring(words[0].length() + 1,
+                            timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)));
                 case CLASS:
-                    return new AddCommand(new Class(fullCommand.substring(words[0].length() + 1
-                            , timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)));
+                    return new AddCommand(new Class(fullCommand.substring(words[0].length() + 1,
+                            timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)));
                 case PERSONAL_EVENT:
-                    return new AddCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1
-                            , timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)));
+                    return new AddCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1,
+                            timeDividerPosition - 1), location, LocalDateTime.parse(dateTime)));
+                default:
+                    break;
                 }
             } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                 throw new TimeFormatException();
@@ -287,7 +296,7 @@ public abstract class Parser {
                 location = new LectureTheatre(info[1], info[2]);
                 break;
             case "OUT":
-                location = new OutOfNUS(info[1]);
+                location = new OutOfNuS(info[1]);
                 break;
             default:
                 location = null;
