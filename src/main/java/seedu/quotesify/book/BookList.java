@@ -35,6 +35,10 @@ public class BookList extends QuotesifyList<Book> {
         return books.isEmpty();
     }
 
+    public Book getBook(int index) {
+        return books.get(index);
+    }
+
     @Override
     public String toString() {
         String booksToReturn = "";
