@@ -35,12 +35,26 @@ public class BookList extends QuotesifyList<Book> {
         return books.isEmpty();
     }
 
+    public int getIndex(Book book) {
+        return books.indexOf(book);
+    }
+
     @Override
     public String toString() {
         String booksToReturn = "";
 
         for (Book book : books) {
             booksToReturn += book.toString() + System.lineSeparator();
+        }
+
+        return booksToReturn;
+    }
+
+    public String toStringWithIndex() {
+        String booksToReturn = "";
+
+        for (Book book : books) {
+            booksToReturn += getIndex(book)+1 + ". " + book.toString() + System.lineSeparator();
         }
 
         return booksToReturn;
