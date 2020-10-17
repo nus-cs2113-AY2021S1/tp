@@ -1,6 +1,6 @@
-# Duke
+# SmartHomeBot 
 
-{Give product intro here}
+SmartHomeBot is an desktop application that consolidates all of the home appliance's control into a centralized system via Command Line Interface (CLI).
 
 Useful links:
 * [User Guide](UserGuide.md)
