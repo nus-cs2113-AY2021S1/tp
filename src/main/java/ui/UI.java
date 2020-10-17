@@ -236,6 +236,7 @@ public class UI {
         System.out.println("locate - find location information");
         System.out.println("list - view all events added");
         System.out.println("clear - clear all events");
+        printLine();
     }
 }
 
