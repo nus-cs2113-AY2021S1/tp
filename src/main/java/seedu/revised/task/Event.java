@@ -1,27 +1,31 @@
 package seedu.revised.task;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
-    protected String at;
+    protected LocalDateTime dateTime;
 
-    public Event(String description, boolean isDone, String at) {
+
+    public Event(String description, boolean isDone, LocalDateTime dateTime) {
         super(description, isDone);
-        this.at = at;
+        this.dateTime = dateTime;
     }
 
-    public void printEvent(TaskList taskList) {
-        System.out.println("____________________________________________________________\n"
-                + "Got it. I've added this task:\n  " + this + "\n"
-                + "Now you have " + taskList.getList().size() + (taskList.getList().size() == 1
-                ? " task in the list.\n" : " tasks in the list.\n")
-                + "____________________________________________________________");
+    public LocalDateTime getDateTime() {
+        return this.dateTime;
     }
+
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a d MMM yyyy");
+        String dateTime = this.dateTime.format(formatter);
+        return "[E]" + super.toString() + " (at: " + dateTime + ")";
     }
 
-    public String getAt() {
-        return at;
+    public String getDateTimeDescription() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a d MMM yyyy");
+        return this.dateTime.format(formatter);
     }
 }
