@@ -223,7 +223,7 @@ Example of usage:
 `todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
 
 
-## [4. FAQ](#faq)
+## <a href="#faq">4. FAQ</a>
 
 **Q**: How do I transfer my data to another computer? 
 
@@ -234,7 +234,7 @@ Example of usage:
 **A**: Type the command `help` for a list of useful commands.
 
 
-## 5. Command Summary
+## <a href="#command">5. Command Summary</a>
 
 Target Action | Example Code(s)
 ------------  | -------------
