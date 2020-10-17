@@ -15,6 +15,7 @@ public class Portfolio implements Serializable {
     }
 
     public void buyStock(String symbol, int quantity, double buyPrice) {
+        assert buyPrice > 0 : "buyPrice should be more than 0";
         Transaction transaction = new Transaction(TransactionType.BUY, quantity, buyPrice, LocalDateTime.now());
         if (stocks.get(symbol) == null) {
             Stock stock = new Stock(symbol);
