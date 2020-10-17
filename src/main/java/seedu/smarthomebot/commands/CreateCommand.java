@@ -15,10 +15,7 @@ public class CreateCommand extends Command {
     private static final String MESSAGE_LOCATION_EXIST = "Location already exist";
     private final String usersEnteredLocation;
 
-    public CreateCommand(String location) throws EmptyParameterException {
-        if (location.isEmpty()) {
-            throw new EmptyParameterException();
-        }
+    public CreateCommand(String location) {
         this.usersEnteredLocation = location;
     }
 

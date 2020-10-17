@@ -1,4 +1,4 @@
 package seedu.smarthomebot.exceptions;
 
-public class ValueExceed extends Exception{
+public class PowerValueExceed extends Exception{
 }

@@ -1,4 +1,4 @@
 package seedu.smarthomebot.exceptions;
 
-public class InvalidPowerNumber extends Exception{
+public class InvalidValue extends Exception{
 }

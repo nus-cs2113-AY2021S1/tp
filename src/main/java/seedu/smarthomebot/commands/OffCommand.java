@@ -3,8 +3,8 @@ package seedu.smarthomebot.commands;
 import seedu.smarthomebot.exceptions.EmptyParameterException;
 import seedu.smarthomebot.data.framework.Appliance;
 
-import static seedu.smarthomebot.common.Messages.LINE;
-import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
+import static seedu.smarthomebot.common.Messages.*;
+import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
 
 public class OffCommand extends Command {
 
@@ -15,27 +15,34 @@ public class OffCommand extends Command {
             + "Example: " + COMMAND_WORD + " Fan 1";
     private final String name;
 
-    public OffCommand(String name) throws EmptyParameterException {
-        if (name.isEmpty()) {
-            throw new EmptyParameterException();
-        }
+    public OffCommand(String name) {
         this.name = name;
+    }
+
+    private int getApplianceToOffIndex() {
+        for (Appliance appliance : applianceList.getAllAppliance()) {
+            if (appliance.getName().equals((this.name))) {
+                return applianceList.getAllAppliance().indexOf(appliance);
+            }
+        }
+        return -1;
     }
 
     @Override
     public CommandResult execute() {
-        for (Appliance appliance : applianceList.getAllAppliance()) {
-            if (appliance.getName().equals((this.name))) {
-                if (appliance.switchOff()) {
-                    assert !appliance.switchOff() : "Appliance should be already OFF";
-                    String location = appliance.getLocation();
-                    String result = String.format("Switching off %s in %s ......OFF!", name, location);
-                    return new CommandResult(LINE + result);
-                } else {
-                    return new CommandResult(LINE + MESSAGE_APPLIANCE_PREVIOUSLY_OFF);
-                }
+        int toOffApplianceIndex = getApplianceToOffIndex();
+        if (toOffApplianceIndex < 0) {
+            return new CommandResult(MESSAGE_APPLIANCE_NOT_EXIST);
+        } else {
+            Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
+            if (toOffAppliance.switchOff()) {
+                assert !toOffAppliance.switchOff() : "Appliance should be already OFF";
+
+                return new CommandResult(MESSAGE_APPLIANCE_PREVIOUSLY_OFF);
+            } else {
+                return new CommandResult("Switching: " + toOffAppliance + "......OFF");
             }
         }
-        return new CommandResult(name + " does not exist.");
+
     }
 }

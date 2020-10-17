@@ -27,7 +27,7 @@ class SmartHomeBotTest {
     }
 
     @Test
-    public void addLocationTest() throws InvalidAddtionOfLocation {
+    public void locationList_AddLocation_test() throws InvalidAddtionOfLocation {
         String br1 = "BedRoom 1";
         String br2 = "BedRoom 2";
         LocationList locationList = new LocationList();
@@ -38,7 +38,7 @@ class SmartHomeBotTest {
     }
 
     @Test
-    public void addApplianceTest() throws InvalidAdditionOfAppliance {
+    public void applianceList_addAppliance_Test() throws InvalidAdditionOfAppliance {
         ApplianceList applianceList = new ApplianceList();
         Lights l1 = new Lights("l1", "BedRoom1", "50");
         Lights l2 = new Lights("l2", "BedRoom1", "50");

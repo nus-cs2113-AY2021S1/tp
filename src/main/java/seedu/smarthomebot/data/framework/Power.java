@@ -48,15 +48,15 @@ public class Power {
     /**
      * Appliance only can be switched on if it was 'off' previously.
      *
-     * @return true if appliance turn on successfully
+     * @return true if appliance turn on previously
      */
     public boolean onAppliance() {
         if (!this.status) {
             this.status = true;
             onTime = getCurrentTime();
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -64,7 +64,7 @@ public class Power {
      * Appliance only can be switched off if it was 'on' previously.
      * Compute the total power consumption once appliance is off.
      *
-     * @return true if appliance turn off successfully
+     * @return true if appliance turn off previously
      */
     public boolean offAppliance() {
         if (status) {
@@ -75,9 +75,9 @@ public class Power {
             } catch (ParseException e) {
                 ui.printToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
             }
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -129,7 +129,7 @@ public class Power {
                 offTimeValue = timeFormat.parse(offTime);
                 timeUsed = offTimeValue.getTime() - onTimeValue.getTime();
                 // System time cannot be negative time
-                assert (timeUsed > 0) : "System Time is not correct! " + timeUsed;
+//                assert (timeUsed > 0) : "System Time is not correct! " + timeUsed;
                 onTime = offTime;
             } else {
                 Date currentUsedTime = timeFormat.parse(getCurrentTime());
@@ -148,7 +148,7 @@ public class Power {
     private void calculatePowerConsumed() throws ParseException {
         calculateTimeUsed();
         // Convert power unit to kWh
-        assert (powerUsed >= 0) : "Power usage cannot be negative! " + powerUsed;
+        assert (powerUsed >= 0.0) : "Power usage cannot be negative! " + powerUsed;
         powerUsed = (int) ceil(totalHours * power / 1000.00);
         totalPowerConsumption += powerUsed;
         assert totalPowerConsumption >= 0 : "totalPowerConsumption cannot be negative";

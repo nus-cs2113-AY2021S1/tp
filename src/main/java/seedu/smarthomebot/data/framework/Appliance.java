@@ -11,7 +11,7 @@ public abstract class Appliance {
     protected String name;
     protected String location;
     protected String power;
-    private Power appliancePower;
+    protected Power appliancePower;
 
     public Appliance(String name, String location, String power) {
         this.name = name;

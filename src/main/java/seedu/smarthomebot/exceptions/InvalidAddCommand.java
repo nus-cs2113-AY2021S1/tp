@@ -1,4 +1,4 @@
 package seedu.smarthomebot.exceptions;
 
-public class ApplianceNotFoundException extends Exception{
+public class InvalidAddCommand extends Exception{
 }

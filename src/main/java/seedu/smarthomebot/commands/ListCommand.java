@@ -34,7 +34,7 @@ public class ListCommand extends Command {
                 ui.printToUser(index + ": " + location);
                 index++;
             }
-            return new CommandResult("LOCATION STRING");
+            return new CommandResult("");
         } else if (parameter.equals(APPLIANCE_TYPE)) {
             if (applianceList.getAllAppliance().size() == 0) {
                 return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
@@ -44,8 +44,7 @@ public class ListCommand extends Command {
                 ui.showWithListFormat(index, a.getName(), a.getLocation(), a.getStatus(), a.getPower(), a.getType());
                 index++;
             }
-
-            return new CommandResult("YOUR STRING");
+            return new CommandResult("");
         } else {
             return new CommandResult("");
         }

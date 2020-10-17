@@ -34,4 +34,7 @@ public class Messages {
     public static final String MESSAGE_FILE_CORRUPTED = "Data file is corrupted, some data will not be entered";
 
     public static final String MESSAGE_APPLIANCE_NOT_EXIST = "Appliance does not exist in the list.";
+
+    public static final String MESSAGE_INVALID_TEMPERATURE_AC =
+            "Invalid Temperature is set, ensure that it is within 16-30 degrees.";
 }
