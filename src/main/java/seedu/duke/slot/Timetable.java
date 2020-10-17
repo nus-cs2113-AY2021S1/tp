@@ -37,7 +37,7 @@ public class Timetable {
     public Module getModule(String moduleCode) {
         Module module = null;
         for (Module mod : modules) {
-            if (moduleCode.compareTo(mod.getModulecode()) == 0) {
+            if (mod.isModule(moduleCode)) {
                 module = mod;
             }
         }

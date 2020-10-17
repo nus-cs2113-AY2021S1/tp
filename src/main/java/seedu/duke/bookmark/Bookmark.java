@@ -26,10 +26,6 @@ public class Bookmark {
      * @param description The description of the webpage.
      */
     public Bookmark(String module, String description, String url) {
-        assert module != null : "module should not be null";
-        assert description != null : "description should not be null";
-        assert url != null : "url should not be null";
-
         this.module = module.trim();
         this.description = description.trim();
         this.url = url.trim();

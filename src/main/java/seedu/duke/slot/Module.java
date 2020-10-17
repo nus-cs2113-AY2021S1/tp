@@ -6,7 +6,6 @@ import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 
 import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
