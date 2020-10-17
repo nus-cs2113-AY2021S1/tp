@@ -107,12 +107,12 @@ public class TextUi {
 
     public void printAllBooks(BookList bookList) {
         System.out.println(LIST_BOOKS_MESSAGE);
-        System.out.println(bookList.toString());
+        System.out.println(bookList.toStringWithIndex());
     }
 
     public void printBooksByAuthor(BookList bookList, String authorName) {
         System.out.printf(LIST_BOOKS_BY_AUTHOR_MESSAGE + "\n", authorName);
-        System.out.println(bookList.toString());
+        System.out.println(bookList.toStringWithIndex());
     }
 
     public void printAllQuotes(QuoteList quotes) {
