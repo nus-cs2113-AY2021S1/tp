@@ -1,18 +1,19 @@
 package seedu.duke.command.timetable;
 
-import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
+import seedu.duke.bookmark.Bookmark;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
-import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
+import seedu.duke.slot.Module;
 import seedu.duke.slot.Slot;
-import seedu.duke.slot.SlotList;
+import seedu.duke.slot.Timetable;
 
 import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -24,6 +25,7 @@ public class AddSlotCommand extends Command {
     public LocalTime endTime;
     public String day;
     public String title;
+    private List<String> commands;
 
     /**
      * Constructs a new AddSlotCommand instance and stores the information of the slot given by the input.
@@ -36,20 +38,28 @@ public class AddSlotCommand extends Command {
         String details = command.substring(ADD_KW.length());
         if (details.isBlank()) {
             throw new DukeException(DukeExceptionType.EMPTY_COMMAND, ADD_KW);
+        } else if (!details.startsWith(" ")) {
+            throw new DukeException(DukeExceptionType.INVALID_ADD_SLOT);
+        }
+        String stringArray[] = details.trim().split(" ", 2);
+        title = stringArray[0];
+        if (stringArray.length > 1) {
+            commands = Arrays.asList(stringArray[1].split(","));
         }
 
 
-        String[] parts = command.split(" ");
-        try {
-            startTime = LocalTime.parse(parts[1]);
-            endTime = LocalTime.parse(parts[2]);
-            day = parts[3];
-            title = command.substring(command.indexOf(parts[3]) + parts[3].length()).trim();
-        } catch (DateTimeParseException e) {
-            throw new DukeException(DukeExceptionType.INVALID_TIME_FORMAT);
-        } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(DukeExceptionType.INVALID_SLOT_INPUT);
-        }
+
+//        String[] parts = command.split(" ");
+//        try {
+//            startTime = LocalTime.parse(parts[1]);
+//            endTime = LocalTime.parse(parts[2]);
+//            day = parts[3];
+//            title = command.substring(command.indexOf(parts[3]) + parts[3].length()).trim();
+//        } catch (DateTimeParseException e) {
+//            throw new DukeException(DukeExceptionType.INVALID_TIME_FORMAT);
+//        } catch (IndexOutOfBoundsException e) {
+//            throw new DukeException(DukeExceptionType.INVALID_SLOT_INPUT);
+//        }
     }
 
     /**
@@ -59,17 +69,89 @@ public class AddSlotCommand extends Command {
      * @param ui The user interface.
      * @param slotStorage The storage for saving and loading.
      */
+
+    /**
+     * Adds the slot to the slot list and saves the slots list in the text file.
+     *
+     * @param bookmarks
+     * @param timetable
+     * @param ui
+     * @param bookmarkStorage
+     * @param slotStorage
+     * @throws DukeException
+     */
     @Override
-    public void execute(BookmarkList bookmarks, SlotList slots, Ui ui, Storage bookmarkStorage,
+    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui, Storage bookmarkStorage,
                         Storage slotStorage) throws DukeException {
-        Slot slot = new Slot(startTime, endTime, day, title);
-        slots.addSlot(slot);
-        ui.print("Added slot: " + day + " [" + startTime + "-" + endTime + "] "
-                + title + System.lineSeparator());
-        try {
-            slotStorage.save(slots.getData());
-        } catch (DukeException e) {
-            e.printStackTrace();
+        String message = "";
+        Module module;
+        if (timetable.moduleExists(title)) {
+            module = timetable.getModule(title);
+            message += title + " already exists.\n";
+        } else {
+            module = timetable.addModule(title);
+            message += title + " added\n";
         }
+
+        if (commands != null) {
+            for (String command : commands) {
+                message += createSlotAndBookmark(module, command.trim());
+            }
+
+        }
+        ui.print(message);
+
+//        Slot slot = new Slot(startTime, endTime, day, title);
+//        slots.addSlot(slot);
+//        ui.print("Added slot: " + day + " [" + startTime + "-" + endTime + "] "
+//                + title + System.lineSeparator());
+//        try {
+//            slotStorage.save(slots.getData());
+//        } catch (DukeException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    private String createSlotAndBookmark(Module module, String command) {
+        assert module != null : "module shouldnt be null";
+        String message = "";
+        try {
+            List<String> slotAndBookmark = Arrays.asList(command.trim().split(" "));
+            String lesson = slotAndBookmark.get(0);
+            String day = slotAndBookmark.get(1);
+            LocalTime startTime = LocalTime.parse(slotAndBookmark.get(2));
+            LocalTime endTime = LocalTime.parse(slotAndBookmark.get(3));
+
+            Slot newSlot;
+            if (module.slotExists(lesson, day, startTime, endTime)) {
+                newSlot = module.getSlot(lesson, day, startTime, endTime);
+                message += "slot already exists\n";
+            } else {
+                newSlot = module.createSlotNew(lesson, day, startTime, endTime);
+                module.addSlot(newSlot);
+                message += "slot added\n";
+            }
+
+            if (slotAndBookmark.size() == 5) {
+                createBookmark(slotAndBookmark.get(4), lesson, newSlot);
+                message += "bookmark added\n";
+            } else if (slotAndBookmark.size() > 5) {
+                throw new DukeException(DukeExceptionType.INVALID_URL, "invalid url");
+            }
+            System.out.println("success\n");
+        } catch (DukeException e) {
+            message += e.getInfo() + "\n";
+        } catch (IndexOutOfBoundsException e) {
+            message += "incorrect format for slot: " + command + "\n";
+        }
+        return message;
+    }
+
+    private void createBookmark(String url, String lesson, Slot newSlot) throws DukeException {
+        if (!url.startsWith("www.") && !url.startsWith("https://")) {
+            throw new DukeException(DukeExceptionType.INVALID_URL, "invalid url format: " + url);
+        }
+        Bookmark bookmark = new Bookmark(lesson, url, "dummy");
+        newSlot.addBookmark(bookmark);
     }
 }
