@@ -6,6 +6,7 @@ import seedu.duke.anime.Anime;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
+import seedu.duke.storage.StorageManager;
 
 import java.util.ArrayList;
 
@@ -15,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class BrowseCommandTest {
     AnimeData animeData;
     User user;
+    StorageManager storageManager;
 
     protected static final String INVALID_PARAMETERS_TEST1 = "-n name";
     protected static final String INVALID_PARAMETERS_TEST2 = "-sort name";
@@ -36,19 +38,19 @@ class BrowseCommandTest {
         testList.add(testAnime1);
         testList.add(testAnime2);
         animeData = new AnimeData(testList);
-
+        storageManager = new StorageManager();
     }
 
     @Test
     void execute_invalidParameter_ThrowsAniException() {
         BrowseCommand testBrowse = new BrowseCommand(INVALID_PARAMETERS_TEST1);
         assertThrows(AniException.class, () -> {
-            testBrowse.execute(animeData, user);
+            testBrowse.execute(animeData, storageManager, user);
         });
 
         BrowseCommand testBrowse2 = new BrowseCommand(INVALID_PARAMETERS_TEST2);
         assertThrows(AniException.class, () -> {
-            testBrowse2.execute(animeData, user);
+            testBrowse2.execute(animeData, storageManager, user);
         });
     }
 
@@ -56,17 +58,17 @@ class BrowseCommandTest {
     void execute_invalidField_ThrowsAniException() {
         BrowseCommand testBrowse = new BrowseCommand(INVALID_FIELD_TEST1);
         assertThrows(AniException.class, () -> {
-            testBrowse.execute(animeData, user);
+            testBrowse.execute(animeData, storageManager, user);
         });
 
         BrowseCommand testBrowse2 = new BrowseCommand(INVALID_FIELD_TEST2);
         assertThrows(AniException.class, () -> {
-            testBrowse2.execute(animeData, user);
+            testBrowse2.execute(animeData, storageManager, user);
         });
 
         BrowseCommand testBrowse3 = new BrowseCommand(INVALID_FIELD_TEST3);
         assertThrows(AniException.class, () -> {
-            testBrowse3.execute(animeData, user);
+            testBrowse3.execute(animeData, storageManager, user);
         });
     }
 
@@ -74,12 +76,12 @@ class BrowseCommandTest {
     void execute_invalidPageNum_ThrowsAniException() {
         BrowseCommand testBrowse = new BrowseCommand(LARGE_PAGE_NUM);
         assertThrows(AniException.class, () -> {
-            testBrowse.execute(animeData, user);
+            testBrowse.execute(animeData, storageManager, user);
         });
 
         BrowseCommand testBrowse2 = new BrowseCommand(NEGATIVE_PAGE_NUM);
         assertThrows(AniException.class, () -> {
-            testBrowse2.execute(animeData, user);
+            testBrowse2.execute(animeData, storageManager, user);
         });
 
         BrowseCommand testBrowse3 = new BrowseCommand(ZERO_PAGE_NUM);

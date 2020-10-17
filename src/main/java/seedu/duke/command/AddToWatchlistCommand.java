@@ -4,7 +4,7 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.Workspace;
 import seedu.duke.human.User;
-import seedu.duke.storage.Storage;
+import seedu.duke.storage.StorageManager;
 import seedu.duke.watchlist.Watchlist;
 
 import java.util.ArrayList;
@@ -32,34 +32,29 @@ public class AddToWatchlistCommand extends Command {
      * Adds an anime to current watchlist.
      */
     @Override
-    public String execute(AnimeData animeData, User user) throws AniException {
-        // Storage storage = user.getStorage();
+    public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         Workspace activeWorkspace = user.getActiveWorkspace();
-        Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
-        ArrayList<Watchlist> activeWatchlistList = activeWorkspace.getWatchlistList();
-
         if (!option.equals(ADD_OPTION)) {
             LOGGER.log(Level.WARNING, "Option type given is wrong");
             throw new AniException("Watchlist command only accepts the option: \"-a\".");
         }
         assert option.equals("-a") == true : "option type should have been \"-a\".";
-        // addToWatchlist(storage, activeWatchlistList, activeWatchlist);
+        addToWatchlist(storageManager, activeWorkspace);
 
         return "Anime added to watchlist!";
     }
     
-    public void addToWatchlist(Storage storage, ArrayList<Watchlist> activeWatchlistList, 
-                               Watchlist activeWatchlist) throws AniException { 
+    public void addToWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
         if (animeName == null || animeName.trim().isEmpty()) {
             LOGGER.log(Level.WARNING, "Anime name is empty, exception thrown");
             throw new AniException("Anime name cannot be empty.");
         }
 
-        int activeWatchlistIndex = activeWatchlistList.indexOf(activeWatchlist);
+        Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
         activeWatchlist.addAnimeToList(animeName);
-        activeWatchlistList.set(activeWatchlistIndex, activeWatchlist);
+        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
 
-        storage.saveWatchlist(activeWatchlistList);
+        storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
         LOGGER.log(Level.INFO, "Successfully added and stored anime into active watchlist");
     }
 }
