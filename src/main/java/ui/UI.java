@@ -222,5 +222,20 @@ public class UI {
             i++;
         }
     }
+
+    /**
+     * Prints the help information when user inpur command 'help'
+     * relevant command information with reference to the current user guide draft
+     */
+    public void printHelp() {
+        printLine();
+        System.out.println("Below are all the commands and their functions in the form of command - function: ");
+        System.out.println("help - view all the commands");
+        System.out.println("add - add any type of event");
+        System.out.println("edit - edit event information");
+        System.out.println("locate - find location information");
+        System.out.println("list - view all events added");
+        System.out.println("clear - clear all events");
+    }
 }
 
