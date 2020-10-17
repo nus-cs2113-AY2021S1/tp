@@ -102,7 +102,7 @@ public class WritingsLoader {
     /**Check if the data file exists or not, creates "writings.txt" in "data" directory if not
      *
      * @param f file to be processed
-     * @return the number of writings in the data extracted from convertWritingFile function
+     * @param savedWritings writings being stored
      */
     public static void convertFromFile(File f, WritingList savedWritings) {
         File folder = new File("data");
