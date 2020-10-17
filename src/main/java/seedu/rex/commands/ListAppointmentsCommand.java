@@ -36,14 +36,14 @@ public class ListAppointmentsCommand extends Command {
         }
         Patient targetPatient = patients.getPatientFromNric(nric);
         ui.showAppointmentsListHeader(nric);
-        int counter = 0;
-        for (Appointment appointment : appointments) {
-            if (appointment.getPatient() == targetPatient) {
-                counter++;
-                ui.showAppointmentLine(appointment, counter);
+
+        int i;
+        for (i = 0; i < appointments.size(); i++) {
+            if (appointments.get(i).getPatient().equals(targetPatient)) {
+                ui.showAppointmentLine(appointments.get(i), i + 1);
             }
         }
-        if (counter == 0) {
+        if (i == 0) {
             ui.showNoBookedAppointmentsMessage();
         }
     }

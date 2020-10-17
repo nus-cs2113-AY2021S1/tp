@@ -37,21 +37,23 @@ public class BookCommand extends Command {
         if (appointments.isEmpty()) {
             throw new RexException("No appointment sessions!");
         }
+
         if (!patients.isExistingPatient(nric)) {
             ui.printPatientNotFound(nric);
             ui.showCreatePatientMessage(nric);
             new AddCommand("add " + nric).execute(patients, appointments, ui, storage);
             ui.showLine();
         }
-        String indexSelected = ui.getAppointmentToBook(appointments);
+
         try {
+            String indexSelected = ui.getAppointmentToBook(appointments);
             int index = Integer.parseInt(indexSelected) - 1;
             if (index < 0 || index >= appointments.size()) {
                 throw new RexException("Index error!");
             }
-            storage.saveAppointments(appointments);
             appointments.get(index).book(patients.getPatientFromNric(nric));
             ui.showAppointmentBookedMessage(appointments.get(index));
+            storage.saveAppointments(appointments);
         } catch (NumberFormatException e) {
             throw new RexException("Index error!");
         } catch (IOException e) {

@@ -37,13 +37,12 @@ public class DeleteCommand extends Command {
         if (patients.isExistingPatient(nric)) {
             Patient deletedPatient = patients.deletePatient(nric);
             ui.showPatientDeleted(deletedPatient);
-            int i = 0;
-            while (i < appointments.size()) {
+
+            for (int i = 0; i < appointments.size(); i++) {
                 String tempNric = appointments.get(i).getPatient().getNric();
                 if (tempNric.contentEquals(nric)) {
                     appointments.remove(i);
-                } else {
-                    i++;
+                    break;
                 }
             }
         } else {

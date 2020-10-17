@@ -244,6 +244,7 @@ public class Ui {
 
     /**
      * Prints patient's appointment list header.
+     *
      * @param nric Patient's NRIC
      */
     public void showAppointmentsListHeader(String nric) {
@@ -252,8 +253,9 @@ public class Ui {
 
     /**
      * Prints details of patient's appointment.
+     *
      * @param appointment appointment to be printed
-     * @param counter appointment counter under patient
+     * @param counter     appointment counter under patient
      */
     public void showAppointmentLine(Appointment appointment, int counter) {
         printWithIndent(counter + ". " + appointment.getDate());
