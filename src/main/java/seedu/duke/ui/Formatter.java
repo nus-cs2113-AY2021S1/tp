@@ -61,9 +61,15 @@ public class Formatter {
         return formattedString;
     }
 
-    public static String formatNote(String header, Note note) {
+    public static String formatNote(String header) {
         String formattedString = "";
-        return formattedString;
+
+        if (header.contains("[")) {
+            formattedString = formattedString.concat(encloseRow(header, true));
+        } else {
+            formattedString = formattedString.concat(encloseRow(header, false));
+        }
+        return encloseTopAndBottom(formattedString);
     }
 
     public static String formatTimetable(String header, Timetable timetable) {

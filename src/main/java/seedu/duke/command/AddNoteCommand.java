@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
+import seedu.duke.ui.Formatter;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,7 @@ public class AddNoteCommand extends Command {
                 .collect(toList());
 
         if (!filteredTaskList.isEmpty()) {
-            return COMMAND_UNSUCCESSFUL_MESSAGE;
+            return Formatter.formatNote(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
 
         // Rebind the tags if there are duplicated tags
@@ -53,9 +54,10 @@ public class AddNoteCommand extends Command {
         notebook.addNote(note);
 
         if (note.getTagsName().isBlank()) {
-            return COMMAND_SUCCESSFUL_MESSAGE + note.getTitle();
+            return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + note.getTitle());
         } else {
-            return COMMAND_SUCCESSFUL_MESSAGE + note.getTitle() + " " + note.getTagsName();
+            return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + note.getTitle() + " "
+                    + note.getTagsName());
         }
     }
 }

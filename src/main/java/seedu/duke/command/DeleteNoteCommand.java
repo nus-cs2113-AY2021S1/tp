@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
+import seedu.duke.ui.Formatter;
 
 import java.util.ArrayList;
 
@@ -52,16 +53,18 @@ public class DeleteNoteCommand extends Command {
             if (title.isBlank()) {
                 String deletedTitle = notebook.getNotes().get(index).getTitle();
                 notebook.deleteNote(index);
-                return COMMAND_SUCCESSFUL_MESSAGE + deletedTitle;
+
+                return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + deletedTitle);
             } else {
                 deletedListTitle = (ArrayList<Note>) notebook.getNotes().stream()
                         .filter((s) -> s.getTitle().toLowerCase().contains(title.toLowerCase()))
                         .collect(toList());
                 notebook.deleteNote(deletedListTitle.get(0).getTitle());
-                return COMMAND_SUCCESSFUL_MESSAGE + deletedListTitle.get(0).getTitle();
+
+                return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + deletedListTitle.get(0).getTitle());
             }
         } catch (IndexOutOfBoundsException | NullPointerException | ClassCastException exception) {
-            return COMMAND_UNSUCCESSFUL_MESSAGE;
+            return Formatter.formatNote(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
     }
 }

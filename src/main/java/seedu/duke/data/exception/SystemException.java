@@ -10,8 +10,8 @@ public class SystemException extends Exception {
     /** Types of exception. */
     public enum ExceptionType {
         // Command related exception type
-        EXCEPTION_INVALID_COMMAND(Formatter.LS + "Invalid Command. "
-                + "Please try again or enter help to get a list of valid commands." + Formatter.LS),
+        EXCEPTION_INVALID_COMMAND("Invalid Command. "
+                + "Please try again or enter help to get a list of valid commands."),
 
         EXCEPTION_INVALID_PREFIX("Type of prefix not recognized!"),
         EXCEPTION_MISSING_MESSAGE_AFTER_COMMAND("Missing information! Please provide the necessary information!"),
