@@ -1,6 +1,7 @@
 package seedu.duke.command.project;
 
 import seedu.duke.exception.DukeException;
+import seedu.duke.parser.Parser;
 import seedu.duke.project.Project;
 import seedu.duke.ui.Ui;
 
@@ -25,22 +26,28 @@ public class ProjectCommand {
             throw new DukeException("Missing parameters.");
         }
 
-        if (parameters.get(TITLE) != null) {
+        if (!parameters.get(TITLE).isBlank()) {
             title = parameters.get(TITLE);
         } else {
             throw new DukeException("no title");
         }
-        if (parameters.get(DESCRIPTION) != null) {
+        if (!parameters.get(DESCRIPTION).isBlank()) {
             description = parameters.get(DESCRIPTION);
         } else {
             throw new DukeException("no description");
         }
-        if (parameters.get(DURATION) != null) {
+        if (!parameters.get(DURATION).isBlank()) {
+            if (!Parser.stringContainsNumber(parameters.get(DURATION))) {
+                throw new DukeException("please give a number for duration");
+            }
             deadline = parameters.get(DURATION);
         } else {
             throw new DukeException("no duration");
         }
-        if (parameters.get(SPRINT_DURATION) != null) {
+        if (!parameters.get(SPRINT_DURATION).isBlank()) {
+            if (!Parser.stringContainsNumber(parameters.get(SPRINT_DURATION))) {
+                throw new DukeException("please give a number for sprint duration");
+            }
             sd = parameters.get(SPRINT_DURATION);
         } else {
             throw new DukeException("no sprint interval");

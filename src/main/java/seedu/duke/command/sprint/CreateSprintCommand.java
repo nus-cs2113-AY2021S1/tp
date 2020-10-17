@@ -38,27 +38,33 @@ public class CreateSprintCommand extends SprintCommand {
         if (validateParams()) {
             allSprint = proj.getAllSprints();
             if (allSprint.size() == 0) {
-                createFirstSprint(proj);
+                try {
+                    createFirstSprint(proj);
+                } catch (DukeException e) {
+                    e.printExceptionMessage();
+                }
             } else {
                 createSubsequentSprint(proj);
             }
-        } else {
-            Ui.showError("Missing goal for this sprint.");
         }
     }
 
-    private void createFirstSprint(Project proj) {
+    private void createFirstSprint(Project proj) throws DukeException {
 
         LocalDate sprintStart = LocalDate.now();
-        if (!this.parametersInHT.get("start").isEmpty()) {
-            try {
-                sprintStart = DateTimeParser.parseDate(this.parametersInHT.get("start"));
-            } catch (DukeException e) {
-                e.printExceptionMessage();
-            }
+        if (!(this.parametersInHT.get("start") == null)) {
+            sprintStart = DateTimeParser.parseDate(this.parametersInHT.get("start"));
+        } else {
+            throw new DukeException("no start date");
         }
         LocalDate sprintEnd = sprintStart.plusDays(proj.getSprintLength() - 1);
-        String sprintGoal = this.parametersInHT.get("goal");
+        String sprintGoal;
+        if (!(this.parametersInHT.get("goal").isBlank())) {
+            sprintGoal = this.parametersInHT.get("goal");
+            System.out.println(sprintGoal);
+        } else {
+            throw new DukeException("no goal");
+        }
         allSprint.addSprint(proj, sprintGoal, sprintStart, sprintEnd);
 
         LocalDate projEndDate = sprintStart.plusDays(proj.getProjectDuration() - 1);

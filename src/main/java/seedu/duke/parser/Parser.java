@@ -94,10 +94,18 @@ public class Parser {
             case MEMBER:
                 switch (action.toLowerCase()) {
                 case ADD:
-                    new MemberCommand().addMemberCommand(params, projectList);
+                    try {
+                        new MemberCommand().addMemberCommand(params, projectList);
+                    } catch (DukeException e) {
+                        e.printExceptionMessage();
+                    }
                     break;
                 case DELETE:
-                    new MemberCommand().deleteMemberCommand(params, projectList);
+                    try {
+                        new MemberCommand().deleteMemberCommand(params, projectList);
+                    } catch (DukeException e) {
+                        e.printExceptionMessage();
+                    }
                     break;
                 default:
                     try {
@@ -174,7 +182,12 @@ public class Parser {
         }
         return null;
     }
-    
+
+    public static boolean stringContainsNumber( String s )
+    {
+        return Pattern.compile( "[0-9]" ).matcher( s ).find();
+    }
+
     public boolean isExit() {
         return exit;
     }
