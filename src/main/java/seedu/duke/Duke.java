@@ -4,13 +4,14 @@ import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.slot.SlotList;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
+import seedu.duke.slot.Timetable;
 
 public class Duke {
 
     private Storage bookmarkStorage;
     private Storage slotStorage;
     private BookmarkList bookmarks;
-    private SlotList slots;
+    private Timetable timetable;
     private Ui ui;
 
     /**
@@ -32,11 +33,13 @@ public class Duke {
             bookmarks = new BookmarkList();
         }
 
-        try {
-            slots = new SlotList(slotStorage.load());
-        } catch (DukeException e) {
-            slots = new SlotList();
-        }
+        timetable = new Timetable();
+
+//        try {
+//            slots = new SlotList(slotStorage.load());
+//        } catch (DukeException e) {
+//            slots = new SlotList();
+//        }
     }
 
     /**
@@ -51,7 +54,7 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(bookmarks, slots, ui, bookmarkStorage, slotStorage);
+                c.execute(bookmarks, timetable, ui, bookmarkStorage, slotStorage);
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showErrorMessage(e);

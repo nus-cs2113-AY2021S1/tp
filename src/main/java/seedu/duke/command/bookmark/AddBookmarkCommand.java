@@ -6,7 +6,7 @@ import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
-import seedu.duke.slot.SlotList;
+import seedu.duke.slot.Timetable;
 
 import java.util.List;
 
@@ -36,14 +36,14 @@ public class AddBookmarkCommand extends Command {
      * Adds the bookmark to the bookmark list and saves the bookmarks list in the text file.
      *
      * @param bookmarks The list of bookmarks.
-     * @param slotList The list of slots.
+     * @param timetable The list of slots.
      * @param ui The user interface.
      * @param bookmarkStorage The storage for saving and loading bookmarks.
      * @param slotStorage The storage for saving and loading slots.
      * @throws DukeException if there is an error when saving the bookmark.
      */
     @Override
-    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
+    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
                         Storage bookmarkStorage, Storage slotStorage) throws DukeException {
         Bookmark bookmark = new Bookmark(module, description, url);
         bookmarks.addBookmark(bookmark);
