@@ -32,6 +32,7 @@ public class CreateTagCommand extends Command {
 
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Created a tag! ";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Tag already exists! ";
+    public static final String HEADER_CREATE_TAG = "Creating tag...";
 
     private ArrayList<Tag> tags;
 
@@ -46,6 +47,7 @@ public class CreateTagCommand extends Command {
     public String execute() {
         ArrayList<String> executedMessage = tagManager.createTag(tags, COMMAND_SUCCESSFUL_MESSAGE,
                 COMMAND_UNSUCCESSFUL_MESSAGE);
-        return Formatter.formatString(executedMessage, false, true);
+        executedMessage.add(0, HEADER_CREATE_TAG);
+        return Formatter.formatString(executedMessage, true);
     }
 }
