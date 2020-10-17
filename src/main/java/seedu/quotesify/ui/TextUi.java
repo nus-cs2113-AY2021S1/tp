@@ -60,7 +60,8 @@ public class TextUi {
     private static final String BOOKMARK_SIZE_MESSAGE = "You have a total of %d bookmark(s) recorded.";
     private static final String LIST_BOOKMARKS_MESSAGE = "Here is the list of all bookmark(s) recorded:";
     private static final String EMPTY_BOOKMARK_LIST_MESSAGE = "There are no bookmark created";
-    private static final String DELETE_BOOKMARKS_MESSAGE = "The bookmark [%s] has been removed!";
+    private static final String DELETE_BOOKMARK_MESSAGE = "The bookmark [%s] has been removed!";
+    private static final String EMPTY_BOOKMARK_COMMAND = "There is no info related to bookmark provided!";
     private static final String LIST_ALL_QUOTES = "Here are all your quotes:";
     private static final String DELETE_QUOTE_MESSAGE = "The quote \"%s\" has been deleted!";
     private static final String LIST_NO_QUOTES_SAVED_MESSAGE = "You have no saved quotes!";
@@ -305,7 +306,7 @@ public class TextUi {
     }
 
     public void printDeleteBookmark(Bookmark bookmark) {
-        System.out.printf(DELETE_BOOKMARKS_MESSAGE + "\n", bookmark.toString());
+        System.out.printf(DELETE_BOOKMARK_MESSAGE + "\n", bookmark.toString());
     }
 
     public void printAllBookmarks(BookmarkList bookmarkList) {

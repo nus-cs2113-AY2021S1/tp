@@ -10,10 +10,13 @@ public abstract class Command {
     public static final String TAG_CATEGORY = "-c";
     public static final String TAG_TODO = "-t";
     public static final String TAG_BOOKMARK = "-bm";
+    public static final String TAG_NUMBER = "-n";
 
     public static final String ERROR_INVALID_BOOK_NUM = "Invalid book number specified!";
     public static final String ERROR_INVALID_QUOTE_NUM = "Invalid quote number specified!";
     public static final String ERROR_INVALID_TODO_NUM = "Invalid task number specified!";
+    public static final String ERROR_INVALID_PAGE_NUM = "Invalid page number specified!";
+    public static final String ERROR_INVALID_TAG = "Invalid / No tag provided";
     public static final String ERROR_NO_BOOK_FOUND = "There is no such book!";
     public static final String ERROR_BOOK_TITLE_MISSING = "There is no book title specified!";
     public static final String ERROR_BOOK_ALREADY_EXISTS = "The book already exists!";
