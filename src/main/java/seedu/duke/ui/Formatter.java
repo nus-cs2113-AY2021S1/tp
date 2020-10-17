@@ -1,5 +1,6 @@
 package seedu.duke.ui;
 
+import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
@@ -61,13 +62,13 @@ public class Formatter {
         return formattedString;
     }
 
-    public static String formatNote(String header) {
+    public static String formatNote(String header, Note note) {
         String formattedString = "";
 
-        if (header.contains("[")) {
-            formattedString = formattedString.concat(encloseRow(header, true));
-        } else {
-            formattedString = formattedString.concat(encloseRow(header, false));
+        formattedString = formattedString.concat(generatesHeader(header));
+        String[] lines = note.getContent().split("\\n");
+        for (String line : lines) {
+            formattedString = formattedString.concat(encloseRow(line, false));
         }
         return encloseTopAndBottom(formattedString);
     }

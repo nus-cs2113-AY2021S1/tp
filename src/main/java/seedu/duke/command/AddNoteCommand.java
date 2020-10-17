@@ -51,7 +51,7 @@ public class AddNoteCommand extends Command {
                 .collect(toList());
 
         if (!filteredTaskList.isEmpty()) {
-            return Formatter.formatNote(COMMAND_UNSUCCESSFUL_MESSAGE);
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE, false);
         }
 
         // Get Content
@@ -75,10 +75,10 @@ public class AddNoteCommand extends Command {
         notebook.addNote(note);
 
         if (note.getTagsName().isBlank()) {
-            return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + note.getTitle());
+            return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + note.getTitle(), note);
         } else {
             return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + note.getTitle() + " "
-                    + note.getTagsName());
+                    + note.getTagsName(), note);
         }
     }
 }

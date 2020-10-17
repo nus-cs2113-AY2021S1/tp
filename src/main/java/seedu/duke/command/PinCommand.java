@@ -52,7 +52,8 @@ public class PinCommand extends Command {
             try {
                 note = notebook.getNotes().get(index);
             } catch (IndexOutOfBoundsException exception) {
-                return Formatter.formatNote(COMMAND_UNSUCCESSFUL_MESSAGE);
+                return COMMAND_UNSUCCESSFUL_MESSAGE;
+                //return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE, false);
             }
         } else {
             for (Note notes : notebook.getNotes()) {
@@ -63,10 +64,12 @@ public class PinCommand extends Command {
         }
 
         if (note == null) {
-            return Formatter.formatNote(COMMAND_UNSUCCESSFUL_MESSAGE);
+            return COMMAND_UNSUCCESSFUL_MESSAGE;
+            //return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE, false);
         }
 
         note.togglePinned();
-        return Formatter.formatNote(note.getTitle() + " pinned: " + note.getPinned());
+        return note.getTitle() + " pinned: " + note.getPinned();
+        //return Formatter.formatString(note.getTitle() + " pinned: " + note.getPinned(), false);
     }
 }

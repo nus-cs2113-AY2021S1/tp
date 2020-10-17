@@ -48,24 +48,22 @@ public class DeleteNoteCommand extends Command {
 
     @Override
     public String execute() {
-        ArrayList<Note> deletedListTitle;
-
         try {
             // If there is no title, delete note by index. Else delete by title.
             if (title.isBlank()) {
                 String deletedTitle = notebook.getNotes().get(index).getTitle();
                 notebook.deleteNote(index);
 
-                return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + deletedTitle);
+                return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + deletedTitle, false);
             } else {
                 notebook.deleteNote(title);
 
-                return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + title);
+                return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + title, false);
             }
         } catch (SystemException exception) {
-            return Formatter.formatNote(exception.getMessage());
+            return Formatter.formatString(exception.getMessage(), false);
         }  catch (IndexOutOfBoundsException exception) {
-            return Formatter.formatNote(COMMAND_UNSUCCESSFUL_MESSAGE);
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE, false);
         }
     }
 }

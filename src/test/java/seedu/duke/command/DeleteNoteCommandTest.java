@@ -75,7 +75,7 @@ class DeleteNoteCommandTest {
         DeleteNoteCommand command = createDeleteCommand(targetVisibleIndex, notebook);
         String result = command.execute();
 
-        assertEquals(Formatter.formatNote(expectedMessage), result);
+        assertEquals(Formatter.formatString(expectedMessage, false), result);
         assertEquals(deletedNotebook.getNotes(), notebook.getNotes());
     }
 
@@ -97,7 +97,7 @@ class DeleteNoteCommandTest {
         DeleteNoteCommand command = createDeleteCommand(targetString, notebook);
         String result = command.execute();
 
-        assertEquals(Formatter.formatNote(expectedMessage), result);
+        assertEquals(Formatter.formatString(expectedMessage, false), result);
         assertEquals(deletedNotebook.getNotes(), notebook.getNotes());
     }
 
@@ -144,7 +144,7 @@ class DeleteNoteCommandTest {
         DeleteNoteCommand command = createDeleteCommand(visibleIndex, notebook);
         String result = command.execute();
 
-        assertEquals(Formatter.formatNote(DeleteNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE), result);
+        assertEquals(Formatter.formatString(DeleteNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE, false), result);
         assertEquals(expectedNotebook.getNotes(), notebook.getNotes());
     }
 
@@ -160,7 +160,7 @@ class DeleteNoteCommandTest {
         DeleteNoteCommand command = createDeleteCommand(targetVisibleString, notebook);
         String result = command.execute();
 
-        assertEquals(Formatter.formatNote(DeleteNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE), result);
+        assertEquals(Formatter.formatString(DeleteNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE, false), result);
         assertEquals(expectedNotebook.getNotes(), notebook.getNotes());
     }
 }

@@ -43,8 +43,8 @@ class AddNoteCommandTest {
 
         assertTrue(checkBook.contains(note));
         assertEquals(1, checkBook.size());
-        assertFalse(result.equals(Formatter.formatNote(AddNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE)));
-        assertEquals(Formatter.formatNote(AddNoteCommand.COMMAND_SUCCESSFUL_MESSAGE + note.getTitle()), result);
+        assertFalse(result.equals(Formatter.formatString(AddNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE, false)));
+        assertEquals(Formatter.formatNote(AddNoteCommand.COMMAND_SUCCESSFUL_MESSAGE + note.getTitle(), note), result);
     }
 
     /**
@@ -70,7 +70,7 @@ class AddNoteCommandTest {
         String result = command.execute();
 
         assertFalse(result.contains(note.getTitle()));
-        assertEquals(Formatter.formatNote(AddNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE), result);
+        assertEquals(Formatter.formatString(AddNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE, false), result);
         ArrayList<Note> checkBook = notebook.getNotes();
         assertTrue(checkBook.contains(note));
         assertEquals(1, checkBook.size());
