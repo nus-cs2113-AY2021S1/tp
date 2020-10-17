@@ -18,7 +18,11 @@ import seedu.smarthomebot.exceptions.InvalidValue;
 import seedu.smarthomebot.exceptions.PowerValueExceed;
 import seedu.smarthomebot.ui.TextUi;
 
-import static seedu.smarthomebot.common.Messages.*;
+import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_ADD_COMMAND;
+import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_LIST_COMMAND;
+import static seedu.smarthomebot.common.Messages.MESSAGE_POWER_EXCEEDED;
+import static seedu.smarthomebot.common.Messages.MESSAGE_POWER_NOT_NUMBER;
 
 
 public class Parser {
@@ -54,9 +58,9 @@ public class Parser {
 
     }
 
-    private static int convertParameterToInt(String parameter) throws InvalidValue {
+    private static void convertParameterToInt(String parameter) throws InvalidValue {
         try {
-            return Integer.parseInt(parameter);
+            Integer.parseInt(parameter);
         } catch (NumberFormatException e) {
             throw new InvalidValue();
         }
@@ -74,7 +78,7 @@ public class Parser {
 
         try {
             if (indexLocation < indexPower && indexPower < indexType) {
-                name = arguments.substring(0, indexLocation).trim();
+                name = arguments.substring(0, indexLocation).trim().replaceAll(" ", "-").replaceAll("/", "-");
                 location = arguments.substring(indexLocation + 2, indexPower).trim();
                 power = arguments.substring(indexPower + 2, indexType).trim();
                 type = arguments.substring(indexType + 2).toLowerCase().trim();
@@ -111,15 +115,13 @@ public class Parser {
         }
     }
 
-    private static Command prepareCreateCommand(String arguments) {
-        try {
-            if (arguments.isEmpty()) throw new EmptyParameterException();
+    private Command prepareCreateCommand(String arguments) {
+        if (!checkForEmptyInput(arguments)) {
             return new CreateCommand(arguments);
-
-        } catch (EmptyParameterException e) {
-            return new InvalidCommand("Empty Location Name");
+        } else {
+            // Might need to print out a better message
+            return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
-
     }
 
     private static void testPowerValidity(String power) throws PowerValueExceed, InvalidValue {
@@ -168,41 +170,6 @@ public class Parser {
             return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
 
-//        try {
-//            switch (commandWord) {
-//            case HelpCommand.COMMAND_WORD:
-//                return new HelpCommand();
-//            case CreateCommand.COMMAND_WORD:
-//                return new CreateCommand(arguments);
-//            case RemoveCommand.COMMAND_WORD:
-//                return new RemoveCommand(arguments);
-//            case AddCommand.COMMAND_WORD:
-//                return prepareAddCommand(arguments);
-//            case DeleteCommand.COMMAND_WORD:
-//                return new DeleteCommand(arguments);
-//            case OnCommand.COMMAND_WORD:
-//                return prepareOnCommand(arguments);
-//            case OffCommand.COMMAND_WORD:
-//                return new OffCommand(arguments);
-//            case ListCommand.COMMAND_WORD:
-//                return prepareListCommand(arguments);
-//            case UsageCommand.COMMAND_WORD:
-//                return new UsageCommand();
-//            case ExitCommand.COMMAND_WORD:
-//                return new ExitCommand();
-//            default:
-//                return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
-//            }
-//
-//        } catch (EmptyParameterException e) {
-//            return new InvalidCommand("The parameter of " + commandWord + " cannot be empty.");
-//
-//        } catch (InvalidValue e) {
-//            return new InvalidCommand(MESSAGE_POWER_NOT_NUMBER);
-//
-//        } catch (PowerValueExceed e) {
-//            return new InvalidCommand(MESSAGE_POWER_EXCEEDED);
-//        }
     }
 
 }

@@ -48,7 +48,7 @@ public class Power {
     /**
      * Appliance only can be switched on if it was 'off' previously.
      *
-     * @return true if appliance turn on previously
+     * @return true if appliance turn on successfully
      */
     public boolean onAppliance() {
         if (!this.status) {
@@ -64,7 +64,7 @@ public class Power {
      * Appliance only can be switched off if it was 'on' previously.
      * Compute the total power consumption once appliance is off.
      *
-     * @return true if appliance turn off previously
+     * @return true if appliance turn off successfully
      */
     public boolean offAppliance() {
         if (status) {
@@ -129,7 +129,7 @@ public class Power {
                 offTimeValue = timeFormat.parse(offTime);
                 timeUsed = offTimeValue.getTime() - onTimeValue.getTime();
                 // System time cannot be negative time
-//                assert (timeUsed > 0) : "System Time is not correct! " + timeUsed;
+                assert (timeUsed >= 0) : "System Time is not correct! " + timeUsed;
                 onTime = offTime;
             } else {
                 Date currentUsedTime = timeFormat.parse(getCurrentTime());
@@ -141,14 +141,14 @@ public class Power {
         }
 
         // For simulation purpose, 1 second in System equals to 1 hour in SmartHomeBot
-        // Convert back to hours timeDifference/(1000 * 60 * 60)
+        // Convert back to hours timeUsed/(1000 * 60 * 60)
         totalHours = timeUsed / (1000);
     }
 
     private void calculatePowerConsumed() throws ParseException {
         calculateTimeUsed();
         // Convert power unit to kWh
-        assert (powerUsed >= 0.0) : "Power usage cannot be negative! " + powerUsed;
+        assert (powerUsed >= 0) : "Power usage cannot be negative! " + powerUsed;
         powerUsed = (int) ceil(totalHours * power / 1000.00);
         totalPowerConsumption += powerUsed;
         assert totalPowerConsumption >= 0 : "totalPowerConsumption cannot be negative";

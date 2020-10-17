@@ -36,10 +36,10 @@ public class OffCommand extends Command {
         } else {
             Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
             if (toOffAppliance.switchOff()) {
-                assert !toOffAppliance.switchOff() : "Appliance should be already OFF";
-
+                assert toOffAppliance.getStatus().equals("OFF") : "Appliance should be already OFF";
                 return new CommandResult(MESSAGE_APPLIANCE_PREVIOUSLY_OFF);
             } else {
+                assert toOffAppliance.getStatus().equals("OFF")  : "Appliance should be already OFF";
                 return new CommandResult("Switching: " + toOffAppliance + "......OFF");
             }
         }

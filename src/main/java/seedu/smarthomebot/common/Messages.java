@@ -2,8 +2,8 @@ package seedu.smarthomebot.common;
 
 public class Messages {
 
-    public static final String LINE = "-".repeat(Math.max(0, 54)) + "\n";
-    public static final String DIVIDER = "=".repeat(Math.max(0, 50));
+    public static final String LINE = "-".repeat(Math.max(0, 52)) + "\n";
+    public static final String DIVIDER = "=".repeat(Math.max(0, 52));
     public static final String MESSAGE_WELCOME = "Welcome to your SmartHomeBot V1.0!";
     public static final String MESSAGE_GOODBYE = "Good bye!";
     public static final String MESSAGE_IMPORT = "Importing data........Completed!";
@@ -16,9 +16,10 @@ public class Messages {
     public static final String MESSAGE_DISPLAY_USAGE = " | Usage: ";
     public static final String MESSAGE_DISPLAY_WATT = " | Watt: ";
     public static final String MESSAGE_DISPLAY_TYPE = " | Type: ";
-    public static final String MESSAGE_LIST_LOCATIONS = "Here are the location you have entered.";
-    public static final String MESSAGE_LIST_APPLIANCES = "Here are the appliances in your list.";
-    public static final String MESSAGE_POWER_USAGE = "Here are the power usage consumption.";
+    public static final String MESSAGE_TOTAL_POWER_USAGE = "\n\nTotal power consumption: ";
+    public static final String MESSAGE_LIST_LOCATIONS = "Here are the location you have entered:";
+    public static final String MESSAGE_LIST_APPLIANCES = "Here are the appliances in your list:";
+    public static final String MESSAGE_POWER_USAGE = "Here are the power usage consumption:";
     public static final String MESSAGE_LIST_NO_LOCATIONS = "There is currently no locations in the list.";
     public static final String MESSAGE_LIST_NO_APPLIANCES = "There is currently no appliances in the list.";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT =  "Invalid Command Format";
@@ -29,12 +30,14 @@ public class Messages {
     public static final String MESSAGE_POWER_EXCEEDED =
             "Appliance wattage is uncommon. Please enter between 0 to 9999.";
     public static final String MESSAGE_TIME_FORMAT_ERROR = "Time format is wrong.";
-    public static final String MESSAGE_APPLIANCE_PREVIOUSLY_ON = "The appliance is already ON previously.";
-    public static final String MESSAGE_APPLIANCE_PREVIOUSLY_OFF = "The appliance is already OFF previously.";
+    public static final String MESSAGE_APPLIANCE_PREVIOUSLY_ON = "The appliance is already ON previously. ";
+    public static final String MESSAGE_APPLIANCE_PREVIOUSLY_OFF = "The appliance is already OFF previously. ";
     public static final String MESSAGE_FILE_CORRUPTED = "Data file is corrupted, some data will not be entered";
 
     public static final String MESSAGE_APPLIANCE_NOT_EXIST = "Appliance does not exist in the list.";
 
     public static final String MESSAGE_INVALID_TEMPERATURE_AC =
-            "Invalid Temperature is set, ensure that it is within 16-30 degrees.";
+            "Invalid Temperature is set, ensure that it is within 16-30 degrees. \nPrevious set temperature will be set.";
+    public static final String MESSAGE_INVALID_FAN_SPEED =
+            "Invalid speed is set, ensure that it is within 1-3 speed. \nPrevious set speed will be set.";
 }
