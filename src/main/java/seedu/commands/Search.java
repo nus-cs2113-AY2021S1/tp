@@ -28,7 +28,7 @@ public class Search extends Command {
 
     @Override
     public CommandResult execute(TaskMap tasks) {
-        TaskMap found = tasks.searchDescription(toSearch);
+        TaskMap found = tasks.searchByDescription(toSearch);
         if (found.size() > 0) {
             return new CommandResult(SEARCH_FOUND_MESSAGE, found);
         } else {
