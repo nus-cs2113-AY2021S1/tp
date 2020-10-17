@@ -31,6 +31,7 @@ public class TextUi {
             + "Maybe type \"help\" for usage instructions?";
     private static final String ADD_BOOK_MESSAGE = "The book [%s] has been added!";
     private static final String DELETE_BOOK_MESSAGE = "The book [%s] has been deleted!";
+    private static final String EDIT_BOOK_MESSAGE = "The book has been edited from [%s] to [%s]!";
     private static final String LIST_BOOKS_MESSAGE = "Here is a list of all books:";
     private static final String LIST_BOOKS_BY_AUTHOR_MESSAGE = "Here is a list of books by %s:";
     private static final String ADD_CATEGORY_MESSAGE = "I have tagged [%s] category to \"%s\"!";
@@ -98,6 +99,10 @@ public class TextUi {
 
     public void printDeleteBook(Book book) {
         System.out.printf(DELETE_BOOK_MESSAGE + "\n", book.toString());
+    }
+
+    public void printEditBook(String oldTitle, String newTitle) {
+        System.out.printf(EDIT_BOOK_MESSAGE + "\n", oldTitle, newTitle);
     }
 
     public void printAllBooks(BookList bookList) {
