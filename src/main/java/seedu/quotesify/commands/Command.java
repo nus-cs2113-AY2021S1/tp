@@ -11,6 +11,7 @@ public abstract class Command {
     public static final String TAG_TODO = "-t";
     public static final String TAG_BOOKMARK = "-bm";
 
+    public static final String ERROR_INVALID_BOOK_NUM = "Invalid book number specified!";
     public static final String ERROR_INVALID_QUOTE_NUM = "Invalid quote number specified!";
     public static final String ERROR_INVALID_TODO_NUM = "Invalid task number specified!";
     public static final String ERROR_NO_BOOK_FOUND = "There is no such book!";
