@@ -1,20 +1,20 @@
 package seedu.duke.command.timetable;
 
-import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
-import seedu.duke.command.Command;
-import seedu.duke.slot.Slot;
-import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
-
+import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
-import seedu.duke.slot.SlotList;
+import seedu.duke.slot.Module;
+import seedu.duke.slot.Slot;
+import seedu.duke.slot.Timetable;
 
 public class DeleteSlotCommand extends Command {
     public static final String DEL_KW = "delete";
-    private int index;
+    private String moduleCode;
+    private Integer slotIndex = null;
+    private boolean deleteBookmarks = false;
 
     /**
      * Constructs a new DeleteSlotCommand instance and stores the information of the Slot given by the input.
@@ -32,29 +32,69 @@ public class DeleteSlotCommand extends Command {
         if (!details.startsWith(" ")) {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
         }
+        String[] deleteCommands = details.trim().split(" ", 3);
+        moduleCode = deleteCommands[0];
+
         try {
-            index = Integer.parseInt(details.trim()) - 1;
+            String something = deleteCommands[1];
+            if (something.trim().compareTo("bookmarks") == 0) {
+                deleteBookmarks = true;
+            }
+            slotIndex = Integer.parseInt(something) - 1;
+            if (deleteCommands[2].trim().compareTo("bookmarks") == 0) {
+                deleteBookmarks = true;
+            }
         } catch (NullPointerException | NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeException(DukeExceptionType.INVALID_SLOT_NUMBER);
+            // No slot index or delete bookmark keyword provided.
         }
+
     }
 
     /**
-     * Deletes the Slot in the Slot list.
      *
-     * @param slots The list of Slots.
-     * @param ui The user interface.
+     * @param bookmarks
+     * @param timetable
+     * @param ui
+     * @param bookmarkStorage
+     * @param slotStorage
+     * @throws DukeException
      */
     @Override
-    public void execute(BookmarkList bookmarks, SlotList slots, Ui ui, Storage bookmarkStorage, Storage slotStorage)
+    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui, Storage bookmarkStorage, Storage slotStorage)
             throws DukeException {
-        try {
-            Slot slot = slots.getSlot(index);
-            slots.deleteSlot(slots.getSlot(index));
-            ui.print(getMessage(slot));
-        } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(DukeExceptionType.INVALID_SLOT_NUMBER);
+        String message = "";
+        if (!timetable.moduleExists(moduleCode)) {
+            message += "module does not exists\n";
+        } else {
+            Module module = timetable.getModule(moduleCode);
+
+            if (slotIndex == null && !deleteBookmarks) { // delete module
+                timetable.deleteModule(module);
+                message += "deleted module: " + moduleCode + "\n";
+            } else if (slotIndex != null && !deleteBookmarks) { // delete slot
+                Slot slot = module.getSlot(slotIndex);
+                module.removeSlot(slot);
+                message += "deleted " + slot + " from " + module + "\n";
+            } else if (slotIndex == null && deleteBookmarks) { // delete module bookmark
+                module.removeAllBookmarks();
+                message += "deleted bookmark from " + moduleCode + "\n";
+            } else if (slotIndex != null && deleteBookmarks) { // delete slot bookmark
+                Slot slot = module.getSlot(slotIndex);
+                slot.removeAllBookmarks();
+                message += "deleted bookmarks from " + slot + " from " + moduleCode + "\n";
+            }
         }
+
+        ui.print(message);
+
+
+//        try {
+//            Slot slot = slots.getSlot(index);
+//            slots.deleteSlot(slots.getSlot(index));
+//            ui.print(getMessage(slot));
+//        } catch (IndexOutOfBoundsException e) {
+//            throw new DukeException(DukeExceptionType.INVALID_SLOT_NUMBER);
+//        }
     }
 
     private String getMessage(Slot slot) {
