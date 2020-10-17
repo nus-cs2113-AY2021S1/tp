@@ -56,7 +56,7 @@ class DeleteTagCommandTest {
 
         String result = getCommandExecutionString(tagManager, tags);
 
-        assertEquals(Formatter.formatString(expectedResult, false, true), result);
+        assertEquals(Formatter.formatString(expectedResult, false), result);
     }
 
     @Test

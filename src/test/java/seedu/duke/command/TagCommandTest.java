@@ -57,7 +57,7 @@ class TagCommandTest {
         tags = new ArrayList<>();
 
         String result = getCommandExecutionString(notebook, tagManager, 3, tags);
-        assertEquals(Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE, false), result);
+        assertEquals(Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE), result);
     }
 
     @Test

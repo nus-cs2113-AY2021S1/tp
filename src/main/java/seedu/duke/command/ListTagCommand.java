@@ -21,10 +21,10 @@ public class ListTagCommand extends Command {
         ArrayList<String> executedResult = tagManager.getAllTagsName();
 
         if (executedResult == null) {
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE, false);
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         } else {
             executedResult.add(0, COMMAND_SUCCESSFUL_MESSAGE);
         }
-        return Formatter.formatString(executedResult, true, true);
+        return Formatter.formatString(executedResult, true);
     }
 }
