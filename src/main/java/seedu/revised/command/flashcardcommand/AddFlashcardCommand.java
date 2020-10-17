@@ -4,6 +4,7 @@ import seedu.revised.card.Flashcard;
 import seedu.revised.card.Topic;
 import seedu.revised.exception.NoSubjectException;
 import seedu.revised.exception.RepeatedSubjectException;
+import seedu.revised.ui.Ui;
 
 public class AddFlashcardCommand extends FlashcardCommand {
     private final String fullCommand;
@@ -32,7 +33,7 @@ public class AddFlashcardCommand extends FlashcardCommand {
         }
         Flashcard t = new Flashcard(question, answer);
         topic.addFlashcard(t);
-        t.printFlashcard(topic.getFlashcards());
+        Ui.printFlashcard(t,topic.getFlashcards());
         return t;
     }
 

@@ -5,6 +5,7 @@ import seedu.revised.card.Topic;
 import seedu.revised.card.TopicList;
 import seedu.revised.exception.NoSubjectException;
 import seedu.revised.exception.RepeatedSubjectException;
+import seedu.revised.ui.Ui;
 
 /**
  * Adds an instance of the <code>Topic</code> class into a <code>TopicList</code>.
@@ -35,7 +36,7 @@ public class AddTopicCommand extends TopicCommand {
         }
         Topic t = new Topic(title);
         topicList.add(t);
-        t.printTopic(topicList);
+        Ui.printTopic(t,topicList);
         return t;
     }
 

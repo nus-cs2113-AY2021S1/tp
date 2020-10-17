@@ -354,6 +354,31 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
+    public static void printSubject(Subject subject, SubjectList subjectList) {
+        System.out.println("____________________________________________________________\n"
+                + "Got it. I've added this subject:\n  " + subject + "\n"
+                + "Now you have " + subjectList.getList().size() + (subjectList.getList().size() == 1
+                ? " subject in the list.\n" : " subjects in the list.\n")
+                + "____________________________________________________________");
+    }
+
+    public static void printTopic(Topic topic, TopicList topicList) {
+        System.out.println("____________________________________________________________\n"
+                + "Got it. I've added this topic:\n  " + topic + "\n"
+                + "Now you have " + topicList.getList().size() + (topicList.getList().size() == 1
+                ? " topic in the list.\n" : " topics in the list.\n")
+                + "____________________________________________________________");
+    }
+
+    public static void printFlashcard(Flashcard flashcard, List flashcards) {
+        System.out.println("____________________________________________________________\n"
+                + "Got it. I've added this flashcard:\n  " + flashcard.getQuestion() + "; "
+                + flashcard.getAnswer() + "\n"
+                + "Now you have " + flashcards.size() + (flashcards.size() == 1
+                ? " flashcard in the list.\n" : " flashcards in the list.\n")
+                + "____________________________________________________________");
+    }
+
     public static void printTopicResults(Topic topic) {
         System.out.println("____________________________________________________________");
         int index = 1;
@@ -406,6 +431,16 @@ public class Ui {
                 + "Please enter a topic!\n"
                 + "____________________________________________________________\n");
     }
+
+    public static void printTask(Task task, TaskList taskList) {
+        System.out.println("____________________________________________________________\n"
+                + "Got it. I've added this task:\n  " + task + "\n"
+                + "Now you have " + taskList.getList().size() + (taskList.getList().size() == 1
+                ? " task in the list.\n" : " tasks in the list.\n")
+                + "____________________________________________________________");
+    }
+
+
     public static void printInvalidFormat() {
         System.out.println("____________________________________________________________\n"
                 + "Enter date and time in the following format: HH:MM DD-MM-YYY\n"

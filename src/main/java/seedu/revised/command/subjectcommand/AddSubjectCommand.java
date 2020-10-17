@@ -4,6 +4,7 @@ import seedu.revised.card.Subject;
 import seedu.revised.exception.NoSubjectException;
 import seedu.revised.card.SubjectList;
 import seedu.revised.exception.RepeatedSubjectException;
+import seedu.revised.ui.Ui;
 
 /**
  * Adds an instance of the <code>Deadline</code> class into a <code>TaskList</code>.
@@ -33,7 +34,7 @@ public class AddSubjectCommand extends SubjectCommand {
         }
         Subject temp = new Subject(title);
         subjectList.getList().add(temp);
-        temp.printSubject(subjectList);
+        Ui.printSubject(temp,subjectList);
         return null;
     }
 
