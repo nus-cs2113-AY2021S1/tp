@@ -61,7 +61,6 @@ public class CreateSprintCommand extends SprintCommand {
         String sprintGoal;
         if (!(this.parametersInHT.get("goal").isBlank())) {
             sprintGoal = this.parametersInHT.get("goal");
-            System.out.println(sprintGoal);
         } else {
             throw new DukeException("no goal");
         }
