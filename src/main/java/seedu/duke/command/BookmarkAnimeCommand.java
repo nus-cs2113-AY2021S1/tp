@@ -5,6 +5,7 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
+import seedu.duke.storage.StorageManager;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,26 +30,26 @@ public class BookmarkAnimeCommand extends Command {
     }
 
     @Override
-    public String execute(AnimeData animeData, User user) throws AniException {
+    public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         String result = "";
         Bookmark bookmark = user.getActiveWorkspace().bookmark;
 
         switch (bookmarkAction) {
         case "e":
             LOGGER.log(Level.INFO, "Executing Edit Episode.");
-            result = editBookmarkEpisode(animeData, bookmark);
+            result = editBookmarkEpisode(animeData, storageManager, user, bookmark);
             break;
         case "a":
             LOGGER.log(Level.INFO, "Executing Add Anime to Bookmark.");
-            result = addBookmarkEntry(animeData, bookmark);
+            result = addBookmarkEntry(animeData, storageManager, user, bookmark);
             break;
         case "d":
             LOGGER.log(Level.INFO, "Executing Delete Anime from Bookmark.");
-            result = deleteBookmarkEntry(animeData, bookmark);
+            result = deleteBookmarkEntry(animeData, storageManager, user, bookmark);
             break;
         case "l":
             LOGGER.log(Level.INFO, "Executing List all anime in Bookmark.");
-            result = "Listing all anime in bookmark: ";
+            result = "Listing all anime in bookmark:";
             String bookmarkList = listBookmarkEntries(animeData, bookmark);
             result += bookmarkList;
             break;
@@ -64,7 +65,8 @@ public class BookmarkAnimeCommand extends Command {
         return bookmarkList;
     }
 
-    private String deleteBookmarkEntry(AnimeData animeData, Bookmark bookmark) throws AniException {
+    private String deleteBookmarkEntry(AnimeData animeData, StorageManager storageManager,
+                                       User user, Bookmark bookmark) throws AniException {
         String result;
         if (bookmarkIndex > bookmark.getBookmarkSize() || bookmarkIndex <= 0) {
             String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + "provided is invalid."
@@ -75,11 +77,13 @@ public class BookmarkAnimeCommand extends Command {
         Anime animeToDelete = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
         result = "Removing " + animeToDelete.getAnimeName() + "! :(";
         bookmark.removeAnimeBookmark(bookmarkIndex - 1);
+        storageManager.saveBookmark(user.getActiveWorkspace().getName(), bookmark);
         return result;
     }
 
 
-    private String addBookmarkEntry(AnimeData animeData, Bookmark bookmark) throws AniException {
+    private String addBookmarkEntry(AnimeData animeData, StorageManager storageManager,
+                                    User user, Bookmark bookmark) throws AniException {
         String result;
         if (animeIndex > animeData.getSize() || animeIndex <= 0) {
             String invalidAnimeIndex = "Anime index " + animeIndex + "provided is invalid."
@@ -91,10 +95,12 @@ public class BookmarkAnimeCommand extends Command {
         Anime animeToAdd = animeData.getAnimeByID(animeIndex - 1);
         result = "Saving " + animeToAdd.getAnimeID() + ". " + animeToAdd.getAnimeName() + " " + " to bookmark.";
         bookmark.addAnimeBookmark(animeToAdd.getAnimeID());
+        storageManager.saveBookmark(user.getActiveWorkspace().getName(), bookmark);
         return result;
     }
 
-    private String editBookmarkEpisode(AnimeData animeData, Bookmark bookmark) throws AniException {
+    private String editBookmarkEpisode(AnimeData animeData, StorageManager storageManager,
+                                       User user, Bookmark bookmark) throws AniException {
 
         if (bookmarkIndex > bookmark.getBookmarkSize() || bookmarkIndex <= 0) {
             String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + "provided is invalid."
@@ -107,9 +113,9 @@ public class BookmarkAnimeCommand extends Command {
         bookmark.editAnimeBookmarkEpisode(bookmarkIndex - 1, bookmarkEpisode);
         Anime animeToEdit = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
         result = "Editing " + animeToEdit.getAnimeName() + " to have " + bookmarkEpisode + " episode";
+        storageManager.saveBookmark(user.getActiveWorkspace().getName(), bookmark);
         return result;
     }
-
 
     private void setFirstParameter(String paramGiven) throws AniException {
         //Action edit(e) requires first parameter as bookmarkIndex

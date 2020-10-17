@@ -23,6 +23,12 @@ public class Workspace {
         watchlistList = new ArrayList<>();
     }
 
+    public Workspace(String workspaceName, ArrayList<Watchlist> watchlistList, Bookmark bookmark) {
+        this.workspaceName = workspaceName;
+        this.watchlistList = watchlistList;
+        this.bookmark = bookmark;
+    }
+
     public void setActiveWatchlist(Watchlist activeWatchlist) {
         this.activeWatchlist = activeWatchlist;
     }

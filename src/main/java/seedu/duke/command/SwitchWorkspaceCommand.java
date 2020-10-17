@@ -4,6 +4,7 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.Workspace;
 import seedu.duke.human.User;
+import seedu.duke.storage.StorageManager;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +24,7 @@ public class SwitchWorkspaceCommand extends Command {
     }
 
     @Override
-    public String execute(AnimeData animeData, User user) throws AniException {
+    public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         String[] paramGiven = description.split("-");
         String result = "";
         if (description.length() < 2) {

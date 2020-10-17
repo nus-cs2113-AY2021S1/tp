@@ -5,6 +5,7 @@ import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
 import seedu.duke.human.Workspace;
 import seedu.duke.storage.Storage;
+import seedu.duke.storage.StorageManager;
 import seedu.duke.watchlist.Watchlist;
 
 import java.util.ArrayList;
@@ -32,34 +33,30 @@ public class RemoveCommand extends Command {
      * Remove an anime from current watchlist.
      */
     @Override
-    public String execute(AnimeData animeData, User user) throws AniException {
-        // Storage storage = user.getStorage();
+    public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         Workspace activeWorkspace = user.getActiveWorkspace();
-        Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
-        ArrayList<Watchlist> activeWatchlistList = activeWorkspace.getWatchlistList();
 
         if (!option.equals(REMOVE_OPTION)) {
             LOGGER.log(Level.WARNING, "Option type given is wrong");
             throw new AniException("Remove command only accepts the option: \"-d\".");
         }
         assert option.equals("-d") == true : "option type should have been \"-d\".";
-        // removeFromWatchlist(storage, activeWatchlistList, activeWatchlist);
+        removeFromWatchlist(storageManager, activeWorkspace);
 
         return "Anime successfully removed from watchlist!";
     }
     
-    private void removeFromWatchlist(Storage storage, ArrayList<Watchlist> activeWatchlistList,
-                                     Watchlist activeWatchlist) throws AniException {
+    private void removeFromWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
         if (animeIndex == null || animeIndex.trim().isEmpty()) {
             LOGGER.log(Level.WARNING, "Anime ID is empty, exception thrown");
             throw new AniException("Anime ID cannot be empty.");
         }
-
-        int activeWatchlistIndex = activeWatchlistList.indexOf(activeWatchlist);
+        
+        Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
         activeWatchlist.removeAnimeFromList(animeIndex);
-        activeWatchlistList.set(activeWatchlistIndex, activeWatchlist);
+        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
 
-        storage.saveWatchlist(activeWatchlistList);
-        LOGGER.log(Level.INFO, "Successfully added and stored anime into active watchlist");
+        storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
+        LOGGER.log(Level.INFO, "Successfully removed anime from active watchlist");
     }
 }
