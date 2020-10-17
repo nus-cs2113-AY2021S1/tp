@@ -2,20 +2,20 @@ package seedu.revised.parser;
 
 
 import seedu.revised.command.Command;
-import seedu.revised.command.taskcommand.AddDeadlineCommand;
-import seedu.revised.command.taskcommand.AddEventCommand;
-import seedu.revised.command.taskcommand.AddTodoCommand;
-import seedu.revised.command.taskcommand.DeleteTaskCommand;
-import seedu.revised.command.taskcommand.DoneTaskCommand;
-import seedu.revised.command.topiccommand.QuizTopicCommand;
-import seedu.revised.command.topiccommand.AddTopicCommand;
-import seedu.revised.command.topiccommand.ExitTopicCommand;
-import seedu.revised.command.topiccommand.ListTopicCommand;
-import seedu.revised.command.topiccommand.SorryTopicCommand;
-import seedu.revised.command.topiccommand.DeleteTopicCommand;
-import seedu.revised.command.topiccommand.FindTopicCommand;
-import seedu.revised.command.topiccommand.ReturnTopicCommand;
-import seedu.revised.command.topiccommand.ResultTopicCommand;
+import seedu.revised.command.task.AddDeadlineCommand;
+import seedu.revised.command.task.AddEventCommand;
+import seedu.revised.command.task.AddTodoCommand;
+import seedu.revised.command.task.DeleteTaskCommand;
+import seedu.revised.command.task.DoneTaskCommand;
+import seedu.revised.command.topic.QuizTopicCommand;
+import seedu.revised.command.topic.AddTopicCommand;
+import seedu.revised.command.topic.ExitTopicCommand;
+import seedu.revised.command.topic.ListTopicCommand;
+import seedu.revised.command.topic.SorryTopicCommand;
+import seedu.revised.command.topic.DeleteTopicCommand;
+import seedu.revised.command.topic.FindTopicCommand;
+import seedu.revised.command.topic.ReturnTopicCommand;
+import seedu.revised.command.topic.ResultTopicCommand;
 
 /**
  * Parses the commands on the topic level.

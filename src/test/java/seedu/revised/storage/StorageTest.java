@@ -10,7 +10,7 @@ import seedu.revised.card.Flashcard;
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
 import seedu.revised.card.quiz.Result;
-import seedu.revised.exception.DataLoadingException;
+import seedu.revised.exception.storage.DataLoadingException;
 import seedu.revised.task.Deadline;
 import seedu.revised.task.Event;
 import seedu.revised.task.Task;
