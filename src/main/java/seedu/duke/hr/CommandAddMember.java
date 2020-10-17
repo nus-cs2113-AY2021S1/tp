@@ -24,7 +24,7 @@ public class CommandAddMember extends Command {
                     return ARGUMENT_ERR;
                 }
                 if ((input.getArg("n").equals("")) || (input.getArg("p").equals("")) || (input.getArg("e").equals(""))
-                        && (input.getArg("r").equals("")) || isInteger(input.getArg("p"))) {
+                        && (input.getArg("r").equals("")) || !isInteger(input.getArg("p"))) {
                     return ARGUMENT_ERR;
                 }
                 return ACCEPT;
