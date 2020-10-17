@@ -47,8 +47,9 @@ public class Ui {
                 + "16. print events\n"
                 + "17. print timeline\n"
                 + "18. print progress\n"
-                + "19. countdown exams\n"
-                + "20. countdown deadlines"
+                + "19. print *\n"
+                + "20. countdown exams\n"
+                + "21. countdown deadlines"
         );
     }
 
@@ -322,13 +323,37 @@ public class Ui {
     /**
      * Print the message after marking a task as important.
      *
-     * @param calendarList the list of user tasks and events.
+     * @param calendarList the list of user's tasks and events.
      * @param calendarIndex the index of the task in the list.
      */
     public static void printPrioritizeMessage(CalendarList calendarList, int calendarIndex) {
         System.out.println(
                 "Good work! I've marked this task as important:\n"
                         + calendarList.getCalendarList().get(calendarIndex));
+    }
+
+    /**
+     * Print all important tasks in the list.
+     *
+     * @param calendarList the list of user's tasks and events.
+     */
+    public static void printImportantTasks(CalendarList calendarList) {
+        int taskCount = 0;
+        for (int i = 0; i < calendarList.getTotalItems(); i++) {
+            CalendarItem item = calendarList.getCalendarList().get(i);
+            if (!(item instanceof Task)) {
+                continue;
+            }
+            if (((Task) item).getIsImportant()) {
+                taskCount++;
+                System.out.println(taskCount + ". " + item.toString());
+            }
+        }
+        if (taskCount == 0) {
+            System.out.println("You have no important tasks now!");
+        } else {
+            System.out.println("There are in total " + taskCount + " important tasks in your list.");
+        }
     }
 
     /**
