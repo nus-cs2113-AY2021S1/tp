@@ -3,6 +3,9 @@ package seedu.quotesify.commands;
 import org.w3c.dom.Text;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
+import seedu.quotesify.category.Category;
+import seedu.quotesify.category.CategoryList;
+import seedu.quotesify.category.CategoryParser;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.rating.Rating;
@@ -35,6 +38,10 @@ public class EditCommand extends Command {
         case TAG_BOOK:
             BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
             editBook(books, ui);
+            break;
+        case TAG_CATEGORY:
+            CategoryList categoryList = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
+            editCategory(categoryList, ui);
             break;
         default:
         }
@@ -107,6 +114,24 @@ public class EditCommand extends Command {
             return false;
         }
         return true;
+    }
+
+    private void editCategory(CategoryList categoryList, TextUi ui) {
+        try {
+            String[] oldAndNewCategories = CategoryParser.getEditParameters(information);
+            String oldCategory = oldAndNewCategories[0];
+            String newCategory = oldAndNewCategories[1];
+
+            Category category = categoryList.getCategoryByName(oldCategory);
+            if (categoryList.isExistingCategory(newCategory)) {
+                throw new QuotesifyException("Category [" + newCategory + "] already exists!");
+            }
+
+            category.setCategoryName(newCategory);
+            ui.printEditCategory(oldCategory, newCategory);
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
+        }
     }
 
     public boolean isExit() {
