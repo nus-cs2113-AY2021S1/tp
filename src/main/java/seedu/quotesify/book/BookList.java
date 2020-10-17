@@ -94,7 +94,7 @@ public class BookList extends QuotesifyList<Book> {
 
     public Book findByNum(int num) {
         int index = num - 1;
-        if(num <= books.size()) {
+        if (num <= books.size()) {
             return books.get(index);
         } else {
             return null;
