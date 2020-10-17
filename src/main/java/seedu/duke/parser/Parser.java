@@ -7,12 +7,19 @@ import seedu.duke.command.SearchCommand;
 import seedu.duke.command.BuyCommand;
 import seedu.duke.command.SellCommand;
 import seedu.duke.command.ViewCommand;
+import seedu.duke.command.WalletCommand;
 import seedu.duke.data.exception.DukeException;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Parser {
+    private static Logger logger = Logger.getLogger("tp");
 
     public static Command parseCommand(String userInput) {
+        logger.log(Level.INFO, "going to start processing command");
+
         String[] userInputSplit = userInput.trim().split(" ");
         String commandString = userInputSplit[0].toLowerCase();
 
@@ -39,7 +46,10 @@ public class Parser {
             return new ByeCommand();
         case "view":
             return new ViewCommand();
+        case "wallet":
+            return new WalletCommand();
         default:
+            logger.log(Level.WARNING, "processing error when parsing command");
             return new InvalidCommand("Invalid command! Please try again.");
         }
     }
