@@ -46,7 +46,7 @@ Parameters listed in [ ] denote optional entries. In some cases, at least one of
 Example message as seen on the console
 ```
 
-#### <a id="help">3.1 View Command List: `help`</a>
+### <a id="help"><ins>3.1 View Command List:</ins> `help`</a>
 Shows a list of all the commands that the user can enter.
 
 Example of usage: 
@@ -56,7 +56,7 @@ Example of usage:
 Expected output: 
 
 
-#### <a id="add-n">3.2 Add Note: `add-n`</a>
+### <a id="add-n"><ins>3.2 Add Note:</ins> `add-n`</a>
 Adds a new note to the list of note items (think of it as a notebook).
 
 Format: `add-n /t TITLE [/tag TAG_1] [/tag TAG_2]... [/pin ISPIN]`
@@ -87,7 +87,7 @@ Expected output:
 💡 Use `/del` to delete the previous line.<br>
 💡 Use `/end` on a new line to denote the end of the note.
 
-#### <a id="list-n">3.3 List Notes: `list-n`</a>
+### <a id="list-n"><ins>3.3 List Notes:</ins> `list-n`</a>
 Shows a list of all the notes in the database.
 
 Format: `list-n [/tag TAG_1] [/tag TAG_2]... [/sort DIRECTION]`
@@ -107,7 +107,7 @@ Expected output:
 💡 Use `/sort down` to display the list of notes in descending order (Z-A).
 
 
-#### <a id="view-n">3.4 View Note: `view-n`</a>
+### <a id="view-n"><ins>3.4 View Note:</ins> `view-n`</a>
 View selected note.
 
 Format: `view-n [/i INDEX] [/t TITLE]`
@@ -145,7 +145,7 @@ Example of usage:
 Expected output:
 
 
-#### <a id="find-n">3.6 Find Notes: `find-n`</a>
+### <a id="find-n"><ins>3.6 Find Notes:</ins> `find-n`</a>
 Finds the notes and return a list of notes that contain the keyword(s) in the title.
 
 Format: `find-n KEYWORDS`
@@ -159,7 +159,7 @@ Example of usage:
 Expected output:
 
 
-#### <a id="pin-n">3.7 Pin Note: `pin-n`</a>
+### <a id="pin-n"><ins>3.7 Pin Note:</ins> `pin-n`</a>
 Pins an unpinned note to the top of the note list or unpin a pinned note.
 
 Format: `pin-n [/i INDEX] [/t TITLE]`
@@ -174,7 +174,7 @@ Example of usage:
 Expected output:
 
 
-#### <a id="delete-n">3.8 Delete note: `delete-n`</a>
+### <a id="delete-n"><ins>3.8 Delete note:</ins> `delete-n`</a>
 Deletes an existing note.
 
 Format: `delete-n [/i INDEX] [t/TITLE]`
@@ -191,7 +191,7 @@ Example of usage:
 Expected output:
 
 
-#### <a id="create-t">3.9 Create Tags: `create-t`</a>
+### <a id="create-t"><ins>3.9 Create Tags:</ins> `create-t`</a>
 Create tags.
 
 Format: `create-t /tag TAG [TAG_COLOR] [/tag TAG]...`
@@ -213,7 +213,7 @@ Example of usage:
 Expected output:
 
 
-#### <a id="list-t">3.10 List Tags: `list-t`</a>
+### <a id="list-t"><ins>3.10 List Tags:</ins> `list-t`</a>
 Shows a list of tags that have been created.
 
 Example of usage: 
@@ -223,7 +223,7 @@ Example of usage:
 Expected output:
 
 
-#### <a id="delete-t">3.11 Delete Tags: `delete-t`</a>
+### <a id="delete-t"><ins>3.11 Delete Tags:</ins> `delete-t`</a>
 Deletes a tag from the list of tags and remove the tag from the related notes.
 
 Format: `delete-t /tag TAG [/tag TAG]...`
@@ -239,7 +239,7 @@ Example of usage:
 Expected output:
 
 
-#### <a id="tag">3.12 Tag/Untag Notes: `tag`</a>
+### <a id="tag"><ins>3.12 Tag/Untag Notes:</ins> `tag`</a>
 Tags or untags a note with the given tag name.
 
 Format: `tag /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
@@ -258,7 +258,7 @@ Example of usage:
 Expected output:
 
 
-#### <a id="add-e">3.13 Add Event: `add-e`</a>
+### <a id="add-e"><ins>3.13 Add Event:</ins> `add-e`</a>
 Adds an event to the list.
 
 Format: `add-e /t TITLE /d DATETIME [/repeat REPEAT] [/remind REMIND]`
@@ -274,7 +274,7 @@ Example of usage:
 Expected output:
 
 
-#### <a id="edit-e">3.14 Edit Event: `edit-e`</a>
+### <a id="edit-e"><ins>3.14 Edit Event:</ins> `edit-e`</a>
 Edits an existing event in the event list/timetable.
 
 Format: `edit-e /i INDEX [/t TITLE] [/d DATETIME] [/repeat REPEAT] [/remind REMIND]`
@@ -290,7 +290,7 @@ Example of usage:
 Expected output:
 
 
-#### <a id="list-e">3.15 Event Manager: `list-e`</a>
+### <a id="list-e"><ins>3.15 Event Manager:</ins> `list-e`</a>
 Display the module timetable on the current day.
 
 Format: `list-e [/d DATE]`
@@ -305,7 +305,7 @@ Example of usage:
 Expected output:
 
 
-#### <a id="remind">3.16 Remind: `remind`</a>
+### <a id="remind-e"><ins>3.16 Remind:</ins> `remind-e`</a>
 Reminds the specified event from the timetable.
 
 Format: `remind-e INDEX`
@@ -319,7 +319,7 @@ Example of usage:
 Expected output:
 
 
-#### <a id="delete-e">3.17 Delete Event: `delete-e`</a>
+### <a id="delete-e"><ins>3.17 Delete Event:</ins> `delete-e`</a>
 Adds a new item to the list of todo items.
 
 Format: `delete-e INDEX`
@@ -333,7 +333,7 @@ Example of usage:
 Expected output:
 
 
-#### <a id="exit">3.18 Exit: `exit`</a>
+### <a id="exit"><ins>3.18 Exit:</ins> `exit`</a>
 Exits the program..
 
 Example of usage: 
