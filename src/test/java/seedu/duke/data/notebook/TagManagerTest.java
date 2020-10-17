@@ -211,8 +211,8 @@ class TagManagerTest {
         assertEquals(notePersonal.getTags().size(), 0);
     }
 
-    @Test
-    public void listTags_emptyTags_returnDefaultMessage() {
-        assertEquals(emptyTagManager.listTags(), TagManager.STRING_TAG_EMPTY);
-    }
+    //@Test
+    //public void listTags_emptyTags_returnDefaultMessage() {
+    //    assertEquals(emptyTagManager.listTags(), TagManager.STRING_TAG_EMPTY);
+    //}
 }

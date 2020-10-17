@@ -11,6 +11,5 @@ Welcome to NotUS!
 `--'  `--'       `-----'    `--'    `-----'     `-----'  
 
 Type "help" if you need to see a list of commands and their usages.
-
 Enter command:
 Bye!
