@@ -27,7 +27,6 @@ import static seedu.duke.constants.DataFileConvention.ESSAY;
 import static seedu.duke.constants.DataFileConvention.NUMBER_OF_WRITING_COMPONENT;
 import static seedu.duke.constants.FilePaths.WRITING_FILE_PATH;
 import static seedu.duke.database.FileFunctions.autoCreateNewFile;
-import static seedu.duke.database.FileFunctions.readFileUntilLineContainsString;
 
 public class WritingsLoader {
 
@@ -146,6 +145,7 @@ public class WritingsLoader {
     /**Record the file or print error message.
      *
      * @param f data file to be processed
+     * @param savedWritings saved Writings of the current state of Writing List
      */
     public static void recordListToFile(File f, WritingList savedWritings) {
         try {

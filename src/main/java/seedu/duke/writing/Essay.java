@@ -56,4 +56,19 @@ public class Essay extends Writings {
     public void setType() {
         this.type = ESSAY;
     }
+
+    @Override
+    public int getNumberOfLines() {
+        return 0;
+    }
+
+    @Override
+    public int getNumberOfSentences() {
+        return this.numberOfSentences;
+    }
+
+    @Override
+    public int getNumberOfWords() {
+        return this.numberOfWords;
+    }
 }

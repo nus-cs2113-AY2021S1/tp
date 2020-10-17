@@ -9,8 +9,8 @@ import java.util.Random;
 import java.io.File;
 
 import static seedu.duke.Duke.user;
-import static seedu.duke.Duke.writings;
 
+import static seedu.duke.Duke.writings;
 import static seedu.duke.commands.CommandChecker.UNRECOGNISED;
 import static seedu.duke.commands.CommandChecker.TYPE;
 import static seedu.duke.commands.CommandChecker.POEM;
@@ -42,7 +42,7 @@ public class WritingList {
         return writing.get(i);
     }
 
-    public void remove(int i) {
+    public static void remove(int i) {
         writing.remove(i);
     }
 
@@ -57,10 +57,18 @@ public class WritingList {
         for (int i = 0; i < writing.size(); i++) {
             System.out.println("This is a " + writing.get(i).getType());
             System.out.println("Written by " + writing.get(i).getAuthor().getName() + "\n");
-            System.out.println(writing.get(i).title.toUpperCase() + "\n");
-            System.out.println(writing.get(i).content);
+            System.out.println("Id: " + writing.get(i).getId());
+            System.out.println(writing.get(i).getTitle().toUpperCase() + "\n");
+            System.out.println(writing.get(i).getContent());
             System.out.println("This writing was created on " + writing.get(i).date);
             System.out.println(PLAIN_TEXT_DIVIDER);
+            if (writing.get(i).getType().equals(POEM)) {
+                System.out.println("This poem has " + writing.get(i).getNumberOfLines()
+                                    + " and " + writing.get(i).getNumberOfWords());
+            } else if (writing.get(i).getType().equals(ESSAY)) {
+                System.out.println("This essay has " + writing.get(i).getNumberOfSentences()
+                        + " and " + writing.get(i).getNumberOfWords());
+            }
         }
     }
 
@@ -116,9 +124,9 @@ public class WritingList {
             Random rand = new Random();
             int newId = rand.nextInt(MAX_NUM_WRITINGS);
             if (commandStartChecker == POEM) {
-                writings.add(new Poem(title, newId, "nothing", content, user.getName()));
+                writing.add(new Poem(title, newId, "nothing", content, user.getName()));
             } else if (commandStartChecker == ESSAY) {
-                writings.add(new Essay(title, newId, "nothing", content, user.getName()));
+                writing.add(new Essay(title, newId, "nothing", content, user.getName()));
             }
             System.out.println("Done! We have added your writing to our storage! You can type \"stats\" "
                     + "for future reference!");
@@ -129,5 +137,20 @@ public class WritingList {
         }
     }
 
+    public static void clearAll() {
+        for (int i = 0; i < getWritingSize(); i++) {
+            remove(0);
+        }
+    }
+
+    public static void addPoem(String title, String date, String topic, String content, String author, int id) {
+        writing.add(new Poem(title, date, topic, content, author, id));
+        System.out.println("This Poem, " + title +  "has been added");
+    }
+
+    public static void addEssay(String title, String date, String topic, String content, String author, int id) {
+        writing.add(new Essay(title, date, topic, content, author, id));
+        System.out.println("This Essay, " + title +  "has been added");
+    }
 
 }
