@@ -24,8 +24,8 @@ public class Tag {
     /**
      * Overloaded constructor to take in the color of the tag.
      *
-     * @param tagName Name of the tag.
-     * @param tagColor Color of the tag.
+     * @param tagName Name of the tag to be set.
+     * @param tagColor Color of the tag to be set.
      */
     public Tag(String tagName, String tagColor) {
         setTagName(tagName);
