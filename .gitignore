@@ -29,6 +29,9 @@ data/notebook.txt
 data/notes/TestNote.txt
 
 # Logger Files
-FindCommand.log
-HelpCommand.log
-HelopCommand.log.1
+/FindCommand.log
+/HelpCommand.log
+/HelpCommand.log.1
+
+*.log
+
