@@ -137,6 +137,19 @@ public class CalendarList {
     }
 
     /**
+     * Mark the task as important.
+     *
+     * @param calendarNumber the index of the task in the calendar list.
+     */
+    public void markTaskAsImportant(int calendarNumber) throws DukeException {
+        if (calendarList.get(calendarNumber) instanceof Task) {
+            ((Task) calendarList.get(calendarNumber)).markAsImportant();
+        } else {
+            throw new DukeException("prioritize");
+        }
+    }
+
+    /**
      * Swaps two tasks with index i and index j.
      *
      * @param i the index of the first task to be swapped.

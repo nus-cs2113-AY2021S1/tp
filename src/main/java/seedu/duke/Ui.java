@@ -39,15 +39,16 @@ public class Ui {
                 + "8. done <task number>\n"
                 + "9. -t <task number>\n"
                 + "10. -e <event number>\n"
-                + "11. /f <keyword of task/event>\n"
-                + "12. /ft <keyword of task>\n"
-                + "11. /fe <keyword of event>\n"
-                + "12. print tasks\n"
-                + "13. print events\n"
-                + "14. print timeline\n"
-                + "15. print progress\n"
-                + "16. countdown exams\n"
-                + "17. countdown deadlines"
+                + "11. *t <event number>\n"
+                + "12. /f <keyword of task/event>\n"
+                + "13. /ft <keyword of task>\n"
+                + "14. /fe <keyword of event>\n"
+                + "15. print tasks\n"
+                + "16. print events\n"
+                + "17. print timeline\n"
+                + "18. print progress\n"
+                + "19. countdown exams\n"
+                + "20. countdown deadlines"
         );
     }
 
@@ -319,6 +320,18 @@ public class Ui {
     }
 
     /**
+     * Print the message after marking a task as important.
+     *
+     * @param calendarList the list of user tasks and events.
+     * @param calendarIndex the index of the task in the list.
+     */
+    public static void printPrioritizeMessage(CalendarList calendarList, int calendarIndex) {
+        System.out.println(
+                "Good work! I've marked this task as important:\n"
+                        + calendarList.getCalendarList().get(calendarIndex));
+    }
+
+    /**
      * Prints the error message based on the invalid command input by the user.
      *
      * @param e            type of error.
@@ -370,6 +383,9 @@ public class Ui {
         case "delete":
             System.out.println("Error: Please key in the command in this format: -t <task number> "
                     + "OR -e <event number>");
+            break;
+        case "prioritize":
+            System.out.println("Error: Please key in the command in this format: *t <task number> ");
             break;
         case "keyword not found":
             System.out.println("There are no tasks matching this keyword. Check that you have spelt it correctly.");
