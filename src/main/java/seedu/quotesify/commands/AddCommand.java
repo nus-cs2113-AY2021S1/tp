@@ -144,11 +144,12 @@ public class AddCommand extends Command {
                 addCategoryToList(categoryList, categoryName);
                 Category category = categoryList.getCategoryByName(categoryName);
 
-                String bookTitle = parameters[1];
+                String bookNum = parameters[1];
                 String quoteNum = parameters[2];
 
-                addCategoryToBook(category, bookTitle, ui);
+                addCategoryToBook(category, bookNum, ui);
                 addCategoryToQuote(category, quoteNum, ui);
+                categoryList.updateListInCategory(category);
             }
         } catch (QuotesifyException e) {
             addLogger.log(Level.WARNING, e.getMessage());
@@ -162,21 +163,25 @@ public class AddCommand extends Command {
         }
     }
 
-    private void addCategoryToBook(Category category, String bookTitle, TextUi ui) {
+    private void addCategoryToBook(Category category, String bookNum, TextUi ui) {
         // ignore this action if user did not provide book title
-        if (bookTitle.isEmpty()) {
+        if (bookNum.isEmpty()) {
             return;
         }
 
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         try {
-            Book book = bookList.findByTitle(bookTitle);
+            int bookIndex = Integer.parseInt(bookNum) - 1;
+            Book book = bookList.getBook(bookIndex);
             book.getCategory().add(category.getCategoryName());
+            ui.printAddCategoryToBook(book.getTitle(), category.getCategoryName());
             addLogger.log(Level.INFO, "add category to book success");
-            ui.printAddCategoryToBook(bookTitle, category.getCategoryName());
-        } catch (NullPointerException e) {
+        } catch (IndexOutOfBoundsException e) {
             addLogger.log(Level.WARNING, ERROR_NO_BOOK_FOUND);
             ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
+        } catch (NumberFormatException e) {
+            addLogger.log(Level.WARNING, ERROR_INVALID_BOOK_NUM);
+            ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
         }
     }
 
@@ -192,7 +197,7 @@ public class AddCommand extends Command {
             int quoteNum = Integer.parseInt(index) - 1;
             Quote quote = quotes.get(quoteNum);
             quote.getCategory().add(category.getCategoryName());
-            ui.printAddCategoryToQuote(quotes.get(quoteNum).getQuote(), category.getCategoryName());
+            ui.printAddCategoryToQuote(quote.getQuote(), category.getCategoryName());
             addLogger.log(Level.INFO, "add category to quote success");
         } catch (IndexOutOfBoundsException e) {
             addLogger.log(Level.WARNING, ERROR_NO_QUOTE_FOUND);

@@ -156,6 +156,7 @@ public class DeleteCommand extends Command {
 
                 deleteCategoryFromBook(category, bookTitle, ui);
                 deleteCategoryFromQuote(category, quoteNum, ui);
+                categoryList.updateListInCategory(category);
             }
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
@@ -170,12 +171,15 @@ public class DeleteCommand extends Command {
 
         BookList bookList = category.getBookList();
         try {
-            Book book = bookList.findByTitle(bookTitle);
+            int bookNum = Integer.parseInt(bookTitle) - 1;
+            Book book = bookList.getBook(bookNum);
             ArrayList<String> categories = book.getCategory();
             categories.remove(category.getCategoryName());
-            ui.printRemoveCategoryFromBook(bookTitle, category.getCategoryName());
-        } catch (NullPointerException e) {
+            ui.printRemoveCategoryFromBook(book.getTitle(), category.getCategoryName());
+        } catch (IndexOutOfBoundsException e) {
             ui.printErrorMessage(ERROR_NO_BOOK_FOUND + "\b tagged as [" + category.getCategoryName() + "]!");
+        } catch (NumberFormatException e) {
+            ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
         }
     }
 
