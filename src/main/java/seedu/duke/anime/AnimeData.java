@@ -9,8 +9,7 @@ public class AnimeData {
 
     public AnimeData(ArrayList<Anime> animeDataList) {
         this.animeDataList = animeDataList;
-        this.animeOriginalDataList = new ArrayList<>();
-        this.animeOriginalDataList = (ArrayList<Anime>) animeDataList.clone();
+        this.animeOriginalDataList = new ArrayList<>(this.animeDataList);
     }
 
     public Anime getAnime(Integer animeIndex) throws IndexOutOfBoundsException, NullPointerException {

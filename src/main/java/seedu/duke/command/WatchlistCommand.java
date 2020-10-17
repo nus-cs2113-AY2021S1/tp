@@ -2,8 +2,8 @@ package seedu.duke.command;
 
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
+import seedu.duke.human.Workspace;
 import seedu.duke.human.User;
-import seedu.duke.human.UserManagement;
 import seedu.duke.storage.Storage;
 import seedu.duke.watchlist.Watchlist;
 
@@ -30,40 +30,40 @@ public class WatchlistCommand extends Command {
     }
 
     @Override
-    public String execute(AnimeData animeData, UserManagement userManagement) throws AniException {
-        Storage storage = userManagement.getStorage();
-        User activeUser = userManagement.getActiveUser();
-        ArrayList<Watchlist> activeWatchlistList = activeUser.getWatchlistList();
+    public String execute(AnimeData animeData, User user) throws AniException {
+        // Storage storage = user.getStorage();
+        Workspace activeWorkspace = user.getActiveWorkspace();
+        ArrayList<Watchlist> activeWatchlistList = activeWorkspace.getWatchlistList();
 
         String commandOutput = "";
         assert option != null : "Command option cannot be null.";
         switch (option) {
         case CREATE_OPTION:
-            commandOutput = createWatchlist(storage, activeWatchlistList);
-            activeUser.setWatchlistList(activeWatchlistList);
+            // commandOutput = createWatchlist(storage, activeWatchlistList);
+            activeWorkspace.setWatchlistList(activeWatchlistList);
             break;
         case LIST_OPTION:
             commandOutput = listAllWatchlist(activeWatchlistList);
             break;
         default:
-            LOGGER.warning("Provided invalid option: " + option);
+            LOGGER.log(Level.WARNING, "Provided invalid option: " + option);
             throw new AniException("Watchlist command only accepts the option: \"-n\" and \"-l\".");
         }
 
-        LOGGER.info(commandOutput);
+        LOGGER.log(Level.INFO, System.lineSeparator() + commandOutput);
         return commandOutput;
     }
 
     private String createWatchlist(Storage storage, ArrayList<Watchlist> activeWatchlistList) throws AniException {
         if (optionInformation.isBlank()) {
-            LOGGER.warning("Watchlist name is empty.");
+            LOGGER.log(Level.WARNING, "Watchlist name is empty.");
             throw new AniException("Watchlist name cannot be empty.");
         }
 
         Watchlist newWatchlist = new Watchlist(optionInformation);
         boolean isWatchlistNameUnique = !activeWatchlistList.contains(newWatchlist);
         if (!isWatchlistNameUnique) {
-            LOGGER.warning(optionInformation + " is already one of the watchlist name.");
+            LOGGER.log(Level.WARNING, optionInformation + " is already one of the watchlist name.");
             throw new AniException("You already have a watchlist named \"" + optionInformation + "\".");
         }
 

@@ -2,6 +2,7 @@ package seedu.duke.storage;
 
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
+import seedu.duke.human.Workspace;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
 
@@ -53,12 +54,12 @@ public class Storage {
     public void saveUser(User user) throws AniException {
         try {
             String userString = encoder.encodeUser(user);
-            assert userString != null : "Encoded user string should not be null.";
-            LOGGER.log(Level.INFO, "Encoded user object string: " + userString);
+            assert userString != null : "Encoded workspace string should not be null.";
+            LOGGER.log(Level.INFO, "Encoded workspace object string: " + userString);
             writeFile(userFilePath, userString);
         } catch (NullPointerException exception) {
-            LOGGER.log(Level.WARNING, "Received null user object.");
-            throw new AniException("AniChan could not save this user.");
+            LOGGER.log(Level.WARNING, "Received null workspace object.");
+            throw new AniException("AniChan could not save this workspace.");
         }
     }
 

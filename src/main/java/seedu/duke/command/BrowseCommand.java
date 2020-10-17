@@ -3,7 +3,7 @@ package seedu.duke.command;
 import seedu.duke.anime.Anime;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
-import seedu.duke.human.UserManagement;
+import seedu.duke.human.User;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -47,7 +47,7 @@ public class BrowseCommand extends Command {
     protected static final String SORT_RATING_ASCENDING = "Sorting by Rating Ascending (low to high)";
     protected static final String SORT_RATING_DESCENDING = "Sorting by Rating Descending (high to low)";
 
-    private static Logger LOGGER = Logger.getLogger("BrowseCommand");
+    private static final Logger LOGGER = Logger.getLogger(BrowseCommand.class.getName());
 
     public BrowseCommand(String description) {
         this.description = description;
@@ -55,10 +55,11 @@ public class BrowseCommand extends Command {
         this.order = 1;
         this.page = 1;
         this.filter = "";
+        LOGGER.setLevel(Level.WARNING);
     }
 
     @Override
-    public String execute(AnimeData animeData, UserManagement userManagement) throws AniException {
+    public String execute(AnimeData animeData, User user) throws AniException {
         setBrowseOptions();
         ArrayList<Anime> usableList = animeData.getAnimeDataList();
 
@@ -82,7 +83,8 @@ public class BrowseCommand extends Command {
         StringBuilder result = new StringBuilder();
         for (int i = indexToPrint; i < indexToPrint + ANIME_PER_PAGE; i++) {
             Anime browseAnime = usableList.get(i);
-            result.append(i + 1).append(". ").append(browseAnime.getAnimeName()).append(System.lineSeparator());
+            result.append(i + 1 + ". " + browseAnime.getAnimeName() + " [Id: " + browseAnime.getAnimeID() + "]");
+            result.append(System.lineSeparator());
             if (i + 1 >= usableList.size()) {
                 LOGGER.log(Level.WARNING, LAST_ANIME_WARNING);
                 break;

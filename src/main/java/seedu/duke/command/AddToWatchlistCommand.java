@@ -2,8 +2,8 @@ package seedu.duke.command;
 
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
+import seedu.duke.human.Workspace;
 import seedu.duke.human.User;
-import seedu.duke.human.UserManagement;
 import seedu.duke.storage.Storage;
 import seedu.duke.watchlist.Watchlist;
 
@@ -16,9 +16,10 @@ public class AddToWatchlistCommand extends Command {
     
     private String option;
     private String animeName = "";
-    private static Logger LOGGER = Logger.getLogger(Command.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(AddToWatchlistCommand.class.getName());
 
     public AddToWatchlistCommand(String description) {
+        LOGGER.setLevel(Level.WARNING);
         String[] descriptionSplit = description.split(" ", 2);
         
         option = descriptionSplit[0];
@@ -31,18 +32,18 @@ public class AddToWatchlistCommand extends Command {
      * Adds an anime to current watchlist.
      */
     @Override
-    public String execute(AnimeData animeData, UserManagement userManagement) throws AniException {
-        Storage storage = userManagement.getStorage();
-        User activeUser = userManagement.getActiveUser();
-        Watchlist activeWatchlist = activeUser.getActiveWatchlist();
-        ArrayList<Watchlist> activeWatchlistList = activeUser.getWatchlistList();
+    public String execute(AnimeData animeData, User user) throws AniException {
+        // Storage storage = user.getStorage();
+        Workspace activeWorkspace = user.getActiveWorkspace();
+        Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
+        ArrayList<Watchlist> activeWatchlistList = activeWorkspace.getWatchlistList();
 
         if (!option.equals(ADD_OPTION)) {
             LOGGER.log(Level.WARNING, "Option type given is wrong");
             throw new AniException("Watchlist command only accepts the option: \"-a\".");
         }
         assert option.equals("-a") == true : "option type should have been \"-a\".";
-        addToWatchlist(storage, activeWatchlistList, activeWatchlist);
+        // addToWatchlist(storage, activeWatchlistList, activeWatchlist);
 
         return "Anime added to watchlist!";
     }
