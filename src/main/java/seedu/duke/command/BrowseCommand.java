@@ -4,6 +4,7 @@ import seedu.duke.anime.Anime;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
+import seedu.duke.storage.StorageManager;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -59,7 +60,7 @@ public class BrowseCommand extends Command {
     }
 
     @Override
-    public String execute(AnimeData animeData, User user) throws AniException {
+    public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         setBrowseOptions();
         ArrayList<Anime> usableList = animeData.getAnimeDataList();
 

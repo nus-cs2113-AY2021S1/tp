@@ -60,6 +60,13 @@ public class User extends Human {
         }
     }
 
+    public void setWorkspaceList(ArrayList<Workspace> workspaceList) {
+        this.workspaceList = workspaceList;
+        if (workspaceList.size() != 0) {
+            activeWorkspace = workspaceList.get(0);
+
+        }
+    }
 
     public Workspace getActiveWorkspace() {
         return activeWorkspace;
@@ -83,18 +90,16 @@ public class User extends Human {
         return workspaceList.size();
     }
 
-    public Workspace addWorkspace(String name) throws AniException {
+    public Workspace addWorkspace(String name) {
         Workspace newWorkspace = new Workspace(name);
-        checkIfWorkspaceExist(name);
-
         assert (name != null) : "Workspace details should not have any null.";
 
         workspaceList.add(newWorkspace);
-
         LOGGER.log(Level.INFO, "Workspace created: " + name + " | " + gender);
         return newWorkspace;
     }
 
+    // Suggest to check internally in the workspace command.
     private void checkIfWorkspaceExist(String name) throws AniException {
         for (Workspace existingWorkspace : workspaceList) {
             if (existingWorkspace.getName().equals(name)) {
@@ -103,14 +108,15 @@ public class User extends Human {
         }
     }
 
-    public Workspace getWorkspace(String name) throws AniException {
+    // NOTE: return null and check.
+    public Workspace getWorkspace(String name) {
         for (Workspace existingWorkspace : workspaceList) {
             if (existingWorkspace.getName().equals(name)) {
                 return existingWorkspace;
             }
         }
 
-        throw new AniException("No such workspace!");
+        return null;
     }
 
 

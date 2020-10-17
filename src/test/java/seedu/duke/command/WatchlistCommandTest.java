@@ -1,16 +1,7 @@
 package seedu.duke.command;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import seedu.duke.anime.AnimeData;
-import seedu.duke.exception.AniException;
-import seedu.duke.human.Workspace;
 import seedu.duke.human.User;
-import seedu.duke.storage.Storage;
-import seedu.duke.watchlist.Watchlist;
-
-import java.text.ParseException;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

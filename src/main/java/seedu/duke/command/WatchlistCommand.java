@@ -4,7 +4,7 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.Workspace;
 import seedu.duke.human.User;
-import seedu.duke.storage.Storage;
+import seedu.duke.storage.StorageManager;
 import seedu.duke.watchlist.Watchlist;
 
 import java.util.ArrayList;
@@ -30,20 +30,17 @@ public class WatchlistCommand extends Command {
     }
 
     @Override
-    public String execute(AnimeData animeData, User user) throws AniException {
-        // Storage storage = user.getStorage();
+    public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         Workspace activeWorkspace = user.getActiveWorkspace();
-        ArrayList<Watchlist> activeWatchlistList = activeWorkspace.getWatchlistList();
 
         String commandOutput = "";
         assert option != null : "Command option cannot be null.";
         switch (option) {
         case CREATE_OPTION:
-            // commandOutput = createWatchlist(storage, activeWatchlistList);
-            activeWorkspace.setWatchlistList(activeWatchlistList);
+            commandOutput = createWatchlist(storageManager, activeWorkspace);
             break;
         case LIST_OPTION:
-            commandOutput = listAllWatchlist(activeWatchlistList);
+            commandOutput = listAllWatchlist(activeWorkspace);
             break;
         default:
             LOGGER.log(Level.WARNING, "Provided invalid option: " + option);
@@ -54,41 +51,43 @@ public class WatchlistCommand extends Command {
         return commandOutput;
     }
 
-    private String createWatchlist(Storage storage, ArrayList<Watchlist> activeWatchlistList) throws AniException {
+    private String createWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
         if (optionInformation.isBlank()) {
             LOGGER.log(Level.WARNING, "Watchlist name is empty.");
             throw new AniException("Watchlist name cannot be empty.");
         }
 
         Watchlist newWatchlist = new Watchlist(optionInformation);
-        boolean isWatchlistNameUnique = !activeWatchlistList.contains(newWatchlist);
+        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
+        boolean isWatchlistNameUnique = !watchlistList.contains(newWatchlist);
         if (!isWatchlistNameUnique) {
             LOGGER.log(Level.WARNING, optionInformation + " is already one of the watchlist name.");
             throw new AniException("You already have a watchlist named \"" + optionInformation + "\".");
         }
 
-        activeWatchlistList.add(newWatchlist);
-        storage.saveWatchlist(activeWatchlistList);
+        watchlistList.add(newWatchlist);
+        storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
         return "Watchlist created successfully!";
     }
 
-    private String listAllWatchlist(ArrayList<Watchlist> activeWatchlistList) {
-        if (activeWatchlistList.size() == 0) {
+    private String listAllWatchlist(Workspace activeWorkspace) {
+        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
+        if (watchlistList.size() == 0) {
             return "You have no watchlist to list.";
         }
 
         StringBuilder sbWatchlistList = new StringBuilder();
         sbWatchlistList.append("Currently, you have ");
-        sbWatchlistList.append(activeWatchlistList.size()).append(" watchlist(s):");
-        for (int i = 0; i < activeWatchlistList.size(); i++) {
-            Watchlist watchlist = activeWatchlistList.get(i);
+        sbWatchlistList.append(watchlistList.size()).append(" watchlist(s):");
+        for (int i = 0; i < watchlistList.size(); i++) {
+            Watchlist watchlist = watchlistList.get(i);
             sbWatchlistList.append(System.lineSeparator());
             sbWatchlistList.append("\t").append(i + 1).append(". ");
             sbWatchlistList.append(watchlist.getName());
         }
 
-        String watchlistList = sbWatchlistList.toString();
-        assert !(watchlistList.isBlank()) : "The String that list watchlist(s) cannot be empty.";
-        return watchlistList;
+        String watchlistListString = sbWatchlistList.toString();
+        assert !(watchlistListString.isBlank()) : "The String that list watchlist(s) cannot be empty.";
+        return watchlistListString;
     }
 }
