@@ -126,7 +126,7 @@ public class DeleteCommand extends Command {
 
             books.delete(bookIndex);
             ui.printDeleteBook(book);
-            
+
         } catch (IndexOutOfBoundsException e) {
             ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
         } catch (NumberFormatException e) {

@@ -58,7 +58,7 @@ public class BookList extends QuotesifyList<Book> {
         String booksToReturn = "";
 
         for (Book book : books) {
-            booksToReturn += getIndex(book)+1 + ". " + book.toString() + System.lineSeparator();
+            booksToReturn += getIndex(book) + 1 + ". " + book.toString() + System.lineSeparator();
         }
 
         return booksToReturn;
