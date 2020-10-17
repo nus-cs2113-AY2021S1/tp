@@ -172,7 +172,7 @@ public class InputParser {
             String[] tokenizedInput = input.split(" ");
             int showRating = Integer.parseInt(tokenizedInput[1]);
             ChangeRatingCommand changeShowRating = new ChangeRatingCommand(tokenizedInput[0]);
-            changeShowRating.changeRating(showRating);
+            changeShowRating.changeRating(tokenizedInput[0], showRating);
             Ui.printChangeRating(tokenizedInput[0], tokenizedInput[1]);
         } catch (NullPointerException e) {
             Ui.printBadInputException();
