@@ -8,13 +8,12 @@ import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.notebook.Tag;
 import seedu.duke.ui.Formatter;
 
-import static seedu.duke.command.DeleteTagCommand.COMMAND_SUCCESSFUL_MESSAGE;
-import static seedu.duke.command.DeleteTagCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
-
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.duke.command.DeleteTagCommand.COMMAND_UNSUCCESSFUL_MESSAGE;
+import static seedu.duke.command.DeleteTagCommand.HEADER_DELETE_TAG;
 
 class DeleteTagCommandTest {
 
@@ -50,13 +49,14 @@ class DeleteTagCommandTest {
         tags.add(tagBlue);
 
         ArrayList<String> expectedResult = new ArrayList<>();
+        expectedResult.add(HEADER_DELETE_TAG);
         expectedResult.add(COMMAND_UNSUCCESSFUL_MESSAGE + tagRed);
         expectedResult.add(COMMAND_UNSUCCESSFUL_MESSAGE + tagGreen);
         expectedResult.add(COMMAND_UNSUCCESSFUL_MESSAGE + tagBlue);
 
         String result = getCommandExecutionString(tagManager, tags);
 
-        assertEquals(Formatter.formatString(expectedResult, false), result);
+        assertEquals(Formatter.formatString(expectedResult, true), result);
     }
 
     @Test

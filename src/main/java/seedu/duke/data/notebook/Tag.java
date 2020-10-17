@@ -3,17 +3,10 @@ package seedu.duke.data.notebook;
 import com.diogonunes.jcolor.Attribute;
 import static com.diogonunes.jcolor.Ansi.colorize;
 
-import org.fusesource.jansi.Ansi;
-import org.fusesource.jansi.Ansi.Color;
-import org.fusesource.jansi.AnsiConsole;
-import org.fusesource.jansi.AnsiMain;
-
 /**
  * Represents a tag with respective color bind to it.
  */
 public class Tag {
-
-    public static final int NUM_ANSI_CHAR = 9;
 
     public static final String COLOR_RED_STRING = "RED";
     public static final String COLOR_GREEN_STRING = "GREEN";

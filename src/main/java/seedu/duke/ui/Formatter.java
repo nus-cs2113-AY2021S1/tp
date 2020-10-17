@@ -12,6 +12,9 @@ public class Formatter {
 
     /** A platform independent line separator. */
     public static final String LS = System.lineSeparator();
+
+    private static final int NUM_ANSI_CHAR = 9;
+
     private static final String ROW_SPLIT = "=";
     private static final String COLUMN_SPLIT = "|";
     private static final String COLUMN_START = "|| ";
