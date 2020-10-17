@@ -16,13 +16,15 @@ public class CommandEventDel extends Command {
 
     @Override
     public String help() {
-        return null;
+        return "Syntax: event addEvent <Index>";
     }
 
     @Override
     public int validate(UserInput ui) {
         userInput = ui;
-        if (ui.getCategory().equals("event") && ui.getCommand().equalsIgnoreCase("delEvent")) {
+        if (ui.getCategory().equals("event") && (ui.getCommand().equalsIgnoreCase("delEvent")
+                || ui.getCommand().equalsIgnoreCase("del")
+                || ui.getCommand().equalsIgnoreCase("d"))) {
             if (ui.getNumArgs() == 1) {
                 if ((ui.getArg("") != null)) {
                     return ACCEPT;
