@@ -24,7 +24,7 @@ public class Formatter {
     private static final int MAX_MESSAGE_LENGTH = MAX_ROW_LENGTH - COLUMN_START.length() - COLUMN_END.length();
 
 
-    // Character code adapted from http://patorjk.com/software/taag/#p=display&f=Ghost&t=NotUS
+    // ASCII art code adapted from http://patorjk.com/software/taag/#p=display&f=Ghost&t=NotUS
     // Slight modifications made to make it easier on the eyes
     private static final String NOTUS_LOGO = LS
             + LS
@@ -47,8 +47,87 @@ public class Formatter {
             + "`--'  `--'       `-----'    `--'    `-----'     `-----'  "
             + LS;
 
+    // ASCII art code adapted from https://patorjk.com/software/taag/#p=display&f=Ghost&t=Bye
+    // and https://www.asciiart.eu/cartoons/casper
+    // Slight modifications made to make it easier on the eyes
+    private static final String GOODBYE_MESSAGE = LS
+            + ".-. .-')                 ('-.                .,,cccd$$$$$$$$$$$ccc,"
+            + LS
+            + "\\  ( OO )              _(  OO)           ,cc$$$$$$$$$$$$$$$$$$$$$$$$$cc,"
+            + LS
+            + ";-----.\\  ,--.   ,--.(,------.         ,d$$$$$$$$$$$$$$$$\"J$$$$$$$$$$$$$$c,"
+            + LS
+            + "| .-.  |   \\  `.'  /  |  .---'       d$$$$$$$$$$$$$$$$$$,$\" ,,`?$$$$$$$$$$$$L"
+            + LS
+            + "| '-' /  .-')     /   |  |         ,$$$$$$$$$$$$$$$$$$$$$',J$$$$$$$$$$$$$$$$$b"
+            + LS
+            + "| .-. `.(OO  \\   /   (|  '--.    ,$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$i `$h"
+            + LS
+            + "| |  \\  ||   /  /\\_   |  .--'    $$$$$$$$$$$$$$$$$$$$$$$$$P'  \"$$$$$$$$$$$h $$"
+            + LS
+            + "| '--'  /`-./  /.__)  |  `---.  ;$$$$$$$$$$$$$$$$$$$$$$$$F,$$$h,?$$$$$$$$$$h$F"
+            + LS
+            + "`------'   `--'       `------' `$$$$$$$$$$$$$$$$$$$$$$$F:??$$$:)$$$$P\",. $$F"
+            + LS
+            + "                                ?$$$$$$$$$$$$$$$$$$$$$$(   `$$ J$$F\"d$$F,$F"
+            + LS
+            + "                                 ?$$$$$$$$$$$$$$$$$$$$$h,  :P'J$$F  ,$F,$"
+            + LS
+            + "                                  ?$$$$$$$$$$$$$$$$$$$$$$$ccd$$`$h, \",d$"
+            + LS
+            + "                                   \"$$$$$$$$$$$$$$$$$$$$$$$$\",cdc $$$$\""
+            + LS
+            + "                           ,uu,      `?$$$$$$$$$$$$$$$$$$$$$$$$$$$c$$$$h"
+            + LS
+            + "                     .,d$$$$$$$cc,   `$$$$$$$$$$$$$$$$??$$$$$$$$$$$$$$$,"
+            + LS
+            + "                   ,d$$$$$$$$$$$$$$$bcccc,,??$$$$$$ccf `\"??$$$$??$$$$$$$"
+            + LS
+            + "                  d$$$$$$$$$$$$$$$$$$$$$$$$$h`?$$$$$$h`:...  d$$$$$$$$P"
+            + LS
+            + "                 d$$$$$$$$$$$$$$$$$$$$$$$$$$$$`$$$$$$$hc,,cd$$$$$$$$P\""
+            + LS
+            + "             =$$?$$$$$$$$P' ?$$$$$$$$$$$$$$$$$;$$$$$$$$$???????\",,"
+            + LS
+            + "                =$$$$$$F       `\"?????$$$$$$$$$$$$$$$$$$$$$$$$$$$$$bc"
+            + LS
+            + "                d$$F\"?$$k ,ccc$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$i"
+            + LS
+            + "        .     ,ccc$$c`\"\"u$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$P\",$$$$$$$$$$$$h"
+            + LS
+            + "     ,d$$$L  J$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\" `\"\"$$$??$$$$$$$"
+            + LS
+            + "   ,d$$$$$$c,\"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$F       `?J$$$$$$$'"
+            + LS
+            + "  ,$$$$$$$$$$h`$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$F           ?$$$$$$$P\"\"=,"
+            + LS
+            + " ,$$$F?$$$$$$$ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$F              3$$$$II\"?$h,"
+            + LS
+            + " $$$$$`$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$P\"               ;$$$??$$$,\"?\""
+            + LS
+            + " $$$$F ?$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$P\",z'                3$$h   ?$F"
+            + LS
+            + "        `?$$$$$$$$$$$$$$$??$$$$$$$$$PF\"',d$P\"                  \"?$F"
+            + LS
+            + "            \"\"\"\"\"\"\"         ,z$$$$$$$$$$$$$P"
+            + LS
+            + "                                  J$$$$$$$$$$$$$$F"
+            + LS
+            + "                                 ,$$$$$$$$$$$$$$F"
+            + LS
+            + "                                 :$$$$$c?$$$$PF'"
+            + LS
+            + "                                 `$$$$$$$P"
+            + LS
+            + "                                  `?$$$$F";
+
+
     public static String getNotusLogo() {
         return NOTUS_LOGO;
+    }
+
+    public static String getGoodbyeMessage() {
+        return GOODBYE_MESSAGE;
     }
 
     public static String formatNotebook(String header, Notebook notebook) {

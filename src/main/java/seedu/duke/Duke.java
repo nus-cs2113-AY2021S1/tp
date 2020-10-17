@@ -57,6 +57,7 @@ public class Duke {
             String result = executeCommand(command);
             interfaceManager.prints(result);
         } while (!ExitCommand.isExit(command));
+        interfaceManager.prints(Formatter.getGoodbyeMessage());
     }
 
     /**
