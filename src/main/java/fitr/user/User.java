@@ -95,7 +95,7 @@ public class User {
         this.gender = gender;
     }
 
-    private void setupAge() {
+    public void setupAge() {
         Integer ageInput = 0;
         while (ageInput <= 0) {
             try {
@@ -111,7 +111,7 @@ public class User {
         setAge(ageInput);
     }
 
-    private void setupHeight() {
+    public void setupHeight() {
         Double heightInput = 0.00;
         // Height (in m)
         while (heightInput <= 0.00) {
@@ -128,7 +128,7 @@ public class User {
         setHeight(heightInput);
     }
 
-    private void setupWeight() {
+    public void setupWeight() {
         // Weight (in kg)
         Double weightInput = 0.00;
         while (weightInput <= 0.00) {
@@ -145,7 +145,7 @@ public class User {
         setWeight(weightInput);
     }
 
-    private void setupGender() {
+    public void setupGender() {
         String genderInput = Ui.read();
         while (!genderInput.equalsIgnoreCase("m") && !genderInput.equalsIgnoreCase("f")) {
             Ui.printCustomMessage(ERROR_INVALID_GENDER_INPUT + INPUT_GENDER);
