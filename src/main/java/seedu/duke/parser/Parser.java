@@ -183,9 +183,8 @@ public class Parser {
         return null;
     }
 
-    public static boolean stringContainsNumber( String s )
-    {
-        return Pattern.compile( "[0-9]" ).matcher( s ).find();
+    public static boolean stringContainsNumber(String s) {
+        return Pattern.compile("[0-9]").matcher(s).find();
     }
 
     public boolean isExit() {
