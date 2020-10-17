@@ -53,6 +53,10 @@ public abstract class Event extends CalendarItem {
         return date;
     }
 
+    public void markAsOver() {
+        isOver = true;
+    }
+
     public LocalTime getTime() {
         return time;
     }
