@@ -1,5 +1,6 @@
 package seedu.quotesify.quote;
 
+import seedu.quotesify.book.Book;
 import seedu.quotesify.lists.QuotesifyList;
 
 import java.util.ArrayList;
@@ -23,6 +24,10 @@ public class QuoteList extends QuotesifyList<Quote> {
 
     public int getSize() {
         return quotes.size();
+    }
+
+    public int getIndex(Quote quote) {
+        return quotes.indexOf(quote);
     }
 
     @Override
