@@ -66,6 +66,19 @@ public class Ui {
         print(dividerLine);
     }
 
+    public void viewWallet(double amount, double allStocksPrice) {
+        print(dividerLine);
+        System.out.println("You currently have $" + String.format("%.02f", amount) + " in your wallet.");
+        System.out.println("Allocated: $" + String.format("%.02f", allStocksPrice));
+        double difference = (amount + allStocksPrice) - 10000;
+        if (difference >= 0) {
+            System.out.println("Profit of: +$" + String.format("%.02f", difference));
+        } else {
+            System.out.println("Loss of : -$" + String.format("%.02f", Math.abs(difference)));
+        }
+        print(dividerLine);
+    }
+
     public void printStocks(ArrayList<Stock> stocks) {
         String[] stockNames = new String[stocks.size()];
         for (int i = 0; i < stocks.size(); i++) {

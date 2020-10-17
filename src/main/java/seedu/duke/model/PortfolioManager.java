@@ -1,6 +1,7 @@
 package seedu.duke.model;
 
 
+import seedu.duke.api.StockPriceFetcher;
 import seedu.duke.data.exception.DukeException;
 
 import java.util.ArrayList;
