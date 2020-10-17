@@ -47,9 +47,11 @@ public class Formatter {
             + "`--'  `--'       `-----'    `--'    `-----'     `-----'  "
             + LS;
 
-    // ASCII art code adapted from https://patorjk.com/software/taag/#p=display&f=Ghost&t=Bye
-    // and https://www.asciiart.eu/cartoons/casper
+    // ASCII art code adapted from https://patorjk.com/software/taag/#p=display&f=Ghost&t=Bye (for the text bye)
     // Slight modifications made to make it easier on the eyes
+    // and for casper (the big friendly ghost) see below
+    // @@author {R-Ramana}-reused
+    // https://www.asciiart.eu/cartoons/casper
     private static final String GOODBYE_MESSAGE = LS
             + ".-. .-')                 ('-.                .,,cccd$$$$$$$$$$$ccc,"
             + LS
@@ -120,6 +122,7 @@ public class Formatter {
             + "                                 `$$$$$$$P"
             + LS
             + "                                  `?$$$$F";
+    // @@author
 
 
     public static String getNotusLogo() {
