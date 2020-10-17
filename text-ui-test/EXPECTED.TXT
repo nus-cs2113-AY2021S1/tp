@@ -1,4 +1,4 @@
- Welcome to AniChan!
+Welcome to AniChan!
                   _  _____ _
       /\         (_)/ ____| |
      /  \   _ __  _| |    | |__   __ _ _ __
@@ -7,18 +7,55 @@
   /_/    \_\_| |_|_|\_____|_| |_|\__,_|_| |_|
 
 -------------------------------------------------------------
- User file is not found, let's start afresh.
- Watchlist file is not found, let's start a afresh.
+User: Does not exist.
 -------------------------------------------------------------
- What's your name?
- #>  Hello Abec Steiner 33rd! What might your gender be? (Male/Female/Other)
- #>  What do you want your workspace to be called?
- #> 
- Crunchyroll Workspace (Default) #> 
- Crunchyroll Workspace (Default) #> 
- Crunchyroll Workspace (Default) #>  Currently, you have 1 watchlist(s):
+What's your name?
+#>Hello Abec Steiner 33rd! What might your gender be? (Male/Female/Other)
+#>
+Default (Default) #> Watchlist created successfully!
+
+Default (Default) #> Watchlist created successfully!
+
+Default (Default) #> Currently, you have 3 watchlist(s):
 	1. Default
+	2. a
+	3. b
 
- Crunchyroll Workspace (Default) #>  Anime added to watchlist!
+Default (Default) #> Anime added to watchlist!
 
- Crunchyroll Workspace (Default) #>  Sayonara Abec Steiner 33rd-chan!
+Default (Default) #> Anime added to watchlist!
+
+Default (Default) #> Saving 1. Cowboy Bebop  to bookmark.
+
+Default (Default) #> Saving 410. InuYasha the Movie 2: The Castle Beyond the Looking Glass  to bookmark.
+
+Default (Default) #> Editing Cowboy Bebop: The Movie - Knockin' on Heaven's Door to have 5 episode
+
+Default (Default) #> Listing all anime in bookmark:
+	1. Cowboy Bebop: The Movie - Knockin' on Heaven's Door Ep: 5
+	2. InuYasha the Movie 3: Swords of an Honorable Ruler
+
+
+Default (Default) #> Successfully added new workspace:
+ Workspace: Testing1
+
+Default (Default) #> Successfully added new workspace:
+ Workspace: Testing2
+
+Default (Default) #> Welcome back, Abec Steiner 33rd-chan
+
+Testing1 (Default) #> Anime added to watchlist!
+
+Testing1 (Default) #> Watchlist created successfully!
+
+Testing1 (Default) #> Currently, you have 2 watchlist(s):
+	1. Default
+	2. a
+
+Testing1 (Default) #> Listing all anime in bookmark:
+	Uhh.. It's empty.. :(
+
+
+Testing1 (Default) #> Welcome back, Abec Steiner 33rd-chan
+
+Testing2 (Default) #> Sayonara Abec Steiner 33rd-chan!
