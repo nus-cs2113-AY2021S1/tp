@@ -21,6 +21,13 @@ public class SubjectQuiz extends Quiz {
 
     }
 
+    /**
+     * Transfers the flashcards from the all the topics in a subject to the SubjectQuiz class and
+     * sets the maximum score of the quiz.
+     *
+     * @throws NoFlashCardException If the topic has no flashcards
+     * @throws NoTopicException     If the subject has no topic
+     */
     public void setUpQuiz() throws NoFlashCardException, NoTopicException {
         if (subject.getTopics().getList().size() == 0) {
             throw new NoTopicException();
@@ -38,6 +45,13 @@ public class SubjectQuiz extends Quiz {
         }
     }
 
+    /**
+     * Begins the quiz for the user.
+     *
+     * @param results The results of the subject
+     * @throws NoFlashCardException If the topic has no flashcards
+     * @throws NoTopicException     If the subject has no topic
+     */
     public void startQuiz(ResultList results) throws NoFlashCardException, NoTopicException {
         setUpQuiz();
 

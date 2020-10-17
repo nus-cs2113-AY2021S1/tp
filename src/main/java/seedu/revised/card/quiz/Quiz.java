@@ -18,6 +18,13 @@ public abstract class Quiz {
         return incorrectAnswers;
     }
 
+    /**
+     * Checks the given answer for its correctness. If the answer is wrong, the question, the correct answer
+     * and the wrong answer given by the user is added to the incorrectAnswers List.
+     *
+     * @param answer    The answer given by the user
+     * @param flashcard The flashcard for which the user is currently answering the questions
+     */
     public void checkAnswer(String answer, Flashcard flashcard) {
 
         if (flashcard.getAnswer().equalsIgnoreCase(answer)) {

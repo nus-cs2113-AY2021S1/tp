@@ -34,6 +34,11 @@ public class Result {
     }
 
 
+    /**
+     * Updates the current score and sets the description of the result.
+     *
+     * @param score The <code>score</code> to replace the current score
+     */
     public void updateResult(double score) {
         this.score = score;
         if (this.score >= this.maxScore / 2) {

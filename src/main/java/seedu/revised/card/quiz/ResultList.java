@@ -11,6 +11,11 @@ public class ResultList {
 
     }
 
+    /**
+     * Adds a <code>Result</code> into a <code>ResultList</code>.
+     *
+     * @param result The <code>Result</code> to add into a <code>ResultList</code>
+     */
     public void add(Result result) {
         this.resultList.add(result);
     }
