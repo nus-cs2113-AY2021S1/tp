@@ -153,7 +153,7 @@ public class Storage {
             System.out.println(f.getName() + " not found: " + e.getMessage());
             return;
         }
-
+        assert s != null;
         while (s.hasNext()) {
             String input = s.nextLine();
             String[] split = input.split(":", 2);

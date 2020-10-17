@@ -2,8 +2,10 @@ package parser;
 
 
 import command.AddCommand;
+import command.ClearCommand;
 import command.EditCommand;
 import command.ExitCommand;
+import command.HelpCommand;
 import command.PrintFullListCommand;
 import command.PrintLocationCommand;
 import command.Command;
@@ -14,6 +16,7 @@ import event.PersonalEvent;
 
 import exception.EmptyEventIndexException;
 import exception.NoEventLocationException;
+import exception.UnknownErrorException;
 import exception.WrongEditFormatException;
 import location.Building;
 import location.Hostel;
@@ -54,23 +57,29 @@ public abstract class Parser {
     public static final String LOCATION_MARKER = "/l";
     private static final String Event_FIND_DATE = "date";
     public static final String EDIT_INSTRUCTION = "Enter new event:";
+    public static final String HELP = "help";
+    public static final String CLEAR = "clear";
 
     /**
-     * This function calls the correct command the user want to perform, by returning a <\code>Command<\code> object.
+     * This function calls the correct command the user want to perform, by returning a Command object.
      *
      * @param fullCommand the full string of user input
-     * @return the specific <\code>Command<\code> object to perform what the user want to do
+     * @return the specific Command object to perform what the user want to do
      * @throws NuScheduleException includes all exceptions may happen during parsing
      */
     public static Command parse(String fullCommand) throws NuScheduleException {
         // this block deals with exit and list command
-        switch (fullCommand) {
+        switch (fullCommand.trim()) {
         case EXIT:
             return new ExitCommand();
         case PRINT_Event_LIST:
             return new PrintFullListCommand();
         case PRINT_LOCATION_LIST:
             return new PrintLocationCommand();
+        case HELP:
+            return new HelpCommand();
+        case CLEAR:
+            return new ClearCommand();
         default:
             break;
         }
@@ -208,9 +217,8 @@ public abstract class Parser {
                 } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                     throw new TimeFormatException();
                 }
-
-            break;
-                default:
+                break;
+            default:
                 throw new WrongCommandException();
             }
         }
@@ -269,9 +277,13 @@ public abstract class Parser {
             } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                 throw new TimeFormatException();
             }
+            break;
         default:
             throw new WrongCommandException();
         }
+
+        assert false;//nothing should reach here
+        throw new UnknownErrorException();
     }
 
     /**

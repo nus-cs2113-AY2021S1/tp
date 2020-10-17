@@ -57,6 +57,7 @@ public class EventList {
     }
 
     public void editEvent(Event event, int index) {
+        assert events!=null;
         events.set(index, event);
     }
 
@@ -127,6 +128,7 @@ public class EventList {
      * Clear the ArrayList events if it is not empty.
      */
     public void clearEvents() {
+        assert events!=null;
         events.clear();
     }
 }

@@ -1,5 +1,6 @@
 package command;
 
+import exception.EmptyEventListException;
 import exception.NuScheduleException;
 import locationlist.BusStopList;
 import locationlist.LocationList;
@@ -17,9 +18,11 @@ public class PrintFullListCommand extends Command {
      * @param busStops  the list of BusStops.
      * @param ui        do outputs.
      * @param storage   store the data.
+     * @throws EmptyEventListException the exception when the user want to print an empty list.
      */
     @Override
-    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) {
+    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage)
+            throws EmptyEventListException {
         ui.printEventList(events.getEventList());
     }
 }

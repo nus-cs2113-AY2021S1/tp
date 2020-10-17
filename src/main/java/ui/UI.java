@@ -2,6 +2,7 @@ package ui;
 
 
 import event.Event;
+import exception.EmptyEventListException;
 import location.BusStop;
 import location.Location;
 import locationlist.LocationList;
@@ -61,12 +62,12 @@ public class UI {
     /**
      * Prints all the events with labels, based on the input list.
      *
-     * @param events an <\code>ArrayList<\code> of events to be printed one by one.
+     * @param events an ArrayList of events to be printed one by one.
      */
-    public void printEventList(ArrayList<Event> events) {
+    public void printEventList(ArrayList<Event> events) throws EmptyEventListException {
         int numPrintedEvents = 0;
         if (events.size() == 0) {
-            System.out.println("The list is empty.");
+            throw new EmptyEventListException();
         } else {
             try {
                 System.out.println("Here are the Events in your list:");
@@ -83,7 +84,7 @@ public class UI {
     /**
      * Prints all the Events of the filtered list with labels, based on the input list.
      *
-     * @param events an <\code>ArrayList<\code> of Events to be printed one by one.
+     * @param events an ArrayList of Events to be printed one by one.
      */
     public void printFilteredEventList(ArrayList<Event> events) {
         int numPrintedEvents = 0;
@@ -182,7 +183,7 @@ public class UI {
     /**
      * Prints all the Events of the filtered list with labels, based on the input list.
      *
-     * @param filteredEventList an <\code>ArrayList<\code> of Events to be printed one by one.
+     * @param filteredEventList an ArrayList of Events to be printed one by one.
      */
     public void printFilteredDateEventList(ArrayList<Event> filteredEventList) {
         int numPrintedEvents = 0;
@@ -224,11 +225,10 @@ public class UI {
     }
 
     /**
-     * Prints the help information when user inpur command 'help'
-     * relevant command information with reference to the current user guide draft
+     * Prints the help information when user input command 'help'.
+     * Relevant command information with reference to the current user guide draft.
      */
     public void printHelp() {
-        printLine();
         System.out.println("Below are all the commands and their functions in the form of command - function: ");
         System.out.println("help - view all the commands");
         System.out.println("add - add any type of event");
@@ -236,7 +236,14 @@ public class UI {
         System.out.println("locate - find location information");
         System.out.println("list - view all events added");
         System.out.println("clear - clear all events");
-        printLine();
+
+    }
+
+    /**
+     * Prints the message when the user clears the list.
+     */
+    public void printClearEventsSuccessful() {
+        System.out.println("Clear successful. The list is now empty.");
     }
 }
 
