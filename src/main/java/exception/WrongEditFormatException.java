@@ -1,4 +1,5 @@
 package exception;
+
 /**
  * Represents the exception when the index for edit is of a wrong format.
  */

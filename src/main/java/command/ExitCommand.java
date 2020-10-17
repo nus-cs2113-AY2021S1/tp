@@ -14,11 +14,11 @@ public class ExitCommand extends Command {
      * Mark the status of the program, isExit, as true.
      * Also prints the exit message.
      *
-     * @param tasks   the list of tasks.
+     * @param tasks     the list of tasks.
      * @param locations the list of Locations
-     * @param busStops the list of BusStops
-     * @param ui      do outputs.
-     * @param storage store the data.
+     * @param busStops  the list of BusStops
+     * @param ui        do outputs.
+     * @param storage   store the data.
      */
     @Override
     public void execute(EventList tasks, LocationList locations, BusStopList busStops, UI ui, Storage storage) {

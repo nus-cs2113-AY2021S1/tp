@@ -8,8 +8,8 @@ import java.util.Arrays;
  * an array of Strings which is the list of buses available at the bus stop.
  */
 public class BusStop {
-    private String name;
-    private String[] buses;
+    private final String name;
+    private final String[] buses;
 
     public BusStop(String name, String[] buses) {
         this.name = name;

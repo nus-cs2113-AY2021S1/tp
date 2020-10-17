@@ -1,4 +1,5 @@
 package exception;
+
 /**
  * Represents the case when the user types date but do not specify
  * the date.

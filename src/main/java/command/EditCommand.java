@@ -11,9 +11,9 @@ import ui.UI;
 /**
  * Represents the command call when the user adds a new event.
  */
-public class EditCommand extends Command{
-    private int index;
-    private Event event;
+public class EditCommand extends Command {
+    private final int index;
+    private final Event event;
 
     public EditCommand(Event event, int index) {
         this.event = event;
@@ -23,7 +23,7 @@ public class EditCommand extends Command{
     /**
      * Edits the corresponding event/task in the list.
      *
-     * @param events   the list of events.
+     * @param events  the list of events.
      * @param ui      do outputs.
      * @param storage store the data.
      */

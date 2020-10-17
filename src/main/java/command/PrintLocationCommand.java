@@ -11,11 +11,11 @@ public class PrintLocationCommand extends Command {
     /**
      * Prints list of locations
      *
-     * @param events  the list of Events.
+     * @param events    the list of Events.
      * @param locations the list of Locations
-     * @param busStops the list of BusStops
-     * @param ui      do outputs.
-     * @param storage store the data.
+     * @param busStops  the list of BusStops
+     * @param ui        do outputs.
+     * @param storage   store the data.
      */
     @Override
     public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) {

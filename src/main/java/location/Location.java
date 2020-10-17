@@ -8,8 +8,8 @@ enum locationType {
 }
 
 /**
- * Represents location objects
- * Contains String name, which is the name of location, and type of location
+ * Represents location objects.
+ * Contains String name, which is the name of location, and type of location.
  */
 public class Location {
     protected String name;
@@ -26,22 +26,21 @@ public class Location {
 
     protected String printType() {
         String str;
-
         switch (type) {
-            case BUILDING:
-                str = "Building";
-                break;
-            case HOSTEL:
-                str = "Hostel";
-                break;
-            case LT:
-                str = "Lecture Theatre";
-                break;
-            case OUT_OF_NUS:
-                str = "Out of NUS";
-                break;
-            default:
-                str = "ERROR";
+        case BUILDING:
+            str = "Building";
+            break;
+        case HOSTEL:
+            str = "Hostel";
+            break;
+        case LT:
+            str = "Lecture Theatre";
+            break;
+        case OUT_OF_NUS:
+            str = "Out of NUS";
+            break;
+        default:
+            str = "ERROR";
         }
 
         return str;

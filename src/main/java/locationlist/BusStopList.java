@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class BusStopList {
     private static final String filePath = "data/bus_stops.txt";
-    private ArrayList<BusStop> busStopList = new ArrayList<>();
+    private final ArrayList<BusStop> busStopList = new ArrayList<>();
 
     public ArrayList<BusStop> getBusStopList() {
         return busStopList;

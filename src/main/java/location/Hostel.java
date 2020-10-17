@@ -6,7 +6,7 @@ import java.util.Arrays;
  * Represents Hostel objects.
  * Contains an array of Strings nearestBusStops which represents the bus stops nearby.
  */
-public class Hostel extends Location{
+public class Hostel extends Location {
     String[] nearestBusStops;
 
     public Hostel(String name, String[] nearestBusStops) {

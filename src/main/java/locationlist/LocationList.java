@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class LocationList {
     private static final String filePath = "data/locations.txt";
-    private ArrayList<Location> locationList = new ArrayList<>();
+    private final ArrayList<Location> locationList = new ArrayList<>();
 
     public ArrayList<Location> getLocationList() {
         return locationList;

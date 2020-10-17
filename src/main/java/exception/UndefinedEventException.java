@@ -5,7 +5,7 @@ package exception;
  * some events that does not exist.
  */
 public class UndefinedEventException extends NuScheduleException {
-    private int index;//Task label of the task
+    private final int index;//Task label of the task
 
     /**
      * Create an exception according to the input of the user.

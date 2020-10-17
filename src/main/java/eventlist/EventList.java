@@ -55,7 +55,7 @@ public class EventList {
             throw new UndefinedEventException(eventIndex);
         }
     }
-    
+
     public void editEvent(Event event, int index) {
         events.set(index, event);
     }

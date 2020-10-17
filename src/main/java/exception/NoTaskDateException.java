@@ -1,4 +1,5 @@
 package exception;
+
 /**
  * Represents the exception happens when the user trying to find a Task with a certain date, but such
  * task does not exist in the list.

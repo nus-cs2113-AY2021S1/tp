@@ -65,7 +65,7 @@ public class UI {
      */
     public void printEventList(ArrayList<Event> events) {
         int numPrintedEvents = 0;
-        if (events.size() == 0){
+        if (events.size() == 0) {
             System.out.println("The list is empty.");
         } else {
             try {
@@ -74,7 +74,7 @@ public class UI {
                     numPrintedEvents++;
                     System.out.println(numPrintedEvents + ". " + event.toString());
                 }
-            } catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 System.out.println("The list is empty.");
             }
         }
@@ -168,6 +168,7 @@ public class UI {
         System.out.println("Got it. I've added this Event: ");
         System.out.println(eventAdded.toString());
     }
+
     /**
      * Prints the message when the user adds some Event.
      *
@@ -177,6 +178,7 @@ public class UI {
         System.out.println("Got it. I've edited this Event: ");
         System.out.println(eventEdited.toString());
     }
+
     /**
      * Prints all the Events of the filtered list with labels, based on the input list.
      *
@@ -215,7 +217,7 @@ public class UI {
     public void printBusStopList(ArrayList<BusStop> busStopList) {
         int i = 1;
         System.out.println("List of bus stops: ");
-        for(BusStop busStop : busStopList) {
+        for (BusStop busStop : busStopList) {
             System.out.println(i + ". " + busStop);
             i++;
         }
