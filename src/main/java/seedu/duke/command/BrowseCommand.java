@@ -45,7 +45,7 @@ public class BrowseCommand extends Command {
         this.sortType = 0;
         this.order = 1;
         this.page = 1;
-        this.indexToPrint = 1;
+        this.indexToPrint = 0;
         this.filter = "";
         LOGGER.setLevel(Level.WARNING);
     }

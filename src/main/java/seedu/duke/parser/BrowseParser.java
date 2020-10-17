@@ -29,6 +29,7 @@ public class BrowseParser extends CommandParser {
 
     public BrowseParser() {
         browseCommand = new BrowseCommand();
+        LOGGER.setLevel(Level.WARNING);
     }
 
     public BrowseCommand parse(String description) throws AniException {
@@ -43,8 +44,11 @@ public class BrowseParser extends CommandParser {
     private void parameterParser(String[] paramGiven) throws AniException {
         for (String param : paramGiven) {
             String[] paramParts = param.split(" ");
+            if (paramParts.length == 0) {
+                break;
+            }
             switch (paramParts[0].trim()) {
-            case "": //skip the first empty param
+            case "": //skip empty param
                 break;
             case SORT_PARAM:
                 paramFieldCheck(paramParts);

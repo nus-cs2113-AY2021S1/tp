@@ -65,7 +65,6 @@ public abstract class CommandParser {
      * @param checkStr the string to check
      * @return true if it can be parsed into an integer
      */
-
     public boolean isInt(String checkStr) {
         return checkStr.matches("-?\\d+(\\.\\d+)?");
     }

@@ -20,6 +20,9 @@ public class SwitchWorkspaceParser extends CommandParser {
     public void parameterParser(String[] paramGiven) throws AniException {
         for (String param : paramGiven) {
             String[] paramParts = param.split(" ", 2);
+            if (paramParts.length == 0) {
+                break;
+            }
             switch (paramParts[0].trim()) {
             case "": //skip the first empty param
                 break;
