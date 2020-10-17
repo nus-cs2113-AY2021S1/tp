@@ -10,8 +10,6 @@ import seedu.duke.ui.InterfaceManager;
 import seedu.duke.ui.Formatter;
 import seedu.duke.util.Parser;
 
-import org.fusesource.jansi.AnsiConsole;
-
 /**
  * Entry point of the NotUS application.
  */
@@ -81,8 +79,8 @@ public class Duke {
      * Main entry-point for the application.
      */
     public static void main(String[] args) {
-        AnsiConsole.systemInstall();
+        //AnsiConsole.systemInstall();
         new Duke().run();
-        AnsiConsole.systemUninstall();
+        //AnsiConsole.systemUninstall();
     }
 }

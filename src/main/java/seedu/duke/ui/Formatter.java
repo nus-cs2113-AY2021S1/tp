@@ -8,10 +8,6 @@ import seedu.duke.data.timetable.Event;
 
 import java.util.ArrayList;
 
-import com.diogonunes.jcolor.Attribute;
-import com.diogonunes.jcolor.AnsiFormat;
-import com.diogonunes.jcolor.Ansi;
-
 public class Formatter {
 
     /** A platform independent line separator. */
@@ -151,12 +147,13 @@ public class Formatter {
     private static String encloseRow(String message) {
         int numBlanks;
 
+
         // Calculates the number of blank cells according to the message.
         // For colored text, ignore the ansi codes.
         //if (isColored) {
         //    numBlanks = MAX_MESSAGE_LENGTH - message.length() + Tag.NUM_ANSI_CHAR;
         //} else {
-            numBlanks = MAX_MESSAGE_LENGTH - message.length();
+        numBlanks = MAX_MESSAGE_LENGTH - message.length();
         //    }
 
         // Adds empty space to the message
