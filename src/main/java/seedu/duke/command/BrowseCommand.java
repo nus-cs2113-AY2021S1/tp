@@ -13,20 +13,14 @@ import java.util.logging.Logger;
 
 public class BrowseCommand extends Command {
     protected static final int ANIME_PER_PAGE = 20;
-    protected static final String SORT_PARAM = "s";
-    protected static final String FILTER_PARAM = "f";
-    protected static final String ORDER_PARAM = "o";
     protected static final String PAGE_PARAM = "p";
-    protected static final String ASCENDING_FIELD = "asc";
-    protected static final String DESCENDING_FIELD = "dsc";
-    protected static final String NAME_FIELD = "name";
-    protected static final String RATING_FIELD = "rating";
     protected static final int ID_SORT = 0;
     protected static final int ORDER_DESCENDING = 0;
 
     private int sortType;
     private int order;
     private int page;
+    private int indexToPrint;
     private String filter;
 
     protected static final String LAST_ANIME_WARNING = "Printing Last Anime Series from source";
@@ -35,13 +29,9 @@ public class BrowseCommand extends Command {
     protected static final String OUT_OF_BOUND_PAGE_ERROR = "Invalid Page size!";
     protected static final String PARAMETER_ERROR_HEADER = "Parameter : -";
     protected static final String REQUIRE_ADDITIONAL_FIELD = " requires an additional field";
-    protected static final String TOO_MUCH_FIELDS = " has too much fields";
-    protected static final String INVALID_OPTION = " is not a valid option";
-    protected static final String NOT_RECOGNISED = " is not recognised!";
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for page number!";
     protected static final String ASSERT_SORT_TYPE = "sortType should be < 3";
     protected static final String ASSERT_ORDER_TYPE = "order should be < 2";
-    protected static final String BROWSE_SETTINGS_CHANGED_INFO = "Default values modified";
     protected static final String SORT_ID_DESCENDING = "Sorting by ID descending";
     protected static final String SORT_NAME_ASCENDING = "Sorting by Name Ascending (A to Z)";
     protected static final String SORT_NAME_DESCENDING = "Sorting by Name Descending (Z to A)";
@@ -51,10 +41,11 @@ public class BrowseCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger(BrowseCommand.class.getName());
 
     public BrowseCommand() {
-        this.description = description;
+        this.description = "";
         this.sortType = 0;
         this.order = 1;
         this.page = 1;
+        this.indexToPrint = 1;
         this.filter = "";
         LOGGER.setLevel(Level.WARNING);
     }
@@ -72,12 +63,10 @@ public class BrowseCommand extends Command {
     }
 
     private String buildBrowseOutput(ArrayList<Anime> usableList) throws AniException {
-        int indexToPrint = (page - 1) * 20;
         if (indexToPrint >= usableList.size()) {
             LOGGER.log(Level.WARNING, OUT_OF_BOUND_PAGE_WARNING + indexToPrint);
             throw new AniException(OUT_OF_BOUND_PAGE_ERROR);
         }
-
         StringBuilder result = new StringBuilder();
         for (int i = indexToPrint; i < indexToPrint + ANIME_PER_PAGE; i++) {
             Anime browseAnime = usableList.get(i);
@@ -119,6 +108,7 @@ public class BrowseCommand extends Command {
 
     public void setPage(int page) {
         this.page = Math.max(page, 1);
+        indexToPrint = (page - 1) * 20;
     }
 
     public int getPage() {

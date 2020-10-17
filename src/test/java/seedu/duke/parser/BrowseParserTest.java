@@ -80,14 +80,4 @@ class BrowseParserTest {
         assertEquals(testBrowse.getOrder(), testBrowse2.getOrder());
     }
 
-    @Test
-    void parse_noParam_identicalBrowseSettings() throws AniException {
-        BrowseParser testParse = new BrowseParser();
-        BrowseCommand testBrowse = testParse.parse(NO_PARAM_TEST);
-
-        //Performs test against default settings
-        assertEquals(testBrowse.getPage(), 1);
-        assertEquals(testBrowse.getSortType(), 0);
-        assertEquals(testBrowse.getOrder(), 1);
-    }
 }
