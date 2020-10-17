@@ -1,6 +1,14 @@
 package fitr.parser;
 
-import fitr.command.*;
+import fitr.command.AddExerciseCommand;
+import fitr.command.AddFoodCommand;
+import fitr.command.ClearCommand;
+import fitr.command.Command;
+import fitr.command.DeleteCommand;
+import fitr.command.ExitCommand;
+import fitr.command.HelpCommand;
+import fitr.command.InvalidCommand;
+import fitr.command.ViewCommand;
 
 public class Parser {
     public static Command parse(String userInput) {
