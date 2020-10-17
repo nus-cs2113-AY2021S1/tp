@@ -1,15 +1,15 @@
 package seedu.revised.parser;
 
-import seedu.revised.command.subjectcommand.AddSubjectCommand;
-import seedu.revised.command.subjectcommand.DeleteSubjectCommand;
-import seedu.revised.command.subjectcommand.ExitSubjectCommand;
-import seedu.revised.command.subjectcommand.FindSubjectCommand;
-import seedu.revised.command.subjectcommand.ListSubjectCommand;
-import seedu.revised.command.subjectcommand.ReturnSubjectCommand;
-import seedu.revised.command.subjectcommand.SorrySubjectCommand;
-import seedu.revised.command.subjectcommand.SubjectCommand;
-import seedu.revised.command.subjectcommand.QuizSubjectCommand;
-import seedu.revised.command.subjectcommand.ResultSubjectCommand;
+import seedu.revised.command.subject.AddSubjectCommand;
+import seedu.revised.command.subject.DeleteSubjectCommand;
+import seedu.revised.command.subject.ExitSubjectCommand;
+import seedu.revised.command.subject.FindSubjectCommand;
+import seedu.revised.command.subject.ListSubjectCommand;
+import seedu.revised.command.subject.ReturnSubjectCommand;
+import seedu.revised.command.subject.SorrySubjectCommand;
+import seedu.revised.command.subject.SubjectCommand;
+import seedu.revised.command.subject.QuizSubjectCommand;
+import seedu.revised.command.subject.ResultSubjectCommand;
 
 /**
  * Allows the parsing of inputs provided by the user.

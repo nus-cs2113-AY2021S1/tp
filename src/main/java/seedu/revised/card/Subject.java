@@ -1,5 +1,6 @@
 package seedu.revised.card;
 
+import seedu.revised.card.quiz.Result;
 import seedu.revised.card.quiz.ResultList;
 import seedu.revised.task.Task;
 import seedu.revised.task.TaskList;
@@ -14,31 +15,22 @@ public class Subject {
     private ResultList results;
 
     public Subject(String title) {
-        this.title = title;
-        this.topics = new TopicList(new ArrayList<>());
-        results = new ResultList(new ArrayList<>());
-        tasks = new TaskList(new ArrayList<>());
+        this(title, new ArrayList<>());
     }
 
     public Subject(String title, List<Topic> topics) {
-        this.title = title;
-        this.topics = new TopicList(topics);
-        tasks = new TaskList(new ArrayList<>());
-        results = new ResultList(new ArrayList<>());
+        this(title, topics, new ArrayList<>());
     }
 
     public Subject(String title, List<Topic> topics, List<Task> tasks) {
+        this(title, topics, tasks, new ArrayList<>());
+    }
+
+    public Subject(String title, List<Topic> topics, List<Task> tasks, List<Result> results) {
         this.title = title;
         this.topics = new TopicList(topics);
         this.tasks = new TaskList(tasks);
-        this.results = new ResultList(new ArrayList<>());
-    }
-
-    public Subject(String title, TopicList topics, TaskList tasks, ResultList results) {
-        this.title = title;
-        this.topics = topics;
-        this.tasks = tasks;
-        this.results = results;
+        this.results = new ResultList(results);
     }
 
 

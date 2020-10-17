@@ -1,5 +1,6 @@
 package seedu.revised.card;
 
+import seedu.revised.card.quiz.Result;
 import seedu.revised.card.quiz.ResultList;
 
 import java.util.ArrayList;
@@ -11,15 +12,17 @@ public class Topic {
     private ResultList results;
 
     public Topic(String title) {
-        this.title = title;
-        this.flashcards = new ArrayList<>();
-        results = new ResultList(new ArrayList<>());
+        this(title, new ArrayList<>());
     }
 
     public Topic(String title, List<Flashcard> flashcards) {
+        this(title, flashcards, new ArrayList<>());
+    }
+
+    public Topic(String title, List<Flashcard> flashcards, List<Result> results) {
         this.title = title;
         this.flashcards = flashcards;
-        results = new ResultList(new ArrayList<>());
+        this.results = new ResultList(results);
     }
 
     public String getTitle() {

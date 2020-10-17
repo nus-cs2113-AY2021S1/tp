@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import seedu.revised.card.Flashcard;
 import seedu.revised.card.Topic;
 import seedu.revised.card.TopicList;
-import seedu.revised.exception.NoFlashCardException;
+import seedu.revised.exception.card.NoFlashCardException;
 
 import java.util.ArrayList;
 import java.util.List;
