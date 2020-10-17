@@ -1,16 +1,16 @@
 # Developer Guide
 
 ## Table of Contents
-### [1. Introduction](#intro)
-### [2. Design & Implementation](#design)
-### [3. Product Scope](#scope)
-#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Target User Persona](#userpersona)
-#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Target User Profile](#userprofile)
-#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3 Value Proposition](#value)
-### [4. User Stories](#userstories)
-### [5. Non-Functional Requirements](#nfr)
-### [6. Glossary](#gloss)
-### [7. Instructions for Manual Testing](#testinstr)
+#### [1. Introduction](#intro)
+#### [2. Design & Implementation](#design)
+#### [3. Product Scope](#scope)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Target User Persona](#userpersona)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Target User Profile](#userprofile)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3 Value Proposition](#value)
+#### [4. User Stories](#userstories)
+#### [5. Non-Functional Requirements](#nfr)
+#### [6. Glossary](#gloss)
+#### [7. Instructions for Manual Testing](#testinstr)
 
 
 ## <a id="intro">1. Introduction</a>
