@@ -5,13 +5,15 @@ import java.io.FileNotFoundException;
 import seedu.duke.exceptions.NotEnoughWritingComponentException;
 import seedu.duke.writing.Essay;
 import seedu.duke.writing.Poem;
+import seedu.duke.writing.WritingList;
+import seedu.duke.writing.Writings;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.duke.Duke.writings;
 import static seedu.duke.constants.DataFileConvention.WRITING_COMPONENT_MARK;
 import static seedu.duke.constants.DataFileConvention.WRITING_COMPONENT_DIVIDER;
 import static seedu.duke.constants.DataFileConvention.POSITION_OF_AUTHOR;
@@ -23,6 +25,9 @@ import static seedu.duke.constants.DataFileConvention.POSITION_OF_TYPE;
 import static seedu.duke.constants.DataFileConvention.POEM;
 import static seedu.duke.constants.DataFileConvention.ESSAY;
 import static seedu.duke.constants.DataFileConvention.NUMBER_OF_WRITING_COMPONENT;
+import static seedu.duke.constants.FilePaths.WRITING_FILE_PATH;
+import static seedu.duke.database.FileFunctions.autoCreateNewFile;
+import static seedu.duke.database.FileFunctions.readFileUntilLineContainsString;
 
 public class WritingsLoader {
 
@@ -33,7 +38,9 @@ public class WritingsLoader {
      * @throws FileNotFoundException when the file is not found
      * @throws NotEnoughWritingComponentException when the format of minimum
      */
-    private static int convertWritingFile(File f) throws FileNotFoundException, NotEnoughWritingComponentException {
+
+    private static int convertWritingFile(File f, WritingList savedWritings)
+            throws FileNotFoundException, NotEnoughWritingComponentException {
         //Count the number of asterisks in the datafile -> number of components in the Writing class
         int countContent = 0;
         int countWritings = 0;
@@ -44,7 +51,6 @@ public class WritingsLoader {
         String title = "";
         String topic = "";
         String date = "";
-
         //Initializing the content
         String content = "";
 
@@ -75,17 +81,17 @@ public class WritingsLoader {
                     currentLine = s.nextLine();
                     content = content.concat(currentLine + "\n");
                 }
+                countWritings++;
                 if (type.equals(POEM)) {
-                    writings.add(new Poem(title, id, topic, content, author));
+                    savedWritings.add(new Poem(title, date, topic, content, author, id));
                 } else if (type.equals(ESSAY)) {
-                    writings.add(new Essay(title, id, topic, content, author));
+                    savedWritings.add(new Essay(title, date, topic, content, author, id));
                 }
                 if (countContent != NUMBER_OF_WRITING_COMPONENT) {
                     throw new NotEnoughWritingComponentException();
                 } else {
                     countContent = 0; //Reload for reading the data of the next object in the txt file
                 }
-                countWritings++;
             }
         } catch (DateTimeParseException e) {
             System.out.println("This is not valid!");
@@ -96,46 +102,43 @@ public class WritingsLoader {
     /**Check if the data file exists or not, creates "writings.txt" in "data" directory if not
      *
      * @param f file to be processed
-     * @return the number of writings in the data extracted from convertWritingFile function
+     * @param savedWritings writings being stored
      */
-    public static int convertFromFile(File f) {
+    public static void convertFromFile(File f, WritingList savedWritings) {
         File folder = new File("data");
         boolean bool = folder.mkdirs(); // If folder doesn't exist, then create it
 
         try {
-            return convertWritingFile(f);
+            convertWritingFile(f, savedWritings);
         } catch (FileNotFoundException e) {
             //System.out.println("File not found");
             try {
                 f.createNewFile();
                 System.out.println("duke.txt aka the data file created in the data folder!");
-                return 0;
             } catch (IOException err) {
                 err.printStackTrace();
-                return 0;
             }
         } catch (NotEnoughWritingComponentException e) {
             System.out.println("There is something wrong with the data file");
-            return 0;
         }
     }
 
     /**Write data from ArrayList structure to text form in directory "data/duke.txt"
      *
      * @param f file to be processed
-     * @param countWritings total number of tasks/lines in the data
      * @throws IOException IO error
      */
-    private static void recordFile(File f, int countWritings) throws IOException {
+    private static void recordFile(File f, WritingList savedWritings) throws IOException {
         FileWriter fw = new FileWriter(f);
-        for (int i = 0; i < countWritings; i++) {
-            fw.write("*id: " + writings.get(i).getId() + "\n"
-                    + "*Author: " + writings.get(i).getAuthor().getName() + "\n"
-                    + "*Type: " + writings.get(i).getType() + "\n"
-                    + "*Title: " + writings.get(i).getTitle() + "\n"
-                    + "*Topic: " + writings.get(i).getTopic() + "\n"
-                    + "*Date: " + writings.get(i).getDate() + "\n"
-                    + "*Content: \n" + writings.get(i).getContent() + "\n");
+        for (int i = 0; i < savedWritings.getCountWritings(); i++) {
+            fw.write("*id: " + savedWritings.get(i).getId() + "\n"
+                    + "*Author: " + savedWritings.get(i).getAuthor().getName() + "\n"
+                    + "*Type: " + savedWritings.get(i).getType() + "\n"
+                    + "*Title: " + savedWritings.get(i).getTitle() + "\n"
+                    + "*Topic: " + savedWritings.get(i).getTopic() + "\n"
+                    + "*Date: " + savedWritings.get(i).getDate() + "\n"
+                    + "*Content: \n" + savedWritings.get(i).getContent()
+                    + WRITING_COMPONENT_DIVIDER + "\n");
         }
         fw.close();
     }
@@ -143,13 +146,24 @@ public class WritingsLoader {
     /**Record the file or print error message.
      *
      * @param f data file to be processed
-     * @param countTasks total number of tasks
      */
-    public static void recordListToFile(File f, int countTasks) {
+    public static void recordListToFile(File f, WritingList savedWritings) {
         try {
-            recordFile(f, countTasks);
+            recordFile(f, savedWritings);
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         }
     }
+
+    public static void loadWritings(WritingList savedWritings) {
+        try {
+            File userWritingsFile = FileFunctions.getFileFromFilePath(WRITING_FILE_PATH);
+            FileFunctions.checkFileExists(userWritingsFile);
+            convertFromFile(userWritingsFile, savedWritings);
+        } catch (FileNotFoundException e) {
+            autoCreateNewFile(WRITING_FILE_PATH);
+        }
+    }
+
+
 }

@@ -1,0 +1,21 @@
+*id: 71
+*Author: Minh Thong
+*Type: Poem
+*Title: der Erlkönig
+*Topic: nothing
+*Date: 2020-10-17
+*Content: 
+der Erlkönig
+wer reitet so spät, durch Nacht und Wind
+es ist der Vater mit seinem Kind
+----------------------------
+*id: 545
+*Author: Minh Thong
+*Type: Essay
+*Title: Ho chi minh
+*Topic: nothing
+*Date: 2020-10-17
+*Content: 
+Ho chi minh
+Ai yeu bac hCM hon thieu nien nhi don?
+----------------------------
