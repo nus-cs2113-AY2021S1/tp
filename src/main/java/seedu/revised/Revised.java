@@ -8,7 +8,6 @@ import seedu.revised.command.subjectcommand.QuizSubjectCommand;
 import seedu.revised.command.subjectcommand.ReturnSubjectCommand;
 import seedu.revised.command.subjectcommand.SubjectCommand;
 import seedu.revised.exception.DataLoadingException;
-import seedu.revised.exception.FlashcardSyntaxException;
 import seedu.revised.exception.InvalidSubjectCommand;
 import seedu.revised.exception.NoFlashCardException;
 import seedu.revised.exception.NoSubjectException;
@@ -40,7 +39,7 @@ public class Revised {
      * @param resultFilename    the name of the file to store all the results of quizzes
      */
     public Revised(String baseDir, String flashcardFilename, String taskFilename, String resultFilename)
-            throws FlashcardSyntaxException, DataLoadingException {
+            throws DataLoadingException {
         storage = new Storage(baseDir, flashcardFilename, taskFilename, resultFilename);
         subjects = new SubjectList(storage.loadSubjects());
         results = new ResultList(new ArrayList<>());
@@ -96,7 +95,7 @@ public class Revised {
     public static void main(String[] args) {
         try {
             new Revised(BASE_DIR, FLASHCARD_FILENAME, TASK_FILENAME, RESULT_FILENAME).run();
-        } catch (FlashcardSyntaxException | DataLoadingException e) {
+        } catch (DataLoadingException e) {
             Ui.printError(e);
         }
     }
