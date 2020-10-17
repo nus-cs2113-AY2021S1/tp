@@ -128,6 +128,7 @@ public class Storage {
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new LoadingException();
         }
+        
         return events;
     }
 

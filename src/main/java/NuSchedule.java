@@ -41,7 +41,7 @@ public class NuSchedule {
             events = new EventList();
         }
 
-        events = new EventList();
+
         storage.loadBusStopData(busStops.getBusStopList());
         storage.loadLocationData(locations.getLocationList());
         // ui.printBusStopList(busStops.getBusStopList());
