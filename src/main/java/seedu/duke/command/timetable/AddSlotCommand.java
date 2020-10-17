@@ -117,28 +117,37 @@ public class AddSlotCommand extends Command {
         String message = "";
         try {
             List<String> slotAndBookmark = Arrays.asList(command.trim().split(" "));
-            String lesson = slotAndBookmark.get(0);
-            String day = slotAndBookmark.get(1);
-            LocalTime startTime = LocalTime.parse(slotAndBookmark.get(2));
-            LocalTime endTime = LocalTime.parse(slotAndBookmark.get(3));
-
-            Slot newSlot;
-            if (module.slotExists(lesson, day, startTime, endTime)) {
-                newSlot = module.getSlot(lesson, day, startTime, endTime);
-                message += "slot already exists\n";
+            if ((slotAndBookmark.get(1).startsWith("www.") || slotAndBookmark.get(1).startsWith("https://"))
+                    && slotAndBookmark.size() == 2) {
+                String description = slotAndBookmark.get(0);
+                String url = slotAndBookmark.get(1);
+                Bookmark bookmark = new Bookmark(description,"dummy", url);
+                module.addBookmark(bookmark);
+                message += "bookmark added to module\n";
             } else {
-                newSlot = module.createSlotNew(lesson, day, startTime, endTime);
-                module.addSlot(newSlot);
-                message += "slot added\n";
-            }
+                String lesson = slotAndBookmark.get(0);
+                String day = slotAndBookmark.get(1);
+                LocalTime startTime = LocalTime.parse(slotAndBookmark.get(2));
+                LocalTime endTime = LocalTime.parse(slotAndBookmark.get(3));
 
-            if (slotAndBookmark.size() == 5) {
-                createBookmark(slotAndBookmark.get(4), lesson, newSlot);
-                message += "bookmark added\n";
-            } else if (slotAndBookmark.size() > 5) {
-                throw new DukeException(DukeExceptionType.INVALID_URL, "invalid url");
+                Slot newSlot;
+                if (module.slotExists(lesson, day, startTime, endTime)) {
+                    newSlot = module.getSlot(lesson, day, startTime, endTime);
+                    message += "slot already exists\n";
+                } else {
+                    newSlot = module.createSlotNew(lesson, day, startTime, endTime);
+                    module.addSlot(newSlot);
+                    message += "slot added\n";
+                }
+
+                if (slotAndBookmark.size() == 5) {
+                    createBookmark(slotAndBookmark.get(4), lesson, newSlot);
+                    message += "bookmark added\n";
+                } else if (slotAndBookmark.size() > 5) {
+                    throw new DukeException(DukeExceptionType.INVALID_URL, "invalid url");
+                }
+                System.out.println("success\n");
             }
-            System.out.println("success\n");
         } catch (DukeException e) {
             message += e.getInfo() + "\n";
         } catch (IndexOutOfBoundsException e) {
@@ -151,7 +160,7 @@ public class AddSlotCommand extends Command {
         if (!url.startsWith("www.") && !url.startsWith("https://")) {
             throw new DukeException(DukeExceptionType.INVALID_URL, "invalid url format: " + url);
         }
-        Bookmark bookmark = new Bookmark(lesson, url, "dummy");
+        Bookmark bookmark = new Bookmark(lesson, "dummy", url);
         newSlot.addBookmark(bookmark);
     }
 }
