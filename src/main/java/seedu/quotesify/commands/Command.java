@@ -13,7 +13,9 @@ public abstract class Command {
 
     public static final String ERROR_INVALID_QUOTE_NUM = "Invalid quote number specified!";
     public static final String ERROR_INVALID_TODO_NUM = "Invalid task number specified!";
+    public static final String ERROR_INVALID_BOOK_NUM = "Invalid book number specified!";
     public static final String ERROR_NO_BOOK_FOUND = "There is no such book!";
+    public static final String ERROR_BOOK_TITLE_MISSING = "There is no book title specified!";
     public static final String ERROR_BOOK_ALREADY_EXISTS = "The book already exists!";
     public static final String ERROR_NO_QUOTE_FOUND = "There is no such quote!";
     public static final String ERROR_NO_BOOKS_IN_LIST = "There are no books in the list!";
@@ -35,6 +37,7 @@ public abstract class Command {
     public static final String FLAG_AUTHOR = "/by";
     public static final String FLAG_REFERENCE = "/from";
     public static final String FLAG_DELIMITER = "/";
+    public static final String FLAG_EDIT = "/to";
     public static final String REFERENCE_KEYWORD = "reference";
     public static final String AUTHORNAME_KEYWORD = "authorName";
 
