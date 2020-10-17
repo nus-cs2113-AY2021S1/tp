@@ -6,6 +6,7 @@ import seedu.rex.data.hospital.Appointment;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -48,10 +49,13 @@ public class BookCommand extends Command {
             if (index < 0 || index >= appointments.size()) {
                 throw new RexException("Index error!");
             }
+            storage.saveAppointments(appointments);
             appointments.get(index).book(patients.getPatientFromNric(nric));
             ui.showAppointmentBookedMessage(appointments.get(index));
         } catch (NumberFormatException e) {
             throw new RexException("Index error!");
+        } catch (IOException e) {
+            throw new RexException("File Write Error");
         }
 
 

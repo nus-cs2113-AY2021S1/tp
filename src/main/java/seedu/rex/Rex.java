@@ -89,10 +89,5 @@ public class Rex {
                 ui.showLine();
             }
         }
-        try {
-            storage.saveAppointments(appointments);
-        } catch (IOException e) {
-            ui.showError(e.getMessage());
-        }
     }
 }
