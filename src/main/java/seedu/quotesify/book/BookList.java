@@ -92,6 +92,15 @@ public class BookList extends QuotesifyList<Book> {
         return null;
     }
 
+    public Book findByNum(int num) {
+        int index = num - 1;
+        if(num <= books.size()) {
+            return books.get(index);
+        } else {
+            return null;
+        }
+    }
+
     public BookList filterByAuthor(String authorName) {
         String lowerCaseAuthor = authorName.toLowerCase();
 

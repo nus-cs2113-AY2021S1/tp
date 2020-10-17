@@ -36,7 +36,13 @@ public class BookmarkCommand extends Command {
             BookmarkList bookmarks = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
             handleBookmark(books, bookmarks, ui);
             break;
+        case TAG_NUMBER:
+            books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+            bookmarks = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
+            handleBookmarkByNumber(books, bookmarks, ui);
+            break;
         default:
+            System.out.println(ERROR_INVALID_TAG);
             break;
         }
     }
@@ -61,6 +67,30 @@ public class BookmarkCommand extends Command {
             ui.printErrorMessage(ERROR_NO_PAGE_NUM);
             addLogger.log(Level.INFO, "add bookmark to bookmarkList failed");
         }
+    }
+
+    public void handleBookmarkByNumber(BookList books, BookmarkList bookmarks, TextUi ui) {
+        String[] numberAndPage = information.split("/pg");
+
+        try {
+            if (numberAndPage.length == 1) {
+                throw new QuotesifyException(ERROR_NO_PAGE_NUM);
+            }
+
+            String bookNumber = numberAndPage[0].trim();
+            String page = numberAndPage[1].trim();
+            int number = convertBookNumToInt(bookNumber);
+            Book bookToMark = books.findByNum(number);
+
+            if (bookToMark != null) {
+                addBookmarkToBook(bookToMark, bookmarks, page, ui);
+            } else {
+                System.out.println(ERROR_NO_BOOK_FOUND);
+            }
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(ERROR_NO_PAGE_NUM);
+            addLogger.log(Level.INFO, "add bookmark to bookmarkList failed");
+        }
 
     }
 
@@ -69,12 +99,14 @@ public class BookmarkCommand extends Command {
 
         int pageNum = computePageNum(page);
         bookmarkToAdd = bookmarks.find(book);
-        if (bookmarkToAdd == null) {
+        if (bookmarkToAdd == null && pageNum > -1) {
             bookmarkToAdd = createNewBookmark(bookmarks, book, pageNum);
             ui.printAddBookmark(bookmarkToAdd);
-        } else {
+        } else if (bookmarkToAdd != null && pageNum > -1) {
             bookmarkToAdd = updateExistingBookmark(bookmarkToAdd, pageNum);
             ui.printUpdateBookmark(bookmarkToAdd);
+        } else {
+            addLogger.log(Level.INFO, "add bookmark to bookmarkList failed");
         }
     }
 
@@ -94,10 +126,21 @@ public class BookmarkCommand extends Command {
         try {
             pageNum = Integer.parseInt(information);
         } catch (NumberFormatException e) {
-            System.out.println(ERROR_INVALID_TODO_NUM);
+            System.out.println(ERROR_INVALID_PAGE_NUM);
         }
 
         return pageNum;
+    }
+
+    private int convertBookNumToInt(String information) {
+        int bookNum = -1;
+        try {
+            bookNum = Integer.parseInt(information);
+        } catch (NumberFormatException e) {
+            System.out.println(ERROR_INVALID_BOOK_NUM);
+        }
+
+        return bookNum;
     }
 
     @Override
