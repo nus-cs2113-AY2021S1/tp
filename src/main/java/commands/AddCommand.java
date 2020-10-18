@@ -14,7 +14,10 @@ import ui.Ui;
 
 import java.io.IOException;
 
+import static common.Messages.CARD;
+import static common.Messages.CHAPTER;
 import static common.Messages.MESSAGE_INVALID_ACCESS;
+import static common.Messages.MODULE;
 
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
@@ -44,10 +47,6 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Got it. I've added this %1$s:\n";
     public static final String MESSAGE_COUNT = "Now you have %1$d %2$s(s) in the list.";
-
-    private static final String MODULE = "module";
-    private static final String CHAPTER = "chapter";
-    private static final String CARD = "card";
 
     private String moduleOrChapter;
     private Card card;
