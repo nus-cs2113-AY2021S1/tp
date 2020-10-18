@@ -33,7 +33,7 @@ Got it. I've added this event:
 ............................. DUKE CHAT BOX ^^ ............................
 This is your list of event(s):
 1.[TUT][/] cs1010 10-Oct-2020 Sat 12:30PM (nus)
-2.[TUT][X] cs1010 17-Oct-2020 Sat 12:30PM (nus)
+2.[TUT][/] cs1010 17-Oct-2020 Sat 12:30PM (nus)
 3.[TUT][X] cs1010 24-Oct-2020 Sat 12:30PM (nus)
 4.[TUT][X] cs1010 31-Oct-2020 Sat 12:30PM (nus)
 5.[LEC][/] cs1010 13-Oct-2020 Tue 1:40PM (nus)
@@ -64,7 +64,7 @@ Timeline
 |                     |_____ [LAB][/] cs1010  (nus)
 |__ 2020-10-17 SATURDAY
 |            |_____ 12:30
-|                     |_____ [TUT][X] cs1010  (nus)
+|                     |_____ [TUT][/] cs1010  (nus)
 |__ 2020-10-20 TUESDAY
 |            |_____ 13:40
 |                     |_____ [LEC][X] cs1010  (nus)
