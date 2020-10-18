@@ -3,7 +3,6 @@ package seedu.duke.parser;
 import seedu.duke.command.AddToWatchlistCommand;
 import seedu.duke.exception.AniException;
 
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
