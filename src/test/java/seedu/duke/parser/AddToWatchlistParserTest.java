@@ -1,13 +1,8 @@
 package seedu.duke.parser;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.duke.anime.Anime;
-import seedu.duke.anime.AnimeData;
-import seedu.duke.exception.AniException;
-import seedu.duke.storage.StorageManager;
 
-import java.util.ArrayList;
+import seedu.duke.exception.AniException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
