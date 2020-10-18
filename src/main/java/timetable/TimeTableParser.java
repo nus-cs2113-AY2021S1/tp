@@ -81,9 +81,9 @@ public class TimeTableParser {
             int durationNum = Integer.parseInt(words[5]);
             Lesson lesson = new Lesson(name, linkOrVenue, isOnline, numPerWeek);
             for (int i = 0; i < durationNum; i++) {
-                assert words[ 5 + 2 * i + 1].contains("//");
+                // assert words[ 5 + 2 * i + 1].contains("//") : "File should contain //";
                 LocalDateTime start = LocalDateTime.parse(words[5 + 2 * i + 1]);
-                assert words[5 + 2 * i + 2].contains("//");
+                // assert words[5 + 2 * i + 2].contains("//") : "File should contain //";
                 LocalDateTime end = LocalDateTime.parse(words[5 + 2 * i + 2]);
                 Duration duration = new Duration(start, end);
                 lesson.addPeriod(duration);
