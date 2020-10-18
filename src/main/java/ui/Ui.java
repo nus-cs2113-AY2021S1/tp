@@ -165,8 +165,8 @@ public class Ui {
         out.println(c.getAnswer());
     }
 
-    public String getRating() {
-        out.println(MESSAGE_SHOW_RATING_PROMPT);
+    public String getInput(String prompt) {
+        out.println(prompt);
         return in.nextLine();
     }
 

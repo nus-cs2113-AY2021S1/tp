@@ -24,10 +24,11 @@ public class ReviseCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "You have completed revision for %1$s.";
     public static final String MESSAGE_NO_CARDS_IN_CHAPTER = "You currently have no cards in %1$s.";
-    public static final String MESSAGE_NO_CARDS_DUE = "You have no cards due for revision in %1$s today.";
+    public static final String MESSAGE_CHAPTER_NOT_DUE = "The chapter %1$s is not due for revision today.\n";
     public static final String MESSAGE_SHOW_ANSWER_PROMPT = "\n[enter s to show answer]";
     public static final String MESSAGE_SHOW_RATING_PROMPT = "How well did you do for this card?\n"
             + "[enter e(easy), m(medium), h(hard), c(cannot answer)]";
+    public static final String MESSAGE_SHOW_REVISE_PROMPT = "Are you sure you want to revise this? (Y/N)";
     public static final String EASY = "e";
     public static final String MEDIUM = "m";
     public static final String HARD = "h";
@@ -64,22 +65,38 @@ public class ReviseCommand extends Command {
     private int reviseCard(int count, Card c, Ui ui, ArrayList<Card> repeatCards) {
         ui.showToUser("\nQuestion " + count + ":");
         ui.showCardRevision(c);
-        String input = ui.getRating();
+        String input = ui.getInput(MESSAGE_SHOW_RATING_PROMPT);
         rateCard(ui, repeatCards, c, input);
-        return count++;
+        return ++count;
     }
 
     @Override
     public void execute(Ui ui, Access access, Storage storage) throws FileNotFoundException {
         Chapter toRevise = getChapter(reviseIndex, access, ui);
         if (!Scheduler.isDeadlineDue(toRevise.getDueBy())) {
-            return;
+            StringBuilder prompt = new StringBuilder();
+            prompt.append(String.format(MESSAGE_CHAPTER_NOT_DUE, toRevise));
+            prompt.append(MESSAGE_SHOW_REVISE_PROMPT);
+            String input = ui.getInput(prompt.toString()).trim().toUpperCase();
+            boolean isInvalid = true;
+            while (isInvalid) {
+                switch (input) {
+                case "Y":
+                    isInvalid = false;
+                    break;
+                case "N":
+                    return;
+                default:
+                    input = ui.getInput("You have entered an invalid input, please try again.")
+                            .trim().toUpperCase();
+                }
+            }
         }
 
         ArrayList<Card> allCards = getCards(ui, access, storage, toRevise);
         ArrayList<Card> repeatCards = new ArrayList<>();
         int cardCount = allCards.size();
-        ui.showToUser("card count " + cardCount);
+        ui.showToUser("\nCard count: " + cardCount);
         if (cardCount == 0) {
             ui.showToUser(String.format(MESSAGE_NO_CARDS_IN_CHAPTER, toRevise));
             return;
@@ -92,8 +109,7 @@ public class ReviseCommand extends Command {
         for (Card c : allCards) {
             count = reviseCard(count, c, ui, repeatCards);
         }
-        int remainingCards = repeatRevision(ui, repeatCards, count);
-        assert remainingCards == 0 : "Cards were left in repeat revision";
+        repeatRevision(ui, repeatCards, count);
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
         toRevise.setDueBy(Scheduler.computeDeckDeadline(toRevise.getCards()), storage, access);
     }
@@ -120,14 +136,13 @@ public class ReviseCommand extends Command {
                 isInvalid = false;
                 break;
             default:
-                ui.showToUser("You have entered an invalid input, please try again.");
-                input = ui.getRating();
+                input = ui.getInput("You have entered an invalid input, please try again.");
             }
         }
         return repeatCards;
     }
 
-    private int repeatRevision(Ui ui, ArrayList<Card> cards, int count) {
+    private void repeatRevision(Ui ui, ArrayList<Card> cards, int count) {
         while (cards.size() != 0) {
             ArrayList<Card> repeatCards = new ArrayList<>();
             for (Card c : cards) {
@@ -135,7 +150,6 @@ public class ReviseCommand extends Command {
             }
             cards = new ArrayList<>(repeatCards);
         }
-        return cards.size();
     }
 
     @Override
