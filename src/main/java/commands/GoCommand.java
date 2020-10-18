@@ -39,7 +39,7 @@ public class GoCommand extends Command {
         }
     }
 
-    private String goChapter(Access access, Storage storage) {
+    private String goChapter(Access access, Storage storage) throws IncorrectAccessLevelException {
         boolean isLevelExist = false;
         String result = "";
         ChapterList chapters = access.getModule().getChapters();
@@ -67,7 +67,7 @@ public class GoCommand extends Command {
         return result;
     }
 
-    private String goModule(Access access, Storage storage) {
+    private String goModule(Access access, Storage storage) throws IncorrectAccessLevelException {
         boolean isLevelExist = false;
         String result = "";
         ModuleList modules = access.getAdmin().getModules();
