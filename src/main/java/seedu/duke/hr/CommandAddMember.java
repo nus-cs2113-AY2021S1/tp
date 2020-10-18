@@ -15,7 +15,7 @@ public class CommandAddMember extends Command {
     @Override
     public int validate(UserInput input) {
         this.savedInput = input;
-        if (input.getCategory().equals("hr") && input.getCommand().equalsIgnoreCase("add")) {
+        if (input.getCategory().equals("hr") && input.getCommand().equalsIgnoreCase("addMember")) {
             if (input.getNumArgs() == 4) {
                 if ((input.getArg("n") != null) && (input.getArg("p") != null) && (input.getArg("e") != null)
                         && (input.getArg("r") != null) && isInteger(input.getArg("p"))) {
