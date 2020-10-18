@@ -15,7 +15,8 @@ public class Messages {
     public static final String INVALID_TASK_NUMBER = "Invalid task number!" + LS;
     public static final String INVALID_DATETIME = "Invalid datetime!" + LS;
 
-    public static final String WELCOME_MESSAGE = " ========================================================== " + LS
+    public static final String WELCOME_MESSAGE =
+            " ========================================================== " + LS
             + "||                                                        ||" + LS
             + "||         " + ANSI_YELLOW + "Welcome to" + ANSI_RESET + "                                     ||" + LS
             + "||         " + ANSI_CYAN + "    ____  __      _   ____  _______" + ANSI_RESET + "            ||" + LS
@@ -25,13 +26,15 @@ public class Messages {
             + "||         " + ANSI_CYAN + "/_/   /_/\\__,_/_/ |_/\\____//____/  " + ANSI_RESET
             + ANSI_CYAN+ "v1.0" + ANSI_RESET + "        ||" + LS
             + "||                                                        ||";
-    public static final String HELP_MESSAGE = " ================================================================================================== " + LS
+    public static final String HELP_MESSAGE =
+            " ================================================================================================== " + LS
             + "||                                                                                                ||" + LS
             + "||       " + "List of available commands:" + "                                                              ||" + LS
             + "||       " + "Note:" + "                                                                                    ||" + LS
             + "||       " + "1. Square bracket input is optional." + "                                                     ||" + LS
             + "||       " + "- help: show list of available commands" + "                                                  ||" + LS
-            + "||       " + "format: " + ANSI_PURPLE + "help" + ANSI_RESET + "                                                                             ||" + LS
+            + "||       " + "format: " + ANSI_PURPLE + "help" + ANSI_RESET
+            + "                                                                             ||" + LS
             + "||       " + "- add: add a task" + "                                                                        ||" + LS
             + "||       " + "format: " + ANSI_PURPLE
             + "add DESCRIPTION [d/dd-MM-yyyy] [st/HHmm] [et/HHmm] [p/NUMBER]" + ANSI_RESET + "                    ||" + LS
@@ -39,15 +42,20 @@ public class Messages {
             + "||       " + "format: " + ANSI_PURPLE
             + "edit INDEX [des/DESCRIPTION] [d/dd-MM-yyyy] [st/HHmm] [et/HHmm] [p/NUMBER]" + ANSI_RESET + "       ||" + LS
             + "||       " + "- list: show list of tasks" + "                                                               ||" + LS
-            + "||       " + "format: " + ANSI_PURPLE + "list" + ANSI_RESET + "                                                                             ||" + LS
+            + "||       " + "format: " + ANSI_PURPLE + "list" + ANSI_RESET
+            + "                                                                             ||" + LS
             + "||       " + "- search: find task(s) with keyword in description" + "                                       ||" + LS
-            + "||       " + "format: " + ANSI_PURPLE + "search KEYWORD(S)" + ANSI_RESET + "                                                                ||" + LS
+            + "||       " + "format: " + ANSI_PURPLE + "search KEYWORD(S)" + ANSI_RESET
+            + "                                                                ||" + LS
             + "||       " + "- delete remove particular task by index" + "                                                 ||" + LS
-            + "||       " + "format: " + ANSI_PURPLE + "delete INDEX" + ANSI_RESET + "                                                                     ||" + LS
+            + "||       " + "format: " + ANSI_PURPLE + "delete INDEX" + ANSI_RESET
+            + "                                                                     ||" + LS
             + "||       " + "- clear: remove all tasks" + "                                                                ||" + LS
-            + "||       " + "format: " + ANSI_PURPLE + "clear" + ANSI_RESET + "                                                                            ||" + LS
+            + "||       " + "format: " + ANSI_PURPLE + "clear" + ANSI_RESET
+            + "                                                                            ||" + LS
             + "||       " + "- bye: exit the program" + "                                                                  ||" + LS
-            + "||       " + "format: " + ANSI_PURPLE + "bye" + ANSI_RESET + "                                                                              ||" + LS
+            + "||       " + "format: " + ANSI_PURPLE + "bye" + ANSI_RESET
+            + "                                                                              ||" + LS
             + "||                                                                                                ||" + LS
             + " ================================================================================================== " + LS;
 
