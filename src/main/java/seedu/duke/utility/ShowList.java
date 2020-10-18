@@ -15,7 +15,7 @@ public class ShowList {
         this.showList = showList;
     }
 
-    public static Show getShow(String showName) {
+    public static Show getShow(String showName) throws NullPointerException {
         Show show = showList.get(showName);
         /* Do changes to show */
         return show;
