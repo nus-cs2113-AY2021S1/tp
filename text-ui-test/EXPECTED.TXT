@@ -18,7 +18,7 @@ Default (Default) #> Watchlist "b" has been created successfully!
 
 Default (Default) #> Watchlist "ops" has been created successfully!
 
-Default (Default) #> "ops" is now your active watchlist.
+Default (Default) #> "ops" is now your active watchlist!
 
 Default (ops) #> Watchlist "ops" has been deleted successfully!
 Changed active watchlist to: "Default".

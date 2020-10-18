@@ -12,29 +12,26 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class WatchlistCommand extends Command {
-    private static final String CREATE_OPTION = "-n";
-    private static final String LIST_OPTION = "-l";
-    private static final String SELECT_OPTION = "-s";
-    private static final String DELETE_OPTION = "-d";
+    private static final String CREATE_OPTION = "n";
+    private static final String LIST_OPTION = "l";
+    private static final String SELECT_OPTION = "s";    // Categorized as a Modification option.
+    private static final String DELETE_OPTION = "d";    // Categorized as a Modification option.
 
     private final String option;
-    private String optionInformation;
+    private final String optionInformation;
     private static final Logger LOGGER = Logger.getLogger(WatchlistCommand.class.getName());
 
-    public WatchlistCommand(String description) {
-        String[] descriptionSplit = description.split(" ", 2);
-        option = descriptionSplit[0];
-        optionInformation = "";
-        if (descriptionSplit.length == 2) {
-            optionInformation = descriptionSplit[1];
-        }
-
+    public WatchlistCommand(String option, String optionInformation) {
+        this.option = option;
+        this.optionInformation = optionInformation;
         LOGGER.setLevel(Level.WARNING);
     }
 
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         Workspace activeWorkspace = user.getActiveWorkspace();
+        assert activeWorkspace.getWatchlistList() != null : "Watchlist list should not be null.";
+        assert option != null : "option should not be null.";
 
         switch (option) {
         case CREATE_OPTION:
@@ -52,13 +49,9 @@ public class WatchlistCommand extends Command {
     }
 
     private String createWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
-        if (optionInformation.isBlank()) {
-            LOGGER.log(Level.WARNING, "Watchlist name is empty.");
-            throw new AniException("Watchlist name cannot be empty!");
-        }
-
         Watchlist createdWatchlist = new Watchlist(optionInformation);
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
+
         boolean isWatchlistNameUnique = !watchlistList.contains(createdWatchlist);
         if (!isWatchlistNameUnique) {
             LOGGER.log(Level.WARNING, "Watchlist name \"" + optionInformation + "\" is not unique.");
@@ -66,16 +59,14 @@ public class WatchlistCommand extends Command {
         }
 
         watchlistList.add(createdWatchlist);
-        LOGGER.log(Level.INFO, "Watchlist \"" + createdWatchlist.getName() + "\" created successfully.");
-
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
+        LOGGER.log(Level.INFO, "Watchlist \"" + createdWatchlist.getName() + "\" created successfully.");
         return "Watchlist \"" + optionInformation + "\" has been created successfully!";
     }
 
     private String listAllWatchlist(Workspace activeWorkspace) {
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         if (watchlistList.size() == 0) {
-            LOGGER.log(Level.INFO, "Attempts to list watchlist when there is none.");
             return "Uhh.. You have no watchlist to list..";
         }
 
@@ -89,73 +80,73 @@ public class WatchlistCommand extends Command {
             sbWatchlistList.append(watchlist.getName());
         }
 
-        String watchlistListString = sbWatchlistList.toString();
-        assert !(watchlistListString.isBlank()) : "The string listing watchlist(s) cannot be empty.";
-        return watchlistListString;
+        return sbWatchlistList.toString();
     }
 
     private String selectWatchlist(Workspace activeWorkspace) throws AniException {
-        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
-        int listSize = watchlistList.size();
-        if (listSize == 0) {
-            LOGGER.log(Level.INFO, "Attempts to select from an empty watchlist list.");
-            return "Uhh.. You have no watchlist to select..";
-        }
-
         int selectIndex = parseInteger(optionInformation);
-        if (selectIndex < 0 || selectIndex >= listSize) {
-            LOGGER.log(Level.WARNING, "Select index specified is out of range.");
-            throw new AniException("\"" + (selectIndex + 1) + "\" is not a valid watchlist index.");
-        }
+        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
+        validateModificationOption(watchlistList, selectIndex);
 
         Watchlist selectedWatchlist = watchlistList.get(selectIndex);
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
         if (selectedWatchlist.equals(activeWatchlist)) {
             LOGGER.log(Level.INFO, "Selected watchlist is currently the active watchlist.");
-            throw new AniException("Uhh.. Current active watchlist is \"" + selectedWatchlist.getName() + "\"..");
+            throw new AniException("Current active watchlist is \"" + selectedWatchlist.getName() + "\".");
         }
 
         activeWorkspace.setActiveWatchlist(selectedWatchlist);
         LOGGER.log(Level.INFO, "Watchlist at index \"" + selectIndex + "\" selected successfully.");
-        return "\"" + selectedWatchlist.getName() + "\" is now your active watchlist.";
+        return "\"" + selectedWatchlist.getName() + "\" is now your active watchlist!";
     }
 
     private String deleteWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
-        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
-        int listSize = watchlistList.size();
-        if (listSize == 0) {
-            LOGGER.log(Level.INFO, "Attempts to delete from an empty watchlist list.");
-            return "Uhh.. You have no watchlist to delete..";
-        }
-
         int deleteIndex = parseInteger(optionInformation);
-        if (deleteIndex < 0 || deleteIndex >= watchlistList.size()) {
-            LOGGER.log(Level.WARNING, "Delete index specified is out of range.");
-            throw new AniException("\"" + (deleteIndex + 1) + "\" is not a valid watchlist index.");
-        }
+        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
+        validateModificationOption(watchlistList, deleteIndex);
 
         Watchlist deletedWatchlist = watchlistList.get(deleteIndex);
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
-        watchlistList.remove(deleteIndex);
-        LOGGER.log(Level.INFO, "Watchlist at index \"" + deleteIndex + "\" deleted successfully.");
         String commandOutput = "Watchlist \"" + deletedWatchlist.getName() + "\" has been deleted successfully!";
-
         if (deletedWatchlist.equals(activeWatchlist)) {
             activeWorkspace.setActiveWatchlist(watchlistList.get(0));
+            String activeWatchlistName = activeWorkspace.getActiveWatchlistName();
+
             commandOutput += System.lineSeparator();
-            commandOutput += "Changed active watchlist to: \"" + activeWorkspace.getActiveWatchlistName() + "\".";
+            commandOutput += "Changed active watchlist to: \"" + activeWatchlistName + "\".";
+            LOGGER.log(Level.INFO, "Changed active watchlist to: " + activeWatchlistName + "\".");
         }
 
+        watchlistList.remove(deleteIndex);
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
+        LOGGER.log(Level.INFO, "Watchlist at index \"" + deleteIndex + "\" deleted successfully.");
         return commandOutput;
+    }
+
+    private void validateModificationOption(ArrayList<Watchlist> watchlistList, int index) throws AniException {
+        if (watchlistList.size() == 0) {
+            LOGGER.log(Level.INFO, "Attempts to modify an empty watchlist list.");
+            throw new AniException("You have no watchlist!");
+        }
+
+        if (watchlistList.size() == 1 && option.equals(DELETE_OPTION)) {
+            LOGGER.log(Level.INFO, "Attempts to delete the last watchlist.");
+            throw new AniException("You cannot delete the last watchlist!");
+        }
+
+        if (index < 0 || index >= watchlistList.size()) {
+            LOGGER.log(Level.WARNING, "Watchlist index specified is out of range.");
+            throw new AniException("\"" + (index + 1) + "\" is not a valid watchlist index.");
+        }
     }
 
     private int parseInteger(String optionInformation) throws AniException {
         try {
+            // Input received as one-based numbering, then converted to zero-based numbering.
             return Integer.parseInt(optionInformation) - 1;
         } catch (NumberFormatException exception) {
             LOGGER.log(Level.WARNING, "Failed to parse \"" + optionInformation + "\" into a integer.");
-            throw new AniException("The watchlist index has to be a number.");
+            throw new AniException("\"" + optionInformation + "\" is not a number!");
         }
     }
 }
