@@ -57,7 +57,7 @@ class FindCommandTest {
     }
 
     @Test
-    void execute_keywordNil_returnsNoSearchQuery() {
+    void execute_keywordNil_returnsNoMatch() {
         String keyword = "NIL";
 
         String expected = "There are no matching notes. "

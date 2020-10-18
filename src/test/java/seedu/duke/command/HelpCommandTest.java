@@ -34,7 +34,7 @@ class HelpCommandTest {
             + colorize(ViewNoteCommand.COMMAND_USAGE, Attribute.BRIGHT_WHITE_TEXT());
 
     @Test
-    void execute_noInput_noErrorThrown() {
+    void executeTest() {
         String helpCommand = new HelpCommand().execute();
 
         assertEquals(EXPECTED, helpCommand);
