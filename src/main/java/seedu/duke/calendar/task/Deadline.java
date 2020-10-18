@@ -53,7 +53,8 @@ public class Deadline extends Task {
      */
     @Override
     public String printIntoFile() {
-        return DEADLINE_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description + SEPARATOR + this.by;
+        return DEADLINE_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description + SEPARATOR + this.isImportant
+                + SEPARATOR + this.by;
     }
 
     /**
