@@ -171,7 +171,7 @@ public class Parser {
             return new ExitCommand();
         default:
             return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
-    }
+        }
 
     }
 
