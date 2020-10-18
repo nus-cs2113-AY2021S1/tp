@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.command.AddCommand;
 import seedu.duke.command.Command;
+import seedu.duke.command.CountdownCommand;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.DoneCommand;
 import seedu.duke.command.ExitCommand;
@@ -11,7 +12,6 @@ import seedu.duke.command.PrintEventsCommand;
 import seedu.duke.command.PrintProgressCommand;
 import seedu.duke.command.PrintTasksCommand;
 import seedu.duke.command.PrintTimelineCommand;
-import seedu.duke.command.CountdownCommand;
 
 /**
  * Determines the type of command input by the user and calls for the respective command function.

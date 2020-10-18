@@ -123,7 +123,7 @@ public class AddCommand extends Command {
      * User input for Lab event example: lab CS1010 com1-b1-14 /at 100820 1400.
      *
      * @param calendarList the calendar list to add the lab event to.
-     * @param command the attributes of the lab event.
+     * @param command      the attributes of the lab event.
      * @throws Exception if the module code is empty.
      */
     private void addLabEvent(CalendarList calendarList, String[] command) throws Exception {
@@ -147,7 +147,7 @@ public class AddCommand extends Command {
      * User input for Tutorial event example: tutorial CS1010 lt12 /at 090820 1000.
      *
      * @param calendarList the calendar list to add the tutorial event to.
-     * @param command the attributes of the tutorial event.
+     * @param command      the attributes of the tutorial event.
      * @throws Exception if the module code is empty.
      */
     private void addTutorialEvent(CalendarList calendarList, String[] command) throws Exception {
@@ -172,7 +172,7 @@ public class AddCommand extends Command {
      * User input for Lecture task example: lecture CS2113 LT2 /at 020202 1200.
      *
      * @param calendarList the calendar list to add the lecture event to.
-     * @param command the attributes of the lecture event.
+     * @param command      the attributes of the lecture event.
      * @throws Exception if the module code is empty.
      */
     private void addLectureEvent(CalendarList calendarList, String[] command) throws Exception {
@@ -196,7 +196,7 @@ public class AddCommand extends Command {
      * User input for Exam task example: exam CS2113 BLK:EA LT2 /at 020202 1200.
      *
      * @param calendarList the calendar list to add the exam to.
-     * @param command the attributes of the exam.
+     * @param command      the attributes of the exam.
      * @throws Exception if the module code is empty.
      */
     private void addExamEvent(CalendarList calendarList, String[] command) throws Exception {
@@ -220,7 +220,7 @@ public class AddCommand extends Command {
      * User input for Activity event example: activity run training @sentosa / 020202 1200.
      *
      * @param calendarList the calendar list to add the activity to.
-     * @param command the attributes of the activity.
+     * @param command      the attributes of the activity.
      * @throws Exception if the description is empty.
      */
     private void addActivityEvent(CalendarList calendarList, String[] command) throws Exception {
@@ -245,7 +245,7 @@ public class AddCommand extends Command {
      * User input for Deadline task example: deadline project / 101020.
      *
      * @param calendarList the calendar list to add the deadline task to.
-     * @param command the attributes of deadline task.
+     * @param command      the attributes of deadline task.
      * @return to show that is is a task.
      * @throws Exception if the description is empty.
      */

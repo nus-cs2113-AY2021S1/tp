@@ -3,10 +3,9 @@ package seedu.duke;
 import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.event.Event;
+import seedu.duke.calendar.event.Exam;
 import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Task;
-import seedu.duke.command.CountdownCommand;
-import seedu.duke.calendar.event.Exam;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -233,7 +232,7 @@ public class Ui {
      * Print the countdown for every item in the calendar list.
      *
      * @param calendarList the calendar list we want to print the countdown for.
-     * @param type 0 is for exam events, 1 is for deadline tasks.
+     * @param type         0 is for exam events, 1 is for deadline tasks.
      */
     public static void printCountDownMessage(CalendarList calendarList, int type) {
         switch (type) {
@@ -241,14 +240,14 @@ public class Ui {
             System.out.println("Here is your exams countdown:");
             for (int i = 0; i < calendarList.getTotalItems(); i++) {
                 CalendarItem temp = calendarList.getItem(i);
-                Ui.printCountDownItem(((Exam)temp).getCountdown(), temp);
+                Ui.printCountDownItem(((Exam) temp).getCountdown(), temp);
             }
             break;
         case 1:
             System.out.println("Here is your deadlines countdown:");
             for (int i = 0; i < calendarList.getTotalItems(); i++) {
                 CalendarItem temp = calendarList.getItem(i);
-                Ui.printCountDownItem(((Deadline)temp).getCountdown(), temp);
+                Ui.printCountDownItem(((Deadline) temp).getCountdown(), temp);
             }
             break;
         default:

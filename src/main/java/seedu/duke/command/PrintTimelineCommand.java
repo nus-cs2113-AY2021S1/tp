@@ -1,6 +1,5 @@
 package seedu.duke.command;
 
-import seedu.duke.DukeException;
 import seedu.duke.Storage;
 import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
@@ -18,7 +17,7 @@ public class PrintTimelineCommand extends Command {
      * Prints out timeline of all items in calendarList.
      *
      * @param calendarList the calendar list to print the timeline from.
-     * @param storage the storage to input the data from.
+     * @param storage      the storage to input the data from.
      */
     @Override
     public void execute(CalendarList calendarList, Storage storage) {

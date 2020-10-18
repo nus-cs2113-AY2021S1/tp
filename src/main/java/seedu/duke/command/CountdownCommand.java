@@ -5,13 +5,13 @@ import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
-import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.event.Exam;
+import seedu.duke.calendar.task.Deadline;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
-import java.text.SimpleDateFormat;
 
 /**
  * A countdown for exams and deadlines.
@@ -27,7 +27,7 @@ public class CountdownCommand extends Command {
      * Calculates the countdown for every unfinished deadline tasks and future exams.
      *
      * @param calendarList the calendarList to calculate the countdown for.
-     * @param storage the storage to store data to.
+     * @param storage      the storage to store data to.
      * @throws DukeException when there is an invalid command.
      */
     @Override
@@ -133,7 +133,7 @@ public class CountdownCommand extends Command {
             for (int j = 0; j < examList.getTotalItems() - i - 1; j++) {
                 CalendarItem item1 = examList.getCalendarList().get(j);
                 CalendarItem item2 = examList.getCalendarList().get(j + 1);
-                if (((Exam)item1).getCountdown() > ((Exam)item2).getCountdown()) {
+                if (((Exam) item1).getCountdown() > ((Exam) item2).getCountdown()) {
                     examList.swapTasks(j, j + 1);
                 }
             }
@@ -156,7 +156,7 @@ public class CountdownCommand extends Command {
         for (int i = 0; i < calendarList.getTotalItems(); i++) {
             CalendarItem temp = calendarList.getItem(i);
             if (temp instanceof Deadline) {
-                if (!((Deadline)temp).getIsDone()) {
+                if (!((Deadline) temp).getIsDone()) {
                     deadlineList.addItem(temp);
                 }
             }
@@ -166,7 +166,7 @@ public class CountdownCommand extends Command {
             for (int j = 0; j < deadlineList.getTotalItems() - i - 1; j++) {
                 CalendarItem item1 = deadlineList.getCalendarList().get(j);
                 CalendarItem item2 = deadlineList.getCalendarList().get(j + 1);
-                if (((Exam)item1).getCountdown() > ((Exam)item2).getCountdown()) {
+                if (((Exam) item1).getCountdown() > ((Exam) item2).getCountdown()) {
                     deadlineList.swapTasks(j, j + 1);
                 }
             }
