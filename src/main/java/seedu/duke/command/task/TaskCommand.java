@@ -24,26 +24,10 @@ public class TaskCommand {
         String description;
         String priority;
 
-        if (!tasks.containsKey(TITLE) || !tasks.containsKey(DESCRIPTION)
-                || !tasks.containsKey(PRIORITY)) {
-            throw new DukeException("Missing parameters.");
-        }
+        title = tasks.get(TITLE);
+        description = tasks.get(DESCRIPTION);
+        priority = tasks.get(PRIORITY);
 
-        if (!tasks.get(TITLE).isBlank()) {
-            title = tasks.get(TITLE);
-        } else {
-            throw new DukeException("Please enter a title!");
-        }
-        if (!tasks.get(DESCRIPTION).isBlank()) {
-            description = tasks.get(DESCRIPTION);
-        } else {
-            throw new DukeException("Please enter a description!");
-        }
-        if (tasks.get(PRIORITY) != null) {
-            priority = tasks.get(PRIORITY);
-        } else {
-            throw new DukeException("Please enter a priority!");
-        }
         try {
             Project proj = projectList.get(0);
             if (!proj.getProjectBacklog().checkValidPriority(priority)) {
@@ -128,20 +112,9 @@ public class TaskCommand {
         int id;
         String priority;
 
-        if (!tasks.containsKey(TASK_ID) || !tasks.containsKey(PRIORITY)) {
-            throw new DukeException("Missing parameters.");
-        }
+        id = Integer.parseInt(tasks.get(TASK_ID));
+        priority = tasks.get(PRIORITY).trim();
 
-        if (tasks.get(TASK_ID) != null) {
-            id = Integer.parseInt(tasks.get(TASK_ID));
-        } else {
-            throw new DukeException("Task ID entered is invalid!");
-        }
-        if (tasks.get(PRIORITY) != null) {
-            priority = tasks.get(PRIORITY).trim();
-        } else {
-            throw new DukeException("Please enter a priority!");
-        }
         try {
             Project proj = projectList.get(0);
             try {
