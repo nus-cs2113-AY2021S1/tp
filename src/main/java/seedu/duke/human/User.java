@@ -75,7 +75,7 @@ public class User extends Human {
     public void setActiveWorkspace(Workspace inputWorkspace) {
         activeWorkspace = inputWorkspace;
 
-        if (activeWorkspace != null) {
+        if (activeWorkspace.getWatchlistList().size() == 0) {
             //Loading of changed active user should be done here. For now set to empty
             ArrayList<Watchlist> watchlistLists = new ArrayList<>();
             Watchlist watchlist = new Watchlist("Default");
