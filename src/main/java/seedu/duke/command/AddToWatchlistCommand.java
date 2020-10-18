@@ -12,7 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AddToWatchlistCommand extends Command {
-    private static final String ADD_OPTION = "-a";
 
     private Integer animeIndex;
     private static final Logger LOGGER = Logger.getLogger(AddToWatchlistCommand.class.getName());
@@ -33,10 +32,10 @@ public class AddToWatchlistCommand extends Command {
     }
     
     public void addToWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
-
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
-        activeWatchlist.addAnimeToList(animeIndex);
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
+        
+        activeWatchlist.addAnimeToList(animeIndex);
 
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
         LOGGER.log(Level.INFO, "Successfully added and stored anime into active watchlist");

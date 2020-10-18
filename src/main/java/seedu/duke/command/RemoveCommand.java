@@ -13,20 +13,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class RemoveCommand extends Command {
-    private static final String REMOVE_OPTION = "-d";
+    protected static final String OUT_OF_BOUND_INDEX_ERROR = "Invalid Watchlist Index!";
+    protected static final String EMPTY_WATCHLIST_ERROR = "Watchlist is empty!";
 
-    private String option;
-    private String animeIndex = "";
+    private Integer watchlistListIndex;
     private static final Logger LOGGER = Logger.getLogger(AddToWatchlistCommand.class.getName());
     
-    public RemoveCommand(String description) {
+    public RemoveCommand() {
         LOGGER.setLevel(Level.WARNING);
-        String[] descriptionSplit = description.split(" ", 2);
-
-        option = descriptionSplit[0];
-        if (descriptionSplit.length == 2) {
-            animeIndex = descriptionSplit[1];
-        }
     }
 
     /**
@@ -36,27 +30,31 @@ public class RemoveCommand extends Command {
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         Workspace activeWorkspace = user.getActiveWorkspace();
 
-        if (!option.equals(REMOVE_OPTION)) {
-            LOGGER.log(Level.WARNING, "Option type given is wrong");
-            throw new AniException("Remove command only accepts the option: \"-d\".");
-        }
-        assert option.equals("-d") == true : "option type should have been \"-d\".";
         removeFromWatchlist(storageManager, activeWorkspace);
 
         return "Anime successfully removed from watchlist!";
     }
     
     private void removeFromWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
-        if (animeIndex == null || animeIndex.trim().isEmpty()) {
-            LOGGER.log(Level.WARNING, "Anime ID is empty, exception thrown");
-            throw new AniException("Anime ID cannot be empty.");
-        }
-        
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
-//        activeWatchlist.removeAnimeFromList(animeIndex);
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
+        
+        if (activeWatchlist.getWatchlistSize() == 0) {
+            throw new AniException(EMPTY_WATCHLIST_ERROR);
+        } else if(activeWatchlist.getWatchlistSize() <= watchlistListIndex - 1) {
+            throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
+        } else if (watchlistListIndex <= 0) {
+            throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
+        } 
+        
+        assert this.watchlistListIndex >= 0 : "Watchlist index has to be valid";
+        activeWatchlist.removeAnimeFromList(watchlistListIndex - 1);
 
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
         LOGGER.log(Level.INFO, "Successfully removed anime from active watchlist");
+    }
+    
+    public void setWatchlistListIndex(Integer watchlistListIndex) {
+        this.watchlistListIndex = watchlistListIndex;
     }
 }

@@ -47,7 +47,7 @@ public class Parser {
             return new AddToWatchlistParser().parse(description);
         
         case "remove":
-            return new RemoveCommand(description);
+            return new RemoveCommandParser().parse(description);
 
         case "bookmark":
             return new BookmarkAnimeCommand(description);
