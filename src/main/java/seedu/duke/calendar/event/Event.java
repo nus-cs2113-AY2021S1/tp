@@ -67,7 +67,11 @@ public abstract class Event extends CalendarItem {
         additionalInformationCount++;
     }
 
-    public String getAdditionalInformation(int informationNumber) {
+    public ArrayList<String> getAdditionalInformation() {
+        return additionalInformation;
+    }
+
+    public String getAdditionalInformationElement(int informationNumber) {
         return additionalInformation.get(informationNumber);
     }
 

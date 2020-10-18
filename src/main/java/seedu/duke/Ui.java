@@ -11,6 +11,7 @@ import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Task;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -50,7 +51,8 @@ public class Ui {
                 + "15. print progress\n"
                 + "16. countdown exams\n"
                 + "17. countdown deadlines\n"
-                + "18. /a <event number> - information"
+                + "18. /a <event number> - information\n"
+                + "19. /v <event number>"
         );
     }
 
@@ -60,6 +62,15 @@ public class Ui {
 
     public static void printTotalTaskNumber(CalendarList calendarList) {
         System.out.println("Your total task(s): " + calendarList.getTotalTasks());
+    }
+
+    public static void printAdditionalInformation(ArrayList<String> additionalInformation, Event event) {
+        int i = 0;
+        System.out.println("Event:" + event);
+        for (String s : additionalInformation) {
+            i++;
+            System.out.println(i + ". " + s);
+        }
     }
 
     /**
@@ -140,13 +151,13 @@ public class Ui {
         System.out.println("Deleted:\n" + calendarList.getCalendarList().get(numberDelete));
     }
 
-    public static void printAdditionalInformation(int calendarNumber, CalendarList calendarList) {
+    public static void printLastAdditionalInformation(int calendarNumber, CalendarList calendarList) {
         Event event = (Event) calendarList.getCalendarList().get(calendarNumber);
         System.out.println("Event: " + event);
         int lastIndexOfAdditionalInformation =
                 event.getAdditionalInformationCount() - 1; // -1 to cater for array list starting from 0
         System.out.println("Additional info added: "
-                + event.getAdditionalInformation(lastIndexOfAdditionalInformation));
+                + event.getAdditionalInformationElement(lastIndexOfAdditionalInformation));
     }
 
     /**
@@ -403,6 +414,10 @@ public class Ui {
         case "invalid add info":
             System.out.println(
                     "Error: Please key in the additional information in this format: /a <event number> - information");
+            break;
+        case "invalid view info":
+            System.out.println(
+                    "Error: To view the additional information of the event: /v <event number>");
             break;
         default:
             System.out.println("Unknown Error.");

@@ -31,6 +31,6 @@ public class AddInfoCommand extends Command {
         calendarNumber = CalendarList.convertEventNumberToCalendarNumber(eventNumber, calendarList);
         Event event = (Event) calendarList.getItem(calendarNumber);
         event.setAdditionalInformation(additionalInformation);
-        Ui.printAdditionalInformation(calendarNumber, calendarList);
+        Ui.printLastAdditionalInformation(calendarNumber, calendarList);
     }
 }
