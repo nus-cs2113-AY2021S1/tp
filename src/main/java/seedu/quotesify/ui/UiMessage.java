@@ -81,14 +81,14 @@ public class UiMessage {
     public static final String EDIT_BOOKMARK_COMMAND = "Update bookmark: " + "bookmark -b BOOK_TITLE /pg PAGE_NUMBER";
     public static final String EDIT_QUOTE_COMMAND = "";
     public static final String EDIT_CATEGORY_COMMAND = "Edit category: " + "edit -c OLD_CATEGORY NEW_CATEGORY";
-    public static final String EDIT_RATING_COMMAND = "";
+    public static final String EDIT_RATING_COMMAND = "Edit rating: " + "edit -r RATING_SCORE BOOK_TITLE";
     public static final String EDIT_TODO_COMMAND = "";
 
     public static final String FIND_BOOK_COMMAND = "";
     public static final String FIND_BOOKMARK_COMMAND = "";
     public static final String FIND_QUOTE_COMMAND = "";
     public static final String FIND_CATEGORY_COMMAND = "";
-    public static final String FIND_RATING_COMMAND = "";
+    public static final String FIND_RATING_COMMAND = "Find rating: " + "find -r BOOK_TITLE";
     public static final String FIND_TODO_COMMAND = "";
 
     public static final String LIST_BOOK_COMMAND = "List books: " + "list -b [/by AUTHOR]";

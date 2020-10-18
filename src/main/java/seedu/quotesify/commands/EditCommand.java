@@ -63,6 +63,21 @@ public class EditCommand extends Command {
 
             Book book = books.getBook(bookIndex);
             String oldTitle = book.getTitle();
+
+            // check if book has ratings before editing the title.
+            RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
+            int currentRatingOfBook = 0;
+            for (Rating rating : ratings.getList()) {
+                if (rating.getTitleOfRatedBook().equals(oldTitle)) {
+                    currentRatingOfBook = rating.getRating();
+                    ratings.delete(ratings.getList().indexOf(rating));
+                    break;
+                }
+            }
+            if (currentRatingOfBook != 0) {
+                ratings.add(new Rating(currentRatingOfBook, newTitle));
+            }
+
             book.setTitle(newTitle);
             ui.printEditBook(oldTitle, newTitle);
 
