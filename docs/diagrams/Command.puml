@@ -1,0 +1,42 @@
+@startuml
+
+Package " "<<Rectangle>>{
+    Class Command
+    Class ExitCommand
+    Class AddEventCommand
+    Class AddNoteCommand
+    Class CreateTagCommand
+    Class DeleteNoteCommand
+    Class DeleteTagCommand
+    Class EditEventCommand
+    Class EditNoteCommand
+    Class HelpCommand
+    Class FindCommand
+    Class ListEventCommand
+    Class ListNoteCommand
+    Class ListTagCommand
+    Class PinCommand
+    Class RemindCommand
+    Class TagCommand
+    Class ViewNoteCommand
+}
+
+ExitCommand --|> Command 
+AddEventCommand --|> Command 
+AddNoteCommand --|> Command 
+CreateTagCommand --|> Command 
+DeleteNoteCommand --|> Command 
+DeleteTagCommand --|> Command 
+EditEventCommand --|> Command 
+EditNoteCommand --|> Command 
+HelpCommand --|> Command 
+FindCommand --|> Command 
+PinCommand --|> Command 
+TagCommand --|> Command 
+ListEventCommand --|> Command 
+ListNoteCommand --|> Command 
+ListTagCommand --|> Command 
+RemindCommand --|> Command 
+ViewNoteCommand --|> Command 
+
+@enduml

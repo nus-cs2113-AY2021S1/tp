@@ -1,0 +1,35 @@
+@startuml
+
+Package " "<<Rectangle>>{
+    Class StorageManager
+    Class InterfaceManager
+    Class Notebook
+    Class Timetable
+    Class TagManager
+    Class Parser
+    Class Command
+    Class Duke 
+}
+
+Duke --> StorageManager
+Duke --> InterfaceManager
+Duke --> Notebook
+Duke --> Timetable
+Duke --> TagManager
+Duke --> Parser
+Duke --> Command
+
+InterfaceManager --> Notebook
+InterfaceManager --> Timetable
+
+Parser --> Command
+Parser --> TagManager
+Parser --> Notebook
+Parser --> Timetable
+
+Command --> Notebook
+Command --> Timetable
+Command --> TagManager
+Command --> StorageManager
+
+@enduml
