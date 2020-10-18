@@ -11,6 +11,7 @@ public class Duke {
 
     private static Parser parser;
     private static BusInfo busInfo = new BusInfo();
+
     public Duke() {
         RouteParser.initLogger();
     }
