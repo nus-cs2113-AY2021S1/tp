@@ -35,7 +35,8 @@ public class BookmarkParser extends CommandParser {
         String[] paramParts = paramGiven.split(" ");
         switch (paramParts[0].trim()) {
         case EPISODE_PARAM:
-            paramLengthCheck(paramParts);
+            paramFieldCheck(paramParts);
+            paramExtraFieldCheck(paramParts);
             bookmarkAnimeCommand.setBookmarkAction(paramParts[0]);
             Boolean isValidBookmarkEpisode = bookmarkAnimeCommand.setBookmarkEpisode(paramParts[1].trim());
             if (!isValidBookmarkEpisode) {
@@ -46,7 +47,8 @@ public class BookmarkParser extends CommandParser {
             }
             break;
         case ADD_PARAM:
-            paramLengthCheck(paramParts);
+            paramFieldCheck(paramParts);
+            paramExtraFieldCheck(paramParts);
             bookmarkAnimeCommand.setBookmarkAction(paramParts[0]);
             Boolean isValidAnimeIndex = bookmarkAnimeCommand.setAnimeIndex(paramParts[1].trim());
             if (!isValidAnimeIndex) {
@@ -57,7 +59,8 @@ public class BookmarkParser extends CommandParser {
             }
             break;
         case DELETE_PARAM:
-            paramLengthCheck(paramParts);
+            paramFieldCheck(paramParts);
+            paramExtraFieldCheck(paramParts);
             bookmarkAnimeCommand.setBookmarkAction(paramParts[0]);
             Boolean isValidBookmarkIndex = bookmarkAnimeCommand.setBookmarkIndex(paramParts[1].trim());
             if (!isValidBookmarkIndex) {
@@ -111,16 +114,16 @@ public class BookmarkParser extends CommandParser {
         return paramGiven;
     }
 
-    private void paramLengthCheck(String[] paramParts) throws AniException {
-        // Parameter Additional Field Check
-        if (paramParts.length < 2) {
-            String invalidParameter = "Parameter : " + paramParts[0] + " requires an additional field";
-            LOGGER.log(Level.WARNING, "Could not load bookmark command:" + invalidParameter);
-            throw new AniException(invalidParameter);
-        } else if (paramParts.length > 2) {
-            String invalidParameter = "Parameter : " + paramParts[0] + " has too much fields";
-            LOGGER.log(Level.WARNING, "Could not load bookmark command:" + invalidParameter);
-            throw new AniException(invalidParameter);
-        }
-    }
+    //    private void paramLengthCheck(String[] paramParts) throws AniException {
+    //        // Parameter Additional Field Check
+    //        if (paramParts.length < 2) {
+    //            String invalidParameter = "Parameter : " + paramParts[0] + " requires an additional field";
+    //            LOGGER.log(Level.WARNING, "Could not load bookmark command:" + invalidParameter);
+    //            throw new AniException(invalidParameter);
+    //        } else if (paramParts.length > 2) {
+    //            String invalidParameter = "Parameter : " + paramParts[0] + " has too much fields";
+    //            LOGGER.log(Level.WARNING, "Could not load bookmark command:" + invalidParameter);
+    //            throw new AniException(invalidParameter);
+    //        }
+    //    }
 }
