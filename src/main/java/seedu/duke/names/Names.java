@@ -11,7 +11,7 @@ public class Names {
     protected static ArrayList<String> names = new ArrayList<>();
 
     /**
-     * Returns a random name from the list of names stored in the database
+     * Returns a random name from the list of names stored in the database.
      **/
     public static void getName() throws NameException {
         NamesDB.loadDB(names);
@@ -25,7 +25,7 @@ public class Names {
     }
 
     /**
-     * Searches for names based on the given input
+     * Searches for names based on the given input.
      **/
     public static void filterNames(String match) throws NameException {
         NamesDB.loadDB(names);
@@ -43,7 +43,7 @@ public class Names {
     }
 
     /**
-     * Displays all names stored in the database
+     * Displays all names stored in the database.
      **/
     public static void listNames() throws NameException {
         NamesDB.loadDB(names);
@@ -57,7 +57,7 @@ public class Names {
     }
 
     /**
-     * Add name to the list of names
+     * Add name to the list of names.
      **/
     public static void addName(String name) throws NameException {
         NamesDB.loadDB(names);
@@ -68,7 +68,7 @@ public class Names {
     }
 
     /**
-     * Delete name from the list of names
+     * Delete name from the list of names.
      **/
     public static void deleteName(String index) throws NameException {
         NamesDB.loadDB(names);
