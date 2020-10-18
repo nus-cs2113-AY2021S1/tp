@@ -13,6 +13,7 @@ public abstract class Task extends CalendarItem {
     public static final String CROSS_SYMBOL = "X";
     protected String description;
     protected boolean isDone;
+    protected boolean isImportant;
 
     private static final String TASK_FILE_SYMBOL = "Task";
     private static final String SEPARATOR = "|";
@@ -20,6 +21,7 @@ public abstract class Task extends CalendarItem {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.isImportant = false;
     }
 
     /**
@@ -27,7 +29,11 @@ public abstract class Task extends CalendarItem {
      */
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.description;
+        String priorityMessage = "";
+        if (isImportant) {
+            priorityMessage = "(important!) ";
+        }
+        return "[" + this.getStatusIcon() + "] " + priorityMessage + this.description;
     }
 
     /**
@@ -60,6 +66,22 @@ public abstract class Task extends CalendarItem {
      */
     public void markAsDone() {
         this.isDone = true;
+    }
+
+    /**
+     * Prioritize the task as important.
+     */
+    public void markAsImportant() {
+        this.isImportant = true;
+    }
+
+    /**
+     * Get whether the task is marked as important.
+     *
+     * @return whether the task is important
+     */
+    public boolean getIsImportant() {
+        return isImportant;
     }
 
     /**

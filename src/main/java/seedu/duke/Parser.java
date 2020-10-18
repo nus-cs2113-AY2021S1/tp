@@ -10,9 +10,11 @@ import seedu.duke.command.ExitCommand;
 import seedu.duke.command.FindCommand;
 import seedu.duke.command.HelpCommand;
 import seedu.duke.command.PrintEventsCommand;
+import seedu.duke.command.PrintPriorityCommand;
 import seedu.duke.command.PrintProgressCommand;
 import seedu.duke.command.PrintTasksCommand;
 import seedu.duke.command.PrintTimelineCommand;
+import seedu.duke.command.PrioritizeCommand;
 import seedu.duke.command.ViewInfoCommand;
 
 /**
@@ -32,6 +34,8 @@ public class Parser {
     public static final String COMMAND_SHOW_COUNTDOWN = "countdown";
     public static final String COMMAND_ADD_INFO = "/a";
     public static final String COMMAND_VIEW_INFO = "/v";
+    public static final String COMMAND_PRIORITIZE = "*";
+    public static final String COMMAND_PRINT_PRIORITY = "print *";
 
     public static Command handleUserInput(String userInput) {
 
@@ -59,6 +63,10 @@ public class Parser {
             return new PrintProgressCommand(userInput);
         } else if (userInput.startsWith(COMMAND_SHOW_COUNTDOWN)) {
             return new CountdownCommand(userInput);
+        } else if (userInput.startsWith((COMMAND_PRIORITIZE))) {
+            return new PrioritizeCommand(userInput);
+        } else if (userInput.equals(COMMAND_PRINT_PRIORITY)) {
+            return new PrintPriorityCommand(userInput);
         } else {
             /** An invalid command is catered for in AddCommand */
             return new AddCommand(userInput);
