@@ -56,6 +56,8 @@ public class WritingsLoader {
         try {
             while (s.hasNext()) {
                 String currentLine = s.nextLine();
+                //Reset the content to blank
+                content = "";
                 while (!currentLine.equals(WRITING_COMPONENT_DIVIDER)) {
                     while (currentLine.startsWith(WRITING_COMPONENT_MARK)) {
                         countContent++;
@@ -78,7 +80,11 @@ public class WritingsLoader {
                     }
                     //Writing text to the writing object
                     currentLine = s.nextLine();
-                    content = content.concat(currentLine + "\n");
+
+                    //prevent adding the WRITING_COMPONENT_DIVIDER to the content of the writing
+                    if (!currentLine.equals(WRITING_COMPONENT_DIVIDER)) {
+                        content = content.concat(currentLine + "\n");
+                    }
                 }
                 countWritings++;
                 if (type.equals(POEM)) {
