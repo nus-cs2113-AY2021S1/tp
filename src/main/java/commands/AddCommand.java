@@ -86,16 +86,17 @@ public class AddCommand extends Command {
         return false;
     }
 
-    private String addChapter(Access access, Storage storage, Chapter chapter) {
+    private String addChapter(Access access, Storage storage, Chapter chapter) throws IOException {
         Module newModule = access.getModule();
         ChapterList chapters = newModule.getChapters();
         chapters.addChapter(chapter);
         int chapterCount = chapters.getChapterCount();
         access.setModule(newModule);
-        storage.createChapter(chapter.getChapterName(), access.getModuleLevel());
-        String result = String.format(MESSAGE_SUCCESS, CHAPTER) + chapter.toString() + "\n"
-                + String.format(MESSAGE_COUNT, chapterCount, CHAPTER);
-        return result;
+        StringBuilder result = new StringBuilder();
+        result.append(storage.createChapter(chapter.getChapterName(), access.getModuleLevel()));
+        result.append(String.format(MESSAGE_SUCCESS, CHAPTER) + chapter.toString() + "\n"
+                + String.format(MESSAGE_COUNT, chapterCount, CHAPTER));
+        return result.toString();
     }
 
     private String addCard(Access access, Storage storage) throws IOException {
@@ -115,10 +116,11 @@ public class AddCommand extends Command {
         modules.addModule(module);
         int moduleCount = modules.getModuleCount();
         access.setAdmin(newAdmin);
-        storage.createModule(module.getModuleName());
-        String result = String.format(MESSAGE_SUCCESS, MODULE) + module.toString() + "\n" +
-                String.format(MESSAGE_COUNT, moduleCount, MODULE);
-        return result;
+        StringBuilder result = new StringBuilder();
+        result.append(storage.createModule(module.getModuleName()));
+        result.append(String.format(MESSAGE_SUCCESS, MODULE) + module.toString() + "\n" +
+                String.format(MESSAGE_COUNT, moduleCount, MODULE));
+        return result.toString();
     }
 
 
