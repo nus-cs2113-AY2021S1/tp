@@ -19,6 +19,7 @@ public class Deadline extends Task {
         super(description);
         this.by = by;
         this.taskType = "D";
+        this.isImportant = getIsImportant();
     }
 
     /**
