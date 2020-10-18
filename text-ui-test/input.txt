@@ -1,10 +1,14 @@
 todo homework
 deadline project / 101020
+deadline project2 / 101120
 act CCA @NUS /101020 1230
 lect cs2113 @lt12 /081020 1600
 tut cs2113 @com1 /081020 1600
 lab cs1010 @com1-bi-12 /101020 1000
+exam cs1010 @com1-bi-12 /101220 1000
+exam cs2113 @com1 /081120 1600
 print tasks
 print events
+countdown exams
 print timeline
 bye
