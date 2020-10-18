@@ -15,8 +15,8 @@ public class NamesDB {
     private static java.nio.file.Path filePath;
 
     /**
-     * Loads the database of names
-     * Creates a default list of names if database doesn't exist
+     * Loads the database of names.
+     * Creates a default list of names if database doesn't exist.
      **/
     public static void loadDB(ArrayList<String> names) throws NameException {
         String home = Paths.get("").toAbsolutePath().toString();
@@ -556,7 +556,7 @@ public class NamesDB {
     }
 
     /**
-     * Updates the database with the given list of names
+     * Updates the database with the given list of names.
      **/
     public static void updateDB(ArrayList<String> names) throws NameException {
         try {
