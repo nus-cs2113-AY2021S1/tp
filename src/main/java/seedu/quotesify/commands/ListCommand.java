@@ -62,6 +62,8 @@ public class ListCommand extends Command {
             listBooks(bookList, ui);
             break;
         default:
+            ui.printListOfListCommands();
+            break;
         }
     }
 
