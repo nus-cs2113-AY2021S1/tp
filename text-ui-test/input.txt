@@ -3,8 +3,8 @@ Female
 watchlist -n a
 watchlist -n b
 watchlist -l
-add -a MyFirstAnime
-add -a MySecondAnime
+add -a 1
+add -a 3
 bookmark -a 1
 bookmark -a 410
 bookmark 1 -e 5
@@ -12,7 +12,7 @@ bookmark -l
 adduser -n Testing1
 adduser -n Testing2
 switchuser -n Testing1
-add -a MyFirstAnime
+add -a 1
 watchlist -n a
 watchlist -l
 bookmark -l

@@ -21,9 +21,9 @@ Default (Default) #> Currently, you have 3 watchlist(s):
 	2. a
 	3. b
 
-Default (Default) #> Anime added to watchlist!
+Default (Default) #> Cowboy Bebop added to watchlist!
 
-Default (Default) #> Anime added to watchlist!
+Default (Default) #> Trigun added to watchlist!
 
 Default (Default) #> Saving 1. Cowboy Bebop  to bookmark.
 
@@ -44,7 +44,7 @@ Default (Default) #> Successfully added new workspace:
 
 Default (Default) #> Workspace changed to Testing1
 
-Testing1 (Default) #> Anime added to watchlist!
+Testing1 (Default) #> Cowboy Bebop added to watchlist!
 
 Testing1 (Default) #> Watchlist created successfully!
 

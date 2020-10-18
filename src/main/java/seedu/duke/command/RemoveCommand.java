@@ -40,7 +40,6 @@ public class RemoveCommand extends Command {
     
     private void removeFromWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
-        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         
         if (activeWatchlist.getWatchlistSize() == 0) {
             throw new AniException(EMPTY_WATCHLIST_ERROR);
@@ -53,7 +52,8 @@ public class RemoveCommand extends Command {
         assert this.watchlistListIndex >= 0 : "Watchlist index has to be valid";
         animeIndex = activeWatchlist.getWatchlistListAnimeIndex(watchlistListIndex);
         activeWatchlist.removeAnimeFromList(watchlistListIndex);
-        
+
+        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
         LOGGER.log(Level.INFO, "Successfully removed anime from active watchlist");
     }

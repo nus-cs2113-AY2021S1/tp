@@ -37,9 +37,9 @@ public class AddToWatchlistCommand extends Command {
         return animeName + " added to watchlist!";
     }
     
-    public void addToWatchlist(AnimeData animeData, StorageManager storageManager, Workspace activeWorkspace) throws AniException {
+    public void addToWatchlist(AnimeData animeData, StorageManager storageManager, 
+                               Workspace activeWorkspace) throws AniException {
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
-        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         ArrayList<Integer> activeWatchlistList = activeWatchlist.getAnimeList();
         int indexSize = animeData.getSize();
         
@@ -54,6 +54,7 @@ public class AddToWatchlistCommand extends Command {
         assert this.animeIndex >= 0 : "Anime index has to be valid";
         activeWatchlist.addAnimeToList(animeIndex);
 
+        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
         LOGGER.log(Level.INFO, "Successfully added and stored anime into active watchlist");
     }

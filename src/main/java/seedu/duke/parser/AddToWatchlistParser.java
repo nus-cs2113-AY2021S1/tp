@@ -21,7 +21,7 @@ public class AddToWatchlistParser extends CommandParser {
     public AddToWatchlistCommand parse(String description) throws AniException {
         String[] paramGiven = parameterSplitter(description);
         
-        if(paramGiven.length <= 1) {
+        if (paramGiven.length <= 1) {
             throw new AniException("-a ANIME_ID is required");
         } else {
             parameterParser(paramGiven);
