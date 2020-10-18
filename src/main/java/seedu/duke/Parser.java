@@ -49,7 +49,7 @@ public class Parser {
             return new PrintTasksCommand(userInput);
         } else if (userInput.equals(COMMAND_PRINT_EVENTS)) {
             return new PrintEventsCommand(userInput);
-        } else if (userInput.equals(COMMAND_PRINT_TIMELINE)) {
+        } else if (userInput.startsWith(COMMAND_PRINT_TIMELINE)) {
             return new PrintTimelineCommand(userInput);
         } else if (userInput.startsWith(COMMAND_DONE)) {
             return new DoneCommand(userInput);
