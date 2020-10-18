@@ -40,6 +40,7 @@ public class CommandParser {
         } else if (destination.equals("5") || destination.equals(ModeNames.FLASHCARD_NAME)) {
             return Mode.FLASHCARD;
         } else {
+            StudyItLog.logger.info("Invalid mode was chosen.");
             throw new InvalidModeException();
         }
     }
