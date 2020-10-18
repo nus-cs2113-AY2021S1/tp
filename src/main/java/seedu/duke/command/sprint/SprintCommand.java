@@ -1,6 +1,7 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.command.Command;
+import seedu.duke.exception.DukeException;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -14,6 +15,6 @@ public abstract class SprintCommand extends Command {
         super(parameters);
     }
 
-    public abstract void execute();
+    public abstract void execute() throws DukeException;
 
 }

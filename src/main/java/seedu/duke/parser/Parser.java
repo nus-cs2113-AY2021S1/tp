@@ -159,7 +159,11 @@ public class Parser {
                     for (int i = 0; i < params.size(); i++) {
                         newParams.put(String.valueOf(i), params.get(i).trim());
                     } //to be removed after standardisation
-                    new AddSprintTaskCommand(newParams, projectList).execute();
+                    try {
+                        new AddSprintTaskCommand(newParams, projectList).execute();
+                    } catch (DukeException e) {
+                        e.printExceptionMessage();
+                    }
                     break;
                 case REMOVETASK:
                     //Convert Arraylist to Hashtable to simulate standardisation

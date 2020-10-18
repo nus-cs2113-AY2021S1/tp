@@ -26,7 +26,7 @@ public class AddSprintTaskCommand extends SprintCommand {
         LOGGER.setLevel(Level.WARNING);
     }
 
-    public void execute() {
+    public void execute() throws DukeException {
         assert !projectList.isEmpty() : "No project\n";
         if (projectList.isEmpty()) {
             Ui.showError("Please create a project first.");
@@ -50,7 +50,7 @@ public class AddSprintTaskCommand extends SprintCommand {
                         LOGGER.log(Level.INFO, "AddSprintTaskCommand executed successfully"
                                 + System.lineSeparator()
                                 + proj.getProjectBacklog().getTask(taskId).getTitle());
-                    } catch (NumberFormatException | DukeException e) {
+                    } catch (NumberFormatException e) {
                         Ui.showError("Invalid parameters.");
                         LOGGER.log(Level.WARNING, "Provided invalid parameters: " + parameters);
                     }

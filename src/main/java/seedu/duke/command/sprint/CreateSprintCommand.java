@@ -51,11 +51,11 @@ public class CreateSprintCommand extends SprintCommand {
         }
     }
 
-    private void createFirstSprint(Project proj) {
+    private void createFirstSprint(Project proj) throws DukeException {
 
         LocalDate sprintStart = LocalDate.now();
         if (!(this.parameters.get("start") == null)) {
-            sprintStart = DateTimeParser.parseDate(this.parametersInHT.get("start"));
+            sprintStart = DateTimeParser.parseDate(this.parameters.get("start"));
         } else {
             throw new DukeException("no start date");
         }

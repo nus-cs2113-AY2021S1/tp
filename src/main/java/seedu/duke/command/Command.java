@@ -1,5 +1,7 @@
 package seedu.duke.command;
 
+import seedu.duke.exception.DukeException;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -18,7 +20,7 @@ public abstract class Command {
     /**
      * Abstract method that execute the command.
      */
-    public abstract void execute();
+    public abstract void execute() throws DukeException;
 
     /**
      * Getters and Setters.
