@@ -3,7 +3,7 @@ package seedu.duke.commands;
 import seedu.duke.classes.Show;
 import seedu.duke.utility.ShowList;
 
-public class RatingCommand {
+public class RatingCommand extends Command {
     String showName;
 
     public RatingCommand(String showName) {
@@ -11,7 +11,7 @@ public class RatingCommand {
     }
 
     /**
-     * Adds rating to a show
+     * Adds rating to a show.
      * @param showName show which is to be rated
      * @param rating rating to be given to show
      * @throws NullPointerException throws exception when show is not in the list

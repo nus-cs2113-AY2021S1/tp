@@ -3,7 +3,7 @@ package seedu.duke.commands;
 import seedu.duke.utility.ErrorHandling;
 import seedu.duke.utility.ShowList;
 
-public class DeleteCommand {
+public class DeleteCommand extends Command {
     String showName;
 
     public DeleteCommand(String showName) {
@@ -11,7 +11,7 @@ public class DeleteCommand {
     }
 
     /**
-     * Deletes a show
+     * Deletes a show.
      *
      * @param showName show to be deleted
      * @throws NullPointerException throws exception when show is not in the list
