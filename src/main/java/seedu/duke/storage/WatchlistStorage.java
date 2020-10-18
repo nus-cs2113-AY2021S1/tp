@@ -20,9 +20,10 @@ public class WatchlistStorage extends Storage {
     // ========================== Save and Load ==========================
 
     public void save(String workspaceName, ArrayList<Watchlist> watchlistList) throws AniException {
-        String watchlistFilePath = storageDirectory + workspaceName + File.separator + WATCHLIST_FILE_NAME;
+        String watchlistDirectory = storageDirectory + workspaceName + File.separator;
+        String watchlistFilePath = watchlistDirectory + WATCHLIST_FILE_NAME;
         String encodedWatchlistString = encode(watchlistList);
-        new File(storageDirectory).mkdirs();
+        new File(watchlistDirectory).mkdirs();
         writeFile(watchlistFilePath, encodedWatchlistString);
     }
 

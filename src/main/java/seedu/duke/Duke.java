@@ -12,6 +12,7 @@ import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class Duke {
         user = null;
         ui = new Ui();
         parser = new Parser();
-        storageManager = new StorageManager();
+        storageManager = new StorageManager("data" + File.separator);
 
         // ========================== Initialize AniChan ==========================
         ui.printWelcomeMessage();
@@ -52,7 +53,7 @@ public class Duke {
                 String loadWatchlistResult = storageManager.loadWatchlistList(workspaceName, watchlistList);
                 ui.printMessage("\tWatchlist: " + loadWatchlistResult);
             } catch (AniException exception) {
-                ui.printErrorMessage("\tWatchlist: " + exception.getMessage());
+                ui.printMessage("\tWatchlist: " + exception.getMessage());
             }
 
             Bookmark bookmark = new Bookmark();
@@ -104,6 +105,9 @@ public class Duke {
 
         Workspace activeWorkspace = user.getActiveWorkspace();
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
+        if (watchlistList.size() == 0) {
+            watchlistList.add(new Watchlist("Default"));
+        }
         activeWorkspace.setActiveWatchlist(watchlistList.get(0));
 
         // ========================== Anime Data Setup ==========================
