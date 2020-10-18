@@ -232,7 +232,7 @@ Example of usage:
 
 `create-t /tag important red /tag CS2113 blue`
 
-💡 If no tag color is specified, the color of the tag will be that of the default console color.
+💡 If no tag color is specified, the color of the tag will be that of the default white color.
 
 Expected output:
 
