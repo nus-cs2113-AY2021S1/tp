@@ -7,7 +7,7 @@ public class TimeTableParser {
     public static void commandParser(String command, DateList dateList, TimeTableStorage storage) {
         if (command.equals("show schedule")) {
             System.out.println(Message.printShowSchedule);
-            Table.printTable(dateList.dateList);
+            TablePrinter.printTable(dateList.dateList);
             return;
         }
         try {
@@ -26,7 +26,7 @@ public class TimeTableParser {
                 }
                 break;
                 default:
-                    System.out.println(("☹ OOPS!!! I'm sorry, but I don't know what that means :-("));
+                    System.out.println((Message.printInvalidEvent));
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -81,7 +81,9 @@ public class TimeTableParser {
             int durationNum = Integer.parseInt(words[5]);
             Lesson lesson = new Lesson(name, linkOrVenue, isOnline, numPerWeek);
             for (int i = 0; i < durationNum; i++) {
+                assert words[ 5 + 2 * i + 1].contains("//");
                 LocalDateTime start = LocalDateTime.parse(words[5 + 2 * i + 1]);
+                assert words[5 + 2 * i + 2].contains("//");
                 LocalDateTime end = LocalDateTime.parse(words[5 + 2 * i + 2]);
                 Duration duration = new Duration(start, end);
                 lesson.addPeriod(duration);
@@ -102,7 +104,7 @@ public class TimeTableParser {
     }
 
 
-    private static LocalDateTime getDateTime(String command)throws ArrayIndexOutOfBoundsException {
+    public static LocalDateTime getDateTime(String command)throws ArrayIndexOutOfBoundsException {
         String[] dateTime;
         String[] date;
         int fromIndex = command.indexOf("from");

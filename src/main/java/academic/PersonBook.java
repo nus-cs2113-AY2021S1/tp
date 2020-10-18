@@ -26,6 +26,7 @@ public class PersonBook {
 
             }
         }
+
         return listToPrint.toString();
     }
 }

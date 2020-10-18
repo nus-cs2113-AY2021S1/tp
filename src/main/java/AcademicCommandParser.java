@@ -2,7 +2,6 @@ import academic.Grade;
 import exceptions.InvalidCommandException;
 import exceptions.InvalidGradeException;
 import exceptions.InvalidMcException;
-import exceptions.InvalidModeException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,6 +47,7 @@ public class AcademicCommandParser extends CommandParser {
         String grade = command.substring(command.indexOf("g/") + 2);
 
         List<String> list = Arrays.asList(Grade.listOfGrades);
+
         if (!list.contains(grade.toLowerCase())) {
             throw new InvalidGradeException();
         } else if (mc.equals("0")) {

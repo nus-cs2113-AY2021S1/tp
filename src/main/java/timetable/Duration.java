@@ -31,7 +31,7 @@ public class Duration {
         }
     }
 
-    private int getTime(LocalDateTime dateTime) {
+    public int getTime(LocalDateTime dateTime) {
         return dateTime.getHour() * 100 + dateTime.getMinute();
     }
 
