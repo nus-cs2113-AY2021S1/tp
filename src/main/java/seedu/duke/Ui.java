@@ -56,21 +56,8 @@ public class Ui {
         );
     }
 
-    public static void printDateParseError() {
-        System.out.println("Unable to parse date");
-    }
-
     public static void printTotalTaskNumber(CalendarList calendarList) {
         System.out.println("Your total task(s): " + calendarList.getTotalTasks());
-    }
-
-    public static void printAdditionalInformation(ArrayList<String> additionalInformation, Event event) {
-        int i = 0;
-        System.out.println("Event:" + event);
-        for (String s : additionalInformation) {
-            i++;
-            System.out.println(i + ". " + s);
-        }
     }
 
     /**
@@ -151,13 +138,32 @@ public class Ui {
         System.out.println("Deleted:\n" + calendarList.getCalendarList().get(numberDelete));
     }
 
-    public static void printLastAdditionalInformation(int calendarNumber, CalendarList calendarList) {
-        Event event = (Event) calendarList.getCalendarList().get(calendarNumber);
+    /**
+     * Prints the last additional information of a particular event.
+     *
+     * @param event event containing the additional information.
+     */
+    public static void printLastAdditionalInformation(Event event) {
         System.out.println("Event: " + event);
         int lastIndexOfAdditionalInformation =
                 event.getAdditionalInformationCount() - 1; // -1 to cater for array list starting from 0
         System.out.println("Additional info added: "
                 + event.getAdditionalInformationElement(lastIndexOfAdditionalInformation));
+    }
+
+    /**
+     * Prints the list of additional information of a particular event.
+     *
+     * @param additionalInformation array list of the additional information.
+     * @param event event that contains the additional information.
+     */
+    public static void printAdditionalInformation(ArrayList<String> additionalInformation, Event event) {
+        int i = 0;
+        System.out.println("Event:" + event);
+        for (String s : additionalInformation) {
+            i++;
+            System.out.println(i + ". " + s);
+        }
     }
 
     /**

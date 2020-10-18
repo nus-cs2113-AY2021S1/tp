@@ -71,6 +71,11 @@ public abstract class Event extends CalendarItem {
         return additionalInformation;
     }
 
+    /**
+     * Returns the additional information of at particular index.
+     *
+     * @param informationNumber index of the additional information.
+     */
     public String getAdditionalInformationElement(int informationNumber) {
         return additionalInformation.get(informationNumber);
     }

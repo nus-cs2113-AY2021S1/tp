@@ -14,7 +14,13 @@ public class ViewInfoCommand extends Command {
         super(command);
     }
 
-
+    /**
+     * Prints the list of additional information of a particular event.
+     *
+     * @param calendarList the calendar list containing the event.
+     * @param storage      not required.
+     * @throws DukeException if the view info command is invalid.
+     */
     @Override
     public void execute(CalendarList calendarList, Storage storage) throws DukeException {
         int eventNumber = 0;

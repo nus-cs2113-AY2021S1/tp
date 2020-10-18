@@ -13,6 +13,13 @@ public class AddInfoCommand extends Command {
         super(command);
     }
 
+    /**
+     * Adds additional information to an event. Multiple additional information can be added to an event.
+     *
+     * @param calendarList the calendar list containing the event.
+     * @param storage      not required.
+     * @throws DukeException if the additional info command is invalid.
+     */
     @Override
     public void execute(CalendarList calendarList, Storage storage) throws DukeException {
         String[] command;
@@ -31,6 +38,6 @@ public class AddInfoCommand extends Command {
         calendarNumber = CalendarList.convertEventNumberToCalendarNumber(eventNumber, calendarList);
         Event event = (Event) calendarList.getItem(calendarNumber);
         event.setAdditionalInformation(additionalInformation);
-        Ui.printLastAdditionalInformation(calendarNumber, calendarList);
+        Ui.printLastAdditionalInformation(event);
     }
 }
