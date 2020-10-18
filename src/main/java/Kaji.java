@@ -21,10 +21,10 @@ public class Kaji {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
-            Admin admin = new Admin(storage.loadModule());
+            Admin admin = new Admin(storage.loadModule(ui));
             access = new Access(admin);
         } catch (FileNotFoundException e) {
-            storage.createAdmin();
+            storage.createAdmin(ui);
             access = new Access();
         }
     }

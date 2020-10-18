@@ -28,7 +28,7 @@ public class GoCommand extends Command {
     @Override
     public void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException {
         if (access.isAdminLevel()) {
-            String result = goModule(access, storage);
+            String result = goModule(access, storage, ui);
             ui.showToUser(result);
         } else if (access.isModuleLevel()) {
             String result = goChapter(access, storage);
@@ -67,7 +67,7 @@ public class GoCommand extends Command {
         return result;
     }
 
-    private String goModule(Access access, Storage storage) throws IncorrectAccessLevelException {
+    private String goModule(Access access, Storage storage, Ui ui) throws IncorrectAccessLevelException {
         boolean isLevelExist = false;
         String result = "";
         ModuleList modules = access.getAdmin().getModules();
@@ -77,7 +77,7 @@ public class GoCommand extends Command {
                 access.setModuleLevel(moduleOrChapter);
                 isLevelExist = true;
                 try {
-                    ArrayList<Chapter> chapters = storage.loadChapter(module.getModuleName());
+                    ArrayList<Chapter> chapters = storage.loadChapter(module.getModuleName(), ui);
                     if (chapters.size() == 0) {
                         result = "This is a new module, you can try to add chapters inside!";
                     }
