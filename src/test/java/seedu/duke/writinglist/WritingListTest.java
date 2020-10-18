@@ -4,21 +4,24 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.writing.WritingList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class WritingListTest {
     private static void initializeTestDatabase() {
-        WritingList.addPoem("fantasy", "2020-12-20", "thih", "sdfa", "jdkfa", 12);
-        WritingList.addPoem("fantasy", "2020-12-20", "thih", "sdfa", "jdkfa", 12);
-        WritingList.addPoem("fantasy", "2020-12-20", "thih", "sdfa", "jdkfa", 12);
-        WritingList.addEssay("fantasy", "2020-12-20", "thih", "sdfa", "jdkfa", 12);
-        WritingList.addEssay("fantasy", "2020-12-20", "thih", "sdfa", "jdkfa", 12);
+        WritingList.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa");
+        WritingList.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa");
+        WritingList.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa");
+        WritingList.addEssay("fantasy", 12, "thih", "sdfa", "jdkfa");
+        WritingList.addEssay("fantasy", 12, "thih", "sdfa", "jdkfa");
     }
 
     @Test
     public void removeAllWritings_getWritingSize() {
-        //WritingList.clearAll();
-        //initializeTestDatabase();
-        //assertEquals(5, WritingList.getWritingSize());
+        WritingList.writinglist.clear();
+        initializeTestDatabase();
+        assertEquals(5, WritingList.getWritingSize());
+        WritingList.clearAll();
+        assertEquals(0, WritingList.getWritingSize());
     }
 }
 

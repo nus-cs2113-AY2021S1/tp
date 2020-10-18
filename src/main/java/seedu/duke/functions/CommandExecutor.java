@@ -105,7 +105,7 @@ public class CommandExecutor {
             WritingList.checkType();
             break;
         case COUNT_WRITINGS:
-            WritingList.getWritingSize();
+            WritingList.printWritingSize();
             break;
         case RESET_WRITINGS:
             WritingList.clearAll();

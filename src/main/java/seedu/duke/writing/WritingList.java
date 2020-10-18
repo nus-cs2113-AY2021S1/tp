@@ -25,50 +25,58 @@ import static seedu.duke.constants.DataFileConvention.MAX_NUM_WRITINGS;
 import static seedu.duke.database.WritingsLoader.recordListToFile;
 
 public class WritingList {
-    private int countWriting;
-    public static ArrayList<Writings> writing;
+    public static ArrayList<Writings> writinglist = new ArrayList<>();
+    //Used to clear all of writings when reseting database
+    static int countWritings = 0;
 
     public WritingList() {
-        countWriting = 0;
-        this.writing = new ArrayList<>();
+        this.writinglist = new ArrayList<>();
     }
 
     public void add(Writings w) {
-        countWriting++;
-        writing.add(w);
+        writinglist.add(w);
     }
 
     public Writings get(int i) {
-        return writing.get(i);
+        return writinglist.get(i);
     }
 
     public static void remove(int i) {
-        writing.remove(i);
+        writinglist.remove(i);
     }
 
     public int getCountWritings() {
-        return this.countWriting;
+        return writinglist.size();
+    }
+
+    public static void printWritingSize() {
+        System.out.println("In our storage, there is/are currently " + getWritingSize() + " writing(s)");
     }
 
     /**
      *  print all of the current writings in the Arraylist with details.
+     *  Triggered when "stats" command is called.
      */
     public static void printWritings() {
-        for (int i = 0; i < writing.size(); i++) {
-            System.out.println("This is a " + writing.get(i).getType());
-            System.out.println("Written by " + writing.get(i).getAuthor().getName() + "\n");
-            System.out.println("Id: " + writing.get(i).getId());
-            System.out.println(writing.get(i).getTitle().toUpperCase() + "\n");
-            System.out.println(writing.get(i).getContent());
-            System.out.println("This writing was created on " + writing.get(i).date);
-            System.out.println(PLAIN_TEXT_DIVIDER);
-            if (writing.get(i).getType().equals(POEM)) {
-                System.out.println("This poem has " + writing.get(i).getNumberOfLines()
-                                    + " and " + writing.get(i).getNumberOfWords());
-            } else if (writing.get(i).getType().equals(ESSAY)) {
-                System.out.println("This essay has " + writing.get(i).getNumberOfSentences()
-                        + " and " + writing.get(i).getNumberOfWords());
+        if (writinglist.size() > 0) {
+            for (Writings w : writinglist) {
+                System.out.println("This is a " + w.getType());
+                System.out.println("Written by " + w.getAuthor().getName() + "\n");
+                System.out.println("Id: " + w.getId());
+                System.out.println(w.getTitle().toUpperCase() + "\n");
+                System.out.println(w.getContent());
+                System.out.println("This writing was created on " + w.date);
+                System.out.println(PLAIN_TEXT_DIVIDER);
+                if (w.getType().equals(POEM)) {
+                    System.out.println("This poem has " + w.getNumberOfLines()
+                            + " and " + w.getNumberOfWords());
+                } else if (w.getType().equals(ESSAY)) {
+                    System.out.println("This essay has " + w.getNumberOfSentences()
+                            + " and " + w.getNumberOfWords());
+                }
             }
+        } else {
+            System.out.println("The storage is currently empty, please type \"start\" command to add");
         }
     }
 
@@ -81,7 +89,7 @@ public class WritingList {
     }
 
     public static int getWritingSize() {
-        return writing.size();
+        return writinglist.size();
     }
     
     public static void checkStart() {
@@ -124,9 +132,9 @@ public class WritingList {
             Random rand = new Random();
             int newId = rand.nextInt(MAX_NUM_WRITINGS);
             if (commandStartChecker == POEM) {
-                writing.add(new Poem(title, newId, "nothing", content, user.getName()));
+                addPoem(title, newId, "nothing", content, user.getName());
             } else if (commandStartChecker == ESSAY) {
-                writing.add(new Essay(title, newId, "nothing", content, user.getName()));
+                addEssay(title, newId, "nothing", content, user.getName());
             }
             System.out.println("Done! We have added your writing to our storage! You can type \"stats\" "
                     + "for future reference!");
@@ -137,20 +145,31 @@ public class WritingList {
         }
     }
 
+    /**
+     * Clear all data stored in writing.txt.
+     * To be associated with command "reset writing".
+     */
     public static void clearAll() {
-        for (int i = 0; i < getWritingSize(); i++) {
+        for (int i = 0; i < countWritings; i++) {
             remove(0);
         }
+        System.out.println("We have clear all data in the writings list");
+        //Reset countWritings
+        countWritings = 0;
     }
 
-    public static void addPoem(String title, String date, String topic, String content, String author, int id) {
-        writing.add(new Poem(title, date, topic, content, author, id));
-        System.out.println("This Poem, " + title +  "has been added");
+    public static void addPoem(String title, int id, String topic, String content, String author) {
+        Poem toBeAdded = new Poem(title, id, topic, content, author);
+        writinglist.add(toBeAdded);
+        countWritings++;
+        System.out.println("This Poem, " + title +  " has been added");
     }
 
-    public static void addEssay(String title, String date, String topic, String content, String author, int id) {
-        writing.add(new Essay(title, date, topic, content, author, id));
-        System.out.println("This Essay, " + title +  "has been added");
+    public static void addEssay(String title, int id, String topic, String content, String author) {
+        Essay toBeAdded = new Essay(title, id, topic, content, author);
+        writinglist.add(toBeAdded);
+        countWritings++;
+        System.out.println("This Essay, " + title +  " has been added");
     }
 
 }

@@ -33,6 +33,7 @@ public class WritingsLoader {
     /**This function reads data stored in data file and coverts it into ArrayList structure.
      *
      * @param f data file storing the information of the tasks
+     * @param savedWritings List of writings available in the txt database file
      * @return total writings detected in the data file
      * @throws FileNotFoundException when the file is not found
      * @throws NotEnoughWritingComponentException when the format of minimum
@@ -105,8 +106,7 @@ public class WritingsLoader {
     }
 
     /**Check if the data file exists or not, creates "writings.txt" in "data" directory if not
-     *
-     * @param f file to be processed
+     *  @param f file to be processed
      * @param savedWritings writings being stored
      */
     public static void convertFromFile(File f, WritingList savedWritings) {

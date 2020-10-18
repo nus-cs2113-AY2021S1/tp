@@ -8,6 +8,7 @@ import seedu.duke.constants.Logos;
 import seedu.duke.user.User;
 import seedu.duke.writing.WritingList;
 import seedu.duke.database.WritingsLoader;
+import seedu.duke.writing.Writings;
 
 import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.database.BunnyLoader.loadBunnyFile;
