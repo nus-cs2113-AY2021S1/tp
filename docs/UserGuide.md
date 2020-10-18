@@ -1,8 +1,8 @@
 # **WatchNext** User Guide
 
 * [1. Introduction](#1-introduction)
-    + [1.a. What does **WatchNext** do?](#1a-what-does-**WatchNext**-do)
-    + [1.b. Why use **WatchNext**?](#1b-why-use-**WatchNext**)
+    + [1.a What does **WatchNext** do?](#1a-what-does-watchnext-do)
+    + [1.b. Why use **WatchNext**?](#1b-why-use-watchnext)
     + [1.c. What will this guide do?](#1c-what-will-this-guide-do)
 * [2. Quick Start](#2-quick-start)
 * [3. Command Format](#3-command-format)
