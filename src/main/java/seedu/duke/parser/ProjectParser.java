@@ -4,7 +4,11 @@ import seedu.duke.exception.DukeException;
 
 import java.util.Hashtable;
 
-import static seedu.duke.command.CommandSummary.*;
+import static seedu.duke.command.CommandSummary.CREATE;
+import static seedu.duke.command.CommandSummary.DESCRIPTION;
+import static seedu.duke.command.CommandSummary.DURATION;
+import static seedu.duke.command.CommandSummary.SPRINT_DURATION;
+import static seedu.duke.command.CommandSummary.TITLE;
 
 public class ProjectParser implements ExceptionsParser {
     @Override
