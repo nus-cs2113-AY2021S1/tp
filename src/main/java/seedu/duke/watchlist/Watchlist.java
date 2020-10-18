@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class Watchlist {
     private final String name;
-    private final ArrayList<String> animeList;
+    private final ArrayList<Integer> animeList;
 
     public Watchlist(String name) {
         this.name = name;
         this.animeList = new ArrayList<>();
     }
 
-    public Watchlist(String name, ArrayList<String> animeList) {
+    public Watchlist(String name, ArrayList<Integer> animeList) {
         this.name = name;
         this.animeList = animeList;
     }
@@ -20,19 +20,19 @@ public class Watchlist {
         return name;
     }
 
-    public ArrayList<String> getAnimeList() {
+    public ArrayList<Integer> getAnimeList() {
         return animeList;
     }
 
-    public void addAnimeToList(String animeName) {
-        this.animeList.add(animeName);
-        assert this.animeList.contains(animeName) == true : "Watchlist should now contain new anime";
+    public void addAnimeToList(Integer animeIndex) {
+        this.animeList.add(animeIndex);
+        assert this.animeList.contains(animeIndex) == true : "Watchlist should now contain new anime";
     }
     
-    public void removeAnimeFromList(String animeName) {
-        this.animeList.remove(animeName);
-        assert this.animeList.contains(animeName) == false : "Watchlist should now not contain the anime";
-    }
+//    public void removeAnimeFromList(Integer animeIndex) {
+//        this.animeList.remove(animeIndex);
+//        assert this.animeList.contains(animeIndex) == false : "Watchlist should now not contain the anime";
+//    }
 
     public String animeListToString() {
         StringBuilder sbAnimeList = new StringBuilder();

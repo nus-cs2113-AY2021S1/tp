@@ -53,7 +53,7 @@ public class RemoveCommand extends Command {
         }
         
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
-        activeWatchlist.removeAnimeFromList(animeIndex);
+//        activeWatchlist.removeAnimeFromList(animeIndex);
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
 
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);

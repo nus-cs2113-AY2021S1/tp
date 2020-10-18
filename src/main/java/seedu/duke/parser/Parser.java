@@ -8,6 +8,7 @@ import seedu.duke.command.Command;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpCommand;
 import seedu.duke.command.WatchlistCommand;
+import seedu.duke.command.RemoveCommand;
 import seedu.duke.exception.AniException;
 
 import java.util.logging.Level;
@@ -43,7 +44,7 @@ public class Parser {
             return new WatchlistCommand(description);
 
         case "add":
-            return new AddToWatchlistCommand(description);
+            return new AddToWatchlistParser().parse(description);
         
         case "remove":
             return new RemoveCommand(description);
