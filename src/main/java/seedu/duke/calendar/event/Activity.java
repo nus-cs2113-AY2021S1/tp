@@ -88,8 +88,15 @@ public class Activity extends Event {
      */
     @Override
     public String printIntoFile() {
-        return EVENT_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + details
-                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue;
+        String writeToFile = EVENT_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + details
+                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue + SEPARATOR + getAdditionalInformationCount();
+        if(getAdditionalInformationCount() != 0){
+            int i;
+            for(i = 0; i < getAdditionalInformationCount(); i++) {
+                writeToFile = writeToFile + SEPARATOR + getAdditionalInformationElement(i);
+            }
+        }
+        return writeToFile;
     }
 
     /**

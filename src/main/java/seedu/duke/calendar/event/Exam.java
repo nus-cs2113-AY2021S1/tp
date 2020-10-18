@@ -72,8 +72,17 @@ public class Exam extends SchoolEvent {
      */
     @Override
     public String printIntoFile() {
-        return EXAM_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR
-                + moduleCode + SEPARATOR + date + SEPARATOR + time + SEPARATOR + venue;
+        String writeToFile;
+        writeToFile = EXAM_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR
+                + moduleCode + SEPARATOR + date + SEPARATOR + time + SEPARATOR + venue
+                + SEPARATOR + getAdditionalInformationCount();
+        if(getAdditionalInformationCount() != 0){
+            int i;
+            for(i = 0; i < getAdditionalInformationCount(); i++) {
+                writeToFile = writeToFile + SEPARATOR + getAdditionalInformationElement(i);
+            }
+        }
+        return writeToFile;
     }
 
     /**
