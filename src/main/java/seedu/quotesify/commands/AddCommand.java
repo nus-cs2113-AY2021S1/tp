@@ -14,6 +14,7 @@ import seedu.quotesify.quote.QuoteParser;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
 import seedu.quotesify.rating.RatingParser;
+import seedu.quotesify.store.Storage;
 import seedu.quotesify.todo.ToDo;
 import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
@@ -74,6 +75,7 @@ public class AddCommand extends Command {
             ui.printListOfAddComnmands();
             break;
         }
+        Storage.save();
     }
 
     private void addBook(BookList books, TextUi ui) {
@@ -94,7 +96,6 @@ public class AddCommand extends Command {
             Book newBook = createNewBook(title, authorName);
             books.add(newBook);
             ui.printAddBook(newBook);
-
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
             addLogger.log(Level.INFO, "add book to booklist failed");
@@ -175,7 +176,7 @@ public class AddCommand extends Command {
         try {
             int bookIndex = Integer.parseInt(bookNum) - 1;
             Book book = bookList.getBook(bookIndex);
-            book.getCategory().add(category.getCategoryName());
+            book.getCategories().add(category.getCategoryName());
             ui.printAddCategoryToBook(book.getTitle(), category.getCategoryName());
             addLogger.log(Level.INFO, "add category to book success");
         } catch (IndexOutOfBoundsException e) {
@@ -198,7 +199,7 @@ public class AddCommand extends Command {
         try {
             int quoteNum = Integer.parseInt(index) - 1;
             Quote quote = quotes.get(quoteNum);
-            quote.getCategory().add(category.getCategoryName());
+            quote.getCategories().add(category.getCategoryName());
             ui.printAddCategoryToQuote(quote.getQuote(), category.getCategoryName());
             addLogger.log(Level.INFO, "add category to quote success");
         } catch (IndexOutOfBoundsException e) {

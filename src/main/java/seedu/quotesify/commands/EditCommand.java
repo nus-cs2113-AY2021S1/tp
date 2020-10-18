@@ -11,6 +11,7 @@ import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
 import seedu.quotesify.rating.RatingParser;
+import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
 public class EditCommand extends Command {
@@ -47,6 +48,7 @@ public class EditCommand extends Command {
             ui.printListOfEditCommands();
             break;
         }
+        Storage.save();
     }
 
     private void editBook(BookList books, TextUi ui) {

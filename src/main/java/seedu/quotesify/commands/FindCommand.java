@@ -3,6 +3,7 @@ package seedu.quotesify.commands;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
+import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
 public class FindCommand extends Command {
@@ -31,6 +32,7 @@ public class FindCommand extends Command {
             ui.printListOfFindCommands();
             break;
         }
+        Storage.save();
     }
 
     private void findRating(RatingList ratings, TextUi ui) {

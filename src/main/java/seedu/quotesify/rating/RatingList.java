@@ -1,5 +1,8 @@
 package seedu.quotesify.rating;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import seedu.quotesify.book.Book;
 import seedu.quotesify.lists.QuotesifyList;
 
 import java.util.ArrayList;
@@ -36,5 +39,14 @@ public class RatingList extends QuotesifyList<Rating> {
             ratingsToReturn += rating.toString() + System.lineSeparator();
         }
         return ratingsToReturn;
+    }
+
+    @Override
+    public JSONArray toJsonArray() {
+        JSONArray list = new JSONArray();
+        for (Rating rating : ratings) {
+            list.add(rating.toJson());
+        }
+        return list;
     }
 }

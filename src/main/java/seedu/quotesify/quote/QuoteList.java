@@ -1,6 +1,6 @@
 package seedu.quotesify.quote;
 
-import seedu.quotesify.book.Book;
+import org.json.simple.JSONArray;
 import seedu.quotesify.lists.QuotesifyList;
 
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public class QuoteList extends QuotesifyList<Quote> {
     public QuoteList filterByCategory(String categoryName) {
         ArrayList<Quote> filteredQuotes = (ArrayList<Quote>) quotes.stream()
                 .filter(quote -> {
-                    ArrayList<String> categories = quote.getCategory();
+                    ArrayList<String> categories = quote.getCategories();
                     return categories.contains(categoryName);
                 }).collect(Collectors.toList());
         return new QuoteList(filteredQuotes);
@@ -99,5 +99,14 @@ public class QuoteList extends QuotesifyList<Quote> {
             }
         }
         return listToReturn;
+    }
+
+    @Override
+    public JSONArray toJsonArray() {
+        JSONArray list = new JSONArray();
+        for (Quote quote : quotes) {
+            list.add(quote.toJson());
+        }
+        return list;
     }
 }

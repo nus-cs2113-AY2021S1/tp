@@ -8,6 +8,7 @@ import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.parser.Parser;
 import seedu.quotesify.quote.QuoteList;
 import seedu.quotesify.rating.RatingList;
+import seedu.quotesify.store.Storage;
 import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
 
@@ -29,6 +30,7 @@ public class Quotesify {
     private ToDoList toDos;
     private BookmarkList bookmarks;
     private final Logger logger = Logger.getLogger("QuotesifyLogger");
+    private final String saveFileLocation = "/data/quotesify.json";
 
     public Quotesify() {
         ui = new TextUi();
@@ -39,6 +41,8 @@ public class Quotesify {
         toDos = new ToDoList();
         bookmarks = new BookmarkList();
 
+        setupLogger();
+
         ListManager.addToList(ListManager.BOOK_LIST, books);
         ListManager.addToList(ListManager.QUOTE_LIST, quotes);
         ListManager.addToList(ListManager.CATEGORY_LIST, categories);
@@ -46,7 +50,8 @@ public class Quotesify {
         ListManager.addToList(ListManager.TODO_LIST, toDos);
         ListManager.addToList(ListManager.BOOKMARK_LIST, bookmarks);
 
-        setupLogger();
+        Storage.initialiseSaveFile(saveFileLocation);
+        Storage.load();
     }
 
     public void start() {
