@@ -203,7 +203,7 @@ public class ListNoteCommand extends Command {
      * @param sortedNotes ArrayList of notes that were already sorted
      * @return noteString String containing the notes sorted either ascending ot descending
      */
-    private StringBuilder getSortedString(ArrayList<Note> sortedNotes) {
+    public StringBuilder getSortedString(ArrayList<Note> sortedNotes) {
         StringBuilder noteStrBuilder = new StringBuilder();
 
         if (!isAscendingOrder) {
@@ -221,7 +221,7 @@ public class ListNoteCommand extends Command {
      * @param notesList ArrayList of notes to obtain note title/tags from
      * @return noteString StringBuilder containing the notes ready to be printed
      */
-    private StringBuilder getNoteString(ArrayList<Note> notesList) {
+    public StringBuilder getNoteString(ArrayList<Note> notesList) {
         StringBuilder noteString = new StringBuilder();
 
         for (int i = 0; i < notesList.size(); i++) {
