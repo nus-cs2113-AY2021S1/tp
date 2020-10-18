@@ -1,5 +1,8 @@
 package seedu.duke.command;
 
+import seedu.duke.ui.AsciiArt;
+import seedu.duke.ui.Formatter;
+
 /**
  * Exits the program.
  */
@@ -13,7 +16,8 @@ public class ExitCommand extends Command {
 
     @Override
     public String execute() {
-        return COMMAND_SUCCESSFUL_MESSAGE;
+        return COMMAND_SUCCESSFUL_MESSAGE + Formatter.LS
+                + AsciiArt.getGoodbyeArt();
     }
 
     public static boolean isExit(Command command) {
