@@ -227,7 +227,7 @@ public class ListNoteCommand extends Command {
         for (int i = 0; i < notesList.size(); i++) {
             noteString.append(i + 1).append(SUFFIX_INDEX)
                     .append(notesList.get(i).getTitle())
-                    .append(" Tags: ")
+                    .append(" ")
                     .append(notesList.get(i).getTagsName())
                     .append(Formatter.LS);
         }
