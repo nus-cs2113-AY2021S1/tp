@@ -7,6 +7,7 @@ import bookmark.commands.ChangeModeCommand;
 import bookmark.commands.ListCommand;
 import bookmark.commands.RemoveLinkCommand;
 import exceptions.InvalidCommandException;
+import log.StudyItLog;
 
 public class BookmarkParser {
     private static int chosenCategory;
@@ -19,7 +20,7 @@ public class BookmarkParser {
             StudyItLog.logger.finest("Empty command");
             throw new InvalidCommandException();
         }
-        String commandModified = CommandParser.standardizeCommand(command);
+        String commandModified = command.trim().toLowerCase();
         if (commandModified.startsWith("bm")) {
             getChosenCategory(command);
             return new ChangeModeCommand(chosenCategory);

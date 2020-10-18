@@ -16,6 +16,7 @@ public class BookmarkUi {
     public static void printWelcomeBookmarkMessage() {
         System.out.println("Welcome to B00KMARK!");
         System.out.println("Choose your category by typing \"bm <category index>!\"");
+        //showBookmarkCategoryList();
     }
 
     public static void showBookmarkCategoryList(ArrayList<BookmarkCategory> bookmarkCategories) {
