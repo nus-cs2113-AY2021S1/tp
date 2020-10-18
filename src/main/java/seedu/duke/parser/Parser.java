@@ -76,7 +76,7 @@ public class Parser {
             switch (command.toLowerCase()) {
             case PROJECT:
                 try {
-                    new ProjectParser().parseSingleCommandsExceptions(parameters);
+                    new ProjectParser().parseMultipleCommandsExceptions(parameters, action);
                 } catch (DukeException e) {
                     e.printExceptionMessage();
                     break;
@@ -86,7 +86,7 @@ public class Parser {
                     new ProjectCommand().createProjectCommand(parameters, projectList);
                     break;
                 case VIEW:
-                    new ProjectCommand().viewProjectCommand(parameters, projectList);
+                    new ProjectCommand().viewProjectCommand(projectList);
                     break;
                 default:
                     try {
