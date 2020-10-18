@@ -1,8 +1,9 @@
-import exceptions.InvalidCommandException;
 import exceptions.InvalidModeException;
 import org.junit.jupiter.api.Test;
-
-import javax.print.attribute.standard.Destination;
+import studyit.CommandParser;
+import studyit.CommandType;
+import studyit.Mode;
+import studyit.StudyIt;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;

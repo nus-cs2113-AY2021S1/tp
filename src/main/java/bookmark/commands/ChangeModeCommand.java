@@ -24,7 +24,7 @@ public class ChangeModeCommand extends BookmarkCommand {
             int category = getChosenCategory(categories);
             if (category == categoryNumber) {
                 ui.showAlreadyInModeMessage();
-                assert category == categoryNumber : "Mode does not change when it is already in the mode";
+                assert category == categoryNumber : "studyit.Mode does not change when it is already in the mode";
             } else {
                 categoryNumber = category;
                 int categoryNumberInList = categoryNumber - 1;
