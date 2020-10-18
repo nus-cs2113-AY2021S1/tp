@@ -1,3 +1,4 @@
+
 package seedu.duke.event;
 
 
@@ -13,7 +14,7 @@ public class EventList {
      * @param event event to be added in the list.
      */
     public static String addEvent(Event event) {
-        logger.info("Adding event\n");
+        logger.info("Adding event to list\n");
         String userOutput;
         events.add(event);
         userOutput = "Got it. I've added this Event:\n" + event.printEvent() + "\n"
@@ -41,6 +42,17 @@ public class EventList {
         return userOutput;
     }
 
+    public static String isCompleted(int index) {
+        String userOutput;
+        int numToBeMarked = index + 1;
+        Event event = events.get(index);
+        event.isDone = true;
+        userOutput =  "Nice! I've marked this task as done: \n"
+                + numToBeMarked +"." + events.get(index).printEvent()+"\n";
+
+        return userOutput;
+    }
+
     public static String printEventList() {
         logger.info("Initialising event list\n");
         String userOutput;
@@ -62,5 +74,4 @@ public class EventList {
 
 
 }
-
 

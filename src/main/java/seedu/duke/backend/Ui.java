@@ -7,6 +7,7 @@ import seedu.duke.DukeNoMatchException;
 import seedu.duke.event.CommandEventAdd;
 import seedu.duke.event.CommandEventDel;
 import seedu.duke.event.CommandEventList;
+import seedu.duke.event.CommandEventStatus;
 import seedu.duke.finance.CommandFinanceAdd;
 import seedu.duke.finance.CommandFinanceDel;
 import seedu.duke.finance.CommandFinanceSummary;
@@ -140,6 +141,7 @@ public class Ui {
         commandList.add(new CommandAddMember());
         commandList.add(new CommandViewMember());
         commandList.add(new CommandDelMember());
+        commandList.add(new CommandEventStatus());
     }
 }
 
