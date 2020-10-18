@@ -41,9 +41,9 @@ class RouteMapCommandTest {
     @Test
     void executeCommand_printRoute_success() {
         String fullBusRoute = "AA1\n"
-                + "PGP -> Kent Ridge MRT Station -> Opp University Health Centre -> Yusof Ishak House -> "
+                + "PGP -> Kent Ridge MRT Station -> Opp University Health Centre -> Yusof Ishak House \n-> "
                 + "Central Library -> Kent Ridge -> Museum -> University Town -> "
-                + "University Health Centre -> Opp Kent Ridge MRT station -> PGPR";
+                + "University Health Centre \n-> Opp Kent Ridge MRT station -> PGPR";
         BusData.createBusList(busesInZoneA);
         Bus bus = BusData.selectBus("AA1");
         assertEquals(fullBusRoute, bus.toString());

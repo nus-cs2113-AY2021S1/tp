@@ -56,7 +56,13 @@ public class Bus {
     public String toString() {
         if (route.size() > 0) {
             String printableRoute = String.join(" -> ", getStopNames());
-            return busNumber + "\n" + printableRoute;
+            String output = "";
+            while (printableRoute.length() > 100) {
+                int index = printableRoute.lastIndexOf("->",100);
+                output += printableRoute.substring(0, index) + "\n";
+                printableRoute = printableRoute.substring(index).trim();
+            }
+            return busNumber + "\n" + output + printableRoute;
         }
         return null;
     }
