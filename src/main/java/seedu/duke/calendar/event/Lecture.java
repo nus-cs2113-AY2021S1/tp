@@ -72,6 +72,14 @@ public class Lecture extends SchoolEvent {
     }
 
     /**
+     * Returns the description of the recurring lecture.
+     */
+    @Override
+    public String getRecurringDescription() {
+        return "[LEC]" + "[R] " + super.getRecurringDescription();
+    }
+
+    /**
      * Saves the lecture event into files.
      *
      * @return string contains the information about the lecture event.
