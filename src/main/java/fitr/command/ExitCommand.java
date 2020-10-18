@@ -3,6 +3,7 @@ package fitr.command;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.storage.Storage;
+import fitr.user.User;
 
 public class ExitCommand extends Command {
     public ExitCommand(String command) {
@@ -10,7 +11,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage) {
+    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user) {
     }
 
     @Override

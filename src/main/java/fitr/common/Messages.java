@@ -60,4 +60,22 @@ public class Messages {
     public static final String SPACE_FORMATTING = "\n    ";
     public static final String CAL_HEADER = "Cal: ";
     public static final String BURNT_CAL_HEADER = "Burnt Cal: ";
+
+    //EditProfileCommand class messages
+    public static final String EDIT_NAME = "edit name";
+    public static final String EDIT_HEIGHT = "edit height";
+    public static final String EDIT_WEIGHT = "edit weight";
+    public static final String EDIT_AGE = "edit age";
+    public static final String EDIT_GENDER = "edit gender";
+    public static final String MISSING_FILE = "Theres no file";
+    public static final String EDIT_NAME_HEADER = "Change your name to: ";
+    public static final String NAME_ECHO_HEADER = "Name changed to: ";
+    public static final String EDIT_HEIGHT_HEADER = "Change your height (in m) to: ";
+    public static final String HEIGHT_ECHO_HEADER = "Height (in m) changed to: ";
+    public static final String EDIT_WEIGHT_HEADER = "Change your weight (in kg) to: ";
+    public static final String WEIGHT_ECHO_HEADER = "Weight (in kg) changed to: ";
+    public static final String EDIT_AGE_HEADER = "Change your age to: ";
+    public static final String AGE_ECHO_HEADER = "Age changed to: ";
+    public static final String EDIT_GENDER_HEADER = "Change your gender (M|F) to: ";
+    public static final String GENDER_ECHO_HEADER = "Gender changed to: ";
 }
