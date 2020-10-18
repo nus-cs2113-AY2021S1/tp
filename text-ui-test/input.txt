@@ -12,8 +12,5 @@ bookmark -a 1
 bookmark -a 410
 bookmark 1 -e 5
 bookmark -l
-adduser -n WorkspaceA
-adduser -n WorkspaceB
 add -a MyFirstAnime
-bookmark -l
 exit

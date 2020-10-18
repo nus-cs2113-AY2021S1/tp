@@ -52,17 +52,6 @@ Default (Default) #> Listing all anime in bookmark:
 	2. InuYasha the Movie 3: Swords of an Honorable Ruler
 
 
-Default (Default) #> Successfully added new workspace:
- Workspace: WorkspaceA
-
-Default (Default) #> Successfully added new workspace:
- Workspace: WorkspaceB
-
 Default (Default) #> Anime added to watchlist!
-
-Default (Default) #> Listing all anime in bookmark:
-	1. Cowboy Bebop: The Movie - Knockin' on Heaven's Door Ep: 5
-	2. InuYasha the Movie 3: Swords of an Honorable Ruler
-
 
 Default (Default) #> Sayonara Abec Steiner 33rd-chan!
