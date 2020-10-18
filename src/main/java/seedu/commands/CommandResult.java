@@ -1,22 +1,25 @@
 package seedu.commands;
 
-import seedu.data.TaskList;
+import seedu.data.TaskMap;
 import seedu.task.Task;
+
+import java.util.ArrayList;
 
 public class CommandResult {
     private final String message;
-    private final TaskList tasks;
+    private final TaskMap tasks;
     private final Task task;
 
     public CommandResult(String message) {
         this(message, null, null);
     }
 
-    public CommandResult(String message, TaskList tasks) {
+    public CommandResult(String message, TaskMap tasks) {
         this(message, tasks, null);
     }
 
-    public CommandResult(String message, TaskList tasks, Task task) {
+
+    public CommandResult(String message, TaskMap tasks, Task task) {
         this.message = message;
         this.tasks = tasks;
         this.task = task;
@@ -26,7 +29,7 @@ public class CommandResult {
         return message;
     }
 
-    public TaskList getTasks() {
+    public TaskMap getTasks() {
         return tasks;
     }
 

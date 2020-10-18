@@ -1,10 +1,12 @@
 package seedu.ui;
 
 import seedu.commands.CommandResult;
-import seedu.data.TaskList;
+import seedu.data.TaskMap;
+import seedu.task.Task;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 import static seedu.messages.Messages.LS;
@@ -20,75 +22,79 @@ public class Ui {
     }
 
     public Ui(InputStream in, PrintStream out) {
-        this.in = new Scanner(System.in);
-        //        this.out = new PrintStream(System.out, true, StandardCharsets.ISO_8859_1);
+        this.in = new Scanner(in);
         this.out = out;
-        // Set default printing color
-        //        out.print(DEFAULT_STRING_COLOR);
     }
 
     public String getUserInput() {
         return in.nextLine();
     }
 
-    public void displayAll(TaskList tasks) {
+    public void displayAll(TaskMap tasks) {
         // Basic adding sequence
         assert tasks != null : "null tasks";
         displayTasks(tasks);
     }
 
-    private void displayTasks(TaskList tasks) {
+    private void displayTasks(TaskMap tasks) {
         // Header
         String headerFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-11s |" + LS;
         String contentFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-20s |" + LS;
         out.println("   " + padString('_', 93));
         out.format(headerFormat, "Index", "Description", "Date", "Start", "End", "Priority");
         out.println("   " + padString('-', 93));
-        for (int i = 0; i < tasks.size(); i++) {
+        for (Task task : tasks.getValues()) {
             out.format(contentFormat,
-                    i + 1,
-                    limitString(tasks.get(i).getDescription(), 20),
-                    tasks.get(i).getDate(),
-                    tasks.get(i).getStartTime() == null ? "" : tasks.get(i).getStartTime(),
-                    tasks.get(i).getEndTime() == null ? "" : tasks.get(i).getEndTime(),
-                    tasks.get(i).getPriority());
+                "#" + task.getTaskID(),
+                limitString(task.getDescription(), 20),
+                task.getDate(),
+                task.getStartTime() == null ? "" : task.getStartTime(),
+                task.getEndTime() == null ? "" : task.getEndTime(),
+                task.getPriority());
         }
         out.println("   " + padString('-', 93));
         out.println();
     }
 
-    public void showWelcomeMessage(TaskList tasks) {
+    public void showWelcomeMessage(TaskMap tasks) {
         showMessage(WELCOME_MESSAGE);
-        showReminders(tasks);
+        if (tasks != null) {
+            showReminders(tasks);
+        }
     }
 
-    public void showReminders(TaskList tasks) {
-        TaskList tasksDueToday = tasks.getTasksDueToday();
-        String messageFormat = "||%-13s%-43s||" + LS;
-        String taskFormat = "||%-13s%-3s%-18s%-22s||" + LS;
+    public void showReminders(TaskMap tasks) {
+        assert tasks != null : "null tasks";
+        TaskMap tasksDueToday = tasks.searchByDate(LocalDate.now());
+        TaskMap tasksDueTomorrow = tasks.searchByDate(LocalDate.now().plusDays(1));
+        String messageFormat = "%-15s%-30s%15s" + LS;
+        String taskFormat = "%-15s%-6s%-18s%-6s%15s" + LS;
         out.println("||" + padString(' ', 56) + "||");
-        out.format(messageFormat, "", "You have " + tasksDueToday.size() + " tasks due today.");
-        for (int i = 0; i < tasksDueToday.size(); i++) {
-            out.format(taskFormat, "",
-                    i + 1 + ".",
-                    limitString(tasksDueToday.get(i).getDescription(), 17),
-                    (tasksDueToday.get(i).getStartTime() == null ? "" : tasksDueToday.get(i).getStartTime()));
+        out.format(messageFormat, "||", "You have " + tasksDueToday.size() + " tasks due today.", "||");
+        for (Task task : tasksDueToday.getValues()) {
+            out.format(taskFormat,
+                "||",
+                "#" + task.getTaskID() + " ",
+                limitString(task.getDescription(), 17),
+                (task.getStartTime() == null ? "" : task.getStartTime()),
+                "||");
         }
         out.println("||" + padString(' ', 56) + "||");
-
-        TaskList tasksDueTomorrow = tasks.getTasksDueTomorrow();
-        out.format(messageFormat, "", "Upcoming tasks tomorrow:", "");
-        for (int i = 0; i < tasksDueTomorrow.size(); i++) {
-            out.format(taskFormat, "",
-                    i + 1 + ".",
-                    limitString(tasksDueTomorrow.get(i).getDescription(), 17),
-                    (tasksDueTomorrow.get(i).getStartTime() == null ? "" : tasksDueTomorrow.get(i).getStartTime()));
+        out.format(messageFormat, "||", "Upcoming tasks tomorrow:", "||");
+        for (Task task : tasksDueTomorrow.getValues()) {
+            out.format(taskFormat,
+                "||",
+                "#" + task.getTaskID() + " ",
+                limitString(task.getDescription(), 17),
+                (task.getStartTime() == null ? "" : task.getStartTime()),
+                "||");
         }
         out.println("||" + padString(' ',56) + "||" + LS
                 + " " + padString('=', 58) + " " + LS);
     }
 
     public String limitString(String string, int limit) {
+        // TODO Add testing, might need to change to -4 to get an extra space
         return (string.length() > limit) ? (string.substring(0, limit - 3) + "...") : string;
     }
 

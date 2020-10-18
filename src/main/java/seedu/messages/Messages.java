@@ -18,6 +18,7 @@ public class Messages {
     public static final String UNKNOWN_COMMAND = "Unknown command!" + LS;
     public static final String INVALID_TASK_NUMBER = "Invalid task number!" + LS;
     public static final String INVALID_DATETIME = "Invalid datetime!" + LS;
+    public static final String MAX_NUM_TASK = "Max number of tasks reached!" + LS;
 
     public static final String WELCOME_MESSAGE =
             " ========================================================== " + LS
