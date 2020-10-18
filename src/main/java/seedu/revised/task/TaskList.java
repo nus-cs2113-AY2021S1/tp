@@ -28,31 +28,5 @@ public class TaskList {
     public List<Task> getList() {
         return this.taskList;
     }
-
-    /**
-     * Saves the Tasks in a <code>TaskList</code> into a <code>File</code>.
-     *
-     * @param filename of the <code>File</code> to write to
-     * @throws IOException if there is an error writing to the file
-     */
-    public void saveTask(String filename) throws IOException {
-        FileWriter fileWriter = new FileWriter(filename);
-        for (Task task : this.taskList) {
-            if (task instanceof Todo) {
-                fileWriter.write("T | " + (task.isDone ? "1" : "0") + " | "
-                        + task.description + "\n");
-            } else if (task instanceof Deadline) {
-                String[] deadline =  task.description.split("/by");
-                fileWriter.write("D | " + (task.isDone ? "1" : "0") + " | "
-                        + task.description + " | " + ((Deadline) task).getDateTime() + "\n");
-            } else if (task instanceof Event) {
-                fileWriter.write("E | " + (task.isDone ? "1" : "0") + " | "
-                        + task.description + " | " + ((Event) task).getDateTimeDescription() + "\n");
-            }
-        }
-        fileWriter.close();
-    }
-
-
 }
 

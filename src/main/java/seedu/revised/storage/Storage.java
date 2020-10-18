@@ -13,7 +13,6 @@ import seedu.revised.task.Deadline;
 import seedu.revised.task.Event;
 import seedu.revised.task.Task;
 import seedu.revised.task.Todo;
-import seedu.revised.ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -33,31 +32,26 @@ import java.util.Scanner;
 
 public class Storage {
     private final File baseDir;
+    private final File exportDir;
     private final String flashcardFilename;
     private final String taskFilename;
     private final String resultFilename;
+    private final String exportFilename;
 
-    /**
-     * Creates a new Storage instance. The same filename string will be used to create files to store the flashcard data
-     * under each topic directory.
-     *
-     * @param baseDir           the name of the directory to store the data into
-     * @param flashcardFilename the name of the file to store all the flashcard info
-     * @param taskFilename      the name of the file to store all the tasks under a subject
-     * @param resultFilename    the name of the file to store all the results of quizzes
-     */
-    public Storage(String baseDir, String flashcardFilename, String taskFilename, String resultFilename) {
-        this.baseDir = new File(baseDir);
-        this.flashcardFilename = flashcardFilename;
-        this.taskFilename = taskFilename;
-        this.resultFilename = resultFilename;
+    private Storage(StorageBuilder builder) {
+        this.baseDir = new File(builder.baseDir);
+        this.exportDir = new File(builder.exportDir);
+        this.flashcardFilename = builder.flashcardFilename;
+        this.taskFilename = builder.taskFilename;
+        this.resultFilename = builder.resultFilename;
+        this.exportFilename = builder.exportFilename;
     }
 
     /**
      * Loads and populates subject data from the storage. Subjects and topics will be sorted by their titles in
      * alphabetical order.
      *
-     * @throws DataLoadingException     if fails to load the saved data due to filesystem error
+     * @throws DataLoadingException if fails to load the saved data due to filesystem error
      */
     public List<Subject> loadSubjects() throws DataLoadingException {
         if (!baseDir.exists()) {  // if the data hasn't been saved before
@@ -78,7 +72,7 @@ public class Storage {
      *
      * @param subjectDirs directories of subjects saved previously
      * @return a list of populated subjects loaded from the disk
-     * @throws DataLoadingException     if fails to load the saved data due to filesystem error
+     * @throws DataLoadingException if fails to load the saved data due to filesystem error
      */
     private List<Subject> loadSubjects(File[] subjectDirs) throws DataLoadingException {
         List<Subject> subjects = new ArrayList<>();
@@ -130,11 +124,11 @@ public class Storage {
     /**
      * Loads the json data in the file into an ArrayList of objects (of type specified).
      *
-     * @param type the type of the object inside the json file
+     * @param type     the type of the object inside the json file
      * @param jsonFile the file that stores the flashcard data
      * @return a list of populated objects with type specified loaded from the file
      */
-    public static <T> List<T> loadFromJson(Type type, File jsonFile)  {
+    public static <T> List<T> loadFromJson(Type type, File jsonFile) {
         Gson gson = new Gson();
         List<T> objects;
 
@@ -156,10 +150,10 @@ public class Storage {
      *
      * @param flashcardFile the file that stores the flashcard data
      * @return a list of populated flashcards loaded from the file
-     *
      */
-    private List<Flashcard> loadFlashcards(File flashcardFile)  {
-        Type objectType = new TypeToken<ArrayList<Flashcard>>() {}.getType();
+    private List<Flashcard> loadFlashcards(File flashcardFile) {
+        Type objectType = new TypeToken<ArrayList<Flashcard>>() {
+        }.getType();
         return loadFromJson(objectType, flashcardFile);
     }
 
@@ -168,10 +162,10 @@ public class Storage {
      *
      * @param resultFile the file that stores the result data
      * @return a list of populated results loaded from the file
-     *
      */
-    private List<Result> loadResults(File resultFile)  {
-        Type objectType = new TypeToken<ArrayList<Result>>() {}.getType();
+    private List<Result> loadResults(File resultFile) {
+        Type objectType = new TypeToken<ArrayList<Result>>() {
+        }.getType();
         return loadFromJson(objectType, resultFile);
     }
 
@@ -221,8 +215,8 @@ public class Storage {
      * Save the contents of the list of objects to the file path provided.
      * This overwrites the content of the file if it already exists.
      *
-     * @param jsonFile  File where the objects will be stored into as json
-     * @param objects list of objects
+     * @param jsonFile File where the objects will be stored into as json
+     * @param objects  list of objects
      * @throws IOException if fails to save to the storage
      */
     public static <T> void saveToJson(File jsonFile, List<T> objects) throws IOException {
@@ -304,8 +298,27 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Export the subjects with all their contents into one json file. The file location is specified by
+     * {@link Storage#getExportDir()}/{@link Storage#getExportFilename()}.
+     *
+     * @param subjects list of subjects to be saved to the storage
+     * @return the file that the data has been exported to
+     * @throws IOException if fails to save to the file
+     */
+    public File export(List<Subject> subjects) throws IOException {
+        Files.createDirectories(getExportDir().toPath());  // create export directory
+        File file = new File(getExportDir().toString(), getExportFilename());
+        saveToJson(file, subjects);
+        return file;
+    }
+
     public File getBaseDir() {
         return baseDir;
+    }
+
+    public File getExportDir() {
+        return exportDir;
     }
 
     public String getFlashcardFilename() {
@@ -318,5 +331,95 @@ public class Storage {
 
     public String getResultFilename() {
         return resultFilename;
+    }
+
+    public String getExportFilename() {
+        return exportFilename;
+    }
+
+    public static class StorageBuilder {
+        private String baseDir;
+        private String exportDir;
+        private String flashcardFilename;
+        private String taskFilename;
+        private String resultFilename;
+        private String exportFilename;
+
+        /**
+         * Set baseDir property of the Storage to be built.
+         *
+         * @param baseDir the name of the directory to store the data into
+         */
+        public StorageBuilder setBaseDir(String baseDir) {
+            this.baseDir = baseDir;
+            return this;
+        }
+
+        /**
+         * Set exportDir property of the Storage to be built.
+         *
+         * @param exportDir the name of the directory to export the data to
+         */
+        public StorageBuilder setExportDir(String exportDir) {
+            this.exportDir = exportDir;
+            return this;
+        }
+
+        /**
+         * Set flashcardFilename property of the Storage to be built.
+         *
+         * @param flashcardFilename the name of the file to store all the flashcard info
+         */
+        public StorageBuilder setFlashcardFilename(String flashcardFilename) {
+            this.flashcardFilename = flashcardFilename;
+            return this;
+        }
+
+        /**
+         * Set taskFilename property of the Storage to be built.
+         *
+         * @param taskFilename the name of the file to store all the tasks under a subject
+         */
+        public StorageBuilder setTaskFilename(String taskFilename) {
+            this.taskFilename = taskFilename;
+            return this;
+        }
+
+        /**
+         * Set resultFilename property of the Storage to be built.
+         *
+         * @param resultFilename the name of the file to store all the results of quizzes
+         */
+        public StorageBuilder setResultFilename(String resultFilename) {
+            this.resultFilename = resultFilename;
+            return this;
+        }
+
+        /**
+         * Set exportFilename property of the Storage to be built.
+         *
+         * @param exportFilename the name of the file that the data will be exported to
+         */
+        public StorageBuilder setExportFilename(String exportFilename) {
+            this.exportFilename = exportFilename;
+            return this;
+        }
+
+        /**
+         * Build a Storage object with all the properties previously set. All the properties must be set before
+         * calling this function or an exception will be thrown.
+         *
+         * @return a Storage object with all the properties set.
+         */
+        public Storage build() {
+            Storage storage = new Storage(this);
+            if (storage.getBaseDir() == null || storage.getExportDir() == null
+                    || storage.getFlashcardFilename() == null || storage.getTaskFilename() == null
+                    || storage.getResultFilename() == null || storage.getExportFilename() == null) {
+                throw new IllegalArgumentException();
+            }
+
+            return storage;
+        }
     }
 }

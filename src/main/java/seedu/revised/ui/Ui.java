@@ -14,6 +14,7 @@ import seedu.revised.task.Event;
 import seedu.revised.task.Task;
 import seedu.revised.task.TaskList;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -480,8 +481,12 @@ public class Ui {
             }
 
         }
+    }
 
-
+    public static void printExportSuccessful(File exportFile) {
+        System.out.println("____________________________________________________________");
+        System.out.println("Your data has been successfully exported to " + exportFile.getAbsolutePath() + ".");
+        System.out.println("____________________________________________________________");
     }
 }
 

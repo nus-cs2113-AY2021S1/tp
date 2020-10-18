@@ -49,7 +49,14 @@ class StorageTest {
     @BeforeEach
     void setUp() {
         // use tempDir as baseDir to avoid file creation for subjects
-        storage = new Storage(tempDir.toString(), "flashcard.txt", "tasks.txt", "results.txt");
+        storage = new Storage.StorageBuilder()
+                .setBaseDir(tempDir.toString())
+                .setExportDir(tempDir.toString())
+                .setFlashcardFilename("flashcards.json")
+                .setTaskFilename("tasks.txt")
+                .setResultFilename("results.json")
+                .setExportFilename("data.json")
+                .build();
 
         subjects = new ArrayList<>(List.of(
                 new Subject("subject1"),
@@ -288,5 +295,35 @@ class StorageTest {
         }
     }
 
+    @Test
+    void export_populatedSubjects_allContentsAreSaved() throws IOException {
+        // populated subjects with data
+        for (Subject subject : subjects) {
+            for (Topic topic : topics) {
+                subject.getTopics().add(topic);
+                for (Flashcard flashcard : flashcards) {
+                    topic.addFlashcard(flashcard);
+                }
+                for (Result result : results) {
+                    topic.getResults().add(result);
+                }
+            }
+            for (Result result : results) {
+                subject.getResults().add(result);
+            }
+            for (Task task : tasks) {
+                subject.getTasks().add(task);
+            }
+        }
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String jsonString = gson.toJson(subjects);
+
+        File exportFile = storage.export(subjects);
+
+        assertTrue(exportFile.exists());
+        String storedJson = Files.readString(exportFile.toPath());
+
+        assertEquals(jsonString, storedJson);
+    }
 
 }
