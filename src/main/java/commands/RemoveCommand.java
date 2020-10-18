@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 
 public class RemoveCommand extends Command {
-    private static Logger logger = Logger.getLogger("RemoveCommandLog");
+    //private static Logger logger = Logger.getLogger("RemoveCommandLog");
 
     public static final String COMMAND_WORD = "remove";
 
