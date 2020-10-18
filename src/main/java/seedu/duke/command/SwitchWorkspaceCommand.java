@@ -25,7 +25,6 @@ public class SwitchWorkspaceCommand extends Command {
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         //Find the user and setActiveUser to it
-        //Workspace chgWorkspace = user.getWorkspace(switchToThisWorkspace);
         user.switchActiveWorkspace(switchToThisWorkspace);
         return SWITCH_SUCCESS_HEADER + switchToThisWorkspace;
     }
