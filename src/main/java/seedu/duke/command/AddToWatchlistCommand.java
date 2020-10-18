@@ -47,7 +47,8 @@ public class AddToWatchlistCommand extends Command {
         } else if (animeIndex < 0) {
             throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
         }
-        
+
+        assert this.animeIndex >= 0 : "Anime index has to be valid";
         activeWatchlist.addAnimeToList(animeIndex);
 
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);

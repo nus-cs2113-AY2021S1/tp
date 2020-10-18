@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.anime.Anime;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
@@ -16,6 +17,7 @@ public class RemoveCommand extends Command {
     protected static final String EMPTY_WATCHLIST_ERROR = "Watchlist is empty!";
 
     private Integer watchlistListIndex;
+    private Integer animeIndex;
     private static final Logger LOGGER = Logger.getLogger(AddToWatchlistCommand.class.getName());
     
     public RemoveCommand() {
@@ -28,10 +30,12 @@ public class RemoveCommand extends Command {
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         Workspace activeWorkspace = user.getActiveWorkspace();
-
+        
         removeFromWatchlist(storageManager, activeWorkspace);
+        Anime anime = animeData.getAnimeByID(animeIndex);
+        String animeName = anime.getAnimeName();
 
-        return "Anime successfully removed from watchlist!";
+        return animeName + " successfully removed from watchlist!";
     }
     
     private void removeFromWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
@@ -47,8 +51,9 @@ public class RemoveCommand extends Command {
         } 
         
         assert this.watchlistListIndex >= 0 : "Watchlist index has to be valid";
+        animeIndex = activeWatchlist.getWatchlistListAnimeIndex(watchlistListIndex);
         activeWatchlist.removeAnimeFromList(watchlistListIndex);
-
+        
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
         LOGGER.log(Level.INFO, "Successfully removed anime from active watchlist");
     }

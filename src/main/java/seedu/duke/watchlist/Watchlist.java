@@ -36,6 +36,10 @@ public class Watchlist {
     public int getWatchlistSize() {
         return this.animeList.size();
     }
+    
+    public int getWatchlistListAnimeIndex(int watchlistListIndex) {
+        return this.animeList.get(watchlistListIndex);
+    }
 
     public String animeListToString() {
         StringBuilder sbAnimeList = new StringBuilder();
