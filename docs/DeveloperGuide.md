@@ -58,7 +58,6 @@ She also wants to be able to export the information so she is able to share them
 2. Students who want to take notes and categorize them so they are not all over the place.
 3. Students who are comfortable with CLI.
 
-<br>
 
 #### <a id="value">3.3 Value Proposition</a>
 
