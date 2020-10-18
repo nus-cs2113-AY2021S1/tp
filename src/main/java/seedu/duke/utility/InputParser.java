@@ -30,7 +30,7 @@ public class InputParser {
 
     public String parseInput(String input) {
 
-        String[] singleWordInputs = new String[]{"bye", "list", "help"};
+        String[] singleWordInputs = new String[]{"bye", "list", "help", "watchtime"};
         String command = StringOperations.getFirstWord(input).toLowerCase();
 
         String[] splitInput = input.split(" ");
@@ -90,6 +90,10 @@ public class InputParser {
 
         case "updatetimelimit":
             parseUpdateTimeLimitCommand(input);
+            return command;
+
+        case "watchtime":
+            parseWatchTimeCommand();
             return command;
 
         case "":
@@ -220,6 +224,10 @@ public class InputParser {
         } catch (Exception e) {
             Ui.printNotFoundException();
         }
+    }
+
+    private static void parseWatchTimeCommand() {
+        Ui.printDailyWatchTracking();
     }
 }
 

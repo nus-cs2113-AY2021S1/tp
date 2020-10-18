@@ -1,12 +1,15 @@
 package seedu.duke.classes;
 
 
+import seedu.duke.utility.Ui;
+
 import java.time.LocalDateTime;
 
 public class Show {
     protected String name;
     protected int numSeasons;
     protected int[] numEpisodesForSeasons;
+    protected int[][] durationEpisodeForSeasons; //The duration of each episode for each season
     protected int rating;
     protected String review;
     protected LocalDateTime showTime;   //The time of the show, maybe include date
@@ -40,13 +43,21 @@ public class Show {
     }
 
     public int getEpisodesForSeason(int season) {
-        //TODO : Add the exception for bounds checking
-        return numEpisodesForSeasons[season - 1];
+        try {
+            return numEpisodesForSeasons[season - 1];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Ui.printBadInputException();
+            return -1;
+        }
     }
 
     public int getRawEpisodesForSeason(int season) {
-        //TODO : Add the exception for bounds checking
-        return numEpisodesForSeasons[season];
+        try {
+            return numEpisodesForSeasons[season];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Ui.printBadInputException();
+            return -1;
+        }
     }
 
     public int getCurrentSeason() {
