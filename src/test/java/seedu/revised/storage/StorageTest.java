@@ -295,5 +295,36 @@ class StorageTest {
         }
     }
 
+    @Test
+    void export_populatedSubjects_allContentsAreSaved() throws IOException {
+        // populated subjects with data
+        for (Subject subject : subjects) {
+            for (Topic topic : topics) {
+                subject.getTopics().add(topic);
+                for (Flashcard flashcard : flashcards) {
+                    topic.addFlashcard(flashcard);
+                }
+                for (Result result : results) {
+                    topic.getResults().add(result);
+                }
+            }
+            for (Result result : results) {
+                subject.getResults().add(result);
+            }
+            for (Task task : tasks) {
+                subject.getTasks().add(task);
+            }
+        }
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String jsonString = gson.toJson(subjects);
+
+        storage.export(subjects);
+
+        File exportFile = new File(storage.getExportDir().toString(), storage.getExportFilename());
+        assertTrue(exportFile.exists());
+        String storedJson = Files.readString(exportFile.toPath());
+
+        assertEquals(jsonString, storedJson);
+    }
 
 }
