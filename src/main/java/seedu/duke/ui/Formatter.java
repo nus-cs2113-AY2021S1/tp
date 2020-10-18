@@ -25,10 +25,10 @@ public class Formatter {
     private static final char EMPTY_CHAR = ' ';
 
     /** Maximum number of characters within a row. */
-    private static final int MAX_ROW_LENGTH = 150;
+    private static final int MAX_ROW_LENGTH = 100;
     /** Maximum length of message to within a row, minus the start and end formatting. */
     private static final int MAX_MESSAGE_LENGTH = MAX_ROW_LENGTH - COLUMN_START.length() - COLUMN_END.length();
-
+    /** Length of a ansi defined color. */
     private static final int ANSI_PREFIX_LENGTH = 5;
 
     public static String formatNotebook(String header, Notebook notebook) {
@@ -165,40 +165,42 @@ public class Formatter {
         if (numBlanks >= 0) {
             return COLUMN_START + message + EMPTY_STRING.repeat(numBlanks) + COLUMN_END + LS;
         } else {
-            // Cut off the message and prints it on the next line.
             int startIndexOfNextLine = MAX_MESSAGE_LENGTH;
-            // Checks if the start index for the next line lines between any colored word.
             boolean cutOffWordIsColored = false;
             String truncatedColor = RESET;
 
-            // Iterate through all the color words that are previously stored.
+            // Checks if the start index for the next line lines between any colored word.
             for (int i = 0; i < coloredStringStartIndexList.size(); ++i) {
-                // If the message contains any ansi escape code, shift the start index since they will be removed
-                // when printing
-                if (startIndexOfNextLine > coloredStringStartIndexList.get(i)) {
+                // If the message contains any ansi escape code, shift the start index to print more letters since they
+                // will be removed when printing
+                if (startIndexOfNextLine > coloredStringStartIndexList.get(i)
+                        && startIndexOfNextLine > coloredStringEndIndexList.get(i)) {
+                    startIndexOfNextLine += ANSI_PREFIX_LENGTH + RESET.length();
+                } else if (startIndexOfNextLine > coloredStringStartIndexList.get(i)
+                        && startIndexOfNextLine <= coloredStringEndIndexList.get(i)) {
                     startIndexOfNextLine += ANSI_PREFIX_LENGTH;
-                    if (startIndexOfNextLine > coloredStringEndIndexList.get(i)) {
-                        startIndexOfNextLine += RESET.length();
-                    } else {
-                        cutOffWordIsColored = true;
-                        truncatedColor = stringColorList.get(i);
-                        break;
-                    }
+                    cutOffWordIsColored = true;
+                    truncatedColor = stringColorList.get(i);
+                    break;
                 }
             }
+
+            String preservedMessage;
+            String truncatedMessage;
             // If the cutoff is in the middle of a colored word, shift all the way to the space directly before it.
             if (cutOffWordIsColored) {
                 while (message.charAt(startIndexOfNextLine) != EMPTY_CHAR) {
                     --startIndexOfNextLine;
                 }
-            }
-            // Split the strings and enclose individual string
-            String preservedMessage = message.substring(0, startIndexOfNextLine);
-            String truncatedMessage = message.substring(startIndexOfNextLine);
-            // Concat reset color at the end of the first line and add the color from the previous line to the next line
-            if (cutOffWordIsColored) {
-                preservedMessage = preservedMessage.concat(RESET);
-                truncatedMessage = truncatedColor + truncatedMessage;
+                // Split the strings and enclose individual string
+                // Add the color RESET to the end of the first line
+                preservedMessage = message.substring(0, startIndexOfNextLine).concat(RESET);
+                // Add the color to the front of the second line
+                truncatedMessage = truncatedColor + message.substring(startIndexOfNextLine);
+            } else {
+                // Split the strings and enclose individual string
+                preservedMessage = message.substring(0, startIndexOfNextLine);
+                truncatedMessage = message.substring(startIndexOfNextLine);
             }
             return encloseRow(preservedMessage) + encloseRow(truncatedMessage);
         }
@@ -241,7 +243,7 @@ public class Formatter {
                 String stringWithReset;
                 int cutOffIndex = 0;
 
-                // While it contains RESET trim it out
+                // While it contains RESET, trim it out
                 while (checkString.contains(RESET)) {
                     int resetIndex = checkString.indexOf(RESET);
 
@@ -263,6 +265,7 @@ public class Formatter {
                         coloredStringStartIndexList.add(messageLength);
                         stringColorList.add(checkString.substring(0, checkString.indexOf(POSTFIX) + 1));
                     } else if (coloredStringStartIndexStack.size() > 0) {
+                        // Match it with the latest color in the stack
                         coloredStringStartIndexList.add(coloredStringStartIndexStack.pop());
                         stringColorList.add(stringColorStack.pop());
                     }
@@ -270,7 +273,7 @@ public class Formatter {
                     coloredStringEndIndexList.add(messageLength + cutOffIndex);
                     checkString = stringWithReset.substring(RESET.length());
                 }
-            } else if (s.contains(PREFIX) && !s.contains(RESET)) {
+            } else if (s.contains(PREFIX) && !s.contains(RESET)) { // is an ansi defined color
                 numAsciiCode += ANSI_PREFIX_LENGTH;
                 // Add them into the stack first
                 coloredStringStartIndexStack.push(messageLength);
