@@ -3,6 +3,7 @@ package seedu.duke;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.logic.parser.Parser;
 import seedu.duke.logic.parser.RouteParser;
+import seedu.duke.storage.FavStorage;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 public class Duke {
 
     private static Parser parser;
+    public static FavStorage favFile = new FavStorage("data/FavList.txt");
     private static BusInfo busInfo = new BusInfo();
 
     public Duke() {
