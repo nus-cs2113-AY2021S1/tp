@@ -15,7 +15,7 @@ public class AddInfoCommand extends Command {
 
     @Override
     public void execute(CalendarList calendarList, Storage storage) throws DukeException {
-        String command[];
+        String[] command;
         int eventNumber = 0;
         int calendarNumber;
         String additionalInformation = null;
