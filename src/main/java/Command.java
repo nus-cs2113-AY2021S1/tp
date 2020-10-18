@@ -33,6 +33,7 @@ public class Command {
             handleNonGeneralCommand(command, commandType, bookmarkCategories, flashcardRun, timeTableRun,
                     currentGrades, listOfPerson);
         } else {
+            assert commandType == CommandType.UNIDENTIFIABLE : "This command should be unidentifiable";
             ErrorMessage.printUnidentifiableCommand();
             StudyItLog.logger.info("Cannot understand command input.");
         }
@@ -53,6 +54,7 @@ public class Command {
         } else if (currentMode == Mode.FLASHCARD) {
             executeFlashcardCommand(command, flashcardRun);
         } else {
+            assert currentMode == Mode.MENU : "The current mode should be at menu";
             StudyItLog.logger.severe("Mode is not handled properly.");
         }
     }

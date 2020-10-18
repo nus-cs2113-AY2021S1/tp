@@ -18,8 +18,10 @@ public class Ui {
     public static String inputCommand() {
         String command;
         Scanner in = new Scanner(System.in);
+        assert in != null : "null is passed in";
 
         command = in.nextLine();
+        assert command.length() > 0 : "The command should not be empty";
 
         return command;
     }
