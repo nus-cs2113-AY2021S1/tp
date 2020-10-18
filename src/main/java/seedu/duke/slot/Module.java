@@ -33,6 +33,10 @@ public class Module {
         return false;
     }
 
+    public boolean slotExists(Slot slot) {
+        return slots.contains(slot);
+    }
+
     public Slot getSlot(String lesson, String day, LocalTime startTime, LocalTime endTime) {
         for (Slot slot : slots) {
             if (slot.match(lesson, day, startTime, endTime)) {
@@ -88,11 +92,17 @@ public class Module {
         for (Bookmark bookmark : bookmarkList) {
             message += bookmark.getBookmarkAsString() + "\n";
         }
+        if (bookmarkList.isEmpty()) {
+            message += "no bookmarks found in module\n\n";
+        }
         for (Slot slot : slots) {
             message += slot.toString() + "\n";
             List<Bookmark> slotBookmarkList = slot.getBookmarkList();
             for (Bookmark bookmark : slotBookmarkList) {
-                message += bookmark.getBookmarkAsString() + "\n";
+                message += "  " + bookmark.getBookmarkAsString() + "\n";
+            }
+            if (slotBookmarkList.isEmpty()) {
+                message += "  no bookmarks found in slot\n";
             }
         }
         if (message.isBlank()) {

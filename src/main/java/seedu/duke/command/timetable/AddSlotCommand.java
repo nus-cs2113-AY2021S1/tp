@@ -98,7 +98,7 @@ public class AddSlotCommand extends Command {
             String url = slotAndBookmark.get(1);
             Bookmark bookmark = new Bookmark(description,"dummy", url);
             module.addBookmark(bookmark);
-            message += "bookmark added to module\n";
+            message += "  bookmark added to module\n";
         } else {
             String lesson = slotAndBookmark.get(0);
             String day = slotAndBookmark.get(1);
@@ -107,15 +107,15 @@ public class AddSlotCommand extends Command {
             Slot newSlot;
             if (module.slotExists(lesson, day, startTime, endTime)) {
                 newSlot = module.getSlot(lesson, day, startTime, endTime);
-                message += lesson + " slot already exists\n";
+                message +=  "  " + lesson + " slot already exists\n";
             } else {
                 newSlot = module.createSlotNew(lesson, day, startTime, endTime);
                 module.addSlot(newSlot);
-                message += lesson + " slot added\n";
+                message +=  "  " + lesson + " slot added\n";
             }
             if (slotAndBookmark.size() == 5) {
                 createBookmark(slotAndBookmark.get(4), lesson, newSlot);
-                message += "bookmark added to " + moduleCode + " " + lesson + "\n";
+                message += "    bookmark added to " + moduleCode + " " + lesson + "\n";
             } else if (slotAndBookmark.size() > 5) {
                 throw new DukeException(DukeExceptionType.INVALID_URL, "invalid url");
             }

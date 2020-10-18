@@ -74,7 +74,7 @@ public class DeleteSlotCommand extends Command {
             } else if (slotIndex != null && !deleteBookmarks) { // delete slot
                 Slot slot = module.getSlot(slotIndex);
                 module.removeSlot(slot);
-                message += "deleted " + slot + " from " + module + "\n";
+                message += "deleted " + slot + " from " + moduleCode + "\n";
             } else if (slotIndex == null && deleteBookmarks) { // delete module bookmark
                 module.removeAllBookmarks();
                 message += "deleted bookmark from " + moduleCode + "\n";

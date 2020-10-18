@@ -34,6 +34,10 @@ public class Timetable {
         return slotList;
     }
 
+    public List<Module> getFullModuleList() {
+        return modules;
+    }
+
     public Module getModule(String moduleCode) {
         Module module = null;
         for (Module mod : modules) {
