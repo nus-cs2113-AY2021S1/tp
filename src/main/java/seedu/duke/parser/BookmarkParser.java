@@ -13,7 +13,7 @@ public class BookmarkParser extends CommandParser {
         protected static final String ADD_PARAM = "a";
         protected static final String DELETE_PARAM = "d";
         protected static final String EPISODE_PARAM = "e";
-        protected static final String LIST_PARAM = "p";
+        protected static final String LIST_PARAM = "l";
 
         protected static final String OUT_OF_BOUND_PAGE_ERROR = "Invalid Page size!";
         protected static final String PARAMETER_ERROR_HEADER = "Parameter : -";
