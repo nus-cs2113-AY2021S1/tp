@@ -21,7 +21,7 @@ public class Ui {
         assert in != null : "null is passed in";
 
         command = in.nextLine();
-        assert command.length() > 0 : "The command should not be empty";
+        assert command.length() >= 0 : "The length of command should be at least 0";
 
         return command;
     }
