@@ -73,7 +73,7 @@ public class TaskCommand {
                         Task task = proj.getProjectBacklog().getTask(taskId);
                         Ui.showToUserLn("The corresponding task "
                                 + task.getTitle()
-                                + "has been removed from project.");
+                                + " has been removed from project.");
                         proj.getProjectBacklog().removeTask(taskId);
                         ArrayList<Sprint> allSprints = proj.getAllSprints().getSprintList();
                         for (Sprint sprint : allSprints) {
@@ -150,7 +150,7 @@ public class TaskCommand {
                     throw new DukeException("Invalid priority");
                 }
                 task.setPriority(priority);
-                Ui.showToUserLn("The task " + task.getTitle() + "has its priority changed to:");
+                Ui.showToUserLn("The task " + task.getTitle() + " has its priority changed to:");
                 Ui.showToUserLn("\t" + task.getPriority());
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("Task ID entered is out of bounds!");
@@ -173,7 +173,7 @@ public class TaskCommand {
                     if (backlogId <= proj.getProjectBacklog().backlogTasks.size()) {
                         task = proj.getProjectBacklog().getTask(backlogId);
                         task.setAsDone();
-                        Ui.showToUserLn(task.getTitle() + "has been marked as done.");
+                        Ui.showToUserLn(task.getTitle() + " has been marked as done.");
                     } else {
                         Ui.showError(Messages.MESSAGE_INVALID_ID);
                     }

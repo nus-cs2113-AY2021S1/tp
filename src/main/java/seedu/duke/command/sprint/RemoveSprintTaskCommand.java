@@ -38,7 +38,7 @@ public class RemoveSprintTaskCommand extends SprintCommand {
                         Ui.showError("This task do not exist.");
                         return;
                     }
-                    Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + "removed from sprint.\n");
+                    Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + " removed from sprint.\n");
                     currentSprint.removeSprintTask(taskId);
                 } catch (NumberFormatException e) {
                     Ui.showError("Invalid parameters.");
