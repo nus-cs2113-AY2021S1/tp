@@ -4,14 +4,14 @@ package seedu.smarthomebot.data.framework;
  * Abstract Class representing the appliances for SmartHomeBot.
  */
 public abstract class Appliance {
-    private static final String ON = "On";
-    private static final String OFF = "Off";
+    private static final String ON = "ON";
+    private static final String OFF = "OFF";
     private static int maxNameLength = 0;
     private static int maxLocationLength = 0;
     protected String name;
     protected String location;
     protected String power;
-    private Power appliancePower;
+    protected Power appliancePower;
 
     public Appliance(String name, String location, String power) {
         this.name = name;

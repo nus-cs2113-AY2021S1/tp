@@ -54,9 +54,9 @@ public class Power {
         if (!this.status) {
             this.status = true;
             onTime = getCurrentTime();
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -75,9 +75,9 @@ public class Power {
             } catch (ParseException e) {
                 ui.printToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
             }
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
