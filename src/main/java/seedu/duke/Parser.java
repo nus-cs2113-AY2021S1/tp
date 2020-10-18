@@ -12,6 +12,9 @@ import seedu.duke.command.PrintEventsCommand;
 import seedu.duke.command.PrintProgressCommand;
 import seedu.duke.command.PrintTasksCommand;
 import seedu.duke.command.PrintTimelineCommand;
+import seedu.duke.command.PrioritizeCommand;
+import seedu.duke.command.PrintPriorityCommand;
+
 
 /**
  * Determines the type of command input by the user and calls for the respective command function.
@@ -28,6 +31,8 @@ public class Parser {
     public static final String COMMAND_PRINT_TIMELINE = "print timeline";
     public static final String COMMAND_SHOW_PROGRESS = "print progress";
     public static final String COMMAND_SHOW_COUNTDOWN = "countdown";
+    public static final String COMMAND_PRIORITIZE = "*";
+    public static final String COMMAND_PRINT_PRIORITY = "print *";
 
     public static Command handleUserInput(String userInput) {
 
@@ -51,6 +56,10 @@ public class Parser {
             return new PrintProgressCommand(userInput);
         } else if (userInput.startsWith(COMMAND_SHOW_COUNTDOWN)) {
             return new CountdownCommand(userInput);
+        } else if (userInput.startsWith((COMMAND_PRIORITIZE))) {
+            return new PrioritizeCommand(userInput);
+        } else if (userInput.equals(COMMAND_PRINT_PRIORITY)) {
+            return new PrintPriorityCommand(userInput);
         } else {
             /** An invalid command is catered for in AddCommand */
             return new AddCommand(userInput);
