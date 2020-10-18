@@ -167,14 +167,4 @@ public class Ui {
     public void showError(String error) {
         out.println(error);
     }
-
-    public void showUnedited(String type, String content) {
-        out.println("The following " + type + " will be edited:");
-        out.println(content);
-    }
-
-    public void showEdited(String type, String content) {
-        out.println("Edited " + type + ":");
-        out.println(content);
-    }
 }
