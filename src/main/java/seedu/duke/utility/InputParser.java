@@ -13,7 +13,6 @@ import seedu.duke.commands.WatchCommand;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static seedu.duke.utility.StringOperations.getFirstWord;
 import static seedu.duke.utility.StringOperations.removeFirstWord;
 import static seedu.duke.utility.StringOperations.tokenizeStringArray;
 
@@ -41,8 +40,8 @@ public class InputParser {
      */
     public String parseInput(String input) {
 
-        String[] singleWordInputs = new String[]{"bye", "list", "help"};
-        String command = getFirstWord(input).toLowerCase();
+        String[] singleWordInputs = new String[]{"bye", "list", "help", "watchtime"};
+        String command = StringOperations.getFirstWord(input).toLowerCase();
 
         String[] splitInput = input.split(" ");
         if (splitInput.length < 2) {
@@ -105,6 +104,10 @@ public class InputParser {
 
         case "updatetimelimit":
             parseUpdateTimeLimitCommand(input);
+            return command;
+
+        case "watchtime":
+            parseWatchTimeCommand();
             return command;
 
         case "":
@@ -223,6 +226,8 @@ public class InputParser {
         } catch (NullPointerException e) {
             Ui.printBadInputException();
             return;
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printInvalidRatingInput();
         }
     }
 
@@ -249,6 +254,10 @@ public class InputParser {
         } catch (Exception e) {
             Ui.printNotFoundException();
         }
+    }
+
+    private static void parseWatchTimeCommand() {
+        Ui.printDailyWatchTracking();
     }
 }
 

@@ -11,7 +11,7 @@ public class AddCommand extends Command {
      *
      * @param input the user input
      */
-    public AddCommand(String[] input) throws NullPointerException {
+    public AddCommand(String[] input) throws NullPointerException, ArrayIndexOutOfBoundsException {
         if (input.length < 3) {
             throw new ArrayIndexOutOfBoundsException();
         }

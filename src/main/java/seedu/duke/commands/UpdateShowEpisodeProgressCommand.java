@@ -21,10 +21,14 @@ public class UpdateShowEpisodeProgressCommand extends Command {
     public void processCommand() {
         String showName = inputs.get(1);
         int episode = Integer.parseInt(inputs.get(2));
-        Show show = ShowList.getShow(showName);
-        show.setEpisodeWatched(episode);
-        ShowList.setShow(showName, show);
-        Ui.printChangeEpisode(showName);
+        try {
+            Show show = ShowList.getShow(showName);
+            show.setEpisodeWatched(episode);
+            ShowList.setShow(showName, show);
+            Ui.printChangeEpisode(showName);
+        } catch (NullPointerException e) {
+            Ui.printBadInputException();
+        }
     }
 
 
