@@ -7,6 +7,7 @@ import commands.EditCommand;
 import commands.ExitCommand;
 import commands.HelpCommand;
 import commands.ListCommand;
+import commands.ListDueCommand;
 import commands.RemoveCommand;
 import commands.ReviseCommand;
 import commands.BackCommand;
@@ -91,39 +92,6 @@ public class Ui {
         out.println();
     }
 
-    public void showCardList(ArrayList<Card> cards, int cardCount) {
-        if (cardCount == 0) {
-            out.println("There are no cards in your list.");
-            return;
-        }
-        out.println("Here are the cards in your list:");
-        for (Card c : cards) {
-            out.println((cards.indexOf(c) + 1) + "." + c);
-        }
-    }
-
-    public void showModuleList(ArrayList<Module> modules, int moduleCount) {
-        if (moduleCount == 0) {
-            out.println("There are no modules in your list.");
-            return;
-        }
-        out.println("Here are the modules in your list:");
-        for (Module m : modules) {
-            out.println((modules.indexOf(m) + 1) + "." + m);
-        }
-    }
-
-    public void showChapterList(ArrayList<Chapter> chapters, int chapterCount) {
-        if (chapterCount == 0) {
-            out.println("There are no chapters in your list.");
-            return;
-        }
-        out.println("Here are the chapters in your list:");
-        for (Chapter c : chapters) {
-            out.println((chapters.indexOf(c) + 1) + "." + c);
-        }
-    }
-
     public void showToUser(String message) {
         out.println(message);
     }
@@ -162,6 +130,7 @@ public class Ui {
         out.println("6. " + EditCommand.MESSAGE_USAGE);
         out.println("7. " + RemoveCommand.MESSAGE_USAGE);
         out.println("8. " + BackCommand.MESSAGE_USAGE);
+        out.println("9. " + ListDueCommand.MESSAGE_USAGE);
     }
 
     public void showError(String error) {
