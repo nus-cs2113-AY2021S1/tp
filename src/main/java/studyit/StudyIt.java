@@ -1,3 +1,5 @@
+package studyit;
+
 import academic.Grade;
 import academic.Person;
 import timetable.TimeTableRun;
@@ -5,6 +7,9 @@ import flashcard.FlashcardRun;
 import bookmark.BookmarkCategory;
 import bookmark.NusCategory;
 import bookmark.ZoomCategory;
+import userinterface.MainMenu;
+import userinterface.Ui;
+
 import java.util.ArrayList;
 
 

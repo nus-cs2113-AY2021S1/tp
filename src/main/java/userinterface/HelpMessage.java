@@ -1,3 +1,8 @@
+package userinterface;
+
+import studyit.Mode;
+import studyit.StudyIt;
+
 public class HelpMessage extends Ui {
     private static final String generalCommands = "Here are the general commands available:\n"
             + "help                 - prints out help message\n"
