@@ -73,7 +73,7 @@ public class BookmarkAnimeCommand extends Command {
         Anime animeToDelete = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
         result = "Removing " + animeToDelete.getAnimeName() + "! :(";
         bookmark.removeAnimeBookmark(bookmarkIndex - 1);
-        //storageManager.saveBookmark(user.getActiveWorkspace().getName(), bookmark);
+        storageManager.saveBookmark(user.getActiveWorkspace().getName(), bookmark);
         return result;
     }
 
@@ -91,7 +91,7 @@ public class BookmarkAnimeCommand extends Command {
         Anime animeToAdd = animeData.getAnimeByID(animeIndex - 1);
         result = "Saving " + animeToAdd.getAnimeID() + ". " + animeToAdd.getAnimeName() + " " + " to bookmark.";
         bookmark.addAnimeBookmark(animeIndex - 1);
-        //storageManager.saveBookmark(user.getActiveWorkspace().getName(), bookmark);
+        storageManager.saveBookmark(user.getActiveWorkspace().getName(), bookmark);
         return result;
     }
 
@@ -109,7 +109,7 @@ public class BookmarkAnimeCommand extends Command {
         bookmark.editAnimeBookmarkEpisode(bookmarkIndex - 1, bookmarkEpisode);
         Anime animeToEdit = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
         result = "Editing " + animeToEdit.getAnimeName() + " to have " + bookmarkEpisode + " episode";
-        //storageManager.saveBookmark(user.getActiveWorkspace().getName(), bookmark);
+        storageManager.saveBookmark(user.getActiveWorkspace().getName(), bookmark);
         return result;
     }
 
