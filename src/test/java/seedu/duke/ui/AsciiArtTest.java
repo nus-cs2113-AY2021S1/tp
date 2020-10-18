@@ -9,7 +9,7 @@ import static seedu.duke.ui.Formatter.LS;
 
 public class AsciiArtTest {
 
-    final String EXPECTED_NOTUS_LOGO = LS
+    String expectedNotusLogo = LS
             + LS
             + "     .-') _               .-') _                 .-')    "
             + LS
@@ -30,7 +30,7 @@ public class AsciiArtTest {
             + "`--'  `--'       `-----'    `--'    `-----'     `-----'  "
             + LS;
 
-    final String EXPECTED_GOODBYE_ART = LS
+    final String expectedGoodbyeArt = LS
             + ".-. .-')                 ('-.                .,,cccd$$$$$$$$$$$ccc,"
             + LS
             + "\\  ( OO )              _(  OO)           ,cc$$$$$$$$$$$$$$$$$$$$$$$$$cc,"
@@ -106,7 +106,7 @@ public class AsciiArtTest {
 
         String actual = getNotusLogo();
 
-        assertEquals(EXPECTED_NOTUS_LOGO, actual);
+        assertEquals(expectedNotusLogo, actual);
     }
 
     @Test
@@ -114,7 +114,7 @@ public class AsciiArtTest {
 
         String actual = getGoodbyeArt();
 
-        assertEquals(EXPECTED_GOODBYE_ART, actual);
+        assertEquals(expectedGoodbyeArt, actual);
     }
 
 }

@@ -54,12 +54,12 @@ public class FormatterTest {
     @Test
     private static String generatesRowSplit() {
         return null;
-    };
+    }
 
     @Test
     private static String encloseTopAndBottom() {
         return null;
-    };
+    }
 
     @Test
     private static String encloseRow() {
