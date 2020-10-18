@@ -17,8 +17,6 @@ public class Formatter {
     /** A platform independent line separator. */
     public static final String LS = System.lineSeparator();
 
-    private static final int NUM_ANSI_CHAR = 9;
-
     private static final String ROW_SPLIT = "=";
     private static final String COLUMN_SPLIT = "|";
     private static final String COLUMN_START = "|| ";
@@ -32,7 +30,6 @@ public class Formatter {
     private static final int MAX_MESSAGE_LENGTH = MAX_ROW_LENGTH - COLUMN_START.length() - COLUMN_END.length();
 
     private static final int ANSI_PREFIX_LENGTH = 5;
-
 
     // Character code adapted from http://patorjk.com/software/taag/#p=display&f=Ghost&t=NotUS
     // Slight modifications made to make it easier on the eyes
@@ -180,48 +177,16 @@ public class Formatter {
     private static String encloseRow(String message) {
         int numBlanks;
 
-        int numColoredString = 0;
-
         // Array list to store startIndex, endIndex and the color of the string
         ArrayList<Integer> coloredStringStartIndexList = new ArrayList<>();
         ArrayList<Integer> coloredStringEndIndexList = new ArrayList<>();
         ArrayList<String> stringColorList = new ArrayList<>();
 
-        // Stack is used to match the PREFIX and POSTFIX of each color. Possible patterns:
-        // 1. Individual string has its own color.
-        // [PREFIX]string[POSTFIX] [PREFIX]string[POSTFIX]
-        // 2. Individual string color has its own color but is enclosed by another color.
-        // [PREFIX][PREFIX]string[POSTFIX][PREFIX]string[POSTFIX][POSTFIX]
-        // 3. String enclosed by nested colors
-        // [PREFIX][PREFIX]PREFIX]string[POSTFIX][POSTFIX][POSTFIX]
-        Stack<Integer> coloredStringStartIndexStack = new Stack<>();
-        Stack<String> stringColorStack = new Stack<>();
-
-        // Count the number of colored string in the message.
-        String[] temp = message.split(EMPTY_STRING);
-        int messageLength = 0;
-        for (int i = 0; i < temp.length; ++i) {
-            // Checks if it matches the PREFIX of a color declaration and is not the RESET color
-            if (temp[i].contains(PREFIX) && !temp[i].contains(RESET)) {
-                ++numColoredString;
-                // Add them into the stack first
-                coloredStringStartIndexStack.push(messageLength);
-                stringColorStack.push(temp[i].substring(0, temp[i].indexOf(POSTFIX) + 1));
-            }
-            // If it matches a RESET, pairs it with the top item of the stack
-            if (temp[i].contains(RESET)) {
-                if (coloredStringStartIndexStack.size() > 0) {
-                    coloredStringStartIndexList.add(coloredStringStartIndexStack.pop());
-                    stringColorList.add(stringColorStack.pop());
-                    coloredStringEndIndexList.add(messageLength + temp[i].indexOf(RESET));
-                }
-            }
-            // Increment the message length by each string array, also account for the space
-            messageLength += temp[i].length() + 1;
-        }
+        int numAsciiCode = getNumAsciiCode(message, coloredStringStartIndexList, coloredStringEndIndexList,
+                stringColorList);
 
         // Calculate the number of space needed to fill up if the message length is less than the MAX_MESSAGE_LENGTH
-        numBlanks = MAX_MESSAGE_LENGTH - message.length() + numColoredString * NUM_ANSI_CHAR;
+        numBlanks = MAX_MESSAGE_LENGTH - message.length() + numAsciiCode;
 
         // Adds empty space to the message
         if (numBlanks >= 0) {
@@ -248,7 +213,6 @@ public class Formatter {
                     }
                 }
             }
-
             // If the cutoff is in the middle of a colored word, shift all the way to the space directly before it.
             if (cutOffWordIsColored) {
                 while (message.charAt(startIndexOfNextLine) != EMPTY_CHAR) {
@@ -258,7 +222,6 @@ public class Formatter {
             // Split the strings and enclose individual string
             String preservedMessage = message.substring(0, startIndexOfNextLine);
             String truncatedMessage = message.substring(startIndexOfNextLine);
-
             // Concat reset color at the end of the first line and add the color from the previous line to the next line
             if (cutOffWordIsColored) {
                 preservedMessage = preservedMessage.concat(RESET);
@@ -266,5 +229,83 @@ public class Formatter {
             }
             return encloseRow(preservedMessage) + encloseRow(truncatedMessage);
         }
+    }
+
+    /**
+     * Returns the number of ascii code that appear within the message. Also match the start and end of index of each
+     * color.
+     *
+     * @param message String of the message to check.
+     * @param coloredStringStartIndexList Arraylist of index to mark the start of a color.
+     * @param coloredStringEndIndexList Arraylist of index to mark the end of a color.
+     * @param stringColorList Arraylist of string to store the color present.
+     * @return Number of Ascii code that appeared.
+     */
+    private static int getNumAsciiCode(String message,
+                                       ArrayList<Integer> coloredStringStartIndexList,
+                                       ArrayList<Integer> coloredStringEndIndexList,
+                                       ArrayList<String> stringColorList) {
+        int numAsciiCode = 0;
+
+        // Stack is used to match the PREFIX and POSTFIX of each color. Possible patterns:
+        // 1. Individual string has its own color.
+        // [PREFIX]string[POSTFIX] [PREFIX]string[POSTFIX]
+        // 2. Individual string color has its own color but is enclosed by another color.
+        // [PREFIX][PREFIX]string[POSTFIX] [PREFIX]string[POSTFIX][POSTFIX]
+        // 3. String enclosed by nested colors
+        // [PREFIX][PREFIX]PREFIX]string[POSTFIX][POSTFIX][POSTFIX]
+        Stack<Integer> coloredStringStartIndexStack = new Stack<>();
+        Stack<String> stringColorStack = new Stack<>();
+
+        // Count the number of colored string in the message.
+        String[] temp = message.split(EMPTY_STRING);
+        int messageLength = 0;
+        for (String s : temp) {
+            // Check if it contains the RESET color
+            if (s.contains(RESET)) {
+                String checkString = s;
+                String stringBeforeReset;
+                String stringWithReset;
+                int cutOffIndex = 0;
+
+                // While it contains RESET trim it out
+                while (checkString.contains(RESET)) {
+                    int resetIndex = checkString.indexOf(RESET);
+
+                    // If there are string before the RESET
+                    if (resetIndex > 0) {
+                        stringBeforeReset = checkString.substring(0, resetIndex - 1);
+                        stringWithReset = checkString.substring(resetIndex);
+                    } else {
+                        stringBeforeReset = "";
+                        stringWithReset = checkString;
+                    }
+
+                    cutOffIndex += stringBeforeReset.length();
+
+                    // If there is a color string that is not closed
+                    if (stringBeforeReset.contains(PREFIX)) {
+                        numAsciiCode += ANSI_PREFIX_LENGTH;
+                        // Directly add to the list
+                        coloredStringStartIndexList.add(messageLength);
+                        stringColorList.add(checkString.substring(0, checkString.indexOf(POSTFIX) + 1));
+                    } else if (coloredStringStartIndexStack.size() > 0) {
+                        coloredStringStartIndexList.add(coloredStringStartIndexStack.pop());
+                        stringColorList.add(stringColorStack.pop());
+                    }
+                    numAsciiCode += RESET.length();
+                    coloredStringEndIndexList.add(messageLength + cutOffIndex);
+                    checkString = stringWithReset.substring(RESET.length());
+                }
+            } else if (s.contains(PREFIX) && !s.contains(RESET)) {
+                numAsciiCode += ANSI_PREFIX_LENGTH;
+                // Add them into the stack first
+                coloredStringStartIndexStack.push(messageLength);
+                stringColorStack.push(s.substring(0, s.indexOf(POSTFIX) + 1));
+            }
+            // Increment the message length by each string array, also account for the space
+            messageLength += s.length() + 1;
+        }
+        return numAsciiCode;
     }
 }
