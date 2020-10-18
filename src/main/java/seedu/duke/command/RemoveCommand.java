@@ -4,7 +4,6 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
 import seedu.duke.human.Workspace;
-import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.watchlist.Watchlist;
 
@@ -41,20 +40,20 @@ public class RemoveCommand extends Command {
         
         if (activeWatchlist.getWatchlistSize() == 0) {
             throw new AniException(EMPTY_WATCHLIST_ERROR);
-        } else if(activeWatchlist.getWatchlistSize() <= watchlistListIndex - 1) {
+        } else if (activeWatchlist.getWatchlistSize() <= watchlistListIndex - 1) {
             throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
-        } else if (watchlistListIndex <= 0) {
+        } else if (watchlistListIndex < 0) {
             throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
         } 
         
         assert this.watchlistListIndex >= 0 : "Watchlist index has to be valid";
-        activeWatchlist.removeAnimeFromList(watchlistListIndex - 1);
+        activeWatchlist.removeAnimeFromList(watchlistListIndex);
 
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
         LOGGER.log(Level.INFO, "Successfully removed anime from active watchlist");
     }
     
     public void setWatchlistListIndex(Integer watchlistListIndex) {
-        this.watchlistListIndex = watchlistListIndex;
+        this.watchlistListIndex = watchlistListIndex - 1;
     }
 }
