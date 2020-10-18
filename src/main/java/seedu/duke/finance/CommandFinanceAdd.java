@@ -18,7 +18,16 @@ public class CommandFinanceAdd extends Command {
             throw new DukeFinanceAddDescriptionLostException();
         }
         String[] contents = input.trim().split(" ");
-        FinanceLog fl = new FinanceLog(contents[0],Double.parseDouble(contents[1]));
+        int length = contents.length;
+        String item = "";
+        for (int i = 0;i < length - 1;i++) {
+            if (i == length - 2) {
+                item = item + contents[i];
+            } else {
+                item = item + contents[i] + " ";
+            }
+        }
+        FinanceLog fl = new FinanceLog(item,Double.parseDouble(contents[length - 1]));
         String output = FinanceList.addLog(fl);
         logger.info("End adding...\n");
         return output;

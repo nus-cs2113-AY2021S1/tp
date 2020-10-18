@@ -30,6 +30,10 @@ public class Member {
         return this.memberRole;
     }
 
+    public String getMemberName() {
+        return this.memberName;
+    }
+
     /**
      * Prints task data in the desired form to be printed for user interaction.
      * */
