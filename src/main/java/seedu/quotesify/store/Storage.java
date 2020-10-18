@@ -97,7 +97,7 @@ public class Storage {
             ListManager.addToList(ListManager.BOOKMARK_LIST, parseToBookmarkList(json));
             ListManager.addToList(ListManager.TODO_LIST, parseToTodoList(json));
         } catch (NullPointerException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
     }
 
