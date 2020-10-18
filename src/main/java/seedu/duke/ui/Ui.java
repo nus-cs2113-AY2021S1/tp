@@ -3,11 +3,14 @@ package seedu.duke.ui;
 import seedu.duke.human.User;
 
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Ui {
     private static final Scanner CONSOLE = new Scanner(System.in);
+    private static final Logger LOGGER = Logger.getLogger(User.class.getName());
     private static final String LOGO =
-                    "                 _  _____ _\n"
+                    "                  _  _____ _\n"
                     + "      /\\         (_)/ ____| |\n"
                     + "     /  \\   _ __  _| |    | |__   __ _ _ __\n"
                     + "    / /\\ \\ | '_ \\| | |    | '_ \\ / _` | '_ \\\n"
@@ -16,14 +19,18 @@ public class Ui {
     private static final String HORIZONTAL_LINE =
             "-------------------------------------------------------------";
 
+    public Ui() {
+        LOGGER.setLevel(Level.WARNING);
+    }
+
     public void printMessage(String message) {
         if (!message.isBlank()) {
-            System.out.println(" " + message);
+            System.out.println(message);
         }
     }
 
     public void printErrorMessage(String errorMessage) {
-        System.out.println(" ☹ OOPS!!! " + errorMessage);
+        System.out.println("OOPS!!! " + errorMessage);
     }
 
     public void printHorizontalLine() {
@@ -40,14 +47,26 @@ public class Ui {
     }
 
     public String readInput() {
-        System.out.print(" #> ");
+        System.out.print("#>");
         return CONSOLE.nextLine();
     }
 
-    public String readUserInput(User activeUser) {
-        String userName = activeUser.getHonorificName();
-        String watchlistName = activeUser.getActiveWatchlistName();
-        System.out.print(System.lineSeparator() + " " + userName + " (" + watchlistName + ") #> ");
+    public String readUserInput(User user) {
+        String workspaceName = user.getActiveWorkspace().getName();
+        String watchlistName = user.getActiveWorkspace().getActiveWatchlistName();
+        System.out.print(System.lineSeparator() + workspaceName + " (" + watchlistName + ") #> ");
         return CONSOLE.nextLine();
+    }
+
+    public String[] createUserDialogue() {
+        LOGGER.log(Level.INFO, "No existing user file found, prompting user to create one!");
+        String[] userDialogueInput = new String[3];
+
+        printMessage("What's your name?");
+        userDialogueInput[0] = readInput();
+        printMessage("Hello " + userDialogueInput[0] + "! What might your gender be? (Male/Female/Other)");
+        userDialogueInput[1] = readInput();
+
+        return userDialogueInput;
     }
 }
