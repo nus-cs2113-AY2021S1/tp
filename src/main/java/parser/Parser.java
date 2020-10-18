@@ -19,7 +19,9 @@ import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import storage.Storage;
 
-import static common.Messages.*;
+import static common.Messages.MESSAGE_EXTRA_ARGS;
+import static common.Messages.MESSAGE_INCORRECT_ACCESS;
+import static common.Messages.MESSAGE_MISSING_ARGS;
 
 public class Parser {
     private static final String QUESTION_ANSWER_PREFIX = " \\| ";
@@ -112,8 +114,8 @@ public class Parser {
             return prepareAddModule(commandArgs);
         } else {
             assert !access.isChapterLevel() && !access.isAdminLevel() && !access.isModuleLevel() : access.getLevel();
-            throw new IncorrectAccessLevelException(String.format(MESSAGE_INCORRECT_ACCESS
-                    , AddCommand.COMMAND_WORD));
+            throw new IncorrectAccessLevelException(String.format(MESSAGE_INCORRECT_ACCESS,
+                    AddCommand.COMMAND_WORD));
         }
     }
 
@@ -177,8 +179,8 @@ public class Parser {
             return prepareEditChapter(commandArgs);
         } else {
             assert !access.isChapterLevel() && !access.isAdminLevel() && !access.isModuleLevel() : access.getLevel();
-            throw new IncorrectAccessLevelException(String.format(MESSAGE_INCORRECT_ACCESS
-                    , EditCommand.COMMAND_WORD));
+            throw new IncorrectAccessLevelException(String.format(MESSAGE_INCORRECT_ACCESS,
+                    EditCommand.COMMAND_WORD));
         }
     }
 

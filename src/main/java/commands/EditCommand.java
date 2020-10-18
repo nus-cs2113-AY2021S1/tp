@@ -82,8 +82,8 @@ public class EditCommand extends Command {
             String result = editChapter(ui, access, storage);
             ui.showToUser(result);
         } else {
-            throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS
-                    , access.getLevel(), accessLevel));
+            throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
+                    access.getLevel(), accessLevel));
         }
     }
 

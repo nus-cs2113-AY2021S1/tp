@@ -76,8 +76,8 @@ public class AddCommand extends Command {
             String result = addChapter(access, storage, chapter);
             ui.showToUser(result);
         } else {
-            throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS
-                    , access.getLevel(), accessLevel));
+            throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
+                    access.getLevel(), accessLevel));
         }
     }
 
@@ -118,8 +118,8 @@ public class AddCommand extends Command {
         access.setAdmin(newAdmin);
         StringBuilder result = new StringBuilder();
         result.append(storage.createModule(module.getModuleName()));
-        result.append(String.format(MESSAGE_SUCCESS, MODULE) + module.toString() + "\n" +
-                String.format(MESSAGE_COUNT, moduleCount, MODULE));
+        result.append(String.format(MESSAGE_SUCCESS, MODULE) + module.toString() + "\n"
+                + String.format(MESSAGE_COUNT, moduleCount, MODULE));
         return result.toString();
     }
 

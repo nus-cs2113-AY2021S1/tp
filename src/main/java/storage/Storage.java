@@ -51,8 +51,8 @@ public class Storage {
         if (!dataDirExists) {
             dataDirCreated = f.getParentFile().mkdir();
         } else {
-            ui.showToUser(String.format(MESSAGE_EXISTS, DIR.substring(0,1).toUpperCase()
-                    , f.getParentFile().getName()));
+            ui.showToUser(String.format(MESSAGE_EXISTS, DIR.substring(0,1).toUpperCase(),
+                    f.getParentFile().getName()));
         }
         if (dataDirCreated) {
             ui.showToUser(String.format(MESSAGE_CREATED, DIR, f.getParentFile().getName()));
