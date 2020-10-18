@@ -4,6 +4,8 @@ import seedu.revised.card.Subject;
 import seedu.revised.exception.card.NoSubjectException;
 import seedu.revised.card.SubjectList;
 import seedu.revised.exception.card.RepeatedSubjectException;
+import seedu.revised.ui.Ui;
+
 
 /**
  * Adds an instance of the <code>Deadline</code> class into a <code>TaskList</code>.
@@ -21,7 +23,7 @@ public class AddSubjectCommand extends SubjectCommand {
         if (endOfMessage <= startOfMessage) {
             throw new NoSubjectException();
         }
-        String title = fullCommand.substring(startOfMessage,endOfMessage);
+        String title = fullCommand.substring(startOfMessage, endOfMessage);
         if (title.isEmpty()) {
             throw new NoSubjectException();
         }
@@ -33,12 +35,13 @@ public class AddSubjectCommand extends SubjectCommand {
         }
         Subject temp = new Subject(title);
         subjectList.getList().add(temp);
-        temp.printSubject(subjectList);
+        Ui.printSubject(temp, subjectList);
         return null;
     }
 
     /**
      * Checks whether the the user exits the program.
+     *
      * @return <code>true</code> if user exits the program
      */
     public boolean isExit() {

@@ -2,7 +2,12 @@ package seedu.revised.command.task;
 
 import seedu.revised.exception.task.TaskEventException;
 import seedu.revised.task.Event;
+import seedu.revised.task.Task;
 import seedu.revised.task.TaskList;
+import seedu.revised.ui.Ui;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class AddEventCommand extends TaskCommand {
     private String fullCommand;
@@ -28,12 +33,17 @@ public class AddEventCommand extends TaskCommand {
         }
         String message = fullCommand.substring(startOfMessage, endOfMessage);
         String at = fullCommand.substring(startOfAt, endOfAt);
+
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm d-MM-yyyy");
+        LocalDateTime dateTime = LocalDateTime.parse(at, format);
+
+
         if (message.isEmpty() || at.isEmpty()) {
             throw new TaskEventException();
         }
-        Event temp = new Event(message, false, at);
+        Task temp = new Event(message, false, dateTime);
         taskList.getList().add(temp);
-        temp.printEvent(taskList);
+        Ui.printTask(temp, taskList);
     }
 
     /**

@@ -25,8 +25,12 @@ public class TopicQuiz extends Quiz {
         this.topic = topic;
     }
 
+    /**
+     * Checks if the topic has flashcards. Furthermore, this method sets the maximum score for the quiz.
+     *
+     * @throws NoFlashCardException If there are no flashcards in this topic
+     */
     public void setUpQuiz() throws NoFlashCardException {
-        int maxScore = 0;
         if (this.flashcards.size() == 0) {
             throw new NoFlashCardException();
         }
@@ -34,6 +38,12 @@ public class TopicQuiz extends Quiz {
 
     }
 
+    /**
+     * Begins the quiz for the user.
+     *
+     * @param results The resultsList stored in the Topic
+     * @throws NoFlashCardException If the topic has no flashcards
+     */
     public void startQuiz(ResultList results) throws NoFlashCardException {
         setUpQuiz();
         this.result.setScore(0);
@@ -69,7 +79,6 @@ public class TopicQuiz extends Quiz {
             }
 
         }
-
 
         this.topic.getResults().add(this.result);
 

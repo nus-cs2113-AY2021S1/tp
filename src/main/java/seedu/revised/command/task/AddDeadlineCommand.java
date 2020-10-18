@@ -2,7 +2,12 @@ package seedu.revised.command.task;
 
 import seedu.revised.exception.task.TaskDeadlineException;
 import seedu.revised.task.Deadline;
+import seedu.revised.task.Task;
 import seedu.revised.task.TaskList;
+import seedu.revised.ui.Ui;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class AddDeadlineCommand extends TaskCommand {
     private String fullCommand;
@@ -16,7 +21,7 @@ public class AddDeadlineCommand extends TaskCommand {
      *
      * @param taskList An instance of the <code>TaskList</code> class for the user to append to
      * @throws TaskDeadlineException If there are no parameters written to initialise the creation of a new Deadline
-     *      class
+     *                               class
      */
     public void execute(TaskList taskList) throws TaskDeadlineException {
         int startOfMessage = 9;
@@ -28,12 +33,14 @@ public class AddDeadlineCommand extends TaskCommand {
         }
         String message = fullCommand.substring(startOfMessage, endOfMessage);
         String by = fullCommand.substring(startOfBy, endOfBy);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm d-MM-yyyy");
+        LocalDateTime dateTime = LocalDateTime.parse(by, format);
         if (message.isEmpty() || by.isEmpty()) {
             throw new TaskDeadlineException();
         } else {
-            Deadline temp = new Deadline(message, false, by);
+            Task temp = new Deadline(message, false, dateTime);
             taskList.getList().add(temp);
-            temp.printDeadline(taskList);
+            Ui.printTask(temp, taskList);
         }
     }
 

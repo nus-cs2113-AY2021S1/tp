@@ -22,6 +22,8 @@ import seedu.revised.parser.TopicParser;
 import seedu.revised.task.TaskList;
 import seedu.revised.ui.Ui;
 
+import java.time.format.DateTimeParseException;
+
 public class ReturnSubjectCommand extends SubjectCommand {
     private String fullcommand;
 
@@ -90,6 +92,8 @@ public class ReturnSubjectCommand extends SubjectCommand {
                 Ui.printNoFlashcards();
             } catch (InvalidTopicCommand invalidTopicCommand) {
                 Ui.printEnterTopic();
+            } catch (IllegalArgumentException | DateTimeParseException d) {
+                Ui.printInvalidFormat();
             }
         }
         Ui.printBackToSubjects();

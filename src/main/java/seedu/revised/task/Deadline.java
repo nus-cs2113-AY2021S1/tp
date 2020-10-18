@@ -1,28 +1,32 @@
 package seedu.revised.task;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
 
-    protected String by;
 
-    public Deadline(String description, boolean isDone, String by) {
+    protected LocalDateTime dateTime;
+
+    public Deadline(String description, boolean isDone, LocalDateTime dateTime) {
         super(description, isDone);
-        this.by = by;
+        this.dateTime = dateTime;
     }
 
-    public void printDeadline(TaskList taskList) {
-        System.out.println("____________________________________________________________\n"
-                + "Got it. I've added this task:\n  " + this + "\n"
-                + "Now you have " + taskList.getList().size() + (taskList.getList().size() == 1
-                ? " task in the list.\n" : " tasks in the list.\n")
-                + "____________________________________________________________");
+    public LocalDateTime getDateTime() {
+        return this.dateTime;
     }
+
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a d MMM yyyy");
+        String dateTime = this.dateTime.format(formatter);
+        return "[D]" + super.toString() + " (by: " + dateTime + ")";
     }
 
-    public String getBy() {
-        return by;
+    public String getDateTimeDescription() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a d MMM yyyy");
+        return this.dateTime.format(formatter);
     }
 }

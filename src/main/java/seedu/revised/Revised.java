@@ -49,7 +49,7 @@ public class Revised {
      * Runs the Duke program until the user exits the program.
      */
     public void run() {
-        Ui.printStart();
+        Ui.printStart(subjects);
         boolean isExit = false;
         while (!isExit) {
             try {

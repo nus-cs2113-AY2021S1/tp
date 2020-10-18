@@ -33,13 +33,6 @@ public class Subject {
         this.results = new ResultList(results);
     }
 
-    public void printSubject(SubjectList subjectList) {
-        System.out.println("____________________________________________________________\n"
-                + "Got it. I've added this subject:\n  " + this + "\n"
-                + "Now you have " + subjectList.getList().size() + (subjectList.getList().size() == 1
-                ? " subject in the list.\n" : " subjects in the list.\n")
-                + "____________________________________________________________");
-    }
 
     public String getTitle() {
         return title;

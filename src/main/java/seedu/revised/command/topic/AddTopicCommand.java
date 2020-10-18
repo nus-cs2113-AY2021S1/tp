@@ -5,6 +5,8 @@ import seedu.revised.card.Topic;
 import seedu.revised.card.TopicList;
 import seedu.revised.exception.card.NoSubjectException;
 import seedu.revised.exception.card.RepeatedSubjectException;
+import seedu.revised.ui.Ui;
+
 
 /**
  * Adds an instance of the <code>Topic</code> class into a <code>TopicList</code>.
@@ -24,7 +26,7 @@ public class AddTopicCommand extends TopicCommand {
         if (endOfMessage <= startOfMessage) {
             throw new NoSubjectException();
         }
-        String title = fullCommand.substring(startOfMessage,endOfMessage);
+        String title = fullCommand.substring(startOfMessage, endOfMessage);
         if (title.isEmpty()) {
             throw new NoSubjectException();
         }
@@ -35,12 +37,13 @@ public class AddTopicCommand extends TopicCommand {
         }
         Topic t = new Topic(title);
         topicList.add(t);
-        t.printTopic(topicList);
+        Ui.printTopic(t, topicList);
         return t;
     }
 
     /**
      * Checks whether the the user exits the program.
+     *
      * @return <code>true</code> if user exits the program
      */
     public boolean isExit() {

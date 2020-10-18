@@ -1,5 +1,7 @@
 package seedu.revised.task;
 
+import java.time.LocalDateTime;
+
 public class Task {
     protected String description;
 
@@ -42,6 +44,10 @@ public class Task {
 
     public boolean getIsDone() {
         return isDone;
+    }
+
+    public LocalDateTime getDateTime() {
+        return null;
     }
 }
 

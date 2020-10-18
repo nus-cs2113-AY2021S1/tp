@@ -44,10 +44,10 @@ public class TaskList {
             } else if (task instanceof Deadline) {
                 String[] deadline =  task.description.split("/by");
                 fileWriter.write("D | " + (task.isDone ? "1" : "0") + " | "
-                        + task.description + " | " + ((Deadline) task).by + "\n");
+                        + task.description + " | " + ((Deadline) task).getDateTime() + "\n");
             } else if (task instanceof Event) {
                 fileWriter.write("E | " + (task.isDone ? "1" : "0") + " | "
-                        + task.description + " | " + ((Event) task).at + "\n");
+                        + task.description + " | " + ((Event) task).getDateTimeDescription() + "\n");
             }
         }
         fileWriter.close();

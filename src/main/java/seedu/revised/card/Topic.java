@@ -49,13 +49,6 @@ public class Topic {
         return results;
     }
 
-    public void printTopic(TopicList topicList) {
-        System.out.println("____________________________________________________________\n"
-                + "Got it. I've added this topic:\n  " + this.title + "\n"
-                + "Now you have " + topicList.getList().size() + (topicList.getList().size() == 1
-                ? " topic in the list.\n" : " topics in the list.\n")
-                + "____________________________________________________________");
-    }
 
     @Override
     public String toString() {
