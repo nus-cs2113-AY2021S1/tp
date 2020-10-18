@@ -14,6 +14,7 @@ public class CommandEventList extends Command {
 
     @Override
     public int validate(UserInput input) {
+       // assert input!=null;
         this.userInput = input;
         if (input.getCategory().equals("event") && input.getCommand().equalsIgnoreCase("listEvent")) {
             return ACCEPT;

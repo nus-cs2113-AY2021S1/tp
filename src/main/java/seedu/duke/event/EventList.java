@@ -47,8 +47,8 @@ public class EventList {
         int numToBeMarked = index + 1;
         Event event = events.get(index);
         event.isDone = true;
-        userOutput =  "Nice! I've marked this task as done: \n"
-                + numToBeMarked +"." + events.get(index).printEvent()+"\n";
+        userOutput =  "Nice! I've marked this task as done:\n"
+                + numToBeMarked +"." + events.get(index).printEvent();
 
         return userOutput;
     }
