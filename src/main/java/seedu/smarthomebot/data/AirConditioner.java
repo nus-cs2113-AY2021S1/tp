@@ -17,7 +17,9 @@ public class AirConditioner extends Appliance {
     }
 
     public void setTemperature(String temperature) {
-        if (temperature.isEmpty()) temperature = this.temperature;
+        if (temperature.isEmpty()) {
+            temperature = this.temperature;
+        }
         this.temperature = temperature;
     }
 

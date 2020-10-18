@@ -17,7 +17,10 @@ public class Fan extends Appliance {
     }
 
     public void setSpeed(String speed) {
-        Fan.speed = speed;
+        if (speed.isEmpty()) {
+            speed = this.speed;
+        }
+        this.speed = speed;
     }
 
     private String getSpeed() {
