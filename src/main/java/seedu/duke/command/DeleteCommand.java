@@ -33,6 +33,8 @@ public class DeleteCommand extends Command {
                 isTask = true;
             } else if (userInput.startsWith("-e")) {
                 numberDelete = Integer.parseInt(userInput.replace("-e", "").trim());
+            } else {
+                throw new Exception("e");
             }
         } catch (Exception e) {
             throw new DukeException("delete");
