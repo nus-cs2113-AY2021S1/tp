@@ -1,11 +1,16 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.task.TaskCommand;
 import seedu.duke.exception.DukeException;
 
 import java.util.Hashtable;
 
-import static seedu.duke.command.CommandSummary.*;
+import static seedu.duke.command.CommandSummary.TITLE;
+import static seedu.duke.command.CommandSummary.DESCRIPTION;
+import static seedu.duke.command.CommandSummary.PRIORITY;
+import static seedu.duke.command.CommandSummary.TASK_ID;
+import static seedu.duke.command.CommandSummary.ADD;
+import static seedu.duke.command.CommandSummary.DELETE;
+import static seedu.duke.command.CommandSummary.DONE;;
 
 public class TaskParser implements ExceptionsParser {
     @Override
@@ -28,7 +33,7 @@ public class TaskParser implements ExceptionsParser {
             if (parameters.get(DESCRIPTION).isBlank()) {
                 throw new DukeException("Please enter a description!");
             }
-            if (parameters.get(PRIORITY) == null) {
+            if (parameters.get(PRIORITY).isBlank()) {
                 throw new DukeException("Please enter a priority!");
             }
             break;

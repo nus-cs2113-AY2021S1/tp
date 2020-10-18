@@ -130,7 +130,7 @@ public class Parser {
                     try {
                         new TaskCommand().addTaskCommand(parameters, projectList);
                     } catch (DukeException e) {
-                        e.printExceptionMessage();
+                        e.printStackTrace();
                     }
                     break;
                 case DELETE:
@@ -158,7 +158,12 @@ public class Parser {
                 }
                 break;
             case SPRINT:
-
+                try {
+                    new SprintParser().parseMultipleCommandsExceptions(parameters, action);
+                } catch (DukeException e) {
+                    e.printExceptionMessage();
+                    break;
+                }
                 switch (action.toLowerCase()) {
                 case CREATE:
                     new CreateSprintCommand(parameters, projectList).execute();
