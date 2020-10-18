@@ -338,7 +338,7 @@ public class Ui {
      */
     public static void printPrioritizeMessage(CalendarList calendarList, int calendarIndex) {
         System.out.println(
-                "Good work! I've marked this task as important:\n"
+                "I've marked this task as important:\n"
                         + calendarList.getCalendarList().get(calendarIndex));
     }
 

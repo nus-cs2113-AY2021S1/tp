@@ -7,4 +7,5 @@ lab cs1010 @nus -r2 /141020 1440
 print events
 print tasks
 print timeline
+*t1
 bye
