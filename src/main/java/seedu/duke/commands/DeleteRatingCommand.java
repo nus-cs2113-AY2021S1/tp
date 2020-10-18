@@ -11,7 +11,7 @@ public class DeleteRatingCommand extends Command {
     }
 
     /**
-     * Deletes a rating of a show
+     * Deletes a rating of a show.
      *
      * @param showName show which rating is to be deleted
      * @throws NullPointerException throws exception when show is not in the list

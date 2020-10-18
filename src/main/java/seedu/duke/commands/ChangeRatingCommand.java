@@ -11,7 +11,7 @@ public class ChangeRatingCommand extends Command{
     }
 
     /**
-     * Changes a rating of a show the user requests to change
+     * Changes a rating of a show the user requests to change.
      *
      * @param showName name of show which rating is to be changed
      * @param targetRating  new rating to update

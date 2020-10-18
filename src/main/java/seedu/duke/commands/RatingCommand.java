@@ -11,7 +11,7 @@ public class RatingCommand extends Command {
     }
 
     /**
-     * Adds rating to a show
+     * Adds rating to a show.
      * @param showName show which is to be rated
      * @param rating rating to be given to show
      * @throws NullPointerException throws exception when show is not in the list

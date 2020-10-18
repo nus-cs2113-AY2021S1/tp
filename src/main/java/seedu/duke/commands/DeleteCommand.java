@@ -11,7 +11,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Deletes a show
+     * Deletes a show.
      *
      * @param showName show to be deleted
      * @throws NullPointerException throws exception when show is not in the list
