@@ -90,23 +90,23 @@ public class Storage {
 
     private static void updateListManager(JSONObject json) {
         try {
-            ListManager.addToList(ListManager.BOOK_LIST, parseToBookList(json));
-            ListManager.addToList(ListManager.QUOTE_LIST, parseToQuoteList(json));
-            ListManager.addToList(ListManager.CATEGORY_LIST, parseToCategoryList(json));
-            ListManager.addToList(ListManager.RATING_LIST, parseToRatingList(json));
-            ListManager.addToList(ListManager.BOOKMARK_LIST, parseToBookmarkList(json));
-            ListManager.addToList(ListManager.TODO_LIST, parseToTodoList(json));
+            ListManager.addToList(ListManager.BOOK_LIST, parseBookList(json));
+            ListManager.addToList(ListManager.QUOTE_LIST, parseQuoteList(json));
+            ListManager.addToList(ListManager.CATEGORY_LIST, parseCategoryList(json));
+            ListManager.addToList(ListManager.RATING_LIST, parseRatingList(json));
+            ListManager.addToList(ListManager.BOOKMARK_LIST, parseBookmarkList(json));
+            ListManager.addToList(ListManager.TODO_LIST, parseTodoList(json));
         } catch (NullPointerException e) {
             // e.printStackTrace();
         }
     }
 
-    private static BookList parseToBookList(JSONObject json) {
+    private static BookList parseBookList(JSONObject json) {
         try {
             JSONArray books = (JSONArray) json.get(BOOKS);
             ArrayList<Book> bookList = new ArrayList<>();
             for (Object book : books) {
-                bookList.add(parseToBook((JSONObject) book));
+                bookList.add(parseBookObject((JSONObject) book));
             }
             return new BookList(bookList);
         } catch (NullPointerException e) {
@@ -115,12 +115,12 @@ public class Storage {
         return new BookList();
     }
 
-    private static QuoteList parseToQuoteList(JSONObject json) {
+    private static QuoteList parseQuoteList(JSONObject json) {
         try {
             JSONArray quotes = (JSONArray) json.get(QUOTES);
             ArrayList<Quote> quoteList = new ArrayList<>();
             for (Object quote : quotes) {
-                quoteList.add(parseToQuote((JSONObject) quote));
+                quoteList.add(parseQuoteObject((JSONObject) quote));
             }
             return new QuoteList(quoteList);
         } catch (NullPointerException e) {
@@ -129,12 +129,12 @@ public class Storage {
         return new QuoteList();
     }
 
-    private static CategoryList parseToCategoryList(JSONObject json) {
+    private static CategoryList parseCategoryList(JSONObject json) {
         try {
             JSONArray categories = (JSONArray) json.get(CATEGORIES);
             ArrayList<Category> categoryList = new ArrayList<>();
             for (Object category : categories) {
-                categoryList.add(parseToCategory((JSONObject) category));
+                categoryList.add(parseCategoryObject((JSONObject) category));
             }
             return new CategoryList(categoryList);
         } catch (NullPointerException e) {
@@ -143,12 +143,12 @@ public class Storage {
         return new CategoryList();
     }
 
-    private static RatingList parseToRatingList(JSONObject json) {
+    private static RatingList parseRatingList(JSONObject json) {
         try {
             JSONArray ratings = (JSONArray) json.get(RATINGS);
             ArrayList<Rating> ratingList = new ArrayList<>();
             for (Object rating : ratings) {
-                ratingList.add(parseToRating((JSONObject) rating));
+                ratingList.add(parseRatingObject((JSONObject) rating));
             }
             return new RatingList(ratingList);
         } catch (NullPointerException e) {
@@ -157,12 +157,12 @@ public class Storage {
         return new RatingList();
     }
 
-    private static BookmarkList parseToBookmarkList(JSONObject json) {
+    private static BookmarkList parseBookmarkList(JSONObject json) {
         try {
             JSONArray bookmarks = (JSONArray) json.get(BOOKMARKS);
             ArrayList<Bookmark> bookmarkList = new ArrayList<>();
             for (Object bookmark : bookmarks) {
-                bookmarkList.add(parseToBookmark((JSONObject) bookmark));
+                bookmarkList.add(parseBookmarkObject((JSONObject) bookmark));
             }
             return new BookmarkList(bookmarkList);
         } catch (NullPointerException e) {
@@ -171,12 +171,12 @@ public class Storage {
         return new BookmarkList();
     }
 
-    private static ToDoList parseToTodoList(JSONObject json) {
+    private static ToDoList parseTodoList(JSONObject json) {
         try {
             JSONArray todos = (JSONArray) json.get(TODOS);
             ArrayList<ToDo> todoList = new ArrayList<>();
             for (Object todo : todos) {
-                todoList.add(parseToTodo((JSONObject) todo));
+                todoList.add(parseTodoObject((JSONObject) todo));
             }
             return new ToDoList(todoList);
         } catch (NullPointerException e) {
@@ -185,9 +185,9 @@ public class Storage {
         return new ToDoList();
     }
 
-    private static Book parseToBook(JSONObject json) throws NullPointerException {
+    private static Book parseBookObject(JSONObject json) throws NullPointerException {
         JSONObject authorObj = (JSONObject) json.get("author");
-        Author author = parseToAuthor(authorObj);
+        Author author = parseAuthorObject(authorObj);
         String title = (String) json.get("title");
         JSONArray array = (JSONArray) json.get("categories");
         ArrayList<String> categories = (ArrayList<String>) array.stream()
@@ -195,9 +195,9 @@ public class Storage {
         return new Book(author, title, categories);
     }
 
-    private static Quote parseToQuote(JSONObject json) throws NullPointerException {
+    private static Quote parseQuoteObject(JSONObject json) throws NullPointerException {
         JSONObject authorObj = (JSONObject) json.get("author");
-        Author author = parseToAuthor(authorObj);
+        Author author = parseAuthorObject(authorObj);
         String quote = (String) json.get("quote");
         String reference = (String) json.get("reference");
         JSONArray array = (JSONArray) json.get("categories");
@@ -206,7 +206,7 @@ public class Storage {
         return new Quote(author, quote, categories, reference);
     }
 
-    private static Category parseToCategory(JSONObject json) throws NullPointerException {
+    private static Category parseCategoryObject(JSONObject json) throws NullPointerException {
         String name = (String) json.get("category");
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
@@ -217,27 +217,27 @@ public class Storage {
         return category;
     }
 
-    private static Rating parseToRating(JSONObject json) throws NullPointerException {
+    private static Rating parseRatingObject(JSONObject json) throws NullPointerException {
         String title = (String) json.get("titleOfRatedBook");
         long rating = (long) json.get("rating");
         return new Rating((int) rating, title);
     }
 
-    private static Bookmark parseToBookmark(JSONObject json) throws NullPointerException {
+    private static Bookmark parseBookmarkObject(JSONObject json) throws NullPointerException {
         JSONObject bookObj = (JSONObject) json.get("book");
-        Book book = parseToBook(bookObj);
+        Book book = parseBookObject(bookObj);
         long pageNum = (long) json.get("pageNum");
         return new Bookmark(book, (int) pageNum);
     }
 
-    private static ToDo parseToTodo(JSONObject json) throws NullPointerException {
+    private static ToDo parseTodoObject(JSONObject json) throws NullPointerException {
         String name = (String) json.get("name");
         String deadline = (String) json.get("deadline");
         boolean isDone = (boolean) json.get("isDone");
         return new ToDo(name, deadline, isDone);
     }
 
-    private static Author parseToAuthor(JSONObject json) {
+    private static Author parseAuthorObject(JSONObject json) {
         try {
             String authorName = (String) json.get("name");
             return new Author(authorName);
