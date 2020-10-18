@@ -9,6 +9,8 @@ import seedu.rex.commands.DeleteCommand;
 import seedu.rex.commands.EditCommand;
 import seedu.rex.commands.ExitCommand;
 import seedu.rex.commands.ListAppointmentsCommand;
+import seedu.rex.commands.ListPatientsCommand;
+import seedu.rex.commands.RetrieveCommand;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
 import seedu.rex.data.hospital.Patient;
@@ -86,6 +88,12 @@ public class Parser {
             break;
         case ListAppointmentsCommand.COMMAND_WORD:
             command = new ListAppointmentsCommand(trimmedCommand);
+            break;
+        case ListPatientsCommand.COMMAND_WORD:
+            command = new ListPatientsCommand();
+            break;
+        case RetrieveCommand.COMMAND_WORD:
+            command = new RetrieveCommand(trimmedCommand);
             break;
         default:
             throw new RexException(Command.COMMAND_ERROR);
