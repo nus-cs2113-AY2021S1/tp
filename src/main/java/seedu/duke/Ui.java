@@ -5,12 +5,13 @@ import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.event.Event;
 import seedu.duke.calendar.event.Exam;
 import seedu.duke.calendar.event.Lab;
-import seedu.duke.calendar.event.Tutorial;
 import seedu.duke.calendar.event.Lecture;
+import seedu.duke.calendar.event.Tutorial;
 import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Task;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -41,7 +42,7 @@ public class Ui {
                 + "8. done <task number>\n"
                 + "9. -t <task number>\n"
                 + "10. -e <event number>\n"
-                + "11. *t <event number>\n"
+                + "11. *t <task number>\n"
                 + "12. /f <keyword of task/event>\n"
                 + "13. /ft <keyword of task>\n"
                 + "14. /fe <keyword of event>\n"
@@ -51,12 +52,10 @@ public class Ui {
                 + "18. print progress\n"
                 + "19. print *\n"
                 + "20. countdown exams\n"
-                + "21. countdown deadlines"
+                + "21. countdown deadlines\n"
+                + "22. /a <event number> - information\n"
+                + "23. /v <event number>"
         );
-    }
-
-    public static void printDateParseError() {
-        System.out.println("Unable to parse date");
     }
 
     public static void printTotalTaskNumber(CalendarList calendarList) {
@@ -139,6 +138,34 @@ public class Ui {
      */
     public static void printDeleteMessage(int numberDelete, CalendarList calendarList) {
         System.out.println("Deleted:\n" + calendarList.getCalendarList().get(numberDelete));
+    }
+
+    /**
+     * Prints the last additional information of a particular event.
+     *
+     * @param event event containing the additional information.
+     */
+    public static void printLastAdditionalInformation(Event event) {
+        System.out.println("Event: " + event);
+        int lastIndexOfAdditionalInformation =
+                event.getAdditionalInformationCount() - 1; // -1 to cater for array list starting from 0
+        System.out.println("Additional info added: "
+                + event.getAdditionalInformationElement(lastIndexOfAdditionalInformation));
+    }
+
+    /**
+     * Prints the list of additional information of a particular event.
+     *
+     * @param additionalInformation array list of the additional information.
+     * @param event                 event that contains the additional information.
+     */
+    public static void printAdditionalInformation(ArrayList<String> additionalInformation, Event event) {
+        int i = 0;
+        System.out.println("Event:" + event);
+        for (String s : additionalInformation) {
+            i++;
+            System.out.println(i + ". " + s);
+        }
     }
 
     /**
@@ -333,7 +360,7 @@ public class Ui {
     /**
      * Print the message after marking a task as important.
      *
-     * @param calendarList the list of user's tasks and events.
+     * @param calendarList  the list of user's tasks and events.
      * @param calendarIndex the index of the task in the list.
      */
     public static void printPrioritizeMessage(CalendarList calendarList, int calendarIndex) {
@@ -430,6 +457,14 @@ public class Ui {
             break;
         case "invalid done number":
             System.out.println("You can only mark a task as done. An event cannot be marked as done.");
+            break;
+        case "invalid add info":
+            System.out.println(
+                    "Error: Please key in the additional information in this format: /a <event number> - information");
+            break;
+        case "invalid view info":
+            System.out.println(
+                    "Error: To view the additional information of the event: /v <event number>");
             break;
         default:
             System.out.println("Unknown Error.");

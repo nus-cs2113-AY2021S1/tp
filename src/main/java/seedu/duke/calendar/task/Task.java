@@ -77,6 +77,7 @@ public abstract class Task extends CalendarItem {
 
     /**
      * Get whether the task is marked as important.
+     *
      * @return whether the task is important
      */
     public boolean getIsImportant() {

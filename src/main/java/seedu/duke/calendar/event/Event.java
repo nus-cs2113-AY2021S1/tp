@@ -2,13 +2,10 @@ package seedu.duke.calendar.event;
 
 import seedu.duke.calendar.CalendarItem;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.util.ArrayList;
 
 /**
  * Represents an event in the event list.
@@ -18,6 +15,8 @@ public abstract class Event extends CalendarItem {
     protected LocalTime time;
     protected String venue;
     protected boolean isOver;
+    protected ArrayList<String> additionalInformation;
+    protected int additionalInformationCount = 0;
 
     /**
      * A constructor for events.
@@ -30,6 +29,7 @@ public abstract class Event extends CalendarItem {
         this.date = date;
         this.time = time;
         this.venue = venue;
+        additionalInformation = new ArrayList<>();
     }
 
 
@@ -62,6 +62,27 @@ public abstract class Event extends CalendarItem {
         return " (" + venue + ")";
     }
 
+    public void setAdditionalInformation(String additionalInformation) {
+        this.additionalInformation.add(additionalInformation);
+        additionalInformationCount++;
+    }
+
+    public ArrayList<String> getAdditionalInformation() {
+        return additionalInformation;
+    }
+
+    /**
+     * Returns the additional information of at particular index.
+     *
+     * @param informationNumber index of the additional information.
+     */
+    public String getAdditionalInformationElement(int informationNumber) {
+        return additionalInformation.get(informationNumber);
+    }
+
+    public int getAdditionalInformationCount() {
+        return additionalInformationCount;
+    }
 
     public abstract String getType();
 
@@ -84,4 +105,5 @@ public abstract class Event extends CalendarItem {
     public boolean isOver() {
         return isOver;
     }
+
 }

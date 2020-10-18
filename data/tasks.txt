@@ -1,0 +1,4 @@
+D|false|project|2020-10-10
+LEC|true|cs1010|2020-10-13|13:40|nus
+LEC|false|cs1010|2020-10-20|13:40|nus
+LEC|false|cs1010|2020-10-27|13:40|nus

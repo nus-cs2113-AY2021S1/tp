@@ -60,9 +60,6 @@ public class DeleteCommand extends Command {
      */
     private void deleteEvent(CalendarList calendarList, int numberDelete) throws DukeException {
         int calendarNumber;
-        if (numberDelete > calendarList.getTotalEvents() || numberDelete <= 0) {
-            throw new DukeException("invalid event action");
-        }
         calendarNumber = CalendarList.convertEventNumberToCalendarNumber(numberDelete, calendarList);
         Ui.printDeleteMessage(calendarNumber, calendarList);
         calendarList.deleteEvent(calendarNumber);
@@ -77,9 +74,6 @@ public class DeleteCommand extends Command {
      */
     private void deleteTask(CalendarList calendarList, int numberDelete) throws DukeException {
         int calendarNumber;
-        if (numberDelete > calendarList.getTotalTasks() || numberDelete <= 0) {
-            throw new DukeException("invalid task action");
-        }
         calendarNumber = CalendarList.convertTaskNumberToCalendarNumber(numberDelete, calendarList);
         Ui.printDeleteMessage(calendarNumber, calendarList);
         calendarList.deleteTask(calendarNumber);
