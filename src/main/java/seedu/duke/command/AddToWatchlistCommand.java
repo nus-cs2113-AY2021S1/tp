@@ -29,7 +29,7 @@ public class AddToWatchlistCommand extends Command {
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         Workspace activeWorkspace = user.getActiveWorkspace();
-        addToWatchlist(storageManager, activeWorkspace);
+        addToWatchlist(animeData, storageManager, activeWorkspace);
         
         Anime anime = animeData.getAnimeByID(animeIndex);
         String animeName = anime.getAnimeName();
@@ -37,14 +37,17 @@ public class AddToWatchlistCommand extends Command {
         return animeName + " added to watchlist!";
     }
     
-    public void addToWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
+    public void addToWatchlist(AnimeData animeData, StorageManager storageManager, Workspace activeWorkspace) throws AniException {
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         ArrayList<Integer> activeWatchlistList = activeWatchlist.getAnimeList();
+        int indexSize = animeData.getSize();
         
         if (activeWatchlistList.contains(animeIndex)) {
             throw new AniException(DUPLICATE_ANIME_ERROR);
         } else if (animeIndex < 0) {
+            throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
+        } else if (animeIndex >= indexSize) {
             throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
         }
 
