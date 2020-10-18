@@ -45,6 +45,7 @@ public class Kaji {
             } catch (InvalidInputException | IncorrectAccessLevelException | IOException 
                      | IndexOutOfBoundsException | InvalidFileFormatException e) {
                 ui.showError(e.getMessage());
+                ui.printLine();
             }
         }
     }
