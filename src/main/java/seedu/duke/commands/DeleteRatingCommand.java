@@ -10,11 +10,17 @@ public class DeleteRatingCommand {
         this.showName = showName;
     }
 
-    public void deleteRating(String showRatingToBeDeleted) throws NullPointerException {
-        if (ShowList.getShowList().containsKey(showRatingToBeDeleted)) {
-            Show show = ShowList.getShow(showRatingToBeDeleted);
+    /**
+     * Deletes a rating of a show
+     *
+     * @param showName show which rating is to be deleted
+     * @throws NullPointerException throws exception when show is not in the list
+     */
+    public void deleteRating(String showName) throws NullPointerException {
+        if (ShowList.getShowList().containsKey(showName)) {
+            Show show = ShowList.getShow(showName);
             show.setRating(-1);
-            ShowList.setShow(showRatingToBeDeleted,show);
+            ShowList.setShow(showName,show);
         } else {
             throw new NullPointerException();
         }
