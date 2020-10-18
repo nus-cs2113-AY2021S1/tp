@@ -48,7 +48,7 @@ public class Ui {
                 + "14. /fe <keyword of event>\n"
                 + "15. print tasks\n"
                 + "16. print events\n"
-                + "17. print timeline\n"
+                + "17. print timeline <week/month/>\n"
                 + "18. print progress\n"
                 + "19. print *\n"
                 + "20. countdown exams\n"
