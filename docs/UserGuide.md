@@ -203,8 +203,10 @@ Deletes an existing note.
 
 Format: `delete-n [/i INDEX] [t/TITLE]`
 
-- Pins a note to the top of the list. A pinned note will be unpinned. The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …).
+- Deletes the note at that index or with the specific title entered. The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …).
 - At least one of the optional fields must be provided.
+
+💡 Partial title input is **NOT** possible.
 
 Example of usage: 
 
