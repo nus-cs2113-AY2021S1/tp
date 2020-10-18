@@ -31,7 +31,8 @@ public class PrintTimelineCommand extends Command {
         if (timeRange == "week") {
             endDate = startDate.plusDays(7);
             for (int i = 0; i < calendarList.getTotalItems(); i++) {
-                if ((calendarList.getItem(i).getDate() == null) || (calendarList.getItem(i).getDate().isBefore(endDate))) {
+                if ((calendarList.getItem(i).getDate() == null)
+                        || (calendarList.getItem(i).getDate().isBefore(endDate))) {
                     CalendarItem temp = calendarList.getItem(i);
                     if (temp instanceof Todo) {
                         todoList.addItem(temp);
@@ -43,7 +44,8 @@ public class PrintTimelineCommand extends Command {
         } else if (timeRange == "month") {
             endDate = startDate.plusDays(31);
             for (int i = 0; i < calendarList.getTotalItems(); i++) {
-                if ((calendarList.getItem(i).getDate() == null) || (calendarList.getItem(i).getDate().isBefore(endDate))) {
+                if ((calendarList.getItem(i).getDate() == null)
+                        || (calendarList.getItem(i).getDate().isBefore(endDate))) {
                     CalendarItem temp = calendarList.getItem(i);
                     if (temp instanceof Todo) {
                         todoList.addItem(temp);
@@ -130,14 +132,14 @@ public class PrintTimelineCommand extends Command {
     }
 
     public String detectTimeRange(String userInput) {
-        String TimeRange;
-        if(userInput.contains("week")) {
-            TimeRange = "week";
+        String timeRange;
+        if (userInput.contains("week")) {
+            timeRange = "week";
         } else if (userInput.contains(("month"))) {
-            TimeRange = "month";
+            timeRange = "month";
         } else {
-            TimeRange = "all";
+            timeRange = "all";
         }
-        return TimeRange;
+        return timeRange;
     }
 }
