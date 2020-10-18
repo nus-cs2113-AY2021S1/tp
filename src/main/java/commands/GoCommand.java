@@ -15,10 +15,11 @@ import java.util.ArrayList;
 
 public class GoCommand extends Command {
     public static final String COMMAND_WORD = "go";
-    private String moduleOrChapter;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Goes to chapter level. \n"
             + "Example: " + COMMAND_WORD + "\n";
+
+    private String moduleOrChapter;
 
     public GoCommand(String moduleOrChapter) {
         this.moduleOrChapter = moduleOrChapter;
