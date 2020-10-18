@@ -62,6 +62,9 @@ public class Parser {
                 params.clear();
                 String[] arguments = rawArgs.split(" ");
                 params.addAll(Arrays.asList(arguments));
+                for (int i = 0; i < arguments.length; i++) {
+                    parameters.put("" + i, arguments[i]);
+                }
             } else {
                 parameters.clear();
                 while (parameterMatcher.find()) { //go through each occurrence of options
@@ -72,13 +75,15 @@ public class Parser {
 
             switch (command.toLowerCase()) {
             case PROJECT:
+                try {
+                    new ProjectParser().parseSingleCommandsExceptions(parameters);
+                } catch (DukeException e) {
+                    e.printExceptionMessage();
+                    break;
+                }
                 switch (action.toLowerCase()) {
                 case CREATE:
-                    try {
-                        new ProjectCommand().createProjectCommand(parameters, projectList);
-                    } catch (DukeException e) {
-                        e.printExceptionMessage();
-                    }
+                    new ProjectCommand().createProjectCommand(parameters, projectList);
                     break;
                 case VIEW:
                     new ProjectCommand().viewProjectCommand(projectList);
@@ -92,20 +97,18 @@ public class Parser {
                 }
                 break;
             case MEMBER:
+                try {
+                    new MemberParser().parseSingleCommandsExceptions(parameters);
+                } catch (DukeException e) {
+                    e.printExceptionMessage();
+                    break;
+                }
                 switch (action.toLowerCase()) {
                 case ADD:
-                    try {
-                        new MemberCommand().addMemberCommand(params, projectList);
-                    } catch (DukeException e) {
-                        e.printExceptionMessage();
-                    }
+                    new MemberCommand().addMemberCommand(params, projectList);
                     break;
                 case DELETE:
-                    try {
-                        new MemberCommand().deleteMemberCommand(params, projectList);
-                    } catch (DukeException e) {
-                        e.printExceptionMessage();
-                    }
+                    new MemberCommand().deleteMemberCommand(params, projectList);
                     break;
                 default:
                     try {
@@ -116,6 +119,12 @@ public class Parser {
                 }
                 break;
             case TASK:
+                try {
+                    new TaskParser().parseMultipleCommandsExceptions(parameters, action);
+                } catch (DukeException e) {
+                    e.printExceptionMessage();
+                    break;
+                }
                 switch (action.toLowerCase()) {
                 case ADD:
                     try {
