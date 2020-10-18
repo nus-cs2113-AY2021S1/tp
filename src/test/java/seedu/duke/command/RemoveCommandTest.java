@@ -8,7 +8,7 @@ import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
 import seedu.duke.human.Workspace;
-import seedu.duke.parser.AddToWatchlistParser;
+import seedu.duke.parser.RemoveCommandParser;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.watchlist.Watchlist;
 
@@ -16,17 +16,16 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class AddToWatchlistCommandTest {
+class RemoveCommandTest {
     AnimeData animeData;
     User user;
     StorageManager storageManager;
     Bookmark bookmark;
     Workspace workspace;
-    
-    protected static final String ZERO_ANIME_INDEX = "-a 0";
-    protected static final String DUPLICATE_ANIME_INDEX = "-a 1";
-    protected static final String LARGE_ANIME_INDEX = "-a 3";
-    
+
+    protected static final String ZERO_WATCHLIST_INDEX = "-d 0";
+    protected static final String LARGE_WATCHLIST_INDEX = "-d 3";
+
     @BeforeEach
     void setUp() throws AniException {
         ArrayList<Anime> testList = new ArrayList<>();
@@ -34,14 +33,14 @@ class AddToWatchlistCommandTest {
         Anime testAnime2 = new Anime();
         testList.add(testAnime1);
         testList.add(testAnime2);
-        
+
         ArrayList<Integer> animeList = new ArrayList<>();
         animeList.add(0);
         Watchlist watchlist = new Watchlist("TestWatchlist", animeList);
-        
+
         ArrayList<Watchlist> watchlistList = new ArrayList<>();
         watchlistList.add(watchlist);
-        
+
         bookmark = new Bookmark();
         workspace = new Workspace("TestWorkspace", watchlistList, bookmark);
         user = new User("TestUser", "Male");
@@ -49,29 +48,20 @@ class AddToWatchlistCommandTest {
         animeData = new AnimeData(testList);
         storageManager = new StorageManager();
     }
-    
+
     @Test
     void execute_zeroInteger_throwsAniException() throws AniException {
-        AddToWatchlistParser testParser = new AddToWatchlistParser();
-        AddToWatchlistCommand testAdd = testParser.parse(ZERO_ANIME_INDEX);
+        RemoveCommandParser testParser = new RemoveCommandParser();
+        RemoveCommand testAdd = testParser.parse(ZERO_WATCHLIST_INDEX);
         assertThrows(AniException.class, () -> {
             testAdd.execute(animeData, storageManager, user);
         });
     }
 
     @Test
-    void execute_duplicateIndex_throwsAniException() throws AniException {
-        AddToWatchlistParser testParser = new AddToWatchlistParser();
-        AddToWatchlistCommand testAdd = testParser.parse(DUPLICATE_ANIME_INDEX);
-        assertThrows(AniException.class, () -> {
-            testAdd.execute(animeData, storageManager, user);
-        });
-    }
-
-    @Test
-    void execute_indexLargerThanDataSize_throwsAniException() throws AniException {
-        AddToWatchlistParser testParser = new AddToWatchlistParser();
-        AddToWatchlistCommand testAdd = testParser.parse(LARGE_ANIME_INDEX);
+    void execute_indexLargerThanWatchlistSize_throwsAniException() throws AniException {
+        RemoveCommandParser testParser = new RemoveCommandParser();
+        RemoveCommand testAdd = testParser.parse(LARGE_WATCHLIST_INDEX);
         assertThrows(AniException.class, () -> {
             testAdd.execute(animeData, storageManager, user);
         });
