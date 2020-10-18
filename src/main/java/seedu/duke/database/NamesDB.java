@@ -14,10 +14,18 @@ import java.util.Scanner;
 public class NamesDB {
     private static java.nio.file.Path filePath;
 
-    // Loads the database
+    /**
+     * Loads the database of names
+     * Creates a default list of names if database doesn't exist
+     **/
     public static void loadDB(ArrayList<String> names) throws NameException {
         String home = Paths.get("").toAbsolutePath().toString();
-        filePath = Paths.get(home, "Names.txt");
+        try {
+            Files.createDirectories(Paths.get(home, "data"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        filePath = Paths.get(home, "data", "Names.txt");
         names.clear();
         boolean isExistingDirectory = Files.exists(filePath);
         if (isExistingDirectory) {
@@ -547,8 +555,10 @@ public class NamesDB {
         }
     }
 
-    // Updates the database
-    static void updateDB(ArrayList<String> names) throws NameException {
+    /**
+     * Updates the database with the given list of names
+     **/
+    public static void updateDB(ArrayList<String> names) throws NameException {
         try {
             FileWriter fw = new FileWriter(String.valueOf(filePath));
             for (int i = 0; i < names.size(); i++) {
