@@ -117,8 +117,8 @@ public class AddCommand extends Command {
         int moduleCount = modules.getModuleCount();
         access.setAdmin(newAdmin);
         storage.createModule(module.getModuleName());
-        String result = String.format(MESSAGE_SUCCESS, "module") + module.toString() + "\n" +
-                String.format(MESSAGE_COUNT, moduleCount, "module");
+        String result = String.format(MESSAGE_SUCCESS, MODULE) + module.toString() + "\n" +
+                String.format(MESSAGE_COUNT, moduleCount, MODULE);
         return result;
     }
 
