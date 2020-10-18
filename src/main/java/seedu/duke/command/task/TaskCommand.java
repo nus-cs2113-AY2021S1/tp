@@ -29,12 +29,12 @@ public class TaskCommand {
             throw new DukeException("Missing parameters.");
         }
 
-        if (tasks.get(TITLE) != null) {
+        if (!tasks.get(TITLE).isBlank()) {
             title = tasks.get(TITLE);
         } else {
             throw new DukeException("Please enter a title!");
         }
-        if (tasks.get(DESCRIPTION) != null) {
+        if (!tasks.get(DESCRIPTION).isBlank()) {
             description = tasks.get(DESCRIPTION);
         } else {
             throw new DukeException("Please enter a description!");
