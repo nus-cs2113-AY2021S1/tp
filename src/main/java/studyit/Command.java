@@ -1,3 +1,8 @@
+package studyit;
+
+import academic.AcademicCommandParser;
+import academic.AcademicCommandType;
+import bookmark.BookmarkParser;
 import bookmark.BookmarkUi;
 import exceptions.InvalidCommandException;
 import exceptions.InvalidGradeException;
@@ -8,6 +13,10 @@ import academic.PersonBook;
 import timetable.TimeTableRun;
 import bookmark.BookmarkCategory;
 import bookmark.commands.BookmarkCommand;
+import userinterface.ErrorMessage;
+import userinterface.HelpMessage;
+import userinterface.Ui;
+
 import java.util.ArrayList;
 
 
@@ -105,7 +114,7 @@ public class Command {
                 Ui.printLine(GradeBook.printListOfGrades(currentGrades));
 
             } else {
-                StudyItLog.logger.severe("Invalid command type, check Command Parser");
+                StudyItLog.logger.severe("Invalid command type, check studyit.Command Parser");
             }
         } catch (InvalidCommandException e) {
             ErrorMessage.printUnidentifiableCommand();

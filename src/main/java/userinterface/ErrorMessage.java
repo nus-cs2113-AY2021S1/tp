@@ -1,3 +1,5 @@
+package userinterface;
+
 public class ErrorMessage extends Ui {
 
     public static void printUnidentifiableCommand() {

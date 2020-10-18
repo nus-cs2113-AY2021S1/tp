@@ -1,3 +1,5 @@
+package bookmark;
+
 import bookmark.commands.AddLinkCommand;
 import bookmark.commands.BackCommand;
 import bookmark.commands.BookmarkCommand;
@@ -5,6 +7,8 @@ import bookmark.commands.ChangeModeCommand;
 import bookmark.commands.ListCommand;
 import bookmark.commands.RemoveLinkCommand;
 import exceptions.InvalidCommandException;
+import studyit.CommandParser;
+import studyit.StudyItLog;
 
 public class BookmarkParser extends CommandParser {
     public BookmarkParser() {
