@@ -1,3 +1,5 @@
+package bookmark;
+
 import bookmark.commands.AddLinkCommand;
 import bookmark.commands.BackCommand;
 import bookmark.commands.BookmarkCommand;
@@ -6,7 +8,7 @@ import bookmark.commands.ListCommand;
 import bookmark.commands.RemoveLinkCommand;
 import exceptions.InvalidCommandException;
 
-public class BookmarkParser extends CommandParser {
+public class BookmarkParser {
     private static int chosenCategory;
 
     public BookmarkParser() {

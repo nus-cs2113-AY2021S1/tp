@@ -1,8 +1,5 @@
-import exceptions.InvalidCommandException;
 import exceptions.InvalidModeException;
 import org.junit.jupiter.api.Test;
-
-import javax.print.attribute.standard.Destination;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;

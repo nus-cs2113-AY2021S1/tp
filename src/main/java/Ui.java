@@ -1,5 +1,6 @@
 import bookmark.BookmarkUi;
 import exceptions.InvalidModeException;
+import log.StudyItLog;
 
 import java.util.Scanner;
 

@@ -1,4 +1,5 @@
 import exceptions.InvalidModeException;
+import log.StudyItLog;
 
 public class CommandParser {
 

@@ -1,15 +1,12 @@
 import academic.Grade;
 import academic.Person;
+import log.StudyItLog;
 import timetable.TimeTableRun;
 import flashcard.FlashcardRun;
-import bookmark.BookmarkCategory;
-import bookmark.NusCategory;
-import bookmark.ZoomCategory;
 import java.util.ArrayList;
-
+import bookmark.BookmarkRun;
 
 public class StudyIt {
-    public static ArrayList<BookmarkCategory> bookmarkCategories = new ArrayList<>();
     private static Mode currentMode = Mode.MENU;
 
     public static void changeMode(Mode destinationMode) {
@@ -20,6 +17,7 @@ public class StudyIt {
         return currentMode;
     }
 
+    public static BookmarkRun bookmarkRun = new BookmarkRun();
     public static TimeTableRun timeTableRun = new TimeTableRun();
     public static FlashcardRun flashcardRun = new FlashcardRun();
     public static ArrayList<Grade> currentGrades = new ArrayList<>();//TODO change to local storage
@@ -27,8 +25,6 @@ public class StudyIt {
 
 
     public StudyIt() {
-        bookmarkCategories.add(new NusCategory());
-        bookmarkCategories.add(new ZoomCategory());
         StudyItLog.setUpLogger();
     }
 
@@ -48,7 +44,7 @@ public class StudyIt {
             // Collect user's command & identify the type
             String command = Ui.inputCommand();
             commandType = CommandParser.getCommandType(command);
-            Command.executeCommand(command, commandType, bookmarkCategories, flashcardRun,
+            Command.executeCommand(command, commandType, bookmarkRun, flashcardRun,
                     timeTableRun, currentGrades, listOfPerson);
 
         } while (commandType != CommandType.EXIT_PROGRAM);
