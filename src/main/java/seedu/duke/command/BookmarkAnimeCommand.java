@@ -113,7 +113,7 @@ public class BookmarkAnimeCommand extends Command {
         return result;
     }
 
-    public String getBookmarkAction(){
+    public String getBookmarkAction() {
         return this.bookmarkAction;
     }
 
