@@ -10,12 +10,19 @@ public class RatingCommand {
         this.showName = showName;
     }
 
-    public void rateShow(String showToBeRated, int rating) throws NullPointerException {
-        if (ShowList.getShowList().containsKey(showToBeRated)) {
+    /**
+     * Adds rating to a show
+     * @param showName show which is to be rated
+     * @param rating rating to be given to show
+     * @throws NullPointerException throws exception when show is not in the list
+     * @throws IndexOutOfBoundsException throws exception when input is an invalid rating
+     */
+    public void rateShow(String showName, int rating) throws NullPointerException,IndexOutOfBoundsException {
+        if (ShowList.getShowList().containsKey(showName)) {
             if (rating < 0 || rating > 10) {
                 throw new IndexOutOfBoundsException();
             } else {
-                Show show = ShowList.getShow(showToBeRated);
+                Show show = ShowList.getShow(showName);
                 show.setRating(rating);
                 ShowList.setShow(showName,show);
             }

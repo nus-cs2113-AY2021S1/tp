@@ -10,9 +10,15 @@ public class DeleteCommand {
         this.showName = showName;
     }
 
-    public void delete(String showToBeDeleted) throws NullPointerException {
-        if (ShowList.getShowList().containsKey(showToBeDeleted)) {
-            ShowList.getShowList().remove(showToBeDeleted);
+    /**
+     * Deletes a show
+     *
+     * @param showName show to be deleted
+     * @throws NullPointerException throws exception when show is not in the list
+     */
+    public void delete(String showName) throws NullPointerException {
+        if (ShowList.getShowList().containsKey(showName)) {
+            ShowList.getShowList().remove(showName);
         } else {
             throw new NullPointerException();
         }

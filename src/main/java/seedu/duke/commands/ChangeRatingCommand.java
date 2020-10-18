@@ -10,10 +10,17 @@ public class ChangeRatingCommand {
         this.showName = showName;
     }
 
-    public void changeRating(String showRatingToChange, int targetRating) {
-        Show show = ShowList.getShow(showRatingToChange);
+    /**
+     * Changes a rating of a show the user requests to change
+     *
+     * @param showName name of show which rating is to be changed
+     * @param targetRating  new rating to update
+     */
+
+    public void changeRating(String showName, int targetRating) {
+        Show show = ShowList.getShow(showName);
         show.setRating(targetRating);
-        ShowList.setShow(showRatingToChange, show);
+        ShowList.setShow(showName, show);
         /**
          * Process :
          * get the Show object that you want to change
