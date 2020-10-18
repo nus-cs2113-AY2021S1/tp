@@ -83,7 +83,7 @@ public class TimeTableParser {
             for (int i = 0; i < durationNum; i++) {
                 assert words[ 5 + 2 * i + 1].contains("-") : "this word should be the datetime format";
                 LocalDateTime start = LocalDateTime.parse(words[5 + 2 * i + 1]);
-                assert words[5 + 2 * i + 2].contains("-"): "this word should be the datetime format";
+                assert words[5 + 2 * i + 2].contains("-") : "this word should be the datetime format";
                 LocalDateTime end = LocalDateTime.parse(words[5 + 2 * i + 2]);
                 Duration duration = new Duration(start, end);
                 lesson.addPeriod(duration);
