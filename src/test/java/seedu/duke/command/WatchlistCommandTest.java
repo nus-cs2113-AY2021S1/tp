@@ -51,21 +51,24 @@ class WatchlistCommandTest {
     @Test
     void execute_invalidParameters_throwsAniException() {
         // Blanks
-        WatchlistCommand firstInvalid = new WatchlistCommand("", "");
-        assertThrows(AniException.class, () -> firstInvalid.execute(animeData, storageManager, user));
+        WatchlistCommand blankOption = new WatchlistCommand("", "");
+        assertThrows(AniException.class, () -> blankOption.execute(animeData, storageManager, user));
 
         // Unknown Option
-        WatchlistCommand secondInvalid = new WatchlistCommand("UNKNOWN", "TEST");
-        assertThrows(AniException.class, () -> secondInvalid.execute(animeData, storageManager, user));
+        WatchlistCommand unknownOption = new WatchlistCommand("UNKNOWN", "TEST");
+        assertThrows(AniException.class, () -> unknownOption.execute(animeData, storageManager, user));
+    }
 
+    @Test
+    void execute_nullParameters_throwsAssertionError() {
         // Null Option and Option Information
-        WatchlistCommand thirdInvalid = new WatchlistCommand(null, null);
-        assertThrows(AssertionError.class, () -> thirdInvalid.execute(animeData, storageManager, user));
+        WatchlistCommand nullOption = new WatchlistCommand(null, null);
+        assertThrows(AssertionError.class, () -> nullOption.execute(animeData, storageManager, user));
 
         // Null WatchlistList
-        WatchlistCommand FourthInvalid = new WatchlistCommand("n", "First");
+        WatchlistCommand nullWorkspace = new WatchlistCommand("n", "First");
         activeWorkspace.setWatchlistList(null);
-        assertThrows(AssertionError.class, () -> FourthInvalid.execute(animeData, storageManager, user));
+        assertThrows(AssertionError.class, () -> nullWorkspace.execute(animeData, storageManager, user));
     }
 
     // ========================== Create ==========================
