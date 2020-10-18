@@ -3,6 +3,7 @@ package seedu.duke;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.logic.parser.Parser;
 import seedu.duke.logic.parser.RouteParser;
+import seedu.duke.storage.FavStorage;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class Duke {
     private static Parser parser;
     private static ArrayList<Bus> busesInZoneA = new ArrayList<>();
     private static final String[] ZONE_A = {"AA1", "AA2"};
+    public static FavStorage favFile = new FavStorage("data/FavList.txt");
 
     private static final BusStops[] AA1 = {
         BusStops.PGP,
@@ -52,7 +54,6 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
-
         new Duke();
         boolean isOngoing = true;
         Ui.printWelcomeMessage();
