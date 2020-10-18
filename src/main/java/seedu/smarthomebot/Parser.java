@@ -29,7 +29,6 @@ public class Parser {
 
     private static final String APPLIANCE_TYPE = "appliance";
     private static final String LOCATION_TYPE = "location";
-    private static TextUi ui = new TextUi();
 
     private static Command prepareOnCommand(String arguments) {
         int indexParameter = arguments.indexOf("p/");
@@ -38,13 +37,17 @@ public class Parser {
         try {
             if (indexParameter < 1) {
                 name = arguments;
-                if (checkForEmptyInput(name)) throw new EmptyParameterException();
+                if (checkForEmptyInput(name)) {
+                    throw new EmptyParameterException();
+                }
                 parameter = "";
             } else {
                 name = arguments.substring(0, indexParameter).trim();
                 parameter = arguments.substring(indexParameter + 2).toLowerCase().trim();
-                if (checkForEmptyInput(name) ||
-                        checkForEmptyInput(parameter)) throw new EmptyParameterException();
+                if (checkForEmptyInput(name)
+                        || checkForEmptyInput(parameter)) {
+                    throw new EmptyParameterException();
+                }
                 convertParameterToInt(parameter);
             }
             return new OnCommand(name, parameter);
@@ -78,13 +81,13 @@ public class Parser {
 
         try {
             if (indexLocation < indexPower && indexPower < indexType) {
-                name = arguments.substring(0, indexLocation).trim().replaceAll(" ", "-").replaceAll("/", "-");
+                name = arguments.substring(0, indexLocation).trim();
                 location = arguments.substring(indexLocation + 2, indexPower).trim();
                 power = arguments.substring(indexPower + 2, indexType).trim();
                 type = arguments.substring(indexType + 2).toLowerCase().trim();
 
-                if (checkForEmptyInput(name) | checkForEmptyInput(location) |
-                        checkForEmptyInput(power) | checkForEmptyInput(type)) {
+                if (checkForEmptyInput(name) | checkForEmptyInput(location)
+                        | checkForEmptyInput(power) | checkForEmptyInput(type)) {
                     throw new InvalidAddCommand();
                 }
 
@@ -146,28 +149,28 @@ public class Parser {
         final String arguments = userInput.replaceFirst(commandWord, "").trim();
 
         switch (commandWord) {
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-        case CreateCommand.COMMAND_WORD:
-            return prepareCreateCommand(arguments);
-        case RemoveCommand.COMMAND_WORD:
-            return new RemoveCommand(arguments);
-        case AddCommand.COMMAND_WORD:
-            return prepareAddCommand(arguments);
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommand(arguments);
-        case OnCommand.COMMAND_WORD:
-            return prepareOnCommand(arguments);
-        case OffCommand.COMMAND_WORD:
-            return new OffCommand(arguments);
-        case ListCommand.COMMAND_WORD:
-            return prepareListCommand(arguments);
-        case UsageCommand.COMMAND_WORD:
-            return new UsageCommand();
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-        default:
-            return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
+            case CreateCommand.COMMAND_WORD:
+                return prepareCreateCommand(arguments);
+            case RemoveCommand.COMMAND_WORD:
+                return new RemoveCommand(arguments);
+            case AddCommand.COMMAND_WORD:
+                return prepareAddCommand(arguments);
+            case DeleteCommand.COMMAND_WORD:
+                return new DeleteCommand(arguments);
+            case OnCommand.COMMAND_WORD:
+                return prepareOnCommand(arguments);
+            case OffCommand.COMMAND_WORD:
+                return new OffCommand(arguments);
+            case ListCommand.COMMAND_WORD:
+                return prepareListCommand(arguments);
+            case UsageCommand.COMMAND_WORD:
+                return new UsageCommand();
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
+            default:
+                return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
 
     }

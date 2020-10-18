@@ -37,7 +37,9 @@ public class Messages {
     public static final String MESSAGE_APPLIANCE_NOT_EXIST = "Appliance does not exist in the list.";
 
     public static final String MESSAGE_INVALID_TEMPERATURE_AC =
-            "Invalid Temperature is set, ensure that it is within 16-30 degrees. \nPrevious set temperature will be set.";
+            "Invalid Temperature is set, ensure that it is within 16-30 degrees. \n" +
+                    "Previous set temperature will be set.";
     public static final String MESSAGE_INVALID_FAN_SPEED =
-            "Invalid speed is set, ensure that it is within 1-3 speed. \nPrevious set speed will be set.";
+            "Invalid speed is set, ensure that it is within 1-3 speed. \n" +
+                    "Previous set speed will be set.";
 }
