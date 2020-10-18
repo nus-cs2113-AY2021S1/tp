@@ -62,13 +62,13 @@ public class PrintTimelineCommand extends Command {
                     + sortedList.getItem(i).getDescription());
         }
 
-        System.out.println("|__________________ Todo items");
+        System.out.println("|__ Todo items");
         int index = 1;
         for (int i = 0; i < todoList.getTotalItems(); i++) {
-            System.out.println("|                     |_____ "
-                    + index + ". " + todoList.getItem(i).toString());
+            System.out.println(index + ". " + todoList.getItem(i).toString());
             index++;
         }
+        System.out.println("\n");
     }
 
     /**
