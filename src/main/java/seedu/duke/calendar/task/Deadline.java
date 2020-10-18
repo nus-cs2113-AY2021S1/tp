@@ -35,6 +35,11 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String getRecurringDescription() {
+        return null;
+    }
+
+    @Override
     /** Returns the respective task type. */
     public String getTaskType() {
         return taskType;

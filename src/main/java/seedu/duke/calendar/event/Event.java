@@ -2,9 +2,13 @@ package seedu.duke.calendar.event;
 
 import seedu.duke.calendar.CalendarItem;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * Represents an event in the event list.
@@ -40,6 +44,18 @@ public abstract class Event extends CalendarItem {
                 + time.format(DateTimeFormatter.ofPattern("h:mma"))
                 + " (" + venue + ")";
     }
+
+    /**
+     * Description for adding an recurring event.
+     *
+     * @return a string containing the information about the recurring event.
+     */
+    @Override
+    public String getRecurringDescription() {
+        return "every " + date.getDayOfWeek() + " " + time.format(DateTimeFormatter.ofPattern("h:mma"))
+                + " (" + venue + ")";
+    }
+
 
     @Override
     public String getDescription() {

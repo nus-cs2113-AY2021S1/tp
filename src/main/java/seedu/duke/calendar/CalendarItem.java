@@ -11,4 +11,6 @@ public abstract class CalendarItem {
     public abstract LocalDate getDate();
 
     public abstract String getDescription();
+
+    public abstract String getRecurringDescription();
 }

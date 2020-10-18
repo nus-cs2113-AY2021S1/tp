@@ -4,6 +4,9 @@ import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.event.Event;
 import seedu.duke.calendar.event.Exam;
+import seedu.duke.calendar.event.Lab;
+import seedu.duke.calendar.event.Tutorial;
+import seedu.duke.calendar.event.Lecture;
 import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Task;
 
@@ -204,8 +207,16 @@ public class Ui {
 
         /* - 1 is catered for array list's index starting from 0. */
         int lastCalendarItemIndex = calendarList.getCalendarList().size() - 1;
-
-        System.out.println(calendarList.getCalendarList().get(lastCalendarItemIndex));
+        /* condition checker; only Lecture, Lab and Tutorial will print the recurring description*/
+        if (calendarList.getCalendarList().get(lastCalendarItemIndex) instanceof Lecture) {
+            System.out.println(calendarList.getCalendarList().get(lastCalendarItemIndex).getRecurringDescription());
+        } else if (calendarList.getCalendarList().get(lastCalendarItemIndex) instanceof Tutorial) {
+            System.out.println(calendarList.getCalendarList().get(lastCalendarItemIndex).getRecurringDescription());
+        } else if (calendarList.getCalendarList().get(lastCalendarItemIndex) instanceof Lab) {
+            System.out.println(calendarList.getCalendarList().get(lastCalendarItemIndex).getRecurringDescription());
+        } else {
+            System.out.println(calendarList.getCalendarList().get(lastCalendarItemIndex));
+        }
     }
 
     /**

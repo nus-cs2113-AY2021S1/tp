@@ -34,6 +34,7 @@ public class AddCommand extends Command {
 
     private String venue;
     private String moduleCode;
+    private String recurringValue;
     private LocalTime time;
     private String[] dateTime;
     private LocalDate date;
@@ -126,11 +127,18 @@ public class AddCommand extends Command {
      * @param command      the attributes of the lab event.
      * @throws Exception if the module code is empty.
      */
+    //new lab command input: lab cs1010 @nus -r 10 /101020 1330
     private void addLabEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
+        //command[0] = cs1010 and command[1] = @nus -r 10 /101020 1230
         moduleCode = command[0];
-        command = command[1].split("/", 2);
+        command = command[1].split("-r", 2);
+        //command[0] = @nus and command[1] = 10 /101020 1230
         String[] temp = command[0].split("@");
+        //temp[0] = "" and temp[1] = nus
+        command = command[1].split("/", 2);
+        //command[0] = 10; command[1] = 101020 1230
+        int recurringCount = Integer.parseInt(command[0].trim());
         venue = temp[1].trim();
         dateTime = command[1].trim().split(" ", 2);
         date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
@@ -139,7 +147,10 @@ public class AddCommand extends Command {
         if (moduleCode.isEmpty()) {
             throw new DukeException("lab");
         } else {
-            calendarList.addEvent(new Lab(moduleCode, date, time, venue));
+            for (int i = 0; i < recurringCount; i++) {
+                calendarList.addEvent(new Lab(moduleCode, date, time, venue));
+                date = date.plusWeeks(1);
+            }
         }
     }
 
@@ -150,21 +161,30 @@ public class AddCommand extends Command {
      * @param command      the attributes of the tutorial event.
      * @throws Exception if the module code is empty.
      */
+    //new tutorial command input: tut cs1010 @nus -r 10 /101020 1330
     private void addTutorialEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
+        //command[0] = cs1010 and command[1] = @nus -r 10 /101020 1230
         moduleCode = command[0];
-        command = command[1].split("/", 2);
+        command = command[1].split("-r", 2);
+        //command[0] = @nus and command[1] = 10 /101020 1230
         String[] temp = command[0].split("@");
+        //temp[0] = "" and temp[1] = nus
+        command = command[1].split("/", 2);
+        //command[0] = 10; command[1] = 101020 1230
+        int recurringCount = Integer.parseInt(command[0].trim());
         venue = temp[1].trim();
         dateTime = command[1].trim().split(" ", 2);
         date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
         time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
 
-
         if (moduleCode.isEmpty()) {
             throw new DukeException("tutorial");
         } else {
-            calendarList.addEvent(new Tutorial(moduleCode, date, time, venue));
+            for (int i = 0; i < recurringCount; i++) {
+                calendarList.addEvent(new Tutorial(moduleCode, date, time, venue));
+                date = date.plusWeeks(1);
+            }
         }
     }
 
@@ -175,11 +195,18 @@ public class AddCommand extends Command {
      * @param command      the attributes of the lecture event.
      * @throws Exception if the module code is empty.
      */
+    //new lecture command input: lect cs1010 @nus -r 10 /101020 1330
     private void addLectureEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
+        //command[0] = cs1010 and command[1] = @nus -r 10 /101020 1230
         moduleCode = command[0];
-        command = command[1].split("/", 2);
+        command = command[1].split("-r", 2);
+        //command[0] = @nus and command[1] = 10 /101020 1230
         String[] temp = command[0].split("@");
+        //temp[0] = "" and temp[1] = nus
+        command = command[1].split("/", 2);
+        //command[0] = 10; command[1] = 101020 1230
+        int recurringCount = Integer.parseInt(command[0].trim());
         venue = temp[1].trim();
         dateTime = command[1].trim().split(" ", 2);
         date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
@@ -188,7 +215,10 @@ public class AddCommand extends Command {
         if (moduleCode.isEmpty()) {
             throw new DukeException("lecture");
         } else {
-            calendarList.addEvent(new Lecture(moduleCode, date, time, venue));
+            for (int i = 0; i < recurringCount; i++) {
+                calendarList.addEvent(new Lecture(moduleCode, date, time, venue));
+                date = date.plusWeeks(1);
+            }
         }
     }
 
