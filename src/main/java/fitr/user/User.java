@@ -32,9 +32,9 @@ import static fitr.common.Messages.FEMALE_STRING;
  */
 public class User {
     private String name;
-    private Integer age;
-    private Double height;
-    private Double weight;
+    private int age;
+    private double height;
+    private double weight;
     private String gender;
 
     /**
@@ -59,15 +59,15 @@ public class User {
         return name;
     }
 
-    public Integer getAge() {
+    public int getAge() {
         return age;
     }
 
-    public Double getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public Double getWeight() {
+    public double getWeight() {
         return weight;
     }
 
@@ -79,15 +79,15 @@ public class User {
         name = Ui.read();
     }
 
-    public void setAge(Integer age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public void setHeight(Double height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
-    public void setWeight(Double weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
@@ -96,7 +96,7 @@ public class User {
     }
 
     public void setupAge() {
-        Integer ageInput = 0;
+        int ageInput = 0;
         while (ageInput <= 0) {
             try {
                 ageInput = Integer.parseInt(Ui.read());
@@ -112,7 +112,7 @@ public class User {
     }
 
     public void setupHeight() {
-        Double heightInput = 0.00;
+        double heightInput = 0.00;
         // Height (in m)
         while (heightInput <= 0.00) {
             try {
@@ -130,7 +130,7 @@ public class User {
 
     public void setupWeight() {
         // Weight (in kg)
-        Double weightInput = 0.00;
+        double weightInput = 0.00;
         while (weightInput <= 0.00) {
             try {
                 weightInput = Double.parseDouble(Ui.read());
@@ -193,7 +193,7 @@ public class User {
         return new Calorie(totalCalories);
     }
 
-    public void loadUserData(String name, Integer age, Double height, Double weight, String gender) {
+    public void loadUserData(String name, int age, double height, double weight, String gender) {
         this.name = name;
         this.age = age;
         this.height = height;
