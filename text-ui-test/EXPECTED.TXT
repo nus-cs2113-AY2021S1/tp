@@ -11,12 +11,6 @@ User: Empty user file.
 Workspace "Default":
 	Watchlist: Empty watchlist file.
 	Bookmark:  Empty bookmark file.
-Workspace "WorkspaceA":
-	Watchlist: Empty watchlist file.
-	Bookmark:  Does not exist.
-Workspace "WorkspaceB":
-	Watchlist: Empty watchlist file.
-	Bookmark:  Does not exist.
 -------------------------------------------------------------
 What's your name?
 #>Hello Abec Steiner 33rd! What might your gender be? (Male/Female/Other)
