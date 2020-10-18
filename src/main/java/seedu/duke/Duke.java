@@ -52,7 +52,7 @@ public class Duke {
                 String loadWatchlistResult = storageManager.loadWatchlistList(workspaceName, watchlistList);
                 ui.printMessage("\tWatchlist: " + loadWatchlistResult);
             } catch (AniException exception) {
-                ui.printErrorMessage("\tWatchlist: " + exception.getMessage());
+                ui.printMessage("\tWatchlist: " + exception.getMessage());
             }
 
             Bookmark bookmark = new Bookmark();
@@ -104,6 +104,9 @@ public class Duke {
 
         Workspace activeWorkspace = user.getActiveWorkspace();
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
+        if (watchlistList.size() == 0) {
+            watchlistList.add(new Watchlist("Default"));
+        }
         activeWorkspace.setActiveWatchlist(watchlistList.get(0));
 
         // ========================== Anime Data Setup ==========================
