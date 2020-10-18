@@ -20,7 +20,7 @@ public class Names {
 
     public static void filterNames(String match) throws NameException {
         loadDB(names);
-        String toMatch = match.toLowerCase().replace("filter names","").trim();
+        String toMatch = match.toLowerCase().replace("filter names", "").trim();
         //System.out.println("Match: " + toMatch);
         System.out.println(names.stream()
                 .filter(x -> x.toLowerCase().contains(toMatch))
