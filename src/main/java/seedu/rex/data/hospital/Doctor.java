@@ -14,6 +14,4 @@ public class Doctor {
         this.name = name;
     }
 
-    private enum Departments {}
-
 }

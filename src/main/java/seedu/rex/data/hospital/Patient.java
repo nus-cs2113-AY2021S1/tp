@@ -58,8 +58,4 @@ public class Patient {
     public String toString() {
         return name + ", " + nric + ", " + dateOfBirth.format(DateTimeFormatter.ISO_DATE);
     }
-
-    private enum Gender {
-        MALE, FEMALE
-    }
 }

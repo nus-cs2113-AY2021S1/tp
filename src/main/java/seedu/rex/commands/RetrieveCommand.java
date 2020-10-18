@@ -1,5 +1,6 @@
 package seedu.rex.commands;
 
+import seedu.rex.Rex;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
@@ -8,7 +9,6 @@ import seedu.rex.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Retrieves patient details.
@@ -16,12 +16,10 @@ import java.util.logging.Logger;
 public class RetrieveCommand extends Command {
 
     public static final String COMMAND_WORD = "retrieve";
-    private static Logger logger;
     private final String trimmedCommand;
 
     public RetrieveCommand(String trimmedCommand) {
         this.trimmedCommand = trimmedCommand;
-        logger = Logger.getLogger("RetrieveCommand");
     }
 
     /**
@@ -39,15 +37,14 @@ public class RetrieveCommand extends Command {
         assert patients != null : "patient ArrayList is null";
         assert ui != null : "ui is null";
         assert storage != null : "storage is null";
-        logger.log(Level.INFO, "going to extract NRIC");
+        Rex.logger.log(Level.INFO, "going to extract NRIC");
         String nric = extractNric(trimmedCommand, COMMAND_WORD);
-        logger.log(Level.INFO, "extracted NRIC");
+        
         int index = patients.getExistingPatient(nric);
         assert index > -2 : "Unexpected index!";
         if (index < 0) {
             throw new RexException("No such patient!");
         }
-        logger.log(Level.INFO, "show patients");
         ui.showPatient(patients.getPatientUsingIndex(index));
     }
 }

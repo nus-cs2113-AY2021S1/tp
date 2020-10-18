@@ -2,6 +2,7 @@ package seedu.rex.ui;
 
 import seedu.rex.commands.Command;
 import seedu.rex.commands.ExitCommand;
+import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
 import seedu.rex.data.hospital.Patient;
@@ -244,6 +245,7 @@ public class Ui {
 
     /**
      * Prints patient's appointment list header.
+     *
      * @param nric Patient's NRIC
      */
     public void showAppointmentsListHeader(String nric) {
@@ -252,8 +254,9 @@ public class Ui {
 
     /**
      * Prints details of patient's appointment.
+     *
      * @param appointment appointment to be printed
-     * @param counter appointment counter under patient
+     * @param counter     appointment counter under patient
      */
     public void showAppointmentLine(Appointment appointment, int counter) {
         printWithIndent(counter + ". " + appointment.getDate());
@@ -264,5 +267,20 @@ public class Ui {
      */
     public void showNoBookedAppointmentsMessage() {
         printWithIndent("No booked appointments found!");
+    }
+
+    /**
+     * Prints all patients.
+     *
+     * @param patients Patients to print.
+     */
+    public void listPatients(PatientList patients) {
+        printWithIndent("List of patients (" + patients.getPatients().size() + " in total):");
+        for (Patient patient: patients.getPatients()) {
+            printWithIndent("");
+            printWithIndent("Name: " + patient.getName());
+            printWithIndent("NRIC: " + patient.getNric());
+            printWithIndent("DOB: " + patient.getDateOfBirth());
+        }
     }
 }

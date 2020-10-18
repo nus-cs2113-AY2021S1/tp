@@ -12,7 +12,6 @@ public class Appointment {
     private Patient patient;
     private Doctor doctor;
     private String notes;
-    private Prescription prescription;
     private Boolean isBooked;
 
     public Appointment(LocalDate date) {
@@ -58,14 +57,6 @@ public class Appointment {
 
     public void setNotes(String notes) {
         this.notes = notes;
-    }
-
-    public Prescription getPrescription() {
-        return prescription;
-    }
-
-    public void setPrescription(Prescription prescription) {
-        this.prescription = prescription;
     }
 
     /**

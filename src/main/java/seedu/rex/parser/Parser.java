@@ -9,6 +9,7 @@ import seedu.rex.commands.DeleteCommand;
 import seedu.rex.commands.EditCommand;
 import seedu.rex.commands.ExitCommand;
 import seedu.rex.commands.ListAppointmentsCommand;
+import seedu.rex.commands.ListPatientsCommand;
 import seedu.rex.commands.RetrieveCommand;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
@@ -65,23 +66,36 @@ public class Parser {
 
         String trimmedCommand = fullCommand.trim().toLowerCase();
         Command command;
-        if (trimmedCommand.equals(ExitCommand.COMMAND_WORD)) {
+        String[] words = trimmedCommand.split(" ");
+        switch (words[0]) {
+        case ExitCommand.COMMAND_WORD:
             command = new ExitCommand();
-        } else if (trimmedCommand.contains(AddCommand.COMMAND_WORD)) {
+            break;
+        case AddCommand.COMMAND_WORD:
             command = new AddCommand(trimmedCommand);
-        } else if (trimmedCommand.contains(RetrieveCommand.COMMAND_WORD)) {
-            command = new RetrieveCommand(trimmedCommand);
-        } else if (trimmedCommand.contains(BookCommand.COMMAND_WORD)) {
+            break;
+        case BookCommand.COMMAND_WORD:
             command = new BookCommand(trimmedCommand);
-        } else if (trimmedCommand.contains(CreateAppointmentCommand.COMMAND_WORD)) {
+            break;
+        case CreateAppointmentCommand.COMMAND_WORD:
             command = new CreateAppointmentCommand();
-        } else if (trimmedCommand.contains(EditCommand.COMMAND_WORD)) {
+            break;
+        case EditCommand.COMMAND_WORD:
             command = new EditCommand(trimmedCommand);
-        } else if (trimmedCommand.contains(DeleteCommand.COMMAND_WORD)) {
+            break;
+        case DeleteCommand.COMMAND_WORD:
             command = new DeleteCommand(trimmedCommand);
-        } else if (trimmedCommand.contains(ListAppointmentsCommand.COMMAND_WORD)) {
+            break;
+        case ListAppointmentsCommand.COMMAND_WORD:
             command = new ListAppointmentsCommand(trimmedCommand);
-        } else {
+            break;
+        case ListPatientsCommand.COMMAND_WORD:
+            command = new ListPatientsCommand();
+            break;
+        case RetrieveCommand.COMMAND_WORD:
+            command = new RetrieveCommand(trimmedCommand);
+            break;
+        default:
             throw new RexException(Command.COMMAND_ERROR);
         }
         return command;

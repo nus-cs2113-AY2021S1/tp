@@ -29,4 +29,6 @@ book S9123456Z
 book S9123456Z
 1
 book S9123456Z
+appointments S9123456Z
+list
 bye

@@ -1,5 +1,6 @@
 package seedu.rex.commands;
 
+import seedu.rex.Rex;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
@@ -8,6 +9,7 @@ import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class ListAppointmentsCommand extends Command {
 
@@ -30,20 +32,26 @@ public class ListAppointmentsCommand extends Command {
     @Override
     public void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage)
             throws RexException {
+        assert patients != null : "patient ArrayList is null";
+        assert ui != null : "ui is null";
+        assert storage != null : "storage is null";
+        Rex.logger.log(Level.INFO, "going to extract NRIC");
         String nric = extractNric(trimmedCommand, COMMAND_WORD);
+
         if (!patients.isExistingPatient(nric)) {
             throw new RexException("A patient with this NRIC has not been registered!");
         }
         Patient targetPatient = patients.getPatientFromNric(nric);
+        assert targetPatient != null : "Null target patient!";
         ui.showAppointmentsListHeader(nric);
-        int counter = 0;
-        for (Appointment appointment : appointments) {
-            if (appointment.getPatient() == targetPatient) {
-                counter++;
-                ui.showAppointmentLine(appointment, counter);
+
+        int i;
+        for (i = 0; i < appointments.size(); i++) {
+            if (appointments.get(i).getPatient().equals(targetPatient)) {
+                ui.showAppointmentLine(appointments.get(i), i + 1);
             }
         }
-        if (counter == 0) {
+        if (i == 0) {
             ui.showNoBookedAppointmentsMessage();
         }
     }
