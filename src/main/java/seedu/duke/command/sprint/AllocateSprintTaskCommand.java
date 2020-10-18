@@ -32,7 +32,7 @@ public class AllocateSprintTaskCommand extends SprintCommand {
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
             if (validateParams()) {
-                int taskId = Integer.parseInt(this.parameters.get("task").trim());
+                int taskId = Integer.parseInt(this.parameters.get("task"));
                 String[] userIds = this.parameters.get("user").split(" ");
                 for (String id : userIds) {
                     Member mem = proj.getProjectMember().getMember(id.trim());

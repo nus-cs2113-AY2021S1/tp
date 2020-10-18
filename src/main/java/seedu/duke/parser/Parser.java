@@ -66,7 +66,7 @@ public class Parser {
                 parameters.clear();
                 while (parameterMatcher.find()) { //go through each occurrence of options
                     //put the options into the hashtable (similar to dictionary)
-                    parameters.put(parameterMatcher.group(1), parameterMatcher.group(2));
+                    parameters.put(parameterMatcher.group(1), parameterMatcher.group(2).trim());
                 }
             }
 
@@ -149,14 +149,14 @@ public class Parser {
                 case ADDTASK:
                     //Convert Arraylist to Hashtable to simulate standardisation
                     for (int i = 0; i < params.size(); i++) {
-                        newParams.put(String.valueOf(i), params.get(i));
+                        newParams.put(String.valueOf(i), params.get(i).trim());
                     } //to be removed after standardisation
                     new AddSprintTaskCommand(newParams, projectList).execute();
                     break;
                 case REMOVETASK:
                     //Convert Arraylist to Hashtable to simulate standardisation
                     for (int i = 0; i < params.size(); i++) {
-                        newParams.put(String.valueOf(i), params.get(i));
+                        newParams.put(String.valueOf(i), params.get(i).trim());
                     } //to be removed after standardisation
                     new RemoveSprintTaskCommand(newParams, projectList).execute();
                     break;

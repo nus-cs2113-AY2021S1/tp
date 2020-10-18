@@ -6,7 +6,7 @@ import java.util.Hashtable;
 public abstract class Command {
 
 
-    protected Hashtable<String, String> parameters = new Hashtable<>();
+    protected Hashtable<String, String> parameters;
 
     /**
      * Creates a new abstract command.
