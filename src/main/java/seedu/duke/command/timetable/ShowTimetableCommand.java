@@ -60,8 +60,6 @@ public class ShowTimetableCommand extends Command {
                 throw new DukeException(DukeExceptionType.INVALID_MODULE);
             }
             Module matchedModule = timetable.getModule(module);
-            List<Slot> slotList = matchedModule.getSlotList();
-            // TODO: need to create new method for this to print the slots of the module with index
             message += getMessageForModule(matchedModule);
         } else if (module != null && showBookmarks) {
             if (!timetable.moduleExists(module)) {

@@ -72,7 +72,6 @@ public class AddSlotCommand extends Command {
             for (String command : commands) {
                 message += createSlotAndBookmark(module, command.trim());
             }
-
         }
         ui.print(message);
     }
@@ -94,11 +93,7 @@ public class AddSlotCommand extends Command {
         String message = "";
         List<String> slotAndBookmark = Arrays.asList(command.trim().split(" "));
         if (isAddModuleBookmark(slotAndBookmark)) {
-            String description = slotAndBookmark.get(0);
-            String url = slotAndBookmark.get(1);
-            Bookmark bookmark = new Bookmark(description,"dummy", url);
-            module.addBookmark(bookmark);
-            message += "  bookmark added to module\n";
+            message = addBookmarkToModule(module, slotAndBookmark);
         } else {
             String lesson = slotAndBookmark.get(0);
             String day = slotAndBookmark.get(1);
@@ -113,13 +108,29 @@ public class AddSlotCommand extends Command {
                 module.addSlot(newSlot);
                 message +=  "  " + lesson + " slot added\n";
             }
-            if (slotAndBookmark.size() == 5) {
-                createBookmark(slotAndBookmark.get(4), lesson, newSlot);
-                message += "    bookmark added to " + moduleCode + " " + lesson + "\n";
-            } else if (slotAndBookmark.size() > 5) {
-                throw new DukeException(DukeExceptionType.INVALID_URL, "invalid url");
-            }
+            message += checkForAndAddBookmarkToSlot(slotAndBookmark, lesson, newSlot);
         }
+        return message;
+    }
+
+    private String checkForAndAddBookmarkToSlot(List<String> slotAndBookmark,
+            String lesson, Slot newSlot) throws DukeException {
+        String message = "";
+        if (slotAndBookmark.size() == 5) {
+            createBookmark(slotAndBookmark.get(4), lesson, newSlot);
+            message = "    bookmark added to " + moduleCode + " " + lesson + "\n";
+        } else if (slotAndBookmark.size() > 5) {
+            throw new DukeException(DukeExceptionType.INVALID_URL, "invalid url");
+        }
+        return message;
+    }
+
+    private String addBookmarkToModule(Module module, List<String> slotAndBookmark) {
+        String description = slotAndBookmark.get(0);
+        String url = slotAndBookmark.get(1);
+        Bookmark bookmark = new Bookmark(description,"dummy", url);
+        module.addBookmark(bookmark);
+        String message = "  bookmark added to module\n";
         return message;
     }
 
