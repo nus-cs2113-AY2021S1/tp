@@ -35,7 +35,7 @@ class HelpCommandTest {
     };
 
     @Test
-    void execute_noInput_noErrorThrown() {
+    void executeTest() {
         String helpCommand = new HelpCommand().execute();
 
         assertEquals(Formatter.formatString(COMMANDS_USAGE, true), helpCommand);

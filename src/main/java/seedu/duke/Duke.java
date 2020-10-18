@@ -8,6 +8,7 @@ import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.timetable.Timetable;
 import seedu.duke.storage.StorageManager;
+import seedu.duke.ui.AsciiArt;
 import seedu.duke.ui.InterfaceManager;
 import seedu.duke.ui.Formatter;
 import seedu.duke.util.Parser;
@@ -23,7 +24,7 @@ public class Duke {
     private TagManager tagManager;
 
     private static final String WELCOME_MSG_STRING = "Welcome to NotUS! "
-            + Formatter.getNotusLogo() + Formatter.LS
+            + AsciiArt.getNotusLogo() + Formatter.LS
             + "Type \"help\" if you need to see a list of commands and their usages.";
     private static final String ENTER_COMMAND_MSG = "Enter command:";
 
