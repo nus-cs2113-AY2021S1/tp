@@ -317,6 +317,8 @@ public class TextUi {
         System.out.println(UiMessage.ADD_RATING_COMMAND);
         System.out.println(UiMessage.DELETE_RATING_COMMAND);
         System.out.println(UiMessage.LIST_RATING_COMMAND);
+        System.out.println(UiMessage.EDIT_RATING_COMMAND);
+        System.out.println(UiMessage.FIND_RATING_COMMAND);
 
         System.out.println(System.lineSeparator() + "Other useful commands");
         System.out.println("Show this help page: " + "help");
