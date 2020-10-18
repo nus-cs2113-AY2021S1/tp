@@ -25,13 +25,13 @@ This document describes the design, implementation and architecture of NotUS.
 
 ## <a id="design">2. Design & Implementation</a>
 
-The diagram given above is the architecture design and it explains the high-level design of the application. Given below is a quick overview of each component.
+This section seeks to explain the high-level design of the application. Given below is a quick overview of each component and the explanation of the design architecture in greater detail.
 Duke is the main class of the application, and handles the initializing the appropriate classes to be used as well as the execution.
 
 
 #### <a id="overview"><ins>2.1 Architecture Overview</ins></a>
 
-Duke is directly connected to the following components:
+The architecture design is given in the diagram above. Duke is directly connected to the following components:
 
 1. `InterfaceManager`: The main interactions the user experiences.
 1. `Parser`: Makes sense of user input, and parses the information to the respective commands.
