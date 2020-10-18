@@ -121,6 +121,12 @@ public class Ui {
         case ERROR_LAUNCHING_URL:
             printErrorLaunchUrlMessage();
             break;
+        case INVALID_COMMAND_FORMAT:
+            print("invalid command format\n");
+            break;
+        case INVALID_MODULE:
+            print("module does not exist\n");
+            break;
         case INVALID_TIME_FORMAT:
             printInvalidTimeFormat();
             break;
@@ -218,40 +224,5 @@ public class Ui {
     private void printInvalidTimeFormat() {
         print("Invalid time format\n");
     }
-
-//    private static void printSlotsInADay(List<Slot> slots, String day) {
-//        boolean hasSlotOnDay = false;
-//        for (Slot s: slots) {
-//            if (s.getDay().equals(day)) {
-//                System.out.println(s.toString());
-//                hasSlotOnDay = true;
-//            }
-//        }
-//        if (!hasSlotOnDay) {
-//            System.out.println("No lessons");
-//        }
-//        System.out.println();
-//    }
-//
-//    private void printTimetable(List<Slot> slots) {
-//        for (String d: Slot.days) {
-//            System.out.println(d);
-//            printSlotsInADay(slots, d);
-//        }
-//    }
-//
-//    public void printLessonAtTime(List<Slot> slots, String dayInput) throws DukeException {
-//        if (slots.size() == 0) {
-//            throw new DukeException(DukeExceptionType.EMPTY_TIMETABLE);
-//        } else if (dayInput == null) {
-//            throw new DukeException(DukeExceptionType.INVALID_TIMETABLE_DAY);
-//        } else if (dayInput.equals("ALL")) {
-//            printTimetable(slots);
-//            return;
-//        }
-//
-//        System.out.println("Lessons for " + dayInput);
-//        printSlotsInADay(slots, dayInput);
-//    }
 
 }

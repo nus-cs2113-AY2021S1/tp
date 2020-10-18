@@ -21,10 +21,7 @@ import java.util.List;
  */
 public class AddSlotCommand extends Command {
     public static final String ADD_KW = "add";
-    public LocalTime startTime;
-    public LocalTime endTime;
-    public String day;
-    public String title;
+    public String moduleCode;
     private List<String> commands;
 
     /**
@@ -41,34 +38,12 @@ public class AddSlotCommand extends Command {
         } else if (!details.startsWith(" ")) {
             throw new DukeException(DukeExceptionType.INVALID_ADD_SLOT);
         }
-        String stringArray[] = details.trim().split(" ", 2);
-        title = stringArray[0];
+        String[] stringArray = details.trim().split(" ", 2);
+        moduleCode = stringArray[0];
         if (stringArray.length > 1) {
             commands = Arrays.asList(stringArray[1].split(","));
         }
-
-
-
-//        String[] parts = command.split(" ");
-//        try {
-//            startTime = LocalTime.parse(parts[1]);
-//            endTime = LocalTime.parse(parts[2]);
-//            day = parts[3];
-//            title = command.substring(command.indexOf(parts[3]) + parts[3].length()).trim();
-//        } catch (DateTimeParseException e) {
-//            throw new DukeException(DukeExceptionType.INVALID_TIME_FORMAT);
-//        } catch (IndexOutOfBoundsException e) {
-//            throw new DukeException(DukeExceptionType.INVALID_SLOT_INPUT);
-//        }
     }
-
-    /**
-     * Adds the slot to the slot list and saves the slots list in the text file.
-     *
-     * @param slots The list of slots.
-     * @param ui The user interface.
-     * @param slotStorage The storage for saving and loading.
-     */
 
     /**
      * Adds the slot to the slot list and saves the slots list in the text file.
@@ -85,12 +60,12 @@ public class AddSlotCommand extends Command {
                         Storage slotStorage) throws DukeException {
         String message = "";
         Module module;
-        if (timetable.moduleExists(title)) {
-            module = timetable.getModule(title);
-            message += title + " already exists.\n";
+        if (timetable.moduleExists(moduleCode)) {
+            module = timetable.getModule(moduleCode);
+            message += moduleCode + " already exists\n";
         } else {
-            module = timetable.addModule(title);
-            message += title + " added\n";
+            module = timetable.addModule(moduleCode);
+            message += moduleCode + " added\n";
         }
 
         if (commands != null) {
@@ -100,60 +75,57 @@ public class AddSlotCommand extends Command {
 
         }
         ui.print(message);
-
-//        Slot slot = new Slot(startTime, endTime, day, title);
-//        slots.addSlot(slot);
-//        ui.print("Added slot: " + day + " [" + startTime + "-" + endTime + "] "
-//                + title + System.lineSeparator());
-//        try {
-//            slotStorage.save(slots.getData());
-//        } catch (DukeException e) {
-//            e.printStackTrace();
-//        }
     }
 
     private String createSlotAndBookmark(Module module, String command) {
-        assert module != null : "module shouldnt be null";
+        assert module != null : "module should mot be null";
         String message = "";
         try {
-            List<String> slotAndBookmark = Arrays.asList(command.trim().split(" "));
-            if ((slotAndBookmark.get(1).startsWith("www.") || slotAndBookmark.get(1).startsWith("https://"))
-                    && slotAndBookmark.size() == 2) {
-                String description = slotAndBookmark.get(0);
-                String url = slotAndBookmark.get(1);
-                Bookmark bookmark = new Bookmark(description,"dummy", url);
-                module.addBookmark(bookmark);
-                message += "bookmark added to module\n";
-            } else {
-                String lesson = slotAndBookmark.get(0);
-                String day = slotAndBookmark.get(1);
-                LocalTime startTime = LocalTime.parse(slotAndBookmark.get(2));
-                LocalTime endTime = LocalTime.parse(slotAndBookmark.get(3));
-
-                Slot newSlot;
-                if (module.slotExists(lesson, day, startTime, endTime)) {
-                    newSlot = module.getSlot(lesson, day, startTime, endTime);
-                    message += "slot already exists\n";
-                } else {
-                    newSlot = module.createSlotNew(lesson, day, startTime, endTime);
-                    module.addSlot(newSlot);
-                    message += "slot added\n";
-                }
-
-                if (slotAndBookmark.size() == 5) {
-                    createBookmark(slotAndBookmark.get(4), lesson, newSlot);
-                    message += "bookmark added\n";
-                } else if (slotAndBookmark.size() > 5) {
-                    throw new DukeException(DukeExceptionType.INVALID_URL, "invalid url");
-                }
-                System.out.println("success\n");
-            }
+            message += create(command, module);
         } catch (DukeException e) {
             message += e.getInfo() + "\n";
         } catch (IndexOutOfBoundsException e) {
             message += "incorrect format for slot: " + command + "\n";
         }
         return message;
+    }
+
+    private String create(String command, Module module) throws DukeException {
+        String message = "";
+        List<String> slotAndBookmark = Arrays.asList(command.trim().split(" "));
+        if (isAddModuleBookmark(slotAndBookmark)) {
+            String description = slotAndBookmark.get(0);
+            String url = slotAndBookmark.get(1);
+            Bookmark bookmark = new Bookmark(description,"dummy", url);
+            module.addBookmark(bookmark);
+            message += "bookmark added to module\n";
+        } else {
+            String lesson = slotAndBookmark.get(0);
+            String day = slotAndBookmark.get(1);
+            LocalTime startTime = LocalTime.parse(slotAndBookmark.get(2));
+            LocalTime endTime = LocalTime.parse(slotAndBookmark.get(3));
+            Slot newSlot;
+            if (module.slotExists(lesson, day, startTime, endTime)) {
+                newSlot = module.getSlot(lesson, day, startTime, endTime);
+                message += lesson + " slot already exists\n";
+            } else {
+                newSlot = module.createSlotNew(lesson, day, startTime, endTime);
+                module.addSlot(newSlot);
+                message += lesson + " slot added\n";
+            }
+            if (slotAndBookmark.size() == 5) {
+                createBookmark(slotAndBookmark.get(4), lesson, newSlot);
+                message += "bookmark added to " + moduleCode + " " + lesson + "\n";
+            } else if (slotAndBookmark.size() > 5) {
+                throw new DukeException(DukeExceptionType.INVALID_URL, "invalid url");
+            }
+        }
+        return message;
+    }
+
+    private boolean isAddModuleBookmark(List<String> slotAndBookmark) {
+        return (slotAndBookmark.get(1).startsWith("www.") || slotAndBookmark.get(1).startsWith("https://"))
+                && slotAndBookmark.size() == 2;
     }
 
     private void createBookmark(String url, String lesson, Slot newSlot) throws DukeException {

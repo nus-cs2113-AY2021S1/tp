@@ -10,7 +10,6 @@ import seedu.duke.slot.Slot;
 import seedu.duke.exception.DukeException;
 import seedu.duke.slot.Timetable;
 
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,11 +31,11 @@ public class ShowTimetableCommand extends Command {
             if (command.charAt(SHOW_KW.length()) != ' ') {
                 throw new DukeException(DukeExceptionType.INVALID_COMMAND_FORMAT);
             }
-            String details = command.substring(SHOW_KW.length() + 1);
+            String details = command.substring(SHOW_KW.length() + 1).trim();
             if (isDay(details)) {
                 day = getDayFromCommand(details);
             } else {
-                String[] something = details.trim().split(" ", 2);
+                String[] something = details.split(" ", 2);
                 module = something[0];
                 if (something.length == 2) {
                     if (something[1].compareTo("bookmarks") == 0) {
@@ -47,34 +46,30 @@ public class ShowTimetableCommand extends Command {
                 }
             }
         }
-//        day = getDayFromCommand(command);
     }
 
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
                         Storage bookmarkStorage, Storage slotStorage) throws DukeException {
         String message = "";
-        if (day != null) {
-            List<Slot> list = new ArrayList<>();
-            list.addAll(timetable.getSlotList());
-            System.out.printf(day);
+        if (day != null) { // show and show day
+            List<Slot> list = new ArrayList<>(timetable.getFullSlotList());
             message += getMessageLessonAtTime(list, day);
         } else if (module != null && !showBookmarks) {
             if (!timetable.moduleExists(module)) {
-                throw new DukeException(DukeExceptionType.INVALID_COMMAND_FORMAT);
+                throw new DukeException(DukeExceptionType.INVALID_MODULE);
             }
             Module matchedModule = timetable.getModule(module);
             List<Slot> slotList = matchedModule.getSlotList();
+            // TODO: need to create new method for this
             message += getMessageLessonAtTime(slotList, "ALL");
         } else if (module != null && showBookmarks) {
             if (!timetable.moduleExists(module)) {
-                throw new DukeException(DukeExceptionType.INVALID_COMMAND_FORMAT);
+                throw new DukeException(DukeExceptionType.INVALID_MODULE);
             }
             Module matchedModule = timetable.getModule(module);
             message += matchedModule.getBookmarks();
         }
-
-
         ui.print(message);
     }
 
@@ -100,7 +95,6 @@ public class ShowTimetableCommand extends Command {
 
     private String getDayFromCommand(String input) {
         String outputData;
-
         if (input.compareToIgnoreCase(Slot.MON) == 0) {
             outputData = Slot.MON;
         } else if (input.compareToIgnoreCase(Slot.TUE) == 0) {
@@ -118,37 +112,36 @@ public class ShowTimetableCommand extends Command {
         } else {
             outputData = null;
         }
-
         return outputData;
     }
 
     private String getMessageSlotsInADay(List<Slot> slots, String day) {
-        String message = "";
+        StringBuilder message = new StringBuilder();
         boolean hasSlotOnDay = false;
         for (Slot s: slots) {
             if (s.getDay().equals(day)) {
-                message += s.toString() + "\n";
+                message.append(s.toString()).append("\n");
                 hasSlotOnDay = true;
             }
         }
         if (!hasSlotOnDay) {
-            message += "No lessons" + "\n";
+            message.append("No lessons" + "\n");
         }
-        return message;
+        message.append("\n");
+        return message.toString();
     }
 
     private String getMessageTimetable(List<Slot> slots) {
-        String message = "";
+        StringBuilder message = new StringBuilder();
         for (String d: Slot.days) {
-            message += d + "\n";
-            message += getMessageSlotsInADay(slots, d);
+            message.append(d).append("\n");
+            message.append(getMessageSlotsInADay(slots, d));
         }
-        return message;
+        return message.toString();
     }
 
-    public String getMessageLessonAtTime(List<Slot> slots, String dayInput) throws DukeException {
+    private String getMessageLessonAtTime(List<Slot> slots, String dayInput) throws DukeException {
         String message = "";
-        System.out.println(slots.size());
         if (slots.isEmpty()) {
             throw new DukeException(DukeExceptionType.EMPTY_TIMETABLE);
         } else if (dayInput == null) {
@@ -156,9 +149,10 @@ public class ShowTimetableCommand extends Command {
         } else if (dayInput.compareTo("ALL") == 0) {
             return getMessageTimetable(slots);
         }
-
         message += "Lessons for " + dayInput + "\n";
         message += getMessageSlotsInADay(slots, dayInput);
         return message;
     }
+
+    //private String getMessage
 }

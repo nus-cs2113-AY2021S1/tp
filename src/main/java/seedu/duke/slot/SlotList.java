@@ -1,16 +1,9 @@
 package seedu.duke.slot;
 
-import java.time.DateTimeException;
-import java.time.DayOfWeek;
-import java.time.LocalTime;
 import seedu.duke.ItemList;
 
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-
-import seedu.duke.bookmark.Bookmark;
-import seedu.duke.exception.DukeException;
-import seedu.duke.exception.DukeExceptionType;
 
 /**
  * This class represents the timetable used to store and organize the schedule slots.
@@ -65,7 +58,7 @@ public class SlotList extends ItemList {
     public Module getModule(String moduleCode) {
         Module module = null;
         for (Module mod : modules) {
-            if (moduleCode.compareTo(mod.getModulecode()) == 0) {
+            if (moduleCode.compareTo(mod.getModuleCode()) == 0) {
                 module = mod;
             }
         }

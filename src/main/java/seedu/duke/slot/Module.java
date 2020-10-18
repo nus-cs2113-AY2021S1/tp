@@ -95,10 +95,13 @@ public class Module {
                 message += bookmark.getBookmarkAsString() + "\n";
             }
         }
+        if (message.isBlank()) {
+            message += "no bookmarks found in " + moduleCode + "\n";
+        }
         return message;
     }
 
-    public String getModulecode() {
+    public String getModuleCode() {
         return moduleCode;
     }
 }
