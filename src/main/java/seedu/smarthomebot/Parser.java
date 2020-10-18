@@ -149,29 +149,29 @@ public class Parser {
         final String arguments = userInput.replaceFirst(commandWord, "").trim();
 
         switch (commandWord) {
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
-            case CreateCommand.COMMAND_WORD:
-                return prepareCreateCommand(arguments);
-            case RemoveCommand.COMMAND_WORD:
-                return new RemoveCommand(arguments);
-            case AddCommand.COMMAND_WORD:
-                return prepareAddCommand(arguments);
-            case DeleteCommand.COMMAND_WORD:
-                return new DeleteCommand(arguments);
-            case OnCommand.COMMAND_WORD:
-                return prepareOnCommand(arguments);
-            case OffCommand.COMMAND_WORD:
-                return new OffCommand(arguments);
-            case ListCommand.COMMAND_WORD:
-                return prepareListCommand(arguments);
-            case UsageCommand.COMMAND_WORD:
-                return new UsageCommand();
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
-            default:
-                return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
-        }
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+        case CreateCommand.COMMAND_WORD:
+            return prepareCreateCommand(arguments);
+        case RemoveCommand.COMMAND_WORD:
+            return new RemoveCommand(arguments);
+        case AddCommand.COMMAND_WORD:
+            return prepareAddCommand(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommand(arguments);
+        case OnCommand.COMMAND_WORD:
+            return prepareOnCommand(arguments);
+        case OffCommand.COMMAND_WORD:
+            return new OffCommand(arguments);
+        case ListCommand.COMMAND_WORD:
+            return prepareListCommand(arguments);
+        case UsageCommand.COMMAND_WORD:
+            return new UsageCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+        default:
+            return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+    }
 
     }
 

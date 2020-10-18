@@ -1,10 +1,9 @@
 package seedu.smarthomebot.commands;
 
-import seedu.smarthomebot.exceptions.EmptyParameterException;
 import seedu.smarthomebot.data.framework.Appliance;
 
-import static seedu.smarthomebot.common.Messages.*;
-import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
+import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_NOT_EXIST;
+import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
 
 public class OffCommand extends Command {
 

@@ -44,26 +44,26 @@ public class OnCommand extends Command {
     private String setParameter(String parameter, Appliance appliance) {
         String toPrint = " ";
         switch (appliance.getType().toLowerCase()) {
-            case AirConditioner.TYPE_WORD:
-                AirConditioner ac = (AirConditioner) appliance;
-                if (isParameterValid(parameter, 15, 30)) {
-                    ac.setTemperature(parameter);
-                    toPrint = ac.toString();
-                } else {
-                    toPrint = MESSAGE_INVALID_TEMPERATURE_AC;
-                }
-                break;
-            case Fan.TYPE_WORD:
-                Fan fan = (Fan) appliance;
-                if (isParameterValid(parameter, 0, 4)) {
-                    fan.setSpeed(parameter);
-                    toPrint = fan.toString();
-                } else {
-                    toPrint = MESSAGE_INVALID_FAN_SPEED;
-                }
-                break;
-            default:
-                break;
+        case AirConditioner.TYPE_WORD:
+            AirConditioner ac = (AirConditioner) appliance;
+            if (isParameterValid(parameter, 15, 30)) {
+                ac.setTemperature(parameter);
+                toPrint = ac.toString();
+            } else {
+                toPrint = MESSAGE_INVALID_TEMPERATURE_AC;
+            }
+            break;
+        case Fan.TYPE_WORD:
+            Fan fan = (Fan) appliance;
+            if (isParameterValid(parameter, 0, 4)) {
+                fan.setSpeed(parameter);
+                toPrint = fan.toString();
+            } else {
+                toPrint = MESSAGE_INVALID_FAN_SPEED;
+            }
+            break;
+        default:
+            break;
         }
         return toPrint;
     }
