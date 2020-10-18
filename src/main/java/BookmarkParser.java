@@ -12,6 +12,7 @@ public class BookmarkParser extends CommandParser {
 
     public BookmarkCommand evaluateInput(String command, int chosenCategory) throws InvalidCommandException {
         if (command == null) {
+            StudyItLog.logger.finest("Empty command");
             throw new InvalidCommandException();
         }
         String commandModified = CommandParser.standardizeCommand(command);
@@ -26,6 +27,7 @@ public class BookmarkParser extends CommandParser {
         } else if (commandModified.startsWith("back")) {
             return new BackCommand(chosenCategory);
         } else {
+            StudyItLog.logger.info("Cannot understand bookmark command");
             throw new InvalidCommandException();
         }
     }
