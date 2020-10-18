@@ -1,23 +1,2 @@
-<<<<<<< HEAD
-LAB|false|cs1010|2020-10-10|13:30|nus
-LAB|false|cs1010|2020-10-17|13:30|nus
-TUT|false|cs1010|2020-10-10|13:30|nus
-TUT|false|cs1010|2020-10-17|13:30|nus
-TUT|false|cs1010|2020-10-24|13:30|nus
-TUT|false|cs1010|2020-10-31|13:30|nus
-TUT|false|cs1010|2020-11-07|13:30|nus
-=======
-LAB|true|cs1010|2020-10-10|10:00|lt11
-EXAM|true|cs1010|2020-10-18|12:30|nus
-LEC|true|cs1010|2020-10-10|12:30|nus
-TUT|true|cs1010|2020-10-10|12:30|nus
-ACT|true|CCA|2020-10-10|12:30|nus
-ACT|true|cca|2020-10-10|12:30|nus
-D|false|ho|2020-10-10
-ACT|true|CCA|2020-10-10|13:20|NUS
-EXAM|true|cca|2020-10-15|18:30|nus
-T|false|howmuchareyou paid
-EXAM|true|who1293|2020-10-08|16:00|nus
-EXAM|true|cs2020|2020-12-20|15:00|nus
-LEC|true|cs2020|2020-12-20|15:00|nus
->>>>>>> 30a2cd95bea2b9709397e4ab461a3b2a25f08dfe
+D|false|kdha|2020-10-20
+T|false|watch tv
