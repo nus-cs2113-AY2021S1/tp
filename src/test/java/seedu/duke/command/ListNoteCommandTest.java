@@ -20,7 +20,7 @@ class ListNoteCommandTest {
 
     Note defaultNote;
     Note testNote1;
-    Note CS2113;
+    Note cs2113;
     Note songLyrics;
 
     @BeforeEach
@@ -28,19 +28,19 @@ class ListNoteCommandTest {
         notebook = new Notebook();
 
         Tag tagSports = new Tag("Sports", Tag.COLOR_RED_STRING);
-        Tag tagCS2113 = new Tag("CEG", Tag.COLOR_YELLOW_STRING);
-        Tag tagNUS  = new Tag("NUS", Tag.COLOR_BLUE_STRING);
+        Tag tagCs2113 = new Tag("CEG", Tag.COLOR_YELLOW_STRING);
+        Tag tagNus  = new Tag("NUS", Tag.COLOR_BLUE_STRING);
 
         ArrayList<Tag> tag = new ArrayList<>();
         ArrayList<Tag> tagSet = new ArrayList<>();
 
         tag.add(tagSports);
-        tagSet.add(tagCS2113);
-        tagSet.add(tagNUS);
+        tagSet.add(tagCs2113);
+        tagSet.add(tagNus);
 
         defaultNote = new Note("Default", "default", false, tag);
         testNote1 = new Note("TestNote1", "testing", true);
-        CS2113 = new Note("CS2113", "JavaDocs", true, tagSet);
+        cs2113 = new Note("CS2113", "JavaDocs", true, tagSet);
         songLyrics = new Note("Song Lyrics", "I like to move it move it", false);
 
         //notebook.addNote(testNote1);
