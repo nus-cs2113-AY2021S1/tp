@@ -41,6 +41,17 @@ public class EventList {
         return userOutput;
     }
 
+    public static String isCompleted(int index) {
+        String userOutput;
+
+        Event event = events.get(index - 1);
+        event.isDone = true;
+        userOutput =  "Nice! I've marked this task as done: "
+                + index+"." + events.get(index).printEvent()+"\n";
+
+        return userOutput;
+    }
+
     public static String printEventList() {
         logger.info("Initialising event list\n");
         String userOutput;
