@@ -3,10 +3,7 @@ package seedu.duke.functions;
 import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.commands.CommandChecker;
 
-import seedu.duke.exceptions.BunnyIdeaMissingException;
-import seedu.duke.exceptions.CommandMissingArgumentsException;
-import seedu.duke.exceptions.MissingFilterOptionsException;
-import seedu.duke.exceptions.NoFilteredItemsException;
+import seedu.duke.exceptions.*;
 import seedu.duke.filters.FilterExecutor;
 import seedu.duke.ui.UI;
 
@@ -85,15 +82,29 @@ public class CommandExecutor {
         case GEN_NAME:
             try {
                 Names.getName();
+            } catch (NameException e) {
+                System.out.println(e.getMessage());
             } catch (Exception e) {
                 System.out.println(e);
             }
             break;
         case FILTER_NAMES:
-            Names.filterNames(userInput);
+            try {
+                Names.filterNames(userInput);
+            } catch (NameException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println(e);
+            }
             break;
         case LIST_NAMES:
-            Names.listNames();
+            try {
+                Names.listNames();
+            } catch (NameException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println(e);
+            }
             break;
         case STATS:
             WritingList.printWritings();
