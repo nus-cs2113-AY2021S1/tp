@@ -14,6 +14,8 @@ import ui.Ui;
 
 import java.io.IOException;
 
+import static common.Messages.MESSAGE_INVALID_ACCESS;
+
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
@@ -40,11 +42,12 @@ public class AddCommand extends Command {
             + "         " + COMMAND_WORD + " Chapter 1\n"
             + "         " + COMMAND_WORD + " q:What is the result of one plus one | a:two\n";
 
-    public static final String MESSAGE_INVALID_ACCESS = "Sorry, you are currently at %1$s"
-            + ", please go to %2$s level first.";
-
     public static final String MESSAGE_SUCCESS = "Got it. I've added this %1$s:\n";
     public static final String MESSAGE_COUNT = "Now you have %1$d %2$s(s) in the list.";
+
+    private static final String MODULE = "module";
+    private static final String CHAPTER = "chapter";
+    private static final String CARD = "card";
 
     private String moduleOrChapter;
     private Card card;
@@ -89,13 +92,11 @@ public class AddCommand extends Command {
         ChapterList chapters = newModule.getChapters();
         chapters.addChapter(chapter);
         int chapterCount = chapters.getChapterCount();
-        StringBuilder result = new StringBuilder();
-        result.append(String.format(MESSAGE_SUCCESS, "chapter"));
-        result.append(chapter.toString() + "\n");
-        result.append(String.format(MESSAGE_COUNT, chapterCount, "chapter"));
         access.setModule(newModule);
         storage.createChapter(chapter.getChapterName(), access.getModuleLevel());
-        return result.toString();
+        String result = String.format(MESSAGE_SUCCESS, CHAPTER) + chapter.toString() + "\n"
+                + String.format(MESSAGE_COUNT, chapterCount, CHAPTER);
+        return result;
     }
 
     private String addCard(Access access, Storage storage) throws IOException {
@@ -103,12 +104,10 @@ public class AddCommand extends Command {
         CardList cards = access.getChapter().getCards();
         cards.addCard(card);
         int cardCount = cards.getCardCount();
-        StringBuilder result = new StringBuilder();
-        result.append(String.format(MESSAGE_SUCCESS, "card"));
-        result.append(cards.getCard(cardCount - 1).toString() + "\n");
-        result.append(String.format(MESSAGE_COUNT, cardCount, "card"));
         storage.saveCards(cards, access.getModule().getModuleName(), access.getChapter().getChapterName());
-        return result.toString();
+        String result = String.format(MESSAGE_SUCCESS, CARD) + cards.getCard(cardCount - 1).toString()
+                + "\n" + String.format(MESSAGE_COUNT, cardCount, CARD);
+        return result;
     }
 
     private String addModule(Access access, Storage storage, Module module) {
@@ -116,13 +115,11 @@ public class AddCommand extends Command {
         ModuleList modules = newAdmin.getModules();
         modules.addModule(module);
         int moduleCount = modules.getModuleCount();
-        StringBuilder result = new StringBuilder();
-        result.append(String.format(MESSAGE_SUCCESS, "module"));
-        result.append(module.toString() + "\n");
-        result.append(String.format(MESSAGE_COUNT, moduleCount , "module"));
         access.setAdmin(newAdmin);
         storage.createModule(module.getModuleName());
-        return result.toString();
+        String result = String.format(MESSAGE_SUCCESS, "module") + module.toString() + "\n" +
+                String.format(MESSAGE_COUNT, moduleCount, "module");
+        return result;
     }
 
 
