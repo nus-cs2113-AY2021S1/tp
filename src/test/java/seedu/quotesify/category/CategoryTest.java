@@ -15,8 +15,8 @@ public class CategoryTest {
         Book book = new Book(author, "book1");
         ArrayList<String> categories = new ArrayList<>();
         categories.add("romance");
-        book.setCategory(categories);
+        book.setCategories(categories);
         Category category = new Category("romance");
-        assertEquals(category.getCategoryName(), book.getCategory().get(0));
+        assertEquals(category.getCategoryName(), book.getCategories().get(0));
     }
 }

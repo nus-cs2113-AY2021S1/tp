@@ -1,6 +1,7 @@
 package seedu.quotesify.commands;
 
 import seedu.quotesify.lists.ListManager;
+import seedu.quotesify.store.Storage;
 import seedu.quotesify.todo.ToDo;
 import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
@@ -31,6 +32,7 @@ public class DoneCommand extends Command {
             ui.printDoneCommandUsage();
             break;
         }
+        Storage.save();
     }
 
     private void doneToDo(ToDoList toDos, int index, TextUi ui) {

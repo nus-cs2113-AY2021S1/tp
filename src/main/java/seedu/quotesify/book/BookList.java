@@ -1,5 +1,6 @@
 package seedu.quotesify.book;
 
+import org.json.simple.JSONArray;
 import seedu.quotesify.author.Author;
 import seedu.quotesify.lists.QuotesifyList;
 
@@ -116,9 +117,18 @@ public class BookList extends QuotesifyList<Book> {
     public BookList filterByCategory(String categoryName) {
         ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
                 .filter(book -> {
-                    ArrayList<String> categories = book.getCategory();
+                    ArrayList<String> categories = book.getCategories();
                     return categories.contains(categoryName);
                 }).collect(Collectors.toList());
         return new BookList(filteredBooks);
+    }
+
+    @Override
+    public JSONArray toJsonArray() {
+        JSONArray list = new JSONArray();
+        for (Book book : books) {
+            list.add(book.toJson());
+        }
+        return list;
     }
 }

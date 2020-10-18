@@ -6,6 +6,7 @@ import seedu.quotesify.bookmark.Bookmark;
 import seedu.quotesify.bookmark.BookmarkList;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
+import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
 import java.util.logging.Level;
@@ -45,6 +46,7 @@ public class BookmarkCommand extends Command {
             System.out.println(ERROR_INVALID_TAG);
             break;
         }
+        Storage.save();
     }
 
     public void handleBookmark(BookList books, BookmarkList bookmarks, TextUi ui) {

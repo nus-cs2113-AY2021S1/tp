@@ -1,6 +1,9 @@
 package seedu.quotesify.rating;
 
-public class Rating {
+import org.json.simple.JSONObject;
+import seedu.quotesify.parser.JsonSerializer;
+
+public class Rating implements JsonSerializer {
     private String titleOfRatedBook;
     private int rating;
 
@@ -28,5 +31,13 @@ public class Rating {
     @Override
     public String toString() {
         return titleOfRatedBook + ": " + rating + " star";
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("titleOfRatedBook", this.getTitleOfRatedBook());
+        json.put("rating", this.getRating());
+        return json;
     }
 }

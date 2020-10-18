@@ -1,5 +1,8 @@
 package seedu.quotesify.category;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
@@ -70,6 +73,15 @@ public class CategoryList extends QuotesifyList<Category> {
         int index = 0;
         for (Category category : categories) {
             list += String.format("%d. %s\n", ++index, category.toString());
+        }
+        return list;
+    }
+
+    @Override
+    public JSONArray toJsonArray() {
+        JSONArray list = new JSONArray();
+        for (Category category : categories) {
+            list.add(category.toJson());
         }
         return list;
     }

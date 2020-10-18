@@ -1,13 +1,15 @@
 package seedu.quotesify.quote;
 
+import org.json.simple.JSONObject;
 import seedu.quotesify.author.Author;
+import seedu.quotesify.parser.JsonSerializer;
 
 import java.util.ArrayList;
 
-public class Quote {
+public class Quote implements JsonSerializer {
     private Author author;
     private String quote;
-    private ArrayList<String> category = new ArrayList<>();
+    private ArrayList<String> categories = new ArrayList<>();
     private String reference;
 
     public Quote(String quote) {
@@ -27,6 +29,13 @@ public class Quote {
     public Quote(String quote, String reference, Author author) {
         this.quote = quote;
         this.author = author;
+        this.reference = reference;
+    }
+
+    public Quote(Author author, String quote, ArrayList<String> categories, String reference) {
+        this.author = author;
+        this.quote = quote;
+        this.categories = categories;
         this.reference = reference;
     }
 
@@ -74,12 +83,12 @@ public class Quote {
         }
     }
 
-    public ArrayList<String> getCategory() {
-        return category;
+    public ArrayList<String> getCategories() {
+        return categories;
     }
 
-    public void setCategory(ArrayList<String> category) {
-        this.category = category;
+    public void setCategories(ArrayList<String> categories) {
+        this.categories = categories;
     }
 
     @Override
@@ -94,5 +103,19 @@ public class Quote {
             quoteInformation = " - " + reference;
         }
         return quoteWithoutInformation + quoteInformation + System.lineSeparator();
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        if (hasAuthor()) {
+            json.put("author", this.getAuthor().toJson());
+        } else {
+            json.put("author", null);
+        }
+        json.put("quote", this.getQuote());
+        json.put("categories", this.getCategories());
+        json.put("reference", this.getReference());
+        return json;
     }
 }

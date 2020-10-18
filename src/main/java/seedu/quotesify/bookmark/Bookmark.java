@@ -1,8 +1,10 @@
 package seedu.quotesify.bookmark;
 
+import org.json.simple.JSONObject;
 import seedu.quotesify.book.Book;
+import seedu.quotesify.parser.JsonSerializer;
 
-public class Bookmark {
+public class Bookmark implements JsonSerializer {
     private Book book;
     private int pageNum;
 
@@ -30,5 +32,13 @@ public class Bookmark {
     @Override
     public String toString() {
         return "\"" + book.getTitle() + "\"" + " at page: " + Integer.toString(pageNum);
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject details = new JSONObject();
+        details.put("book", this.getBook().toJson());
+        details.put("pageNum", this.pageNum);
+        return details;
     }
 }

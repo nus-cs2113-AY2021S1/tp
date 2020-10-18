@@ -13,6 +13,7 @@ import seedu.quotesify.quote.Quote;
 import seedu.quotesify.quote.QuoteList;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
+import seedu.quotesify.store.Storage;
 import seedu.quotesify.todo.ToDo;
 import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
@@ -69,6 +70,7 @@ public class DeleteCommand extends Command {
             ui.printListOfDeleteCommands();
             break;
         }
+        Storage.save();
     }
 
     private void deleteQuote(QuoteList quotes, TextUi ui, String information) {
@@ -175,7 +177,7 @@ public class DeleteCommand extends Command {
         try {
             int bookNum = Integer.parseInt(bookTitle) - 1;
             Book book = bookList.getBook(bookNum);
-            ArrayList<String> categories = book.getCategory();
+            ArrayList<String> categories = book.getCategories();
             categories.remove(category.getCategoryName());
             ui.printRemoveCategoryFromBook(book.getTitle(), category.getCategoryName());
         } catch (IndexOutOfBoundsException e) {
@@ -196,7 +198,7 @@ public class DeleteCommand extends Command {
         try {
             int quoteNum = Integer.parseInt(index) - 1;
             Quote quote = quotes.get(quoteNum);
-            ArrayList<String> categories = quote.getCategory();
+            ArrayList<String> categories = quote.getCategories();
             categories.remove(category.getCategoryName());
             ui.printRemoveCategoryFromQuote(quote.getQuote(), category.getCategoryName());
         } catch (IndexOutOfBoundsException e) {
