@@ -5,6 +5,7 @@ import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.task.Todo;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 
@@ -24,12 +25,43 @@ public class PrintTimelineCommand extends Command {
         CalendarList timelineList = new CalendarList();
         CalendarList todoList = new CalendarList();
 
-        for (int i = 0; i < calendarList.getTotalItems(); i++) {
-            CalendarItem temp = calendarList.getItem(i);
-            if (temp instanceof Todo) {
-                todoList.addItem(temp);
-            } else {
-                timelineList.addItem(temp);
+        String timeRange = detectTimeRange(userInput);
+        LocalDate startDate = LocalDate.now();
+        LocalDate endDate;
+        if (timeRange == "week") {
+            endDate = startDate.plusDays(7);
+            for (int i = 0; i < calendarList.getTotalItems(); i++) {
+                if ((calendarList.getItem(i).getDate() == null)
+                        || (calendarList.getItem(i).getDate().isBefore(endDate))) {
+                    CalendarItem temp = calendarList.getItem(i);
+                    if (temp instanceof Todo) {
+                        todoList.addItem(temp);
+                    } else {
+                        timelineList.addItem(temp);
+                    }
+                }
+            }
+        } else if (timeRange == "month") {
+            endDate = startDate.plusDays(31);
+            for (int i = 0; i < calendarList.getTotalItems(); i++) {
+                if ((calendarList.getItem(i).getDate() == null)
+                        || (calendarList.getItem(i).getDate().isBefore(endDate))) {
+                    CalendarItem temp = calendarList.getItem(i);
+                    if (temp instanceof Todo) {
+                        todoList.addItem(temp);
+                    } else {
+                        timelineList.addItem(temp);
+                    }
+                }
+            }
+        } else {
+            for (int i = 0; i < calendarList.getTotalItems(); i++) {
+                CalendarItem temp = calendarList.getItem(i);
+                if (temp instanceof Todo) {
+                    todoList.addItem(temp);
+                } else {
+                    timelineList.addItem(temp);
+                }
             }
         }
 
@@ -97,5 +129,17 @@ public class PrintTimelineCommand extends Command {
             }
         }
         return sortingList;
+    }
+
+    public String detectTimeRange(String userInput) {
+        String timeRange;
+        if (userInput.contains("week")) {
+            timeRange = "week";
+        } else if (userInput.contains(("month"))) {
+            timeRange = "month";
+        } else {
+            timeRange = "all";
+        }
+        return timeRange;
     }
 }
