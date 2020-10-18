@@ -84,17 +84,7 @@ public class DeleteSlotCommand extends Command {
                 message += "deleted bookmarks from " + slot + " from " + moduleCode + "\n";
             }
         }
-
         ui.print(message);
-
-
-//        try {
-//            Slot slot = slots.getSlot(index);
-//            slots.deleteSlot(slots.getSlot(index));
-//            ui.print(getMessage(slot));
-//        } catch (IndexOutOfBoundsException e) {
-//            throw new DukeException(DukeExceptionType.INVALID_SLOT_NUMBER);
-//        }
     }
 
     private String getMessage(Slot slot) {

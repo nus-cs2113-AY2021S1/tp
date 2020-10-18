@@ -62,7 +62,7 @@ public class ShowTimetableCommand extends Command {
             Module matchedModule = timetable.getModule(module);
             List<Slot> slotList = matchedModule.getSlotList();
             // TODO: need to create new method for this to print the slots of the module with index
-            message += getMessageLessonAtTime(modules, slotList, "ALL");
+            message += getMessageForModule(matchedModule);
         } else if (module != null && showBookmarks) {
             if (!timetable.moduleExists(module)) {
                 throw new DukeException(DukeExceptionType.INVALID_MODULE);
@@ -156,5 +156,17 @@ public class ShowTimetableCommand extends Command {
         return message;
     }
 
-    //private String getMessage
+    private String getMessageForModule(Module module) {
+        String message = "";
+        List<Slot> slots = module.getSlotList();
+        if (!slots.isEmpty()) {
+            message += module.getModuleCode() + "\n";
+            for (int i = 0; i < slots.size(); i++) {
+                message += "  " + (i + 1) + ". " + slots.get(i).toString() + "\n";
+            }
+        } else {
+            message += "no slots for " + module.getModuleCode() + "\n";
+        }
+        return message;
+    }
 }
