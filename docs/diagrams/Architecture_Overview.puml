@@ -19,13 +19,7 @@ Duke --> TagManager
 Duke --> Parser
 Duke --> Command
 
-InterfaceManager --> Notebook
-InterfaceManager --> Timetable
-
 Parser --> Command
-Parser --> TagManager
-Parser --> Notebook
-Parser --> Timetable
 
 Command --> Notebook
 Command --> Timetable
