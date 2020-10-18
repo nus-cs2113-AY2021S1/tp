@@ -23,7 +23,7 @@ class SmartHomeBotTest {
     @Test
     void getStatusTest() {
         //New appliance added should be always remain Off until User switch it On
-        assertEquals("Off", new Lights("Xiao Mi Light", "BedRoom 1", "45").getStatus());
+        assertEquals("OFF", new Lights("Xiao Mi Light", "BedRoom 1", "45").getStatus());
     }
 
     @Test
@@ -56,7 +56,7 @@ class SmartHomeBotTest {
     @Test
     void onOffTest() {
         AirConditioner aircon = new AirConditioner("aircon", "br1", "200");
-        if (aircon.getStatus().equals("On")) {
+        if (aircon.getStatus().equals("ON")) {
             assertEquals("aircon: On", aircon.toString());
         } else {
             assertEquals("aircon(200W) in br1", aircon.toString());
