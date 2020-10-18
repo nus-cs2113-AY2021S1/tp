@@ -29,7 +29,7 @@ The diagram given above is the architecture design and it explains the high-leve
 Duke is the main class of the application, and handles the initializing the appropriate classes to be used as well as the execution.
 
 
-#### <a id="overview">2.1 Architecture Overview</a>
+#### <a id="overview"><ins>2.1 Architecture Overview</ins></a>
 
 Duke is directly connected to the following components:
 
@@ -45,21 +45,21 @@ Duke is directly connected to the following components:
 
 ## <a id="scope">3. Product Scope</a>
 
-#### <a id="userpersona">3.1 Target User Persona</a>
+#### <a id="userpersona"><ins>3.1 Target User Persona</ins></a>
 
 Jane Doe is a NUS undergraduate student who is in SOC/FOE and is having a hard time managing her responsibilities and extra curricular activities. She wants to have a convenient platform to take notes and categorize them according to her modules. She also wants to plan her time so she is more aware of her module schedule.
 
 She also wants to be able to export the information so she is able to share them with whomever easily.
 
 
-#### <a id="userprofile">3.2 Target User Profile</a>
+#### <a id="userprofile"><ins>3.2 Target User Profile</ins></a>
 
 1. NUS students, specifically SOC and CEG students (herein referred to as students) who are comfortable and adept at using CLI.
 2. Students who want to take notes and categorize them so they are not all over the place.
 3. Students who are comfortable with CLI.
 
 
-#### <a id="value">3.3 Value Proposition</a>
+#### <a id="value"><ins>3.3 Value Proposition</ins></a>
 
 A all-in-one solution for note-taking and managing your schedule.
 
