@@ -38,7 +38,11 @@ public class CreateSprintCommand extends SprintCommand {
         if (validateParams()) {
             allSprint = proj.getAllSprints();
             if (allSprint.size() == 0) {
-                createFirstSprint(proj);
+                try {
+                    createFirstSprint(proj);
+                } catch (DukeException e) {
+                    e.printExceptionMessage();
+                }
             } else {
                 createSubsequentSprint(proj);
             }
@@ -50,15 +54,18 @@ public class CreateSprintCommand extends SprintCommand {
     private void createFirstSprint(Project proj) {
 
         LocalDate sprintStart = LocalDate.now();
-        if (!this.parameters.get("start").isEmpty()) {
-            try {
-                sprintStart = DateTimeParser.parseDate(this.parameters.get("start"));
-            } catch (DukeException e) {
-                e.printExceptionMessage();
-            }
+        if (!(this.parameters.get("start") == null)) {
+            sprintStart = DateTimeParser.parseDate(this.parametersInHT.get("start"));
+        } else {
+            throw new DukeException("no start date");
         }
         LocalDate sprintEnd = sprintStart.plusDays(proj.getSprintLength() - 1);
-        String sprintGoal = this.parameters.get("goal");
+        String sprintGoal;
+        if (!(this.parameters.get("goal").isBlank())) {
+            sprintGoal = this.parameters.get("goal");
+        } else {
+            throw new DukeException("no goal");
+        }
         allSprint.addSprint(proj, sprintGoal, sprintStart, sprintEnd);
 
         LocalDate projEndDate = sprintStart.plusDays(proj.getProjectDuration() - 1);

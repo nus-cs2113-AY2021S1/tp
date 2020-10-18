@@ -1,5 +1,6 @@
 package seedu.duke.command.member;
 
+import seedu.duke.exception.DukeException;
 import seedu.duke.sprint.Member;
 import seedu.duke.project.Project;
 import seedu.duke.ui.Ui;
@@ -7,15 +8,14 @@ import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 
 public class MemberCommand {
-    public void addMemberCommand(ArrayList<String> userId, ArrayList<Project> projectList) {
+    public void addMemberCommand(ArrayList<String> userId, ArrayList<Project> projectList) throws DukeException {
         Member m;
         try {
             if (projectList.isEmpty()) {
-                Ui.showError("Please create a project first.");
-                return;
+                throw new DukeException("Please create a project first.");
             }
-            if (userId.isEmpty()) {
-                Ui.showError("Missing parameters.");
+            if (userId.get(0).isBlank()) {
+                throw new DukeException("Missing parameters.");
             }
             Project proj = projectList.get(0);
             for (String s : userId) {
@@ -32,15 +32,14 @@ public class MemberCommand {
         }
     }
 
-    public void deleteMemberCommand(ArrayList<String> userId, ArrayList<Project> projectList) {
+    public void deleteMemberCommand(ArrayList<String> userId, ArrayList<Project> projectList) throws DukeException {
         Project proj;
         try {
             if (projectList.isEmpty()) {
-                Ui.showError("Please create a project first.");
-                return;
+                throw new DukeException("Please create a project first.");
             }
-            if (userId.isEmpty()) {
-                Ui.showError("Missing parameters.");
+            if (userId.get(0).isBlank()) {
+                throw new DukeException("Missing parameters.");
             }
             proj = projectList.get(0);
             for (String s : userId) {
