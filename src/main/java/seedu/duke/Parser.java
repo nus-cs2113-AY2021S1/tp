@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.command.AddCommand;
+import seedu.duke.command.AddInfoCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.CountdownCommand;
 import seedu.duke.command.DeleteCommand;
@@ -28,6 +29,7 @@ public class Parser {
     public static final String COMMAND_PRINT_TIMELINE = "print timeline";
     public static final String COMMAND_SHOW_PROGRESS = "print progress";
     public static final String COMMAND_SHOW_COUNTDOWN = "countdown";
+    public static final String COMMAND_ADD_INFO = "/a";
 
     public static Command handleUserInput(String userInput) {
 
@@ -47,6 +49,8 @@ public class Parser {
             return new DeleteCommand(userInput);
         } else if (userInput.startsWith(COMMAND_FIND)) {
             return new FindCommand(userInput);
+        } else if (userInput.startsWith(COMMAND_ADD_INFO)) {
+            return new AddInfoCommand(userInput);
         } else if (userInput.startsWith(COMMAND_SHOW_PROGRESS)) {
             return new PrintProgressCommand(userInput);
         } else if (userInput.startsWith(COMMAND_SHOW_COUNTDOWN)) {

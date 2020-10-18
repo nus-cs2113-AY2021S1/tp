@@ -5,8 +5,8 @@ import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.event.Event;
 import seedu.duke.calendar.event.Exam;
 import seedu.duke.calendar.event.Lab;
-import seedu.duke.calendar.event.Tutorial;
 import seedu.duke.calendar.event.Lecture;
+import seedu.duke.calendar.event.Tutorial;
 import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Task;
 
@@ -49,7 +49,8 @@ public class Ui {
                 + "14. print timeline\n"
                 + "15. print progress\n"
                 + "16. countdown exams\n"
-                + "17. countdown deadlines"
+                + "17. countdown deadlines\n"
+                + "18. /a <event number> - information"
         );
     }
 
@@ -137,6 +138,15 @@ public class Ui {
      */
     public static void printDeleteMessage(int numberDelete, CalendarList calendarList) {
         System.out.println("Deleted:\n" + calendarList.getCalendarList().get(numberDelete));
+    }
+
+    public static void printAdditionalInformation(int calendarNumber, CalendarList calendarList) {
+        Event event = (Event) calendarList.getCalendarList().get(calendarNumber);
+        System.out.println("Event: " + event);
+        int lastIndexOfAdditionalInformation =
+                event.getAdditionalInformationCount() - 1; // -1 to cater for array list starting from 0
+        System.out.println("Additional info added: "
+                + event.getAdditionalInformation(lastIndexOfAdditionalInformation));
     }
 
     /**
@@ -389,6 +399,10 @@ public class Ui {
             break;
         case "invalid done number":
             System.out.println("You can only mark a task as done. An event cannot be marked as done.");
+            break;
+        case "invalid add info":
+            System.out.println(
+                    "Error: Please key in the additional information in this format: /a <event number> - information");
             break;
         default:
             System.out.println("Unknown Error.");

@@ -80,7 +80,12 @@ public class CalendarList {
      * @param calendarList calendar list of the task.
      * @return calendar index of the task
      */
-    public static int convertTaskNumberToCalendarNumber(int taskNumber, CalendarList calendarList) {
+    public static int convertTaskNumberToCalendarNumber(int taskNumber, CalendarList calendarList) throws DukeException {
+
+        if (taskNumber > calendarList.getTotalTasks() || taskNumber <= 0) {
+            throw new DukeException("invalid task action");
+        }
+
         int taskCount = 0;
         int itemCount = 0;
         for (CalendarItem s : calendarList.getCalendarList()) {
@@ -104,7 +109,12 @@ public class CalendarList {
      * @param calendarList calendar list of the task.
      * @return calendar index of the event
      */
-    public static int convertEventNumberToCalendarNumber(int eventNumber, CalendarList calendarList) {
+    public static int convertEventNumberToCalendarNumber(int eventNumber, CalendarList calendarList) throws DukeException {
+
+        if (eventNumber > calendarList.getTotalEvents() || eventNumber <= 0) {
+            throw new DukeException("invalid event action");
+        }
+
         int eventCount = 0;
         int itemCount = 0;
         for (CalendarItem s : calendarList.getCalendarList()) {
