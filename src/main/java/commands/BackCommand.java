@@ -1,7 +1,7 @@
 package commands;
 
 import access.Access;
-import manager.chapter.CardList;
+import exception.IncorrectAccessLevelException;
 import storage.Storage;
 import ui.Ui;
 
@@ -12,13 +12,14 @@ public class BackCommand extends Command {
             + "Example: " + COMMAND_WORD + "\n";
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) {
+    public void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException{
         if (access.isChapterLevel()) {
             access.setChapterLevel("");
         } else if (access.isModuleLevel()) {
             access.setModuleLevel("");
         } else {
-            System.out.println("Back command can only be called at module and chapter level.");
+            throw new IncorrectAccessLevelException("Back command can only be called " +
+                    "at module and chapter level.");
         }
     }
 
