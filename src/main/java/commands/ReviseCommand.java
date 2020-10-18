@@ -29,6 +29,7 @@ public class ReviseCommand extends Command {
     public static final String MESSAGE_SHOW_RATING_PROMPT = "How well did you do for this card?\n"
             + "[enter e(easy), m(medium), h(hard), c(cannot answer)]";
     public static final String MESSAGE_SHOW_REVISE_PROMPT = "Are you sure you want to revise this? (Y/N)";
+    public static final String MESSAGE_START_REVISION = "The revision for %s will start now:";
     public static final String EASY = "e";
     public static final String MEDIUM = "m";
     public static final String HARD = "h";
@@ -40,7 +41,7 @@ public class ReviseCommand extends Command {
         this.reviseIndex = reviseIndex;
     }
 
-    public Chapter getChapter(int reviseIndex, Access access, Ui ui) throws IndexOutOfBoundsException {
+    public Chapter getChapter(int reviseIndex, Access access) throws IndexOutOfBoundsException {
         Chapter chapter;
         try {
             chapter = access.getModule().getChapters().getChapter(reviseIndex);
@@ -50,7 +51,7 @@ public class ReviseCommand extends Command {
         }
     }
 
-    private ArrayList<Card> getCards(Ui ui, Access access, Storage storage, Chapter toRevise)
+    private ArrayList<Card> getCards(Access access, Storage storage, Chapter toRevise)
             throws FileNotFoundException {
         ArrayList<Card> allCards;
         try {
@@ -72,7 +73,7 @@ public class ReviseCommand extends Command {
 
     @Override
     public void execute(Ui ui, Access access, Storage storage) throws FileNotFoundException {
-        Chapter toRevise = getChapter(reviseIndex, access, ui);
+        Chapter toRevise = getChapter(reviseIndex, access);
         if (!Scheduler.isDeadlineDue(toRevise.getDueBy())) {
             StringBuilder prompt = new StringBuilder();
             prompt.append(String.format(MESSAGE_CHAPTER_NOT_DUE, toRevise));
@@ -93,7 +94,7 @@ public class ReviseCommand extends Command {
             }
         }
 
-        ArrayList<Card> allCards = getCards(ui, access, storage, toRevise);
+        ArrayList<Card> allCards = getCards(access, storage, toRevise);
         ArrayList<Card> repeatCards = new ArrayList<>();
         int cardCount = allCards.size();
         ui.showToUser("\nCard count: " + cardCount);
@@ -102,7 +103,7 @@ public class ReviseCommand extends Command {
             return;
         }
 
-        ui.showToUser("The revision for " + toRevise + " will start now:");
+        ui.showToUser(String.format(MESSAGE_START_REVISION, toRevise));
 
         int count = 1;
 
