@@ -14,14 +14,6 @@ public class BookmarkParser extends CommandParser {
         protected static final String DELETE_PARAM = "d";
         protected static final String EPISODE_PARAM = "e";
         protected static final String LIST_PARAM = "l";
-
-        protected static final String OUT_OF_BOUND_PAGE_ERROR = "Invalid Page size!";
-        protected static final String PARAMETER_ERROR_HEADER = "Parameter : -";
-        protected static final String REQUIRE_ADDITIONAL_FIELD = " requires an additional field";
-        protected static final String INVALID_OPTION = " is not a valid option";
-        protected static final String NOT_RECOGNISED = " is not recognised!";
-        protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for page number!";
-        protected static final String BROWSE_SETTINGS_CHANGED_INFO = "Default values modified";
         private static final Logger LOGGER = Logger.getLogger(seedu.duke.parser.BookmarkParser.class.getName());
 
 
