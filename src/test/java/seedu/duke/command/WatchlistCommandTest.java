@@ -9,6 +9,7 @@ import seedu.duke.human.Workspace;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.watchlist.Watchlist;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,7 +25,8 @@ class WatchlistCommandTest {
     @BeforeEach
     void setUp() throws AniException {
         animeData = new AnimeData(new ArrayList<>());
-        storageManager = new StorageManager();
+        storageManager = new StorageManager("src" + File.separator + "test"
+                                            + File.separator + "data" + File.separator);
         user = new User("Testing", "Male");
 
         Watchlist secondWatchlist = new Watchlist("Second");

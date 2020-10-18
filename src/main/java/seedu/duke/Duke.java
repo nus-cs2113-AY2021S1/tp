@@ -12,6 +12,7 @@ import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class Duke {
         user = null;
         ui = new Ui();
         parser = new Parser();
-        storageManager = new StorageManager();
+        storageManager = new StorageManager("data" + File.separator);
 
         // ========================== Initialize AniChan ==========================
         ui.printWelcomeMessage();
