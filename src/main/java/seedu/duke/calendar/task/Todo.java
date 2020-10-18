@@ -30,6 +30,11 @@ public class Todo extends Task {
         return "[T]" + super.getDescription();
     }
 
+    @Override
+    public String getRecurringDescription() {
+        return null;
+    }
+
     /**
      * Returns the respective task type.
      */

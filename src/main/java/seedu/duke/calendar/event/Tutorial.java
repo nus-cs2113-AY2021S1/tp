@@ -73,6 +73,14 @@ public class Tutorial extends SchoolEvent {
     }
 
     /**
+     * Returns the description of the recurring tutorial.
+     */
+    @Override
+    public String getRecurringDescription() {
+        return "[TUT]" + "[R] " + super.getRecurringDescription();
+    }
+
+    /**
      * Saves the tutorial event into files.
      *
      * @return string contains the information about the tutorial event.

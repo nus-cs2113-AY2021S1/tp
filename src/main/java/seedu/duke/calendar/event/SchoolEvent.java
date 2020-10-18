@@ -32,5 +32,10 @@ public abstract class SchoolEvent extends Event {
         return moduleCode + " " + super.getDescription();
     }
 
+    @Override
+    public String getRecurringDescription() {
+        return moduleCode + " " + super.getRecurringDescription();
+    }
+
     public abstract String printIntoFile();
 }
