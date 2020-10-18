@@ -1,7 +1,6 @@
 package seedu.duke.human;
 
 import seedu.duke.exception.AniException;
-import seedu.duke.watchlist.Watchlist;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -76,15 +75,29 @@ public class User extends Human {
         activeWorkspace = inputWorkspace;
 
         if (activeWorkspace != null) {
-            //Loading of changed active user should be done here. For now set to empty
-            ArrayList<Watchlist> watchlistLists = new ArrayList<>();
-            Watchlist watchlist = new Watchlist("Default");
-            watchlistLists.add(watchlist);
-            inputWorkspace.setActiveWatchlist(watchlist);
-            inputWorkspace.setWatchlistList(watchlistLists);
+            //Set the first watchlist to be the active watchlist
+            inputWorkspace.setActiveWatchlist(inputWorkspace.getWatchlistList().get(0));
             LOGGER.log(Level.INFO, "Workspace switched: " + inputWorkspace.getName());
         }
     }
+
+    /**
+     * Finds the workplace that matches the string parameter to switch to.
+     *
+     * @param switchToThisWorkspace the requested workplace to switch to
+     * @throws AniException if the workplace is not found
+     */
+
+    public void switchActiveWorkspace(String switchToThisWorkspace) throws AniException {
+        for (Workspace existingWorkspace : workspaceList) {
+            if (existingWorkspace.getName().equals(switchToThisWorkspace)) {
+                setActiveWorkspace(existingWorkspace);
+                return;
+            }
+        }
+        throw new AniException("Workspace " + switchToThisWorkspace + " does not exist!");
+    }
+
 
     public int getTotalWorkspaces() {
         return workspaceList.size();
@@ -107,17 +120,6 @@ public class User extends Human {
             }
         }
     }
-
-    // NOTE: return null and check.
-    public Workspace getWorkspace(String name) throws AniException {
-        for (Workspace existingWorkspace : workspaceList) {
-            if (existingWorkspace.getName().equals(name)) {
-                return existingWorkspace;
-            }
-        }
-        throw new AniException("Workspace " + name + " does not exist!");
-    }
-
 
     @Override
     public String toString() {
