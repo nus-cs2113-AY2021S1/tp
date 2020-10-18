@@ -5,22 +5,18 @@ import bookmark.commands.ChangeModeCommand;
 import bookmark.commands.ListCommand;
 import bookmark.commands.RemoveLinkCommand;
 import exceptions.InvalidCommandException;
-import exceptions.InvalidEmptyLinkException;
 
 public class BookmarkParser extends CommandParser {
-    private static int chosenCategory;
-
     public BookmarkParser() {
     }
 
-    public BookmarkCommand evaluateInput(String command) throws InvalidCommandException {
+    public BookmarkCommand evaluateInput(String command, int chosenCategory) throws InvalidCommandException {
         if (command == null) {
             throw new InvalidCommandException();
         }
         String commandModified = CommandParser.standardizeCommand(command);
         if (commandModified.startsWith("bm")) {
-            getChosenCategory(command);
-            return new ChangeModeCommand(chosenCategory);
+            return new ChangeModeCommand(command, chosenCategory);
         } else if (commandModified.startsWith("add")) {
             return new AddLinkCommand(command, chosenCategory);
         } else if (commandModified.startsWith("rm")) {
@@ -28,28 +24,10 @@ public class BookmarkParser extends CommandParser {
         } else if (commandModified.startsWith("list")) {
             return new ListCommand(chosenCategory);
         } else if (commandModified.startsWith("back")) {
-            String backCommand = updateChosenCategory();
-            return new BackCommand(backCommand);
+            return new BackCommand(chosenCategory);
         } else {
             throw new InvalidCommandException();
         }
-    }
-
-    private String updateChosenCategory() {
-        if (chosenCategory == 0) {
-            return "Goodbye";
-        } else {
-            resetBookmarkCategory();
-            return "Category";
-        }
-    }
-
-    public static void resetBookmarkCategory() {
-        chosenCategory = 0;
-    }
-
-    private void getChosenCategory(String line) {
-        chosenCategory = Integer.parseInt(line.substring(2).trim());
     }
 
 }
