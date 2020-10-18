@@ -25,6 +25,7 @@ public class TagCommand extends Command {
     public static final String TAG_NOTE_MESSAGE = "Added the tag to the note! ";
     public static final String UNTAG_NOTE_MESSAGE = "Removed the tag from the note! ";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Invalid index input!";
+    public static final String TAG_NOTE_HEADER = "Tagging note...";
 
     private int index;
     private ArrayList<Tag> tags;
@@ -43,9 +44,10 @@ public class TagCommand extends Command {
             Note note = notebook.getNotes().get(index);
             ArrayList<String> executedMessage = tagManager.tagAndUntagNote(note, tags, TAG_NOTE_MESSAGE,
                     UNTAG_NOTE_MESSAGE);
-            return Formatter.formatString(executedMessage, false, true);
+            executedMessage.add(0, TAG_NOTE_HEADER);
+            return Formatter.formatString(executedMessage, true);
         } catch (IndexOutOfBoundsException exception) {
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE, false);
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
     }
 }

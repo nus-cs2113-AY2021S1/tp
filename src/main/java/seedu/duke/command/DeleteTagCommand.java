@@ -21,6 +21,7 @@ public class DeleteTagCommand extends Command {
 
     public static final String COMMAND_SUCCESSFUL_MESSAGE = "Deleted the tag! ";
     public static final String COMMAND_UNSUCCESSFUL_MESSAGE = "The tag does not exist! ";
+    public static final String HEADER_DELETE_TAG = "Deleting tags...";
 
     private ArrayList<Tag> tags;
 
@@ -35,6 +36,7 @@ public class DeleteTagCommand extends Command {
     public String execute() {
         ArrayList<String> executedMessage = tagManager.deleteTag(tags, COMMAND_SUCCESSFUL_MESSAGE,
                 COMMAND_UNSUCCESSFUL_MESSAGE);
-        return Formatter.formatString(executedMessage, false, true);
+        executedMessage.add(0, HEADER_DELETE_TAG);
+        return Formatter.formatString(executedMessage, true);
     }
 }

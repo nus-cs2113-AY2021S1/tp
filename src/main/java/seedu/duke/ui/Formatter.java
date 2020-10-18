@@ -12,6 +12,9 @@ public class Formatter {
 
     /** A platform independent line separator. */
     public static final String LS = System.lineSeparator();
+
+    private static final int NUM_ANSI_CHAR = 9;
+
     private static final String ROW_SPLIT = "=";
     private static final String COLUMN_SPLIT = "|";
     private static final String COLUMN_START = "|| ";
@@ -52,11 +55,10 @@ public class Formatter {
      * Formats a string to be printed out.
      *
      * @param message String to be formatted.
-     * @param isColored Determines if the string is colored.
      * @return Formatted message.
      */
-    public static String formatString(String message, boolean isColored) {
-        return encloseTopAndBottom(encloseRow(message, isColored));
+    public static String formatString(String message) {
+        return encloseTopAndBottom(encloseRow(message));
     }
 
     /**
@@ -64,20 +66,19 @@ public class Formatter {
      *
      * @param messages Arraylist of strings to be formatted.
      * @param hasHeader Determines if there is a header. Header MUST be the first element in the list.
-     * @param isColored Determines if there is any word in the string that is colored.
      * @return Formatted message.
      */
-    public static String formatString(ArrayList<String> messages, boolean hasHeader, boolean isColored) {
+    public static String formatString(ArrayList<String> messages, boolean hasHeader) {
         String formattedString = "";
         if (hasHeader) {
             formattedString = generatesHeader(messages.get(0));
 
             for (int i = 1; i < messages.size(); ++i) {
-                formattedString = formattedString.concat(encloseRow(messages.get(i),isColored));
+                formattedString = formattedString.concat(encloseRow(messages.get(i)));
             }
         } else {
             for (String s : messages) {
-                formattedString = formattedString.concat(encloseRow(s, isColored));
+                formattedString = formattedString.concat(encloseRow(s));
             }
         }
         return encloseTopAndBottom(formattedString);
@@ -90,7 +91,7 @@ public class Formatter {
      * @return Formatted header.
      */
     private static String generatesHeader(String header) {
-        return encloseRow(header, false) + generatesRowSplit();
+        return encloseRow(header) + generatesRowSplit();
     }
 
     /**
@@ -116,19 +117,19 @@ public class Formatter {
      * Encloses the sides of the message.
      *
      * @param message Message to be enclosed.
-     * @param isColored Determines if there is any word in the string that is colored.
      * @return Enclosed message.
      */
-    private static String encloseRow(String message, boolean isColored) {
+    private static String encloseRow(String message) {
         int numBlanks;
+
 
         // Calculates the number of blank cells according to the message.
         // For colored text, ignore the ansi codes.
-        if (isColored) {
-            numBlanks = MAX_MESSAGE_LENGTH - message.length() + Tag.NUM_ANSI_CHAR;
-        } else {
-            numBlanks = MAX_MESSAGE_LENGTH - message.length();
-        }
+        //if (isColored) {
+        //    numBlanks = MAX_MESSAGE_LENGTH - message.length() + Tag.NUM_ANSI_CHAR;
+        //} else {
+        numBlanks = MAX_MESSAGE_LENGTH - message.length();
+        //    }
 
         // Adds empty space to the message
         if (numBlanks >= 0) {
@@ -138,7 +139,7 @@ public class Formatter {
             int startIndex = message.length() + numBlanks;
             String preservedMessage = message.substring(0, startIndex);
             String truncatedMessage = message.substring(startIndex);
-            return encloseRow(preservedMessage, isColored) + encloseRow(truncatedMessage, isColored);
+            return encloseRow(preservedMessage) + encloseRow(truncatedMessage);
         }
     }
 }
