@@ -6,18 +6,13 @@ import java.util.Hashtable;
 public abstract class Command {
 
 
-    protected Hashtable<String, String> parametersInHT = new Hashtable<>();
-    protected ArrayList<String> parametersInAL = new ArrayList<>();
+    protected Hashtable<String, String> parameters = new Hashtable<>();
 
     /**
      * Creates a new abstract command.
      */
     public Command(Hashtable<String, String> parameters) {
-        setParametersInHT(parameters);
-    }
-
-    public Command(ArrayList<String> parameters) {
-        setParametersInAL(parameters);
+        setParameters(parameters);
     }
 
     /**
@@ -28,19 +23,7 @@ public abstract class Command {
     /**
      * Getters and Setters.
      */
-    public Hashtable<String, String> getParametersInHT() {
-        return parametersInHT;
-    }
-
-    public void setParametersInHT(Hashtable<String, String> parametersInHT) {
-        this.parametersInHT = parametersInHT;
-    }
-
-    public ArrayList<String> getParametersInAL() {
-        return parametersInAL;
-    }
-
-    public void setParametersInAL(ArrayList<String> parametersInAL) {
-        this.parametersInAL = parametersInAL;
+    public void setParameters(Hashtable<String, String> parameters) {
+        this.parameters = parameters;
     }
 }

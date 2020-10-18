@@ -9,6 +9,7 @@ import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,7 +20,7 @@ public class AddSprintTaskCommand extends SprintCommand {
     private static final Logger LOGGER = Logger.getLogger(AddSprintTaskCommand.class.getName());
 
 
-    public AddSprintTaskCommand(ArrayList<String> parameters, ArrayList<Project> projectList) {
+    public AddSprintTaskCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList) {
         super(parameters);
         this.projectList = projectList;
         LOGGER.setLevel(Level.WARNING);
@@ -36,19 +37,22 @@ public class AddSprintTaskCommand extends SprintCommand {
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
             Sprint currentSprint = allSprint.getSprint(currentSprintNo);
-            if (!parametersInAL.isEmpty()) {
-                for (String entry : this.parametersInAL) {
+            if (!parameters.isEmpty()) {
+                for (String entry : parameters.values()) {
                     try {
                         int taskId = Integer.parseInt(entry);
+                        if (!proj.getProjectBacklog().checkTaskExist(taskId)) {
+                            throw new DukeException("No such task.");
+                        }
                         currentSprint.addSprintTask(taskId);
                         proj.getProjectBacklog().getTask(taskId).allocateToSprint(currentSprint.getId());
                         Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + " added to sprint.\n");
                         LOGGER.log(Level.INFO, "AddSprintTaskCommand executed successfully"
                                 + System.lineSeparator()
                                 + proj.getProjectBacklog().getTask(taskId).getTitle());
-                    } catch (NumberFormatException e) {
+                    } catch (NumberFormatException | DukeException e) {
                         Ui.showError("Invalid parameters.");
-                        LOGGER.log(Level.WARNING, "Provided invalid parameters: " + parametersInAL);
+                        LOGGER.log(Level.WARNING, "Provided invalid parameters: " + parameters);
                     }
 
                 }

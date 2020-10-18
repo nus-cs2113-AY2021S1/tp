@@ -6,7 +6,7 @@ import seedu.duke.command.sprint.AllocateSprintTaskCommand;
 import seedu.duke.command.sprint.ViewSprintCommand;
 import seedu.duke.command.sprint.AddSprintTaskCommand;
 import seedu.duke.command.sprint.CreateSprintCommand;
-import seedu.duke.command.sprint.DeleteSprintTaskCommand;
+import seedu.duke.command.sprint.RemoveSprintTaskCommand;
 import seedu.duke.command.task.TaskCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
@@ -22,7 +22,7 @@ import static seedu.duke.command.CommandSummary.ADDTASK;
 import static seedu.duke.command.CommandSummary.BYE;
 import static seedu.duke.command.CommandSummary.CREATE;
 import static seedu.duke.command.CommandSummary.DELETE;
-import static seedu.duke.command.CommandSummary.DELETETASK;
+import static seedu.duke.command.CommandSummary.REMOVETASK;
 import static seedu.duke.command.CommandSummary.PROJECT;
 import static seedu.duke.command.CommandSummary.TASK;
 import static seedu.duke.command.CommandSummary.MEMBER;
@@ -141,16 +141,24 @@ public class Parser {
                 }
                 break;
             case SPRINT:
-
+                Hashtable<String, String> newParams = new Hashtable<>();//to be removed after standardisation
                 switch (action.toLowerCase()) {
                 case CREATE:
                     new CreateSprintCommand(parameters, projectList).execute();
                     break;
                 case ADDTASK:
-                    new AddSprintTaskCommand(params, projectList).execute();
+                    //Convert Arraylist to Hashtable to simulate standardisation
+                    for (int i = 0; i < params.size(); i++) {
+                        newParams.put(String.valueOf(i), params.get(i));
+                    } //to be removed after standardisation
+                    new AddSprintTaskCommand(newParams, projectList).execute();
                     break;
-                case DELETETASK:
-                    new DeleteSprintTaskCommand(params, projectList).execute();
+                case REMOVETASK:
+                    //Convert Arraylist to Hashtable to simulate standardisation
+                    for (int i = 0; i < params.size(); i++) {
+                        newParams.put(String.valueOf(i), params.get(i));
+                    } //to be removed after standardisation
+                    new RemoveSprintTaskCommand(newParams, projectList).execute();
                     break;
                 case VIEW:
                     new ViewSprintCommand(parameters, projectList).execute();
@@ -174,7 +182,7 @@ public class Parser {
         }
         return null;
     }
-    
+
     public boolean isExit() {
         return exit;
     }

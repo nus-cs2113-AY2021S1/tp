@@ -50,15 +50,15 @@ public class CreateSprintCommand extends SprintCommand {
     private void createFirstSprint(Project proj) {
 
         LocalDate sprintStart = LocalDate.now();
-        if (!this.parametersInHT.get("start").isEmpty()) {
+        if (!this.parameters.get("start").isEmpty()) {
             try {
-                sprintStart = DateTimeParser.parseDate(this.parametersInHT.get("start"));
+                sprintStart = DateTimeParser.parseDate(this.parameters.get("start"));
             } catch (DukeException e) {
                 e.printExceptionMessage();
             }
         }
         LocalDate sprintEnd = sprintStart.plusDays(proj.getSprintLength() - 1);
-        String sprintGoal = this.parametersInHT.get("goal");
+        String sprintGoal = this.parameters.get("goal");
         allSprint.addSprint(proj, sprintGoal, sprintStart, sprintEnd);
 
         LocalDate projEndDate = sprintStart.plusDays(proj.getProjectDuration() - 1);
@@ -73,7 +73,7 @@ public class CreateSprintCommand extends SprintCommand {
 
     private void createSubsequentSprint(Project proj) {
 
-        String sprintGoal = this.parametersInHT.get("goal");
+        String sprintGoal = this.parameters.get("goal");
         Sprint prevSprint = allSprint.getSprint(allSprint.size() - 1);
         LocalDate sprintStart = prevSprint.getEndDate().plusDays(1);
         if (DateTimeParser.diff(proj.getEndDate(), sprintStart) >= 0) {
@@ -82,14 +82,14 @@ public class CreateSprintCommand extends SprintCommand {
         }
         LocalDate sprintEnd = sprintStart.plusDays(proj.getSprintLength() - 1);
         allSprint.addSprint(proj, sprintGoal, sprintStart, sprintEnd);
-        if (!this.parametersInHT.containsKey("start")) {
+        if (!this.parameters.containsKey("start")) {
             Ui.showToUserLn(Messages.MESSAGE_CREATE_SUB_SPRINT);
         }
         printCreatedSprint();
     }
 
     private boolean validateParams() {
-        return this.parametersInHT.containsKey("goal");
+        return this.parameters.containsKey("goal");
     }
 
     private void printCreatedSprint() {
