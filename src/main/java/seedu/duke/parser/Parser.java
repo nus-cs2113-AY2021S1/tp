@@ -86,7 +86,7 @@ public class Parser {
                     new ProjectCommand().createProjectCommand(parameters, projectList);
                     break;
                 case VIEW:
-                    new ProjectCommand().viewProjectCommand(projectList);
+                    new ProjectCommand().viewProjectCommand(parameters, projectList);
                     break;
                 default:
                     try {

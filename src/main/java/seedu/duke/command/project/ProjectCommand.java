@@ -35,7 +35,7 @@ public class ProjectCommand {
         Ui.showToUserLn(projectList.get(0).toString());
     }
 
-    public void viewProjectCommand(ArrayList<Project> projectList) {
+    public void viewProjectCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList) {
         assert projectList.size() != 0 : "No projects created \n.";
 
         if (projectList.isEmpty()) {
