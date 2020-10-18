@@ -1,0 +1,16 @@
+Oct 16, 2020 11:33:06 PM StudyIt run
+INFO: Executing program
+Oct 16, 2020 11:33:13 PM CommandParser getDestinationMode
+INFO: Invalid mode was chosen.
+Oct 16, 2020 11:33:13 PM Ui changeModeCommand
+FINE: Cannot understand mode chosen.
+Oct 16, 2020 11:33:24 PM CommandParser getDestinationMode
+INFO: Invalid mode was chosen.
+Oct 16, 2020 11:33:24 PM Ui changeModeCommand
+FINE: Cannot understand mode chosen.
+Oct 16, 2020 11:33:28 PM Command executeCommand
+INFO: Cannot understand command input.
+Oct 16, 2020 11:33:30 PM StudyIt run
+INFO: End of program.
+Oct 16, 2020 11:33:30 PM StudyIt main
+INFO: Starting process

@@ -60,17 +60,14 @@ public class HelpMessage extends Ui {
         System.out.println(LINE_DIVIDER);
     }
 
-    //TODO: Fill this up after you're done
     public static void printBookmarkHelp() {
         System.out.println(bookmarkCommands);
     }
 
-    //TODO: Fill this up after you're done
     public static void printTimetableHelp() {
         System.out.println(timetableCommand);
     }
 
-    //TODO: Fill this up after you're done
     public static void printAcademicHelp() {
         System.out.println(academicCommands);
     }
