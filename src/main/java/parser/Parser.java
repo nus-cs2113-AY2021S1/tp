@@ -151,6 +151,9 @@ public abstract class Parser {
         if (words[0].equals(EDIT)) {
             UI ui = new UI();
             int eventIndex = -1;
+            if (fullCommand.length() == 4) {
+                throw new EmptyEventIndexException();
+            }
             if (fullCommand.substring(5).isBlank()) {
                 throw new EmptyEventIndexException();
             }
