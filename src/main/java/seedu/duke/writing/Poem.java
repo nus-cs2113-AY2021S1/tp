@@ -16,6 +16,8 @@ public class Poem extends Writings {
         setTopic(topic);
         setContent(content);
         setAuthor(author);
+        setNumberOfLines();
+        setNumberOfWords();
         countPoems++;
     }
 
@@ -29,6 +31,8 @@ public class Poem extends Writings {
         setAuthor(author);
         this.date = date;
         countPoems++;
+        setNumberOfLines();
+        setNumberOfWords();
     }
 
     public void setNumberOfLines() {
@@ -41,8 +45,19 @@ public class Poem extends Writings {
         this.numberOfLines = count;
     }
 
+    @Override
     public int getNumberOfLines() {
         return this.numberOfLines;
+    }
+
+    @Override
+    public int getNumberOfSentences() {
+        return 0;
+    }
+
+    @Override
+    public int getNumberOfWords() {
+        return this.numberOfWords;
     }
 
     public void setNumberOfWords() {
@@ -51,6 +66,7 @@ public class Poem extends Writings {
             if (this.content.charAt(i) == ' ' || this.content.charAt(i) == '\n') {
                 count++;
             }
+            this.numberOfWords = count;
         }
     }
 

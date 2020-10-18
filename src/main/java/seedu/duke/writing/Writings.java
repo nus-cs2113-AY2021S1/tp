@@ -74,4 +74,10 @@ public abstract class Writings {
     public void setAuthor(String author) {
         this.author = new User(author);
     }
+
+    public abstract int getNumberOfLines();
+
+    public abstract int getNumberOfSentences();
+
+    public abstract int getNumberOfWords();
 }

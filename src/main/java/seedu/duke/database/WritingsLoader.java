@@ -27,13 +27,13 @@ import static seedu.duke.constants.DataFileConvention.ESSAY;
 import static seedu.duke.constants.DataFileConvention.NUMBER_OF_WRITING_COMPONENT;
 import static seedu.duke.constants.FilePaths.WRITING_FILE_PATH;
 import static seedu.duke.database.FileFunctions.autoCreateNewFile;
-import static seedu.duke.database.FileFunctions.readFileUntilLineContainsString;
 
 public class WritingsLoader {
 
     /**This function reads data stored in data file and coverts it into ArrayList structure.
      *
      * @param f data file storing the information of the tasks
+     * @param savedWritings List of writings available in the txt database file
      * @return total writings detected in the data file
      * @throws FileNotFoundException when the file is not found
      * @throws NotEnoughWritingComponentException when the format of minimum
@@ -57,6 +57,8 @@ public class WritingsLoader {
         try {
             while (s.hasNext()) {
                 String currentLine = s.nextLine();
+                //Reset the content to blank
+                content = "";
                 while (!currentLine.equals(WRITING_COMPONENT_DIVIDER)) {
                     while (currentLine.startsWith(WRITING_COMPONENT_MARK)) {
                         countContent++;
@@ -79,7 +81,11 @@ public class WritingsLoader {
                     }
                     //Writing text to the writing object
                     currentLine = s.nextLine();
-                    content = content.concat(currentLine + "\n");
+
+                    //prevent adding the WRITING_COMPONENT_DIVIDER to the content of the writing
+                    if (!currentLine.equals(WRITING_COMPONENT_DIVIDER)) {
+                        content = content.concat(currentLine + "\n");
+                    }
                 }
                 countWritings++;
                 if (type.equals(POEM)) {
@@ -100,8 +106,7 @@ public class WritingsLoader {
     }
 
     /**Check if the data file exists or not, creates "writings.txt" in "data" directory if not
-     *
-     * @param f file to be processed
+     *  @param f file to be processed
      * @param savedWritings writings being stored
      */
     public static void convertFromFile(File f, WritingList savedWritings) {
@@ -146,6 +151,7 @@ public class WritingsLoader {
     /**Record the file or print error message.
      *
      * @param f data file to be processed
+     * @param savedWritings saved Writings of the current state of Writing List
      */
     public static void recordListToFile(File f, WritingList savedWritings) {
         try {
