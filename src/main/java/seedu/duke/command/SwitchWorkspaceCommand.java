@@ -3,7 +3,6 @@ package seedu.duke.command;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
-import seedu.duke.human.Workspace;
 import seedu.duke.storage.StorageManager;
 
 import java.util.logging.Level;
@@ -26,10 +25,8 @@ public class SwitchWorkspaceCommand extends Command {
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         //Find the user and setActiveUser to it
-        Workspace chgWorkspace = user.getWorkspace(switchToThisWorkspace);
-        user.setActiveWorkspace(chgWorkspace);
-        String result = SWITCH_SUCCESS_HEADER + switchToThisWorkspace;
-        return result;
+        user.switchActiveWorkspace(switchToThisWorkspace);
+        return SWITCH_SUCCESS_HEADER + switchToThisWorkspace;
     }
 
     public void setSwitchToThisWorkspace(String switchToThisWorkspace) {
