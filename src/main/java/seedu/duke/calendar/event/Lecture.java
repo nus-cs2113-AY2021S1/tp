@@ -25,7 +25,7 @@ public class Lecture extends SchoolEvent {
     public Lecture(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
         eventType = "LEC";
-        isOver = false;
+        this.isOver = getIsOver();
     }
 
     /**
@@ -69,6 +69,14 @@ public class Lecture extends SchoolEvent {
     @Override
     public String getDescription() {
         return "[LEC]" + "[" + getIcon() + "] " + super.getDescription();
+    }
+
+    /**
+     * Returns the description of the recurring lecture.
+     */
+    @Override
+    public String getRecurringDescription() {
+        return "[LEC]" + "[R] " + super.getRecurringDescription();
     }
 
     /**

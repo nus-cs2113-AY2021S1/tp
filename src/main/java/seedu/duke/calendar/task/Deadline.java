@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     protected LocalDate by;
     protected String taskType;
+    protected int countdown;
 
     private static final String DEADLINE_FILE_SYMBOL = "D";
     private static final String SEPARATOR = "|";
@@ -18,6 +19,7 @@ public class Deadline extends Task {
         super(description);
         this.by = by;
         this.taskType = "D";
+        this.isImportant = getIsImportant();
     }
 
     /**
@@ -31,6 +33,11 @@ public class Deadline extends Task {
     @Override
     public String getDescription() {
         return "[D]" + super.toString();
+    }
+
+    @Override
+    public String getRecurringDescription() {
+        return null;
     }
 
     @Override
@@ -63,5 +70,13 @@ public class Deadline extends Task {
     @Override
     public LocalTime getTime() {
         return null;
+    }
+
+    public int getCountdown() {
+        return countdown;
+    }
+
+    public void setCountdown(int countdown) {
+        this.countdown = countdown;
     }
 }

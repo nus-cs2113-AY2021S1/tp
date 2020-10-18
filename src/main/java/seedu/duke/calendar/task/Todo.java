@@ -15,6 +15,7 @@ public class Todo extends Task {
     public Todo(String description) {
         super(description);
         this.taskType = "T";
+        this.isImportant = getIsImportant();
     }
 
     /**
@@ -28,6 +29,11 @@ public class Todo extends Task {
     @Override
     public String getDescription() {
         return "[T]" + super.getDescription();
+    }
+
+    @Override
+    public String getRecurringDescription() {
+        return null;
     }
 
     /**
