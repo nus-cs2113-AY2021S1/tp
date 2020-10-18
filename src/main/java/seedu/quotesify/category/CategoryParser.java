@@ -1,5 +1,7 @@
 package seedu.quotesify.category;
 
+import seedu.quotesify.exception.QuotesifyException;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
@@ -10,6 +12,7 @@ public class CategoryParser {
 
     private static final String ERROR_MISSING_CATEGORY = "Missing category name";
     private static final String ERROR_MISSING_BOOK_OR_QUOTE = "Please specify a book title or quote number!";
+    private static final String ERROR_MISSING_EDIT_PARAMS = "Please specify both an existing and a new category name!";
 
     private static Stack<String> convertStringArrayToStack(String[] tokens) {
         Stack<String> parameters = new Stack<>();
@@ -46,7 +49,7 @@ public class CategoryParser {
 
     public static boolean isValidParameters(String[] parameters) {
         String categoryName = parameters[0];
-        String bookTitle = parameters[1];
+        String bookNum = parameters[1];
         String quoteNum = parameters[2];
 
         if (categoryName.isEmpty()) {
@@ -54,11 +57,20 @@ public class CategoryParser {
             return false;
         }
 
-        if (quoteNum.isEmpty() && bookTitle.isEmpty()) {
+        if (quoteNum.isEmpty() && bookNum.isEmpty()) {
             System.out.println(ERROR_MISSING_BOOK_OR_QUOTE);
             return false;
         }
         return true;
+    }
+
+    public static String[] getEditParameters(String information) throws QuotesifyException {
+        try {
+            String[] oldAndNewCategory = information.split(" ");
+            return new String[]{oldAndNewCategory[0], oldAndNewCategory[1]};
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new QuotesifyException(ERROR_MISSING_EDIT_PARAMS);
+        }
     }
 
     public static List<String> parseCategoriesToList(String categories) {

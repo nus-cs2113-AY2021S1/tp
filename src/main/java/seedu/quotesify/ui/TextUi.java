@@ -41,6 +41,7 @@ public class TextUi {
     private static final String LIST_ALL_IN_CATEGORIES_MESSAGE = "Here are the list of items tagged as [%s]:";
     private static final String EMPTY_CATEGORY_LIST_MESSAGE = "There are no categories created!";
     private static final String NO_ITEMS_IN_CATEGORY_MESSAGE = "There are no items tagged as [%s].";
+    private static final String EDIT_CATEGORY_MESSAGE = "The category has been changed from [%s] to [%s]!";
     private static final String ADD_RATING_MESSAGE = "You have just rated [%s] %d star!";
     public static final String DELETE_RATING_MESSAGE = "Rating for [%s] has been deleted!";
     private static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
@@ -159,30 +160,37 @@ public class TextUi {
 
         System.out.printf(LIST_ALL_IN_CATEGORIES_MESSAGE + "\n", categoryName);
         printAllBooksInCategory(category);
-        System.out.println("");
+        System.out.println();
         printAllQuotesInCategory(category);
     }
 
     public void printAllBooksInCategory(Category category) {
         BookList bookList = category.getBookList();
+        BookList allBooks = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         if (bookList.getList().size() > 0) {
             System.out.println("BOOKS:");
-            for (int i = 0; i < bookList.getList().size(); i++) {
-                Book book = bookList.getList().get(i);
-                System.out.println((i + 1) + ". " + book.toString());
+            for (Book book : bookList.getList()) {
+                int index = allBooks.getIndex(book) + 1;
+                System.out.println(index + ". " + book.toString());
             }
         }
     }
 
     public void printAllQuotesInCategory(Category category) {
         QuoteList quoteList = category.getQuoteList();
+        QuoteList allQuotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
         if (quoteList.getList().size() > 0) {
             System.out.println("QUOTES:");
-            for (int i = 0; i < quoteList.getList().size(); i++) {
-                Quote quote = quoteList.getList().get(i);
-                System.out.println((i + 1) + ". " + quote.toString());
+            for (Quote quote : quoteList.getList()) {
+                int index = allQuotes.getIndex(quote) + 1;
+                // used print() because quote.toString() has additional line separator
+                System.out.print(index + ". " + quote.toString());
             }
         }
+    }
+
+    public void printEditCategory(String oldCategory, String newCategory) {
+        System.out.printf(EDIT_CATEGORY_MESSAGE + "\n", oldCategory, newCategory);
     }
 
     public void printErrorMessage(String message) {

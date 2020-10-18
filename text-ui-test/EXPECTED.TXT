@@ -55,7 +55,6 @@ BOOKS:
 QUOTES:
 1. "quote1"
 
-
 What would you like to do with Quotesify?
 The book [book1 by me] has been deleted!
 
