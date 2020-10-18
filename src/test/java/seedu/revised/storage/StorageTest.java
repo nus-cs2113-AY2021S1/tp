@@ -318,9 +318,8 @@ class StorageTest {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String jsonString = gson.toJson(subjects);
 
-        storage.export(subjects);
+        File exportFile = storage.export(subjects);
 
-        File exportFile = new File(storage.getExportDir().toString(), storage.getExportFilename());
         assertTrue(exportFile.exists());
         String storedJson = Files.readString(exportFile.toPath());
 

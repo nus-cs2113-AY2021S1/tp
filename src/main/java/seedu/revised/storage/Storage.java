@@ -303,12 +303,14 @@ public class Storage {
      * {@link Storage#getExportDir()}/{@link Storage#getExportFilename()}.
      *
      * @param subjects list of subjects to be saved to the storage
+     * @return the file that the data has been exported to
      * @throws IOException if fails to save to the file
      */
-    public void export(List<Subject> subjects) throws IOException {
+    public File export(List<Subject> subjects) throws IOException {
         Files.createDirectories(getExportDir().toPath());  // create export directory
         File file = new File(getExportDir().toString(), getExportFilename());
         saveToJson(file, subjects);
+        return file;
     }
 
     public File getBaseDir() {

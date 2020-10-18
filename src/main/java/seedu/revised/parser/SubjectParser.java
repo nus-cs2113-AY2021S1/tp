@@ -3,6 +3,7 @@ package seedu.revised.parser;
 import seedu.revised.command.subject.AddSubjectCommand;
 import seedu.revised.command.subject.DeleteSubjectCommand;
 import seedu.revised.command.subject.ExitSubjectCommand;
+import seedu.revised.command.subject.ExportCommand;
 import seedu.revised.command.subject.FindSubjectCommand;
 import seedu.revised.command.subject.ListSubjectCommand;
 import seedu.revised.command.subject.ReturnSubjectCommand;
@@ -27,6 +28,8 @@ public class SubjectParser {
             return new ExitSubjectCommand();
         } else if (fullCommand.equals("list")) {
             return new ListSubjectCommand();
+        } else if (fullCommand.equals("export")) {
+            return new ExportCommand();
         } else if (fullCommand.startsWith("add")) {
             return new AddSubjectCommand(fullCommand);
         } else if (fullCommand.startsWith("delete ")) {
