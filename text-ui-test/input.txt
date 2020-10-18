@@ -1,20 +1,47 @@
-hello
-mode bookmark
-list
-add CS2113T tutorial www.google.com
-add test delete www.jadfasd.adsfa
-add noModule www.google.com
-list
-delete 2
-list
-add asjdfalj
-add jasdkfl asdjfkla sjdkfla
-add noModule inValidUrl
-add empty  description
-list
 mode timetable
-add 10:00 12:00 mon cs1231 lecture
-add 1111
-add 10:00 11:00
-delete 1
+show
+show mon
+show cs2113
+show cs2113 bookmarks
+add cs2113
+show
+show mon
+show cs2113
+show cs2113 bookmarks
+add cs2113 lecture mon 12:00 13:00
+add cs2113 lecture mon 12:00 13:00 www.google.com
+add cs2213 lecture wed 12:00 13:00 www.google.com, tutorial tue 12:00 13:00, something www.google.com
+show
+show mon
+show tue
+show wed
+show cs2113
+show cs2113 bookmarks
+show cs2213
+show cs2213 bookmarks
+delete cs2113 1 bookmarks
+show
+show mon
+show tue
+show wed
+show cs2113
+show cs2113 bookmarks
+add cs2113 lecture mon 12:00 13:00 www.google.com
+show cs2113 bookmarks
+delete cs2213 bookmarks
+show cs2213 bookmarks
+delete cs2213 1
+show
+show mon
+show tue
+show wed
+show cs2213
+show cs2213 bookmarks
+delete cs2113
+show
+show mon
+show tue
+show wed
+show cs2113
+show cs2213
 exit
