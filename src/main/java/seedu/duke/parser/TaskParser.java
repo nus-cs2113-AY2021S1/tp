@@ -10,7 +10,7 @@ import static seedu.duke.command.CommandSummary.PRIORITY;
 import static seedu.duke.command.CommandSummary.TASK_ID;
 import static seedu.duke.command.CommandSummary.ADD;
 import static seedu.duke.command.CommandSummary.DELETE;
-import static seedu.duke.command.CommandSummary.DONE;;
+import static seedu.duke.command.CommandSummary.DONE;
 
 public class TaskParser implements ExceptionsParser {
     @Override
@@ -53,6 +53,8 @@ public class TaskParser implements ExceptionsParser {
             if (parameters.get(PRIORITY).isBlank()) {
                 throw new DukeException("Please enter a priority!");
             }
+            break;
+        default:
             break;
         }
     }

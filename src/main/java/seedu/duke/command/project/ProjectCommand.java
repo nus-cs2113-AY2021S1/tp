@@ -17,13 +17,15 @@ public class ProjectCommand {
     public void createProjectCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList) {
 
         String title;
-        String description;
-        String deadline;
-        String sd;
-
         title = parameters.get(TITLE);
+
+        String description;
         description = parameters.get(DESCRIPTION);
+
+        String deadline;
         deadline = parameters.get(DURATION);
+
+        String sd;
         sd = parameters.get(SPRINT_DURATION);
 
 

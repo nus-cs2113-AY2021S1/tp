@@ -26,8 +26,8 @@ public class ProjectParser implements ExceptionsParser {
         if (parameters.get(DURATION).isBlank() || !Parser.stringContainsNumber(parameters.get(DURATION))) {
             throw new DukeException("please give a number for duration");
         }
-        if (parameters.get(SPRINT_DURATION).isBlank() ||
-                !Parser.stringContainsNumber(parameters.get(SPRINT_DURATION))) {
+        if (parameters.get(SPRINT_DURATION).isBlank()
+                || !Parser.stringContainsNumber(parameters.get(SPRINT_DURATION))) {
             throw new DukeException("please give a number for sprint duration");
         }
     }

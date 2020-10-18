@@ -28,6 +28,8 @@ public class SprintParser implements ExceptionsParser {
             break;
         case ASSIGN:
             break;
+        default:
+            break;
         }
     }
 }
