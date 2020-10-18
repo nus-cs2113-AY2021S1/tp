@@ -28,17 +28,23 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " CS2113T\n";
 
     public static final String CARD_PARAMETERS = " q:QUESTION | a:ANSWER";
-    public static final String CARD_MESSAGE_USAGE = COMMAND_WORD + ": Add a flashcard.\n"
+    public static final String CARD_MESSAGE_USAGE = COMMAND_WORD + ": Adds a flashcard.\n"
             + "Parameters:" + CARD_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " q:What is the result of one plus one | a:two\n";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a module / chapter / flashcard.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module / chapter / flashcard.\n"
             + "Parameters:" + MODULE_PARAMETERS + "\n"
             + "           " + CHAPTER_PARAMETERS + "\n"
             + "           " + CARD_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " CS2113T\n"
             + "         " + COMMAND_WORD + " Chapter 1\n"
             + "         " + COMMAND_WORD + " q:What is the result of one plus one | a:two\n";
+
+    public static final String MESSAGE_INVALID_ACCESS = "Sorry, you are currently at %1$s"
+            + ", please go to %2$s level first.";
+
+    public static final String MESSAGE_SUCCESS = "Got it. I've added this %1$s:\n";
+    public static final String MESSAGE_COUNT = "Now you have %1$d %2$s(s) in the list.";
 
     private String moduleOrChapter;
     private Card card;
@@ -57,16 +63,19 @@ public class AddCommand extends Command {
     public void execute(Ui ui, Access access, Storage storage)
             throws IncorrectAccessLevelException, IOException {
         if (access.isChapterLevel()) {
-            addCard(ui, access, storage);
+            String result = addCard(access, storage);
+            ui.showToUser(result);
         } else if (access.isAdminLevel()) {
             Module module = new Module(moduleOrChapter);
-            addModule(ui, access, storage, module);
+            String result = addModule(access, storage, module);
+            ui.showToUser(result);
         } else if (access.isModuleLevel()) {
             Chapter chapter = new Chapter(moduleOrChapter, Chapter.rateChapter(), storage, access);
-            addChapter(ui, access, storage, chapter);
+            String result = addChapter(access, storage, chapter);
+            ui.showToUser(result);
         } else {
-            throw new IncorrectAccessLevelException("Sorry, you are currently at " + access.getLevel()
-                    + ", please go to " + accessLevel + " level first.\n");
+            throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS
+                    , access.getLevel(), accessLevel));
         }
     }
 
@@ -75,33 +84,45 @@ public class AddCommand extends Command {
         return false;
     }
 
-    private void addChapter(Ui ui, Access access, Storage storage, Chapter chapter) {
+    private String addChapter(Access access, Storage storage, Chapter chapter) {
         Module newModule = access.getModule();
         ChapterList chapters = newModule.getChapters();
         chapters.addChapter(chapter);
         int chapterCount = chapters.getChapterCount();
-        ui.showChapterAdded(chapter, chapterCount);
+        StringBuilder result = new StringBuilder();
+        result.append(String.format(MESSAGE_SUCCESS, "chapter"));
+        result.append(chapter.toString() + "\n");
+        result.append(String.format(MESSAGE_COUNT, chapterCount, "chapter"));
         access.setModule(newModule);
         storage.createChapter(chapter.getChapterName(), access.getModuleLevel());
+        return result.toString();
     }
 
-    private void addCard(Ui ui, Access access, Storage storage) throws IOException {
+    private String addCard(Access access, Storage storage) throws IOException {
         assert access.isChapterLevel() : "Not chapter level";
         CardList cards = access.getChapter().getCards();
         cards.addCard(card);
         int cardCount = cards.getCardCount();
-        ui.showCardAdded(cards.getCard(cardCount - 1), cardCount);
+        StringBuilder result = new StringBuilder();
+        result.append(String.format(MESSAGE_SUCCESS, "card"));
+        result.append(cards.getCard(cardCount - 1).toString() + "\n");
+        result.append(String.format(MESSAGE_COUNT, cardCount, "card"));
         storage.saveCards(cards, access.getModule().getModuleName(), access.getChapter().getChapterName());
+        return result.toString();
     }
 
-    private void addModule(Ui ui, Access access, Storage storage, Module module) {
+    private String addModule(Access access, Storage storage, Module module) {
         Admin newAdmin = access.getAdmin();
         ModuleList modules = newAdmin.getModules();
         modules.addModule(module);
         int moduleCount = modules.getModuleCount();
-        ui.showModuleAdded(module, moduleCount);
+        StringBuilder result = new StringBuilder();
+        result.append(String.format(MESSAGE_SUCCESS, "module"));
+        result.append(module.toString() + "\n");
+        result.append(String.format(MESSAGE_COUNT, moduleCount , "module"));
         access.setAdmin(newAdmin);
         storage.createModule(module.getModuleName());
+        return result.toString();
     }
 
 

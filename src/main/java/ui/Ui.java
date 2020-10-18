@@ -91,28 +91,6 @@ public class Ui {
         out.println();
     }
 
-    public void showCardAdded(Card card, int cardCount) {
-        out.println("Got it. I've added this card:");
-        out.println(card);
-        if (cardCount == 1) {
-            out.println("Now you have " + cardCount + " card in the list.");
-            return;
-        }
-        out.println("Now you have " + cardCount + " cards in the list.");
-    }
-
-    public void showModuleAdded(Module module, int moduleCount) {
-        out.println("    Got it. I've added this module:");
-        out.println("    " + module);
-        out.println("    Now you have " + moduleCount + " modules in the list.");
-    }
-
-    public void showChapterAdded(Chapter chapter, int chapterCount) {
-        out.println("    Got it. I've added this chapter:");
-        out.println("    " + chapter);
-        out.println("    Now you have " + chapterCount + " chapters in the list.");
-    }
-
     public void showCardList(ArrayList<Card> cards, int cardCount) {
         if (cardCount == 0) {
             out.println("There are no cards in your list.");

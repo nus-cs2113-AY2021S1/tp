@@ -69,10 +69,10 @@ public class Storage {
         if (!moduleDirExists) {
             moduleDirCreated = f.mkdir();
         } else {
-            System.out.println("    Directory " + f + " already exists");
+            System.out.println("Directory " + f + " already exists");
         }
         if (moduleDirCreated) {
-            System.out.println("    Successfully created new directory " + f);
+            System.out.println("Successfully created new directory " + f);
         }
     }
 
@@ -84,10 +84,10 @@ public class Storage {
             if (!chapterFileExists) {
                 chapterFileCreated = f.createNewFile();
             } else {
-                System.out.println("    File " + f + " already exists");
+                System.out.println("File " + f + " already exists");
             }
             if (chapterFileCreated) {
-                System.out.println("    Successfully created new file " + chapterName + ".txt");
+                System.out.println("Successfully created new file " + chapterName + ".txt");
             }
         } catch (IOException e) {
             System.out.println("Error creating the file.");
