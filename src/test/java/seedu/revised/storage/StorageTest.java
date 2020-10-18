@@ -49,7 +49,14 @@ class StorageTest {
     @BeforeEach
     void setUp() {
         // use tempDir as baseDir to avoid file creation for subjects
-        storage = new Storage(tempDir.toString(), "flashcard.txt", "tasks.txt", "results.txt");
+        storage = new Storage.StorageBuilder()
+                .setBaseDir(tempDir.toString())
+                .setExportDir(tempDir.toString())
+                .setFlashcardFilename("flashcards.json")
+                .setTaskFilename("tasks.txt")
+                .setResultFilename("results.json")
+                .setExportFilename("data.json")
+                .build();
 
         subjects = new ArrayList<>(List.of(
                 new Subject("subject1"),
