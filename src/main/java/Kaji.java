@@ -32,6 +32,7 @@ public class Kaji {
     public void run() {
         ui.showWelcome();
         ui.showHelpList();
+        ui.printLine();
         boolean isExit = false;
         while (!isExit) {
             try {
@@ -39,7 +40,7 @@ public class Kaji {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand, access);
                 c.execute(ui, access, storage);
-                ui.printEmptyLine();
+                ui.printLine();
                 isExit = c.isExit();
             } catch (InvalidInputException | IncorrectAccessLevelException | IOException 
                      | IndexOutOfBoundsException | InvalidFileFormatException e) {

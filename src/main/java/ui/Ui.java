@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static commands.ReviseCommand.MESSAGE_SHOW_ANSWER_PROMPT;
-import static commands.ReviseCommand.MESSAGE_SHOW_RATING_PROMPT;
+import static common.Messages.LINE;
 
 public class Ui {
     private final Scanner in;
@@ -88,8 +88,8 @@ public class Ui {
         out.println(access.getLevel());
     }
 
-    public void printEmptyLine() {
-        out.println();
+    public void printLine() {
+        out.println(LINE);
     }
 
     public void showToUser(String message) {
