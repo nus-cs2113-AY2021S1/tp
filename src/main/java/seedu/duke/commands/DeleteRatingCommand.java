@@ -3,7 +3,7 @@ package seedu.duke.commands;
 import seedu.duke.classes.Show;
 import seedu.duke.utility.ShowList;
 
-public class DeleteRatingCommand {
+public class DeleteRatingCommand extends Command {
     String showName;
 
     public DeleteRatingCommand(String showName) {

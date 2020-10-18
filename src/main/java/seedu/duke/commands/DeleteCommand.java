@@ -3,7 +3,7 @@ package seedu.duke.commands;
 import seedu.duke.utility.ErrorHandling;
 import seedu.duke.utility.ShowList;
 
-public class DeleteCommand {
+public class DeleteCommand extends Command {
     String showName;
 
     public DeleteCommand(String showName) {

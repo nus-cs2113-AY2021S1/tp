@@ -198,6 +198,8 @@ public class InputParser {
         } catch (NullPointerException e) {
             Ui.printBadInputException();
             return;
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printInvalidRatingInput();
         }
     }
 
