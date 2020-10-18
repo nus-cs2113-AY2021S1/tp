@@ -89,9 +89,9 @@ public class Lab extends SchoolEvent {
         writeToFile = LAB_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
                 + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue
                 + SEPARATOR + getAdditionalInformationCount();
-        if(getAdditionalInformationCount() != 0){
+        if (getAdditionalInformationCount() != 0) {
             int i;
-            for(i = 0; i < getAdditionalInformationCount(); i++) {
+            for (i = 0; i < getAdditionalInformationCount(); i++) {
                 writeToFile = writeToFile + SEPARATOR + getAdditionalInformationElement(i);
             }
         }

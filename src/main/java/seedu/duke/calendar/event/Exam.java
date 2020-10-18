@@ -76,9 +76,9 @@ public class Exam extends SchoolEvent {
         writeToFile = EXAM_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR
                 + moduleCode + SEPARATOR + date + SEPARATOR + time + SEPARATOR + venue
                 + SEPARATOR + getAdditionalInformationCount();
-        if(getAdditionalInformationCount() != 0){
+        if (getAdditionalInformationCount() != 0) {
             int i;
-            for(i = 0; i < getAdditionalInformationCount(); i++) {
+            for (i = 0; i < getAdditionalInformationCount(); i++) {
                 writeToFile = writeToFile + SEPARATOR + getAdditionalInformationElement(i);
             }
         }
