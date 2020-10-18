@@ -8,10 +8,10 @@ import static seedu.font.Colors.ANSI_YELLOW;
 
 public class Messages {
     public static final String LS = System.lineSeparator();
-    public static final String HELP_BORDER = " =================================================" +
-            "================================================= ";
-    public static final String HELP_BORDER_SPACE = "||                                                " +
-            "                                                ||";
+    public static final String HELP_BORDER = " ================================================="
+            + "================================================= ";
+    public static final String HELP_BORDER_SPACE = "||                                                "
+            + "                                                ||";
 
     public static final String INVALID_PRIORITY = "Invalid priority!" + LS;
     public static final String INVALID_COMMAND = "Invalid command!" + LS;
@@ -29,7 +29,7 @@ public class Messages {
             + "||         " + ANSI_CYAN + "  / /_/ / / __ `/  |/ / / / /\\__ \\ " + ANSI_RESET + "            ||" + LS
             + "||         " + ANSI_CYAN + " / ____/ / /_/ / /|  / /_/ /___/ / " + ANSI_RESET + "            ||" + LS
             + "||         " + ANSI_CYAN + "/_/   /_/\\__,_/_/ |_/\\____//____/  " + ANSI_RESET
-            + ANSI_CYAN+ "v1.0" + ANSI_RESET + "        ||" + LS
+            + ANSI_CYAN + "v1.0" + ANSI_RESET + "        ||" + LS
             + "||                                                        ||";
 
 

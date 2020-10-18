@@ -66,7 +66,6 @@ public class Ui {
     public void showReminders(TaskMap tasks) {
         assert tasks != null : "null tasks";
         TaskMap tasksDueToday = tasks.searchByDate(LocalDate.now());
-        TaskMap tasksDueTomorrow = tasks.searchByDate(LocalDate.now().plusDays(1));
         String messageFormat = "%-15s%-30s%15s" + LS;
         String taskFormat = "%-15s%-6s%-18s%-6s%15s" + LS;
         out.println("||" + padString(' ', 56) + "||");
@@ -80,6 +79,8 @@ public class Ui {
                 "||");
         }
         out.println("||" + padString(' ', 56) + "||");
+
+        TaskMap tasksDueTomorrow = tasks.searchByDate(LocalDate.now().plusDays(1));
         out.format(messageFormat, "||", "Upcoming tasks tomorrow:", "||");
         for (Task task : tasksDueTomorrow.getValues()) {
             out.format(taskFormat,
