@@ -82,6 +82,7 @@ Example of usage:
 `delete exercise 2`
 
 ### Show help messages: `help`
+
 Show help messages with all valid commands.
 
 Format: `help`
@@ -107,6 +108,20 @@ delete            Deletes selected entry<br/>
                   Format: delete food &lt;Index from Food List&gt; or delete exercise &lt;Index from Exercise List&gt;<br/>
 bye               Exits the program<br/></pre>
 
+### Clearing the lists: `clear`	
+
+Clears either the exercise list, or the food list, or both.	
+
+Format: `clear LIST`	
+
+- `LIST` can either take `exercise` or `food`.	
+- If `LIST` is not provided, both exercise and food lists are cleared.	
+
+Example of usage:	
+
+- `clear food` clears the food list.	
+- `clear` clears both the exercise and food lists.
+
 ### Exiting the program: `bye`
 
 Exits the program.
@@ -117,7 +132,6 @@ Format: `bye`
 
 The user's profile, food consumed and exercises done are saved automatically after any command that changes the data. 
 There is no need to save manually.
-
 
 ## FAQ
 
