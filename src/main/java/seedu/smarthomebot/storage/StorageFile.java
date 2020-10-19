@@ -86,15 +86,18 @@ public class StorageFile {
                 String location = splitString[0];
                 String power = splitString[2];
                 String type = splitString[3];
+                String parameter = splitString[6];
 
                 switch (type.toLowerCase()) {
                 case Fan.TYPE_WORD:
                     Fan fan = new Fan(name, location, power);
                     applianceList.addAppliance(fan);
+                    Fan.getSpeedFromLoadFile(parameter);
                     break;
                 case AirConditioner.TYPE_WORD:
                     AirConditioner ac = new AirConditioner(name, location, power);
                     applianceList.addAppliance(ac);
+                    ac.getTemperatureFromLoadFile(parameter);
                     break;
                 case Lights.TYPE_WORD:
                     Lights light = new Lights(name, location, power);
@@ -103,6 +106,7 @@ public class StorageFile {
                 case WaterHeater.TYPE_WORD:
                     WaterHeater waterheater = new WaterHeater(name, location, power);
                     applianceList.addAppliance(waterheater);
+                    waterheater.getTemperatureFromLoadFile(parameter);
                     break;
                 default:
                     ui.printToUser(MESSAGE_APPLIANCE_TYPE_NOT_EXIST);
@@ -122,10 +126,10 @@ public class StorageFile {
 
     private void readToLocationList(String location) throws EmptyParameterException, FileCorruptedException {
         try {
-            int start = location.indexOf("[") + 1;
-            int end = location.indexOf("]");
-            String when = location.substring(start, end);
-            String[] stringSplit = when.split(",");
+            int openBracesIndex = location.indexOf("[") + 1;
+            int closeBracesIndex = location.indexOf("]");
+            String locations = location.substring(openBracesIndex, closeBracesIndex);
+            String[] stringSplit = locations.split(",");
             for (String locationName : stringSplit) {
                 locationList.addLocation(locationName.trim());
             }

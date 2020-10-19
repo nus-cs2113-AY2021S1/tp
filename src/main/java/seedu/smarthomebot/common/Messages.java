@@ -46,4 +46,7 @@ public class Messages {
     public static final String MESSAGE_ILLEGAL_CHARACTER = "Illegal Character space or / detected in";
     public static final String MESSAGE_EMPTY_PARAMETER =
             "Empty Parameter detected! Please follow format and enter require parameters.";
+    public static final String MESSAGE_INVALID_TEMPERATURE_WH =
+            "Invalid speed is set, ensure that it is within 20-50 degrees. \n "
+                    + "Previous set speed will be set.";
 }

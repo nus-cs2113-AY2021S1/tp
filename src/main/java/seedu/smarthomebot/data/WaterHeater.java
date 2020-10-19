@@ -13,7 +13,7 @@ public class WaterHeater extends Appliance {
         this.temperature = "40";
     }
 
-    private void setTemperature(String temperature) {
+    public void setTemperature(String temperature) {
         this.temperature = temperature;
     }
 
@@ -21,8 +21,27 @@ public class WaterHeater extends Appliance {
         return "WaterHeater";
     }
 
+    public String getParameter() {
+        return this.temperature;
+    }
+
+    public void getTemperatureFromLoadFile(String loadedTemperature) {
+        temperature = loadedTemperature;
+    }
+
     private void setTimer(String duration) {
         this.duration = duration;
+    }
+
+    public String toString() {
+        String temperatureStatement;
+        if (appliancePower.getStatus()) {
+            temperatureStatement = " set at: " + getParameter() + " degrees";
+        } else {
+            temperatureStatement = "";
+        }
+
+        return super.toString() + temperatureStatement;
     }
 
     @Override
