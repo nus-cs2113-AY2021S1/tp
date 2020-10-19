@@ -37,6 +37,14 @@ public class CheckCommand extends Command {
         this.command = command;
     }
 
+    /**
+     * Execute function for the command to state user's availability in a given period.
+     *
+     * @param data    object of UserData class containing user's data.
+     * @param ui      containing the responses to print.
+     * @param storage with the save file path to write to.
+     * @throws DukeException if insufficient fields are given after the "check" keyword
+     */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
         String[] datesAndTime = command.split(";");
@@ -66,6 +74,13 @@ public class CheckCommand extends Command {
         }
     }
 
+    /**
+     * Date parser that interprets a date from a given string.
+     *
+     * @param stringDate the string containing date information
+     * @return a LocalDate corresponding to the date in stringDate or the current date if no date is found in the string
+     * @throws DateErrorException if stringDate does not correspond to a valid date format
+     */
     private LocalDate getDate(String stringDate) throws DateErrorException {
 
         String[] dateFields = stringDate.replace("-","/").split("/");
@@ -101,6 +116,13 @@ public class CheckCommand extends Command {
         }
     }
 
+    /**
+     * Time parser that interprets a time from a given string.
+     *
+     * @param stringTime the string containing time information
+     * @return a LocalTime corresponding to the time in stringTime or the current time if no time is found in the string
+     * @throws TimeErrorException if stringTime does not correspond to a valid time format
+     */
     private LocalTime getTime(String stringTime) throws TimeErrorException {
         LocalTime time;
         if (stringTime.isBlank()) { // if blank time is provided, default to current time
@@ -140,6 +162,16 @@ public class CheckCommand extends Command {
         }
     }
 
+    /**
+     * Checks for events within a given time period.
+     *
+     * @param eventsList the eventsList containing events to be checked
+     * @param startDate the start date of the time period to be checked
+     * @param endDate the end date of the time period to be checked
+     * @param startTime the start time of the time period to be checked
+     * @param endTime the end time of the time period to be checked
+     * @return an ArrayList of events found occurring during the time period
+     */
     public ArrayList<Event> checkEventsInTimeRange(EventList eventsList, LocalDate startDate, LocalDate endDate,
                                                    LocalTime startTime, LocalTime endTime) {
         ArrayList<Event> eventsInTimeRange = new ArrayList<>();
