@@ -24,6 +24,7 @@ Improves the reading experience of users with quick and easy features
 |--------|----------|---------------|------------------|
 |v1.0|user|give rating for the books I read|can recommend book titles to others when asked|
 |v1.0|user|categorise my books or quotes|can view items from a specific category whenever I need|
+|v1.0|user|save quotes I find meaningful|can view my favourite quotes whenever I want|
 |v2.0|user after some time|find a book rating by its book title|do not have to go through the whole list|
 
 ## Non-Functional Requirements
@@ -112,7 +113,36 @@ Improves the reading experience of users with quick and easy features
    * `delete -q X`: non integer inout
    * `delete -q 9999999`: non existent quote number
    
-   Expected: No quote is deleted. A message with error details will 
+   Expected: No quote is deleted. A message with error details will be shown.
+   
+### Editing a quote
+
+1. * Test case 1: `edit -q 1 /to I pretty much spend all day, every day just looking forward to go back to sleep`
+   * Test case 2: `edit -q 2 /to Don't give up on your dreams, keep sleeping! /by Stranger`
+   * Test case 3: `edit -q 2 /to That’s my spot! /from The Big Bang Theory`
+   * Test case 4: `edit -q 2 /to Wubba Lubba Dub Dub? /from Rick and Morty /by Rick`
+   
+   Expected: Quote will be updated, a prompt displaying old and updated quote will be shown.
+   
+2. Other incorrect commands to try:
+   * `edit -q` : missing quote number and updated quote
+   * `edit -q 1 /to`: missing updated quote
+   * `edit -q 1 You can't see me` : missing "/to" flag
+   * `edit -q 9999999 /to You can't see me` : none existent quote number
+   
+   Expected: Quote will not be updated. A message with error details will be shown.
+   
+### Finding a quote
+
+1. Test case: `find -q sleep`
+
+   Expected: Quotes related to the keyword will be shown.
+   
+2. Other incorrect commands to try:
+   * `find -q`: missing keyword
+   * `find -q `: empty space as keyword
+   
+   Expected: No quotes will be found. A message with error details will be shown.
 
 ### Adding categories
 1. Add one or more category to a book
