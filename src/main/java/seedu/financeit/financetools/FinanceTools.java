@@ -8,6 +8,25 @@ import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 
 public class FinanceTools {
+    public static double handleMonthlyCompoundInterest(CommandPacket packet) {
+        MonthlyCompoundInterest tool = new MonthlyCompoundInterest();
+        tool.setRequiredParams(
+                "/amount",
+                "/ir",
+                "/period"
+        );
+        try {
+            tool.handlePacket(packet);
+            return (tool.calculateCompoundInterest());
+        } catch (AssertionError error) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    "Input failed due to param error.");
+        } catch (InsufficientParamsException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                    exception.getMessage());
+        }
+        return 0;
+    }
 
     public static double handleCompoundInterest(CommandPacket packet) {
         CompoundInterest tool = new CompoundInterest();
@@ -96,6 +115,7 @@ public class FinanceTools {
     public static void main() {
 
         boolean endTracker = true;
+        String outputAmount;
 
         UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, "Welcome to Finance Tools!");
 
@@ -118,6 +138,11 @@ public class FinanceTools {
                 System.out.printf("Compound Interval: Yearly\n"
                         + "Total Interest Earned: $" + "%.2f",handleCompoundInterest(packet));
                 break;
+            case "cmonthly":
+                outputAmount = Double.toString(Math.round(handleMonthlyCompoundInterest(packet) * 100.00) / 100.00);
+                System.out.println("Total Interest Earned: $\n\n" + outputAmount);
+                //commands.add("Total Interest Earned: $" + outputAmount);
+                break;
             case "commands":
                 printCommandList();
                 break;
@@ -133,7 +158,7 @@ public class FinanceTools {
     }
 
     public static void printCommandList() {
-        TablePrinter.setTitle("printCommandList");
+        TablePrinter.setTitle("List of Commands");
         TablePrinter.addRow("No; Finance Tool             ;Input Format                                          ");
         TablePrinter.addRow("1; Simple Interest Calculator; simplecalc /amount {AMOUNT} /ir {INTEREST_RATE} ");
         TablePrinter.addRow("2; Compound Interest Calculator; compoundcalc /amount {AMOUNT} /ir {INTEREST_RATE} "
