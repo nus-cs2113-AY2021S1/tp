@@ -5,6 +5,9 @@ import seedu.smarthomebot.data.Fan;
 import seedu.smarthomebot.data.framework.Appliance;
 import seedu.smarthomebot.exceptions.InvalidValue;
 
+import java.util.ArrayList;
+
+import static java.util.stream.Collectors.toList;
 import static seedu.smarthomebot.common.Messages.LINE;
 import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_NOT_EXIST;
 import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
@@ -20,13 +23,11 @@ public class OnCommand extends Command {
             + "Example: " + COMMAND_WORD + " Aircon 1 ";
     private final String name;
     private final String parameter;
-    private final String type;
     private static final String APPLIANCE_TYPE = "appliance";
     private static final String LOCATION_TYPE = "location";
 
-    public OnCommand(String name, String type, String parameter) {
+    public OnCommand(String name, String parameter) {
         this.name = name;
-        this.type = type;
         this.parameter = parameter;
     }
 
@@ -89,7 +90,15 @@ public class OnCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        switch (this.type) {
+        String type = APPLIANCE_TYPE;
+        ArrayList<Appliance> filterApplianceList =
+                (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
+                        .filter((s) -> s.getLocation().contains(name))
+                        .collect(toList());
+        if (!filterApplianceList.isEmpty()) {
+            type = LOCATION_TYPE;
+        }
+        switch (type) {
         case(APPLIANCE_TYPE) :
             int toOnApplianceIndex = getApplianceToOnIndex();
             if (toOnApplianceIndex < 0) {

@@ -2,6 +2,9 @@ package seedu.smarthomebot.commands;
 
 import seedu.smarthomebot.data.framework.Appliance;
 
+import java.util.ArrayList;
+
+import static java.util.stream.Collectors.toList;
 import static seedu.smarthomebot.common.Messages.LINE;
 import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_NOT_EXIST;
 import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
@@ -14,13 +17,11 @@ public class OffCommand extends Command {
             + "Parameters: NAME\n"
             + "Example: " + COMMAND_WORD + " Fan 1";
     private final String name;
-    private final String type;
     private static final String APPLIANCE_TYPE = "appliance";
     private static final String LOCATION_TYPE = "location";
 
-    public OffCommand(String name, String type) {
+    public OffCommand(String name) {
         this.name = name;
-        this.type = type;
     }
 
     private int getApplianceToOffIndex() {
@@ -34,7 +35,15 @@ public class OffCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        switch (this.type) {
+        String type = APPLIANCE_TYPE;
+        ArrayList<Appliance> filterApplianceList =
+                (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
+                        .filter((s) -> s.getLocation().contains(name))
+                        .collect(toList());
+        if (!filterApplianceList.isEmpty()) {
+            type = LOCATION_TYPE;
+        }
+        switch (type) {
         case(APPLIANCE_TYPE) :
             int toOffApplianceIndex = getApplianceToOffIndex();
             if (toOffApplianceIndex < 0) {
@@ -69,7 +78,7 @@ public class OffCommand extends Command {
                 return new CommandResult("No appliance in this location");
             }
         default :
-            return new CommandResult("To be implemented for V0.2");
+            return new CommandResult("Invalid Format");
         }
     }
 }
