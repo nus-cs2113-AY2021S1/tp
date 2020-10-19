@@ -84,14 +84,14 @@ class ParserTest {
 
     @Test
     void parse_onCommand_parserCorrectly() {
-        final String input = "on n/Lightbulb";
+        final String input = "on Lightbulb";
         final Command result = parser.parseCommand(input);
         assertTrue(result.getClass().isAssignableFrom(OnCommand.class));
     }
 
     @Test
     void parse_offCommand_parserCorrectly() {
-        final String input = "off n/Lightbulb";
+        final String input = "off Lightbulb";
         final Command result = parser.parseCommand(input);
         assertTrue(result.getClass().isAssignableFrom(OffCommand.class));
     }

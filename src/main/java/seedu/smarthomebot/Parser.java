@@ -34,76 +34,42 @@ public class Parser {
         int indexParameter = arguments.indexOf("p/");
         String name;
         String parameter;
-        String type;
         try {
-            if (arguments.substring(0,2).equals("n/")) {
-                type = APPLIANCE_TYPE;
-                if (indexParameter < 1) {
-                    name = arguments.substring(2).trim();
-                    if (checkForEmptyInput(name)) {
-                        throw new EmptyParameterException();
-                    }
-                    parameter = "";
-                } else {
-                    name = arguments.substring(2,indexParameter).trim();
-                    parameter = arguments.substring(indexParameter + 2).toLowerCase().trim();
-                    if (checkForEmptyInput(name)
-                            || checkForEmptyInput(parameter)) {
-                        throw new EmptyParameterException();
-                    }
-                    convertParameterToInt(parameter);
-                }
-                return new OnCommand(name, type, parameter);
-            } else if (arguments.substring(0,2).equals("l/")) {
-                name = arguments.substring(2);
-                type = LOCATION_TYPE;
+            if (indexParameter < 1) {
+                name = arguments;
                 if (checkForEmptyInput(name)) {
                     throw new EmptyParameterException();
                 }
-                return new OnCommand(name, type, "0");
+                parameter = "";
             } else {
-                throw new InvalidFomartException();
+                name = arguments.substring(0, indexParameter).trim();
+                parameter = arguments.substring(indexParameter + 2).toLowerCase().trim();
+                if (checkForEmptyInput(name)
+                        || checkForEmptyInput(parameter)) {
+                    throw new EmptyParameterException();
+                }
+                convertParameterToInt(parameter);
             }
-
+            return new OnCommand(name, parameter);
         } catch (EmptyParameterException e) {
             return new InvalidCommand("Empty Appliance Name");
 
         } catch (InvalidValue e) {
             return new InvalidCommand(MESSAGE_POWER_NOT_NUMBER);
 
-        } catch (InvalidFomartException e) {
-            return new InvalidCommand("Invalid Format");
-
         }
-
     }
 
     private static Command prepareOffCommand(String arguments) {
-        String name;
-        String type;
         try {
-            name = arguments.substring(2);
-            if (checkForEmptyInput(name)) {
+            if (checkForEmptyInput(arguments)) {
                 throw new EmptyParameterException();
             }
-            if (arguments.substring(0,2).equals("n/")) {
-                type = APPLIANCE_TYPE;
-                return new OffCommand(name, type);
-            } else if (arguments.substring(0,2).equals("l/")) {
-                type = LOCATION_TYPE;
-                return new OffCommand(name, type);
-            } else {
-                throw new InvalidFomartException();
-            }
-
+            return new OffCommand(arguments);
         } catch (EmptyParameterException e) {
             return new InvalidCommand("Empty Appliance Name");
 
-        } catch (InvalidFomartException e) {
-            return new InvalidCommand("Invalid Format");
-
         }
-
     }
 
     private static void convertParameterToInt(String parameter) throws InvalidValue {
