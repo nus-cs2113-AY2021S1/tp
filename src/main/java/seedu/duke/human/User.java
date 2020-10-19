@@ -111,7 +111,7 @@ public class User extends Human {
         assert (name != null) : "Workspace details should not have any null.";
 
         workspaceList.add(newWorkspace);
-        LOGGER.log(Level.INFO, "Workspace created: " + name + " | " + gender);
+        LOGGER.log(Level.INFO, "Workspace created: " + name);
         return newWorkspace;
     }
 
