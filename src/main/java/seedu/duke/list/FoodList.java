@@ -54,7 +54,10 @@ public class FoodList {
         throw new FoodNotFoundException();
     }
 
-
+    /**
+     * Deletes the the entry of the list at the provided index.
+     * index starts from 1 (not 0). i.e. is User's understanding of index.
+     */
     public String delete(int index) throws IndexOutOfBoundsException {
         try {
             return FoodListManager.deleteEntry(foodEntries, index).toString();
@@ -75,6 +78,13 @@ public class FoodList {
      */
     public ArrayList<Food> getFoods() {
         return FoodListManager.listToFoods(foodEntries);
+    }
+
+    /**
+     * Obtain list of food objects in FoodList, scaled to portion size.
+     */
+    public ArrayList<Food> getPortionedFoods() {
+        return FoodListManager.listToPortionedFoods(foodEntries);
     }
 
     @Override
