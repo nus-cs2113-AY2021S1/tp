@@ -1,6 +1,7 @@
 # Duke
 
-{Give product intro here}
+Nav@NUS is a useful navigation application to aid you in navigating around NUS Kent Ridge campus via the provided
+shuttle bus.
 
 Useful links:
 * [User Guide](UserGuide.md)
