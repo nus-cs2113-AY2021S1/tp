@@ -46,6 +46,7 @@ public class Duke {
 
         ui.printWelcomeMessage();
         boolean isExit = false;
+        storage.loadAll(data);
         while (!isExit) {
             try {
                 String userInput = ui.receiveCommand();

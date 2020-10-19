@@ -2,6 +2,7 @@ package seedu.duke.storage;
 
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
+import seedu.duke.exception.InvalidListException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -53,6 +54,7 @@ public class Storage {
         fileZoomPath = createPath(zoomWords);
         fileGoalPath = createPath(goalWords);
         fileTimeTablePath = createPath(timeTableWords);
+        initialiseFolder();
 
     }
 
@@ -60,7 +62,7 @@ public class Storage {
      * Creates a folder for the events list if it does not exist yet.
      */
     protected void initialiseFolder() {
-        if (!Files.exists(fileNamePath)) {
+        if (!Files.exists(fileDirectoryPath)) {
             try {
                 Files.createDirectory(fileDirectoryPath);
             } catch (IOException e) {
@@ -81,12 +83,24 @@ public class Storage {
     }
 
     /**
+     * Loads every single data file into the program.
+     *
+     * @param data
+     */
+    public void loadAll(UserData data) {
+        loadFile(filePersonalPath, data, "Personal");
+        loadFile(fileZoomPath, data, "Zoom");
+        loadFile(fileTimeTablePath, data, "Timetable");
+
+    }
+
+    /**
      * Loads events from an external txt file.
      *
      * @param fileName is the file to load events from
      * @throws FileNotFoundException if no file with the given fileName is found
      */
-    public void loadFile(Path fileName, UserData data) {
+    public void loadFile(Path fileName, UserData data, String fileType) {
 
         try {
 
@@ -96,11 +110,20 @@ public class Storage {
             //Next, line by line reform the event
             for (int i = 0; i < fileLines.size(); i++) {
                 String line = fileLines.get(i);
+                Event activity = StorageParser.stringToEvent(line,fileType);
+                if (activity == null) {
+                    continue;
+                }
+                data.addToEventList(fileType, activity);
             }
 
             //finally, store the information in the correct list
         } catch (IOException e) {
             //do nothing
+            System.out.println("Error finding file, file does not exist");
+        } catch (InvalidListException e) {
+            //do nothing for now
+            System.out.println("Error, invalid list");
         }
     }
 

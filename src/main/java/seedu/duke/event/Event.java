@@ -56,7 +56,7 @@ public abstract class Event {
             this.isDone = true;
         } else {
             ArrayList<DateStatusPair> repeatedEvents = this.getRepeatList();
-            repeatedEvents.get(index).setDone(true);
+            repeatedEvents.get(index - 1).setDone(true);
         }
 
     }
