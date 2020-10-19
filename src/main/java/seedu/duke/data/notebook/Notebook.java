@@ -38,6 +38,10 @@ public class Notebook {
         return notes.get(index);
     }
 
+    public boolean getNote(String noteTitle) {
+        return notes.stream().anyMatch(note -> note.getTitle().equalsIgnoreCase(noteTitle));
+    }
+
     /**
      * Adds a note into the notebook.
      */
@@ -55,8 +59,8 @@ public class Notebook {
     /**
      * Removes a note from the timetable.
      */
-    public void deleteNote(String title) {
-        notes.removeIf(note -> note.getTitle().equals(title));
+    public boolean deleteNote(String title) {
+        return notes.removeIf(note -> note.getTitle().equalsIgnoreCase(title));
     }
 
     public void setNotes(ArrayList<Note> notes) {

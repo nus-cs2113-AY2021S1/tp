@@ -1,5 +1,7 @@
 package seedu.duke.command;
 
+import seedu.duke.ui.Formatter;
+
 /**
  * Represents an incorrect command. Upon execution, produces a message.
  */
@@ -13,7 +15,7 @@ public class IncorrectCommand extends Command {
 
     @Override
     public String execute() {
-        return message;
+        return Formatter.formatString(message, false);
     }
 
 }

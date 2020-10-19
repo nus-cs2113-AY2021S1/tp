@@ -43,7 +43,13 @@ public class Formatter {
 
     public static String formatNote(String header, Note note) {
         String formattedString = "";
-        return formattedString;
+
+        formattedString = formattedString.concat(generatesHeader(header));
+        String[] lines = note.getContent().split("\\n");
+        for (String line : lines) {
+            formattedString = formattedString.concat(encloseRow(line, false));
+        }
+        return encloseTopAndBottom(formattedString);
     }
 
     public static String formatTimetable(String header, Timetable timetable) {
