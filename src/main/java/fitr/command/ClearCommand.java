@@ -3,6 +3,8 @@ package fitr.command;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.storage.Storage;
+import fitr.ui.Ui;
+import fitr.user.User;
 
 import java.util.logging.Logger;
 
@@ -19,30 +21,30 @@ public class ClearCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage) {
+    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user) {
         if (arguments.length == 1) {
             LOGGER.fine("Clearing food and exercise lists.");
             foodlist.clearList();
             exerciseList.clearList();
-            System.out.println("Food and exercise lists are both cleared!");
+            Ui.printCustomMessage("Food and exercise lists are both cleared!");
         } else if (arguments.length == 2) {
             switch (arguments[1]) {
             case "food":
                 LOGGER.fine("Clearing food list.");
                 foodlist.clearList();
-                System.out.println("Food list is cleared!");
+                Ui.printCustomMessage("Food list is cleared!");
                 break;
             case "exercise":
                 LOGGER.fine("Clearing exercise lists.");
                 exerciseList.clearList();
-                System.out.println("Exercise list is cleared!");
+                Ui.printCustomMessage("Exercise list is cleared!");
                 break;
             default:
-                System.out.println("Invalid clear command entered!");
+                Ui.printCustomMessage("Invalid clear command entered!");
                 break;
             }
         } else {
-            System.out.println("Invalid clear command entered!");
+            Ui.printCustomMessage("Invalid clear command entered!");
         }
     }
 

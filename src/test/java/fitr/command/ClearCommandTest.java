@@ -6,6 +6,7 @@ import fitr.Food;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.storage.Storage;
+import fitr.user.User;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,7 +17,8 @@ public class ClearCommandTest {
         ClearCommand clearCommand = new ClearCommand("clear");
         FoodList foodList = getFoodList();
         ExerciseList exerciseList = getExerciseList();
-        clearCommand.execute(foodList, exerciseList, getStorage());
+        User user = new User();
+        clearCommand.execute(foodList, exerciseList, getStorage(), user);
         assertEquals(0, foodList.getSize());
         assertEquals(0, exerciseList.getSize());
     }
@@ -26,7 +28,8 @@ public class ClearCommandTest {
         ClearCommand clearCommand = new ClearCommand("clear food");
         FoodList foodList = getFoodList();
         ExerciseList exerciseList = getExerciseList();
-        clearCommand.execute(foodList, exerciseList, getStorage());
+        User user = new User();
+        clearCommand.execute(foodList, exerciseList, getStorage(), user);
         assertEquals(0, foodList.getSize());
     }
 
@@ -35,7 +38,8 @@ public class ClearCommandTest {
         ClearCommand clearCommand = new ClearCommand("clear exercise");
         FoodList foodList = getFoodList();
         ExerciseList exerciseList = getExerciseList();
-        clearCommand.execute(foodList, exerciseList, getStorage());
+        User user = new User();
+        clearCommand.execute(foodList, exerciseList, getStorage(), user);
         assertEquals(0, exerciseList.getSize());
     }
 

@@ -10,6 +10,7 @@ import fitr.command.HelpCommand;
 import fitr.command.InvalidCommand;
 import fitr.command.ViewCommand;
 import fitr.command.EditProfileCommand;
+import fitr.common.Commands;
 
 public class Parser {
     public static Command parse(String userInput) {
@@ -36,7 +37,7 @@ public class Parser {
                 return new InvalidCommand(userInput);
             }
             return new DeleteCommand(userInput);
-        case "clear":
+        case Commands.COMMAND_CLEAR:
             return new ClearCommand(userInput);
         case "bye":
             return new ExitCommand(userInput);
