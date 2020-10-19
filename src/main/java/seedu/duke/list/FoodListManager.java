@@ -30,6 +30,7 @@ public class FoodListManager {
     }
 
     protected static FoodEntry deleteEntry(List<FoodEntry> list, int index) throws IndexOutOfBoundsException {
+        assert (index > 0) : "Invalid index (negative/zero) was given.";
         int indexToDelete = index - 1;
         try {
             return list.remove(indexToDelete);
@@ -95,4 +96,4 @@ public class FoodListManager {
 
 }
 
-// create a functional interface for the function instead:
+// Potential future work: create a functional interface for the functions instead:

@@ -19,6 +19,9 @@ public class FoodList {
         this.foodEntries = new ArrayList<>();
     }
 
+    /**
+     * Convenience constructor mainly for testing purposes.
+     */
     protected FoodList(ArrayList<FoodEntry> entries) {
         this.foodEntries = entries;
     }
@@ -36,7 +39,7 @@ public class FoodList {
         foodEntries.add(toAdd);
         return toAdd.toString();
     }
-    
+
     /**
      * Default add method that adds a food entry using the food details and portion size.
      */
