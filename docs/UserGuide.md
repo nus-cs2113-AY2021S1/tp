@@ -35,12 +35,12 @@ It helps you to prioritise your work and balance your time spent among your modu
 
 ## Features 
 
-### View help: `help`
+### i. View help: `help`
 Shows a list of the commands available.
 
 Format: help
 
-### Add a module: `addmod <module code>`
+### ii. Add a module: `addmod <module code>`
 Adds a module to the database.
 
 Format: addmod <module code>
@@ -53,7 +53,7 @@ Examples of usage:
 
 `addmod CG2027`
 
-### Add expected module workload: `addexp <module code> <expected workload>` 
+### iii. Add expected module workload: `addexp <module code> <expected workload>` 
 Adds the expected workload of the module to the database.
 
 Format: `addexp <module code> <expected workload>`
@@ -68,7 +68,7 @@ Examples of usage:
 
 `ADDEXP CS1010 8`
 
-### Add actual time spent on a module: `addtime <module code> <time> <week>`
+### iv. Add actual time spent on a module: `addtime <module code> <time> <week>`
 Adds the time spent on the indicated module.
 
 Format: `addtime <module code> <time spent> <week number>`
@@ -83,7 +83,7 @@ Examples of usage:
 
 `addtime CS1010 3.5 2`
 
-### List expected and actual time spent of all modules: `list <week number>`
+### v. List expected and actual time spent of all modules: `list <week number>`
 Shows a list of the modules, their expected module workload, and the actual time spent for the specific week.
 
 Format: `list <week number>`
@@ -96,7 +96,7 @@ Examples of usage:
 
 `List 2`
 
-### Delete a module: `deletemod <module code>`
+### vi. Delete a module: `deletemod <module code>`
 Deletes the specified module code from the database.
 
 Format: `deletemod <module code>`
@@ -109,7 +109,7 @@ Examples of usage:
 
 `deletemod CS2113T`
 
-### Delete expected module workload: `deleteexp <module code>`
+### vii. Delete expected module workload: `deleteexp <module code>`
 Deletes the specified module code workload from the database.
 
 Format: `deleteexp <module code>`
@@ -122,7 +122,7 @@ Examples of usage:
 
 `deleteexp CS2113T`
 
-### Minus from actual time spent on a module: `minus <module code> <time spent> <week number>`
+### viii. Minus from actual time spent on a module: `minus <module code> <time spent> <week number>`
 Minus the actual time spent on a specified module.
 
 Format: `minus <module code> <time spent> <week number>` 
@@ -137,12 +137,12 @@ Examples of usage:
 
 `minus CS2113T 3 1`
 
-### Exit the program : `exit`
+### ix. Exit the program : `exit`
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### x. Saving the data
 Time spent is saved in the hard disk automatically after any command that changes the data. There is no need to save manually. 
 
 
