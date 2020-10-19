@@ -102,7 +102,7 @@ public class Quote implements JsonSerializer {
         } else if (reference != null) {
             quoteInformation = " - " + reference;
         }
-        return quoteWithoutInformation + quoteInformation + System.lineSeparator();
+        return quoteWithoutInformation + quoteInformation;
     }
 
     @Override

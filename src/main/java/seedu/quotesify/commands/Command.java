@@ -36,6 +36,7 @@ public abstract class Command {
     public static final String ERROR_TODO_NOT_FOUND = "There is no such task!";
     public static final String ERROR_BOOKMARK_NOT_FOUND = "There is no such bookmark!";
     public static final String ERROR_LIST_UNKNOWN_COMMAND = "I do not understand that command. Try again";
+    public static final String ERROR_MISSING_EDIT_FLAG = "Editing requires a \"/to\" flag";
 
     public static final String FLAG_AUTHOR = "/by";
     public static final String FLAG_REFERENCE = "/from";
