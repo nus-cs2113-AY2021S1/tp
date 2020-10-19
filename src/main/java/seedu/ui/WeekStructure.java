@@ -10,6 +10,7 @@ public class WeekStructure extends DisplayDateStructure {
     private static final int DISPLAY_LENGTH = 141;
     private static final int DISPLAY_HEIGHT = 11;
     private static final int DAY_COLUMN_WIDTH = 20;
+    private static final int HASHCODE_STRING_LENGTH = 6;
 
     @Override
     protected void generateScreen(TaskMap tasks) {
@@ -49,9 +50,10 @@ public class WeekStructure extends DisplayDateStructure {
                     break;
                 }
                 temp = "#" + task.getTaskID();
-                temp += Util.padString(' ', 6 - temp.length());
+                // # + 4 digits + " " = 6
+                temp += Util.GeneratePadStringWithCharAndLength(' ', HASHCODE_STRING_LENGTH - temp.length());
                 temp += task.getDescription();
-                temp = temp.length() > 20 ? temp.substring(0, 16) + "..." : temp;
+                Util.limitStringWithDots(temp, 20);
                 putsIntoArray(temp, screen[currentRow++], currentCol);
             }
 
