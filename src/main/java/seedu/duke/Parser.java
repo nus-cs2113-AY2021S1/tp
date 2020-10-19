@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.command.ClearCommand;
 import seedu.duke.command.bookmark.AddBookmarkCommand;
 import seedu.duke.command.timetable.AddSlotCommand;
 import seedu.duke.command.bookmark.DeleteBookmarkCommand;
@@ -45,6 +46,8 @@ public class Parser {
             command = new ExitCommand();
         } else if (input.startsWith(ChangeModeCommand.MODE_KW)) {
             command = new ChangeModeCommand(input);
+        } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
+            command = new ClearCommand();
         } else if (programMode == 1) {
             command = createBookmarkCommand(input);
         } else if (programMode == 2) {
@@ -69,6 +72,8 @@ public class Parser {
             return new LaunchBookmarkCommand(input);
         } else if (input.startsWith(FindBookmarkCommand.FIND_KW)) {
             command = new FindBookmarkCommand(input);
+        } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
+            command = new ClearCommand();
         } else {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
         }
@@ -86,6 +91,8 @@ public class Parser {
             command = new DeleteSlotCommand(input);
         } else if (input.startsWith(ShowTimetableCommand.SHOW_KW)) {
             return new ShowTimetableCommand(input);
+        } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
+            command = new ClearCommand();
         } else {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
         }

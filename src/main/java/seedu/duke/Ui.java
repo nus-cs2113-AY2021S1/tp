@@ -101,11 +101,15 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    public void clearScreen() {
+        System.out.print(ansi().eraseScreen());
+    }
+
     /**
      * Prints a message after starting the program.
      */
     public void showWelcomeScreen() {
-        System.out.println(ansi().eraseScreen());
+        clearScreen();
         System.out.println(LINE);
         System.out.println("HELLO FROM:");
 
