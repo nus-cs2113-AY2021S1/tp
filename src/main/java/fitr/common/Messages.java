@@ -38,12 +38,12 @@ public class Messages {
     public static final String FEMALE_STRING = "Female";
 
 
-    public static final String ERROR_INVALID_COMMAND = "Sorry this is an invalid command!\n";
-    public static final String ERROR_INVALID_INDEX = "Please input a valid index!\n";
-    public static final String ERROR_INVALID_CALORIES = "Sorry! Calories should be a number.\n";
+    public static final String ERROR_INVALID_COMMAND = "Sorry this is an invalid command!";
+    public static final String ERROR_INVALID_INDEX = "Please input a valid index!";
+    public static final String ERROR_INVALID_CALORIES = "Sorry! Calories should be a number.";
 
     //ViewCommand class messages
-    public static final String ERROR_INVALID_VIEW_COMMAND = "Sorry this is an invalid view command!\n";
+    public static final String ERROR_INVALID_VIEW_COMMAND = "Sorry this is an invalid view command!";
     public static final String EMPTY_FOOD_LIST = "The food list is empty...";
     public static final String EMPTY_EXERCISE_LIST = "The exercise list is empty...";
     public static final String FOOD_LIST_HEADER = "Here is the list of your food:";
