@@ -63,15 +63,21 @@ public class Ui {
         out.println("   " + padString('_', 93));
         out.format(headerFormat, "Index", "Description", "Date", "Start", "End", "Priority");
         out.println("   " + padString('-', 93));
-        for (Task task : tasks.getValues()) {
-            out.format(contentFormat,
-                "#" + task.getTaskID(),
-                limitString(task.getDescription(), 20),
-                task.getDate(),
-                task.getStartTime() == null ? "" : task.getStartTime(),
-                task.getEndTime() == null ? "" : task.getEndTime(),
-                task.getPriority());
+
+        if (tasks.size() == 0) {
+            out.println("  |" + padString(' ', 93) + "|");
+        } else {
+            for (Task task : tasks.getValues()) {
+                out.format(contentFormat,
+                    "#" + task.getTaskID(),
+                    limitString(task.getDescription(), 20),
+                    task.getDate(),
+                    task.getStartTime() == null ? "" : task.getStartTime(),
+                    task.getEndTime() == null ? "" : task.getEndTime(),
+                    task.getPriority());
+            }
         }
+
         out.println("   " + padString('-', 93));
         out.println();
     }
