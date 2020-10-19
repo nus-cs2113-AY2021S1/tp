@@ -9,16 +9,21 @@ import seedu.financeit.manualtracker.ManualTracker;
 import seedu.financeit.manualtracker.subroutine.Entry;
 import seedu.financeit.manualtracker.subroutine.EntryList;
 import seedu.financeit.parser.InputParser;
+import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import java.time.Month;
 
 import java.util.Scanner;
 
+/**
+ * This is the class that will handle the setting of goals
+ * for expense and income for each and every individual months.
+ */
 
 public class GoalTracker {
     private static String[] cmdPacket;
     private static String[] editPacket;
-    private static Goal goalSetter;
+    private static Goal goalToSet;
     private static Scanner scanner = new Scanner(System.in);
     private static int expenseGoal = 0;
     private static int incomeGoal = 0;
@@ -34,33 +39,30 @@ public class GoalTracker {
     private static Month month;
     private static Month ledgerMonth;
     private static boolean isExist = false;
+    private static boolean isEnd = false;
 
+    /**
+     * This main() function will handle the user input and based on the input will call out
+     * to another method/function.
+     */
 
     public static void main() {
-        UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, "Welcome to Goals Tracker");
-        UiManager.printWithStatusIcon(Constants.PrintType.INSTRUCTION, "Input the following commands "
-                        + "to set goals for either expense or income.");
-        System.out.println("[1]. expense <amount> for <Month in number form (e.g 01 -> Jan)>");
-        System.out.println("[2]. income <amount> for <Month in number form (e.g 01 -> Jan)>");
-        System.out.println("[3]. To display goals for respective months, enter the following commands"
-                + " display expense/income for <Month in number form (e.g 01 -> Jan)>");
-        System.out.println("[4]. edit expense/income <amount> for <Month in number form (e.g 01 -> Jan)>");
-        System.out.println("[5]. Enter <exit> to leave Goals Tracker");
-
         exitTracker = false;
-        input = UiManager.handleInput();
-        cmdPacket = new InputParser().parseGoalCommand(input.toLowerCase());
-        editPacket = new InputParser().parseEditCommand(input.toLowerCase());
         while (!exitTracker) {
+            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, "Welcome to Goals Tracker");
+            displayCommandList();
+            input = UiManager.handleInput();
+            cmdPacket = new InputParser().parseGoalCommand(input.toLowerCase());
+            editPacket = new InputParser().parseEditCommand(input.toLowerCase());
             switch (cmdPacket[0]) {
             case "expense":
-                setExpenseGoal();
+                setExpenseGoal(cmdPacket);
                 break;
             case "income":
-                setIncomeGoal();
+                setIncomeGoal(cmdPacket);
                 break;
             case "display":
-                displayGoal();
+                handleDisplayGoal();
                 break;
             case "edit":
                 editGoal();
@@ -77,6 +79,24 @@ public class GoalTracker {
         }
     }
 
+    public static void displayCommandList() {
+        TablePrinter.setTitle("List of Commands");
+        TablePrinter.addRow("No.;Command            ;Input Format                                                ");
+        TablePrinter.addRow("1.;Expense Goal;expense {amount} for {Month in number form (e.g 01 = Jan)}");
+        TablePrinter.addRow("2.;Income Goal;income {amount} for {Month in number form (e.g 01 = Jan)}");
+        TablePrinter.addRow("3.;Display Expense/Income goal for individual month;display expense/income for "
+                + "{Month in number form (e.g 01 = Jan)}");
+        TablePrinter.addRow("4.;Edit Expense/Income Goal;edit expense/income {amount} for "
+                + "{Month in number form (e.g 01 = Jan)}");
+        TablePrinter.addRow("5.;Exit Goals Tracker;{exit}");
+        TablePrinter.printList();
+
+    }
+
+    /**
+     * This function will allow user to edit their respective goal
+     * for respective months.
+     */
     public static void editGoal() {
         try {
             month = Month.of(Integer.parseInt(editPacket[4]));
@@ -85,16 +105,15 @@ public class GoalTracker {
                 for (int i = 0; i < totalGoalList.getListSize(); i++) {
                     try {
                         if (totalGoalList.getGoal().get(i).getExpenseMonth().equals(month)) {
-                            goalSetter = new Goal(expenseGoal, "Expense", month);
-                            totalGoalList.getGoal().set(i, goalSetter);
+                            goalToSet = new Goal(expenseGoal, "Expense", month);
+                            totalGoalList.getGoal().set(i, goalToSet);
                             UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "You have successfully"
                                     + " edited your expense goal for " + month);
-                            main();
                         } else {
 
                         }
-                    } catch (NullPointerException e) {
-                        continue;
+                    } catch (NullPointerException e) { // This NullPointerException occurs when the first object in the
+                        continue;                      // arraylist is not expense so it will continue the for loop.
                     }
                 }
 
@@ -107,8 +126,8 @@ public class GoalTracker {
                 for (int i = 0; i < totalGoalList.getListSize(); i++) {
                     try {
                         if (totalGoalList.getGoal().get(i).getIncomeMonth().equals(month)) {
-                            goalSetter = new Goal(incomeGoal, "Income", month);
-                            totalGoalList.getGoal().set(i, goalSetter);
+                            goalToSet = new Goal(incomeGoal, "Income", month);
+                            totalGoalList.getGoal().set(i, goalToSet);
                             UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "You have successfully"
                                     + " edited your income goal for " + month);
                             main();
@@ -136,13 +155,19 @@ public class GoalTracker {
         return incomeGoal;
     }
 
+    /**
+     * This function is for save and load of the expense and income goals
+     * for respective months.
+     * @param expense
+     * @param income
+     */
     public static void setGoals(int expense, int income) {
         if(expense != 0) {
             try {
                 month = Month.of(Integer.parseInt(cmdPacket[3]));
                 expenseGoal = expense;
-                goalSetter = new Goal(expenseGoal, "Expense", month);
-                totalGoalList.addGoal(goalSetter);
+                goalToSet = new Goal(expenseGoal, "Expense", month);
+                totalGoalList.addGoal(goalToSet);
             } catch (DateTimeException e) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
                         + " a valid month");
@@ -152,8 +177,8 @@ public class GoalTracker {
             try {
                 month = Month.of(Integer.parseInt(cmdPacket[3]));
                 incomeGoal = income;
-                goalSetter = new Goal(incomeGoal, "Income", month);
-                totalGoalList.addGoal(goalSetter);
+                goalToSet = new Goal(incomeGoal, "Income", month);
+                totalGoalList.addGoal(goalToSet);
             } catch (DateTimeException e) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
                         + " a valid month");
@@ -161,27 +186,34 @@ public class GoalTracker {
         }
     }
 
-    private static void displayGoal() {
+    /**
+     * This function will handle and parser the user command to differentiate whether
+     * user want to display for expense for income.
+     */
+    private static void handleDisplayGoal() {
         try {
             if (cmdPacket[1].equals("expense")) {
                 ledgerMonth = null;
-                handleExpenseGoal();
+                displayExpenseGoal();
             } else if (cmdPacket[1].equals("income")) {
                 ledgerMonth = null;
-                handleIncomeGoal();
+                displayIncomeGoal();
             }
         } catch (IndexOutOfBoundsException e) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Please enter either expense "
             + "or income");
-            main();
         }
     }
 
-    private static void setExpenseGoal() {
+    /**
+     * This function will handle the setting of expense goal
+     * for the indicated months.
+     */
+    public static void setExpenseGoal(String[] userInput) {
         try {
             isExist = false;
-            month = Month.of(Integer.parseInt(cmdPacket[3]));
-            expenseGoal = Integer.parseInt(cmdPacket[1]);
+            month = Month.of(Integer.parseInt(userInput[3]));
+            expenseGoal = Integer.parseInt(userInput[1]);
             for (int i = 0; i < totalGoalList.getListSize(); i++) {
                 try {
                     if (totalGoalList.getGoal().get(i).getExpenseMonth().equals(month)) {
@@ -195,33 +227,32 @@ public class GoalTracker {
             if (isExist == true) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "You have an existing "
                         + "expense goal for " + month);
-                main();
             } else {
-                goalSetter = new Goal(expenseGoal, "Expense", month);
-                totalGoalList.addGoal(goalSetter);
+                goalToSet = new Goal(expenseGoal, "Expense", month);
+                totalGoalList.addGoal(goalToSet);
                 UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "You have set $" + expenseGoal
                         + " as your Expense Goals for " + month);
-                main();
             }
-        } catch (DateTimeException e) {
+        } catch (DateTimeException e) { // This exception occurs if they did not enter correct format for the month
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
                     + " a valid month");
-            main();
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e) { // This exception occurs when there is invalid input
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
                     + " a valid amount/date");
-            main();
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) { // This exception occurs when the userInput is missing params
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "You are missing params");
-            main();
         }
     }
 
-    private static void setIncomeGoal() {
+    /**
+     * This function will handle the setting of income
+     * goals for indicated month.
+     */
+    public static void setIncomeGoal(String[] userInput) {
         try {
             isExist = false;
-            month = Month.of(Integer.parseInt(cmdPacket[3]));
-            incomeGoal = Integer.parseInt(cmdPacket[1]);
+            month = Month.of(Integer.parseInt(userInput[3]));
+            incomeGoal = Integer.parseInt(userInput[1]);
             for (int i = 0; i < totalGoalList.getListSize(); i++) {
                 try {
                     if (totalGoalList.getGoal().get(i).getIncomeMonth().equals(month)) {
@@ -235,28 +266,30 @@ public class GoalTracker {
             if (isExist == true) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "You have an existing "
                         + "income goal for " + month);
-                main();
             } else {
-                goalSetter = new Goal(incomeGoal, "Income", month);
-                totalGoalList.addGoal(goalSetter);
+                goalToSet = new Goal(incomeGoal, "Income", month);
+                totalGoalList.addGoal(goalToSet);
                 UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "You have set $" + incomeGoal
                         + " as your Income Goals for " + month);
-                main();
             }
-        } catch (DateTimeException e) {
+        } catch (DateTimeException e) { // This exception occurs if they did not enter correct format for the month
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
                     + " a valid month");
-            main();
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e) { // This exception occurs when there is invalid input
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
                     + " a valid amount/date");
-            main();
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) { // This exception occurs when the command is missing params
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "You are missing params");
-            main();
         }
     }
 
+    /**
+     * This function will be called in EntryTracker class when there is a
+     * new entry being stored into a ledger. The purpose is to parse the
+     * entry to categories whether it is expense or income.
+     * @param entry
+     * @class EntryTracker
+     */
     public static void targetGoalTracker(Entry entry) {
         entryData = entry;
         entryCategory = entryData.getEntryType().toString();
@@ -267,43 +300,38 @@ public class GoalTracker {
         }
     }
 
+    /**
+     * This function is called when a ledger is being created
+     * or opened by date.
+     * The purpose is to store the ledgerMonth which the entry is being added to
+     * @param ledger
+     * @class ManualTracker
+     */
     public static void storeLedgerDate(Ledger ledger) {
         ledgerMonth = ledger.getDate().getMonth();
     }
 
-    public static void handleExpenseGoal() {
+    /**
+     * This function allows user to display their expense goal
+     * for indicated month
+     */
+    public static void displayExpenseGoal() {
         LedgerList ledgerList = ManualTracker.getLedgerList();
         totalExpenses = 0;
         int ledgerSize = ledgerList.getItemsSize();
         for (int i = 0; i < ledgerSize; i++) {
             Ledger ledger = (Ledger) ledgerList.getItemAtIndex(i);
-            if (ledgerMonth == null) {
-                month = Month.of(Integer.parseInt(cmdPacket[3]));
-                if (ledger.getDate().getMonth().equals(month)) {
-                    EntryList entryList = ledger.entryList;
-                    int entrySize = entryList.getItemsSize();
-                    for (int x = 0; x < entrySize; x++) {
-                        Entry entry = (Entry) entryList.getItemAtIndex(x);
-                        if (entry.getEntryType().toString().equals("Expense")) {
-                            expenses = entry.getAmount();
-                            totalExpenses += expenses;
-                        } else {
+            month = Month.of(Integer.parseInt(cmdPacket[3]));
+            if (ledger.getDate().getMonth().equals(month)) {
+                EntryList entryList = ledger.entryList;
+                int entrySize = entryList.getItemsSize();
+                for (int x = 0; x < entrySize; x++) {
+                    Entry entry = (Entry) entryList.getItemAtIndex(x);
+                    if (entry.getEntryType().toString().equals("Expense")) {
+                        expenses = entry.getAmount();
+                        totalExpenses += expenses;
+                    } else {
                             totalExpenses += totalExpenses;
-                        }
-                    }
-                }
-            } else if (ledgerMonth != null) {
-                if (ledger.getDate().getMonth().equals(ledgerMonth)) {
-                    EntryList entryList = ledger.entryList;
-                    int entrySize = entryList.getItemsSize();
-                    for (int x = 0; x < entrySize; x++) {
-                        Entry entry = (Entry) entryList.getItemAtIndex(x);
-                        if (entry.getEntryType().toString().equals("Expense")) {
-                            expenses = entry.getAmount();
-                            totalExpenses += expenses;
-                        } else {
-                            totalExpenses += totalExpenses;
-                        }
                     }
                 }
             }
@@ -311,6 +339,39 @@ public class GoalTracker {
         printExpenseGoal();
     }
 
+    /**
+     * This function will handle the expense goal by
+     * summing up the total expense being made by the
+     * user based on the indicated month. Lastly printing
+     * the expense goal status.
+     */
+    public static void handleExpenseGoal() {
+        LedgerList ledgerList = ManualTracker.getLedgerList();
+        totalExpenses = 0;
+        int ledgerSize = ledgerList.getItemsSize();
+        for (int i = 0; i < ledgerSize; i++) {
+            Ledger ledger = (Ledger) ledgerList.getItemAtIndex(i);
+            if (ledger.getDate().getMonth().equals(ledgerMonth)) {
+                EntryList entryList = ledger.entryList; // Get all the entry from the respective month ledger
+                int entrySize = entryList.getItemsSize();
+                for (int x = 0; x < entrySize; x++) {
+                    Entry entry = (Entry) entryList.getItemAtIndex(x);
+                    if (entry.getEntryType().toString().equals("Expense")) {
+                        expenses = entry.getAmount();
+                        totalExpenses += expenses;  // For each expenses entry we sum up the total
+                    } else {
+                            totalExpenses += totalExpenses;
+                    }
+                }
+            }
+        }
+        printExpenseGoal(); // call print method to display the goal status for the month
+    }
+
+    /**
+     * This function will print the expense goal status for the
+     * indicated month.
+     */
     public static void printExpenseGoal() {
         try {
             for (int i = 0; i < totalGoalList.getListSize(); i++) {
@@ -388,39 +449,27 @@ public class GoalTracker {
         }
     }
 
-    public static void handleIncomeGoal() {
+    /**
+     * This function allows user to display their income goal
+     * for indicated month
+     */
+    public static void displayIncomeGoal() {
         LedgerList ledgerList = ManualTracker.getLedgerList();
         totalIncomes = 0;
         int ledgerSize = ledgerList.getItemsSize();
         for (int i = 0; i < ledgerSize; i++) {
             Ledger ledger = (Ledger) ledgerList.getItemAtIndex(i);
-            if (ledgerMonth == null) {
-                month = Month.of(Integer.parseInt(cmdPacket[3]));
-                if (ledger.getDate().getMonth().equals(month)) {
-                    EntryList entryList = ledger.entryList;
-                    int entrySize = entryList.getItemsSize();
-                    for (int x = 0; x < entrySize; x++) {
-                        Entry entry = (Entry) entryList.getItemAtIndex(x);
-                        if (entry.getEntryType().toString().equals("Income")) {
-                            incomes = entry.getAmount();
-                            totalIncomes += incomes;
-                        } else {
-                            totalIncomes += totalIncomes;
-                        }
-                    }
-                }
-            } else {
-                if (ledger.getDate().getMonth().equals(ledgerMonth)) {
-                    EntryList entryList = ledger.entryList;
-                    int entrySize = entryList.getItemsSize();
-                    for (int x = 0; x < entrySize; x++) {
-                        Entry entry = (Entry) entryList.getItemAtIndex(x);
-                        if (entry.getEntryType().toString().equals("Income")) {
-                            incomes = entry.getAmount();
-                            totalIncomes += incomes;
-                        } else {
-                            totalIncomes += totalIncomes;
-                        }
+            month = Month.of(Integer.parseInt(cmdPacket[3]));
+            if (ledger.getDate().getMonth().equals(month)) {
+                EntryList entryList = ledger.entryList;
+                int entrySize = entryList.getItemsSize();
+                for (int x = 0; x < entrySize; x++) {
+                    Entry entry = (Entry) entryList.getItemAtIndex(x);
+                    if (entry.getEntryType().toString().equals("Income")) {
+                        incomes = entry.getAmount();
+                        totalIncomes += incomes;
+                    } else {
+                        totalIncomes += totalIncomes;
                     }
                 }
             }
@@ -428,6 +477,39 @@ public class GoalTracker {
         printIncomeGoal();
     }
 
+    /**
+     * This function will handle the income goal by
+     * summing up the total income being saved by the
+     * user based on the indicated month. Lastly printing
+     * the income goal status
+     */
+    public static void handleIncomeGoal() {
+        LedgerList ledgerList = ManualTracker.getLedgerList();
+        totalIncomes = 0;
+        int ledgerSize = ledgerList.getItemsSize();
+        for (int i = 0; i < ledgerSize; i++) {
+            Ledger ledger = (Ledger) ledgerList.getItemAtIndex(i);
+            if (ledger.getDate().getMonth().equals(ledgerMonth)) {
+                EntryList entryList = ledger.entryList; // Get all entry for the respective month ledger
+                int entrySize = entryList.getItemsSize();
+                for (int x = 0; x < entrySize; x++) {
+                    Entry entry = (Entry) entryList.getItemAtIndex(x);
+                    if (entry.getEntryType().toString().equals("Income")) {
+                        incomes = entry.getAmount();
+                        totalIncomes += incomes;    // For each income entry we sum up the total
+                    } else {
+                        totalIncomes += totalIncomes;
+                    }
+                }
+            }
+        }
+        printIncomeGoal(); // call print method to display the goal status for the month
+    }
+
+    /**
+     * This function will print the income goal status for the
+     * indicated month
+     */
     public static void printIncomeGoal() {
         try {
             for (int i = 0; i < totalGoalList.getListSize(); i++) {

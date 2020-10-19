@@ -15,11 +15,25 @@ public class InputParser {
     public InputParser() {
     }
 
+    /**
+     * This will parse the command into 4 small parts
+     * Example: expense 5000 for 08
+     * Output: expense;5000;for;08
+     * @param userCommand
+     * @return
+     */
     public String[] parseGoalCommand (String userCommand) {
         String[] newCommand = userCommand.split(" ", 4);
         return newCommand;
     }
 
+    /**
+     * This will parse the edit command into 5 small parts
+     * Example: edit expense 2000 for 08
+     * Output: edit;expense;2000;for;08
+     * @param userCommand
+     * @return
+     */
     public String[] parseEditCommand (String userCommand) {
         String[] newCommand = userCommand.split(" ", 5);
         return newCommand;
