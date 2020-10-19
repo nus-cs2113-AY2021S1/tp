@@ -13,6 +13,7 @@ import commands.ListCommand;
 import commands.ListDueCommand;
 import commands.RemoveCommand;
 import commands.ReviseCommand;
+import commands.HistoryCommand;
 
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
@@ -57,9 +58,18 @@ public class Parser {
             return prepareGo(commandArgs);
         case ListDueCommand.COMMAND_WORD:
             return prepareListDue(commandArgs);
+        case HistoryCommand.COMMAND_WORD:
+            return prepareHistory(commandArgs);
         default:
             throw new InvalidInputException("There is no such command type.\n");
         }
+    }
+
+    private static Command prepareHistory(String commandArgs) throws InvalidInputException {
+        if (commandArgs.isEmpty()) {
+            throw new InvalidInputException();
+        }
+        return new HistoryCommand(commandArgs);
     }
 
     private static Command prepareGo(String commandArgs) throws InvalidInputException {
@@ -373,6 +383,24 @@ public class Parser {
             throw new InvalidInputException("There should not be any arguments for list.");
         }
         return new ListDueCommand();
+    }
+
+    public static String parseTaskNameInFile(String arg) throws InvalidFileFormatException {
+        String name = arg.trim();
+        if (name.isEmpty()) {
+            throw new InvalidFileFormatException();
+        }
+
+        return name;
+    }
+
+    public static String parsePercentInFile(String arg) throws InvalidFileFormatException {
+        String percent = arg.trim().substring(0,3);
+        if (percent.isEmpty()) {
+            throw new InvalidFileFormatException();
+        }
+
+        return percent;
     }
 }
 

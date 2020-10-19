@@ -12,6 +12,7 @@ import commands.ReviseCommand;
 import commands.BackCommand;
 
 import manager.card.Card;
+import manager.history.History;
 import manager.chapter.Chapter;
 import manager.module.Module;
 
@@ -143,6 +144,17 @@ public class Ui {
         out.println("Here are the chapters in your list:");
         for (Chapter c : chapters) {
             out.println((chapters.indexOf(c) + 1) + "." + c);
+        }
+    }
+
+    public void showHistoryList(ArrayList<History> histories, int count) {
+        if (count == 0) {
+            out.println("You haven't completed any task in the last session.");
+            return;
+        }
+        out.println("Here are the tasks you have completed in the session/in a day:");
+        for (History h : histories) {
+            out.println((histories.indexOf(h) + 1) + "." + h);
         }
     }
 

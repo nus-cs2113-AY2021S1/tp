@@ -2,6 +2,7 @@ package access;
 
 import manager.admin.Admin;
 import manager.chapter.Chapter;
+import manager.history.History;
 import manager.module.Module;
 
 public class Access {

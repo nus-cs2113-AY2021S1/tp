@@ -5,11 +5,15 @@ import exception.InvalidFileFormatException;
 import manager.card.Card;
 import manager.chapter.CardList;
 import manager.chapter.Chapter;
+import manager.history.History;
+import manager.history.HistoryList;
 import scheduler.Scheduler;
 import storage.Storage;
 import ui.Ui;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -70,7 +74,7 @@ public class ReviseCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) throws FileNotFoundException {
+    public void execute(Ui ui, Access access, Storage storage) throws IOException {
         Chapter toRevise = getChapter(reviseIndex, access, ui);
         if (!Scheduler.isDeadlineDue(toRevise.getDueBy())) {
             return;
@@ -96,6 +100,18 @@ public class ReviseCommand extends Command {
         assert remainingCards == 0 : "Cards were left in repeat revision";
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
         toRevise.setDueBy(Scheduler.computeDeckDeadline(toRevise.getCards()), storage, access);
+
+        addHistory(access, storage);
+    }
+
+    private void addHistory(Access access, Storage storage) throws IOException {
+        String moduleName = access.getModule().getModuleName();
+        String chapterName = access.getChapter().getChapterName();
+        History history = new History(moduleName, chapterName, 100);
+        LocalDate date = java.time.LocalDate.now();
+        HistoryList histories = access.getAdmin().getHistories();
+        histories.addHistory(history);
+        storage.saveHistory(histories, date.toString());
     }
 
     public static ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards, Card c, String input) {

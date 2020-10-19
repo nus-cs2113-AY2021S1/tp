@@ -3,9 +3,11 @@ package storage;
 import access.Access;
 import exception.InvalidFileFormatException;
 import manager.card.Card;
+import manager.history.History;
 import manager.chapter.CardList;
 import manager.chapter.Chapter;
 import manager.chapter.DueChapter;
+import manager.history.HistoryList;
 import parser.Parser;
 import manager.module.Module;
 import scheduler.Scheduler;
@@ -297,5 +299,68 @@ public class Storage {
         File file = new File(getFilePath() + "/" + module.toString());
         boolean success = file.renameTo(new File(getFilePath() + "/" + newModuleName));
         return success;
+    }
+
+    public void createHistoryDir() {
+        File f = new File(filePath + "/" + "history");
+        boolean historyDirExists = f.exists();
+        if (!historyDirExists) {
+            f.mkdir();
+        }
+    }
+
+    public void createHistory(String date) {
+        try {
+            File f = new File(filePath + "/history/" + date + ".txt");
+            boolean historyFileExists = f.exists();
+            boolean historyFileCreated = false;
+            if (!historyFileExists) {
+                historyFileCreated = f.createNewFile();
+            }
+
+            if (historyFileCreated) {
+                System.out.println("    Successfully created new history file " + date + ".txt");
+            }
+        } catch (IOException e) {
+            System.out.println("Error creating the file.");
+        }
+    }
+
+    public void saveHistory(HistoryList histories, String date) throws IOException {
+        FileWriter fw = new FileWriter(getFilePath() + "/history/" + date + ".txt");
+        for (int i = 0; i < histories.getHistoryCount(); i++) {
+            fw.write(histories.getHistory(i).toString());
+        }
+        fw.close();
+    }
+
+    public ArrayList<History> loadHistory(String date) throws FileNotFoundException {
+        File f = new File(filePath + "/history/" + date + ".txt");
+        boolean fileExists = f.exists();
+        if (!fileExists) {
+            throw new FileNotFoundException();
+        }
+
+        ArrayList<History> histories = new ArrayList<>();
+        Scanner s = new Scanner(f);
+        while (s.hasNext()) {
+            //to read the history
+            String task = s.nextLine();
+            String[] args = task.split("\\(", 2);
+            String[] name = args[0].split("/", 2);
+            try {
+                String moduleName = Parser.parseTaskNameInFile(name[0]);
+                String chapterName = Parser.parseTaskNameInFile(name[1]);
+                String percent = Parser.parsePercentInFile(args[1]);
+                int percentage = Integer.parseInt(percent);
+
+                History history = new History(moduleName, chapterName, percentage);
+                histories.add(history);
+            } catch (InvalidFileFormatException e) {
+                return null;
+            }
+        }
+        s.close();
+        return histories;
     }
 }

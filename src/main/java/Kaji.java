@@ -10,6 +10,7 @@ import ui.Ui;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class Kaji {
     private Ui ui;
@@ -32,6 +33,9 @@ public class Kaji {
     public void run() {
         ui.showWelcome();
         ui.showHelpList();
+        storage.createHistoryDir();
+        LocalDate date = java.time.LocalDate.now();
+        storage.createHistory(date.toString());
         boolean isExit = false;
         while (!isExit) {
             try {
