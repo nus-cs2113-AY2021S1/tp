@@ -8,7 +8,7 @@
                                     |_|
 
 WELCOME TO SCRUMPTIOUS
-command>Exception found: Missing parameters.
+command>No projects are created.
 command>Exception found: Missing parameters.
 command>Project successfully created.
 
@@ -21,14 +21,32 @@ command>Project successfully created.
 [There are no Sprints]
 =================================================================
 
-command>Exception found: Missing parameters.
+command>
+============================ PROJECT ============================
+[Title: MeTube]
+[Description: video streaming software]
+[No members added]
+[Project will start along with the first sprint]
+[Project backlog is empty]
+[There are no Sprints]
+=================================================================
+
 command>amy has been added to the project.
 john has been added to the project.
 mary has been added to the project.
 jane has been added to the project.
 bob has been added to the project.
 command>bob has been removed from the project.
-command>Exception found: Missing parameters.
+command>
+============================ PROJECT ============================
+[Title: MeTube]
+[Description: video streaming software]
+[Members: amy john mary jane]
+[Project will start along with the first sprint]
+[Project backlog is empty]
+[There are no Sprints]
+=================================================================
+
 command>Task successfully created.
 
 [Task]
@@ -89,7 +107,24 @@ command>Task successfully created.
 	Completion: Incomplete
 	Task have yet to be assigned to anyone
 
-command>Exception found: Missing parameters.
+command>
+============================ PROJECT ============================
+[Title: MeTube]
+[Description: video streaming software]
+[Members: amy john mary jane]
+[Project will start along with the first sprint]
+
+---------------------------- BACKLOG ----------------------------
+[Task ID: 1]	[Title: dummyTask1]	[Completion: Incomplete]
+[Task ID: 2]	[Title: dummyTask2]	[Completion: Incomplete]
+[Task ID: 3]	[Title: dummyTask3]	[Completion: Incomplete]
+[Task ID: 4]	[Title: dummyTask4]	[Completion: Incomplete]
+[Task ID: 5]	[Title: dummyTask5]	[Completion: Incomplete]
+[Task ID: 6]	[Title: dummyTask6]	[Completion: Incomplete]
+-----------------------------------------------------------------
+[There are no Sprints]
+=================================================================
+
 command>The details of the tasks are as follows: 
 
 [Task]
@@ -142,7 +177,29 @@ command>
 [Remaining: 0 days]
 [No allocated tasks]
 =================================================================
-command>Exception found: Missing parameters.
+command>
+============================ PROJECT ============================
+[Title: MeTube]
+[Description: video streaming software]
+[Members: amy john mary jane]
+[Period: 2020-10-10 - 2020-11-08] 
+
+---------------------------- BACKLOG ----------------------------
+[Task ID: 1]	[Title: dummyTask1]	[Completion: Incomplete]
+[Task ID: 2]	[Title: dummyTask2]	[Completion: Incomplete]
+[Task ID: 3]	[Title: dummyTask3]	[Completion: Incomplete]
+[Task ID: 4]	[Title: dummyTask4]	[Completion: Incomplete]
+[Task ID: 5]	[Title: dummyTask5]	[Completion: Incomplete]
+[Task ID: 6]	[Title: dummyTask6]	[Completion: Incomplete]
+-----------------------------------------------------------------
+
+-------------------------- ALL SPRINTS --------------------------
+[Sprint ID: 1]	[Goal: milestone1]	[Period: 2020-10-10 - 2020-10-19]
+[Sprint ID: 2]	[Goal: milestone2]	[Period: 2020-10-20 - 2020-10-29]
+[Sprint ID: 3]	[Goal: milestone3]	[Period: 2020-10-30 - 2020-11-08]
+-----------------------------------------------------------------
+=================================================================
+
 command>
 ========================= CURRENT SPRINT ========================
 [ID: 1]
@@ -222,7 +279,28 @@ command>
 command>dummyTask3 removed from sprint.
 command>dummyTask1 has been marked as done.
 command>The corresponding task dummyTask4 has been removed from project.
-command>Exception found: Missing parameters.
+command>
+============================ PROJECT ============================
+[Title: MeTube]
+[Description: video streaming software]
+[Members: amy john mary jane]
+[Period: 2020-10-10 - 2020-11-08] 
+
+---------------------------- BACKLOG ----------------------------
+[Task ID: 1]	[Title: dummyTask1]	[Completion: Completed]
+[Task ID: 2]	[Title: dummyTask2]	[Completion: Incomplete]
+[Task ID: 3]	[Title: dummyTask3]	[Completion: Incomplete]
+[Task ID: 5]	[Title: dummyTask5]	[Completion: Incomplete]
+[Task ID: 6]	[Title: dummyTask6]	[Completion: Incomplete]
+-----------------------------------------------------------------
+
+-------------------------- ALL SPRINTS --------------------------
+[Sprint ID: 1]	[Goal: milestone1]	[Period: 2020-10-10 - 2020-10-19]
+[Sprint ID: 2]	[Goal: milestone2]	[Period: 2020-10-20 - 2020-10-29]
+[Sprint ID: 3]	[Goal: milestone3]	[Period: 2020-10-30 - 2020-11-08]
+-----------------------------------------------------------------
+=================================================================
+
 command>
 ========================= CURRENT SPRINT ========================
 [ID: 1]
