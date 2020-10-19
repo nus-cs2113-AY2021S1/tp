@@ -18,12 +18,9 @@ import ui.UI;
 
 
 class EditCommandTest {
-
-
     @Test
     void execute_noIndexSpecified_emptyEventIndexException() {
-        Assertions.assertThrows(EmptyEventIndexException.class, () ->
-        {
+        Assertions.assertThrows(EmptyEventIndexException.class, () -> {
             Command c = Parser.parse("edit");
         });
 
@@ -31,8 +28,7 @@ class EditCommandTest {
 
     @Test
     void execute_inputIsNotInteger_WrongEditFormatException() {
-        Assertions.assertThrows(WrongEditFormatException.class, () ->
-        {
+        Assertions.assertThrows(WrongEditFormatException.class, () -> {
             Command c = Parser.parse("edit c");
         });
     }
