@@ -23,10 +23,24 @@ public class InfoCommand extends Command {
      * Shows information of anime 
      */
     @Override
-    public String execute(AnimeData animeData, StorageManager storageManager, User user) {
-        animeData.printOne(animeIndex);
+    public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
+        int indexSize = animeData.getSize();
+        StringBuilder result = new StringBuilder();
+        
+        if (animeIndex < 0) {
+            LOGGER.log(Level.WARNING, OUT_OF_BOUND_INDEX_ERROR);
+            throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
+        } else if (animeIndex >= indexSize) {
+            LOGGER.log(Level.WARNING, OUT_OF_BOUND_INDEX_ERROR);
+            throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
+        }
+        
+        result.append("Here is the information for the anime:");
+        result.append(System.lineSeparator());
+        String animeInfo = animeData.returnAnimeInfo(animeIndex);
+        result.append(animeInfo);
 
-        return "Anime info shown";
+        return result.toString();
     }
 
     public void setAnimeIndex(Integer animeIndex) {

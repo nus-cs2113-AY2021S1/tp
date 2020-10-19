@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class InfoParser extends CommandParser {
-    protected static final String ANIME_ID_PARAM = "-a";
+    protected static final String ANIME_ID_PARAM = "a";
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
     private static final Logger LOGGER = Logger.getLogger(InfoParser.class.getName());
     
@@ -38,19 +38,20 @@ public class InfoParser extends CommandParser {
             }
 
             switch (paramParts[0].trim()) {
-                case "": // skip empty param
-                    break;
-                case ANIME_ID_PARAM:
-                    paramFieldCheck(paramParts);
-                    paramExtraFieldCheck(paramParts);
-                    if (!isInt(paramParts[1].trim())) {
-                        throw new AniException(NON_INTEGER_PROVIDED);
-                    }
-                    infoCommand.setAnimeIndex(Integer.parseInt(paramParts[1].trim()));
-                    break;
-                default:
-                    String invalidParameter = PARAMETER_ERROR_HEADER + param + NOT_RECOGNISED;
-                    throw new AniException(invalidParameter);
+            case "": // skip empty param
+                break;
+            case ANIME_ID_PARAM:
+                paramFieldCheck(paramParts);
+                paramExtraFieldCheck(paramParts);
+                if (!isInt(paramParts[1].trim())) {
+                    throw new AniException(NON_INTEGER_PROVIDED);
+                }
+                infoCommand.setAnimeIndex(Integer.parseInt(paramParts[1].trim()));
+                break;
+            default:
+                String invalidParameter = PARAMETER_ERROR_HEADER + param + NOT_RECOGNISED;
+                throw new AniException(invalidParameter);
             }
         }
+    }
 }
