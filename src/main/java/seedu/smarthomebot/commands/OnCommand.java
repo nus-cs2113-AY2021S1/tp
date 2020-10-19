@@ -9,7 +9,12 @@ import seedu.smarthomebot.exceptions.InvalidValue;
 import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toList;
-import static seedu.smarthomebot.common.Messages.*;
+import static seedu.smarthomebot.common.Messages.LINE;
+import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_NOT_EXIST;
+import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
+import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_FAN_SPEED;
+import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_TEMPERATURE_AC;
+import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_TEMPERATURE_WH;
 
 public class OnCommand extends Command {
 
