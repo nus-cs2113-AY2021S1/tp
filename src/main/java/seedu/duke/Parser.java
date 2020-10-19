@@ -16,6 +16,7 @@ import seedu.duke.command.PrintTasksCommand;
 import seedu.duke.command.PrintTimelineCommand;
 import seedu.duke.command.PrioritizeCommand;
 import seedu.duke.command.ViewInfoCommand;
+import seedu.duke.command.PrintSuggestionCommand;
 
 /**
  * Determines the type of command input by the user and calls for the respective command function.
@@ -36,6 +37,7 @@ public class Parser {
     public static final String COMMAND_VIEW_INFO = "/v";
     public static final String COMMAND_PRIORITIZE = "*";
     public static final String COMMAND_PRINT_PRIORITY = "print *";
+    public static final String COMMAND_PRINT_SUGGESTION = "suggestion";
 
     public static Command handleUserInput(String userInput) {
 
@@ -67,6 +69,8 @@ public class Parser {
             return new PrioritizeCommand(userInput);
         } else if (userInput.equals(COMMAND_PRINT_PRIORITY)) {
             return new PrintPriorityCommand(userInput);
+        } else if (userInput.equals(COMMAND_PRINT_SUGGESTION)) {
+            return new PrintSuggestionCommand(userInput);
         } else {
             /** An invalid command is catered for in AddCommand */
             return new AddCommand(userInput);

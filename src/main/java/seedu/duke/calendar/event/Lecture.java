@@ -86,8 +86,17 @@ public class Lecture extends SchoolEvent {
      */
     @Override
     public String printIntoFile() {
-        return LECTURE_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
-                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue;
+        String writeToFile;
+        writeToFile = LECTURE_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
+                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue
+                + SEPARATOR + getAdditionalInformationCount();
+        if (getAdditionalInformationCount() != 0) {
+            int i;
+            for (i = 0; i < getAdditionalInformationCount(); i++) {
+                writeToFile = writeToFile + (SEPARATOR + getAdditionalInformationElement(i));
+            }
+        }
+        return writeToFile;
     }
 
     /**

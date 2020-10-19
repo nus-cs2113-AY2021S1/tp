@@ -9,6 +9,8 @@ import seedu.duke.calendar.event.Lecture;
 import seedu.duke.calendar.event.Tutorial;
 import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Task;
+import seedu.duke.calendar.task.Todo;
+import seedu.duke.command.PrintSuggestionCommand;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,7 +56,8 @@ public class Ui {
                 + "20. countdown exams\n"
                 + "21. countdown deadlines\n"
                 + "22. /a <event number> - information\n"
-                + "23. /v <event number>"
+                + "23. /v <event number>\n"
+                + "24. suggestion"
         );
     }
 
@@ -390,6 +393,47 @@ public class Ui {
             System.out.println("You have no important tasks now!");
         } else {
             System.out.println("There are in total " + taskCount + " important tasks in your list.");
+        }
+    }
+
+    /**
+     * Show the earliest important deadline task if exists,
+     * and the earliest ordinary deadline task if it exists and is before the important earliest.
+     * Show the fist important todo task in the list if exists,
+     * otherwise show the first ordinary todo task in the list if exists.
+     *
+     * @param earliestDeadline the deadline task with earliest due date.
+     * @param earImportantDeadline the important deadline task with earliest due date.
+     * @param firstTodo the first todo task in the list.
+     * @param firImportantTodo the first important todo task in the list.
+     */
+    public static void printSuggestion(Task earliestDeadline, Task earImportantDeadline,
+                                       Task firstTodo, Task firImportantTodo) {
+        if (earImportantDeadline == null && earliestDeadline == null
+                && firImportantTodo == null && firstTodo == null) {
+            System.out.println("You have no unfinished tasks now!");
+        } else {
+            System.out.println("Maybe you can prepare for the following tasks now:");
+            if (earImportantDeadline != null) {
+                System.out.println("The earliest unfinished important deadline: "
+                        + earImportantDeadline.toString());
+                if (earliestDeadline != null
+                        && earliestDeadline.getDate().isBefore(earImportantDeadline.getDate())) {
+                    System.out.println("The earliest unfinished ordinary deadline: "
+                            + earliestDeadline.toString());
+                }
+            } else if (earliestDeadline != null) {
+                System.out.println("The earliest unfinished ordinary deadline: "
+                        + earliestDeadline.toString());
+            }
+
+            if (firImportantTodo != null) {
+                System.out.println("The first unfinished important todo task: "
+                        + firImportantTodo.toString());
+            } else if (firstTodo != null) {
+                System.out.println("The first unfinished ordinary todo task: "
+                        + firstTodo.toString());
+            }
         }
     }
 
