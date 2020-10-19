@@ -51,6 +51,9 @@ public class Parser {
 
         case "bookmark":
             return new BookmarkParser().parse(description);
+        
+        case "info":
+            return new InfoParser().parse(description);
 
         case "help":
             return new HelpCommand();
