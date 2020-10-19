@@ -1,12 +1,9 @@
 package seedu.smarthomebot.data;
 
-import seedu.smarthomebot.data.framework.Appliance;
-import seedu.smarthomebot.exceptions.InvalidAddtionOfLocation;
+import seedu.smarthomebot.exceptions.DuplicateDataException;
 import seedu.smarthomebot.exceptions.InvalidRemovalLocationException;
 
 import java.util.ArrayList;
-
-import static seedu.smarthomebot.common.Messages.LINE;
 
 public class LocationList {
     private ArrayList<String> locations = new ArrayList<>();
@@ -16,12 +13,12 @@ public class LocationList {
      *
      * @param location used to be added into the location list
      */
-    public void addLocation(String location) throws InvalidAddtionOfLocation {
+    public void addLocation(String location) throws DuplicateDataException {
         // create location from Appliance
         if (!isLocationCreated(location)) {
             this.locations.add(location);
         } else {
-            throw new InvalidAddtionOfLocation();
+            throw new DuplicateDataException();
         }
     }
 

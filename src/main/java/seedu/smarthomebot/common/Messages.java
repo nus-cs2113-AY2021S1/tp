@@ -23,10 +23,11 @@ public class Messages {
     public static final String MESSAGE_LIST_NO_LOCATIONS = "There is currently no locations in the list.";
     public static final String MESSAGE_LIST_NO_APPLIANCES = "There is currently no appliances in the list.";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid Command Format";
-    public static final String MESSAGE_INVALID_ADD_COMMAND = "Please follow order of AddCommand";
+    public static final String MESSAGE_INVALID_ADD_COMMAND =
+            "Please follow this order, add NAME l/[LOCATION_NAME] w/[WATTS] t/[TYPE_OF_APPLIANCE]";
     public static final String MESSAGE_INVALID_LIST_COMMAND =
-            "Please enter either 'list appliance' or 'list location'";
-    public static final String MESSAGE_POWER_NOT_NUMBER = "Please enter a valid numerical value for power.";
+            "Please enter either 'list appliance' or 'list location' or 'list appliance l/LOCATION_NAME'";
+    public static final String MESSAGE_POWER_NOT_NUMBER = "Please enter a valid numerical value for wattage.";
     public static final String MESSAGE_POWER_EXCEEDED =
             "Appliance wattage is uncommon. Please enter between 0 to 9999.";
     public static final String MESSAGE_TIME_FORMAT_ERROR = "Time format is wrong.";
@@ -41,5 +42,11 @@ public class Messages {
                     + "Previous set temperature will be set.";
     public static final String MESSAGE_INVALID_FAN_SPEED =
             "Invalid speed is set, ensure that it is within 1-3 speed. \n "
+                    + "Previous set speed will be set.";
+    public static final String MESSAGE_ILLEGAL_CHARACTER = "Illegal Character space or / detected in";
+    public static final String MESSAGE_EMPTY_PARAMETER =
+            "Empty Parameter detected! Please follow format and enter require parameters.";
+    public static final String MESSAGE_INVALID_TEMPERATURE_WH =
+            "Invalid speed is set, ensure that it is within 20-50 degrees. \n "
                     + "Previous set speed will be set.";
 }

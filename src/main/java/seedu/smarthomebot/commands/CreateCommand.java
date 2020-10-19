@@ -1,7 +1,6 @@
 package seedu.smarthomebot.commands;
 
-import seedu.smarthomebot.exceptions.EmptyParameterException;
-import seedu.smarthomebot.exceptions.InvalidAddtionOfLocation;
+import seedu.smarthomebot.exceptions.DuplicateDataException;
 
 
 public class CreateCommand extends Command {
@@ -24,7 +23,7 @@ public class CreateCommand extends Command {
         try {
             locationList.addLocation(usersEnteredLocation);
             return new CommandResult("Creating Location \"" + usersEnteredLocation + "\".....CREATED!");
-        } catch (InvalidAddtionOfLocation e) {
+        } catch (DuplicateDataException e) {
             return new CommandResult(MESSAGE_LOCATION_EXIST);
         }
     }

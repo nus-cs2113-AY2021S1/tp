@@ -7,10 +7,9 @@ import seedu.smarthomebot.data.Fan;
 import seedu.smarthomebot.data.Lights;
 import seedu.smarthomebot.data.LocationList;
 import seedu.smarthomebot.data.WaterHeater;
+import seedu.smarthomebot.exceptions.DuplicateDataException;
 import seedu.smarthomebot.exceptions.EmptyParameterException;
-import seedu.smarthomebot.exceptions.FileCorrupted;
-import seedu.smarthomebot.exceptions.InvalidAdditionOfAppliance;
-import seedu.smarthomebot.exceptions.InvalidAddtionOfLocation;
+import seedu.smarthomebot.exceptions.FileCorruptedException;
 import seedu.smarthomebot.ui.TextUi;
 import java.nio.charset.StandardCharsets;
 
@@ -59,43 +58,46 @@ public class StorageFile {
             Scanner myReader = new Scanner(myFile, StandardCharsets.UTF_8);
             String locationList = myReader.nextLine();
             try {
-                convertTextToLocationList(locationList);
-                convertTextToApplianceList(i, myReader);
+                readToLocationList(locationList);
+                readToApplianceList(i, myReader);
                 ui.printToUser(Messages.MESSAGE_IMPORT);
-            } catch (FileCorrupted e) {
+            } catch (FileCorruptedException e) {
                 ui.printToUser(Messages.MESSAGE_FILE_CORRUPTED);
             }
 
             myReader.close();
-        } catch (FileNotFoundException | InvalidAdditionOfAppliance e) {
+        }  catch (FileNotFoundException | EmptyParameterException | DuplicateDataException e) {
             ui.printToUser("Load File Does not Exist. No contents will be loaded.");
         } catch (IOException e) {
             ui.printToUser("Load File is corrupted.");
         }
     }
 
-    private void convertTextToApplianceList(int i, Scanner myReader) throws FileCorrupted, InvalidAdditionOfAppliance {
+    private void readToApplianceList(int i, Scanner myReader) throws FileCorruptedException, DuplicateDataException {
         while (myReader.hasNextLine()) {
             try {
                 String appliance = myReader.nextLine();
                 String[] splitString = appliance.split("\\|", 7);
                 if (splitString[1].isEmpty() || splitString[0].isEmpty()
                         || splitString[2].isEmpty() || splitString[3].isEmpty()) {
-                    throw new FileCorrupted();
+                    throw new FileCorruptedException();
                 }
                 String name = splitString[1];
                 String location = splitString[0];
                 String power = splitString[2];
                 String type = splitString[3];
+                String parameter = splitString[6];
 
                 switch (type.toLowerCase()) {
                 case Fan.TYPE_WORD:
                     Fan fan = new Fan(name, location, power);
                     applianceList.addAppliance(fan);
+                    Fan.getSpeedFromLoadFile(parameter);
                     break;
                 case AirConditioner.TYPE_WORD:
                     AirConditioner ac = new AirConditioner(name, location, power);
                     applianceList.addAppliance(ac);
+                    ac.getTemperatureFromLoadFile(parameter);
                     break;
                 case Lights.TYPE_WORD:
                     Lights light = new Lights(name, location, power);
@@ -104,6 +106,7 @@ public class StorageFile {
                 case WaterHeater.TYPE_WORD:
                     WaterHeater waterheater = new WaterHeater(name, location, power);
                     applianceList.addAppliance(waterheater);
+                    waterheater.getTemperatureFromLoadFile(parameter);
                     break;
                 default:
                     ui.printToUser(MESSAGE_APPLIANCE_TYPE_NOT_EXIST);
@@ -116,23 +119,23 @@ public class StorageFile {
                 applianceList.getAppliance(i).loadDataFromFile(splitString[5], "19/10/2020-09:20:20");
                 i++;
             } catch (IndexOutOfBoundsException e) {
-                throw new FileCorrupted();
+                throw new FileCorruptedException();
             }
 
         }
     }
 
-    private void convertTextToLocationList(String location) throws FileCorrupted {
+    private void readToLocationList(String location) throws EmptyParameterException, FileCorruptedException {
         try {
-            int start = location.indexOf("[") + 1;
-            int end = location.indexOf("]");
-            String when = location.substring(start, end);
-            String[] stringSplit = when.split(",");
+            int openBracesIndex = location.indexOf("[") + 1;
+            int closeBracesIndex = location.indexOf("]");
+            String locations = location.substring(openBracesIndex, closeBracesIndex);
+            String[] stringSplit = locations.split(",");
             for (String locationName : stringSplit) {
                 locationList.addLocation(locationName.trim());
             }
-        } catch (IndexOutOfBoundsException | InvalidAddtionOfLocation e) {
-            throw new FileCorrupted();
+        } catch (IndexOutOfBoundsException | DuplicateDataException e) {
+            throw new FileCorruptedException();
         }
 
     }

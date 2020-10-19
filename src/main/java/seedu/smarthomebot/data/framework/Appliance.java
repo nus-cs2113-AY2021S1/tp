@@ -131,13 +131,15 @@ public abstract class Appliance {
      */
     public abstract String getType();
 
+    public abstract String getParameter();
+
     public String toString() {
         return  this.getName() + "(" + this.getPower() + "W)" + " in " + this.getLocation();
     }
 
     public String writeFileFormat() {
         return this.location + "|" + this.name + "|" + this.power + "|"  + this.getType() + "|"
-                  + this.getStatus() + "|" + this.getPowerConsumption();
+                  + this.getStatus() + "|" + this.getPowerConsumption() + "|" + getParameter();
     }
 
 }
