@@ -1,11 +1,13 @@
 package fitr.command;
 
+import fitr.common.Commands;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.storage.Storage;
 import fitr.ui.Ui;
 import fitr.user.User;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 /**
@@ -13,28 +15,26 @@ import java.util.logging.Logger;
  */
 public class ClearCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger(ClearCommand.class.getName());
-    private final String[] arguments;
 
-    public ClearCommand(String userInput) {
-        assert userInput != null;
-        arguments = userInput.split(" ");
+    public ClearCommand(String arguments) {
+       this.command = arguments;
     }
 
     @Override
-    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user) {
-        if (arguments.length == 1) {
+    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage, User user) {
+        if (command.length() == 0) {
             LOGGER.fine("Clearing food and exercise lists.");
-            foodlist.clearList();
+            foodList.clearList();
             exerciseList.clearList();
             Ui.printCustomMessage("Food and exercise lists are both cleared!");
-        } else if (arguments.length == 2) {
-            switch (arguments[1]) {
-            case "food":
+        } else {
+            switch (command) {
+            case Commands.COMMAND_FOOD:
                 LOGGER.fine("Clearing food list.");
-                foodlist.clearList();
+                foodList.clearList();
                 Ui.printCustomMessage("Food list is cleared!");
                 break;
-            case "exercise":
+            case Commands.COMMAND_EXERCISE:
                 LOGGER.fine("Clearing exercise lists.");
                 exerciseList.clearList();
                 Ui.printCustomMessage("Exercise list is cleared!");
@@ -43,9 +43,15 @@ public class ClearCommand extends Command {
                 Ui.printCustomMessage("Invalid clear command entered!");
                 break;
             }
-        } else {
-            Ui.printCustomMessage("Invalid clear command entered!");
         }
+
+        try {
+            storage.writeExerciseList(exerciseList);
+            storage.writeFoodList(foodList);
+        } catch (IOException e) {
+            Ui.printCustomError("The file cannot be written!");
+        }
+
     }
 
     @Override

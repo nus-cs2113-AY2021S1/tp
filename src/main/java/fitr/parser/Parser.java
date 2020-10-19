@@ -34,6 +34,7 @@ public class Parser {
 
         String userCommand = matcher.group("command").trim();
         String arguments = matcher.group("arguments").trim();
+
         switch (userCommand.toLowerCase()) {
         case Commands.COMMAND_FOOD:
             return new AddFoodCommand(arguments);
@@ -47,6 +48,8 @@ public class Parser {
             return new HelpCommand(arguments);
         case Commands.COMMAND_DELETE:
             return new DeleteCommand(arguments);
+        case Commands.COMMAND_CLEAR:
+            return new ClearCommand(arguments);
         case Commands.COMMAND_BYE:
             return new ExitCommand(arguments);
         default:
