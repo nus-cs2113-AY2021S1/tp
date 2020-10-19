@@ -123,6 +123,15 @@ public class TextUi {
         System.out.printf(UiMessage.EDIT_QUOTE_MESSAGE + "\n", oldQuote.toString(), newQuote.toString());
     }
 
+    public void printFindQuoteFail() {
+        System.out.printf(UiMessage.FIND_QUOTE_FAIL);
+    }
+
+    public void printFindQuoteSuccess(String results) {
+        System.out.println(UiMessage.FIND_QUOTE_SUCCESS);
+        System.out.println(results);
+    }
+
     public void printAddCategoryToBook(String bookTitle, String categoryName) {
         System.out.printf((UiMessage.ADD_CATEGORY_MESSAGE) + "\n", categoryName, bookTitle);
     }
