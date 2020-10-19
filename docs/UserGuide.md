@@ -32,7 +32,8 @@ Example of usage:
 
 Expected outcome:
 
-<pre>These are commands Fitr understands:<br/>
+<pre>
+These are commands Fitr understands:<br/>
 food              Adds food entry to Fitr program<br/>
                   Format: food &lt;Name of food&gt; / &lt;Number of Calories&gt; &lt;Quantity (Optional)&gt;<br/>
 exercise          Adds exercise entry to Fitr program<br/>
