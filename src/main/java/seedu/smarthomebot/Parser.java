@@ -13,11 +13,13 @@ import seedu.smarthomebot.commands.OnCommand;
 import seedu.smarthomebot.commands.RemoveCommand;
 import seedu.smarthomebot.commands.UsageCommand;
 import seedu.smarthomebot.exceptions.EmptyParameterException;
-import seedu.smarthomebot.exceptions.InvalidAddCommand;
-import seedu.smarthomebot.exceptions.InvalidFomartException;
-import seedu.smarthomebot.exceptions.InvalidValue;
-import seedu.smarthomebot.exceptions.PowerValueExceed;
+import seedu.smarthomebot.exceptions.IllegalCharacterException;
+import seedu.smarthomebot.exceptions.InvalidCommandException;
+import seedu.smarthomebot.exceptions.InvalidValueException;
+import seedu.smarthomebot.exceptions.PowerExceedException;
 
+import static seedu.smarthomebot.common.Messages.MESSAGE_EMPTY_PARAMETER;
+import static seedu.smarthomebot.common.Messages.MESSAGE_ILLEGAL_CHARACTER;
 import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_ADD_COMMAND;
 import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_LIST_COMMAND;
@@ -52,9 +54,9 @@ public class Parser {
             }
             return new OnCommand(name, parameter);
         } catch (EmptyParameterException e) {
-            return new InvalidCommand("Empty Appliance Name");
+            return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
 
-        } catch (InvalidValue e) {
+        } catch (InvalidValueException e) {
             return new InvalidCommand(MESSAGE_POWER_NOT_NUMBER);
 
         }
@@ -67,16 +69,16 @@ public class Parser {
             }
             return new OffCommand(arguments);
         } catch (EmptyParameterException e) {
-            return new InvalidCommand("Empty Appliance Name");
+            return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
 
         }
     }
 
-    private static void convertParameterToInt(String parameter) throws InvalidValue {
+    private static void convertParameterToInt(String parameter) throws InvalidValueException {
         try {
             Integer.parseInt(parameter);
         } catch (NumberFormatException e) {
-            throw new InvalidValue();
+            throw new InvalidValueException();
         }
 
     }
@@ -99,24 +101,29 @@ public class Parser {
 
                 if (checkForEmptyInput(name) | checkForEmptyInput(location)
                         | checkForEmptyInput(power) | checkForEmptyInput(type)) {
-                    throw new InvalidAddCommand();
+                    throw new EmptyParameterException();
                 }
-
+                if (checkForIllegalCharacter(name)) {
+                    throw new IllegalCharacterException();
+                }
+                testPowerValidity(power);
             } else {
-                throw new InvalidAddCommand();
+                throw new InvalidCommandException();
             }
-
-            testPowerValidity(power);
             return new AddCommand(name, location, power, type);
 
-        } catch (InvalidAddCommand e) {
+        } catch (InvalidCommandException e) {
             return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND);
-
-        } catch (InvalidValue e) {
+        } catch (InvalidValueException e) {
             return new InvalidCommand(MESSAGE_POWER_NOT_NUMBER);
-
-        } catch (PowerValueExceed e) {
+        } catch (PowerExceedException e) {
             return new InvalidCommand(MESSAGE_POWER_EXCEEDED);
+        } catch (EmptyParameterException e) {
+            return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
+        } catch (IllegalCharacterException e) {
+            return new InvalidCommand(MESSAGE_ILLEGAL_CHARACTER + " [APPLIANCE_NAME].");
+        } catch (StringIndexOutOfBoundsException e) {
+            return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND);
         }
 
     }
@@ -128,10 +135,10 @@ public class Parser {
         } else if (str[0].equals(APPLIANCE_TYPE)) {
             if (arguments.equals(APPLIANCE_TYPE)) {
                 return new ListCommand(APPLIANCE_TYPE, "");
-            } else if (str[1].trim().substring(0,2).equals("l/")) {
+            } else if (str[1].trim().substring(0, 2).equals("l/")) {
                 return new ListCommand(APPLIANCE_TYPE, str[1].trim().substring(2));
             } else {
-                return new InvalidCommand("Invalid list appliance format");
+                return new InvalidCommand(MESSAGE_INVALID_LIST_COMMAND);
             }
         } else {
             return new InvalidCommand(MESSAGE_INVALID_LIST_COMMAND);
@@ -139,28 +146,64 @@ public class Parser {
     }
 
     private Command prepareCreateCommand(String arguments) {
-        if (!checkForEmptyInput(arguments)) {
+        try {
+            if (checkForEmptyInput(arguments)) {
+                throw new EmptyParameterException();
+            }
+            if (checkForIllegalCharacter(arguments)) {
+                throw new IllegalCharacterException();
+            }
             return new CreateCommand(arguments);
-        } else {
-            // Might need to print out a better message
-            return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        } catch (EmptyParameterException e) {
+            return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
+        } catch (IllegalCharacterException e) {
+            return new InvalidCommand(MESSAGE_ILLEGAL_CHARACTER + " [LOCATION_NAME].");
         }
+
     }
 
-    private static void testPowerValidity(String power) throws PowerValueExceed, InvalidValue {
+    private Command prepareDeleteCommand(String arguments) {
+        try {
+            if (checkForEmptyInput(arguments)) {
+                throw new EmptyParameterException();
+            }
+            return new DeleteCommand(arguments);
+        } catch (EmptyParameterException e) {
+            return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
+        }
+
+    }
+
+    private Command prepareRemoveCommand(String arguments) {
+        try {
+            if (checkForEmptyInput(arguments)) {
+                throw new EmptyParameterException();
+            }
+            return new RemoveCommand(arguments);
+        } catch (EmptyParameterException e) {
+            return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
+        }
+
+    }
+
+    private static void testPowerValidity(String power) throws PowerExceedException, InvalidValueException {
         try {
             int powerValue = Integer.parseInt(power);
             // Common appliance should not exceed 9999 watts
             if ((powerValue < 1) || (powerValue > 9999)) {
-                throw new PowerValueExceed();
+                throw new PowerExceedException();
             }
         } catch (NumberFormatException e) {
-            throw new InvalidValue();
+            throw new InvalidValueException();
         }
     }
 
     private static boolean checkForEmptyInput(String input) {
         return (input.isEmpty());
+    }
+
+    private static boolean checkForIllegalCharacter(String input) {
+        return (input.contains(" ") | input.contains("/"));
     }
 
     public Command parseCommand(String userInput) {
@@ -174,11 +217,11 @@ public class Parser {
         case CreateCommand.COMMAND_WORD:
             return prepareCreateCommand(arguments);
         case RemoveCommand.COMMAND_WORD:
-            return new RemoveCommand(arguments);
+            return prepareRemoveCommand(arguments);
         case AddCommand.COMMAND_WORD:
             return prepareAddCommand(arguments);
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommand(arguments);
+            return prepareDeleteCommand(arguments);
         case OnCommand.COMMAND_WORD:
             return prepareOnCommand(arguments);
         case OffCommand.COMMAND_WORD:
