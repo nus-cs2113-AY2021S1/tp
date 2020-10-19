@@ -1,2 +1,0 @@
-Test Food 1,100,1
-Test Food 2,50,5

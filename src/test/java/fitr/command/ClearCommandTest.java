@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ClearCommandTest {
     @Test
     public void clear_clearBothLists_success() throws Exception {
-        ClearCommand clearCommand = new ClearCommand("clear");
+        ClearCommand clearCommand = new ClearCommand("");
         FoodList foodList = getFoodList();
         ExerciseList exerciseList = getExerciseList();
         User user = new User();
@@ -25,7 +25,7 @@ public class ClearCommandTest {
 
     @Test
     public void clear_clearFoodList_success() throws Exception {
-        ClearCommand clearCommand = new ClearCommand("clear food");
+        ClearCommand clearCommand = new ClearCommand("food");
         FoodList foodList = getFoodList();
         ExerciseList exerciseList = getExerciseList();
         User user = new User();
@@ -35,7 +35,7 @@ public class ClearCommandTest {
 
     @Test
     public void clear_clearExerciseList_success() throws Exception {
-        ClearCommand clearCommand = new ClearCommand("clear exercise");
+        ClearCommand clearCommand = new ClearCommand("exercise");
         FoodList foodList = getFoodList();
         ExerciseList exerciseList = getExerciseList();
         User user = new User();

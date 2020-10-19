@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger(ClearCommand.class.getName());
 
     public ClearCommand(String arguments) {
-       this.command = arguments;
+        this.command = arguments;
     }
 
     @Override
