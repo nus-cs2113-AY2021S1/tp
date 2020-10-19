@@ -46,7 +46,7 @@ class RemoveCommandTest {
         user = new User("TestUser", "Male");
         user.setActiveWorkspace(workspace);
         animeData = new AnimeData(testList);
-        storageManager = new StorageManager();
+        storageManager = new StorageManager("test");
     }
 
     @Test
