@@ -142,6 +142,7 @@ public class FinanceTools {
                 System.out.println("Total Interest Earned: $\n\n" + outputAmount);
                 //commands.add("Total Interest Earned: $" + outputAmount);
                 break;
+                break;
             case "commands":
                 printCommandList();
                 break;
