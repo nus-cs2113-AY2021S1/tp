@@ -4,10 +4,11 @@ ________                __                .__  _____
 /   \_/.  \  |  (  <_> )  | \  ___/ \___ \|  ||  |  \___  |
 \_____\ \_/____/ \____/|__|  \___  >____  >__||__|  / ____|
        \__>                      \/     \/          \/    
-Welcome to Quotesify!
+Welcome to Quotesify v1.0!
 
 What would you like to do with Quotesify?
-Invalid command!
+I don't understand you.
+Maybe type "help" for usage instructions?
 
 What would you like to do with Quotesify?
 The book [book1 by me] has been added!
@@ -18,17 +19,14 @@ Here are all your quotes:
 
 
 What would you like to do with Quotesify?
-I have tagged "action" category to "book1"!
-You have a total of 1 item(s) tagged as "action".
+I have tagged [action] category to "book1"!
 
 What would you like to do with Quotesify?
-I have tagged "motivational" category to "quote1"!
-You have a total of 1 item(s) tagged as "motivational".
+I have tagged [motivational] category to "quote1"!
 
 What would you like to do with Quotesify?
-I have tagged "nice" category to "book1"!
-I have tagged "nice" category to "quote1"!
-You have a total of 2 item(s) tagged as "nice".
+I have tagged [nice] category to "book1"!
+I have tagged [nice] category to "quote1"!
 
 What would you like to do with Quotesify?
 Here is the list of all categories:
@@ -38,23 +36,29 @@ Here is the list of all categories:
 
 
 What would you like to do with Quotesify?
-I have removed "action" category from "book1"!
-You have a total of 0 item(s) tagged as "action".
+I have removed [action] category from "book1"!
 
 What would you like to do with Quotesify?
-action - (0 items)
+There are no items tagged as [action].
 
 What would you like to do with Quotesify?
-I have removed "motivational" category from "quote1"!
-You have a total of 0 item(s) tagged as "motivational".
+I have removed [motivational] category from "quote1"!
 
 What would you like to do with Quotesify?
-motivational - (0 items)
+There are no items tagged as [motivational].
 
 What would you like to do with Quotesify?
-nice - (2 items)
+Here are the list of items tagged as [nice]:
+BOOKS:
+1. book1 by me
+
+QUOTES:
+1. "quote1"
 
 What would you like to do with Quotesify?
 The book [book1 by me] has been deleted!
 
 What would you like to do with Quotesify?
+Before you continue, here's something:
+*Inserts inspirational quote here*
+Alright, have a nice day!
