@@ -51,16 +51,18 @@ public class DeleteSlotCommand extends Command {
     }
 
     /**
+     * Deletes either module or slot depending on the deleteBookmarks flag. // ADD MORE COMMENTS
      *
-     * @param bookmarks
-     * @param timetable
-     * @param ui
-     * @param bookmarkStorage
-     * @param slotStorage
-     * @throws DukeException
+     * @param bookmarks The list of bookmarks
+     * @param timetable The timetable
+     * @param ui The user interface
+     * @param bookmarkStorage The storage for the bookmark list
+     * @param slotStorage The storage for the slot list  // ADD MORE COMMENTS
+     * @throws DukeException INVALID_SLOT_NUMBER // ADD MORE COMMENTS
      */
     @Override
-    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui, Storage bookmarkStorage, Storage slotStorage)
+    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
+                        Storage bookmarkStorage, Storage slotStorage)
             throws DukeException {
         String message = "";
         if (!timetable.moduleExists(moduleCode)) {
