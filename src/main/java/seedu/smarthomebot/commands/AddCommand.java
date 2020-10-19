@@ -4,7 +4,7 @@ import seedu.smarthomebot.data.AirConditioner;
 import seedu.smarthomebot.data.Fan;
 import seedu.smarthomebot.data.Lights;
 import seedu.smarthomebot.data.WaterHeater;
-import seedu.smarthomebot.exceptions.InvalidAdditionOfAppliance;
+import seedu.smarthomebot.exceptions.DuplicateDataException;
 import seedu.smarthomebot.exceptions.LocationNotFoundException;
 
 import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_EXIST;
@@ -17,7 +17,7 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a new appliance to the particular location to the SmartHomeBot. \n"
-            + "Parameters: add NAME l/LOCATION w/WATTS t/TYPE_OF_APPLIANCE \n" + "Example: "
+            + "Parameters: add [APPLIANCE_NAME] l/[LOCATION_NAME] w/[WATTAGE] t/[TYPE_OF_APPLIANCE] \n" + "Example: "
             + COMMAND_WORD + " Fan1 l/Bedroom 1 w/50 t/Fan";
 
     private final String name;
@@ -59,7 +59,7 @@ public class AddCommand extends Command {
             default:
                 return new CommandResult(MESSAGE_APPLIANCE_TYPE_NOT_EXIST);
             }
-        } catch (InvalidAdditionOfAppliance e) {
+        } catch (DuplicateDataException e) {
             return new CommandResult(MESSAGE_APPLIANCE_EXIST);
 
         } catch (LocationNotFoundException e) {

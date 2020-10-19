@@ -38,7 +38,7 @@ public class OffCommand extends Command {
         String type = APPLIANCE_TYPE;
         ArrayList<Appliance> filterApplianceList =
                 (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
-                        .filter((s) -> s.getLocation().contains(name))
+                        .filter((s) -> s.getLocation().equals(name))
                         .collect(toList());
         if (!filterApplianceList.isEmpty()) {
             type = LOCATION_TYPE;
