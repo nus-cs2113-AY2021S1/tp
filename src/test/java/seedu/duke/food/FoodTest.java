@@ -21,6 +21,6 @@ class FoodTest {
         assertEquals(480, testFood.getCalorie());
         assertEquals(50, testFood.getCarbohydrate());
         assertEquals(40, testFood.getProtein());
-        assertEquals(30, testFood.getFats());
+        assertEquals(30, testFood.getFat());
     }
 }
