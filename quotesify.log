@@ -249,33 +249,3 @@ INFO: added book to booklist
 Oct 17, 2020 9:58:30 PM seedu.quotesify.commands.AddCommand execute
 INFO: going to add book to booklist
 Oct 17, 2020 9:58:30 PM seedu.quotesify.commands.AddCommand execute
-INFO: added book to booklistOct 19, 2020 8:06:12 PM seedu.quotesify.commands.AddCommand execute
-INFO: going to add book to booklist
-Oct 19, 2020 8:06:12 PM seedu.quotesify.commands.AddCommand execute
-INFO: added book to booklist
-Oct 19, 2020 8:06:16 PM seedu.quotesify.commands.AddCommand execute
-INFO: going to add book to booklist
-Oct 19, 2020 8:06:16 PM seedu.quotesify.commands.AddCommand execute
-INFO: added book to booklist
-Oct 19, 2020 8:06:21 PM seedu.quotesify.commands.AddCommand execute
-INFO: going to add book to booklist
-Oct 19, 2020 8:06:21 PM seedu.quotesify.commands.AddCommand addBook
-INFO: add book to booklist failed
-Oct 19, 2020 8:06:21 PM seedu.quotesify.commands.AddCommand execute
-INFO: added book to booklist
-Oct 19, 2020 8:06:27 PM seedu.quotesify.commands.AddCommand execute
-INFO: going to add book to booklist
-Oct 19, 2020 8:06:27 PM seedu.quotesify.commands.AddCommand addBook
-INFO: add book to booklist failed
-Oct 19, 2020 8:06:27 PM seedu.quotesify.commands.AddCommand execute
-INFO: added book to booklist
-Oct 19, 2020 8:07:31 PM seedu.quotesify.commands.AddCommand execute
-INFO: going to add book to booklist
-Oct 19, 2020 8:07:31 PM seedu.quotesify.commands.AddCommand addBook
-INFO: add book to booklist failed
-Oct 19, 2020 8:07:31 PM seedu.quotesify.commands.AddCommand execute
-INFO: added book to booklist
-Oct 19, 2020 8:08:20 PM seedu.quotesify.commands.AddCommand execute
-INFO: going to add book to booklist
-Oct 19, 2020 8:08:20 PM seedu.quotesify.commands.AddCommand execute
-INFO: added book to booklist
