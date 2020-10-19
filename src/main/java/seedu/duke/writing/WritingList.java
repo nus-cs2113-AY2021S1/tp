@@ -10,7 +10,7 @@ import java.io.File;
 
 import static seedu.duke.Duke.user;
 
-import static seedu.duke.Duke.writings;
+//import static seedu.duke.Duke.writings;
 import static seedu.duke.commands.CommandChecker.UNRECOGNISED;
 import static seedu.duke.commands.CommandChecker.TYPE;
 import static seedu.duke.commands.CommandChecker.POEM;
@@ -23,10 +23,20 @@ import static seedu.duke.functions.CommandExecutor.executeCommand;
 import static seedu.duke.parsers.Parsers.getUserInput;
 import static seedu.duke.constants.DataFileConvention.MAX_NUM_WRITINGS;
 import static seedu.duke.database.WritingsLoader.recordListToFile;
+import static seedu.duke.constants.ClickerMessages.ASSERTION_ID_ERROR;
+import static seedu.duke.constants.ClickerMessages.SUCCESSFUL_ADD_WRITING_TO_DATABASE;
+import static seedu.duke.constants.ClickerMessages.INSTRUCTION_FOR_ADDING_NEW_WRITINGS;
+import static seedu.duke.constants.ClickerMessages.TYPE_COMMAND_INSTRUCTION;
+import static seedu.duke.constants.ClickerMessages.ASKING_FOR_TYPE;
+import static seedu.duke.constants.ClickerMessages.ASKING_FOR_TITLE;
+import static seedu.duke.constants.ClickerMessages.EMPTY_WRITING_MESSAGE;
+import static seedu.duke.constants.ClickerMessages.CLEAR_DATA_MESSAGE;
+
 
 public class WritingList {
+
     public static ArrayList<Writings> writinglist = new ArrayList<>();
-    //Used to clear all of writings when reseting database
+    //Used to clear all of writings when resetting database
     static int countWritings = 0;
 
     public WritingList() {
@@ -34,21 +44,23 @@ public class WritingList {
     }
 
     public void add(Writings w) {
-        writinglist.add(w);
+        this.writinglist.add(w);
     }
 
     public Writings get(int i) {
-        return writinglist.get(i);
+        return this.writinglist.get(i);
     }
 
-    public static void remove(int i) {
-        writinglist.remove(i);
+    public void remove(int i) {
+        this.writinglist.remove(i);
     }
 
-    public int getCountWritings() {
+    /** Get the number of writings available in the storage. */
+    public static int getCountWritings() {
         return writinglist.size();
     }
 
+    /** Print the UI message along with number of writings. */
     public static void printWritingSize() {
         System.out.println("In our storage, there is/are currently " + getWritingSize() + " writing(s)");
     }
@@ -58,58 +70,56 @@ public class WritingList {
      *  Triggered when "stats" command is called.
      */
     public static void printWritings() {
-        if (writinglist.size() > 0) {
-            for (Writings w : writinglist) {
-                System.out.println("This is a " + w.getType());
-                System.out.println("Written by " + w.getAuthor().getName() + "\n");
-                System.out.println("Id: " + w.getId());
-                System.out.println(w.getTitle().toUpperCase() + "\n");
-                System.out.println(w.getContent());
-                System.out.println("This writing was created on " + w.date);
-                System.out.println(PLAIN_TEXT_DIVIDER);
-                if (w.getType().equals(POEM)) {
-                    System.out.println("This poem has " + w.getNumberOfLines()
-                            + " and " + w.getNumberOfWords());
-                } else if (w.getType().equals(ESSAY)) {
-                    System.out.println("This essay has " + w.getNumberOfSentences()
-                            + " and " + w.getNumberOfWords());
-                }
+        assert (writinglist.size() > 0) : EMPTY_WRITING_MESSAGE;
+        for (Writings w : writinglist) {
+            w.printWritingsProperties();
+            if (w.getType().equals(POEM)) {
+                w.printPoemProperties();
+            } else if (w.getType().equals(ESSAY)) {
+                w.printEssayProperties();
             }
-        } else {
-            System.out.println("The storage is currently empty, please type \"start\" command to add");
         }
     }
 
     public static void printAskForType() {
-        System.out.println("Please let us know your type of writings, either poem or essay");
+        System.out.println(ASKING_FOR_TYPE);
     }
 
     public static void printAskForTitle() {
-        System.out.println("Please let us know the title of your writing");
+        System.out.println(ASKING_FOR_TITLE);
     }
 
     public static int getWritingSize() {
         return writinglist.size();
     }
-    
-    public static void checkStart() {
+
+    /**
+     * Operate when command "start" is called, embark the process the writing process.
+     *
+     * @param writings the list of writings to be modified (in this case: added new item)
+     */
+    public static void checkStart(WritingList writings) {
         Scanner scanner = new Scanner(System.in);
         String newUserInput = null;
         try {
             CommandChecker commandStartChecker = UNRECOGNISED;
             while (commandStartChecker != TYPE) {
-                System.out.println("Please indicate your type by typing in \"type\" command");
+                System.out.println(TYPE_COMMAND_INSTRUCTION);
                 newUserInput = getUserInput(scanner);
                 commandStartChecker = extractCommandType(newUserInput);
             }
-            executeCommand(commandStartChecker, newUserInput);
-            //checkType();
+            executeCommand(commandStartChecker, newUserInput, writings);
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-    
-    public static void checkType() {
+
+    /**
+     * Operate when command "type" is called, allow the user to choose the desire topic.
+     *
+     * @param writings the list of writings to be modified (in this case: added new item)
+     */
+    public static void checkType(WritingList writings) {
         Scanner scanner = new Scanner(System.in);
         String newUserInput;
         File f = FileFunctions.getFileFromFilePath(WRITING_FILE_PATH);
@@ -123,7 +133,7 @@ public class WritingList {
             WritingList.printAskForTitle();
             newUserInput = getUserInput(scanner);
             String title = newUserInput;
-            System.out.println("Now you can type your content, terminate by typing \"end\"");
+            System.out.println(INSTRUCTION_FOR_ADDING_NEW_WRITINGS);
             String content = "";
             while (!newUserInput.equals("end")) {
                 content = content.concat(newUserInput + "\n");
@@ -136,8 +146,7 @@ public class WritingList {
             } else if (commandStartChecker == ESSAY) {
                 addEssay(title, newId, "nothing", content, user.getName());
             }
-            System.out.println("Done! We have added your writing to our storage! You can type \"stats\" "
-                    + "for future reference!");
+            System.out.println(SUCCESSFUL_ADD_WRITING_TO_DATABASE);
             recordListToFile(f, writings);
 
         } catch (Exception e) {
@@ -149,27 +158,30 @@ public class WritingList {
      * Clear all data stored in writing.txt.
      * To be associated with command "reset writing".
      */
-    public static void clearAll() {
-        for (int i = 0; i < countWritings; i++) {
-            remove(0);
-        }
-        System.out.println("We have clear all data in the writings list");
+    public static void clearAll(WritingList writings) {
+        writings.writinglist.clear();
+        System.out.println(CLEAR_DATA_MESSAGE);
         //Reset countWritings
-        countWritings = 0;
+        File f = FileFunctions.getFileFromFilePath(WRITING_FILE_PATH);
+        recordListToFile(f, writings);
+        writings.countWritings = 0;
     }
 
+    /** Adding a poem to the database. */
     public static void addPoem(String title, int id, String topic, String content, String author) {
+        assert (id <= MAX_NUM_WRITINGS && id >= 0) : ASSERTION_ID_ERROR;
         Poem toBeAdded = new Poem(title, id, topic, content, author);
         writinglist.add(toBeAdded);
         countWritings++;
         System.out.println("This Poem, " + title +  " has been added");
     }
 
+    /** Adding an essay to the database. */
     public static void addEssay(String title, int id, String topic, String content, String author) {
+        assert (id <= MAX_NUM_WRITINGS && id >= 0) : ASSERTION_ID_ERROR;
         Essay toBeAdded = new Essay(title, id, topic, content, author);
         writinglist.add(toBeAdded);
         countWritings++;
         System.out.println("This Essay, " + title +  " has been added");
     }
-
 }

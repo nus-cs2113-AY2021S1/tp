@@ -24,7 +24,7 @@ import static seedu.duke.filters.BunnyFilter.filterBunny;
 import static seedu.duke.ui.UI.printHelpMessage;
 
 public class CommandExecutor {
-    public static void executeCommand(CommandChecker commandChecker, String userInput) {
+    public static void executeCommand(CommandChecker commandChecker, String userInput, WritingList writings) {
         switch (commandChecker) {
         case HELP:
             printHelpMessage(userInput);
@@ -128,16 +128,16 @@ public class CommandExecutor {
             WritingList.printWritings();
             break;
         case START:
-            WritingList.checkStart();
+            WritingList.checkStart(writings);
             break;
         case TYPE:
-            WritingList.checkType();
+            WritingList.checkType(writings);
             break;
         case COUNT_WRITINGS:
             WritingList.printWritingSize();
             break;
         case RESET_WRITINGS:
-            WritingList.clearAll();
+            WritingList.clearAll(writings);
             break;
         case DELETE:
             break;
