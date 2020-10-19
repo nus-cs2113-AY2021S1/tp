@@ -1,6 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.classes.Show;
+import seedu.duke.classes.WatchTime;
 import seedu.duke.utility.ShowList;
 import seedu.duke.utility.Ui;
 
@@ -34,6 +35,8 @@ public class WatchCommand extends Command {
         if (!hasFinishedSeason) {
             show.setEpisodeWatched(showEpisode + 1);
             ShowList.setShow(showName, show);
+            //WatchTime watchTime;
+            //watchTime.watchDurationUpdate();
         } else if (hasFinishedSeason) {
             show.setCurrentSeason(showSeason + 1);
             show.setEpisodeWatched(1);

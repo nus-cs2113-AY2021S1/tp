@@ -17,6 +17,7 @@ public class Duke {
     private Storage storage;
     private ShowList shows;
     private Ui ui;
+    private static WatchTime watchTime;
 
     public Duke(String filePath) {
         ui = new Ui();
