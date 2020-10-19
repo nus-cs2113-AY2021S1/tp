@@ -1,12 +1,11 @@
 package seedu.duke.command;
 
-import seedu.duke.ItemList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.bookmark.BookmarkList;
-import seedu.duke.slot.SlotList;
 
 import seedu.duke.exception.DukeException;
+import seedu.duke.slot.Timetable;
 
 public abstract class Command {
 
@@ -15,7 +14,7 @@ public abstract class Command {
     /**
      * Execution of command depends on which command subclass the command belongs to.
      */
-    public abstract void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
+    public abstract void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
                                  Storage bookmarkStorage, Storage slotStorage) throws DukeException;
 
     /**
