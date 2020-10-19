@@ -4,6 +4,7 @@ import seedu.duke.bookmark.Bookmark;
 import seedu.duke.command.BookmarkAnimeCommand;
 import seedu.duke.command.BrowseCommand;
 import seedu.duke.exception.AniException;
+import static seedu.duke.logger.AniLogger.getAniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,14 +15,14 @@ public class BookmarkParser extends CommandParser {
     protected static final String DELETE_PARAM = "d";
     protected static final String EPISODE_PARAM = "e";
     protected static final String LIST_PARAM = "l";
-    private static final Logger LOGGER = Logger.getLogger(seedu.duke.parser.BookmarkParser.class.getName());
+    private static final Logger LOGGER = getAniLogger(seedu.duke.parser.BookmarkParser.class.getName());
 
 
     private BookmarkAnimeCommand bookmarkAnimeCommand;
 
     public BookmarkParser() {
         bookmarkAnimeCommand = new BookmarkAnimeCommand();
-        LOGGER.setLevel(Level.WARNING);
+        // LOGGER.setLevel(Level.WARNING);
     }
 
     public BookmarkAnimeCommand parse(String description) throws AniException {

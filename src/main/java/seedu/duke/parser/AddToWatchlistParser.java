@@ -2,6 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.command.AddToWatchlistCommand;
 import seedu.duke.exception.AniException;
+import static seedu.duke.logger.AniLogger.getAniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,13 +10,13 @@ import java.util.logging.Logger;
 public class AddToWatchlistParser extends CommandParser {
     protected static final String ADD_PARAM = "a";
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
-    private static final Logger LOGGER = Logger.getLogger(AddToWatchlistParser.class.getName());
+    private static final Logger LOGGER = getAniLogger(AddToWatchlistParser.class.getName());
     
     private AddToWatchlistCommand addToWatchlistCommand;
     
     public AddToWatchlistParser() {
         addToWatchlistCommand = new AddToWatchlistCommand();
-        LOGGER.setLevel(Level.WARNING);
+        // LOGGER.setLevel(Level.WARNING);
     }
     
     public AddToWatchlistCommand parse(String description) throws AniException {

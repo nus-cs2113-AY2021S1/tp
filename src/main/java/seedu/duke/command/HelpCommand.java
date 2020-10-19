@@ -3,16 +3,18 @@ package seedu.duke.command;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.human.User;
 import seedu.duke.storage.StorageManager;
+import static seedu.duke.logger.AniLogger.getAniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class HelpCommand extends Command {
-    private static final Logger LOGGER = Logger.getLogger(HelpCommand.class.getName());
+    private static final Logger LOGGER = getAniLogger(HelpCommand.class.getName());
     private static String output;
     
     public HelpCommand() {
-        LOGGER.setLevel(Level.WARNING);
+        // LOGGER.setLevel(Level.WARNING);
         this.output = buildHelpOutput();
     }
     
