@@ -14,4 +14,6 @@ public class Commands {
     public static final String COMMAND_VIEW_PROFILE = "view profile";
     public static final String COMMAND_DELETE = "delete";
     public static final String COMMAND_BYE = "bye";
+    public static final String COMMAND_EDIT_PROFILE = "edit";
+    public static final String COMMAND_HELP = "help";
 }

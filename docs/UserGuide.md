@@ -4,8 +4,12 @@
 - [Quick Start](#quick-start)
 - [Features](#features)
     - [Adding an exercise: `exercise`](#adding-an-exercise-exercise)
-    - [Adding a food: `food`](#adding-a-food)
+    - [Adding a food item: `food`](#adding-a-food)
     - [Deleting an item: `delete`](#deleting-an-item)
+    - [Show help messages: `help`](#showing-the-help-messages-help)
+    - [Clearing the lists: `clear`](#clearing-the-lists-clear)
+    - [Exiting the program: `bye`](#exiting-the-program-bye)
+    - [Saving the data](#saving-the-data)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -21,6 +25,7 @@ Fitr is a command-line application, helping you keep track of your food intake a
 ## Features
 
 ### Adding an exercise: `exercise`
+
 Adds a new exercise to the list of exercises you have done.
 
 Format: `exercise NameOfExercise /AmountOfCaloriesBurnt`
@@ -41,6 +46,7 @@ The expected outcome:
 `The following exercise has been added: 5km run`
 
 ### Adding a food item: `food`
+
 Adds a new food to the list of foods you have eaten.
 
 Format: `exercise NameOfFood /AmountOfCaloriesConsumed`
@@ -60,8 +66,9 @@ The expected outcome:
 
 `The following food has been added: Mcspicy`
 
-### Deleting an item from Each List: 'delete'
-Deletes a particular item at a specified index in a specified List.
+### Deleting an item: 'delete'
+
+Deletes a particular item at a specified index in a specified list.
 
 Format: `delete ListName index`
 
@@ -73,6 +80,32 @@ Example of usage:
 `delete food 1`
 
 `delete exercise 2`
+
+### Show help messages: `help`
+Show help messages with all valid commands.
+
+Format: `help`
+
+Example of usage: 
+
+`help`
+
+Expected outcome:
+
+<pre>
+These are commands Fitr understands:<br/>
+food              Adds food entry to Fitr program<br/>
+                  Format: food &lt;Name of food&gt; / &lt;Number of Calories&gt; &lt;Quantity (Optional)&gt;<br/>
+exercise          Adds exercise entry to Fitr program<br/>
+                  Format: exercise &lt;Name of exercise&gt; / &lt;Number of Calories> &lt;Quantity (Optional)&gt;<br/>
+view profile      View your profile information`<br/>
+view bmi          View your BMI<br/>
+view food         View food entries<br/>
+view exercise     View exercise entries<br/>
+view summary      View calorie summary<br/>
+delete            Deletes selected entry<br/>
+                  Format: delete food &lt;Index from Food List&gt; or delete exercise &lt;Index from Exercise List&gt;<br/>
+bye               Exits the program<br/></pre>
 
 ### Exiting the program: `bye`
 
