@@ -5,15 +5,15 @@ import seedu.duke.exception.AniException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class RemoveCommandParserTest {
+class InfoParserTest {
     protected static final String INVALID_PARAMETERS_TEST1 = "";
-    protected static final String INVALID_PARAMETERS_TEST2 = "-d";
+    protected static final String INVALID_PARAMETERS_TEST2 = "-a";
     protected static final String INVALID_PARAMETERS_TEST3 = "-n 1";
-    protected static final String INVALID_FIELD_TEST1 = "-d Gundam";
+    protected static final String INVALID_FIELD_TEST1 = "-a Gundam";
 
     @Test
     void parse_emptyDescription_throwsAniException() {
-        RemoveCommandParser testParse = new RemoveCommandParser();
+        InfoParser testParse = new InfoParser();
         assertThrows(AniException.class, () -> {
             testParse.parse(INVALID_PARAMETERS_TEST1);
         });
@@ -21,7 +21,7 @@ class RemoveCommandParserTest {
 
     @Test
     void parse_emptyField_throwsAniException() {
-        RemoveCommandParser testParse = new RemoveCommandParser();
+        InfoParser testParse = new InfoParser();
         assertThrows(AniException.class, () -> {
             testParse.parse(INVALID_PARAMETERS_TEST2);
         });
@@ -29,7 +29,7 @@ class RemoveCommandParserTest {
 
     @Test
     void parse_invalidOption_throwsAniException() {
-        RemoveCommandParser testParse = new RemoveCommandParser();
+        InfoParser testParse = new InfoParser();
         assertThrows(AniException.class, () -> {
             testParse.parse(INVALID_PARAMETERS_TEST3);
         });
@@ -37,7 +37,7 @@ class RemoveCommandParserTest {
 
     @Test
     void parse_nonIntegerField_throwsAniException() {
-        RemoveCommandParser testParse = new RemoveCommandParser();
+        InfoParser testParse = new InfoParser();
         assertThrows(AniException.class, () -> {
             testParse.parse(INVALID_FIELD_TEST1);
         });

@@ -44,10 +44,13 @@ public class AddToWatchlistCommand extends Command {
         int indexSize = animeData.getSize();
         
         if (activeWatchlistList.contains(animeIndex)) {
+            LOGGER.log(Level.WARNING, DUPLICATE_ANIME_ERROR);
             throw new AniException(DUPLICATE_ANIME_ERROR);
         } else if (animeIndex < 0) {
+            LOGGER.log(Level.WARNING, OUT_OF_BOUND_INDEX_ERROR);
             throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
         } else if (animeIndex >= indexSize) {
+            LOGGER.log(Level.WARNING, OUT_OF_BOUND_INDEX_ERROR);
             throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
         }
 

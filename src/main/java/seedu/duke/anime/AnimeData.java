@@ -38,7 +38,7 @@ public class AnimeData {
             System.out.println("Index: " + i);
             System.out.println("Name: " + anime.getAnimeName());
             System.out.println("Episodes: " + anime.getTotalEpisodes());
-            System.out.println("Release Date:" + anime.getReleaseDateInString());
+            System.out.println("Release Date: " + anime.getReleaseDateInString());
             System.out.println("Rating: " + anime.getRating());
             System.out.println("Genre: " + Arrays.toString(anime.getGenre()));
             i += 1;
@@ -51,9 +51,28 @@ public class AnimeData {
         System.out.println("Index: " + animeIndex);
         System.out.println("Name: " + anime.getAnimeName());
         System.out.println("Episodes: " + anime.getTotalEpisodes());
-        System.out.println("Release Date:" + anime.getReleaseDateInString());
+        System.out.println("Release Date: " + anime.getReleaseDateInString());
         System.out.println("Rating: " + anime.getRating());
         System.out.println("Genre: " + Arrays.toString(anime.getGenre()));
+    }
+
+    public String returnAnimeInfo(int animeIndex) {
+        Anime anime = animeDataList.get(animeIndex);
+        StringBuilder result = new StringBuilder();
+
+        result.append("Index: " + (animeIndex + 1));
+        result.append(System.lineSeparator());
+        result.append("Name: " + anime.getAnimeName());
+        result.append(System.lineSeparator());
+        result.append("Episodes: " + anime.getTotalEpisodes());
+        result.append(System.lineSeparator());
+        result.append("Release Date: " + anime.getReleaseDateInString());
+        result.append(System.lineSeparator());
+        result.append("Rating: " + anime.getRating());
+        result.append(System.lineSeparator());
+        result.append("Genre: " + Arrays.toString(anime.getGenre()));
+
+        return result.toString();
     }
 
     public ArrayList<Anime> findName(String description) {
