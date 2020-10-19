@@ -102,7 +102,7 @@ public class Ui {
     }
 
     public void clearScreen() {
-        System.out.print(ansi().eraseScreen());
+        System.out.print("\033[2J");
     }
 
     /**
