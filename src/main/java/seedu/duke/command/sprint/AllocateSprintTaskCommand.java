@@ -32,8 +32,8 @@ public class AllocateSprintTaskCommand extends SprintCommand {
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
             if (validateParams()) {
-                int taskId = Integer.parseInt(this.parametersInHT.get("task").trim());
-                String[] userIds = this.parametersInHT.get("user").split(" ");
+                int taskId = Integer.parseInt(this.parameters.get("task"));
+                String[] userIds = this.parameters.get("user").split(" ");
                 for (String id : userIds) {
                     Member mem = proj.getProjectMember().getMember(id.trim());
                     if (mem == null) {
@@ -54,7 +54,7 @@ public class AllocateSprintTaskCommand extends SprintCommand {
     }
 
     private boolean validateParams() {
-        return this.parametersInHT.containsKey("task") && this.parametersInHT.containsKey("user");
+        return this.parameters.containsKey("task") && this.parameters.containsKey("user");
     }
 
     private void checkReason() {
