@@ -15,17 +15,17 @@ public class Assignment extends Event {
     protected LocalDateTime by;
 
     /**
-     * Convert the information about this deadline to a string that is to be stored in a file.
+     * Convert the information about this assignment to a string that is to be stored in a file.
      *
      * @return the result string to be stored.
      */
     public String fileString() {
-        return "A//" + (isDone ? 1 : 0) + "//" + description + "//" + by + "//" + location;
+        return "A//" + (isDone ? 1 : 0) + "//" + description + "//" + by + "//" + location.fileString();
     }
 
     public Assignment(String description, Location location, LocalDateTime by) {
-        super(description);
-        this.location = location;
+        super(description, location);
+
         this.by = by;
     }
 

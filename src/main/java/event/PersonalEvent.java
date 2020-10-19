@@ -16,12 +16,12 @@ public class PersonalEvent extends Event {
     protected LocalDateTime at;
 
     /**
-     * Convert the information about this event to a string that is to be stored in a file.
+     * Convert the information about this personal event to a string that is to be stored in a file.
      *
      * @return the result string to be stored
      */
     public String fileString() {
-        return "P//" + (isDone ? 1 : 0) + "//" + description + "//" + at;
+        return "P//" + (isDone ? 1 : 0) + "//" + description + "//" + at + "//" + location.fileString();
     }
 
     /**
@@ -34,8 +34,7 @@ public class PersonalEvent extends Event {
     }
 
     public PersonalEvent(String description, Location location, LocalDateTime at) {
-        super(description);
-        this.location = location;
+        super(description, location);
         this.at = at;
     }
 

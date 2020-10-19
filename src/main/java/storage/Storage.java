@@ -146,7 +146,7 @@ public class Storage {
      */
     public void loadBusStopData(ArrayList<BusStop> busStopList) {
         File f = new File("data/bus_stops.txt");
-        Scanner s = null;
+        Scanner s;
         try {
             s = new Scanner(f);
         } catch (FileNotFoundException e) {

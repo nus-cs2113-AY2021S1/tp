@@ -1,7 +1,6 @@
 package location;
 
 
-
 /**
  * Represents location objects.
  * Contains String name, which is the name of location, and type of location.
@@ -43,5 +42,13 @@ public class Location {
 
     public String toString() {
         return "(" + printType() + ")" + name;
+    }
+
+    /**
+     * All location class objects should have this methods, except BusStop.
+     * @return the string to be wrote in the file.
+     */
+    public String fileString() {
+        return null;
     }
 }
