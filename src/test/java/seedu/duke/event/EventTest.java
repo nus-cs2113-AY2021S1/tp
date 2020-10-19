@@ -34,7 +34,7 @@ class EventTest {
                 +  "1.[E][Done]\n"
                 +  "Event Name: PR meeting\n"
                 + "Date: Jun 30 2000\n"
-                + "Time: 8pm";
+                + "Time: 8pm" +"\n";
         assertEquals(expected4, EventList.isCompleted(0));
 
         String expected2 = "I'll remove this Event:\n"

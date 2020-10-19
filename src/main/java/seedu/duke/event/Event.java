@@ -1,18 +1,21 @@
 package seedu.duke.event;
 
+import seedu.duke.backend.Ui;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 import static java.time.temporal.TemporalAdjusters.next;
 
 public class Event {
-    protected String eventName;
-    protected String eventTime;
-    protected LocalDate date;
-    protected String SYMBOL;
+    protected  String eventName;
+    protected  String eventTime;
+    protected  LocalDate date;
+    protected  String SYMBOL;
     protected boolean isDone;
 
 
@@ -20,7 +23,7 @@ public class Event {
         this.eventName = name;
         this.eventTime = time;
         setDateTime(date, time);
-        this.SYMBOL = "[E]";
+        SYMBOL = "[E]";
         this.isDone = false;
     }
 
@@ -57,16 +60,20 @@ public class Event {
         return isDone ? "[Done]" : "[Up-coming]";
     }
 
+
     /**
      * Returns the string format of the event.
      *
      * @return String format of event.
      */
     public String printEvent() {
-        return SYMBOL + this.getStatusIcon() + "\nEvent Name: " + this.eventName +  "\nDate: "
-                + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\nTime: " + this.eventTime;
+        return SYMBOL + this.getStatusIcon() + "\nEvent Name: " + eventName +  "\nDate: "
+                + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\nTime: " + eventTime;
     }
 
+    public long numberOfDaysLeft() {
+        return ChronoUnit.DAYS.between(LocalDate.now(),this.getEventDate());
+    }
     /**
      * Attempts to read the date time. If it fails, uses relative timing to try again.
      * @param dateStr The Date to be processed
@@ -125,6 +132,18 @@ public class Event {
         if (start != null) {
             date = start.toLocalDate();
         }
+    }
+
+    /**
+     * Used to identify if the string contains the keyword specified in its description.
+     *
+     * @param keyword The keyword to be matched with the description.
+     * @return containsKeyword Indicates the presence/absence of keyword in the event's description.
+     * @throws Exception If keyword entered is empty.
+     */
+    public boolean hasKeyword(String keyword)  {
+        boolean containsKeyword = eventName.toLowerCase().contains(keyword.toLowerCase());
+        return containsKeyword;
     }
 }
 

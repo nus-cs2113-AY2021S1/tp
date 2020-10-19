@@ -12,7 +12,10 @@
    3.4 Events `event` <br/>
      * Add events: `addEvent`<br/>
      * Delete events: `delEvent`<br/>
-     * View Summary of events: `viewEvent`<br/>
+     * View Summary of events: `listEvent`<br/>
+     * Countdown events: `countdown` <br/>
+     * Mark event as done: `done` <br/>
+     * search for a particular event `search`<br/>
      
    3.5 Finance `finance` <br/>
      * Add finance log : `addLog`<br/>
@@ -51,7 +54,7 @@ Adds an event to the list of events.<br/>
 Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 
 Example of usage: <br/>
- `event addEvent /n arduino course /d 2020-09-16 /t 8pm`<br/>
+ `event addEvent /n arduino course /d 2020-12-30 /t 8pm`<br/>
  `event addEvent /n Autodesk course/d 2020-12-20 /t 8-10.30pm`<br/>
  
  #### Delete events: `delEvent`<br/>
@@ -72,6 +75,30 @@ Format: `event listEvent` <br/>
 
 Example of usage: 
 `event listEvent`
+
+#### countdown events `countdown`<br/>
+lists the events with the number of days left. It also sorts them so that the event due first will be displayed first.<br/>
+Format: `event countdown` <br/>
+
+Example of usage: 
+`event countdown`
+
+#### Mark an event as completed `done`<br/>
+Mark an event as done. 
+Format: `event done EVENT_INDEX` <br/>
+
+The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
+The EVENT_INDEX must be an integer greater than 0. <br/>
+
+Example of usage:
+`event done 1`
+
+#### Search for an Event `search`<br/>
+Search for a particular event.
+Format: 'event search /f KEYWORD' <br/>
+
+Example of usage:
+`event search /f arduino course`
 
 ### 3.5 Finance features `finance` <br/>
 #### Add finance log entry: `addLog` <br/>
@@ -110,6 +137,9 @@ hr  | | -
 addEvent | `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME` | `event addEvent /n arduino course /d 2020-09-16 /t 8pm`<br/>
 delEvent | `event delEvent EVENT_INDEX`  | `event delEvent 1`
 listEvent | `event listEvent` | -
+countdown | `event countdown` | -
+done   | `event done EVENT_INDEX`| `event done 2`
+search | `event search /f 
 addLog | `finance addLog ITEM_NAME ITEM_VALUE` | `finance addLog have lunch 5.2`
 delLog | `finance delLog ITEM_INDEX` | `finance delLog 2`
 summary | `finance summary` | -

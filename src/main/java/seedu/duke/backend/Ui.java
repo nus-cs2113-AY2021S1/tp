@@ -4,10 +4,8 @@ import seedu.duke.Command;
 import seedu.duke.DukeArgumentException;
 import seedu.duke.DukeFinanceAddDescriptionLostException;
 import seedu.duke.DukeNoMatchException;
-import seedu.duke.event.CommandEventAdd;
-import seedu.duke.event.CommandEventDel;
-import seedu.duke.event.CommandEventList;
-import seedu.duke.event.CommandEventStatus;
+import seedu.duke.event.*;
+import seedu.duke.event.CommandEventCountdown;
 import seedu.duke.finance.CommandFinanceAdd;
 import seedu.duke.finance.CommandFinanceDel;
 import seedu.duke.finance.CommandFinanceSummary;
@@ -26,7 +24,6 @@ public class Ui {
     private static ArrayList<Command> commandList = new ArrayList<>();
     private static boolean shutdown = false;
     private static final String UNDERSCORES = "____________________________________________________________";
-
     public Ui() {
         sc = new Scanner(System.in);
         parser = new Parser();
@@ -142,6 +139,8 @@ public class Ui {
         commandList.add(new CommandViewMember());
         commandList.add(new CommandDelMember());
         commandList.add(new CommandEventStatus());
+        commandList.add(new CommandEventCountdown());
+        commandList.add(new CommandSearchEvent());
     }
 }
 
