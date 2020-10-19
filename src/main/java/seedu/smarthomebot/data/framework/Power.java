@@ -15,6 +15,7 @@ import static seedu.smarthomebot.common.Messages.MESSAGE_TIME_FORMAT_ERROR;
 /**
  * Class representing the power consumption of appliances.
  */
+
 public class Power {
     private static final String DATE_TIME_FORMAT = "dd/MM/yyyy-HH:mm:ss";
     private final int power;
@@ -77,6 +78,16 @@ public class Power {
     }
 
     /**
+     * Gets the power consumption of appliance.
+     *
+     * @return the power consumption in double.
+     */
+    public double getPower() {
+        computeTotalPower();
+        return this.totalPowerConsumption;
+    }
+
+    /**
      * Gets the current system time from local machine.
      *
      * @return formatted current time with given format "dd/MM/yyyy-HH:mm:ss".
@@ -88,16 +99,6 @@ public class Power {
 
     private String getCurrentDate() {
         return getCurrentTime().substring(0, 10);
-    }
-
-    /**
-     * Gets the power consumption of appliance.
-     *
-     * @return the power consumption in double.
-     */
-    public double getPower() {
-        computeTotalPower();
-        return this.totalPowerConsumption;
     }
 
     /**
@@ -157,7 +158,6 @@ public class Power {
         dateFromFile = dateFromFile.substring(0, 10);
         return (getCurrentDate()).equals(dateFromFile);
     }
-
 
     private void computePower() {
         try {

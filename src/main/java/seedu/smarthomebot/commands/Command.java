@@ -2,13 +2,11 @@ package seedu.smarthomebot.commands;
 
 import seedu.smarthomebot.data.ApplianceList;
 import seedu.smarthomebot.data.LocationList;
-import seedu.smarthomebot.ui.TextUi;
 
 public class Command {
 
     protected ApplianceList applianceList;
     protected LocationList locationList;
-    protected TextUi ui = new TextUi();
 
     protected Command() {
     }

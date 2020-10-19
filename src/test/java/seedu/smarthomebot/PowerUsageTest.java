@@ -31,7 +31,7 @@ class PowerUsageTest {
     void initialPowerUsageTest() {
         Lights brLight = new Lights("Main Light", "BedRoom 1", "100");
         // New appliance wil not have power consumption until user switch on
-        assertEquals("0", brLight.getPowerConsumption());
+        assertEquals("0.00", brLight.getPowerConsumption());
     }
 
     @Test

@@ -66,7 +66,7 @@ public class StorageFile {
             }
 
             myReader.close();
-        }  catch (FileNotFoundException | EmptyParameterException | DuplicateDataException e) {
+        }  catch (FileNotFoundException | DuplicateDataException e) {
             ui.printToUser("Load File Does not Exist. No contents will be loaded.");
         } catch (IOException e) {
             ui.printToUser("Load File is corrupted.");
@@ -125,7 +125,7 @@ public class StorageFile {
         }
     }
 
-    private void readToLocationList(String location) throws EmptyParameterException, FileCorruptedException {
+    private void readToLocationList(String location) throws FileCorruptedException {
         try {
             int openBracesIndex = location.indexOf("[") + 1;
             int closeBracesIndex = location.indexOf("]");
