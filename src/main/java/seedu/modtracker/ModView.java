@@ -30,19 +30,7 @@ public class ModView {
     public static final String INVALID_WEEK_NUMBER = "Please input a week number between 1 and 13 inclusive.";
     public static final String EMPTY_MODULE_LIST = "The module list is empty. Please input some modules to be tracked.";
 
-    /**
-     * Gets all the module codes of modules taken by the user.
-     *
-     * @param modList list containing all the modules taken.
-     * @return a list containing all the modules codes.
-     */
-    private ArrayList<String> getModuleCode(ArrayList<Module> modList) {
-        ArrayList<String> output = new ArrayList<>();
-        for (Module m : modList) {
-            output.add(m.getModuleCode());
-        }
-        return output;
-    }
+
 
     /**
      * Prints the week number, module code, expected workload and actual time spent
@@ -64,11 +52,11 @@ public class ModView {
             return;
         }
 
-        assert weekNumber >= MIN_WEEK_VALUE : "week number should be between 1 and 13 inclusive";
-        assert weekNumber <= MAX_WEEK_VALUE : "week number should be between 1 and 13 inclusive";
+        assert weekNumber >= MIN_WEEK_VALUE : "Week number should be between 1 and 13 inclusive.";
+        assert weekNumber <= MAX_WEEK_VALUE : "Week number should be between 1 and 13 inclusive.";
         assert !modList.isEmpty() : "modList should not be empty";
 
-        ArrayList<String> moduleCodes = getModuleCode(modList);
+        ArrayList<String> moduleCodes = list.getModuleCodes();
         int maxLength = 0;
         for (String s : moduleCodes) {
             if (s.length() > maxLength) {
