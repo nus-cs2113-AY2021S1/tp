@@ -4,11 +4,16 @@ import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
 
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static seedu.duke.logger.AniLogger.getAniLogger;
 
 public class UserStorage extends Storage {
     private static final String USER_FILE_NAME = "user.txt";
     private static final String USER_LINE_DELIMITER_FOR_DECODE = " \\| ";
     private static final String USER_LINE_DELIMITER_FOR_ENCODE = " | ";
+    private static final Logger LOGGER = getAniLogger(UserStorage.class.getName());
 
     private final String storageDirectory;
 
@@ -21,6 +26,8 @@ public class UserStorage extends Storage {
     public void save(User user) throws AniException {
         String userFilePath = storageDirectory + USER_FILE_NAME;
         String encodedUserString = encode(user);
+        LOGGER.log(Level.INFO, "Encoded: " + System.lineSeparator() + encodedUserString);
+
         new File(storageDirectory).mkdirs();
         writeFile(userFilePath, encodedUserString);
     }
@@ -29,11 +36,14 @@ public class UserStorage extends Storage {
         String userFilePath = storageDirectory + USER_FILE_NAME;
         String fileString = readFile(userFilePath);
         if (fileString.isBlank()) {
+            LOGGER.log(Level.WARNING, "Empty user file: " + userFilePath);
             throw new AniException("Empty user file.");
         }
 
         String[] fileStringSplit = fileString.split(USER_LINE_DELIMITER_FOR_DECODE, 2);
+        LOGGER.log(Level.INFO, "Processing: " + System.lineSeparator() + fileString);
         if (!isValidUserString(fileStringSplit)) {
+            LOGGER.log(Level.WARNING, "Invalid user file: " + userFilePath);
             throw new AniException("Not loaded successfully.");
         }
 

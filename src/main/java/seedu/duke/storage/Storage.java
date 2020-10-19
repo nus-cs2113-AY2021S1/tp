@@ -7,10 +7,15 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static seedu.duke.logger.AniLogger.getAniLogger;
 
 public abstract class Storage {
     private static final String NEGATIVE_INTEGER_REGEX = "^[-]\\d+$";
     private static final String POSITIVE_INTEGER_REGEX = "^\\d+$";
+    private static final Logger LOGGER = getAniLogger(Storage.class.getName());
 
     public String readFile(String filePath) throws AniException {
         StringBuilder sbFileString = new StringBuilder();
@@ -24,6 +29,7 @@ public abstract class Storage {
                 sbFileString.append(System.lineSeparator());
             }
         } catch (FileNotFoundException exception) {
+            LOGGER.log(Level.INFO, "File does not exist at: " + filePath);
             throw new AniException("Does not exist.");
         }
 
@@ -35,8 +41,10 @@ public abstract class Storage {
             FileWriter fileWriter = new FileWriter(filePath);
             fileWriter.write(fileString);
             fileWriter.close();
+            LOGGER.log(Level.INFO, "Wrote to file: " + filePath);
         } catch (IOException exception) {
-            throw new AniException("Failed to write to the file.");
+            LOGGER.log(Level.WARNING, "Failed to write to file at: " + filePath);
+            throw new AniException("Failed to write to file.");
         }
     }
 

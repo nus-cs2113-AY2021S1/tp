@@ -9,8 +9,14 @@ import seedu.duke.watchlist.Watchlist;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static seedu.duke.logger.AniLogger.getAniLogger;
 
 public class StorageManager {
+    private static final Logger LOGGER = getAniLogger(StorageManager.class.getName());
+
     private final String storageDirectory;
     private final UserStorage userStorage;
     private final WatchlistStorage watchlistStorage;
@@ -25,16 +31,14 @@ public class StorageManager {
 
     public String[] retrieveWorkspaceList() {
         File file = new File(storageDirectory);
-        String[] workspaceList = file.list(new FilenameFilter() {
-            @Override
-            public boolean accept(File current, String name) {
-                return new File(current, name).isDirectory();
-            }
-        });
+        String[] workspaceList = file.list((current, name) -> new File(current, name).isDirectory());
 
         if (workspaceList == null) {
+            LOGGER.log(Level.INFO, "Found 0 workspace.");
             return new String[0];
         }
+
+        LOGGER.log(Level.INFO, "Found " + workspaceList.length + " workspace(s).");
         return workspaceList;
     }
 
