@@ -4,6 +4,8 @@ import seedu.duke.command.SearchCommand;
 import seedu.duke.exception.AniException;
 
 public class SearchParser extends CommandParser {
+    protected static final String NAME_PARAM = "n";
+    protected static final String GENRE_PARAM = "g";
     private SearchCommand searchCommand;
 
     public SearchParser() {
@@ -26,11 +28,11 @@ public class SearchParser extends CommandParser {
             switch (paramParts[0].trim()) {
             case "": //skip the first empty param
                 break;
-            case "n":
+            case NAME_PARAM:
                 paramFieldCheck(paramParts);
                 searchCommand.setSearchTerm(paramParts[1]);
                 break;
-            case "g":
+            case GENRE_PARAM:
                 paramFieldCheck(paramParts);
                 searchCommand.setSearchGenre(paramParts[1]);
                 break;

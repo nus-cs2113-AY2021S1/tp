@@ -48,7 +48,6 @@ public class BrowseCommand extends Command {
         this.page = 1;
         this.indexToPrint = 0;
         this.filter = "";
-        // LOGGER.setLevel(Level.WARNING);
     }
 
     @Override
