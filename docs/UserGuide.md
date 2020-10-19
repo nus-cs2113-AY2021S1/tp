@@ -1,18 +1,17 @@
 # User Guide
-
 - [Introduction](#introduction)
 - [Quick Start](#quick-start)
 - [Features](#features)
     - [Adding an exercise: `exercise`](#adding-an-exercise-exercise)
-    - [Adding a food item: `food`](#adding-a-food)
-    - [Deleting an item: `delete`](#deleting-an-item)
-    - [View list of exercises: `view exercise`](#view-exercise-list-view-exercise)
-    - [View list of food: `view food`](#view-food-list-view-food)
-    - [View user profile: `view profile`](#view-profile-view-profile)
-    - [View user bmi: `view bmi`](#view-user-bmi-view-bmi)
-    - [View user caloric summary: `view summary`](#view-calorie-summary-view-summary)
-    - [edit user profile: `edit ARGUMENT`](#edit-user-profile-edit)
-    - [Show help messages: `help`](#showing-the-help-messages-help)
+    - [Adding a food item: `food`](#adding-a-food-item-food)
+    - [Deleting an item: `delete`](#deleting-an-item-delete)
+    - [Viewing the exercise list: `view exercise`](#viewing-the-exercise-list-view-exercise)
+    - [Viewing the food list: `view food`](#viewing-the-food-list-view-food)
+    - [Viewing the user profile: `view profile`](#viewing-the-user-profile-view-profile)
+    - [Viewing the user's BMI: `view bmi`](#viewing-the-users-bmi-view-bmi)
+    - [Viewing the user's caloric summary: `view summary`](#viewing-the-users-caloric-summary-view-summary)
+    - [Editing the user's profile: `edit`](#editing-the-users-profile-edit)
+    - [Viewing help: `help`](#viewing-help-help)
     - [Clearing the lists: `clear`](#clearing-the-lists-clear)
     - [Exiting the program: `bye`](#exiting-the-program-bye)
     - [Saving the data](#saving-the-data)
@@ -20,77 +19,61 @@
 - [Command Summary](#command-summary)
 
 ## Introduction
-
 Fitr is a command-line application, helping you keep track of your food intake and exercises.
 
 ## Quick Start
-
 1. Ensure that you have Java 11 or above installed.
-1. Download the latest version of `Fitr` from [here](https://github.com/AY2021S1-CS2113T-W13-2/tp/releases).
-1. Open Command Prompt / Terminal
-1. Type the following command `java -jar` followed by the location of the Fitr JAR file, to run it.
+2. Download the latest version of `Fitr` from [here](https://github.com/AY2021S1-CS2113T-W13-2/tp/releases).
+3. Open Command Prompt / Terminal
+4. Type the following command `java -jar`, followed by the location of the `Fitr` JAR file, to run it.
 
 ## Features
-
 ### Adding an exercise: `exercise`
-
 Adds a new exercise to the list of exercises you have done.
 
-Format: `exercise NameOfExercise /AmountOfCaloriesBurnt`
+Format: `exercise NAME_OF_EXERCISE /AMOUNT_OF_CALORIES_BURNT`
 
-* The `NameOfExerCise` can be in a natural language format.
-* The `AmountOfCaloriesBurnt` has to be a positive number.  
+- The `NAME_OF_EXERCISE` can be in a natural language format.
+- The `AMOUNT_OF_CALORIES_BURNT` has to be a positive number.  
 
 Example of usage: 
+- `exercise Pushups /500`
+- `exercise 5km run /1000`
 
-`exercise Pushups /500`
-
-`exercise 5km run /1000`
-
-The expected outcome:
-
-`The following exercise has been added: Pushups`
-
-`The following exercise has been added: 5km run`
+Expected outcome:
+- `The following exercise has been added: Pushups`
+- `The following exercise has been added: 5km run`
 
 ### Adding a food item: `food`
-
 Adds a new food to the list of foods you have eaten.
 
-Format: `exercise NameOfFood /AmountOfCaloriesConsumed`
+Format: `exercise NAME_OF_FOOD /AMOUNT_OF_CALORIES_CONSUMED`
 
-* The `NameOfFood` can be in a natural language format.
-* The `AmountOfCaloriesConsumed` has to be a positive number.  
+- The `NAME_OF_FOOD` can be in a natural language format.
+- The `AMOUNT_OF_CALORIES_CONSUMED` has to be a positive number.  
 
 Example of usage: 
+- `food chicken rice /500`
+- `food Mcspicy /600`
 
-`food chicken rice /500`
+Expected outcome:
+- `The following food has been added: chicken rice`
+- `The following food has been added: Mcspicy`
 
-`food Mcspicy /600`
-
-The expected outcome:
-
-`The following food has been added: chicken rice`
-
-`The following food has been added: Mcspicy`
-
-### Deleting an item: 'delete'
-
+### Deleting an item: `delete`
 Deletes a particular item at a specified index in a specified list.
 
-Format: `delete ListName index`
+Format: `delete LIST INDEX`
 
-* The `ListName` has to be either food or exercise if not an exception will be thrown.
-* The `index` has to be a positive number smaller than or equals to the size of the list.
+- The `LIST` has to be either `food` or `exercise`, otherwise an exception will be thrown.
+- The `INDEX` has to be a positive number smaller than or equals to the size of the list.
 
 Example of usage: 
+- `delete food 1`
+- `delete exercise 2`
 
-`delete food 1`
-
-`delete exercise 2`
-
-### View exercise list: `view exercise`
-Displays exercise entries in the exercise list.
+### Viewing the exercise list: `view exercise`
+Displays the user's exercise entries from the exercise list.
 
 Format: `view exercise`
 
@@ -103,8 +86,8 @@ Here is the list of your exercises:
     Burnt Cal: 10
 ```
 
-### View food list: `view food`
-Displays food entries in the food list.
+### Viewing the food list: `view food`
+Displays the user's food entries from the food list.
 
 Format: `view food`
 
@@ -121,8 +104,8 @@ Here is the list of your food:
     Cal: 500
 ```
 
-### View profile: `view profile`
-Displays user profile: Name, age, gender, height (in m), weight (in kg).
+### Viewing the user profile: `view profile`
+Displays the user's profile: name, age, gender, height (in m), weight (in kg).
 
 Format: `view profile`
 
@@ -136,8 +119,8 @@ Height (in m): 1.8
 Weight (in kg): 80.0
 ```
 
-### View user bmi: `view bmi`
-Displays user's bmi based on height and weight in the user profile.
+### Viewing the user's BMI: `view bmi`
+Displays the user's BMI (body mass index) based on the user's height and weight in the user profile.
 
 Format: `view bmi`
 
@@ -147,8 +130,8 @@ Your BMI is:
 24.69
 ```
 
-### View calorie summary: `view summary`
-Displays summary of calorie consumed, calorie burnt, and net calorie based on entries in the exercise and food list.
+### Viewing the user's caloric summary: `view summary`
+Displays a summary of the calories consumed, calories burnt, and net calories based on the entries in the exercise and food list.
 
 Format: `view summary`
 
@@ -162,20 +145,20 @@ Net calorie:
 60
 ```
 
-### Edit user profile: `edit`
-Changes user's name, age, gender, height (in m), or weight (in kg).
+### Editing the user's profile: `edit`
+Changes the user's name, age, gender, height (in m), or weight (in kg).
 
 Format: `edit ARGUMENT`
 
 Argument | Format | Description | Notes for input
 ----- | ------ | -------- | ------
 name | `edit name` | Changes name in user profile | Not case-sensitive
-age | `edit age` | Changes age in user profile | Only number inputs allowed, fraction is not allowed
+age | `edit age` | Changes age in user profile | Only number inputs allowed, decimal number is not allowed
 gender | `edit gender` | Changes gender in user profile | Not case-sensitive, only takes in `m` or `f` input.
-height | `edit height` | Changes height in user profile | Only number inputs allowed, fraction is allowed
-weight | `edit weight` | Changes weight in user profile | Only number inputs allowed, fraction is allowed
+height | `edit height` | Changes height in user profile | Only number inputs allowed, decimal number is allowed
+weight | `edit weight` | Changes weight in user profile | Only number inputs allowed, decimal number is allowed
 
-Example of usage:
+Examples of usage:
 
 Edit name
 ```
@@ -212,55 +195,45 @@ Change your weight (in kg) to:
 Weight (in kg) changed to: 90.0
 ```
 
-### Show help messages: `help`
-
-Show help messages with all valid commands.
+### Viewing help: `help`
+Show help messages with all the valid commands supported by Fitr.
 
 Format: `help`
 
-Example of usage: 
-
-`help`
-
 Expected outcome:
-
-<pre>
-These are commands Fitr understands:<br/>
-food              Adds food entry to Fitr program<br/>
-                  Format: food &lt;Name of food&gt; / &lt;Number of Calories&gt; &lt;Quantity (Optional)&gt;<br/>
-exercise          Adds exercise entry to Fitr program<br/>
-                  Format: exercise &lt;Name of exercise&gt; / &lt;Number of Calories> &lt;Quantity (Optional)&gt;<br/>
-view profile      View your profile information`<br/>
-view bmi          View your BMI<br/>
-view food         View food entries<br/>
-view exercise     View exercise entries<br/>
-view summary      View calorie summary<br/>
-delete            Deletes selected entry<br/>
-                  Format: delete food &lt;Index from Food List&gt; or delete exercise &lt;Index from Exercise List&gt;<br/>
-bye               Exits the program<br/></pre>
+```
+These are commands Fitr understands:
+food              Adds food entry to Fitr program
+                  Format: food <Name of food> / <Number of Calories> <Quantity (Optional)>
+exercise          Adds exercise entry to Fitr program
+                  Format: exercise <Name of exercise> / <Number of Calories> <Quantity (Optional)>
+view profile      View your profile information
+view bmi          View your BMI
+view food         View food entries
+view exercise     View exercise entries
+view summary      View calorie summary
+delete            Deletes selected entry
+                  Format: delete food <Index from Food List> or delete exercise <Index from Exercise List>
+bye               Exits the program
+```
 
 ### Clearing the lists: `clear`	
-
 Clears either the exercise list, or the food list, or both.	
 
 Format: `clear LIST`	
-
 - `LIST` can either take `exercise` or `food`.	
 - If `LIST` is not provided, both exercise and food lists are cleared.	
 
 Example of usage:	
-
 - `clear food` clears the food list.	
 - `clear` clears both the exercise and food lists.
 
 ### Exiting the program: `bye`
-
 Exits the program.
 
 Format: `bye`
 
 ### Saving the data
-
 The user's profile, food consumed and exercises done are saved automatically after any command that changes the data. 
 There is no need to save manually.
 
@@ -268,7 +241,7 @@ There is no need to save manually.
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: Install `Fitr` on another computer, and overwrite the empty data files that it creates with the files with your data files.
 
 ## Command Summary
 
