@@ -14,7 +14,6 @@ import static seedu.duke.logger.AniLogger.getAniLogger;
 
 public class SearchCommand extends Command {
     protected static final String ASSERT_SEARCH_TERM_EMPTY = "Empty Search String!";
-    protected static final String ASSERT_SEARCH_TYPE_WRONG = "Search type out of bounds";
     protected static final String ID_HEADER = "[ID:";
     protected static final String ID_CLOSER = "] ";
     protected static final String NO_RESULTS_FOUND = "No results found!";
@@ -38,9 +37,7 @@ public class SearchCommand extends Command {
 
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
-        assert (!searchTerm.isBlank()) : ASSERT_SEARCH_TERM_EMPTY;
-        assert (!searchGenre.isBlank()) : ASSERT_SEARCH_TERM_EMPTY;
-        assert (searchType < 2 && searchType >= 0) : ASSERT_SEARCH_TYPE_WRONG;
+        assert (searchTerm.isEmpty() || searchGenre.isEmpty()) : ASSERT_SEARCH_TERM_EMPTY;
 
         switch (searchType) {
         case 0:

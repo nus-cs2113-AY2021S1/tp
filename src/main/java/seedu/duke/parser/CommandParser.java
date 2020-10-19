@@ -40,8 +40,11 @@ public abstract class CommandParser {
      * @throws AniException if the parameter is missing the additional field
      */
     public void paramFieldCheck(String[] paramParts) throws AniException {
+        String invalidParameter = PARAMETER_ERROR_HEADER + paramParts[0] + REQUIRE_ADDITIONAL_FIELD;
         if (paramParts.length < 2) {
-            String invalidParameter = PARAMETER_ERROR_HEADER + paramParts[0] + REQUIRE_ADDITIONAL_FIELD;
+            throw new AniException(invalidParameter);
+        }
+        if (paramParts[1].trim().isEmpty()) {
             throw new AniException(invalidParameter);
         }
     }

@@ -13,4 +13,6 @@ bookmark -a 410
 bookmark 1 -e 5
 bookmark -l
 add -a 1
+search -n cowboy
+browse -p 1
 exit
