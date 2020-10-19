@@ -149,7 +149,6 @@ public abstract class Parser {
         //this block will change fullCommand, but this does not affect the later block since
         //it either return an EditCommand, or throw an exception
         if (words[0].equals(EDIT)) {
-            UI ui = new UI();
             int eventIndex = -1;
             if (fullCommand.length() == 4) {
                 throw new EmptyEventIndexException();
@@ -163,7 +162,7 @@ public abstract class Parser {
             } catch (NumberFormatException e) {
                 throw new WrongEditFormatException();
             }
-
+            UI ui = new UI();
             ui.print(EDIT_INSTRUCTION);
             fullCommand = ui.readCommand();
             words = fullCommand.split(SINGLE_SPACE);
