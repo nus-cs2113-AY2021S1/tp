@@ -62,6 +62,11 @@ public class TextUi {
         System.out.println(bookList.toStringWithIndex());
     }
 
+    public void printBooksByKeyword(BookList bookList, String keyword) {
+        System.out.printf(UiMessage.LIST_BOOKS_BY_KEYWORD_MESSAGE + "\n", keyword);
+        System.out.println(bookList.toStringWithIndex());
+    }
+
     public void printAllQuotes(QuoteList quotes) {
         System.out.println(UiMessage.LIST_ALL_QUOTES);
         System.out.println(quotes);
