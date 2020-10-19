@@ -152,8 +152,7 @@ public class Storage {
      * @return a list of populated flashcards loaded from the file
      */
     private List<Flashcard> loadFlashcards(File flashcardFile) {
-        Type objectType = new TypeToken<ArrayList<Flashcard>>() {
-        }.getType();
+        Type objectType = new TypeToken<ArrayList<Flashcard>>() {}.getType();
         return loadFromJson(objectType, flashcardFile);
     }
 
@@ -164,8 +163,7 @@ public class Storage {
      * @return a list of populated results loaded from the file
      */
     private List<Result> loadResults(File resultFile) {
-        Type objectType = new TypeToken<ArrayList<Result>>() {
-        }.getType();
+        Type objectType = new TypeToken<ArrayList<Result>>() {}.getType();
         return loadFromJson(objectType, resultFile);
     }
 
@@ -270,7 +268,7 @@ public class Storage {
                 String legend = contents[0].trim();
                 boolean done = Integer.parseInt(contents[1].trim()) == 1;
                 String action = contents[2].trim();
-                String action2 = "";
+                String action2;
                 LocalDateTime dateTime = null;
                 DateTimeFormatter format = DateTimeFormatter.ofPattern("h:mm a d MMM yyyy");
 

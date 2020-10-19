@@ -1,18 +1,32 @@
 # User Guide
 
-## Introduction
+## Table of Contents
 
-revisED aims to help students to revise their subjects by adding flashcards or tasks that have
-to be completed. The user can store the flashcards in different topics, which can be created under different
-subjects. The tasks can be stored under subjects. This application is created to ensure that students would be
+## 1. Introduction
+
+revisED aims to help students to revise their subjects through the creation of flashcards or tasks that have
+to be completed. The user can store the flashcards under different topics, which can be created under different
+subjects. The tasks can be stored under subjects. This application ensures that students would be
 able to revise, even if they are doing it at the last minute.
+
+This user guide provides an in-depth documentation on the revisED installation process, the program features, and
+the program usage to get you started.
+
+### 1.1 Subject
+
+TODO: explains terminology 
+
+### 1.2 Topic
+
+TODO: ...
+
 
 ## Quick Start
 
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Download the latest version of `revisED` from [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/releases).
 
 ## Features 
 * Subjects
@@ -48,7 +62,7 @@ certain time limit.There are two types of quizzes :
 * SubjectQuiz
 * TopicQuiz
 
-####SubjectQuiz
+#### SubjectQuiz
 Prints out all the questions that have been saved in all of the topics in the subjects.The user is given
 2 minutes to complete the quiz.
 
@@ -57,7 +71,7 @@ Example: `quiz Maths`
 
 Output: `You are about to begin the quiz for maths.You have 2 minutes.`
 
-####TopicQuiz
+#### TopicQuiz
 Prints out all the questions that have been saved in the specific topic topics .The user is given
 1 minute to complete the quiz.
 
@@ -116,6 +130,49 @@ Example:`results maths` or `results speed`
 Quiz 1: 1/1 -- Excellent
 Quiz 2: 0/1 -- Fail
 </code></pre>
+
+### Storing of data 
+The data added to the program is automatically saved to the disk when the application exits. Similarly, the application
+loads the saved data from the disk automatically when it launches. The data is stored under the `data/` folder in the 
+same folder where the application resides.
+
+TODO: add hierarchy diagram
+
+Instead of storing all data in one file, revisED creates a folder hierarchy following the logical structure of the
+subjects and topics added. For example, if you add a `Maths` subject and a `Algebra` topic under it, a
+`Maths/` folder will be created under the `data/` folder and an `Algebra` folder will be created under the `Maths/`
+folder.
+
+#### tasks.txt
+There will be one `tasks.txt` file under each subject folder. This file contains the tasks (Todo, Event, Deadline) you
+have added to the specific subject.
+
+TODO: explain the format
+
+#### results.json
+This file can be found under each subject and topic folder. It stores the quiz results you have obtained from attempting
+the quiz under a specific subject or topic.
+
+TODO: explain the format
+
+#### flashcards.json
+This file stores all the flashcard data you have added under a specific subject and topic. It can be found under
+each topic folder.
+
+TODO: explain the format
+
+
+### Exporting data
+You can export all the data including the quiz results and tasks to a `json` file so that it can be imported into
+other applications that understand the data.
+
+Command: `export`
+
+After running the command, the data will be exported to `export/data.json` under the same folder where the
+application resides.
+
+TODO: explain the format
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -137,4 +194,5 @@ Start a quiz for a subject| `quiz maths`
 Start a quiz for a topic| `quiz speed`
 View results for a subject | `results maths`
 View results for a topic | `results speed`
+Export data | `export`
 Exit application|`bye`
