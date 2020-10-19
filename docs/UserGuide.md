@@ -387,7 +387,7 @@ View command list | `help`
 Add note | `add-n /t JavaDocs /tag CS2113 /pin true`<br>`add-n /t JavaDocs /pin true`<br>`add-n /t JavaDocs /tag CS2113`<br>`add-n /t JavaDocs`<br><br>`@param refers to param`<br>`@return refers to item to be returned`
 List notes | `list-n`<br>`list-n /tag CS2113`<br>`list-n /sort up`<br>Or any combination with `/tag` and `/sort`
 View note | `view-n /i 1`<br>`view-n /t JavaDocs`<br>`view-n /i 1 /t JavaDocs`
-Edit note | `edit-n /i 2 /t JavaDocs Notes`<br>`edit-n /i 2 /ln 1 /c @param refers to parameters`<br>`edit-n /i 2 /tag Notes`<br> Or any combination with `/t`, [`/ln` + /`c`] and `/tag` 
+Edit note | `edit-n /i 2 /t JavaDocs Notes`<br>`edit-n /i 2 /ln 1 /c @param refers to parameters`<br>`edit-n /i 2 /tag Notes`<br> Or any combination with `/t`, [`/ln` + `/c`] and `/tag` 
 Find notes | `find-n Java`
 Pin note | `pin-n /t JavaDocs Notes`<br>`pin-n /i 1`
 Delete note | `delete-n /t JavaDocs Notes`<br>`delete-n /i 1`
