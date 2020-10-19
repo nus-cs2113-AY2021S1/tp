@@ -50,6 +50,11 @@ public class FindCommand extends Command {
             }
 
             BookList filteredBooks = books.findByKeyword(keyword);
+
+            if (filteredBooks.isEmpty()) {
+                throw new QuotesifyException(ERROR_NO_BOOKS_IN_LIST);
+            }
+
             ui.printBooksByKeyword(filteredBooks, keyword);
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
