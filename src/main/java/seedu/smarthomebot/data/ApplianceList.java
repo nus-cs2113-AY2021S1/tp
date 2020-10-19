@@ -42,10 +42,6 @@ public class ApplianceList {
         return applianceList;
     }
 
-    public void setAppliance(int index, Appliance appliance) {
-        applianceList.set(index, appliance);
-    }
-
     public Boolean isApplianceExist(String toAddApplianceName) {
         boolean isExist = false;
         for (Appliance a : applianceList) {

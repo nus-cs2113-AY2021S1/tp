@@ -14,9 +14,9 @@ import seedu.smarthomebot.commands.RemoveCommand;
 import seedu.smarthomebot.commands.UsageCommand;
 import seedu.smarthomebot.exceptions.EmptyParameterException;
 import seedu.smarthomebot.exceptions.InvalidAddCommand;
+import seedu.smarthomebot.exceptions.InvalidFomartException;
 import seedu.smarthomebot.exceptions.InvalidValue;
 import seedu.smarthomebot.exceptions.PowerValueExceed;
-import seedu.smarthomebot.ui.TextUi;
 
 import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_ADD_COMMAND;
 import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -34,29 +34,74 @@ public class Parser {
         int indexParameter = arguments.indexOf("p/");
         String name;
         String parameter;
+        String type;
         try {
-            if (indexParameter < 1) {
-                name = arguments;
+            if (arguments.substring(0,2).equals("n/")) {
+                type = APPLIANCE_TYPE;
+                if (indexParameter < 1) {
+                    name = arguments.substring(2).trim();
+                    if (checkForEmptyInput(name)) {
+                        throw new EmptyParameterException();
+                    }
+                    parameter = "";
+                } else {
+                    name = arguments.substring(2,indexParameter).trim();
+                    parameter = arguments.substring(indexParameter + 2).toLowerCase().trim();
+                    if (checkForEmptyInput(name)
+                            || checkForEmptyInput(parameter)) {
+                        throw new EmptyParameterException();
+                    }
+                    convertParameterToInt(parameter);
+                }
+                return new OnCommand(name, type, parameter);
+            } else if (arguments.substring(0,2).equals("l/")) {
+                name = arguments.substring(2);
+                type = LOCATION_TYPE;
                 if (checkForEmptyInput(name)) {
                     throw new EmptyParameterException();
                 }
-                parameter = "";
+                return new OnCommand(name, type, "0");
             } else {
-                name = arguments.substring(0, indexParameter).trim();
-                parameter = arguments.substring(indexParameter + 2).toLowerCase().trim();
-                if (checkForEmptyInput(name)
-                        || checkForEmptyInput(parameter)) {
-                    throw new EmptyParameterException();
-                }
-                convertParameterToInt(parameter);
+                throw new InvalidFomartException();
             }
-            return new OnCommand(name, parameter);
 
         } catch (EmptyParameterException e) {
             return new InvalidCommand("Empty Appliance Name");
 
         } catch (InvalidValue e) {
             return new InvalidCommand(MESSAGE_POWER_NOT_NUMBER);
+
+        } catch (InvalidFomartException e) {
+            return new InvalidCommand("Invalid Format");
+
+        }
+
+    }
+
+    private static Command prepareOffCommand(String arguments) {
+        String name;
+        String type;
+        try {
+            name = arguments.substring(2);
+            if (checkForEmptyInput(name)) {
+                throw new EmptyParameterException();
+            }
+            if (arguments.substring(0,2).equals("n/")) {
+                type = APPLIANCE_TYPE;
+                return new OffCommand(name, type);
+            } else if (arguments.substring(0,2).equals("l/")) {
+                type = LOCATION_TYPE;
+                return new OffCommand(name, type);
+            } else {
+                throw new InvalidFomartException();
+            }
+
+        } catch (EmptyParameterException e) {
+            return new InvalidCommand("Empty Appliance Name");
+
+        } catch (InvalidFomartException e) {
+            return new InvalidCommand("Invalid Format");
+
         }
 
     }
@@ -162,7 +207,7 @@ public class Parser {
         case OnCommand.COMMAND_WORD:
             return prepareOnCommand(arguments);
         case OffCommand.COMMAND_WORD:
-            return new OffCommand(arguments);
+            return prepareOffCommand(arguments);
         case ListCommand.COMMAND_WORD:
             return prepareListCommand(arguments);
         case UsageCommand.COMMAND_WORD:
