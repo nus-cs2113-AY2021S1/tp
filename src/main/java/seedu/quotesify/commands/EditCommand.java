@@ -106,6 +106,7 @@ public class EditCommand extends Command {
                 ratings.add(new Rating(currentRatingOfBook, newTitle));
             }
 
+            books.ensureNoSimilarBooks(newTitle, book.getAuthor().getName());
             book.setTitle(newTitle);
             ui.printEditBook(oldTitle, newTitle);
 
