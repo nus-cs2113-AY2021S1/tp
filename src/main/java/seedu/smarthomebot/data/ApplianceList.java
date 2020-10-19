@@ -1,16 +1,15 @@
 package seedu.smarthomebot.data;
 
 import seedu.smarthomebot.data.framework.Appliance;
+import seedu.smarthomebot.data.framework.Power;
 import seedu.smarthomebot.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.exceptions.DuplicateDataException;
-import seedu.smarthomebot.ui.TextUi;
 
 import java.util.ArrayList;
 
 public class ApplianceList {
 
     private static ArrayList<Appliance> applianceList;
-    private static TextUi ui = new TextUi();
 
     public ApplianceList() {
         applianceList = new ArrayList<>();

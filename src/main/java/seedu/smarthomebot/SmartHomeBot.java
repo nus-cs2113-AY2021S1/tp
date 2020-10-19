@@ -6,6 +6,8 @@ import seedu.smarthomebot.commands.ExitCommand;
 import seedu.smarthomebot.common.Messages;
 import seedu.smarthomebot.data.ApplianceList;
 import seedu.smarthomebot.data.LocationList;
+import seedu.smarthomebot.data.framework.Appliance;
+import seedu.smarthomebot.data.framework.Power;
 import seedu.smarthomebot.storage.StorageFile;
 import seedu.smarthomebot.ui.TextUi;
 
@@ -44,6 +46,7 @@ public class SmartHomeBot {
 
     /** Prints the Goodbye message and exits. */
     private void exit() {
+
         ui.printToUser(Messages.MESSAGE_EXPORT);
         ui.showGoodByeMessage();
         System.exit(0);
@@ -60,7 +63,6 @@ public class SmartHomeBot {
             if (result != null) {
                 ui.printResultToUser(result);
             }
-
         } while (!ExitCommand.isExit(command));
     }
 

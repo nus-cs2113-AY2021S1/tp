@@ -20,7 +20,7 @@ public class UsageCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        int totalUsage = 0;
+        double totalUsage = 0;
         int index = 1;
 
         if (applianceList.getAllAppliance().size() == 0) {
@@ -29,15 +29,15 @@ public class UsageCommand extends Command {
             String formattedResult = (LINE + MESSAGE_POWER_USAGE);
             String format = "%-2d. %-" + Appliance.getMaxNameLength() + "s"
                     + MESSAGE_DISPLAY_LOCATION + "%-" + Appliance.getMaxLocationLength() + "s"
-                    + MESSAGE_DISPLAY_STATUS + "%-3s"
-                    + MESSAGE_DISPLAY_USAGE + "%d kWh";
+                    + MESSAGE_DISPLAY_STATUS + "%-5s"
+                    + MESSAGE_DISPLAY_USAGE + "%.2f kWh";
             for (Appliance a : applianceList.getAllAppliance()) {
                 formattedResult = formattedResult.concat(System.lineSeparator() + String.format(format, index,
                         a.getName(), a.getLocation(), a.getStatus(), a.measureConsumption()));
                 totalUsage += a.measureConsumption();
                 index++;
             }
-            formattedResult = formattedResult.concat(MESSAGE_TOTAL_POWER_USAGE + String.format("%d kWh", totalUsage));
+            formattedResult = formattedResult.concat(MESSAGE_TOTAL_POWER_USAGE + String.format("%.2f kWh", totalUsage));
             return new CommandResult(formattedResult);
         }
     }

@@ -31,17 +31,17 @@ class PowerUsageTest {
     void initialPowerUsageTest() {
         Lights brLight = new Lights("Main Light", "BedRoom 1", "100");
         // New appliance wil not have power consumption until user switch on
-        assertEquals("0", brLight.getPowerConsumption());
+        assertEquals("0.00", brLight.getPowerConsumption());
     }
 
     @Test
     void powerUsageTest() throws InterruptedException {
-        Fan fan = new Fan("Cooling Fan", "Kitchen", "950");
+        Fan fan = new Fan("Cooling Fan", "Kitchen", "40010");
         fan.switchOn();
-        // Appliance wil be on for 5000ms which equals to 5hours in SmartHomeBot
-        Thread.sleep(5000);
+        // Appliance will be on for 3000ms which equals to 30 minutes in SmartHomeBot
+        Thread.sleep(3000);
         fan.switchOff();
-        assertEquals("5", fan.getPowerConsumption());
+        assertEquals("20.01", fan.getPowerConsumption());
     }
 
 }

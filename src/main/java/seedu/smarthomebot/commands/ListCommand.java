@@ -54,7 +54,7 @@ public class ListCommand extends Command {
                 String formattedResult = (LINE + MESSAGE_LIST_APPLIANCES);
                 String format = "%-2d. %-" + Appliance.getMaxNameLength() + "s"
                         + MESSAGE_DISPLAY_LOCATION + "%-" + Appliance.getMaxLocationLength() + "s"
-                        + MESSAGE_DISPLAY_STATUS + "%-3s"
+                        + MESSAGE_DISPLAY_STATUS + "%-5s"
                         + MESSAGE_DISPLAY_WATT + "%-4sW"
                         + MESSAGE_DISPLAY_TYPE + "%s";
                 for (Appliance a : applianceList.getAllAppliance()) {
@@ -75,7 +75,7 @@ public class ListCommand extends Command {
                 String formattedResult = (LINE + "Here are the appliances in \"" + filteredLocation + "\"");
                 String format = "%-2d. %-" + Appliance.getMaxNameLength() + "s"
                         + MESSAGE_DISPLAY_LOCATION + "%-" + Appliance.getMaxLocationLength() + "s"
-                        + MESSAGE_DISPLAY_STATUS + "%-3s"
+                        + MESSAGE_DISPLAY_STATUS + "%-5s"
                         + MESSAGE_DISPLAY_WATT + "%-4sW"
                         + MESSAGE_DISPLAY_TYPE + "%s";
                 for (Appliance a : filterApplianceList) {
