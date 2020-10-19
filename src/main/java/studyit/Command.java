@@ -1,3 +1,8 @@
+package studyit;
+
+import academic.AcademicCommandParser;
+import academic.AcademicCommandType;
+import bookmark.BookmarkParser;
 import bookmark.BookmarkUi;
 import exceptions.InvalidCommandException;
 import exceptions.InvalidGradeException;
@@ -8,6 +13,10 @@ import academic.PersonBook;
 import timetable.TimeTableRun;
 import bookmark.BookmarkCategory;
 import bookmark.commands.BookmarkCommand;
+import userinterface.ErrorMessage;
+import userinterface.HelpMessage;
+import userinterface.Ui;
+
 import java.util.ArrayList;
 
 
@@ -33,6 +42,7 @@ public class Command {
             handleNonGeneralCommand(command, commandType, bookmarkCategories, flashcardRun, timeTableRun,
                     currentGrades, listOfPerson);
         } else {
+            assert commandType == CommandType.UNIDENTIFIABLE : "This command should be unidentifiable";
             ErrorMessage.printUnidentifiableCommand();
             StudyItLog.logger.info("Cannot understand command input.");
         }
@@ -53,6 +63,7 @@ public class Command {
         } else if (currentMode == Mode.FLASHCARD) {
             executeFlashcardCommand(command, flashcardRun);
         } else {
+            assert currentMode == Mode.MENU : "The current mode should be at menu";
             StudyItLog.logger.severe("Mode is not handled properly.");
         }
     }
@@ -103,7 +114,7 @@ public class Command {
                 Ui.printLine(GradeBook.printListOfGrades(currentGrades));
 
             } else {
-                StudyItLog.logger.severe("Invalid command type, check Command Parser");
+                StudyItLog.logger.severe("Invalid command type, check studyit.Command Parser");
             }
         } catch (InvalidCommandException e) {
             ErrorMessage.printUnidentifiableCommand();

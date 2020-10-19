@@ -1,7 +1,10 @@
+package academic;
+
 import academic.Grade;
 import exceptions.InvalidCommandException;
 import exceptions.InvalidGradeException;
 import exceptions.InvalidMcException;
+import studyit.CommandParser;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +13,7 @@ public class AcademicCommandParser extends CommandParser {
 
     public static AcademicCommandType getAcademicCommandType(String command)
             throws InvalidCommandException {
-        String commandModified = standardizeCommand(command);
+        String commandModified = CommandParser.standardizeCommand(command);
 
         if (commandModified.startsWith("add contact")) {
             return AcademicCommandType.ADD_CONTACT;

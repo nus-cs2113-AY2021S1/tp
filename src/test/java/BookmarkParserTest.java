@@ -1,3 +1,4 @@
+import bookmark.BookmarkParser;
 import bookmark.commands.AddLinkCommand;
 import bookmark.commands.BackCommand;
 import bookmark.commands.ChangeModeCommand;
