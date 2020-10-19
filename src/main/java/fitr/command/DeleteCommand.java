@@ -4,6 +4,7 @@ import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.storage.Storage;
 import fitr.ui.Ui;
+import fitr.user.User;
 
 import java.io.IOException;
 
@@ -13,7 +14,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage) {
+    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user) {
         try {
             command = command.split(" ", 2)[1];
             String type = command.split(" ", 2)[0];

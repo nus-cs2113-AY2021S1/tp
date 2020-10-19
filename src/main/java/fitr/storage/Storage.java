@@ -114,11 +114,11 @@ public class Storage {
         LOGGER.fine("Attempting to write to file: " + userConfigPath);
         FileWriter file = new FileWriter(userConfigPath);
 
-        file.write(User.getName()
-                + COMMA_SEPARATOR + User.getGender()
-                + COMMA_SEPARATOR + User.getAge()
-                + COMMA_SEPARATOR + User.getHeight()
-                + COMMA_SEPARATOR + User.getWeight());
+        file.write(user.getName()
+                + COMMA_SEPARATOR + user.getGender()
+                + COMMA_SEPARATOR + user.getAge()
+                + COMMA_SEPARATOR + user.getHeight()
+                + COMMA_SEPARATOR + user.getWeight());
 
         LOGGER.fine("User profile file written successfully.");
         file.close();

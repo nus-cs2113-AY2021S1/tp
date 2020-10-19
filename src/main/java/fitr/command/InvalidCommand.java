@@ -4,6 +4,7 @@ import fitr.ui.Ui;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.storage.Storage;
+import fitr.user.User;
 
 public class InvalidCommand extends Command {
 
@@ -12,7 +13,7 @@ public class InvalidCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage) {
+    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user) {
         Ui.printFormatError(command);
     }
 
