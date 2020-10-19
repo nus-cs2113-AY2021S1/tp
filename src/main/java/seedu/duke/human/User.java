@@ -1,16 +1,20 @@
 package seedu.duke.human;
 
+import seedu.duke.Duke;
 import seedu.duke.exception.AniException;
+import static seedu.duke.logger.AniLogger.getAniLogger;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class User extends Human {
     public static final String GENDER_MALE = "male";
     public static final String GENDER_FEMALE = "female";
     public static final String GENDER_OTHER = "other";
-    private static final Logger LOGGER = Logger.getLogger(User.class.getName());
+    private static final Logger LOGGER = getAniLogger(Duke.class.getName());
+
 
     protected Gender gender;
     protected Workspace activeWorkspace;
@@ -18,7 +22,6 @@ public class User extends Human {
 
     public User(String name, String gender) throws AniException {
         super(name);
-        LOGGER.setLevel(Level.WARNING);
 
         setGender(gender);
         activeWorkspace = null;
@@ -63,7 +66,6 @@ public class User extends Human {
         this.workspaceList = workspaceList;
         if (workspaceList.size() != 0) {
             activeWorkspace = workspaceList.get(0);
-
         }
     }
 
@@ -87,7 +89,6 @@ public class User extends Human {
      * @param switchToThisWorkspace the requested workplace to switch to
      * @throws AniException if the workplace is not found
      */
-
     public void switchActiveWorkspace(String switchToThisWorkspace) throws AniException {
         for (Workspace existingWorkspace : workspaceList) {
             if (existingWorkspace.getName().equals(switchToThisWorkspace)) {
@@ -95,6 +96,8 @@ public class User extends Human {
                 return;
             }
         }
+
+        LOGGER.log(Level.WARNING, "Workspace " + switchToThisWorkspace + " does not exist!");
         throw new AniException("Workspace " + switchToThisWorkspace + " does not exist!");
     }
 
@@ -108,18 +111,10 @@ public class User extends Human {
         assert (name != null) : "Workspace details should not have any null.";
 
         workspaceList.add(newWorkspace);
-        LOGGER.log(Level.INFO, "Workspace created: " + name + " | " + gender);
+        LOGGER.log(Level.INFO, "Workspace created: " + name);
         return newWorkspace;
     }
 
-    // Suggest to check internally in the workspace command.
-    private void checkIfWorkspaceExist(String name) throws AniException {
-        for (Workspace existingWorkspace : workspaceList) {
-            if (existingWorkspace.getName().equals(name)) {
-                throw new AniException("A workspace with " + name + " already exist. Choose a different name!");
-            }
-        }
-    }
 
     @Override
     public String toString() {
