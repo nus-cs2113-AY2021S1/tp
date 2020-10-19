@@ -3,6 +3,9 @@
 - [Introduction](#introduction)
 - [Quick Start](#quick-start)
 - [Features](#features)
+    - [Adding an exercise: `exercise`](#adding-an-exercise-exercise)
+    - [Adding a food item: `food`](#adding-a-food)
+    - [Deleting an item: `delete`](#deleting-an-item)
     - [Show help messages: `help`](#showing-the-help-messages-help)
     - [Clearing the lists: `clear`](#clearing-the-lists-clear)
     - [Exiting the program: `bye`](#exiting-the-program-bye)
@@ -20,6 +23,63 @@ Fitr is a command-line application, helping you keep track of your food intake a
 1. Download the latest version of `Fitr` from [here](https://github.com/AY2021S1-CS2113T-W13-2/tp/releases).
 
 ## Features
+
+### Adding an exercise: `exercise`
+
+Adds a new exercise to the list of exercises you have done.
+
+Format: `exercise NameOfExercise /AmountOfCaloriesBurnt`
+
+* The `NameOfExerCise` can be in a natural language format.
+* The `AmountOfCaloriesBurnt` has to be a positive number.  
+
+Example of usage: 
+
+`exercise Pushups /500`
+
+`exercise 5km run /1000`
+
+The expected outcome:
+
+`The following exercise has been added: Pushups`
+
+`The following exercise has been added: 5km run`
+
+### Adding a food item: `food`
+
+Adds a new food to the list of foods you have eaten.
+
+Format: `exercise NameOfFood /AmountOfCaloriesConsumed`
+
+* The `NameOfFood` can be in a natural language format.
+* The `AmountOfCaloriesConsumed` has to be a positive number.  
+
+Example of usage: 
+
+`food chicken rice /500`
+
+`food Mcspicy /600`
+
+The expected outcome:
+
+`The following food has been added: chicken rice`
+
+`The following food has been added: Mcspicy`
+
+### Deleting an item: 'delete'
+
+Deletes a particular item at a specified index in a specified list.
+
+Format: `delete ListName index`
+
+* The `ListName` has to be either food or exercise if not an exception will be thrown.
+* The `index` has to be a positive number smaller than or equals to the size of the list.
+
+Example of usage: 
+
+`delete food 1`
+
+`delete exercise 2`
 
 ### Show help messages: `help`
 Show help messages with all valid commands.
@@ -46,21 +106,6 @@ view summary      View calorie summary<br/>
 delete            Deletes selected entry<br/>
                   Format: delete food &lt;Index from Food List&gt; or delete exercise &lt;Index from Exercise List&gt;<br/>
 bye               Exits the program<br/></pre>
-
-
-### Clearing the lists: `clear`
-
-Clears either the exercise list, or the food list, or both.
-
-Format: `clear LIST`
-
-- `LIST` can either take `exercise` or `food`.
-- If `LIST` is not provided, both exercise and food lists are cleared.
-
-Example of usage:
-
-- `clear food` clears the food list.
-- `clear` clears both the exercise and food lists.
 
 ### Exiting the program: `bye`
 
