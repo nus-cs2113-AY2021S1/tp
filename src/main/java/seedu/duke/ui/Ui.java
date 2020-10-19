@@ -7,6 +7,8 @@ import seedu.duke.event.EventList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Ui {
@@ -76,6 +78,26 @@ public class Ui {
             System.out.println("No more goal!");
         }
         printDividerLine();
+    }
+
+    private void printCalendarFormat(Event event) {
+        System.out.printf("%s | ", event.getTime().format(DateTimeFormatter.ofPattern("K:mm a")));
+        System.out.printf("%s | ", event.getStatus());
+        System.out.printf("%s |\n", event.getDescription());
+        System.out.println();
+    }
+
+    public void printCalendar(Map.Entry<LocalDate, ArrayList<Event>> entry) {
+        System.out.println(entry.getKey().format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
+        printDividerLine();
+        ArrayList<Event> eventsOnDate;
+        eventsOnDate = entry.getValue();
+        eventsOnDate.sort(Comparator.comparing(Event::getTime));
+        for(Event e : eventsOnDate) {
+            printCalendarFormat(e);
+        }
+        printDividerLine();
+        //print there are how many task without date
     }
 
     public void printCheckMessage() {
