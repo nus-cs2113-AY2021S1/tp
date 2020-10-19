@@ -1,6 +1,7 @@
 package seedu.duke.slot;
 
 import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import seedu.duke.ItemList;
 
@@ -107,5 +108,4 @@ public class SlotList extends ItemList {
     public void deleteSlot(Slot slot) {
         slots.remove(slot);
     }
-
 }

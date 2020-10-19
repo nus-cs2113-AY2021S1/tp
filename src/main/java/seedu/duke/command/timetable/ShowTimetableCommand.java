@@ -7,6 +7,7 @@ import seedu.duke.command.Command;
 import seedu.duke.slot.Slot;
 import seedu.duke.slot.SlotList;
 import seedu.duke.exception.DukeException;
+import java.time.LocalDate;
 
 public class ShowTimetableCommand extends Command {
     public static final String SHOW_KW = "show";
@@ -37,6 +38,9 @@ public class ShowTimetableCommand extends Command {
         }
 
         String dayData = input.substring(5);
+        if (dayData.trim().toLowerCase().equals("today")) {
+            dayData = Ui.getDayToday();
+        }
 
         if (dayData.compareToIgnoreCase(Slot.MON) == 0) {
             outputData = Slot.MON;
@@ -58,4 +62,6 @@ public class ShowTimetableCommand extends Command {
 
         return outputData;
     }
+
+
 }

@@ -16,8 +16,17 @@ import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 import seedu.duke.slot.Slot;
 
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import org.fusesource.jansi.AnsiConsole;
+import static org.fusesource.jansi.Ansi.ansi;
+import static org.fusesource.jansi.Ansi.Color.RED;
+import static org.fusesource.jansi.Ansi.Color.GREEN;
 
 /**
  * Represents the user interface on the command line and deals with interactions with the user.
@@ -31,6 +40,7 @@ public class Ui {
      */
     public Ui() {
         scanner = new Scanner(System.in);
+        AnsiConsole.systemInstall();
     }
 
     /**
@@ -73,6 +83,7 @@ public class Ui {
     public void showExitScreen() {
         String message = "Bye. Hope to see you again soon!\n";
         print(message);
+        AnsiConsole.systemUninstall();
     }
 
     /**
@@ -220,14 +231,45 @@ public class Ui {
 
     private static void printSlotsInADay(ArrayList<Slot> slots, String day) {
         boolean hasSlotOnDay = false;
+        boolean hasIndicatorOnDay = false;
+        if (day.equals(getDayToday())) {
+            hasIndicatorOnDay = true;
+        }
+
+        ArrayList<Slot> thisDaySlots = new ArrayList<>();
         for (Slot s: slots) {
             if (s.getDay().equals(day)) {
-                System.out.println(s.toString());
-                hasSlotOnDay = true;
+                thisDaySlots.add(s);
             }
         }
+
+        for (int i = 0; i < thisDaySlots.size(); i++) {
+            if (hasLessonNow(thisDaySlots.get(i))) {
+                printHighlighBoxUpper();
+                System.out.println(thisDaySlots.get(i).toString());
+                printHighlighBoxLower();
+                hasIndicatorOnDay = false;
+            } else {
+                if (thisDaySlots.get(i).getStartTime().isAfter(LocalTime.now())
+                        && hasIndicatorOnDay == true) {
+                    printIndicator();
+                    hasIndicatorOnDay = false;
+                }
+                System.out.println(thisDaySlots.get(i).toString());
+                if (i == thisDaySlots.size() - 1 && hasIndicatorOnDay == true) {
+                    printIndicator();
+                    hasIndicatorOnDay = false;
+                }
+            }
+            hasSlotOnDay = true;
+        }
+
         if (!hasSlotOnDay) {
             System.out.println("No lessons");
+            if (hasIndicatorOnDay == true) {
+                printIndicator();
+                hasIndicatorOnDay = false;
+            }
         }
         System.out.println();
     }
@@ -253,4 +295,73 @@ public class Ui {
         printSlotsInADay(slots, dayInput);
     }
 
+    /**
+     * Returns String of today's day of the week.
+     *
+     * @return outputDay String of today's day of the week readable by Slot class.
+     */
+    public static String getDayToday() {
+        String outputDay;
+
+        assert (LocalDate.now().getDayOfWeek().getValue() <= 7) && (LocalDate.now().getDayOfWeek().getValue() >= 1) :
+                "LocalDate.now().getDayOfWeek().getValue() only returns value within range 1 to 7";
+        switch (LocalDate.now().getDayOfWeek().getValue()) {
+        case 1:
+            outputDay = "mon";
+            break;
+        case 2:
+            outputDay = "tue";
+            break;
+        case 3:
+            outputDay = "wed";
+            break;
+        case 4:
+            outputDay = "thu";
+            break;
+        case 5:
+            outputDay = "fri";
+            break;
+        case 6:
+            outputDay = "sat";
+            break;
+        case 7:
+            outputDay = "sun";
+            break;
+        default:
+            outputDay = "mon";
+            break;
+        }
+
+        return outputDay;
+    }
+
+    public static boolean hasLessonNow(Slot slot) {
+        boolean isOverlap = false;
+        LocalTime timeNow = LocalTime.now();
+        if (slot.getStartTime().isBefore(timeNow) && slot.getEndTime().isAfter(timeNow)
+                && getDayToday().equals(slot.getDay())) {
+            isOverlap = true;
+        }
+        return isOverlap;
+    }
+
+    public static void printIndicator() {
+        DateTimeFormatter hoursAndMinutes = DateTimeFormatter.ofPattern("HH:mm");
+        String currentTimeMessage = "<----" + "Current Time: " + LocalTime.now().format(hoursAndMinutes)
+                + "---->" + "\n";
+
+        System.out.print(ansi().fg(GREEN).a(currentTimeMessage).reset());
+    }
+
+    public static void printHighlighBoxUpper() {
+        String message = "[====" + "Lesson now" + "====]" + "\n";
+
+        System.out.print(ansi().fg(RED).a(message).reset());
+    }
+
+    public static void printHighlighBoxLower() {
+        String message = "[==================]" + "\n";
+
+        System.out.print(ansi().fg(RED).a(message).reset());
+    }
 }
