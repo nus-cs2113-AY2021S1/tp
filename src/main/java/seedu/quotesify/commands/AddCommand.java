@@ -42,7 +42,8 @@ public class AddCommand extends Command {
         information = details[1];
     }
 
-    public void execute(TextUi ui) {
+    @Override
+    public void execute(TextUi ui, Storage storage) {
         switch (type) {
         case TAG_BOOK:
             addLogger.log(Level.INFO, "going to add book to booklist");
@@ -75,7 +76,7 @@ public class AddCommand extends Command {
             ui.printListOfAddComnmands();
             break;
         }
-        Storage.save();
+        storage.save();
     }
 
     private void addBook(BookList books, TextUi ui) {

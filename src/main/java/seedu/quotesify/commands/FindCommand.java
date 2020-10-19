@@ -22,7 +22,8 @@ public class FindCommand extends Command {
         information = details[1];
     }
 
-    public void execute(TextUi ui) {
+    @Override
+    public void execute(TextUi ui, Storage storage) {
         switch (type) {
         case TAG_RATING:
             RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
@@ -32,7 +33,7 @@ public class FindCommand extends Command {
             ui.printListOfFindCommands();
             break;
         }
-        Storage.save();
+        storage.save();
     }
 
     private void findRating(RatingList ratings, TextUi ui) {

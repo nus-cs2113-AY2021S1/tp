@@ -5,8 +5,8 @@ import seedu.quotesify.ui.TextUi;
 
 public class ExitCommand extends Command {
     @Override
-    public void execute(TextUi ui) {
-        Storage.save();
+    public void execute(TextUi ui, Storage storage) {
+        storage.save();
     }
 
     @Override

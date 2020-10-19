@@ -29,7 +29,9 @@ public class Quotesify {
     private RatingList ratings;
     private ToDoList toDos;
     private BookmarkList bookmarks;
+
     private final Logger logger = Logger.getLogger("QuotesifyLogger");
+    private final Storage storage;
     private final String saveFileLocation = "/data/quotesify.json";
 
     public Quotesify() {
@@ -50,8 +52,7 @@ public class Quotesify {
         ListManager.addToList(ListManager.TODO_LIST, toDos);
         ListManager.addToList(ListManager.BOOKMARK_LIST, bookmarks);
 
-        Storage.initialiseSaveFile(saveFileLocation);
-        Storage.load();
+        storage = new Storage(saveFileLocation);
     }
 
     public void start() {
@@ -73,7 +74,7 @@ public class Quotesify {
                 ui.printInvalidQuotesifyCommand();
                 continue;
             }
-            command.execute(ui);
+            command.execute(ui, storage);
             isExit = command.isExit();
         }
     }

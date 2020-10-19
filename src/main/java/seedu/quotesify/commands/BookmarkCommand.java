@@ -30,7 +30,7 @@ public class BookmarkCommand extends Command {
     }
 
     @Override
-    public void execute(TextUi ui) {
+    public void execute(TextUi ui, Storage storage) {
         switch (type) {
         case TAG_BOOK:
             BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
@@ -46,7 +46,7 @@ public class BookmarkCommand extends Command {
             System.out.println(ERROR_INVALID_TAG);
             break;
         }
-        Storage.save();
+        storage.save();
     }
 
     public void handleBookmark(BookList books, BookmarkList bookmarks, TextUi ui) {

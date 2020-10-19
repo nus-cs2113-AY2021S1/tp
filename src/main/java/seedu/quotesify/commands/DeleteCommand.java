@@ -37,7 +37,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TextUi ui) {
+    public void execute(TextUi ui, Storage storage) {
         switch (type) {
         case TAG_CATEGORY:
             CategoryList categories = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
@@ -70,7 +70,7 @@ public class DeleteCommand extends Command {
             ui.printListOfDeleteCommands();
             break;
         }
-        Storage.save();
+        storage.save();
     }
 
     private void deleteQuote(QuoteList quotes, TextUi ui, String information) {
