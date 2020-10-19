@@ -7,7 +7,7 @@ import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
-import seedu.duke.slot.SlotList;
+import seedu.duke.slot.Timetable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,14 +52,14 @@ public class LaunchBookmarkCommand extends Command {
      * Launches the bookmark based on the launchTypeFlag previously determined in LaunchBookmarkCommand initialization.
      *
      * @param bookmarks The list of bookmarks.
-     * @param slotList The list of slots.
+     * @param timetable The list of slots.
      * @param ui The user interface.
      * @param bookmarkStorage The storage for saving and loading bookmarks.
      * @param slotStorage The storage for saving and loading slots.
      * @throws DukeException if the bookmark number is invalid or if there is an error launching the URL.
      */
     @Override
-    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
+    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
                         Storage bookmarkStorage, Storage slotStorage) throws DukeException {
         if (launchTypeFlag == 1) { // Launch based on index
             try {
