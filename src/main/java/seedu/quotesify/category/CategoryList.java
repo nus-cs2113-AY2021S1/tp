@@ -1,5 +1,6 @@
 package seedu.quotesify.category;
 
+import org.json.simple.JSONArray;
 import seedu.quotesify.book.BookList;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
@@ -47,6 +48,31 @@ public class CategoryList extends QuotesifyList<Category> {
         }
     }
 
+    public void updateListInCategory(Category category) {
+        BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+        QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+        category.setBookList(bookList.filterByCategory(category.getCategoryName()));
+        category.setQuoteList(quoteList.filterByCategory(category.getCategoryName()));
+    }
+
+    public void updateCategoryInBooksAndQuotes(String oldCategory, String newCategory) {
+        BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+        QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+        bookList.getList().forEach(book -> {
+            if (book.getCategories().contains(oldCategory)) {
+                book.getCategories().remove(oldCategory);
+                book.getCategories().add(newCategory);
+            }
+        });
+
+        quoteList.getList().forEach(quote -> {
+            if (quote.getCategories().contains(oldCategory)) {
+                quote.getCategories().remove(oldCategory);
+                quote.getCategories().add(newCategory);
+            }
+        });
+    }
+
     @Override
     public void add(Category category) {
         categories.add(category);
@@ -63,6 +89,15 @@ public class CategoryList extends QuotesifyList<Category> {
         int index = 0;
         for (Category category : categories) {
             list += String.format("%d. %s\n", ++index, category.toString());
+        }
+        return list;
+    }
+
+    @Override
+    public JSONArray toJsonArray() {
+        JSONArray list = new JSONArray();
+        for (Category category : categories) {
+            list.add(category.toJson());
         }
         return list;
     }

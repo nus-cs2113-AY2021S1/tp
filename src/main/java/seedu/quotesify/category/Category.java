@@ -1,9 +1,11 @@
 package seedu.quotesify.category;
 
+import org.json.simple.JSONObject;
 import seedu.quotesify.book.BookList;
+import seedu.quotesify.parser.JsonSerializer;
 import seedu.quotesify.quote.QuoteList;
 
-public class Category {
+public class Category implements JsonSerializer {
     private String category;
     private BookList bookList;
     private QuoteList quoteList;
@@ -51,5 +53,12 @@ public class Category {
     @Override
     public String toString() {
         return String.format("%s - (%d items)", getCategoryName(), getSize());
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject details = new JSONObject();
+        details.put("category", this.getCategoryName());
+        return details;
     }
 }

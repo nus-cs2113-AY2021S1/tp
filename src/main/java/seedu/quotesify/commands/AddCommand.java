@@ -14,20 +14,22 @@ import seedu.quotesify.quote.QuoteParser;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
 import seedu.quotesify.rating.RatingParser;
+import seedu.quotesify.store.Storage;
 import seedu.quotesify.todo.ToDo;
 import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
 
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
 import java.util.ArrayList;
 
 public class AddCommand extends Command {
+    public static Logger addLogger = Logger.getLogger("QuotesifyLogger");
+
     private String type;
     private String information;
-
-    public static Logger addLogger = Logger.getLogger("QuotesifyLogger");
 
     public AddCommand(String arguments) {
         String[] details = arguments.split(" ", 2);
@@ -40,7 +42,8 @@ public class AddCommand extends Command {
         information = details[1];
     }
 
-    public void execute(TextUi ui) {
+    @Override
+    public void execute(TextUi ui, Storage storage) {
         switch (type) {
         case TAG_BOOK:
             addLogger.log(Level.INFO, "going to add book to booklist");
@@ -70,7 +73,10 @@ public class AddCommand extends Command {
             ui.printAddToDo(newToDo);
             break;
         default:
+            ui.printListOfAddComnmands();
+            break;
         }
+        storage.save();
     }
 
     private void addBook(BookList books, TextUi ui) {
@@ -87,21 +93,13 @@ public class AddCommand extends Command {
                 throw new QuotesifyException(ERROR_NO_AUTHOR_NAME);
             }
 
-            ensureNoSimilarBooks(books, title, authorName);
+            books.ensureNoSimilarBooks(title, authorName);
             Book newBook = createNewBook(title, authorName);
             books.add(newBook);
             ui.printAddBook(newBook);
-
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
             addLogger.log(Level.INFO, "add book to booklist failed");
-        }
-    }
-
-    private void ensureNoSimilarBooks(BookList books, String title, String authorName) throws QuotesifyException {
-        ArrayList<Book> similarBooks = books.find(title, authorName);
-        if (!similarBooks.isEmpty()) {
-            throw new QuotesifyException(ERROR_BOOK_ALREADY_EXISTS);
         }
     }
 
@@ -133,19 +131,23 @@ public class AddCommand extends Command {
         }
     }
 
-    private void executeParameters(CategoryList categories, String[] parameters, TextUi ui) {
+    private void executeParameters(CategoryList categoryList, String[] parameters, TextUi ui) {
         try {
-            String categoryName = parameters[0];
-            assert !categoryName.isEmpty() : "category name should not be empty";
+            String categoryNames = parameters[0];
+            assert !categoryNames.isEmpty() : "category name should not be empty";
 
-            addCategoryToList(categories, categoryName);
-            Category category = categories.getCategoryByName(categoryName);
+            List<String> categories = CategoryParser.parseCategoriesToList(categoryNames);
+            for (String categoryName : categories) {
+                addCategoryToList(categoryList, categoryName);
+                Category category = categoryList.getCategoryByName(categoryName);
 
-            String bookTitle = parameters[1];
-            String quoteNum = parameters[2];
+                String bookNum = parameters[1];
+                String quoteNum = parameters[2];
 
-            addCategoryToBook(category, bookTitle, ui);
-            addCategoryToQuote(category, quoteNum, ui);
+                addCategoryToBook(category, bookNum, ui);
+                addCategoryToQuote(category, quoteNum, ui);
+                categoryList.updateListInCategory(category);
+            }
         } catch (QuotesifyException e) {
             addLogger.log(Level.WARNING, e.getMessage());
             ui.printErrorMessage(e.getMessage());
@@ -158,21 +160,25 @@ public class AddCommand extends Command {
         }
     }
 
-    private void addCategoryToBook(Category category, String bookTitle, TextUi ui) {
+    private void addCategoryToBook(Category category, String bookNum, TextUi ui) {
         // ignore this action if user did not provide book title
-        if (bookTitle.isEmpty()) {
+        if (bookNum.isEmpty()) {
             return;
         }
 
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         try {
-            Book book = bookList.findByTitle(bookTitle);
-            book.setCategory(category);
+            int bookIndex = Integer.parseInt(bookNum) - 1;
+            Book book = bookList.getBook(bookIndex);
+            book.getCategories().add(category.getCategoryName());
+            ui.printAddCategoryToBook(book.getTitle(), category.getCategoryName());
             addLogger.log(Level.INFO, "add category to book success");
-            ui.printAddCategoryToBook(bookTitle, category.getCategoryName());
-        } catch (NullPointerException e) {
+        } catch (IndexOutOfBoundsException e) {
             addLogger.log(Level.WARNING, ERROR_NO_BOOK_FOUND);
             ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
+        } catch (NumberFormatException e) {
+            addLogger.log(Level.WARNING, ERROR_INVALID_BOOK_NUM);
+            ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
         }
     }
 
@@ -187,8 +193,8 @@ public class AddCommand extends Command {
         try {
             int quoteNum = Integer.parseInt(index) - 1;
             Quote quote = quotes.get(quoteNum);
-            quote.setCategory(category);
-            ui.printAddCategoryToQuote(quotes.get(quoteNum).getQuote(), category.getCategoryName());
+            quote.getCategories().add(category.getCategoryName());
+            ui.printAddCategoryToQuote(quote.getQuote(), category.getCategoryName());
             addLogger.log(Level.INFO, "add category to quote success");
         } catch (IndexOutOfBoundsException e) {
             addLogger.log(Level.WARNING, ERROR_NO_QUOTE_FOUND);
@@ -200,15 +206,23 @@ public class AddCommand extends Command {
     }
 
     private void addRating(RatingList ratings, TextUi ui) {
-        String[] ratingDetails = information.split(" ", 2);
-        String titleOfBookToRate = ratingDetails[1].trim();
 
-        int ratingScore = RatingParser.checkFormatOfRatingValue(ratingDetails[0]);
-        if (ratingScore == 0) {
+        String[] ratingDetails;
+        String titleOfBookToRate;
+
+        try {
+            ratingDetails = information.split(" ", 2);
+            titleOfBookToRate = ratingDetails[1].trim();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(ERROR_RATING_MISSING_BOOK_TITLE_OR_RATING_SCORE);
             return;
         }
-        boolean isValid = RatingParser.checkRangeOfRatingValue(ratingScore);
-        if (isValid && !isRated(ratings, titleOfBookToRate) && isExistingBook(titleOfBookToRate)) {
+
+        int ratingScore = RatingParser.checkValidityOfRatingScore(ratingDetails[0]);
+        boolean isValid = ((ratingScore != 0) && (!isRated(ratings, titleOfBookToRate))
+                && isExistingBook(titleOfBookToRate));
+
+        if (isValid) {
             ratings.add(new Rating(ratingScore, titleOfBookToRate));
             ui.printAddRatingToBook(ratingScore, titleOfBookToRate);
         }
@@ -217,27 +231,26 @@ public class AddCommand extends Command {
     private boolean isExistingBook(String titleOfBookToRate) {
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         ArrayList<Book> existingBooks = bookList.getList();
-        boolean doesExist = false;
-        assert existingBooks.size() != 0 : "List of books should not be empty";
+
+        boolean isFound = false;
         for (Book existingBook : existingBooks) {
             if (existingBook.getTitle().equals(titleOfBookToRate)) {
-                doesExist = true;
+                isFound = true;
                 break;
             }
         }
-        if (!doesExist) {
+
+        if (!isFound) {
             addLogger.log(Level.INFO, "book does not exist");
             System.out.println(ERROR_BOOK_TO_RATE_NOT_FOUND);
         }
-        return doesExist;
+        return isFound;
     }
 
     private boolean isRated(RatingList ratings, String titleOfBookToRate) {
         boolean isRated = false;
-        String titleOfRatedBook;
         for (Rating rating : ratings.getList()) {
-            titleOfRatedBook = rating.getTitleOfRatedBook();
-            if (titleOfRatedBook.equals(titleOfBookToRate)) {
+            if (rating.getTitleOfRatedBook().equals(titleOfBookToRate)) {
                 isRated = true;
                 break;
             }

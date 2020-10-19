@@ -1,22 +1,25 @@
 package seedu.quotesify.book;
 
+import org.json.simple.JSONObject;
 import seedu.quotesify.author.Author;
-import seedu.quotesify.category.Category;
+import seedu.quotesify.parser.JsonSerializer;
 
-public class Book {
+import java.util.ArrayList;
+
+public class Book implements JsonSerializer {
     private Author author;
     private String title;
-    private Category category;
+    private ArrayList<String> categories = new ArrayList<>();
 
     public Book(Author author, String title) {
         this.author = author;
         this.title = title;
     }
 
-    public Book(Author author, String title, Category category) {
+    public Book(Author author, String title, ArrayList<String> category) {
         this.author = author;
         this.title = title;
-        this.category = category;
+        this.categories = category;
     }
 
     public Author getAuthor() {
@@ -35,20 +38,29 @@ public class Book {
         this.title = title;
     }
 
-    public Category getCategory() {
-        return category;
+    public ArrayList<String> getCategories() {
+        return categories;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategories(ArrayList<String> categories) {
+        this.categories = categories;
     }
 
     @Override
     public String toString() {
-        if (category != null) {
-            return title + " by " + author.getName() + " -" + category.getCategoryName();
+        if (categories != null) {
+            return title + " by " + author.getName(); // removed display of category
         }
 
         return title + " by " + author.getName();
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject details = new JSONObject();
+        details.put("author", this.getAuthor().toJson());
+        details.put("title", this.getTitle());
+        details.put("categories", this.getCategories());
+        return details;
     }
 }

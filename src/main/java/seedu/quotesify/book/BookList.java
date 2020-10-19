@@ -1,7 +1,9 @@
 package seedu.quotesify.book;
 
+import org.json.simple.JSONArray;
 import seedu.quotesify.author.Author;
-import seedu.quotesify.category.Category;
+import seedu.quotesify.commands.Command;
+import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.QuotesifyList;
 
 import java.util.ArrayList;
@@ -36,6 +38,14 @@ public class BookList extends QuotesifyList<Book> {
         return books.isEmpty();
     }
 
+    public int getIndex(Book book) {
+        return books.indexOf(book);
+    }
+
+    public Book getBook(int index) {
+        return books.get(index);
+    }
+
     @Override
     public String toString() {
         String booksToReturn = "";
@@ -45,6 +55,23 @@ public class BookList extends QuotesifyList<Book> {
         }
 
         return booksToReturn;
+    }
+
+    public String toStringWithIndex() {
+        String booksToReturn = "";
+
+        for (Book book : books) {
+            booksToReturn += getIndex(book) + 1 + ". " + book.toString() + System.lineSeparator();
+        }
+
+        return booksToReturn;
+    }
+
+    public void ensureNoSimilarBooks(String title, String authorName) throws QuotesifyException {
+        ArrayList<Book> similarBooks = find(title, authorName);
+        if (!similarBooks.isEmpty()) {
+            throw new QuotesifyException(Command.ERROR_BOOK_ALREADY_EXISTS);
+        }
     }
 
     public ArrayList<Book> find(String title, String authorName) {
@@ -60,7 +87,23 @@ public class BookList extends QuotesifyList<Book> {
                     return bookAuthorName.toLowerCase().equals(lowerCaseAuthor)
                             && bookTitle.toLowerCase().equals(lowerCaseTitle);
                 }).collect(Collectors.toList());
+
         return filteredBooks;
+    }
+
+    public BookList findByKeyword(String keyword) {
+        assert !keyword.isEmpty();
+        String lowerCaseKeyword = keyword.toLowerCase();
+
+        ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
+                .filter(book -> {
+                    String authorName = book.getAuthor().getName();
+                    String bookTitle = book.getTitle();
+                    return authorName.toLowerCase().contains(lowerCaseKeyword)
+                            || bookTitle.toLowerCase().contains(lowerCaseKeyword);
+                }).collect(Collectors.toList());
+
+        return new BookList(filteredBooks);
     }
 
     public Book findByTitle(String title) {
@@ -75,6 +118,15 @@ public class BookList extends QuotesifyList<Book> {
         return null;
     }
 
+    public Book findByNum(int num) {
+        int index = num - 1;
+        if (num <= books.size()) {
+            return books.get(index);
+        } else {
+            return null;
+        }
+    }
+
     public BookList filterByAuthor(String authorName) {
         String lowerCaseAuthor = authorName.toLowerCase();
 
@@ -84,20 +136,25 @@ public class BookList extends QuotesifyList<Book> {
                     String bookAuthorName = bookAuthor.getName();
                     return bookAuthorName.toLowerCase().equals(lowerCaseAuthor);
                 }).collect(Collectors.toList());
+
         return new BookList(filteredBooks);
     }
 
     public BookList filterByCategory(String categoryName) {
-        try {
-            ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
-                    .filter(book -> {
-                        Category category = book.getCategory();
-                        return category.getCategoryName().equals(categoryName);
-                    }).collect(Collectors.toList());
-            return new BookList(filteredBooks);
-        } catch (NullPointerException e) {
-            // Do nothing
+        ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
+                .filter(book -> {
+                    ArrayList<String> categories = book.getCategories();
+                    return categories.contains(categoryName);
+                }).collect(Collectors.toList());
+        return new BookList(filteredBooks);
+    }
+
+    @Override
+    public JSONArray toJsonArray() {
+        JSONArray list = new JSONArray();
+        for (Book book : books) {
+            list.add(book.toJson());
         }
-        return new BookList();
+        return list;
     }
 }

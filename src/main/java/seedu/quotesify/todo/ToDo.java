@@ -1,6 +1,9 @@
 package seedu.quotesify.todo;
 
-public class ToDo {
+import org.json.simple.JSONObject;
+import seedu.quotesify.parser.JsonSerializer;
+
+public class ToDo implements JsonSerializer {
     private String name;
     private String deadline;
     private boolean isDone;
@@ -9,6 +12,12 @@ public class ToDo {
         this.name = name;
         this.deadline = deadline;
         this.isDone = false;
+    }
+
+    public ToDo(String name, String deadline, boolean isDone) {
+        this.name = name;
+        this.deadline = deadline;
+        this.isDone = isDone;
     }
 
     public String getName() {
@@ -45,5 +54,14 @@ public class ToDo {
         String signTick = "v";
         String signCross = "x";
         return (isDone ? signTick : signCross);
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", this.getName());
+        json.put("deadline", this.getDeadline());
+        json.put("isDone", this.isDone());
+        return json;
     }
 }

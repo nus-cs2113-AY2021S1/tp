@@ -1,5 +1,8 @@
 package seedu.quotesify.todo;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import seedu.quotesify.book.Book;
 import seedu.quotesify.lists.QuotesifyList;
 
 import java.util.ArrayList;
@@ -28,6 +31,10 @@ public class ToDoList extends QuotesifyList<ToDo> {
         }
     }
 
+    public int getSize() {
+        return todos.size();
+    }
+
     @Override
     public void delete(int taskNum) {
         int indexNum = taskNum - 1;
@@ -45,5 +52,14 @@ public class ToDoList extends QuotesifyList<ToDo> {
         }
 
         return toDosToReturn;
+    }
+
+    @Override
+    public JSONArray toJsonArray() {
+        JSONArray list = new JSONArray();
+        for (ToDo todo : todos) {
+            list.add(todo.toJson());
+        }
+        return list;
     }
 }

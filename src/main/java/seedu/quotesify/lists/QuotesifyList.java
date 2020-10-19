@@ -1,5 +1,7 @@
 package seedu.quotesify.lists;
 
+import org.json.simple.JSONArray;
+
 import java.util.ArrayList;
 
 public abstract class QuotesifyList<T> {
@@ -21,6 +23,8 @@ public abstract class QuotesifyList<T> {
     public abstract void add(T t);
 
     public abstract void delete(int index);
+
+    public abstract JSONArray toJsonArray();
 
     @Override
     public abstract String toString();

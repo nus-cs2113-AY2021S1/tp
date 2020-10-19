@@ -1,5 +1,7 @@
 package seedu.quotesify.bookmark;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.lists.QuotesifyList;
 
@@ -30,6 +32,10 @@ public class BookmarkList extends QuotesifyList<Bookmark> {
         return null;
     }
 
+    public int getSize() {
+        return bookmarks.size();
+    }
+
     @Override
     public void delete(int index) {
         bookmarks.remove(index);
@@ -47,5 +53,14 @@ public class BookmarkList extends QuotesifyList<Bookmark> {
         }
 
         return bookmarksToReturn;
+    }
+
+    @Override
+    public JSONArray toJsonArray() {
+        JSONArray list = new JSONArray();
+        for (Bookmark bookmark : bookmarks) {
+            list.add(bookmark.toJson());
+        }
+        return list;
     }
 }

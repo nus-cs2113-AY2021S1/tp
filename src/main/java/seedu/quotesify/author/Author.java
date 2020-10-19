@@ -1,6 +1,9 @@
 package seedu.quotesify.author;
 
-public class Author {
+import org.json.simple.JSONObject;
+import seedu.quotesify.parser.JsonSerializer;
+
+public class Author implements JsonSerializer {
     String name;
 
     public Author(String name) {
@@ -13,5 +16,12 @@ public class Author {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", this.getName());
+        return json;
     }
 }

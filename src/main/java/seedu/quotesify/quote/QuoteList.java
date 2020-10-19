@@ -1,6 +1,6 @@
 package seedu.quotesify.quote;
 
-import seedu.quotesify.category.Category;
+import org.json.simple.JSONArray;
 import seedu.quotesify.lists.QuotesifyList;
 
 import java.util.ArrayList;
@@ -26,6 +26,14 @@ public class QuoteList extends QuotesifyList<Quote> {
         return quotes.size();
     }
 
+    public int getIndex(Quote quote) {
+        return quotes.indexOf(quote);
+    }
+
+    public void editQuote(Quote quote, int quoteNumber) {
+        quotes.set(quoteNumber, quote);
+    }
+
     @Override
     public void add(Quote newQuote) {
         quotes.add(newQuote);
@@ -40,23 +48,18 @@ public class QuoteList extends QuotesifyList<Quote> {
     public String toString() {
         String quotesToReturn = "";
         for (int i = 0; i < getSize(); i++) {
-            quotesToReturn += (i + 1 + ". " + quotes.get(i).toString());
+            quotesToReturn += (i + 1 + ". " + quotes.get(i).toString()) + System.lineSeparator();
         }
         return quotesToReturn;
     }
 
     public QuoteList filterByCategory(String categoryName) {
-        try {
-            ArrayList<Quote> filteredQuotes = (ArrayList<Quote>) quotes.stream()
-                    .filter(quote -> {
-                        Category category = quote.getCategory();
-                        return category.getCategoryName().equals(categoryName);
-                    }).collect(Collectors.toList());
-            return new QuoteList(filteredQuotes);
-        } catch (NullPointerException e) {
-            // Do nothing
-        }
-        return new QuoteList();
+        ArrayList<Quote> filteredQuotes = (ArrayList<Quote>) quotes.stream()
+                .filter(quote -> {
+                    ArrayList<String> categories = quote.getCategories();
+                    return categories.contains(categoryName);
+                }).collect(Collectors.toList());
+        return new QuoteList(filteredQuotes);
     }
 
     public String getRandomQuote() {
@@ -100,5 +103,28 @@ public class QuoteList extends QuotesifyList<Quote> {
             }
         }
         return listToReturn;
+    }
+
+    public String findQuoteByKeyword(QuoteList quoteList, String keyword) {
+        String listToReturn = "";
+        for (Quote quote : quoteList.getList()) {
+            if (quote.getQuote().contains(keyword)) {
+                listToReturn += quote.toString() + System.lineSeparator();
+            } else if (quote.hasReference() && quote.getReference().contains(keyword)) {
+                listToReturn += quote.toString() + System.lineSeparator();
+            } else if (quote.hasAuthor() && quote.getAuthorName().contains(keyword)) {
+                listToReturn += quote.toString() + System.lineSeparator();
+            }
+        }
+        return listToReturn;
+    }
+
+    @Override
+    public JSONArray toJsonArray() {
+        JSONArray list = new JSONArray();
+        for (Quote quote : quotes) {
+            list.add(quote.toJson());
+        }
+        return list;
     }
 }

@@ -17,55 +17,6 @@ import seedu.quotesify.todo.ToDoList;
 import java.util.Scanner;
 
 public class TextUi {
-    private static final String LOGO = "________                __                .__  _____       \n"
-            + "\\_____  \\  __ __  _____/  |_  ____   _____|__|/ ____\\__.__.\n"
-            + " /  / \\  \\|  |  \\/  _ \\   __\\/ __ \\ /  ___/  \\   __<   |  |\n"
-            + "/   \\_/.  \\  |  (  <_> )  | \\  ___/ \\___ \\|  ||  |  \\___  |\n"
-            + "\\_____\\ \\_/____/ \\____/|__|  \\___  >____  >__||__|  / ____|\n"
-            + "       \\__>                      \\/     \\/          \\/    ";
-
-    private static final String WELCOME_MESSAGE = "Welcome to Quotesify v1.0!";
-    private static final String GOODBYE_MESSAGE = "Alright, have a nice day!";
-    private static final String PROMPT_MESSAGE = "\nWhat would you like to do with Quotesify?";
-    private static final String INVALID_QUOTESIFY_COMMAND = "I don't understand you." + System.lineSeparator()
-            + "Maybe type \"help\" for usage instructions?";
-    private static final String ADD_BOOK_MESSAGE = "The book [%s] has been added!";
-    private static final String DELETE_BOOK_MESSAGE = "The book [%s] has been deleted!";
-    private static final String LIST_BOOKS_MESSAGE = "Here is a list of all books:";
-    private static final String LIST_BOOKS_BY_AUTHOR_MESSAGE = "Here is a list of books by %s:";
-    private static final String ADD_CATEGORY_MESSAGE = "I have tagged [%s] category to \"%s\"!";
-    private static final String DELETE_CATEGORY_MESSAGE = "I have removed [%s] category from \"%s\"!";
-    private static final String CATEGORY_SIZE_MESSAGE = "You have a total of %d item(s) tagged as [%s].";
-    private static final String LIST_CATEGORIES_MESSAGE = "Here is the list of all categories:";
-    private static final String LIST_ALL_IN_CATEGORIES_MESSAGE = "Here are the list of items tagged as [%s]:";
-    private static final String EMPTY_CATEGORY_LIST_MESSAGE = "There are no categories created!";
-    private static final String NO_ITEMS_IN_CATEGORY_MESSAGE = "There are no items tagged as [%s].";
-    private static final String ADD_RATING_MESSAGE = "You have just rated %s %d star!";
-    public static final String DELETE_RATING_MESSAGE = "Rating for %s has been deleted!";
-    private static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
-            + " Here are your rated books!";
-    private static final String LIST_NO_RATINGS_FOUND_MESSAGE = "None of the books are rated yet!";
-    private static final String LIST_SPECIFIED_RATING_MESSAGE = "Here are the books you rated as %d star!";
-    private static final String LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE = "I can't find any books rated %d star!";
-    private static final String ADD_TODO_MESSAGE = "The task [%s] has been added!";
-    private static final String TODO_SIZE_MESSAGE = "You have a total of %d task(s) recorded.";
-    private static final String LIST_TODOS_MESSAGE = "Here is the list of all task(s) recorded:";
-    private static final String DELETE_TODO_MESSAGE = "The Task [%s] has been deleted!";
-    private static final String DONE_TODO_MESSAGE = "The Task [%s] has been marked as done!";
-    private static final String ADD_BOOKMARK_MESSAGE = "The bookmark [%s] has been added!";
-    private static final String UPDATE_BOOKMARK_MESSAGE = "The bookmark [%s] has been updated";
-    private static final String BOOKMARK_SIZE_MESSAGE = "You have a total of %d bookmark(s) recorded.";
-    private static final String LIST_BOOKMARKS_MESSAGE = "Here is the list of all bookmark(s) recorded:";
-    private static final String DELETE_BOOKMARKS_MESSAGE = "The bookmark [%s] has been removed!";
-    private static final String LIST_ALL_QUOTES = "Here are all your quotes:";
-    private static final String DELETE_QUOTE_MESSAGE = "The quote \"%s\" has been deleted!";
-    private static final String LIST_NO_QUOTES_SAVED_MESSAGE = "You have no saved quotes!";
-    private static final String LIST_NO_QUOTES_FOUND_MESSAGE = "I could not find any that matched your specifications.";
-    private static final String LIST_QUOTES_BY_AUTHOR_MESSAGE = "Here is a list of quotes by %s:";
-    private static final String LIST_QUOTES_BY_REFERENCE_MESSAGE = "Here is a list of quotes from %s:";
-    private static final String LIST_QUOTES_BY_AUTHOR_AND_REFERENCE_MESSAGE = "Here is a list of quotes from %s by %s:";
-    private static final String PRINT_RANDOM_QUOTE = "Before you continue, here's something:";
-
     private final Scanner in;
 
     public TextUi() {
@@ -73,16 +24,16 @@ public class TextUi {
     }
 
     public void showWelcomeMessage() {
-        System.out.println(LOGO);
-        System.out.println(WELCOME_MESSAGE);
+        System.out.println(UiMessage.LOGO);
+        System.out.println(UiMessage.WELCOME_MESSAGE);
     }
 
     public void showGoodbyeMessage() {
-        System.out.println(GOODBYE_MESSAGE);
+        System.out.println(UiMessage.GOODBYE_MESSAGE);
     }
 
     public String getUserCommand() {
-        System.out.println(PROMPT_MESSAGE);
+        System.out.println(UiMessage.PROMPT_MESSAGE);
         if (in.hasNextLine()) {
             return in.nextLine().trim();
         }
@@ -90,141 +41,48 @@ public class TextUi {
     }
 
     public void printAddBook(Book book) {
-        System.out.printf(ADD_BOOK_MESSAGE + "\n", book.toString());
+        System.out.printf(UiMessage.ADD_BOOK_MESSAGE + "\n", book.toString());
     }
 
     public void printDeleteBook(Book book) {
-        System.out.printf(DELETE_BOOK_MESSAGE + "\n", book.toString());
+        System.out.printf(UiMessage.DELETE_BOOK_MESSAGE + "\n", book.toString());
+    }
+
+    public void printEditBook(String oldTitle, String newTitle) {
+        System.out.printf(UiMessage.EDIT_BOOK_MESSAGE + "\n", oldTitle, newTitle);
     }
 
     public void printAllBooks(BookList bookList) {
-        System.out.println(LIST_BOOKS_MESSAGE);
-        System.out.println(bookList.toString());
+        System.out.println(UiMessage.LIST_BOOKS_MESSAGE);
+        System.out.println(bookList.toStringWithIndex());
     }
 
     public void printBooksByAuthor(BookList bookList, String authorName) {
-        System.out.printf(LIST_BOOKS_BY_AUTHOR_MESSAGE + "\n", authorName);
-        System.out.println(bookList.toString());
+        System.out.printf(UiMessage.LIST_BOOKS_BY_AUTHOR_MESSAGE + "\n", authorName);
+        System.out.println(bookList.toStringWithIndex());
+    }
+
+    public void printBooksByKeyword(BookList bookList, String keyword) {
+        System.out.printf(UiMessage.LIST_BOOKS_BY_KEYWORD_MESSAGE + "\n", keyword);
+        System.out.println(bookList.toStringWithIndex());
     }
 
     public void printAllQuotes(QuoteList quotes) {
-        System.out.println(LIST_ALL_QUOTES);
+        System.out.println(UiMessage.LIST_ALL_QUOTES);
         System.out.println(quotes);
-    }
-
-    public void printAddCategoryToBook(String bookTitle, String categoryName) {
-        System.out.printf((ADD_CATEGORY_MESSAGE) + "\n", categoryName, bookTitle);
-    }
-
-    public void printAddCategoryToQuote(String quote, String categoryName) {
-        System.out.printf((ADD_CATEGORY_MESSAGE) + "\n", categoryName, quote);
-    }
-
-    public void printRemoveCategoryFromBook(String bookTitle, String categoryName) {
-        System.out.printf((DELETE_CATEGORY_MESSAGE) + "\n", categoryName, bookTitle);
-    }
-
-    public void printRemoveCategoryFromQuote(String quote, String categoryName) {
-        System.out.printf((DELETE_CATEGORY_MESSAGE) + "\n", categoryName, quote);
-    }
-
-    public void printCategorySize(Category category) {
-        System.out.printf((CATEGORY_SIZE_MESSAGE) + "\n", category.getSize(), category.getCategoryName());
-    }
-
-    public void printAllCategories(CategoryList categoryList) {
-        if (categoryList.getList().size() == 0) {
-            System.out.println(EMPTY_CATEGORY_LIST_MESSAGE);
-            return;
-        }
-        System.out.println(LIST_CATEGORIES_MESSAGE);
-        System.out.println(categoryList.toString());
-    }
-
-    public void printAllInCategory(Category category) {
-        String categoryName = category.getCategoryName();
-        if (category.getSize() == 0) {
-            System.out.printf(NO_ITEMS_IN_CATEGORY_MESSAGE + "\n", categoryName);
-            return;
-        }
-
-        System.out.printf(LIST_ALL_IN_CATEGORIES_MESSAGE + "\n", categoryName);
-        printAllBooksInCategory(category);
-        System.out.println("");
-        printAllQuotesInCategory(category);
-    }
-
-    public void printAllBooksInCategory(Category category) {
-        BookList bookList = category.getBookList();
-        if (bookList.getList().size() > 0) {
-            System.out.println("BOOKS:");
-            for (int i = 0; i < bookList.getList().size(); i++) {
-                Book book = bookList.getList().get(i);
-                System.out.println((i + 1) + ". " + book.toString());
-            }
-        }
-    }
-
-    public void printAllQuotesInCategory(Category category) {
-        QuoteList quoteList = category.getQuoteList();
-        if (quoteList.getList().size() > 0) {
-            System.out.println("QUOTES:");
-            for (int i = 0; i < quoteList.getList().size(); i++) {
-                Quote quote = quoteList.getList().get(i);
-                System.out.println((i + 1) + ". " + quote.toString());
-            }
-        }
-    }
-
-    public void printErrorMessage(String message) {
-        System.out.println(message);
-    }
-
-    public void printAddRatingToBook(int ratingScore, String titleOfBookToRate) {
-        System.out.printf((ADD_RATING_MESSAGE) + "\n", titleOfBookToRate, ratingScore);
-    }
-
-    public void printAllRatings(RatingList ratingList) {
-        if (ratingList.getList().size() == 0) {
-            System.out.println(LIST_NO_RATINGS_FOUND_MESSAGE);
-            return;
-        }
-        System.out.println(LIST_ALL_RATINGS_MESSAGE);
-        System.out.println(ratingList.toString());
-    }
-
-    public void printSpecifiedRating(RatingList ratings, int ratingToList) {
-        boolean doesExist = false;
-        for (Rating rating : ratings.getList()) {
-            if (rating.getRating() == ratingToList) {
-                doesExist = true;
-                break;
-            }
-        }
-        if (doesExist) {
-            System.out.printf((LIST_SPECIFIED_RATING_MESSAGE) + "\n", ratingToList);
-            for (Rating rating : ratings.getList()) {
-                if (rating.getRating() == ratingToList) {
-                    System.out.println(rating.getTitleOfRatedBook());
-                }
-            }
-        } else {
-            System.out.printf((LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE) + "\n", ratingToList);
-            return;
-        }
     }
 
     public void printAllQuotesByAuthor(QuoteList quoteList, String authorName) {
         if (quoteList.getSize() > 0) {
             String listToPrint = quoteList.getAllQuotesByAuthor(quoteList, authorName);
             if (!listToPrint.isEmpty()) {
-                System.out.printf((LIST_QUOTES_BY_AUTHOR_MESSAGE) + "\n", authorName);
+                System.out.printf((UiMessage.LIST_QUOTES_BY_AUTHOR_MESSAGE) + "\n", authorName);
                 System.out.println(listToPrint);
             } else {
-                System.out.println(LIST_NO_QUOTES_FOUND_MESSAGE);
+                System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
             }
         } else {
-            System.out.println(LIST_NO_QUOTES_SAVED_MESSAGE);
+            System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
         }
     }
 
@@ -232,13 +90,13 @@ public class TextUi {
         if (quoteList.getSize() > 0) {
             String listToPrint = quoteList.getAllQuotesByReference(quoteList, reference);
             if (!listToPrint.isEmpty()) {
-                System.out.printf((LIST_QUOTES_BY_REFERENCE_MESSAGE) + "\n", reference);
+                System.out.printf((UiMessage.LIST_QUOTES_BY_REFERENCE_MESSAGE) + "\n", reference);
                 System.out.println(listToPrint);
             } else {
-                System.out.println(LIST_NO_QUOTES_FOUND_MESSAGE);
+                System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
             }
         } else {
-            System.out.println(LIST_NO_QUOTES_SAVED_MESSAGE);
+            System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
         }
     }
 
@@ -246,27 +104,152 @@ public class TextUi {
         if (quoteList.getSize() > 0) {
             String listToPrint = quoteList.getAllQuotesByReferenceAndAuthor(quoteList, reference, authorName);
             if (!listToPrint.isEmpty()) {
-                System.out.printf((LIST_QUOTES_BY_AUTHOR_AND_REFERENCE_MESSAGE) + "\n", reference, authorName);
+                System.out.printf(UiMessage.LIST_QUOTES_BY_AUTHOR_AND_REFERENCE_MESSAGE + "\n", reference, authorName);
                 System.out.println(listToPrint);
             } else {
-                System.out.println(LIST_NO_QUOTES_FOUND_MESSAGE);
+                System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
             }
         } else {
-            System.out.println(LIST_NO_QUOTES_SAVED_MESSAGE);
+            System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
         }
     }
 
     public  void printDeleteQuote(String quote) {
-        System.out.printf((DELETE_QUOTE_MESSAGE) + "\n", quote);
+        System.out.printf((UiMessage.DELETE_QUOTE_MESSAGE) + "\n", quote);
+    }
+
+    public void printRandomQuote() {
+        QuoteList quotelist = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+        String randomQuote = quotelist.getRandomQuote();
+        System.out.println(UiMessage.PRINT_RANDOM_QUOTE + System.lineSeparator() + randomQuote);
+    }
+
+    public void printEditQuote(Quote oldQuote, Quote newQuote) {
+        System.out.printf(UiMessage.EDIT_QUOTE_MESSAGE + "\n", oldQuote.toString(), newQuote.toString());
+    }
+
+    public void printFindQuoteFail() {
+        System.out.printf(UiMessage.FIND_QUOTE_FAIL);
+    }
+
+    public void printFindQuoteSuccess(String results) {
+        System.out.println(UiMessage.FIND_QUOTE_SUCCESS);
+        System.out.println(results);
+    }
+
+    public void printAddCategoryToBook(String bookTitle, String categoryName) {
+        System.out.printf((UiMessage.ADD_CATEGORY_MESSAGE) + "\n", categoryName, bookTitle);
+    }
+
+    public void printAddCategoryToQuote(String quote, String categoryName) {
+        System.out.printf((UiMessage.ADD_CATEGORY_MESSAGE) + "\n", categoryName, quote);
+    }
+
+    public void printRemoveCategoryFromBook(String bookTitle, String categoryName) {
+        System.out.printf((UiMessage.DELETE_CATEGORY_MESSAGE) + "\n", categoryName, bookTitle);
+    }
+
+    public void printRemoveCategoryFromQuote(String quote, String categoryName) {
+        System.out.printf((UiMessage.DELETE_CATEGORY_MESSAGE) + "\n", categoryName, quote);
+    }
+
+    public void printCategorySize(Category category) {
+        System.out.printf((UiMessage.CATEGORY_SIZE_MESSAGE) + "\n", category.getSize(), category.getCategoryName());
+    }
+
+    public void printAllCategories(CategoryList categoryList) {
+        if (categoryList.getList().size() == 0) {
+            System.out.println(UiMessage.EMPTY_CATEGORY_LIST_MESSAGE);
+            return;
+        }
+        System.out.println(UiMessage.LIST_CATEGORIES_MESSAGE);
+        System.out.println(categoryList.toString());
+    }
+
+    public void printAllInCategory(Category category) {
+        String categoryName = category.getCategoryName();
+        if (category.getSize() == 0) {
+            System.out.printf(UiMessage.NO_ITEMS_IN_CATEGORY_MESSAGE + "\n", categoryName);
+            return;
+        }
+
+        System.out.printf(UiMessage.LIST_ALL_IN_CATEGORIES_MESSAGE + "\n", categoryName);
+        printAllBooksInCategory(category);
+        System.out.println();
+        printAllQuotesInCategory(category);
+    }
+
+    public void printAllBooksInCategory(Category category) {
+        BookList bookList = category.getBookList();
+        BookList allBooks = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+        if (bookList.getList().size() > 0) {
+            System.out.println("BOOKS:");
+            for (Book book : bookList.getList()) {
+                int index = allBooks.getIndex(book) + 1;
+                System.out.println(index + ". " + book.toString());
+            }
+        }
+    }
+
+    public void printAllQuotesInCategory(Category category) {
+        QuoteList quoteList = category.getQuoteList();
+        QuoteList allQuotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+        if (quoteList.getList().size() > 0) {
+            System.out.println("QUOTES:");
+            for (Quote quote : quoteList.getList()) {
+                int index = allQuotes.getIndex(quote) + 1;
+                // used print() because quote.toString() has additional line separator
+                System.out.print(index + ". " + quote.toString());
+            }
+        }
+    }
+
+    public void printEditCategory(String oldCategory, String newCategory) {
+        System.out.printf(UiMessage.EDIT_CATEGORY_MESSAGE + "\n", oldCategory, newCategory);
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
+
+    public void printAddRatingToBook(int ratingScore, String titleOfBookToRate) {
+        System.out.printf((UiMessage.ADD_RATING_MESSAGE) + "\n", titleOfBookToRate, ratingScore);
+    }
+
+    public void printAllRatings(RatingList ratingList) {
+        if (ratingList.getList().size() == 0) {
+            System.out.println(UiMessage.LIST_NO_RATINGS_FOUND_MESSAGE);
+            return;
+        }
+        System.out.println(UiMessage.LIST_ALL_RATINGS_MESSAGE);
+        System.out.println(ratingList.toString());
+    }
+
+    public void printSpecifiedRating(RatingList ratings, int ratingToPrint) {
+        System.out.printf((UiMessage.LIST_SPECIFIED_RATING_MESSAGE) + "\n", ratingToPrint);
+        for (Rating rating : ratings.getList()) {
+            if (rating.getRating() == ratingToPrint) {
+                System.out.println(rating.getTitleOfRatedBook());
+            }
+        }
     }
 
     public void printDeleteRating(String bookTitle) {
-        System.out.printf((DELETE_RATING_MESSAGE) + "\n", bookTitle);
+        System.out.printf((UiMessage.DELETE_RATING_MESSAGE) + "\n", bookTitle);
+    }
+
+    public void printEditRatingToBook(int ratingScore, String titleToUpdate) {
+        System.out.printf((UiMessage.EDIT_RATING_MESSAGE) + "\n", titleToUpdate, ratingScore);
+    }
+
+    public void printFoundRating(Rating rating, String ratingToFind) {
+        System.out.printf((UiMessage.FIND_RATING_MESSAGE) + "\n", ratingToFind);
+        System.out.println(rating.toString());
     }
 
     public void printAddToDo(ToDo toDo) {
         if (toDo != null) {
-            System.out.printf(ADD_TODO_MESSAGE + "\n", toDo.toString());
+            System.out.printf(UiMessage.ADD_TODO_MESSAGE + "\n", toDo.toString());
         }
     }
 
@@ -275,43 +258,45 @@ public class TextUi {
     }
 
     public void printAllToDos(ToDoList toDoList) {
-        System.out.println(LIST_TODOS_MESSAGE);
-        System.out.println(toDoList.toString());
+        if (toDoList.getSize() > 0) {
+            System.out.println(UiMessage.LIST_TODOS_MESSAGE);
+            System.out.println(toDoList.toString());
+        } else {
+            System.out.println(UiMessage.EMPTY_TODO_LIST_MESSAGE);
+        }
     }
 
     public void printDeleteToDo(ToDo  toDo) {
-        System.out.printf(DELETE_TODO_MESSAGE + "\n", toDo.toString());
+        System.out.printf(UiMessage.DELETE_TODO_MESSAGE + "\n", toDo.toString());
     }
 
     public void printDoneToDo(ToDo  toDo) {
-        System.out.printf(DONE_TODO_MESSAGE + "\n", toDo.toString());
+        System.out.printf(UiMessage.DONE_TODO_MESSAGE + "\n", toDo.toString());
     }
 
     public void printAddBookmark(Bookmark bookmark) {
-        System.out.printf(ADD_BOOKMARK_MESSAGE + "\n", bookmark.toString());
+        System.out.printf(UiMessage.ADD_BOOKMARK_MESSAGE + "\n", bookmark.toString());
     }
 
     public void printUpdateBookmark(Bookmark bookmark) {
-        System.out.printf(UPDATE_BOOKMARK_MESSAGE + "\n", bookmark.toString());
+        System.out.printf(UiMessage.UPDATE_BOOKMARK_MESSAGE + "\n", bookmark.toString());
     }
 
     public void printDeleteBookmark(Bookmark bookmark) {
-        System.out.printf(DELETE_BOOKMARKS_MESSAGE + "\n", bookmark.toString());
+        System.out.printf(UiMessage.DELETE_BOOKMARK_MESSAGE + "\n", bookmark.toString());
     }
 
     public void printAllBookmarks(BookmarkList bookmarkList) {
-        System.out.println(LIST_BOOKMARKS_MESSAGE);
-        System.out.println(bookmarkList.toString());
-    }
-
-    public void printRandomQuote() {
-        QuoteList quotelist = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
-        String randomQuote = quotelist.getRandomQuote();
-        System.out.println(PRINT_RANDOM_QUOTE + System.lineSeparator() + randomQuote);
+        if (bookmarkList.getSize() > 0) {
+            System.out.println(UiMessage.LIST_BOOKMARKS_MESSAGE);
+            System.out.println(bookmarkList.toString());
+        } else {
+            System.out.println(UiMessage.EMPTY_BOOKMARK_LIST_MESSAGE);
+        }
     }
 
     public void printInvalidQuotesifyCommand() {
-        System.out.println(INVALID_QUOTESIFY_COMMAND);
+        System.out.println(UiMessage.INVALID_QUOTESIFY_COMMAND);
     }
 
     public void printHelpPage() {
@@ -319,36 +304,39 @@ public class TextUi {
                 + System.lineSeparator());
 
         System.out.println("1. Book Management");
-        System.out.println("Add book: " + "add -b BOOK_TITLE /by AUTHOR");
-        System.out.println("Delete book: " + "delete -b BOOK_TITLE /by AUTHOR");
-        System.out.println("List books: " + "list -b [/by AUTHOR]");
+        System.out.println(UiMessage.ADD_BOOK_COMMAND);
+        System.out.println(UiMessage.DELETE_BOOK_COMMAND);
+        System.out.println(UiMessage.LIST_BOOK_COMMAND);
 
         System.out.println(System.lineSeparator() + "2. Quote Management");
-        System.out.println("Add quote: " + "add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]");
-        System.out.println("Delete quote:" + "delete -q QUOTE_NUMBER");
-        System.out.println("List quotes: " + "list -q [/by AUTHOR] [/from BOOK_TITLE]");
+        System.out.println(UiMessage.ADD_QUOTE_COMMAND);
+        System.out.println(UiMessage.DELETE_QUOTE_COMMAND);
+        System.out.println(UiMessage.LIST_QUOTE_COMMAND);
 
         System.out.println(System.lineSeparator() + "3a. Bookmark Tracker");
-        System.out.println("Add bookmark: " + "bookmark -b BOOK_TITLE /pg PAGE_NUMBER");
-        System.out.println("Update bookmark: " + "bookmark -b BOOK_TITLE /pg PAGE_NUMBER");
-        System.out.println("Delete bookmark: " + "delete -bm BOOK_TITLE");
-        System.out.println("List bookmarks: " + "list -bm");
+        System.out.println(UiMessage.ADD_BOOKMARK_COMMAND);
+        System.out.println(UiMessage.DELETE_BOOKMARK_COMMAND);
+        System.out.println(UiMessage.LIST_BOOKMARK_COMMAND);
+        System.out.println(UiMessage.EDIT_BOOKMARK_COMMAND);
 
         System.out.println(System.lineSeparator() + "3b. Task Tracker");
-        System.out.println("Add task: " + "add -t TASK /by DEADLINE");
-        System.out.println("Mark task as done: " + "done -t TASK_NUMBER");
-        System.out.println("Delete task: " + "delete -t TASK_NUMBER");
-        System.out.println("List tasks: " + "list -t");
+        System.out.println(UiMessage.ADD_TODO_COMMAND);
+        System.out.println(UiMessage.DELETE_TODO_COMMAND);
+        System.out.println(UiMessage.LIST_TODO_COMMAND);
+        System.out.println(UiMessage.DONE_COMMAND);
 
         System.out.println(System.lineSeparator() + "4. Category Management");
-        System.out.println("Add category: " + "add -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}");
-        System.out.println("Delete category: " + "delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}");
-        System.out.println("List categories: " + "list -c [CATEGORY]");
+        System.out.println(UiMessage.ADD_CATEGORY_COMMAND);
+        System.out.println(UiMessage.DELETE_CATEGORY_COMMAND);
+        System.out.println(UiMessage.LIST_CATEGORY_COMMAND);
+        System.out.println(UiMessage.EDIT_CATEGORY_COMMAND);
 
         System.out.println(System.lineSeparator() + "5. Rating System");
-        System.out.println("Add rating: " + "add -r RATING_SCORE BOOK_TITLE");
-        System.out.println("Delete rating: " + "delete -r BOOK_TITLE");
-        System.out.println("List ratings: " + "list -r [/RATING_SCORE]");
+        System.out.println(UiMessage.ADD_RATING_COMMAND);
+        System.out.println(UiMessage.DELETE_RATING_COMMAND);
+        System.out.println(UiMessage.LIST_RATING_COMMAND);
+        System.out.println(UiMessage.EDIT_RATING_COMMAND);
+        System.out.println(UiMessage.FIND_RATING_COMMAND);
 
         System.out.println(System.lineSeparator() + "Other useful commands");
         System.out.println("Show this help page: " + "help");
@@ -359,5 +347,59 @@ public class TextUi {
                 + "Hope this helps!");
 
         System.out.println(System.lineSeparator() + "~ Your friends from Quotesify");
+    }
+
+    public void printListOfAddComnmands() {
+        System.out.println("Here is a list of Add commands you can do:\n");
+        System.out.println(UiMessage.ADD_BOOK_COMMAND);
+        System.out.println(UiMessage.ADD_BOOKMARK_COMMAND);
+        System.out.println(UiMessage.ADD_QUOTE_COMMAND);
+        System.out.println(UiMessage.ADD_CATEGORY_COMMAND);
+        System.out.println(UiMessage.ADD_RATING_COMMAND);
+        System.out.println(UiMessage.ADD_TODO_COMMAND);
+    }
+
+    public void printListOfDeleteCommands() {
+        System.out.println("Here is a list of Delete commands you can do:\n");
+        System.out.println(UiMessage.DELETE_BOOK_COMMAND);
+        System.out.println(UiMessage.DELETE_BOOKMARK_COMMAND);
+        System.out.println(UiMessage.DELETE_QUOTE_COMMAND);
+        System.out.println(UiMessage.DELETE_CATEGORY_COMMAND);
+        System.out.println(UiMessage.DELETE_RATING_COMMAND);
+        System.out.println(UiMessage.DELETE_TODO_COMMAND);
+    }
+
+    public void printListOfListCommands() {
+        System.out.println("Here is a list of List commands you can do:\n");
+        System.out.println(UiMessage.LIST_BOOK_COMMAND);
+        System.out.println(UiMessage.LIST_BOOKMARK_COMMAND);
+        System.out.println(UiMessage.LIST_QUOTE_COMMAND);
+        System.out.println(UiMessage.LIST_CATEGORY_COMMAND);
+        System.out.println(UiMessage.LIST_RATING_COMMAND);
+        System.out.println(UiMessage.LIST_TODO_COMMAND);
+    }
+
+    public void printListOfEditCommands() {
+        System.out.println("Here is a list of Edit commands you can do:\n");
+        System.out.println(UiMessage.EDIT_BOOK_COMMAND);
+        System.out.println(UiMessage.EDIT_BOOKMARK_COMMAND);
+        System.out.println(UiMessage.EDIT_QUOTE_COMMAND);
+        System.out.println(UiMessage.EDIT_CATEGORY_COMMAND);
+        System.out.println(UiMessage.EDIT_RATING_COMMAND);
+        System.out.println(UiMessage.EDIT_TODO_COMMAND);
+    }
+
+    public void printListOfFindCommands() {
+        System.out.println("Here is a list of Find commands you can do:\n");
+        System.out.println(UiMessage.FIND_BOOK_COMMAND);
+        System.out.println(UiMessage.FIND_BOOKMARK_COMMAND);
+        System.out.println(UiMessage.FIND_QUOTE_COMMAND);
+        System.out.println(UiMessage.FIND_CATEGORY_COMMAND);
+        System.out.println(UiMessage.FIND_RATING_COMMAND);
+        System.out.println(UiMessage.FIND_TODO_COMMAND);
+    }
+
+    public void printDoneCommandUsage() {
+        System.out.println(UiMessage.DONE_COMMAND);
     }
 }

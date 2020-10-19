@@ -1,5 +1,12 @@
 package seedu.quotesify.lists;
 
+import seedu.quotesify.book.BookList;
+import seedu.quotesify.bookmark.BookmarkList;
+import seedu.quotesify.category.CategoryList;
+import seedu.quotesify.quote.QuoteList;
+import seedu.quotesify.rating.RatingList;
+import seedu.quotesify.todo.ToDoList;
+
 import java.util.HashMap;
 
 public class ListManager {
@@ -11,6 +18,15 @@ public class ListManager {
     public static final int TODO_LIST = 5;
 
     private static HashMap<Integer, QuotesifyList<?>> listManager = new HashMap<>();
+
+    public static void initialiseAllLists() {
+        listManager.put(BOOK_LIST, new BookList());
+        listManager.put(BOOKMARK_LIST, new BookmarkList());
+        listManager.put(CATEGORY_LIST, new CategoryList());
+        listManager.put(QUOTE_LIST, new QuoteList());
+        listManager.put(RATING_LIST, new RatingList());
+        listManager.put(TODO_LIST, new ToDoList());
+    }
 
     public static void addToList(int type, QuotesifyList<?> list) {
         listManager.put(type, list);
