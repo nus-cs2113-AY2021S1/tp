@@ -1,6 +1,7 @@
 package seedu.duke.data.notebook;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * Represents a Notebook object. Contains all the notes.
@@ -50,7 +51,7 @@ public class Notebook {
     }
 
     /**
-     * Removes a note from the timetable.
+     * Removes a note from the notebook.
      */
     public boolean deleteNote(int index) {
         notes.remove(index);
@@ -58,7 +59,7 @@ public class Notebook {
     }
 
     /**
-     * Removes a note from the timetable.
+     * Removes a note from the notebook.
      */
     public boolean deleteNote(String title) {
         return notes.removeIf(note -> note.getTitle().equalsIgnoreCase(title));
