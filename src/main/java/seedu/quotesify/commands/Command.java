@@ -21,6 +21,7 @@ public abstract class Command {
     public static final String ERROR_BOOK_TITLE_MISSING = "There is no book title specified!";
     public static final String ERROR_BOOK_ALREADY_EXISTS = "The book already exists!";
     public static final String ERROR_NO_QUOTE_FOUND = "There is no such quote!";
+    public static final String ERROR_FIND_KEYWORD_MISSING = "Keyword to search is missing";
     public static final String ERROR_NO_BOOKS_IN_LIST = "There are no books in the list!";
     public static final String ERROR_NO_BOOKS_BY_AUTHOR = "There are no books by this author!";
     public static final String LIST_SPECIFIED_RATING_NOT_FOUND_MESSAGE = "I can't find any books rated %d star!";
