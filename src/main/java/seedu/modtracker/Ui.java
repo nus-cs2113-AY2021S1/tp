@@ -87,11 +87,13 @@ public class Ui {
      * Prints all the module information in a table.
      *
      * @param modList list of modules.
-     * @param week specified week number.
+     * @param week    specified week number.
      */
     public void printTable(ModuleList modList, int week) {
-        ModView view = new ModView();
-        view.printAllModuleInformation(modList,week);
+        //        ModView view = new ModView();
+        //        view.printAllModuleInformation(modList,week);
+        TimeBreakDownAnalysis breakDown = new TimeBreakDownAnalysis();
+        breakDown.printTimeBreakDownAndAnalysis(modList, week);
     }
 
     /**

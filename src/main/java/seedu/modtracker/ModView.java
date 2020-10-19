@@ -10,14 +10,14 @@ public class ModView {
     public static final String FIRST_PART_OF_HEADER = "| Week | Module ";
     public static final String SECOND_PART_OF_HEADER = "| Expected |  Actual  |\n";
     public static final String NO_INPUT = " No Input ";
-    public static final int DECIMAL_PLACES = 1;
-    public static final int MIN_WEEK_VALUE = 1;
-    public static final int MAX_WEEK_VALUE = 13;
+    private static final int DECIMAL_PLACES = 1;
+    private static final int MIN_WEEK_VALUE = 1;
+    private static final int MAX_WEEK_VALUE = 13;
     public static final String WEEK_NUMBER_PADDING_CHAR = "0";
-    public static final int FACTOR = 10;
-    public static final int INDEX_OFFSET = 1;
-    public static final String REPLACE_BY_WEEK_NUMBER = "WK";
-    public static final String REPLACE_BY_MODULE_CODE = "XXXXXX";
+    private static final int FACTOR = 10;
+    private static final int INDEX_OFFSET = 1;
+    private static final String REPLACE_BY_WEEK_NUMBER = "WK";
+    private static final String REPLACE_BY_MODULE_CODE = "XXXXXX";
     public static final String FIRST_PART_OF_CONTENT = "|  " + REPLACE_BY_WEEK_NUMBER
             + "  | " + REPLACE_BY_MODULE_CODE;
     public static final String PADDING_CHAR = " ";
