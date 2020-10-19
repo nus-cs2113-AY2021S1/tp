@@ -70,6 +70,13 @@ Parameters listed in [ ] denote optional entries. In some cases, at least one of
 Example message as seen on the console
 ```
 
+The parameters for the following commands are **NOT** case-sensitive.
+1. `delete-n`
+1. `find-n`
+1. `pin-n`
+1. `create-t`
+
+
 ### <a id="help"><ins>3.1 View Command List:</ins> `help`</a>
 Shows a list of all the commands that the user can enter.
 
