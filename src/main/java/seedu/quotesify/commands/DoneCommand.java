@@ -21,7 +21,8 @@ public class DoneCommand extends Command {
         information = details[1];
     }
 
-    public void execute(TextUi ui) {
+    @Override
+    public void execute(TextUi ui, Storage storage) {
         switch (type) {
         case TAG_TODO:
             ToDoList toDos = (ToDoList) ListManager.getList(ListManager.TODO_LIST);
@@ -32,7 +33,7 @@ public class DoneCommand extends Command {
             ui.printDoneCommandUsage();
             break;
         }
-        Storage.save();
+        storage.save();
     }
 
     private void doneToDo(ToDoList toDos, int index, TextUi ui) {

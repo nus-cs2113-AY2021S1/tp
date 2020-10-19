@@ -10,6 +10,7 @@ import seedu.quotesify.quote.QuoteParser;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
 import seedu.quotesify.rating.RatingParser;
+import seedu.quotesify.store.Storage;
 import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
 
@@ -35,7 +36,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute(TextUi ui) {
+    public void execute(TextUi ui, Storage storage) {
         switch (type) {
         case TAG_CATEGORY:
             CategoryList categoryList = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);

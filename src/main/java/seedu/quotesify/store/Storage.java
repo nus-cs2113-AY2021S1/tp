@@ -38,9 +38,13 @@ public class Storage {
     private static final String TODOS = "todos";
     private static final String DATA_CORRUPT_MESSAGE = "[%s] is corrupted in save file. Creating an empty list.\n";
 
-    private static File saveFile;
+    private File saveFile;
 
-    public static void initialiseSaveFile(String filePath) {
+    public Storage(String filePath) {
+        initialiseSaveFile(filePath);
+    }
+
+    public void initialiseSaveFile(String filePath) {
         try {
             filePath = CURRENT_DIR + filePath.replace("/", SEPARATOR).replace("\\", SEPARATOR);
             saveFile = new File(filePath);
@@ -57,15 +61,15 @@ public class Storage {
         }
     }
 
-    public static void save() {
+    public void save() {
         try {
             JSONObject json = new JSONObject();
-            json.put("books", ((BookList) ListManager.getList(ListManager.BOOK_LIST)).toJsonArray());
-            json.put("quotes", ((QuoteList) ListManager.getList(ListManager.QUOTE_LIST)).toJsonArray());
-            json.put("categories", ((CategoryList) ListManager.getList(ListManager.CATEGORY_LIST)).toJsonArray());
-            json.put("bookmarks", ((BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST)).toJsonArray());
-            json.put("ratings", ((RatingList) ListManager.getList(ListManager.RATING_LIST)).toJsonArray());
-            json.put("todos", ((ToDoList) ListManager.getList(ListManager.TODO_LIST)).toJsonArray());
+            json.put("books", ListManager.getList(ListManager.BOOK_LIST).toJsonArray());
+            json.put("quotes", ListManager.getList(ListManager.QUOTE_LIST).toJsonArray());
+            json.put("categories", ListManager.getList(ListManager.CATEGORY_LIST).toJsonArray());
+            json.put("bookmarks", ListManager.getList(ListManager.BOOKMARK_LIST).toJsonArray());
+            json.put("ratings", ListManager.getList(ListManager.RATING_LIST).toJsonArray());
+            json.put("todos", ListManager.getList(ListManager.TODO_LIST).toJsonArray());
 
             FileWriter fileWriter = new FileWriter(saveFile);
             fileWriter.write(json.toJSONString());
@@ -76,7 +80,7 @@ public class Storage {
         }
     }
 
-    public static void load() {
+    public void load() {
         try {
             FileReader fileReader = new FileReader(saveFile);
             JSONParser jsonParser = new JSONParser();
@@ -85,10 +89,11 @@ public class Storage {
             fileReader.close();
         } catch (ParseException | IOException e) {
             // e.printStackTrace();
+            ListManager.initialiseAllLists();
         }
     }
 
-    private static void updateListManager(JSONObject json) {
+    private void updateListManager(JSONObject json) {
         try {
             ListManager.addToList(ListManager.BOOK_LIST, parseBookList(json));
             ListManager.addToList(ListManager.QUOTE_LIST, parseQuoteList(json));
@@ -101,7 +106,7 @@ public class Storage {
         }
     }
 
-    private static BookList parseBookList(JSONObject json) {
+    private BookList parseBookList(JSONObject json) {
         try {
             JSONArray books = (JSONArray) json.get(BOOKS);
             ArrayList<Book> bookList = new ArrayList<>();
@@ -115,7 +120,7 @@ public class Storage {
         return new BookList();
     }
 
-    private static QuoteList parseQuoteList(JSONObject json) {
+    private QuoteList parseQuoteList(JSONObject json) {
         try {
             JSONArray quotes = (JSONArray) json.get(QUOTES);
             ArrayList<Quote> quoteList = new ArrayList<>();
@@ -129,7 +134,7 @@ public class Storage {
         return new QuoteList();
     }
 
-    private static CategoryList parseCategoryList(JSONObject json) {
+    private CategoryList parseCategoryList(JSONObject json) {
         try {
             JSONArray categories = (JSONArray) json.get(CATEGORIES);
             ArrayList<Category> categoryList = new ArrayList<>();
@@ -143,7 +148,7 @@ public class Storage {
         return new CategoryList();
     }
 
-    private static RatingList parseRatingList(JSONObject json) {
+    private RatingList parseRatingList(JSONObject json) {
         try {
             JSONArray ratings = (JSONArray) json.get(RATINGS);
             ArrayList<Rating> ratingList = new ArrayList<>();
@@ -157,7 +162,7 @@ public class Storage {
         return new RatingList();
     }
 
-    private static BookmarkList parseBookmarkList(JSONObject json) {
+    private BookmarkList parseBookmarkList(JSONObject json) {
         try {
             JSONArray bookmarks = (JSONArray) json.get(BOOKMARKS);
             ArrayList<Bookmark> bookmarkList = new ArrayList<>();
@@ -171,7 +176,7 @@ public class Storage {
         return new BookmarkList();
     }
 
-    private static ToDoList parseTodoList(JSONObject json) {
+    private ToDoList parseTodoList(JSONObject json) {
         try {
             JSONArray todos = (JSONArray) json.get(TODOS);
             ArrayList<ToDo> todoList = new ArrayList<>();
@@ -185,7 +190,7 @@ public class Storage {
         return new ToDoList();
     }
 
-    private static Book parseBookObject(JSONObject json) throws NullPointerException {
+    private Book parseBookObject(JSONObject json) throws NullPointerException {
         JSONObject authorObj = (JSONObject) json.get("author");
         Author author = parseAuthorObject(authorObj);
         String title = (String) json.get("title");
@@ -195,7 +200,7 @@ public class Storage {
         return new Book(author, title, categories);
     }
 
-    private static Quote parseQuoteObject(JSONObject json) throws NullPointerException {
+    private Quote parseQuoteObject(JSONObject json) throws NullPointerException {
         JSONObject authorObj = (JSONObject) json.get("author");
         Author author = parseAuthorObject(authorObj);
         String quote = (String) json.get("quote");
@@ -206,7 +211,7 @@ public class Storage {
         return new Quote(author, quote, categories, reference);
     }
 
-    private static Category parseCategoryObject(JSONObject json) throws NullPointerException {
+    private Category parseCategoryObject(JSONObject json) throws NullPointerException {
         String name = (String) json.get("category");
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
@@ -217,27 +222,27 @@ public class Storage {
         return category;
     }
 
-    private static Rating parseRatingObject(JSONObject json) throws NullPointerException {
+    private Rating parseRatingObject(JSONObject json) throws NullPointerException {
         String title = (String) json.get("titleOfRatedBook");
         long rating = (long) json.get("rating");
         return new Rating((int) rating, title);
     }
 
-    private static Bookmark parseBookmarkObject(JSONObject json) throws NullPointerException {
+    private Bookmark parseBookmarkObject(JSONObject json) throws NullPointerException {
         JSONObject bookObj = (JSONObject) json.get("book");
         Book book = parseBookObject(bookObj);
         long pageNum = (long) json.get("pageNum");
         return new Bookmark(book, (int) pageNum);
     }
 
-    private static ToDo parseTodoObject(JSONObject json) throws NullPointerException {
+    private ToDo parseTodoObject(JSONObject json) throws NullPointerException {
         String name = (String) json.get("name");
         String deadline = (String) json.get("deadline");
         boolean isDone = (boolean) json.get("isDone");
         return new ToDo(name, deadline, isDone);
     }
 
-    private static Author parseAuthorObject(JSONObject json) {
+    private Author parseAuthorObject(JSONObject json) {
         try {
             String authorName = (String) json.get("name");
             return new Author(authorName);
