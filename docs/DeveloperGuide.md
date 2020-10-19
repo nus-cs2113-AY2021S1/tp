@@ -39,7 +39,7 @@ This section provides details of how the main features of Nav@NUS have been impl
 The `/route <location1> /to <location2>` is the command that has to entered by the user to see all direct bus routes 
 available from *location1* to *location2*.
 
-###### 1.2.1.1. Implementation
+##### 1.2.1.1. Implementation
 
 The class diagram in figure 2 shows how different classes used for implementation of the `/route` command are linked to
 each other. 
@@ -50,12 +50,12 @@ each other.
 
 The RouteCommand Class executes the command in the following steps:
 1. Uses RouteParser to get the locations entered by the user in the order of starting location and destination.
-    2. The RouteParser throws an exception if the locations or the delimiter `/to` is missing.
+    - The RouteParser throws an exception if the locations or the delimiter `/to` is missing.
 2. Uses its method to make sure that location strings are not empty or same.
-    3. The checkLocation() method throws an exception if locations are empty or the same.
+    - The checkLocation() method throws an exception if locations are empty or the same.
 3. Calls a method from BusData to get a list of buses with their routes from the starting location to the destination.
-    4. This method uses another method from class Bus to check for a possible route for the given bus number.
-    5. Repeats for all bus numbers.
+   - This method uses another method from class Bus to check for a possible route for the given bus number.
+   - Repeats for all bus numbers.
 
 The sequence diagram in figure 3 explains the above steps when the user enters `/route loc1 /to loc2`.
 
@@ -63,7 +63,7 @@ The sequence diagram in figure 3 explains the above steps when the user enters `
 
 <i><center>Figure 3: Sequence diagram showing how the operation works</center></i>
 
-###### 1.2.1.1. Design Considerations
+##### 1.2.1.1. Design Considerations
 
 [Work in Progress]
 
