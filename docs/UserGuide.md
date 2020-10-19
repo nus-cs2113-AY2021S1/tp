@@ -232,7 +232,44 @@ Editing InuYasha the Movie 3: Swords of an Honorable Ruler to have 5 episode
 
 <br/>
 
-### 3.8 Exit AniChan: `exit`
+### 3.8 Search `search`
+Searches for a specific anime or to search for a specific genre
+
+Format:
+
+`search -n <SEARCH_TERM>` will search for all anime series that contains the search term
+
+`search -g <SEARCH_TERM>` will list all genres that matches the search term
+
+Sample input: `search -n bey`
+
+The expected outcome:
+```
+[ID:216] Haruka: Beyond the Stream of Time – A Tale of the Eight Guardians
+[ID:257] Beyblade
+[ID:410] InuYasha the Movie 2: The Castle Beyond the Looking Glass
+```
+
+Sample input: `search -g Slice of Life`
+
+The expected outcome:
+```
+[ID:7] Honey and Clover
+[ID:8] Hungry Heart: Wild Striker
+[ID:35] Ai Yori Aoshi
+[ID:39] Beck: Mongolian Chop Squad
+[ID:48] Azumanga Daioh: The Animation
+[ID:81] Air
+...
+[ID:446] Strawberry Marshmallow
+[ID:447] KamiChu!
+[ID:464] I My Me! Strawberry Eggs
+[ID:467] Kiki's Delivery Service
+[ID:475] Marmalade Boy Movie
+[ID:488] Teacher's Time
+```
+
+### 3.9 Exit AniChan: `exit`
 Exit AniChan 
 
 Format: `exit`
@@ -264,12 +301,14 @@ Coming soon!
 
 |Feature|Command|
 |---|---|
-| Help               | `help`|
-| add user           | `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER>` |
-| Switch user        | `switchuser -n <USERNAME>` |
-| Browse             | `browse -s [name/rating] -p <1-26> -o [asc/dsc]` |
-| Create watchlist   | `watchlist -n <WATCHLIST_NAME>` |
-| List all watchlist | `watchlist -l` |
-| Select watchlist   | `watchlist -s <WATCHLIST_INDEX>` |
-| Delete watchlist   | `watchlist -d <WATCHLIST_INDEX>` |
-| Add to watchlist   | `add -a <ANIME_NAME>` |
+| Help               | `help`                                                   |
+| add user           | `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER>`    |
+| Switch user        | `switchuser -n <USERNAME>`                               |
+| Browse             | `browse -s [name/rating] -p <1-26> -o [asc/dsc]`         |
+| Create watchlist   | `watchlist -n <WATCHLIST_NAME>`                          |
+| List all watchlist | `watchlist -l`                                           |
+| Select watchlist   | `watchlist -s <WATCHLIST_INDEX>`                         |
+| Delete watchlist   | `watchlist -d <WATCHLIST_INDEX>`                         |
+| Add to watchlist   | `add -a <ANIME_NAME>`                                    |
+| Search by title    | `search -n <SEARCH_TERM>`                                |
+| search by genre    | `search -g <SEARCH_TERM>`                                |
