@@ -42,7 +42,8 @@ public class Storage {
      * @param exerciseListPath file path of the exercise list
      * @throws IOException if an I/O error has occurred
      */
-    public Storage(String userConfigPath, String foodListPath, String exerciseListPath, String tipListPath) throws IOException {
+    public Storage(String userConfigPath, String foodListPath, String exerciseListPath, String tipListPath)
+            throws IOException {
         this.userConfigPath = userConfigPath;
         this.foodListPath = foodListPath;
         this.exerciseListPath = exerciseListPath;
@@ -50,8 +51,8 @@ public class Storage {
 
         File exerciseListFile = new File(exerciseListPath);
         File foodListFile = new File(foodListPath);
-        File userConfigFile = new File(userConfigPath);
         File tipListFile = new File(tipListPath);
+        File userConfigFile = new File(userConfigPath);
 
         if (!exerciseListFile.exists()) {
             exerciseListFile.createNewFile();
@@ -75,7 +76,8 @@ public class Storage {
     }
 
     public Storage() throws IOException {
-        this(DEFAULT_USER_CONFIG_FILEPATH, DEFAULT_FOOD_LIST_FILEPATH, DEFAULT_EXERCISE_LIST_FILEPATH, DEFAULT_TIP_LIST_FILEPATH);
+        this(DEFAULT_USER_CONFIG_FILEPATH, DEFAULT_FOOD_LIST_FILEPATH, DEFAULT_EXERCISE_LIST_FILEPATH,
+                DEFAULT_TIP_LIST_FILEPATH);
     }
 
     /**

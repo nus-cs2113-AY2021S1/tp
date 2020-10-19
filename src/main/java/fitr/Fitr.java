@@ -18,7 +18,8 @@ public class Fitr {
     private ExerciseList exerciseList;
     private User user;
 
-    public Fitr(String filePathOfUserConfig, String filePathOfFoodList, String filePathOfExerciseList, String filePathOfTipList) {
+    public Fitr(String filePathOfUserConfig, String filePathOfFoodList, String filePathOfExerciseList,
+                String filePathOfTipList) {
         try {
             user = new User();
             storage = new Storage(filePathOfUserConfig, filePathOfFoodList, filePathOfExerciseList, filePathOfTipList);
@@ -50,6 +51,7 @@ public class Fitr {
     }
 
     public static void main(String[] args) {
-        new Fitr("userConfig.txt", "foodList.txt", "exerciseList.txt", "tips.txt").run();
+        new Fitr("userConfig.txt", "foodList.txt", "exerciseList.txt",
+                "tips.txt").run();
     }
 }
