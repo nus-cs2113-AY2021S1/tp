@@ -3,7 +3,7 @@
 This developer guide aims to provide an overview of Nav@NUS to aim developers in creating extensions or making 
 enhancements.
 
-- [1. Design & Implementation](#1-design---implementation)
+- [1. Design & Implementation](#1-design--implementation)
   * [1.1. Architecture](#11-architecture)
   * [1.2. Implementation](#12-implementation)
     + [1.2.1 Direct Route Finder](#121-direct-route-finder)
