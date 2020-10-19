@@ -17,4 +17,5 @@ bin/
 text-ui-test/EXPECTED-UNIX.TXT
 logger.log
 logger.log.lck
-data/FavList.txt
+.log
+logger.log.1
