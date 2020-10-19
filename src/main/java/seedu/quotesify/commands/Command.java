@@ -1,5 +1,6 @@
 package seedu.quotesify.commands;
 
+import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
 public abstract class Command {
@@ -45,7 +46,7 @@ public abstract class Command {
     public static final String REFERENCE_KEYWORD = "reference";
     public static final String AUTHORNAME_KEYWORD = "authorName";
 
-    public abstract void execute(TextUi ui);
+    public abstract void execute(TextUi ui, Storage storage);
 
     public abstract boolean isExit();
 }

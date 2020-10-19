@@ -1,6 +1,5 @@
 package seedu.quotesify.commands;
 
-import org.w3c.dom.Text;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
 import seedu.quotesify.category.Category;
@@ -35,7 +34,8 @@ public class EditCommand extends Command {
         information = details[1];
     }
 
-    public void execute(TextUi ui) {
+    @Override
+    public void execute(TextUi ui, Storage storage) {
         switch (type) {
         case TAG_RATING:
             RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
@@ -57,7 +57,7 @@ public class EditCommand extends Command {
             ui.printListOfEditCommands();
             break;
         }
-        Storage.save();
+        storage.save();
     }
 
     private void editQuote(QuoteList quotes, TextUi ui) {
@@ -179,6 +179,7 @@ public class EditCommand extends Command {
         }
     }
 
+    @Override
     public boolean isExit() {
         return false;
     }

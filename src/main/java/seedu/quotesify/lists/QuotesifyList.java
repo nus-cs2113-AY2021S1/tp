@@ -1,7 +1,6 @@
 package seedu.quotesify.lists;
 
 import org.json.simple.JSONArray;
-import seedu.quotesify.parser.JsonSerializer;
 
 import java.util.ArrayList;
 
