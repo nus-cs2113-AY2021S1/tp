@@ -26,7 +26,7 @@ public class AddSprintTaskCommand extends SprintCommand {
         LOGGER.setLevel(Level.WARNING);
     }
 
-    public void execute() throws DukeException {
+    public void execute() {
         assert !projectList.isEmpty() : "No project\n";
         if (projectList.isEmpty()) {
             Ui.showError("Please create a project first.");
@@ -41,9 +41,6 @@ public class AddSprintTaskCommand extends SprintCommand {
                 for (String entry : parameters.values()) {
                     try {
                         int taskId = Integer.parseInt(entry);
-                        if (!proj.getProjectBacklog().checkTaskExist(taskId)) {
-                            throw new DukeException("No such task.");
-                        }
                         currentSprint.addSprintTask(taskId);
                         proj.getProjectBacklog().getTask(taskId).allocateToSprint(currentSprint.getId());
                         Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + " added to sprint.\n");

@@ -6,7 +6,7 @@ import seedu.duke.command.sprint.AllocateSprintTaskCommand;
 import seedu.duke.command.sprint.ViewSprintCommand;
 import seedu.duke.command.sprint.AddSprintTaskCommand;
 import seedu.duke.command.sprint.CreateSprintCommand;
-import seedu.duke.command.sprint.DeleteSprintTaskCommand;
+import seedu.duke.command.sprint.RemoveSprintTaskCommand;
 import seedu.duke.command.task.TaskCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
@@ -22,7 +22,7 @@ import static seedu.duke.command.CommandSummary.ADDTASK;
 import static seedu.duke.command.CommandSummary.BYE;
 import static seedu.duke.command.CommandSummary.CREATE;
 import static seedu.duke.command.CommandSummary.DELETE;
-import static seedu.duke.command.CommandSummary.DELETETASK;
+import static seedu.duke.command.CommandSummary.REMOVETASK;
 import static seedu.duke.command.CommandSummary.PROJECT;
 import static seedu.duke.command.CommandSummary.TASK;
 import static seedu.duke.command.CommandSummary.MEMBER;
@@ -60,6 +60,7 @@ public class Parser {
 
             if (!rawArgs.contains("-")) {
                 params.clear();
+                parameters.clear();
                 String[] arguments = rawArgs.split(" ");
                 params.addAll(Arrays.asList(arguments));
                 for (int i = 0; i < arguments.length; i++) {
@@ -69,7 +70,7 @@ public class Parser {
                 parameters.clear();
                 while (parameterMatcher.find()) { //go through each occurrence of options
                     //put the options into the hashtable (similar to dictionary)
-                    parameters.put(parameterMatcher.group(1), parameterMatcher.group(2));
+                    parameters.put(parameterMatcher.group(1), parameterMatcher.group(2).trim());
                 }
             }
 
@@ -169,10 +170,10 @@ public class Parser {
                     new CreateSprintCommand(parameters, projectList).execute();
                     break;
                 case ADDTASK:
-                    new AddSprintTaskCommand(params, projectList).execute();
+                    new AddSprintTaskCommand(parameters, projectList).execute();
                     break;
-                case DELETETASK:
-                    new DeleteSprintTaskCommand(params, projectList).execute();
+                case REMOVETASK:
+                    new RemoveSprintTaskCommand(parameters, projectList).execute();
                     break;
                 case VIEW:
                     new ViewSprintCommand(parameters, projectList).execute();

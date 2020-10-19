@@ -22,7 +22,6 @@ sprint /create -goal milestone5
 sprint /create -goal milestone6
 sprint /view
 project /view
-sprint /addtask 999
 sprint /view
 sprint /addtask 1 3 4
 sprint /view

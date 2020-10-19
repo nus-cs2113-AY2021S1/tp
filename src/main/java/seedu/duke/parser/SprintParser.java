@@ -6,7 +6,7 @@ import java.util.Hashtable;
 
 import static seedu.duke.command.CommandSummary.CREATE;
 import static seedu.duke.command.CommandSummary.ADDTASK;
-import static seedu.duke.command.CommandSummary.DELETETASK;
+import static seedu.duke.command.CommandSummary.REMOVETASK;
 import static seedu.duke.command.CommandSummary.ASSIGN;
 
 public class SprintParser implements ExceptionsParser {
@@ -21,7 +21,8 @@ public class SprintParser implements ExceptionsParser {
         case CREATE:
             break;
         case ADDTASK:
-        case DELETETASK:
+
+        case REMOVETASK:
             if (parameters.get("0").isBlank() || !Parser.stringContainsNumber(parameters.get("0"))) {
                 throw new DukeException("please give a task number");
             }
