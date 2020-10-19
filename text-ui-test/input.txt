@@ -12,5 +12,6 @@ print tasks
 print timeline
 print timeline week
 *t1
+*t 2
 suggestion
 bye
