@@ -22,16 +22,17 @@ public class PrioritizeCommand extends Command {
      */
     @Override
     public void execute(CalendarList calendarList, Storage storage) throws DukeException {
+        int index;
         try {
             if (userInput.startsWith("*t")) {
-                int index = Integer.parseInt(userInput.replace("*t", "").trim());
-                markAsImportant(calendarList, index);
+                index = Integer.parseInt(userInput.replace("*t", "").trim());
             } else {
                 throw new DukeException("prioritize");
             }
         } catch (Exception e) {
-            throw new DukeException("invalid task action");
+            throw new DukeException("prioritize");
         }
+        markAsImportant(calendarList, index);
     }
 
     /**
