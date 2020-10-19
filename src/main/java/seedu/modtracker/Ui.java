@@ -92,7 +92,7 @@ public class Ui {
     public void printTable(ModuleList modList, int week) {
         //        ModView view = new ModView();
         //        view.printAllModuleInformation(modList,week);
-        TimeBreakDownAnalysis breakDown = new TimeBreakDownAnalysis();
+        ViewTimeBreakDownAnalysis breakDown = new ViewTimeBreakDownAnalysis();
         breakDown.printTimeBreakDownAndAnalysis(modList, week);
     }
 

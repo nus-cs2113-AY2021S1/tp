@@ -6,7 +6,7 @@ import static seedu.modtracker.Analysis.justRight;
 import static seedu.modtracker.Analysis.tooLittleTimeSpent;
 import static seedu.modtracker.Analysis.tooMuchTimeSpent;
 
-public class TimeBreakDownAnalysis {
+public class ViewTimeBreakDownAnalysis {
     private static final int LOWER_BOUND_OF_JUST_NICE = -30;
     private static final String FULL_BAR = "█";
     private static final String HALF_BAR = "▌";
