@@ -50,7 +50,7 @@ public class Parser {
             return new RemoveCommandParser().parse(description);
 
         case "bookmark":
-            return new BookmarkAnimeCommand(description);
+            return new BookmarkParser().parse(description);
 
         case "help":
             return new HelpCommand();
