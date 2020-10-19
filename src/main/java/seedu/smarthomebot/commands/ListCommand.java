@@ -47,7 +47,7 @@ public class ListCommand extends Command {
             }
             return new CommandResult(result);
         case APPLIANCE_TYPE:
-            if(filteredLocation.equals("")) {
+            if (filteredLocation.equals("")) {
                 if (applianceList.getAllAppliance().size() == 0) {
                     return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
                 }
@@ -64,14 +64,15 @@ public class ListCommand extends Command {
                 }
                 return new CommandResult(formattedResult);
             } else {
-                ArrayList<Appliance> filterApplianceList = (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
+                ArrayList<Appliance> filterApplianceList =
+                        (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
                         .filter((s) -> s.getLocation().contains(filteredLocation))
                         .collect(toList());
 
                 if (filterApplianceList.isEmpty()) {
-                    return new CommandResult("There is no appliance in this \"" + filteredLocation + "\"" );
+                    return new CommandResult("There is no appliance in this \"" + filteredLocation + "\"");
                 }
-                String formattedResult = (LINE + "Here are the appliances in \"" + filteredLocation +"\"");
+                String formattedResult = (LINE + "Here are the appliances in \"" + filteredLocation + "\"");
                 String format = "%-2d. %-" + Appliance.getMaxNameLength() + "s"
                         + MESSAGE_DISPLAY_LOCATION + "%-" + Appliance.getMaxLocationLength() + "s"
                         + MESSAGE_DISPLAY_STATUS + "%-3s"

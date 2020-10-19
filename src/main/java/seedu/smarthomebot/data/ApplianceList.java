@@ -60,8 +60,5 @@ public class ApplianceList {
             }
         }
     }
-
-    public boolean isEmpty() {
-        return applianceList.isEmpty();
-    }
+    
 }

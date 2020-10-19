@@ -156,7 +156,7 @@ public class Parser {
     }
 
     private static Command prepareListCommand(String arguments) {
-        String str[] = arguments.split(" ");
+        String[] str = arguments.split(" ");
         if (str[0].equals(LOCATION_TYPE)) {
             return new ListCommand(LOCATION_TYPE, "");
         } else if (str[0].equals(APPLIANCE_TYPE)) {
