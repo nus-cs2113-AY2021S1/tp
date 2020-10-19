@@ -20,8 +20,9 @@ public class ExitCommand extends Command {
 
     /**
      * Prints the exit screen before the program exits.
-     *  @param bookmarks The list of bookmarks.
-     * @param timetable
+     *
+     * @param bookmarks The list of bookmarks.
+     * @param timetable The timetable. //ADD more comments
      * @param ui The user interface.
      */
     @Override

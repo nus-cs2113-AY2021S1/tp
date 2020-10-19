@@ -140,7 +140,8 @@ public class ShowTimetableCommand extends Command {
         return message.toString();
     }
 
-    private String getMessageLessonAtTime(List<Module> modules, List<Slot> slots, String dayInput) throws DukeException {
+    private String getMessageLessonAtTime(List<Module> modules, List<Slot> slots,
+                                          String dayInput) throws DukeException {
         String message = "";
         if (slots.isEmpty()) {
             throw new DukeException(DukeExceptionType.EMPTY_TIMETABLE);
