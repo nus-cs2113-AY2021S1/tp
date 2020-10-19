@@ -66,7 +66,7 @@ public class UiMessage {
     public static final String ADD_QUOTE_REFLECTION = "Reflection has been to quote: [%s]" + System.lineSeparator()
             + "Reflection: [%s]";
     public static final String LIST_QUOTE_REFLECTION = "Here is the reflection you are looking for!"
-            + System.lineSeparator() + "Quote: [%s]" + System.lineSeparator() +"Reflection: [%s]";
+            + System.lineSeparator() + "Quote: [%s]" + System.lineSeparator() + "Reflection: [%s]";
     public static final String LIST_QUOTE_NO_REFLECTION = "That quote does not have any reflection attached!";
 
     // Help page commands

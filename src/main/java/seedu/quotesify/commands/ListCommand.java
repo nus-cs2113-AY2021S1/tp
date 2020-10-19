@@ -107,10 +107,10 @@ public class ListCommand extends Command {
 
     private void listQuoteReflection(QuoteList quotes, TextUi ui) {
         try {
-            int quoteNumber = Integer.parseInt(information.trim())-1;
+            int quoteNumber = Integer.parseInt(information.trim()) - 1;
             if (information.isEmpty()) {
                 throw new QuotesifyException(ERROR_NO_QUOTE_NUMBER);
-            } else if (quoteNumber < 0 || quoteNumber > quotes.getSize()){
+            } else if (quoteNumber < 0 || quoteNumber > quotes.getSize()) {
                 throw new QuotesifyException(ERROR_INVALID_QUOTE_NUM);
             } else {
                 Quote quote = quotes.getQuote(quoteNumber);
