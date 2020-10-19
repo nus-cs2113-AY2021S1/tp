@@ -18,18 +18,14 @@ public class WatchlistParser extends CommandParser {
     private static final int LIST_REQUIRED_PARAMETER_COUNT = 1;
     private static final int MODIFICATION_REQUIRED_PARAMETER_COUNT = 2;
 
-    private static final Logger LOGGER = getAniLogger(WatchlistParser.class.getName());
-
-    public WatchlistParser() {
-        // LOGGER.setLevel(Level.WARNING);
-    }
+    private static final Logger LOGGER = getAniLogger(WatchlistCommand.class.getName());
 
     public WatchlistCommand parse(String description) throws AniException {
         assert description != null : "description should not be null.";
         String[] paramGiven = parameterSplitter(description);
         paramIsSetCheck(paramGiven);
         if (paramGiven.length > 2) {
-            LOGGER.log(Level.WARNING, "Too many arguments.");
+            LOGGER.log(Level.WARNING, "\"" + description + "\" has too many arguments.");
             throw new AniException("Watchlist command" + TOO_MUCH_FIELDS);
         } else if (!paramGiven[0].isBlank()) {
             LOGGER.log(Level.WARNING, "Not recognized command parameter: " + paramGiven[0] + "\".");
