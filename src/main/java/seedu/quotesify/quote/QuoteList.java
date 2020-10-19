@@ -30,6 +30,10 @@ public class QuoteList extends QuotesifyList<Quote> {
         return quotes.indexOf(quote);
     }
 
+    public void editQuote(Quote quote, int quoteNumber) {
+        quotes.set(quoteNumber, quote);
+    }
+
     @Override
     public void add(Quote newQuote) {
         quotes.add(newQuote);
@@ -44,7 +48,7 @@ public class QuoteList extends QuotesifyList<Quote> {
     public String toString() {
         String quotesToReturn = "";
         for (int i = 0; i < getSize(); i++) {
-            quotesToReturn += (i + 1 + ". " + quotes.get(i).toString());
+            quotesToReturn += (i + 1 + ". " + quotes.get(i).toString()) + System.lineSeparator();
         }
         return quotesToReturn;
     }

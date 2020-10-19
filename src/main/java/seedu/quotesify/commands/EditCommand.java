@@ -7,11 +7,16 @@ import seedu.quotesify.category.CategoryList;
 import seedu.quotesify.category.CategoryParser;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
+import seedu.quotesify.quote.Quote;
+import seedu.quotesify.quote.QuoteList;
+import seedu.quotesify.quote.QuoteParser;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
 import seedu.quotesify.rating.RatingParser;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
+
+import java.util.logging.Level;
 
 public class EditCommand extends Command {
 
@@ -44,11 +49,32 @@ public class EditCommand extends Command {
             CategoryList categoryList = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
             editCategory(categoryList, ui);
             break;
+        case TAG_QUOTE:
+            QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+            editQuote(quotes, ui);
+            break;
         default:
             ui.printListOfEditCommands();
             break;
         }
         storage.save();
+    }
+
+    private void editQuote(QuoteList quotes, TextUi ui) {
+        try {
+            if (information.contains(FLAG_EDIT)) {
+                int quoteNumToEdit = QuoteParser.getQuoteNumberToEdit(information, quotes);
+                Quote oldQuote = quotes.getQuote(quoteNumToEdit);
+                Quote editedQuote = QuoteParser.getEditedQuote(information);
+                quotes.editQuote(editedQuote, quoteNumToEdit);
+                ui.printEditQuote(oldQuote, editedQuote);
+            } else {
+                throw new QuotesifyException(ERROR_MISSING_EDIT_FLAG);
+            }
+
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
+        }
     }
 
     private void editBook(BookList books, TextUi ui) {

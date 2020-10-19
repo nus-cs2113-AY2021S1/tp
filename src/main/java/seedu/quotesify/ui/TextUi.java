@@ -67,6 +67,62 @@ public class TextUi {
         System.out.println(quotes);
     }
 
+    public void printAllQuotesByAuthor(QuoteList quoteList, String authorName) {
+        if (quoteList.getSize() > 0) {
+            String listToPrint = quoteList.getAllQuotesByAuthor(quoteList, authorName);
+            if (!listToPrint.isEmpty()) {
+                System.out.printf((UiMessage.LIST_QUOTES_BY_AUTHOR_MESSAGE) + "\n", authorName);
+                System.out.println(listToPrint);
+            } else {
+                System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
+            }
+        } else {
+            System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
+        }
+    }
+
+    public void printAllQuotesByReference(QuoteList quoteList, String reference) {
+        if (quoteList.getSize() > 0) {
+            String listToPrint = quoteList.getAllQuotesByReference(quoteList, reference);
+            if (!listToPrint.isEmpty()) {
+                System.out.printf((UiMessage.LIST_QUOTES_BY_REFERENCE_MESSAGE) + "\n", reference);
+                System.out.println(listToPrint);
+            } else {
+                System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
+            }
+        } else {
+            System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
+        }
+    }
+
+    public void printAllQuotesByReferenceAndAuthor(QuoteList quoteList, String reference, String authorName) {
+        if (quoteList.getSize() > 0) {
+            String listToPrint = quoteList.getAllQuotesByReferenceAndAuthor(quoteList, reference, authorName);
+            if (!listToPrint.isEmpty()) {
+                System.out.printf(UiMessage.LIST_QUOTES_BY_AUTHOR_AND_REFERENCE_MESSAGE + "\n", reference, authorName);
+                System.out.println(listToPrint);
+            } else {
+                System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
+            }
+        } else {
+            System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
+        }
+    }
+
+    public  void printDeleteQuote(String quote) {
+        System.out.printf((UiMessage.DELETE_QUOTE_MESSAGE) + "\n", quote);
+    }
+
+    public void printRandomQuote() {
+        QuoteList quotelist = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+        String randomQuote = quotelist.getRandomQuote();
+        System.out.println(UiMessage.PRINT_RANDOM_QUOTE + System.lineSeparator() + randomQuote);
+    }
+
+    public void printEditQuote(Quote oldQuote, Quote newQuote) {
+        System.out.printf(UiMessage.EDIT_QUOTE_MESSAGE + "\n", oldQuote.toString(), newQuote.toString());
+    }
+
     public void printAddCategoryToBook(String bookTitle, String categoryName) {
         System.out.printf((UiMessage.ADD_CATEGORY_MESSAGE) + "\n", categoryName, bookTitle);
     }
@@ -164,52 +220,6 @@ public class TextUi {
         }
     }
 
-    public void printAllQuotesByAuthor(QuoteList quoteList, String authorName) {
-        if (quoteList.getSize() > 0) {
-            String listToPrint = quoteList.getAllQuotesByAuthor(quoteList, authorName);
-            if (!listToPrint.isEmpty()) {
-                System.out.printf((UiMessage.LIST_QUOTES_BY_AUTHOR_MESSAGE) + "\n", authorName);
-                System.out.println(listToPrint);
-            } else {
-                System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
-            }
-        } else {
-            System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
-        }
-    }
-
-    public void printAllQuotesByReference(QuoteList quoteList, String reference) {
-        if (quoteList.getSize() > 0) {
-            String listToPrint = quoteList.getAllQuotesByReference(quoteList, reference);
-            if (!listToPrint.isEmpty()) {
-                System.out.printf((UiMessage.LIST_QUOTES_BY_REFERENCE_MESSAGE) + "\n", reference);
-                System.out.println(listToPrint);
-            } else {
-                System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
-            }
-        } else {
-            System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
-        }
-    }
-
-    public void printAllQuotesByReferenceAndAuthor(QuoteList quoteList, String reference, String authorName) {
-        if (quoteList.getSize() > 0) {
-            String listToPrint = quoteList.getAllQuotesByReferenceAndAuthor(quoteList, reference, authorName);
-            if (!listToPrint.isEmpty()) {
-                System.out.printf(UiMessage.LIST_QUOTES_BY_AUTHOR_AND_REFERENCE_MESSAGE + "\n", reference, authorName);
-                System.out.println(listToPrint);
-            } else {
-                System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
-            }
-        } else {
-            System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
-        }
-    }
-
-    public  void printDeleteQuote(String quote) {
-        System.out.printf((UiMessage.DELETE_QUOTE_MESSAGE) + "\n", quote);
-    }
-
     public void printDeleteRating(String bookTitle) {
         System.out.printf((UiMessage.DELETE_RATING_MESSAGE) + "\n", bookTitle);
     }
@@ -269,12 +279,6 @@ public class TextUi {
         } else {
             System.out.println(UiMessage.EMPTY_BOOKMARK_LIST_MESSAGE);
         }
-    }
-
-    public void printRandomQuote() {
-        QuoteList quotelist = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
-        String randomQuote = quotelist.getRandomQuote();
-        System.out.println(UiMessage.PRINT_RANDOM_QUOTE + System.lineSeparator() + randomQuote);
     }
 
     public void printInvalidQuotesifyCommand() {
