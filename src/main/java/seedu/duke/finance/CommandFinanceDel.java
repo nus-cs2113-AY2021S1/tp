@@ -23,9 +23,6 @@ public class CommandFinanceDel extends Command {
         if (ui.getCategory().equals("finance") && ui.getCommand().equalsIgnoreCase("dellog")
                 || ui.getCommand().equalsIgnoreCase("del")
                 || ui.getCommand().equalsIgnoreCase("d")) {
-            if (ui.getArg("") == null || ui.getArg("").equals("")) {
-                return ARGUMENT_ERR;
-            }
             try {
                 Integer.parseInt(ui.getArg(""));
             } catch (NumberFormatException e) {
