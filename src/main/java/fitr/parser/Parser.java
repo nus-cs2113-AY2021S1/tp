@@ -18,20 +18,21 @@ import fitr.common.Commands;
  */
 public class Parser {
     public static final Pattern COMMAND_FORMAT = Pattern.compile("(?<command>\\S+)(?<arguments>.*)");
+
     /**
      * Parses the user input and return a corresponding command.
      * @param userInput String of user input
      * @return a Command object
      */
-    public static Command parse(String userInput){
+    public static Command parse(String userInput) {
         Matcher matcher = COMMAND_FORMAT.matcher(userInput.trim());
 
         if (!matcher.matches()) {
             return new InvalidCommand(userInput);
         }
 
-        String userCommand = matcher.group("command");
-        String arguments = matcher.group("arguments");
+        String userCommand = matcher.group("command").trim();
+        String arguments = matcher.group("arguments").trim();
         switch (userCommand.toLowerCase()) {
         case Commands.COMMAND_FOOD:
             return new AddFoodCommand(arguments);
