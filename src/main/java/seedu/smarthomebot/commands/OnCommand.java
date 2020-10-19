@@ -5,10 +5,11 @@ import seedu.smarthomebot.data.Fan;
 import seedu.smarthomebot.data.framework.Appliance;
 import seedu.smarthomebot.exceptions.InvalidValue;
 
-import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_TEMPERATURE_AC;
-import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_FAN_SPEED;
+import static seedu.smarthomebot.common.Messages.LINE;
 import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_NOT_EXIST;
 import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
+import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_FAN_SPEED;
+import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_TEMPERATURE_AC;
 
 public class OnCommand extends Command {
 
@@ -19,11 +20,14 @@ public class OnCommand extends Command {
             + "Example: " + COMMAND_WORD + " Aircon 1 ";
     private final String name;
     private final String parameter;
+    private final String type;
+    private static final String APPLIANCE_TYPE = "appliance";
+    private static final String LOCATION_TYPE = "location";
 
-    public OnCommand(String name, String parameter) {
+    public OnCommand(String name, String type, String parameter) {
         this.name = name;
+        this.type = type;
         this.parameter = parameter;
-
     }
 
     private static int convertParameterToInt(String parameter) throws InvalidValue {
@@ -85,20 +89,46 @@ public class OnCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        int toOnApplianceIndex = getApplianceToOnIndex();
-        if (toOnApplianceIndex < 0) {
-            return new CommandResult(MESSAGE_APPLIANCE_NOT_EXIST);
-        } else {
-            Appliance toOnAppliance = applianceList.getAppliance(toOnApplianceIndex);
-            if (toOnAppliance.switchOn()) {
-                assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
-                String setParameterStatement = setParameter(parameter, toOnAppliance);
-                return new CommandResult(MESSAGE_APPLIANCE_PREVIOUSLY_ON + setParameterStatement);
+        switch (this.type) {
+        case(APPLIANCE_TYPE) :
+            int toOnApplianceIndex = getApplianceToOnIndex();
+            if (toOnApplianceIndex < 0) {
+                return new CommandResult(MESSAGE_APPLIANCE_NOT_EXIST);
             } else {
-                assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
-                setParameter(parameter, toOnAppliance);
-                return new CommandResult("Switching: " + toOnAppliance + "......ON ");
+                Appliance toOnAppliance = applianceList.getAppliance(toOnApplianceIndex);
+                if (toOnAppliance.switchOn()) {
+                    assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
+                    String setParameterStatement = setParameter(parameter, toOnAppliance);
+                    return new CommandResult(MESSAGE_APPLIANCE_PREVIOUSLY_ON + setParameterStatement);
+                } else {
+                    assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
+                    setParameter(parameter, toOnAppliance);
+                    return new CommandResult("Switching: " + toOnAppliance + "......ON ");
+                }
             }
+        case(LOCATION_TYPE) :
+            if (locationList.isLocationCreated(this.name)) {
+                String str = "";
+                for (Appliance toOnAppliance: applianceList.getAllAppliance()) {
+                    if (toOnAppliance.getLocation().equals(this.name)) {
+                        if (toOnAppliance.switchOn()) {
+                            assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
+                            String setParameterStatement = setParameter(parameter, toOnAppliance);
+                            str = str + MESSAGE_APPLIANCE_PREVIOUSLY_ON + setParameterStatement + "\n" + LINE;
+                        } else {
+                            assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
+                            setParameter(parameter, toOnAppliance);
+                            str = str + "Switching: " + toOnAppliance + "......ON \n" + LINE;
+                        }
+                    }
+                }
+                str = str + "All appliance in \"" + this.name + "\" are turned on ";
+                return new CommandResult(str);
+            } else {
+                return new CommandResult("No appliance in this location");
+            }
+        default :
+            return new CommandResult("To be implemented for V0.2");
         }
     }
 
