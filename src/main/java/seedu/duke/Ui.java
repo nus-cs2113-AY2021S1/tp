@@ -413,7 +413,7 @@ public class Ui {
                 && firImportantTodo == null && firstTodo == null) {
             System.out.println("You have no unfinished tasks now!");
         } else {
-            System.out.println("Maybe you can prepare for the following tasks now: ");
+            System.out.println("Maybe you can prepare for the following tasks now:");
             if (earImportantDeadline != null) {
                 System.out.println("The earliest unfinished important deadline: "
                         + earImportantDeadline.toString());

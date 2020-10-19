@@ -8,7 +8,6 @@ import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Task;
 import seedu.duke.calendar.task.Todo;
 
-import java.util.Scanner;
 
 public class PrintSuggestionCommand extends Command {
     public PrintSuggestionCommand(String userInput) {
