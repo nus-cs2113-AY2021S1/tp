@@ -46,6 +46,21 @@ public abstract class Event {
         this.isDone = true;
     }
 
+    /**
+     * Sets the repeated event status as true.
+     *
+     * @param index Integer representing which iteration to mark as done. 0 means original event
+     */
+    public void markAsDone(int index) {
+        if (index == 0) {
+            this.isDone = true;
+        } else {
+            ArrayList<DateStatusPair> repeatedEvents = this.getRepeatList();
+            repeatedEvents.get(index).setDone(true);
+        }
+
+    }
+
     public void setRepeat(Repeat repeat) {
         this.repeat = repeat;
     }

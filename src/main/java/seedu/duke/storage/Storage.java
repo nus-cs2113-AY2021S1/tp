@@ -1,5 +1,6 @@
 package seedu.duke.storage;
 
+import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 
 import java.io.File;
@@ -19,6 +20,12 @@ import java.util.Scanner;
 public class Storage {
     public Path fileNamePath;
     public Path fileDirectoryPath;
+    public Path filePersonalPath;
+    public Path fileZoomPath;
+    public Path fileTimeTablePath;
+    public Path fileGoalPath;
+
+
 
     /**
      * Creates a new storage manager that can load and save files to and from a given filepath.
@@ -26,15 +33,27 @@ public class Storage {
      * @param initPath is the name of the filepath which files are saved to and loaded from
      */
     public Storage(String initPath) {
-        String locationOfFileName = initPath + ",data.txt";
+
+        //firstly, make string representation of storage files
+        String personal = initPath + ",personal.txt";
+        String zoom = initPath + ",zoom.txt";
+        String goal = initPath + ",goal.txt";
+        String timeTable = initPath + ",timetable.txt";
 
         //Directory words only contain info on making the folder
         //File words contain the info on how to make the file itself
         String[] pathDirectoryWords = initPath.split(",");
-        String[] pathFileWords = initPath.split(",");
+        String[] personalWords = personal.split(",");
+        String[] zoomWords = zoom.split(",");
+        String[] goalWords = goal.split(",");
+        String[] timeTableWords = timeTable.split(",");
 
         fileDirectoryPath = createPath(pathDirectoryWords);
-        fileNamePath = createPath(pathFileWords);
+        filePersonalPath = createPath(personalWords);
+        fileZoomPath = createPath(zoomWords);
+        fileGoalPath = createPath(goalWords);
+        fileTimeTablePath = createPath(timeTableWords);
+
     }
 
     /**
@@ -67,12 +86,24 @@ public class Storage {
      * @param fileName is the file to load events from
      * @throws FileNotFoundException if no file with the given fileName is found
      */
-    public void loadFile(String fileName) throws FileNotFoundException {
-        File f = new File(fileName);
-        Scanner s = new Scanner(f); // create a Scanner using the File as the source
-        List<String> eventInfo;
-        ArrayList<Event> loadedEventsList = new ArrayList<>();
+    public void loadFile(Path fileName, UserData data) {
+
+        try {
+
+            //First, extract out all the file information
+            List<String> fileLines = Files.readAllLines(fileName);
+
+            //Next, line by line reform the event
+            for (int i = 0; i < fileLines.size(); i++) {
+                String line = fileLines.get(i);
+            }
+
+            //finally, store the information in the correct list
+        } catch (IOException e) {
+            //do nothing
+        }
     }
+
 
     /**
      * Function accepts a string and creates a path object originating from the user directory.
