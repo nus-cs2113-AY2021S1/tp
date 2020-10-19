@@ -1,2 +1,4 @@
-package seedu.smarthomebot.exceptions;public class IllegalCharacterException {
+package seedu.smarthomebot.exceptions;
+
+public class IllegalCharacterException extends Exception {
 }

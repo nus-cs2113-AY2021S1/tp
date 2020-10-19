@@ -2,7 +2,7 @@ package seedu.smarthomebot.data;
 
 import seedu.smarthomebot.data.framework.Appliance;
 import seedu.smarthomebot.exceptions.ApplianceNotFoundException;
-import seedu.smarthomebot.exceptions.InvalidAdditionOfAppliance;
+import seedu.smarthomebot.exceptions.DuplicateDataException;
 import seedu.smarthomebot.ui.TextUi;
 
 import java.util.ArrayList;
@@ -16,11 +16,11 @@ public class ApplianceList {
         applianceList = new ArrayList<>();
     }
 
-    public void addAppliance(Appliance appliance) throws InvalidAdditionOfAppliance {
+    public void addAppliance(Appliance appliance) throws DuplicateDataException {
         if (!isApplianceExist(appliance.getName())) {
             applianceList.add(appliance);
         } else {
-            throw new InvalidAdditionOfAppliance();
+            throw new DuplicateDataException();
         }
     }
 
