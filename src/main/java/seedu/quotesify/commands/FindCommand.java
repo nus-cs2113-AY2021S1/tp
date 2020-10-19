@@ -3,10 +3,13 @@ package seedu.quotesify.commands;
 import seedu.quotesify.book.BookList;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
+import seedu.quotesify.quote.QuoteList;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
+
+import java.util.logging.Level;
 
 public class FindCommand extends Command {
 
@@ -35,6 +38,10 @@ public class FindCommand extends Command {
             BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
             findBooks(books, ui);
             break;
+        case TAG_QUOTE:
+            QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+            findQuote(quotes, ui);
+            break;
         default:
             ui.printListOfFindCommands();
             break;
@@ -58,6 +65,24 @@ public class FindCommand extends Command {
             ui.printBooksByKeyword(filteredBooks, keyword);
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
+        }
+    }
+
+    private void findQuote(QuoteList quotes, TextUi ui) {
+        try {
+            String keyword = information.trim();
+            if (!keyword.isEmpty()) {
+                String resultList = quotes.findQuoteByKeyword(quotes, keyword);
+                if (!resultList.isEmpty()) {
+                    ui.printFindQuoteSuccess(resultList);
+                } else {
+                    ui.printFindQuoteFail();
+                }
+            } else {
+                throw new QuotesifyException(ERROR_FIND_KEYWORD_MISSING);
+            }
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(ERROR_FIND_KEYWORD_MISSING);
         }
     }
 

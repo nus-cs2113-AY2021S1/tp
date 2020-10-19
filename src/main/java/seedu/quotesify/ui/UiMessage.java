@@ -61,6 +61,8 @@ public class UiMessage {
     public static final String LIST_QUOTES_BY_AUTHOR_AND_REFERENCE_MESSAGE = "Here is a list of quotes from %s by %s:";
     public static final String PRINT_RANDOM_QUOTE = "Before you continue, here's something:";
     public static final String EDIT_QUOTE_MESSAGE = "The quote has been edited from: [%s] to [%s]";
+    public static final String FIND_QUOTE_SUCCESS = "Here are the results of my search:";
+    public static final String FIND_QUOTE_FAIL = "None of your quotes matches the keyword";
 
     // Help page commands
     public static final String ADD_BOOK_COMMAND = "Add book: " + "add -b BOOK_TITLE /by AUTHOR";

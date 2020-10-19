@@ -105,6 +105,20 @@ public class QuoteList extends QuotesifyList<Quote> {
         return listToReturn;
     }
 
+    public String findQuoteByKeyword(QuoteList quoteList, String keyword) {
+        String listToReturn = "";
+        for (Quote quote : quoteList.getList()) {
+            if (quote.getQuote().contains(keyword)) {
+                listToReturn += quote.toString() + System.lineSeparator();
+            } else if (quote.hasReference() && quote.getReference().contains(keyword)) {
+                listToReturn += quote.toString() + System.lineSeparator();
+            } else if (quote.hasAuthor() && quote.getAuthorName().contains(keyword)) {
+                listToReturn += quote.toString() + System.lineSeparator();
+            }
+        }
+        return listToReturn;
+    }
+
     @Override
     public JSONArray toJsonArray() {
         JSONArray list = new JSONArray();
