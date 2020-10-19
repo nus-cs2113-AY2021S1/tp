@@ -44,7 +44,7 @@ class AddSprintTaskCommandTest {
         setUpProject();
         String command = "sprint /addtask";
         parser.parser(command, projectList);
-        String expectedOutput = "Invalid parameters." + System.lineSeparator();
+        String expectedOutput = "Exception found: please give a task number" + System.lineSeparator();
         assertEquals(expectedOutput, outContent.toString());
         restoreStreams();
     }
