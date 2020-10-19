@@ -2,27 +2,27 @@ package seedu.commons;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UtilTest {
 
     @Test
     void generatePadStringWithCharAndLength_zeroLength_success() {
-        assertEquals("", Util.GeneratePadStringWithCharAndLength(' ', 0));
-        assertEquals("", Util.GeneratePadStringWithCharAndLength('$', 0));
+        assertEquals("", Util.generatePadStringWithCharAndLength(' ', 0));
+        assertEquals("", Util.generatePadStringWithCharAndLength('$', 0));
     }
 
     @Test
     void generatePadStringWithCharAndLength_nonZeroLength_success() {
-        assertEquals("$$$$$$", Util.GeneratePadStringWithCharAndLength('$', 6));
-        assertEquals("----", Util.GeneratePadStringWithCharAndLength('-', 4));
+        assertEquals("$$$$$$", Util.generatePadStringWithCharAndLength('$', 6));
+        assertEquals("----", Util.generatePadStringWithCharAndLength('-', 4));
     }
 
     @Test
     void generatePadStringWithCharAndLength_negativeLength_success() {
         // Effect of - will be left adjust, which doesnt affect the return value.
-        assertEquals("$", Util.GeneratePadStringWithCharAndLength('$', -1));
-        assertEquals("$$", Util.GeneratePadStringWithCharAndLength('$', -2));
+        assertEquals("$", Util.generatePadStringWithCharAndLength('$', -1));
+        assertEquals("$$", Util.generatePadStringWithCharAndLength('$', -2));
     }
 
     @Test

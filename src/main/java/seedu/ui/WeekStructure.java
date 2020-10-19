@@ -51,7 +51,7 @@ public class WeekStructure extends DisplayDateStructure {
                 }
                 temp = "#" + task.getTaskID();
                 // # + 4 digits + " " = 6
-                temp += Util.GeneratePadStringWithCharAndLength(' ', HASHCODE_STRING_LENGTH - temp.length());
+                temp += Util.generatePadStringWithCharAndLength(' ', HASHCODE_STRING_LENGTH - temp.length());
                 temp += task.getDescription();
                 Util.limitStringWithDots(temp, 20);
                 putsIntoArray(temp, screen[currentRow++], currentCol);

@@ -2,7 +2,7 @@ package seedu.commons;
 
 public class Util {
 
-    public static String GeneratePadStringWithCharAndLength(char pad, int length) {
+    public static String generatePadStringWithCharAndLength(char pad, int length) {
         if (length == 0) {
             return "";
         } else {
