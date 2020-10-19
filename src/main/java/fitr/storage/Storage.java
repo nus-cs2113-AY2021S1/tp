@@ -23,6 +23,7 @@ public class Storage {
     private static final String DEFAULT_FOOD_LIST_FILEPATH = "food.txt";
     private static final String DEFAULT_USER_CONFIG_FILEPATH = "user.txt";
     private static final String COMMA_SEPARATOR = ",";
+    private boolean isTest = false;
 
     private static final Logger LOGGER = Logger.getLogger(Storage.class.getName());
 
@@ -216,5 +217,13 @@ public class Storage {
 
         LOGGER.fine("Exercise list file written successfully.");
         file.close();
+    }
+
+    public void setTest(boolean isTest) {
+        this.isTest = isTest;
+    }
+
+    public boolean isTest() {
+        return isTest;
     }
 }

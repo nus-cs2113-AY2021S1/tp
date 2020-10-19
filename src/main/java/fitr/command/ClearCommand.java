@@ -46,8 +46,10 @@ public class ClearCommand extends Command {
         }
 
         try {
-            storage.writeExerciseList(exerciseList);
-            storage.writeFoodList(foodList);
+            if (!storage.isTest()) {
+                storage.writeExerciseList(exerciseList);
+                storage.writeFoodList(foodList);
+            }
         } catch (IOException e) {
             Ui.printCustomError("The file cannot be written!");
         }

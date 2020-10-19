@@ -17,8 +17,10 @@ public class ClearCommandTest {
         ClearCommand clearCommand = new ClearCommand("");
         FoodList foodList = getFoodList();
         ExerciseList exerciseList = getExerciseList();
+        Storage storage = getStorage();
+        storage.setTest(true);
         User user = new User();
-        clearCommand.execute(foodList, exerciseList, getStorage(), user);
+        clearCommand.execute(foodList, exerciseList, storage, user);
         assertEquals(0, foodList.getSize());
         assertEquals(0, exerciseList.getSize());
     }
@@ -28,8 +30,10 @@ public class ClearCommandTest {
         ClearCommand clearCommand = new ClearCommand("food");
         FoodList foodList = getFoodList();
         ExerciseList exerciseList = getExerciseList();
+        Storage storage = getStorage();
+        storage.setTest(true);
         User user = new User();
-        clearCommand.execute(foodList, exerciseList, getStorage(), user);
+        clearCommand.execute(foodList, exerciseList, storage, user);
         assertEquals(0, foodList.getSize());
     }
 
@@ -38,8 +42,10 @@ public class ClearCommandTest {
         ClearCommand clearCommand = new ClearCommand("exercise");
         FoodList foodList = getFoodList();
         ExerciseList exerciseList = getExerciseList();
+        Storage storage = getStorage();
+        storage.setTest(true);
         User user = new User();
-        clearCommand.execute(foodList, exerciseList, getStorage(), user);
+        clearCommand.execute(foodList, exerciseList, storage, user);
         assertEquals(0, exerciseList.getSize());
     }
 
