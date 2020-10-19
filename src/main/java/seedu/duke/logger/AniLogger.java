@@ -12,7 +12,7 @@ import java.util.logging.SimpleFormatter;
 public class AniLogger {
     private static final int MAX_LOG_COUNT = 1;
     private static final int MAX_LOG_SIZE = (int) (Math.pow(1024, 3) * 5); // 5 Megabytes
-    private static final String LOG_FILE = "log/AniChan.log";
+    private static final String LOG_FILE = "data/AniChan.log";
 
     private static final Level LOG_FILE_LEVEL = Level.INFO;
     private static final Level CONSOLE_LEVEL = Level.SEVERE;
@@ -33,6 +33,8 @@ public class AniLogger {
 
 
     private static void addConsoleHandler(Logger logger) {
+        assert logger != null : "Logger is null!";
+
         if (consoleHandler == null) {
             consoleHandler = createConsoleHandler();
         }
@@ -48,6 +50,8 @@ public class AniLogger {
 
 
     private static void addFileHandler(Logger logger) {
+        assert logger != null : "Logger is null!";
+
         try {
             if (fileHandler == null) {
                 fileHandler = createFileHandler();
@@ -79,6 +83,8 @@ public class AniLogger {
 
 
     private static void clearHandlers(Logger logger) {
+        assert logger != null : "Logger is null!";
+
         Handler[] handlers = logger.getHandlers();
 
         for (Handler handler : handlers) {
