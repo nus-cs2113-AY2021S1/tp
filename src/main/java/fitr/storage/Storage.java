@@ -8,6 +8,8 @@ import fitr.list.FoodList;
 import fitr.list.TipList;
 import fitr.user.User;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -230,17 +232,20 @@ public class Storage {
         file.close();
     }
 
-    public ArrayList<String> loadTipList() throws FileNotFoundException {
+    /**
+     * Loads the tips from a file and return an ArrayList of String tips
+     * @return an ArrayList of String tips
+     * @throws IOException if an I/O error has occurred
+     */
+    public ArrayList<String> loadTipList() throws IOException {
         LOGGER.fine("Attempting to read file: " + tipListPath);
         ArrayList<String> tipList = new ArrayList<>();
-        String line;
-        File tipListFile = new File(tipListPath);
-        Scanner readFile = new Scanner(tipListFile);
 
-        while (readFile.hasNext()) {
-            line = readFile.nextLine();
-            tipList.add(line);
-        }
+        BufferedReader br = new BufferedReader(new FileReader(tipListPath));
+        String line;
+            while ((line = br.readLine()) != null) {
+                tipList.add(line);
+            }
         LOGGER.fine("Exercise list file written successfully.");
         return tipList;
     }
