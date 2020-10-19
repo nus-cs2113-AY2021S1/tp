@@ -58,7 +58,7 @@ public abstract class Appliance {
      *
      * @return the power consumption of the appliance in double.
      */
-    public int measureConsumption() {
+    public double measureConsumption() {
         return appliancePower.getPower();
     }
 
@@ -74,8 +74,8 @@ public abstract class Appliance {
     /**
      * Recomputes the power consumption of the appliance.
      */
-    public void loadConsumptionFromFile(String powerConsumption) {
-        appliancePower.loadConsumptionFromFile(Integer.parseInt(powerConsumption));
+    public void loadDataFromFile(String powerConsumption, String dateTime) {
+        appliancePower.loadDataFromFile(Double.parseDouble(powerConsumption), dateTime);
     }
 
     /**

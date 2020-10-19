@@ -67,7 +67,7 @@ public class StorageFile {
             }
 
             myReader.close();
-        } catch (FileNotFoundException | EmptyParameterException | InvalidAdditionOfAppliance e) {
+        } catch (FileNotFoundException | InvalidAdditionOfAppliance e) {
             ui.printToUser("Load File Does not Exist. No contents will be loaded.");
         } catch (IOException e) {
             ui.printToUser("Load File is corrupted.");
@@ -109,10 +109,11 @@ public class StorageFile {
                     ui.printToUser(MESSAGE_APPLIANCE_TYPE_NOT_EXIST);
                 }
 
-                applianceList.getAppliance(i).loadConsumptionFromFile(splitString[5]);
                 if (splitString[4].toLowerCase().equals("on")) {
                     applianceList.getAppliance(i).switchOn();
                 }
+                // when user exit, get the current system and save in datafile
+                applianceList.getAppliance(i).loadDataFromFile(splitString[5], "19/10/2020-09:20:20");
                 i++;
             } catch (IndexOutOfBoundsException e) {
                 throw new FileCorrupted();
@@ -121,7 +122,7 @@ public class StorageFile {
         }
     }
 
-    private void convertTextToLocationList(String location) throws EmptyParameterException, FileCorrupted {
+    private void convertTextToLocationList(String location) throws FileCorrupted {
         try {
             int start = location.indexOf("[") + 1;
             int end = location.indexOf("]");

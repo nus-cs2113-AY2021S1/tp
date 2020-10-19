@@ -60,7 +60,6 @@ public class SmartHomeBot {
             if (result != null) {
                 ui.printResultToUser(result);
             }
-
         } while (!ExitCommand.isExit(command));
     }
 

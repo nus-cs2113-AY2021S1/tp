@@ -1,5 +1,8 @@
 package seedu.smarthomebot.commands;
 
+import seedu.smarthomebot.data.framework.Appliance;
+import seedu.smarthomebot.data.framework.Power;
+
 public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
