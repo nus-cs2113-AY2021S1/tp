@@ -1,6 +1,7 @@
 package seedu.ui;
 
 import seedu.commands.CommandResult;
+import seedu.commons.Util;
 import seedu.data.TaskMap;
 import seedu.task.Task;
 
@@ -60,12 +61,12 @@ public class Ui {
         // Header
         String headerFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-11s |" + LS;
         String contentFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-20s |" + LS;
-        out.println("   " + padString('_', 93));
+        out.println("   " + Util.padString('_', 93));
         out.format(headerFormat, "Index", "Description", "Date", "Start", "End", "Priority");
-        out.println("   " + padString('-', 93));
+        out.println("   " + Util.padString('-', 93));
 
         if (tasks.size() == 0) {
-            out.println("  |" + padString(' ', 93) + "|");
+            out.println("  |" + Util.padString(' ', 93) + "|");
         } else {
             for (Task task : tasks.getValues()) {
                 out.format(contentFormat,
@@ -78,7 +79,7 @@ public class Ui {
             }
         }
 
-        out.println("   " + padString('-', 93));
+        out.println("   " + Util.padString('-', 93));
         out.println();
     }
 
@@ -94,7 +95,7 @@ public class Ui {
         TaskMap tasksDueToday = tasks.searchByDate(LocalDate.now());
         String messageFormat = "%-15s%-30s%15s" + LS;
         String taskFormat = "%-15s%-6s%-18s%-6s%15s" + LS;
-        out.println("||" + padString(' ', 56) + "||");
+        out.println("||" + Util.padString(' ', 56) + "||");
         out.format(messageFormat, "||", "You have " + tasksDueToday.size() + " tasks due today.", "||");
         for (Task task : tasksDueToday.getValues()) {
             out.format(taskFormat,
@@ -104,7 +105,7 @@ public class Ui {
                 (task.getStartTime() == null ? "" : task.getStartTime()),
                 "||");
         }
-        out.println("||" + padString(' ', 56) + "||");
+        out.println("||" + Util.padString(' ', 56) + "||");
 
         TaskMap tasksDueTomorrow = tasks.searchByDate(LocalDate.now().plusDays(1));
         out.format(messageFormat, "||", "Upcoming tasks tomorrow:", "||");
@@ -116,17 +117,13 @@ public class Ui {
                 (task.getStartTime() == null ? "" : task.getStartTime()),
                 "||");
         }
-        out.println("||" + padString(' ',56) + "||" + LS
-                + " " + padString('=', 58) + " " + LS);
+        out.println("||" + Util.padString(' ',56) + "||" + LS
+                + " " + Util.padString('=', 58) + " " + LS);
     }
 
     public String limitString(String string, int limit) {
         // TODO Add testing, might need to change to -4 to get an extra space
         return (string.length() > limit) ? (string.substring(0, limit - 3) + "...") : string;
-    }
-
-    public String padString(char pad, int length) {
-        return String.format("%1$" + length + "s", "").replace(' ', pad);
     }
 
     public void showMessage(String message) {
