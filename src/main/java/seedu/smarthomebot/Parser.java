@@ -156,8 +156,17 @@ public class Parser {
     }
 
     private static Command prepareListCommand(String arguments) {
-        if (arguments.equals(APPLIANCE_TYPE) || arguments.equals(LOCATION_TYPE)) {
-            return new ListCommand(arguments);
+        String str[] = arguments.split(" ");
+        if (str[0].equals(LOCATION_TYPE)) {
+            return new ListCommand(LOCATION_TYPE, "");
+        } else if (str[0].equals(APPLIANCE_TYPE)) {
+            if (arguments.equals(APPLIANCE_TYPE)) {
+                return new ListCommand(APPLIANCE_TYPE, "");
+            } else if (str[1].trim().substring(0,2).equals("l/")) {
+                return new ListCommand(APPLIANCE_TYPE, str[1].trim().substring(2));
+            } else {
+                return new InvalidCommand("Invalid list appliance format");
+            }
         } else {
             return new InvalidCommand(MESSAGE_INVALID_LIST_COMMAND);
         }
