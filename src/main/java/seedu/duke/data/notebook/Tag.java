@@ -30,6 +30,17 @@ public class Tag {
         setTagColor(tagColor);
     }
 
+    /**
+     * Overloaded constructor to take in the ansi value of the color of the tag.
+     *
+     * @param tagName Name of the tag to be set.
+     * @param attribute Attribute of the color to be set.
+     */
+    public Tag(String tagName, int attribute) {
+        setTagName(tagName);
+        setTagAttribute(Attribute.BACK_COLOR(attribute));
+    }
+
     /** Getter function for the name of the tag. */
     public String getTagName() {
         return tagName;
