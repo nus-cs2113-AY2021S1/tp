@@ -2,6 +2,7 @@ package seedu.duke.hr;
 
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
+
 import static seedu.duke.hr.MemberList.isInteger;
 
 /**
@@ -15,12 +16,19 @@ public class CommandAddMember extends Command {
     @Override
     public int validate(UserInput input) {
         this.savedInput = input;
-        if (input.getCategory().equals("hr") && input.getCommand().equalsIgnoreCase("addMember")) {
-            if (input.getNumArgs() == 4) {
-                if ((input.getArg("n") != null) && (input.getArg("p") != null) && (input.getArg("e") != null)
-                        && (input.getArg("r") != null) && isInteger(input.getArg("p"))) {
-                    return ACCEPT;
+        if (input.getCategory().equals("hr") && input.getCommand().equalsIgnoreCase("addMember")
+                || (input.getCommand().equalsIgnoreCase("add")
+                || input.getCommand().equalsIgnoreCase("a"))) {
+            if (input.getNumArgs() >= 4) {
+                if ((input.getArg("n") == null) || (input.getArg("p") == null) || (input.getArg("e") == null)
+                        && (input.getArg("r") == null)) {
+                    return ARGUMENT_ERR;
                 }
+                if ((input.getArg("n").equals("")) || (input.getArg("p").equals("")) || (input.getArg("e").equals(""))
+                        && (input.getArg("r").equals("")) || !isInteger(input.getArg("p"))) {
+                    return ARGUMENT_ERR;
+                }
+                return ACCEPT;
             }
             return ARGUMENT_ERR;
         } else {
