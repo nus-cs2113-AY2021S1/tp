@@ -1,6 +1,7 @@
 package seedu.duke.classes;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class WatchTime {
     private LocalDate recordedDate;
@@ -43,7 +44,8 @@ public class WatchTime {
     public String userReportString() {
         String response = "Date : ";
         response += recordedDate.toString();
-        response += " Time left today : ";
+        response += System.lineSeparator();
+        response += "Time left today : ";
         response += (dailyWatchLimit - durationWatchedToday);
         response += " minutes. To update the time allocated to watching shows, use the 'updateTimeLimit' command";
         return response;
@@ -51,7 +53,10 @@ public class WatchTime {
 
     @Override
     public String toString() {
-        return recordedDate.toString();
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+        String recordedDate = this.recordedDate.format(fmt);
+        return recordedDate;
+
         //TODO: Jiqing to update for saving purposes
         //Use the LocalDate.parse(String) to convert I think. <3 jaz
     }
