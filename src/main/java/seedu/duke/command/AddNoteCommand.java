@@ -57,11 +57,6 @@ public class AddNoteCommand extends Command {
         tagManager.rebindTags(note);
         notebook.addNote(note);
 
-        if (note.getTagsName().isBlank()) {
-            return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + note.getTitle(), note);
-        } else {
-            return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + note.getTitle() + " "
-                    + note.getTagsName(), note);
-        }
+        return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + note.getTitle(), note);
     }
 }
