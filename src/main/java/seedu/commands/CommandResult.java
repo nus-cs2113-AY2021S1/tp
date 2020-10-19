@@ -1,36 +1,37 @@
 package seedu.commands;
 
-import seedu.data.TaskList;
-import seedu.task.Task;
+import seedu.data.TaskMap;
+import seedu.ui.DisplayMode;
 
 public class CommandResult {
     private final String message;
-    private final TaskList tasks;
-    private final Task task;
+    private TaskMap tasks = null;
+    private DisplayMode displayMode = DisplayMode.ALL;
 
     public CommandResult(String message) {
-        this(message, null, null);
+        this.message = message;
     }
 
-    public CommandResult(String message, TaskList tasks) {
-        this(message, tasks, null);
-    }
-
-    public CommandResult(String message, TaskList tasks, Task task) {
+    public CommandResult(String message, TaskMap tasks) {
         this.message = message;
         this.tasks = tasks;
-        this.task = task;
+    }
+
+    public CommandResult(String message, TaskMap tasks, DisplayMode displayMode) {
+        this.message = message;
+        this.tasks = tasks;
+        this.displayMode = displayMode;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public TaskList getTasks() {
+    public TaskMap getTasks() {
         return tasks;
     }
 
-    public Task getTask() {
-        return task;
+    public DisplayMode getDisplayMode() {
+        return displayMode;
     }
 }

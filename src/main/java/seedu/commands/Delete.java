@@ -1,8 +1,9 @@
 package seedu.commands;
 
-import seedu.data.TaskList;
+import seedu.data.TaskMap;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidTaskNumberException;
+import seedu.task.Task;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,15 +12,15 @@ import static seedu.messages.Messages.DELETE_MESSAGE;
 
 public class Delete extends Command {
     public static final String COMMAND_WORD = "delete";
-    private final int index;
+    private final Integer key;
     private static final Pattern COMMAND_PATTERN = Pattern.compile(
-            "^delete (?<index>\\d+)$");
+            "^delete (?<key>\\d+)$");
 
     public Delete(String rawInput) throws InvalidCommandException, InvalidTaskNumberException {
         Matcher matcher = COMMAND_PATTERN.matcher(rawInput);
         if (matcher.find()) {
             try {
-                index = Integer.parseInt(matcher.group("index"));
+                key = Integer.parseInt(matcher.group("key"));
             } catch (NumberFormatException e) {
                 throw new InvalidTaskNumberException();
             }
@@ -29,11 +30,12 @@ public class Delete extends Command {
     }
 
     @Override
-    public CommandResult execute(TaskList tasks) throws InvalidTaskNumberException {
-        if (index <= 0 || index > tasks.size()) {
+    public CommandResult execute(TaskMap tasks) throws InvalidTaskNumberException {
+        Task task = tasks.get(key);
+        if (task == null) {
             throw new InvalidTaskNumberException();
         }
-        tasks.delete(index - 1);
+        tasks.delete(key);
         return new CommandResult(DELETE_MESSAGE);
     }
 }
