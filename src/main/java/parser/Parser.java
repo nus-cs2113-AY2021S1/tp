@@ -19,6 +19,10 @@ import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import storage.Storage;
 
+import static common.Messages.MESSAGE_EXTRA_ARGS;
+import static common.Messages.MESSAGE_INCORRECT_ACCESS;
+import static common.Messages.MESSAGE_MISSING_ARGS;
+
 public class Parser {
     private static final String QUESTION_ANSWER_PREFIX = " \\| ";
     private static final String QUESTION_PREFIX = "q:";
@@ -95,26 +99,23 @@ public class Parser {
             throws InvalidInputException, IncorrectAccessLevelException {
         if (access.isChapterLevel()) {
             if (commandArgs.isEmpty()) {
-                throw new InvalidInputException("The arguments are missing.\n"
-                        + AddCommand.CARD_MESSAGE_USAGE);
+                throw new InvalidInputException(MESSAGE_MISSING_ARGS + AddCommand.CARD_MESSAGE_USAGE);
             }
             return prepareAddCard(commandArgs);
         } else if (access.isModuleLevel()) {
             if (commandArgs.isEmpty()) {
-                throw new InvalidInputException("The arguments are missing.\n"
-                        + AddCommand.CHAPTER_MESSAGE_USAGE);
+                throw new InvalidInputException(MESSAGE_MISSING_ARGS + AddCommand.CHAPTER_MESSAGE_USAGE);
             }
             return prepareAddChapter(commandArgs);
         } else if (access.isAdminLevel()) {
             if (commandArgs.isEmpty()) {
-                throw new InvalidInputException("The arguments are missing.\n"
-                        + AddCommand.MODULE_MESSAGE_USAGE);
+                throw new InvalidInputException(MESSAGE_MISSING_ARGS + AddCommand.MODULE_MESSAGE_USAGE);
             }
             return prepareAddModule(commandArgs);
         } else {
             assert !access.isChapterLevel() && !access.isAdminLevel() && !access.isModuleLevel() : access.getLevel();
-            throw new IncorrectAccessLevelException("Add command can only be called at admin, "
-                    + "module and chapter level.");
+            throw new IncorrectAccessLevelException(String.format(MESSAGE_INCORRECT_ACCESS,
+                    AddCommand.COMMAND_WORD));
         }
     }
 
@@ -160,16 +161,13 @@ public class Parser {
     private static Command prepareEdit(String commandArgs, Access access)
             throws InvalidInputException, IncorrectAccessLevelException {
         if (access.isChapterLevel() && commandArgs.isEmpty()) {
-            throw new InvalidInputException("The arguments are missing.\n"
-                    + EditCommand.CARD_MESSAGE_USAGE);
+            throw new InvalidInputException(MESSAGE_MISSING_ARGS + EditCommand.CARD_MESSAGE_USAGE);
         }
         if (access.isAdminLevel() && commandArgs.isEmpty()) {
-            throw new InvalidInputException("The arguments are missing.\n"
-                    + EditCommand.MODULE_MESSAGE_USAGE);
+            throw new InvalidInputException(MESSAGE_MISSING_ARGS + EditCommand.MODULE_MESSAGE_USAGE);
         }
         if (access.isModuleLevel() && commandArgs.isEmpty()) {
-            throw new InvalidInputException("The arguments are missing.\n"
-                    + EditCommand.CHAPTER_MESSAGE_USAGE);
+            throw new InvalidInputException(MESSAGE_MISSING_ARGS + EditCommand.CHAPTER_MESSAGE_USAGE);
         }
 
 
@@ -181,8 +179,8 @@ public class Parser {
             return prepareEditChapter(commandArgs);
         } else {
             assert !access.isChapterLevel() && !access.isAdminLevel() && !access.isModuleLevel() : access.getLevel();
-            throw new IncorrectAccessLevelException("Edit command can only be called at admin, "
-                    + "module and chapter level.");
+            throw new IncorrectAccessLevelException(String.format(MESSAGE_INCORRECT_ACCESS,
+                    EditCommand.COMMAND_WORD));
         }
     }
 
@@ -317,14 +315,14 @@ public class Parser {
 
     private static Command prepareExit(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
-            throw new InvalidInputException("There should not be any arguments for exit.");
+            throw new InvalidInputException(String.format(MESSAGE_EXTRA_ARGS, ExitCommand.COMMAND_WORD));
         }
         return new ExitCommand();
     }
 
     private static Command prepareHelp(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
-            throw new InvalidInputException();
+            throw new InvalidInputException(String.format(MESSAGE_EXTRA_ARGS, HelpCommand.COMMAND_WORD));
         }
         return new HelpCommand();
     }
@@ -370,7 +368,7 @@ public class Parser {
 
     private static Command prepareListDue(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
-            throw new InvalidInputException("There should not be any arguments for list.");
+            throw new InvalidInputException(String.format(MESSAGE_EXTRA_ARGS, ListDueCommand.COMMAND_WORD));
         }
         return new ListDueCommand();
     }

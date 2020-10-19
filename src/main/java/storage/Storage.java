@@ -9,6 +9,7 @@ import manager.chapter.DueChapter;
 import parser.Parser;
 import manager.module.Module;
 import scheduler.Scheduler;
+import ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,6 +24,12 @@ public class Storage {
     public static final String QUESTION_PREFIX = "[Q]";
     public static final String ANSWER_PREFIX = "[A]";
     public static final String PREVIOUS_INTERVAL_PREFIX = "[P]";
+    public static final String MESSAGE_CREATED = "Successfully created new %1$s %2$s\n";
+    public static final String MESSAGE_EXISTS = "%1$s %2$s already exists\n";
+    public static final String MESSAGE_MODULE_CHAPTER = "Module: %1$s ; Chapter: %2$s";
+
+    public static final String FILE = "file";
+    public static final String DIR = "directory";
 
     protected String filePath;
 
@@ -35,19 +42,20 @@ public class Storage {
     }
 
     //create the folder --> 'data/admin'
-    public void createAdmin() {
+    public void createAdmin(Ui ui) {
         File f = new File(filePath);
-        System.out.println("Filepath: " + filePath);
+        ui.showToUser("Filepath: " + filePath);
 
         boolean dataDirExists = f.getParentFile().exists();
         boolean dataDirCreated = false;
         if (!dataDirExists) {
             dataDirCreated = f.getParentFile().mkdir();
         } else {
-            System.out.println("Directory " + f.getParentFile().getName() + " already exists");
+            ui.showToUser(String.format(MESSAGE_EXISTS, DIR.substring(0,1).toUpperCase(),
+                    f.getParentFile().getName()));
         }
         if (dataDirCreated) {
-            System.out.println("Successfully created new directory " + f.getParentFile().getName());
+            ui.showToUser(String.format(MESSAGE_CREATED, DIR, f.getParentFile().getName()));
         }
 
         boolean adminDirExists = f.exists();
@@ -55,46 +63,47 @@ public class Storage {
         if (!adminDirExists) {
             adminDirCreated = f.mkdir();
         } else {
-            System.out.println("Directory " + f + " already exists");
+            ui.showToUser(String.format(MESSAGE_EXISTS, DIR.substring(0,1).toUpperCase(), f));
         }
         if (adminDirCreated) {
-            System.out.println("Successfully created new directory " + f);
+            ui.showToUser(String.format(MESSAGE_CREATED, DIR, f));
         }
     }
 
-    public void createModule(String moduleName) {
+    public String createModule(String moduleName) {
         File f = new File(filePath + "/" + moduleName);
         boolean moduleDirExists = f.exists();
         boolean moduleDirCreated = false;
+        String result = "";
         if (!moduleDirExists) {
             moduleDirCreated = f.mkdir();
         } else {
-            System.out.println("    Directory " + f + " already exists");
+            result = String.format(MESSAGE_EXISTS, DIR.substring(0,1).toUpperCase(), f);
         }
         if (moduleDirCreated) {
-            System.out.println("    Successfully created new directory " + f);
+            result = String.format(MESSAGE_CREATED, DIR, f);
         }
+        return result;
     }
 
-    public void createChapter(String chapterName, String moduleName) {
-        try {
-            File f = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
-            boolean chapterFileExists = f.exists();
-            boolean chapterFileCreated = false;
-            if (!chapterFileExists) {
-                chapterFileCreated = f.createNewFile();
-            } else {
-                System.out.println("    File " + f + " already exists");
-            }
-            if (chapterFileCreated) {
-                System.out.println("    Successfully created new file " + chapterName + ".txt");
-            }
-        } catch (IOException e) {
-            System.out.println("Error creating the file.");
+    public String createChapter(String chapterName, String moduleName) throws IOException {
+        String result = "";
+
+        File f = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
+        boolean chapterFileExists = f.exists();
+        boolean chapterFileCreated = false;
+        if (!chapterFileExists) {
+            chapterFileCreated = f.createNewFile();
+        } else {
+            result = String.format(MESSAGE_EXISTS, FILE.substring(0,1).toUpperCase(), f);
         }
+        if (chapterFileCreated) {
+            result = String.format(MESSAGE_CREATED, FILE, f);
+        }
+        return result;
     }
 
-    public ArrayList<Module> loadModule() throws FileNotFoundException {
+    public ArrayList<Module> loadModule(Ui ui) throws FileNotFoundException {
         File f = new File(filePath);
         boolean dirExists = f.exists();
         if (!dirExists) {
@@ -103,15 +112,15 @@ public class Storage {
 
         ArrayList<Module> modules = new ArrayList<>();
         String[] contents = f.list();
-        System.out.println("List of files and directories in the specified directory:");
+        ui.showToUser("List of files and directories in the specified directory:");
         for (String content : contents) {
-            System.out.println(content);
+            ui.showToUser(content);
             modules.add(new Module(content));
         }
         return modules;
     }
 
-    public ArrayList<Chapter> loadChapter(String module) throws FileNotFoundException {
+    public ArrayList<Chapter> loadChapter(String module, Ui ui) throws FileNotFoundException {
         File f = new File(filePath + "/" + module);
         boolean dirExists = f.exists();
         if (!dirExists) {
@@ -123,10 +132,10 @@ public class Storage {
         if (contents.length == 0) {
             return chapters;
         }
-        System.out.println("List of files and directories in the specified directory:");
+        ui.showToUser("List of files and directories in the specified directory:");
         for (String content : contents) {
             String target = content.replace(".txt", "");
-            System.out.println(content);
+            ui.showToUser(content);
             chapters.add(new Chapter(target));
         }
         return chapters;
@@ -154,7 +163,7 @@ public class Storage {
         return f.exists();
     }
 
-    public ArrayList<DueChapter> loadAllDueChapters() throws FileNotFoundException {
+    public ArrayList<DueChapter> loadAllDueChapters(Ui ui) throws FileNotFoundException {
         //Loading in Modules
         File f = new File(filePath);
         boolean moduleExists = f.exists();
@@ -181,17 +190,16 @@ public class Storage {
                 String deadline = retrieveChapterDeadline(module, target);
                 assert !deadline.equals(null) : "Invalid deadline retrieved";
                 if (deadline.equals("Invalid Date")) {
-                    System.out.println("\nThe chapter:");
-                    System.out.println("Module: " + module + "; " + "Chapter: " + target);
-                    System.out.println("has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
+                    ui.showToUser("\nThe chapter:");
+                    ui.showToUser(String.format(MESSAGE_MODULE_CHAPTER, module, target)
+                            + " has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
                     dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
                 } else if (deadline.equals("Does not exist")) {
                     if (missingDueFileCheck(module, target)) {
                         deadline = "Invalid Date";
-                        System.out.println("\nThe chapter:");
-                        System.out.println("Module: " + module + "; " + "Chapter: " + target);
-                        System.out.print("has a corrupted deadline. Please revise it ASAP!");
-                        System.out.println(" It will be considered due!\n");
+                        ui.showToUser("\nThe chapter:");
+                        ui.showToUser(String.format(MESSAGE_MODULE_CHAPTER, module, target)
+                                + " has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
                         dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
                     }
                 } else {
