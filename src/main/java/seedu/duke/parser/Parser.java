@@ -1,14 +1,14 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.Command;
-import seedu.duke.command.AddWorkspaceCommand;
-import seedu.duke.command.SwitchWorkspaceCommand;
-import seedu.duke.command.BrowseCommand;
-import seedu.duke.command.WatchlistCommand;
+
 import seedu.duke.command.AddToWatchlistCommand;
+import seedu.duke.command.AddWorkspaceCommand;
 import seedu.duke.command.BookmarkAnimeCommand;
-import seedu.duke.command.HelpCommand;
+import seedu.duke.command.Command;
 import seedu.duke.command.ExitCommand;
+import seedu.duke.command.HelpCommand;
+import seedu.duke.command.WatchlistCommand;
+import seedu.duke.command.RemoveCommand;
 import seedu.duke.exception.AniException;
 
 import java.util.logging.Level;
@@ -33,28 +33,31 @@ public class Parser {
         switch (command) {
         case "adduser":
             return new AddWorkspaceCommand(description);
-                
+
         case "switchuser":
-            return new SwitchWorkspaceCommand(description);
- 
+            return new SwitchWorkspaceParser().parse(description);
+
         case "browse":
-            return new BrowseCommand(description);
-     
+            return new BrowseParser().parse(description);
+
         case "watchlist":
-            return new WatchlistCommand(description);
-           
+            return new WatchlistParser().parse(description);
+
         case "add":
-            return new AddToWatchlistCommand(description);
+            return new AddToWatchlistParser().parse(description);
+        
+        case "remove":
+            return new RemoveCommandParser().parse(description);
 
         case "bookmark":
-            return new BookmarkAnimeCommand(description);
-                
+            return new BookmarkParser().parse(description);
+
         case "help":
             return new HelpCommand();
 
         case "exit":
             return new ExitCommand();
-                
+
         default:
             throw new AniException("Unknown command");
         }

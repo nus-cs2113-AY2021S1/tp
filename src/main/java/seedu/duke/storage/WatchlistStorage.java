@@ -20,9 +20,10 @@ public class WatchlistStorage extends Storage {
     // ========================== Save and Load ==========================
 
     public void save(String workspaceName, ArrayList<Watchlist> watchlistList) throws AniException {
-        String watchlistFilePath = storageDirectory + workspaceName + File.separator + WATCHLIST_FILE_NAME;
+        String watchlistDirectory = storageDirectory + workspaceName + File.separator;
+        String watchlistFilePath = watchlistDirectory + WATCHLIST_FILE_NAME;
         String encodedWatchlistString = encode(watchlistList);
-        new File(storageDirectory).mkdirs();
+        new File(watchlistDirectory).mkdirs();
         writeFile(watchlistFilePath, encodedWatchlistString);
     }
 
@@ -76,11 +77,11 @@ public class WatchlistStorage extends Storage {
         String watchlistName = lineSplit[0];
         String animeListString = lineSplit[1].substring(1, lineSplit[1].length() - 1);
 
-        ArrayList<String> animeList = new ArrayList<>();
+        ArrayList<Integer> animeList = new ArrayList<>();
         String[] animes = animeListString.split(", ");
         for (String anime : animes) {
             if (!anime.isBlank()) {
-                animeList.add(anime);
+                animeList.add(Integer.parseInt(anime.trim()));
             }
         }
 

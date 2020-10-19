@@ -20,9 +20,10 @@ public class BookmarkStorage extends Storage {
     // ========================== Save and Load ==========================
 
     public void save(String workspaceName, Bookmark bookmark) throws AniException {
-        String bookmarkFilePath = storageDirectory + workspaceName + File.separator + BOOKMARK_FILE_NAME;
+        String bookmarkDirectory = storageDirectory + workspaceName + File.separator;
+        String bookmarkFilePath = bookmarkDirectory + BOOKMARK_FILE_NAME;
         String encodedWatchlistString = encode(bookmark);
-        new File(storageDirectory).mkdirs();
+        new File(bookmarkDirectory).mkdirs();
         writeFile(bookmarkFilePath, encodedWatchlistString);
     }
 
