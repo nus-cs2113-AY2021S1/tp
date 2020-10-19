@@ -49,4 +49,18 @@ class RouteMapCommandTest {
         assertEquals(fullBusRoute, bus.toString());
     }
 
+    @Test
+    void executeCommand_missingBusCode_expectException() {
+        String locations = "";
+        RouteCommand com = new RouteCommand(locations);
+        assertThrows(CustomException.class, com::executeCommand);
+    }
+
+    @Test
+    void executeCommand_invalidBusCode_expectException() {
+        String locations = "AA3";
+        RouteCommand com = new RouteCommand(locations);
+        assertThrows(CustomException.class, com::executeCommand);
+    }
+
 }
