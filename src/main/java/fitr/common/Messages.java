@@ -61,12 +61,12 @@ public class Messages {
     public static final String CAL_HEADER = "Cal: ";
     public static final String BURNT_CAL_HEADER = "Burnt Cal: ";
 
-    //EditProfileCommand class messages
-    public static final String EDIT_NAME = "edit name";
-    public static final String EDIT_HEIGHT = "edit height";
-    public static final String EDIT_WEIGHT = "edit weight";
-    public static final String EDIT_AGE = "edit age";
-    public static final String EDIT_GENDER = "edit gender";
+    //EditCommand class messages
+    public static final String EDIT_NAME = "name";
+    public static final String EDIT_HEIGHT = "height";
+    public static final String EDIT_WEIGHT = "weight";
+    public static final String EDIT_AGE = "age";
+    public static final String EDIT_GENDER = "gender";
     public static final String MISSING_FILE = "Theres no file";
     public static final String EDIT_NAME_HEADER = "Change your name to: ";
     public static final String NAME_ECHO_HEADER = "Name changed to: ";

@@ -34,4 +34,20 @@ public class Exercise {
     public int getDuration() {
         return durationOfExercise;
     }
+
+    public void setNameOfExercise(String nameOfExercise) {
+        this.nameOfExercise = nameOfExercise;
+    }
+
+    public void setCaloriesBurnt(Calorie caloriesBurnt) {
+        this.caloriesBurnt = caloriesBurnt;
+    }
+
+    public void setDurationOfExercise(int durationOfExercise) {
+        this.durationOfExercise = durationOfExercise;
+    }
+
+    public void setCaloricBurnRate() {
+        caloricBurnRate = caloriesBurnt.get() / durationOfExercise;
+    }
 }

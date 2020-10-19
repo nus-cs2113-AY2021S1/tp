@@ -34,4 +34,20 @@ public class Food {
     public int getAmountOfFood() {
         return amountOfFood;
     }
+
+    public void setNameOfFood(String nameOfFood) {
+        this.nameOfFood = nameOfFood;
+    }
+
+    public void setCaloriesInFood(Calorie caloriesInFood) {
+        this.caloriesInFood = caloriesInFood;
+    }
+
+    public void setAmountOfFood(int amountOfFood) {
+        this.amountOfFood = amountOfFood;
+    }
+
+    public void setCaloricRate() {
+        caloricRate = caloriesInFood.get() / amountOfFood;
+    }
 }

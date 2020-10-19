@@ -10,7 +10,7 @@ import fitr.command.ExitCommand;
 import fitr.command.HelpCommand;
 import fitr.command.InvalidCommand;
 import fitr.command.ViewCommand;
-import fitr.command.EditProfileCommand;
+import fitr.command.EditCommand;
 import fitr.common.Commands;
 
 /**
@@ -41,7 +41,7 @@ public class Parser {
         case Commands.COMMAND_VIEW:
             return new ViewCommand(arguments);
         case Commands.COMMAND_EDIT_PROFILE:
-            return new EditProfileCommand(arguments);
+            return new EditCommand(arguments);
         case Commands.COMMAND_HELP:
             return new HelpCommand(arguments);
         case Commands.COMMAND_DELETE:
