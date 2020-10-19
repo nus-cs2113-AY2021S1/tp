@@ -32,10 +32,10 @@ public class Parser {
         }
 
         switch (command) {
-        case "adduser":
+        case "addws":
             return new AddWorkspaceCommand(description);
 
-        case "switchuser":
+        case "switchws":
             return new SwitchWorkspaceParser().parse(description);
 
         case "browse":
