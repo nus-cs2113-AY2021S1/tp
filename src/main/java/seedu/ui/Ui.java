@@ -14,11 +14,9 @@ import java.util.Scanner;
 import static seedu.messages.Messages.LS;
 import static seedu.messages.Messages.WELCOME_MESSAGE;
 
-
 public class Ui {
     private final Scanner in;
     private final PrintStream out;
-    private TaskDisplay taskDisplay;
     private DisplayDateStructure displayDateStructure;
 
     public Ui() {
@@ -28,8 +26,6 @@ public class Ui {
     public Ui(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
-        //        taskDisplay = new TaskDisplay();
-        //        displayDateStructure = new WeekStructure();
     }
 
     public String getUserInput() {
@@ -49,7 +45,12 @@ public class Ui {
         printScreen();
     }
 
-
+    private void displayByMonth(TaskMap tasks) {
+        // Monthly view
+        displayDateStructure = new MonthStructure();
+        displayDateStructure.generateScreen(tasks);
+        printScreen();
+    }
 
     private void printScreen() {
         for (char[] arr : displayDateStructure.getScreen()) {
@@ -138,6 +139,9 @@ public class Ui {
             } else if (result.getDisplayMode() == DisplayMode.WEEK) {
                 // Weekly view
                 displayByWeek(result.getTasks());
+            } else if (result.getDisplayMode() == DisplayMode.MONTH) {
+                // Monthly view
+                displayByMonth(result.getTasks());
             }
         }
     }
