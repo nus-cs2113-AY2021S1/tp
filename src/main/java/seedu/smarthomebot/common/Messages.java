@@ -42,4 +42,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_FAN_SPEED =
             "Invalid speed is set, ensure that it is within 1-3 speed. \n "
                     + "Previous set speed will be set.";
+    public static final String MESSAGE_INVALID_TEMPERATURE_WH =
+            "Invalid speed is set, ensure that it is within 20-50 degrees. \n "
+                    + "Previous set speed will be set.";
 }

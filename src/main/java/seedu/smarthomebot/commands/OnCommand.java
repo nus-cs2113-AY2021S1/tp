@@ -1,6 +1,7 @@
 package seedu.smarthomebot.commands;
 
 import seedu.smarthomebot.data.AirConditioner;
+import seedu.smarthomebot.data.WaterHeater;
 import seedu.smarthomebot.data.Fan;
 import seedu.smarthomebot.data.framework.Appliance;
 import seedu.smarthomebot.exceptions.InvalidValue;
@@ -8,11 +9,7 @@ import seedu.smarthomebot.exceptions.InvalidValue;
 import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toList;
-import static seedu.smarthomebot.common.Messages.LINE;
-import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_NOT_EXIST;
-import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
-import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_FAN_SPEED;
-import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_TEMPERATURE_AC;
+import static seedu.smarthomebot.common.Messages.*;
 
 public class OnCommand extends Command {
 
@@ -68,6 +65,15 @@ public class OnCommand extends Command {
                 toPrint = fan.toString();
             } else {
                 toPrint = MESSAGE_INVALID_FAN_SPEED;
+            }
+            break;
+        case WaterHeater.TYPE_WORD:
+            WaterHeater waterHeater = (WaterHeater) appliance;
+            if (isParameterValid(parameter, 20, 50)) {
+                waterHeater.setTemperature(parameter);
+                toPrint = waterHeater.toString();
+            } else {
+                toPrint = MESSAGE_INVALID_TEMPERATURE_WH;
             }
             break;
         default:

@@ -23,8 +23,12 @@ public class Fan extends Appliance {
         this.speed = speed;
     }
 
-    private String getSpeed() {
+    public String getParameter() {
         return this.speed;
+    }
+
+    public static void getSpeedFromLoadFile(String loadedSpeed) {
+        speed = loadedSpeed;
     }
 
     @Override
@@ -35,7 +39,7 @@ public class Fan extends Appliance {
     public String toString() {
         String speedStatement;
         if (appliancePower.getStatus()) {
-            speedStatement = " set at: " + getSpeed() + " speed";
+            speedStatement = " set at: " + getParameter() + " speed";
         } else {
             speedStatement = "";
         }

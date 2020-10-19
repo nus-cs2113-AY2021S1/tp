@@ -12,8 +12,12 @@ public class AirConditioner extends Appliance {
         this.temperature = "25";
     }
 
-    private String getTemperature() {
+    public String getParameter() {
         return this.temperature;
+    }
+
+    public void getTemperatureFromLoadFile(String loadedTemperature) {
+        temperature = loadedTemperature;
     }
 
     public void setTemperature(String temperature) {
@@ -30,7 +34,7 @@ public class AirConditioner extends Appliance {
     public String toString() {
         String temperatureStatement;
         if (appliancePower.getStatus()) {
-            temperatureStatement = " set at: " + getTemperature() + " degrees";
+            temperatureStatement = " set at: " + getParameter() + " degrees";
         } else {
             temperatureStatement = "";
         }
