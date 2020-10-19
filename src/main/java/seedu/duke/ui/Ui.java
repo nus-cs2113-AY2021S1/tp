@@ -1,14 +1,17 @@
 package seedu.duke.ui;
 
+import seedu.duke.Duke;
 import seedu.duke.human.User;
 
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static seedu.duke.logger.AniLogger.getAniLogger;
+
 public class Ui {
     private static final Scanner CONSOLE = new Scanner(System.in);
-    private static final Logger LOGGER = Logger.getLogger(User.class.getName());
+    private static final Logger LOGGER = getAniLogger(Duke.class.getName());
     private static final String LOGO =
                     "                  _  _____ _\n"
                     + "      /\\         (_)/ ____| |\n"
@@ -19,9 +22,6 @@ public class Ui {
     private static final String HORIZONTAL_LINE =
             "-------------------------------------------------------------";
 
-    public Ui() {
-        LOGGER.setLevel(Level.WARNING);
-    }
 
     public void printMessage(String message) {
         if (!message.isBlank()) {
@@ -44,6 +44,14 @@ public class Ui {
 
     public void printGoodbyeMessage(String name) {
         printMessage("Sayonara " + name + "!");
+        LOGGER.log(Level.INFO, "Printed goodbye message, exiting program!");
+    }
+
+    public boolean hasNextLine(User user) {
+        String workspaceName = user.getActiveWorkspace().getName();
+        String watchlistName = user.getActiveWorkspace().getActiveWatchlistName();
+        System.out.print(System.lineSeparator() + workspaceName + " (" + watchlistName + ") #> ");
+        return CONSOLE.hasNextLine();
     }
 
     public String readInput() {
@@ -51,10 +59,7 @@ public class Ui {
         return CONSOLE.nextLine();
     }
 
-    public String readUserInput(User user) {
-        String workspaceName = user.getActiveWorkspace().getName();
-        String watchlistName = user.getActiveWorkspace().getActiveWatchlistName();
-        System.out.print(System.lineSeparator() + workspaceName + " (" + watchlistName + ") #> ");
+    public String readUserInput() {
         return CONSOLE.nextLine();
     }
 

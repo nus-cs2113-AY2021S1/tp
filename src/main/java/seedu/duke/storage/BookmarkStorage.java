@@ -9,8 +9,6 @@ import java.util.ArrayList;
 public class BookmarkStorage extends Storage {
     private static final String BOOKMARK_FILE_NAME = "bookmark.txt";
     private static final String BOOKMARK_LINE_DELIMITER = ",";
-    private static final String NEGATIVE_INTEGER_REGEX = "^[-]\\d+$";
-    private static final String INTEGER_REGEX = "^\\d+$";
 
     private final String storageDirectory;
 
@@ -20,9 +18,10 @@ public class BookmarkStorage extends Storage {
     // ========================== Save and Load ==========================
 
     public void save(String workspaceName, Bookmark bookmark) throws AniException {
-        String bookmarkFilePath = storageDirectory + workspaceName + File.separator + BOOKMARK_FILE_NAME;
+        String bookmarkDirectory = storageDirectory + workspaceName + File.separator;
+        String bookmarkFilePath = bookmarkDirectory + BOOKMARK_FILE_NAME;
         String encodedWatchlistString = encode(bookmark);
-        new File(storageDirectory).mkdirs();
+        new File(bookmarkDirectory).mkdirs();
         writeFile(bookmarkFilePath, encodedWatchlistString);
     }
 
@@ -86,12 +85,8 @@ public class BookmarkStorage extends Storage {
             return false;
         }
 
-        boolean isFirstPartInteger = isInteger(lineSplit[0]);
-        boolean isSecondPartInteger = isInteger(lineSplit[1]);
+        boolean isFirstPartInteger = isPositiveOrNegativeInteger(lineSplit[0]);
+        boolean isSecondPartInteger = isPositiveOrNegativeInteger(lineSplit[1]);
         return isFirstPartInteger && isSecondPartInteger;
-    }
-
-    private boolean isInteger(String integerString) {
-        return integerString.matches(INTEGER_REGEX) || integerString.matches(NEGATIVE_INTEGER_REGEX);
     }
 }

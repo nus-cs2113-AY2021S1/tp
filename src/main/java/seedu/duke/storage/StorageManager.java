@@ -11,20 +11,20 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 
 public class StorageManager {
-    private static final String STORAGE_DIRECTORY = "data" + File.separator;
+    private final String storageDirectory;
+    private final UserStorage userStorage;
+    private final WatchlistStorage watchlistStorage;
+    private final BookmarkStorage bookmarkStorage;
 
-    UserStorage userStorage;
-    WatchlistStorage watchlistStorage;
-    BookmarkStorage bookmarkStorage;
-
-    public StorageManager() {
-        userStorage = new UserStorage(STORAGE_DIRECTORY);
-        watchlistStorage = new WatchlistStorage(STORAGE_DIRECTORY);
-        bookmarkStorage = new BookmarkStorage(STORAGE_DIRECTORY);
+    public StorageManager(String storageDirectory) {
+        this.storageDirectory = storageDirectory;
+        userStorage = new UserStorage(this.storageDirectory);
+        watchlistStorage = new WatchlistStorage(this.storageDirectory);
+        bookmarkStorage = new BookmarkStorage(this.storageDirectory);
     }
 
     public String[] retrieveWorkspaceList() {
-        File file = new File(STORAGE_DIRECTORY);
+        File file = new File(storageDirectory);
         String[] workspaceList = file.list(new FilenameFilter() {
             @Override
             public boolean accept(File current, String name) {
@@ -48,10 +48,10 @@ public class StorageManager {
         return userStorage.load();
     }
 
-    // ========================== Workspace Saving and Loading ==========================
+    // ========================== Workspace Saving ==========================
 
     public void saveWorkspace(Workspace workspace) throws AniException {
-        new File(STORAGE_DIRECTORY + workspace.getName()).mkdirs();
+        new File(storageDirectory + workspace.getName()).mkdirs();
         watchlistStorage.save(workspace.getName(), workspace.getWatchlistList());
     }
 

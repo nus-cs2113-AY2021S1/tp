@@ -12,50 +12,37 @@ User: Does not exist.
 What's your name?
 #>Hello Abec Steiner 33rd! What might your gender be? (Male/Female/Other)
 #>
-Default (Default) #> Watchlist created successfully!
+Default (Default) #> Watchlist "a" has been created successfully!
 
-Default (Default) #> Watchlist created successfully!
+Default (Default) #> Watchlist "b" has been created successfully!
+
+Default (Default) #> Watchlist "ops" has been created successfully!
+
+Default (Default) #> "ops" is now your active watchlist!
+
+Default (ops) #> Watchlist "ops" has been deleted successfully!
+Changed active watchlist to: "Default".
 
 Default (Default) #> Currently, you have 3 watchlist(s):
 	1. Default
 	2. a
 	3. b
 
-Default (Default) #> Anime added to watchlist!
+Default (Default) #> Cowboy Bebop added to watchlist!
 
-Default (Default) #> Anime added to watchlist!
+Default (Default) #> Trigun added to watchlist!
 
 Default (Default) #> Saving 1. Cowboy Bebop  to bookmark.
 
 Default (Default) #> Saving 410. InuYasha the Movie 2: The Castle Beyond the Looking Glass  to bookmark.
 
-Default (Default) #> Editing Cowboy Bebop: The Movie - Knockin' on Heaven's Door to have 5 episode
+Default (Default) #> Editing Cowboy Bebop to have 5 episode
 
 Default (Default) #> Listing all anime in bookmark:
-	1. Cowboy Bebop: The Movie - Knockin' on Heaven's Door Ep: 5
-	2. InuYasha the Movie 3: Swords of an Honorable Ruler
+	1. Cowboy Bebop Ep: 5
+	2. InuYasha the Movie 2: The Castle Beyond the Looking Glass
 
 
-Default (Default) #> Successfully added new workspace:
- Workspace: Testing1
+Default (Default) #> OOPS!!! Anime is already in this watchlist!
 
-Default (Default) #> Successfully added new workspace:
- Workspace: Testing2
-
-Default (Default) #> Workspace changed to Testing1
-
-Testing1 (Default) #> Anime added to watchlist!
-
-Testing1 (Default) #> Watchlist created successfully!
-
-Testing1 (Default) #> Currently, you have 2 watchlist(s):
-	1. Default
-	2. a
-
-Testing1 (Default) #> Listing all anime in bookmark:
-	Uhh.. It's empty.. :(
-
-
-Testing1 (Default) #> Workspace changed to Testing2
-
-Testing2 (Default) #> Sayonara Abec Steiner 33rd-chan!
+Default (Default) #> Sayonara Abec Steiner 33rd-chan!
