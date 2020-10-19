@@ -35,7 +35,7 @@ public class Quotesify {
 
     public void start() {
         ui.showWelcomeMessage();
-        //Print random quote - After storage implementation
+        ui.printRandomQuote();
     }
 
     public void exit() {

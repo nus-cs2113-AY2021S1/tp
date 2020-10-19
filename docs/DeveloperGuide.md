@@ -40,6 +40,79 @@ Improves the reading experience of users with quick and easy features
 
 ### Launch and shutdown
 
+### Adding a quote
+
+1. * Test case 1: `add -q Life's short, smile while you still have teeth`
+   * Test case 2: `add -q I am your father /by Darth Vader`
+   * Test case 3: `add -q That’s my spot! /from The Big Bang Theory`
+   * Test case 4: `add -q Wubba Lubba Dub Dub? /from Rick and Morty /by Rick`
+   
+   Expected: Quote is added to Quotesify. A message will be prompted to indicate that 
+   the quote has been successfully added.
+   
+2. Other incorrect commands to try:
+   * `add -q` : quote field left empty
+   * `add -q You can't see me /by` : author tag with missing author name
+   * `add -q My name is Inigo Montoya /from` : reference tag with missing reference title
+   * `add -q I am your father /by /from` : missing reference title and author name
+   
+   Expected: Quote will not be added. A message with error details will be shown.
+   
+### Listing all quotes
+
+1. Test case: `list -q`
+
+   Expected: The entire list of quotes with reference and author name (if present) will be displayed.
+   
+### Listing quotes from a specific reference
+
+1. Test case: `list -q /from The Big Bang Theory`
+
+   Expected: The list of quotes with the specified reference title will be displayed.
+   
+2. Other incorrect commands to try:
+   * `list -q /from` : reference tag with missing reference title
+   
+   Expected: No quotes are listed. A message with error details will be shown.
+   
+### Listing quotes by a specific author
+
+1. Test case: `list -q /by Rick`
+
+   Expected: The list of quotes with the specified author name will be displayed.
+   
+2. Other incorrect commands to try:
+   * `list -q /by` : author tag with missing author name
+   
+   Expected: No quotes are listed. A message with error details will be shown.
+   
+### Listing quotes from a specific reference and by a specific author
+
+1. Test case: `list -q /from Rick and Morty /by Rick`
+
+   Expected: The list of quotes with the specified reference title and author name will be displayed.
+   
+2. Other incorrect commands to try:
+   * `list -q /from Rick and Morty /by` : reference and author tag with missing author name
+   * `list -q /from /by Rick` : reference and author tag with missing reference title
+   * `list -q /from /by` : missing reference title and author name
+   
+   Expected: No quotes are listed. A message with error details will be shown.
+   
+### Deleting a quote
+
+1. Test case: `delete -q 3`
+
+   Expected: Quote will be deleted from Quotesify. A message will be prompted to indicate that 
+   the quote has been successfully deleted.
+   
+2. Other incorrect commands to try:
+   * `delete -q`: missing quote number field
+   * `delete -q X`: non integer inout
+   * `delete -q 9999999`: non existent quote number
+   
+   Expected: No quote is deleted. A message with error details will 
+   
 ### Adding a book rating
 
 1. Prerequisite: Book to be rated should exist in Quotesify.
