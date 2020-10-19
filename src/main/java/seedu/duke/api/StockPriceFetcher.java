@@ -7,7 +7,7 @@ import org.patriques.input.timeseries.OutputSize;
 import org.patriques.output.AlphaVantageException;
 import org.patriques.output.timeseries.IntraDay;
 import org.patriques.output.timeseries.data.StockData;
-import seedu.duke.data.exception.DukeException;
+import seedu.duke.exception.DukeException;
 
 import java.util.List;
 import java.util.logging.Level;

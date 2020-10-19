@@ -11,7 +11,7 @@ import seedu.duke.command.BuyCommand;
 import seedu.duke.command.SellCommand;
 import seedu.duke.command.ViewCommand;
 import seedu.duke.command.WalletCommand;
-import seedu.duke.data.exception.DukeException;
+import seedu.duke.exception.DukeException;
 import seedu.duke.model.PortfolioManager;
 import seedu.duke.model.Wallet;
 import seedu.duke.model.Stock;
@@ -67,27 +67,29 @@ public class Controller {
         while (true) {
             String userInput = ui.getUserInput();
             Command command = Parser.parseCommand(userInput);
+            executeCommand(command);
+        }
+    }
 
-            if (command instanceof SearchCommand) {
-                SearchCommand searchCommand = (SearchCommand) command;
-                searchSymbol(searchCommand.getSearchKey());
-            } else if (command instanceof InvalidCommand) {
-                InvalidCommand invalidCommand = (InvalidCommand) command;
-                ui.printWithDivider(invalidCommand.getErrorMessage());
-            } else if (command instanceof ByeCommand) {
-                ui.printWithDivider("Goodbye!");
-                break;
-            } else if (command instanceof BuyCommand) {
-                BuyCommand buyCommand = (BuyCommand) command;
-                buyStock(buyCommand.getSymbol(), buyCommand.getQuantity());
-            } else if (command instanceof SellCommand) {
-                SellCommand sellCommand = (SellCommand) command;
-                sellStock(sellCommand.getSymbol(), sellCommand.getQuantity());
-            } else if (command instanceof ViewCommand) {
-                viewPortfolio();
-            } else if (command instanceof WalletCommand) {
-                viewWallet();
-            }
+    private void executeCommand(Command command) {
+        if (command instanceof SearchCommand) {
+            SearchCommand searchCommand = (SearchCommand) command;
+            searchSymbol(searchCommand.getSearchKey());
+        } else if (command instanceof InvalidCommand) {
+            InvalidCommand invalidCommand = (InvalidCommand) command;
+            ui.printWithDivider(invalidCommand.getErrorMessage());
+        } else if (command instanceof ByeCommand) {
+            ui.printWithDivider("Goodbye!");
+        } else if (command instanceof BuyCommand) {
+            BuyCommand buyCommand = (BuyCommand) command;
+            buyStock(buyCommand.getSymbol(), buyCommand.getQuantity());
+        } else if (command instanceof SellCommand) {
+            SellCommand sellCommand = (SellCommand) command;
+            sellStock(sellCommand.getSymbol(), sellCommand.getQuantity());
+        } else if (command instanceof ViewCommand) {
+            viewPortfolio();
+        } else if (command instanceof WalletCommand) {
+            viewWallet();
         }
     }
 

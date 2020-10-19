@@ -8,7 +8,7 @@ import seedu.duke.command.BuyCommand;
 import seedu.duke.command.SellCommand;
 import seedu.duke.command.ViewCommand;
 import seedu.duke.command.WalletCommand;
-import seedu.duke.data.exception.DukeException;
+import seedu.duke.exception.DukeException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
