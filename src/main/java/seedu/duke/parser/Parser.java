@@ -24,9 +24,12 @@ public class Parser {
      */
     public Command getCommand(String fullCommand) throws AniException {
         // LOGGER.setLevel(Level.WARNING);
+        LOGGER.log(Level.INFO, "Parse: " + fullCommand);
+
         String[] fullCommandSplit = parseUserInput(fullCommand);
         String description = "";
         String command = fullCommandSplit[0];
+
         if (fullCommandSplit.length > 1) {
             description = fullCommandSplit[1];
         }

@@ -4,6 +4,7 @@ import seedu.duke.command.AddWorkspaceCommand;
 import seedu.duke.exception.AniException;
 
 
+
 public class AddWorkspaceParser extends CommandParser {
     public static final String REGEX_CHARACTER_HYPHEN = "-";
     public static final String EXCEPTION_INVALID_PARAMETERS = "Invalid parameters detected!";
