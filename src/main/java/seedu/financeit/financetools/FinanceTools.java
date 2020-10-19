@@ -137,11 +137,11 @@ public class FinanceTools {
             case "compoundcalc":
                 System.out.printf("Compound Interval: Yearly\n"
                         + "Total Interest Earned: $" + "%.2f",handleCompoundInterest(packet));
+                break;
             case "cmonthly":
                 outputAmount = Double.toString(Math.round(handleMonthlyCompoundInterest(packet) * 100.00) / 100.00);
                 System.out.println("Total Interest Earned: $\n\n" + outputAmount);
                 //commands.add("Total Interest Earned: $" + outputAmount);
-                break;
                 break;
             case "commands":
                 printCommandList();
