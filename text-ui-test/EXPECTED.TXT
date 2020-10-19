@@ -102,20 +102,6 @@ Timeline
 Here is your timeline:
 Timeline
 |
-|__ 2020-10-10 SATURDAY
-|            |_____ 12:30
-|                     |_____ [TUT][/] cs1010  (nus)
-|            |_____ 23:59
-|                     |_____ [D][X] project
-|__ 2020-10-13 TUESDAY
-|            |_____ 13:40
-|                     |_____ [LEC][/] cs1010  (nus)
-|__ 2020-10-14 WEDNESDAY
-|            |_____ 14:40
-|                     |_____ [LAB][/] cs1010  (nus)
-|__ 2020-10-17 SATURDAY
-|            |_____ 12:30
-|                     |_____ [TUT][/] cs1010  (nus)
 |__ 2020-10-20 TUESDAY
 |            |_____ 13:40
 |                     |_____ [LEC][X] cs1010  (nus)
