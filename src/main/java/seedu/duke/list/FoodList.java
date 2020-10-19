@@ -12,6 +12,9 @@ import seedu.duke.food.Food;
 public class FoodList {
     private ArrayList<FoodEntry> foodEntries;
 
+    /**
+     * Default constructor that instantiates FoodList with an empty foodentry arraylist.
+     */
     public FoodList() {
         this.foodEntries = new ArrayList<>();
     }
@@ -33,7 +36,10 @@ public class FoodList {
         foodEntries.add(toAdd);
         return toAdd.toString();
     }
-
+    
+    /**
+     * Default add method that adds a food entry using the food details and portion size.
+     */
     public String addFood(int portionSize, String name, int calorie, 
             int carbohydrate, int protein, int fat) {
         FoodEntry toAdd = new FoodEntry(portionSize, name, calorie, carbohydrate, protein, fat);
@@ -66,6 +72,9 @@ public class FoodList {
         }
     }
     
+    /**
+     * Discards previous foodEntry list and creates a new one.
+     */
     public boolean clear() {
         this.foodEntries = new ArrayList<>();
         return true;

@@ -30,7 +30,7 @@ class FoodListTest {
     void foodPortionScaling_standardList_scaledFoodList() {
         FoodList testList = new FoodList();
 
-        Food food = new Food("Kobe Beef", 480 * 3 ,50 * 3, 40 * 3, 30 * 3);
+        Food food = new Food("Kobe Beef", 480 * 3, 50 * 3, 40 * 3, 30 * 3);
         testList.addFood(1, food);
         testList.addFood(1, "Sashimi", 200, 0, 60, 20);
 
