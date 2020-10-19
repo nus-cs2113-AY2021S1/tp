@@ -29,11 +29,11 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "seedu.quotesify.Quotesify"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "quotesify"
     archiveClassifier = null
 }
 
@@ -44,4 +44,14 @@ checkstyle {
 run{
     standardInput = System.in
     enableAssertions = true
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "seedu.quotesify.Quotesify"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
