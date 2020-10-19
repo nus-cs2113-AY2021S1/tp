@@ -78,7 +78,23 @@ public class BookList extends QuotesifyList<Book> {
                     return bookAuthorName.toLowerCase().equals(lowerCaseAuthor)
                             && bookTitle.toLowerCase().equals(lowerCaseTitle);
                 }).collect(Collectors.toList());
+
         return filteredBooks;
+    }
+
+    public BookList findByKeyword(String keyword) {
+        assert !keyword.isEmpty();
+        String lowerCaseKeyword = keyword.toLowerCase();
+
+        ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
+                .filter(book -> {
+                    String authorName = book.getAuthor().getName();
+                    String bookTitle = book.getTitle();
+                    return authorName.toLowerCase().contains(lowerCaseKeyword)
+                            || bookTitle.toLowerCase().contains(lowerCaseKeyword);
+                }).collect(Collectors.toList());
+
+        return new BookList(filteredBooks);
     }
 
     public Book findByTitle(String title) {
@@ -111,6 +127,7 @@ public class BookList extends QuotesifyList<Book> {
                     String bookAuthorName = bookAuthor.getName();
                     return bookAuthorName.toLowerCase().equals(lowerCaseAuthor);
                 }).collect(Collectors.toList());
+
         return new BookList(filteredBooks);
     }
 
