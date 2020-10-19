@@ -2,6 +2,8 @@ package seedu.quotesify.book;
 
 import org.json.simple.JSONArray;
 import seedu.quotesify.author.Author;
+import seedu.quotesify.commands.Command;
+import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.QuotesifyList;
 
 import java.util.ArrayList;
@@ -63,6 +65,13 @@ public class BookList extends QuotesifyList<Book> {
         }
 
         return booksToReturn;
+    }
+
+    public void ensureNoSimilarBooks(String title, String authorName) throws QuotesifyException {
+        ArrayList<Book> similarBooks = find(title, authorName);
+        if (!similarBooks.isEmpty()) {
+            throw new QuotesifyException(Command.ERROR_BOOK_ALREADY_EXISTS);
+        }
     }
 
     public ArrayList<Book> find(String title, String authorName) {

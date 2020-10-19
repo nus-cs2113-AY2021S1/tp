@@ -93,20 +93,13 @@ public class AddCommand extends Command {
                 throw new QuotesifyException(ERROR_NO_AUTHOR_NAME);
             }
 
-            ensureNoSimilarBooks(books, title, authorName);
+            books.ensureNoSimilarBooks(title, authorName);
             Book newBook = createNewBook(title, authorName);
             books.add(newBook);
             ui.printAddBook(newBook);
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
             addLogger.log(Level.INFO, "add book to booklist failed");
-        }
-    }
-
-    private void ensureNoSimilarBooks(BookList books, String title, String authorName) throws QuotesifyException {
-        ArrayList<Book> similarBooks = books.find(title, authorName);
-        if (!similarBooks.isEmpty()) {
-            throw new QuotesifyException(ERROR_BOOK_ALREADY_EXISTS);
         }
     }
 
