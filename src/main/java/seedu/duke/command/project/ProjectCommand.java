@@ -14,44 +14,20 @@ import static seedu.duke.command.CommandSummary.SPRINT_DURATION;
 import static seedu.duke.command.CommandSummary.DURATION;
 
 public class ProjectCommand {
-    public void createProjectCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList)
-            throws DukeException {
+    public void createProjectCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList) {
 
         String title;
-        String description;
-        String deadline;
-        String sd;
-        if (!parameters.containsKey(TITLE) || !parameters.containsKey(DESCRIPTION)
-                || !parameters.containsKey(DURATION) || !parameters.containsKey(SPRINT_DURATION)) {
-            throw new DukeException("Missing parameters.");
-        }
+        title = parameters.get(TITLE);
 
-        if (!parameters.get(TITLE).isBlank()) {
-            title = parameters.get(TITLE);
-        } else {
-            throw new DukeException("no title");
-        }
-        if (!parameters.get(DESCRIPTION).isBlank()) {
-            description = parameters.get(DESCRIPTION);
-        } else {
-            throw new DukeException("no description");
-        }
-        if (!parameters.get(DURATION).isBlank()) {
-            if (!Parser.stringContainsNumber(parameters.get(DURATION))) {
-                throw new DukeException("please give a number for duration");
-            }
-            deadline = parameters.get(DURATION);
-        } else {
-            throw new DukeException("no duration");
-        }
-        if (!parameters.get(SPRINT_DURATION).isBlank()) {
-            if (!Parser.stringContainsNumber(parameters.get(SPRINT_DURATION))) {
-                throw new DukeException("please give a number for sprint duration");
-            }
-            sd = parameters.get(SPRINT_DURATION);
-        } else {
-            throw new DukeException("no sprint interval");
-        }
+        String description;
+        description = parameters.get(DESCRIPTION);
+
+        String deadline;
+        deadline = parameters.get(DURATION);
+
+        String sd;
+        sd = parameters.get(SPRINT_DURATION);
+
 
         Project proj = new Project(title, description, deadline, sd);
         Ui.showToUserLn("Project successfully created.");
