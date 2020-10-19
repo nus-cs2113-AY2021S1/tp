@@ -52,8 +52,9 @@ public class Notebook {
     /**
      * Removes a note from the timetable.
      */
-    public void deleteNote(int index) {
+    public boolean deleteNote(int index) {
         notes.remove(index);
+        return true;
     }
 
     /**
