@@ -51,7 +51,6 @@ public class Storage {
 
         File exerciseListFile = new File(exerciseListPath);
         File foodListFile = new File(foodListPath);
-        File tipListFile = new File(tipListPath);
         File userConfigFile = new File(userConfigPath);
 
         if (!exerciseListFile.exists()) {
@@ -69,6 +68,7 @@ public class Storage {
             LOGGER.fine("User profile file created: " + userConfigPath);
         }
 
+        File tipListFile = new File(tipListPath);
         if (!tipListFile.exists()) {
             tipListFile.createNewFile();
             LOGGER.fine("Tip list file created: " + tipListPath);
