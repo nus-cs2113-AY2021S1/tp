@@ -7,6 +7,7 @@ import commands.EditCommand;
 import commands.ExitCommand;
 import commands.HelpCommand;
 import commands.ListCommand;
+import commands.ListDueCommand;
 import commands.RemoveCommand;
 import commands.ReviseCommand;
 import commands.BackCommand;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static commands.ReviseCommand.MESSAGE_SHOW_ANSWER_PROMPT;
-import static commands.ReviseCommand.MESSAGE_SHOW_RATING_PROMPT;
+import static common.Messages.LINE;
 
 public class Ui {
     private final Scanner in;
@@ -88,63 +89,8 @@ public class Ui {
         out.println(access.getLevel());
     }
 
-    public void printEmptyLine() {
-        out.println();
-    }
-
-    public void showCardAdded(Card card, int cardCount) {
-        out.println("Got it. I've added this card:");
-        out.println(card);
-        if (cardCount == 1) {
-            out.println("Now you have " + cardCount + " card in the list.");
-            return;
-        }
-        out.println("Now you have " + cardCount + " cards in the list.");
-    }
-
-    public void showModuleAdded(Module module, int moduleCount) {
-        out.println("    Got it. I've added this module:");
-        out.println("    " + module);
-        out.println("    Now you have " + moduleCount + " modules in the list.");
-    }
-
-    public void showChapterAdded(Chapter chapter, int chapterCount) {
-        out.println("    Got it. I've added this chapter:");
-        out.println("    " + chapter);
-        out.println("    Now you have " + chapterCount + " chapters in the list.");
-    }
-
-    public void showCardList(ArrayList<Card> cards, int cardCount) {
-        if (cardCount == 0) {
-            out.println("There are no cards in your list.");
-            return;
-        }
-        out.println("Here are the cards in your list:");
-        for (Card c : cards) {
-            out.println((cards.indexOf(c) + 1) + "." + c);
-        }
-    }
-
-    public void showModuleList(ArrayList<Module> modules, int moduleCount) {
-        if (moduleCount == 0) {
-            out.println("There are no modules in your list.");
-            return;
-        }
-        out.println("Here are the modules in your list:");
-        for (Module m : modules) {
-            out.println((modules.indexOf(m) + 1) + "." + m);
-        }
-    }
-
-    public void showChapterList(ArrayList<Chapter> chapters, int chapterCount) {
-        if (chapterCount == 0) {
-            out.println("There are no chapters in your list.");
-            return;
-        }
-        out.println("Here are the chapters in your list:");
-        for (Chapter c : chapters) {
-            out.println((chapters.indexOf(c) + 1) + "." + c);
-        }
+    public void printLine() {
+        out.println(LINE);
     }
 
     public void showHistoryList(ArrayList<History> histories, int count) {
@@ -177,8 +123,8 @@ public class Ui {
         out.println(c.getAnswer());
     }
 
-    public String getRating() {
-        out.println(MESSAGE_SHOW_RATING_PROMPT);
+    public String getInput(String prompt) {
+        out.println(prompt);
         return in.nextLine();
     }
 
@@ -196,19 +142,10 @@ public class Ui {
         out.println("6. " + EditCommand.MESSAGE_USAGE);
         out.println("7. " + RemoveCommand.MESSAGE_USAGE);
         out.println("8. " + BackCommand.MESSAGE_USAGE);
+        out.println("9. " + ListDueCommand.MESSAGE_USAGE);
     }
 
     public void showError(String error) {
         out.println(error);
-    }
-
-    public void showUnedited(String type, String content) {
-        out.println("The following " + type + " will be edited:");
-        out.println(content);
-    }
-
-    public void showEdited(String type, String content) {
-        out.println("Edited " + type + ":");
-        out.println(content);
     }
 }
