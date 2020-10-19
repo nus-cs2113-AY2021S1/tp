@@ -10,6 +10,7 @@ import seedu.duke.logic.commands.ExitCommand;
 import seedu.duke.logic.commands.HelpCommand;
 import seedu.duke.logic.commands.AllBusCommand;
 import seedu.duke.logic.commands.ListStopsCommand;
+import seedu.duke.logic.commands.DineCommand;
 
 public class Parser {
 
@@ -50,6 +51,9 @@ public class Parser {
             break;
         case "/liststops":
             com = new ListStopsCommand();
+            break;
+        case "/dine":
+            com = new DineCommand(parts[1]);
             break;
         case "/help":
             com = new HelpCommand();
