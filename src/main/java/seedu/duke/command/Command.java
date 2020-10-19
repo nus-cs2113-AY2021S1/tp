@@ -6,7 +6,6 @@ import seedu.duke.human.User;
 import seedu.duke.storage.StorageManager;
 
 public abstract class Command {
-    protected String description;
     private boolean shouldExit = false;
 
     public boolean getShouldExit() {
