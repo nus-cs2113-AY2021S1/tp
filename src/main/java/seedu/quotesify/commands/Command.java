@@ -7,6 +7,7 @@ public abstract class Command {
 
     public static final String TAG_BOOK = "-b";
     public static final String TAG_QUOTE = "-q";
+    public static final String TAG_QUOTE_REFLECTION = "-qr";
     public static final String TAG_RATING = "-r";
     public static final String TAG_CATEGORY = "-c";
     public static final String TAG_TODO = "-t";
@@ -22,6 +23,7 @@ public abstract class Command {
     public static final String ERROR_BOOK_TITLE_MISSING = "There is no book title specified!";
     public static final String ERROR_BOOK_ALREADY_EXISTS = "The book already exists!";
     public static final String ERROR_NO_QUOTE_FOUND = "There is no such quote!";
+    public static final String ERROR_NO_QUOTE_NUMBER = "Quote number is missing";
     public static final String ERROR_FIND_KEYWORD_MISSING = "Keyword to search is missing";
     public static final String ERROR_NO_BOOKS_IN_LIST = "There are no books in the list!";
     public static final String ERROR_NO_BOOKS_BY_AUTHOR = "There are no books by this author!";
@@ -45,6 +47,7 @@ public abstract class Command {
     public static final String FLAG_REFERENCE = "/from";
     public static final String FLAG_DELIMITER = "/";
     public static final String FLAG_EDIT = "/to";
+    public static final String FLAG_REFLECT = "/reflect";
     public static final String REFERENCE_KEYWORD = "reference";
     public static final String AUTHORNAME_KEYWORD = "authorName";
 

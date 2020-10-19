@@ -68,8 +68,12 @@ public class TextUi {
     }
 
     public void printAllQuotes(QuoteList quotes) {
-        System.out.println(UiMessage.LIST_ALL_QUOTES);
-        System.out.println(quotes);
+        if (quotes.getSize() > 0) {
+            System.out.println(UiMessage.LIST_ALL_QUOTES);
+            System.out.println(quotes);
+        } else {
+            System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
+        }
     }
 
     public void printAllQuotesByAuthor(QuoteList quoteList, String authorName) {
@@ -114,6 +118,15 @@ public class TextUi {
         }
     }
 
+    public void printQuoteAndReflection(Quote quote) {
+        if (quote.getReflection() != null) {
+            System.out.printf(UiMessage.LIST_QUOTE_REFLECTION + "\n", quote.toString(), quote.getReflection());
+        } else {
+            System.out.println(UiMessage.LIST_QUOTE_NO_REFLECTION);
+        }
+
+    }
+
     public  void printDeleteQuote(String quote) {
         System.out.printf((UiMessage.DELETE_QUOTE_MESSAGE) + "\n", quote);
     }
@@ -126,6 +139,10 @@ public class TextUi {
 
     public void printEditQuote(Quote oldQuote, Quote newQuote) {
         System.out.printf(UiMessage.EDIT_QUOTE_MESSAGE + "\n", oldQuote.toString(), newQuote.toString());
+    }
+
+    public void printAddReflection(Quote quote, String reflection) {
+        System.out.printf(UiMessage.ADD_QUOTE_REFLECTION + "\n", quote.toString(), reflection);
     }
 
     public void printFindQuoteFail() {
@@ -312,6 +329,7 @@ public class TextUi {
         System.out.println(UiMessage.ADD_QUOTE_COMMAND);
         System.out.println(UiMessage.DELETE_QUOTE_COMMAND);
         System.out.println(UiMessage.LIST_QUOTE_COMMAND);
+        System.out.println(UiMessage.ADD_QUOTE_REFLECTION_COMMAND);
 
         System.out.println(System.lineSeparator() + "3a. Bookmark Tracker");
         System.out.println(UiMessage.ADD_BOOKMARK_COMMAND);
@@ -354,6 +372,7 @@ public class TextUi {
         System.out.println(UiMessage.ADD_BOOK_COMMAND);
         System.out.println(UiMessage.ADD_BOOKMARK_COMMAND);
         System.out.println(UiMessage.ADD_QUOTE_COMMAND);
+        System.out.println(UiMessage.ADD_QUOTE_REFLECTION_COMMAND);
         System.out.println(UiMessage.ADD_CATEGORY_COMMAND);
         System.out.println(UiMessage.ADD_RATING_COMMAND);
         System.out.println(UiMessage.ADD_TODO_COMMAND);

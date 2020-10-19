@@ -205,10 +205,11 @@ public class Storage {
         Author author = parseAuthorObject(authorObj);
         String quote = (String) json.get("quote");
         String reference = (String) json.get("reference");
+        String reflection = (String) json.get("reflection");
         JSONArray array = (JSONArray) json.get("categories");
         ArrayList<String> categories = (ArrayList<String>) array.stream()
                 .collect(Collectors.toList());
-        return new Quote(author, quote, categories, reference);
+        return new Quote(author, quote, categories, reference, reflection);
     }
 
     private Category parseCategoryObject(JSONObject json) throws NullPointerException {

@@ -56,6 +56,11 @@ public class AddCommand extends Command {
             QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
             addQuote(quotes, ui);
             break;
+        case TAG_QUOTE_REFLECTION:
+            addLogger.log(Level.INFO, "going to add reflection to quote list");
+            QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+            addQuoteReflection(quoteList, ui);
+            break;
         case TAG_CATEGORY:
             addLogger.log(Level.INFO, "going to add category to book/quote");
             CategoryList categories = (CategoryList) ListManager.getList(ListManager.CATEGORY_LIST);
@@ -77,6 +82,18 @@ public class AddCommand extends Command {
             break;
         }
         storage.save();
+    }
+
+    private void addQuoteReflection(QuoteList quoteList, TextUi ui) {
+        try {
+            int quoteNum = QuoteParser.parseQuoteNumber(information, quoteList, Command.FLAG_REFLECT);
+            String reflection = QuoteParser.getReflectionToAdd(information);
+            Quote quoteWithReflection = quoteList.addReflection(reflection, quoteNum);
+            ui.printAddReflection(quoteWithReflection, quoteWithReflection.getReflection());
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
+            addLogger.log(Level.INFO, "add reflection to quote failed");
+        }
     }
 
     private void addBook(BookList books, TextUi ui) {

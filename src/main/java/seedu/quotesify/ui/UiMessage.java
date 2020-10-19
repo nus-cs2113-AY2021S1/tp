@@ -63,11 +63,18 @@ public class UiMessage {
     public static final String EDIT_QUOTE_MESSAGE = "The quote has been edited from: [%s] to [%s]";
     public static final String FIND_QUOTE_SUCCESS = "Here are the results of my search:";
     public static final String FIND_QUOTE_FAIL = "None of your quotes matches the keyword";
+    public static final String ADD_QUOTE_REFLECTION = "Reflection has been to quote: [%s]" + System.lineSeparator()
+            + "Reflection: [%s]";
+    public static final String LIST_QUOTE_REFLECTION = "Here is the reflection you are looking for!"
+            + System.lineSeparator() + "Quote: [%s]" + System.lineSeparator() + "Reflection: [%s]";
+    public static final String LIST_QUOTE_NO_REFLECTION = "That quote does not have any reflection attached!";
 
     // Help page commands
     public static final String ADD_BOOK_COMMAND = "Add book: " + "add -b BOOK_TITLE /by AUTHOR";
     public static final String ADD_BOOKMARK_COMMAND = "Add bookmark: " + "bookmark -b BOOK_TITLE /pg PAGE_NUMBER";
     public static final String ADD_QUOTE_COMMAND = "Add quote: " + "add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]";
+    public static final String ADD_QUOTE_REFLECTION_COMMAND = "Add reflection to quote: "
+            + "add -qr QUOTE_NUM /reflect REFLECTION";
     public static final String ADD_CATEGORY_COMMAND = "Add category: "
             + "add -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}";
     public static final String ADD_RATING_COMMAND = "Add rating: " + "add -r RATING_SCORE BOOK_TITLE";
@@ -90,7 +97,7 @@ public class UiMessage {
 
     public static final String FIND_BOOK_COMMAND = "";
     public static final String FIND_BOOKMARK_COMMAND = "";
-    public static final String FIND_QUOTE_COMMAND = "";
+    public static final String FIND_QUOTE_COMMAND = "Find quote: \" + \"find -q QUOTE_NUMBER";
     public static final String FIND_CATEGORY_COMMAND = "";
     public static final String FIND_RATING_COMMAND = "Find rating: " + "find -r BOOK_TITLE";
     public static final String FIND_TODO_COMMAND = "";

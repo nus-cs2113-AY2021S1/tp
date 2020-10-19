@@ -5,6 +5,7 @@ import seedu.quotesify.book.BookList;
 import seedu.quotesify.category.CategoryList;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
+import seedu.quotesify.quote.Quote;
 import seedu.quotesify.quote.QuoteList;
 import seedu.quotesify.quote.QuoteParser;
 import seedu.quotesify.rating.Rating;
@@ -58,6 +59,10 @@ public class ListCommand extends Command {
             QuoteList quoteListList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
             listQuotes(quoteListList, ui);
             break;
+        case TAG_QUOTE_REFLECTION:
+            QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+            listQuoteReflection(quotes, ui);
+            break;
         case TAG_BOOK:
             BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
             listBooks(bookList, ui);
@@ -98,6 +103,24 @@ public class ListCommand extends Command {
             throw new QuotesifyException(ERROR_NO_BOOKS_BY_AUTHOR);
         }
         ui.printBooksByAuthor(filteredBooks, authorName);
+    }
+
+    private void listQuoteReflection(QuoteList quotes, TextUi ui) {
+        try {
+            int quoteNumber = Integer.parseInt(information.trim()) - 1;
+            if (information.isEmpty()) {
+                throw new QuotesifyException(ERROR_NO_QUOTE_NUMBER);
+            } else if (quoteNumber < 0 || quoteNumber > quotes.getSize()) {
+                throw new QuotesifyException(ERROR_INVALID_QUOTE_NUM);
+            } else {
+                Quote quote = quotes.getQuote(quoteNumber);
+                ui.printQuoteAndReflection(quote);
+            }
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
+        } catch (NumberFormatException e) {
+            ui.printErrorMessage(e.getMessage());
+        }
     }
 
     private void listQuotes(QuoteList quoteList, TextUi ui) {
