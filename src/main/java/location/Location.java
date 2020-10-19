@@ -46,6 +46,7 @@ public class Location {
 
     /**
      * All location class objects should have this methods, except BusStop.
+     *
      * @return the string to be wrote in the file.
      */
     public String fileString() {

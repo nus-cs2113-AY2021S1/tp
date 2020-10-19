@@ -22,12 +22,13 @@ public class LectureTheatre extends Location {
     public String toString() {
         return "(Lecture Theatre): " + name + "\nNearest building: " + nearestBuilding;
     }
+
     /**
      * Convert the information about this LT to a string that is to be stored in a file.
      *
      * @return the result string to be stored.
      */
-    public String fileString(){
-        return "L/"+name+ "/" + nearestBuilding;
+    public String fileString() {
+        return "L/" + name + "/" + nearestBuilding;
     }
 }

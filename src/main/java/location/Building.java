@@ -30,13 +30,13 @@ public class Building extends Location {
      *
      * @return the result string to be stored.
      */
-    public String fileString(){
+    public String fileString() {
         String busStops = null;
-        for(String additionalInfo: nearestBusStops){
-            busStops=additionalInfo + ",";
+        for (String additionalInfo : nearestBusStops) {
+            busStops = additionalInfo + ",";
         }
         assert busStops != null;
-        return "BLK/"+name+ "/" + busStops.substring(0,busStops.length()-1);
+        return "BLK/" + name + "/" + busStops.substring(0, busStops.length() - 1);
     }
 
     private String printNearestBusStops() {
