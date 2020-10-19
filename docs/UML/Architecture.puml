@@ -1,0 +1,16 @@
+@startuml
+rectangle PaperTrade
+rectangle Controller
+rectangle Ui
+rectangle PortfolioManager
+rectangle Parser
+rectangle StockPriceFetcher
+rectangle Storage
+
+PaperTrade --> Controller
+Controller --> Ui
+Controller --> PortfolioManager
+PortfolioManager --> Storage
+Controller --> Parser
+Controller --> StockPriceFetcher
+@enduml
