@@ -60,7 +60,7 @@ public class AnimeData {
         Anime anime = animeDataList.get(animeIndex);
         StringBuilder result = new StringBuilder();
 
-        result.append("Index: " + (animeIndex+1));
+        result.append("Index: " + (animeIndex + 1));
         result.append(System.lineSeparator());
         result.append("Name: " + anime.getAnimeName());
         result.append(System.lineSeparator());

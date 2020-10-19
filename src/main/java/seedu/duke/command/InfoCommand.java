@@ -20,7 +20,7 @@ public class InfoCommand extends Command {
     }
 
     /**
-     * Shows information of anime 
+     * Shows information of anime.
      */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
