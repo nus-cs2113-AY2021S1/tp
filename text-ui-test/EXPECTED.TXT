@@ -7,10 +7,7 @@ Welcome to AniChan!
   /_/    \_\_| |_|_|\_____|_| |_|\__,_|_| |_|
 
 -------------------------------------------------------------
-User: Empty user file.
-Workspace "Default":
-	Watchlist: Empty watchlist file.
-	Bookmark:  Empty bookmark file.
+User: Does not exist.
 -------------------------------------------------------------
 What's your name?
 #>Hello Abec Steiner 33rd! What might your gender be? (Male/Female/Other)
