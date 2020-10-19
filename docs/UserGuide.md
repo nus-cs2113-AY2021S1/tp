@@ -3,9 +3,9 @@
 - [Introduction](#introduction)
 - [Quick Start](#quick-start)
 - [Features](#features)
-    - [Clearing the lists: `clear`](#clearing-the-lists-clear)
-    - [Exiting the program: `bye`](#exiting-the-program-bye)
-    - [Saving the data](#saving-the-data)
+    - [Adding an exercise: `exercise`](#adding-an-exercise-exercise)
+    - [Adding a food: `food`](#adding-a-food)
+    - [Deleting an item: `delete`](#deleting-an-item)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -20,33 +20,59 @@ Fitr is a command-line application, helping you keep track of your food intake a
 
 ## Features
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+### Adding an exercise: `exercise`
+Adds a new exercise to the list of exercises you have done.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Format: `exercise NameOfExercise /AmountOfCaloriesBurnt`
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+* The `NameOfExerCise` can be in a natural language format.
+* The `AmountOfCaloriesBurnt` has to be a positive number.  
 
 Example of usage: 
 
-`todo n/Write the rest of the User Guide d/next week`
+`exercise Pushups /500`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+`exercise 5km run /1000`
 
-### Clearing the lists: `clear`
+The expected outcome:
 
-Clears either the exercise list, or the food list, or both.
+`The following exercise has been added: Pushups`
 
-Format: `clear LIST`
+`The following exercise has been added: 5km run`
 
-- `LIST` can either take `exercise` or `food`.
-- If `LIST` is not provided, both exercise and food lists are cleared.
+### Adding a food item: `food`
+Adds a new food to the list of foods you have eaten.
 
-Example of usage:
+Format: `exercise NameOfFood /AmountOfCaloriesConsumed`
 
-- `clear food` clears the food list.
-- `clear` clears both the exercise and food lists.
+* The `NameOfFood` can be in a natural language format.
+* The `AmountOfCaloriesConsumed` has to be a positive number.  
+
+Example of usage: 
+
+`food chicken rice /500`
+
+`food Mcspicy /600`
+
+The expected outcome:
+
+`The following food has been added: chicken rice`
+
+`The following food has been added: Mcspicy`
+
+### Deleting an item from Each List: 'delete'
+Deletes a particular item at a specified index in a specified List.
+
+Format: `delete ListName index`
+
+* The `ListName` has to be either food or exercise if not an exception will be thrown.
+* The `index` has to be a positive number smaller than or equals to the size of the list.
+
+Example of usage: 
+
+`delete food 1`
+
+`delete exercise 2`
 
 ### Exiting the program: `bye`
 

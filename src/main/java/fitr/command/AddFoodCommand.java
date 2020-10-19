@@ -48,7 +48,7 @@ public class AddFoodCommand extends Command {
                 Ui.printCustomMessage("The following food has been added: " + nameOfFood);
             }
         } catch (NumberFormatException | NullPointerException e) {
-            Ui.printCustomError("Sorry calories have to be a number");
+            Ui.printCustomError("Sorry, invalid calorie amount entered");
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printCustomError("Please key in the correct format");
         } catch (IOException e) {
