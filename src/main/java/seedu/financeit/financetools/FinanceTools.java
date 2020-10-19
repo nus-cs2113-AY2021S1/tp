@@ -141,6 +141,7 @@ public class FinanceTools {
                 outputAmount = Double.toString(Math.round(handleMonthlyCompoundInterest(packet) * 100.00) / 100.00);
                 System.out.println("Total Interest Earned: $\n\n" + outputAmount);
                 commands.add("Total Interest Earned: $" + outputAmount);
+                //commands.add("Total Interest Earned: $" + outputAmount);
                 break;
                 break;
             case "commands":
