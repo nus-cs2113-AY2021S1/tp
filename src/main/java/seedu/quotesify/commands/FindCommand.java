@@ -42,6 +42,20 @@ public class FindCommand extends Command {
         storage.save();
     }
 
+    private void findBooks(BookList books, TextUi ui) {
+        try {
+            String keyword = information.trim();
+            if (keyword.isEmpty()) {
+                throw new QuotesifyException(ERROR_MISSING_KEYWORD);
+            }
+
+            BookList filteredBooks = books.findByKeyword(keyword);
+            ui.printBooksByKeyword(filteredBooks, keyword);
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
+        }
+    }
+
     private void findRating(RatingList ratings, TextUi ui) {
         String ratingToFind = information.trim();
         if (ratingToFind.isEmpty()) {
