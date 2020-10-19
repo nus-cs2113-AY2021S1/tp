@@ -23,6 +23,94 @@ Before you begin, here's what you need to do:
 
 {Give detailed description of each feature}
 
+### Book Management
+
+Do you have books you are currently reading and want to keep track of them? 
+Or do you have a list of books you wish to read in the future but could never remember them? 
+You can add books to your booklist so that you can refer to it at any time. 
+
+#### Adding a book: `add -b`
+You can add a book to your current booklist. 
+
+Format: `add -b BOOK_TITLE /by AUTHOR`
+
+* You must specify both the title and the author of the book. 
+
+Example of usage:
+
+`add -b Harry Potter /by JK Rowling`
+
+
+Expected outcome:
+
+`The book [Harry Potter by JK Rowling] has been added!`
+
+#### Listing all existing books: `list -b`
+You can list all books currently in your booklist. 
+
+Format: `list -b`
+
+Example of usage:
+`list -b`
+
+Expected outcome:
+~~~
+Here is a list of all books:
+1. Harry Potter by JK Rowling
+2. The Lion, the Witch and the Wardrobe by CS Lewis
+3. Becoming by Michelle Obama
+4. The Chronicles of Narnia by CS Lewis
+~~~
+
+#### Listing books by an Author: `list -b`
+You can list all books currently in your booklist with the same author. 
+
+Format: `list -b /by AUTHOR`
+
+* You must specify an existing author name
+* You must put `/by` before the author name
+
+Example of usage:
+`list -b /by CS Lewis`
+
+Expected outcome:
+~~~
+Here is a list of books by CS Lewis:
+1. The Lion, the Witch and the Wardrobe by CS Lewis
+2. The Chronicles of Narnia by CS Lewis
+~~~
+
+#### Finding books by keyword: `find -b`
+Can't recall the book title you want in your long list of books? You can find the book using a keyword.
+
+Format: `find -b KEYWORD`
+
+Example of usage: 
+`find -b the`
+
+Expected outcome:
+~~~
+Here is a list of books with the keyword "the":
+1. The Lion, the Witch and the Wardrobe by CS Lewis
+2. The Chronicles of Narnia by CS Lewis
+~~~
+
+#### Deleting a book: `delete -b`
+Don't need a book anymore? You can delete the book permanently. 
+
+Format: `delete -b BOOK_NUMBER`
+
+* `BOOK_NUMBER` refers to the index you see when you list ALL books.
+* Book number specified must be less than the total number of books.
+
+Example of usage:
+`delete -b 1`
+
+Expected outcome:
+~~~
+The book [Harry Potter by JK Rowling] has been deleted!
+~~~ 
+
 ### Rating System
 
 Are you having your own opinions about the books you read? You might want to record down your favorites,
