@@ -1,20 +1,19 @@
-
 # AniChan User Guide
 
 ![AniChan Logo](https://i.imgur.com/VhbC59Q.png)
-
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)
+<br/>&nbsp;3.5 [Watchlist management: `watchlist`](#35-watchlist-management-watchlist)
+<br/>&nbsp;3.9 [Saving and loading data](#39-saving-and-loading-data)
 4. [FAQ](#4-faq)
 5. [Command Summary](#5-command-summary)
 
 ## 1. Introduction
 
 AniChan is an all-rounded tool to effectively create and organize anime lists with viewing statistics, efficiency-focused features, and tools to improve anime-watching experience.
-
 
 
 ## 2. Quick Start
@@ -26,9 +25,12 @@ AniChan is an all-rounded tool to effectively create and organize anime lists wi
 5. Type a command into the command prompt and press ‘Enter’ to execute it. e.g. typing `help` and pressing ‘Enter’ will display the help message.
 
 
-
 ## 3. Features 
 **Command Format**
+
+* Commands are case-sensitive.
+E.g. Only `help` will work, and so `HELP`, `hElp`, and its other variant will not work.
+
 * Words in UPPERCASE are values that can be supplied by the user.
 E.g. in `browse -s SORT_CATEGORY -p PAGE_NUMBER` where SORT_CATEGORY and PAGE_NUMBER are 
 parameters that can be used as `browse -s name -o asc`.
@@ -40,14 +42,16 @@ E.g. `browse [-s SORT_CATEGORY]` can be used simply as `browse` or `browse -s na
 E.g. Both `-n USERNAME -dob DATE_FORMAT` and `-dob DATE_FORMAT -n USERNAME` are 
 both acceptable and will produce the same output.  
 
+
 ### 3.1 View the help: `help`
 This command will provide the details of all available commands and their usage. 
 This is done by displaying the ‘Command Summary’ as listed below to the user. 
 
 Format: `help`
 
+<br/>
 
-### 3.2 Adding a User: `adduser`
+### 3.2 Adding a user: `adduser`
 Adds a new user to AniChan.
 
 Format: `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER>`
@@ -61,8 +65,9 @@ The expected outcome:
     Birthdate: 12/12/1997
     Gender: Male
 
+<br/>
 
-### 3.3 Switching Users: `switchuser`
+### 3.3 Switching users: `switchuser`
 Switch the current active user to another user.
 
 Format: `switchuser -n <USERNAME>`
@@ -79,6 +84,8 @@ The expected outcome:
 
  Isaac Asimov-san (Default) #> 
 ```
+
+<br/>
 
 ### 3.4 Browse through all anime: `browse`
 Browse through all anime from the source. It can be displayed in sorted order.
@@ -129,28 +136,38 @@ The expected outcome:
 20. Air Master
 Browsing Page: 1
 ```
-### 3.5 Create an Anime watchlist: `watchlist`
+
+<br/>
+
+### 3.5 Watchlist management: `watchlist`
 This command handles all watchlist management related operations: 
 * Create a new watchlist.
 * List all created watchlist(s).
-* Activate another watchlist to use.    [coming in v2.0]
-* Delete a watchlist that is no longer needed. [coming in v2.0]
+* Select another watchlist to use.
+* Delete a watchlist that is no longer needed.
 
 Format: 
 
-`watchlist -n <WATCHLIST_NAME>`
+* `watchlist -n <WATCHLIST_NAME>`
+* `watchlist -l`
+* `watchlist -s <WATCHLIST_INDEX>`
+* `watchlist -d <WATCHLIST_INDEX>`
 
-`watchlist -l`
+Examples: 
 
-`watchlist -s <WATCHLIST_INDEX>` [coming in v2.0]
+* `watchlist -n Adventure Anime` <br/>
+Creates a watchlist named `Adventure Anime`.
 
-`watchlist -d <WATCHLIST_INDEX>` [coming in v2.0]
+* `watchlist -l` <br/>
+Lists all watchlist(s) or prints an empty watchlist message if there is none.
 
-Sample input: `watchlist -n Adventure Anime`
+* `watchlist -s 2` <br/>
+Selects the 2nd watchlist to be used.
 
-The expected outcome: 
+* `watchlist -d 2` <br/>
+Deletes the 2nd watchlist.
 
-`Watchlist created successfully.`
+<br/>
 
 ### 3.6 Add an anime to the select watchlist: `add`
 Add an anime to the currently selected watchlist
@@ -162,6 +179,8 @@ Sample input: `add -a Fullmetal Alchemist: Brotherhood`
 The expected outcome: 
 
 `Anime added to watchlist!`
+
+<br/>
 
 ### 3.7 Bookmark an Anime: `bookmark`
 This command handles all bookmark related operations: 
@@ -211,6 +230,8 @@ The expected outcome:
 Editing InuYasha the Movie 3: Swords of an Honorable Ruler to have 5 episode
 ```
 
+<br/>
+
 ### 3.8 Exit AniChan: `exit`
 Exit AniChan 
 
@@ -223,12 +244,17 @@ The expected outcome:
 Sayonara <NAME>!
 ```
 
+<br/>
 
 ### 3.9 Saving and loading data
-User profile and watchlist(s) data will be **saved automatically** whenever changes are made to the data, and will also be **loaded automatically** when AniChan is launched.
+User, workspace(s), watchlist(s), and bookmark(s) data will be **saved automatically** when they are 
+created or modified, and will be **loaded automatically** when AniChan is launched. 
 
-These data can be found in the folder where AniChan is launched, in the subfolder, `data/AniChan`, saved in their respective file names `userprofile.txt` and `watchlist.txt`.
-
+In the folder where AniChan is launched, there will be a `data` folder which would contain these data:
+* User data is stored in `data/user.txt`.
+* Watchlist(s) data are stored in `data/<WORKSPACE-NAME>/watchlist.txt`, e.g. if your workspace is named "AniTranslator",
+then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
+* Bookmark(s) data are also stored in the same location as watchlist data, `data/WORKSPACE-NAME/bookmark.txt`.
 
 ## 4. FAQ
 Coming soon!
@@ -237,13 +263,13 @@ Coming soon!
 ## 5. Command Summary
 
 |Feature|Command|
-|---    |---|
-|Help | `help`|
-|Add User | `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER> ` |
-|Switch User | `switchuser -n <USERNAME>` |
-|Browse | `browse -s [name/rating] -p <1-26> -o [asc/dsc]`  |
-|Watchlist | `watchlist -n <WATCHLIST_NAME>` <br /> `watchlist -l` |
-|Add To Watchlist | `add -a <ANIME_NAME>` |
-
-
-
+|---|---|
+| Help               | `help`|
+| add user           | `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER>` |
+| Switch user        | `switchuser -n <USERNAME>` |
+| Browse             | `browse -s [name/rating] -p <1-26> -o [asc/dsc]` |
+| Create watchlist   | `watchlist -n <WATCHLIST_NAME>` |
+| List all watchlist | `watchlist -l` |
+| Select watchlist   | `watchlist -s <WATCHLIST_INDEX>` |
+| Delete watchlist   | `watchlist -d <WATCHLIST_INDEX>` |
+| Add to watchlist   | `add -a <ANIME_NAME>` |
