@@ -29,7 +29,8 @@ public class Storage {
     private static final int TYPE = 0;
     private static final int TASK_IS_DONE = 1;
     private static final int TASK_DESCRIPTION = 2;
-    private static final int TASK_DATE = 3;
+    private static final int TASK_IMPORTANT = 3;
+    private static final int TASK_DATE = 4;
 
     private static final int EVENT_MODULE_CODE = 2;
     private static final int DETAILS = 2;
@@ -37,6 +38,7 @@ public class Storage {
     private static final int EVENT_DATE = 3;
     private static final int EVENT_TIME = 4;
     private static final int EVENT_VENUE = 5;
+    private static final int EVENT_ADDITION_INFO = 6;
 
     private static ArrayList<CalendarItem> taskArrayList;
     private static String filePath;
@@ -144,15 +146,34 @@ public class Storage {
                 Ui.printInvalidFileCommandMessage();
             }
             countFileTasks++;
-            if (taskInFile[TASK_IS_DONE].equals("true")) {
-                if (item instanceof Task) {
+            if (item instanceof Task) {
+                if (taskInFile[TASK_IS_DONE].equals("true")) {
                     ((Task) item).markAsDone();
+                }
+            }
+            if (item instanceof Event) {
+                if (taskInFile[EVENT_IS_OVER].equals("true")) {
+                    ((Event) item).markAsOver();
+                }
+            }
+            if (item instanceof Task) {
+                if (taskInFile[TASK_IMPORTANT].equals("true")) {
+                    ((Task) item).markAsImportant();
                 }
             }
             if (item instanceof Task) {
                 calendarList.addTask((Task) item);
             } else if (item instanceof Event) {
                 calendarList.addEvent((Event) item);
+            }
+            if (item instanceof Event) {
+                if (!taskInFile[EVENT_ADDITION_INFO].equals("0")) {
+                    int numberInfo = Integer.parseInt(taskInFile[EVENT_ADDITION_INFO]);
+                    int i;
+                    for (i = 1; i <= numberInfo; i++) {
+                        ((Event)item).setAdditionalInformation(taskInFile[i + EVENT_ADDITION_INFO]);
+                    }
+                }
             }
         }
     }

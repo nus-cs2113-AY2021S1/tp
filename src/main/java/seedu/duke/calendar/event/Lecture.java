@@ -25,7 +25,7 @@ public class Lecture extends SchoolEvent {
     public Lecture(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
         eventType = "LEC";
-        isOver = false;
+        this.isOver = getIsOver();
     }
 
     /**
@@ -72,14 +72,31 @@ public class Lecture extends SchoolEvent {
     }
 
     /**
+     * Returns the description of the recurring lecture.
+     */
+    @Override
+    public String getRecurringDescription() {
+        return "[LEC]" + "[R] " + super.getRecurringDescription();
+    }
+
+    /**
      * Saves the lecture event into files.
      *
      * @return string contains the information about the lecture event.
      */
     @Override
     public String printIntoFile() {
-        return LECTURE_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
-                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue;
+        String writeToFile;
+        writeToFile = LECTURE_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
+                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue
+                + SEPARATOR + getAdditionalInformationCount();
+        if (getAdditionalInformationCount() != 0) {
+            int i;
+            for (i = 0; i < getAdditionalInformationCount(); i++) {
+                writeToFile = writeToFile + (SEPARATOR + getAdditionalInformationElement(i));
+            }
+        }
+        return writeToFile;
     }
 
     /**
