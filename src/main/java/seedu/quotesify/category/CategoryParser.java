@@ -70,7 +70,8 @@ public class CategoryParser {
             String[] oldAndNewCategory = information.split(" /to ", 2);
             return new String[]{oldAndNewCategory[0].trim(), oldAndNewCategory[1].trim()};
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new QuotesifyException(ERROR_MISSING_EDIT_PARAMS + System.lineSeparator() + UiMessage.EDIT_CATEGORY_COMMAND);
+            throw new QuotesifyException(ERROR_MISSING_EDIT_PARAMS
+                    + System.lineSeparator() + UiMessage.EDIT_CATEGORY_COMMAND);
         }
     }
 
