@@ -11,4 +11,8 @@ public class DiningOptions {
         location = data[1];
         operatingHrs = data[2];
     }
+
+    public String getName() {
+        return name;
+    }
 }
