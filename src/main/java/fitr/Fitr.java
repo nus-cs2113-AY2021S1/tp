@@ -1,8 +1,10 @@
 package fitr;
 
 import fitr.command.Command;
+import fitr.command.TipCommand;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
+import fitr.list.TipList;
 import fitr.storage.Storage;
 import fitr.ui.Ui;
 import fitr.user.User;
@@ -16,18 +18,21 @@ public class Fitr {
     private ExerciseList exerciseList;
     private User user;
 
-    public Fitr(String filePathOfUserConfig, String filePathOfFoodList, String filePathOfExerciseList) {
+    public Fitr(String filePathOfUserConfig, String filePathOfFoodList, String filePathOfExerciseList, String filePathOfTipList) {
         try {
             user = new User();
-            Ui.printGreetingMessage();
-            storage = new Storage(filePathOfUserConfig, filePathOfFoodList, filePathOfExerciseList);
+            storage = new Storage(filePathOfUserConfig, filePathOfFoodList, filePathOfExerciseList, filePathOfTipList);
             if (!storage.readUserConfigFile(user)) {
                 user.setup();
                 storage.writeUserConfigFile(user);
             }
-            Ui.printSuggestQuestion();
             foodList = new FoodList(storage.loadFoodList());
             exerciseList = new ExerciseList(storage.loadExerciseList());
+            TipList tipList = new TipList(storage.loadTipList());
+            Command tipOfTheDay = new TipCommand(tipList);
+            tipOfTheDay.execute(foodList, exerciseList, storage, user);
+            Ui.printGreetingMessage();
+            Ui.printSuggestQuestion();
         } catch (IOException e) {
             System.out.println("Theres no file");
         }
@@ -45,6 +50,6 @@ public class Fitr {
     }
 
     public static void main(String[] args) {
-        new Fitr("userConfig.txt", "foodList.txt", "exerciseList.txt").run();
+        new Fitr("userConfig.txt", "foodList.txt", "exerciseList.txt", "tips.txt").run();
     }
 }

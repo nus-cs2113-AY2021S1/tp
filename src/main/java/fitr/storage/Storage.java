@@ -5,6 +5,7 @@ import fitr.Exercise;
 import fitr.Food;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
+import fitr.list.TipList;
 import fitr.user.User;
 
 import java.io.File;
@@ -22,6 +23,7 @@ public class Storage {
     private static final String DEFAULT_EXERCISE_LIST_FILEPATH = "exercises.txt";
     private static final String DEFAULT_FOOD_LIST_FILEPATH = "food.txt";
     private static final String DEFAULT_USER_CONFIG_FILEPATH = "user.txt";
+    private static final String DEFAULT_TIP_LIST_FILEPATH = "tips.txt";
     private static final String COMMA_SEPARATOR = ",";
 
     private static final Logger LOGGER = Logger.getLogger(Storage.class.getName());
@@ -29,6 +31,7 @@ public class Storage {
     private final String exerciseListPath;
     private final String foodListPath;
     private final String userConfigPath;
+    private final String tipListPath;
 
     /**
      * Set up the files required in the application, by creating the files if the files do not exist and
@@ -39,14 +42,16 @@ public class Storage {
      * @param exerciseListPath file path of the exercise list
      * @throws IOException if an I/O error has occurred
      */
-    public Storage(String userConfigPath, String foodListPath, String exerciseListPath) throws IOException {
+    public Storage(String userConfigPath, String foodListPath, String exerciseListPath, String tipListPath) throws IOException {
         this.userConfigPath = userConfigPath;
         this.foodListPath = foodListPath;
         this.exerciseListPath = exerciseListPath;
+        this.tipListPath = tipListPath;
 
         File exerciseListFile = new File(exerciseListPath);
         File foodListFile = new File(foodListPath);
         File userConfigFile = new File(userConfigPath);
+        File tipListFile = new File(tipListPath);
 
         if (!exerciseListFile.exists()) {
             exerciseListFile.createNewFile();
@@ -62,10 +67,15 @@ public class Storage {
             userConfigFile.createNewFile();
             LOGGER.fine("User profile file created: " + userConfigPath);
         }
+
+        if (!tipListFile.exists()) {
+            tipListFile.createNewFile();
+            LOGGER.fine("Tip list file created: " + tipListPath);
+        }
     }
 
     public Storage() throws IOException {
-        this(DEFAULT_USER_CONFIG_FILEPATH, DEFAULT_FOOD_LIST_FILEPATH, DEFAULT_EXERCISE_LIST_FILEPATH);
+        this(DEFAULT_USER_CONFIG_FILEPATH, DEFAULT_FOOD_LIST_FILEPATH, DEFAULT_EXERCISE_LIST_FILEPATH, DEFAULT_TIP_LIST_FILEPATH);
     }
 
     /**
@@ -216,5 +226,20 @@ public class Storage {
 
         LOGGER.fine("Exercise list file written successfully.");
         file.close();
+    }
+
+    public ArrayList<String> loadTipList() throws FileNotFoundException {
+        LOGGER.fine("Attempting to read file: " + tipListPath);
+        ArrayList<String> tipList = new ArrayList<>();
+        String line;
+        File tipListFile = new File(tipListPath);
+        Scanner readFile = new Scanner(tipListFile);
+
+        while (readFile.hasNext()) {
+            line = readFile.nextLine();
+            tipList.add(line);
+        }
+        LOGGER.fine("Exercise list file written successfully.");
+        return tipList;
     }
 }
