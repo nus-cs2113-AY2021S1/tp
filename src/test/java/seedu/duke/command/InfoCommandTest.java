@@ -6,7 +6,6 @@ import seedu.duke.anime.Anime;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
-import seedu.duke.parser.AddToWatchlistParser;
 import seedu.duke.parser.InfoParser;
 import seedu.duke.storage.StorageManager;
 
