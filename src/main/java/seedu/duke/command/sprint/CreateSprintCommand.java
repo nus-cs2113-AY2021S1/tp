@@ -46,21 +46,23 @@ public class CreateSprintCommand extends SprintCommand {
             } else {
                 createSubsequentSprint(proj);
             }
+        } else {
+            Ui.showError("Missing goal for this sprint.");
         }
     }
 
     private void createFirstSprint(Project proj) throws DukeException {
 
         LocalDate sprintStart = LocalDate.now();
-        if (!(this.parametersInHT.get("start") == null)) {
-            sprintStart = DateTimeParser.parseDate(this.parametersInHT.get("start"));
+        if (!(this.parameters.get("start") == null)) {
+            sprintStart = DateTimeParser.parseDate(this.parameters.get("start"));
         } else {
             throw new DukeException("no start date");
         }
         LocalDate sprintEnd = sprintStart.plusDays(proj.getSprintLength() - 1);
         String sprintGoal;
-        if (!(this.parametersInHT.get("goal").isBlank())) {
-            sprintGoal = this.parametersInHT.get("goal");
+        if (!(this.parameters.get("goal").isBlank())) {
+            sprintGoal = this.parameters.get("goal");
         } else {
             throw new DukeException("no goal");
         }
@@ -78,7 +80,7 @@ public class CreateSprintCommand extends SprintCommand {
 
     private void createSubsequentSprint(Project proj) {
 
-        String sprintGoal = this.parametersInHT.get("goal");
+        String sprintGoal = this.parameters.get("goal");
         Sprint prevSprint = allSprint.getSprint(allSprint.size() - 1);
         LocalDate sprintStart = prevSprint.getEndDate().plusDays(1);
         if (DateTimeParser.diff(proj.getEndDate(), sprintStart) >= 0) {
@@ -87,14 +89,14 @@ public class CreateSprintCommand extends SprintCommand {
         }
         LocalDate sprintEnd = sprintStart.plusDays(proj.getSprintLength() - 1);
         allSprint.addSprint(proj, sprintGoal, sprintStart, sprintEnd);
-        if (!this.parametersInHT.containsKey("start")) {
+        if (!this.parameters.containsKey("start")) {
             Ui.showToUserLn(Messages.MESSAGE_CREATE_SUB_SPRINT);
         }
         printCreatedSprint();
     }
 
     private boolean validateParams() {
-        return this.parametersInHT.containsKey("goal");
+        return this.parameters.containsKey("goal");
     }
 
     private void printCreatedSprint() {

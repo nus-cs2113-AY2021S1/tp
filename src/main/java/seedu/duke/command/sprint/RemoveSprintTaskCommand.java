@@ -8,13 +8,14 @@ import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
-public class DeleteSprintTaskCommand extends SprintCommand {
+public class RemoveSprintTaskCommand extends SprintCommand {
     private SprintList allSprint;
     private ArrayList<Project> projectList;
     private Project proj;
 
-    public DeleteSprintTaskCommand(ArrayList<String> parameters, ArrayList<Project> projectList) {
+    public RemoveSprintTaskCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList) {
         super(parameters);
         this.projectList = projectList;
     }
@@ -30,14 +31,14 @@ public class DeleteSprintTaskCommand extends SprintCommand {
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();
             Sprint currentSprint = allSprint.getSprint(currentSprintNo);
-            for (String entry : this.parametersInAL) {
+            for (String entry : parameters.values()) {
                 try {
                     int taskId = Integer.parseInt(entry);
                     if (!currentSprint.checkTaskExist(taskId)) {
                         Ui.showError("This task do not exist.");
                         return;
                     }
-                    Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + "removed from sprint.\n");
+                    Ui.showToUser(proj.getProjectBacklog().getTask(taskId).getTitle() + " removed from sprint.\n");
                     currentSprint.removeSprintTask(taskId);
                 } catch (NumberFormatException e) {
                     Ui.showError("Invalid parameters.");
