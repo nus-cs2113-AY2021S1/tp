@@ -54,7 +54,7 @@ public class TopicsStorage extends LocalStorage {
         return topicsAsObjects;
     }
 
-    private static Topic parseToTopicObject(JSONObject topic) {
+    private Topic parseToTopicObject(JSONObject topic) {
         String topicTitle = (String) topic.get("topic");
 
         JSONArray questionsAsJsonArray = (JSONArray) topic.get("questions");
@@ -69,7 +69,7 @@ public class TopicsStorage extends LocalStorage {
         return new Topic(topicTitle, questionList);
     }
 
-    private static Question parseToQuestionObject(JSONObject question) {
+    private Question parseToQuestionObject(JSONObject question) {
         String questionDescription = (String) question.get("description");
         JSONArray optionsAsJsonArray = (JSONArray) question.get("options");
         ArrayList<Displayable> optionsAsObjects = (ArrayList<Displayable>) optionsAsJsonArray.stream()
@@ -87,7 +87,7 @@ public class TopicsStorage extends LocalStorage {
         return new Question(questionDescription, optionList, hint);
     }
 
-    private static Option parseToOptionObject(JSONObject option) {
+    private Option parseToOptionObject(JSONObject option) {
         String optionDescription = (String) option.get("description");
         boolean isCorrectAnswer = (boolean) option.get("correct");
 
