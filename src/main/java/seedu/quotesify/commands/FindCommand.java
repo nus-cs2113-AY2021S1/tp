@@ -1,5 +1,7 @@
 package seedu.quotesify.commands;
 
+import seedu.quotesify.book.BookList;
+import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
@@ -28,6 +30,10 @@ public class FindCommand extends Command {
         case TAG_RATING:
             RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
             findRating(ratings, ui);
+            break;
+        case TAG_BOOK:
+            BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+            findBooks(books, ui);
             break;
         default:
             ui.printListOfFindCommands();
