@@ -14,6 +14,7 @@ import event.Assignment;
 import event.PersonalEvent;
 
 
+import exception.EditIndexOutOfBoundsException;
 import exception.EmptyEventIndexException;
 import exception.NoEventLocationException;
 import exception.UnknownErrorException;
@@ -67,7 +68,7 @@ public abstract class Parser {
      * @return the specific Command object to perform what the user want to do
      * @throws NuScheduleException includes all exceptions may happen during parsing
      */
-    public static Command parse(String fullCommand) throws NuScheduleException {
+    public static Command parse(String fullCommand, int eventCount) throws NuScheduleException {
         // this block deals with exit and list command
         switch (fullCommand.trim()) {
         case EXIT:
@@ -156,11 +157,13 @@ public abstract class Parser {
             if (fullCommand.substring(5).isBlank()) {
                 throw new EmptyEventIndexException();
             }
-
             try {
                 eventIndex = Integer.parseInt(fullCommand.substring(5)) - 1;
             } catch (NumberFormatException e) {
                 throw new WrongEditFormatException();
+            }
+            if (eventIndex >= eventCount) {
+                throw new EditIndexOutOfBoundsException();
             }
             UI ui = new UI();
             ui.print(EDIT_INSTRUCTION);
