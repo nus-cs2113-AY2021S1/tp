@@ -41,7 +41,7 @@ public class WeekStructure extends DisplayDateStructure {
             putsIntoArrayWithCentrialise(dayOfMonth,
                 screen[currentRow++], currentCol, currentCol + DAY_COLUMN_WIDTH);
 
-            for (Task task : tasks.searchDate(date).getValues()) {
+            for (Task task : tasks.searchByDate(date).getValues()) {
                 String temp;
                 if (currentRow == DISPLAY_HEIGHT - 1) {
                     temp = "...";

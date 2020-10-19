@@ -41,6 +41,7 @@ public class List extends Command {
         if (displayMode == DisplayMode.WEEK) {
             return new CommandResult(LIST_MESSAGE, tasks, displayMode);
         }
+
         if (dateFlag) {
             return new CommandResult(LIST_MESSAGE, tasks.sortListByDate());
         } else if (priorityFlag) {

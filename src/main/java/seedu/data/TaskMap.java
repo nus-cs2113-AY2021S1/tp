@@ -60,16 +60,16 @@ public class TaskMap {
         return new TaskMap(sorted);
     }
 
-    public TaskMap searchDescription(String toSearch) {
+    public TaskMap searchByDescription(String toSearch) {
         List<Task> found = tasksMap.values().stream()
             .filter(task -> task.getDescription().contains(toSearch))
             .collect(Collectors.toList());
         return new TaskMap(found);
     }
 
-    public TaskMap searchDate(LocalDate date) {
+    public TaskMap searchByDate(LocalDate date) {
         List<Task> found = tasksMap.values().stream()
-            .filter(task -> task.getDate().isEqual(date))
+            .filter(task -> task.getDate().equals(date))
             .collect(Collectors.toList());
         return new TaskMap(found);
     }
