@@ -13,7 +13,7 @@ public class InvalidCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user) {
+    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage, User user) {
         Ui.printFormatError(command);
     }
 

@@ -16,7 +16,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user) {
+    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage, User user) {
         LOGGER.fine("Exiting the application.");
     }
 

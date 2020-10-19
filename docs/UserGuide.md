@@ -21,6 +21,8 @@ Fitr is a command-line application, helping you keep track of your food intake a
 
 1. Ensure that you have Java 11 or above installed.
 1. Download the latest version of `Fitr` from [here](https://github.com/AY2021S1-CS2113T-W13-2/tp/releases).
+1. Open Command Prompt / Terminal
+1. Type the following command `java -jar` followed by the location of the Fitr JAR file, to run it.
 
 ## Features
 
@@ -143,5 +145,15 @@ There is no need to save manually.
 
 Action | Format | Examples
 ------ | ------ | --------
+add food entry | `food <name of food> / <number of calories consumed> <quantity (optional)>` | `food apple / 52 1`
+add exercise entry | `exercise <name of exercise> / <number of calories burnt>` | `exercise 5km run / 400`
+delete food entry | `delete food <Index from Food List>` | `delete food 3`
+delete exercise entry | `delete exercise <Index from Exercise List>"` | `delete exercise 5`
+view help | `help` 
+view bmi | `view bmi`
+view profile | `view profile`
+view food entries | `view food`
+view exercise entries | `view exercise`
+view calorie summary | `view summary`
 clear | `clear` | `clear`, `clear exercise`, `clear food`
-bye | `bye`
+terminate Fitr program | `bye`
