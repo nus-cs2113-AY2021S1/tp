@@ -10,14 +10,17 @@ import static junit.framework.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class WatchlistTest {
+    private static final int SAMPLE_ANIME_INDEX_ONE = 1;
+    private static final int SAMPLE_ANIME_INDEX_TWO = 2;
+
     private Watchlist firstWatchlist;
     private Watchlist secondWatchlist;
 
     @BeforeEach
     void setUp() {
         ArrayList<Integer> animeList = new ArrayList<>();
-        animeList.add(1);
-        animeList.add(2);
+        animeList.add(SAMPLE_ANIME_INDEX_ONE);
+        animeList.add(SAMPLE_ANIME_INDEX_TWO);
 
         firstWatchlist = new Watchlist("First Watchlist");
         secondWatchlist = new Watchlist("Second Watchlist", animeList);
@@ -25,7 +28,7 @@ class WatchlistTest {
 
     @Test
     void testEqual() {
-        // Test Equals on duplicaed named watchlist.
+        // Test Equals on duplicated named watchlist.
         Watchlist duplicateNameWatchlist = new Watchlist("First Watchlist");
         assertTrue(duplicateNameWatchlist.equals(firstWatchlist));
         assertFalse(duplicateNameWatchlist.equals(secondWatchlist));
