@@ -69,6 +69,6 @@ public class Edit extends Command {
         if (priority != null) {
             task.setPriority(priority);
         }
-        return new CommandResult(EDIT_MESSAGE, tasks);
+        return new CommandResult(EDIT_MESSAGE);
     }
 }

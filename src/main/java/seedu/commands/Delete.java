@@ -35,6 +35,7 @@ public class Delete extends Command {
         if (task == null) {
             throw new InvalidTaskNumberException();
         }
+        tasks.delete(key);
         return new CommandResult(DELETE_MESSAGE);
     }
 }

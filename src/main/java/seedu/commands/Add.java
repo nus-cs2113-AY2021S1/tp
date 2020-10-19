@@ -58,7 +58,6 @@ public class Add extends Command {
         }
         task.setTaskID(taskID);
         tasks.addTask(task);
-        // task arg not in used, in case want change display message.
-        return new CommandResult(ADD_MESSAGE, tasks, task);
+        return new CommandResult(ADD_MESSAGE);
     }
 }
