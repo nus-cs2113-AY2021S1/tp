@@ -84,7 +84,7 @@ public class UiMessage {
     public static final String EDIT_BOOK_COMMAND = "";
     public static final String EDIT_BOOKMARK_COMMAND = "Update bookmark: " + "bookmark -b BOOK_TITLE /pg PAGE_NUMBER";
     public static final String EDIT_QUOTE_COMMAND = "";
-    public static final String EDIT_CATEGORY_COMMAND = "Edit category: " + "edit -c OLD_CATEGORY NEW_CATEGORY";
+    public static final String EDIT_CATEGORY_COMMAND = "Edit category: " + "edit -c OLD_CATEGORY /to NEW_CATEGORY";
     public static final String EDIT_RATING_COMMAND = "Edit rating: " + "edit -r RATING_SCORE BOOK_TITLE";
     public static final String EDIT_TODO_COMMAND = "";
 
