@@ -11,6 +11,8 @@
     - [Viewing the user's BMI: `view bmi`](#viewing-the-users-bmi-view-bmi)
     - [Viewing the user's caloric summary: `view summary`](#viewing-the-users-caloric-summary-view-summary)
     - [Editing the user's profile: `edit`](#editing-the-users-profile-edit)
+    - [Editing previous exercise entry: `edit exercise`](#editing-previous-exercise-entry-edit-exercise)
+    - [Editing previous food entry: `edit food`](#editing-previous-food-entry-edit-food)
     - [Viewing help: `help`](#viewing-help-help)
     - [Clearing the lists: `clear`](#clearing-the-lists-clear)
     - [Exiting the program: `bye`](#exiting-the-program-bye)
@@ -193,6 +195,42 @@ Edit weight
 Change your weight (in kg) to: 
 90
 Weight (in kg) changed to: 90.0
+```
+
+### Editing previous exercise entry: `edit exercise`
+Edits a previous exercise entry in the exercise list.
+
+Format: `edit exercise INDEX`
+- `INDEX` must be a positive integer: 1, 2, 3, ...
+
+Expected outcome:
+```
+Editing: Push ups
+Enter new exercise name: [previous: Push ups]
+Push ups
+Enter new calories [previous: 500]
+1000
+Enter new duration [previous: 20]
+30
+Successfully edited exercise!
+```
+
+### Editing previous food entry: `edit food`
+Edits a previous food entry in the food list.
+
+Format: `edit food INDEX`
+- `INDEX` must be a positive integer: 1, 2, 3, ...
+
+Expected outcome:
+```
+Editing: Rice
+Enter new food name: [previous: Rice]
+Chicken rice
+Enter new calories [previous: 1000]
+2000
+Enter new quantity [previous: 1]
+1
+Successfully edited food!
 ```
 
 ### Viewing help: `help`
