@@ -14,6 +14,8 @@ import seedu.duke.watchlist.Watchlist;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Duke {
     private static final String ANIME_DATA_SOURCE_FOLDER = "/AniListData";
@@ -31,6 +33,9 @@ public class Duke {
         ui = new Ui();
         parser = new Parser();
         storageManager = new StorageManager();
+
+        Logger DUKELOGGER = new AniLogger(Duke.class.getName()).getLogger();
+        DUKELOGGER.log(Level.SEVERE, "aa");
 
         // ========================== Initialize AniChan ==========================
         ui.printWelcomeMessage();
