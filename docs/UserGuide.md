@@ -99,11 +99,10 @@ Example of usage:
 ```css
 Enter Note: 
 ```
-```
-Test Note line 1
-Line 2
-/end
-```
+
+`Test Note line 1`<br>
+`Line 2`<br>
+`/end`
 
 Expected output:
 
