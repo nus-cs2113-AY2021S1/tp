@@ -23,5 +23,12 @@ public class WritingListTest {
         WritingList.writinglist.clear();
         assertEquals(0, WritingList.getWritingSize());
     }
+
+    @Test
+    public void testRemoveID() {
+        WritingList.writinglist.clear();
+        initializeTestDatabase();
+        assertEquals(5, WritingList.getWritingSize());
+    }
 }
 

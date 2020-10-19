@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static seedu.duke.constants.DataFileConvention.LENGTH_OF_DATE;
+import static seedu.duke.constants.Logos.PLAIN_TEXT_DIVIDER;
 
 public abstract class Writings {
     protected String title;
@@ -80,4 +81,18 @@ public abstract class Writings {
     public abstract int getNumberOfSentences();
 
     public abstract int getNumberOfWords();
+
+    public abstract void printPoemProperties();
+
+    public abstract void printEssayProperties();
+
+    public void printWritingsProperties() {
+        System.out.println("This is a " + getType());
+        System.out.println("Written by " + getAuthor().getName() + "\n");
+        System.out.println("Id: " + getId());
+        System.out.println(getTitle().toUpperCase() + "\n");
+        System.out.println(getContent());
+        System.out.println("This writing was created on " + date);
+        System.out.println(PLAIN_TEXT_DIVIDER);
+    }
 }
