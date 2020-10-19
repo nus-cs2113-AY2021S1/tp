@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
+import seedu.duke.ui.Formatter;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
@@ -52,6 +53,7 @@ public class PinCommand extends Command {
                 note = notebook.getNotes().get(index);
             } catch (IndexOutOfBoundsException exception) {
                 return COMMAND_UNSUCCESSFUL_MESSAGE;
+                //return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
             }
         } else {
             for (Note notes : notebook.getNotes()) {
@@ -63,9 +65,11 @@ public class PinCommand extends Command {
 
         if (note == null) {
             return COMMAND_UNSUCCESSFUL_MESSAGE;
+            //return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
 
         note.togglePinned();
         return note.getTitle() + " pinned: " + note.getPinned();
+        //return Formatter.formatString(note.getTitle() + " pinned: " + note.getPinned());
     }
 }
