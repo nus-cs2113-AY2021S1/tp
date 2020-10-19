@@ -1,10 +1,9 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
+import seedu.duke.ui.Formatter;
 
-import java.util.ArrayList;
-
-import static java.util.stream.Collectors.toList;
+import static seedu.duke.util.Parser.inputContent;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
@@ -39,23 +38,25 @@ public class AddNoteCommand extends Command {
 
     @Override
     public String execute() {
-        // Search for duplicates
-        ArrayList<Note> filteredTaskList = (ArrayList<Note>) notebook.getNotes().stream()
-                .filter((s) -> s.getTitle().equals(note.getTitle()))
-                .collect(toList());
+        String content = note.getContent();
 
-        if (!filteredTaskList.isEmpty()) {
-            return COMMAND_UNSUCCESSFUL_MESSAGE;
+        // Search for duplicates
+        if (notebook.getNote(note.getTitle())) {
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
+
+        // Get Content
+        if (content.isBlank()) {
+            content = inputContent();
+        }
+
+        // Edit the note
+        note.setContent(content);
 
         // Rebind the tags if there are duplicated tags
         tagManager.rebindTags(note);
         notebook.addNote(note);
 
-        if (note.getTagsName().isBlank()) {
-            return COMMAND_SUCCESSFUL_MESSAGE + note.getTitle();
-        } else {
-            return COMMAND_SUCCESSFUL_MESSAGE + note.getTitle() + " " + note.getTagsName();
-        }
+        return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + note.getTitle(), note);
     }
 }

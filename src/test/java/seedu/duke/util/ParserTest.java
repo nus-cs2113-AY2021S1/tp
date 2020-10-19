@@ -6,10 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParserTest {
 
-    @Test
-    void parseCommand() {
-    }
-
     /**
      * Remove commands in Note content.
      */
