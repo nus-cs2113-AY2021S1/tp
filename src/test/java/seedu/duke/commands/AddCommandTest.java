@@ -1,6 +1,7 @@
 package seedu.duke.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import seedu.duke.classes.Show;
@@ -17,13 +18,13 @@ class AddCommandTest {
         Show show = new Show("friends", 3, episodes);
         ShowList.setShow("friends", show);
         assertEquals(show, ShowList.getShow("friends"));
-        String[] inputExample = {"add", "friends", "3", "21,10,12"};
+        String[] inputExample = {"add", "friends",  "3", "21,10,12"};
         updateObject = new AddCommand(inputExample);
     }
 
     @Test
     public void processCommand() {
-        assertEquals(21,ShowList.getShow("friends").getEpisodesForSeason(1));
+        assertEquals(21, ShowList.getShow("friends").getEpisodesForSeason(1));
 
     }
 }

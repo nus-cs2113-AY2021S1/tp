@@ -17,7 +17,7 @@ class UpdateShowEpisodeProgressCommandTest {
     public static void main() {
         new ShowList();
         int[] episodes = new int[]{21, 10, 12};
-        Show show = new Show("friends", 3, episodes);
+        Show show = new Show("friends",3, episodes);
         ShowList.setShow("friends", show);
         assertEquals(show, ShowList.getShow("friends"));
         java.util.ArrayList<String> inputExample = new java.util.ArrayList<>(Arrays.asList("episode", "friends", "3"));

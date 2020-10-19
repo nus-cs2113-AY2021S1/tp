@@ -12,7 +12,7 @@ public class AddCommand extends Command {
      *
      * @param input the user input
      */
-    public AddCommand(String[] input) throws NullPointerException {
+    public AddCommand(String[] input) throws NullPointerException, ArrayIndexOutOfBoundsException {
         if (input.length < 3) {
             throw new ArrayIndexOutOfBoundsException();
         }
@@ -29,7 +29,7 @@ public class AddCommand extends Command {
         }
         //check that the episodes do not exceed seasons
 
-        Show show = new Show(input[1], Integer.parseInt(input[2]), seasonEpisodes);
+        Show show = new Show(input[1], numSeasons, seasonEpisodes);
         String name = input[1];
         ShowList.setShow(name, show);
     }

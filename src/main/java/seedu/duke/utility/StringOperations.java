@@ -38,4 +38,6 @@ public class StringOperations {
             return input.substring(index + 1).trim(); // Extracts after space.
         }
     }
+
+
 }

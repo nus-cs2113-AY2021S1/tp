@@ -12,8 +12,6 @@ import seedu.duke.commands.EditCommand;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//TODO include more parser classes (storage.parser, command.parser etc in the future)
-
 
 /**
  * Represents a parser to process the commands inputted by the user.
@@ -32,7 +30,7 @@ public class InputParser {
 
     public String parseInput(String input) {
 
-        String[] singleWordInputs = new String[]{"bye", "list", "help"};
+        String[] singleWordInputs = new String[]{"bye", "list", "help", "watchtime"};
         String command = StringOperations.getFirstWord(input).toLowerCase();
 
         String[] splitInput = input.split(" ");
@@ -90,6 +88,14 @@ public class InputParser {
             parseEditCommand(input);
             return command;
 
+        case "updatetimelimit":
+            parseUpdateTimeLimitCommand(input);
+            return command;
+
+        case "watchtime":
+            parseWatchTimeCommand();
+            return command;
+
         case "":
             Ui.printNoInputException();
             return command;
@@ -112,6 +118,21 @@ public class InputParser {
             Ui.printInvalidEpisodesInputException();
             return;
         }
+    }
+
+    private static void parseUpdateTimeLimitCommand(String input) {
+        input = StringOperations.removeFirstWord(input);
+        int newWatchLimit = Integer.parseInt(input);
+        /*try {
+            WatchTime changeWatchLimit = new WatchTime(//insert args here);
+            changeWatchLimit.watchDurationUpdate(newWatchLimit);
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printInvalidFormatException();
+            return;
+        } catch (NullPointerException e) {
+            Ui.printBadInputException();
+            return;
+        }*/
     }
 
     private static void parseEpisodeUpdateCommand(String input, String command) {
@@ -177,6 +198,8 @@ public class InputParser {
         } catch (NullPointerException e) {
             Ui.printBadInputException();
             return;
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printInvalidRatingInput();
         }
     }
 
@@ -203,6 +226,10 @@ public class InputParser {
         } catch (Exception e) {
             Ui.printNotFoundException();
         }
+    }
+
+    private static void parseWatchTimeCommand() {
+        Ui.printDailyWatchTracking();
     }
 }
 

@@ -1,12 +1,15 @@
 package seedu.duke.classes;
 
 
+import seedu.duke.utility.Ui;
+
 import java.time.LocalDateTime;
 
 public class Show {
     protected String name;
     protected int numSeasons;
     protected int[] numEpisodesForSeasons;
+    protected int[][] durationEpisodeForSeasons; //The duration of each episode for each season
     protected int rating;
     protected String review;
     protected LocalDateTime showTime;   //The time of the show, maybe include date
@@ -40,13 +43,21 @@ public class Show {
     }
 
     public int getEpisodesForSeason(int season) {
-        //TODO : Add the exception for bounds checking
-        return numEpisodesForSeasons[season - 1];
+        try {
+            return numEpisodesForSeasons[season - 1];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Ui.printBadInputException();
+            return -1;
+        }
     }
 
     public int getRawEpisodesForSeason(int season) {
-        //TODO : Add the exception for bounds checking
-        return numEpisodesForSeasons[season];
+        try {
+            return numEpisodesForSeasons[season];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Ui.printBadInputException();
+            return -1;
+        }
     }
 
     public int getCurrentSeason() {
@@ -106,23 +117,24 @@ public class Show {
 
     @Override
     public String toString() {
-        String des = name + " | ";
-        des += "WatchHistory : S";
-        des += Integer.toString(currentSeason);
-        des += "E";
-        des += Integer.toString(currentEpisode);
+        //TODO: Bernado&jiqing verify if the new toString works well
+        StringBuilder des = new StringBuilder(name + " | ");
+        des.append("WatchHistory : S");
+        des.append(currentSeason);
+        des.append("E");
+        des.append(currentEpisode);
         if (rating != -1) {
             //TODO : make sure a review is always passed in with a rating
-            des += "| Rating: ";
-            des += Integer.toString(rating);
+            des.append("| Rating: ");
+            des.append(rating);
         }
-        des += " | : ";
-        des += ("Seasons " + numSeasons + " | Episodes: ");
+        des.append(" | : ");
+        des.append("Seasons ").append(numSeasons).append(" | Episodes: ");
         for (int episode : numEpisodesForSeasons) {
-            des += Integer.toString(episode);
-            des += " ";
+            des.append(episode);
+            des.append(" ");
         }
-        return des;
+        return des.toString();
     }
 
 }
