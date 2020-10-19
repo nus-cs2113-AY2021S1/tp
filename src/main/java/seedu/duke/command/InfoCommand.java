@@ -5,6 +5,7 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
 import seedu.duke.storage.StorageManager;
+import static seedu.duke.logger.AniLogger.getAniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,10 +14,10 @@ public class InfoCommand extends Command {
     protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
     
     private Integer animeIndex;
-    private static final Logger LOGGER = Logger.getLogger(InfoCommand.class.getName());
+    private static final Logger LOGGER = getAniLogger(InfoCommand.class.getName());
 
     public InfoCommand() {
-        LOGGER.setLevel(Level.WARNING);
+        // LOGGER.setLevel(Level.WARNING);
     }
 
     /**

@@ -2,6 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.command.RemoveCommand;
 import seedu.duke.exception.AniException;
+import static seedu.duke.logger.AniLogger.getAniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,13 +10,13 @@ import java.util.logging.Logger;
 public class RemoveCommandParser extends CommandParser {
     protected static final String REMOVE_PARAM = "d";
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
-    private static final Logger LOGGER = Logger.getLogger(RemoveCommandParser.class.getName());
+    private static final Logger LOGGER = getAniLogger(RemoveCommandParser.class.getName());
 
     private RemoveCommand removeCommand;
 
     public RemoveCommandParser() {
         removeCommand = new RemoveCommand();
-        LOGGER.setLevel(Level.WARNING);
+        // LOGGER.setLevel(Level.WARNING);
     }
 
     public RemoveCommand parse(String description) throws AniException {

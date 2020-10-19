@@ -2,6 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.command.BrowseCommand;
 import seedu.duke.exception.AniException;
+import static seedu.duke.logger.AniLogger.getAniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,13 +24,13 @@ public class BrowseParser extends CommandParser {
     protected static final String NOT_RECOGNISED = " is not recognised!";
     protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for page number!";
     protected static final String BROWSE_SETTINGS_CHANGED_INFO = "Default values modified";
-    private static final Logger LOGGER = Logger.getLogger(BrowseParser.class.getName());
+    private static final Logger LOGGER = getAniLogger(BrowseParser.class.getName());
 
     private BrowseCommand browseCommand;
 
     public BrowseParser() {
         browseCommand = new BrowseCommand();
-        LOGGER.setLevel(Level.WARNING);
+        // LOGGER.setLevel(Level.WARNING);
     }
 
     public BrowseCommand parse(String description) throws AniException {

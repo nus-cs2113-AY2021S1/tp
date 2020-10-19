@@ -1,5 +1,7 @@
 package seedu.duke.anime;
 
+import static seedu.duke.logger.AniLogger.getAniLogger;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -21,7 +23,7 @@ public class AnimeStorage {
     //private static final String FILE_SEPARATOR = File.separator;
     //private File dataFile;
     //private String[] pathnames;
-    private static final Logger LOGGER = Logger.getLogger(Anime.class.getName());
+    private static final Logger LOGGER = getAniLogger(Anime.class.getName());
 
     //public static void main(String[] args) throws IOException {
     //    AnimeStorage  animeStorage = new AnimeStorage("/data/AniListData");
@@ -31,7 +33,7 @@ public class AnimeStorage {
 
     public AnimeStorage(String fileFolder) {
         // Set log levels
-        LOGGER.setLevel(Level.WARNING);
+        // LOGGER.setLevel(Level.WARNING);
     }
 
     //private String prepareFile(String fileFolder) {
