@@ -1,6 +1,6 @@
 # Developer Guide
 
-This developer guide aims to provide an overview of Nav@NUS to aim developers in creating extensions or making 
+This developer guide aims to provide an overview of Nav@NUS to aid developers in creating extensions or making 
 enhancements.
 
 - [1. Design & Implementation](#1-design--implementation)
