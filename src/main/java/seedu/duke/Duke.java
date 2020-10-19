@@ -142,21 +142,21 @@ public class Duke {
     }
 
     public void run() {
-        boolean shouldExit = false;
-        while (!shouldExit) {
+        while (ui.hasNextLine(user)) {
             try {
-                String userInput = ui.readUserInput(user);
+                String userInput = ui.readUserInput();
                 Command command = parser.getCommand(userInput);
                 String commandOutput = command.execute(animeData, storageManager, user);
-
                 ui.printMessage(commandOutput);
-                shouldExit = command.getShouldExit();
+
+                if (command.getShouldExit()) {
+                    ui.printGoodbyeMessage(user.getHonorificName());
+                    break;
+                }
             } catch (AniException exception) {
                 ui.printErrorMessage(exception.getMessage());
             }
         }
-
-        ui.printGoodbyeMessage(user.getHonorificName());
     }
 
     public static void main(String[] args) {

@@ -47,15 +47,19 @@ public class Ui {
         LOGGER.log(Level.INFO, "Printed goodbye message, exiting program!");
     }
 
+    public boolean hasNextLine(User user) {
+        String workspaceName = user.getActiveWorkspace().getName();
+        String watchlistName = user.getActiveWorkspace().getActiveWatchlistName();
+        System.out.print(System.lineSeparator() + workspaceName + " (" + watchlistName + ") #> ");
+        return CONSOLE.hasNextLine();
+    }
+
     public String readInput() {
         System.out.print("#>");
         return CONSOLE.nextLine();
     }
 
-    public String readUserInput(User user) {
-        String workspaceName = user.getActiveWorkspace().getName();
-        String watchlistName = user.getActiveWorkspace().getActiveWatchlistName();
-        System.out.print(System.lineSeparator() + workspaceName + " (" + watchlistName + ") #> ");
+    public String readUserInput() {
         return CONSOLE.nextLine();
     }
 
