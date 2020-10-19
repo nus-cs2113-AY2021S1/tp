@@ -19,14 +19,13 @@ public class CreateTagCommand extends Command {
     public static final String COMMAND_WORD = "create-t";
 
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Creates a tag. Parameters: "
-            + PREFIX_DELIMITER + PREFIX_TAG + " TAG NAME [TAG COLOR]"
-            + Formatter.LS + "(Available colors: "
-            + colorize(Tag.COLOR_WHITE_STRING + ", ", Attribute.BRIGHT_WHITE_TEXT())
-            + colorize(Tag.COLOR_RED_STRING + ", ", Attribute.BRIGHT_RED_TEXT())
-            + colorize(Tag.COLOR_GREEN_STRING + ", ", Attribute.BRIGHT_GREEN_TEXT())
-            + colorize(Tag.COLOR_BLUE_STRING + ", ", Attribute.BRIGHT_BLUE_TEXT())
-            + colorize(Tag.COLOR_YELLOW_STRING + ", ", Attribute.BRIGHT_YELLOW_TEXT())
-            + colorize(Tag.COLOR_MAGENTA_STRING + ", ", Attribute.BRIGHT_MAGENTA_TEXT())
+            + PREFIX_DELIMITER + PREFIX_TAG + " TAG NAME [TAG COLOR] (Available colors: "
+            + colorize(Tag.COLOR_WHITE_STRING, Attribute.BRIGHT_WHITE_TEXT()) + ", "
+            + colorize(Tag.COLOR_RED_STRING, Attribute.BRIGHT_RED_TEXT()) + ", "
+            + colorize(Tag.COLOR_GREEN_STRING, Attribute.BRIGHT_GREEN_TEXT()) + ", "
+            + colorize(Tag.COLOR_BLUE_STRING, Attribute.BRIGHT_BLUE_TEXT()) + ", "
+            + colorize(Tag.COLOR_YELLOW_STRING, Attribute.BRIGHT_YELLOW_TEXT()) + ", "
+            + colorize(Tag.COLOR_MAGENTA_STRING, Attribute.BRIGHT_MAGENTA_TEXT()) + ", "
             + colorize(Tag.COLOR_CYAN_STRING, Attribute.BRIGHT_CYAN_TEXT())
             + colorize(")", Attribute.BRIGHT_WHITE_TEXT());
 

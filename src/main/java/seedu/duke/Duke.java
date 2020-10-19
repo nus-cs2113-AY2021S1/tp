@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import org.fusesource.jansi.AnsiConsole;
+
 import seedu.duke.command.Command;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.data.notebook.Notebook;
