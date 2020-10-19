@@ -7,7 +7,8 @@ public abstract class CommandParser {
     protected static final String PARAMETER_ERROR_HEADER = "Parameter : -";
     protected static final String REQUIRE_ADDITIONAL_FIELD = " requires an additional field";
     protected static final String TOO_MUCH_FIELDS = " has too much fields";
-    protected static final String NO_PARAMETER_PROVIDED = "No Parameter provided";
+    protected static final String NO_PARAMETER_PROVIDED = "No parameter provided";
+    private static final String INTEGER_REGEX = "^\\d+$";
 
     /**
      * Splits the parameters into individual parts for parsing.
@@ -58,7 +59,6 @@ public abstract class CommandParser {
         }
     }
 
-
     /**
      * Checks if the string is an integer.
      *
@@ -66,7 +66,6 @@ public abstract class CommandParser {
      * @return true if it can be parsed into an integer
      */
     public boolean isInt(String checkStr) {
-        return checkStr.matches("-?\\d+(\\.\\d+)?");
+        return checkStr.matches(INTEGER_REGEX);
     }
-
 }

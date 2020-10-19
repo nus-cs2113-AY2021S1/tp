@@ -41,7 +41,7 @@ public class Parser {
             return new BrowseParser().parse(description);
 
         case "watchlist":
-            return new WatchlistCommand(description);
+            return new WatchlistParser().parse(description);
 
         case "add":
             return new AddToWatchlistParser().parse(description);

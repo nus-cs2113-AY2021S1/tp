@@ -31,7 +31,7 @@ public class BrowseCommandTest {
         testList.add(testAnime1);
         testList.add(testAnime2);
         animeData = new AnimeData(testList);
-        storageManager = new StorageManager();
+        storageManager = new StorageManager("test");
     }
 
     @Test
