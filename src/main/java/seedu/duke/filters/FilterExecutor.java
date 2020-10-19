@@ -20,6 +20,7 @@ public class FilterExecutor {
             switch (filterType) {
             case WORD_TYPE:
                 tags = getTargetedWordType(command);
+                assert tags.length != 0;
                 filterByType(isNewFilter, tags);
                 break;
             case STARTING_STRING:

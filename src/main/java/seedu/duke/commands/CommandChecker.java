@@ -14,6 +14,8 @@ public enum CommandChecker {
     FILTER_WORDS,
 
     GEN_NAME,
+    ADD_NAME,
+    DELETE_NAME,
     LIST_NAMES,
     FILTER_NAMES,
 
@@ -80,9 +82,13 @@ public enum CommandChecker {
             return CommandChecker.TOPIC;
         } else if (userInput.toLowerCase().trim().startsWith("name")) {
             return CommandChecker.GEN_NAME;
-        } else if (userInput.toLowerCase().trim().startsWith("list names")) {
+        } else if (userInput.toLowerCase().trim().startsWith("add name")) {
+            return CommandChecker.ADD_NAME;
+        } else if (userInput.toLowerCase().trim().startsWith("delete name")) {
+            return CommandChecker.DELETE_NAME;
+        } else if (userInput.toLowerCase().trim().startsWith("list name")) {
             return CommandChecker.LIST_NAMES;
-        } else if (userInput.toLowerCase().trim().startsWith("filter names")) {
+        } else if (userInput.toLowerCase().trim().startsWith("filter name")) {
             return CommandChecker.FILTER_NAMES;
         } else if (userInput.toLowerCase().trim().startsWith("filter")) {
             return CommandChecker.FILTER_WORDS;

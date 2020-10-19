@@ -1,55 +1,89 @@
 package seedu.duke.names;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
+import seedu.duke.database.NamesDB;
+import seedu.duke.exceptions.NameException;
+
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Names {
-    protected static List<String> names;
+    protected static ArrayList<String> names = new ArrayList<>();
 
-    public static void readNames() {
-        Path relativePath = Paths.get("");
-        String filePath = relativePath.toAbsolutePath().toString();
-        filePath = filePath + "\\src\\main\\java\\seedu\\duke\\names\\Names.txt";
-        relativePath = Paths.get(filePath);
-        //System.out.println("Current relative path is: " + filePath);
-        //System.out.println("Working Directory = " + System.getProperty("user.dir"));
-        Charset charset = StandardCharsets.UTF_8;
-
-        try {
-            names = Files.readAllLines(relativePath, charset);
-        } catch (IOException ex) {
-            System.out.format("I/O Exception", ex);
+    /**
+     * Returns a random name from the list of names stored in the database.
+     **/
+    public static void getName() throws NameException {
+        NamesDB.loadDB(names);
+        if (names.size() > 0) {
+            Random randomGenerator = new Random();
+            int index = randomGenerator.nextInt(names.size());
+            System.out.println(names.get(index));
+        } else {
+            System.out.println("No stored Names! Try adding some names first!");
         }
     }
 
-    public static void getName() {
-        readNames();
-        Random randomGenerator = new Random();
-        int index = randomGenerator.nextInt(names.size());
-        System.out.println(names.get(index));
+    /**
+     * Searches for names based on the given input.
+     **/
+    public static void filterNames(String match) throws NameException {
+        NamesDB.loadDB(names);
+        if (names.size() > 0) {
+            String toMatch = match.toLowerCase().replace("filter name", "").trim();
+            //System.out.println("Match: " + toMatch);
+            for (String name : (names.stream()
+                    .filter(x -> x.toLowerCase().contains(toMatch))
+                    .collect(Collectors.toList()))) {
+                System.out.println(name);
+            }
+        } else {
+            System.out.println("No stored Names! Try adding some names first!");
+        }
     }
 
-
-    public static void filterNames(String match) {
-        String toMatch = match.toLowerCase().replace("filter names","").trim();
-        //System.out.println("Match: " + toMatch);
-        readNames();
-        System.out.println(names.stream()
-                .filter(x -> x.toLowerCase().contains(toMatch))
-                .collect(Collectors.toList()));
+    /**
+     * Displays all names stored in the database.
+     **/
+    public static void listNames() throws NameException {
+        NamesDB.loadDB(names);
+        if (names.size() > 0) {
+            for (int i = 0; i < names.size(); i++) {
+                System.out.println(i + 1 + ". " + names.get(i));
+            }
+        } else {
+            System.out.println("No stored Names! Try adding some names first!");
+        }
     }
 
-    public static void listNames() {
-        readNames();
-        System.out.println(names);
+    /**
+     * Add name to the list of names.
+     **/
+    public static void addName(String name) throws NameException {
+        NamesDB.loadDB(names);
+        String nameToAdd = name.replaceAll("(?i)add name", "").trim();
+        names.add(nameToAdd);
+        NamesDB.updateDB(names);
+        System.out.println(nameToAdd + " has been added to the Names list!");
+    }
+
+    /**
+     * Delete name from the list of names.
+     **/
+    public static void deleteName(String index) throws NameException {
+        NamesDB.loadDB(names);
+        if (names.size() > 0) {
+            try {
+                int indexToDelete = Integer.parseInt(index.replaceAll("(?i)delete name", "").trim()) - 1;
+                String nameToDelete = names.get(indexToDelete);
+                names.remove(indexToDelete);
+                NamesDB.updateDB(names);
+                System.out.println(nameToDelete + " has been deleted from the Names list!");
+            } catch (IndexOutOfBoundsException | NumberFormatException e) {
+                System.out.println("Please enter a valid index!");
+            }
+        } else {
+            System.out.println("No stored Names! Try adding some names first!");
+        }
     }
 }
