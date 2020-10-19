@@ -33,7 +33,7 @@ public class Parser {
 
         switch (command) {
         case "addws":
-            return new AddWorkspaceCommand(description);
+            return new AddWorkspaceParser().parse(description);
 
         case "switchws":
             return new SwitchWorkspaceParser().parse(description);
