@@ -14,6 +14,10 @@ public class Lights extends Appliance {
         return "Light";
     }
 
+    public String getParameter() {
+        return " ";
+    }
+
     @Override
     public String toString() {
         return super.toString();
