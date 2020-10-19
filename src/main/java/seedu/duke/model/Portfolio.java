@@ -1,6 +1,6 @@
 package seedu.duke.model;
 
-import seedu.duke.data.exception.DukeException;
+import seedu.duke.exception.DukeException;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

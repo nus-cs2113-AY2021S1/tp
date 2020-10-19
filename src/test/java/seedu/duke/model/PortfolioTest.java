@@ -2,8 +2,7 @@ package seedu.duke.model;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.api.StockPriceFetcher;
-import seedu.duke.controller.Controller;
-import seedu.duke.data.exception.DukeException;
+import seedu.duke.exception.DukeException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
