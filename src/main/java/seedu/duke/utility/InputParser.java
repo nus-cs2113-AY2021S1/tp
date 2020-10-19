@@ -4,13 +4,17 @@ import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.ChangeRatingCommand;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.DeleteRatingCommand;
+import seedu.duke.commands.EditCommand;
 import seedu.duke.commands.RatingCommand;
 import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
 import seedu.duke.commands.UpdateShowSeasonCommand;
-import seedu.duke.commands.EditCommand;
+import seedu.duke.commands.WatchCommand;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static seedu.duke.utility.StringOperations.removeFirstWord;
+import static seedu.duke.utility.StringOperations.tokenizeStringArray;
 
 
 /**
@@ -27,7 +31,13 @@ public class InputParser {
         return isBye;
     }
 
-
+    /**
+     * Parses the input given by user and calls specific Commands
+     * while checking the validity of the input.
+     *
+     * @param input Command entered by user.
+     * @return Command based on the user input.
+     */
     public String parseInput(String input) {
 
         String[] singleWordInputs = new String[]{"bye", "list", "help", "watchtime"};
@@ -88,6 +98,10 @@ public class InputParser {
             parseEditCommand(input);
             return command;
 
+        case "watch":
+            parseWatchCommand(input, command);
+            return command;
+
         case "updatetimelimit":
             parseUpdateTimeLimitCommand(input);
             return command;
@@ -107,7 +121,7 @@ public class InputParser {
     }
 
     private static void parseEditCommand(String input) {
-        ArrayList<String> tokenizedString = StringOperations.tokenizeStringArray(input);
+        ArrayList<String> tokenizedString = tokenizeStringArray(input);
         try {
             EditCommand edit = new EditCommand(tokenizedString.get(1));
             edit.processCommand();
@@ -121,7 +135,7 @@ public class InputParser {
     }
 
     private static void parseUpdateTimeLimitCommand(String input) {
-        input = StringOperations.removeFirstWord(input);
+        input = removeFirstWord(input);
         int newWatchLimit = Integer.parseInt(input);
         /*try {
             WatchTime changeWatchLimit = new WatchTime(//insert args here);
@@ -135,8 +149,22 @@ public class InputParser {
         }*/
     }
 
+    private static void parseWatchCommand(String input, String command) {
+        ArrayList<String> tokenizedString = tokenizeStringArray(input);
+        try {
+            WatchCommand showWatched = new WatchCommand(command, tokenizedString);
+            showWatched.processCommand();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Please specify show name");
+            return;
+        } catch (NullPointerException e) {
+            Ui.printNotFoundException();
+            return;
+        }
+    }
+
     private static void parseEpisodeUpdateCommand(String input, String command) {
-        ArrayList<String> updateInputs = StringOperations.tokenizeStringArray(input);
+        ArrayList<String> updateInputs = tokenizeStringArray(input);
         UpdateShowEpisodeProgressCommand updateShowProgress;
         try {
             updateShowProgress = new UpdateShowEpisodeProgressCommand(command, updateInputs);
@@ -149,7 +177,7 @@ public class InputParser {
     }
 
     private static void parseSeasonUpdateCommand(String input, String command) {
-        ArrayList<String> seasonInputs = StringOperations.tokenizeStringArray(input);
+        ArrayList<String> seasonInputs = tokenizeStringArray(input);
         UpdateShowSeasonCommand updateShowSeason;
         try {
             updateShowSeason = new UpdateShowSeasonCommand(command, seasonInputs);
@@ -161,7 +189,7 @@ public class InputParser {
     }
 
     private static void parseAddRatingCommand(String input) {
-        input = StringOperations.removeFirstWord(input);
+        input = removeFirstWord(input);
         try {
             String[] tokenizedInput = input.split(" ");
             int showRating = Integer.parseInt(tokenizedInput[1]);
@@ -177,7 +205,7 @@ public class InputParser {
     }
 
     private static void parseDeleteRatingCommand(String input) {
-        input = StringOperations.removeFirstWord(input);
+        input = removeFirstWord(input);
         DeleteRatingCommand deleteShowRating = new DeleteRatingCommand(input);
         try {
             deleteShowRating.deleteRating(input);
@@ -188,7 +216,7 @@ public class InputParser {
     }
 
     private static void parseChangeRatingCommand(String input) {
-        input = StringOperations.removeFirstWord(input);
+        input = removeFirstWord(input);
         try {
             String[] tokenizedInput = input.split(" ");
             int showRating = Integer.parseInt(tokenizedInput[1]);
@@ -218,7 +246,7 @@ public class InputParser {
     }
 
     private static void parseDeleteCommand(String input) {
-        input = StringOperations.removeFirstWord(input);
+        input = removeFirstWord(input);
         DeleteCommand deletingShow = new DeleteCommand(input);
         try {
             deletingShow.delete(input);
