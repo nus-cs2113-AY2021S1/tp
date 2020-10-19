@@ -6,6 +6,7 @@ import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
 import seedu.duke.storage.StorageManager;
+import static seedu.duke.logger.AniLogger.getAniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,11 +18,11 @@ public class BookmarkAnimeCommand extends Command {
     private int bookmarkEpisode;
     // e for edit, a for add, d for delete
     private String bookmarkAction;
-    private static final Logger LOGGER = Logger.getLogger(BookmarkAnimeCommand.class.getName());
+    private static final Logger LOGGER = getAniLogger(BookmarkAnimeCommand.class.getName());
 
     public BookmarkAnimeCommand() {
         // Set log levels
-        LOGGER.setLevel(Level.WARNING);
+        // LOGGER.setLevel(Level.WARNING);
         LOGGER.log(Level.INFO, "Successfully loaded fields for Bookmark command.");
     }
 

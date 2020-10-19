@@ -2,6 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.command.WatchlistCommand;
 import seedu.duke.exception.AniException;
+import static seedu.duke.logger.AniLogger.getAniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,10 +18,10 @@ public class WatchlistParser extends CommandParser {
     private static final int LIST_REQUIRED_PARAMETER_COUNT = 1;
     private static final int MODIFICATION_REQUIRED_PARAMETER_COUNT = 2;
 
-    private static final Logger LOGGER = Logger.getLogger(WatchlistParser.class.getName());
+    private static final Logger LOGGER = getAniLogger(WatchlistParser.class.getName());
 
     public WatchlistParser() {
-        LOGGER.setLevel(Level.WARNING);
+        // LOGGER.setLevel(Level.WARNING);
     }
 
     public WatchlistCommand parse(String description) throws AniException {

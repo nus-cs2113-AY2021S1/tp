@@ -5,6 +5,7 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
 import seedu.duke.storage.StorageManager;
+import static seedu.duke.logger.AniLogger.getAniLogger;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -38,7 +39,7 @@ public class BrowseCommand extends Command {
     protected static final String SORT_RATING_ASCENDING = "Sorting by Rating Ascending (low to high)";
     protected static final String SORT_RATING_DESCENDING = "Sorting by Rating Descending (high to low)";
 
-    private static final Logger LOGGER = Logger.getLogger(BrowseCommand.class.getName());
+    private static final Logger LOGGER = getAniLogger(BrowseCommand.class.getName());
 
     public BrowseCommand() {
         this.description = "";
@@ -47,7 +48,7 @@ public class BrowseCommand extends Command {
         this.page = 1;
         this.indexToPrint = 0;
         this.filter = "";
-        LOGGER.setLevel(Level.WARNING);
+        // LOGGER.setLevel(Level.WARNING);
     }
 
     @Override
