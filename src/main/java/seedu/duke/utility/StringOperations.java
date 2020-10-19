@@ -2,7 +2,16 @@ package seedu.duke.utility;
 
 import java.util.ArrayList;
 
+
 public class StringOperations {
+
+    /**
+     * Tokenize the user input into an argument array.
+     *
+     * @param input              User input.
+     * @return ArrayList of tokenized user input.
+     * @throws NullPointerException if input is empty or invalid.
+     */
     public static ArrayList<String> tokenizeStringArray(String input) {
         ArrayList<String> inputArray = new java.util.ArrayList<>();
         for (String token : input.split(" ")) {
@@ -21,6 +30,12 @@ public class StringOperations {
         }
     }
 
+    /**
+     * Extracts the first word from user input.
+     *
+     * @param input User input.
+     * @return String containing the first word.
+     */
     public static String getFirstWord(String input) {
         int index = input.indexOf(' ');
         if (index == -1) { // Input only contains a single word
@@ -30,6 +45,12 @@ public class StringOperations {
         }
     }
 
+    /**
+     * Removes the first word from user input.
+     *
+     * @param input User input.
+     * @return string without first word or empty string if user input contains one word.
+     */
     public static String removeFirstWord(String input) {
         int index = input.indexOf(' ');
         if (index == -1) { // Input only contains a single word

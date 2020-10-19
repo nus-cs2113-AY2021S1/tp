@@ -82,6 +82,8 @@ public class Ui {
                 + "\n"
                 + ("season") + " - Update your season progress\n"
                 + "\n"
+                + ("updatewatchlimit") + " - Update your watch time limit\n"
+                + "\n"
                 + ("bye") + " - Exits the program\n");
         System.out.println("Refer to our user guide for more help!");
         printLine();
@@ -183,6 +185,13 @@ public class Ui {
     public static void printSavedList() {
         printLine();
         System.out.println("Your watchlist has been saved.");
+    }
+
+    public static void printFinishedAllSeasons(String showName) {
+        printLine();
+        System.out.println("You have finished all seasons of " + (showName) + " !");
+        System.out.println("If there is a new season, please add it using the 'edit' command and input the 'watch' "
+                + "command again.");
     }
 
     public static void printIoException() {

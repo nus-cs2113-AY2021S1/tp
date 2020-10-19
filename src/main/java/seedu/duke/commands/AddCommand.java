@@ -2,7 +2,6 @@ package seedu.duke.commands;
 
 import seedu.duke.classes.Show;
 import seedu.duke.utility.ShowList;
-import seedu.duke.utility.Ui;
 
 public class AddCommand extends Command {
     String[] description;
