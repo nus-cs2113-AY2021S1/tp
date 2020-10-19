@@ -13,6 +13,7 @@ public class AniLogger {
     private static final int MAX_LOG_COUNT = 1;
     private static final int MAX_LOG_SIZE = (int) (Math.pow(1024, 3) * 5); // 5 Megabytes
     private static final String LOG_FILE = "log/AniChan.log";
+
     private static final Level LOG_FILE_LEVEL = Level.INFO;
     private static final Level CONSOLE_LEVEL = Level.SEVERE;
 
