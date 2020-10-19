@@ -8,7 +8,7 @@ import fitr.user.User;
 public abstract class Command {
     protected String command;
 
-    public abstract void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user);
+    public abstract void execute(FoodList foodList, ExerciseList exerciseList, Storage storage, User user);
 
     public abstract boolean isExit();
 }
