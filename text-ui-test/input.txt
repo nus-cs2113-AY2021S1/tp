@@ -6,11 +6,11 @@ watchlist -n ops
 watchlist -s 4
 watchlist -d 4
 watchlist -l
-add -a MyFirstAnime
-add -a MySecondAnime
+add -a 1
+add -a 3
 bookmark -a 1
 bookmark -a 410
 bookmark 1 -e 5
 bookmark -l
-add -a MyFirstAnime
+add -a 1
 exit

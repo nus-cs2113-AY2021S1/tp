@@ -1,5 +1,6 @@
 package seedu.duke.parser;
 
+
 import seedu.duke.command.AddToWatchlistCommand;
 import seedu.duke.command.AddWorkspaceCommand;
 import seedu.duke.command.BookmarkAnimeCommand;
@@ -7,6 +8,7 @@ import seedu.duke.command.Command;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpCommand;
 import seedu.duke.command.WatchlistCommand;
+import seedu.duke.command.RemoveCommand;
 import seedu.duke.exception.AniException;
 
 import java.util.logging.Level;
@@ -42,7 +44,10 @@ public class Parser {
             return new WatchlistParser().parse(description);
 
         case "add":
-            return new AddToWatchlistCommand(description);
+            return new AddToWatchlistParser().parse(description);
+        
+        case "remove":
+            return new RemoveCommandParser().parse(description);
 
         case "bookmark":
             return new BookmarkParser().parse(description);

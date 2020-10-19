@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.anime.Anime;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.Workspace;
@@ -12,20 +13,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AddToWatchlistCommand extends Command {
-    private static final String ADD_OPTION = "-a";
-    
-    private String option;
-    private String animeName = "";
+    protected static final String DUPLICATE_ANIME_ERROR = "Anime is already in this watchlist!";
+    protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
+
+    private Integer animeIndex;
     private static final Logger LOGGER = Logger.getLogger(AddToWatchlistCommand.class.getName());
 
-    public AddToWatchlistCommand(String description) {
+    public AddToWatchlistCommand() {
         LOGGER.setLevel(Level.WARNING);
-        String[] descriptionSplit = description.split(" ", 2);
-        
-        option = descriptionSplit[0];
-        if (descriptionSplit.length == 2) {
-            animeName = descriptionSplit[1];
-        }
     }
 
     /**
@@ -34,27 +29,37 @@ public class AddToWatchlistCommand extends Command {
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         Workspace activeWorkspace = user.getActiveWorkspace();
-        if (!option.equals(ADD_OPTION)) {
-            LOGGER.log(Level.WARNING, "Option type given is wrong");
-            throw new AniException("Watchlist command only accepts the option: \"-a\".");
-        }
-        assert option.equals("-a") == true : "option type should have been \"-a\".";
-        addToWatchlist(storageManager, activeWorkspace);
+        addToWatchlist(animeData, storageManager, activeWorkspace);
+        
+        Anime anime = animeData.getAnimeByID(animeIndex);
+        String animeName = anime.getAnimeName();
 
-        return "Anime added to watchlist!";
+        return animeName + " added to watchlist!";
     }
     
-    public void addToWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
-        if (animeName == null || animeName.trim().isEmpty()) {
-            LOGGER.log(Level.WARNING, "Anime name is empty, exception thrown");
-            throw new AniException("Anime name cannot be empty.");
+    public void addToWatchlist(AnimeData animeData, StorageManager storageManager, 
+                               Workspace activeWorkspace) throws AniException {
+        Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
+        ArrayList<Integer> activeWatchlistList = activeWatchlist.getAnimeList();
+        int indexSize = animeData.getSize();
+        
+        if (activeWatchlistList.contains(animeIndex)) {
+            throw new AniException(DUPLICATE_ANIME_ERROR);
+        } else if (animeIndex < 0) {
+            throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
+        } else if (animeIndex >= indexSize) {
+            throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
         }
 
-        Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
-        activeWatchlist.addAnimeToList(animeName);
-        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
+        assert this.animeIndex >= 0 : "Anime index has to be valid";
+        activeWatchlist.addAnimeToList(animeIndex);
 
+        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
         LOGGER.log(Level.INFO, "Successfully added and stored anime into active watchlist");
+    }
+       
+    public void setAnimeIndex(Integer animeIndex) {
+        this.animeIndex = animeIndex - 1;
     }
 }

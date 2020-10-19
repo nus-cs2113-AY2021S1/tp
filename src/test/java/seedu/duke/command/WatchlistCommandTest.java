@@ -30,11 +30,11 @@ class WatchlistCommandTest {
         user = new User("Testing", "Male");
 
         Watchlist secondWatchlist = new Watchlist("Second");
-        secondWatchlist.addAnimeToList("The Slayers Next");
-        secondWatchlist.addAnimeToList("Pokémon");
+        secondWatchlist.addAnimeToList(1);
+        secondWatchlist.addAnimeToList(2);
 
         Watchlist thirdWatchlist = new Watchlist("Third");
-        thirdWatchlist.addAnimeToList("Naruto");
+        thirdWatchlist.addAnimeToList(3);
 
         ArrayList<Watchlist> watchlistList = new ArrayList<>();
         watchlistList.add(new Watchlist("First"));
