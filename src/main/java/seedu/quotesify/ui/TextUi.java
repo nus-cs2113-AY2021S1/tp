@@ -68,8 +68,12 @@ public class TextUi {
     }
 
     public void printAllQuotes(QuoteList quotes) {
-        System.out.println(UiMessage.LIST_ALL_QUOTES);
-        System.out.println(quotes);
+        if (quotes.getSize() > 0) {
+            System.out.println(UiMessage.LIST_ALL_QUOTES);
+            System.out.println(quotes);
+        } else {
+            System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
+        }
     }
 
     public void printAllQuotesByAuthor(QuoteList quoteList, String authorName) {
