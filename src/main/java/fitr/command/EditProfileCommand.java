@@ -16,7 +16,7 @@ public class EditProfileCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user) {
+    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage, User user) {
         if (command.equalsIgnoreCase(Messages.EDIT_NAME)) {
             editName(user);
         } else if (command.equalsIgnoreCase(Messages.EDIT_HEIGHT)) {
