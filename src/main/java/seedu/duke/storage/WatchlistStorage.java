@@ -34,22 +34,26 @@ public class WatchlistStorage extends Storage {
             return "Empty watchlist file.";
         }
 
-        boolean hasCorruptedWatchlist = false;
+        boolean hasInvalidWatchlist = false;
         String[] fileLines = fileString.split(System.lineSeparator());
         for (String line : fileLines) {
             Watchlist decodedWatchlist = decode(line);
-            if (decodedWatchlist == null) {
-                hasCorruptedWatchlist = true;
+            boolean isValidWatchlist = (decodedWatchlist != null) && !(watchlistList.contains(decodedWatchlist));
+            if (!isValidWatchlist) {
+                hasInvalidWatchlist = true;
                 continue;
             }
+
             watchlistList.add(decodedWatchlist);
         }
 
-        if (hasCorruptedWatchlist) {
-            return "Not all loaded successfully.";
-        } else {
-            return "Loaded successfully.";
+        if (hasInvalidWatchlist && watchlistList.size() == 0) {
+            return "No watchlist loaded successfully (all invalid).";
+        } else if (hasInvalidWatchlist) {
+            return "Not all loaded successfully (some invalid).";
         }
+
+        return "Loaded successfully.";
     }
 
     // ========================== Encode and Decode ==========================
@@ -77,12 +81,17 @@ public class WatchlistStorage extends Storage {
         String watchlistName = lineSplit[0];
         String animeListString = lineSplit[1].substring(1, lineSplit[1].length() - 1);
 
-        ArrayList<String> animeList = new ArrayList<>();
+        ArrayList<Integer> animeList = new ArrayList<>();
+        if (animeListString.isBlank()) {
+            return new Watchlist(watchlistName, animeList);
+        }
+
         String[] animes = animeListString.split(", ");
-        for (String anime : animes) {
-            if (!anime.isBlank()) {
-                animeList.add(anime);
+        for (String animeIndex : animes) {
+            if (!isValidAnimeIndex(animeIndex)) {
+                return null;
             }
+            animeList.add(Integer.parseInt(animeIndex));
         }
 
         return new Watchlist(watchlistName, animeList);
@@ -96,7 +105,13 @@ public class WatchlistStorage extends Storage {
             return false;
         }
 
-        boolean isValidAnimeListString = (lineSplit[1].startsWith("[")) && (lineSplit[1].endsWith("]"));
-        return isValidAnimeListString;
+        return (lineSplit[1].startsWith("[")) && (lineSplit[1].endsWith("]"));
+    }
+
+    private boolean isValidAnimeIndex(String animeIndex) {
+        boolean isAnimeIndexBlank = animeIndex.isBlank();
+        boolean isAnimeIndexInteger = isPositiveInteger(animeIndex);
+
+        return !isAnimeIndexBlank && isAnimeIndexInteger;
     }
 }
