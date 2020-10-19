@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public abstract class Storage {
+    private static final String NEGATIVE_INTEGER_REGEX = "^[-]\\d+$";
+    private static final String POSITIVE_INTEGER_REGEX = "^\\d+$";
 
     public String readFile(String filePath) throws AniException {
         StringBuilder sbFileString = new StringBuilder();
@@ -36,5 +38,13 @@ public abstract class Storage {
         } catch (IOException exception) {
             throw new AniException("Failed to write to the file.");
         }
+    }
+
+    public boolean isPositiveInteger(String integerString) {
+        return integerString.matches(POSITIVE_INTEGER_REGEX);
+    }
+
+    public boolean isPositiveOrNegativeInteger(String integerString) {
+        return integerString.matches(POSITIVE_INTEGER_REGEX) || integerString.matches(NEGATIVE_INTEGER_REGEX);
     }
 }

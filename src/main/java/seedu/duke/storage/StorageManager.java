@@ -12,10 +12,9 @@ import java.util.ArrayList;
 
 public class StorageManager {
     private final String storageDirectory;
-
-    UserStorage userStorage;
-    WatchlistStorage watchlistStorage;
-    BookmarkStorage bookmarkStorage;
+    private final UserStorage userStorage;
+    private final WatchlistStorage watchlistStorage;
+    private final BookmarkStorage bookmarkStorage;
 
     public StorageManager(String storageDirectory) {
         this.storageDirectory = storageDirectory;
@@ -49,7 +48,7 @@ public class StorageManager {
         return userStorage.load();
     }
 
-    // ========================== Workspace Saving and Loading ==========================
+    // ========================== Workspace Saving ==========================
 
     public void saveWorkspace(Workspace workspace) throws AniException {
         new File(storageDirectory + workspace.getName()).mkdirs();
