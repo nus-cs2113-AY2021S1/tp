@@ -42,7 +42,7 @@ public class AddNoteCommand extends Command {
 
         // Search for duplicates
         if (notebook.getNote(note.getTitle())) {
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE, false);
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
 
         // Get Content

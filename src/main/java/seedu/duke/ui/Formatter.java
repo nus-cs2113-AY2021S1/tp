@@ -47,7 +47,7 @@ public class Formatter {
         formattedString = formattedString.concat(generatesHeader(header));
         String[] lines = note.getContent().split("\\n");
         for (String line : lines) {
-            formattedString = formattedString.concat(encloseRow(line, false));
+            formattedString = formattedString.concat(encloseRow(line));
         }
         return encloseTopAndBottom(formattedString);
     }

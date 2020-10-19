@@ -55,18 +55,18 @@ public class DeleteNoteCommand extends Command {
                 String deletedTitle = notebook.getNotes().get(index).getTitle();
                 notebook.deleteNote(index);
 
-                return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + deletedTitle, false);
+                return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + deletedTitle);
             } else {
                 isDeleted = notebook.deleteNote(title);
 
                 if (isDeleted) {
-                    return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + title, false);
+                    return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + title);
                 } else {
-                    return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE, false);
+                    return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
                 }
             }
         } catch (IndexOutOfBoundsException exception) {
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE, false);
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
     }
 }

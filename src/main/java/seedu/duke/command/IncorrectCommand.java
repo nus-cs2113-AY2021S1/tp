@@ -15,7 +15,7 @@ public class IncorrectCommand extends Command {
 
     @Override
     public String execute() {
-        return Formatter.formatString(message, false);
+        return Formatter.formatString(message);
     }
 
 }
