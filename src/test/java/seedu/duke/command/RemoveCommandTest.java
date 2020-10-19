@@ -52,18 +52,18 @@ class RemoveCommandTest {
     @Test
     void execute_zeroInteger_throwsAniException() throws AniException {
         RemoveCommandParser testParser = new RemoveCommandParser();
-        RemoveCommand testAdd = testParser.parse(ZERO_WATCHLIST_INDEX);
+        RemoveCommand testRemove = testParser.parse(ZERO_WATCHLIST_INDEX);
         assertThrows(AniException.class, () -> {
-            testAdd.execute(animeData, storageManager, user);
+            testRemove.execute(animeData, storageManager, user);
         });
     }
 
     @Test
     void execute_indexLargerThanWatchlistSize_throwsAniException() throws AniException {
         RemoveCommandParser testParser = new RemoveCommandParser();
-        RemoveCommand testAdd = testParser.parse(LARGE_WATCHLIST_INDEX);
+        RemoveCommand testRemove = testParser.parse(LARGE_WATCHLIST_INDEX);
         assertThrows(AniException.class, () -> {
-            testAdd.execute(animeData, storageManager, user);
+            testRemove.execute(animeData, storageManager, user);
         });
     }
 }
