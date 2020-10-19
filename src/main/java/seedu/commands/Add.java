@@ -58,6 +58,6 @@ public class Add extends Command {
         }
         task.setTaskID(taskID);
         tasks.addTask(task);
-        return new CommandResult(ADD_MESSAGE, tasks);
+        return new CommandResult(ADD_MESSAGE);
     }
 }
