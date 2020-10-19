@@ -14,12 +14,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class BookmarkParserTest {
+    private int chosenCategory;
 
     @Test
     void evaluateInput_listCommand_parsedCorrectly() throws InvalidCommandException {
         BookmarkParser parser = new BookmarkParser();
         String input = "list";
-        final BookmarkCommand result = parser.evaluateInput(input);
+        final BookmarkCommand result = parser.evaluateInput(input,chosenCategory);
         assertTrue(result.getClass().isAssignableFrom(ListCommand.class));
     }
 
@@ -27,7 +28,7 @@ class BookmarkParserTest {
     void evaluateInput_changeModeCommand_parsedCorrectly() throws InvalidCommandException {
         BookmarkParser parser = new BookmarkParser();
         String input = "bm 2";
-        final BookmarkCommand result = parser.evaluateInput(input);
+        final BookmarkCommand result = parser.evaluateInput(input,chosenCategory);
         assertTrue(result.getClass().isAssignableFrom(ChangeModeCommand.class));
     }
 
@@ -35,7 +36,7 @@ class BookmarkParserTest {
     void evaluateInput_addCommand_parsedCorrectly() throws InvalidCommandException {
         BookmarkParser parser = new BookmarkParser();
         String input = "add http://facebook.com";
-        final BookmarkCommand result = parser.evaluateInput(input);
+        final BookmarkCommand result = parser.evaluateInput(input,chosenCategory);
         assertTrue(result.getClass().isAssignableFrom(AddLinkCommand.class));
     }
 
@@ -43,7 +44,7 @@ class BookmarkParserTest {
     void evaluateInput_removeCommand_parsedCorrectly() throws InvalidCommandException {
         BookmarkParser parser = new BookmarkParser();
         String input = "rm 2";
-        final BookmarkCommand result = parser.evaluateInput(input);
+        final BookmarkCommand result = parser.evaluateInput(input,chosenCategory);
         assertTrue(result.getClass().isAssignableFrom(RemoveLinkCommand.class));
     }
 
@@ -51,25 +52,25 @@ class BookmarkParserTest {
     void evaluateInput_backCommand_parsedCorrectly() throws InvalidCommandException {
         BookmarkParser parser = new BookmarkParser();
         String input = "back";
-        final BookmarkCommand result = parser.evaluateInput(input);
+        final BookmarkCommand result = parser.evaluateInput(input,chosenCategory);
         assertTrue(result.getClass().isAssignableFrom(BackCommand.class));
     }
 
     @Test
-    void evaluateInput_invalidBookmarkCommand_expectExceptions() throws InvalidCommandException {
+    void evaluateInput_invalidBookmarkCommand_expectExceptions() {
         BookmarkParser parser = new BookmarkParser();
         String input = "huhuhuh";
         assertThrows(InvalidCommandException.class, () -> {
-            parser.evaluateInput(input);
+            parser.evaluateInput(input,chosenCategory);
         });
     }
 
     @Test
-    void evaluateInput_nullCommand_expectExceptions() throws InvalidCommandException {
+    void evaluateInput_nullCommand_expectExceptions() {
         BookmarkParser parser = new BookmarkParser();
         String input = null;
         assertThrows(InvalidCommandException.class, () -> {
-            parser.evaluateInput(input);
+            parser.evaluateInput(input,chosenCategory);
         });
     }
 }

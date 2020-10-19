@@ -2,7 +2,7 @@ package bookmark;
 
 import bookmark.commands.BookmarkCommand;
 import exceptions.InvalidCommandException;
-import log.StudyItLog;
+import studyit.StudyItLog;
 
 
 import java.util.ArrayList;

@@ -1,8 +1,20 @@
+<<<<<<< HEAD:src/main/java/Ui.java
 import bookmark.BookmarkRun;
 import bookmark.BookmarkUi;
 import exceptions.InvalidModeException;
 import log.StudyItLog;
 
+=======
+package userinterface;
+
+import bookmark.BookmarkUi;
+import exceptions.InvalidModeException;
+import studyit.ModeNames;
+import studyit.Mode;
+import studyit.CommandParser;
+import studyit.StudyIt;
+import studyit.StudyItLog;
+>>>>>>> master:src/main/java/userinterface/Ui.java
 import java.util.Scanner;
 
 public class Ui {
@@ -20,8 +32,10 @@ public class Ui {
     public static String inputCommand() {
         String command;
         Scanner in = new Scanner(System.in);
+        assert in != null : "null is passed in";
 
         command = in.nextLine();
+        assert command.length() >= 0 : "The length of command should be at least 0";
 
         return command;
     }

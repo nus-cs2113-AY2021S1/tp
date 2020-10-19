@@ -1,3 +1,5 @@
+package academic;
+
 public enum AcademicCommandType {
     ADD_CONTACT,
     CHECK_CONTACT,

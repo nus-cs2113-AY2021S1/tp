@@ -1,3 +1,5 @@
+package studyit;
+
 import exceptions.InvalidModeException;
 import log.StudyItLog;
 
