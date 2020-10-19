@@ -7,6 +7,7 @@ import seedu.duke.human.User;
 import seedu.duke.human.Workspace;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.watchlist.Watchlist;
+import static seedu.duke.logger.AniLogger.getAniLogger;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -18,10 +19,10 @@ public class RemoveCommand extends Command {
 
     private Integer watchlistListIndex;
     private Integer animeIndex;
-    private static final Logger LOGGER = Logger.getLogger(RemoveCommand.class.getName());
+    private static final Logger LOGGER = getAniLogger(RemoveCommand.class.getName());
     
     public RemoveCommand() {
-        LOGGER.setLevel(Level.WARNING);
+        // LOGGER.setLevel(Level.WARNING);
     }
 
     /**

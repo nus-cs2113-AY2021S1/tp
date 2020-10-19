@@ -7,6 +7,7 @@ import seedu.duke.human.Workspace;
 import seedu.duke.human.User;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.watchlist.Watchlist;
+import static seedu.duke.logger.AniLogger.getAniLogger;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -17,10 +18,10 @@ public class AddToWatchlistCommand extends Command {
     protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
 
     private Integer animeIndex;
-    private static final Logger LOGGER = Logger.getLogger(AddToWatchlistCommand.class.getName());
+    private static final Logger LOGGER = getAniLogger(AddToWatchlistCommand.class.getName());
 
     public AddToWatchlistCommand() {
-        LOGGER.setLevel(Level.WARNING);
+        // LOGGER.setLevel(Level.WARNING);
     }
 
     /**
