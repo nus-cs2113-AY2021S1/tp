@@ -387,28 +387,46 @@ public class Parser {
      * @return A string of converted content input.
      * @throws StringIndexOutOfBoundsException if an error occurs.
      */
-    public static String inputContent() throws StringIndexOutOfBoundsException {
-        Scanner input = new Scanner(System.in);
-        StringBuilder commandInput = new StringBuilder();
+    public static String inputContent() {
+        boolean isInputSuccess = false;
+        StringBuilder commandInput;
 
-        // Type note
         do {
-            commandInput.append(input.nextLine());
+            Scanner input = new Scanner(System.in);
+            commandInput = new StringBuilder();
 
-            // Add next line when user press enter
-            if (!commandInput.toString().equalsIgnoreCase(PREFIX_DELIMITER + PREFIX_END)) {
-                commandInput.append(STRING_NEW_LINE);
+            System.out.println("Enter Note:");
+            try {
+                // Type note
+                do {
+                    commandInput.append(input.nextLine());
+
+                    // Add next line when user press enter
+                    if (!commandInput.toString().equalsIgnoreCase(PREFIX_DELIMITER + PREFIX_END)) {
+                        commandInput.append(STRING_NEW_LINE);
+                    }
+
+                    // "/del" Delete previous line if there user makes mistakes
+                    if (commandInput.toString().contains(PREFIX_DELIMITER + PREFIX_DELETE_LINE)) {
+                        deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELIMITER
+                                + PREFIX_DELETE_LINE + STRING_NEW_LINE, 0);
+                        deleteLine(commandInput, STRING_NEW_LINE, 1);
+                    }
+                } while (!commandInput.toString().contains(PREFIX_DELIMITER + PREFIX_END)); // "/end" to end input note
+
+                // Delete "/end" command when user ends the edit
+                deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELIMITER
+                        + PREFIX_END + STRING_NEW_LINE, 0);
+
+                if (!commandInput.toString().isBlank()) {
+                    isInputSuccess = true;
+                } else {
+                    System.out.println(SystemException.ExceptionType.EXCEPTION_CONTENT_MISSING);
+                }
+            } catch (StringIndexOutOfBoundsException exception) {
+                System.out.println(SystemException.ExceptionType.EXCEPTION_INVALID_END_INPUT);
             }
-
-            // "/del" Delete previous line if there user makes mistakes
-            if (commandInput.toString().contains(PREFIX_DELIMITER + PREFIX_DELETE_LINE)) {
-                deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELIMITER + PREFIX_DELETE_LINE + STRING_NEW_LINE, 0);
-                deleteLine(commandInput, STRING_NEW_LINE, 1);
-            }
-        } while (!commandInput.toString().contains(PREFIX_DELIMITER + PREFIX_END)); // "/end" to end input note
-
-        // Delete "/end" command when user ends the edit
-        deleteLine(commandInput, STRING_NEW_LINE + PREFIX_DELIMITER + PREFIX_END + STRING_NEW_LINE, 0);
+        } while (!isInputSuccess);
 
         return commandInput.toString();
     }
@@ -418,10 +436,10 @@ public class Parser {
      *
      * @param commandInput Original string of the note content.
      * @param characters String of character to be removed.
-     * @param noOfChar Number of character. 0 to remove new line, 1 to resume typing on the same line.
+     * @param charCount Number of character. 0 to remove new line, 1 to resume typing on the same line.
      */
-    public static void deleteLine(StringBuilder commandInput, String characters, int noOfChar) {
-        int lastChar = commandInput.lastIndexOf(characters) + noOfChar;
+    public static void deleteLine(StringBuilder commandInput, String characters, int charCount) {
+        int lastChar = commandInput.lastIndexOf(characters) + charCount;
         commandInput.delete(lastChar, commandInput.length());
     }
 

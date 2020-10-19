@@ -48,6 +48,7 @@ public class DeleteNoteCommand extends Command {
 
     @Override
     public String execute() {
+        boolean isDeleted;
         try {
             // If there is no title, delete note by index. Else delete by title.
             if (title.isBlank()) {
@@ -56,13 +57,15 @@ public class DeleteNoteCommand extends Command {
 
                 return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + deletedTitle, false);
             } else {
-                notebook.deleteNote(title);
+                isDeleted = notebook.deleteNote(title);
 
-                return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + title, false);
+                if (isDeleted) {
+                    return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + title, false);
+                } else {
+                    return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE, false);
+                }
             }
-        } catch (SystemException exception) {
-            return Formatter.formatString(exception.getMessage(), false);
-        }  catch (IndexOutOfBoundsException exception) {
+        } catch (IndexOutOfBoundsException exception) {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE, false);
         }
     }

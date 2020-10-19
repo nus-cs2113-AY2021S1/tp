@@ -10,8 +10,6 @@ import seedu.duke.data.timetable.Timetable;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.Formatter;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;

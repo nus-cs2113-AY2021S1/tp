@@ -1,7 +1,5 @@
 package seedu.duke.data.notebook;
 
-import seedu.duke.data.exception.SystemException;
-
 import java.util.ArrayList;
 
 /**
@@ -40,6 +38,10 @@ public class Notebook {
         return notes.get(index);
     }
 
+    public boolean getNote(String noteTitle) {
+        return notes.stream().anyMatch(note -> note.getTitle().equalsIgnoreCase(noteTitle));
+    }
+
     /**
      * Adds a note into the notebook.
      */
@@ -57,11 +59,8 @@ public class Notebook {
     /**
      * Removes a note from the timetable.
      */
-    public void deleteNote(String title) throws SystemException {
-        final boolean isDeleted = notes.removeIf(note -> note.getTitle().equals(title));
-        if (!isDeleted) {
-            throw new SystemException(SystemException.ExceptionType.EXCEPTION_NOTEBOOK_NOT_EXIST);
-        }
+    public boolean deleteNote(String title) {
+        return notes.removeIf(note -> note.getTitle().equalsIgnoreCase(title));
     }
 
     public void setNotes(ArrayList<Note> notes) {

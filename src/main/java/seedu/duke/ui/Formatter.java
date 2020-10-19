@@ -1,6 +1,5 @@
 package seedu.duke.ui;
 
-import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;

@@ -1,12 +1,8 @@
 package seedu.duke.command;
 
-import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.ui.Formatter;
 
-import java.util.ArrayList;
-
-import static java.util.stream.Collectors.toList;
 import static seedu.duke.util.Parser.inputContent;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
@@ -43,28 +39,15 @@ public class AddNoteCommand extends Command {
     @Override
     public String execute() {
         String content = note.getContent();
-        boolean isInputSuccess = false;
 
         // Search for duplicates
-        ArrayList<Note> filteredTaskList = (ArrayList<Note>) notebook.getNotes().stream()
-                .filter((s) -> s.getTitle().equalsIgnoreCase(note.getTitle()))
-                .collect(toList());
-
-        if (!filteredTaskList.isEmpty()) {
+        if (notebook.getNote(note.getTitle())) {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE, false);
         }
 
         // Get Content
         if (content.isBlank()) {
-            do {
-                System.out.println("Enter Note:");
-                try {
-                    content = inputContent();
-                    isInputSuccess = true;
-                } catch (StringIndexOutOfBoundsException exception) {
-                    System.out.println(SystemException.ExceptionType.EXCEPTION_INVALID_END_INPUT);
-                }
-            } while (!isInputSuccess);
+            content = inputContent();
         }
 
         // Edit the note
