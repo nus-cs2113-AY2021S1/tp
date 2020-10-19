@@ -1,8 +1,6 @@
 package seedu.quotesify.category;
 
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
@@ -55,6 +53,24 @@ public class CategoryList extends QuotesifyList<Category> {
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
         category.setBookList(bookList.filterByCategory(category.getCategoryName()));
         category.setQuoteList(quoteList.filterByCategory(category.getCategoryName()));
+    }
+
+    public void updateCategoryInBooksAndQuotes(String oldCategory, String newCategory) {
+        BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+        QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
+        bookList.getList().forEach(book -> {
+                    if (book.getCategories().contains(oldCategory)) {
+                        book.getCategories().remove(oldCategory);
+                        book.getCategories().add(newCategory);
+                    }
+                });
+
+        quoteList.getList().forEach(quote -> {
+                    if (quote.getCategories().contains(oldCategory)) {
+                        quote.getCategories().remove(oldCategory);
+                        quote.getCategories().add(newCategory);
+                    }
+                });
     }
 
     @Override

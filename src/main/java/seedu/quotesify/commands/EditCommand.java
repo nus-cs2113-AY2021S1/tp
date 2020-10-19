@@ -16,8 +16,6 @@ import seedu.quotesify.rating.RatingParser;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
-import java.util.logging.Level;
-
 public class EditCommand extends Command {
 
     private String type;
@@ -168,12 +166,13 @@ public class EditCommand extends Command {
             String oldCategory = oldAndNewCategories[0];
             String newCategory = oldAndNewCategories[1];
 
-            Category category = categoryList.getCategoryByName(oldCategory);
             if (categoryList.isExistingCategory(newCategory)) {
                 throw new QuotesifyException("Category [" + newCategory + "] already exists!");
             }
 
+            Category category = categoryList.getCategoryByName(oldCategory);
             category.setCategoryName(newCategory);
+            categoryList.updateCategoryInBooksAndQuotes(oldCategory, newCategory);
             ui.printEditCategory(oldCategory, newCategory);
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
