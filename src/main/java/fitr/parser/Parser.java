@@ -9,6 +9,7 @@ import fitr.command.ExitCommand;
 import fitr.command.HelpCommand;
 import fitr.command.InvalidCommand;
 import fitr.command.ViewCommand;
+import fitr.command.EditProfileCommand;
 
 public class Parser {
     public static Command parse(String userInput) {
@@ -26,6 +27,8 @@ public class Parser {
             return new AddExerciseCommand(userInput);
         case "view":
             return new ViewCommand(userInput);
+        case "edit":
+            return new EditProfileCommand(userInput);
         case "help":
             return new HelpCommand(userInput);
         case "delete":
