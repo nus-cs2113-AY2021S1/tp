@@ -66,11 +66,11 @@ public class ListCommand extends Command {
             } else {
                 ArrayList<Appliance> filterApplianceList =
                         (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
-                        .filter((s) -> s.getLocation().contains(filteredLocation))
+                        .filter((s) -> s.getLocation().equals(filteredLocation))
                         .collect(toList());
 
                 if (filterApplianceList.isEmpty()) {
-                    return new CommandResult("There is no appliance in this \"" + filteredLocation + "\"");
+                    return new CommandResult("Location: \"" + filteredLocation + "\" does not exist.");
                 }
                 String formattedResult = (LINE + "Here are the appliances in \"" + filteredLocation + "\"");
                 String format = "%-2d. %-" + Appliance.getMaxNameLength() + "s"

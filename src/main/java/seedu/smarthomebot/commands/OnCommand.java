@@ -3,7 +3,7 @@ package seedu.smarthomebot.commands;
 import seedu.smarthomebot.data.AirConditioner;
 import seedu.smarthomebot.data.Fan;
 import seedu.smarthomebot.data.framework.Appliance;
-import seedu.smarthomebot.exceptions.InvalidValue;
+import seedu.smarthomebot.exceptions.InvalidValueException;
 
 import java.util.ArrayList;
 
@@ -31,11 +31,11 @@ public class OnCommand extends Command {
         this.parameter = parameter;
     }
 
-    private static int convertParameterToInt(String parameter) throws InvalidValue {
+    private static int convertParameterToInt(String parameter) throws InvalidValueException {
         try {
             return Integer.parseInt(parameter);
         } catch (NumberFormatException e) {
-            throw new InvalidValue();
+            throw new InvalidValueException();
         }
 
     }
@@ -82,7 +82,7 @@ public class OnCommand extends Command {
             if ((acTemperature < upperBound) && (acTemperature > lowerBound)) {
                 return true;
             }
-        } catch (InvalidValue e) {
+        } catch (InvalidValueException e) {
             return false;
         }
         return false;
@@ -93,7 +93,7 @@ public class OnCommand extends Command {
         String type = APPLIANCE_TYPE;
         ArrayList<Appliance> filterApplianceList =
                 (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
-                        .filter((s) -> s.getLocation().contains(name))
+                        .filter((s) -> s.getLocation().equals(name))
                         .collect(toList());
         if (!filterApplianceList.isEmpty()) {
             type = LOCATION_TYPE;
