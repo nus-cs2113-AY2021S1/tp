@@ -3,6 +3,7 @@
 - [Introduction](#introduction)
 - [Quick Start](#quick-start)
 - [Features](#features)
+    - [Show help messages: `help`](#showing-the-help-messages-help)
     - [Clearing the lists: `clear`](#clearing-the-lists-clear)
     - [Exiting the program: `bye`](#exiting-the-program-bye)
     - [Saving the data](#saving-the-data)
@@ -20,19 +21,31 @@ Fitr is a command-line application, helping you keep track of your food intake a
 
 ## Features
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+### Show help messages: `help`
+Show help messages with all valid commands.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
-
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+Format: `help`
 
 Example of usage: 
 
-`todo n/Write the rest of the User Guide d/next week`
+`help`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+Expected outcome:
+
+<pre>These are commands Fitr understands:<br/>
+food              Adds food entry to Fitr program<br/>
+                  Format: food &lt;Name of food&gt; / &lt;Number of Calories&gt; &lt;Quantity (Optional)&gt;<br/>
+exercise          Adds exercise entry to Fitr program<br/>
+                  Format: exercise &lt;Name of exercise&gt; / &lt;Number of Calories> &lt;Quantity (Optional)&gt;<br/>
+view profile      View your profile information`<br/>
+view bmi          View your BMI<br/>
+view food         View food entries<br/>
+view exercise     View exercise entries<br/>
+view summary      View calorie summary<br/>
+delete            Deletes selected entry<br/>
+                  Format: delete food &lt;Index from Food List&gt; or delete exercise &lt;Index from Exercise List&gt;<br/>
+bye               Exits the program<br/></pre>
+
 
 ### Clearing the lists: `clear`
 
