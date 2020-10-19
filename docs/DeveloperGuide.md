@@ -23,6 +23,7 @@ Improves the reading experience of users with quick and easy features
 |Version| As a ... | I want to ... | So that I ...|
 |--------|----------|---------------|------------------|
 |v1.0|user|give rating for the books I read|can recommend book titles to others when asked|
+|v1.0|user|categorise my books or quotes|can view items from a specific category whenever I need|
 |v2.0|user after some time|find a book rating by its book title|do not have to go through the whole list|
 
 ## Non-Functional Requirements
@@ -112,6 +113,116 @@ Improves the reading experience of users with quick and easy features
    * `delete -q 9999999`: non existent quote number
    
    Expected: No quote is deleted. A message with error details will 
+
+### Adding categories
+1. Add one or more category to a book
+   - Prerequisites: A book should exist in Quotesify.
+   - Assume that the book "Harry Potter" is added into Quotesify assigned to index 1.
+   - Test case: `add -c fantasy -b 1`
+     
+     Expected: A message will be prompted to indicate that category has been tagged to the book successfully.
+   - Test case: `add -c fantasy romance -b 1`
+     
+     Expected: A message will be prompted to indicate that categories have been tagged to the book successfully.
+     
+2. Add one or more category to a quote
+   - Prerequisites: A quote should exist in Quotesify.
+   - Assume that the quote "Life is great!" is added into Quotesify assigned to index 1.
+   - Test case: `add -c inspirational -q 1`
+     
+     Expected: A message will be prompted to indicate that category has been tagged to the quote successfully.
+   - Test case: `add -c inspirational happy -q 1`
+     
+     Expected: A message will be prompted to indicate that categories have been tagged to the quote successfully.
+     
+3. Add one or more category to a book and quote
+   - Prerequisites: A book and quote should exist in Quotesify.
+   - Assume that an existing book and quote are both assigned to index 1.
+   - Test case: `add -c inspirational -b 1 -q 1`
+     
+     Expected: A message will be prompted to indicate that category has been tagged to both book and quote successfully.
+   - Test case: `add -c inspirational action -q 1`
+     
+     Expected: A message will be prompted to indicate that categories have been tagged to both book and quote successfully.
+
+4. Incorrect commands to try
+   - `add -c` missing category name, book or quote
+   - `add -c action` missing a book or quote
+   - `add -c action -b 0 -q 0` invalid book and quote index
+   - `add -c -b 1 -q 1` missing category name
+   
+   Expected: An error message will be prompted. No changes will be made.
+   
+### Listing all categories
+1. List all existing categories
+   - Test case: `list -c`
+     
+     Expected: A list of categories with the total number of items tagged under each category will be displayed.
+
+### Listing a specific category
+1. List all books and quotes tagged by a specific category
+   - Test case: `list -c action`
+     
+     Expected: A list of books and quotes tagged under that category will be displayed.
+
+2. Incorrect commands to try
+   - `list -c 123` invalid category name
+   
+   Expected: An error message will be displayed indicating that no such category exists.
+   
+### Deleting existing categories
+1. Remove one or more category from a book
+   - Prerequisites: Specified book index, quote index and category should exist in Quotesify.
+   - Assume the book "Harry Potter" is tagged with [action, fantasy] category and assigned with index 1.
+   - Test case: `delete -c action -b 1`
+     
+     Expected: A message will be prompted to indicate that category has been removed from book successfully.
+   - Test case: `delete -c action fantasy -b 1`
+   
+     Expected: A message will be prompted to indicate that categories have been removed from book successfully.
+     
+2. Remove one or more category from a quote
+    - Prerequisites: Specified book index, quote index and category should exist in Quotesify.
+    - Assume the quote "Life is great!" is tagged with [inspirational, happy] category and assigned with index 1.
+    - Test case: `delete -c inspirational -q 1`
+     
+      Expected: A message will be prompted to indicate that category has been removed from quote successfully.
+    - Test case: `delete -c inspirational happy -q 1`
+     
+      Expected: A message will be prompted to indicate that categories have been removed from quote successfully.
+
+3. Remove one or more category from a book and quote
+   - Prerequisites: Specified book index, quote index and category should exist in Quotesify.
+   - Assume that a book and quote are both tagged with [action, happy] categories.
+   - Test case: `delete -c action -b 1 -q 1`
+     
+     Expected: A message will be prompted to indicate that category has been removed from both book and quote successfully.
+   - Test case: `delete -c action happy -b 1 -q 1`
+     
+     Expected: A message will be prompted to indicate that categories have been removed from both book and quote successfully.
+
+4. Remove one or more category from list
+   - To be implemented
+
+5. Incorrect commands to try
+   - `delete -c` missing category name, book or quote
+   - `delete -c action` missing a book or quote
+   - `delete -c action -b 0 -q 0` invalid book and quote index
+   - `delete -c -b 1 -q 1` missing category name
+   
+   Expected: An error message will be prompted. No changes will be made.
+         
+### Editing an existing category
+1. Edit an existing category name
+   - Test case: `edit -c love /to romance`
+     
+     Expected: A message will be prompted indicating that category has been changed successfully. All books and quotes tagged under the old category will be changed as well.
+
+2. Incorrect commands to try
+   - `edit -c` missing existing and new category name
+   - `edit -c love` missing new category name
+   
+   Expected: An error message indicating invalid parameters and a command usage will be prompted. No changes will be made.
    
 ### Adding a book rating
 
