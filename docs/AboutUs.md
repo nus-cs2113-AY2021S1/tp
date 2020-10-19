@@ -1,7 +1,7 @@
 
 # About us
 
-Display | Name | Github Profile | Portfolio 
+Display | Name | GitHub Profile | Portfolio 
 --------|:----:|:--------------:|:---------:
 ![](https://via.placeholder.com/100.png?text=Photo) | Michael Dinata | [Github](https://github.com/michaeldinata) | [Portfolio](docs/team/johndoe.md)
 ![](https://via.placeholder.com/100.png?text=Photo) | Eyo Wei Chin | [Github](https://github.com/EyoWeiChin) | [Portfolio](docs/team/EyoWeiChin.md)

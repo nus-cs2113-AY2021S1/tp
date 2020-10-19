@@ -15,10 +15,10 @@ class WatchlistTest {
 
     @BeforeEach
     void setUp() {
-        ArrayList<String> animeList = new ArrayList<>();
-        animeList.add("Cowboy Bebop");
-        animeList.add("Fullmetal Alchemist");
-        animeList.add("R.O.D - READ OR DIE");
+        ArrayList<Integer> animeList = new ArrayList<>();
+        animeList.add(0);
+        animeList.add(2);
+        animeList.add(3);
 
         emptyWatchlist = new Watchlist("emptyWatchlist");
         filledWatchlist = new Watchlist("filledWatchlist", animeList);
@@ -32,9 +32,9 @@ class WatchlistTest {
 
     @Test
     void testAnimeListToStringWithFilledWatchlist() {
-        String expected = "1. Cowboy Bebop" + System.lineSeparator();
-        expected += "2. Fullmetal Alchemist" + System.lineSeparator();
-        expected += "3. R.O.D - READ OR DIE" + System.lineSeparator();
+        String expected = "1. 0" + System.lineSeparator();
+        expected += "2. 2" + System.lineSeparator();
+        expected += "3. 3" + System.lineSeparator();
         assertEquals(filledWatchlist.animeListToString(), expected);
     }
 
@@ -48,9 +48,9 @@ class WatchlistTest {
     @Test
     void testToStringWithFilledWatchlist() {
         String expected = "filledWatchlist" + System.lineSeparator();
-        expected += "1. Cowboy Bebop" + System.lineSeparator();
-        expected += "2. Fullmetal Alchemist" + System.lineSeparator();
-        expected += "3. R.O.D - READ OR DIE" + System.lineSeparator();
+        expected += "1. 0" + System.lineSeparator();
+        expected += "2. 2" + System.lineSeparator();
+        expected += "3. 3" + System.lineSeparator();
         assertEquals(filledWatchlist.toString(), expected);
     }
 

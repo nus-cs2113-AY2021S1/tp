@@ -2,69 +2,115 @@ package seedu.duke;
 
 import seedu.duke.anime.AnimeData;
 import seedu.duke.anime.AnimeStorage;
+import seedu.duke.bookmark.Bookmark;
 import seedu.duke.command.Command;
 import seedu.duke.exception.AniException;
+import seedu.duke.human.Workspace;
 import seedu.duke.human.User;
-import seedu.duke.human.UserManagement;
 import seedu.duke.parser.Parser;
-import seedu.duke.storage.Storage;
+import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.Ui;
 import seedu.duke.watchlist.Watchlist;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class Duke {
-    private static final String USER_PROFILE_FILE_NAME = "userprofile.txt";
-    private static final String WATCHLIST_FILE_NAME = "watchlist.txt";
-    private static final String ANIME_DATA_SOURCE_FOLDER = "/data/AniListData";
+    private static final String ANIME_DATA_SOURCE_FOLDER = "/AniListData";
 
     private final Ui ui;
     private final Parser parser;
+    private final StorageManager storageManager;
 
     private AnimeStorage animeStorage;
     private AnimeData animeData;
-    private UserManagement userManagement;
+    private User user;
 
     public Duke() {
+        user = null;
         ui = new Ui();
         parser = new Parser();
-        Storage storage = new Storage(USER_PROFILE_FILE_NAME, WATCHLIST_FILE_NAME);
-        userManagement = new UserManagement(storage);
+        storageManager = new StorageManager("data" + File.separator);
 
-        // Load user and watchlist list.
+        // ========================== Initialize AniChan ==========================
         ui.printWelcomeMessage();
         ui.printHorizontalLine();
-        userManagement.setActiveUser(storage.loadUser(ui));
-        final ArrayList<Watchlist> watchlistList = storage.loadWatchlist(ui);
-        ui.printHorizontalLine();
-
-        // Initial Set up
-
-        assert userManagement != null;
-        User activeUser = userManagement.getActiveUser();
-        if (activeUser == null) {
-            userManagement.addUserDialogue(ui);
-            activeUser = userManagement.getActiveUser();
-            assert userManagement.getActiveUser() != null;
+        try {
+            user = storageManager.loadUser();
+            ui.printMessage("User: Loaded successfully.");
+        } catch (AniException exception) {
+            ui.printMessage("User: " + exception.getMessage());
         }
 
-        activeUser.setWatchlistList(watchlistList);
-        if (watchlistList.isEmpty()) {
-            Watchlist activeWatchlist = new Watchlist("Default");
-            watchlistList.add(activeWatchlist);
-            activeUser.setActiveWatchlist(activeWatchlist);
-            activeUser.setWatchlistList(watchlistList);
+        ArrayList<Workspace> workspaceList = new ArrayList<>();
+        String[] workspaceNameList = storageManager.retrieveWorkspaceList();
+        for (String workspaceName : workspaceNameList) {
+            ui.printMessage("Workspace \"" + workspaceName + "\":");
+
+            ArrayList<Watchlist> watchlistList = new ArrayList<>();
+            try {
+                String loadWatchlistResult = storageManager.loadWatchlistList(workspaceName, watchlistList);
+                ui.printMessage("\tWatchlist: " + loadWatchlistResult);
+            } catch (AniException exception) {
+                ui.printMessage("\tWatchlist: " + exception.getMessage());
+            }
+
+            Bookmark bookmark = new Bookmark();
+            try {
+                String loadBookmarkResult = storageManager.loadBookmark(workspaceName, bookmark);
+                ui.printMessage("\tBookmark:  " + loadBookmarkResult);
+            } catch (AniException exception) {
+                ui.printMessage("\tBookmark:  " + exception.getMessage());
+            }
+
+            Workspace workspace = new Workspace(workspaceName, watchlistList, bookmark);
+            workspaceList.add(workspace);
+        }
+        ui.printHorizontalLine();
+
+        // ========================== New User Setup ==========================
+
+        if (user == null) {
+            while (true) {
+                try {
+                    String[] userDialogueInput = ui.createUserDialogue();
+                    user = new User(userDialogueInput[0], userDialogueInput[1]);
+                    storageManager.saveUser(user);
+                    break;
+                } catch (AniException e) {
+                    ui.printErrorMessage("Invalid input detected!");
+                }
+            }
+        }
+
+        // ========================== Workspace Setup ==========================
+
+        user.setWorkspaceList(workspaceList);
+        if (user.getTotalWorkspaces() == 0) {
+            Workspace newWorkspace = user.addWorkspace("Default");
+            ArrayList<Watchlist> watchlistList = new ArrayList<>();
+            watchlistList.add(new Watchlist("Default"));
+            newWorkspace.setWatchlistList(watchlistList);
+            user.setActiveWorkspace(newWorkspace);
 
             try {
-                storage.saveWatchlist(watchlistList);
+                storageManager.saveWorkspace(newWorkspace);
             } catch (AniException exception) {
                 ui.printErrorMessage(exception.getMessage());
             }
-        } else {
-            activeUser.setActiveWatchlist(watchlistList.get(0));
-            assert activeUser.getActiveWatchlist() != null : "Active watchlist should not be null.";
         }
+
+        // ========================== Watchlist Setup ==========================
+
+        Workspace activeWorkspace = user.getActiveWorkspace();
+        ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
+        if (watchlistList.size() == 0) {
+            watchlistList.add(new Watchlist("Default"));
+        }
+        activeWorkspace.setActiveWatchlist(watchlistList.get(0));
+
+        // ========================== Anime Data Setup ==========================
 
         try {
             animeStorage = new AnimeStorage(ANIME_DATA_SOURCE_FOLDER);
@@ -78,17 +124,18 @@ public class Duke {
         boolean shouldExit = false;
         while (!shouldExit) {
             try {
-                String userInput = ui.readUserInput(userManagement.getActiveUser());
+                String userInput = ui.readUserInput(user);
                 Command command = parser.getCommand(userInput);
-                String commandOutput = command.execute(animeData, userManagement);
-                
+                String commandOutput = command.execute(animeData, storageManager, user);
+
                 ui.printMessage(commandOutput);
                 shouldExit = command.getShouldExit();
             } catch (AniException exception) {
                 ui.printErrorMessage(exception.getMessage());
             }
         }
-        ui.printGoodbyeMessage();
+
+        ui.printGoodbyeMessage(user.getHonorificName());
     }
 
     public static void main(String[] args) {

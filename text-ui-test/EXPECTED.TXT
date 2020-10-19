@@ -1,4 +1,4 @@
- Welcome to AniChan!
+Welcome to AniChan!
                   _  _____ _
       /\         (_)/ ____| |
      /  \   _ __  _| |    | |__   __ _ _ __
@@ -7,26 +7,45 @@
   /_/    \_\_| |_|_|\_____|_| |_|\__,_|_| |_|
 
 -------------------------------------------------------------
- User file is not found, let's start afresh.
- Watchlist file is not found, let's start a afresh.
+User: Empty user file.
+Workspace "Default":
+	Watchlist: Empty watchlist file.
+	Bookmark:  Empty bookmark file.
 -------------------------------------------------------------
- What's your name?
- #>  Hello Abec! What might your date of birth be? (DD/MM/YYYY)
- #>  What might your gender be? (Male/Female/Other)
- #>   Successfully added new user:
- Abec
- 01/02/1996
- Female
+What's your name?
+#>Hello Abec Steiner 33rd! What might your gender be? (Male/Female/Other)
+#>
+Default (Default) #> Watchlist "a" has been created successfully!
 
- Abec-chan (Default) #>  Watchlist created successfully!
+Default (Default) #> Watchlist "b" has been created successfully!
 
- Abec-chan (Default) #>  Watchlist created successfully!
+Default (Default) #> Watchlist "ops" has been created successfully!
 
- Abec-chan (Default) #>  Currently, you have 3 watchlist(s):
+Default (Default) #> "ops" is now your active watchlist!
+
+Default (ops) #> Watchlist "ops" has been deleted successfully!
+Changed active watchlist to: "Default".
+
+Default (Default) #> Currently, you have 3 watchlist(s):
 	1. Default
 	2. a
 	3. b
 
- Abec-chan (Default) #>  Anime added to watchlist!
+Default (Default) #> Cowboy Bebop added to watchlist!
 
- Abec-chan (Default) #>  Sayonara!
+Default (Default) #> Trigun added to watchlist!
+
+Default (Default) #> Saving 1. Cowboy Bebop  to bookmark.
+
+Default (Default) #> Saving 410. InuYasha the Movie 2: The Castle Beyond the Looking Glass  to bookmark.
+
+Default (Default) #> Editing Cowboy Bebop to have 5 episode
+
+Default (Default) #> Listing all anime in bookmark:
+	1. Cowboy Bebop Ep: 5
+	2. InuYasha the Movie 2: The Castle Beyond the Looking Glass
+
+
+Default (Default) #> OOPS!!! Anime is already in this watchlist!
+
+Default (Default) #> Sayonara Abec Steiner 33rd-chan!
