@@ -42,7 +42,6 @@ public class Storage {
 
     public Storage(String filePath) {
         initialiseSaveFile(filePath);
-        load();
     }
 
     public void initialiseSaveFile(String filePath) {
@@ -65,12 +64,12 @@ public class Storage {
     public void save() {
         try {
             JSONObject json = new JSONObject();
-            json.put("books", ((BookList) ListManager.getList(ListManager.BOOK_LIST)).toJsonArray());
-            json.put("quotes", ((QuoteList) ListManager.getList(ListManager.QUOTE_LIST)).toJsonArray());
-            json.put("categories", ((CategoryList) ListManager.getList(ListManager.CATEGORY_LIST)).toJsonArray());
-            json.put("bookmarks", ((BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST)).toJsonArray());
-            json.put("ratings", ((RatingList) ListManager.getList(ListManager.RATING_LIST)).toJsonArray());
-            json.put("todos", ((ToDoList) ListManager.getList(ListManager.TODO_LIST)).toJsonArray());
+            json.put("books", ListManager.getList(ListManager.BOOK_LIST).toJsonArray());
+            json.put("quotes", ListManager.getList(ListManager.QUOTE_LIST).toJsonArray());
+            json.put("categories", ListManager.getList(ListManager.CATEGORY_LIST).toJsonArray());
+            json.put("bookmarks", ListManager.getList(ListManager.BOOKMARK_LIST).toJsonArray());
+            json.put("ratings", ListManager.getList(ListManager.RATING_LIST).toJsonArray());
+            json.put("todos", ListManager.getList(ListManager.TODO_LIST).toJsonArray());
 
             FileWriter fileWriter = new FileWriter(saveFile);
             fileWriter.write(json.toJSONString());
@@ -90,6 +89,7 @@ public class Storage {
             fileReader.close();
         } catch (ParseException | IOException e) {
             // e.printStackTrace();
+            ListManager.initialiseAllLists();
         }
     }
 

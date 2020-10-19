@@ -386,3 +386,17 @@ Oct 19, 2020 4:31:37 PM seedu.quotesify.commands.AddCommand execute
 INFO: going to add quote to quote list
 Oct 19, 2020 4:31:37 PM seedu.quotesify.commands.AddCommand addQuote
 INFO: add quote to quote list success
+Oct 19, 2020 5:14:59 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 19, 2020 5:14:59 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 19, 2020 5:15:02 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add quote to quote list
+Oct 19, 2020 5:15:02 PM seedu.quotesify.commands.AddCommand addQuote
+INFO: add quote to quote list success
+Oct 19, 2020 5:15:07 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add category to book/quote
+Oct 19, 2020 5:15:07 PM seedu.quotesify.commands.AddCommand addCategoryToBook
+INFO: add category to book success
+Oct 19, 2020 5:15:07 PM seedu.quotesify.commands.AddCommand addCategoryToQuote
+INFO: add category to quote success
