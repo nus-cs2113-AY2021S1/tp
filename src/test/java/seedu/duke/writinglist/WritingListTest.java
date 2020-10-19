@@ -20,7 +20,7 @@ public class WritingListTest {
         WritingList.writinglist.clear();
         initializeTestDatabase();
         assertEquals(5, WritingList.getWritingSize());
-        WritingList.clearAll();
+        WritingList.writinglist.clear();
         assertEquals(0, WritingList.getWritingSize());
     }
 }

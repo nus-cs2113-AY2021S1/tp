@@ -10,7 +10,7 @@ import java.io.File;
 
 import static seedu.duke.Duke.user;
 
-import static seedu.duke.Duke.writings;
+//import static seedu.duke.Duke.writings;
 import static seedu.duke.commands.CommandChecker.UNRECOGNISED;
 import static seedu.duke.commands.CommandChecker.TYPE;
 import static seedu.duke.commands.CommandChecker.POEM;
@@ -26,7 +26,7 @@ import static seedu.duke.database.WritingsLoader.recordListToFile;
 
 public class WritingList {
     public static ArrayList<Writings> writinglist = new ArrayList<>();
-    //Used to clear all of writings when reseting database
+    //Used to clear all of writings when resetting database
     static int countWritings = 0;
 
     public WritingList() {
@@ -34,18 +34,19 @@ public class WritingList {
     }
 
     public void add(Writings w) {
-        writinglist.add(w);
+        this.writinglist.add(w);
     }
 
     public Writings get(int i) {
-        return writinglist.get(i);
+        return this.writinglist.get(i);
     }
 
-    public static void remove(int i) {
-        writinglist.remove(i);
+    public void remove(int i) {
+        this.writinglist.remove(i);
+        //countWritings--;
     }
 
-    public int getCountWritings() {
+    public static int getCountWritings() {
         return writinglist.size();
     }
 
@@ -92,7 +93,7 @@ public class WritingList {
         return writinglist.size();
     }
     
-    public static void checkStart() {
+    public static void checkStart(WritingList writings) {
         Scanner scanner = new Scanner(System.in);
         String newUserInput = null;
         try {
@@ -102,14 +103,14 @@ public class WritingList {
                 newUserInput = getUserInput(scanner);
                 commandStartChecker = extractCommandType(newUserInput);
             }
-            executeCommand(commandStartChecker, newUserInput);
+            executeCommand(commandStartChecker, newUserInput, writings);
             //checkType();
         } catch (Exception e) {
             System.out.println(e);
         }
     }
     
-    public static void checkType() {
+    public static void checkType(WritingList writings) {
         Scanner scanner = new Scanner(System.in);
         String newUserInput;
         File f = FileFunctions.getFileFromFilePath(WRITING_FILE_PATH);
@@ -149,13 +150,13 @@ public class WritingList {
      * Clear all data stored in writing.txt.
      * To be associated with command "reset writing".
      */
-    public static void clearAll() {
-        for (int i = 0; i < countWritings; i++) {
-            remove(0);
-        }
+    public static void clearAll(WritingList writings) {
+        writings.writinglist.clear();
         System.out.println("We have clear all data in the writings list");
         //Reset countWritings
-        countWritings = 0;
+        File f = FileFunctions.getFileFromFilePath(WRITING_FILE_PATH);
+        recordListToFile(f, writings);
+        writings.countWritings = 0;
     }
 
     public static void addPoem(String title, int id, String topic, String content, String author) {
