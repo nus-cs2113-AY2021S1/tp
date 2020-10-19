@@ -6,6 +6,7 @@ import seedu.duke.utility.Ui;
 
 import java.util.ArrayList;
 
+
 public class WatchCommand extends Command {
     ArrayList<String> inputs;
 
@@ -17,12 +18,20 @@ public class WatchCommand extends Command {
         }
     }
 
+    /**
+     * Notifies the application that user has finished his current episode of a show
+     * in which the current episode will be incremented by 1, and watch time will be updated.
+     * The watchlist updates the show to a new season if required.
+     *
+     */
     //INPUT : watch <show name>
     public void processCommand() {
         // todo: check if the date is still the same as the one in the save file,
         //  yes: increment the timeWatchedToday, Ui to include the total hours watched today and hours left.
         //  no: reset the timeWatchedToday to 0, set the date to today and increment and output the time left to
         //  the user.
+
+        boolean isSameDay = true;
 
         String showName = inputs.get(1);
         Show show = ShowList.getShow(showName);
