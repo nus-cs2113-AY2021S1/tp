@@ -30,49 +30,37 @@ public class Storage implements SaveState {
         int index = 1;
         for (Map.Entry<String, Show> entry : ShowList.getShowList().entrySet()) {
             fw.write(index + ". " + entry.getValue().getName() + System.lineSeparator());
-            fw.write("      Season: " + entry.getValue().getNumSeasons() + System.lineSeparator());
+            fw.write("\t\tSeason: " + entry.getValue().getNumSeasons() + System.lineSeparator());
             String episodes = "";
             for (int i = 1; i <= entry.getValue().getNumSeasons(); i++) {
                 episodes = episodes + entry.getValue().getEpisodesForSeason(i) + " ";
             }
-            //TODO : Change the many spaces to a tab '\t'
-            fw.write("      Episodes: " + episodes + System.lineSeparator());
-            fw.write("      Rating: " + entry.getValue().getRating() + System.lineSeparator());
-            fw.write("      Duration: " + entry.getValue().getEpisodeDuration() + System.lineSeparator());
-            fw.write("      Current Season: " + entry.getValue().getCurrentSeason() + System.lineSeparator());
-            fw.write("      Current Episode: " + entry.getValue().getCurrentEpisode() + System.lineSeparator());
-
+            fw.write("\t\tEpisodes: " + episodes + System.lineSeparator());
+            fw.write("\t\tRating: " + entry.getValue().getRating() + System.lineSeparator());
+            fw.write("\t\tDuration: " + entry.getValue().getEpisodeDuration() + System.lineSeparator());
+            fw.write("\t\tCurrent Season: " + entry.getValue().getCurrentSeason() + System.lineSeparator());
+            fw.write("\t\tCurrent Episode: " + entry.getValue().getCurrentEpisode() + System.lineSeparator());
             index++;
 
-            //this is another save format
-            /*
-            String textToAdd=index+". "+entry.getValue().getName()+" | Season: "+entry.getValue().getNumSeasons()
-                    +" | Episodes: " +entry.getValue().getEpisodesForSeason(entry.getValue().getNumSeasons())+" |
-                    Rating: "+entry.getValue().getRating();
-            fw.write(textToAdd);
-             */
         }
         fw.close();
     }
 
-    //TODO:  JIQING CATCH EXCEPTION PLEASEE :((((
-    private boolean watchTimeSaveInputParse(String input) {
-        String[] splitRecordedDate = input.split("recordedDate: ");
-        if (splitRecordedDate.length > 1) {
-            recordedDate = LocalDate.parse(splitRecordedDate[1]);
-            return true;
-        }
-        String[] splitDurationWatched = input.split("durationWatchedToday: ");
-        if (splitDurationWatched.length > 1) {
+
+    public WatchTime LoadWatchTimeDetail(Scanner s) {
+        if(s.hasNext()){
+            String[] splitRecordedDate = s.nextLine().split("recordedDate: ");
+            try{
+                recordedDate = LocalDate.parse(splitRecordedDate[1]);
+            }catch(Exception e){
+                recordedDate = LocalDate.now();
+            }
+            String[] splitDurationWatched = s.nextLine().split("durationWatchedToday: ");
             durationWatchedToday = Integer.parseInt(splitDurationWatched[1]);
-            return true;
-        }
-        String[] splitDailyWatchedLimit = input.split("dailyWatchLimit: ");
-        if (splitDailyWatchedLimit.length > 1) {
+            String[] splitDailyWatchedLimit = s.nextLine().split("dailyWatchLimit: ");
             dailyWatchLimit = Integer.parseInt(splitDailyWatchedLimit[1]);
-            return true;
         }
-        return false;
+        return new WatchTime(recordedDate,durationWatchedToday,dailyWatchLimit);
     }
 
     @Override
@@ -91,13 +79,12 @@ public class Storage implements SaveState {
         ShowList shows = new ShowList();
 
         // we just assume that advanced users who manually change the file can adhere to the correct format
+        LoadWatchTimeDetail(s);
         while (s.hasNext()) {
-            String input = s.nextLine();
-            if (watchTimeSaveInputParse(input)) {
-                continue;
-            }
-            String name = input.substring(3);
-
+            //if (watchTimeSaveInputParse(input)) {
+            //    continue;
+            //}
+            String name = s.nextLine().substring(3);
             String[] splitSeason = s.nextLine().split("Season: ");
             int season = Integer.parseInt(splitSeason[1]);
             String[] splitEpisodes = s.nextLine().split("Episodes: ");
