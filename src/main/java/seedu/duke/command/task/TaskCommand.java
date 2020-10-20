@@ -44,25 +44,25 @@ public class TaskCommand {
 
     }
 
-    public void deleteTaskCommand(ArrayList<String> taskIdString, ArrayList<Project> projectList) {
+    public void deleteTaskCommand(Hashtable<String,String> taskIdString, ArrayList<Project> projectList) {
         try {
             Project proj = projectList.get(0);
             if (taskIdString.isEmpty()) {
                 Ui.showError("Missing parameters.");
             }
-            for (String id : taskIdString) {
+            for (int i = 0; i < taskIdString.size(); i++) {
                 try {
-                    int taskId = Integer.parseInt(id);
+                    int taskId = Integer.parseInt(taskIdString.get(Integer.toString(i)));
                     if (proj.getProjectBacklog().checkTaskExist(taskId)) {
                         Task task = proj.getProjectBacklog().getTask(taskId);
                         Ui.showToUserLn("The corresponding task "
                                 + task.getTitle()
                                 + " has been removed from project.");
-                        proj.getProjectBacklog().removeTask(taskId);
+                        proj.getProjectBacklog().removeTask(i);
                         ArrayList<Sprint> allSprints = proj.getAllSprints().getSprintList();
                         for (Sprint sprint : allSprints) {
-                            if (sprint.checkTaskExist(taskId)) {
-                                sprint.removeSprintTask(taskId);
+                            if (sprint.checkTaskExist(i)) {
+                                sprint.removeSprintTask(i);
                             }
                         }
                     } else {
@@ -77,7 +77,7 @@ public class TaskCommand {
         }
     }
 
-    public void viewTaskCommand(ArrayList<String> taskId, ArrayList<Project> projectList) {
+    public void viewTaskCommand(Hashtable<String, String> taskId, ArrayList<Project> projectList) {
 
         try {
             Project proj = projectList.get(0);
@@ -85,11 +85,11 @@ public class TaskCommand {
                 Ui.showError("Missing parameters.");
             }
             Ui.showToUserLn("The details of the tasks are as follows: ");
-            for (String id : taskId) {
+            for (int i = 0; i < taskId.size(); i++) {
                 Task task;
                 try {
-                    int backlogId = Integer.parseInt(id);
-                    if (backlogId < proj.getProjectBacklog().backlogTasks.size()) {
+                    int backlogId = Integer.parseInt(taskId.get(Integer.toString(i)));
+                    if (backlogId <= proj.getProjectBacklog().backlogTasks.size()) {
                         task = proj.getProjectBacklog().getTask(backlogId);
                         Ui.showToUserLn(task.toString());
                         //Ui.showToUserLn("\t Title: " + task.getTitle());
@@ -135,14 +135,14 @@ public class TaskCommand {
         }
     }
 
-    public void doneTaskCommand(ArrayList<String> taskId, ArrayList<Project> projectList) {
+    public void doneTaskCommand(Hashtable<String, String> taskId, ArrayList<Project> projectList) {
 
         try {
             Project proj = projectList.get(0);
-            for (String id : taskId) {
+            for (int i = 0; i < taskId.size(); i++) {
                 Task task;
                 try {
-                    int backlogId = Integer.parseInt(id);
+                    int backlogId = Integer.parseInt(taskId.get(Integer.toString(i)));
                     if (backlogId <= proj.getProjectBacklog().backlogTasks.size()) {
                         task = proj.getProjectBacklog().getTask(backlogId);
                         task.setAsDone();

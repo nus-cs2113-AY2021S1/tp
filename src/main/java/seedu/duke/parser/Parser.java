@@ -74,123 +74,25 @@ public class Parser {
                 }
             }
 
-            switch (command.toLowerCase()) {
-            case PROJECT:
-                try {
-                    new ProjectParser().parseMultipleCommandsExceptions(parameters, action);
-                } catch (DukeException e) {
-                    e.printExceptionMessage();
+            try {
+                switch (command.toLowerCase()) {
+                case PROJECT:
+                    new ProjectParser().parseMultipleCommandsExceptions(parameters, action, projectList);
                     break;
-                }
-                switch (action.toLowerCase()) {
-                case CREATE:
-                    new ProjectCommand().createProjectCommand(parameters, projectList);
+                case MEMBER:
+                    new MemberParser().parseMultipleCommandsExceptions(parameters, action, projectList);
                     break;
-                case VIEW:
-                    new ProjectCommand().viewProjectCommand(projectList);
+                case TASK:
+                    new TaskParser().parseMultipleCommandsExceptions(parameters, action, projectList);
                     break;
-                default:
-                    try {
-                        throw new DukeException("Invalid action");
-                    } catch (DukeException e) {
-                        e.printExceptionMessage();
-                    }
-                }
-                break;
-            case MEMBER:
-                try {
-                    new MemberParser().parseSingleCommandsExceptions(parameters);
-                } catch (DukeException e) {
-                    e.printExceptionMessage();
-                    break;
-                }
-                switch (action.toLowerCase()) {
-                case ADD:
-                    new MemberCommand().addMemberCommand(params, projectList);
-                    break;
-                case DELETE:
-                    new MemberCommand().deleteMemberCommand(params, projectList);
+                case SPRINT:
+                    new SprintParser().parseMultipleCommandsExceptions(parameters, action, projectList);
                     break;
                 default:
-                    try {
-                        throw new DukeException("Invalid action");
-                    } catch (DukeException e) {
-                        e.printExceptionMessage();
-                    }
+                    return "Invalid command!";
                 }
-                break;
-            case TASK:
-                try {
-                    new TaskParser().parseMultipleCommandsExceptions(parameters, action);
-                } catch (DukeException e) {
-                    e.printExceptionMessage();
-                    break;
-                }
-                switch (action.toLowerCase()) {
-                case ADD:
-                    try {
-                        new TaskCommand().addTaskCommand(parameters, projectList);
-                    } catch (DukeException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case DELETE:
-                    new TaskCommand().deleteTaskCommand(params, projectList);
-                    break;
-                case VIEW:
-                    new TaskCommand().viewTaskCommand(params, projectList);
-                    break;
-                case PRIORITY:
-                    try {
-                        new TaskCommand().changeTaskPriorityCommand(parameters, projectList);
-                    } catch (DukeException e) {
-                        e.printExceptionMessage();
-                    }
-                    break;
-                case DONE:
-                    new TaskCommand().doneTaskCommand(params, projectList);
-                    break;
-                default:
-                    try {
-                        throw new DukeException("Invalid action!");
-                    } catch (DukeException e) {
-                        e.printExceptionMessage();
-                    }
-                }
-                break;
-            case SPRINT:
-                try {
-                    new SprintParser().parseMultipleCommandsExceptions(parameters, action);
-                } catch (DukeException e) {
-                    e.printExceptionMessage();
-                    break;
-                }
-                switch (action.toLowerCase()) {
-                case CREATE:
-                    new CreateSprintCommand(parameters, projectList).execute();
-                    break;
-                case ADDTASK:
-                    new AddSprintTaskCommand(parameters, projectList).execute();
-                    break;
-                case REMOVETASK:
-                    new RemoveSprintTaskCommand(parameters, projectList).execute();
-                    break;
-                case VIEW:
-                    new ViewSprintCommand(parameters, projectList).execute();
-                    break;
-                case ASSIGN:
-                    new AllocateSprintTaskCommand(parameters, projectList).execute();
-                    break;
-                default:
-                    try {
-                        throw new DukeException("Invalid action!");
-                    } catch (DukeException e) {
-                        e.printExceptionMessage();
-                    }
-                }
-                break;
-            default:
-                return "Invalid command!";
+            } catch (DukeException e) {
+                e.printExceptionMessage();
             }
         } else {
             return "Invalid command!";
@@ -198,7 +100,7 @@ public class Parser {
         return null;
     }
 
-    public static boolean stringContainsNumber(String s) {
+    public static boolean isStringContainsNumber(String s) {
         return Pattern.compile("[0-9]").matcher(s).find();
     }
 
