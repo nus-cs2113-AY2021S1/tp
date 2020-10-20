@@ -143,7 +143,7 @@ public class Ui {
         }
         out.println("Here are the chapters in your list:");
         for (Chapter c : chapters) {
-            out.println((chapters.indexOf(c) + 1) + "." + c);
+            out.println((chapters.indexOf(c) + 1) + "." + c + " (due by: " + c.getDueBy() + ")");
         }
     }
 

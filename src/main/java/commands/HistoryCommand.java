@@ -1,23 +1,23 @@
 package commands;
 
 import access.Access;
-import manager.chapter.CardList;
 import manager.history.History;
-import manager.history.HistoryList;
 import storage.Storage;
 import ui.Ui;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class HistoryCommand extends Command {
     public static final String COMMAND_WORD = "history";
+    public static final String DATE_PARAMETER = " DATE";
+
     private String date;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": View the tasks I have completed in the session/in a day. \n"
-            + "Example: " + COMMAND_WORD + "\n";
+            + ": Lists the revision completed in the session/in a day. \n"
+            + "Parameters:" + DATE_PARAMETER + "\n"
+            + "Example: " + COMMAND_WORD + "2020-10-10\n";
 
     public HistoryCommand(String date) {
         this.date = date;

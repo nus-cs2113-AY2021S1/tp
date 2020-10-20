@@ -17,15 +17,7 @@ public class GoCommand extends Command {
     private String moduleOrChapter;
 
     public static final String CHAPTER_PARAMETERS = " CHAPTER_NAME";
-    public static final String CHAPTER_MESSAGE_USAGE = COMMAND_WORD + ": Goes to chapter level. \n"
-            + "Parameters:" + CHAPTER_PARAMETERS + "\n"
-            + "Example: " + COMMAND_WORD + " Chapter 1\n";
-
     public static final String MODULE_PARAMETERS = " MODULE_NAME";
-    public static final String MODULE_MESSAGE_USAGE = COMMAND_WORD + ": Goes to module level. \n"
-            + "Parameters:" + MODULE_PARAMETERS + "\n"
-            + "Example: " + COMMAND_WORD + " CS2113T\n";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Goes to chapter / module level. \n"
             + "Parameters:" + MODULE_PARAMETERS + "\n"
             + "           " + CHAPTER_PARAMETERS + "\n"

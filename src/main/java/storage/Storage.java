@@ -11,6 +11,7 @@ import manager.history.HistoryList;
 import parser.Parser;
 import manager.module.Module;
 import scheduler.Scheduler;
+import ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -309,7 +310,7 @@ public class Storage {
         }
     }
 
-    public void createHistory(String date) {
+    public void createHistory(Ui ui, String date) {
         try {
             File f = new File(filePath + "/history/" + date + ".txt");
             boolean historyFileExists = f.exists();
@@ -319,10 +320,10 @@ public class Storage {
             }
 
             if (historyFileCreated) {
-                System.out.println("    Successfully created new history file " + date + ".txt");
+                ui.showToUser("    Successfully created new history file " + date + ".txt");
             }
         } catch (IOException e) {
-            System.out.println("Error creating the file.");
+            ui.showError("Error creating the file.");
         }
     }
 

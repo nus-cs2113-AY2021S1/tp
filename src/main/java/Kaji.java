@@ -35,7 +35,7 @@ public class Kaji {
         ui.showHelpList();
         storage.createHistoryDir();
         LocalDate date = java.time.LocalDate.now();
-        storage.createHistory(date.toString());
+        storage.createHistory(ui, date.toString());
         boolean isExit = false;
         while (!isExit) {
             try {
