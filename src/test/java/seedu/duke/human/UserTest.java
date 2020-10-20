@@ -17,6 +17,13 @@ class UserTest {
     }
 
     @Test
+    void testCreateUser_emptyName_throwsAniException() {
+        assertThrows(AniException.class, () -> {
+            User user = new User("", "Male");
+        });
+    }
+
+    @Test
     void changeName_TommytoJohnny_Johnny() throws AniException {
         User user = new User("Tommy", "Male");
         user.setName("Johnny");
