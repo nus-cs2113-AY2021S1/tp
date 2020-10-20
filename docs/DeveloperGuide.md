@@ -8,11 +8,36 @@
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+{Describe the target user profile}  
+Fresh computing graduates who are just starting to enter the workforce.
+* Have limited income/budget
+* Little experience in personal financial management
+* Busy juggling their various job applications and interview which might cause them to lose track of their expenditure/ 
+bill payments
+* First time drawing salary and lack experience in income tax filling
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+{Describe the value proposition: what problem does it solve?}  
+**Expenditure Tracker**
+* Input itemised spending on a daily basis
+* Sum the monthly/weekly expenditure, as well as average weekly/daily expenditure
+* Categorise expenditures (e.g. food, transport etc) and sort by category
+
+**Budget Management**
+* Set a budget (monthly/weekly/daily)
+* Remind users of how much budget they have left for that month/week/day
+
+**Bill Tracker**
+* Remind users of payment due dates
+* Monthly tracker for each individual bill, visualise trends in bill spending
+
+**Finance Tools**
+* Calculate simple interest
+* Calculate compound interest with optional monthly/yearly deposit
+* Calculate cashback earned
+* Calculate miles credit earned
+* Save account information for reference
 
 ## User Stories
 
