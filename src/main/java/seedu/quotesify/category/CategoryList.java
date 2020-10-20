@@ -58,18 +58,14 @@ public class CategoryList extends QuotesifyList<Category> {
     public void updateCategoryInBooksAndQuotes(String oldCategory, String newCategory) {
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
-        bookList.getList().forEach(book -> {
-            if (book.getCategories().contains(oldCategory)) {
-                book.getCategories().remove(oldCategory);
-                book.getCategories().add(newCategory);
-            }
+        bookList.filterByCategory(oldCategory).getList().forEach(book -> {
+            book.getCategories().remove(oldCategory);
+            book.getCategories().add(newCategory);
         });
 
-        quoteList.getList().forEach(quote -> {
-            if (quote.getCategories().contains(oldCategory)) {
-                quote.getCategories().remove(oldCategory);
-                quote.getCategories().add(newCategory);
-            }
+        quoteList.filterByCategory(oldCategory).getList().forEach(quote -> {
+            quote.getCategories().remove(oldCategory);
+            quote.getCategories().add(newCategory);
         });
     }
 
