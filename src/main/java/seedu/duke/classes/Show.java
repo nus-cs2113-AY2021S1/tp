@@ -9,35 +9,27 @@ public class Show {
     protected String name;
     protected int numSeasons;
     protected int[] numEpisodesForSeasons;
-    protected int[][] durationEpisodeForSeasons; //The duration of each episode for each season
+    protected int episodeDuration; //The average duration of episodes
     protected int rating;
     protected String review;
     protected LocalDateTime showTime;   //The time of the show, maybe include date
     protected int currentSeason;    //to keep track of watch progress
     protected int currentEpisode;
 
-    public Show(String name, int numSeasons, int[] numEpisodesForSeasons) {
-        this.name = name;
-        this.numSeasons = numSeasons;
-        this.numEpisodesForSeasons = numEpisodesForSeasons;
-        this.rating = -1;
-        this.review = "null";
-        this.currentEpisode = 1;
-        this.currentSeason = 1;
-    }
 
     /**
-     * overload Show if duration of Episodes is provided.
-     * @param name name of show
-     * @param numSeasons number of seasons
+     * Show.
+     *
+     * @param name                  name of show
+     * @param numSeasons            number of seasons
      * @param numEpisodesForSeasons number of episodes per season
-     * @param durationEpisodeForSeasons length of episodes
+     * @param episodeDuration       duration of episode
      */
-    public Show(String name, int numSeasons, int[] numEpisodesForSeasons, int[][] durationEpisodeForSeasons) {
+    public Show(String name, int numSeasons, int[] numEpisodesForSeasons, int episodeDuration) {
         this.name = name;
         this.numSeasons = numSeasons;
         this.numEpisodesForSeasons = numEpisodesForSeasons;
-        this.durationEpisodeForSeasons = durationEpisodeForSeasons;
+        this.episodeDuration = episodeDuration;
         this.rating = -1;
         this.review = "null";
         this.currentEpisode = 1;
@@ -134,14 +126,17 @@ public class Show {
     }
 
 
-    public void setEpisodeDuration(int season, int episode, int duration) {
-        durationEpisodeForSeasons[season][episode] = duration;
+    public void setEpisodeDuration(int duration) {
+        episodeDuration = duration;
     }
 
+    public int getEpisodeDuration() {
+        return episodeDuration;
+    }
 
     @Override
     public String toString() {
-        //TODO: Bernado&jiqing verify if the new toString works well
+        //TODO: Benardo & jiqing verify if the new toString works well
         StringBuilder des = new StringBuilder(name + " | ");
         des.append("WatchHistory : S");
         des.append(currentSeason);

@@ -1,6 +1,7 @@
 package seedu.duke.utility;
 
 import seedu.duke.classes.Show;
+import seedu.duke.classes.WatchTime;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -243,7 +244,7 @@ public class Ui {
     }
 
     public static void printDailyWatchTimeLeft() {
-        //System.out.println("Showtime left : " + watchTime.userReportString() /*the object*/);
+        System.out.println("Showtime left : " + WatchTime.userReportString());
         //TODO: format the ui to print the time left to the user upon watching a new episode
 
     }

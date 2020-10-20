@@ -23,7 +23,6 @@ public class WatchCommand extends Command {
      * Notifies the application that user has finished his current episode of a show
      * in which the current episode will be incremented by 1, and watch time will be updated.
      * The watchlist updates the show to a new season if required.
-     *
      */
     //INPUT : watch <show name>
     public void processCommand() {
@@ -31,8 +30,6 @@ public class WatchCommand extends Command {
         //  yes: increment the timeWatchedToday, Ui to include the total hours watched today and hours left.
         //  no: reset the timeWatchedToday to 0, set the date to today and increment and output the time left to
         //  the user.
-
-        boolean isSameDay = true;
 
         String showName = inputs.get(1);
         Show show = ShowList.getShow(showName);
@@ -44,8 +41,6 @@ public class WatchCommand extends Command {
         if (!hasFinishedSeason) {
             show.setEpisodeWatched(showEpisode + 1);
             ShowList.setShow(showName, show);
-            //WatchTime watchTime;
-            //watchTime.watchDurationUpdate();
         } else if (hasFinishedSeason) {
             show.setCurrentSeason(showSeason + 1);
             show.setEpisodeWatched(1);
@@ -55,7 +50,7 @@ public class WatchCommand extends Command {
         } else {
             Ui.printFinishedAllSeasons(showName);
         }
-
-
+        int showDuration = show.getEpisodeDuration();
+        WatchTime.watchDurationUpdate(showDuration);
     }
 }

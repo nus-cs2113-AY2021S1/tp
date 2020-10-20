@@ -42,15 +42,14 @@ public class EditCommand {
     public static void editDuration(String input) {
         String[] tokenizedInput = input.split(" ");
         try {
-            int season = Integer.parseInt(tokenizedInput[1]);
-            int episode = Integer.parseInt(tokenizedInput[2]);
-            int duration = Integer.parseInt(tokenizedInput[3]);
-            show.setEpisodeDuration(season, episode, duration);
+            int duration = Integer.parseInt(tokenizedInput[1]);
+            show.setEpisodeDuration(duration);
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printBadInputException();
         }
     }
 
+    //TODO : @Shikai or whoever, if name of show doesnt exist still can edit
     public static void processCommand() throws NullPointerException {
         Scanner in = new Scanner(System.in);
         Ui.printEditPrompt();

@@ -1,7 +1,8 @@
 package seedu.duke.classes;
 
+import seedu.duke.utility.Ui;
+
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class WatchTime {
     private static LocalDate recordedDate;
@@ -22,26 +23,26 @@ public class WatchTime {
         this.dailyWatchLimit = dailyWatchLimit;
     }
 
-    public boolean isNewDay() {
+    public static boolean isNewDay() {
         LocalDate currentDate = LocalDate.now();
-        if (currentDate == this.recordedDate) {
+        if (currentDate.equals(recordedDate)) {
             return false;
         } else {
             return true;
         }
     }
 
-    public void watchDurationUpdate(int showMinutes) {
+    public static void watchDurationUpdate(int showMinutes) {
         if (isNewDay()) {
-            this.recordedDate = LocalDate.now();
+            recordedDate = LocalDate.now();
             durationWatchedToday = showMinutes;
         } else {
             durationWatchedToday += showMinutes;
         }
-        //TODO: Ui.printDailyWatchTimeLeft();
+        Ui.printDailyWatchTimeLeft();
     }
 
-    public String userReportString() {
+    public static String userReportString() {
         String response = "Date : ";
         response += recordedDate.toString();
         response += System.lineSeparator();
@@ -51,14 +52,15 @@ public class WatchTime {
         return response;
     }
 
-    @Override
-    public String toString() {
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-mm-dd");
-        String recordedDate = this.recordedDate.format(fmt);
-        return recordedDate;
-
-        //TODO: Jiqing to update for saving purposes
-        //Use the LocalDate.parse(String) to convert I think. <3 jaz
+    public static String saveStateFormat() {
+        //DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");  //TODO: May not be necessary
+        String resultString = String.format("recordedDate: %s", recordedDate);
+        resultString += System.lineSeparator();
+        resultString += String.format("durationWatchedToday: %d", durationWatchedToday);
+        resultString += System.lineSeparator();
+        resultString += String.format("dailyWatchLimit: %d", dailyWatchLimit);
+        resultString += System.lineSeparator();
+        return resultString;
     }
 
 }

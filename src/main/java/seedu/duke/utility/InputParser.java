@@ -156,7 +156,7 @@ public class InputParser {
      *
      * @param input Command inputted by user in string format.
      * @throws IndexOutOfBoundsException if input is empty or show was not specified.
-     * @throws NullPointerException if the show specified is invalid or could not be found.
+     * @throws NullPointerException      if the show specified is invalid or could not be found.
      */
     private static void parseWatchCommand(String input, String command) {
         ArrayList<String> tokenizedString = tokenizeStringArray(input);
@@ -202,7 +202,7 @@ public class InputParser {
      *
      * @param input Command inputted by user in string format.
      * @throws IndexOutOfBoundsException if input is empty or rating was not specified.
-     * @throws NullPointerException if the input is invalid or show could not be found.
+     * @throws NullPointerException      if the input is invalid or show could not be found.
      */
     private static void parseAddRatingCommand(String input) {
         input = removeFirstWord(input);
@@ -224,7 +224,7 @@ public class InputParser {
      *
      * @param input Command inputted by user in string format.
      * @throws IndexOutOfBoundsException if input is empty or invalid.
-     * @throws NullPointerException if the existing rating is invalid or show could not be found.
+     * @throws NullPointerException      if the existing rating is invalid or show could not be found.
      */
     private static void parseDeleteRatingCommand(String input) {
         input = removeFirstWord(input);
@@ -244,7 +244,7 @@ public class InputParser {
      *
      * @param input Command inputted by user in string format.
      * @throws IndexOutOfBoundsException if input is empty or the rating is invalid.
-     * @throws NullPointerException if the input is invalid or show could not be found.
+     * @throws NullPointerException      if the input is invalid or show could not be found.
      */
     private static void parseChangeRatingCommand(String input) {
         input = removeFirstWord(input);
@@ -267,7 +267,7 @@ public class InputParser {
      *
      * @param input Command inputted by user in string format.
      * @throws IndexOutOfBoundsException if input is empty or the format is invalid.
-     * @throws NullPointerException if the format of episodes added is invalid.
+     * @throws NullPointerException      if the format of episodes added is invalid.
      */
     private static void parseAddCommand(String input) {
         String[] tokenizedInput = input.split(" ");
@@ -288,7 +288,7 @@ public class InputParser {
      *
      * @param input Command inputted by user in string format.
      * @throws IndexOutOfBoundsException if input is empty or the command format is invalid.
-     * @throws NullPointerException if the show could not be found.
+     * @throws NullPointerException      if the show could not be found.
      */
     private static void parseDeleteCommand(String input) {
         input = removeFirstWord(input);
@@ -306,7 +306,6 @@ public class InputParser {
     /**
      * Parses command to outline the user's current watch time details.
      * These include the recorded date,duration watched today, and time limit set by the user
-     *
      */
     private static void parseWatchTimeCommand() {
         Ui.printDailyWatchTracking();
