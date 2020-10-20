@@ -1,5 +1,9 @@
 # Developer Guide
 
+{Table of contents goes here}
+
+## Setting up, getting started
+
 ## Design
 
 ## Implementation
