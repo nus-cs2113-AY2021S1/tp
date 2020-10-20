@@ -1,23 +1,8 @@
 # User Guide
 
-## Purpose
-
-This document is the user guide of the SCRUMptious program.
-It is intended to provide all the necessary information to use this software on the workstations .
-
-In addition to this Introduction section, this manual contains four major sections:
-
-User's Guide, describing the functionality provided by the software, including examples of utilization.
-Reference, describing all the functions, commands and tools available to the applications and the application developers.
-Installation Guide, describing how to install and make the software ready to be used.
-
-
-## Introduction
-
-SCRUMptious is a command line software for project management designed for project managers following the scrum methodology to develop it. 
-
 ## Table of Contents
 
+1. [Introduction](#introduction)
 1. [Quick Start](#quick-start) 
 1. [Features](#features) 
     1. [Project `project`](#project-project)
@@ -40,13 +25,28 @@ SCRUMptious is a command line software for project management designed for proje
 1. [Command Summary](#command-summary)
 
 
+## Introduction
+This document is the User Manual of the SCRUMptious.
+It is intended to provide all the necessary information to use this software.  
+
+SCRUMptious is a command line project management software, designed for project managers who adopt the
+[SCRUM](https://www.scrumguides.org/scrum-guide.html) methodology.  
+SCRUMptious allows project managers to do the following:  
+* Manage multiple projects
+* Breakdown projects into smaller iterations known as *Sprints*
+* Manage tasks in the form of *Backlog* items
+* Assign tasks to different *Sprint* iterations
+* Assign tasks to team members
+    
+
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
 1. Download the latest version of `Scrumptious.jar` from [here](http://link.to/Scrumptious.jar)
 1. Move the jar file into an empty folder.
 1. Ensure that you have a functional Command Line Interface (CLI).
-1. Run the command `java -jar C:\Scrumptious\Scrumptious.jar`. Ensure that the `Scrumptious.jar` filepath is specified 
+1. Run the command `java -jar C:\Scrumptious\Scrumptious.jar`. Ensure that the `Scrumptious.jar` 
+filepath is specified 
 correctly according to where you copied it to.
 1. Type the command `project /create -title Scrumptious -desc A java project -end 30 -sd 10` 
 into the command line and press `Enter` to execute it.
