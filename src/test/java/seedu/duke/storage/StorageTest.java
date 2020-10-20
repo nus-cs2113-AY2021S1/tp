@@ -10,7 +10,13 @@ import seedu.duke.exception.DukeException;
 import seedu.duke.ui.Ui;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,10 +28,16 @@ class StorageTest {
     @BeforeEach
     public void setUp() {
         System.setOut(new PrintStream(outputStreamCaptor));
+        Storage store = new Storage("storagetester");
+        UserData data = new UserData();
+        Ui ui = new Ui();
+        store.loadAll(data);
+        String inputString = "personal";
+        System.setOut(new PrintStream(outputStreamCaptor));
     }
 
     @Test
-    void storageLoadAll_LoadFilesFromDirectory_onlyPersonalFilesLoaded() throws DukeException {
+    void storageLoadAll_LoadFilesFromDirectory_allFilesLoaded() throws DukeException {
         Storage store = new Storage("storagetester");
         UserData data = new UserData();
         Ui ui = new Ui();
@@ -69,6 +81,71 @@ class StorageTest {
                         + "2. [T][✓] computing, Location: COM2 on 2010-01-01, 12:00" + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),
                 outputStreamCaptor.toString());
+
+
     }
+
+    @Test
+    void storageSaveAll_saveFilesIntoComputer_allFilesSaved() {
+        try {
+            String[] modelPersonalLoc = {"storagetestermodelans", "personal.txt"};
+            String[] modelZoomLoc = {"storagetestermodelans", "zoom.txt"};
+            String[] modelTimetableLoc = {"storagetestermodelans", "timetable.txt"};
+
+            Path personalPath = createPath(modelPersonalLoc);
+            Path zoomPath = createPath(modelZoomLoc);
+            Path timetablePath = createPath(modelTimetableLoc);
+
+            List<String> personalModel = Files.readAllLines(personalPath);
+            List<String> zoomModel = Files.readAllLines(zoomPath);
+            List<String> timetableModel = Files.readAllLines(timetablePath);
+
+            Storage store = new Storage("storagetester");
+            UserData data = new UserData();
+            Ui ui = new Ui();
+            store.loadAll(data);
+            store.saveAll(data);
+
+            String[] actualPersonalLoc = {"storagetester", "personal.txt"};
+            String[] actualZoomLoc = {"storagetester", "zoom.txt"};
+            String[] actualTimetableLoc = {"storagetester", "timetable.txt"};
+
+            Path actualPersonalPath = createPath(actualPersonalLoc);
+            Path actualZoomPath = createPath(actualZoomLoc);
+            Path actualTimetablePath = createPath(actualTimetableLoc);
+
+            List<String> personalActual = Files.readAllLines(actualPersonalPath);
+            List<String> zoomActual = Files.readAllLines(actualZoomPath);
+            List<String> timetableActual = Files.readAllLines(actualTimetablePath);
+
+            assertEquals(personalActual, personalModel);
+            assertEquals(zoomActual, zoomModel);
+            assertEquals(timetableActual, timetableModel);
+
+
+        } catch (IOException e) {
+            fail("IO error! File was not written to");
+        }
+
+
+
+
+
+
+   }
+
+    /**
+     * Function accepts a string and creates a path object originating from the user directory.
+     *
+     * @param pathName is a string array which accepts in the path name words, each word represents a folder
+     * @return Path object indicating the location of the pathName keyed in initially.
+     */
+    private Path createPath(String[] pathName) {
+
+        String origin = System.getProperty("user.dir");
+        Path newPath = Paths.get(origin, pathName);
+        return newPath;
+    }
+
 
 }

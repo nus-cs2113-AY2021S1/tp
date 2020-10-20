@@ -66,7 +66,7 @@ public class StorageParser {
         String repeatUnit = "0";
         String repeatNumber = "0";
         if (activity.getRepeatCount() != 0) { //it is a repeated activity
-            repeatUnit = activity.getRepeatType();
+            repeatUnit = activity.getRepeatType().toUpperCase();
             repeatNumber = Integer.toString(activity.getRepeatCount());
             ArrayList<Event> activitiesRepeated = activity.getRepeatEventList();
 
@@ -114,7 +114,7 @@ public class StorageParser {
         String repeatUnit = "0";
         String repeatNumber = "0";
         if (activity.getRepeatCount() != 0) { //it is a repeated activity
-            repeatUnit = activity.getRepeatType();
+            repeatUnit = activity.getRepeatType().toUpperCase();
             repeatNumber = Integer.toString(activity.getRepeatCount());
             ArrayList<Event> activitiesRepeated = activity.getRepeatEventList();
 
@@ -164,7 +164,7 @@ public class StorageParser {
         String repeatUnit = "0";
         String repeatNumber = "0";
         if (activity.getRepeatCount() != 0) { //it is a repeated activity
-            repeatUnit = activity.getRepeatType();
+            repeatUnit = activity.getRepeatType().toUpperCase();
             repeatNumber = Integer.toString(activity.getRepeatCount());
             ArrayList<Event> activitiesRepeated = activity.getRepeatEventList();
 
