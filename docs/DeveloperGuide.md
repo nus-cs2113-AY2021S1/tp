@@ -122,6 +122,63 @@ The following explains the design considerations when implementing commands:
 * Make `BuyCommand` As a class by itself
     * Reason: Increases modularity of code, higher overall code quality 
 * Alternatives: have a `buyCommand` method, increases coupling and reduces testability
+=======
+### View Portfolio feature
+
+#### Current implementation
+
+View portfolio command is executed by `Controller`. It allows users to access, retrieve and view array list of stocks 
+owned and their historical transactions. This is done by instantiating a new `PortfolioManager` which is able to 
+access `Portfolio`. The `Portfolio` object encapsulates `Stock` and `Transaction`.
+
+Addtionally, `Stock` object is able to retrieve latest live prices by instantiating `StockPriceFetcher` to call 
+AlphaVantage API. This allows users to view not only their stocks historial transactions, but to see their profit/loss  
+based on current latest price. 
+
+Given below is an example usage scenario and how view portfolio command behaves at each step.
+
+![](./diagrams/ViewPortfolioState0.png)
+
+**Step 1**: `Parser` will initialise `ViewCommand` and call `viewPortfolio()` command from the `Controller`. `Ui` is initialised to call `view()`. The method 
+takes in an parameter of an array list of stock to be displayed.
+
+|Parameter|Corresponds to
+|:---:|:---:
+|`Stock`| Stock objects
+
+**Step 2**: To obtain an array list of stock to be used as an arugment in `Ui` `view()` method, `PortfolioManager` is initialised to call `getAllStocks()` method.
+The method returns an array list of `Stock` by initialising `Portfolio` which is keeps a HashMap of `Stock` objects. Below is a table of what each attribute in
+`Stock`corresponds to in the program.
+
+|Attribute|Corresponds to
+|:---:|:---:
+|`Symbol`| Ticker Symbol of Stock in possession
+|`totalQuantity`| Integer number of shares currently owned
+|`transactions`| An array list of `Transaction` object 
+
+![](./diagrams/ViewPortfolioState1.png)
+
+**Step 3**: For each of the `Stock` object to be displayed, `getTransaction()` method is called to obtained historial
+records of user's stock transactions.
+Below is a table of what each attribute in `Transaction` corresponds to in the program. 
+
+|Attribute|Corresponds to
+|:---:|:---:
+|`TransactionType`| Buy or Sell stock
+|`Quantity`| Integer number of shares to be bought
+|`BuyPrice`| Cost price of a stock at a specific time 
+|`LocalDateTime`| the time when the command is called 
+
+**Step 4**: For each of the `Stock` object to be displayed, `getLatestPrice()` method is called by instantiating a new `StockPriceFetcher`
+which calls out to AlphaVantage API to obtain latest stock price. 
+
+User's latest profit/loss will be displayed through calculation of latest stock price
+against historical buy price. 
+
+![](./diagrams/ViewPortfolioState2.png)
+
+**Step 5**: `Parser`, `ViewCommand`, `Stock`, `Transaction`, `StockPriceFetcher` are terminated. 
+
 
 ## Product scope
 ### Target user profile
