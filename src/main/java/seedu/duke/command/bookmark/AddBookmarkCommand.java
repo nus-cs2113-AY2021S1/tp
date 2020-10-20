@@ -54,6 +54,6 @@ public class AddBookmarkCommand extends Command {
         Bookmark bookmark = new Bookmark(description, url);
         String message = bookmarks.addBookmark(bookmark);
         ui.print(message);
-        bookmarkStorage.save(bookmarks.getData());
+//        bookmarkStorage.save(bookmarks.getData());
     }
 }
