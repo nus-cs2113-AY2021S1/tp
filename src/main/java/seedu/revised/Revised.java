@@ -9,7 +9,7 @@ import seedu.revised.command.subject.QuizSubjectCommand;
 import seedu.revised.command.subject.ReturnSubjectCommand;
 import seedu.revised.command.subject.SubjectCommand;
 import seedu.revised.exception.FailedParseException;
-import seedu.revised.exception.flashcard.*;
+import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.storage.DataLoadingException;
 import seedu.revised.exception.subject.InvalidSubjectException;
 import seedu.revised.exception.subject.NoSubjectException;
@@ -91,7 +91,7 @@ public class Revised {
                 System.out.println(e.getMessage());
             } catch (InvalidSubjectException e) {
                 System.out.println(e.getMessage());
-            }catch (FailedParseException e) {
+            } catch (FailedParseException e) {
                 System.out.println(e.getMessage());
             } catch (IndexOutOfBoundsException e) {
                 System.out.println(Ui.printOutOfBoundsError());

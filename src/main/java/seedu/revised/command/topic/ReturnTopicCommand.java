@@ -4,8 +4,9 @@ import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
 import seedu.revised.command.flashcard.FlashcardCommand;
 import seedu.revised.exception.FailedParseException;
+import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.flashcard.RepeatedFlashcardException;
-import seedu.revised.exception.flashcard.*;
+import seedu.revised.exception.flashcard.RepeatedFlashcardException;
 import seedu.revised.exception.subject.NoSubjectException;
 import seedu.revised.parser.FlashcardParser;
 import seedu.revised.task.TaskList;
@@ -38,9 +39,9 @@ public class ReturnTopicCommand extends TopicCommand {
         boolean isTopicExit = false;
         while (!isTopicExit) {
             try {
-            String fullCommand = Ui.readCommand();
-            FlashcardCommand c = FlashcardParser.parse(fullCommand);
-            isTopicExit = c.isExit();
+                String fullCommand = Ui.readCommand();
+                FlashcardCommand c = FlashcardParser.parse(fullCommand);
+                isTopicExit = c.isExit();
                 c.execute(topic);
             } catch (NoFlashcardException e) {
                 System.out.println(e.getMessage());
