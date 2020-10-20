@@ -2,15 +2,16 @@ package seedu.rex.ui;
 
 import seedu.rex.commands.Command;
 import seedu.rex.commands.ExitCommand;
+import seedu.rex.data.AppointmentList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
+import seedu.rex.data.hospital.Doctor;
 import seedu.rex.data.hospital.Patient;
 import seedu.rex.storage.Storage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -205,11 +206,11 @@ public class Ui {
      * @return User input.
      * @throws RexException If no appointments are available.
      */
-    public String getAppointmentToBook(ArrayList<Appointment> appointments) throws RexException {
+    public String getAppointmentToBook(AppointmentList appointments) throws RexException {
         showLine();
         printWithIndent("Here are the list of available appointments.");
         int counter = 0;
-        for (Appointment appointment : appointments) {
+        for (Appointment appointment : appointments.getAppointments()) {
             if (!appointment.isBooked()) {
                 counter++;
                 printWithIndent(counter + ". " + appointment.getDate().toString());
@@ -276,11 +277,29 @@ public class Ui {
      */
     public void listPatients(PatientList patients) {
         printWithIndent("List of patients (" + patients.getPatients().size() + " in total):");
-        for (Patient patient: patients.getPatients()) {
+        for (Patient patient : patients.getPatients()) {
             printWithIndent("");
             printWithIndent("Name: " + patient.getName());
             printWithIndent("NRIC: " + patient.getNric());
             printWithIndent("DOB: " + patient.getDateOfBirth());
         }
+    }
+
+    public String getDoctorName() {
+        printWithIndent("Enter doctor name: ");
+        return in.nextLine().toUpperCase().trim();
+    }
+
+    public void showDoctorAdded(Doctor newDoctor) {
+        printWithIndent("Doctor added: " + newDoctor.getName());
+    }
+
+    public void showDoctorDeleted(Doctor deletedDoctor) {
+        printWithIndent("Doctor successfully deleted: ");
+        printWithIndent(deletedDoctor.toString());
+    }
+
+    public void printDoctorNotFound(String doctorName) {
+        printWithIndent("Patient " + doctorName + " not found in database!");
     }
 }

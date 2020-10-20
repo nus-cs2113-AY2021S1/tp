@@ -24,11 +24,16 @@ create
 2020-10-40
 create
 2020-10-10
+doctor tan
 book S9123456Z
+t
+book S9123456Z
+tan
 0
 book S9123456Z
+tan
 1
-book S9123456Z
 appointments S9123456Z
+nodoctor tan
 list
 bye

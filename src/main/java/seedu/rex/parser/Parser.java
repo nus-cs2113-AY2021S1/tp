@@ -2,6 +2,7 @@ package seedu.rex.parser;
 
 import seedu.rex.Rex;
 import seedu.rex.commands.AddCommand;
+import seedu.rex.commands.AddDoctorCommand;
 import seedu.rex.commands.BookCommand;
 import seedu.rex.commands.Command;
 import seedu.rex.commands.CreateAppointmentCommand;
@@ -10,9 +11,11 @@ import seedu.rex.commands.EditCommand;
 import seedu.rex.commands.ExitCommand;
 import seedu.rex.commands.ListAppointmentsCommand;
 import seedu.rex.commands.ListPatientsCommand;
+import seedu.rex.commands.RemoveDoctorCommand;
 import seedu.rex.commands.RetrieveCommand;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
+import seedu.rex.data.hospital.Doctor;
 import seedu.rex.data.hospital.Patient;
 
 import java.time.LocalDate;
@@ -47,9 +50,13 @@ public class Parser {
         LocalDate date = LocalDate.parse(appointmentComponents[0]);
         String bookedStatus = appointmentComponents[1];
         String nric = appointmentComponents[2];
+        String doctorName = appointmentComponents[3];
         Appointment appointment = new Appointment(date);
         if (bookedStatus.equals("booked")) {
-            appointment.book(Rex.getPatients().getPatientUsingIndex(Rex.getPatients().getExistingPatient(nric)));
+            appointment.bookPatient(Rex.getPatients().getPatientFromNric(nric));
+        }
+        if (doctorName != null && !doctorName.equals("null")) {
+            appointment.setDoctor(Rex.getDoctors().getDoctorFromName(doctorName));
         }
         return appointment;
     }
@@ -95,6 +102,12 @@ public class Parser {
         case RetrieveCommand.COMMAND_WORD:
             command = new RetrieveCommand(trimmedCommand);
             break;
+        case AddDoctorCommand.COMMAND_WORD:
+            command = new AddDoctorCommand(trimmedCommand);
+            break;
+        case RemoveDoctorCommand.COMMAND_WORD:
+            command = new RemoveDoctorCommand(trimmedCommand);
+            break;
         default:
             throw new RexException(Command.COMMAND_ERROR);
         }
@@ -102,4 +115,10 @@ public class Parser {
     }
 
 
+    public static Doctor readDoctor(String line) {
+        assert line != null && !line.equals("") : "No doctors to read!";
+
+        String name = line.trim();
+        return new Doctor(name);
+    }
 }

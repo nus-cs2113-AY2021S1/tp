@@ -6,6 +6,10 @@ package seedu.rex.data.hospital;
 public class Doctor {
     private String name;
 
+    public Doctor(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
@@ -14,4 +18,9 @@ public class Doctor {
         this.name = name;
     }
 
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
