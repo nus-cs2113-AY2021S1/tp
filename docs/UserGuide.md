@@ -23,6 +23,8 @@ Before you begin, here's what you need to do:
 
 {Give detailed description of each feature}
 
+## Usage
+
 ### Book Management
 
 Do you have books you are currently reading and want to keep track of them? 
@@ -110,6 +112,81 @@ Expected outcome:
 ~~~
 The book [Harry Potter by JK Rowling] has been deleted!
 ~~~ 
+
+### Category Management
+If you like customising your own list, you can do so by categorising your books and quotes.
+
+#### Add categories: `add -c`
+Add one or more categories to a specified book or quote.
+
+Format: `add -c CATEGORIES {[-b BOOK_NUMBER] | [-q QUOTE_NUMBER]}`
+* You must specify either a book, quote, or both.
+* The specified book or quote should exist in Quotesify.
+* Multiple categories should be <u>space separated</u>.
+
+Example of usage: `add -c fantasy -b 1`
+
+Expected outcome:
+```
+I have tagged [fantasy] category to "Harry Potter"!
+```
+
+#### List categories: `list -c`
+List all existing categories.
+
+Format: `list -c`
+
+Example of usage: `list -c`
+
+Expected outcome:
+```
+Here is the list of all categories:
+1. lol - (1 items)
+2. action - (2 items)
+3. inspirational - (1 items)
+4. fantasy - (1 items)
+```
+
+#### List a specific category: `list -c`
+List all books and quotes tagged under the specified category name.
+
+Format: `list -c CATEGORY`
+
+Example of usage: `list -c fantasy`
+
+Expected outcome:
+```
+Here are the list of items tagged as [fantasy]:
+BOOKS:
+1. Harry Potter by JK Rowling
+```
+
+#### Delete categories: `delete -c`
+Remove one or more categories from a specified book or quote.
+
+Format: `delete -c CATEGORIES {[-b BOOK_NUMBER] | [-q QUOTE_NUMBER]}`
+* You must specify either a book, quote, or both.
+* The specified book or quote should exist in Quotesify.
+* Multiple categories should be <u>space separated</u>.
+
+Example of usage: `delete -c fantasy -b 1`
+
+Expected outcome:
+```
+I have removed [fantasy] category from "Harry Potter"!
+```
+
+#### Edit an existing category: `edit -c`
+Edit an existing category name.
+
+Format: `edit -c OLD_CATEGORY /to NEW_CATEGORY`
+
+Example of usage: `edit -c fantasy /to romance`
+
+Expected outcome:
+```
+The category has been changed from [fantasy] to [romance]!
+```
 
 ### Rating System
 
