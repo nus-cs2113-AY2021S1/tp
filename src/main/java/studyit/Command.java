@@ -1,30 +1,17 @@
-<<<<<<< HEAD:src/main/java/Command.java
-import bookmark.BookmarkParser;
-=======
 package studyit;
 
 import academic.AcademicCommandParser;
 import academic.AcademicCommandType;
-import bookmark.BookmarkParser;
-import bookmark.BookmarkUi;
->>>>>>> master:src/main/java/studyit/Command.java
 import exceptions.InvalidCommandException;
 import exceptions.InvalidGradeException;
 import exceptions.InvalidMcException;
 import flashcard.FlashcardRun;
 import academic.GradeBook;
 import academic.PersonBook;
-import log.StudyItLog;
 import timetable.TimeTableRun;
-<<<<<<< HEAD:src/main/java/Command.java
-=======
-import bookmark.BookmarkCategory;
-import bookmark.commands.BookmarkCommand;
 import userinterface.ErrorMessage;
 import userinterface.HelpMessage;
 import userinterface.Ui;
-
->>>>>>> master:src/main/java/studyit/Command.java
 import java.util.ArrayList;
 import bookmark.BookmarkRun;
 
@@ -79,20 +66,7 @@ public class Command {
 
     public static void executeBookmarkModeCommand(String command, BookmarkRun bookmarkRun) {
         StudyItLog.logger.info("Processing bookmark mode.");
-<<<<<<< HEAD:src/main/java/Command.java
         bookmarkRun.run(command);
-=======
-        BookmarkUi bookmarkUi = new BookmarkUi();
-        BookmarkParser bookmarkParser = new BookmarkParser();
-        try {
-            BookmarkCommand c = bookmarkParser.evaluateInput(command,chosenCategory);
-            c.executeCommand(bookmarkUi,bookmarkCategories);
-            chosenCategory = c.getCategoryNumber();
-        } catch (InvalidCommandException e) {
-            bookmarkUi.showInvalidBookmarkCommand();
-            StudyItLog.logger.info("Cannot understand bookmark command");
-        }
->>>>>>> master:src/main/java/studyit/Command.java
     }
 
     public static void executeTimetableModeCommand(String command, TimeTableRun timeTableRun) {

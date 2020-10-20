@@ -2,20 +2,13 @@ package studyit;
 
 import academic.Grade;
 import academic.Person;
-import log.StudyItLog;
 import timetable.TimeTableRun;
 import flashcard.FlashcardRun;
-<<<<<<< HEAD:src/main/java/StudyIt.java
-=======
-import bookmark.BookmarkCategory;
-import bookmark.NusCategory;
-import bookmark.ZoomCategory;
 import userinterface.MainMenu;
-import userinterface.Ui;
-
->>>>>>> master:src/main/java/studyit/StudyIt.java
 import java.util.ArrayList;
 import bookmark.BookmarkRun;
+import userinterface.Ui;
+
 
 public class StudyIt {
     private static Mode currentMode = Mode.MENU;

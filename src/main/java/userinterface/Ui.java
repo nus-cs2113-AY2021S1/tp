@@ -1,10 +1,3 @@
-<<<<<<< HEAD:src/main/java/Ui.java
-import bookmark.BookmarkRun;
-import bookmark.BookmarkUi;
-import exceptions.InvalidModeException;
-import log.StudyItLog;
-
-=======
 package userinterface;
 
 import bookmark.BookmarkUi;
@@ -14,7 +7,6 @@ import studyit.Mode;
 import studyit.CommandParser;
 import studyit.StudyIt;
 import studyit.StudyItLog;
->>>>>>> master:src/main/java/userinterface/Ui.java
 import java.util.Scanner;
 
 public class Ui {

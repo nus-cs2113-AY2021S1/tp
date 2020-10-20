@@ -12,6 +12,7 @@ public class BookmarkRun {
     private BookmarkUi bookmarkUi;
     private BookmarkParser bookmarkParser;
     private BookmarkStorage bookmarkStorage;
+    private int mode;
 
     public BookmarkRun() {
         bookmarkCategories.add(new NusCategory());
@@ -23,8 +24,9 @@ public class BookmarkRun {
 
     public void run(String command) {
         try {
-            BookmarkCommand c = bookmarkParser.evaluateInput(command);
+            BookmarkCommand c = bookmarkParser.evaluateInput(command,mode);
             c.executeCommand(bookmarkUi,bookmarkCategories);
+            mode = c.getCategoryNumber();
         } catch (InvalidCommandException e) {
             bookmarkUi.showInvalidBookmarkCommand();
             StudyItLog.logger.info("Cannot understand bookmark command");
