@@ -452,7 +452,7 @@ public class Ui {
                 + "____________________________________________________________\n");
     }
 
-    public static String printEnterTopicError() {
+    public static String printInvalidTopicError() {
         return ("____________________________________________________________\n"
                 + "Please enter a topic!\n"
                 + "____________________________________________________________\n");

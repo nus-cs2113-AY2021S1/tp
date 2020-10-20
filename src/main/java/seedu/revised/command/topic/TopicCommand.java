@@ -8,10 +8,11 @@ import seedu.revised.exception.subject.NoSubjectException;
 import seedu.revised.exception.subject.RepeatedSubjectException;
 import seedu.revised.exception.topic.InvalidTopicException;
 import seedu.revised.exception.topic.NoTopicException;
+import seedu.revised.exception.topic.RepeatedTopicException;
 
 public class TopicCommand extends Command {
     public Topic execute(Subject subject) throws NoSubjectException, RepeatedSubjectException,
-            NoTopicException, InvalidTopicException, FailedParseException {
+            NoTopicException, InvalidTopicException, FailedParseException, RepeatedTopicException {
         return null;
     }
 

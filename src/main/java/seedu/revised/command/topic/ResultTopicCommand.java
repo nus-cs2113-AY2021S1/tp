@@ -19,7 +19,7 @@ public class ResultTopicCommand extends TopicCommand {
 
         String[] message = this.fullcommand.split(" ");
         if (message.length == 1) {
-            throw new InvalidTopicException(Ui.printEnterTopicError());
+            throw new InvalidTopicException(Ui.printInvalidTopicError());
         }
         Topic quizTopic = null;
         for (Topic topic : subject.getTopics().getList()) {
