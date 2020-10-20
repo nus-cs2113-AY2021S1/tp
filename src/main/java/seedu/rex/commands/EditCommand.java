@@ -49,7 +49,7 @@ public class EditCommand extends Command {
         int index = patients.editExistingPatient(ui.getPatientName(), nric, ui.getPatientDateOfBirth());
         assert index > -1 : "Invalid index!";
         ui.showLine();
-        ui.showPatientEditted(patients.getPatientUsingIndex(index));
+        ui.showPatientEdited(patients.getPatientUsingIndex(index));
         storage.savePatients(patients);
     }
 }

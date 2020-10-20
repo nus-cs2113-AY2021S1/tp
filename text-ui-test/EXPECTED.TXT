@@ -63,7 +63,7 @@ Enter command:
 	 Enter patient name: 
 	 Enter patient date of birth (YYYY-MM-DD) including the dashes: 
 	____________________________________________________________
-	 Patient successfully editted: 
+	 Patient successfully edited:
 	 Donald, S9123456Z, 1962-06-14
 	____________________________________________________________
 Enter command: 
