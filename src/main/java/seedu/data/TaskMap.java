@@ -62,7 +62,7 @@ public class TaskMap {
 
     public TaskMap searchByDescription(String toSearch) {
         List<Task> found = tasksMap.values().stream()
-            .filter(task -> task.getDescription().contains(toSearch))
+            .filter(task -> task.getDescription().toLowerCase().contains(toSearch.toLowerCase()))
             .collect(Collectors.toList());
         return new TaskMap(found);
     }
