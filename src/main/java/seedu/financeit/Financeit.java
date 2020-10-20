@@ -36,7 +36,6 @@ public class Financeit {
         }
 
         while (true) {
-            assert false : "Failed on purpose";
             UiManager.refreshPage();
             UiManager.printLogo();
             MenuPrinter.printMainMenu();
