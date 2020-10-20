@@ -91,7 +91,7 @@ public class WatchlistCommand extends Command {
         Watchlist selectedWatchlist = watchlistList.get(selectIndex);
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
         if (selectedWatchlist.equals(activeWatchlist)) {
-            LOGGER.log(Level.INFO, "Select failed because the currently active watchlist is the selected.");
+            LOGGER.log(Level.INFO, "Select failed because the active watchlist is selected.");
             throw new AniException("Current active watchlist is \"" + selectedWatchlist.getName() + "\".");
         }
 

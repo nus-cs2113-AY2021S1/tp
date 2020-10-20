@@ -39,5 +39,3 @@ public class EstimateParserTest {
         assertThrows(AssertionError.class, () -> estimateParser.parse(null));
     }
 }
-
-

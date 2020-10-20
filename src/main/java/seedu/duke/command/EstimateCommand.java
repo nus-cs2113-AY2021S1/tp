@@ -14,6 +14,10 @@ import static seedu.duke.logger.AniLogger.getAniLogger;
 public class EstimateCommand extends Command {
     private static final int NO_WORDS_PER_HOUR_PROVIDED = -1;
     private static final int MINUTES_PER_HOUR = 60;
+
+    // On average, translator translates about 400 to 600 words in an hour, so a multiple
+    // of 100 (400, 500, 600) is chosen to provide users with various estimation times so
+    // they can identify which of these 3 values is a better estimate for them.
     private static final int[] AVERAGE_TRANSLATOR_WORDS_PER_HOUR = {400, 500, 600};
     private static final Logger LOGGER = getAniLogger(EstimateCommand.class.getName());
 
@@ -59,7 +63,14 @@ public class EstimateCommand extends Command {
     private String getHoursAndMinutesNeeded(double timeNeeded) {
         double hoursNeeded = Math.floor(timeNeeded);
         double minutesNeeded = (timeNeeded - hoursNeeded) * MINUTES_PER_HOUR;
-        String hoursAndMinutesNeeded = (int) hoursNeeded + " hour(s) " + (int) minutesNeeded + " minute(s).";
+
+        String hoursAndMinutesNeeded = (int) hoursNeeded + " hour(s)";
+        if ((int)minutesNeeded != 0) {
+            hoursAndMinutesNeeded += " " + (int) minutesNeeded + " minute(s).";
+        } else {
+            hoursAndMinutesNeeded += ".";
+        }
+
         LOGGER.log(Level.INFO, "Converted " + timeNeeded + " to: " + hoursAndMinutesNeeded);
         return hoursAndMinutesNeeded;
     }
