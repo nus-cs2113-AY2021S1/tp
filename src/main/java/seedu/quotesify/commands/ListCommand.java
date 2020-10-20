@@ -84,23 +84,22 @@ public class ListCommand extends Command {
                 listBookDetails(bookList, ui);
             }
         } catch (IndexOutOfBoundsException e) {
-            ui.printErrorMessage(ERROR_NO_AUTHOR_NAME);
+            if (information.contains(FLAG_AUTHOR)) {
+                ui.printErrorMessage(ERROR_NO_AUTHOR_NAME);
+            } else {
+                ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
+            }
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
-        }
-    }
-
-    private void listBookDetails(BookList bookList, TextUi ui) {
-        try {
-            int bookIndex = Integer.parseInt(information.trim()) - 1;
-            Book book = bookList.getBook(bookIndex);
-            ui.printBookDetails(book);
-            if (book.getCategories().size()  == 0) {
-
-            }
         } catch (NumberFormatException e) {
             ui.printErrorMessage(ERROR_LIST_UNKNOWN_COMMAND);
         }
+    }
+
+    private void listBookDetails(BookList bookList, TextUi ui) throws NumberFormatException {
+        int bookIndex = Integer.parseInt(information.trim()) - 1;
+        Book book = bookList.getBook(bookIndex);
+        ui.printBookDetails(book);
     }
 
     private void listAllBooks(BookList bookList, TextUi ui) throws QuotesifyException {
