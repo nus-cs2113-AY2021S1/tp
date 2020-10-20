@@ -43,6 +43,86 @@ of PaperTrade.
 
 ![](./diagrams/Lifecycle.png)
 
+## Implementation
+
+### Buy/Sell Stock Feature
+
+#### Current implementation
+
+Buy and sell stock commands are largely similar, with the only difference being the way values of attributes in 
+the objects instantiated are updated and the condition for throwing exceptions. 
+Other than that, the way the functions work is the same.
+
+Below is the explanation of the implementation of based on buy stock command, 
+which can be applied to the sell stock command as well.
+
+Buy stock command is instantiated by `Parser`. It allows users to buy stocks and add them to their 
+ `Portfolio` by calling the `buyStock` methods from `PortfolioManager`, `StockPriceFetcher` and `Wallet` 
+ objects instantiated by the `Controller` This will also _add_ the stock `portfolio` in `PortfolioManager`. 
+
+Additionally, buy stock command extends the `Command` class which contains the `symbol` and `quantity` attributes. 
+An external class, `buyParse` method is being called to validate the various parameters that the user has entered.
+
+Given below is an example usage scenario and how buy stock command behaves at each step.
+
+![](./diagrams/BuyStockState0.png)
+
+**Step 1** : The user calls the buy stock command from the `Parser`, which will initialise a 
+`BuyCommand` and get the attribute values for `symbol` and `quantity`. 
+`BuyCommand`'s constructor takes in parameter of `String symbol`, `Person`.
+Below is a table of what each parameter corresponds to in the state diagram of the program.
+
+|Parameter|Corresponds to
+|:---:|:---:
+|`symbol`| Ticker symbol of Stock to buy
+|`quantity`| Integer number of shares to be 
+
+**Step 2** : `buyStock()` is called from the instances of both `portfolioManager` and `wallet` 
+with the values of `symbol` and `quantity` passed to them. 
+
+**Step 3** : In the instance of `wallet`, the value of attribute `amount` is updated accordingly.
+In the instance of `portfolioManager`, a new `Portfolio` object is instantiated. 
+ 
+ ![](./diagrams/BuyStockState1.png)
+
+ 
+**Step 4** : The `buyStock` method is called from the `portfolio` instance, which instantiates a new `Transaction` object. 
+ The `transaction` object stores details of the stock bought.
+Below is a table of what each attribute in `Transaction` corresponds to in the program.
+
+|Attribute|Corresponds to
+|:---:|:---:
+|`TransactionType`| Buy or Sell stock
+|`Quantity`| Integer number of shares to be bought
+|`BuyPrice`| Cost price of a stock at a specific time 
+|`LocalDateTime`| the time when the command is called 
+
+**Step 5** : A new 'Stock' object is also instantiated from the method call in the previous step. 
+(_If a stock with the same symbol has not been instantiated before_.) Otherwise, the `Stock` object of that stock
+symbol will be used. 
+
+The method `addTransaction` in the `stock` object is then called, with the `transaction` object as a parameter, 
+to update the value of the attribute `totalQuantity` in `Stock`.
+
+![](./diagrams/BuyStockState2.png)
+
+**Step 6** : `BuyCommand`, `Parser`, `StockPriceFetcher`, `Transaction` and `Stock` are terminated.
+
+![](./diagrams/BuyStockState3.png)
+
+The following sequence diagram summarizes what happens when the user executes an `BuyCommand` :
+
+![](./diagrams/BuyStockSequence.png)
+(Sequence Diagram to be added)
+
+#### Design consideration
+
+The following explains the design considerations when implementing commands:
+
+* Make `BuyCommand` As a class by itself
+    * Reason: Increases modularity of code, higher overall code quality 
+* Alternatives: have a `buyCommand` method, increases coupling and reduces testability
+
 ## Product scope
 ### Target user profile
 
