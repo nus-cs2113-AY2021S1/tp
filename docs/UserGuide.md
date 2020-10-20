@@ -7,7 +7,7 @@
    3.3 HR `HR` <br/>
       *  Add Members: `addMember`<br/>
       *  Delete Members: `delMember`<br/>
-      *  View summary of members: `viewMember`<br/>
+      *  View summary of members: `listMember`<br/>
    
    3.4 Events `event` <br/>
      * Add events: `addEvent`<br/>
@@ -43,6 +43,33 @@ Exits the program.
 Format: `bye`
 
 ### 3.3 HR features `HR` <br/>
+#### Add members: `addMember`<br/>
+Adds a member to the list of members.<br/>
+
+Format: `hr add /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE`<br/>
+
+Example of usage: <br/>
+ `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president`<br/>
+ `hr addMember /n Harry Potter /p 12345678 /e H_P@gmail.com /r member`<br/>
+ 
+ #### Delete members: `delMember`<br/>
+ Deletes a member from the list of members. <br/>
+ Format: `hr delMember MEMBER_INDEX` <br/>
+ Deletes the member at the specified MEMBER_INDEX.<br/>
+ 
+ The MEMBER_INDEX refers to the index number shown in the list of members.<br/>
+ The MEMBER_INDEX must be an integer greater than 0. <br/>
+ 
+ Example of usage: 
+ `hr delMember 1` <br/>
+ `hr delMember 19` <br/>
+
+#### list members: `listMember`<br/>
+Prints the list of members, based on the order in which they are added into the list. 
+Format: `hr listMember` <br/>
+
+Example of usage: 
+`hr listMember`
 
 ### 3.4 Event features`event` <br/>
 #### Add events: `addEvent`<br/>
@@ -102,7 +129,9 @@ Command | Format | Example
 ------- | ---------- | ------------
 help | `help` | -
 bye | `bye` | -
-hr  | | -
+addMember  | `hr addMember /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE` | `hr addMember /n Harry /p 12345678 /e HP@gmail.com /r member`<br/>
+delMember  | `hr delMember MEMBER_INDEX` | `hr delMember 1`
+listMember  | `hr listMember` | -
 addEvent | `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME` | `event addEvent /n arduino course /d 2020-09-16 /t 8pm`<br/>
 delEvent | `event delEvent EVENT_INDEX`  | `event delEvent 1`
 listEvent | `event listEvent` | -
