@@ -51,6 +51,7 @@ public class ProjectParser implements ExceptionsParser {
             break;
         case SELECT:
             new SelectProjectCommand(parameters).execute();
+            break;
         default:
             throw new DukeException("Invalid action!");
         }
