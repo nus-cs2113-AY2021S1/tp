@@ -11,27 +11,26 @@ import seedu.rex.ui.Ui;
 import java.util.logging.Level;
 
 /**
- * Edits a patient from the list of patients.
+ * Retrieves patient details.
  */
-public class EditCommand extends Command {
+public class RetrievePatientCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "retrieve";
     private final String trimmedCommand;
 
-    public EditCommand(String trimmedCommand) {
+    public RetrievePatientCommand(String trimmedCommand) {
         this.trimmedCommand = trimmedCommand;
     }
 
     /**
-     * Edits an existing patient to the patient list using details inputted by the user.
+     * Retrieves patient from patient list using details inputted by the user.
      *
      * @param patients     PatientList object.
      * @param doctors      DoctorList object.
      * @param appointments AppointmentList object.
-     * @param ui           Ui object of the program.
-     * @param storage      Storage object used for saving data to files.
-     * @throws RexException If there is an error in the NRIC inputted by the user, the data fails
-     *                      to save successfully, or the NRIC already exists in the patient list.
+     * @param ui           Ui object.
+     * @param storage      Storage object.
+     * @throws RexException If there is issue executing command.
      */
     @Override
     public void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui, Storage storage)
@@ -42,14 +41,11 @@ public class EditCommand extends Command {
         Rex.logger.log(Level.INFO, "going to extract NRIC");
         String nric = extractNric(trimmedCommand, COMMAND_WORD);
 
-        if (!patients.isExistingPatient(nric)) {
-            throw new RexException("A patient with this NRIC has not been registered!");
+        int index = patients.getExistingPatient(nric);
+        assert index > -2 : "Unexpected index!";
+        if (index < 0) {
+            throw new RexException("No such patient!");
         }
-
-        int index = patients.editExistingPatient(ui.getPatientName(), nric, ui.getPatientDateOfBirth());
-        assert index > -1 : "Invalid index!";
-        ui.showLine();
-        ui.showPatientEditted(patients.getPatientUsingIndex(index));
-        storage.savePatients(patients);
+        ui.showPatient(patients.getPatientUsingIndex(index));
     }
 }

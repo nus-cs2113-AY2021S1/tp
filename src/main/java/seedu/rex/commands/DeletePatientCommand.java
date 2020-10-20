@@ -11,24 +11,26 @@ import seedu.rex.ui.Ui;
 
 import java.util.logging.Level;
 
-public class ListAppointmentsCommand extends Command {
-
-    public static final String COMMAND_WORD = "appointments";
+/**
+ * Deletes a <code>Patient</code>'s data based on his NRIC.
+ */
+public class DeletePatientCommand extends Command {
+    public static final String COMMAND_WORD = "delete";
     private final String trimmedCommand;
 
-    public ListAppointmentsCommand(String trimmedCommand) {
+    public DeletePatientCommand(String trimmedCommand) {
         this.trimmedCommand = trimmedCommand;
     }
 
     /**
-     * Lists appointments of a patient.
+     * Deletes patients using NRIC.
      *
      * @param patients     PatientList object.
      * @param doctors      DoctorList object.
      * @param appointments AppointmentList object.
      * @param ui           Ui object.
      * @param storage      Storage object.
-     * @throws RexException If the input NRIC does not exist in system
+     * @throws RexException If NRIC has issues.
      */
     @Override
     public void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui, Storage storage)
@@ -39,21 +41,22 @@ public class ListAppointmentsCommand extends Command {
         Rex.logger.log(Level.INFO, "going to extract NRIC");
         String nric = extractNric(trimmedCommand, COMMAND_WORD);
 
-        if (!patients.isExistingPatient(nric)) {
-            throw new RexException("A patient with this NRIC has not been registered!");
-        }
-        Patient targetPatient = patients.getPatientFromNric(nric);
-        assert targetPatient != null : "Null target patient!";
-        ui.showAppointmentsListHeader(nric);
+        if (patients.isExistingPatient(nric)) {
+            Patient deletedPatient = patients.deletePatient(nric);
+            assert deletedPatient != null : "Deleted patient is null!";
 
-        int i;
-        for (i = 0; i < appointments.getSize(); i++) {
-            if (appointments.getAppointmentByIndex(i).getPatient().equals(targetPatient)) {
-                ui.showAppointmentLine(appointments.getAppointmentByIndex(i), i + 1);
+            ui.showPatientDeleted(deletedPatient);
+
+            for (int i = 0; i < appointments.getSize(); i++) {
+                String tempNric = appointments.getAppointmentByIndex(i).getPatient().getNric();
+                if (tempNric.contentEquals(nric)) {
+                    appointments.removeAppointmentByIndex(i);
+                    break;
+                }
             }
+        } else {
+            ui.printPatientNotFound(nric);
         }
-        if (i == 0) {
-            ui.showNoBookedAppointmentsMessage();
-        }
+        storage.savePatients(patients);
     }
 }

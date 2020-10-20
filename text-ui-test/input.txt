@@ -34,6 +34,11 @@ book S9123456Z
 tan
 1
 appointments S9123456Z
+create
+2020-12-12
+editappt S9123456Z
+1
+tan
 nodoctor tan
 list
 bye

@@ -1,18 +1,19 @@
 package seedu.rex.parser;
 
 import seedu.rex.Rex;
-import seedu.rex.commands.AddCommand;
 import seedu.rex.commands.AddDoctorCommand;
-import seedu.rex.commands.BookCommand;
+import seedu.rex.commands.AddPatientCommand;
+import seedu.rex.commands.BookApptCommand;
 import seedu.rex.commands.Command;
-import seedu.rex.commands.CreateAppointmentCommand;
-import seedu.rex.commands.DeleteCommand;
-import seedu.rex.commands.EditCommand;
+import seedu.rex.commands.CreateApptCommand;
+import seedu.rex.commands.DeleteDoctorCommand;
+import seedu.rex.commands.DeletePatientCommand;
+import seedu.rex.commands.EditApptCommand;
+import seedu.rex.commands.EditPatientCommand;
 import seedu.rex.commands.ExitCommand;
-import seedu.rex.commands.ListAppointmentsCommand;
-import seedu.rex.commands.ListPatientsCommand;
-import seedu.rex.commands.RemoveDoctorCommand;
-import seedu.rex.commands.RetrieveCommand;
+import seedu.rex.commands.ListApptCommand;
+import seedu.rex.commands.ListPatientCommand;
+import seedu.rex.commands.RetrievePatientCommand;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
 import seedu.rex.data.hospital.Doctor;
@@ -78,36 +79,41 @@ public class Parser {
         case ExitCommand.COMMAND_WORD:
             command = new ExitCommand();
             break;
-        case AddCommand.COMMAND_WORD:
-            command = new AddCommand(trimmedCommand);
+        case AddPatientCommand.COMMAND_WORD:
+            command = new AddPatientCommand(trimmedCommand);
             break;
-        case BookCommand.COMMAND_WORD:
-            command = new BookCommand(trimmedCommand);
+        case BookApptCommand.COMMAND_WORD:
+            command = new BookApptCommand(trimmedCommand);
             break;
-        case CreateAppointmentCommand.COMMAND_WORD:
-            command = new CreateAppointmentCommand();
+        case CreateApptCommand.COMMAND_WORD:
+            command = new CreateApptCommand();
             break;
-        case EditCommand.COMMAND_WORD:
-            command = new EditCommand(trimmedCommand);
+        case EditPatientCommand.COMMAND_WORD:
+            command = new EditPatientCommand(trimmedCommand);
             break;
-        case DeleteCommand.COMMAND_WORD:
-            command = new DeleteCommand(trimmedCommand);
+        case DeletePatientCommand.COMMAND_WORD:
+            command = new DeletePatientCommand(trimmedCommand);
             break;
-        case ListAppointmentsCommand.COMMAND_WORD:
-            command = new ListAppointmentsCommand(trimmedCommand);
+        case ListApptCommand.COMMAND_WORD:
+            command = new ListApptCommand(trimmedCommand);
             break;
-        case ListPatientsCommand.COMMAND_WORD:
-            command = new ListPatientsCommand();
+        case ListPatientCommand.COMMAND_WORD:
+            command = new ListPatientCommand();
             break;
-        case RetrieveCommand.COMMAND_WORD:
-            command = new RetrieveCommand(trimmedCommand);
+        case RetrievePatientCommand.COMMAND_WORD:
+            command = new RetrievePatientCommand(trimmedCommand);
             break;
         case AddDoctorCommand.COMMAND_WORD:
             command = new AddDoctorCommand(trimmedCommand);
             break;
-        case RemoveDoctorCommand.COMMAND_WORD:
-            command = new RemoveDoctorCommand(trimmedCommand);
+        case DeleteDoctorCommand.COMMAND_WORD:
+            command = new DeleteDoctorCommand(trimmedCommand);
             break;
+
+        case EditApptCommand.COMMAND_WORD:
+            command = new EditApptCommand(trimmedCommand);
+            break;
+
         default:
             throw new RexException(Command.COMMAND_ERROR);
         }

@@ -103,10 +103,10 @@ public class Ui {
     /**
      * Prints a message to indicate successful editting of a patient.
      *
-     * @param patient The newly editted <code>Patient</code>.
+     * @param patient The newly edited <code>Patient</code>.
      */
-    public void showPatientEditted(Patient patient) {
-        printWithIndent("Patient successfully editted: ");
+    public void showPatientEdited(Patient patient) {
+        printWithIndent("Patient successfully edited: ");
         printWithIndent(patient.toString());
     }
 
@@ -225,6 +225,30 @@ public class Ui {
     }
 
     /**
+     * Gets appointment to be edited.
+     *
+     * @param appointments Arraylist of appointments.
+     * @return User input.
+     * @throws RexException If no appointments are available.
+     */
+    public String getAppointmentToEdit(AppointmentList appointments) throws RexException {
+        showLine();
+        printWithIndent("Here are the list of available appointments.");
+        int counter = 0;
+        for (Appointment appointment : appointments.getAppointments()) {
+            counter++;
+            printWithIndent(counter + ". " + appointment.getDate().toString());
+
+        }
+        if (counter == 0) {
+            throw new RexException("No appointments available!");
+        }
+        printWithIndent("Please enter the index of appointment to edit");
+        showLine();
+        return in.nextLine();
+    }
+
+    /**
      * Shows appointment booking message.
      *
      * @param appointment appointment that was booked.
@@ -301,5 +325,18 @@ public class Ui {
 
     public void printDoctorNotFound(String doctorName) {
         printWithIndent("Patient " + doctorName + " not found in database!");
+    }
+
+    public LocalDate getAppointmentDate() {
+        while (true) {
+            try {
+                printWithIndent("Enter appointment date (YYYY-MM-DD) including the dashes: ");
+                return LocalDate.parse(in.nextLine().trim());
+            } catch (DateTimeParseException e) {
+                showLine();
+                showDateInputError();
+                showLine();
+            }
+        }
     }
 }

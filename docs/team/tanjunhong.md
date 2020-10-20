@@ -6,6 +6,6 @@ Github T-shirt Winner
 ### Summary of Contributions
 * Bare-bones code
 * Ability to retrieve patients information using NRIC
-* JUnit, Logging and Assertions
 * Add and remove doctor
+* JUnit, Logging and Assertions
 * Code cleanup

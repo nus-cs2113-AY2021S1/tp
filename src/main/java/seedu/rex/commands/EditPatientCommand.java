@@ -11,19 +11,19 @@ import seedu.rex.ui.Ui;
 import java.util.logging.Level;
 
 /**
- * Adds a patient to the list of patients.
+ * Edits a patient from the list of patients.
  */
-public class AddCommand extends Command {
+public class EditPatientCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "edit";
     private final String trimmedCommand;
 
-    public AddCommand(String trimmedCommand) {
+    public EditPatientCommand(String trimmedCommand) {
         this.trimmedCommand = trimmedCommand;
     }
 
     /**
-     * Adds a new patient to the patient list using details inputted by the user.
+     * Edits an existing patient to the patient list using details inputted by the user.
      *
      * @param patients     PatientList object.
      * @param doctors      DoctorList object.
@@ -42,17 +42,14 @@ public class AddCommand extends Command {
         Rex.logger.log(Level.INFO, "going to extract NRIC");
         String nric = extractNric(trimmedCommand, COMMAND_WORD);
 
-        if (patients.isExistingPatient(nric)) {
-            throw new RexException("A patient with this NRIC is already registered!");
+        if (!patients.isExistingPatient(nric)) {
+            throw new RexException("A patient with this NRIC has not been registered!");
         }
 
-        Rex.logger.log(Level.INFO, "adding patient...");
-        patients.addNewPatient(ui.getPatientName(), nric, ui.getPatientDateOfBirth());
+        int index = patients.editExistingPatient(ui.getPatientName(), nric, ui.getPatientDateOfBirth());
+        assert index > -1 : "Invalid index!";
         ui.showLine();
-
-        ui.showPatientAdded(patients.getPatientUsingIndex(patients.getSize() - 1));
-
-        assert !patients.getPatients().isEmpty() : "No patients!";
+        ui.showPatientEdited(patients.getPatientUsingIndex(index));
         storage.savePatients(patients);
     }
 }

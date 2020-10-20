@@ -11,15 +11,15 @@ class CommandTest {
 
     @Test
     void isInteger_456456_returnsTrue() {
-        RetrieveCommand retrieveCommand = new RetrieveCommand("");
-        assertTrue(retrieveCommand.isInteger("456456"));
+        RetrievePatientCommand retrievePatientCommand = new RetrievePatientCommand("");
+        assertTrue(retrievePatientCommand.isInteger("456456"));
     }
 
     @Test
     void extractNric_retrieveS9123456D_returnsS9123456DString() {
-        RetrieveCommand retrieveCommand = new RetrieveCommand("");
+        RetrievePatientCommand retrievePatientCommand = new RetrievePatientCommand("");
         try {
-            assertEquals(retrieveCommand.extractNric("retrieve S9123456D", "retrieve"), "S9123456D");
+            assertEquals(retrievePatientCommand.extractNric("retrieve S9123456D", "retrieve"), "S9123456D");
         } catch (RexException e) {
             e.printStackTrace();
         }
@@ -27,7 +27,7 @@ class CommandTest {
 
     @Test
     void extractNric_retrieveS91D_expectException() {
-        RetrieveCommand retrieveCommand = new RetrieveCommand("");
-        assertThrows(RexException.class, () -> retrieveCommand.extractNric("retrieve S91D", "retrieve"));
+        RetrievePatientCommand retrievePatientCommand = new RetrievePatientCommand("");
+        assertThrows(RexException.class, () -> retrievePatientCommand.extractNric("retrieve S91D", "retrieve"));
     }
 }
