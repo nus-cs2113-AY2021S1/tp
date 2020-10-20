@@ -3,7 +3,6 @@ package seedu.duke.command;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.bookmark.BookmarkList;
-import seedu.duke.slot.SlotList;
 
 import seedu.duke.exception.DukeException;
 import seedu.duke.slot.Timetable;

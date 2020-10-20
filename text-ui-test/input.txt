@@ -1,17 +1,12 @@
-hello
 mode bookmark
-list
-add CS2113T tutorial www.google.com
-add test delete www.jadfasd.adsfa
-add noModule www.google.com
-list
-delete 2
-list
-add asjdfalj
-add jasdkfl asdjfkla sjdkfla
-add noModule inValidUrl
-add empty  description
-list
+show
+delete 1
+add description www.bookmark.com
+show
+add description2 www.bookmark2.com
+show
+delete 1
+show
 mode timetable
 add laj1201 tutorial_1 mon 08:00 10:00 
 add geh1034 lecture mon 14:00 16:00 

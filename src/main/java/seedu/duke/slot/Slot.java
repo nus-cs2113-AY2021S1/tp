@@ -29,7 +29,6 @@ public class Slot {
     private String title;
     private BookmarkList bookmarks;
 
-
     public Slot(LocalTime startTimeInput, LocalTime endTimeInput, String dayInput, String titleInput) {
         startTime = startTimeInput;
         endTime = endTimeInput;

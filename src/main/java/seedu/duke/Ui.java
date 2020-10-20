@@ -59,6 +59,7 @@ public class Ui {
                     + "███       ███     ███  ██      ███ ██     ██     ██  ██     ██        ██ ██   ██          ██     \n"
                     + "██████████   █████       ██████    ██     ██     ██   ████████  ███████   ███  ████████   ██     \n";
 
+
     /**
      * Constructs a new Ui instance.
      */
@@ -258,7 +259,7 @@ public class Ui {
 
     private void printUnknownDayMessage() {
         printRed("Unknown day input\n"
-                + "Valid days: monday, tuesday, wednesday, thursday, friday, saturday, sunday\n");
+              + "Valid days: monday, tuesday, wednesday, thursday, friday, saturday, sunday\n");
     }
 
     private void printEmptyTimetableMessage() {
