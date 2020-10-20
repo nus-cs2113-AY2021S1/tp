@@ -1,6 +1,7 @@
 package seedu.rex.commands;
 
 import seedu.rex.data.AppointmentList;
+import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.storage.Storage;
@@ -32,12 +33,13 @@ public abstract class Command {
      * Executes command.
      *
      * @param patients     PatientList object.
+     * @param doctors DoctorList object.
      * @param appointments AppointmentList object.
      * @param ui           Ui object.
      * @param storage      Storage object.
      * @throws RexException If there is issue executing command.
      */
-    public abstract void execute(PatientList patients, AppointmentList appointments, Ui ui, Storage storage)
+    public abstract void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui, Storage storage)
             throws RexException;
 
     /**

@@ -2,6 +2,7 @@ package seedu.rex.commands;
 
 import seedu.rex.Rex;
 import seedu.rex.data.AppointmentList;
+import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Patient;
@@ -25,13 +26,14 @@ public class DeleteCommand extends Command {
      * Deletes patients using NRIC.
      *
      * @param patients     PatientList object.
-     * @param appointments ArrayList of appointment.
+     * @param doctors DoctorList object.
+     * @param appointments AppointmentList object.
      * @param ui           Ui object.
      * @param storage      Storage object.
      * @throws RexException If NRIC has issues.
      */
     @Override
-    public void execute(PatientList patients, AppointmentList appointments, Ui ui, Storage storage)
+    public void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui, Storage storage)
             throws RexException {
         assert patients != null : "patient ArrayList is null";
         assert ui != null : "ui is null";

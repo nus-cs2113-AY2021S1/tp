@@ -86,6 +86,7 @@ public class Rex {
     public void run() {
         assert ui != null : "ui is null";
         assert patients != null : "patient ArrayList is null";
+        assert doctors != null : "patient ArrayList is null";
         assert storage != null : "storage is null";
 
         ui.showWelcome();
@@ -95,7 +96,7 @@ public class Rex {
                 String fullCommand = ui.readCommand();
                 ui.showLine(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand);
-                c.execute(patients, appointments, ui, storage);
+                c.execute(patients, doctors, appointments, ui, storage);
                 isExit = c.isExit();
             } catch (RexException e) {
                 ui.showError(e.getMessage());

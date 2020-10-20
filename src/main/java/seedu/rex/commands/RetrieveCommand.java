@@ -2,6 +2,7 @@ package seedu.rex.commands;
 
 import seedu.rex.Rex;
 import seedu.rex.data.AppointmentList;
+import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.storage.Storage;
@@ -25,13 +26,14 @@ public class RetrieveCommand extends Command {
      * Retrieves patient from patient list using details inputted by the user.
      *
      * @param patients     PatientList object.
-     * @param appointments ArrayList of appointment.
+     * @param doctors DoctorList object.
+     * @param appointments AppointmentList object.
      * @param ui           Ui object.
      * @param storage      Storage object.
      * @throws RexException If there is issue executing command.
      */
     @Override
-    public void execute(PatientList patients, AppointmentList appointments, Ui ui, Storage storage)
+    public void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui, Storage storage)
             throws RexException {
         assert patients != null : "patient ArrayList is null";
         assert ui != null : "ui is null";

@@ -2,6 +2,7 @@ package seedu.rex.commands;
 
 import seedu.rex.Rex;
 import seedu.rex.data.AppointmentList;
+import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.storage.Storage;
@@ -25,13 +26,14 @@ public class BookCommand extends Command {
      * Books appointment for patients.
      *
      * @param patients     PatientList object.
+     * @param doctors DoctorList object.
      * @param appointments AppointmentList object.
      * @param ui           Ui object.
      * @param storage      Storage object.
      * @throws RexException If appointment cannot be booked.
      */
     @Override
-    public void execute(PatientList patients, AppointmentList appointments, Ui ui, Storage storage)
+    public void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui, Storage storage)
             throws RexException {
 
         assert patients != null : "patient ArrayList is null";
@@ -48,7 +50,7 @@ public class BookCommand extends Command {
             ui.printPatientNotFound(nric);
             ui.showCreatePatientMessage(nric);
             Rex.logger.log(Level.INFO, "going to add patient...");
-            new AddCommand("add " + nric).execute(patients, appointments, ui, storage);
+            new AddCommand("add " + nric).execute(patients, doctors, appointments, ui, storage);
             ui.showLine();
         }
 
