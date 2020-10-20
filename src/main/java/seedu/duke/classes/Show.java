@@ -136,7 +136,6 @@ public class Show {
 
     @Override
     public String toString() {
-        //TODO: Benardo & jiqing verify if the new toString works well
         StringBuilder des = new StringBuilder(name + " | ");
         des.append("WatchHistory : S");
         des.append(currentSeason);

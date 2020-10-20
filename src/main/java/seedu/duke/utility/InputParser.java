@@ -8,6 +8,7 @@ import seedu.duke.commands.EditCommand;
 import seedu.duke.commands.RatingCommand;
 import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
 import seedu.duke.commands.UpdateShowSeasonCommand;
+import seedu.duke.commands.UpdateTimeLimitCommand;
 import seedu.duke.commands.WatchCommand;
 
 import java.util.ArrayList;
@@ -104,7 +105,7 @@ public class InputParser {
             return command;
 
         case "updatetimelimit":
-            parseUpdateTimeLimitCommand(input);
+            parseUpdateTimeLimitCommand(input, command);
             return command;
 
         case "watchtime":
@@ -121,7 +122,13 @@ public class InputParser {
         }
     }
 
-
+    /**
+     * Parses command for editing the details of a show in the watch list.
+     *
+     * @param input full input of user in string format.
+     * @throws IndexOutOfBoundsException if input is invalid or show is not specified by the user.
+     * @throws NullPointerException      if the number of episodes input by the user is invalid.
+     */
     private static void parseEditCommand(String input) {
         ArrayList<String> tokenizedString = tokenizeStringArray(input);
         try {
@@ -136,25 +143,33 @@ public class InputParser {
         }
     }
 
-    private static void parseUpdateTimeLimitCommand(String input) {
-        input = removeFirstWord(input);
-        int newWatchLimit = Integer.parseInt(input);
-        /*try {
-            WatchTime changeWatchLimit = new WatchTime(//insert args here);
-            changeWatchLimit.watchDurationUpdate(newWatchLimit);
+    /**
+     * Parses command for updating the user's watch time limit.
+     *
+     * @param input full input of user in string format.
+     * @param command command input by user in string format.
+     * @throws IndexOutOfBoundsException if input is invalid or unable to be processed.
+     * @throws NullPointerException      if the command format input by the user is invalid.
+     */
+    private static void parseUpdateTimeLimitCommand(String input, String command) {
+        ArrayList<String> tokenizedString = tokenizeStringArray(input);
+        try {
+            UpdateTimeLimitCommand newTimeLimitCommand = new UpdateTimeLimitCommand(command, tokenizedString);
+            newTimeLimitCommand.processCommand();
         } catch (IndexOutOfBoundsException e) {
-            Ui.printInvalidFormatException();
-            return;
-        } catch (NullPointerException e) {
             Ui.printBadInputException();
             return;
-        }*/
+        } catch (NullPointerException e) {
+            Ui.printInvalidFormatException();
+            return;
+        }
     }
 
     /**
-     * Parses command for updating existing shows in the watch list.
+     * Parses command when user has watched an episode of a show in the watch list.
      *
-     * @param input Command inputted by user in string format.
+     * @param input full input of user in string format.
+     * @param command command input by user in string format.
      * @throws IndexOutOfBoundsException if input is empty or show was not specified.
      * @throws NullPointerException      if the show specified is invalid or could not be found.
      */

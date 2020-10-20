@@ -23,6 +23,18 @@ public class WatchTime {
         this.dailyWatchLimit = dailyWatchLimit;
     }
 
+    public static int getDurationWatchedToday() {
+        return durationWatchedToday;
+    }
+
+    public static int getdailyWatchLimit() {
+        return dailyWatchLimit;
+    }
+
+    public static int getTimeLeftToday() {
+        return dailyWatchLimit - dailyWatchLimit;
+    }
+
     public static boolean isNewDay() {
         LocalDate currentDate = LocalDate.now();
         if (currentDate.equals(recordedDate)) {
@@ -39,6 +51,11 @@ public class WatchTime {
         } else {
             durationWatchedToday += showMinutes;
         }
+        Ui.printDailyWatchTimeLeft();
+    }
+
+    public static void watchLimitUpdate(int timeLimit) {
+        dailyWatchLimit = timeLimit;
         Ui.printDailyWatchTimeLeft();
     }
 

@@ -26,10 +26,6 @@ public class WatchCommand extends Command {
      */
     //INPUT : watch <show name>
     public void processCommand() {
-        // todo: check if the date is still the same as the one in the save file,
-        //  yes: increment the timeWatchedToday, Ui to include the total hours watched today and hours left.
-        //  no: reset the timeWatchedToday to 0, set the date to today and increment and output the time left to
-        //  the user.
 
         String showName = inputs.get(1);
         Show show = ShowList.getShow(showName);
