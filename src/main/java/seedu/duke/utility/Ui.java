@@ -126,12 +126,18 @@ public class Ui {
         //Print when user starts program
         Date date = getInstance().getTime();
         System.out.println("It is " + date + " today.");
-        System.out.println("Time spent on shows today: ");
-        System.out.println("Watch time remaining ");
-    }
+        if (WatchTime.isNewDay()) {
+            System.out.println("Daily time limit for watching shows has not been set.");
+            System.out.println("To update the time allocated to watching shows, use the 'updateTimeLimit' command.");
+            System.out.println("Time spent on shows today: " + WatchTime.getDurationWatchedToday() + " minutes.");
+        } else if (WatchTime.isNewDay()) {
+            System.out.println("Time spent on shows today: " + WatchTime.getDurationWatchedToday() + " minutes.");
+            System.out.println("Watch limit has been set to be " + WatchTime.getdailyWatchLimit() + " minutes.");
+            System.out.println("Watch time remaining: " + WatchTime.getTimeLeftToday() + " minutes.");
+        } else {
+            System.out.println("Unable to locate user watch time details. Please try running the program again.");
+        }
 
-    public static void printDailyWatchTimeRemaining() {
-        //System.out.println("Showtime left : " + watchTime.userReportString() /*the object*/);
     }
 
     public static void printShowRating(String showName, String rating) {
@@ -147,7 +153,7 @@ public class Ui {
 
     public static void printEditPrompt() {
         System.out.println("Input the detail of the show you want to change {name,season,episode,"
-                + "duration of episode} ");
+                + "duration} ");
         System.out.println("To finish editing, type 'done'.");
     }
 
@@ -203,6 +209,14 @@ public class Ui {
         System.out.println("Please specify show name");
     }
 
+    public static void printShowNotInList() {
+        System.out.println("The show that you have specified is not in the list.");
+    }
+
+    public static void printUpdatedTimeLimit(Integer newTime) {
+        System.out.println("Your watch time limit has been updated to " + newTime + " minutes.");
+    }
+
     public static void printInvalidEpisodesInputException() {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_EPISODES_INPUT_EXCEPTION);
     }
@@ -244,9 +258,7 @@ public class Ui {
     }
 
     public static void printDailyWatchTimeLeft() {
-        System.out.println("Showtime left : " + WatchTime.userReportString());
-        //TODO: format the ui to print the time left to the user upon watching a new episode
-
+        System.out.println("Showtime left : \n" + WatchTime.userReportString());
     }
 }
 

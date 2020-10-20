@@ -21,6 +21,10 @@ public class ShowList {
         return show;
     }
 
+    public static boolean doesShowExist(String show) {
+        return showList.containsKey(show);
+    }
+
     public static void setShow(String showName, Show show) {
         showList.put(showName, show);
     }
