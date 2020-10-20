@@ -112,7 +112,7 @@ public class Ui {
     public static void printPossibleLocsMessage(ArrayList<String> possibleLocs) {
         printLine();
         System.out.println("Hmm, did you mean any of these locations?");
-        for(String location: possibleLocs) {
+        for (String location: possibleLocs) {
             System.out.println(location);
         }
         System.out.println("Please type the command again with the correct location.");

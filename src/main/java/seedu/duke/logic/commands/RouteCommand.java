@@ -27,7 +27,7 @@ public class RouteCommand extends Command {
         String [] locations = parser.getLocations();
         checkLocations(locations);
         ArrayList<String> possibleLocs = new ArrayList<>(similarLocations(locations));
-        if(possibleLocs.isEmpty()) {
+        if (possibleLocs.isEmpty()) {
             ArrayList<Bus> busOptions = BusData.possibleBuses(locations[0].trim(), locations[1].trim());
             Ui.printRouteMessage(busOptions);
         } else {
@@ -55,9 +55,9 @@ public class RouteCommand extends Command {
         for (BusStops info: EnumSet.allOf(BusStops.class)) {
             routeNames.add(info.getName().toLowerCase());
         }
-        if(!routeNames.contains(locations[0].trim().toLowerCase())) {
+        if (!routeNames.contains(locations[0].trim().toLowerCase())) {
             possibleLocs = SimilarityCheck.similarLoc(locations[0]);
-        } else if(!routeNames.contains(locations[1].trim().toLowerCase())) {
+        } else if (!routeNames.contains(locations[1].trim().toLowerCase())) {
             possibleLocs = SimilarityCheck.similarLoc(locations[1]);
         }
         return possibleLocs;
