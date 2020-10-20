@@ -30,7 +30,7 @@ Improves the reading experience of users with quick and easy features
 ## Non-Functional Requirements
 
 1. Should work on major Operating Systems (OS) such as Windows and Mac with at least `Java 11` installed.
-2.
+2. A user should have no problems using the various commands without referring to the help page after some time.
 
 ## Glossary
 
@@ -41,6 +41,23 @@ Improves the reading experience of users with quick and easy features
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
 ### Launch and shutdown
+
+#### Initial launch
+   1. Ensure `Java 11` and above is installed.
+   2. Download the latest **Quotesify JAR file** from [here](https://github.com/AY2021S1-CS2113T-T09-3/tp/releases).
+   3. Save the jar file in a desired file directory.
+   4. Open your command line or terminal and navigate into the file directory where Quotesify is saved.
+   5. Run `java -jar Quotesify.jar` to launch Quotesify.
+   
+#### Shutdown
+   1. To terminate Quotesify, enter the `bye` command.
+   2. Data will be automatically saved into a data file.
+   
+#### Subsequent launch
+   1. Open your command line or terminal and navigate into the file directory where Quotesify is saved.
+   2. Run `java -jar Quotesify.jar` to launch Quotesify.
+   3. Data will be automatically loaded from the data file upon launch.
+   
 
 ### Adding a quote
 
@@ -258,12 +275,12 @@ Improves the reading experience of users with quick and easy features
 
 1. Prerequisite: Book to be rated should exist in Quotesify.
 
-2. Test case: `add -r 5 Harry Potter`
+2. Test case: `add -r 5 Harry Potter /by JK Rowling`
 
    Expected: Rating is added to the book. A message will be prompted to indicate rating has been added successfully.
 
 3. Other incorrect commands to try:
-   * `add -r`: rating score and/or book title fields left empty
+   * `add -r`: rating score, book title and/or author fields left empty
    * `add -r 1000 Harry Potter`: rating score is out of the range
    * `add -r 3 x`: where x is a book that does not exist
    
@@ -290,38 +307,39 @@ Improves the reading experience of users with quick and easy features
    
 ### Deleting a book rating
 
-1. Test case: `delete -r Harry Potter`
+1. Test case: `delete -r Harry Potter /by JK Rowling`
 
    Expected: Rating is deleted from book. A message will be prompted to indicate rating has 
    been deleted successfully.
    
 2. Other incorrect commands to try:
-   * `delete -r`: book title field left empty
+   * `delete -r`: book title and/or author fields left empty
    * `delete -r x`: where x is a book that has not been rated
    
    Expected: No rating is deleted. A message with error details will be prompted.
    
 ### Editing a book rating
 
-1. Test case: `edit -r 4 Harry Potter`
+1. Test case: `edit -r 4 Harry Potter /by JK Rowling`
 
    Expected: Rating is edited to the new rating. A message will be prompted to indicate rating has
    been edited successfully.
    
 2. Other incorrect commands to try:
-   * `edit -r 1000 Harry Potter`: rating score is out of the range
+   * `edit -r`: rating score, book title and/or author fields left empty
+   * `edit -r 1000 Harry Potter /by JK Rowling`: rating score is out of the range
    * `edit -r 3 x`: where x is a book that has not been rated
    
    Expected: No rating is edited. A message with error details will be prompted.
    
 ### Finding a book rating
 
-1. Test case: `find -r Harry Potter`
+1. Test case: `find -r Harry Potter /by JK Rowling`
 
-   Expected: The rating for book titled "Harry Potter" will be shown.
+   Expected: The rating for book titled "Harry Potter" by JK Rowling will be shown.
    
 2. Other incorrect commands to try:
-   * `find -r`: book title field left empty
+   * `find -r`: book title and/or author fields left empty
    * `find -r x`: where x is a book that has not been rated
    
    Expected: No rating is found and listed. A message with error details will be prompted.
