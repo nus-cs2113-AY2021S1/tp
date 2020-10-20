@@ -20,6 +20,7 @@ import seedu.duke.command.ListTagCommand;
 import seedu.duke.command.PinCommand;
 import seedu.duke.command.RemindCommand;
 import seedu.duke.command.TagCommand;
+import seedu.duke.command.UnarchiveNoteCommand;
 import seedu.duke.command.ViewNoteCommand;
 
 import seedu.duke.data.exception.SystemException;
@@ -99,6 +100,8 @@ public class Parser {
                 return prepareAddEvent(userMessage);
             case ArchiveNoteCommand.COMMAND_WORD:
                 return prepareArchiveNote(userMessage);
+            case UnarchiveNoteCommand.COMMAND_WORD:
+                return prepareUnarchiveNote(userMessage);
             case ListNoteCommand.COMMAND_WORD:
                 return prepareListNote(userMessage);
             case ListEventCommand.COMMAND_WORD:
@@ -497,10 +500,10 @@ public class Parser {
     }
 
     /**
-     * Prepare userInput into a int before (un)archiving.
+     * Prepare userInput into a int before archiving.
      *
      * @param userMessage Original string user inputs.
-     * @return Result of the (un)archived note command.
+     * @return Result of the archived note command.
      * @throws SystemException if an error occurs.
      */
     private Command prepareArchiveNote(String userMessage) throws SystemException {
@@ -544,6 +547,55 @@ public class Parser {
     }
 
     /**
+     * Prepare userInput into a int before un-archiving.
+     *
+     * @param userMessage Original string user inputs.
+     * @return Result of the un-archived note command.
+     * @throws SystemException if an error occurs.
+     */
+    private Command prepareUnarchiveNote(String userMessage) throws SystemException {
+        int index;
+        String title;
+        String prefix;
+        boolean isIndex = false;
+
+        try {
+            // Get prefix
+            ArrayList<String[]> splitInfo = splitInfoDetails(userMessage);
+
+            for (String[] infoDetails : splitInfo) {
+                prefix = infoDetails[0].toLowerCase();
+                switch (prefix) {
+                case PREFIX_INDEX:
+                    isIndex = true;
+                    index = Integer.parseInt(checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_INDEX));
+
+                    if (index <= NULL_INDEX) {
+                        throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_VALUE);
+                    }
+                    return new UnarchiveNoteCommand(index - 1);
+                case PREFIX_TITLE:
+                    title = checkBlank(infoDetails[1], ExceptionType.EXCEPTION_MISSING_TITLE);
+                    return new UnarchiveNoteCommand(title);
+                default:
+                    throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            if (isIndex) {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX);
+            } else {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
+            }
+        } catch (NumberFormatException exception) {
+            throw new SystemException(ExceptionType.EXCEPTION_INVALID_INDEX_FORMAT);
+        }
+        throw new SystemException(ExceptionType.EXCEPTION_INVALID_INPUT_FORMAT);
+    }
+
+
+
+    /**
      * Ensures that the user does not leave input blank after entering the find command word.
      *
      * @param userMessage user's input of the keyword.
@@ -583,7 +635,7 @@ public class Parser {
 
         String tagName;
         String sort;
-        String archive = null;
+        boolean isArchive = false;
         Boolean isAscending = null;
         ArrayList<String> tagsName = new ArrayList<>();
         boolean isTag = false;
@@ -617,7 +669,7 @@ public class Parser {
                 case PREFIX_ARCHIVE:
                     isTag = false;
                     exception = ExceptionType.EXCEPTION_MISSING_INDEX;
-                    archive = checkBlank(infoDetails[1], exception);
+                    isArchive = true;
                     break;
                 default:
                     throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
@@ -629,6 +681,10 @@ public class Parser {
             } else {
                 throw new SystemException(ExceptionType.EXCEPTION_MISSING_SORT);
             }
+        }
+
+        if(isArchive) {
+            return new ListNoteCommand(isArchive);
         }
         
         // No optional parameters case as it is already accounted
@@ -915,3 +971,16 @@ public class Parser {
     }
     */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -20,6 +20,7 @@ public class Duke {
     private InterfaceManager interfaceManager;
     private StorageManager storageManager;
     private Notebook notebook;
+    private Notebook archivedNotebook;
     private Timetable timetable;
     private TagManager tagManager;
 
@@ -35,6 +36,7 @@ public class Duke {
         this.interfaceManager = new InterfaceManager();
         this.storageManager = new StorageManager();
         this.notebook = new Notebook();
+        this.archivedNotebook = new Notebook();
         this.timetable = new Timetable();
         this.tagManager = new TagManager();
 
@@ -74,7 +76,7 @@ public class Duke {
      * @return String of the executed command.
      */
     private String executeCommand(Command command) {
-        command.setData(notebook, timetable, tagManager, storageManager);
+        command.setData(notebook, archivedNotebook, timetable, tagManager, storageManager);
         return command.execute();
     }
 

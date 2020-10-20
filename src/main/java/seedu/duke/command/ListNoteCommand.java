@@ -35,6 +35,7 @@ public class ListNoteCommand extends Command {
 
     private ArrayList<String> tags;
     private boolean isSorted;
+    private boolean isArchived;
     private Boolean isAscendingOrder;
 
     /**
@@ -45,6 +46,7 @@ public class ListNoteCommand extends Command {
     public ListNoteCommand(Boolean isAscendingOrder) {
         this.tags = null;
         this.isSorted = true;
+        this.isArchived = false;
         this.isAscendingOrder = isAscendingOrder;
     }
 
@@ -54,6 +56,17 @@ public class ListNoteCommand extends Command {
     public ListNoteCommand() {
         this.tags = null;
         this.isSorted = false;
+        this.isArchived = false;
+        this.isAscendingOrder = null;
+    }
+
+    /**
+     * Constructs a ListNoteCommand to list all the Notes in the Archived Notebook.
+     */
+    public ListNoteCommand(boolean isArchived) {
+        this.tags = null;
+        this.isSorted = false;
+        this.isArchived = true;
         this.isAscendingOrder = null;
     }
 
@@ -63,7 +76,9 @@ public class ListNoteCommand extends Command {
      * @param tags tags of the Notes.
      */
     public ListNoteCommand(ArrayList<String> tags) {
-        this(false);
+        this.isSorted = false;
+        this.isArchived = false;
+        this.isAscendingOrder = null;
         this.tags = tags;
     }
 
@@ -74,7 +89,9 @@ public class ListNoteCommand extends Command {
      * @param tags tags of the Notes.
      */
     public ListNoteCommand(Boolean isAscendingOrder, ArrayList<String> tags) {
-        this(isAscendingOrder);
+        this.isAscendingOrder = isAscendingOrder;
+        this.isSorted = true;
+        this.isArchived = false;
         this.tags = tags;
     }
 
@@ -94,7 +111,15 @@ public class ListNoteCommand extends Command {
         StringBuilder unpinnedNotesSorted;
         ArrayList<Note> notes = new ArrayList<>();
         ArrayList<Note> pinnedNotes = new ArrayList<>();
+        ArrayList<Note> archivedNotes;
         ArrayList<Note> unpinnedNotes = new ArrayList<>();
+
+        if (isArchived) {
+            archivedNotes = new ArrayList<>(archivedNotebook.getNotes());
+            noteString = getNoteString(archivedNotes);
+
+            return noteString.toString();
+        }
 
         for (int i = 0; i < notebook.getNotes().size(); i++) {
             String pinnedNoteStatus = notebook.getNotes().get(i).getPinned();
