@@ -37,24 +37,33 @@ public class Storage {
     public Storage(String initPath) {
 
         //firstly, make string representation of storage files
-        String personal = initPath + ",personal.txt";
-        String zoom = initPath + ",zoom.txt";
-        String goal = initPath + ",goal.txt";
-        String timeTable = initPath + ",timetable.txt";
+
+
+
+
 
         //Directory words only contain info on making the folder
         //File words contain the info on how to make the file itself
         String[] pathDirectoryWords = initPath.split(",");
-        String[] personalWords = personal.split(",");
-        String[] zoomWords = zoom.split(",");
-        String[] goalWords = goal.split(",");
-        String[] timeTableWords = timeTable.split(",");
-
         fileDirectoryPath = createPath(pathDirectoryWords);
+
+        String personal = initPath + ",personal.txt";
+        String[] personalWords = personal.split(",");
         filePersonalPath = createPath(personalWords);
+
+        String zoom = initPath + ",zoom.txt";
+        String[] zoomWords = zoom.split(",");
         fileZoomPath = createPath(zoomWords);
+
+        String goal = initPath + ",goal.txt";
+        String[] goalWords = goal.split(",");
         fileGoalPath = createPath(goalWords);
+
+        String timeTable = initPath + ",timetable.txt";
+        String[] timeTableWords = timeTable.split(",");
         fileTimeTablePath = createPath(timeTableWords);
+
+
         initialiseFolder();
 
     }
@@ -82,7 +91,7 @@ public class Storage {
 
     public void saveFile(Path fileName, UserData data, String fileType) {
 
-        try{
+        try {
             //firstly, form a temporary List of strings to store the data
             ArrayList<String> toBeWritten = new ArrayList<>();
 
@@ -90,7 +99,7 @@ public class Storage {
             EventList listOfEvents = data.getEventList(fileType);
             ArrayList<Event> events = listOfEvents.getEvents();
 
-            for(Event event:events) {
+            for (Event event:events) {
                 String entry = StorageParser.eventToString(event, fileType);
                 toBeWritten.add(entry);
             }
@@ -108,7 +117,7 @@ public class Storage {
     /**
      * Loads every single data file into the program.
      *
-     * @param data
+     * @param data UserData structure with all the user information stored
      */
     public void loadAll(UserData data) {
         loadFile(filePersonalPath, data, "Personal");

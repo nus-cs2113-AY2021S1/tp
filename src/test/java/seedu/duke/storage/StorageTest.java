@@ -18,7 +18,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class StorageTest {
 
@@ -96,9 +97,9 @@ class StorageTest {
             Path zoomPath = createPath(modelZoomLoc);
             Path timetablePath = createPath(modelTimetableLoc);
 
-            List<String> personalModel = Files.readAllLines(personalPath);
-            List<String> zoomModel = Files.readAllLines(zoomPath);
-            List<String> timetableModel = Files.readAllLines(timetablePath);
+            final List<String> personalModel = Files.readAllLines(personalPath);
+            final List<String> zoomModel = Files.readAllLines(zoomPath);
+            final List<String> timetableModel = Files.readAllLines(timetablePath);
 
             Storage store = new Storage("storagetester");
             UserData data = new UserData();
@@ -132,7 +133,7 @@ class StorageTest {
 
 
 
-   }
+    }
 
     /**
      * Function accepts a string and creates a path object originating from the user directory.

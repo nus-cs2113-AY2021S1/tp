@@ -1,6 +1,9 @@
 package seedu.duke.storage;
 
-import seedu.duke.event.*;
+import seedu.duke.event.Event;
+import seedu.duke.event.Personal;
+import seedu.duke.event.Timetable;
+import seedu.duke.event.Zoom;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InvalidTimeUnitException;
 import seedu.duke.parser.DateTimeParser;
@@ -17,7 +20,7 @@ public class StorageParser {
 
         ArrayList<String> words = new ArrayList<>();
 
-        switch(type) {
+        switch (type) {
 
         case "Personal":
             personalToArguments((Personal)activity, words);
@@ -28,7 +31,9 @@ public class StorageParser {
         case "Timetable":
             timetableToArguments((Timetable)activity, words);
             break;
-
+        default:
+            System.out.println("Error, wrong data type provided");
+            break;
         }
 
         return String.join(" | ", words);
@@ -47,8 +52,7 @@ public class StorageParser {
 
         ArrayList<String> statuses = new ArrayList<>();
 
-        //obtain the name of the event
-        String name = activity.getDescription();
+
 
         //obtain the dates and time of the event
         String date = "0";
@@ -74,6 +78,8 @@ public class StorageParser {
 
         }
 
+        //obtain the name of the event
+        String name = activity.getDescription();
         words.add(name);
         words.add(date);
         words.add(time);
@@ -95,8 +101,7 @@ public class StorageParser {
 
         ArrayList<String> statuses = new ArrayList<>();
 
-        //obtain the name of the event
-        String name = activity.getDescription();
+
 
         //obtain the dates and time of the event
         String date = "0";
@@ -123,6 +128,8 @@ public class StorageParser {
         }
 
         String url = activity.getZoomLink();
+        //obtain the name of the event
+        String name = activity.getDescription();
         words.add(name);
         words.add(date);
         words.add(time);
@@ -145,8 +152,7 @@ public class StorageParser {
 
         ArrayList<String> statuses = new ArrayList<>();
 
-        //obtain the name of the event
-        String name = activity.getDescription();
+
 
         //obtain the dates and time of the event
         String date = "0";
@@ -173,6 +179,8 @@ public class StorageParser {
         }
 
         String location = activity.getLocation();
+        //obtain the name of the event
+        String name = activity.getDescription();
         words.add(name);
         words.add(date);
         words.add(time);
