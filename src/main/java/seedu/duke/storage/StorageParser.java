@@ -1,26 +1,27 @@
 package seedu.duke.storage;
 
 import seedu.duke.event.*;
+import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InvalidTimeUnitException;
 import seedu.duke.parser.DateTimeParser;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class StorageParser {
 
-    public static String event
 
     public static Event stringToEvent(String line, String type) {
         String[] words = line.split("\\|");
         String[] statuses;
         String[] info;
 
-        for(int i = 0; i < words.length; i++) {
+        for (int i = 0; i < words.length; i++) {
             words[i] = words[i].trim();
         }
-        switch(type) {
+        switch (type) {
         case "Personal":
             info = Arrays.copyOfRange(words, 0, 5);
             statuses = Arrays.copyOfRange(words, 5, words.length);
@@ -128,22 +129,41 @@ public class StorageParser {
 
         LocalDate startDate = activity.getDate();
         LocalTime startTime = activity.getTime();
-        if (Integer.parseInt(repeatNumber) == 0) {
+        int count = Integer.parseInt(repeatNumber);
+        if (count == 0) {
             return;
         }
+        ArrayList<Event> repeatEventList = new ArrayList<>();
+
         try {
-            Repeat repeatList = new Repeat(startDate, startTime, timeUnit, Integer.parseInt(repeatNumber));
-            activity.setRepeat(repeatList);
-
-            for (int i = 0; i < statuses.length; i++) {
-
-                String status = statuses[i];
-                if (status.equals("T")) {
-                    activity.markAsDone(i);
+            for (int i = 1; i <= count; i++) {
+                LocalDate repeatDate;
+                switch (timeUnit) {
+                case "MONTHLY":
+                    repeatDate = startDate.plusMonths(i);
+                    break;
+                case "WEEKLY":
+                    repeatDate = startDate.plusWeeks(i);
+                    break;
+                case "DAILY":
+                    repeatDate = startDate.plusDays(i);
+                    break;
+                default:
+                    throw new InvalidTimeUnitException(timeUnit);
                 }
+                activity.setRepeatType(timeUnit);
+                Event repeatEvent;
+                repeatEvent = activity.clone();
+                repeatEvent.setDate(repeatDate);
+                if (statuses[i].equals("T")) {
+                    repeatEvent.markAsDone();
+                }
+                repeatEventList.add(repeatEvent);
             }
-        } catch (InvalidTimeUnitException e) {
+            activity.setRepeatEventList(repeatEventList);
+        } catch (Exception e) {
             System.out.println("Error, wrong date should not happen, file corrupted");
+            //throw new DukeException("Cant clone");
         }
 
     }

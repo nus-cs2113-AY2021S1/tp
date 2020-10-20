@@ -72,7 +72,7 @@ public class Storage {
         }
     }
 
-
+/*
     public void saveFile(Path fileName, UserData data, String fileType) {
 
         //firstly, form a temporary List of strings to store the data
@@ -88,7 +88,7 @@ public class Storage {
 
 
         //finally, store the string into the list and write to file
-    }
+    }*/
 
     /**
      * Loads every single data file into the program.
