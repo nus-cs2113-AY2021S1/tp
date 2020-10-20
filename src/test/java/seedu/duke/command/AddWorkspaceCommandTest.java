@@ -21,7 +21,7 @@ class AddWorkspaceCommandTest {
 
     @BeforeEach
     void setUp() throws AniException {
-        ArrayList<Anime> testList = new ArrayList<Anime>();
+        ArrayList<Anime> testList = new ArrayList<>();
         Anime testAnime1 = new Anime();
         testList.add(testAnime1);
         animeData = new AnimeData(testList);
