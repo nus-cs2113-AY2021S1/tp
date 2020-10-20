@@ -57,6 +57,15 @@ public class TextUi {
         System.out.println(bookList.toStringWithIndex());
     }
 
+    public void printBookDetails(Book book) {
+        System.out.println(UiMessage.LIST_BOOK_DETAIL_MESSAGE);
+        System.out.print(book.getBookDetailString());
+
+        if (book.getCategories().size()  == 0) {
+            System.out.println(UiMessage.EMPTY_CATEGORY_LIST_MESSAGE);
+        }
+    }
+
     public void printBooksByAuthor(BookList bookList, String authorName) {
         System.out.printf(UiMessage.LIST_BOOKS_BY_AUTHOR_MESSAGE + "\n", authorName);
         System.out.println(bookList.toStringWithIndex());
