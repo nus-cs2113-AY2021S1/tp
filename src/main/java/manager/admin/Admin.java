@@ -1,11 +1,13 @@
 package manager.admin;
 
+import manager.history.HistoryList;
 import manager.module.Module;
 
 import java.util.ArrayList;
 
 public class Admin {
     protected ModuleList modules;
+    protected HistoryList histories;
 
     //if there is no storage
     public Admin() {
@@ -19,5 +21,9 @@ public class Admin {
 
     public ModuleList getModules() {
         return modules;
+    }
+
+    public HistoryList getHistories() {
+        return histories;
     }
 }

@@ -13,13 +13,19 @@ import commands.ListCommand;
 import commands.ListDueCommand;
 import commands.RemoveCommand;
 import commands.ReviseCommand;
+import commands.HistoryCommand;
 
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import storage.Storage;
 
+
 import java.util.List;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 
 import static common.Messages.MESSAGE_EXTRA_ARGS;
 import static common.Messages.MESSAGE_INCORRECT_ACCESS;
@@ -64,9 +70,27 @@ public class Parser {
             return prepareGo(commandArgs);
         case ListDueCommand.COMMAND_WORD:
             return prepareListDue(commandArgs);
+        case HistoryCommand.COMMAND_WORD:
+            return prepareHistory(commandArgs);
         default:
             throw new InvalidInputException("There is no such command type.\n");
         }
+    }
+
+    private static Command prepareHistory(String commandArgs) throws InvalidInputException {
+        if (commandArgs.isEmpty()) {
+            LocalDate date = java.time.LocalDate.now();
+            commandArgs = date.toString();
+        }
+
+        try {
+            LocalDate date = LocalDate.parse(commandArgs);
+        } catch (DateTimeParseException e) {
+            throw new InvalidInputException("The date should be in the format of yyyy-MM-dd\n"
+                    + HistoryCommand.MESSAGE_USAGE);
+        }
+
+        return new HistoryCommand(commandArgs);
     }
 
     private static Command prepareGo(String commandArgs) throws InvalidInputException {
@@ -335,12 +359,12 @@ public class Parser {
 
     public static String parseQuestionInFile(String arg) throws InvalidFileFormatException {
         if (!(arg.trim().startsWith(Storage.QUESTION_PREFIX))) {
-            throw new InvalidFileFormatException();
+            throw new InvalidFileFormatException("Questions in the file should begin with [Q].");
         }
 
         String question = arg.substring(3).trim();
         if (question.isEmpty()) {
-            throw new InvalidFileFormatException();
+            throw new InvalidFileFormatException("There should be a question after [Q] in the file.");
         }
 
         return question;
@@ -348,12 +372,12 @@ public class Parser {
 
     public static String parseAnswerInFile(String arg) throws InvalidFileFormatException {
         if (!(arg.trim().startsWith(Storage.ANSWER_PREFIX))) {
-            throw new InvalidFileFormatException();
+            throw new InvalidFileFormatException("Answers in the file should begin with [A].");
         }
 
         String answer = arg.substring(3).trim();
         if (answer.isEmpty()) {
-            throw new InvalidFileFormatException();
+            throw new InvalidFileFormatException("There should be a answer after [A] in the file.");
         }
 
         return answer;
@@ -361,12 +385,12 @@ public class Parser {
 
     public static String parsePreIntervalInFile(String arg) throws InvalidFileFormatException {
         if (!(arg.trim().startsWith(Storage.PREVIOUS_INTERVAL_PREFIX))) {
-            throw new InvalidFileFormatException();
+            throw new InvalidFileFormatException("Previous intervals in the file should begin with [P].");
         }
 
         String preInterval = arg.substring(3).trim();
         if (preInterval.isEmpty()) {
-            throw new InvalidFileFormatException();
+            throw new InvalidFileFormatException("There should be a interval after [P] in the file.");
         }
 
         return preInterval;
@@ -377,6 +401,25 @@ public class Parser {
             throw new InvalidInputException(String.format(MESSAGE_EXTRA_ARGS, ListDueCommand.COMMAND_WORD));
         }
         return new ListDueCommand();
+    }
+
+    public static String parseTaskNameInFile(String arg) throws InvalidFileFormatException {
+        String name = arg.trim();
+        if (name.isEmpty()) {
+            throw new InvalidFileFormatException("There should be a name of the completed task.");
+        }
+
+        return name;
+    }
+
+    public static String parsePercentInFile(String arg) throws InvalidFileFormatException {
+        String percent = arg.trim().substring(0,3);
+        if (percent.isEmpty()) {
+            throw new InvalidFileFormatException(
+                    "There should be a number to indicate how many tasks have completed.");
+        }
+
+        return percent;
     }
 }
 

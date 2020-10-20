@@ -13,6 +13,7 @@ import commands.ListDueCommand;
 import commands.RemoveCommand;
 import commands.ReviseCommand;
 import manager.card.Card;
+import manager.history.History;
 
 import java.io.InputStream;
 import java.io.PrintStream;
