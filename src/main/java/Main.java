@@ -81,7 +81,7 @@ public class Main {
 
 
             //Order order = new Order(customer, arriveTime, canteenChoosed, stallChoosed, orderedDishes);
-            customer.order()
+            customer.order();
 
             System.out.println("Your order created! Thanks."); 
         }
