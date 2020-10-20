@@ -1,11 +1,23 @@
 package seedu.smarthomebot;
 
-import seedu.smarthomebot.commands.*;
+import seedu.smarthomebot.commands.AddCommand;
+import seedu.smarthomebot.commands.Command;
+import seedu.smarthomebot.commands.CreateCommand;
+import seedu.smarthomebot.commands.DeleteCommand;
+import seedu.smarthomebot.commands.ExitCommand;
+import seedu.smarthomebot.commands.HelpCommand;
+import seedu.smarthomebot.commands.InvalidCommand;
+import seedu.smarthomebot.commands.ListCommand;
+import seedu.smarthomebot.commands.OffCommand;
+import seedu.smarthomebot.commands.OnCommand;
+import seedu.smarthomebot.commands.RemoveCommand;
+import seedu.smarthomebot.commands.ResetCommand;
+import seedu.smarthomebot.commands.UsageCommand;
 import seedu.smarthomebot.exceptions.EmptyParameterException;
 import seedu.smarthomebot.exceptions.IllegalCharacterException;
 import seedu.smarthomebot.exceptions.InvalidCommandException;
-import seedu.smarthomebot.exceptions.InvalidValueException;
-import seedu.smarthomebot.exceptions.PowerExceedException;
+import seedu.smarthomebot.exceptions.InvalidWattageValueException;
+import seedu.smarthomebot.exceptions.WattageExceedException;
 
 import static seedu.smarthomebot.common.Messages.MESSAGE_EMPTY_PARAMETER;
 import static seedu.smarthomebot.common.Messages.MESSAGE_ILLEGAL_CHARACTER;
@@ -13,7 +25,7 @@ import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_ADD_COMMAND;
 import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_LIST_COMMAND;
 import static seedu.smarthomebot.common.Messages.MESSAGE_POWER_EXCEEDED;
-import static seedu.smarthomebot.common.Messages.MESSAGE_POWER_NOT_NUMBER;
+import static seedu.smarthomebot.common.Messages.MESSAGE_WATTAGE_NOT_NUMBER;
 
 
 public class Parser {
@@ -43,10 +55,8 @@ public class Parser {
             return new OnCommand(name, parameter);
         } catch (EmptyParameterException e) {
             return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
-
-        } catch (InvalidValueException e) {
-            return new InvalidCommand(MESSAGE_POWER_NOT_NUMBER);
-
+        } catch (InvalidWattageValueException e) {
+            return new InvalidCommand(MESSAGE_WATTAGE_NOT_NUMBER);
         }
     }
 
@@ -62,11 +72,11 @@ public class Parser {
         }
     }
 
-    private static void convertParameterToInt(String parameter) throws InvalidValueException {
+    private static void convertParameterToInt(String parameter) throws InvalidWattageValueException {
         try {
             Integer.parseInt(parameter);
         } catch (NumberFormatException e) {
-            throw new InvalidValueException();
+            throw new InvalidWattageValueException();
         }
 
     }
@@ -102,9 +112,9 @@ public class Parser {
 
         } catch (InvalidCommandException e) {
             return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND);
-        } catch (InvalidValueException e) {
-            return new InvalidCommand(MESSAGE_POWER_NOT_NUMBER);
-        } catch (PowerExceedException e) {
+        } catch (InvalidWattageValueException e) {
+            return new InvalidCommand(MESSAGE_WATTAGE_NOT_NUMBER);
+        } catch (WattageExceedException e) {
             return new InvalidCommand(MESSAGE_POWER_EXCEEDED);
         } catch (EmptyParameterException e) {
             return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
@@ -131,6 +141,27 @@ public class Parser {
         } else {
             return new InvalidCommand(MESSAGE_INVALID_LIST_COMMAND);
         }
+    }
+
+    private static void testWattageValidity(String wattage) throws WattageExceedException,
+            InvalidWattageValueException {
+        try {
+            int wattageValue = Integer.parseInt(wattage);
+            // Common appliance is between 1 to 9999 watts
+            if ((wattageValue < 1) || (wattageValue > 9999)) {
+                throw new WattageExceedException();
+            }
+        } catch (NumberFormatException e) {
+            throw new InvalidWattageValueException();
+        }
+    }
+
+    private static boolean checkForEmptyInput(String input) {
+        return (input.isEmpty());
+    }
+
+    private static boolean checkForIllegalCharacter(String input) {
+        return (input.contains(" ") | input.contains("/"));
     }
 
     private Command prepareCreateCommand(String arguments) {
@@ -172,26 +203,6 @@ public class Parser {
             return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
         }
 
-    }
-
-    private static void testWattageValidity(String wattage) throws PowerExceedException, InvalidValueException {
-        try {
-            int powerValue = Integer.parseInt(wattage);
-            // Common appliance should not exceed 9999 watts
-            if ((powerValue < 1) || (powerValue > 9999)) {
-                throw new PowerExceedException();
-            }
-        } catch (NumberFormatException e) {
-            throw new InvalidValueException();
-        }
-    }
-
-    private static boolean checkForEmptyInput(String input) {
-        return (input.isEmpty());
-    }
-
-    private static boolean checkForIllegalCharacter(String input) {
-        return (input.contains(" ") | input.contains("/"));
     }
 
     public Command parseCommand(String userInput) {

@@ -28,7 +28,7 @@ public class AirConditioner extends Appliance {
     }
 
     public String getType() {
-        return "AirCon";
+        return "AirConditioner";
     }
 
     public String toString() {

@@ -97,7 +97,7 @@ public class Power {
      *
      * @return formatted current time with given format "dd/MM/yyyy-HH:mm:ss".
      */
-    public String getCurrentTime() {
+    private String getCurrentTime() {
         LocalDateTime currentTime;
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT, Locale.ENGLISH);
         currentTime = LocalDateTime.now();
@@ -114,12 +114,15 @@ public class Power {
         this.totalPowerConsumption += this.powerUsed;
     }
 
+    /**
+     * Calculate time used while is appliance on.
+     */
     private double calculateTimeUsed() throws ParseException {
         double totalHours;
         SimpleDateFormat timeFormat = new SimpleDateFormat(DATE_TIME_FORMAT, Locale.ENGLISH);
         Date onTimeValue;
         Date offTimeValue;
-        double timeUsed;
+        double timeUsed = 0;
 
         if (this.onTime != null) {
             onTimeValue = timeFormat.parse(this.onTime);
@@ -134,8 +137,6 @@ public class Power {
                 timeUsed = currentUsedTime.getTime() - onTimeValue.getTime();
                 this.onTime = getCurrentTime();
             }
-        } else {
-            timeUsed = 0;
         }
 
         // For simulation purpose, 1 second in System equals to 10 minutes in SmartHomeBot

@@ -50,15 +50,16 @@ class PowerTest {
     }
 
     @Test
-    void getPower_fanOnForThreeSeconds_returnPowerValue() {
-        assertEquals(0.00, coolingFan.getPowerInDouble());
+    void getPower_fanOnForThreeSeconds_returnPowerValue() throws InterruptedException {
+        useFanForThreeSeconds();
+        assertEquals(0.075, coolingFan.getPowerInDouble());
     }
 
 
     @Test
     void testToString() throws InterruptedException {
-        coolingFan.switchOn();
-        assertEquals("0.00", coolingFan.getPowerInString());
+        useFanForThreeSeconds();
+        assertEquals("0.08", coolingFan.getPowerInString());
     }
 
     private void useFanForThreeSeconds() throws InterruptedException {

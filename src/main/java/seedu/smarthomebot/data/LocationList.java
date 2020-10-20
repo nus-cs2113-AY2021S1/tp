@@ -6,7 +6,12 @@ import seedu.smarthomebot.exceptions.InvalidRemovalLocationException;
 import java.util.ArrayList;
 
 public class LocationList {
-    private ArrayList<String> locations = new ArrayList<>();
+
+    private static ArrayList<String> locations;
+
+    public LocationList() {
+        locations = new ArrayList<>();
+    }
 
     /**
      * Creating new location if is not existed.
@@ -79,4 +84,5 @@ public class LocationList {
         }
         return isValid;
     }
+
 }

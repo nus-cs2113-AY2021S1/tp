@@ -4,12 +4,13 @@ import seedu.smarthomebot.data.framework.Appliance;
 
 import static seedu.smarthomebot.common.Messages.LINE;
 import static seedu.smarthomebot.common.Messages.MESSAGE_LIST_NO_APPLIANCES;
+import static seedu.smarthomebot.common.Messages.MESSAGE_USAGE_RESET;
 
 public class ResetCommand extends Command {
 
     public static final String COMMAND_WORD = "p_reset";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Reset all the appliance power usage and total power consumption to zero.\n"
+            + ": Reset all the appliance power usage and total power consumption to zero\n"
             + "Example: " + COMMAND_WORD;
 
     @Override
@@ -20,7 +21,7 @@ public class ResetCommand extends Command {
             for (Appliance a : applianceList.getAllAppliance()) {
                 a.resetPower();
             }
-            return new CommandResult(LINE + "Power usage has been reset");
+            return new CommandResult(LINE + MESSAGE_USAGE_RESET );
         }
     }
 
