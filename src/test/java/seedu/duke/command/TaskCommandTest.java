@@ -1,4 +1,4 @@
-package seedu.duke.command;
+/*package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.task.TaskCommand;
@@ -210,4 +210,4 @@ class TaskCommandTest {
                 .getTask(proj.getProjectBacklog().getNextId() - 1).getDone();
         assertTrue(outputDone);
     }
-}
+}*/
