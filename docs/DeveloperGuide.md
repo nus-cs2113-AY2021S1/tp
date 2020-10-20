@@ -78,7 +78,7 @@ The `StorageManager `component:
 * Can save the bookmark data in `.txt` format and read it back.
 * Can read script files that are in `.txt` format.
 
-These data are saved in `.txt` format so advanced users will be able to  
+These data are saved in `.txt` format so advanced users will be able to 
 see and manipulate these saved data easily.
 
 
