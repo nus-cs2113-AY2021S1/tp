@@ -176,7 +176,7 @@ public class EditCommand extends Command {
 
             Category category = categoryList.getCategoryByName(oldCategory);
             category.setCategoryName(newCategory);
-            categoryList.updateCategoryInBooksAndQuotes(oldCategory, newCategory);
+            categoryList.editCategoryInBooksAndQuotes(oldCategory, newCategory);
             ui.printEditCategory(oldCategory, newCategory);
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());

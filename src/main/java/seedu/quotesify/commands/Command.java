@@ -22,6 +22,7 @@ public abstract class Command {
     public static final String ERROR_NO_BOOK_FOUND = "There is no such book!";
     public static final String ERROR_BOOK_TITLE_MISSING = "There is no book title specified!";
     public static final String ERROR_BOOK_ALREADY_EXISTS = "The book already exists!";
+    public static final String ERROR_CATEGORY_ALREADY_EXISTS = "Category [%s] already exists in \"%s\"!";
     public static final String ERROR_NO_QUOTE_FOUND = "There is no such quote!";
     public static final String ERROR_NO_QUOTE_NUMBER = "Quote number is missing";
     public static final String ERROR_FIND_KEYWORD_MISSING = "Keyword to search is missing";
@@ -40,6 +41,8 @@ public abstract class Command {
     public static final String ERROR_LIST_UNKNOWN_COMMAND = "I do not understand that command. Try again";
     public static final String ERROR_MISSING_EDIT_FLAG = "Editing requires a \"/to\" flag";
     public static final String ERROR_MISSING_KEYWORD = "Please type in the keyword.";
+    public static final String ERROR_MISSING_CATEGORY = "Missing category name";
+    public static final String ERROR_MISSING_BOOK_OR_QUOTE = "Please specify a book title or quote number!";
 
     public static final String FLAG_AUTHOR = "/by";
     public static final String FLAG_REFERENCE = "/from";

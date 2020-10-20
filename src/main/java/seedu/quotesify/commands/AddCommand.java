@@ -19,7 +19,6 @@ import seedu.quotesify.todo.ToDo;
 import seedu.quotesify.todo.ToDoList;
 import seedu.quotesify.ui.TextUi;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -145,8 +144,13 @@ public class AddCommand extends Command {
     private void addCategoryToBookOrQuote(CategoryList categories, TextUi ui) {
         String[] tokens = information.split(" ");
         String[] parameters = CategoryParser.getRequiredParameters(tokens);
-        if (CategoryParser.isValidParameters(parameters)) {
+        int result = CategoryParser.validateParametersResult(parameters);
+        if (result == 1) {
             executeParameters(categories, parameters, ui);
+        } else if (result == 0) {
+            ui.printErrorMessage(ERROR_MISSING_BOOK_OR_QUOTE);
+        } else {
+            ui.printErrorMessage(ERROR_MISSING_CATEGORY);
         }
     }
 
@@ -189,6 +193,13 @@ public class AddCommand extends Command {
         try {
             int bookIndex = Integer.parseInt(bookNum) - 1;
             Book book = bookList.getBook(bookIndex);
+
+            if (book.getCategories().contains(category.getCategoryName())) {
+                String errorMessage = String.format(ERROR_CATEGORY_ALREADY_EXISTS,
+                        category.getCategoryName(), book.getTitle());
+                throw new QuotesifyException(errorMessage);
+            }
+
             book.getCategories().add(category.getCategoryName());
             ui.printAddCategoryToBook(book.getTitle(), category.getCategoryName());
             addLogger.log(Level.INFO, "add category to book success");
@@ -198,6 +209,9 @@ public class AddCommand extends Command {
         } catch (NumberFormatException e) {
             addLogger.log(Level.WARNING, ERROR_INVALID_BOOK_NUM);
             ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
+        } catch (QuotesifyException e) {
+            addLogger.log(Level.WARNING, e.getMessage());
+            ui.printErrorMessage(e.getMessage());
         }
     }
 
@@ -212,6 +226,13 @@ public class AddCommand extends Command {
         try {
             int quoteNum = Integer.parseInt(index) - 1;
             Quote quote = quotes.get(quoteNum);
+
+            if (quote.getCategories().contains(category.getCategoryName())) {
+                String errorMessage = String.format(ERROR_CATEGORY_ALREADY_EXISTS,
+                        category.getCategoryName(), quote.getQuote());
+                throw new QuotesifyException(errorMessage);
+            }
+
             quote.getCategories().add(category.getCategoryName());
             ui.printAddCategoryToQuote(quote.getQuote(), category.getCategoryName());
             addLogger.log(Level.INFO, "add category to quote success");
@@ -221,6 +242,9 @@ public class AddCommand extends Command {
         } catch (NumberFormatException e) {
             addLogger.log(Level.WARNING, ERROR_INVALID_QUOTE_NUM);
             ui.printErrorMessage(ERROR_INVALID_QUOTE_NUM);
+        } catch (QuotesifyException e) {
+            addLogger.log(Level.WARNING, e.getMessage());
+            ui.printErrorMessage(e.getMessage());
         }
     }
 

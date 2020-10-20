@@ -281,7 +281,7 @@ Example of usage: `add -c fantasy -b 1`
 
 Expected outcome:
 ```
-I have tagged [fantasy] category to "Harry Potter"!
+I have tagged category [fantasy] to "Harry Potter"!
 ```
 
 #### List categories: `list -c`
@@ -326,7 +326,7 @@ Example of usage: `delete -c fantasy -b 1`
 
 Expected outcome:
 ```
-I have removed [fantasy] category from "Harry Potter"!
+I have removed category [fantasy] from "Harry Potter"!
 ```
 
 #### Edit an existing category: `edit -c`

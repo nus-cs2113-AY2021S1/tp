@@ -155,8 +155,13 @@ public class DeleteCommand extends Command {
     private void deleteCategoryFromBookOrQuote(CategoryList categories, TextUi ui) {
         String[] tokens = information.split(" ");
         String[] parameters = CategoryParser.getRequiredParameters(tokens);
-        if (CategoryParser.isValidParameters(parameters)) {
+        int result = CategoryParser.validateParametersResult(parameters);
+        if (result == 1) {
             executeParameters(categories, parameters, ui);
+        } else if (result == 0) {
+            deleteCategory(categories, parameters[0], ui);
+        } else {
+            ui.printErrorMessage(ERROR_MISSING_CATEGORY);
         }
     }
 
@@ -219,6 +224,17 @@ public class DeleteCommand extends Command {
             ui.printErrorMessage(ERROR_NO_QUOTE_FOUND + "\b tagged as [" + category.getCategoryName() + "]!");
         } catch (NumberFormatException e) {
             ui.printErrorMessage(ERROR_INVALID_QUOTE_NUM);
+        }
+    }
+
+    private void deleteCategory(CategoryList categoryList, String name, TextUi ui) {
+        try {
+            Category category = categoryList.getCategoryByName(name);
+            categoryList.deleteCategoryInBooksAndQuotes(name);
+            categoryList.getList().remove(category);
+            ui.printRemoveCategory(name);
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
         }
     }
 

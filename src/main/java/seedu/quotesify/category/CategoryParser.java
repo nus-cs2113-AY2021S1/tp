@@ -48,21 +48,19 @@ public class CategoryParser {
         return new String[]{categories, bookTitle, quoteNum};
     }
 
-    public static boolean isValidParameters(String[] parameters) {
+    public static int validateParametersResult(String[] parameters) {
         String categoryName = parameters[0];
         String bookNum = parameters[1];
         String quoteNum = parameters[2];
 
         if (categoryName.isEmpty()) {
-            System.out.println(ERROR_MISSING_CATEGORY);
-            return false;
+            return -1;
         }
 
         if (quoteNum.isEmpty() && bookNum.isEmpty()) {
-            System.out.println(ERROR_MISSING_BOOK_OR_QUOTE);
-            return false;
+            return 0;
         }
-        return true;
+        return 1;
     }
 
     public static String[] getEditParameters(String information) throws QuotesifyException {
