@@ -54,4 +54,8 @@ public class DoctorList {
     public void addDoctor(Doctor doctor) {
         doctors.add(doctor);
     }
+
+    public ArrayList<Doctor> getDoctors() {
+        return doctors;
+    }
 }

@@ -283,4 +283,9 @@ public class Ui {
             printWithIndent("DOB: " + patient.getDateOfBirth());
         }
     }
+
+    public String getDoctorName() {
+        printWithIndent("Enter doctor name: ");
+        return in.nextLine().trim();
+    }
 }
