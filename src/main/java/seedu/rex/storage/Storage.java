@@ -1,6 +1,7 @@
 package seedu.rex.storage;
 
 import seedu.rex.data.AppointmentList;
+import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
@@ -193,5 +194,19 @@ public class Storage {
         }
 
         return doctors;
+    }
+
+    public void saveDoctors(DoctorList doctors) throws RexException {
+        assert doctors != null : "Saving null doctors ArrayList";
+
+        StringBuilder doctorsFileContent = new StringBuilder();
+
+        for (int i = 0; i < doctors.getSize(); i++) {
+            // Need to format tasks
+            doctorsFileContent.append(doctors.getDoctorUsingIndex(i));
+            doctorsFileContent.append(System.lineSeparator());
+        }
+
+        writeToFile(doctorsFileContent, DOCTORS_FILE);
     }
 }

@@ -47,16 +47,6 @@ public class Rex {
         }
 
         try {
-            logger.log(Level.INFO, "going to load appointments");
-            appointments = new AppointmentList(storage.loadAppointments());
-            logger.log(Level.INFO, "loaded appointments");
-        } catch (RexException e) {
-            logger.log(Level.INFO, "No appointments found. Creating new appointments list.");
-            ui.showLoadingError();
-            appointments = new AppointmentList();
-        }
-
-        try {
             logger.log(Level.INFO, "going to load doctors");
             doctors = new DoctorList(storage.loadDoctors());
             logger.log(Level.INFO, "loaded doctors");
@@ -64,6 +54,16 @@ public class Rex {
             logger.log(Level.INFO, "No doctors found. Creating new doctors list.");
             ui.showLoadingError();
             doctors = new DoctorList();
+        }
+
+        try {
+            logger.log(Level.INFO, "going to load appointments");
+            appointments = new AppointmentList(storage.loadAppointments());
+            logger.log(Level.INFO, "loaded appointments");
+        } catch (RexException e) {
+            logger.log(Level.INFO, "No appointments found. Creating new appointments list.");
+            ui.showLoadingError();
+            appointments = new AppointmentList();
         }
     }
 

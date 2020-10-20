@@ -6,6 +6,7 @@ import seedu.rex.data.AppointmentList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
+import seedu.rex.data.hospital.Doctor;
 import seedu.rex.data.hospital.Patient;
 import seedu.rex.storage.Storage;
 
@@ -286,6 +287,19 @@ public class Ui {
 
     public String getDoctorName() {
         printWithIndent("Enter doctor name: ");
-        return in.nextLine().trim();
+        return in.nextLine().toUpperCase().trim();
+    }
+
+    public void showDoctorAdded(Doctor newDoctor) {
+        printWithIndent("Doctor added: " + newDoctor.getName());
+    }
+
+    public void showDoctorDeleted(Doctor deletedDoctor) {
+        printWithIndent("Doctor successfully deleted: ");
+        printWithIndent(deletedDoctor.toString());
+    }
+
+    public void printDoctorNotFound(String doctorName) {
+        printWithIndent("Patient " + doctorName + " not found in database!");
     }
 }

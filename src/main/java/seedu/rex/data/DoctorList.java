@@ -1,6 +1,7 @@
 package seedu.rex.data;
 
 import seedu.rex.data.hospital.Doctor;
+import seedu.rex.data.hospital.Patient;
 
 import java.util.ArrayList;
 
@@ -81,5 +82,15 @@ public class DoctorList {
             }
         }
         return null;
+    }
+
+    public Doctor deleteDoctor(String doctorName) {
+        int i;
+        for (i = 0; i < getSize(); i++) {
+            if (getDoctorUsingIndex(i).getName().equals(doctorName)) {
+                break;
+            }
+        }
+        return doctors.remove(i);
     }
 }

@@ -1,5 +1,7 @@
 package seedu.rex.data.hospital;
 
+import java.time.format.DateTimeFormatter;
+
 /**
  * Doctor class.
  */
@@ -18,4 +20,9 @@ public class Doctor {
         this.name = name;
     }
 
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

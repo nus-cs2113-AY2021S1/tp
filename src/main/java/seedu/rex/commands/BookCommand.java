@@ -39,12 +39,13 @@ public class BookCommand extends Command {
         assert patients != null : "patient ArrayList is null";
         assert ui != null : "ui is null";
         assert storage != null : "storage is null";
-        Rex.logger.log(Level.INFO, "going to extract NRIC");
-        String nric = extractNric(trimmedCommand, COMMAND_WORD);
 
         if (appointments.isEmpty()) {
             throw new RexException("No appointment sessions!");
         }
+
+        Rex.logger.log(Level.INFO, "going to extract NRIC");
+        String nric = extractNric(trimmedCommand, COMMAND_WORD);
 
         Rex.logger.log(Level.INFO, "going to get doctor's name");
         String doctorName = ui.getDoctorName();
