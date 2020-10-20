@@ -17,13 +17,13 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class WatchlistCommandTest {
+    private static final String STORAGE_DIRECTORY = "src" + File.separator + "test"
+                                                    + File.separator + "data" + File.separator;
+
     private AnimeData animeData;
     private StorageManager storageManager;
     private User user;
     private Workspace activeWorkspace;
-
-    private static final String STORAGE_DIRECTORY = "src" + File.separator + "test"
-                                                    + File.separator + "data" + File.separator;
 
     @BeforeEach
     void setUp() throws AniException {

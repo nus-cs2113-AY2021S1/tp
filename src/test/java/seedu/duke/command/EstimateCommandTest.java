@@ -17,15 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class EstimateCommandTest {
-    private AnimeData animeData;
-    private User user;
-
-    private StorageManager validSM;
-    private StorageManager emptySM;
-    private StorageManager invalidDirectorySM;
-
-    private static final int NO_WORDS_PER_HOUR_PROVIDED = -1;
-
     private static final String SCRIPT_FILE_NAME = "script.txt";
     private static final String VALID_WORKSPACE = "ValidWorkspace";
     private static final String INVALID_TEST_DIRECTORY = "a" + File.separator + "b" + File.separator + "c"
@@ -37,6 +28,15 @@ class EstimateCommandTest {
                                                        + File.separator;
     private static final String EMPTY_FILE_DIRECTORY = VALID_TEST_DIRECTORY + "DirectoryWithEmptyFileAndDirectory"
                                                        + File.separator;
+
+    private static final int NO_WORDS_PER_HOUR_PROVIDED = -1;
+
+    private StorageManager validSM;
+    private StorageManager emptySM;
+    private StorageManager invalidDirectorySM;
+
+    private AnimeData animeData;
+    private User user;
 
     @BeforeEach
     void setUp() throws AniException {

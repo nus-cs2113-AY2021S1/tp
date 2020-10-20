@@ -16,10 +16,10 @@ public class WatchlistCommand extends Command {
     private static final String LIST_OPTION = "l";
     private static final String SELECT_OPTION = "s";    // Categorized as a Modification option.
     private static final String DELETE_OPTION = "d";    // Categorized as a Modification option.
+    private static final Logger LOGGER = Logger.getLogger(WatchlistCommand.class.getName());
 
     private final String option;
     private final String optionInformation;
-    private static final Logger LOGGER = Logger.getLogger(WatchlistCommand.class.getName());
 
     public WatchlistCommand(String option, String optionInformation) {
         this.option = option;
