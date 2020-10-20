@@ -1,8 +1,10 @@
+package academic;
+
 import academic.Grade;
 import exceptions.InvalidCommandException;
 import exceptions.InvalidGradeException;
 import exceptions.InvalidMcException;
-import exceptions.InvalidModeException;
+import studyit.CommandParser;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +13,7 @@ public class AcademicCommandParser extends CommandParser {
 
     public static AcademicCommandType getAcademicCommandType(String command)
             throws InvalidCommandException {
-        String commandModified = standardizeCommand(command);
+        String commandModified = CommandParser.standardizeCommand(command);
 
         if (commandModified.startsWith("add contact")) {
             return AcademicCommandType.ADD_CONTACT;
@@ -48,6 +50,7 @@ public class AcademicCommandParser extends CommandParser {
         String grade = command.substring(command.indexOf("g/") + 2);
 
         List<String> list = Arrays.asList(Grade.listOfGrades);
+
         if (!list.contains(grade.toLowerCase())) {
             throw new InvalidGradeException();
         } else if (mc.equals("0")) {

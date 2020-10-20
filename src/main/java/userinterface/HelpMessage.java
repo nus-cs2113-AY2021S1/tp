@@ -1,3 +1,8 @@
+package userinterface;
+
+import studyit.Mode;
+import studyit.StudyIt;
+
 public class HelpMessage extends Ui {
     private static final String generalCommands = "Here are the general commands available:\n"
             + "help                 - prints out help message\n"
@@ -21,20 +26,23 @@ public class HelpMessage extends Ui {
 
 
     private static final String bookmarkCommands = "Here are the bookmark commands available:\n"
-            + "bm NUMBER     - changes mode from bookmark main into a category \n"
-            + "add LINK      - add bookmark link into a specific category\n"
-            + "rm NUMBER     - remove a bookmark link into a specific category\n"
-            + "list          - prints the list of categories and respective list of links\n"
-            + "back          - go back to bookmark main\n";
+            + "bm <category index>  - changes mode from bookmark main into a category \n"
+            + "add <link>           - add bookmark link into a specific category\n"
+            + "rm <index number>    - remove a bookmark link into a specific category\n"
+            + "list                 - prints the list of categories and respective list of links\n"
+            + "back                 - go back to bookmark main\n";
+
+    private static final String timetableCommand =  "Here are the timetable commands available:\n"
+            + "add class /MODULE CODE /ONLINE or OFFLINE\n"
+            + "/ZOOM LINK or VENUE /DAYS at TIME /NUMBER OF WEEKS                - add a class \n"
+            + "add activity /ONLINE or OFFLINE /ZOOM LINK or VENUE /DATE at TIME - add an activity\n"
+            + "show schedule                                                     - display schedule";
 
     private static final String flashcardCommands = "Here are the flashcard commands available:\n"
             + "add     - adds a question and answer to the flashcard deck\n"
             + "list    - shows the flashcards that have been added\n"
             + "test    - user can attempt to answer a random question from the flashcard deck\n"
             + "back    - exit test mode and go back to flashcard main\n";
-
-
-
 
     public static void printHelpMessage() {
         System.out.println(LINE_DIVIDER);
@@ -57,16 +65,14 @@ public class HelpMessage extends Ui {
         System.out.println(LINE_DIVIDER);
     }
 
-    //TODO: Fill this up after you're done
     public static void printBookmarkHelp() {
         System.out.println(bookmarkCommands);
     }
 
-    //TODO: Fill this up after you're done
     public static void printTimetableHelp() {
+        System.out.println(timetableCommand);
     }
 
-    //TODO: Fill this up after you're done
     public static void printAcademicHelp() {
         System.out.println(academicCommands);
     }

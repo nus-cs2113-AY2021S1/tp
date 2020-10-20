@@ -9,7 +9,7 @@ public class TimeTableRun {
 
     public TimeTableRun() {
         events = new DateList();
-        storage = new TimeTableStorage("TimeTable.txt", events);
+        storage = new TimeTableStorage("data/timetable.txt", events);
     }
 
     public void run(String command) {

@@ -1,9 +1,20 @@
-import exceptions.InvalidModeException;
+package userinterface;
 
+import bookmark.BookmarkUi;
+import exceptions.InvalidModeException;
+import studyit.ModeNames;
+import studyit.Mode;
+import studyit.CommandParser;
+import studyit.StudyIt;
+import studyit.StudyItLog;
 import java.util.Scanner;
 
 public class Ui {
     public static final String LINE_DIVIDER = "=======================================================================";
+
+    public static void printDivider() {
+        System.out.println(LINE_DIVIDER);
+    }
 
     /**
      * Receive command input from the user via terminal.
@@ -13,8 +24,10 @@ public class Ui {
     public static String inputCommand() {
         String command;
         Scanner in = new Scanner(System.in);
+        assert in != null : "null is passed in";
 
         command = in.nextLine();
+        assert command.length() >= 0 : "The length of command should be at least 0";
 
         return command;
     }
@@ -41,17 +54,28 @@ public class Ui {
             Mode newMode = CommandParser.getDestinationMode(command);
             StudyIt.changeMode(newMode);
             printLine("Mode changed! You are now at: " + ModeNames.getCurrentModeName());
+            printModeIntro(newMode);
         } catch (InvalidModeException e) {
             printLine("Invalid mode name! Please try again.\n"
                     + "You are still at: " + ModeNames.getCurrentModeName());
+            StudyItLog.logger.fine("Cannot understand mode chosen.");
+        }
+    }
+
+    public static void printModeIntro(Mode newMode) {
+        // Prints introduction to the mode (if any)
+        if (newMode == Mode.BOOKMARK) {
+            BookmarkUi.printWelcomeBookmarkMessage();
+            BookmarkUi.showBookmarkCategoryList(StudyIt.bookmarkCategories);
+            printDivider();
         }
     }
 
     public static void exitMode() {
-        System.out.println(LINE_DIVIDER);
+        printDivider();
         System.out.println("Exited " + ModeNames.getCurrentModeName() + "!");
         StudyIt.changeMode(Mode.MENU); //TODO: Check UI
         System.out.println("You are now back at: " + ModeNames.getCurrentModeName());
-        System.out.println(LINE_DIVIDER);
+        printDivider();
     }
 }

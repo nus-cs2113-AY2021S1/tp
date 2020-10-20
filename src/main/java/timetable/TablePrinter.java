@@ -3,7 +3,7 @@ package timetable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Table {
+public class TablePrinter {
     private static final String space = " ";
 
     public static void printTable(List<EventList> dateList) {

@@ -11,10 +11,18 @@ public class FlashcardStorage {
 
     public ArrayList<Flashcard> flashcardDeck;
     private final File file;
+    private final String dirPath = "data";
     private final String filePath;
     public int fileFlashcardsCounter = 0;
 
     public FlashcardStorage(String filePath) throws IOException {
+        // Creates the data directory
+        File fileDir = new File(dirPath);
+
+        if (!fileDir.exists()) {
+            fileDir.mkdir();
+        }
+
         file = new File(filePath);
         this.filePath = filePath;
     }

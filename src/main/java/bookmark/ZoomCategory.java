@@ -21,5 +21,4 @@ public class ZoomCategory extends BookmarkCategory {
     public void removeLink(int number) {
         links.remove(number - 1);
     }
-
 }
