@@ -302,7 +302,7 @@ Coming soon!
 |Feature|Command|
 |---|---|
 | Help               | `help`                                                   |
-| add user           | `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER>`    |
+| Add user           | `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER>`    |
 | Switch user        | `switchuser -n <USERNAME>`                               |
 | Browse             | `browse -s [name/rating] -p <1-26> -o [asc/dsc]`         |
 | Create watchlist   | `watchlist -n <WATCHLIST_NAME>`                          |
