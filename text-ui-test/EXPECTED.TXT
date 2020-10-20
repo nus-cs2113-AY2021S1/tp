@@ -1,4 +1,5 @@
-File created: FavList.txt
+FavList.txt already exists
+freqList.txt already exists
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Hello from
  _       _       ____     __       __
