@@ -10,6 +10,8 @@ import java.util.Arrays;
 
 public class StorageParser {
 
+    public static String event
+
     public static Event stringToEvent(String line, String type) {
         String[] words = line.split("\\|");
         String[] statuses;

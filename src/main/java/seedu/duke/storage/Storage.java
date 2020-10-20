@@ -2,6 +2,7 @@ package seedu.duke.storage;
 
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
+import seedu.duke.event.EventList;
 import seedu.duke.exception.InvalidListException;
 
 import java.io.File;
@@ -71,15 +72,22 @@ public class Storage {
         }
     }
 
-    /**
-     * Saves events to an external txt file.
-     *
-     * @param fileName is the file to save events to
-     * @param eventsList is the events list to be saved to an external txt file
-     * @throws IOException if the named file does not exist and cannot be created, or cannot be opened
-     */
-    public void saveFile(String fileName, ArrayList<Event> eventsList) throws IOException {
-        FileWriter fw = new FileWriter(fileName);
+
+    public void saveFile(Path fileName, UserData data, String fileType) {
+
+        //firstly, form a temporary List of strings to store the data
+        ArrayList<String> toBeWritten = new ArrayList<>();
+
+        //next, read out event by event and process it into a storable string
+        EventList listOfEvents = data.getEventList(fileType);
+        ArrayList<Event> events = listOfEvents.getEvents();
+
+        for(Event event:events) {
+
+        }
+
+
+        //finally, store the string into the list and write to file
     }
 
     /**
@@ -151,7 +159,7 @@ public class Storage {
     }
 
     /**
-     * Function gives a string containng the file full location path name.
+     * Function gives a string containing the file full location path name.
      *
      * @return String containing the file's location
      */

@@ -74,6 +74,15 @@ public abstract class Event {
         return (isDone) ? "✓" : "✕";
     }
 
+    public boolean getIndividualStatus(int index) {
+        if (index == 0) {
+            return isDone;
+        } else {
+            ArrayList<DateStatusPair> repeatedEvents = this.getRepeatList();
+            return (repeatedEvents.get(index - 1).getStatus().equals("✓"));
+        }
+    }
+
     public String getDescription() {
         return this.description;
     }
