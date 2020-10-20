@@ -20,7 +20,7 @@ It helps you to prioritise your work and balance your time spent among your modu
     1. [Exit the program : `exit`](#ix-exit-the-program--exit)
     1. [Save user data](#x-saving-the-data)
 * [FAQ](#faq)
-* [Command summary](#command-summary)
+* [Command Summary](#command-summary)
 
 
 ## Quick Start
@@ -194,7 +194,7 @@ All changes saved.
 Bye <username>. Hope to see you again soon!
 ````
 
-### x. Saving the data
+### x. Save user data
 Time spent is saved in the hard disk automatically after any command that changes the data. There is no need to save manually. 
 
 
