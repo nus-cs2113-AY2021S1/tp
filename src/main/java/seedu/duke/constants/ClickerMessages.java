@@ -62,6 +62,7 @@ public class ClickerMessages {
     public static final String TYPE_COMMAND_INSTRUCTION = "Please indicate your type by typing in \"type\" command";
     public static final String ASKING_FOR_TITLE = "Please let us know the title of your writing";
     public static final String ASKING_FOR_TYPE = "Please let us know your type of writings, either poem or essay";
+    public static final String ASKING_FOR_TOPIC = "Please indicate your topic by typing in \"topic\" command";
     public static final String EMPTY_WRITING_MESSAGE = "The storage is currently empty, please type "
             + "\"start\" command to add";
     public static final String CLEAR_DATA_MESSAGE = "We have clear all data in the writings list";
