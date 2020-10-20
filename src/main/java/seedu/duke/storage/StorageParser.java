@@ -7,11 +7,189 @@ import seedu.duke.parser.DateTimeParser;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class StorageParser {
 
+    public static String eventToString(Event activity, String type) {
+
+        ArrayList<String> words = new ArrayList<>();
+
+        switch(type) {
+
+        case "Personal":
+            personalToArguments((Personal)activity, words);
+            break;
+        case "Zoom":
+            zoomToArguments((Zoom)activity, words);
+            break;
+        case "Timetable":
+            timetableToArguments((Timetable)activity, words);
+            break;
+
+        }
+
+        return String.join(" | ", words);
+
+    }
+
+    public static void handleRepeatSave(ArrayList<String> statuses, ArrayList<Event> activities, int repeatCount) {
+
+        for (int i = 0; i < repeatCount; i++) {
+            Boolean repeatedActivityStatus = activities.get(i).getStatus().equals("✓");
+            statuses.add(Boolean.toString(repeatedActivityStatus));
+        }
+    }
+
+    public static void personalToArguments(Personal activity, ArrayList<String> words) {
+
+        ArrayList<String> statuses = new ArrayList<>();
+
+        //obtain the name of the event
+        String name = activity.getDescription();
+
+        //obtain the dates and time of the event
+        String date = "0";
+        String time = "0";
+        if (activity.getDate() != null) {
+            date = activity.getDate().toString();
+        }
+        if (activity.getTime() != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm");
+            time = activity.getTime().format(formatter);
+        }
+
+        Boolean activityStatus = activity.getStatus().equals("✓");
+        statuses.add(Boolean.toString(activityStatus));
+        String repeatUnit = "0";
+        String repeatNumber = "0";
+        if (activity.getRepeatCount() != 0) { //it is a repeated activity
+            repeatUnit = activity.getRepeatType();
+            repeatNumber = Integer.toString(activity.getRepeatCount());
+            ArrayList<Event> activitiesRepeated = activity.getRepeatEventList();
+
+            handleRepeatSave(statuses, activitiesRepeated, activity.getRepeatCount());
+
+        }
+
+        words.add(name);
+        words.add(date);
+        words.add(time);
+        words.add(repeatUnit);
+        words.add(repeatNumber);
+
+        for (int i = 0; i < statuses.size(); i++) {
+            boolean isDone = Boolean.parseBoolean(statuses.get(i));
+            if (isDone) {
+                words.add("T");
+            } else {
+                words.add("F");
+            }
+        }
+
+    }
+
+    public static void zoomToArguments(Zoom activity, ArrayList<String> words) {
+
+        ArrayList<String> statuses = new ArrayList<>();
+
+        //obtain the name of the event
+        String name = activity.getDescription();
+
+        //obtain the dates and time of the event
+        String date = "0";
+        String time = "0";
+        if (activity.getDate() != null) {
+            date = activity.getDate().toString();
+        }
+        if (activity.getTime() != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm");
+            time = activity.getTime().format(formatter);
+        }
+
+        Boolean activityStatus = activity.getStatus().equals("✓");
+        statuses.add(Boolean.toString(activityStatus));
+        String repeatUnit = "0";
+        String repeatNumber = "0";
+        if (activity.getRepeatCount() != 0) { //it is a repeated activity
+            repeatUnit = activity.getRepeatType();
+            repeatNumber = Integer.toString(activity.getRepeatCount());
+            ArrayList<Event> activitiesRepeated = activity.getRepeatEventList();
+
+            handleRepeatSave(statuses, activitiesRepeated, activity.getRepeatCount());
+
+        }
+
+        String url = activity.getZoomLink();
+        words.add(name);
+        words.add(date);
+        words.add(time);
+        words.add(repeatUnit);
+        words.add(repeatNumber);
+        words.add(url);
+
+        for (int i = 0; i < statuses.size(); i++) {
+            boolean isDone = Boolean.parseBoolean(statuses.get(i));
+            if (isDone) {
+                words.add("T");
+            } else {
+                words.add("F");
+            }
+        }
+
+    }
+
+    public static void timetableToArguments(Timetable activity, ArrayList<String> words) {
+
+        ArrayList<String> statuses = new ArrayList<>();
+
+        //obtain the name of the event
+        String name = activity.getDescription();
+
+        //obtain the dates and time of the event
+        String date = "0";
+        String time = "0";
+        if (activity.getDate() != null) {
+            date = activity.getDate().toString();
+        }
+        if (activity.getTime() != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm");
+            time = activity.getTime().format(formatter);
+        }
+
+        Boolean activityStatus = activity.getStatus().equals("✓");
+        statuses.add(Boolean.toString(activityStatus));
+        String repeatUnit = "0";
+        String repeatNumber = "0";
+        if (activity.getRepeatCount() != 0) { //it is a repeated activity
+            repeatUnit = activity.getRepeatType();
+            repeatNumber = Integer.toString(activity.getRepeatCount());
+            ArrayList<Event> activitiesRepeated = activity.getRepeatEventList();
+
+            handleRepeatSave(statuses, activitiesRepeated, activity.getRepeatCount());
+
+        }
+
+        String location = activity.getLocation();
+        words.add(name);
+        words.add(date);
+        words.add(time);
+        words.add(repeatUnit);
+        words.add(repeatNumber);
+        words.add(location);
+
+        for (int i = 0; i < statuses.size(); i++) {
+            boolean isDone = Boolean.parseBoolean(statuses.get(i));
+            if (isDone) {
+                words.add("T");
+            } else {
+                words.add("F");
+            }
+        }
+
+    }
 
     public static Event stringToEvent(String line, String type) {
         String[] words = line.split("\\|");

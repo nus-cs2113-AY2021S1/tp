@@ -72,23 +72,38 @@ public class Storage {
         }
     }
 
-/*
+
+    public void saveAll(UserData data) {
+        saveFile(filePersonalPath, data, "Personal");
+        saveFile(fileTimeTablePath, data, "Timetable");
+        saveFile(fileZoomPath, data, "Zoom");
+
+    }
+
     public void saveFile(Path fileName, UserData data, String fileType) {
 
-        //firstly, form a temporary List of strings to store the data
-        ArrayList<String> toBeWritten = new ArrayList<>();
+        try{
+            //firstly, form a temporary List of strings to store the data
+            ArrayList<String> toBeWritten = new ArrayList<>();
 
-        //next, read out event by event and process it into a storable string
-        EventList listOfEvents = data.getEventList(fileType);
-        ArrayList<Event> events = listOfEvents.getEvents();
+            //next, read out event by event and process it into a storable string
+            EventList listOfEvents = data.getEventList(fileType);
+            ArrayList<Event> events = listOfEvents.getEvents();
 
-        for(Event event:events) {
+            for(Event event:events) {
+                String entry = StorageParser.eventToString(event, fileType);
+                toBeWritten.add(entry);
+            }
 
+            Files.write(fileName, toBeWritten);
+
+        } catch (InvalidListException e) {
+            System.out.println("Error! List invalid type. Should not happen");
+        } catch (IOException e) {
+            System.out.println("Error! File cannot be written to");
         }
 
-
-        //finally, store the string into the list and write to file
-    }*/
+    }
 
     /**
      * Loads every single data file into the program.

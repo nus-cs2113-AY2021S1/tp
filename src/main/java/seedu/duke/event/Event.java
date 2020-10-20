@@ -101,6 +101,9 @@ public abstract class Event implements Cloneable {
     }
 
     public int getRepeatCount() {
+        if (repeatEventList == null) {
+            return 0;
+        }
         return repeatEventList.size();
     }
 

@@ -1,3 +1,4 @@
-stuff | 2010-01-01 | 1200 | WEEKLY | 4 | F | F | F | T | F 
+stuff | 2010-01-01 | 1200 | weekly | 4 | F | F | F | T | F
 birthday celebration | 2010-01-01 | 1200 | 0 | 0 | T
 others | 0 | 0 | 0 | 0 | F
+surprise | 0 | 0 | 0 | 0 | F
