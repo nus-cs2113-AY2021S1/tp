@@ -16,7 +16,7 @@ to be on the 7th October 2020 at 11:20 PM.
 The ```deadline``` command calls ```DeadlineCommand#execute()```, adding/updating the personal event deadline. </br>
 
 The following sequence diagram shows how the deadline operation works: <br>
-[![Sequence Diagram for Deadline Command](/docs/diagrams/DeadlineCommandSequenceDiagram.png)]
+![Sequence Diagram for Deadline Command](/docs/diagrams/DeadlineCommandSequenceDiagram.png)
 ## Documentation, logging, testing, configuration, dev-ops (not sure what this entails)
 
 ## Appendix: Requirements
