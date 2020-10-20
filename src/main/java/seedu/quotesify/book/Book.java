@@ -56,6 +56,21 @@ public class Book implements JsonSerializer {
         this.rating = ratingScore;
     }
 
+    public String getBookDetailString() {
+        String stringToReturn = "";
+        stringToReturn += "Title: " + title + System.lineSeparator();
+        stringToReturn += "Author: " + author.getName() + System.lineSeparator();
+        stringToReturn += "Categories: " + System.lineSeparator();
+
+        int index = 1;
+        for (String category : categories) {
+            stringToReturn += index + ". " + category + System.lineSeparator();
+            index++;
+        }
+
+        return stringToReturn;
+    }
+
     @Override
     public String toString() {
         if (categories != null) {
