@@ -6,7 +6,7 @@ Ensure that you have the following installed:
 * JDK 11.
 * IntelliJ IDE (highly recommended).
 
-First, be sure to **fork** this repo and **clone** a copy into your computer.
+Firstly, **fork** this repo and **clone** a copy into your computer.
 
 If you plan to use Intellij IDEA: 
 1. **Ensure IntelliJ is configured to use JDK 11**.
