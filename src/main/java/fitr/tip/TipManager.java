@@ -1,4 +1,4 @@
-package fitr.command;
+package fitr.tip;
 
 import fitr.list.TipList;
 import fitr.ui.Ui;

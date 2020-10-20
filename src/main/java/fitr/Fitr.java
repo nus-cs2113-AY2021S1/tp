@@ -1,7 +1,7 @@
 package fitr;
 
 import fitr.command.Command;
-import fitr.command.TipManager;
+import fitr.tip.TipManager;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.TipList;

@@ -42,8 +42,7 @@ public class Storage {
      * @param exerciseListPath file path of the exercise list
      * @throws IOException if an I/O error has occurred
      */
-    public Storage(String userConfigPath, String foodListPath, String exerciseListPath)
-            throws IOException {
+    public Storage(String userConfigPath, String foodListPath, String exerciseListPath) throws IOException {
         this.userConfigPath = userConfigPath;
         this.foodListPath = foodListPath;
         this.exerciseListPath = exerciseListPath;
