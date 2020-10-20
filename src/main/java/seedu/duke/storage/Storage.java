@@ -20,9 +20,10 @@ public abstract class Storage {
         String fileString = "";
         try {
             fileString = new String(Files.readAllBytes(Paths.get(filePath)));
+            LOGGER.log(Level.INFO, "Read from file: " + filePath);
         } catch (IOException exception) {
             LOGGER.log(Level.INFO, "File does not exist at: " + filePath);
-            throw new AniException("Does not exist.");
+            throw new AniException("File does not exist.");
         }
 
         return fileString;

@@ -17,10 +17,8 @@ public class EstimateParser extends CommandParser {
         assert description != null : "description should not be null.";
         String[] paramGiven = parameterSplitter(description);
         if (paramGiven.length > 2) {
-            LOGGER.log(Level.WARNING, "Too many arguments.");
             throw new AniException("Estimate command" + TOO_MUCH_FIELDS);
         } else if (paramGiven[0].isBlank()) {
-            LOGGER.log(Level.WARNING, "No script file provided for estimation.");
             throw new AniException("Script file not found! Ensure that it is in your workspace folder!");
         }
 
@@ -33,6 +31,9 @@ public class EstimateParser extends CommandParser {
         if (paramGiven.length == 2) {
             wordsPerHour = parameterParser(paramGiven);
         }
+
+        LOGGER.log(Level.INFO, "Returning a EstimateCommand object with file: "
+                                    + fileName + ", and wph: " + wordsPerHour + ".");
         return new EstimateCommand(fileName, wordsPerHour);
     }
 

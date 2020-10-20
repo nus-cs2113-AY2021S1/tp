@@ -51,6 +51,8 @@ public class EstimateCommand extends Command {
             commandResult.setLength(commandResult.length() - System.lineSeparator().length());
         }
 
+        LOGGER.log(Level.INFO, "Returning estimate result for " + scriptFileName
+                                    + " with " + wordsPerHour + "wph.");
         return commandResult.toString();
     }
 

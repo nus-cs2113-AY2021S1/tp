@@ -7,7 +7,7 @@ Welcome to AniChan!
   /_/    \_\_| |_|_|\_____|_| |_|\__,_|_| |_|
 
 -------------------------------------------------------------
-User: Does not exist.
+User: File does not exist.
 -------------------------------------------------------------
 What's your name?
 #>Hello Abec Steiner 33rd! What might your gender be? (Male/Female/Other)
