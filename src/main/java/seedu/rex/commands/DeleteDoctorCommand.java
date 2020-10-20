@@ -41,6 +41,8 @@ public class DeleteDoctorCommand extends Command {
             for (int i = 0; i < appointments.getSize(); i++) {
                 String tempName = appointments.getAppointmentByIndex(i).getDoctor().getName();
                 if (tempName.equals(doctorName)) {
+                    appointments.getAppointmentByIndex(i).setPatient(null);
+                    appointments.getAppointmentByIndex(i).removeBooking();
                     appointments.getAppointmentByIndex(i).setDoctor(null);
                     break;
                 }
@@ -48,6 +50,7 @@ public class DeleteDoctorCommand extends Command {
         } else {
             ui.printDoctorNotFound(doctorName);
         }
+        storage.saveAppointments(appointments);
         storage.saveDoctors(doctors);
     }
 }

@@ -50,7 +50,9 @@ public class DeletePatientCommand extends Command {
             for (int i = 0; i < appointments.getSize(); i++) {
                 String tempNric = appointments.getAppointmentByIndex(i).getPatient().getNric();
                 if (tempNric.contentEquals(nric)) {
-                    appointments.removeAppointmentByIndex(i);
+                    appointments.getAppointmentByIndex(i).setPatient(null);
+                    appointments.getAppointmentByIndex(i).removeBooking();
+                    appointments.getAppointmentByIndex(i).setDoctor(null);
                     break;
                 }
             }
@@ -58,5 +60,6 @@ public class DeletePatientCommand extends Command {
             ui.printPatientNotFound(nric);
         }
         storage.savePatients(patients);
+        storage.saveAppointments(appointments);
     }
 }
