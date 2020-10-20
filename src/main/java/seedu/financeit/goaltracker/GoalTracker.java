@@ -109,8 +109,6 @@ public class GoalTracker {
                             totalGoalList.getGoal().set(i, goalToSet);
                             UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "You have successfully"
                                     + " edited your expense goal for " + month);
-                        } else {
-
                         }
                     } catch (NullPointerException e) { // This NullPointerException occurs when the first object in the
                         continue;                      // arraylist is not expense so it will continue the for loop.
@@ -158,11 +156,11 @@ public class GoalTracker {
     /**
      * This function is for save and load of the expense and income goals
      * for respective months.
-     * @param expense
-     * @param income
+     * @param expense the amount of expense goal
+     * @param income the amount of income goal
      */
     public static void setGoals(int expense, int income) {
-        if(expense != 0) {
+        if (expense != 0) {
             try {
                 month = Month.of(Integer.parseInt(cmdPacket[3]));
                 expenseGoal = expense;
@@ -171,8 +169,9 @@ public class GoalTracker {
             } catch (DateTimeException e) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
                         + " a valid month");
-           }
+            }
         }
+
         if (income != 0) {
             try {
                 month = Month.of(Integer.parseInt(cmdPacket[3]));
@@ -201,7 +200,7 @@ public class GoalTracker {
             }
         } catch (IndexOutOfBoundsException e) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Please enter either expense "
-            + "or income");
+                + "or income");
         }
     }
 
@@ -287,8 +286,8 @@ public class GoalTracker {
      * This function will be called in EntryTracker class when there is a
      * new entry being stored into a ledger. The purpose is to parse the
      * entry to categories whether it is expense or income.
-     * @param entry
-     * @class EntryTracker
+     * @param entry entry that user enter into ledger
+     * @class EntryTracker is the class that handle ledger
      */
     public static void targetGoalTracker(Entry entry) {
         entryData = entry;
@@ -304,15 +303,15 @@ public class GoalTracker {
      * This function is called when a ledger is being created
      * or opened by date.
      * The purpose is to store the ledgerMonth which the entry is being added to
-     * @param ledger
-     * @class ManualTracker
+     * @param ledger ledger that is sent from manual tracker
+     * @class ManualTracker is the class that handle ledger
      */
     public static void storeLedgerDate(Ledger ledger) {
         ledgerMonth = ledger.getDate().getMonth();
     }
 
     /**
-     * This function allows user to display their expense goal
+     * This function allows user to display their expense goal.
      * for indicated month
      */
     public static void displayExpenseGoal() {
@@ -331,7 +330,7 @@ public class GoalTracker {
                         expenses = entry.getAmount();
                         totalExpenses += expenses;
                     } else {
-                            totalExpenses += totalExpenses;
+                        totalExpenses += totalExpenses;
                     }
                 }
             }
@@ -360,7 +359,7 @@ public class GoalTracker {
                         expenses = entry.getAmount();
                         totalExpenses += expenses;  // For each expenses entry we sum up the total
                     } else {
-                            totalExpenses += totalExpenses;
+                        totalExpenses += totalExpenses;
                     }
                 }
             }
@@ -392,12 +391,12 @@ public class GoalTracker {
                         }
                     }
                 } catch (NullPointerException e) {
-                   continue;
+                    continue;
                 }
             }
             if (expenseGoal == 0) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "You did not set a expense "
-                + "goal for " + month);
+                    + "goal for " + month);
             }
 
             double goalDifference = expenseGoal - totalExpenses;
@@ -450,7 +449,7 @@ public class GoalTracker {
     }
 
     /**
-     * This function allows user to display their income goal
+     * This function allows user to display their income goal.
      * for indicated month
      */
     public static void displayIncomeGoal() {
@@ -507,7 +506,7 @@ public class GoalTracker {
     }
 
     /**
-     * This function will print the income goal status for the
+     * This function will print the income goal status for the.
      * indicated month
      */
     public static void printIncomeGoal() {
