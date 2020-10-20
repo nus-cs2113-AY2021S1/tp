@@ -32,6 +32,7 @@ public abstract class Command {
     public static final String ERROR_RATING_EXIST = "This book has already been rated!";
     public static final String ERROR_BOOK_TO_RATE_NOT_FOUND = "I can't find this book to rate!";
     public static final String ERROR_RATING_NOT_FOUND = "I can't find ratings for this book!";
+    public static final String ERROR_RATING_MISSING_INPUTS = "I need some details to start rating!";
     public static final String ERROR_RATING_MISSING_BOOK_TITLE_OR_RATING_SCORE
             = "Both book title and rating score cannot be empty.";
     public static final String ERROR_RATING_MISSING_BOOK_TITLE = "Book title cannot be empty.";

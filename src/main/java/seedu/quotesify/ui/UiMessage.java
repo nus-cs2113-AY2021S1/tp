@@ -30,7 +30,7 @@ public class UiMessage {
     public static final String EMPTY_CATEGORY_LIST_MESSAGE = "There are no categories created!";
     public static final String NO_ITEMS_IN_CATEGORY_MESSAGE = "There are no items tagged as [%s].";
     public static final String EDIT_CATEGORY_MESSAGE = "The category has been changed from [%s] to [%s]!";
-    public static final String ADD_RATING_MESSAGE = "You have just rated [%s] %d star!";
+    public static final String ADD_RATING_MESSAGE = "You have just rated [%s by %s] %d star!";
     public static final String DELETE_RATING_MESSAGE = "Rating for [%s] has been deleted!";
     public static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
             + " Here are your rated books!";
@@ -69,7 +69,7 @@ public class UiMessage {
     public static final String ADD_QUOTE_COMMAND = "Add quote: " + "add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]";
     public static final String ADD_CATEGORY_COMMAND = "Add category: "
             + "add -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}";
-    public static final String ADD_RATING_COMMAND = "Add rating: " + "add -r RATING_SCORE BOOK_TITLE";
+    public static final String ADD_RATING_COMMAND = "Add rating: " + "add -r RATING_SCORE BOOK_TITLE /by AUTHOR";
     public static final String ADD_TODO_COMMAND = "Add task: " + "add -t TASK /by DEADLINE";
 
     public static final String DELETE_BOOK_COMMAND = "Delete book: " + "delete -b BOOK_TITLE /by AUTHOR";

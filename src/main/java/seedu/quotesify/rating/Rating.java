@@ -1,36 +1,35 @@
 package seedu.quotesify.rating;
 
 import org.json.simple.JSONObject;
+import seedu.quotesify.book.Book;
 import seedu.quotesify.parser.JsonSerializer;
 
 public class Rating implements JsonSerializer {
     private String titleOfRatedBook;
+    private String authorOfRatedBook;
     private int rating;
 
-    public Rating(int rating, String titleOfRatedBook) {
-        this.rating = rating;
+    public Rating(String titleOfRatedBook, String authorOfRatedBook, int rating) {
         this.titleOfRatedBook = titleOfRatedBook;
+        this.authorOfRatedBook = authorOfRatedBook;
+        this.rating = rating;
     }
 
     public String getTitleOfRatedBook() {
         return titleOfRatedBook;
     }
 
-    public void setTitleOfRatedBook(String titleOfRatedBook) {
-        this.titleOfRatedBook = titleOfRatedBook;
+    public String getAuthorOfRatedBook() {
+        return authorOfRatedBook;
     }
 
     public int getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
     @Override
     public String toString() {
-        return titleOfRatedBook + ": " + rating + " star";
+        return titleOfRatedBook + " by " + authorOfRatedBook + ": " + rating + " star";
     }
 
     @Override
@@ -40,4 +39,5 @@ public class Rating implements JsonSerializer {
         json.put("rating", this.getRating());
         return json;
     }
+
 }

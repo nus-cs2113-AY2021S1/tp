@@ -207,8 +207,8 @@ public class TextUi {
         System.out.println(message);
     }
 
-    public void printAddRatingToBook(int ratingScore, String titleOfBookToRate) {
-        System.out.printf((UiMessage.ADD_RATING_MESSAGE) + "\n", titleOfBookToRate, ratingScore);
+    public void printAddRatingToBook(int ratingScore, String titleOfBookToRate, String authorOfBookToRate) {
+        System.out.printf((UiMessage.ADD_RATING_MESSAGE) + "\n", titleOfBookToRate, authorOfBookToRate, ratingScore);
     }
 
     public void printAllRatings(RatingList ratingList) {
@@ -344,7 +344,7 @@ public class TextUi {
         System.out.println(System.lineSeparator() + "~ Your friends from Quotesify");
     }
 
-    public void printListOfAddComnmands() {
+    public void printListOfAddCommands() {
         System.out.println("Here is a list of Add commands you can do:\n");
         System.out.println(UiMessage.ADD_BOOK_COMMAND);
         System.out.println(UiMessage.ADD_BOOKMARK_COMMAND);
