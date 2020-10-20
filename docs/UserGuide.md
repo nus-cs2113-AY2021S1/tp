@@ -26,7 +26,7 @@ It helps you to prioritise your work and balance your time spent among your modu
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `ModTracker` from [here](https://github.com/AY2021S1-CS2113T-F12-4/tp/releases).
+1. Download the latest version of `ModTracker` from [here](https://github.com/AY2021S1-CS2113T-F12-4/tp/releases).
 1. Save the jar file to a folder of your choice.
 1. Open a command prompt and navigate to the folder that contains the jar file. Command: `cd [directory/filename]`
 1. Type in the `java -jar modtracker.jar` command and press enter to run the program.
@@ -67,6 +67,7 @@ Adds a module to the database.
 Format: `addmod <module code>`
 
 * The `module code` must contain 6-8 characters without any spacing. 
+* The `module code` does not exist in the database.
 
 Example of usage:
 
@@ -84,6 +85,7 @@ Format: `addexp <module code> <expected workload>`
 
 * The `module code` must contain 6-8 characters without any spacing.
 * The `expected workload` is in hours.
+* If the `module code` already exist, this command replaces its expected workload with the new expected workload.
 * If the `module code` does not exist, this command creates a new module and adds its expected workload to the database.
 
 Example of usage:
@@ -139,6 +141,7 @@ Deletes the specified module code from the database.
 Format: `deletemod <module code>`
 
 * The `module code` must contain 6-8 characters without any spacing.
+* The `module code` exists in the database.
 
 Example of usage:
 
@@ -150,11 +153,12 @@ CS2113T is removed.
 ````
 
 ### vii. Delete expected module workload: `deleteexp`
-Deletes the specified module code workload from the database.
+Deletes the expected workload of specified module code from the database.
 
 Format: `deleteexp <module code>`
 
 * The `module code` must contain 6-8 characters without any spacing.
+* The `module code` exists in the database.
 
 Example of usage:
 
@@ -195,7 +199,7 @@ Bye <username>. Hope to see you again soon!
 ````
 
 ### x. Save user data
-Time spent is saved in the hard disk automatically after any command that changes the data. There is no need to save manually. 
+Saves time spent in the hard disk automatically after any command that changes the data. There is no need to save manually. 
 
 
 ## FAQ
