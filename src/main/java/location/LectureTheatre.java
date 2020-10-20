@@ -1,22 +1,22 @@
 package location;
 
 /**
- * Represents lecture theatre objects
- * Contains a String nearestBuilding which represents the name of nearest building
+ * Represents lecture theatre objects.
+ * Contains a String nearestBuilding which represents the name of nearest building.
  */
-public class LectureTheatre extends Location{
-    private String nearestBuilding;
+public class LectureTheatre extends Location {
+    private final String nearestBuilding;
 
     public LectureTheatre(String name, String nearestBuilding) {
         super(name);
-        this.type = locationType.LT;
+        this.type = LocationType.LT;
         this.nearestBuilding = nearestBuilding;
     }
 
     /**
-     * Prepares string to be printed in a list
+     * Prepares string to be printed in a list.
      *
-     * @return object to be printed in a certain format
+     * @return object to be printed in a certain format.
      */
     @Override
     public String toString() {

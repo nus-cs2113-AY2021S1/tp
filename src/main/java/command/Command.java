@@ -16,13 +16,16 @@ public abstract class Command {
     /**
      * Execute the command based on the specific command type.
      *
-     * @param events  the list of Events.
-     * @param ui      do outputs.
-     * @param storage store the data.
+     * @param events    the list of Events.
+     * @param locations the list of Locations.
+     * @param busStops  the list of BusStops.
+     * @param ui        do outputs.
+     * @param storage   store the data.
      * @throws NuScheduleException the exceptions can happen in this program,
      *                             to be handled based on the specific exception.
      */
-    public abstract void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) throws NuScheduleException;
+    public abstract void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage)
+            throws NuScheduleException;
 
     public boolean isExit() {
         return isExit;

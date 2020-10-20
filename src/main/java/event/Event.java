@@ -6,11 +6,11 @@ import java.time.LocalDate;
 
 /**
  * Represents the event objects.
- * Contains a String <\code>description<\code> , which is the description of the event,
- * and a boolean <\code>isDone<\code>, which is the status of the Event.
+ * Contains a String description , which is the description of the event,
+ * and a boolean isDone, which is the status of the Event.
  * Provides methods to mark an event as done(either during user input or reading from file),
- * get the value of <\code>isDone<\code>,
- * convert the <\code>event<\code> object to a string to be printed out or write to a file.
+ * get the value of isDone,
+ * convert the event object to a string to be printed out or write to a file.
  */
 public abstract class Event {
     protected String description;

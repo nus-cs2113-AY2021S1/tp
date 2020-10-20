@@ -12,6 +12,11 @@ src/main/resources/docs/
 .DS_Store
 *.iml
 bin/
+data/events.txt
 
+<<<<<<< HEAD
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
+data/events.txt
+=======
+>>>>>>> Coding_Standard

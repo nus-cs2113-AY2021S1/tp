@@ -3,7 +3,7 @@ package exception;
 /**
  * Represents the exception when no date/time is inputted as expected.
  */
-public class NoEventTimeException extends NuScheduleException{
+public class NoEventTimeException extends NuScheduleException {
     /**
      * Prepare the message to be printed when this exception is experienced.
      *
