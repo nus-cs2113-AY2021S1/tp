@@ -10,6 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import static seedu.duke.filters.FilterList.printFilterList;
+
 /**
  * A class containing algorithms that execute the filter.
  */
@@ -35,7 +37,7 @@ public class WordsFilter {
                     .collect(Collectors.toList());
         }
 
-        printFilterResult();
+        printFilterList();
     }
 
     /**
@@ -55,7 +57,7 @@ public class WordsFilter {
             removeRedundantWords(wordsToRemove);
         }
 
-        printFilterResult();
+        printFilterList();
     }
 
     /**
@@ -75,7 +77,7 @@ public class WordsFilter {
             removeRedundantWords(wordsToRemove);
         }
 
-        printFilterResult();
+        printFilterList();
     }
 
     private static void generateListOfRemoveWords(FilterType filterType, String[] patterns,
@@ -137,17 +139,6 @@ public class WordsFilter {
         for (Words wordToRemove : wordsToRemove) {
             while (filteredWords.contains(wordToRemove)) {
                 filteredWords.remove(wordToRemove);
-            }
-        }
-    }
-
-    private static void printFilterResult() {
-        if (filteredWords.size() == 0) {
-            System.out.println(FilterMessages.NO_FILTER_RESULT);
-        } else {
-            System.out.println(FilterMessages.FILTER_MESSAGE);
-            for (Words word : filteredWords) {
-                System.out.println(word.getDescription() + ": " + word.getDefinition());
             }
         }
     }

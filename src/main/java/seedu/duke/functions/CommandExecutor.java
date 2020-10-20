@@ -9,6 +9,7 @@ import seedu.duke.exceptions.MissingFilterOptionsException;
 import seedu.duke.exceptions.NameException;
 import seedu.duke.exceptions.NoFilteredItemsException;
 import seedu.duke.filters.FilterExecutor;
+import seedu.duke.filters.FilterList;
 import seedu.duke.ui.UI;
 
 import seedu.duke.wordlist.WordList;
@@ -49,6 +50,9 @@ public class CommandExecutor {
             break;
         case FILTER_WORDS:
             FilterExecutor.executeFilterCommand(userInput);
+            break;
+        case LIST_FILTER:
+            FilterList.printFilterList();
             break;
         case BUNNY:
             try {
