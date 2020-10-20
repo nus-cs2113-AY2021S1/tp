@@ -48,11 +48,11 @@ public class Storage implements SaveState {
 
 
     public WatchTime LoadWatchTimeDetail(Scanner s) {
-        if(s.hasNext()){
+        if (s.hasNext()) {
             String[] splitRecordedDate = s.nextLine().split("recordedDate: ");
-            try{
+            try {
                 recordedDate = LocalDate.parse(splitRecordedDate[1]);
-            }catch(Exception e){
+            } catch(Exception e) {
                 recordedDate = LocalDate.now();
             }
             String[] splitDurationWatched = s.nextLine().split("durationWatchedToday: ");
@@ -81,9 +81,6 @@ public class Storage implements SaveState {
         // we just assume that advanced users who manually change the file can adhere to the correct format
         LoadWatchTimeDetail(s);
         while (s.hasNext()) {
-            //if (watchTimeSaveInputParse(input)) {
-            //    continue;
-            //}
             String name = s.nextLine().substring(3);
             String[] splitSeason = s.nextLine().split("Season: ");
             int season = Integer.parseInt(splitSeason[1]);
