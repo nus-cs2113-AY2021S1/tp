@@ -12,6 +12,16 @@ User: Does not exist.
 What's your name?
 #>Hello Abec Steiner 33rd! What might your gender be? (Male/Female/Other)
 #>
+Default (Default) #> OOPS!!! Parameter : -n requires an additional field
+
+Default (Default) #> OOPS!!! No parameter provided
+
+Default (Default) #> Successfully added new workspace:
+ Workspace: CrunchyCinnamon
+
+Default (Default) #> Successfully added new workspace:
+ Workspace: CrispyDonut
+
 Default (Default) #> Watchlist "a" has been created successfully!
 
 Default (Default) #> Watchlist "b" has been created successfully!
