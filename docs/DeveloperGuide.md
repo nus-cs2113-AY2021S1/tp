@@ -4,8 +4,8 @@
 1. [Setting up](#1-setting-up)
 1. [Design](#2-design)
     1. Architecture
-    1. UI component
-    1. Parser component
+    1. [UI component](#22-ui)
+    1. [Parser component](#23-parser)
     1. Command component
     1. User component
     1. AnimeData component
