@@ -80,7 +80,7 @@ Timeline
 |                     |_____ [TUT][/] cs1010  (nus)
 |__ 2020-10-20 TUESDAY
 |            |_____ 13:40
-|                     |_____ [LEC][X] cs1010  (nus)
+|                     |_____ [LEC][/] cs1010  (nus)
 |__ 2020-10-21 WEDNESDAY
 |            |_____ 14:40
 |                     |_____ [LAB][X] cs1010  (nus)
@@ -102,9 +102,6 @@ Timeline
 Here is your timeline:
 Timeline
 |
-|__ 2020-10-20 TUESDAY
-|            |_____ 13:40
-|                     |_____ [LEC][X] cs1010  (nus)
 |__ 2020-10-21 WEDNESDAY
 |            |_____ 14:40
 |                     |_____ [LAB][X] cs1010  (nus)

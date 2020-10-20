@@ -36,6 +36,8 @@ public class DoneCommand extends Command {
         }
         int calendarNumberCompleted = CalendarList.convertTaskNumberToCalendarNumber(taskNumberCompleted, calendarList);
 
+        assert calendarNumberCompleted >= 0;
+
         calendarList.markTaskAsDone(calendarNumberCompleted);
         Ui.printCompleteTaskMessage(calendarNumberCompleted, calendarList);
 

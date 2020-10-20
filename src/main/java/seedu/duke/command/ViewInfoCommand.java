@@ -32,6 +32,8 @@ public class ViewInfoCommand extends Command {
             throw new DukeException("invalid view info");
         }
         calendarNumber = CalendarList.convertEventNumberToCalendarNumber(eventNumber, calendarList);
+
+        assert calendarNumber >= 0;
         Event event = (Event) calendarList.getItem(calendarNumber);
         additionalInformation = event.getAdditionalInformation();
         Ui.printAdditionalInformation(additionalInformation, event);

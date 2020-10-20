@@ -9,8 +9,6 @@ import seedu.duke.calendar.event.Lecture;
 import seedu.duke.calendar.event.Tutorial;
 import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Task;
-import seedu.duke.calendar.task.Todo;
-import seedu.duke.command.PrintSuggestionCommand;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -140,6 +138,7 @@ public class Ui {
      * @param calendarList task list of the task to be deleted.
      */
     public static void printDeleteMessage(int numberDelete, CalendarList calendarList) {
+        assert calendarList != null;
         System.out.println("Deleted:\n" + calendarList.getCalendarList().get(numberDelete));
     }
 
@@ -149,6 +148,7 @@ public class Ui {
      * @param event event containing the additional information.
      */
     public static void printLastAdditionalInformation(Event event) {
+        assert event != null;
         System.out.println("Event: " + event);
         int lastIndexOfAdditionalInformation =
                 event.getAdditionalInformationCount() - 1; // -1 to cater for array list starting from 0
@@ -163,6 +163,7 @@ public class Ui {
      * @param event                 event that contains the additional information.
      */
     public static void printAdditionalInformation(ArrayList<String> additionalInformation, Event event) {
+        assert event != null;
         int i = 0;
         System.out.println("Event:" + event);
         for (String s : additionalInformation) {
@@ -218,6 +219,7 @@ public class Ui {
      * @param calendarList            calendar list that has the task marked as done.
      */
     public static void printCompleteTaskMessage(int calendarNumberCompleted, CalendarList calendarList) {
+        assert calendarList != null;
         System.out.println(
                 "Good work! I've marked this task as done:\n"
                         + calendarList.getCalendarList().get(calendarNumberCompleted));
@@ -331,7 +333,7 @@ public class Ui {
     }
 
     /**
-     * Show the user's progress on deadlines and todos.
+     * Shows the user's progress on deadlines and todos.
      *
      * @param calendarList the list of user tasks.
      */
@@ -402,10 +404,10 @@ public class Ui {
      * Show the fist important todo task in the list if exists,
      * otherwise show the first ordinary todo task in the list if exists.
      *
-     * @param earliestDeadline the deadline task with earliest due date.
+     * @param earliestDeadline     the deadline task with earliest due date.
      * @param earImportantDeadline the important deadline task with earliest due date.
-     * @param firstTodo the first todo task in the list.
-     * @param firImportantTodo the first important todo task in the list.
+     * @param firstTodo            the first todo task in the list.
+     * @param firImportantTodo     the first important todo task in the list.
      */
     public static void printSuggestion(Task earliestDeadline, Task earImportantDeadline,
                                        Task firstTodo, Task firImportantTodo) {
