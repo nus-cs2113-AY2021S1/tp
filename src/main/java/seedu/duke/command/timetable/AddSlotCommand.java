@@ -114,7 +114,7 @@ public class AddSlotCommand extends Command {
     }
 
     private String checkForAndAddBookmarkToSlot(List<String> slotAndBookmark,
-                                                String lesson, Slot newSlot) throws DukeException {
+            String lesson, Slot newSlot) throws DukeException {
         String message = "";
         if (slotAndBookmark.size() == 5) {
             createBookmark(slotAndBookmark.get(4), lesson, newSlot);
