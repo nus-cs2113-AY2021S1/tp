@@ -58,8 +58,8 @@ public class Messages {
             + ANSI_RESET + "       ||" + LS
             + "||       " + "- list: show list of tasks"
             + "                                                               ||" + LS
-            + "||       " + "format: " + ANSI_PURPLE + "list" + ANSI_RESET
-            + "                                                                             ||" + LS
+            + "||       " + "format: " + ANSI_PURPLE + "list [-d|-p|-w|-m|d/DATE]" + ANSI_RESET
+            + "                                                        ||" + LS
             + "||       " + "- search: find task(s) with keyword in description"
             + "                                       ||" + LS
             + "||       " + "format: " + ANSI_PURPLE + "search KEYWORD(S)" + ANSI_RESET

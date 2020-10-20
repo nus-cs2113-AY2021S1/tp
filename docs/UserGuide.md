@@ -9,11 +9,13 @@ and prioritize their work and commitment with a user-friendly text interface.
 
 - [Quick start](#quick-start)
 - [Features](#features)
-    - [Adding Todo](#adding-a-task--add)
+    - [Showing commands](#showing-all-commands--help)
+    - [Adding task](#adding-a-task--add)
+    - [Editing task](#editing-a-task--edit)
     - [Displaying tasks](#displaying-tasks--list)
+    - [Searching task](#searching-relevant-tasks--search)
     - [Removing task](#removing-a-task--delete)
     - [Clearing task](#clearing-tasks--clear)
-    - [Searching task](#searching-relevant-tasks--search)
     - [Exiting program](#exiting-program--bye)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
@@ -34,11 +36,16 @@ and prioritize their work and commitment with a user-friendly text interface.
 
     `java -jar planus.jar`
     
+    Following content is display if there's no exsisting data file:
+    
+    ![initial display](images/init.png)
+    
+    
 5. **Maximise** the command prompt/terminal window to get a full display of the contents.
 
-5. Type a command in command prompt/terminal and press Enter to execute it.
+6. Type a command in command prompt/terminal and press Enter to execute it.
 
-6. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 
 ## Features 
@@ -69,6 +76,21 @@ and prioritize their work and commitment with a user-friendly text interface.
 
 - Index of a task is the number displayed after "#" and before description of the task.
     - e.g. "#1029 meeting", 1029 is the index.
+    
+    
+### Showing all commands : `help`
+
+Shows the commands available with the formats.
+
+Format: `help`
+
+Example of usage: 
+
+`help`
+
+Expected outcome:
+
+![help](images/help.PNG)
 
 ### Adding a task : `add`
 
@@ -80,10 +102,12 @@ Format: `add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]`
 
 Example of usage: 
 
-`add borrow book`
-`add meeting st/1000`
+`add meeting st/1000`  
+`add borrow book`  
 
 Expected outcome:
+
+    Task added.
 
 
 ### Editing a task : `edit`
@@ -94,39 +118,12 @@ Format: `edit INDEX [des/DESCRIPTION] [d/DATE] [st/START_TIME] [et/END_TIME] [p/
 
 Example of usage: 
 
-`edit 128 des/borrow book`
-`edit 2389 st/1400 et/1600 p/3`
+`edit 5546 des/reading`  
+`edit 7019 st/1400 et/1600 p/3`
 
 Expected outcome:
 
-
-
-### Removing a task : `delete`
-
-Delete a task from the task list.
-
-Format: `delete INDEX`
-
-Example of usage: 
-
-`delete 2323`
-
-Expected outcome:
-
-
-
-### Clearing tasks : `clear`
-
-Delete a task from the task list.
-
-Format: `clear`
-
-Example of usage: 
-
-`clear`
-
-Expected outcome:
-
+    Task edited.
 
 
 ### Displaying tasks : `list` 
@@ -136,19 +133,24 @@ Default display mode: display **all** tasks by **adding sequence**.
 `-p`: display **all** tasks by **priority**, from HIGH to LOW.
 `-w`: display **only tasks in current week** by **adding sequence**. 
 `-m`: display **only tasks in current month** by **adding sequence**.
-`d/DATE`: display **all tasks in date provided** by adding sequence**.
+`d/DATE`: display **all tasks of a date provided** by adding sequence**.
 
 Format: `list [-d|-p|-w|-m|d/DATE]`
 
 Example of usage: 
 
-`list`
-`list -d`
-`list -w`
-`list d/20-10-2020`
+`list`  
+`list -d`  
+`list -w`  
+`list d/20-10-2020`  
 
 Expected outcome:
 
+![list](images/list.png)
+![sort_by_date](images/list_sort_by_date.png)
+![sort_by_priority](images/list_sort_by_priority.png)
+![weekly_view](images/list_week.png)
+![monthly_view](images/list_month.png)
 
 
 
@@ -160,10 +162,41 @@ Format: `search KEYWORD`
 
 Example of usage: 
 
-`search Report`
+`search meeting`
 
 Expected outcome:
 
+![search](images/search.PNG)
+
+
+### Removing a task : `delete`
+
+Delete a task from the task list us an index.
+
+Format: `delete INDEX`
+
+Example of usage: 
+
+`delete 5546`
+
+Expected outcome:
+
+    Task deleted.
+    
+
+### Clearing tasks : `clear`
+
+Delete all tasks in the list.
+
+Format: `clear`
+
+Example of usage: 
+
+`clear`
+
+Expected outcome:
+
+    All tasks cleared.
 
 
 ### Exiting program : `bye`
@@ -178,8 +211,9 @@ Example of usage:
 
 Expected outcome:
 
+    Bye! See you again!
 
-	
+
 ### Saving data to file
 
 Data will be automatically saved after modification commands like 
@@ -196,10 +230,10 @@ same folder as "planus.jar". Lastly, copy the data file to "data" folder and nam
 
 Action | Format | Example
 ------ | ------ | -------
-add | `add DESCRIPTION` | `add user guide`
-edit |
-delete | `delete INDEX` | `delete 2`
-clear |
+add | `add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]` | `add meeting st/1400`
+edit | `edit INDEX [des/DESCRIPTION] [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]` | `edit 1234 p/3`
+list | <code>list [-d&#124;-p&#124;-w&#124;-m&#124;d/DATE]</code> | `list -d`, `list d/10-10-2020`
 search | `search KEYWORD` | `search meet`
-list | `list` | `list`
+delete | `delete INDEX` | `delete 212`
+clear | `clear` | `clear`
 bye | `bye` | `bye`
