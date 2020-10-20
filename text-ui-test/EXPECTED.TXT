@@ -31,6 +31,19 @@ Got it. I've added this event:
 [LAB][R] cs1010 every WEDNESDAY 2:40PM (nus)
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
+Event: [TUT][X] cs1010 24-Oct-2020 Sat 12:30PM (nus)
+Additional info added:  hello
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+Event: [TUT][X] cs1010 24-Oct-2020 Sat 12:30PM (nus)
+Additional info added:  zoom link
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+Event:[TUT][X] cs1010 24-Oct-2020 Sat 12:30PM (nus)
+1.  hello
+2.  zoom link
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
 This is your list of event(s):
 1.[TUT][/] cs1010 10-Oct-2020 Sat 12:30PM (nus)
 2.[TUT][/] cs1010 17-Oct-2020 Sat 12:30PM (nus)
@@ -80,12 +93,41 @@ Timeline
 |__ 2020-10-31 SATURDAY
 |            |_____ 12:30
 |                     |_____ [TUT][X] cs1010  (nus)
-|__________________ Todo items
-|                     |_____ 1. [T][X] hi
+|__ Todo items
+1. [T][X] hi
+
+
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+Here is your timeline:
+Timeline
+|
+|__ 2020-10-20 TUESDAY
+|            |_____ 13:40
+|                     |_____ [LEC][X] cs1010  (nus)
+|__ 2020-10-21 WEDNESDAY
+|            |_____ 14:40
+|                     |_____ [LAB][X] cs1010  (nus)
+|__ 2020-10-24 SATURDAY
+|            |_____ 12:30
+|                     |_____ [TUT][X] cs1010  (nus)
+|__ Todo items
+1. [T][X] hi
+
+
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
 I've marked this task as important:
 [T][X] (important!) hi
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+I've marked this task as important:
+[D][X] (important!) project 10-Oct-2020
+...........................................................................
+............................. DUKE CHAT BOX ^^ ............................
+Maybe you can prepare for the following tasks now:
+The earliest unfinished important deadline: [D][X] (important!) project 10-Oct-2020
+The first unfinished important todo task: [T][X] (important!) hi
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
 Bye. Hope to see you again soon!

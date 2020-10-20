@@ -51,7 +51,8 @@ public class Todo extends Task {
      */
     @Override
     public String printIntoFile() {
-        return TODO_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description;
+        return TODO_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description + SEPARATOR
+                + this.isImportant;
     }
 
     /**

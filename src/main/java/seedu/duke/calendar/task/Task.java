@@ -41,7 +41,11 @@ public abstract class Task extends CalendarItem {
      */
     @Override
     public String getDescription() {
-        return "[" + this.getStatusIcon() + "] " + this.description;
+        String priorityMessage = "";
+        if (isImportant) {
+            priorityMessage = "(important!) ";
+        }
+        return "[" + this.getStatusIcon() + "] " + priorityMessage + this.description;
     }
 
     /**
@@ -77,6 +81,7 @@ public abstract class Task extends CalendarItem {
 
     /**
      * Get whether the task is marked as important.
+     *
      * @return whether the task is important
      */
     public boolean getIsImportant() {

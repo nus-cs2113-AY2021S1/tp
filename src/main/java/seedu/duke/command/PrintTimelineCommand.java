@@ -1,10 +1,12 @@
 package seedu.duke.command;
 
+import seedu.duke.DateTimeParser;
 import seedu.duke.Storage;
 import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.task.Todo;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 
@@ -23,13 +25,35 @@ public class PrintTimelineCommand extends Command {
     public void execute(CalendarList calendarList, Storage storage) {
         CalendarList timelineList = new CalendarList();
         CalendarList todoList = new CalendarList();
-
-        for (int i = 0; i < calendarList.getTotalItems(); i++) {
-            CalendarItem temp = calendarList.getItem(i);
-            if (temp instanceof Todo) {
-                todoList.addItem(temp);
-            } else {
-                timelineList.addItem(temp);
+        LocalDate startDate = LocalDate.now();
+        LocalDate endDate = null;
+        try {
+            endDate = detectEndDate(userInput);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (endDate != null) {
+            endDate = startDate.plusDays(7);
+            for (int i = 0; i < calendarList.getTotalItems(); i++) {
+                if ((calendarList.getItem(i).getDate() == null)
+                        || ((calendarList.getItem(i).getDate().isAfter(startDate))
+                        && (calendarList.getItem(i).getDate().isBefore(endDate)))) {
+                    CalendarItem temp = calendarList.getItem(i);
+                    if (temp instanceof Todo) {
+                        todoList.addItem(temp);
+                    } else {
+                        timelineList.addItem(temp);
+                    }
+                }
+            }
+        } else {
+            for (int i = 0; i < calendarList.getTotalItems(); i++) {
+                CalendarItem temp = calendarList.getItem(i);
+                if (temp instanceof Todo) {
+                    todoList.addItem(temp);
+                } else {
+                    timelineList.addItem(temp);
+                }
             }
         }
 
@@ -62,13 +86,13 @@ public class PrintTimelineCommand extends Command {
                     + sortedList.getItem(i).getDescription());
         }
 
-        System.out.println("|__________________ Todo items");
+        System.out.println("|__ Todo items");
         int index = 1;
         for (int i = 0; i < todoList.getTotalItems(); i++) {
-            System.out.println("|                     |_____ "
-                    + index + ". " + todoList.getItem(i).toString());
+            System.out.println(index + ". " + todoList.getItem(i).toString());
             index++;
         }
+        System.out.println("\n");
     }
 
     /**
@@ -97,5 +121,21 @@ public class PrintTimelineCommand extends Command {
             }
         }
         return sortingList;
+    }
+
+    public LocalDate detectEndDate(String userInput) throws Exception {
+        LocalDate startDate = LocalDate.now();
+        LocalDate endDate;
+        if (userInput.contains("week")) {
+            endDate = startDate.plusDays(7);
+        } else if (userInput.contains(("month"))) {
+            endDate = startDate.plusDays(31);
+        } else if (userInput.contains("date")) {
+            String[] userInputSplit = userInput.split("date", 2);
+            endDate = DateTimeParser.inputDateProcessor(userInputSplit[1].trim());
+        } else {
+            endDate = null;
+        }
+        return endDate;
     }
 }

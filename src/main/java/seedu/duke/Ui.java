@@ -5,12 +5,15 @@ import seedu.duke.calendar.CalendarList;
 import seedu.duke.calendar.event.Event;
 import seedu.duke.calendar.event.Exam;
 import seedu.duke.calendar.event.Lab;
-import seedu.duke.calendar.event.Tutorial;
 import seedu.duke.calendar.event.Lecture;
+import seedu.duke.calendar.event.Tutorial;
 import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Task;
+import seedu.duke.calendar.task.Todo;
+import seedu.duke.command.PrintSuggestionCommand;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -41,22 +44,21 @@ public class Ui {
                 + "8. done <task number>\n"
                 + "9. -t <task number>\n"
                 + "10. -e <event number>\n"
-                + "11. *t <event number>\n"
+                + "11. *t <task number>\n"
                 + "12. /f <keyword of task/event>\n"
                 + "13. /ft <keyword of task>\n"
                 + "14. /fe <keyword of event>\n"
                 + "15. print tasks\n"
                 + "16. print events\n"
-                + "17. print timeline\n"
+                + "17. print timeline <week/month/>\n"
                 + "18. print progress\n"
                 + "19. print *\n"
                 + "20. countdown exams\n"
-                + "21. countdown deadlines"
+                + "21. countdown deadlines\n"
+                + "22. /a <event number> - information\n"
+                + "23. /v <event number>\n"
+                + "24. suggestion"
         );
-    }
-
-    public static void printDateParseError() {
-        System.out.println("Unable to parse date");
     }
 
     public static void printTotalTaskNumber(CalendarList calendarList) {
@@ -139,6 +141,34 @@ public class Ui {
      */
     public static void printDeleteMessage(int numberDelete, CalendarList calendarList) {
         System.out.println("Deleted:\n" + calendarList.getCalendarList().get(numberDelete));
+    }
+
+    /**
+     * Prints the last additional information of a particular event.
+     *
+     * @param event event containing the additional information.
+     */
+    public static void printLastAdditionalInformation(Event event) {
+        System.out.println("Event: " + event);
+        int lastIndexOfAdditionalInformation =
+                event.getAdditionalInformationCount() - 1; // -1 to cater for array list starting from 0
+        System.out.println("Additional info added: "
+                + event.getAdditionalInformationElement(lastIndexOfAdditionalInformation));
+    }
+
+    /**
+     * Prints the list of additional information of a particular event.
+     *
+     * @param additionalInformation array list of the additional information.
+     * @param event                 event that contains the additional information.
+     */
+    public static void printAdditionalInformation(ArrayList<String> additionalInformation, Event event) {
+        int i = 0;
+        System.out.println("Event:" + event);
+        for (String s : additionalInformation) {
+            i++;
+            System.out.println(i + ". " + s);
+        }
     }
 
     /**
@@ -333,7 +363,7 @@ public class Ui {
     /**
      * Print the message after marking a task as important.
      *
-     * @param calendarList the list of user's tasks and events.
+     * @param calendarList  the list of user's tasks and events.
      * @param calendarIndex the index of the task in the list.
      */
     public static void printPrioritizeMessage(CalendarList calendarList, int calendarIndex) {
@@ -363,6 +393,47 @@ public class Ui {
             System.out.println("You have no important tasks now!");
         } else {
             System.out.println("There are in total " + taskCount + " important tasks in your list.");
+        }
+    }
+
+    /**
+     * Show the earliest important deadline task if exists,
+     * and the earliest ordinary deadline task if it exists and is before the important earliest.
+     * Show the fist important todo task in the list if exists,
+     * otherwise show the first ordinary todo task in the list if exists.
+     *
+     * @param earliestDeadline the deadline task with earliest due date.
+     * @param earImportantDeadline the important deadline task with earliest due date.
+     * @param firstTodo the first todo task in the list.
+     * @param firImportantTodo the first important todo task in the list.
+     */
+    public static void printSuggestion(Task earliestDeadline, Task earImportantDeadline,
+                                       Task firstTodo, Task firImportantTodo) {
+        if (earImportantDeadline == null && earliestDeadline == null
+                && firImportantTodo == null && firstTodo == null) {
+            System.out.println("You have no unfinished tasks now!");
+        } else {
+            System.out.println("Maybe you can prepare for the following tasks now:");
+            if (earImportantDeadline != null) {
+                System.out.println("The earliest unfinished important deadline: "
+                        + earImportantDeadline.toString());
+                if (earliestDeadline != null
+                        && earliestDeadline.getDate().isBefore(earImportantDeadline.getDate())) {
+                    System.out.println("The earliest unfinished ordinary deadline: "
+                            + earliestDeadline.toString());
+                }
+            } else if (earliestDeadline != null) {
+                System.out.println("The earliest unfinished ordinary deadline: "
+                        + earliestDeadline.toString());
+            }
+
+            if (firImportantTodo != null) {
+                System.out.println("The first unfinished important todo task: "
+                        + firImportantTodo.toString());
+            } else if (firstTodo != null) {
+                System.out.println("The first unfinished ordinary todo task: "
+                        + firstTodo.toString());
+            }
         }
     }
 
@@ -430,6 +501,14 @@ public class Ui {
             break;
         case "invalid done number":
             System.out.println("You can only mark a task as done. An event cannot be marked as done.");
+            break;
+        case "invalid add info":
+            System.out.println(
+                    "Error: Please key in the additional information in this format: /a <event number> - information");
+            break;
+        case "invalid view info":
+            System.out.println(
+                    "Error: To view the additional information of the event: /v <event number>");
             break;
         default:
             System.out.println("Unknown Error.");
