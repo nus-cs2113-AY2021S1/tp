@@ -1,4 +1,4 @@
-package seedu.duke.command.sprint;
+/*package seedu.duke.command.sprint;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.parser.Parser;
@@ -48,4 +48,4 @@ class AddSprintTaskCommandTest {
         assertEquals(expectedOutput, outContent.toString());
         restoreStreams();
     }
-}
+}*/
