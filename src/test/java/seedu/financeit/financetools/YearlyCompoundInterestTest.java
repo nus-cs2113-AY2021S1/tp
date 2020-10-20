@@ -18,7 +18,7 @@ public class YearlyCompoundInterestTest {
     void calculateCompoundInterest_inputAmount_expectCorrectInterestEarned() {
         CommandPacket packet = handleInput("cyearly /amount 1000 /ir 3 /period 2");
         Double interestRate = FinanceTools.handleYearlyCompoundInterest(packet);
-        assertEquals(interestRate, 60.899999999999864);
+        assertEquals(interestRate, 60.9);
     }
 
     @Test
