@@ -59,6 +59,7 @@ public class Storage {
         if (dataDirCreated) {
             ui.showToUser(String.format(MESSAGE_CREATED, DIR, f.getParentFile().getName()));
         }
+        createHistoryDir();
 
         boolean adminDirExists = f.exists();
         boolean adminDirCreated = false;
@@ -136,6 +137,9 @@ public class Storage {
         }
         ui.showToUser("List of files and directories in the specified directory:");
         for (String content : contents) {
+            if (content.equals("dues")) {
+                continue;
+            }
             String target = content.replace(".txt", "");
             ui.showToUser(content);
             chapters.add(new Chapter(target));

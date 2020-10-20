@@ -115,14 +115,15 @@ public class ReviseCommand extends Command {
         repeatRevision(ui, repeatCards, count);
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
         toRevise.setDueBy(Scheduler.computeDeckDeadline(toRevise.getCards()), storage, access);
-        addHistory(access, storage);
+        addHistory(ui, access, storage);
     }
 
-    private void addHistory(Access access, Storage storage) throws IOException {
+    private void addHistory(Ui ui, Access access, Storage storage) throws IOException {
+        LocalDate date = java.time.LocalDate.now();
+        storage.createHistory(ui, date.toString());
         String moduleName = access.getModule().getModuleName();
         String chapterName = access.getChapter().getChapterName();
         History history = new History(moduleName, chapterName, 100);
-        LocalDate date = java.time.LocalDate.now();
         HistoryList histories = access.getAdmin().getHistories();
         histories.addHistory(history);
         storage.saveHistory(histories, date.toString());

@@ -20,6 +20,9 @@ import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import storage.Storage;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import static common.Messages.MESSAGE_EXTRA_ARGS;
 import static common.Messages.MESSAGE_INCORRECT_ACCESS;
 import static common.Messages.MESSAGE_MISSING_ARGS;
@@ -69,7 +72,19 @@ public class Parser {
         }
     }
 
-    private static Command prepareHistory(String commandArgs) {
+    private static Command prepareHistory(String commandArgs) throws InvalidInputException {
+        if (commandArgs.isEmpty()) {
+            LocalDate date = java.time.LocalDate.now();
+            commandArgs = date.toString();
+        }
+
+        try {
+            LocalDate date = LocalDate.parse(commandArgs);
+        } catch (DateTimeParseException e) {
+            throw new InvalidInputException("The date should be in the format of yyyy-MM-dd\n"
+                    + HistoryCommand.MESSAGE_USAGE);
+        }
+
         return new HistoryCommand(commandArgs);
     }
 

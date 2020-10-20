@@ -20,7 +20,7 @@ public class HistoryCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists the revision completed in the session/in a day. \n"
             + "Parameters:" + DATE_PARAMETER + "\n"
-            + "Example: " + COMMAND_WORD + "2020-10-10\n";
+            + "Example: " + COMMAND_WORD + " 2020-10-10\n";
 
     public HistoryCommand(String date) {
         this.date = date;
@@ -33,14 +33,7 @@ public class HistoryCommand extends Command {
     }
 
     private String listHistory(Storage storage) throws FileNotFoundException {
-        ArrayList<History> histories;
-        if (date.isEmpty()) {
-            LocalDate today = java.time.LocalDate.now();
-            histories = storage.loadHistory(today.toString());
-        } else {
-            histories = storage.loadHistory(date);
-        }
-
+        ArrayList<History> histories = storage.loadHistory(date);;
         int count = histories.size();
         StringBuilder result = new StringBuilder();
 
@@ -48,6 +41,7 @@ public class HistoryCommand extends Command {
             result.append(MESSAGE_DOES_NOT_EXIST);
             return result.toString();
         }
+
         result.append(MESSAGE_EXIST);
         for (History h : histories) {
             if (histories.indexOf(h) == count - 1) {
