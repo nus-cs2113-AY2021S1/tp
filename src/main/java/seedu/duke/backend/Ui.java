@@ -4,6 +4,7 @@ import seedu.duke.Command;
 import seedu.duke.DukeArgumentException;
 import seedu.duke.DukeFinanceAddDescriptionLostException;
 import seedu.duke.DukeNoMatchException;
+import seedu.duke.DukeNotNumberException;
 import seedu.duke.event.CommandEventAdd;
 import seedu.duke.event.CommandEventDel;
 import seedu.duke.event.CommandEventList;
@@ -49,6 +50,8 @@ public class Ui {
         } catch (DukeFinanceAddDescriptionLostException e) {
             printOutput("Please enter the complete command. Format is:"
                     + "finance addLog ITEM_NAME ITEM_VALUE");
+        } catch (DukeNotNumberException e) {
+            printOutput("The format requires a number in the end.");
         } catch (Exception e) {
             printOutput("Command execution failed with an unhandled error!", true);
         }

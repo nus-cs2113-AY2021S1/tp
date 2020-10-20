@@ -121,10 +121,6 @@ Example of usage: <br/>
 Brings up a summary of the financial log and shows the total amount of money expended. <br/>
 Format: `finance summary` <br/>
 
-Example of usage: <br/>
-`finance summary` <br/>
-`f summary` <br/>
-
 
 ##FAQ
 
