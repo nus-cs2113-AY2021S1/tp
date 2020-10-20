@@ -2,7 +2,13 @@ package seedu.duke.utility;
 
 import seedu.duke.classes.Show;
 
+import java.util.Date;
 import java.util.Scanner;
+
+import static java.util.Calendar.getInstance;
+
+
+//@@author BenardoTang
 
 /**
  * Represents a Ui class that is responsible for Input/Output operations.
@@ -32,7 +38,8 @@ public class Ui {
         printLine();
         printLogo();
         printLine();
-        System.out.println("Welcome to WatchNext");
+        System.out.println("Welcome to WatchNext\n");
+        printDailyWatchTracking();
         System.out.println("Type " + ("help") + " to get started!\n");
     }
 
@@ -50,11 +57,11 @@ public class Ui {
         printLine();
         String helpIcon =
                 " __    __   _______  __      .______   \n"
-                        + "|  |  |  | |   ____||  |     |   _  \\  \n"
-                        + "|  |__|  | |  |__   |  |     |  |_)  | \n"
-                        + "|   __   | |   __|  |  |     |   ___/  \n"
-                        + "|  |  |  | |  |____ |  `----.|  |      \n"
-                        + "|__|  |__| |_______||_______|| _|      \n";
+                    + "|  |  |  | |   ____||  |     |   _  \\  \n"
+                    + "|  |__|  | |  |__   |  |     |  |_)  | \n"
+                    + "|   __   | |   __|  |  |     |   ___/  \n"
+                    + "|  |  |  | |  |____ |  `----.|  |      \n"
+                    + "|__|  |__| |_______||_______|| _|      \n";
 
         System.out.println(helpIcon);
         System.out.println("The following options are available:");
@@ -77,6 +84,10 @@ public class Ui {
                 + ("episode") + " - Update your episode progress\n"
                 + "\n"
                 + ("season") + " - Update your season progress\n"
+                + "\n"
+                + ("updatewatchlimit") + " - Update your watch time limit\n"
+                + "\n"
+                + ("watch") + " - Update your watch progress\n"
                 + "\n"
                 + ("bye") + " - Exits the program\n");
         System.out.println("Refer to our user guide for more help!");
@@ -110,6 +121,18 @@ public class Ui {
         }
     }
 
+    public static void printDailyWatchTracking() {
+        //Print when user starts program
+        Date date = getInstance().getTime();
+        System.out.println("It is " + date + " today.");
+        System.out.println("Time spent on shows today: ");
+        System.out.println("Watch time remaining ");
+    }
+
+    public static void printDailyWatchTimeRemaining() {
+        //System.out.println("Showtime left : " + watchTime.userReportString() /*the object*/);
+    }
+
     public static void printShowRating(String showName, String rating) {
         printLine();
         System.out.println("The rating for " + (showName) + " has been updated to " + (rating));
@@ -122,8 +145,9 @@ public class Ui {
     }
 
     public static void printEditPrompt() {
-        System.out.println("What do you want to change , input done to stop editing");
-        System.out.println("{name,season,episode}");
+        System.out.println("Input the detail of the show you want to change {name,season,episode,"
+                + "duration of episode} ");
+        System.out.println("To finish editing, type 'done'.");
     }
 
     public static void printEditShow(String showName) {
@@ -158,18 +182,24 @@ public class Ui {
         System.out.println((showName) + " was added to your watchlist.");
     }
 
-    public static void queryEditShow(String showName) {
-        printLine();
-        System.out.println("What details would you like to edit for " + (showName) + "?");
-    }
-
     public static void printSavedList() {
         printLine();
         System.out.println("Your watchlist has been saved.");
     }
 
+    public static void printFinishedAllSeasons(String showName) {
+        printLine();
+        System.out.println("You have finished all seasons of " + (showName) + " !");
+        System.out.println("If there is a new season, please add it using the 'edit' command and input the 'watch' "
+                + "command again.");
+    }
+
     public static void printIoException() {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_IO_EXCEPTION);
+    }
+
+    public static void printSpecifyShowName() {
+        System.out.println("Please specify show name");
     }
 
     public static void printInvalidEpisodesInputException() {
@@ -212,5 +242,10 @@ public class Ui {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_INVALID_RATING_INPUT);
     }
 
+    public static void printDailyWatchTimeLeft() {
+        //System.out.println("Showtime left : " + watchTime.userReportString() /*the object*/);
+        //TODO: format the ui to print the time left to the user upon watching a new episode
+
+    }
 }
 

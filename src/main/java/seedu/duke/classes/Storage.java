@@ -67,13 +67,11 @@ public class Storage implements SaveState {
 
             String[] splitSeason = s.nextLine().split("Season: ");
             int season = Integer.parseInt(splitSeason[1]);
-
             String[] splitEpisodes = s.nextLine().split("Episodes: ");
             String[] episodeString = splitEpisodes[1].split(" ");
             int[] episodes = new int[season];
 
             for (int i = 0; i < season; i++) {
-
                 episodes[i] = Integer.parseInt(episodeString[i]);
             }
 

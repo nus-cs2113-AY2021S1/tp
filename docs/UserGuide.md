@@ -1,6 +1,9 @@
-# WatchNext User Guide
+# **WatchNext** User Guide
 
 * [1. Introduction](#1-introduction)
+    + [1.a What does **WatchNext** do?](#1a-what-does-watchnext-do)
+    + [1.b. Why use **WatchNext**?](#1b-why-use-watchnext)
+    + [1.c. What will this guide do?](#1c-what-will-this-guide-do)
 * [2. Quick Start](#2-quick-start)
 * [3. Command Format](#3-command-format)
 * [4. Features](#4-features)
@@ -14,16 +17,36 @@
     + [4.h. Change Rating](#4h-changerating---changes-rating-of-your-show)
     + [4.i. Update episode](#4i-episode---changes-the-episode-of-the-show-you-are-currently-watching)
     + [4.j. Update season](#4j-season---changes-the-season-of-the-show-you-are-currently-watching)
-    + [4.k. Exiting WatchNext](#4k-bye---exits-the-program)
+    + [4.k. Exiting **WatchNext**](#4k-bye---exits-the-program)
 - [5. Frequently Asked Questions](#5-faq)   
 - [6. Command Summary](#6-command-summary)   
 
 
 
 ## 1. Introduction
-WatchNext is a Command Line Interface (CLI) program used to track their progress in the different shows they watch and also the upcoming shows they wish to watch.. This application is catered for teenagers or young adults, and is optimized for users who prefer to work with the CLI.
+<img src = "images/quickstart.PNG" width = "600">
 
 
+### 1.a What does **WatchNext** do?
+
+**WatchNext** is a program made for teenagers and young adults.For users who use multiple free streaming platforms or other open source stream websites,
+the application will track their progress in the different shows they watch, and the upcoming shows they wish to watch.In addition, it provides a timer 
+to limit your weekly show progress to help manage your time.
+
+**WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).
+
+
+### 1.b Why use **WatchNext**?
+**WatchNext** allows users who watch shows on multiple free streaming platforms or other open source stream websites.It is very difficult and especially taxing to track your favourite shows through browser bookmarks, 
+especially for younger teenagers and adults who serve a large part of the user demographic in consuming said media.
+
+This motivated our team to create an application that would not only help track all your shows, but also potentially create a community where everyone will be able to share their favourite shows and their current watchlist.
+ 
+
+### 1.c What will this guide do?
+This guide aims to educate you on how to use our application by providing example usages of all its features. The features can be found in Section 4: “Features”.
+
+Interested in using **WatchNext**? Jump to Section 2: “Quick Start” to get started!
 
 ## 2. Quick Start
 
@@ -35,15 +58,12 @@ Ensure that you have Java 11 installed in your Computer.
 
 3.Open a command window in that folder.
 
-4.Run the command `java -jar Watchnext.jar`.
+4.Run the command `java -jar (Version Number).jar`.
 
-5.You should see something like this below:
+[NOTE]
+*_(Version Number)_* refers to the name of our latest jar release.
 
- 
-<img src = "images/quickstart.PNG" width = "500">
- 
 &nbsp;  
-
 
 ## 3. Command Format
 
@@ -95,10 +115,10 @@ Expected outcome:
     `edit Friends`
     
  Then you will be prompted to enter the fields you want to change such as:
- name, season, episode
+ name, season, episode, duration of episodes
  
     Example of usage:
-     `name F.r.i.e.n.d.s` , `season 2`, `episode 10,11`
+     `name F.r.i.e.n.d.s` , `season 2`, `episode 10,11`, `duration 1 1 90`
      
  When you have completed all changes, use `done`.
  
@@ -233,7 +253,7 @@ Expected outcome:
 
 **Q**: Is my watchlist saved after i exit the program?
 
-**A**: Of course! The watchlist is saved into a local storage file after every input entered by the user.The same file will be loaded up when you start Watchnext again.
+**A**: Of course! The watchlist is saved into a local storage file after every input entered by the user.The same file will be loaded up when you start **WatchNext** again.
 
 ### 6. Command Summary
 

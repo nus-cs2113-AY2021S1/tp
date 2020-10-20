@@ -39,6 +39,18 @@ public class EditCommand {
         show.setNumEpisodesForSeasons(episodes);
     }
 
+    public static void editDuration(String input) {
+        String[] tokenizedInput = input.split(" ");
+        try {
+            int season = Integer.parseInt(tokenizedInput[1]);
+            int episode = Integer.parseInt(tokenizedInput[2]);
+            int duration = Integer.parseInt(tokenizedInput[3]);
+            show.setEpisodeDuration(season, episode, duration);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Ui.printBadInputException();
+        }
+    }
+
     public static void processCommand() throws NullPointerException {
         Scanner in = new Scanner(System.in);
         Ui.printEditPrompt();
@@ -65,6 +77,8 @@ public class EditCommand {
                 show.setNumEpisodesForSeasons(intNumOfEpisodes);
             } else if (editCommand.startsWith("season")) {
                 editSeasons(editCommand);
+            } else if (editCommand.startsWith("duration")) {
+                editDuration(editCommand);
             } else if (editCommand.equals("done")) {
                 break;
             }

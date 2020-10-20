@@ -2,7 +2,6 @@ package seedu.duke.commands;
 
 import seedu.duke.classes.Show;
 import seedu.duke.utility.ShowList;
-import seedu.duke.utility.Ui;
 
 public class AddCommand extends Command {
     String[] description;
@@ -12,7 +11,7 @@ public class AddCommand extends Command {
      *
      * @param input the user input
      */
-    public AddCommand(String[] input) throws NullPointerException {
+    public AddCommand(String[] input) throws NullPointerException, ArrayIndexOutOfBoundsException {
         if (input.length < 3) {
             throw new ArrayIndexOutOfBoundsException();
         }
@@ -27,10 +26,15 @@ public class AddCommand extends Command {
             seasonEpisodes[i] = Integer.parseInt(s);
             i++;
         }
-        //check that the episodes do not exceed seasons
-
-        Show show = new Show(input[1], Integer.parseInt(input[2]), seasonEpisodes);
         String name = input[1];
+        //check that the episodes do not exceed seasons
+        /* when the episode length is provided
+        * TODO: Allow user to add episode duration when adding a new show
+        if (input.length == 4) {
+            String[] tokenized
+        }
+        */
+        Show show = new Show(input[1], numSeasons, seasonEpisodes);
         ShowList.setShow(name, show);
     }
 }
