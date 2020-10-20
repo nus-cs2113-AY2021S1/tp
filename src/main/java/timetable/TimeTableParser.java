@@ -2,6 +2,7 @@ package timetable;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.util.Scanner;
 
 public class TimeTableParser {
     public static void commandParser(String command, DateList dateList, TimeTableStorage storage) {
@@ -19,7 +20,7 @@ public class TimeTableParser {
                 case "activity":
                     break;
                 case "class": {
-                    Lesson lesson = addClass(words[2]);
+                    Lesson lesson = addClass();
                     dateList.addLesson(lesson);
                     storage.writeFile(lesson);
                     System.out.println(Message.printSuccessfulClassAddition);
@@ -34,21 +35,46 @@ public class TimeTableParser {
         }
     }
 
-    private static Lesson addClass(String classInfo) throws ArrayIndexOutOfBoundsException {
-        String [] phrase = classInfo.substring(1).split(" /");
-        String moduleCode = phrase[0];
-        boolean isOnline;
-        isOnline = phrase[1].equals("online");
-        String linkOrVenue = phrase[2];
-        String [] periods = phrase[3].split(", ");
-        LocalDateTime start = getDateTime(classInfo);
-        int startDayNum = start.getDayOfWeek().getValue();
-        int repeat = Integer.parseInt(phrase[4].split(" ")[0]);
+    private static Lesson addClass() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Please enter module name: ");
+        final String moduleCode = in.nextLine();
+        System.out.println("Is the class online? ");
+        boolean isOnline = false;
+        boolean isInvalid = true;
+        while (isInvalid) {
+            String status = in.nextLine();
+            if (status.equals("yes") || status.equals("online")) {
+                isOnline = true;
+                System.out.println("Please enter zoom link");
+                isInvalid = false;
+            } else if (status.equals("no") || status.equals("offline")) {
+                System.out.println("Please enter the venue");
+                isInvalid = false;
+            } else {
+                System.out.println("Invalid command command\n Is the class online? ");
+            }
+        }
+        String linkOrVenue = in.nextLine();
+        System.out.println("Which days of the week is the lesson?");
+        String [] periods = in.nextLine().split(", ");
+        System.out.println("How many weeks is the lesson?");
+        int repeat = Integer.parseInt(in.nextLine());
+        System.out.println("Which day does the lesson start? ");
+        LocalDateTime startDay = getDateTime(in.nextLine());
         Lesson lesson = new Lesson(moduleCode, linkOrVenue, isOnline, repeat);
+        addClassPeriods(periods, repeat, startDay, lesson);
+        return lesson;
+
+    }
+
+    private static void addClassPeriods(String[] periods, int repeat, LocalDateTime startDay, Lesson lesson) {
+        int startDayNum = startDay.getDayOfWeek().getValue();
         for (int i = 0; i < repeat; i++) {
             for (String period : periods) {
-                String day = period.split(" ")[0].toUpperCase().replace(" ", "");
-                String time = period.split(" ")[1];
+                String [] dayAndTime = period.split((" "));
+                String day = dayAndTime[0].toUpperCase().replace(" ", "");
+                String time = dayAndTime[1];
                 int dayNum = DayOfWeek.valueOf(day).getValue();
                 int startTime = Integer.parseInt(time.split("-")[0]);
                 int endTime = Integer.parseInt(time.split("-")[1].replaceAll("[^0-9]", ""));
@@ -60,14 +86,15 @@ public class TimeTableParser {
                 if (daysDifference < 0) {
                     daysDifference += 7;
                 }
-                LocalDateTime startDateTime = start.plusDays(daysDifference).plusHours(startTime).plusDays(7 * i);
+                LocalDateTime startDateTime = startDay.plusDays(daysDifference).plusHours(startTime).plusDays(7 * i);
                 LocalDateTime endDateTime = startDateTime.withHour(endTime).plusDays(7 * i);
                 Duration duration = new Duration(startDateTime, endDateTime);
                 lesson.addPeriod(duration);
             }
         }
-        return lesson;
     }
+
+
 
     public static void fileParser(String command, DateList dateList) {
         String[] words = command.split("\\|");
@@ -104,13 +131,11 @@ public class TimeTableParser {
     }
 
 
-    public static LocalDateTime getDateTime(String command)throws ArrayIndexOutOfBoundsException {
-        String[] dateTime;
-        String[] date;
-        int fromIndex = command.indexOf("from");
-        dateTime = command.substring(fromIndex + 5).split(" ");
-        date = dateTime[0].split("/");
-        return LocalDateTime.of(Integer.parseInt(date[2]),Integer.parseInt(date[1]), Integer.parseInt(date[0]),
-                0,0);
+    public static LocalDateTime getDateTime(String date)throws ArrayIndexOutOfBoundsException {
+        String [] dateArray = date.split("/");
+        int day = Integer.parseInt(dateArray[0]);
+        int month = Integer.parseInt(dateArray[1]);
+        int year = Integer.parseInt(dateArray[2]);
+        return LocalDateTime.of(year, month, day, 0, 0);
     }
 }
