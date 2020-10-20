@@ -27,8 +27,11 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.Scanner;
 
 public class Storage {
@@ -38,6 +41,8 @@ public class Storage {
     private final String taskFilename;
     private final String resultFilename;
     private final String exportFilename;
+
+    private static final Logger logger = Logger.getLogger(Storage.class.getName());
 
     private Storage(StorageBuilder builder) {
         this.baseDir = new File(builder.baseDir);
@@ -55,16 +60,22 @@ public class Storage {
      * @throws DataLoadingException if fails to load the saved data due to filesystem error
      */
     public List<Subject> loadSubjects() throws DataLoadingException {
+        logger.info("Loading subject data and its contents from the disk.");
+        List<Subject> subjects;
         if (!baseDir.exists()) {  // if the data hasn't been saved before
-            return new ArrayList<>();
+            logger.info(String.format("%s folder is not found, no saved data is loaded.", baseDir.getAbsolutePath()));
+            subjects = new ArrayList<>();
+        } else {
+            File[] subjectDirs = baseDir.listFiles(File::isDirectory);
+            if (subjectDirs == null) {  // error in getting the directories even if they may exist
+                throw new DataLoadingException(Ui.printDataLoadingError());
+            }
+            subjects = loadSubjects(subjectDirs);
         }
 
-        File[] subjectDirs = baseDir.listFiles(File::isDirectory);
-        if (subjectDirs == null) {  // error in getting the directories even if they may exist
-            throw new DataLoadingException(Ui.printDataLoadingError());
-        }
-
-        return loadSubjects(subjectDirs);
+        logger.info("Finish loading subject data.");
+        logger.fine(String.format("Returning subjects: %s.", subjects));
+        return subjects;
     }
 
     /**
@@ -76,6 +87,7 @@ public class Storage {
      * @throws DataLoadingException if fails to load the saved data due to filesystem error
      */
     private List<Subject> loadSubjects(File[] subjectDirs) throws DataLoadingException {
+        logger.fine(String.format("Loading subject data from the directories: %s.", Arrays.toString(subjectDirs)));
         List<Subject> subjects = new ArrayList<>();
         for (File subjectDir : subjectDirs) {
             File[] topicDirs = subjectDir.listFiles(File::isDirectory);
@@ -88,6 +100,7 @@ public class Storage {
             try {
                 tasks = loadTasks(subjectDir.toPath());
             } catch (FileNotFoundException e) {
+                logger.log(Level.INFO, "Task file is not found under %s, proceeding with an empty task list.", e);
                 tasks = new ArrayList<>();  // task file may have been deleted by the user
             }
             File resultFile = new File(subjectDir.toString(), getResultFilename());
@@ -97,6 +110,7 @@ public class Storage {
 
         }
         subjects.sort(Comparator.comparing(Subject::getTitle));
+        logger.fine(String.format("Finish loading subject data. Subjects: %s.", subjects));
         return subjects;
     }
 
@@ -108,6 +122,7 @@ public class Storage {
      * @return a list of populated topics loaded from the disk
      */
     private List<Topic> loadTopics(File[] topicDirs) {
+        logger.fine(String.format("Loading topic data from the directories: %s.", Arrays.toString(topicDirs)));
         List<Topic> topics = new ArrayList<>();
         for (File topicDir : topicDirs) {
             File flashcardFile = new File(topicDir, getFlashcardFilename());
@@ -119,6 +134,7 @@ public class Storage {
             topics.add(topic);
         }
         topics.sort(Comparator.comparing(Topic::getTitle));
+        logger.fine(String.format("Finish loading topic data. Topics: %s.", topics));
         return topics;
     }
 
@@ -130,12 +146,15 @@ public class Storage {
      * @return a list of populated objects with type specified loaded from the file
      */
     public static <T> List<T> loadFromJson(Type type, File jsonFile) {
+        logger.info(String.format("Loading data of type %s from %s.", type, jsonFile.getAbsolutePath()));
         Gson gson = new Gson();
         List<T> objects;
 
         try (FileReader fileReader = new FileReader(jsonFile)) {
             objects = gson.fromJson(fileReader, type);
         } catch (IOException e) {  // file may have been deleted by the user
+            logger.info(String.format("%s is not found, proceeding with returning an empty list.",
+                    jsonFile.getAbsolutePath()));
             objects = new ArrayList<>();
         } catch (JsonSyntaxException e) {
             throw new JsonSyntaxException("Error reading the json data at " + jsonFile.getAbsolutePath()
@@ -143,6 +162,8 @@ public class Storage {
         }
 
         assert objects != null;
+        logger.info("Finish loading data.");
+        logger.fine(String.format("Data: %s.", objects));
         return objects;
     }
 
@@ -153,9 +174,11 @@ public class Storage {
      * @return a list of populated flashcards loaded from the file
      */
     private List<Flashcard> loadFlashcards(File flashcardFile) {
-        Type objectType = new TypeToken<ArrayList<Flashcard>>() {
-        }.getType();
-        return loadFromJson(objectType, flashcardFile);
+        logger.fine(String.format("Loading flashcards from %s.", flashcardFile));
+        Type objectType = new TypeToken<ArrayList<Flashcard>>() {}.getType();
+        List<Flashcard> flashcards = loadFromJson(objectType, flashcardFile);
+        logger.fine(String.format("Finish loading flashcards: %s.", flashcards));
+        return flashcards;
     }
 
     /**
@@ -165,9 +188,11 @@ public class Storage {
      * @return a list of populated results loaded from the file
      */
     private List<Result> loadResults(File resultFile) {
-        Type objectType = new TypeToken<ArrayList<Result>>() {
-        }.getType();
-        return loadFromJson(objectType, resultFile);
+        logger.fine(String.format("Loading results from %s.", resultFile));
+        Type objectType = new TypeToken<ArrayList<Result>>() {}.getType();
+        List<Result> results = loadFromJson(objectType, resultFile);
+        logger.fine(String.format("Finish loading results: %s.", results));
+        return results;
     }
 
     /**
@@ -178,6 +203,9 @@ public class Storage {
      * @throws IOException if fails to save to the storage
      */
     public void saveSubjects(List<Subject> subjects) throws IOException {
+        logger.info("Saving the subject data to the disk.");
+        logger.fine(String.format("Subjects: %s.", subjects));
+
         assert subjects != null;
         for (Subject subject : subjects) {
             Path subjectPath = Paths.get(getBaseDir().toString(), subject.getTitle());
@@ -188,6 +216,7 @@ public class Storage {
             saveTasks(subjectPath, subject.getTasks().getList());
             saveTopics(subjectPath, subject.getTopics().getList());
         }
+        logger.info("Finish saving the subjects to the disk.");
     }
 
     /**
@@ -201,6 +230,8 @@ public class Storage {
      */
     public void saveTopics(Path subjectPath, List<Topic> topics) throws IOException {
         assert topics != null;
+        logger.info(String.format("Saving list of topics to %s.", subjectPath.toAbsolutePath()));
+        logger.fine(String.format("Topics: %s.", topics));
         for (Topic topic : topics) {
             Path topicPath = Paths.get(subjectPath.toString(), topic.getTitle());
             Files.createDirectories(topicPath);
@@ -210,6 +241,7 @@ public class Storage {
             saveToJson(flashcardFile, topic.getFlashcards());
             saveToJson(resultFile, topic.getResults().getList());
         }
+        logger.info("Finish saving the list of topics.");
     }
 
     /**
@@ -221,11 +253,14 @@ public class Storage {
      * @throws IOException if fails to save to the storage
      */
     public static <T> void saveToJson(File jsonFile, List<T> objects) throws IOException {
+        logger.info(String.format("Saving list of data to %s.", jsonFile.getAbsolutePath()));
+        logger.fine(String.format("Objects: %s.", objects));
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try (FileWriter fileWriter = new FileWriter(jsonFile)) {
             gson.toJson(objects, fileWriter);  // store the json to file
             fileWriter.flush();  // flush to actually write the content
         }
+        logger.info("Finish saving the list of data.");
     }
 
     /**
@@ -237,6 +272,7 @@ public class Storage {
      */
     public void saveTasks(Path subjectPath, List<Task> tasks) throws IOException {
         File taskFile = new File(subjectPath.toString(), getTaskFilename());
+        logger.info(String.format("Saving tasks to %s", taskFile.getAbsolutePath()));
         try (FileWriter fileWriter = new FileWriter(taskFile)) {
             for (Task task : tasks) {
                 if (task instanceof Todo) {
@@ -251,6 +287,7 @@ public class Storage {
                 }
             }
         }
+        logger.info("Finish saving tasks.");
     }
 
     /**
@@ -262,6 +299,7 @@ public class Storage {
      */
     public List<Task> loadTasks(Path subjectPath) throws FileNotFoundException {
         File taskFile = new File(subjectPath.toString(), getTaskFilename());
+        logger.info(String.format("Loading tasks from %s.", taskFile.getAbsolutePath()));
         List<Task> tasks = new ArrayList<>();
 
         try (Scanner scan = new Scanner(taskFile)) {
@@ -271,7 +309,7 @@ public class Storage {
                 String legend = contents[0].trim();
                 boolean done = Integer.parseInt(contents[1].trim()) == 1;
                 String action = contents[2].trim();
-                String action2 = "";
+                String action2;
                 LocalDateTime dateTime = null;
                 DateTimeFormatter format = DateTimeFormatter.ofPattern("h:mm a d MMM yyyy");
 
@@ -296,6 +334,8 @@ public class Storage {
                 }
             }
         }
+        logger.info("Finish loading tasks.");
+        logger.fine(String.format("Tasks: %s.", tasks));
         return tasks;
     }
 
@@ -308,9 +348,12 @@ public class Storage {
      * @throws IOException if fails to save to the file
      */
     public File export(List<Subject> subjects) throws IOException {
-        Files.createDirectories(getExportDir().toPath());  // create export directory
         File file = new File(getExportDir().toString(), getExportFilename());
+        logger.info(String.format("Exporting the subject data to %s.", file.getAbsolutePath()));
+
+        Files.createDirectories(getExportDir().toPath());  // create export directory
         saveToJson(file, subjects);
+        logger.info("Finish exporting data.");
         return file;
     }
 

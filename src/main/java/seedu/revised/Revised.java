@@ -20,7 +20,11 @@ import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class Revised {
     public static final String BASE_DIR = "data";
@@ -33,6 +37,18 @@ public class Revised {
     private Storage storage;
     private SubjectList subjects;
     private ResultList results;
+
+    private static final Logger logger = Logger.getLogger(Revised.class.getName());
+
+    static {
+        // configuration for logging, should only be done once
+        try {
+            InputStream stream = Revised.class.getClassLoader().getResourceAsStream("logging.properties");
+            LogManager.getLogManager().readConfiguration(stream);
+        } catch (Exception e) {
+            logger.log(Level.WARNING, "Failed to read logging configuration file.", e);
+        }
+    }
 
     /**
      * Initialises Duke by loading saved data from the disk, if any.
@@ -112,11 +128,14 @@ public class Revised {
     }
 
     public static void main(String[] args) {
+        logger.info("Application starts.");
         try {
             new Revised(BASE_DIR, EXPORT_DIR, FLASHCARD_FILENAME, TASK_FILENAME, RESULT_FILENAME, EXPORT_FILENAME)
                     .run();
         } catch (DataLoadingException e) {
             System.out.println(e.getMessage());
+        } finally {
+            logger.info("Application exits.");
         }
     }
 }
