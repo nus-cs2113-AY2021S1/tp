@@ -3,21 +3,20 @@ package ui;
 import access.Access;
 
 import commands.AddCommand;
+import commands.BackCommand;
 import commands.EditCommand;
 import commands.ExitCommand;
+import commands.GoCommand;
 import commands.HelpCommand;
 import commands.ListCommand;
 import commands.ListDueCommand;
 import commands.RemoveCommand;
 import commands.ReviseCommand;
-import commands.BackCommand;
-
 import manager.card.Card;
 import manager.history.History;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static commands.ReviseCommand.MESSAGE_SHOW_ANSWER_PROMPT;
@@ -128,8 +127,9 @@ public class Ui {
         out.println("5. " + ExitCommand.MESSAGE_USAGE);
         out.println("6. " + EditCommand.MESSAGE_USAGE);
         out.println("7. " + RemoveCommand.MESSAGE_USAGE);
-        out.println("8. " + BackCommand.MESSAGE_USAGE);
-        out.println("9. " + ListDueCommand.MESSAGE_USAGE);
+        out.println("8. " + GoCommand.MESSAGE_USAGE);
+        out.println("9. " + BackCommand.MESSAGE_USAGE);
+        out.println("10. " + ListDueCommand.MESSAGE_USAGE);
     }
 
     public void showError(String error) {

@@ -52,10 +52,6 @@ public class Access {
         return level;
     }
 
-    public String getChapterLevel() {
-        return chapterLevel;
-    }
-
     public Module getModule() {
         return module;
     }
@@ -110,66 +106,53 @@ public class Access {
         this.isChapterLevel = true;
     }
 
-    public void setModuleLevel(String moduleLevel) throws IncorrectAccessLevelException {
-        if (isChapterLevel) {
-            throw new IncorrectAccessLevelException("Sorry, you currently are in the chapter level.");
-        }
-
-        if (isModuleLevel) {
-            if (!(moduleLevel.equals(""))) {
-                throw new IncorrectAccessLevelException("Sorry, you are already in the module level, "
-                        + "please go back to admin level first.");
-            }
-
-            String replacement = "/" + this.moduleLevel;
-            this.level = level.replace(replacement, "");
-            this.moduleLevel = moduleLevel;
-            this.module = null;
-            this.isModuleLevel = false;
-            this.isAdminLevel = true;
-            return;
-        }
-
+    public void setModuleLevel(String moduleLevel) {
         if (isAdminLevel) {
-            if (moduleLevel.equals("")) {
-                throw new IncorrectAccessLevelException("Sorry, you are already in the admin level.");
-            }
-            this.moduleLevel = moduleLevel;
-            this.level = level + "/" + moduleLevel;
-            this.module = new Module(moduleLevel);
-            this.isModuleLevel = true;
-            this.isAdminLevel = false;
-        }
-    }
-
-    public void setChapterLevel(String chapterLevel) throws IncorrectAccessLevelException {
-        if (isAdminLevel) { //wrong level
-            throw new IncorrectAccessLevelException("Sorry, you currently are in the admin level.");
-        }
-
-        if (isChapterLevel) {
-            if (!(chapterLevel.equals(""))) {
-                throw new IncorrectAccessLevelException("Sorry, you are already in the chapter level, "
-                        + "please go back to module level first.");
-            }
-            String replacement = "/" + this.chapterLevel;
-            this.level = level.replace(replacement, "");
-            this.chapterLevel = chapterLevel;
-            this.chapter = null;
-            this.isChapterLevel = false;
-            this.isModuleLevel = true;
+            setGoModuleLevel(moduleLevel);
             return;
         }
+        setBackAdminLevel(moduleLevel);
 
-        if (isModuleLevel) {
-            if (chapterLevel.equals("")) {
-                throw new IncorrectAccessLevelException("Sorry, you are already in the module level.");
-            }
-            this.chapterLevel = chapterLevel;
-            this.level = level + "/" + chapterLevel;
-            this.chapter = new Chapter(chapterLevel);
-            this.isChapterLevel = true;
-            this.isModuleLevel = false;
-        }
     }
+
+    public void setGoModuleLevel(String moduleLevel) {
+        this.moduleLevel = moduleLevel;
+        this.level = level + "/" + moduleLevel;
+        this.module = new Module(moduleLevel);
+        setIsModuleLevel();
+    }
+
+    public void setBackAdminLevel(String moduleLevel) {
+        this.level = adminLevel;
+        this.moduleLevel = moduleLevel;
+        this.module = null;
+        setIsAdminLevel();
+    }
+
+    public void setChapterLevel(String chapterLevel) {
+        if (isChapterLevel) {
+            setBackModuleLevel(chapterLevel);
+            return;
+        }
+        setGoChapterLevel(chapterLevel);
+    }
+
+    public void setGoChapterLevel(String chapterLevel) {
+        this.chapterLevel = chapterLevel;
+        this.level = level + "/" + chapterLevel;
+        this.chapter = new Chapter(chapterLevel);
+        setIsChapterLevel();
+    }
+
+    public void setBackModuleLevel(String chapterLevel) {
+        this.level = adminLevel + "/" + moduleLevel;
+        this.chapterLevel = chapterLevel;
+        this.chapter = null;
+        setIsModuleLevel();
+    }
+
+
+
+
+
 }
