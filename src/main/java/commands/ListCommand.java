@@ -76,6 +76,9 @@ public class ListCommand extends Command {
         }
         result.append(String.format(MESSAGE_EXIST, MODULE));
         for (Module m : allModules) {
+            if (m.getModuleName().equals("history")) {
+                continue;
+            }
             if (allModules.indexOf(m) == moduleCount - 1) {
                 result.append(allModules.indexOf(m) + 1).append(".").append(m);
             } else {
@@ -96,6 +99,9 @@ public class ListCommand extends Command {
         }
         result.append(String.format(MESSAGE_EXIST, CHAPTER));
         for (Chapter c : allChapters) {
+            if (c.getChapterName().equals("dues")) {
+                continue;
+            }
             if (allChapters.indexOf(c) == chapterCount - 1) {
                 result.append(allChapters.indexOf(c) + 1).append(".")
                         .append(c).append(" (due by ").append(c.getDueBy()).append(")");
