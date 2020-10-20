@@ -95,10 +95,10 @@ Example of usage:
 
 #### Search for an Event `search`<br/>
 Search for a particular event.
-Format: 'event search /f KEYWORD' <br/>
+Format: 'event search /s KEYWORD' <br/>
 
 Example of usage:
-`event search /f arduino course`
+`event search /s arduino course`
 
 ### 3.5 Finance features `finance` <br/>
 #### Add finance log entry: `addLog` <br/>
@@ -139,7 +139,7 @@ delEvent | `event delEvent EVENT_INDEX`  | `event delEvent 1`
 listEvent | `event listEvent` | -
 countdown | `event countdown` | -
 done   | `event done EVENT_INDEX`| `event done 2`
-search | `event search /f 
+search | `event search /s <KEYWORD>` | `event search /s arduino` 
 addLog | `finance addLog ITEM_NAME ITEM_VALUE` | `finance addLog have lunch 5.2`
 delLog | `finance delLog ITEM_INDEX` | `finance delLog 2`
 summary | `finance summary` | -
