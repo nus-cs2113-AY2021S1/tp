@@ -46,8 +46,10 @@ public class Ui {
                 + "3./bus: Displays buses available at each bus stop\n"
                 + "4./allbus: Lists all buses available in NUS Zone a\n"
                 + "5./liststops: Lists all bus stops in NUS Zone a\n"
-                + "6./exit: Exit program\n"
-                + "7./help: List all available commands");
+                + "6./dine: Search for dining options within a faculty\n"
+                + "7./dineinfo: Search for a specific dining outlet\n"
+                + "8./exit: Exit program\n"
+                + "9./help: List all available commands");
         printLine();
     }
 
