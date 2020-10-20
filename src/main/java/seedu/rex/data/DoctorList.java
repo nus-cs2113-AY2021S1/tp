@@ -54,4 +54,32 @@ public class DoctorList {
     public void addDoctor(Doctor doctor) {
         doctors.add(doctor);
     }
+
+    public ArrayList<Doctor> getDoctors() {
+        return doctors;
+    }
+
+    public boolean isExistingDoctor(String name) {
+        return getExistingDoctor(name) > -1;
+    }
+
+    public int getExistingDoctor(String name) {
+        assert name != null && !name.equals("") : "Cannot get doctor of null name";
+
+        for (int i = 0; i < getSize(); i++) {
+            if (getDoctorUsingIndex(i).getName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public Doctor getDoctorFromName(String name) {
+        for (Doctor doctor : doctors) {
+            if (doctor.getName().equals(name)) {
+                return doctor;
+            }
+        }
+        return null;
+    }
 }

@@ -13,6 +13,7 @@ import seedu.rex.commands.ListPatientsCommand;
 import seedu.rex.commands.RetrieveCommand;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
+import seedu.rex.data.hospital.Doctor;
 import seedu.rex.data.hospital.Patient;
 
 import java.time.LocalDate;
@@ -47,9 +48,13 @@ public class Parser {
         LocalDate date = LocalDate.parse(appointmentComponents[0]);
         String bookedStatus = appointmentComponents[1];
         String nric = appointmentComponents[2];
+        String doctorName = appointmentComponents[3];
         Appointment appointment = new Appointment(date);
         if (bookedStatus.equals("booked")) {
-            appointment.book(Rex.getPatients().getPatientUsingIndex(Rex.getPatients().getExistingPatient(nric)));
+            appointment.bookPatient(Rex.getPatients().getPatientFromNric(nric));
+        }
+        if (doctorName != null && !doctorName.equals("null")) {
+            appointment.setDoctor(Rex.getDoctors().getDoctorFromName(doctorName));
         }
         return appointment;
     }
@@ -102,4 +107,10 @@ public class Parser {
     }
 
 
+    public static Doctor readDoctor(String line) {
+        assert line != null && !line.equals("") : "No doctors to read!";
+
+        String name = line.trim();
+        return new Doctor(name);
+    }
 }

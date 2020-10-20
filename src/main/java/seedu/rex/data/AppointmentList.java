@@ -24,5 +24,28 @@ public class AppointmentList {
         this.appointments = appointments;
     }
 
+    public ArrayList<Appointment> getAppointments() {
+        return appointments;
+    }
 
+
+    public boolean isEmpty() {
+        return appointments.isEmpty();
+    }
+
+    public int getSize() {
+        return appointments.size();
+    }
+
+    public Appointment getAppointmentByIndex(int index) {
+        return appointments.get(index);
+    }
+
+    public void addAppointment(Appointment appointment) {
+        appointments.add(appointment);
+    }
+
+    public void removeAppointmentByIndex(int i) {
+        appointments.remove(i);
+    }
 }

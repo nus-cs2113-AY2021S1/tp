@@ -1,12 +1,12 @@
 package seedu.rex.commands;
 
+import seedu.rex.data.AppointmentList;
+import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
-import seedu.rex.data.hospital.Appointment;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 /**
@@ -33,13 +33,14 @@ public abstract class Command {
      * Executes command.
      *
      * @param patients     PatientList object.
-     * @param appointments ArrayList of appointment.
+     * @param doctors      DoctorList object.
+     * @param appointments AppointmentList object.
      * @param ui           Ui object.
      * @param storage      Storage object.
      * @throws RexException If there is issue executing command.
      */
-    public abstract void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage)
-            throws RexException;
+    public abstract void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui,
+                                 Storage storage) throws RexException;
 
     /**
      * Returns Rex's exit status.

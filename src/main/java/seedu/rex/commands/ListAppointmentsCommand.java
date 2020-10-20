@@ -1,14 +1,14 @@
 package seedu.rex.commands;
 
 import seedu.rex.Rex;
+import seedu.rex.data.AppointmentList;
+import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
-import seedu.rex.data.hospital.Appointment;
 import seedu.rex.data.hospital.Patient;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
-import java.util.ArrayList;
 import java.util.logging.Level;
 
 public class ListAppointmentsCommand extends Command {
@@ -24,13 +24,14 @@ public class ListAppointmentsCommand extends Command {
      * Lists appointments of a patient.
      *
      * @param patients     PatientList object.
-     * @param appointments ArrayList of appointment.
+     * @param doctors      DoctorList object.
+     * @param appointments AppointmentList object.
      * @param ui           Ui object.
      * @param storage      Storage object.
      * @throws RexException If the input NRIC does not exist in system
      */
     @Override
-    public void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage)
+    public void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui, Storage storage)
             throws RexException {
         assert patients != null : "patient ArrayList is null";
         assert ui != null : "ui is null";
@@ -46,9 +47,9 @@ public class ListAppointmentsCommand extends Command {
         ui.showAppointmentsListHeader(nric);
 
         int i;
-        for (i = 0; i < appointments.size(); i++) {
-            if (appointments.get(i).getPatient().equals(targetPatient)) {
-                ui.showAppointmentLine(appointments.get(i), i + 1);
+        for (i = 0; i < appointments.getSize(); i++) {
+            if (appointments.getAppointmentByIndex(i).getPatient().equals(targetPatient)) {
+                ui.showAppointmentLine(appointments.getAppointmentByIndex(i), i + 1);
             }
         }
         if (i == 0) {

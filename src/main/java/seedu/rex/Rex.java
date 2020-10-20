@@ -1,15 +1,14 @@
 package seedu.rex;
 
 import seedu.rex.commands.Command;
+import seedu.rex.data.AppointmentList;
+import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
-import seedu.rex.data.hospital.Appointment;
 import seedu.rex.parser.Parser;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,11 +17,12 @@ import java.util.logging.Logger;
  */
 public class Rex {
 
-    private static PatientList patients;
     public static Logger logger;
+    private static PatientList patients;
+    private static DoctorList doctors;
     private final Storage storage;
     private final Ui ui;
-    private ArrayList<Appointment> appointments;
+    private AppointmentList appointments;
 
     /**
      * Initializes Rex.
@@ -38,17 +38,32 @@ public class Rex {
 
         try {
             logger.log(Level.INFO, "going to load patients");
-            patients = new PatientList(storage.load());
+            patients = new PatientList(storage.loadPatients());
             logger.log(Level.INFO, "loaded patients");
-            appointments = storage.loadAppointments();
-            logger.log(Level.INFO, "loaded appointments");
         } catch (RexException e) {
-            logger.log(Level.INFO, "patients loading error");
+            logger.log(Level.INFO, "No patients found. Creating new patients list.");
             ui.showLoadingError();
             patients = new PatientList();
-        } catch (FileNotFoundException e) {
+        }
+
+        try {
+            logger.log(Level.INFO, "going to load appointments");
+            appointments = new AppointmentList(storage.loadAppointments());
+            logger.log(Level.INFO, "loaded appointments");
+        } catch (RexException e) {
             logger.log(Level.INFO, "No appointments found. Creating new appointments list.");
-            appointments = new ArrayList<>();
+            ui.showLoadingError();
+            appointments = new AppointmentList();
+        }
+
+        try {
+            logger.log(Level.INFO, "going to load doctors");
+            doctors = new DoctorList(storage.loadDoctors());
+            logger.log(Level.INFO, "loaded doctors");
+        } catch (RexException e) {
+            logger.log(Level.INFO, "No doctors found. Creating new doctors list.");
+            ui.showLoadingError();
+            doctors = new DoctorList();
         }
     }
 
@@ -58,11 +73,15 @@ public class Rex {
      * @param args Command line argument.
      */
     public static void main(String[] args) {
-        new Rex("data/patients.txt").run();
+        new Rex("data").run();
     }
 
     public static PatientList getPatients() {
         return patients;
+    }
+
+    public static DoctorList getDoctors() {
+        return doctors;
     }
 
     /**
@@ -71,6 +90,7 @@ public class Rex {
     public void run() {
         assert ui != null : "ui is null";
         assert patients != null : "patient ArrayList is null";
+        assert doctors != null : "patient ArrayList is null";
         assert storage != null : "storage is null";
 
         ui.showWelcome();
@@ -80,7 +100,7 @@ public class Rex {
                 String fullCommand = ui.readCommand();
                 ui.showLine(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand);
-                c.execute(patients, appointments, ui, storage);
+                c.execute(patients, doctors, appointments, ui, storage);
                 isExit = c.isExit();
             } catch (RexException e) {
                 ui.showError(e.getMessage());
