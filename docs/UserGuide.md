@@ -67,7 +67,7 @@ Adds a module to the database.
 Format: `addmod <module code>`
 
 * The `module code` must contain 6-8 characters without any spacing. 
-* If the `module code` does not exist, this command creates and adds the new module to the database.
+* The `module code` does not exist in the database.
 
 Example of usage:
 
