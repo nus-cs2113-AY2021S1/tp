@@ -6,6 +6,8 @@ CCA Manager is a revolutionary all-in-one management tool that changes the way y
 This developer guide is written to document the implementation of CCA Manager. This document is intended for people who
 are interested in learning more about the technical details of the various features and the organization of the application.
 
+## Setting up
+Refer to the guide here.
 
 ## Design & implementation
 
