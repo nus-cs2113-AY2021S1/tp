@@ -44,7 +44,7 @@ public class Assignment extends Event {
      *         Example of the format: [C][✘]a  (by: Feb 20 2020 08:00).
      */
     public String toString() {
-        return "[A]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy HH':'mm")) + ")"
+        return "[A]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH':'mm")) + ")"
                 + "\n" + location;
     }
 }
