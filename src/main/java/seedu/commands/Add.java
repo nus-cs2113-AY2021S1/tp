@@ -45,6 +45,7 @@ public class Add extends Command {
     @Override
     public CommandResult execute(TaskMap tasks)
         throws InvalidPriorityException, InvalidDatetimeException, MaxNumTaskException {
+        assert description != null;
         // Handle collision by generating new taskID if the value is in use.
         Task task = new Task(description, date, startTime, endTime, priority);
         Integer taskID = task.getTaskID();
