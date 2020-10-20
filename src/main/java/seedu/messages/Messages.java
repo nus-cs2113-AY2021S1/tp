@@ -1,5 +1,7 @@
 package seedu.messages;
 
+import seedu.commons.Util;
+
 import static seedu.font.Colors.ANSI_CYAN;
 import static seedu.font.Colors.ANSI_PURPLE;
 import static seedu.font.Colors.ANSI_RESET;
@@ -8,10 +10,9 @@ import static seedu.font.Colors.ANSI_YELLOW;
 
 public class Messages {
     public static final String LS = System.lineSeparator();
-    public static final String HELP_BORDER = " ================================================="
-            + "================================================= ";
-    public static final String HELP_BORDER_SPACE = "||                                                "
-            + "                                                ||";
+    public static final String HELP_BORDER = " " + Util.generatePadStringWithCharAndLength('=', 98) + " ";
+    public static final String HELP_BORDER_SPACE = "||"
+            + Util.generatePadStringWithCharAndLength(' ', 96) + "||";
 
     public static final String INVALID_PRIORITY = "Invalid priority!" + LS;
     public static final String INVALID_COMMAND = "Invalid command!" + LS;

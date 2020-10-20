@@ -31,7 +31,7 @@ public class WeekStructure extends DisplayDateStructure {
         for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(1)) {
 
             // for each day
-            String dayOfWeek = date.getDayOfWeek().getDisplayName(WEEK_TEXT_STYLE, LOCALE);
+            String dayOfWeek = date.getDayOfWeek().getDisplayName(WEEKDAY_TEXT_STYLE, LOCALE);
             Util.putsIntoArrayWithCentralise(dayOfWeek,
                 screen[currentRow++], currentCol, currentCol + DAY_COLUMN_WIDTH);
 

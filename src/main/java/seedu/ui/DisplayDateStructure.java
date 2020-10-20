@@ -10,7 +10,7 @@ import java.util.Locale;
 
 public abstract class DisplayDateStructure {
     protected static final TextStyle MONTH_TEXT_STYLE = TextStyle.FULL;
-    protected static final TextStyle WEEK_TEXT_STYLE = TextStyle.SHORT;
+    protected static final TextStyle WEEKDAY_TEXT_STYLE = TextStyle.SHORT;
     protected static final Locale LOCALE = Locale.ENGLISH;
     protected static final int DAYS_PER_WEEK = 7;
     protected static final int HASHCODE_STRING_LENGTH = 6;
@@ -30,4 +30,5 @@ public abstract class DisplayDateStructure {
     }
 
     protected abstract void generateScreen(TaskMap tasks);
+
 }

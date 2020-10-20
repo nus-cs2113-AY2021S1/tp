@@ -30,9 +30,11 @@ and prioritize their work and commitment with a user-friendly text interface.
 
     `reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1`
     
-4. Open a **new** command prompt/terminal and run "Duke.jar" with following command:
+4. Open a **new** command prompt/terminal and run "planus.jar" with following command:
 
     `java -jar planus.jar`
+    
+5. **Maximise** the command prompt/terminal window to get a full display of the contents.
 
 5. Type a command in command prompt/terminal and press Enter to execute it.
 
@@ -44,12 +46,17 @@ and prioritize their work and commitment with a user-friendly text interface.
 
 ### Notes about command format:
 - Words in UPPER_CASE are the parameters to be supplied by the user. 
-    - e.g. in "add DESCRIPTION", DESCRIPTION is a parameter which can be used 
-      as "todo user guide".
+    - e.g. in "add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]", 
+    DESCRIPTION is a parameter which can be used as "add user guide".
       
 - Parameter in square bracket is optional. 
     - e.g. in "add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]", 
     DATE, START_TIME, END_TIME and PRIORITY are optional parameters which can be omitted.
+    
+- Within square bracket, optional flags could be enabled, flags are separated by "|".
+    - e.g. in "list [-d|-p|-w|-m]",
+    The flag parameter is an optional parameter. When it is used, any **one** of the flags
+    like -d or -p or -w or -m could be enabled. 
     
 - Input date format is dd-MM-yyyy.
     - e.g. 20/02/2020
@@ -102,7 +109,7 @@ Format: `delete INDEX`
 
 Example of usage: 
 
-`delete 2`
+`delete 2323`
 
 Expected outcome:
 
@@ -124,13 +131,21 @@ Expected outcome:
 
 ### Displaying tasks : `list` 
 
-Display all tasks in the list.
+Default display mode: display **all** tasks by **adding sequence**.
+`-d`: display **all** tasks by **date**, from past to future.
+`-p`: display **all** tasks by **priority**, from HIGH to LOW.
+`-w`: display **only tasks in current week** by **adding sequence**. 
+`-m`: display **only tasks in current month** by **adding sequence**.
+`d/DATE`: display **all tasks in date provided** by adding sequence**.
 
-Format: `list`
+Format: `list [-d|-p|-w|-m|d/DATE]`
 
 Example of usage: 
 
 `list`
+`list -d`
+`list -w`
+`list d/20-10-2020`
 
 Expected outcome:
 
