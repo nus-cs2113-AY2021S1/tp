@@ -29,14 +29,14 @@ public class AddDeadlineCommand extends TaskCommand {
         int startOfBy = fullCommand.indexOf("/by") + 4;
         int endOfBy = fullCommand.length();
         if (endOfMessage <= startOfMessage) {
-            throw new TaskDeadlineException();
+            throw new TaskDeadlineException(Ui.printDeadlineError());
         }
         String message = fullCommand.substring(startOfMessage, endOfMessage);
         String by = fullCommand.substring(startOfBy, endOfBy);
         DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm d-MM-yyyy");
         LocalDateTime dateTime = LocalDateTime.parse(by, format);
         if (message.isEmpty() || by.isEmpty()) {
-            throw new TaskDeadlineException();
+            throw new TaskDeadlineException(Ui.printDeadlineError());
         } else {
             Task temp = new Deadline(message, false, dateTime);
             taskList.getList().add(temp);

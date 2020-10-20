@@ -29,7 +29,7 @@ public class AddEventCommand extends TaskCommand {
         int startOfAt = fullCommand.indexOf("/at") + 4;
         int endOfAt = fullCommand.length();
         if (endOfMessage <= startOfMessage) {
-            throw new TaskEventException();
+            throw new TaskEventException(Ui.printEventError());
         }
         String message = fullCommand.substring(startOfMessage, endOfMessage);
         String at = fullCommand.substring(startOfAt, endOfAt);
@@ -39,7 +39,7 @@ public class AddEventCommand extends TaskCommand {
 
 
         if (message.isEmpty() || at.isEmpty()) {
-            throw new TaskEventException();
+            throw new TaskEventException(Ui.printEventError());
         }
         Task temp = new Event(message, false, dateTime);
         taskList.getList().add(temp);

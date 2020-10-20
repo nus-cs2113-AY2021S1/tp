@@ -3,7 +3,7 @@ package seedu.revised.command.subject;
 
 import org.junit.jupiter.api.Test;
 import seedu.revised.card.SubjectList;
-import seedu.revised.exception.card.InvalidSubjectCommand;
+import seedu.revised.exception.subject.InvalidSubjectException;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ class QuizSubjectCommandTest {
     void execute_command_throwsException() {
         String input = "quiz";
         QuizSubjectCommand quiz = new QuizSubjectCommand(input);
-        assertThrows(InvalidSubjectCommand.class, () -> quiz.execute(subjectList));
+        assertThrows(InvalidSubjectException.class, () -> quiz.execute(subjectList));
 
     }
 

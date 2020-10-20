@@ -2,8 +2,9 @@ package seedu.revised.command.subject;
 
 import seedu.revised.card.Subject;
 import seedu.revised.card.SubjectList;
-import seedu.revised.exception.card.InvalidSubjectCommand;
-import seedu.revised.exception.card.NoSubjectException;
+import seedu.revised.exception.subject.InvalidSubjectException;
+import seedu.revised.exception.subject.NoSubjectException;
+import seedu.revised.ui.Ui;
 
 public class QuizSubjectCommand extends SubjectCommand {
     private String fullcommand;
@@ -16,11 +17,11 @@ public class QuizSubjectCommand extends SubjectCommand {
         return this.fullcommand;
     }
 
-    public Subject execute(SubjectList subjectList) throws NoSubjectException, InvalidSubjectCommand {
+    public Subject execute(SubjectList subjectList) throws NoSubjectException, InvalidSubjectException {
         String[] message = this.fullcommand.split(" ");
         Subject quizSubject = null;
         if (message.length == 1) {
-            throw new InvalidSubjectCommand();
+            throw new InvalidSubjectException(Ui.printInvalidSubjectError());
         }
         for (Subject subject : subjectList.getList()) {
             if (subject.toString().contains(message[1])) {
@@ -28,7 +29,7 @@ public class QuizSubjectCommand extends SubjectCommand {
             }
         }
         if (quizSubject == null) {
-            throw new NoSubjectException();
+            throw new NoSubjectException(Ui.printNoSubjectError());
         }
         return quizSubject;
 

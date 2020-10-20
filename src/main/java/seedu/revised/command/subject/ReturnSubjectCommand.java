@@ -9,15 +9,15 @@ import seedu.revised.command.topic.QuizTopicCommand;
 import seedu.revised.command.topic.ReturnTopicCommand;
 import seedu.revised.command.topic.TopicCommand;
 import seedu.revised.card.SubjectList;
-import seedu.revised.exception.card.InvalidTopicCommand;
-import seedu.revised.exception.card.NoSubjectException;
-import seedu.revised.exception.card.NoTopicException;
-import seedu.revised.exception.card.RepeatedSubjectException;
+import seedu.revised.exception.FailedParseException;
+import seedu.revised.exception.flashcard.NoFlashcardException;
+import seedu.revised.exception.subject.NoSubjectException;
+import seedu.revised.exception.subject.RepeatedSubjectException;
 import seedu.revised.exception.task.TaskDeadlineException;
 import seedu.revised.exception.task.TaskEventException;
-import seedu.revised.exception.task.TaskException;
 import seedu.revised.exception.task.TaskTodoException;
-import seedu.revised.exception.card.NoFlashCardException;
+import seedu.revised.exception.topic.InvalidTopicException;
+import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.parser.TopicParser;
 import seedu.revised.task.TaskList;
 import seedu.revised.ui.Ui;
@@ -35,14 +35,14 @@ public class ReturnSubjectCommand extends SubjectCommand {
         String[] message = this.fullcommand.split(" ");
         //Subject currentSubject = new Subject(message[1]);
         if (message[1].isEmpty()) {
-            throw new NoSubjectException();
+            throw new NoSubjectException(Ui.printNoSubjectError());
         }
         for (Subject subject : subjectList.getList()) {
             if (subject.getTitle().equals(message[1])) {
                 return subject;
             }
         }
-        throw new NoSubjectException();
+        throw new NoSubjectException(Ui.printNoSubjectError());
     }
 
     public void goToSubject(Subject subject) {
@@ -72,28 +72,30 @@ public class ReturnSubjectCommand extends SubjectCommand {
                 //} catch (IOException e) {
                 //Ui.printWritingError();
 
-            } catch (NumberFormatException e) {
-                Ui.printIndexError();
             } catch (NoSubjectException | NoTopicException e) {
-                Ui.printNoTopicError();
+                System.out.println(e.getMessage());
             } catch (RepeatedSubjectException e) {
-                Ui.printRepeatedTopicError();
-            } catch (IndexOutOfBoundsException e) {
-                Ui.printOutOfBoundsError();
+                System.out.println(e.getMessage());
             } catch (TaskTodoException e) {
-                Ui.printTodoError();
+                System.out.println(e.getMessage());
             } catch (TaskDeadlineException e) {
-                Ui.printDeadlineError();
+                System.out.println(e.getMessage());
             } catch (TaskEventException e) {
-                Ui.printEventError();
-            } catch (TaskException e) {
-                Ui.printError();
-            } catch (NoFlashCardException e) {
-                Ui.printNoFlashcards();
-            } catch (InvalidTopicCommand invalidTopicCommand) {
-                Ui.printEnterTopic();
+                System.out.println(e.getMessage());
+            } catch (FailedParseException e) {
+                System.out.println(e.getMessage());
+            } catch (NoFlashcardException e) {
+                System.out.println(e.getMessage());
+            } catch (InvalidTopicException e) {
+                System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+                System.out.println(Ui.printIndexError());
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println(Ui.printOutOfBoundsError());
             } catch (IllegalArgumentException | DateTimeParseException d) {
-                Ui.printInvalidFormat();
+                System.out.println(Ui.printInvalidFormatError());
+            } catch (Exception e) {
+                System.out.println(Ui.printError(e));
             }
         }
         Ui.printBackToSubjects();

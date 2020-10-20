@@ -10,8 +10,8 @@ import seedu.revised.command.subject.FindSubjectCommand;
 import seedu.revised.command.subject.ListSubjectCommand;
 import seedu.revised.command.subject.ReturnSubjectCommand;
 import seedu.revised.command.subject.QuizSubjectCommand;
-import seedu.revised.exception.card.NoSubjectException;
-import seedu.revised.exception.card.RepeatedSubjectException;
+import seedu.revised.exception.subject.NoSubjectException;
+import seedu.revised.exception.subject.RepeatedSubjectException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,10 +64,9 @@ public class SubjectCommandTest {
     }
 
     @Test
-    public void quizSubject_command_throwsException() throws NoSubjectException {
+    public void quizSubject_command_throwsNoSubjectException() {
         QuizSubjectCommand quiz = new QuizSubjectCommand("quiz Maths");
         assertThrows(NoSubjectException.class, () -> quiz.execute(subjects));
-
     }
 
 

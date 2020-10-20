@@ -25,11 +25,11 @@ public class AddTodoCommand extends TaskCommand {
         int startOfMessage = 5;
         int endOfMessage = fullCommand.length();
         if (endOfMessage <= startOfMessage) {
-            throw new TaskTodoException();
+            throw new TaskTodoException(Ui.printTodoError());
         }
         String message = fullCommand.substring(startOfMessage, endOfMessage);
         if (message.isEmpty()) {
-            throw new TaskTodoException();
+            throw new TaskTodoException(Ui.printTodoError());
         } else {
             Task temp = new Todo(message, false);
             taskList.getList().add(temp);

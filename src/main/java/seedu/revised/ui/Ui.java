@@ -101,56 +101,62 @@ public class Ui {
                 + "____________________________________________________________");
     }
 
-    public static void printError() {
-        System.out.println("____________________________________________________________\n"
+    public static String printFailedParseError() {
+        return ("____________________________________________________________\n"
                 + " ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n"
                 + "____________________________________________________________");
     }
 
-    public static void printError(Exception err) {
-        System.out.println("____________________________________________________________\n"
+    public static String printError(Exception err) {
+        return ("____________________________________________________________\n"
                 + err.getMessage() + "\n"
                 + "____________________________________________________________");
     }
 
-    public static void printNoSubjectError() {
-        System.out.println("____________________________________________________________\n"
+    public static String printNoSubjectError() {
+        return ("____________________________________________________________\n"
                 + " ☹ OOPS!!! I'm sorry, but I can't find that subject :-(\n"
                 + "____________________________________________________________");
     }
 
-    public static void printRepeatedSubjectError() {
-        System.out.println("____________________________________________________________\n"
+    public static String printRepeatedSubjectError() {
+        return ("____________________________________________________________\n"
                 + " ☹ OOPS!!! I'm sorry, but subject is already in the list :-(\n"
                 + "____________________________________________________________");
     }
 
-    public static void printTodoError() {
-        System.out.println("____________________________________________________________\n"
+    public static String printRepeatedFlashcardError() {
+        return ("____________________________________________________________\n"
+                + " ☹ OOPS!!! I'm sorry, but flashcard is already in the list :-(\n"
+                + "____________________________________________________________");
+    }
+
+    public static String printTodoError() {
+        return ("____________________________________________________________\n"
                 + " ☹ OOPS!!! The description of a todo cannot be empty.\n"
                 + "____________________________________________________________");
     }
 
-    public static void printDeadlineError() {
-        System.out.println("____________________________________________________________\n"
+    public static String printDeadlineError() {
+        return ("____________________________________________________________\n"
                 + " ☹ OOPS!!! The description of a deadline cannot be empty.\n"
                 + "____________________________________________________________");
     }
 
-    public static void printEventError() {
-        System.out.println("____________________________________________________________\n"
+    public static String printEventError() {
+        return ("____________________________________________________________\n"
                 + " ☹ OOPS!!! The description of a event cannot be empty.\n"
                 + "____________________________________________________________");
     }
 
-    public static void printIndexError() {
-        System.out.println("____________________________________________________________\n"
+    public static String printIndexError() {
+        return ("____________________________________________________________\n"
                 + " ☹ OOPS!!! Invalid index format entered.\n"
                 + "____________________________________________________________");
     }
 
-    public static void printOutOfBoundsError() {
-        System.out.println("____________________________________________________________\n"
+    public static String printOutOfBoundsError() {
+        return ("____________________________________________________________\n"
                 + " ☹ OOPS!!! The index you entered does not exist.\n"
                 + "____________________________________________________________");
     }
@@ -208,8 +214,16 @@ public class Ui {
         System.out.println("Creating file failed.");
     }
 
-    public static void printWritingError() {
-        System.out.println("Writing to file failed.");
+    public static String printDataLoadingError() {
+        return ("____________________________________________________________\n"
+                + "Error loading saved data from the disk." + "\n"
+                + "____________________________________________________________\n");
+    }
+
+    public static String printWritingError() {
+        return ("____________________________________________________________\n"
+                + "Writing to file failed." + "\n"
+                + "____________________________________________________________\n");
     }
 
     public static void printGoToSubject(Subject subject) {
@@ -268,14 +282,14 @@ public class Ui {
                 + "____________________________________________________________\n");
     }
 
-    public static void printNoTopicError() {
-        System.out.println("____________________________________________________________\n"
+    public static String printNoTopicError() {
+        return ("____________________________________________________________\n"
                 + " ☹ OOPS!!! I'm sorry, but I can't find that topic :-(\n"
                 + "____________________________________________________________");
     }
 
-    public static void printRepeatedTopicError() {
-        System.out.println("____________________________________________________________\n"
+    public static String printRepeatedTopicError() {
+        return ("____________________________________________________________\n"
                 + " ☹ OOPS!!! I'm sorry, but that topic is already in the list :-(\n"
                 + "____________________________________________________________");
     }
@@ -420,26 +434,26 @@ public class Ui {
                 + "____________________________________________________________\n");
     }
 
-    public static void printNoFlashcards() {
-        System.out.println("____________________________________________________________\n"
+    public static String printNoFlashcardsError() {
+        return ("____________________________________________________________\n"
                 + "There are no flashcards present yet!\n"
                 + "____________________________________________________________\n");
     }
 
-    public static void printNoTopics() {
-        System.out.println("____________________________________________________________\n"
+    public static String printNoTopicsError() {
+        return ("____________________________________________________________\n"
                 + "There are no topics present yet!\n"
                 + "____________________________________________________________\n");
     }
 
-    public static void printInvalidSubjectCommand() {
-        System.out.println("____________________________________________________________\n"
+    public static String printInvalidSubjectError() {
+        return ("____________________________________________________________\n"
                 + "Please enter a subject!\n"
                 + "____________________________________________________________\n");
     }
 
-    public static void printEnterTopic() {
-        System.out.println("____________________________________________________________\n"
+    public static String printEnterTopicError() {
+        return ("____________________________________________________________\n"
                 + "Please enter a topic!\n"
                 + "____________________________________________________________\n");
     }
@@ -453,8 +467,8 @@ public class Ui {
     }
 
 
-    public static void printInvalidFormat() {
-        System.out.println("____________________________________________________________\n"
+    public static String printInvalidFormatError() {
+        return ("____________________________________________________________\n"
                 + "Enter date and time in the following format: HH:MM DD-MM-YYY\n"
                 + "____________________________________________________________\n");
     }

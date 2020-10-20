@@ -2,7 +2,7 @@ package seedu.revised.card.quiz;
 
 import seedu.revised.card.Flashcard;
 import seedu.revised.card.Topic;
-import seedu.revised.exception.card.NoFlashCardException;
+import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.ui.Ui;
 
 import java.time.Instant;
@@ -28,11 +28,11 @@ public class TopicQuiz extends Quiz {
     /**
      * Checks if the topic has flashcards. Furthermore, this method sets the maximum score for the quiz.
      *
-     * @throws NoFlashCardException If there are no flashcards in this topic
+     * @throws NoFlashcardException If there are no flashcards in this topic
      */
-    public void setUpQuiz() throws NoFlashCardException {
+    public void setUpQuiz() throws NoFlashcardException {
         if (this.flashcards.size() == 0) {
-            throw new NoFlashCardException();
+            throw new NoFlashcardException(Ui.printNoFlashcardsError());
         }
         this.result.setMaxScore(this.flashcards.size());
 
@@ -42,9 +42,9 @@ public class TopicQuiz extends Quiz {
      * Begins the quiz for the user.
      *
      * @param results The resultsList stored in the Topic
-     * @throws NoFlashCardException If the topic has no flashcards
+     * @throws NoFlashcardException If the topic has no flashcards
      */
-    public void startQuiz(ResultList results) throws NoFlashCardException {
+    public void startQuiz(ResultList results) throws NoFlashcardException {
         setUpQuiz();
         this.result.setScore(0);
 

@@ -2,11 +2,14 @@ package seedu.revised.command.flashcard;
 
 import seedu.revised.card.Flashcard;
 import seedu.revised.card.Topic;
-import seedu.revised.exception.card.NoSubjectException;
-import seedu.revised.exception.card.RepeatedSubjectException;
+import seedu.revised.exception.FailedParseException;
+import seedu.revised.exception.flashcard.NoFlashcardException;
+import seedu.revised.exception.flashcard.RepeatedFlashcardException;
+import seedu.revised.exception.flashcard.RepeatedFlashcardException;
 
 public class FlashcardCommand {
-    public Flashcard execute(Topic topic) throws NoSubjectException, RepeatedSubjectException {
+    public Flashcard execute(Topic topic) throws FailedParseException,
+            NoFlashcardException, RepeatedFlashcardException {
         return null;
     }
 

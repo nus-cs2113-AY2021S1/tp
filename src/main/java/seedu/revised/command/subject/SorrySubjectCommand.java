@@ -2,13 +2,13 @@ package seedu.revised.command.subject;
 
 import seedu.revised.card.Subject;
 import seedu.revised.card.SubjectList;
+import seedu.revised.exception.FailedParseException;
 import seedu.revised.ui.Ui;
 
 public class SorrySubjectCommand extends SubjectCommand {
 
-    public Subject execute(SubjectList subjectList) {
-        Ui.printError();
-        return null;
+    public Subject execute(SubjectList subjectList) throws FailedParseException {
+        throw new FailedParseException(Ui.printFailedParseError());
     }
 
     /**

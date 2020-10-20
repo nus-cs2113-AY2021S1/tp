@@ -2,8 +2,8 @@ package seedu.revised.command.subject;
 
 import seedu.revised.card.Subject;
 import seedu.revised.card.SubjectList;
-import seedu.revised.exception.card.InvalidSubjectCommand;
-import seedu.revised.exception.card.NoSubjectException;
+import seedu.revised.exception.subject.InvalidSubjectException;
+import seedu.revised.exception.subject.NoSubjectException;
 import seedu.revised.ui.Ui;
 
 public class ResultSubjectCommand extends SubjectCommand {
@@ -14,11 +14,11 @@ public class ResultSubjectCommand extends SubjectCommand {
 
     }
 
-    public Subject execute(SubjectList subjectList) throws NoSubjectException,InvalidSubjectCommand {
+    public Subject execute(SubjectList subjectList) throws NoSubjectException, InvalidSubjectException {
 
         String[] message = this.fullcommand.split(" ");
         if (message.length == 1) {
-            throw new InvalidSubjectCommand();
+            throw new InvalidSubjectException(Ui.printInvalidSubjectError());
         }
         Subject quizSubject = null;
 
@@ -28,7 +28,7 @@ public class ResultSubjectCommand extends SubjectCommand {
             }
         }
         if (quizSubject == null) {
-            throw new NoSubjectException();
+            throw new NoSubjectException(Ui.printNoSubjectError());
         }
         assert (quizSubject != null) : "No such subject exists!";
         Ui.printSubjectResults(quizSubject);

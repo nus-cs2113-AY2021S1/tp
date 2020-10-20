@@ -13,6 +13,7 @@ import seedu.revised.task.Deadline;
 import seedu.revised.task.Event;
 import seedu.revised.task.Task;
 import seedu.revised.task.Todo;
+import seedu.revised.ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -67,7 +68,7 @@ public class Storage {
         } else {
             File[] subjectDirs = baseDir.listFiles(File::isDirectory);
             if (subjectDirs == null) {  // error in getting the directories even if they may exist
-                throw new DataLoadingException("Error loading saved data from the disk.");
+                throw new DataLoadingException(Ui.printDataLoadingError());
             }
             subjects = loadSubjects(subjectDirs);
         }
@@ -91,7 +92,7 @@ public class Storage {
         for (File subjectDir : subjectDirs) {
             File[] topicDirs = subjectDir.listFiles(File::isDirectory);
             if (topicDirs == null) {
-                throw new DataLoadingException("Error loading saved data from the disk.");
+                throw new DataLoadingException(Ui.printDataLoadingError());
             }
 
             List<Topic> topics = loadTopics(topicDirs);
