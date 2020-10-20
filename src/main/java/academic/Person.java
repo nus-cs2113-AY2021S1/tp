@@ -14,6 +14,11 @@ public class Person {
         this.emailOfPerson = email;
     }
 
+    public static String printIndividualPerson(Person person) {
+        return "[P] | " + person.nameOfPerson + " | " + person.contactNumberOfPerson + " | " + person.emailOfPerson;
+    }
+
+
     public String getDetailsOfPerson() {
         return this.nameOfPerson + "[" + this.contactNumberOfPerson + "][" + this.emailOfPerson + "]";
     }
