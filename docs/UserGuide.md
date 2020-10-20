@@ -160,7 +160,6 @@ Format: `deleteexp <module code>`
 * The `module code` must contain 6-8 characters without any spacing.
 * The `module code` exists in the database.
 
-
 Example of usage:
 
 `deleteexp CS2113T`
