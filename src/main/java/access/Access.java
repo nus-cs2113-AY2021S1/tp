@@ -105,39 +105,53 @@ public class Access {
         this.isChapterLevel = true;
     }
 
-    public void setModuleLevel(String moduleLevel) throws IncorrectAccessLevelException {
+    public void setModuleLevel(String moduleLevel) {
         if (isAdminLevel) {
-            this.moduleLevel = moduleLevel;
-            this.level = level + "/" + moduleLevel;
-            this.module = new Module(moduleLevel);
-            this.isModuleLevel = true;
-            this.isAdminLevel = false;
+            setGoModuleLevel(moduleLevel);
             return;
         }
+        setBackAdminLevel(moduleLevel);
 
-        String replacement = "/" + this.moduleLevel;
-        this.level = level.replace(replacement, "");
-        this.moduleLevel = moduleLevel;
-        this.module = null;
-        this.isModuleLevel = false;
-        this.isAdminLevel = true;
     }
 
-    public void setChapterLevel(String chapterLevel) throws IncorrectAccessLevelException {
+    public void setGoModuleLevel(String moduleLevel) {
+        this.moduleLevel = moduleLevel;
+        this.level = level + "/" + moduleLevel;
+        this.module = new Module(moduleLevel);
+        setIsModuleLevel();
+    }
+
+    public void setBackAdminLevel(String moduleLevel) {
+        this.level = adminLevel;
+        this.moduleLevel = moduleLevel;
+        this.module = null;
+        setIsAdminLevel();
+    }
+
+    public void setChapterLevel(String chapterLevel) {
         if (isChapterLevel) {
-            this.level = adminLevel + "/" + moduleLevel;
-            this.chapterLevel = chapterLevel;
-            this.chapter = null;
-            this.isChapterLevel = false;
-            this.isModuleLevel = true;
+            setBackModuleLevel(chapterLevel);
             return;
         }
+        setGoChapterLevel(chapterLevel);
+    }
 
+    public void setGoChapterLevel(String chapterLevel) {
         this.chapterLevel = chapterLevel;
         this.level = level + "/" + chapterLevel;
         this.chapter = new Chapter(chapterLevel);
-        this.isChapterLevel = true;
-        this.isModuleLevel = false;
+        setIsChapterLevel();
     }
+
+    public void setBackModuleLevel(String chapterLevel) {
+        this.level = adminLevel + "/" + moduleLevel;
+        this.chapterLevel = chapterLevel;
+        this.chapter = null;
+        setIsModuleLevel();
+    }
+
+
+
+
 
 }
