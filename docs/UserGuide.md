@@ -7,8 +7,8 @@ It helps you to prioritise your work and balance your time spent among your modu
 
 
 ## Table of Contents
-* ### Quick Start
-* ### Features
+* [Quick Start](#quick-start)
+* [Features](#features)
     1. View help: `help`
     1. Add a module: `addmod <module code>`
     1. Add expected module workload: `addexp <module code> <expected workload>` 
@@ -19,8 +19,8 @@ It helps you to prioritise your work and balance your time spent among your modu
     1. Minus from actual time spent on a module: `minus <module code> <time spent> <week number>` 
     1. Exit the program : `exit`
     1. Save user data
-* ### FAQ
-* ### Command summary
+* [FAQ](#faq)
+* [Command summary](#command-summary)
 
 
 ## Quick Start
