@@ -47,7 +47,7 @@ public class Storage implements SaveState {
     }
 
 
-    public WatchTime LoadWatchTimeDetail(Scanner s) {
+    public WatchTime loadWatchTimeDetail(Scanner s) {
         if (s.hasNext()) {
             String[] splitRecordedDate = s.nextLine().split("recordedDate: ");
             try {
@@ -79,7 +79,7 @@ public class Storage implements SaveState {
         ShowList shows = new ShowList();
 
         // we just assume that advanced users who manually change the file can adhere to the correct format
-        LoadWatchTimeDetail(s);
+        loadWatchTimeDetail(s);
         while (s.hasNext()) {
             String name = s.nextLine().substring(3);
             String[] splitSeason = s.nextLine().split("Season: ");
