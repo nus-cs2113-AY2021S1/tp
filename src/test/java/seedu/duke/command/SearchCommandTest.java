@@ -34,13 +34,13 @@ class SearchCommandTest {
     @Test
     void execute_invalidSearchType_throwsAniExcetion() {
         SearchCommand testSearch = new SearchCommand();
-        testSearch.searchTerm = "test";
-        testSearch.searchType = ABOVE_RANGE;
+        testSearch.setSearchTerm("test");
+        testSearch.setSearchType(ABOVE_RANGE);
         assertThrows(AniException.class, () -> {
             testSearch.execute(animeData, storageManager, user);
         });
 
-        testSearch.searchType = BELOW_RANGE;
+        testSearch.setSearchType(BELOW_RANGE);
         assertThrows(AniException.class, () -> {
             testSearch.execute(animeData, storageManager, user);
         });

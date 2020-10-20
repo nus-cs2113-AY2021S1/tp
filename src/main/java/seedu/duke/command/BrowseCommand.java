@@ -5,18 +5,19 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
 import seedu.duke.storage.StorageManager;
-import static seedu.duke.logger.AniLogger.getAniLogger;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static seedu.duke.logger.AniLogger.getAniLogger;
+
 public class BrowseCommand extends Command {
-    protected static final int ANIME_PER_PAGE = 20;
-    protected static final String PAGE_PARAM = "p";
-    protected static final int ID_SORT = 0;
-    protected static final int ORDER_DESCENDING = 0;
+    private static final int ANIME_PER_PAGE = 20;
+    private static final String PAGE_PARAM = "p";
+    private static final int ID_SORT = 0;
+    private static final int ORDER_DESCENDING = 0;
 
     private int sortType;
     private int order;
@@ -24,20 +25,20 @@ public class BrowseCommand extends Command {
     private int indexToPrint;
     private String filter;
 
-    protected static final String LAST_ANIME_WARNING = "Printing Last Anime Series from source";
-    protected static final String BROWSE_PAGE_INDICATOR = "Browsing Page: ";
-    protected static final String OUT_OF_BOUND_PAGE_WARNING = "Getting page: Tried to start at index: ";
-    protected static final String OUT_OF_BOUND_PAGE_ERROR = "Invalid Page size!";
-    protected static final String PARAMETER_ERROR_HEADER = "Parameter : -";
-    protected static final String REQUIRE_ADDITIONAL_FIELD = " requires an additional field";
-    protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for page number!";
-    protected static final String ASSERT_SORT_TYPE = "sortType should be < 3";
-    protected static final String ASSERT_ORDER_TYPE = "order should be < 2";
-    protected static final String SORT_ID_DESCENDING = "Sorting by ID descending";
-    protected static final String SORT_NAME_ASCENDING = "Sorting by Name Ascending (A to Z)";
-    protected static final String SORT_NAME_DESCENDING = "Sorting by Name Descending (Z to A)";
-    protected static final String SORT_RATING_ASCENDING = "Sorting by Rating Ascending (low to high)";
-    protected static final String SORT_RATING_DESCENDING = "Sorting by Rating Descending (high to low)";
+    private static final String LAST_ANIME_WARNING = "Printing Last Anime Series from source";
+    private static final String BROWSE_PAGE_INDICATOR = "Browsing Page: ";
+    private static final String OUT_OF_BOUND_PAGE_WARNING = "Getting page: Tried to start at index: ";
+    private static final String OUT_OF_BOUND_PAGE_ERROR = "Invalid Page size!";
+    private static final String PARAMETER_ERROR_HEADER = "Parameter : -";
+    private static final String REQUIRE_ADDITIONAL_FIELD = " requires an additional field";
+    private static final String NON_INTEGER_PROVIDED = "Please specify an Int value for page number!";
+    private static final String ASSERT_SORT_TYPE = "sortType should be < 3";
+    private static final String ASSERT_ORDER_TYPE = "order should be < 2";
+    private static final String SORT_ID_DESCENDING = "Sorting by ID descending";
+    private static final String SORT_NAME_ASCENDING = "Sorting by Name Ascending (A to Z)";
+    private static final String SORT_NAME_DESCENDING = "Sorting by Name Descending (Z to A)";
+    private static final String SORT_RATING_ASCENDING = "Sorting by Rating Ascending (low to high)";
+    private static final String SORT_RATING_DESCENDING = "Sorting by Rating Descending (high to low)";
 
     private static final Logger LOGGER = getAniLogger(BrowseCommand.class.getName());
 

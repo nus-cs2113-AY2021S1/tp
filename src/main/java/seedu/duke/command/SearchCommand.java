@@ -13,23 +13,23 @@ import java.util.logging.Logger;
 import static seedu.duke.logger.AniLogger.getAniLogger;
 
 public class SearchCommand extends Command {
-    protected static final String ASSERT_SEARCH_TERM_EMPTY = "Empty Search String!";
-    protected static final String ID_HEADER = "[ID:";
-    protected static final String ID_CLOSER = "] ";
-    protected static final String NO_RESULTS_FOUND = "No results found!";
-    protected static final String SEARCHING_BY_GENRE = "Searching By Genre";
-    protected static final String SEARCHING_BY_ANIME_NAME = "Searching By Anime Name";
-    protected static final String SEARCH_TYPE_INVALID = "Something went wrong with search input";
-    protected static final String SEARCH_TYPE_INVALID_LOG = "Search Type has the wrong values.";
-    protected static final int SEARCH_BY_NAME = 0;
-    protected static final int SEARCH_BY_GENRE = 1;
+    private static final String ASSERT_SEARCH_TERM_EMPTY = "Empty Search String!";
+    private static final String ID_HEADER = "[ID:";
+    private static final String ID_CLOSER = "] ";
+    private static final String NO_RESULTS_FOUND = "No results found!";
+    private static final String SEARCHING_BY_GENRE = "Searching By Genre";
+    private static final String SEARCHING_BY_ANIME_NAME = "Searching By Anime Name";
+    private static final String SEARCH_TYPE_INVALID = "Something went wrong with search input";
+    private static final String SEARCH_TYPE_INVALID_LOG = "Search Type has the wrong values.";
+    private static final int SEARCH_BY_NAME = 0;
+    private static final int SEARCH_BY_GENRE = 1;
 
     private static final Logger LOGGER = getAniLogger(SearchCommand.class.getName());
 
-    protected String searchTerm;
-    protected String result;
-    protected String searchGenre;
-    protected int searchType;
+    private String searchTerm;
+    private String result;
+    private String searchGenre;
+    private int searchType;
 
     public SearchCommand() {
         searchGenre = "";
@@ -85,5 +85,13 @@ public class SearchCommand extends Command {
     public void setSearchGenre(String searchGenre) {
         this.searchGenre = searchGenre;
         this.searchType = SEARCH_BY_GENRE;
+    }
+
+    public int getSearchType() {
+        return searchType;
+    }
+
+    public void setSearchType(int searchType) {
+        this.searchType = searchType;
     }
 }

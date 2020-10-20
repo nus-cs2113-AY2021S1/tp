@@ -311,4 +311,4 @@ Coming soon!
 | Delete watchlist   | `watchlist -d <WATCHLIST_INDEX>`                         |
 | Add to watchlist   | `add -a <ANIME_NAME>`                                    |
 | Search by title    | `search -n <SEARCH_TERM>`                                |
-| search by genre    | `search -g <SEARCH_TERM>`                                |
+| Search by genre    | `search -g <SEARCH_TERM>`                                |

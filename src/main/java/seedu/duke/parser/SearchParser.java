@@ -4,8 +4,7 @@ import seedu.duke.command.SearchCommand;
 import seedu.duke.exception.AniException;
 
 public class SearchParser extends CommandParser {
-    protected static final String NAME_PARAM = "n";
-    protected static final String GENRE_PARAM = "g";
+
 
     private SearchCommand searchCommand;
 
