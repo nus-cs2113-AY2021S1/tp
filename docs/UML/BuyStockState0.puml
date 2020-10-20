@@ -1,0 +1,27 @@
+@startuml
+
+hide footbox
+hide members
+hide circle
+skinparam packageStyle Rectangle
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Initial state
+
+package States {
+    class State1 as "__:PortfolioManager__"
+    class State2 as "__:wallet__"
+    class State3 as "__buyCommand:BuyCommand__"
+    class State5 as "__stockPriceFetcher:StockPriceFetcher__"
+}
+
+class Pointer as "Controller" #FFFFF
+Pointer -down-> State1
+Pointer -down-> State2
+Pointer -down-> State5
+
+class Pointer2 as "Parser" #FFFFF
+Pointer2 -down-> State3
+
+@enduml
