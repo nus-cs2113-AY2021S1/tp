@@ -33,6 +33,6 @@ public class AddWorkspaceCommand extends Command {
         newWorkspace.setWatchlistList(watchlistList);
         storageManager.saveWorkspace(newWorkspace);
 
-        return "Successfully added new workspace:" + newWorkspace;
+        return "Successfully added new workspace: " + newWorkspace;
     }
 }
