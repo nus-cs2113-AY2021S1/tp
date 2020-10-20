@@ -10,15 +10,11 @@ import seedu.rex.parser.Parser;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Vector;
 
 /**
  * Loads and saves data to file.
@@ -117,7 +113,7 @@ public class Storage {
      * Writes content to file.
      *
      * @param fileContent String content to write.
-     * @param file Filename to write to.
+     * @param file        Filename to write to.
      * @throws RexException If there is problem writing files.
      */
     private void writeToFile(StringBuilder fileContent, String file) throws RexException {

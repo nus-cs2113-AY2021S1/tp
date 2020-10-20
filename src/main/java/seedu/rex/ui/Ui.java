@@ -276,7 +276,7 @@ public class Ui {
      */
     public void listPatients(PatientList patients) {
         printWithIndent("List of patients (" + patients.getPatients().size() + " in total):");
-        for (Patient patient: patients.getPatients()) {
+        for (Patient patient : patients.getPatients()) {
             printWithIndent("");
             printWithIndent("Name: " + patient.getName());
             printWithIndent("NRIC: " + patient.getNric());

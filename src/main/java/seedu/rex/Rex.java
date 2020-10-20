@@ -9,7 +9,6 @@ import seedu.rex.parser.Parser;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,9 +18,9 @@ import java.util.logging.Logger;
  */
 public class Rex {
 
+    public static Logger logger;
     private static PatientList patients;
     private static DoctorList doctors;
-    public static Logger logger;
     private final Storage storage;
     private final Ui ui;
     private ArrayList<Appointment> appointments;

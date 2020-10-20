@@ -39,7 +39,7 @@ public class RetrieveCommand extends Command {
         assert storage != null : "storage is null";
         Rex.logger.log(Level.INFO, "going to extract NRIC");
         String nric = extractNric(trimmedCommand, COMMAND_WORD);
-        
+
         int index = patients.getExistingPatient(nric);
         assert index > -2 : "Unexpected index!";
         if (index < 0) {
