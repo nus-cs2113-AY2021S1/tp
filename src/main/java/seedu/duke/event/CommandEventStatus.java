@@ -4,23 +4,22 @@ import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
 
-public class CommandEventAdd extends Command {
+public class CommandEventStatus extends Command {
     private UserInput userInput;
+    int index;
 
     @Override
     public String execute() {
-        Event m = new Event(userInput.getArg("n"), userInput.getArg("d"), userInput.getArg("t"));
-        String output = EventList.addEvent(m);
+        index = Integer.parseInt(userInput.getArg(""));
+        String output = EventList.isCompleted(index - 1);
         return output;
     }
-
     @Override
     public int validate(UserInput ui) {
-       // assert ui!= null;
         userInput = ui;
-        if (userInput.getCategory().equals("event") && userInput.getCommand().equalsIgnoreCase("addEvent")) {
-            if (ui.getNumArgs() == 3) {
-                if ((ui.getArg("n") != null) && (ui.getArg("d") != null) && (ui.getArg("t") != null)) {
+        if (ui.getCategory().equals("event") && ui.getCommand().equalsIgnoreCase("done")) {
+            if (ui.getNumArgs() == 1) {
+                if ((ui.getArg("") != null)) {
                     return ACCEPT;
                 }
             }
@@ -29,10 +28,10 @@ public class CommandEventAdd extends Command {
             return NO_MATCH;
         }
     }
-
-
     @Override
     public String help() {
         return null;
     }
+
+
 }
