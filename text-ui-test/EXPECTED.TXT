@@ -50,7 +50,7 @@ This is your list of event(s):
 3.[TUT][X] cs1010 24-Oct-2020 Sat 12:30PM (nus)
 4.[TUT][X] cs1010 31-Oct-2020 Sat 12:30PM (nus)
 5.[LEC][/] cs1010 13-Oct-2020 Tue 1:40PM (nus)
-6.[LEC][X] cs1010 20-Oct-2020 Tue 1:40PM (nus)
+6.[LEC][/] cs1010 20-Oct-2020 Tue 1:40PM (nus)
 7.[LEC][X] cs1010 27-Oct-2020 Tue 1:40PM (nus)
 8.[LAB][/] cs1010 14-Oct-2020 Wed 2:40PM (nus)
 9.[LAB][X] cs1010 21-Oct-2020 Wed 2:40PM (nus)
