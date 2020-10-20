@@ -1,14 +1,13 @@
 package seedu.rex.commands;
 
 import seedu.rex.Rex;
+import seedu.rex.data.AppointmentList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
-import seedu.rex.data.hospital.Appointment;
 import seedu.rex.data.hospital.Patient;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
-import java.util.ArrayList;
 import java.util.logging.Level;
 
 /**
@@ -32,7 +31,7 @@ public class DeleteCommand extends Command {
      * @throws RexException If NRIC has issues.
      */
     @Override
-    public void execute(PatientList patients, ArrayList<Appointment> appointments, Ui ui, Storage storage)
+    public void execute(PatientList patients, AppointmentList appointments, Ui ui, Storage storage)
             throws RexException {
         assert patients != null : "patient ArrayList is null";
         assert ui != null : "ui is null";
@@ -46,10 +45,10 @@ public class DeleteCommand extends Command {
 
             ui.showPatientDeleted(deletedPatient);
 
-            for (int i = 0; i < appointments.size(); i++) {
-                String tempNric = appointments.get(i).getPatient().getNric();
+            for (int i = 0; i < appointments.getSize(); i++) {
+                String tempNric = appointments.getAppointmentByIndex(i).getPatient().getNric();
                 if (tempNric.contentEquals(nric)) {
-                    appointments.remove(i);
+                    appointments.removeAppointmentByIndex(i);
                     break;
                 }
             }

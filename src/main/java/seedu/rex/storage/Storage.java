@@ -1,5 +1,6 @@
 package seedu.rex.storage;
 
+import seedu.rex.data.AppointmentList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
@@ -95,12 +96,12 @@ public class Storage {
      * @param appointments ArrayList of appointments to save.
      * @throws RexException If there is problem writing or saving file.
      */
-    public void saveAppointments(ArrayList<Appointment> appointments) throws RexException {
+    public void saveAppointments(AppointmentList appointments) throws RexException {
         assert appointments != null : "Saving null appointments ArrayList";
 
         StringBuilder appointmentsFileContent = new StringBuilder();
 
-        for (Appointment appointment : appointments) {
+        for (Appointment appointment : appointments.getAppointments()) {
             // Need to format tasks
             appointmentsFileContent.append(appointment);
             appointmentsFileContent.append(System.lineSeparator());

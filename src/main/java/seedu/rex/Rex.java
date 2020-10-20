@@ -1,6 +1,7 @@
 package seedu.rex;
 
 import seedu.rex.commands.Command;
+import seedu.rex.data.AppointmentList;
 import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
@@ -23,7 +24,7 @@ public class Rex {
     private static DoctorList doctors;
     private final Storage storage;
     private final Ui ui;
-    private ArrayList<Appointment> appointments;
+    private AppointmentList appointments;
 
     /**
      * Initializes Rex.
@@ -49,12 +50,12 @@ public class Rex {
 
         try {
             logger.log(Level.INFO, "going to load appointments");
-            appointments = storage.loadAppointments();
+            appointments = new AppointmentList(storage.loadAppointments());
             logger.log(Level.INFO, "loaded appointments");
         } catch (RexException e) {
             logger.log(Level.INFO, "No appointments found. Creating new appointments list.");
             ui.showLoadingError();
-            appointments = new ArrayList<>();
+            appointments = new AppointmentList();
         }
 
         try {
