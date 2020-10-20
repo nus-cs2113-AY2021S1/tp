@@ -1,5 +1,5 @@
 package seedu.modtracker;
 
 public enum Analysis {
-    tooMuchTimeSpent, tooLittleTimeSpent, justRight
+    tooMuchTimeSpent, tooLittleTimeSpent, justRight, noInput
 }

@@ -22,10 +22,14 @@ CS3000, Expected Workload: 6h is added.
 
 CS3200, Expected Workload: 8h is added.
 
+CS1000, Expected Workload: 8h is added.
+
+7 hours are added to CS1000
+
 +------+---------+----------+----------+
 | Week | Module  | Expected |  Actual  |
 +------+---------+----------+----------+
-|  02  | CS1000  | No Input | No Input |
+|  02  | CS1000  |     8    | No Input |
 +------+---------+----------+----------+
 |  02  | CS2113T | No Input | No Input |
 +------+---------+----------+----------+
@@ -34,9 +38,39 @@ CS3200, Expected Workload: 8h is added.
 |  02  | CS3200  |     8    | No Input |
 +------+---------+----------+----------+
 
+Module    Week 1
+
+CS1000
+Actual   | ███████ 7.0
+Expected | ████████ 8.0
+
+CS2113T
+Actual   | NO INPUT
+Expected | NO INPUT
+
+CS3000
+Actual   | NO INPUT
+Expected | ██████ 6.0
+
+CS3200
+Actual   | NO INPUT
+Expected | ████████ 8.0
+
+Total time spent: 7.0 H
+100% of time is spent on CS1000
+No input for CS2113T
+No input for CS3000
+No input for CS3200
+
+Analysis:
+CS1000
+Good Job! Great time management!
+
 CS1000 is removed.
 
 CS2113T is removed.
+
+CS3200 is removed.
 
 All changes saved.
 Bye James Gosling. Hope to see you again soon!

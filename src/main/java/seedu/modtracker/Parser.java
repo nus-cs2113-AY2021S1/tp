@@ -84,6 +84,10 @@ public class Parser {
                 exit = true;
             }
             break;
+       //Please update accordingly
+        case "breakdown":
+            ui.printBreakDownAnalysis(modList,1);
+            break;
         default:
             assert toPrint : "toPrint should be true";
             ui.printInvalidCommand();

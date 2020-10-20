@@ -90,10 +90,8 @@ public class Ui {
      * @param week    specified week number.
      */
     public void printTable(ModuleList modList, int week) {
-        //        ModView view = new ModView();
-        //        view.printAllModuleInformation(modList,week);
-        ViewTimeBreakDownAnalysis breakDown = new ViewTimeBreakDownAnalysis();
-        breakDown.printTimeBreakDownAndAnalysis(modList, week);
+        ModView view = new ModView();
+        view.printAllModuleInformation(modList, week);
     }
 
     /**
@@ -146,4 +144,10 @@ public class Ui {
         System.out.println(message);
         System.out.println(ENTER_HELP);
     }
+
+    public void printBreakDownAnalysis (ModuleList modList, int week) {
+        ViewTimeBreakDownAnalysis breakDown = new ViewTimeBreakDownAnalysis();
+        breakDown.printTimeBreakDownAndAnalysis(modList, week);
+    }
+
 }
