@@ -14,6 +14,8 @@
 
 ### Storage component
 
+![Storage](images/StorageClassDiagram.png)
+
 The `Storage` class handles the read and write operations of the `FoodList`, `ExerciseList` and `User` classes.
 
 On startup, the `Fitr` class creates a new `Storage` object with the file paths of the text files. 
