@@ -18,7 +18,7 @@ public class BusCommand extends Command {
 
     public BusCommand(String busStop) throws CustomException {
         ArrayList<String> possibleLocs = new ArrayList<>(similarLocations(busStop));
-        if(possibleLocs.isEmpty()) {
+        if (possibleLocs.isEmpty()) {
             this.busStop = BusStops.formatName(busStop.trim());
         } else {
             Ui.printPossibleLocsMessage(possibleLocs);
@@ -27,7 +27,7 @@ public class BusCommand extends Command {
 
     @Override
     public void executeCommand() {
-        if(busStop!=null) {
+        if (busStop != null) {
             assert !busStop.isBlank() : "Bus stop is empty";
             printLine();
             ArrayList<Bus> busList = BusData.busAtStop(busStop);
@@ -46,7 +46,7 @@ public class BusCommand extends Command {
         for (BusStops info: EnumSet.allOf(BusStops.class)) {
             routeNames.add(info.getName().toLowerCase());
         }
-        if(!routeNames.contains(location.trim().toLowerCase())) {
+        if (!routeNames.contains(location.trim().toLowerCase())) {
             possibleLocs = SimilarityCheck.similarLoc(location);
         }
         return possibleLocs;
