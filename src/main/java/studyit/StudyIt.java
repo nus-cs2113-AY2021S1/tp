@@ -1,3 +1,5 @@
+package studyit;
+
 import academic.Grade;
 import academic.Person;
 import timetable.TimeTableRun;
@@ -5,6 +7,9 @@ import flashcard.FlashcardRun;
 import bookmark.BookmarkCategory;
 import bookmark.NusCategory;
 import bookmark.ZoomCategory;
+import userinterface.MainMenu;
+import userinterface.Ui;
+
 import java.util.ArrayList;
 
 
@@ -25,19 +30,24 @@ public class StudyIt {
     public static ArrayList<Grade> currentGrades = new ArrayList<>();//TODO change to local storage
     public static ArrayList<Person> listOfPerson = new ArrayList<>(); //TODO change to local storage
 
+
     public StudyIt() {
         bookmarkCategories.add(new NusCategory());
         bookmarkCategories.add(new ZoomCategory());
+        StudyItLog.setUpLogger();
     }
 
     public static void main(String[] args) {
         //assert false : "dummy assertion";
         MainMenu.printWelcome();
         new StudyIt().run();
+        StudyItLog.logger.info("Starting process");
+
     }
 
     public void run() {
         CommandType commandType;
+        StudyItLog.logger.info("Executing program");
         // Repeatedly receive & process user command until "exit" is given
         do {
             // Collect user's command & identify the type
@@ -47,5 +57,7 @@ public class StudyIt {
                     timeTableRun, currentGrades, listOfPerson);
 
         } while (commandType != CommandType.EXIT_PROGRAM);
+
+        StudyItLog.logger.info("End of program.");
     }
 }

@@ -1,6 +1,12 @@
+package userinterface;
+
 import bookmark.BookmarkUi;
 import exceptions.InvalidModeException;
-
+import studyit.ModeNames;
+import studyit.Mode;
+import studyit.CommandParser;
+import studyit.StudyIt;
+import studyit.StudyItLog;
 import java.util.Scanner;
 
 public class Ui {
@@ -18,8 +24,10 @@ public class Ui {
     public static String inputCommand() {
         String command;
         Scanner in = new Scanner(System.in);
+        assert in != null : "null is passed in";
 
         command = in.nextLine();
+        assert command.length() >= 0 : "The length of command should be at least 0";
 
         return command;
     }
@@ -50,6 +58,7 @@ public class Ui {
         } catch (InvalidModeException e) {
             printLine("Invalid mode name! Please try again.\n"
                     + "You are still at: " + ModeNames.getCurrentModeName());
+            StudyItLog.logger.fine("Cannot understand mode chosen.");
         }
     }
 

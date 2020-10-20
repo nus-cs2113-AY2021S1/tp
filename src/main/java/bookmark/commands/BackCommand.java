@@ -5,17 +5,24 @@ import bookmark.BookmarkUi;
 import java.util.ArrayList;
 
 public class BackCommand extends BookmarkCommand {
-    private String backCommand;
+    private int categoryNumber;
 
-    public BackCommand(String backCommand) {
-        this.backCommand = backCommand;
+    public BackCommand(int chosenCategory) {
+        this.categoryNumber = chosenCategory;
+        assert categoryNumber >= 0 : "Missing category number";
     }
 
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories) {
-        if (backCommand.equals("Goodbye")) {
+        if (categoryNumber == 0) {
             ui.printGoodbyeMessage();
         } else {
             ui.showBookmarkCategoryList(categories);
+            categoryNumber = 0;
+            assert categoryNumber == 0 : "Category number not updated";
         }
+    }
+
+    public int getCategoryNumber() {
+        return categoryNumber;
     }
 }

@@ -1,3 +1,5 @@
+package studyit;
+
 public class ModeNames {
     public static final String BOOKMARK_NAME = "bookmark";
     public static final String TIMETABLE_NAME = "timetable";

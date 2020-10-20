@@ -1,11 +1,11 @@
 
+import academic.AcademicCommandParser;
+import academic.AcademicCommandType;
 import exceptions.InvalidCommandException;
 
 import exceptions.InvalidGradeException;
 import exceptions.InvalidMcException;
 import org.junit.jupiter.api.Test;
-
-import javax.print.attribute.standard.Destination;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;

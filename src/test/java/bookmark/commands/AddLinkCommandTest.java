@@ -1,9 +1,10 @@
 package bookmark.commands;
 
-import bookmark.BookmarkCategory;
 import bookmark.BookmarkUi;
+import bookmark.BookmarkCategory;
 import bookmark.NusCategory;
 import bookmark.ZoomCategory;
+
 
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
@@ -18,11 +19,50 @@ class AddLinkCommandTest {
     public void executeCommand_addValidLinkCommand_addLinkCorrectly() {
         categories.add(new NusCategory());
         categories.add(new ZoomCategory());
-        String inputString = "add huhuhuhu";
+        String inputString = "add https://facebook.com";
         int categoryNumber = 2;
         AddLinkCommand command = new AddLinkCommand(inputString,categoryNumber);
         command.executeCommand(ui,categories);
-        assertEquals(categories.get(categoryNumber - 1).getLinks().size(), 1);
+        assertEquals(1,categories.get(categoryNumber - 1).getLinks().size());
     }
+
+    @Test
+    public void executeCommand_addInValidLinkCommand_doesNotAddLink() {
+        categories.add(new NusCategory());
+        categories.add(new ZoomCategory());
+        String inputString = "add huhuhuh";
+        int categoryNumber = 2;
+        AddLinkCommand command = new AddLinkCommand(inputString,categoryNumber);
+        command.executeCommand(ui,categories);
+        assertEquals(0,categories.get(categoryNumber - 1).getLinks().size());
+    }
+
+    @Test
+    public void executeCommand_addEmptyLinkCommand_doesNotAddLink() {
+        categories.add(new NusCategory());
+        categories.add(new ZoomCategory());
+        String inputString = "add ";
+        int categoryNumber = 2;
+        AddLinkCommand command = new AddLinkCommand(inputString,categoryNumber);
+        command.executeCommand(ui,categories);
+        assertEquals(0,categories.get(categoryNumber - 1).getLinks().size());
+    }
+
+    @Test
+    public void executeCommand_categoryNotChosen_doesNotAddLink() {
+        categories.add(new NusCategory());
+        categories.add(new ZoomCategory());
+        String inputString = "add ";
+        int categoryNumber = 0;
+        AddLinkCommand command = new AddLinkCommand(inputString,categoryNumber);
+        command.executeCommand(ui,categories);
+        assertEquals(0,categories.get(categoryNumber).getLinks().size());
+        assertEquals(0,categories.get(categoryNumber + 1).getLinks().size());
+    }
+
+
+
+
+
 
 }

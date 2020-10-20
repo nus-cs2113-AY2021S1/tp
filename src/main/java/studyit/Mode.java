@@ -1,3 +1,5 @@
+package studyit;
+
 public enum Mode {
     MENU,
     BOOKMARK,

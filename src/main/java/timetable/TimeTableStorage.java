@@ -10,10 +10,10 @@ public class TimeTableStorage {
 
     private static File taskFile;
     private final String filePath;
-    private final String dirPath = "data";
 
     public TimeTableStorage(String filePath, DateList dateList) {
         // Creates data directory
+        String dirPath = "data";
         File fileDir = new File(dirPath);
 
         if (!fileDir.exists()) {
@@ -47,6 +47,7 @@ public class TimeTableStorage {
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
+        System.out.println(dateList.dateList.size());
     }
 
     public void writeFile(Event event) {

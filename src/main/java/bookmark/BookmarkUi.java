@@ -61,4 +61,26 @@ public class BookmarkUi {
         System.out.println("Please choose a category.");
     }
 
+    public void showEmptyLinkError() {
+        System.out.println("Empty link :(");
+    }
+
+    public void showInvalidLinkError() {
+        System.out.println("Not a valid link, please enter a valid link.");
+    }
+
+    public void showInvalidNumberError() {
+        System.out.println("Enter a number");
+    }
+
+    public void showModeChangeMessage(ArrayList<BookmarkCategory> categories, int categoryNumberInList) {
+        System.out.println("You are now in " + categories.get(categoryNumberInList).getName() + " category");
+        System.out.println("The following are your current bookmarks in this category");
+        showBookmarkLinkList(categories.get(categoryNumberInList).getLinks());
+        System.out.println("Add new bookmarks by using \"add <link>\"");
+    }
+
+    public void showAlreadyInModeMessage() {
+        System.out.println("Already in chosen Category");
+    }
 }
