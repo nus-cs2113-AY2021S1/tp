@@ -25,6 +25,11 @@ public class DineInfoCommand extends Command {
         }
         printLine();
         ArrayList<FoodPlace> foodPlaceList = FoodPlacesData.getDiningOptionsInNus();
+        checkFoodPlace(foodPlaceList);
+        printLine();
+    }
+
+    public void checkFoodPlace(ArrayList<FoodPlace> foodPlaceList) {
         ArrayList<DiningOptions> searchList = new ArrayList<>();
         for (FoodPlace foodPlace : foodPlaceList) {
             ArrayList<DiningOptions> dineInfoList = foodPlace.getInfo();
@@ -35,6 +40,10 @@ public class DineInfoCommand extends Command {
                 }
             }
         }
+        printDineInfoResult(searchList);
+    }
+
+    public void printDineInfoResult(ArrayList<DiningOptions> searchList) {
         if (searchList.size() == 0) {
             System.out.println("No match found.");
         } else {
@@ -43,7 +52,6 @@ public class DineInfoCommand extends Command {
                 System.out.println("\n" + item.toString());
             }
         }
-        printLine();
     }
 
 }
