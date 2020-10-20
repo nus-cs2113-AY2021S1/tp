@@ -1,5 +1,6 @@
 package seedu.duke.filters;
 
+import seedu.duke.constants.FilterMessages;
 import seedu.duke.wordlist.WordList;
 import seedu.duke.words.Words;
 
@@ -9,6 +10,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+/**
+ * A class containing algorithms that execute the filter.
+ */
 public class WordsFilter {
 
     public static ArrayList<Words> filteredWords = new ArrayList<>();
@@ -93,7 +97,7 @@ public class WordsFilter {
                     }
                     break;
                 default:
-                    LOGGER.log(Level.WARNING, "invalid filter type in the code");
+                    LOGGER.log(Level.WARNING, FilterMessages.INVALID_FILTER_CODE);
                 }
             }
             if (!keepsWord) {
@@ -123,7 +127,7 @@ public class WordsFilter {
                     }
                     break;
                 default:
-                    LOGGER.log(Level.WARNING, "invalid filterType in the code");
+                    LOGGER.log(Level.WARNING, FilterMessages.INVALID_FILTER_CODE);
                 }
             }
         }
@@ -139,9 +143,9 @@ public class WordsFilter {
 
     private static void printFilterResult() {
         if (filteredWords.size() == 0) {
-            System.out.println("Filter returns no result!!");
+            System.out.println(FilterMessages.NO_FILTER_RESULT);
         } else {
-            System.out.println("Words filtered by indicated type are: ");
+            System.out.println(FilterMessages.FILTER_MESSAGE);
             for (Words word : filteredWords) {
                 System.out.println(word.getDescription() + ": " + word.getDefinition());
             }

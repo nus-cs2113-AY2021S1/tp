@@ -1,5 +1,6 @@
 package seedu.duke.filters;
 
+import seedu.duke.constants.Tags;
 import seedu.duke.exceptions.FilterCommandException;
 
 import java.util.ArrayList;
@@ -20,14 +21,14 @@ public class FilterCommandSlicer {
      */
     public static String[] getTargetedWordType(String command) throws FilterCommandException {
         ArrayList<String> types = new ArrayList<>();
-        if (command.toLowerCase().contains(" -noun")) {
-            types.add("noun");
+        if (command.toLowerCase().contains(Tags.NOUN_TAG)) {
+            types.add(Tags.NOUN);
         }
-        if (command.toLowerCase().contains(" -verb")) {
-            types.add("verb");
+        if (command.toLowerCase().contains(Tags.VERB_TAG)) {
+            types.add(Tags.VERB);
         }
-        if (command.toLowerCase().contains(" -adjective")) {
-            types.add("adjective");
+        if (command.toLowerCase().contains(Tags.ADJECTIVE_TAG)) {
+            types.add(Tags.ADJECTIVE);
         }
 
         if (types.size() == 0) {
@@ -36,27 +37,31 @@ public class FilterCommandSlicer {
         return types.toArray(new String[0]);
     }
 
+    /**
+     * Gets string tags needs filtering in the word list.
+     *
+     * @param command String that contains the strings need filtering.
+     * @return Array of strings referring to the strings need filtering.
+     * @throws FilterCommandException When no string tag is found or
+     * when the user enters the dash without specifying the targeted string.
+     */
     public static String[] getTargetedStringTags(String command) throws FilterCommandException {
         ArrayList<String> targetedStrings = new ArrayList<>();
-        int index = command.indexOf("-");
+        int index = command.indexOf(Tags.DASH);
         while (index >= 0) {
-            int nextIndex = command.indexOf("-", index + 1);
+            int nextIndex = command.indexOf(Tags.DASH, index + 1);
+            String stringToAdd;
             if (nextIndex != -1) {
-                String stringToAdd = command.substring(index + 1, nextIndex).trim();
-                if (stringToAdd.length() != 0) {
-                    targetedStrings.add(stringToAdd);
-                } else {
-                    throw new FilterCommandException();
-                }
+                stringToAdd = command.substring(index + 1, nextIndex).trim();
             } else {
-                String stringToAdd = command.substring(index + 1).trim();
-                if (stringToAdd.length() != 0) {
-                    targetedStrings.add(stringToAdd);
-                } else {
-                    throw new FilterCommandException();
-                }
+                stringToAdd = command.substring(index + 1).trim();
             }
-            index = command.indexOf("-", index + 1);
+            if (stringToAdd.length() != 0) {
+                targetedStrings.add(stringToAdd);
+            } else {
+                throw new FilterCommandException();
+            }
+            index = command.indexOf(Tags.DASH, index + 1);
         }
 
         if (targetedStrings.size() == 0) {
