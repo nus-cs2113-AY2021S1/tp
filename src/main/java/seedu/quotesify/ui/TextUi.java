@@ -229,8 +229,8 @@ public class TextUi {
         System.out.println(message);
     }
 
-    public void printAddRatingToBook(int ratingScore, String titleOfBookToRate) {
-        System.out.printf((UiMessage.ADD_RATING_MESSAGE) + "\n", titleOfBookToRate, ratingScore);
+    public void printAddRatingToBook(int ratingScore, String titleOfBookToRate, String authorOfBookToRate) {
+        System.out.printf((UiMessage.ADD_RATING_MESSAGE) + "\n", titleOfBookToRate, authorOfBookToRate, ratingScore);
     }
 
     public void printAllRatings(RatingList ratingList) {
@@ -246,21 +246,21 @@ public class TextUi {
         System.out.printf((UiMessage.LIST_SPECIFIED_RATING_MESSAGE) + "\n", ratingToPrint);
         for (Rating rating : ratings.getList()) {
             if (rating.getRating() == ratingToPrint) {
-                System.out.println(rating.getTitleOfRatedBook());
+                System.out.println(rating.toString());
             }
         }
     }
 
-    public void printDeleteRating(String bookTitle) {
-        System.out.printf((UiMessage.DELETE_RATING_MESSAGE) + "\n", bookTitle);
+    public void printDeleteRating(String bookTitle, String author) {
+        System.out.printf((UiMessage.DELETE_RATING_MESSAGE) + "\n", bookTitle, author);
     }
 
-    public void printEditRatingToBook(int ratingScore, String titleToUpdate) {
-        System.out.printf((UiMessage.EDIT_RATING_MESSAGE) + "\n", titleToUpdate, ratingScore);
+    public void printEditRatingToBook(int ratingScore, String title, String author) {
+        System.out.printf((UiMessage.EDIT_RATING_MESSAGE) + "\n", title, author, ratingScore);
     }
 
-    public void printFoundRating(Rating rating, String ratingToFind) {
-        System.out.printf((UiMessage.FIND_RATING_MESSAGE) + "\n", ratingToFind);
+    public void printFoundRating(Rating rating, String title, String author) {
+        System.out.printf((UiMessage.FIND_RATING_MESSAGE) + "\n", title, author);
         System.out.println(rating.toString());
     }
 
@@ -367,7 +367,7 @@ public class TextUi {
         System.out.println(System.lineSeparator() + "~ Your friends from Quotesify");
     }
 
-    public void printListOfAddComnmands() {
+    public void printListOfAddCommands() {
         System.out.println("Here is a list of Add commands you can do:\n");
         System.out.println(UiMessage.ADD_BOOK_COMMAND);
         System.out.println(UiMessage.ADD_BOOKMARK_COMMAND);

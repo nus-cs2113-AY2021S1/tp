@@ -225,8 +225,10 @@ public class Storage {
 
     private Rating parseRatingObject(JSONObject json) throws NullPointerException {
         String title = (String) json.get("titleOfRatedBook");
+        String name = (String) json.get("authorOfRatedBook");
+        Author author = new Author(name);
         long rating = (long) json.get("rating");
-        return new Rating((int) rating, title);
+        return new Rating(new Book(author, title), (int) rating);
     }
 
     private Bookmark parseBookmarkObject(JSONObject json) throws NullPointerException {
