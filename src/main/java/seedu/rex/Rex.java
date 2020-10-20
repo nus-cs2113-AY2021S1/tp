@@ -1,6 +1,7 @@
 package seedu.rex;
 
 import seedu.rex.commands.Command;
+import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
@@ -19,6 +20,7 @@ import java.util.logging.Logger;
 public class Rex {
 
     private static PatientList patients;
+    private static DoctorList doctors;
     public static Logger logger;
     private final Storage storage;
     private final Ui ui;
@@ -38,16 +40,31 @@ public class Rex {
 
         try {
             logger.log(Level.INFO, "going to load patients");
-            patients = new PatientList(storage.load());
+            patients = new PatientList(storage.loadPatients());
             logger.log(Level.INFO, "loaded patients");
+        } catch (RexException e) {
+            logger.log(Level.INFO, "No patients found. Creating new patients list.");
+            ui.showLoadingError();
+            patients = new PatientList();
+        }
+
+        try {
+            logger.log(Level.INFO, "going to load appointments");
             appointments = storage.loadAppointments();
             logger.log(Level.INFO, "loaded appointments");
         } catch (RexException e) {
-            logger.log(Level.INFO, "patients loading error");
-            ui.showLoadingError();
-            patients = new PatientList();
-        } catch (FileNotFoundException e) {
             logger.log(Level.INFO, "No appointments found. Creating new appointments list.");
+            ui.showLoadingError();
+            appointments = new ArrayList<>();
+        }
+
+        try {
+            logger.log(Level.INFO, "going to load doctors");
+            doctors = new DoctorList(storage.loadDoctors());
+            logger.log(Level.INFO, "loaded doctors");
+        } catch (RexException e) {
+            logger.log(Level.INFO, "No appointments found. Creating new appointments list.");
+            ui.showLoadingError();
             appointments = new ArrayList<>();
         }
     }
@@ -58,7 +75,7 @@ public class Rex {
      * @param args Command line argument.
      */
     public static void main(String[] args) {
-        new Rex("data/patients.txt").run();
+        new Rex("data").run();
     }
 
     public static PatientList getPatients() {

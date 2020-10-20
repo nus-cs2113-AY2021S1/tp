@@ -49,6 +49,6 @@ public class EditCommand extends Command {
         assert index > -1 : "Invalid index!";
         ui.showLine();
         ui.showPatientEditted(patients.getPatientUsingIndex(index));
-        storage.save(patients);
+        storage.savePatients(patients);
     }
 }

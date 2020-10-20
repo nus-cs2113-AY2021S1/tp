@@ -7,7 +7,6 @@ import seedu.rex.data.hospital.Appointment;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
@@ -68,8 +67,6 @@ public class BookCommand extends Command {
             storage.saveAppointments(appointments);
         } catch (NumberFormatException e) {
             throw new RexException("Index error!");
-        } catch (IOException e) {
-            throw new RexException("File Write Error");
         }
 
 

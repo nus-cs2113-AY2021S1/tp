@@ -52,6 +52,6 @@ public class AddCommand extends Command {
         ui.showPatientAdded(patients.getPatientUsingIndex(patients.getSize() - 1));
 
         assert !patients.getPatients().isEmpty() : "No patients!";
-        storage.save(patients);
+        storage.savePatients(patients);
     }
 }

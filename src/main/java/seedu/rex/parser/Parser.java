@@ -13,6 +13,7 @@ import seedu.rex.commands.ListPatientsCommand;
 import seedu.rex.commands.RetrieveCommand;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
+import seedu.rex.data.hospital.Doctor;
 import seedu.rex.data.hospital.Patient;
 
 import java.time.LocalDate;
@@ -102,4 +103,10 @@ public class Parser {
     }
 
 
+    public static Doctor readDoctor(String line) {
+        assert line != null && !line.equals("") : "No doctors to read!";
+
+        String name = line.trim();
+        return new Doctor(name);
+    }
 }
