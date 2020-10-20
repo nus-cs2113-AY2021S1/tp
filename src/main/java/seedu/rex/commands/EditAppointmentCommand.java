@@ -5,12 +5,9 @@ import seedu.rex.data.AppointmentList;
 import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
-import seedu.rex.data.hospital.Appointment;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.logging.Level;
 
 /**
@@ -20,7 +17,6 @@ public class EditAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "editappt";
     private final String trimmedCommand;
-
 
 
     public EditAppointmentCommand(String trimmedCommand) {

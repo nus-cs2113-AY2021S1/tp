@@ -10,7 +10,7 @@ import seedu.rex.ui.Ui;
 
 import java.util.logging.Level;
 
-/**a
+/**
  * Books appointments.
  */
 public class BookCommand extends Command {

@@ -103,10 +103,10 @@ public class Ui {
     /**
      * Prints a message to indicate successful editting of a patient.
      *
-     * @param patient The newly editted <code>Patient</code>.
+     * @param patient The newly edited <code>Patient</code>.
      */
-    public void showPatientEditted(Patient patient) {
-        printWithIndent("Patient successfully editted: ");
+    public void showPatientEdited(Patient patient) {
+        printWithIndent("Patient successfully edited: ");
         printWithIndent(patient.toString());
     }
 
@@ -223,8 +223,9 @@ public class Ui {
         showLine();
         return in.nextLine();
     }
+
     /**
-     * Gets appointment to be Editted.
+     * Gets appointment to be edited.
      *
      * @param appointments Arraylist of appointments.
      * @return User input.
