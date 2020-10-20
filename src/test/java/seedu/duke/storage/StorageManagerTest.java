@@ -165,7 +165,7 @@ class StorageManagerTest {
         assertEquals(allInvalidResult, expectedAllInvalidResult);
     }
 
-    // ========================== Watchlist Saving and Loading ==========================
+    // ========================== Script Reading ==========================
     @Test
     void testReadScriptFile() throws AniException {
         // Valid Script File

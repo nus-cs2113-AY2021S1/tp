@@ -4,6 +4,7 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.Workspace;
 import seedu.duke.human.User;
+import seedu.duke.logger.AniLogger;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.watchlist.Watchlist;
 
@@ -16,7 +17,7 @@ public class WatchlistCommand extends Command {
     private static final String LIST_OPTION = "l";
     private static final String SELECT_OPTION = "s";    // Categorized as a Modification option.
     private static final String DELETE_OPTION = "d";    // Categorized as a Modification option.
-    private static final Logger LOGGER = Logger.getLogger(WatchlistCommand.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistCommand.class.getName());
 
     private final String option;
     private final String optionInformation;
