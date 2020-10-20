@@ -3,23 +3,23 @@
 ## Table of Content
 1. [Setting up](#1-setting-up)
 1. [Design](#2-design)
-    1. Architecture
-    1. [UI component](#22-ui)
-    1. [Parser component](#23-parser)
-    1. Command component
-    1. User component
-    1. AnimeData component
-    1. Storage component
+<br/>&nbsp;2.1 [Architecture]()
+<br/>&nbsp;2.2 [UI component](#22-ui)
+<br/>&nbsp;2.3 [Parser component](#23-parser)
+<br/>&nbsp;2.4 [Command component]()
+<br/>&nbsp;2.5 [User component]()
+<br/>&nbsp;2.6 [AnimeData component]()
+<br/>&nbsp;2.7 [Storage component]()
 1. [Implementation](#3-implementation)
 1. [Produce scope](#4-product-scope)
-    1. Target user profile
-    1. Value proposition
+<br/>&nbsp;4.1 [Target user profile]()
+<br/>&nbsp;4.2 [Value proposition]()
 1. [User Stories](#5-user-stories)
 1. [Non-Functional Requirements](#6-non-functional-requirements)
 1. [Documentation, logging, testing, configuration, dev-ops](#7-documentation-logging-testing-configuration-dev-ops)
 1. [Glossary](#8-glossary)
 1. [Appendices](#9-appendices)
-    1. Instructions for manual testing
+<br/>&nbsp;9.1 [Instructions for manual testing]()
 
 
 ## 1. Setting up
