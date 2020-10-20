@@ -48,12 +48,12 @@ public class AddSlotCommand extends Command {
     /**
      * Adds the slot to the slot list and saves the slots list in the text file.
      *
-     * @param bookmarks
-     * @param timetable
-     * @param ui
-     * @param bookmarkStorage
-     * @param slotStorage
-     * @throws DukeException
+     * @param bookmarks The list of bookmarks
+     * @param timetable The timetable
+     * @param ui The user interface
+     * @param bookmarkStorage The storage for the bookmark list
+     * @param slotStorage The storage for the slot list  // ADD MORE COMMENTS
+     * @throws DukeException Some exception // ADD MORE COMMENTS
      */
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui, Storage bookmarkStorage,

@@ -68,7 +68,7 @@ public class Module {
 
     public boolean isModule(String moduleCode) {
         boolean isModule = false;
-        if (this.moduleCode.compareToIgnoreCase(moduleCode) == 0 ) {
+        if (this.moduleCode.compareToIgnoreCase(moduleCode) == 0) {
             isModule = true;
         }
         return isModule;

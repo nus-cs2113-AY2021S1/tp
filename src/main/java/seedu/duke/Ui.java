@@ -20,6 +20,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.fusesource.jansi.AnsiConsole;
+import static org.fusesource.jansi.Ansi.ansi;
+import static org.fusesource.jansi.Ansi.Color.WHITE;
+import static org.fusesource.jansi.Ansi.Color.BLACK;
+
+import static org.fusesource.jansi.Ansi.Color.CYAN;
+import static org.fusesource.jansi.Ansi.Color.BLUE;
+import static org.fusesource.jansi.Ansi.Color.RED;
+import static org.fusesource.jansi.Ansi.Color.GREEN;
+import static org.fusesource.jansi.Ansi.Color.YELLOW;
+
+
+
+
+
 /**
  * Represents the user interface on the command line and deals with interactions with the user.
  */
@@ -27,11 +42,34 @@ public class Ui {
     private static final String LINE = "____________________________________________________________\n";
     private Scanner scanner;
 
+    private String logo2 =
+            "                                                                                                 \n"
+            + "                                            ███████                                              \n"
+            + "                                      ██████████████████                                         \n"
+            + "                                    ███████████████████████                                      \n"
+            + "                                  ███████████████████████████                                    \n"
+            + "                                 ████             █████  █████                                   \n"
+            + "                                █████              █     ██████                                  \n"
+            + "                                █████              █     ██████                                  \n"
+            + "                                █████              █     ██████                                  \n"
+            + "                                 █████             ████  █████                                   \n"
+            + "                                  ███████████████████████████                                    \n"
+            + "                                   █████████████████████████                                     \n"
+            + "                                      ███████████████████                                        \n"
+            + "                                          ███████████                                            \n"
+            + "                                                                         ██                      \n"
+            + "█████████   ███████     ████████   ███████ ███████     █████     █████  █████   █████     █ ████ \n"
+            + "     ███  ██      ███  ██      ███ ██     ██     ██         ██  ██       ██   ██      ██  ██   ██\n"
+            + "   ███   ███       ██ ███       ██ ██     ██     ██  █████████  ███████  ██  ████████████ ██     \n"
+            + "███       ███     ███  ██      ███ ██     ██     ██  ██     ██        ██ ██   ██          ██     \n"
+            + "██████████   █████       ██████    ██     ██     ██   ████████  ███████   ███  ████████   ██     \n";
+
     /**
      * Constructs a new Ui instance.
      */
     public Ui() {
         scanner = new Scanner(System.in);
+        AnsiConsole.systemInstall();
     }
 
     /**
@@ -41,11 +79,11 @@ public class Ui {
      */
     public String readCommand() {
         if (Parser.getProgramMode() == 0) {
-            System.out.print("[Main Menu] Input: ");
+            System.out.print(ansi().fg(GREEN).a("[Main Menu] Input: ").reset());
         } else if (Parser.getProgramMode() == 1) {
-            System.out.print("[Bookmark mode] Input: ");
+            System.out.print(ansi().fg(BLUE).a("[Bookmark mode] Input: ").reset());
         } else if (Parser.getProgramMode() == 2) {
-            System.out.print("[Timetable mode] Input: ");
+            System.out.print(ansi().fg(YELLOW).a("[Timetable mode] Input: ").reset());
         } else {
             System.out.print("[An error has occurred] ");
         }
@@ -57,15 +95,29 @@ public class Ui {
         System.out.println(LINE + message + LINE);
     }
 
+    public void printRed(String message) {
+        System.out.println(LINE);
+        System.out.print(ansi().fg(RED).a(message).reset());
+        System.out.println(LINE);
+    }
+
+    public void clearScreen() {
+        System.out.print("\033[2J");
+    }
+
     /**
      * Prints a message after starting the program.
      */
     public void showWelcomeScreen() {
-        String logo = "___  ____ ____ _  _ ____ ____ ___ ____ ____ \n"
-                    + "  /  |  | |  | |\\/| |__| [__   |  |___ |__/ \n"
-                    + " /__ |__| |__| |  | |  | ___]  |  |___ |  \\\n";
-        String message = "Hello from\n" + logo;
-        print(message);
+        clearScreen();
+        System.out.println(LINE);
+        System.out.println("HELLO FROM:");
+
+        System.out.println(ansi().bg(WHITE));
+        System.out.println(ansi().fg(CYAN).a(logo2).reset());
+
+        System.out.println(ansi().bg(BLACK));
+        System.out.println(LINE);
     }
 
     /**
@@ -74,6 +126,7 @@ public class Ui {
     public void showExitScreen() {
         String message = "Bye. Hope to see you again soon!\n";
         print(message);
+        AnsiConsole.systemUninstall();
     }
 
     /**
@@ -81,7 +134,7 @@ public class Ui {
      */
     public void showLoadingError() {
         String message = "Data file not found\n";
-        print(message);
+        printRed(message);
     }
 
     /**
@@ -146,38 +199,38 @@ public class Ui {
     }
 
     private void printErrorWritingToFile() {
-        print("Error writing to file.\n");
+        printRed("Error writing to file.\n");
     }
 
     private void printUseIntegerAsInput() {
-        print("Command requires an integer input\n");
+        printRed("Command requires an integer input\n");
     }
 
 
     private void printUseValidBookmarkNumberMessage(String info) {
-        print("Please enter a valid index number between 1 and " + info + "\n");
+        printRed("Please enter a valid index number between 1 and " + info + "\n");
     }
 
     private void printErrorLaunchUrlMessage() {
-        print("Error launching url\n");
+        printRed("Error launching url\n");
     }
 
     private void printInvalidUrl() {
-        print("Invalid URL" + "\n" + "URL must start with either 'www.'"
+        printRed("Invalid URL" + "\n" + "URL must start with either 'www.'"
                 + " or 'https://' and have no spaces\n");
     }
 
     private void printInvalidAddBookmarkInputMessage() {
-        print("Invalid bookmark input\n"
+        printRed("Invalid bookmark input\n"
                 + "Format: add {module(optional)} {description} {URL}\n");
     }
 
     private void printEmptyBookmarkDescriptionMessage() {
-        print("Bookmark description required!\n");
+        printRed("Bookmark description required!\n");
     }
 
     private void printEmptyCommandMessage(String info) {
-        print("Please enter " + info + " with input!\n");
+        printRed("Please enter " + info + " with input!\n");
     }
 
     private void printUnknownInputMessage() {
@@ -205,24 +258,24 @@ public class Ui {
     }
 
     private void printUnknownModeMessage() {
-        print("Unknown mode input\n" + "Valid modes: bookmark, timetable\n");
+        printRed("Unknown mode input\n" + "Valid modes: bookmark, timetable\n");
     }
 
     private void printUnknownDayMessage() {
-        print("Unknown day input\n"
+        printRed("Unknown day input\n"
               + "Valid days: monday, tuesday, wednesday, thursday, friday, saturday, sunday\n");
     }
 
     private void printEmptyTimetableMessage() {
-        print("Timetable is empty\n");
+        printRed("Timetable is empty\n");
     }
 
     private void printInvalidSlotInput() {
-        print("Invalid slot input\n");
+        printRed("Invalid slot input\n");
     }
 
     private void printInvalidTimeFormat() {
-        print("Invalid time format\n");
+        printRed("Invalid time format\n");
     }
 
 }

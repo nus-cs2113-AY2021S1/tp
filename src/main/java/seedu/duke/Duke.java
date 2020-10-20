@@ -34,11 +34,12 @@ public class Duke {
 
         timetable = new Timetable();
 
-//        try {
-//            slots = new SlotList(slotStorage.load());
-//        } catch (DukeException e) {
-//            slots = new SlotList();
-//        }
+        /*      try {
+            slots = new SlotList(slotStorage.load());
+        } catch (DukeException e) {
+            slots = new SlotList();
+        }
+        */
     }
 
     /**
