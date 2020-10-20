@@ -31,7 +31,7 @@ public class UiMessage {
     public static final String NO_ITEMS_IN_CATEGORY_MESSAGE = "There are no items tagged as [%s].";
     public static final String EDIT_CATEGORY_MESSAGE = "The category has been changed from [%s] to [%s]!";
     public static final String ADD_RATING_MESSAGE = "You have just rated [%s by %s] %d star!";
-    public static final String DELETE_RATING_MESSAGE = "Rating for [%s] has been deleted!";
+    public static final String DELETE_RATING_MESSAGE = "Rating for [%s by %s] has been deleted!";
     public static final String LIST_ALL_RATINGS_MESSAGE = "Planning to recommend some books?"
             + " Here are your rated books!";
     public static final String LIST_NO_RATINGS_FOUND_MESSAGE = "None of the books are rated yet!";
@@ -77,7 +77,7 @@ public class UiMessage {
     public static final String DELETE_QUOTE_COMMAND = "Delete quote:" + "delete -q QUOTE_NUMBER";
     public static final String DELETE_CATEGORY_COMMAND = "Delete category: "
             + "delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}";
-    public static final String DELETE_RATING_COMMAND = "Delete rating: " + "delete -r BOOK_TITLE";
+    public static final String DELETE_RATING_COMMAND = "Delete rating: " + "delete -r BOOK_TITLE /by AUTHOR";
     public static final String DELETE_TODO_COMMAND = "Delete task: " + "delete -t TASK_NUMBER";
 
     public static final String EDIT_BOOK_COMMAND = "";

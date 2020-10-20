@@ -13,6 +13,7 @@ import seedu.quotesify.quote.Quote;
 import seedu.quotesify.quote.QuoteList;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
+import seedu.quotesify.rating.RatingParser;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.todo.ToDo;
 import seedu.quotesify.todo.ToDoList;
@@ -85,15 +86,27 @@ public class DeleteCommand extends Command {
     }
 
     private void deleteRating(RatingList ratings, TextUi ui) {
-        String bookTitle = information.trim();
-        if (bookTitle.isEmpty()) {
-            System.out.println(ERROR_RATING_MISSING_BOOK_TITLE);
+        if (information.isEmpty()) {
+            System.out.println(ERROR_RATING_MISSING_INPUTS);
+            return;
+        }
+
+        String[] titleAndAuthor;
+        String title;
+        String author;
+        try {
+            titleAndAuthor = information.split(Command.FLAG_AUTHOR, 2);
+            title = titleAndAuthor[0].trim();
+            author = titleAndAuthor[1].trim();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(RatingParser.ERROR_INVALID_FORMAT_RATING);
             return;
         }
 
         Rating ratingToBeDeleted = null;
         for (Rating rating : ratings.getList()) {
-            if (rating.getTitleOfRatedBook().equals(bookTitle)) {
+            if (rating.getTitleOfRatedBook().equals(title)
+                    && rating.getAuthorOfRatedBook().equals(author)) {
                 ratingToBeDeleted = rating;
                 break;
             }
@@ -103,8 +116,9 @@ public class DeleteCommand extends Command {
             System.out.println(ERROR_RATING_NOT_FOUND);
             return;
         }
+        ratingToBeDeleted.getRatedBook().setRating(0);
         ratings.delete(ratings.getList().indexOf(ratingToBeDeleted));
-        ui.printDeleteRating(bookTitle);
+        ui.printDeleteRating(title, author);
     }
 
     private void deleteBook(BookList books, TextUi ui) {
@@ -112,6 +126,7 @@ public class DeleteCommand extends Command {
             int bookIndex = Integer.parseInt(information.trim()) - 1;
             Book book = books.getBook(bookIndex);
             String bookTitle = book.getTitle();
+            String author = book.getAuthor().getName();
 
             // clear bookmarks before deleting the entire book.
             BookmarkList bookmarks = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
@@ -119,11 +134,10 @@ public class DeleteCommand extends Command {
 
             // delete ratings before deleting the entire book.
             RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
-            Rating ratingToBeDeleted;
             for (Rating rating : ratings.getList()) {
-                if (rating.getTitleOfRatedBook().equals(bookTitle)) {
-                    ratingToBeDeleted = rating;
-                    ratings.delete(ratings.getList().indexOf(ratingToBeDeleted));
+                if (rating.getTitleOfRatedBook().equals(bookTitle)
+                        && rating.getAuthorOfRatedBook().equals(author)) {
+                    ratings.delete(ratings.getList().indexOf(rating));
                     break;
                 }
             }

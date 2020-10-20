@@ -229,8 +229,8 @@ public class TextUi {
         }
     }
 
-    public void printDeleteRating(String bookTitle) {
-        System.out.printf((UiMessage.DELETE_RATING_MESSAGE) + "\n", bookTitle);
+    public void printDeleteRating(String bookTitle, String author) {
+        System.out.printf((UiMessage.DELETE_RATING_MESSAGE) + "\n", bookTitle, author);
     }
 
     public void printEditRatingToBook(int ratingScore, String titleToUpdate) {

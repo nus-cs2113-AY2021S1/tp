@@ -8,11 +8,13 @@ public class Rating implements JsonSerializer {
     private String titleOfRatedBook;
     private String authorOfRatedBook;
     private int rating;
+    private Book ratedBook;
 
-    public Rating(String titleOfRatedBook, String authorOfRatedBook, int rating) {
-        this.titleOfRatedBook = titleOfRatedBook;
-        this.authorOfRatedBook = authorOfRatedBook;
+    public Rating(Book ratedBook, int rating) {
+        titleOfRatedBook = ratedBook.getTitle();
+        authorOfRatedBook = ratedBook.getAuthor().getName();
         this.rating = rating;
+        this.ratedBook = ratedBook;
     }
 
     public String getTitleOfRatedBook() {
@@ -25,6 +27,10 @@ public class Rating implements JsonSerializer {
 
     public int getRating() {
         return rating;
+    }
+
+    public Book getRatedBook() {
+        return ratedBook;
     }
 
     @Override

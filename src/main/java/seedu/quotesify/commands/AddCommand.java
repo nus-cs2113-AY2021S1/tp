@@ -231,7 +231,7 @@ public class AddCommand extends Command {
         boolean isValid = (ratingScore != 0) && (bookToRate != null) && (!isRated);
         if (isValid) {
             bookToRate.setRating(ratingScore);
-            ratings.add(new Rating(title, author, ratingScore));
+            ratings.add(new Rating(bookToRate, ratingScore));
             ui.printAddRatingToBook(ratingScore, title, author);
         }
     }
