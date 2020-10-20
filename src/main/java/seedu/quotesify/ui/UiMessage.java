@@ -52,6 +52,7 @@ public class UiMessage {
     public static final String EMPTY_BOOKMARK_LIST_MESSAGE = "There are no bookmark created";
     public static final String DELETE_BOOKMARK_MESSAGE = "The bookmark [%s] has been removed!";
     public static final String EMPTY_BOOKMARK_COMMAND = "There is no info related to bookmark provided!";
+    public static final String ADD_QUOTE_MESSAGE = "The quote [%s] has been added!";
     public static final String LIST_ALL_QUOTES = "Here are all your quotes:";
     public static final String DELETE_QUOTE_MESSAGE = "The quote \"%s\" has been deleted!";
     public static final String LIST_NO_QUOTES_SAVED_MESSAGE = "You have no saved quotes!";
@@ -60,7 +61,7 @@ public class UiMessage {
     public static final String LIST_QUOTES_BY_REFERENCE_MESSAGE = "Here is a list of quotes from %s:";
     public static final String LIST_QUOTES_BY_AUTHOR_AND_REFERENCE_MESSAGE = "Here is a list of quotes from %s by %s:";
     public static final String PRINT_RANDOM_QUOTE = "Before you continue, here's something:";
-    public static final String EDIT_QUOTE_MESSAGE = "The quote has been edited from: [%s] to [%s]";
+    public static final String EDIT_QUOTE_MESSAGE = "The quote has been edited from: [%s] to [%s]!";
     public static final String FIND_QUOTE_SUCCESS = "Here are the results of my search:";
     public static final String FIND_QUOTE_FAIL = "None of your quotes matches the keyword";
     public static final String ADD_QUOTE_REFLECTION = "Reflection has been to quote: [%s]" + System.lineSeparator()

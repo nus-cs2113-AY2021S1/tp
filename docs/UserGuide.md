@@ -113,6 +113,159 @@ Expected outcome:
 The book [Harry Potter by JK Rowling] has been deleted!
 ~~~ 
 
+### Quote Management
+Came across an inspiring quote while reading, or a useful productivity tip from an article only to forget it after
+some time? Quotesify is here to help you store and track those all inspiring quotes while reminding you about them
+so you'll never forget them!  
+
+#### Add quotes: `add -q`
+Add a quote to your current list of quotes.
+
+Format: `add -q QUOTE {[/from REFERENCE] | [/by AUTHOR]}`
+* You must specify a quote.
+* Reference and Author fields are optional, both or either or can be used.
+
+Example of usage: `add -q Life is short, smile while you still have teeth`
+
+Expected outcome:
+```
+The quote ["Life is short, smile while you still have teeth"] has been added!
+```
+
+#### List all quotes: `list -q`
+List all existing quotes.
+
+Format: `list -q`
+
+Example of usage: `list -q`
+
+Expected outcome:
+```
+Here are all your quotes:
+1. "Life is short, smile while you still have teeth"
+2. "I am your father" - Darth Vadar
+3. "That's my spot!" - The Big Bang Theory
+4. "So everyone's supposed to sleep every single night now?" - Rick, (Rick and Morty)
+```
+
+#### List quotes from a specific reference: `list -q`
+List all quotes tagged under the specified reference title.
+
+Format: `list -q /from REFERENCE`
+
+Example of usage: `list -q /from Rick and Morty`
+
+Expected outcome:
+```
+Here is a list of quotes from Rick and Morty:
+"So everyone's supposed to sleep every single night now?" - Rick, (Rick and Morty)
+
+"Wubba Lubba Dub Dub!" - Rick and Morty
+```
+
+#### List quotes from a specific author: `list -q`
+List all quotes tagged under the specified author.
+
+Format: `list -q /by AUTHOR`
+
+Example of usage: `list -q /by Sheldon Cooper`
+
+Expected outcome:
+```
+Here is a list of quotes by Sheldon Cooper:
+"That's my spot!" - Sheldon Cooper, (The Big Bang Theory)
+
+"I'm not insane, my mother had me tested!" - Sheldon Cooper, (The Big Bang Theory)
+```
+
+#### List quotes from a specific reference and author: `list -q`
+List all quotes tagged under the specified reference and author.
+
+Format: `list -q /from REFERENCE /by AUTHOR`
+
+Example of usage: `list -q /from Rick and Morty /by Rick`
+
+Expected outcome:
+```
+Here is a list of quotes from RIck and Morty by Rick:
+"So everyone's supposed to sleep every single night now?" - Rick, (Rick and Morty)
+
+"Uncertainty is inherently unsustainable. Eventually, everything either is or isn't" - Rick, (Rick and Morty)
+```
+
+#### Delete a quote: `delete -q`
+Remove a quote from your current list of quotes.
+
+Format: `delete -q QUOTE_NUMBER`
+* You must specify a quote number.
+* The specified quote number should exist in Quotesify.
+
+Example of usage: `delete -q 1`
+
+Expected outcome:
+```
+The quote "Life is short, smile while you still have teeth" has been deleted!
+```
+
+#### Edit an existing quote: `edit -q`
+Edit an existing quote in your list of quotes.
+
+Format: `edit -q QUOTE_NUMBER /to UPDATED_QUOTE`
+
+Example of usage: `edit -q 1 /to Do you know the muffin man?`
+
+Expected outcome:
+```
+The quote has been edited from: ["I am your father" - Darth Vadar] to [Do you know the muffin man?]!
+```
+
+#### Finding quotes: `find -q`
+Finds existing quotes related to the keyword entered.
+
+Format: `find -q KEYWORD`
+* You must specify a keyword.
+
+Example of usage: `find -q sleep`
+
+Expected outcome:
+```
+Here are the results of my search:
+"I pretty much spend all day, every day just looking forward to go back to sleep"
+"Don't give up on your dreams, keep sleeping!" - Stranger
+```
+
+#### Adding reflection to a quote: `add -qr`
+Adds reflection or thoughts to an existing quote.
+
+Format: `add -qr QUOTE_NUMBER /reflect REFLECTION`
+* You must specify an existing quote number.
+* You must include the /reflect tag
+* Reflection field should not be empty
+
+Example of usage: `add -qr 1 /reflect I'm stumped, can't seem to find the muffin man anywhere`
+
+Expected outcome:
+```
+Reflection has been to quote: ["Do you know the muffin man?"]
+Reflection: [I'm stumped, can't seem to find the muffin man anywhere]
+```
+
+#### Listing reflection of a quote: `list -qr`
+Lists reflection of an existing quote.
+
+Format: `list -qr QUOTE_NUMBER`
+* You must specify an existing quote number.
+* Quote should have a reflection added to it
+
+Example of usage: `list -qr 1`
+
+Expected outcome:
+```
+Here is the reflection you are looking for!
+Quote: ["Do you know the muffin man?"]
+Reflection: [I'm stumped, can't seem to find the muffin man anywhere]
+```
+
 ### Category Management
 If you like customising your own list, you can do so by categorising your books and quotes.
 
