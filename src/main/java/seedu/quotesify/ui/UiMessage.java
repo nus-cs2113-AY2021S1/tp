@@ -24,8 +24,8 @@ public class UiMessage {
     public static final String LIST_BOOK_DETAIL_MESSAGE = "Here are the details of your book:";
     public static final String LIST_BOOKS_BY_AUTHOR_MESSAGE = "Here is a list of books by %s:";
     public static final String LIST_BOOKS_BY_KEYWORD_MESSAGE = "Here is a list of books with the keyword \"%s\":";
-    public static final String ADD_CATEGORY_MESSAGE = "I have tagged [%s] category to \"%s\"!";
-    public static final String DELETE_CATEGORY_MESSAGE = "I have removed [%s] category from \"%s\"!";
+    public static final String ADD_CATEGORY_MESSAGE = "I have tagged category [%s] to %s!";
+    public static final String DELETE_CATEGORY_MESSAGE = "I have removed category [%s] from %s!";
     public static final String CATEGORY_SIZE_MESSAGE = "You have a total of %d item(s) tagged as [%s].";
     public static final String LIST_CATEGORIES_MESSAGE = "Here is the list of all categories:";
     public static final String LIST_ALL_IN_CATEGORIES_MESSAGE = "Here are the list of items tagged as [%s]:";
