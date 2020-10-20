@@ -13,8 +13,7 @@ import commands.ReviseCommand;
 import commands.BackCommand;
 
 import manager.card.Card;
-import manager.chapter.Chapter;
-import manager.module.Module;
+import manager.history.History;
 
 import java.io.InputStream;
 import java.io.PrintStream;
