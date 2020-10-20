@@ -11,6 +11,8 @@ import seedu.duke.logic.commands.HelpCommand;
 import seedu.duke.logic.commands.AllBusCommand;
 import seedu.duke.logic.commands.ListStopsCommand;
 
+import java.lang.reflect.Array;
+
 public class Parser {
 
     private String userInput;
@@ -40,7 +42,7 @@ public class Parser {
             com = new RouteCommand(parts[1]);
             break;
         case "/routemap":
-            com = new RouteMapCommand();
+            com = new RouteMapCommand(parts[1]);
             break;
         case "/bus":
             com = new BusCommand(parts[1]);
