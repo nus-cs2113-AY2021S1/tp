@@ -1,10 +1,9 @@
 package seedu.duke.ui;
 
-import seedu.duke.event.DateStatusPair;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
+import seedu.duke.event.Goal;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -53,14 +52,17 @@ public class Ui {
 
     public void printRepeatList(Event event) {
         System.out.println(event + " is also on:");
-        ArrayList<DateStatusPair> repeatList = event.getRepeatList();
-        for (DateStatusPair pair : repeatList) {
-            System.out.println(pair);
+        ArrayList<Event> repeatEventList = event.getRepeatEventList();
+        for (Event e : repeatEventList) {
+            System.out.printf("%s ", e.getDate().format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
+            System.out.printf("%s ", e.getTime().format(DateTimeFormatter.ofPattern("K:mm a")));
+            System.out.printf("[%s]", e.getStatus());
+            System.out.println();
         }
         printDividerLine();
     }
 
-    public void printGoalMessage(Event goal) {
+    public void printGoalMessage(Goal goal) {
         if (goal != null) {
             System.out.println("Goal: " + goal);
         } else {
@@ -69,7 +71,7 @@ public class Ui {
         printDividerLine();
     }
 
-    public void printChangeGoalMessage(Event goal) {
+    public void printChangeGoalMessage(Goal goal) {
         if (goal != null) {
             System.out.println("Goal changed to: " + goal);
         } else {
@@ -111,7 +113,7 @@ public class Ui {
             int index = 1;
             for (Event e : events) {
                 System.out.println(index + ". " + e);
-                if (e.getRepeat() != null) {
+                if (e.getRepeatEventList() != null) {
                     System.out.println("   Repeated " + e.getRepeatType() + " for " + e.getRepeatCount() + " times.");
                 }
                 index++;

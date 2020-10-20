@@ -3,8 +3,8 @@ package seedu.duke.command;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
-import seedu.duke.event.Repeat;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.InvalidTimeUnitException;
 import seedu.duke.exception.MissingDeadlineRepeatException;
 import seedu.duke.exception.WrongNumberFormatException;
 import seedu.duke.exception.WrongNumberOfArgumentsException;
@@ -12,12 +12,15 @@ import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.ArrayList;
 
 /**
  * Command to repeat task.
  */
 public class RepeatCommand extends Command {
+    public static final String DAILY = "DAILY";
+    public static final String WEEKLY = "WEEKLY";
+    public static final String MONTHLY = "MONTHLY";
     private static final String COMMANDTYPE_LIST = "list";
     private static final String COMMANDTYPE_ADD = "add";
     private static final String COMMANDTYPE_ERROR = "error";
@@ -136,11 +139,40 @@ public class RepeatCommand extends Command {
         if (startDate == null) {
             throw new MissingDeadlineRepeatException();
         }
-        LocalTime startTime = eventToRepeat.getTime();
+        String repeatType = words[2];
         int count = Integer.parseInt(words[3]);
-        Repeat repeat = new Repeat(startDate, startTime, words[2], count);
-        eventToRepeat.setRepeat(repeat);
+        repeat(eventToRepeat, startDate, repeatType, count);
         ui.printRepeatAdd(eventToRepeat);
+    }
+
+    private void repeat(Event eventToRepeat, LocalDate startDate, String repeatType, int count) throws DukeException {
+        ArrayList<Event> repeatEventList = new ArrayList<>();
+        for (int i = 1; i <= count; i++) {
+            LocalDate repeatDate;
+            switch (repeatType) {
+            case MONTHLY:
+                repeatDate = startDate.plusMonths(i);
+                break;
+            case WEEKLY:
+                repeatDate = startDate.plusWeeks(i);
+                break;
+            case DAILY:
+                repeatDate = startDate.plusDays(i);
+                break;
+            default:
+                throw new InvalidTimeUnitException(repeatType);
+            }
+            eventToRepeat.setRepeatType(repeatType);
+            Event repeatEvent;
+            try {
+                repeatEvent = eventToRepeat.clone();
+            } catch (CloneNotSupportedException e) {
+                throw new DukeException("Cant clone");
+            }
+            repeatEvent.setDate(repeatDate);
+            repeatEventList.add(repeatEvent);
+        }
+        eventToRepeat.setRepeatEventList(repeatEventList);
     }
 
     private void executeNull(UserData data, Ui ui, Storage storage) {
