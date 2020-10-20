@@ -2,32 +2,40 @@
 
 ## Table of Content
 1. [Setting up](#1-setting-up)
-1. [Design](#2-design)
-<br/>&nbsp;2.1 [Architecture]()
+2. [Design](#2-design)
+<br/>&nbsp;2.1 [Architecture](#21-architecture)
 <br/>&nbsp;2.2 [UI component](#22-ui)
 <br/>&nbsp;2.3 [Parser component](#23-parser)
 <br/>&nbsp;2.4 [Command component]()
 <br/>&nbsp;2.5 [User component]()
 <br/>&nbsp;2.6 [AnimeData component]()
-<br/>&nbsp;2.7 [Storage component]()
-1. [Implementation](#3-implementation)
-1. [Produce scope](#4-product-scope)
+<br/>&nbsp;2.7 [StorageManager component](#25-storagemanager)
+3. [Implementation](#3-implementation)
+4. [Produce scope](#4-product-scope)
 <br/>&nbsp;4.1 [Target user profile]()
 <br/>&nbsp;4.2 [Value proposition]()
-1. [User Stories](#5-user-stories)
-1. [Non-Functional Requirements](#6-non-functional-requirements)
-1. [Documentation, logging, testing, configuration, dev-ops](#7-documentation-logging-testing-configuration-dev-ops)
-1. [Glossary](#8-glossary)
-1. [Appendices](#9-appendices)
+5. [User stories](#5-user-stories)
+6. [Non-functional requirements](#6-non-functional-requirements)
+7. [Documentation, logging, testing, configuration, dev-ops](#7-documentation-logging-testing-configuration-dev-ops)
+8. [Glossary](#8-glossary)
+9. [Appendices](#9-appendices)
 <br/>&nbsp;9.1 [Instructions for manual testing]()
 
 
-## 1. Setting up
-Please take a look at [SettingUp.md](SettingUp.md) for more information on getting started.
+## 1. Setting up and getting started
+Please take a look [here](SettingUp.md) for more information on setting up and getting started.
 
 ## 2. Design 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+### 2.1 Architecture
+
+![Architectural Diagram](images/Architectural-Class-Diagram.png)
+
+The `Main` class contains the `main` and `run` method.
+It is responsible for initializing the various components and loading of any saved data into AniChan.
+* At launch: Initializes the various components in the correct sequence, 
+connects them together, and loads any saved data into AniChan.
+* At shut down: AniChan invokes any clean up methods where necessary.
 
 The rest of AniChan consists of 6 components:
 - `UI`: Manages the user interface of AniChan
@@ -59,8 +67,19 @@ API: `Parser.java`
 
 Given below is the Sequence Diagram for interactions within the `Parser` component for the execution of `browse -p 1` API call
 
+### 2.5 StorageManager
+![StorageManager Diagram](images/StorageManager-Class-Diagram.png)
 
+API: `StorageManager.java`
 
+The `StorageManager `component:
+* Can save user data in `.txt`format and read it back.
+* Can save the watchlist data in `.txt`format and read it back.
+* Can save the bookmark data in `.txt` format and read it back.
+* Can read script files that are in `.txt` format.
+
+These data are saved in `.txt` format so advanced users will be able to  
+see and manipulate these saved data easily.
 
 
 ## 3. Implementation
@@ -76,10 +95,11 @@ Given below is the Sequence Diagram for interactions within the `Parser` compone
 
 ## 5. User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+| Version |  As a ... | I want to ... | So that I can … |
+| -------- | ---------- | --------------- |------------------ |
+| v1.0 | user | manage my own watchlist to keep track of animes | be aware of the animes that I have watched or intending to watch |
+| v1.0 | user | store my own anime watching information | I do not have to remember these details and could see them whenever I open the application |
+| v2.0 | translator | estimate the amount of time needed to translate a script | give my clients a good estimate of how much time I need |
 
 ## 6. Non-Functional Requirements
 
