@@ -16,6 +16,7 @@ public class BookmarkParser extends CommandParser {
     public static final String DELETE_PARAM = "d";
     public static final String EPISODE_PARAM = "e";
     public static final String LIST_PARAM = "l";
+    public static final String DASH_PARAM ="-";
     private static final String PARAMETER_ERROR_HEADER = "Parameter :";
     private static final String DESCRIPTION_ERROR_HEADER = "Description :";
     private static final String BOOKMARK_LOAD_ERROR_HEADER = "Could not load bookmark command :";
@@ -106,7 +107,7 @@ public class BookmarkParser extends CommandParser {
     }
 
     private String[] getSplitDescription(String description) throws AniException {
-        String[] paramGiven = description.split("-");
+        String[] paramGiven = description.split(DASH_PARAM);
         if (paramGiven.length > 2) {
             String invalidDescription = DESCRIPTION_ERROR_HEADER + description + TOO_MUCH_FIELDS;
             LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidDescription);

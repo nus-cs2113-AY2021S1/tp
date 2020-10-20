@@ -16,6 +16,16 @@ import java.util.logging.Logger;
 
 public class BookmarkAnimeCommand extends Command {
 
+    private static final String ANIME_ID_ERROR = " Anime index is outside AnimeData range (too big or too small).";
+    private static final String BOOKMARK_ID_ERROR = " Bookmark index is outside Bookmark range (too big or too small).";
+    private static final String BOOKMARK_EXECUTE_ERROR_HEADER = "Bookmark command execute failed:";
+    private static final String BOOKMARK_ERROR_MESSAGE = "provided is invalid.";
+    private static final String BOOKMARK_EXECUTE_EDIT = "Executing Edit Episode.";
+    private static final String BOOKMARK_EXECUTE_ADD = "Executing Add Anime to Bookmark.";
+    private static final String BOOKMARK_EXECUTE_DELETE = "Executing Delete Anime from Bookmark.";
+    private static final String BOOKMARK_EXECUTE_LIST = "Executing List all anime in Bookmark.";
+    private static final String BOOKMARK_EXECUTE_SUCCESS = "Execute Bookmark command successful.";
+    private static final String BOOKMARK_LIST_HEADER = "Listing all anime in bookmark:";
     private int bookmarkIndex;
     private int animeIndex;
     private int bookmarkEpisode;
@@ -36,42 +46,42 @@ public class BookmarkAnimeCommand extends Command {
         switch (bookmarkAction) {
         case BookmarkParser
                 .EPISODE_PARAM:
-            LOGGER.log(Level.INFO, "Executing Edit Episode.");
-            result = editBookmarkEpisode(animeData,workspace);
+            LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_EDIT);
+            result = editBookmarkEpisode(animeData, workspace);
             storageManager.saveBookmark(workspace.getName(), bookmark);
             break;
         case BookmarkParser
                 .ADD_PARAM:
-            LOGGER.log(Level.INFO, "Executing Add Anime to Bookmark.");
+            LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_ADD);
             result = addBookmarkEntry(animeData, workspace);
             storageManager.saveBookmark(workspace.getName(), bookmark);
             break;
         case BookmarkParser
                 .DELETE_PARAM:
-            LOGGER.log(Level.INFO, "Executing Delete Anime from Bookmark.");
+            LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_DELETE);
             result = deleteBookmarkEntry(animeData, workspace);
             storageManager.saveBookmark(workspace.getName(), bookmark);
             break;
         case BookmarkParser
                 .LIST_PARAM:
-            LOGGER.log(Level.INFO, "Executing List all anime in Bookmark.");
-            result = "Listing all anime in bookmark:";
+            LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_LIST);
+            result = BOOKMARK_LIST_HEADER;
             String bookmarkList = user.getActiveWorkspace().getBookmarkListInString(animeData);
             result += bookmarkList;
             break;
         default:
             break;
         }
-        LOGGER.log(Level.INFO, "Execute Bookmark command successful.");
+        LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_SUCCESS);
         return result;
     }
 
     private String deleteBookmarkEntry(AnimeData animeData, Workspace workspace) throws AniException {
         String result;
         if (bookmarkIndex > workspace.getBookmarkSize() || bookmarkIndex <= 0) {
-            String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + "provided is invalid."
-                    + System.lineSeparator() + " Bookmark index is outside Bookmark range (too big or too small).";
-            LOGGER.log(Level.WARNING, "Bookmark command execute failed:" + invalidBookmarkIndex);
+            String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + BOOKMARK_ERROR_MESSAGE
+                    + System.lineSeparator() + BOOKMARK_ID_ERROR;
+            LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidBookmarkIndex);
             throw new AniException(invalidBookmarkIndex);
         }
         Anime animeToDelete = workspace.getAnimeFromBookmark(animeData, bookmarkIndex - 1);
@@ -84,9 +94,9 @@ public class BookmarkAnimeCommand extends Command {
     private String addBookmarkEntry(AnimeData animeData, Workspace workspace) throws AniException {
         String result;
         if (animeIndex > animeData.getSize() || animeIndex <= 0) {
-            String invalidAnimeIndex = "Anime index " + animeIndex + "provided is invalid."
-                    + System.lineSeparator() + " Anime index is outside AnimeData range (too big or too small).";
-            LOGGER.log(Level.WARNING, "Bookmark command execute failed:" + invalidAnimeIndex);
+            String invalidAnimeIndex = "Anime index " + animeIndex + BOOKMARK_ERROR_MESSAGE
+                    + System.lineSeparator() + ANIME_ID_ERROR;
+            LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidAnimeIndex);
             throw new AniException(invalidAnimeIndex);
         }
 
@@ -98,9 +108,9 @@ public class BookmarkAnimeCommand extends Command {
 
     private String editBookmarkEpisode(AnimeData animeData, Workspace workspace) throws AniException {
         if (bookmarkIndex > workspace.getBookmarkSize() || bookmarkIndex <= 0) {
-            String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + " provided is invalid."
-                    + System.lineSeparator() + " Bookmark index is outside Bookmark range (too big or too small).";
-            LOGGER.log(Level.WARNING, "Bookmark command execute failed:" + invalidBookmarkIndex);
+            String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + BOOKMARK_ERROR_MESSAGE
+                    + System.lineSeparator() + BOOKMARK_ID_ERROR;
+            LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidBookmarkIndex);
             throw new AniException(invalidBookmarkIndex);
         }
         String result;
