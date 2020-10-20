@@ -18,9 +18,9 @@ public class Parser {
     /**
      * Parses user inputs.
      *
-     * @param input user input
+     * @param input   user input
      * @param modList module list
-     * @param name name entered by the user
+     * @param name    name entered by the user
      * @param storage storage object to load and store data
      * @param toPrint whether the UI should print the output
      */
@@ -84,9 +84,9 @@ public class Parser {
                 exit = true;
             }
             break;
-       //Please update accordingly
+        //Please update accordingly
         case "breakdown":
-            ui.printBreakDownAnalysis(modList,1);
+            ui.printBreakDownAnalysis(modList, 1);
             break;
         default:
             assert toPrint : "toPrint should be true";

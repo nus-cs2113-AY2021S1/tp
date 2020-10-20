@@ -145,7 +145,7 @@ public class Ui {
         System.out.println(ENTER_HELP);
     }
 
-    public void printBreakDownAnalysis (ModuleList modList, int week) {
+    public void printBreakDownAnalysis(ModuleList modList, int week) {
         ViewTimeBreakDownAnalysis breakDown = new ViewTimeBreakDownAnalysis();
         breakDown.printTimeBreakDownAndAnalysis(modList, week);
     }

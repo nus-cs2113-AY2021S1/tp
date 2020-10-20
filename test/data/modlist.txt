@@ -52,3 +52,17 @@ addExp CS3030 4
 deleteExp CS3030
 addMod CS5000
 deleteMod CS5000
+addmod CS3030
+addtime CS3030 4 4
+minustime CS3030 2 4
+addExp CS3030 4
+deleteExp CS3030
+addMod CS5000
+deleteMod CS5000
+addmod CS3030
+addtime CS3030 4 4
+minustime CS3030 2 4
+addExp CS3030 4
+deleteExp CS3030
+addMod CS5000
+deleteMod CS5000
