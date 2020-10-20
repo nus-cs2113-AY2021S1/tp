@@ -21,6 +21,7 @@ public class CreateAppointmentCommand extends Command {
 
     /**
      * Creates appointment using date given.
+     *
      * @param patients     PatientList object.
      * @param appointments AppointmentList object.
      * @param ui           Ui object.

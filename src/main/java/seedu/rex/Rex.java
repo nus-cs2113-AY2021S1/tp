@@ -5,12 +5,10 @@ import seedu.rex.data.AppointmentList;
 import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
-import seedu.rex.data.hospital.Appointment;
 import seedu.rex.parser.Parser;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

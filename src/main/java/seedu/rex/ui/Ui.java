@@ -11,7 +11,6 @@ import seedu.rex.storage.Storage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**

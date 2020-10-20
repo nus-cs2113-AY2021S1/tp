@@ -15,7 +15,8 @@ public class ExitCommand extends Command {
 
     /**
      * Says goodbye to user and exits Rex.
-     *  @param patients     PatientList object.
+     *
+     * @param patients     PatientList object.
      * @param appointments ArrayList of appointment.
      * @param ui           Ui object.
      * @param storage      Storage object.
