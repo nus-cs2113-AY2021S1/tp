@@ -5,7 +5,6 @@ import seedu.rex.data.AppointmentList;
 import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.hospital.Appointment;
-import seedu.rex.data.hospital.Doctor;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 

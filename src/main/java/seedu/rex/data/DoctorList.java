@@ -65,7 +65,7 @@ public class DoctorList {
 
     public int getExistingDoctor(String name) {
         assert name != null && !name.equals("") : "Cannot get doctor of null name";
-        
+
         for (int i = 0; i < getSize(); i++) {
             if (getDoctorUsingIndex(i).getName().equals(name)) {
                 return i;
