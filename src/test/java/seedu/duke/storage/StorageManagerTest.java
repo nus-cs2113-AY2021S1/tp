@@ -20,6 +20,7 @@ class StorageManagerTest {
     private static final String EMPTY_WORKSPACE = "EmptyWorkspace";
     private static final String SOME_INVALID_WORKSPACE = "SomeInvalidWorkspace";
     private static final String ALL_INVALID_WORKSPACE = "AllInvalidWorkspace";
+    private static final String SCRIPT_FILE_NAME = "script.txt";
     private static final String INVALID_TEST_DIRECTORY = "a" + File.separator + "b" + File.separator + "c";
     private static final String VALID_TEST_DIRECTORY = "src" + File.separator + "test" + File.separator
                                                         + "data" + File.separator + "StorageManagerTest"
@@ -161,5 +162,25 @@ class StorageManagerTest {
         String expectedAllInvalidResult = "No watchlist loaded successfully (all invalid).";
         assertEquals(0, watchlistListForLoad.size());
         assertEquals(allInvalidResult, expectedAllInvalidResult);
+    }
+
+    // ========================== Watchlist Saving and Loading ==========================
+    @Test
+    void testReadScriptFile() throws AniException {
+        // Valid Script File
+        String fileString = validFileSM.readScript(VALID_WORKSPACE, SCRIPT_FILE_NAME);
+        assertNotNull(fileString);
+
+        // Invalid Directory
+        assertThrows(AniException.class, () -> {
+            invalidDirectorySM.readScript(VALID_WORKSPACE, SCRIPT_FILE_NAME);
+            fail();
+        });
+
+        // Empty Script File
+        assertThrows(AniException.class, () -> {
+            emptyFileSM.readScript(EMPTY_FILE_WORKSPACE, SCRIPT_FILE_NAME);
+            fail();
+        });
     }
 }
