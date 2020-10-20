@@ -26,17 +26,16 @@ public class DineCommand extends Command {
         printLine();
         int displayCount = 0;
         ArrayList<FoodPlace> foodPlaceList = FoodPlacesData.getDiningOptionsInNus();
-        for (FoodPlace foodPlace: foodPlaceList) {
+        for (FoodPlace foodPlace : foodPlaceList) {
             ArrayList<String> tempFacultyList = foodPlace.getFaculty();
-            for (String tempFaculty: tempFacultyList) {
-                if (tempFaculty.toLowerCase().contains(userFaculty.toLowerCase())){
+            for (String tempFaculty : tempFacultyList) {
+                if (tempFaculty.toLowerCase().contains(userFaculty.trim().toLowerCase())) {
                     ArrayList<DiningOptions> foodPlaceInfo = foodPlace.getInfo();
-                    if (foodPlaceInfo.size() == 0){
-                        System.out.println("There is no dining options in this faculty.");
-                    }
-                    else {
+                    if (foodPlaceInfo.size() == 0) {
+                        System.out.println("There are no dining options in this faculty.");
+                    } else {
                         System.out.println("The dining options available at " + tempFaculty + " are:");
-                        for (DiningOptions info: foodPlaceInfo) {
+                        for (DiningOptions info : foodPlaceInfo) {
                             displayCount++;
                             System.out.println(displayCount + ". " + info.getName());
                         }
