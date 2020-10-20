@@ -24,8 +24,13 @@ public class DineCommand extends Command {
             throw new CustomException(ExceptionType.INVALID_FACULTY);
         }
         printLine();
-        int displayCount = 0;
         ArrayList<FoodPlace> foodPlaceList = FoodPlacesData.getDiningOptionsInNus();
+        checkFaculty(foodPlaceList);
+        printLine();
+    }
+
+    public void checkFaculty(ArrayList<FoodPlace> foodPlaceList) {
+        int displayCount = 0;
         for (FoodPlace foodPlace : foodPlaceList) {
             ArrayList<String> tempFacultyList = foodPlace.getFaculty();
             for (String tempFaculty : tempFacultyList) {
@@ -34,11 +39,7 @@ public class DineCommand extends Command {
                     if (foodPlaceInfo.size() == 0) {
                         System.out.println("There are no dining options in this faculty.");
                     } else {
-                        System.out.println("The dining options available at " + tempFaculty + " are:");
-                        for (DiningOptions info : foodPlaceInfo) {
-                            displayCount++;
-                            System.out.println(displayCount + ". " + info.getName());
-                        }
+                        displayCount = printDineResult(displayCount, tempFaculty, foodPlaceInfo);
                         break;
                     }
                 }
@@ -47,6 +48,14 @@ public class DineCommand extends Command {
         if (displayCount == 0) {
             System.out.println("No match found.");
         }
-        printLine();
+    }
+
+    public int printDineResult(int displayCount, String tempFaculty, ArrayList<DiningOptions> foodPlaceInfo) {
+        System.out.println("The dining options available at " + tempFaculty + " are:");
+        for (DiningOptions info : foodPlaceInfo) {
+            displayCount++;
+            System.out.println(displayCount + ". " + info.getName());
+        }
+        return displayCount;
     }
 }
