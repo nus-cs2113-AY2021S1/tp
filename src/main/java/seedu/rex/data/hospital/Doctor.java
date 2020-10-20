@@ -1,7 +1,5 @@
 package seedu.rex.data.hospital;
 
-import java.time.format.DateTimeFormatter;
-
 /**
  * Doctor class.
  */

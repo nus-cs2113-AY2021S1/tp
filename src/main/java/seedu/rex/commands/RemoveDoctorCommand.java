@@ -5,7 +5,6 @@ import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Doctor;
-import seedu.rex.data.hospital.Patient;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
@@ -16,7 +15,7 @@ public class RemoveDoctorCommand extends Command {
     public RemoveDoctorCommand(String trimmedCommand) {
         this.trimmedCommand = trimmedCommand;
     }
-    
+
     /**
      * Executes command.
      *
@@ -30,7 +29,7 @@ public class RemoveDoctorCommand extends Command {
     @Override
     public void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui, Storage storage)
             throws RexException {
-        
+
         String doctorName = trimmedCommand.replaceFirst("(?i)" + COMMAND_WORD, "").trim().toUpperCase();
 
         if (doctors.isExistingDoctor(doctorName)) {
