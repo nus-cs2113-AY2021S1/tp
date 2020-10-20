@@ -7,13 +7,14 @@ import seedu.duke.project.Project;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-import static seedu.duke.command.CommandSummary.*;
+import static seedu.duke.command.CommandSummary.CREATE;
+import static seedu.duke.command.CommandSummary.VIEW;
+import static seedu.duke.command.CommandSummary.TITLE;
+import static seedu.duke.command.CommandSummary.DESCRIPTION;
+import static seedu.duke.command.CommandSummary.DURATION;
+import static seedu.duke.command.CommandSummary.SPRINT_DURATION;
 
 public class ProjectParser implements ExceptionsParser {
-    @Override
-    public void parseSingleCommandsExceptions(Hashtable<String, String> parameters)
-            throws DukeException {
-    }
 
     @Override
     public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,

@@ -18,9 +18,6 @@ import static seedu.duke.command.CommandSummary.VIEW;
 import static seedu.duke.command.CommandSummary.ASSIGN;
 
 public class SprintParser implements ExceptionsParser {
-    @Override
-    public void parseSingleCommandsExceptions(Hashtable<String, String> parameters) throws DukeException {
-    }
 
     @Override
     public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,

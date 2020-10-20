@@ -11,9 +11,6 @@ import static seedu.duke.command.CommandSummary.ADD;
 import static seedu.duke.command.CommandSummary.DELETE;
 
 public class MemberParser implements ExceptionsParser {
-    @Override
-    public void parseSingleCommandsExceptions(Hashtable<String, String> parameters) throws DukeException {
-    }
 
     @Override
     public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
