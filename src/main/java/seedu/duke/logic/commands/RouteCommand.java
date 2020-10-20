@@ -2,12 +2,15 @@ package seedu.duke.logic.commands;
 
 import seedu.duke.Bus;
 import seedu.duke.BusData;
+import seedu.duke.BusStops;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
+import seedu.duke.logic.SimilarityCheck;
 import seedu.duke.logic.parser.RouteParser;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 
 public class RouteCommand extends Command {
 
@@ -23,8 +26,13 @@ public class RouteCommand extends Command {
     public void executeCommand() throws CustomException {
         String [] locations = parser.getLocations();
         checkLocations(locations);
-        ArrayList<Bus> busOptions = BusData.possibleBuses(locations[0].trim(), locations[1].trim());
-        Ui.printRouteMessage(busOptions);
+        ArrayList<String> possibleLocs = new ArrayList<>(similarLocations(locations));
+        if(possibleLocs.isEmpty()) {
+            ArrayList<Bus> busOptions = BusData.possibleBuses(locations[0].trim(), locations[1].trim());
+            Ui.printRouteMessage(busOptions);
+        } else {
+            Ui.printPossibleLocsMessage(possibleLocs);
+        }
     }
 
     private void checkLocations(String[] locations) throws CustomException {
@@ -39,6 +47,20 @@ public class RouteCommand extends Command {
         assert !locations[1].isBlank() : "Location 1 is empty.";
         assert !(locations[0].trim().equalsIgnoreCase(locations[1].trim())) : "Seems like the locations are still "
                 + "the same.";
+    }
+
+    private ArrayList<String> similarLocations(String[] locations) {
+        ArrayList<String> possibleLocs = new ArrayList<>();
+        ArrayList<String> routeNames = new ArrayList<>();
+        for (BusStops info: EnumSet.allOf(BusStops.class)) {
+            routeNames.add(info.getName().toLowerCase());
+        }
+        if(!routeNames.contains(locations[0].trim().toLowerCase())) {
+            possibleLocs = SimilarityCheck.similarLoc(locations[0]);
+        } else if(!routeNames.contains(locations[1].trim().toLowerCase())) {
+            possibleLocs = SimilarityCheck.similarLoc(locations[1]);
+        }
+        return possibleLocs;
     }
 
 }
