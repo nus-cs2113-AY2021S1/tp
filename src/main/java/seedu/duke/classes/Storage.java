@@ -52,7 +52,7 @@ public class Storage implements SaveState {
             String[] splitRecordedDate = s.nextLine().split("recordedDate: ");
             try {
                 recordedDate = LocalDate.parse(splitRecordedDate[1]);
-            } catch(Exception e) {
+            } catch (Exception e) {
                 recordedDate = LocalDate.now();
             }
             String[] splitDurationWatched = s.nextLine().split("durationWatchedToday: ");
