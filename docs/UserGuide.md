@@ -26,7 +26,7 @@ and prioritize their work and commitment with a user-friendly text interface.
 
 1. Ensure that you have Java 11 or above installed.
 
-2. Download the latest "Duke.jar" from [here](https://github.com/AY2021S1-CS2113T-W12-1/tp/releases/download/v1.0/planus.jar).
+2. Download the latest "planus.jar" from [here](https://github.com/AY2021S1-CS2113T-W12-1/tp/releases/download/v1.0/planus.jar).
 
 3. For first time Windows user, open command prompt and run the following line:
 
