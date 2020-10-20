@@ -116,41 +116,47 @@ public class OnCommand extends Command {
                 return new CommandResult(MESSAGE_APPLIANCE_NOT_EXIST);
             } else {
                 Appliance toOnAppliance = applianceList.getAppliance(toOnApplianceIndex);
-                if (toOnAppliance.switchOn()) {
-                    assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
-                    setParameter(parameter, toOnAppliance);
-                    return new CommandResult("Switching: " + toOnAppliance + "......ON ");
-                } else {
-                    assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
-                    String setParameterStatement = setParameter(parameter, toOnAppliance);
-                    return new CommandResult(MESSAGE_APPLIANCE_PREVIOUSLY_ON + setParameterStatement);
-
-                }
+                String outputResult = displayOutput(toOnAppliance, "",0);
+                return new CommandResult(outputResult);
             }
         case(LOCATION_TYPE) :
             if (locationList.isLocationCreated(this.name)) {
-                String str = "";
+                String outputResults = LINE;
                 for (Appliance toOnAppliance: applianceList.getAllAppliance()) {
                     if (toOnAppliance.getLocation().equals(this.name)) {
-                        if (toOnAppliance.switchOn()) {
-                            assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
-                            String setParameterStatement = setParameter(parameter, toOnAppliance);
-                            str = str + MESSAGE_APPLIANCE_PREVIOUSLY_ON + setParameterStatement + "\n" + LINE;
-                        } else {
-                            assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
-                            setParameter(parameter, toOnAppliance);
-                            str = str + "Switching: " + toOnAppliance + "......ON \n" + LINE;
-                        }
+                        outputResults = displayOutput(toOnAppliance, outputResults, 1);
                     }
                 }
-                str = str + "All appliance in \"" + this.name + "\" are turned on ";
-                return new CommandResult(str);
+                outputResults = outputResults.concat("All appliance in \"" + this.name + "\" are turned on ");
+                return new CommandResult(outputResults);
             } else {
                 return new CommandResult("No appliance in this location");
             }
         default :
             return new CommandResult("To be implemented for V0.2");
         }
+    }
+
+    private String displayOutput(Appliance toOnAppliance, String outputResults, int isList) {
+        if (toOnAppliance.switchOn()) {
+            assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
+            String setParameterStatement = setParameter(parameter, toOnAppliance);
+            if (isList == 1) {
+                outputResults = outputResults.concat(MESSAGE_APPLIANCE_PREVIOUSLY_ON
+                                                    + setParameterStatement + "\n" + LINE);
+            } else {
+                outputResults = LINE + MESSAGE_APPLIANCE_PREVIOUSLY_ON + setParameterStatement;
+            }
+        } else {
+            assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
+            setParameter(parameter, toOnAppliance);
+            if (isList == 1) {
+                outputResults = outputResults.concat("Switching: " + toOnAppliance + "......ON \n" + LINE);
+            } else {
+                outputResults = LINE + "Switching: " + toOnAppliance + "......ON";
+            }
+        }
+        return outputResults;
     }
 
 }

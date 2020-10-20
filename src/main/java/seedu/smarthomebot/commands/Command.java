@@ -19,6 +19,7 @@ public class Command {
         this.locationList = locationList;
     }
 
+
     public CommandResult execute() {
         throw new UnsupportedOperationException("This method is to be implemented by child classes");
     }
