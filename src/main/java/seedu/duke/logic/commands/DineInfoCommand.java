@@ -8,6 +8,7 @@ import seedu.duke.exceptions.ExceptionType;
 
 import java.util.ArrayList;
 
+import static seedu.duke.ui.Ui.printDineInfoResult;
 import static seedu.duke.ui.Ui.printLine;
 
 public class DineInfoCommand extends Command {
@@ -41,17 +42,6 @@ public class DineInfoCommand extends Command {
             }
         }
         printDineInfoResult(searchList);
-    }
-
-    public void printDineInfoResult(ArrayList<DiningOptions> searchList) {
-        if (searchList.size() == 0) {
-            System.out.println("No match found.");
-        } else {
-            System.out.println("The stores that match your search:");
-            for (DiningOptions item : searchList) {
-                System.out.println("\n" + item.toString());
-            }
-        }
     }
 
 }

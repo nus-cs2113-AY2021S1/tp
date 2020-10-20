@@ -8,6 +8,7 @@ import seedu.duke.exceptions.ExceptionType;
 
 import java.util.ArrayList;
 
+import static seedu.duke.ui.Ui.printDineResult;
 import static seedu.duke.ui.Ui.printLine;
 
 public class DineCommand extends Command {
@@ -50,12 +51,4 @@ public class DineCommand extends Command {
         }
     }
 
-    public int printDineResult(int displayCount, String tempFaculty, ArrayList<DiningOptions> foodPlaceInfo) {
-        System.out.println("The dining options available at " + tempFaculty + " are:");
-        for (DiningOptions info : foodPlaceInfo) {
-            displayCount++;
-            System.out.println(displayCount + ". " + info.getName());
-        }
-        return displayCount;
-    }
 }

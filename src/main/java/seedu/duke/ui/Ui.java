@@ -112,4 +112,24 @@ public class Ui {
         printLine();
     }
 
+    public static int printDineResult(int displayCount, String tempFaculty, ArrayList<DiningOptions> foodPlaceInfo) {
+        System.out.println("The dining options available at " + tempFaculty + " are:");
+        for (DiningOptions info : foodPlaceInfo) {
+            displayCount++;
+            System.out.println(displayCount + ". " + info.getName());
+        }
+        return displayCount;
+    }
+
+    public static void printDineInfoResult(ArrayList<DiningOptions> searchList) {
+        if (searchList.size() == 0) {
+            System.out.println("No match found.");
+        } else {
+            System.out.println("The stores that match your search:");
+            for (DiningOptions item : searchList) {
+                System.out.println("\n" + item.toString());
+            }
+        }
+    }
+    
 }
