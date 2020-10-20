@@ -72,9 +72,9 @@ public class FlashcardDeck {
                     + "Please enter a number within the range of 1-" + flashcardDeck.size() + ".");
         } else {
             System.out.println("Noted. I have removed this card: "
-                    + flashcardDeck.get(cardIndex-1).question + "|" + flashcardDeck.get(cardIndex-1).answer
-                    + "\n" + "Now you have " + (flashcardDeck.size()-1) + " cards in the list.");
-            flashcardDeck.remove(cardIndex-1);
+                    + flashcardDeck.get(cardIndex - 1).question + "|" + flashcardDeck.get(cardIndex - 1).answer
+                    + "\n" + "Now you have " + (flashcardDeck.size() - 1) + " cards in the list.");
+            flashcardDeck.remove(cardIndex - 1);
         }
     }
 }
