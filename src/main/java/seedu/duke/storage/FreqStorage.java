@@ -2,6 +2,8 @@ package seedu.duke.storage;
 
 import seedu.duke.BusData;
 import seedu.duke.BusStops;
+import seedu.duke.exceptions.CustomException;
+import seedu.duke.exceptions.ExceptionType;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,7 +14,6 @@ import java.util.Scanner;
 
 public class FreqStorage extends Storage {
     private File file;
-    private int favCount = 0;
 
     public FreqStorage(String dir) {
         super(dir);
@@ -20,38 +21,43 @@ public class FreqStorage extends Storage {
     }
 
     @Override
-    public void readFile() {
+    public void readFile() throws CustomException {
         try {
             loadFile();
         } catch (FileNotFoundException e) {
-            e.printStackTrace(); //ADD IN CUSTOM EXCEPTION AFTER
+            throw new CustomException(ExceptionType.READ_FILE_FAIL);
         }
     }
 
     @Override
-    public void updateFile() {
+    public void updateFile() throws CustomException {
         ArrayList<Integer> frequencyList = BusData.getAllSearchCount();
+        //In case tester deletes file after initialisation
+        if (!file.exists()) {
+            super.createFile(dir);
+        }
         try {
             saveFile(frequencyList);
         } catch (IOException e) {
-            e.printStackTrace(); //ADD IN CUSTOM EXCEPTION AFTER
+            throw new CustomException(ExceptionType.UPDATE_FILE_FAIL);
         }
     }
 
     private void saveFile(ArrayList<Integer> frequencyList) throws IOException {
         File savedFile = new File(dir);
         FileWriter writer = new FileWriter(savedFile);
-        for(int i = 0; i < frequencyList.size(); i++){
+        for (int i = 0; i < frequencyList.size(); i++) {
             String currFreq = Integer.toString(frequencyList.get(i));
             writer.write(currFreq + System.lineSeparator());
         }
+        writer.close();
     }
 
     private void loadFile() throws FileNotFoundException {
         File savedFile = new File(dir);
         Scanner fileScanner = new Scanner(savedFile);
         int index = 0;
-        while(fileScanner.hasNext()){
+        while (fileScanner.hasNext()) {
             int currInt = Integer.parseInt(fileScanner.nextLine());
             BusStops.values()[index].setCount(currInt);
             index++;
