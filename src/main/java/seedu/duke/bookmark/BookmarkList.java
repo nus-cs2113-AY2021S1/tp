@@ -2,10 +2,8 @@ package seedu.duke.bookmark;
 
 import seedu.duke.ItemList;
 import seedu.duke.exception.DukeException;
-import seedu.duke.exception.DukeExceptionType;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -124,9 +122,9 @@ public class BookmarkList extends ItemList {
      * @return The string message containing the matching bookmarks
      */
     public String showBookmarks() {
-        String message = "\tHere are the bookmarks in your list:" + lineSeparator;
+        String message = "Here are the bookmarks in your list:" + lineSeparator;
         for (int i = 0; i < bookmarks.size(); i++) {
-            message = message + "\t" + (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + lineSeparator;
+            message = message + "  " + (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + lineSeparator;
         }
         return message;
     }

@@ -1,8 +1,8 @@
 package seedu.duke.bookmark;
 
-import seedu.duke.command.bookmark.AddBookmarkCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -125,12 +125,8 @@ public class Bookmark {
         return description;
     }
 
-//    public String getModule() {
-//        return module;
-//    }
-
     public String getBookmarkAsString() {
-        return  ("[" + description + "]" + url + System.lineSeparator());
+        return  ("[" + description + "] " + url + System.lineSeparator());
     }
 
     /**

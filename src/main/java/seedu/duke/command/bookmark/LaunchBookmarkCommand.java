@@ -9,9 +9,6 @@ import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 import seedu.duke.slot.Timetable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class LaunchBookmarkCommand extends Command {
     public static final String LAUNCH_KW = "launch";
     private int index;
