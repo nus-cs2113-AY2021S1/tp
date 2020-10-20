@@ -5,7 +5,6 @@ import seedu.rex.data.AppointmentList;
 import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
-import seedu.rex.data.hospital.Appointment;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
@@ -49,8 +48,10 @@ public class EditApptCommand extends Command {
 
         try {
             boolean hasAppointment = false;
-            for (Appointment appointment : appointments.getAppointments()) {
-                if (appointment.getPatient() != null && appointment.getPatient().getNric().equals(nric)) {
+            for (int i = 0; i < appointments.getSize(); i++) {
+                if (appointments.getAppointmentByIndex(i).getPatient() != null
+                        && appointments.getAppointmentByIndex(i).getPatient().getNric().equals(nric)) {
+                    appointments.getAppointmentByIndex(i).removeBooking();
                     hasAppointment = true;
                     break;
                 }

@@ -80,6 +80,7 @@ public class Appointment {
 
     public void removeBooking() {
         this.patient = null;
+        this.doctor = null;
         isBooked = false;
     }
 

@@ -12,7 +12,7 @@ import seedu.rex.commands.EditPatientCommand;
 import seedu.rex.commands.ExitCommand;
 import seedu.rex.commands.ListApptCommand;
 import seedu.rex.commands.ListPatientCommand;
-import seedu.rex.commands.RemoveDoctorCommand;
+import seedu.rex.commands.DeleteDoctorCommand;
 import seedu.rex.commands.RetrievePatientCommand;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
@@ -106,8 +106,8 @@ public class Parser {
         case AddDoctorCommand.COMMAND_WORD:
             command = new AddDoctorCommand(trimmedCommand);
             break;
-        case RemoveDoctorCommand.COMMAND_WORD:
-            command = new RemoveDoctorCommand(trimmedCommand);
+        case DeleteDoctorCommand.COMMAND_WORD:
+            command = new DeleteDoctorCommand(trimmedCommand);
             break;
 
         case EditApptCommand.COMMAND_WORD:

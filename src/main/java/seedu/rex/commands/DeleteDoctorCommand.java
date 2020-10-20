@@ -8,11 +8,11 @@ import seedu.rex.data.hospital.Doctor;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
-public class RemoveDoctorCommand extends Command {
+public class DeleteDoctorCommand extends Command {
     public static final String COMMAND_WORD = "nodoctor";
     private final String trimmedCommand;
 
-    public RemoveDoctorCommand(String trimmedCommand) {
+    public DeleteDoctorCommand(String trimmedCommand) {
         this.trimmedCommand = trimmedCommand;
     }
 

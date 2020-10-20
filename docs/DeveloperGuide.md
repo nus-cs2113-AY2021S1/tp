@@ -26,12 +26,14 @@ Aim: To facilitate the role of the administrative staff and help them automate m
 |v2.0|admin|add doctor|link doctor to appointment.|
 |v2.0|admin|remove existing doctor's details|remove unnecessary information.|
 |v2.0|admin|list patients|view patients.|
+|v2.0|admin|edit appointments|update them.|
 
 ## Non-Functional Requirements
 
 * The program must be easy for admins to use.
 * The program must store patient's information.
 * The program must store doctor's information.
+* The program should run on any system running Java 11.
 
 ## Glossary
 
@@ -39,4 +41,15 @@ Aim: To facilitate the role of the administrative staff and help them automate m
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+### Initial setup
+1. Download the jar file and copy it into an empty directory
+2. Open command prompt, and point it to that directory
+3. Type in `java -jar Rex.jar` to run the file
+### Deleting a patient
+There must a patient in the list.
+1. `delete 1` - Deletes the patient at the first index
+2. `delete 0` - It should throw error and not delete a patient.
+### Adding a patient
+1. `add S9999999D` - Adds a patient with NRIC `S9999999D` to the list.
+2. `add S9999999D` - It should not add a patient and throw error as patient already exists.
+3. `add cat` - It should throw error and not add patients as it is invalid NRIC.

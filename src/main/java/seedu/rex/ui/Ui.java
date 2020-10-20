@@ -326,4 +326,17 @@ public class Ui {
     public void printDoctorNotFound(String doctorName) {
         printWithIndent("Patient " + doctorName + " not found in database!");
     }
+
+    public LocalDate getAppointmentDate() {
+        while (true) {
+            try {
+                printWithIndent("Enter appointment date (YYYY-MM-DD) including the dashes: ");
+                return LocalDate.parse(in.nextLine().trim());
+            } catch (DateTimeParseException e) {
+                showLine();
+                showDateInputError();
+                showLine();
+            }
+        }
+    }
 }
