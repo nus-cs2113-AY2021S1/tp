@@ -69,11 +69,7 @@ public class Parser {
         }
     }
 
-    private static Command prepareHistory(String commandArgs) throws InvalidInputException {
-        if (commandArgs.isEmpty()) {
-            throw new InvalidInputException("The arguments are missing.\n"
-                    + HistoryCommand.MESSAGE_USAGE);
-        }
+    private static Command prepareHistory(String commandArgs) {
         return new HistoryCommand(commandArgs);
     }
 

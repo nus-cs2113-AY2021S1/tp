@@ -1,11 +1,13 @@
 package commands;
 
 import access.Access;
+import exception.InvalidInputException;
 import manager.history.History;
 import storage.Storage;
 import ui.Ui;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static common.Messages.CARD;
@@ -34,7 +36,14 @@ public class HistoryCommand extends Command {
     }
 
     private String listHistory(Storage storage) throws FileNotFoundException {
-        ArrayList<History> histories = storage.loadHistory(date);
+        ArrayList<History> histories;
+        if (date.isEmpty()) {
+            LocalDate today = java.time.LocalDate.now();
+            histories = storage.loadHistory(today.toString());
+        } else {
+            histories = storage.loadHistory(date);
+        }
+
         int count = histories.size();
         StringBuilder result = new StringBuilder();
 
