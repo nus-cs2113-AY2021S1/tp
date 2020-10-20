@@ -4,6 +4,30 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+The app was mainly inspired by [addressbook-level2](https://github.com/se-edu/addressbook-level2).
+
+### Design
+The App consists of a few main components.
+
+* UI: The UI that deals with getting user input and displaying output.
+* Command: Command to be executed.
+* Parser: Parse user input and make sense of it.
+* Storage: Reads data from, and writes data to, the hard disk.
+* Rex: The main class that initialize the app and starts running.
+
+The rest are just objects that the app requires.
+
+The diagram below shows the basic design.
+![image info](./pictures/UML.png)
+
+### Implementation
+Retrieve Command
+The flow is for retrieve command is as follows {Replace with sequence diagram}
+1. User calls retrieve command with NRIC
+2. Ui receives the command, returns it to Main and Main calls parser to parse
+3. Parser returns with retrieve command, and Main executes retrieve command
+4. Retrieve command extracts NRIC using parser, searches through the patients list and returns the patient
+5. Ui receives the patient and prints it.
 
 ## Product scope
 ### Target user profile

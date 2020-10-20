@@ -1,18 +1,18 @@
 package seedu.rex.parser;
 
 import seedu.rex.Rex;
-import seedu.rex.commands.AddPatientCommand;
 import seedu.rex.commands.AddDoctorCommand;
+import seedu.rex.commands.AddPatientCommand;
 import seedu.rex.commands.BookApptCommand;
 import seedu.rex.commands.Command;
 import seedu.rex.commands.CreateApptCommand;
+import seedu.rex.commands.DeleteDoctorCommand;
 import seedu.rex.commands.DeletePatientCommand;
 import seedu.rex.commands.EditApptCommand;
 import seedu.rex.commands.EditPatientCommand;
 import seedu.rex.commands.ExitCommand;
 import seedu.rex.commands.ListApptCommand;
 import seedu.rex.commands.ListPatientCommand;
-import seedu.rex.commands.DeleteDoctorCommand;
 import seedu.rex.commands.RetrievePatientCommand;
 import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Appointment;
