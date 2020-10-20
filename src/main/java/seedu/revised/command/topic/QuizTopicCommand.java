@@ -29,7 +29,7 @@ public class QuizTopicCommand extends TopicCommand {
             }
         }
         if (quizTopic == null) {
-            throw new NoTopicException(Ui.printNoTopicsError());
+            throw new NoTopicException(Ui.printNoTopicError());
         }
         return quizTopic;
 

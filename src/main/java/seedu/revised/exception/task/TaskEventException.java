@@ -1,8 +1,8 @@
 package seedu.revised.exception.task;
 
-public class TaskEventException extends TaskException {
-    public TaskEventException(String printEventError) {
-        super();
+public class TaskEventException extends Exception {
+    public TaskEventException(String taskEventError) {
+        super(taskEventError);
     }
 }
 

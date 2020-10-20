@@ -28,7 +28,7 @@ public class ResultTopicCommand extends TopicCommand {
             }
         }
         if (quizTopic == null) {
-            throw new NoTopicException(Ui.printNoTopicsError());
+            throw new NoTopicException(Ui.printNoTopicError());
         }
         Ui.printTopicResults(quizTopic);
         return null;
