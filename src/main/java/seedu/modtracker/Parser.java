@@ -15,6 +15,10 @@ public class Parser {
     public static final String COMMAND_HELP = "help";
     public static final String COMMAND_EXIT = "exit";
     public static final String COMMAND_BREAKDOWN = "breakdown";
+    public static final String COMMAND_ADDTASK = "addtask";
+    public static final String COMMAND_DELETETASK = "deletetask";
+    public static final String COMMAND_DONE = "done";
+    public static final String COMMAND_LISTTASK = "listtask";
 
     /**
      * Parses user inputs.
@@ -25,7 +29,8 @@ public class Parser {
      * @param storage storage object to load and store data
      * @param toPrint whether the UI should print the output
      */
-    public void parse(String input, ModuleList modList, String name, Storage storage, boolean toPrint, TaskList taskList) {
+    public void parse(String input, ModuleList modList, String name, Storage storage,
+                      boolean toPrint, TaskList taskList) {
         Ui ui = new Ui();
         assert input != null;
         String[] command = input.trim().split(" ");
@@ -88,14 +93,17 @@ public class Parser {
                 exit = true;
             }
             break;
-        case "task":
+        case COMMAND_ADDTASK:
             taskList.addTask(input);
             break;
-        case "deletetask":
+        case COMMAND_DELETETASK:
             taskList.deleteTasks(input);
             break;
-        case "done":
+        case COMMAND_DONE:
             taskList.setDone(input);
+            break;
+        case COMMAND_LISTTASK:
+            //ui.printTaskList();
             break;
         default:
             assert toPrint : "toPrint should be true";

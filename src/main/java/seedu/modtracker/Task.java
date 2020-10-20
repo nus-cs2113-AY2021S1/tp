@@ -8,7 +8,7 @@ public class Task {
     protected boolean isDone;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param description name of task
      */
@@ -40,7 +40,7 @@ public class Task {
      * @return tick or cross symbol
      */
     public String getStatusIcon() {
-        return (isDone ? "\u2713" : "\u2718");
+        return (isDone ? "✓" : "✘");
     }
 
     /**
