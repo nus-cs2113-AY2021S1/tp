@@ -24,7 +24,7 @@ public class Parser {
      * @param storage storage object to load and store data
      * @param toPrint whether the UI should print the output
      */
-    public void parse(String input, ModuleList modList, String name, Storage storage, boolean toPrint) {
+    public void parse(String input, ModuleList modList, String name, Storage storage, boolean toPrint, TaskList taskList) {
         Ui ui = new Ui();
         assert input != null;
         String[] command = input.trim().split(" ");
@@ -83,6 +83,14 @@ public class Parser {
                 ui.printExitScreen(name);
                 exit = true;
             }
+        case "task":
+            taskList.addTask(input);
+            break;
+        case "deletetask":
+            taskList.deleteTasks(input);
+            break;
+        case "done":
+            taskList.setDone(input);
             break;
         default:
             assert toPrint : "toPrint should be true";

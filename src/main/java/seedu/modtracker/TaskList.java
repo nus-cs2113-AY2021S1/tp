@@ -17,7 +17,7 @@ public class TaskList {
      * @param tasks task list
      * @param str input entered by user
      */
-    public void setDone(ArrayList<Task> tasks, String str) {
+    public void setDone(String str) {
         try {
             String[] digit = str.trim().split(" ", 2);
             int num = Integer.parseInt(digit[1]); //change string to int
@@ -46,10 +46,9 @@ public class TaskList {
      * Deletes a selected task from the task list.
      * Can only take in one task number at a time.
      *
-     * @param tasks task list
      * @param str input entered by user
      */
-    public void deleteTasks(ArrayList<Task> tasks, String str) {
+    public void deleteTasks(String str) {
         try {
             String[] digit = str.trim().split(" ", 2);
             int num = Integer.parseInt(digit[1]); //change string to int
@@ -81,10 +80,9 @@ public class TaskList {
     /**
      * Adds a task to the task list.
      *
-     * @param tasks task list
      * @param str input entered by user
      */
-    public String addTask(ArrayList<Task> tasks, String str) {
+    public String addTask(String str) {
         String[] split = str.trim().split(" ", 3);
         String modCode = split[1];
         if (str.toLowerCase().replace("task", "").trim().equals("")) {
@@ -94,7 +92,7 @@ public class TaskList {
         tasks.add(new Task(split[2]));
         //ui.printTaskAdded(tasks);
         //ui.printNumberOfTasks(tasks);
-        System.out.println(" Got it. I've added this task:");
+        System.out.println("Got it. I've added this task:");
         System.out.println(tasks.get(tasks.size() - 1));
         if (tasks.size() > 1) {
             System.out.println("Now you have " + tasks.size() + " tasks in the list." + System.lineSeparator());
