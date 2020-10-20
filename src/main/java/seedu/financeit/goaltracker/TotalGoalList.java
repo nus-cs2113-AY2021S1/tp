@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import seedu.financeit.common.Goal;
 
 /**
- * This class is the arraylist of the class Goal
+ * This class is the arraylist of the class Goal.
  * @class Goal
  */
 public class TotalGoalList {
     private ArrayList<Goal> goals = new ArrayList<>();
 
     /**
-     * This will add new goal to the arraylist
-     * @param newGoal
+     * This will add new goal to the arraylist.
+     * @param newGoal new Goal contains (amt,cat,month)
      */
     public void addGoal(Goal newGoal) {
         this.goals.add(newGoal);
     }
 
     /**
-     * This will return the whole arraylist
+     * This will return the whole arraylist.
      * @return
      */
     public ArrayList<Goal> getGoal() {
@@ -27,7 +27,7 @@ public class TotalGoalList {
     }
 
     /**
-     * This is to get the total size of the arraylist
+     * This is to get the total size of the arraylist.
      * @return
      */
     public int getListSize() {
