@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 import seedu.rex.data.hospital.Appointment;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AppointmentListTest {
 
