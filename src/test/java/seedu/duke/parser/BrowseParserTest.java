@@ -6,7 +6,6 @@ import seedu.duke.anime.Anime;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.command.BrowseCommand;
 import seedu.duke.exception.AniException;
-import seedu.duke.human.User;
 import seedu.duke.storage.StorageManager;
 
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class BrowseParserTest {
     AnimeData animeData;
-    User user;
     StorageManager storageManager;
 
     protected static final String INVALID_PARAMETERS_TEST1 = "-n name";
@@ -26,15 +24,10 @@ class BrowseParserTest {
     protected static final String INVALID_FIELD_TEST3 = "-s -o -p";
     protected static final String DIFF_ORDER_TEST = "-p 1 -s rating -o asc";
     protected static final String DIFF_ORDER_TEST2 = "-s rating -o asc -p 1";
-    protected static final String NO_PARAM_TEST = "";
 
     @BeforeEach
     void setUp() {
-        ArrayList<Anime> testList = new ArrayList<Anime>();
-        Anime testAnime1 = new Anime();
-        Anime testAnime2 = new Anime();
-        testList.add(testAnime1);
-        testList.add(testAnime2);
+        ArrayList<Anime> testList = new ArrayList<>();
         animeData = new AnimeData(testList);
         storageManager = new StorageManager("test");
     }
@@ -60,12 +53,12 @@ class BrowseParserTest {
 
         BrowseParser testParse2 = new BrowseParser();
         assertThrows(AniException.class, () -> {
-            testParse.parse(INVALID_FIELD_TEST2);
+            testParse2.parse(INVALID_FIELD_TEST2);
         });
 
         BrowseParser testParse3 = new BrowseParser();
         assertThrows(AniException.class, () -> {
-            testParse.parse(INVALID_FIELD_TEST3);
+            testParse3.parse(INVALID_FIELD_TEST3);
         });
     }
 
