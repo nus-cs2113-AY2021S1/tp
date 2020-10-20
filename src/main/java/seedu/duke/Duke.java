@@ -6,6 +6,7 @@ import seedu.duke.utility.InputParser;
 import seedu.duke.utility.ShowList;
 import seedu.duke.utility.Ui;
 
+import java.time.LocalDate;
 
 import static seedu.duke.utility.Ui.SAVE_DIRECTORY;
 
@@ -17,6 +18,7 @@ public class Duke {
     private Storage storage;
     private ShowList shows;
     private Ui ui;
+    private WatchTime watchTime;
 
     public Duke(String filePath) {
         ui = new Ui();
@@ -26,8 +28,8 @@ public class Duke {
         } catch (Exception e) {
             this.shows = new ShowList();
         }
-        //TODO: Update this after state is loaded
-        //watchTime = new WatchTime(LocalDate recordedDate, int durationWatchedToday, int dailyWatchLimit);
+        watchTime = new WatchTime(storage.getRecordedDate(),
+                storage.getDurationWatchedToday(), storage.getDailyWatchLimit());
 
     }
 

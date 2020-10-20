@@ -16,7 +16,6 @@ public class ChangeRatingCommand extends Command {
      * @param showName name of show which rating is to be changed
      * @param targetRating  new rating to update
      */
-
     public void changeRating(String showName, int targetRating) throws NullPointerException,IndexOutOfBoundsException {
         if (ShowList.getShowList().containsKey(showName)) {
             if (targetRating < 0 || targetRating > 10) {

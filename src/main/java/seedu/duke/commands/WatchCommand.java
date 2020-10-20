@@ -1,10 +1,12 @@
 package seedu.duke.commands;
 
 import seedu.duke.classes.Show;
+import seedu.duke.classes.WatchTime;
 import seedu.duke.utility.ShowList;
 import seedu.duke.utility.Ui;
 
 import java.util.ArrayList;
+
 
 public class WatchCommand extends Command {
     ArrayList<String> inputs;
@@ -17,6 +19,11 @@ public class WatchCommand extends Command {
         }
     }
 
+    /**
+     * Notifies the application that user has finished his current episode of a show
+     * in which the current episode will be incremented by 1, and watch time will be updated.
+     * The watchlist updates the show to a new season if required.
+     */
     //INPUT : watch <show name>
     public void processCommand() {
         // todo: check if the date is still the same as the one in the save file,
@@ -43,7 +50,7 @@ public class WatchCommand extends Command {
         } else {
             Ui.printFinishedAllSeasons(showName);
         }
-
-
+        int showDuration = show.getEpisodeDuration();
+        WatchTime.watchDurationUpdate(showDuration);
     }
 }

@@ -115,10 +115,10 @@ Expected outcome:
     `edit Friends`
     
  Then you will be prompted to enter the fields you want to change such as:
- name, season, episode
+ name, season, episode, duration of episodes
  
     Example of usage:
-     `name F.r.i.e.n.d.s` , `season 2`, `episode 10,11`
+     `name F.r.i.e.n.d.s` , `season 2`, `episode 10,11`, `duration 1 1 90`
      
  When you have completed all changes, use `done`.
  

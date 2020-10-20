@@ -16,6 +16,7 @@ import java.util.Arrays;
 import static seedu.duke.utility.StringOperations.removeFirstWord;
 import static seedu.duke.utility.StringOperations.tokenizeStringArray;
 
+//@@author BenardoTang
 
 /**
  * Represents a parser to process the commands inputted by the user.
@@ -120,13 +121,14 @@ public class InputParser {
         }
     }
 
+
     private static void parseEditCommand(String input) {
         ArrayList<String> tokenizedString = tokenizeStringArray(input);
         try {
             EditCommand edit = new EditCommand(tokenizedString.get(1));
             edit.processCommand();
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Please specify show name");
+            Ui.printSpecifyShowName();
             return;
         } catch (NullPointerException e) {
             Ui.printInvalidEpisodesInputException();
@@ -149,13 +151,20 @@ public class InputParser {
         }*/
     }
 
+    /**
+     * Parses command for updating existing shows in the watch list.
+     *
+     * @param input Command inputted by user in string format.
+     * @throws IndexOutOfBoundsException if input is empty or show was not specified.
+     * @throws NullPointerException      if the show specified is invalid or could not be found.
+     */
     private static void parseWatchCommand(String input, String command) {
         ArrayList<String> tokenizedString = tokenizeStringArray(input);
         try {
             WatchCommand showWatched = new WatchCommand(command, tokenizedString);
             showWatched.processCommand();
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Please specify show name");
+            Ui.printSpecifyShowName();
             return;
         } catch (NullPointerException e) {
             Ui.printNotFoundException();
@@ -188,6 +197,13 @@ public class InputParser {
         updateShowSeason.processCommand();
     }
 
+    /**
+     * Parses command for adding a rating in an existing show in the watch list.
+     *
+     * @param input Command inputted by user in string format.
+     * @throws IndexOutOfBoundsException if input is empty or rating was not specified.
+     * @throws NullPointerException      if the input is invalid or show could not be found.
+     */
     private static void parseAddRatingCommand(String input) {
         input = removeFirstWord(input);
         try {
@@ -198,23 +214,38 @@ public class InputParser {
             Ui.printShowRating(tokenizedInput[0], tokenizedInput[1]);
         } catch (NullPointerException e) {
             Ui.printBadInputException();
-            return;
         } catch (IndexOutOfBoundsException e) {
             Ui.printInvalidRatingInput();
         }
     }
 
+    /**
+     * Parses command for deleting a rating in an existing show in the watch list.
+     *
+     * @param input Command inputted by user in string format.
+     * @throws IndexOutOfBoundsException if input is empty or invalid.
+     * @throws NullPointerException      if the existing rating is invalid or show could not be found.
+     */
     private static void parseDeleteRatingCommand(String input) {
         input = removeFirstWord(input);
         DeleteRatingCommand deleteShowRating = new DeleteRatingCommand(input);
         try {
             deleteShowRating.deleteRating(input);
             Ui.printDeleteRating(input);
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
+            Ui.printBadInputException();
+        } catch (IndexOutOfBoundsException e) {
             Ui.printNotFoundException();
         }
     }
 
+    /**
+     * Parses command for changing a rating in an existing show in the watch list.
+     *
+     * @param input Command inputted by user in string format.
+     * @throws IndexOutOfBoundsException if input is empty or the rating is invalid.
+     * @throws NullPointerException      if the input is invalid or show could not be found.
+     */
     private static void parseChangeRatingCommand(String input) {
         input = removeFirstWord(input);
         try {
@@ -231,6 +262,13 @@ public class InputParser {
         }
     }
 
+    /**
+     * Parses command for adding a show into the watch list.
+     *
+     * @param input Command inputted by user in string format.
+     * @throws IndexOutOfBoundsException if input is empty or the format is invalid.
+     * @throws NullPointerException      if the format of episodes added is invalid.
+     */
     private static void parseAddCommand(String input) {
         String[] tokenizedInput = input.split(" ");
         try {
@@ -245,17 +283,30 @@ public class InputParser {
         Ui.printShowAdded(tokenizedInput[1]);
     }
 
+    /**
+     * Parses command for deleting a show in the watch list.
+     *
+     * @param input Command inputted by user in string format.
+     * @throws IndexOutOfBoundsException if input is empty or the command format is invalid.
+     * @throws NullPointerException      if the show could not be found.
+     */
     private static void parseDeleteCommand(String input) {
         input = removeFirstWord(input);
         DeleteCommand deletingShow = new DeleteCommand(input);
         try {
             deletingShow.delete(input);
             Ui.printDeleteShow(input);
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             Ui.printNotFoundException();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Ui.printInvalidFormatException();
         }
     }
 
+    /**
+     * Parses command to outline the user's current watch time details.
+     * These include the recorded date,duration watched today, and time limit set by the user
+     */
     private static void parseWatchTimeCommand() {
         Ui.printDailyWatchTracking();
     }

@@ -23,7 +23,7 @@ class StorageTest {
         shows = new ShowList();
         storage = new Storage(Ui.SAVE_DIRECTORY);
         int[] episodes = new int[]{21, 10, 12};
-        Show show = new Show("friends", 3, episodes);
+        Show show = new Show("friends", 3, episodes, 20);
         shows.setShow("friends", show);
         assertEquals(show, shows.getShow("friends"));
     }

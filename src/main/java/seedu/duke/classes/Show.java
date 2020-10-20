@@ -9,17 +9,27 @@ public class Show {
     protected String name;
     protected int numSeasons;
     protected int[] numEpisodesForSeasons;
-    protected int[][] durationEpisodeForSeasons; //The duration of each episode for each season
+    protected int episodeDuration; //The average duration of episodes
     protected int rating;
     protected String review;
     protected LocalDateTime showTime;   //The time of the show, maybe include date
     protected int currentSeason;    //to keep track of watch progress
     protected int currentEpisode;
 
-    public Show(String name, int numSeasons, int[] numEpisodesForSeasons) {
+
+    /**
+     * Show.
+     *
+     * @param name                  name of show
+     * @param numSeasons            number of seasons
+     * @param numEpisodesForSeasons number of episodes per season
+     * @param episodeDuration       duration of episode
+     */
+    public Show(String name, int numSeasons, int[] numEpisodesForSeasons, int episodeDuration) {
         this.name = name;
         this.numSeasons = numSeasons;
         this.numEpisodesForSeasons = numEpisodesForSeasons;
+        this.episodeDuration = episodeDuration;
         this.rating = -1;
         this.review = "null";
         this.currentEpisode = 1;
@@ -115,9 +125,18 @@ public class Show {
         this.currentSeason = season;
     }
 
+
+    public void setEpisodeDuration(int duration) {
+        episodeDuration = duration;
+    }
+
+    public int getEpisodeDuration() {
+        return episodeDuration;
+    }
+
     @Override
     public String toString() {
-        //TODO: Bernado&jiqing verify if the new toString works well
+        //TODO: Benardo & jiqing verify if the new toString works well
         StringBuilder des = new StringBuilder(name + " | ");
         des.append("WatchHistory : S");
         des.append(currentSeason);
