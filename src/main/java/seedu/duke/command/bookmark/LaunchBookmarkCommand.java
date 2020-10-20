@@ -7,16 +7,12 @@ import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
-import seedu.duke.slot.SlotList;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import seedu.duke.slot.Timetable;
 
 public class LaunchBookmarkCommand extends Command {
     public static final String LAUNCH_KW = "launch";
     private int index;
-    private List<String> moduleAndDescription;
+    private String description;
     private int launchTypeFlag;
 
     /**
@@ -40,10 +36,10 @@ public class LaunchBookmarkCommand extends Command {
             index = Integer.parseInt(details.trim()) - 1;
             launchTypeFlag = 1; // (flag to launch bookmark at specified index)
         } catch (NumberFormatException e) {
-            moduleAndDescription = new ArrayList<>(Arrays.asList(details.trim().split(" ", 2)));
-            if (moduleAndDescription.size() == 1) {
-                moduleAndDescription.add("");  // Blank entry for description
+            if (details.trim().contains(" ")) {
+                throw new DukeException(DukeExceptionType.INVALID_COMMAND_FORMAT);
             }
+            description = details.trim();
             launchTypeFlag = 2; // (flag to launch bookmarks with matching module and description)
         }
     }
@@ -52,36 +48,28 @@ public class LaunchBookmarkCommand extends Command {
      * Launches the bookmark based on the launchTypeFlag previously determined in LaunchBookmarkCommand initialization.
      *
      * @param bookmarks The list of bookmarks.
-     * @param slotList The list of slots.
+     * @param timetable The list of slots.
      * @param ui The user interface.
      * @param bookmarkStorage The storage for saving and loading bookmarks.
      * @param slotStorage The storage for saving and loading slots.
      * @throws DukeException if the bookmark number is invalid or if there is an error launching the URL.
      */
     @Override
-    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
+    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
                         Storage bookmarkStorage, Storage slotStorage) throws DukeException {
         if (launchTypeFlag == 1) { // Launch based on index
             try {
                 Bookmark bookmark = bookmarks.getBookmark(index);
-                bookmark.launch();
-                ui.print(getMessage(bookmark));
+                String message = "Nice! I've launched this bookmark!:\n" + bookmark.launch();
+                ui.print(message);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(DukeExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS, ""
                         + bookmarks.getBookmarkList().size());
             }
             return;
+        } else if (launchTypeFlag == 2) { // Launch based on matching module and description
+            String message = bookmarks.launchBookmarks(description);
+            ui.print(message);
         }
-
-        if (launchTypeFlag == 2) { // Launch based on matching module and description
-            ui.print(bookmarks.launchBookmarks(moduleAndDescription));
-        }
-    }
-
-    private String getMessage(Bookmark bookmark) {
-        String message = "\tNice! I've launched this bookmark!:\n"
-                + "\t  [" + bookmark.getModule() + "] " + bookmark.getDescription() + " "
-                + bookmark.getUrl() + "\n";
-        return message;
     }
 }

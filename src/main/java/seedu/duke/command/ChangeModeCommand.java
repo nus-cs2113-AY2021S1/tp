@@ -1,13 +1,12 @@
 package seedu.duke.command;
 
-import seedu.duke.ItemList;
 import seedu.duke.Ui;
 import seedu.duke.Storage;
 import seedu.duke.Parser;
 import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
-import seedu.duke.slot.SlotList;
+import seedu.duke.slot.Timetable;
 
 public class ChangeModeCommand extends Command {
     public static final String MODE_KW = "mode";
@@ -22,7 +21,8 @@ public class ChangeModeCommand extends Command {
 
 
     @Override
-    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui, Storage bookmarkStorage, Storage slotStorage)
+    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
+                        Storage bookmarkStorage, Storage slotStorage)
             throws DukeException {
         if (setToMode == 1) {
             Parser.programMode = 1;
@@ -45,9 +45,9 @@ public class ChangeModeCommand extends Command {
 
         String modeData = input.substring(5);
 
-        if (modeData.equals("bookmark") == true) {
+        if (modeData.compareTo("bookmark") == 0) {
             outputData = 1;
-        } else if (modeData.equals("timetable") == true) {
+        } else if (modeData.compareTo("timetable") == 0) {
             outputData = 2;
         } else {
             outputData = 0;

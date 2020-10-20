@@ -1,27 +1,25 @@
 package seedu.duke.slot;
 
-import java.time.DateTimeException;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import seedu.duke.ItemList;
 
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-
-import seedu.duke.exception.DukeException;
-import seedu.duke.exception.DukeExceptionType;
 
 /**
  * This class represents the timetable used to store and organize the schedule slots.
  */
 public class SlotList extends ItemList {
     private ArrayList<Slot> slots;
+    //private ArrayList<Bookmark> bookmarks;
+    private ArrayList<Module> modules;
 
     /**
      * Constructs a SlotList object with an empty ArrayList to store Slot objects.
      */
     public SlotList() {
         this.slots = new ArrayList<>();
+        //this.bookmarks = new ArrayList<>();
+        this.modules = new ArrayList<>();
     }
 
     /**
@@ -40,6 +38,33 @@ public class SlotList extends ItemList {
             loadSlot(slot);
         }
     }
+
+    public boolean moduleExists(String moduleCode) {
+        boolean moduleExists = false;
+        for (Module module : modules) {
+            if (module.isModule(moduleCode)) {
+                moduleExists = true;
+            }
+        }
+        return moduleExists;
+    }
+
+    public Module addModule(String moduleCode) {
+        Module module = new Module(moduleCode);
+        modules.add(module);
+        return module;
+    }
+
+    public Module getModule(String moduleCode) {
+        Module module = null;
+        for (Module mod : modules) {
+            if (moduleCode.compareTo(mod.getModuleCode()) == 0) {
+                module = mod;
+            }
+        }
+        return module;
+    }
+
 
     /**
      * This method adds the given Slot object to the timetable.
@@ -63,7 +88,7 @@ public class SlotList extends ItemList {
      * Returns the the data of all Slots in the list to be saved in the text file.
      *
      * @return the data of all the Slots.
-     */ 
+     */
     public String getData() {
         StringBuilder data = new StringBuilder();
         for (Slot slot : slots) {

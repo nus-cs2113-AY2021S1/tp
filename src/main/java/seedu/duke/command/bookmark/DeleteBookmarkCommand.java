@@ -7,7 +7,7 @@ import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
-import seedu.duke.slot.SlotList;
+import seedu.duke.slot.Timetable;
 
 public class DeleteBookmarkCommand extends Command {
     public static final String DEL_KW = "delete";
@@ -38,29 +38,23 @@ public class DeleteBookmarkCommand extends Command {
      * Deletes the bookmark in the bookmark list.
      *
      * @param bookmarks The list of bookmarks.
-     * @param slotList The list of slots.
+     * @param timetable The list of slots.
      * @param ui The user interface.
      * @param bookmarkStorage The storage for saving and loading bookmarks.
      * @param slotStorage The storage for saving and loading slots.
      * @throws DukeException if the bookmark number is invalid or if there is an error when saving the bookmark.
      */
     @Override
-    public void execute(BookmarkList bookmarks, SlotList slotList, Ui ui,
+    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
                         Storage bookmarkStorage, Storage slotStorage) throws DukeException {
         try {
             Bookmark bookmark = bookmarks.getBookmark(index);
-            bookmarks.deleteBookmark(bookmark);
-            ui.print(getMessage(bookmark));
+            String message = "I've deleted this bookmark!:\n" + bookmarks.deleteBookmark(bookmark);
+            ui.print(message);
             bookmarkStorage.save(bookmarks.getData());
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             throw new DukeException(DukeExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS, ""
                     + bookmarks.getBookmarkList().size());
         }
-    }
-
-    private String getMessage(Bookmark bookmark) {
-        String message = "\tI've deleted this bookmark!:\n"
-                + "\t  [" + bookmark.getModule() + "] " + bookmark.getDescription() + " " + bookmark.getUrl() + "\n";
-        return message;
     }
 }
