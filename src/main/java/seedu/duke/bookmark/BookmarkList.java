@@ -2,7 +2,6 @@ package seedu.duke.bookmark;
 
 import seedu.duke.ItemList;
 import seedu.duke.exception.DukeException;
-
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;

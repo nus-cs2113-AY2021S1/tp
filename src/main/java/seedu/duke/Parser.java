@@ -59,9 +59,10 @@ public class Parser {
         return command;
     }
 
+    //@@author TYS0n1
     private static Command createBookmarkCommand(String input) throws DukeException {
         Command command;
-      
+
         if (input.compareToIgnoreCase(ShowBookmarkCommand.LIST_KW) == 0) {
             return new ShowBookmarkCommand();
         } else if (input.startsWith(DeleteBookmarkCommand.DEL_KW)) {
@@ -81,6 +82,7 @@ public class Parser {
         return command;
     }
 
+    //@@author TYS0n1
     private static Command createTimetableCommand(String input) throws DukeException {
         Command command;
 

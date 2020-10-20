@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.command;
 
 import seedu.duke.command.ChangeModeCommand;
 
@@ -23,5 +23,10 @@ public class ChangeModeCommandTest {
     @Test
     public void testInvalidModeInput() {
         assertEquals(0, new ChangeModeCommand("mode abcd").setToMode);
+    }
+
+    @Test
+    public void testShortLenghtInput() {
+        assertEquals(0, new ChangeModeCommand("mode").setToMode);
     }
 }
