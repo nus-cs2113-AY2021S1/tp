@@ -6,6 +6,7 @@ import seedu.duke.human.User;
 import seedu.duke.human.Workspace;
 import seedu.duke.storage.StorageManager;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static seedu.duke.logger.AniLogger.getAniLogger;
@@ -14,11 +15,10 @@ public class EstimateCommand extends Command {
     private static final int NO_WORDS_PER_HOUR_PROVIDED = -1;
     private static final int MINUTES_PER_HOUR = 60;
     private static final int[] AVERAGE_TRANSLATOR_WORDS_PER_HOUR = {400, 500, 600};
-
     private static final Logger LOGGER = getAniLogger(EstimateCommand.class.getName());
 
-    private String scriptFileName;
-    private int wordsPerHour;
+    private final String scriptFileName;
+    private final int wordsPerHour;
 
     public EstimateCommand(String scriptFileName, int wordsPerHour) {
         this.scriptFileName = scriptFileName;
@@ -30,6 +30,7 @@ public class EstimateCommand extends Command {
         Workspace activeWorkspace = user.getActiveWorkspace();
         String fileString = storageManager.readScript(activeWorkspace.getName(), scriptFileName);
         int wordCount = fileString.split(" ").length;
+        LOGGER.log(Level.INFO, wordCount + " words in the script (" + scriptFileName + ").");
 
         StringBuilder commandResult = new StringBuilder();
         if (wordsPerHour != NO_WORDS_PER_HOUR_PROVIDED) {
@@ -57,6 +58,7 @@ public class EstimateCommand extends Command {
         double hoursNeeded = Math.floor(timeNeeded);
         double minutesNeeded = (timeNeeded - hoursNeeded) * MINUTES_PER_HOUR;
         String hoursAndMinutesNeeded = (int) hoursNeeded + " hour(s) " + (int) minutesNeeded + " minute(s).";
+        LOGGER.log(Level.INFO, "Converted " + timeNeeded + " to: " + hoursAndMinutesNeeded);
         return hoursAndMinutesNeeded;
     }
 }
