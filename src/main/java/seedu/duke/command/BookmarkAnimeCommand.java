@@ -6,6 +6,7 @@ import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
 import seedu.duke.storage.StorageManager;
+
 import static seedu.duke.logger.AniLogger.getAniLogger;
 
 import java.util.logging.Level;
@@ -122,41 +123,17 @@ public class BookmarkAnimeCommand extends Command {
         this.bookmarkAction = actionString;
     }
 
-    public boolean setBookmarkIndex(String bookmarkIndexString) {
-        if (isInt(bookmarkIndexString)) {
-            bookmarkIndex = Integer.parseInt(bookmarkIndexString);
-            return true;
-        } else {
-            return false;
-        }
+    public void setBookmarkIndex(String bookmarkIndexString) {
+        this.bookmarkIndex = Integer.parseInt(bookmarkIndexString);
     }
 
-    public boolean setAnimeIndex(String animeIndexString) {
-        if (isInt(animeIndexString)) {
-            animeIndex = Integer.parseInt(animeIndexString);
-            return true;
-        } else {
-            return false;
-        }
+    public void setAnimeIndex(String animeIndexString) {
+        this.animeIndex = Integer.parseInt(animeIndexString);
     }
 
-    public boolean setBookmarkEpisode(String bookmarkEpisodeString) {
-        if (isInt(bookmarkEpisodeString)) {
-            bookmarkEpisode = Integer.parseInt(bookmarkEpisodeString);
-            return true;
-        } else {
-            return false;
-        }
+    public void setBookmarkEpisode(String bookmarkEpisodeString) {
+        this.bookmarkEpisode = Integer.parseInt(bookmarkEpisodeString);
     }
 
-    /**
-     * Checks if String is a parsable int.
-     *
-     * @param checkStr string to check
-     * @return true if parsable int
-     */
-    public boolean isInt(String checkStr) {
-        return checkStr.matches("-?\\d+(\\.\\d+)?");
-    }
 
 }

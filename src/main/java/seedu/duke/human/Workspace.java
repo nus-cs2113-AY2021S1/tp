@@ -1,5 +1,6 @@
 package seedu.duke.human;
 
+import seedu.duke.anime.AnimeData;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.watchlist.Watchlist;
 
@@ -51,6 +52,10 @@ public class Workspace {
 
     public ArrayList<Watchlist> getWatchlistList() {
         return watchlistList;
+    }
+
+    private String getBookmarkListInString(AnimeData animeData){
+        return bookmark.animeListInString(animeData);
     }
 
     @Override
