@@ -6,12 +6,9 @@ import seedu.duke.watchlist.Watchlist;
 import java.util.ArrayList;
 
 public class Workspace {
-
-
     public Bookmark bookmark;
 
     protected String workspaceName;
-
 
     private Watchlist activeWatchlist;
     private ArrayList<Watchlist> watchlistList;
@@ -55,6 +52,6 @@ public class Workspace {
 
     @Override
     public String toString() {
-        return "\n Workspace: " + workspaceName;
+        return workspaceName;
     }
 }

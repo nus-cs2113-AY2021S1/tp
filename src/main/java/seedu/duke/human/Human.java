@@ -21,8 +21,4 @@ public abstract class Human {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
 }
