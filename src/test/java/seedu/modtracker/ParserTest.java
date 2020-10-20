@@ -18,18 +18,18 @@ public class ParserTest {
         System.setOut(new PrintStream(outContent));
 
         String input1 = "exit addmod ";
-        parser.parse(input1, modList, null, null, true);
+        parser.parse(input1, modList, null, null, true, null);
         String expected = Ui.INVALID_COMMAND + System.lineSeparator() + Ui.ENTER_HELP + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
 
         outContent.reset();
         String input2 = "addexps";
-        parser.parse(input2, modList, null, null, true);
+        parser.parse(input2, modList, null, null, true, null);
         assertEquals(expected + System.lineSeparator(), outContent.toString());
 
         outContent.reset();
         String input3 = "help 1";
-        parser.parse(input3, modList, null, null, true);
+        parser.parse(input3, modList, null, null, true, null);
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
@@ -39,7 +39,7 @@ public class ParserTest {
         System.setOut(new PrintStream(outContent));
 
         String input = "";
-        parser.parse(input, modList, null, null, true);
+        parser.parse(input, modList, null, null, true, null);
         String expected = Ui.INVALID_COMMAND + System.lineSeparator() + Ui.ENTER_HELP + System.lineSeparator();
 
         assertEquals(expected + System.lineSeparator(), outContent.toString());
@@ -52,7 +52,7 @@ public class ParserTest {
 
         String input = "exit";
         String name = "Lee";
-        parser.parse(input, modList, name, null, true);
+        parser.parse(input, modList, name, null, true, null);
         String expected = "All changes saved." + System.lineSeparator()
                 + "Bye " + name + ". Hope to see you again soon!" + System.lineSeparator();
 
@@ -62,14 +62,14 @@ public class ParserTest {
     @Test
     public void parse_exitInput_expectExitStatusTrue() {
         String input = "exit";
-        parser.parse(input, modList, null, null, true);
+        parser.parse(input, modList, null, null, true, null);
         assertTrue(parser.isExit());
     }
 
     @Test
     public void parse_anyInput_expectExitStatusFalse() {
         String input = "addexp ";
-        parser.parse(input, modList, null, null, true);
+        parser.parse(input, modList, null, null, true, null);
         assertFalse(parser.isExit());
     }
 }

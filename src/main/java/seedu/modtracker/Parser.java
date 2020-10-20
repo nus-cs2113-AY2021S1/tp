@@ -14,13 +14,14 @@ public class Parser {
     public static final String COMMAND_LIST = "list";
     public static final String COMMAND_HELP = "help";
     public static final String COMMAND_EXIT = "exit";
+    public static final String COMMAND_BREAKDOWN = "breakdown";
 
     /**
      * Parses user inputs.
      *
-     * @param input user input
+     * @param input   user input
      * @param modList module list
-     * @param name name entered by the user
+     * @param name    name entered by the user
      * @param storage storage object to load and store data
      * @param toPrint whether the UI should print the output
      */
@@ -67,6 +68,9 @@ public class Parser {
                 System.out.println("");
             }
             break;
+        case COMMAND_BREAKDOWN:
+            ui.printBreakDownAnalysis(modList, 1);
+            break;
         case COMMAND_HELP:
             assert toPrint : "toPrint should be true";
             if (!input.toLowerCase().trim().equals(COMMAND_HELP)) {
@@ -96,6 +100,7 @@ public class Parser {
         default:
             assert toPrint : "toPrint should be true";
             ui.printInvalidCommand();
+            break;
         }
     }
 
