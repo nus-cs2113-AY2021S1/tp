@@ -16,7 +16,7 @@ class UpdateTimeLimitCommandTest {
     @org.junit.jupiter.api.BeforeAll
     public static void main() {
         WatchTime limitation = new WatchTime(java.time.LocalDate.of(2020,10,19),60,120);
-        assertEquals(WatchTime.getdailyWatchLimit(), 120);
+        assertEquals(WatchTime.getDailyWatchLimit(), 120);
         ArrayList<String> inputExample = new ArrayList<>(Arrays.asList("updatetimelimit", "420"));
         updateObject = new UpdateTimeLimitCommand("updatetimelimit", inputExample);
     }
@@ -25,6 +25,6 @@ class UpdateTimeLimitCommandTest {
     @Test
     void processCommand() {
         updateObject.processCommand();
-        assertEquals(WatchTime.getdailyWatchLimit(), 420);
+        assertEquals(WatchTime.getDailyWatchLimit(), 420);
     }
 }
