@@ -1,5 +1,17 @@
 # User Guide
 
+## Purpose
+
+This document is the user guide of the SCRUMptious program.
+It is intended to provide all the necessary information to use this software on the workstations .
+
+In addition to this Introduction section, this manual contains four major sections:
+
+User's Guide, describing the functionality provided by the software, including examples of utilization.
+Reference, describing all the functions, commands and tools available to the applications and the application developers.
+Installation Guide, describing how to install and make the software ready to be used.
+
+
 ## Introduction
 
 SCRUMptious is a command line software for project management designed for project managers following the scrum methodology to develop it. 
