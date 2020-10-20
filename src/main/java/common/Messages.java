@@ -13,6 +13,6 @@ public class Messages {
     public static final String MESSAGE_INCORRECT_ACCESS = "%s command can only be called at admin, "
             + "module and chapter level.";
     public static final String MESSAGE_EXTRA_ARGS = "There should not be any arguments for %s.";
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Sorry, %s command format is wrong" +
-            ", please read following instruction: \n";
+    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Sorry, %s command format is wrong"
+            + ", please read following instruction: \n";
 }

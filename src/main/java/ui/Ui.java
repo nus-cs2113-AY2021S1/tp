@@ -2,15 +2,20 @@ package ui;
 
 import access.Access;
 
-import commands.*;
-
+import commands.AddCommand;
+import commands.BackCommand;
+import commands.EditCommand;
+import commands.ExitCommand;
+import commands.GoCommand;
+import commands.HelpCommand;
+import commands.ListCommand;
+import commands.ListDueCommand;
+import commands.RemoveCommand;
+import commands.ReviseCommand;
 import manager.card.Card;
-import manager.chapter.Chapter;
-import manager.module.Module;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static commands.ReviseCommand.MESSAGE_SHOW_ANSWER_PROMPT;
