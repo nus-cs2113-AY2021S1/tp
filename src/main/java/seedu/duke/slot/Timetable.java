@@ -49,14 +49,6 @@ public class Timetable {
         return module;
     }
 
-    public Module getModule(int index) {
-        return modules.get(index);
-    }
-
-    public int getModuleCount() {
-        return modules.size();
-    }
-
     public void deleteModule(Module module) {
         modules.remove(module);
     }

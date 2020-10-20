@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import org.fusesource.jansi.AnsiConsole;
 import seedu.duke.command.ChangeModeCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.bookmark.AddBookmarkCommand;
@@ -12,27 +13,16 @@ import seedu.duke.command.timetable.DeleteSlotCommand;
 import seedu.duke.command.timetable.ShowTimetableCommand;
 import seedu.duke.exception.DukeException;
 
-import seedu.duke.exception.DukeException;
-import seedu.duke.exception.DukeExceptionType;
-import seedu.duke.slot.Slot;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-import org.fusesource.jansi.AnsiConsole;
-import static org.fusesource.jansi.Ansi.ansi;
-import static org.fusesource.jansi.Ansi.Color.WHITE;
 import static org.fusesource.jansi.Ansi.Color.BLACK;
-
-import static org.fusesource.jansi.Ansi.Color.CYAN;
 import static org.fusesource.jansi.Ansi.Color.BLUE;
-import static org.fusesource.jansi.Ansi.Color.RED;
+import static org.fusesource.jansi.Ansi.Color.CYAN;
 import static org.fusesource.jansi.Ansi.Color.GREEN;
+import static org.fusesource.jansi.Ansi.Color.RED;
+import static org.fusesource.jansi.Ansi.Color.WHITE;
 import static org.fusesource.jansi.Ansi.Color.YELLOW;
-
-
-
+import static org.fusesource.jansi.Ansi.ansi;
 
 
 /**

@@ -1,10 +1,5 @@
 ____________________________________________________________
 
-Data file not found
-____________________________________________________________
-
-____________________________________________________________
-
 HELLO FROM:
 
                                                                                                  
@@ -32,6 +27,52 @@ HELLO FROM:
 ____________________________________________________________
 
 [Main Menu] Input: ____________________________________________________________
+Changing to bookmark mode
+____________________________________________________________
+
+[Bookmark mode] Input: ____________________________________________________________
+Here are the bookmarks in your list:
+____________________________________________________________
+
+[Bookmark mode] Input: ____________________________________________________________
+
+Please enter a valid index number between 1 and 0
+____________________________________________________________
+
+[Bookmark mode] Input: ____________________________________________________________
+Added bookmark: [description] www.bookmark.com
+____________________________________________________________
+
+[Bookmark mode] Input: ____________________________________________________________
+Here are the bookmarks in your list:
+  1.[description] www.bookmark.com
+
+____________________________________________________________
+
+[Bookmark mode] Input: ____________________________________________________________
+Added bookmark: [description2] www.bookmark2.com
+____________________________________________________________
+
+[Bookmark mode] Input: ____________________________________________________________
+Here are the bookmarks in your list:
+  1.[description] www.bookmark.com
+
+  2.[description2] www.bookmark2.com
+
+____________________________________________________________
+
+[Bookmark mode] Input: ____________________________________________________________
+I've deleted this bookmark!:
+[description] www.bookmark.com
+____________________________________________________________
+
+[Bookmark mode] Input: ____________________________________________________________
+Here are the bookmarks in your list:
+  1.[description2] www.bookmark2.com
+
+____________________________________________________________
+
+[Bookmark mode] Input: ____________________________________________________________
 Changing to timetable mode
 ____________________________________________________________
 
@@ -146,7 +187,7 @@ ____________________________________________________________
 no bookmarks found in module
 
 12:00-13:00 lecture
-  [lecture] dummy www.google.com
+  [lecture] www.google.com
 
 ____________________________________________________________
 
@@ -157,10 +198,10 @@ CS2213
 ____________________________________________________________
 
 [Timetable mode] Input: ____________________________________________________________
-[something] dummy www.google.com
+[something] www.google.com
 
 12:00-13:00 lecture
-  [lecture] dummy www.google.com
+  [lecture] www.google.com
 
 12:00-13:00 tutorial
   no bookmarks found in slot
@@ -234,7 +275,7 @@ ____________________________________________________________
 no bookmarks found in module
 
 12:00-13:00 lecture
-  [lecture] dummy www.google.com
+  [lecture] www.google.com
 
 ____________________________________________________________
 
@@ -246,7 +287,7 @@ ____________________________________________________________
 no bookmarks found in module
 
 12:00-13:00 lecture
-  [lecture] dummy www.google.com
+  [lecture] www.google.com
 
 12:00-13:00 tutorial
   no bookmarks found in slot

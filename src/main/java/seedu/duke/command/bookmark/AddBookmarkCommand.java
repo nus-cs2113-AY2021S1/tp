@@ -6,6 +6,7 @@ import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.DukeExceptionType;
 import seedu.duke.slot.Timetable;
 
 import java.util.List;
@@ -15,21 +16,26 @@ import java.util.List;
  */
 public class AddBookmarkCommand extends Command {
     public static final String ADD_KW = "add";
-    public String module;
     public String description;
     public String url;
 
     /**
      * Constructs a new AddBookmarkCommand instance and stores the information of the bookmark given by the input.
      *
-     * @param command The user input command.
      * @throws DukeException if input command is invalid, if the description is empty or if the url is invalid.
      */
-    public AddBookmarkCommand(String command) throws DukeException {
-        List<String> descAndAt = Bookmark.extractModuleDescriptionAndUrl(command);
-        module = descAndAt.get(0);
-        description = descAndAt.get(1);
-        url = descAndAt.get(2);
+    public AddBookmarkCommand(String input) throws DukeException {
+        assert input.startsWith(AddBookmarkCommand.ADD_KW) : "input should always start with \"add\"";
+        String command = input.substring(AddBookmarkCommand.ADD_KW.length());
+        if (command.isBlank()) {
+            throw new DukeException(DukeExceptionType.EMPTY_COMMAND, ADD_KW);
+        }
+        if (!command.startsWith(" ")) {
+            throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
+        }
+        List<String> descAndUrl = Bookmark.extractDescriptionAndUrl(command.trim());
+        description = descAndUrl.get(0);
+        url = descAndUrl.get(1);
     }
 
     /**
@@ -45,10 +51,9 @@ public class AddBookmarkCommand extends Command {
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
                         Storage bookmarkStorage, Storage slotStorage) throws DukeException {
-        Bookmark bookmark = new Bookmark(module, description, url);
-        bookmarks.addBookmark(bookmark);
-        ui.print("Added bookmark: " + "[" + module + "] "
-                + description + " " +  url + System.lineSeparator());
+        Bookmark bookmark = new Bookmark(description, url);
+        String message = bookmarks.addBookmark(bookmark);
+        ui.print(message);
         bookmarkStorage.save(bookmarks.getData());
     }
 }

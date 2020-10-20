@@ -45,9 +45,9 @@ public class ChangeModeCommand extends Command {
 
         String modeData = input.substring(5);
 
-        if (modeData.equals("bookmark") == true) {
+        if (modeData.compareTo("bookmark") == 0) {
             outputData = 1;
-        } else if (modeData.equals("timetable") == true) {
+        } else if (modeData.compareTo("timetable") == 0) {
             outputData = 2;
         } else {
             outputData = 0;
