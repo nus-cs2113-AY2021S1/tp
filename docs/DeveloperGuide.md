@@ -28,12 +28,12 @@ NUS students
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v1.0|student|input my modules|I can keep track of modules that I am taking|
-|v1.0|student|input the expected module workload|I can keep track of the recommended time I should spend on the module|
-|v1.0|busy student|view breakdown of my time spent on each module|I can pinpoint in detail where i spend most of time on|
-|v1.0|student|input the actual time spent on each module|I can keep track of the actual time I spent|
-|v1.0|careless user|I can edit the data easily|I can correct any mistakes I inputted wrongly/
-|v1.0|user|save my data permanently|I do not need to re-enter my data everytime I start the app|
+|v1.0|student|input my modules|keep track of modules that I am taking|
+|v1.0|student|input the expected module workload|keep track of the recommended time I should spend on the module|
+|v1.0|busy student|view breakdown of my time spent on each module|pinpoint in detail where i spend most of time on|
+|v1.0|student|input the actual time spent on each module|keep track of the actual time I spent|
+|v1.0|careless user|edit the data easily|correct any mistakes I inputted wrongly/
+|v1.0|user|save my data permanently|save the trouble of re-entering my data everytime I start the app|
 |v2.0|user|(to be updated)|(to be updated)|
 
 ## Non-Functional Requirements
