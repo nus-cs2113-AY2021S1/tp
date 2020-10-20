@@ -4,7 +4,7 @@ import seedu.smarthomebot.data.AirConditioner;
 import seedu.smarthomebot.data.WaterHeater;
 import seedu.smarthomebot.data.Fan;
 import seedu.smarthomebot.data.framework.Appliance;
-import seedu.smarthomebot.exceptions.InvalidValueException;
+import seedu.smarthomebot.exceptions.InvalidWattageValueException;
 
 import java.util.ArrayList;
 
@@ -33,11 +33,11 @@ public class OnCommand extends Command {
         this.parameter = parameter;
     }
 
-    private static int convertParameterToInt(String parameter) throws InvalidValueException {
+    private static int convertParameterToInt(String parameter) throws InvalidWattageValueException {
         try {
             return Integer.parseInt(parameter);
         } catch (NumberFormatException e) {
-            throw new InvalidValueException();
+            throw new InvalidWattageValueException();
         }
 
     }
@@ -93,7 +93,7 @@ public class OnCommand extends Command {
             if ((acTemperature < upperBound) && (acTemperature > lowerBound)) {
                 return true;
             }
-        } catch (InvalidValueException e) {
+        } catch (InvalidWattageValueException e) {
             return false;
         }
         return false;
@@ -118,12 +118,13 @@ public class OnCommand extends Command {
                 Appliance toOnAppliance = applianceList.getAppliance(toOnApplianceIndex);
                 if (toOnAppliance.switchOn()) {
                     assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
-                    String setParameterStatement = setParameter(parameter, toOnAppliance);
-                    return new CommandResult(MESSAGE_APPLIANCE_PREVIOUSLY_ON + setParameterStatement);
-                } else {
-                    assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
                     setParameter(parameter, toOnAppliance);
                     return new CommandResult("Switching: " + toOnAppliance + "......ON ");
+                } else {
+                    assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
+                    String setParameterStatement = setParameter(parameter, toOnAppliance);
+                    return new CommandResult(MESSAGE_APPLIANCE_PREVIOUSLY_ON + setParameterStatement);
+
                 }
             }
         case(LOCATION_TYPE) :

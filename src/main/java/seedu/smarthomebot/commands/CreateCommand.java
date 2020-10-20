@@ -2,7 +2,6 @@ package seedu.smarthomebot.commands;
 
 import seedu.smarthomebot.exceptions.DuplicateDataException;
 
-
 public class CreateCommand extends Command {
 
     public static final String COMMAND_WORD = "create";

@@ -17,6 +17,9 @@ import static seedu.smarthomebot.common.Messages.MESSAGE_TOTAL_POWER_USAGE;
 public class UsageCommand extends Command {
 
     public static final String COMMAND_WORD = "usage";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Display all the appliances power usage from SmartHomeBot \n"
+            + "Example: " + COMMAND_WORD;
 
     @Override
     public CommandResult execute() {
@@ -33,12 +36,13 @@ public class UsageCommand extends Command {
                     + MESSAGE_DISPLAY_USAGE + "%.2f kWh";
             for (Appliance a : applianceList.getAllAppliance()) {
                 formattedResult = formattedResult.concat(System.lineSeparator() + String.format(format, index,
-                        a.getName(), a.getLocation(), a.getStatus(), a.measureConsumption()));
-                totalUsage += a.measureConsumption();
+                        a.getName(), a.getLocation(), a.getStatus(), a.getPowerInDouble()));
+                totalUsage += a.getPowerInDouble();
                 index++;
             }
             formattedResult = formattedResult.concat(MESSAGE_TOTAL_POWER_USAGE + String.format("%.2f kWh", totalUsage));
             return new CommandResult(formattedResult);
         }
     }
+
 }

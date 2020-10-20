@@ -6,8 +6,8 @@ public class Lights extends Appliance {
 
     public static final String TYPE_WORD = "light";
 
-    public Lights(String name, String location, String power) {
-        super(name, location, power);
+    public Lights(String name, String location, String wattage) {
+        super(name, location, wattage);
     }
 
     public String getType() {

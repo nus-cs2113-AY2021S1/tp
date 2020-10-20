@@ -1,7 +1,6 @@
 package seedu.smarthomebot.commands;
 
 import seedu.smarthomebot.exceptions.ApplianceNotFoundException;
-import seedu.smarthomebot.exceptions.EmptyParameterException;
 import seedu.smarthomebot.exceptions.InvalidRemovalLocationException;
 
 import static seedu.smarthomebot.common.Messages.LINE;

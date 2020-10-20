@@ -19,6 +19,7 @@ from the text file and loads the appliances' data back.
   * [Switching off an appliance: `off`](#switching-off-an-appliance-off)
   * [Listing all the locations/appliances: `list`](#listing-all-the-locations-or-appliances-list)
   * [Displaying the usage of appliance: `usage`](#displaying-the-usage-of-appliance-usage)
+  * [Resetting all power usage in application: `p_reset`](#resetting-all-power-usage-in-application)
   * [Exiting the application: `exit`](#exiting-the-application-exit)
   * [Saving the data](#saving-the-data)
 * [Command summary](#command-summary)
@@ -65,41 +66,48 @@ Format: `help`
 
 **Example output:** 
 ```
--------------------------------------------------------
+----------------------------------------------------
 help: Shows program usage instructions.
 Example: help
--------------------------------------------------------
+----------------------------------------------------
 create: Creates a new location in SmartHomeBot
 Parameters: LOCATION
 Example: create Bedroom 1
--------------------------------------------------------
-remove: Remove the location and all the appliances in that location.
-Parameters: LOCATION
+----------------------------------------------------
+remove: Remove the indicated LOCATION and all the appliances in that LOCATION.
+Parameters: LOCATION 
 Example: remove Bedroom 1
--------------------------------------------------------
+----------------------------------------------------
 add: Adds a new appliance to the particular location to the SmartHomeBot. 
-Parameters: add NAME l/LOCATION n/NAME w/WATTS t/TYPE_OF_APPLIANCE 
-Example: add Fan 1 l/Bedroom 1 w/50 t/Fan
--------------------------------------------------------
-delete: Delete the existing appliance by its indicated name that has been added to SmartHomeBot
+Parameters: add [APPLIANCE_NAME] l/[LOCATION_NAME] w/[WATTAGE] t/[TYPE_OF_APPLIANCE] 
+Example: add Fan1 l/Bedroom 1 w/50 t/Fan
+----------------------------------------------------
+delete: Delete the existing appliance by its indicated NAME that has been added to SmartHomeBot
 Parameters: NAME
 Example: delete Fan 1
--------------------------------------------------------
-on: Turns on the specified appliance by its indicated name 
+----------------------------------------------------
+on: Turns on specified appliance by its indicated NAME 
 Parameters: NAME 
 Example: on Aircon 1 
--------------------------------------------------------
-off: Turns off specified appliance by its indicated name 
+----------------------------------------------------
+off: Turns off specified appliance by its indicated NAME 
 Parameters: NAME
 Example: off Fan 1
--------------------------------------------------------
+----------------------------------------------------
+usage: Display all the appliances power usage from SmartHomeBot 
+Example: usage
+----------------------------------------------------
+p_reset: Reset all the appliance power usage and total power consumption to zero.
+Example: p_reset
+----------------------------------------------------
 list: Display all the appliances that have been added to SmartHomeBot 
 Example: list
--------------------------------------------------------
+----------------------------------------------------
 exit: Exits the program.
 Example: exit
+----------------------------------------------------
 
-===================================================
+====================================================
 ```
    
 <br/><br/>
@@ -219,16 +227,28 @@ Here are the appliances in your list.
 
 <br/><br/> 
 ### Displaying the usage of appliance: `usage`
-Display the current power usage of all appliances and Total power consumption. 
+Display the current power usage of all appliances and total power consumption. 
 Format: `usage`
 
 Output: 
 ```
 Here are the power usage consumption.
 
-1. AIRCON1 | Location: Bedroom 1 | Status: Off | Usage: 371.00 kWh
+1. AIRCON1     | Location: Bedroom 1      | Status: Off | Usage: 371.00 kWh
+2. Cooling Fan | Location: Master Bedroom | Status: Off | Usage: 93.58 kWh
 
-Total power consumption: 371.00 kWh
+Total power consumption: 464.58 kWh
+```
+
+<br/><br/> 
+### Resetting all power usage in application: `p_reset`
+Reset the current power usage of all appliances and total power consumption to zero. 
+Format: `p_reset`
+
+Output: 
+```
+Power usage has been reset!
+
 ```
 
 <br/><br/> 
@@ -249,7 +269,7 @@ any command that changes the data. There is no need to save manually.
 **Q**: How do I transfer my data to another Computer?
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file 
-that contains the data of your previous Duke home folder.
+that contains the data of your previous SmartHomeBot folder.
 
 ## Command summary
 
@@ -264,4 +284,5 @@ Switch On|`on [APPLIANCE_NAME]`|`on AIRCON1`
 Switch Off|`off [APPLIANCE_NAME]`|`off AIRCON1`
 List|`list appliance` or `list location`
 Usage|`usage`
+Reset|`p_reset`
 Exit|`exit`

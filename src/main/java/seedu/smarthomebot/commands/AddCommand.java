@@ -22,13 +22,13 @@ public class AddCommand extends Command {
 
     private final String name;
     private final String location;
-    private final String power;
+    private final String wattage;
     private final String type;
 
-    public AddCommand(String name, String location, String power, String type) {
+    public AddCommand(String name, String location, String wattage, String type) {
         this.name = name;
         this.location = location;
-        this.power = power;
+        this.wattage = wattage;
         this.type = type;
     }
 
@@ -41,19 +41,19 @@ public class AddCommand extends Command {
             }
             switch (type.toLowerCase()) {
             case Fan.TYPE_WORD:
-                Fan fan = new Fan(name, location, power);
+                Fan fan = new Fan(name, location, wattage);
                 applianceList.addAppliance(fan);
                 return new CommandResult("ADDING " + fan.toString() + "......ADDED");
             case AirConditioner.TYPE_WORD:
-                AirConditioner ac = new AirConditioner(name, location, power);
+                AirConditioner ac = new AirConditioner(name, location, wattage);
                 applianceList.addAppliance(ac);
                 return new CommandResult("ADDING " + ac.toString() + "......ADDED");
             case Lights.TYPE_WORD:
-                Lights light = new Lights(name, location, power);
+                Lights light = new Lights(name, location, wattage);
                 applianceList.addAppliance(light);
                 return new CommandResult("ADDING " + light.toString() + "......ADDED");
             case WaterHeater.TYPE_WORD:
-                WaterHeater waterheater = new WaterHeater(name, location, power);
+                WaterHeater waterheater = new WaterHeater(name, location, wattage);
                 applianceList.addAppliance(waterheater);
                 return new CommandResult("ADDING " + waterheater.toString() + "......ADDED");
             default:

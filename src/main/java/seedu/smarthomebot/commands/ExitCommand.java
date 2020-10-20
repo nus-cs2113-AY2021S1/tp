@@ -16,7 +16,7 @@ public class ExitCommand extends Command {
 
     public CommandResult execute() {
         for (Appliance a : applianceList.getAllAppliance()) {
-            a.measureConsumption();
+            a.switchOff();
         }
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT);
     }

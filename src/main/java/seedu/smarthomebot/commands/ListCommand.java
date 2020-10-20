@@ -1,6 +1,5 @@
 package seedu.smarthomebot.commands;
 
-import seedu.smarthomebot.data.ApplianceList;
 import seedu.smarthomebot.data.framework.Appliance;
 
 import java.util.ArrayList;
@@ -59,7 +58,7 @@ public class ListCommand extends Command {
                         + MESSAGE_DISPLAY_TYPE + "%s";
                 for (Appliance a : applianceList.getAllAppliance()) {
                     formattedResult = formattedResult.concat(System.lineSeparator() + String.format(format, index,
-                            a.getName(), a.getLocation(), a.getStatus(), a.getPower(), a.getType()));
+                            a.getName(), a.getLocation(), a.getStatus(), a.getWattage(), a.getType()));
                     index++;
                 }
                 return new CommandResult(formattedResult);
@@ -80,7 +79,7 @@ public class ListCommand extends Command {
                         + MESSAGE_DISPLAY_TYPE + "%s";
                 for (Appliance a : filterApplianceList) {
                     formattedResult = formattedResult.concat(System.lineSeparator() + String.format(format, index,
-                            a.getName(), a.getLocation(), a.getStatus(), a.getPower(), a.getType()));
+                            a.getName(), a.getLocation(), a.getStatus(), a.getWattage(), a.getType()));
                     index++;
                 }
                 return new CommandResult(formattedResult);
