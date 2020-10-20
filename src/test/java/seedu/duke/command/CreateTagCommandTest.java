@@ -103,7 +103,7 @@ class CreateTagCommandTest {
 
     private String getCommandExecutionString(TagManager tagManager, ArrayList<Tag> tags) {
         CreateTagCommand createTagCommand = new CreateTagCommand(tags);
-        createTagCommand.setData(null, null, tagManager, null);
+        createTagCommand.setData(null, null, null, tagManager, null);
         return createTagCommand.execute();
     }
 }

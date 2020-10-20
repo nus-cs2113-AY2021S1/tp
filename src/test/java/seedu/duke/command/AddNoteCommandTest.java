@@ -28,14 +28,14 @@ class AddNoteCommandTest {
         TagManager tagManager = new TagManager();
         StorageManager storageManager = new StorageManager();
 
-        Note note = new Note("Java OOP", "Encapsulation\nAbstraction", true);
+        Note note = new Note("Java OOP", "Encapsulation\nAbstraction", true, false);
         AddNoteCommand command = null;
         try {
             command = new AddNoteCommand(note);
         } catch (NullPointerException exception) {
             exception.printStackTrace();
         }
-        command.setData(notebook, timetable, tagManager, storageManager);
+        command.setData(notebook, null, timetable, tagManager, storageManager);
         String result = command.execute();
         ArrayList<Note> checkBook = notebook.getNotes();
 
@@ -56,7 +56,7 @@ class AddNoteCommandTest {
         TagManager tagManager = new TagManager();
         StorageManager storageManager = new StorageManager();
 
-        Note note = new Note("Java OOP", "Encapsulation\nAbstraction", true);
+        Note note = new Note("Java OOP", "Encapsulation\nAbstraction", true, false);
         notebook.addNote(note);
         AddNoteCommand command = null;
         try {
@@ -64,7 +64,7 @@ class AddNoteCommandTest {
         } catch (NullPointerException exception) {
             exception.printStackTrace();
         }
-        command.setData(notebook, timetable, tagManager, storageManager);
+        command.setData(notebook, null, timetable, tagManager, storageManager);
         String result = command.execute();
 
         assertFalse(result.contains(note.getTitle()));

@@ -26,8 +26,8 @@ class DeleteNoteCommandTest {
 
     @BeforeEach
     public void setUp() {
-        Note javaNote = new Note("Java OOP", "Encapsulation\nAbstraction", true);
-        Note cppNote = new Note("C++ Standard Libraries", "Core library\nStandard library", false);
+        Note javaNote = new Note("Java OOP", "Encapsulation\nAbstraction", true, false);
+        Note cppNote = new Note("C++ Standard Libraries", "Core library\nStandard library", false, false);
 
         AddNoteCommand command = null;
         try {
@@ -36,7 +36,7 @@ class DeleteNoteCommandTest {
             exception.printStackTrace();
         }
 
-        command.setData(notebook, timetable, tagManager, storageManager);
+        command.setData(notebook, null, timetable, tagManager, storageManager);
         command.execute();
         deletedNotebook = notebook;
 
@@ -45,7 +45,7 @@ class DeleteNoteCommandTest {
         } catch (NullPointerException exception) {
             exception.printStackTrace();
         }
-        command.setData(notebook, timetable, tagManager, storageManager);
+        command.setData(notebook, null, timetable, tagManager, storageManager);
         command.execute();
 
         expectedNotebook = notebook;
@@ -116,7 +116,7 @@ class DeleteNoteCommandTest {
     private DeleteNoteCommand createDeleteCommand(int targetVisibleIndex, Notebook notebook) {
 
         DeleteNoteCommand command = new DeleteNoteCommand(targetVisibleIndex);
-        command.setData(notebook, timetable, tagManager, storageManager);
+        command.setData(notebook, null, timetable, tagManager, storageManager);
         return command;
     }
 
@@ -128,7 +128,7 @@ class DeleteNoteCommandTest {
      */
     private DeleteNoteCommand createDeleteCommand(String targetVisibleString, Notebook notebook) {
         DeleteNoteCommand command = new DeleteNoteCommand(targetVisibleString);
-        command.setData(notebook, timetable, tagManager, storageManager);
+        command.setData(notebook, null, timetable, tagManager, storageManager);
         return command;
     }
 

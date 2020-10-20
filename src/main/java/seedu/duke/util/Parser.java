@@ -683,7 +683,7 @@ public class Parser {
             }
         }
 
-        if(isArchive) {
+        if (isArchive) {
             return new ListNoteCommand(isArchive);
         }
         

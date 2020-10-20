@@ -40,7 +40,7 @@ class RemindCommandTest {
     @Test
     void execute_singleEvent_success() {
         timetable.addEvent(dailyEvent);
-        command.setData(NOTEBOOK, timetable, TAG_MANAGER, STORAGE_MANAGER);
+        command.setData(NOTEBOOK, null, timetable, TAG_MANAGER, STORAGE_MANAGER);
         DailyEvent reminderEvent = new DailyEvent(dailyEvent.getTitle(), TEST_DATE_TIME.plusDays(1),
                 TEST_REMINDER, TEST_TIME_PERIODS, TEST_TIME_UNITS);
         assertEquals("Reminders:" + Formatter.LS + reminderEvent.toReminderString(), command.execute());

@@ -21,8 +21,8 @@ class PinCommandTest {
 
     @BeforeEach
     void setUp() {
-        notePinned = new Note(NOTE1_TITLE, NOTE_CONTENT, true);
-        noteNotPinned = new Note(NOTE2_TITLE, NOTE_CONTENT, false);
+        notePinned = new Note(NOTE1_TITLE, NOTE_CONTENT, true, false);
+        noteNotPinned = new Note(NOTE2_TITLE, NOTE_CONTENT, false, false);
 
         notebook = new Notebook();
 
@@ -66,14 +66,14 @@ class PinCommandTest {
 
     private String getExecutionStringInputIndex(Notebook notebook, int index) {
         PinCommand pinCommand = new PinCommand(index);
-        pinCommand.setData(notebook, null, null, null);
+        pinCommand.setData(notebook, null, null, null, null);
 
         return pinCommand.execute();
     }
 
     private String getExecutionStringInputTitle(Notebook notebook, String title) {
         PinCommand pinCommand = new PinCommand(title);
-        pinCommand.setData(notebook, null, null, null);
+        pinCommand.setData(notebook, null, null,null, null);
 
         return pinCommand.execute();
     }

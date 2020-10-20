@@ -39,7 +39,7 @@ class DeleteTagCommandTest {
         tags = new ArrayList<>();
         tagManager = new TagManager();
 
-        defaultNote = new Note("Default", "Default", false);
+        defaultNote = new Note("Default", "Default", false, false);
     }
 
     @Test
@@ -120,7 +120,7 @@ class DeleteTagCommandTest {
 
     private String getCommandExecutionString(TagManager tagManger, ArrayList<Tag> tags) {
         DeleteTagCommand deleteTagCommand = new DeleteTagCommand(tags);
-        deleteTagCommand.setData(null, null, tagManger, null);
+        deleteTagCommand.setData(null, null, null, tagManger, null);
         return deleteTagCommand.execute();
     }
 }

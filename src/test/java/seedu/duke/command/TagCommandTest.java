@@ -40,8 +40,8 @@ class TagCommandTest {
         tagRedRef = new Tag("Red", Tag.COLOR_RED_STRING);
         tagBlueRef = new Tag("Blue", Tag.COLOR_BLUE_STRING);
 
-        noTagNote = new Note("Default", "default", false);
-        taggedNote = new Note("TaggedNote", "default", false);
+        noTagNote = new Note("Default", "default", false, false);
+        taggedNote = new Note("TaggedNote", "default", false, false);
 
         tags = new ArrayList<>();
 
@@ -130,7 +130,7 @@ class TagCommandTest {
 
     private String getCommandExecutionString(Notebook notebook, TagManager tagManager, int index, ArrayList<Tag> tags) {
         TagCommand tagCommand = new TagCommand(index, tags);
-        tagCommand.setData(notebook, null, tagManager, null);
+        tagCommand.setData(notebook, null, null, tagManager, null);
         return tagCommand.execute();
     }
 }

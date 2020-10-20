@@ -64,16 +64,16 @@ public class ArchiveNoteCommand extends Command {
                 return Formatter.formatString(ARCHIVE_NOTE_MESSAGE + archivedTitle);
 
             } else if (notebook.getNote(title)) {
-                    archivedNotesList = (ArrayList<Note>) notebook.getNotes().stream()
-                            .filter((s) -> s.getTitle().equalsIgnoreCase(title))
-                            .collect(Collectors.toList());
+                archivedNotesList = (ArrayList<Note>) notebook.getNotes().stream()
+                        .filter((s) -> s.getTitle().equalsIgnoreCase(title))
+                        .collect(Collectors.toList());
 
-                    for (Note note : archivedNotesList) {
-                        archivedNotebook.addNote(note);
-                        isArchived = notebook.deleteNote(title);
+                for (Note note : archivedNotesList) {
+                    archivedNotebook.addNote(note);
+                    isArchived = notebook.deleteNote(title);
 
-                        return Formatter.formatString(ARCHIVE_NOTE_MESSAGE + title);
-                    }
+                    return Formatter.formatString(ARCHIVE_NOTE_MESSAGE + title);
+                }
             }
 
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);

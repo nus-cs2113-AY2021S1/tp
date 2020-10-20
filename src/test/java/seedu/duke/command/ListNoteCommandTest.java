@@ -38,10 +38,10 @@ class ListNoteCommandTest {
         tagSet.add(tagCs2113);
         tagSet.add(tagNus);
 
-        defaultNote = new Note("Default", "default", false, tag);
-        testNote1 = new Note("TestNote1", "testing", true);
-        cs2113 = new Note("CS2113", "JavaDocs", true, tagSet);
-        songLyrics = new Note("Song Lyrics", "I like to move it move it", false);
+        defaultNote = new Note("Default", "default", false, false, tag);
+        testNote1 = new Note("TestNote1", "testing", true, false);
+        cs2113 = new Note("CS2113", "JavaDocs", true, false, tagSet);
+        songLyrics = new Note("Song Lyrics", "I like to move it move it", false, false);
 
         //notebook.addNote(testNote1);
         //notebook.addNote(CS2113);
@@ -96,13 +96,13 @@ class ListNoteCommandTest {
 
     private String getCommandExecutionString(Notebook notebook) {
         ListNoteCommand listNoteCommand = new ListNoteCommand();
-        listNoteCommand.setData(notebook, null, null, null);
+        listNoteCommand.setData(notebook, null, null, null, null);
         return listNoteCommand.execute();
     }
 
     private StringBuilder getCommandNoteString(ArrayList<Note> noteArrayList) {
         ListNoteCommand listNoteCommand = new ListNoteCommand();
-        listNoteCommand.setData(notebook, null, null, null);
+        listNoteCommand.setData(notebook, null, null, null, null);
         return listNoteCommand.getNoteString(noteArrayList);
     }
 }
