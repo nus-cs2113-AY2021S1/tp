@@ -1,6 +1,7 @@
 package seedu.duke.ui;
 
 import seedu.duke.Bus;
+import seedu.duke.DiningOptions;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
 
@@ -45,8 +46,10 @@ public class Ui {
                 + "3./bus: Displays buses available at each bus stop\n"
                 + "4./allbus: Lists all buses available in NUS Zone a\n"
                 + "5./liststops: Lists all bus stops in NUS Zone a\n"
-                + "6./exit: Exit program\n"
-                + "7./help: List all available commands");
+                + "6./dine: Search for dining options within a faculty\n"
+                + "7./dineinfo: Search for a specific dining outlet\n"
+                + "8./exit: Exit program\n"
+                + "9./help: List all available commands");
         printLine();
     }
 
@@ -101,4 +104,25 @@ public class Ui {
         }
         printLine();
     }
+
+    public static int printDineResult(int displayCount, String tempFaculty, ArrayList<DiningOptions> foodPlaceInfo) {
+        System.out.println("The dining options available at " + tempFaculty + " are:");
+        for (DiningOptions info : foodPlaceInfo) {
+            displayCount++;
+            System.out.println(displayCount + ". " + info.getName());
+        }
+        return displayCount;
+    }
+
+    public static void printDineInfoResult(ArrayList<DiningOptions> searchList) {
+        if (searchList.size() == 0) {
+            System.out.println("No match found.");
+        } else {
+            System.out.println("The stores that match your search:");
+            for (DiningOptions item : searchList) {
+                System.out.println("\n" + item.toString());
+            }
+        }
+    }
+    
 }
