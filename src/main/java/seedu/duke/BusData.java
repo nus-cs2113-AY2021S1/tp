@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 
 public class BusData {
 
@@ -46,5 +47,13 @@ public class BusData {
 
     public static ArrayList<Bus> listOfAllBuses() {
         return buses;
+    }
+
+    public static ArrayList<Integer> getAllSearchCount(){
+        ArrayList<Integer> allSearchCount = new ArrayList<Integer>();
+        for (BusStops busStop: EnumSet.allOf(BusStops.class)){
+            allSearchCount.add(busStop.getSearchCount());
+        }
+        return allSearchCount;
     }
 }
