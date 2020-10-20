@@ -5,6 +5,8 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
+import seedu.duke.human.Workspace;
+import seedu.duke.parser.BookmarkParser;
 import seedu.duke.storage.StorageManager;
 
 import static seedu.duke.logger.AniLogger.getAniLogger;
@@ -17,7 +19,6 @@ public class BookmarkAnimeCommand extends Command {
     private int bookmarkIndex;
     private int animeIndex;
     private int bookmarkEpisode;
-    // e for edit, a for add, d for delete
     private String bookmarkAction;
     private static final Logger LOGGER = getAniLogger(BookmarkAnimeCommand.class.getName());
 
@@ -31,24 +32,31 @@ public class BookmarkAnimeCommand extends Command {
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         String result = "";
         Bookmark bookmark = user.getActiveWorkspace().bookmark;
-
+        Workspace workspace = user.getActiveWorkspace();
         switch (bookmarkAction) {
-        case "e":
+        case BookmarkParser
+                .EPISODE_PARAM:
             LOGGER.log(Level.INFO, "Executing Edit Episode.");
-            result = editBookmarkEpisode(animeData, storageManager, user, bookmark);
+            result = editBookmarkEpisode(animeData,workspace);
+            storageManager.saveBookmark(workspace.getName(), bookmark);
             break;
-        case "a":
+        case BookmarkParser
+                .ADD_PARAM:
             LOGGER.log(Level.INFO, "Executing Add Anime to Bookmark.");
-            result = addBookmarkEntry(animeData, storageManager, user, bookmark);
+            result = addBookmarkEntry(animeData, workspace);
+            storageManager.saveBookmark(workspace.getName(), bookmark);
             break;
-        case "d":
+        case BookmarkParser
+                .DELETE_PARAM:
             LOGGER.log(Level.INFO, "Executing Delete Anime from Bookmark.");
-            result = deleteBookmarkEntry(animeData, storageManager, user, bookmark);
+            result = deleteBookmarkEntry(animeData, workspace);
+            storageManager.saveBookmark(workspace.getName(), bookmark);
             break;
-        case "l":
+        case BookmarkParser
+                .LIST_PARAM:
             LOGGER.log(Level.INFO, "Executing List all anime in Bookmark.");
             result = "Listing all anime in bookmark:";
-            String bookmarkList = listBookmarkEntries(animeData, bookmark);
+            String bookmarkList = user.getActiveWorkspace().getBookmarkListInString(animeData);
             result += bookmarkList;
             break;
         default:
@@ -58,30 +66,22 @@ public class BookmarkAnimeCommand extends Command {
         return result;
     }
 
-    private String listBookmarkEntries(AnimeData animeData, Bookmark bookmark) {
-        String bookmarkList = bookmark.animeListInString(animeData);
-        return bookmarkList;
-    }
-
-    private String deleteBookmarkEntry(AnimeData animeData, StorageManager storageManager,
-                                       User user, Bookmark bookmark) throws AniException {
+    private String deleteBookmarkEntry(AnimeData animeData, Workspace workspace) throws AniException {
         String result;
-        if (bookmarkIndex > bookmark.getBookmarkSize() || bookmarkIndex <= 0) {
+        if (bookmarkIndex > workspace.getBookmarkSize() || bookmarkIndex <= 0) {
             String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + "provided is invalid."
                     + System.lineSeparator() + " Bookmark index is outside Bookmark range (too big or too small).";
             LOGGER.log(Level.WARNING, "Bookmark command execute failed:" + invalidBookmarkIndex);
             throw new AniException(invalidBookmarkIndex);
         }
-        Anime animeToDelete = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
+        Anime animeToDelete = workspace.getAnimeFromBookmark(animeData, bookmarkIndex - 1);
         result = "Removing " + animeToDelete.getAnimeName() + "! :(";
-        bookmark.removeAnimeBookmark(bookmarkIndex - 1);
-        storageManager.saveBookmark(user.getActiveWorkspace().getName(), bookmark);
+        workspace.removeBookmarkEntry(bookmarkIndex - 1);
         return result;
     }
 
 
-    private String addBookmarkEntry(AnimeData animeData, StorageManager storageManager,
-                                    User user, Bookmark bookmark) throws AniException {
+    private String addBookmarkEntry(AnimeData animeData, Workspace workspace) throws AniException {
         String result;
         if (animeIndex > animeData.getSize() || animeIndex <= 0) {
             String invalidAnimeIndex = "Anime index " + animeIndex + "provided is invalid."
@@ -91,16 +91,13 @@ public class BookmarkAnimeCommand extends Command {
         }
 
         Anime animeToAdd = animeData.getAnimeByID(animeIndex - 1);
-        result = "Saving " + animeToAdd.getAnimeID() + ". " + animeToAdd.getAnimeName() + " " + " to bookmark.";
-        bookmark.addAnimeBookmark(animeIndex - 1);
-        storageManager.saveBookmark(user.getActiveWorkspace().getName(), bookmark);
+        result = "Saving " + animeToAdd.getAnimeID() + ". " + animeToAdd.getAnimeName() + " to bookmark.";
+        workspace.addBookmarkEntry(animeIndex - 1);
         return result;
     }
 
-    private String editBookmarkEpisode(AnimeData animeData, StorageManager storageManager,
-                                       User user, Bookmark bookmark) throws AniException {
-
-        if (bookmarkIndex > bookmark.getBookmarkSize() || bookmarkIndex <= 0) {
+    private String editBookmarkEpisode(AnimeData animeData, Workspace workspace) throws AniException {
+        if (bookmarkIndex > workspace.getBookmarkSize() || bookmarkIndex <= 0) {
             String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + " provided is invalid."
                     + System.lineSeparator() + " Bookmark index is outside Bookmark range (too big or too small).";
             LOGGER.log(Level.WARNING, "Bookmark command execute failed:" + invalidBookmarkIndex);
@@ -108,10 +105,9 @@ public class BookmarkAnimeCommand extends Command {
         }
         String result;
         assert bookmarkEpisode >= 0 : "bookmarkEpisode should be positive";
-        bookmark.editAnimeBookmarkEpisode(bookmarkIndex - 1, bookmarkEpisode);
-        Anime animeToEdit = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
+        workspace.editBookmarkEpisode(bookmarkIndex - 1, bookmarkEpisode);
+        Anime animeToEdit = workspace.getAnimeFromBookmark(animeData, bookmarkIndex - 1);
         result = "Editing " + animeToEdit.getAnimeName() + " to have " + bookmarkEpisode + " episode";
-        storageManager.saveBookmark(user.getActiveWorkspace().getName(), bookmark);
         return result;
     }
 
@@ -134,6 +130,4 @@ public class BookmarkAnimeCommand extends Command {
     public void setBookmarkEpisode(String bookmarkEpisodeString) {
         this.bookmarkEpisode = Integer.parseInt(bookmarkEpisodeString);
     }
-
-
 }

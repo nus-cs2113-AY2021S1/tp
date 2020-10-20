@@ -1,5 +1,6 @@
 package seedu.duke.human;
 
+import seedu.duke.anime.Anime;
 import seedu.duke.anime.AnimeData;
 import seedu.duke.bookmark.Bookmark;
 import seedu.duke.watchlist.Watchlist;
@@ -54,9 +55,34 @@ public class Workspace {
         return watchlistList;
     }
 
-    private String getBookmarkListInString(AnimeData animeData){
+    public String getBookmarkListInString(AnimeData animeData) {
         return bookmark.animeListInString(animeData);
     }
+
+    public void removeBookmarkEntry(Integer bookmarkIndex) {
+        bookmark.removeAnimeBookmark(bookmarkIndex);
+        return;
+    }
+
+    public void addBookmarkEntry(Integer animeIndex) {
+        bookmark.addAnimeBookmark(animeIndex);
+        return;
+    }
+
+    public Integer getBookmarkSize(){
+        return bookmark.getBookmarkSize();
+    }
+
+    public Anime getAnimeFromBookmark(AnimeData animeData, Integer bookmarkIndex){
+        return bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex);
+    }
+
+    public void editBookmarkEpisode(Integer bookmarkIndex, Integer bookmarkEpisode){
+        bookmark.editAnimeBookmarkEpisode(bookmarkIndex, bookmarkEpisode);
+        return;
+    }
+
+
 
     @Override
     public String toString() {

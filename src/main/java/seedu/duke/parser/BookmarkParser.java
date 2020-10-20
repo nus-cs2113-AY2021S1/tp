@@ -12,10 +12,10 @@ import java.util.logging.Logger;
 
 public class BookmarkParser extends CommandParser {
 
-    private static final String ADD_PARAM = "a";
-    private static final String DELETE_PARAM = "d";
-    private static final String EPISODE_PARAM = "e";
-    private static final String LIST_PARAM = "l";
+    public static final String ADD_PARAM = "a";
+    public static final String DELETE_PARAM = "d";
+    public static final String EPISODE_PARAM = "e";
+    public static final String LIST_PARAM = "l";
     private static final String PARAMETER_ERROR_HEADER = "Parameter :";
     private static final String DESCRIPTION_ERROR_HEADER = "Description :";
     private static final String BOOKMARK_LOAD_ERROR_HEADER = "Could not load bookmark command :";
