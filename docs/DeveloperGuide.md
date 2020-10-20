@@ -11,6 +11,7 @@
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}.
 
 ####[Proposed] Deadline feature
+
 The user executes ```deadline 1; 7/10/20; 11:20 PM``` command to set the deadline for the 1st event in Personal event list
 to be on the 7th October 2020 at 11:20 PM. 
 The ```deadline``` command calls ```DeadlineCommand#execute()```, adding/updating the personal event deadline. </br>
