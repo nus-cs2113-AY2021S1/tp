@@ -56,13 +56,6 @@ public class Ui {
         printLine();
     }
 
-    public static void printRouteSelectionMessage() {
-        printLine();
-        System.out.println("What bus routes would you like to see?\nCurrently, we have two bus routes available for"
-                + " your viewing \n1.AA1 \n2.AA2 \nType the name to view:");
-        printLine();
-    }
-
     public static void printRouteMessage(ArrayList<Bus> options) {
         printLine();
         int optionNo = 1;
