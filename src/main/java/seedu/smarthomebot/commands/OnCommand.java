@@ -123,7 +123,7 @@ public class OnCommand extends Command {
             if (locationList.isLocationCreated(this.name)) {
                 String outputResults = LINE;
                 for (Appliance toOnAppliance: applianceList.getAllAppliance()) {
-                    if(toOnAppliance.getLocation().equals(this.name)) {
+                    if (toOnAppliance.getLocation().equals(this.name)) {
                         outputResults = displayOutput(toOnAppliance, outputResults, 1);
                     }
                 }
@@ -142,7 +142,8 @@ public class OnCommand extends Command {
             assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
             String setParameterStatement = setParameter(parameter, toOnAppliance);
             if (isList == 1) {
-                outputResults = outputResults.concat(MESSAGE_APPLIANCE_PREVIOUSLY_ON + setParameterStatement + "\n" + LINE);
+                outputResults = outputResults.concat(MESSAGE_APPLIANCE_PREVIOUSLY_ON
+                                                    + setParameterStatement + "\n" + LINE);
             } else {
                 outputResults = LINE + MESSAGE_APPLIANCE_PREVIOUSLY_ON + setParameterStatement;
             }

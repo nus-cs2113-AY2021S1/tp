@@ -5,8 +5,9 @@ import seedu.smarthomebot.data.framework.Appliance;
 import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toList;
-import static seedu.smarthomebot.common.Messages.*;
-import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
+import static seedu.smarthomebot.common.Messages.LINE;
+import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_NOT_EXIST;
+import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
 
 public class OffCommand extends Command {
 
@@ -56,7 +57,7 @@ public class OffCommand extends Command {
             if (locationList.isLocationCreated(this.name)) {
                 String outputResults = LINE;
                 for (Appliance toOffAppliance: applianceList.getAllAppliance()) {
-                    if(toOffAppliance.getLocation().equals(this.name)) {
+                    if (toOffAppliance.getLocation().equals(this.name)) {
                         outputResults = displayOutput(toOffAppliance, outputResults, 1);
                     }
                 }
@@ -69,6 +70,7 @@ public class OffCommand extends Command {
             return new CommandResult("Invalid Format");
         }
     }
+
     private String displayOutput(Appliance toOffAppliance, String outputResults, int isList) {
         if (toOffAppliance.switchOff()) {
             assert toOffAppliance.getStatus().equals("OFF") : "Appliance should be already OFF";
