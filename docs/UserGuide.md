@@ -7,7 +7,8 @@
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)
 <br/>&nbsp;3.5 [Watchlist management: `watchlist`](#35-watchlist-management-watchlist)
-<br/>&nbsp;3.9 [Saving and loading data](#39-saving-and-loading-data)
+<br/>&nbsp;3.9 [Estimate time need to translate script: `estimate`](#39-estimate-time-needed-to-translate-script-estimate)
+<br/>&nbsp;3.11 [Saving and loading data](#311-saving-and-loading-data)
 4. [FAQ](#4-faq)
 5. [Command Summary](#5-command-summary)
 
@@ -147,25 +148,42 @@ This command handles all watchlist management related operations:
 * Delete a watchlist that is no longer needed.
 
 Format: 
-
 * `watchlist -n <WATCHLIST_NAME>`
 * `watchlist -l`
 * `watchlist -s <WATCHLIST_INDEX>`
 * `watchlist -d <WATCHLIST_INDEX>`
 
-Examples: 
 
-* `watchlist -n Adventure Anime` <br/>
-Creates a watchlist named `Adventure Anime`.
+Sample input: `watchlist -n Adventure Anime`
 
-* `watchlist -l` <br/>
-Lists all watchlist(s) or prints an empty watchlist message if there is none.
+The expected outcome: 
+```
+Watchlist "Adventure Anime" has been created successfully!
+```
 
-* `watchlist -s 2` <br/>
-Selects the 2nd watchlist to be used.
+Sample input: `watchlist -l`
 
-* `watchlist -d 2` <br/>
-Deletes the 2nd watchlist.
+The expected outcome: 
+```
+Currently, you have 2 watchlist(s):
+	1. Default
+	2. Adventure Anime
+```
+
+Sample input: `watchlist -s 2`
+
+The expected outcome: 
+```
+"Adventure Anime" is now your active watchlist!
+```
+
+Sample input: `watchlist -d 2`
+
+The expected outcome: 
+```
+Watchlist "Adventure Anime" has been deleted successfully!
+Changed active watchlist to: "Default".
+```
 
 <br/>
 
@@ -269,7 +287,32 @@ The expected outcome:
 [ID:488] Teacher's Time
 ```
 
-### 3.9 Exit AniChan: `exit`
+### 3.9 Estimate time needed to translate script: `estimate`
+Estimates the time required to finish translating a script, users may provide
+their estimated words per hour speed or use the average translator speed as an estimate.
+
+Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
+* You have to specify the file extension too! E.g. `script.txt`.
+* Currently, only `.txt` files are accepted by AniChan.
+
+
+Sample input: `estimate script.txt`
+
+The expected outcome: 
+```
+Average translator (400 words per hour) takes: 5 hour(s) 47 minute(s).
+Average translator (500 words per hour) takes: 4 hour(s) 38 minute(s).
+Average translator (600 words per hour) takes: 3 hour(s) 51 minute(s).
+```
+
+Sample input: `estimate script.txt -wph 777`
+
+The expected outcome:
+```
+You would need 2 hour(s) 58 minute(s).
+```
+
+### 3.10 Exit AniChan: `exit`
 Exit AniChan 
 
 Format: `exit`
@@ -283,7 +326,7 @@ Sayonara <NAME>!
 
 <br/>
 
-### 3.9 Saving and loading data
+### 3.11 Saving and loading data
 User, workspace(s), watchlist(s), and bookmark(s) data will be **saved automatically** when they are 
 created or modified, and will be **loaded automatically** when AniChan is launched. 
 
@@ -301,14 +344,15 @@ Coming soon!
 
 |Feature|Command|
 |---|---|
-| Help               | `help`                                                   |
-| Add user           | `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER>`    |
-| Switch user        | `switchuser -n <USERNAME>`                               |
-| Browse             | `browse -s [name/rating] -p <1-26> -o [asc/dsc]`         |
-| Create watchlist   | `watchlist -n <WATCHLIST_NAME>`                          |
-| List all watchlist | `watchlist -l`                                           |
-| Select watchlist   | `watchlist -s <WATCHLIST_INDEX>`                         |
-| Delete watchlist   | `watchlist -d <WATCHLIST_INDEX>`                         |
-| Add to watchlist   | `add -a <ANIME_NAME>`                                    |
-| Search by title    | `search -n <SEARCH_TERM>`                                |
-| Search by genre    | `search -g <SEARCH_TERM>`                                |
+| Help                                     | `help`                                                   |
+| Add user                                 | `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER>`    |
+| Switch user                              | `switchuser -n <USERNAME>`                               |
+| Browse                                   | `browse -s [name/rating] -p <1-26> -o [asc/dsc]`         |
+| Create watchlist                         | `watchlist -n <WATCHLIST_NAME>`                          |
+| List all watchlist                       | `watchlist -l`                                           |
+| Select watchlist                         | `watchlist -s <WATCHLIST_INDEX>`                         |
+| Delete watchlist                         | `watchlist -d <WATCHLIST_INDEX>`                         |
+| Add to watchlist                         | `add -a <ANIME_NAME>`                                    |
+| Search by title                          | `search -n <SEARCH_TERM>`                                |
+| Search by genre                          | `search -g <SEARCH_TERM>`                                |
+| Estimate time needed to translate script | `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`      |
