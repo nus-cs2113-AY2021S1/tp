@@ -9,16 +9,16 @@ It helps you to prioritise your work and balance your time spent among your modu
 ## Table of Contents
 * [Quick Start](#quick-start)
 * [Features](#features)
-    1. View help: `help`
-    1. Add a module: `addmod <module code>`
-    1. Add expected module workload: `addexp <module code> <expected workload>` 
-    1. Add actual time spent on a module: `addtime <module code> <time spent> <week number>`
-    1. List expected and actual time spent of all modules: `list <week number>`
-    1. Delete a module: `deletemod <module code>`
-    1. Delete expected module workload: `deleteexp <module code>`
-    1. Minus from actual time spent on a module: `minus <module code> <time spent> <week number>` 
-    1. Exit the program : `exit`
-    1. Save user data
+    1. [View help: `help`](#i-view-help-help)
+    1. [Add a module: `addmod`](#ii-add-a-module-addmod)
+    1. [Add expected module workload: `addexp`](#iii-add-expected-module-workload-addexp) 
+    1. [Add actual time spent on a module: `addtime`](#iv-add-actual-time-spent-on-a-module-addtime)
+    1. [List expected and actual time spent of all modules: `list`](#v-list-expected-and-actual-time-spent-of-all-modules-list)
+    1. [Delete a module: `deletemod`](#vi-delete-a-module-deletemod)
+    1. [Delete expected module workload: `deleteexp`](#vii-delete-expected-module-workload-deleteexp)
+    1. [Minus from actual time spent on a module: `minus`](#viii-minus-from-actual-time-spent-on-a-module-minus) 
+    1. [Exit the program : `exit`](#ix-exit-the-program--exit)
+    1. [Save user data](#x-saving-the-data)
 * [FAQ](#faq)
 * [Command summary](#command-summary)
 
@@ -38,12 +38,12 @@ It helps you to prioritise your work and balance your time spent among your modu
 ### i. View help: `help`
 Shows a list of the commands available.
 
-Format: help
+Format: `help`
 
-### ii. Add a module: `addmod <module code>`
+### ii. Add a module: `addmod`
 Adds a module to the database.
 
-Format: addmod <module code>
+Format: `addmod <module code>`
 
 * The `module code` must contain 6-8 characters without any spacing. 
 
@@ -53,7 +53,7 @@ Examples of usage:
 
 `addmod CG2027`
 
-### iii. Add expected module workload: `addexp <module code> <expected workload>` 
+### iii. Add expected module workload: `addexp` 
 Adds the expected workload of the module to the database.
 
 Format: `addexp <module code> <expected workload>`
@@ -68,7 +68,7 @@ Examples of usage:
 
 `ADDEXP CS1010 8`
 
-### iv. Add actual time spent on a module: `addtime <module code> <time> <week>`
+### iv. Add actual time spent on a module: `addtime`
 Adds the time spent on the indicated module.
 
 Format: `addtime <module code> <time spent> <week number>`
@@ -83,7 +83,7 @@ Examples of usage:
 
 `addtime CS1010 3.5 2`
 
-### v. List expected and actual time spent of all modules: `list <week number>`
+### v. List expected and actual time spent of all modules: `list`
 Shows a list of the modules, their expected module workload, and the actual time spent for the specific week.
 
 Format: `list <week number>`
@@ -96,7 +96,7 @@ Examples of usage:
 
 `List 2`
 
-### vi. Delete a module: `deletemod <module code>`
+### vi. Delete a module: `deletemod`
 Deletes the specified module code from the database.
 
 Format: `deletemod <module code>`
@@ -109,7 +109,7 @@ Examples of usage:
 
 `deletemod CS2113T`
 
-### vii. Delete expected module workload: `deleteexp <module code>`
+### vii. Delete expected module workload: `deleteexp`
 Deletes the specified module code workload from the database.
 
 Format: `deleteexp <module code>`
@@ -122,7 +122,7 @@ Examples of usage:
 
 `deleteexp CS2113T`
 
-### viii. Minus from actual time spent on a module: `minus <module code> <time spent> <week number>`
+### viii. Minus from actual time spent on a module: `minus`
 Minus the actual time spent on a specified module.
 
 Format: `minus <module code> <time spent> <week number>` 
@@ -157,9 +157,9 @@ Time spent is saved in the hard disk automatically after any command that change
 * Viewing help: `help`
 * Adding a module: `addmod <module code>`
 * Adding expected module workload: `addexp <module code> <expected workload>`
-* Add to actual time spent on a module: `addtime <module code> <time> <week>`
-* Listing all modules: `list <week>`
+* Add to actual time spent on a module: `addtime <module code> <time spent> <week number>`
+* Listing all modules: `list <week number>`
 * Deleting a module: `deletemod <module code>`
 * Deleting expected module workload: `deleteexp <module code>`
-* Minus from time spent on the module: `minus <module code> <time> <week>`
+* Minus from time spent on the module: `minus <module code> <time spent> <week number>`
 * Exiting the program : `exit`
