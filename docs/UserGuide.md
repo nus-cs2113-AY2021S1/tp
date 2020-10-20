@@ -78,7 +78,7 @@ Example of usage:
 
 `create`
 
-### Create an appointment: `book`
+### Book an appointment: `book`
 Books an appointment date.
 
 Format: `book NRIC`
@@ -91,6 +91,56 @@ Example of usage:
 `book S9922312D`
 
 `book S7423213Z`
+
+### Add a doctor: `doctor`
+Adds a doctor.
+
+Format: `doctor NAME`
+
+* The `NAME` should not already be inside the list.
+
+Example of usage:
+
+`doctor tan`
+
+`doctor trump`
+
+### Remove a doctor: `doctor`
+Remove a doctor.
+
+Format: `nodoctor NAME`
+
+* The `NAME` should be in the list.
+
+Example of usage:
+
+`nodoctor tan`
+
+`nodoctor trump`
+
+### View patient's appointments: `appointments`
+View patient's appointments
+
+Format: `appointments NRIC`
+
+* The `NRIC` should be valid and in the list.
+
+Example of usage:
+
+`appointments S2233445D`
+
+`appointments S1234556F`
+
+### List patients: `list`
+View patient's appointments
+
+Format: `list`
+
+* The patient list should not be empty.
+
+Example of usage:
+
+`list`
 
 ## FAQ
 
@@ -106,3 +156,7 @@ Example of usage:
 * Delete patient `delete NRIC`
 * Create appointment `create`
 * Book appointment `book NRIC`
+* Add doctor `doctor NAME`
+* Remove doctor `nodoctor NAME`
+* View appointments of a patient `appointments NRIC`
+* List patients `list`

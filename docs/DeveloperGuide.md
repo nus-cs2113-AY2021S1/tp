@@ -23,11 +23,15 @@ Aim: To facilitate the role of the administrative staff and help them automate m
 |v1.0|admin|remove existing patient's details|remove unnecessary information.|
 |v1.0|admin|view all appointments of a patient|remind patients of their appointments.|
 |v1.0|admin|book an appointment for a patient|let them see the doctor.|
+|v2.0|admin|add doctor|link doctor to appointment.|
+|v2.0|admin|remove existing doctor's details|remove unnecessary information.|
+|v2.0|admin|list patients|view patients.|
 
 ## Non-Functional Requirements
 
 * The program must be easy for admins to use.
 * The program must store patient's information.
+* The program must store doctor's information.
 
 ## Glossary
 
