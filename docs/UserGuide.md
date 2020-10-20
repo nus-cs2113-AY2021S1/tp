@@ -6,8 +6,8 @@
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)
-<br/>&nbsp;3.5 [Watchlist management: `watchlist`](#35-watchlist-management-watchlist)
-<br/>&nbsp;3.9 [Saving and loading data](#39-saving-and-loading-data)
+    1. [Watchlist management](#35-watchlist-management-watchlist)
+    1. [Saving and loading data](#39-saving-and-loading-data)
 4. [FAQ](#4-faq)
 5. [Command Summary](#5-command-summary)
 
