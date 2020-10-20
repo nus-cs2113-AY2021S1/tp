@@ -8,6 +8,7 @@ public enum FilterType {
     INCLUDING_STRING,
     UNKNOWN;
 
+
     public static FilterType getTypeOfFilter(String command) throws FilterCommandException {
         if (!command.toLowerCase().contains("by\\")) {
             throw new FilterCommandException();
