@@ -1,11 +1,5 @@
 # User Guide
 
-## Introduction
-
-PlaNUS is a desktop application for NUS students to manage their tasks and schedule, 
-optimized for use via Command Line Interface (CLI). We aim for PlaNUS to become a 
-one stop location for students to be able to view all their commitments and assignments 
-and prioritize their work and commitment with a user-friendly text interface.
 
 - [Quick start](#quick-start)
 - [Features](#features)
@@ -38,7 +32,7 @@ and prioritize their work and commitment with a user-friendly text interface.
     
     Following content is display if there's no exsisting data file:
     
-    ![initial display](images/init.png)
+    ![initial display](images/init.PNG)
     
     
 5. **Maximise** the command prompt/terminal window to get a full display of the contents.
@@ -60,7 +54,7 @@ and prioritize their work and commitment with a user-friendly text interface.
     - e.g. in "add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]", 
     DATE, START_TIME, END_TIME and PRIORITY are optional parameters which can be omitted.
     
-- Within square bracket, optional flags could be enabled, flags are separated by "|".
+- Within square bracket, optional flags could be enabled, flags are separated by '|'.
     - e.g. in "list [-d|-p|-w|-m]",
     The flag parameter is an optional parameter. When it is used, any **one** of the flags
     like -d or -p or -w or -m could be enabled. 
@@ -146,11 +140,11 @@ Example of usage:
 
 Expected outcome:
 
-![list](images/list.png)
-![sort_by_date](images/list_sort_by_date.png)
-![sort_by_priority](images/list_sort_by_priority.png)
-![weekly_view](images/list_week.png)
-![monthly_view](images/list_month.png)
+![list](images/list.PNG)
+![sort_by_date](images/list_sort_by_date.PNG)
+![sort_by_priority](images/list_sort_by_priority.PNG)
+![weekly_view](images/list_week.PNG)
+![monthly_view](images/list_month.PNG)
 
 
 
