@@ -4,7 +4,7 @@ import seedu.smarthomebot.data.framework.Appliance;
 
 public class Fan extends Appliance {
 
-    private static String speed;
+    private String speed;
     public static final String TYPE_WORD = "fan";
 
     public Fan(String name, String location, String power) {
@@ -27,7 +27,7 @@ public class Fan extends Appliance {
         return this.speed;
     }
 
-    public static void getSpeedFromLoadFile(String loadedSpeed) {
+    public void getSpeedFromLoadFile(String loadedSpeed) {
         speed = loadedSpeed;
     }
 

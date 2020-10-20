@@ -139,7 +139,8 @@ public abstract class Appliance {
 
     public String writeFileFormat() {
         return this.location + "|" + this.name + "|" + this.power + "|"  + this.getType() + "|"
-                  + this.getStatus() + "|" + this.getPowerConsumption() + "|" + getParameter();
+                  + this.getStatus() + "|" + this.getPowerConsumption() + "|" + this.getParameter()
+                  + "|" + appliancePower.getCurrentTime();
     }
 
 }

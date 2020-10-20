@@ -77,7 +77,7 @@ public class StorageFile {
         while (myReader.hasNextLine()) {
             try {
                 String appliance = myReader.nextLine();
-                String[] splitString = appliance.split("\\|", 7);
+                String[] splitString = appliance.split("\\|", 9);
                 if (splitString[1].isEmpty() || splitString[0].isEmpty()
                         || splitString[2].isEmpty() || splitString[3].isEmpty()) {
                     throw new FileCorruptedException();
@@ -86,13 +86,16 @@ public class StorageFile {
                 String location = splitString[0];
                 String power = splitString[2];
                 String type = splitString[3];
+                String status = splitString[4];
+                String powerConsumption = splitString[5];
                 String parameter = splitString[6];
+                String dateTime = splitString[7];
 
                 switch (type.toLowerCase()) {
                 case Fan.TYPE_WORD:
                     Fan fan = new Fan(name, location, power);
                     applianceList.addAppliance(fan);
-                    Fan.getSpeedFromLoadFile(parameter);
+                    fan.getSpeedFromLoadFile(parameter);
                     break;
                 case AirConditioner.TYPE_WORD:
                     AirConditioner ac = new AirConditioner(name, location, power);
@@ -112,11 +115,11 @@ public class StorageFile {
                     ui.printToUser(MESSAGE_APPLIANCE_TYPE_NOT_EXIST);
                 }
 
-                if (splitString[4].toLowerCase().equals("on")) {
+                if (status.toLowerCase().equals("on")) {
                     applianceList.getAppliance(i).switchOn();
                 }
                 // when user exit, get the current system and save in datafile
-                applianceList.getAppliance(i).loadDataFromFile(splitString[5], "19/10/2020-09:20:20");
+                applianceList.getAppliance(i).loadDataFromFile(powerConsumption, dateTime);
                 i++;
             } catch (IndexOutOfBoundsException e) {
                 throw new FileCorruptedException();

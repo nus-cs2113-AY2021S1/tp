@@ -92,7 +92,7 @@ public class Power {
      *
      * @return formatted current time with given format "dd/MM/yyyy-HH:mm:ss".
      */
-    private String getCurrentTime() {
+    public String getCurrentTime() {
         currentTime = LocalDateTime.now();
         return dateTimeFormatter.format(currentTime);
     }
