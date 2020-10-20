@@ -20,7 +20,7 @@ public class QuizTopicCommand extends TopicCommand {
     public Topic execute(Subject subject) throws NoTopicException, InvalidTopicException {
         String[] message = this.fullcommand.split(" ");
         if (message.length == 1) {
-            throw new InvalidTopicException(Ui.printEnterTopicError());
+            throw new InvalidTopicException(Ui.printInvalidTopicError());
         }
         Topic quizTopic = null;
         for (Topic topic : subject.getTopics().getList()) {
@@ -29,7 +29,7 @@ public class QuizTopicCommand extends TopicCommand {
             }
         }
         if (quizTopic == null) {
-            throw new NoTopicException(Ui.printNoTopicsError());
+            throw new NoTopicException(Ui.printNoTopicError());
         }
         return quizTopic;
 

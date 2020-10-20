@@ -5,6 +5,8 @@ import seedu.revised.card.Topic;
 import seedu.revised.card.TopicList;
 import seedu.revised.exception.subject.NoSubjectException;
 import seedu.revised.exception.subject.RepeatedSubjectException;
+import seedu.revised.exception.topic.NoTopicException;
+import seedu.revised.exception.topic.RepeatedTopicException;
 import seedu.revised.ui.Ui;
 
 
@@ -19,20 +21,20 @@ public class AddTopicCommand extends TopicCommand {
     }
 
     @Override
-    public Topic execute(Subject subject) throws NoSubjectException, RepeatedSubjectException {
+    public Topic execute(Subject subject) throws NoTopicException, RepeatedTopicException {
         int startOfMessage = 4;
         int endOfMessage = fullCommand.length();
         TopicList topicList = subject.getTopics();
         if (endOfMessage <= startOfMessage) {
-            throw new NoSubjectException(Ui.printNoSubjectError());
+            throw new NoTopicException(Ui.printNoTopicError());
         }
         String title = fullCommand.substring(startOfMessage, endOfMessage);
         if (title.isEmpty()) {
-            throw new NoSubjectException(Ui.printNoSubjectError());
+            throw new NoTopicException(Ui.printNoTopicError());
         }
         for (Topic topic : topicList.getList()) {
             if (topic.getTitle().equals(title)) {
-                throw new RepeatedSubjectException(Ui.printRepeatedSubjectError());
+                throw new RepeatedTopicException(Ui.printRepeatedTopicError());
             }
         }
         Topic t = new Topic(title);

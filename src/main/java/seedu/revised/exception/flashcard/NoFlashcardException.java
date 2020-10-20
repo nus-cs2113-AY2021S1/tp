@@ -1,6 +1,7 @@
 package seedu.revised.exception.flashcard;
 
 public class NoFlashcardException extends Exception {
-    public NoFlashcardException(String printNoFlashcardsError) {
+    public NoFlashcardException(String noFlashcardsError) {
+        super(noFlashcardsError);
     }
 }

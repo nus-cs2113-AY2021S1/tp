@@ -1,8 +1,8 @@
 package seedu.revised.exception.task;
 
-public class TaskDeadlineException extends TaskException {
-    public TaskDeadlineException(String printDeadlineError) {
-        super();
+public class TaskDeadlineException extends Exception {
+    public TaskDeadlineException(String taskDeadlineError) {
+        super(taskDeadlineError);
     }
 }
 

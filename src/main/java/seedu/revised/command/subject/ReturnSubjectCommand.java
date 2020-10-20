@@ -72,9 +72,7 @@ public class ReturnSubjectCommand extends SubjectCommand {
                 //} catch (IOException e) {
                 //Ui.printWritingError();
 
-            } catch (NoSubjectException | NoTopicException e) {
-                System.out.println(e.getMessage());
-            } catch (RepeatedSubjectException e) {
+            } catch (NoTopicException e) {
                 System.out.println(e.getMessage());
             } catch (TaskTodoException e) {
                 System.out.println(e.getMessage());
