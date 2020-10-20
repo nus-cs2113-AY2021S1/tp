@@ -1,4 +1,4 @@
-package seedu.duke.person;
+package seedu.dietbook.person;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

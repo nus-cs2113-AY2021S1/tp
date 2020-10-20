@@ -1,9 +1,9 @@
-package seedu.duke;
+package seedu.dietbook;
 
 import seedu.calculator.Calculator;
-import seedu.duke.list.FoodList;
-import seedu.duke.person.Gender;
-import seedu.duke.person.ActivityLevel;
+import seedu.dietbook.list.FoodList;
+import seedu.dietbook.person.Gender;
+import seedu.dietbook.person.ActivityLevel;
 
 import java.io.FileNotFoundException;
 
