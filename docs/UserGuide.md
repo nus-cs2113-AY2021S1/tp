@@ -86,7 +86,7 @@ Format: `addexp <module code> <expected workload>`
 * The `expected workload` is in hours.
 * If the `module code` does not exist, this command creates a new module and adds its expected workload to the database.
 
-Examples of usage:
+Example of usage:
 
 `addexp cs2113t 10`
 
@@ -104,7 +104,7 @@ Format: `addtime <module code> <time spent> <week number>`
 * The `time spent` is in hours.
 * The `week number` must be between 1 and 13 inclusive.
 
-Examples of usage:
+Example of usage:
 
 `addtime CS2113T 3 1`
 
@@ -120,7 +120,7 @@ Format: `list <week number>`
 
 * The `week number` must be between 1 and 13 inclusive.
 
-Examples of usage:
+Example of usage:
 
 `list 1`
 
@@ -140,7 +140,7 @@ Format: `deletemod <module code>`
 
 * The `module code` must contain 6-8 characters without any spacing.
 
-Examples of usage:
+Example of usage:
 
 `deletemod CS2113T`
 
@@ -156,7 +156,7 @@ Format: `deleteexp <module code>`
 
 * The `module code` must contain 6-8 characters without any spacing.
 
-Examples of usage:
+Example of usage:
 
 `deleteexp CS2113T`
 
@@ -174,7 +174,7 @@ Format: `minus <module code> <time spent> <week number>`
 * The `time spent` is in hours.
 * The `week number` must be between 1 and 13 inclusive.
 
-Examples of usage:
+Example of usage:
 
 `minus CS2113T 3 1`
 
