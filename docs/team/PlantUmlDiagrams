@@ -25,7 +25,8 @@ class ParamChecker {
 }
 
 abstract class Item {
-    # {abstract} index : int
+    # index : int
+    + {abstract} getName() : String
 }
 
 abstract class ItemList {
@@ -40,16 +41,74 @@ abstract class ItemList {
     + {abstract} printList()
 }
 
-abstract class Ledger {
-    protected
+class Ledger {
+    # date : LocalDate = null
+    + entryList : EntryList
+    + Ledger()
+    + handlePacket(packet : CommandPacket) : void
+    + getName() : String
+    + handleSingleParam(packet : CommandPacket, paramType : String)
 }
 
-ParamHandler *--> ParamChecker
+class Entry {
+    # date : LocalDate = null
+    + Entry()
+    + handlePacket(packet : CommandPacket) : void
+    + getName() : String
+    + handleSingleParam(packet : CommandPacket, paramType : String)
+}
+
+ParamHandler "1" *--> "1" ParamChecker : have params checked by
 ParamHandler --|> Item
 ParamHandler --|> ItemList
 Item --|> Ledger
 Item --|> Entry
 ItemList --|> LedgerList
 ItemList --|> EntryList
+Ledger "1" -- "1" EntryList
+LedgerList --> "*" Ledger
+EntryList --> "*" Entry
 
+@enduml
+
+@startuml
+autoactivate on
+ManualTracker -> ManualTracker : handleCreateLedger()
+create Ledger
+ManualTracker -> Ledger : new Ledger()
+create ParamHandler
+Ledger -> ParamHandler : new ParamHandler()
+create ParamChecker
+ParamHandler -> ParamChecker : new ParamChecker()
+return
+return
+
+ManualTracker -> Ledger
+Ledger -> ParamHandler : setRequiredParams()
+return
+return
+ManualTracker -> Ledger
+Ledger -> Ledger : handlePacket
+Ledger -> ParamHandler
+ParamHandler -> ParamHandler : handleParams
+loop For all paramTypes \nin the command packet
+    ParamHandler -> ParamHandler : handleSingleParam
+    ParamHandler -> Ledger : handleSingleParam
+    alt "/date"
+        Ledger -> ParamChecker : checkAndReturnDate()
+        return
+        Ledger -> Ledger : setDate()
+        return
+    end
+    return
+    return
+end
+return
+return
+return
+return
+ManualTracker -> LedgerList : Add Ledger to ledgerList
+LedgerList -> LedgerList : addItem(ledger)
+return
+return state
 @enduml
