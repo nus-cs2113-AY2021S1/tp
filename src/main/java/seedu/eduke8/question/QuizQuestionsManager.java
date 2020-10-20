@@ -13,11 +13,11 @@ import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_INVALID_QUESTI
 
 public class QuizQuestionsManager {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private static final Random RANDOM = new Random();
 
     private ArrayList<Question> quizQuestions;
     private int currentQuestionNumber;
 
-    private static final Random RANDOM = new Random();
 
     public QuizQuestionsManager(int numberOfQuestionsForQuiz,
                                 ArrayList<Displayable> questionsInTopic) throws Eduke8Exception {
