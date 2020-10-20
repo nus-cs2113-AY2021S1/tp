@@ -189,7 +189,7 @@ public class Storage {
             line = readFile.nextLine();
             arguments = line.split(COMMA_SEPARATOR);
             exerciseList.add(new Exercise(arguments[0],
-                    new Calorie(Integer.parseInt(arguments[1])), Integer.parseInt(arguments[2])));
+                    new Calorie(Integer.parseInt(arguments[1]))));
         }
 
         LOGGER.fine("Exercise list file read successfully.");
@@ -210,8 +210,7 @@ public class Storage {
         for (int i = 0; i < exerciseList.getSize(); i++) {
             exercise = exerciseList.getExercise(i);
             file.write(exercise.getNameOfExercise()
-                    + COMMA_SEPARATOR + exercise.getCalories()
-                    + COMMA_SEPARATOR + exercise.getDuration() + System.lineSeparator());
+                    + COMMA_SEPARATOR + exercise.getCalories() + System.lineSeparator());
         }
 
         LOGGER.fine("Exercise list file written successfully.");

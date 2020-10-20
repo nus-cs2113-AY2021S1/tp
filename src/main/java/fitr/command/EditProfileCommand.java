@@ -1,5 +1,6 @@
 package fitr.command;
 
+import fitr.Recommender;
 import fitr.common.Messages;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
@@ -16,7 +17,8 @@ public class EditProfileCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user) {
+    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user,
+                        Recommender recommender) {
         if (command.equalsIgnoreCase(Messages.EDIT_NAME)) {
             editName(user);
         } else if (command.equalsIgnoreCase(Messages.EDIT_HEIGHT)) {

@@ -1,5 +1,6 @@
 package fitr.command;
 
+import fitr.Recommender;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.storage.Storage;
@@ -37,7 +38,8 @@ public class ViewCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage, User user) {
+    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage, User user,
+                        Recommender recommender) {
         if (command.equalsIgnoreCase(COMMAND_VIEW_FOOD)) {
             viewFood(foodList);
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_EXERCISE)) {

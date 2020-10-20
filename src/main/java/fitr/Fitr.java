@@ -15,6 +15,7 @@ public class Fitr {
     private FoodList foodList;
     private ExerciseList exerciseList;
     private User user;
+    private Recommender recommender;
 
     public Fitr(String filePathOfUserConfig, String filePathOfFoodList, String filePathOfExerciseList) {
         try {
@@ -38,7 +39,7 @@ public class Fitr {
         while (!isExit) {
             String userInput = Ui.read();
             Command c = Parser.parse(userInput);
-            c.execute(foodList, exerciseList, storage, user);
+            c.execute(foodList, exerciseList, storage, user, recommender);
             isExit = c.isExit();
         }
         Ui.printExitMessage();
