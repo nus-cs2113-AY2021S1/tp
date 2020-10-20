@@ -43,8 +43,6 @@ public class Duke {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.handleUserInput(fullCommand);
                 Ui.printDukeBorder(true);
-                assert calendarList != null;
-                assert storage != null;
                 c.execute(calendarList, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {

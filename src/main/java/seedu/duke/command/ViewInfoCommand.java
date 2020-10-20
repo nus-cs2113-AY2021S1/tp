@@ -25,7 +25,6 @@ public class ViewInfoCommand extends Command {
     public void execute(CalendarList calendarList, Storage storage) throws DukeException {
         int eventNumber = 0;
         int calendarNumber;
-        ArrayList<String> additionalInformation;
         try {
             eventNumber = Integer.parseInt(userInput.replace("/v", "").trim());
         } catch (Exception e) {
@@ -35,7 +34,7 @@ public class ViewInfoCommand extends Command {
 
         assert calendarNumber >= 0;
         Event event = (Event) calendarList.getItem(calendarNumber);
-        additionalInformation = event.getAdditionalInformation();
+        ArrayList<String> additionalInformation = event.getAdditionalInformation();
         Ui.printAdditionalInformation(additionalInformation, event);
     }
 }
