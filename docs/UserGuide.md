@@ -30,7 +30,23 @@ It helps you to prioritise your work and balance your time spent among your modu
 1. Save the jar file to a folder of your choice.
 1. Open a command prompt and navigate to the folder that contains the jar file. Command: `cd [directory/filename]`
 1. Type in the `java -jar modtracker.jar` command and press enter to run the program.
-1. Refer to the Features and Usage section for more details on the application's available commands.
+1. A welcome screen as shown below will be displayed if program is being executed successfully.
+
+   ````
+   Hello from
+   |\\        /|         |======            ||
+   ||\\      / |  __   __|  ||  __  ___ ___ ||    ___   ____
+   || \\    /  |//  \//  |  ||//  \/  |/    ||// / _ \ //   \
+   ||  \\  /   |||   ||  |  |||   ||  ||    ||\\ | __/ ||
+   ||   \\/    |\\__/\\__|  |||   \\__|\___ || \\\___| ||
+   *****************************************************|
+   
+   Full user guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/
+   Enter <help> for a quick view of available commands.
+   
+   What is your name?
+   ````
+1. Refer to the Features section below for more details on the application's available commands.
 
 
 ## Features 
@@ -40,6 +56,11 @@ Shows a list of the commands available.
 
 Format: `help`
 
+Expected output:
+````
+<A list of available commands will be shown here>
+````
+
 ### ii. Add a module: `addmod`
 Adds a module to the database.
 
@@ -47,11 +68,14 @@ Format: `addmod <module code>`
 
 * The `module code` must contain 6-8 characters without any spacing. 
 
-Examples of usage:
+Example of usage:
 
 `addmod cs2113t`
 
-`addmod CG2027`
+Expected output:
+````
+CS2113T is added.
+````
 
 ### iii. Add expected module workload: `addexp` 
 Adds the expected workload of the module to the database.
@@ -66,7 +90,10 @@ Examples of usage:
 
 `addexp cs2113t 10`
 
-`ADDEXP CS1010 8`
+Expected output:
+````
+CS2113T, Expected Workload: 10h is added.
+````
 
 ### iv. Add actual time spent on a module: `addtime`
 Adds the time spent on the indicated module.
@@ -81,7 +108,10 @@ Examples of usage:
 
 `addtime CS2113T 3 1`
 
-`addtime CS1010 3.5 2`
+Expected output:
+````
+3 hours are added to CS2113T.
+````
 
 ### v. List expected and actual time spent of all modules: `list`
 Shows a list of the modules, their expected module workload, and the actual time spent for the specific week.
@@ -94,7 +124,14 @@ Examples of usage:
 
 `list 1`
 
-`List 2`
+Expected output:
+````
++------+---------+----------+----------+
+| Week | Module  | Expected |  Actual  |
++------+---------+----------+----------+
+|  01  | CS2113T |    10    |    3.0   |
++------+---------+----------+----------+
+````
 
 ### vi. Delete a module: `deletemod`
 Deletes the specified module code from the database.
@@ -105,9 +142,12 @@ Format: `deletemod <module code>`
 
 Examples of usage:
 
-`deletemod CS2101`
-
 `deletemod CS2113T`
+
+Expected output:
+````
+CS2113T is removed.
+````
 
 ### vii. Delete expected module workload: `deleteexp`
 Deletes the specified module code workload from the database.
@@ -118,9 +158,12 @@ Format: `deleteexp <module code>`
 
 Examples of usage:
 
-`deleteexp CS2101`
-
 `deleteexp CS2113T`
+
+Expected output:
+````
+Expected Workload of CS2113T is removed.
+````
 
 ### viii. Minus from actual time spent on a module: `minus`
 Minus the actual time spent on a specified module.
@@ -133,14 +176,23 @@ Format: `minus <module code> <time spent> <week number>`
 
 Examples of usage:
 
-`minus CS2101 2 2`
-
 `minus CS2113T 3 1`
+
+Expected output:
+````
+3 hours are removed from CS2113T
+````
 
 ### ix. Exit the program : `exit`
 Exits the program.
 
 Format: `exit`
+
+Expected output:
+````
+All changes saved.
+Bye <username>. Hope to see you again soon!
+````
 
 ### x. Saving the data
 Time spent is saved in the hard disk automatically after any command that changes the data. There is no need to save manually. 
