@@ -24,6 +24,5 @@ public class ExitCommand extends Command {
     public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) {
         isExit = true;
         ui.printExitMessage();
-
     }
 }
