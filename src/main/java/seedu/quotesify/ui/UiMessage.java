@@ -37,7 +37,7 @@ public class UiMessage {
     public static final String LIST_NO_RATINGS_FOUND_MESSAGE = "None of the books are rated yet!";
     public static final String LIST_SPECIFIED_RATING_MESSAGE = "Here are the books you rated as %d star!";
     public static final String EDIT_RATING_MESSAGE = "Ratings for [%s by %s] has been updated to %d star!";
-    public static final String FIND_RATING_MESSAGE = "Here is your rating for [%s]!";
+    public static final String FIND_RATING_MESSAGE = "Here is your rating for [%s by %s]!";
     public static final String ADD_TODO_MESSAGE = "The task [%s] has been added!";
     public static final String TODO_SIZE_MESSAGE = "You have a total of %d task(s) recorded.";
     public static final String LIST_TODOS_MESSAGE = "Here is the list of all task(s) recorded:";
@@ -84,14 +84,14 @@ public class UiMessage {
     public static final String EDIT_BOOKMARK_COMMAND = "Update bookmark: " + "bookmark -b BOOK_TITLE /pg PAGE_NUMBER";
     public static final String EDIT_QUOTE_COMMAND = "";
     public static final String EDIT_CATEGORY_COMMAND = "Edit category: " + "edit -c OLD_CATEGORY NEW_CATEGORY";
-    public static final String EDIT_RATING_COMMAND = "Edit rating: " + "edit -r RATING_SCORE BOOK_TITLE";
+    public static final String EDIT_RATING_COMMAND = "Edit rating: " + "edit -r RATING_SCORE BOOK_TITLE /by AUTHOR";
     public static final String EDIT_TODO_COMMAND = "";
 
     public static final String FIND_BOOK_COMMAND = "";
     public static final String FIND_BOOKMARK_COMMAND = "";
     public static final String FIND_QUOTE_COMMAND = "";
     public static final String FIND_CATEGORY_COMMAND = "";
-    public static final String FIND_RATING_COMMAND = "Find rating: " + "find -r BOOK_TITLE";
+    public static final String FIND_RATING_COMMAND = "Find rating: " + "find -r BOOK_TITLE /by AUTHOR";
     public static final String FIND_TODO_COMMAND = "";
 
     public static final String LIST_BOOK_COMMAND = "List books: " + "list -b [/by AUTHOR]";
