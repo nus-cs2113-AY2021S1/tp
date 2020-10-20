@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class BookList extends QuotesifyList<Book> {
     private ArrayList<Book> books = super.getList();
+    private BookTitleComparator comparator = new BookTitleComparator();
 
     public BookList() {
         super(new ArrayList<>());
@@ -44,6 +45,10 @@ public class BookList extends QuotesifyList<Book> {
 
     public Book getBook(int index) {
         return books.get(index);
+    }
+
+    public void sort() {
+        books.sort(comparator);
     }
 
     @Override
