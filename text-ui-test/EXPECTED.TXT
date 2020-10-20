@@ -1,5 +1,5 @@
-FavList.txt already exists
-freqList.txt already exists
+File created: FavList.txt
+File created: freqList.txt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Hello from
  _       _       ____     __       __
