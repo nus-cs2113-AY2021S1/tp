@@ -17,5 +17,12 @@ bin/
 text-ui-test/EXPECTED-UNIX.TXT
 logger.log
 logger.log.lck
-.log
+*.log.*
 logger.log.1
+/logger.log.2
+/logger.log.3
+/logger.log.4
+/logger.log.5
+/logger.log.6
+/logger.log.7
+/logger.log.8
