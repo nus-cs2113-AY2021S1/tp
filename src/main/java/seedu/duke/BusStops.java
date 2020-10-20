@@ -3,6 +3,7 @@ package seedu.duke;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
 
@@ -44,19 +45,19 @@ public enum BusStops {
 
     private final String description;
     private final String name;
-    private int count;
+    private int searchCount;
     private String [] closeNames = {};
 
     BusStops(String name, String description) {
         this.description = description;
         this.name = name;
-        this.count = 0;
+        this.searchCount = 0;
     }
 
     BusStops(String name, String description, String[] closeNames) {
         this.description = description;
         this.name = name;
-        this.count = 0;
+        this.searchCount = 0;
         this.closeNames = closeNames;
     }
 
@@ -68,8 +69,8 @@ public enum BusStops {
         return name;
     }
 
-    public int getCount() {
-        return count;
+    public int getSearchCount() {
+        return searchCount;
     }
 
     public static String formatName(String input) throws CustomException {
@@ -81,8 +82,8 @@ public enum BusStops {
         throw new CustomException(ExceptionType.INVALID_BUS_STOP);
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setCount(int searchCount) {
+        this.searchCount = searchCount;
     }
 
     public static void listStops() {
