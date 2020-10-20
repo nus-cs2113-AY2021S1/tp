@@ -40,7 +40,7 @@ public class EstimateCommand extends Command {
         } else {
             for (int averageWordsPerHour : AVERAGE_TRANSLATOR_WORDS_PER_HOUR) {
                 double timeNeeded = wordCount / (double) averageWordsPerHour;
-                commandResult.append("Average translators (");
+                commandResult.append("Average translator (");
                 commandResult.append(averageWordsPerHour);
                 commandResult.append(" words per hour) takes: ");
                 commandResult.append(getHoursAndMinutesNeeded(timeNeeded));

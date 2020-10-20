@@ -60,7 +60,6 @@ public class BookmarkStorage extends Storage {
         for (String line : fileLines) {
             String[] lineSplit = line.split(BOOKMARK_LINE_DELIMITER, 2);
             if (!isValidBookmarkString(lineSplit)) {
-                System.out.println(line);
                 hasCorruptedBookmark = true;
                 continue;
             }
