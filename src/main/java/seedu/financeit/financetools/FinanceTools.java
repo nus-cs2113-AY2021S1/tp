@@ -28,8 +28,8 @@ public class FinanceTools {
         return 0;
     }
 
-    public static double handleCompoundInterest(CommandPacket packet) {
-        CompoundInterest tool = new CompoundInterest();
+    public static double handleYearlyCompoundInterest(CommandPacket packet) {
+        YearlyCompoundInterest tool = new YearlyCompoundInterest();
         tool.setRequiredParams(
                 "/amount",
                 "/ir",
@@ -134,9 +134,10 @@ public class FinanceTools {
             case "milescalc":
                 System.out.print("Total Miles Earned: " + handleMilesCredit(packet));
                 break;
-            case "compoundcalc":
-                System.out.printf("Compound Interval: Yearly\n"
-                        + "Total Interest Earned: $" + "%.2f",handleCompoundInterest(packet));
+            case "cyearly":
+                outputAmount = Double.toString(Math.round(handleYearlyCompoundInterest(packet) * 100.00) / 100.00);
+                System.out.println("Total Interest Earned: $\n\n" + outputAmount);
+                //commands.add("Total Interest Earned: $" + outputAmount);
                 break;
             case "cmonthly":
                 outputAmount = Double.toString(Math.round(handleMonthlyCompoundInterest(packet) * 100.00) / 100.00);
