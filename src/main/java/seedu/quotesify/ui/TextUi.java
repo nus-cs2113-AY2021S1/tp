@@ -233,8 +233,8 @@ public class TextUi {
         System.out.printf((UiMessage.DELETE_RATING_MESSAGE) + "\n", bookTitle, author);
     }
 
-    public void printEditRatingToBook(int ratingScore, String titleToUpdate) {
-        System.out.printf((UiMessage.EDIT_RATING_MESSAGE) + "\n", titleToUpdate, ratingScore);
+    public void printEditRatingToBook(int ratingScore, String title, String author) {
+        System.out.printf((UiMessage.EDIT_RATING_MESSAGE) + "\n", title, author, ratingScore);
     }
 
     public void printFoundRating(Rating rating, String ratingToFind) {

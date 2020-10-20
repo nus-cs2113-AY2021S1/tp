@@ -91,24 +91,27 @@ public class EditCommand extends Command {
 
             Book book = books.getBook(bookIndex);
             String oldTitle = book.getTitle();
+            String author = book.getAuthor().getName();
 
-            // check if book has ratings before editing the title.
+            books.ensureNoSimilarBooks(newTitle, book.getAuthor().getName());
+            book.setTitle(newTitle);
+            ui.printEditBook(oldTitle, newTitle);
+
+            // check ratings in rating list before editing the title.
             RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
             int currentRatingOfBook = 0;
             for (Rating rating : ratings.getList()) {
-                if (rating.getTitleOfRatedBook().equals(oldTitle)) {
+                if (rating.getTitleOfRatedBook().equals(oldTitle)
+                        && rating.getAuthorOfRatedBook().equals(author)) {
                     currentRatingOfBook = rating.getRating();
                     ratings.delete(ratings.getList().indexOf(rating));
                     break;
                 }
             }
-            if (currentRatingOfBook != 0) {
-                ratings.add(new Rating(currentRatingOfBook, newTitle));
-            }
 
-            books.ensureNoSimilarBooks(newTitle, book.getAuthor().getName());
-            book.setTitle(newTitle);
-            ui.printEditBook(oldTitle, newTitle);
+            if (currentRatingOfBook != 0) {
+                ratings.add(new Rating(book, currentRatingOfBook));
+            }
 
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
@@ -118,48 +121,49 @@ public class EditCommand extends Command {
     }
 
     private void editRating(RatingList ratings, TextUi ui) {
-
-        String[] ratingDetails;
-        String titleToUpdate;
-
-        try {
-            ratingDetails = information.split(" ", 2);
-            titleToUpdate = ratingDetails[1].trim();
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(ERROR_RATING_MISSING_BOOK_TITLE_OR_RATING_SCORE);
+        if (information.isEmpty()) {
+            System.out.println(ERROR_RATING_MISSING_INPUTS);
             return;
         }
 
+        String[] ratingDetails;
+        String title;
+        String author;
+        try {
+            ratingDetails = information.split(" ", 2);
+            String[] titleAndAuthor = ratingDetails[1].split(Command.FLAG_AUTHOR, 2);
+            title = titleAndAuthor[0].trim();
+            author = titleAndAuthor[1].trim();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(RatingParser.ERROR_INVALID_FORMAT_RATING);
+            return;
+        }
         int ratingScore = RatingParser.checkValidityOfRatingScore(ratingDetails[0]);
-        boolean isValid = ((ratingScore != 0) && isRated(ratings, titleToUpdate));
+        Rating existingRating = checkIfRatingExists(ratings, title, author);
+        boolean isValid = ((ratingScore != 0) && (existingRating != null));
 
         if (isValid) {
-            Rating ratingToUpdate = null;
-            for (Rating rating : ratings.getList()) {
-                if (rating.getTitleOfRatedBook().equals(titleToUpdate)) {
-                    ratingToUpdate = rating;
-                }
-            }
-            assert ratingToUpdate != null;
-            ratingToUpdate.setRating(ratingScore);
-            ui.printEditRatingToBook(ratingScore, titleToUpdate);
+            existingRating.setRating(ratingScore);
+            existingRating.getRatedBook().setRating(ratingScore);
+            ui.printEditRatingToBook(ratingScore, title, author);
         }
     }
 
-    private boolean isRated(RatingList ratings, String titleToUpdate) {
-        boolean isRated = false;
+    private Rating checkIfRatingExists(RatingList ratings, String title, String author) {
+        Rating existingRating = null;
         for (Rating rating : ratings.getList()) {
-            if (rating.getTitleOfRatedBook().equals(titleToUpdate)) {
-                isRated = true;
+            if (rating.getTitleOfRatedBook().equals(title)
+                    && rating.getAuthorOfRatedBook().equals(author)) {
+                existingRating = rating;
                 break;
             }
         }
 
-        if (!isRated) {
+        if (existingRating == null) {
             System.out.println(ERROR_RATING_NOT_FOUND);
-            return false;
+            return null;
         }
-        return true;
+        return existingRating;
     }
 
     private void editCategory(CategoryList categoryList, TextUi ui) {

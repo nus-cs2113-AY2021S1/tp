@@ -29,6 +29,10 @@ public class Rating implements JsonSerializer {
         return rating;
     }
 
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
     public Book getRatedBook() {
         return ratedBook;
     }
