@@ -26,7 +26,7 @@ public class EditCommand extends Command {
      * Edits an existing patient to the patient list using details inputted by the user.
      *
      * @param patients     PatientList object.
-     * @param doctors DoctorList object.
+     * @param doctors      DoctorList object.
      * @param appointments AppointmentList object.
      * @param ui           Ui object of the program.
      * @param storage      Storage object used for saving data to files.

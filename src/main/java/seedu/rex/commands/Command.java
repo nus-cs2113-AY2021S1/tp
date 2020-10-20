@@ -33,14 +33,14 @@ public abstract class Command {
      * Executes command.
      *
      * @param patients     PatientList object.
-     * @param doctors DoctorList object.
+     * @param doctors      DoctorList object.
      * @param appointments AppointmentList object.
      * @param ui           Ui object.
      * @param storage      Storage object.
      * @throws RexException If there is issue executing command.
      */
-    public abstract void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui, Storage storage)
-            throws RexException;
+    public abstract void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui,
+                                 Storage storage) throws RexException;
 
     /**
      * Returns Rex's exit status.

@@ -26,7 +26,7 @@ public class RetrieveCommand extends Command {
      * Retrieves patient from patient list using details inputted by the user.
      *
      * @param patients     PatientList object.
-     * @param doctors DoctorList object.
+     * @param doctors      DoctorList object.
      * @param appointments AppointmentList object.
      * @param ui           Ui object.
      * @param storage      Storage object.

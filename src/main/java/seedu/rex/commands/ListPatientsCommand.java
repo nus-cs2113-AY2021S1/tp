@@ -12,14 +12,16 @@ public class ListPatientsCommand extends Command {
 
     /**
      * List patients.
-     *  @param patients     PatientList object.
-     * @param doctors DoctorList object.
+     *
+     * @param patients     PatientList object.
+     * @param doctors      DoctorList object.
      * @param appointments AppointmentList object.
      * @param ui           Ui object.
      * @param storage      Storage object.
      */
     @Override
-    public void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui, Storage storage) {
+    public void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui,
+                        Storage storage) {
 
         ui.listPatients(patients);
     }

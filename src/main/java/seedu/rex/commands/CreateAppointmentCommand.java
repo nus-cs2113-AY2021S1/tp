@@ -22,14 +22,16 @@ public class CreateAppointmentCommand extends Command {
 
     /**
      * Creates appointment using date given.
-     *  @param patients     PatientList object.
-     * @param doctors DoctorList object.
+     *
+     * @param patients     PatientList object.
+     * @param doctors      DoctorList object.
      * @param appointments AppointmentList object.
      * @param ui           Ui object.
      * @param storage      Storage object.
      */
     @Override
-    public void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui, Storage storage) {
+    public void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui,
+                        Storage storage) {
         assert patients != null : "patient ArrayList is null";
         assert ui != null : "ui is null";
         assert storage != null : "storage is null";

@@ -24,7 +24,7 @@ public class ListAppointmentsCommand extends Command {
      * Lists appointments of a patient.
      *
      * @param patients     PatientList object.
-     * @param doctors DoctorList object.
+     * @param doctors      DoctorList object.
      * @param appointments AppointmentList object.
      * @param ui           Ui object.
      * @param storage      Storage object.
