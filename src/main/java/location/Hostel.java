@@ -22,7 +22,7 @@ public class Hostel extends Location {
      */
     @Override
     public String toString() {
-        return "(Hostel): " + name + "\nNearest bus stop(s): " + printNearestBusStops();
+        return "location: (Hostel): " + name + "\nNearest bus stop(s): " + printNearestBusStops();
     }
 
     /**

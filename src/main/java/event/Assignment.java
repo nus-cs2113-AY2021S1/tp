@@ -25,7 +25,6 @@ public class Assignment extends Event {
 
     public Assignment(String description, Location location, LocalDateTime by) {
         super(description, location);
-
         this.by = by;
     }
 
@@ -45,6 +44,7 @@ public class Assignment extends Event {
      *         Example of the format: [C][✘]a  (by: Feb 20 2020 08:00).
      */
     public String toString() {
-        return "[A]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy HH':'mm")) + ")";
+        return "[A]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy HH':'mm")) + ")"
+                + "\n" + location;
     }
 }

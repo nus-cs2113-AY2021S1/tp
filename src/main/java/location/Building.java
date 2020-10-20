@@ -22,7 +22,7 @@ public class Building extends Location {
      */
     @Override
     public String toString() {
-        return "(Building): " + name + "\nNearest bus stop(s): " + printNearestBusStops();
+        return "location: (Building): " + name + "\nNearest bus stop(s): " + printNearestBusStops();
     }
 
     /**

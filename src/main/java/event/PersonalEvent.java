@@ -45,6 +45,7 @@ public class PersonalEvent extends Event {
      *         Example of the format: [P][✘]a  (at: Feb 20 2020 08:00)
      */
     public String toString() {
-        return "[P]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy HH':'mm")) + ")";
+        return "[P]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy HH':'mm")) + ")"
+                + "\n" + location;
     }
 }

@@ -34,6 +34,7 @@ public class Class extends Event {
      *         Example of the format: [C][✘]a.
      */
     public String toString() {
-        return "[C]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy HH':'mm")) + ")";
+        return "[C]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy HH':'mm")) + ")"
+                + "\n" + location;
     }
 }
