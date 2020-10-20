@@ -21,7 +21,8 @@ class StorageManagerTest {
     private static final String SOME_INVALID_WORKSPACE = "SomeInvalidWorkspace";
     private static final String ALL_INVALID_WORKSPACE = "AllInvalidWorkspace";
     private static final String SCRIPT_FILE_NAME = "script.txt";
-    private static final String INVALID_TEST_DIRECTORY = "a" + File.separator + "b" + File.separator + "c";
+    private static final String INVALID_TEST_DIRECTORY = "a" + File.separator + "b" + File.separator + "c"
+                                                         + File.separator;
     private static final String VALID_TEST_DIRECTORY = "src" + File.separator + "test" + File.separator
                                                         + "data" + File.separator + "StorageManagerTest"
                                                         + File.separator;
@@ -34,7 +35,7 @@ class StorageManagerTest {
 
     private StorageManager validFileSM;
     private StorageManager invalidFileSM;
-    private StorageManager emptyFileSM;
+    private StorageManager emptySM;
     private StorageManager invalidDirectorySM;
     private User userToSave;
     private User userToLoad;
@@ -45,7 +46,7 @@ class StorageManagerTest {
     public void setUp() throws AniException {
         validFileSM = new StorageManager(VALID_FILE_DIRECTORY);
         invalidFileSM = new StorageManager(INVALID_FILE_DIRECTORY);
-        emptyFileSM = new StorageManager(EMPTY_FILE_DIRECTORY);
+        emptySM = new StorageManager(EMPTY_FILE_DIRECTORY);
         invalidDirectorySM = new StorageManager(INVALID_TEST_DIRECTORY);
 
         userToLoad = null;
@@ -103,7 +104,7 @@ class StorageManagerTest {
     @Test
     void loadUser_emptyUserFile_throwsAniException() {
         assertThrows(AniException.class, () -> {
-            userToLoad = emptyFileSM.loadUser();
+            userToLoad = emptySM.loadUser();
             fail();
         });
     }
@@ -137,13 +138,13 @@ class StorageManagerTest {
         });
 
         // Empty Watchlist File
-        String emptyFileResult = emptyFileSM.loadWatchlistList(EMPTY_FILE_WORKSPACE, watchlistListForLoad);
+        String emptyResult = emptySM.loadWatchlistList(EMPTY_FILE_WORKSPACE, watchlistListForLoad);
         String expectedEmptyFileResult = "Empty watchlist file.";
-        assertEquals(expectedEmptyFileResult, emptyFileResult);
+        assertEquals(expectedEmptyFileResult, emptyResult);
 
         // No Watchlist File
         assertThrows(AniException.class, () -> {
-            emptyFileSM.loadWatchlistList(EMPTY_WORKSPACE, watchlistListForLoad);
+            emptySM.loadWatchlistList(EMPTY_WORKSPACE, watchlistListForLoad);
             fail();
         });
     }
@@ -179,7 +180,7 @@ class StorageManagerTest {
 
         // Empty Script File
         assertThrows(AniException.class, () -> {
-            emptyFileSM.readScript(EMPTY_FILE_WORKSPACE, SCRIPT_FILE_NAME);
+            emptySM.readScript(EMPTY_FILE_WORKSPACE, SCRIPT_FILE_NAME);
             fail();
         });
     }

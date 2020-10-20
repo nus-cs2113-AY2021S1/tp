@@ -28,7 +28,6 @@ public class EstimateCommand extends Command {
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         Workspace activeWorkspace = user.getActiveWorkspace();
-        assert activeWorkspace.getWatchlistList() != null : "Watchlist list should not be null.";
         String fileString = storageManager.readScript(activeWorkspace.getName(), scriptFileName);
         int wordCount = fileString.split(" ").length;
 
@@ -46,7 +45,9 @@ public class EstimateCommand extends Command {
                 commandResult.append(getHoursAndMinutesNeeded(timeNeeded));
                 commandResult.append(System.lineSeparator());
             }
-            commandResult.setLength(commandResult.length() - 1);    // Replace last new line
+
+            // Remove extra new line.
+            commandResult.setLength(commandResult.length() - System.lineSeparator().length());
         }
 
         return commandResult.toString();

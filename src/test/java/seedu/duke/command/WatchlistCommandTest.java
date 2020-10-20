@@ -22,11 +22,13 @@ class WatchlistCommandTest {
     private User user;
     private Workspace activeWorkspace;
 
+    private static final String STORAGE_DIRECTORY = "src" + File.separator + "test"
+                                                    + File.separator + "data" + File.separator;
+
     @BeforeEach
     void setUp() throws AniException {
         animeData = new AnimeData(new ArrayList<>());
-        storageManager = new StorageManager("src" + File.separator + "test"
-                                            + File.separator + "data" + File.separator);
+        storageManager = new StorageManager(STORAGE_DIRECTORY);
         user = new User("Testing", "Male");
 
         Watchlist secondWatchlist = new Watchlist("Second");
@@ -43,7 +45,6 @@ class WatchlistCommandTest {
 
         Workspace newWorkspace = user.addWorkspace("Default");
         newWorkspace.setWatchlistList(watchlistList);
-        newWorkspace.setActiveWatchlist(newWorkspace.getWatchlistList().get(0));
         user.setActiveWorkspace(newWorkspace);
         activeWorkspace = user.getActiveWorkspace();
     }
@@ -68,9 +69,9 @@ class WatchlistCommandTest {
         assertThrows(AssertionError.class, () -> nullOption.execute(animeData, storageManager, user));
 
         // Null WatchlistList
-        WatchlistCommand nullWorkspace = new WatchlistCommand("n", "First");
+        WatchlistCommand nullWatchlistList = new WatchlistCommand("n", "First");
         activeWorkspace.setWatchlistList(null);
-        assertThrows(AssertionError.class, () -> nullWorkspace.execute(animeData, storageManager, user));
+        assertThrows(AssertionError.class, () -> nullWatchlistList.execute(animeData, storageManager, user));
     }
 
     // ========================== Create ==========================
