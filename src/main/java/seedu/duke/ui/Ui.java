@@ -1,6 +1,7 @@
 package seedu.duke.ui;
 
 import seedu.duke.Bus;
+import seedu.duke.DiningOptions;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
 
@@ -108,4 +109,5 @@ public class Ui {
         }
         printLine();
     }
+
 }
