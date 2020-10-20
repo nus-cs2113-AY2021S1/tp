@@ -17,7 +17,6 @@ import bookmark.BookmarkRun;
 
 
 public class Command {
-    public static int chosenCategory = 0;
 
     public static void executeCommand(String command, CommandType commandType,
                                       BookmarkRun bookmarkRun, FlashcardRun flashcardRun,

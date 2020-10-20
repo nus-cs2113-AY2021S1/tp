@@ -1,8 +1,5 @@
 package bookmark;
 
-import flashcard.Flashcard;
-import flashcard.FlashcardDeck;
-import timetable.DateList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -37,10 +34,10 @@ public class BookmarkStorage {
                 String category = parseCard[0];
                 String links = parseCard[1];
                 if ( parseCard.equals("NUS")) {
-                    bookmarkCategories.add(new NusCategory());
+                    bookmarkCategories.add(new BookmarkCategory("NUS"));
                     bookmarkCategories.get(0).addLink(links);
                 } else if (category.equals("ZOOM")){
-                    bookmarkCategories.add(new ZoomCategory());
+                    bookmarkCategories.add(new BookmarkCategory( "Zoom"));
                     bookmarkCategories.get(1).addLink(links);
                 }
             }
@@ -51,7 +48,7 @@ public class BookmarkStorage {
         }
     }
 
-    public void writeFile(ArrayList<BookmarkCategory> bookmarkCategories) {
+    public void writeToFile(ArrayList<BookmarkCategory> bookmarkCategories) {
         try {
             FileWriter fw = new FileWriter(filePath, true);
             if (bookmarkCategories.get(1).getName().equals("Zoom")) {
@@ -64,5 +61,6 @@ public class BookmarkStorage {
             System.out.println("Something went wrong" + e.getMessage());
         }
     }
+
 
 }

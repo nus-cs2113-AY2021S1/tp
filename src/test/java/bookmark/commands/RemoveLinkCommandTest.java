@@ -2,8 +2,6 @@ package bookmark.commands;
 
 import bookmark.BookmarkCategory;
 import bookmark.BookmarkUi;
-import bookmark.NusCategory;
-import bookmark.ZoomCategory;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -64,8 +62,8 @@ class RemoveLinkCommandTest {
     }
 
     private void setUpBookmark() {
-        categories.add(new NusCategory());
-        categories.add(new ZoomCategory());
+        categories.add(new BookmarkCategory("NUS"));
+        categories.add(new BookmarkCategory( "Zoom"));
         String addLink = "add https://huhuhu.com";
         int categoryNumber = 2;
         AddLinkCommand command = new AddLinkCommand(addLink,categoryNumber);

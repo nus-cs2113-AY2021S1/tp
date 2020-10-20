@@ -16,7 +16,7 @@ public class AddLinkCommand extends BookmarkCommand {
     public AddLinkCommand(String line, int categoryNumber) {
         this.categoryNumber = categoryNumber;
         this.line = line.trim();
-        assert line.startsWith("add") : "Add link command is called when line does not start with add";
+        assert line.toLowerCase().startsWith("add") : "Add link command is called when line does not start with add";
         assert categoryNumber >= 0 : "Missing category number";
     }
 
@@ -26,8 +26,6 @@ public class AddLinkCommand extends BookmarkCommand {
                 ui.printChooseCategoryMessage();
             } else {
                 assert categoryNumber > 0 : "Category number is not chosen";
-                evaluateCategoryNumber();
-                link = line.substring(ADD_LENGTH).trim();
                 evaluateLink();
                 categories.get(categoryNumber - 1).addLink(link);
                 ui.showBookmarkLinkList(categories.get(categoryNumber - 1).getLinks());
@@ -39,21 +37,17 @@ public class AddLinkCommand extends BookmarkCommand {
         }
     }
 
-    private void evaluateLink() throws InvalidBookmarkException {
+    private void evaluateLink() throws EmptyBookmarkException, InvalidBookmarkException {
+        if (line.length() <= ADD_LENGTH) {
+            throw new EmptyBookmarkException();
+        }
+        assert line.length() > 0 : "Link should not be empty";
+        link = line.substring(ADD_LENGTH).trim();
         if (!link.contains("https://") || !link.contains(".") || link.contains(" ")) {
             throw new InvalidBookmarkException();
         }
         assert link.contains("https://") && link.contains(".") && !link.contains(" ") : "Invalid link";
     }
-
-    private void evaluateCategoryNumber() throws EmptyBookmarkException {
-        if (line.length() <= ADD_LENGTH) {
-            throw new EmptyBookmarkException();
-        }
-        assert line.length() > 0 : "Link should not be empty";
-
-    }
-
 
     public int getCategoryNumber() {
         return categoryNumber;

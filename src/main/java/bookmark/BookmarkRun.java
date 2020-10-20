@@ -15,11 +15,11 @@ public class BookmarkRun {
     private int mode;
 
     public BookmarkRun() {
-        bookmarkCategories.add(new NusCategory());
-        bookmarkCategories.add(new ZoomCategory());
+        bookmarkCategories.add(new BookmarkCategory("NUS"));
+        bookmarkCategories.add(new BookmarkCategory( "Zoom"));
         bookmarkUi = new BookmarkUi();
         bookmarkParser = new BookmarkParser();
-        bookmarkStorage = new BookmarkStorage("data/timetable.txt");
+        bookmarkStorage = new BookmarkStorage("data/bookmark.txt");
     }
 
     public void run(String command) {

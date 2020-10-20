@@ -1,12 +1,9 @@
 import exceptions.InvalidModeException;
 import org.junit.jupiter.api.Test;
-<<<<<<< HEAD
-=======
 import studyit.CommandParser;
 import studyit.CommandType;
 import studyit.Mode;
 import studyit.StudyIt;
->>>>>>> master
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
