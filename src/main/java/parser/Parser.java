@@ -19,9 +19,12 @@ import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import storage.Storage;
 
+import java.util.List;
+
 import static common.Messages.MESSAGE_EXTRA_ARGS;
 import static common.Messages.MESSAGE_INCORRECT_ACCESS;
 import static common.Messages.MESSAGE_MISSING_ARGS;
+import static common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class Parser {
     private static final String QUESTION_ANSWER_PREFIX = " \\| ";
@@ -68,14 +71,16 @@ public class Parser {
 
     private static Command prepareGo(String commandArgs) throws InvalidInputException {
         if (commandArgs.isEmpty()) {
-            throw new InvalidInputException();
+            throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    GoCommand.COMMAND_WORD) + GoCommand.MESSAGE_USAGE);
         }
         return new GoCommand(commandArgs);
     }
 
     private static Command prepareBack(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
-            throw new InvalidInputException();
+            throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    BackCommand.COMMAND_WORD) + BackCommand.MESSAGE_USAGE);
         }
         return new BackCommand();
     }
@@ -90,7 +95,8 @@ public class Parser {
 
     private static Command prepareList(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
-            throw new InvalidInputException("There should not be any arguments for list.");
+            throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ListCommand.COMMAND_WORD) + ListCommand.MESSAGE_USAGE);
         }
         return new ListCommand();
     }

@@ -42,6 +42,25 @@ class ParserTest {
     }
 
     @Test
+    public void parse_goCommandEmptyArgs_expectException() {
+        Access access = new Access();
+        final String[] inputs = {"go", "go "};
+        for (String input : inputs) {
+            assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
+        }
+    }
+
+    @Test
+    public void parse_backCommandWithArgs_expectException() {
+        Access access = new Access();
+        final String[] inputs = {"back args"};
+        for (String input : inputs) {
+            assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
+        }
+    }
+
+
+    @Test
     public void parse_listCommandWithArgs_expectException() {
         Access access = new Access();
         final String input = "list args";
