@@ -5,6 +5,7 @@ import seedu.rex.data.AppointmentList;
 import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
+import seedu.rex.data.hospital.Doctor;
 import seedu.rex.parser.Parser;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
@@ -78,6 +79,10 @@ public class Rex {
 
     public static PatientList getPatients() {
         return patients;
+    }
+
+    public static DoctorList getDoctors() {
+        return doctors;
     }
 
     /**

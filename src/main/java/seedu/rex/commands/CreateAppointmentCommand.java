@@ -38,16 +38,8 @@ public class CreateAppointmentCommand extends Command {
         assert storage != null : "storage is null";
         Rex.logger.log(Level.INFO, "going to create appointment");
         String date = ui.getNewAppointmentDate();
-        String doctorName = ui.getDoctorName();
         try {
             Appointment newAppointment = new Appointment(LocalDate.parse(date));
-            for (Doctor doctor: doctors.getDoctors()) {
-                if (doctor.getName().equals(doctorName)) {
-                    newAppointment.setDoctor(doctor);
-                    break;
-                }
-
-            }
             appointments.addAppointment(newAppointment);
             ui.showAppointmentCreatedMessage();
 

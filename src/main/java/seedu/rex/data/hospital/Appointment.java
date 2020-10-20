@@ -73,7 +73,7 @@ public class Appointment {
      *
      * @param patient Patient to schedule appointment with.
      */
-    public void book(Patient patient) {
+    public void bookPatient(Patient patient) {
         this.patient = patient;
         isBooked = true;
     }
@@ -91,18 +91,15 @@ public class Appointment {
     @Override
     public String toString() {
         String date = this.date.toString();
-        String bookedStatus;
-        String patientNric;
-        if (isBooked) {
-            bookedStatus = "booked";
-        } else {
-            bookedStatus = "available";
-        }
-        if (patient != null) {
-            patientNric = patient.getNric();
-        } else {
-            patientNric = null;
-        }
-        return date + ", " + bookedStatus + ", " + patientNric;
+
+        String bookedStatus = isBooked ? "booked" : "available";
+        String patientNric = patient == null ? null : patient.getNric();
+        String doctorName = doctor == null ? null : doctor.getName();
+
+        return date + ", " + bookedStatus + ", " + patientNric + ", " + doctorName;
+    }
+
+    public void bookDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 }

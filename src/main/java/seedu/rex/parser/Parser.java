@@ -48,9 +48,13 @@ public class Parser {
         LocalDate date = LocalDate.parse(appointmentComponents[0]);
         String bookedStatus = appointmentComponents[1];
         String nric = appointmentComponents[2];
+        String doctorName = appointmentComponents[3];
         Appointment appointment = new Appointment(date);
         if (bookedStatus.equals("booked")) {
-            appointment.book(Rex.getPatients().getPatientUsingIndex(Rex.getPatients().getExistingPatient(nric)));
+            appointment.bookPatient(Rex.getPatients().getPatientFromNric(nric));
+        }
+        if (doctorName != null && !doctorName.equals("null")) {
+            appointment.setDoctor(Rex.getDoctors().getDoctorFromName(doctorName));
         }
         return appointment;
     }

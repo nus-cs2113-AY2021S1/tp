@@ -46,6 +46,12 @@ public class BookCommand extends Command {
             throw new RexException("No appointment sessions!");
         }
 
+        Rex.logger.log(Level.INFO, "going to get doctor's name");
+        String doctorName = ui.getDoctorName();
+        if (!doctors.isExistingDoctor(doctorName)) {
+            throw new RexException("No such doctor!");
+        }
+
         if (!patients.isExistingPatient(nric)) {
             ui.printPatientNotFound(nric);
             ui.showCreatePatientMessage(nric);
@@ -60,8 +66,9 @@ public class BookCommand extends Command {
             if (index < 0 || index >= appointments.getSize()) {
                 throw new RexException("Index error!");
             }
-            Rex.logger.log(Level.INFO, "booking appointment for patient...");
-            appointments.getAppointmentByIndex(index).book(patients.getPatientFromNric(nric));
+            Rex.logger.log(Level.INFO, "booking appointment for patient and doctor...");
+            appointments.getAppointmentByIndex(index).bookPatient(patients.getPatientFromNric(nric));
+            appointments.getAppointmentByIndex(index).bookDoctor(doctors.getDoctorFromName(doctorName));
             ui.showAppointmentBookedMessage(appointments.getAppointmentByIndex(index));
 
             assert !appointments.isEmpty() : "No appointments!";

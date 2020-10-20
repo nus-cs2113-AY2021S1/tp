@@ -84,7 +84,7 @@ public class Storage {
         for (int i = 0; i < patients.getSize(); i++) {
             // Need to format tasks
             patientsFileContent.append(patients.getPatientUsingIndex(i));
-            patientsFileContent.append('\n');
+            patientsFileContent.append(System.lineSeparator());
         }
 
         writeToFile(patientsFileContent, PATIENTS_FILE);
