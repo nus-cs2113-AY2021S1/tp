@@ -19,7 +19,6 @@ public class CommandEventAdd extends Command {
 
     @Override
     public int validate(UserInput ui) {
-       // assert ui!= null;
         userInput = ui;
         if (userInput.getCategory().equals("event") && (userInput.getCommand().equalsIgnoreCase("addEvent")
                 || userInput.getCommand().equalsIgnoreCase("add")

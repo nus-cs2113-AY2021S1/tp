@@ -1,19 +1,11 @@
 
 package seedu.duke.event;
 
-
-import seedu.duke.backend.FileManager;
-import seedu.duke.backend.Ui;
-
-import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
+
 
 public class EventList {
     public static ArrayList<Event> events = new ArrayList<>();
@@ -32,8 +24,8 @@ public class EventList {
         logger.info("Adding event to list\n");
         String userOutput;
         events.add(event);
-        userOutput = "Got it. I've added this Event:\n" + event.printEvent() + "\n"
-                + "Now you have " + events.size() + " event in the list.\n";
+        userOutput = "Got it. I've added this Event:\n" + event.printEvent()
+                + "\nNow you have " + events.size() + " event in the list.\n";
         logger.info("Added event to list\n");
         return userOutput;
     }
@@ -58,6 +50,11 @@ public class EventList {
         return userOutput;
     }
 
+    /**
+     *
+     * @param index item to be marked as completed
+     * @return userOutput to be printed out
+     */
     public static String isCompleted(int index) {
         String userOutput;
         int numToBeMarked = index + 1;
@@ -69,6 +66,14 @@ public class EventList {
         return userOutput;
     }
 
+    public static void printStar(){
+        System.out.println("*".repeat(50));
+    }
+
+    /**
+     *
+     * @return list of events
+     */
     public static String printEventList() {
         logger.info("Initialising event list\n");
         String userOutput;
@@ -80,7 +85,7 @@ public class EventList {
 
             for (Event event : events) {
                 userOutput = userOutput.concat(events.indexOf(event) + 1 + ".");
-                userOutput = userOutput.concat(event.printEvent()) + "\n";
+                userOutput = userOutput.concat(event.printEvent()) +  "\n"+ "*".repeat(50)+"\n";
             }
             logger.info("Event List ready");
         }
@@ -88,6 +93,10 @@ public class EventList {
         return userOutput;
     }
 
+    /**
+     *
+     * @return number of days left to event
+     */
    public static String countdownView() {
        String userOutput = "";
        int eventNumber = 1;
@@ -97,7 +106,7 @@ public class EventList {
            for (Event event : eventsSortedByDate) {
                if (!event.getEventDate().isBefore(LocalDate.now())) {
                    userOutput =  userOutput + eventNumber + "." + event.printEvent();
-                   userOutput = userOutput.concat("\nNumber of day(s) left: " + event.numberOfDaysLeft()+"\n");
+                   userOutput = userOutput.concat("\nNumber of day(s) left: " + event.numberOfDaysLeft())+ "\n"+ "*".repeat(50)+"\n";
                    eventNumber++;
                }
            }
@@ -131,10 +140,10 @@ public class EventList {
      * @param keyword The word used for search.
      * @return returns true if at least one event contains the event name
      */
-    static boolean checkIfEventsMatch(String keyword) {
+   public static boolean checkIfEventsMatch(String keyword) {
         boolean hasMatchedTask = false;
         for (Event event : events) {
-            if (event.hasKeyword(keyword)) {
+            if (event.containsKeyword(keyword)) {
                 hasMatchedTask = true;
                 break;
             }
@@ -151,8 +160,8 @@ public class EventList {
         int taskNumber = 1;
         String output = "";
         for (Event event : events) {
-            if (event.hasKeyword(keyword)) {
-                output = output + taskNumber + "." + event.printEvent() + "\n";
+            if (event.containsKeyword(keyword)) {
+                output = output + taskNumber + "." + event.printEvent() + "\n" +"*".repeat(50)+"\n";
                 taskNumber++;
             }
         }

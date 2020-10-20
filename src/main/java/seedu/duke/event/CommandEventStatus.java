@@ -30,7 +30,7 @@ public class CommandEventStatus extends Command {
     }
     @Override
     public String help() {
-        return null;
+        return "Syntax: event done <EVENT_INDEX>";
     }
 
 

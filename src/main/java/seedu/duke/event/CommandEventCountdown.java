@@ -14,9 +14,9 @@ public class CommandEventCountdown extends Command {
     }
 
     @Override
-    public int validate(UserInput input) {
-        this.userInput = input;
-        if (input.getCategory().equals("event") && input.getCommand().equalsIgnoreCase("countdown")) {
+    public int validate(UserInput ui) {
+        this.userInput = ui;
+        if (ui.getCategory().equals("event") && (ui.getCommand().equalsIgnoreCase("countdown"))){
             return ACCEPT;
         } else {
             return NO_MATCH;
@@ -26,6 +26,6 @@ public class CommandEventCountdown extends Command {
 
     @Override
     public String help() {
-        return null;
+        return "Syntax: event countdown";
     }
 }

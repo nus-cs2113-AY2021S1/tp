@@ -67,10 +67,11 @@ public class Event {
      * @return String format of event.
      */
 
-    public String printEvent() {
-        return SYMBOL + this.getStatusIcon() + "Event Name: " + this.eventName +  "\nDate: "
-                + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\nTime: " + this.eventTime + "\n";
-    }
+   public String printEvent() {
+        return SYMBOL + this.getStatusIcon() + "\nEvent Name: " + this.eventName +  "\nDate: "
+                + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\nTime: " + this.eventTime;
+   }
+
 
     public long numberOfDaysLeft() {
         return ChronoUnit.DAYS.between(LocalDate.now(),this.getEventDate());
@@ -139,10 +140,9 @@ public class Event {
      * Used to identify if the string contains the keyword specified in its description.
      *
      * @param keyword The keyword to be matched with the description.
-     * @return containsKeyword Indicates the presence/absence of keyword in the event's description.
-     * @throws Exception If keyword entered is empty.
+     * @return true if list contains the keyword
      */
-    public boolean hasKeyword(String keyword)  {
+    public boolean containsKeyword(String keyword)  {
         boolean containsKeyword = eventName.toLowerCase().contains(keyword.toLowerCase());
         return containsKeyword;
     }

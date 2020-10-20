@@ -8,20 +8,20 @@ public class CommandSearchEvent extends Command {
     private UserInput userInput;
     @Override
     public String execute() {
-        String input = userInput.getArg("f");
+        String input = userInput.getArg("s");
         String output = EventList.searchEvents(input);
         return output;
     }
 
     @Override
     public String help() {
-        return null;
+        return "Syntax: event search /s <KEYWORD>";
     }
 
     @Override
-    public int validate(UserInput input) {
-        this.userInput = input;
-        if (input.getCategory().equals("event") && input.getCommand().equalsIgnoreCase("search")) {
+    public int validate(UserInput ui) {
+        userInput = ui;
+        if (ui.getCategory().equals("event") && (ui.getCommand().equalsIgnoreCase("search"))) {
             return ACCEPT;
         } else {
             return NO_MATCH;
