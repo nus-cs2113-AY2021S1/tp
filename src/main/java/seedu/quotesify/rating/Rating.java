@@ -46,8 +46,8 @@ public class Rating implements JsonSerializer {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("titleOfRatedBook", this.getTitleOfRatedBook());
+        json.put("authorOfRatedBook", this.getAuthorOfRatedBook());
         json.put("rating", this.getRating());
         return json;
     }
-
 }
