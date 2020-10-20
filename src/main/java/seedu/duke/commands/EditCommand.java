@@ -49,8 +49,13 @@ public class EditCommand {
         }
     }
 
-    //TODO : @Shikai or whoever, if name of show doesnt exist still can edit
     public static void processCommand() throws NullPointerException {
+        boolean isShowInList = ShowList.doesShowExist(showName);
+        if (!isShowInList) {
+            Ui.printShowNotInList();
+            return;
+        }
+
         Scanner in = new Scanner(System.in);
         Ui.printEditPrompt();
         while (true) {

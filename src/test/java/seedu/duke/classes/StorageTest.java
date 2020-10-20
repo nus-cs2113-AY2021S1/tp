@@ -2,15 +2,12 @@ package seedu.duke.classes;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
 import seedu.duke.utility.ShowList;
 import seedu.duke.utility.Ui;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 
 class StorageTest {
@@ -35,6 +32,8 @@ class StorageTest {
             storage.saveState();
             assertEquals(shows.getShow("friends").toString(), storage.loadState().getShow("friends").toString());
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
