@@ -8,11 +8,11 @@ import seedu.rex.data.hospital.Doctor;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
-public class RemoveDoctorCommand extends Command {
+public class DeleteDoctorCommand extends Command {
     public static final String COMMAND_WORD = "nodoctor";
     private final String trimmedCommand;
 
-    public RemoveDoctorCommand(String trimmedCommand) {
+    public DeleteDoctorCommand(String trimmedCommand) {
         this.trimmedCommand = trimmedCommand;
     }
 
@@ -41,6 +41,8 @@ public class RemoveDoctorCommand extends Command {
             for (int i = 0; i < appointments.getSize(); i++) {
                 String tempName = appointments.getAppointmentByIndex(i).getDoctor().getName();
                 if (tempName.equals(doctorName)) {
+                    appointments.getAppointmentByIndex(i).setPatient(null);
+                    appointments.getAppointmentByIndex(i).removeBooking();
                     appointments.getAppointmentByIndex(i).setDoctor(null);
                     break;
                 }
@@ -48,6 +50,7 @@ public class RemoveDoctorCommand extends Command {
         } else {
             ui.printDoctorNotFound(doctorName);
         }
+        storage.saveAppointments(appointments);
         storage.saveDoctors(doctors);
     }
 }

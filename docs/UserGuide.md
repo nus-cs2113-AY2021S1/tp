@@ -142,6 +142,19 @@ Example of usage:
 
 `list`
 
+### Edit patient's appointment: `editappt`
+Edit patient's appointment
+
+Format: `editapp NRIC`
+
+* The patient with `NRIC` should already exist.
+* The program will prompt for appointment date and 
+
+Example of usage:
+
+`editapp S9900999D`
+`editapp S9900299D`
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -160,3 +173,4 @@ Example of usage:
 * Remove doctor `nodoctor NAME`
 * View appointments of a patient `appointments NRIC`
 * List patients `list`
+* Edit patient's appointment `editappt`

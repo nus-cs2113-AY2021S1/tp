@@ -5,30 +5,33 @@ import seedu.rex.data.AppointmentList;
 import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
-import seedu.rex.data.hospital.Patient;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
 import java.util.logging.Level;
 
-public class ListAppointmentsCommand extends Command {
+/**
+ * Edits a patient from the list of patients.
+ */
+public class EditPatientCommand extends Command {
 
-    public static final String COMMAND_WORD = "appointments";
+    public static final String COMMAND_WORD = "edit";
     private final String trimmedCommand;
 
-    public ListAppointmentsCommand(String trimmedCommand) {
+    public EditPatientCommand(String trimmedCommand) {
         this.trimmedCommand = trimmedCommand;
     }
 
     /**
-     * Lists appointments of a patient.
+     * Edits an existing patient to the patient list using details inputted by the user.
      *
      * @param patients     PatientList object.
      * @param doctors      DoctorList object.
      * @param appointments AppointmentList object.
-     * @param ui           Ui object.
-     * @param storage      Storage object.
-     * @throws RexException If the input NRIC does not exist in system
+     * @param ui           Ui object of the program.
+     * @param storage      Storage object used for saving data to files.
+     * @throws RexException If there is an error in the NRIC inputted by the user, the data fails
+     *                      to save successfully, or the NRIC already exists in the patient list.
      */
     @Override
     public void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui, Storage storage)
@@ -42,18 +45,11 @@ public class ListAppointmentsCommand extends Command {
         if (!patients.isExistingPatient(nric)) {
             throw new RexException("A patient with this NRIC has not been registered!");
         }
-        Patient targetPatient = patients.getPatientFromNric(nric);
-        assert targetPatient != null : "Null target patient!";
-        ui.showAppointmentsListHeader(nric);
 
-        int i;
-        for (i = 0; i < appointments.getSize(); i++) {
-            if (appointments.getAppointmentByIndex(i).getPatient().equals(targetPatient)) {
-                ui.showAppointmentLine(appointments.getAppointmentByIndex(i), i + 1);
-            }
-        }
-        if (i == 0) {
-            ui.showNoBookedAppointmentsMessage();
-        }
+        int index = patients.editExistingPatient(ui.getPatientName(), nric, ui.getPatientDateOfBirth());
+        assert index > -1 : "Invalid index!";
+        ui.showLine();
+        ui.showPatientEdited(patients.getPatientUsingIndex(index));
+        storage.savePatients(patients);
     }
 }

@@ -6,7 +6,7 @@ import seedu.rex.data.PatientList;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
-public class ListPatientsCommand extends Command {
+public class ListPatientCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
