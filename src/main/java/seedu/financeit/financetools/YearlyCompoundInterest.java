@@ -11,13 +11,14 @@ import seedu.financeit.ui.UiManager;
 import java.util.ArrayList;
 import java.lang.Math;
 
-public class CompoundInterest extends ParamHandler {
+public class YearlyCompoundInterest extends ParamHandler {
 
-    private double amount = -1;
-    private double interestRate = -1;
-    private int calculationPeriod = -1;
+    private double amount = 0;
+    private double interestRate = 0;
+    private int calculationPeriod = 0;
+    private double yearlyDeposit = 0;
 
-    public CompoundInterest() {
+    public YearlyCompoundInterest() {
         super();
     }
 
@@ -36,14 +37,33 @@ public class CompoundInterest extends ParamHandler {
     public double calculateCompoundInterest() {
         assert this.amount >= 0 : "Amount should not be a negative number";
         assert this.interestRate >= 0 : "Interest rate should not be a negative number";
-        assert this.calculationPeriod >= 0 : "Calculation period should not be a negative number";
+        assert this.calculationPeriod >= 0 : "Calculation period (in years) should not be a negative number";
+        assert this.yearlyDeposit >= 0 : "Yearly deposit should not be a negative number";
 
         double interestRate = this.interestRate / 100;
         int period = this.calculationPeriod;
         int compoundInterval = 1;
-        double totalAmount = this.amount * Math.pow((1 + interestRate / compoundInterval), compoundInterval * period);
-        double interestEarned = totalAmount - this.amount;
-        return interestEarned;
+        double totalAmount;
+        double interestEarned;
+        double totalInterestEarned = 0;
+
+        System.out.println("Compound Interval: Yearly\n");
+        if (yearlyDeposit == 0) {
+            totalAmount = this.amount * Math.pow((1 + interestRate / compoundInterval), compoundInterval * period);
+            totalInterestEarned = Math.round((totalAmount - this.amount) * 100.00) / 100.00;
+        } else {
+            for (int i = 0; i < calculationPeriod; i++) {
+                this.amount += yearlyDeposit;
+                totalAmount = this.amount * Math.pow((1 + interestRate / compoundInterval), compoundInterval);
+                interestEarned = Math.round((totalAmount - this.amount) * 100.00) / 100.00;
+                System.out.printf("Total Interest earned in Year " + "%d", i + 1);
+                System.out.printf(": $%.2f\n", interestEarned);
+                totalInterestEarned += interestEarned;
+                this.amount += interestEarned;
+            }
+        }
+
+        return totalInterestEarned;
     }
 
     @Override
@@ -58,6 +78,9 @@ public class CompoundInterest extends ParamHandler {
             break;
         case "/period":
             this.calculationPeriod = paramChecker.checkAndReturnInt(paramType);
+            break;
+        case "/deposit":
+            this.yearlyDeposit = paramChecker.checkAndReturnDouble(paramType);
             break;
         default:
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
