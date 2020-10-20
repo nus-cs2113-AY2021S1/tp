@@ -32,10 +32,6 @@ public class FreqStorage extends Storage {
     @Override
     public void updateFile() throws CustomException {
         ArrayList<Integer> frequencyList = BusData.getAllSearchCount();
-        //In case tester deletes file after initialisation
-        if (!file.exists()) {
-            super.createFile(dir);
-        }
         try {
             saveFile(frequencyList);
         } catch (IOException e) {
