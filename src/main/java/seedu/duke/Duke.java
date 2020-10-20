@@ -1,35 +1,73 @@
 package seedu.duke;
 
-import java.util.Scanner;
-import seedu.duke.tysPackage.tysMain;
+import seedu.duke.bookmark.BookmarkList;
+import seedu.duke.slot.SlotList;
+import seedu.duke.command.Command;
+import seedu.duke.exception.DukeException;
+import seedu.duke.slot.Timetable;
 
 public class Duke {
+
+    private Storage bookmarkStorage;
+    private Storage slotStorage;
+    private BookmarkList bookmarks;
+    private Timetable timetable;
+    private Ui ui;
+
+    /**
+     * Constructs a new Duke instance.
+     * Pass the filepath of the txt file to set up storage.
+     *
+     * @param bookmarkFilePath The filepath of the bookmark txt file.
+     * @param slotFilePath The filepath of the slot txt file.
+     */
+    public Duke(String bookmarkFilePath, String slotFilePath) {
+        ui = new Ui();
+        bookmarkStorage = new Storage(bookmarkFilePath);
+        slotStorage = new Storage(slotFilePath);
+
+        try {
+            bookmarks = new BookmarkList(bookmarkStorage.load());
+        } catch (DukeException e) {
+            bookmarks = new BookmarkList();
+        }
+
+        timetable = new Timetable();
+
+        /*      try {
+            slots = new SlotList(slotStorage.load());
+        } catch (DukeException e) {
+            slots = new SlotList();
+        }
+        */
+    }
+
+    /**
+     * This method is used run the Duke program.
+     */
+    public void run() {
+        boolean isExit = false;
+
+        ui.showWelcomeScreen();
+
+        do {
+            try {
+                String fullCommand = ui.readCommand();
+                Command c = Parser.parse(fullCommand);
+                c.execute(bookmarks, timetable, ui, bookmarkStorage, slotStorage);
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showErrorMessage(e);
+            }
+        } while (!isExit);
+    }
+
     /**
      * Main entry-point for the java.duke.Duke application.
+     *
+     * @param args Unused.
      */
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
-
-        int check = 1;
-        if (check==1) {
-            System.out.println("Testin for forking workflow");
-        }
-        if (1 == 1)
-        {
-            System.out.println("true");
-        }
-
-        tysMain.testShowFunction();
+        new Duke("./data/bookmarks.txt", "./data/slots.txt").run();
     }
 }
-
-// jusufn
