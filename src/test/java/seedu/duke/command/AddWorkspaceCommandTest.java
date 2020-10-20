@@ -25,7 +25,7 @@ class AddWorkspaceCommandTest {
         Anime testAnime1 = new Anime();
         testList.add(testAnime1);
         animeData = new AnimeData(testList);
-        storageManager = new StorageManager("test");
+        storageManager = new StorageManager("data");
         user = new User("Tom", "Male");
     }
 
@@ -33,7 +33,7 @@ class AddWorkspaceCommandTest {
     void execute_validName_ThrowsAniException() throws AniException {
         AddWorkspaceParser testParse = new AddWorkspaceParser();
 
-        AddWorkspaceCommand testAddWorkspace = testParse.parse("-n Crunchy rail 12345 [];'%@&");
+        AddWorkspaceCommand testAddWorkspace = testParse.parse("-n Crunchy rail 12345");
         assertDoesNotThrow(() -> testAddWorkspace.execute(animeData, storageManager, user));
     }
 }

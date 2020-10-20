@@ -28,4 +28,11 @@ class AddWorkspaceParserTest {
 
         assertDoesNotThrow(() -> testParse.parse("-n Crunchy"));
     }
+
+    @Test
+    void parser_legitimateNameComplex_success() {
+        AddWorkspaceParser testParse2 = new AddWorkspaceParser();
+
+        assertDoesNotThrow(() -> testParse2.parse("-n Crunchy OREO c00k!3s"));
+    }
 }
