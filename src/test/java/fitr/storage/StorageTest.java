@@ -70,12 +70,14 @@ public class StorageTest {
     private Storage getValidStorage() throws Exception {
         return new Storage("src/test/data/StorageTest/ValidUserData.txt",
                 "src/test/data/StorageTest/ValidFoodData.txt",
-                "src/test/data/StorageTest/ValidExerciseData.txt");
+                "src/test/data/StorageTest/ValidExerciseData.txt",
+                "src/test/data/StorageTest/ValidGoalData.txt");
     }
 
     private Storage getInvalidStorage() throws Exception {
         return new Storage("src/test/data/StorageTest/InvalidUserData.txt",
                 "src/test/data/StorageTest/InvalidFoodData.txt",
-                "src/test/data/StorageTest/InvalidExerciseData.txt");
+                "src/test/data/StorageTest/InvalidExerciseData.txt",
+                "src/test/data/StorageTest/InvalidGoalData.txt");
     }
 }

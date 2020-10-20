@@ -3,8 +3,10 @@ package fitr.storage;
 import fitr.Calorie;
 import fitr.Exercise;
 import fitr.Food;
+import fitr.Goal;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
+import fitr.list.GoalList;
 import fitr.user.User;
 
 import java.io.File;
@@ -22,6 +24,7 @@ public class Storage {
     private static final String DEFAULT_EXERCISE_LIST_FILEPATH = "exercises.txt";
     private static final String DEFAULT_FOOD_LIST_FILEPATH = "food.txt";
     private static final String DEFAULT_USER_CONFIG_FILEPATH = "user.txt";
+    private static final String DEFAULT_GOAL_LIST_FILEPATH = "goals.txt";
     private static final String COMMA_SEPARATOR = ",";
 
     private static final Logger LOGGER = Logger.getLogger(Storage.class.getName());
@@ -29,6 +32,7 @@ public class Storage {
     private final String exerciseListPath;
     private final String foodListPath;
     private final String userConfigPath;
+    private final String goalListPath;
 
     /**
      * Set up the files required in the application, by creating the files if the files do not exist and
@@ -37,35 +41,44 @@ public class Storage {
      * @param userConfigPath file path of the user's profile
      * @param foodListPath file path of the food list
      * @param exerciseListPath file path of the exercise list
+     * @param goalListPath file path of the goal list
      * @throws IOException if an I/O error has occurred
      */
-    public Storage(String userConfigPath, String foodListPath, String exerciseListPath) throws IOException {
+    public Storage(String userConfigPath, String foodListPath, String exerciseListPath,
+                   String goalListPath) throws IOException {
         this.userConfigPath = userConfigPath;
         this.foodListPath = foodListPath;
         this.exerciseListPath = exerciseListPath;
+        this.goalListPath = goalListPath;
 
         File exerciseListFile = new File(exerciseListPath);
-        File foodListFile = new File(foodListPath);
-        File userConfigFile = new File(userConfigPath);
-
         if (!exerciseListFile.exists()) {
             exerciseListFile.createNewFile();
             LOGGER.fine("Exercise list file created: " + exerciseListPath);
         }
 
+        File foodListFile = new File(foodListPath);
         if (!foodListFile.exists()) {
             foodListFile.createNewFile();
             LOGGER.fine("Food list file created: " + foodListPath);
         }
 
+        File userConfigFile = new File(userConfigPath);
         if (!userConfigFile.exists()) {
             userConfigFile.createNewFile();
             LOGGER.fine("User profile file created: " + userConfigPath);
         }
+
+        File goalListFile = new File(goalListPath);
+        if (!goalListFile.exists()) {
+            goalListFile.createNewFile();
+            LOGGER.fine("Goal list file created: " + goalListPath);
+        }
     }
 
     public Storage() throws IOException {
-        this(DEFAULT_USER_CONFIG_FILEPATH, DEFAULT_FOOD_LIST_FILEPATH, DEFAULT_EXERCISE_LIST_FILEPATH);
+        this(DEFAULT_USER_CONFIG_FILEPATH, DEFAULT_FOOD_LIST_FILEPATH,
+                DEFAULT_EXERCISE_LIST_FILEPATH, DEFAULT_GOAL_LIST_FILEPATH);
     }
 
     /**
@@ -216,5 +229,44 @@ public class Storage {
 
         LOGGER.fine("Exercise list file written successfully.");
         file.close();
+    }
+
+    public ArrayList<Goal> loadGoalList() throws FileNotFoundException {
+        LOGGER.fine("Attempting to read file: " + goalListPath);
+        ArrayList<Goal> goalList = new ArrayList<>();
+        String line;
+        String[] arguments;
+        File goalListFile = new File(goalListPath);
+        Scanner readFile = new Scanner(goalListFile);
+
+        while (readFile.hasNext()) {
+            line = readFile.nextLine();
+            arguments = line.split(COMMA_SEPARATOR);
+            goalList.add(new Goal(arguments[0], arguments[1]));
+        }
+
+        LOGGER.fine("Goal list file read successfully.");
+        return goalList;
+    }
+
+    /**
+     * Writes the goal list data into a file.
+     *
+     * @param goalList the goal list to write to the file
+     * @throws IOException if an I/O error has occured
+     */
+    public void writeGoalList(GoalList goalList) throws IOException {
+        LOGGER.fine("Attempting to write to file: " + goalListPath);
+        FileWriter fileWriter = new FileWriter(goalListPath);
+        Goal goal;
+
+        for (int i = 0; i < goalList.getSize(); i++) {
+            goal = goalList.getGoal(i);
+            fileWriter.write(goal.getGoalType()
+                    + COMMA_SEPARATOR + goal.getDescription() + System.lineSeparator());
+        }
+
+        LOGGER.fine("Goal list file written successfully.");
+        fileWriter.close();
     }
 }
