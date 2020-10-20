@@ -8,7 +8,6 @@ import seedu.smarthomebot.data.Lights;
 import seedu.smarthomebot.data.LocationList;
 import seedu.smarthomebot.data.WaterHeater;
 import seedu.smarthomebot.exceptions.DuplicateDataException;
-import seedu.smarthomebot.exceptions.EmptyParameterException;
 import seedu.smarthomebot.exceptions.FileCorruptedException;
 import seedu.smarthomebot.ui.TextUi;
 import java.nio.charset.StandardCharsets;
@@ -46,7 +45,7 @@ public class StorageFile {
             }
             myWriter.close();
         } catch (IOException e) {
-            //ui.printToUser("An error occur");
+            ui.printToUser("An error occur");
         }
     }
 
@@ -86,10 +85,8 @@ public class StorageFile {
                 String location = splitString[0];
                 String power = splitString[2];
                 String type = splitString[3];
-                String status = splitString[4];
-                String powerConsumption = splitString[5];
-                String parameter = splitString[6];
-                String dateTime = splitString[7];
+                String powerConsumption = splitString[4];
+                String parameter = splitString[5];
 
                 switch (type.toLowerCase()) {
                 case Fan.TYPE_WORD:
@@ -114,17 +111,12 @@ public class StorageFile {
                 default:
                     ui.printToUser(MESSAGE_APPLIANCE_TYPE_NOT_EXIST);
                 }
-
-                if (status.toLowerCase().equals("on")) {
-                    applianceList.getAppliance(i).switchOn();
-                }
                 // when user exit, get the current system and save in datafile
-                applianceList.getAppliance(i).loadDataFromFile(powerConsumption, dateTime);
+                applianceList.getAppliance(i).loadDataFromFile(powerConsumption);
                 i++;
             } catch (IndexOutOfBoundsException e) {
                 throw new FileCorruptedException();
             }
-
         }
     }
 
@@ -157,7 +149,7 @@ public class StorageFile {
             }
 
         } catch (IOException e) {
-            //ui.printToUser("Unable to create file.");
+            ui.printToUser("Unable to create file.");
         }
     }
 
@@ -168,7 +160,7 @@ public class StorageFile {
             writer.print("");
             writer.close();
         } catch (FileNotFoundException e) {
-            //ui.printToUser("File is empty.");
+            ui.printToUser("File is empty.");
         }
     }
 }

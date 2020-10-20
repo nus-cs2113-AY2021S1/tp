@@ -3,6 +3,9 @@ package seedu.smarthomebot.commands;
 import seedu.smarthomebot.data.ApplianceList;
 import seedu.smarthomebot.data.LocationList;
 
+import static seedu.smarthomebot.common.Messages.LINE;
+import static seedu.smarthomebot.common.Messages.MESSAGE_LIST_NO_APPLIANCES;
+
 public class Command {
 
     protected ApplianceList applianceList;

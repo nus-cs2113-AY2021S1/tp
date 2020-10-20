@@ -4,11 +4,11 @@ import seedu.smarthomebot.data.framework.Appliance;
 
 public class AirConditioner extends Appliance {
 
-    public static final String TYPE_WORD = "airconditioner";
+    public static final String TYPE_WORD = "aircon";
     private String temperature;
 
-    public AirConditioner(String name, String location, String power) {
-        super(name, location, power);
+    public AirConditioner(String name, String location, String wattage) {
+        super(name, location, wattage);
         this.temperature = "25";
     }
 

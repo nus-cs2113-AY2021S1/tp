@@ -10,14 +10,14 @@ public abstract class Appliance {
     private static int maxLocationLength = 0;
     protected String name;
     protected String location;
-    protected String power;
+    protected String wattage;
     protected Power appliancePower;
 
-    public Appliance(String name, String location, String power) {
+    public Appliance(String name, String location, String wattage) {
         this.name = name;
         this.location = location;
-        this.power = power;
-        appliancePower = new Power(power);
+        this.wattage = wattage;
+        appliancePower = new Power(wattage);
         if (this.name.length() > maxNameLength) {
             maxNameLength = this.name.length();
         }
@@ -44,6 +44,10 @@ public abstract class Appliance {
         return appliancePower.offAppliance();
     }
 
+    public void resetPower() {
+        appliancePower.resetPower();
+    }
+
     /**
      * Gets the status of the appliance.
      *
@@ -58,7 +62,7 @@ public abstract class Appliance {
      *
      * @return the power consumption of the appliance in double.
      */
-    public double measureConsumption() {
+    public double getPowerInDouble() {
         return appliancePower.getPower();
     }
 
@@ -67,15 +71,15 @@ public abstract class Appliance {
      *
      * @return the power consumption of the appliance in String.
      */
-    public String getPowerConsumption() {
+    public String getPowerInString() {
         return appliancePower.toString();
     }
 
     /**
      * Recomputes the power consumption of the appliance.
      */
-    public void loadDataFromFile(String powerConsumption, String dateTime) {
-        appliancePower.loadDataFromFile(Double.parseDouble(powerConsumption), dateTime);
+    public void loadDataFromFile(String powerConsumption) {
+        appliancePower.loadDataFromFile(Double.parseDouble(powerConsumption));
     }
 
     /**
@@ -83,8 +87,8 @@ public abstract class Appliance {
      *
      * @return the power rating of the appliance in String.
      */
-    public String getPower() {
-        return this.power;
+    public String getWattage() {
+        return this.wattage;
     }
 
     /**
@@ -104,7 +108,6 @@ public abstract class Appliance {
     public String getLocation() {
         return this.location;
     }
-
 
     /**
      * Gets the longest length of name in the appliance class.
@@ -134,13 +137,12 @@ public abstract class Appliance {
     public abstract String getParameter();
 
     public String toString() {
-        return  this.getName() + "(" + this.getPower() + "W)" + " in " + this.getLocation();
+        return  this.getName() + "(" + this.getWattage() + "W)" + " in " + this.getLocation();
     }
 
     public String writeFileFormat() {
-        return this.location + "|" + this.name + "|" + this.power + "|"  + this.getType() + "|"
-                  + this.getStatus() + "|" + this.getPowerConsumption() + "|" + this.getParameter()
-                  + "|" + appliancePower.getCurrentTime();
+        return this.location + "|" + this.name + "|" + this.wattage + "|"  + this.getType()
+                  + "|" + this.getPowerInString() + "|" + this.getParameter();
     }
 
 }

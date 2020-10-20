@@ -7,8 +7,8 @@ public class Fan extends Appliance {
     private String speed;
     public static final String TYPE_WORD = "fan";
 
-    public Fan(String name, String location, String power) {
-        super(name, location, power);
+    public Fan(String name, String location, String wattage) {
+        super(name, location, wattage);
         this.speed = "1";
     }
 
