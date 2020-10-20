@@ -1,6 +1,9 @@
 package seedu.duke.parser;
 
+import seedu.duke.command.project.CreateProjectCommand;
 import seedu.duke.command.project.ProjectCommand;
+import seedu.duke.command.project.SelectProjectCommand;
+import seedu.duke.command.project.ViewProjectCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.project.Project;
 
@@ -13,6 +16,7 @@ import static seedu.duke.command.CommandSummary.TITLE;
 import static seedu.duke.command.CommandSummary.DESCRIPTION;
 import static seedu.duke.command.CommandSummary.DURATION;
 import static seedu.duke.command.CommandSummary.SPRINT_DURATION;
+import static seedu.duke.command.CommandSummary.SELECT;
 
 public class ProjectParser implements ExceptionsParser {
 
@@ -39,12 +43,14 @@ public class ProjectParser implements ExceptionsParser {
                     || !Parser.isStringContainsNumber(parameters.get(SPRINT_DURATION))) {
                 throw new DukeException("please give a number for sprint duration");
             } else {
-                new ProjectCommand().createProjectCommand(parameters, projectList);
+                new CreateProjectCommand(parameters, projectList).execute();
             }
             break;
         case VIEW:
-            new ProjectCommand().viewProjectCommand(projectList);
+            new ViewProjectCommand(parameters, projectList).execute();
             break;
+        case SELECT:
+            new SelectProjectCommand(parameters).execute();
         default:
             throw new DukeException("Invalid action!");
         }
