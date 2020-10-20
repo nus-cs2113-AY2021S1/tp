@@ -15,4 +15,8 @@ public class DiningOptions {
     public String getName() {
         return name;
     }
+
+    public String toString() {
+        return name + ":\n" + location + "\n" + operatingHrs;
+    }
 }
