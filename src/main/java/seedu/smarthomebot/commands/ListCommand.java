@@ -40,29 +40,20 @@ public class ListCommand extends Command {
             if (locationList.getLocations().size() == 0) {
                 return new CommandResult(LINE + MESSAGE_LIST_NO_LOCATIONS);
             }
-            String result = LINE + MESSAGE_LIST_LOCATIONS;
+            String outputLocationsList = LINE + MESSAGE_LIST_LOCATIONS;
             for (String location : locationList.getLocations()) {
-                result = result.concat(System.lineSeparator() + index + ": " + location);
+                outputLocationsList = outputLocationsList.concat(System.lineSeparator() + index + ": " + location);
                 index++;
             }
-            return new CommandResult(result);
+            return new CommandResult(outputLocationsList);
         case APPLIANCE_TYPE:
             if (filteredLocation.equals("")) {
                 if (applianceList.getAllAppliance().size() == 0) {
                     return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
                 }
-                String formattedResult = (LINE + MESSAGE_LIST_APPLIANCES);
-                String format = "%-2d. %-" + Appliance.getMaxNameLength() + "s"
-                        + MESSAGE_DISPLAY_LOCATION + "%-" + Appliance.getMaxLocationLength() + "s"
-                        + MESSAGE_DISPLAY_STATUS + "%-5s"
-                        + MESSAGE_DISPLAY_WATT + "%-4sW"
-                        + MESSAGE_DISPLAY_TYPE + "%s";
-                for (Appliance a : applianceList.getAllAppliance()) {
-                    formattedResult = formattedResult.concat(System.lineSeparator() + String.format(format, index,
-                            a.getName(), a.getLocation(), a.getStatus(), a.getPower(), a.getType()));
-                    index++;
-                }
-                return new CommandResult(formattedResult);
+                String header = (LINE + MESSAGE_LIST_APPLIANCES);
+                String outputApplianceList = displayOutput(header, applianceList.getAllAppliance());
+                return new CommandResult(outputApplianceList);
             } else {
                 ArrayList<Appliance> filterApplianceList =
                         (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
@@ -72,23 +63,29 @@ public class ListCommand extends Command {
                 if (filterApplianceList.isEmpty()) {
                     return new CommandResult("Location: \"" + filteredLocation + "\" does not exist.");
                 }
-                String formattedResult = (LINE + "Here are the appliances in \"" + filteredLocation + "\"");
-                String format = "%-2d. %-" + Appliance.getMaxNameLength() + "s"
-                        + MESSAGE_DISPLAY_LOCATION + "%-" + Appliance.getMaxLocationLength() + "s"
-                        + MESSAGE_DISPLAY_STATUS + "%-5s"
-                        + MESSAGE_DISPLAY_WATT + "%-4sW"
-                        + MESSAGE_DISPLAY_TYPE + "%s";
-                for (Appliance a : filterApplianceList) {
-                    formattedResult = formattedResult.concat(System.lineSeparator() + String.format(format, index,
-                            a.getName(), a.getLocation(), a.getStatus(), a.getPower(), a.getType()));
-                    index++;
-                }
-                return new CommandResult(formattedResult);
+                String header = (LINE + "Here are the appliances in \"" + filteredLocation + "\"");
+                String outputFilteredList = displayOutput(header, filterApplianceList);
+                return new CommandResult(outputFilteredList);
             }
         default:
             return new CommandResult("To be implemented for V0.2");
         }
-
     }
 
+    private String displayOutput(String header, ArrayList<Appliance> displayList) {
+        int index = 1;
+        String outputList = header;
+        String format = "%-2d. %-" + Appliance.getMaxNameLength() + "s"
+                + MESSAGE_DISPLAY_LOCATION + "%-" + Appliance.getMaxLocationLength() + "s"
+                + MESSAGE_DISPLAY_STATUS + "%-5s"
+                + MESSAGE_DISPLAY_WATT + "%-4sW"
+                + MESSAGE_DISPLAY_TYPE + "%s";
+        for (Appliance a : displayList) {
+            outputList  = outputList.concat(System.lineSeparator() + String.format(format, index,
+                    a.getName(), a.getLocation(), a.getStatus(), a.getPower(), a.getType()));
+            index++;
+        }
+
+        return outputList;
+    }
 }
