@@ -156,7 +156,7 @@ public class Ui {
      *
      * @param tasks task list
      */
-    public void printTaskAdded(ArrayList<Task> tasks, String modCode) {
+    public void printTaskIsAdded(ArrayList<Task> tasks, String modCode) {
         System.out.println("Got it. I've added this task under " + modCode + ":");
         System.out.println(tasks.get(tasks.size() - 1));
     }

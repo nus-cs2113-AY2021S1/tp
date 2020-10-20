@@ -81,8 +81,12 @@ public class TaskList {
             if (!modList.checkIfModuleValid(modCode, true)) {
                 return;
             }
+            if (!modList.checkIfModuleExist(modCode)) {
+                Module currentModule = new Module(modCode);
+                modList.modList.add(currentModule);
+            }
             tasks.add(new Task(split[2]));
-            ui.printTaskAdded(tasks, modCode);
+            ui.printTaskIsAdded(tasks, modCode);
             ui.printNumberOfTasks(tasks);
         } catch (ArrayIndexOutOfBoundsException e) {
             ui.printErrorMessage(e.getMessage());
