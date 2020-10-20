@@ -349,15 +349,18 @@ so that you can recommend the best books to your friends and fellow book readers
 #### Adding a book rating: `add -r`
 Adds a rating to a book.
 
-Format: `add -r RATING_SCORE BOOK_TITLE`
+Format: `add -r RATING_SCORE BOOK_TITLE /by AUTHOR`
 
 * The book you would like to rate should exist in Quotesify.
 * `RATING_SCORE` should be within the range of ONE (1) to FIVE (5).
-* Both `RATING_SCORE` and `BOOK_TITLE` fields cannot be left empty.
+* `RATING_SCORE`, `BOOK_TITLE` and `AUTHOR` fields cannot be left empty.
 
-Example of usage:
+Example of usage: `add -r 5 Harry Potter /by JK Rowling`
 
-`add -r 5 Harry Potter`
+Expected outcome:
+```
+You have just rated [Harry Potter by JK Rowling] 5 star!
+```
 
 #### Listing book ratings: `list -r`
 Lists ratings of books.
@@ -368,43 +371,64 @@ Format: `list -r [RATING_SCORE]`
 * `RATING_SCORE` should be within the range of ONE (1) to FIVE (5).
 
 Example of usage:
+1. `list -r`
+2. `list -r 5`
 
-* `list -r`
-* `list -r 5`
+Expected outcome 1:
+```
+Planning to recommend some books? Here are your rated books!
+[Harry Potter] by JK Rowling: 5 star
+```
+
+Expected outcome 2:
+```
+Here are the books you rated as 5 star!
+[Harry Potter] by JK Rowling: 5 star
+```
 
 #### Deleting a book rating: `delete -r`
 Deletes a rating from a book.
 
-Format: `delete -r [BOOK_TITLE]`
+Format: `delete -r BOOK_TITLE /by AUTHOR`
 
-* `BOOK_TITLE` field cannot be left empty.
+* `BOOK_TITLE` and `AUTHOR` fields cannot be left empty.
 
-Example of usage:
+Example of usage: `delete -r Harry Potter /by JK Rowling`
 
-`delete -r Harry Potter`
+Expected outcome:
+```
+Rating for [Harry Potter by JK Rowling] has been deleted!
+```
 
 #### Editing an existing book rating: `edit -r`
 Edits a rating of a book.
 
-Format: `edit -r RATING_SCORE BOOK_TITLE`
+Format: `edit -r RATING_SCORE BOOK_TITLE /by AUTHOR`
 
 * `RATING_SCORE` should be within the range of ONE (1) to FIVE (5).
-* Both `RATING_SCORE` and `BOOK_TITLE` fields cannot be left empty.
+* `RATING_SCORE`, `BOOK_TITLE` and `AUTHOR` fields cannot be left empty.
 
-Example of usage:
+Example of usage: `edit -r 4 Harry Potter /by JK Rowling`
 
-`edit -r 5 Harry Potter`
+Expected outcome:
+```
+Ratings for [Harry Potter by JK Rowling] has been updated to 4 star!
+```
 
 #### Finding an existing book rating: `find -r`
 Finds a rating of a book.
 
-Format: `find -r BOOK_TITLE`
+Format: `find -r BOOK_TITLE /by AUTHOR`
 
-* `BOOK_TITLE` field cannot be left empty.
+* `BOOK_TITLE` and `AUTHOR` fields cannot be left empty.
 
-Example of usage:
+Example of usage: `find -r Harry Potter /by JK Rowling`
 
-`find -r Harry Potter`
+Expected outcome:
+```
+Here is your rating for [Harry Potter by JK Rowling]!
+[Harry Potter] by JK Rowling: 4 star
+```
 
 ### Getting help in Quotesify
 
@@ -413,7 +437,57 @@ Quotesify got you covered with the Help page.
 
 Format: `help`
 
-Example: `help`
+Example of usage: `help`
+
+Expected outcome:
+```
+Feeling stuck? Well here are the things you can do with Quotesify v1.0:
+
+1. Book Management
+Add book: add -b BOOK_TITLE /by AUTHOR
+Delete book: delete -b BOOK_TITLE /by AUTHOR
+List books: list -b [/by AUTHOR]
+
+2. Quote Management
+Add quote: add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]
+Delete quote:delete -q QUOTE_NUMBER
+List quotes: list -q [/by AUTHOR] [/from BOOK_TITLE]
+Add reflection to quote: add -qr QUOTE_NUM /reflect REFLECTION
+
+3a. Bookmark Tracker
+Add bookmark: bookmark -b BOOK_TITLE /pg PAGE_NUMBER
+Delete bookmark: delete -bm BOOK_TITLE
+List bookmarks: list -bm
+Update bookmark: bookmark -b BOOK_TITLE /pg PAGE_NUMBER
+
+3b. Task Tracker
+Add task: add -t TASK /by DEADLINE
+Delete task: delete -t TASK_NUMBER
+List tasks: list -t
+Mark task as done: done -t TASK_NUMBER
+
+4. Category Management
+Add category: add -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
+Delete category: delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
+List categories: list -c [CATEGORY]
+Edit category: edit -c OLD_CATEGORY NEW_CATEGORY
+
+5. Rating System
+Add rating: add -r RATING_SCORE BOOK_TITLE /by AUTHOR
+Delete rating: delete -r BOOK_TITLE /by AUTHOR
+List ratings: list -r [RATING_SCORE]
+Edit rating: edit -r RATING_SCORE BOOK_TITLE /by AUTHOR
+Find rating: find -r BOOK_TITLE /by AUTHOR
+
+Other useful commands
+Show this help page: help
+Quit Quotesify: bye
+
+Remember: words in [] are optional, and words in CAPS are your own input
+Hope this helps!
+
+~ Your friends from Quotesify
+```
 
 ## FAQ
 
@@ -425,11 +499,11 @@ Example: `help`
 
 Enter the following command | To do this
 --------------------------- | -----------
-`add -r RATING_SCORE BOOK_TITLE` | Add rating
-`delete -r BOOK_TITLE` | Delete rating
+`add -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Add rating
+`delete -r BOOK_TITLE /by AUTHOR` | Delete rating
 `list -r [/RATING_SCORE]` | List ratings
-`edit -r RATING_SCORE BOOK_TITLE` | Edit rating
-`find -r BOOK_TITLE` | Find rating
+`edit -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Edit rating
+`find -r BOOK_TITLE /by AUTHOR` | Find rating
 `help` | Show help page
 `bye` | Terminate the program
 
