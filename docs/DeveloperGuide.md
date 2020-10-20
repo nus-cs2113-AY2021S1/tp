@@ -85,6 +85,8 @@ information is stored into a txt file which is done by ```updateFile```.
  <br />
  
  The following class diagram shows how the account information storage feature works:
-
+ ![ClassDiagram](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/financetools/InfoStorageClassDiagram.png)
 
  The following sequence diagram shows how the account information storage feature works:
+ ![SequenceDiagram1](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/financetools/InfoStorageSequenceDiagram(1).png)
+ ![SequenceDiagram2](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/financetools/InfoStorageSequenceDiagram(2).png)
