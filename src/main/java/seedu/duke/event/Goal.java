@@ -1,8 +1,14 @@
 package seedu.duke.event;
 
-public class Goal extends Event {
+public class Goal {
+    String description;
+
     public Goal(String description) {
-        super(description);
+        setDescription(description);
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**

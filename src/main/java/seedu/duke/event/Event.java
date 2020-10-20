@@ -1,15 +1,18 @@
 package seedu.duke.event;
 
+import seedu.duke.exception.DukeException;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public abstract class Event {
+public abstract class Event implements Cloneable {
     protected String description;
     protected LocalDate date;
     protected LocalTime time;
     protected boolean isDone;
-    protected Repeat repeat;
+    protected ArrayList<Event> repeatEventList;
+    protected String repeatType;
 
     /**
      * Creates a new event with the given description and default its done status to false.
@@ -19,7 +22,8 @@ public abstract class Event {
     public Event(String description) {
         setDescription(description);
         isDone = false;
-        repeat = null;
+        repeatType = null;
+        repeatEventList = null;
     }
 
     /**
@@ -39,6 +43,14 @@ public abstract class Event {
         this.time = time;
     }
 
+    public void setRepeatType(String repeatType) {
+        this.repeatType = repeatType;
+    }
+
+    public void setRepeatEventList(ArrayList<Event> repeatEventList) {
+        this.repeatEventList = repeatEventList;
+    }
+
     /**
      * Sets the event's done status to true.
      */
@@ -46,24 +58,6 @@ public abstract class Event {
         this.isDone = true;
     }
 
-    /**
-     * Sets the repeated event status as true.
-     *
-     * @param index Integer representing which iteration to mark as done. 0 means original event
-     */
-    public void markAsDone(int index) {
-        if (index == 0) {
-            this.isDone = true;
-        } else {
-            ArrayList<DateStatusPair> repeatedEvents = this.getRepeatList();
-            repeatedEvents.get(index - 1).setDone(true);
-        }
-
-    }
-
-    public void setRepeat(Repeat repeat) {
-        this.repeat = repeat;
-    }
 
     /**
      * Returns a string representation of event's done status.
@@ -74,14 +68,7 @@ public abstract class Event {
         return (isDone) ? "✓" : "✕";
     }
 
-    public boolean getIndividualStatus(int index) {
-        if (index == 0) {
-            return isDone;
-        } else {
-            ArrayList<DateStatusPair> repeatedEvents = this.getRepeatList();
-            return (repeatedEvents.get(index - 1).getStatus().equals("✓"));
-        }
-    }
+
 
     public String getDescription() {
         return this.description;
@@ -105,20 +92,21 @@ public abstract class Event {
         return this.time;
     }
 
-    public Repeat getRepeat() {
-        return repeat;
-    }
-
-    public ArrayList<DateStatusPair> getRepeatList() {
-        return repeat.getRepeatList();
+    public ArrayList<Event> getRepeatEventList() {
+        return repeatEventList;
     }
 
     public String getRepeatType() {
-        return repeat.getRepeatType().toLowerCase();
+        return repeatType.toLowerCase();
     }
 
     public int getRepeatCount() {
-        return repeat.getRepeatCount();
+        return repeatEventList.size();
+    }
+
+    @Override
+    public Event clone() throws CloneNotSupportedException {
+        return (Event) super.clone();
     }
 
     @Override

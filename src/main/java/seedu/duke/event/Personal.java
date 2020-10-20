@@ -42,6 +42,11 @@ public class Personal extends Event {
     }
 
     @Override
+    public Personal clone() throws CloneNotSupportedException {
+        return (Personal) super.clone();
+    }
+
+    @Override
     public String toString() {
         if (hasTime && hasDate) {
             return "[P]" + super.toString() + " on " + date + ", " + time;
