@@ -28,7 +28,6 @@ public class WatchlistStorage extends Storage {
         String watchlistDirectory = storageDirectory + workspaceName + File.separator;
         String watchlistFilePath = watchlistDirectory + WATCHLIST_FILE_NAME;
         String encodedWatchlistString = encode(watchlistList);
-        LOGGER.log(Level.INFO, "Encoded: " + System.lineSeparator() + encodedWatchlistString);
 
         new File(watchlistDirectory).mkdirs();
         writeFile(watchlistFilePath, encodedWatchlistString);

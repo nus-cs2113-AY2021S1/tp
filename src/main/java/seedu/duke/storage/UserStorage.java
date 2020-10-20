@@ -26,7 +26,6 @@ public class UserStorage extends Storage {
     public void save(User user) throws AniException {
         String userFilePath = storageDirectory + USER_FILE_NAME;
         String encodedUserString = encode(user);
-        LOGGER.log(Level.INFO, "Encoded: " + System.lineSeparator() + encodedUserString);
 
         new File(storageDirectory).mkdirs();
         writeFile(userFilePath, encodedUserString);
