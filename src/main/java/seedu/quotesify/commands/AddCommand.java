@@ -114,6 +114,7 @@ public class AddCommand extends Command {
             books.ensureNoSimilarBooks(title, authorName);
             Book newBook = createNewBook(title, authorName);
             books.add(newBook);
+            books.sort();
             ui.printAddBook(newBook);
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
