@@ -14,7 +14,7 @@ class ChangeRatingCommandTest {
     void changeRating() {
         new ShowList();
         int[] episodes = new int[]{21, 10, 12};
-        Show show = new Show("friends", 3, episodes);
+        Show show = new Show("friends", 3, episodes,20);
         ShowList.setShow("friends",show);
         ShowList.getShow("friends").setRating(5);
         ChangeRatingCommand update = new ChangeRatingCommand("friends");

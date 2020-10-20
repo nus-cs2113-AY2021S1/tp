@@ -27,6 +27,7 @@ public class AddCommand extends Command {
             i++;
         }
         String name = input[1];
+        int duration = Integer.parseInt(input[4]);
         //check that the episodes do not exceed seasons
         /* when the episode length is provided
         * TODO: Allow user to add episode duration when adding a new show
@@ -34,7 +35,7 @@ public class AddCommand extends Command {
             String[] tokenized
         }
         */
-        Show show = new Show(input[1], numSeasons, seasonEpisodes);
+        Show show = new Show(input[1], numSeasons, seasonEpisodes,duration);
         ShowList.setShow(name, show);
     }
 }
