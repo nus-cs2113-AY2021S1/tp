@@ -31,6 +31,11 @@ Duke is the main class of the application, and handles the initializing the appr
 
 #### <a id="overview"><ins>2.1 Architecture Overview</ins></a>
 
+<p align="center">
+  <img alt="NotUS Architecture Overview" src="diagrams/out/Architecture_Overview.png" />
+  <br><em>Figure 1</em>
+</p>
+
 The architecture design is given in the diagram above. Duke is directly connected to the following components:
 
 1. `InterfaceManager`: The main interactions the user experiences.
