@@ -14,7 +14,14 @@
 
 ### Storage component
 
-{TBD}
+The `Storage` class handles the read and write operations of the `FoodList`, `ExerciseList` and `User` classes.
+
+On startup, the `Fitr` class creates a new `Storage` object with the file paths of the text files. 
+This will cause the `Storage` object to retrieve the text files from the given file paths and loads the data into the program. 
+If the files do not exist, the Storage object will create the files.
+
+Each time there is a change in the `FoodList`, `ExerciseList` or `User` objects, or when the program is exiting, `writeExerciseList()`, `writeFoodList()` and `writeUserProfile()` are invoked. 
+This will save the data onto the respective text files on the hard disk.
 
 ## Product scope
 ### Target user profile
