@@ -23,6 +23,171 @@ Before you begin, here's what you need to do:
 
 {Give detailed description of each feature}
 
+## Usage
+
+### Book Management
+
+Do you have books you are currently reading and want to keep track of them? 
+Or do you have a list of books you wish to read in the future but could never remember them? 
+You can add books to your booklist so that you can refer to it at any time. 
+
+#### Adding a book: `add -b`
+You can add a book to your current booklist. 
+
+Format: `add -b BOOK_TITLE /by AUTHOR`
+
+* You must specify both the title and the author of the book. 
+
+Example of usage:
+
+`add -b Harry Potter /by JK Rowling`
+
+
+Expected outcome:
+
+`The book [Harry Potter by JK Rowling] has been added!`
+
+#### Listing all existing books: `list -b`
+You can list all books currently in your booklist. 
+
+Format: `list -b`
+
+Example of usage:
+`list -b`
+
+Expected outcome:
+~~~
+Here is a list of all books:
+1. Harry Potter by JK Rowling
+2. The Lion, the Witch and the Wardrobe by CS Lewis
+3. Becoming by Michelle Obama
+4. The Chronicles of Narnia by CS Lewis
+~~~
+
+#### Listing books by an Author: `list -b`
+You can list all books currently in your booklist with the same author. 
+
+Format: `list -b /by AUTHOR`
+
+* You must specify an existing author name
+* You must put `/by` before the author name
+
+Example of usage:
+`list -b /by CS Lewis`
+
+Expected outcome:
+~~~
+Here is a list of books by CS Lewis:
+1. The Lion, the Witch and the Wardrobe by CS Lewis
+2. The Chronicles of Narnia by CS Lewis
+~~~
+
+#### Finding books by keyword: `find -b`
+Can't recall the book title you want in your long list of books? You can find the book using a keyword.
+
+Format: `find -b KEYWORD`
+
+Example of usage: 
+`find -b the`
+
+Expected outcome:
+~~~
+Here is a list of books with the keyword "the":
+1. The Lion, the Witch and the Wardrobe by CS Lewis
+2. The Chronicles of Narnia by CS Lewis
+~~~
+
+#### Deleting a book: `delete -b`
+Don't need a book anymore? You can delete the book permanently. 
+
+Format: `delete -b BOOK_NUMBER`
+
+* `BOOK_NUMBER` refers to the index you see when you list ALL books.
+* Book number specified must be less than the total number of books.
+
+Example of usage:
+`delete -b 1`
+
+Expected outcome:
+~~~
+The book [Harry Potter by JK Rowling] has been deleted!
+~~~ 
+
+### Category Management
+If you like customising your own list, you can do so by categorising your books and quotes.
+
+#### Add categories: `add -c`
+Add one or more categories to a specified book or quote.
+
+Format: `add -c CATEGORIES {[-b BOOK_NUMBER] | [-q QUOTE_NUMBER]}`
+* You must specify either a book, quote, or both.
+* The specified book or quote should exist in Quotesify.
+* Multiple categories should be <u>space separated</u>.
+
+Example of usage: `add -c fantasy -b 1`
+
+Expected outcome:
+```
+I have tagged [fantasy] category to "Harry Potter"!
+```
+
+#### List categories: `list -c`
+List all existing categories.
+
+Format: `list -c`
+
+Example of usage: `list -c`
+
+Expected outcome:
+```
+Here is the list of all categories:
+1. lol - (1 items)
+2. action - (2 items)
+3. inspirational - (1 items)
+4. fantasy - (1 items)
+```
+
+#### List a specific category: `list -c`
+List all books and quotes tagged under the specified category name.
+
+Format: `list -c CATEGORY`
+
+Example of usage: `list -c fantasy`
+
+Expected outcome:
+```
+Here are the list of items tagged as [fantasy]:
+BOOKS:
+1. Harry Potter by JK Rowling
+```
+
+#### Delete categories: `delete -c`
+Remove one or more categories from a specified book or quote.
+
+Format: `delete -c CATEGORIES {[-b BOOK_NUMBER] | [-q QUOTE_NUMBER]}`
+* You must specify either a book, quote, or both.
+* The specified book or quote should exist in Quotesify.
+* Multiple categories should be <u>space separated</u>.
+
+Example of usage: `delete -c fantasy -b 1`
+
+Expected outcome:
+```
+I have removed [fantasy] category from "Harry Potter"!
+```
+
+#### Edit an existing category: `edit -c`
+Edit an existing category name.
+
+Format: `edit -c OLD_CATEGORY /to NEW_CATEGORY`
+
+Example of usage: `edit -c fantasy /to romance`
+
+Expected outcome:
+```
+The category has been changed from [fantasy] to [romance]!
+```
+
 ### Rating System
 
 Are you having your own opinions about the books you read? You might want to record down your favorites,

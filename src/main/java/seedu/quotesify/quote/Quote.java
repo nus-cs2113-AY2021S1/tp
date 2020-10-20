@@ -11,6 +11,7 @@ public class Quote implements JsonSerializer {
     private String quote;
     private ArrayList<String> categories = new ArrayList<>();
     private String reference;
+    private String reflection;
 
     public Quote(String quote) {
         this.quote = quote;
@@ -37,6 +38,14 @@ public class Quote implements JsonSerializer {
         this.quote = quote;
         this.categories = categories;
         this.reference = reference;
+    }
+
+    public Quote(Author author, String quote, ArrayList<String> categories, String reference, String reflection) {
+        this.author = author;
+        this.quote = quote;
+        this.categories = categories;
+        this.reference = reference;
+        this.reflection = reflection;
     }
 
     public Author getAuthor() {
@@ -91,6 +100,14 @@ public class Quote implements JsonSerializer {
         this.categories = categories;
     }
 
+    public void setReflection(String reflection) {
+        this.reflection = reflection;
+    }
+
+    public String getReflection() {
+        return reflection;
+    }
+
     @Override
     public String toString() {
         String quoteWithoutInformation = '\"' + quote + '\"';
@@ -116,6 +133,7 @@ public class Quote implements JsonSerializer {
         json.put("quote", this.getQuote());
         json.put("categories", this.getCategories());
         json.put("reference", this.getReference());
+        json.put("reflection", this.getReflection());
         return json;
     }
 }

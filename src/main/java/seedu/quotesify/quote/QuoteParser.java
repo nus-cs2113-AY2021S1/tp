@@ -169,9 +169,9 @@ public class QuoteParser {
         }
     }
 
-    public static int getQuoteNumberToEdit(String userInput, QuoteList quotes) throws QuotesifyException {
+    public static int parseQuoteNumber(String userInput, QuoteList quotes, String command) throws QuotesifyException {
         try {
-            int quoteNumberToEdit = Integer.parseInt(userInput.split(Command.FLAG_EDIT, 2)[0].trim());
+            int quoteNumberToEdit = Integer.parseInt(userInput.split(command, 2)[0].trim());
             if (quoteNumberToEdit <= 0 || quoteNumberToEdit > quotes.getSize()) {
                 throw new QuotesifyException(ERROR_INVALID_QUOTE_NUM);
             } else {
@@ -185,5 +185,10 @@ public class QuoteParser {
     public static Quote getEditedQuote(String userInput) throws QuotesifyException {
         String quoteAndInformation = userInput.split(Command.FLAG_EDIT, 2)[1];
         return parseAddParameters(quoteAndInformation);
+    }
+
+    public static String getReflectionToAdd(String userInput) throws QuotesifyException {
+        String quoteNumAndReflection = userInput.split(Command.FLAG_REFLECT, 2)[1];
+        return quoteNumAndReflection.trim();
     }
 }
