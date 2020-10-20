@@ -41,6 +41,7 @@ public class TagCommand extends Command {
     @Override
     public String execute() {
         try {
+            assert index >= 0;
             Note note = notebook.getNotes().get(index);
             ArrayList<String> executedMessage = tagManager.tagAndUntagNote(note, tags, TAG_NOTE_MESSAGE,
                     UNTAG_NOTE_MESSAGE);

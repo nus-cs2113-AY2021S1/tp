@@ -1,17 +1,26 @@
 package seedu.duke.data.notebook;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Represents a TagManager. Manages the tags for the notes.
  */
 public class TagManager {
+    private static final Logger LOGGER = Logger.getLogger("TagManager");
 
     private Map<Tag, ArrayList<Note>> tagMap;
 
     public TagManager() {
+        setupLogger();
         tagMap = new HashMap<>();
     }
 
@@ -47,10 +56,12 @@ public class TagManager {
 
         // If the tag does not exist, creates it.
         if (existingTag == null) {
+            LOGGER.log(Level.INFO, "Creating a new tag: " + tag.getTagName());
             tagMap.put(tag, new ArrayList<>());
             return true;
         } else {
             if (overridesColor) {
+                LOGGER.log(Level.INFO, "Overriding an existing tag: " + existingTag.getTagName());
                 existingTag.setTagAttribute(tag.getTagAttribute());
             }
             return false;
@@ -85,6 +96,7 @@ public class TagManager {
      * @param tag Provided Tag.
      */
     public void tagNote(Note note, Tag tag) {
+        LOGGER.log(Level.INFO, "Adding tag to note: " + tag.getTagName());
         tagMap.get(tag).add(note);
         note.getTags().add(tag);
     }
@@ -96,6 +108,7 @@ public class TagManager {
      * @param tag Tag to be removed.
      */
     public void removeTag(Note note, Tag tag) {
+        LOGGER.log(Level.INFO, "Removing tag from note: " + tag.getTagName());
         tagMap.get(tag).remove(note);
         note.getTags().remove(tag);
     }
@@ -110,12 +123,14 @@ public class TagManager {
         Tag existingTag = getTag(tag.getTagName());
 
         if (existingTag == null) {
+            LOGGER.log(Level.INFO, "Tag does not exists, unable to delete: " + tag.getTagName());
             return false;
         }
 
         for (Note n : tagMap.get(existingTag)) {
             n.getTags().remove(existingTag);
         }
+        LOGGER.log(Level.INFO, "Delete tag: " + tag.getTagName());
         tagMap.remove(existingTag);
         return true;
     }
@@ -153,7 +168,7 @@ public class TagManager {
         } else {
             ArrayList<String> result = new ArrayList<>();
             for (Tag t : tagMap.keySet()) {
-                result.add(t.toString());
+                result.add(t.toString() + " ");
             }
             return result;
         }
@@ -169,14 +184,15 @@ public class TagManager {
 
         // loop through all the tags in notes
         for (int i = 0; i < numTagsToCheck; ++i) {
-
             // always check against the tag of the first note
             Tag tag = note.getTags().get(0);
+            LOGGER.log(Level.INFO, "Attempt to match with existing tag: " + tag.getTagName());
             // check if the tag exists in the database
             Tag existingTag = getTag(tag.getTagName());
             note.getTags().remove(tag);
 
             if (existingTag == null) {
+                LOGGER.log(Level.INFO, "Tag does not exist");
                 // if the tag does not exist in the database, create the tag and tag to note
                 createTag(tag, false);
                 tagNote(note, tag);
@@ -217,5 +233,21 @@ public class TagManager {
             }
         }
         return result;
+    }
+
+    private void setupLogger() {
+        LogManager.getLogManager().reset();
+        LOGGER.setLevel(Level.INFO);
+
+        try {
+            FileHandler fileHandler = new FileHandler("TagManager.log");
+            fileHandler.setFormatter(new SimpleFormatter());
+            fileHandler.setLevel(Level.INFO);
+            LOGGER.addHandler(fileHandler);
+        } catch (IOException exception) {
+            LOGGER.log(Level.SEVERE, "File logger not working.", exception);
+        }
+
+        LOGGER.log(Level.INFO, "New tagManager object created.");
     }
 }
