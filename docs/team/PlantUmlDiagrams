@@ -76,26 +76,16 @@ autoactivate on
 ManualTracker -> ManualTracker : handleCreateLedger()
 create Ledger
 ManualTracker -> Ledger : new Ledger()
-create ParamHandler
-Ledger -> ParamHandler : new ParamHandler()
-create ParamChecker
-ParamHandler -> ParamChecker : new ParamChecker()
-return
 return
 
-ManualTracker -> Ledger
-Ledger -> ParamHandler : setRequiredParams()
+ManualTracker -> Ledger : setRequiredParams()
 return
-return
-ManualTracker -> Ledger
-Ledger -> Ledger : handlePacket
-Ledger -> ParamHandler
-ParamHandler -> ParamHandler : handleParams
+ManualTracker -> Ledger : handlePacket
+Ledger -> Ledger : handleParams
 loop For all paramTypes \nin the command packet
-    ParamHandler -> ParamHandler : handleSingleParam
-    ParamHandler -> Ledger : handleSingleParam
+    Ledger -> Ledger : handleSingleParam
     alt "/date"
-        Ledger -> ParamChecker : checkAndReturnDate()
+        Ledger -> Ledger : checkAndReturnDate()
         return
         Ledger -> Ledger : setDate()
         return
@@ -104,11 +94,7 @@ loop For all paramTypes \nin the command packet
     return
 end
 return
-return
-return
-return
-ManualTracker -> LedgerList : Add Ledger to ledgerList
-LedgerList -> LedgerList : addItem(ledger)
+ManualTracker -> LedgerList : addItem(ledger)
 return
 return state
 @enduml
