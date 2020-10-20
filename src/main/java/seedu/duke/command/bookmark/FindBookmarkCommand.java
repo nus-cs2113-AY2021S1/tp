@@ -8,13 +8,9 @@ import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 import seedu.duke.slot.Timetable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class FindBookmarkCommand extends Command {
     public static final String FIND_KW = "find";
-    private final List<String> moduleAndDescription;
+    private final String description;
 
     /**
      * Constructs a new FindBookmarkCommand instance and gets the module and description to be searched.
@@ -32,10 +28,7 @@ public class FindBookmarkCommand extends Command {
         if (!details.startsWith(" ")) {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
         }
-        moduleAndDescription = new ArrayList<>(Arrays.asList(details.trim().split(" ", 2)));
-        if (moduleAndDescription.size() == 1) {
-            moduleAndDescription.add("");  // Empty entry for description
-        }
+        description = details.trim();
     }
 
     /**
@@ -49,6 +42,7 @@ public class FindBookmarkCommand extends Command {
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
                         Storage bookmarkStorage, Storage slotStorage) {
-        ui.print(bookmarks.findBookmarks(moduleAndDescription));
+        String message = bookmarks.findBookmarks(description);
+        ui.print(message);
     }
 }

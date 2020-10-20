@@ -29,7 +29,6 @@ public class Duke {
         try {
             bookmarks = new BookmarkList(bookmarkStorage.load());
         } catch (DukeException e) {
-            ui.showLoadingError();
             bookmarks = new BookmarkList();
         }
 

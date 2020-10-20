@@ -49,18 +49,12 @@ public class DeleteBookmarkCommand extends Command {
                         Storage bookmarkStorage, Storage slotStorage) throws DukeException {
         try {
             Bookmark bookmark = bookmarks.getBookmark(index);
-            bookmarks.deleteBookmark(bookmark);
-            ui.print(getMessage(bookmark));
+            String message = "I've deleted this bookmark!:\n" + bookmarks.deleteBookmark(bookmark);
+            ui.print(message);
             bookmarkStorage.save(bookmarks.getData());
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             throw new DukeException(DukeExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS, ""
                     + bookmarks.getBookmarkList().size());
         }
-    }
-
-    private String getMessage(Bookmark bookmark) {
-        String message = "\tI've deleted this bookmark!:\n"
-                + "\t  [" + bookmark.getModule() + "] " + bookmark.getDescription() + " " + bookmark.getUrl() + "\n";
-        return message;
     }
 }

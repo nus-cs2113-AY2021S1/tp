@@ -128,7 +128,7 @@ public class AddSlotCommand extends Command {
     private String addBookmarkToModule(Module module, List<String> slotAndBookmark) {
         String description = slotAndBookmark.get(0);
         String url = slotAndBookmark.get(1);
-        Bookmark bookmark = new Bookmark(description,"dummy", url);
+        Bookmark bookmark = new Bookmark(description, url);
         module.addBookmark(bookmark);
         String message = "  bookmark added to module\n";
         return message;
@@ -143,7 +143,7 @@ public class AddSlotCommand extends Command {
         if (!url.startsWith("www.") && !url.startsWith("https://")) {
             throw new DukeException(DukeExceptionType.INVALID_URL, "invalid url format: " + url);
         }
-        Bookmark bookmark = new Bookmark(lesson, "dummy", url);
+        Bookmark bookmark = new Bookmark(lesson, url);
         newSlot.addBookmark(bookmark);
     }
 }
