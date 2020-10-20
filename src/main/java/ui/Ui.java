@@ -13,8 +13,7 @@ import commands.ReviseCommand;
 import commands.BackCommand;
 
 import manager.card.Card;
-import manager.chapter.Chapter;
-import manager.module.Module;
+import manager.history.History;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -135,5 +134,16 @@ public class Ui {
 
     public void showError(String error) {
         out.println(error);
+    }
+
+    public void showHistoryList(ArrayList<History> histories, int count) {
+        if (count == 0) {
+            out.println("You haven't completed any task in the last session.");
+            return;
+        }
+        out.println("Here are the tasks you have completed in the session/in a day:");
+        for (History h : histories) {
+            out.println((histories.indexOf(h) + 1) + "." + h);
+        }
     }
 }
