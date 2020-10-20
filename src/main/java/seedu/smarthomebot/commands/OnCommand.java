@@ -118,12 +118,13 @@ public class OnCommand extends Command {
                 Appliance toOnAppliance = applianceList.getAppliance(toOnApplianceIndex);
                 if (toOnAppliance.switchOn()) {
                     assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
-                    String setParameterStatement = setParameter(parameter, toOnAppliance);
-                    return new CommandResult(MESSAGE_APPLIANCE_PREVIOUSLY_ON + setParameterStatement);
-                } else {
-                    assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
                     setParameter(parameter, toOnAppliance);
                     return new CommandResult("Switching: " + toOnAppliance + "......ON ");
+                } else {
+                    assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
+                    String setParameterStatement = setParameter(parameter, toOnAppliance);
+                    return new CommandResult(MESSAGE_APPLIANCE_PREVIOUSLY_ON + setParameterStatement);
+
                 }
             }
         case(LOCATION_TYPE) :

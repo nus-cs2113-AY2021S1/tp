@@ -52,28 +52,28 @@ public class OffCommand extends Command {
                 Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
                 if (toOffAppliance.switchOff()) {
                     assert toOffAppliance.getStatus().equals("OFF") : "Appliance should be already OFF";
-                    return new CommandResult(MESSAGE_APPLIANCE_PREVIOUSLY_OFF);
-                } else {
-                    assert toOffAppliance.getStatus().equals("OFF")  : "Appliance should be already OFF";
                     return new CommandResult("Switching: " + toOffAppliance + "......OFF");
+                } else {
+                    assert toOffAppliance.getStatus().equals("OFF") : "Appliance should be already OFF";
+                    return new CommandResult(MESSAGE_APPLIANCE_PREVIOUSLY_OFF);
                 }
             }
         case(LOCATION_TYPE) :
             if (locationList.isLocationCreated(this.name)) {
-                String str = "";
+                StringBuilder str = new StringBuilder();
                 for (Appliance toOffAppliance: applianceList.getAllAppliance()) {
                     if (toOffAppliance.getLocation().equals(this.name)) {
                         if (toOffAppliance.switchOff()) {
                             assert toOffAppliance.getStatus().equals("OFF") : "Appliance should be already OFF";
-                            str = str + MESSAGE_APPLIANCE_PREVIOUSLY_OFF + "\n" + LINE;
+                            str.append(MESSAGE_APPLIANCE_PREVIOUSLY_OFF).append("\n").append(LINE);
                         } else {
                             assert toOffAppliance.getStatus().equals("OFF")  : "Appliance should be already OFF";
-                            str = str + "Switching: " + toOffAppliance + "......OFF \n" + LINE;
+                            str.append("Switching: ").append(toOffAppliance).append("......OFF \n").append(LINE);
                         }
                     }
                 }
-                str = str + "All appliance in \"" + this.name + "\" are turned off ";
-                return new CommandResult(str);
+                str.append("All appliance in \"").append(this.name).append("\" are turned off ");
+                return new CommandResult(str.toString());
             } else {
                 return new CommandResult("No appliance in this location");
             }

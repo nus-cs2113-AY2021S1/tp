@@ -17,23 +17,19 @@ import static seedu.smarthomebot.common.Messages.MESSAGE_TIME_FORMAT_ERROR;
  */
 
 public class Power {
+
     private static final String DATE_TIME_FORMAT = "dd/MM/yyyy-HH:mm:ss";
-    private final int power;
-    private final TextUi ui = new TextUi();
-    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT, Locale.ENGLISH);
-    LocalDateTime currentTime;
+    private final int wattage;
     private String offTime;
     private String onTime;
-    private double powerUsed;
-    private double totalHours;
     private Boolean status;
+    private double powerUsed;
     private double totalPowerConsumption;
 
-    public Power(String power) {
-        this.power = Integer.parseInt(power);
+    public Power(String wattage) {
+        this.wattage = Integer.parseInt(wattage);
         this.status = false;
-        this.totalPowerConsumption = 0;
-        this.totalHours = 0;
+        this.totalPowerConsumption = 0.00;
     }
 
     /**
@@ -53,10 +49,10 @@ public class Power {
     public boolean onAppliance() {
         if (!this.status) {
             this.status = true;
-            onTime = getCurrentTime();
-            return false;
-        } else {
+            this.onTime = getCurrentTime();
             return true;
+        } else {
+            return false;
         }
     }
 
@@ -67,14 +63,23 @@ public class Power {
      * @return true if appliance turn off successfully
      */
     public boolean offAppliance() {
-        if (status) {
+        if (this.status) {
             this.status = false;
-            offTime = getCurrentTime();
+            this.offTime = getCurrentTime();
             computeTotalPower();
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
+    }
+
+    /**
+     * Reset all the appliance power usage and the total power consumption.
+     *
+     */
+    public void resetPower() {
+        this.powerUsed = 0.00;
+        this.totalPowerConsumption = 0.00;
     }
 
     /**
@@ -93,80 +98,60 @@ public class Power {
      * @return formatted current time with given format "dd/MM/yyyy-HH:mm:ss".
      */
     public String getCurrentTime() {
+        LocalDateTime currentTime;
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT, Locale.ENGLISH);
         currentTime = LocalDateTime.now();
         return dateTimeFormatter.format(currentTime);
-    }
-
-    private String getCurrentDate() {
-        return getCurrentTime().substring(0, 10);
     }
 
     /**
      * Computes power consumption from loaded file.
      *
      * @param powerConsumption of each appliance used within a day
-     * @param dateTime         is the recorded time in data file when user exit the program
      */
-    public void loadDataFromFile(double powerConsumption, String dateTime) {
-        if (isToday(dateTime)) {
-            this.powerUsed = powerConsumption;
-            if (status) {
-                onTime = dateTime;
-                offTime = getCurrentTime();
-                computePower();
-            }
-        } else {
-            if (!status) {
-                this.powerUsed = 0;
-            } else {
-                onTime = getCurrentDate() + "-00:00:00";
-                offTime = getCurrentTime();
-                computePower();
-            }
-        }
+    public void loadDataFromFile(double powerConsumption) {
+        this.powerUsed = powerConsumption;
         this.totalPowerConsumption += this.powerUsed;
     }
 
-    private void calculateTimeUsed() throws ParseException {
-        SimpleDateFormat timeFormat = new SimpleDateFormat(DATE_TIME_FORMAT);
+    private double calculateTimeUsed() throws ParseException {
+        double totalHours;
+        SimpleDateFormat timeFormat = new SimpleDateFormat(DATE_TIME_FORMAT, Locale.ENGLISH);
         Date onTimeValue;
         Date offTimeValue;
         double timeUsed;
 
-        if (onTime != null) {
-            onTimeValue = timeFormat.parse(onTime);
+        if (this.onTime != null) {
+            onTimeValue = timeFormat.parse(this.onTime);
             if (!this.status) {
-                offTimeValue = timeFormat.parse(offTime);
+                offTimeValue = timeFormat.parse(this.offTime);
                 timeUsed = offTimeValue.getTime() - onTimeValue.getTime();
                 // System time cannot be negative time
                 assert timeUsed >= 0 : "System Time is not correct! " + timeUsed;
-                onTime = offTime;
+                this.onTime = this.offTime;
             } else {
                 Date currentUsedTime = timeFormat.parse(getCurrentTime());
                 timeUsed = currentUsedTime.getTime() - onTimeValue.getTime();
-                onTime = getCurrentTime();
+                this.onTime = getCurrentTime();
             }
         } else {
             timeUsed = 0;
         }
 
         // For simulation purpose, 1 second in System equals to 10 minutes in SmartHomeBot
-        this.totalHours = timeUsed / (1000 * 6);
-    }
-
-    private boolean isToday(String dateFromFile) {
-        dateFromFile = dateFromFile.substring(0, 10);
-        return (getCurrentDate()).equals(dateFromFile);
+        totalHours = timeUsed / (1000 * 6);
+        return totalHours;
     }
 
     private void computePower() {
         try {
-            calculateTimeUsed();
+            double totalTimeUsed = calculateTimeUsed();
+            // Convert power unit to kWh
+            this.powerUsed = totalTimeUsed * this.wattage / 1000.00;
         } catch (ParseException e) {
+            TextUi ui = new TextUi();
             ui.printToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
         }
-        // Convert power unit to kWh
-        this.powerUsed = this.totalHours * this.power / 1000.00;
         assert this.powerUsed >= 0 : "Power usage cannot be negative! " + this.powerUsed;
     }
 

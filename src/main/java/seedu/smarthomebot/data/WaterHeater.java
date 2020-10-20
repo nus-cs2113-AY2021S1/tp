@@ -8,8 +8,8 @@ public class WaterHeater extends Appliance {
     private String temperature;
     private String duration;
 
-    public WaterHeater(String name, String location, String power) {
-        super(name, location, power);
+    public WaterHeater(String name, String location, String wattage) {
+        super(name, location, wattage);
         this.temperature = "40";
     }
 

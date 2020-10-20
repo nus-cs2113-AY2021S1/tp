@@ -1,17 +1,6 @@
 package seedu.smarthomebot;
 
-import seedu.smarthomebot.commands.AddCommand;
-import seedu.smarthomebot.commands.Command;
-import seedu.smarthomebot.commands.CreateCommand;
-import seedu.smarthomebot.commands.DeleteCommand;
-import seedu.smarthomebot.commands.ExitCommand;
-import seedu.smarthomebot.commands.HelpCommand;
-import seedu.smarthomebot.commands.InvalidCommand;
-import seedu.smarthomebot.commands.ListCommand;
-import seedu.smarthomebot.commands.OffCommand;
-import seedu.smarthomebot.commands.OnCommand;
-import seedu.smarthomebot.commands.RemoveCommand;
-import seedu.smarthomebot.commands.UsageCommand;
+import seedu.smarthomebot.commands.*;
 import seedu.smarthomebot.exceptions.EmptyParameterException;
 import seedu.smarthomebot.exceptions.IllegalCharacterException;
 import seedu.smarthomebot.exceptions.InvalidCommandException;
@@ -46,8 +35,7 @@ public class Parser {
             } else {
                 name = arguments.substring(0, indexParameter).trim();
                 parameter = arguments.substring(indexParameter + 2).toLowerCase().trim();
-                if (checkForEmptyInput(name)
-                        || checkForEmptyInput(parameter)) {
+                if (checkForEmptyInput(name) || checkForEmptyInput(parameter)) {
                     throw new EmptyParameterException();
                 }
                 convertParameterToInt(parameter);
@@ -89,28 +77,28 @@ public class Parser {
         int indexType = arguments.indexOf("t/");
         String name;
         String location;
-        String power;
+        String wattage;
         String type;
 
         try {
             if (indexLocation < indexPower && indexPower < indexType) {
                 name = arguments.substring(0, indexLocation).trim();
                 location = arguments.substring(indexLocation + 2, indexPower).trim();
-                power = arguments.substring(indexPower + 2, indexType).trim();
+                wattage = arguments.substring(indexPower + 2, indexType).trim();
                 type = arguments.substring(indexType + 2).toLowerCase().trim();
 
                 if (checkForEmptyInput(name) | checkForEmptyInput(location)
-                        | checkForEmptyInput(power) | checkForEmptyInput(type)) {
+                        | checkForEmptyInput(wattage) | checkForEmptyInput(type)) {
                     throw new EmptyParameterException();
                 }
                 if (checkForIllegalCharacter(name)) {
                     throw new IllegalCharacterException();
                 }
-                testPowerValidity(power);
+                testWattageValidity(wattage);
             } else {
                 throw new InvalidCommandException();
             }
-            return new AddCommand(name, location, power, type);
+            return new AddCommand(name, location, wattage, type);
 
         } catch (InvalidCommandException e) {
             return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND);
@@ -186,9 +174,9 @@ public class Parser {
 
     }
 
-    private static void testPowerValidity(String power) throws PowerExceedException, InvalidValueException {
+    private static void testWattageValidity(String wattage) throws PowerExceedException, InvalidValueException {
         try {
-            int powerValue = Integer.parseInt(power);
+            int powerValue = Integer.parseInt(wattage);
             // Common appliance should not exceed 9999 watts
             if ((powerValue < 1) || (powerValue > 9999)) {
                 throw new PowerExceedException();
@@ -230,6 +218,8 @@ public class Parser {
             return prepareListCommand(arguments);
         case UsageCommand.COMMAND_WORD:
             return new UsageCommand();
+        case ResetCommand.COMMAND_WORD:
+            return new ResetCommand();
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         default:
