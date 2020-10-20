@@ -26,7 +26,7 @@ public class FoodPlacesData {
             {"Nami", "innovation4.0", "Mon-Fri, 8.00am-5.30pm"}
     };
 
-    private final String [][] foodPlacesComp = {
+    private final String[][] foodPlacesComp = {
             {"The Spread", "Business School Mochtar Riady Building", "Mon-Fri, 7.45am-8.45pm Sat, 8.00am-2.30pm"},
             {"Salad Express X Pasta Express", "The Deck level 2", "Mon-Fri, 8.00am-8.00pm Sat, 8.00am – 3.00pm"},
             {"Uncle Penyet (Indonesian Express)", "The Deck level 2", "Mon-Fri, 10.30am-7.30pm Sat, 10.30am-3.00pm"},
@@ -45,7 +45,7 @@ public class FoodPlacesData {
             {"Maxx Coffee", "Central Library", "Daily, 8.00am-10.00pm"}
     };
 
-    private final String [][] foodPlacesEngin = {
+    private final String[][] foodPlacesEngin = {
             {"Central Square", "Yusof Ishak House Level 2", "Mon-Fri, 8.00am-8.00pm Sat, 8.00am-3.00pm"},
             {"Crave", "YIH", "Mon-Fri, 9.00am-8.00pm Sat, 9.00am-6.00pm"},
             {"Subway - Halal Certified", "YIH", "Mon-Sun, 10.00am-10.00pm"},
@@ -63,13 +63,13 @@ public class FoodPlacesData {
             {"The Tea Party", "University Sports Centre", "Mon-Sat, 10.30am-10.30pm"}
     };
 
-    private final String [][] foodPlacesMuseum = {
+    private final String[][] foodPlacesMuseum = {
             {"Atempo", "Yong Siew Toh Conservatory of Music (YSTCM)", "Mon-Fri, 8.30am-5.00pm"},
             {"D’Arts @ UCC", "University Cultural Centre", "Mon-Fri and event days, 8.30am-5.00pm"},
             {"Bar Bar Black Sheep", "Alice Lee Plaza", "Mon-Sun, 12.00pm-12.00am"}
     };
 
-    private final String [][] foodPlacesUtown = {
+    private final String[][] foodPlacesUtown = {
             {"Flavours@Utown", "Stephen Riady Centre", "Mon-Sun: 24 hours"},
             {"Waa Cow", "Stephen Riady Centre", "Mon-Thu, 11.30am-7.30pm Fri, 11.30am-9.30pm Sat, 12.00pm-3.00pm"},
             {"Super Snacks", "Stephen Riady Centre", "Daily, 11.00am-2.00am"},
@@ -87,7 +87,7 @@ public class FoodPlacesData {
             {"Agora Cafe", "Yale-NUS East Core", "Mon-Sun, 8.30am-9.00pm"}
     };
 
-    private final String [][] foodPlacesBtc = {
+    private final String[][] foodPlacesBtc = {
             {"The Summit - Halal Certified", "BTC Block B", "Mon-Fri, 7.00am-8.00pm Sat, 7.00am-4.00pm"},
             {"Octobox", "BTC Block B", "Mon-Fri, 7.00am-8.00pm Sat, 7.00am-4.00pm"},
             {"Reedz Cafe", "The Thinking Corner @ BTC Li Ka Shing Building", "Mon-Fri, 8.00am-7.00pm"}
@@ -96,8 +96,8 @@ public class FoodPlacesData {
     private static ArrayList<FoodPlace> diningOptionsInNus = new ArrayList<>();
 
     public FoodPlacesData() {
-        diningOptionsInNus.add(new FoodPlace(new String[]{"Science", "University Hall", "Medicine"},
-                foodPlacesScience));
+        diningOptionsInNus.add(new FoodPlace(new String[]{"Science", "University Hall",
+            "Medicine"}, foodPlacesScience));
         diningOptionsInNus.add(new FoodPlace(new String[]{"PGP"}, foodPlacesPgp));
         diningOptionsInNus.add(new FoodPlace(new String[]{"School of Business", "School of computing",
             "FASS", "Ventus", "Shaw Foundation"}, foodPlacesComp));

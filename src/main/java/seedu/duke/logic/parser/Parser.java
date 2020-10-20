@@ -2,14 +2,16 @@ package seedu.duke.logic.parser;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
+import seedu.duke.logic.commands.AllBusCommand;
 import seedu.duke.logic.commands.BusCommand;
 import seedu.duke.logic.commands.Command;
-import seedu.duke.logic.commands.RouteCommand;
-import seedu.duke.logic.commands.RouteMapCommand;
+import seedu.duke.logic.commands.DineCommand;
+import seedu.duke.logic.commands.DineInfoCommand;
 import seedu.duke.logic.commands.ExitCommand;
 import seedu.duke.logic.commands.HelpCommand;
-import seedu.duke.logic.commands.AllBusCommand;
 import seedu.duke.logic.commands.ListStopsCommand;
+import seedu.duke.logic.commands.RouteCommand;
+import seedu.duke.logic.commands.RouteMapCommand;
 
 import java.lang.reflect.Array;
 
@@ -52,6 +54,12 @@ public class Parser {
             break;
         case "/liststops":
             com = new ListStopsCommand();
+            break;
+        case "/dine":
+            com = new DineCommand(parts[1]);
+            break;
+        case "/dineinfo":
+            com = new DineInfoCommand(parts[1]);
             break;
         case "/help":
             com = new HelpCommand();
