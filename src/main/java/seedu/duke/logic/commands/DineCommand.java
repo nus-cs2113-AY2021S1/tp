@@ -20,10 +20,10 @@ public class DineCommand extends Command {
 
     @Override
     public void executeCommand() throws CustomException {
-        printLine();
         if (userFaculty.trim().length() == 0) {
             throw new CustomException(ExceptionType.INVALID_FACULTY);
         }
+        printLine();
         int displayCount = 0;
         ArrayList<FoodPlace> foodPlaceList = FoodPlacesData.getDiningOptionsInNus();
         for (FoodPlace foodPlace: foodPlaceList) {
@@ -31,10 +31,16 @@ public class DineCommand extends Command {
             for (String tempFaculty: tempFacultyList) {
                 if (tempFaculty.toLowerCase().contains(userFaculty.toLowerCase())){
                     ArrayList<DiningOptions> foodPlaceInfo = foodPlace.getInfo();
-                    System.out.println("The dining options available are:");
-                    for (DiningOptions info: foodPlaceInfo) {
-                        displayCount++;
-                        System.out.println(displayCount + ". " + info.getName());
+                    if (foodPlaceInfo.size() == 0){
+                        System.out.println("There is no dining options in this faculty.");
+                    }
+                    else {
+                        System.out.println("The dining options available at " + tempFaculty + " are:");
+                        for (DiningOptions info: foodPlaceInfo) {
+                            displayCount++;
+                            System.out.println(displayCount + ". " + info.getName());
+                        }
+                        break;
                     }
                 }
             }
