@@ -67,6 +67,10 @@ public class TextUi {
         System.out.println(bookList.toStringWithIndex());
     }
 
+    public void printAddQuote(Quote quote) {
+        System.out.printf(UiMessage.ADD_QUOTE_MESSAGE + "\n", quote.toString());
+    }
+
     public void printAllQuotes(QuoteList quotes) {
         if (quotes.getSize() > 0) {
             System.out.println(UiMessage.LIST_ALL_QUOTES);

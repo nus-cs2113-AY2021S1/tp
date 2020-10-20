@@ -132,7 +132,7 @@ public class AddCommand extends Command {
         try {
             Quote quote = QuoteParser.parseAddParameters(information);
             quotes.add(quote);
-            ui.printAllQuotes(quotes);
+            ui.printAddQuote(quote);
             addLogger.log(Level.INFO, "add quote to quote list success");
         } catch (QuotesifyException e) {
             System.out.println(e.getMessage());
