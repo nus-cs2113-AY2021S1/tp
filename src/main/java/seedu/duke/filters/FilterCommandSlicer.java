@@ -42,8 +42,7 @@ public class FilterCommandSlicer {
      *
      * @param command String that contains the strings need filtering.
      * @return Array of strings referring to the strings need filtering.
-     * @throws FilterCommandException When no string tag is found or
-     * when the user enters the dash without specifying the targeted string.
+     * @throws FilterCommandException When no string tag is found or when the command format is incorrect.
      */
     public static String[] getTargetedStringTags(String command) throws FilterCommandException {
         ArrayList<String> targetedStrings = new ArrayList<>();
