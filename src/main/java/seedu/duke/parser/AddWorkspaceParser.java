@@ -32,17 +32,14 @@ public class AddWorkspaceParser extends CommandParser {
                 throw new AniException(EXCEPTION_INVALID_PARAMETERS);
             }
 
-            switch (paramParts[0].trim()) {
-            case PARAMETER_EMPTY:
-                break;
-            case PARAMETER_NAME:
+            if (PARAMETER_NAME.equals(paramParts[0].trim())) {
                 paramFieldCheck(paramParts);
                 addWorkspaceCommand.setWorkspaceName(paramParts[1]);
-                break;
-            default:
-                String invalidParameter = PARAMETER_ERROR_HEADER + param + NOT_RECOGNISED;
-                throw new AniException(invalidParameter);
             }
+        }
+
+        if (addWorkspaceCommand.getNewWorkspaceName() == null) {
+            throw new AniException(EXCEPTION_INVALID_PARAMETERS);
         }
     }
 }
