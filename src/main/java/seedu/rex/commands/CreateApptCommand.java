@@ -15,7 +15,7 @@ import java.util.logging.Level;
 /**
  * Creates appointment.
  */
-public class CreateAppointmentCommand extends Command {
+public class CreateApptCommand extends Command {
 
     public static final String COMMAND_WORD = "create";
 

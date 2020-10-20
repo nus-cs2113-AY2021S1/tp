@@ -13,12 +13,12 @@ import java.util.logging.Level;
 /**
  * Books appointments.
  */
-public class BookCommand extends Command {
+public class BookApptCommand extends Command {
 
     public static final String COMMAND_WORD = "book";
     private final String trimmedCommand;
 
-    public BookCommand(String trimmedCommand) {
+    public BookApptCommand(String trimmedCommand) {
         this.trimmedCommand = trimmedCommand;
     }
 
@@ -54,11 +54,7 @@ public class BookCommand extends Command {
         }
 
         if (!patients.isExistingPatient(nric)) {
-            ui.printPatientNotFound(nric);
-            ui.showCreatePatientMessage(nric);
-            Rex.logger.log(Level.INFO, "going to add patient...");
-            new AddCommand("add " + nric).execute(patients, doctors, appointments, ui, storage);
-            ui.showLine();
+            throw new RexException("Patient " + nric + " not found in database!");
         }
 
         try {

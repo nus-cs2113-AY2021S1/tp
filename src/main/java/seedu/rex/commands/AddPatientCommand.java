@@ -5,32 +5,33 @@ import seedu.rex.data.AppointmentList;
 import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
-import seedu.rex.data.hospital.Patient;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
 import java.util.logging.Level;
 
 /**
- * Deletes a <code>Patient</code>'s data based on his NRIC.
+ * Adds a patient to the list of patients.
  */
-public class DeleteCommand extends Command {
-    public static final String COMMAND_WORD = "delete";
+public class AddPatientCommand extends Command {
+
+    public static final String COMMAND_WORD = "add";
     private final String trimmedCommand;
 
-    public DeleteCommand(String trimmedCommand) {
+    public AddPatientCommand(String trimmedCommand) {
         this.trimmedCommand = trimmedCommand;
     }
 
     /**
-     * Deletes patients using NRIC.
+     * Adds a new patient to the patient list using details inputted by the user.
      *
      * @param patients     PatientList object.
      * @param doctors      DoctorList object.
      * @param appointments AppointmentList object.
-     * @param ui           Ui object.
-     * @param storage      Storage object.
-     * @throws RexException If NRIC has issues.
+     * @param ui           Ui object of the program.
+     * @param storage      Storage object used for saving data to files.
+     * @throws RexException If there is an error in the NRIC inputted by the user, the data fails
+     *                      to save successfully, or the NRIC already exists in the patient list.
      */
     @Override
     public void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui, Storage storage)
@@ -42,21 +43,16 @@ public class DeleteCommand extends Command {
         String nric = extractNric(trimmedCommand, COMMAND_WORD);
 
         if (patients.isExistingPatient(nric)) {
-            Patient deletedPatient = patients.deletePatient(nric);
-            assert deletedPatient != null : "Deleted patient is null!";
-
-            ui.showPatientDeleted(deletedPatient);
-
-            for (int i = 0; i < appointments.getSize(); i++) {
-                String tempNric = appointments.getAppointmentByIndex(i).getPatient().getNric();
-                if (tempNric.contentEquals(nric)) {
-                    appointments.removeAppointmentByIndex(i);
-                    break;
-                }
-            }
-        } else {
-            ui.printPatientNotFound(nric);
+            throw new RexException("A patient with this NRIC is already registered!");
         }
+
+        Rex.logger.log(Level.INFO, "adding patient...");
+        patients.addNewPatient(ui.getPatientName(), nric, ui.getPatientDateOfBirth());
+        ui.showLine();
+
+        ui.showPatientAdded(patients.getPatientUsingIndex(patients.getSize() - 1));
+
+        assert !patients.getPatients().isEmpty() : "No patients!";
         storage.savePatients(patients);
     }
 }

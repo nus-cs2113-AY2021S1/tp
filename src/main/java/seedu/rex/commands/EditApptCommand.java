@@ -5,6 +5,7 @@ import seedu.rex.data.AppointmentList;
 import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
+import seedu.rex.data.hospital.Appointment;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
@@ -13,13 +14,13 @@ import java.util.logging.Level;
 /**
  * Edit appointment.
  */
-public class EditAppointmentCommand extends Command {
+public class EditApptCommand extends Command {
 
     public static final String COMMAND_WORD = "editappt";
     private final String trimmedCommand;
 
 
-    public EditAppointmentCommand(String trimmedCommand) {
+    public EditApptCommand(String trimmedCommand) {
         this.trimmedCommand = trimmedCommand;
     }
 
@@ -47,6 +48,17 @@ public class EditAppointmentCommand extends Command {
         }
 
         try {
+            boolean hasAppointment = false;
+            for (Appointment appointment : appointments.getAppointments()) {
+                if (appointment.getPatient() != null && appointment.getPatient().getNric().equals(nric)) {
+                    hasAppointment = true;
+                    break;
+                }
+            }
+            if (!hasAppointment) {
+                throw new RexException("Patient has no appointment!");
+            }
+
             String indexSelected = ui.getAppointmentToEdit(appointments);
             int index = Integer.parseInt(indexSelected) - 1;
             if (index < 0 || index >= appointments.getSize()) {

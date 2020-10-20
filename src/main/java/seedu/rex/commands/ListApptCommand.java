@@ -5,32 +5,30 @@ import seedu.rex.data.AppointmentList;
 import seedu.rex.data.DoctorList;
 import seedu.rex.data.PatientList;
 import seedu.rex.data.exception.RexException;
+import seedu.rex.data.hospital.Patient;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
 import java.util.logging.Level;
 
-/**
- * Retrieves patient details.
- */
-public class RetrieveCommand extends Command {
+public class ListApptCommand extends Command {
 
-    public static final String COMMAND_WORD = "retrieve";
+    public static final String COMMAND_WORD = "appointments";
     private final String trimmedCommand;
 
-    public RetrieveCommand(String trimmedCommand) {
+    public ListApptCommand(String trimmedCommand) {
         this.trimmedCommand = trimmedCommand;
     }
 
     /**
-     * Retrieves patient from patient list using details inputted by the user.
+     * Lists appointments of a patient.
      *
      * @param patients     PatientList object.
      * @param doctors      DoctorList object.
      * @param appointments AppointmentList object.
      * @param ui           Ui object.
      * @param storage      Storage object.
-     * @throws RexException If there is issue executing command.
+     * @throws RexException If the input NRIC does not exist in system
      */
     @Override
     public void execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui, Storage storage)
@@ -41,11 +39,21 @@ public class RetrieveCommand extends Command {
         Rex.logger.log(Level.INFO, "going to extract NRIC");
         String nric = extractNric(trimmedCommand, COMMAND_WORD);
 
-        int index = patients.getExistingPatient(nric);
-        assert index > -2 : "Unexpected index!";
-        if (index < 0) {
-            throw new RexException("No such patient!");
+        if (!patients.isExistingPatient(nric)) {
+            throw new RexException("A patient with this NRIC has not been registered!");
         }
-        ui.showPatient(patients.getPatientUsingIndex(index));
+        Patient targetPatient = patients.getPatientFromNric(nric);
+        assert targetPatient != null : "Null target patient!";
+        ui.showAppointmentsListHeader(nric);
+
+        int i;
+        for (i = 0; i < appointments.getSize(); i++) {
+            if (appointments.getAppointmentByIndex(i).getPatient().equals(targetPatient)) {
+                ui.showAppointmentLine(appointments.getAppointmentByIndex(i), i + 1);
+            }
+        }
+        if (i == 0) {
+            ui.showNoBookedAppointmentsMessage();
+        }
     }
 }
