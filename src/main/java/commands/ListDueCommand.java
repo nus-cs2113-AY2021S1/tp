@@ -22,10 +22,11 @@ public class ListDueCommand extends Command {
     public ArrayList<DueChapter> dueChapters = new ArrayList<>();
 
     private void loadAllChapters(Storage storage, Ui ui) {
+        String result = "";
         try {
-            allChapters = storage.loadAllDueChapters();
+            allChapters = storage.loadAllDueChapters(ui);
         } catch (FileNotFoundException e) {
-            ui.showToUser("Sorry, you do not have any flashcards in the database yet. Please try this command again"
+            ui.showError("Sorry, you do not have any flashcards in the database yet. Please try this command again"
                     + "once you have added some flashcards!");
         }
     }

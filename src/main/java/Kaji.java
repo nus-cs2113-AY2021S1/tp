@@ -10,7 +10,6 @@ import ui.Ui;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDate;
 
 public class Kaji {
     private Ui ui;
@@ -22,10 +21,10 @@ public class Kaji {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
-            Admin admin = new Admin(storage.loadModule());
+            Admin admin = new Admin(storage.loadModule(ui));
             access = new Access(admin);
         } catch (FileNotFoundException e) {
-            storage.createAdmin();
+            storage.createAdmin(ui);
             access = new Access();
         }
     }
@@ -33,9 +32,7 @@ public class Kaji {
     public void run() {
         ui.showWelcome();
         ui.showHelpList();
-        storage.createHistoryDir();
-        LocalDate date = java.time.LocalDate.now();
-        storage.createHistory(ui, date.toString());
+        ui.printLine();
         boolean isExit = false;
         while (!isExit) {
             try {
@@ -43,11 +40,12 @@ public class Kaji {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand, access);
                 c.execute(ui, access, storage);
-                ui.printEmptyLine();
+                ui.printLine();
                 isExit = c.isExit();
             } catch (InvalidInputException | IncorrectAccessLevelException | IOException 
                      | IndexOutOfBoundsException | InvalidFileFormatException e) {
                 ui.showError(e.getMessage());
+                ui.printLine();
             }
         }
     }

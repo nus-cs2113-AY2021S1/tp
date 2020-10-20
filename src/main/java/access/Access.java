@@ -1,5 +1,6 @@
 package access;
 
+import exception.IncorrectAccessLevelException;
 import manager.admin.Admin;
 import manager.chapter.Chapter;
 import manager.history.History;
@@ -109,17 +110,15 @@ public class Access {
         this.isChapterLevel = true;
     }
 
-    public void setModuleLevel(String moduleLevel) {
+    public void setModuleLevel(String moduleLevel) throws IncorrectAccessLevelException {
         if (isChapterLevel) {
-            System.out.println("Sorry, you currently are in the chapter level.");
-            return;
+            throw new IncorrectAccessLevelException("Sorry, you currently are in the chapter level.");
         }
 
         if (isModuleLevel) {
             if (!(moduleLevel.equals(""))) {
-                System.out.println("Sorry, you are already in the module level, "
+                throw new IncorrectAccessLevelException("Sorry, you are already in the module level, "
                         + "please go back to admin level first.");
-                return;
             }
 
             String replacement = "/" + this.moduleLevel;
@@ -133,8 +132,7 @@ public class Access {
 
         if (isAdminLevel) {
             if (moduleLevel.equals("")) {
-                System.out.println("Sorry, you are already in the admin level.");
-                return;
+                throw new IncorrectAccessLevelException("Sorry, you are already in the admin level.");
             }
             this.moduleLevel = moduleLevel;
             this.level = level + "/" + moduleLevel;
@@ -144,17 +142,15 @@ public class Access {
         }
     }
 
-    public void setChapterLevel(String chapterLevel) {
+    public void setChapterLevel(String chapterLevel) throws IncorrectAccessLevelException {
         if (isAdminLevel) { //wrong level
-            System.out.println("Sorry, you currently are in the admin level.");
-            return;
+            throw new IncorrectAccessLevelException("Sorry, you currently are in the admin level.");
         }
 
         if (isChapterLevel) {
             if (!(chapterLevel.equals(""))) {
-                System.out.println("Sorry, you are already in the chapter level, "
+                throw new IncorrectAccessLevelException("Sorry, you are already in the chapter level, "
                         + "please go back to module level first.");
-                return;
             }
             String replacement = "/" + this.chapterLevel;
             this.level = level.replace(replacement, "");
@@ -167,8 +163,7 @@ public class Access {
 
         if (isModuleLevel) {
             if (chapterLevel.equals("")) {
-                System.out.println("Sorry, you are already in the module level.");
-                return;
+                throw new IncorrectAccessLevelException("Sorry, you are already in the module level.");
             }
             this.chapterLevel = chapterLevel;
             this.level = level + "/" + chapterLevel;
