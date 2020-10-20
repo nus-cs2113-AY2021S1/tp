@@ -29,7 +29,7 @@ public class Rating implements JsonSerializer {
 
     @Override
     public String toString() {
-        return titleOfRatedBook + " by " + authorOfRatedBook + ": " + rating + " star";
+        return "[" + titleOfRatedBook + "] by " + authorOfRatedBook + ": " + rating + " star";
     }
 
     @Override

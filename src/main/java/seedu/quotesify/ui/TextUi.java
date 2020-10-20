@@ -224,7 +224,7 @@ public class TextUi {
         System.out.printf((UiMessage.LIST_SPECIFIED_RATING_MESSAGE) + "\n", ratingToPrint);
         for (Rating rating : ratings.getList()) {
             if (rating.getRating() == ratingToPrint) {
-                System.out.println(rating.getTitleOfRatedBook());
+                System.out.println(rating.toString());
             }
         }
     }
