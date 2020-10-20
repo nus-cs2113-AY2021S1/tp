@@ -1,0 +1,55 @@
+@startuml
+skinparam classAttributeIconSize 0
+abstract class ParamHandler {
+    # requiredParams : HashSet<String>
+    # paramsSuccessfullyParsed : HashSet<String>
+    # missingRequiredParams : HashSet<String>
+    # paramChecker : ParamChecker
+    # hasParsedAllParams : boolean
+    + handleParams(packet : CommandPacket) : void
+    + getHasParsedAllRequiredParams() : boolean
+    + setRequiredParams(paramTypes : String...) : void
+    + resetAllParamCollections() : void
+    # checkParseFailedParams() : boolean
+    # checkParamRequirementSatisfied(param : String) : boolean
+    + {abstract} handleSingleParam(packet : CommandPacket, paramType : String)
+}
+
+class ParamChecker {
+    + checkAndReturnDate(paramType : String) : LocalDate
+    + checkAndReturnTime(paramType : String) : LocalTime
+    + checkAndReturnIndex(paramType : String, list : ArrayList) : Integer
+    + checkAndReturnDouble(paramType : String) : Double
+    + checkAndReturnInt(paramType : String) : Integer
+    + checkAndReturnCategory(paramType : String) : String
+}
+
+abstract class Item {
+    # {abstract} index : int
+}
+
+abstract class ItemList {
+    # currItem : Item
+    # items : ArrayList<Item>
+    # indexToModify : int
+
+    + addItemAndSort(item : Item, comparator : Comparator)
+    + getItemSize() : int
+    + getItemAtIndex() : Item
+    + getItemAtIndex(index : int) : Item
+    + {abstract} printList()
+}
+
+abstract class Ledger {
+    protected
+}
+
+ParamHandler *--> ParamChecker
+ParamHandler --|> Item
+ParamHandler --|> ItemList
+Item --|> Ledger
+Item --|> Entry
+ItemList --|> LedgerList
+ItemList --|> EntryList
+
+@enduml
