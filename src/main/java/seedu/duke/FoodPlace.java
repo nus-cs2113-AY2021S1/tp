@@ -15,4 +15,11 @@ public class FoodPlace {
         }
     }
 
+    public ArrayList<String> getFaculty() {
+        return faculty;
+    }
+
+    public ArrayList<DiningOptions> getInfo() {
+        return info;
+    }
 }

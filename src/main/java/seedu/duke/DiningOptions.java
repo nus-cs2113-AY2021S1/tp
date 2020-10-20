@@ -11,4 +11,12 @@ public class DiningOptions {
         location = data[1];
         operatingHrs = data[2];
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String toString() {
+        return name + ":\n" + location + "\n" + operatingHrs;
+    }
 }
