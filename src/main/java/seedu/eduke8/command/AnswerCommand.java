@@ -20,7 +20,6 @@ public class AnswerCommand extends Command {
 
     @Override
     public void execute(DisplayableList optionList, Ui ui) {
-        int correctOption; 
 
         if (option.isCorrectAnswer()) {
             ui.printAnswerIsCorrect();
@@ -29,7 +28,8 @@ public class AnswerCommand extends Command {
         } else {
             try {
                 int correctOptionNumber = ((OptionList) optionList).findCorrectOptionIndex() + 1;
-                ui.printAnswerIsWrong(correctOptionNumber);
+                String explanation = question.getExplanation().getDescription();
+                ui.printAnswerIsWrong(correctOptionNumber, explanation);
             } catch (Eduke8Exception e) {
                 ui.printError(e.getMessage());
             }
