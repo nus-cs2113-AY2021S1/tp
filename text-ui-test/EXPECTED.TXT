@@ -2,6 +2,9 @@ _________________________________
 Welcome to scheduler--;!
 What can I do for you?
 _________________________________
+Error finding file, file does not exist
+Error finding file, file does not exist
+Error finding file, file does not exist
 _________________________________
 _________________________________
 Thank you for using scheduler--;!
