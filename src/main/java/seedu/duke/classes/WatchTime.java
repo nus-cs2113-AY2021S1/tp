@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class WatchTime {
-    private LocalDate recordedDate;
-    private int durationWatchedToday;
-    private int dailyWatchLimit;
+    private static LocalDate recordedDate;
+    private static int durationWatchedToday;
+    private static int dailyWatchLimit;
 
     /**
      * If no data, set durationWatchedToday to 0 and set recordedDate to LocalDate.now()

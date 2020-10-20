@@ -26,6 +26,24 @@ public class Show {
         this.currentSeason = 1;
     }
 
+    /**
+     * overload Show if duration of Episodes is provided.
+     * @param name name of show
+     * @param numSeasons number of seasons
+     * @param numEpisodesForSeasons number of episodes per season
+     * @param durationEpisodeForSeasons length of episodes
+     */
+    public Show(String name, int numSeasons, int[] numEpisodesForSeasons, int[][] durationEpisodeForSeasons) {
+        this.name = name;
+        this.numSeasons = numSeasons;
+        this.numEpisodesForSeasons = numEpisodesForSeasons;
+        this.durationEpisodeForSeasons = durationEpisodeForSeasons;
+        this.rating = -1;
+        this.review = "null";
+        this.currentEpisode = 1;
+        this.currentSeason = 1;
+    }
+
     public String getName() {
         return name;
     }
@@ -114,6 +132,12 @@ public class Show {
         this.currentEpisode = episode;
         this.currentSeason = season;
     }
+
+
+    public void setEpisodeDuration(int season, int episode, int duration) {
+        durationEpisodeForSeasons[season][episode] = duration;
+    }
+
 
     @Override
     public String toString() {
