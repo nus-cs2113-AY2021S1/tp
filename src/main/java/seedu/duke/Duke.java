@@ -6,7 +6,6 @@ import seedu.duke.utility.InputParser;
 import seedu.duke.utility.ShowList;
 import seedu.duke.utility.Ui;
 
-
 import static seedu.duke.utility.Ui.SAVE_DIRECTORY;
 
 public class Duke {
@@ -17,6 +16,7 @@ public class Duke {
     private Storage storage;
     private ShowList shows;
     private Ui ui;
+    private static WatchTime watchTime;
 
     public Duke(String filePath) {
         ui = new Ui();
