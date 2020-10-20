@@ -221,7 +221,7 @@ public class Ui {
     public static void printUpdatedTimeLimit(Integer newTime) {
         printLine();
         System.out.println("Your watch time limit has been updated to " + newTime + " minutes."
-        + "\n" + WatchTime.userReportString());
+            + "\n" + WatchTime.userReportString());
     }
 
     public static void printInvalidEpisodesInputException() {
