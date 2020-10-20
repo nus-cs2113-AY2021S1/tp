@@ -40,7 +40,7 @@ public class Bus {
             int startingIndex = routeNames.indexOf(startingLoc.toLowerCase());
             assert startingIndex != -1 : "Hmm, seems like the start is not in the list";
             int size = routeNames.size();
-            assert size != 0 : "The bus route has not stops!";
+            assert size != 0 : "The bus route has no stops!";
             allStopNamesFromStart.addAll(routeNames.subList(startingIndex, size));
             allStopsFromStart.addAll(route.subList(startingIndex, size));
             if (allStopNamesFromStart.contains(destination.toLowerCase())) {
