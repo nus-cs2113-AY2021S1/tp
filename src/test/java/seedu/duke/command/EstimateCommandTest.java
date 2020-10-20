@@ -57,20 +57,22 @@ class EstimateCommandTest {
     @Test
     void execute_validScriptFile_success() throws AniException {
         // Words per hour not specified.
-        EstimateCommand estimateCommandNoWPH = new EstimateCommand(SCRIPT_FILE_NAME, NO_WORDS_PER_HOUR_PROVIDED);
-        String noWPHResult = estimateCommandNoWPH.execute(animeData, validSM, user);
-        String expectedNoWPHResult = "Average translator (400 words per hour) takes: 5 hour(s) 47 minute(s).";
-        expectedNoWPHResult += System.lineSeparator();
-        expectedNoWPHResult += "Average translator (500 words per hour) takes: 4 hour(s) 38 minute(s).";
-        expectedNoWPHResult += System.lineSeparator();
-        expectedNoWPHResult += "Average translator (600 words per hour) takes: 3 hour(s) 51 minute(s).";
-        assertEquals(expectedNoWPHResult, noWPHResult);
+        String expectedNoWphResult = "Average translator (400 words per hour) takes: 5 hour(s) 47 minute(s).";
+        expectedNoWphResult += System.lineSeparator();
+        expectedNoWphResult += "Average translator (500 words per hour) takes: 4 hour(s) 38 minute(s).";
+        expectedNoWphResult += System.lineSeparator();
+        expectedNoWphResult += "Average translator (600 words per hour) takes: 3 hour(s) 51 minute(s).";
+
+        EstimateCommand estimateCommandNoWph = new EstimateCommand(SCRIPT_FILE_NAME, NO_WORDS_PER_HOUR_PROVIDED);
+        String noWphResult = estimateCommandNoWph.execute(animeData, validSM, user);
+        assertEquals(expectedNoWphResult, noWphResult);
 
         // Words per hour specified.
-        EstimateCommand estimateCommandHaveWPH = new EstimateCommand(SCRIPT_FILE_NAME, 777);
-        String haveWPHResult = estimateCommandHaveWPH.execute(animeData, validSM, user);
-        String expectedWPHResult = "You would need 2 hour(s) 58 minute(s).";
-        assertEquals(expectedWPHResult, haveWPHResult);
+        String expectedWphResult = "You would need 2 hour(s) 58 minute(s).";
+
+        EstimateCommand estimateCommandHaveWph = new EstimateCommand(SCRIPT_FILE_NAME, 777);
+        String haveWphResult = estimateCommandHaveWph.execute(animeData, validSM, user);
+        assertEquals(expectedWphResult, haveWphResult);
     }
 
     @Test
