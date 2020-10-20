@@ -27,13 +27,18 @@ public class Duke {
 
         new Duke();
         boolean isOngoing = true;
-        //System.out.println(BusData.getAllSearchCount());
+        try {
+            freqFile.readFile();
+        } catch (CustomException e) {
+            Ui.showError(e);
+        }
         Ui.printWelcomeMessage();
         while (isOngoing) {
             try {
                 String fullCommand = Ui.getCommand();
                 parser = new Parser(fullCommand);
                 isOngoing = parser.extractType();
+                freqFile.updateFile();
             } catch (CustomException error) {
                 Ui.showError(error);
             }
