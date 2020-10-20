@@ -52,6 +52,9 @@ public class Parser {
 
         case "bookmark":
             return new BookmarkParser().parse(description);
+
+        case "estimate":
+            return new EstimateParser().parse(description);
         
         case "info":
             return new InfoParser().parse(description);

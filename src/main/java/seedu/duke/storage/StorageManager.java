@@ -7,7 +7,6 @@ import seedu.duke.human.Workspace;
 import seedu.duke.watchlist.Watchlist;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 
 public class StorageManager {
@@ -15,26 +14,23 @@ public class StorageManager {
     private final UserStorage userStorage;
     private final WatchlistStorage watchlistStorage;
     private final BookmarkStorage bookmarkStorage;
+    private final ScriptStorage scriptStorage;
 
     public StorageManager(String storageDirectory) {
         this.storageDirectory = storageDirectory;
         userStorage = new UserStorage(this.storageDirectory);
         watchlistStorage = new WatchlistStorage(this.storageDirectory);
         bookmarkStorage = new BookmarkStorage(this.storageDirectory);
+        scriptStorage = new ScriptStorage(this.storageDirectory);
     }
 
     public String[] retrieveWorkspaceList() {
         File file = new File(storageDirectory);
-        String[] workspaceList = file.list(new FilenameFilter() {
-            @Override
-            public boolean accept(File current, String name) {
-                return new File(current, name).isDirectory();
-            }
-        });
-
+        String[] workspaceList = file.list((current, name) -> new File(current, name).isDirectory());
         if (workspaceList == null) {
             return new String[0];
         }
+
         return workspaceList;
     }
 
@@ -65,7 +61,7 @@ public class StorageManager {
         return watchlistStorage.load(workspaceName, watchlistList);
     }
 
-    // ========================== Watchlist Saving and Loading ==========================
+    // ========================== Bookmark Saving and Loading ==========================
 
     public void saveBookmark(String workspaceName, Bookmark bookmark) throws AniException {
         bookmarkStorage.save(workspaceName, bookmark);
@@ -73,5 +69,11 @@ public class StorageManager {
 
     public String loadBookmark(String workspaceName, Bookmark bookmark) throws AniException {
         return bookmarkStorage.load(workspaceName, bookmark);
+    }
+
+    // ========================== Script Reading ==========================
+
+    public String readScript(String workspaceName, String fileName) throws AniException {
+        return scriptStorage.readScript(workspaceName, fileName);
     }
 }
