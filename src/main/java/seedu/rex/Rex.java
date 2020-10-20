@@ -62,9 +62,9 @@ public class Rex {
             doctors = new DoctorList(storage.loadDoctors());
             logger.log(Level.INFO, "loaded doctors");
         } catch (RexException e) {
-            logger.log(Level.INFO, "No appointments found. Creating new appointments list.");
+            logger.log(Level.INFO, "No doctors found. Creating new doctors list.");
             ui.showLoadingError();
-            appointments = new ArrayList<>();
+            doctors = new DoctorList();
         }
     }
 
