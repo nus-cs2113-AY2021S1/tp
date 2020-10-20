@@ -14,7 +14,7 @@ public class DateList {
         for (Duration duration: lesson.periods) {
             boolean existList = false;
             for (EventList eventList: dateList) {
-                if (eventList.dateTag == duration.startDateTime.toLocalDate()) {
+                if (eventList.dateTag.equals(duration.startDateTime.toLocalDate())) {
                     eventList.addEvent(lesson);
                     existList = true;
                 }
