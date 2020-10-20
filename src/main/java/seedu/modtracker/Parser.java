@@ -83,6 +83,7 @@ public class Parser {
                 ui.printExitScreen(name);
                 exit = true;
             }
+            break;
         case "task":
             taskList.addTask(input);
             break;
