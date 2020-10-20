@@ -12,7 +12,7 @@ import static seedu.messages.Messages.INVALID_PRIORITY;
 class TaskTest {
 
     @Test
-    void initialise_task_no_invalidPriorityExceptionThrown() throws InvalidDatetimeException {
+    void initialiseTask_differentPriority_success() throws InvalidDatetimeException {
 
         try {
             new Task("p1", null,
@@ -45,7 +45,7 @@ class TaskTest {
     }
 
     @Test
-    void initialise_task_no_invalidDatetimeExceptionThrown() throws InvalidPriorityException {
+    void initialiseTask__datetime_success() throws InvalidPriorityException {
 
         try {
             new Task("dt1", "20-10-2020",
