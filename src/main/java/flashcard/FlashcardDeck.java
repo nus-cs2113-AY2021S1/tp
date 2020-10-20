@@ -56,4 +56,25 @@ public class FlashcardDeck {
             }
         }
     }
+
+    public void deleteCard() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Please enter the index of the card you wish to delete.");
+        String userInput = in.nextLine();
+        int cardIndex = 0;
+        try {
+            cardIndex = Integer.parseInt(userInput);
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter the index of the card as an integer!");
+        }
+        if (cardIndex >= flashcardDeck.size() + 2) {
+            System.out.println("Sorry, you only have " + flashcardDeck.size() + " cards in your deck!\n"
+                    + "Please enter a number within the range of 1-" + flashcardDeck.size() + ".");
+        } else {
+            flashcardDeck.remove(cardIndex-1);
+            System.out.println("Noted. I have removed this card: "
+                    + flashcardDeck.get(cardIndex-1).question + "|" + flashcardDeck.get(cardIndex-1).answer
+                    + "\n" + "Now you have " + flashcardDeck.size() + " cards in the list.");
+        }
+    }
 }

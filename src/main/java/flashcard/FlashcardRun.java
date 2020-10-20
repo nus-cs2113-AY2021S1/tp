@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class FlashcardRun {
     public static final String TEST = "test";
+    public static final String DELETE = "delete";
     public FlashcardDeck flashcardDeck;
     public FlashcardStorage storage;
     public static final String ADD = "add";
@@ -25,6 +26,9 @@ public class FlashcardRun {
         switch (command) {
         case ADD:
             flashcardDeck.addCards();
+            break;
+        case DELETE:
+            flashcardDeck.deleteCard();
             break;
         case LIST:
             flashcardDeck.listCards();
