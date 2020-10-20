@@ -56,6 +56,7 @@ public class Parser {
         return command;
     }
 
+    //@@author TYS0n1
     private static Command createBookmarkCommand(String input) throws DukeException {
         Command command;
       
@@ -76,6 +77,7 @@ public class Parser {
         return command;
     }
 
+    //@@author TYS0n1
     private static Command createTimetableCommand(String input) throws DukeException {
         Command command;
 

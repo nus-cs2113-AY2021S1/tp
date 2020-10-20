@@ -69,6 +69,7 @@ public class Ui {
     /**
      * Prints a message after starting the program.
      */
+    //@@author
     public void showWelcomeScreen() {
         String logo = "___  ____ ____ _  _ ____ ____ ___ ____ ____ \n"
                     + "  /  |  | |  | |\\/| |__| [__   |  |___ |__/ \n"
