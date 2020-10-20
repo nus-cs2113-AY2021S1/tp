@@ -223,6 +223,29 @@ public class Ui {
         showLine();
         return in.nextLine();
     }
+    /**
+     * Gets appointment to be Editted.
+     *
+     * @param appointments Arraylist of appointments.
+     * @return User input.
+     * @throws RexException If no appointments are available.
+     */
+    public String getAppointmentToEdit(AppointmentList appointments) throws RexException {
+        showLine();
+        printWithIndent("Here are the list of available appointments.");
+        int counter = 0;
+        for (Appointment appointment : appointments.getAppointments()) {
+            counter++;
+            printWithIndent(counter + ". " + appointment.getDate().toString());
+
+        }
+        if (counter == 0) {
+            throw new RexException("No appointments available!");
+        }
+        printWithIndent("Please enter the index of appointment to edit");
+        showLine();
+        return in.nextLine();
+    }
 
     /**
      * Shows appointment booking message.
