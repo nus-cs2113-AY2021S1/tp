@@ -7,7 +7,7 @@
    3.3 HR `HR` <br/>
       *  Add Members: `addMember`<br/>
       *  Delete Members: `delMember`<br/>
-      *  View summary of members: `viewMember`<br/>
+      *  View summary of members: `listMember`<br/>
    
    3.4 Events `event` <br/>
      * Add events: `addEvent`<br/>
