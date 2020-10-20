@@ -114,6 +114,7 @@ The book [Harry Potter by JK Rowling] has been deleted!
 ~~~ 
 
 ### Category Management
+If you like customising your own list, you can do so by categorising your books and quotes.
 
 #### Add categories: `add -c`
 Add one or more categories to a specified book or quote.
@@ -147,7 +148,7 @@ Here is the list of all categories:
 ```
 
 #### List a specific category: `list -c`
-List all existing categories.
+List all books and quotes tagged under the specified category name.
 
 Format: `list -c CATEGORY`
 
