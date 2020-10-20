@@ -57,3 +57,34 @@ bill payments
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+## Design & Implementation
+### Account Storage feature
+The account information storage feature is facilitated by ```FinanceTools```. It allows user to store account
+information such as name of account, interest rate, cashback rate, etc. When user inputs ```store``` as command,
+```handleInfoStorage``` will handle user inputted parameters and store information accordingly. Afterwards, this
+information is stored into a txt file which is done by ```updateFile```.
+<br />
+
+ Additionally, it implements the following operations:
+ * ```info``` - list account(s) information
+ * ```clearinfo``` - clear all information
+ * ```store /delete <ACCOUNT_NO>``` - delete corresponding account number in list
+ 
+ #### Details
+ ```handleInfoStorage``` stores the user inputted information into an ArrayList which is then passed into
+ ```updateFile``` to update the txt file. The purpose of using txt file is so that when the user exits and enters the
+ program again, the information is retained, and the user does not have to re-enter the account information(s) again.
+ <br />
+ 
+ When user first enters FinanceTools in the program, ```readFileContents``` reads 5 lines in the txt file consecutively
+ in a ```while``` loop because these 5 lines consists of information that belong to a particular account. These
+ categories include: Name, Interest Rate, Cashback Rate, Cashback Cap and Notes". Doing so helps to facilitate
+ the ```delete``` option where instead of deleting single lines, we can delete the entire account information
+ which correspond to a particular account because the information is stored in one index of the ArrayList.
+ <br />
+ 
+ The following class diagram shows how the account information storage feature works:
+
+
+ The following sequence diagram shows how the account information storage feature works:
