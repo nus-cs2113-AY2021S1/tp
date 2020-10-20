@@ -44,7 +44,7 @@ public class BrowseParser extends CommandParser {
 
     private void parameterParser(String[] paramGiven) throws AniException {
         for (String param : paramGiven) {
-            String[] paramParts = param.split(" ");
+            String[] paramParts = param.split(SPLIT_WHITESPACE);
             if (paramParts.length == 0) {
                 break;
             }
@@ -108,5 +108,4 @@ public class BrowseParser extends CommandParser {
             throw new AniException(paramFieldError);
         }
     }
-
 }

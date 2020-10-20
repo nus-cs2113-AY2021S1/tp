@@ -6,6 +6,7 @@ import seedu.duke.exception.AniException;
 public class SearchParser extends CommandParser {
     protected static final String NAME_PARAM = "n";
     protected static final String GENRE_PARAM = "g";
+
     private SearchCommand searchCommand;
 
     public SearchParser() {
@@ -21,7 +22,7 @@ public class SearchParser extends CommandParser {
 
     public void parameterParser(String[] paramGiven) throws AniException {
         for (String param : paramGiven) {
-            String[] paramParts = param.split(" ", 2);
+            String[] paramParts = param.split(SPLIT_WHITESPACE, FIELD_SPLIT_LIMIT);
             if (paramParts.length == 0) {
                 break;
             }

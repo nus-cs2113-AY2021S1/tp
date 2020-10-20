@@ -3,6 +3,8 @@ package seedu.duke.parser;
 import seedu.duke.exception.AniException;
 
 public abstract class CommandParser {
+    public static final int FIELD_SPLIT_LIMIT = 2;
+    public static final String SPLIT_WHITESPACE = " ";
     public static final String NOT_RECOGNISED = " is not recognised!";
     protected static final String PARAMETER_ERROR_HEADER = "Parameter : -";
     protected static final String REQUIRE_ADDITIONAL_FIELD = " requires an additional field";

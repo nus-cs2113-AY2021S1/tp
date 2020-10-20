@@ -21,6 +21,8 @@ public class SearchCommand extends Command {
     protected static final String SEARCHING_BY_ANIME_NAME = "Searching By Anime Name";
     protected static final String SEARCH_TYPE_INVALID = "Something went wrong with search input";
     protected static final String SEARCH_TYPE_INVALID_LOG = "Search Type has the wrong values.";
+    protected static final int SEARCH_BY_NAME = 0;
+    protected static final int SEARCH_BY_GENRE = 1;
 
     private static final Logger LOGGER = getAniLogger(SearchCommand.class.getName());
 
@@ -32,7 +34,7 @@ public class SearchCommand extends Command {
     public SearchCommand() {
         searchGenre = "";
         result = "";
-        searchType = 0;
+        searchType = SEARCH_BY_NAME;
     }
 
     @Override
@@ -40,10 +42,10 @@ public class SearchCommand extends Command {
         assert (searchTerm.isEmpty() || searchGenre.isEmpty()) : ASSERT_SEARCH_TERM_EMPTY;
 
         switch (searchType) {
-        case 0:
+        case SEARCH_BY_NAME:
             searchForAnime(animeData);
             break;
-        case 1:
+        case SEARCH_BY_GENRE:
             searchForGenre(animeData);
             break;
         default:
@@ -77,11 +79,11 @@ public class SearchCommand extends Command {
 
     public void setSearchTerm(String searchTerm) {
         this.searchTerm = searchTerm.toLowerCase();
-        this.searchType = 0;
+        this.searchType = SEARCH_BY_NAME;
     }
 
     public void setSearchGenre(String searchGenre) {
         this.searchGenre = searchGenre;
-        this.searchType = 1;
+        this.searchType = SEARCH_BY_GENRE;
     }
 }
