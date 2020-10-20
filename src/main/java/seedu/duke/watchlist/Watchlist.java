@@ -64,7 +64,9 @@ public class Watchlist {
 
     @Override
     public boolean equals(Object otherObject) {
-        if (getClass().equals(otherObject.getClass())) {
+        if (otherObject == null) {
+            return false;
+        } else if (getClass().equals(otherObject.getClass())) {
             Watchlist otherWatchlist = (Watchlist) otherObject;
             return this.getName().equals(otherWatchlist.getName());
         }

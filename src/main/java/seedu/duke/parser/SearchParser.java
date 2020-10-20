@@ -1,20 +1,22 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.SwitchWorkspaceCommand;
+import seedu.duke.command.SearchCommand;
 import seedu.duke.exception.AniException;
 
-public class SwitchWorkspaceParser extends CommandParser {
-    private final SwitchWorkspaceCommand switchWorkspaceCommand;
+public class SearchParser extends CommandParser {
 
-    public SwitchWorkspaceParser() {
-        switchWorkspaceCommand = new SwitchWorkspaceCommand();
+
+    private SearchCommand searchCommand;
+
+    public SearchParser() {
+        searchCommand = new SearchCommand();
     }
 
-    public SwitchWorkspaceCommand parse(String description) throws AniException {
+    public SearchCommand parse(String description) throws AniException {
         String[] paramGiven = parameterSplitter(description);
         paramIsSetCheck(paramGiven);
         parameterParser(paramGiven);
-        return switchWorkspaceCommand;
+        return searchCommand;
     }
 
     public void parameterParser(String[] paramGiven) throws AniException {
@@ -26,9 +28,13 @@ public class SwitchWorkspaceParser extends CommandParser {
             switch (paramParts[0].trim()) {
             case "": //skip the first empty param
                 break;
-            case "n": //Name of Workspace
+            case NAME_PARAM:
                 paramFieldCheck(paramParts);
-                switchWorkspaceCommand.setSwitchToThisWorkspace(paramParts[1]);
+                searchCommand.setSearchTerm(paramParts[1]);
+                break;
+            case GENRE_PARAM:
+                paramFieldCheck(paramParts);
+                searchCommand.setSearchGenre(paramParts[1]);
                 break;
             default:
                 String invalidParameter = PARAMETER_ERROR_HEADER + param + NOT_RECOGNISED;

@@ -2,66 +2,42 @@ package seedu.duke.watchlist;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.duke.bookmark.Bookmark;
 
 import java.util.ArrayList;
 
 import static junit.framework.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class WatchlistTest {
-    private Watchlist emptyWatchlist;
-    private Watchlist filledWatchlist;
+    private static final int SAMPLE_ANIME_INDEX_ONE = 1;
+    private static final int SAMPLE_ANIME_INDEX_TWO = 2;
+
+    private Watchlist firstWatchlist;
+    private Watchlist secondWatchlist;
 
     @BeforeEach
     void setUp() {
         ArrayList<Integer> animeList = new ArrayList<>();
-        animeList.add(0);
-        animeList.add(2);
-        animeList.add(3);
+        animeList.add(SAMPLE_ANIME_INDEX_ONE);
+        animeList.add(SAMPLE_ANIME_INDEX_TWO);
 
-        emptyWatchlist = new Watchlist("emptyWatchlist");
-        filledWatchlist = new Watchlist("filledWatchlist", animeList);
+        firstWatchlist = new Watchlist("First Watchlist");
+        secondWatchlist = new Watchlist("Second Watchlist", animeList);
     }
 
     @Test
-    void testAnimeListToStringWithEmptyWatchlist() {
-        String expected = "Uhh.. It's empty.. :(" + System.lineSeparator();
-        assertEquals(emptyWatchlist.animeListToString(), expected);
-    }
+    void testEqual() {
+        // Test Equals on duplicated named watchlist.
+        Watchlist duplicateNameWatchlist = new Watchlist("First Watchlist");
+        assertTrue(duplicateNameWatchlist.equals(firstWatchlist));
+        assertFalse(duplicateNameWatchlist.equals(secondWatchlist));
 
-    @Test
-    void testAnimeListToStringWithFilledWatchlist() {
-        String expected = "1. 0" + System.lineSeparator();
-        expected += "2. 2" + System.lineSeparator();
-        expected += "3. 3" + System.lineSeparator();
-        assertEquals(filledWatchlist.animeListToString(), expected);
-    }
+        // Test Equals on non-Watchlist object.
+        Bookmark bookmark = new Bookmark();
+        assertFalse(firstWatchlist.equals(bookmark));
 
-    @Test
-    void testToStringWithEmptyWatchlist() {
-        String expected = "emptyWatchlist" + System.lineSeparator();
-        expected += "Uhh.. It's empty.. :(" + System.lineSeparator();
-        assertEquals(emptyWatchlist.toString(), expected);
-    }
-
-    @Test
-    void testToStringWithFilledWatchlist() {
-        String expected = "filledWatchlist" + System.lineSeparator();
-        expected += "1. 0" + System.lineSeparator();
-        expected += "2. 2" + System.lineSeparator();
-        expected += "3. 3" + System.lineSeparator();
-        assertEquals(filledWatchlist.toString(), expected);
-    }
-
-    @Test
-    void testEqual_duplicateWatchlist_returnsTrue() {
-        Watchlist duplicateEmptyWatchlist = new Watchlist("emptyWatchlist");
-        assertTrue(emptyWatchlist.equals(duplicateEmptyWatchlist));
-    }
-
-    @Test
-    void testEqual_uniqueWatchlist_returnsFalse() {
-        assertFalse(emptyWatchlist.equals(filledWatchlist));
+        // Test Equals on Null object.
+        assertFalse(firstWatchlist.equals(null));
     }
 }
