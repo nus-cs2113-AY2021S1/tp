@@ -28,7 +28,6 @@ class DateListTest {
 
     @Test
     void addLesson_addTwoLesson() {
-        DateList dateList = new DateList();
         Lesson lesson1 = new Lesson("CS2113", "www.zoom.com/abcde", true, 1);
         Lesson lesson2 = new Lesson("CS2101", "www.zoom.com/cdefg", true, 1);
         Duration duration1 = new Duration(LocalDateTime.of(2020,10,16,16,0),
@@ -39,6 +38,7 @@ class DateListTest {
                 LocalDateTime.of(2020,10,19,18,0));
         lesson1.addPeriod(duration2);
         lesson2.addPeriod(duration2);
+        DateList dateList = new DateList();
         dateList.addLesson(lesson1);
         dateList.addLesson(lesson2);
         assertEquals("CS2101", dateList.dateList.get(1).events.get(1).name);

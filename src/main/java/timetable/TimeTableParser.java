@@ -71,7 +71,8 @@ public class TimeTableParser {
 
     }
 
-    private static void addClassPeriods(String[] periods, int repeat, LocalDateTime startDay, Lesson lesson) throws InvalidDayOfTheWeekException {
+    private static void addClassPeriods(String[] periods, int repeat, LocalDateTime startDay,
+                                        Lesson lesson) throws InvalidDayOfTheWeekException {
         int startDayNum = startDay.getDayOfWeek().getValue();
         for (int i = 0; i < repeat; i++) {
             for (String period : periods) {
@@ -79,7 +80,7 @@ public class TimeTableParser {
                 String day = dayAndTime[0].toUpperCase().replace(" ", "");
                 String time = dayAndTime[1];
                 int dayNum;
-                try{
+                try {
                     dayNum = DayOfWeek.valueOf(day).getValue();
                 } catch (IllegalArgumentException e) {
                     throw new InvalidDayOfTheWeekException();
