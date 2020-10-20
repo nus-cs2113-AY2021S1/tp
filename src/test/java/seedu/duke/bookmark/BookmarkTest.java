@@ -19,7 +19,7 @@ class BookmarkTest {
         expectedUrlAndDescription.add("tutorial");
         expectedUrlAndDescription.add("www.google.com");
         String input = "add tutorial www.google.com";
-        assertEquals(expectedUrlAndDescription, Bookmark.extractModuleDescriptionAndUrl(input));
+        assertEquals(expectedUrlAndDescription, Bookmark.extractDescriptionAndUrl(input));
     }
 
     @Test
@@ -29,27 +29,27 @@ class BookmarkTest {
         expectedUrlAndDescription.add("tutorial");
         expectedUrlAndDescription.add("www.google.com");
         String input = "add tutorial www.google.com";
-        assertEquals(expectedUrlAndDescription, Bookmark.extractModuleDescriptionAndUrl(input));
+        assertEquals(expectedUrlAndDescription, Bookmark.extractDescriptionAndUrl(input));
     }
 
     @Test
     void extractModuleDescriptionAndUrl_missingDescription_throwsDukeException() {
         String input = "add CS2113T  www.google.com";
-        DukeException e = assertThrows(DukeException.class, () -> Bookmark.extractModuleDescriptionAndUrl(input));
+        DukeException e = assertThrows(DukeException.class, () -> Bookmark.extractDescriptionAndUrl(input));
         assertEquals(DukeExceptionType.EMPTY_DESCRIPTION, e.getError());
     }
 
     @Test
     void extractModuleDescriptionAndUrl_invalidUrl_throwsDukeException() {
         String input = "add CS2113T google.com";
-        DukeException e = assertThrows(DukeException.class, () -> Bookmark.extractModuleDescriptionAndUrl(input));
+        DukeException e = assertThrows(DukeException.class, () -> Bookmark.extractDescriptionAndUrl(input));
         assertEquals(DukeExceptionType.INVALID_URL, e.getError());
     }
 
     @Test
     void extractModuleDescriptionAndUrl_invalidAddBookmarkFormat_throwsDukeException() {
         String input = "add something";
-        DukeException e = assertThrows(DukeException.class, () -> Bookmark.extractModuleDescriptionAndUrl(input));
+        DukeException e = assertThrows(DukeException.class, () -> Bookmark.extractDescriptionAndUrl(input));
         assertEquals(DukeExceptionType.INVALID_ADD_BOOKMARK_INPUT, e.getError());
     }
 
