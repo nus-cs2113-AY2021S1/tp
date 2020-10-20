@@ -3,25 +3,62 @@ package seedu.duke.human;
 import org.junit.jupiter.api.Test;
 import seedu.duke.exception.AniException;
 
-import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UserTest {
-    private static final String USER_PROFILE_FILE_NAME = "userprofileTEST.txt";
-    private static final String WATCHLIST_FILE_NAME = "watchlistTEST.txt";
+
+    @Test
+    void testUserCreation() throws AniException {
+        User user = new User("Jessica Williams", "feMale");
+
+        assertEquals(" Name: Jessica Williams-chan | Gender: Female", user.toString());
+    }
+
+    @Test
+    void changeName_TommytoJohnny_Johnny() throws AniException {
+        User user = new User("Tommy", "Male");
+        user.setName("Johnny");
+
+        assertEquals("Johnny", user.getName());
+    }
+
+    @Test
+    void setGender_Female_returnFemale() throws AniException {
+        User user = new User("A changeGender", "MaLE");
+
+        // Notice how case is not sensitive
+        user.setGender("FEMAle");
+
+        assertEquals("Female", user.getGender().toString());
+    }
+
+    @Test
+    void getHonorificName_testGender_nameWithHonorific() throws AniException {
+        User maleUser = new User("Robinson", "MaLE");
+        assertEquals("Robinson-san", maleUser.getHonorificName());
+
+        User femaleUser = new User("Bella", "Female");
+        assertEquals("Bella-chan", femaleUser.getHonorificName());
+
+        User otherUser = new User("Thomas", "Other");
+        assertEquals("Thomas-san", otherUser.getHonorificName());
+    }
 
     @Test
     void getTotalWorkspace_noWorkspace_sizeZero() throws AniException {
-        User user = new User("A", "Male");
+        User user = new User("User getTotalWorkspace", "Male");
         assertEquals(0, user.getTotalWorkspaces());
     }
 
     @Test
-    void testAddUser() throws ParseException, AniException {
-        User user = new User("A", "Male");
+    void getTotalWorkspace_twoWorkspaces() throws AniException {
+        User user = new User("A test workspace", "Male");
 
-        Workspace newWorkspace = user.addWorkspace("Studio A");
-        assertEquals(1, user.getTotalWorkspaces());
+        user.addWorkspace("Test Workspace");
+        user.addWorkspace("Test Workspace 2");
+
+        assertEquals(2, user.getTotalWorkspaces());
     }
+
 }
