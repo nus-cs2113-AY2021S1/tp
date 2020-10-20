@@ -1,9 +1,9 @@
 package seedu.revised.command.subject;
 
 import seedu.revised.card.Subject;
-import seedu.revised.exception.card.NoSubjectException;
+import seedu.revised.exception.subject.NoSubjectException;
 import seedu.revised.card.SubjectList;
-import seedu.revised.exception.card.RepeatedSubjectException;
+import seedu.revised.exception.subject.RepeatedSubjectException;
 import seedu.revised.ui.Ui;
 
 
@@ -21,16 +21,16 @@ public class AddSubjectCommand extends SubjectCommand {
         int startOfMessage = 4;
         int endOfMessage = fullCommand.length();
         if (endOfMessage <= startOfMessage) {
-            throw new NoSubjectException();
+            throw new NoSubjectException(Ui.printNoSubjectError());
         }
         String title = fullCommand.substring(startOfMessage, endOfMessage);
         if (title.isEmpty()) {
-            throw new NoSubjectException();
+            throw new NoSubjectException(Ui.printNoSubjectError());
         }
         assert title != null;
         for (Subject subject : subjectList.getList()) {
             if (subject.getTitle().equals(title)) {
-                throw new RepeatedSubjectException();
+                throw new RepeatedSubjectException(Ui.printRepeatedSubjectError());
             }
         }
         Subject temp = new Subject(title);

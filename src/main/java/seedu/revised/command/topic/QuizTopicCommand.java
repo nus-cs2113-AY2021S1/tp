@@ -2,8 +2,9 @@ package seedu.revised.command.topic;
 
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
-import seedu.revised.exception.card.InvalidTopicCommand;
-import seedu.revised.exception.card.NoTopicException;
+import seedu.revised.exception.topic.InvalidTopicException;
+import seedu.revised.exception.topic.NoTopicException;
+import seedu.revised.ui.Ui;
 
 public class QuizTopicCommand extends TopicCommand {
     private String fullcommand;
@@ -16,10 +17,10 @@ public class QuizTopicCommand extends TopicCommand {
         return this.fullcommand;
     }
 
-    public Topic execute(Subject subject) throws NoTopicException, InvalidTopicCommand {
+    public Topic execute(Subject subject) throws NoTopicException, InvalidTopicException {
         String[] message = this.fullcommand.split(" ");
         if (message.length == 1) {
-            throw new InvalidTopicCommand();
+            throw new InvalidTopicException(Ui.printEnterTopicError());
         }
         Topic quizTopic = null;
         for (Topic topic : subject.getTopics().getList()) {
@@ -28,7 +29,7 @@ public class QuizTopicCommand extends TopicCommand {
             }
         }
         if (quizTopic == null) {
-            throw new NoTopicException();
+            throw new NoTopicException(Ui.printNoTopicsError());
         }
         return quizTopic;
 

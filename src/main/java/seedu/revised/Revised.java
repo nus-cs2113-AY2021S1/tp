@@ -8,12 +8,13 @@ import seedu.revised.command.subject.ExportCommand;
 import seedu.revised.command.subject.QuizSubjectCommand;
 import seedu.revised.command.subject.ReturnSubjectCommand;
 import seedu.revised.command.subject.SubjectCommand;
+import seedu.revised.exception.FailedParseException;
+import seedu.revised.exception.flashcard.*;
 import seedu.revised.exception.storage.DataLoadingException;
-import seedu.revised.exception.card.InvalidSubjectCommand;
-import seedu.revised.exception.card.NoFlashCardException;
-import seedu.revised.exception.card.NoSubjectException;
-import seedu.revised.exception.card.NoTopicException;
-import seedu.revised.exception.card.RepeatedSubjectException;
+import seedu.revised.exception.subject.InvalidSubjectException;
+import seedu.revised.exception.subject.NoSubjectException;
+import seedu.revised.exception.subject.RepeatedSubjectException;
+import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.parser.SubjectParser;
 import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;
@@ -80,29 +81,31 @@ public class Revised {
                     c.execute(subjects);
                 }
                 isExit = c.isExit();
-            } catch (NumberFormatException e) {
-                Ui.printIndexError();
-            } catch (NoSubjectException e) {
-                Ui.printNoSubjectError();
+            }  catch (NoSubjectException e) {
+                System.out.println(e.getMessage());
             } catch (RepeatedSubjectException e) {
-                Ui.printRepeatedSubjectError();
-            } catch (IndexOutOfBoundsException e) {
-                Ui.printOutOfBoundsError();
-            } catch (NoFlashCardException e) {
-                Ui.printNoFlashcards();
+                System.out.println(e.getMessage());
+            } catch (NoFlashcardException e) {
+                System.out.println(e.getMessage());
             } catch (NoTopicException e) {
-                Ui.printNoTopics();
-            } catch (InvalidSubjectCommand i) {
-                Ui.printInvalidSubjectCommand();
+                System.out.println(e.getMessage());
+            } catch (InvalidSubjectException e) {
+                System.out.println(e.getMessage());
+            }catch (FailedParseException e) {
+                System.out.println(e.getMessage());
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println(Ui.printOutOfBoundsError());
+            } catch (NumberFormatException e) {
+                System.out.println(Ui.printIndexError());
             } catch (Exception e) {
-                Ui.printError(e);
+                System.out.println(Ui.printError(e));
             }
         }
 
         try {
             storage.saveSubjects(subjects.getList());
         } catch (IOException e) {
-            Ui.printWritingError();
+            System.out.println(Ui.printWritingError());
         }
 
         Ui.printBye();
@@ -113,7 +116,7 @@ public class Revised {
             new Revised(BASE_DIR, EXPORT_DIR, FLASHCARD_FILENAME, TASK_FILENAME, RESULT_FILENAME, EXPORT_FILENAME)
                     .run();
         } catch (DataLoadingException e) {
-            Ui.printError(e);
+            System.out.println(e.getMessage());
         }
     }
 }

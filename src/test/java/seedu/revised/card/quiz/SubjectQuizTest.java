@@ -6,8 +6,8 @@ import seedu.revised.card.Flashcard;
 import seedu.revised.card.Subject;
 import seedu.revised.card.SubjectList;
 import seedu.revised.card.Topic;
-import seedu.revised.exception.card.NoFlashCardException;
-import seedu.revised.exception.card.NoTopicException;
+import seedu.revised.exception.flashcard.NoFlashcardException;
+import seedu.revised.exception.topic.NoTopicException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,13 +51,13 @@ class SubjectQuizTest {
     @Test
     void setUpQuiz_subjectWithTopicWithoutFlashcard_throwsNoFlashcardException() {
         SubjectQuiz subjectQuiz = new SubjectQuiz(subjects.getList().get(1));
-        assertThrows(NoFlashCardException.class, subjectQuiz::setUpQuiz);
+        assertThrows(NoFlashcardException.class, subjectQuiz::setUpQuiz);
 
     }
 
     @Test
     void setUpQuiz_subjectWithTopicsAndFlashcards_checkMaxScore()
-            throws NoFlashCardException, NoTopicException {
+            throws NoFlashcardException, NoTopicException {
         SubjectQuiz subjectQuiz = new SubjectQuiz(subjects.getList().get(2));
         subjectQuiz.setUpQuiz();
         assertEquals(subjectQuiz.result.getMaxScore(), 2.0);

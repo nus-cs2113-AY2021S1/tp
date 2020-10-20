@@ -1,11 +1,12 @@
 package seedu.revised.command.task;
 
+import seedu.revised.exception.FailedParseException;
 import seedu.revised.ui.Ui;
 
 public class SorryTaskCommand extends TaskCommand {
 
-    public void execute() {
-        Ui.printError();
+    public void execute() throws FailedParseException {
+        throw new FailedParseException(Ui.printFailedParseError());
     }
 
     /**

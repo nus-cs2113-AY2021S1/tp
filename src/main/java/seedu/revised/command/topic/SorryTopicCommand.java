@@ -2,13 +2,13 @@ package seedu.revised.command.topic;
 
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
+import seedu.revised.exception.FailedParseException;
 import seedu.revised.ui.Ui;
 
 public class SorryTopicCommand extends TopicCommand {
 
-    public Topic execute(Subject subject) {
-        Ui.printError();
-        return null;
+    public Topic execute(Subject subject) throws FailedParseException {
+        throw new FailedParseException(Ui.printFailedParseError());
     }
 
     /**

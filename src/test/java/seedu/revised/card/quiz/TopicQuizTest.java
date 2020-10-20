@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import seedu.revised.card.Flashcard;
 import seedu.revised.card.Topic;
 import seedu.revised.card.TopicList;
-import seedu.revised.exception.card.NoFlashCardException;
+import seedu.revised.exception.flashcard.NoFlashcardException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,13 +38,13 @@ class TopicQuizTest {
     @Test
     void setUpQuiz_TopicWithoutFlashcard_throwsNoFlashcardException() {
         TopicQuiz topicQuiz = new TopicQuiz(topics.get(0));
-        assertThrows(NoFlashCardException.class, topicQuiz::setUpQuiz);
+        assertThrows(NoFlashcardException.class, topicQuiz::setUpQuiz);
 
     }
 
     @Test
     void setUpQuiz_TopicsWithFlashcards_checkMaxScore()
-            throws NoFlashCardException {
+            throws NoFlashcardException {
         TopicQuiz topicQuiz = new TopicQuiz(topics.get(1));
         topicQuiz.setUpQuiz();
         assertEquals(topicQuiz.result.getMaxScore(), 2);

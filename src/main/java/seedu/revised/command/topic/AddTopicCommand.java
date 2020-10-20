@@ -3,8 +3,8 @@ package seedu.revised.command.topic;
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
 import seedu.revised.card.TopicList;
-import seedu.revised.exception.card.NoSubjectException;
-import seedu.revised.exception.card.RepeatedSubjectException;
+import seedu.revised.exception.subject.NoSubjectException;
+import seedu.revised.exception.subject.RepeatedSubjectException;
 import seedu.revised.ui.Ui;
 
 
@@ -24,15 +24,15 @@ public class AddTopicCommand extends TopicCommand {
         int endOfMessage = fullCommand.length();
         TopicList topicList = subject.getTopics();
         if (endOfMessage <= startOfMessage) {
-            throw new NoSubjectException();
+            throw new NoSubjectException(Ui.printNoSubjectError());
         }
         String title = fullCommand.substring(startOfMessage, endOfMessage);
         if (title.isEmpty()) {
-            throw new NoSubjectException();
+            throw new NoSubjectException(Ui.printNoSubjectError());
         }
         for (Topic topic : topicList.getList()) {
             if (topic.getTitle().equals(title)) {
-                throw new RepeatedSubjectException();
+                throw new RepeatedSubjectException(Ui.printRepeatedSubjectError());
             }
         }
         Topic t = new Topic(title);

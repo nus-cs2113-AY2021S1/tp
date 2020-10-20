@@ -3,8 +3,8 @@ package seedu.revised.card.quiz;
 import seedu.revised.card.Flashcard;
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
-import seedu.revised.exception.card.NoFlashCardException;
-import seedu.revised.exception.card.NoTopicException;
+import seedu.revised.exception.flashcard.NoFlashcardException;
+import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.ui.Ui;
 
 import java.time.Instant;
@@ -25,12 +25,12 @@ public class SubjectQuiz extends Quiz {
      * Transfers the flashcards from the all the topics in a subject to the SubjectQuiz class and
      * sets the maximum score of the quiz.
      *
-     * @throws NoFlashCardException If the topic has no flashcards
+     * @throws NoFlashcardException If the topic has no flashcards
      * @throws NoTopicException     If the subject has no topic
      */
-    public void setUpQuiz() throws NoFlashCardException, NoTopicException {
+    public void setUpQuiz() throws NoFlashcardException, NoTopicException {
         if (subject.getTopics().getList().size() == 0) {
-            throw new NoTopicException();
+            throw new NoTopicException(Ui.printNoTopicsError());
         }
         int maxScore = 0;
         for (Topic topic : subject.getTopics().getList()) {
@@ -41,7 +41,7 @@ public class SubjectQuiz extends Quiz {
         this.result.setMaxScore(maxScore);
 
         if (this.flashcards.size() == 0) {
-            throw new NoFlashCardException();
+            throw new NoFlashcardException(Ui.printNoFlashcardsError());
         }
     }
 
@@ -49,10 +49,10 @@ public class SubjectQuiz extends Quiz {
      * Begins the quiz for the user.
      *
      * @param results The results of the subject
-     * @throws NoFlashCardException If the topic has no flashcards
+     * @throws NoFlashcardException If the topic has no flashcards
      * @throws NoTopicException     If the subject has no topic
      */
-    public void startQuiz(ResultList results) throws NoFlashCardException, NoTopicException {
+    public void startQuiz(ResultList results) throws NoFlashcardException, NoTopicException {
         setUpQuiz();
 
         this.result.setScore(0);
