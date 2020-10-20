@@ -5,6 +5,7 @@ import seedu.duke.exception.AniException;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UserTest {
 
@@ -31,6 +32,15 @@ class UserTest {
         user.setGender("FEMAle");
 
         assertEquals("Female", user.getGender().toString());
+    }
+
+    @Test
+    void setGender_Monster_throwAniException() throws AniException {
+        User user = new User("Monster", "MaLE");
+
+        assertThrows(AniException.class, () -> {
+            user.setGender("Monster");
+        });
     }
 
     @Test
