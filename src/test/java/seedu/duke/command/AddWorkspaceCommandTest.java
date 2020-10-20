@@ -7,12 +7,11 @@ import seedu.duke.anime.AnimeData;
 import seedu.duke.exception.AniException;
 import seedu.duke.human.User;
 import seedu.duke.parser.AddWorkspaceParser;
-import seedu.duke.parser.BrowseParser;
 import seedu.duke.storage.StorageManager;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 
 class AddWorkspaceCommandTest {
