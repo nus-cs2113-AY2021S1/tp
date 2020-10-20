@@ -5,8 +5,8 @@ add    d/20-10-2020
 add	st/2000
 add  et/2000
 add p/3
-add meeting
-add any field st/2000 p/2
+add meeting d/20-10-2020
+add any field d/22-10-2020 st/2000 p/2
 add test d/28-11-2020 st/1400 et/1600 p/3
 list
 find

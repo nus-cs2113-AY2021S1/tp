@@ -1,6 +1,6 @@
 package seedu.commands;
 
-import seedu.data.TaskList;
+import seedu.data.TaskMap;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
@@ -15,13 +15,13 @@ import static seedu.messages.Messages.EDIT_MESSAGE;
 public class Edit extends Command {
     public static final String COMMAND_WORD = "edit";
     private static final Pattern COMMAND_PATTERN = Pattern.compile(
-            "^edit (?<index>\\d+)"
+            "^edit (?<key>\\d+)"
                     + "( des/(?<description>(\\w+\\s*)+\\w*))?"
                     + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
                     + "( st/(?<st>\\d{4}))?"
                     + "( et/(?<et>\\d{4}))?"
                     + "( p/(?<priority>\\d))?$");
-    private final int index;
+    private final Integer key;
     private final String description;
     private final String date;
     private final String startTime;
@@ -32,7 +32,7 @@ public class Edit extends Command {
         Matcher matcher = COMMAND_PATTERN.matcher(rawInput);
         if (matcher.find()) {
             try {
-                index = Integer.parseInt(matcher.group("index"));
+                key = Integer.parseInt(matcher.group("key"));
             } catch (NumberFormatException e) {
                 throw new InvalidTaskNumberException();
             }
@@ -47,13 +47,12 @@ public class Edit extends Command {
     }
 
     @Override
-    public CommandResult execute(TaskList tasks)
+    public CommandResult execute(TaskMap tasks)
         throws InvalidTaskNumberException, InvalidPriorityException, InvalidDatetimeException {
-        // Check range
-        if (index <= 0 || index > tasks.size()) {
+        Task task = tasks.get(key);
+        if (task == null) {
             throw new InvalidTaskNumberException();
         }
-        Task task = tasks.get(index - 1);
         // Set field
         if (description != null) {
             task.setDescription(description);
@@ -70,6 +69,6 @@ public class Edit extends Command {
         if (priority != null) {
             task.setPriority(priority);
         }
-        return new CommandResult(EDIT_MESSAGE, tasks);
+        return new CommandResult(EDIT_MESSAGE);
     }
 }

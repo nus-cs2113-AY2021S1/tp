@@ -8,8 +8,13 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import static java.lang.Math.pow;
+
 
 public class Task {
+    // MAX_NUM_TASKS = 10000
+    private static final int HASH_VALUE_DIGITS = 4;
+    private Integer taskID;
     private String description;
     private LocalDate date;
     private LocalTime startTime;
@@ -23,6 +28,30 @@ public class Task {
         this.startTime = timeStringToTime(startTime);
         this.endTime = timeStringToTime(endTime);
         priority = priorityStringToPriority(priorityString);
+        taskID = generateHashValue();
+    }
+
+    public Task(String taskID, String description, String dateString,
+                String startTime, String endTime, String priorityString)
+        throws InvalidPriorityException, InvalidDatetimeException {
+        this.description = description;
+        date = dateStringToDate(dateString);
+        this.startTime = timeStringToTime(startTime);
+        this.endTime = timeStringToTime(endTime);
+        priority = priorityStringToPriority(priorityString);
+        this.taskID = Integer.parseInt(taskID);
+    }
+
+    private int generateHashValue() {
+        return hashCode() % (int) pow(10, HASH_VALUE_DIGITS);
+    }
+
+    public Integer getTaskID() {
+        return taskID;
+    }
+
+    public void setTaskID(Integer taskID) {
+        this.taskID = taskID;
     }
 
     private LocalDate dateStringToDate(String dateString) throws InvalidDatetimeException {
@@ -110,21 +139,12 @@ public class Task {
         return date;
     }
 
-
     public void setDate(String dateString) throws InvalidDatetimeException {
         date = dateStringToDate(dateString);
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
     public LocalTime getStartTime() {
         return startTime;
-    }
-
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
     }
 
     public void setStartTime(String startTime) throws InvalidDatetimeException {
@@ -147,16 +167,12 @@ public class Task {
         return priority;
     }
 
-    public void setPriority(Priority priority) {
-        this.priority = priority;
-    }
-
     public void setPriority(String priorityString) throws InvalidPriorityException {
         priority = priorityStringToPriority(priorityString);
     }
 
     public String toString() {
-        return description + dateToString(date) + timeToString(startTime)
+        return taskID.toString() + " " + description + dateToString(date) + timeToString(startTime)
                 + timeToString(endTime) + priorityToString(priority);
     }
 }
