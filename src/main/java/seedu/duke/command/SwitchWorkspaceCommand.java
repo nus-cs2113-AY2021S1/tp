@@ -15,7 +15,7 @@ public class SwitchWorkspaceCommand extends Command {
     private static final Logger LOGGER = getAniLogger(SwitchWorkspaceCommand.class.getName());
     protected static final String SWITCH_SUCCESS_HEADER = "Workspace changed to ";
 
-    protected String switchToThisWorkspace;
+    private String switchToThisWorkspace;
 
 
     public SwitchWorkspaceCommand() {

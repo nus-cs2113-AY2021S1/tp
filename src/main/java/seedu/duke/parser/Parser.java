@@ -1,14 +1,10 @@
 package seedu.duke.parser;
 
 
-import seedu.duke.command.AddToWatchlistCommand;
 import seedu.duke.command.AddWorkspaceCommand;
-import seedu.duke.command.BookmarkAnimeCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpCommand;
-import seedu.duke.command.WatchlistCommand;
-import seedu.duke.command.RemoveCommand;
 import seedu.duke.exception.AniException;
 import static seedu.duke.logger.AniLogger.getAniLogger;
 
@@ -24,22 +20,28 @@ public class Parser {
      */
     public Command getCommand(String fullCommand) throws AniException {
         // LOGGER.setLevel(Level.WARNING);
+        LOGGER.log(Level.INFO, "Parse: " + fullCommand);
+
         String[] fullCommandSplit = parseUserInput(fullCommand);
         String description = "";
         String command = fullCommandSplit[0];
+
         if (fullCommandSplit.length > 1) {
             description = fullCommandSplit[1];
         }
 
         switch (command) {
-        case "adduser":
-            return new AddWorkspaceCommand(description);
+        case "addws":
+            return new AddWorkspaceParser().parse(description);
 
-        case "switchuser":
+        case "switchws":
             return new SwitchWorkspaceParser().parse(description);
 
         case "browse":
             return new BrowseParser().parse(description);
+
+        case "search":
+            return new SearchParser().parse(description);
 
         case "watchlist":
             return new WatchlistParser().parse(description);

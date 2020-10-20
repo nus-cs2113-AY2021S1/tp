@@ -2,28 +2,26 @@ package seedu.duke.parser;
 
 import seedu.duke.command.BrowseCommand;
 import seedu.duke.exception.AniException;
-import static seedu.duke.logger.AniLogger.getAniLogger;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static seedu.duke.logger.AniLogger.getAniLogger;
+
 public class BrowseParser extends CommandParser {
-    protected static final String SORT_PARAM = "s";
-    protected static final String FILTER_PARAM = "f";
-    protected static final String ORDER_PARAM = "o";
-    protected static final String PAGE_PARAM = "p";
-    protected static final String ASCENDING_FIELD = "asc";
-    protected static final String DESCENDING_FIELD = "dsc";
-    protected static final String NAME_FIELD = "name";
-    protected static final String RATING_FIELD = "rating";
-    protected static final int ID_SORT = 0;
-    protected static final String OUT_OF_BOUND_PAGE_ERROR = "Invalid Page size!";
-    protected static final String PARAMETER_ERROR_HEADER = "Parameter : -";
-    protected static final String REQUIRE_ADDITIONAL_FIELD = " requires an additional field";
-    protected static final String INVALID_OPTION = " is not a valid option";
-    protected static final String NOT_RECOGNISED = " is not recognised!";
-    protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for page number!";
-    protected static final String BROWSE_SETTINGS_CHANGED_INFO = "Default values modified";
+    private static final String SORT_PARAM = "s";
+    private static final String FILTER_PARAM = "f";
+    private static final String ORDER_PARAM = "o";
+    private static final String PAGE_PARAM = "p";
+    private static final String ASCENDING_FIELD = "asc";
+    private static final String DESCENDING_FIELD = "dsc";
+    private static final String NAME_FIELD = "name";
+    private static final String RATING_FIELD = "rating";
+    private static final String PARAMETER_ERROR_HEADER = "Parameter : -";
+    private static final String INVALID_OPTION = " is not a valid option";
+    private static final String NOT_RECOGNISED = " is not recognised!";
+    private static final String NON_INTEGER_PROVIDED = "Please specify an Int value for page number!";
+    private static final String BROWSE_SETTINGS_CHANGED_INFO = "Default values modified";
     private static final Logger LOGGER = getAniLogger(BrowseParser.class.getName());
 
     private BrowseCommand browseCommand;
@@ -44,7 +42,7 @@ public class BrowseParser extends CommandParser {
 
     private void parameterParser(String[] paramGiven) throws AniException {
         for (String param : paramGiven) {
-            String[] paramParts = param.split(" ");
+            String[] paramParts = param.split(SPLIT_WHITESPACE);
             if (paramParts.length == 0) {
                 break;
             }
@@ -108,5 +106,4 @@ public class BrowseParser extends CommandParser {
             throw new AniException(paramFieldError);
         }
     }
-
 }
