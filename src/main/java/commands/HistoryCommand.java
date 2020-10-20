@@ -1,7 +1,6 @@
 package commands;
 
 import access.Access;
-import exception.InvalidInputException;
 import manager.history.History;
 import storage.Storage;
 import ui.Ui;
@@ -10,13 +9,11 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static common.Messages.CARD;
-
 public class HistoryCommand extends Command {
     public static final String COMMAND_WORD = "history";
     public static final String DATE_PARAMETER = " DATE";
-    public static final String MESSAGE_DOES_NOT_EXIST = "You haven't completed any task in the last session.";
-    public static final String MESSAGE_EXIST = "Here are the tasks you have completed in the session/in a day:\n";
+    public static final String MESSAGE_DOES_NOT_EXIST = "You did not have any revision in the last session.";
+    public static final String MESSAGE_EXIST = "Here is the revision completed in the session/in a day:\n";
 
     private String date;
 

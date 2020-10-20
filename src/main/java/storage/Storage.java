@@ -353,8 +353,8 @@ public class Storage {
         Scanner s = new Scanner(f);
         while (s.hasNext()) {
             //to read the history
-            String task = s.nextLine();
-            String[] args = task.split("\\(", 2);
+            String revision = s.nextLine();
+            String[] args = revision.split("\\(", 2);
             String[] name = args[0].split("/", 2);
             try {
                 String moduleName = Parser.parseTaskNameInFile(name[0]);
