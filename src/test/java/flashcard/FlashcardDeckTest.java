@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class FlashcardDeckTest {
 
     @Test
-    void addCards() {
+    void executeCommand_addCardsCommand_addCardCorrectly() {
         FlashcardDeck flashcardDeck = new FlashcardDeck();
         String input = "2+2\n4\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
@@ -22,7 +22,7 @@ class FlashcardDeckTest {
     }
 
     @Test
-    void deleteCard() {
+    void executeCommand_deleteCardCommand_deleteCardCorrectly() {
         FlashcardDeck flashcardDeck = new FlashcardDeck();
         Flashcard flashcard1 = new Flashcard("1+1", "2");
         Flashcard flashcard2 = new Flashcard("2+2", "4");

@@ -71,7 +71,8 @@ public class FlashcardDeck {
             System.out.println("Sorry, you only have " + flashcardDeck.size() + " cards in your deck!\n"
                     + "Please enter a number within the range of 1-" + flashcardDeck.size() + ".");
         } else {
-            assert flashcardDeck.size() <= cardIndex : "size should not be greater than card index at this step";
+            assert cardIndex <= flashcardDeck.size() : "card index inserted should be less than size of deck at this"
+                    + "step";
             System.out.println("Noted. I have removed this card: "
                     + flashcardDeck.get(cardIndex - 1).question + "|" + flashcardDeck.get(cardIndex - 1).answer
                     + "\n" + "Now you have " + (flashcardDeck.size() - 1) + " cards in the list.");
