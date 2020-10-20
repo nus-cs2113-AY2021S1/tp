@@ -71,7 +71,8 @@ public class NuSchedule {
     }
 
     public static void main(String[] args){
-        new NuSchedule("data/events.txt").run();
+        assert false : "dummy assertion set to fail";
+        //new NuSchedule("data/events.txt").run();
         //todo add more files for different purposes
     }
 }
