@@ -1,7 +1,7 @@
 package fitr;
 
 import fitr.command.Command;
-import fitr.command.TipCommand;
+import fitr.command.TipManager;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.TipList;
@@ -18,11 +18,10 @@ public class Fitr {
     private ExerciseList exerciseList;
     private User user;
 
-    public Fitr(String filePathOfUserConfig, String filePathOfFoodList, String filePathOfExerciseList,
-                String filePathOfTipList) {
+    public Fitr(String filePathOfUserConfig, String filePathOfFoodList, String filePathOfExerciseList) {
         try {
             user = new User();
-            storage = new Storage(filePathOfUserConfig, filePathOfFoodList, filePathOfExerciseList, filePathOfTipList);
+            storage = new Storage(filePathOfUserConfig, filePathOfFoodList, filePathOfExerciseList);
             if (!storage.readUserConfigFile(user)) {
                 user.setup();
                 storage.writeUserConfigFile(user);
@@ -30,8 +29,8 @@ public class Fitr {
             foodList = new FoodList(storage.loadFoodList());
             exerciseList = new ExerciseList(storage.loadExerciseList());
             TipList tipList = new TipList(storage.loadTipList());
-            Command tipOfTheDay = new TipCommand(tipList);
-            tipOfTheDay.execute(foodList, exerciseList, storage, user);
+            TipManager tipOfTheDay = new TipManager(tipList);
+            tipOfTheDay.execute();
             Ui.printGreetingMessage();
             Ui.printSuggestQuestion();
         } catch (IOException e) {
@@ -51,7 +50,6 @@ public class Fitr {
     }
 
     public static void main(String[] args) {
-        new Fitr("userConfig.txt", "foodList.txt", "exerciseList.txt",
-                "tips.txt").run();
+        new Fitr("userConfig.txt", "foodList.txt", "exerciseList.txt").run();
     }
 }
