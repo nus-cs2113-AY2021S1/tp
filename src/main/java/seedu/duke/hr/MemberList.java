@@ -70,6 +70,11 @@ public class MemberList {
         }
     }
 
+    /**
+     * find the role of the member in the arraylist.
+     * @param memberName name of the member to be found.
+     * @return if member exists, returns the member, else returns null.
+     */
     public static Member findMemberByName(String memberName) {
         for (int i = 0; i < Member.numOfMembers; i++) {
             if (members.get(i).getMemberName().equalsIgnoreCase(memberName)) {
@@ -81,9 +86,9 @@ public class MemberList {
 
     /**
      * Changes the role of the member in the arraylist.
-     * @param m
-     * @param newRole
-     * @return output
+     * @param m member whose role is to be changed.
+     * @param newRole new role to replace the original role.
+     * @return output message for the user.
      */
     public static String changeMemberRole(Member m, String newRole) {
         String output;
