@@ -44,16 +44,12 @@ public class AddBookmarkCommand extends Command {
      * @param bookmarks The list of bookmarks.
      * @param timetable The list of slots.
      * @param ui The user interface.
-     * @param bookmarkStorage The storage for saving and loading bookmarks.
-     * @param slotStorage The storage for saving and loading slots.
      * @throws DukeException if there is an error when saving the bookmark.
      */
     @Override
-    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
-                        Storage bookmarkStorage, Storage slotStorage) throws DukeException {
+    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws DukeException {
         Bookmark bookmark = new Bookmark(description, url);
         String message = bookmarks.addBookmark(bookmark);
         ui.print(message);
-//        bookmarkStorage.save(bookmarks.getData());
     }
 }
