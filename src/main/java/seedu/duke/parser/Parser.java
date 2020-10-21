@@ -1,7 +1,5 @@
 package seedu.duke.parser;
 
-
-import seedu.duke.command.AddWorkspaceCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpCommand;
