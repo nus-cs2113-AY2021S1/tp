@@ -32,12 +32,21 @@ public class BookmarkList extends QuotesifyList<Bookmark> {
         return null;
     }
 
+    public Bookmark findByIndex(int index) {
+        if (index <= bookmarks.size() -1) {
+            return bookmarks.get(index);
+        } else {
+            return null;
+        }
+    }
+
     public int getSize() {
         return bookmarks.size();
     }
 
     @Override
-    public void delete(int index) {
+    public void delete(int number) {
+        int index = number - 1;
         bookmarks.remove(index);
     }
 
@@ -48,8 +57,10 @@ public class BookmarkList extends QuotesifyList<Bookmark> {
     @Override
     public String toString() {
         String bookmarksToReturn = "";
+        int index = 0;
         for (Bookmark bookmark: bookmarks) {
-            bookmarksToReturn += bookmark.toString() + System.lineSeparator();
+            index++;
+            bookmarksToReturn += index +". "+ bookmark.toString() + System.lineSeparator();
         }
 
         return bookmarksToReturn;
