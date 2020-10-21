@@ -54,6 +54,7 @@ E.g. `browse [-s SORT_CATEGORY]` can be used simply as `browse` or `browse -s na
 E.g. Both `-n USERNAME -dob DATE_FORMAT` and `-dob DATE_FORMAT -n USERNAME` are 
 both acceptable and will produce the same output.  
 
+<br/><br/>
 
 ### 3.1 View the help: `help`
 This command will provide the details of all available commands and their usage. 
@@ -68,7 +69,7 @@ Adds a new user to AniChan.
 
 Format: `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER>`
 
-Sample input: `adduser -n Timothy Wright -dob 12/12/1997 -g male`
+Example of usage: `adduser -n Timothy Wright -dob 12/12/1997 -g male`
 
 The expected outcome:
 
@@ -88,7 +89,7 @@ Note:
 
 The name in the command prompter has changed as well to reflect the new user.
 
-Sample input: `Barkley-san (Default) #> switchuser -n Isaac Asimov`
+Example of usage: `Barkley-san (Default) #> switchuser -n Isaac Asimov`
 
 The expected outcome:
 ```
@@ -122,7 +123,7 @@ The order of the parameter does not matter
 
 If no parameters or only `-o` is specified then it will display in its anime id order.
 
-Sample input: `browse -s name -p 1 -o dsc`
+Example of usage: `browse -s name -p 1 -o dsc`
 
 The expected outcome:
 ```
@@ -158,21 +159,25 @@ This command handles all watchlist management related operations:
 * Select another watchlist to use.
 * Delete a watchlist that is no longer needed.
 
+Note:
+* Active watchlist refers to the watchlist that you are currently using for 
+adding anime into or removing anime from.
+
 Format: 
 * `watchlist -n <WATCHLIST_NAME>`
 * `watchlist -l`
 * `watchlist -s <WATCHLIST_INDEX>`
 * `watchlist -d <WATCHLIST_INDEX>`
 
-
-Sample input: `watchlist -n Adventure Anime`
+Example of usage: `watchlist -n Adventure Anime`
+* Ensure the watchlist name is unique in your workspace.
 
 The expected outcome: 
 ```
 Watchlist "Adventure Anime" has been created successfully!
 ```
 
-Sample input: `watchlist -l`
+Example of usage: `watchlist -l`
 
 The expected outcome: 
 ```
@@ -181,14 +186,20 @@ Currently, you have 2 watchlist(s):
 	2. Adventure Anime
 ```
 
-Sample input: `watchlist -s 2`
+Example of usage: `watchlist -s 2`
+* Selected watchlist is also known as the **active watchlist**, which is the one
+that you are using for adding anime into or removing anime from.
+* Notice how the name of the watchlist in the bracket of your prompt have changed.
 
 The expected outcome: 
 ```
 "Adventure Anime" is now your active watchlist!
 ```
 
-Sample input: `watchlist -d 2`
+Example of usage: `watchlist -d 2`
+* For deletion to succeed, you must have at least two watchlist.
+* If the currently active (selected) watchlist is deleted, then AniChan will automatically set
+the first watchlist in the list of watchlist to be the new active watchlist.
 
 The expected outcome: 
 ```
@@ -203,11 +214,13 @@ Add an anime to the currently selected watchlist
 
 Format: `add -a <ANIME_ID>`
 
-Sample input: `add -a 3`
+Example of usage: `add -a 3`
 
 The expected outcome: 
 
-`Trigun added to watchlist!`
+```
+Trigun added to watchlist!
+```
 
 <br/>
 
@@ -220,11 +233,13 @@ Note:
 
 The index used has to be the Anime ID in the watchlist, and not the general Anime ID
 
-Sample input: 'remove -d 1'
+Example of usage: 'remove -d 1'
 
 The expected outcome:
 
-'Trigun successfully removed from watchlist'
+```
+Trigun successfully removed from watchlist
+```
 
 <br/>
 
@@ -233,7 +248,7 @@ View all anime that is in the specified watchlist
 
 Format: `view -v <WATCHLIST_ID>`
 
-Sample input: 'view -v 1'
+Example of usage: 'view -v 1'
 
 The expected outcome:
 ```
@@ -262,7 +277,7 @@ Format:
 
 `bookmark <BOOKMARK_ID> -e <EPISODE>` will edit the episode for Anime with bookmark id
 
-Sample input: `bookmark -l`
+Example of usage: `bookmark -l`
 
 The expected outcome: 
 ```
@@ -271,21 +286,21 @@ The expected outcome:
 	2. To Heart
 ```
 
-Sample input: `bookmark -a 410`
+Example of usage: `bookmark -a 410`
 
 The expected outcome: 
 ```
 Saving 410. InuYasha the Movie 2: The Castle Beyond the Looking Glass to bookmark.
 ```
 
-Sample input: `bookmark -d 1`
+Example of usage: `bookmark -d 1`
 
 The expected outcome: 
 ```
 Removing InuYasha the Movie 3: Swords of an Honorable Ruler! :(
 ```
 
-Sample input: `bookmark 1 -e 5`
+Example of usage: `bookmark 1 -e 5`
 
 The expected outcome: 
 ```
@@ -303,7 +318,7 @@ Format:
 
 `search -g <SEARCH_TERM>` will list all genres that matches the search term
 
-Sample input: `search -n bey`
+Example of usage: `search -n bey`
 
 The expected outcome:
 ```
@@ -312,7 +327,7 @@ The expected outcome:
 [ID:410] InuYasha the Movie 2: The Castle Beyond the Looking Glass
 ```
 
-Sample input: `search -g Slice of Life`
+Example of usage: `search -g Slice of Life`
 
 The expected outcome:
 ```
@@ -338,7 +353,7 @@ View all the information regarding a specific anime
 
 Format: `info -a <ANIME_ID>`
 
-Sample input: `info -a 1`
+Example of usage: `info -a 1`
 
 The expected outcome:
 ```
@@ -356,11 +371,13 @@ Estimates the time required to finish translating a script, users may provide
 their estimated words per hour speed or use the average translator speed as an estimate.
 
 Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
+* **Only one** `.txt` file is accepted by AniChan.
 * You have to specify the file extension too! E.g. `script.txt`.
-* Currently, only `.txt` files are accepted by AniChan.
+* If the option `-wph` is not specified, **AniChan** will calculate the estimation timings
+using the average translator's translation speed of 400, 500, and 600 words per hour. 
+This will produce three estimation timings for you to consider.
 
-
-Sample input: `estimate script.txt`
+Example of usage: `estimate script.txt`
 
 The expected outcome: 
 ```
@@ -369,7 +386,9 @@ Average translator (500 words per hour) takes: 4 hour(s) 38 minute(s).
 Average translator (600 words per hour) takes: 3 hour(s) 51 minute(s).
 ```
 
-Sample input: `estimate script.txt -wph 777`
+<br/>
+
+Example of usage: `estimate script.txt -wph 777`
 
 The expected outcome:
 ```
@@ -381,7 +400,7 @@ Exit AniChan
 
 Format: `exit`
 
-Sample input: `exit`
+Example of usage: `exit`
 
 The expected outcome:
 ```
