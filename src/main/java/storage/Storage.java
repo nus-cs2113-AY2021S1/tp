@@ -43,23 +43,6 @@ public class Storage {
         return filePath;
     }
 
-    public void createHistory(Ui ui, String date) {
-        try {
-            File f = new File(filePath + "/history/" + date + ".txt");
-            boolean historyFileExists = f.exists();
-            boolean historyFileCreated = false;
-            if (!historyFileExists) {
-                historyFileCreated = f.createNewFile();
-            }
-
-            if (historyFileCreated) {
-                ui.showToUser("    Successfully created new history file " + date + ".txt");
-            }
-        } catch (IOException e) {
-            ui.showError("Error creating the file.");
-        }
-    }
-
     //create the folder --> 'data/admin'
     public void createAdmin(Ui ui) {
         File f = new File(filePath);
@@ -343,12 +326,7 @@ public class Storage {
         }
     }
 
-<<<<<<< HEAD
-    public void saveHistory(HistoryList histories, String date) throws IOException {
-        FileWriter fw = new FileWriter(getFilePath() + "/history/" + date + ".txt");
-        for (int i = 0; i < histories.getHistoryCount(); i++) {
-            fw.write(histories.getHistory(i).toString());
-=======
+
     public void createHistory(Ui ui, String date) {
         try {
             File f = new File("data/history/" + date + ".txt");
@@ -374,7 +352,6 @@ public class Storage {
         FileWriter fw = new FileWriter("data/history/" + date + ".txt");
         for (History h : histories) {
             fw.write(h.toString());
->>>>>>> 28a8eee9816e2131dfd2d4beb61be578dc48aef3
         }
         fw.close();
     }
