@@ -1,16 +1,14 @@
 package seedu.duke.hr;
 
 import seedu.duke.Command;
-import seedu.duke.DukeFinanceAddDescriptionLostException;
-import seedu.duke.DukeNotNumberException;
 import seedu.duke.backend.UserInput;
 
-public class CommandListProfSpeaker extends Command {
+public class CommandListProfAdmin extends Command {
     private UserInput userInput;
 
     @Override
-    public String execute() throws DukeFinanceAddDescriptionLostException, DukeNotNumberException {
-        String output = MemberList.searchProfSpeaker();
+    public String execute() {
+        String output = MemberList.searchProfAdmin();
         return output;
     }
 

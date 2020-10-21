@@ -1,15 +1,13 @@
 package seedu.duke.hr;
 
 import seedu.duke.Command;
-import seedu.duke.DukeFinanceAddDescriptionLostException;
-import seedu.duke.DukeNotNumberException;
 import seedu.duke.backend.UserInput;
 
 public class CommandListConnection extends Command {
     private UserInput userInput;
 
     @Override
-    public String execute() throws DukeFinanceAddDescriptionLostException, DukeNotNumberException {
+    public String execute() {
         String output = MemberList.searchConnection();
         return output;
     }
