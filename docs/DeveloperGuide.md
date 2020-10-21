@@ -81,6 +81,7 @@ Given below is the Sequence Diagram for interactions within the `Parser` compone
 
 
 ### 2.5 User
+![User Diagram](images/User-Class-Diagram.png)
 
 API: `User.java`  
 
@@ -93,7 +94,7 @@ The `User`component:
 
 
 
-### 2.6 Workspace
+#### 2.5.1 Workspace
 
 API: `Workspace.java`  
 
