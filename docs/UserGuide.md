@@ -5,7 +5,7 @@
 <a href =#start> 2. Quick Start </a> <br>
 <a href =#init> 3. Initialisation </a> <br>
 <a href =#features> 4. Features </a> <br>      
-&nbsp  &nbsp  <a href =#subjects> 4.1 Subjects </a><br>
+<a href =#subjects> &nbsp  &nbsp  4.1 Subjects </a><br>
 &nbsp  &nbsp  <a href =#topics> 4.2 Topics </a><br>
 &nbsp  &nbsp  <a href =#tasks> 4.3 Tasks </a><br>
 &nbsp  &nbsp  <a href =#flashcards> 4.4 Flashcards </a><br>
