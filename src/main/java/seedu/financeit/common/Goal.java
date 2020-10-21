@@ -3,7 +3,7 @@ package seedu.financeit.common;
 import java.time.Month;
 
 /**
- * This is the class to set and get individual data
+ * This is the class to set and get individual data.
  */
 public class Goal {
     private int incomeGoal = 0;
@@ -13,10 +13,10 @@ public class Goal {
     private String category;
 
     /**
-     * This is the function that will set the input into variable
-     * @param goal
-     * @param category
-     * @param month
+     * This is the function that will set the input into variable.
+     * @param goal is the amount
+     * @param category whether expense or income
+     * @param month states for which month the goal is for
      */
     public Goal(int goal, String category, Month month) {
         this.category = category;
@@ -30,16 +30,16 @@ public class Goal {
     }
 
     /**
-     * This function set the expense month
+     * This function set the expense month.
      * based on the month entered by the user
-     * @param expenseMonth
+     * @param expenseMonth The month that for expense goal
      */
     public void setExpenseMonth(Month expenseMonth) {
         this.expenseMonth = expenseMonth;
     }
 
     /**
-     * Calling this function will output the expense month
+     * Calling this function will output the expense month.
      * stored
      * @return
      */
@@ -48,16 +48,16 @@ public class Goal {
     }
 
     /**
-     * This function set the income month
+     * This function set the income month.
      * based on the month entered by the user
-     * @param incomeMonth
+     * @param incomeMonth The month that is for income goal
      */
     public void setIncomeMonth(Month incomeMonth) {
         this.incomeMonth = incomeMonth;
     }
 
     /**
-     * Calling this function will output the income month
+     * Calling this function will output the income month.
      * stored
      * @return
      */
@@ -66,9 +66,9 @@ public class Goal {
     }
 
     /**
-     * This function will stored the income goal
+     * This function will stored the income goal.
      * based on the goal being entered by the user
-     * @param incomeGoal
+     * @param incomeGoal The amount that is set as the income goal
      */
     public void setIncomeGoal(int incomeGoal) {
         assert this.incomeGoal != -1;
@@ -76,7 +76,7 @@ public class Goal {
     }
 
     /**
-     * Calling this function will output the
+     * Calling this function will output the.
      * income goal stored
      * @return
      */
@@ -85,9 +85,9 @@ public class Goal {
     }
 
     /**
-     * This function will stored the expense goal
+     * This function will stored the expense goal.
      * based on the goal being entered by user
-     * @param expenseGoal
+     * @param expenseGoal The amount that is set as the expense goal
      */
     public void setExpenseGoal(int expenseGoal) {
         assert this.expenseGoal != -1;
@@ -95,7 +95,7 @@ public class Goal {
     }
 
     /**
-     * Calling this function will output the expense goal
+     * Calling this function will output the expense goal.
      * stored
      * @return
      */

@@ -8,11 +8,38 @@
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+{Describe the target user profile}  
+Fresh computing graduates who are just starting to enter the workforce.
+* Have limited income/budget
+* Little experience in personal financial management
+* Busy juggling their various job applications and interview which might cause them to lose track of their expenditure/ 
+bill payments
+* First time drawing salary and lack experience in income tax filling
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+{Describe the value proposition: what problem does it solve?}  
+**Expenditure Tracker**
+* Input itemised spending on a daily basis
+* Sum the monthly/weekly expenditure, as well as average weekly/daily expenditure
+* Categorise expenditures (e.g. food, transport etc) and sort by category
+
+**Budget Management**
+* Set a budget (monthly)
+* Remind users of how much budget they have left for that month
+* Edit the budget (monthly)
+* Display the budget for that month
+
+**Bill Tracker**
+* Remind users of payment due dates
+* Monthly tracker for each individual bill, visualise trends in bill spending
+
+**Finance Tools**
+* Calculate simple interest
+* Calculate compound interest with optional monthly/yearly deposit
+* Calculate cashback earned
+* Calculate miles credit earned
+* Save account information for reference
 
 ## User Stories
 
@@ -32,3 +59,63 @@
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+## Design & Implementation
+### Account Storage feature
+The account information storage feature is facilitated by ```FinanceTools```. It allows user to store account
+information such as name of account, interest rate, cashback rate, etc. When user inputs ```store``` as command,
+```handleInfoStorage``` will handle user inputted parameters and store information accordingly. Afterwards, this
+information is stored into a txt file which is done by ```updateFile```.
+<br />
+
+ Additionally, it implements the following operations:
+ * ```info``` - list account(s) information
+ * ```clearinfo``` - clear all information
+ * ```store /delete <ACCOUNT_NO>``` - delete corresponding account number in list
+ 
+ #### Details
+ ```handleInfoStorage``` stores the user inputted information into an ArrayList which is then passed into
+ ```updateFile``` to update the txt file. The purpose of using txt file is so that when the user exits and enters the
+ program again, the information is retained, and the user does not have to re-enter the account information(s) again.
+ <br />
+ 
+ When user first enters FinanceTools in the program, ```readFileContents``` reads 5 lines in the txt file consecutively
+ in a ```while``` loop because these 5 lines consists of information that belong to a particular account. These
+ categories include: Name, Interest Rate, Cashback Rate, Cashback Cap and Notes". Doing so helps to facilitate
+ the ```delete``` option where instead of deleting single lines, we can delete the entire account information
+ which correspond to a particular account because the information is stored in one index of the ArrayList.
+ <br />
+ 
+ The following class diagram shows how the account information storage feature works:
+ ![ClassDiagram](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/financetools/InfoStorageClassDiagram.png)
+
+ The following sequence diagram shows how the account information storage feature works:
+ ![SequenceDiagram1](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/financetools/InfoStorageSequenceDiagram(1).png)
+ ![SequenceDiagram2](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/financetools/InfoStorageSequenceDiagram(2).png)
+ 
+ ### Set Expense Goal Feature
+ The set expense goal feature is being implemented by ```GoalTracker```. It allows the user to set an expense goal for
+ the respective month to ensure that the user does not overspent his budget. 
+ When user enter ```expense 2000 for 08```, the command will be sent to InputParser and parse it into String[].
+ With the String[], it will be sent to a class called ```Goal```, and it will store the individual information.
+ Afterwards, it will be added to a ArrayList in a class called ```TotalGoalList```. 
+ 
+ Not only that, ```GoalTracker``` also implemented a feature called ```set income goal``` that works almost the same as 
+ set expense goal feature with just slight command difference.
+ 
+ `Format:`
+ * setExpenseGoal: expense 5000 for 08
+ * setIncomeGoal: income 5000 for 08
+ 
+ ### How it works?
+ Firstly, user will input the command based on the `Format`.
+ Secondly, the input command will be sent to InputParser to parse.
+ Thirdly, the parsed information will be sent to class `Goal` to store the individual information
+ Next, it will be added to a ArrayList in class `TotalGoalList`.
+ Lastly, the goal status will be displayed to the user.  
+ 
+ This class diagram will show how the setting of expense goal works:
+ ![ExpenseClassDiagram](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/goaltracker/SetExpenseGoalClassDiagram.png)
+ 
+ This sequence diagram will show the flow of setting of expense goal:
+ ![ExpenseSequenceDiagram](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/goaltracker/SetExpenseGoalSequenceDiagram.png)
