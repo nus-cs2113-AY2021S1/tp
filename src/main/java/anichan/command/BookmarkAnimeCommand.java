@@ -45,26 +45,22 @@ public class BookmarkAnimeCommand extends Command {
         Bookmark bookmark = user.getActiveWorkspace().bookmark;
         Workspace workspace = user.getActiveWorkspace();
         switch (bookmarkAction) {
-        case BookmarkParser
-                .EPISODE_PARAM:
+        case BookmarkParser.EPISODE_PARAM:
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_EDIT);
             result = editBookmarkEpisode(animeData, workspace);
             storageManager.saveBookmark(workspace.getName(), bookmark);
             break;
-        case BookmarkParser
-                .ADD_PARAM:
+        case BookmarkParser.ADD_PARAM:
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_ADD);
             result = addBookmarkEntry(animeData, workspace);
             storageManager.saveBookmark(workspace.getName(), bookmark);
             break;
-        case BookmarkParser
-                .DELETE_PARAM:
+        case BookmarkParser.DELETE_PARAM:
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_DELETE);
             result = deleteBookmarkEntry(animeData, workspace);
             storageManager.saveBookmark(workspace.getName(), bookmark);
             break;
-        case BookmarkParser
-                .LIST_PARAM:
+        case BookmarkParser.LIST_PARAM:
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_LIST);
             result = BOOKMARK_LIST_HEADER;
             String bookmarkList = listBookmark(animeData, workspace);
