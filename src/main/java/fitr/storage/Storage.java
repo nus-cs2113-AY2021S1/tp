@@ -213,11 +213,11 @@ public class Storage {
     }
 
     /**
-     * Writes the exercise list data into a file.
-     *
-     * @param exerciseList the exercise list to write to the file
-     * @throws IOException if an I/O error has occurred
-     */
+    * Writes the exercise list data into a file.
+    *
+    * @param exerciseList the exercise list to write to the file
+    * @throws IOException if an I/O error has occurred
+    */
     public void writeExerciseList(ExerciseList exerciseList) throws IOException {
         LOGGER.fine("Attempting to write to file: " + exerciseListPath);
         FileWriter file = new FileWriter(exerciseListPath);
@@ -234,6 +234,12 @@ public class Storage {
         file.close();
     }
 
+    /**
+     * Loads the user's goals from a file and returns an ArrayList of Goal objects.
+     *
+     * @return an ArrayList of Goal objects
+     * @throws FileNotFoundException if the file is not found
+     */
     public ArrayList<Goal> loadGoalList() throws FileNotFoundException {
         LOGGER.fine("Attempting to read file: " + goalListPath);
         ArrayList<Goal> goalList = new ArrayList<>();
@@ -253,11 +259,11 @@ public class Storage {
     }
 
     /**
-     * Writes the goal list data into a file.
-     *
-     * @param goalList the goal list to write to the file
-     * @throws IOException if an I/O error has occured
-     */
+    * Writes the goal list data into a file.
+    *
+    * @param goalList the goal list to write to the file
+    * @throws IOException if an I/O error has occured
+    */
     public void writeGoalList(GoalList goalList) throws IOException {
         LOGGER.fine("Attempting to write to file: " + goalListPath);
         FileWriter fileWriter = new FileWriter(goalListPath);
@@ -274,10 +280,10 @@ public class Storage {
     }
 
     /**
-     * Loads the tips from a file and returns an ArrayList of String tips.
-     * @return an ArrayList of String tips
-     * @throws IOException if an I/O error has occurred
-     */
+    * Loads the tips from a file and returns an ArrayList of String tips.
+    * @return an ArrayList of String tips
+    * @throws IOException if an I/O error has occurred
+    */
     public ArrayList<String> loadTipList() throws IOException {
         LOGGER.fine("Attempting to read file: " + tipListPath);
         ArrayList<String> tipList = new ArrayList<>();
@@ -287,7 +293,10 @@ public class Storage {
         while ((line = br.readLine()) != null) {
             tipList.add(line);
         }
+
         LOGGER.fine("Tip list file written successfully.");
         return tipList;
+
     }
+
 }
