@@ -49,29 +49,29 @@ class ListNoteCommandTest {
 
     @Test
     void execute_noNotes_notebookIsEmpty() {
-//        String expected = Formatter.LS
-//                + ListNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK;
-//
-//        String actual = getCommandExecutionString(notebook);
-//
-//        assertEquals(expected, actual);
+        //String expected = Formatter.LS
+        //        + ListNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK;
+
+        //String actual = getCommandExecutionString(notebook);
+
+        //assertEquals(expected, actual);
     }
 
     @Test
     void execute_noPinnedNotes_defaultList() {
-//        notebook.addNote(defaultNote);
-//        notebook.addNote(songLyrics);
-//
-//        String expected = Formatter.LS
-//                + ListNoteCommand.COMMAND_SUCCESSFUL_MESSAGE
-//                + "1. Default [91m[Sports][0m"
-//                + Formatter.LS
-//                + "2. Song Lyrics "
-//                + Formatter.LS;
-//
-//        String actual = getCommandExecutionString(notebook);
-//
-//        assertEquals(expected, actual);
+        //notebook.addNote(defaultNote);
+        //notebook.addNote(songLyrics);
+
+        //String expected = Formatter.LS
+                //+ ListNoteCommand.COMMAND_SUCCESSFUL_MESSAGE
+                //+ "1. Default [91m[Sports][0m"
+                //+ Formatter.LS
+                //+ "2. Song Lyrics "
+                //+ Formatter.LS;
+
+        //String actual = getCommandExecutionString(notebook);
+
+        //assertEquals(expected, actual);
     }
 
     private String getCommandExecutionString(Notebook notebook) {
