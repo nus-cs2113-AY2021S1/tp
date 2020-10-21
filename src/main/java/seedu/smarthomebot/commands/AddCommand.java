@@ -5,12 +5,13 @@ import seedu.smarthomebot.data.framework.type.Fan;
 import seedu.smarthomebot.data.framework.type.Lights;
 import seedu.smarthomebot.data.framework.type.SmartPlug;
 import seedu.smarthomebot.exceptions.DuplicateDataException;
+import seedu.smarthomebot.exceptions.InvalidApplianceException;
 import seedu.smarthomebot.exceptions.LocationNotFoundException;
 
 import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_EXIST;
 import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_TYPE_NOT_EXIST;
 import static seedu.smarthomebot.common.Messages.MESSAGE_LOCATION_NOT_EXIST;
-
+import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_LOCATION_CONFLICT;
 
 public class AddCommand extends Command {
 
@@ -38,6 +39,8 @@ public class AddCommand extends Command {
         try {
             if (!locationList.isLocationCreated(this.location)) {
                 throw new LocationNotFoundException();
+            } else if (locationList.isLocationCreated(this.name)) {
+                throw new InvalidApplianceException();
             }
             switch (type.toLowerCase()) {
             case Fan.TYPE_WORD:
@@ -64,6 +67,8 @@ public class AddCommand extends Command {
 
         } catch (LocationNotFoundException e) {
             return new CommandResult(MESSAGE_LOCATION_NOT_EXIST);
+        } catch (InvalidApplianceException e) {
+            return new CommandResult(MESSAGE_APPLIANCE_LOCATION_CONFLICT);
         }
     }
 }

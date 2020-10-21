@@ -73,6 +73,9 @@ public class OnCommand extends Command {
     }
 
     private CommandResult onByLocation() {
+        if (!parameter.isEmpty()) {
+            return new CommandResult("There should be no parameter for on by location.");
+        }
         if (locationList.isLocationCreated(this.name)) {
             String outputResults = LINE;
             outputResults = onApplianceByLoop(outputResults);
