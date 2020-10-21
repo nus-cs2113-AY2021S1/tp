@@ -2,7 +2,6 @@ package commands;
 
 import access.Access;
 
-import manager.chapter.CardList;
 import manager.chapter.DueChapter;
 
 import scheduler.Scheduler;
@@ -19,45 +18,33 @@ public class ListDueCommand extends Command {
             + "date.\n" + "Example: " + COMMAND_WORD + "\n";
 
     public ArrayList<DueChapter> allChapters;
-    public ArrayList<DueChapter> dueChapters = new ArrayList<>();
+    public ArrayList<DueChapter> dueChapters;
 
     private void loadAllChapters(Storage storage, Ui ui) {
         String result = "";
         try {
             allChapters = storage.loadAllDueChapters(ui);
         } catch (FileNotFoundException e) {
-            ui.showError("Sorry, you do not have any flashcards in the database yet. Please try this command again"
-                    + "once you have added some flashcards!");
+            ui.showToUser(Ui.UNABLE_TO_LOAD_EMPTY_DATABASE);
         }
     }
 
-    @Override
-    public void execute(Ui ui, Access access, Storage storage) {
-        loadAllChapters(storage, ui);
-
+    private void setDueChapters() {
         for (DueChapter chapter : allChapters) {
             LocalDate deadline = chapter.getChapter().getDueBy();
             if (Scheduler.isDeadlineDue(deadline)) {
                 dueChapters.add(chapter);
             }
         }
-        if (dueChapters.size() == 0) {
-            ui.showToUser("You have no tasks due today! Please check back again tomorrow!");
-            return;
-        }
-        System.out.print("The chapter");
-        if (dueChapters.size() > 1) {
-            System.out.print("s");
-        }
-        System.out.print(" you have due by today ");
-        if (dueChapters.size() > 1) {
-            ui.showToUser("are:");
-        } else {
-            ui.showToUser("is:");
-        }
-        for (DueChapter dueChapter : dueChapters) {
-            ui.showToUser(dueChapter.toString());
-        }
+    }
+
+    @Override
+    public void execute(Ui ui, Access access, Storage storage) {
+        dueChapters = new ArrayList<>();
+        loadAllChapters(storage, ui);
+        setDueChapters();
+        ui.printDueByTodayMessage(dueChapters.size(), COMMAND_WORD);
+        ui.printDueChapters(dueChapters);
     }
 
     @Override
