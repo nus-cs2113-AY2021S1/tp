@@ -114,7 +114,7 @@
 	 Enter doctor name: 
 	 Here are the list of available appointments: 
 	 1. 2020-10-10, available
-	 Enter the index you want: 
+	 Enter the index: 
 	 ☹ OOPS!!! Index out of bounds! Input should be between 1 to 1.
 	____________________________________________________________
 	 Enter command: 
@@ -122,7 +122,7 @@
 	 Enter doctor name: 
 	 Here are the list of available appointments: 
 	 1. 2020-10-10, available
-	 Enter the index you want: 
+	 Enter the index: 
 	____________________________________________________________
 	 Appointment on 2020-10-10 booked!
 	____________________________________________________________
@@ -140,15 +140,26 @@
 	____________________________________________________________
 	 Enter command: 
 	____________________________________________________________
+	 Here are the appointments. Choose one to edit
+	 1. 2020-10-10, booked, S9123456Z, TAN
+	 Enter the index: 
+	 Deleted appointment: 2020-10-10, booked, S9123456Z, TAN
 	____________________________________________________________
 	 Here are the list of available appointments.
 	 1. 2020-10-10
 	 2. 2020-12-12
-	 Please enter the index of appointment to edit
+	 Please enter the index of appointment to change to
 	____________________________________________________________
 	 Enter doctor name: 
 	____________________________________________________________
 	 Appointment on 2020-10-10 booked!
+	____________________________________________________________
+	 Enter command: 
+	____________________________________________________________
+	 Choose appointment to delete: 
+	 1. 2020-10-10, booked, S9123456Z, TAN
+	 Enter the index: 
+	 Deleted appointment: 2020-10-10, booked, S9123456Z, TAN
 	____________________________________________________________
 	 Enter command: 
 	____________________________________________________________

@@ -50,6 +50,6 @@ public class AppointmentList {
     }
 
     public ArrayList<Appointment> getAvailableAppointments() {
-        return (ArrayList<Appointment>) appointments.stream().filter((a)-> !a.isBooked()).collect(Collectors.toList());
+        return (ArrayList<Appointment>) appointments.stream().filter((a) -> !a.isBooked()).collect(Collectors.toList());
     }
 }

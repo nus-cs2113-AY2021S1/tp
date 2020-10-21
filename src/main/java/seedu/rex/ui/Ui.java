@@ -319,8 +319,8 @@ public class Ui {
     /**
      * Displays only the Objects in ArrayList that is required to be shown.
      *
-     * @param list          Generic ArrayList
-     * @param <T>           Generic class
+     * @param list Generic ArrayList
+     * @param <T>  Generic class
      * @return Object in ArrayList
      */
     public <T> int displayArrayList(ArrayList<T> list) {
@@ -343,8 +343,8 @@ public class Ui {
     /**
      * Gets object of Arraylist corresponding to user selection.
      *
-     * @param list          Generic ArrayList
-     * @param <T>           Generic class
+     * @param list Generic ArrayList
+     * @param <T>  Generic class
      * @return Object in ArrayList
      */
     public <T> T getItemOfArrayList(ArrayList<T> list) throws RexException {
