@@ -53,7 +53,7 @@ This is your list of event(s):
 6.[LEC][/] cs1010 20-Oct-2020 Tue 1:40PM (nus)
 7.[LEC][X] cs1010 27-Oct-2020 Tue 1:40PM (nus)
 8.[LAB][/] cs1010 14-Oct-2020 Wed 2:40PM (nus)
-9.[LAB][/] cs1010 21-Oct-2020 Wed 2:40PM (nus)
+9.[LAB][X] cs1010 21-Oct-2020 Wed 2:40PM (nus)
 ...........................................................................
 ............................. DUKE CHAT BOX ^^ ............................
 This is your list of task(s):
@@ -83,7 +83,7 @@ Timeline
 |                     |_____ [LEC][/] cs1010  (nus)
 |__ 2020-10-21 WEDNESDAY
 |            |_____ 14:40
-|                     |_____ [LAB][/] cs1010  (nus)
+|                     |_____ [LAB][X] cs1010  (nus)
 |__ 2020-10-24 SATURDAY
 |            |_____ 12:30
 |                     |_____ [TUT][X] cs1010  (nus)
