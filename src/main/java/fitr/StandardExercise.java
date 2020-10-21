@@ -8,7 +8,7 @@ public class StandardExercise {
     protected double caloricBurnRate;
     protected String name;
 
-    public StandardExercise(String name, double caloricBurnRate,ArrayList duration,ArrayList sets) {
+    public StandardExercise(String name, double caloricBurnRate, ArrayList duration, ArrayList sets) {
         this.name = name;
         this.caloricBurnRate = caloricBurnRate;
         this.duration = duration;

@@ -2,6 +2,7 @@ package fitr.parser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import fitr.command.AddExerciseCommand;
 import fitr.command.AddFoodCommand;
 import fitr.command.Command;
@@ -22,6 +23,7 @@ public class Parser {
 
     /**
      * Parses the user input and return a corresponding command.
+     *
      * @param userInput String of user input
      * @return a Command object
      */

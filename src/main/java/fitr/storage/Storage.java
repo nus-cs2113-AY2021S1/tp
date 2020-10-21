@@ -37,8 +37,8 @@ public class Storage {
      * Set up the files required in the application, by creating the files if the files do not exist and
      * setting the file paths.
      *
-     * @param userConfigPath file path of the user's profile
-     * @param foodListPath file path of the food list
+     * @param userConfigPath   file path of the user's profile
+     * @param foodListPath     file path of the food list
      * @param exerciseListPath file path of the exercise list
      * @throws IOException if an I/O error has occurred
      */
@@ -222,6 +222,7 @@ public class Storage {
 
     /**
      * Loads the tips from a file and returns an ArrayList of String tips.
+     *
      * @return an ArrayList of String tips
      * @throws IOException if an I/O error has occurred
      */

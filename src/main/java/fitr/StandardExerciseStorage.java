@@ -5,14 +5,14 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class standardExerciseStorage {
+public class StandardExerciseStorage {
     private static final String DEFAULT_UPPER_BODY_FILEPATH = "src/main/resources/upperBodyList.txt";
     private static final String DEFAULT_LOWER_BODY_FILEPATH = "src/main/resources/lowerBodyList.txt";
     private static final String DEFAULT_AEROBIC_FILEPATH = "src/main/resources/aerobicList.txt";
     private static final String DEFAULT_STRETCH_FILEPATH = "src/main/resources/stretchList.txt";
     private static final String COMMA_SEPARATOR = ", ";
 
-    standardExerciseStorage() {
+    StandardExerciseStorage() {
     }
 
     public StandardExerciseList loadUpperBodyList() throws FileNotFoundException {
