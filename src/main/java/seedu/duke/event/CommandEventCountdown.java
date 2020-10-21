@@ -9,14 +9,14 @@ public class CommandEventCountdown extends Command {
 
     @Override
     public String execute()  {
-       String userOutput = EventList.countdownView();
+        String userOutput = EventList.countdownView();
         return userOutput;
     }
 
     @Override
     public int validate(UserInput ui) {
         this.userInput = ui;
-        if (ui.getCategory().equals("event") && (ui.getCommand().equalsIgnoreCase("countdown"))){
+        if (ui.getCategory().equals("event") && (ui.getCommand().equalsIgnoreCase("countdown"))) {
             return ACCEPT;
         } else {
             return NO_MATCH;

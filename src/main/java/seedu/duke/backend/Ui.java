@@ -29,6 +29,7 @@ public class Ui {
     private static ArrayList<Command> commandList = new ArrayList<>();
     private static boolean shutdown = false;
     private static final String UNDERSCORES = "____________________________________________________________";
+
     public Ui() {
         sc = new Scanner(System.in);
         parser = new Parser();

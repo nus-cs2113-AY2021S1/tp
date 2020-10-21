@@ -6,6 +6,7 @@ import seedu.duke.backend.UserInput;
 
 public class CommandSearchEvent extends Command {
     private UserInput userInput;
+    
     @Override
     public String execute() {
         String input = userInput.getArg("s");

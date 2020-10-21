@@ -14,6 +14,7 @@ public class CommandEventStatus extends Command {
         String output = EventList.isCompleted(index - 1);
         return output;
     }
+
     @Override
     public int validate(UserInput ui) {
         userInput = ui;
@@ -28,6 +29,7 @@ public class CommandEventStatus extends Command {
             return NO_MATCH;
         }
     }
+
     @Override
     public String help() {
         return "Syntax: event done <EVENT_INDEX>";

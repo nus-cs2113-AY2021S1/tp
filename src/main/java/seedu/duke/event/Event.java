@@ -1,7 +1,5 @@
 package seedu.duke.event;
 
-import seedu.duke.backend.Ui;
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,17 +10,17 @@ import java.time.temporal.ChronoUnit;
 import static java.time.temporal.TemporalAdjusters.next;
 
 public class Event {
-    protected  String eventName;
-    protected  String eventTime;
-    protected  LocalDate date;
-    protected  String SYMBOL;
+    protected String eventName;
+    protected String eventTime;
+    protected LocalDate date;
+    protected String Symbol;
     protected boolean isDone;
 
 
     public Event(String name, String date, String time) {
         this.eventName = name;
         this.eventTime = time;
-        this.SYMBOL = "[E]";
+        this.Symbol = "[E]";
         setDateTime(date, time);
         this.isDone = false;
     }
@@ -52,35 +50,37 @@ public class Event {
     }
 
     /**
-     * Returns a tick or cross depending on whether a event is marked done.
-     *
-     * @return done or upcoming command
-     */
+    * Returns a tick or cross depending on whether a event is marked done.
+    *
+    * @return done or upcoming command
+    */
     public String getStatusIcon() {
         return isDone ? "[Done]" : "[Up-coming]";
 
     }
 
-    /**
-     * Returns the string format of the event.
-     *
-     * @return String format of event.
-     */
 
-   public String printEvent() {
-        return SYMBOL + this.getStatusIcon() + "\nEvent Name: " + this.eventName +  "\nDate: "
+    /**
+    * Returns the string format of the event.
+    *
+    * @return String format of event.
+    */
+    public String printEvent() {
+        return Symbol + this.getStatusIcon() + "\nEvent Name: " + this.eventName + "\nDate: "
                 + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\nTime: " + this.eventTime;
-   }
+    }
 
 
     public long numberOfDaysLeft() {
-        return ChronoUnit.DAYS.between(LocalDate.now(),this.getEventDate());
+        return ChronoUnit.DAYS.between(LocalDate.now(), this.getEventDate());
     }
+
     /**
-     * Attempts to read the date time. If it fails, uses relative timing to try again.
-     * @param dateStr The Date to be processed
-     * @param timeStr The time to be processed
-     */
+    * Attempts to read the date time. If it fails, uses relative timing to try again.
+    *
+    * @param dateStr The Date to be processed
+    * @param timeStr The time to be processed
+    */
     public void setDateTime(String dateStr, String timeStr) {
         eventTime = timeStr;
         try {
@@ -137,12 +137,12 @@ public class Event {
     }
 
     /**
-     * Used to identify if the string contains the keyword specified in its description.
-     *
-     * @param keyword The keyword to be matched with the description.
-     * @return true if list contains the keyword
-     */
-    public boolean containsKeyword(String keyword)  {
+    * Used to identify if the string contains the keyword specified in its description.
+    *
+    * @param keyword The keyword to be matched with the description.
+    * @return true if list contains the keyword
+    */
+    public boolean containsKeyword(String keyword) {
         boolean containsKeyword = eventName.toLowerCase().contains(keyword.toLowerCase());
         return containsKeyword;
     }
