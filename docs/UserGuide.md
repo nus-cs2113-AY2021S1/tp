@@ -17,7 +17,10 @@
     + [4.h. Change Rating](#4h-changerating---changes-rating-of-your-show)
     + [4.i. Update episode](#4i-episode---changes-the-episode-of-the-show-you-are-currently-watching)
     + [4.j. Update season](#4j-season---changes-the-season-of-the-show-you-are-currently-watching)
-    + [4.k. Exiting **WatchNext**](#4k-bye---exits-the-program)
+    + [4.k. Manage your watch time](#4k-manages-your-watch-time-limit)
+        + [4.k.a Watching a show ](#4ka-watch---watch-a-show-in-your-watchlist)
+        + [4.k.b Updating your watch time limit](#4kb-updatetimelimit---exits-the-program)
+    + [4.m. Exiting **WatchNext**](#4m-bye---exits-the-program)
 - [5. Frequently Asked Questions](#5-faq)   
 - [6. Command Summary](#6-command-summary)   
 
@@ -60,7 +63,8 @@ Ensure that you have Java 11 installed in your Computer.
 
 4.Run the command `java -jar (Version Number).jar`.
 
-[NOTE]
+
+**[NOTE]**
 *_(Version Number)_* refers to the name of our latest jar release.
 
 &nbsp;  
@@ -94,10 +98,13 @@ Expected outcome:
  The `add` command adds a show into your existing watchlist.
  
   Format:
-   `add <SHOWNAME> <SEASON> <NUMBER OF EPISODES>,<EPISODE YOU ARE WATCHING>`
+   `add <SHOWNAME> <SEASON> <NUMBER OF EPISODES>,<EPISODE YOU ARE WATCHING> <DURATION OF EPISODE>`
+   
+   **[NOTE]**
+   The `<DURATION OF EPISODE>` is in minutes.
    
   Example of usage:
-  `add Friends 2 10,10`
+  `add Friends 2 10,10 60`
  
  Expected outcome:
   
@@ -115,12 +122,12 @@ Expected outcome:
     `edit Friends`
     
  Then you will be prompted to enter the fields you want to change such as:
- name, season, episode, duration of episodes
+ name, season, episode, duration(of an episode).
  
     Example of usage:
-     `name F.r.i.e.n.d.s` , `season 2`, `episode 10,11`, `duration 1 1 90`
+     `name F.r.i.e.n.d.s` , `season 2`, `episode 10,11`, `duration 90`
      
- When you have completed all changes, use `done`.
+ When you have completed all changes, input `done`.
  
  Expected outcome:
   
@@ -234,7 +241,46 @@ This command updates the season for an existing show that you currently have in 
   
  &nbsp;
  
-### 4.k `bye` - Exits the program
+ ### 4.k Manages your watch time limit
+ **Watchnext** allows you to set and track your daily watch time with its two commands , `watch` and `updatetimelimit`. 
+ 
+### 4.k.a `watch` - Watch a show in your watchlist
+
+This command updates the current episode that you are on, and updates your current watch time limit.
+
+ Format:
+  `watch <SHOWNAME> `
+  
+ Example of usage:
+ `watch friends `
+ 
+ Expected outcome:
+  
+ <img src = "images/watch.PNG" width = "500">
+  
+ &nbsp;
+
+### 4.k.b `updatetimelimit` - Exits the program
+
+This command updates the current episode that you are on, and updates your current watch time limit.
+
+ Format:
+  `updatetimelimit <DURATION LIMIT> `
+  
+  **[NOTE]**
+ 1. `<DURATION LIMIT>` should be entered in minutes. Your set duration will be stored until the next day.
+ 2. If you have watched a show before updating your time limit, it will automatically be taken into account after you enter the `updatetimelimit` command.
+ 
+ Example of usage:
+ `updatetimelimit 420 `
+ 
+ Expected outcome:
+  
+ <img src = "images/updatetimelimit.PNG" width = "500">
+  
+ &nbsp;
+ 
+### 4. m `bye` - Exits the program
 This command exits the program.
 
 Format:
@@ -276,6 +322,10 @@ Expected outcome:
 * Update episode  `episode Friends 10`
 
 * Update season   `season Friends 3`
+
+* Watch a show   `watch Friends`
+
+* Update watch time limit   `updatetimelimit 100`
 
 * Exit program  `bye`
 
