@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import seedu.eduke8.common.Displayable;
+import seedu.eduke8.explanation.Explanation;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.option.OptionList;
@@ -84,7 +85,11 @@ public class TopicsStorage extends LocalStorage {
 
         Hint hint = new Hint(hintDescription);
 
-        return new Question(questionDescription, optionList, hint);
+        String explanationDescription = (String) question.get("explanation");
+
+        Explanation explanation = new Explanation(explanationDescription);
+
+        return new Question(questionDescription, optionList, hint, explanation);
     }
 
     private Option parseToOptionObject(JSONObject option) {
