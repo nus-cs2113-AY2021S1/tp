@@ -67,9 +67,6 @@ public class EventList {
         return userOutput;
     }
 
-    public static void printStar() {
-        System.out.println("*".repeat(50));
-    }
 
     /**
      * Prints a list of events.

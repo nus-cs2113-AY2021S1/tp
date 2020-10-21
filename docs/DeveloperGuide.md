@@ -7,7 +7,6 @@
 ##Introduction 
 CCA Manager is a revolutionary all-in-one management tool that changes the way you can manage interest groups with unrivaled efficiency and simplicity. Its lightweight Command Line Interface (CLI) allows administrators to breeze through tasks quickly and easily while offering powerful features to advanced users.
 
-
 This developer guide is written to document the implementation of CCA Manager. This document is intended for people who
 are interested in learning more about the technical details of the various features and the organization of the application.
 
@@ -26,7 +25,7 @@ The rest of the app consists of the below:
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`storage`**](#storage-component): outputs the data into 3 csv files: events.csv,finance.csv and members.csv
+* [**`storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 
 ### Input Parsing
@@ -65,7 +64,7 @@ Aspect: Design of parser
     * Pros: Command classes are free to simplify the parsing step depending on the required complexity of the command. No intermediate step and overhead.
     * Cons: More difficult to enforce parsing standards across Commands. String manipulation becomes required in every command.
 
-###Finance
+### Finance
 **1.1. Add/delete finance log entry feature**  
 1.1.1. Current Implementation  
 The `CommandFinanceAdd` class in `seedu.duke.finance` handles adding finance log entry. It adds a new `FinanceLog` instance according to `userInput` into `FinanceList`.  
@@ -123,7 +122,6 @@ Aspect: Repeated items
     *Cons: The summary cannot show each index of the repeated items that it is confusing when user wants to delete 
     any one of them.  
 
-
 ## Product scope
 ### Target user profile
 
@@ -141,8 +139,15 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|user|add/delete members to the list |keep track of the members in the CCA|
+|v1.0|user|view a summary of members |view information of people in the various roles|
+|v1.0|user|add/delete events to the list|so that i can manage the schedule|
+|v1.0|user|view a summary of events |keep track of future and completed events|
+|v1.0|user|add/delete entries|keep track of financial records in the CCA|
+|v1.0|user|view financial summary |keep track of cashflow information at a glance|
+|v2.0|user|view the number of days remaining for the events|remind myself of upcoming events |
+|v2.0|user|perform a search on member/events|find the details of the member/event quickly|
+|v2.0|user|view the list of contacts of the prof/admin|so that i know how to contact them for admin matters|
 
 ## Non-Functional Requirements
 
