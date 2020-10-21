@@ -10,10 +10,11 @@ import commands.GoCommand;
 import commands.HelpCommand;
 import commands.ListCommand;
 import commands.ListDueCommand;
+import commands.RateCommand;
 import commands.RemoveCommand;
 import commands.ReviseCommand;
+import commands.ShowRateCommand;
 import manager.card.Card;
-import manager.history.History;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -130,6 +131,8 @@ public class Ui {
         out.println("8. " + GoCommand.MESSAGE_USAGE);
         out.println("9. " + BackCommand.MESSAGE_USAGE);
         out.println("10. " + ListDueCommand.MESSAGE_USAGE);
+        out.println("11. " + RateCommand.MESSAGE_USAGE);
+        out.println("12. " + ShowRateCommand.MESSAGE_USAGE);
     }
 
     public void showError(String error) {

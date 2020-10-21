@@ -18,7 +18,7 @@ public class Card {
         setQuestion(question);
         setDueBy(null);
         setPreviousInterval(1);
-        this.setRating(CANNOT_ANSWER);
+        setRating(CANNOT_ANSWER);
     }
 
     public Card(String question, String answer, int previousInterval, int rating) {
@@ -71,6 +71,6 @@ public class Card {
     }
 
     public int getRating() {
-        return this.rating;
+        return rating;
     }
 }

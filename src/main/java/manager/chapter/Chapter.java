@@ -94,13 +94,13 @@ public class Chapter {
     public String translateRating() {
         String ratingInString;
         switch (rating) {
-        case 1:
+        case EASY:
             ratingInString = "Easy";
             break;
-        case 2:
+        case MEDIUM:
             ratingInString = "Medium";
             break;
-        case 3:
+        case HARD:
             ratingInString = "Hard";
             break;
         default:

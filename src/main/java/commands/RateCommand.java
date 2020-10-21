@@ -10,17 +10,18 @@ public class RateCommand extends Command {
     public static final String COMMAND_WORD = "rate";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Rate chapter based on a specified index in the list. \n"
+            + ": Rates chapter based on a specified index in the list. \n"
             + "Parameters: INDEX\n" + "Example: " + COMMAND_WORD + " 2\n";
 
     public static final String MESSAGE_SUCCESS = "You have completed rating for this chapter.";
     public static final String MESSAGE_FAIL = "Sorry, rate command format is wrong"
             + ", please read following instruction: \n";
-    public static final String MESSAGE_START_RATING = "Please rate this Chapter! \n"
-            + "You have the options of: Easy(E), Medium(M) or Hard(H) \n" + "Would your choice be E, M or H?";
-    public static final String EASY = "e";
-    public static final String MEDIUM = "m";
-    public static final String HARD = "h";
+    public static final String MESSAGE_START_RATING = "Please rate this Chapter! \n";
+    public static final String MESSAGE_RATING_USAGE = "You have the options of: Easy(E), Medium(M) or Hard(H) \n"
+            + "Would your choice be E, M or H?";
+    public static final String EASY = "E";
+    public static final String MEDIUM = "M";
+    public static final String HARD = "H";
 
     protected int ratingIndex;
 
@@ -50,10 +51,11 @@ public class RateCommand extends Command {
     }
 
     public String getChoiceOfDeckRating() {
-        System.out.println(MESSAGE_START_RATING);
+        System.out.println(MESSAGE_START_RATING + MESSAGE_RATING_USAGE);
         Ui ratingUi = new Ui();
         String userChoice = ratingUi.readCommand();
         while (!validDeckRating(userChoice)) {
+            System.out.println(MESSAGE_FAIL + MESSAGE_RATING_USAGE);
             userChoice = ratingUi.readCommand();
         }
         return userChoice.toUpperCase();
@@ -61,12 +63,11 @@ public class RateCommand extends Command {
 
     private static boolean validDeckRating(String rating) {
         switch (rating.toUpperCase()) {
-        case "E":
-        case "M":
-        case "H":
+        case EASY:
+        case MEDIUM:
+        case HARD:
             return true;
         default:
-            System.out.println(MESSAGE_FAIL);
             return false;
         }
     }
