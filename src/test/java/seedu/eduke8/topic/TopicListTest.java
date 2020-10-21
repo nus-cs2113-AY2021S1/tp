@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestTemplate;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.exception.Eduke8Exception;
+import seedu.eduke8.explanation.Explanation;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.option.OptionList;
@@ -22,6 +23,7 @@ class TopicListTest {
     private static final String QUESTION_TWO_DESCRIPTION = "Second Question";
     private static final String QUESTION_THREE_DESCRIPTION = "Third Question";
     private static final String HINT = "Hint";
+    private static final String EXPLANATION = "Explanation";
     private static final int DEFAULT_TOPIC_COUNT = 2;
 
     @Test
@@ -98,8 +100,9 @@ class TopicListTest {
         optionList.add(option2);
 
         Hint hint = new Hint(HINT);
+        Explanation explanation = new Explanation(EXPLANATION);
 
-        Question question = new Question(description, optionList, hint);
+        Question question = new Question(description, optionList, hint, explanation);
 
         return question;
     }

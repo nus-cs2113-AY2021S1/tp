@@ -5,6 +5,7 @@
       {
         "description": "A software project may come in the form of:",
         "hint": "Recall the types of software projects that exist.",
+        "explanation": "",
         "options": [
           {
             "description": "A brown-field project and a green-field project.",
@@ -27,6 +28,7 @@
       {
         "description": "Which of the following is a characteristic of a well-defined requirement?",
         "hint": "Try to remember about what purpose requirements serve to pick out the correct answer.",
+        "explanation": "",
         "options": [
           {
             "description": "Qualitative",
@@ -49,6 +51,7 @@
       {
         "description": "Requirements come from stakeholders.",
         "hint": "Think about what you have done when writing OOP code and what OOP is useful for",
+        "explanation": "",
         "options": [
           {
             "description": "True",
@@ -71,6 +74,7 @@
       {
         "description": "Requirements should be prioritised based on:",
         "hint": "Think about how a stakeholder would rank a list of requirements in order.",
+        "explanation": "",
         "options": [
           {
             "description": "Order of creation and amount of work needed to be done to complete the requirement.",
@@ -93,6 +97,7 @@
       {
         "description": "True or False: I can omit the benefit specified in a User Story if it is obvious.",
         "hint": "If something is obvious, such that everyone knows what it does, is there a need to state it?",
+        "explanation": "",
         "options": [
           {
             "description": "True",
@@ -120,6 +125,7 @@
       {
         "description": "Choose the correct statements?",
         "hint": "Recall the differences between the two core OOP concepts: abstraction and encapsulation.",
+        "explanation": "",
         "options": [
           {
             "description": "An object is an encapsulation because it packages data and behavior into one bundle.",
@@ -142,6 +148,7 @@
       {
         "description": "OO is a higher level mechanism than the procedural paradigm.",
         "hint": "OOP four core concepts are: Encapsulation, Abstraction, Inheritance and Polymorphism.",
+        "explanation": "",
         "options": [
           {
             "description": "True",
@@ -164,6 +171,7 @@
       {
         "description": "Which of the following is NOT a core concept of OOP?",
         "hint": "Think about what you have done when writing OOP code and what OOP is useful for",
+        "explanation": "",
         "options": [
           {
             "description": "Inheritance",
@@ -186,6 +194,7 @@
       {
         "description": "Choose the WRONG statement",
         "hint": "We are using OOP to help model solutions like how objects in real world work, in Java",
+        "explanation": "",
         "options": [
           {
             "description": "OO is a programming paradigm",
@@ -208,6 +217,7 @@
       {
         "description": "Choose the WRONG statement",
         "hint": "C language is not an OO language. Java code is able to be written like C code.",
+        "explanation": "",
         "options": [
           {
             "description": "Java and C++ are OO languages",
@@ -235,6 +245,7 @@
       {
         "description": "What does SLAP stand for?",
         "hint": "SLAP is used to avoid varying the level of abstraction within a code fragment.",
+        "explanation": "This is as per the textbook.",
         "options": [
           {
             "description": "Single Level of Abstraction Per method",
@@ -255,19 +266,20 @@
         ]
       },
       {
-        "description": "Which of the following options is NOT a drawback of optimizing code prematurely?",
+        "description": "Which of the following options is false about premature optimizations?",
         "hint": "We have to avoid premature optimizations.",
+        "explanation": "Sometimes, optimization takes priority. Eg: writing code for resource-constrained environment.",
         "options": [
           {
             "description": "You may not know which parts are the real performance bottlenecks.",
             "correct": false
           },
           {
-            "description": "Optimizing code prematurely allows users to view shorter code.",
+            "description": "Optimizing code is always the last step, it should never be the priority.",
             "correct": true
           },
           {
-            "description": "Optimizing can complicate the code.",
+            "description": "Optimizing code prematurely can complicate the code.",
             "correct": false
           },
           {
@@ -278,7 +290,8 @@
       },
       {
         "description": "Which of the following option should we strive to have in our code?",
-        "hint": "Coders would prefer to have a simple solution in favor of a complicated one.",
+        "hint": "Understanding of the code is very important.",
+        "explanation": "Coders would prefer to have a simple solution instead of a complicated one.",
         "options": [
           {
             "description": "Arrowhead style code",
@@ -301,6 +314,7 @@
       {
         "description": "Which of the following option is true?",
         "hint": "We should always aim to have excellent documentation value.",
+        "explanation": "This makes the class easier to comprehend and maintain.",
         "options": [
           {
             "description": "Imported classes should always be listed explicitly.",
@@ -323,6 +337,7 @@
       {
         "description": "Which of the following standards is FALSE? ",
         "hint": "Following coding standards makes it easier for everyone to understand the code.",
+        "explanation": "This is the naming convention for boolean variables used by Java code packages.",
         "options": [
           {
             "description": "Line length should be no longer than 120 characters.",
@@ -350,6 +365,7 @@
       {
         "description": "Which of these is not considered a benefit of a typical RCS?",
         "hint": "Typical RCS may not use any graphics",
+        "explanation": "",
         "options": [
           {
             "description": "Help a single user manage revisions of a single file",
@@ -372,6 +388,7 @@
       {
         "description": "Merge conflicts can occur when:",
         "hint": "Conflicts can normally occur when different developer change the same line of code",
+        "explanation": "",
         "options": [
           {
             "description": "team members don't like each other",
@@ -394,6 +411,7 @@
       {
         "description": "Git:",
         "hint": "Git can be quite flexible in its use",
+        "explanation": "",
         "options": [
           {
             "description": "supports distributed revision control",
@@ -416,6 +434,7 @@
       {
         "description": "Your local repository can communicate with ___ remote repositories:",
         "hint": "Recall adding remote repositories through git",
+        "explanation": "",
         "options": [
           {
             "description": "zero",
@@ -438,6 +457,7 @@
       {
         "description": "What is branching?",
         "hint": "Think about the use of branching for your team project",
+        "explanation": "",
         "options": [
           {
             "description": "Restoring the state of the working directory at a point in the past",
@@ -465,6 +485,7 @@
       {
         "description": "What is the value of the following expression? \n 4 * 5 - 1",
         "hint": "* has higher precedence than -",
+        "explanation": "",
         "options": [
           {
             "description": "19",
@@ -487,6 +508,7 @@
       {
         "description": "What is the value of the following expression? \n 4 * (5 - 1)",
         "hint": "Parentheses ( ) have higher precedence than *",
+        "explanation": "",
         "options": [
           {
             "description": "19",
@@ -509,6 +531,7 @@
       {
         "description": "What is the value of the following expression? \n 4 * (5 - 1)",
         "hint": "Parentheses ( ) have higher precedence than *",
+        "explanation": "",
         "options": [
           {
             "description": "19",
@@ -531,6 +554,7 @@
       {
         "description": "Which of the following expressions gives a boolean value of false?",
         "hint": "What are the precedences of parentheses and conditional operators?",
+        "explanation": "",
         "options": [
           {
             "description": "true && true",
@@ -553,6 +577,7 @@
       {
         "description": "Consider\nint[] scores = new int[4]\nscores[5] = 0\nWhat is the error here?",
         "hint": "The int array in the question has the size of 4",
+        "explanation": "",
         "options": [
           {
             "description": "There is no error here",
