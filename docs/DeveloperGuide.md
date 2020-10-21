@@ -2,19 +2,19 @@
 
 
 * [1. Introduction](#1-introduction)
-    + [1.a Purpose](#)
-    + [1.b Scope](#1)
-* [2. Setting up](#)
-    + [2.a Prerequisites](#)
-    + [2.b Scope](#1)
-    + [2.c Verifying the setup](#2a-prerequisites)
+    + [1.a Purpose](#1a-purpose)
+    + [1.b Scope](#1b-scope)
+* [2. Setting up](#2-setting-up)
+    + [2.a Prerequisites](#2a-prerequisites)
+    + [2.b Setting up project](#2b-setting-up-the-project-in-your-computer)
+    + [2.c Verifying the setup](#2c-verifying-the-setup)
     + [2.d Before Writing Code](#1)
-* [3. Design](#3)
-* [4. Implementation](#4)
-- [5. Documentation](#5)   
-- [6. Testing](#6-)   
-- [7. Dev Ops](#6--)  
-- [Appendices](#6--)  
+* [3. Design](#3-design)
+* [4. Implementation](#4-implementation)
+- [5. Documentation](#5-documentation)   
+- [6. Testing](#6-testing)   
+- [7. Dev Ops](#7-dev-ops)  
+- [Appendices](#user-stories)  
    
 ## 1. Introduction
 
@@ -46,7 +46,7 @@ The `WatchNext.jar` file is compiled using the Java version mentioned above. +
 IntelliJ has Gradle and JavaFx plugins installed by default.
 Do not disable them. If you have disabled them, go to `File` > `Settings` > `Plugins` to re-enable them.
 
- ### 2.b Setting up the project in your computer
+### 2.b Setting up the project in your computer
  
  **Fork** this [repo](https://github.com/AY2021S1-CS2113T-W12-3/tp), and clone the fork to your computer.
  
@@ -69,13 +69,13 @@ Do not disable them. If you have disabled them, go to `File` > `Settings` > `Plu
 9. Open a console and run the command `gradlew processResources` (Mac/Linux: `./gradlew processResources`). It should finish with the `BUILD SUCCESSFUL` message. +
 This will generate all the resources required by the application and tests.
 
- ### 2.c Verifying the setup
+### 2.c Verifying the setup
 
 1. You can run `Duke` and try a few commands.
 
 2. You can also run tests using our instructions for manual testing to explore our features.
 
- ### 2.d Before Writing Code
+### 2.d Before Writing Code
  
  1. Set up CI
  
