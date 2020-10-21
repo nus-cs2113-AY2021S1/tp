@@ -38,8 +38,8 @@ public class UserTest {
         ExerciseList exerciseList = new ExerciseList();
         foodList.addFood(new Food("Chicken", new Calorie(200), 1));
         foodList.addFood(new Food("Duck", new Calorie(200), 1));
-        exerciseList.addExercise(new Exercise("Squats", new Calorie(100), 1));
-        exerciseList.addExercise(new Exercise("Running", new Calorie(100), 1));
+        exerciseList.addExercise(new Exercise("Squats", new Calorie(100)));
+        exerciseList.addExercise(new Exercise("Running", new Calorie(100)));
         User user = new User();
         assertEquals(200, user.calculateCalorieBurnt(exerciseList).get());
         assertEquals(400, user.calculateCalorieConsumed(foodList).get());

@@ -1,8 +1,10 @@
 package fitr;
 
 import fitr.command.Command;
+import fitr.tip.TipManager;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
+import fitr.list.TipList;
 import fitr.storage.Storage;
 import fitr.ui.Ui;
 import fitr.user.User;
@@ -15,19 +17,23 @@ public class Fitr {
     private FoodList foodList;
     private ExerciseList exerciseList;
     private User user;
+    private Recommender recommender;
 
     public Fitr(String filePathOfUserConfig, String filePathOfFoodList, String filePathOfExerciseList) {
         try {
             user = new User();
-            Ui.printGreetingMessage();
             storage = new Storage(filePathOfUserConfig, filePathOfFoodList, filePathOfExerciseList);
             if (!storage.readUserConfigFile(user)) {
                 user.setup();
                 storage.writeUserConfigFile(user);
             }
-            Ui.printSuggestQuestion();
             foodList = new FoodList(storage.loadFoodList());
             exerciseList = new ExerciseList(storage.loadExerciseList());
+            TipList tipList = new TipList(storage.loadTipList());
+            TipManager tipOfTheDay = new TipManager(tipList);
+            tipOfTheDay.execute();
+            Ui.printGreetingMessage();
+            Ui.printSuggestQuestion();
         } catch (IOException e) {
             System.out.println("Theres no file");
         }
@@ -38,7 +44,7 @@ public class Fitr {
         while (!isExit) {
             String userInput = Ui.read();
             Command c = Parser.parse(userInput);
-            c.execute(foodList, exerciseList, storage, user);
+            c.execute(foodList, exerciseList, storage, user, recommender);
             isExit = c.isExit();
         }
         Ui.printExitMessage();

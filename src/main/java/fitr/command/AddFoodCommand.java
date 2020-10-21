@@ -2,6 +2,7 @@ package fitr.command;
 
 import fitr.Calorie;
 import fitr.Food;
+import fitr.Recommender;
 import fitr.exception.FitrException;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
@@ -17,8 +18,8 @@ public class AddFoodCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage, User user) {
-        command = command.split(" ", 2)[1];
+    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user,
+                        Recommender recommender) {
         try {
             String nameOfFood = command.split("/", 2)[0];
             nameOfFood = nameOfFood.trim();
@@ -31,8 +32,8 @@ public class AddFoodCommand extends Command {
                 if (amountOfCalories.get() < 0) {
                     throw new NumberFormatException();
                 }
-                foodList.addFood(new Food(nameOfFood, amountOfCalories));
-                storage.writeFoodList(foodList);
+                foodlist.addFood(new Food(nameOfFood, amountOfCalories));
+                storage.writeFoodList(foodlist);
                 Ui.printCustomMessage("The following food has been added: " + nameOfFood);
             } else if (command.split(" ").length == 2) {
                 Calorie amountOfCalories = new Calorie(Integer.parseInt(command.split(" ")[0]));
@@ -43,8 +44,8 @@ public class AddFoodCommand extends Command {
                 if (amountOfFood < 0) {
                     throw new FitrException();
                 }
-                foodList.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood));
-                storage.writeFoodList(foodList);
+                foodlist.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood));
+                storage.writeFoodList(foodlist);
                 Ui.printCustomMessage("The following food has been added: " + nameOfFood);
             }
         } catch (NumberFormatException | NullPointerException e) {

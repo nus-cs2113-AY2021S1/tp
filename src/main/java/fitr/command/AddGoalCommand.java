@@ -1,5 +1,6 @@
 package fitr.command;
 
+import fitr.Recommender;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.storage.Storage;
@@ -11,8 +12,10 @@ public class AddGoalCommand extends Command {
         this.command = command;
     }
 
+
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage, User user) {
+    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user,
+                        Recommender recommender) {
 
     }
 

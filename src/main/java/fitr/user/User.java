@@ -230,4 +230,8 @@ public class User {
         return weight / ((height) * (height));
     }
 
+    public int getFitnessLevel() {
+        return 1;
+    }
+
 }

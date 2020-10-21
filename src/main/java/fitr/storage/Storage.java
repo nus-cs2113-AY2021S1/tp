@@ -7,6 +7,8 @@ import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.user.User;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -29,6 +31,7 @@ public class Storage {
     private final String exerciseListPath;
     private final String foodListPath;
     private final String userConfigPath;
+    private static final String tipListPath = "src/main/resources/tips.txt";
 
     /**
      * Set up the files required in the application, by creating the files if the files do not exist and
@@ -189,7 +192,7 @@ public class Storage {
             line = readFile.nextLine();
             arguments = line.split(COMMA_SEPARATOR);
             exerciseList.add(new Exercise(arguments[0],
-                    new Calorie(Integer.parseInt(arguments[1])), Integer.parseInt(arguments[2])));
+                    new Calorie(Integer.parseInt(arguments[1]))));
         }
 
         LOGGER.fine("Exercise list file read successfully.");
@@ -210,11 +213,28 @@ public class Storage {
         for (int i = 0; i < exerciseList.getSize(); i++) {
             exercise = exerciseList.getExercise(i);
             file.write(exercise.getNameOfExercise()
-                    + COMMA_SEPARATOR + exercise.getCalories()
-                    + COMMA_SEPARATOR + exercise.getDuration() + System.lineSeparator());
+                    + COMMA_SEPARATOR + exercise.getCalories() + System.lineSeparator());
         }
 
         LOGGER.fine("Exercise list file written successfully.");
         file.close();
+    }
+
+    /**
+     * Loads the tips from a file and returns an ArrayList of String tips.
+     * @return an ArrayList of String tips
+     * @throws IOException if an I/O error has occurred
+     */
+    public ArrayList<String> loadTipList() throws IOException {
+        LOGGER.fine("Attempting to read file: " + tipListPath);
+        ArrayList<String> tipList = new ArrayList<>();
+
+        BufferedReader br = new BufferedReader(new FileReader(tipListPath));
+        String line;
+        while ((line = br.readLine()) != null) {
+            tipList.add(line);
+        }
+        LOGGER.fine("Tip list file written successfully.");
+        return tipList;
     }
 }
