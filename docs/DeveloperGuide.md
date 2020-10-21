@@ -8,8 +8,22 @@
 
 ## Implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}.
 
+#### [Proposed] Deadline feature
+
+The user executes ```deadline 1; 7/10/20; 11:20 PM``` command to set the deadline for the 1st event in Personal event list
+to be on the 7th October 2020 at 11:20 PM. 
+The ```deadline``` command calls ```DeadlineCommand#execute()```, adding/updating the personal event deadline. <br>
+Given below is how the deadline command behave: <br>
+
+<p align="center">
+  <img width="414" height="562" src="/docs/diagrams/DeadlineScenario.jpg">
+</p>
+
+The following sequence diagram shows how the deadline operation works: <br>
+
+![Sequence Diagram for Deadline Command](/docs/diagrams/DeadlineSequenceDiagram.jpg)
 ## Documentation, logging, testing, configuration, dev-ops (not sure what this entails)
 
 ## Appendix: Requirements
@@ -18,7 +32,13 @@
 
 ##### Target user profile
 
-{Describe the target user profile}
+<ul>
+    <li>has a need to organise events using scheduler</li>
+    <li>prefer desktop application</li>
+    <li>can type fast</li>
+    <li>prefer typing to mouse interactions</li>
+    <li>is reasonably comfortable using CLI apps</li>
+</ul>
 
 ##### Value proposition
 
@@ -35,7 +55,10 @@
 
 ### Non-Functional Requirements
 
-{Give non-functional requirements}
+<ol>
+    <li>Work on any mainstream OS that has Java 11 or above installed</li>
+    <li>A user who has faster typing speed than average should be able to use this program with ease</li>
+</ol>
 
 ## Glossary
 
