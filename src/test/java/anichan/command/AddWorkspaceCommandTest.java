@@ -10,12 +10,13 @@ import anichan.human.User;
 import anichan.parser.AddWorkspaceParser;
 import anichan.storage.StorageManager;
 
+import java.io.File;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
-
 class AddWorkspaceCommandTest {
+    private static final String VALID_TEST_DIRECTORY = "src" + File.separator + "test" + File.separator
+                                                       + "data" + File.separator;
+
     AnimeData animeData;
     User user;
     StorageManager storageManager;
@@ -26,7 +27,7 @@ class AddWorkspaceCommandTest {
         Anime testAnime1 = new Anime();
         testList.add(testAnime1);
         animeData = new AnimeData(testList);
-        storageManager = new StorageManager("data");
+        storageManager = new StorageManager(VALID_TEST_DIRECTORY);
         user = new User("Tom", "Male");
     }
 
