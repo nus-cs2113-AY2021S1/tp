@@ -108,8 +108,11 @@ public class Ui {
         System.out.println(HORIZONTAL_LINE);
     }
 
-    public void printAnswerIsCorrect() {
-        printMessage(MESSAGE_ANSWER_CORRECT);
+    public void printAnswerIsCorrect(String explanation) {
+        System.out.println(HORIZONTAL_LINE);
+        System.out.println(MESSAGE_ANSWER_CORRECT);
+        System.out.println("Explanation:" + System.lineSeparator() + explanation);
+        System.out.println(HORIZONTAL_LINE);
     }
 
     public void printHelp() {
