@@ -63,32 +63,311 @@ science
 
 Subsequently, users can begin using the application.
 ## Features 
-* Adding subjects
-* Adding topics
-* Adding flashcards
-* Adding tasks
-* Taking quizzes 
-* Viewing quiz results
+* Subjects
+* Topics
+* Flashcards
+* Tasks
+* Quiz 
+* Results
 * Storing data
 
-### Adding subjects
-### Adding topics
-### Adding flashcards
-### Adding tasks
+### Subjects
 
-#### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+#### Adding a subject: `add`
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Format: `add SUBJECT_NAME`
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+Example of usage:
+```
+add CS2113T
+add CS2101
+```
+Output:
+```
+____________________________________________________________
+Got it. I've added this subject:
+  CS2113T
+Now you have 4 subjects in the list.
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this subject:
+  CS2101
+Now you have 5 subjects in the list.
+____________________________________________________________
+```
+
+#### Listing subjects: `list`
+
+Format: `list`
+
+Example of usage:
+```
+list
+```
+Output:
+```
+____________________________________________________________
+Here are the subject(s) in your list:
+1.CS1010
+2.CS2040C
+3.CG2027
+4.CS2113T
+5.CS2101
+____________________________________________________________
+```
+
+#### Deleting a subject: `delete`
+
+Format: `delete SUBJECT_INDEX`
+
+Example of usage:
+```
+delete 1
+```
+Output:
+```
+____________________________________________________________
+ Noted. I've removed this subject:
+   CS1010
+ Now you have 4 subjects in the list.
+____________________________________________________________
+```
+
+#### finding a subject: `find`
+
+Format: `find KEYWORD`
+
+Example of usage:
+```
+find CS
+```
+Output:
+```
+____________________________________________________________
+ Here are the matching subject(s) in your list:
+CS2040C
+CS2113T
+CS2101
+____________________________________________________________
+
+```
+
+####  Entering a subject: `subject`
+
+Format: `subject SUBJECT_NAME`
+
+Example of usage:
+```
+subject CS2113T
+```
+Output:
+```
+____________________________________________________________
+You are currently looking at the subject: CS2113T
+____________________________________________________________
+```
+
+### Topics
+Topic commands can only be used when looking at a subject.
+
+#### `add` - Add topic
+
+Add a topic.
+
+Format:
+
+`add` `[DESCRIPTION]`
 
 Example of usage: 
 
-`todo n/Write the rest of the User Guide d/next week`
+`add speed`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+Expected outcome:
+
+```
+____________________________________________________________
+Got it. I've added this topic:
+  speed
+Now you have 1 topic in the list.
+____________________________________________________________
+```
+
+#### `add` - Add topic
+
+Format:
+
+`add` `[DESCRIPTION]`
+
+Example of usage: 
+
+`add speed`
+
+Expected outcome:
+
+```
+____________________________________________________________
+Got it. I've added this topic:
+  speed
+Now you have 1 topic in the list.
+____________________________________________________________
+```
+
+### Tasks
+Task commands can only be used when looking at a subject.
+
+#### `delete topic` - Delete a topic
+
+Format:
+
+`delete topic` `[TOPIC NUMBER]`
+
+Example of usage: 
+
+`delete topic 1`
+
+Expected outcome:
+
+```
+____________________________________________________________
+ Noted. I've removed this topic:
+   speed
+ Now you have 0 tasks in the list.
+____________________________________________________________
+```
+
+#### `deadline` - Add deadline
+
+Add a deadline task.
+
+Format:
+
+`deadline [DESCRIPTION] /by [TIME]`
+
+Example of usage: 
+
+`deadline assignment /by 23:59 21-10-2020`
+
+Expected outcome:
+
+```
+____________________________________________________________
+Got it. I've added this task:
+  [D][?] assignment (by: 11:59 PM 21 Oct 2020)
+Now you have 2 tasks in the list.
+____________________________________________________________
+```
+
+#### `event` - Add event
+
+Add an event task.
+
+Format:
+
+`event [DESCRIPTION] /at [TIME]`
+
+Example of usage: 
+
+`event tutorial /at 16:00 21-10-2020`
+
+Expected outcome:
+
+```
+____________________________________________________________
+Got it. I've added this task:
+  [E][?] tutorial (at: 4:00 PM 21 Oct 2020)
+Now you have 3 tasks in the list.
+____________________________________________________________
+```
+
+
+
+#### `list` - List all tasks
+
+Prints a list of all tasks
+  
+Example of usage: 
+
+`list`
+
+Expected outcome:
+
+```
+____________________________________________________________
+Here are the topic(s) under math: 
+1.speed
+____________________________________________________________
+Here are the tasks(s) under math: 
+1.[T][?] laundry
+2.[E][?] tutorial (at: 4:00 PM 21 Oct 2020)
+3.[D][?] assignment (by: 11:59 PM 21 Oct 2020)
+____________________________________________________________
+
+```
+
+#### `delete` - Delete Task
+
+Removes the specified task.
+
+Format:
+
+`delete task [TASK NO.]`
+
+Example of usage: 
+
+`delete task 2`
+
+Expected outcome:
+
+```
+____________________________________________________________
+ Noted. I've removed this task:
+   [E][?] tutorial (at: 4:00 PM 21 Oct 2020)
+ Now you have 2 tasks in the list.
+____________________________________________________________
+```
+
+#### `done` - Mark task as completed
+
+Marks the specified task as done.
+
+Format:
+
+`done [TASK NO.]`
+
+Example of usage: 
+
+`done 2`
+
+Expected outcome:
+
+```
+____________________________________________________________
+ Nice! I've marked this task as done:
+   [D][?] assignment (by: 11:59 PM 21 Oct 2020)
+____________________________________________________________
+```
+
+#### `find` - Find tasks
+
+Narrow the search for particular tasks. A keyword has to be entered.
+
+Format:
+
+`find [QUERY]`
+
+Example of usage: 
+
+`find laund`
+
+Expected outcome:
+
+```
+____________________________________________________________
+Here are the matching tasks in your list:
+1. [T][N] laundry
+____________________________________________________________
+```
+### Flashcards
 
 ### Taking quizzes
 Prints the questions from the flashcards and requires the user to complete the quiz within a
@@ -316,12 +595,15 @@ in the `data/` folder.
 ## Command Summary <a name="summary"></a>
 Action|Examples
 ------|------
-Add todo|`todo assignment` 
-Add deadline|
-Add an event|
-Find tasks|
+Add subject|`add math` (while in main menu)
+Add topic|`add speed` (while looking at a subject)
+Add todo|`todo revise for test` 
+Add deadline| `deadline assignment /by 23:59 21-10-2020`
+Add an event| `event tutorial /at 16:00 21-10-2020`
+Find tasks| `find math`
 Complete task|`done 4`
-Delete task|`delete 4`
+Delete task|`delete task 4`
+Delete topic| `delete topic 4`
 Change to the specific subject |`subject maths`
 Change to the specific topic |`topic speed `
 Start a quiz for a subject| `quiz maths`
@@ -329,4 +611,5 @@ Start a quiz for a topic| `quiz speed`
 View results for a subject | `results maths`
 View results for a topic | `results speed`
 Export data | `export`
+Exit a topic or subject | `exit`
 Exit application|`bye`

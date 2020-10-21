@@ -45,6 +45,9 @@ public class Ui {
 
         System.out.println("____________________________________________________________\n"
                 + "Alright, What can I do for you?\n"
+                + "____________________________________________________________\n"
+                + "____________________________________________________________\n"
+                + "Type help for all available commands\n"
                 + "____________________________________________________________\n");
     }
 
@@ -165,6 +168,9 @@ public class Ui {
         int taskPresent = 0;
         for (Task task : taskList.getList()) {
             if (task.toString().contains(find)) {
+                if (taskPresent == 0) {
+                    System.out.println("____________________________________________________________");
+                }
                 Ui.printTaskMatch(taskPresent);
                 System.out.println(task);
                 taskPresent = 1;
@@ -181,6 +187,9 @@ public class Ui {
         int subjectPresent = 0;
         for (Subject subject : subjectList.getList()) {
             if (subject.toString().contains(find)) {
+                if (subjectPresent == 0) {
+                    System.out.println("____________________________________________________________");
+                }
                 Ui.printSubjectMatch(subjectPresent);
                 System.out.println(subject);
                 subjectPresent = 1;
@@ -229,6 +238,9 @@ public class Ui {
     public static void printGoToSubject(Subject subject) {
         System.out.println("____________________________________________________________\n"
                 + "You are currently looking at the subject: " + subject.toString() + "\n"
+                + "____________________________________________________________\n"
+                + "____________________________________________________________\n"
+                + "Type help for all available commands\n"
                 + "____________________________________________________________\n");
     }
 
@@ -263,6 +275,9 @@ public class Ui {
         int topicPresent = 0;
         for (Topic topic : topicList.getList()) {
             if (topic.toString().contains(query)) {
+                if (topicPresent == 0) {
+                    System.out.println("____________________________________________________________");
+                }
                 Ui.printTopicMatch(topicPresent);
                 System.out.println(topic);
                 topicPresent = 1;
@@ -279,6 +294,9 @@ public class Ui {
     public static void printGoToTopic(Topic topic) {
         System.out.println("____________________________________________________________\n"
                 + "You are currently looking at the topic: " + topic.getTitle() + "\n"
+                + "____________________________________________________________\n"
+                + "____________________________________________________________\n"
+                + "Type help for all available commands\n"
                 + "____________________________________________________________\n");
     }
 
@@ -502,5 +520,62 @@ public class Ui {
         System.out.println("Your data has been successfully exported to " + exportFile.getAbsolutePath() + ".");
         System.out.println("____________________________________________________________");
     }
+
+    public static void printSubjectHelp() {
+        System.out.println("________________________________________________________________________________________"
+                + "________________________________\n"
+                + "help:          shows the list of commands available at the main level\n"
+                + "add abc:       adds a subject called 'abc'\n"
+                + "find abc:      finds all subjects containing the letters abc\n"
+                + "list:          shows the list of all subjects\n"
+                + "delete 1:      deletes the 1st subject in the list.\n"
+                + "subject abc:   enters the subject called abc, now you can create, find, list, delete and enter the "
+                + "topics of subject abc\n"
+                + "quiz abc:      starts a quiz for all the flashcards present in all the topics of subject abc, "
+                + "answer the questions of the current flashcards to test your knowledge"
+                + "results abc:   gives you the results of all attempted quizzes for abc subject "
+                + "bye:           exits the application\n"
+                + "___________________________________________________________________________________________________"
+                + "_____________________\n");
+    }
+
+    public static void printTopicHelp() {
+        System.out.println("________________________________________________________________________________________"
+                + "________________________________\n"
+                + "help:                shows the list of commands available at the subject level\n"
+                + "add abc:             adds a topic called 'abc' in the current subject\n"
+                + "todo abc:            adds a todo type task with the description 'abc'\n"
+                + "deadline abc /by 1:  adds a deadline type task with description 'abc' and "
+                + "date/time of deadline as 1\n"
+                + "event abc /at 1:     adds an event type task with description 'abc' and date/time of event as 1\n"
+                + "find abc:            finds all topics and tasks containing the letters abc in the current subject\n"
+                + "list:                shows the list of all topics and tasks in the current subject\n"
+                + "delete topic 1:      deletes the 1st topic in the list of topics.\n"
+                + "delete task 1:       deletes the 1st task in the list of tasks.\n"
+                + "done 1:              marks the 1st task in the list of tasks as done\n"
+                + "topic abc:           enters the topic called abc, now you can create, find, list and delete the "
+                + "flashcards of topic abc\n"
+                + "quiz abc:            starts a quiz for all the flashcards of the topic abc, "
+                + "answer the questions of the prompted flashcards to test your knowledge"
+                + "results abc:         gives you the results of all attempted quizzes for abc topic "
+                + "bye:                 exits the subject to return to the main screen, "
+                + "where you can work with subjects\n"
+                + "___________________________________________________________________________________________________"
+                + "_____________________\n");
+    }
+
+    public static void printFlashcardHelp() {
+        System.out.println("________________________________________________________________________________________"
+                + "________________________________\n"
+                + "help:              shows the list of commands available at the topic level\n"
+                + "add abc; def:      adds a flashcard with question 'abc' and answer 'def' in the current topic\n"
+                + "list:              shows the list of all flashcards in the current topic\n"
+                + "delete 1:          deletes the 1st flashcard in the list\n"
+                + "exit:              exits the topic to return to the subject level, "
+                + "where you can work with tasks and topics\n"
+                + "___________________________________________________________________________________________________"
+                + "_____________________\n");
+    }
 }
+
 
