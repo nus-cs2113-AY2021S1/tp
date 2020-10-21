@@ -1,9 +1,16 @@
 # Developer Guide
 
-## Design & implementation
+## Introduction
+
+## Setting Up
+
+## Design
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+## Implementation
+
+## Documentation
 
 ## Product scope
 ### Target user profile
