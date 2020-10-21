@@ -166,6 +166,7 @@ If the module code is valid and does not exist, the add module feature will proc
 the list of modules.  
 
 > **_NOTE:_**  A module is identfied by its module code
+
 &nbsp; 
 
 Given below is an example usage scenario and how the add module mechanism behaves at each step.
@@ -190,14 +191,13 @@ Step 6. The newly created module is added to the list of modules.
 Step 7. The `printAdd()` function of the Ui class is called, displaying “CS2113T is added.” to the user.
 
 Step 8. The newly created module is saved to storage.
-
 &nbsp;
 
 The following activity diagram summarizes what happens when a user executes `addmod CS2113T` command for the first time.  
 
 ![addmod](diagrams/addmod%20activity%20diagram.png)
 
-#### Design consideration:
+#### Design Considerations
 
 ##### Aspect: Checking existence of module by `checkIfModuleExist()` within `addmod()` function
 
