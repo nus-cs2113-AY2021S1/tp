@@ -72,6 +72,101 @@ Subsequently, users can begin using the application.
 * Load 
 
 ### Subjects
+
+#### Adding a subject: `add`
+
+Format: `add SUBJECT_NAME`
+
+Example of usage:
+```
+add CS2113T
+add CS2101
+```
+Output:
+```
+____________________________________________________________
+Got it. I've added this subject:
+  CS2113T
+Now you have 4 subjects in the list.
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this subject:
+  CS2101
+Now you have 5 subjects in the list.
+____________________________________________________________
+```
+
+#### Listing subjects: `list`
+
+Format: `list`
+
+Example of usage:
+```
+list
+```
+Output:
+```
+____________________________________________________________
+Here are the subject(s) in your list:
+1.CS1010
+2.CS2040C
+3.CG2027
+4.CS2113T
+5.CS2101
+____________________________________________________________
+```
+
+#### Deleting a subject: `delete`
+
+Format: `delete SUBJECT_INDEX`
+
+Example of usage:
+```
+delete 1
+```
+Output:
+```
+____________________________________________________________
+ Noted. I've removed this subject:
+   CS1010
+ Now you have 4 subjects in the list.
+____________________________________________________________
+```
+
+#### finding a subject: `find`
+
+Format: `find KEYWORD`
+
+Example of usage:
+```
+find CS
+```
+Output:
+```
+____________________________________________________________
+ Here are the matching subject(s) in your list:
+CS2040C
+CS2113T
+CS2101
+____________________________________________________________
+
+```
+
+####  Entering a subject: `subject`
+
+Format: `subject SUBJECT_NAME`
+
+Example of usage:
+```
+subject CS2113T
+```
+Output:
+```
+____________________________________________________________
+You are currently looking at the subject: CS2113T
+____________________________________________________________
+```
+
 ### Topics
 Topic commands can only be used when looking at a subject.
 
