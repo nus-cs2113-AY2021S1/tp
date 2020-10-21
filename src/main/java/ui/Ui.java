@@ -25,8 +25,6 @@ import static commands.ReviseCommand.MESSAGE_SHOW_ANSWER_PROMPT;
 import static common.Messages.LINE;
 
 public class Ui {
-    public static final String UNABLE_TO_LOAD_EMPTY_DATABASE = "Sorry, you do not have any flashcards in the database"
-            + "yet. Please try this command again once you have added some flashcards!";
     private final Scanner in;
     private final PrintStream out;
     private static final String lineSplit = "    ____________________________________________________________";
