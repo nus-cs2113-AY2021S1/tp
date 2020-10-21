@@ -37,11 +37,6 @@ public class CreateProjectCommand extends ProjectCommand {
         int sd;
         sd = Integer.parseInt(parameters.get(SPRINT_DURATION).trim());
 
-        if (sd > duration || duration % sd != 0) {
-            throw new DukeException(Messages.MESSAGE_INVALID_DURATION);
-
-        }
-
         Project proj = new Project(title, description, duration, sd);
         Ui.showToUserLn("Project successfully created.");
         projectList.add(proj);
