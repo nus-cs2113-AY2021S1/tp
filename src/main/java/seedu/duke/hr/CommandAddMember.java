@@ -21,7 +21,7 @@ public class CommandAddMember extends Command {
                 || input.getCommand().equalsIgnoreCase("a"))) {
             if (input.getNumArgs() >= 4) {
                 if ((input.getArg("n") == null) || (input.getArg("p") == null) || (input.getArg("e") == null)
-                        && (input.getArg("r") == null)) {
+                        || (input.getArg("r") == null)) {
                     return ARGUMENT_ERR;
                 }
                 if ((input.getArg("n").equals("")) || (input.getArg("p").equals(""))

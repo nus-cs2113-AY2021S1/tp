@@ -30,6 +30,11 @@ public class Member {
         return this.memberRole;
     }
 
+    public void setMemberRole(String newRole) {
+
+        this.memberRole = newRole;
+    }
+
     public String getMemberName() {
         return this.memberName;
     }
