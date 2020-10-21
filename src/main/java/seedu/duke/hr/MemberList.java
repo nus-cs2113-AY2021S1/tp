@@ -78,9 +78,9 @@ public class MemberList {
     public static String standardizeMemberName(String memberName) {
         char[] charArray = memberName.toCharArray();
         boolean isSpace = true;
-        for(int i = 0; i < charArray.length; i++) {
-            if(Character.isLetter(charArray[i])) {
-                if(isSpace) {
+        for (int i = 0; i < charArray.length; i++) {
+            if (Character.isLetter(charArray[i])) {
+                if (isSpace) {
                     charArray[i] = Character.toUpperCase(charArray[i]);
                     isSpace = false;
                 }
