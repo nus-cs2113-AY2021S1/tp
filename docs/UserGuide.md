@@ -20,8 +20,11 @@
 
 ## 1. What is Nav@NUS?
 
-Nav@NUS is a useful CLI application to guide users in navigating around the NUS Kent Ridge campus via the school
-shuttle services.
+Nav@NUS is a useful command line interface (CLI) application to guide you in navigating around the NUS Kent Ridge campus via the school
+shuttle services. This application enables you to retrieve key bus information easily, skipping the hassle of
+physically checking the bus stop's notice board. Nav@NUS brings convenience to you and wishes your commute in NUS
+to be as effortless as possible. Nav@NUS uses a command line interface to facilitate quick typing and retrieval of
+information that you require.
 [add more about the app]
 
 ## 2. Quick Start
@@ -85,10 +88,14 @@ below.<br><br>
 <i>Figure 4: The output message showing bus routes.</i>
 
 ### 3.2. Check bus route: ```/routemap```
-Checks for user-specified bus route. <br>
-Format: <code>/routemap <strong>task description</strong></code> <br>
-        Upon receiving prompt, specify 
-        <code><strong>bus route name</strong></code> <br>
+This command displays the full route of the bus that you have specified. <br>
+Format: <code>/routemap <strong>bus code</strong></code> <br>
+
+#### 3.2.1. Examples of usage
+<b><u>Example 1</u></b>
+Let us suppose that you are at Raffles Hall with only one bus stop
+
+
 Example of usage: <code>/routemap <strong> AA1 </strong></code> <br>
 Expected outcome: 
 ```
