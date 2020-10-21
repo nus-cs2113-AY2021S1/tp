@@ -31,6 +31,7 @@ import static seedu.duke.constants.ClickerMessages.ASKING_FOR_TYPE;
 import static seedu.duke.constants.ClickerMessages.ASKING_FOR_TITLE;
 import static seedu.duke.constants.ClickerMessages.EMPTY_WRITING_MESSAGE;
 import static seedu.duke.constants.ClickerMessages.CLEAR_DATA_MESSAGE;
+import static seedu.duke.constants.ClickerMessages.ASKING_FOR_TOPIC;
 
 
 public class WritingList {
@@ -89,6 +90,10 @@ public class WritingList {
         System.out.println(ASKING_FOR_TITLE);
     }
 
+    public static void printAskForTopic() {
+        System.out.println(ASKING_FOR_TOPIC);
+    }
+
     public static int getWritingSize() {
         return writinglist.size();
     }
@@ -130,21 +135,24 @@ public class WritingList {
                 newUserInput = getUserInput(scanner);
                 commandStartChecker = extractCommandType(newUserInput);
             }
+            WritingList.printAskForTopic();
+            newUserInput = getUserInput(scanner);
+            String topic = newUserInput;
             WritingList.printAskForTitle();
             newUserInput = getUserInput(scanner);
             String title = newUserInput;
             System.out.println(INSTRUCTION_FOR_ADDING_NEW_WRITINGS);
             String content = "";
             while (!newUserInput.equals("end")) {
-                content = content.concat(newUserInput + "\n");
                 newUserInput = getUserInput(scanner);
+                content = content.concat(newUserInput + "\n");
             }
             Random rand = new Random();
             int newId = rand.nextInt(MAX_NUM_WRITINGS);
             if (commandStartChecker == POEM) {
-                addPoem(title, newId, "nothing", content, user.getName());
+                addPoem(title, newId, topic, content, user.getName());
             } else if (commandStartChecker == ESSAY) {
-                addEssay(title, newId, "nothing", content, user.getName());
+                addEssay(title, newId, topic, content, user.getName());
             }
             System.out.println(SUCCESSFUL_ADD_WRITING_TO_DATABASE);
             recordListToFile(f, writings);
