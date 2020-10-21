@@ -53,7 +53,7 @@ public class AirConditioner extends Appliance {
     public String toString() {
         String temperatureStatement;
         if (appliancePower.getStatus()) {
-            temperatureStatement = getParameter(true);
+            temperatureStatement = "@" + getParameter(true);
         } else {
             temperatureStatement = "";
         }
