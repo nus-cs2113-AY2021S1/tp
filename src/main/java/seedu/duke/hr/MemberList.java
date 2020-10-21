@@ -136,7 +136,7 @@ public class MemberList {
     }
 
     public static boolean searchPhone(int index, String target) {
-        String phone = Integer.toString(members.get(index).getMemberPhone());
+        String phone = Long.toString(members.get(index).getMemberPhone());
         if (phone.indexOf(target) != -1) {
             return true;
         }
