@@ -167,10 +167,10 @@ public class Ui {
      * @param tasks task list
      */
     public void printNumberOfTasks(ArrayList<Task> tasks) {
-        if (tasks.size() > 1) {
+        if (tasks.size() == 0) {
+            System.out.println("The current task list is empty.");
+        } else if (tasks.size() > 1) {
             System.out.println("Now you have " + tasks.size() + " tasks in the list." + System.lineSeparator());
-        } else if (tasks.size() == 1) {
-            System.out.println("Now you have 1 task in the list." + System.lineSeparator());
         } else {
             System.out.println("You currently have no task :-)" + System.lineSeparator());
         }
@@ -182,6 +182,24 @@ public class Ui {
     public void printInvalidTaskNumber(ArrayList<Task> tasks) {
         System.out.println("Invalid task number.");
         System.out.println("Enter a task number from 1 to " + tasks.size() + "." + System.lineSeparator());
+    }
+
+    /**
+     * Prints out the task list.
+     *
+     * @param list task list
+     */
+    public void printTaskList(TaskList list) {
+        ArrayList<Task> tasks = list.getTaskData();
+        if (tasks.size() == 0) {
+            System.out.println("The current task list is empty.");
+        } else {
+            System.out.println("Here are the tasks in your list:");
+            for (int i = 1; i <= tasks.size(); i++) {
+                System.out.println(i + ". " + tasks.get(i - 1));
+            }
+        }
+        System.out.println(); //added a new line after the list
     }
 
 }

@@ -47,15 +47,6 @@ public class Task {
     }
 
     /**
-     * Gets the name of the task.
-     *
-     * @return name of the task
-     */
-    public String getDisplayString() {
-        return description;
-    }
-
-    /**
      * Formats the display of tasks according to tasks type.
      *
      * @return the required display format depending on type of task

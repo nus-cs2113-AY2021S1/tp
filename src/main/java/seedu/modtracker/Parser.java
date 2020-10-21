@@ -28,6 +28,7 @@ public class Parser {
      * @param name    name entered by the user
      * @param storage storage object to load and store data
      * @param toPrint whether the UI should print the output
+     * @param taskList task list
      */
     public void parse(String input, ModuleList modList, String name, Storage storage,
                       boolean toPrint, TaskList taskList) {
@@ -76,6 +77,18 @@ public class Parser {
         case COMMAND_BREAKDOWN:
             ui.printBreakDownAnalysis(modList, 1);
             break;
+        case COMMAND_ADDTASK:
+            taskList.addTask(input);
+            break;
+        case COMMAND_DELETETASK:
+            taskList.deleteTasks(input);
+            break;
+        case COMMAND_DONE:
+            taskList.setDone(input);
+            break;
+        case COMMAND_LISTTASK:
+            ui.printTaskList(taskList);
+            break;
         case COMMAND_HELP:
             assert toPrint : "toPrint should be true";
             if (!input.toLowerCase().trim().equals(COMMAND_HELP)) {
@@ -92,18 +105,6 @@ public class Parser {
                 ui.printExitScreen(name);
                 exit = true;
             }
-            break;
-        case COMMAND_ADDTASK:
-            taskList.addTask(input);
-            break;
-        case COMMAND_DELETETASK:
-            taskList.deleteTasks(input);
-            break;
-        case COMMAND_DONE:
-            taskList.setDone(input);
-            break;
-        case COMMAND_LISTTASK:
-            //ui.printTaskList();
             break;
         default:
             assert toPrint : "toPrint should be true";
