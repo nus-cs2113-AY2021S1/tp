@@ -24,9 +24,9 @@ This document describes the design, implementation and architecture of NotUS.
 
 #### <a id="setup"><ins>1.1 Setting up and getting started</ins></a>
 
-Prerequisites:
-<ul>JDK 11</ul>
-<ul>IntelliJ IDE</ul>
+**Prerequisites:**
+* JDK 11
+* IntelliJ IDE
 
 Fork this repo and clone it onto your local machine.
 Import the project as a <b>Gradle project</b>.
@@ -57,7 +57,7 @@ The architecture design is given in the diagram above. The main components of No
 1. `Notebook`: Stores and manages the creation and deletion of notes and other note-related functionality.
 1. `StorageManager`: Manages the loading of existing saved files and exporting of data to human-editable files
 
-<b>NotUS</b> manages the flow of the application. On launch, it will create the necessary components, as listed above
+**NotUS** manages the flow of the application. On launch, it will create the necessary components, as listed above
  and then attempts to load any existing saved files into the application. Subsequently, it will accept and interpret
 the user input and execute the commands accordingly. The diagram below depicts the main flow of the application.
 
@@ -65,15 +65,15 @@ the user input and execute the commands accordingly. The diagram below depicts t
 
 <br>
 
-<b>Parser</b>
+**Parser**
 
-<li>Receives the user input message as a whole.</li>
-<li>Interprets the type of command and splits the message to identify all the parameters provided.</li>
-<li>Creates and returns the Command class respectively.</li>
+1. Receives the user input message as a whole.
+1. Interprets the type of command and splits the message to identify all the parameters provided.
+1. Creates and returns the Command class respectively.
  
  {insert Parser.puml here}
 
-<b>Command</b> classes
+**Command** classes
 
 <br>
 
