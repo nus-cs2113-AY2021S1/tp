@@ -26,25 +26,7 @@ public class Financeit {
         SaveStateHandlerManualTracker mt = new SaveStateHandlerManualTracker("./data/save.txt", "./data");
         SaveStateHandlerGoalTracker gt = new SaveStateHandlerGoalTracker("./data/save1.txt", "./data");
         SaveStateHandlerRecurringTracker at = new SaveStateHandlerRecurringTracker("./data/save2.txt", "./data");
-
-        try {
-            gt.load();
-        } catch (Exception m) {
-            MenuPrinter.prompt = "Goal Tracker failed to load: " + m;
-        }
-
-        try {
-            mt.load();
-        } catch (Exception m) {
-            MenuPrinter.prompt = "Manual Tracker failed to load: " + m;
-        }
-
-        try {
-            at.load();
-        } catch (Exception m) {
-            MenuPrinter.prompt = "Auto Tracker failed to load: " + m;
-        }
-
+        load(gt, mt, at);
         while (true) {
             UiManager.refreshPage();
             UiManager.printLogo();
@@ -75,28 +57,54 @@ public class Financeit {
                 ParamChecker.logger.setLevel(mode);
                 break;
             case "exit":
-                try {
-                    gt.save();
-                } catch (Exception m) {
-                    MenuPrinter.prompt = "Goal Tracker failed to save: " + m;
-                }
-
-                try {
-                    mt.save();
-                } catch (Exception m) {
-                    MenuPrinter.prompt = "Manual Tracker failed to save: " + m;
-                }
-
-                try {
-                    at.save();
-                } catch (Exception m) {
-                    MenuPrinter.prompt = "Auto Tracker failed to save: " + m;
-                }
+                save(gt, mt, at);
                 return;
             default:
                 MenuPrinter.prompt = "Invalid Command";
                 break;
             }
+        }
+    }
+
+    public static void load(SaveStateHandlerGoalTracker gt, SaveStateHandlerManualTracker mt, SaveStateHandlerRecurringTracker at) {
+
+        try {
+            gt.load();
+        } catch (Exception m) {
+            System.out.println("Goal Tracker failed to load: " + m);
+        }
+
+        try {
+            mt.load();
+        } catch (Exception m) {
+            System.out.println("Manual Tracker failed to load: " + m);
+        }
+
+        try {
+            at.load();
+        } catch (Exception m) {
+            System.out.println("Auto Tracker failed to load: " + m);
+        }
+    }
+
+    public static void save(SaveStateHandlerGoalTracker gt, SaveStateHandlerManualTracker mt, SaveStateHandlerRecurringTracker at) {
+
+        try {
+            gt.save();
+        } catch (Exception m) {
+            System.out.println("Goal Tracker failed to save: " + m);
+        }
+
+        try {
+            mt.save();
+        } catch (Exception m) {
+            System.out.println("Manual Tracker failed to save: " + m);
+        }
+
+        try {
+            at.save();
+        } catch (Exception m) {
+            System.out.println("Auto Tracker failed to save: " + m);
         }
     }
 }
