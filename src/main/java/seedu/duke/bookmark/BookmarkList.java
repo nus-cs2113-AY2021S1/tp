@@ -57,7 +57,7 @@ public class BookmarkList extends ItemList {
             bookmarks.add(Bookmark.initBookmark(line));
         } catch (IndexOutOfBoundsException | DukeException e) {
             // Invalid task data, skips to the next entry
-            logger.log(Level.WARNING, "invalid bookmark data found in file: " + line, e);
+            // logger.log(Level.WARNING, "invalid bookmark data found in file: " + line, e);
         }
     }
 
@@ -130,8 +130,7 @@ public class BookmarkList extends ItemList {
     }
 
     /**
-     * This method searches the bookmarks from the list with matching module
-     * and description.
+     * This method searches the bookmarks from the list with matching module and description.
      *
      * @param description The description to be searched
      * @return The string message containing the matching bookmarks
@@ -175,9 +174,7 @@ public class BookmarkList extends ItemList {
         if (bookmarks.size() == 0) {
             message = "Empty List" + lineSeparator;
         } else {
-
             message = launchMatchingBookmarks(description.toUpperCase());
-
             if (!message.isEmpty()) {
                 message = "Launched these bookmarks:" + lineSeparator + message;
             } else {
@@ -211,25 +208,23 @@ public class BookmarkList extends ItemList {
         if (bookmarks.size() == 0) {
             message = "Empty List" + lineSeparator;
         } else {
-            message = launchBookmarks();
+            message = launchBookmarksFromSlot();
             if (!message.isEmpty()) {
                 message = "Launched these bookmarks:" + lineSeparator + message;
-            } else {
-                message = "No bookmarks contain the specified keyword!" + lineSeparator;
             }
         }
         return message;
     }
 
-    private String launchBookmarks() {
+    private String launchBookmarksFromSlot() {
         String message = "";
         String errorMessage = "";
         for (int i = 0; i < bookmarks.size(); i++) {
             try {
                 bookmarks.get(i).launch();
-                message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + lineSeparator;
+                message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString();
             } catch (DukeException e) {
-                errorMessage += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + lineSeparator;
+                errorMessage += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString();
             }
         }
         if (!errorMessage.isBlank()) {
