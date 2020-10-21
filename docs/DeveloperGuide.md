@@ -24,9 +24,9 @@ This document describes the design, implementation and architecture of NotUS.
 
 #### <a id="setup"><ins>1.1 Setting up and getting started</ins></a>
 
-Prerequisites:
-<ul>JDK 11</ul>
-<ul>IntelliJ IDE</ul>
+**Prerequisites:**
+* JDK 11
+* IntelliJ IDE
 
 Fork this repo and clone it onto your local machine.
 Import the project as a <b>Gradle project</b>.
