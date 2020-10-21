@@ -56,7 +56,7 @@ public class Workspace {
     }
 
     public String getBookmarkListInString(AnimeData animeData) {
-        return bookmark.animeListInString(animeData);
+        return bookmark.getListInString(animeData);
     }
 
     public void removeBookmarkEntry(Integer bookmarkIndex) {
@@ -69,21 +69,31 @@ public class Workspace {
         return;
     }
 
-    public Integer getBookmarkSize(){
+    public Integer getBookmarkSize() {
         return bookmark.getBookmarkSize();
     }
 
-    public Anime getAnimeFromBookmark(AnimeData animeData, Integer bookmarkIndex){
+    public Anime getAnimeFromBookmark(AnimeData animeData, Integer bookmarkIndex) {
         return bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex);
     }
 
-    public void editBookmarkEpisode(Integer bookmarkIndex, Integer bookmarkEpisode){
+    public void editBookmarkEpisode(Integer bookmarkIndex, Integer bookmarkEpisode) {
         bookmark.editAnimeBookmarkEpisode(bookmarkIndex, bookmarkEpisode);
         return;
     }
 
     public String getBookmarkInfo(AnimeData animeData, Integer bookmarkIndex) {
         return bookmark.getAnimeBookmarkInfo(animeData, bookmarkIndex);
+    }
+
+    public void addBookmarkNote(Integer bookmarkIndex, String note) {
+        bookmark.addNote(bookmarkIndex, note);
+        return;
+    }
+
+    public String getBookmarkNote(Integer bookmarkIndex) {
+        return bookmark.getNoteInString(bookmarkIndex);
+
     }
 
     @Override
