@@ -2,8 +2,20 @@ package parser;
 
 import access.Access;
 
-import commands.*;
-
+import commands.AddCommand;
+import commands.BackCommand;
+import commands.Command;
+import commands.EditCommand;
+import commands.ExitCommand;
+import commands.GoCommand;
+import commands.HelpCommand;
+import commands.HistoryCommand;
+import commands.ListCommand;
+import commands.ListDueCommand;
+import commands.RateCommand;
+import commands.RemoveCommand;
+import commands.ReviseCommand;
+import commands.ShowRateCommand;
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
@@ -76,7 +88,8 @@ public class Parser {
         return new ShowRateCommand();
     }
 
-    private static RateCommand prepareRate(String commandArgs) throws InvalidInputException, IncorrectAccessLevelException {
+    private static RateCommand prepareRate(String commandArgs)
+            throws InvalidInputException, IncorrectAccessLevelException {
         int chapterIndex;
         if (commandArgs.isEmpty()) {
             throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

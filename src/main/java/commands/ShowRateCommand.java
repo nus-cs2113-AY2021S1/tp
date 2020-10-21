@@ -1,19 +1,12 @@
 package commands;
 
 import access.Access;
-import exception.IncorrectAccessLevelException;
-import exception.InvalidFileFormatException;
-import exception.InvalidInputException;
 import manager.card.Card;
-import manager.chapter.CardList;
 import manager.chapter.Chapter;
 import storage.Storage;
 import ui.Ui;
 
-import java.io.IOException;
 import java.util.ArrayList;
-
-import static common.Messages.CARD;
 
 public class ShowRateCommand extends Command {
     public static final String COMMAND_WORD = "showrate";
@@ -26,10 +19,11 @@ public class ShowRateCommand extends Command {
     public static final String MESSAGE_NO_CARDS_IN_CHAPTER = "You currently have no cards in %1$s";
     public static final String MESSAGE_SHOW_REVISE_PROMPT = "Are you sure you want to revise this? (Y/N)";
     public static final String MESSAGE_SHOW_EASY_PROMPT = "The percentage of card that is labeled <easy> is: %1$.2f";
-    public static final String MESSAGE_SHOW_MEDIUM_PROMPT = "The percentage of card that is labeled <medium> is: %1$.2f";
+    public static final String MESSAGE_SHOW_MEDIUM_PROMPT = "The percentage of card that is "
+            + "labeled <medium> is: %1$.2f";
     public static final String MESSAGE_SHOW_HARD_PROMPT = "The percentage of card that is labeled <hard> is: %1$.2f";
-    public static final String MESSAGE_SHOW_CANNOT_ANSWER_PROMPT
-            = "The percentage of card that is labeled <cannot answer> is: %1$.2f";
+    public static final String MESSAGE_SHOW_CANNOT_ANSWER_PROMPT = "The percentage of "
+            + "card that is labeled <cannot answer> is: %1$.2f";
 
     private Double easyPercentage;
     private Double mediumPercentage;
