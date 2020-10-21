@@ -12,7 +12,6 @@ public abstract class Command {
     public static final String TAG_CATEGORY = "-c";
     public static final String TAG_TODO = "-t";
     public static final String TAG_BOOKMARK = "-bm";
-    public static final String TAG_NUMBER = "-n";
 
     public static final String ERROR_INVALID_BOOK_NUM = "Invalid book number specified!";
     public static final String ERROR_INVALID_QUOTE_NUM = "Invalid quote number specified!";
