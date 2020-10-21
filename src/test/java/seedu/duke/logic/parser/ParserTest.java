@@ -64,4 +64,12 @@ class ParserTest {
         assertTrue(isOngoing);
     }
 
+    @Test
+    void extractType_routeMapCommand_returnsTrue() throws CustomException {
+        String command = "/routemap AA1";
+        Parser p = new Parser(command);
+        boolean isOngoing = p.extractType();
+        assertTrue(isOngoing);
+    }
+
 }

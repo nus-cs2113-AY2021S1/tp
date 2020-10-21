@@ -2,14 +2,17 @@ package seedu.duke.logic.parser;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
+import seedu.duke.logic.commands.AllBusCommand;
 import seedu.duke.logic.commands.BusCommand;
-import seedu.duke.logic.commands.Command;
-import seedu.duke.logic.commands.RouteCommand;
-import seedu.duke.logic.commands.RouteMapCommand;
+import seedu.duke.logic.commands.DineCommand;
+import seedu.duke.logic.commands.DineInfoCommand;
 import seedu.duke.logic.commands.ExitCommand;
 import seedu.duke.logic.commands.HelpCommand;
-import seedu.duke.logic.commands.AllBusCommand;
 import seedu.duke.logic.commands.ListStopsCommand;
+import seedu.duke.logic.commands.RouteMapCommand;
+import seedu.duke.logic.commands.RouteCommand;
+import seedu.duke.logic.commands.ResetSearchFreqCommand;
+import seedu.duke.logic.commands.Command;
 
 public class Parser {
 
@@ -40,7 +43,7 @@ public class Parser {
             com = new RouteCommand(parts[1]);
             break;
         case "/routemap":
-            com = new RouteMapCommand();
+            com = new RouteMapCommand(parts[1]);
             break;
         case "/bus":
             com = new BusCommand(parts[1]);
@@ -51,8 +54,17 @@ public class Parser {
         case "/liststops":
             com = new ListStopsCommand();
             break;
+        case "/dine":
+            com = new DineCommand(parts[1]);
+            break;
+        case "/dineinfo":
+            com = new DineInfoCommand(parts[1]);
+            break;
         case "/help":
             com = new HelpCommand();
+            break;
+        case "/reset":
+            com = new ResetSearchFreqCommand();
             break;
         case "/exit":
             com = new ExitCommand();
