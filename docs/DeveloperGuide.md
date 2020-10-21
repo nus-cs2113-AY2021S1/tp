@@ -13,6 +13,7 @@
     * [Common classes]()
 * [Implementation](#implementation)
     * [Store Data](#store-data)
+    * [Add Module](#add-module) 
     * [View modules](#view-modules)
     * [Breakdown and analysis](#breakdown-and-analysis)
     * [Proposed] Sharing of data to a central database for better analysis
@@ -150,6 +151,73 @@ storing the different modules, time expected, time spent and tasks
     * Cons: Requires additional work to parse data into the required
     storage format
 
+
+### Add Module
+
+#### Current Implementation
+
+The add module feature will implement the checks of the module code input by the user through the following operations:
+
+`checkIfModuleValid()` – Checks if the module code is of 6 – 8 characters without any spacing
+
+`checkIfModuleExist()` – Checks if the module already exists in the list of modules
+
+If the module code is valid and does not exist, the add module feature will proceed to create the module and adds it to 
+the list of modules.  
+
+> **_NOTE:_**  A module is identfied by its module code
+&nbsp; 
+
+Given below is an example usage scenario and how the add module mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time and hence, the list of modules is empty.   
+        &emsp; &emsp;&emsp;The user types in a command: `addmod CS2113T`. 
+
+Step 2. The parser class makes sense of the user input and calls the `addMod()` function in ModuleList class.
+
+Step 3. Within the `addMod()` function, it will first check if the module code is valid by calling `checkIfModuleValid()` 
+        function.   
+        &emsp; &emsp;&emsp;The `checkIfModuleValid()` function will return true if the module code is valid,   
+        &emsp; &emsp;&emsp;and return false otherwise.   
+        &emsp; &emsp;&emsp;If `checkIfModuleValid()` function returns true, proceed to step 4.
+
+Step 4. Within the addmod function, it will then check if the module already exists in the list of modules by   
+        &emsp; &emsp;&emsp;calling `checkIfModuleExist()` function.   
+        &emsp; &emsp;&emsp;The `checkIfModuleExist()` function will return true if the module already exists in the modlist,   
+        &emsp; &emsp;&emsp;and false otherwise.   
+        &emsp; &emsp;&emsp;If `checkIfModuleValid()` function returns true, proceed to step 5.  
+
+Step 5. A new module with module code "CS2113T” is created by calling the constructor of Module class.
+
+Step 6. The newly created module is added to the list of modules.
+
+Step 7. The `printAdd()` function of the Ui class is called, displaying “CS2113T is added.” to the user.
+
+Step 8. The newly created module is saved to storage.
+
+&nbsp;
+
+The following activity diagram summarizes what happens when a user executes `addmod CS2113T` command for the first time.  
+
+![addmod](diagrams/addmod activity diagram.png)
+
+#### Design consideration:
+
+##### Aspect: Checking existence of module by `checkIfModuleExist()` within `addmod()` function
+
+Alternative 1 (Current choice): Checks that module does not exist in the list of modules before adding a new module
+-	Pros: Ensure that there will be no duplicate modules in the list of modules
+-	Cons: User cannot have 2 same modules in the list of modules.
+
+Alternative 2: Always add a new module
+-	Pros: The user can have 2 same modules in the list of modules.
+-	Cons: If the user had inputted 2 same modules and wants to add the workload for these modules, the current 
+          application will only update the module that was inputted earlier, ignoring the second module, resulting in 
+          inconsistency.
+-	Cons: If the user does not want duplicate modules, the user must ensure he/she does not add a module that is 
+          already in the list of modules.  
+          
+          
 #### View modules
 
 ##### Current Implementation
