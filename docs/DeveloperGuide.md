@@ -32,3 +32,13 @@
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+## Development
+
+### Logging
+Whenever you need to use logging in a class, add this line 
+`private static final Logger logger = Logger.getLogger(<CurrentClass>.class.getName());` to the start
+of the class, where \<CurrentClass\> is replaced by the class name you are adding the logger to.
+
+The logging configuration can be found under `src/main/resources/logging.properties`. The current configuration directs
+the logs to a file named `revisED%u.log` in the project root directory. 
