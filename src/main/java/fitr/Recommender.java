@@ -1,5 +1,9 @@
 package fitr;
 
+import fitr.storage.Storage;
+import fitr.ui.Ui;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class Recommender {
@@ -8,9 +12,20 @@ public class Recommender {
     protected StandardExerciseList aerobicList;
     protected StandardExerciseList stretchingList;
 
-    Recommender(String nameOfFile){
-
-
+    Recommender() {
+        Boolean isSuccessful = false;
+        standardExerciseStorage storage = new standardExerciseStorage();
+        try {
+            this.upperBodyList = storage.loadUpperBodyList();
+            this.lowerBodyList = storage.loadLowerBodyList();
+            this.aerobicList = storage.loadAerobicList();
+            this.stretchingList = storage.loadStretchList();
+            isSuccessful = true;
+        } catch (FileNotFoundException e) {
+            Ui.printCustomMessage("File(s) missing!");
+            isSuccessful = false;
+        }
+        assert(isSuccessful);
     }
 
     public StandardExerciseList recommend() {
@@ -26,4 +41,11 @@ public class Recommender {
         return finalList;
     }
 
+    public void printExercise(){
+        StandardExerciseList list = recommend();
+        for(int i=0; i < list.getSize(); i++){
+            Ui.printCustomMessage("Name of Exercise:");
+            Ui.printCustomMessage(list.getExercise(i).getName());
+        }
+    }
 }

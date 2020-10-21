@@ -31,6 +31,7 @@ public class Fitr {
             exerciseList = new ExerciseList(storage.loadExerciseList());
             TipList tipList = new TipList(storage.loadTipList());
             TipManager tipOfTheDay = new TipManager(tipList);
+            recommender = new Recommender();
             tipOfTheDay.execute();
             Ui.printGreetingMessage();
             Ui.printSuggestQuestion();
@@ -40,6 +41,8 @@ public class Fitr {
     }
 
     public void run() {
+        /*Recommender recommender = new Recommender();
+        recommender.printExercise();*/
         boolean isExit = false;
         while (!isExit) {
             String userInput = Ui.read();

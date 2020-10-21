@@ -40,7 +40,7 @@ public class User {
     private String gender;
     private int userFitnessLevel; // 0 for unfit; 1 for normal; 2 for Fit
 
-    public User() {
+    /*public User() {
         setup();
     }
 
@@ -51,7 +51,7 @@ public class User {
         this.weight = weight;
         this.gender = gender;
     }
-
+    */
     /**
      * Setup configures user profile for first time use.
      */
@@ -240,4 +240,12 @@ public class User {
         return userFitnessLevel;
     }
 
+    //to be removed
+    public void loadUserData(String name, int age, double height, double weight, String gender){
+        this.age = age;
+        this.height = height;
+        this.weight = weight;
+        this.gender = gender;
+        this.name = name;
+    }
 }

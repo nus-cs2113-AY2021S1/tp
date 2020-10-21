@@ -40,6 +40,8 @@ public class Parser {
             return new AddExerciseCommand(arguments);
         case Commands.COMMAND_VIEW:
             return new ViewCommand(arguments);
+        case Commands.COMMAND_RECOMMEND:
+            return new RecommendCommand();
         case Commands.COMMAND_EDIT_PROFILE:
             return new EditProfileCommand(arguments);
         case Commands.COMMAND_HELP:
