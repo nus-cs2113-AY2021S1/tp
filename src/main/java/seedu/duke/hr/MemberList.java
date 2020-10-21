@@ -70,6 +70,15 @@ public class MemberList {
         }
     }
 
+    public static Member findMemberByName(String memberName) {
+        for (int i = 0; i < Member.numOfMembers; i++) {
+            if (members.get(i).getMemberName().equalsIgnoreCase(memberName)) {
+                return members.get(i);
+            }
+        }
+        return null;
+    }
+
     /**
      * Changes the role of the member in the arraylist.
      * @param m
@@ -78,13 +87,9 @@ public class MemberList {
      */
     public static String changeMemberRole(Member m, String newRole) {
         String output;
-        try {
-            m.setMemberRole(newRole);
-            output = "Noted. I have changed the role of this member:\n";
-            output = output.concat(m.toString());
-        } catch (IndexOutOfBoundsException e) {
-            output = "OOPS!!! The member does not exist. You can add this member to the list instead. \n";
-        }
+        m.setMemberRole(newRole);
+        output = "Noted. I have changed the role of this member:\n";
+        output = output.concat(m.toString());
         return output;
     }
 
