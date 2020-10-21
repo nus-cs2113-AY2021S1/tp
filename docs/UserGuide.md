@@ -61,6 +61,15 @@ Example of usage:
 
 `view`
 
+### Check your wallet: `wallet`
+Shows you how much cash you have left in your wallet to buy stocks, how much you have allocated to stocks and your net profit.
+
+Format: `wallet`
+
+Example of usage: 
+
+`wallet`
+
 ### Exit: `bye`
 Exits the program. Duke will save your info for the next time you come back!
 
