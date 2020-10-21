@@ -1,0 +1,52 @@
+@startuml
+actor User
+participant ":PaperTrade" as PaperTrade
+participant ":Controller" as Controller
+participant ":Ui" as Ui
+participant ":Parser" as Parser
+
+
+activate PaperTrade
+User -> PaperTrade : main()
+
+create Controller
+PaperTrade -> Controller : new Controller()
+activate Controller
+
+create Ui
+Controller -> Ui : new Ui()
+activate Ui
+Controller <-- Ui
+deactivate Ui
+
+PaperTrade <-- Controller
+deactivate Controller
+
+PaperTrade -> Controller : runApp()
+deactivate PaperTrade
+
+activate Controller
+activate Ui
+Controller -> Ui : greetUser()
+Controller <-- Ui
+loop until user quits
+    Controller -> Ui : getUserInput()
+    Controller <-- Ui : userInput
+
+    activate Parser
+    Controller ->  Parser : class method parseCommand(userInput)
+    Controller <-- Parser : command
+    deactivate Parser
+
+    Controller -> Controller : executeCommand(command)
+    activate Controller
+    deactivate Controller
+end
+deactivate Ui
+
+PaperTrade <-- Controller
+
+User <-- PaperTrade : on exit
+deactivate Controller
+
+@enduml

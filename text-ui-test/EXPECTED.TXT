@@ -8,3 +8,7 @@ ____________________________________________________________
 Welcome to the Command Line Paper Trading App!
 ____________________________________________________________
 What would you like to do today?
+____________________________________________________________
+You currently have an empty portfolio. Try buying a stock!
+____________________________________________________________
+What would you like to do today?
