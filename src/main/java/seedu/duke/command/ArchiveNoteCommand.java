@@ -29,8 +29,6 @@ public class ArchiveNoteCommand extends Command {
     private int index;
     private String title = "";
 
-    ArrayList<Note> archivedNotes = new ArrayList<>();
-
     /**
      * Constructs a ArchiveNoteCommand to archive a Note.
      *
@@ -51,33 +49,15 @@ public class ArchiveNoteCommand extends Command {
 
     @Override
     public String execute() {
-        String archivedTitle;
-        Note archivedNote;
-        ArrayList<Note> archivedNotesList;
 
         try {
             // If there is no title, archive note by index. Else archive by title.
             if (title.isBlank()) {
-                archivedNote = notebook.getNotes().get(index);
-                archivedTitle = archivedNote.getTitle();
-
-                archivedNote.toggleIsArchived();
-
-                return Formatter.formatString(ARCHIVE_NOTE_MESSAGE + archivedTitle);
-
+                title = notebook.archiveNotes(index);
             } else {
-                archivedNotesList = (ArrayList<Note>) notebook.getNotes().stream()
-                        .filter((s) -> s.getTitle().equalsIgnoreCase(title))
-                        .collect(Collectors.toList());
-
-                for (Note note : archivedNotesList) {
-                    note.toggleIsArchived();
-                    return Formatter.formatString(ARCHIVE_NOTE_MESSAGE + title);
-                }
+                title = notebook.archiveNotes(title);
             }
-
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
-
+            return Formatter.formatString(ARCHIVE_NOTE_MESSAGE + title);
         } catch (IndexOutOfBoundsException exception) {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         }

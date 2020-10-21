@@ -6,11 +6,13 @@ import seedu.duke.data.timetable.Timetable;
 import seedu.duke.data.timetable.Event;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Stack;
 
 import static com.diogonunes.jcolor.Ansi.PREFIX;
 import static com.diogonunes.jcolor.Ansi.POSTFIX;
 import static com.diogonunes.jcolor.Ansi.RESET;
+import static seedu.duke.util.PrefixSyntax.SUFFIX_INDEX;
 
 public class Formatter {
 
@@ -31,13 +33,69 @@ public class Formatter {
     /** Length of a ansi defined color. */
     private static final int ANSI_PREFIX_LENGTH = 5;
 
-    public static String formatNotebook(String header, Notebook notebook) {
-        String formattedString = "";
+    /**
+     * Method compiles the ArrayList items and appends the items to a String.
+     * The ArrayList has already been sorted
+     * Method returns either top to bottom or bottom to top to account for ascending/descending sorting
+     *
+     * @param sortedNotes ArrayList of notes that were already sorted
+     * @return noteString String containing the notes sorted either ascending ot descending
+     */
+    public static StringBuilder getSortedString(ArrayList<Note> sortedNotes, Boolean isAscendingOrder) {
+        StringBuilder formattedString = new StringBuilder();
+
+        if (!isAscendingOrder) {
+            Collections.reverse(sortedNotes);
+            formattedString = formatNotes(sortedNotes);
+        } else if (isAscendingOrder) {
+            formattedString = formatNotes(sortedNotes);
+        }
         return formattedString;
     }
 
-    public static String formatNotebook(Notebook notebook) {
-        String formattedString = "";
+    public static StringBuilder getUnsortedPinnedNotes(StringBuilder pinnedNotesSorted,
+                                                       StringBuilder unpinnedNotesSorted) {
+
+        StringBuilder formattedString = new StringBuilder();
+
+        formattedString.append("Pinned Notes: ")
+                .append(LS).append(pinnedNotesSorted)
+                .append(LS).append("Unpinned Notes: ")
+                .append(LS).append(unpinnedNotesSorted);
+
+        return formattedString;
+    }
+
+    public static StringBuilder getSortedPinnedNotes(ArrayList<Note> pinnedNotes,
+                                                     ArrayList<Note> unpinnedNotes) {
+
+        StringBuilder formattedString = new StringBuilder();
+
+        formattedString.append("Pinned Notes: ")
+                .append(LS).append(formatNotes(pinnedNotes))
+                .append(LS).append("Unpinned Notes: ")
+                .append(LS).append(formatNotes(unpinnedNotes));
+
+        return formattedString;
+    }
+
+    /**
+     * Method compiles the ArrayList items and appends the items to a String.
+     *
+     * @param noteArrayList ArrayList of notes to obtain note title/tags from
+     * @return noteString StringBuilder containing the notes ready to be printed
+     */
+    public static StringBuilder formatNotes(ArrayList<Note> noteArrayList) {
+        StringBuilder formattedString = new StringBuilder();
+
+        for (int i = 0; i < noteArrayList.size(); i++) {
+            formattedString.append(i + 1).append(SUFFIX_INDEX)
+                    .append(noteArrayList.get(i).getTitle())
+                    .append(" ")
+                    .append(noteArrayList.get(i).getTagsName())
+                    .append(Formatter.LS);
+        }
+
         return formattedString;
     }
 
