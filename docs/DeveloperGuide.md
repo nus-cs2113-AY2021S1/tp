@@ -183,11 +183,12 @@ against historical buy price.
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+We are targeting people below 25 who have never traded stocks before.
 
 ### Value proposition
 
 {Describe the value proposition: what problem does it solve?}
+Paper trading allows inexperienced people to get a feel of what trading feels like so that they can used to it without the downside of losing real money.
 
 ## User Stories
 
