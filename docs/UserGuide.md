@@ -174,6 +174,29 @@ Here are the range of commands:
 
 ```
 
+### 3.8. Similarity Checks
+
+When you enter a location and make a spelling error or a typo in the name, the app performs a similarity check with 
+existing location names and suggests some locations to you. The app executes this command automatically and does not 
+require any explicit input from you.
+
+#### 3.8.1. Examples of Usage
+
+**<u>Example 1</u>**
+
+Let's say you want to find all buses that stop at Opp HSSML, but you type `/bus Opp HSML` instead.
+You will receive a message with suggested location names you can use as shown in the figure below.<br><br>
+<img src="UG_Figures/similarOutput1.png" alt="similar locs message" width = 500><br>
+_Figure 5: A message showing suggested locations._
+
+You may then type in the command again with the correct location to see a list of buses that stop at Opp HSSML 
+as shown in the figure below.<br><br>
+<img src="UG_Figures/similarOutput2.png" alt="Correct input message" width=400><br>
+_Figure 6: Result when the input is correct._
+
+>Note: This check is only applicable to bus stop names, so the app performs it only when you enter a 
+><code>/route</code> command or a <code>/bus</code> command. 
+
 ## 4. FAQ
 Some common questions to aid in possible issues faces.
 
