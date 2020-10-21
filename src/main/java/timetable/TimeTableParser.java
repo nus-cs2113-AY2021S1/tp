@@ -38,7 +38,7 @@ public class TimeTableParser {
         }
     }
 
-    private static Lesson addClass() throws InvalidDayOfTheWeekException {
+    public static Lesson addClass() throws InvalidDayOfTheWeekException {
         Scanner in = new Scanner(System.in);
         System.out.println("Please enter module name: ");
         final String moduleCode = in.nextLine();
