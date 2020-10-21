@@ -29,6 +29,8 @@ public class Goal {
         }
     }
 
+    public String getCategory() { return this.category; }
+
     /**
      * This function set the expense month.
      * based on the month entered by the user

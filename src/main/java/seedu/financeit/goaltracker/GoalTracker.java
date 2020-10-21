@@ -1,6 +1,5 @@
 package seedu.financeit.goaltracker;
 
-import java.time.DateTimeException;
 import seedu.financeit.common.Constants;
 import seedu.financeit.common.Goal;
 import seedu.financeit.manualtracker.Ledger;
@@ -11,8 +10,9 @@ import seedu.financeit.manualtracker.subroutine.EntryList;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
-import java.time.Month;
 
+import java.time.DateTimeException;
+import java.time.Month;
 import java.util.Scanner;
 
 /**
@@ -145,43 +145,27 @@ public class GoalTracker {
         }
     }
 
-    public static int getExpenseGoal() {
-        return expenseGoal;
-    }
-
-    public static int getIncomeGoal() {
-        return incomeGoal;
+    public static TotalGoalList getTotalGoalList() {
+        return totalGoalList;
     }
 
     /**
      * This function is for save and load of the expense and income goals
      * for respective months.
-     * @param expense the amount of expense goal
-     * @param income the amount of income goal
+     *
+     * @param amount   the amount of income/expense goal
+     * @param category Type of goal
+     * @param mon      month of goal
      */
-    public static void setGoals(int expense, int income) {
-        if (expense != 0) {
-            try {
-                month = Month.of(Integer.parseInt(cmdPacket[3]));
-                expenseGoal = expense;
-                goalToSet = new Goal(expenseGoal, "Expense", month);
-                totalGoalList.addGoal(goalToSet);
-            } catch (DateTimeException e) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
-                        + " a valid month");
-            }
-        }
-
-        if (income != 0) {
-            try {
-                month = Month.of(Integer.parseInt(cmdPacket[3]));
-                incomeGoal = income;
-                goalToSet = new Goal(incomeGoal, "Income", month);
-                totalGoalList.addGoal(goalToSet);
-            } catch (DateTimeException e) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
-                        + " a valid month");
-            }
+    public static void setGoals(String amount, String category, String mon) {
+        try {
+            month = Month.valueOf(mon);
+            expenseGoal = Integer.parseInt(amount);
+            goalToSet = new Goal(expenseGoal, category, month);
+            totalGoalList.addGoal(goalToSet);
+        } catch (DateTimeException e) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
+                    + " a valid month");
         }
     }
 
@@ -200,7 +184,7 @@ public class GoalTracker {
             }
         } catch (IndexOutOfBoundsException e) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Please enter either expense "
-                + "or income");
+                    + "or income");
         }
     }
 
@@ -286,6 +270,7 @@ public class GoalTracker {
      * This function will be called in EntryTracker class when there is a
      * new entry being stored into a ledger. The purpose is to parse the
      * entry to categories whether it is expense or income.
+     *
      * @param entry entry that user enter into ledger
      * @class EntryTracker is the class that handle ledger
      */
@@ -303,6 +288,7 @@ public class GoalTracker {
      * This function is called when a ledger is being created
      * or opened by date.
      * The purpose is to store the ledgerMonth which the entry is being added to
+     *
      * @param ledger ledger that is sent from manual tracker
      * @class ManualTracker is the class that handle ledger
      */
@@ -396,7 +382,7 @@ public class GoalTracker {
             }
             if (expenseGoal == 0) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "You did not set a expense "
-                    + "goal for " + month);
+                        + "goal for " + month);
             }
 
             double goalDifference = expenseGoal - totalExpenses;
@@ -558,7 +544,7 @@ public class GoalTracker {
                     UiManager.printWithStatusIcon(Constants.PrintType.GOAL_STATUS, "This is your current, "
                             + "income goal status for " + month + ". You have saved $" + totalIncomes + " / $"
                             + incomeGoal + ". You have not met your " + "revenue goal. You are $" + goalDifference
-                             + " away from your goal.");
+                            + " away from your goal.");
                     UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, "Do you want to exit "
                             + "DisplayGoal? y/n");
                     input = UiManager.handleInput();
