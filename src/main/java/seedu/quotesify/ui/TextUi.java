@@ -60,10 +60,6 @@ public class TextUi {
     public void printBookDetails(Book book) {
         System.out.println(UiMessage.LIST_BOOK_DETAIL_MESSAGE);
         System.out.print(book.getBookDetailString());
-
-        if (book.getCategories().size()  == 0) {
-            System.out.println(UiMessage.EMPTY_CATEGORY_LIST_MESSAGE);
-        }
     }
 
     public void printBooksByAuthor(BookList bookList, String authorName) {

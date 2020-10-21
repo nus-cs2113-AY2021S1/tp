@@ -3,6 +3,7 @@ package seedu.quotesify.book;
 import org.json.simple.JSONObject;
 import seedu.quotesify.author.Author;
 import seedu.quotesify.parser.JsonSerializer;
+import seedu.quotesify.ui.UiMessage;
 
 import java.util.ArrayList;
 
@@ -63,9 +64,17 @@ public class Book implements JsonSerializer {
         stringToReturn += "Categories: " + System.lineSeparator();
 
         int index = 1;
-        for (String category : categories) {
-            stringToReturn += index + ". " + category + System.lineSeparator();
-            index++;
+        if (categories.size() > 0) {
+            for (String category : categories) {
+                stringToReturn += index + ". " + category + System.lineSeparator();
+                index++;
+            }
+        } else {
+            stringToReturn += UiMessage.EMPTY_CATEGORY_LIST_MESSAGE + System.lineSeparator();
+        }
+
+        if (rating != 0) {
+            stringToReturn += "Rating: " + rating + System.lineSeparator();
         }
 
         return stringToReturn;
