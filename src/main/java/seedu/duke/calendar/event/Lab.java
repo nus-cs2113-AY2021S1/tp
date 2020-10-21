@@ -37,14 +37,14 @@ public class Lab extends SchoolEvent {
      * @return whether the lab is over
      */
     public boolean getIsOver() {
-        /*if (date.isBefore(LocalDate.now())) {
+        if (date.isBefore(LocalDate.now())) {
             return true;
         } else if (date.isEqual(LocalDate.now()) && time.isBefore(LocalTime.now())) {
             return true;
         } else {
             return false;
-        }*/
-        LocalDateTime dateAndTime = LocalDateTime.of(date, time);
+        }
+        /*LocalDateTime dateAndTime = LocalDateTime.of(date, time);
         ZonedDateTime due = ZonedDateTime.of(dateAndTime, ZoneId.of("+08:00"));
         ZonedDateTime now = ZonedDateTime.now(ZoneId.of("+08:00"));
 
@@ -52,7 +52,7 @@ public class Lab extends SchoolEvent {
             return true;
         } else {
             return false;
-        }
+        }*/
     }
 
     /**
