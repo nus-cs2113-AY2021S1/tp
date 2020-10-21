@@ -9,7 +9,7 @@ Duke is a command line trading simulator that lets you try your hand at trading 
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](https://github.com/AY2021S1-CS2113-T16-3/tp/releases/tag/v1.0)(in-progress).
+1. Down the latest version of `Duke` from [here](https://github.com/AY2021S1-CS2113-T16-3/tp/releases/tag/v1.0).
 
 ## Features 
 
@@ -61,6 +61,15 @@ Example of usage:
 
 `view`
 
+### Exit: `bye`
+Exits the program. Duke will save your info for the next time you come back!
+
+Format: `bye`
+
+Example of usage: 
+
+`bye`
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -75,3 +84,4 @@ Example of usage:
 * Sell a stock `sell /aapl`
 * Search for a stock's info `search /aapl`
 * View portfolio `view`
+* Exit program `bye`
