@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -47,11 +48,17 @@ public class Storage<T> {
             throw new DukeException(DukeExceptionType.ERROR_LOADING_FILE);
         }
 
-        Gson gson = new Gson();
+        if (!fileAsString.equals("null")) {
+            Gson gson = new Gson();
+            return gson.fromJson(fileAsString, storageClass);
+        } else {
+            try {
+                return storageClass.getDeclaredConstructor().newInstance();
+            } catch (Exception e) {
+                throw new DukeException(DukeExceptionType.ERROR_LOADING_FILE);
+            }
+        }
 
-        T data = gson.fromJson(fileAsString, storageClass);
-
-        return data;
     }
 
     private ArrayList<String> getData(File f) throws FileNotFoundException {
