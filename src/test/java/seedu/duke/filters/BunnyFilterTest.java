@@ -5,7 +5,6 @@ import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.exceptions.BunnyIdeaMissingException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class BunnyFilterTest {
 
