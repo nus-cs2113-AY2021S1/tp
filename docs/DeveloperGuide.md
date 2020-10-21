@@ -24,6 +24,14 @@ Given below is how the deadline command behave: <br>
 The following sequence diagram shows how the deadline operation works: <br>
 
 ![Sequence Diagram for Deadline Command](/docs/diagrams/DeadlineSequenceDiagram.jpg)
+
+#### Repeat Feature
+
+The repeat feature on the program allows for the user to be able to make certain events repeat several times over a defined time period.
+For instance, the user can request for an event to be repeated monthly for four months. 
+
+The following sequence diagram 
+
 ## Documentation, logging, testing, configuration, dev-ops (not sure what this entails)
 
 ## Appendix: Requirements
