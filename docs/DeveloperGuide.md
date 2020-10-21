@@ -32,3 +32,34 @@
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+## Implementation
+### Print prompt feature
+#### Proposed implementation
+`<Ui>` and `<Acess>` facilitate the proposed print prompt feature. The `<Access>` class stores user's temporary 
+access level as a variable `<Access#level>`. Before any read command execution in `<Kaji>`, `<Ui#showLevel(Access)>` 
+method runs and prints user's current access level. 
+
+`<Access>` are exposed in both the `<GoCommand>` class and `<BackCommand>` class as `<Access#setChapterLevel()>` and 
+`<Access#setModuleLevel()>` respectively.
+
+![Class Diagram of print prompt](UML/printPrompt1.png)
+
+Given below is an example usage scenario and how the print prompt feature behaves at each step.
+
+Step 1. The user launches the application. The `<Access>` will be initialized with the initial access level state 
+which is admin level. The `<Ui>` will also be initialized and pointing to that single access object.
+
+
+
+
+Given below is another example usage scenario and how the print prompt feature behaves at each step.
+
+#### Design consideration
+##### Aspect: When access prompt shows
+* **Alternative 1 (current choice)**: Keep a variable `<level>` in Access class.
+    * Pros: Easy to implement and easy for the Kaji.class to access.
+    * Cons: Use up memory usage and hard to debug.
+* **Alternative 2**: Use `<chapterLevel>`, `<moduleLevel>` and `<adminLevel>` every time before print prompt in Kaji.class.
+    * Pros: Will use less memory and increases testability.
+    * Cons: We must access three variables before printing new prompt, unnecessary waste of CPU.
