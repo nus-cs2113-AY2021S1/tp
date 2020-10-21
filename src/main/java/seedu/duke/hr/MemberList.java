@@ -194,7 +194,11 @@ public class MemberList {
         return false;
     }
 
-    public static String searchProfSpeaker() {
+    /**
+     * Output all the members with role of professor or admin.
+     * @return the result of searching
+     */
+    public static String searchProfAdmin() {
         String output = "";
         int count = 0;
         for (int i = 0; i < Member.numOfMembers; i++) {
@@ -217,6 +221,10 @@ public class MemberList {
         return output;
     }
 
+    /**
+     * Output all the members with role of alumni or speakers.
+     * @return the result of searching
+     */
     public static String searchConnection() {
         String output = "";
         int count = 0;

@@ -71,8 +71,34 @@ Example of usage: <br/>
 Prints the list of members, based on the order in which they are added into the list. 
 Format: `hr listMember` <br/>
 
-Example of usage: 
-`hr listMember`
+Example of usage:
+`hr listMember`  
+
+
+#### search members: `search`  
+Search the members whose information matches user input.  
+Format: `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)`  
+
+Example of usage:  
+`hr search peter`  
+`hr search /n peter /r president`  
+
+
+#### view contacts of prof/admin: `list prof&admin`  
+List the contacts of the professors and administrators.  
+Format: `hr list prof&admin`  
+
+Example of usage:  
+`hr list prof&admin`  
+
+
+#### view contacts of connections: `list connections`  
+List the contacts of connections(alumni, speakers).  
+Format: `hr list connections`  
+
+Example of usage:  
+`hr list connections`  
+
 
 ### 3.4 Event features`event` <br/>
 #### Add events: `addEvent`<br/>
@@ -168,6 +194,9 @@ search | `event search /s <KEYWORD>` | `event search /s arduino`
 addLog | `finance addLog ITEM_NAME ITEM_VALUE` | `finance addLog have lunch 5.2`
 delLog | `finance delLog ITEM_INDEX` | `finance delLog 2`
 summary | `finance summary` | -
+hr search | `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)` | `hr search /n Peter /r president`
+list prof&admin | `hr list prof&admin` | -
+list connections | `hr list connections` | -
 
 ##Glossary
 

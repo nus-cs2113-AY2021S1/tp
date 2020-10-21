@@ -67,11 +67,17 @@ Given below is an example usage scenario and how the add/delete finance log entr
 
 Step 1. The user launches the application for the first time. The `FinanceList` will be initialized with no `FinanceLog` in it.  
 
+![](/Users/tissue/Desktop/CS2113T/tp/docs/financeDiagramPic/1-1S1.png)
+
 Step 2. The user executes `finance addLog iphone12 1299` command to add a finance log entry with content "iphone12" and value "1299" into finance list. The `finance addLog` command
 calls `CommandFinanceAdd#execute()`, then `FinanceList` will be added a `FinanceLog` with its `finLog` as `iphone12` and its value as `1299`.  
 
+![](/Users/tissue/Desktop/CS2113T/tp/docs/financeDiagramPic/1-1S2.png)
+
 Step 3. The user executes `finance delLog 1` command to delete the 1st finance log entry in the finance list. The `finance delLog`
 command calls `CommandFinanceDel#execute()`, causing the `FinanceLog` of index 1 removed from `FinanceList`.  
+
+![](/Users/tissue/Desktop/CS2113T/tp/docs/financeDiagramPic/1-1S3.png)
 
 **Design Considerations**  
 Aspect: User input format for adding a finance log entry
@@ -97,8 +103,12 @@ Given below is an example usage scenario and how the program list the summary of
 Step 1. After some `finance addLog` commands, the user created a `FinanceList` with two `FinanceLog`. The first `FinanceLog` is 
 "iphone12 $1299" and the second `FinanceLog` is "chicken rice $3.5".  
 
+![](/Users/tissue/Desktop/CS2113T/tp/docs/financeDiagramPic/1-2S1.png)
+
 Step 2. The user executes `finance summary` command to list the summary of `FinanceList`. The `finance summary` command calls 
-`CommandFinanceSummary#execute()`, then every `FinanceLog` in `FinanceList` will be output and the total budget will be printed out at the bottom.  
+`CommandFinanceSummary#execute()`, then every `FinanceLog` in `FinanceList` will be output and the total budget will be printed out at the bottom. Nothing will be changed in `FinanceList`.  
+
+![](/Users/tissue/Desktop/CS2113T/tp/docs/financeDiagramPic/1-2S2.png)
 
 **Design Considerations**  
 Aspect: Repeated items  
