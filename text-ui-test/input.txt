@@ -38,7 +38,10 @@ create
 2020-12-12
 editappt S9123456Z
 1
+1
 tan
+deleteappt S9123456Z
+1
 nodoctor tan
 list
 bye

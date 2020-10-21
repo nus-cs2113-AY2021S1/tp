@@ -201,31 +201,6 @@ public class Ui {
     }
 
     /**
-     * Gets appointment to be booked.
-     *
-     * @param appointments Arraylist of appointments.
-     * @return User input.
-     * @throws RexException If no appointments are available.
-     */
-    public String getAppointmentToBook(AppointmentList appointments) throws RexException {
-        showLine();
-        printWithIndent("Here are the list of available appointments.");
-        int counter = 0;
-        for (Appointment appointment : appointments.getAppointments()) {
-            if (!appointment.isBooked()) {
-                counter++;
-                printWithIndent(counter + ". " + appointment.getDate().toString());
-            }
-        }
-        if (counter == 0) {
-            throw new RexException("No appointments available!");
-        }
-        printWithIndent("Please enter the index of appointment to book");
-        showLine();
-        return in.nextLine();
-    }
-
-    /**
      * Gets appointment to be edited.
      *
      * @param appointments Arraylist of appointments.
@@ -236,7 +211,7 @@ public class Ui {
         showLine();
         printWithIndent("Here are the list of available appointments.");
         int counter = 0;
-        for (Appointment appointment : appointments.getAppointments()) {
+        for (Appointment appointment : appointments.getAvailableAppointments()) {
             counter++;
             printWithIndent(counter + ". " + appointment.getDate().toString());
 
@@ -244,7 +219,7 @@ public class Ui {
         if (counter == 0) {
             throw new RexException("No appointments available!");
         }
-        printWithIndent("Please enter the index of appointment to edit");
+        printWithIndent("Please enter the index of appointment to change to");
         showLine();
         return in.nextLine();
     }
@@ -345,16 +320,13 @@ public class Ui {
      * Displays only the Objects in ArrayList that is required to be shown.
      *
      * @param list          Generic ArrayList
-     * @param indicesToShow ArrayList containing Integers corresponding to the indices of list that you want to display
      * @param <T>           Generic class
      * @return Object in ArrayList
      */
-    public <T> int displayArrayList(ArrayList<T> list, ArrayList<Integer> indicesToShow) {
+    public <T> int displayArrayList(ArrayList<T> list) {
         int i;
-        for (i = 0; i < indicesToShow.size(); i++) {
-            String indexString = String.valueOf(i + 1);
-            int indexToShow = indicesToShow.get(i);
-            printWithIndent(indexString + ". " + list.get(indexToShow));
+        for (i = 0; i < list.size(); i++) {
+            printWithIndent((i + 1) + ". " + list.get(i));
         }
         return list.size();
     }
@@ -372,21 +344,19 @@ public class Ui {
      * Gets object of Arraylist corresponding to user selection.
      *
      * @param list          Generic ArrayList
-     * @param indicesToShow ArrayList containing Integers corresponding to the indices of list that you want to display
      * @param <T>           Generic class
      * @return Object in ArrayList
      */
-    public <T> T getItemOfArrayList(ArrayList<T> list, ArrayList<Integer> indicesToShow) throws RexException {
-        int maxIndex = displayArrayList(list, indicesToShow);
+    public <T> T getItemOfArrayList(ArrayList<T> list) throws RexException {
+        int maxIndex = displayArrayList(list);
         if (maxIndex < 1) {
-            throw new RexException("There are no available appointments to book.");
+            throw new RexException("There are no available appointments to choose.");
         }
-        printWithIndent("Enter the index you want: ");
+        printWithIndent("Enter the index: ");
         String inputString = in.nextLine();
         int input = Integer.parseInt(inputString);
         try {
-            int index = indicesToShow.get(input - 1);
-            return list.get(index);
+            return list.get(input - 1);
         } catch (IndexOutOfBoundsException e) {
             indexOutOfBoundsMessage(maxIndex);
             return null;
@@ -395,5 +365,17 @@ public class Ui {
 
     public void showAvailableAppointmentsMessage() {
         printWithIndent("Here are the list of available appointments: ");
+    }
+
+    public void showEditAppointmentMessage() {
+        printWithIndent("Here are the appointments. Choose one to edit");
+    }
+
+    public void showDeleteAppointmentMessage(Appointment appointment) {
+        printWithIndent("Deleted appointment: " + appointment);
+    }
+
+    public void showDeleteAppointmentMessage() {
+        printWithIndent("Choose appointment to delete: ");
     }
 }

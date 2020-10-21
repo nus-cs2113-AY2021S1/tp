@@ -69,7 +69,7 @@ public class BookApptCommand extends Command {
                     indicesToShow.add(i);
                 }
             }
-            Appointment chosenAppointment = ui.getItemOfArrayList(appointments.getAppointments(), indicesToShow);
+            Appointment chosenAppointment = ui.getItemOfArrayList(appointments.getAvailableAppointments());
             chosenAppointment.bookPatient(patients.getPatientFromNric(nric));
             chosenAppointment.bookDoctor(doctors.getDoctorFromName(doctorName));
             ui.showAppointmentBookedMessage(chosenAppointment);

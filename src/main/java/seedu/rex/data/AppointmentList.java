@@ -3,6 +3,7 @@ package seedu.rex.data;
 import seedu.rex.data.hospital.Appointment;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * Contains ArrayList of appointments.
@@ -46,5 +47,9 @@ public class AppointmentList {
 
     public void removeAppointmentByIndex(int i) {
         appointments.remove(i);
+    }
+
+    public ArrayList<Appointment> getAvailableAppointments() {
+        return (ArrayList<Appointment>) appointments.stream().filter((a)-> !a.isBooked()).collect(Collectors.toList());
     }
 }

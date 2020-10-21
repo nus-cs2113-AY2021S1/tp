@@ -39,6 +39,9 @@ public class DeleteDoctorCommand extends Command {
             ui.showDoctorDeleted(deletedDoctor);
 
             for (int i = 0; i < appointments.getSize(); i++) {
+                if (appointments.getAppointmentByIndex(i).getDoctor() == null) {
+                    continue;
+                }
                 String tempName = appointments.getAppointmentByIndex(i).getDoctor().getName();
                 if (tempName.equals(doctorName)) {
                     appointments.getAppointmentByIndex(i).setPatient(null);

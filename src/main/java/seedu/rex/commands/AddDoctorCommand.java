@@ -8,6 +8,9 @@ import seedu.rex.data.hospital.Doctor;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
+/**
+ * Adds doctor to DoctorList
+ */
 public class AddDoctorCommand extends Command {
     public static final String COMMAND_WORD = "doctor";
     private final String trimmedCommand;
@@ -17,7 +20,7 @@ public class AddDoctorCommand extends Command {
     }
 
     /**
-     * Executes command.
+     * Adds doctor with name.
      *
      * @param patients     PatientList object.
      * @param doctors      DoctorList object.
@@ -41,6 +44,7 @@ public class AddDoctorCommand extends Command {
 
         ui.showDoctorAdded(newDoctor);
 
+        assert !patients.getPatients().isEmpty() : "No doctors!";
         storage.saveDoctors(doctors);
     }
 }

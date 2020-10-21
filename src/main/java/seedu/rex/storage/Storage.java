@@ -103,7 +103,6 @@ public class Storage {
         StringBuilder appointmentsFileContent = new StringBuilder();
 
         for (Appointment appointment : appointments.getAppointments()) {
-            // Need to format tasks
             appointmentsFileContent.append(appointment);
             appointmentsFileContent.append(System.lineSeparator());
         }

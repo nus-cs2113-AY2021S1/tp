@@ -2,14 +2,14 @@ package seedu.rex.data.hospital;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Vector;
+import java.util.ArrayList;
 
 /**
  * Patient class.
  */
 public class Patient {
 
-    private final Vector<Appointment> appointmentHistory;
+    private final ArrayList<Appointment> appointmentHistory;
     private String name;
     private String nric;
     private LocalDate dateOfBirth;
@@ -18,7 +18,7 @@ public class Patient {
         setName(name);
         setNric(nric);
         setDateOfBirth(dateOfBirth);
-        this.appointmentHistory = new Vector<>();
+        this.appointmentHistory = new ArrayList<>();
     }
 
     public LocalDate getDateOfBirth() {
@@ -45,7 +45,7 @@ public class Patient {
         this.nric = nric;
     }
 
-    public Vector<Appointment> getAppointmentHistory() {
+    public ArrayList<Appointment> getAppointmentHistory() {
         return appointmentHistory;
     }
 

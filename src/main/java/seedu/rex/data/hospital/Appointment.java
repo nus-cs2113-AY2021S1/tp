@@ -75,9 +75,11 @@ public class Appointment {
     public void bookPatient(Patient patient) {
         this.patient = patient;
         isBooked = true;
+        //this.patient.getAppointmentHistory().add(this);
     }
 
     public void removeBooking() {
+        //patient.getAppointmentHistory().remove(this);
         this.patient = null;
         this.doctor = null;
         isBooked = false;
