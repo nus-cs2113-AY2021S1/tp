@@ -97,6 +97,45 @@ The search for tasks or events feature has a similar sequence diagram. The diffe
 on whether the user searches for tasks or events, the condition will check for the instance of either the task or event respectively.
 
 ## Documentation
+### Documentation guide
+#### Introduction
+We use Markdown for writing documentation.
+#### Setting up and maintaining the project website
+- We use [Jekyll](https://jekyllrb.com/) to manage documentation.  
+- The docs/ folder is used for documentation.  
+- To learn how to set it up and maintain the project website, follow the guide [[se-edu/guides] Using Jekyll for project documentation](https://se-education.org/guides/tutorials/jekyll.html).
+#### Style guidance
+- Follow the [Google developer documentation style guide](https://developers.google.com/style).
+- Also relevant is the [[se-edu/guides] Markdown coding standard](https://se-education.org/guides/conventions/markdown.html)
+#### Editing diagrams
+- See the [[se-edu/guides] Using PlantUML](https://se-education.org/guides/tutorials/plantUml.html) to find out how to create and update the UML diagrams in the developer guide.
+#### Converting a document to the PDF format
+- We use Google Chrome for converting documentation to PDF format.  
+- Here are the steps to convert the project documentation to PDF format:
+  - Go to your generated documentation site on GitHub using Chrome.
+  - Within Chrome, click on the Print option in Chrome’s menu.
+  - Set the destination to Save as PDF, then click Save to save a copy of the file in PDF format.
+- See the guide [[se-edu/guides] Saving web documents as PDF files](https://se-education.org/guides/tutorials/savingPdf.html) for more details.
+### Testing guide
+There are two ways to run tests.
+- Method 1: Using IntelliJ JUnit test runner
+  - To run all tests, right-click on the src/test/java folder and choose Run 'Tests in 'tp.test''
+  - To run a subset of tests, you can right-click on a test package, test class, or a test and choose Run 'DukeTest'
+- Method 2: Using Gradle
+  - Open a console and run the command gradlew checkstyleMain (Mac/Linux: ./gradlew checkstyleMain)
+### Logging guide
+- We are using the java.util.logging package for logging.
+- The LogsCenter class is used to manage the logging levels and logging destinations.
+- The Logger for a class can be obtained using LogsCenter.getLogger(Class) which will log messages according to the specified logging level.
+- Log messages are output through the console and to a .log file.
+- The output logging level can be controlled using the logLevel setting in the configuration file
+- When choosing a level for a log message, follow the conventions given in [[se-edu/guides] Java: Logging conventions](https://se-education.org/guides/conventions/java/logging.html).
+  - SEVERE : Critical problem detected which may possibly cause the termination of the application
+  - WARNING : Can continue, but with caution
+  - INFO : Information showing the noteworthy actions by the App
+  - FINE : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
+### Configuration guide
+### DevOps guide
 
 ## Product scope
 ### Target user profile
