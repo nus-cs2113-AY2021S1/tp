@@ -13,14 +13,14 @@ public class Event {
     protected String eventName;
     protected String eventTime;
     protected LocalDate date;
-    protected String Symbol;
+    protected String symbol;
     protected boolean isDone;
 
 
     public Event(String name, String date, String time) {
         this.eventName = name;
         this.eventTime = time;
-        this.Symbol = "[E]";
+        this.symbol = "[E]";
         setDateTime(date, time);
         this.isDone = false;
     }
@@ -66,7 +66,7 @@ public class Event {
     * @return String format of event.
     */
     public String printEvent() {
-        return Symbol + this.getStatusIcon() + "\nEvent Name: " + this.eventName + "\nDate: "
+        return symbol + this.getStatusIcon() + "\nEvent Name: " + this.eventName + "\nDate: "
                 + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\nTime: " + this.eventTime;
     }
 

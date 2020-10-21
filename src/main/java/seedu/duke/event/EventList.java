@@ -109,7 +109,8 @@ public class EventList {
             for (Event event : eventsSortedByDate) {
                 if (!event.getEventDate().isBefore(LocalDate.now())) {
                     userOutput = userOutput + eventNumber + "." + event.printEvent();
-                    userOutput = userOutput.concat("\nNumber of day(s) left: " + event.numberOfDaysLeft()) + "\n" + "*".repeat(50) + "\n";
+                    userOutput = userOutput.concat("\nNumber of day(s) left: " + event.numberOfDaysLeft())
+                            + "\n" + "*".repeat(50) + "\n";
                     eventNumber++;
                 }
             }
