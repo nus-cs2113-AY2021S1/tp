@@ -18,6 +18,7 @@ import static seedu.duke.filters.FilterList.printFilterList;
 public class WordsFilter {
 
     public static ArrayList<Words> filteredWords = new ArrayList<>();
+    private static final ArrayList<Words> WORD_LIST = WordList.wordList;
     private static final Logger LOGGER = Logger.getLogger("WordsFilter");
 
     /**
@@ -26,18 +27,17 @@ public class WordsFilter {
      * @param isNewFilter Clears last filter and creates new filter.
      * @param types Types of words need filtering.
      */
-    public static void filterByType(boolean isNewFilter, String[] types) {
+    public static void filterByType(boolean isNewFilter, String[] types, int printLimit) {
         if (isNewFilter) {
-            ArrayList<Words> words = WordList.wordList;
             filteredWords.clear();
-            addTagsToFilteredList(FilterType.WORD_TYPE, types, words);
+            addTagsToFilteredList(FilterType.WORD_TYPE, types);
         } else {
             filteredWords = (ArrayList<Words>) filteredWords.stream()
                     .filter((w) -> Arrays.asList(types).contains(w.getType()))
                     .collect(Collectors.toList());
         }
 
-        printFilterList();
+        printFilterList(printLimit);
     }
 
     /**
@@ -46,18 +46,17 @@ public class WordsFilter {
      * @param isNewFilter Clears last filter and creates new filter.
      * @param startStrings Array of strings that need filtering.
      */
-    public static void filterByStartingString(boolean isNewFilter, String[] startStrings) {
+    public static void filterByStartingString(boolean isNewFilter, String[] startStrings, int printLimit) {
         if (isNewFilter) {
-            ArrayList<Words> words = WordList.wordList;
             filteredWords.clear();
-            addTagsToFilteredList(FilterType.STARTING_STRING, startStrings, words);
+            addTagsToFilteredList(FilterType.STARTING_STRING, startStrings);
         } else {
             ArrayList<Words> wordsToRemove = new ArrayList<>();
             generateListOfRemoveWords(FilterType.STARTING_STRING, startStrings, wordsToRemove);
             removeRedundantWords(wordsToRemove);
         }
 
-        printFilterList();
+        printFilterList(printLimit);
     }
 
     /**
@@ -66,18 +65,17 @@ public class WordsFilter {
      * @param isNewFilter Clears last filter and creates new filter.
      * @param includedStrings Array of strings that needs filtering.
      */
-    public static void filterByIncludedString(boolean isNewFilter, String[] includedStrings) {
+    public static void filterByIncludedString(boolean isNewFilter, String[] includedStrings, int printLimit) {
         if (isNewFilter) {
-            ArrayList<Words> words = WordList.wordList;
             filteredWords.clear();
-            addTagsToFilteredList(FilterType.INCLUDING_STRING, includedStrings, words);
+            addTagsToFilteredList(FilterType.INCLUDING_STRING, includedStrings);
         } else {
             ArrayList<Words> wordsToRemove = new ArrayList<>();
             generateListOfRemoveWords(FilterType.INCLUDING_STRING, includedStrings, wordsToRemove);
             removeRedundantWords(wordsToRemove);
         }
 
-        printFilterList();
+        printFilterList(printLimit);
     }
 
     private static void generateListOfRemoveWords(FilterType filterType, String[] patterns,
@@ -108,24 +106,26 @@ public class WordsFilter {
         }
     }
 
-    private static void addTagsToFilteredList(FilterType filterType, String[] patterns, ArrayList<Words> words) {
+    private static void addTagsToFilteredList(FilterType filterType, String[] patterns) {
         for (String pattern : patterns) {
             String string = pattern.toLowerCase();
             for (int i = 0; i < WordList.getNumberOfWords(); i++) {
                 switch (filterType) {
                 case WORD_TYPE:
-                    if (words.get(i).getType().equalsIgnoreCase(string)) {
-                        filteredWords.add(words.get(i));
+                    if (WORD_LIST.get(i).getType().equalsIgnoreCase(string)) {
+                        filteredWords.add(WORD_LIST.get(i));
                     }
                     break;
                 case STARTING_STRING:
-                    if (words.get(i).getDescription().startsWith(string) && !filteredWords.contains(words.get(i))) {
-                        filteredWords.add(words.get(i));
+                    if (WORD_LIST.get(i).getDescription().startsWith(string)
+                            && !filteredWords.contains(WORD_LIST.get(i))) {
+                        filteredWords.add(WORD_LIST.get(i));
                     }
                     break;
                 case INCLUDING_STRING:
-                    if (words.get(i).getDescription().contains(string) && !filteredWords.contains(words.get(i))) {
-                        filteredWords.add(words.get(i));
+                    if (WORD_LIST.get(i).getDescription().contains(string)
+                            && !filteredWords.contains(WORD_LIST.get(i))) {
+                        filteredWords.add(WORD_LIST.get(i));
                     }
                     break;
                 default:

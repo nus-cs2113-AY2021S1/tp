@@ -7,45 +7,54 @@ import seedu.duke.words.Words;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.duke.constants.FilterMessages.INVALID_LIST_FILTER_ANSWER;
-import static seedu.duke.constants.FilterMessages.LONG_FILTER_LIST_MESSAGE;
+import static seedu.duke.constants.FilterMessages.*;
 
 public class FilterList {
 
     public static Scanner SCANNER = new Scanner(System.in);
 
-    public static void printFilterList() {
+    public static void printFilterList(int printLimit) {
         ArrayList<Words> filteredWords = new ArrayList<>(WordsFilter.filteredWords);
         if (filteredWords.size() == 0) {
-            System.out.println(FilterMessages.NO_FILTER_RESULT);
+            System.out.println(NO_FILTER_RESULT);
             return;
         }
 
-        if (filteredWords.size() <= 10) {
-            System.out.println(FilterMessages.FILTER_MESSAGE);
+        if (filteredWords.size() <= printLimit) {
+            System.out.printf(FilterMessages.FILTER_MESSAGE, filteredWords.size());
             for (Words word : filteredWords) {
                 System.out.println(word.getDescription() + ": " + word.getDefinition());
             }
             return;
         }
 
-        System.out.println(LONG_FILTER_LIST_MESSAGE);
+        if (printLimit != -1) {
+            System.out.printf(FilterMessages.LONG_FILTER_LIST_MESSAGE, printLimit);
+        } else {
+            System.out.println(FilterMessages.PRINT_LIMIT_NOT_FOUND);
+            System.out.printf(FilterMessages.FILTER_MESSAGE, filteredWords.size());
+            for (Words word : filteredWords) {
+                System.out.println(word.getDescription() + ": " + word.getDefinition());
+            }
+            return;
+        }
+
         String userInput = Parsers.getUserInput(SCANNER);
         if (userInput.trim().equalsIgnoreCase("y") ||
                 userInput.trim().equalsIgnoreCase("yes")) {
-            System.out.println(FilterMessages.FILTER_MESSAGE);
+            System.out.printf(FilterMessages.FILTER_MESSAGE, filteredWords.size());
             for (Words word : filteredWords) {
                 System.out.println(word.getDescription() + ": " + word.getDefinition());
             }
         } else if (userInput.trim().equalsIgnoreCase("n") ||
                 userInput.trim().equalsIgnoreCase("no")) {
-            System.out.println(FilterMessages.FILTER_MESSAGE);
-            for (int i = 0; i < 20; i++) {
+            System.out.printf(FilterMessages.FILTER_MESSAGE_LIMIT, printLimit, filteredWords.size());
+            for (int i = 0; i < printLimit; i++) {
                 Words word = filteredWords.get(i);
                 System.out.println(word.getDescription() + ": " + word.getDefinition());
             }
         } else {
-            System.out.println(INVALID_LIST_FILTER_ANSWER);
+            System.out.println(FilterMessages.INVALID_LIST_FILTER_ANSWER);
         }
     }
 }

@@ -3,9 +3,7 @@ package seedu.duke.filters;
 import seedu.duke.constants.FilterMessages;
 import seedu.duke.exceptions.FilterCommandException;
 
-import static seedu.duke.filters.FilterCommandSlicer.isNewFilter;
-import static seedu.duke.filters.FilterCommandSlicer.getTargetedStringTags;
-import static seedu.duke.filters.FilterCommandSlicer.getTargetedWordType;
+import static seedu.duke.filters.FilterCommandSlicer.*;
 import static seedu.duke.filters.FilterType.getTypeOfFilter;
 import static seedu.duke.filters.WordsFilter.filterByType;
 import static seedu.duke.filters.WordsFilter.filterByStartingString;
@@ -26,21 +24,22 @@ public class FilterExecutor {
             FilterType filterType = getTypeOfFilter(command);
             String[] tags;
             boolean isNewFilter = isNewFilter(command);
+            int printLimit = getWordPrintLimitFromFilterCommand(command);
             switch (filterType) {
             case WORD_TYPE:
-                tags = getTargetedWordType(command);
+                tags = getTargetedWordTypes(command);
                 assert tags.length != 0;
-                filterByType(isNewFilter, tags);
+                filterByType(isNewFilter, tags, printLimit);
                 break;
             case STARTING_STRING:
                 tags = getTargetedStringTags(command);
                 assert tags.length != 0;
-                filterByStartingString(isNewFilter, tags);
+                filterByStartingString(isNewFilter, tags, printLimit);
                 break;
             case INCLUDING_STRING:
                 tags = getTargetedStringTags(command);
                 assert tags.length != 0;
-                filterByIncludedString(isNewFilter, tags);
+                filterByIncludedString(isNewFilter, tags, printLimit);
                 break;
             default:
                 System.out.println(FilterMessages.FILTER_UNKNOWN_TYPE);

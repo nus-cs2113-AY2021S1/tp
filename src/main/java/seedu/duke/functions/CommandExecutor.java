@@ -8,6 +8,7 @@ import seedu.duke.exceptions.CommandMissingArgumentsException;
 import seedu.duke.exceptions.MissingFilterOptionsException;
 import seedu.duke.exceptions.NameException;
 import seedu.duke.exceptions.NoFilteredItemsException;
+import seedu.duke.filters.FilterCommandSlicer;
 import seedu.duke.filters.FilterExecutor;
 import seedu.duke.filters.FilterList;
 import seedu.duke.ui.UI;
@@ -52,7 +53,8 @@ public class CommandExecutor {
             FilterExecutor.executeFilterCommand(userInput);
             break;
         case LIST_FILTER:
-            FilterList.printFilterList();
+            int printLimit = FilterCommandSlicer.getWordPrintLimitFromListFilterCommand(userInput);
+            FilterList.printFilterList(printLimit);
             break;
         case BUNNY:
             try {
