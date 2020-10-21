@@ -61,9 +61,19 @@ public class Parser {
             return prepareHistory(commandArgs);
         case RateCommand.COMMAND_WORD:
             return prepareRate(commandArgs);
+        case ShowRateCommand.COMMAND_WORD:
+            return prepareShowRate(commandArgs);
         default:
             throw new InvalidInputException("There is no such command type.\n");
         }
+    }
+
+    private static Command prepareShowRate(String commandArgs) throws InvalidInputException {
+        if (!commandArgs.isEmpty()) {
+            throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ShowRateCommand.COMMAND_WORD) + ShowRateCommand.MESSAGE_USAGE);
+        }
+        return new ShowRateCommand();
     }
 
     private static RateCommand prepareRate(String commandArgs) throws InvalidInputException, IncorrectAccessLevelException {
@@ -422,8 +432,20 @@ public class Parser {
             throw new InvalidFileFormatException(
                     "There should be a number to indicate how many tasks have completed.");
         }
-
         return percent;
+    }
+
+    public static String parseRatingInFile(String arg) throws InvalidFileFormatException {
+        if (!(arg.trim().startsWith(Storage.RATING_PREFIX))) {
+            throw new InvalidFileFormatException("Answers in the file should begin with [R].");
+        }
+
+        String rating = arg.substring(3).trim();
+        if (rating.isEmpty()) {
+            throw new InvalidFileFormatException("There should be a rating after [R] in the file.");
+        }
+
+        return rating;
     }
 }
 

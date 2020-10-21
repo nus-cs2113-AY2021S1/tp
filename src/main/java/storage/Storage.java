@@ -26,6 +26,7 @@ public class Storage {
     public static final String QUESTION_PREFIX = "[Q]";
     public static final String ANSWER_PREFIX = "[A]";
     public static final String PREVIOUS_INTERVAL_PREFIX = "[P]";
+    public static final String RATING_PREFIX = "[R]";
     public static final String MESSAGE_CREATED = "Successfully created new %1$s %2$s\n";
     public static final String MESSAGE_EXISTS = "%1$s %2$s already exists\n";
     public static final String MESSAGE_MODULE_CHAPTER = "Module: %1$s ; Chapter: %2$s";
@@ -43,6 +44,23 @@ public class Storage {
         return filePath;
     }
 
+    public void createHistory(Ui ui, String date) {
+        try {
+            File f = new File(filePath + "/history/" + date + ".txt");
+            boolean historyFileExists = f.exists();
+            boolean historyFileCreated = false;
+            if (!historyFileExists) {
+                historyFileCreated = f.createNewFile();
+            }
+
+            if (historyFileCreated) {
+                ui.showToUser("    Successfully created new history file " + date + ".txt");
+            }
+        } catch (IOException e) {
+            ui.showError("Error creating the file.");
+        }
+    }
+
     //create the folder --> 'data/admin'
     public void createAdmin(Ui ui) {
         File f = new File(filePath);
@@ -53,24 +71,24 @@ public class Storage {
         if (!dataDirExists) {
             dataDirCreated = f.getParentFile().mkdir();
         } else {
-            ui.showToUser(String.format(MESSAGE_EXISTS, DIR.substring(0,1).toUpperCase(),
+            ui.showToUser(String.format(MESSAGE_EXISTS, DIR.substring(0, 1).toUpperCase(),
                     f.getParentFile().getName()));
         }
         if (dataDirCreated) {
             ui.showToUser(String.format(MESSAGE_CREATED, DIR, f.getParentFile().getName()));
         }
-        createHistoryDir();
 
         boolean adminDirExists = f.exists();
         boolean adminDirCreated = false;
         if (!adminDirExists) {
             adminDirCreated = f.mkdir();
         } else {
-            ui.showToUser(String.format(MESSAGE_EXISTS, DIR.substring(0,1).toUpperCase(), f));
+            ui.showToUser(String.format(MESSAGE_EXISTS, DIR.substring(0, 1).toUpperCase(), f));
         }
         if (adminDirCreated) {
             ui.showToUser(String.format(MESSAGE_CREATED, DIR, f));
         }
+        createHistoryDir();
     }
 
     public String createModule(String moduleName) {
@@ -81,7 +99,7 @@ public class Storage {
         if (!moduleDirExists) {
             moduleDirCreated = f.mkdir();
         } else {
-            result = String.format(MESSAGE_EXISTS, DIR.substring(0,1).toUpperCase(), f);
+            result = String.format(MESSAGE_EXISTS, DIR.substring(0, 1).toUpperCase(), f);
         }
         if (moduleDirCreated) {
             result = String.format(MESSAGE_CREATED, DIR, f);
@@ -98,7 +116,7 @@ public class Storage {
         if (!chapterFileExists) {
             chapterFileCreated = f.createNewFile();
         } else {
-            result = String.format(MESSAGE_EXISTS, FILE.substring(0,1).toUpperCase(), f);
+            result = String.format(MESSAGE_EXISTS, FILE.substring(0, 1).toUpperCase(), f);
         }
         if (chapterFileCreated) {
             result = String.format(MESSAGE_CREATED, FILE, f);
@@ -228,14 +246,16 @@ public class Storage {
         while (s.hasNext()) {
             //to read the card
             String fileCommand = s.nextLine();
-            String[] args = fileCommand.split(DELIMITER, 3);
+            String[] args = fileCommand.split(DELIMITER, 4);
             try {
                 String question = Parser.parseQuestionInFile(args[0]);
                 String answer = Parser.parseAnswerInFile(args[1]);
                 String interval = Parser.parsePreIntervalInFile(args[2]);
+                String rating = Parser.parseRatingInFile(args[3]);
                 int preInterval = Integer.parseInt(interval);
+                int intRating = Integer.parseInt(rating);
 
-                Card card = new Card(question, answer, preInterval);
+                Card card = new Card(question, answer, preInterval, intRating);
                 cards.add(card);
             } catch (InvalidFileFormatException e) {
                 return null;
@@ -248,8 +268,11 @@ public class Storage {
     public void saveCards(CardList cards, String module, String chapter) throws IOException {
         FileWriter fw = new FileWriter(getFilePath() + "/" + module + "/" + chapter + ".txt");
         for (int i = 0; i < cards.getCardCount(); i++) {
+            int ratingInt = cards.getCard(i).getRating();
+            String ratingString = Integer.toString(ratingInt);
             fw.write(cards.getCard(i).toString()
-                    + " | [P] " + cards.getCard(i).getPreviousInterval() + "\n");
+                    + " | [P] " + cards.getCard(i).getPreviousInterval() + " | [R] "
+                    + ratingString + "\n");
         }
         fw.close();
     }
@@ -318,23 +341,6 @@ public class Storage {
         boolean historyDirExists = f.exists();
         if (!historyDirExists) {
             f.mkdir();
-        }
-    }
-
-    public void createHistory(Ui ui, String date) {
-        try {
-            File f = new File(filePath + "/history/" + date + ".txt");
-            boolean historyFileExists = f.exists();
-            boolean historyFileCreated = false;
-            if (!historyFileExists) {
-                historyFileCreated = f.createNewFile();
-            }
-
-            if (historyFileCreated) {
-                ui.showToUser("    Successfully created new history file " + date + ".txt");
-            }
-        } catch (IOException e) {
-            ui.showError("Error creating the file.");
         }
     }
 

@@ -135,18 +135,22 @@ public class ReviseCommand extends Command {
         while (isInvalid) {
             switch (input.trim().toLowerCase()) {
             case EASY:
+                c.setRating(Card.EASY);
                 c.setPreviousInterval(Scheduler.computeEasyInterval(c.getPreviousInterval()));
                 isInvalid = false;
                 break;
             case MEDIUM:
+                c.setRating(Card.MEDIUM);
                 c.setPreviousInterval(Scheduler.computeMediumInterval(c.getPreviousInterval()));
                 isInvalid = false;
                 break;
             case HARD:
+                c.setRating(Card.HARD);
                 c.setPreviousInterval(Scheduler.computeHardInterval(c.getPreviousInterval()));
                 isInvalid = false;
                 break;
             case CANNOT_ANSWER:
+                c.setRating(Card.CANNOT_ANSWER);
                 repeatCards.add(c);
                 isInvalid = false;
                 break;
