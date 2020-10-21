@@ -2,17 +2,7 @@ package parser;
 
 import access.Access;
 
-import commands.AddCommand;
-import commands.BackCommand;
-import commands.Command;
-import commands.EditCommand;
-import commands.ExitCommand;
-import commands.GoCommand;
-import commands.HelpCommand;
-import commands.ListCommand;
-import commands.ListDueCommand;
-import commands.RemoveCommand;
-import commands.ReviseCommand;
+import commands.*;
 
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
@@ -57,6 +47,8 @@ public class Parser {
             return prepareGo(commandArgs);
         case ListDueCommand.COMMAND_WORD:
             return prepareListDue(commandArgs);
+        case PreviewCommand.COMMAND_WORD:
+            return preparePreview(commandArgs);
         default:
             throw new InvalidInputException("There is no such command type.\n");
         }
@@ -370,9 +362,16 @@ public class Parser {
 
     private static Command prepareListDue(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
-            throw new InvalidInputException("There should not be any arguments for list.");
+            throw new InvalidInputException("There should not be any arguments for due.");
         }
         return new ListDueCommand();
+    }
+
+    private static Command preparePreview(String commandArgs) throws InvalidInputException {
+        if (!commandArgs.isEmpty()) {
+            throw new InvalidInputException("There should not be any arguments for preview.");
+        }
+        return new PreviewCommand();
     }
 }
 

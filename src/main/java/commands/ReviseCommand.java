@@ -32,6 +32,7 @@ public class ReviseCommand extends Command {
     public static final String MEDIUM = "m";
     public static final String HARD = "h";
     public static final String CANNOT_ANSWER = "c";
+    public static final String MESSAGE_CHAPTER_NOT_DUE = "Sorry, this chapter is not due for revision yet!\n";
 
     private final int reviseIndex;
 
@@ -73,6 +74,7 @@ public class ReviseCommand extends Command {
     public void execute(Ui ui, Access access, Storage storage) throws FileNotFoundException {
         Chapter toRevise = getChapter(reviseIndex, access, ui);
         if (!Scheduler.isDeadlineDue(toRevise.getDueBy())) {
+            ui.showToUser(MESSAGE_CHAPTER_NOT_DUE);
             return;
         }
 
