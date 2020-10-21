@@ -57,11 +57,11 @@ Let's say you are currently at PGP and want to find out the buses you can board 
 To find all such bus routes:
 1. Type <code>/route <strong> PGP /to NUS IT</strong></code> into the command line interface and press enter 
 to execute the command as shown in the figure below.<br><br>
-![inputCommand](UG_Figures/routeInput1.png)<br>
+<img src="UG_Figures/routeInput1.png" alt="inputCommand" width=450><br>
 <i>Figure 1: The input command to be given to find out bus routes from PGP to NUS IT.</i>
 
 2. The result will be a message displaying the list of buses you can take with their routes as shown in the figure below.<br><br>
-![output](UG_Figures/routeOutput1.png)<br>
+<img src="UG_Figures/routeOutput1.png" alt="output" width=650><br>
 <i>Figure 2: The output message seen.</i>
 
 <b><u>Example 2</u></b>
@@ -73,7 +73,7 @@ Health Center" instead. These are the steps to follow:
 press enter to execute the command as done in example 1.
 
 2. The result will be a message displaying suggestions for possible spelling errors you may have made.<br><br>
-![output](UG_Figures/routeOutput2.png)<br>
+<img src="UG_Figures/routeOutput2.png" alt="output" width=550><br>
 <i>Figure 3: The output message showing possible spelling errors.</i>
 
 3. Type <code>/route <strong> University Health Centre /to PGPR</strong></code> into the command line interface
@@ -81,7 +81,7 @@ following the suggestion given.
 
 4. The result will be a message displaying the list of buses you can take with their routes as shown in the figure 
 below.<br><br>
-![FinalOutput](UG_Figures/routeOutput3.png)<br>
+<img src="UG_Figures/routeOutput3.png" alt="FinalOutput" width=650><br>
 <i>Figure 4: The output message showing bus routes.</i>
 
 ### 3.2. Check bus route: ```/routemap```
