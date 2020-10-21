@@ -22,7 +22,21 @@ public class Building extends Location {
      */
     @Override
     public String toString() {
-        return "(Building): " + name + "\nNearest bus stop(s): " + printNearestBusStops();
+        return "location: (Building): " + name + "\nNearest bus stop(s): " + printNearestBusStops();
+    }
+
+    /**
+     * Convert the information about this Building to a string that is to be stored in a file.
+     *
+     * @return the result string to be stored.
+     */
+    public String fileString() {
+        String busStops = null;
+        for (String additionalInfo : nearestBusStops) {
+            busStops = additionalInfo + ",";
+        }
+        assert busStops != null;
+        return "BLK/" + name + "/" + busStops.substring(0, busStops.length() - 1);
     }
 
     private String printNearestBusStops() {

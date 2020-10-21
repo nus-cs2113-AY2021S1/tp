@@ -13,18 +13,18 @@ public class Class extends Event {
     protected LocalDateTime at;
 
     public Class(String description, Location location, LocalDateTime at) {
-        super(description);
-        this.location = location;
+        super(description, location);
+
         this.at = at;
     }
 
     /**
-     * Convert the information about this Class to a string that is to be stored in a file.
+     * Convert the information about this class to a string that is to be stored in a file.
      *
      * @return the result string to be stored.
      */
     public String fileString() {
-        return "C//" + (isDone ? 1 : 0) + "//" + description + "//" + location;
+        return "C//" + (isDone ? 1 : 0) + "//" + description + "//" + at + "//" + location.fileString();
     }
 
     /**
@@ -34,6 +34,7 @@ public class Class extends Event {
      *         Example of the format: [C][✘]a.
      */
     public String toString() {
-        return "[C]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy HH':'mm")) + ")";
+        return "[C]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH':'mm")) + ")"
+                + "\n" + location;
     }
 }

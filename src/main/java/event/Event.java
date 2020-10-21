@@ -17,9 +17,10 @@ public abstract class Event {
     protected boolean isDone;
     protected Location location;//to be implemented
 
-    public Event(String description) {
+    public Event(String description,Location location) {
         this.description = description;
         this.isDone = false;
+        this.location = location;
     }
 
     /**

@@ -298,7 +298,7 @@ public abstract class Parser {
      * @return the parsed location.
      */
     public static Location parseLocation(String input) {
-        Location location = null;
+        Location location;
         try {
             String[] info = input.split("/");
             String[] additionalInfo = info[2].split(",");
@@ -319,6 +319,7 @@ public abstract class Parser {
                 break;
             default:
                 location = null;
+                break;
             }
 
         } catch (ArrayIndexOutOfBoundsException e) {
