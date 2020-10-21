@@ -40,18 +40,14 @@ public class DeleteBookmarkCommand extends Command {
      * @param bookmarks The list of bookmarks.
      * @param timetable The list of slots.
      * @param ui The user interface.
-     * @param bookmarkStorage The storage for saving and loading bookmarks.
-     * @param slotStorage The storage for saving and loading slots.
      * @throws DukeException if the bookmark number is invalid or if there is an error when saving the bookmark.
      */
     @Override
-    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
-                        Storage bookmarkStorage, Storage slotStorage) throws DukeException {
+    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws DukeException {
         try {
             Bookmark bookmark = bookmarks.getBookmark(index);
             String message = "I've deleted this bookmark!:\n" + bookmarks.deleteBookmark(bookmark);
             ui.print(message);
-            bookmarkStorage.save(bookmarks.getData());
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             throw new DukeException(DukeExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS, ""
                     + bookmarks.getBookmarkList().size());

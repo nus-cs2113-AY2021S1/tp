@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.bookmark.Bookmark;
 import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.slot.SlotList;
 import seedu.duke.command.Command;
@@ -8,8 +9,8 @@ import seedu.duke.slot.Timetable;
 
 public class Duke {
 
-    private Storage bookmarkStorage;
-    private Storage slotStorage;
+    private Storage<BookmarkList> bookmarkStorage;
+    private Storage<Timetable> timetableStorage;
     private BookmarkList bookmarks;
     private Timetable timetable;
     private Ui ui;
@@ -19,27 +20,20 @@ public class Duke {
      * Pass the filepath of the txt file to set up storage.
      *
      * @param bookmarkFilePath The filepath of the bookmark txt file.
-     * @param slotFilePath The filepath of the slot txt file.
+     * @param timetableFilePath The filepath of the slot txt file.
      */
-    public Duke(String bookmarkFilePath, String slotFilePath) {
+    public Duke(String bookmarkFilePath, String timetableFilePath) {
         ui = new Ui();
-        bookmarkStorage = new Storage(bookmarkFilePath);
-        slotStorage = new Storage(slotFilePath);
+
+        bookmarkStorage = new Storage<>(bookmarkFilePath, BookmarkList.class);
+        timetableStorage = new Storage<>(timetableFilePath, Timetable.class);
 
         try {
-            bookmarks = new BookmarkList(bookmarkStorage.load());
+            bookmarks = bookmarkStorage.load();
+            timetable = timetableStorage.load();
         } catch (DukeException e) {
-            bookmarks = new BookmarkList();
+            ui.showErrorMessage(e);
         }
-
-        timetable = new Timetable();
-
-        /*      try {
-            slots = new SlotList(slotStorage.load());
-        } catch (DukeException e) {
-            slots = new SlotList();
-        }
-        */
     }
 
     /**
@@ -54,8 +48,11 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(bookmarks, timetable, ui, bookmarkStorage, slotStorage);
+                c.execute(bookmarks, timetable, ui);
                 isExit = c.isExit();
+
+                bookmarkStorage.save(bookmarks);
+                timetableStorage.save(timetable);
             } catch (DukeException e) {
                 ui.showErrorMessage(e);
             }

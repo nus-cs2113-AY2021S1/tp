@@ -36,12 +36,9 @@ public class FindBookmarkCommand extends Command {
      *  @param bookmarks The list of bookmarks.
      * @param timetable The list of slots.
      * @param ui The user interface.
-     * @param bookmarkStorage The storage for saving and loading bookmarks.
-     * @param slotStorage The storage for saving and loading slots.
      */
     @Override
-    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
-                        Storage bookmarkStorage, Storage slotStorage) {
+    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) {
         String message = bookmarks.findBookmarks(description);
         ui.print(message);
     }
