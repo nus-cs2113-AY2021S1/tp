@@ -81,6 +81,7 @@ public class EditCommand extends Command {
             if (bookDetails.length == 1) {
                 bookDetails = new String[]{bookDetails[0], ""};
             }
+
             int bookIndex = Integer.parseInt(bookDetails[0].trim()) - 1;
             String newTitle = bookDetails[1].trim();
             if (newTitle.isEmpty()) {
@@ -95,26 +96,30 @@ public class EditCommand extends Command {
             book.setTitle(newTitle);
             ui.printEditBook(oldTitle, newTitle);
 
-            // check ratings in rating list before editing the title.
-            RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
-            int currentRatingOfBook = 0;
-            for (Rating rating : ratings.getList()) {
-                if (rating.getTitleOfRatedBook().equals(oldTitle)
-                        && rating.getAuthorOfRatedBook().equals(author)) {
-                    currentRatingOfBook = rating.getRating();
-                    ratings.delete(ratings.getList().indexOf(rating));
-                    break;
-                }
-            }
-
-            if (currentRatingOfBook != 0) {
-                ratings.add(new Rating(book, currentRatingOfBook));
-            }
+            checkRatingForOldTitle(book, oldTitle, author);
 
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
+        }
+    }
+
+    private void checkRatingForOldTitle(Book book, String oldTitle, String author) {
+        // check ratings in rating list before editing the title.
+        RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
+        int currentRatingOfBook = 0;
+        for (Rating rating : ratings.getList()) {
+            if (rating.getTitleOfRatedBook().equals(oldTitle)
+                    && rating.getAuthorOfRatedBook().equals(author)) {
+                currentRatingOfBook = rating.getRating();
+                ratings.delete(ratings.getList().indexOf(rating));
+                break;
+            }
+        }
+
+        if (currentRatingOfBook != 0) {
+            ratings.add(new Rating(book, currentRatingOfBook));
         }
     }
 
