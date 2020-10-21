@@ -21,7 +21,7 @@ class EditCommandTest {
     @Test
     void execute_noIndexSpecified_emptyEventIndexException() {
         Assertions.assertThrows(EmptyEventIndexException.class, () -> {
-            Command c = Parser.parse("edit");
+            Command c = Parser.parse("edit", null);
         });
 
     }
@@ -29,7 +29,7 @@ class EditCommandTest {
     @Test
     void execute_inputIsNotInteger_WrongEditFormatException() {
         Assertions.assertThrows(WrongEditFormatException.class, () -> {
-            Command c = Parser.parse("edit c");
+            Command c = Parser.parse("edit c", null);
         });
     }
 }
