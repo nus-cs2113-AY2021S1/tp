@@ -5,6 +5,7 @@ import seedu.eduke8.command.AnswerCommand;
 import seedu.eduke8.command.Command;
 import seedu.eduke8.command.HintCommand;
 import seedu.eduke8.command.IncorrectCommand;
+import seedu.eduke8.explanation.Explanation;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.option.OptionList;
@@ -30,9 +31,10 @@ public class QuizParserTest {
     @Test
     public void quizParser_correctStringInput_success() {
         Hint hint = new Hint("description");
+        Explanation explanation = new Explanation("explanation");
         OptionList optionList = new OptionList();
         QuizParser quizParser = new QuizParser();
-        Question question = new Question("description", optionList, hint);
+        Question question = new Question("description", optionList, hint, explanation);
 
         quizParser.setQuestion(question);
         Command resultCommand = quizParser.parseCommand(optionList, "hint");
