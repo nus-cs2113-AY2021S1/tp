@@ -17,7 +17,7 @@ public class Food {
         this.caloriesInFood = caloriesBurnt;
     }
 
-    public double getCalories() {
+    public int getCalories() {
         return caloriesInFood.get();
     }
 
