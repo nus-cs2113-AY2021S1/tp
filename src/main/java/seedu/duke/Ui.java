@@ -3,7 +3,8 @@ package seedu.duke;
 import seedu.duke.person.ActivityLevel;
 import seedu.duke.person.Gender;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a text user interface.
@@ -119,6 +120,18 @@ public class Ui {
         } else {
             print("Here are the food items in DietBook:" + LINE_SEPARATOR + allFood);
         }
+    }
+
+
+    /**
+     * Returns a string representation of the date time in the format dd MMM yyyy HHmm.
+     *
+     * @param dateTime The date time that needs to be converted into a String.
+     * @return Returns a string representation of the date and time in the format dd MMM yyyy HHmm.
+     */
+    public String stringDateTime(LocalDateTime dateTime) {
+        assert dateTime != null : "Date time to be converted into string should not be null";
+        return dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HHmm"));
     }
 
     /**
