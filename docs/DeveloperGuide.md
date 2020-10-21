@@ -4,9 +4,50 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+### Feature: Add rating
+The proposed *add rating* feature will rely on an existing book object, and a rating object will then be created
+in the process.
+* The book object will store an attribute named rating, which will be set by this feature.
+* The rating object will be made up of the book object and a rating score, which is stored in a list of ratings
+named Rating List.
+
+Given below is the class diagram of classes related to ratings:
+
+[TO INSERT CLASS DIAGRAM HERE]
+
+* A `Book` has a `0..1` multiplicity to `Rating` as a book can have only 1 rating or have not been rated at all.
+* A `Rating` has a `1` multiplicity to `Book` as 1 rating represent only 1 book.
+* A `Rating` has a `1` multiplicity to `RatingList` as the rating will only be stored in 1 rating list.
+* A `RatingList` has a `*` multiplicity to `Rating` as the rating list can stored multiple rating objects.
+* There is composition between `Book` and `Rating` as a rating can only be created when the book exists.
+The rating will be deleted when the book is deleted.
+
+#### Design consideration:
+* The rating object stores a book object, which consists of the book title and author,
+instead of only the book title. This will uniquely identify books and allow books with the same title
+but different authors to be rated.
+
+### Feature: List rating
+The proposed *list rating* feature will print all the rating objects found in the rating list.
+* Details stored in the rating objects like the book title, author and its rating score will be printed.
+* If a rating score is specified by the user, only rating objects with that rating score will be printed.
+* The messages are printed using `Ui` which relies on `UiMessage`.
+
+#### Design consideration:
+* The rating list is sorted according to the rating score, with the highest rating at the top. This is for
+better user experience where users would usually like to see their favourites and do not need to scroll
+all the way to the bottom.
+
+### Feature: Find rating
+The proposed *find rating* feature will loop through the rating list to find if the rating exists.
+* If the rating is found, the details of the book and its rating score will be printed.
+* If the rating is not found, a message to indicate unsucessful search will be printed.
+* The messages are printed using `Ui` which relies on `UiMessage`.
+
+[INSERT SEQUENCE DIAGRAM HERE]
+
 ## Product scope
 ### Target user profile
-
 * reads a lot
 * has difficulty remembering content after reading them
 * can type fast
