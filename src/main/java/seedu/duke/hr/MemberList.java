@@ -93,7 +93,6 @@ public class MemberList {
      * @return output message for the user.
      */
     public static String changeMemberInfo(Member m, long newPhone, String newEmail, String newRole) {
-        String output;
         Long phone = newPhone;
         if (phone != null) {
             m.setMemberPhone(phone);
@@ -106,8 +105,7 @@ public class MemberList {
         if (newRole != null) {
             m.setMemberRole(newRole);
         }
-
-        output = "I have changed the information of this member:\n";
+        String output = "I have changed the information of this member:\n";
         output = output.concat(m.toString());
         return output;
     }
