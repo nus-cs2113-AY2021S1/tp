@@ -6,7 +6,6 @@ import java.time.LocalDate;
  * Appointment class.
  */
 public class Appointment {
-
     private LocalDate date;
     private String time;
     private Patient patient;
@@ -97,7 +96,11 @@ public class Appointment {
         String patientNric = patient == null ? null : patient.getNric();
         String doctorName = doctor == null ? null : doctor.getName();
 
-        return date + ", " + bookedStatus + ", " + patientNric + ", " + doctorName;
+        if (bookedStatus.contentEquals("booked")) {
+            return date + ", " + bookedStatus + ", " + patientNric + ", " + doctorName;
+        } else {
+            return date + ", " + bookedStatus;
+        }
     }
 
     public void bookDoctor(Doctor doctor) {
