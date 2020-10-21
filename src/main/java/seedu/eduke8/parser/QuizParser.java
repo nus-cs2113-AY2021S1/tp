@@ -9,9 +9,15 @@ import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.question.Question;
 
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_ANSWER_NOT_INDEX;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_ANSWER_INDEX_OUT_OF_BOUNDS;
+
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_ANSWER_NOT_INDEX;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_COMMAND_NOT_IMPLEMENTED;
 
 public class QuizParser implements Parser {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -26,23 +32,23 @@ public class QuizParser implements Parser {
 
     @Override
     public Command parseCommand(DisplayableList optionList, String userInput) {
-        switch (userInput) {
-        case "hint":
+        if ("hint".equals(userInput)) {
+            LOGGER.log(Level.INFO, "Parsing complete: hint command chosen.");
             return new HintCommand(question.getHint());
-        case "back":
-            // To be implemented in v2
-            return new IncorrectCommand("Not implemented yet");
-        default:
-            try {
-                ArrayList<Displayable> options = optionList.getInnerList();
-                int chosenIndex = Integer.parseInt(userInput) - 1;
-                Option chosenOption = (Option) options.get(chosenIndex);
+        }
+        
+        try {
+            ArrayList<Displayable> options = optionList.getInnerList();
+            int chosenIndex = Integer.parseInt(userInput) - 1;
+            Option chosenOption = (Option) options.get(chosenIndex);
 
-                return new AnswerCommand(chosenOption, question);
-            } catch (NumberFormatException e) {
-                LOGGER.log(Level.WARNING, "A non-number was given when answering question.");
-                return new IncorrectCommand("Please choose the answer by index");
-            }
+            return new AnswerCommand(chosenOption, question);
+        } catch (NumberFormatException e) {
+            LOGGER.log(Level.WARNING, "A non-number was given when answering question.");
+            return new IncorrectCommand(ERROR_QUIZ_ANSWER_NOT_INDEX);
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.log(Level.WARNING, "An index out of bounds was given when answering question.");
+            return new IncorrectCommand(ERROR_QUIZ_ANSWER_INDEX_OUT_OF_BOUNDS);
         }
     }
 }

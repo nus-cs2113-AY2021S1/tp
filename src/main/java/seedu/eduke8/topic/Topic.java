@@ -9,6 +9,9 @@ public class Topic implements Displayable {
     private boolean wasShown;
 
     public Topic(String description, QuestionList questionList) {
+        assert description != null;
+        assert questionList != null;
+
         this.description = description;
         this.questionList = questionList;
         wasShown = false;

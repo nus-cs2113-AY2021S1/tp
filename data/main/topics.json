@@ -1,47 +1,113 @@
 [
   {
-    "topic": "OOP",
+    "topic": "Requirements",
     "questions": [
       {
-        "description": "What is encapsulation?",
-        "hint": "check the textbook",
+        "description": "A software project may come in the form of:",
+        "hint": "Recall the types of software projects that exist.",
         "options": [
           {
-            "description": "A",
+            "description": "A brown-field project and a green-field project.",
             "correct": true
           },
           {
-            "description": "B",
+            "description": "A green-field project and a blue-field project.",
             "correct": false
           },
           {
-            "description": "C",
+            "description": "A blue-field project and a red-field project.",
             "correct": false
           },
           {
-            "description": "D",
+            "description": "A red-field project and a brown-field project.",
             "correct": false
           }
         ]
       },
       {
-        "description": "What is abstraction?",
-        "hint": "check the textbook",
+        "description": "Which of the following is a characteristic of a well-defined requirement?",
+        "hint": "Try to remember about what purpose requirements serve to pick out the correct answer.",
         "options": [
           {
-            "description": "A",
+            "description": "Qualitative",
             "correct": false
           },
           {
-            "description": "B",
+            "description": "Unambiguous",
             "correct": true
           },
           {
-            "description": "C",
+            "description": "Idealistic",
             "correct": false
           },
           {
-            "description": "D",
+            "description": "Malleable",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Requirements come from stakeholders.",
+        "hint": "Think about what you have done when writing OOP code and what OOP is useful for",
+        "options": [
+          {
+            "description": "True",
+            "correct": true
+          },
+          {
+            "description": "False",
+            "correct": false
+          },
+          {
+            "description": "NIL",
+            "correct": false
+          },
+          {
+            "description": "NIL",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Requirements should be prioritised based on:",
+        "hint": "Think about how a stakeholder would rank a list of requirements in order.",
+        "options": [
+          {
+            "description": "Order of creation and amount of work needed to be done to complete the requirement.",
+            "correct": false
+          },
+          {
+            "description": "There is no need to prioritise requirements.",
+            "correct": false
+          },
+          {
+            "description": "How much time it takes to implement the requirement and its level of intricacy. ",
+            "correct": false
+          },
+          {
+            "description": "Importance and urgency of the requirement.",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "True or False: I can omit the benefit specified in a User Story if it is obvious.",
+        "hint": "If something is obvious, such that everyone knows what it does, is there a need to state it?",
+        "options": [
+          {
+            "description": "True",
+            "correct": true
+          },
+          {
+            "description": "False",
+            "correct": false
+          },
+          {
+            "description": "NIL",
+            "correct": false
+          },
+          {
+            "description": "NIL",
             "correct": false
           }
         ]
@@ -49,48 +115,229 @@
     ]
   },
   {
-    "topic": "Style",
+    "topic": "OOP",
     "questions": [
       {
-        "description": "How do you name classes?",
-        "hint": "check the textbook",
+        "description": "Choose the correct statements?",
+        "hint": "Recall the differences between the two core OOP concepts: abstraction and encapsulation.",
         "options": [
           {
-            "description": "A",
+            "description": "An object is an encapsulation because it packages data and behavior into one bundle.",
             "correct": true
           },
           {
-            "description": "B",
+            "description": "An object is an encapsulation because it lets us think in terms of higher level concepts \nsuch as Students rather than student-related functions and data separately.",
             "correct": false
           },
           {
-            "description": "C",
+            "description": "Nil",
             "correct": false
           },
           {
-            "description": "D",
+            "description": "Nil",
             "correct": false
           }
         ]
       },
       {
-        "description": "What is the appropriate indentation?",
-        "hint": "check the textbook",
+        "description": "OO is a higher level mechanism than the procedural paradigm.",
+        "hint": "OOP four core concepts are: Encapsulation, Abstraction, Inheritance and Polymorphism.",
         "options": [
           {
-            "description": "A",
-            "correct": false
-          },
-          {
-            "description": "B",
+            "description": "True",
             "correct": true
           },
           {
-            "description": "C",
+            "description": "False",
             "correct": false
           },
           {
-            "description": "D",
+            "description": "Nil",
+            "correct": false
+          },
+          {
+            "description": "Nil",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Which of the following is NOT a core concept of OOP?",
+        "hint": "Think about what you have done when writing OOP code and what OOP is useful for",
+        "options": [
+          {
+            "description": "Inheritance",
+            "correct": false
+          },
+          {
+            "description": "Abstraction",
+            "correct": false
+          },
+          {
+            "description": "Encapsulation",
+            "correct": false
+          },
+          {
+            "description": "Implementation",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "Choose the WRONG statement",
+        "hint": "We are using OOP to help model solutions like how objects in real world work, in Java",
+        "options": [
+          {
+            "description": "OO is a programming paradigm",
+            "correct": false
+          },
+          {
+            "description": "OO guides us in how to structure the solution",
+            "correct": false
+          },
+          {
+            "description": "OO is mainly an abstraction mechanism",
+            "correct": false
+          },
+          {
+            "description": "OO is a programming language",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "Choose the WRONG statement",
+        "hint": "C language is not an OO language. Java code is able to be written like C code.",
+        "options": [
+          {
+            "description": "Java and C++ are OO languages",
+            "correct": false
+          },
+          {
+            "description": "C language follows the Functional Programming paradigm",
+            "correct": true
+          },
+          {
+            "description": "Java can be used to write procedural code",
+            "correct": false
+          },
+          {
+            "description": "Prolog follows the Logic Programming paradigm",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "Code_Quality",
+    "questions": [
+      {
+        "description": "What does SLAP stand for?",
+        "hint": "SLAP is used to avoid varying the level of abstraction within a code fragment.",
+        "options": [
+          {
+            "description": "Single Level of Abstraction Per method",
+            "correct": true
+          },
+          {
+            "description": "Single Level of Abstraction Per class",
+            "correct": false
+          },
+          {
+            "description": "Simple Level of Abstraction Per method",
+            "correct": false
+          },
+          {
+            "description": "Simple Level of Association Per class",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Which of the following options is NOT a drawback of optimizing code prematurely?",
+        "hint": "We have to avoid premature optimizations.",
+        "options": [
+          {
+            "description": "You may not know which parts are the real performance bottlenecks.",
+            "correct": false
+          },
+          {
+            "description": "Optimizing code prematurely allows users to view shorter code.",
+            "correct": true
+          },
+          {
+            "description": "Optimizing can complicate the code.",
+            "correct": false
+          },
+          {
+            "description": "Hand-optimized code can be harder for the compiler to optimize.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Which of the following option should we strive to have in our code?",
+        "hint": "Coders would prefer to have a simple solution in favor of a complicated one.",
+        "options": [
+          {
+            "description": "Arrowhead style code",
+            "correct": false
+          },
+          {
+            "description": "Long methods",
+            "correct": false
+          },
+          {
+            "description": "Magic numbers",
+            "correct": false
+          },
+          {
+            "description": "Keep it simple, stupid (KISS)",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "Which of the following option is true?",
+        "hint": "We should always aim to have excellent documentation value.",
+        "options": [
+          {
+            "description": "Imported classes should always be listed explicitly.",
+            "correct": true
+          },
+          {
+            "description": "There is no need for javadoc header comment.",
+            "correct": false
+          },
+          {
+            "description": "Coders should follow their own coding style so that it can be traced to the author easily.",
+            "correct": false
+          },
+          {
+            "description": "One should never prioritize efficiency or performance over readability.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Which of the following standards is FALSE? ",
+        "hint": "Following coding standards makes it easier for everyone to understand the code.",
+        "options": [
+          {
+            "description": "Line length should be no longer than 120 characters.",
+            "correct": false
+          },
+          {
+            "description": "Indentation for wrapped lines should be 8 spaces.",
+            "correct": false
+          },
+          {
+            "description": "It is not mandatory for the naming of boolean variables to sound like booleans (eg isSet)",
+            "correct": true
+          },
+          {
+            "description": "We should always use Egytian Style.",
             "correct": false
           }
         ]
@@ -206,6 +453,121 @@
           },
           {
             "description": "Making a remote copy of a remote repo",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "Java_Basics",
+    "questions": [
+      {
+        "description": "What is the value of the following expression? \n 4 * 5 - 1",
+        "hint": "* has higher precedence than -",
+        "options": [
+          {
+            "description": "19",
+            "correct": true
+          },
+          {
+            "description": "16",
+            "correct": false
+          },
+          {
+            "description": "15",
+            "correct": false
+          },
+          {
+            "description": "4",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "What is the value of the following expression? \n 4 * (5 - 1)",
+        "hint": "Parentheses ( ) have higher precedence than *",
+        "options": [
+          {
+            "description": "19",
+            "correct": false
+          },
+          {
+            "description": "16",
+            "correct": true
+          },
+          {
+            "description": "15",
+            "correct": false
+          },
+          {
+            "description": "4",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "What is the value of the following expression? \n 4 * (5 - 1)",
+        "hint": "Parentheses ( ) have higher precedence than *",
+        "options": [
+          {
+            "description": "19",
+            "correct": false
+          },
+          {
+            "description": "16",
+            "correct": true
+          },
+          {
+            "description": "15",
+            "correct": false
+          },
+          {
+            "description": "4",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "description": "Which of the following expressions gives a boolean value of false?",
+        "hint": "What are the precedences of parentheses and conditional operators?",
+        "options": [
+          {
+            "description": "true && true",
+            "correct": false
+          },
+          {
+            "description": "(true || false) && true",
+            "correct": false
+          },
+          {
+            "description": "true && false || true",
+            "correct": false
+          },
+          {
+            "description": "true && false",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "description": "Consider\nint[] scores = new int[4]\nscores[5] = 0\nWhat is the error here?",
+        "hint": "The int array in the question has the size of 4",
+        "options": [
+          {
+            "description": "There is no error here",
+            "correct": false
+          },
+          {
+            "description": "ArrayIndexOutOfBoundsException",
+            "correct": true
+          },
+          {
+            "description": "NullPointerException",
+            "correct": false
+          },
+          {
+            "description": "StackOverflowError",
             "correct": false
           }
         ]

@@ -3,13 +3,13 @@ package seedu.eduke8.storage;
 import org.json.simple.parser.ParseException;
 import seedu.eduke8.common.Displayable;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
-import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 public class LogStorage extends LocalStorage {
@@ -20,8 +20,6 @@ public class LogStorage extends LocalStorage {
     // Set up save to file inside of print to console
     @Override
     public void save() throws IOException {
-        createFileIfNotExists();
-
         LogManager.getLogManager().reset();
         LOGGER.setLevel(Level.ALL);
 
@@ -31,7 +29,9 @@ public class LogStorage extends LocalStorage {
         LOGGER.addHandler(ch);
 
         // Log all to the file
-        FileHandler fh = new FileHandler(filePath);
+        File logFile = createFileIfNotExists();
+
+        FileHandler fh = new FileHandler(logFile.getAbsolutePath());
         fh.setFormatter(new SimpleFormatter());
         fh.setLevel(Level.ALL);
         LOGGER.addHandler(fh);

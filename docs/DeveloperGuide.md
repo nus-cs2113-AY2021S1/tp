@@ -8,11 +8,11 @@
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+CS2113/T Students
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+Help CS2113/T students learn and understand software engineering and OOP principles through a gamified platform and enhance their learning experience. Consolidate key concepts for easy revision.
 
 ## User Stories
 
