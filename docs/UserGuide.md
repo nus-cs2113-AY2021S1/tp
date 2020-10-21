@@ -192,30 +192,9 @@ Now you have 1 topic in the list.
 ____________________________________________________________
 ```
 
-#### `add` - Add topic
-
-Format:
-
-`add` `[DESCRIPTION]`
-
-Example of usage: 
-
-`add speed`
-
-Expected outcome:
-
-```
-____________________________________________________________
-Got it. I've added this topic:
-  speed
-Now you have 1 topic in the list.
-____________________________________________________________
-```
-
-### Tasks
-Task commands can only be used when looking at a subject.
-
 #### `delete topic` - Delete a topic
+
+Deletes the specified topic.
 
 Format:
 
@@ -232,6 +211,94 @@ ____________________________________________________________
  Noted. I've removed this topic:
    speed
  Now you have 0 tasks in the list.
+____________________________________________________________
+```
+
+#### `list` - List all topics and tasks
+
+Prints a list of all topics and tasks of the subject you are currently viewing.
+  
+Example of usage: 
+
+`list`
+
+Expected outcome:
+
+```
+____________________________________________________________
+Here are the topic(s) under math: 
+1.speed
+____________________________________________________________
+Here are the tasks(s) under math: 
+1.[T][?] laundry
+2.[E][?] tutorial (at: 4:00 PM 21 Oct 2020)
+3.[D][?] assignment (by: 11:59 PM 21 Oct 2020)
+____________________________________________________________
+
+```
+
+#### `find` - Find topics and tasks
+
+Searches the current subject for all the topics and tasks that contains the query.
+
+Format:
+
+`find [QUERY]`
+
+Example of usage: 
+
+`find laund`
+
+Expected outcome:
+
+```
+____________________________________________________________
+ Sorry! I could not find any topics with laund in the list.
+
+ Here are the matching task(s) in your list:
+[T][?] laundry
+____________________________________________________________
+```
+
+#### `topic` - Enter a topic
+
+Enters a preexisting topic.
+
+Format: `topic` `[TOPIC NAME]`
+
+Example of usage:
+```
+topic speed
+```
+Output:
+```
+____________________________________________________________
+You are currently looking at the topic: speed
+____________________________________________________________
+```
+
+### Tasks
+Task commands can only be used when looking at a subject.
+
+#### `todo` - Add todo
+
+Add a todo task.
+
+Format:
+
+`todo` `[DESCRIPTION]`
+
+Example of usage: 
+
+`todo laundry`
+
+Expected outcome:
+
+```
+____________________________________________________________
+Got it. I've added this task:
+	[T][N] laundry
+Now you have 4 tasks in the list.
 ____________________________________________________________
 ```
 
@@ -279,34 +346,9 @@ Now you have 3 tasks in the list.
 ____________________________________________________________
 ```
 
-
-
-#### `list` - List all tasks
-
-Prints a list of all tasks
-  
-Example of usage: 
-
-`list`
-
-Expected outcome:
-
-```
-____________________________________________________________
-Here are the topic(s) under math: 
-1.speed
-____________________________________________________________
-Here are the tasks(s) under math: 
-1.[T][?] laundry
-2.[E][?] tutorial (at: 4:00 PM 21 Oct 2020)
-3.[D][?] assignment (by: 11:59 PM 21 Oct 2020)
-____________________________________________________________
-
-```
-
 #### `delete` - Delete Task
 
-Removes the specified task.
+Deletes the specified task.
 
 Format:
 
@@ -347,26 +389,6 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### `find` - Find tasks
-
-Narrow the search for particular tasks. A keyword has to be entered.
-
-Format:
-
-`find [QUERY]`
-
-Example of usage: 
-
-`find laund`
-
-Expected outcome:
-
-```
-____________________________________________________________
-Here are the matching tasks in your list:
-1. [T][N] laundry
-____________________________________________________________
-```
 ### Flashcards
 
 ### Taking quizzes
