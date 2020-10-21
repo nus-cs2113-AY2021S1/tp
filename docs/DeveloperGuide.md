@@ -108,13 +108,16 @@ offers a one stop solution to manage both their revision and their upcoming task
 ## Non-Functional Requirements
 
 The application satisfies the following requirements:
- * Portability: Users can transfer their data from the applciation since all the data is stored in a txt file.
- * Modifiability: Since the application is broken down into different packages and classes, developers would
- be able to modfiy the application with ease.
+ * Portability: Users can transfer their data from the application since all the data is stored in a txt file.
+ * Modifiability: Since the code is broken down into different packages and classes, developers would
+ be able to modify the application with ease.
  * Simplicity: The application comes with a detailed user guide along with the help commands. Hence, users can always 
  refer to these to understand on how to use the application.
- * Safety: The application can be downloaded form Github, which offers a secure downloading service. Furthermore, the
- application runs on command line and hence, it 
+ * Compatibility: The application runs on various operating systems: Windows, Linux etc
+ * Testability: The application is built using Gradle, a tool that offers various testing capabilities. Furthermore,
+ developers could also modify the input.txt file to provide a set of inputs and test if the application returns the 
+ expected output.
+
 ## Glossary
 
 * *glossary item* - Definition
