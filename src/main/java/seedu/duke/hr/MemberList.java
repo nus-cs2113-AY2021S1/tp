@@ -71,7 +71,7 @@ public class MemberList {
     }
 
     /**
-     * find the role of the member in the arraylist.
+     * find the member in the arraylist.
      * @param memberName name of the member to be found.
      * @return if member exists, returns the member, else returns null.
      */
@@ -85,15 +85,29 @@ public class MemberList {
     }
 
     /**
-     * Changes the role of the member in the arraylist.
-     * @param m member whose role is to be changed.
+     * Changes the contact information and role of the member in the arraylist.
+     * @param m member whose information is to be modified.
+     * @param newPhone new phone number to replace the original phone number.
+     * @param newEmail new email to replace the original email.
      * @param newRole new role to replace the original role.
      * @return output message for the user.
      */
-    public static String changeMemberRole(Member m, String newRole) {
+    public static String changeMemberInfo(Member m, long newPhone, String newEmail, String newRole) {
         String output;
-        m.setMemberRole(newRole);
-        output = "Noted. I have changed the role of this member:\n";
+        Long phone = newPhone;
+        if (phone != null) {
+            m.setMemberPhone(phone);
+        }
+
+        if (newEmail != null) {
+            m.setMemberEmail(newEmail);
+        }
+
+        if (newRole != null) {
+            m.setMemberRole(newRole);
+        }
+
+        output = "I have changed the information of this member:\n";
         output = output.concat(m.toString());
         return output;
     }
