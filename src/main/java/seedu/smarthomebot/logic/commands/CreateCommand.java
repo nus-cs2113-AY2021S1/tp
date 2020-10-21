@@ -5,11 +5,8 @@ import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
 public class CreateCommand extends Command {
 
     public static final String COMMAND_WORD = "create";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Creates a new location in SmartHomeBot\n"
-            + "Parameters: LOCATION\n"
-            + "Example: " + COMMAND_WORD
-            + " Bedroom 1";
+    public static final String MESSAGE_USAGE = "Create location: " + COMMAND_WORD
+            + " [LOCATION_NAME]";
     private static final String MESSAGE_LOCATION_EXIST = "Location already exist";
     private final String usersEnteredLocation;
 

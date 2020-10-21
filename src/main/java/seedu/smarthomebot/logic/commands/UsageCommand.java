@@ -14,12 +14,10 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_TOTAL_POWER_USAGE;
 public class UsageCommand extends Command {
 
     public static final String COMMAND_WORD = "usage";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Display all the appliances power usage from SmartHomeBot \n"
-            + "Example: " + COMMAND_WORD;
-    private static final String DISPLAY_LOCATION = " | Location: ";
-    private static final String DISPLAY_STATUS = " | Status: ";
-    private static final String DISPLAY_USAGE = " | Usage: ";
+    public static final String MESSAGE_USAGE = "Usage of Appliance: " + COMMAND_WORD;
+    public static final String DISPLAY_LOCATION = " | Location: ";
+    public static final String DISPLAY_STATUS = " | Status: ";
+    public static final String DISPLAY_USAGE = " | Usage: ";
 
     @Override
     public CommandResult execute() {

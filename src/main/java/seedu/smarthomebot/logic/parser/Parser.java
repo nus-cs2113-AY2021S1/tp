@@ -1,5 +1,6 @@
 package seedu.smarthomebot.logic.parser;
 
+import org.apache.commons.lang3.StringUtils;
 import seedu.smarthomebot.logic.commands.AddCommand;
 import seedu.smarthomebot.logic.commands.Command;
 import seedu.smarthomebot.logic.commands.CreateCommand;
@@ -26,7 +27,6 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_LIST_COMMAND;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_POWER_EXCEEDED;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_VALUE_NOT_NUMBER;
-
 
 public class Parser {
 
@@ -110,7 +110,7 @@ public class Parser {
             }
             return new AddCommand(name, location, wattage, type);
 
-        } catch (InvalidCommandException e) {
+        } catch (InvalidCommandException | StringIndexOutOfBoundsException e) {
             return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND);
         } catch (InvalidNumericalValueException e) {
             return new InvalidCommand(MESSAGE_VALUE_NOT_NUMBER);
@@ -120,8 +120,6 @@ public class Parser {
             return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
         } catch (IllegalCharacterException e) {
             return new InvalidCommand(MESSAGE_ILLEGAL_CHARACTER + " [APPLIANCE_NAME].");
-        } catch (StringIndexOutOfBoundsException e) {
-            return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND);
         }
 
     }
@@ -133,7 +131,7 @@ public class Parser {
         } else if (str[0].equals(APPLIANCE_TYPE)) {
             if (arguments.equals(APPLIANCE_TYPE)) {
                 return new ListCommand(APPLIANCE_TYPE, "");
-            } else if (str[1].trim().substring(0, 2).equals("l/")) {
+            } else if (str[1].trim().startsWith("l/")) {
                 return new ListCommand(APPLIANCE_TYPE, str[1].trim().substring(2));
             } else {
                 return new InvalidCommand(MESSAGE_INVALID_LIST_COMMAND);
@@ -143,7 +141,8 @@ public class Parser {
         }
     }
 
-    private static void testWattageValidity(String wattage) throws WattageExceedException, InvalidNumericalValueException {
+    private static void testWattageValidity(String wattage) throws WattageExceedException,
+            InvalidNumericalValueException {
         try {
             int wattageValue = Integer.parseInt(wattage);
             // Common appliance is between 1 to 9999 watts
@@ -207,7 +206,7 @@ public class Parser {
     public Command parseCommand(String userInput) {
         String[] words = userInput.trim().split(" ", 2);
         final String commandWord = words[0];
-        final String arguments = userInput.replaceFirst(commandWord, "").trim();
+        final String arguments = StringUtils.replaceOnce(userInput, commandWord, "").trim();
 
         switch (commandWord) {
         case HelpCommand.COMMAND_WORD:

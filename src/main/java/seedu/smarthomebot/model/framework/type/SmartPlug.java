@@ -16,7 +16,7 @@ public class SmartPlug extends Appliance {
 
     @Override
     public String getParameter(boolean isList) {
-        return "None";
+        return " None";
     }
 
     @Override

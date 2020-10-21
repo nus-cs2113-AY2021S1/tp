@@ -148,7 +148,7 @@ public abstract class Appliance {
     public abstract String getParameter(boolean isList);
 
     public String toString() {
-        return this.getName() + "(" + this.getWattage() + "W)" + " in " + this.getLocation();
+        return this.getName() + "(" + this.getWattage() + "W)" + " in " + this.getLocation() + " ";
     }
 
     public String writeFileFormat() {

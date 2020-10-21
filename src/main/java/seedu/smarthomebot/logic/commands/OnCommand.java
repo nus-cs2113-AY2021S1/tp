@@ -14,10 +14,9 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_O
 public class OnCommand extends Command {
 
     public static final String COMMAND_WORD = "on";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Turns on specified appliance by its indicated NAME \n"
-            + "Parameters: NAME \n"
-            + "Example: " + COMMAND_WORD + " Aircon 1 ";
+    public static final String MESSAGE_USAGE = "Switch ON Appliance: \n\t\t a. " + COMMAND_WORD
+            + " [APPLIANCE_NAME] \n\t\t b. " + COMMAND_WORD + " [APPLIANCE_NAME] p/[PARAMETER] \n\t\t c. "
+            + COMMAND_WORD + " [LOCATION_NAME]";
     private static final String APPLIANCE_TYPE = "appliance";
     private static final String LOCATION_TYPE = "location";
     private final String name;

@@ -1,10 +1,22 @@
 package seedu.smarthomebot.commons;
 
+import seedu.smarthomebot.logic.commands.AddCommand;
+import seedu.smarthomebot.logic.commands.CreateCommand;
+import seedu.smarthomebot.logic.commands.DeleteCommand;
+import seedu.smarthomebot.logic.commands.ExitCommand;
+import seedu.smarthomebot.logic.commands.HelpCommand;
+import seedu.smarthomebot.logic.commands.ListCommand;
+import seedu.smarthomebot.logic.commands.OffCommand;
+import seedu.smarthomebot.logic.commands.OnCommand;
+import seedu.smarthomebot.logic.commands.RemoveCommand;
+import seedu.smarthomebot.logic.commands.ResetCommand;
+import seedu.smarthomebot.logic.commands.UsageCommand;
+
 public class Messages {
 
     public static final String LINE = "-".repeat(Math.max(0, 52)) + "\n";
     public static final String DIVIDER = "=".repeat(Math.max(0, 52));
-    public static final String MESSAGE_WELCOME = "Welcome to your SmartHomeBot V1.0!";
+    public static final String MESSAGE_WELCOME = "Welcome to your SmartHomeBot V2.0!";
     public static final String MESSAGE_GOODBYE = "Good bye!";
     public static final String MESSAGE_IMPORT = "Importing data........Completed!";
     public static final String MESSAGE_EXPORT = "Exporting data........Completed!";
@@ -42,6 +54,17 @@ public class Messages {
     public static final String MESSAGE_ILLEGAL_CHARACTER = "Illegal Character space or / detected in";
     public static final String MESSAGE_EMPTY_PARAMETER =
             "Empty Parameter detected! Please follow format and enter require parameters.";
-
+    public static final String MESSAGE_HELP = LINE + "Here is the list of commands available:\n" + LINE
+            + "\t1. " + HelpCommand.MESSAGE_USAGE + "\n"
+            + "\t2. " + CreateCommand.MESSAGE_USAGE + "\n"
+            + "\t3. " + RemoveCommand.MESSAGE_USAGE + "\n"
+            + "\t4. " + AddCommand.MESSAGE_USAGE + "\n"
+            + "\t5. " + DeleteCommand.MESSAGE_USAGE + "\n"
+            + "\t6. " + OnCommand.MESSAGE_USAGE + "\n"
+            + "\t7. " + OffCommand.MESSAGE_USAGE + "\n"
+            + "\t8. " + ListCommand.MESSAGE_USAGE + "\n"
+            + "\t9. " + UsageCommand.MESSAGE_USAGE + "\n"
+            + "\t10. " + ResetCommand.MESSAGE_USAGE + "\n"
+            + "\t11. " + ExitCommand.MESSAGE_USAGE + "\n";
 
 }
