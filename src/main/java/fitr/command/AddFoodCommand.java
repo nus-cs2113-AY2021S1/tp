@@ -20,7 +20,6 @@ public class AddFoodCommand extends Command {
     @Override
     public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user,
                         Recommender recommender) {
-        command = command.split(" ", 2)[1];
         try {
             String nameOfFood = command.split("/", 2)[0];
             nameOfFood = nameOfFood.trim();

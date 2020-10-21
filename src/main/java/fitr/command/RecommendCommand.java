@@ -34,6 +34,8 @@ public class RecommendCommand extends Command {
                         * standardExercise.getSets().get(fitnessLevel)));
                 exerciseList.addExercise(new Exercise(standardExercise.getName(),caloriesBurnt));
             }
+        } else if (checker.equals("n")) {
+            Ui.printCustomMessage("Next time then!");
         }
 
     }
