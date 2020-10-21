@@ -16,10 +16,8 @@ import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_LOCATION_CONF
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a new appliance to the particular location to the SmartHomeBot. \n"
-            + "Parameters: add [APPLIANCE_NAME] l/[LOCATION_NAME] w/[WATTAGE] t/[TYPE_OF_APPLIANCE] \n" + "Example: "
-            + COMMAND_WORD + " Fan1 l/Bedroom 1 w/50 t/Fan";
+    public static final String MESSAGE_USAGE = "Add Appliance: " + COMMAND_WORD
+            + " [APPLIANCE_NAME] l/[LOCATION_NAME] w/[WATTAGE] t/[TYPE_OF_APPLIANCE]";
 
     private final String name;
     private final String location;

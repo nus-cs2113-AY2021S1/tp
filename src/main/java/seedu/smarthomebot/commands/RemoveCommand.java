@@ -10,11 +10,8 @@ import static seedu.smarthomebot.common.Messages.MESSAGE_LOCATION_NOT_EXIST;
 public class RemoveCommand extends Command {
 
     public static final String COMMAND_WORD = "remove";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Remove the indicated LOCATION and all the appliances in that LOCATION.\n"
-            + "Parameters: LOCATION \n"
-            + "Example: " + COMMAND_WORD
-            + " Bedroom 1";
+    public static final String MESSAGE_USAGE = "Remove location: " + COMMAND_WORD
+            + " [LOCATION_NAME]";
     private final String usersEnteredLocation;
 
     public RemoveCommand(String location) {
