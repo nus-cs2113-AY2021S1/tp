@@ -12,7 +12,13 @@ import seedu.duke.command.timetable.AddSlotCommand;
 import seedu.duke.command.timetable.DeleteSlotCommand;
 import seedu.duke.command.timetable.ShowTimetableCommand;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.DukeExceptionType;
+import seedu.duke.slot.Slot;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.fusesource.jansi.Ansi.Color.BLACK;
@@ -23,7 +29,6 @@ import static org.fusesource.jansi.Ansi.Color.RED;
 import static org.fusesource.jansi.Ansi.Color.WHITE;
 import static org.fusesource.jansi.Ansi.Color.YELLOW;
 import static org.fusesource.jansi.Ansi.ansi;
-
 
 /**
  * Represents the user interface on the command line and deals with interactions with the user.
@@ -53,6 +58,8 @@ public class Ui {
             + "   ███   ███       ██ ███       ██ ██     ██     ██  █████████  ███████  ██  ████████████ ██     \n"
             + "███       ███     ███  ██      ███ ██     ██     ██  ██     ██        ██ ██   ██          ██     \n"
             + "██████████   █████       ██████    ██     ██     ██   ████████  ███████   ███  ████████   ██     \n";
+
+
 
     /**
      * Constructs a new Ui instance.
@@ -267,5 +274,4 @@ public class Ui {
     private void printInvalidTimeFormat() {
         printRed("Invalid time format\n");
     }
-
 }
