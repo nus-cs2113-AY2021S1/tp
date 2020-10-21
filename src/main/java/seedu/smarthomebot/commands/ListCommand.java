@@ -6,10 +6,6 @@ import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toList;
 import static seedu.smarthomebot.common.Messages.LINE;
-import static seedu.smarthomebot.common.Messages.MESSAGE_DISPLAY_LOCATION;
-import static seedu.smarthomebot.common.Messages.MESSAGE_DISPLAY_STATUS;
-import static seedu.smarthomebot.common.Messages.MESSAGE_DISPLAY_TYPE;
-import static seedu.smarthomebot.common.Messages.MESSAGE_DISPLAY_WATT;
 import static seedu.smarthomebot.common.Messages.MESSAGE_LIST_APPLIANCES;
 import static seedu.smarthomebot.common.Messages.MESSAGE_LIST_NO_APPLIANCES;
 import static seedu.smarthomebot.common.Messages.MESSAGE_LIST_NO_LOCATIONS;
@@ -23,6 +19,14 @@ public class ListCommand extends Command {
             + COMMAND_WORD + " appliance l/[LOCATION_NAME]";
     private static final String APPLIANCE_TYPE = "appliance";
     private static final String LOCATION_TYPE = "location";
+
+    public static final String DISPLAY_LOCATION = " | Location: ";
+    public static final String DISPLAY_STATUS = " | Status: ";
+    public static final String DISPLAY_USAGE = " | Usage: ";
+    public static final String DISPLAY_WATT = " | Watt: ";
+    public static final String DISPLAY_TYPE = " | Type: ";
+    public static final String DISPLAY_PARAMETER = " | Parameter: ";
+
     private final String parameter;
     private final String filteredLocation;
 
@@ -75,13 +79,15 @@ public class ListCommand extends Command {
         int index = 1;
         String outputList = header;
         String format = "%-2d. %-" + Appliance.getMaxNameLength() + "s"
-                + MESSAGE_DISPLAY_LOCATION + "%-" + Appliance.getMaxLocationLength() + "s"
-                + MESSAGE_DISPLAY_STATUS + "%-5s"
-                + MESSAGE_DISPLAY_WATT + "%-4sW"
-                + MESSAGE_DISPLAY_TYPE + "%s";
+                + DISPLAY_LOCATION + "%-" + Appliance.getMaxLocationLength() + "s"
+                + DISPLAY_STATUS + "%-5s"
+                + DISPLAY_WATT + "%-4sW"
+                + DISPLAY_TYPE + "%s"
+                + DISPLAY_PARAMETER + "%s";
+
         for (Appliance a : displayList) {
             outputList  = outputList.concat(System.lineSeparator() + String.format(format, index,
-                    a.getName(), a.getLocation(), a.getStatus(), a.getWattage(), a.getType()));
+                    a.getName(), a.getLocation(), a.getStatus(), a.getWattage(), a.getType(), a.getParameter(true)));
             index++;
         }
 

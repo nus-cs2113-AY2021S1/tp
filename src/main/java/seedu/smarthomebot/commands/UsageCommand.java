@@ -3,9 +3,6 @@ package seedu.smarthomebot.commands;
 import seedu.smarthomebot.data.framework.Appliance;
 
 import static seedu.smarthomebot.common.Messages.LINE;
-import static seedu.smarthomebot.common.Messages.MESSAGE_DISPLAY_LOCATION;
-import static seedu.smarthomebot.common.Messages.MESSAGE_DISPLAY_STATUS;
-import static seedu.smarthomebot.common.Messages.MESSAGE_DISPLAY_USAGE;
 import static seedu.smarthomebot.common.Messages.MESSAGE_LIST_NO_APPLIANCES;
 import static seedu.smarthomebot.common.Messages.MESSAGE_POWER_USAGE;
 import static seedu.smarthomebot.common.Messages.MESSAGE_TOTAL_POWER_USAGE;
@@ -18,6 +15,9 @@ public class UsageCommand extends Command {
 
     public static final String COMMAND_WORD = "usage";
     public static final String MESSAGE_USAGE = "Usage of Appliance: " + COMMAND_WORD;
+    public static final String DISPLAY_LOCATION = " | Location: ";
+    public static final String DISPLAY_STATUS = " | Status: ";
+    public static final String DISPLAY_USAGE = " | Usage: ";
 
     @Override
     public CommandResult execute() {
@@ -29,9 +29,9 @@ public class UsageCommand extends Command {
         } else {
             String formattedResult = (LINE + MESSAGE_POWER_USAGE);
             String format = "%-2d. %-" + Appliance.getMaxNameLength() + "s"
-                    + MESSAGE_DISPLAY_LOCATION + "%-" + Appliance.getMaxLocationLength() + "s"
-                    + MESSAGE_DISPLAY_STATUS + "%-5s"
-                    + MESSAGE_DISPLAY_USAGE + "%.2f kWh";
+                    + DISPLAY_LOCATION + "%-" + Appliance.getMaxLocationLength() + "s"
+                    + DISPLAY_STATUS + "%-5s"
+                    + DISPLAY_USAGE + "%.2f kWh";
             for (Appliance a : applianceList.getAllAppliance()) {
                 formattedResult = formattedResult.concat(System.lineSeparator() + String.format(format, index,
                         a.getName(), a.getLocation(), a.getStatus(), a.getPowerInDouble()));

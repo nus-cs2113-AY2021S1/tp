@@ -1,4 +1,4 @@
-package seedu.smarthomebot.data;
+package seedu.smarthomebot.data.framework.type;
 
 import seedu.smarthomebot.data.framework.Appliance;
 
@@ -11,11 +11,11 @@ public class Lights extends Appliance {
     }
 
     public String getType() {
-        return "Light";
+        return TYPE_WORD;
     }
 
-    public String getParameter() {
-        return " ";
+    public String getParameter(boolean isList) {
+        return "None";
     }
 
     @Override

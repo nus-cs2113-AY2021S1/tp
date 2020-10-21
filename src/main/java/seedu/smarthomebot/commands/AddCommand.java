@@ -1,9 +1,9 @@
 package seedu.smarthomebot.commands;
 
-import seedu.smarthomebot.data.AirConditioner;
-import seedu.smarthomebot.data.Fan;
-import seedu.smarthomebot.data.Lights;
-import seedu.smarthomebot.data.WaterHeater;
+import seedu.smarthomebot.data.framework.type.AirConditioner;
+import seedu.smarthomebot.data.framework.type.Fan;
+import seedu.smarthomebot.data.framework.type.Lights;
+import seedu.smarthomebot.data.framework.type.SmartPlug;
 import seedu.smarthomebot.exceptions.DuplicateDataException;
 import seedu.smarthomebot.exceptions.LocationNotFoundException;
 
@@ -50,10 +50,10 @@ public class AddCommand extends Command {
                 Lights light = new Lights(name, location, wattage);
                 applianceList.addAppliance(light);
                 return new CommandResult("ADDING " + light.toString() + "......ADDED");
-            case WaterHeater.TYPE_WORD:
-                WaterHeater waterheater = new WaterHeater(name, location, wattage);
-                applianceList.addAppliance(waterheater);
-                return new CommandResult("ADDING " + waterheater.toString() + "......ADDED");
+            case SmartPlug.TYPE_WORD:
+                SmartPlug smartPlug = new SmartPlug(name, location, wattage);
+                applianceList.addAppliance(smartPlug);
+                return new CommandResult("ADDING " + smartPlug.toString() + "......ADDED");
             default:
                 return new CommandResult(MESSAGE_APPLIANCE_TYPE_NOT_EXIST);
             }

@@ -54,10 +54,13 @@ public class Parser {
                 }
                 convertParameterToInt(parameter);
             }
+
             return new OnCommand(name, parameter);
         } catch (EmptyParameterException e) {
+
             return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
         } catch (InvalidWattageValueException e) {
+
             return new InvalidCommand(MESSAGE_WATTAGE_NOT_NUMBER);
         }
     }
@@ -112,7 +115,7 @@ public class Parser {
             }
             return new AddCommand(name, location, wattage, type);
 
-        } catch (InvalidCommandException e) {
+        } catch (InvalidCommandException | StringIndexOutOfBoundsException e) {
             return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND);
         } catch (InvalidWattageValueException e) {
             return new InvalidCommand(MESSAGE_WATTAGE_NOT_NUMBER);
@@ -123,8 +126,6 @@ public class Parser {
         } catch (IllegalCharacterException e) {
 
             return new InvalidCommand(MESSAGE_ILLEGAL_CHARACTER + " [APPLIANCE_NAME].");
-        } catch (StringIndexOutOfBoundsException e) {
-            return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND);
         }
 
     }
