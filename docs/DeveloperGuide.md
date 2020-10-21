@@ -195,7 +195,8 @@ Paper trading allows inexperienced people to get a feel of what trading feels li
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|new user|search for stocks I can buy|have more information to make a more informed decision|
+|v2.0|user|keep track of what stocks I have bought or sold|see how much money I've made or lost|
 
 ## Non-Functional Requirements
 
