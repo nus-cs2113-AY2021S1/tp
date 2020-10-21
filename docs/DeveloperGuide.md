@@ -170,22 +170,18 @@ the list of modules.
 
 Given below is an example usage scenario and how the add module mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time and hence, the list of modules is empty.   
-        &emsp; &emsp;&emsp;The user types in a command: `addmod CS2113T`. 
+Step 1. The user launches the application for the first time and hence, the list of modules is empty. The user types in a command: `addmod CS2113T`. 
 
 Step 2. The parser class makes sense of the user input and calls the `addMod()` function in ModuleList class.
 
-Step 3. Within the `addMod()` function, it will first check if the module code is valid by calling `checkIfModuleValid()` 
-        function.   
-        &emsp; &emsp;&emsp;The `checkIfModuleValid()` function will return true if the module code is valid,   
-        &emsp; &emsp;&emsp;and return false otherwise.   
-        &emsp; &emsp;&emsp;If `checkIfModuleValid()` function returns true, proceed to step 4.
+Step 3. Within the `addMod()` function, it will first check if the module code is valid by calling 
+        `checkIfModuleValid()` function. The `checkIfModuleValid()` function will return true if the module code is 
+        valid, and return false otherwise. If `checkIfModuleValid()` function returns true, proceed to step 4.
 
-Step 4. Within the addmod function, it will then check if the module already exists in the list of modules by   
-        &emsp; &emsp;&emsp;calling `checkIfModuleExist()` function.   
-        &emsp; &emsp;&emsp;The `checkIfModuleExist()` function will return true if the module already exists in the modlist,   
-        &emsp; &emsp;&emsp;and false otherwise.   
-        &emsp; &emsp;&emsp;If `checkIfModuleValid()` function returns true, proceed to step 5.  
+Step 4. Within the addmod function, it will then check if the module already exists in the list of modules by 
+        calling `checkIfModuleExist()` function. The `checkIfModuleExist()` function will return true if the module 
+        already exists in the modlist, and false otherwise. If `checkIfModuleValid()` function returns true, 
+        proceed to step 5.  
 
 Step 5. A new module with module code "CS2113T” is created by calling the constructor of Module class.
 
