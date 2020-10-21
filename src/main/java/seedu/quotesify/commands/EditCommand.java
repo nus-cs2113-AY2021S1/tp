@@ -90,13 +90,13 @@ public class EditCommand extends Command {
 
             Book book = books.getBook(bookIndex);
             String oldTitle = book.getTitle();
-            String author = book.getAuthor().getName();
+            String authorName = book.getAuthor().getName();
 
-            books.ensureNoSimilarBooks(newTitle, book.getAuthor().getName());
+            books.ensureNoSimilarBooks(newTitle, authorName);
             book.setTitle(newTitle);
             ui.printEditBook(oldTitle, newTitle);
 
-            checkRatingForOldTitle(book, oldTitle, author);
+            checkRatingForOldTitle(book, oldTitle, authorName);
 
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
