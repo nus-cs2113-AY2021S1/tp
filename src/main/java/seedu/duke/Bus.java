@@ -29,6 +29,7 @@ public class Bus {
         return this.busNumber;
     }
 
+    //@@author wamikamalik
     ArrayList<BusStops> getPossibleRoute(String startingLoc, String destination) {
         ArrayList<BusStops> allStopsFromStart = new ArrayList<>();
         ArrayList<BusStops> finalRoute = new ArrayList<>();
@@ -38,9 +39,9 @@ public class Bus {
 
         if (routeNames.contains(startingLoc.toLowerCase())) {
             int startingIndex = routeNames.indexOf(startingLoc.toLowerCase());
-            assert startingIndex != -1 : "Hmm, seems like the start is not in the list";
+            assert startingIndex != -1 : "Hmm, seems like the starting location is not in the list";
             int size = routeNames.size();
-            assert size != 0 : "The bus route has no stops!";
+            assert size != 0 : "This bus route has no stops!";
             allStopNamesFromStart.addAll(routeNames.subList(startingIndex, size));
             allStopsFromStart.addAll(route.subList(startingIndex, size));
             if (allStopNamesFromStart.contains(destination.toLowerCase())) {
@@ -52,6 +53,7 @@ public class Bus {
         return finalRoute;
     }
 
+    //@@author
     @Override
     public String toString() {
         if (route.size() > 0) {
