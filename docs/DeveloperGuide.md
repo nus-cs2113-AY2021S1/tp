@@ -12,10 +12,10 @@
 1. After constructing a new MenuParser() in the `Eduke8` class, the parseCommand() method is used to parse the 
    user command.
 2. This results in a `Command` object, which is executed by `Command` class itself, using the execute() method.
-3. The `Ui` object in the `Command` object is used to display the requested information, or to display the required task to be 
-   completed as per the user input.
+3. The `Ui` object in the `Command` object is used to display the requested information, or to display the required task 
+to be completed as per the user input.
    
-Below is the sequence diagram for how the Parser component of `Eduke8 works with commands to show output to the user.
+Below is the sequence diagram for how the Parser component of `Eduke8` works with commands to show output to the user.
 
 ![Parser Sample Sequence](./images/ParserSampleSequence.png)
 
@@ -27,8 +27,8 @@ The command parsing feature is our program’s way of reading the user’s input
 single method parseCommand that identifies what command the user is calling for and then calls the command. There are 
 two parsers in our program that implements a single Parser interface. One parser is for choosing menu options and is 
 named `MenuParser`. The other parser is used during quizzes, in order to answer questions or request for hints, and is 
-called `QuizParser`. Given below is an example usage scenario of how the command parsing feature works at each step, when 
-the user types in input to get help in order to see what commands are available to the user.
+called `QuizParser`. Given below is an example usage scenario of how the command parsing feature works at each step, 
+when the user types in input to get help in order to see what commands are available to the user.
 
 Step 1. The user launches the program for the first time. The parser will be initialised and awaiting the user’s input 
         to proceed.
@@ -51,15 +51,37 @@ Step 5. The string at the 0th index is then used in a switch statement, where ea
         
 ### Loading Data
 
-Data is loaded automatically from JSON files in the data folder. This is mainly facilitated through the `TopicsStorage` class which handles accessing the file as well as converting from JSON into `Topic`, `Question` and `Option` objects.
+Data is loaded automatically from JSON files in the data folder. This is mainly facilitated through the `TopicsStorage` 
+class which handles accessing the file as well as converting from JSON into `Topic`, `Question` and `Option` objects.
 
 ![TopicsStorage Class Diagram](./images/TopicsStorage.png)
 
 Given below is an example usage scenario of loading in two topics with two questions each.
 
-When the user launches the app, the main program will initialize a `TopicsStorage` object and call the `load` method which will return a `TopicList` object. The following sequence diagram shows how the load operation works:
+When the user launches the app, the main program will initialize a `TopicsStorage` object and call the `load` method 
+which will return a `TopicList` object. The following sequence diagram shows how the load operation works:
 
 ![TopicsStorage load](./images/TopicsStorage_load.png)
+
+### Class Component 
+
+#### Option and OptionList Class 
+
+The `Option` and `OptionList` classes implements the `Displayable` and `DisplayableList` interfaces respectively. 
+The `Option` object stores one option of a question while the `OptionList` object stores all 4 options of the same 
+question. The class diagram below illustrates the structure of both classes. 
+
+![Option_and_OptionList_Class](./images/Option.png)
+
+### User Interface 
+
+#### Implementation 
+
+The `Ui` class handles all the interactions with the users. It reads the input from the users and prints out replies to 
+the users. An example is provided below to illustrate how the `Ui` class prints out the starting page of the quiz for 
+the user to comprehend. 
+
+![Ui_Printing_Start_Quiz_Page](./images/PrintQuizStartPage.png)
 
 ## Product scope
 ### Target user profile
@@ -68,13 +90,24 @@ CS2113/T Students
 
 ### Value proposition
 
-Help CS2113/T students learn and understand software engineering and OOP principles through a gamified platform and enhance their learning experience. Consolidate key concepts for easy revision.
+Help CS2113/T students learn and understand software engineering and OOP principles through a gamified platform and 
+enhance their learning experience. Consolidate key concepts for easy revision.
 
 ## User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|new user|answer given questions|start testing myself immediately|
+|v1.0|new user|quickly see what the software has to offer|understand how to use the app|
+|v1.0|new user|answer given questions|start testing myself immediately|
+|v1.0|long-time user|get different questions each time|repeatedly test my understanding for the particular topic|
+|v1.0|busy user|test myself on concepts using short, targeted quizzes|confirm my understanding of concepts|
+|v1.0|user|get a hint for the question in the quiz|I can think about the question from a different angle|
+|v1.0|user|see what the available topics are|navigate around the app effectively|
+|v1.0|user|select the number of questions to do in the quiz|manage the workload and time spent on the quiz|
+|v2.0|slow but hardworking user|see the explanations provided in the quiz|learn from my mistakes and revise|
+|v2.0|busy, lazy user|take note of key concepts|refer to it easily at a later time|
+|v2.0|frequent disorganized user|view the percentage of error in each topic|tell how well I understand the content|
 
 ## Non-Functional Requirements
 
