@@ -1,9 +1,9 @@
-package seedu.duke.parser;
+package anichan.parser;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exception.AniException;
+import anichan.exception.AniException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ViewWatchlistParserTest {
     protected static final String EMPTY_DESCRIPTION = "";

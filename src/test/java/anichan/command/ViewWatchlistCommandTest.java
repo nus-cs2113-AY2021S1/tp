@@ -1,16 +1,16 @@
-package seedu.duke.command;
+package anichan.command;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.duke.anime.Anime;
-import seedu.duke.anime.AnimeData;
-import seedu.duke.bookmark.Bookmark;
-import seedu.duke.exception.AniException;
-import seedu.duke.human.User;
-import seedu.duke.human.Workspace;
-import seedu.duke.parser.ViewWatchlistParser;
-import seedu.duke.storage.StorageManager;
-import seedu.duke.watchlist.Watchlist;
+import anichan.anime.Anime;
+import anichan.anime.AnimeData;
+import anichan.bookmark.Bookmark;
+import anichan.exception.AniException;
+import anichan.human.User;
+import anichan.human.Workspace;
+import anichan.parser.ViewWatchlistParser;
+import anichan.storage.StorageManager;
+import anichan.watchlist.Watchlist;
 
 import java.util.ArrayList;
 

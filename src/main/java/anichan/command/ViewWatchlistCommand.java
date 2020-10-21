@@ -35,7 +35,7 @@ public class ViewWatchlistCommand extends Command {
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         int watchlistSize = watchlistList.size();
 
-        if(watchlistSize == 0) {
+        if (watchlistSize == 0) {
             LOGGER.log(Level.WARNING, EMPTY_WATCHLIST_ERROR);
             throw new AniException(EMPTY_WATCHLIST_ERROR);
         } else if (watchlistIndex < 0) {
@@ -58,7 +58,7 @@ public class ViewWatchlistCommand extends Command {
         
         StringBuilder sbWatchlistAnime = new StringBuilder();
         sbWatchlistAnime.append("Here are the anime in ").append(selectedWatchlistName).append(" watchlist:");
-        for(int i = 0; i < animeInWatchlist.size(); i++) {
+        for (int i = 0; i < animeInWatchlist.size(); i++) {
             Integer animeIndex = animeInWatchlist.get(i);
             Anime anime = animeData.getAnime(animeIndex);
             String animeName = anime.getAnimeName();

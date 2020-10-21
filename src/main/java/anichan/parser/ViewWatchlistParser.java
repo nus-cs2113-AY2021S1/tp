@@ -40,19 +40,19 @@ public class ViewWatchlistParser extends CommandParser {
             }
 
             switch (paramParts[0].trim()) {
-                case "": // skip empty param
-                    break;
-                case VIEW_PARAM:
-                    paramFieldCheck(paramParts);
-                    paramExtraFieldCheck(paramParts);
-                    if (!isInt(paramParts[1].trim())) {
-                        throw new AniException(NON_INTEGER_PROVIDED);
-                    }
-                    viewWatchlistCommand.setWatchlistIndex(Integer.parseInt(paramParts[1].trim()));
-                    break;
-                default:
-                    String invalidParameter = PARAMETER_ERROR_HEADER + param + NOT_RECOGNISED;
-                    throw new AniException(invalidParameter);
+            case "": // skip empty param
+                break;
+            case VIEW_PARAM:
+                paramFieldCheck(paramParts);
+                paramExtraFieldCheck(paramParts);
+                if (!isInt(paramParts[1].trim())) {
+                    throw new AniException(NON_INTEGER_PROVIDED);
+                }
+                viewWatchlistCommand.setWatchlistIndex(Integer.parseInt(paramParts[1].trim()));
+                break;
+            default:
+                String invalidParameter = PARAMETER_ERROR_HEADER + param + NOT_RECOGNISED;
+                throw new AniException(invalidParameter);
             }
         }
     }
