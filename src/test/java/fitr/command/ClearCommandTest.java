@@ -3,8 +3,10 @@ package fitr.command;
 import fitr.Calorie;
 import fitr.Exercise;
 import fitr.Food;
+import fitr.Recommender;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
+import fitr.list.GoalList;
 import fitr.storage.Storage;
 import fitr.user.User;
 import org.junit.jupiter.api.Test;
@@ -18,9 +20,11 @@ public class ClearCommandTest {
         FoodList foodList = getFoodList();
         ExerciseList exerciseList = getExerciseList();
         Storage storage = getStorage();
+        GoalList goalList = new GoalList();
+        Recommender recommender = new Recommender("test");
         storage.setTest(true);
         User user = new User();
-        clearCommand.execute(foodList, exerciseList, storage, user);
+        clearCommand.execute(foodList, exerciseList, storage, user, goalList, recommender);
         assertEquals(0, foodList.getSize());
         assertEquals(0, exerciseList.getSize());
     }
@@ -31,9 +35,11 @@ public class ClearCommandTest {
         FoodList foodList = getFoodList();
         ExerciseList exerciseList = getExerciseList();
         Storage storage = getStorage();
+        GoalList goalList = new GoalList();
+        Recommender recommender = new Recommender("test");
         storage.setTest(true);
         User user = new User();
-        clearCommand.execute(foodList, exerciseList, storage, user);
+        clearCommand.execute(foodList, exerciseList, storage, user, goalList, recommender);
         assertEquals(0, foodList.getSize());
     }
 
@@ -43,9 +49,11 @@ public class ClearCommandTest {
         FoodList foodList = getFoodList();
         ExerciseList exerciseList = getExerciseList();
         Storage storage = getStorage();
+        GoalList goalList = new GoalList();
+        Recommender recommender = new Recommender("test");
         storage.setTest(true);
         User user = new User();
-        clearCommand.execute(foodList, exerciseList, storage, user);
+        clearCommand.execute(foodList, exerciseList, storage, user, goalList, recommender);
         assertEquals(0, exerciseList.getSize());
     }
 
@@ -58,14 +66,15 @@ public class ClearCommandTest {
 
     private ExerciseList getExerciseList() {
         ExerciseList exerciseList = new ExerciseList();
-        exerciseList.addExercise(new Exercise("Push ups", new Calorie(100), 5));
-        exerciseList.addExercise(new Exercise("Run", new Calorie(300), 10));
+        exerciseList.addExercise(new Exercise("Push ups", new Calorie(100)));
+        exerciseList.addExercise(new Exercise("Run", new Calorie(300)));
         return exerciseList;
     }
 
     private Storage getStorage() throws Exception {
         return new Storage("src/test/data/StorageTest/ValidUserData.txt",
                 "src/test/data/StorageTest/ValidFoodData.txt",
-                "src/test/data/StorageTest/ValidExerciseData.txt");
+                "src/test/data/StorageTest/ValidExerciseData.txt",
+                "src/test/data/StorageTest/ValidGoalData.txt");
     }
 }

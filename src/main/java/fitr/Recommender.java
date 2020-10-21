@@ -8,7 +8,7 @@ public class Recommender {
     protected StandardExerciseList aerobicList;
     protected StandardExerciseList stretchingList;
 
-    Recommender(String nameOfFile){
+    public Recommender(String nameOfFile){
 
 
     }
