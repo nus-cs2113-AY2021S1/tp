@@ -99,7 +99,79 @@ Improves the reading experience of users with quick and easy features
    2. Run `java -jar Quotesify.jar` to launch Quotesify.
    3. Data will be automatically loaded from the data file upon launch.
    
+### Adding a book
+1. Test case: `add -b Harry Potter /by JK Rowling`
+    
+   Expected: Book is added to Quotesify. A message will be prompted to indicate that
+   the book has been successfully added.
+   
+2. Other incorrect commands to try:
+    * `add -b`: Book title left empty
+    * `add -b /by JK Rowling`: Book title left empty with author name specified
+    * `add -b title`: Author name left empty
+    * `add -b title /by`: Author name left empty with author tag specified
+    
+    Expected: Book will not be added. An error message will by printed.
+    
+### List all existing books
+1. Test case: `list -b`
 
+   Expected: All existing books in booklist will be listed.
+   
+### List book details
+1. Test case: `list -b 2`
+
+   Expected: Book details of book with the book index 2 from list of all books will be printed.
+   
+2. Other incorrect commands to try:
+   * `list -b Harry Potter /by JK Rowling`: Wrong format. 
+   * `list -b 10000`: Index out of range of booklist.
+   
+   Expected: Book details will not be printed. An error message will be printed instead.
+   
+### List books by author
+1. Test case: `list -b /by JK Rowling`
+
+   Expected: Books with the author JK Rowling will be listed. 
+   
+2. Other incorrect commands to try:
+   * `list -b JK Rowling`: Flag `/by` not specified
+   
+   Expected: Books will not be listed. An error message will be printed.
+   
+### Find books by keyword
+1. Test case: `find -b Harry`
+
+   Expected: Books with the title or author name containing Harry will be listed. 
+   
+2. Other incorrect commands to try:
+   * `find -b`: Keyword not specified
+   
+   Expected: Books will not be listed. An error message will be printed.
+
+### Delete books
+1. Test case: `delete -b 3`
+
+   Expected: Book with the book index of 3 in booklist will be deleted from list.
+   Successful message will be printed.
+   
+2. Other incorrect commands to try:
+   * `delete -b Harry Potter`: Wrong format
+   * `delete -b 10000`: Index out of range of booklist.
+   
+   Expected: Book will not be deleted. An error message will be printed.
+
+### Edit book
+1. Test case: `edit -b 3 /to Harry Potterrrrr`
+
+   Expected: Book title of book with the book index of 3 will be changed to Harry Potterrrrr.
+   
+2. Other incorrect commands to try: 
+   * `edit -b Harry Potter /to Harry Potterrrrr`: Wrong format
+   * `edit -b 3 Harry Potterrrrr`: Flag `/to` not specified. 
+   * `edit -b 3 /to`: New title not specified. 
+   
+   Expected: Book title will not be edited. An error message will be printed. 
 ### Adding a quote
 
 1. * Test case 1: `add -q Life's short, smile while you still have teeth`

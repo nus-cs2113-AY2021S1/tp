@@ -74,6 +74,7 @@ public class BookList extends QuotesifyList<Book> {
 
     public void ensureNoSimilarBooks(String title, String authorName) throws QuotesifyException {
         ArrayList<Book> similarBooks = find(title, authorName);
+
         if (!similarBooks.isEmpty()) {
             throw new QuotesifyException(Command.ERROR_BOOK_ALREADY_EXISTS);
         }
@@ -130,6 +131,17 @@ public class BookList extends QuotesifyList<Book> {
         } else {
             return null;
         }
+    }
+
+    public Author findExistingAuthor(String authorName) {
+        BookList filteredBooks = filterByAuthor(authorName);
+
+        if (filteredBooks.isEmpty()) {
+            return null;
+        }
+        Author author = filteredBooks.getBook(0).getAuthor();
+
+        return author;
     }
 
     public BookList filterByAuthor(String authorName) {
