@@ -54,6 +54,15 @@ The diagram above shows how the flashcard commands extend the abstract command c
 **Package Diagram**<br>
 The Package Diagram above shows how the Revised class interacts with all of these packages.
 
+### Storage package
+There are two classes inside this package, both of which are inside `Storage.java`.
+
+![Storage Class Diagram](https://user-images.githubusercontent.com/15065550/96747993-8e4c0d80-13fb-11eb-8b28-9171daf23098.png)
+
+`StorageBuilder` class is a static inner class of `Storage` class. It follows the builder pattern and its sole purpose
+is to create `Storage` instances. The builder pattern is used to deal with the decrease in clarity due to the increase 
+of the number parameters.
+
 ## Product scope
 
 

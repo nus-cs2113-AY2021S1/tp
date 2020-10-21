@@ -11,6 +11,7 @@ import seedu.revised.command.subject.SorrySubjectCommand;
 import seedu.revised.command.subject.SubjectCommand;
 import seedu.revised.command.subject.QuizSubjectCommand;
 import seedu.revised.command.subject.ResultSubjectCommand;
+import seedu.revised.command.subject.HelpSubjectCommand;
 
 /**
  * Allows the parsing of inputs provided by the user.
@@ -36,6 +37,8 @@ public class SubjectParser {
             return new DeleteSubjectCommand(fullCommand);
         } else if (fullCommand.startsWith("find")) {
             return new FindSubjectCommand(fullCommand);
+        } else if (fullCommand.equals("help")) {
+            return new HelpSubjectCommand();
         } else if (fullCommand.startsWith("subject")) {
             return new ReturnSubjectCommand(fullCommand);
         } else if (fullCommand.startsWith("quiz")) {

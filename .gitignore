@@ -20,3 +20,4 @@ text-ui-test/EXPECTED-UNIX.TXT
 data/
 export/
 *.log
+*.log.lck

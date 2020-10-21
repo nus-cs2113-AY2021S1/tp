@@ -15,7 +15,8 @@ import seedu.revised.command.topic.SorryTopicCommand;
 import seedu.revised.command.topic.DeleteTopicCommand;
 import seedu.revised.command.topic.FindTopicCommand;
 import seedu.revised.command.topic.ReturnTopicCommand;
-import seedu.revised.command.topic.ResultTopicCommand;
+import seedu.revised.command.topic.HelpTopicCommand;
+
 
 /**
  * Parses the commands on the topic level.
@@ -31,8 +32,8 @@ public class TopicParser {
     public static Command parse(String fullCommand) {
         String[] message = fullCommand.split(" ");
         switch (message[0]) {
-        case "exit":
-            if (fullCommand.equals("exit")) {
+        case "bye":
+            if (fullCommand.equals("bye")) {
                 return new ExitTopicCommand();
             } else {
                 return new SorryTopicCommand();
@@ -66,10 +67,12 @@ public class TopicParser {
             return new AddEventCommand(fullCommand);
         case "done":
             return new DoneTaskCommand(fullCommand);
-        case "quiz":
-            return new QuizTopicCommand(fullCommand);
-        case "results":
-            return new ResultTopicCommand(fullCommand);
+        case "help":
+            if (fullCommand.equals("help")) {
+                return new HelpTopicCommand();
+            } else {
+                return new SorryTopicCommand();
+            }
         default:
             return new SorryTopicCommand();
         }

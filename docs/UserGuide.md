@@ -69,7 +69,7 @@ Subsequently, users can begin using the application.
 * Tasks
 * Quiz 
 * Results
-* Load 
+* Storing data
 
 ### Subjects
 
@@ -192,30 +192,9 @@ Now you have 1 topic in the list.
 ____________________________________________________________
 ```
 
-#### `add` - Add topic
-
-Format:
-
-`add` `[DESCRIPTION]`
-
-Example of usage: 
-
-`add speed`
-
-Expected outcome:
-
-```
-____________________________________________________________
-Got it. I've added this topic:
-  speed
-Now you have 1 topic in the list.
-____________________________________________________________
-```
-
-### Tasks
-Task commands can only be used when looking at a subject.
-
 #### `delete topic` - Delete a topic
+
+Deletes the specified topic.
 
 Format:
 
@@ -232,6 +211,94 @@ ____________________________________________________________
  Noted. I've removed this topic:
    speed
  Now you have 0 tasks in the list.
+____________________________________________________________
+```
+
+#### `list` - List all topics and tasks
+
+Prints a list of all topics and tasks of the subject you are currently viewing.
+  
+Example of usage: 
+
+`list`
+
+Expected outcome:
+
+```
+____________________________________________________________
+Here are the topic(s) under math: 
+1.speed
+____________________________________________________________
+Here are the tasks(s) under math: 
+1.[T][?] laundry
+2.[E][?] tutorial (at: 4:00 PM 21 Oct 2020)
+3.[D][?] assignment (by: 11:59 PM 21 Oct 2020)
+____________________________________________________________
+
+```
+
+#### `find` - Find topics and tasks
+
+Searches the current subject for all the topics and tasks that contains the query.
+
+Format:
+
+`find [QUERY]`
+
+Example of usage: 
+
+`find laund`
+
+Expected outcome:
+
+```
+____________________________________________________________
+ Sorry! I could not find any topics with laund in the list.
+
+ Here are the matching task(s) in your list:
+[T][?] laundry
+____________________________________________________________
+```
+
+#### `topic` - Enter a topic
+
+Enters a preexisting topic.
+
+Format: `topic` `[TOPIC NAME]`
+
+Example of usage:
+```
+topic speed
+```
+Output:
+```
+____________________________________________________________
+You are currently looking at the topic: speed
+____________________________________________________________
+```
+
+### Tasks
+Task commands can only be used when looking at a subject.
+
+#### `todo` - Add todo
+
+Add a todo task.
+
+Format:
+
+`todo` `[DESCRIPTION]`
+
+Example of usage: 
+
+`todo laundry`
+
+Expected outcome:
+
+```
+____________________________________________________________
+Got it. I've added this task:
+	[T][N] laundry
+Now you have 4 tasks in the list.
 ____________________________________________________________
 ```
 
@@ -279,34 +346,9 @@ Now you have 3 tasks in the list.
 ____________________________________________________________
 ```
 
-
-
-#### `list` - List all tasks
-
-Prints a list of all tasks
-  
-Example of usage: 
-
-`list`
-
-Expected outcome:
-
-```
-____________________________________________________________
-Here are the topic(s) under math: 
-1.speed
-____________________________________________________________
-Here are the tasks(s) under math: 
-1.[T][?] laundry
-2.[E][?] tutorial (at: 4:00 PM 21 Oct 2020)
-3.[D][?] assignment (by: 11:59 PM 21 Oct 2020)
-____________________________________________________________
-
-```
-
 #### `delete` - Delete Task
 
-Removes the specified task.
+Deletes the specified task.
 
 Format:
 
@@ -347,35 +389,15 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### `find` - Find tasks
-
-Narrow the search for particular tasks. A keyword has to be entered.
-
-Format:
-
-`find [QUERY]`
-
-Example of usage: 
-
-`find laund`
-
-Expected outcome:
-
-```
-____________________________________________________________
-Here are the matching tasks in your list:
-1. [T][N] laundry
-____________________________________________________________
-```
 ### Flashcards
 
-### Quiz
+### Taking quizzes
 Prints the questions from the flashcards and requires the user to complete the quiz within a
 certain time limit.There are two types of quizzes :
 * SubjectQuiz
 * TopicQuiz
 
-#### SubjectQuiz
+#### Subject quiz
 Prints out all the questions that have been saved in all of the topics in the subjects.The user is given
 2 minutes to complete the quiz.
 
@@ -384,7 +406,7 @@ Example: `quiz Maths`
 
 Output: `You are about to begin the quiz for maths.You have 2 minutes.`
 
-#### TopicQuiz
+#### Topic quiz
 Prints out all the questions that have been saved in the specific topic topics .The user is given
 1 minute to complete the quiz.
 
@@ -432,7 +454,7 @@ Result:1/2 -- Pass
 ____________________________________________________________
 </code></pre>
 
-### Results
+### Viewing quiz results
 Shows the results that the user has obtained in all of the quizzes so far.This can be done for the subjects or for the
 topics.
 
@@ -444,53 +466,153 @@ Quiz 1: 1/1 -- Excellent
 Quiz 2: 0/1 -- Fail
 </code></pre>
 
-### Storing of data 
+### Storing data 
 The data added to the program is automatically saved to the disk when the application exits. Similarly, the application
 loads the saved data from the disk automatically when it launches. The data is stored under the `data/` folder in the 
-same folder where the application resides.
+same folder where the application runs.
 
-TODO: add hierarchy diagram
-
-Instead of storing all data in one file, revisED creates a folder hierarchy following the logical structure of the
+Instead of storing all data in one file, revisED creates a folder hierarchy under `data/` following the logical structure of the
 subjects and topics added. For example, if you add a `Maths` subject and a `Algebra` topic under it, a
 `Maths/` folder will be created under the `data/` folder and an `Algebra` folder will be created under the `Maths/`
-folder.
+folder, as shown in the figure below.
+
+```
+data
+└── Maths
+    ├── Algebra
+    │   ├── results.json
+    │   └── flashcards.json
+    ├── results.json
+    └── tasks.txt
+
+```
+
+The details of the files that are created under each subject and topic folder will be explained below.
+
+> **_NOTE:_**  The name of the subject and topic folders can be changed manually, and the changes will be reflected
+> the next time you launch the application.
 
 #### tasks.txt
-There will be one `tasks.txt` file under each subject folder. This file contains the tasks (Todo, Event, Deadline) you
-have added to the specific subject.
+One `tasks.txt` file will be created under each subject folder. This file contains the tasks (Todo, Event, Deadline) you
+have added to a specific subject. An example of the file content is shown below.
 
-TODO: explain the format
+```
+T | 1 | someTodoTask
+D | 0 | someDeadlineTask | 11:59 PM 20 Dec 2020
+E | 0 | someEventTask | 1:00 PM 10 Nov 2020
+```
+
+The first column of data shows the type of task, where T corresponds to Todo task, D corresponds to Deadline task, and
+E corresponds to Event task. The second column shows if a task is completed, where 0 means not completed while
+1 means completed. The third column shows the name of a task. Lastly, the fourth column shows the time and date of a 
+deadline or event task. 
+
+> **_WARNING:_** Although you can change the content of this file manually, and the changes will be reflected the 
+> next time you launch the application, you are not advised to do so because a mismatch in format will corrupt the data. 
+> Make a copy of the file before making changes if you have to do so manually.
 
 #### results.json
 This file can be found under each subject and topic folder. It stores the quiz results you have obtained from attempting
-the quiz under a specific subject or topic.
+the quiz under a specific subject or topic. An example of the file content is shown below.
 
-TODO: explain the format
+```
+[
+  {
+    "score": 1.0,
+    "maxScore": 1.0,
+    "description": "Excellent"
+  },
+  ...
+]
+```
+
+Each entry enclosed with the curly braces ({}) corresponds to one quiz result.
 
 #### flashcards.json
-This file stores all the flashcard data you have added under a specific subject and topic. It can be found under
-each topic folder.
+One `flashcards.json` file will be created under each topic folder. This file stores all the flashcard data you 
+have added under a specific subject and topic. An example of the file content is shown below.
 
-TODO: explain the format
+```
+[
+  {
+    "question": "x + y = 4. y = ? ",
+    "answer": "4 - x"
+  },
+  ...
+]
+```
 
+Each entry enclosed with the curly braces ({}) corresponds to one flashcard.
+
+> **_WARNING:_** Although you can change the content of this file manually, and the changes will be reflected the 
+> next time you launch the application, a mismatch in format will corrupt the data. Therefore, make a copy of the file 
+> before making changes if you have to do so.
 
 ### Exporting data
-You can export all the data including the quiz results and tasks to a `json` file so that it can be imported into
-other applications that understand the data.
+You can export all the data, including the quiz results and tasks, to a `json` file so that it can be imported into
+other applications that understand the data. To export the data, run the command:
 
-Command: `export`
+```
+export
+```
 
-After running the command, the data will be exported to `export/data.json` under the same folder where the
-application resides.
+when you are in the subject level of the application. After running the command, the data will be exported to 
+`export/data.json` under the same folder where the application resides. An example of the file content is shown below.
 
-TODO: explain the format
+```
+[
+  {
+    "title": "maths",
+    "topics": {
+      "topics": [
+        {
+          "title": "algebra",
+          "flashcards": <same as the content of flashcards.json>,
+          "results": {
+            "resultList": <same as the content of results.json>
+          }
+        },
+        ...
+      ]
+    },
+    "tasks": {
+      "taskList": [
+        {
+          "description": "someTodoTask",
+          "isDone": false
+        },
+        {
+          "dateTime": {
+            "date": {
+              "year": 2020,
+              "month": 12,
+              "day": 20
+            },
+            "time": {
+              "hour": 23,
+              "minute": 59,
+              "second": 0,
+              "nano": 0
+            }
+          },
+          "description": "someDeadlineTask",
+          "isDone": false
+        },
+        ...
+      ]
+    },
+    "results": {
+      "resultList": <same as the content of results.json>
+    }
+  },
+  ...
+]
+```
+
+Each first-level entry corresponds to one subject, and the content inside it follows the same logical structure as that
+in the `data/` folder.
 
 ## FAQ
-
-**Q**: How do I transfer my data to another computer? 
-
-**A**: {your answer here}
 
 ## Command Summary <a name="summary"></a>
 Action|Examples
@@ -511,4 +633,5 @@ Start a quiz for a topic| `quiz speed`
 View results for a subject | `results maths`
 View results for a topic | `results speed`
 Export data | `export`
+Exit a topic or subject | `exit`
 Exit application|`bye`
