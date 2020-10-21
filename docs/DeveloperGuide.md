@@ -131,6 +131,10 @@ and passes it to `Parser` to load the data into `ModuleList` and `TaskList`.
 1. The program prompts the user for further inputs,
 and it continues as per normal, with the data loaded.
 
+The following sequence diagram shows how the storage feature works,
+with a focus on how it obtains the username:
+![Storage Sequence Diagram](diagrams/Storage%20Sequence%20Diagram.svg)
+
 #### Design Considerations
 
 * **Alternative 1 (current choice)**: Saves the user input to the file
