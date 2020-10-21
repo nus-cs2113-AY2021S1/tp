@@ -56,6 +56,9 @@ public class Duke {
                 Command c = Parser.parse(fullCommand);
                 c.execute(bookmarks, timetable, ui, bookmarkStorage, slotStorage);
                 isExit = c.isExit();
+
+                bookmarkStorage.save(bookmarks);
+                slotStorage.save(timetable);
             } catch (DukeException e) {
                 ui.showErrorMessage(e);
             }

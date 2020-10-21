@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 
@@ -58,13 +60,17 @@ public class Storage {
     /**
      * This method creates the file if it does not exist and saves tasks data in the file.
      *
-     * @param data The string of all the data to be saved in the file.
+     * @param data An object to be converted into JSON and saved in the file.
      * @throws DukeException If there is an error writing to the file.
      */
-    public void save(String data) throws DukeException {
+    public void save(Object data) throws DukeException {
         try {
             createDirectory();
-            writeToFile(data);
+
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String jsonString = gson.toJson(data);
+
+            writeToFile(jsonString);
         } catch (IOException e) {
             throw new DukeException(DukeExceptionType.WRITE_FILE_ERROR);
         }
@@ -87,7 +93,7 @@ public class Storage {
     }
 
     private void writeToFile(String textToAdd) throws IOException {
-        FileWriter fw = new FileWriter(filePath);
+        FileWriter fw = new FileWriter(filePath, false);
         fw.write(textToAdd);
         fw.close();
     }
