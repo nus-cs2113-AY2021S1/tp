@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class BookmarkListTest {
-    private final Bookmark bookmarkTest = new Bookmark( "tutorial", "www.google.com");
+    private final Bookmark bookmarkTest = new Bookmark("tutorial", "www.google.com");
     private final String lineSeparator = System.lineSeparator();
 
     @Test
@@ -128,8 +128,8 @@ class BookmarkListTest {
         input.add("CS2113T | www.yahoo.com");
 
         BookmarkList bookmarks = new BookmarkList(input);
-        assertEquals("Here are your matching bookmarks" + lineSeparator + (2) + "." +
-                bookmarks.getBookmark(1).getBookmarkAsString() + lineSeparator,
+        assertEquals("Here are your matching bookmarks" + lineSeparator + (2) + "."
+                        + bookmarks.getBookmark(1).getBookmarkAsString() + lineSeparator,
                 bookmarks.findBookmarks("CS2113T"));
     }
 
