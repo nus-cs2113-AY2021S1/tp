@@ -8,16 +8,16 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 //@@author Feudalord
-public abstract class SaveStateHandler {
+public abstract class SaveHandler {
 
     protected String fullPath;
     protected String dirPath;
 
-    public SaveStateHandler(){
+    public SaveHandler(){
 
     }
 
-    public SaveStateHandler(String filepath, String directory) {
+    public SaveHandler(String filepath, String directory) {
         fullPath = filepath;
         dirPath = directory;
     }

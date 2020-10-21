@@ -9,9 +9,9 @@ import seedu.financeit.recurringtracker.RecurringTracker;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
-import seedu.financeit.utils.storage.SaveStateHandlerGoalTracker;
-import seedu.financeit.utils.storage.SaveStateHandlerManualTracker;
-import seedu.financeit.utils.storage.SaveStateHandlerRecurringTracker;
+import seedu.financeit.utils.storage.GoalTrackerSaver;
+import seedu.financeit.utils.storage.ManualTrackerSaver;
+import seedu.financeit.utils.storage.RecurringTrackerSaver;
 
 import java.util.logging.Level;
 
@@ -23,9 +23,9 @@ public class Financeit {
         CommandPacket packet = null;
         Level mode = Level.OFF;
         ParamChecker.logger.setLevel(mode);
-        SaveStateHandlerManualTracker mt = new SaveStateHandlerManualTracker("./data/save.txt", "./data");
-        SaveStateHandlerGoalTracker gt = new SaveStateHandlerGoalTracker("./data/save1.txt", "./data");
-        SaveStateHandlerRecurringTracker at = new SaveStateHandlerRecurringTracker("./data/save2.txt", "./data");
+        ManualTrackerSaver mt = new ManualTrackerSaver("./data/save.txt", "./data");
+        GoalTrackerSaver gt = new GoalTrackerSaver("./data/save1.txt", "./data");
+        RecurringTrackerSaver at = new RecurringTrackerSaver("./data/save2.txt", "./data");
         load(gt, mt, at);
         while (true) {
             UiManager.refreshPage();
@@ -66,7 +66,7 @@ public class Financeit {
         }
     }
 
-    public static void load(SaveStateHandlerGoalTracker gt, SaveStateHandlerManualTracker mt, SaveStateHandlerRecurringTracker at) {
+    public static void load(GoalTrackerSaver gt, ManualTrackerSaver mt, RecurringTrackerSaver at) {
 
         try {
             gt.load();
@@ -87,7 +87,7 @@ public class Financeit {
         }
     }
 
-    public static void save(SaveStateHandlerGoalTracker gt, SaveStateHandlerManualTracker mt, SaveStateHandlerRecurringTracker at) {
+    public static void save(GoalTrackerSaver gt, ManualTrackerSaver mt, RecurringTrackerSaver at) {
 
         try {
             gt.save();

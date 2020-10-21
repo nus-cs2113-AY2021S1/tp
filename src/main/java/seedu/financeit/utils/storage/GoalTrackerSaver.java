@@ -10,13 +10,13 @@ import java.io.IOException;
 import java.util.Scanner;
 
 //@@author Feudalord
-public class SaveStateHandlerGoalTracker extends SaveStateHandler {
+public class GoalTrackerSaver extends SaveHandler {
 
-    public SaveStateHandlerGoalTracker() {
+    public GoalTrackerSaver() {
         super();
     }
 
-    public SaveStateHandlerGoalTracker(String filepath, String directory) {
+    public GoalTrackerSaver(String filepath, String directory) {
         super(filepath, directory);
     }
 
