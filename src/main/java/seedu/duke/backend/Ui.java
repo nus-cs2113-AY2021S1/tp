@@ -15,7 +15,7 @@ import seedu.duke.finance.CommandFinanceAdd;
 import seedu.duke.finance.CommandFinanceDel;
 import seedu.duke.finance.CommandFinanceSummary;
 import seedu.duke.hr.CommandAddMember;
-import seedu.duke.hr.CommandChangeRole;
+import seedu.duke.hr.CommandChangeMemberInfo;
 import seedu.duke.hr.CommandSearchMember;
 import seedu.duke.hr.CommandViewMember;
 import seedu.duke.hr.CommandDelMember;
@@ -153,7 +153,7 @@ public class Ui {
         commandList.add(new CommandSearchMember());
         commandList.add(new CommandListProfSpeaker());
         commandList.add(new CommandListConnection());
-        commandList.add(new CommandChangeRole());
+        commandList.add(new CommandChangeMemberInfo());
         commandList.add(new CommandEventStatus());
         commandList.add(new CommandEventCountdown());
         commandList.add(new CommandSearchEvent());
