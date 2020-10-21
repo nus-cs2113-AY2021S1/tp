@@ -122,6 +122,31 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints food items recorded into the food list during a given time period in the order that they were
+     * added or a message stating no food items were recorded during the given time period.
+     *
+     * @param foods The string representation of food items in the food list recorded during the time
+     *     period given.
+     * @param start Starting date time of the time period given.
+     * @param end Ending date time of the time period given.
+     */
+    public void printFoodListGivenTimePeriod(String foods, LocalDateTime start, LocalDateTime end) {
+        assert foods != null : "String representation of food items in the food list recorded during the "
+                + "time period given should not be null";
+        assert start != null : "Starting date time of the time period should not be null";
+        assert end != null : "Ending date time of the time period should not be null";
+        assert !start.isAfter(end) : "Starting date time should not be later than ending date time "
+                + "of the time period";
+        String stringStart = stringDateTime(start);
+        String stringEnd = stringDateTime(end);
+        if (foods.trim().length() < 1) {
+            print("No food item was recorded in DietBook between " + stringStart + " and " + stringEnd + ".");
+        } else {
+            print("Here are the food items recorded in DietBook between " + stringStart + " and " + stringEnd
+                    + " :" + LINE_SEPARATOR + foods);
+        }
+    }
 
     /**
      * Returns a string representation of the date time in the format dd MMM yyyy HHmm.
