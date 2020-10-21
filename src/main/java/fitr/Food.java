@@ -7,7 +7,6 @@ public class Food {
 
     public Food(String nameOfFood,Calorie calories,int amount) {
         this.nameOfFood = nameOfFood;
-        this.caloriesInFood = calories;
         this.amountOfFood = amount;
         this.caloriesInFood = new Calorie(calories.get() * amount);
     }
