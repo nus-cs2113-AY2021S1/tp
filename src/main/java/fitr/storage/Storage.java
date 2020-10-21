@@ -281,6 +281,7 @@ public class Storage {
 
     /**
     * Loads the tips from a file and returns an ArrayList of String tips.
+    *
     * @return an ArrayList of String tips
     * @throws IOException if an I/O error has occurred
     */
