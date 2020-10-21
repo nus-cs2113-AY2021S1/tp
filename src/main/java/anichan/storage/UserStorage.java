@@ -12,6 +12,11 @@ public class UserStorage extends Storage {
     private static final String USER_FILE_NAME = "user.txt";
     private static final String USER_LINE_DELIMITER_FOR_DECODE = " \\| ";
     private static final String USER_LINE_DELIMITER_FOR_ENCODE = " | ";
+
+    private static final String EMPTY_USER_FILE = "Empty user file.";
+    private static final String NO_USER_LOADED = "Not loaded successfully.";
+    private static final String USER_DETAILS_CANNOT_BE_NULL = "User details should not have any null.";
+
     private static final Logger LOGGER = AniLogger.getAniLogger(UserStorage.class.getName());
 
     private final String storageDirectory;
@@ -35,14 +40,14 @@ public class UserStorage extends Storage {
         String fileContent = readFile(userFilePath);
         if (fileContent.isBlank()) {
             LOGGER.log(Level.WARNING, "Empty user file: " + userFilePath);
-            throw new AniException("Empty user file.");
+            throw new AniException(EMPTY_USER_FILE);
         }
 
         String[] fileContentSplit = fileContent.split(USER_LINE_DELIMITER_FOR_DECODE, 2);
         LOGGER.log(Level.FINE, "Processing: " + System.lineSeparator() + fileContent);
         if (!isValidUserString(fileContentSplit)) {
             LOGGER.log(Level.WARNING, "Invalid user file: " + userFilePath);
-            throw new AniException("Not loaded successfully.");
+            throw new AniException(NO_USER_LOADED);
         }
 
         return decode(fileContentSplit);
@@ -55,7 +60,7 @@ public class UserStorage extends Storage {
         String userGender = user.getGender().toString();
 
         String encodedUserString = userName + USER_LINE_DELIMITER_FOR_ENCODE + userGender;
-        assert (userName != null && userGender != null) : "User details should not have any null.";
+        assert (userName != null && userGender != null) : USER_DETAILS_CANNOT_BE_NULL;
         return encodedUserString;
     }
 

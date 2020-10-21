@@ -13,16 +13,21 @@ import java.util.logging.Logger;
 public abstract class Storage {
     private static final String NEGATIVE_INTEGER_REGEX = "^[-]\\d+$";
     private static final String POSITIVE_INTEGER_REGEX = "^\\d+$";
+
+    private static final String EMPTY_STRING = "";
+    private static final String FILE_DOES_NOT_EXIST = "File does not exist.";
+    private static final String WRITE_TO_FILE_FAILED = "Failed to write to file.";
+
     private static final Logger LOGGER = AniLogger.getAniLogger(Storage.class.getName());
 
     public String readFile(String filePath) throws AniException {
-        String fileContent = "";
+        String fileContent = EMPTY_STRING;
         try {
             fileContent = new String(Files.readAllBytes(Paths.get(filePath)));
             LOGGER.log(Level.INFO, "Read from file: " + filePath);
         } catch (IOException exception) {
             LOGGER.log(Level.INFO, "File does not exist at: " + filePath);
-            throw new AniException("File does not exist.");
+            throw new AniException(FILE_DOES_NOT_EXIST);
         }
 
         return fileContent;
@@ -36,7 +41,7 @@ public abstract class Storage {
             LOGGER.log(Level.INFO, "Wrote to file: " + filePath);
         } catch (IOException exception) {
             LOGGER.log(Level.WARNING, "Failed to write to file at: " + filePath);
-            throw new AniException("Failed to write to file.");
+            throw new AniException(WRITE_TO_FILE_FAILED);
         }
     }
 

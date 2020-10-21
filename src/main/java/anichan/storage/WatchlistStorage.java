@@ -13,6 +13,16 @@ public class WatchlistStorage extends Storage {
     private static final String WATCHLIST_FILE_NAME = "watchlist.txt";
     private static final String WATCHLIST_LINE_DELIMITER_FOR_DECODE = " \\| ";
     private static final String WATCHLIST_LINE_DELIMITER_FOR_ENCODE = " | ";
+    private static final String DELIMITER_FOR_ENCODED_ANIME_LIST = ", ";
+    private static final String ENCODED_ANIME_LIST_FIRST_CHARACTER = "[";
+    private static final String ENCODED_ANIME_LIST_LAST_CHARACTER = "]";
+
+    private static final String EMPTY_WATCHLIST_FILE = "Empty watchlist file.";
+    private static final String NO_WATCHLIST_LOADED = "No watchlist loaded successfully (all invalid).";
+    private static final String SOME_WATCHLIST_LOADED = "Not all loaded successfully (some invalid).";
+    private static final String LOAD_SUCCESS = "Loaded successfully.";
+    private static final String ENCODED_WATCHLIST_CANNOT_BE_BLANK = "Encoded watchlist string should not be blank.";
+
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistStorage.class.getName());
 
     private final String storageDirectory;
@@ -37,7 +47,7 @@ public class WatchlistStorage extends Storage {
         String fileContent = readFile(watchlistFilePath);
         if (fileContent.isBlank()) {
             LOGGER.log(Level.WARNING, "Empty watchlist file: " + watchlistFilePath);
-            return "Empty watchlist file.";
+            return EMPTY_WATCHLIST_FILE;
         }
 
         boolean hasInvalidWatchlist = false;
@@ -56,14 +66,14 @@ public class WatchlistStorage extends Storage {
 
         if (hasInvalidWatchlist && watchlistList.size() == 0) {
             LOGGER.log(Level.WARNING, "All invalid watchlist entries at: " + watchlistFilePath);
-            return "No watchlist loaded successfully (all invalid).";
+            return NO_WATCHLIST_LOADED;
         } else if (hasInvalidWatchlist) {
             LOGGER.log(Level.WARNING, "Some invalid watchlist entries at: " + watchlistFilePath);
-            return "Not all loaded successfully (some invalid).";
+            return SOME_WATCHLIST_LOADED;
         }
 
         LOGGER.log(Level.INFO, "Loaded successfully: " + watchlistFilePath);
-        return "Loaded successfully.";
+        return LOAD_SUCCESS;
     }
 
     // ========================== Encode and Decode ==========================
@@ -78,7 +88,7 @@ public class WatchlistStorage extends Storage {
         }
 
         String encodedWatchlistString = sbWatchlist.toString();
-        assert (!encodedWatchlistString.isBlank()) : "Encoded watchlist string should not be blank.";
+        assert (!encodedWatchlistString.isBlank()) : ENCODED_WATCHLIST_CANNOT_BE_BLANK;
         return encodedWatchlistString;
     }
 
@@ -96,7 +106,7 @@ public class WatchlistStorage extends Storage {
             return new Watchlist(watchlistName, animeList);
         }
 
-        String[] animes = animeListString.split(", ");
+        String[] animes = animeListString.split(DELIMITER_FOR_ENCODED_ANIME_LIST);
         for (String animeIndex : animes) {
             if (!isValidAnimeIndex(animeIndex)) {
                 return null;
@@ -115,7 +125,8 @@ public class WatchlistStorage extends Storage {
             return false;
         }
 
-        return (lineSplit[1].startsWith("[")) && (lineSplit[1].endsWith("]"));
+        return (lineSplit[1].startsWith(ENCODED_ANIME_LIST_FIRST_CHARACTER))
+                && (lineSplit[1].endsWith(ENCODED_ANIME_LIST_LAST_CHARACTER));
     }
 
     private boolean isValidAnimeIndex(String animeIndex) {
