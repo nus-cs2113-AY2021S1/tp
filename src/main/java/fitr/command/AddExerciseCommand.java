@@ -17,7 +17,7 @@ public class AddExerciseCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user) {
+    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage, User user) {
         command = command.split(" ", 2)[1];
         try {
             String nameOfExercise = command.split("/", 2)[0];
@@ -48,7 +48,7 @@ public class AddExerciseCommand extends Command {
                 Ui.printCustomMessage("The following exercise has been added: " + nameOfExercise);
             }
         } catch (NumberFormatException | NullPointerException e) {
-            Ui.printCustomError("Sorry calories have to be a positive number");
+            Ui.printCustomError("Sorry, invalid calorie amount entered");
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printCustomError("Please key in the correct format");
         } catch (IOException e) {

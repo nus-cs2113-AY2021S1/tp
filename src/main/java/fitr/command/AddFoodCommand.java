@@ -17,7 +17,7 @@ public class AddFoodCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user) {
+    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage, User user) {
         command = command.split(" ", 2)[1];
         try {
             String nameOfFood = command.split("/", 2)[0];
@@ -31,8 +31,8 @@ public class AddFoodCommand extends Command {
                 if (amountOfCalories.get() < 0) {
                     throw new NumberFormatException();
                 }
-                foodlist.addFood(new Food(nameOfFood, amountOfCalories));
-                storage.writeFoodList(foodlist);
+                foodList.addFood(new Food(nameOfFood, amountOfCalories));
+                storage.writeFoodList(foodList);
                 Ui.printCustomMessage("The following food has been added: " + nameOfFood);
             } else if (command.split(" ").length == 2) {
                 Calorie amountOfCalories = new Calorie(Integer.parseInt(command.split(" ")[0]));
@@ -43,12 +43,12 @@ public class AddFoodCommand extends Command {
                 if (amountOfFood < 0) {
                     throw new FitrException();
                 }
-                foodlist.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood));
-                storage.writeFoodList(foodlist);
+                foodList.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood));
+                storage.writeFoodList(foodList);
                 Ui.printCustomMessage("The following food has been added: " + nameOfFood);
             }
         } catch (NumberFormatException | NullPointerException e) {
-            Ui.printCustomError("Sorry calories have to be a number");
+            Ui.printCustomError("Sorry, invalid calorie amount entered");
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printCustomError("Please key in the correct format");
         } catch (IOException e) {
