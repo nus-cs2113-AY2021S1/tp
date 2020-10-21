@@ -1,0 +1,22 @@
+@startuml
+skinparam classAttributeIconSize 0
+class GoalTracker {
+ +setExpenseGoal(:String)
+}
+
+class InputParser {
+ +parseGoalCommand(:String)
+}
+
+class Goal {
+ +Goal(:int, :String, :Month)
+}
+
+class TotalGoalList {
+ +addGoal(:ArrayList<String>)
+}
+
+GoalTracker --> InputParser : Parse the goal information in String to String[] >
+InputParser --> Goal : Handle and store individual information >
+Goal --> TotalGoalList : Stores goal information into ArrayList >
+@enduml
