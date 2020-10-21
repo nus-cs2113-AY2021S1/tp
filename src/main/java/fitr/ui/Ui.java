@@ -53,10 +53,6 @@ public class Ui {
         System.out.println(YELLOW_COLOUR + message + RESET_COLOUR);
     }
 
-    public static void printMessageInGreen(String message) {
-        System.out.println(GREEN_COLOUR + message + RESET_COLOUR);
-    }
-
     public static void printGreetingMessage() {
         printCustomMessage(MESSAGE_GREET);
     }
