@@ -246,9 +246,10 @@ and `contents` are updated accordingly based on the output of `getMaxModuleLengt
 1. For each `Module` in `modList`, `updateContent()` will be called to update the contents
 to be printed.
 
-The following sequence diagram shows how the view module command works. Assume that the user 
-inputs a `list 2` command and there exists a module CS2113t with `expectedWorkload` of 10 and 
-`actualWorkload` in `weekNumber` 2 of 20. 
+The following sequence diagram shows how the view module command works. 
+
+![view-module](diagrams/ModViewSequence.png)
+
 
 #### Breakdown and Analysis
 
@@ -283,6 +284,9 @@ valid input, else **False** is returned.
 is called to determine the outcome of the analysis. A message will be printed depending on the output
 of the analysis. 
 
+The following sequence diagram shows how the analysis command works. 
+
+![analysis](diagrams/AnalysisSequence.png)
 
 #### Design Considerations
 

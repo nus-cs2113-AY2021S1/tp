@@ -63,9 +63,9 @@ public class ModView {
         System.out.print(border + header + border);
 
         for (Module m : modList) {
-            String out = contents;
-            out = updateContent(weekNumber, crossToBeAdded, m, out);
-            System.out.print(out + border);
+            String updatedContent = contents;
+            updatedContent = updateContent(weekNumber, crossToBeAdded, m, updatedContent);
+            System.out.print(updatedContent + border);
         }
         System.out.println();
     }
