@@ -13,9 +13,10 @@ public class CommandViewMember extends Command {
     @Override
     public int validate(UserInput input) {
         this.savedInput = input;
-        if (input.getCategory().equals("hr") && input.getCommand().equalsIgnoreCase("listMember")
+        if (input.getCategory().equals("hr") && input.getArg("") == null
+                && (input.getCommand().equalsIgnoreCase("listMember")
                 || input.getCommand().equalsIgnoreCase("list")
-                || input.getCommand().equalsIgnoreCase("l")) {
+                || input.getCommand().equalsIgnoreCase("l"))) {
             return ACCEPT;
         } else {
             return NO_MATCH;

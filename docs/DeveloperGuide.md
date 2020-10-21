@@ -17,6 +17,7 @@ Refer to the guide here.
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+
 ### Input Parsing
 **Current Implementation**  
 The `Parser` class in `seedu.duke.backend` handles most of the input parsing. The `Parser` is a standalone class. Its purpose is to handle the conversion of read Strings from the `Ui` to UserInput objects
@@ -52,6 +53,65 @@ Aspect: Design of parser
 * Alternative 2: Each Command handles its own input independently
     * Pros: Command classes are free to simplify the parsing step depending on the required complexity of the command. No intermediate step and overhead.
     * Cons: More difficult to enforce parsing standards across Commands. String manipulation becomes required in every command.
+
+###Finance
+**1.1. Add/delete finance log entry feature**  
+1.1.1. Current Implementation  
+The `CommandFinanceAdd` class in `seedu.duke.finance` handles adding finance log entry. It adds a new `FinanceLog` instance according to `userInput` into `FinanceList`.  
+The `CommandFinanceDel` in the same package handles deleting finance log entry. It deletes a certain `FinanceLog` instance according to the index provided by `userInput` from `FinanceList`.  
+They implement the following operations:  
+* `CommandFinanceAdd#execute()` - Adds a new finance log entry into the `FinanceList` according to `userInput`.  
+* `CommandFinanceDel#execute()` - Deletes a certain finance log entry from `FinanceList` according to the index provided by `userInput`.  
+
+Given below is an example usage scenario and how the add/delete finance log entry behaves at each step.  
+
+Step 1. The user launches the application for the first time. The `FinanceList` will be initialized with no `FinanceLog` in it.  
+
+Step 2. The user executes `finance addLog iphone12 1299` command to add a finance log entry with content "iphone12" and value "1299" into finance list. The `finance addLog` command
+calls `CommandFinanceAdd#execute()`, then `FinanceList` will be added a `FinanceLog` with its `finLog` as `iphone12` and its value as `1299`.  
+
+Step 3. The user executes `finance delLog 1` command to delete the 1st finance log entry in the finance list. The `finance delLog`
+command calls `CommandFinanceDel#execute()`, causing the `FinanceLog` of index 1 removed from `FinanceList`.  
+
+**Design Considerations**  
+Aspect: User input format for adding a finance log entry
+*Alternative 1(Current Choice): The user inputs command in format of "finance addLog ITEM_NAME ITEM_VALUE".  
+    *Pros: It is more convenient for the user to type commands and easier to memorize the command format.  
+    *Cons: It takes longer time to execute the command for the program has to identify which part is ITEM_NAME and which part is
+    ITEM_VALUE. If the user inputs a separate number for ITEM_NAME but forgets to type ITEM_VALUE, then the program will mistake 
+    the separate number in ITEM_NAME for its ITEM_VALUE.  
+*Alternative 2: The user inputs command in format of "finance addLog /n ITEM_VALUE /v ITEM_VALUE".  
+    *Pros: The program can easily detect if the input command is valid.  
+    *Cons: It is harder for the user to memorize the command format. It also costs more time when executing.  
+    
+
+**1.2. List the summary of finance log entries**  
+1.2.1. Current Implementation  
+The `CommandFinanceSummary` class in `seedu.duke.finance` handles listing all the finance log entries in `FinanceList` and 
+showing the total budget of all the `FinanceLog`.  
+It implements the following operation:  
+* `CommandFinanceSummary#execute()` - Lists all `FinanceLog` in `FinanceList` and shows the total budget of them.  
+
+Given below is an example usage scenario and how the program list the summary of finance log entries.  
+
+Step 1. After some `finance addLog` commands, the user created a `FinanceList` with two `FinanceLog`. The first `FinanceLog` is 
+"iphone12 $1299" and the second `FinanceLog` is "chicken rice $3.5".  
+
+Step 2. The user executes `finance summary` command to list the summary of `FinanceList`. The `finance summary` command calls 
+`CommandFinanceSummary#execute()`, then every `FinanceLog` in `FinanceList` will be output and the total budget will be printed out at the bottom.  
+
+**Design Considerations**  
+Aspect: Repeated items  
+*Alternative 1(Current Choice): The summary will output all the repeated items.  
+    *Pros: It can display all the indexes of the repeated items so that when user wants to delete any one of them, 
+    he can just refer to this summary.  
+    *Cons: It cannot display the total budget for these repeated items. The user has to find a way to calculate it 
+    by himself.  
+*Alternative 2: The summary will combine all the repeated items then output them.  
+    *Pros: The user do not have to calculate the total budget for repeated items by himself.  
+    *Cons: The summary cannot show each index of the repeated items that it is confusing when user wants to delete 
+    any one of them.  
+
 
 ## Product scope
 ### Target user profile
