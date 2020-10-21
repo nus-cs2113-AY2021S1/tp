@@ -10,10 +10,12 @@ public class Book implements JsonSerializer {
     private Author author;
     private String title;
     private ArrayList<String> categories = new ArrayList<>();
+    private int rating;
 
     public Book(Author author, String title) {
         this.author = author;
         this.title = title;
+        this.rating = 0;
     }
 
     public Book(Author author, String title, ArrayList<String> category) {
@@ -44,6 +46,29 @@ public class Book implements JsonSerializer {
 
     public void setCategories(ArrayList<String> categories) {
         this.categories = categories;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int ratingScore) {
+        this.rating = ratingScore;
+    }
+
+    public String getBookDetailString() {
+        String stringToReturn = "";
+        stringToReturn += "Title: " + title + System.lineSeparator();
+        stringToReturn += "Author: " + author.getName() + System.lineSeparator();
+        stringToReturn += "Categories: " + System.lineSeparator();
+
+        int index = 1;
+        for (String category : categories) {
+            stringToReturn += index + ". " + category + System.lineSeparator();
+            index++;
+        }
+
+        return stringToReturn;
     }
 
     @Override

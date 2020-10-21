@@ -1,5 +1,6 @@
 package seedu.quotesify.commands;
 
+import seedu.quotesify.book.Book;
 import seedu.quotesify.bookmark.BookmarkList;
 import seedu.quotesify.book.BookList;
 import seedu.quotesify.category.CategoryList;
@@ -80,13 +81,25 @@ public class ListCommand extends Command {
             } else if (information.contains(FLAG_AUTHOR)) {
                 listBooksByAuthor(bookList, ui);
             } else {
-                throw new QuotesifyException(ERROR_LIST_UNKNOWN_COMMAND);
+                listBookDetails(bookList, ui);
             }
         } catch (IndexOutOfBoundsException e) {
-            ui.printErrorMessage(ERROR_NO_AUTHOR_NAME);
+            if (information.contains(FLAG_AUTHOR)) {
+                ui.printErrorMessage(ERROR_NO_AUTHOR_NAME);
+            } else {
+                ui.printErrorMessage(ERROR_INVALID_BOOK_NUM);
+            }
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
+        } catch (NumberFormatException e) {
+            ui.printErrorMessage(ERROR_LIST_UNKNOWN_COMMAND);
         }
+    }
+
+    private void listBookDetails(BookList bookList, TextUi ui) throws NumberFormatException {
+        int bookIndex = Integer.parseInt(information.trim()) - 1;
+        Book book = bookList.getBook(bookIndex);
+        ui.printBookDetails(book);
     }
 
     private void listAllBooks(BookList bookList, TextUi ui) throws QuotesifyException {

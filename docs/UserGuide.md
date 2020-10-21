@@ -113,6 +113,159 @@ Expected outcome:
 The book [Harry Potter by JK Rowling] has been deleted!
 ~~~ 
 
+### Quote Management
+Came across an inspiring quote while reading, or a useful productivity tip from an article only to forget it after
+some time? Quotesify is here to help you store and track those all inspiring quotes while reminding you about them
+so you'll never forget them!  
+
+#### Add quotes: `add -q`
+Add a quote to your current list of quotes.
+
+Format: `add -q QUOTE {[/from REFERENCE] | [/by AUTHOR]}`
+* You must specify a quote.
+* Reference and Author fields are optional, both or either or can be used.
+
+Example of usage: `add -q Life is short, smile while you still have teeth`
+
+Expected outcome:
+```
+The quote ["Life is short, smile while you still have teeth"] has been added!
+```
+
+#### List all quotes: `list -q`
+List all existing quotes.
+
+Format: `list -q`
+
+Example of usage: `list -q`
+
+Expected outcome:
+```
+Here are all your quotes:
+1. "Life is short, smile while you still have teeth"
+2. "I am your father" - Darth Vadar
+3. "That's my spot!" - The Big Bang Theory
+4. "So everyone's supposed to sleep every single night now?" - Rick, (Rick and Morty)
+```
+
+#### List quotes from a specific reference: `list -q`
+List all quotes tagged under the specified reference title.
+
+Format: `list -q /from REFERENCE`
+
+Example of usage: `list -q /from Rick and Morty`
+
+Expected outcome:
+```
+Here is a list of quotes from Rick and Morty:
+"So everyone's supposed to sleep every single night now?" - Rick, (Rick and Morty)
+
+"Wubba Lubba Dub Dub!" - Rick and Morty
+```
+
+#### List quotes from a specific author: `list -q`
+List all quotes tagged under the specified author.
+
+Format: `list -q /by AUTHOR`
+
+Example of usage: `list -q /by Sheldon Cooper`
+
+Expected outcome:
+```
+Here is a list of quotes by Sheldon Cooper:
+"That's my spot!" - Sheldon Cooper, (The Big Bang Theory)
+
+"I'm not insane, my mother had me tested!" - Sheldon Cooper, (The Big Bang Theory)
+```
+
+#### List quotes from a specific reference and author: `list -q`
+List all quotes tagged under the specified reference and author.
+
+Format: `list -q /from REFERENCE /by AUTHOR`
+
+Example of usage: `list -q /from Rick and Morty /by Rick`
+
+Expected outcome:
+```
+Here is a list of quotes from RIck and Morty by Rick:
+"So everyone's supposed to sleep every single night now?" - Rick, (Rick and Morty)
+
+"Uncertainty is inherently unsustainable. Eventually, everything either is or isn't" - Rick, (Rick and Morty)
+```
+
+#### Delete a quote: `delete -q`
+Remove a quote from your current list of quotes.
+
+Format: `delete -q QUOTE_NUMBER`
+* You must specify a quote number.
+* The specified quote number should exist in Quotesify.
+
+Example of usage: `delete -q 1`
+
+Expected outcome:
+```
+The quote "Life is short, smile while you still have teeth" has been deleted!
+```
+
+#### Edit an existing quote: `edit -q`
+Edit an existing quote in your list of quotes.
+
+Format: `edit -q QUOTE_NUMBER /to UPDATED_QUOTE`
+
+Example of usage: `edit -q 1 /to Do you know the muffin man?`
+
+Expected outcome:
+```
+The quote has been edited from: ["I am your father" - Darth Vadar] to [Do you know the muffin man?]!
+```
+
+#### Finding quotes: `find -q`
+Finds existing quotes related to the keyword entered.
+
+Format: `find -q KEYWORD`
+* You must specify a keyword.
+
+Example of usage: `find -q sleep`
+
+Expected outcome:
+```
+Here are the results of my search:
+"I pretty much spend all day, every day just looking forward to go back to sleep"
+"Don't give up on your dreams, keep sleeping!" - Stranger
+```
+
+#### Adding reflection to a quote: `add -qr`
+Adds reflection or thoughts to an existing quote.
+
+Format: `add -qr QUOTE_NUMBER /reflect REFLECTION`
+* You must specify an existing quote number.
+* You must include the /reflect tag
+* Reflection field should not be empty
+
+Example of usage: `add -qr 1 /reflect I'm stumped, can't seem to find the muffin man anywhere`
+
+Expected outcome:
+```
+Reflection has been to quote: ["Do you know the muffin man?"]
+Reflection: [I'm stumped, can't seem to find the muffin man anywhere]
+```
+
+#### Listing reflection of a quote: `list -qr`
+Lists reflection of an existing quote.
+
+Format: `list -qr QUOTE_NUMBER`
+* You must specify an existing quote number.
+* Quote should have a reflection added to it
+
+Example of usage: `list -qr 1`
+
+Expected outcome:
+```
+Here is the reflection you are looking for!
+Quote: ["Do you know the muffin man?"]
+Reflection: [I'm stumped, can't seem to find the muffin man anywhere]
+```
+
 ### Category Management
 If you like customising your own list, you can do so by categorising your books and quotes.
 
@@ -128,7 +281,7 @@ Example of usage: `add -c fantasy -b 1`
 
 Expected outcome:
 ```
-I have tagged [fantasy] category to "Harry Potter"!
+I have tagged category [fantasy] to "Harry Potter"!
 ```
 
 #### List categories: `list -c`
@@ -173,7 +326,7 @@ Example of usage: `delete -c fantasy -b 1`
 
 Expected outcome:
 ```
-I have removed [fantasy] category from "Harry Potter"!
+I have removed category [fantasy] from "Harry Potter"!
 ```
 
 #### Edit an existing category: `edit -c`
@@ -196,15 +349,18 @@ so that you can recommend the best books to your friends and fellow book readers
 #### Adding a book rating: `add -r`
 Adds a rating to a book.
 
-Format: `add -r RATING_SCORE BOOK_TITLE`
+Format: `add -r RATING_SCORE BOOK_TITLE /by AUTHOR`
 
 * The book you would like to rate should exist in Quotesify.
 * `RATING_SCORE` should be within the range of ONE (1) to FIVE (5).
-* Both `RATING_SCORE` and `BOOK_TITLE` fields cannot be left empty.
+* `RATING_SCORE`, `BOOK_TITLE` and `AUTHOR` fields cannot be left empty.
 
-Example of usage:
+Example of usage: `add -r 5 Harry Potter /by JK Rowling`
 
-`add -r 5 Harry Potter`
+Expected outcome:
+```
+You have just rated [Harry Potter by JK Rowling] 5 star!
+```
 
 #### Listing book ratings: `list -r`
 Lists ratings of books.
@@ -215,43 +371,64 @@ Format: `list -r [RATING_SCORE]`
 * `RATING_SCORE` should be within the range of ONE (1) to FIVE (5).
 
 Example of usage:
+1. `list -r`
+2. `list -r 5`
 
-* `list -r`
-* `list -r 5`
+Expected outcome 1:
+```
+Planning to recommend some books? Here are your rated books!
+[Harry Potter] by JK Rowling: 5 star
+```
+
+Expected outcome 2:
+```
+Here are the books you rated as 5 star!
+[Harry Potter] by JK Rowling: 5 star
+```
 
 #### Deleting a book rating: `delete -r`
 Deletes a rating from a book.
 
-Format: `delete -r [BOOK_TITLE]`
+Format: `delete -r BOOK_TITLE /by AUTHOR`
 
-* `BOOK_TITLE` field cannot be left empty.
+* `BOOK_TITLE` and `AUTHOR` fields cannot be left empty.
 
-Example of usage:
+Example of usage: `delete -r Harry Potter /by JK Rowling`
 
-`delete -r Harry Potter`
+Expected outcome:
+```
+Rating for [Harry Potter by JK Rowling] has been deleted!
+```
 
 #### Editing an existing book rating: `edit -r`
 Edits a rating of a book.
 
-Format: `edit -r RATING_SCORE BOOK_TITLE`
+Format: `edit -r RATING_SCORE BOOK_TITLE /by AUTHOR`
 
 * `RATING_SCORE` should be within the range of ONE (1) to FIVE (5).
-* Both `RATING_SCORE` and `BOOK_TITLE` fields cannot be left empty.
+* `RATING_SCORE`, `BOOK_TITLE` and `AUTHOR` fields cannot be left empty.
 
-Example of usage:
+Example of usage: `edit -r 4 Harry Potter /by JK Rowling`
 
-`edit -r 5 Harry Potter`
+Expected outcome:
+```
+Ratings for [Harry Potter by JK Rowling] has been updated to 4 star!
+```
 
 #### Finding an existing book rating: `find -r`
 Finds a rating of a book.
 
-Format: `find -r BOOK_TITLE`
+Format: `find -r BOOK_TITLE /by AUTHOR`
 
-* `BOOK_TITLE` field cannot be left empty.
+* `BOOK_TITLE` and `AUTHOR` fields cannot be left empty.
 
-Example of usage:
+Example of usage: `find -r Harry Potter /by JK Rowling`
 
-`find -r Harry Potter`
+Expected outcome:
+```
+Here is your rating for [Harry Potter by JK Rowling]!
+[Harry Potter] by JK Rowling: 4 star
+```
 
 ### Getting help in Quotesify
 
@@ -260,7 +437,57 @@ Quotesify got you covered with the Help page.
 
 Format: `help`
 
-Example: `help`
+Example of usage: `help`
+
+Expected outcome:
+```
+Feeling stuck? Well here are the things you can do with Quotesify v1.0:
+
+1. Book Management
+Add book: add -b BOOK_TITLE /by AUTHOR
+Delete book: delete -b BOOK_TITLE /by AUTHOR
+List books: list -b [/by AUTHOR]
+
+2. Quote Management
+Add quote: add -q QUOTE [/from BOOK_TITLE] [/by AUTHOR]
+Delete quote:delete -q QUOTE_NUMBER
+List quotes: list -q [/by AUTHOR] [/from BOOK_TITLE]
+Add reflection to quote: add -qr QUOTE_NUM /reflect REFLECTION
+
+3a. Bookmark Tracker
+Add bookmark: bookmark -b BOOK_TITLE /pg PAGE_NUMBER
+Delete bookmark: delete -bm BOOK_TITLE
+List bookmarks: list -bm
+Update bookmark: bookmark -b BOOK_TITLE /pg PAGE_NUMBER
+
+3b. Task Tracker
+Add task: add -t TASK /by DEADLINE
+Delete task: delete -t TASK_NUMBER
+List tasks: list -t
+Mark task as done: done -t TASK_NUMBER
+
+4. Category Management
+Add category: add -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
+Delete category: delete -c CATEGORY {[-b BOOK_TITLE] | [-q QUOTE_NUMBER]}
+List categories: list -c [CATEGORY]
+Edit category: edit -c OLD_CATEGORY NEW_CATEGORY
+
+5. Rating System
+Add rating: add -r RATING_SCORE BOOK_TITLE /by AUTHOR
+Delete rating: delete -r BOOK_TITLE /by AUTHOR
+List ratings: list -r [RATING_SCORE]
+Edit rating: edit -r RATING_SCORE BOOK_TITLE /by AUTHOR
+Find rating: find -r BOOK_TITLE /by AUTHOR
+
+Other useful commands
+Show this help page: help
+Quit Quotesify: bye
+
+Remember: words in [] are optional, and words in CAPS are your own input
+Hope this helps!
+
+~ Your friends from Quotesify
+```
 
 ## FAQ
 
@@ -272,11 +499,11 @@ Example: `help`
 
 Enter the following command | To do this
 --------------------------- | -----------
-`add -r RATING_SCORE BOOK_TITLE` | Add rating
-`delete -r BOOK_TITLE` | Delete rating
+`add -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Add rating
+`delete -r BOOK_TITLE /by AUTHOR` | Delete rating
 `list -r [/RATING_SCORE]` | List ratings
-`edit -r RATING_SCORE BOOK_TITLE` | Edit rating
-`find -r BOOK_TITLE` | Find rating
+`edit -r RATING_SCORE BOOK_TITLE /by AUTHOR` | Edit rating
+`find -r BOOK_TITLE /by AUTHOR` | Find rating
 `help` | Show help page
 `bye` | Terminate the program
 
