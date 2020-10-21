@@ -101,5 +101,50 @@ This is the end of the quiz!
 Hope you have learnt something new!
 -------------------------------------------------------------------
 -------------------------------------------------------------------
+Invalid command! The command for quiz is as follows:
+quiz t/<topic> n/<number of questions>
+(Topics available can be found using the "topics" command)
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+Invalid command! The command for quiz is as follows:
+quiz t/<topic> n/<number of questions>
+(Topics available can be found using the "topics" command)
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+Invalid command! The command for quiz is as follows:
+quiz t/<topic> n/<number of questions>
+(Topics available can be found using the "topics" command)
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+Error! There is no such topic listed in our storage. Please try again.
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+Error! There is no such topic listed in our storage. Please try again.
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+Error! There is no such topic listed in our storage. Please try again.
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+Error! There is no such topic listed in our storage. Please try again.
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+Start of quiz:
+You have chosen to complete 1 question.
+The topic chosen is: OOP
+-------------------------------------------------------------------
+1. What is encapsulation?
+
+1) A
+2) B
+3) C
+4) D
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+Great Job! That is the correct answer! Keep it up!
+-------------------------------------------------------------------
+This is the end of the quiz!
+Hope you have learnt something new!
+-------------------------------------------------------------------
+-------------------------------------------------------------------
 Bye bye. Hope you had a fruitful revision and see you soon!
 -------------------------------------------------------------------
