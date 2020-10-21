@@ -40,3 +40,5 @@ logger.log.1.lck
 logger.log.2.lck
 >>>>>>> 6d6cfd5562fd75c5e661b11c81a0f0bff16680d0
 >>>>>>> master
+data/freqList.txt
+data/FavList.txt
