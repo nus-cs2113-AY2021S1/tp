@@ -40,7 +40,7 @@ Our program helps users to keep fit without needing them to do any research on h
 
 ## Non-functional requirements
 
-{Give non-functional requirements}
+1.
 
 ## Glossary
 
