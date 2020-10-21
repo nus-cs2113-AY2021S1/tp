@@ -81,6 +81,6 @@ public class Messages {
     public static final String AGE_ECHO_HEADER = "Age changed to: ";
     public static final String EDIT_GENDER_HEADER = "Change your gender (M|F) to: ";
     public static final String GENDER_ECHO_HEADER = "Gender changed to: ";
-    public static final String INPUT_FITNESS_LEVEL = "Please indicate your fitness level to be used for determining " +
-            "intensity of exercises.\n(0 for Unfit; 1 for Normal; 2 for Fit): ";
+    public static final String INPUT_FITNESS_LEVEL = "Please indicate your fitness level to be used for determining " 
+            + "intensity of exercises.\n(0 for Unfit; 1 for Normal; 2 for Fit): ";
 }
