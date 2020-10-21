@@ -2,32 +2,31 @@ package seedu.duke.storage;
 
 import seedu.duke.exception.AniException;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static seedu.duke.logger.AniLogger.getAniLogger;
 
 public abstract class Storage {
     private static final String NEGATIVE_INTEGER_REGEX = "^[-]\\d+$";
     private static final String POSITIVE_INTEGER_REGEX = "^\\d+$";
+    private static final Logger LOGGER = getAniLogger(Storage.class.getName());
 
     public String readFile(String filePath) throws AniException {
-        StringBuilder sbFileString = new StringBuilder();
+        String fileString = "";
         try {
-            File fileToRead = new File(filePath);
-            Scanner fileReader = new Scanner(fileToRead);
-
-            while (fileReader.hasNextLine()) {
-                String line = fileReader.nextLine();
-                sbFileString.append(line);
-                sbFileString.append(System.lineSeparator());
-            }
-        } catch (FileNotFoundException exception) {
-            throw new AniException("Does not exist.");
+            fileString = new String(Files.readAllBytes(Paths.get(filePath)));
+            LOGGER.log(Level.INFO, "Read from file: " + filePath);
+        } catch (IOException exception) {
+            LOGGER.log(Level.INFO, "File does not exist at: " + filePath);
+            throw new AniException("File does not exist.");
         }
 
-        return sbFileString.toString();
+        return fileString;
     }
 
     public void writeFile(String filePath, String fileString) throws AniException {
@@ -35,8 +34,10 @@ public abstract class Storage {
             FileWriter fileWriter = new FileWriter(filePath);
             fileWriter.write(fileString);
             fileWriter.close();
+            LOGGER.log(Level.INFO, "Wrote to file: " + filePath);
         } catch (IOException exception) {
-            throw new AniException("Failed to write to the file.");
+            LOGGER.log(Level.WARNING, "Failed to write to file at: " + filePath);
+            throw new AniException("Failed to write to file.");
         }
     }
 

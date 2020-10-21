@@ -20,6 +20,10 @@ public class AddWorkspaceCommand extends Command {
         this.newWorkspaceName = newWorkspaceName;
     }
 
+    public String getNewWorkspaceName() {
+        return newWorkspaceName;
+    }
+
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         Workspace newWorkspace = user.addWorkspace(newWorkspaceName.trim());
@@ -29,6 +33,6 @@ public class AddWorkspaceCommand extends Command {
         newWorkspace.setWatchlistList(watchlistList);
         storageManager.saveWorkspace(newWorkspace);
 
-        return "Successfully added new workspace:" + newWorkspace;
+        return "Successfully added new workspace: " + newWorkspace;
     }
 }

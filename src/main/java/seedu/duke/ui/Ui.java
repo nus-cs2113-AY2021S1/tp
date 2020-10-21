@@ -68,9 +68,9 @@ public class Ui {
         String[] userDialogueInput = new String[3];
 
         printMessage("What's your name?");
-        userDialogueInput[0] = readInput();
+        userDialogueInput[0] = CONSOLE.nextLine();
         printMessage("Hello " + userDialogueInput[0] + "! What might your gender be? (Male/Female/Other)");
-        userDialogueInput[1] = readInput();
+        userDialogueInput[1] = CONSOLE.nextLine();
 
         return userDialogueInput;
     }

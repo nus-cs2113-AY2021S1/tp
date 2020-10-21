@@ -7,20 +7,22 @@ Welcome to AniChan!
   /_/    \_\_| |_|_|\_____|_| |_|\__,_|_| |_|
 
 -------------------------------------------------------------
-User: Does not exist.
+User: File does not exist.
 -------------------------------------------------------------
 What's your name?
-#>Hello Abec Steiner 33rd! What might your gender be? (Male/Female/Other)
-#>
+Hello Abec Steiner 33rd! What might your gender be? (Male/Female/Other)
+
 Default (Default) #> OOPS!!! Parameter : -n requires an additional field
+
+Default (Default) #> OOPS!!! Invalid parameters detected!
 
 Default (Default) #> OOPS!!! No parameter provided
 
-Default (Default) #> Successfully added new workspace:
- Workspace: CrunchyCinnamon
+Default (Default) #> Successfully added new workspace: Crunchy Cinnamon
 
-Default (Default) #> Successfully added new workspace:
- Workspace: CrispyDonut
+Default (Default) #> Successfully added new workspace: CrispyDonut
+
+Default (Default) #> Successfully added new workspace: RED VELVET Crumblesss
 
 Default (Default) #> Watchlist "a" has been created successfully!
 

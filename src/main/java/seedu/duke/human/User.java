@@ -118,6 +118,6 @@ public class User extends Human {
 
     @Override
     public String toString() {
-        return "\n Name: " + getHonorificName() + "\n Gender:" + getGender();
+        return " Name: " + getHonorificName() + " | Gender: " + getGender();
     }
 }

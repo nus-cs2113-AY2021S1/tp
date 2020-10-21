@@ -15,12 +15,6 @@ public class Character extends Human {
         voiceActors.add(newVoiceActor);
     }
 
-    public void printVoiceActors() {
-        System.out.println("Voice actors for " + name + " are:");
-        for (int i = 0; i < voiceActors.size(); i++) {
-            System.out.println(i + 1 + ". " + voiceActors.get(i));
-        }
-    }
 
     public int getTotalVoiceActors() {
         return voiceActors.size();
