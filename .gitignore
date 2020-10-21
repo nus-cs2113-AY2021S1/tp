@@ -19,16 +19,9 @@ logger.log
 logger.log.lck
 *.log.*
 logger.log.1
-<<<<<<< HEAD
 logger.log.2
 logger.log.3
 logger.log.4
-=======
-<<<<<<< HEAD
-logger.log.3
-logger.log.2
-logger.log.4
-=======
 /logger.log.2
 /logger.log.3
 /logger.log.4
