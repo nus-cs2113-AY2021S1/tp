@@ -23,4 +23,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_ID = "The following task ID doesn't exist in backlog.\nPlease enter a"
             + " valid ID.";
     public static final String MESSAGE_INVALID_IDTYPE = "Task ID entered is not an integer!";
+    public static final String MESSAGE_INVALID_DURATION = "Duration must be a multiple of sprint duration. "
+           + "Duration must be longer than the project sprint";
 }

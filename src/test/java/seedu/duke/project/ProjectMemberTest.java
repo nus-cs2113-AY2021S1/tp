@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ProjectMemberTest {
     Project project = new Project("SCRUM", "Deliver a cli for agile developers",
-            "60", "30");
+            60, 30);
 
     @Test
     void add_addMember_noError() {

@@ -58,7 +58,7 @@ class StorageManagerTest {
     }
     
     private Project generateProject() {
-        Project project = new Project("Game", "Among Us", "100", "10");
+        Project project = new Project("Game", "Among Us", 100, 10);
         project.setAllSprints(generateSprintList(project));
         project.setBacklog(generateProjectBacklog(project));
         project.setMembers(generateProjectMembers());
