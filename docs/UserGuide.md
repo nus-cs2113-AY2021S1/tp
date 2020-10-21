@@ -248,7 +248,6 @@ Format: `p_reset`
 Output: 
 ```
 Power usage has been reset!
-
 ```
 
 <br/><br/> 

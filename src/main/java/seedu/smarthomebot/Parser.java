@@ -1,5 +1,6 @@
 package seedu.smarthomebot;
 
+import org.apache.commons.lang3.StringUtils;
 import seedu.smarthomebot.commands.AddCommand;
 import seedu.smarthomebot.commands.Command;
 import seedu.smarthomebot.commands.CreateCommand;
@@ -18,6 +19,7 @@ import seedu.smarthomebot.exceptions.IllegalCharacterException;
 import seedu.smarthomebot.exceptions.InvalidCommandException;
 import seedu.smarthomebot.exceptions.InvalidWattageValueException;
 import seedu.smarthomebot.exceptions.WattageExceedException;
+
 
 import static seedu.smarthomebot.common.Messages.MESSAGE_EMPTY_PARAMETER;
 import static seedu.smarthomebot.common.Messages.MESSAGE_ILLEGAL_CHARACTER;
@@ -119,6 +121,7 @@ public class Parser {
         } catch (EmptyParameterException e) {
             return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
         } catch (IllegalCharacterException e) {
+
             return new InvalidCommand(MESSAGE_ILLEGAL_CHARACTER + " [APPLIANCE_NAME].");
         } catch (StringIndexOutOfBoundsException e) {
             return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND);
@@ -208,7 +211,7 @@ public class Parser {
     public Command parseCommand(String userInput) {
         String[] words = userInput.trim().split(" ", 2);
         final String commandWord = words[0];
-        final String arguments = userInput.replaceFirst(commandWord, "").trim();
+        final String arguments = StringUtils.replaceOnce(userInput, commandWord, "").trim();
 
         switch (commandWord) {
         case HelpCommand.COMMAND_WORD:
