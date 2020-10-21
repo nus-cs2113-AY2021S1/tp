@@ -26,8 +26,42 @@ TODO: ...
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed.
-1. Download the latest version of `revisED` from [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/releases).
+2. Download the latest version of `revisED` from [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/releases).
 
+3. Transfer the jar file to the folder that you prefer to use.
+4. Open command prompt and use the command `java -jar revised.jar` to begin the application.
+* If you see these symbols in the application `[?]`, unicode is not enable in your operating system. Do the
+following steps:
+    * Go to Properties >> Font >> Font and change the font of the command prompt to NSimsum.
+
+
+## Initialisation
+
+The user would see the logo of the application once it is opened.
+<pre><code>
+Hello from
+                               __________
+                              |  __ |  _ \
+ ____  ______      _____      |  |__| | | |
+|  __|/ __ \ \    / /| | ____ |   __| | | |
+| |  |  __/ \ \__/ / | | \____|  |__| |_| |
+| |   \___|  \____/  |_| ____/|_____|_____/
+</code></pre> 
+
+After that, the application shows any tasks that are due within a week.
+<pre><code>
+Hello from
+Here are the tasks that are due by next week
+
+maths
+1:[D][?] homework (by: 6:00 PM 21 Oct 2020)
+2:[E][?] match (at: 6:00 PM 22 Oct 2020)
+science
+1:[E][?] fund-raising (at: 6:00 PM 22 Oct 2020)
+2:[D][?] assignment (by: 6:00 PM 21 Oct 2020)
+</code></pre> 
+
+Subsequently, users can begin using the application.
 ## Features 
 * Subjects
 * Topics
