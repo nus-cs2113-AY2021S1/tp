@@ -14,8 +14,9 @@
 
 The user executes ```deadline 1; 7/10/20; 11:20 PM``` command to set the deadline for the 1st event in Personal event list
 to be on the 7th October 2020 at 11:20 PM. 
-The ```deadline``` command calls ```DeadlineCommand#execute()```, adding/updating the personal event deadline. </br>
-
+The ```deadline``` command calls ```DeadlineCommand#execute()```, adding/updating the personal event deadline. <br>
+Given below is how the deadline command behave: <br>
+![Deadline Command Scenario](/docs/diagrams/DeadlineScenario.jpg) <br>
 The following sequence diagram shows how the deadline operation works: <br>
 ![Sequence Diagram for Deadline Command](/docs/diagrams/DeadlineSequenceDiagram.jpg)
 ## Documentation, logging, testing, configuration, dev-ops (not sure what this entails)
