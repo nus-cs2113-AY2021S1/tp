@@ -151,8 +151,7 @@ The add task feature allows user to add a task under an existing module.
 
 #### Proposed Implementation
 The `addtask` command is executed by the `parse` method in the `Parser` class, which then calls the `addTask` method 
-in the `TaskList` class. The `addTask` method performs all the necessary logic for the add task feature. 
-The `addTask` method then creates a new `Task` object and adds it to the array list `tasks`.
+in the `TaskList` class. The `addTask` method performs all the necessary logic for the add task feature.
 
 Given below is an example usage scenario.
 1. The user input the `addtask` command and the `parse` method in `Parser` parses the command.
@@ -229,11 +228,14 @@ Given below is an example usage scenario.
 1. The `setDone` method will then call the `setAsDone` method in `Task` class to mark the `Task` corresponding to 
 `Section 2` (task number) as done. 
     
+{will insert a sequence diagram here}   
+   
 ### Future Implementation
 1. When the `Task` is set as done, the `setDone` method will call the `addTime` method in `ModuleList` class
 to add the expected time required to complete the task to the actual time spent on the module.
-    * This future implementation requires `Section 4` (expected time required to complete the task) from the `addTask` 
-    method to be passed as a parameter to the `setDone` method and then to the `addTime` method.
+    * This future implementation requires `Section 4` (expected time required to complete the task) from the future 
+    implementation of the `addTask` method to be passed as a parameter to the `setDone` method and then to the 
+    `addTime` method.
 
 ## Documentation, Logging, Testing, Configuration, Dev-Ops
 {Insert guides here for doc, testing etc}
