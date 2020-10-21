@@ -1,7 +1,7 @@
-package seedu.duke.project;
+package seedu.duke.model.project;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.sprint.Member;
+import seedu.duke.model.member.Member;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

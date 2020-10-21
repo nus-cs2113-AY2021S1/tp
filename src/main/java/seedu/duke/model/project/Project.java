@@ -1,9 +1,10 @@
-package seedu.duke.project;
+package seedu.duke.model.project;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
-import seedu.duke.sprint.Sprint;
-import seedu.duke.sprint.SprintList;
+import seedu.duke.model.member.ProjectMembers;
+import seedu.duke.model.sprint.SprintList;
+import seedu.duke.model.task.ProjectBacklog;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -12,18 +13,18 @@ import java.time.LocalDate;
 
 public class Project implements Jsonable {
 
-    protected SprintList allSprints;
-    protected ProjectBacklog backlog;
-    protected ProjectMembers members;
-    protected String title;
-    protected String description;
+    private SprintList allSprints;
+    private ProjectBacklog backlog;
+    private ProjectMembers members;
+    private String title;
+    private String description;
 
 
-    protected int projectDuration;
-    protected int sprintLength;
+    private int projectDuration;
+    private int sprintLength;
 
-    protected LocalDate startDate = null;
-    protected LocalDate endDate = null;
+    private LocalDate startDate = null;
+    private LocalDate endDate = null;
     
     
     public Project() {

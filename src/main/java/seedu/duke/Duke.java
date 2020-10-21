@@ -1,7 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.parser.Parser;
-import seedu.duke.project.Project;
+import seedu.duke.model.project.Project;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.Ui;
 

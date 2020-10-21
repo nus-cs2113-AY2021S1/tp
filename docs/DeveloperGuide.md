@@ -1,5 +1,7 @@
 # Developer Guide
 
+## Table of Contents
+
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}

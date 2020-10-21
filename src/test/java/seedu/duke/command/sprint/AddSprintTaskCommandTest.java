@@ -2,7 +2,7 @@
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.parser.Parser;
-import seedu.duke.project.Project;
+import seedu.duke.model.project.Project;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

@@ -1,4 +1,4 @@
-package seedu.duke.task;
+package seedu.duke.model.task;
 
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
@@ -10,13 +10,13 @@ import java.io.Writer;
 import java.util.ArrayList;
 
 public class Task implements Jsonable {
-    protected int id;
-    protected String title;
-    protected String description;
-    protected Priority priority;
-    protected boolean isDone;
-    protected ArrayList<String> membersAllocatedTo;
-    protected ArrayList<Integer> sprintAllocatedTo;
+    private int id;
+    private String title;
+    private String description;
+    private Priority priority;
+    private boolean isDone;
+    private ArrayList<String> membersAllocatedTo;
+    private ArrayList<Integer> sprintAllocatedTo;
 
     public Task() {
     }
@@ -175,8 +175,8 @@ public class Task implements Jsonable {
     }
 
 
-    //Delete seedu.duke.task handled outside using ArrayList remove() function
-    //iD handled outside. (seedu.duke.task number)
+    //Delete seedu.duke.model.task handled outside using ArrayList remove() function
+    //iD handled outside. (seedu.duke.model.task number)
     //valueOf for enum explained here:https://www.baeldung.com/java-string-to-enum
 
 }

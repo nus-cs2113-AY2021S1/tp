@@ -1,15 +1,13 @@
 package seedu.duke.storage;
 
 import com.github.cliftonlabs.json_simple.JsonArray;
-import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsoner;
 import org.junit.jupiter.api.Test;
-import seedu.duke.project.Project;
-import seedu.duke.project.ProjectBacklog;
-import seedu.duke.project.ProjectMembers;
-import seedu.duke.sprint.Member;
-import seedu.duke.sprint.SprintList;
-import seedu.duke.task.Priority;
+import seedu.duke.model.project.Project;
+import seedu.duke.model.task.ProjectBacklog;
+import seedu.duke.model.member.ProjectMembers;
+import seedu.duke.model.member.Member;
+import seedu.duke.model.sprint.SprintList;
 
 import java.io.FileWriter;
 import java.io.IOException;

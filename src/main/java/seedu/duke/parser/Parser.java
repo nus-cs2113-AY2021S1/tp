@@ -1,15 +1,7 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.member.MemberCommand;
-import seedu.duke.command.project.ProjectCommand;
-import seedu.duke.command.sprint.AllocateSprintTaskCommand;
-import seedu.duke.command.sprint.ViewSprintCommand;
-import seedu.duke.command.sprint.AddSprintTaskCommand;
-import seedu.duke.command.sprint.CreateSprintCommand;
-import seedu.duke.command.sprint.RemoveSprintTaskCommand;
-import seedu.duke.command.task.TaskCommand;
 import seedu.duke.exception.DukeException;
-import seedu.duke.project.Project;
+import seedu.duke.model.project.Project;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,20 +9,11 @@ import java.util.Hashtable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.duke.command.CommandSummary.ADD;
-import static seedu.duke.command.CommandSummary.ADDTASK;
 import static seedu.duke.command.CommandSummary.BYE;
-import static seedu.duke.command.CommandSummary.CREATE;
-import static seedu.duke.command.CommandSummary.DELETE;
-import static seedu.duke.command.CommandSummary.REMOVETASK;
 import static seedu.duke.command.CommandSummary.PROJECT;
 import static seedu.duke.command.CommandSummary.TASK;
 import static seedu.duke.command.CommandSummary.MEMBER;
 import static seedu.duke.command.CommandSummary.SPRINT;
-import static seedu.duke.command.CommandSummary.VIEW;
-import static seedu.duke.command.CommandSummary.DONE;
-import static seedu.duke.command.CommandSummary.PRIORITY;
-import static seedu.duke.command.CommandSummary.ASSIGN;
 
 
 public class Parser {

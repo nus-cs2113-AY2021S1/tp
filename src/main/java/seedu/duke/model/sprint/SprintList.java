@@ -1,11 +1,10 @@
-package seedu.duke.sprint;
+package seedu.duke.model.sprint;
 
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.parser.DateTimeParser;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
+import seedu.duke.model.project.Project;
 
 import java.io.IOException;
 import java.io.StringWriter;

@@ -1,4 +1,4 @@
-package seedu.duke.sprint;
+package seedu.duke.model.member;
 
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class Member implements Jsonable {
 
     private String userId;
-
     private ArrayList<Integer> allocatedTaskIds;
     
     public Member() {

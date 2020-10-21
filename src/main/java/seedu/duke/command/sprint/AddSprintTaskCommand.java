@@ -1,9 +1,8 @@
 package seedu.duke.command.sprint;
 
-import seedu.duke.exception.DukeException;
-import seedu.duke.project.Project;
-import seedu.duke.sprint.Sprint;
-import seedu.duke.sprint.SprintList;
+import seedu.duke.model.project.Project;
+import seedu.duke.model.sprint.Sprint;
+import seedu.duke.model.sprint.SprintList;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.ui.Ui;
 

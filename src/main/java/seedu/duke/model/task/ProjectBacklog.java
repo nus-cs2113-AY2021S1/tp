@@ -1,10 +1,9 @@
-package seedu.duke.project;
+package seedu.duke.model.task;
 
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
-import seedu.duke.task.Priority;
-import seedu.duke.task.Task;
+import seedu.duke.model.project.Project;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
@@ -71,7 +70,7 @@ public class ProjectBacklog implements Jsonable {
             if (task.getId() == taskId) {
                 ArrayList<Integer> allocatedSprint = task.getAllocatedSprints();
                 for (Integer sprintId : allocatedSprint) {
-                    proj.allSprints.getSprint(sprintId).removeSprintTask(taskId);
+                    proj.getAllSprints().getSprint(sprintId).removeSprintTask(taskId);
                 }
                 backlogTasks.remove(task);
                 return;

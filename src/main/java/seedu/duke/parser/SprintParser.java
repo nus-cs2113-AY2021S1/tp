@@ -6,7 +6,7 @@ import seedu.duke.command.sprint.RemoveSprintTaskCommand;
 import seedu.duke.command.sprint.ViewSprintCommand;
 import seedu.duke.command.sprint.AllocateSprintTaskCommand;
 import seedu.duke.exception.DukeException;
-import seedu.duke.project.Project;
+import seedu.duke.model.project.Project;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

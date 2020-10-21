@@ -1,11 +1,10 @@
 package seedu.duke.parser;
 
 import seedu.duke.command.project.CreateProjectCommand;
-import seedu.duke.command.project.ProjectCommand;
 import seedu.duke.command.project.SelectProjectCommand;
 import seedu.duke.command.project.ViewProjectCommand;
 import seedu.duke.exception.DukeException;
-import seedu.duke.project.Project;
+import seedu.duke.model.project.Project;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

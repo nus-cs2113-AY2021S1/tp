@@ -1,10 +1,10 @@
 package seedu.duke.command.task;
 
-import seedu.duke.sprint.Sprint;
+import seedu.duke.model.sprint.Sprint;
 import seedu.duke.ui.Messages;
 import seedu.duke.exception.DukeException;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
+import seedu.duke.model.project.Project;
+import seedu.duke.model.task.Task;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;

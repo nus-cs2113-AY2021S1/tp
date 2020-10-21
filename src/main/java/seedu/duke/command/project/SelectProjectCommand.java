@@ -1,8 +1,5 @@
 package seedu.duke.command.project;
 
-import seedu.duke.project.Project;
-
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class SelectProjectCommand extends ProjectCommand {
