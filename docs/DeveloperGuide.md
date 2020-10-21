@@ -240,14 +240,11 @@ and `printAllModuleInformation()` terminates.
 1. A method `getMaxModuleLength()` will be called to find out the maximum length 
 of module code of modules taken. This is to facilitate the resizing of the printed table.
 
-1. The table templates such as `border`, `header` and `contents` are 
-updated accordingly based on the output of `getMaxModuleLength()`.
+1. `updateTemplates()` then updates the table templates such as `border`, `header` 
+and `contents` are updated accordingly based on the output of `getMaxModuleLength()`.
 
-1. This method iterates through `modList` and for each `Module` it extracts data such as 
-`moduleCode`, `expectedWorkload` and `actualWorkload`. The data will be fill into the respective templates.
- Existence of the desired data is checked using their respective methods, `doesExpectedWorkLoadExist()` and `doesActualTimeExist()`,
-before they are filled into the templates to be printed. If the desired data does not exist,
-a `NO INPUT` will be printed instead.
+1. For each `Module` in `modList`, `updateContent()` will be called to update the contents
+to be printed.
 
 The following sequence diagram shows how the view module command works. Assume that the user 
 inputs a `list 2` command and there exists a module CS2113t with `expectedWorkload` of 10 and 

@@ -39,13 +39,7 @@ public class ViewTimeBreakDownAnalysis {
      */
     public void printTimeBreakDownAndAnalysis(ModuleList list, int weekNumber) {
 
-        if (weekNumber < MIN_WEEK_VALUE || weekNumber > MAX_WEEK_VALUE) {
-            System.out.println(INVALID_WEEK_NUMBER + System.lineSeparator());
-            return;
-        }
-
-        if (list.getData().isEmpty()) {
-            System.out.println(EMPTY_MODULE_LIST + System.lineSeparator());
+        if (!validateInputs(list, weekNumber)) {
             return;
         }
 
@@ -53,12 +47,24 @@ public class ViewTimeBreakDownAnalysis {
         assert weekNumber <= MAX_WEEK_VALUE : "Week number should be between 1 and 13 inclusive.";
         assert !list.getData().isEmpty() : "modList should not be empty";
 
-
         printTime(list, weekNumber);
         boolean toPrintAnalysis = printBreakDown(list, weekNumber);
         if (toPrintAnalysis) {
             printAnalysis(list, weekNumber);
         }
+    }
+
+    private boolean validateInputs(ModuleList list, int weekNumber) {
+        if (weekNumber < MIN_WEEK_VALUE || weekNumber > MAX_WEEK_VALUE) {
+            System.out.println(INVALID_WEEK_NUMBER + System.lineSeparator());
+            return false;
+        }
+
+        if (list.getData().isEmpty()) {
+            System.out.println(EMPTY_MODULE_LIST + System.lineSeparator());
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -91,8 +97,7 @@ public class ViewTimeBreakDownAnalysis {
                     + System.lineSeparator());
             return false;
         }
-        //perform error handling here
-        //no input for all, total time is 0, total time > 0
+        
         for (Module m : modList) {
             if (m.doesActualTimeExist(weekNumber)) {
                 double actualTime = m.getActualTime()[weekNumber - INDEX_OFFSET];
