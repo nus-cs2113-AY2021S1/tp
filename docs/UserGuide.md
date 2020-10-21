@@ -9,14 +9,16 @@
 <br/>&nbsp;3.1 [View the help: `help`](#31-view-the-help-help)
 <br/>&nbsp;3.2 [Adding a user: `adduser`](#32-adding-a-user-adduser)
 <br/>&nbsp;3.3 [Switching users: `switchuser`](#33-switching-users-switchuser)
-<br/>&nbsp;3.4 [Browse through all anime: `browse`](#34-browse-through-all-anime-browse)
+<br/>&nbsp;3.4 [Browse through all Anime: `browse`](#34-browse-through-all-anime-browse)
 <br/>&nbsp;3.5 [Watchlist management: `watchlist`](#35-watchlist-management-watchlist)
-<br/>&nbsp;3.6 [Add an anime to the select watchlist: `add`](#36-add-an-anime-to-the-select-watchlist-add)
-<br/>&nbsp;3.7 [Bookmark an Anime: `bookmark`](#37-bookmark-an-anime-bookmark)
-<br/>&nbsp;3.8 [Search: `search`](#38-search-search)
-<br/>&nbsp;3.9 [Estimate time need to translate script: `estimate`](#39-estimate-time-needed-to-translate-script-estimate)
-<br/>&nbsp;3.10 [Exit AniChan: `exit`](#39-exit-anichan-exit)
-<br/>&nbsp;3.11 [Saving and loading data](#311-saving-and-loading-data)
+<br/>&nbsp;3.6 [Add an Anime to the current watchlist: `add`](#36-add-an-anime-to-the-current-watchlist-add)
+<br/>&nbsp;3.7 [Remove an Anime from the current watchlist: `remove`](#37-remove-an-anime-to-the-current-watchlist-remove)
+<br/>&nbsp;3.8 [Bookmark an Anime: `bookmark`](#38-bookmark-an-anime-bookmark)
+<br/>&nbsp;3.9 [Search: `search`](#39-search-search)
+<br/>&nbsp;3.10 [View the information of an Anime: `info`](#310-view-the-information-of-an-anime-info)
+<br/>&nbsp;3.11 [Estimate time need to translate script: `estimate`](#311-estimate-time-needed-to-translate-script-estimate)
+<br/>&nbsp;3.12 [Exit AniChan: `exit`](#312-exit-anichan-exit)
+<br/>&nbsp;3.13 [Saving and loading data](#313-saving-and-loading-data)
 4. [FAQ](#4-faq)
 5. [Command Summary](#5-command-summary)
 
@@ -96,7 +98,7 @@ The expected outcome:
 
 <br/>
 
-### 3.4 Browse through all anime: `browse`
+### 3.4 Browse through all Anime: `browse`
 Browse through all anime from the source. It can be displayed in sorted order.
 
 Format: `browse [-s SORT_CATEGORY] [-o DISLAY_ORDER] [-p PAGE_NUMBER`]
@@ -195,20 +197,37 @@ Changed active watchlist to: "Default".
 
 <br/>
 
-### 3.6 Add an anime to the select watchlist: `add`
+### 3.6 Add an Anime to the current watchlist: `add`
 Add an anime to the currently selected watchlist
 
-Format: `add -a <ANIME_NAME>`
+Format: `add -a <ANIME_ID>`
 
-Sample input: `add -a Fullmetal Alchemist: Brotherhood`
+Sample input: `add -a 3`
 
 The expected outcome: 
 
-`Anime added to watchlist!`
+`Trigun added to watchlist!`
 
 <br/>
 
-### 3.7 Bookmark an Anime: `bookmark`
+### 3.7 Remove an Anime from the current watchlist: `remove`
+Remove an anime from the currently selected watchlist
+
+Format: `remove -d <ANIME_ID_IN_WATCHLIST>`
+
+Note:
+
+The index used has to be the Anime ID in the watchlist, and not the general Anime ID
+
+Sample input: 'remove -d 1'
+
+The expected outcome:
+
+'Trigun successfully removed from watchlist'
+
+<br/>
+
+### 3.8 Bookmark an Anime: `bookmark`
 This command handles all bookmark related operations: 
 * List all anime within bookmark.
 * Add an anime into bookmark.
@@ -258,7 +277,7 @@ Editing InuYasha the Movie 3: Swords of an Honorable Ruler to have 5 episode
 
 <br/>
 
-### 3.8 Search `search`
+### 3.9 Search `search`
 Searches for a specific anime or to search for a specific genre
 
 Format:
@@ -295,7 +314,27 @@ The expected outcome:
 [ID:488] Teacher's Time
 ```
 
-### 3.9 Estimate time needed to translate script: `estimate`
+<br/>
+
+### 3.10 View the information of an Anime: `info`
+View all the information regarding a specific anime
+
+Format: `info -a <ANIME_ID>`
+
+Sample input: `info -a 1`
+
+The expected outcome:
+```
+Here is the information for the anime:
+Index: 1
+Name: Cowboy Bebop
+Episodes: 26
+Release Date: 03/Apr/1998
+Rating: 86
+Genre: [Action, Adventure, Drama, Sci-Fi]
+```
+
+### 3.11 Estimate time needed to translate script: `estimate`
 Estimates the time required to finish translating a script, users may provide
 their estimated words per hour speed or use the average translator speed as an estimate.
 
@@ -320,7 +359,7 @@ The expected outcome:
 You would need 2 hour(s) 58 minute(s).
 ```
 
-### 3.10 Exit AniChan: `exit`
+### 3.12 Exit AniChan: `exit`
 Exit AniChan 
 
 Format: `exit`
@@ -334,7 +373,7 @@ Sayonara <NAME>!
 
 <br/>
 
-### 3.11 Saving and loading data
+### 3.13 Saving and loading data
 User, workspace(s), watchlist(s), and bookmark(s) data will be **saved automatically** when they are 
 created or modified, and will be **loaded automatically** when AniChan is launched. 
 
@@ -360,7 +399,9 @@ Coming soon!
 | List all watchlist                       | `watchlist -l`                                           |
 | Select watchlist                         | `watchlist -s <WATCHLIST_INDEX>`                         |
 | Delete watchlist                         | `watchlist -d <WATCHLIST_INDEX>`                         |
-| Add to watchlist                         | `add -a <ANIME_NAME>`                                    |
+| Add to watchlist                         | `add -a <ANIME_ID>`                                      |
+| Remove from watchlist                    | `remove -d <ANIME_ID_IN_WATCHLIST>`                      |
 | Search by title                          | `search -n <SEARCH_TERM>`                                |
 | Search by genre                          | `search -g <SEARCH_TERM>`                                |
+| View Anime information                   | `info -a <ANIME_ID>`                                     |
 | Estimate time needed to translate script | `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`      |

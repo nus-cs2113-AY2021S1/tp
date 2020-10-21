@@ -23,7 +23,7 @@ public class RemoveCommandParser extends CommandParser {
         String[] paramGiven = parameterSplitter(description);
 
         if (paramGiven.length <= 1) {
-            throw new AniException("-d WATCHLIST_ID is required");
+            throw new AniException("-d ANIME_ID_IN_WATCHLIST is required");
         } else {
             parameterParser(paramGiven);
             LOGGER.log(Level.INFO, "Parameter parsed properly");
