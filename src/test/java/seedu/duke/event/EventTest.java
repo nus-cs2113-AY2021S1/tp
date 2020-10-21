@@ -12,7 +12,7 @@ class EventTest {
     @Test
     void testPrintEvent() {
         assertEquals("[E][Up-coming]" + "\nEvent Name: " + "PR meeting" + "\nDate: "
-                + "Jun 30 2000" + "\nTime: " + "8pm" , event.printEvent());
+                + "Jun 30 2000" + "\nTime: " + "8pm", event.printEvent());
     }
 
     @Test
@@ -29,7 +29,7 @@ class EventTest {
                 + "1.[E][Up-coming]\n"
                 + "Event Name: PR meeting"
                 + "\nDate: Jun 30 2000"
-                + "\nTime: 8pm" +"\n" + "*".repeat(50) + "\n";
+                + "\nTime: 8pm" + "\n" + "*".repeat(50) + "\n";
         assertEquals(expected3, EventList.printEventList());
         String expected4 = "Nice! I've marked this task as done:\n"
                 +  "1.[E][Done]\n"
@@ -52,13 +52,13 @@ class EventTest {
                 + "Event Name: Autodesk course\n"
                 + "Date: Dec 20 2020\n"
                 + "Time: 8-10.30pm\n"
-                + "Number of day(s) left: 61" + "\n"+ "*".repeat(50)+"\n";
+                + "Number of day(s) left: 61" + "\n" + "*".repeat(50) + "\n";
         assertEquals(expected5,EventList.countdownView());
 
         String expected6 = "1.[E][Up-coming]\n"
                 + "Event Name: Autodesk course\n"
                 + "Date: Dec 20 2020\n"
-                + "Time: 8-10.30pm" + "\n"+ "*".repeat(50)+"\n";
+                + "Time: 8-10.30pm" + "\n" + "*".repeat(50) + "\n";
         assertEquals(expected6,EventList.searchEvents("autodesk"));
 
     }
