@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 import static java.time.temporal.TemporalAdjusters.next;
 
@@ -12,13 +13,17 @@ public class Event {
     protected String eventName;
     protected String eventTime;
     protected LocalDate date;
+    protected String symbol;
+    protected boolean isDone;
 
 
     public Event(String name, String date, String time) {
         this.eventName = name;
+        this.eventTime = time;
+        this.symbol = "[E]";
         setDateTime(date, time);
+        this.isDone = false;
     }
-
 
     public void setEventDate(LocalDate date) {
         this.date = date;
@@ -45,20 +50,37 @@ public class Event {
     }
 
     /**
-     * Returns the string format of the event.
-     *
-     * @return String format of event.
-     */
+    * Returns a tick or cross depending on whether a event is marked done.
+    *
+    * @return done or upcoming command
+    */
+    public String getStatusIcon() {
+        return isDone ? "[Done]" : "[Up-coming]";
+
+    }
+
+
+    /**
+    * Returns the string format of the event.
+    *
+    * @return String format of event.
+    */
     public String printEvent() {
-        return "Event Name: " + this.eventName + "\nDate: "
-                + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\nTime: " + this.eventTime + "\n";
+        return symbol + this.getStatusIcon() + "\nEvent Name: " + this.eventName + "\nDate: "
+                + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\nTime: " + this.eventTime;
+    }
+
+
+    public long numberOfDaysLeft() {
+        return ChronoUnit.DAYS.between(LocalDate.now(), this.getEventDate());
     }
 
     /**
-     * Attempts to read the date time. If it fails, uses relative timing to try again.
-     * @param dateStr The Date to be processed
-     * @param timeStr The time to be processed
-     */
+    * Attempts to read the date time. If it fails, uses relative timing to try again.
+    *
+    * @param dateStr The Date to be processed
+    * @param timeStr The time to be processed
+    */
     public void setDateTime(String dateStr, String timeStr) {
         eventTime = timeStr;
         try {
@@ -113,4 +135,16 @@ public class Event {
             date = start.toLocalDate();
         }
     }
+
+    /**
+    * Used to identify if the string contains the keyword specified in its description.
+    *
+    * @param keyword The keyword to be matched with the description.
+    * @return true if list contains the keyword
+    */
+    public boolean containsKeyword(String keyword) {
+        boolean containsKeyword = eventName.toLowerCase().contains(keyword.toLowerCase());
+        return containsKeyword;
+    }
 }
+
