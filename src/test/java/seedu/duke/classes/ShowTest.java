@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ShowTest {
     int[] episodes = new int[]{21, 10, 12};
-    Show show = new Show("friends", 3, episodes);
+    Show show = new Show("friends", 3, episodes,20);
 
     @Test
     void getName() {

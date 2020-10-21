@@ -16,7 +16,7 @@ public class Duke {
     private Storage storage;
     private ShowList shows;
     private Ui ui;
-    private static WatchTime watchTime;
+    private WatchTime watchTime;
 
     public Duke(String filePath) {
         ui = new Ui();
@@ -26,8 +26,8 @@ public class Duke {
         } catch (Exception e) {
             this.shows = new ShowList();
         }
-        //TODO: Update this after state is loaded
-        //watchTime = new WatchTime(LocalDate recordedDate, int durationWatchedToday, int dailyWatchLimit);
+        watchTime = new WatchTime(storage.getRecordedDate(),
+                storage.getDurationWatchedToday(), storage.getDailyWatchLimit());
 
     }
 
@@ -36,7 +36,7 @@ public class Duke {
         ui.hello();
         InputParser parseManager = new InputParser();
         while (!parseManager.isByeTime()) {
-            Ui.printLineIcon();
+            Ui.promptUser();
             try {
                 storage.saveState();
             } catch (java.io.IOException e) {

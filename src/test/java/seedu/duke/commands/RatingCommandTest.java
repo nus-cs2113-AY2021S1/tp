@@ -12,8 +12,8 @@ class RatingCommandTest {
     void rateShow() {
         new ShowList();
         int[] episodes = new int[]{21, 10, 12};
-        Show show = new Show("friends", 3, episodes);
-        ShowList.setShow("friends",show);
+        Show show = new Show("friends", 3, episodes, 20);
+        ShowList.setShow("friends", show);
         ShowList.getShow("friends").setRating(5);
         assertEquals(5, ShowList.getShow("friends").getRating());
 

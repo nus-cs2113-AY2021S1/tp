@@ -15,10 +15,10 @@ class AddCommandTest {
     public static void main() {
         new ShowList();
         int[] episodes = new int[]{21, 10, 12};
-        Show show = new Show("friends", 3, episodes);
+        Show show = new Show("friends", 3, episodes,29);
         ShowList.setShow("friends", show);
         assertEquals(show, ShowList.getShow("friends"));
-        String[] inputExample = {"add", "friends",  "3", "21,10,12"};
+        String[] inputExample = {"add", "friends",  "3", "21,10,12","20"};
         updateObject = new AddCommand(inputExample);
     }
 

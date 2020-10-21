@@ -7,12 +7,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Storage implements SaveState {
 
     private String filePath;
+
+    private LocalDate recordedDate;
+    private int durationWatchedToday;
+    private int dailyWatchLimit;
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -21,29 +26,41 @@ public class Storage implements SaveState {
     @Override
     public void saveState() throws IOException {
         FileWriter fw = new FileWriter(filePath);
+        fw.write(WatchTime.saveStateFormat());
         int index = 1;
         for (Map.Entry<String, Show> entry : ShowList.getShowList().entrySet()) {
             fw.write(index + ". " + entry.getValue().getName() + System.lineSeparator());
-            fw.write("      Season: " + entry.getValue().getNumSeasons() + System.lineSeparator());
+            fw.write("\t\tSeason: " + entry.getValue().getNumSeasons() + System.lineSeparator());
             String episodes = "";
             for (int i = 1; i <= entry.getValue().getNumSeasons(); i++) {
                 episodes = episodes + entry.getValue().getEpisodesForSeason(i) + " ";
             }
-            fw.write("      Episodes: " + episodes + System.lineSeparator());
-            fw.write("      Rating: " + entry.getValue().getRating() + System.lineSeparator());
-            fw.write("      Current Season: " + entry.getValue().getCurrentSeason() + System.lineSeparator());
-            fw.write("      Current Episode: " + entry.getValue().getCurrentEpisode() + System.lineSeparator());
+            fw.write("\t\tEpisodes: " + episodes + System.lineSeparator());
+            fw.write("\t\tRating: " + entry.getValue().getRating() + System.lineSeparator());
+            fw.write("\t\tDuration: " + entry.getValue().getEpisodeDuration() + System.lineSeparator());
+            fw.write("\t\tCurrent Season: " + entry.getValue().getCurrentSeason() + System.lineSeparator());
+            fw.write("\t\tCurrent Episode: " + entry.getValue().getCurrentEpisode() + System.lineSeparator());
             index++;
 
-            //this is another save format
-            /*
-            String textToAdd=index+". "+entry.getValue().getName()+" | Season: "+entry.getValue().getNumSeasons()
-                    +" | Episodes: " +entry.getValue().getEpisodesForSeason(entry.getValue().getNumSeasons())+" |
-                    Rating: "+entry.getValue().getRating();
-            fw.write(textToAdd);
-             */
         }
         fw.close();
+    }
+
+
+    public WatchTime loadWatchTimeDetail(Scanner s) {
+        if (s.hasNext()) {
+            String[] splitRecordedDate = s.nextLine().split("recordedDate: ");
+            try {
+                recordedDate = LocalDate.parse(splitRecordedDate[1]);
+            } catch (Exception e) {
+                recordedDate = LocalDate.now();
+            }
+            String[] splitDurationWatched = s.nextLine().split("durationWatchedToday: ");
+            durationWatchedToday = Integer.parseInt(splitDurationWatched[1]);
+            String[] splitDailyWatchedLimit = s.nextLine().split("dailyWatchLimit: ");
+            dailyWatchLimit = Integer.parseInt(splitDailyWatchedLimit[1]);
+        }
+        return new WatchTime(recordedDate,durationWatchedToday,dailyWatchLimit);
     }
 
     @Override
@@ -60,11 +77,11 @@ public class Storage implements SaveState {
         }
         Scanner s = new Scanner(f);
         ShowList shows = new ShowList();
-        //HashMap<String, Show> showList = new java.util.HashMap<>();
-        // we just assume that users will not change the contain in the file then the format will be fixed
+
+        // we just assume that advanced users who manually change the file can adhere to the correct format
+        loadWatchTimeDetail(s);
         while (s.hasNext()) {
             String name = s.nextLine().substring(3);
-
             String[] splitSeason = s.nextLine().split("Season: ");
             int season = Integer.parseInt(splitSeason[1]);
             String[] splitEpisodes = s.nextLine().split("Episodes: ");
@@ -77,9 +94,9 @@ public class Storage implements SaveState {
 
             String[] splitRating = s.nextLine().split("Rating: ");
             int rating = Integer.parseInt(splitRating[1]);
-
-            shows.setShow(name, new Show(name, season, episodes));
-            //shows(name, new Show(name, season, episodes));
+            String[] splitDuration = s.nextLine().split("Duration: ");
+            int duration = Integer.parseInt(splitDuration[1]);
+            shows.setShow(name, new Show(name, season, episodes, duration));
             shows.getShow(name).setRating(rating);
 
             String[] splitCurrentSeason = s.nextLine().split("Current Season: ");
@@ -89,23 +106,20 @@ public class Storage implements SaveState {
             String[] splitCurrentEpisode = s.nextLine().split("Current Episode: ");
             int currentEpisode = Integer.parseInt(splitCurrentEpisode[1]);
             shows.getShow(name).setEpisodeWatched(currentEpisode);
-            //showList.get(name).setRating(rating);
-
-
-            //another load format which corresponding to the backup save format
-            /*
-            String contain=s.nextLine();
-            String[] splitName=contain.split(" | Season: ");
-            String name=splitName[0].substring(3);
-            String[] splitSeason=splitName[1].split(" | Episodes: ");
-            int season =Integer.parseInt(splitSeason[0]);
-            String[] splitEpisodes=splitName[1].split(" | Rating: ");
-            int episodes =Integer.parseInt(splitEpisodes[0]);
-            int Rating = Integer.parseInt(splitEpisodes[1]);
-            showList.put(name,Show())
-             */
 
         }
         return shows;
+    }
+
+    public LocalDate getRecordedDate() {
+        return recordedDate;
+    }
+
+    public int getDurationWatchedToday() {
+        return durationWatchedToday;
+    }
+
+    public int getDailyWatchLimit() {
+        return dailyWatchLimit;
     }
 }
