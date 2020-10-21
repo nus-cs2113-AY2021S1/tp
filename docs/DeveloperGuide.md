@@ -5,18 +5,17 @@
 * [Setting Up, Getting Started](#setting-up-getting-started)
 * [Design](#design)
     * [Architecture](#architecture)
-    * UI component
-    * Logic component
-    * Model component
-    * Storage component
-    * Parser component
-    * Common classes
+    * [UI component]()
+    * [Logic component]()
+    * [Model component]()
+    * [Storage component]()
+    * [Parser component]()
+    * [Common classes]()
 * [Implementation](#implementation)
-    * Add Task
-    * Delete Task
-    * Mark Task as Done
-    * [Proposed] A better link between Task and Module.
     * [Store Data](#store-data)
+    * [Add Task](#add-task)
+    * [Delete Task](#delete-task)
+    * [Mark Task as Done]()
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product Scope](#product-scope)
@@ -143,6 +142,95 @@ storing the different modules, time expected, time spent and tasks
     * Cons: Requires additional work to parse data into the required
     storage format
 
+### Add Task
+The add task feature allows user to add a task under an existing module. 
+
+#### Proposed Implementation
+The `addtask` command is executed by the `parse` method in the `Parser` class, which then calls the `addTask` method 
+in the `TaskList` class. The `addTask` method performs all the necessary logic for the add task feature. 
+The `addTask` method then creates a new `Task` object and adds it to the array list `tasks`.
+
+Given below is an example usage scenario.
+1. The user input the `addtask` command and the `parse` method in `Parser` parses the command.
+1. `parse` calls the `addTask` method in `TaskList`.
+1. The `addTask` method splits the user input into 3 sections:
+    * `Section 1`: command
+    * `Section 2`: module code
+    * `Section 3`: task description
+1. The `addTask` method calls the `checkIfModuleValid` method in `ModuleList` class to check if `Section 2` is a 
+valid module code.
+    * If module code is not valid, the `addTask` method will return and `Ui` will prompt the user to enter a 
+    valid module code.
+    * Else if module code is valid, the `addTask` method will execute the next step.
+1. The `addTask` method calls the `checkIfModuleExist` method to check if `Secion 2` (module code) exists in the database.
+    * If module code does not exist in the database, the `addTask` method will return and `Ui` will prompt the user to
+    execute the `addmod` or `addexp` command first.
+    * Else if module code exists, the `addTask` method will execute the next step.
+1. The `addTask` method will create a new `Task` object by the constructor in `Task` class, with `Section 3` (task description). 
+1. The `addTask` method adds the `Task` object to the array list `tasks`.
+
+{will insert a sequence diagram here}
+
+### Future Implementation
+A future implementation requires user to enter the expected time required to complete the task. The `addTask` method will split the 
+user input into 4 sections, with `Section 4` as the expected time required to complete the task. `Section 4` will then be
+used in the future implementation of mark task as done feature, as further illustrated in the [mark task as done](#mark-task-as-done)
+section.
+
+### Delete Task
+The delete task feature allows user to delete a task object.
+
+#### Proposed Implementation
+The `deletetask` command is executed by the `parse` method in the `Parser` class, which then calls the `deleteTask` method
+in the `TaskList` class. The `deleteTask` method performs all the necessary logic for the delete task feature.
+
+Given below is an example usage scenario.
+1. The user input the `deletetask` command and the `parse` method in `Parser` parses the command.
+1. `parse` calls the `deleteTask` method in `TaskList`.
+1. The `deleteTask` method splits the user input into 2 sections:
+    * `Section 1`: command
+    * `Section 2`: task number corresponding to the index of `Task` object in array list `tasks`
+1. The `deleteTask` method will check if the array list `tasks` is empty.
+    * If array list is empty, `Ui` will notify the user that there is no `Task` to delete.
+    * Else if array list is not empty, `deleteTask` method will execute the next step.
+1. The `deleteTask` method will check the validity of `Section 2` (task number).
+    * If task number is not an integer, an exception will be thrown and the `deleteTask` method terminates.
+    * If task number is out of bounds, `Ui` will prompt the user to enter a valid task number.
+    * Else if task number is valid, `deleteTask` method will execute the next step.
+1. The `deleteTask` method will remove the `Task` with index corresponding to `Section 2` (task number) from the array 
+list `tasks` by using the ArrayList util package method `.remove()`. 
+
+{will insert a sequence diagram here}
+
+### Mark Task as Done
+The mark task as done feature allows user to mark an existing task as done.
+
+### Proposed Implementation
+The `done` command is executed by the `parse` method in the `Parser` class, which then calls the `setDone` method in the
+`TaskList` class. The `setDone` method performs all the necessary logic for the mark task as done feature.
+
+Given below is an example usage scenario.
+1. The user input the `done` command and the `parse` method in `Parser` parses the command.
+1. `parse` calls the `setDone` method in `TaskList`.
+1. The `setDone` method splits the user input into 2 sections:
+    * `Section 1`: command
+    * `Section 2`: task number corresponding to the index of `Task` object in array list `tasks`
+1. The `setDone` method will check if the array list `tasks` is empty.
+    * If array list is empty, `Ui` will notify the user that there is no `Task` to mark as done.
+    * Else if array list is not empty, `setDone` method will execute the next step.
+1. The `setDone` method will check the validity of `Section 2` (task number).
+    * If task number is not an integer, an exception will be thrown and the `setDone` method terminates.
+    * If task number is out of bounds, `Ui` will prompt the user to enter a valid task number.
+    * Else if task number is valid, `setDone` method will execute the next step.
+1. The `setDone` method will then call the `setAsDone` method in `Task` class to mark the `Task` corresponding to 
+`Section 2` (task number) as done. 
+    
+### Future Implementation
+1. When the `Task` is set as done, the `setDone` method will call the `addTime` method in `ModuleList` class
+to add the expected time required to complete the task to the actual time spent on the module.
+    * This future implementation requires `Section 4` (expected time required to complete the task) from the `addTask` 
+    method to be passed as a parameter to the `setDone` method and then to the `addTime` method.
+
 ## Documentation, Logging, Testing, Configuration, Dev-Ops
 {Insert guides here for doc, testing etc}
 
@@ -174,6 +262,7 @@ NUS students
 |v1.0|student|input the actual time spent on each module|keep track of the actual time I spent|
 |v1.0|careless user|edit the data easily|correct any mistakes I inputted wrongly/
 |v1.0|user|save my data permanently|save the trouble of re-entering my data everytime I start the app|
+|v2.0|user of ModTracker|add tasks related to a module|know what are the outstanding tasks for each module
 |v2.0|user|(to be updated)|(to be updated)|
 
 ### Use Cases
