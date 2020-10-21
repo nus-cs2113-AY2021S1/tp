@@ -26,13 +26,13 @@ public class Saver {
     private final int height;
     private final int width;
 
-    public Saver(int width, int height){
+    public Saver(int width, int height) {
         this.height = height;
         this.width = width;
         this.entries = new String[height][width];
 
-        for (int i = 0; i < width; i ++){
-            for (int j = 0; j < height; j++){
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
                 entries[j][i] = EMPTY_SYMBOL;
             }
         }
@@ -49,57 +49,54 @@ public class Saver {
     /**
      * Adds the string provided to the position x,y on the table.
      * @param entry the entry to be provided into this position
-     * @param x_position x position
-     * @param y_position y position
+     * @param xposition x position
+     * @param yposition y position
      * @throws IndexOutOfBoundsException x or y position is out of bounds
      */
-    public void add(String entry, int x_position, int y_position) throws IndexOutOfBoundsException{
+    public void add(String entry, int xposition, int yposition) throws IndexOutOfBoundsException {
         try {
-            this.entries[y_position - 1][x_position - 1] = entry;
-        }
-        catch (ArrayIndexOutOfBoundsException e){
-            throw new IndexOutOfBoundsException("The x or y position provided must be within the the dimensions of the" +
-                    "saver table!");
+            this.entries[yposition - 1][xposition - 1] = entry;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("The x or y position provided must be within the the dimensions of the"
+                    + "saver table!");
         }
     }
 
     /**
      * Deletes the entry in the table.
-     * @param x_position x position
-     * @param y_position y position
-     * @throws IndexOutOfBoundsException
+     * @param xposition x position
+     * @param yposition y position
+     * @throws IndexOutOfBoundsException x or y position is out of bounds
      */
-    public void delete(int x_position, int y_position) throws IndexOutOfBoundsException{
+    public void delete(int xposition, int yposition) throws IndexOutOfBoundsException {
         try {
-            this.entries[y_position - 1][x_position - 1] = EMPTY_SYMBOL;
-        }
-        catch (ArrayIndexOutOfBoundsException e){
-            throw new IndexOutOfBoundsException("The x or y position provided must be within the the dimensions of the" +
-                    "saver table!");
+            this.entries[yposition - 1][xposition - 1] = EMPTY_SYMBOL;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("The x or y position provided must be within the the dimensions of the"
+                    + "saver table!");
         }
     }
 
     /**
      * Gets a entry stored in the table.
-     * @param x_position x position
-     * @param y_position y position
+     * @param xposition x position
+     * @param yposition y position
      * @return Optional of String that is empty if the position does not contain an entry.
      */
-    public Optional<String> get(int x_position, int y_position){
+    public Optional<String> get(int xposition, int yposition) {
         try {
-            if (this.entries[y_position - 1][x_position - 1].equals(EMPTY_SYMBOL)) {
+            if (this.entries[yposition - 1][xposition - 1].equals(EMPTY_SYMBOL)) {
                 return Optional.empty();
             } else {
-                return Optional.of(this.entries[y_position][x_position]);
+                return Optional.of(this.entries[yposition - 1][xposition - 1]);
             }
-        }
-        catch (ArrayIndexOutOfBoundsException e){
-            throw new IndexOutOfBoundsException("The x or y position provided must be within the the dimensions of the" +
-                    "saver table!");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("The x or y position provided must be within the the dimensions of the"
+                    + "saver table!");
         }
     }
 
-    /***
+    /**
      * Saves the data table into a text file in the following format:
      * width
      * height
@@ -110,7 +107,7 @@ public class Saver {
      * @param folderName name of the folder
      * @param fileName name of the file
      */
-    public void save(String folderName, String fileName){
+    public void save(String folderName, String fileName) {
         try {
             File directory = new File(BASE_FOLDER_NAME + File.separator + folderName);
             directory.mkdir();
@@ -118,16 +115,15 @@ public class Saver {
                     + File.separator + fileName + FILE_EXTENSION);
             writer.write(width + "\n");
             writer.write(height + "\n");
-            for (int j = 0; j < height; j ++){
-                for (int i = 0; i < width; i++){
+            for (int j = 0; j < height; j++) {
+                for (int i = 0; i < width; i++) {
                     writer.write(SEPERATOR_SYMBOL);
                     writer.write(entries[j][i]);
                 }
                 writer.write("\n");
             }
             writer.close();
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             System.out.println("Oops, the file writer took in a directory for some reason!");
         }
     }
