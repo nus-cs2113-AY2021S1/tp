@@ -8,7 +8,10 @@ Class BusData {
 {static} possibleBuses (:String, :String) : ArrayList<Bus>
 }
 Class Bus {
-getPossibleRoute(:String, :String): ArrayList<BusStops>
+getPossibleRoute(:String, :String) : ArrayList<BusStops>
+}
+Class SimilarityCheck {
+{static} similarLoc(:String) : ArrayList<String>
 }
 
 enum BusStops {
@@ -36,5 +39,6 @@ RouteCommand ..> CustomException
 RouteParser ..> CustomException
 Bus ..> CustomException
 CustomException -> ExceptionType
+RouteCommand .left> SimilarityCheck
 
 @enduml
