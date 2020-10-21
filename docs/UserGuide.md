@@ -31,13 +31,15 @@ platform and enhances their learning experience. It also consolidates key concep
 
 ### Loading data
 
-Data is loaded from the .txt files in the E-Duke-8 folder for use in quizzes and notes.  This is part of the setup and is to be done prior to the running of the app.
+Data is loaded from the .json files in the data folder for use in quizzes and notes.  This is part of the setup and is to be done prior to the running of the app. Upon successful startup this screen should shown:
+
+![welcome](./images/welcome.png)
 
 ### Viewing product Information : `about`
 
 Shows a message explaining the purpose of using E-Duke-8.
 
-[to be replaced by graphics]
+![about](./images/about.png)
 
 Format: `about`
 
@@ -45,7 +47,7 @@ Format: `about`
 
 Shows a list of commands that can be used.
 
-[insert graphics for help]
+![help](./images/help.png)
 
 Format: `help`
 
@@ -53,7 +55,7 @@ Format: `help`
 
 Shows the entire list of topics that are listed in the CS2113T Github.io website.
 
-[insert graphics for list of topics] 
+![topics](./images/topics.png)
 
 Format: `topics`
 
@@ -61,13 +63,15 @@ Format: `topics`
 
 Redirects users to the github textbook website.
 
-[insert graphics]
+![textbook](./images/textbook.png)
 
 Format: `textbook`
 
 ### Starting a quiz: `quiz`
 
 Starts a quiz with a specified number of questions from up to two topics
+
+![quiz](./images/quiz.png)
 
 Format: `quiz t/TOPIC n/QUESTIONS`
 - The quiz will contain QUESTIONS number of questions 
@@ -81,12 +85,16 @@ Examples:
 
 Shows a hint to the current question
 
+![hint](./images/hint.png)
+
 Format: `hint`
 - A maximum of one hint can be shown for each question
 
 ### Exiting the program : `exit`
 
 Exits the program.
+
+![exit](./images/exit.png)
 
 Format: `exit`
 
