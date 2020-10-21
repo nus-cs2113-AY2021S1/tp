@@ -156,7 +156,7 @@ public class FinanceTools {
             UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY, "[ MAIN_MENU -> FINANCE_TOOLS_MENU ]");
             UiManager.printInputPromptMessage();
             String input = UiManager.handleInput();
-            CommandPacket packet = new InputParser().parseInput(input.toLowerCase());
+            CommandPacket packet = new InputParser().parseInput(input);
             switch (packet.getCommandString()) {
             case "simplecalc":
                 System.out.print("Total Interest Earned: $" + handleSimpleInterest(packet));
@@ -176,6 +176,7 @@ public class FinanceTools {
                 outputAmount = Double.toString(Math.round(handleMonthlyCompoundInterest(packet) * 100.00) / 100.00);
                 System.out.println("Total Interest Earned: $\n\n" + outputAmount);
                 //commands.add("Total Interest Earned: $" + outputAmount);
+                break;
             case "store":
                 handleStorage(packet, filePath, infoText);
                 System.out.println("Information Updated\n\n");
