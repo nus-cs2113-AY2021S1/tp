@@ -69,4 +69,84 @@ public class MemberList {
             return false;
         }
     }
+
+    public static String search(boolean any, boolean name, boolean phone, boolean email,
+                                boolean role, String anyS, String nameS, String phoneS,
+                                String emailS, String roleS) {
+        if (!any && !name && !phone && !email && !role) {
+            return "Please enter the content you want to search for.\n";
+        }
+        String output = "";
+        int count = 0;
+        for (int i = 0; i < Member.numOfMembers; i++) {
+            if (any == true && searchAny(i, anyS)) {
+                output = output + (i + 1) + "." + members.get(i).toString() + "\n";
+                count++;
+                continue;
+            }
+            if (name && searchName(i, nameS)) {
+                output = output + (i + 1) + "." + members.get(i).toString() + "\n";
+                count++;
+                continue;
+            }
+            if (phone && searchPhone(i, phoneS)) {
+                output = output + (i + 1) + "." + members.get(i).toString() + "\n";
+                count++;
+                continue;
+            }
+            if (email && searchEmail(i, emailS)) {
+                output = output + (i + 1) + "." + members.get(i).toString() + "\n";
+                count++;
+                continue;
+            }
+            if (role && searchRole(i, roleS)) {
+                output = output + (i + 1) + "." + members.get(i).toString() + "\n";
+                count++;
+                continue;
+            }
+        }
+        if (count == 0) {
+            output = "Sorry, there is no suitable result in the member list.\n";
+        } else {
+            output = "I have found " + count + " results for you:\n" + output;
+        }
+        return output;
+    }
+
+    public static boolean searchAny(int index, String target) {
+        if (searchName(index, target) || searchEmail(index, target)
+            || searchPhone(index, target) || searchRole(index, target)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean searchName(int index, String target) {
+        if (members.get(index).getMemberName().contains(target)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean searchEmail(int index, String target) {
+        if (members.get(index).getMemberEmail().contains(target)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean searchPhone(int index, String target) {
+        String phone = Integer.toString(members.get(index).getMemberPhone());
+        if (phone.indexOf(target) != -1) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean searchRole(int index, String target) {
+        if (members.get(index).getMemberRole().contains(target)) {
+            return true;
+        }
+        return false;
+    }
 }
