@@ -199,7 +199,7 @@ Step 8. The newly created module is saved to storage.
 
 The following activity diagram summarizes what happens when a user executes `addmod CS2113T` command for the first time.  
 
-![addmod](diagrams/addmod activity diagram.png)
+![addmod](diagrams/addmod%20activity%20diagram.png)
 
 #### Design consideration:
 
