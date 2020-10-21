@@ -39,6 +39,12 @@ Note: It first extracts the task/event number from the user input prior to `conv
 
 
 ### Find a calendar item feature
+This feature is facilitated by `FindCommand`. It extends the `Command` class and overrides the `execute()` function.
+The following sequence diagram show how the `execute()` operation works when the user searches the entire calendar.:<br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/findCommand_SD.JPG" alt="" width="450"/>
+
+The search for tasks or events feature has a similar sequence diagram. The difference is the varying condition. Depending
+on whether the user searches for tasks or events, the condition will check for the instance of either the task or event respectively.
 
 ## Documentation
 
@@ -58,7 +64,7 @@ Note: It first extracts the task/event number from the user input prior to `conv
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
 |v1.0|user|set my tasks as done|track my tasks better|
 |v1.0|user|delete my calendar items|remove unwanted items and organise my calendar better |
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v2.0|user|find an item in my calendar|locate an item without having to go through the entire list|
 |v2.0|NUS student|add information about my classes|locate all the information about my class on this app|
 
 ## Non-Functional Requirements
