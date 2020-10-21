@@ -1,21 +1,22 @@
 # User Guide
 
 ## Table of Contents
-<a href =#intro> 1. Introduction </a> <br>
-<a href =#start> 2. Quick Start </a> <br>
-<a href =#init> 3. Initialisation </a> <br>
-<a href =#features> 4. Features </a> <br>      
-<a href =#subjects> &nbsp  &nbsp  4.1 Subjects </a><br>
-&nbsp  &nbsp  <a href =#topics> 4.2 Topics </a><br>
-&nbsp  &nbsp  <a href =#tasks> 4.3 Tasks </a><br>
-&nbsp  &nbsp  <a href =#flashcards> 4.4 Flashcards </a><br>
-&nbsp  &nbsp  <a href =#takeQuiz>  4.5 Taking Quizzes </a><br>
-&nbsp  &nbsp  <a href =#result>  4.6. Viewing quiz results </a><br>
-&nbsp  &nbsp  <a href =#store>  4.7. Storing data </a><br>
-&nbsp  &nbsp  <a href =#export>  4.8. Exporting data </a><br>
-<a href =#faq> 5. FAQ </a> <br>
-<a href =#summary> 6. Command Summary </a> <br>
-
+<pre>
+<a href =#intro>1. Introduction </a>
+<a href =#start>2. Quick Start </a>
+<a href =#init>3. Initialisation </a>
+<a href =#features>4. Features </a>      
+   <a href =#subjects>4.1 Subjects </a>
+   <a href =#topics>4.2 Topics </a>
+   <a href =#tasks>4.3 Tasks </a>
+   <a href =#flashcards>4.4 Flashcards </a>
+   <a href =#takeQuiz>4.5 Taking Quizzes </a>
+   <a href =#result>4.6. Viewing quiz results </a>
+   <a href =#store>4.7. Storing data </a>
+   <a href =#export>4.8. Exporting data </a>
+<a href =#faq>5. FAQ </a>
+<a href =#summary>6. Command Summary </a>
+</pre>
 ## 1. Introduction <a name="intro"></a>
 
 revisED aims to help students to revise their subjects through the creation of flashcards or tasks that have
