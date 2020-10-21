@@ -127,15 +127,26 @@ A all-in-one solution for note-taking and managing your schedule.
 
 ## <a id="nfr">5. Non-Functional Requirements</a>
 
-1. Must have Java 11 installed
-2.
-3.
+| Requirement Type | Description |
+|------------------|-------------|
+|Constraint|Single user product|
+|Performance|Software should not be dependent on a remote server|
+|Performance|Software should not exceed 100Mb for JAR file and 15MB per PDF file|
+|Quality|Users should prefer CLI/Typing|
+|Technical|Must have Java 11 installed|
+|Technical|No DBMS, all data to be stored locally|
+|Technical|Data stored must be in human-editable files|
+|Technical|Programme should be platform independent|
+|Technical|Programme should work without an installer|
 
+<br>
 
 ## <a id="gloss">6. Glossary</a>
 
-* *glossary item* - Definition
+* *CLI* - Command Line Interface
+* *DBMS* - Database Management System
 
+<br>
 
 ## <a id="testinstr">7. Instructions for Manual Testing</a>
 
