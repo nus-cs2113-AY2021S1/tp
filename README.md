@@ -1,5 +1,5 @@
 
-[![codecov](https://codecov.io/gh/AY2021S1-CS2113T-F12-2/tp/branch/master/graph/badge.svg?token=2H6O4KMWRA)](undefined)
+[![codecov](https://codecov.io/gh/AY2021S1-CS2113T-F12-2/tp/branch/master/graph/badge.svg?token=2H6O4KMWRA)](https://codecov.io/gh/AY2021S1-CS2113T-F12-2/tp)
 
 # Duke project template
 
