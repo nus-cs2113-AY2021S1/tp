@@ -72,7 +72,7 @@ public class AddCommand extends Command {
             String result = addModule(access, storage, module);
             ui.showToUser(result);
         } else if (access.isModuleLevel()) {
-            Chapter chapter = new Chapter(moduleOrChapter, Chapter.rateChapter(), storage, access);
+            Chapter chapter = new Chapter(moduleOrChapter, rateChapter(), storage, access);
             String result = addChapter(access, storage, chapter);
             ui.showToUser(result);
         } else {
@@ -123,5 +123,12 @@ public class AddCommand extends Command {
         return result.toString();
     }
 
+    public String rateChapter() {
+        if (Ui.chooseToRateNewDeck()) {
+            return Ui.getChoiceOfNewDeckRating();
+        } else {
+            return "N";
+        }
+    }
 
 }

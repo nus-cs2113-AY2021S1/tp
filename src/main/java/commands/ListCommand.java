@@ -96,21 +96,19 @@ public class ListCommand extends Command {
         }
         result.append(String.format(MESSAGE_EXIST, CHAPTER));
         for (Chapter c : allChapters) {
+            result.append(allChapters.indexOf(c) + 1).append(".")
+                    .append(c).append(" ").append(c.translateRating());
             if (c.getDueBy() == null) {
                 if (allChapters.indexOf(c) == chapterCount - 1) {
-                    result.append(allChapters.indexOf(c) + 1).append(".")
-                            .append(c).append(" (No due date)");
+                    result.append(" (No due date)");
                 } else {
-                    result.append(allChapters.indexOf(c) + 1).append(".")
-                            .append(c).append(" (No due date)\n");
+                    result.append(" (No due date)\n");
                 }
             } else {
                 if (allChapters.indexOf(c) == chapterCount - 1) {
-                    result.append(allChapters.indexOf(c) + 1).append(".")
-                            .append(c).append(" (due by ").append(c.getDueBy()).append(")");
+                    result.append(" (due by ").append(c.getDueBy()).append(")");
                 } else {
-                    result.append(allChapters.indexOf(c) + 1).append(".")
-                            .append(c).append(" (due by ").append(c.getDueBy()).append(")\n");
+                    result.append(" (due by ").append(c.getDueBy()).append(")\n");
                 }
             }
         }

@@ -8,6 +8,7 @@ public class Card {
     private String answer;
     private int previousInterval;
     private LocalDate dueBy;
+    private int rating;
 
     public Card(String question, String answer) {
         this.question = question;
@@ -58,5 +59,9 @@ public class Card {
 
     public String toString() {
         return "[Q] " + question + " | [A] " + answer;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }
