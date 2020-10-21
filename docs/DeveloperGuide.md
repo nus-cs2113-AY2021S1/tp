@@ -7,6 +7,8 @@
 ## Design
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Overall_Architecture.JPG" alt="" width="250"/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Archi_SD.JPG" alt="" width="250"/>
 
 ## Implementation
 
