@@ -45,20 +45,23 @@ public class Storage<T> {
         try {
             fileAsString = Files.readString(Paths.get(filePath));
         } catch (IOException e) {
-            throw new DukeException(DukeExceptionType.ERROR_LOADING_FILE);
+            return createNewInstance();
         }
 
         if (!fileAsString.equals("null")) {
             Gson gson = new Gson();
             return gson.fromJson(fileAsString, storageClass);
         } else {
-            try {
-                return storageClass.getDeclaredConstructor().newInstance();
-            } catch (Exception e) {
-                throw new DukeException(DukeExceptionType.ERROR_LOADING_FILE);
-            }
+            return createNewInstance();
         }
+    }
 
+    private T createNewInstance() throws DukeException {
+        try {
+            return storageClass.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            throw new DukeException(DukeExceptionType.ERROR_LOADING_FILE);
+        }
     }
 
     private ArrayList<String> getData(File f) throws FileNotFoundException {
