@@ -243,7 +243,7 @@ public class DeleteCommand extends Command {
             toDos.delete(index);
             ui.printDeleteToDo(toDoToBeDeleted);
         } else {
-             ui.printErrorMessage(ERROR_TODO_NOT_FOUND);
+            ui.printErrorMessage(ERROR_TODO_NOT_FOUND);
         }
     }
 

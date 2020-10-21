@@ -33,7 +33,7 @@ public class BookmarkList extends QuotesifyList<Bookmark> {
     }
 
     public Bookmark findByIndex(int index) {
-        if (index <= bookmarks.size() -1) {
+        if (index <= bookmarks.size() - 1) {
             return bookmarks.get(index);
         } else {
             return null;
@@ -60,7 +60,7 @@ public class BookmarkList extends QuotesifyList<Bookmark> {
         int index = 0;
         for (Bookmark bookmark: bookmarks) {
             index++;
-            bookmarksToReturn += index +". "+ bookmark.toString() + System.lineSeparator();
+            bookmarksToReturn += index + ". " + bookmark.toString() + System.lineSeparator();
         }
 
         return bookmarksToReturn;
