@@ -54,8 +54,7 @@ public class ShowTimetableCommand extends Command {
     }
 
     @Override
-    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui,
-                        Storage bookmarkStorage, Storage slotStorage) throws DukeException {
+    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws DukeException {
         String message = "";
         List<Module> modules = timetable.getFullModuleList();
         if (day != null) { // "show" and "show day" and "show today"

@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 
@@ -7,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,34 +19,49 @@ import java.util.Scanner;
 /**
  * Deals with loading tasks from the file and saving tasks in the file.
  */
-public class Storage {
+public class Storage<T> {
 
     private String filePath;
+    private Class<T> storageClass;
 
     /**
      * Constructs a new Storage instance by storing the given pathname of the file.
      *
      * @param filePath The pathname of the file.
      */
-    public Storage(String filePath) {
+    public Storage(String filePath, Class<T> storageClass) {
         this.filePath = filePath.replace('/', File.separatorChar);
+        this.storageClass = storageClass;
     }
 
     /**
      * Returns the tasks found within the file.
      *
-     * @return Tasks found in the file.
+     * @return Objects T found in the file.
      * @throws DukeException If file is not found.
      */
-    public ArrayList<String> load() throws DukeException {
-        File f = new File(filePath);
-        ArrayList<String> data;
+    public T load() throws DukeException {
+        String fileAsString;
         try {
-            data = getData(f);
-        } catch (FileNotFoundException e) {
+            fileAsString = Files.readString(Paths.get(filePath));
+        } catch (IOException e) {
+            return createNewInstance();
+        }
+
+        if (!fileAsString.equals("null")) {
+            Gson gson = new Gson();
+            return gson.fromJson(fileAsString, storageClass);
+        } else {
+            return createNewInstance();
+        }
+    }
+
+    private T createNewInstance() throws DukeException {
+        try {
+            return storageClass.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
             throw new DukeException(DukeExceptionType.ERROR_LOADING_FILE);
         }
-        return data;
     }
 
     private ArrayList<String> getData(File f) throws FileNotFoundException {
@@ -58,13 +76,17 @@ public class Storage {
     /**
      * This method creates the file if it does not exist and saves tasks data in the file.
      *
-     * @param data The string of all the data to be saved in the file.
+     * @param data An object to be converted into JSON and saved in the file.
      * @throws DukeException If there is an error writing to the file.
      */
-    public void save(String data) throws DukeException {
+    public void save(Object data) throws DukeException {
         try {
             createDirectory();
-            writeToFile(data);
+
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String jsonString = gson.toJson(data);
+
+            writeToFile(jsonString);
         } catch (IOException e) {
             throw new DukeException(DukeExceptionType.WRITE_FILE_ERROR);
         }
@@ -87,7 +109,7 @@ public class Storage {
     }
 
     private void writeToFile(String textToAdd) throws IOException {
-        FileWriter fw = new FileWriter(filePath);
+        FileWriter fw = new FileWriter(filePath, false);
         fw.write(textToAdd);
         fw.close();
     }

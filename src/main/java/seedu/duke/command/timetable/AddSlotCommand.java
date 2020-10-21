@@ -51,13 +51,10 @@ public class AddSlotCommand extends Command {
      * @param bookmarks The list of bookmarks
      * @param timetable The timetable
      * @param ui The user interface
-     * @param bookmarkStorage The storage for the bookmark list
-     * @param slotStorage The storage for the slot list  // ADD MORE COMMENTS
      * @throws DukeException Some exception // ADD MORE COMMENTS
      */
     @Override
-    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui, Storage bookmarkStorage,
-                        Storage slotStorage) throws DukeException {
+    public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws DukeException {
         String message = "";
         Module module;
         if (timetable.moduleExists(moduleCode)) {
