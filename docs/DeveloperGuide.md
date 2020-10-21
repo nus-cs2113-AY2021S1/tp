@@ -65,7 +65,7 @@ the user input and execute the commands accordingly. The diagram below depicts t
 
 <br>
 
-<b>Parser</b>
+**Parser**
 
 <li>Receives the user input message as a whole.</li>
 <li>Interprets the type of command and splits the message to identify all the parameters provided.</li>
