@@ -271,7 +271,8 @@ public class Storage {
 
         LOGGER.fine("Goal list file written successfully.");
         fileWriter.close();
-
+    }
+    
      /**
      * Loads the tips from a file and returns an ArrayList of String tips.
      * @return an ArrayList of String tips
