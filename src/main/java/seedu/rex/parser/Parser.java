@@ -50,8 +50,16 @@ public class Parser {
         String[] appointmentComponents = line.split(", ");
         LocalDate date = LocalDate.parse(appointmentComponents[0]);
         String bookedStatus = appointmentComponents[1];
-        String nric = appointmentComponents[2];
-        String doctorName = appointmentComponents[3];
+        String nric;
+        String doctorName;
+        if (bookedStatus.contentEquals("booked")){
+            nric = appointmentComponents[2];
+            doctorName = appointmentComponents[3];
+        } else {
+            nric = null;
+            doctorName = null;
+        }
+
         Appointment appointment = new Appointment(date);
         if (bookedStatus.equals("booked")) {
             appointment.bookPatient(Rex.getPatients().getPatientFromNric(nric));

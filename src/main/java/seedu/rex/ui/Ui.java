@@ -12,6 +12,7 @@ import seedu.rex.storage.Storage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -337,6 +338,32 @@ public class Ui {
                 showDateInputError();
                 showLine();
             }
+        }
+    }
+
+    public <T> int displayArrayList(ArrayList<T> list) {
+        int i;
+        for (i = 0; i < list.size(); i++) {
+            String iString = String.valueOf(i + 1);
+            System.out.println(iString + ". " + list.get(i));
+        }
+        return list.size();
+    }
+
+    public void indexOutOfBoundsMessage(int maxAllowableInput) {
+        System.out.print("Index out of bounds! Input should be between 1 to " + maxAllowableInput + ".");
+    }
+
+    public <T> T getItemOfArrayList(ArrayList<T> list) {
+        int maxIndex = displayArrayList(list);
+        System.out.println("Enter the index you want: ");
+        String inputString = in.nextLine();
+        int input = Integer.parseInt(inputString);
+        try {
+            return list.get(input - 1);
+        } catch (IndexOutOfBoundsException e) {
+            indexOutOfBoundsMessage(maxIndex);
+            return null;
         }
     }
 }
