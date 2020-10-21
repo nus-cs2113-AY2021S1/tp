@@ -46,7 +46,7 @@ public class DeadlineCommand extends Command {
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
 
         try {
-            parseUserCommand(command, ui, data);
+            parseUserCommand(command);
             EventList personalList = data.getEventList("Personal");
             Event updatedEvent = personalList.getEventByIndex(index - 1);
             if (updatedEvent != null) {
@@ -76,7 +76,7 @@ public class DeadlineCommand extends Command {
      *
      * @param command user input arguments
      */
-    private void parseUserCommand(String command, Ui ui, UserData data) throws DukeException {
+    private void parseUserCommand(String command) throws DukeException {
         command = command.trim();
         String[] commandSplit = command.split(";");
         if (commandSplit.length == 2) {
