@@ -5,14 +5,14 @@
 <a href =#start> 2. Quick Start </a> <br>
 <a href =#init> 3. Initialisation </a> <br>
 <a href =#features> 4. Features </a> <br>      
-&nbsp &nbsp <a href =#subjects> 4.1 Subjects </a><br>
-&nbsp &nbsp <a href =#topics> 4.2 Topics </a><br>
-&nbsp &nbsp<a href =#tasks> 4.3 Tasks </a><br>
-&nbsp &nbsp<a href =#flashcards> 4.4 Flashcards </a><br>
-&nbsp &nbsp<a href =#takeQuiz>  4.5 Taking Quizzes </a><br>
-&nbsp &nbsp<a href =#result>  4.6. Viewing quiz results </a><br>
-&nbsp &nbsp<a href =#store>  4.7. Storing data </a><br>
-&nbsp &nbsp<a href =#export>  4.8. Exporting data </a><br>
+&nbsp  &nbsp  <a href =#subjects> 4.1 Subjects </a><br>
+&nbsp  &nbsp  <a href =#topics> 4.2 Topics </a><br>
+&nbsp  &nbsp  <a href =#tasks> 4.3 Tasks </a><br>
+&nbsp  &nbsp  <a href =#flashcards> 4.4 Flashcards </a><br>
+&nbsp  &nbsp  <a href =#takeQuiz>  4.5 Taking Quizzes </a><br>
+&nbsp  &nbsp  <a href =#result>  4.6. Viewing quiz results </a><br>
+&nbsp  &nbsp  <a href =#store>  4.7. Storing data </a><br>
+&nbsp  &nbsp  <a href =#export>  4.8. Exporting data </a><br>
 <a href =#faq> 5. FAQ </a> <br>
 <a href =#summary> 6. Command Summary </a> <br>
 
