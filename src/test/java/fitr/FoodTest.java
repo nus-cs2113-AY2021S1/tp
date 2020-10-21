@@ -22,18 +22,6 @@ public class FoodTest {
     }
 
     @Test
-    public void getCaloricConsumptionRate_validFoodWithoutSpecifiedAmount_success() {
-        Food tempExercise = new Food("exercise",tempCalorie);
-        assertEquals(500,tempExercise.getCaloricRate());
-    }
-
-    @Test
-    public void getCaloricConsumptionRate_validFoodWithSpecifiedAmount_success() {
-        Food tempExercise = new Food("exercise",tempCalorie,2);
-        assertEquals(250,tempExercise.getCaloricRate());
-    }
-
-    @Test
     public void getAmountOfFoodSpecified_validFoodWithSpecifiedAmount_success() {
         Food tempExercise = new Food("exercise",tempCalorie,2);
         assertEquals(2,tempExercise.getAmountOfFood());
