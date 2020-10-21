@@ -101,6 +101,8 @@ public class Ui {
     public void showWelcomeScreen() {
         clearScreen();
         System.out.println(LINE);
+        System.out.println("\u001b");
+
         System.out.println("HELLO FROM:");
 
         System.out.println(ansi().bg(WHITE));
