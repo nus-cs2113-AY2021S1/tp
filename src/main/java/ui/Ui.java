@@ -29,7 +29,6 @@ public class Ui {
             + "yet. Please try this command again once you have added some flashcards!";
     private final Scanner in;
     private final PrintStream out;
-    private static final String lineSplit = "    ____________________________________________________________";
 
     public Ui() {
         this(System.in, System.out);
@@ -138,16 +137,6 @@ public class Ui {
 
     public void showError(String error) {
         out.println(error);
-    }
-
-    public void showUnedited(String type, String content) {
-        out.println("The following " + type + " will be edited:");
-        out.println(content);
-    }
-
-    public void showEdited(String type, String content) {
-        out.println("Edited " + type + ":");
-        out.println(content);
     }
 
     public void printDueChapters(ArrayList<DueChapter> dueChapters) {
