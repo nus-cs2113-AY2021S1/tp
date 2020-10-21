@@ -152,6 +152,7 @@ public class Main {
 
                 if (command.getShouldExit()) {
                     ui.printGoodbyeMessage(user.getHonorificName());
+                    ui.shutdownUi();
                     break;
                 }
             } catch (AniException exception) {
