@@ -67,45 +67,27 @@ Format: `help`
 **Example output:** 
 ```
 ----------------------------------------------------
-help: Shows program usage instructions.
-Example: help
+Here is the list of commands available:
 ----------------------------------------------------
-create: Creates a new location in SmartHomeBot
-Parameters: LOCATION
-Example: create Bedroom 1
-----------------------------------------------------
-remove: Remove the indicated LOCATION and all the appliances in that LOCATION.
-Parameters: LOCATION 
-Example: remove Bedroom 1
-----------------------------------------------------
-add: Adds a new appliance to the particular location to the SmartHomeBot. 
-Parameters: add [APPLIANCE_NAME] l/[LOCATION_NAME] w/[WATTAGE] t/[TYPE_OF_APPLIANCE] 
-Example: add Fan1 l/Bedroom 1 w/50 t/Fan
-----------------------------------------------------
-delete: Delete the existing appliance by its indicated NAME that has been added to SmartHomeBot
-Parameters: NAME
-Example: delete Fan 1
-----------------------------------------------------
-on: Turns on specified appliance by its indicated NAME 
-Parameters: NAME 
-Example: on Aircon 1 
-----------------------------------------------------
-off: Turns off specified appliance by its indicated NAME 
-Parameters: NAME
-Example: off Fan 1
-----------------------------------------------------
-usage: Display all the appliances power usage from SmartHomeBot 
-Example: usage
-----------------------------------------------------
-p_reset: Reset all the appliance power usage and total power consumption to zero.
-Example: p_reset
-----------------------------------------------------
-list: Display all the appliances that have been added to SmartHomeBot 
-Example: list
-----------------------------------------------------
-exit: Exits the program.
-Example: exit
-----------------------------------------------------
+	1. Help: help
+	2. Create location: create [LOCATION_NAME]
+	3. Remove location: remove [LOCATION_NAME]
+	4. Add Appliance: add [APPLIANCE_NAME] l/[LOCATION_NAME] w/[WATTAGE] t/[TYPE_OF_APPLIANCE]
+	5. Delete Appliance: delete [APPLIANCE_NAME]
+	6. Switch ON Appliance: 
+		 a. on [APPLIANCE_NAME] 
+		 b. on [APPLIANCE_NAME] p/[PARAMETER] 
+		 c. on [LOCATION_NAME]
+	7. Switch OFF Appliance: 
+		 a. off [APPLIANCE_NAME] 
+		 b. off [LOCATION_NAME]
+	8. List: 
+		 a. list appliance 
+		 b. list location 
+		 c. listappliance l/[LOCATION_NAME]
+	9. Usage of Appliance: usage
+	10. Resetting usage of appliances: p_reset
+	11. Exiting the application: exit
 
 ====================================================
 ```
@@ -117,11 +99,11 @@ Adds a new location with a name.
 Format: `create [LOCATION_NAME]` 
 * `LOCATION_NAME` must be a unique name 
 
-Example: `create Bedroom 1`
+Example: `create Bedroom1`
 
 Output: 
 ```
-Creating Location "Bedroom 1".....CREATED!
+Creating Location "Bedroom1".....CREATED!
 ```
 
 <br/><br/>
@@ -130,11 +112,11 @@ Removes an added location with its name in the list.
 
 Format: `remove [LOCATION_NAME]`
 
-Example: `remove Bedroom 1`
+Example: `remove Bedroom1`
 
 Output: 
 ```
-Removing LOCATION "Bedroom 1"......REMOVED!
+Removing LOCATION "Bedroom1"......REMOVED!
 ```
 
 > Note: If there are appliances added to the 'LOCATION_NAME' when removing, it will be deleted as well. 
@@ -152,14 +134,14 @@ Format: `add [APPLIANCE_NAME] l/[LOCATION_NAME] w/[WATTAGE] t/[TYPE_OF_APPLIANCE
 List of `TYPE_OF_APPLIANCE` 
 1. `fan`
 2. `light`
-2. `airconditioner`
-3. `waterheater`
+2. `aircon`
+3. `plugs`
 
-Example: `add AIRCON1 l/Bedroom 1 w/3500 t/airconditioner`
+Example: `add AIRCON1 l/Bedroom1 w/3500 t/aircon`
 
 Output: 
 ```
-Adding airconditioner: AIRCON1 (3500W) in Bedroom 1.....ADDED!
+ADDING AIRCON1(3500W) in Bedroom1......ADDED
 ```
 
 <br/><br/>
@@ -172,14 +154,16 @@ Example: `delete AIRCON1`
 
 Output: 
 ```
-Deleting AirConditioner: AIRCON1 (3500) in Bedroom 1......DELETED!
+Deleting AIRCON1(3500W) in Bedroom1.......DELETED.
 ```
    
 <br/><br/>
 ### Switching on an appliance: `on` 
 Switches ON an appliance base on its name in the list. 
 
-Format: `on [APPLIANCE_NAME]`
+Format: `on [APPLIANCE_NAME]` or `on [APPLIANCE_NAME] p/[PARAMETER]` or `on [LOCATION_NAME]`
+
+1. `on [APPLIANCE_NAME]`: Switch ON the appliance by its name.
 
 Example: `on AIRCON1`
 
@@ -205,9 +189,10 @@ Switching off AIRCON1 in Bedroom 1 ......OFF!
 ### Listing all the locations OR appliances: `list`
 List out all the appliances or all the location currently stored.
 
-Format: `list appliance` or `list location`
-* `list appliance` will list all the appliances entered by the user in SmartHomeBot.
-* `list location` will list all the locations entered by the user in SmartHomeBot.
+Format: `list appliance` or `list location` or `list appliance l/[LOCATION_NAME]`
+* `list appliance` will list all the appliances entered by the user.
+* `list location` will list all the locations entered by the user.
+* `list appliance l/[LOCATION_NAME]` will list all the appliances in the location entered by the user.
 
 Example: `list location`
 
@@ -228,6 +213,7 @@ Here are the appliances in your list.
 <br/><br/> 
 ### Displaying the usage of appliance: `usage`
 Display the current power usage of all appliances and total power consumption. 
+
 Format: `usage`
 
 Output: 

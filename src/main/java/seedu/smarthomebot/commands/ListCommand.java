@@ -20,7 +20,7 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String MESSAGE_USAGE = "List: \n\t\t a. " + COMMAND_WORD
             + " appliance \n\t\t b. " + COMMAND_WORD + " location \n\t\t c. "
-            + COMMAND_WORD + "appliance l/[LOCATION_NAME]";
+            + COMMAND_WORD + " appliance l/[LOCATION_NAME]";
     private static final String APPLIANCE_TYPE = "appliance";
     private static final String LOCATION_TYPE = "location";
     private final String parameter;
