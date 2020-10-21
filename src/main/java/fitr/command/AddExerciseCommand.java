@@ -13,6 +13,8 @@ import fitr.user.User;
 
 import java.io.IOException;
 
+import static fitr.common.Commands.COMMAND_EXERCISE;
+
 public class AddExerciseCommand extends Command {
     public AddExerciseCommand(String command) {
         this.command = command;
@@ -43,7 +45,7 @@ public class AddExerciseCommand extends Command {
         } catch (NumberFormatException | NullPointerException e) {
             Ui.printCustomError("Sorry, invalid calorie amount entered");
         } catch (ArrayIndexOutOfBoundsException e) {
-            Ui.printCustomError("Please key in the correct format");
+            Ui.printFormatError(COMMAND_EXERCISE);
         } catch (IOException e) {
             Ui.printCustomError("Sorry, there is an error in the file");
         }

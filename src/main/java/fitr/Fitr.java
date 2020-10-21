@@ -38,7 +38,6 @@ public class Fitr {
             TipList tipList = new TipList(storage.loadTipList());
             TipManager tipOfTheDay = new TipManager(tipList);
             tipOfTheDay.execute();
-            Ui.printGreetingMessage();
             Ui.printSuggestQuestion();
         } catch (IOException e) {
             System.out.println("Theres no file");
