@@ -26,10 +26,11 @@ public class Duke {
         new Duke();
         boolean isOngoing = true;
         Ui.printWelcomeMessage();
+        parser = new Parser("lol");
         while (isOngoing) {
             try {
                 String fullCommand = Ui.getCommand();
-                parser = new Parser(fullCommand);
+                parser.setUserInput(fullCommand);
                 isOngoing = parser.extractType();
             } catch (CustomException error) {
                 Ui.showError(error);

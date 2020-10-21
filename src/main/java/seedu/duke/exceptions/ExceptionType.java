@@ -9,7 +9,8 @@ public enum ExceptionType {
     SAME_LOCATIONS("You don't need a bus to get there...You are right there!"),
     INVALID_BUS_STOP("Oh no! I do not understand which bus stop you are looking for"),
     INVALID_FACULTY("Oh no! Please enter a faculty."),
-    INVALID_FOODPLACE("Oh no! I cannot detect any inputs.");
+    INVALID_FOODPLACE("Oh no! I cannot detect any inputs."),
+    INVALID_FAVOURITE("Oh no! I cannot seem to detect the command you want to store as your favourite");
 
     private String message;
 

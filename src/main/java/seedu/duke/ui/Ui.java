@@ -2,6 +2,8 @@ package seedu.duke.ui;
 
 import seedu.duke.Bus;
 import seedu.duke.DiningOptions;
+import seedu.duke.Favourites;
+import seedu.duke.UserFavourite;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
 
@@ -30,6 +32,17 @@ public class Ui {
 
     public static void printLine() {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    }
+
+    public static void listFav() {
+        ArrayList<UserFavourite> items = Favourites.getFavCommands();
+        printLine();
+        assert items.size() != 0 : "You have nothing in your favourites";
+        int count = 1;
+        for (UserFavourite command : items) {
+            System.out.println(count++ + ". " + command);
+        }
+        printLine();
     }
 
     public static void showError(Exception error) {

@@ -2,6 +2,7 @@ package seedu.duke.logic.parser;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
+import seedu.duke.logic.commands.AddFavCommand;
 import seedu.duke.logic.commands.AllBusCommand;
 import seedu.duke.logic.commands.BusCommand;
 import seedu.duke.logic.commands.Command;
@@ -18,8 +19,13 @@ import java.lang.reflect.Array;
 public class Parser {
 
     private String userInput;
+    private String previousInput;
 
     public Parser(String userInput) {
+        this.userInput = userInput;
+    }
+
+    public void setUserInput(String userInput) {
         this.userInput = userInput;
     }
 
@@ -37,6 +43,9 @@ public class Parser {
 
         String[] parts = splitCommands(2, "\\s+");
         String command = parts[0];
+        if (!command.equals("/addfav")) {
+            previousInput = userInput;
+        }
 
         Command com;
         switch (command) {
@@ -67,6 +76,13 @@ public class Parser {
         case "/exit":
             com = new ExitCommand();
             break;
+        case "/addfav":
+            com = new AddFavCommand(previousInput, parts[1]);
+            break;
+        //       case "/delfav":
+        //          break;
+        //       case "/listfav":
+        //          break;
         default:
             throw new CustomException(ExceptionType.INVALID_COMMAND);
         }
