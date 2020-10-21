@@ -24,6 +24,43 @@ Given below is how the deadline command behave: <br>
 The following sequence diagram shows how the deadline operation works: <br>
 
 ![Sequence Diagram for Deadline Command](/docs/diagrams/DeadlineSequenceDiagram.jpg)
+
+#### [Proposed] Goal feature
+
+##### Proposed Implementation
+
+The proposed goal feature is achieved by `GoalCommand`. It either prints the current goal stored internally in
+`UserData` if there is one, or it sets the input as the new goal by replacing the previous goal.
+
+Given below is an example usage scenario of the goal feature.
+
+Step 1. The user launches the application for the first time. `Ui#printGoal` is called, 
+a line informing them they have no goal is printed.
+
+Step 2. The user executes `goal save money` command to set the goal as "save money".
+The `goal` command is passed through a parser to return the GoalCommand with arguments initialised.
+
+Step 3. `GoalCommand#execute()` is called, setting the goal in `UserData` to "save money". The change is printed
+with `Ui#printChangeGoal()`.
+
+Step 4. The user executes `goal` command to print the current goal.
+The `goal` command is passed through a parser to return the GoalCommand with blank arguments.
+
+Step 5.  `GoalCommand#execute()` is called, to retrieve the current goal in `UserData` and print it
+with `Ui#printGoal()`.
+
+The following sequence diagram shows how the `goal save money` command is parsed:
+
+<p align="center">
+  <img src="/docs/diagrams/GoalParseSequenceDiagram.jpg">
+</p>
+
+The following sequence diagram shows how `GoalCommand#execute()` works:
+
+<p align="center">
+  <img src="/docs/diagrams/GoalExecuteSequenceDiagram.jpg">
+</p>
+
 ## Documentation, logging, testing, configuration, dev-ops (not sure what this entails)
 
 ## Appendix: Requirements
