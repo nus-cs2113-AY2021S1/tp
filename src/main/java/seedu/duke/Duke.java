@@ -48,7 +48,7 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(bookmarks, timetable, ui, bookmarkStorage, timetableStorage);
+                c.execute(bookmarks, timetable, ui);
                 isExit = c.isExit();
 
                 bookmarkStorage.save(bookmarks);
