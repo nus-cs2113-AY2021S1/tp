@@ -73,22 +73,18 @@ Subsequently, users can begin using the application.
 
 ### Subjects
 
-#### Adding a subject: `add`
+Subject commands can only be used when in the home page
 
-Format: `add SUBJECT_NAME`
+#### `add` Add Subject 
+
+Format: `add` `SUBJECT_NAME`
 
 Example of usage:
 ```
-add CS2113T
 add CS2101
 ```
 Output:
 ```
-____________________________________________________________
-Got it. I've added this subject:
-  CS2113T
-Now you have 4 subjects in the list.
-____________________________________________________________
 ____________________________________________________________
 Got it. I've added this subject:
   CS2101
@@ -96,7 +92,7 @@ Now you have 5 subjects in the list.
 ____________________________________________________________
 ```
 
-#### Listing subjects: `list`
+#### `list` List Subjects
 
 Format: `list`
 
@@ -116,7 +112,7 @@ Here are the subject(s) in your list:
 ____________________________________________________________
 ```
 
-#### Deleting a subject: `delete`
+#### `delete` `Delete Subject`
 
 Format: `delete SUBJECT_INDEX`
 
@@ -133,7 +129,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### finding a subject: `find`
+#### `find` Find Subject
 
 Format: `find KEYWORD`
 
@@ -152,7 +148,7 @@ ____________________________________________________________
 
 ```
 
-####  Entering a subject: `subject`
+####  `subject` Enter Subject
 
 Format: `subject SUBJECT_NAME`
 
