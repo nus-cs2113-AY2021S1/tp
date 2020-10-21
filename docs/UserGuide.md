@@ -31,7 +31,7 @@ AniChan is an all-rounded tool to effectively create and organize anime lists wi
 ## 2. Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `AniChan` from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/v1.0).
+2. Download the latest version of `AniChan` from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V1.0).
 3. Copy the file to the folder you want to use as the home folder for your AniChan.
 4. Open cmd and change directory into the folder. Run “java -jar anichan.jar”.
 5. Type a command into the command prompt and press ‘Enter’ to execute it. e.g. typing `help` and pressing ‘Enter’ will display the help message.
@@ -69,11 +69,11 @@ Adds a new workspace to user.
 
 Format: `addws -n <NAME>`
 
-Example of usage: `addws -n Crispy Donuts`
+Example of usage: `addws -n Crispy Donuts Studio`
 
 The expected outcome:
 ```
-Successfully added new workspace: Crispy Donuts
+Successfully added new workspace: Crispy Donuts Studio
 ```
 
 <br/>
@@ -83,11 +83,11 @@ Switch the current active workspace of user.
 
 Format: `switchws -n <NAME>`
 
-Example of usage: `switchws -n Crispy Donuts`
+Example of usage: `switchws -n Crispy Donuts Studio`
 
 The expected outcome:
 ```
-Workspace changed to Crispy Donuts
+Workspace changed to Crispy Donuts Studio
 ```
 
 <br/>
@@ -420,8 +420,8 @@ Coming soon!
 |Feature|Command|
 |---|---|
 | Help                                     | `help`                                                   |
-| Add user                                 | `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER>`    |
-| Switch user                              | `switchuser -n <USERNAME>`                               |
+| Add workspace                            | `addws -n <NAME>>`                                       |
+| Switch workspace                         | `switchws -n <NAME>`                                     |
 | Browse                                   | `browse -s [name/rating] -p <1-26> -o [asc/dsc]`         |
 | Create watchlist                         | `watchlist -n <WATCHLIST_NAME>`                          |
 | List all watchlist                       | `watchlist -l`                                           |
