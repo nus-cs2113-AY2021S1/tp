@@ -45,7 +45,10 @@ The rest of AniChan consists of 6 components:
 - `AnimeData`: Provides data from the anime data file.
 - `StorageManager`: Reads data from, and writes data to, the hard disk.
 
-Here is an overall Sequence Diagram to help illustrate the flow of AniChan. 
+**LifeCycle of AniChan**
+
+Here is an overall Sequence Diagram to help illustrate the general program flow and how the different objects 
+interact with each other
 ![Main Sequence Diagram](images/Overall-Sequence-Diagram.png)
 
 
