@@ -57,7 +57,7 @@ The architecture design is given in the diagram above. The main components of No
 1. `Notebook`: Stores and manages the creation and deletion of notes and other note-related functionality.
 1. `StorageManager`: Manages the loading of existing saved files and exporting of data to human-editable files
 
-<b>NotUS</b> manages the flow of the application. On launch, it will create the necessary components, as listed above
+**NotUS** manages the flow of the application. On launch, it will create the necessary components, as listed above
  and then attempts to load any existing saved files into the application. Subsequently, it will accept and interpret
 the user input and execute the commands accordingly. The diagram below depicts the main flow of the application.
 
