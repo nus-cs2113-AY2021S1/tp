@@ -1,14 +1,14 @@
 package seedu.smarthomebot.storage;
 
-import seedu.smarthomebot.common.Messages;
-import seedu.smarthomebot.data.framework.type.AirConditioner;
-import seedu.smarthomebot.data.ApplianceList;
-import seedu.smarthomebot.data.framework.type.Fan;
-import seedu.smarthomebot.data.framework.type.Lights;
-import seedu.smarthomebot.data.LocationList;
-import seedu.smarthomebot.data.framework.type.SmartPlug;
-import seedu.smarthomebot.exceptions.DuplicateDataException;
-import seedu.smarthomebot.exceptions.FileCorruptedException;
+import seedu.smarthomebot.commons.Messages;
+import seedu.smarthomebot.model.framework.type.AirConditioner;
+import seedu.smarthomebot.model.ApplianceList;
+import seedu.smarthomebot.model.framework.type.Fan;
+import seedu.smarthomebot.model.framework.type.Lights;
+import seedu.smarthomebot.model.LocationList;
+import seedu.smarthomebot.model.framework.type.SmartPlug;
+import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
+import seedu.smarthomebot.storage.exceptions.FileCorruptedException;
 import seedu.smarthomebot.ui.TextUi;
 import java.nio.charset.StandardCharsets;
 
@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_TYPE_NOT_EXIST;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_TYPE_NOT_EXIST;
 
 public class StorageFile {
 

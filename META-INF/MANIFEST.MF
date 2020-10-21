@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: seedu.smarthomebot.SmartHomeBot
+Main-Class: seedu.smarthomebot.Main
 
