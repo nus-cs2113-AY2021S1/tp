@@ -10,19 +10,17 @@
     - [Value proposition](#value-proposition)
 - [User stories](#user-stories)
 - [Non-functional requirements](#non-functional-requirements)
-- [Glossary](#glossary)
 - [Instructions for manual testing](#instructions-for-manual-testing)
 
 ## Design & implementation
 
-<<<<<<< HEAD
 This section provides an overview of the Fitr application.
 
 ### Architecture
 
 ![Main class diagram](images/MainClassDiagram.png)
 
-The _**Architecture Diagram**_ above shows the a high-level overview of Fitr. Given below is a quick overview of each component.
+The _**Architecture Diagram**_ above explains the high-level design of Fitr. Given below is a quick overview of each component.
 
 The main driver of the application is `Fitr` is responsible for mainly two phases:
 * At app launch: Initialises or loads the respective lists and user profile in the correct sequence and is in charge of connecting the various components with each other.
@@ -93,8 +91,8 @@ Our application helps users to keep fit without needing them to do any research 
 
 ## Non-functional requirements
 
-1.  This application should work on any mainstream operating system, such as Windows or macOS, as long as Java 11 or above is installed.
-1. Should be able to hold up to 1000 exercise, food or goal entries without a noticeable difference in performance for typical usage.
+1. This application should work on any mainstream operating system, such as Windows or macOS, as long as Java 11 or above is installed.
+1. This application should be able to hold up to 1000 exercise, food or goal entries without a noticeable difference in performance for typical usage.
 1. A user with above average typing speed for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ## Instructions for manual testing
