@@ -195,18 +195,21 @@ Paper trading allows inexperienced people to get a feel of what trading feels li
 |Version| As a/an ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|new investor|see usage instructions|refer to them when I forget how to use the application|
+|v1.0|new investor|trade without putting my money at risk|learn from my mistakes and experience without losing money|
 |v1.0|investor|search for stocks I can buy|have more information to make a more informed decision|
 |v1.0|investor|buy stocks|profit from any capital gains or dividends|
 |v1.0|investor|sell stocks|realise my gains or reallocate my money to other stocks|
 |v1.0|investor|view my portfolio|see what stocks I have and my past transactions|
-|v1.0|investor|see usage instructions|refer to them when I forget how to use the application|
 |v2.0|investor|keep track of what stocks I have bought or sold|see how much money I've made or lost|
 |v2.0|investor|see how much cash I have left|decide how much to buy or sell|
+|v3.0|investor|have a watchlist of stocks|track the price movements of individual stocks|
+|v4.0|investor|see the performance of my portfolio|see if I'm on track for my financial goals|
 
 ## Non-Functional Requirements
 
 {Give non-functional requirements}
 1. Program should not take more than 5s to run for every command.
+2. Program should give some loading indicator when fetching stock prices from API calls.
 
 ## Glossary
 
