@@ -18,33 +18,39 @@ import java.util.Scanner;
 /**
  * Deals with loading tasks from the file and saving tasks in the file.
  */
-public class Storage {
+public class Storage<T> {
 
     private String filePath;
+    private Class<T> storageClass;
 
     /**
      * Constructs a new Storage instance by storing the given pathname of the file.
      *
      * @param filePath The pathname of the file.
      */
-    public Storage(String filePath) {
+    public Storage(String filePath, Class<T> storageClass) {
         this.filePath = filePath.replace('/', File.separatorChar);
+        this.storageClass = storageClass;
     }
 
     /**
      * Returns the tasks found within the file.
      *
-     * @return Tasks found in the file.
+     * @return Objects T found in the file.
      * @throws DukeException If file is not found.
      */
-    public ArrayList<String> load() throws DukeException {
-        File f = new File(filePath);
-        ArrayList<String> data;
+    public T load() throws DukeException {
+        String fileAsString;
         try {
-            data = getData(f);
-        } catch (FileNotFoundException e) {
+            fileAsString = Files.readString(Paths.get(filePath));
+        } catch (IOException e) {
             throw new DukeException(DukeExceptionType.ERROR_LOADING_FILE);
         }
+
+        Gson gson = new Gson();
+
+        T data = gson.fromJson(fileAsString, storageClass);
+
         return data;
     }
 
