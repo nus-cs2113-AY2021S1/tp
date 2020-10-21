@@ -18,9 +18,9 @@ import static seedu.smarthomebot.common.Messages.MESSAGE_LIST_LOCATIONS;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Display all the appliances that have been added to SmartHomeBot \n"
-            + "Example: " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE = "List: \n\t\t a. " + COMMAND_WORD
+            + " appliance \n\t\t b. " + COMMAND_WORD + " location \n\t\t c. "
+            + COMMAND_WORD + "appliance l/[LOCATION_NAME]";
     private static final String APPLIANCE_TYPE = "appliance";
     private static final String LOCATION_TYPE = "location";
     private final String parameter;

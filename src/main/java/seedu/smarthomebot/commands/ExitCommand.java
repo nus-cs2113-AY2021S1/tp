@@ -5,8 +5,7 @@ import seedu.smarthomebot.data.framework.Appliance;
 public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exits the program.\n"
-            + "Example: " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE = "Exiting the application: " + COMMAND_WORD;
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting SmartHomeBot as requested ...";
 
     public static boolean isExit(Command command) {

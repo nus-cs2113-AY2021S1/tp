@@ -9,9 +9,7 @@ import static seedu.smarthomebot.common.Messages.MESSAGE_USAGE_RESET;
 public class ResetCommand extends Command {
 
     public static final String COMMAND_WORD = "p_reset";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Reset all the appliance power usage and total power consumption to zero\n"
-            + "Example: " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE = "Resetting usage of appliances: " + COMMAND_WORD;
 
     @Override
     public CommandResult execute() {

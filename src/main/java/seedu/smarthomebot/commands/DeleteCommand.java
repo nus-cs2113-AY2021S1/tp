@@ -6,11 +6,8 @@ import seedu.smarthomebot.exceptions.EmptyParameterException;
 
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Delete the existing appliance by its indicated NAME that has been added to SmartHomeBot\n"
-            + "Parameters: NAME\n"
-            + "Example: " + COMMAND_WORD
-            + " Fan 1";
+    public static final String MESSAGE_USAGE = "Delete Appliance: " + COMMAND_WORD
+            + " [APPLIANCE_NAME]";
     private final String userEnteredName;
 
     public DeleteCommand(String name) {

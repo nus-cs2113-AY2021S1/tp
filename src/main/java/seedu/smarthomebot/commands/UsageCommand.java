@@ -17,9 +17,7 @@ import static seedu.smarthomebot.common.Messages.MESSAGE_TOTAL_POWER_USAGE;
 public class UsageCommand extends Command {
 
     public static final String COMMAND_WORD = "usage";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Display all the appliances power usage from SmartHomeBot \n"
-            + "Example: " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE = "Usage of Appliance: " + COMMAND_WORD;
 
     @Override
     public CommandResult execute() {

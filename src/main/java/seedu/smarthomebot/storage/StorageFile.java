@@ -66,7 +66,7 @@ public class StorageFile {
 
             myReader.close();
         }  catch (FileNotFoundException | DuplicateDataException e) {
-            ui.printToUser("Load File Does not Exist. No contents will be loaded.");
+            ui.printToUser("Load File does not exist. No contents will be loaded.");
         } catch (IOException e) {
             ui.printToUser("Load File is corrupted.");
         }
