@@ -235,6 +235,7 @@ public class Parser {
         case COMMAND_DELETE:
             try {
                 ui.printDeletedFood(manager.getFoodList().delete(getCommandIndex(userInput)));
+                manager.setCalculator();
             } catch (IndexOutOfBoundsException e) {
                 throw new DietException("No such index!");
             }
@@ -264,6 +265,7 @@ public class Parser {
             return;
         case COMMAND_ADD:
             ui.printNewFood(getProcessedAdd(userInput, manager.getFoodList()));
+            manager.setCalculator();
             return;
         default:
             throw new DietException("There's no such command!");
