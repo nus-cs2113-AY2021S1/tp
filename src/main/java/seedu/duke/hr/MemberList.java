@@ -71,6 +71,29 @@ public class MemberList {
     }
 
     /**
+     * Standardizes the member name by capitalizing the first character of each word.
+     * @param memberName name of the member.
+     * @return name standardized member name.
+     */
+    public static String standardizeMemberName(String memberName) {
+            char[] charArray = memberName.toCharArray();
+            boolean isSpace = true;
+            for(int i = 0; i < charArray.length; i++) {
+                if(Character.isLetter(charArray[i])) {
+                    if(isSpace) {
+                        charArray[i] = Character.toUpperCase(charArray[i]);
+                        isSpace = false;
+                    }
+                }
+                else {
+                    isSpace = true;
+                }
+            }
+            String name = String.valueOf(charArray);
+            return name;
+    }
+
+    /**
      * find the member in the arraylist.
      * @param memberName name of the member to be found.
      * @return if member exists, returns the member, else returns null.
