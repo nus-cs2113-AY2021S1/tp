@@ -21,14 +21,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
-    private static final String ANIME_DATA_SOURCE_FOLDER = "/AniListData";
+    private static final String ANIME_DATA_SOURCE_DIRECTORY = "/AniListData";
+    private static final String ANICHAN_STORAGE_DIRECTORY = "data" + File.separator;
     private static final Logger LOGGER = getAniLogger(Main.class.getName());
 
     private final Ui ui;
     private final Parser parser;
     private final StorageManager storageManager;
 
-    private AnimeStorage animeStorage;
     private AnimeData animeData;
     private User user;
 
@@ -36,7 +36,7 @@ public class Main {
         user = null;
         ui = new Ui();
         parser = new Parser();
-        storageManager = new StorageManager("data" + File.separator);
+        storageManager = new StorageManager(ANICHAN_STORAGE_DIRECTORY);
 
         LOGGER.log(Level.INFO, "AniChan started! Initializing...");
 
@@ -85,7 +85,7 @@ public class Main {
         // ========================== New User Setup ==========================
 
         if (user == null) {
-            LOGGER.log(Level.INFO, "Creating new user");
+            LOGGER.log(Level.INFO, "Creating new user..");
 
             while (true) {
                 try {
@@ -103,7 +103,7 @@ public class Main {
 
         // ========================== Workspace Setup ==========================
 
-        LOGGER.log(Level.INFO, "Workspace setup... ");
+        LOGGER.log(Level.INFO, "Workspace setup..");
 
         user.setWorkspaceList(workspaceList);
         if (user.getTotalWorkspaces() == 0) {
@@ -135,7 +135,7 @@ public class Main {
         // ========================== Anime Data Setup ==========================
 
         try {
-            animeStorage = new AnimeStorage(ANIME_DATA_SOURCE_FOLDER);
+            AnimeStorage animeStorage = new AnimeStorage(ANIME_DATA_SOURCE_DIRECTORY);
             animeData = new AnimeData(animeStorage.readAnimeDatabase());
         } catch (IOException e) {
             ui.printErrorMessage(e.getMessage());

@@ -4,12 +4,11 @@ import anichan.anime.AnimeData;
 import anichan.exception.AniException;
 import anichan.human.User;
 import anichan.human.Workspace;
+import anichan.logger.AniLogger;
 import anichan.storage.StorageManager;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static anichan.logger.AniLogger.getAniLogger;
 
 public class EstimateCommand extends Command {
     private static final int NO_WORDS_PER_HOUR_PROVIDED = -1;
@@ -19,7 +18,7 @@ public class EstimateCommand extends Command {
     // of 100 (400, 500, 600) is chosen to provide users with various estimation times so
     // they can identify which of these 3 values is a better estimate for them.
     private static final int[] AVERAGE_TRANSLATOR_WORDS_PER_HOUR = {400, 500, 600};
-    private static final Logger LOGGER = getAniLogger(EstimateCommand.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(EstimateCommand.class.getName());
 
     private final String scriptFileName;
     private final int wordsPerHour;
@@ -32,8 +31,8 @@ public class EstimateCommand extends Command {
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         Workspace activeWorkspace = user.getActiveWorkspace();
-        String fileString = storageManager.readScript(activeWorkspace.getName(), scriptFileName);
-        int wordCount = fileString.split(" ").length;
+        String fileContent = storageManager.loadScript(activeWorkspace.getName(), scriptFileName);
+        int wordCount = fileContent.split(" ").length;
         LOGGER.log(Level.INFO, wordCount + " words in the script (" + scriptFileName + ").");
 
         StringBuilder commandResult = new StringBuilder();

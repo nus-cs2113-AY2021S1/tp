@@ -1,6 +1,7 @@
 package anichan.storage;
 
 import anichan.exception.AniException;
+import anichan.logger.AniLogger;
 import anichan.watchlist.Watchlist;
 
 import java.io.File;
@@ -8,13 +9,11 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static seedu.duke.logger.AniLogger.getAniLogger;
-
 public class WatchlistStorage extends Storage {
     private static final String WATCHLIST_FILE_NAME = "watchlist.txt";
     private static final String WATCHLIST_LINE_DELIMITER_FOR_DECODE = " \\| ";
     private static final String WATCHLIST_LINE_DELIMITER_FOR_ENCODE = " | ";
-    private static final Logger LOGGER = getAniLogger(WatchlistStorage.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistStorage.class.getName());
 
     private final String storageDirectory;
 
@@ -35,15 +34,15 @@ public class WatchlistStorage extends Storage {
 
     public String load(String workspaceName, ArrayList<Watchlist> watchlistList) throws AniException {
         String watchlistFilePath = storageDirectory + workspaceName + File.separator + WATCHLIST_FILE_NAME;
-        String fileString = readFile(watchlistFilePath);
-        if (fileString.isBlank()) {
+        String fileContent = readFile(watchlistFilePath);
+        if (fileContent.isBlank()) {
             LOGGER.log(Level.WARNING, "Empty watchlist file: " + watchlistFilePath);
             return "Empty watchlist file.";
         }
 
         boolean hasInvalidWatchlist = false;
-        String[] fileLines = fileString.split(System.lineSeparator());
-        LOGGER.log(Level.INFO, "Processing: " + System.lineSeparator() + fileString);
+        String[] fileLines = fileContent.split(System.lineSeparator());
+        LOGGER.log(Level.FINE, "Processing: " + System.lineSeparator() + fileContent);
         for (String line : fileLines) {
             Watchlist decodedWatchlist = decode(line);
             boolean isValidWatchlist = (decodedWatchlist != null) && !(watchlistList.contains(decodedWatchlist));
