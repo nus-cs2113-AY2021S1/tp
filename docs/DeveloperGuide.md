@@ -15,7 +15,7 @@
     * [Store Data](#store-data)
     * [Add Task](#add-task)
     * [Delete Task](#delete-task)
-    * [Mark Task as Done]()
+    * [Mark Task as Done](#mark-task-as-done)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product Scope](#product-scope)
