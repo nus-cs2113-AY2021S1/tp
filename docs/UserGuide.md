@@ -9,6 +9,7 @@
   * [3.1. Check for direct bus: ```/route```](#31-check-for-direct-bus-route)
     + [3.1.1. Examples of usage](#311-examples-of-usage)
   * [3.2. Check bus route: ```/routemap```](#32-check-bus-route-routemap)
+    + [3.2.1. Examples of usage](#321-examples-of-usage)
   * [3.3.Check for available bus at a location: ```/bus```](#33check-for-available-bus-at-a-location-bus)
   * [3.4. List all bus available in NUS ```/allbus```](#34-list-all-bus-available-in-nus-allbus)
   * [3.5. List all bus stops in NUS: ```/liststops```](#35-list-all-bus-stops-in-nus-liststops)
@@ -92,24 +93,31 @@ This command displays the full route of the bus that you have specified. <br>
 Format: <code>/routemap <strong>bus code</strong></code> <br>
 
 #### 3.2.1. Examples of usage
-<b><u>Example 1</u></b>
-Let us suppose that you are at Raffles Hall with only one bus stop
+<b><u>Example 1</u></b><br>
+This command is exceptionally useful to find indirect bus routes.
+Let us suppose that you are at Raffles Hall with only bus AA2 available and would like to go to University Town. 
+You would notice that there is no direct bus to University Town. You could use the <code>/routemap</code> to find
+indirect routes to your intended destination. <br>
+These are the steps to follow:
+1. You key in <code>/routemap <strong> AA2 </strong></code> into the command line interface and press enter<br>
 
+2. The result will display the whole bus route of bus AA2.
 
-Example of usage: <code>/routemap <strong> AA1 </strong></code> <br>
-Expected outcome: 
-```
-/routemap
-What bus routes would you like to see?
-Currently, we have two bus routes available for your viewing 
-1.AA1 
-2.AA2 
-Type the name to view:
-aa1
-Here is the AA1 route that you have requested:
-AA1
-PGP-> Kent Ridge MRT Station-> Opp University Health Centre-> Yusof Ishak House-> Central Library-> Kent Ridge-> Museum-> University Town-> University Health Centre-> Opp Kent Ridge MRT station-> PGPR
-```
+3. With the information that bus AA2 could bring you to bus stops after Raffles Hall e.g. Kent Vale, you can now check 
+if there is a direct bus route from these bus stops.
+
+<b><u>Example 2</u></b><br>
+This command is also useful in showing you the previous bus stops of your intended bus. You could use this information
+to gauge how crowded the bus would be.
+Let us suppose that you are at Yusof Ishak intending to board AA1. <br>
+These are the steps to follow:
+1. You key in <code>/routemap <strong> AA1 </strong></code> into the command line interface and press enter<br>
+
+2. The result will display the whole bus route of bus AA1. You will observe that the bus passes through University Town
+which is relatively more crowded than other bus stops.
+
+3. With this information, you could explore other bus routes to your destination.
+
 
 ### 3.3.Check for available bus at a location: ```/bus```
 Checks for available bus at a user-specified location <br>
