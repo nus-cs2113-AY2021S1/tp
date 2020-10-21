@@ -22,10 +22,10 @@ public class Messages {
     public static final String INPUT_WEIGHT = "Please enter your weight (in kg):";
     public static final String INPUT_GENDER = "Please enter your gender (Enter 'M' for Male or 'F' for Female):";
     public static final String SETUP_COMPLETE = "Setup complete!";
-    public static final String ERROR_INVALID_AGE_INPUT = "Oops! That is an invalid age input.\n";
-    public static final String ERROR_INVALID_GENDER_INPUT = "Oops! That is an invalid gender input.\n";
-    public static final String ERROR_INVALID_HEIGHT_INPUT = "Oops! That is an invalid height input.\n";
-    public static final String ERROR_INVALID_WEIGHT_INPUT = "Oops! That is an invalid weight input.\n";
+    public static final String ERROR_INVALID_AGE_INPUT = "Oops! That is an invalid age input.";
+    public static final String ERROR_INVALID_GENDER_INPUT = "Oops! That is an invalid gender input.";
+    public static final String ERROR_INVALID_HEIGHT_INPUT = "Oops! That is an invalid height input.";
+    public static final String ERROR_INVALID_WEIGHT_INPUT = "Oops! That is an invalid weight input.";
     public static final String NAME_OUTPUT_HEADER = "Name: ";
     public static final String AGE_OUTPUT_HEADER = "Age: ";
     public static final String GENDER_OUTPUT_HEADER = "Gender: ";

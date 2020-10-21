@@ -37,15 +37,6 @@ public class AddGoalCommand extends Command {
                 //Food goal
                 case COMMAND_FOOD:
                     userInput = userInput.split(" ", 2)[1].trim();
-                    //if (compare(userInput.charAt(0), '>') == 0) {
-                    //    userInput = userInput.replaceFirst("<", "").trim();
-                    //    goalList.addGoal(new Goal(COMMAND_FOOD, userInput));
-                    //} else if (compare(userInput.charAt(0), '<') == 0) {
-                    //    userInput = userInput.replaceFirst(">", "").trim();
-                    //    goalList.addGoal(new Goal(COMMAND_FOOD, userInput));
-                    //} else {
-                    //    goalList.addGoal(new Goal(COMMAND_FOOD, userInput));
-                    //}
                     Goal newFoodGoal = new Goal(COMMAND_FOOD, userInput);
                     goalList.addGoal(newFoodGoal);
                     Ui.printCustomMessage("Okay! The following goal has been added: \n\t["
@@ -54,18 +45,8 @@ public class AddGoalCommand extends Command {
                 //Exercise goal
                 case COMMAND_EXERCISE:
                     userInput = userInput.split(" ", 2)[1].trim();
-                    //if (compare(userInput.charAt(0), '>') == 0) {
-                    //    userInput = userInput.replaceFirst("<", "").trim();
-                    //    goalList.addGoal(new Goal(COMMAND_EXERCISE, userInput));
-                    //} else if (compare(userInput.charAt(0), '<') == 0) {
-                    //    userInput = userInput.replaceFirst(">", "").trim();
-                    //    goalList.addGoal(new Goal(COMMAND_EXERCISE, userInput));
-                    //} else {
-                    //    goalList.addGoal(new Goal(COMMAND_EXERCISE, userInput));
-                    //}
                     Goal newExerciseGoal = new Goal(COMMAND_EXERCISE, userInput);
                     goalList.addGoal(newExerciseGoal);
-                    storage.writeGoalList(goalList);
                     Ui.printCustomMessage("Okay! The following goal has been added: \n\t["
                             + newExerciseGoal.getGoalType() + "] " + newExerciseGoal.getDescription());
                     break;
@@ -74,7 +55,6 @@ public class AddGoalCommand extends Command {
                     userInput = userInput.split(" ", 2)[1].trim();
                     Goal newCustomGoal = new Goal(COMMAND_CUSTOM, userInput);
                     goalList.addGoal(newCustomGoal);
-                    storage.writeGoalList(goalList);
                     Ui.printCustomMessage("Okay! The following goal has been added: \n\t["
                             + newCustomGoal.getGoalType() + "] " + newCustomGoal.getDescription());
                     break;
@@ -83,6 +63,7 @@ public class AddGoalCommand extends Command {
                             + "'exercise' or 'custom' to add the respective goal and 'back' exit the goal section");
                     break;
                 }
+                storage.writeGoalList(goalList);
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printCustomError("Please input in the correct format!");
             } catch (IOException e) {
