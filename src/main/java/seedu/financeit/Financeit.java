@@ -9,9 +9,9 @@ import seedu.financeit.recurringtracker.RecurringTracker;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
+import seedu.financeit.utils.storage.SaveStateHandlerGoalTracker;
 import seedu.financeit.utils.storage.SaveStateHandlerManualTracker;
 import seedu.financeit.utils.storage.SaveStateHandlerRecurringTracker;
-import seedu.financeit.utils.storage.SaveStateHandlerGoalTracker;
 
 import java.util.logging.Level;
 
@@ -29,10 +29,20 @@ public class Financeit {
 
         try {
             gt.load();
+        } catch (Exception m) {
+            MenuPrinter.prompt = "Goal Tracker failed to load: " + m;
+        }
+
+        try {
             mt.load();
+        } catch (Exception m) {
+            MenuPrinter.prompt = "Manual Tracker failed to load: " + m;
+        }
+
+        try {
             at.load();
         } catch (Exception m) {
-            MenuPrinter.prompt = "An exception has occurred: " + m;
+            MenuPrinter.prompt = "Auto Tracker failed to load: " + m;
         }
 
         while (true) {
@@ -60,17 +70,27 @@ public class Financeit {
             case "logger":
                 mode = (mode == Level.OFF) ? Level.ALL : Level.OFF;
                 MenuPrinter.prompt = (mode == Level.OFF)
-                    ? "Logger is off."
-                    : "Logger is on.";
+                        ? "Logger is off."
+                        : "Logger is on.";
                 ParamChecker.logger.setLevel(mode);
                 break;
             case "exit":
                 try {
-                    mt.save();
                     gt.save();
+                } catch (Exception m) {
+                    MenuPrinter.prompt = "Goal Tracker failed to save: " + m;
+                }
+
+                try {
+                    mt.save();
+                } catch (Exception m) {
+                    MenuPrinter.prompt = "Manual Tracker failed to save: " + m;
+                }
+
+                try {
                     at.save();
                 } catch (Exception m) {
-                    System.out.println("An exception has occurred: " + m);
+                    MenuPrinter.prompt = "Auto Tracker failed to save: " + m;
                 }
                 return;
             default:
