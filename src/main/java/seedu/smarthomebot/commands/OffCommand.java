@@ -43,33 +43,46 @@ public class OffCommand extends Command {
         }
         switch (type) {
         case (APPLIANCE_TYPE):
-            int toOffApplianceIndex = getApplianceToOffIndex();
-            if (toOffApplianceIndex < 0) {
-                return new CommandResult(MESSAGE_APPLIANCE_NOT_EXIST);
-            } else {
-                Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
-                String outputResult = displayOutput(toOffAppliance, "", false);
-                return new CommandResult(outputResult);
-            }
+            return offByAppliance();
         case (LOCATION_TYPE):
-            if (locationList.isLocationCreated(this.name)) {
-                String outputResults = LINE;
-                for (Appliance toOffAppliance : applianceList.getAllAppliance()) {
-                    if (toOffAppliance.getLocation().equals(this.name)) {
-                        outputResults = displayOutput(toOffAppliance, outputResults, true);
-                    }
-                }
-                outputResults = outputResults.concat("All appliance in \"" + this.name + "\" are turned off ");
-                return new CommandResult(outputResults);
-            } else {
-                return new CommandResult("No appliance in this location");
-            }
+            return offByLocation();
         default:
             return new CommandResult("Invalid Format");
         }
     }
 
-    private String displayOutput(Appliance toOffAppliance, String outputResults, boolean isList) {
+    private CommandResult offByAppliance() {
+        int toOffApplianceIndex = getApplianceToOffIndex();
+        if (toOffApplianceIndex < 0) {
+            return new CommandResult(MESSAGE_APPLIANCE_NOT_EXIST);
+        } else {
+            Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
+            String outputResult = offAppliance(toOffAppliance, "", false);
+            return new CommandResult(outputResult);
+        }
+    }
+
+    private CommandResult offByLocation() {
+        if (locationList.isLocationCreated(this.name)) {
+            String outputResults = LINE;
+            outputResults = offByApplianceLoop(outputResults);
+            outputResults = outputResults.concat("All appliance in \"" + this.name + "\" are turned off ");
+            return new CommandResult(outputResults);
+        } else {
+            return new CommandResult("No appliance in this location");
+        }
+    }
+
+    private String offByApplianceLoop(String outputResults) {
+        for (Appliance toOffAppliance : applianceList.getAllAppliance()) {
+            if (toOffAppliance.getLocation().equals(this.name)) {
+                outputResults = offAppliance(toOffAppliance, outputResults, true);
+            }
+        }
+        return outputResults;
+    }
+
+    private String offAppliance(Appliance toOffAppliance, String outputResults, boolean isList) {
         boolean offResult = toOffAppliance.switchOff();
         assert toOffAppliance.getStatus().equals("OFF") : "Appliance should be already OFF";
 

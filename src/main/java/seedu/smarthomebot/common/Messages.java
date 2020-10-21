@@ -11,11 +11,6 @@ public class Messages {
     public static final String MESSAGE_APPLIANCE_TYPE_NOT_EXIST = "Type Entered does not exist.";
     public static final String MESSAGE_APPLIANCE_EXIST = "Appliance name already exists.";
     public static final String MESSAGE_LOCATION_NOT_EXIST = "Location does not exist.";
-    public static final String MESSAGE_DISPLAY_LOCATION = " | Location: ";
-    public static final String MESSAGE_DISPLAY_STATUS = " | Status: ";
-    public static final String MESSAGE_DISPLAY_USAGE = " | Usage: ";
-    public static final String MESSAGE_DISPLAY_WATT = " | Watt: ";
-    public static final String MESSAGE_DISPLAY_TYPE = " | Type: ";
     public static final String MESSAGE_TOTAL_POWER_USAGE = "\n\nTotal power consumption: ";
     public static final String MESSAGE_LIST_LOCATIONS = "Here are the location you have entered:";
     public static final String MESSAGE_LIST_APPLIANCES = "Here are the appliances in your list:";

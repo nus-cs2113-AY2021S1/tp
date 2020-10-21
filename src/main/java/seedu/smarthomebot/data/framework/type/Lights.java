@@ -15,7 +15,7 @@ public class Lights extends Appliance {
     }
 
     public String getParameter(boolean isList) {
-        return " ";
+        return "None";
     }
 
     @Override

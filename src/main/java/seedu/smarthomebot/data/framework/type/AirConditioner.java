@@ -19,7 +19,7 @@ public class AirConditioner extends Appliance {
     @Override
     public String getParameter(boolean isList) {
         if (isList) {
-            return " set at: " + getParameter(false) + " degrees";
+            return getParameter(false) + " degrees";
         } else {
             return this.temperature;
         }

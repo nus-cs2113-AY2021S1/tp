@@ -3,7 +3,6 @@ package seedu.smarthomebot.data.framework.type;
 import seedu.smarthomebot.data.framework.Appliance;
 
 import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_FAN_SPEED;
-import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_TEMPERATURE_AC;
 
 public class Fan extends Appliance {
 
@@ -40,7 +39,7 @@ public class Fan extends Appliance {
     @Override
     public String getParameter(boolean isList) {
         if (isList) {
-            return " set at: " + getParameter(false) + " speed";
+            return getParameter(false) + " speed";
         } else {
             return this.speed;
         }
