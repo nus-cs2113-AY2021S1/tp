@@ -75,12 +75,6 @@ the user input and execute the commands accordingly. The diagram below depicts t
 
 <b>Command</b> classes
 
-<b>Note and Notebook</b>
-
-<b>Event and Timetable</b>
-
-<b>Tag and TagManager</b>
-
 <br>
 
 ## <a id="scope">3. Product Scope</a>
