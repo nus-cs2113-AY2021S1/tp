@@ -23,7 +23,7 @@ class WatchCommandTest {
         assertEquals(show, ShowList.getShow("friends"));
 
         WatchTime limitation = new WatchTime(java.time.LocalDate.of(2020,10,19),0,120);
-        assertEquals(WatchTime.getdailyWatchLimit(), 120);
+        assertEquals(WatchTime.getDailyWatchLimit(), 120);
         ArrayList<String> inputExample = new ArrayList<>(Arrays.asList("watch", "friends"));
         updateObject = new WatchCommand("watch", inputExample);
     }

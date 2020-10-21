@@ -29,24 +29,32 @@ public class WatchCommand extends Command {
 
         String showName = inputs.get(1);
         Show show = ShowList.getShow(showName);
-        int showEpisode = show.getCurrentEpisode();
-        int showSeason = show.getCurrentSeason();
-        int episodesInSeason = show.getEpisodesForSeason(showSeason);
-        boolean hasFinishedSeason = (showEpisode == episodesInSeason);
 
-        if (!hasFinishedSeason) {
-            show.setEpisodeWatched(showEpisode + 1);
-            ShowList.setShow(showName, show);
+        int showEpisode = show.getCurrentEpisode();
+        int currentSeason = show.getCurrentSeason();
+        int showSeason = show.getNumSeasons();
+        int episodesInSeason = show.getEpisodesForSeason(currentSeason);
+        boolean hasFinishedSeason = (showEpisode == episodesInSeason);
+        boolean isLastSeason = (currentSeason == showSeason);
+        boolean hasFinishedSeries = (isLastSeason && hasFinishedSeason);
+
+        if (hasFinishedSeries) {
+            Ui.printFinishedAllSeasons(showName);
+            return;
         } else if (hasFinishedSeason) {
-            show.setCurrentSeason(showSeason + 1);
+            int updatedSeason = currentSeason + 1;
+            show.setCurrentSeason(updatedSeason);
             show.setEpisodeWatched(1);
             ShowList.setShow(showName, show);
+            Ui.printWatchingNewSeason(showName, updatedSeason);
             Ui.printChangeEpisode(showName);
+        } else if (!hasFinishedSeason) {
+            show.setEpisodeWatched(showEpisode + 1);
+            ShowList.setShow(showName, show);
             Ui.printChangeEpisode(showName);
-        } else {
-            Ui.printFinishedAllSeasons(showName);
         }
         int showDuration = show.getEpisodeDuration();
         WatchTime.watchDurationUpdate(showDuration);
+
     }
 }
