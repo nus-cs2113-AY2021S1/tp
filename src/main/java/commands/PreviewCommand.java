@@ -30,7 +30,7 @@ public class PreviewCommand extends Command {
 
     private void loadAllChapters(Storage storage, Ui ui) {
         try {
-            allChapters = storage.loadAllDueChapters();
+            allChapters = storage.loadAllDueChapters(ui);
         } catch (FileNotFoundException e) {
             ui.showToUser(Ui.UNABLE_TO_LOAD_EMPTY_DATABASE);
         }

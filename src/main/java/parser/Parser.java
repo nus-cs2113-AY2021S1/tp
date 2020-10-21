@@ -14,6 +14,7 @@ import commands.ListDueCommand;
 import commands.RemoveCommand;
 import commands.ReviseCommand;
 import commands.HistoryCommand;
+import commands.PreviewCommand;
 
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;

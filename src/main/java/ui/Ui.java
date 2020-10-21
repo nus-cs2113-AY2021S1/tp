@@ -14,9 +14,11 @@ import commands.RemoveCommand;
 import commands.ReviseCommand;
 import manager.card.Card;
 import manager.history.History;
+import manager.chapter.DueChapter;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static commands.ReviseCommand.MESSAGE_SHOW_ANSWER_PROMPT;
