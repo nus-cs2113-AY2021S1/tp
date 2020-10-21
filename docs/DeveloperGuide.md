@@ -27,11 +27,18 @@ are the list of packages:
     - SubjectList
     - Topic
     - TopicList
-* Command : In charge of reading the command and calling the relevant methods.
+    
+* Command : In charge of reading the command and calling the relevant methods.The package itself holds
+the following packages.
     - Flashcard
-        * AddFlashcardCommand
-        * DeleteFlashcardCommand
-        #Add ur classes he
+    - Subject
+    - Topic
+    - Task
+    
+![Flashcard Commands](https://user-images.githubusercontent.com/46095141/96748916-c9027580-13fc-11eb-8c5b-4266d750aa6f.png) 
+**Flashcard Commands**
+
+The diagram above shows how the flashcard commands extend the abstract command class.  
 * Exceptions : Deals with the various exceptions which are thrown in the application.
     -flashcard
     - storage
@@ -44,7 +51,7 @@ are the list of packages:
 * Ui : In charge of interaction with the user.
 
 ![Package Diagram](https://user-images.githubusercontent.com/46095141/96674190-c7a06100-139a-11eb-95e6-64bc2721e216.png)
-
+**Package Diagram**<br>
 The Package Diagram above shows how the Revised class interacts with all of these packages.
 
 ## Product scope
@@ -58,8 +65,19 @@ Singaporean universities.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
 
+This application aims to help students to keep track of their revision. Students should be
+able to revise their subjects effectively through this application by adding various questions
+and answers in the form of flashcards. After that, students can refer to the flashcards to
+revise the subjects. Furthermore, they can take quizzes and see if they grasp the topics or subjects well
+enough to attend their school based exams.
+
+Students who find it hard to keep track of their assignments would also find this application
+useful since it lets the students add their tasks. The application then reminds the students
+regarding the upcoming tasks, which would prompt the students to prepare them.
+
+Students who find it difficult to organise woudl find this app useful since it
+offers a one stop solution to manage both their revision and their upcoming tasks .
 ## User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
@@ -80,8 +98,14 @@ Singaporean universities.
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
-
+The application satisfies the following requirements:
+ * Portability: Users can transfer their data from the applciation since all the data is stored in a txt file.
+ * Modifiability: Since the application is broken down into different packages and classes, developers would
+ be able to modfiy the application with ease.
+ * Simplicity: The application comes with a detailed user guide along with the help commands. Hence, users can always 
+ refer to these to understand on how to use the application.
+ * Safety: The application can be downloaded form Github, which offers a secure downloading service. Furthermore, the
+ application runs on command line and hence, it 
 ## Glossary
 
 * *glossary item* - Definition
