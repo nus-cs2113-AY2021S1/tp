@@ -1,5 +1,6 @@
 package seedu.modtracker;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -148,6 +149,39 @@ public class Ui {
     public void printBreakDownAnalysis(ModuleList modList, int week) {
         ViewTimeBreakDownAnalysis breakDown = new ViewTimeBreakDownAnalysis();
         breakDown.printTimeBreakDownAndAnalysis(modList, week);
+    }
+
+    /**
+     * Prints the task added line when the user added a task to the task list.
+     *
+     * @param tasks task list
+     */
+    public void printTaskIsAdded(ArrayList<Task> tasks, String modCode) {
+        System.out.println("Got it. I've added this task under " + modCode + ":");
+        System.out.println(tasks.get(tasks.size() - 1));
+    }
+
+    /**
+     * Prints the number of tasks stored in the task list.
+     *
+     * @param tasks task list
+     */
+    public void printNumberOfTasks(ArrayList<Task> tasks) {
+        if (tasks.size() > 1) {
+            System.out.println("Now you have " + tasks.size() + " tasks in the list." + System.lineSeparator());
+        } else if (tasks.size() == 1) {
+            System.out.println("Now you have 1 task in the list." + System.lineSeparator());
+        } else {
+            System.out.println("You currently have no task :-)" + System.lineSeparator());
+        }
+    }
+
+    /**
+     * Prints invalid task number when task number entered does not exist.
+     */
+    public void printInvalidTaskNumber(ArrayList<Task> tasks) {
+        System.out.println("Invalid task number.");
+        System.out.println("Enter a task number from 1 to " + tasks.size() + "." + System.lineSeparator());
     }
 
 }
