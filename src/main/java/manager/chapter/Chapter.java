@@ -15,10 +15,10 @@ public class Chapter {
     protected CardList cards;
     protected LocalDate dueBy;
     protected int rating;
-    private static final int NO_RATING = 0;
-    private static final int EASY = 1;
-    private static final int MEDIUM = 2;
-    private static final int HARD = 3;
+    public static final int NO_RATING = 0;
+    public static final int EASY = 1;
+    public static final int MEDIUM = 2;
+    public static final int HARD = 3;
 
     public Chapter(String chapterName) {
         this.chapterName = chapterName;

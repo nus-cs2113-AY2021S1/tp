@@ -2,26 +2,13 @@ package parser;
 
 import access.Access;
 
-import commands.AddCommand;
-import commands.BackCommand;
-import commands.Command;
-import commands.EditCommand;
-import commands.ExitCommand;
-import commands.GoCommand;
-import commands.HelpCommand;
-import commands.ListCommand;
-import commands.ListDueCommand;
-import commands.RemoveCommand;
-import commands.ReviseCommand;
-import commands.HistoryCommand;
+import commands.*;
 
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import storage.Storage;
 
-
-import java.util.List;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -72,9 +59,26 @@ public class Parser {
             return prepareListDue(commandArgs);
         case HistoryCommand.COMMAND_WORD:
             return prepareHistory(commandArgs);
+        case RateCommand.COMMAND_WORD:
+            return prepareRate(commandArgs);
         default:
             throw new InvalidInputException("There is no such command type.\n");
         }
+    }
+
+    private static RateCommand prepareRate(String commandArgs) throws InvalidInputException, IncorrectAccessLevelException {
+        int chapterIndex;
+        if (commandArgs.isEmpty()) {
+            throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    RateCommand.COMMAND_WORD) + RateCommand.MESSAGE_USAGE);
+        }
+        try {
+            chapterIndex = Integer.parseInt(commandArgs) - 1;
+        } catch (NumberFormatException e) {
+            throw new IncorrectAccessLevelException("The index for chapter should be an integer.\n"
+                    + RateCommand.MESSAGE_USAGE);
+        }
+        return new RateCommand(chapterIndex);
     }
 
     private static Command prepareHistory(String commandArgs) throws InvalidInputException {
