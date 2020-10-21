@@ -689,14 +689,14 @@ public class Parser {
         
         // No optional parameters case as it is already accounted
         // Minimally if no tag, will have up/down and vice versa
-        if (tagsName.isEmpty()) {
+        if (tagsName.isEmpty() && isAscending == null) {
+            return new ListNoteCommand();
+        } else if (tagsName.isEmpty() && isAscending != null) {
             return new ListNoteCommand(isAscending);
+        } else if (!tagsName.isEmpty() && isAscending == null) {
+            return new ListNoteCommand(tagsName);
         } else {
-            if (isAscending == null) {
-                return new ListNoteCommand(tagsName);
-            } else {
-                return new ListNoteCommand(isAscending, tagsName);
-            }
+            return new ListNoteCommand(isAscending, tagsName);
         }
     }
 

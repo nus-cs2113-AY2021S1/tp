@@ -62,8 +62,8 @@ public class Note {
         this.content = content;
     }
 
-    public String getPinned() {
-        return (isPinned ? "Y" : "N");
+    public boolean getPinned() {
+        return (isPinned);
     }
 
     public void togglePinned() {

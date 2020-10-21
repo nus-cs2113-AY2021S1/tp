@@ -1,6 +1,10 @@
 package seedu.duke.data.notebook;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Represents a Notebook object. Contains all the notes.
@@ -35,6 +39,130 @@ public class Notebook {
     public ArrayList<Note> getNotes() {
         return this.notes;
     }
+
+    public boolean checkPinned() {
+        for (Note note : notes) {
+            if (note.getPinned()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ArrayList<Note> getPinnedNotes() {
+        ArrayList<Note> noteList = new ArrayList<>();
+        for (int i = 0; i < notes.size(); i++) {
+            if (notes.get(i).getPinned()) {
+                noteList.add(notes.get(i));
+            }
+        }
+        return noteList;
+    }
+
+    public ArrayList<Note> getPinnedNotes(ArrayList<Note> noteArrayList) {
+        ArrayList<Note> noteList = new ArrayList<>();
+        for (int i = 0; i < noteArrayList.size(); i++) {
+            if (noteArrayList.get(i).getPinned()) {
+                noteList.add(noteArrayList.get(i));
+            }
+        }
+        return noteList;
+    }
+
+    public ArrayList<Note> getUnpinnedNotes() {
+        ArrayList<Note> noteList = new ArrayList<>();
+        for (int i = 0; i < notes.size(); i++) {
+            if (!notes.get(i).getPinned()) {
+                noteList.add(notes.get(i));
+            }
+        }
+        return noteList;
+    }
+
+    public ArrayList<Note> getUnpinnedNotes(ArrayList<Note> noteArrayList) {
+        ArrayList<Note> noteList = new ArrayList<>();
+        for (int i = 0; i < noteArrayList.size(); i++) {
+            if (!noteArrayList.get(i).getPinned()) {
+                noteList.add(noteArrayList.get(i));
+            }
+        }
+        return noteList;
+    }
+
+    /**
+     * Method compiles the ArrayList items and appends the items to a String.
+     * The ArrayList has already been sorted
+     * Method returns either top to bottom or bottom to top to account for ascending/descending sorting
+     *
+     * @return noteString String containing the notes sorted either ascending ot descending
+     */
+    public ArrayList<Note> getSortedList(Boolean isAscendingOrder, Boolean notebookToggle) {
+        ArrayList<Note> sortedNotes = new ArrayList<>();
+
+        if (notebookToggle == null) {
+            // Takes the notes in the notebook and sorts them according to title, alphabetically (a-z)
+            sortedNotes = (ArrayList<Note>) notes.stream()
+                    .filter(Objects::nonNull)
+                    .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
+                    .collect(Collectors.toList());
+        } else if (!notebookToggle) {
+            sortedNotes = (ArrayList<Note>) notes.stream()
+                    .filter(Objects::nonNull)
+                    .filter((s) -> !s.getPinned())
+                    .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
+                    .collect(Collectors.toList());
+        } else if (notebookToggle) {
+            sortedNotes = (ArrayList<Note>) notes.stream()
+                    .filter(Objects::nonNull)
+                    .filter((s) -> s.getPinned())
+                    .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
+                    .collect(Collectors.toList());
+        }
+
+        if (!isAscendingOrder) {
+            Collections.reverse(sortedNotes);
+        }
+
+        return sortedNotes;
+    }
+
+    /**
+     * Method compiles the ArrayList items and appends the items to a String.
+     * The ArrayList has already been sorted
+     * Method returns either top to bottom or bottom to top to account for ascending/descending sorting
+     *
+     * @return noteString String containing the notes sorted either ascending ot descending
+     */
+    public ArrayList<Note> getSortedList(Boolean isAscendingOrder, Boolean isPinned, ArrayList<Note> noteArrayList) {
+        ArrayList<Note> sortedNotes = new ArrayList<>();
+
+        if (isPinned) {
+            sortedNotes = (ArrayList<Note>) noteArrayList.stream()
+                    .filter(Objects::nonNull)
+                    .filter((s) -> s.getPinned())
+                    .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
+                    .collect(Collectors.toList());
+        } else if (!isPinned) {
+            sortedNotes = (ArrayList<Note>) noteArrayList.stream()
+                    .filter(Objects::nonNull)
+                    .filter((s) -> !s.getPinned())
+                    .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
+                    .collect(Collectors.toList());
+        } else if (isPinned == null) {
+            sortedNotes = (ArrayList<Note>) noteArrayList.stream()
+                    .filter(Objects::nonNull)
+                    .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
+                    .collect(Collectors.toList());
+        }
+
+        if (!isAscendingOrder) {
+            Collections.reverse(sortedNotes);
+        }
+
+        return sortedNotes;
+    }
+
+
 
     public Note getNote(int index) {
         return notes.get(index);
