@@ -93,4 +93,5 @@ Example of usage:
 * Sell a stock `sell /aapl`
 * Search for a stock's info `search /aapl`
 * View portfolio `view`
+* Check your wallet `wallet`
 * Exit program `bye`
