@@ -10,6 +10,7 @@ public class ModTracker {
     private Ui ui;
     private ModuleList modList;
     private Storage storage;
+    private TaskList taskList;
 
     public static void main(String[] args) {
         new ModTracker("data/modtracker.txt").run();
@@ -19,6 +20,7 @@ public class ModTracker {
         ui = new Ui();
         modList = new ModuleList();
         storage = new Storage(filePath);
+        taskList = new TaskList();
     }
 
     /**
@@ -49,7 +51,7 @@ public class ModTracker {
         Parser parser = new Parser();
         while (!parser.isExit()) {
             String input = ui.readCommand();
-            parser.parse(input, modList, name, storage, true);
+            parser.parse(input, modList, name, storage, true, taskList);
         }
     }
 
@@ -59,7 +61,7 @@ public class ModTracker {
             Scanner reader = storage.getReader();
             while (reader.hasNext()) {
                 String input = reader.nextLine();
-                parser.parse(input, modList, "", storage, false);
+                parser.parse(input, modList, "", storage, false, taskList);
             }
         } catch (FileNotFoundException e) {
             ui.printErrorMessage(e.getMessage());
