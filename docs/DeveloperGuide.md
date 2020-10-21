@@ -49,6 +49,18 @@ Step 5. The string at the 0th index is then used in a switch statement, where ea
         options available. As such, the contents of the case with reference “help” is run, which is a return statement 
         containing a new HelpCommand(). This leads to the execution of the help command.
 
+### Loading Data
+
+Data is loaded automatically from JSON files in the data folder. This is mainly facilitated through the `TopicsStorage` class which handles accessing the file as well as converting from JSON into `Topic`, `Question` and `Option` objects.
+
+![TopicsStorage Class Diagram](./images/TopicsStorage.png)
+
+Given below is an example usage scenario of loading in two topics with two questions each.
+
+When the user launches the app, the main program will initialize a `TopicsStorage` object and call the `load` method which will return a `TopicList` object. The following sequence diagram shows how the load operation works:
+
+![TopicsStorage load](./images/TopicsStorage_load.png)
+
 ## Product scope
 ### Target user profile
 
@@ -62,8 +74,7 @@ Help CS2113/T students learn and understand software engineering and OOP princip
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|new user|answer given questions|start testing myself immediately|
 
 ## Non-Functional Requirements
 
