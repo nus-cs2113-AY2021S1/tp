@@ -9,7 +9,7 @@ class ViewWatchlistParserTest {
     protected static final String EMPTY_DESCRIPTION = "";
     protected static final String EMPTY_FIELD = "-v";
     protected static final String INVALID_OPTION = "-n 1";
-    protected static final String NON_INTEGER_FIELD_TEST = "-a Gundam";
+    protected static final String NON_INTEGER_FIELD_TEST = "-v Default";
 
     @Test
     void parse_emptyDescription_throwsAniException() {
