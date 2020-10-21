@@ -8,8 +8,10 @@ import seedu.revised.command.subject.AddSubjectCommand;
 import seedu.revised.command.subject.DeleteSubjectCommand;
 import seedu.revised.command.subject.FindSubjectCommand;
 import seedu.revised.command.subject.ListSubjectCommand;
+import seedu.revised.command.subject.ResultSubjectCommand;
 import seedu.revised.command.subject.ReturnSubjectCommand;
 import seedu.revised.command.subject.QuizSubjectCommand;
+import seedu.revised.exception.subject.InvalidSubjectException;
 import seedu.revised.exception.subject.NoSubjectException;
 import seedu.revised.exception.subject.RepeatedSubjectException;
 
@@ -38,42 +40,62 @@ public class SubjectCommandTest {
     }
 
     @Test
-    public void addSubject() throws NoSubjectException, RepeatedSubjectException {
+    public void addSubject_validCommand_returnsSubjectTitle() throws NoSubjectException, RepeatedSubjectException {
         addCommand = new AddSubjectCommand("add Maths");
         addCommand.execute(subjects);
         assertEquals("Maths", subjects.getList().get(3).getTitle());
     }
 
     @Test
-    public void deleteSubject() {
+    public void deleteSubject_validCommand_returnsIndex() {
         deleteCommand = new DeleteSubjectCommand("delete 2");
         deleteCommand.execute(subjects);
         assertEquals(Integer.valueOf("2"), subjects.getList().size());
     }
 
     @Test
-    public void findSubject() {
+    public void findSubject_validCommand_executesMethod() {
         findCommand = new FindSubjectCommand("find English");
         findCommand.execute(subjects);
     }
 
     @Test
-    public void listSubject() {
+    public void listSubject_validCommand_executesMethod() {
         listCommand = new ListSubjectCommand();
         listCommand.execute(subjects);
     }
 
     @Test
-    public void quizSubject_command_throwsNoSubjectException() {
-        QuizSubjectCommand quiz = new QuizSubjectCommand("quiz Maths");
-        assertThrows(NoSubjectException.class, () -> quiz.execute(subjects));
+    public void quizSubject_subjectNotPresent_throwsException() {
+        QuizSubjectCommand quizNoSubject = new QuizSubjectCommand("quiz Maths");
+        assertThrows(NoSubjectException.class, () -> quizNoSubject.execute(subjects));
+
+    }
+    @Test
+    public void quizSubject_invalidCommand_throwsException() {
+        QuizSubjectCommand quizInvalidCommand = new QuizSubjectCommand("quiz");
+        assertThrows(InvalidSubjectException.class, () -> quizInvalidCommand.execute(subjects));
+
+    }
+    @Test
+    public void resultSubject_subjectNotPresent_throwsException() {
+        ResultSubjectCommand resultNoSubject = new ResultSubjectCommand("quiz Maths");
+        assertThrows(NoSubjectException.class, () -> resultNoSubject.execute(subjects));
+
+    }
+    @Test
+    public void resultSubject_invalidCommand_throwsException() {
+        ResultSubjectCommand resultInvalidCommand = new ResultSubjectCommand("quiz");
+        assertThrows(InvalidSubjectException.class, () -> resultInvalidCommand.execute(subjects));
+
     }
 
 
     @Test
-    public void returnSubject() throws NoSubjectException {
+    public void returnSubject_validCommand_returnsSubjectTitle() throws NoSubjectException {
         returnCommand = new ReturnSubjectCommand("subject Chinese");
         Subject testSubject = returnCommand.execute(subjects);
         assertEquals("Chinese", testSubject.getTitle());
     }
+
 }
