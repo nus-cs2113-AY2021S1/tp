@@ -28,7 +28,7 @@ handling different states representing each operation on Ledger instances.
 **Helper Operation: Param Handler**
 
 ***UML Class Diagram***
-![](.DeveloperGuide_images/518bf462.png)
+![](.DeveloperGuide_images/UmlClassManualTracker.png)
 
 ***Summary***
 * Classes which require input parameters by users require the collection of
