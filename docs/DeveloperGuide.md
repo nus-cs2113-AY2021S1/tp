@@ -1,5 +1,32 @@
 # Developer Guide
 
+## Setting up, getting started
+* [Design](#design)
+* [Architecture](#architecture)
+    1. UI component
+    1. Logic component
+    1. Model component
+    1. Storage component
+    1. Common classes
+* [Implementation](#implementation)
+  * [Proposed] Undo/redo feature
+    * Proposed Implementation
+    * Design consideration:
+      * Aspect: How undo & redo executes
+  * [Proposed] Data archiving
+* [Documentation, logging, testing, configuration, dev-ops](#)
+* [Appendix: Requirements]
+  * Product scope
+  * User stories
+  * Use cases
+  * Non-Functional Requirements
+  * Glossary
+* [Appendix: Instructions for manual testing](#)
+## Design
+
+## Architecture
+
+## Implementation
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
@@ -20,8 +47,6 @@ NUS students
 * helps to track the time spent on every module  
 * better prioritize their work for each module 
 * relieves the stress of NUS students by achieving a work-life balance
-
-
 
 ## User Stories
 
