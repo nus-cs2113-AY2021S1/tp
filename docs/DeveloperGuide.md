@@ -448,3 +448,4 @@ through graphical icons and audio indicator. Most apps like the mobile apps that
 ## Appendix: Instructions for Manual Testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
