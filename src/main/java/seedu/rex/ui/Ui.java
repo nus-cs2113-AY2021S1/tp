@@ -344,9 +344,9 @@ public class Ui {
     /**
      * Displays only the Objects in ArrayList that is required to be shown.
      *
-     * @param list Generic ArrayList
+     * @param list          Generic ArrayList
      * @param indicesToShow ArrayList containing Integers corresponding to the indices of list that you want to display
-     * @param <T> Generic class
+     * @param <T>           Generic class
      * @return Object in ArrayList
      */
     public <T> int displayArrayList(ArrayList<T> list, ArrayList<Integer> indicesToShow) {
@@ -361,17 +361,19 @@ public class Ui {
 
     /**
      * Alerts user that there is a maximum allowable input.
+     *
      * @param maxAllowableInput maximum allowable input
      */
     public void indexOutOfBoundsMessage(int maxAllowableInput) throws RexException {
         throw new RexException("Index out of bounds! Input should be between 1 to " + maxAllowableInput + ".");
     }
 
-    /** Gets object of Arraylist corresponding to user selection.
+    /**
+     * Gets object of Arraylist corresponding to user selection.
      *
-     * @param list Generic ArrayList
+     * @param list          Generic ArrayList
      * @param indicesToShow ArrayList containing Integers corresponding to the indices of list that you want to display
-     * @param <T> Generic class
+     * @param <T>           Generic class
      * @return Object in ArrayList
      */
     public <T> T getItemOfArrayList(ArrayList<T> list, ArrayList<Integer> indicesToShow) throws RexException {
