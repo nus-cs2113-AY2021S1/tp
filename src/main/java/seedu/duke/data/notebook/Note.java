@@ -74,10 +74,6 @@ public class Note {
         return isArchived;
     }
 
-    public void toggleIsArchived() {
-        isArchived = !isArchived;
-    }
-
     public void setPinned(Boolean pinned) {
         isPinned = pinned;
     }

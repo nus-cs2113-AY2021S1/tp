@@ -4,19 +4,19 @@ import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
 import seedu.duke.ui.Formatter;
 
-import seedu.duke.command.ArchiveNoteCommand;
-
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static seedu.duke.ui.Formatter.formatNotes;
+import static seedu.duke.ui.Formatter.getSortedPinnedNotes;
+import static seedu.duke.ui.Formatter.getUnsortedPinnedNotes;
+import static seedu.duke.ui.Formatter.getSortedString;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
-import static seedu.duke.util.PrefixSyntax.SUFFIX_INDEX;
 
 /**
  * Lists all the Notes in the Notebook.
@@ -108,28 +108,26 @@ public class ListNoteCommand extends Command {
      */
     @Override
     public String execute() {
-        StringBuilder noteString = new StringBuilder();
+        StringBuilder formattedString;
         StringBuilder pinnedNotesSorted;
         StringBuilder unpinnedNotesSorted;
-        ArrayList<Note> notes = new ArrayList<>();
         ArrayList<Note> pinnedNotes = new ArrayList<>();
         ArrayList<Note> unpinnedNotes = new ArrayList<>();
-        ArrayList<Note> archivedNotes = new ArrayList<>();
+        ArrayList<Note> notes = new ArrayList<>();
+        ArrayList<Note> archivedNotes;
 
 
         if (isArchived) {
-            archivedNotes = notebook.archiveNotes();
-            noteString = getArchiveString();
-
-            return noteString.toString();
+            archivedNotes = notebook.getArchivedNotes();
+            return formatNotes(archivedNotes).toString();
         }
 
         for (int i = 0; i < notebook.getNotes().size(); i++) {
-            String pinnedNoteStatus = notebook.getNotes().get(i).getPinned();
-            if (pinnedNoteStatus.equals("Y") && !notebook.getNotes().get(i).getIsArchived()) {
-                pinnedNotes.add(notebook.getNotes().get(i));
-            } else if (pinnedNoteStatus.equals("N") && !notebook.getNotes().get(i).getIsArchived()) {
-                unpinnedNotes.add(notebook.getNotes().get(i));
+            String pinnedNoteStatus = notebook.getNote(i).getPinned();
+            if (pinnedNoteStatus.equals("Y")) {
+                pinnedNotes.add(notebook.getNote(i));
+            } else if (pinnedNoteStatus.equals("N")) {
+                unpinnedNotes.add(notebook.getNote(i));
             }
         }
 
@@ -141,33 +139,21 @@ public class ListNoteCommand extends Command {
 
         if (tags == null) {
             if (isAscendingOrder == null && pinnedNotes.isEmpty()) {
-                noteString = getNoteString(notebook.getNotes());
+                formattedString = formatNotes(notebook.getNotes());
             } else if (isAscendingOrder == null) {
-                noteString.append("Pinned Notes")
-                        .append(Formatter.LS)
-                        .append(getNoteString(pinnedNotes))
-                        .append(Formatter.LS)
-                        .append("Unpinned Notes")
-                        .append(Formatter.LS)
-                        .append(getNoteString(unpinnedNotes));
+                formattedString = getSortedPinnedNotes(pinnedNotes, unpinnedNotes);
             } else if (pinnedNotes.isEmpty()) {
-                noteString = getSortedString(sortedNotes);
+                formattedString = getSortedString(sortedNotes, isAscendingOrder);
             } else {
-                pinnedNotesSorted = getSortedString(pinnedNotes);
-                unpinnedNotesSorted = getSortedString(unpinnedNotes);
-                noteString.append("Pinned Notes")
-                        .append(Formatter.LS)
-                        .append(pinnedNotesSorted)
-                        .append(Formatter.LS)
-                        .append("Unpinned Notes")
-                        .append(Formatter.LS)
-                        .append(unpinnedNotesSorted);
+                pinnedNotesSorted = getSortedString(pinnedNotes, isAscendingOrder);
+                unpinnedNotesSorted = getSortedString(unpinnedNotes, isAscendingOrder);
+                formattedString = getUnsortedPinnedNotes(pinnedNotesSorted, unpinnedNotesSorted);
             }
 
-            if (noteString.toString().isBlank()) {
+            if (formattedString.toString().isBlank()) {
                 return Formatter.LS + COMMAND_UNSUCCESSFUL_MESSAGE_EMPTY_NOTEBOOK;
             }
-            return Formatter.LS + COMMAND_SUCCESSFUL_MESSAGE + noteString.toString();
+            return Formatter.LS + COMMAND_SUCCESSFUL_MESSAGE + formattedString.toString();
         }
 
         // Obtaining ArrayList<String> of tags and parsing it to get an ArrayList<Tag> of tags
@@ -196,8 +182,8 @@ public class ListNoteCommand extends Command {
 
         for (ArrayList<Note> value : values) {
             for (Note note : value) {
-                // Account for duplicates.
-                // In case an item has both CS2113 and Important tag
+                // Account for note duplicates (multiple tags).
+                // For e.g. In case an item has both CS2113 and Important tag
                 if (!notes.contains(note)) {
                     notes.add(note);
                 }
@@ -216,74 +202,10 @@ public class ListNoteCommand extends Command {
                 .collect(Collectors.toList());
 
         if (isAscendingOrder == null) {
-            noteString = getNoteString(notes);
+            formattedString = formatNotes(notes);
         } else {
-            noteString = getSortedString(sortedTaggedNotes);
+            formattedString = getSortedString(sortedTaggedNotes, isAscendingOrder);
         }
-        return Formatter.LS + COMMAND_SUCCESSFUL_MESSAGE + noteString.toString();
-    }
-
-    /**
-     * Method compiles the ArrayList items and appends the items to a String.
-     * The ArrayList has already been sorted
-     * Method returns either top to bottom or bottom to top to account for ascending/descending sorting
-     *
-     * @param sortedNotes ArrayList of notes that were already sorted
-     * @return noteString String containing the notes sorted either ascending ot descending
-     */
-    public StringBuilder getSortedString(ArrayList<Note> sortedNotes) {
-        StringBuilder noteStrBuilder = new StringBuilder();
-
-        if (!isAscendingOrder) {
-            Collections.reverse(sortedNotes);
-            noteStrBuilder = getNoteString(sortedNotes);
-        } else if (isAscendingOrder) {
-            noteStrBuilder = getNoteString(sortedNotes);
-        }
-        return noteStrBuilder;
-    }
-
-    /**
-     * Method compiles the ArrayList items and appends the items to a String.
-     *
-     * @param notesList ArrayList of notes to obtain note title/tags from
-     * @return noteString StringBuilder containing the notes ready to be printed
-     */
-    public StringBuilder getNoteString(ArrayList<Note> notesList) {
-        StringBuilder noteString = new StringBuilder();
-        int j = 1;
-
-        for (int i = 0; i < notesList.size(); i++) {
-            if (!notebook.getNotes().get(i).getIsArchived()) {
-                noteString.append(j).append(SUFFIX_INDEX)
-                        .append(notesList.get(i).getTitle())
-                        .append(" ")
-                        .append(notesList.get(i).getTagsName())
-                        .append(Formatter.LS);
-
-                j++;
-            }
-        }
-
-        return noteString;
-    }
-
-    public StringBuilder getArchiveString() {
-        StringBuilder noteString = new StringBuilder();
-        int j = 1;
-
-        for (int i = 0; i < notebook.getSize(); i++) {
-            if (notebook.getNotes().get(i).getIsArchived()) {
-                noteString.append(j).append(SUFFIX_INDEX)
-                        .append(notebook.getNote(i).getTitle())
-                        .append(" ")
-                        .append(notebook.getNote(i).getTagsName())
-                        .append(Formatter.LS);
-
-                j++;
-            }
-        }
-
-        return noteString;
+        return Formatter.LS + COMMAND_SUCCESSFUL_MESSAGE + formattedString.toString();
     }
 }

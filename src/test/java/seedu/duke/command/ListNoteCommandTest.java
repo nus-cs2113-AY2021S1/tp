@@ -74,35 +74,9 @@ class ListNoteCommandTest {
         assertEquals(expected, actual);
     }
 
-    @Test
-    void getNoteStringTest() {
-        notebook.addNote(defaultNote);
-        notebook.addNote(songLyrics);
-
-        noteArrayList.add(defaultNote);
-        noteArrayList.add(songLyrics);
-
-        StringBuilder expected = new StringBuilder();
-
-        expected.append("1. Default [91m[Sports][0m")
-                .append(Formatter.LS)
-                .append("2. Song Lyrics ")
-                .append(Formatter.LS);
-
-        StringBuilder actual = getCommandNoteString(noteArrayList);
-
-        assertEquals(expected.toString(), actual.toString());
-    }
-
     private String getCommandExecutionString(Notebook notebook) {
         ListNoteCommand listNoteCommand = new ListNoteCommand();
         listNoteCommand.setData(notebook, null, null, null);
         return listNoteCommand.execute();
-    }
-
-    private StringBuilder getCommandNoteString(ArrayList<Note> noteArrayList) {
-        ListNoteCommand listNoteCommand = new ListNoteCommand();
-        listNoteCommand.setData(notebook, null, null, null);
-        return listNoteCommand.getNoteString(noteArrayList);
     }
 }

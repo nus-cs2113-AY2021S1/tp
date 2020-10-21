@@ -1,11 +1,6 @@
 package seedu.duke.data.notebook;
 
-import seedu.duke.ui.Formatter;
-
 import java.util.ArrayList;
-import java.util.stream.Collectors;
-
-import static seedu.duke.util.PrefixSyntax.SUFFIX_INDEX;
 
 /**
  * Represents a Notebook object. Contains all the notes.
@@ -13,13 +8,14 @@ import static seedu.duke.util.PrefixSyntax.SUFFIX_INDEX;
 public class Notebook {
 
     private ArrayList<Note> notes;
-    private ArrayList<Note> archivedNotes = new ArrayList<>();
+    private ArrayList<Note> archivedNotes;
 
     /**
      * Creates a new list of notes.
      */
     public Notebook() {
         notes = new ArrayList<>();
+        archivedNotes = new ArrayList<>();
     }
 
     /**
@@ -42,6 +38,12 @@ public class Notebook {
 
     public Note getNote(int index) {
         return notes.get(index);
+    }
+
+    public Note getNote(String noteTitle, ArrayList<Note> notebook) {
+        return notebook.stream()
+                .filter((s) -> s.getTitle().equalsIgnoreCase(noteTitle))
+                .findFirst().get();
     }
 
     public boolean getNote(String noteTitle) {
@@ -74,14 +76,43 @@ public class Notebook {
         this.notes = notes;
     }
 
-    public ArrayList<Note> archiveNotes() {
+    public String archiveNotes(int index) {
+        Note archivedNote = notes.get(index);
 
-        for (int i = 0; i < notes.size(); i++) {
-            if (notes.get(i).getIsArchived()) {
-                archivedNotes.add(notes.get(i));
-            }
-        }
+        archivedNotes.add(archivedNote);
+        deleteNote(index);
 
+        return archivedNote.getTitle();
+    }
+
+    public String archiveNotes(String noteTitle) {
+        Note archivedNote = getNote(noteTitle, notes);
+
+        archivedNotes.add(archivedNote);
+        deleteNote(noteTitle);
+
+        return archivedNote.getTitle();
+    }
+
+    public String unarchiveNotes(int index) {
+        Note unarchivedNote = archivedNotes.get(index);
+
+        addNote(unarchivedNote);
+        archivedNotes.remove(unarchivedNote);
+
+        return unarchivedNote.getTitle();
+    }
+
+    public String unarchiveNotes(String noteTitle) {
+        Note unarchivedNote = getNote(noteTitle, archivedNotes);
+
+        addNote(unarchivedNote);
+        archivedNotes.remove(unarchivedNote);
+
+        return unarchivedNote.getTitle();
+    }
+
+    public ArrayList<Note> getArchivedNotes() {
         return archivedNotes;
     }
 

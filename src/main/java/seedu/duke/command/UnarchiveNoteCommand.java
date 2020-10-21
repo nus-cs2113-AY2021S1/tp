@@ -47,35 +47,15 @@ public class UnarchiveNoteCommand extends Command {
 
     @Override
     public String execute() {
-        String unarchivedTitle;
-        Note unarchivedNote;
-        ArrayList<Note> unarchivedNotesList;
-
-        unarchivedNotesList = notebook.archiveNotes();
 
         try {
             // If there is no title, un-archive note by index. Else un-archive by title.
             if (title.isBlank()) {
-                unarchivedNote = unarchivedNotesList.get(index);
-                unarchivedTitle = unarchivedNote.getTitle();
-
-                unarchivedNote.toggleIsArchived();
-
-                return Formatter.formatString(UNARCHIVE_NOTE_MESSAGE + unarchivedTitle);
-
+                title = notebook.unarchiveNotes(index);
             } else {
-                unarchivedNotesList = (ArrayList<Note>) unarchivedNotesList.stream()
-                        .filter((s) -> s.getTitle().equalsIgnoreCase(title))
-                        .collect(Collectors.toList());
-
-                for (Note note : unarchivedNotesList) {
-                    note.toggleIsArchived();
-                    return Formatter.formatString(UNARCHIVE_NOTE_MESSAGE + title);
-                }
+                title = notebook.unarchiveNotes(title);
             }
-
-            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
-
+            return Formatter.formatString(UNARCHIVE_NOTE_MESSAGE + title);
         } catch (IndexOutOfBoundsException exception) {
             return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
