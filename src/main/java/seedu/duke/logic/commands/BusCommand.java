@@ -20,6 +20,7 @@ public class BusCommand extends Command {
         ArrayList<String> possibleLocs = new ArrayList<>(similarLocations(busStop));
         if (possibleLocs.isEmpty()) {
             this.busStop = BusStops.formatName(busStop.trim());
+            BusStops.findBusStop(busStop).incrementSearchCount();
         } else {
             Ui.printPossibleLocsMessage(possibleLocs);
         }
