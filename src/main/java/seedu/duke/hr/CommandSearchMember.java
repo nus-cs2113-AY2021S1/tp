@@ -6,6 +6,10 @@ import seedu.duke.backend.UserInput;
 public class CommandSearchMember extends Command {
     private UserInput userInput;
 
+    /**
+     * Determine which part of member information to search for the target content.
+     * @return the search result
+     */
     @Override
     public String execute() {
         boolean name = false;
@@ -43,12 +47,20 @@ public class CommandSearchMember extends Command {
         return output;
     }
 
+    /**
+     * Provide the help information when user has trouble typing the correct command.
+     * @return the syntax for search command
+     */
     @Override
     public String help() {
-        return null;
+        return "Syntax: hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM).\n";
     }
 
-    // /n search name, /p search phone, /e search email, /r search role
+    /**
+     * Determine whether the user is calling this command.
+     * @param input The UserInput to Validate
+     * @return it is the command the usre is calling or not
+     */
     public int validate(UserInput input) {
         if (input.getCategory().equals("hr") && input.getCommand().equalsIgnoreCase("search")) {
             userInput = input;

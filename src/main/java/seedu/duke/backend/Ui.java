@@ -13,6 +13,8 @@ import seedu.duke.finance.CommandFinanceDel;
 import seedu.duke.finance.CommandFinanceSummary;
 import seedu.duke.hr.CommandAddMember;
 import seedu.duke.hr.CommandDelMember;
+import seedu.duke.hr.CommandListConnection;
+import seedu.duke.hr.CommandListProfSpeaker;
 import seedu.duke.hr.CommandSearchMember;
 import seedu.duke.hr.CommandViewMember;
 import seedu.duke.others.CommandBye;
@@ -145,6 +147,8 @@ public class Ui {
         commandList.add(new CommandViewMember());
         commandList.add(new CommandDelMember());
         commandList.add(new CommandSearchMember());
+        commandList.add(new CommandListProfSpeaker());
+        commandList.add(new CommandListConnection());
     }
 }
 
