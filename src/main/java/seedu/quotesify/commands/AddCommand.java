@@ -106,26 +106,42 @@ public class AddCommand extends Command {
 
             String title = titleAndAuthor[0].trim();
             String authorName = titleAndAuthor[1].trim();
-            if (authorName.isEmpty()) {
-                throw new QuotesifyException(ERROR_NO_AUTHOR_NAME);
-            }
 
-            books.ensureNoSimilarBooks(title, authorName);
-            Book newBook = createNewBook(title, authorName);
+            checkMissingInformation(title, authorName);
+            Book newBook = createNewBook(books, title, authorName);
+
             books.add(newBook);
             books.sort();
             ui.printAddBook(newBook);
+
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
             addLogger.log(Level.INFO, "add book to booklist failed");
         }
     }
 
-    public Book createNewBook(String title, String authorName) {
-        Author author = new Author(authorName);
-        Book newBook = new Book(author, title);
+    private Book createNewBook(BookList books, String title, String authorName) throws QuotesifyException {
+        Book newBook;
+        Author existingAuthor = books.findExistingAuthor(authorName);
+
+        if (existingAuthor == null) {
+            // Book is definitely unique
+            newBook = new Book(new Author(authorName), title);
+        } else {
+            books.ensureNoSimilarBooks(title, existingAuthor.getName());
+            newBook = new Book(existingAuthor, title);
+        }
 
         return newBook;
+    }
+
+    private void checkMissingInformation(String title, String authorName) throws QuotesifyException {
+        if (title.isEmpty()) {
+            throw new QuotesifyException(ERROR_BOOK_TITLE_MISSING);
+        }
+        if (authorName.isEmpty()) {
+            throw new QuotesifyException(ERROR_NO_AUTHOR_NAME);
+        }
     }
 
     private void addQuote(QuoteList quotes, TextUi ui) {
