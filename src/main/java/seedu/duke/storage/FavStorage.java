@@ -21,10 +21,10 @@ public class FavStorage extends Storage {
     @Override
     public void readFile() throws FileNotFoundException {
         Scanner s = new Scanner(file);
-        while(s.hasNext()) {
+        while (s.hasNext()) {
             String entry = s.nextLine();
-            String[] entry_words = entry.split("\\|");
-            FavList.addFav(new Fav(entry_words[0], entry_words[1]));
+            String[] entryWords = entry.split("\\|");
+            FavList.addFav(new Fav(entryWords[0], entryWords[1]));
         }
         System.out.println("File Read");
     }
@@ -33,7 +33,7 @@ public class FavStorage extends Storage {
     public void updateFile() throws IOException {
         String line = new String();
         FileWriter fw = new FileWriter(file);
-        for(Fav f: FavList.getList()) {
+        for (Fav f: FavList.getList()) {
             line += f.getCommand() + "|" + f.getDesc();
             line += System.lineSeparator();
         }

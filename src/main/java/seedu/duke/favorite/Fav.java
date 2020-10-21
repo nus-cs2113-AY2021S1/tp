@@ -8,9 +8,11 @@ public class Fav {
         this.command = command;
         this.desc = desc;
     }
+
     public String getCommand() {
         return command;
     }
+
     public String getDesc() {
         return desc;
     }

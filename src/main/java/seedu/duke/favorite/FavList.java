@@ -14,11 +14,10 @@ public class FavList {
 
     public static void deleteFav(int index) {
     }
+
     public static void listFav() {
-        for (Fav f : favList) {
-            System.out.println(f.getCommand() + "|" + f.getDesc());
-        }
     }
+
     public static ArrayList<Fav> getList(){
         return favList;
     }
