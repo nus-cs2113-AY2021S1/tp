@@ -3,7 +3,121 @@
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+### Overview of architecture
+There are 5 distinct features that exists within the FinanceIt application, all of which are accessed via the main menu 
+interface facilitated in FinanceIt.java.
 
+### Main Menu
+- Loading up user data
+- Access to various features
+- Saving outstanding user data to respective save files
+
+### Manual Tracker
+**Overview**
+<br>
+ManualTracker.java manages various states of operation via a finite state machine class, 
+handling different states representing each operation on Ledger instances.
+
+|States| Operations | 
+|--------|----------|
+|```MAIN_MENU```|Go to main menu for users to choose the available operations
+|```CREATE_LEDGER```|Create a ledger specified by date, and append it to ```ledgerList```.
+|```DELETE_LEDGER```|Delete an existing ledger, referenced by date or index.
+|```OPEN_LEDGER```|Go to subroutine "Entry Tracker" for the entries recorded  under the specified ledger.
+
+**Helper Operation: Param Handler**
+
+***UML Class Diagram***
+![](.DeveloperGuide_images/518bf462.png)
+
+***Summary***
+* Classes which require input parameters by users require the collection of
+helper classes to handle the parsing, checking and organisation of the input string.
+* The handling of parameter input is isolated into an abstract class, whereby classes which requires a param handling
+feature will inherit from the abstract class.
+* Specific behavior towards different ```param type```-```parameter``` pairs  will be defined within their 
+own class declarations.
+
+***Architecture***
+* The initialisation of ```Ledger``` and ```Entry``` instances can be
+performed with reference to input parameters supplied from the user input.
+* For ledger creation operations, the input from the user is parsed and passed into an initialized ledger instance
+to handle. That is, the handling of input parameters is abstracted out from the handler classes. 
+<br> The handle operation will set the various attributes within the ledger in accordance to specifications inferred
+from the user input. 
+<br> If the ledger is successfully specified in full, it will be added to a ```ledgerList``` instance within the handler 
+class ```ManualTracker```.
+* For ledger deletion/open, a ledger will need to be selected from the ledger list maintained by the handler class.
+<br>Hence, the input from the user is parsed and passed into the ledger list instance to handle. If the input
+is valid, the ledger list instance will assign a reference to the ledger selected to a public ```currLedger``` 
+attribute. 
+<br>After which, an operation of edit/open would be performed upon the ledger referenced from 
+```currLedger``` in ```ledgerList```.
+
+
+***Parsing***
+
+****Input Conventions****
+* The user input is composed of the following format:
+```
+    <command> <param type> <parameter> <param type> <parameter> ...
+```
+* The ```command``` string determines the current state of the Finite State Machine, and
+hence the function executed. 
+* The remainder of the string includes a series of  ```param type``` - ```param``` combinations, whereby
+```param type``` indicates the type of the parameter which is to be identified by the user class,
+and ```param``` indicates the parameter that is associated with the ```param type```. 
+
+* Param types are restricted to two types: 
+    * ```/<string>```, requires a corresponding parameter.
+        * Eg. ```param type```: ```/date```
+              <br>  ```param``` : ```2020-04-04```
+    * ```-<string>```, does not require a corresponding parameter. 
+        * Reserved for param types which are used to specify a property to be true/false
+        * Eg. ```-auto```, to specify if an entry has automatic deduction. 
+        
+****Command Packet****
+* A helper class. Contains two particular attributes to store the user input in an organised fashion.
+    * ```commandString``` :  ```String``` Store the command string from the input.
+    * ```paramMap``` : ```HashMap``` Store the pairs of ```param type``` and ```param``` present in the input string.
+        * Key: ```param type```
+        * Value:  ```param```
+
+****InputParser****
+* A helper class. Parses the input string and returns a corresponding ```commandPacket```.
+    * ```parseInput()```: 
+        * Initializes a ```commandPacket``` and populates the ```commandString``` attribute.
+        * Calls ParamParser instance to parse the segment of the input string
+        that corresponds with the sequence of ```param type``` - ```param``` pairs, and
+        return a HashMap populated with the aforementioned pairs.
+        * Returns a fully populated ```commandPacket``` to be used by user classes.
+         
+****ParamParser****
+* A helper class. Parses the subsequence of the input string that corresponds with sequence of 
+```param type``` - ```param``` pairs.
+    * ```parseParams()```:
+        * __Step 1__: Use a regex helper class ```RegexMatcher``` to identify and extract ```param type``` that matches the 
+        pattern specified in "Input conventions":
+        ```
+        Param types are restricted to two types: 
+          /<string>, requires a corresponding parameter.
+              Eg. param type: /date
+                    <br>  param : 2020-04-04
+          -<string>, does not require a corresponding parameter. 
+              Reserved for param types which are used to specify a property to be true/false
+              Eg. -auto, to specify if an entry has automatic deduction. 
+        ```
+        * __Step 2__: Identify the substring of the rest of the input string before the next ```param type``` or end-of-line, 
+        as the ```param``` to the previously identified ```param type```. Extract it from the input string.
+        * __Step 3__: Put the ```param type``` - ```param``` pair into a ```HashMap```.
+        * __Step 4__: Repeat steps 1 to 4 until there is the input string is fully extracted.
+        * __Step 5__: Return a ```HashMap``` populated with the aforementioned pairs.
+
+
+**Operation: Ledger Creation**
+
+***UML Sequence Diagram***
+![](.DeveloperGuide_images/UmlSeqHandleCreateLedger.png)
 
 ## Product scope
 ### Target user profile

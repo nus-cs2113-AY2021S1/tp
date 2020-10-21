@@ -24,6 +24,13 @@ class ParamChecker {
     + checkAndReturnCategory(paramType : String) : String
 }
 
+class DateTimeItem {
+    + setDate() : void
+    + getDate() : LocalDate
+    + setTime() : void
+    + getTime() : LocalTime
+}
+
 abstract class Item {
     # index : int
     + {abstract} getName() : String
@@ -61,8 +68,9 @@ class Entry {
 ParamHandler "1" *--> "1" ParamChecker : have params checked by
 ParamHandler --|> Item
 ParamHandler --|> ItemList
-Item --|> Ledger
-Item --|> Entry
+Item --|> DateTimeItem
+DateTimeItem --|> Ledger
+DateTimeItem --|> Entry
 ItemList --|> LedgerList
 ItemList --|> EntryList
 Ledger "1" -- "1" EntryList
