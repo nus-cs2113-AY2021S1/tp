@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.person.ActivityLevel;
+import seedu.duke.person.Gender;
 
 import java.util.List;
 
@@ -50,7 +51,8 @@ public class Ui {
                 + LINE_SEPARATOR
                 + "accurate calculations for you :). Therefore, could you please share with me the "
                 + "following:" + LINE_SEPARATOR
-                + "- Your gender either F for female or M for male." + LINE_SEPARATOR
+                + "- Your gender either F for " + Gender.FEMALE.getDescription() + " or M for "
+                + Gender.MALE.getDescription() + "." + LINE_SEPARATOR
                 + "- Your age which is a positive integer." + LINE_SEPARATOR
                 + "- Your height in cm." + LINE_SEPARATOR
                 + "- Your original weight in kg." + LINE_SEPARATOR
