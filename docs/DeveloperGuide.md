@@ -27,12 +27,16 @@ The main driver of the application is `Fitr` is responsible for mainly two phase
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 The rest of the App consists of:
-* `UI`: The user interface of the App.
+* `Ui`: The user interface of the application.
 * `Parser`: Handles and parses user commands.
 * `Command`: Handles the various commands Fitr understands.
 * `Storage`: Reads data from and writes data back into a text file for future use.
 
 Each of the component defines its _API_ in an `interface` with the same name as the Component.
+
+The sequence diagram below shows how the components work with one another, when a user enters the following command `food chicken rice /600 1`:
+
+![Add food sequence diagram](images/AddFoodSequenceDiagram.png)
  
 ### Ui component
 
@@ -54,7 +58,7 @@ On startup, the `Fitr` class creates a new `Storage` object with the file paths 
 This will cause the `Storage` object to retrieve the text files from the given file paths and loads the data into the program. 
 If the files do not exist, the Storage object will create the files.
 
-Each time there is a change in the `FoodList`, `ExerciseList` or `User` objects, or when the program is exiting, `writeExerciseList()`, `writeFoodList()` and `writeUserProfile()` are invoked. 
+Each time there is a change in the `FoodList`, `ExerciseList` or `User` objects, or when the program is exiting, `writeExerciseList()`, `writeFoodList()` and `writeUserProfile()` methods are invoked. 
 This will save the data onto the respective text files on the hard disk.
 
 ### Common classes
@@ -64,11 +68,13 @@ Classes used by multiple components are in the `fitr.common` package.
 ## Product scope
 ### Target user profile
 
-Our target user profile is university students, at all fitness levels, who values an application that integrates the logging of food, exercises performed and the tracking of calories in one application. It is also aimed at those who prefer typing over mouse interactions and are reasonably comfortable with using command-line applications.
+Our target user profile is university students, at all fitness levels, who values an application that integrates the logging of food, exercises performed and the tracking of calories in one application. 
+It is also aimed at those who prefer typing over mouse interactions and are reasonably comfortable with using command-line applications.
 
 ### Value proposition
 
-Our application helps users to keep fit without needing them to do any research on healthy living or workout options. We will be collecting user information such as age, weight, fitness level, and the application will recommend users preset exercises.
+Our application helps users to keep fit without needing them to do any research on healthy living or workout options. 
+We will be collecting user information such as age, weight, fitness level, and the application will recommend users preset exercises.
 
 ## User stories
 
@@ -92,8 +98,7 @@ Our application helps users to keep fit without needing them to do any research 
 ## Non-functional requirements
 
 1. This application should work on any mainstream operating system, such as Windows or macOS, as long as Java 11 or above is installed.
-1. This application should be able to hold up to 1000 exercise, food or goal entries without a noticeable difference in performance for typical usage.
-1. A user with above average typing speed for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. A user with above average typing speed for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ## Instructions for manual testing
 

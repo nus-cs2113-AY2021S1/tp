@@ -26,10 +26,10 @@ Fitr is a command-line application, helping you keep track of your food intake a
 
 ## Quick Start
 1. Ensure that you have Java 11 or above installed.
-1. Download the latest version of `Fitr` from [here](https://github.com/AY2021S1-CS2113T-W13-2/tp/releases).
-1. Open Command Prompt / Terminal
-1. Run the command java -jar {filename}.jar e.g., java -jar Fitr.jar (i.e., run the command in the same folder as the jar file).
-1. If the setup is correct, you should see something like the below:
+2. Download the latest version of `Fitr` from [here](https://github.com/AY2021S1-CS2113T-W13-2/tp/releases).
+3. Open command prompt/terminal.
+4. Run the command `java -jar {filename}.jar` e.g., `java -jar Fitr.jar` (i.e., run the command in the same folder as the jar file).
+5. If the setup is correct, you should see something like below:
       ``` 
        _______   __   __
       |    ___| |__| |  |_  .----.
