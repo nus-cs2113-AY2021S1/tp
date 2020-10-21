@@ -36,7 +36,13 @@ public class AddInfoCommand extends Command {
             throw new DukeException("invalid add info");
         }
         calendarNumber = CalendarList.convertEventNumberToCalendarNumber(eventNumber, calendarList);
+
+        assert calendarNumber >= 0;
+
         Event event = (Event) calendarList.getItem(calendarNumber);
+
+        assert event != null;
+
         event.setAdditionalInformation(additionalInformation);
         Ui.printLastAdditionalInformation(event);
     }

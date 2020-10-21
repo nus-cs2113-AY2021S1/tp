@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.DateTimeParser;
 import seedu.duke.Storage;
 import seedu.duke.calendar.CalendarItem;
 import seedu.duke.calendar.CalendarList;
@@ -24,28 +25,19 @@ public class PrintTimelineCommand extends Command {
     public void execute(CalendarList calendarList, Storage storage) {
         CalendarList timelineList = new CalendarList();
         CalendarList todoList = new CalendarList();
-
-        String timeRange = detectTimeRange(userInput);
         LocalDate startDate = LocalDate.now();
-        LocalDate endDate;
-        if (timeRange == "week") {
+        LocalDate endDate = null;
+        try {
+            endDate = detectEndDate(userInput);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (endDate != null) {
             endDate = startDate.plusDays(7);
             for (int i = 0; i < calendarList.getTotalItems(); i++) {
                 if ((calendarList.getItem(i).getDate() == null)
-                        || (calendarList.getItem(i).getDate().isBefore(endDate))) {
-                    CalendarItem temp = calendarList.getItem(i);
-                    if (temp instanceof Todo) {
-                        todoList.addItem(temp);
-                    } else {
-                        timelineList.addItem(temp);
-                    }
-                }
-            }
-        } else if (timeRange == "month") {
-            endDate = startDate.plusDays(31);
-            for (int i = 0; i < calendarList.getTotalItems(); i++) {
-                if ((calendarList.getItem(i).getDate() == null)
-                        || (calendarList.getItem(i).getDate().isBefore(endDate))) {
+                        || ((calendarList.getItem(i).getDate().isAfter(startDate))
+                        && (calendarList.getItem(i).getDate().isBefore(endDate)))) {
                     CalendarItem temp = calendarList.getItem(i);
                     if (temp instanceof Todo) {
                         todoList.addItem(temp);
@@ -131,15 +123,19 @@ public class PrintTimelineCommand extends Command {
         return sortingList;
     }
 
-    public String detectTimeRange(String userInput) {
-        String timeRange;
+    public LocalDate detectEndDate(String userInput) throws Exception {
+        LocalDate startDate = LocalDate.now();
+        LocalDate endDate;
         if (userInput.contains("week")) {
-            timeRange = "week";
+            endDate = startDate.plusDays(7);
         } else if (userInput.contains(("month"))) {
-            timeRange = "month";
+            endDate = startDate.plusDays(31);
+        } else if (userInput.contains("date")) {
+            String[] userInputSplit = userInput.split("date", 2);
+            endDate = DateTimeParser.inputDateProcessor(userInputSplit[1].trim());
         } else {
-            timeRange = "all";
+            endDate = null;
         }
-        return timeRange;
+        return endDate;
     }
 }

@@ -32,6 +32,8 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(CalendarList calendarList, Storage storage) throws DukeException {
+        assert userInput.startsWith(COMMAND_FIND_EVENT_OR_TASK) : "Find command invalid but passes";
+
         if (userInput.startsWith(COMMAND_FIND_EVENT)) {
             find(COMMAND_FIND_EVENT, calendarList);
         } else if (userInput.startsWith(COMMAND_FIND_TASK)) {
