@@ -97,7 +97,7 @@ public class ViewTimeBreakDownAnalysis {
                     + System.lineSeparator());
             return false;
         }
-        
+
         for (Module m : modList) {
             if (m.doesActualTimeExist(weekNumber)) {
                 double actualTime = m.getActualTime()[weekNumber - INDEX_OFFSET];

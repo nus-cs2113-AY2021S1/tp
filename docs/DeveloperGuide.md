@@ -269,17 +269,15 @@ in the week across all modules and provides a simple analysis of how they are do
    If any of the above conditions is not satisfied, an error message will be printed
    and `printTimeBreakDownAndAnalysis()` terminates.
 
-1. `printTime()` method in `printTimeBreakDownAndAnalysis()` is first called. This method iterates through
-`modList` and for each `Module` it extracts `moduleCode`, `expectedWorkload` and `actualWorkload`. 
-Existence of the desired data is checked using their respective methods, `doesExpectedWorkLoadExist()` 
-and `doesActualTimeExist()`, before they are filled into the templates to be printed. If the desired 
-data does not exist, a `NO INPUT` will be printed. Else, the data will be pass into 
-`printBarGraph()` and be printed out as a horizontal bar graph.
+1. `printTime()` method in `printTimeBreakDownAndAnalysis()` is first called. For each `Module` 
+in `modList`, `printTime()` prints `actualWorkload` and `expectedWorkload` in form of a 
+horizontal bar graph. The existence of the desired data is checked using `doesActualTimeExist()` 
+and `doesExpectedTimeExist()` methods of the `Module` class. If the desired data does not exist, a `NO INPUT` will be printed. 
 
 1. `printBreakdown()` then calculates the total time spent by the user on the modules taken in the specified 
 week. It then prints out `actualTime` of each `Module` as a percentage of `totalTimeSpent`. If there is no input, 
-a `NO INPUT` message will be printed. `printBreakdown()` returns `TRUE` if there exists a `Module` that has a 
-valid input, else `False` is returned.
+a `NO INPUT` message will be printed. `printBreakdown()` return **TRUE** if there exists a `Module` that has a 
+valid input, else **False** is returned.
 
 1. If output of `printBreakdown()` is `True`, `printAnalysis()` will be called. `computeAnalysisOfTimeSpent()` 
 is called to determine the outcome of the analysis. A message will be printed depending on the output
@@ -293,7 +291,8 @@ of the analysis.
     * Cons: It might be difficult to compare across modules using a bar graph.
 * **Alternative 2**: Printing data as a line graph
     * Pros: Easier to compare across different modules.
-    * Cons: Difficult to implement as it requires external libraries. 
+    * Cons: Difficult to implement as it requires external libraries.
+    * Cons: Difficult to test due to additional dependencies on external libraries. 
 
 ### Add Task
 The add task feature allows user to add a task under an existing module. 
