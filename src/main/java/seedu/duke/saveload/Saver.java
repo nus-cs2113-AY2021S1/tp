@@ -9,7 +9,7 @@ public class Saver {
     private static final String ROOT_DIRECTORY = System.getProperty("user.home");
     private static final String BASE_FOLDER_NAME =  ROOT_DIRECTORY + File.separator + "dietbook";
     private static final String EMPTY_SYMBOL = "%NULL&!!LL";
-    private static final String SEPERATOR_SYMBOL = "&%SEPERATOR%$$";
+    private static final String SEPERATOR_SYMBOL = "&%SEPERATOR%AAA%";
     private static final String FILE_EXTENSION = ".txt";
 
     static {
@@ -79,8 +79,8 @@ public class Saver {
      * Saves the data table into a text file in the following format:
      * width
      * height
-     * row 1 entry 1 (seperator) row 1 entry 2 (separator) ....
-     * row 2 entry 1 (separator) row 2 entry 2 (separator) ....
+     * (seperator) row 1 entry 1 (seperator) row 1 entry 2 (separator) ....
+     * (seperator) row 2 entry 1 (separator) row 2 entry 2 (separator) ....
      * ....
      *
      * @param folderName name of the folder
