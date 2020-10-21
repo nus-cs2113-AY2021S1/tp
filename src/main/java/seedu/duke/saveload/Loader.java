@@ -5,6 +5,10 @@ import java.io.FileNotFoundException;
 import java.util.Optional;
 import java.util.Scanner;
 
+/**
+ * Handles reading of stored text file.
+ * Note: the first five fields must be same
+ */
 public class Loader {
     private static final String ROOT_DIRECTORY = System.getProperty("user.home");
     private static final String BASE_FOLDER_NAME =  ROOT_DIRECTORY + File.separator + "dietbook";
@@ -46,10 +50,10 @@ public class Loader {
             if (this.entries[y_position - 1][x_position - 1].equals(EMPTY_SYMBOL)) {
                 return Optional.empty();
             } else {
-                return Optional.of(this.entries[y_position][x_position]);
+                return Optional.of(this.entries[y_position-1][x_position-1]);
             }
         }
-        catch (ArrayIndexOutOfBoundsException e){
+        catch (ArrayIndexOutOfBoundsException e) {
             throw new IndexOutOfBoundsException("The x or y position provided must be within the the dimensions of the" +
                     "saver table!");
         }
