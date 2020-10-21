@@ -67,13 +67,13 @@ the user input and execute the commands accordingly. The diagram below depicts t
 
 **Parser**
 
-<li>Receives the user input message as a whole.</li>
-<li>Interprets the type of command and splits the message to identify all the parameters provided.</li>
-<li>Creates and returns the Command class respectively.</li>
+1. Receives the user input message as a whole.
+1. Interprets the type of command and splits the message to identify all the parameters provided.
+1. Creates and returns the Command class respectively.
  
  {insert Parser.puml here}
 
-<b>Command</b> classes
+**Command** classes
 
 <br>
 
