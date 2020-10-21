@@ -45,6 +45,9 @@ public class Parser {
 
         case "watchlist":
             return new WatchlistParser().parse(description);
+            
+        case "view":
+            return new ViewWatchlistParser().parse(description);
 
         case "add":
             return new AddToWatchlistParser().parse(description);
