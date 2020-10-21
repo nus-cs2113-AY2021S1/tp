@@ -2,14 +2,8 @@ package seedu.duke.logic.parser;
 
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
-import seedu.duke.logic.commands.BusCommand;
-import seedu.duke.logic.commands.Command;
-import seedu.duke.logic.commands.RouteCommand;
-import seedu.duke.logic.commands.RouteMapCommand;
-import seedu.duke.logic.commands.ExitCommand;
-import seedu.duke.logic.commands.HelpCommand;
-import seedu.duke.logic.commands.AllBusCommand;
-import seedu.duke.logic.commands.ListStopsCommand;
+import seedu.duke.logic.commands.*;
+import seedu.duke.logic.commands.favCommand.*;
 
 public class Parser {
 
@@ -56,6 +50,21 @@ public class Parser {
             break;
         case "/exit":
             com = new ExitCommand();
+            break;
+        case "/addfav":
+            com = new AddFavCommand();
+            break;
+        case "/listfav":
+            com = new ListFavCommand();
+            break;
+        case "/deletefav":
+            com = new DeleteFavCommand();
+            break;
+        case "/descfav":
+            com = new DescFavCommand();
+            break;
+        case "/execfav":
+            com= new ExecFavCommand();
             break;
         default:
             throw new CustomException(ExceptionType.INVALID_COMMAND);
