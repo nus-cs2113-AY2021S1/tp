@@ -283,5 +283,18 @@ public class ModuleList {
         return modList;
     }
 
+    /**
+     * Gets all the module codes of modules taken by the user.
+     *
+     * @return a list containing all the modules codes.
+     */
+    public ArrayList<String> getModuleCodes() {
+        ArrayList<String> output = new ArrayList<>();
+        for (Module m : modList) {
+            output.add(m.getModuleCode());
+        }
+        return output;
+    }
+
 }
 
