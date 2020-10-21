@@ -1,5 +1,10 @@
 package seedu.smarthomebot.data.framework;
 
+import seedu.smarthomebot.exceptions.InvalidWattageValueException;
+
+import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
+import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
+
 /**
  * Abstract Class representing the appliances for SmartHomeBot.
  */
@@ -24,6 +29,33 @@ public abstract class Appliance {
         if (this.location.length() > maxLocationLength) {
             maxLocationLength = this.location.length();
         }
+    }
+
+    /**
+     * Gets the longest length of name in the appliance class.
+     *
+     * @return the length of the longest name of appliance in integer.
+     */
+    public static int getMaxNameLength() {
+        return maxNameLength;
+    }
+
+    /**
+     * Gets the longest length of name in the location.
+     *
+     * @return the length of the longest name of location in integer.
+     */
+    public static int getMaxLocationLength() {
+        return maxLocationLength;
+    }
+
+    private static int convertParameterToInt(String parameter) throws InvalidWattageValueException {
+        try {
+            return Integer.parseInt(parameter);
+        } catch (NumberFormatException e) {
+            throw new InvalidWattageValueException();
+        }
+
     }
 
     /**
@@ -101,30 +133,12 @@ public abstract class Appliance {
     }
 
     /**
-     * Abstract method to gets the type of appliance.
+     * Method to gets the type of appliance.
      *
      * @return the type of the appliance in String.
      */
     public String getLocation() {
         return this.location;
-    }
-
-    /**
-     * Gets the longest length of name in the appliance class.
-     *
-     * @return the length of the longest name of appliance in integer.
-     */
-    public static int getMaxNameLength() {
-        return maxNameLength;
-    }
-
-    /**
-     * Gets the longest length of name in the location.
-     *
-     * @return the length of the longest name of location in integer.
-     */
-    public static int getMaxLocationLength() {
-        return maxLocationLength;
     }
 
     /**
@@ -134,15 +148,27 @@ public abstract class Appliance {
      */
     public abstract String getType();
 
-    public abstract String getParameter();
+    public abstract String getParameter(boolean isList);
 
     public String toString() {
-        return  this.getName() + "(" + this.getWattage() + "W)" + " in " + this.getLocation();
+        return this.getName() + "(" + this.getWattage() + "W)" + " in " + this.getLocation();
     }
 
     public String writeFileFormat() {
-        return this.location + "|" + this.name + "|" + this.wattage + "|"  + this.getType()
-                  + "|" + this.getPowerInString() + "|" + this.getParameter();
+        return this.location + "|" + this.name + "|" + this.wattage + "|" + this.getType()
+                + "|" + this.getPowerInString() + "|" + this.getParameter(false);
+    }
+
+    protected boolean isParameterValid(String parameter, int lowerBound, int upperBound) {
+        try {
+            int parameterValue = convertParameterToInt(parameter);
+            if ((parameterValue < upperBound) && (parameterValue > lowerBound)) {
+                return true;
+            }
+        } catch (InvalidWattageValueException e) {
+            return false;
+        }
+        return false;
     }
 
 }

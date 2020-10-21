@@ -5,9 +5,7 @@ import seedu.smarthomebot.data.framework.Appliance;
 import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toList;
-import static seedu.smarthomebot.common.Messages.LINE;
-import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_NOT_EXIST;
-import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
+import static seedu.smarthomebot.common.Messages.*;
 
 public class OffCommand extends Command {
 
@@ -16,9 +14,9 @@ public class OffCommand extends Command {
             + ": Turns off specified appliance by its indicated NAME \n"
             + "Parameters: NAME\n"
             + "Example: " + COMMAND_WORD + " Fan 1";
-    private final String name;
     private static final String APPLIANCE_TYPE = "appliance";
     private static final String LOCATION_TYPE = "location";
+    private final String name;
 
     public OffCommand(String name) {
         this.name = name;
@@ -44,21 +42,21 @@ public class OffCommand extends Command {
             type = LOCATION_TYPE;
         }
         switch (type) {
-        case(APPLIANCE_TYPE) :
+        case (APPLIANCE_TYPE):
             int toOffApplianceIndex = getApplianceToOffIndex();
             if (toOffApplianceIndex < 0) {
                 return new CommandResult(MESSAGE_APPLIANCE_NOT_EXIST);
             } else {
                 Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
-                String outputResult = displayOutput(toOffAppliance, "",0);
+                String outputResult = displayOutput(toOffAppliance, "", false);
                 return new CommandResult(outputResult);
             }
-        case(LOCATION_TYPE) :
+        case (LOCATION_TYPE):
             if (locationList.isLocationCreated(this.name)) {
                 String outputResults = LINE;
-                for (Appliance toOffAppliance: applianceList.getAllAppliance()) {
+                for (Appliance toOffAppliance : applianceList.getAllAppliance()) {
                     if (toOffAppliance.getLocation().equals(this.name)) {
-                        outputResults = displayOutput(toOffAppliance, outputResults, 1);
+                        outputResults = displayOutput(toOffAppliance, outputResults, true);
                     }
                 }
                 outputResults = outputResults.concat("All appliance in \"" + this.name + "\" are turned off ");
@@ -66,25 +64,20 @@ public class OffCommand extends Command {
             } else {
                 return new CommandResult("No appliance in this location");
             }
-        default :
+        default:
             return new CommandResult("Invalid Format");
         }
     }
 
-    private String displayOutput(Appliance toOffAppliance, String outputResults, int isList) {
-        if (toOffAppliance.switchOff()) {
-            assert toOffAppliance.getStatus().equals("OFF") : "Appliance should be already OFF";
-            if (isList == 1) {
-                outputResults = outputResults.concat(MESSAGE_APPLIANCE_PREVIOUSLY_OFF + "\n" + LINE);
+    private String displayOutput(Appliance toOffAppliance, String outputResults, boolean isList) {
+        boolean offResult = toOffAppliance.switchOff();
+        assert toOffAppliance.getStatus().equals("OFF") : "Appliance should be already OFF";
+
+        if (!isList) {
+            if (offResult) {
+                outputResults = LINE + "Switching: " + toOffAppliance + "......OFF";
             } else {
                 outputResults = LINE + MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
-            }
-        } else {
-            assert toOffAppliance.getStatus().equals("OFF")  : "Appliance should be already OFF";
-            if (isList == 1) {
-                outputResults = outputResults.concat("Switching: " + toOffAppliance + "......OFF \n" + LINE);
-            } else {
-                outputResults = LINE + "Switching: " + toOffAppliance + "......OFF";
             }
         }
         return outputResults;

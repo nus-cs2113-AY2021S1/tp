@@ -1,9 +1,9 @@
 package seedu.smarthomebot.commands;
 
-import seedu.smarthomebot.data.AirConditioner;
-import seedu.smarthomebot.data.Fan;
-import seedu.smarthomebot.data.Lights;
-import seedu.smarthomebot.data.WaterHeater;
+import seedu.smarthomebot.data.framework.type.AirConditioner;
+import seedu.smarthomebot.data.framework.type.Fan;
+import seedu.smarthomebot.data.framework.type.Lights;
+import seedu.smarthomebot.data.framework.type.WaterHeater;
 import seedu.smarthomebot.exceptions.DuplicateDataException;
 import seedu.smarthomebot.exceptions.LocationNotFoundException;
 

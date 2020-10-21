@@ -1,12 +1,12 @@
 package seedu.smarthomebot.storage;
 
 import seedu.smarthomebot.common.Messages;
-import seedu.smarthomebot.data.AirConditioner;
+import seedu.smarthomebot.data.framework.type.AirConditioner;
 import seedu.smarthomebot.data.ApplianceList;
-import seedu.smarthomebot.data.Fan;
-import seedu.smarthomebot.data.Lights;
+import seedu.smarthomebot.data.framework.type.Fan;
+import seedu.smarthomebot.data.framework.type.Lights;
 import seedu.smarthomebot.data.LocationList;
-import seedu.smarthomebot.data.WaterHeater;
+import seedu.smarthomebot.data.framework.type.WaterHeater;
 import seedu.smarthomebot.exceptions.DuplicateDataException;
 import seedu.smarthomebot.exceptions.FileCorruptedException;
 import seedu.smarthomebot.ui.TextUi;
@@ -142,9 +142,7 @@ public class StorageFile {
             if (!myObj.getParentFile().exists()) {
                 myObj.getParentFile().mkdirs();
             }
-            if (myObj.exists()) {
-                return;
-            } else {
+            if (!myObj.exists()) {
                 myObj.createNewFile();
             }
 

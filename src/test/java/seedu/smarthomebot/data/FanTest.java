@@ -1,6 +1,7 @@
 package seedu.smarthomebot.data;
 
 import org.junit.jupiter.api.Test;
+import seedu.smarthomebot.data.framework.type.Fan;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -44,14 +44,16 @@ public class Power {
     /**
      * Appliance only can be switched on if it was 'off' previously.
      *
-     * @return true if appliance turn on successfully
+     * @return true if appliance has not been turned on before.
      */
     public boolean onAppliance() {
         if (!this.status) {
+            // if Appliance has not been turned ON
             this.status = true;
             this.onTime = getCurrentTime();
             return true;
         } else {
+            // if Appliance has been turned ON previously
             return false;
         }
     }
@@ -60,22 +62,23 @@ public class Power {
      * Appliance only can be switched off if it was 'on' previously.
      * Compute the total power consumption once appliance is off.
      *
-     * @return true if appliance turn off successfully
+     * @return true if appliance has not been turned off before.
      */
     public boolean offAppliance() {
         if (this.status) {
+            // if Appliance has not been turned OFF
             this.status = false;
             this.offTime = getCurrentTime();
             computeTotalPower();
             return true;
         } else {
+            // if Appliance has been turned OFF previously
             return false;
         }
     }
 
     /**
      * Reset all the appliance power usage and the total power consumption.
-     *
      */
     public void resetPower() {
         this.powerUsed = 0.00;
