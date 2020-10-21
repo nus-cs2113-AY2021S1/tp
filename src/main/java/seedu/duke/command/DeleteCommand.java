@@ -33,6 +33,8 @@ public class DeleteCommand extends Command {
                 isTask = true;
             } else if (userInput.startsWith("-e")) {
                 numberDelete = Integer.parseInt(userInput.replace("-e", "").trim());
+            } else {
+                throw new Exception("e");
             }
         } catch (Exception e) {
             throw new DukeException("delete");
@@ -58,10 +60,8 @@ public class DeleteCommand extends Command {
      */
     private void deleteEvent(CalendarList calendarList, int numberDelete) throws DukeException {
         int calendarNumber;
-        if (numberDelete > calendarList.getTotalEvents() || numberDelete <= 0) {
-            throw new DukeException("invalid event action");
-        }
         calendarNumber = CalendarList.convertEventNumberToCalendarNumber(numberDelete, calendarList);
+        assert calendarNumber >= 0;
         Ui.printDeleteMessage(calendarNumber, calendarList);
         calendarList.deleteEvent(calendarNumber);
     }
@@ -75,10 +75,9 @@ public class DeleteCommand extends Command {
      */
     private void deleteTask(CalendarList calendarList, int numberDelete) throws DukeException {
         int calendarNumber;
-        if (numberDelete > calendarList.getTotalTasks() || numberDelete <= 0) {
-            throw new DukeException("invalid task action");
-        }
         calendarNumber = CalendarList.convertTaskNumberToCalendarNumber(numberDelete, calendarList);
+        assert calendarNumber >= 0;
+
         Ui.printDeleteMessage(calendarNumber, calendarList);
         calendarList.deleteTask(calendarNumber);
         Ui.printTotalTaskNumber(calendarList);

@@ -34,6 +34,7 @@ public class AddCommand extends Command {
 
     private String venue;
     private String moduleCode;
+    private String recurringValue;
     private LocalTime time;
     private String[] dateTime;
     private LocalDate date;
@@ -123,14 +124,21 @@ public class AddCommand extends Command {
      * User input for Lab event example: lab CS1010 com1-b1-14 /at 100820 1400.
      *
      * @param calendarList the calendar list to add the lab event to.
-     * @param command the attributes of the lab event.
+     * @param command      the attributes of the lab event.
      * @throws Exception if the module code is empty.
      */
+    //new lab command input: lab cs1010 @nus -r 10 /101020 1330
     private void addLabEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
+        //command[0] = cs1010 and command[1] = @nus -r 10 /101020 1230
         moduleCode = command[0];
-        command = command[1].split("/", 2);
+        command = command[1].split("-r", 2);
+        //command[0] = @nus and command[1] = 10 /101020 1230
         String[] temp = command[0].split("@");
+        //temp[0] = "" and temp[1] = nus
+        command = command[1].split("/", 2);
+        //command[0] = 10; command[1] = 101020 1230
+        int recurringCount = Integer.parseInt(command[0].trim());
         venue = temp[1].trim();
         dateTime = command[1].trim().split(" ", 2);
         date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
@@ -139,7 +147,10 @@ public class AddCommand extends Command {
         if (moduleCode.isEmpty()) {
             throw new DukeException("lab");
         } else {
-            calendarList.addEvent(new Lab(moduleCode, date, time, venue));
+            for (int i = 0; i < recurringCount; i++) {
+                calendarList.addEvent(new Lab(moduleCode, date, time, venue));
+                date = date.plusWeeks(1);
+            }
         }
     }
 
@@ -147,24 +158,33 @@ public class AddCommand extends Command {
      * User input for Tutorial event example: tutorial CS1010 lt12 /at 090820 1000.
      *
      * @param calendarList the calendar list to add the tutorial event to.
-     * @param command the attributes of the tutorial event.
+     * @param command      the attributes of the tutorial event.
      * @throws Exception if the module code is empty.
      */
+    //new tutorial command input: tut cs1010 @nus -r 10 /101020 1330
     private void addTutorialEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
+        //command[0] = cs1010 and command[1] = @nus -r 10 /101020 1230
         moduleCode = command[0];
-        command = command[1].split("/", 2);
+        command = command[1].split("-r", 2);
+        //command[0] = @nus and command[1] = 10 /101020 1230
         String[] temp = command[0].split("@");
+        //temp[0] = "" and temp[1] = nus
+        command = command[1].split("/", 2);
+        //command[0] = 10; command[1] = 101020 1230
+        int recurringCount = Integer.parseInt(command[0].trim());
         venue = temp[1].trim();
         dateTime = command[1].trim().split(" ", 2);
         date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
         time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
 
-
         if (moduleCode.isEmpty()) {
             throw new DukeException("tutorial");
         } else {
-            calendarList.addEvent(new Tutorial(moduleCode, date, time, venue));
+            for (int i = 0; i < recurringCount; i++) {
+                calendarList.addEvent(new Tutorial(moduleCode, date, time, venue));
+                date = date.plusWeeks(1);
+            }
         }
     }
 
@@ -172,14 +192,21 @@ public class AddCommand extends Command {
      * User input for Lecture task example: lecture CS2113 LT2 /at 020202 1200.
      *
      * @param calendarList the calendar list to add the lecture event to.
-     * @param command the attributes of the lecture event.
+     * @param command      the attributes of the lecture event.
      * @throws Exception if the module code is empty.
      */
+    //new lecture command input: lect cs1010 @nus -r 10 /101020 1330
     private void addLectureEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
+        //command[0] = cs1010 and command[1] = @nus -r 10 /101020 1230
         moduleCode = command[0];
-        command = command[1].split("/", 2);
+        command = command[1].split("-r", 2);
+        //command[0] = @nus and command[1] = 10 /101020 1230
         String[] temp = command[0].split("@");
+        //temp[0] = "" and temp[1] = nus
+        command = command[1].split("/", 2);
+        //command[0] = 10; command[1] = 101020 1230
+        int recurringCount = Integer.parseInt(command[0].trim());
         venue = temp[1].trim();
         dateTime = command[1].trim().split(" ", 2);
         date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
@@ -188,7 +215,10 @@ public class AddCommand extends Command {
         if (moduleCode.isEmpty()) {
             throw new DukeException("lecture");
         } else {
-            calendarList.addEvent(new Lecture(moduleCode, date, time, venue));
+            for (int i = 0; i < recurringCount; i++) {
+                calendarList.addEvent(new Lecture(moduleCode, date, time, venue));
+                date = date.plusWeeks(1);
+            }
         }
     }
 
@@ -196,7 +226,7 @@ public class AddCommand extends Command {
      * User input for Exam task example: exam CS2113 BLK:EA LT2 /at 020202 1200.
      *
      * @param calendarList the calendar list to add the exam to.
-     * @param command the attributes of the exam.
+     * @param command      the attributes of the exam.
      * @throws Exception if the module code is empty.
      */
     private void addExamEvent(CalendarList calendarList, String[] command) throws Exception {
@@ -220,7 +250,7 @@ public class AddCommand extends Command {
      * User input for Activity event example: activity run training @sentosa / 020202 1200.
      *
      * @param calendarList the calendar list to add the activity to.
-     * @param command the attributes of the activity.
+     * @param command      the attributes of the activity.
      * @throws Exception if the description is empty.
      */
     private void addActivityEvent(CalendarList calendarList, String[] command) throws Exception {
@@ -245,7 +275,7 @@ public class AddCommand extends Command {
      * User input for Deadline task example: deadline project / 101020.
      *
      * @param calendarList the calendar list to add the deadline task to.
-     * @param command the attributes of deadline task.
+     * @param command      the attributes of deadline task.
      * @return to show that is is a task.
      * @throws Exception if the description is empty.
      */

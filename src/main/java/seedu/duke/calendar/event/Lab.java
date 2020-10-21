@@ -25,6 +25,7 @@ public class Lab extends SchoolEvent {
     public Lab(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
         eventType = "LAB";
+        this.isOver = getIsOver();
     }
 
     /**
@@ -61,9 +62,20 @@ public class Lab extends SchoolEvent {
         return "[LAB]" + "[" + getIcon() + "] " + super.toString();
     }
 
+    /**
+     * Returns the description of the lab.
+     */
     @Override
     public String getDescription() {
         return "[LAB]" + "[" + getIcon() + "] " + super.getDescription();
+    }
+
+    /**
+     * Returns the description of the recurring lab.
+     */
+    @Override
+    public String getRecurringDescription() {
+        return "[LAB]" + "[R] " + super.getRecurringDescription();
     }
 
     /**
@@ -73,8 +85,17 @@ public class Lab extends SchoolEvent {
      */
     @Override
     public String printIntoFile() {
-        return LAB_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
-                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue;
+        String writeToFile;
+        writeToFile = LAB_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
+                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue
+                + SEPARATOR + getAdditionalInformationCount();
+        if (getAdditionalInformationCount() != 0) {
+            int i;
+            for (i = 0; i < getAdditionalInformationCount(); i++) {
+                writeToFile = writeToFile + SEPARATOR + getAdditionalInformationElement(i);
+            }
+        }
+        return writeToFile;
     }
 
     /**

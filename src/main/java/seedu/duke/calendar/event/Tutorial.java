@@ -25,6 +25,7 @@ public class Tutorial extends SchoolEvent {
     public Tutorial(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
         eventType = "TUT";
+        this.isOver = getIsOver();
     }
 
     /**
@@ -72,14 +73,31 @@ public class Tutorial extends SchoolEvent {
     }
 
     /**
+     * Returns the description of the recurring tutorial.
+     */
+    @Override
+    public String getRecurringDescription() {
+        return "[TUT]" + "[R] " + super.getRecurringDescription();
+    }
+
+    /**
      * Saves the tutorial event into files.
      *
      * @return string contains the information about the tutorial event.
      */
     @Override
     public String printIntoFile() {
-        return TUTORIAL_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
-                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue;
+        String writeToFile;
+        writeToFile = TUTORIAL_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
+                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue
+                + SEPARATOR + getAdditionalInformationCount();
+        if (getAdditionalInformationCount() != 0) {
+            int i;
+            for (i = 0; i < getAdditionalInformationCount(); i++) {
+                writeToFile = writeToFile + SEPARATOR + getAdditionalInformationElement(i);
+            }
+        }
+        return writeToFile;
     }
 
     /**

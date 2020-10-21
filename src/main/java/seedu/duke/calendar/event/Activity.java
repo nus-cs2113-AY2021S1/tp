@@ -20,14 +20,15 @@ public class Activity extends Event {
      * A constructor of an activity object.
      *
      * @param details the description of the activity.
-     * @param date date of the activity.
-     * @param time time of the activity.
-     * @param venue venue of the activity.
+     * @param date    date of the activity.
+     * @param time    time of the activity.
+     * @param venue   venue of the activity.
      */
     public Activity(String details, LocalDate date, LocalTime time, String venue) {
         super(date, time, venue);
         this.details = details;
         eventType = "ACT";
+        this.isOver = getIsOver();
     }
 
     /**
@@ -72,7 +73,9 @@ public class Activity extends Event {
         return "[A][" + getIcon() + "] " + details + " " + super.getDescription();
     }
 
-    /** Returns the respective event type. */
+    /**
+     * Returns the respective event type.
+     */
     @Override
     public String getType() {
         return eventType;
@@ -85,8 +88,16 @@ public class Activity extends Event {
      */
     @Override
     public String printIntoFile() {
-        return EVENT_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + details
-                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue;
+        String writeToFile = EVENT_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + details
+                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue
+                + SEPARATOR + getAdditionalInformationCount();
+        if (getAdditionalInformationCount() != 0) {
+            int i;
+            for (i = 0; i < getAdditionalInformationCount(); i++) {
+                writeToFile = writeToFile + SEPARATOR + getAdditionalInformationElement(i);
+            }
+        }
+        return writeToFile;
     }
 
     /**
