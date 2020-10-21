@@ -11,6 +11,7 @@ import fitr.command.HelpCommand;
 import fitr.command.InvalidCommand;
 import fitr.command.ViewCommand;
 import fitr.command.EditProfileCommand;
+import fitr.command.RecommendCommand;
 import fitr.common.Commands;
 
 /**
