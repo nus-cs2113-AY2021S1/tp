@@ -1,9 +1,11 @@
 package fitr;
 
 import fitr.command.Command;
+import fitr.tip.TipManager;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.GoalList;
+import fitr.list.TipList;
 import fitr.storage.Storage;
 import fitr.ui.Ui;
 import fitr.user.User;
@@ -29,10 +31,14 @@ public class Fitr {
                 user.setup();
                 storage.writeUserConfigFile(user);
             }
-            Ui.printSuggestQuestion();
             foodList = new FoodList(storage.loadFoodList());
             exerciseList = new ExerciseList(storage.loadExerciseList());
             goalList = new GoalList(storage.loadGoalList());
+            TipList tipList = new TipList(storage.loadTipList());
+            TipManager tipOfTheDay = new TipManager(tipList);
+            tipOfTheDay.execute();
+            Ui.printGreetingMessage();
+            Ui.printSuggestQuestion();
         } catch (IOException e) {
             System.out.println("Theres no file");
         }
