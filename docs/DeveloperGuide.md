@@ -1,30 +1,9 @@
 # Developer Guide
 
-## Design
+## Design & implementation
 
-### Application Architecture
+{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
-### User Interface
-
-### Parsing and Logic
-
-### Commands
-
-### Storage
-
-## Implementation - Basic
-
-## Implementation - Features
-
-### Save to PPT (Kai Jie)
-
-### Pretty Printing (Wei Siew)
-
-### Tags and Filtering (Trang)
-
-### Saving to text file (Wayne)
-
-### Game Mode (Zhixiang)
 
 ## Product scope
 ### Target user profile
