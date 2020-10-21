@@ -2,15 +2,17 @@ package fitr.parser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import fitr.command.AddExerciseCommand;
+
 import fitr.command.AddFoodCommand;
 import fitr.command.Command;
-import fitr.command.DeleteCommand;
-import fitr.command.ExitCommand;
-import fitr.command.HelpCommand;
 import fitr.command.InvalidCommand;
+import fitr.command.AddExerciseCommand;
 import fitr.command.ViewCommand;
 import fitr.command.EditProfileCommand;
+import fitr.command.HelpCommand;
+import fitr.command.DeleteCommand;
+import fitr.command.ExitCommand;
+import fitr.command.AddGoalCommand;
 import fitr.common.Commands;
 
 /**
@@ -48,8 +50,11 @@ public class Parser {
             return new DeleteCommand(arguments);
         case Commands.COMMAND_BYE:
             return new ExitCommand(arguments);
+        case Commands.COMMAND_GOAL:
+            return new AddGoalCommand(arguments);
         default:
             return new InvalidCommand(arguments);
         }
     }
+
 }

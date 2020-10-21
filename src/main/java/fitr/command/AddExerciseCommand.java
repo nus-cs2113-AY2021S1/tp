@@ -6,6 +6,7 @@ import fitr.Recommender;
 import fitr.exception.FitrException;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
+import fitr.list.GoalList;
 import fitr.storage.Storage;
 import fitr.ui.Ui;
 import fitr.user.User;
@@ -18,8 +19,9 @@ public class AddExerciseCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user,
-                        Recommender recommender) {
+    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage,
+                        User user, GoalList goalList, Recommender recommender) {
+        command = command.split(" ", 2)[1];
         try {
             String nameOfExercise = command.split("/", 2)[0];
             if (nameOfExercise.isEmpty()) {
