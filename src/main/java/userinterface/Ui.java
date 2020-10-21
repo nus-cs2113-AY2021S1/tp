@@ -1,6 +1,12 @@
+package userinterface;
+
 import bookmark.BookmarkUi;
 import exceptions.InvalidModeException;
-
+import studyit.ModeNames;
+import studyit.Mode;
+import studyit.CommandParser;
+import studyit.StudyIt;
+import studyit.StudyItLog;
 import java.util.Scanner;
 
 public class Ui {

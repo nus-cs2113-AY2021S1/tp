@@ -1,3 +1,6 @@
+package studyit;
+
+import academic.AcademicStorage;
 import academic.Grade;
 import academic.Person;
 import timetable.TimeTableRun;
@@ -5,6 +8,10 @@ import flashcard.FlashcardRun;
 import bookmark.BookmarkCategory;
 import bookmark.NusCategory;
 import bookmark.ZoomCategory;
+import userinterface.MainMenu;
+import userinterface.Ui;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -33,6 +40,13 @@ public class StudyIt {
     }
 
     public static void main(String[] args) {
+
+        try { //TODO Yuanbing please help me shift this
+            AcademicStorage.loadFile(listOfPerson, currentGrades);
+        } catch (IOException e) {
+            System.out.println("placeholder error message");
+        }
+
         //assert false : "dummy assertion";
         MainMenu.printWelcome();
         new StudyIt().run();

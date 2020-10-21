@@ -20,10 +20,10 @@ public class TablePrinter {
             for (int dateListIndex = 0; dateListIndex < dateList.size() && !skip; dateListIndex++) {
                 if (dateList.get(dateListIndex).dateTag.equals(LocalDate.now().plusDays(i))) {
                     for (int j = 0; j < 24; j++) {
+                        boolean isFree = true;
                         for (int eventListIndex = 0; eventListIndex < dateList.get(dateListIndex).events.size();
                              eventListIndex++) {
                             Event current = dateList.get(dateListIndex).events.get(eventListIndex);
-                            boolean isFree = true;
                             for (Duration period: current.periods) {
                                 if (period.containTimeSlot(j * 100) && period.startDateTime
                                         .toLocalDate().equals(dateList.get(dateListIndex).dateTag)) {
@@ -31,9 +31,9 @@ public class TablePrinter {
                                     isFree = false;
                                 }
                             }
-                            if (isFree) {
-                                System.out.printf("|%-10s", space);
-                            }
+                        }
+                        if (isFree) {
+                            System.out.printf("|%-10s", space);
                         }
                     }
                     skip = true;
