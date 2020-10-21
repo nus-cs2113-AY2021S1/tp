@@ -56,6 +56,7 @@ public class Ui {
     public static void printMessageInGreen(String message) {
         System.out.println(GREEN_COLOUR + message + RESET_COLOUR);
     }
+
     public static void printGreetingMessage() {
         printCustomMessage(MESSAGE_GREET);
     }
@@ -124,5 +125,4 @@ public class Ui {
         printCustomError(ERROR_INVALID_COMMAND);
         printCustomMessage("Use 'help' to see the list of commands Fitr understands.");
     }
-
 }
