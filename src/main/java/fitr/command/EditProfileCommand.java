@@ -4,6 +4,7 @@ import fitr.Recommender;
 import fitr.common.Messages;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
+import fitr.list.GoalList;
 import fitr.storage.Storage;
 import fitr.ui.Ui;
 import fitr.user.User;
@@ -17,8 +18,8 @@ public class EditProfileCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user,
-                        Recommender recommender) {
+    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage,
+                        User user, GoalList goalList, Recommender recommender) {
         if (command.equalsIgnoreCase(Messages.EDIT_NAME)) {
             editName(user);
         } else if (command.equalsIgnoreCase(Messages.EDIT_HEIGHT)) {
@@ -33,7 +34,7 @@ public class EditProfileCommand extends Command {
             Ui.printInvalidCommandError();
         }
         try {
-            storage.writeUserConfigFile(user);
+            storage.writeUserProfile(user);
         } catch (IOException e) {
             Ui.printCustomMessage(Messages.MISSING_FILE);
 

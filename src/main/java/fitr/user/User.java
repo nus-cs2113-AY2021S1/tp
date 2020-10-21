@@ -40,7 +40,7 @@ public class User {
     private String gender;
     private int userFitnessLevel; // 0 for unfit; 1 for normal; 2 for Fit
 
-    /*public User() {
+    public User() {
         setup();
     }
 
@@ -51,7 +51,7 @@ public class User {
         this.weight = weight;
         this.gender = gender;
     }
-    */
+
     /**
      * Setup configures user profile for first time use.
      */
@@ -122,10 +122,12 @@ public class User {
             try {
                 ageInput = Integer.parseInt(Ui.read());
                 if (ageInput <= 0) {
-                    Ui.printCustomMessage(ERROR_INVALID_AGE_INPUT + INPUT_AGE);
+                    Ui.printCustomError(ERROR_INVALID_AGE_INPUT);
+                    Ui.printCustomMessage(INPUT_AGE);
                 }
             } catch (NumberFormatException e) {
-                Ui.printCustomMessage(ERROR_INVALID_AGE_INPUT + INPUT_AGE);
+                Ui.printCustomError(ERROR_INVALID_AGE_INPUT);
+                Ui.printCustomMessage(INPUT_AGE);
                 ageInput = 0;
             }
         }
@@ -139,10 +141,12 @@ public class User {
             try {
                 heightInput = Double.parseDouble(Ui.read());
                 if (heightInput <= 0.00) {
-                    Ui.printCustomMessage(ERROR_INVALID_HEIGHT_INPUT + INPUT_HEIGHT);
+                    Ui.printCustomError(ERROR_INVALID_HEIGHT_INPUT);
+                    Ui.printCustomMessage(INPUT_HEIGHT);
                 }
             } catch (NumberFormatException e) {
-                Ui.printCustomMessage(ERROR_INVALID_HEIGHT_INPUT + INPUT_HEIGHT);
+                Ui.printCustomError(ERROR_INVALID_HEIGHT_INPUT);
+                Ui.printCustomMessage(INPUT_HEIGHT);
                 heightInput = 0.00;
             }
         }
@@ -156,10 +160,12 @@ public class User {
             try {
                 weightInput = Double.parseDouble(Ui.read());
                 if (weightInput <= 0.00) {
-                    Ui.printCustomMessage(ERROR_INVALID_WEIGHT_INPUT + INPUT_WEIGHT);
+                    Ui.printCustomError(ERROR_INVALID_WEIGHT_INPUT);
+                    Ui.printCustomMessage(INPUT_WEIGHT);
                 }
             } catch (NumberFormatException e) {
-                Ui.printCustomMessage(ERROR_INVALID_WEIGHT_INPUT + INPUT_WEIGHT);
+                Ui.printCustomError(ERROR_INVALID_WEIGHT_INPUT);
+                Ui.printCustomMessage(INPUT_WEIGHT);
                 weightInput = 0.00;
             }
         }
@@ -169,7 +175,8 @@ public class User {
     public void setupGender() {
         String genderInput = Ui.read();
         while (!genderInput.equalsIgnoreCase("m") && !genderInput.equalsIgnoreCase("f")) {
-            Ui.printCustomMessage(ERROR_INVALID_GENDER_INPUT + INPUT_GENDER);
+            Ui.printCustomError(ERROR_INVALID_GENDER_INPUT);
+            Ui.printCustomMessage(INPUT_GENDER);
             genderInput = Ui.read();
         }
         if (genderInput.equalsIgnoreCase(MALE_SYMBOL)) {
@@ -238,14 +245,5 @@ public class User {
 
     public int getFitnessLevel() {
         return userFitnessLevel;
-    }
-
-    //to be removed
-    public void loadUserData(String name, int age, double height, double weight, String gender){
-        this.age = age;
-        this.height = height;
-        this.weight = weight;
-        this.gender = gender;
-        this.name = name;
     }
 }

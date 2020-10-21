@@ -3,6 +3,7 @@ package fitr.command;
 import fitr.Recommender;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
+import fitr.list.GoalList;
 import fitr.storage.Storage;
 import fitr.ui.Ui;
 import fitr.user.User;
@@ -15,17 +16,17 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user,
-                        Recommender recommender) {
+    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage,
+                User user, GoalList goalList, Recommender recommender) {
         try {
             command = command.split(" ", 2)[1];
             String type = command.split(" ", 2)[0];
             if (type.equals("food")) {
                 int deletionIndex = Integer.parseInt(command.split(" ", 2)[1]);
                 Ui.printCustomMessage("The following has been deleted from the list of food consumed: "
-                        + foodlist.getFood(deletionIndex - 1).getFoodName());
-                foodlist.deleteFood(deletionIndex - 1);
-                storage.writeFoodList(foodlist);
+                        + foodList.getFood(deletionIndex - 1).getFoodName());
+                foodList.deleteFood(deletionIndex - 1);
+                storage.writeFoodList(foodList);
             } else if (type.equals("exercise")) {
                 int deletionIndex = Integer.parseInt(command.split(" ", 2)[1]);
                 Ui.printCustomMessage("The following has been deleted from the list of food consumed: "

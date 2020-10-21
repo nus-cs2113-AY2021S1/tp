@@ -3,8 +3,10 @@ package fitr.storage;
 import fitr.Calorie;
 import fitr.Exercise;
 import fitr.Food;
+import fitr.Goal;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
+import fitr.list.GoalList;
 import fitr.user.User;
 
 import java.io.BufferedReader;
@@ -14,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -24,6 +27,8 @@ public class Storage {
     private static final String DEFAULT_EXERCISE_LIST_FILEPATH = "exercises.txt";
     private static final String DEFAULT_FOOD_LIST_FILEPATH = "food.txt";
     private static final String DEFAULT_USER_CONFIG_FILEPATH = "user.txt";
+    private static final String DEFAULT_GOAL_LIST_FILEPATH = "goals.txt";
+    private static final String TIP_LIST_FILEPATH = "src/main/resources/tips.txt";
     private static final String COMMA_SEPARATOR = ",";
 
     private static final Logger LOGGER = Logger.getLogger(Storage.class.getName());
@@ -31,7 +36,7 @@ public class Storage {
     private final String exerciseListPath;
     private final String foodListPath;
     private final String userConfigPath;
-    private static final String tipListPath = "src/main/resources/tips.txt";
+    private final String goalListPath;
 
     /**
      * Set up the files required in the application, by creating the files if the files do not exist and
@@ -40,71 +45,75 @@ public class Storage {
      * @param userConfigPath   file path of the user's profile
      * @param foodListPath     file path of the food list
      * @param exerciseListPath file path of the exercise list
+     * @param goalListPath file path of the goal list
      * @throws IOException if an I/O error has occurred
      */
-    public Storage(String userConfigPath, String foodListPath, String exerciseListPath) throws IOException {
+    public Storage(String userConfigPath, String foodListPath, String exerciseListPath,
+                   String goalListPath) throws IOException {
         this.userConfigPath = userConfigPath;
         this.foodListPath = foodListPath;
         this.exerciseListPath = exerciseListPath;
+        this.goalListPath = goalListPath;
 
         File exerciseListFile = new File(exerciseListPath);
-        File foodListFile = new File(foodListPath);
-        File userConfigFile = new File(userConfigPath);
-
         if (!exerciseListFile.exists()) {
             exerciseListFile.createNewFile();
             LOGGER.fine("Exercise list file created: " + exerciseListPath);
         }
 
+        File foodListFile = new File(foodListPath);
         if (!foodListFile.exists()) {
             foodListFile.createNewFile();
             LOGGER.fine("Food list file created: " + foodListPath);
         }
 
+        File userConfigFile = new File(userConfigPath);
         if (!userConfigFile.exists()) {
             userConfigFile.createNewFile();
             LOGGER.fine("User profile file created: " + userConfigPath);
         }
+
+        File goalListFile = new File(goalListPath);
+        if (!goalListFile.exists()) {
+            goalListFile.createNewFile();
+            LOGGER.fine("Goal list file created: " + goalListPath);
+        }
     }
 
     public Storage() throws IOException {
-        this(DEFAULT_USER_CONFIG_FILEPATH, DEFAULT_FOOD_LIST_FILEPATH, DEFAULT_EXERCISE_LIST_FILEPATH);
+        this(DEFAULT_USER_CONFIG_FILEPATH, DEFAULT_FOOD_LIST_FILEPATH,
+                DEFAULT_EXERCISE_LIST_FILEPATH, DEFAULT_GOAL_LIST_FILEPATH);
     }
 
     /**
      * Reads the user's data from the user config file.
      *
-     * @param user the user to load the file into
      * @return True if the file is read successfully, False if not
      * @throws FileNotFoundException if the file is not found
      */
-    public boolean readUserConfigFile(User user) throws FileNotFoundException {
+    public User loadUserProfile() throws FileNotFoundException {
         LOGGER.fine("Attempting to read file: " + userConfigPath);
-        boolean isReadSuccess = false;
+
         File file = new File(userConfigPath);
         Scanner readFile = new Scanner(file);
         String line;
-        String name;
-        String gender;
-        int age;
-        double height;
-        double weight;
-        String[] arguments;
 
-        while (readFile.hasNext()) {
+        try {
             line = readFile.nextLine();
-            arguments = line.split(COMMA_SEPARATOR);
-            name = arguments[0];
-            gender = arguments[1];
-            age = Integer.parseInt(arguments[2]);
-            height = Double.parseDouble(arguments[3]);
-            weight = Double.parseDouble(arguments[4]);
-            user.loadUserData(name, age, height, weight, gender);
-            isReadSuccess = true;
+        } catch (NoSuchElementException e) {
+            LOGGER.fine("New user created.");
+            return new User();
         }
 
+        String[] arguments = line.split(COMMA_SEPARATOR);
+        String name = arguments[0];
+        String gender = arguments[1];
+        int age = Integer.parseInt(arguments[2]);
+        double height = Double.parseDouble(arguments[3]);
+        double weight = Double.parseDouble(arguments[4]);
+
         LOGGER.fine("User profile file read successfully.");
-        return isReadSuccess;
+        return new User(name, age, height, weight, gender);
     }
 
     /**
@@ -113,8 +122,10 @@ public class Storage {
      * @param user the user to load the file into
      * @throws IOException if an I/O error has occurred
      */
-    public void writeUserConfigFile(User user) throws IOException {
+    public void writeUserProfile(User user) throws IOException {
+        assert user != null;
         LOGGER.fine("Attempting to write to file: " + userConfigPath);
+
         FileWriter file = new FileWriter(userConfigPath);
 
         file.write(user.getName()
@@ -200,11 +211,11 @@ public class Storage {
     }
 
     /**
-     * Writes the exercise list data into a file.
-     *
-     * @param exerciseList the exercise list to write to the file
-     * @throws IOException if an I/O error has occurred
-     */
+    * Writes the exercise list data into a file.
+    *
+    * @param exerciseList the exercise list to write to the file
+    * @throws IOException if an I/O error has occurred
+    */
     public void writeExerciseList(ExerciseList exerciseList) throws IOException {
         LOGGER.fine("Attempting to write to file: " + exerciseListPath);
         FileWriter file = new FileWriter(exerciseListPath);
@@ -221,21 +232,76 @@ public class Storage {
     }
 
     /**
+<<<<<<< HEAD
      * Loads the tips from a file and returns an ArrayList of String tips.
      *
      * @return an ArrayList of String tips
      * @throws IOException if an I/O error has occurred
+=======
+     * Loads the user's goals from a file and returns an ArrayList of Goal objects.
+     *
+     * @return an ArrayList of Goal objects
+     * @throws FileNotFoundException if the file is not found
+>>>>>>> d63940b06eb383c676465e543ed77e7d583fb29c
      */
+    public ArrayList<Goal> loadGoalList() throws FileNotFoundException {
+        LOGGER.fine("Attempting to read file: " + goalListPath);
+        ArrayList<Goal> goalList = new ArrayList<>();
+        String line;
+        String[] arguments;
+        File goalListFile = new File(goalListPath);
+        Scanner readFile = new Scanner(goalListFile);
+
+        while (readFile.hasNext()) {
+            line = readFile.nextLine();
+            arguments = line.split(COMMA_SEPARATOR);
+            goalList.add(new Goal(arguments[0], arguments[1]));
+        }
+
+        LOGGER.fine("Goal list file read successfully.");
+        return goalList;
+    }
+
+    /**
+    * Writes the goal list data into a file.
+    *
+    * @param goalList the goal list to write to the file
+    * @throws IOException if an I/O error has occurred
+    */
+    public void writeGoalList(GoalList goalList) throws IOException {
+        LOGGER.fine("Attempting to write to file: " + goalListPath);
+        FileWriter fileWriter = new FileWriter(goalListPath);
+        Goal goal;
+
+        for (int i = 0; i < goalList.getSize(); i++) {
+            goal = goalList.getGoal(i);
+            fileWriter.write(goal.getGoalType()
+                    + COMMA_SEPARATOR + goal.getDescription() + System.lineSeparator());
+        }
+
+        LOGGER.fine("Goal list file written successfully.");
+        fileWriter.close();
+    }
+
+    /**
+    * Loads the tips from a file and returns an ArrayList of String tips.
+    *
+    * @return an ArrayList of String tips
+    * @throws IOException if an I/O error has occurred
+    */
     public ArrayList<String> loadTipList() throws IOException {
-        LOGGER.fine("Attempting to read file: " + tipListPath);
+        LOGGER.fine("Attempting to read file: " + TIP_LIST_FILEPATH);
         ArrayList<String> tipList = new ArrayList<>();
 
-        BufferedReader br = new BufferedReader(new FileReader(tipListPath));
+        BufferedReader br = new BufferedReader(new FileReader(TIP_LIST_FILEPATH));
         String line;
         while ((line = br.readLine()) != null) {
             tipList.add(line);
         }
+
         LOGGER.fine("Tip list file written successfully.");
         return tipList;
+
     }
+
 }
