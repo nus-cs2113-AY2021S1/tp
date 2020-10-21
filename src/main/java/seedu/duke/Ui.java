@@ -261,7 +261,7 @@ public class Ui {
     public void print(String message) {
         String divider =
                 "__________________________________________________________________________________________"
-                + "______________________________________________________";
+                + "____________________";
 
         System.out.println(divider + LINE_SEPARATOR
                 + message + LINE_SEPARATOR
