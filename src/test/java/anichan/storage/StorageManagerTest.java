@@ -169,18 +169,18 @@ class StorageManagerTest {
     @Test
     void testReadScriptFile() throws AniException {
         // Valid Script File
-        String fileString = validFileSM.readScript(VALID_WORKSPACE, SCRIPT_FILE_NAME);
+        String fileString = validFileSM.loadScript(VALID_WORKSPACE, SCRIPT_FILE_NAME);
         assertNotNull(fileString);
 
         // Invalid Directory
         assertThrows(AniException.class, () -> {
-            invalidDirectorySM.readScript(VALID_WORKSPACE, SCRIPT_FILE_NAME);
+            invalidDirectorySM.loadScript(VALID_WORKSPACE, SCRIPT_FILE_NAME);
             fail();
         });
 
         // Empty Script File
         assertThrows(AniException.class, () -> {
-            emptySM.readScript(EMPTY_FILE_WORKSPACE, SCRIPT_FILE_NAME);
+            emptySM.loadScript(EMPTY_FILE_WORKSPACE, SCRIPT_FILE_NAME);
             fail();
         });
     }
