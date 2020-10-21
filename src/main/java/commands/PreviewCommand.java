@@ -11,19 +11,6 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import access.Access;
-
-import manager.chapter.CardList;
-import manager.chapter.DueChapter;
-
-import scheduler.Scheduler;
-import storage.Storage;
-import ui.Ui;
-
-import java.io.FileNotFoundException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 public class PreviewCommand extends Command {
     public static final String COMMAND_WORD = "preview";
     public ArrayList<DueChapter> allChapters;
