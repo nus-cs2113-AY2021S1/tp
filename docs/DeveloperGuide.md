@@ -98,7 +98,7 @@ on whether the user searches for tasks or events, the condition will check for t
 
 ### Print personal calendar feature
 This feature is facilitated by `PrintTimelineCommand`. It extends the `Command` class and overrides the `execute()` function.
-The following sequence diagram show how the `execute()` operation works when the user searches the entire calendar.:<br/>
+The following sequence diagram show how the `execute()` operation works when the user wants to print the personalised calendar.:<br/>
 
 ## Documentation
 
@@ -111,11 +111,14 @@ We use Markdown for writing documentation.
 - We use [Jekyll](https://jekyllrb.com/) to manage documentation.  
 - The docs/ folder is used for documentation.  
 - To learn how to set it up and maintain the project website, follow the guide [[se-edu/guides] Using Jekyll for project documentation](https://se-education.org/guides/tutorials/jekyll.html).
+
 #### Style guidance
 - Follow the [Google developer documentation style guide](https://developers.google.com/style).
 - Also relevant is the [[se-edu/guides] Markdown coding standard](https://se-education.org/guides/conventions/markdown.html)
+
 #### Editing diagrams
 - See the [[se-edu/guides] Using PlantUML](https://se-education.org/guides/tutorials/plantUml.html) to find out how to create and update the UML diagrams in the developer guide.
+
 #### Converting a document to the PDF format
 - We use Google Chrome for converting documentation to PDF format.  
 - Here are the steps to convert the project documentation to PDF format:
