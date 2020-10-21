@@ -45,7 +45,7 @@ public class Storage {
      * @param userConfigPath   file path of the user's profile
      * @param foodListPath     file path of the food list
      * @param exerciseListPath file path of the exercise list
-     * @param goalListPath file path of the goal list
+     * @param goalListPath     file path of the goal list
      * @throws IOException if an I/O error has occurred
      */
     public Storage(String userConfigPath, String foodListPath, String exerciseListPath,
@@ -211,11 +211,11 @@ public class Storage {
     }
 
     /**
-    * Writes the exercise list data into a file.
-    *
-    * @param exerciseList the exercise list to write to the file
-    * @throws IOException if an I/O error has occurred
-    */
+     * Writes the exercise list data into a file.
+     *
+     * @param exerciseList the exercise list to write to the file
+     * @throws IOException if an I/O error has occurred
+     */
     public void writeExerciseList(ExerciseList exerciseList) throws IOException {
         LOGGER.fine("Attempting to write to file: " + exerciseListPath);
         FileWriter file = new FileWriter(exerciseListPath);
@@ -232,17 +232,10 @@ public class Storage {
     }
 
     /**
-<<<<<<< HEAD
-     * Loads the tips from a file and returns an ArrayList of String tips.
-     *
-     * @return an ArrayList of String tips
-     * @throws IOException if an I/O error has occurred
-=======
      * Loads the user's goals from a file and returns an ArrayList of Goal objects.
      *
      * @return an ArrayList of Goal objects
      * @throws FileNotFoundException if the file is not found
->>>>>>> d63940b06eb383c676465e543ed77e7d583fb29c
      */
     public ArrayList<Goal> loadGoalList() throws FileNotFoundException {
         LOGGER.fine("Attempting to read file: " + goalListPath);
@@ -263,11 +256,11 @@ public class Storage {
     }
 
     /**
-    * Writes the goal list data into a file.
-    *
-    * @param goalList the goal list to write to the file
-    * @throws IOException if an I/O error has occurred
-    */
+     * Writes the goal list data into a file.
+     *
+     * @param goalList the goal list to write to the file
+     * @throws IOException if an I/O error has occurred
+     */
     public void writeGoalList(GoalList goalList) throws IOException {
         LOGGER.fine("Attempting to write to file: " + goalListPath);
         FileWriter fileWriter = new FileWriter(goalListPath);
@@ -284,11 +277,11 @@ public class Storage {
     }
 
     /**
-    * Loads the tips from a file and returns an ArrayList of String tips.
-    *
-    * @return an ArrayList of String tips
-    * @throws IOException if an I/O error has occurred
-    */
+     * Loads the tips from a file and returns an ArrayList of String tips.
+     *
+     * @return an ArrayList of String tips
+     * @throws IOException if an I/O error has occurred
+     */
     public ArrayList<String> loadTipList() throws IOException {
         LOGGER.fine("Attempting to read file: " + TIP_LIST_FILEPATH);
         ArrayList<String> tipList = new ArrayList<>();
