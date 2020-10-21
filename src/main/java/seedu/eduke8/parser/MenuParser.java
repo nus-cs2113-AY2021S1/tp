@@ -20,13 +20,22 @@ import java.util.logging.Logger;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_WRONG_FORMAT;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAND;
 
-
+/**
+ * Parses user input from the main menu, in order to execute the correct option.
+ */
 public class MenuParser implements Parser {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public MenuParser() {
     }
 
+    /**
+     * Parses the user input.
+     *
+     * @param topicList the topic list that contains the list of topics available in storage
+     * @param userInput the string input typed by the user
+     * @return a Command object which when executed will carry out the appropriate action
+     */
     @Override
     public Command parseCommand(DisplayableList topicList, String userInput) {
         assert topicList != null;
@@ -52,8 +61,13 @@ public class MenuParser implements Parser {
             int numOfQuestions = 0;
             String topicName = "";
             try {
-                numOfQuestions = Integer.parseInt(commandArr[2].substring(2));
-                topicName = commandArr[1].substring(2);
+                if(commandArr[2].contains("n/")) {
+                    numOfQuestions = Integer.parseInt(commandArr[2].substring(commandArr[2].indexOf("n/")+2));
+                    topicName = commandArr[1].substring(commandArr[1].indexOf("t/")+2);
+                } else if(commandArr[2].contains("t/")) {
+                    numOfQuestions = Integer.parseInt(commandArr[1].substring(commandArr[1].indexOf("n/")+2));
+                    topicName = commandArr[2].substring(commandArr[2].indexOf("t/")+2);
+                }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
             }
