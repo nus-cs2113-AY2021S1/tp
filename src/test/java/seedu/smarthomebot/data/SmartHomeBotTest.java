@@ -50,18 +50,9 @@ class SmartHomeBotTest {
     }
 
     @Test
-    void getTypeTest() {
-        assertEquals("AirConditioner", new AirConditioner("aircon1", "br1", "25").getType());
+    void applianceList_getType_Test() {
+        assertEquals("aircon", new AirConditioner("aircon1", "br1", "25").getType());
     }
 
-    @Test
-    void onOffTest() {
-        AirConditioner aircon = new AirConditioner("aircon", "br1", "200");
-        if (aircon.getStatus().equals("ON")) {
-            assertEquals("aircon: On", aircon.toString());
-        } else {
-            assertEquals("aircon(200W) in br1", aircon.toString());
-        }
-    }
 
 }

@@ -9,7 +9,7 @@ class FanTest {
 
     @Test
     void getType_nullInput_returnsFan() {
-        assertEquals("Fan", new Fan("Fan 1", "bedroom 1", "200").getType());
+        assertEquals("fan", new Fan("Fan 1", "bedroom 1", "200").getType());
     }
 
 }

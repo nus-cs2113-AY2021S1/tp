@@ -9,7 +9,7 @@ class LightsTest {
 
     @Test
     void getType_nullInput_returnsLight() {
-        assertEquals("Light", new Lights("light 1", "bedroom 1", "200").getType());
+        assertEquals("light", new Lights("light 1", "bedroom 1", "200").getType());
     }
 
     @Test

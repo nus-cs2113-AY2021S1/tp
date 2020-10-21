@@ -1,7 +1,8 @@
-package seedu.smarthomebot.data.framework;
+package seedu.smarthomebot.data;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.smarthomebot.data.framework.Appliance;
 import seedu.smarthomebot.data.framework.type.Fan;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,7 +19,7 @@ class PowerTest {
         coolingFan = new Fan("Speedy", "bedroom", "150");
     }
 
-/*    @Test
+    @Test
     void onAppliance_applianceOffPreviously_onNormally() {
         coolingFan.switchOff();
         assertTrue(coolingFan.switchOn());
@@ -40,7 +41,7 @@ class PowerTest {
     void offAppliance_applianceAlreadyOff_returnFalse() {
         coolingFan.switchOff();
         assertFalse(coolingFan.switchOff());
-    }*/
+    }
 
     @Test
     void resetPower_fanOnForThreeSeconds_powerResetToZero() throws InterruptedException {
@@ -54,7 +55,6 @@ class PowerTest {
         useFanForThreeSeconds();
         assertEquals(0.075, coolingFan.getPowerInDouble());
     }
-
 
     @Test
     void testToString() throws InterruptedException {
