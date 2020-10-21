@@ -2,8 +2,8 @@
 
 ## Introduction
 
-`25 hours a day` is a scheduling application optimized for users via a convenient yet powerful Command Line Interface (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). If you can type fast, `25 hours a day` can 
+_25 hours a day_ is a scheduling application optimized for users via a convenient yet powerful Command Line Interface (CLI) 
+while still having the benefits of a Graphical User Interface (GUI). If you can type fast, _25 hours a day_ can 
 schedule your tasks and events faster than traditional GUI apps.
 
 
@@ -62,11 +62,11 @@ The following shows a list of legends used in this document:
 
 `<placeholder>` - a placeholder.
 
- ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) `Tips` - provides some additional information of the 
- features.
+ ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) **Tips - provides some additional information of the 
+ features.**
 
- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Warning` - provides warning messages for the user with 
- regard to certain restrictions of the features.
+ ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) **Warning - provides warning messages for the user with 
+ regard to certain restrictions of the features.**
   
 Please refer to the following table if you encounter any unfamiliar terminologies.
 
@@ -98,7 +98,7 @@ Please refer to the following table if you encounter any unfamiliar terminologie
 
 ## Features 
 
-This section provides the features 25 hours a day has to offer. It entails a brief description of what it does and how to use it.
+This section provides the features _25 hours a day_ has to offer. It entails a brief description of what it does and how to use it.
 
 ### Viewing available commands: `help`
 
@@ -134,7 +134,7 @@ Example of usage:
 
 `deadline payment for school fee / 23rd Sept`
 
-![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) `There is no fix format for due date.`
+![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) **There is no fix format for due date.**
 
 ### Marking a task as done: `done`
 
@@ -146,7 +146,7 @@ Example of usage:
 
 `done 1` - This marks the first task on your task list as done.
 
-![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Only a task can be marked as done, events are not allowed to be marked as done.`
+![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) **Only a task can be marked as done, events are not allowed to be marked as done.**
 
 ### Adding an event:
 
@@ -210,7 +210,7 @@ Example of usage:
 
 `tut CS2100 @com1-1111 -r 5 / 151020 1400` - adds CS2100 lab at 2020-10-15 2p.m. to the event list, the venue is com1-1111 and the tutorial will happen for the next 5 weeks.
 
-![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `The date and time format must be followed precisely.`
+![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) **The date and time format must be followed precisely.**
 
 ### Additional information of an event
 
@@ -224,7 +224,7 @@ Example of usage:
 
 `/a 1 - This is the additional information for event number 1`
 
-![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) `You can add multiple additional information to an event.`
+![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) **You can add multiple additional information to an event.**
 
 #### Viewing the additional information of an event: `/v`
 
@@ -305,7 +305,7 @@ Example of usage:
 
 `*t 1` - marks the first task in the task list as important.
 
-![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Only a task can be marked as important, events are not allowed to be marked as important.`
+![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) **Only a task can be marked as important, events are not allowed to be marked as important.**
 
 ### Printing tasks: `print tasks`
 
@@ -420,7 +420,7 @@ Format: `bye`
 **A**: Download the program in the other computer and overwrite the empty data file it creates with the data from your 
 previous _25HoursADay.jar_.
 
-**Q**: Can I use 25 hours a day on different operating systems like Linux, Windows, or macOS?  
+**Q**: Can I use _25 hours a day_ on different operating systems like Linux, Windows, or macOS?  
 
 **A**: Yes, _25 hours a day_ is compatible with Linux, Windows and macOS.
 
@@ -430,14 +430,14 @@ previous _25HoursADay.jar_.
 
 **Q**: If I wrongly deleted my task, can I undo it?
 
-**A**: No, currently )25 hours a day_ doesn't have an undo feature, therefore you need to manually add your task back 
+**A**: No, currently _25 hours a day_ doesn't have an undo feature, therefore you need to manually add your task back 
 using `add` command.
 
 
 ## Command Summary
 
 |Term| Meaning | Command Format|
-|--------|----------|--------|
+|--------|----------------|--------|
 |Add|activity event|`act <activity_description> @<venue> / <date> <time>`|
 |Add|additional information for event|`/a <event_number> - <additional_information>`|
 |Add|deadline task|`deadline <task_description>/ <due_date>`|
