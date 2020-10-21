@@ -24,23 +24,23 @@ public class Fitr {
     public Fitr(String filePathOfUserConfig, String filePathOfFoodList,
                 String filePathOfExerciseList, String filePathOfGoalList) {
         try {
-            user = new User();
             Ui.printGreetingMessage();
             storage = new Storage(filePathOfUserConfig, filePathOfFoodList,
                     filePathOfExerciseList, filePathOfGoalList);
-            if (!storage.readUserConfigFile(user)) {
-                user.setup();
-                storage.writeUserConfigFile(user);
-            }
+
+            user = storage.loadUserProfile();
+            storage.writeUserProfile(user);
             foodList = new FoodList(storage.loadFoodList());
             exerciseList = new ExerciseList(storage.loadExerciseList());
             goalList = new GoalList(storage.loadGoalList());
+
             TipList tipList = new TipList(storage.loadTipList());
             TipManager tipOfTheDay = new TipManager(tipList);
             tipOfTheDay.execute();
+
             Ui.printSuggestQuestion();
         } catch (IOException e) {
-            System.out.println("Theres no file");
+            System.out.println("An error has occurred - the file cannot be opened!");
         }
     }
 

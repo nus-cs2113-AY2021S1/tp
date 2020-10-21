@@ -34,7 +34,7 @@ public class EditProfileCommand extends Command {
             Ui.printInvalidCommandError();
         }
         try {
-            storage.writeUserConfigFile(user);
+            storage.writeUserProfile(user);
         } catch (IOException e) {
             Ui.printCustomMessage(Messages.MISSING_FILE);
 

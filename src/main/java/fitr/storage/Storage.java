@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -27,6 +28,7 @@ public class Storage {
     private static final String DEFAULT_FOOD_LIST_FILEPATH = "food.txt";
     private static final String DEFAULT_USER_CONFIG_FILEPATH = "user.txt";
     private static final String DEFAULT_GOAL_LIST_FILEPATH = "goals.txt";
+    private static final String TIP_LIST_FILEPATH = "src/main/resources/tips.txt";
     private static final String COMMA_SEPARATOR = ",";
 
     private static final Logger LOGGER = Logger.getLogger(Storage.class.getName());
@@ -35,7 +37,6 @@ public class Storage {
     private final String foodListPath;
     private final String userConfigPath;
     private final String goalListPath;
-    private static final String tipListPath = "src/main/resources/tips.txt";
 
     /**
      * Set up the files required in the application, by creating the files if the files do not exist and
@@ -87,37 +88,32 @@ public class Storage {
     /**
      * Reads the user's data from the user config file.
      *
-     * @param user the user to load the file into
      * @return True if the file is read successfully, False if not
      * @throws FileNotFoundException if the file is not found
      */
-    public boolean readUserConfigFile(User user) throws FileNotFoundException {
+    public User loadUserProfile() throws FileNotFoundException {
         LOGGER.fine("Attempting to read file: " + userConfigPath);
-        boolean isReadSuccess = false;
+
         File file = new File(userConfigPath);
         Scanner readFile = new Scanner(file);
         String line;
-        String name;
-        String gender;
-        int age;
-        double height;
-        double weight;
-        String[] arguments;
 
-        while (readFile.hasNext()) {
+        try {
             line = readFile.nextLine();
-            arguments = line.split(COMMA_SEPARATOR);
-            name = arguments[0];
-            gender = arguments[1];
-            age = Integer.parseInt(arguments[2]);
-            height = Double.parseDouble(arguments[3]);
-            weight = Double.parseDouble(arguments[4]);
-            user.loadUserData(name, age, height, weight, gender);
-            isReadSuccess = true;
+        } catch (NoSuchElementException e) {
+            LOGGER.fine("New user created.");
+            return new User();
         }
 
+        String[] arguments = line.split(COMMA_SEPARATOR);
+        String name = arguments[0];
+        String gender = arguments[1];
+        int age = Integer.parseInt(arguments[2]);
+        double height = Double.parseDouble(arguments[3]);
+        double weight = Double.parseDouble(arguments[4]);
+
         LOGGER.fine("User profile file read successfully.");
-        return isReadSuccess;
+        return new User(name, age, height, weight, gender);
     }
 
     /**
@@ -126,8 +122,10 @@ public class Storage {
      * @param user the user to load the file into
      * @throws IOException if an I/O error has occurred
      */
-    public void writeUserConfigFile(User user) throws IOException {
+    public void writeUserProfile(User user) throws IOException {
+        assert user != null;
         LOGGER.fine("Attempting to write to file: " + userConfigPath);
+
         FileWriter file = new FileWriter(userConfigPath);
 
         file.write(user.getName()
@@ -261,7 +259,7 @@ public class Storage {
     * Writes the goal list data into a file.
     *
     * @param goalList the goal list to write to the file
-    * @throws IOException if an I/O error has occured
+    * @throws IOException if an I/O error has occurred
     */
     public void writeGoalList(GoalList goalList) throws IOException {
         LOGGER.fine("Attempting to write to file: " + goalListPath);
@@ -285,10 +283,10 @@ public class Storage {
     * @throws IOException if an I/O error has occurred
     */
     public ArrayList<String> loadTipList() throws IOException {
-        LOGGER.fine("Attempting to read file: " + tipListPath);
+        LOGGER.fine("Attempting to read file: " + TIP_LIST_FILEPATH);
         ArrayList<String> tipList = new ArrayList<>();
 
-        BufferedReader br = new BufferedReader(new FileReader(tipListPath));
+        BufferedReader br = new BufferedReader(new FileReader(TIP_LIST_FILEPATH));
         String line;
         while ((line = br.readLine()) != null) {
             tipList.add(line);
