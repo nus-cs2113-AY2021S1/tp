@@ -4,6 +4,8 @@ import seedu.duke.data.notebook.Note;
 import seedu.duke.data.notebook.Tag;
 import seedu.duke.ui.Formatter;
 
+import seedu.duke.command.ArchiveNoteCommand;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -111,21 +113,22 @@ public class ListNoteCommand extends Command {
         StringBuilder unpinnedNotesSorted;
         ArrayList<Note> notes = new ArrayList<>();
         ArrayList<Note> pinnedNotes = new ArrayList<>();
-        ArrayList<Note> archivedNotes;
         ArrayList<Note> unpinnedNotes = new ArrayList<>();
+        ArrayList<Note> archivedNotes = new ArrayList<>();
+
 
         if (isArchived) {
-            archivedNotes = new ArrayList<>(archivedNotebook.getNotes());
-            noteString = getNoteString(archivedNotes);
+            archivedNotes = notebook.archiveNotes();
+            noteString = getArchiveString();
 
             return noteString.toString();
         }
 
         for (int i = 0; i < notebook.getNotes().size(); i++) {
             String pinnedNoteStatus = notebook.getNotes().get(i).getPinned();
-            if (pinnedNoteStatus.equals("Y")) {
+            if (pinnedNoteStatus.equals("Y") && !notebook.getNotes().get(i).getIsArchived()) {
                 pinnedNotes.add(notebook.getNotes().get(i));
-            } else {
+            } else if (pinnedNoteStatus.equals("N") && !notebook.getNotes().get(i).getIsArchived()) {
                 unpinnedNotes.add(notebook.getNotes().get(i));
             }
         }
@@ -248,13 +251,37 @@ public class ListNoteCommand extends Command {
      */
     public StringBuilder getNoteString(ArrayList<Note> notesList) {
         StringBuilder noteString = new StringBuilder();
+        int j = 1;
 
         for (int i = 0; i < notesList.size(); i++) {
-            noteString.append(i + 1).append(SUFFIX_INDEX)
-                    .append(notesList.get(i).getTitle())
-                    .append(" ")
-                    .append(notesList.get(i).getTagsName())
-                    .append(Formatter.LS);
+            if (!notebook.getNotes().get(i).getIsArchived()) {
+                noteString.append(j).append(SUFFIX_INDEX)
+                        .append(notesList.get(i).getTitle())
+                        .append(" ")
+                        .append(notesList.get(i).getTagsName())
+                        .append(Formatter.LS);
+
+                j++;
+            }
+        }
+
+        return noteString;
+    }
+
+    public StringBuilder getArchiveString() {
+        StringBuilder noteString = new StringBuilder();
+        int j = 1;
+
+        for (int i = 0; i < notebook.getSize(); i++) {
+            if (notebook.getNotes().get(i).getIsArchived()) {
+                noteString.append(j).append(SUFFIX_INDEX)
+                        .append(notebook.getNote(i).getTitle())
+                        .append(" ")
+                        .append(notebook.getNote(i).getTagsName())
+                        .append(Formatter.LS);
+
+                j++;
+            }
         }
 
         return noteString;

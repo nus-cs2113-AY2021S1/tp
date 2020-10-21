@@ -30,14 +30,11 @@ public abstract class Command {
      * Sets the data that the command will operate on.
      *
      * @param notebook referenced Notebook data.
-     * @param archivedNotebook referenced archived Notebook data.
      * @param timetable referenced Timetable data.
      * @param tagManager referenced TagManager.
      */
-    public void setData(Notebook notebook, Notebook archivedNotebook,
-                        Timetable timetable, TagManager tagManager, StorageManager storageManager) {
+    public void setData(Notebook notebook, Timetable timetable, TagManager tagManager, StorageManager storageManager) {
         this.notebook = notebook;
-        this.archivedNotebook = archivedNotebook;
         this.timetable = timetable;
         this.tagManager = tagManager;
         this.storageManager = storageManager;

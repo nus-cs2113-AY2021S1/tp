@@ -47,31 +47,29 @@ public class UnarchiveNoteCommand extends Command {
 
     @Override
     public String execute() {
-        boolean isArchived;
-        String unarchivedTitle = "";
+        String unarchivedTitle;
         Note unarchivedNote;
-        ArrayList<Note> unarchivedNotesList = new ArrayList<>();
+        ArrayList<Note> unarchivedNotesList;
+
+        unarchivedNotesList = notebook.archiveNotes();
 
         try {
             // If there is no title, un-archive note by index. Else un-archive by title.
             if (title.isBlank()) {
-                unarchivedNote = archivedNotebook.getNotes().get(index);
+                unarchivedNote = unarchivedNotesList.get(index);
                 unarchivedTitle = unarchivedNote.getTitle();
 
-                notebook.addNote(unarchivedNote);
-                isArchived = archivedNotebook.deleteNote(index);
+                unarchivedNote.toggleIsArchived();
 
                 return Formatter.formatString(UNARCHIVE_NOTE_MESSAGE + unarchivedTitle);
 
-            } else if (archivedNotebook.getNote(title)) {
-                unarchivedNotesList = (ArrayList<Note>) archivedNotebook.getNotes().stream()
+            } else {
+                unarchivedNotesList = (ArrayList<Note>) unarchivedNotesList.stream()
                         .filter((s) -> s.getTitle().equalsIgnoreCase(title))
                         .collect(Collectors.toList());
 
                 for (Note note : unarchivedNotesList) {
-                    notebook.addNote(note);
-                    isArchived = archivedNotebook.deleteNote(title);
-
+                    note.toggleIsArchived();
                     return Formatter.formatString(UNARCHIVE_NOTE_MESSAGE + title);
                 }
             }

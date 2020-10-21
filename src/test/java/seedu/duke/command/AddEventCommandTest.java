@@ -37,7 +37,7 @@ class AddEventCommandTest {
      */
     @Test
     void execute_singleEvent_success() {
-        command.setData(null, null, TIMETABLE, null, null);
+        command.setData(null, TIMETABLE, null, null);
         command.execute();
         assertTrue(command.timetable.getEvent(0) == (event));
     }

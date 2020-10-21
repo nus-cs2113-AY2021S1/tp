@@ -69,7 +69,7 @@ class FindCommandTest {
 
     private String getCommandExecutionString(Notebook notebook, String keyword) {
         FindCommand findCommand = new FindCommand(keyword);
-        findCommand.setData(notebook, null, null, null, null);
+        findCommand.setData(notebook, null, null, null);
         return findCommand.execute();
     }
 }

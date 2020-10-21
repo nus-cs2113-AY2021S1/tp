@@ -76,7 +76,7 @@ public class Duke {
      * @return String of the executed command.
      */
     private String executeCommand(Command command) {
-        command.setData(notebook, archivedNotebook, timetable, tagManager, storageManager);
+        command.setData(notebook, timetable, tagManager, storageManager);
         return command.execute();
     }
 

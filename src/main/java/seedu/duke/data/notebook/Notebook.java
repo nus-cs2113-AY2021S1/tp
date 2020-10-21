@@ -1,7 +1,11 @@
 package seedu.duke.data.notebook;
 
+import seedu.duke.ui.Formatter;
+
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+
+import static seedu.duke.util.PrefixSyntax.SUFFIX_INDEX;
 
 /**
  * Represents a Notebook object. Contains all the notes.
@@ -9,6 +13,7 @@ import java.util.stream.Collectors;
 public class Notebook {
 
     private ArrayList<Note> notes;
+    private ArrayList<Note> archivedNotes = new ArrayList<>();
 
     /**
      * Creates a new list of notes.
@@ -67,6 +72,17 @@ public class Notebook {
 
     public void setNotes(ArrayList<Note> notes) {
         this.notes = notes;
+    }
+
+    public ArrayList<Note> archiveNotes() {
+
+        for (int i = 0; i < notes.size(); i++) {
+            if (notes.get(i).getIsArchived()) {
+                archivedNotes.add(notes.get(i));
+            }
+        }
+
+        return archivedNotes;
     }
 
     public int getSize() {

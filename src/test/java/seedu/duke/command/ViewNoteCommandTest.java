@@ -90,14 +90,14 @@ class ViewNoteCommandTest {
 
     private String getExecutionStringInputIndex(Notebook notebook, int index) {
         ViewNoteCommand viewNoteCommand = new ViewNoteCommand(index);
-        viewNoteCommand.setData(notebook, null, null, null, null);
+        viewNoteCommand.setData(notebook, null, null, null);
 
         return viewNoteCommand.execute();
     }
 
     private String getExecutionStringInputTitle(Notebook notebook, String title) {
         ViewNoteCommand viewNoteCommand = new ViewNoteCommand(title);
-        viewNoteCommand.setData(notebook, null, null, null, null);
+        viewNoteCommand.setData(notebook, null, null, null);
 
         return viewNoteCommand.execute();
     }

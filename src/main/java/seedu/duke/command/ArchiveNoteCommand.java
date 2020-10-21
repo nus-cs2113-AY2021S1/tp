@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
+import seedu.duke.data.notebook.Notebook;
 import seedu.duke.ui.Formatter;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.stream.Collectors;
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
+import static seedu.duke.util.PrefixSyntax.SUFFIX_INDEX;
 
 /**
  * Archives a Note from the Notebook.
@@ -26,6 +28,8 @@ public class ArchiveNoteCommand extends Command {
 
     private int index;
     private String title = "";
+
+    ArrayList<Note> archivedNotes = new ArrayList<>();
 
     /**
      * Constructs a ArchiveNoteCommand to archive a Note.
@@ -47,10 +51,9 @@ public class ArchiveNoteCommand extends Command {
 
     @Override
     public String execute() {
-        boolean isArchived;
-        String archivedTitle = "";
+        String archivedTitle;
         Note archivedNote;
-        ArrayList<Note> archivedNotesList = new ArrayList<>();
+        ArrayList<Note> archivedNotesList;
 
         try {
             // If there is no title, archive note by index. Else archive by title.
@@ -58,20 +61,17 @@ public class ArchiveNoteCommand extends Command {
                 archivedNote = notebook.getNotes().get(index);
                 archivedTitle = archivedNote.getTitle();
 
-                archivedNotebook.addNote(archivedNote);
-                isArchived = notebook.deleteNote(index);
+                archivedNote.toggleIsArchived();
 
                 return Formatter.formatString(ARCHIVE_NOTE_MESSAGE + archivedTitle);
 
-            } else if (notebook.getNote(title)) {
+            } else {
                 archivedNotesList = (ArrayList<Note>) notebook.getNotes().stream()
                         .filter((s) -> s.getTitle().equalsIgnoreCase(title))
                         .collect(Collectors.toList());
 
                 for (Note note : archivedNotesList) {
-                    archivedNotebook.addNote(note);
-                    isArchived = notebook.deleteNote(title);
-
+                    note.toggleIsArchived();
                     return Formatter.formatString(ARCHIVE_NOTE_MESSAGE + title);
                 }
             }

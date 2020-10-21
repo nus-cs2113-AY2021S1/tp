@@ -74,7 +74,7 @@ public class Note {
         return isArchived;
     }
 
-    public void toggleArchived() {
+    public void toggleIsArchived() {
         isArchived = !isArchived;
     }
 

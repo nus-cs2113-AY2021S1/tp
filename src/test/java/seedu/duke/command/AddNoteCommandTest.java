@@ -35,7 +35,7 @@ class AddNoteCommandTest {
         } catch (NullPointerException exception) {
             exception.printStackTrace();
         }
-        command.setData(notebook, null, timetable, tagManager, storageManager);
+        command.setData(notebook, timetable, tagManager, storageManager);
         String result = command.execute();
         ArrayList<Note> checkBook = notebook.getNotes();
 
@@ -64,7 +64,7 @@ class AddNoteCommandTest {
         } catch (NullPointerException exception) {
             exception.printStackTrace();
         }
-        command.setData(notebook, null, timetable, tagManager, storageManager);
+        command.setData(notebook, timetable, tagManager, storageManager);
         String result = command.execute();
 
         assertFalse(result.contains(note.getTitle()));

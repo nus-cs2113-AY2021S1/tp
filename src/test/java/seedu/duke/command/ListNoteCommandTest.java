@@ -96,13 +96,13 @@ class ListNoteCommandTest {
 
     private String getCommandExecutionString(Notebook notebook) {
         ListNoteCommand listNoteCommand = new ListNoteCommand();
-        listNoteCommand.setData(notebook, null, null, null, null);
+        listNoteCommand.setData(notebook, null, null, null);
         return listNoteCommand.execute();
     }
 
     private StringBuilder getCommandNoteString(ArrayList<Note> noteArrayList) {
         ListNoteCommand listNoteCommand = new ListNoteCommand();
-        listNoteCommand.setData(notebook, null, null, null, null);
+        listNoteCommand.setData(notebook, null, null, null);
         return listNoteCommand.getNoteString(noteArrayList);
     }
 }

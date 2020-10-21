@@ -130,7 +130,7 @@ class TagCommandTest {
 
     private String getCommandExecutionString(Notebook notebook, TagManager tagManager, int index, ArrayList<Tag> tags) {
         TagCommand tagCommand = new TagCommand(index, tags);
-        tagCommand.setData(notebook, null, null, tagManager, null);
+        tagCommand.setData(notebook, null, tagManager, null);
         return tagCommand.execute();
     }
 }

@@ -66,14 +66,14 @@ class PinCommandTest {
 
     private String getExecutionStringInputIndex(Notebook notebook, int index) {
         PinCommand pinCommand = new PinCommand(index);
-        pinCommand.setData(notebook, null, null, null, null);
+        pinCommand.setData(notebook, null, null, null);
 
         return pinCommand.execute();
     }
 
     private String getExecutionStringInputTitle(Notebook notebook, String title) {
         PinCommand pinCommand = new PinCommand(title);
-        pinCommand.setData(notebook, null, null,null, null);
+        pinCommand.setData(notebook, null,null, null);
 
         return pinCommand.execute();
     }
