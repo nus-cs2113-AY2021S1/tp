@@ -5,6 +5,7 @@ import seedu.duke.api.StockPriceFetcher;
 import seedu.duke.command.*;
 import seedu.duke.data.exception.DukeException;
 import seedu.duke.model.PortfolioManager;
+import seedu.duke.parser.Parser;
 import seedu.duke.ui.Ui;
 
 public class Controller {

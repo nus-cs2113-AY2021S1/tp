@@ -44,7 +44,7 @@ public class Parser {
             BuyCommand buyCommand = new BuyCommand(symbol, quantity);
             return buyCommand;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(("Please enter the ticker symbol of the company that you want to buy!"));
+            throw new DukeException(("Please enter a valid integer for the quantity of stocks that you want to buy!"));
         } catch (NumberFormatException e) {
             throw new DukeException("Please enter a valid integer for the quantity of stocks that you want to buy!");
         }
