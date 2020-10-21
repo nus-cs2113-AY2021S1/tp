@@ -5,6 +5,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Optional;
 
+
+/**
+ * Saver class allows storage of string data into a table with a given width and height
+ * It has a function that can write the data stored in it's table.
+ */
 public class Saver {
     private static final String ROOT_DIRECTORY = System.getProperty("user.home");
     private static final String BASE_FOLDER_NAME =  ROOT_DIRECTORY + File.separator + "dietbook";
@@ -41,6 +46,13 @@ public class Saver {
         return height;
     }
 
+    /**
+     * Adds the string provided to the position x,y on the table.
+     * @param entry the entry to be provided into this position
+     * @param x_position x position
+     * @param y_position y position
+     * @throws IndexOutOfBoundsException x or y position is out of bounds
+     */
     public void add(String entry, int x_position, int y_position) throws IndexOutOfBoundsException{
         try {
             this.entries[y_position - 1][x_position - 1] = entry;
@@ -51,6 +63,12 @@ public class Saver {
         }
     }
 
+    /**
+     * Deletes the entry in the table.
+     * @param x_position x position
+     * @param y_position y position
+     * @throws IndexOutOfBoundsException
+     */
     public void delete(int x_position, int y_position) throws IndexOutOfBoundsException{
         try {
             this.entries[y_position - 1][x_position - 1] = EMPTY_SYMBOL;
@@ -61,6 +79,12 @@ public class Saver {
         }
     }
 
+    /**
+     * Gets a entry stored in the table.
+     * @param x_position x position
+     * @param y_position y position
+     * @return Optional of String that is empty if the position does not contain an entry.
+     */
     public Optional<String> get(int x_position, int y_position){
         try {
             if (this.entries[y_position - 1][x_position - 1].equals(EMPTY_SYMBOL)) {
