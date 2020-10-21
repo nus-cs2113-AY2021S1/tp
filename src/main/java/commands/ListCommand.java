@@ -13,7 +13,9 @@ import ui.Ui;
 
 import java.util.ArrayList;
 
-import static common.Messages.*;
+import static common.Messages.CARD;
+import static common.Messages.CHAPTER;
+import static common.Messages.MODULE;
 
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
