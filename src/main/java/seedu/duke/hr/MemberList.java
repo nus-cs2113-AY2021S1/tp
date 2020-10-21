@@ -76,21 +76,20 @@ public class MemberList {
      * @return name standardized member name.
      */
     public static String standardizeMemberName(String memberName) {
-            char[] charArray = memberName.toCharArray();
-            boolean isSpace = true;
-            for(int i = 0; i < charArray.length; i++) {
-                if(Character.isLetter(charArray[i])) {
-                    if(isSpace) {
-                        charArray[i] = Character.toUpperCase(charArray[i]);
-                        isSpace = false;
-                    }
+        char[] charArray = memberName.toCharArray();
+        boolean isSpace = true;
+        for(int i = 0; i < charArray.length; i++) {
+            if(Character.isLetter(charArray[i])) {
+                if(isSpace) {
+                    charArray[i] = Character.toUpperCase(charArray[i]);
+                    isSpace = false;
                 }
-                else {
-                    isSpace = true;
-                }
+            } else {
+                isSpace = true;
             }
-            String name = String.valueOf(charArray);
-            return name;
+        }
+        String name = String.valueOf(charArray);
+        return name;
     }
 
     /**

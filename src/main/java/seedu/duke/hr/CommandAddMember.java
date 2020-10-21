@@ -3,7 +3,9 @@ package seedu.duke.hr;
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
-import static seedu.duke.hr.MemberList.*;
+import static seedu.duke.hr.MemberList.isNumber;
+import static seedu.duke.hr.MemberList.findMemberByName;
+import static seedu.duke.hr.MemberList.standardizeMemberName;
 
 /**
  * Represents add member command.
