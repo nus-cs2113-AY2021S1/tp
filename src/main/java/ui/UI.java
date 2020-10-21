@@ -181,6 +181,13 @@ public class UI {
     }
 
     /**
+     * Prints the message when the user sorts the events.
+     */
+    public void printSortEventMessage() {
+        System.out.println("Got it. The events have been sorted.");
+    }
+
+    /**
      * Prints all the Events of the filtered list with labels, based on the input list.
      *
      * @param filteredEventList an ArrayList of Events to be printed one by one.
