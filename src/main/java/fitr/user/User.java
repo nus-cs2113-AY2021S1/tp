@@ -36,6 +36,7 @@ public class User {
     private double height;
     private double weight;
     private String gender;
+    private int userFitnessLevel; // 0 for unfit; 1 for normal; 2 for Fit
 
     /**
      * Setup configures user profile for first time use.
@@ -52,6 +53,8 @@ public class User {
         setupWeight();
         Ui.printCustomMessage(INPUT_GENDER);
         setupGender();
+        Ui.printCustomMessage("INPUT_FITNESS_LEVEL");
+        setupFitnessLevel();
         Ui.printCustomMessage(SETUP_COMPLETE);
     }
 
@@ -93,6 +96,10 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public void setFitnessLevel(int userFitnessLevel){
+        this.userFitnessLevel = userFitnessLevel;
     }
 
     public void setupAge() {
@@ -157,6 +164,24 @@ public class User {
             setGender(FEMALE_STRING);
         }
     }
+
+    //to edit
+    public void setupFitnessLevel(){
+        int fitnessLevelInput = 0;
+        while (fitnessLevelInput <= 0) {
+            try {
+                fitnessLevelInput = Integer.parseInt(Ui.read());
+                if (fitnessLevelInput <= 0) {
+                    Ui.printCustomMessage("Please indicate your fitness level: ");
+                }
+            } catch (NumberFormatException e) {
+                Ui.printCustomMessage("Error");
+                fitnessLevelInput = 0;
+            }
+        }
+        setFitnessLevel(fitnessLevelInput);
+    }
+
 
     @Override
     public String toString() {

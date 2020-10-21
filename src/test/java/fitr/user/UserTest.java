@@ -45,4 +45,15 @@ public class UserTest {
         assertEquals(400, user.calculateCalorieConsumed(foodList).get());
         assertEquals(200, user.calculateCalorie(foodList, exerciseList).get());
     }
+
+    @Test
+    // Load User Data
+    public void testUserProfileConfiguration_validEntries_correctResult() {
+        User user = new User();
+        user.loadUserData("John Doe", 22, 1.70, 80, "Male");
+        assertEquals("John Doe", user.getName());
+        assertEquals(1.70, user.getHeight());
+        assertEquals(80, user.getWeight());
+        assertEquals("Male", user.getGender());
+    }
 }
