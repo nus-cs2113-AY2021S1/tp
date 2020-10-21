@@ -168,6 +168,9 @@ public class Ui {
         int taskPresent = 0;
         for (Task task : taskList.getList()) {
             if (task.toString().contains(find)) {
+                if (taskPresent == 0) {
+                    System.out.println("____________________________________________________________");
+                }
                 Ui.printTaskMatch(taskPresent);
                 System.out.println(task);
                 taskPresent = 1;
@@ -184,6 +187,9 @@ public class Ui {
         int subjectPresent = 0;
         for (Subject subject : subjectList.getList()) {
             if (subject.toString().contains(find)) {
+                if (subjectPresent == 0) {
+                    System.out.println("____________________________________________________________");
+                }
                 Ui.printSubjectMatch(subjectPresent);
                 System.out.println(subject);
                 subjectPresent = 1;
@@ -269,6 +275,9 @@ public class Ui {
         int topicPresent = 0;
         for (Topic topic : topicList.getList()) {
             if (topic.toString().contains(query)) {
+                if (topicPresent == 0) {
+                    System.out.println("____________________________________________________________");
+                }
                 Ui.printTopicMatch(topicPresent);
                 System.out.println(topic);
                 topicPresent = 1;
