@@ -1,6 +1,7 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.model.project.Project;
+import seedu.duke.model.project.ProjectList;
 import seedu.duke.model.sprint.Sprint;
 import seedu.duke.model.sprint.SprintList;
 import seedu.duke.parser.DateTimeParser;
@@ -14,24 +15,24 @@ import java.util.logging.Logger;
 
 public class AddSprintTaskCommand extends SprintCommand {
     private SprintList allSprint;
-    private ArrayList<Project> projectList;
+    private ProjectList projectListManager;
     private Project proj;
     private static final Logger LOGGER = Logger.getLogger(AddSprintTaskCommand.class.getName());
 
 
-    public AddSprintTaskCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList) {
+    public AddSprintTaskCommand(Hashtable<String, String> parameters, ProjectList projectListManager) {
         super(parameters);
-        this.projectList = projectList;
+        this.projectListManager = projectListManager;
         LOGGER.setLevel(Level.WARNING);
     }
 
     public void execute() {
-        assert !projectList.isEmpty() : "No project\n";
-        if (projectList.isEmpty()) {
+        assert !projectListManager.isEmpty() : "No project\n";
+        if (projectListManager.isEmpty()) {
             Ui.showError("Please create a project first.");
             return;
         }
-        proj = projectList.get(0);
+        proj = projectListManager.getProject();
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();

@@ -1,5 +1,6 @@
 package seedu.duke.command.task;
 
+import seedu.duke.model.project.ProjectList;
 import seedu.duke.model.sprint.Sprint;
 import seedu.duke.ui.Messages;
 import seedu.duke.exception.DukeException;
@@ -17,7 +18,7 @@ import static seedu.duke.command.CommandSummary.TASK_ID;
 
 
 public class TaskCommand {
-    public void addTaskCommand(Hashtable<String, String> tasks, ArrayList<Project> projectList)
+    public void addTaskCommand(Hashtable<String, String> tasks, ProjectList projectListManager)
             throws DukeException {
 
         String title;
@@ -29,7 +30,7 @@ public class TaskCommand {
         priority = tasks.get(PRIORITY);
 
         try {
-            Project proj = projectList.get(0);
+            Project proj = projectListManager.getProject();
             if (!proj.getProjectBacklog().checkValidPriority(priority)) {
                 throw new DukeException("Invalid priority");
             }
@@ -44,9 +45,9 @@ public class TaskCommand {
 
     }
 
-    public void deleteTaskCommand(Hashtable<String,String> taskIdString, ArrayList<Project> projectList) {
+    public void deleteTaskCommand(Hashtable<String,String> taskIdString, ProjectList projectListManager) {
         try {
-            Project proj = projectList.get(0);
+            Project proj = projectListManager.getProject();
             if (taskIdString.isEmpty()) {
                 Ui.showError("Missing parameters.");
             }
@@ -77,10 +78,10 @@ public class TaskCommand {
         }
     }
 
-    public void viewTaskCommand(Hashtable<String, String> taskId, ArrayList<Project> projectList) {
+    public void viewTaskCommand(Hashtable<String, String> taskId, ProjectList projectListManager) {
 
         try {
-            Project proj = projectList.get(0);
+            Project proj = projectListManager.getProject();
             if (taskId.isEmpty()) {
                 Ui.showError("Missing parameters.");
             }
@@ -105,7 +106,7 @@ public class TaskCommand {
         }
     }
 
-    public void changeTaskPriorityCommand(Hashtable<String, String> tasks, ArrayList<Project> projectList)
+    public void changeTaskPriorityCommand(Hashtable<String, String> tasks, ProjectList projectListManager)
             throws DukeException {
 
         Task task;
@@ -116,7 +117,7 @@ public class TaskCommand {
         priority = tasks.get(PRIORITY).trim();
 
         try {
-            Project proj = projectList.get(0);
+            Project proj = projectListManager.getProject();
             try {
                 task = proj.getProjectBacklog().getTask(id);
                 if (!proj.getProjectBacklog().checkValidPriority(priority)) {
@@ -135,10 +136,10 @@ public class TaskCommand {
         }
     }
 
-    public void doneTaskCommand(Hashtable<String, String> taskId, ArrayList<Project> projectList) {
+    public void doneTaskCommand(Hashtable<String, String> taskId, ProjectList projectListManager) {
 
         try {
-            Project proj = projectList.get(0);
+            Project proj = projectListManager.getProject();
             for (int i = 0; i < taskId.size(); i++) {
                 Task task;
                 try {

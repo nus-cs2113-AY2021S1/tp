@@ -1,6 +1,7 @@
 package seedu.duke.command.project;
 
 import seedu.duke.model.project.Project;
+import seedu.duke.model.project.ProjectList;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -8,20 +9,20 @@ import java.util.Hashtable;
 
 public class ViewProjectCommand extends ProjectCommand {
 
-    private final ArrayList<Project> projectList;
+    private final ProjectList projectListManager;
 
-    public ViewProjectCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList) {
+    public ViewProjectCommand(Hashtable<String, String> parameters, ProjectList projectListManager) {
         super(parameters);
-        this.projectList = projectList;
+        this.projectListManager = projectListManager;
     }
 
     public void execute() {
-        assert projectList.size() != 0 : "No projects created \n.";
+        assert projectListManager.size() != 0 : "No projects created \n.";
 
-        if (projectList.isEmpty()) {
+        if (projectListManager.isEmpty()) {
             Ui.showError("No projects are created.");
         } else {
-            Project project = projectList.get(selectedProject - 1);
+            Project project = projectListManager.getProject();
             assert project != null : "The project is null";
             Ui.showToUserLn(project.toString());
 

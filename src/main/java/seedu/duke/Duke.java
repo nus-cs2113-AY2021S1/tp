@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.model.project.ProjectList;
 import seedu.duke.parser.Parser;
 import seedu.duke.model.project.Project;
 import seedu.duke.storage.StorageManager;
@@ -19,7 +20,7 @@ public class Duke {
 
     private static Parser parser = new Parser();
     private static StorageManager sm;
-    private static ArrayList<Project> projectList = new ArrayList<>(10);
+    private static ProjectList projListManager = new ProjectList();
 
     public static void main(String[] args) {
         new Duke().run();
@@ -38,7 +39,7 @@ public class Duke {
      * Welcome the user and initialise the local storage.
      */
     private void init() {
-        sm = new StorageManager(dataFilename, projectList);
+        sm = new StorageManager(dataFilename, projListManager.projectList);
         try {
             sm.load();
         } catch (IOException e) {
@@ -59,7 +60,7 @@ public class Duke {
         String input;
         while (!parser.isExit()) {
             input = Ui.getUserCommand();
-            String parserOutput = parser.parser(input, projectList);
+            String parserOutput = parser.parser(input, projListManager);
             if (parserOutput != null) {
                 System.out.println(parserOutput);
             }

@@ -2,6 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.Project;
+import seedu.duke.model.project.ProjectList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +28,7 @@ public class Parser {
     private boolean exit = false;
 
 
-    public String parser(String userInput, ArrayList<Project> projectList) {
+    public String parser(String userInput, ProjectList projectListManager) {
         if (userInput.equals(BYE)) {
             System.out.println(BYE);
             exit = true;
@@ -60,16 +61,16 @@ public class Parser {
             try {
                 switch (command.toLowerCase()) {
                 case PROJECT:
-                    new ProjectParser().parseMultipleCommandsExceptions(parameters, action, projectList);
+                    new ProjectParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                     break;
                 case MEMBER:
-                    new MemberParser().parseMultipleCommandsExceptions(parameters, action, projectList);
+                    new MemberParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                     break;
                 case TASK:
-                    new TaskParser().parseMultipleCommandsExceptions(parameters, action, projectList);
+                    new TaskParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                     break;
                 case SPRINT:
-                    new SprintParser().parseMultipleCommandsExceptions(parameters, action, projectList);
+                    new SprintParser().parseMultipleCommandsExceptions(parameters, action, projectListManager);
                     break;
                 default:
                     return "Invalid command!";
