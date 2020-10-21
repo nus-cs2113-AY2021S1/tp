@@ -37,13 +37,6 @@ public class Tutorial extends SchoolEvent {
      * @return whether the tutorial is over
      */
     public boolean getIsOver() {
-        /*if (date.isBefore(LocalDate.now())) {
-            return true;
-        } else if (date.isEqual(LocalDate.now()) && time.isBefore(LocalTime.now())) {
-            return true;
-        } else {
-            return false;
-        }*/
         LocalDateTime dateAndTime = LocalDateTime.of(date, time);
         ZonedDateTime due = ZonedDateTime.of(dateAndTime, ZoneId.of("+08:00"));
         ZonedDateTime now = ZonedDateTime.now(ZoneId.of("+08:00"));
