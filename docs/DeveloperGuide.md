@@ -25,8 +25,10 @@ bill payments
 * Categorise expenditures (e.g. food, transport etc) and sort by category
 
 **Budget Management**
-* Set a budget (monthly/weekly/daily)
-* Remind users of how much budget they have left for that month/week/day
+* Set a budget (monthly)
+* Remind users of how much budget they have left for that month
+* Edit the budget (monthly)
+* Display the budget for that month
 
 **Bill Tracker**
 * Remind users of payment due dates
