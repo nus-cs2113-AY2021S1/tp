@@ -59,5 +59,5 @@ public abstract class ItemList {
      */
     public void deleteItem(Object item) {
         items.remove(item);
-    }   
+    }
 }
