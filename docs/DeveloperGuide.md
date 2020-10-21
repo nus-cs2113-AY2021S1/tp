@@ -18,7 +18,7 @@ The ```deadline``` command calls ```DeadlineCommand#execute()```, adding/updatin
 Given below is how the deadline command behave: <br>
 
 <p align="center">
-  <img width="460" height="300" src="/docs/diagrams/DeadlineScenario.jpg">
+  <img width="414" height="562" src="/docs/diagrams/DeadlineScenario.jpg">
 </p>
 
 The following sequence diagram shows how the deadline operation works: <br>
