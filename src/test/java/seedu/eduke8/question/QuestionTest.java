@@ -1,6 +1,7 @@
 package seedu.eduke8.question;
 
 import org.junit.jupiter.api.Test;
+import seedu.eduke8.explanation.Explanation;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.option.OptionList;
@@ -12,12 +13,13 @@ class QuestionTest {
 
     private static final String PLACEHOLDER_QUESTION_DESCRIPTION = "This is a question description.";
     private static final String PLACEHOLDER_HINT_DESCRIPTION = "Please check the textbook page 88";
+    private static final String PLACEHOLDER_EXPLANATION_DESCRIPTION = "Option A gives the best explanation out of all.";
     private static final int OPTIONLIST_OPTIONS_COUNT = 2;
 
 
     @Test
     void getDescription_placeholderQuestionDescription_returnsQuestionDescription() {
-        // Creates a question object with description, 2 options and a hint
+        //Creates a question object with description, 2 options, explanation and a hint
         Question question = createTestQuestion();
 
         assertEquals(PLACEHOLDER_QUESTION_DESCRIPTION, question.getDescription());
@@ -25,7 +27,7 @@ class QuestionTest {
 
     @Test
     void wasShown_questionThatWasShownToUser_expectsTrue() {
-        // Creates a question object with description, 2 options and a hint
+        //Creates a question object with description, 2 options, explanation and a hint
         Question question = createTestQuestion();
 
         // When question is being shown to user, it is marked as shown automatically.
@@ -35,7 +37,7 @@ class QuestionTest {
 
     @Test
     void getOptionList_optionListWithTwoOptions_returnsCountOfTwoOptions() {
-        // Creates a question object with description, 2 options and a hint
+        //Creates a question object with description, 2 options, explanation and a hint
         Question question = createTestQuestion();
 
         assertEquals(OPTIONLIST_OPTIONS_COUNT, question.getOptionList().getCount());
@@ -43,7 +45,7 @@ class QuestionTest {
 
     @Test
     void getHint_hintObject_returnsHintDescription() {
-        // Creates a question object with description, 2 options and a hint
+        //Creates a question object with description, 2 options, explanation and a hint
         Question question = createTestQuestion();
 
         assertEquals(PLACEHOLDER_HINT_DESCRIPTION, question.getHint().getDescription());
@@ -52,7 +54,7 @@ class QuestionTest {
 
     @Test
     void wasHintShown_questionWithHintShown_expectsTrue() {
-        // Creates a question object with description, 2 options and a hint
+        //Creates a question object with description, 2 options, explanation and a hint
         Question question = createTestQuestion();
 
         Hint hintThatWasShownToUser = question.getHint();
@@ -63,10 +65,17 @@ class QuestionTest {
         assertTrue(question.wasHintShown());
     }
 
+    @Test
+    void getExplanation_explanationObject_returnsExplanationDescription() {
+        //Creates a question object with description, 2 options, explanation and a hint
+        Question question = createTestQuestion();
+
+        assertEquals(PLACEHOLDER_EXPLANATION_DESCRIPTION, question.getExplanation().getDescription());
+    }
 
     @Test
     void wasAnsweredCorrectly_questionMarkedAsAnsweredCorrectly_expectsTrue() {
-        // Creates a question object with description, 2 options and a hint
+        //Creates a question object with description, 2 options, explanation and a hint
         Question question = createTestQuestion();
 
         question.markAsAnsweredCorrectly();
@@ -74,7 +83,7 @@ class QuestionTest {
     }
 
 
-    // Creates a standard question for the tests with description, 2 options and a hint
+    //Creates a question object with description, 2 options, explanation and a hint
     private Question createTestQuestion() {
         String inputQuestionDescription = PLACEHOLDER_QUESTION_DESCRIPTION;
 
@@ -87,7 +96,10 @@ class QuestionTest {
         String inputHintDescription = PLACEHOLDER_HINT_DESCRIPTION;
         Hint hint = new Hint(inputHintDescription);
 
-        Question question = new Question(inputQuestionDescription, optionList, hint);
+        String inputExplanationDescription = PLACEHOLDER_EXPLANATION_DESCRIPTION;
+        Explanation explanation = new Explanation(inputExplanationDescription);
+
+        Question question = new Question(inputQuestionDescription, optionList, hint, explanation);
 
         return question;
     }
