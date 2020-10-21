@@ -9,9 +9,9 @@ import seedu.financeit.recurringtracker.RecurringTracker;
 import seedu.financeit.ui.MenuPrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
-import seedu.financeit.utils.storage.SaveStateHandlerManualTracker;
-import seedu.financeit.utils.storage.SaveStateHandlerRecurringTracker;
-import seedu.financeit.utils.storage.SaveStateHandlerGoalTracker;
+import seedu.financeit.utils.storage.GoalTrackerSaver;
+import seedu.financeit.utils.storage.ManualTrackerSaver;
+import seedu.financeit.utils.storage.RecurringTrackerSaver;
 
 import java.util.logging.Level;
 
@@ -23,18 +23,10 @@ public class Financeit {
         CommandPacket packet = null;
         Level mode = Level.OFF;
         ParamChecker.logger.setLevel(mode);
-        SaveStateHandlerManualTracker mt = new SaveStateHandlerManualTracker("./data/save.txt", "./data");
-        SaveStateHandlerGoalTracker gt = new SaveStateHandlerGoalTracker("./data/save1.txt", "./data");
-        SaveStateHandlerRecurringTracker at = new SaveStateHandlerRecurringTracker("./data/save2.txt", "./data");
-
-        try {
-            gt.load();
-            mt.load();
-            at.load();
-        } catch (Exception m) {
-            MenuPrinter.prompt = "An exception has occurred: " + m;
-        }
-
+        ManualTrackerSaver mt = new ManualTrackerSaver("./data/save.txt", "./data");
+        GoalTrackerSaver gt = new GoalTrackerSaver("./data/save1.txt", "./data");
+        RecurringTrackerSaver at = new RecurringTrackerSaver("./data/save2.txt", "./data");
+        load(gt, mt, at);
         while (true) {
             UiManager.refreshPage();
             UiManager.printLogo();
@@ -60,23 +52,59 @@ public class Financeit {
             case "logger":
                 mode = (mode == Level.OFF) ? Level.ALL : Level.OFF;
                 MenuPrinter.prompt = (mode == Level.OFF)
-                    ? "Logger is off."
-                    : "Logger is on.";
+                        ? "Logger is off."
+                        : "Logger is on.";
                 ParamChecker.logger.setLevel(mode);
                 break;
             case "exit":
-                try {
-                    mt.save();
-                    gt.save();
-                    at.save();
-                } catch (Exception m) {
-                    System.out.println("An exception has occurred: " + m);
-                }
+                save(gt, mt, at);
                 return;
             default:
                 MenuPrinter.prompt = "Invalid Command";
                 break;
             }
+        }
+    }
+
+    public static void load(GoalTrackerSaver gt, ManualTrackerSaver mt, RecurringTrackerSaver at) {
+
+        try {
+            gt.load();
+        } catch (Exception m) {
+            System.out.println("Goal Tracker failed to load: " + m);
+        }
+
+        try {
+            mt.load();
+        } catch (Exception m) {
+            System.out.println("Manual Tracker failed to load: " + m);
+        }
+
+        try {
+            at.load();
+        } catch (Exception m) {
+            System.out.println("Auto Tracker failed to load: " + m);
+        }
+    }
+
+    public static void save(GoalTrackerSaver gt, ManualTrackerSaver mt, RecurringTrackerSaver at) {
+
+        try {
+            gt.save();
+        } catch (Exception m) {
+            System.out.println("Goal Tracker failed to save: " + m);
+        }
+
+        try {
+            mt.save();
+        } catch (Exception m) {
+            System.out.println("Manual Tracker failed to save: " + m);
+        }
+
+        try {
+            at.save();
+        } catch (Exception m) {
+            System.out.println("Auto Tracker failed to save: " + m);
         }
     }
 }

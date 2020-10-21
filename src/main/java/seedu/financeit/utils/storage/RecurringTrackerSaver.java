@@ -11,13 +11,13 @@ import java.io.IOException;
 import java.util.Scanner;
 
 //@@author Feudalord
-public class SaveStateHandlerRecurringTracker extends SaveStateHandler {
+public class RecurringTrackerSaver extends SaveHandler {
 
-    public SaveStateHandlerRecurringTracker() {
+    public RecurringTrackerSaver() {
         super();
     }
 
-    public SaveStateHandlerRecurringTracker(String filepath, String directory) {
+    public RecurringTrackerSaver(String filepath, String directory) {
         super(filepath, directory);
     }
 

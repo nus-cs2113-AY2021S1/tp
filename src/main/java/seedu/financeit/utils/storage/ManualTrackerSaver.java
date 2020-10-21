@@ -17,13 +17,13 @@ import java.io.IOException;
 import java.util.Scanner;
 
 //@@author Feudalord
-public class SaveStateHandlerManualTracker extends SaveStateHandler {
+public class ManualTrackerSaver extends SaveHandler {
 
-    public SaveStateHandlerManualTracker() {
+    public ManualTrackerSaver() {
         super();
     }
 
-    public SaveStateHandlerManualTracker(String filepath, String directory) {
+    public ManualTrackerSaver(String filepath, String directory) {
         super(filepath, directory);
     }
 
