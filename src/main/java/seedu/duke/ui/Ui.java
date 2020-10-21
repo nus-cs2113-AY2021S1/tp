@@ -38,10 +38,17 @@ public class Ui {
         ArrayList<UserFavourite> items = Favourites.getFavCommands();
         printLine();
         assert items.size() != 0 : "You have nothing in your favourites";
+        System.out.println("Here are the items in your favourites:");
         int count = 1;
         for (UserFavourite command : items) {
             System.out.println(count++ + ". " + command);
         }
+        printLine();
+    }
+
+    public static void addFavMessage(String input) {
+        printLine();
+        System.out.println("You have successfully added: \n\"" + input + "\"\ninto your favourites");
         printLine();
     }
 

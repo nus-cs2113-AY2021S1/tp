@@ -10,6 +10,7 @@ import seedu.duke.logic.commands.DineCommand;
 import seedu.duke.logic.commands.DineInfoCommand;
 import seedu.duke.logic.commands.ExitCommand;
 import seedu.duke.logic.commands.HelpCommand;
+import seedu.duke.logic.commands.ListFavCommand;
 import seedu.duke.logic.commands.ListStopsCommand;
 import seedu.duke.logic.commands.RouteCommand;
 import seedu.duke.logic.commands.RouteMapCommand;
@@ -81,8 +82,9 @@ public class Parser {
             break;
         //       case "/delfav":
         //          break;
-        //       case "/listfav":
-        //          break;
+        case "/listfav":
+            com = new ListFavCommand();
+            break;
         default:
             throw new CustomException(ExceptionType.INVALID_COMMAND);
         }

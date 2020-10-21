@@ -2,6 +2,8 @@ package seedu.duke;
 
 import java.util.ArrayList;
 
+import static seedu.duke.ui.Ui.addFavMessage;
+
 public class Favourites {
 
     private static ArrayList<UserFavourite> favCommands = new ArrayList<>();
@@ -15,6 +17,7 @@ public class Favourites {
             item = new UserFavourite(inputCommand, description);
         }
         favCommands.add(item);
+        addFavMessage(inputCommand);
     }
 
     public static void delFav(int index) {
