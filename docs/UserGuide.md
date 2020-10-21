@@ -114,7 +114,7 @@ ____________________________________________________________
 
 #### `delete` `Delete Subject`
 
-Format: `delete SUBJECT_INDEX`
+Format: `delete` `SUBJECT_INDEX`
 
 Example of usage:
 ```
@@ -131,7 +131,7 @@ ____________________________________________________________
 
 #### `find` Find Subject
 
-Format: `find KEYWORD`
+Format: `find` `KEYWORD`
 
 Example of usage:
 ```
@@ -150,7 +150,7 @@ ____________________________________________________________
 
 ####  `subject` Enter Subject
 
-Format: `subject SUBJECT_NAME`
+Format: `subject` `SUBJECT_NAME`
 
 Example of usage:
 ```
