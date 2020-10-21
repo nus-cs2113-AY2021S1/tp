@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 
 /**
- * Edit appointment.
+ * Edits appointment.
  */
 public class EditApptCommand extends Command {
 
@@ -26,7 +26,7 @@ public class EditApptCommand extends Command {
     }
 
     /**
-     * Edit appointment using NRIC given.
+     * Edits appointment using NRIC given.
      *
      * @param patients     PatientList object.
      * @param doctors      DoctorList object.
@@ -57,9 +57,9 @@ public class EditApptCommand extends Command {
                 }
             }
             ui.showEditAppointmentMessage();
-            Appointment AppointmentToEdit = ui.getItemOfArrayList(patientAppointments);
-            ui.showDeleteAppointmentMessage(AppointmentToEdit);
-            AppointmentToEdit.removeBooking();
+            Appointment appointmentToEdit = ui.getItemOfArrayList(patientAppointments);
+            ui.showDeleteAppointmentMessage(appointmentToEdit);
+            appointmentToEdit.removeBooking();
 
             String indexSelected = ui.getAppointmentToEdit(appointments);
             int index = Integer.parseInt(indexSelected) - 1;

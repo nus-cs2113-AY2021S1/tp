@@ -9,7 +9,7 @@ import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
 /**
- * Adds doctor to DoctorList
+ * Adds doctor to DoctorList.
  */
 public class AddDoctorCommand extends Command {
     public static final String COMMAND_WORD = "doctor";

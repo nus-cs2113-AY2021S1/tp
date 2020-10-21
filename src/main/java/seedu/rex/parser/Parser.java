@@ -47,6 +47,12 @@ public class Parser {
         return new Patient(name, nric, dateOfBirth);
     }
 
+    /**
+     * Reads in appointment and returns Appointment object.
+     *
+     * @param line Line to parse.
+     * @return Appointment object.
+     */
     public static Appointment readAppointment(String line) {
         String[] appointmentComponents = line.split(", ");
         LocalDate date = LocalDate.parse(appointmentComponents[0]);
@@ -131,6 +137,12 @@ public class Parser {
     }
 
 
+    /**
+     * Parses and reads doctor.
+     *
+     * @param line Line to parse.
+     * @return Doctor object.
+     */
     public static Doctor readDoctor(String line) {
         assert line != null && !line.equals("") : "No doctors to read!";
 

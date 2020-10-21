@@ -195,6 +195,12 @@ public class Storage {
         return doctors;
     }
 
+    /**
+     * Saves doctor to text file.
+     *
+     * @param doctors Doctors list.
+     * @throws RexException If there is error writing file.
+     */
     public void saveDoctors(DoctorList doctors) throws RexException {
         assert doctors != null : "Saving null doctors ArrayList";
 

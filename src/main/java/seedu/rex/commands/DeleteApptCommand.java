@@ -57,9 +57,9 @@ public class DeleteApptCommand extends Command {
                 }
             }
             ui.showDeleteAppointmentMessage();
-            Appointment AppointmentToEdit = ui.getItemOfArrayList(patientAppointments);
-            ui.showDeleteAppointmentMessage(AppointmentToEdit);
-            AppointmentToEdit.removeBooking();
+            Appointment appointmentToEdit = ui.getItemOfArrayList(patientAppointments);
+            ui.showDeleteAppointmentMessage(appointmentToEdit);
+            appointmentToEdit.removeBooking();
 
             assert !appointments.isEmpty() : "No appointments!";
             storage.saveAppointments(appointments);

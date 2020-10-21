@@ -236,15 +236,6 @@ public class Ui {
     }
 
     /**
-     * Prints patient creation message.
-     *
-     * @param nric Patient's NRIC.
-     */
-    public void showCreatePatientMessage(String nric) {
-        printWithIndent("Creating patient " + nric);
-    }
-
-    /**
      * Prints patient's appointment list header.
      *
      * @param nric Patient's NRIC
@@ -285,35 +276,42 @@ public class Ui {
         }
     }
 
+    /**
+     * Gets doctor name from user.
+     *
+     * @return Doctor's name.
+     */
     public String getDoctorName() {
         printWithIndent("Enter doctor name: ");
         return in.nextLine().toUpperCase().trim();
     }
 
+    /**
+     * Shows the doctor added.
+     *
+     * @param newDoctor Doctor added.
+     */
     public void showDoctorAdded(Doctor newDoctor) {
         printWithIndent("Doctor added: " + newDoctor.getName());
     }
 
+    /**
+     * Shows deleted doctor.
+     *
+     * @param deletedDoctor Deleted doctor.
+     */
     public void showDoctorDeleted(Doctor deletedDoctor) {
         printWithIndent("Doctor successfully deleted: ");
         printWithIndent(deletedDoctor.toString());
     }
 
+    /**
+     * Shows doctor not found message.
+     *
+     * @param doctorName Name of doctor.
+     */
     public void printDoctorNotFound(String doctorName) {
         printWithIndent("Patient " + doctorName + " not found in database!");
-    }
-
-    public LocalDate getAppointmentDate() {
-        while (true) {
-            try {
-                printWithIndent("Enter appointment date (YYYY-MM-DD) including the dashes: ");
-                return LocalDate.parse(in.nextLine().trim());
-            } catch (DateTimeParseException e) {
-                showLine();
-                showDateInputError();
-                showLine();
-            }
-        }
     }
 
     /**
@@ -363,18 +361,32 @@ public class Ui {
         }
     }
 
+    /**
+     * Shows available appointments message.
+     */
     public void showAvailableAppointmentsMessage() {
         printWithIndent("Here are the list of available appointments: ");
     }
 
+    /**
+     * Shows edit appointment message.
+     */
     public void showEditAppointmentMessage() {
         printWithIndent("Here are the appointments. Choose one to edit");
     }
 
+    /**
+     * Shows deleted appointment.
+     *
+     * @param appointment Deleted appointment.
+     */
     public void showDeleteAppointmentMessage(Appointment appointment) {
         printWithIndent("Deleted appointment: " + appointment);
     }
 
+    /**
+     * Shows delete appointment message.
+     */
     public void showDeleteAppointmentMessage() {
         printWithIndent("Choose appointment to delete: ");
     }
