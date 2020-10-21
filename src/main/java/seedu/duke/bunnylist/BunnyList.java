@@ -40,7 +40,7 @@ public class BunnyList {
             genre = commandArguments.get(GENRE_TAG);
         }
 
-        assert idea.equals(genre) : "Idea same as genre!";
+        assert !idea.equals(genre) : "Idea same as genre!";
 
         // todo: add the character list to bunny in ver 2
         //ArrayList<Character> characters = new ArrayList<>();
@@ -55,6 +55,10 @@ public class BunnyList {
         for (int i = 0; i < bunniesList.size(); i++) {
             System.out.println((i + 1) + ".\n" + bunniesList.get(i).getDescription());
         }
+    }
+
+    public static int numBunny() {
+        return bunniesList.size();
     }
 
 }

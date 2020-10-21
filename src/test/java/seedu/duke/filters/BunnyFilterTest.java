@@ -1,13 +1,14 @@
-package seedu.duke.bunnylist;
+package seedu.duke.filters;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.exceptions.BunnyIdeaMissingException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
-import seedu.duke.wordlist.WordList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-class BunnyListTest {
+class BunnyFilterTest {
+
     private static void initializeBunnyListTestDatabase() {
         try {
             BunnyList.addBunny("bunny i\\ some cool idea g\\ cool");
@@ -18,11 +19,10 @@ class BunnyListTest {
         }
     }
 
-
     @Test
-    void numBunny() {
-        BunnyList.bunniesList.clear();
-        initializeBunnyListTestDatabase();
-        assertEquals(3, BunnyList.numBunny());
+    void filterBunny_filterIdeaTerm_getOneResult() {
+        FilterExecutor.executeFilterCommand("filter bunny i\\ fun");
+
+
     }
 }
