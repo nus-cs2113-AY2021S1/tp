@@ -35,6 +35,7 @@ public class BookmarkAnimeCommand extends Command {
     public BookmarkAnimeCommand() {
         // Set log levels
         // LOGGER.setLevel(Level.WARNING);
+        bookmarkAction = null;
         LOGGER.log(Level.INFO, "Successfully loaded fields for Bookmark command.");
     }
 
@@ -66,14 +67,25 @@ public class BookmarkAnimeCommand extends Command {
                 .LIST_PARAM:
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_LIST);
             result = BOOKMARK_LIST_HEADER;
-            String bookmarkList = user.getActiveWorkspace().getBookmarkListInString(animeData);
+            String bookmarkList = listBookmark(animeData, workspace);
             result += bookmarkList;
+            break;
+        case BookmarkParser.INFO_PARAM:
+            LOGGER.log(Level.INFO, "Executing anime info for bookmark");
+            result = "Here is the information for that anime." + System.lineSeparator();
+            String animeInfo = getAnimeInfoFromBookmark(animeData, workspace);
+            result += animeInfo;
             break;
         default:
             break;
         }
         LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_SUCCESS);
         return result;
+    }
+
+    private String getAnimeInfoFromBookmark(AnimeData animeData, Workspace workspace) {
+        String animeInfo = workspace.getBookmarkInfo(animeData, bookmarkIndex - 1);
+        return animeInfo;
     }
 
     private String deleteBookmarkEntry(AnimeData animeData, Workspace workspace) throws AniException {
@@ -119,6 +131,11 @@ public class BookmarkAnimeCommand extends Command {
         Anime animeToEdit = workspace.getAnimeFromBookmark(animeData, bookmarkIndex - 1);
         result = "Editing " + animeToEdit.getAnimeName() + " to have " + bookmarkEpisode + " episode";
         return result;
+    }
+
+    private String listBookmark(AnimeData animeData, Workspace workspace) throws AniException {
+        return workspace.getBookmarkListInString(animeData);
+
     }
 
     public String getBookmarkAction() {

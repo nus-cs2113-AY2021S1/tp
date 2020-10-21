@@ -76,4 +76,7 @@ public class Bookmark {
         return sbAnimeList.toString();
     }
 
+    public String getAnimeBookmarkInfo(AnimeData animeData, Integer bookmarkIndex) {
+        return animeData.returnAnimeInfo(this.animeBookmarkList.get(bookmarkIndex));
+    }
 }

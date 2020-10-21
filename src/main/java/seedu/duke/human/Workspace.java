@@ -82,10 +82,14 @@ public class Workspace {
         return;
     }
 
-
+    public String getBookmarkInfo(AnimeData animeData, Integer bookmarkIndex) {
+        return bookmark.getAnimeBookmarkInfo(animeData, bookmarkIndex);
+    }
 
     @Override
     public String toString() {
         return "\n Workspace: " + workspaceName;
     }
+
+
 }
