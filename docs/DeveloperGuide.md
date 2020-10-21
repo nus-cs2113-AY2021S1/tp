@@ -16,7 +16,7 @@
     * Delete Task
     * Mark Task as Done
     * [Proposed] A better link between Task and Module.
-    * [Stores Data](#storage-feature)
+    * [Store Data](#store-data)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product Scope](#product-scope)
@@ -58,7 +58,7 @@ The rest of the app consists of 5 packages:
 ## Implementation
 {Insert your own respective implementations here}
 
-### Storage feature
+### Store Data
 The storage feature saves the data of the user so that 
 the ModTracker application continues from where the user left off the previous time. 
 
@@ -102,16 +102,46 @@ at the specified file path, and creates a new file there.
 
 1. The program prompts the user for further inputs.
 
-1. The user enters `help`, and the program displays the help message.
+1. The user enters `help`, and the program displays the help message. 
+Since this command does not modify the data, 
+the external file remains unchanged.
 
 1. The user enters `addmod CS1010 10`, 
 and the program adds the new module correspondingly. 
-
-1. Since this is a valid command which modifies the data,
+Since this is a valid command which modifies the data,
  the `Storage` object appends `addmod CS1010 10` to the external file.
+
+1. The user enters `exit`, and the program terminates.
 
 ##### Second Use
 The same user starts the application again (on the same device as the first use).
+
+1. `ModTracker` creates a new `Storage` object 
+with the same specified file path at `data/modtracker.txt`.
+   
+1. The `Storage` object checks that the file at `data/modtracker.txt` exists,
+and reads the first line of the file to obtain the user's name.
+
+1. The `Storage` object passes the username to `ModTracker`, 
+which calls `Ui` to greet the user.
+
+1. `ModTracker` then obtains the remaining lines in the file via `Storage`,
+and passes it to `Parser` to load the data into `ModuleList` and `TaskList`.
+
+1. The program prompts the user for further inputs,
+and it continues as per normal, with the data loaded.
+
+#### Design Considerations
+
+* **Alternative 1 (current choice)**: Saves the user input to the file
+    * Pros: Easy to implement as code from `Parser` can be reused
+    * Cons: Increases coupling as it depends on the `Parser` class 
+    to make sense of the data
+* **Alternative 2**: Parses input into a different format 
+storing the different modules, time expected, time spent and tasks
+    * Pros: Independent of how `Parser` takes in user input
+    * Cons: Requires additional work to parse data into the required
+    storage format
 
 ## Documentation, Logging, Testing, Configuration, Dev-Ops
 {Insert guides here for doc, testing etc}
