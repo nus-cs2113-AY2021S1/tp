@@ -5,6 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.InvalidIndexException;
+import seedu.duke.exception.WrongNumberFormatException;
+import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -14,6 +17,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DeadlineCommandTest {
     UserData data = new UserData();
@@ -68,6 +72,54 @@ class DeadlineCommandTest {
         String expected = expectedStringWriter.toString();
         assertEquals(expected,
                 outputStreamCaptor.toString());
+    }
+
+    @Test
+    public void execute_withoutDateandTime_wrongNumberOfArgumentsException() throws DukeException {
+        String input = "personal sleep";
+        Command addPersonalEvent = new AddCommand(input);
+        addPersonalEvent.execute(data, ui, storage);
+
+
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
+
+        assertThrows(WrongNumberOfArgumentsException.class, () -> {
+            DeadlineCommand testDeadlineWithoutDateandTime = new DeadlineCommand("1");
+            testDeadlineWithoutDateandTime.execute(data, ui, storage);
+        });
+    }
+
+    @Test
+    public void execute_withInvalidIndex_invalidIndexException() throws DukeException {
+        String input = "personal sleep";
+        Command addPersonalEvent = new AddCommand(input);
+        addPersonalEvent.execute(data, ui, storage);
+
+
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
+
+        assertThrows(InvalidIndexException.class, () -> {
+            DeadlineCommand testDeadlineWithInvalidIndex = new DeadlineCommand("0; 7/10/20; 11:20 PM");
+            testDeadlineWithInvalidIndex.execute(data, ui, storage);
+        });
+    }
+
+    @Test
+    public void execute_withIndexIsNotaNumber_wrongNumberFormatException() throws DukeException {
+        String input = "personal sleep";
+        Command addPersonalEvent = new AddCommand(input);
+        addPersonalEvent.execute(data, ui, storage);
+
+
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
+
+        assertThrows(WrongNumberFormatException.class, () -> {
+            DeadlineCommand testDeadlineWithInvalidIndex = new DeadlineCommand("a; 7/10/20; 11:20 PM");
+            testDeadlineWithInvalidIndex.execute(data, ui, storage);
+        });
     }
 
     @AfterEach
