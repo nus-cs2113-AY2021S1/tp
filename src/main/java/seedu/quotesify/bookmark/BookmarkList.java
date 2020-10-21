@@ -45,8 +45,7 @@ public class BookmarkList extends QuotesifyList<Bookmark> {
     }
 
     @Override
-    public void delete(int number) {
-        int index = number - 1;
+    public void delete(int index) {
         bookmarks.remove(index);
     }
 
