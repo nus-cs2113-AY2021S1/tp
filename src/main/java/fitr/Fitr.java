@@ -46,8 +46,6 @@ public class Fitr {
     }
 
     public void run() {
-        /*Recommender recommender = new Recommender();
-        recommender.printExercise();*/
         boolean isExit = false;
         while (!isExit) {
             String userInput = Ui.read();
