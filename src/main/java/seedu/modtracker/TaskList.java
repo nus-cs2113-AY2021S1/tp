@@ -7,7 +7,6 @@ import java.util.ArrayList;
  */
 public class TaskList {
     public static ArrayList<Task> tasks = new ArrayList<>();
-    public static ArrayList<Module> modTask = new ArrayList<>();
     public Ui ui = new Ui();
     public ModuleList modList = new ModuleList();
 
@@ -82,15 +81,21 @@ public class TaskList {
                 return;
             }
             if (!modList.checkIfModuleExist(modCode)) {
-                Module currentModule = new Module(modCode);
-                modList.modList.add(currentModule);
+                /*Module currentModule = new Module(modCode);
+                modList.modList.add(currentModule);*/
+                ui.printNotExist(modCode);
+                return;
             }
-            tasks.add(new Task(split[2]));
+            tasks.add(new Task(modCode, split[2]));
             ui.printTaskIsAdded(tasks, modCode);
             ui.printNumberOfTasks(tasks);
         } catch (ArrayIndexOutOfBoundsException e) {
             ui.printErrorMessage(e.getMessage());
             System.out.println("");
         }
+    }
+
+    public ArrayList<Task> getTaskData() {
+        return tasks;
     }
 }
