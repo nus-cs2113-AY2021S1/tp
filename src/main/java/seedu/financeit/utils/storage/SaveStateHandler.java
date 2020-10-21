@@ -1,8 +1,11 @@
 package seedu.financeit.utils.storage;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 //@@author Feudalord
 public abstract class SaveStateHandler {
@@ -43,6 +46,29 @@ public abstract class SaveStateHandler {
         if (!Files.exists(Paths.get(fullPath))) {
             Files.createFile(Paths.get(fullPath));
         }
+    }
+
+    protected void buildFile(String dirPath, String fullPath) throws IOException {
+        if (!Files.exists(Paths.get(dirPath))) {
+            Files.createDirectory(Paths.get(dirPath));
+        }
+        if (!Files.exists(Paths.get(fullPath))) {
+            Files.createFile(Paths.get(fullPath));
+        }
+    }
+
+    public void putString(String input) throws IOException {
+        buildFile("./data","./data/saveString.txt");
+        FileWriter fileWriter = new FileWriter("./data/saveString.txt");
+        fileWriter.write(input);
+        fileWriter.close();
+    }
+
+    public String takeString() throws IOException {
+        buildFile("./data","./data/saveString.txt");
+        File file = new File("./data/saveString.txt");
+        Scanner scanner = new Scanner(file);
+        return scanner.nextLine();
     }
 
     String charRemoveAt(String str, int p) {
