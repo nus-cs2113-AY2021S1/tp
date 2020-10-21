@@ -1,6 +1,8 @@
 package seedu.duke.command;
 
+import seedu.duke.data.exception.SystemException;
 import seedu.duke.data.notebook.Note;
+import seedu.duke.ui.Formatter;
 
 import java.util.ArrayList;
 
@@ -46,22 +48,27 @@ public class DeleteNoteCommand extends Command {
 
     @Override
     public String execute() {
-        ArrayList<Note> deletedListTitle;
+        boolean isDeleted;
+        String deletedTitle = "";
+
         try {
             // If there is no title, delete note by index. Else delete by title.
             if (title.isBlank()) {
-                String deletedTitle = notebook.getNotes().get(index).getTitle();
-                notebook.deleteNote(index);
-                return COMMAND_SUCCESSFUL_MESSAGE + deletedTitle;
+                deletedTitle = notebook.getNote(index).getTitle();
+                isDeleted = notebook.deleteNote(index);
             } else {
-                deletedListTitle = (ArrayList<Note>) notebook.getNotes().stream()
-                        .filter((s) -> s.getTitle().toLowerCase().contains(title.toLowerCase()))
-                        .collect(toList());
-                notebook.deleteNote(deletedListTitle.get(0).getTitle());
-                return COMMAND_SUCCESSFUL_MESSAGE + deletedListTitle.get(0).getTitle();
+                isDeleted = notebook.deleteNote(title);
             }
-        } catch (IndexOutOfBoundsException | NullPointerException | ClassCastException exception) {
-            return COMMAND_UNSUCCESSFUL_MESSAGE;
+
+            if (isDeleted && title.isBlank()) {
+                return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + deletedTitle);
+            } else if (isDeleted) {
+                return Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + title);
+            } else {
+                return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+            }
+        } catch (IndexOutOfBoundsException exception) {
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
     }
 }

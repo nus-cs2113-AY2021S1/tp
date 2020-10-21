@@ -17,7 +17,7 @@ public class EditEventCommand extends Command {
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Edits an event in the timetable. "
             + "Parameters: " + PREFIX_DELIMITER + PREFIX_INDEX + " INDEX "
             + "[" + PREFIX_DELIMITER + PREFIX_TITLE + " TITLE] "
-            + "[" + PREFIX_DELIMITER + PREFIX_DATETIME + " DATE_TIME]"
+            + "[" + PREFIX_DELIMITER + PREFIX_DATETIME + " DATE_TIME] "
             + "[" + PREFIX_DELIMITER + PREFIX_RECURRING + " RECURRING] "
             + "[" + PREFIX_DELIMITER + PREFIX_REMIND + " REMIND]";
 

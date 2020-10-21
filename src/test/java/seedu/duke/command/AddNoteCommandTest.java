@@ -8,6 +8,7 @@ import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.timetable.Timetable;
 
 import seedu.duke.storage.StorageManager;
+import seedu.duke.ui.Formatter;
 
 import java.util.ArrayList;
 
@@ -40,8 +41,8 @@ class AddNoteCommandTest {
 
         assertTrue(checkBook.contains(note));
         assertEquals(1, checkBook.size());
-        assertFalse(result.equals(AddNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE));
-        assertEquals(AddNoteCommand.COMMAND_SUCCESSFUL_MESSAGE + note.getTitle(), result);
+        assertFalse(result.equals(Formatter.formatString(AddNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE)));
+        assertEquals(Formatter.formatNote(AddNoteCommand.COMMAND_SUCCESSFUL_MESSAGE + note.getTitle(), note), result);
     }
 
     /**
@@ -67,7 +68,7 @@ class AddNoteCommandTest {
         String result = command.execute();
 
         assertFalse(result.contains(note.getTitle()));
-        assertEquals(AddNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE, result);
+        assertEquals(Formatter.formatString(AddNoteCommand.COMMAND_UNSUCCESSFUL_MESSAGE), result);
         ArrayList<Note> checkBook = notebook.getNotes();
         assertTrue(checkBook.contains(note));
         assertEquals(1, checkBook.size());
