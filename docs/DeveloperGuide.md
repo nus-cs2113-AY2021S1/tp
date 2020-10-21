@@ -1,7 +1,7 @@
 # Developer Guide
 
 ## Table of Content
-1. [Setting up](#1-setting-up)
+1. [Setting up](#1-setting-up-and-getting-started)
 2. [Design](#2-design)
 <br/>&nbsp;2.1 [Architecture](#21-architecture)
 <br/>&nbsp;2.2 [UI component](#22-ui)
@@ -9,7 +9,7 @@
 <br/>&nbsp;2.4 [Command component]()
 <br/>&nbsp;2.5 [User component]()
 <br/>&nbsp;2.6 [AnimeData component]()
-<br/>&nbsp;2.7 [StorageManager component](#25-storagemanager)
+<br/>&nbsp;2.7 [StorageManager component](#27-storagemanager)
 3. [Implementation](#3-implementation)
 4. [Produce scope](#4-product-scope)
 <br/>&nbsp;4.1 [Target user profile]()
@@ -49,6 +49,9 @@ The rest of AniChan consists of 6 components:
 
 Here is an overall Sequence Diagram to help illustrate the general program flow and how the different objects 
 interact with each other
+
+<br/>
+
 ![Main Sequence Diagram](images/Overall-Sequence-Diagram.png)
 
 
@@ -107,14 +110,13 @@ The `Workspace` component:
 
 API: `StorageManager.java`
 
-The `StorageManager `component:
-* Can save user data in `.txt`format and read it back.
-* Can save the watchlist data in `.txt`format and read it back.
-* Can save the bookmark data in `.txt` format and read it back.
-* Can read script files that are in `.txt` format.
+The `StorageManager `component: 
+* can **save** user, watchlist and bookmark data in `.txt` format and **read it back** using 
+their respective storage class, `UserStorage`, `WatchlistStorage`, and `BookmarkStorage`.
+* can **read** script files that are in `.txt` format using the `ScriptStorage` class. 
 
-These data are saved in `.txt` format so advanced users will be able to 
-see and manipulate these saved data easily.
+**AniChan** saved these data as `.txt` files so advanced users will be able to 
+view and manipulate these saved data easily with any available text editor.
 
 
 ## 3. Implementation
