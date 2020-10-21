@@ -2,19 +2,19 @@ package seedu.smarthomebot.logic;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.smarthomebot.Parser;
-import seedu.smarthomebot.commands.AddCommand;
-import seedu.smarthomebot.commands.Command;
-import seedu.smarthomebot.commands.CreateCommand;
-import seedu.smarthomebot.commands.DeleteCommand;
-import seedu.smarthomebot.commands.ExitCommand;
-import seedu.smarthomebot.commands.HelpCommand;
-import seedu.smarthomebot.commands.InvalidCommand;
-import seedu.smarthomebot.commands.ListCommand;
-import seedu.smarthomebot.commands.OffCommand;
-import seedu.smarthomebot.commands.OnCommand;
-import seedu.smarthomebot.commands.RemoveCommand;
-import seedu.smarthomebot.commands.UsageCommand;
+import seedu.smarthomebot.logic.commands.AddCommand;
+import seedu.smarthomebot.logic.commands.Command;
+import seedu.smarthomebot.logic.commands.CreateCommand;
+import seedu.smarthomebot.logic.commands.DeleteCommand;
+import seedu.smarthomebot.logic.commands.ExitCommand;
+import seedu.smarthomebot.logic.commands.HelpCommand;
+import seedu.smarthomebot.logic.commands.InvalidCommand;
+import seedu.smarthomebot.logic.commands.ListCommand;
+import seedu.smarthomebot.logic.commands.OffCommand;
+import seedu.smarthomebot.logic.commands.OnCommand;
+import seedu.smarthomebot.logic.commands.RemoveCommand;
+import seedu.smarthomebot.logic.commands.UsageCommand;
+import seedu.smarthomebot.logic.parser.Parser;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

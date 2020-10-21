@@ -1,14 +1,14 @@
 package seedu.smarthomebot.ui;
 
-import seedu.smarthomebot.commands.CommandResult;
+import seedu.smarthomebot.logic.commands.CommandResult;
 
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import static seedu.smarthomebot.common.Messages.DIVIDER;
-import static seedu.smarthomebot.common.Messages.MESSAGE_GOODBYE;
-import static seedu.smarthomebot.common.Messages.MESSAGE_WELCOME;
+import static seedu.smarthomebot.commons.Messages.DIVIDER;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_GOODBYE;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_WELCOME;
 
 /**
  * Text UI of the application.
