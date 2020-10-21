@@ -69,4 +69,22 @@ public class MemberList {
             return false;
         }
     }
+
+    /**
+     * Changes the role of the member in the arraylist.
+     * @param m
+     * @param newRole
+     * @return output
+     */
+    public static String changeMemberRole(Member m, String newRole) {
+        String output;
+        try {
+            m.setMemberRole(newRole);
+            output = "Noted. I have changed the role of this member:\n";
+            output = output.concat(m.toString());
+        } catch (IndexOutOfBoundsException e) {
+            output = "OOPS!!! The member does not exist. You can add this member to the list instead. \n";
+        }
+        return output;
+    }
 }
