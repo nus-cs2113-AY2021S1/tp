@@ -59,7 +59,7 @@ public class CommandSearchMember extends Command {
     /**
      * Determine whether the user is calling this command.
      * @param input The UserInput to Validate
-     * @return it is the command the usre is calling or not
+     * @return it is the command the user is calling or not
      */
     public int validate(UserInput input) {
         if (input.getCategory().equals("hr") && input.getCommand().equalsIgnoreCase("search")) {

@@ -71,6 +71,46 @@ public class MemberList {
     }
 
     /**
+     * find the member in the arraylist.
+     * @param memberName name of the member to be found.
+     * @return if member exists, returns the member, else returns null.
+     */
+    public static Member findMemberByName(String memberName) {
+        for (int i = 0; i < Member.numOfMembers; i++) {
+            if (members.get(i).getMemberName().equalsIgnoreCase(memberName)) {
+                return members.get(i);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Changes the contact information and role of the member in the arraylist.
+     * @param m member whose information is to be modified.
+     * @param newPhone new phone number to replace the original phone number.
+     * @param newEmail new email to replace the original email.
+     * @param newRole new role to replace the original role.
+     * @return output message for the user.
+     */
+    public static String changeMemberInfo(Member m, long newPhone, String newEmail, String newRole) {
+        Long phone = newPhone;
+        if (phone != null) {
+            m.setMemberPhone(phone);
+        }
+
+        if (newEmail != null) {
+            m.setMemberEmail(newEmail);
+        }
+
+        if (newRole != null) {
+            m.setMemberRole(newRole);
+        }
+        String output = "I have changed the information of this member:\n";
+        output = output.concat(m.toString());
+        return output;
+    }
+
+    /**
      * Search for the members that include the any information the user want.
      * @param any whether there is any content the user want to search in any part of member information
      * @param name whether there is any content the user want to search in name part of member information
