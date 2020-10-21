@@ -97,12 +97,6 @@ public class Storage {
         File file = new File(userConfigPath);
         Scanner readFile = new Scanner(file);
         String line;
-        String name;
-        String gender;
-        int age;
-        double height;
-        double weight;
-        String[] arguments;
 
         try {
             line = readFile.nextLine();
@@ -111,12 +105,12 @@ public class Storage {
             return new User();
         }
 
-        arguments = line.split(COMMA_SEPARATOR);
-        name = arguments[0];
-        gender = arguments[1];
-        age = Integer.parseInt(arguments[2]);
-        height = Double.parseDouble(arguments[3]);
-        weight = Double.parseDouble(arguments[4]);
+        String[] arguments = line.split(COMMA_SEPARATOR);
+        String name = arguments[0];
+        String gender = arguments[1];
+        int age = Integer.parseInt(arguments[2]);
+        double height = Double.parseDouble(arguments[3]);
+        double weight = Double.parseDouble(arguments[4]);
 
         LOGGER.fine("User profile file read successfully.");
         return new User(name, age, height, weight, gender);
