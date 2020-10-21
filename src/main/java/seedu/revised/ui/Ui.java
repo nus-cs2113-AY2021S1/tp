@@ -43,8 +43,7 @@ public class Ui {
             printUpcomingTasks(subjects);
         }
 
-        System.out.println("____________________________________________________________\n"
-                + "Alright, What can I do for you?\n"
+        System.out.println("Alright, What can I do for you?\n"
                 + "____________________________________________________________\n");
     }
 
@@ -474,27 +473,43 @@ public class Ui {
     }
 
     public static void printUpcomingTasks(SubjectList subjects) {
-        int index = 1;
-        System.out.println("Here are the tasks that are due by next week\n"
-                + "____________________________________________________________");
+
         LocalDateTime nextWeek = LocalDateTime.now().plusDays(7);
         for (Subject subject : subjects.getList()) {
-            System.out.println(subject);
-            if (subject.getTasks().getList().size() == 0) {
-                System.out.println("You do not have any tasks due by next week!");
+            List<Task> taskList = new ArrayList<>();
+            int index = 1;
 
-            } else {
-                for (Task task : subject.getTasks().getList()) {
-                    if (task.getDateTime() != null) {
-                        if (task.getDateTime().isBefore(nextWeek) & task.getDateTime().isAfter(LocalDateTime.now())) {
-                            System.out.println(index + ":" + task);
-                            index = index + 1;
-                        }
+            for (Task task : subject.getTasks().getList()) {
+                if (task.getDateTime() != null) {
+                    if (task.getDateTime().isBefore(nextWeek) & task.getDateTime().isAfter(LocalDateTime.now())) {
+                        taskList.add(task);
                     }
                 }
             }
 
+            for (Task task : taskList) {
+                if (subjects.getList().get(0).equals(subject) & taskList.get(0).equals(task)) {
+                    System.out.println("Here are the tasks that are due by next week\n");
+                }
+                if (index == 1) {
+                    System.out.println(subject);
+                }
+                System.out.println(index + ":" + task);
+                index = index + 1;
+                if (subjects.getList().get(subjects.getList().size() - 1).equals(subject)
+                        & taskList.get(taskList.size() - 1).equals(task)) {
+                    System.out.println("____________________________________________________________");
+                }
+            }
         }
+    }
+
+
+    public static String printRepeatedDateTimeError(Task task) {
+        return "____________________________________________________________\n"
+                + "There is another task at that date and time:\n"
+                + task + System.lineSeparator()
+                + "____________________________________________________________";
     }
 
     public static void printExportSuccessful(File exportFile) {
@@ -502,5 +517,6 @@ public class Ui {
         System.out.println("Your data has been successfully exported to " + exportFile.getAbsolutePath() + ".");
         System.out.println("____________________________________________________________");
     }
+
 }
 
