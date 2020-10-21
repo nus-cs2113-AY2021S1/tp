@@ -27,7 +27,11 @@ public class WatchTime {
         return durationWatchedToday;
     }
 
-    public static int getdailyWatchLimit() {
+    public static LocalDate getRecordedDate() {
+        return recordedDate;
+    }
+
+    public static int getDailyWatchLimit() {
         return dailyWatchLimit;
     }
 
@@ -56,7 +60,7 @@ public class WatchTime {
 
     public static void watchLimitUpdate(int timeLimit) {
         dailyWatchLimit = timeLimit;
-        Ui.printDailyWatchTimeLeft();
+        Ui.printUpdatedTimeLimit(timeLimit);
     }
 
     public static String userReportString() {
@@ -65,7 +69,7 @@ public class WatchTime {
         response += System.lineSeparator();
         response += "Time left today : ";
         response += (dailyWatchLimit - durationWatchedToday);
-        response += " minutes. To update the time allocated to watching shows, use the 'updateTimeLimit' command";
+        response += " minutes. To update the time allocated to watching shows, use the 'updateTimeLimit' command.";
         return response;
     }
 

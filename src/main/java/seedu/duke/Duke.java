@@ -6,8 +6,6 @@ import seedu.duke.utility.InputParser;
 import seedu.duke.utility.ShowList;
 import seedu.duke.utility.Ui;
 
-import java.time.LocalDate;
-
 import static seedu.duke.utility.Ui.SAVE_DIRECTORY;
 
 public class Duke {
@@ -38,7 +36,7 @@ public class Duke {
         ui.hello();
         InputParser parseManager = new InputParser();
         while (!parseManager.isByeTime()) {
-            Ui.printLineIcon();
+            Ui.promptUser();
             try {
                 storage.saveState();
             } catch (java.io.IOException e) {

@@ -13,7 +13,7 @@ class WatchTimeTest {
     void userReportString() {
         assertEquals("Date : 2020-10-19" + System.lineSeparator()
                 + "Time left today : 60 minutes."
-                        + " To update the time allocated to watching shows, use the 'updateTimeLimit' command",
+                        + " To update the time allocated to watching shows, use the 'updateTimeLimit' command.",
                 limitation.userReportString());
     }
 
