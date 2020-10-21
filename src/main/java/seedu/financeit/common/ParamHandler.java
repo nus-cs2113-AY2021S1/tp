@@ -44,7 +44,7 @@ public abstract class ParamHandler {
                 handleSingleParam(packet, paramType);
                 // ParamTypes that are parsed correctly
                 // (i.e. no exception thrown) will be recorded
-                this.paramsSuccessfullyParsed.add(paramType);;
+                this.paramsSuccessfullyParsed.add(paramType);
             } catch (ParseFailParamException exception) {
                 // Report paramTypes that failed to parse.
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
