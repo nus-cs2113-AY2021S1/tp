@@ -3,6 +3,7 @@ package seedu.duke.user;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import static seedu.duke.constants.DataFileConvention.LENGTH_OF_DATE;
+import static seedu.duke.constants.ClickerMessages.HELP_MESSAGE;
 
 public class User {
     private String name;
@@ -37,7 +38,7 @@ public class User {
     }
 
     public void printInstruction() {
-        System.out.println("Please type in \"help\" command for information!");
+        System.out.println(HELP_MESSAGE);
     }
 
     @Override

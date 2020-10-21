@@ -1,5 +1,6 @@
 package seedu.duke.filters;
 
+import seedu.duke.constants.FilterMessages;
 import seedu.duke.exceptions.FilterCommandException;
 
 import static seedu.duke.filters.FilterCommandSlicer.isNewFilter;
@@ -10,8 +11,16 @@ import static seedu.duke.filters.WordsFilter.filterByType;
 import static seedu.duke.filters.WordsFilter.filterByStartingString;
 import static seedu.duke.filters.WordsFilter.filterByIncludedString;
 
+/**
+ * A class to process filter commands.
+ */
 public class FilterExecutor {
 
+    /**
+     * Executes filter functions depending on filter commands.
+     *
+     * @param command String referring to the command the user enters.
+     */
     public static void executeFilterCommand(String command) {
         try {
             FilterType filterType = getTypeOfFilter(command);
@@ -25,17 +34,19 @@ public class FilterExecutor {
                 break;
             case STARTING_STRING:
                 tags = getTargetedStringTags(command);
+                assert tags.length != 0;
                 filterByStartingString(isNewFilter, tags);
                 break;
             case INCLUDING_STRING:
                 tags = getTargetedStringTags(command);
+                assert tags.length != 0;
                 filterByIncludedString(isNewFilter, tags);
                 break;
             default:
-                System.out.println("Filter type was not recognized in the command");
+                System.out.println(FilterMessages.FILTER_UNKNOWN_TYPE);
             }
         } catch (FilterCommandException e) {
-            System.out.println("Filter command error");
+            System.out.println(FilterMessages.FILTER_UNKNOWN_COMMAND);
         }
     }
 

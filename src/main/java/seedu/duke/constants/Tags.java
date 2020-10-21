@@ -26,4 +26,19 @@ public class Tags {
     public static final String NAME_TAG = "na";
     public static final String AGE_TAG = "ag";
 
+    /** Tags for filter type identifier. */
+    public static final String TYPE_OF_FILTER_TAG = "by\\";
+    public static final String BLANK = "";
+    public static final String TYPE_TAG = "type";
+    public static final String START_TAG = "start";
+    public static final String INCLUDE_TAG = "include";
+
+    /** Tags for filter slicer. */
+    public static final String DASH = "-";
+    public static final String NOUN = "noun";
+    public static final String VERB = "verb";
+    public static final String ADJECTIVE = "adjective";
+    public static final String VERB_TAG = " -verb";
+    public static final String NOUN_TAG = " -noun";
+    public static final String ADJECTIVE_TAG = " -adjective";
 }
