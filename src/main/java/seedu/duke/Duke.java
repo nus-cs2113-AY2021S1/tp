@@ -38,7 +38,6 @@ public class Duke {
         ui.printError("Welcome to CCA Manager Integrated! Enter any command to begin!");
         while (!Ui.shouldShutdown()) {
             ui.run();
-
             try {
                 fm.saveAll();
             } catch (IOException e) {
