@@ -12,16 +12,8 @@ able to revise, even if they are doing it at the last minute.
 This user guide provides an in-depth documentation on the revisED installation process, the program features, and
 the program usage to get you started.
 
-### 1.1 Subject
 
-TODO: explains terminology 
-
-### 1.2 Topic
-
-TODO: ...
-
-
-## Quick Start
+## 2. Quick Start
 
 {Give steps to get started quickly}
 
@@ -35,7 +27,7 @@ following steps:
     * Go to Properties >> Font >> Font and change the font of the command prompt to NSimsum.
 
 
-## Initialisation
+## 3. Initialisation
 
 The user would see the logo of the application once it is opened.
 <pre><code>
@@ -62,7 +54,7 @@ science
 </code></pre> 
 
 Subsequently, users can begin using the application.
-## Features 
+## 4. Features 
 * Subjects
 * Topics
 * Flashcards
