@@ -192,7 +192,7 @@ require any explicit input from you.
 
 Let's say you want to find all buses that stop at Opp HSSML, but you type `/bus Opp HSML` instead.
 You will receive a message with suggested location names you can use as shown in the figure below.<br><br>
-<img src="UG_Figures/similarOutput1.png" alt="similar locs message" width = 500><br>
+<img src="UG_Figures/similarOutput1.png" alt="similar locs message" width = 550><br>
 _Figure 5: A message showing suggested locations._
 
 You may then type in the command again with the correct location to see a list of buses that stop at Opp HSSML 
