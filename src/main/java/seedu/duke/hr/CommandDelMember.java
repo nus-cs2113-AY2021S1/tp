@@ -3,7 +3,7 @@ package seedu.duke.hr;
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
-import static seedu.duke.hr.MemberList.isInteger;
+import static seedu.duke.hr.MemberList.isNumber;
 
 /**
  * Represents delete member command.
@@ -20,7 +20,7 @@ public class CommandDelMember extends Command {
                 || input.getCommand().equalsIgnoreCase("delete")
                 || input.getCommand().equalsIgnoreCase("d")) {
             if (input.getNumArgs() == 1) {
-                if ((input.getArg("") != null) && isInteger(input.getArg(""))) {
+                if ((input.getArg("") != null) && isNumber(input.getArg(""))) {
 
                     return ACCEPT;
                 }
