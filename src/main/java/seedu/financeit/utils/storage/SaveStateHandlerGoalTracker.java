@@ -25,14 +25,14 @@ public class SaveStateHandlerGoalTracker extends SaveStateHandler {
         StringBuilder saveString = new StringBuilder();
         TotalGoalList goalList = GoalTracker.getTotalGoalList();
         String cat;
-        Goal goal;
+        Goal go;
         for (int i = 0; i < goalList.getListSize(); i++) {
-            goal = goalList.getGoal().get(i);
-            cat = goal.getCategory();
-            if (cat.equals("Expense")){
-                saveString.append("Expense;" + goal.getExpenseGoal() + ";" + goal.getExpenseMonth() + System.lineSeparator());
+            go = goalList.getGoal().get(i);
+            cat = go.getCategory();
+            if (cat.equals("Expense")) {
+                saveString.append(cat + ";" + go.getExpenseGoal() + ";" + go.getExpenseMonth() + "\n");
             } else {
-                saveString.append("Income;" + goal.getIncomeGoal() + ";" + goal.getIncomeMonth() + System.lineSeparator());
+                saveString.append(cat + ";" + go.getIncomeGoal() + ";" + go.getIncomeMonth() + "\n");
             }
         }
         FileWriter fileWriter = new FileWriter(fullPath);
