@@ -61,9 +61,9 @@ public class MemberList {
      * @param s input to be checked
      * @return true if input can be parsed as an integer, false if input cannot be parsed as an integer.
      */
-    public static boolean isInteger(String s) {
+    public static boolean isNumber(String s) {
         try {
-            int index = Integer.parseInt(s);
+            long index = Long.parseLong(s);
             return true;
         } catch (NumberFormatException e) {
             return false;
