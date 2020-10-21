@@ -31,11 +31,9 @@ public class StorageTest {
 
         assertEquals(expectedExerciseList.get(0).getNameOfExercise(), actualExerciseList.get(0).getNameOfExercise());
         assertEquals(expectedExerciseList.get(0).getCalories(), actualExerciseList.get(0).getCalories());
-        assertEquals(expectedExerciseList.get(0).getDuration(), actualExerciseList.get(0).getDuration());
 
         assertEquals(expectedExerciseList.get(1).getNameOfExercise(), actualExerciseList.get(1).getNameOfExercise());
         assertEquals(expectedExerciseList.get(1).getCalories(), actualExerciseList.get(1).getCalories());
-        assertEquals(expectedExerciseList.get(1).getDuration(), actualExerciseList.get(1).getDuration());
     }
 
     @Test
@@ -55,8 +53,8 @@ public class StorageTest {
 
     private ArrayList<Exercise> getValidExerciseList() {
         ArrayList<Exercise> exerciseList = new ArrayList<>();
-        exerciseList.add(new Exercise("Test Exercise 1", new Calorie(500), 10));
-        exerciseList.add(new Exercise("Test Exercise 2", new Calorie(100), 5));
+        exerciseList.add(new Exercise("Test Exercise 1", new Calorie(500)));
+        exerciseList.add(new Exercise("Test Exercise 2", new Calorie(100)));
         return exerciseList;
     }
 

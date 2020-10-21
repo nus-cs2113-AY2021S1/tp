@@ -2,6 +2,7 @@ package fitr.command;
 
 import fitr.Calorie;
 import fitr.Exercise;
+import fitr.Recommender;
 import fitr.exception.FitrException;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
@@ -19,7 +20,7 @@ public class AddExerciseCommand extends Command {
 
     @Override
     public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage,
-                        User user, GoalList goalList) {
+                        User user, GoalList goalList, Recommender recommender) {
         command = command.split(" ", 2)[1];
         try {
             String nameOfExercise = command.split("/", 2)[0];
@@ -36,18 +37,8 @@ public class AddExerciseCommand extends Command {
                 exerciseList.addExercise(new Exercise(nameOfExercise, amountOfCaloriesBurnt));
                 storage.writeExerciseList(exerciseList);
                 Ui.printCustomMessage("The following exercise has been added: " + nameOfExercise);
-            } else if (command.split(" ").length == 2) {
-                Calorie amountOfCaloriesBurnt = new Calorie(Integer.parseInt(command.split(" ")[0]));
-                int durationOfExercise = Integer.parseInt(command.split(" ", 2)[1]);
-                if (amountOfCaloriesBurnt.get() < 0) {
-                    throw new NumberFormatException();
-                }
-                if (durationOfExercise < 0) {
-                    throw new FitrException();
-                }
-                exerciseList.addExercise(new Exercise(nameOfExercise, amountOfCaloriesBurnt, durationOfExercise));
-                storage.writeExerciseList(exerciseList);
-                Ui.printCustomMessage("The following exercise has been added: " + nameOfExercise);
+            } else {
+                throw new ArrayIndexOutOfBoundsException();
             }
         } catch (NumberFormatException | NullPointerException e) {
             Ui.printCustomError("Sorry, invalid calorie amount entered");
@@ -55,8 +46,6 @@ public class AddExerciseCommand extends Command {
             Ui.printCustomError("Please key in the correct format");
         } catch (IOException e) {
             Ui.printCustomError("Sorry, there is an error in the file");
-        } catch (FitrException e) {
-            Ui.printCustomError("Sorry, the duration has to be a positive number");
         }
     }
 

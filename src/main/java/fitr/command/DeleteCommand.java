@@ -1,5 +1,6 @@
 package fitr.command;
 
+import fitr.Recommender;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.GoalList;
@@ -16,7 +17,7 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage,
-                        User user, GoalList goalList) {
+                User user, GoalList goalList, Recommender recommender) {
         try {
             command = command.split(" ", 2)[1];
             String type = command.split(" ", 2)[0];

@@ -1,6 +1,7 @@
 package fitr.command;
 
 import fitr.Goal;
+import fitr.Recommender;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.GoalList;
@@ -20,9 +21,10 @@ public class AddGoalCommand extends Command {
         this.command = command;
     }
 
+
     @Override
     public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage,
-                        User user, GoalList goalList) {
+                        User user, GoalList goalList, Recommender recommender) {
         Ui.printCustomMessage("----------Goals Section-------------");
         Ui.printCustomMessage("The following are understood by Fitr:\n"
                 + "'food'      format: food <goal description>\n"
