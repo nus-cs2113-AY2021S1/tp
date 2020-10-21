@@ -19,6 +19,9 @@
 - [Command Summary](#command-summary)
 
 ## Introduction
+
+![Welcome screen](images/WelcomeScreen.png)
+
 Fitr is a command-line application, helping you keep track of your food intake and exercises.
 
 ## Quick Start
