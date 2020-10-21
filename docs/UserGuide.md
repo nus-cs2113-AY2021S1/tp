@@ -64,38 +64,30 @@ Format: `help`
 
 <br/>
 
-### 3.2 Adding a user: `adduser`
-Adds a new user to AniChan.
+### 3.2 Adding a user: `addws`
+Adds a new workspace to user.
 
-Format: `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER>`
+Format: `addws -n <NAME>`
 
-Example of usage: `adduser -n Timothy Wright -dob 12/12/1997 -g male`
-
-The expected outcome:
-
-    Successfully added new user: 
-    Name: Timothy Wright
-    Birthdate: 12/12/1997
-    Gender: Male
-
-<br/>
-
-### 3.3 Switching users: `switchuser`
-Switch the current active user to another user.
-
-Format: `switchuser -n <USERNAME>`
-
-Note:
-
-The name in the command prompter has changed as well to reflect the new user.
-
-Example of usage: `Barkley-san (Default) #> switchuser -n Isaac Asimov`
+Example of usage: `addws -n Crispy Donuts`
 
 The expected outcome:
 ```
- Welcome back, Isaac Asimov-san
+Successfully added new workspace: Crispy Donuts
+```
 
- Isaac Asimov-san (Default) #> 
+<br/>
+
+### 3.3 Switching users: `switchws`
+Switch the current active workspace of user.
+
+Format: `switchws -n <NAME>`
+
+Example of usage: `switchws -n Crispy Donuts`
+
+The expected outcome:
+```
+Workspace changed to Crispy Donuts
 ```
 
 <br/>
