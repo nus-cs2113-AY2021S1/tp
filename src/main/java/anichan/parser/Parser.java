@@ -1,6 +1,5 @@
 package anichan.parser;
 
-
 import anichan.command.HelpCommand;
 import anichan.command.Command;
 import anichan.command.ExitCommand;
@@ -44,6 +43,9 @@ public class Parser {
 
         case "watchlist":
             return new WatchlistParser().parse(description);
+            
+        case "view":
+            return new ViewWatchlistParser().parse(description);
 
         case "add":
             return new AddToWatchlistParser().parse(description);
