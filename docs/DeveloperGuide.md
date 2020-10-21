@@ -4,6 +4,7 @@
     - [Architecture](#architecture)
     - [Ui component](#ui-component)
     - [Storage component](#storage-component)
+    - [User component](#user-component)
     - [Common classes](#common-classes)
 - [Product scope](#product-scope)
     - [Target user profile](#target-user-profile)
@@ -60,6 +61,25 @@ If the files do not exist, the Storage object will create the files.
 
 Each time there is a change in the `FoodList`, `ExerciseList` or `User` objects, or when the program is exiting, `writeExerciseList()`, `writeFoodList()` and `writeUserProfile()` methods are invoked. 
 This will save the data onto the respective text files on the hard disk.
+
+### User component
+
+The `User` class contains all information related to the user data (i.e. `name`, `age`, `height`, `weight`
+and `gender`) and handles all operations on these user data (i.e. `getBmi()`)
+
+The `User` class has two constructors and implementations differ based on the constructor used. 
+
+If a `User` object is instantiated without parameters (i.e. `User user = new User()`), the `setup` method in the
+ `user` object will be invoked, allowing users to go through a set of instructions to input their `name`, `age`, `gender`, `height`, `weight` and
+ `fitnessLevel`.
+ 
+If a `User` object is instantiated with defined parameters (i.e. `User user = new User(name, age, height, weight
+, gender)`), the values from the given parameters will be stored within the user class without going through
+ `setup()`.
+
+On startup, the `Fitr` class instantiates a `Storage` object and calls its `loadUserProfile()` method. This method
+returns a `User` type object and is referenced by a pre-declared `User` type variable, which is used throughout the
+running session. 
 
 ### Common classes
 
