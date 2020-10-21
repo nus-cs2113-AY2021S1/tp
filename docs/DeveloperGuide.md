@@ -45,6 +45,10 @@ The rest of AniChan consists of 6 components:
 - `AnimeData`: Provides data from the anime data file.
 - `StorageManager`: Reads data from, and writes data to, the hard disk.
 
+Here is an overall Sequence Diagram to help illustrate the flow of AniChan. 
+![Main Sequence Diagram](images/Overall-Sequence-Diagram.png)
+
+
 ### 2.2 UI
 API: `Ui.java`
 The UI consists of a `UI` class that will handle all user inputs and system output. This includes the result of each Command execution. 
