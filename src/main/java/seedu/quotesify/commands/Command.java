@@ -18,6 +18,7 @@ public abstract class Command {
     public static final String ERROR_INVALID_QUOTE_NUM = "Invalid quote number specified!";
     public static final String ERROR_INVALID_TODO_NUM = "Invalid task number specified!";
     public static final String ERROR_INVALID_PAGE_NUM = "Invalid page number specified!";
+    public static final String ERROR_INVALID_BOOKMARK_NUM = "Invalid bookmark number specified!";
     public static final String ERROR_INVALID_TAG = "Invalid / No tag provided";
     public static final String ERROR_NO_BOOK_FOUND = "There is no such book!";
     public static final String ERROR_BOOK_TITLE_MISSING = "There is no book title specified!";

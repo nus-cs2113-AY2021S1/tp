@@ -60,8 +60,7 @@ public class DeleteCommand extends Command {
         case TAG_BOOKMARK:
             BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
             BookmarkList bookmarks = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
-            String title = information.trim();
-            deleteBookmark(bookList, bookmarks, title, ui);
+            deleteBookmarkByIndex(bookmarks,information.trim(),ui);
             break;
         case TAG_QUOTE:
             QuoteList quotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
@@ -244,7 +243,7 @@ public class DeleteCommand extends Command {
             toDos.delete(index);
             ui.printDeleteToDo(toDoToBeDeleted);
         } else {
-            System.out.println(ERROR_TODO_NOT_FOUND);
+            ui.printErrorMessage(ERROR_TODO_NOT_FOUND);
         }
     }
 
@@ -264,7 +263,18 @@ public class DeleteCommand extends Command {
         if (targetBook != null) {
             removeBookmarkFromBook(targetBook, bookmarks, ui);
         } else {
-            System.out.println(ERROR_NO_BOOK_FOUND);
+            ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
+        }
+    }
+
+    private void deleteBookmarkByIndex(BookmarkList bookmarks, String index, TextUi ui) {
+        int indexNum = convertBookmarkIndexToInt(index, ui);
+        if (indexNum <= bookmarks.getSize()) {
+            Bookmark targetBookmark = bookmarks.findByIndex(indexNum - 1);
+            bookmarks.delete(indexNum);
+            ui.printDeleteBookmark(targetBookmark);
+        } else {
+            ui.printErrorMessage(ERROR_NO_BOOK_FOUND);
         }
     }
 
@@ -275,7 +285,7 @@ public class DeleteCommand extends Command {
             bookmarks.delete(bookmarkToBeDeleted);
             ui.printDeleteBookmark(bookmarkToBeDeleted);
         } else {
-            System.out.println(ERROR_BOOKMARK_NOT_FOUND);
+            ui.printErrorMessage(ERROR_BOOKMARK_NOT_FOUND);
         }
     }
 
@@ -292,6 +302,17 @@ public class DeleteCommand extends Command {
         if (bookmarkToBeDeleted != null) {
             bookmarks.delete(bookmarkToBeDeleted);
         }
+    }
+
+    private int convertBookmarkIndexToInt(String indexString, TextUi ui) {
+        int index = -1;
+        try {
+            index = Integer.parseInt(information);
+        } catch (NumberFormatException e) {
+            ui.printErrorMessage(ERROR_INVALID_BOOKMARK_NUM);
+        }
+
+        return index;
     }
 
     @Override
