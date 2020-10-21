@@ -52,7 +52,7 @@ class EventTest {
                 + "Event Name: Autodesk course\n"
                 + "Date: Dec 20 2020\n"
                 + "Time: 8-10.30pm\n"
-                + "Number of day(s) left: 61" + "\n" + "*".repeat(50) + "\n";
+                + "Number of day(s) left: 60" + "\n" + "*".repeat(50) + "\n";
         assertEquals(expected5,EventList.countdownView());
 
         String expected6 = "1.[E][Up-coming]\n"
