@@ -45,6 +45,13 @@ The rest of AniChan consists of 6 components:
 - `AnimeData`: Provides data from the anime data file.
 - `StorageManager`: Reads data from, and writes data to, the hard disk.
 
+**LifeCycle of AniChan**
+
+Here is an overall Sequence Diagram to help illustrate the general program flow and how the different objects 
+interact with each other
+![Main Sequence Diagram](images/Overall-Sequence-Diagram.png)
+
+
 ### 2.2 UI
 API: `Ui.java`
 The UI consists of a `UI` class that will handle all user inputs and system output. This includes the result of each Command execution. 
@@ -67,7 +74,35 @@ API: `Parser.java`
 
 Given below is the Sequence Diagram for interactions within the `Parser` component for the execution of `browse -p 1` API call
 
-### 2.5 StorageManager
+### 2.4 Command
+
+
+### 2.5 User
+
+API: `User.java`  
+
+The User inherits from the abstract `Human` class and stores the name and gender of the user. It represents the user's interaction with `Workspace`. 
+
+The `User`component:  
+* Can provide user information like `name`, `gender`, and `honorific name`
+* Stores an array list of type `Workspace`
+* Can add, set, and switch between workspaces 
+
+
+
+### 2.6 Workspace
+
+API: `Workspace.java`  
+
+The `Workspace` component:  
+* Can allow `User` to create and get `Bookmark` 
+* Can allow `User` to create and get `Watchlist` array list which user owns
+* Can allow `User` to change his active `Watchlist`
+
+
+
+
+### 2.7 StorageManager
 ![StorageManager Diagram](images/StorageManager-Class-Diagram.png)
 
 API: `StorageManager.java`
@@ -106,6 +141,14 @@ see and manipulate these saved data easily.
 {Give non-functional requirements}
 
 ## 7. Documentation, logging, testing, configuration, dev-ops
+
+### 7.2 Logging
+* We are using  `java.util.logging`  package for logging.
+* The  `AniLogger`  class is used to manage the logging levels and logging destinations.
+* The  `Logger`  for a class can be obtained using  `AniLogger.getAniLogger(Class)`  which will log messages according to the specified logging level.
+* Log messages are output through the console and to a file  `/data/AniChan.log` which will be automatically created.
+* When choosing a level for a log message, follow the conventions given in  [_[se-edu/guides] Java: Logging conventions_](https://se-education.org/guides/conventions/java/logging.html).
+
 
 ## 8. Glossary
 
