@@ -2,11 +2,15 @@ package seedu.revised.command.topic;
 
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
+import seedu.revised.command.subject.QuizSubjectCommand;
 import seedu.revised.exception.topic.InvalidTopicException;
 import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.ui.Ui;
 
+import java.util.logging.Logger;
+
 public class QuizTopicCommand extends TopicCommand {
+    private static final Logger logger = Logger.getLogger(QuizTopicCommand.class.getName());
     private String fullcommand;
 
     public QuizTopicCommand(String fullcommand) {
@@ -18,6 +22,7 @@ public class QuizTopicCommand extends TopicCommand {
     }
 
     public Topic execute(Subject subject) throws NoTopicException, InvalidTopicException {
+        logger.info("Begin finding the topic for which the quiz has to be conducted.");
         String[] message = this.fullcommand.split(" ");
         if (message.length == 1) {
             throw new InvalidTopicException(Ui.printInvalidTopicError());
@@ -31,6 +36,8 @@ public class QuizTopicCommand extends TopicCommand {
         if (quizTopic == null) {
             throw new NoTopicException(Ui.printNoTopicError());
         }
+        logger.info("Finish reading the command to find the topic for the quiz feature");
+        logger.fine(String.format("The subject is %s",quizTopic.getTitle()));
         return quizTopic;
 
     }
