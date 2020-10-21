@@ -128,7 +128,7 @@ public class Ui {
      * @return String command from user.
      */
     public String readCommand() {
-        System.out.println("Enter command: ");
+        printWithIndent("Enter command: ");
         return in.nextLine();
     }
 
@@ -354,7 +354,7 @@ public class Ui {
         for (i = 0; i < indicesToShow.size(); i++) {
             String indexString = String.valueOf(i + 1);
             int indexToShow = indicesToShow.get(i);
-            System.out.println(indexString + ". " + list.get(indexToShow));
+            printWithIndent(indexString + ". " + list.get(indexToShow));
         }
         return list.size();
     }
@@ -363,8 +363,8 @@ public class Ui {
      * Alerts user that there is a maximum allowable input.
      * @param maxAllowableInput maximum allowable input
      */
-    public void indexOutOfBoundsMessage(int maxAllowableInput) {
-        System.out.print("Index out of bounds! Input should be between 1 to " + maxAllowableInput + ".");
+    public void indexOutOfBoundsMessage(int maxAllowableInput) throws RexException {
+        throw new RexException("Index out of bounds! Input should be between 1 to " + maxAllowableInput + ".");
     }
 
     /** Gets object of Arraylist corresponding to user selection.
@@ -374,13 +374,12 @@ public class Ui {
      * @param <T> Generic class
      * @return Object in ArrayList
      */
-    public <T> T getItemOfArrayList(ArrayList<T> list, ArrayList<Integer> indicesToShow) {
+    public <T> T getItemOfArrayList(ArrayList<T> list, ArrayList<Integer> indicesToShow) throws RexException {
         int maxIndex = displayArrayList(list, indicesToShow);
         if (maxIndex < 1) {
-            System.out.println("There are no available appointments to book.");
-            return null;
+            throw new RexException("There are no available appointments to book.");
         }
-        System.out.println("Enter the index you want: ");
+        printWithIndent("Enter the index you want: ");
         String inputString = in.nextLine();
         int input = Integer.parseInt(inputString);
         try {
@@ -390,5 +389,9 @@ public class Ui {
             indexOutOfBoundsMessage(maxIndex);
             return null;
         }
+    }
+
+    public void showAvailableAppointmentsMessage() {
+        printWithIndent("Here are the list of available appointments: ");
     }
 }

@@ -60,13 +60,9 @@ public class BookApptCommand extends Command {
         }
 
         try {
-            System.out.println("Here are the list of available appointments: ");
-            /*int index = Integer.parseInt(indexSelected) - 1;
-            if (index < 0 || index >= appointments.getSize()) {
-                throw new RexException("Index error!");
-            }*/
+            ui.showAvailableAppointmentsMessage();
             Rex.logger.log(Level.INFO, "booking appointment for patient and doctor...");
-            ArrayList<Integer> indicesToShow = new ArrayList<Integer>();
+            ArrayList<Integer> indicesToShow = new ArrayList<>();
             for (int i = 0; i < appointments.getSize(); i++) {
                 Appointment appointment = appointments.getAppointments().get(i);
                 if (!appointment.isBooked()) {
