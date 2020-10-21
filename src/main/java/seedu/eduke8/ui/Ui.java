@@ -23,7 +23,8 @@ public class Ui {
             + "|_____||____/|_____|";
 
     private static final Scanner SCANNER = new Scanner(System.in);
-    private static final String HORIZONTAL_LINE = "-------------------------------------------------------------------";
+    private static final String HORIZONTAL_LINE = "-------------------------------------------------------------------"
+            + "-----------------------------------------------------";
     private static final String MESSAGE_ABOUT = "E-Duke-8 is a desktop app that helps CS2113/T students learn and"
             + System.lineSeparator() + "understand software engineering and OOP principles through a"
             + System.lineSeparator() + "gamified platform and enhance their " + "learning experience. It also"
@@ -48,7 +49,6 @@ public class Ui {
     public String getInputFromUser() {
         return SCANNER.nextLine();
     }
-
 
     private static void printMessage(String message) {
         System.out.println(HORIZONTAL_LINE);
@@ -101,14 +101,18 @@ public class Ui {
         System.out.println(HORIZONTAL_LINE);
     }
 
-    public void printAnswerIsWrong(int correctAnswer) {
+    public void printAnswerIsWrong(int correctAnswer, String explanation) {
         System.out.println(HORIZONTAL_LINE);
         System.out.println(MESSAGE_ANSWER_WRONG + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND);
+        System.out.println("Explanation:" + System.lineSeparator() + explanation);
         System.out.println(HORIZONTAL_LINE);
     }
 
-    public void printAnswerIsCorrect() {
-        printMessage(MESSAGE_ANSWER_CORRECT);
+    public void printAnswerIsCorrect(String explanation) {
+        System.out.println(HORIZONTAL_LINE);
+        System.out.println(MESSAGE_ANSWER_CORRECT);
+        System.out.println("Explanation:" + System.lineSeparator() + explanation);
+        System.out.println(HORIZONTAL_LINE);
     }
 
     public void printHelp() {

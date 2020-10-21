@@ -1,27 +1,30 @@
 package seedu.eduke8.question;
 
 import seedu.eduke8.common.Displayable;
+import seedu.eduke8.explanation.Explanation;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.OptionList;
 
 /**
  * Represents a question of a certain topic. A <code>Question</code> object is represented by
- * its description, options and hint.
+ * its description, options, hint and explanation.
  */
 public class Question implements Displayable {
     private String description;
     private OptionList optionList;
     private Hint hint;
+    private Explanation explanation;
     private boolean wasAnsweredCorrectly;
     private boolean wasShown;
 
-    public Question(String description, OptionList optionList, Hint hint) {
+    public Question(String description, OptionList optionList, Hint hint, Explanation explanation) {
         assert description != null;     // A question must have its description
         this.description = description;
 
         assert optionList != null;       // A question must have some options
         this.optionList = optionList;
 
+        this.explanation = explanation;
         this.hint = hint;
         wasAnsweredCorrectly = false;
         wasShown = false;
@@ -65,6 +68,15 @@ public class Question implements Displayable {
      */
     public Hint getHint() {
         return hint;
+    }
+
+    /**
+     * Returns the explanation tied to the question.
+     *
+     * @return Details of the explanation.
+     */
+    public Explanation getExplanation() {
+        return explanation;
     }
 
     /**
