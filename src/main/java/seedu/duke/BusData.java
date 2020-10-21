@@ -28,7 +28,7 @@ public class BusData {
         return busOptions;
     }
 
-    public static Bus selectBus(String busCode) throws NullPointerException {
+    public static Bus selectBus(String busCode) {
         for (Bus bus : buses) {
             if (bus.getBusNumber().equals(busCode.toUpperCase())) {
                 return bus;
