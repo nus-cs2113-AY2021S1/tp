@@ -1,9 +1,12 @@
 package seedu.eduke8.question;
 
 import org.junit.jupiter.api.Test;
+import seedu.eduke8.common.Displayable;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.option.OptionList;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -80,9 +83,10 @@ class QuestionTest {
 
         Option option1 = new Option("test1");
         Option option2 = new Option("test2");
-        OptionList optionList = new OptionList();
-        optionList.add(option1);
-        optionList.add(option2);
+        ArrayList<Displayable> optionsArrayList = new ArrayList<>();
+        optionsArrayList.add(option1);
+        optionsArrayList.add(option2);
+        OptionList optionList = new OptionList(optionsArrayList);
 
         String inputHintDescription = PLACEHOLDER_HINT_DESCRIPTION;
         Hint hint = new Hint(inputHintDescription);

@@ -31,22 +31,6 @@ class TopicListTest {
         assertEquals(DEFAULT_TOPIC_COUNT, topicList.getCount());
     }
 
-    @Test
-    void add_thirdTopicToTopicList_returnsCountOfThree() throws Eduke8Exception {
-        TopicList topicList = createTestTopicList();
-        Topic thirdTopic = createTestTopic(TOPIC_THREE_DESCRIPTION);
-        topicList.add(thirdTopic);
-
-        assertEquals(DEFAULT_TOPIC_COUNT + 1, topicList.getCount());
-    }
-
-    @Test
-    void delete_thirdTopicToTopicList_returnsCountOfOne() throws Eduke8Exception {
-        TopicList topicList = createTestTopicList();
-        topicList.delete(1);
-
-        assertEquals(DEFAULT_TOPIC_COUNT - 1, topicList.getCount());
-    }
 
     @Test
     void find_topicListWithTwoTopics_returnsFirstTopic() throws Eduke8Exception {
@@ -93,9 +77,10 @@ class TopicListTest {
     private Question createTestQuestion(String description) {
         Option option1 = new Option("test1");
         Option option2 = new Option("test2");
-        OptionList optionList = new OptionList();
-        optionList.add(option1);
-        optionList.add(option2);
+        ArrayList<Displayable> optionsArrayList = new ArrayList();
+        optionsArrayList.add(option1);
+        optionsArrayList.add(option2);
+        OptionList optionList = new OptionList(optionsArrayList);
 
         Hint hint = new Hint(HINT);
 

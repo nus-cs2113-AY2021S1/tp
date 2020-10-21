@@ -26,26 +26,6 @@ class QuestionListTest {
         assertEquals(DEFAULT_QUESTION_COUNT, questionList.getCount());
     }
 
-
-    @Test
-    void add_thirdQuestionToQuestionList_returnsCountOfThree() {
-        QuestionList questionList = createQuestionListWithTwoUniqueQuestions();
-
-        Question thirdQuestion = createTestQuestionWithCustomDescription(PLACEHOLDER_QUESTION_THREE_DESCRIPTION);
-        questionList.add(thirdQuestion);
-
-        assertEquals(DEFAULT_QUESTION_COUNT + 1, questionList.getCount());
-    }
-
-    @Test
-    void delete_questionListWithTwoQuestions_returnsCountOfOne() {
-        QuestionList questionList = createQuestionListWithTwoUniqueQuestions();
-
-        questionList.delete(1);
-
-        assertEquals(DEFAULT_QUESTION_COUNT - 1, questionList.getCount());
-    }
-
     @Test
     void find_questionListWithTwoQuestions_returnsFirstQuestion() {
         QuestionList questionList = createQuestionListWithTwoUniqueQuestions();
@@ -73,9 +53,10 @@ class QuestionListTest {
     private Question createTestQuestionWithCustomDescription(String description) {
         Option option1 = new Option("test1");
         Option option2 = new Option("test2");
-        OptionList optionList = new OptionList();
-        optionList.add(option1);
-        optionList.add(option2);
+        ArrayList<Displayable> optionsArrayList = new ArrayList<>();
+        optionsArrayList.add(option1);
+        optionsArrayList.add(option2);
+        OptionList optionList = new OptionList(optionsArrayList);
 
         String inputHintDescription = PLACEHOLDER_HINT_DESCRIPTION;
         Hint hint = new Hint(inputHintDescription);
