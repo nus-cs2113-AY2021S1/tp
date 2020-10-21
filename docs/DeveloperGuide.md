@@ -92,3 +92,30 @@ information is stored into a txt file which is done by ```updateFile```.
  The following sequence diagram shows how the account information storage feature works:
  ![SequenceDiagram1](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/financetools/InfoStorageSequenceDiagram(1).png)
  ![SequenceDiagram2](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/financetools/InfoStorageSequenceDiagram(2).png)
+ 
+ ### Set Expense Goal Feature
+ The set expense goal feature is being implemented by ```GoalTracker```. It allows the user to set an expense goal for
+ the respective month to ensure that the user does not overspent his budget. 
+ When user enter ```expense 2000 for 08```, the command will be sent to InputParser and parse it into String[].
+ With the String[], it will be sent to a class called ```Goal```, and it will store the individual information.
+ Afterwards, it will be added to a ArrayList in a class called ```TotalGoalList```. 
+ 
+ Not only that, ```GoalTracker``` also implemented a feature called ```set income goal``` that works almost the same as 
+ set expense goal feature with just slight command difference.
+ 
+ `Format:`
+ * setExpenseGoal: expense 5000 for 08
+ * setIncomeGoal: income 5000 for 08
+ 
+ ### How it works?
+ Firstly, user will input the command based on the `Format`.
+ Secondly, the input command will be sent to InputParser to parse.
+ Thirdly, the parsed information will be sent to class `Goal` to store the individual information
+ Next, it will be added to a ArrayList in class `TotalGoalList`.
+ Lastly, the goal status will be displayed to the user.  
+ 
+ This class diagram will show how the setting of expense goal works:
+ ![ExpenseClassDiagram](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/goaltracker/SetExpenseGoalClassDiagram.png)
+ 
+ This sequence diagram will show the flow of setting of expense goal:
+ ![ExpenseSequenceDiagram](https://github.com/AY2021S1-CS2113-T16-1/tp/blob/master/docs/goaltracker/SetExpenseGoalSequenceDiagram.png)
