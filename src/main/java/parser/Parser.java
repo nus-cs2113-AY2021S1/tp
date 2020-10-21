@@ -300,21 +300,21 @@ public abstract class Parser {
             String[] additionalInfo = info[2].split(",");
 
             switch (info[0]) {
-                case "BLK":
-                    location = new Building(info[1], additionalInfo);
-                    break;
-                case "H":
-                    location = new Hostel(info[1], additionalInfo);
-                    break;
-                case "L":
-                    location = new LectureTheatre(info[1], info[2]);
-                    break;
-                case "OUT":
-                    location = new OutOfNuS(info[1]);
-                    break;
-                default:
-                    location = new OutOfNuS(info[0]);
-                    break;
+            case "BLK":
+                location = new Building(info[1], additionalInfo);
+                break;
+            case "H":
+                location = new Hostel(info[1], additionalInfo);
+                break;
+            case "L":
+                location = new LectureTheatre(info[1], info[2]);
+                break;
+            case "OUT":
+                location = new OutOfNuS(info[1]);
+                break;
+            default:
+                location = new OutOfNuS(info[0]);
+                break;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.print("Invalid Location Format.");
