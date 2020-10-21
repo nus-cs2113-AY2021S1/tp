@@ -123,18 +123,12 @@ public class Ui {
     /**
      * Prints all the food in the database sorted by the canteen and then the store it is found.
      *
-     * @param foodDatabase The list containing all the food items stored in the database.
+     * @param foodDatabase The string representation of all the food items stored in the database.
      */
-    public void printDatabase(List<Food> foodDatabase) {
+    public void printDatabase(String foodDatabase) {
         assert foodDatabase != null : "Food database should not be null";
-        assert foodDatabase.size() > 0 : "Food database should not be empty";
-        String allFood = "";
-        int foodItemNumber = 1;
-        for (Food food: foodDatabase) {
-            allFood += LINE_SEPARATOR + "  " + foodItemNumber + "." + food;
-            foodItemNumber++;
-        }
-        print("Here are the food items in the database:" + allFood);
+        assert foodDatabase.trim().length() > 0 : "Food database should not be empty";
+        print("Here are the food items in the database:" + LINE_SEPARATOR + foodDatabase);
     }
 
     /**
