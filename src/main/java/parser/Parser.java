@@ -261,7 +261,6 @@ public abstract class Parser {
                         + "T"
                         + fullCommand.substring(timeDividerPosition + 3 + timeDivider + 1,
                         locationDividerPosition - 1);
-                System.out.println(dateTime);
                 location = parseLocation(fullCommand.substring(locationDividerPosition + 3));
                 switch (words[0]) {
                 case ASSIGNMENT:
@@ -296,10 +295,9 @@ public abstract class Parser {
      */
     public static Location parseLocation(String input) {
         Location location;
+        String[] info = input.split("/");
         try {
-            String[] info = input.split("/");
             String[] additionalInfo = info[2].split(",");
-
 
             switch (info[0]) {
             case "BLK":
@@ -315,12 +313,12 @@ public abstract class Parser {
                 location = new OutOfNuS(info[1]);
                 break;
             default:
-                location = null;
+                location = new OutOfNuS(info[0]);
                 break;
             }
-
         } catch (ArrayIndexOutOfBoundsException e) {
-            location = null;
+            System.out.print("Invalid Location Format.");
+            location = new OutOfNuS(info[0]);
         }
         return location;
     }
