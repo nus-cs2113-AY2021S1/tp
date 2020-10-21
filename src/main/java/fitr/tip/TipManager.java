@@ -12,7 +12,7 @@ public class TipManager {
 
     public void execute() {
         int totalNumberOfTips = 49;
-        Ui.printCustomMessage("Tip of the day!" + System.lineSeparator() + tips.getTip(totalNumberOfTips));
+        Ui.printMessageInYellow("Tip of the day!" + System.lineSeparator() + tips.getTip(totalNumberOfTips));
     }
 
 }

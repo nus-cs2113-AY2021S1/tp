@@ -1,5 +1,6 @@
 package fitr.command;
 
+import fitr.list.GoalList;
 import fitr.Recommender;
 import fitr.ui.Ui;
 import fitr.list.ExerciseList;
@@ -13,8 +14,8 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodlist, ExerciseList exerciseList, Storage storage, User user,
-                        Recommender recommender) {
+    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage,
+                        User user, GoalList goalList, Recommender recommender) {
         Ui.printHelpMessage();
     }
 
