@@ -1,13 +1,11 @@
 package bookmark;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class BookmarkUi {
-    private Scanner in;
 
     public BookmarkUi() {
-        this.in = new Scanner(System.in);
+
     }
 
     public static void printWelcomeBookmarkMessage() {
@@ -16,7 +14,7 @@ public class BookmarkUi {
         //showBookmarkCategoryList();
     }
 
-    public static void showBookmarkCategoryList(ArrayList<BookmarkCategory> bookmarkCategories) {
+    public void showBookmarkCategoryList(ArrayList<BookmarkCategory> bookmarkCategories) {
         System.out.println("Here are the categories available:");
         int i = 1;
         for (BookmarkCategory category: bookmarkCategories) {
@@ -82,7 +80,7 @@ public class BookmarkUi {
         System.out.println("Already in chosen Category");
     }
 
-    public void showStarBookmarks(ArrayList<BookmarkCategory> categories){
+    public void showStarBookmarks(ArrayList<BookmarkCategory> categories) {
         int i = 0;
         System.out.println("Starred bookmarks: ");
         for(BookmarkCategory category : categories) {

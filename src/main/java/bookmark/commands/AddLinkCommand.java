@@ -1,6 +1,7 @@
 package bookmark.commands;
 
 import bookmark.BookmarkCategory;
+import bookmark.BookmarkStorage;
 import bookmark.BookmarkUi;
 import exceptions.InvalidBookmarkException;
 import exceptions.EmptyBookmarkException;
@@ -20,7 +21,7 @@ public class AddLinkCommand extends BookmarkCommand {
         assert categoryNumber >= 0 : "Missing category number";
     }
 
-    public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories) {
+    public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage storage) {
         try {
             if (categoryNumber == 0) {
                 ui.printChooseCategoryMessage();
@@ -29,6 +30,7 @@ public class AddLinkCommand extends BookmarkCommand {
                 evaluateLink();
                 categories.get(categoryNumber - 1).addLink(link);
                 ui.showBookmarkLinkList(categories.get(categoryNumber - 1).getLinks());
+                storage.saveLinksToFile(categories);
             }
         } catch (EmptyBookmarkException e) {
             ui.showEmptyLinkError();

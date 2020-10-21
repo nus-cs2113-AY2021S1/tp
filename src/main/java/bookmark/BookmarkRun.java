@@ -15,25 +15,20 @@ public class BookmarkRun {
     private int mode;
 
     public BookmarkRun() {
-        bookmarkCategories.add(new BookmarkCategory("NUS"));
-        bookmarkCategories.add(new BookmarkCategory( "Zoom"));
         bookmarkUi = new BookmarkUi();
         bookmarkParser = new BookmarkParser();
         bookmarkStorage = new BookmarkStorage("data/bookmark.txt");
+        bookmarkCategories = bookmarkStorage.loadFile();
     }
 
     public void run(String command) {
         try {
             BookmarkCommand c = bookmarkParser.evaluateInput(command,mode);
-            c.executeCommand(bookmarkUi,bookmarkCategories);
+            c.executeCommand(bookmarkUi,bookmarkCategories,bookmarkStorage);
             mode = c.getCategoryNumber();
         } catch (InvalidCommandException e) {
             bookmarkUi.showInvalidBookmarkCommand();
             StudyItLog.logger.info("Cannot understand bookmark command");
         }
-    }
-
-    public ArrayList<BookmarkCategory> getBookmarkCategories(){
-        return bookmarkCategories;
     }
 }

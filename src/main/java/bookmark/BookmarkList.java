@@ -2,9 +2,7 @@ package bookmark;
 
 public class BookmarkList {
     private String link;
-    private String name;
     private Boolean star;
-    private String date;
 
     public BookmarkList(String link) {
         this.link = link;
@@ -13,10 +11,6 @@ public class BookmarkList {
 
     public String getLink() {
         return link;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void markLinkAsStar(){
