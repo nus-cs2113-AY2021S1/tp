@@ -6,6 +6,7 @@ import seedu.revised.command.flashcard.FlashcardCommand;
 import seedu.revised.command.flashcard.ListFlashcardCommand;
 import seedu.revised.command.flashcard.DeleteFlashcardCommand;
 import seedu.revised.command.flashcard.SorryFlashcardCommand;
+import seedu.revised.command.flashcard.HelpFlashcardCommand;
 
 public class FlashcardParser {
 
@@ -24,6 +25,8 @@ public class FlashcardParser {
             return new AddFlashcardCommand(fullCommand);
         } else if (fullCommand.startsWith("delete ")) {
             return new DeleteFlashcardCommand(fullCommand);
+        } else if (fullCommand.equals("help")) {
+            return new HelpFlashcardCommand();
         } else {
             return new SorryFlashcardCommand();
         }
