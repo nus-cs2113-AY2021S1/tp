@@ -1,14 +1,14 @@
 # AniChan User Guide
 
-![AniChan Logo](https://i.imgur.com/VhbC59Q.png)
+
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)
 <br/>&nbsp;3.1 [View the help: `help`](#31-view-the-help-help)
-<br/>&nbsp;3.2 [Adding a user: `adduser`](#32-adding-a-user-adduser)
-<br/>&nbsp;3.3 [Switching users: `switchuser`](#33-switching-users-switchuser)
+<br/>&nbsp;3.2 [Adding a user: `addws`](#32-adding-a-user-adduser)
+<br/>&nbsp;3.3 [Switching users: `switchws`](#33-switching-users-switchuser)
 <br/>&nbsp;3.4 [Browse through all Anime: `browse`](#34-browse-through-all-anime-browse)
 <br/>&nbsp;3.5 [Watchlist management: `watchlist`](#35-watchlist-management-watchlist)
 <br/>&nbsp;3.6 [Add an Anime to the current watchlist: `add`](#36-add-an-anime-to-the-current-watchlist-add)
