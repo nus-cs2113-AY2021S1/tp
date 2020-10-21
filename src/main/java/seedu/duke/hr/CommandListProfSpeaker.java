@@ -16,7 +16,7 @@ public class CommandListProfSpeaker extends Command {
 
     @Override
     public String help() {
-        return null;
+        return "Syntax: hr list prof&admin\n";
     }
 
     public int validate(UserInput input) {
