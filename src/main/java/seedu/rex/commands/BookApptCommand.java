@@ -66,10 +66,10 @@ public class BookApptCommand extends Command {
                 throw new RexException("Index error!");
             }*/
             Rex.logger.log(Level.INFO, "booking appointment for patient and doctor...");
-            ArrayList <Integer> indicesToShow = new ArrayList<Integer>();
-            for (int i = 0; i < appointments.getSize(); i++){
+            ArrayList<Integer> indicesToShow = new ArrayList<Integer>();
+            for (int i = 0; i < appointments.getSize(); i++) {
                 Appointment appointment = appointments.getAppointments().get(i);
-                if (!appointment.isBooked()){
+                if (!appointment.isBooked()) {
                     indicesToShow.add(i);
                 }
             }

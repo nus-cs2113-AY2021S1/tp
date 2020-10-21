@@ -342,19 +342,19 @@ public class Ui {
     }
 
     /**
-     * Displays only the Objects in ArrayList that is required to be shown
+     * Displays only the Objects in ArrayList that is required to be shown.
      *
      * @param list Generic ArrayList
      * @param indicesToShow ArrayList containing Integers corresponding to the indices of list that you want to display
-     * @param <T>
+     * @param <T> Generic class
      * @return Object in ArrayList
      */
-    public <T> int displayArrayList(ArrayList<T> list, ArrayList <Integer> indicesToShow) {
+    public <T> int displayArrayList(ArrayList<T> list, ArrayList<Integer> indicesToShow) {
         int i;
         for (i = 0; i < indicesToShow.size(); i++) {
-            String iString = String.valueOf(i + 1);
+            String indexString = String.valueOf(i + 1);
             int indexToShow = indicesToShow.get(i);
-            System.out.println(iString + ". " + list.get(indexToShow));
+            System.out.println(indexString + ". " + list.get(indexToShow));
         }
         return list.size();
     }
@@ -371,12 +371,12 @@ public class Ui {
      *
      * @param list Generic ArrayList
      * @param indicesToShow ArrayList containing Integers corresponding to the indices of list that you want to display
-     * @param <T>
+     * @param <T> Generic class
      * @return Object in ArrayList
      */
-    public <T> T getItemOfArrayList(ArrayList <T> list, ArrayList <Integer> indicesToShow) {
+    public <T> T getItemOfArrayList(ArrayList<T> list, ArrayList<Integer> indicesToShow) {
         int maxIndex = displayArrayList(list, indicesToShow);
-        if (maxIndex < 1){
+        if (maxIndex < 1) {
             System.out.println("There are no available appointments to book.");
             return null;
         }
@@ -384,7 +384,7 @@ public class Ui {
         String inputString = in.nextLine();
         int input = Integer.parseInt(inputString);
         try {
-            int index = indicesToShow.get(input-1);
+            int index = indicesToShow.get(input - 1);
             return list.get(index);
         } catch (IndexOutOfBoundsException e) {
             indexOutOfBoundsMessage(maxIndex);

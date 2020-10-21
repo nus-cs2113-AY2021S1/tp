@@ -52,7 +52,7 @@ public class Parser {
         String bookedStatus = appointmentComponents[1];
         String nric;
         String doctorName;
-        if (bookedStatus.contentEquals("booked")){
+        if (bookedStatus.contentEquals("booked")) {
             nric = appointmentComponents[2];
             doctorName = appointmentComponents[3];
         } else {
