@@ -6,7 +6,7 @@ import seedu.smarthomebot.data.ApplianceList;
 import seedu.smarthomebot.data.framework.type.Fan;
 import seedu.smarthomebot.data.framework.type.Lights;
 import seedu.smarthomebot.data.LocationList;
-import seedu.smarthomebot.data.framework.type.WaterHeater;
+import seedu.smarthomebot.data.framework.type.SmartPlug;
 import seedu.smarthomebot.exceptions.DuplicateDataException;
 import seedu.smarthomebot.exceptions.FileCorruptedException;
 import seedu.smarthomebot.ui.TextUi;
@@ -103,10 +103,9 @@ public class StorageFile {
                     Lights light = new Lights(name, location, power);
                     applianceList.addAppliance(light);
                     break;
-                case WaterHeater.TYPE_WORD:
-                    WaterHeater waterheater = new WaterHeater(name, location, power);
-                    applianceList.addAppliance(waterheater);
-                    waterheater.getTemperatureFromLoadFile(parameter);
+                case SmartPlug.TYPE_WORD:
+                    SmartPlug smartPlug = new SmartPlug(name, location, power);
+                    applianceList.addAppliance(smartPlug);
                     break;
                 default:
                     ui.printToUser(MESSAGE_APPLIANCE_TYPE_NOT_EXIST);

@@ -1,7 +1,7 @@
 package seedu.smarthomebot.commands;
 
 import seedu.smarthomebot.data.framework.type.AirConditioner;
-import seedu.smarthomebot.data.framework.type.WaterHeater;
+import seedu.smarthomebot.data.framework.type.SmartPlug;
 import seedu.smarthomebot.data.framework.type.Fan;
 import seedu.smarthomebot.data.framework.Appliance;
 
@@ -66,9 +66,6 @@ public class OnCommand extends Command {
         case Fan.TYPE_WORD:
             Fan fan = (Fan) appliance;
             return fan.setSpeed(parameter);
-        case WaterHeater.TYPE_WORD:
-            WaterHeater waterHeater = (WaterHeater) appliance;
-            return waterHeater.setTemperature(parameter);
         default:
             return "";
         }
