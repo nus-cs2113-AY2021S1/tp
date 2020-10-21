@@ -1,20 +1,8 @@
 package commands;
 
 import access.Access;
+import exception.ExclusionFileException;
 import manager.chapter.DueChapter;
-import scheduler.Scheduler;
-import storage.Storage;
-import ui.Ui;
-
-import java.io.FileNotFoundException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-
-import access.Access;
-
-import manager.chapter.CardList;
-import manager.chapter.DueChapter;
-
 import scheduler.Scheduler;
 import storage.Storage;
 import ui.Ui;
@@ -25,10 +13,12 @@ import java.util.ArrayList;
 
 public class PreviewCommand extends Command {
     public static final String COMMAND_WORD = "preview";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Forecasts the chapters due in the upcoming week.\n"
+            + "Example: " + COMMAND_WORD + "\n";
     public ArrayList<DueChapter> allChapters;
     public ArrayList<DueChapter> dueChapters;
 
-    private void loadAllChapters(Storage storage, Ui ui) {
+    private void loadAllChapters(Storage storage, Ui ui) throws ExclusionFileException {
         try {
             allChapters = storage.loadAllDueChapters(ui);
         } catch (FileNotFoundException e) {
@@ -46,7 +36,7 @@ public class PreviewCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) {
+    public void execute(Ui ui, Access access, Storage storage) throws ExclusionFileException{
         loadAllChapters(storage, ui);
         for (int i = 0; i < 7; i++) {
             dueChapters = new ArrayList<>();

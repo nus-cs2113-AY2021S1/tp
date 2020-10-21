@@ -2,19 +2,7 @@ package parser;
 
 import access.Access;
 
-import commands.AddCommand;
-import commands.BackCommand;
-import commands.Command;
-import commands.EditCommand;
-import commands.ExitCommand;
-import commands.GoCommand;
-import commands.HelpCommand;
-import commands.ListCommand;
-import commands.ListDueCommand;
-import commands.RemoveCommand;
-import commands.ReviseCommand;
-import commands.HistoryCommand;
-import commands.PreviewCommand;
+import commands.*;
 
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
@@ -75,6 +63,8 @@ public class Parser {
             return prepareHistory(commandArgs);
         case PreviewCommand.COMMAND_WORD:
             return preparePreview(commandArgs);
+        case ExcludeCommand.COMMAND_WORD:
+            return prepareExclude(commandArgs);
         default:
             throw new InvalidInputException("There is no such command type.\n");
         }
@@ -430,6 +420,13 @@ public class Parser {
             throw new InvalidInputException("There should not be any arguments for preview.");
         }
         return new PreviewCommand();
+    }
+
+    private static Command prepareExclude(String commandArgs) throws InvalidInputException {
+        if (commandArgs.isEmpty()) {
+            throw new InvalidInputException(MESSAGE_MISSING_ARGS + ExcludeCommand.MESSAGE_USAGE);
+        }
+        return new ExcludeCommand(commandArgs);
     }
 }
 

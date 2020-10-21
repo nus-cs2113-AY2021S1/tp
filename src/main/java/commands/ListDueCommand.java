@@ -2,6 +2,7 @@ package commands;
 
 import access.Access;
 
+import exception.ExclusionFileException;
 import manager.chapter.DueChapter;
 
 import scheduler.Scheduler;
@@ -20,7 +21,7 @@ public class ListDueCommand extends Command {
     public ArrayList<DueChapter> allChapters;
     public ArrayList<DueChapter> dueChapters;
 
-    private void loadAllChapters(Storage storage, Ui ui) {
+    private void loadAllChapters(Storage storage, Ui ui) throws ExclusionFileException {
         String result = "";
         try {
             allChapters = storage.loadAllDueChapters(ui);
@@ -39,7 +40,7 @@ public class ListDueCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) {
+    public void execute(Ui ui, Access access, Storage storage) throws ExclusionFileException{
         dueChapters = new ArrayList<>();
         loadAllChapters(storage, ui);
         setDueChapters();
