@@ -9,6 +9,7 @@ import seedu.rex.data.hospital.Appointment;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 /**
@@ -65,7 +66,14 @@ public class BookApptCommand extends Command {
                 throw new RexException("Index error!");
             }*/
             Rex.logger.log(Level.INFO, "booking appointment for patient and doctor...");
-            Appointment chosenAppointment = ui.getItemOfArrayList(appointments.getAppointments());
+            ArrayList <Integer> indicesToShow = new ArrayList<Integer>();
+            for (int i = 0; i < appointments.getSize(); i++){
+                Appointment appointment = appointments.getAppointments().get(i);
+                if (!appointment.isBooked()){
+                    indicesToShow.add(i);
+                }
+            }
+            Appointment chosenAppointment = ui.getItemOfArrayList(appointments.getAppointments(), indicesToShow);
             chosenAppointment.bookPatient(patients.getPatientFromNric(nric));
             chosenAppointment.bookDoctor(doctors.getDoctorFromName(doctorName));
             ui.showAppointmentBookedMessage(chosenAppointment);

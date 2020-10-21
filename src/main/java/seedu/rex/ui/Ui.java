@@ -341,26 +341,51 @@ public class Ui {
         }
     }
 
-    public <T> int displayArrayList(ArrayList<T> list) {
+    /**
+     * Displays only the Objects in ArrayList that is required to be shown
+     *
+     * @param list Generic ArrayList
+     * @param indicesToShow ArrayList containing Integers corresponding to the indices of list that you want to display
+     * @param <T>
+     * @return Object in ArrayList
+     */
+    public <T> int displayArrayList(ArrayList<T> list, ArrayList <Integer> indicesToShow) {
         int i;
-        for (i = 0; i < list.size(); i++) {
+        for (i = 0; i < indicesToShow.size(); i++) {
             String iString = String.valueOf(i + 1);
-            System.out.println(iString + ". " + list.get(i));
+            int indexToShow = indicesToShow.get(i);
+            System.out.println(iString + ". " + list.get(indexToShow));
         }
         return list.size();
     }
 
+    /**
+     * Alerts user that there is a maximum allowable input.
+     * @param maxAllowableInput maximum allowable input
+     */
     public void indexOutOfBoundsMessage(int maxAllowableInput) {
         System.out.print("Index out of bounds! Input should be between 1 to " + maxAllowableInput + ".");
     }
 
-    public <T> T getItemOfArrayList(ArrayList<T> list) {
-        int maxIndex = displayArrayList(list);
+    /** Gets object of Arraylist corresponding to user selection.
+     *
+     * @param list Generic ArrayList
+     * @param indicesToShow ArrayList containing Integers corresponding to the indices of list that you want to display
+     * @param <T>
+     * @return Object in ArrayList
+     */
+    public <T> T getItemOfArrayList(ArrayList <T> list, ArrayList <Integer> indicesToShow) {
+        int maxIndex = displayArrayList(list, indicesToShow);
+        if (maxIndex < 1){
+            System.out.println("There are no available appointments to book.");
+            return null;
+        }
         System.out.println("Enter the index you want: ");
         String inputString = in.nextLine();
         int input = Integer.parseInt(inputString);
         try {
-            return list.get(input - 1);
+            int index = indicesToShow.get(input-1);
+            return list.get(index);
         } catch (IndexOutOfBoundsException e) {
             indexOutOfBoundsMessage(maxIndex);
             return null;
