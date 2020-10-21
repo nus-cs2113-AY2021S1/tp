@@ -50,10 +50,11 @@ public class AddCommand extends Command {
 
     private String moduleOrChapter;
     private Card card;
-    private String accessLevel;
+    private final String accessLevel;
 
-    public AddCommand(String moduleOrChapter) {
+    public AddCommand(String moduleOrChapter, String accessLevel) {
         this.moduleOrChapter = moduleOrChapter;
+        this.accessLevel = accessLevel;
     }
 
     public AddCommand(String question, String answer, String accessLevel) {
@@ -62,28 +63,29 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage)
-            throws IncorrectAccessLevelException, IOException {
+    public void execute(Ui ui, Access access, Storage storage) throws IncorrectAccessLevelException, IOException {
+        if (!access.isAdminLevel() && !access.isModuleLevel() && !access.isChapterLevel()) {
+            throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
+                    access.getLevel(), accessLevel));
+        }
+
+        String result = "";
+
         if (access.isChapterLevel()) {
-            String result = addCard(access, storage);
-            ui.showToUser(result);
+            result = addCard(access, storage);
         } else if (access.isAdminLevel()) {
             Module module = new Module(moduleOrChapter);
-            String result = addModule(access, storage, module);
-            ui.showToUser(result);
+            result = addModule(access, storage, module);
         } else if (access.isModuleLevel()) {
             Chapter chapter = new Chapter(moduleOrChapter, rateChapter(), storage, access);
-            String result = addChapter(access, storage, chapter);
+            result = addChapter(access, storage, chapter);
             ui.showToUser(result);
         } else {
             throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
                     access.getLevel(), accessLevel));
         }
-    }
 
-    @Override
-    public boolean isExit() {
-        return false;
+        ui.showToUser(result);
     }
 
     private String addChapter(Access access, Storage storage, Chapter chapter) throws IOException {
@@ -92,11 +94,8 @@ public class AddCommand extends Command {
         chapters.addChapter(chapter);
         int chapterCount = chapters.getChapterCount();
         access.setModule(newModule);
-        StringBuilder result = new StringBuilder();
-        result.append(storage.createChapter(chapter.getChapterName(), access.getModuleLevel()));
-        result.append(String.format(MESSAGE_SUCCESS, CHAPTER) + chapter.toString() + "\n"
-                + String.format(MESSAGE_COUNT, chapterCount, CHAPTER));
-        return result.toString();
+        String result = storage.createChapter(chapter.getChapterName(), access.getModuleLevel());
+        return result + prepareResult(CHAPTER, chapter.toString(), chapterCount);
     }
 
     private String addCard(Access access, Storage storage) throws IOException {
@@ -105,9 +104,7 @@ public class AddCommand extends Command {
         cards.addCard(card);
         int cardCount = cards.getCardCount();
         storage.saveCards(cards, access.getModule().getModuleName(), access.getChapter().getChapterName());
-        String result = String.format(MESSAGE_SUCCESS, CARD) + cards.getCard(cardCount - 1).toString()
-                + "\n" + String.format(MESSAGE_COUNT, cardCount, CARD);
-        return result;
+        return prepareResult(CARD, card.toString(), cardCount);
     }
 
     private String addModule(Access access, Storage storage, Module module) {
@@ -116,10 +113,15 @@ public class AddCommand extends Command {
         modules.addModule(module);
         int moduleCount = modules.getModuleCount();
         access.setAdmin(newAdmin);
+        String result = storage.createModule(module.getModuleName());
+        return result + prepareResult(MODULE, module.toString(), moduleCount);
+    }
+
+    private String prepareResult(String type, String content, int count) {
         StringBuilder result = new StringBuilder();
-        result.append(storage.createModule(module.getModuleName()));
-        result.append(String.format(MESSAGE_SUCCESS, MODULE) + module.toString() + "\n"
-                + String.format(MESSAGE_COUNT, moduleCount, MODULE));
+        result.append(String.format(MESSAGE_SUCCESS, type));
+        result.append(content).append("\n");
+        result.append(String.format(MESSAGE_COUNT, count, type));
         return result.toString();
     }
 
@@ -131,4 +133,8 @@ public class AddCommand extends Command {
         }
     }
 
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 }

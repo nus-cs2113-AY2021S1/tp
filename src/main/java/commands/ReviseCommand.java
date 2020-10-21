@@ -4,7 +4,6 @@ import access.Access;
 import manager.card.Card;
 import manager.chapter.Chapter;
 import manager.history.History;
-import manager.history.HistoryList;
 import scheduler.Scheduler;
 import storage.Storage;
 import ui.Ui;
@@ -24,7 +23,7 @@ public class ReviseCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Starts revision based on a particular chapter. \n"
             + "Parameters: INDEX_OF_CHAPTER\n" + "Example: " + COMMAND_WORD + " 2\n";
 
-    public static final String MESSAGE_SUCCESS = "You have completed revision for %1$s.";
+    public static final String MESSAGE_SUCCESS = "You have completed revision for %1$s.\n";
     public static final String MESSAGE_NO_CARDS_IN_CHAPTER = "You currently have no cards in %1$s.";
     public static final String MESSAGE_CHAPTER_NOT_DUE = "The chapter %1$s is not due for revision today.\n";
     public static final String MESSAGE_SHOW_ANSWER_PROMPT = "\n[enter s to show answer]";
@@ -115,6 +114,7 @@ public class ReviseCommand extends Command {
         repeatRevision(ui, repeatCards, count);
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
         toRevise.setDueBy(Scheduler.computeDeckDeadline(toRevise.getCards()), storage, access);
+
         addHistory(ui, access, storage);
     }
 
@@ -122,10 +122,10 @@ public class ReviseCommand extends Command {
         LocalDate date = java.time.LocalDate.now();
         storage.createHistory(ui, date.toString());
         String moduleName = access.getModule().getModuleName();
-        String chapterName = access.getChapter().getChapterName();
+        String chapterName = access.getModule().getChapters().getChapter(reviseIndex).getChapterName();
         History history = new History(moduleName, chapterName, 100);
-        HistoryList histories = access.getAdmin().getHistories();
-        histories.addHistory(history);
+        ArrayList<History> histories = storage.loadHistory(date.toString());;
+        histories.add(history);
         storage.saveHistory(histories, date.toString());
     }
 

@@ -193,11 +193,11 @@ public class Parser {
     }
 
     private static Command prepareAddChapter(String commandArgs) {
-        return new AddCommand(commandArgs);
+        return new AddCommand(commandArgs, MODULE_LEVEL);
     }
 
     private static Command prepareAddModule(String commandArgs) {
-        return new AddCommand(commandArgs);
+        return new AddCommand(commandArgs, ADMIN_LEVEL);
     }
 
     private static Command prepareRemove(String commandArgs) throws InvalidInputException {
