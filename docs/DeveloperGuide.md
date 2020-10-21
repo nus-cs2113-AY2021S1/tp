@@ -4,6 +4,7 @@
 {:toc}
 
 
+##Introduction 
 CCA Manager is a revolutionary all-in-one management tool that changes the way you can manage interest groups with unrivaled efficiency and simplicity. Its lightweight Command Line Interface (CLI) allows administrators to breeze through tasks quickly and easily while offering powerful features to advanced users.
 
 
@@ -13,10 +14,20 @@ are interested in learning more about the technical details of the various featu
 ## Setting up
 Refer to the guide here.
 
-## Design & implementation
+## Design and Implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+![Architecture](Architecture.png)
 
+The **Architecture Design** given above explains the high-level design of the App. Given below is a quick overview of each component.
+
+**`Duke`** is the main class of the application, and handles the app launch, initializing the appropriate classes to be used.
+
+The rest of the app consists of the below:
+
+* [**`UI`**](#ui-component): The UI of the App.
+* [**`Logic`**](#logic-component): The command executor.
+* [**`storage`**](#storage-component): outputs the data into 3 csv files: events.csv,finance.csv and members.csv
+* [**`Model`**](#model-component): Holds the data of the App in memory.
 
 ### Input Parsing
 **Current Implementation**  
