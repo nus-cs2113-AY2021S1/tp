@@ -1,7 +1,8 @@
-package seedu.smarthomebot;
+package seedu.smarthomebot.logic;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.smarthomebot.Parser;
 import seedu.smarthomebot.commands.AddCommand;
 import seedu.smarthomebot.commands.Command;
 import seedu.smarthomebot.commands.CreateCommand;

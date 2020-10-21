@@ -1,4 +1,4 @@
-package seedu.smarthomebot.data;
+package seedu.smarthomebot.data.type;
 
 import org.junit.jupiter.api.Test;
 import seedu.smarthomebot.data.framework.type.Fan;

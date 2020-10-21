@@ -1,9 +1,6 @@
 package seedu.smarthomebot.data.framework;
 
-import seedu.smarthomebot.exceptions.InvalidWattageValueException;
-
-import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
-import static seedu.smarthomebot.common.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
+import seedu.smarthomebot.exceptions.InvalidNumericalValueException;
 
 /**
  * Abstract Class representing the appliances for SmartHomeBot.
@@ -49,11 +46,11 @@ public abstract class Appliance {
         return maxLocationLength;
     }
 
-    private static int convertParameterToInt(String parameter) throws InvalidWattageValueException {
+    private static int convertParameterToInt(String parameter) throws InvalidNumericalValueException {
         try {
             return Integer.parseInt(parameter);
         } catch (NumberFormatException e) {
-            throw new InvalidWattageValueException();
+            throw new InvalidNumericalValueException();
         }
 
     }
@@ -165,7 +162,7 @@ public abstract class Appliance {
             if ((parameterValue < upperBound) && (parameterValue > lowerBound)) {
                 return true;
             }
-        } catch (InvalidWattageValueException e) {
+        } catch (InvalidNumericalValueException e) {
             return false;
         }
         return false;

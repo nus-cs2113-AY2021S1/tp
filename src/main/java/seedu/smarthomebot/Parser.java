@@ -16,7 +16,7 @@ import seedu.smarthomebot.commands.UsageCommand;
 import seedu.smarthomebot.exceptions.EmptyParameterException;
 import seedu.smarthomebot.exceptions.IllegalCharacterException;
 import seedu.smarthomebot.exceptions.InvalidCommandException;
-import seedu.smarthomebot.exceptions.InvalidWattageValueException;
+import seedu.smarthomebot.exceptions.InvalidNumericalValueException;
 import seedu.smarthomebot.exceptions.WattageExceedException;
 
 import static seedu.smarthomebot.common.Messages.MESSAGE_EMPTY_PARAMETER;
@@ -25,7 +25,7 @@ import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_ADD_COMMAND;
 import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.smarthomebot.common.Messages.MESSAGE_INVALID_LIST_COMMAND;
 import static seedu.smarthomebot.common.Messages.MESSAGE_POWER_EXCEEDED;
-import static seedu.smarthomebot.common.Messages.MESSAGE_WATTAGE_NOT_NUMBER;
+import static seedu.smarthomebot.common.Messages.MESSAGE_VALUE_NOT_NUMBER;
 
 
 public class Parser {
@@ -52,14 +52,11 @@ public class Parser {
                 }
                 convertParameterToInt(parameter);
             }
-
             return new OnCommand(name, parameter);
         } catch (EmptyParameterException e) {
-
             return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
-        } catch (InvalidWattageValueException e) {
-
-            return new InvalidCommand(MESSAGE_WATTAGE_NOT_NUMBER);
+        } catch (InvalidNumericalValueException e) {
+            return new InvalidCommand(MESSAGE_VALUE_NOT_NUMBER);
         }
     }
 
@@ -75,11 +72,11 @@ public class Parser {
         }
     }
 
-    private static void convertParameterToInt(String parameter) throws InvalidWattageValueException {
+    private static void convertParameterToInt(String parameter) throws InvalidNumericalValueException {
         try {
             Integer.parseInt(parameter);
         } catch (NumberFormatException e) {
-            throw new InvalidWattageValueException();
+            throw new InvalidNumericalValueException();
         }
 
     }
@@ -113,16 +110,18 @@ public class Parser {
             }
             return new AddCommand(name, location, wattage, type);
 
-        } catch (InvalidCommandException | StringIndexOutOfBoundsException e) {
+        } catch (InvalidCommandException e) {
             return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND);
-        } catch (InvalidWattageValueException e) {
-            return new InvalidCommand(MESSAGE_WATTAGE_NOT_NUMBER);
+        } catch (InvalidNumericalValueException e) {
+            return new InvalidCommand(MESSAGE_VALUE_NOT_NUMBER);
         } catch (WattageExceedException e) {
             return new InvalidCommand(MESSAGE_POWER_EXCEEDED);
         } catch (EmptyParameterException e) {
             return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
         } catch (IllegalCharacterException e) {
             return new InvalidCommand(MESSAGE_ILLEGAL_CHARACTER + " [APPLIANCE_NAME].");
+        } catch (StringIndexOutOfBoundsException e) {
+            return new InvalidCommand(MESSAGE_INVALID_ADD_COMMAND);
         }
 
     }
@@ -144,8 +143,7 @@ public class Parser {
         }
     }
 
-    private static void testWattageValidity(String wattage) throws WattageExceedException,
-            InvalidWattageValueException {
+    private static void testWattageValidity(String wattage) throws WattageExceedException, InvalidNumericalValueException {
         try {
             int wattageValue = Integer.parseInt(wattage);
             // Common appliance is between 1 to 9999 watts
@@ -153,7 +151,7 @@ public class Parser {
                 throw new WattageExceedException();
             }
         } catch (NumberFormatException e) {
-            throw new InvalidWattageValueException();
+            throw new InvalidNumericalValueException();
         }
     }
 

@@ -23,7 +23,7 @@ public class Messages {
             "Please follow this order, add NAME l/[LOCATION_NAME] w/[WATTS] t/[TYPE_OF_APPLIANCE]";
     public static final String MESSAGE_INVALID_LIST_COMMAND =
             "Please enter either 'list appliance' or 'list location' or 'list appliance l/LOCATION_NAME'";
-    public static final String MESSAGE_WATTAGE_NOT_NUMBER = "Please enter a valid numerical value for wattage.";
+    public static final String MESSAGE_VALUE_NOT_NUMBER = "Please enter a valid numerical value.";
     public static final String MESSAGE_POWER_EXCEEDED =
             "Appliance wattage is uncommon. Please enter between 0 to 9999.";
     public static final String MESSAGE_TIME_FORMAT_ERROR = "Time format is wrong.";

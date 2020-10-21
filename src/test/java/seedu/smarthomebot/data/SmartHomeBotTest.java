@@ -54,5 +54,4 @@ class SmartHomeBotTest {
         assertEquals("aircon", new AirConditioner("aircon1", "br1", "25").getType());
     }
 
-
 }

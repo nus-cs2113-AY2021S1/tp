@@ -20,12 +20,11 @@ public class ListCommand extends Command {
     private static final String APPLIANCE_TYPE = "appliance";
     private static final String LOCATION_TYPE = "location";
 
-    public static final String DISPLAY_LOCATION = " | Location: ";
-    public static final String DISPLAY_STATUS = " | Status: ";
-    public static final String DISPLAY_USAGE = " | Usage: ";
-    public static final String DISPLAY_WATT = " | Watt: ";
-    public static final String DISPLAY_TYPE = " | Type: ";
-    public static final String DISPLAY_PARAMETER = " | Parameter: ";
+    private static final String DISPLAY_LOCATION = " | Location: ";
+    private static final String DISPLAY_STATUS = " | Status: ";
+    private static final String DISPLAY_WATT = " | Watt: ";
+    private static final String DISPLAY_TYPE = " | Type: ";
+    private static final String DISPLAY_PARAMETER = " | Parameter:";
 
     private final String parameter;
     private final String filteredLocation;
@@ -71,7 +70,7 @@ public class ListCommand extends Command {
                 return new CommandResult(outputFilteredList);
             }
         default:
-            return new CommandResult("To be implemented for V0.2");
+            return new CommandResult("Error");
         }
     }
 
@@ -86,11 +85,12 @@ public class ListCommand extends Command {
                 + DISPLAY_PARAMETER + "%s";
 
         for (Appliance a : displayList) {
-            outputList  = outputList.concat(System.lineSeparator() + String.format(format, index,
+            outputList = outputList.concat(System.lineSeparator() + String.format(format, index,
                     a.getName(), a.getLocation(), a.getStatus(), a.getWattage(), a.getType(), a.getParameter(true)));
             index++;
         }
 
         return outputList;
     }
+
 }

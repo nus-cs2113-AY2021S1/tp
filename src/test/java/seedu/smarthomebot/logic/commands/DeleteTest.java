@@ -1,4 +1,4 @@
-package seedu.smarthomebot;
+package seedu.smarthomebot.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

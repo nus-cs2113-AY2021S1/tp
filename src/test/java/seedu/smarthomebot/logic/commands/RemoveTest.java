@@ -1,4 +1,4 @@
-package seedu.smarthomebot;
+package seedu.smarthomebot.logic.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.smarthomebot.data.LocationList;

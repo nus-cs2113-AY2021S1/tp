@@ -2,7 +2,6 @@ package seedu.smarthomebot.commands;
 
 import seedu.smarthomebot.data.framework.Appliance;
 import seedu.smarthomebot.exceptions.ApplianceNotFoundException;
-import seedu.smarthomebot.exceptions.EmptyParameterException;
 
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
@@ -26,4 +25,5 @@ public class DeleteCommand extends Command {
             return new CommandResult(this.userEnteredName + " does not exist.");
         }
     }
+
 }

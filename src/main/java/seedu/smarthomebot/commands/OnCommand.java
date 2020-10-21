@@ -103,7 +103,6 @@ public class OnCommand extends Command {
         return outputResults;
     }
 
-
     private String onAppliance(Appliance toOnAppliance, String outputResults, boolean isList) {
         boolean onResult = toOnAppliance.switchOn();
         String setParameterStatement = setParameter(parameter, toOnAppliance);
@@ -118,7 +117,6 @@ public class OnCommand extends Command {
             } else {
                 outputResults = MESSAGE_APPLIANCE_PREVIOUSLY_ON + setParameterStatement;
             }
-
         }
 
         return outputResults;
