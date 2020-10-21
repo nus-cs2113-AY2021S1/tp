@@ -192,11 +192,16 @@ Paper trading allows inexperienced people to get a feel of what trading feels li
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
+|Version| As a/an ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v1.0|new user|search for stocks I can buy|have more information to make a more informed decision|
-|v2.0|user|keep track of what stocks I have bought or sold|see how much money I've made or lost|
+|v1.0|new investor|see usage instructions|refer to them when I forget how to use the application|
+|v1.0|investor|search for stocks I can buy|have more information to make a more informed decision|
+|v1.0|investor|buy stocks|profit from any capital gains or dividends|
+|v1.0|investor|sell stocks|realise my gains or reallocate my money to other stocks|
+|v1.0|investor|view my portfolio|see what stocks I have and my past transactions|
+|v1.0|investor|see usage instructions|refer to them when I forget how to use the application|
+|v2.0|investor|keep track of what stocks I have bought or sold|see how much money I've made or lost|
+|v2.0|investor|see how much cash I have left|decide how much to buy or sell|
 
 ## Non-Functional Requirements
 
