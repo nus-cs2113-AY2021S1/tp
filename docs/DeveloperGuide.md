@@ -61,6 +61,81 @@ When the user launches the app, the main program will initialize a `TopicsStorag
 
 ![TopicsStorage load](./images/TopicsStorage_load.png)
 
+###Implementation of commands relating to TopicList, namely:
+
+1. Listing topics in TopicList
+2. Finding a topic in TopicList
+3. Adding a new note
+4. Deleting an existing note
+5. Listing out all notes in a topic
+
+![TopicList_Class_Diagram](./images/TopicListAndNotes.png)
+
+TopicList is an ArrayList of type Displayable, which is one of two interfaces implemented 
+in the code for EDuke8. As such, many of the commands that manipulate the TopicList make 
+use of the package java.util.ArrayList. The TopicList is used to store Topics.
+
+####1) Listing topics in TopicList:
+
+![TopicListSampleSequence](./images/TopicListSampleSequence.png)
+
+This task is performed by the TopicList.showTopics() method.
+
+Step 1: The parseCommand() method instantiates a TopicsCommand object which then calls the 
+        TopicList.showTopics() method.
+Step 2: The TopicList.showTopics() method then calls the method Ui.printTopicList(). The 
+        current TopicList is passed into the called method.
+Step 3: The Ui.printTopicList() method then prints out the description of each topic in the 
+        TopicList. 
+
+####2) Finding a topic in TopicList
+
+This task is performed by the TopicList.find() method. 
+
+Step 1: The parseCommand() method instantiates a TopicsCommand object which then calls the TopicList.find() method. 
+        A String object derived from the user's input is passed into this method.
+
+Step 2: The TopicList.find() method checks if any Topic object in the TopicList has a description that contains the 
+        String object passed into the method. Such Topic objects are stored in a new TopicList
+
+Step 3: The TopicList.find() method then calls the TopicList.showTopics() method, passing in the new TopicList. The 
+        Ui.printTopicList() method is called within the TopicList.showTopics() method, printing out topic descriptions 
+        containing the user's input.
+
+NoteList is also an ArrayList of type Displayable, which is one of two interfaces implemented in the code for EDuke8. 
+As such, many of the commands that manipulate the TopicList make use of the package java.util.ArrayList. The NoteList 
+stores Note objects. Each topic has 1 NoteList. 
+
+####1) Adding a new note:
+
+This task is performed by the NoteList.add() method.
+
+Step 1: The parseCommand() method instantiates a NoteCommand object which then calls the NoteList.add() method. A new 
+        Note object is passed into its parameter.
+
+Step 2: The NoteList.add() method makes use of ArrayList API, specifically the ArrayList.add() method, to add the Note
+        object into NoteList.
+
+####2) Deleting a note:
+
+This task is performed by the NoteList.add() method.
+
+Step 1: The parseCommand() method instantiates a NoteCommand object which then calls the NoteList.delete() method. 
+        An integer that represents the index of the Note object to be deleted within the NoteList is passed into this 
+        method.
+
+Step 2: The NoteList.add() method makes use of ArrayList API, specifically the ArrayList.remove() method, to delete the 
+        Note object in NoteList.
+
+####3) Listing out all notes in a topic
+
+This task is performed by the Topic.showNotes() method.
+
+Step 1: The parseCommand() method instantiates a TopicCommand object which then calls the Topic.showNotes() method. 
+
+Step 2: The Topic.showNotes() methd calls the Ui.printNoteList() method. The topic's NoteList into this method. 
+        Ui.printNoteList() prints out all the descriptions of the Note objects in the NoteList.
+
 ## Product scope
 ### Target user profile
 
@@ -75,6 +150,7 @@ Help CS2113/T students learn and understand software engineering and OOP princip
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|new user|answer given questions|start testing myself immediately|
+
 
 ## Non-Functional Requirements
 

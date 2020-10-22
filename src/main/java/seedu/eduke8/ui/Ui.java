@@ -2,6 +2,7 @@ package seedu.eduke8.ui;
 
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.hint.Hint;
+import seedu.eduke8.note.Note;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.topic.Topic;
@@ -138,6 +139,23 @@ public class Ui {
         for (int i = 0; i < topics.size(); i++) {
             Topic topic = (Topic) topics.get(i);
             System.out.println(topic.getDescription() + "   [" + topic.getQuestionList().getCount() + "]");
+        }
+
+        System.out.println(HORIZONTAL_LINE);
+    }
+
+    public void printNoteList(ArrayList<Displayable> notes) {
+
+        if(notes.size() == 0) {
+            System.out.println("There are no notes for this topic!");
+        }
+        else {
+            System.out.println("These are the notes for this topic");
+            for(int i = 0; i < notes.size(); i ++) {
+                System.out.println(HORIZONTAL_LINE);
+                Note note = (Note) notes.get(i);
+                System.out.println(i + ". " + note.getDescription());
+            }
         }
 
         System.out.println(HORIZONTAL_LINE);
