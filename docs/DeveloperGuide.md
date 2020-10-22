@@ -258,3 +258,104 @@ Use case ends.
 
 ## Instructions for manual testing
 
+### Launch and Shutdown
+
+1. Initial launch
+	
+    - Download the jar file and copy into an empty folder. Type `java -jar planus.jar`
+    int the command line window and press enter, welcome message will be displayed.
+
+2. Shutdown
+
+    - Type “bye” into the command line and the program should exit.
+
+### Adding a task
+
+1. Add a task into the list by using add command using only description
+
+    - Test case: add homework  
+    Expected: homework task should be added to the list with default date being set 
+    to the current date.
+
+2. Add a task into the lists using add command with description and date.
+
+    - Test case: add homework d/25-12-2020  
+    Expected: homework task should be added to the list with the date set as 25-12-2020.
+
+    - Test case: add homework d/25-13-2020  
+    Expected: Since there is no 13th month, the task is not added to the list, 
+    and an error message is shown.
+
+3. Add a task into the lists using add command with description, date and start and end times.
+
+    - Test case: add homework d/25-12-2020 st/1900 et/2000  
+    Expected: homework task should be added to the list with date set as 25-12-2020 
+    and start time 19:00 and end time 20:00.
+
+    - Test case: add homework d/25-12-2020 st/1900 et/2500
+    Expected: Since there is only 24 hours in a day, the task is not added to the list, 
+    and an error message is shown.
+
+4. Add a task into the lists using add command with description, date, start 
+    and end times and priority.
+	
+    - Test case: add homework d/25-12-2020 st/1900 et/2000 p/3  
+    Expected: homework task should be added to the list with date set as 25-12-2020 
+    and start time 19:00 and end time 20:00 and with a HIGH priority.
+
+    - Test case: add homework d/25-12-2020 st/1900 et/2000 p/4  
+    Expected:  Since the highest priority is HIGH, the task is not added to the list, 
+    and an error message is shown.
+
+### Deleting a task
+
+Prerequisites: Add some tasks to the list. List all tasks using the list command. 
+All indexes are less than or equal to four-digit numbers.
+
+1. Deleting a task
+
+    - Test case: delete 3542  
+    Expected: Task with the index of 3542 is deleted from the list. 
+
+    - Test case: delete 12378
+    Expected: No task is deleted, and an Invalid index error is shown.
+
+### Editing a task
+
+Prerequisites: Add some tasks to the list. List all tasks using the list command.
+All indexes are less than or equal to four-digit numbers.
+
+1. Editing the description of a task
+
+    - Test case: edit 3542 des/homework   
+    Expected: The task with index 3542 will have its description changed to “homework” 
+    while the other components will remain the same.
+
+2. Editing the date of a task
+
+    - Test case: edit 3542 d/21-10-2020  
+    Expected: The task with index 3542 will have its date changed to “21-10-2020” 
+    while the other components will remain the same.
+
+3. Editing the start and end time of a task
+
+    - Test case: edit 3542 st/1500 et/1600  
+    Expected: The task with index 3542 will have its start time changed to 15:00 
+    and end time changed to 16:00  while the other components will remain the same.
+
+4. Editing the priority of a task
+
+    - Test case: edit 3542 p/3  
+    Expected: The task with index 3542 will have its priority changed to “HIGH” 
+    while the other components will remain the same.
+
+### Saving data
+
+Prerequisites: Add some tasks to the list. 
+
+Ensure that data is saved during exit of the program
+
+After adding some tasks to the list, exit the program using the “bye” command.
+Reopen the program using the jar file and list all tasks using the list command.
+Expected: All pre-existing tasks before the most recent program exit 
+should be displayed in the list.
