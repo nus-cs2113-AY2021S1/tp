@@ -18,7 +18,10 @@ public class CommandFinanceSummary extends Command {
     }
 
     public int validate(UserInput ui) {
-        if (ui.getCategory().equals("finance") && ui.getCommand().equalsIgnoreCase("summary")) {
+        if (ui.getCategory().equals("finance") && (ui.getCommand().equalsIgnoreCase("summary")
+                || ui.getCommand().equalsIgnoreCase("list")
+                || ui.getCommand().equalsIgnoreCase("s")
+                || ui.getCommand().equalsIgnoreCase("l"))) {
             userinput = ui;
             return ACCEPT;
         }

@@ -3,11 +3,11 @@ package seedu.duke.hr;
 public class Member {
     public static int numOfMembers = 0;
     protected String memberName;
-    protected int memberPhone;
+    protected long memberPhone;
     protected String memberEmail;
     protected String memberRole;
 
-    public Member(String name, int phone, String email, String role) {
+    public Member(String name, long phone, String email, String role) {
         this.memberName = name;
         this.memberPhone = phone;
         this.memberEmail = email;
@@ -15,7 +15,7 @@ public class Member {
         numOfMembers += 1;
     }
 
-    public int getMemberPhone() {
+    public long getMemberPhone() {
 
         return this.memberPhone;
     }
@@ -31,7 +31,23 @@ public class Member {
     }
 
     public String getMemberName() {
+
         return this.memberName;
+    }
+
+    public void setMemberRole(String newRole) {
+
+        this.memberRole = newRole;
+    }
+
+    public void setMemberPhone(long newPhone) {
+
+        this.memberPhone = newPhone;
+    }
+
+    public void setMemberEmail(String newEmail) {
+
+        this.memberEmail = newEmail;
     }
 
     /**

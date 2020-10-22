@@ -4,14 +4,24 @@ import seedu.duke.Command;
 import seedu.duke.DukeArgumentException;
 import seedu.duke.DukeFinanceAddDescriptionLostException;
 import seedu.duke.DukeNoMatchException;
+import seedu.duke.event.CommandEventCountdown;
+import seedu.duke.DukeNotNumberException;
 import seedu.duke.event.CommandEventAdd;
 import seedu.duke.event.CommandEventDel;
 import seedu.duke.event.CommandEventList;
+import seedu.duke.event.CommandSearchEvent;
+import seedu.duke.event.CommandEventStatus;
 import seedu.duke.finance.CommandFinanceAdd;
 import seedu.duke.finance.CommandFinanceDel;
 import seedu.duke.finance.CommandFinanceSummary;
 import seedu.duke.hr.CommandAddMember;
+import seedu.duke.hr.CommandChangeMemberInfo;
+import seedu.duke.hr.CommandSearchMember;
+import seedu.duke.hr.CommandViewMember;
 import seedu.duke.hr.CommandDelMember;
+import seedu.duke.hr.CommandListConnection;
+import seedu.duke.hr.CommandListProfAdmin;
+import seedu.duke.hr.CommandSearchMember;
 import seedu.duke.hr.CommandViewMember;
 import seedu.duke.others.CommandBye;
 import seedu.duke.others.CommandHelp;
@@ -49,6 +59,8 @@ public class Ui {
         } catch (DukeFinanceAddDescriptionLostException e) {
             printOutput("Please enter the complete command. Format is:"
                     + "finance addLog ITEM_NAME ITEM_VALUE");
+        } catch (DukeNotNumberException e) {
+            printOutput("The format requires a number in the end.");
         } catch (Exception e) {
             printOutput("Command execution failed with an unhandled error!", true);
         }
@@ -140,6 +152,13 @@ public class Ui {
         commandList.add(new CommandAddMember());
         commandList.add(new CommandViewMember());
         commandList.add(new CommandDelMember());
+        commandList.add(new CommandSearchMember());
+        commandList.add(new CommandListProfAdmin());
+        commandList.add(new CommandListConnection());
+        commandList.add(new CommandChangeMemberInfo());
+        commandList.add(new CommandEventStatus());
+        commandList.add(new CommandEventCountdown());
+        commandList.add(new CommandSearchEvent());
     }
 }
 
