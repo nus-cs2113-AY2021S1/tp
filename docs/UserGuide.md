@@ -1,6 +1,10 @@
 # User Guide
   ```
-*Insert NAV@NUS LOGO here 
+   _       _       ____     __       __
+| |\ \  | |     / /\ \    \ \     / /
+| | \ \ | |    / /__\ \    \ \   / /
+| |  \ \| |   / /----\ \    \ \ / /
+|_|   \ \_|  / /      \ \    \_V_/    @NUS 
 ```
 
 - [1. What is Nav@NUS?](#1-what-is-navnus)
@@ -99,10 +103,10 @@ Let us suppose that you are at Raffles Hall with only bus AA2 available and woul
 You would notice that there is no direct bus to University Town. You could use the <code>/routemap</code> to find
 indirect routes to your intended destination. <br>
 These are the steps to follow:
-1. You key in <code>/routemap <strong> AA2 </strong></code> into the command line interface and press enter<br><br>
+1. You key in <code>/routemap <strong> AA2 </strong></code> into the command line interface and press enter.<br><br>
 <img src="UG_Figures/routemap4.png" alt="inputRouteMapCommand" width=800><br>
 
-2. The result will display the whole bus route of bus AA2.
+2. The result will display the whole bus route of bus AA2.<br><br>
 <img src="UG_Figures/routemap1.png" alt="RouteMapCommand" width=800><br>
 
 3. With the information that bus AA2 could bring you to bus stops after Raffles Hall e.g. Kent Vale, you can now check 
@@ -114,7 +118,7 @@ This command is also useful in showing you the previous bus stops of your intend
 to gauge how crowded the bus would be.<br><br>
 Let us suppose that you are at Raffles Hall intending to board AA2. <br>
 These are the steps to follow:
-1. You key in <code>/routemap <strong> AA2 </strong></code> into the command line interface and press enter<br><br>
+1. You key in <code>/routemap <strong> AA2 </strong></code> into the command line interface and press enter.<br><br>
 <img src="UG_Figures/routemap4.png" alt="inputRouteMapCommand" width=800><br>
 
 2. The result will display the whole bus route of bus AA1. You will observe that the bus passes through University Town
