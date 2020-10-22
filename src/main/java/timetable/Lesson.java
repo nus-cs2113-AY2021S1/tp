@@ -18,5 +18,4 @@ public class Lesson extends Event {
         }
         return storageString;
     }
-
 }
