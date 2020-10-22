@@ -381,7 +381,7 @@ in the week across all modules and provides a simple analysis of how they are do
 
 1. User calls the view module command from the `Parser`. `Parser` then calls the `printBreakdownAnalysis()`
    method in `Ui`. `printBreakdownAnalysis()` then instantiates `ViewTimeBreakdownAnalysis` class. 
-   and calls the `printTimeBreakDownAndAnalysis()` method. 
+   and calls the `printTimeBreakdownAndAnalysis()` method. 
    
 1. The user input is subjected to `validateInputs()` to verify that 
    both of the following conditions are satisfied.
@@ -389,9 +389,9 @@ in the week across all modules and provides a simple analysis of how they are do
      * `modlist` in `list` is not empty.
    
    If any of the above conditions is not satisfied, an error message will be printed
-   and `printTimeBreakDownAndAnalysis()` terminates.
+   and `printTimeBreakdownAndAnalysis()` terminates.
 
-1. `printTime()` method in `printTimeBreakDownAndAnalysis()` is first called. For each `Module` 
+1. `printTime()` method in `printTimeBreakdownAndAnalysis()` is first called. For each `Module` 
 in `modList`, `printTime()` prints `actualWorkload` and `expectedWorkload` in form of a 
 horizontal bar graph. The existence of the desired data is checked using `doesActualTimeExist()` 
 and `doesExpectedTimeExist()` methods of the `Module` class. If the desired data does not exist, a `NO INPUT` will be printed. 

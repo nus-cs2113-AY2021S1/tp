@@ -7,7 +7,7 @@ import static seedu.modtracker.Analysis.noInput;
 import static seedu.modtracker.Analysis.tooLittleTimeSpent;
 import static seedu.modtracker.Analysis.tooMuchTimeSpent;
 
-public class ViewTimeBreakDownAnalysis {
+public class ViewTimeBreakdownAnalysis {
     private static final int LOWER_BOUND_OF_JUST_NICE = -30;
     private static final String FULL_BAR = "█";
     private static final String HALF_BAR = "▌";
@@ -22,13 +22,14 @@ public class ViewTimeBreakDownAnalysis {
     private static final String TOO_MUCH_TIME_SPENT = "Seems like you are spending too much time one this module.\n"
             + "Do you perhaps need help for this module?";
     private static final String MODULE_WEEK = "Module    Week ";
-    private static final int NO_TIME_SPENT = 0;
+    private static final int NONE = 0;
     public static final String NO_VALID_INPUTS = "None of the modules has any valid inputs.";
     public static final int INDEX_OFFSET = 1;
     private static final int MIN_WEEK_VALUE = 1;
     private static final int MAX_WEEK_VALUE = 13;
     public static final String INVALID_WEEK_NUMBER = "Please input a week number between 1 and 13 inclusive.";
     public static final String EMPTY_MODULE_LIST = "The module list is empty. Please input some modules to be tracked.";
+    public static final String NO_TIME_SPENT = "Seems like you didn't spend any time on your modules this week.";
 
     /**
      * Prints the breakdown and analysis of the
@@ -48,7 +49,7 @@ public class ViewTimeBreakDownAnalysis {
         assert !list.getData().isEmpty() : "modList should not be empty";
 
         printTime(list, weekNumber);
-        boolean toPrintAnalysis = printBreakDown(list, weekNumber);
+        boolean toPrintAnalysis = printBreakdown(list, weekNumber);
         if (toPrintAnalysis) {
             printAnalysis(list, weekNumber);
         }
@@ -74,7 +75,7 @@ public class ViewTimeBreakDownAnalysis {
      * @param weekNumber specified week number.
      * @return true if total time spent on the modules is greater than zero, otherwise false.
      */
-    private boolean printBreakDown(ModuleList list, int weekNumber) {
+    public boolean printBreakdown(ModuleList list, int weekNumber) {
         double totalTimeSpent = 0;
         ArrayList<Module> modList = list.getData();
         boolean modsWithValidInputExist = false;
@@ -92,16 +93,15 @@ public class ViewTimeBreakDownAnalysis {
         }
 
         System.out.println("Total time spent: " + totalTimeSpent + " H");
-        if (totalTimeSpent == NO_TIME_SPENT) {
-            System.out.println("Seems like you didn't spend any time on your modules this week."
-                    + System.lineSeparator());
+        if (totalTimeSpent == NONE) {
+            System.out.println(NO_TIME_SPENT + System.lineSeparator());
             return false;
         }
 
         for (Module m : modList) {
             if (m.doesActualTimeExist(weekNumber)) {
                 double actualTime = m.getActualTime()[weekNumber - INDEX_OFFSET];
-                if (actualTime > NO_TIME_SPENT) {
+                if (actualTime > NONE) {
                     int percentage;
                     percentage = (int) (actualTime * 100 / totalTimeSpent);
                     System.out.println(percentage + "% of time is spent on " + m.getModuleCode());
