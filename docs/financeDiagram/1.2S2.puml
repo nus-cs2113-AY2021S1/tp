@@ -15,7 +15,7 @@ package FinanceList1 {
 }
 
 
-FinanceList0 -left->FinanceList1
+FinanceList0 -left->FinanceList1:finance summary
 
 
 class Pointer as "Current State" #FFFFF
