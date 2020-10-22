@@ -154,9 +154,10 @@ public class Ui {
     /**
      * Prints the task added line when the user added a task to the task list.
      *
-     * @param tasks task list
+     * @param list task list
      */
-    public void printTaskIsAdded(ArrayList<Task> tasks, String modCode) {
+    public void printTaskIsAdded(TaskList list, String modCode) {
+        ArrayList<Task> tasks = list.getTaskData();
         System.out.println("Got it. I've added this task under " + modCode + ":");
         System.out.println(tasks.get(tasks.size() - 1));
     }
@@ -164,11 +165,12 @@ public class Ui {
     /**
      * Prints the number of tasks stored in the task list.
      *
-     * @param tasks task list
+     * @param list task list
      */
-    public void printNumberOfTasks(ArrayList<Task> tasks) {
-        if (tasks.size() == 0) {
-            System.out.println("The current task list is empty.");
+    public void printNumberOfTasks(TaskList list) {
+        ArrayList<Task> tasks = list.getTaskData();
+        if (tasks.size() == 1){
+            System.out.println("Now you have 1 task in the list." + System.lineSeparator());
         } else if (tasks.size() > 1) {
             System.out.println("Now you have " + tasks.size() + " tasks in the list." + System.lineSeparator());
         } else {
@@ -178,8 +180,11 @@ public class Ui {
 
     /**
      * Prints invalid task number when task number entered does not exist.
+     *
+     * @param list task list
      */
-    public void printInvalidTaskNumber(ArrayList<Task> tasks) {
+    public void printInvalidTaskNumber(TaskList list) {
+        ArrayList<Task> tasks = list.getTaskData();
         System.out.println("Invalid task number.");
         System.out.println("Enter a task number from 1 to " + tasks.size() + "." + System.lineSeparator());
     }
@@ -199,7 +204,7 @@ public class Ui {
                 System.out.println(i + ". " + tasks.get(i - 1));
             }
         }
-        System.out.println(); //added a new line after the list
+        System.out.println(); //adds a new line after the list
     }
 
 }

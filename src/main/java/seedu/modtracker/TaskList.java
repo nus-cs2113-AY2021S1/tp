@@ -9,6 +9,9 @@ public class TaskList {
     public static ArrayList<Task> tasks = new ArrayList<>();
     public Ui ui = new Ui();
     public ModuleList modList = new ModuleList();
+    public static final String MARKED_DONE_PREVIOUSLY = "Task is already marked as done previously.";
+    public static final String MARKED_DONE = "Nice! I've marked this task as done:";
+    public static final String TASK_DELETED = "Noted. I've removed this task:";
 
     /**
      * Marks a selected task as done.
@@ -20,19 +23,19 @@ public class TaskList {
         try {
             String[] digit = str.trim().split(" ", 2);
             int num = Integer.parseInt(digit[1]); //change string to int
+            TaskList taskList = new TaskList();
             if (tasks.size() == 0) {
-                //ui.printList(tasks);
-                System.out.println("Empty task list.\n");
+                ui.printTaskList(taskList);
             } else if (num <= tasks.size() && num > 0) {
                 if (tasks.get(num - 1).getDoneStatus()) {
-                    System.out.println("Task is already marked as done previously." + System.lineSeparator());
+                    System.out.println(MARKED_DONE_PREVIOUSLY + System.lineSeparator());
                 } else {
                     tasks.get(num - 1).setAsDone();
-                    System.out.println("Nice! I've marked this task as done:");
+                    System.out.println(MARKED_DONE);
                     System.out.println(tasks.get(num - 1) + System.lineSeparator());
                 }
             } else {
-                ui.printInvalidTaskNumber(tasks);
+                ui.printInvalidTaskNumber(taskList);
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             ui.printErrorMessage(e.getMessage());
@@ -50,16 +53,16 @@ public class TaskList {
         try {
             String[] digit = str.trim().split(" ", 2);
             int num = Integer.parseInt(digit[1]); //change string to int
+            TaskList taskList = new TaskList();
             if (tasks.size() == 0) {
-                //ui.printList(tasks);
-                System.out.println("Empty task list.\n");
+                ui.printTaskList(taskList);
             } else if (num <= tasks.size() && num > 0) {
-                System.out.println("Noted. I've removed this task:");
+                System.out.println(TASK_DELETED);
                 System.out.println(tasks.get(num - 1));
                 tasks.remove(num - 1);
-                ui.printNumberOfTasks(tasks);
+                ui.printNumberOfTasks(taskList);
             } else {
-                ui.printInvalidTaskNumber(tasks);
+                ui.printInvalidTaskNumber(taskList);
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             ui.printErrorMessage(e.getMessage());
@@ -77,6 +80,7 @@ public class TaskList {
             String[] split = str.trim().split(" ", 3);
             String modCode = split[1];
             modCode = modCode.toUpperCase();
+            TaskList taskList = new TaskList();
             if (!modList.checkIfModuleValid(modCode, true)) {
                 return;
             }
@@ -87,8 +91,8 @@ public class TaskList {
                 return;
             }
             tasks.add(new Task(modCode, split[2]));
-            ui.printTaskIsAdded(tasks, modCode);
-            ui.printNumberOfTasks(tasks);
+            ui.printTaskIsAdded(taskList, modCode);
+            ui.printNumberOfTasks(taskList);
         } catch (ArrayIndexOutOfBoundsException e) {
             ui.printErrorMessage(e.getMessage());
             System.out.println("");
