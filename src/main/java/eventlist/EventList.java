@@ -6,6 +6,7 @@ import exception.UndefinedEventException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static java.util.stream.Collectors.toList;
 
@@ -56,10 +57,25 @@ public class EventList {
         }
     }
 
+    /**
+     * Edit the contents of an existing event
+     *
+     * @param event the new edited event
+     * @param index the index of the event being edited
+     */
     public void editEvent(Event event, int index) {
         assert events != null;
         events.set(index, event);
     }
+
+    /**
+     * Edit the contents of an existing event
+     */
+    public void sortEvent() {
+        assert events != null;
+        Collections.sort(events, Event.descriptionComparator);
+    }
+
 
     /**
      * Gives the access to the list of events.

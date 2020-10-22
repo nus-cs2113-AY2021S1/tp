@@ -6,6 +6,7 @@ import location.Location;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 
 
 /**
@@ -48,4 +49,11 @@ public class PersonalEvent extends Event {
         return "[P]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH':'mm")) + ")"
                 + "\n" + location;
     }
+
+    public static Comparator<Event> descriptionComparator = new Comparator<Event>() {
+        @Override
+        public int compare(Event o1, Event o2) {
+            return o2.getDescription().substring(14).compareToIgnoreCase(o1.getDescription().substring(14));
+        }
+    };
 }
