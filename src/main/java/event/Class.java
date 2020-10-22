@@ -5,6 +5,7 @@ import location.Location;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 
 /**
  * Represents the Class events.
@@ -37,4 +38,5 @@ public class Class extends Event {
         return "[C]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH':'mm")) + ")"
                 + "\n" + location;
     }
+
 }
