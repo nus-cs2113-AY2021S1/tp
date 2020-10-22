@@ -21,10 +21,10 @@
      * Mark event as done: `done` <br/>
      * search for a particular event `search`<br/>
      
-   3.5 Finance `finance` <br/>
-     * Add finance log : `addLog`<br/>
-     * Delete finance log: `delLog`<br/>
-     * View financial summary: `summary`<br/>
+   3.5 Finance `finance`  
+     * Add finance log : `addLog`  
+     * Delete finance log: `delLog`  
+     * View financial summary: `summary`  
             
 4. FAQ
 5. Command Summary
