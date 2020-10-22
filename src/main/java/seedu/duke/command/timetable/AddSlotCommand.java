@@ -12,6 +12,7 @@ import seedu.duke.slot.Slot;
 import seedu.duke.slot.Timetable;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -94,8 +95,15 @@ public class AddSlotCommand extends Command {
         } else {
             String lesson = slotAndBookmark.get(0);
             String day = slotAndBookmark.get(1);
-            LocalTime startTime = LocalTime.parse(slotAndBookmark.get(2));
-            LocalTime endTime = LocalTime.parse(slotAndBookmark.get(3));
+            LocalTime startTime;
+            LocalTime endTime;
+            try {
+                startTime = LocalTime.parse(slotAndBookmark.get(2));
+                endTime = LocalTime.parse(slotAndBookmark.get(3));
+            } catch (DateTimeParseException e) {
+                throw new DukeException(DukeExceptionType.INVALID_TIME_FORMAT, "Invalid time format. ("
+                        + slotAndBookmark.get(2) + " " + slotAndBookmark.get(3) + ") Please check format.");
+            }
             Slot newSlot;
             if (module.slotExists(lesson, day, startTime, endTime)) {
                 newSlot = module.getSlot(lesson, day, startTime, endTime);
