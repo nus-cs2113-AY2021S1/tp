@@ -73,11 +73,14 @@ public class WatchTime {
     }
 
     public static String userReportString() {
+        int timeLeft = dailyWatchLimit - durationWatchedToday;
         String response = "Date : ";
         response += recordedDate.toString();
         response += System.lineSeparator();
         response += "Time left today : ";
-        response += (dailyWatchLimit - durationWatchedToday);
+        response += (timeLeft / 60);
+        response += "hours ";
+        response += (timeLeft % 60);
         response += " minutes. To update the time allocated to watching shows, use the 'updateTimeLimit' command.";
         return response;
     }

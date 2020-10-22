@@ -84,7 +84,7 @@ public class Ui {
                 + "\n"
                 + ("season") + " - Update your season progress\n"
                 + "\n"
-                + ("updatewatchlimit") + " - Update your watch time limit\n"
+                + ("updatetimelimit") + " - Update your watch time limit\n"
                 + "\n"
                 + ("watch") + " - Update your watch progress\n"
                 + "\n"

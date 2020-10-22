@@ -1,3 +1,10 @@
-recordedDate: null
-durationWatchedToday: 0
-dailyWatchLimit: 5
+recordedDate: 2020-10-22
+durationWatchedToday: 30
+dailyWatchLimit: 30
+1. friends
+		Season: 3
+		Episodes: 10 10 10 
+		Rating: -1
+		Duration: 30
+		Current Season: 1
+		Current Episode: 2
