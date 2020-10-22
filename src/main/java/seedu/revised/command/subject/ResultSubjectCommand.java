@@ -35,9 +35,9 @@ public class ResultSubjectCommand extends SubjectCommand {
         }
         assert (resultSubject != null) : "No such subject exists!";
         Ui.printSubjectResults(resultSubject);
-        logger.info("Finish reading the command to find the subject for the results feature.Now, the " +
-                "application prints the results.");
-        logger.fine(String.format("The subject is %s",resultSubject.getTitle()));
+        logger.info("Finish reading the command to find the subject for the results feature.Now, the "
+                + "application prints the results.");
+        logger.fine(String.format("The subject is %s", resultSubject.getTitle()));
         return null;
     }
 }

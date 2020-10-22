@@ -36,8 +36,8 @@ public abstract class Quiz {
             this.result.updateResult(updatedResult);
 
         } else {
-            logger.info("The current score remains the same while the contents of the flashcard and the user's " +
-                    "answer are added to the incorrectAnswers list");
+            logger.info("The current score remains the same while the contents of the flashcard and the user's "
+                    + "answer are added to the incorrectAnswers list");
             this.incorrectAnswers.add(flashcard.getQuestion());
             this.incorrectAnswers.add(flashcard.getAnswer());
             this.incorrectAnswers.add(answer);

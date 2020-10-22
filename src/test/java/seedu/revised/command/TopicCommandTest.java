@@ -10,6 +10,7 @@ import seedu.revised.command.topic.DeleteTopicCommand;
 import seedu.revised.command.topic.FindTopicCommand;
 import seedu.revised.command.topic.ListTopicCommand;
 import seedu.revised.command.topic.ReturnTopicCommand;
+import seedu.revised.exception.topic.InvalidTopicException;
 import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.exception.topic.RepeatedTopicException;
 
@@ -39,7 +40,7 @@ public class TopicCommandTest {
     }
 
     @Test
-    public void addTopic() throws NoTopicException, RepeatedTopicException {
+    public void addTopic() throws NoTopicException, RepeatedTopicException, InvalidTopicException {
         addCommand = new AddTopicCommand("add Geometry");
         addCommand.execute(subject);
         assertEquals("Geometry", topics.getList().get(3).getTitle());

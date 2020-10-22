@@ -33,8 +33,8 @@ public class ResultTopicCommand extends TopicCommand {
         if (resultTopic == null) {
             throw new NoTopicException(Ui.printNoTopicError());
         }
-        logger.info("Finish reading the command to find the topic for the result feature.Now, the " +
-                "application prints" + "the results.");
+        logger.info("Finish reading the command to find the topic for the result feature.Now, the "
+                + "application prints" + "the results.");
         logger.fine(String.format("The subject is %s", resultTopic.getTitle()));
         Ui.printTopicResults(resultTopic);
 
