@@ -82,11 +82,11 @@ public class Storage {
 
     private void initialiseFile(Path fileText) {
 
-        if(!Files.exists(fileText)) {
+        if (!Files.exists(fileText)) {
             try {
                 String fileName = fileText.toString();
                 Files.createFile(fileText);
-                System.out.println("File Created: " + fileName );
+                System.out.println("File Created: " + fileName);
             } catch (IOException e) {
                 ui.printErrorMessage("IO exception error! File cannot be created on system!");
             }

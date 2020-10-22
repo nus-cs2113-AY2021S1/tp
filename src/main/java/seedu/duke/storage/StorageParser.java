@@ -24,8 +24,8 @@ public class StorageParser {
 
     public static void saveParser(Storage store, UserData data, Command c) {
 
-        if (c.getClass().equals(ByeCommand.class) || c.getClass().equals(CheckCommand.class) ||
-                c.getClass().equals(GoalCommand.class) || c.getClass().equals(ListCommand.class)) {
+        if (c.getClass().equals(ByeCommand.class) || c.getClass().equals(CheckCommand.class)
+                || c.getClass().equals(GoalCommand.class) || c.getClass().equals(ListCommand.class)) {
             return; //don't need to save, nothing was modified
         }
 
