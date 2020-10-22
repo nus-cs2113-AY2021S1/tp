@@ -6,10 +6,11 @@
 <br/>&nbsp;2.1 [Architecture](#21-architecture)
 <br/>&nbsp;2.2 [UI component](#22-ui)
 <br/>&nbsp;2.3 [Parser component](#23-parser)
-<br/>&nbsp;2.4 [Command component]()
-<br/>&nbsp;2.5 [User component]()
-<br/>&nbsp;2.6 [AnimeData component]()
-<br/>&nbsp;2.7 [StorageManager component](#27-storagemanager)
+<br/>&nbsp;2.4 [Command component](#24-command)
+<br/>&nbsp;2.6 [AnimeData component](#25-animedata)
+<br/>&nbsp;2.6 [User component](#26-user)
+<br/>&nbsp;2.7 [Workspace component](#27-workspace)
+<br/>&nbsp;2.7 [StorageManager component](#28-storagemanager)
 3. [Implementation](#3-implementation)
 <br/>&nbsp;3.1 [Workspace Feature](#31-workspace-feature)
 <br/>&nbsp;3.2 [Estimation Feature](#32-estimation-feature)
@@ -83,9 +84,20 @@ Given below is the Sequence Diagram for interactions within the `Parser` compone
 
 ### 2.4 Command
 
+### 2.5 AnimeData
+![AnimeData Diagram](images/AnimeData-Class-Diagram.PNG)
 
-### 2.5 User
-![User Diagram](images/User-Class-Diagram.png)
+API: `AnimeData.java`
+* AnimeData load and parse Data Files into memory on startup
+* Data are stored as Anime object within AnimeData
+
+The `AnimeDatar `component:
+* Can retrieve Anime object using ID
+* Can view detailed  information of each Anime Object
+* Can browse the Anime catalog with sorting algorithms
+
+### 2.6 User
+![User Diagram](images/User-Class-Diagram.PNG)
 
 API: `User.java`  
 
@@ -97,9 +109,7 @@ The `User`component:
 * Can add, set, and switch between workspaces 
 
 
-
-#### 2.5.1 Workspace
-
+### 2.7 Workspace
 API: `Workspace.java`  
 
 The `Workspace` component:  
@@ -110,7 +120,7 @@ The `Workspace` component:
 
 
 
-### 2.7 StorageManager
+### 2.8 StorageManager
 ![StorageManager Diagram](images/StorageManager-Class-Diagram.png)
 
 API: `StorageManager.java`
@@ -136,6 +146,77 @@ For adding a new workspace...
 ### 3.2 Estimation Feature
 
 ### 3.3 Bookmark Feature
+The bookmark feature will allow users save shortcut to Anime objects:
+* List the anime within their bookmark
+* Provide quick access to Anime details
+* Edit the current episode for an Anime
+* Add notes for an Anime
+
+Given below is an example usage scenario and how Bookmark mechanism behaves at each step.
+
+Note: The command is using one-based indexing while the program uses zero-based indexing. Since the conversion is 
+within the Parser and Command object, the following example will be using one-based indexing to be consistent with the 
+commands.
+
+Step 1. The user launches the application for the first time. The `Bookmark` will be initialized with the initial 
+bookmark state, and keeps information within the three arraylist using bookmark ID to reference a specific bookmark 
+object. 
+
+![Bookmark Object Diagram 1](images/Bookmark-Default-State.PNG)
+
+Figure 3. Initial state of bookmark (First launch)
+
+Step 2. The user executes `bookmark -a 430`, the command adds the anime index `430` into bookmark. By default, 
+the animeEpisode will be initialised to `0` which signify empty episode field, the command also creates an empty note 
+object in noteList. This is to allow the first bookmark index to identify its respective anime index, episode and note.
+
+![Bookmark Object Diagram 2](images/Bookmark-Add-Command.PNG)
+
+Figure 3. Bookmark state after step 2 (`bookmark -a 430`) 
+
+Step 2.5 Execute `bookmark -a 1` and `bookmark -a 410` to populate the Bookmark for better illustration.
+
+![Bookmark Object Diagram 2](images/Bookmark-Add2-Command.PNG)
+
+Figure 3. Bookmark state after step 2.5 (`bookmark -a 1` and `bookmark -a 410`) 
+
+Step 3. The user executes `bookmark 2 -e 5`, the command will edit the bookmark index of `2` anime episode to `5`. 
+This allows the user to keep track of his/her progress within an anime series.
+
+![Bookmark Object Diagram 2](images/Bookmark-Episode-Command.PNG)
+
+Figure 3. Bookmark state after step 3
+
+Step 4. The user executes `bookmark 2 -n Schedule Push Back`, the command will add a note to the Note object with 
+bookmark index `2`.
+
+![Bookmark Object Diagram 2](images/Bookmark-Note-Command.PNG)
+
+Figure 3. Bookmark state after step 4
+
+Step 5. The user executes `bookmark -l`, this is the bookmark list command which outputs all anime names with the 
+bookmark index. The anime name is retrieved from AnimeData using the animeBookmarkList which keeps all anime id.
+
+![Bookmark Object Diagram 2](images/Bookmark-List-Command.PNG)
+
+Figure 3. Bookmark state after step 5
+
+Step 6. The user executes `bookmark 2`, this is the command for bookmark info. The command will look up the bookmark 
+index with `2`, use the AnimeData to retrieve all relevant information for that anime, then output to the user. The 
+command also prints all notes within the bookmark index `2` to the user.
+
+![Bookmark Object Diagram 2](images/Bookmark-Info-Command.PNG)
+
+Figure 3. Bookmark state after step 6
+
+Step 7. The user executes `bookmark -d 2`. It will delete the bookmark index `2` within the three arraylist.
+
+![Bookmark Object Diagram 2](images/Bookmark-Delete-Command.PNG)
+
+Figure 3. Bookmark state after step 7
+
+This is the end of the example. Bookmark information will be stored and is persistent through switching of workspace or 
+even different session of using the program.
 
 ### 3.4 Browse Feature
 The `BrowseCommand` is executed by `BrowseCommandParser`. It will fetch `Anime` objects matching the parameters specified 
@@ -163,7 +244,9 @@ Note: The magic constants have already been refactored out into constant variabl
 
 Let us now look at an example of how the default `browse` command would be carried out using an example page size of `3` 
 (it is set to `20` in actual execution) on a small sample list of `AnimeData`.
+
 ![Browse Object Diagram 1](images/Browse-Default-State.png)
+
 `BrowseCommand` will utilise the `buildBrowseOutput` operation to return all anime series in the page window, as shown 
 in the diagram above.
 
@@ -178,6 +261,7 @@ to construct a printable result for browsing.
 
 Moving on, if we were to run `browse -p 2` which is to browse the 2nd page of the list. 
 It would shift the page window down by 1 page as depicted in the diagram below.
+
 ![Browse Object Diagram 2](images/Browse-Default-State2.png)
 
 It will then carry out the remaining operation as per normal.
@@ -191,6 +275,7 @@ sort alphabetically and in ascending order (A-Z).
 Or in command form: `browse -n name -o asc -p 2`.
 
 ![Browse Object Diagram 3](images/Browse-Sorted-State.png)
+
 `BrowseCommand` will now firstly sort the AnimeData list through the `sortBrowseList` operation.
 
 As you can see, even though the page window is at the same position as the previous command, 
@@ -202,6 +287,7 @@ to revert the list back to its original form.
 This will be done through: `sortBrowseList(3)` method call.
 
 Here is the sequence diagram to better illustrate the lifecycle of a browse command.
+
 ![Browse Sequence Diagram](images/Browse-SequenceDiagram.png)
 
 ## 4. Product scope
