@@ -92,4 +92,8 @@ public class Module {
     public boolean doesActualTimeExist(int weekNumber) {
         return (actualTime[weekNumber - INDEX_OFFSET] != NO_INPUT);
     }
+
+    public boolean doesHoursExceedTotal(double time, int weekNumber) {
+        return (actualTime[weekNumber - INDEX_OFFSET] < time);
+    }
 }

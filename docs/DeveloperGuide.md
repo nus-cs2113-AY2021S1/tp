@@ -247,7 +247,7 @@ Step.4 Within the `addTime()` function, it will then check if the module exists 
 
 Step.5 A time of `2` hours in academic week `4` will now be added to the actual workload of the `CS2113T` module. 
 
-Step.6 The system will print the string `2 hours are added to CS2113T`
+Step.6 The system will print the string `2 hours have been added to CS2113T`
 
 Step.7 The actual workload is updated in storage.
 
@@ -317,7 +317,7 @@ function will return true.
 
 Step.8 A time of `2` hours in academic week `4` will now be removed from the actual workload of the `CS2113T` module. 
 
-Step.9 The system will print the string `2 hours are removed from CS2113T`
+Step.9 The system will print the string `2 hours have been removed from CS2113T`
 
 Step.10 The actual workload is updated in storage.
 
