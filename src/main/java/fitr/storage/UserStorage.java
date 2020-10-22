@@ -50,9 +50,10 @@ public class UserStorage {
         int age = Integer.parseInt(arguments[2]);
         double height = Double.parseDouble(arguments[3]);
         double weight = Double.parseDouble(arguments[4]);
+        int userFitnessLevel = Integer.parseInt(arguments[5]);
 
         LOGGER.fine("User profile file read successfully.");
-        return new User(name, age, height, weight, gender);
+        return new User(name, age, height, weight, gender, userFitnessLevel);
     }
 
     /**
@@ -71,7 +72,8 @@ public class UserStorage {
                 + COMMA_SEPARATOR + user.getGender()
                 + COMMA_SEPARATOR + user.getAge()
                 + COMMA_SEPARATOR + user.getHeight()
-                + COMMA_SEPARATOR + user.getWeight() + System.lineSeparator());
+                + COMMA_SEPARATOR + user.getWeight()
+                + COMMA_SEPARATOR + user.getFitnessLevel() + System.lineSeparator());
 
         LOGGER.fine("User profile file written successfully.");
         file.close();

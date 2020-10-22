@@ -37,11 +37,16 @@ public class Messages {
     public static final String GENDER_OUTPUT_HEADER = "Gender: ";
     public static final String HEIGHT_OUTPUT_HEADER = "Height (in m): ";
     public static final String WEIGHT_OUTPUT_HEADER = "Weight (in kg): ";
+    public static final String FITNESS_OUTPUT_HEADER = "Your fitness level: ";
     public static final String LINE_BREAK = "\n";
     public static final String MALE_SYMBOL = "M";
     public static final String FEMALE_SYMBOL = "F";
     public static final String MALE_STRING = "Male";
     public static final String FEMALE_STRING = "Female";
+    public static final String FIT_STRING = "Fit";
+    public static final String UNFIT_STRING = "Unfit";
+    public static final String NORMAL_STRING = "Normal";
+    public static final String NULL_STRING = "NULL";
 
     public static final String ERROR_INVALID_COMMAND = "Sorry this is an invalid command!";
 
