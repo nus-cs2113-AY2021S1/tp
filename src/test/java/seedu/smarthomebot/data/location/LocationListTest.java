@@ -1,9 +1,10 @@
-package seedu.smarthomebot.model;
+package seedu.smarthomebot.data.location;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
 import seedu.smarthomebot.commons.exceptions.InvalidRemovalLocationException;
+import seedu.smarthomebot.data.location.LocationList;
 
 import java.util.ArrayList;
 

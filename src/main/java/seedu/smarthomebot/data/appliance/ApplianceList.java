@@ -1,6 +1,5 @@
-package seedu.smarthomebot.model;
+package seedu.smarthomebot.data.appliance;
 
-import seedu.smarthomebot.model.framework.Appliance;
 import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
 

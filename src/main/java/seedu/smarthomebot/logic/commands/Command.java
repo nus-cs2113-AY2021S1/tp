@@ -1,7 +1,7 @@
 package seedu.smarthomebot.logic.commands;
 
-import seedu.smarthomebot.model.ApplianceList;
-import seedu.smarthomebot.model.LocationList;
+import seedu.smarthomebot.data.appliance.ApplianceList;
+import seedu.smarthomebot.data.location.LocationList;
 
 public abstract class Command {
 

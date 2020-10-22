@@ -1,8 +1,8 @@
 package seedu.smarthomebot.logic.commands;
 
-import seedu.smarthomebot.model.framework.type.AirConditioner;
-import seedu.smarthomebot.model.framework.type.Fan;
-import seedu.smarthomebot.model.framework.Appliance;
+import seedu.smarthomebot.data.appliance.type.AirConditioner;
+import seedu.smarthomebot.data.appliance.type.Fan;
+import seedu.smarthomebot.data.appliance.Appliance;
 
 import java.util.ArrayList;
 

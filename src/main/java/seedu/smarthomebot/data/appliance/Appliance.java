@@ -1,6 +1,9 @@
-package seedu.smarthomebot.model.framework;
+package seedu.smarthomebot.data.appliance;
 
 import seedu.smarthomebot.commons.exceptions.InvalidNumericalValueException;
+import seedu.smarthomebot.data.location.LocationList;
+import seedu.smarthomebot.logic.commands.exceptions.InvalidApplianceNameException;
+import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
 
 /**
  * Abstract Class representing the appliances for SmartHomeBot.
@@ -10,22 +13,35 @@ public abstract class Appliance {
     private static final String OFF = "OFF";
     private static int maxNameLength = 0;
     private static int maxLocationLength = 0;
+    private static LocationList locationList;
     protected String name;
     protected String location;
     protected String wattage;
     protected Power appliancePower;
 
-    public Appliance(String name, String location, String wattage) {
-        this.name = name;
-        this.location = location;
-        this.wattage = wattage;
-        appliancePower = new Power(wattage);
-        if (this.name.length() > maxNameLength) {
-            maxNameLength = this.name.length();
+    public Appliance(String name, String location, String wattage, LocationList locationList)
+            throws LocationNotFoundException, InvalidApplianceNameException {
+
+        this.locationList = locationList;
+        if (locationList.isLocationCreated(location) && (!locationList.isLocationCreated(name))) {
+            this.name = name;
+            this.location = location;
+            this.wattage = wattage;
+            appliancePower = new Power(wattage);
+            if (this.name.length() > maxNameLength) {
+                maxNameLength = this.name.length();
+            }
+            if (this.location.length() > maxLocationLength) {
+                maxLocationLength = this.location.length();
+            }
+        } else {
+            if (locationList.isLocationCreated(name)) {
+                throw new InvalidApplianceNameException();
+            } else {
+                throw new LocationNotFoundException();
+            }
         }
-        if (this.location.length() > maxLocationLength) {
-            maxLocationLength = this.location.length();
-        }
+
     }
 
     /**

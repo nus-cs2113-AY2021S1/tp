@@ -1,6 +1,9 @@
-package seedu.smarthomebot.model.framework.type;
+package seedu.smarthomebot.data.appliance.type;
 
-import seedu.smarthomebot.model.framework.Appliance;
+import seedu.smarthomebot.data.appliance.Appliance;
+import seedu.smarthomebot.data.location.LocationList;
+import seedu.smarthomebot.logic.commands.exceptions.InvalidApplianceNameException;
+import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
 
 import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_FAN_SPEED;
 
@@ -11,8 +14,9 @@ public class Fan extends Appliance {
     private static final int UPPER_BOUND = 4;
     private String speed;
 
-    public Fan(String name, String location, String wattage) {
-        super(name, location, wattage);
+    public Fan(String name, String location, String wattage, LocationList locationList)
+            throws InvalidApplianceNameException, LocationNotFoundException {
+        super(name, location, wattage, locationList);
         this.speed = "1";
     }
 

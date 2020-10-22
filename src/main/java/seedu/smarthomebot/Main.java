@@ -5,8 +5,8 @@ import seedu.smarthomebot.logic.commands.CommandResult;
 import seedu.smarthomebot.logic.commands.ExitCommand;
 import seedu.smarthomebot.commons.Messages;
 import seedu.smarthomebot.logic.parser.Parser;
-import seedu.smarthomebot.model.ApplianceList;
-import seedu.smarthomebot.model.LocationList;
+import seedu.smarthomebot.data.appliance.ApplianceList;
+import seedu.smarthomebot.data.location.LocationList;
 import seedu.smarthomebot.storage.StorageFile;
 import seedu.smarthomebot.ui.TextUi;
 

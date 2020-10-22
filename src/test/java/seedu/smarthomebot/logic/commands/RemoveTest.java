@@ -1,7 +1,7 @@
 package seedu.smarthomebot.logic.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.smarthomebot.model.LocationList;
+import seedu.smarthomebot.data.location.LocationList;
 import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
 import seedu.smarthomebot.commons.exceptions.InvalidRemovalLocationException;
 
