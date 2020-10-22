@@ -23,7 +23,7 @@
   * [3.7. Search for specific dining outlet: ```/dineinfo```](#37-search-for-specific-dining-outlet-dineinfo)
     + [3.7.1. Examples of usage](#371-examples-of-usage)
   * [3.8. Exiting the program: ```/exit```](#38-exiting-the-program-exit)
-  * [3.9. Listing available help: ``/`help```](#39-listing-available-help-help)
+  * [3.9. Listing available help: ```/help```](#39-listing-available-help-help)
   * [3.10. Similarity Checks](#310-similarity-checks)
     + [3.10.1. Examples of usage](#3101-examples-of-usage)
   * [3.11. Reset data: ```/reset```](#311-reset-data-reset)  
@@ -244,7 +244,7 @@ This command helps you exit the application.<br>
 The format of this command is as follows:<br>
 <code>/exit</code> <br>
 
-The application exits after displaying the following message:<br>
+The application exits after displaying the following message.<br>
 ```
 So long buddy!
 ```
@@ -254,7 +254,7 @@ This command lists a set of features along with their respective commands availa
 The format of this command is as follows:<br> 
 <code>/help</code> <br>
 
-Expected outcome:
+This expected outcome is as follows.
 ```
 Here are the range of commands:
 1./route : Displays possible direct bus from point to point
@@ -299,7 +299,7 @@ Format: <code>/reset</code> <br>
 Let us suppose that you are transitioning to a new academic semester, and the locations that you will key in to the
 application changes. To create a new data set that will cater to your needs in this new semester, you will key in the
 command <code>/reset</code> to reset the data set and start the application on a clean slate.<br><br>
-<img src="UG_Figures/freq1.png" alt="Correct input message" width=800><br>
+<img src="UG_Figures/freq1.png" alt="Correct input message" width=600><br>
 _Figure 7: Output message after resetting data._
 
 
@@ -325,6 +325,7 @@ Command | Format | Example
 /dineinfo | `/dineinfo` **outlet** | `/dineinfo` **arise**
 /exit | `/exit` | `/exit`
 /help | `/help` | `/help`
+/reset | `/reset` | `/reset`
 
 ## 6. Glossary
 
