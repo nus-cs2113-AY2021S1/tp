@@ -1,13 +1,13 @@
-Jumping rope, 12.3, 5, 10, 15, 3, 4, 4
-Running (in km), 7.0, 1, 3, 5, 1, 1, 1
-Burpees, 13.0, 5, 10, 15, 4, 4, 4
-Squat Jacks, 5.0, 5, 10, 15, 3, 4, 4
-Mountain Climbers, 8.0, 10, 15, 20, 3, 4, 4
-Sit-ups, 3.8, 10, 20, 25, 3, 3, 4
-Crunches, 3.8, 10, 20, 25, 3, 3, 4
-Leg raises, 4.5, 5, 10, 15, 3, 4, 4
-Bicycle Kicks, 3.8, 10, 20, 25, 3, 3, 4
-Bicycle crunches, 3.8, 10, 20, 25, 3, 3, 4
-Sprints (in seconds), 16.0, 10, 20, 30, 3, 4, 5
-Russian Twists, 3.8, 10, 20, 25, 3, 3, 4
-Flutter kicks, 4.5, 10, 20, 25, 3, 3, 4
+Jumping rope, 12.3, 1, 1.5, 2, 3, 4, 4
+Running, 7.0, 15, 25, 30, 1, 1, 1
+Burpees, 13.0, 0.5, 1, 1, 4, 5, 6
+Squat Jacks, 5.0, 1, 2, 2, 3, 4, 5
+Mountain Climbers, 8.0, 1, 1.5, 2, 3, 4, 4
+Sit-ups, 3.8, 1, 1, 1, 3, 4, 5
+Crunches, 3.8, 1, 1, 1, 3, 4, 5
+Leg raises, 4.5, 1, 1.5, 2, 3, 3, 3
+Bicycle Kicks, 3.8, 1, 1.5, 2, 3, 3, 3
+Bicycle crunches, 3.8, 1, 1, 1, 3, 4, 5
+Sprints (in seconds), 16.0, 1, 1.5, 2, 3, 4, 5
+Russian Twists, 3.8, 1, 1, 1, 3, 4, 5
+Flutter kicks, 4.5, 1, 1.5, 2, 3, 3, 3
