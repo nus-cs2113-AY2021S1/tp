@@ -2,6 +2,7 @@ package fitr.storage;
 
 import fitr.Calorie;
 import fitr.Exercise;
+import fitr.exception.InvalidFileFormatException;
 import fitr.list.ExerciseList;
 
 import java.io.File;
@@ -38,7 +39,7 @@ public class ExerciseStorage {
      * @return an ArrayList of Exercise objects
      * @throws FileNotFoundException if the file is not found
      */
-    public ArrayList<Exercise> loadExerciseList() throws FileNotFoundException {
+    public ArrayList<Exercise> loadExerciseList() throws FileNotFoundException, InvalidFileFormatException {
         LOGGER.fine("Attempting to read file: " + exerciseListPath);
         ArrayList<Exercise> exerciseList = new ArrayList<>();
         String line;
@@ -49,6 +50,11 @@ public class ExerciseStorage {
         while (readFile.hasNext()) {
             line = readFile.nextLine();
             arguments = line.split(COMMA_SEPARATOR);
+
+            if (arguments.length != 2) {
+                throw new InvalidFileFormatException();
+            }
+
             exerciseList.add(new Exercise(arguments[0],
                     new Calorie(Integer.parseInt(arguments[1]))));
         }

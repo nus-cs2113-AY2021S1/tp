@@ -2,6 +2,7 @@ package fitr.storage;
 
 import fitr.Calorie;
 import fitr.Food;
+import fitr.exception.InvalidFileFormatException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ class FoodStorageTest {
     @Test
     public void loadFoodList_invalidFoodData_exceptionThrown() throws Exception {
         FoodStorage foodStorage = new FoodStorage("src/test/data/StorageTest/InvalidFoodData.txt");
-        assertThrows(ArrayIndexOutOfBoundsException.class, foodStorage::loadFoodList);
+        assertThrows(InvalidFileFormatException.class, foodStorage::loadFoodList);
     }
 
     private ArrayList<Food> getValidFoodList() {

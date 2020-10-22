@@ -2,6 +2,7 @@ package fitr.storage;
 
 import fitr.Calorie;
 import fitr.Exercise;
+import fitr.exception.InvalidFileFormatException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ class ExerciseStorageTest {
     @Test
     public void loadExerciseList_invalidExerciseData_exceptionThrown() throws Exception {
         ExerciseStorage exerciseStorage = new ExerciseStorage("src/test/data/StorageTest/InvalidExerciseData.txt");
-        assertThrows(ArrayIndexOutOfBoundsException.class, exerciseStorage::loadExerciseList);
+        assertThrows(InvalidFileFormatException.class, exerciseStorage::loadExerciseList);
     }
 
     private ArrayList<Exercise> getValidExerciseList() {

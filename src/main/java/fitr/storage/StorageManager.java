@@ -3,9 +3,11 @@ package fitr.storage;
 import fitr.Exercise;
 import fitr.Food;
 import fitr.Goal;
+import fitr.exception.InvalidFileFormatException;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.GoalList;
+import fitr.ui.Ui;
 import fitr.user.User;
 
 import java.io.FileNotFoundException;
@@ -29,7 +31,12 @@ public class StorageManager {
     }
 
     public ArrayList<Exercise> loadExerciseList() throws FileNotFoundException {
-        return exerciseStorage.loadExerciseList();
+        try {
+            return exerciseStorage.loadExerciseList();
+        } catch (InvalidFileFormatException e) {
+            Ui.printCustomError("Error: Invalid exercise file - new exercise list created!");
+            return new ArrayList<>();
+        }
     }
 
     public void writeExerciseList(ExerciseList exerciseList) throws IOException {
@@ -37,7 +44,12 @@ public class StorageManager {
     }
 
     public ArrayList<Food> loadFoodList() throws FileNotFoundException {
-        return foodStorage.loadFoodList();
+        try {
+            return foodStorage.loadFoodList();
+        } catch (InvalidFileFormatException e) {
+            Ui.printCustomError("Error: Invalid food file - new food list created!");
+            return new ArrayList<>();
+        }
     }
 
     public void writeFoodList(FoodList foodList) throws IOException {

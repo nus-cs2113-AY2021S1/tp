@@ -15,8 +15,8 @@ import java.io.IOException;
 
 public class Fitr {
     private StorageManager storageManager;
-    private FoodList foodList;
     private ExerciseList exerciseList;
+    private FoodList foodList;
     private User user;
     private GoalList goalList;
     private Recommender recommender;
@@ -41,7 +41,7 @@ public class Fitr {
 
             Ui.printSuggestQuestion();
         } catch (IOException e) {
-            System.out.println("An error has occurred - the file cannot be opened!");
+            Ui.printCustomError("An error has occurred - the file cannot be opened!");
         }
     }
 

@@ -2,6 +2,8 @@ package fitr.storage;
 
 import fitr.Calorie;
 import fitr.Food;
+import fitr.exception.FitrException;
+import fitr.exception.InvalidFileFormatException;
 import fitr.list.FoodList;
 
 import java.io.File;
@@ -38,7 +40,7 @@ public class FoodStorage {
      * @return an ArrayList of Food objects
      * @throws FileNotFoundException if the file is not found
      */
-    public ArrayList<Food> loadFoodList() throws FileNotFoundException {
+    public ArrayList<Food> loadFoodList() throws FileNotFoundException, InvalidFileFormatException {
         LOGGER.fine("Attempting to read file: " + foodListPath);
         ArrayList<Food> foodList = new ArrayList<>();
         String line;
@@ -49,6 +51,11 @@ public class FoodStorage {
         while (readFile.hasNext()) {
             line = readFile.nextLine();
             arguments = line.split(COMMA_SEPARATOR);
+
+            if (arguments.length != 3) {
+                throw new InvalidFileFormatException();
+            }
+
             foodList.add(new Food(arguments[0],
                     new Calorie(Integer.parseInt(arguments[1])), Integer.parseInt(arguments[2])));
         }
