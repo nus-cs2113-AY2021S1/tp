@@ -22,9 +22,9 @@ class FindCommandTest {
         ArrayList<String> content = new ArrayList<>();
         content.add("default");
 
-        Note defaultNote = new Note("Default", content, false);
-        Note testNote1 = new Note("TestNote1", content, false);
-        Note testNote2 = new Note("TestNote2", content, false);
+        Note defaultNote = new Note("Default", content, false, false);
+        Note testNote1 = new Note("TestNote1", content, false, false);
+        Note testNote2 = new Note("TestNote2", content, false, false);
 
         notebook.addNote(defaultNote);
         notebook.addNote(testNote1);

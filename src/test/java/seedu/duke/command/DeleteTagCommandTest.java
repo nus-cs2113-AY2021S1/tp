@@ -43,7 +43,7 @@ class DeleteTagCommandTest {
         content = new ArrayList<>();
         content.add("Default");
 
-        defaultNote = new Note("Default", content, false);
+        defaultNote = new Note("Default", content, false, false);
     }
 
     @Test
