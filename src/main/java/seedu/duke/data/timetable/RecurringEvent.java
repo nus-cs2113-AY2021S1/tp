@@ -107,6 +107,21 @@ public abstract class RecurringEvent extends Event {
         return super.toString() + String.format(" (%s)", recurrenceType) + Formatter.LS + endRecurrenceString;
     }
 
+    @Override
+    public ArrayList<String> toStringArray() {
+        ArrayList<String> result = super.toStringArray();
+        String endRecurrenceString = "Until: ";
+        if (!endRecurrenceDate.equals(DEFAULT_END_RECURRENCE)) {
+            endRecurrenceString += endRecurrenceDate.toString();
+        } else {
+            endRecurrenceString += "Forever";
+        }
+        endRecurrenceString = " (" + endRecurrenceString + ")";
+        int lastIndex = result.size() - 1;
+        result.set(lastIndex, result.get(lastIndex) + endRecurrenceString);
+        return result;
+    }
+
     /**
      * Provides a time step of a specified date by one time unit and return it as a LocalDate object.
      *

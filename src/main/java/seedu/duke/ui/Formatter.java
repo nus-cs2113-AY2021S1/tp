@@ -5,7 +5,9 @@ import seedu.duke.data.notebook.Note;
 import seedu.duke.data.timetable.Timetable;
 import seedu.duke.data.timetable.Event;
 
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Stack;
 
 import static com.diogonunes.jcolor.Ansi.PREFIX;
@@ -56,9 +58,36 @@ public class Formatter {
         return encloseTopAndBottom(formattedString);
     }
 
-    public static String formatTimetable(String header, Timetable timetable) {
-        String formattedString = "";
-        return formattedString;
+    public static String formatTimetable(String header, int year, int month,
+                                         HashMap<Month, HashMap<Integer, ArrayList<Event>>> timetable) {
+        String formattedString;
+        if (month != 0) {
+            formattedString = generatesHeader(header + String.format(" %d-%d", year, month));
+        } else {
+            formattedString = generatesHeader(header + " " + year);
+        }
+        ArrayList<String> unformattedEvents = Event.yearCalendarToString(timetable);
+        for (String event : unformattedEvents) {
+            formattedString = formattedString.concat(encloseRow(event));
+        }
+
+        return encloseTopAndBottom(formattedString);
+    }
+
+    /**
+     * Takes an array list of events and converts it to a formatted string for output
+     *
+     * @param header Success message.
+     * @param events Events to be printed
+     * @return Formatted String of Events in Timetable
+     */
+    public static String formatTimetable(String header, ArrayList<Event> events) {
+        String formattedString = generatesHeader(header);
+        ArrayList<String> eventStrings = Event.calendarToString(events);
+        for (String event : eventStrings) {
+            formattedString = formattedString.concat(encloseRow(event));
+        }
+        return encloseTopAndBottom(formattedString);
     }
 
     public static String formatEvent(String header, Event event) {

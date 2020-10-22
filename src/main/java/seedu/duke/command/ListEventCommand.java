@@ -3,9 +3,8 @@ package seedu.duke.command;
 import seedu.duke.data.timetable.Event;
 import seedu.duke.ui.Formatter;
 
+import java.time.Month;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
@@ -25,10 +24,12 @@ public class ListEventCommand extends Command {
     public static final String COMMAND_USAGE = COMMAND_WORD + ": List all the events in the Timetable. Parameters: "
             + "[" + PREFIX_DELIMITER + PREFIX_TIMING + " YYYY or YYYY-MM]";
 
-    private static final String COMMAND_SUCCESSFUL_MESSAGE = "These are the events in the specified time period: "
-            + Formatter.LS;
-    private static final String COMMAND_UNSUCCESSFUL_MESSAGE = "Failed to find any events in the specified time period."
-            + Formatter.LS;
+    private static final String COMMAND_SUCCESSFUL_GENERIC_MESSAGE = "These are the events stored: ";
+    private static final String COMMAND_UNSUCCESSFUL_GENERIC_MESSAGE = "There are no events stored in the timetable!";
+    private static final String COMMAND_SUCCESSFUL_TIME_PERIOD_MESSAGE = "These are the events "
+            + "in the specified time period: ";
+    private static final String COMMAND_UNSUCCESSFUL_TIME_PERIOD_MESSAGE = "Failed to find any events "
+            + "in the specified time period.";
 
     /**
      * Gets how the command is expected to be used.
@@ -74,69 +75,67 @@ public class ListEventCommand extends Command {
 
     @Override
     public String execute() {
-        StringBuilder result = new StringBuilder();
+//        StringBuilder result = new StringBuilder();
 
         // Just list all events, recurring or not, without repeat.
         if (year == 0) {
             ArrayList<Event> events = timetable.getEvents();
             if (events.size() == 0) {
-                return COMMAND_UNSUCCESSFUL_MESSAGE;
+                return Formatter.formatString(COMMAND_UNSUCCESSFUL_GENERIC_MESSAGE);
             }
-            boolean first = true;
-            int i = 1;
-            for (Event event : events) {
-                if (!first) {
-                    result.append(Formatter.LS.repeat(2));
-                }
-                first = false;
-                result.append(String.format("%d.", i++)).append(event.toString());
-            }
-            return result.toString();
+            return Formatter.formatTimetable(COMMAND_SUCCESSFUL_GENERIC_MESSAGE, events);
         }
 
         // Display the whole year if no month, else display only that month.
-        HashMap<String, HashMap<Integer, ArrayList<Event>>> calendar;
+        HashMap<Month, HashMap<Integer, ArrayList<Event>>> calendar;
         if (month != 0) {
             calendar = timetable.getMonthTimetable(year, month);
         } else {
             calendar = timetable.getYearTimetable(year);
         }
-
-        boolean first = true;
-        for (String month : calendar.keySet()) {
-            StringBuilder monthEventsString = new StringBuilder(month + Formatter.LS);
-            HashMap<Integer, ArrayList<Event>> monthCalendar = calendar.get(month);
-            ArrayList<Integer> days = new ArrayList<>(monthCalendar.keySet());
-            Collections.sort(days);
-            int i = 1;
-            for (Integer day : days) {
-                ArrayList<Event> dailyEvents = monthCalendar.get(day);
-                // Sort does not seem to be working
-                Comparator<Event> eventComparator = (e1, e2) -> {
-                    int comp = e1.getDate().compareTo(e2.getDate());
-                    if (comp != 0) {
-                        return comp;
-                    } else {
-                        return e1.getTime().compareTo(e2.getTime());
-                    }
-                };
-                dailyEvents.sort(eventComparator);
-
-                for (Event event : dailyEvents) {
-                    monthEventsString.append(Formatter.LS)
-                            .append(String.format("%d.", i)).append(event.toString());
-                    i++;
-                }
-            }
-            if (!first) {
-                result.append(Formatter.LS.repeat(2));
-            }
-            first = false;
-            result.append(monthEventsString);
+        if (calendar.size() == 0) {
+            return Formatter.formatString(COMMAND_UNSUCCESSFUL_TIME_PERIOD_MESSAGE);
         }
-        if (result.length() == 0) {
-            return COMMAND_UNSUCCESSFUL_MESSAGE;
-        }
-        return COMMAND_SUCCESSFUL_MESSAGE + result;
+
+        return Formatter.formatTimetable(COMMAND_SUCCESSFUL_TIME_PERIOD_MESSAGE, year, month, calendar);
+//
+//        boolean first = true;
+//        ArrayList<Month> months = new ArrayList<>(calendar.keySet());
+//        months.sort(Month::compareTo);
+//        for (Month month : months) {
+//            StringBuilder monthEventsString = new StringBuilder(month.name() + Formatter.LS);
+//            HashMap<Integer, ArrayList<Event>> monthCalendar = calendar.get(month);
+//            ArrayList<Integer> days = new ArrayList<>(monthCalendar.keySet());
+//            Collections.sort(days);
+//            int i = 1;
+//            for (Integer day : days) {
+//                ArrayList<Event> dailyEvents = monthCalendar.get(day);
+//                // Sort does not seem to be working
+//                Comparator<Event> eventComparator = (e1, e2) -> {
+//                    int comp = e1.getDate().compareTo(e2.getDate());
+//                    if (comp != 0) {
+//                        return comp;
+//                    } else {
+//                        return e1.getTime().compareTo(e2.getTime());
+//                    }
+//                };
+//                dailyEvents.sort(eventComparator);
+//
+//                for (Event event : dailyEvents) {
+//                    monthEventsString.append(Formatter.LS)
+//                            .append(String.format("%d.", i)).append(event.toString());
+//                    i++;
+//                }
+//            }
+//            if (!first) {
+//                result.append(Formatter.LS.repeat(2));
+//            }
+//            first = false;
+//            result.append(monthEventsString);
+//        }
+//        if (result.length() == 0) {
+//            return COMMAND_UNSUCCESSFUL_MESSAGE;
+//        }
+//        return COMMAND_SUCCESSFUL_MESSAGE + result;
     }
 }
