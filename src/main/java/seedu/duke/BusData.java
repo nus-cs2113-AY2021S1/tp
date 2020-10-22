@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 
 public class BusData {
 
@@ -12,6 +13,12 @@ public class BusData {
 
     public static ArrayList<Bus> possibleBuses(String startingLoc, String destination) {
         ArrayList<Bus> busOptions = new ArrayList<>();
+        if (BusStops.isValidBusStop(startingLoc)) {
+            BusStops.findBusStop(startingLoc).incrementSearchCount();
+        }
+        if (BusStops.isValidBusStop(destination)) {
+            BusStops.findBusStop(destination).incrementSearchCount();
+        }
         for (Bus bus : buses) {
             ArrayList<BusStops> route = bus.getPossibleRoute(startingLoc, destination);
             if (route != null) {
@@ -21,8 +28,8 @@ public class BusData {
         return busOptions;
     }
 
-    public static Bus selectBus(String busCode) throws NullPointerException {
-        for (Bus bus: buses) {
+    public static Bus selectBus(String busCode) {
+        for (Bus bus : buses) {
             if (bus.getBusNumber().equals(busCode.toUpperCase())) {
                 return bus;
             }
@@ -32,9 +39,9 @@ public class BusData {
 
     public static ArrayList<Bus> busAtStop(String busStop) {
         ArrayList<Bus> busList = new ArrayList<>();
-        for (Bus bus: buses) {
+        for (Bus bus : buses) {
             ArrayList<String> stopNames = bus.getStopNames();
-            for (String name: stopNames) {
+            for (String name : stopNames) {
                 if (name.equalsIgnoreCase(busStop)) {
                     busList.add(bus);
                     break;
@@ -46,5 +53,13 @@ public class BusData {
 
     public static ArrayList<Bus> listOfAllBuses() {
         return buses;
+    }
+
+    public static ArrayList<Integer> getAllSearchCount() {
+        ArrayList<Integer> allSearchCount = new ArrayList<Integer>();
+        for (BusStops busStop : EnumSet.allOf(BusStops.class)) {
+            allSearchCount.add(busStop.getSearchCount());
+        }
+        return allSearchCount;
     }
 }

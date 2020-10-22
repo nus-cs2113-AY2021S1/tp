@@ -1,6 +1,7 @@
 package seedu.duke.ui;
 
 import seedu.duke.Bus;
+import seedu.duke.BusStops;
 import seedu.duke.DiningOptions;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
@@ -25,6 +26,7 @@ public class Ui {
                 + "|_|   \\ \\_|  / /      \\ \\    \\_V_/    @NUS\n";
         System.out.println("Hello from\n" + logo);
         System.out.println("How can I help?");
+        printMostSearchedBusStop();
         printLine();
     }
 
@@ -91,6 +93,18 @@ public class Ui {
         printLine();
     }
 
+    public static void printResetSearchFreqMessage() {
+        printLine();
+        System.out.println("The search frequencies of all bus stops have been reset to 0!");
+        printLine();
+    }
+
+    private static void printMostSearchedBusStop() {
+        if (BusStops.mostSearchedBusStop() != null) {
+            System.out.println("Your most searched bus stop is: " + BusStops.mostSearchedBusStop().getName());
+        }
+    }
+
     public static void printAllBusMessage(ArrayList<Bus> allBuses) {
         printLine();
         System.out.println("The buses available in NUS are: ");
@@ -108,7 +122,7 @@ public class Ui {
     public static void printPossibleLocsMessage(ArrayList<String> possibleLocs) {
         printLine();
         System.out.println("Hmm, did you mean any of these locations?");
-        for (String location: possibleLocs) {
+        for (String location : possibleLocs) {
             System.out.println(location);
         }
         System.out.println("Please type the command again with the correct location.");
@@ -134,5 +148,5 @@ public class Ui {
             }
         }
     }
-    
+
 }
