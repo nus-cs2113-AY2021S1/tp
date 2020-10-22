@@ -17,6 +17,17 @@ public class WatchlistCommand extends Command {
     private static final String LIST_OPTION = "l";
     private static final String SELECT_OPTION = "s";    // Categorized as a Modification option.
     private static final String DELETE_OPTION = "d";    // Categorized as a Modification option.
+
+    private static final String WATCHLIST_LIST_IS_NULL = "Watchlist list should not be null.";
+    private static final String OPTION_IS_NULL = "Option should not be null.";
+    private static final String INVALID_OPTION = "Watchlist command only accepts the options: -n, -l, -s, and -d.";
+    private static final String WATCHLIST_NAME_IS_NOT_UNIQUE = "Watchlist name is used already!";
+    private static final String EMPTY_WATCHLIST_LIST = "Uhh.. You have no watchlist..";
+    private static final String INVALID_WATCHLIST_INDEX = "This is not a valid watchlist index.";
+    private static final String WATCHLIST_INDEX_IS_NOT_POSITIVE_INTEGER = "Watchlist index is not a positive integer!";
+    private static final String CANNOT_SELECT_ACTIVE_WATCHLIST = "You cannot select the active watchlist..";
+    private static final String CANNOT_DELETE_LAST_WATCHLIST = "You cannot delete the last watchlist!";
+
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistCommand.class.getName());
 
     private final String option;
@@ -30,8 +41,8 @@ public class WatchlistCommand extends Command {
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         Workspace activeWorkspace = user.getActiveWorkspace();
-        assert activeWorkspace.getWatchlistList() != null : "Watchlist list should not be null.";
-        assert option != null : "option should not be null.";
+        assert activeWorkspace.getWatchlistList() != null : WATCHLIST_LIST_IS_NULL;
+        assert option != null : OPTION_IS_NULL;
 
         switch (option) {
         case CREATE_OPTION:
@@ -43,7 +54,7 @@ public class WatchlistCommand extends Command {
         case DELETE_OPTION:
             return deleteWatchlist(storageManager, activeWorkspace);
         default:
-            throw new AniException("Watchlist command only accepts the options: -n, -l, -s, and -d.");
+            throw new AniException(INVALID_OPTION);
         }
     }
 
@@ -53,7 +64,7 @@ public class WatchlistCommand extends Command {
 
         boolean isWatchlistNameUnique = !watchlistList.contains(createdWatchlist);
         if (!isWatchlistNameUnique) {
-            throw new AniException("There is already a watchlist named \"" + optionInformation + "\".");
+            throw new AniException(WATCHLIST_NAME_IS_NOT_UNIQUE);
         }
 
         watchlistList.add(createdWatchlist);
@@ -66,7 +77,7 @@ public class WatchlistCommand extends Command {
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         if (watchlistList.size() == 0) {
             LOGGER.log(Level.INFO, "Empty watchlistList message because size is 0");
-            return "Uhh.. You have no watchlist to list..";
+            return EMPTY_WATCHLIST_LIST;
         }
 
         StringBuilder sbWatchlistList = new StringBuilder();
@@ -92,7 +103,7 @@ public class WatchlistCommand extends Command {
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
         if (selectedWatchlist.equals(activeWatchlist)) {
             LOGGER.log(Level.INFO, "Select failed because the active watchlist is selected.");
-            throw new AniException("Current active watchlist is \"" + selectedWatchlist.getName() + "\".");
+            throw new AniException(CANNOT_SELECT_ACTIVE_WATCHLIST);
         }
 
         activeWorkspace.setActiveWatchlist(selectedWatchlist);
@@ -124,15 +135,15 @@ public class WatchlistCommand extends Command {
 
     private void validateModificationOption(ArrayList<Watchlist> watchlistList, int index) throws AniException {
         if (watchlistList.size() == 0) {
-            throw new AniException("You have no watchlist!");
+            throw new AniException(EMPTY_WATCHLIST_LIST);
         }
 
         if (watchlistList.size() == 1 && option.equals(DELETE_OPTION)) {
-            throw new AniException("You cannot delete the last watchlist!");
+            throw new AniException(CANNOT_DELETE_LAST_WATCHLIST);
         }
 
         if (index < 0 || index >= watchlistList.size()) {
-            throw new AniException("\"" + (index + 1) + "\" is not a valid watchlist index.");
+            throw new AniException(INVALID_WATCHLIST_INDEX);
         }
     }
 
@@ -141,7 +152,7 @@ public class WatchlistCommand extends Command {
             // Input received as one-based numbering, then converted to zero-based numbering.
             return Integer.parseInt(optionInformation) - 1;
         } catch (NumberFormatException exception) {
-            throw new AniException("\"" + optionInformation + "\" is not a number!");
+            throw new AniException(WATCHLIST_INDEX_IS_NOT_POSITIVE_INTEGER);
         }
     }
 }

@@ -13,6 +13,7 @@ public abstract class CommandParser {
     protected static final String REQUIRE_ADDITIONAL_FIELD = " requires an additional field";
     protected static final String TOO_MUCH_FIELDS = " has too much fields";
     protected static final String NO_PARAMETER_PROVIDED = "No parameter provided";
+    protected static final String DESCRIPTION_CANNOT_BE_NULL = "description should not be null.";
 
     private static final String INTEGER_REGEX = "^\\d+$";
 
