@@ -73,41 +73,28 @@ public class Ui {
     }
 
     /**
-     * Prints the Duke welcome message.
+     * Prints the welcome message.
      */
     public static void printWelcomeMessage() {
-        System.out.println("Printing of 25/7 logo!!!!");
-        System.out.println("===========================================================================\n"
-                + "Welcome to 25/7 Task Manager!\n"
+
+        String hi = "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
+                + "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
+                + "MMNyooosmmssssNMMMMmshMhsdMhooosdMysmMssNmsssshMNsoooyNMMMMMyshMMMMMdssssyNMMyshMysmNsyMM\n"
+                + "MMh `o: /y .ooNMMMMs :M/ oN` o+ .M- yM` mh `o. h+ :o` hMMMMm  .MMMMMs .o. sMN` .N+ +o +MM\n"
+                + "MMmsym: +y :MMMMMMMs :M/ oN  Nd .M- yM` mh .M- y/ oMhyNMMMMo   dMMMMs /M/ oMs   hm``. mMM\n"
+                + "MMMNo..oNy `::/mMMMs `:` oN  Nd .M- yM` mh `:``do .::/NMMMM. / +MMMMs /M/ oM- + /M/  /MMM\n"
+                + "MMm. +mMMmhhd: sMMMs -d: oN  Nd .M- yM` mh `  hMNhdd. hMMMh  : .MMMMs /M/ od  : `Nd  dMMM\n"
+                + "MMd `mmmNs.+N: sMMMs :M/ oN  dh .M- sm` mh .+ /Mo.oN. hMMM/ /y. hMMMs :N: o+ :y. yN  NMMM\n"
+                + "MMd..---oh..-..dMMMy./Mo.sM:`...+Mo...`-Nd.:N-.dy..-`-mMMM-.dMo.oMMMy..-.-h:.hMs.+N..NMMM\n"
+                + "MMMNNNNNNMNNNNNMMMMMNNMMNMMMNNNNMMMNNNNMMMNNMNNMMNNNNNMMMMNNMMMNNMMMMNNNNNMNNMMMNNMNNMMMM\n"
+                + "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n";
+
+        System.out.println(hi);
+        System.out.println("=========================================================================================\n"
+                + "Welcome to 25 Hours A Day Task Manager!\n"
                 + "What can I do for you?\n"
                 + "Enter 'help' for the list of commands.\n"
-                + "===========================================================================");
-
-        /**
-         //        String[]  HELLO_MESSAGE = {
-         //
-         "=================================================================================================",
-         //                "   .-----------------.     .-----------------.              //    .-------------------.",
-         //                "   |______________.  |     |  _______________|             //     |______________.   |",
-         //                "                  |  |     |  |                           //                    /   /",
-         //                "                  |  |     |  |                          //                    /   /",
-         //                "   .---------------  |     |  |---------------.         //                    /   /",
-         //                "   | ________________|     |________________  |        //                    /   /",
-         //                "   | |                                     |  |       //                    /   /",
-         //                "   | |                                     |  |      //                    /   /",
-         //                "   | ----------------.     .---------------|  |     //                    /   /",
-         //                "   |_________________|     |__________________|    //                    /___/",
-         //                " ",
-         //
-         "=================================================================================================",
-         //                " Welcome to 25/7 Task Manager!",
-         //                " What can I do for you?",
-         //                " Enter 'help' for the list of commands.",
-         //
-         "================================================================================================="
-         //        };
-         //        System.out.println(String.join("\n", HELLO_MESSAGE));
-         */
+                + "=========================================================================================");
 
     }
 
@@ -125,9 +112,9 @@ public class Ui {
      */
     public static void printDukeBorder(boolean top) {
         if (top) {
-            System.out.println("............................. DUKE CHAT BOX ^^ ............................");
+            System.out.println("............................... 25HoursADay CHAT BOX ^^ .............................");
         } else {
-            System.out.println("...........................................................................");
+            System.out.println(".....................................................................................");
         }
     }
 
