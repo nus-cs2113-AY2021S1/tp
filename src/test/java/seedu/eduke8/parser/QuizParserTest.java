@@ -34,7 +34,7 @@ public class QuizParserTest {
 
     @Test
     public void quizParser_correctStringInput_success() {
-        Hint hint = new Hint("description");s
+        Hint hint = new Hint("description");
         ArrayList<Displayable> optionsArrayList = new ArrayList<>();
         OptionList optionList = new OptionList(optionsArrayList);
         Explanation explanation = new Explanation("explanation");
