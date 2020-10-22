@@ -1,21 +1,35 @@
 # CCA Manager Developer Guide
 
-* auto-gen TOC:
-{:toc}
+
+  * [Introduction](#introduction)
+  * [Setting up](#setting-up)
+  * [Design and Implementation](#design-and-implementation)
+    + [Input Parsing](#input-parsing)
+    + [Finance](#finance)
+    + [Event](#event)
+    + [HR](#hr)
+  * [Product scope](#product-scope)
+    + [Target user profile](#target-user-profile)
+    + [Value proposition](#value-proposition)
+  * [User Stories](#user-stories)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+  * [Instructions for manual testing](#instructions-for-manual-testing)
 
 
-##1. Introduction 
+
+## 1. Introduction 
 CCA Manager is a revolutionary all-in-one management tool that changes the way you can manage interest groups with unrivaled efficiency and simplicity. Its lightweight Command Line Interface (CLI) allows administrators to breeze through tasks quickly and easily while offering powerful features to advanced users.
 
 This developer guide is written to document the implementation of CCA Manager. This document is intended for people who
 are interested in learning more about the technical details of the various features and the organization of the application.
 
-##2. Setting up
+## 2. Setting up
 Refer to the guide here.
 
-##3. Design and Implementation
+## 3. Design and Implementation
 
-![Architecture](Architecture.png)
+![Architecture](BackendDiagram/Architecture.png)
 
 The **Architecture Design** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -23,10 +37,11 @@ The **Architecture Design** given above explains the high-level design of the Ap
 
 The rest of the app consists of the below:
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`UI`**] : The UI of the App.
+* [**`Logic`**] : The command executor.
+* [**`storage`**]: Reads data from, and writes data to, the hard disk.
+* [**`Model`**] : Holds the data of the App in memory.
+
 
 ### Input Parsing
 **Current Implementation**  
@@ -77,17 +92,17 @@ Given below is an example usage scenario and how the add/delete finance log entr
 
 Step 1. The user launches the application for the first time. The `FinanceList` will be initialized with no `FinanceLog` in it.  
 
-![](/Users/tissue/Desktop/CS2113T/tp/docs/financeDiagramPic/1-1S1.png)
+![](financeDiagramPic/1-1S1.png)
 
 Step 2. The user executes `finance addLog iphone12 1299` command to add a finance log entry with content "iphone12" and value "1299" into finance list. The `finance addLog` command
 calls `CommandFinanceAdd#execute()`, then `FinanceList` will be added a `FinanceLog` with its `finLog` as `iphone12` and its value as `1299`.  
 
-![](/Users/tissue/Desktop/CS2113T/tp/docs/financeDiagramPic/1-1S2.png)
+![](financeDiagramPic/1-1S2.png)
 
 Step 3. The user executes `finance delLog 1` command to delete the 1st finance log entry in the finance list. The `finance delLog`
 command calls `CommandFinanceDel#execute()`, causing the `FinanceLog` of index 1 removed from `FinanceList`.  
 
-![](/Users/tissue/Desktop/CS2113T/tp/docs/financeDiagramPic/1-1S3.png)
+![](financeDiagramPic/1-1S3.png)
 
 **Design Considerations**  
 Aspect: User input format for adding a finance log entry
@@ -113,12 +128,12 @@ Given below is an example usage scenario and how the program list the summary of
 Step 1. After some `finance addLog` commands, the user created a `FinanceList` with two `FinanceLog`. The first `FinanceLog` is 
 "iphone12 $1299" and the second `FinanceLog` is "chicken rice $3.5".  
 
-![](/Users/tissue/Desktop/CS2113T/tp/docs/financeDiagramPic/1-2S1.png)
+![](financeDiagramPic/1-2S1.png)
 
 Step 2. The user executes `finance summary` command to list the summary of `FinanceList`. The `finance summary` command calls 
 `CommandFinanceSummary#execute()`, then every `FinanceLog` in `FinanceList` will be output and the total budget will be printed out at the bottom. Nothing will be changed in `FinanceList`.  
 
-![](/Users/tissue/Desktop/CS2113T/tp/docs/financeDiagramPic/1-2S2.png)
+![](financeDiagramPic/1-2S2.png)
 
 **Design Considerations**  
 Aspect: Repeated items  
@@ -132,7 +147,32 @@ Aspect: Repeated items
     *Cons: The summary cannot show each index of the repeated items that it is confusing when user wants to delete 
     any one of them.  
 
-###HR
+
+### Event
+**1.1. Add/delete events feature**  
+1.1.1. Current Implementation  
+The `CommandEventAdd` class in `seedu.duke.event` handles the adding of events. According to the `userInput`, it adds a new event to the `EventList`. 
+The `CommandEventDel` class in the same package handles deleting of a event. It deletes an `Event` instance according to the index provided by `userInput` from the `EventList`.  
+They implement the following operations:  
+* `CommandEventAdd#execute()` - Adds a new event into the `EventList` according to `userInput`.  
+* `CommandEventDel#execute()` - Deletes a event from `EventList` according to the index provided by `userInput`.  
+
+Given below is an example usage scenario and how add/delete event function behaves at each step.  
+
+Step 1. The user launches the application for the first time.   
+![](EventDiagram/Step1.png)
+
+Step 2. The user executes `event addEvent /n arduino course /d 2020-12-30 /t 8pm` command to add a new event with the name "arduino course", 
+the date of the event "2020-12-30" and the time "8pm" into event list. 
+The `event addEvent` command calls `CommandEventAdd#execute()`, then `EventList` will add a new `Event` with event name as `iphone12`, date as `2020-12030` and time as `8pm`.  
+![](EventDiagram/Step2.png)
+
+Step 3. The user executes `event delEvent 1` command to delete the 1st event in the event list. The `event delEvent`
+command calls `CommandEventDel#execute()`, causing the `Event` at index 1 to be removed from `EventList`.  
+![](EventDiagram/Step3.png)
+
+
+### HR
 This section describes some noteworthy details on how features under HR are implemented. <br/>
 
 **2.1. Add/delete member feature**  
@@ -152,7 +192,7 @@ Given below is an example usage scenario and how the add/delete member behaves a
 Step 1. The user launches the application for the first time. The `MemberList` will be initialized with no `Member` in 
 it.  
 
-![](/Users/tissue/Desktop/CS2113T/tp/docs/hrDiagramPic/2-1S1.png)
+![](hrDiagramPic/2-1S1.png)
 
 Step 2. The user executes `hr addMember /n john sterling /p 12345678 /e 123@gmail.com /r member` command to add a member
  with name "John Sterling", phone number "12345678", email "123@gmail.com" and role "member" into member list. The 
@@ -167,12 +207,12 @@ The following shortcut commands can achieve the same result: <br/>
 `hr add /n john sterling /p 12345678 /e 123@gmail.com /r member`<br/>
 `hr a /n john sterling /p 12345678 /e 123@gmail.com /r member`<br/>
 
-![](/Users/tissue/Desktop/CS2113T/tp/docs/hrDiagramPic/2-1S2.png)
+![](hrDiagramPic/2-1S2.png)
 
 Step 3. The user executes `hr delMember 1` command to delete the member in the member list. The `hr delMember`
 command calls `CommandDelMember#execute()`, causing the `Member` of index 1 removed from `MemberList`.  
 
-![](/Users/tissue/Desktop/CS2113T/tp/docs/hrDiagramPic/2-1S3.png)
+![](hrDiagramPic/2-1S3.png)
 
 **2.2. List the members**  
 2.2.1. Current Implementation  
@@ -187,7 +227,7 @@ Step 1. After some `hr addMember` commands, the user created a `MemberList` with
 "John Sterling" with phone number "12345678", email "123@gmail.com", role "member" and the second `Member` is 
 "Harry Potter", phone number "88888888", email "qaz@gmail.com", role "president".  
 
-![](/Users/tissue/Desktop/CS2113T/tp/docs/hrDiagramPic/2-2S1.png)
+![](hrDiagramPic/2-2S1.png)
 
 Step 2. The user executes `hr listMember` command to list the summary of `MemberList`. The `hr listMember` command calls 
 `CommandViewMember#execute()`, then every `Member` in `MemberList` and the contacts and roles will be printed out within
