@@ -145,7 +145,7 @@ public abstract class Parser {
                 throw new NoSortCriteriaException();
             }
             String type = words[1];
-            switch(type) {
+            switch (type) {
             case "description":
             case "time":
             case "location":
