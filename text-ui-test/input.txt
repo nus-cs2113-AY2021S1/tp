@@ -1,5 +1,11 @@
 Abec Steiner 33rd
 Female
+addws -n
+addws  - 
+addws
+addws -n Crunchy Cinnamon
+addws -n CrispyDonut
+addws -n RED VELVET Crumblesss 
 watchlist -n a
 watchlist -n b
 watchlist -n ops
@@ -13,4 +19,6 @@ bookmark -a 410
 bookmark 1 -e 5
 bookmark -l
 add -a 1
+search -n cowboy
+browse -p 1
 exit
