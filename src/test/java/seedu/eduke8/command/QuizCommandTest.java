@@ -16,17 +16,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class QuizCommandTest extends Eduke8Test {
 
     @Test
-    public void execute_badTopicName_exceptionThrown(){
+    public void execute_badTopicName_exceptionThrown() {
         Ui ui = new Ui();
         TopicList topicList = createTestTopicList();
-        Command badQuizCommand = new QuizCommand(topicList,1, "badname", ui);
+        Command badQuizCommand = new QuizCommand(topicList, 1, "badname", ui);
         Eduke8Exception exception = assertThrows(Eduke8Exception.class, () -> {
             topicList.find("badname");
         });
     }
 
     @Test
-    public void execute_wrongTopicNum_exceptionThrown(){
+    public void execute_wrongTopicNum_exceptionThrown() {
         Ui ui = new Ui();
         TopicList topicList = createTestTopicList();
         Eduke8Exception ee = assertThrows(Eduke8Exception.class, () -> {
