@@ -191,7 +191,7 @@ Aspect: Repeated items
     any one of them.  
 
 
-### 3.4 Event
+### 3.4. Event
 **3.4.1. Add/delete events feature**  
 3.4.1.1. Current Implementation  
 The `CommandEventAdd` class in `seedu.duke.event` handles the adding of events. According to the `userInput`, it adds a new event to the `EventList`. 
@@ -215,7 +215,7 @@ command calls `CommandEventDel#execute()`, causing the `Event` at index 1 to be 
 ![](EventDiagram/Step3.png)
 
 
-### 3.5 HR
+### 3.5. HR
 This section describes some noteworthy details on how features under HR are implemented. <br/>
 
 **3.5.1. Add/delete member feature**  
@@ -312,20 +312,20 @@ Aspect: Changing member information
     *Cons: This feature is very dependent on the list member feature. The user will always need to call the `hr listMember` 
     command to find out the index of the target member, before he can change the member's information.  
 
-## 4 Product scope
-### 4.1 Target user profile
+## 4. Product scope
+### 4.1. Target user profile
 
 Our product targets people who manage interest groups and CCAs. 
 However, our software solution allows us to easily expand the target audience to target schools and corporate enterprise clients in the future.
 
-### 4.2 Value proposition
+### 4.2. Value proposition
 
 Management software is expensive and complex, training employees to use it is time-consuming. CCA Manager aims to solve these
 problems by offering an all-in-one solution focused on simplicity and efficiency. 
 Our use of industry standard csv format ensures compatibility with leading industry tools. 
 Shorthand Commands and Relative Time allow advanced users to enter up to 70% more commands per minute. 
 
-## 5 User Stories
+## 5. User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -341,17 +341,17 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 |v2.0|user|reassign member roles |so that I can update their roles and responsibilities|
 |v2.0|user|change member phone numbers and emails |so that I can update their contacts|
 
-## 6 Non-Functional Requirements
+## 6. Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2. Should be able to hold hundreds of thousands of data entries without losing the data.
 3. A user with average typing speed should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The program should support writing to a universally supported and easy to edit non-proprietary file format such as RFC 4180 .csv files.
 
-## 7 Glossary
+## 7. Glossary
 
 * *glossary item* - Definition
 
-## 8 Instructions for manual testing
+## 8. Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
