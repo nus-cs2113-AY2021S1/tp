@@ -1,6 +1,14 @@
 package bookmark;
 
-import bookmark.commands.*;
+import bookmark.commands.AddCategoryCommand;
+import bookmark.commands.AddLinkCommand;
+import bookmark.commands.BackCommand;
+import bookmark.commands.ChangeModeCommand;
+import bookmark.commands.BookmarkCommand;
+import bookmark.commands.ListCommand;
+import bookmark.commands.RemoveCategoryCommand;
+import bookmark.commands.RemoveLinkCommand;
+import bookmark.commands.StarCommand;
 import exceptions.InvalidCommandException;
 import studyit.CommandParser;
 import studyit.StudyItLog;
@@ -32,8 +40,8 @@ public class BookmarkParser extends CommandParser {
         } else if (commandModified.startsWith("star")) {
             return new StarCommand(command,chosenCategory);
         } else {
-                StudyItLog.logger.info("Cannot understand bookmark command");
-                throw new InvalidCommandException();
+            StudyItLog.logger.info("Cannot understand bookmark command");
+            throw new InvalidCommandException();
         }
     }
 
