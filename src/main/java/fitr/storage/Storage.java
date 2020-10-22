@@ -42,10 +42,10 @@ public class Storage {
      * Set up the files required in the application, by creating the files if the files do not exist and
      * setting the file paths.
      *
-     * @param userConfigPath file path of the user's profile
-     * @param foodListPath file path of the food list
+     * @param userConfigPath   file path of the user's profile
+     * @param foodListPath     file path of the food list
      * @param exerciseListPath file path of the exercise list
-     * @param goalListPath file path of the goal list
+     * @param goalListPath     file path of the goal list
      * @throws IOException if an I/O error has occurred
      */
     public Storage(String userConfigPath, String foodListPath, String exerciseListPath,
@@ -211,11 +211,11 @@ public class Storage {
     }
 
     /**
-    * Writes the exercise list data into a file.
-    *
-    * @param exerciseList the exercise list to write to the file
-    * @throws IOException if an I/O error has occurred
-    */
+     * Writes the exercise list data into a file.
+     *
+     * @param exerciseList the exercise list to write to the file
+     * @throws IOException if an I/O error has occurred
+     */
     public void writeExerciseList(ExerciseList exerciseList) throws IOException {
         LOGGER.fine("Attempting to write to file: " + exerciseListPath);
         FileWriter file = new FileWriter(exerciseListPath);
@@ -256,11 +256,11 @@ public class Storage {
     }
 
     /**
-    * Writes the goal list data into a file.
-    *
-    * @param goalList the goal list to write to the file
-    * @throws IOException if an I/O error has occurred
-    */
+     * Writes the goal list data into a file.
+     *
+     * @param goalList the goal list to write to the file
+     * @throws IOException if an I/O error has occurred
+     */
     public void writeGoalList(GoalList goalList) throws IOException {
         LOGGER.fine("Attempting to write to file: " + goalListPath);
         FileWriter fileWriter = new FileWriter(goalListPath);
@@ -277,11 +277,11 @@ public class Storage {
     }
 
     /**
-    * Loads the tips from a file and returns an ArrayList of String tips.
-    *
-    * @return an ArrayList of String tips
-    * @throws IOException if an I/O error has occurred
-    */
+     * Loads the tips from a file and returns an ArrayList of String tips.
+     *
+     * @return an ArrayList of String tips
+     * @throws IOException if an I/O error has occurred
+     */
     public ArrayList<String> loadTipList() throws IOException {
         LOGGER.fine("Attempting to read file: " + TIP_LIST_FILEPATH);
         ArrayList<String> tipList = new ArrayList<>();

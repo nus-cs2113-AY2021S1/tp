@@ -246,5 +246,4 @@ public class User {
     public int getFitnessLevel() {
         return userFitnessLevel;
     }
-
 }

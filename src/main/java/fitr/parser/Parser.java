@@ -9,6 +9,7 @@ import fitr.command.InvalidCommand;
 import fitr.command.AddExerciseCommand;
 import fitr.command.ViewCommand;
 import fitr.command.EditProfileCommand;
+import fitr.command.RecommendCommand;
 import fitr.command.HelpCommand;
 import fitr.command.DeleteCommand;
 import fitr.command.ExitCommand;
@@ -23,6 +24,7 @@ public class Parser {
 
     /**
      * Parses the user input and return a corresponding command.
+     *
      * @param userInput String of user input
      * @return a Command object
      */
@@ -42,6 +44,8 @@ public class Parser {
             return new AddExerciseCommand(arguments);
         case Commands.COMMAND_VIEW:
             return new ViewCommand(arguments);
+        case Commands.COMMAND_RECOMMEND:
+            return new RecommendCommand();
         case Commands.COMMAND_EDIT_PROFILE:
             return new EditProfileCommand(arguments);
         case Commands.COMMAND_HELP:

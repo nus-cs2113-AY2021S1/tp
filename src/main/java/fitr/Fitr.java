@@ -36,6 +36,7 @@ public class Fitr {
 
             TipList tipList = new TipList(storage.loadTipList());
             TipManager tipOfTheDay = new TipManager(tipList);
+            recommender = new Recommender();
             tipOfTheDay.execute();
 
             Ui.printSuggestQuestion();

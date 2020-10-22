@@ -7,6 +7,7 @@ public class Commands {
     public static final String COMMAND_FOOD = "food";
     public static final String COMMAND_EXERCISE = "exercise";
     public static final String COMMAND_VIEW = "view";
+    public static final String COMMAND_RECOMMEND = "recommend";
     public static final String COMMAND_VIEW_FOOD = "food";
     public static final String COMMAND_VIEW_EXERCISE = "exercise";
     public static final String COMMAND_VIEW_SUMMARY = "summary";
