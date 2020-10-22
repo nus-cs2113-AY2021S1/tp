@@ -30,24 +30,28 @@ public class WorkspaceParser extends CommandParser {
             throw new AniException(EXCEPTION_INVALID_PARAMETERS);
         }
 
-        String cleanedCommand = paramGiven[1].trim();
+        try {
+            String cleanedCommand = paramGiven[1].trim();
 
-        String[] givenOption = cleanedCommand.split(" ", 2);
-        
-        switch (givenOption[0]) {
-        case "n":
-            commandOption = "n";
-            break;
-        case "s":
-            commandOption = "s";
-            break;
-        case "d":
-            commandOption = "d";
-            break;
-        default:
-            throw new AniException("Unexpected value: " + givenOption[0]);
+            String[] givenOption = cleanedCommand.split(" ", 2);
+
+            switch (givenOption[0]) {
+            case "n":
+                commandOption = "n";
+                break;
+            case "s":
+                commandOption = "s";
+                break;
+            case "d":
+                commandOption = "d";
+                break;
+            default:
+                throw new AniException(EXCEPTION_INVALID_PARAMETERS);
+            }
+
+            commandDescription = givenOption[1];
+        } catch (IndexOutOfBoundsException exception) {
+            throw new AniException(EXCEPTION_INVALID_PARAMETERS);
         }
-
-        commandDescription = givenOption[1];
     }
 }
