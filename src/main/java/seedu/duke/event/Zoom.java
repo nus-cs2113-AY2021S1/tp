@@ -27,6 +27,10 @@ public class Zoom extends Event {
         this.zoomLink = zoomLink;
     }
 
+    public String getZoomLink() {
+        return this.zoomLink;
+    }
+
     @Override
     public Zoom clone() throws CloneNotSupportedException {
         return (Zoom) super.clone();

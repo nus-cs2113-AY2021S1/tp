@@ -26,6 +26,10 @@ public class Timetable extends Event {
         hasLocation = true;
     }
 
+    public String getLocation() {
+        return this.location;
+    }
+
     @Override
     public Timetable clone() throws CloneNotSupportedException {
         return (Timetable) super.clone();

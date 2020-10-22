@@ -26,7 +26,7 @@ class AddCommandTest {
     void execute_timetableEvent_printEventAdded() throws DukeException {
         UserData data = new UserData();
         Ui ui = new Ui();
-        Storage storage = new Storage("data");
+        Storage storage = new Storage("data", ui);
 
         // Add timetable event to data
         String timetableInput = "timetable Math class; math building; 17/10/2000; 1300";
@@ -44,7 +44,7 @@ class AddCommandTest {
     void execute_invalidPersonalEvent_printZoomEventError() throws DukeException {
         UserData data = new UserData();
         Ui ui = new Ui();
-        Storage storage = new Storage("data");
+        Storage storage = new Storage("data", ui);
 
         // Add zoom event with incorrect number of parameters to data
         String zoomInput = "zoom class meeting; zoom.sg; 17/10/2000";

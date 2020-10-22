@@ -58,6 +58,7 @@ public abstract class Event implements Cloneable {
         this.isDone = true;
     }
 
+
     /**
      * Returns a string representation of event's done status.
      *
@@ -66,6 +67,8 @@ public abstract class Event implements Cloneable {
     public String getStatus() {
         return (isDone) ? "✓" : "✕";
     }
+
+
 
     public String getDescription() {
         return this.description;
@@ -98,6 +101,9 @@ public abstract class Event implements Cloneable {
     }
 
     public int getRepeatCount() {
+        if (repeatEventList == null) {
+            return 0;
+        }
         return repeatEventList.size();
     }
 
