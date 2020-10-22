@@ -16,7 +16,9 @@ import static com.diogonunes.jcolor.Ansi.colorize;
 
 public class Formatter {
 
-    /** A platform independent line separator. */
+    /**
+     * A platform independent line separator.
+     */
     public static final String LS = System.lineSeparator();
 
     private static final String ROW_SPLIT = "=";
@@ -26,11 +28,17 @@ public class Formatter {
     private static final String EMPTY_STRING = " ";
     private static final char EMPTY_CHAR = ' ';
 
-    /** Maximum number of characters within a row. */
+    /**
+     * Maximum number of characters within a row.
+     */
     private static final int MAX_ROW_LENGTH = 100;
-    /** Maximum length of message to within a row, minus the start and end formatting. */
+    /**
+     * Maximum length of message to within a row, minus the start and end formatting.
+     */
     private static final int MAX_MESSAGE_LENGTH = MAX_ROW_LENGTH - COLUMN_START.length() - COLUMN_END.length();
-    /** Length of a ansi defined color. */
+    /**
+     * Length of a ansi defined color.
+     */
     private static final int ANSI_PREFIX_LENGTH = 5;
 
     /**
@@ -63,9 +71,9 @@ public class Formatter {
                     + note.getTagsName(), Attribute.BRIGHT_CYAN_TEXT());
             formattedString = formattedString.concat(colorText);
 
-            int truncatedContentLength = Math.min(note.getContent().length(), MAX_MESSAGE_LENGTH - 50);
+            int truncatedContentLength = Math.min(note.getContent().get(0).length(), MAX_MESSAGE_LENGTH - 50);
 
-            String truncatedContent = note.getContent().substring(0, truncatedContentLength).concat("...");
+            String truncatedContent = note.getContent().get(0).substring(0, truncatedContentLength).concat("...");
             formattedString = formattedString.concat(LS + truncatedContent + LS);
             formattedString = formattedString.concat(generatesRowSplit());
 
@@ -77,13 +85,10 @@ public class Formatter {
     public static String formatNote(String header, Note note) {
         String formattedString = "";
 
-        if (!note.getTagsName().isBlank()) {
-            header = header.concat(" " + note.getTagsName());
-        }
+        header = header.concat(" " + note.getTagsName());
 
         formattedString = formattedString.concat(generatesHeader(header));
-        String[] lines = note.getContent().split("\\n");
-        for (String line : lines) {
+        for (String line : note.getContent()) {
             formattedString = formattedString.concat(encloseRow(line));
         }
         return encloseTopAndBottom(formattedString);
@@ -112,7 +117,7 @@ public class Formatter {
     /**
      * Formats an arraylist of strings to be printed out. Each element in the list will be printed in a newline.
      *
-     * @param messages Arraylist of strings to be formatted.
+     * @param messages  Arraylist of strings to be formatted.
      * @param hasHeader Determines if there is a header. Header MUST be the first element in the list.
      * @return Formatted message.
      */
@@ -135,7 +140,7 @@ public class Formatter {
     /**
      * Formats a array of strings to be printed out. Each element in the list will be printed in a newline.
      *
-     * @param messages Array of strings to be formatted.
+     * @param messages  Array of strings to be formatted.
      * @param hasHeader Determines if there is a header. Header MUST be the first element in the list.
      * @return Formatted message.
      */
@@ -253,10 +258,10 @@ public class Formatter {
      * Returns the number of ascii code that appear within the message. Also match the start and end of index of each
      * color.
      *
-     * @param message String of the message to check.
+     * @param message                     String of the message to check.
      * @param coloredStringStartIndexList Arraylist of index to mark the start of a color.
-     * @param coloredStringEndIndexList Arraylist of index to mark the end of a color.
-     * @param stringColorList Arraylist of string to store the color present.
+     * @param coloredStringEndIndexList   Arraylist of index to mark the end of a color.
+     * @param stringColorList             Arraylist of string to store the color present.
      * @return Number of Ascii code that appeared.
      */
     private static int getNumAsciiCode(String message,
