@@ -37,9 +37,15 @@ This section describes the design overview of the application.
 
 ### Architecture
 
+The figure below shows the overall design of the application. Given below is a sequence diagram when adding a Todo task.
 <img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Overall_Architecture.JPG" alt="" width="300"/> <br/>
 
-The Figure given above shows the overall design of the application. Given below is a sequence diagram when adding a Todo task. 
+
+UI: The user interface of the application.
+Parser: Interprets the user's input.
+Command: The command executor.
+Model: Holds the data of the application in memory.
+Storage: Reads data from, and writes data to, the hard disk. 
 
 <img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Archi_SD.JPG" alt="" width="750"/>
 
@@ -59,7 +65,7 @@ The `Parser` class receives the user's input from the `Ui` class. It interprets 
 The different `Command` classes receives the user's input from the `Parser` class and executes corresponding to the commands. 
 The figure belows shows the class diagram of the command class: <br/>
 <img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/command.JPG" alt="" width="200"/><br/>
-All the different Command classes inherits from the `Command` class.
+All the different Command classes inherit from the `Command` class.
 
 ### Storage
 
