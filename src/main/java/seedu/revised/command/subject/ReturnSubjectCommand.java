@@ -13,6 +13,7 @@ import seedu.revised.exception.FailedParseException;
 import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.subject.NoSubjectException;
 import seedu.revised.exception.subject.RepeatedSubjectException;
+import seedu.revised.exception.task.RepeatedDateTimeException;
 import seedu.revised.exception.task.TaskDeadlineException;
 import seedu.revised.exception.task.TaskEventException;
 import seedu.revised.exception.task.TaskTodoException;
@@ -92,7 +93,11 @@ public class ReturnSubjectCommand extends SubjectCommand {
                 System.out.println(Ui.printOutOfBoundsError());
             } catch (IllegalArgumentException | DateTimeParseException d) {
                 System.out.println(Ui.printInvalidFormatError());
-            } catch (Exception e) {
+            } catch (RepeatedDateTimeException e){
+                System.out.println(e.getMessage());
+
+            }
+            catch (Exception e) {
                 System.out.println(Ui.printError(e));
             }
         }
