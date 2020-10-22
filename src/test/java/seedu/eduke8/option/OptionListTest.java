@@ -35,23 +35,6 @@ class OptionListTest {
     }
 
     @Test
-    void add_oneOption_returnsCountOfTwo() {
-        OptionList optionList = createOptionList();
-        Option optionThree = new Option(PLACEHOLDER_OPTION_TWO_DESCRIPTION);
-
-        optionList.add(optionThree);
-        assertEquals(DEFAULT_OPTION_COUNT + 1, optionList.getCount());
-    }
-
-    @Test
-    void delete_oneOption_returnsCountOfZero() {
-        OptionList optionList = createOptionList();
-
-        optionList.delete(0);
-        assertEquals(DEFAULT_OPTION_COUNT - 1, optionList.getCount());
-    }
-
-    @Test
     void find_twoOptions_returnOptionOne() {
         OptionList optionList = createOptionList();
         Displayable optionOne = optionList.find(PLACEHOLDER_OPTION_ONE_DESCRIPTION);
