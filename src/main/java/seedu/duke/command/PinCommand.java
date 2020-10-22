@@ -1,7 +1,13 @@
 package seedu.duke.command;
 
 import seedu.duke.data.notebook.Note;
-import seedu.duke.ui.Formatter;
+
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
@@ -11,6 +17,7 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
  * Pins or unpins a Note in the Notebook.
  */
 public class PinCommand extends Command {
+    private static final Logger LOGGER = Logger.getLogger("PinCommand");
 
     public static final String COMMAND_WORD = "pin-n";
 
@@ -33,6 +40,9 @@ public class PinCommand extends Command {
         this.index = index;
         this.title = null;
         this.isPinByIndex = true;
+        setupLogger();
+
+        LOGGER.log(Level.INFO, "New pinCommand object created.");
     }
 
     /**
@@ -43,6 +53,9 @@ public class PinCommand extends Command {
     public PinCommand(String title) {
         this.title = title;
         this.isPinByIndex = false;
+        setupLogger();
+
+        LOGGER.log(Level.INFO, "New pinCommand object created.");
     }
 
     @Override
@@ -52,24 +65,42 @@ public class PinCommand extends Command {
             try {
                 note = notebook.getNotes().get(index);
             } catch (IndexOutOfBoundsException exception) {
+                LOGGER.log(Level.INFO, "Note does note exist. unable to find note with index" + index);
                 return COMMAND_UNSUCCESSFUL_MESSAGE;
                 //return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
             }
+            LOGGER.log(Level.INFO, "Note found using index");
         } else {
             for (Note notes : notebook.getNotes()) {
                 if (notes.getTitle().equalsIgnoreCase(title)) {
                     note = notes;
+                    LOGGER.log(Level.INFO, "Note found using title of note");
                 }
             }
         }
 
         if (note == null) {
+            LOGGER.log(Level.INFO, "Note does not exist.");
             return COMMAND_UNSUCCESSFUL_MESSAGE;
-            //return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
         }
 
         note.togglePinned();
+        LOGGER.log(Level.INFO, "Pin status of note toggled");
         return note.getTitle() + " pinned: " + note.getPinned();
-        //return Formatter.formatString(note.getTitle() + " pinned: " + note.getPinned());
+    }
+
+    private void setupLogger() {
+        LogManager.getLogManager().reset();
+        LOGGER.setLevel(Level.INFO);
+
+        try {
+            FileHandler fileHandler = new FileHandler("PinCommand.log");
+            fileHandler.setFormatter(new SimpleFormatter());
+            fileHandler.setLevel(Level.INFO);
+            LOGGER.addHandler(fileHandler);
+        } catch (IOException exception) {
+            LOGGER.log(Level.SEVERE, "File logger not working.", exception);
+        }
+
     }
 }
