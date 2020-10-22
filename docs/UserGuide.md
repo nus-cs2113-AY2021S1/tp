@@ -78,12 +78,13 @@ Subsequently, users can begin using the application.
 * Results
 * Storing data
 
-### 4.1. Subjects <a name="subjects></a>
+### 4.1. Subjects <a name="subjects"></a>
 #### 4.11. `help` - Display all commands 
 
 Displays all the available commands.
 
-Format: `help`   
+Format: `help`  
+ 
 Example of usage:
 ```
 help
@@ -104,11 +105,11 @@ bye:           exits the application
 ________________________________________________________________________________________________________________________
 ```
 
-#### 4.12. Adding a subject: `add`
+#### 4.12. `add` - Add subject
 
-#### `add` Add Subject 
+Add a subject.
 
-Format: `add` `SUBJECT_NAME`
+Format: `add` `[SUBJECT_NAME]`
 
 Example of usage:
 ```
@@ -123,7 +124,9 @@ Now you have 5 subjects in the list.
 ____________________________________________________________
 ```
 
-#### 4.13. Listing subjects: `list`
+#### 4.13. `list` - List all subjects
+
+Prints a list of all subjects stored
 
 Format: `list`
 
@@ -143,9 +146,11 @@ Here are the subject(s) in your list:
 ____________________________________________________________
 ```
 
-#### 4.14. Deleting a subject: `delete`
+#### 4.14. `delete` - Delete a subject
 
-Format: `delete` `SUBJECT_INDEX`
+Deletes the specified subject.
+
+Format: `delete` `[SUBJECT_NUMBER]`
 
 Example of usage:
 ```
@@ -160,9 +165,11 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 4.15. Finding a subject: `find`
+#### 4.15. `find` Find subjects
 
-Format: `find` `KEYWORD`
+Searches the list of subjects for all subjects that contains the query
+
+Format: `find` `[QUERY]`
 
 Example of usage:
 ```
@@ -179,9 +186,11 @@ ____________________________________________________________
 
 ```
 
-####  4.16. Entering a subject: `subject`
+####  4.16. `subject` - Enter a subject
 
-Format: `subject` `SUBJECT_NAME`
+Enters a pre-existing subject
+
+Format: `subject` `[SUBJECT_NAME]`
 
 Example of usage:
 ```
@@ -200,7 +209,8 @@ Topic commands can only be used when looking at a subject.
 
 Displays all the available commands.
 
-Format: `help`   
+Format: `help` 
+  
 Example of usage:
 ```
 help
@@ -231,7 +241,7 @@ Add a topic.
 
 Format:
 
-`add` `[DESCRIPTION]`
+`add` `[TOPIC_NAME]`
 
 Example of usage: 
 
@@ -253,7 +263,7 @@ Deletes the specified topic.
 
 Format:
 
-`delete topic` `[TOPIC NUMBER]`
+`delete topic` `[TOPIC_NUMBER]`
 
 Example of usage: 
 
@@ -317,9 +327,9 @@ ____________________________________________________________
 
 #### 4.26. `topic` - Enter a topic
 
-Enters a preexisting topic.
+Enters a pre-existing topic.
 
-Format: `topic` `[TOPIC NAME]`
+Format: `topic` `[TOPIC_NAME]`
 
 Example of usage:
 ```
@@ -407,7 +417,7 @@ Deletes the specified task.
 
 Format:
 
-`delete task [TASK NO.]`
+`delete task [TASK_INDEX]`
 
 Example of usage: 
 
@@ -429,7 +439,7 @@ Marks the specified task as done.
 
 Format:
 
-`done [TASK NO.]`
+`done [TASK_INDEX]`
 
 Example of usage: 
 
