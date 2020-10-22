@@ -13,9 +13,9 @@ subjects and then would be able to add either tasks or topics.
 * Topic : This segment is accessed through the `topic NAMEOFTOPIC` command. The user can add, delete or find flashcards
 in this segment.
 
-The code is broken down into different packages, which combine classes that perform a similar functionality.Here
+The code is broken down into different packages, which combine classes that perform a similar functionality. Here
 are the list of packages:
-* card: In charge of classes related to the subject,topic,flashcard and quiz functionalities
+* Card: In charge of classes related to the subject, topic, flashcard and quiz functionalities
     - Quiz
         * Quiz
         * Result
@@ -28,7 +28,8 @@ are the list of packages:
     - Topic
     - TopicList
     
-* Command : In charge of reading the command and calling the relevant methods.The package itself holds
+
+* Command: In charge of reading the command and calling the relevant methods. The package itself holds
 the following packages.
     - Flashcard
     - Subject
@@ -39,19 +40,19 @@ the following packages.
 **Flashcard Commands**
 
 The diagram above shows how the flashcard commands extend the abstract command class.  
-* Exceptions : Deals with the various exceptions which are thrown in the application.
+* Exceptions: Deals with the various exceptions which are thrown in the application.
     -flashcard
     - storage
     - subject
     - task
     - topic
-* Parser : Parses the commands and instantiates the relevant command classes.
-* Storage : Stores the data in an external folder
-* task : Contains the classes for the different types of tasks.
-* Ui : In charge of interaction with the user.
+* Parser: Parses the commands and instantiates the relevant command classes.
+* Storage: Stores the data in an external folder
+* Task: Contains the classes for the different types of tasks.
+* Ui: In charge of interaction with the user.
 
 ![Package Diagram](https://user-images.githubusercontent.com/46095141/96674190-c7a06100-139a-11eb-95e6-64bc2721e216.png)
-**Package Diagram**<br>
+**Package Diagram**
 The Package Diagram above shows how the Revised class interacts with all of these packages.
 
 ### Storage package
