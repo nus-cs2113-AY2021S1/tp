@@ -9,13 +9,17 @@ import command.HelpCommand;
 import command.PrintFullListCommand;
 import command.PrintLocationCommand;
 import command.Command;
+import command.SortCommand;
 
 import event.Assignment;
 import event.PersonalEvent;
 
 
+import exception.EditIndexOutOfBoundsException;
 import exception.EmptyEventIndexException;
+import exception.InvalidSortCriteriaException;
 import exception.NoEventLocationException;
+import exception.NoSortCriteriaException;
 import exception.UnknownErrorException;
 import exception.WrongEditFormatException;
 import location.Building;
@@ -60,6 +64,7 @@ public abstract class Parser {
     public static final String EDIT_INSTRUCTION = "Enter new event:";
     public static final String HELP = "help";
     public static final String CLEAR = "clear";
+    public static final String SORT = "sort";
 
     /**
      * This function calls the correct command the user want to perform, by returning a Command object.
@@ -68,7 +73,11 @@ public abstract class Parser {
      * @return the specific Command object to perform what the user want to do
      * @throws NuScheduleException includes all exceptions may happen during parsing
      */
-    public static Command parse(String fullCommand, LocationList locations) throws NuScheduleException {
+//<<<<<<< HEAD
+//    public static Command parse(String fullCommand, LocationList locations) throws NuScheduleException {
+//=======
+    public static Command parse(String fullCommand, int eventCount, LocationList locations) throws NuScheduleException {
+//>>>>>>> bd1c5f180f39ed273a550025c3dc5dee6f270077
         // this block deals with exit and list command
         switch (fullCommand.trim()) {
         case EXIT:
@@ -136,6 +145,22 @@ public abstract class Parser {
         //        }
         //
 
+        if (words[0].equals(SORT)) {
+            if (fullCommand.length() == 4) {
+                throw new NoSortCriteriaException();
+            }
+            String type = words[1];
+            switch (type) {
+            case "description":
+            case "time":
+            case "location":
+                return new SortCommand(type);
+            default:
+                throw new InvalidSortCriteriaException();
+            }
+        }
+
+
         //these variables are used by either Edit or Add
         //the position of /t
         int timeDividerPosition;
@@ -157,11 +182,13 @@ public abstract class Parser {
             if (fullCommand.substring(5).isBlank()) {
                 throw new EmptyEventIndexException();
             }
-
             try {
                 eventIndex = Integer.parseInt(fullCommand.substring(5)) - 1;
             } catch (NumberFormatException e) {
                 throw new WrongEditFormatException();
+            }
+            if (eventIndex >= eventCount || eventIndex == -1) {
+                throw new EditIndexOutOfBoundsException();
             }
             UI ui = new UI();
             ui.print(EDIT_INSTRUCTION);
