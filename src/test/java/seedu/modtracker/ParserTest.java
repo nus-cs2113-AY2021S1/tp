@@ -53,7 +53,7 @@ public class ParserTest {
         String input = "exit";
         String name = "Lee";
         parser.parse(input, modList, name, null, true, null);
-        String expected = "All changes saved." + System.lineSeparator()
+        String expected = "All changes saved." + System.lineSeparator() + Ui.BYE_LOGO + System.lineSeparator()
                 + "Bye " + name + ". Hope to see you again soon!" + System.lineSeparator();
 
         assertEquals(expected + System.lineSeparator(), outContent.toString());
