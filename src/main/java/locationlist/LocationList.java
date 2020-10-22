@@ -28,7 +28,7 @@ public class LocationList {
     }
 
     /**
-     * Finds location in the list based on the name input
+     * Finds location in the list based on the name input.
      *
      * @param name String that represents name of location to find
      * @return Location that is found in the list to be returned

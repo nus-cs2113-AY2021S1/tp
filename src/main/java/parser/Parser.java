@@ -73,11 +73,8 @@ public abstract class Parser {
      * @return the specific Command object to perform what the user want to do
      * @throws NuScheduleException includes all exceptions may happen during parsing
      */
-//<<<<<<< HEAD
-//    public static Command parse(String fullCommand, LocationList locations) throws NuScheduleException {
-//=======
+
     public static Command parse(String fullCommand, int eventCount, LocationList locations) throws NuScheduleException {
-//>>>>>>> bd1c5f180f39ed273a550025c3dc5dee6f270077
         // this block deals with exit and list command
         switch (fullCommand.trim()) {
         case EXIT:
