@@ -110,6 +110,13 @@ WatchNext was designed drawing from the ideas of the __Event-driven architectura
 
 ## 4. Implementation
 
+  4. e Storage  
+For the storage function, the file which named userData will be put in a specific file path with a fixed format.  
+The saveState function will save the watch time detail at the beginning and then follow by the show list. Everytime a command is executed by users, the file will be rewrite to update new contain. If the file or the folder does not exist in the specific path, the app will create it automatically.  
+The loadState function will read the file line by line. It will first call the loadWatchTimeDetail function to read the watch time detail, which is always the first three lines of the file, and then return a WatchTime instance.
+The rest contain of the file will be all shows details. A hash map called shows is create to collect shows information. Each show has a seven line recorded format so seven lines will be read in each loop to get a show information and then record the show into the shows class. when the function finish reading the last line, it will return shows.  
+
+
 
 ### Add
 
@@ -205,6 +212,7 @@ The processCommand method in UpdateTimeLimit class is called.
 to the desired value, which is 120 in this case.
 
 * The change will then be reflected to the user, and be saved to the userData.txt file.
+
 
 
 ## 5. Documentation
