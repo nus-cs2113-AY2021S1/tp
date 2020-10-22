@@ -123,13 +123,12 @@ Below is an overall sequence diagram to help illustrate the general program flow
 <br/>
 
 ![Main Sequence Diagram](images/Overall-Sequence-Diagram.png) <br />
-<center>*Figure 2: Overall sequence diagram* </center>
-
+*Figure 2: Overall sequence diagram* 
 <br/>
 
 
 ### 3.2 UI Component
-![UI Component Diagram](images/Ui-Class-Diagram.png)
+![UI Component Diagram](images/Ui-Class-Diagram.png) <br />
 *Figure 3: UI Component Diagram*
 
 The UI component consists of a `UI` class that handles all user input and system output. The UI is only dependent on the `Main` class and does not interact directly with other classes ensuring high cohesiveness and separation of roles.
@@ -141,7 +140,7 @@ The `Ui` component listens for:
 <br/>
 
 ### 3.3 Parser Component
-![Parser Component Diagram](images/Parser-Class-Diagram.png)
+![Parser Component Diagram](images/Parser-Class-Diagram.png) <br />
 *Figure 4: Parser Component Diagram*
 
 The `Parser` component consists of a `Parser` class and multiple `XYZParser` each representing a specific command’s parser. The Parser class will first receive a user command from `Main` and will proceed to determine the command type.
