@@ -39,14 +39,14 @@ public class EstimateCommand extends Command {
         if (wordsPerHour != NO_WORDS_PER_HOUR_PROVIDED) {
             double timeNeeded = wordCount / (double) wordsPerHour;
             commandResult.append("You would need ");
-            commandResult.append(getHoursAndMinutesNeeded(timeNeeded));
+            commandResult.append(timeNeededToString(timeNeeded));
         } else {
             for (int averageWordsPerHour : AVERAGE_TRANSLATOR_WORDS_PER_HOUR) {
                 double timeNeeded = wordCount / (double) averageWordsPerHour;
                 commandResult.append("Average translator (");
                 commandResult.append(averageWordsPerHour);
                 commandResult.append(" words per hour) takes: ");
-                commandResult.append(getHoursAndMinutesNeeded(timeNeeded));
+                commandResult.append(timeNeededToString(timeNeeded));
                 commandResult.append(System.lineSeparator());
             }
 
@@ -59,7 +59,7 @@ public class EstimateCommand extends Command {
         return commandResult.toString();
     }
 
-    private String getHoursAndMinutesNeeded(double timeNeeded) {
+    private String timeNeededToString(double timeNeeded) {
         double hoursNeeded = Math.floor(timeNeeded);
         double minutesNeeded = (timeNeeded - hoursNeeded) * MINUTES_PER_HOUR;
 
