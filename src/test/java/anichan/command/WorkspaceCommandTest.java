@@ -1,20 +1,25 @@
 package anichan.command;
 
+import anichan.anime.Anime;
+import anichan.anime.AnimeData;
+import anichan.human.User;
+import anichan.parser.WorkspaceParser;
+import anichan.storage.StorageManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import anichan.anime.Anime;
-import anichan.anime.AnimeData;
+
 import anichan.exception.AniException;
-import anichan.human.User;
-import anichan.storage.StorageManager;
 
 import java.io.File;
 import java.util.ArrayList;
 
-class AddWorkspaceCommandTest {
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+class WorkspaceCommandTest {
     private static final String VALID_TEST_DIRECTORY = "src" + File.separator + "test" + File.separator
-                                                       + "data" + File.separator;
+            + "data" + File.separator;
 
     AnimeData animeData;
     User user;
@@ -32,9 +37,9 @@ class AddWorkspaceCommandTest {
 
     @Test
     void execute_validName_ThrowsAniException() throws AniException {
-        AddWorkspaceParser testParse = new AddWorkspaceParser();
+        WorkspaceParser testParse = new WorkspaceParser();
 
-        AddWorkspaceCommand testAddWorkspace = testParse.parse("-n Crunchy rail 12345");
+        WorkspaceCommand testAddWorkspace = testParse.parse("-n Crunchy rail 12345");
         Assertions.assertDoesNotThrow(() -> testAddWorkspace.execute(animeData, storageManager, user));
     }
 }
