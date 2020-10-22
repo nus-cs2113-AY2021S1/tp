@@ -3,6 +3,7 @@ package event;
 import location.Location;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 
 /**
  * Represents the event objects.
@@ -72,6 +73,16 @@ public abstract class Event {
     public Location getLocation() {
         return location;
     }
+
+    public static Comparator<Event> descriptionComparator = new Comparator<Event>() {
+        @Override
+        public int compare(Event o1, Event o2) {
+            char description1 = o1.getDescription().charAt(0);
+            char description2 = o2.getDescription().charAt(0);
+
+            return description1 - description2;
+        }
+    };
 }
 
 

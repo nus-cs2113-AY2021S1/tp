@@ -9,6 +9,7 @@ import command.HelpCommand;
 import command.PrintFullListCommand;
 import command.PrintLocationCommand;
 import command.Command;
+import command.SortCommand;
 
 import event.Assignment;
 import event.PersonalEvent;
@@ -59,6 +60,8 @@ public abstract class Parser {
     public static final String EDIT_INSTRUCTION = "Enter new event:";
     public static final String HELP = "help";
     public static final String CLEAR = "clear";
+    public static final String SORT = "sort";
+
 
     /**
      * This function calls the correct command the user want to perform, by returning a Command object.
@@ -80,6 +83,8 @@ public abstract class Parser {
             return new HelpCommand();
         case CLEAR:
             return new ClearCommand();
+        case SORT:
+            return new SortCommand();
         default:
             break;
         }
