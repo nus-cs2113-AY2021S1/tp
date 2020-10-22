@@ -21,13 +21,11 @@ public class PreviewCommand extends Command {
     public ArrayList<DueChapter> allChapters;
     public ArrayList<DueChapter> dueChapters;
 
-    private void loadAllChapters(Storage storage, Ui ui) throws InvalidFileFormatException {
     private void loadAllChapters(Storage storage, Ui ui) throws ExclusionFileException {
         try {
             allChapters = storage.loadAllDueChapters(ui);
         } catch (FileNotFoundException e) {
-            throw new InvalidFileFormatException(Ui.UNABLE_TO_LOAD_EMPTY_DATABASE);
-            ui.showToUser(UNABLE_TO_LOAD_EMPTY_DATABASE);
+            throw new InvalidFileFormatException(UNABLE_TO_LOAD_EMPTY_DATABASE);
         }
     }
 
