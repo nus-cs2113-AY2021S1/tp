@@ -9,7 +9,7 @@
   * [3.1. Check for direct bus: ```/route```](#31-check-for-direct-bus-route)
     + [3.1.1. Examples of Usage](#311-examples-of-usage)
   * [3.2. Check bus route: ```/routemap```](#32-check-bus-route-routemap)
-  * [3.3.Check for buses at a bus stop: ```/bus```](#33check-buses-at-a-bus-stop)
+  * [3.3.Check for buses at a bus stop: ```/bus```](#33-check-buses-at-a-bus-stop)
   * [3.4. List all bus available in NUS ```/allbus```](#34-list-all-bus-available-in-nus-allbus)
   * [3.5. List all bus stops in NUS: ```/liststops```](#35-list-all-bus-stops-in-nus-liststops)
   * [3.6. Exiting the program: ```/exit```](#36-exiting-the-program-exit)
@@ -120,11 +120,11 @@ Instead of searching for the bus stops which all the buses stop at, you can easi
 
 To search for available buses at University Town:
 
-1. Type <code>/bus <strong>University Town</strong></code> into the CLI and press enter to execute the command as shown in the figure below. <br>
-<img src="UG_Figures/bus4.png"><br>
+1. Type <code>/bus <strong>University Town</strong></code> into the CLI and press enter to execute the command as shown in the figure below. <br><br>
+<img src="UG_Figures/bus4.png" width=550><br>
 _Figure x: Input command to find buses at University Town._
 
-2. The result will be a message displaying the buses available at University Town. <br>
+2. The result will be a message displaying the buses available at University Town. <br><br>
 <img src="UG_Figures/bus3.png"><br>
 _Figure x: Output message showing buses at University Town._
 
@@ -134,16 +134,13 @@ Let's say that you are at the <strong>museum</strong> bus stop, and you want to 
 
 These are the steps to fix the mistake:
 
-1. The result will be a message displaying bus stop suggestions for possible error in user input.<br>
-image<br>
+1. The result will be a message displaying bus stop suggestions for possible error in user input.<br><br>
 <img src="UG_Figures/bus2.png"><br>
 _Figure x: Output message showing suggestions for typo "musuem"._
 
-2. Type <code>/bus <strong>museum</strong></code> into the CLI as suggested in the above output.
-image<br>
+2. Type <code>/bus <strong>museum</strong></code> into the CLI as suggested in the above output.<br>
 
-3. The result will be a message displaying the buses available at the museum.
-image<br>
+3. The result will be a message displaying the buses available at the museum.<br><br>
 <img src="UG_Figures/bus1.png"><br>
 _Figure x: Input command to find buses at museum._
 
