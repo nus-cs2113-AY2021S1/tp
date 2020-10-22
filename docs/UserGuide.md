@@ -122,9 +122,11 @@ To search for available buses at University Town:
 
 1. Type <code>/bus <strong>University Town</strong></code> into the CLI and press enter to execute the command as shown in the figure below. <br>
 <img src="UG_Figures/bus4.png"><br>
+_Figure x: Input command to find buses at University Town._
 
 2. The result will be a message displaying the buses available at University Town. <br>
 <img src="UG_Figures/bus3.png"><br>
+_Figure x: Output message showing buses at University Town._
 
 
 **<u>Example 2</u>** <br>
@@ -135,6 +137,7 @@ These are the steps to fix the mistake:
 1. The result will be a message displaying bus stop suggestions for possible error in user input.<br>
 image<br>
 <img src="UG_Figures/bus2.png"><br>
+_Figure x: Output message showing suggestions for typo "musuem"._
 
 2. Type <code>/bus <strong>museum</strong></code> into the CLI as suggested in the above output.
 image<br>
@@ -142,6 +145,7 @@ image<br>
 3. The result will be a message displaying the buses available at the museum.
 image<br>
 <img src="UG_Figures/bus1.png"><br>
+_Figure x: Input command to find buses at museum._
 
 ### 3.4. List all bus available in NUS ```/allbus```
 Lists all bus available in NUS. <br>
