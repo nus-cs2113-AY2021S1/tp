@@ -43,7 +43,7 @@ The rest of the app consists of the below:
 * [**`Model`**] : Holds the data of the App in memory.
 
 
-### Input Parsing
+### 3.1. Input Parsing
 **Current Implementation**  
 The `Parser` class in `seedu.duke.backend` handles most of the input parsing. The `Parser` is a standalone class. Its purpose is to handle the conversion of read Strings from the `Ui` to UserInput objects
 safely for the rest of the program to handle. It implements the following operations:
@@ -80,7 +80,7 @@ Aspect: Design of parser
     * Pros: Command classes are free to simplify the parsing step depending on the required complexity of the command. No intermediate step and overhead.
     * Cons: More difficult to enforce parsing standards across Commands. String manipulation becomes required in every command.
 
-### Commands
+### 3.2. Commands
 **Current Implementation**  
 The abstract `Command` class in `seedu.duke` defines how the rest of the commands interact with the UI and UserInput objects.
 Its purpose is to ensure that all commands conform to the same design and coding standards to be compatable with the UI layer while also being
@@ -122,9 +122,9 @@ Aspect: `Command` resolution and validation
     * Cons: Would be a class which features a very un-elegant large `if-else` block or `switch` block. Requires every new command to update this class with a substantial amount of new lines. Harder to develop collaboratively, increases chances of merge conflicts.
 
 
-### Finance
-**1.1. Add/delete finance log entry feature**  
-1.1.1. Current Implementation  
+### 3.3. Finance
+**3.3.1. Add/delete finance log entry feature**  
+3.3.1.1. Current Implementation  
 The `CommandFinanceAdd` class in `seedu.duke.finance` handles adding finance log entry. It adds a new `FinanceLog` instance according to `userInput` into `FinanceList`.  
 The `CommandFinanceDel` in the same package handles deleting finance log entry. It deletes a certain `FinanceLog` instance according to the index provided by `userInput` from `FinanceList`.  
 They implement the following operations:  
@@ -147,7 +147,7 @@ command calls `CommandFinanceDel#execute()`, causing the `FinanceLog` of index 1
 
 ![](financeDiagramPic/1-1S3.png)
 
-**Design Considerations**  
+**3.3.1.2. Design Considerations**  
 Aspect: User input format for adding a finance log entry
 *Alternative 1(Current Choice): The user inputs command in format of "finance addLog ITEM_NAME ITEM_VALUE".  
     *Pros: It is more convenient for the user to type commands and easier to memorize the command format.  
@@ -159,8 +159,8 @@ Aspect: User input format for adding a finance log entry
     *Cons: It is harder for the user to memorize the command format. It also costs more time when executing.  
     
 
-**1.2. List the summary of finance log entries**  
-1.2.1. Current Implementation  
+**3.3.2. List the summary of finance log entries**  
+3.3.2.1. Current Implementation  
 The `CommandFinanceSummary` class in `seedu.duke.finance` handles listing all the finance log entries in `FinanceList` and 
 showing the total budget of all the `FinanceLog`.  
 It implements the following operation:  
@@ -178,7 +178,7 @@ Step 2. The user executes `finance summary` command to list the summary of `Fina
 
 ![](financeDiagramPic/1-2S2.png)
 
-**Design Considerations**  
+**3.3.2.2. Design Considerations**  
 Aspect: Repeated items  
 *Alternative 1(Current Choice): The summary will output all the repeated items.  
     *Pros: It can display all the indexes of the repeated items so that when user wants to delete any one of them, 
@@ -191,9 +191,9 @@ Aspect: Repeated items
     any one of them.  
 
 
-### Event
-**1.1. Add/delete events feature**  
-1.1.1. Current Implementation  
+### 3.4 Event
+**3.4.1. Add/delete events feature**  
+3.4.1.1. Current Implementation  
 The `CommandEventAdd` class in `seedu.duke.event` handles the adding of events. According to the `userInput`, it adds a new event to the `EventList`. 
 The `CommandEventDel` class in the same package handles deleting of a event. It deletes an `Event` instance according to the index provided by `userInput` from the `EventList`.  
 They implement the following operations:  
@@ -215,11 +215,11 @@ command calls `CommandEventDel#execute()`, causing the `Event` at index 1 to be 
 ![](EventDiagram/Step3.png)
 
 
-### HR
+### 3.5 HR
 This section describes some noteworthy details on how features under HR are implemented. <br/>
 
-**2.1. Add/delete member feature**  
-2.1.1. Current Implementation  
+**3.5.1. Add/delete member feature**  
+3.5.1.1. Current Implementation  
 The add/delete member mechanism is facilitated by `CommandAddMember` and `CommandDelMember` classes. The 
 `CommandAddMember` class in `seedu.duke.hr` handles adding members. It adds a new `Member` instance according to 
 `userInput` into `MemberList`.  
@@ -257,8 +257,8 @@ command calls `CommandDelMember#execute()`, causing the `Member` of index 1 remo
 
 ![](hrDiagramPic/2-1S3.png)
 
-**2.2. List the members**  
-2.2.1. Current Implementation  
+**3.5.2. List the members**  
+3.5.2.1. Current Implementation  
 The `CommandViewMember` class in `seedu.duke.hr` handles listing all the members in `MemberList` and 
 showing the contacts and role information of all the `Member`.  
 It implements the following operation:  
@@ -276,8 +276,8 @@ Step 2. The user executes `hr listMember` command to list the summary of `Member
 `CommandViewMember#execute()`, then every `Member` in `MemberList` and the contacts and roles will be printed out within
  the same line, separated by "|". Nothing will be changed in `MemberList`.  
 
-**2.3. Change member information**  
-Current Implementation  
+**3.5.3. Change member information**  
+3.5.3.1. Current Implementation  
 The `CommandChangeInfo` class in `seedu.duke.hr` handles changing contacts and roles information of the members in 
 `MemberList` and showing the contacts and roles of the changed `Member`.  
 It implements the following operation:  
@@ -300,7 +300,7 @@ The following shortcut commands can achieve the same result: <br/>
 `hr c /n john Sterling /p 11111111 /r publicity director`<br/>
 
 
-**Design Considerations**  
+**3.5.4. Design Considerations**  
 Aspect: Changing member information 
 *Alternative 1(Current Choice): Member information is to be modified based on the member's full name.  
     *Pros: Easy to implement. Also, if the user knows the name of the target member, which is a likely case in actual 
@@ -312,20 +312,20 @@ Aspect: Changing member information
     *Cons: This feature is very dependent on the list member feature. The user will always need to call the `hr listMember` 
     command to find out the index of the target member, before he can change the member's information.  
 
-## Product scope
-### Target user profile
+## 4 Product scope
+### 4.1 Target user profile
 
 Our product targets people who manage interest groups and CCAs. 
 However, our software solution allows us to easily expand the target audience to target schools and corporate enterprise clients in the future.
 
-### Value proposition
+### 4.2 Value proposition
 
 Management software is expensive and complex, training employees to use it is time-consuming. CCA Manager aims to solve these
 problems by offering an all-in-one solution focused on simplicity and efficiency. 
 Our use of industry standard csv format ensures compatibility with leading industry tools. 
 Shorthand Commands and Relative Time allow advanced users to enter up to 70% more commands per minute. 
 
-## User Stories
+## 5 User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -341,17 +341,17 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 |v2.0|user|reassign member roles |so that I can update their roles and responsibilities|
 |v2.0|user|change member phone numbers and emails |so that I can update their contacts|
 
-## Non-Functional Requirements
+## 6 Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2. Should be able to hold hundreds of thousands of data entries without losing the data.
 3. A user with average typing speed should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The program should support writing to a universally supported and easy to edit non-proprietary file format such as RFC 4180 .csv files.
 
-## Glossary
+## 7 Glossary
 
 * *glossary item* - Definition
 
-## Instructions for manual testing
+## 8 Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
