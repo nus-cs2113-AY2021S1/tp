@@ -1,4 +1,5 @@
 # User Guide
+
 - [1.Introduction](#1introduction)
 - [2.Quick Start](#2quick-start)
 - [3.Features](#3features)
@@ -23,9 +24,9 @@
     + [Add finance log entry: `addLog`](#add-finance-log-entry---addlog-)
     + [Delete finance log entry: `delLog`](#delete-finance-log-entry---dellog-)
     + [View financial summary: `summary`](#view-financial-summary---summary-)
-- [4. FAQ](#faq)
-- [5. Command Summary](#command-summary)
-- [6. Glossary](#glossary)
+- [4. FAQ](#4-faq)
+- [5. Command Summary](#5-command-summary)
+- [6. Glossary](#6-glossary)
 
 ## 1.Introduction
 

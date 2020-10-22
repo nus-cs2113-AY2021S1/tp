@@ -71,6 +71,7 @@ Aspect: Statefulness of Parser object
 * Alternative 2: Parser preserves stateful information
     * Pros: Able to implement multi-step commands. Can easily implement confirmation step for commands that manipulate large volume of data.
     * Cons: More complicated to implement. Harder to ensure the behaviour of the parser is consistent. Harder to debug.
+
 Aspect: Design of parser
 * Alternative 1 (Current Choice): Dedicated parser class creates an object to be passed into all other Command objects
     * Pros: Allows other classes to check for the required arguments without having to do low level string handling. Enforces consistent parsing across all commands. Enables `/` arguments to be added and read in any order.
@@ -78,6 +79,48 @@ Aspect: Design of parser
 * Alternative 2: Each Command handles its own input independently
     * Pros: Command classes are free to simplify the parsing step depending on the required complexity of the command. No intermediate step and overhead.
     * Cons: More difficult to enforce parsing standards across Commands. String manipulation becomes required in every command.
+
+### Commands
+**Current Implementation**  
+The abstract `Command` class in `seedu.duke` defines how the rest of the commands interact with the UI and UserInput objects.
+Its purpose is to ensure that all commands conform to the same design and coding standards to be compatable with the UI layer while also being
+sufficiently flexible to allow for complex commands to be created. It specifies the following *abstract* methods:
+
+* `Command#help()` - Allows commands to specify a default help `String` to be displayed if the argument supplied is incorrect.
+* `Command#validate()` - Checks if the supplied `UserInput` was intended for this command and validates if the supplied arguments are correct. This is akin to knocking the doors of houses on a street to look for an individual.
+* `Command#execute()` - Performs the command action. This is only run if `validate()` returns `ACCEPT`.
+
+Given below is the logical flow of the `Command` input to execution flow:
+
+1. The `Ui` reads the user input.
+2. The `Ui` calls the `Parser` to parse the input
+3. The `Parser` returns the `UserInput` to the `Ui`
+4. The `Ui` checks through the list of available commands and runs `validate()` on each of them until one command returns either `ARGUMENT_ERR` or `ACCEPT`
+    * If the `Ui` receives an `ARGUMENT_ERR`, it calls the `help()` function of that command and prints the `String` to the `Ui`.
+    * If the `Ui` receives an `ACCEPT`, it proceeds with the execution flow from 5.
+    * If the `Ui` receives no `ACCEPT`s or `ARGUMENT_ERR` after going through all commands, the `Ui` prints a list of available commands.
+5. The `Ui` calls the `execute()` method of the command that `ACCEPT` the `UserInput`.
+6. The `Ui` prints the output String returned from the `execute()` method.
+
+**Design Considerations**    
+Aspect: The need to instantiate a `Command`
+* Alternative 1 (Current Choice): `Command` is instantiated on `UI` initialization.
+    * Pros: Easy to implement. Less overhead from executing commands. Locality of the code allows for minimal merge conflicts when developing collaboratively.
+    * Cons: Requires more memory at load to hold all the objects.
+    * Reason for choice: Since we do not have a stateful parser, this option was chosen as the simplest implementation that gets the job done.
+* Alternative 2: `Command`s only contain static methods
+    * Pros: Conceptually more sensible than having exactly one instance of each command.
+    * Cons: More complicated to implement, java has no elegant simple way to exploit inheritance and static functions in a list of classes making this option unpractical without implementing a bunch of hacks.
+
+Aspect: `Command` resolution and validation
+* Alternative 1 (Current Choice): Each class is free to specify its own matching patterns and criterion.
+    * Pros: Allows for more complex criteria evaluation without having a dedicated class for resolving commands. Makes good use of abstraction and inheritance and puts all the `Command` related functions in the same class.
+    * Cons: Searching of the command list is `O(n)` but the individual validation functions may not be `O(1)`, resulting in higher potential overhead if validation functions are not optimized.
+    * Reason for choice: We wanted development of command related functions to all be housed in the same class. This design achieves that goal while giving us a great deal of flexibility.
+* Alternative 2: Dedicated class for command resolution and validation
+    * Pros: Further separates the job of command resolution from the `Ui` and `Command`. Simplifies `Command` class.
+    * Cons: Would be a class which features a very un-elegant large `if-else` block or `switch` block. Requires every new command to update this class with a substantial amount of new lines. Harder to develop collaboratively, increases chances of merge conflicts.
+
 
 ### Finance
 **1.1. Add/delete finance log entry feature**  

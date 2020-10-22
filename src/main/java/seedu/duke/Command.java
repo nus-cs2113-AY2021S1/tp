@@ -23,10 +23,10 @@ public abstract class Command {
 
     /**
      * Runs the actual command processing.
+     * Throws generic exception is used in case the other subclasses choose to throw any exceptions during execution.
      * @return String message to be printed to the user.
      */
-    public abstract String execute() throws DukeFinanceAddDescriptionLostException,
-            DukeNotNumberException;
+    public abstract String execute() throws Exception;
 
     /**
      * Provides information about command usage.

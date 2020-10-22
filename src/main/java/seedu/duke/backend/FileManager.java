@@ -222,7 +222,7 @@ public class FileManager {
         int rows = data.get("Name").size();
         for (int i = 0; i < rows; i++) {
             Member tmp = new Member(data.get("Name").get(i),
-                    Integer.parseInt(data.get("Phone").get(i)),
+                    Long.parseLong(data.get("Phone").get(i)),
                     data.get("Email").get(i),
                     data.get("Role").get(i));
             MemberList.members.add(tmp);
