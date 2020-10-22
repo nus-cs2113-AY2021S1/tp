@@ -36,31 +36,6 @@ public class Formatter {
     /**
      * Method compiles the ArrayList items and appends the items to a String.
      *
-     * @param notes ArrayList of notes to obtain note title/tags from
-     * @return noteString StringBuilder containing the notes ready to be printed
-     */
-    public static String formatNotes(String header, ArrayList<Note> notes) {
-        String formattedString = "";
-
-        formattedString.concat(generatesHeader(header));
-
-        for (Note note: notes) {
-            String colorText = colorize("Title: " + note.getTitle() + " "
-                    + note.getTagsName(), Attribute.BRIGHT_CYAN_TEXT());
-            formattedString = formattedString.concat(colorText);
-
-            int truncatedContentLength = Math.min(note.getContent().length(), MAX_MESSAGE_LENGTH - 50);
-
-            String truncatedContent = note.getContent().substring(0, truncatedContentLength).concat("...");
-            formattedString = formattedString.concat(LS + truncatedContent + LS);
-            formattedString = formattedString.concat(generatesRowSplit());
-        }
-        return encloseTopAndBottom(formattedString);
-    }
-
-    /**
-     * Method compiles the ArrayList items and appends the items to a String.
-     *
      * @return noteString StringBuilder containing the notes ready to be printed
      */
     public static String formatNotes(String pinnedHeader, String unpinnedHeader,
@@ -82,6 +57,34 @@ public class Formatter {
         String[] lines = note.getContent().split("\\n");
         for (String line : lines) {
             formattedString = formattedString.concat(encloseRow(line));
+        }
+        return encloseTopAndBottom(formattedString);
+    }
+
+    /**
+     * Method compiles the ArrayList items and appends the items to a String.
+     *
+     * @param notes ArrayList of notes to obtain note title/tags from
+     * @return noteString StringBuilder containing the notes ready to be printed
+     */
+    public static String formatNotes(String header, ArrayList<Note> notes) {
+        String formattedString = "";
+        int i = 1;
+
+        formattedString = formattedString.concat(generatesHeader(header));
+
+        for (Note note: notes) {
+            String colorText = colorize(i + ". Title: " + note.getTitle() + " "
+                    + note.getTagsName(), Attribute.BRIGHT_CYAN_TEXT());
+            formattedString = formattedString.concat(colorText);
+
+            int truncatedContentLength = Math.min(note.getContent().length(), MAX_MESSAGE_LENGTH - 50);
+
+            String truncatedContent = note.getContent().substring(0, truncatedContentLength).concat("...");
+            formattedString = formattedString.concat(LS + truncatedContent + LS);
+            formattedString = formattedString.concat(generatesRowSplit());
+
+            i++;
         }
         return encloseTopAndBottom(formattedString);
     }
