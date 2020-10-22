@@ -116,9 +116,7 @@ public class Command {
                 Ui.printLine("Deleting grade");
                 GradeBook.deleteGrade(AcademicCommandParser.parseDeleteGrade(command),currentGrades);
 
-            }
-
-            else {
+            } else {
                 StudyItLog.logger.severe("Invalid command type, check studyit.Command Parser");
             }
         } catch (InvalidCommandException e) {
