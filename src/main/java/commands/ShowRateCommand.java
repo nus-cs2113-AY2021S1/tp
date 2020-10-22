@@ -32,29 +32,29 @@ public class ShowRateCommand extends Command {
     private int mediumCard = 0;
     private int hardCard = 0;
     private int cannotAnswerCard = 0;
+    private int noCard = 0;
 
 
     @Override
     public void execute(Ui ui, Access access, Storage storage) {
         Chapter chapter = access.getChapter();
-        if (!computePercentage(chapter, ui)) {
+        int cardCount = computePercentage(chapter, ui);
+        if (cardCount == noCard) {
             ui.showToUser(String.format(MESSAGE_NO_CARDS_IN_CHAPTER, chapter));
             return;
         }
+        ui.showToUser("\nCard count: " + cardCount);
         ui.showToUser(String.format(MESSAGE_SHOW_PERCENTAGE_PROMPT, EASY, easyPercentage));
         ui.showToUser(String.format(MESSAGE_SHOW_PERCENTAGE_PROMPT, MEDIUM, mediumPercentage));
         ui.showToUser(String.format(MESSAGE_SHOW_PERCENTAGE_PROMPT, HARD, hardPercentage));
         ui.showToUser(String.format(MESSAGE_SHOW_PERCENTAGE_PROMPT, CANNOT_ANSWER, cannotAnswerPercentage));
     }
 
-    private Boolean computePercentage(Chapter chapter, Ui ui) {
-        Boolean isComputable = true;
+    private int computePercentage(Chapter chapter, Ui ui) {
         ArrayList<Card> allCards = chapter.getCards().getAllCards();
         int cardCount = allCards.size();
-        ui.showToUser("\nCard count: " + cardCount);
         if (cardCount == 0) {
-            isComputable = false;
-            return isComputable;
+            return cardCount;
         }
 
         for (Card c : allCards) {
@@ -79,7 +79,7 @@ public class ShowRateCommand extends Command {
         mediumPercentage = ((double)mediumCard) / cardCount;
         hardPercentage = ((double)hardCard) / cardCount;
         cannotAnswerPercentage = ((double)cannotAnswerCard) / cardCount;
-        return isComputable;
+        return cardCount;
     }
 
     @Override

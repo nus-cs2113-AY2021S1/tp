@@ -47,15 +47,15 @@ public class RateCommand extends Command {
         }
         Chapter toRate = getChapter(ratingIndex, access);
         rateCard(toRate, getChoiceOfDeckRating());
-        System.out.println(MESSAGE_SUCCESS);
+        ui.showToUser(MESSAGE_SUCCESS);
     }
 
     public String getChoiceOfDeckRating() {
-        System.out.println(MESSAGE_START_RATING + MESSAGE_RATING_USAGE);
         Ui ratingUi = new Ui();
+        ratingUi.showToUser(MESSAGE_START_RATING + MESSAGE_RATING_USAGE);
         String userChoice = ratingUi.readCommand();
         while (!validDeckRating(userChoice)) {
-            System.out.println(MESSAGE_FAIL + MESSAGE_RATING_USAGE);
+            ratingUi.showToUser(MESSAGE_FAIL + MESSAGE_RATING_USAGE);
             userChoice = ratingUi.readCommand();
         }
         return userChoice.toUpperCase();
