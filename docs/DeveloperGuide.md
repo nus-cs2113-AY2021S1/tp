@@ -39,7 +39,7 @@ The rest of the app consists of the below:
 
 * [**`UI`**] : The UI of the App.
 * [**`Logic`**] : The command executor.
-* [**`storage`**]: Reads data from, and writes data to, the hard disk.
+* [**`storage`**] : Reads data from, and writes data to, the hard disk.
 * [**`Model`**] : Holds the data of the App in memory.
 
 
