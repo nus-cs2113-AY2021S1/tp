@@ -5,15 +5,24 @@ import com.google.gson.GsonBuilder;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import seedu.duke.slot.Timetable;
+
+
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -113,5 +122,87 @@ public class Storage<T> {
         fw.write(textToAdd);
         fw.close();
     }
+
+
+    private ArrayList<String> nusModuleListFromNusMods() throws DukeException {
+
+        try {
+            int year = LocalDate.now().getYear();
+
+            URL url = new URL("https://api.nusmods.com/v2/" + year + "-" + (year + 1) +
+                    "/moduleList.json"); // create url based on current year
+
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            if (responseCode != 200) {
+                return null;
+            }
+            String jsonAsString = "";
+            Scanner sc = new Scanner(url.openStream());
+            while (sc.hasNext()) { // if line is empty, means finish reading
+                jsonAsString += sc.nextLine();
+            }
+            //System.out.print(buffer.toString());
+            JSONParser parse = new JSONParser();
+            JSONArray moduleArray = (JSONArray) parse.parse(jsonAsString);
+            ArrayList<String> moduleList = new ArrayList<>();
+
+            for (int i = 0; i < moduleArray.size(); i++) {
+                JSONObject module = (JSONObject) moduleArray.get(i);
+                moduleList.add(module.get("moduleCode").toString());
+            }
+            return moduleList;
+
+        } catch (IOException e) {
+            throw new DukeException(DukeExceptionType.CONNECTION_ERROR);
+        } catch (ParseException e) {
+            throw new DukeException(DukeExceptionType.JSON_PARSE_ERROR);
+        }
+    }
+
+    public ArrayList<String> loadModuleList() throws IOException, DukeException {
+        String moduleListPath = "./data/modulelist.txt";
+        moduleListPath = moduleListPath.replace('/', File.separatorChar);
+        File f = new File(moduleListPath);
+        ArrayList<String> moduleList = new ArrayList<>();
+        String s = "";
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(f));
+
+            while ((s = bufferedReader.readLine())!= null) {
+                moduleList.add(s);
+            }
+            if (moduleList.isEmpty()) {
+                throw new FileNotFoundException();
+            }
+            return moduleList;
+
+
+        } catch (FileNotFoundException e) {
+
+            moduleList = nusModuleListFromNusMods();
+
+            if (moduleList!=null) { // If moduleList is successfully filled, store the list locally
+                saveModuleList(moduleListPath, moduleList);
+            }
+            return moduleList;
+        }
+    }
+
+    private void saveModuleList(String moduleListPath, ArrayList<String> moduleList)
+            throws IOException {
+        String dirPath = getDirectory(moduleListPath);
+        Path path = Paths.get(dirPath);
+        Files.createDirectories(path);
+
+        FileWriter fw = new FileWriter(moduleListPath, false);
+        for(String str: moduleList) {
+            fw.write(str + System.lineSeparator());
+        }
+        fw.close();
+    }
+
 
 }
