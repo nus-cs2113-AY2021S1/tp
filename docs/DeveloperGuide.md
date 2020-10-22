@@ -67,7 +67,13 @@ This program can be run once it is compiled. If you have built its artifacts (.j
 ### Model Component
 {UML}
 ### Storage Component
-{UML}
+![Figure X: Simplified class diagram for Storage Component, Model and json.simple](./image/developerguide/storagecomponent.png "Storage Component UML")  
+  
+API: [StorageManager.java](/src/main/java/seedu/duke/storage/StorageManager.java)  
+The Storage component is using the JavaScript Object Notation (JSON) to save the data. The library used for serialising and deserializing the data is json.simple 3.1.1 by Clifton Labs.  
+Apart from the StorageManager class, each of the model classes is also part of the Storage component as they inherit the interface Jsonable. Therefore, the model classes need to implement the method toJson() which will contain the logic for serialising an object into a JSON string. This allows the object to be serialised by passing the object into Jsoner.serialize() directly.  
+In contrast, the JSON is deserialised under the functions implemented in StorageManager class manually due to the limitations of the library.  
+
 ## Implementation
 ### Project
 #### Create Project
@@ -85,8 +91,16 @@ This program can be run once it is compiled. If you have built its artifacts (.j
 #### Remove task from Sprint
 #### Allocate Sprint tasks to Members    
 ### Saving of Data
+To make the data persistent and portable, **JSON** has been chosen as the format for data to be saved to a persistent storage such as storage drives, thumb drives and any other storage medium that is used to run the program. JSON is also human-readable which allows users to directly modify the data file easily which can be useful in certain scenarios such as fixing the data file in the event of data corruption.
 
+![Figure X: Running the Jar](image/developerguide/savingdata1.png "Running the Jar")  
+_Figure X: Running the Jar_  
+![Figure X: Running the Jar](image/developerguide/savingdata2.png "Running in IDE")  
+_Figure X: Running in IDE_  
 
+As shown in the above diagram, the program will save the data as “data.json”. The data file is saved in the “data/” folder that is located in the folder of the program. If you are testing the program using Intellij IDE, the “data/” folder will be in the root of the project folder. 
+  
+When you start the program, the program will load the data file from its respective location and deserialise it into its respective object instances. Data will be saved when the program exits or whenever the user makes changes to the program.  
 
 ### Target user profile
 
