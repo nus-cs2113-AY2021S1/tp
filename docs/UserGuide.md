@@ -47,8 +47,8 @@ Format: help
 Exits the program.
 Format: `bye`
 
-### 3.3 HR features `HR` <br/>
-#### Add members: `addMember`<br/>
+### 3.3 HR features `HR` 
+#### Add members: `addMember`
 Adds a member to the list of members.<br/>
 
 Format: `hr add /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE`<br/>
@@ -57,7 +57,7 @@ Example of usage: <br/>
  `hr addMember /n John Sterling /p 88888888 /e js@gmail.com /r president`<br/>
  `hr addMember /n Harry Potter /p 12345678 /e H_P@gmail.com /r member`<br/>
  
- #### Delete members: `delMember`<br/>
+ #### Delete members: `delMember`
  Deletes a member from the list of members. <br/>
  Format: `hr delMember MEMBER_INDEX` <br/>
  Deletes the member at the specified MEMBER_INDEX.<br/>
@@ -69,14 +69,14 @@ Example of usage: <br/>
  `hr delMember 1` <br/>
  `hr delMember 19` <br/>
 
-#### list members: `listMember`<br/>
+#### list members: `listMember`
 Prints the list of members, based on the order in which they are added into the list. 
 Format: `hr listMember` <br/>
 
 Example of usage:
 `hr listMember`  
 
-#### change member information: `changeInfo`<br/>
+#### change member information: `changeInfo`
 Changes contacts and role of member in the list, based on the given member name. 
 Format: `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` <br/>
 
@@ -111,7 +111,7 @@ Example of usage:
 `hr list connections`  
 
 
-### 3.4 Event features`event` <br/>
+### 3.4 Event features`event` 
 #### Add events: `addEvent`<br/>
 Adds an event to the list of events.<br/>
 
@@ -121,7 +121,7 @@ Example of usage: <br/>
  `event addEvent /n arduino course /d 2020-12-30 /t 8pm`<br/>
  `event addEvent /n Autodesk course/d 2020-12-20 /t 8-10.30pm`<br/>
  
- #### Delete events: `delEvent`<br/>
+ #### Delete events: `delEvent`
  Deletes an event from the list of events. <br/>
  Format: `event delEvent EVENT_INDEX` <br/>
  Deletes the event at the specified EVENT_INDEX.<br/>
@@ -133,21 +133,21 @@ Example of usage: <br/>
  `event delEvent 1` <br/>
  `event delEvent 19` <br/>
 
-#### list events: `listEvent`<br/>
+#### list events: `listEvent`
 Prints the list of events, based on the order in which they are added into the list. 
 Format: `event listEvent` <br/>
 
 Example of usage: 
 `event listEvent`
 
-#### countdown events `countdown`<br/>
+#### countdown events `countdown`
 lists the events with the number of days left. It also sorts them so that the event due first will be displayed first.<br/>
 Format: `event countdown` <br/>
 
 Example of usage: 
 `event countdown`
 
-#### Mark an event as completed `done`<br/>
+#### Mark an event as completed `done`
 Mark an event as done. 
 Format: `event done EVENT_INDEX` <br/>
 
@@ -157,7 +157,7 @@ The EVENT_INDEX must be an integer greater than 0. <br/>
 Example of usage:
 `event done 1`
 
-#### Search for an Event `search`<br/>
+#### Search for an Event `search`
 Search for a particular event by name or date.
 Format: 'event search /s KEYWORD' <br/>
 
