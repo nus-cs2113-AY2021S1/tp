@@ -47,7 +47,7 @@ public class RecommendCommand extends Command {
                 exerciseList.addExercise(new Exercise(standardExercise.getName(), caloriesBurnt));
             }
             try {
-                storage.writeExerciseList(exerciseList);
+                storageManager.writeExerciseList(exerciseList);
             } catch(IOException e){
                 Ui.printCustomError("Sorry, something is wrong with the storage file");
             }
