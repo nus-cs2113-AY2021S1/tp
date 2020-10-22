@@ -22,7 +22,7 @@ public class RescheduleCommand extends Command {
 
     public static final String MESSAGE_SAME_DATE = "%1$s has the same due date as what you entered: %2$s\n";
     public static final String MESSAGE_BEFORE_RESCHEDULE = "%1$s has the following due date: %2$s\n";
-    public static final String MESSAGE_AFTER_RESCHEDULE = "It has been rescheduled to %1$s:\n";
+    public static final String MESSAGE_AFTER_RESCHEDULE = "It has been rescheduled to: %1$s\n";
 
     private static final String ACCESS_LEVEL = "module";
 
@@ -47,15 +47,17 @@ public class RescheduleCommand extends Command {
             Chapter chapter = chapters.getChapter(index);
             LocalDate dueBy = chapter.getDueBy();
 
-            if (date.isEqual(dueBy)) {
+            if (dueBy != null && date.isEqual(dueBy)) {
                 String result = String.format(MESSAGE_SAME_DATE, chapter.getChapterName(), date);
                 ui.showToUser(result);
                 return;
             }
 
+
             chapter.setDueBy(date, storage, access);
             StringBuilder result = new StringBuilder();
-            result.append(String.format(MESSAGE_BEFORE_RESCHEDULE, chapter.getChapterName(), dueBy));
+            result.append(String.format(MESSAGE_BEFORE_RESCHEDULE, chapter.getChapterName(),
+                    (dueBy == null) ? "No due date" : dueBy));
             result.append(String.format(MESSAGE_AFTER_RESCHEDULE, date));
             ui.showToUser(result.toString());
         } catch (IndexOutOfBoundsException | NullPointerException e) {

@@ -11,9 +11,9 @@ import commands.HelpCommand;
 import commands.ListCommand;
 import commands.ListDueCommand;
 import commands.RemoveCommand;
+import commands.RescheduleCommand;
 import commands.ReviseCommand;
 import manager.card.Card;
-import manager.history.History;
 import manager.chapter.DueChapter;
 
 import java.io.InputStream;
@@ -133,6 +133,8 @@ public class Ui {
         out.println("8. " + GoCommand.MESSAGE_USAGE);
         out.println("9. " + BackCommand.MESSAGE_USAGE);
         out.println("10. " + ListDueCommand.MESSAGE_USAGE);
+        out.println("11. " + RescheduleCommand.MESSAGE_USAGE);
+
     }
 
     public void showError(String error) {
