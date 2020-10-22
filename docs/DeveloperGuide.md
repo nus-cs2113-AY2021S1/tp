@@ -11,7 +11,7 @@
     - [Value proposition](#value-proposition)
 - [User stories](#user-stories)
 - [Use cases](#use-cases)
-- [Non-funcitonal requirments](#non-functional-requirements) 
+- [Non-functional requirements](#non-functional-requirements) 
 - [Glossary](#glossary)
 - [Instruction for manual testing](#instructions-for-manual-testing)
 
@@ -168,84 +168,106 @@ and these classes are stored in the seedu.commons package.
 
 ### Use case: Add task
 
-User adds a task
-PLANus adds task
-PLANus shows the task added message
+Main success scenario
+
+1. User adds a task
+2. PLANus adds task
+3. PLANus shows the task added message
 
 Use case ends. 
 
-Extensions
-      1a. User adds task without any date
-Date is set to the current date
-      1b. User adds tasks without any priority
-Priority is set to low
-      1c. User adds task without start and end time
-Time is set to empty
-      1d. User inputs wrong details format
-PLANus shows invalid command message
+Extensions  
+   - 1a. User adds task without any date  
+Date is set to the current date  
+   - 1b. User adds tasks without any priority  
+Priority is set to low  
+   - 1c. User adds task without start and end time  
+Time is set to empty  
+   - 1d. User inputs wrong details format  
+PLANus shows invalid command message  
 
 
 ### Use case: List task
-User requests to list tasks
-PLANus shows tasks
+
+Main success scenario
+
+1. User requests to list tasks
+2. PLANus shows tasks
 
 Use case ends.
 
 Extensions
-      2a. List is empty - PLANus displays empty list
+   - 2a. List is empty - PLANus displays empty list
 
 
-Use case: Edit task
-User inputs the task index, and what user wants to change
-PLANus changes the task details
-PLANus shows the task edited message. 
+### Use case: Edit task
+
+Main success scenario
+
+1. User inputs the task index, and what user wants to change
+2. PLANus changes the task details
+3. PLANus shows the task edited message. 
 
 Use case ends.
 
 Extensions
-      1a. User inputs an invalid index
+   - 1a. User inputs an invalid index
 Shows invalid command message
-      1b. User inputs wrong details format
+   - 1b. User inputs wrong details format
 Shows invalid command message
 
 
 ### Use case: Help
-User inputs help command
-PLANus displays help message
+
+Main success scenario
+
+1. User inputs help command
+2. PLANus displays help message
 
 Use case ends.
 
 
 ### Use case: Search
-User inputs search command with keyword
-PLANus searches the task list for keyword
-PLANus displays results
+
+Main success scenario
+
+1. User inputs search command with keyword
+2. PLANus searches the task list for keyword
+3. PLANus displays results
 
 Use case ends.
 
 Extensions
-      2a. PLANus is unable to find any matches
+   - 2a. PLANus is unable to find any matches
 Shows no tasks found message
 
 
 ### Use case: Delete
-User inputs delete command with index
-PLANus deletes the task
-PLANus shows task deleted message
+
+Main success scenario
+
+1. User inputs delete command with index
+2. PLANus deletes the task
+3. PLANus shows task deleted message
 
 Use case ends.
 
 Extensions 
-      1a. User inputs invalid index
+   - 1a. User inputs invalid index
 PLANus shows invalid task number message
 
 
 ### Use case: Clear 
-User inputs clear command
-PLANus clears all tasks
-PLANus shows tasks cleared message
+
+Main success scenario
+
+1. User inputs clear command
+2. PLANus clears all tasks
+3. PLANus shows tasks cleared message
 
 Use case ends. 
+
+
 
 ## Non-Functional Requirements
 
