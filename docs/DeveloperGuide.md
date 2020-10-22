@@ -78,10 +78,18 @@ question. The class diagram below illustrates the structure of both classes.
 #### Implementation 
 
 The `Ui` class handles all the interactions with the users. It reads the input from the users and prints out replies to 
-the users. An example is provided below to illustrate how the `Ui` class prints out the starting page of the quiz for 
+the users. It is the point of communication between EDuke8 and the users. 
+
+An example is provided below to illustrate how the `Ui` class prints out the starting page of the quiz for 
 the user to comprehend. 
 
 ![Ui_Printing_Start_Quiz_Page](./images/PrintQuizStartPage.png)
+
+As the user starts the quiz, the `Ui` class will print out the quiz page to show that the quiz has started. 
+The user inputs the number of questions that he wants to answer and also the topics that he wants to be tested on. 
+The `Ui` will go through printStartQuizQuestions() to print out the number of questions that the user has chosen. 
+Afterwards, the `Ui` will go through printStartQuizTopics() to print out the topics that the user has chosen. 
+The `Ui` echos back both information to ensure that EDuke8 has received the correct information from the user. 
 
 ## Product scope
 ### Target user profile
@@ -97,7 +105,6 @@ enhance their learning experience. Consolidate key concepts for easy revision.
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|answer given questions|start testing myself immediately|
 |v1.0|new user|quickly see what the software has to offer|understand how to use the app|
 |v1.0|new user|answer given questions|start testing myself immediately|
 |v1.0|long-time user|get different questions each time|repeatedly test my understanding for the particular topic|
