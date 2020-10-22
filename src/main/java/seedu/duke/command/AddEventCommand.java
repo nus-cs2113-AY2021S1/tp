@@ -5,6 +5,8 @@ import seedu.duke.data.timetable.RecurringEvent;
 import seedu.duke.util.DateTimeManager;
 import seedu.duke.ui.Formatter;
 
+import java.util.ArrayList;
+
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_RECURRING;
 import static seedu.duke.util.PrefixSyntax.PREFIX_REMIND;
@@ -47,6 +49,8 @@ public class AddEventCommand extends Command {
     @Override
     public String execute() {
         timetable.addEvent(event);
-        return COMMAND_SUCCESSFUL_MESSAGE + Formatter.LS + Formatter.LS + event.toString();
+        ArrayList<String> eventStringArray = event.toStringArray();
+        eventStringArray.add(0, COMMAND_SUCCESSFUL_MESSAGE);
+        return Formatter.formatString(eventStringArray, true);
     }
 }

@@ -217,6 +217,20 @@ public class Event implements Comparable<Event> {
                 + lineSeparator + repeatingString;
     }
 
+    /**
+     * Provides an ArrayList representation of the event for the formatter to use.
+     *
+     * @return ArrayList of strings to represent the event.
+     */
+    public ArrayList<String> toStringArray() {
+        ArrayList<String> result = new ArrayList<>();
+        result.add("Event: " + title);
+        result.add("Date: " + date.toString() + "\tTime: " + time.toString());
+        result.add("Reminder: " + isToRemind);
+        result.add("Repeating: " + isRecurring);
+        return result;
+    }
+
     @Override
     public int compareTo(Event o) {
         int comp = date.compareTo(o.date);
