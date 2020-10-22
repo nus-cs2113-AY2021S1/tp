@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fitr.command.AddFoodCommand;
+import fitr.command.ClearCommand;
 import fitr.command.Command;
 import fitr.command.InvalidCommand;
 import fitr.command.AddExerciseCommand;
@@ -37,6 +38,7 @@ public class Parser {
 
         String userCommand = matcher.group("command").trim();
         String arguments = matcher.group("arguments").trim();
+
         switch (userCommand.toLowerCase()) {
         case Commands.COMMAND_FOOD:
             return new AddFoodCommand(arguments);
@@ -52,6 +54,8 @@ public class Parser {
             return new HelpCommand(arguments);
         case Commands.COMMAND_DELETE:
             return new DeleteCommand(arguments);
+        case Commands.COMMAND_CLEAR:
+            return new ClearCommand(arguments);
         case Commands.COMMAND_BYE:
             return new ExitCommand(arguments);
         case Commands.COMMAND_GOAL:
