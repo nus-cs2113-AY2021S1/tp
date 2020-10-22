@@ -18,13 +18,13 @@
 
 
 
-##b1. Introduction 
+## 1. Introduction 
 CCA Manager is a revolutionary all-in-one management tool that changes the way you can manage interest groups with unrivaled efficiency and simplicity. Its lightweight Command Line Interface (CLI) allows administrators to breeze through tasks quickly and easily while offering powerful features to advanced users.
 
 This developer guide is written to document the implementation of CCA Manager. This document is intended for people who
 are interested in learning more about the technical details of the various features and the organization of the application.
 
-##b2. Setting up
+## 2. Setting up
 Refer to the guide here.
 
 ## 3. Design and Implementation
