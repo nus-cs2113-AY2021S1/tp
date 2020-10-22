@@ -1,3 +1,0 @@
-recordedDate: null
-durationWatchedToday: 0
-dailyWatchLimit: 0

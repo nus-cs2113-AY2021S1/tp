@@ -48,6 +48,15 @@ public class WatchTime {
         }
     }
 
+    public static boolean checkIfDifferentDay(LocalDate recordedDate) {
+        LocalDate currentDate = LocalDate.now();
+        if (currentDate.equals(recordedDate)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public static void watchDurationUpdate(int showMinutes) {
         if (isNewDay()) {
             recordedDate = LocalDate.now();
