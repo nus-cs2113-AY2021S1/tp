@@ -63,7 +63,7 @@ which will return a `TopicList` object. The following sequence diagram shows how
 
 ![TopicsStorage load](./images/TopicsStorage_load.png)
 
-###Implementation of commands relating to TopicList, namely:
+###  Implementation of commands relating to TopicList, namely:
 
 1. Listing topics in TopicList
 2. Finding a topic in TopicList
@@ -77,7 +77,7 @@ TopicList is an ArrayList of type Displayable, which is one of two interfaces im
 in the code for EDuke8. As such, many of the commands that manipulate the TopicList make 
 use of the package java.util.ArrayList. The TopicList is used to store Topics.
 
-####1) Listing topics in TopicList:
+#### 1) Listing topics in TopicList:
 
 ![TopicListSampleSequence](./images/TopicListSampleSequence.png)
 
@@ -90,7 +90,7 @@ Step 2: The TopicList.showTopics() method then calls the method Ui.printTopicLis
 Step 3: The Ui.printTopicList() method then prints out the description of each topic in the 
         TopicList. 
 
-####2) Finding a topic in TopicList
+#### 2) Finding a topic in TopicList
 
 This task is performed by the TopicList.find() method. 
 
@@ -108,7 +108,7 @@ NoteList is also an ArrayList of type Displayable, which is one of two interface
 As such, many of the commands that manipulate the TopicList make use of the package java.util.ArrayList. The NoteList 
 stores Note objects. Each topic has 1 NoteList. 
 
-####1) Adding a new note:
+#### 1) Adding a new note:
 
 This task is performed by the NoteList.add() method.
 
@@ -118,7 +118,7 @@ Step 1: The parseCommand() method instantiates a NoteCommand object which then c
 Step 2: The NoteList.add() method makes use of ArrayList API, specifically the ArrayList.add() method, to add the Note
         object into NoteList.
 
-####2) Deleting a note:
+#### 2) Deleting a note:
 
 This task is performed by the NoteList.add() method.
 
@@ -129,7 +129,7 @@ Step 1: The parseCommand() method instantiates a NoteCommand object which then c
 Step 2: The NoteList.add() method makes use of ArrayList API, specifically the ArrayList.remove() method, to delete the 
         Note object in NoteList.
 
-####3) Listing out all notes in a topic
+#### 3) Listing out all notes in a topic
 
 This task is performed by the Topic.showNotes() method.
 
