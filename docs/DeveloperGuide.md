@@ -164,6 +164,8 @@ may prefer to provide a safe estimation, while some users may prefer to specify 
 The sequence diagram presented below depicts the interaction between the EstimateCommand and StorageManager component 
 for running the `estimate` command, provided that the user entered a valid command.
 
+<br/>
+
 ![EstimateCommand Sequence Diagram](images/EstimateCommand-Sequence-Diagram.png)
 *Figure x. Sequence diagram for estimating translation time for a script*
 
@@ -174,7 +176,7 @@ The `estimate` command requires minimally one input:
 * **Optionally**, the amount of words the user can translate in an hour.
 
 When the user executes the `EstimateCommand`, the following steps are taken by the application: 
-1. It invokes the `activeWorkspace()` method in `User` to obtain the workspace the user is in. 
+1. It invokes the `activeWorkspace()` method in `User` to obtain the workspace the user is currently in. 
 2. Proceed to load the script file's content using the `loadScript()` method using `StorageManager` while
 also providing the name of the workspace (`workspaceName`) and file name of the script (`scriptFileName`).
 3. Based on the parameters given in the command, one of the following can happen: 
