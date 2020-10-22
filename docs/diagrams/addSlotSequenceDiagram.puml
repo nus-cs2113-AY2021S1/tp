@@ -13,7 +13,7 @@ participant ":Ui" as Ui
 
 
 
-[-> AddSlotCommand : execute()
+[-> AddSlotCommand : execute(bookmarks, timetable, ui)
 activate AddSlotCommand
 
 AddSlotCommand -> Timetable : moduleExists(moduleCode)
@@ -67,11 +67,11 @@ opt commands is not null
             AddSlotCommand -> AddSlotCommand : addBookmarkToModule(module, slotAndBookmark)
             activate AddSlotCommand
 
-            AddSlotCommand -> Bookmark ** : create(description, url)
-            activate Bookmark
+            AddSlotCommand -> BookmarkModule ** : create(description, url)
+            activate BookmarkModule
 
-            Bookmark --> AddSlotCommand
-            deactivate Bookmark
+            BookmarkModule --> AddSlotCommand
+            deactivate BookmarkModule
 
             AddSlotCommand -> Module : addBookmark(bookmark)
             activate Module

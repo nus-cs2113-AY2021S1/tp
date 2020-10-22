@@ -1,8 +1,22 @@
 # Developer Guide
 
-## Design & implementation
+## **Design**
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+
+## **Implementation**
+{describe how you implement the features}
+
+### Bookmark and Timetable modes feature (TYS)
+
+### Add Module and Slot feature (Xing Rong)
+This feature allows the user to add modules and lesson slots into the timetable.
+Users can also add bookmarks to specific modules and slots.
+Users can enter one-shot-commands, adding multiple slots and bookmarks to a module.
+
+Given below is a sequence diagram of how the feature works.
+![](diagrams/addSlotSequenceDiagram.png)
+<br>
 
 
 ## Product scope
