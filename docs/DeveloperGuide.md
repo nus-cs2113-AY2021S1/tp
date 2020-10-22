@@ -1,18 +1,47 @@
 # Developer Guide
 
 ## Introduction
+### Introduction to *25 hours a day*
+*25 hours a day* is a scheduling app optimized for users via a convenient yet powerful Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, 25 hours a day can schedule your tasks and events faster than traditional GUI apps.
+
+### Purpose and scope
+The goal of this developer guide is to describe the architecture and software design decisions for the task scheduling application 25 hours a day. This developer guide covers an overview of the program architecture, the logical view of major components, and the mechanism of the functions that is helpful for you to get started or refer to.
+
+The intended audience of the developer guide is the developers and software testers of 25 hours a day.
+
+### Developer guide organization
+The table below shows the current content of the developer guide.
+
+|Section| Purpose | 
+|--------|----------|
+|[Section 2: Setting up](#setting-up)|To provide instructions on how to download and set up 25 hours a day on your computer.|
+|[Section 3: Design](#design)|To explain the architecture of 25 hours a day,  and describe the major components of 25 hours a day, the roles of major components, as well as their organization and interaction of major components.|
+|[Section 4: Implementation](#implementation)|To explain the mechanism of functions added to 25 hours a day and the features added to 25 hours a day.|
+|[Section 5: Documentation](#documentation)|To represent documents describing the system and its parts.|
+
+### Information for developer
+The table below shows the information and contact details of developers.
+
+|Developer| Contact details | 
+|--------|----------|
+|Liu Jingming|E0424608@u.nus.edu|
+|Liu Yifeng|E0425960@u.nus.edu|
+|Lyu Jiawen|E0376928@u.nus.edu|
+|Ng Hong Ming|E0426149@u.nus.edu|
+|Zhang Yilin|E0377000@u.nus.edu|
 
 ## Setting Up
 
 ## Design
+This section describes the design overview of the application.
 
 ### Architecture
 
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Overall_Architecture.JPG" alt="" width="250"/> <br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Overall_Architecture.JPG" alt="" width="300"/> <br/>
 
 The Figure given above shows the overall design of the application. Given below is a sequence diagram when adding a Todo task. 
 
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Archi_SD.JPG" alt="" width="650"/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Archi_SD.JPG" alt="" width="750"/>
 
 The quick overview of components and the workflow is given below.
 
@@ -39,7 +68,7 @@ Every time before exiting the application, all information will be automatically
 
 ### Module
 
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Model_Class_Diagram.JPG" alt="" width="900"/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/Model_Class_Diagram.JPG" alt="" width="750"/>
 
 The figure given above shows the structure of main items in this application. When executing commands, 
 the CalendarItem class updates the information or provides the information of different types of items if needed. 
@@ -61,8 +90,97 @@ Furthermore, the SchoolEvent class has three subclasses which are Lecture, Tutor
 All Event items update the information or provide needed information about event items when executing commands related to events or saving the information to Storage.
 
 ## Implementation
+This section describes some noteworthy details on how certain features are implemented.
+
+### Mark a task as done feature
+This feature is facilitated by `DoneCommand`. It extends the `Command` class and overrides the `execute()` function.
+The following sequence diagram show how the `execute()` operation works:<br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/done_command_SD.JPG" alt="" width="450"/>
+Note: It first extracts the task number from the user input prior to `convertTaskNumberToCalendarNumber`. 
+There will be a check in the function `markTaskAsDone(calendarNumber)` to ensure that the calendar item being marked as done is a task. 
+
+
+### Additional information of an event feature
+This feature is facilitated by `AddInfoCommand` and the `ViewInfoCommand`. Both extends the `Command` class and overrides the `execute()` function.
+The following sequence diagram show how the `execute()` operation of `AddInfoCommand` works:<br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/addInfoCommand_SD.JPG" alt="" width="450"/>
+The following sequence diagram show how the `execute()` operation of `ViewInfoCommand` works:<br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/viewInfoCommand_SD.JPG" alt="" width="450"/>
+
+Note: It first extracts the event number from the user input prior to `convertEventNumberToCalendarNumber`. 
+
+### Delete a calendar item feature
+This feature is facilitated by `DeleteCommand`. It extends the `Command` class and overrides the `execute()` function.
+The following sequence diagram show how the `execute()` operation works:<br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/deleteCommand_SD.JPG" alt="" width="450"/>
+Note: It first extracts the task/event number from the user input prior to `convertTaskNumberToCalendarNumber` and `convertEventNumberToCalendarNumber` respectively. 
+
+
+### Find a calendar item feature
+This feature is facilitated by `FindCommand`. It extends the `Command` class and overrides the `execute()` function.
+The following sequence diagram show how the `execute()` operation works when the user searches the entire calendar.:<br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/findCommand_SD.JPG" alt="" width="450"/>
+
+The search for tasks or events feature has a similar sequence diagram. The difference is the varying condition. Depending
+on whether the user searches for tasks or events, the condition will check for the instance of either the task or event respectively.
+
+### Print personal calendar feature
+This feature is facilitated by `PrintTimelineCommand`. It extends the `Command` class and overrides the `execute()` function.
+The following sequence diagram show how the `execute()` operation works when the user wants to print the personalised calendar.:<br/>
 
 ## Documentation
+
+### Documentation guide
+
+#### Introduction
+We use Markdown for writing documentation.
+
+#### Setting up and maintaining the project website
+- We use [Jekyll](https://jekyllrb.com/) to manage documentation.  
+- The docs/ folder is used for documentation.  
+- To learn how to set it up and maintain the project website, follow the guide [[se-edu/guides] Using Jekyll for project documentation](https://se-education.org/guides/tutorials/jekyll.html).
+
+#### Style guidance
+- Follow the [Google developer documentation style guide](https://developers.google.com/style).
+- Also relevant is the [[se-edu/guides] Markdown coding standard](https://se-education.org/guides/conventions/markdown.html)
+
+#### Editing diagrams
+- See the [[se-edu/guides] Using PlantUML](https://se-education.org/guides/tutorials/plantUml.html) to find out how to create and update the UML diagrams in the developer guide.
+
+#### Converting a document to the PDF format
+- We use Google Chrome for converting documentation to PDF format.  
+- Here are the steps to convert the project documentation to PDF format:
+  - Go to your generated documentation site on GitHub using Chrome.
+  - Within Chrome, click on the Print option in Chrome’s menu.
+  - Set the destination to Save as PDF, then click Save to save a copy of the file in PDF format.
+- See the guide [[se-edu/guides] Saving web documents as PDF files](https://se-education.org/guides/tutorials/savingPdf.html) for more details.  
+
+### Testing guide
+
+There are two ways to run tests.
+- Method 1: Using IntelliJ JUnit test runner
+  - To run all tests, right-click on the src/test/java folder and choose Run 'Tests in 'tp.test''
+  - To run a subset of tests, you can right-click on a test package, test class, or a test and choose Run 'DukeTest'
+- Method 2: Using Gradle
+  - Open a console and run the command gradlew checkstyleMain (Mac/Linux: ./gradlew checkstyleMain)  
+
+### Logging guide
+
+- We are using the java.util.logging package for logging.
+- The LogsCenter class is used to manage the logging levels and logging destinations.
+- The Logger for a class can be obtained using LogsCenter.getLogger(Class) which will log messages according to the specified logging level.
+- Log messages are output through the console and to a .log file.
+- The output logging level can be controlled using the logLevel setting in the configuration file
+- When choosing a level for a log message, follow the conventions given in [[se-edu/guides] Java: Logging conventions](https://se-education.org/guides/conventions/java/logging.html).
+  - SEVERE : Critical problem detected which may possibly cause the termination of the application
+  - WARNING : Can continue, but with caution
+  - INFO : Information showing the noteworthy actions by the App
+  - FINE : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
+
+### Configuration guide
+
+### DevOps guide
+
 
 ## Product scope
 ### Target user profile
@@ -78,7 +196,10 @@ All Event items update the information or provide needed information about event
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|user|set my tasks as done|track my tasks better|
+|v1.0|user|delete my calendar items|remove unwanted items and organise my calendar better |
+|v2.0|user|find an item in my calendar|locate an item without having to go through the entire list|
+|v2.0|NUS student|add information about my classes|locate all the information about my class on this app|
 
 ## Non-Functional Requirements
 
@@ -86,7 +207,13 @@ All Event items update the information or provide needed information about event
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Task* - a todo item or a deadline item.
+* *School event* - a lecture, tutorial or lab session.
+* *Event* - an activity, lecture, tutorial or lab session.
+* *Calendar item* - a todo item, deadline item, activity, lecture, tutorial or lab.	
+* *Task list* - a list that stores all the tasks added to the app.
+* *Event list* - a list that stores all the events added to the app.
+* *Calendar list* - a list that stores all the calendar items added to the app.
 
 ## Instructions for manual testing
 
