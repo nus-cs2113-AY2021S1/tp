@@ -83,14 +83,12 @@ class WorkspaceCommandTest {
         WorkspaceCommand testAddWorkspace = addParse.parse("-n Crunchy rail 12345");
         testAddWorkspace.execute(animeData, storageManager, user);
 
-         // Test deleting workspace
-         WorkspaceParser switchParse = new WorkspaceParser();
-         WorkspaceCommand testDeleteWorkspace = switchParse.parse("-d Crunchy rail 12345");
+        // Test deleting workspace
+        WorkspaceParser switchParse = new WorkspaceParser();
+        WorkspaceCommand testDeleteWorkspace = switchParse.parse("-d Crunchy rail 12345");
 
-         String expectedString = "Successfully deleted workspace: Crunchy rail 12345";
+        String expectedString = "Successfully deleted workspace: Crunchy rail 12345";
 
-         assertEquals(expectedString, testDeleteWorkspace.execute(animeData, storageManager, user));
+        assertEquals(expectedString, testDeleteWorkspace.execute(animeData, storageManager, user));
     }
-
-
 }
