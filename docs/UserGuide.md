@@ -14,7 +14,7 @@
     + [3.1.1. Examples of usage](#311-examples-of-usage)
   * [3.2. Check bus route: ```/routemap```](#32-check-bus-route-routemap)
     + [3.2.1. Examples of usage](#321-examples-of-usage)
-  * [3.3.Check for buses at a bus stop: ```/bus```](#33-check-for-buses-at-a-bus-stop)
+  * [3.3.Check for buses at a bus stop: ```/bus```](#33check-for-buses-at-a-bus-stop-bus)
     + [3.3.1. Examples of usage](#331-examples-of-usage) 
   * [3.4. List all bus available in NUS: ```/allbus```](#34-list-all-bus-available-in-nus-allbus)
   * [3.5. List all bus stops in NUS: ```/liststops```](#35-list-all-bus-stops-in-nus-liststops)
