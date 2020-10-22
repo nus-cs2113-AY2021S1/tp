@@ -14,6 +14,8 @@
 * [Implementation](#implementation)
     * [Store Data](#store-data)
     * [Add Module](#add-module) 
+    * [Add Time](#add-time)
+    * [Minus Time](#minus-time)
     * [View modules](#view-modules)
     * [Breakdown and analysis](#breakdown-and-analysis)
     * [Proposed] Sharing of data to a central database for better analysis
@@ -213,7 +215,126 @@ Alternative 2: Always add a new module
 -	Cons: If the user does not want duplicate modules, the user must ensure he/she does not add a module that is 
           already in the list of modules.  
           
-          
+#### Add Time
+The add time feature edits the actual workload for a specific module as indicated by the user. 
+This is done by adding time spent on the module. The actual workload is broken down into academic weeks and
+hours spent in the respective academic weeks.
+
+##### Current implementation
+
+The feature will implement the same checks as the add module feature as shown earlier.
+
+If the module code is valid and exists the add time feature will proceed to add time from the module
+as indicated by the user.
+
+Given below is an example usage scenario and how the add time command behaves at each step.
+
+Step.1 The user launches the application and does all the required steps to add a module with module code `CS2113T`
+to a list of modules. This is done by inputting the command `addMod CS2113T`.
+
+Step.2 The user now types in a command: `addTime CS2113T 2 4`. This calls the add time command from `Parser`.
+`Parser` then calls the `addTime()` method in `ModuleList` and passes `CS2113T`,`2` and `4` as parameters into the
+method. 
+> **_NOTE:_**  The first number is the hours spent in that week. The second number is the academic week that is being
+>updated.
+>
+
+Step.3 Within the `addTime()` function, it will first check if the module code is valid by calling
+`checkIfModuleValid()` function. If the module code is valid, `checkIfModuleValid()` function will return true.
+
+Step.4 Within the `addTime()` function, it will then check if the module exists in the module list storage by calling
+`checkIfModuleExist()` function. If the module does exist, the `checkIfModuleExist()` function will return true.
+
+Step.5 A time of `2` hours in academic week `4` will now be added to the actual workload of the `CS2113T` module. 
+
+Step.6 The system will print the string `2 hours are added to CS2113T`
+
+Step.7 The actual workload is updated in storage.
+
+The following sequence diagram illustrates what happens when a user executes `addTime CS2113T 2 4`.
+
+[insert diagram here]
+
+#### Design Considerations
+
+* **Alternative 1 (current choice)**: adding time with academic weeks associated
+    * Pros: Easy to manage for user as the user only needs to focus on the current academic week to track his workload
+    * Cons: User might prefer to manage his time spent in totality
+* **Alternative 2**: adding time in totality 
+    * Pros: Able to cumulatively add time and manage workload based on overall total time spent.
+    * Cons: May not be useful to know total time spent as workload may be better managed weekly.
+
+
+#### Minus Time
+The minus time feature edits the actual workload for a specific module as indicated by the user. 
+This is done by removing time spent on the module. The actual workload is broken down into academic weeks and
+hours spent in the respective academic weeks. This feature is the opposite of the add time feature. 
+
+##### Current implementation
+
+The feature will implement the same checks as the add module feature as shown earlier.
+
+As the command now is minus time, there would be two additional checks implemented.
+
+`doesActualTimeExist()` - checks if the module code has existing actual workload stored to it.
+
+`doesHoursExceedTotal()` - checks if the hours the user wishes to remove exceed the total hours in the actual workload.
+
+
+If the module code is valid, exists and has an actual workload the minus time feature will proceed to minus
+time from the module as indicated by the user.
+
+Given below is an example usage scenario and how the minus time command behaves at each step.
+
+Step.1 The user launches the application and does all the required steps to add a module with module code `CS2113T`
+to a list of modules. This is done by inputting the command `addMod CS2113T`.
+
+Step.2 The user then does all the required steps to add `2` hours of time spent in academic week `4` on `CS2113T`. This
+is done by inputting the command `addTime CS2113T 2 4`.
+
+Step.3 The user now types in a command: `minusTime CS2113T 2 4`. This calls the minus time command from `Parser`.
+`Parser` then calls the `minusTime()` method in `ModuleList` and passes `CS2113T`,`2` and `4` as parameters into the
+method.
+
+> **_NOTE:_**  The first number is the hours spent in that week. The second number is the academic week that is being
+>updated.
+>
+
+Step.4 Within the `minusTime()` function, it will first check if the module code is valid by calling
+`checkIfModuleValid()` function. If the module code is valid, `checkIfModuleValid()` function will return true.
+
+Step.5 Within the `minusTime()` function, it will then check if the module exists in the module list storage by calling
+`checkIfModuleExist()` function. If the module does exist, the `checkIfModuleExist()` function will return true.
+
+Step.6 Within the `minusTime()` function, it will then check if there is an existing actual workload for this module by
+calling the `doesActualTimeExist()` function. If the module has an existing workload, the `doesActualTimeExist()`
+function will return true.
+
+Step.7 Within the `minusTime()` function, it will then check if the hours the user wish to remove is more than the
+existing hours by
+calling the `doesHoursExceedTotal()` function. If the module has an existing workload, the `doesHoursExceedTotal()`
+function will return true.
+
+Step.8 A time of `2` hours in academic week `4` will now be removed from the actual workload of the `CS2113T` module. 
+
+Step.9 The system will print the string `2 hours are removed from CS2113T`
+
+Step.10 The actual workload is updated in storage.
+
+The following sequence diagram illustrates what happens when a user executes `minusTime CS2113T 2 4`.
+
+[insert diagram here]
+
+
+#### Design Considerations
+
+* **Alternative 1 (current choice)**: removing time with academic weeks associated
+    * Pros: Easy to manage for user as the user only needs to focus on the current academic week to track his workload
+    * Cons: User might prefer to manage his time spent in totality
+* **Alternative 2**: minus time in totality 
+    * Pros: Able to cumulatively remove time and manage workload based on overall total time spent.
+    * Cons: May not be useful to know total time spent as workload may be better managed weekly.
+
 #### View modules
 
 ##### Current Implementation
