@@ -1,5 +1,6 @@
 package seedu.revised.command.task;
 
+import seedu.revised.exception.task.RepeatedDateTimeException;
 import seedu.revised.exception.task.TaskDeadlineException;
 import seedu.revised.task.Deadline;
 import seedu.revised.task.Task;
@@ -23,7 +24,7 @@ public class AddDeadlineCommand extends TaskCommand {
      * @throws TaskDeadlineException If there are no parameters written to initialise the creation of a new Deadline
      *                               class
      */
-    public void execute(TaskList taskList) throws TaskDeadlineException {
+    public void execute(TaskList taskList) throws TaskDeadlineException, RepeatedDateTimeException {
         int startOfMessage = 9;
         int endOfMessage = fullCommand.indexOf("/by") - 1;
         int startOfBy = fullCommand.indexOf("/by") + 4;
@@ -39,6 +40,11 @@ public class AddDeadlineCommand extends TaskCommand {
             throw new TaskDeadlineException(Ui.printDeadlineError());
         } else {
             Task temp = new Deadline(message, false, dateTime);
+            for (Task task : taskList.getList()) {
+                if (task.getDateTime().equals(temp.getDateTime())) {
+                    throw new RepeatedDateTimeException(Ui.printRepeatedDateTimeError(task));
+                }
+            }
             taskList.getList().add(temp);
             Ui.printTask(temp, taskList);
         }

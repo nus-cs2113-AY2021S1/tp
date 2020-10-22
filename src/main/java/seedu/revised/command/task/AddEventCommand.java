@@ -1,5 +1,6 @@
 package seedu.revised.command.task;
 
+import seedu.revised.exception.task.RepeatedDateTimeException;
 import seedu.revised.exception.task.TaskEventException;
 import seedu.revised.task.Event;
 import seedu.revised.task.Task;
@@ -23,7 +24,7 @@ public class AddEventCommand extends TaskCommand {
      * @param taskList An instance of the <code>TaskList</code> class for the user to append to
      * @throws TaskEventException If there are no parameters written to initialise the creation of a new Event class
      */
-    public void execute(TaskList taskList) throws TaskEventException {
+    public void execute(TaskList taskList) throws TaskEventException, RepeatedDateTimeException {
         int startOfMessage = 6;
         int endOfMessage = fullCommand.indexOf("/at") - 1;
         int startOfAt = fullCommand.indexOf("/at") + 4;
@@ -42,6 +43,11 @@ public class AddEventCommand extends TaskCommand {
             throw new TaskEventException(Ui.printEventError());
         }
         Task temp = new Event(message, false, dateTime);
+        for (Task task : taskList.getList()) {
+            if (task.getDateTime().equals(temp.getDateTime())) {
+                throw new RepeatedDateTimeException(Ui.printRepeatedDateTimeError(task));
+            }
+        }
         taskList.getList().add(temp);
         Ui.printTask(temp, taskList);
     }
