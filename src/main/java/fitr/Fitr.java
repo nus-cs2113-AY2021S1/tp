@@ -1,7 +1,6 @@
 package fitr;
 
 import fitr.command.Command;
-import fitr.storage.Storage;
 import fitr.storage.StorageManager;
 import fitr.tip.TipManager;
 import fitr.list.ExerciseList;
@@ -15,7 +14,6 @@ import fitr.parser.Parser;
 import java.io.IOException;
 
 public class Fitr {
-    private Storage storage;
     private StorageManager storageManager;
     private FoodList foodList;
     private ExerciseList exerciseList;
@@ -34,9 +32,9 @@ public class Fitr {
 
             foodList = new FoodList(storageManager.loadFoodList());
             exerciseList = new ExerciseList(storageManager.loadExerciseList());
-            goalList = new GoalList(storage.loadGoalList());
+            goalList = new GoalList(storageManager.loadGoalList());
 
-            TipList tipList = new TipList(storage.loadTipList());
+            TipList tipList = new TipList(storageManager.loadTipList());
             TipManager tipOfTheDay = new TipManager(tipList);
             recommender = new Recommender();
             tipOfTheDay.execute();
@@ -52,7 +50,7 @@ public class Fitr {
         while (!isExit) {
             String userInput = Ui.read();
             Command c = Parser.parse(userInput);
-            c.execute(foodList, exerciseList, storage, user, goalList, recommender);
+            c.execute(foodList, exerciseList, storageManager, user, goalList, recommender);
             isExit = c.isExit();
         }
         Ui.printExitMessage();

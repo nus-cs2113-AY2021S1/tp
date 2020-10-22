@@ -16,7 +16,7 @@ import static fitr.storage.StorageManager.COMMA_SEPARATOR;
 
 public class FoodStorage {
     private static final Logger LOGGER = Logger.getLogger(FoodStorage.class.getName());
-    private static final String FOOD_LIST_PATH = "food.txt";
+    private static final String FOOD_LIST_PATH = "foodList.txt";
 
     public FoodStorage() throws IOException {
         File foodListFile = new File(FOOD_LIST_PATH);

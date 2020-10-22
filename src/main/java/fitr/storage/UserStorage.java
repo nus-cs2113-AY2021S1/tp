@@ -14,7 +14,7 @@ import static fitr.storage.StorageManager.COMMA_SEPARATOR;
 
 public class UserStorage {
     private static final Logger LOGGER = Logger.getLogger(UserStorage.class.getName());
-    private static final String USER_PROFILE_PATH = "user.txt";
+    private static final String USER_PROFILE_PATH = "userProfile.txt";
 
     public UserStorage() throws IOException {
         File userProfile = new File(USER_PROFILE_PATH);

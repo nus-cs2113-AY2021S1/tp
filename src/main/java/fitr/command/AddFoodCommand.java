@@ -7,11 +7,9 @@ import fitr.exception.FitrException;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.GoalList;
-import fitr.storage.Storage;
+import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
-
-import java.io.IOException;
 
 import static fitr.common.Commands.COMMAND_FOOD;
 
@@ -21,7 +19,7 @@ public class AddFoodCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage,
+    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
                         User user, GoalList goalList, Recommender recommender) {
         try {
             String nameOfFood = command.split("/", 2)[0];

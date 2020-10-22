@@ -7,14 +7,14 @@ import fitr.StandardExerciseList;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.GoalList;
-import fitr.storage.Storage;
+import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
 import fitr.Exercise;
 
 public class RecommendCommand extends Command {
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage,
+    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
                         User user, GoalList goalList, Recommender recommender) {
         StandardExerciseList recommendList = recommender.recommend();
         int fitnessLevel = user.getFitnessLevel();

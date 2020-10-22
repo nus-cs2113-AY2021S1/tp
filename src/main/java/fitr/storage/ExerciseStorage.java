@@ -16,7 +16,7 @@ import static fitr.storage.StorageManager.COMMA_SEPARATOR;
 
 public class ExerciseStorage {
     private static final Logger LOGGER = Logger.getLogger(ExerciseStorage.class.getName());
-    private static final String EXERCISE_LIST_PATH = "exercise.txt";
+    private static final String EXERCISE_LIST_PATH = "exerciseList.txt";
 
     public ExerciseStorage() throws IOException {
         File exerciseListFile = new File(EXERCISE_LIST_PATH);
