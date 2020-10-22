@@ -96,6 +96,63 @@ WatchNext was designed drawing from the ideas of the __Event-driven architectura
 <br>Throughout the lifespan of the program, various errors may occur. The <code>ErrorHandling</code> class stores the various errors that could occur. The expected errors usually stem from invalid user input or Input Output (IO) errors during file loading. The <code>Ui</code> class informs the users of the errors detected and suggests actions for rectification. <br>
 
 ## 4. Implementation
+
+### Watch Command feature
+
+The WatchCommand class extends Command by providing methods to 
+increment the current episode in the persistent watch history of the user. It also updates the watch time limit as indicated previously by the user.
+
+Given below is an example usage scenario and how the WatchCommand class behaves at each step.
+
+**Step 1**
+
+* The user types in `watch friends` , assuming that friends has been added by the user beforehand.
+The parseInput method in InputParser class is called to parse the command.
+
+**[NOTE]** Customised IndexOutOfBoundsException and NullPointerException will be thrown if the user enters invalid commands.
+
+**Step 2**
+
+* A new instance of WatchCommand class is called and the command is returned to the main program. 
+The processCommand method in WatchCommand class is called.
+
+**Step 3**
+
+* The processCommand method in WatchCommand class is then called. This method does three main things:
+
+1.Check the status of user's watch progress: In middle of series , finished season and finished series.
+
+2.Increment current episode  and new season if applicable. No change is done if user has finished series. 
+
+3.Reflect the new changes to the user. A prompt is made to the user if the user has already finished the series. Changes are also saved in the userData.txt file.
+
+### UpdateTimeLimit Command feature
+
+The UpdateTimeLimit class extends Command by providing methods to 
+update the current time limit of the user from the WatchTime class. 
+
+Given below is an example usage scenario and how the UpdateTimeLimit class behaves at each step.
+
+**Step 1**
+
+* The user types in `updatetimelimit 120`.
+The parseInput method in InputParser class is called to parse the command.
+
+**[NOTE]** Customised IndexOutOfBoundsException and NullPointerException will be thrown if the user enters invalid commands.
+
+**Step 2**
+
+* A new instance of UpdateTimeLimit class is called and the command is returned to the main program. 
+The processCommand method in UpdateTimeLimit class is called.
+
+**Step 3**
+
+* The processCommand method in UpdateTimeLimit class will call the WatchTIme class and update its `dailywatchtime` variable
+to the desired value, which is 120 in this case.
+
+* The change will then be reflected to the user, and be saved to the userData.txt file.
+
+
 ## 5. Documentation
 ## 6. Testing
 ## 7. Dev Ops
