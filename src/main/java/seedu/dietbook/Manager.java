@@ -1,11 +1,11 @@
-package seedu.duke;
+package seedu.dietbook;
 
-import seedu.duke.list.FoodList;
-import seedu.duke.person.ActivityLevel;
-import seedu.duke.person.Person;
+import seedu.dietbook.list.FoodList;
+import seedu.dietbook.person.ActivityLevel;
+import seedu.dietbook.person.Person;
 import seedu.calculator.Calculator;
-import seedu.duke.database.DataBase;
-import seedu.duke.person.Gender;
+import seedu.dietbook.database.DataBase;
+import seedu.dietbook.person.Gender;
 
 
 import java.util.Scanner;
