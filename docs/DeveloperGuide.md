@@ -63,6 +63,81 @@ which will return a `TopicList` object. The following sequence diagram shows how
 
 ![TopicsStorage load](./images/TopicsStorage_load.png)
 
+###  Implementation of commands relating to TopicList, namely:
+
+1. Listing topics in TopicList
+2. Finding a topic in TopicList
+3. Adding a new note
+4. Deleting an existing note
+5. Listing out all notes in a topic
+
+![TopicList_Class_Diagram](./images/TopicListAndNotes.png)
+
+TopicList is an ArrayList of type Displayable, which is one of two interfaces implemented 
+in the code for EDuke8. As such, many of the commands that manipulate the TopicList make 
+use of the package java.util.ArrayList. The TopicList is used to store Topics.
+
+#### 1) Listing topics in TopicList:
+
+![TopicListSampleSequence](./images/TopicListSampleSequence.png)
+
+This task is performed by the TopicList.showTopics() method.
+
+Step 1: The parseCommand() method instantiates a TopicsCommand object which then calls the 
+        TopicList.showTopics() method.
+Step 2: The TopicList.showTopics() method then calls the method Ui.printTopicList(). The 
+        current TopicList is passed into the called method.
+Step 3: The Ui.printTopicList() method then prints out the description of each topic in the 
+        TopicList. 
+
+#### 2) Finding a topic in TopicList
+
+This task is performed by the TopicList.find() method. 
+
+Step 1: The parseCommand() method instantiates a TopicsCommand object which then calls the TopicList.find() method. 
+        A String object derived from the user's input is passed into this method.
+
+Step 2: The TopicList.find() method checks if any Topic object in the TopicList has a description that contains the 
+        String object passed into the method. Such Topic objects are stored in a new TopicList
+
+Step 3: The TopicList.find() method then calls the TopicList.showTopics() method, passing in the new TopicList. The 
+        Ui.printTopicList() method is called within the TopicList.showTopics() method, printing out topic descriptions 
+        containing the user's input.
+
+NoteList is also an ArrayList of type Displayable, which is one of two interfaces implemented in the code for EDuke8. 
+As such, many of the commands that manipulate the TopicList make use of the package java.util.ArrayList. The NoteList 
+stores Note objects. Each topic has 1 NoteList. 
+
+#### 1) Adding a new note:
+
+This task is performed by the NoteList.add() method.
+
+Step 1: The parseCommand() method instantiates a NoteCommand object which then calls the NoteList.add() method. A new 
+        Note object is passed into its parameter.
+
+Step 2: The NoteList.add() method makes use of ArrayList API, specifically the ArrayList.add() method, to add the Note
+        object into NoteList.
+
+#### 2) Deleting a note:
+
+This task is performed by the NoteList.add() method.
+
+Step 1: The parseCommand() method instantiates a NoteCommand object which then calls the NoteList.delete() method. 
+        An integer that represents the index of the Note object to be deleted within the NoteList is passed into this 
+        method.
+
+Step 2: The NoteList.add() method makes use of ArrayList API, specifically the ArrayList.remove() method, to delete the 
+        Note object in NoteList.
+
+#### 3) Listing out all notes in a topic
+
+This task is performed by the Topic.showNotes() method.
+
+Step 1: The parseCommand() method instantiates a TopicCommand object which then calls the Topic.showNotes() method. 
+
+Step 2: The Topic.showNotes() methd calls the Ui.printNoteList() method. The topic's NoteList into this method. 
+        Ui.printNoteList() prints out all the descriptions of the Note objects in the NoteList.
+=======
 ### Class Component 
 
 #### Option and OptionList Class 
@@ -89,7 +164,6 @@ As the user starts the quiz, the `Ui` class will print out the quiz page to show
 The user inputs the number of questions that he wants to answer and also the topics that he wants to be tested on. 
 The `Ui` will go through printStartQuizQuestions() to print out the number of questions that the user has chosen. 
 Afterwards, the `Ui` will go through printStartQuizTopics() to print out the topics that the user has chosen. 
-The `Ui` echos back both information to ensure that EDuke8 has received the correct information from the user. 
 
 ### Design of the Quiz system
 
@@ -144,6 +218,7 @@ enhance their learning experience. Consolidate key concepts for easy revision.
 |v2.0|slow but hardworking user|see the explanations provided in the quiz|learn from my mistakes and revise|
 |v2.0|busy, lazy user|take note of key concepts|refer to it easily at a later time|
 |v2.0|frequent disorganized user|view the percentage of error in each topic|tell how well I understand the content|
+
 
 ## Non-Functional Requirements
 
