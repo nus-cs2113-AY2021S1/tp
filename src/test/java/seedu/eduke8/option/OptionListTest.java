@@ -2,10 +2,11 @@ package seedu.eduke8.option;
 
 import org.junit.jupiter.api.Test;
 import seedu.eduke8.common.Displayable;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import seedu.eduke8.exception.Eduke8Exception;
 
 import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class OptionListTest {
     private static final String PLACEHOLDER_OPTION_ONE_DESCRIPTION = "Option one";
@@ -35,7 +36,7 @@ class OptionListTest {
     }
 
     @Test
-    void find_twoOptions_returnOptionOne() {
+    void find_twoOptions_returnOptionOne() throws Eduke8Exception {
         OptionList optionList = createOptionList();
         Displayable optionOne = optionList.find(PLACEHOLDER_OPTION_ONE_DESCRIPTION);
 

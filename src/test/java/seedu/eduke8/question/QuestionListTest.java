@@ -2,6 +2,7 @@ package seedu.eduke8.question;
 
 import org.junit.jupiter.api.Test;
 import seedu.eduke8.common.Displayable;
+import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.explanation.Explanation;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.Option;
@@ -29,7 +30,7 @@ class QuestionListTest {
     }
 
     @Test
-    void find_questionListWithTwoQuestions_returnsFirstQuestion() {
+    void find_questionListWithTwoQuestions_returnsFirstQuestion() throws Eduke8Exception {
         QuestionList questionList = createQuestionListWithTwoUniqueQuestions();
 
         Displayable firstQuestionOfQuestionList = questionList.find(PLACEHOLDER_QUESTION_ONE_DESCRIPTION);
