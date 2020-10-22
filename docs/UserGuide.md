@@ -9,7 +9,7 @@
   * [3.1. Check for direct bus: ```/route```](#31-check-for-direct-bus-route)
     + [3.1.1. Examples of Usage](#311-examples-of-usage)
   * [3.2. Check bus route: ```/routemap```](#32-check-bus-route-routemap)
-  * [3.3.Check for available bus at a location: ```/bus```](#33check-for-available-bus-at-a-location-bus)
+  * [3.3.Check for buses at a bus stop: ```/bus```](#33-check-for-buses-at-a-bus-stop)
   * [3.4. List all bus available in NUS ```/allbus```](#34-list-all-bus-available-in-nus-allbus)
   * [3.5. List all bus stops in NUS: ```/liststops```](#35-list-all-bus-stops-in-nus-liststops)
   * [3.6. Exiting the program: ```/exit```](#36-exiting-the-program-exit)
@@ -106,14 +106,43 @@ AA1
 PGP-> Kent Ridge MRT Station-> Opp University Health Centre-> Yusof Ishak House-> Central Library-> Kent Ridge-> Museum-> University Town-> University Health Centre-> Opp Kent Ridge MRT station-> PGPR
 ```
 
-### 3.3.Check for available bus at a location: ```/bus```
-Checks for available bus at a user-specified location <br>
-Format: <code>/bus<strong>bus code</strong></code> <br>
-Example of usage: <code>/bus<strong> PGP</strong></code> <br>
-Expected outcome: 
-```
-PGP:  AA1   AA2
-```
+### 3.3.Check for buses at a bus stop: ```/bus```
+This command displays all buses available at a specific bus stop  <br>
+
+The format of this command is as follows: <br>
+<code>/bus<strong> bus stop</strong></code> <br>
+
+#### 3.3.1 Examples of Usage
+**<u>Example 1</u>** <br>
+Let's say that you are at <strong>University Town</strong> bus stop, and you want to know the buses which are available for you to take.
+
+Instead of searching for the bus stops which all the buses stop at, you can easily access this information by using the  <code>/bus</code> command.
+
+To search for available buses at University Town:
+
+1. Type <code>/bus <strong>University Town</strong></code> into the CLI and press enter to execute the command as shown in the figure below. <br><br>
+<img src="UG_Figures/bus4.png" width=550><br>
+_Figure x: Input command to find buses at University Town._
+
+2. The result will be a message displaying the buses available at University Town. <br><br>
+<img src="UG_Figures/bus3.png"><br>
+_Figure x: Output message showing buses at University Town._
+
+
+**<u>Example 2</u>** <br>
+Let's say that you are at the <strong>museum</strong> bus stop, and you want to know the buses which are available for you to take. However, you make a spelling error and type <strong>"musuem"</strong> instead. <br>
+
+These are the steps to fix the mistake:
+
+1. The result will be a message displaying bus stop suggestions for possible error in user input.<br><br>
+<img src="UG_Figures/bus2.png"><br>
+_Figure x: Output message showing suggestions for typo "musuem"._
+
+2. Type <code>/bus <strong>museum</strong></code> into the CLI as suggested in the above output.<br>
+
+3. The result will be a message displaying the buses available at the museum.<br><br>
+<img src="UG_Figures/bus1.png"><br>
+_Figure x: Input command to find buses at museum._
 
 ### 3.4. List all bus available in NUS ```/allbus```
 Lists all bus available in NUS. <br>
@@ -217,8 +246,8 @@ The following table provides a summary of features and command formats.
 Command | Format | Example
 --- | --- | ---
 /route | `/route` **location1 /to location2** | `/route` **PGP /to Raffles Hall**
-/routemap | `/routemap` **bus code** | `deadline` **/routemap AA1** 
-/bus | `/bus` **location** | `event` **/bus PGP**
+/routemap | `/routemap` **bus code** | `/routemap` **AA1** 
+/bus | `/bus` **location** | `/bus` **PGP**
 /allbus | `/allbus` | `/allbus`
 /liststops | `liststops`| `/liststops`
 /exit | `/exit` | `/exit`
