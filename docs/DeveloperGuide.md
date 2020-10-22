@@ -69,12 +69,17 @@ The sequence diagram in figure 3 explains the above steps when the user enters `
 
 ## 2. Product scope
 ### 2.1. Target user profile
-
-{Describe the target user profile}
-
+Nav@NUS targets people who are unfamiliar with the shuttle bus service in NUS Kent Ridge Campus 
+including students, professors and visitors.
+These are people who:
+ - needs to be punctual for events such tutorials
+ - prefer a desktop CLI app over other types
+ - are new to NUS Kent Ridge Campus
+  
 ### 2.2. Value proposition
-
-{Describe the value proposition: what problem does it solve?}
+Nav@NUS seeks to help the intended audience to achieve the following:
+ - Efficient checking of bus routes in NUS
+ - Fast viewing of dining options available at other locations
 
 ## 3. User Stories
 
