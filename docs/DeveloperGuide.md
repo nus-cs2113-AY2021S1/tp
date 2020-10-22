@@ -4,7 +4,7 @@
 1. [Introduction](#1-introduction)
 <br/>&nbsp;1.1 [Purpose](#11-purpose)
 <br/>&nbsp;1.2 [Using this Guide](#12-using-this-guide)
-2. [Setting up](#2-setting-up-and-getting-started)
+2. [Setting up](#2-setting-up)
 3. [Design](#3-design)
 <br/>&nbsp;3.1 [Architecture](#31-architecture)
 <br/>&nbsp;3.2 [UI Component](#32-ui-component)
@@ -37,9 +37,9 @@
 This content of this guide is aimed at current and new developers of AniChan. It contains the basic steps to set up a development environment, organize your source code, and then build and test AniChan. This guide also aids developers in understanding the overall architecture design and lays out the current implementation details of our notable features with the rationale and considerations behind each one.
 
 ### 1.2 Using this Guide
-The content of this developer guide is aimed at both current and new developers who are keen on contributing to AniChan. The guide will contain the basic steps to using AniChan to set up a development environment, organize your source code, and then build and test your application. This developer guide is an essential tool that will introduce you to the various features and design concepts which you can use to further develop and maintain AniChan. 
+The content of this developer guide is aimed at both current and new developers who are keen on contributing to AniChan. The guide will contain the basic steps to using AniChan to set up a development environment, organize your source code, and then build and test your application. This developer guide is an essential tool that will introduce you to the various features and design concepts which you can use to further develop and maintain AniChan.
+ 
 <br/>
-
 
 ## 2. Setting Up
 ### Setting up the project in your computer
@@ -87,3 +87,14 @@ If you plan to use Intellij IDEA:
 <br/>
 
 ## 3. Design 
+
+The following section describes the architecture design of **Anichan**. This section starts off by looking at the overall architecture design in a general view, before going into the specific implementation details of the individual features.
+
+### 3.1 Architecture
+This section will help provide insight to the general overview of Anichan’s architecture.
+
+<br/>
+
+![Architectural Diagram](images/Architectural-Class-Diagram.png)
+
+*Figure 1: Architecture Diagram*
