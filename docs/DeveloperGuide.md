@@ -110,7 +110,6 @@ The `User`component:
 
 
 ### 2.7 Workspace
-
 API: `Workspace.java`  
 
 The `Workspace` component:  
@@ -137,7 +136,12 @@ view and manipulate these saved data easily with any available text editor.
 
 ## 3. Implementation
 This section describes some details on how some features were implemented.
+
 ### 3.1 Workspace Feature
+The `Workspace` feature has two core functionalities, to add and switch workspace of the user. 
+
+For adding a new workspace...
+
 
 ### 3.2 Estimation Feature
 
