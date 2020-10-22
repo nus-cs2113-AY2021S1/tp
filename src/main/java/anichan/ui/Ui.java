@@ -22,7 +22,6 @@ public class Ui {
     private static final String HORIZONTAL_LINE =
             "-------------------------------------------------------------";
 
-
     public void printMessage(String message) {
         if (!message.isBlank()) {
             System.out.println(message);
@@ -54,11 +53,6 @@ public class Ui {
         return CONSOLE.hasNextLine();
     }
 
-    public String readInput() {
-        System.out.print("#>");
-        return CONSOLE.nextLine();
-    }
-
     public String readUserInput() {
         return CONSOLE.nextLine();
     }
@@ -68,10 +62,14 @@ public class Ui {
         String[] userDialogueInput = new String[3];
 
         printMessage("What's your name?");
-        userDialogueInput[0] = CONSOLE.nextLine();
+        userDialogueInput[0] = readUserInput();
         printMessage("Hello " + userDialogueInput[0] + "! What might your gender be? (Male/Female/Other)");
-        userDialogueInput[1] = CONSOLE.nextLine();
+        userDialogueInput[1] = readUserInput();
 
         return userDialogueInput;
+    }
+
+    public void shutdownUi() {
+        CONSOLE.close();
     }
 }

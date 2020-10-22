@@ -107,16 +107,16 @@ public class WatchlistCommand extends Command {
 
         Watchlist deletedWatchlist = watchlistList.get(deleteIndex);
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
+        watchlistList.remove(deleteIndex);
+
         String commandOutput = "Watchlist \"" + deletedWatchlist.getName() + "\" has been deleted successfully!";
         if (deletedWatchlist.equals(activeWatchlist)) {
             activeWorkspace.setActiveWatchlist(watchlistList.get(0));
             String activeWatchlistName = activeWorkspace.getActiveWatchlistName();
-
             commandOutput += System.lineSeparator();
             commandOutput += "Changed active watchlist to: \"" + activeWatchlistName + "\".";
         }
 
-        watchlistList.remove(deleteIndex);
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
         LOGGER.log(Level.INFO, "Watchlist: \"" + deletedWatchlist.getName() + "\" deleted successfully.");
         return commandOutput;

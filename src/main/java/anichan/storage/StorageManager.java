@@ -4,6 +4,7 @@ import anichan.bookmark.Bookmark;
 import anichan.exception.AniException;
 import anichan.human.User;
 import anichan.human.Workspace;
+import anichan.logger.AniLogger;
 import anichan.watchlist.Watchlist;
 
 import java.io.File;
@@ -11,10 +12,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static anichan.logger.AniLogger.getAniLogger;
-
 public class StorageManager {
-    private static final Logger LOGGER = getAniLogger(StorageManager.class.getName());
+    private static final Logger LOGGER = AniLogger.getAniLogger(StorageManager.class.getName());
 
     private final String storageDirectory;
     private final UserStorage userStorage;
@@ -79,9 +78,9 @@ public class StorageManager {
         return bookmarkStorage.load(workspaceName, bookmark);
     }
 
-    // ========================== Script Reading ==========================
+    // ========================== Script Loading ==========================
 
-    public String readScript(String workspaceName, String fileName) throws AniException {
+    public String loadScript(String workspaceName, String fileName) throws AniException {
         return scriptStorage.readScript(workspaceName, fileName);
     }
 }
