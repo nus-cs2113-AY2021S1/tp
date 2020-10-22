@@ -5,10 +5,10 @@ import fitr.common.Commands;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.GoalList;
-import fitr.storage.Storage;
+
+import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
-
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -23,7 +23,7 @@ public class ClearCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage, User user,
+    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storage, User user,
                         GoalList goalList, Recommender recommender) {
         if (command.length() == 0) {
             LOGGER.fine("Clearing food and exercise lists.");
@@ -49,14 +49,11 @@ public class ClearCommand extends Command {
         }
 
         try {
-            if (!storage.isTest()) {
-                storage.writeExerciseList(exerciseList);
-                storage.writeFoodList(foodList);
-            }
+            storage.writeExerciseList(exerciseList);
+            storage.writeFoodList(foodList);
         } catch (IOException e) {
             Ui.printCustomError("The file cannot be written!");
         }
-
     }
 
     @Override
