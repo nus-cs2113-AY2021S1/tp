@@ -28,12 +28,14 @@ public class Ui {
             + "-----------------------------------------------------";
     private static final String MESSAGE_ABOUT = "E-Duke-8 is a desktop app that helps CS2113/T students learn and"
             + System.lineSeparator() + "understand software engineering and OOP principles through a"
-            + System.lineSeparator() + "gamified platform and enhance their " + "learning experience. It also"
-            + System.lineSeparator() + "consolidates key concepts for easy revision.";
-    private static final String MESSAGE_GREETINGS = "Hello! I'm E-Duke-8" + System.lineSeparator()
-            + "What can I do for you?";
+            + System.lineSeparator() + "gamified platform and enhances their " + "learning experience."
+            + System.lineSeparator() + System.lineSeparator() + "You can attempt bite-sized quizzes based "
+            + "on your choice of topic" + System.lineSeparator()
+            + "and access key concepts for easy revision!";
+    private static final String MESSAGE_GREETINGS = "Hello! I'm E-Duke-8!" + System.lineSeparator()
+            + "What would you like to learn today?";
     private static final String MESSAGE_EXIT = "Bye bye. Hope you had a fruitful revision and see you soon!";
-    private static final String MESSAGE_HELP = "These are the commands that you can used:"
+    private static final String MESSAGE_HELP = "These are the commands that you can use:"
             + System.lineSeparator() + "1) about" + System.lineSeparator() + "2) help" + System.lineSeparator()
             + "3) topics" + System.lineSeparator() + "4) textbook" + System.lineSeparator()
             + "5) quiz t/<topic> n/<number of questions>" + System.lineSeparator() + "6) exit";
@@ -48,6 +50,12 @@ public class Ui {
     private static final String MESSAGE_HINT = "Hint: ";
 
     public String getInputFromUser() {
+        System.out.print("Enter your command or 'help': ");
+        return SCANNER.nextLine();
+    }
+
+    public String getQuizInputFromUser() {
+        System.out.print("Enter your answer or get a hint ('hint'): ");
         return SCANNER.nextLine();
     }
 
@@ -105,14 +113,16 @@ public class Ui {
     public void printAnswerIsWrong(int correctAnswer, String explanation) {
         System.out.println(HORIZONTAL_LINE);
         System.out.println(MESSAGE_ANSWER_WRONG + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND);
-        System.out.println("Explanation:" + System.lineSeparator() + explanation);
+        System.out.println(System.lineSeparator() + "Explanation:" + System.lineSeparator() + explanation);
+        System.out.println(HORIZONTAL_LINE);
         System.out.println(HORIZONTAL_LINE);
     }
 
     public void printAnswerIsCorrect(String explanation) {
         System.out.println(HORIZONTAL_LINE);
         System.out.println(MESSAGE_ANSWER_CORRECT);
-        System.out.println("Explanation:" + System.lineSeparator() + explanation);
+        System.out.println(System.lineSeparator() + "Explanation:" + System.lineSeparator() + explanation);
+        System.out.println(HORIZONTAL_LINE);
         System.out.println(HORIZONTAL_LINE);
     }
 

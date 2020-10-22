@@ -92,7 +92,7 @@ public class SingleTopicQuiz implements Quiz {
     }
 
     private Command getCommand(Ui ui, OptionList optionList) {
-        String userInput = ui.getInputFromUser();
+        String userInput = ui.getQuizInputFromUser();
         return quizParser.parseCommand(optionList, userInput);
     }
 }
