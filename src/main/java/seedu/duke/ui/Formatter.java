@@ -46,21 +46,6 @@ public class Formatter {
         return formattedString;
     }
 
-    public static String formatNote(String header, Note note) {
-        String formattedString = "";
-
-        if (!note.getTagsName().isBlank()) {
-            header = header.concat(" " + note.getTagsName());
-        }
-
-        formattedString = formattedString.concat(generatesHeader(header));
-        String[] lines = note.getContent().split("\\n");
-        for (String line : lines) {
-            formattedString = formattedString.concat(encloseRow(line));
-        }
-        return encloseTopAndBottom(formattedString);
-    }
-
     /**
      * Method compiles the ArrayList items and appends the items to a String.
      *
@@ -85,6 +70,21 @@ public class Formatter {
             formattedString = formattedString.concat(generatesRowSplit());
 
             i++;
+        }
+        return encloseTopAndBottom(formattedString);
+    }
+
+    public static String formatNote(String header, Note note) {
+        String formattedString = "";
+
+        if (!note.getTagsName().isBlank()) {
+            header = header.concat(" " + note.getTagsName());
+        }
+
+        formattedString = formattedString.concat(generatesHeader(header));
+        String[] lines = note.getContent().split("\\n");
+        for (String line : lines) {
+            formattedString = formattedString.concat(encloseRow(line));
         }
         return encloseTopAndBottom(formattedString);
     }
