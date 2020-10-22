@@ -46,8 +46,8 @@ public class Ui {
      */
     public void printAskForUserInfoMessage(String name) {
         assert name != null : "Name should not be null";
-        assert name.trim().length() > 0 : "Name should not be an empty string";
-        print("Hi " + name + "!" + LINE_SEPARATOR
+        assert trimStringGetLength(name) > 0 : "Name should not be an empty string";
+        print("Hi " + trimString(name) + "!" + LINE_SEPARATOR
                 + "Before we get started, I would like to know about about you so that I can make more "
                 + LINE_SEPARATOR
                 + "accurate calculations for you :). Therefore, could you please share with me the "
@@ -101,10 +101,10 @@ public class Ui {
      */
     public void printNewFood(String newFood) {
         assert newFood != null : "String representation of the food that was added should not be null";
-        assert newFood.trim().length() > 0 : "String representation of the food that was added should not "
+        assert trimStringGetLength(newFood) > 0 : "String representation of the food that was added should not "
                 + "be an empty string";
         print("Got it! I've added this food item:" + LINE_SEPARATOR
-                + "  " + newFood);
+                + "  " + trimString(newFood));
     }
 
     /**
@@ -115,10 +115,10 @@ public class Ui {
      */
     public void printFoodList(String allFood) {
         assert allFood != null : "String representation of all food in food list should not be null";
-        if (allFood.trim().length() < 1) {
+        if (trimStringGetLength(allFood) < 1) {
             print("DietBook is currently empty.");
         } else {
-            print("Here are the food items in DietBook:" + LINE_SEPARATOR + allFood);
+            print("Here are the food items in DietBook:" + LINE_SEPARATOR + trimString(allFood));
         }
     }
 
@@ -140,11 +140,11 @@ public class Ui {
                 + "of the time period";
         String stringStart = stringDateTime(start);
         String stringEnd = stringDateTime(end);
-        if (foods.trim().length() < 1) {
+        if (trimStringGetLength(foods) < 1) {
             print("No food item was recorded in DietBook between " + stringStart + " and " + stringEnd + ".");
         } else {
             print("Here are the food items recorded in DietBook between " + stringStart + " and " + stringEnd
-                    + " :" + LINE_SEPARATOR + foods);
+                    + " :" + LINE_SEPARATOR + trimString(foods));
         }
     }
 
@@ -166,8 +166,8 @@ public class Ui {
      */
     public void printDatabase(String foodDatabase) {
         assert foodDatabase != null : "Food database should not be null";
-        assert foodDatabase.trim().length() > 0 : "Food database should not be empty";
-        print("Here are the food items in the database:" + LINE_SEPARATOR + foodDatabase);
+        assert trimStringGetLength(foodDatabase) > 0 : "Food database should not be empty";
+        print("Here are the food items in the database:" + LINE_SEPARATOR + trimString(foodDatabase));
     }
 
     /**
@@ -177,9 +177,9 @@ public class Ui {
      */
     public void printPersonInfo(String personInfo) {
         assert personInfo != null : "Person information should not be null";
-        assert personInfo.trim().length() > 0 : "Person information should not be an empty string";
+        assert trimStringGetLength(personInfo) > 0 : "Person information should not be an empty string";
         print("Here is your information:" + LINE_SEPARATOR
-                + personInfo);
+                + trimString(personInfo));
     }
 
     /**
@@ -250,10 +250,10 @@ public class Ui {
      */
     public void printDeletedFood(String deletedFood) {
         assert deletedFood != null : "String representation of the food that was deleted should not be null";
-        assert deletedFood.trim().length() > 0 : "String representation of the food that was deleted should"
+        assert trimStringGetLength(deletedFood) > 0 : "String representation of the food that was deleted should"
                 + " not be an empty string";
         print("Noted. I've removed this food item:" + LINE_SEPARATOR
-                + "  " + deletedFood);
+                + "  " + trimString(deletedFood));
     }
 
     /**
@@ -271,8 +271,8 @@ public class Ui {
      */
     public void printExitMessage(String name) {
         assert name != null : "Name should not be null";
-        assert name.trim().length() > 0 : "Name should not be an empty string";
-        print("Bye " + name + "! Hope to see you again soon!");
+        assert trimStringGetLength(name) > 0 : "Name should not be an empty string";
+        print("Bye " + trimString(name) + "! Hope to see you again soon!");
     }
 
     /**
@@ -282,8 +282,32 @@ public class Ui {
      */
     public void printErrorMessage(String errorMessage) {
         assert errorMessage != null : "Error message should not be null";
-        assert errorMessage.trim().length() > 0 : "Error message should not be an empty string";
-        print(":( Oh no..." + errorMessage);
+        assert trimStringGetLength(errorMessage) > 0 : "Error message should not be an empty string";
+        print(":( Oh no..." + trimString(errorMessage));
+    }
+
+    /**
+     * Returns an integer representing the length of the string after it has been trimmed for leading and
+     * trailing spaces.
+     *
+     * @param string The string to be trimmed and have its length determined.
+     * @return An integer representing the length of the string after it has been trimmed for leading and
+     *     trailing spaces.
+     */
+    public int trimStringGetLength(String string) {
+        assert string != null : "String to trim and have length determined should not be null";
+        return trimString(string).length();
+    }
+
+    /**
+     * Returns a string that has been trimmed for leading and trailing spaces.
+     *
+     * @param string The string to be trimmed for leading and trailing spaces.
+     * @return A string that has been trimmed for leading and trailing spaces.
+     */
+    public String trimString(String string) {
+        assert string != null : "String to trim should not be null";
+        return string.trim();
     }
 
     /**
@@ -292,12 +316,14 @@ public class Ui {
      * @param message The message to show the user.
      */
     public void print(String message) {
+        assert message != null : "Message to print should not be null";
+        assert trimStringGetLength(message) > 0 : "Message to print should not be an empty string";
         String divider =
                 "__________________________________________________________________________________________"
                 + "____________________";
 
         System.out.println(divider + LINE_SEPARATOR
-                + message + LINE_SEPARATOR
+                + trimString(message) + LINE_SEPARATOR
                 + divider);
 
     }
