@@ -70,12 +70,24 @@ public class EventList {
 
     /**
      * Sorts the events alphabetically.
+     *
+     * @param type the sorting criteria.
      */
-    public void sortEvent() {
+    public void sortEvent(String type) {
         assert events != null;
-        Collections.sort(events, Event.descriptionComparator);
-    }
+        switch (type) {
+        case "description":
+            Collections.sort(events, Event.descriptionComparator);
+            break;
+        case "time":
+            Collections.sort(events, Event.timeComparator);
+            break;
+        default:
+            Collections.sort(events, Event.locationComparator);
+            break;
+        }
 
+    }
 
     /**
      * Gives the access to the list of events.
