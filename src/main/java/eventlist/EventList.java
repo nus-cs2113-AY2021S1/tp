@@ -58,7 +58,7 @@ public class EventList {
     }
 
     /**
-     * Edit the contents of an existing event
+     * Edit the contents of an existing event.
      *
      * @param event the new edited event
      * @param index the index of the event being edited
@@ -69,7 +69,7 @@ public class EventList {
     }
 
     /**
-     * Edit the contents of an existing event
+     * Sorts the events alphabetically.
      */
     public void sortEvent() {
         assert events != null;
