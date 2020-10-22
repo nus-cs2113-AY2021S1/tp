@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.dietbook;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

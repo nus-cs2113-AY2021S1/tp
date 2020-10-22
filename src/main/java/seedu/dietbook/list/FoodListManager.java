@@ -1,6 +1,6 @@
-package seedu.duke.list;
+package seedu.dietbook.list;
 
-import seedu.duke.food.Food;
+import seedu.dietbook.food.Food;
 import java.util.ArrayList;
 
 /**
