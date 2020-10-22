@@ -69,7 +69,7 @@ public class PinCommand extends Command {
         }
 
         note.togglePinned();
-        return note.getTitle() + " pinned: " + note.getPinned();
-        //return Formatter.formatString(note.getTitle() + " pinned: " + note.getPinned());
+        return note.getTitle() + " pinned: " + note.getPinnedString();
+        //return Formatter.formatString(note.getTitle() + " pinned: " + note.getPinnedString());
     }
 }

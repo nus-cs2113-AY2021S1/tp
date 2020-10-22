@@ -497,10 +497,11 @@ public class Parser {
     }
 
     /**
-     * Prepare userInput into a int before archiving.
+     * Prepare userInput before archiving.
+     * User can archive either via integer value of index or String value of title.
      *
      * @param userMessage Original string user inputs.
-     * @return Result of the archived note command.
+     * @return ArchiveNoteCommand.
      * @throws SystemException if an error occurs.
      */
     private Command prepareArchiveNote(String userMessage) throws SystemException {
@@ -545,9 +546,10 @@ public class Parser {
 
     /**
      * Prepare userInput into a int before un-archiving.
+     * User can un-archive either via integer value of index or String value of title.
      *
      * @param userMessage Original string user inputs.
-     * @return Result of the un-archived note command.
+     * @return UnarchiveNoteCommand.
      * @throws SystemException if an error occurs.
      */
     private Command prepareUnarchiveNote(String userMessage) throws SystemException {
