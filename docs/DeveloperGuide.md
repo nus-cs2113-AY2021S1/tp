@@ -1,5 +1,17 @@
 # Developer Guide
 
+## Introduction
+### Software Overview:
+Our program, E-duke-8, comprises of a Logic component, UI component, Storage component, and Quiz component. Each component comprises of multiple classes that work in tandem, to fulfil the purpose of our program. 
+
+Purpose of the document:
+E-duke-8 is an education companion, intended for students to enhance their learning experience. 
+
+This guide will allow any interested contributors who wish to develop this learning companion further, to understand the inner workings of the program. This understanding will enable such contributors to add value to the current code, by improving its performance, level of interaction or capabilities. 
+
+### Setting up:
+Fork the repo, and clone the fork into your own PC. You are recommended to use IntelliJ to best edit the program. Do not forget to configure the JDK, and to import the project as a Gradle project, and lastly, remember to verify that the JUnit tests pass, to ensure the program is functional.
+
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
@@ -12,10 +24,10 @@
 1. After constructing a new MenuParser() in the `Eduke8` class, the parseCommand() method is used to parse the 
    user command.
 2. This results in a `Command` object, which is executed by `Command` class itself, using the execute() method.
-3. The `Ui` object in the `Command` object is used to display the requested information, or to display the required task to be 
-   completed as per the user input.
+3. The `Ui` object in the `Command` object is used to display the requested information, or to display the required task 
+to be completed as per the user input.
    
-Below is the sequence diagram for how the Parser component of `Eduke8 works with commands to show output to the user.
+Below is the sequence diagram for how the Parser component of `Eduke8` works with commands to show output to the user.
 
 ![Parser Sample Sequence](./images/ParserSampleSequence.png)
 
@@ -27,8 +39,8 @@ The command parsing feature is our program’s way of reading the user’s input
 single method parseCommand that identifies what command the user is calling for and then calls the command. There are 
 two parsers in our program that implements a single Parser interface. One parser is for choosing menu options and is 
 named `MenuParser`. The other parser is used during quizzes, in order to answer questions or request for hints, and is 
-called `QuizParser`. Given below is an example usage scenario of how the command parsing feature works at each step, when 
-the user types in input to get help in order to see what commands are available to the user.
+called `QuizParser`. Given below is an example usage scenario of how the command parsing feature works at each step, 
+when the user types in input to get help in order to see what commands are available to the user.
 
 Step 1. The user launches the program for the first time. The parser will be initialised and awaiting the user’s input 
         to proceed.
@@ -51,15 +63,119 @@ Step 5. The string at the 0th index is then used in a switch statement, where ea
         
 ### Loading Data
 
-Data is loaded automatically from JSON files in the data folder. This is mainly facilitated through the `TopicsStorage` class which handles accessing the file as well as converting from JSON into `Topic`, `Question` and `Option` objects.
+Data is loaded automatically from JSON files in the data folder. This is mainly facilitated through the `TopicsStorage` 
+class which handles accessing the file as well as converting from JSON into `Topic`, `Question` and `Option` objects.
 
 ![TopicsStorage Class Diagram](./images/TopicsStorage.png)
 
 Given below is an example usage scenario of loading in two topics with two questions each.
 
-When the user launches the app, the main program will initialize a `TopicsStorage` object and call the `load` method which will return a `TopicList` object. The following sequence diagram shows how the load operation works:
+When the user launches the app, the main program will initialize a `TopicsStorage` object and call the `load` method 
+which will return a `TopicList` object. The following sequence diagram shows how the load operation works:
 
 ![TopicsStorage load](./images/TopicsStorage_load.png)
+
+###  Implementation of commands relating to TopicList, namely:
+
+1. Listing topics in TopicList
+2. Finding a topic in TopicList
+3. Adding a new note
+4. Deleting an existing note
+5. Listing out all notes in a topic
+
+![TopicList_Class_Diagram](./images/TopicListAndNotes.png)
+
+TopicList is an ArrayList of type Displayable, which is one of two interfaces implemented 
+in the code for EDuke8. As such, many of the commands that manipulate the TopicList make 
+use of the package java.util.ArrayList. The TopicList is used to store Topics.
+
+#### 1) Listing topics in TopicList:
+
+![TopicListSampleSequence](./images/TopicListSampleSequence.png)
+
+This task is performed by the TopicList.showTopics() method.
+
+Step 1: The parseCommand() method instantiates a TopicsCommand object which then calls the 
+        TopicList.showTopics() method.
+Step 2: The TopicList.showTopics() method then calls the method Ui.printTopicList(). The 
+        current TopicList is passed into the called method.
+Step 3: The Ui.printTopicList() method then prints out the description of each topic in the 
+        TopicList. 
+
+#### 2) Finding a topic in TopicList
+
+This task is performed by the TopicList.find() method. 
+
+Step 1: The parseCommand() method instantiates a TopicsCommand object which then calls the TopicList.find() method. 
+        A String object derived from the user's input is passed into this method.
+
+Step 2: The TopicList.find() method checks if any Topic object in the TopicList has a description that contains the 
+        String object passed into the method. Such Topic objects are stored in a new TopicList
+
+Step 3: The TopicList.find() method then calls the TopicList.showTopics() method, passing in the new TopicList. The 
+        Ui.printTopicList() method is called within the TopicList.showTopics() method, printing out topic descriptions 
+        containing the user's input.
+
+NoteList is also an ArrayList of type Displayable, which is one of two interfaces implemented in the code for EDuke8. 
+As such, many of the commands that manipulate the TopicList make use of the package java.util.ArrayList. The NoteList 
+stores Note objects. Each topic has 1 NoteList. 
+
+#### 1) Adding a new note:
+
+This task is performed by the NoteList.add() method.
+
+Step 1: The parseCommand() method instantiates a NoteCommand object which then calls the NoteList.add() method. A new 
+        Note object is passed into its parameter.
+
+Step 2: The NoteList.add() method makes use of ArrayList API, specifically the ArrayList.add() method, to add the Note
+        object into NoteList.
+
+#### 2) Deleting a note:
+
+This task is performed by the NoteList.add() method.
+
+Step 1: The parseCommand() method instantiates a NoteCommand object which then calls the NoteList.delete() method. 
+        An integer that represents the index of the Note object to be deleted within the NoteList is passed into this 
+        method.
+
+Step 2: The NoteList.add() method makes use of ArrayList API, specifically the ArrayList.remove() method, to delete the 
+        Note object in NoteList.
+
+#### 3) Listing out all notes in a topic
+
+This task is performed by the Topic.showNotes() method.
+
+Step 1: The parseCommand() method instantiates a TopicCommand object which then calls the Topic.showNotes() method. 
+
+Step 2: The Topic.showNotes() methd calls the Ui.printNoteList() method. The topic's NoteList into this method. 
+        Ui.printNoteList() prints out all the descriptions of the Note objects in the NoteList.
+=======
+### Class Component 
+
+#### Option and OptionList Class 
+
+The `Option` and `OptionList` classes implements the `Displayable` and `DisplayableList` interfaces respectively. 
+The `Option` object stores one option of a question while the `OptionList` object stores all 4 options of the same 
+question. The class diagram below illustrates the structure of both classes. 
+
+![Option_and_OptionList_Class](./images/Option.png)
+
+### User Interface 
+
+#### Implementation 
+
+The `Ui` class handles all the interactions with the users. It reads the input from the users and prints out replies to 
+the users. It is the point of communication between EDuke8 and the users. 
+
+An example is provided below to illustrate how the `Ui` class prints out the starting page of the quiz for 
+the user to comprehend. 
+
+![Ui_Printing_Start_Quiz_Page](./images/PrintQuizStartPage.png)
+
+As the user starts the quiz, the `Ui` class will print out the quiz page to show that the quiz has started. 
+The user inputs the number of questions that he wants to answer and also the topics that he wants to be tested on. 
+The `Ui` will go through printStartQuizQuestions() to print out the number of questions that the user has chosen. 
+Afterwards, the `Ui` will go through printStartQuizTopics() to print out the topics that the user has chosen. 
 
 ### Design of the Quiz system
 
@@ -90,7 +206,6 @@ To determine if randomQuestionIndex is not selected before, an integer ArrayList
 
 An ArrayList of `Question` objects stores all the selected questions meant for the quiz.
 
-
 ## Product scope
 ### Target user profile
 
@@ -98,13 +213,24 @@ CS2113/T Students
 
 ### Value proposition
 
-Help CS2113/T students learn and understand software engineering and OOP principles through a gamified platform and enhance their learning experience. Consolidate key concepts for easy revision.
+Help CS2113/T students learn and understand software engineering and OOP principles through a gamified platform and 
+enhance their learning experience. Consolidate key concepts for easy revision.
 
 ## User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
+|v1.0|new user|quickly see what the software has to offer|understand how to use the app|
 |v1.0|new user|answer given questions|start testing myself immediately|
+|v1.0|long-time user|get different questions each time|repeatedly test my understanding for the particular topic|
+|v1.0|busy user|test myself on concepts using short, targeted quizzes|confirm my understanding of concepts|
+|v1.0|user|get a hint for the question in the quiz|I can think about the question from a different angle|
+|v1.0|user|see what the available topics are|navigate around the app effectively|
+|v1.0|user|select the number of questions to do in the quiz|manage the workload and time spent on the quiz|
+|v2.0|slow but hardworking user|see the explanations provided in the quiz|learn from my mistakes and revise|
+|v2.0|busy, lazy user|take note of key concepts|refer to it easily at a later time|
+|v2.0|frequent disorganized user|view the percentage of error in each topic|tell how well I understand the content|
+
 
 ## Non-Functional Requirements
 

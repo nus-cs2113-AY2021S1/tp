@@ -23,8 +23,9 @@ public class MenuParserTest {
     public void menuParser_wrongStringInput_expectIncorrectCommand() {
         Ui ui = new Ui();
         Hint hint = new Hint("description");
+        ArrayList<Displayable> optionsArrayList = new ArrayList<>();
+        OptionList optionList = new OptionList(optionsArrayList);
         Explanation explanation = new Explanation("explanation");
-        OptionList optionList = new OptionList();
         ArrayList<Displayable> questions = new ArrayList<>();
         Question question = new Question("description", optionList, hint, explanation);
         questions.add(question);
