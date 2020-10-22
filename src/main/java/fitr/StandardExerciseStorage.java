@@ -47,17 +47,17 @@ public class StandardExerciseStorage {
         String[] arguments;
         String name;
         double metValue;
-        ArrayList<Integer> duration;
+        ArrayList<Double> duration;
         ArrayList<Integer> sets;
         while (readExerciseFile.hasNext()) {
             line = readExerciseFile.nextLine().trim();
             arguments = line.split(COMMA_SEPARATOR);
             name = arguments[0];
             metValue = Double.parseDouble(arguments[1]);
-            duration = new ArrayList<Integer>();
-            duration.add(Integer.parseInt(arguments[2]));
-            duration.add(Integer.parseInt(arguments[3]));
-            duration.add(Integer.parseInt(arguments[4]));
+            duration = new ArrayList<Double>();
+            duration.add(Double.parseDouble(arguments[2]));
+            duration.add(Double.parseDouble(arguments[3]));
+            duration.add(Double.parseDouble(arguments[4]));
             sets = new ArrayList<Integer>();
             sets.add(Integer.parseInt(arguments[5]));
             sets.add(Integer.parseInt(arguments[6]));

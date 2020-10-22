@@ -3,14 +3,14 @@ package fitr;
 import java.util.ArrayList;
 
 public class StandardExercise {
-    protected ArrayList<Integer> duration;
+    protected ArrayList<Double> duration;
     protected ArrayList<Integer> sets;
-    protected double caloricBurnRate;
+    protected double MET;
     protected String name;
 
-    public StandardExercise(String name, double caloricBurnRate, ArrayList duration, ArrayList sets) {
+    public StandardExercise(String name, double MET, ArrayList<Double> duration, ArrayList<Integer> sets) {
         this.name = name;
-        this.caloricBurnRate = caloricBurnRate;
+        this.MET = MET;
         this.duration = duration;
         this.sets = sets;
     }
@@ -19,11 +19,11 @@ public class StandardExercise {
         return name;
     }
 
-    public double getCaloricBurnRate() {
-        return caloricBurnRate;
+    public double getMET() {
+        return MET;
     }
 
-    public ArrayList<Integer> getDuration() {
+    public ArrayList<Double> getDuration() {
         return duration;
     }
 
