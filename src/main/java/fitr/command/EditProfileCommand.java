@@ -33,13 +33,6 @@ public class EditProfileCommand extends Command {
         } else {
             Ui.printInvalidCommandError();
         }
-        try {
-            storage.writeUserProfile(user);
-        } catch (IOException e) {
-            Ui.printCustomMessage(Messages.MISSING_FILE);
-
-        }
-
     }
 
     @Override
