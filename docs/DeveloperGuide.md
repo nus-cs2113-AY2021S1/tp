@@ -39,9 +39,8 @@ The rest of the app consists of the below:
 
 * [**`UI`**] : The UI of the App.
 * [**`Logic`**] : The command executor.
-* [**`storage`**] : Reads data from, and writes data to, the hard disk.
 * [**`Model`**] : Holds the data of the App in memory.
-
+* [**`Storage`**] : Reads data from, and writes data to, the hard disk.
 
 ### 3.1. Input Parsing
 **Current Implementation**  
