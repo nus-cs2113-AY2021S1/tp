@@ -1,7 +1,7 @@
 package seedu.calculator;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.food.Food;
+import seedu.dietbook.food.Food;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,7 @@
-package seedu.duke;
+package seedu.dietbook;
 
-import seedu.duke.person.ActivityLevel;
-import seedu.duke.person.Gender;
+import seedu.dietbook.person.ActivityLevel;
+import seedu.dietbook.person.Gender;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

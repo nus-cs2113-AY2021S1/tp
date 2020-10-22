@@ -1,7 +1,7 @@
-package seedu.duke.list;
+package seedu.dietbook.list;
 
 import java.util.ArrayList;
-import seedu.duke.food.Food;
+import seedu.dietbook.food.Food;
 
 
 /**
