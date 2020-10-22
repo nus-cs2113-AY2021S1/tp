@@ -2,7 +2,6 @@ package fitr.storage;
 
 import fitr.Calorie;
 import fitr.Food;
-import fitr.exception.FitrException;
 import fitr.exception.InvalidFileFormatException;
 import fitr.list.FoodList;
 
@@ -16,6 +15,9 @@ import java.util.logging.Logger;
 
 import static fitr.storage.StorageManager.COMMA_SEPARATOR;
 
+/**
+ * Handles the read and write operations of the user's food.
+ */
 public class FoodStorage {
     private static final Logger LOGGER = Logger.getLogger(FoodStorage.class.getName());
     private static final String DEFAULT_FOOD_LIST_PATH = "foodList.txt";
@@ -34,11 +36,13 @@ public class FoodStorage {
         }
     }
 
+
     /**
      * Loads the list of the user's consumed food from a file and returns an ArrayList of Food objects.
      *
      * @return an ArrayList of Food objects
-     * @throws FileNotFoundException if the file is not found
+     * @throws FileNotFoundException FileNotFoundException if the file is not found
+     * @throws InvalidFileFormatException if the file format is invalid
      */
     public ArrayList<Food> loadFoodList() throws FileNotFoundException, InvalidFileFormatException {
         LOGGER.fine("Attempting to read file: " + foodListPath);

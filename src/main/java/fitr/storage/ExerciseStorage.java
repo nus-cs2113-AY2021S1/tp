@@ -15,6 +15,9 @@ import java.util.logging.Logger;
 
 import static fitr.storage.StorageManager.COMMA_SEPARATOR;
 
+/**
+ * Handles the read and write operations of the user's exercises.
+ */
 public class ExerciseStorage {
     private static final Logger LOGGER = Logger.getLogger(ExerciseStorage.class.getName());
     private static final String DEFAULT_EXERCISE_LIST_PATH = "exerciseList.txt";
@@ -38,6 +41,7 @@ public class ExerciseStorage {
      *
      * @return an ArrayList of Exercise objects
      * @throws FileNotFoundException if the file is not found
+     * @throws InvalidFileFormatException if the file format is invalid
      */
     public ArrayList<Exercise> loadExerciseList() throws FileNotFoundException, InvalidFileFormatException {
         LOGGER.fine("Attempting to read file: " + exerciseListPath);
@@ -55,8 +59,7 @@ public class ExerciseStorage {
                 throw new InvalidFileFormatException();
             }
 
-            exerciseList.add(new Exercise(arguments[0],
-                    new Calorie(Integer.parseInt(arguments[1]))));
+            exerciseList.add(new Exercise(arguments[0], new Calorie(Integer.parseInt(arguments[1]))));
         }
 
         LOGGER.fine("Exercise list file read successfully.");
