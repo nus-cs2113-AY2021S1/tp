@@ -46,6 +46,11 @@ The rest of the App consists of 4 main components:
 - `Storage` : The storage component handles data by reading from and writing to files in the hard disk. 
 
 #### 1.1.1 Ui Component
+The ui component is responsible for getting the user input and for displaying appropriate messages as response 
+to commands executed by the logic component.
+
+![uicomponent](UiComponent.png)<br>
+_Figure 2: Class diagram for ui component_
 
 #### 1.1.2 Logic Component
 
@@ -68,7 +73,7 @@ The class diagram in figure 2 shows how different classes used for implementatio
 each other. 
 
 ![RouteCommandClass](RouteCommandClass.png)<br>
-<i><center>Figure 2: Class diagram showing the implementation of the route feature</center></i>
+_Figure 4: Class diagram showing the implementation of the route feature._
 
 The RouteCommand Class executes the command in the following steps:
 1. Uses RouteParser to get the locations entered by the user in the order of starting location and destination.
@@ -86,9 +91,8 @@ The RouteCommand Class executes the command in the following steps:
 
 The sequence diagram in figure 3 explains the above steps when the user enters `/route loc1 /to loc2`.
 
-[Work in Progress]
-
-<i><center>Figure 3: Sequence diagram showing how the operation works</center></i>
+[Work in Progress]<br>
+_Figure 5: Sequence diagram showing how the operation works_
 
 ##### 1.2.1.2. Design Considerations
 
