@@ -16,13 +16,19 @@ import static fitr.storage.StorageManager.COMMA_SEPARATOR;
 
 public class ExerciseStorage {
     private static final Logger LOGGER = Logger.getLogger(ExerciseStorage.class.getName());
-    private static final String EXERCISE_LIST_PATH = "exerciseList.txt";
+    private static final String DEFAULT_EXERCISE_LIST_PATH = "exerciseList.txt";
+    private final String exerciseListPath;
 
     public ExerciseStorage() throws IOException {
-        File exerciseListFile = new File(EXERCISE_LIST_PATH);
+        this(DEFAULT_EXERCISE_LIST_PATH);
+    }
+
+    public ExerciseStorage(String exerciseListPath) throws IOException {
+        this.exerciseListPath = exerciseListPath;
+        File exerciseListFile = new File(exerciseListPath);
         if (!exerciseListFile.exists()) {
             boolean isFileExists = exerciseListFile.createNewFile();
-            LOGGER.fine("Exercise list file created: " + EXERCISE_LIST_PATH);
+            LOGGER.fine("Exercise list file created: " + exerciseListPath);
         }
     }
 
@@ -33,11 +39,11 @@ public class ExerciseStorage {
      * @throws FileNotFoundException if the file is not found
      */
     public ArrayList<Exercise> loadExerciseList() throws FileNotFoundException {
-        LOGGER.fine("Attempting to read file: " + EXERCISE_LIST_PATH);
+        LOGGER.fine("Attempting to read file: " + exerciseListPath);
         ArrayList<Exercise> exerciseList = new ArrayList<>();
         String line;
         String[] arguments;
-        File exerciseListFile = new File(EXERCISE_LIST_PATH);
+        File exerciseListFile = new File(exerciseListPath);
         Scanner readFile = new Scanner(exerciseListFile);
 
         while (readFile.hasNext()) {
@@ -58,8 +64,8 @@ public class ExerciseStorage {
      * @throws IOException if an I/O error has occurred
      */
     public void writeExerciseList(ExerciseList exerciseList) throws IOException {
-        LOGGER.fine("Attempting to write to file: " + EXERCISE_LIST_PATH);
-        FileWriter file = new FileWriter(EXERCISE_LIST_PATH);
+        LOGGER.fine("Attempting to write to file: " + exerciseListPath);
+        FileWriter file = new FileWriter(exerciseListPath);
         Exercise exercise;
 
         for (int i = 0; i < exerciseList.getSize(); i++) {
