@@ -61,11 +61,11 @@ Hello from
 Here are the tasks that are due by next week
 
 maths
-1:[D][?] homework (by: 6:00 PM 21 Oct 2020)
-2:[E][?] match (at: 6:00 PM 22 Oct 2020)
+1:[D][✘] homework (by: 6:00 PM 21 Oct 2020)
+2:[E][✘] match (at: 6:00 PM 22 Oct 2020)
 science
-1:[E][?] fund-raising (at: 6:00 PM 22 Oct 2020)
-2:[D][?] assignment (by: 6:00 PM 21 Oct 2020)
+1:[E][✘] fund-raising (at: 6:00 PM 22 Oct 2020)
+2:[D][✘] assignment (by: 6:00 PM 21 Oct 2020)
 </code></pre> 
 
 Subsequently, users can begin using the application.
@@ -295,9 +295,9 @@ Here are the topic(s) under math:
 1.speed
 ____________________________________________________________
 Here are the tasks(s) under math: 
-1.[T][?] laundry
-2.[E][?] tutorial (at: 4:00 PM 21 Oct 2020)
-3.[D][?] assignment (by: 11:59 PM 21 Oct 2020)
+1.[T][✘] laundry
+2.[E][✘] tutorial (at: 4:00 PM 21 Oct 2020)
+3.[D][✘] assignment (by: 11:59 PM 21 Oct 2020)
 ____________________________________________________________
 
 ```
@@ -321,7 +321,7 @@ ____________________________________________________________
  Sorry! I could not find any topics with laund in the list.
 
  Here are the matching task(s) in your list:
-[T][?] laundry
+[T][✓] laundry
 ____________________________________________________________
 ```
 
@@ -362,7 +362,7 @@ Expected outcome:
 ```
 ____________________________________________________________
 Got it. I've added this task:
-	[T][N] laundry
+	[T][✘] laundry
 Now you have 4 tasks in the list.
 ____________________________________________________________
 ```
@@ -384,7 +384,7 @@ Expected outcome:
 ```
 ____________________________________________________________
 Got it. I've added this task:
-  [D][?] assignment (by: 11:59 PM 21 Oct 2020)
+  [D][✘] assignment (by: 11:59 PM 21 Oct 2020)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
@@ -406,7 +406,7 @@ Expected outcome:
 ```
 ____________________________________________________________
 Got it. I've added this task:
-  [E][?] tutorial (at: 4:00 PM 21 Oct 2020)
+  [E][✘] tutorial (at: 4:00 PM 21 Oct 2020)
 Now you have 3 tasks in the list.
 ____________________________________________________________
 ```
@@ -428,7 +428,7 @@ Expected outcome:
 ```
 ____________________________________________________________
  Noted. I've removed this task:
-   [E][?] tutorial (at: 4:00 PM 21 Oct 2020)
+   [E][✘] tutorial (at: 4:00 PM 21 Oct 2020)
  Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
@@ -450,7 +450,7 @@ Expected outcome:
 ```
 ____________________________________________________________
  Nice! I've marked this task as done:
-   [D][?] assignment (by: 11:59 PM 21 Oct 2020)
+   [D][✓] assignment (by: 11:59 PM 21 Oct 2020)
 ____________________________________________________________
 ```
 
