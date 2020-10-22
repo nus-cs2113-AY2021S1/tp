@@ -17,6 +17,7 @@ public class LoggerCentre {
         }
         return loggerCentre;
     }
+
     public void setLevel(Level level) {
         this.level = level;
         loggerParamChecker.setLevel(level);

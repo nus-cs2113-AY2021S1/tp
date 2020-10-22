@@ -6,7 +6,7 @@ import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.UiManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CashbackTest { ;
+public class CashbackTest {
 
     public static CommandPacket handleInput(String input) {
         UiManager.printInputPrompt();

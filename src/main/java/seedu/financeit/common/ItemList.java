@@ -58,6 +58,15 @@ public abstract class ItemList extends ParamHandler {
         return this.items;
     }
 
+    public boolean isItemDuplicate(Item item) {
+        for (Item i : this.items) {
+            if (i.equals(item)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Provides a reference to the specified item at the zero-based index.
      * Requires index to have been parsed from user-input, else it will
@@ -78,8 +87,8 @@ public abstract class ItemList extends ParamHandler {
         return this.items.get(index);
     }
 
-    public void removeItem(Item item) {
-        this.items.remove(item);
+    public void removeAllItems() {
+        this.items.clear();
     }
 
     /**

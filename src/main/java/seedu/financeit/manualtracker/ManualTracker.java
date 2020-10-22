@@ -2,22 +2,29 @@ package seedu.financeit.manualtracker;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Constants;
+import seedu.financeit.common.exceptions.DuplicateInputException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
+import seedu.financeit.goaltracker.GoalTracker;
 import seedu.financeit.manualtracker.subroutine.EntryTracker;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.FiniteStateMachine;
-import seedu.financeit.goaltracker.GoalTracker;
 
 /**
  * Class to handle routine for manual ledger management.
  */
 public class ManualTracker {
-    private static LedgerList ledgerList = new LedgerList();
+    static LedgerList ledgerList = new LedgerList();
     private static GoalTracker goalTrack = new GoalTracker();
     private static CommandPacket packet;
+    private static boolean isUnderTest = false;
+
+    public static void setTestPacket(CommandPacket inputPacket) {
+        packet = inputPacket;
+        isUnderTest = true;
+    }
 
     public static void main() {
         boolean endTracker = false;
@@ -73,9 +80,13 @@ public class ManualTracker {
     private static FiniteStateMachine.State handleMainMenu() {
         UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY, "[ MAIN_MENU -> MANUAL_TRACKER_MENU ]");
         UiManager.printInputPromptMessage();
+        String input;
 
-        String input = UiManager.handleInput();
-        packet = InputParser.getInstance().parseInput(input);
+        if (!isUnderTest) {
+            input = UiManager.handleInput();
+            packet = InputParser.getInstance().parseInput(input);
+        }
+
         UiManager.refreshPage();
         switch (packet.getCommandString()) {
         case "ledger open":
@@ -105,7 +116,7 @@ public class ManualTracker {
         }
     }
 
-    private static FiniteStateMachine.State handleCreateLedger() {
+    static FiniteStateMachine.State handleCreateLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Ledger ledger = new Ledger();
         ledger.setRequiredParams(
@@ -113,13 +124,19 @@ public class ManualTracker {
         );
         try {
             ledger.handlePacket(packet);
+            if (ledgerList.isItemDuplicate(ledger)) {
+                throw new DuplicateInputException();
+            }
             ledgerList.addItem(ledger);
             goalTrack.storeLedgerDate(ledger);
             UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
                 String.format("%s created!", ledger.getName()));
         } catch (InsufficientParamsException exception) {
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    exception.getMessage());
+                exception.getMessage());
+        } catch (DuplicateInputException exception) {
+            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                "Duplicate item already exists in the list; not added!");
         } finally {
             if (!ledger.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
@@ -129,7 +146,7 @@ public class ManualTracker {
         return state;
     }
 
-    private static FiniteStateMachine.State handleDeleteLedger() {
+    static FiniteStateMachine.State handleDeleteLedger() {
         FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Ledger ledger;
         ledgerList.setRequiredParams(
