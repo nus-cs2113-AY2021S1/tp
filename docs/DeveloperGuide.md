@@ -125,6 +125,9 @@ We have written J-Unit test for the main functionalities for the program, such a
 When using gradle to build the project, these tests are run automatically and will catch any runtime errors. If you have added new functionality, please remember to add a J-Unit test for the new functionality.
 
 ## 7. Dev Ops
+
+When the project is finalised and released, if you find any bugs or problems, or if you have suggestions for new functionality, please create a new issue on our [github page](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues).
+
 ##  Appendices
 
 
