@@ -103,7 +103,7 @@ class WatchlistCommandTest {
     void execute_emptyWatchlistListForListAllWatchlist_emptyListMessage() throws AniException {
         WatchlistCommand watchlistCommand = new WatchlistCommand("l", "");
         activeWorkspace.setWatchlistList(new ArrayList<>());
-        String expected = "Uhh.. You have no watchlist to list..";
+        String expected = "Uhh.. You have no watchlist..";
         assertEquals(expected, watchlistCommand.execute(animeData, storageManager, user));
     }
 
