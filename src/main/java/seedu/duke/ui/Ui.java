@@ -94,7 +94,9 @@ public class Ui {
     }
 
     public static void printResetSearchFreqMessage() {
-        System.out.println("The search frequencies of all bus stops have been resetted to 0!");
+        printLine();
+        System.out.println("The search frequencies of all bus stops have been reset to 0!");
+        printLine();
     }
 
     private static void printMostSearchedBusStop() {
