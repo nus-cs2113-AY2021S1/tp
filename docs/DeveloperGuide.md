@@ -1,20 +1,29 @@
 # WatchNext Developer Guide
 
 
-* [1. Introduction](#1-introduction)
-    + [1.a Purpose](#1a-purpose)
-    + [1.b Scope](#1b-scope)
-* [2. Setting up](#2-setting-up)
-    + [2.a Prerequisites](#2a-prerequisites)
-    + [2.b Setting up project](#2b-setting-up-the-project-in-your-computer)
-    + [2.c Verifying the setup](#2c-verifying-the-setup)
-    + [2.d Before Writing Code](#1)
-* [3. Design](#3-design)
-* [4. Implementation](#4-implementation)
-- [5. Documentation](#5-documentation)   
-- [6. Testing](#6-testing)   
-- [7. Dev Ops](#7-dev-ops)  
-- [Appendices](#user-stories)  
+- [WatchNext Developer Guide](#watchnext-developer-guide)
+  - [1. Introduction](#1-introduction)
+    - [1.a Purpose](#1a-purpose)
+    - [1.b Scope](#1b-scope)
+  - [2. Setting up](#2-setting-up)
+    - [2.a Prerequisites](#2a-prerequisites)
+    - [2.b Setting up the project in your computer](#2b-setting-up-the-project-in-your-computer)
+    - [2.c Verifying the setup](#2c-verifying-the-setup)
+    - [2.d Before Writing Code](#2d-before-writing-code)
+  - [3. Design](#3-design)
+  - [4. Implementation](#4-implementation)
+    - [Add](#add)
+    - [Edit](#edit)
+  - [5. Documentation](#5-documentation)
+  - [6. Testing](#6-testing)
+  - [7. Dev Ops](#7-dev-ops)
+  - [Appendices](#appendices)
+    - [Target user profile](#target-user-profile)
+    - [Value proposition](#value-proposition)
+  - [User Stories](#user-stories)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+  - [Instructions for manual testing](#instructions-for-manual-testing)
    
 ## 1. Introduction
 
@@ -96,8 +105,25 @@ WatchNext was designed drawing from the ideas of the __Event-driven architectura
 <br>Throughout the lifespan of the program, various errors may occur. The <code>ErrorHandling</code> class stores the various errors that could occur. The expected errors usually stem from invalid user input or Input Output (IO) errors during file loading. The <code>Ui</code> class informs the users of the errors detected and suggests actions for rectification. <br>
 
 ## 4. Implementation
+
+### Add
+
+The `add` command allows users to add a new show which they are watching to the `ShowList`. It is invoked by the inputParser. The addCommand class checks for the correct number of inputs and throws an exception when the number of arguments is mismatched.
+### Edit 
+
+The `edit` command allows the user to change the details of each show that they are waatching after they have added the show. It is self-contained, including its own parser and methods which allows the user to change any parameter they wish, after the user enters `done`, `edit` replaces the old entry with the updated one.
+
 ## 5. Documentation
+
+This project comes with 2 pieces of documentation, the developers' guide, which you are reading right now and the user guide, which helps new users get acquainted with the program.
+
+
 ## 6. Testing
+
+We have written J-Unit test for the main functionalities for the program, such as `command` classes. The test can be found under `/src/test`.
+
+When using gradle to build the project, these tests are run automatically and will catch any runtime errors. If you have added new functionality, please remember to add a J-Unit test for the new functionality.
+
 ## 7. Dev Ops
 ##  Appendices
 
