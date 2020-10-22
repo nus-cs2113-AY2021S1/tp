@@ -155,21 +155,31 @@ PGPR : Prince George's Park Residence
 ```
 
 ### 3.6. Search for dining options within a faculty: ```/dine```
-Lists out all dining outlets available within a chosen faculty.<br>
-Format: <code>/dine <strong>faculty</strong></code> <br>
-Example of usage: <code>/dine <strong>business</strong></code> <br>
-Expected outcome:<br>
-<img src="UG_Figures/dine1.png" alt="output" width=650><br>
-_Figure 2: The output message seen._
+This command lists out all dining outlets available within a chosen faculty.<br>
+The format of this command is as follows:<br> 
+<code>/dine <strong>faculty</strong></code> <br>
+
+#### 3.6.1. Examples of Usage
+**<u>Example 1</u>**
+
+Let's say you want to know all the dining options available in <strong>School of Business</strong>.<br>
+1. Type <code>/dine <strong>business</strong></code> into the command line interface and press enter to execute the command as shown in the figure below.<br>
+<img src="UG_Figures/dine1.png" alt="output" width=600><br>
+_Figure x: The expected output message._
 
 
 ### 3.7. Search for specific dining outlet: ```/dineinfo```
 Search for all dining outlets that contains the keyword, and display their location and operating hours.<br>
-Format: <code>/dineinfo <strong>keyword</strong></code> <br>
-Example of usage: <code>/dineinfo <strong>arise</strong></code> <br>
-Expected outcome:<br>
-<img src="UG_Figures/dineinfo1.png" alt="output" width=650><br>
-_Figure 2: The output message seen._
+The format of this command is as follows:<br>
+<code>/dineinfo <strong>keyword</strong></code> <br>
+
+#### 3.7.1. Examples of Usage
+**<u>Example 1</u>**
+
+Let's say you want to find information of the dining outlet <strong>Arise & Shine</strong>.<br>
+1. Type <code>/dineinfo <strong>arise</strong></code> into the command line interface and press enter to execute the command as shown in the figure below.<br>
+<img src="UG_Figures/dineinfo1.png" alt="output" width=600><br>
+_Figure x: The expected output message._
 
 ### 3.8. Exiting the program: ```/exit```
 This command helps you exit the application.<br>
