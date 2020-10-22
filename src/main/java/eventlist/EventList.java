@@ -2,6 +2,7 @@ package eventlist;
 
 
 import event.Event;
+import exception.EmptyEventListException;
 import exception.UndefinedEventException;
 
 import java.time.LocalDate;
@@ -154,9 +155,15 @@ public class EventList {
 
     /**
      * Clear the ArrayList events if it is not empty.
+     *
+     * @throws EmptyEventListException when the user tries to clear a list that is already empty.
      */
-    public void clearEvents() {
-        assert events != null;
-        events.clear();
+    public void clearEvents() throws EmptyEventListException {
+        //assert events != null;
+        if (events == null) {
+            throw new EmptyEventListException();
+        } else {
+            events.clear();
+        }
     }
 }
