@@ -101,7 +101,6 @@ public class Storage {
         saveFile(fileZoomPath, data, "Zoom");
         saveFile(fileGoalPath, data, "Goal");
 
-        ui.printStorageSavedMessage();
 
     }
 

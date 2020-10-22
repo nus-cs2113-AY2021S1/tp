@@ -8,7 +8,6 @@ File Created: Timetable
 File Created: Goal
 The file has successfully been loaded!
 _________________________________
-The file has successfully been saved!
 _________________________________
 Thank you for using scheduler--;!
 We hope to see you soon!
