@@ -255,12 +255,12 @@ public class User {
         return userFitnessLevel;
     }
 
-    public String getUserFitnessLevelString(){
-        if(userFitnessLevel==0){
+    public String getUserFitnessLevelString() {
+        if (userFitnessLevel == 0) {
             return UNFIT_STRING;
-        } else if(userFitnessLevel==1){
+        } else if (userFitnessLevel == 1) {
             return NORMAL_STRING;
-        } else if(userFitnessLevel==2) {
+        } else if (userFitnessLevel == 2) {
             return FIT_STRING;
         } else {
             return NULL_STRING;
