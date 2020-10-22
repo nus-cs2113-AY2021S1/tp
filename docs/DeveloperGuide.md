@@ -30,7 +30,7 @@ enhancements.
 The architecture diagram given in figure 1 explains the high-level design of the App. 
 
 ![Architecture Diagram](Architecture.png)<br>
-<i><center>Figure 1: Architecture diagram</center></i>
+_Figure 1: Architecture diagram_
 
 Given below is a quick overview of each component.
 
@@ -53,13 +53,23 @@ to commands executed by the logic component.
 _Figure 2: Class diagram for ui component_
 
 #### 1.1.2 Logic Component
+The logic component is responsible for the following tasks:
+- Make sense of the command entered by the user by splitting it into the command type and the parameters and/or 
+delimiters if any.
+-  Executes a command based on its type and provides an appropriate result to the user via the Ui component.
+
+The following class diagram briefly explains how different classes in the logic component interact with each other.
+
+![logiccomponent](LogicComponent.png)<br>
+_Figure 3: Class diagram for logic component_
 
 #### 1.1.3 Model Component
+[Work in Progress]
 
 #### 1.1.4 Storage Component
+[Work in Progress]
 
 ### 1.2. Implementation
-
 This section provides details of how the main features of Nav@NUS have been implemented.
 
 #### 1.2.1 Direct Route Finder
