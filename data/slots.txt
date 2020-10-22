@@ -1,0 +1,296 @@
+{
+  "modules": [
+    {
+      "moduleCode": "LAJ1201",
+      "bookmarks": {
+        "bookmarks": [],
+        "lineSeparator": "\r\n",
+        "items": []
+      },
+      "slots": [
+        {
+          "startTime": {
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "endTime": {
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "day": "mon",
+          "title": "tutorial_1",
+          "bookmarks": {
+            "bookmarks": [],
+            "lineSeparator": "\r\n",
+            "items": []
+          }
+        },
+        {
+          "startTime": {
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "endTime": {
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "day": "tue",
+          "title": "lecture",
+          "bookmarks": {
+            "bookmarks": [],
+            "lineSeparator": "\r\n",
+            "items": []
+          }
+        },
+        {
+          "startTime": {
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "endTime": {
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "day": "thu",
+          "title": "tutorial_2",
+          "bookmarks": {
+            "bookmarks": [],
+            "lineSeparator": "\r\n",
+            "items": []
+          }
+        }
+      ]
+    },
+    {
+      "moduleCode": "GEH1034",
+      "bookmarks": {
+        "bookmarks": [],
+        "lineSeparator": "\r\n",
+        "items": []
+      },
+      "slots": [
+        {
+          "startTime": {
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "endTime": {
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "day": "mon",
+          "title": "lecture",
+          "bookmarks": {
+            "bookmarks": [],
+            "lineSeparator": "\r\n",
+            "items": []
+          }
+        }
+      ]
+    },
+    {
+      "moduleCode": "CS2101",
+      "bookmarks": {
+        "bookmarks": [],
+        "lineSeparator": "\r\n",
+        "items": []
+      },
+      "slots": [
+        {
+          "startTime": {
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "endTime": {
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "day": "tue",
+          "title": "tutorial_1",
+          "bookmarks": {
+            "bookmarks": [],
+            "lineSeparator": "\r\n",
+            "items": []
+          }
+        },
+        {
+          "startTime": {
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "endTime": {
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "day": "fri",
+          "title": "tutorial_2",
+          "bookmarks": {
+            "bookmarks": [],
+            "lineSeparator": "\r\n",
+            "items": []
+          }
+        }
+      ]
+    },
+    {
+      "moduleCode": "CG2271",
+      "bookmarks": {
+        "bookmarks": [],
+        "lineSeparator": "\r\n",
+        "items": []
+      },
+      "slots": [
+        {
+          "startTime": {
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "endTime": {
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "day": "wed",
+          "title": "lecture",
+          "bookmarks": {
+            "bookmarks": [],
+            "lineSeparator": "\r\n",
+            "items": []
+          }
+        },
+        {
+          "startTime": {
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "endTime": {
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "day": "thu",
+          "title": "tutorial",
+          "bookmarks": {
+            "bookmarks": [],
+            "lineSeparator": "\r\n",
+            "items": []
+          }
+        },
+        {
+          "startTime": {
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "endTime": {
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "day": "fri",
+          "title": "lab",
+          "bookmarks": {
+            "bookmarks": [],
+            "lineSeparator": "\r\n",
+            "items": []
+          }
+        },
+        {
+          "startTime": {
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "endTime": {
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "day": "wed",
+          "title": "lecture2",
+          "bookmarks": {
+            "bookmarks": [],
+            "lineSeparator": "\r\n",
+            "items": []
+          }
+        },
+        {
+          "startTime": {
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "endTime": {
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "day": "wed",
+          "title": "lecture3",
+          "bookmarks": {
+            "bookmarks": [],
+            "lineSeparator": "\r\n",
+            "items": []
+          }
+        },
+        {
+          "startTime": {
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "endTime": {
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "day": "wed",
+          "title": "lecture6",
+          "bookmarks": {
+            "bookmarks": [],
+            "lineSeparator": "\r\n",
+            "items": []
+          }
+        }
+      ]
+    }
+  ]
+}
