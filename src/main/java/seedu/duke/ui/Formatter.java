@@ -2,6 +2,7 @@ package seedu.duke.ui;
 
 import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.Note;
+import seedu.duke.data.timetable.Reminder;
 import seedu.duke.data.timetable.Timetable;
 import seedu.duke.data.timetable.Event;
 
@@ -64,6 +65,25 @@ public class Formatter {
     public static String formatEvent(String header, Event event) {
         String formattedString = "";
         return formattedString;
+    }
+
+    /**
+     * Converts a header and an ArrayList of reminders into a formatted string to be printed.
+     *
+     *
+     * @param header Success message to print.
+     * @param reminders Reminders to be printed
+     * @return String representation of all reminders to be shown.
+     */
+    public static String formatReminders(String header, ArrayList<Reminder> reminders) {
+        String formattedString = generatesHeader(header);
+        ArrayList<String> result = Reminder.upcomingRemindersToString(reminders);
+
+        for (String line : result) {
+            formattedString = formattedString.concat(encloseRow(line));
+        }
+
+        return encloseTopAndBottom(formattedString);
     }
 
     /**

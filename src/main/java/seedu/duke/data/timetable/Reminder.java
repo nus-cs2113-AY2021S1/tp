@@ -1,6 +1,7 @@
 package seedu.duke.data.timetable;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * A reminder class that holds the event to remind as well as the date to remind.
@@ -48,6 +49,32 @@ public class Reminder implements Comparable<Reminder> {
     @Override
     public String toString() {
         return event.toReminderString();
+    }
+
+    /**
+     * Provides a wrapper around the event in reminder to print the reminder in string array format.
+     *
+     * @return ArrayList of Strings to represent the reminder.
+     */
+    public ArrayList<String> toStringArray() {
+        return event.toReminderStringArray();
+    }
+
+    /**
+     * Provides a static method to convert an ArrayList of Reminders to it's respective String Array representation and
+     * returned as an ArrayList together.
+     *
+     * @param reminders Reminders to be converted to string.
+     * @return ArrayList of Strings to be printed to show reminders.
+     */
+    public static ArrayList<String> upcomingRemindersToString(ArrayList<Reminder> reminders) {
+        ArrayList<String> result = new ArrayList<>();
+        for (Reminder reminder : reminders) {
+            result.addAll(reminder.toStringArray());
+            result.add(" ");
+        }
+        result.remove(result.size() - 1);
+        return result;
     }
 
     @Override
