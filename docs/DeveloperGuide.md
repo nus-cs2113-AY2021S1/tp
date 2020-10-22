@@ -226,31 +226,30 @@ week for all the modules taken in a table format.
 Given below is an example usage scenario and how the view module command behaves at each step.
 
 1. User calls the view module command from the `Parser`. `Parser` then calls the `printTable()`
-method in `Ui` and passes `list` and `weekNumber` as parameters into the method. `printTable()`
-instantiate a `ModView` class. 
+method in `Ui`. `printTable()` then instantiates `ModView` class and calls the `printAllModuleInformation()`
+method from the `ModView` class.
 
-1. `Parser` passes the parameters `List` and `weekNumber` into 
-`printAllModuleInformation()`. This method is from the `ModView` class.
-
-1. The user input is subjected to a method `validateInputs()` to verify that 
+1. User input is subjected to `validateInputs()` to verify that 
 both of the following conditions are satisfied.
   * `weekNumber` is an integer between 1 and 13 inclusive.
   * `modlist` in `list` is not empty.
 
-If any of the above conditions is not fulfilled, an error message will be printed
+If any of the above conditions is not satisfied, an error message will be printed
 and `printAllModuleInformation()` terminates.
 
 1. A method `getMaxModuleLength()` will be called to find out the maximum length 
-of module code present in `modList`. This is to facilitate the automatic resizing of the printed table.
+of module code of modules taken. This is to facilitate the resizing of the printed table.
 
-1. The table templates such as `border`, `header` and `contents` is 
-formatted accordingly based on the output of the previous step.
+1. `updateTemplates()` then updates the table templates such as `border`, `header` 
+and `contents` are updated accordingly based on the output of `getMaxModuleLength()`.
 
-1. This method iterates through `modList` and for each `Module` it extracts data such as 
-`moduleCode`, `expectedWorkload` and `actualWorkload`. The data will be fill into the respective templates.
- Existence of the desired data is checked using their respective methods, `doesExpectedWorkLoadExist()` and `doesActualTimeExist()`,
-before they are filled into the templates to be printed. If the desired data does not exist,
-a `NO INPUT` will be printed instead.
+1. For each `Module` in `modList`, `updateContent()` will be called to update the contents
+to be printed.
+
+The following sequence diagram shows how the view module command works. 
+
+![view-module](diagrams/ModViewSequence.png)
+
 
 #### Breakdown and Analysis
 
@@ -260,36 +259,34 @@ The analysis command allows the user to view the breakdown of the total time spe
 in the week across all modules and provides a simple analysis of how they are doing.
 
 1. User calls the view module command from the `Parser`. `Parser` then calls the `printBreakdownAnalysis()`
-   method in `Ui` and passes `list` and `weekNumber` as parameters into the method. `printBreakdownAnalysis()`
-   instantiate a `ViewTimeBreakdownAnalysis` class. 
+   method in `Ui`. `printBreakdownAnalysis()` then instantiates `ViewTimeBreakdownAnalysis` class. 
+   and calls the `printTimeBreakDownAndAnalysis()` method. 
    
-1. `Parser` passes the parameters `modList` and `weekNumber` into 
-   `printTimeBreakDownAndAnalysis()`. This method is from the `ViewTimeBreakdownAnalysis` class.
-   
-1. The user input is subjected to a method `validateInputs()` to verify that 
+1. The user input is subjected to `validateInputs()` to verify that 
    both of the following conditions are satisfied.
      * `weekNumber` is an integer between 1 and 13 inclusive.
      * `modlist` in `list` is not empty.
    
-   If any of the above conditions is not fulfilled, an error message will be printed
+   If any of the above conditions is not satisfied, an error message will be printed
    and `printTimeBreakDownAndAnalysis()` terminates.
 
-1. A `printTime()` method in `printTimeBreakDownAndAnalysis()` is first called. This method iterates through
-`modList` and for each `Module` it extracts `moduleCode`, `expectedWorkload` and `actualWorkload`. 
-Existence of the desired data is checked using their respective methods, `doesExpectedWorkLoadExist()` 
-and `doesActualTimeExist()`, before they are filled into the templates to be printed. If the desired 
-data does not exist, a `NO INPUT` will be printed. If these exists, they will be pass into 
-`printBarGraph()` and be printed out as a horizontal bar graph.
+1. `printTime()` method in `printTimeBreakDownAndAnalysis()` is first called. For each `Module` 
+in `modList`, `printTime()` prints `actualWorkload` and `expectedWorkload` in form of a 
+horizontal bar graph. The existence of the desired data is checked using `doesActualTimeExist()` 
+and `doesExpectedTimeExist()` methods of the `Module` class. If the desired data does not exist, a `NO INPUT` will be printed. 
 
 1. `printBreakdown()` then calculates the total time spent by the user on the modules taken in the specified 
 week. It then prints out `actualTime` of each `Module` as a percentage of `totalTimeSpent`. If there is no input, 
-a `NO INPUT` message will be printed. `printBreakdown()` returns `TRUE` if there exists a `Module` that has a 
-valid input, else `False` is returned.
+a `NO INPUT` message will be printed. `printBreakdown()` return **TRUE** if there exists a `Module` that has a 
+valid input, else **False** is returned.
 
 1. If output of `printBreakdown()` is `True`, `printAnalysis()` will be called. `computeAnalysisOfTimeSpent()` 
 is called to determine the outcome of the analysis. A message will be printed depending on the output
 of the analysis. 
 
+The following sequence diagram shows how the analysis command works. 
+
+![analysis](diagrams/AnalysisSequence.png)
 
 #### Design Considerations
 
@@ -298,7 +295,8 @@ of the analysis.
     * Cons: It might be difficult to compare across modules using a bar graph.
 * **Alternative 2**: Printing data as a line graph
     * Pros: Easier to compare across different modules.
-    * Cons: Difficult to implement as it requires external libraries. 
+    * Cons: Difficult to implement as it requires external libraries.
+    * Cons: Difficult to test due to additional dependencies on external libraries. 
 
 ### Add Task
 The add task feature allows user to add a task under an existing module. 

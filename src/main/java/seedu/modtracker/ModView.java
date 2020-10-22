@@ -31,7 +31,6 @@ public class ModView {
     public static final String EMPTY_MODULE_LIST = "The module list is empty. Please input some modules to be tracked.";
 
 
-
     /**
      * Prints the week number, module code, expected workload and actual time spent
      * in the specified week for all the modules taken in a table format.
@@ -42,13 +41,7 @@ public class ModView {
     public void printAllModuleInformation(ModuleList list, int weekNumber) {
         ArrayList<Module> modList = list.getData();
 
-        if (weekNumber < MIN_WEEK_VALUE || weekNumber > MAX_WEEK_VALUE) {
-            System.out.println(INVALID_WEEK_NUMBER + System.lineSeparator());
-            return;
-        }
-
-        if (modList.isEmpty()) {
-            System.out.println(EMPTY_MODULE_LIST + System.lineSeparator());
+        if (!validateInputs(weekNumber, modList)) {
             return;
         }
 
@@ -57,63 +50,78 @@ public class ModView {
         assert !modList.isEmpty() : "modList should not be empty";
 
         ArrayList<String> moduleCodes = list.getModuleCodes();
+        int maxLength = getMaxModuleLength(moduleCodes);
+
+        int extraCharsToBeAdded = maxLength - LENGTH_OF_MODULE_CODE;
+
+        String[] updatedTemplates = updateTemplates(extraCharsToBeAdded);
+        String border = updatedTemplates[0];
+        String header = updatedTemplates[1];
+        String contents = updatedTemplates[2];
+        String crossToBeAdded = updatedTemplates[3];
+
+        System.out.print(border + header + border);
+
+        for (Module m : modList) {
+            String updatedContent = contents;
+            updatedContent = updateContent(weekNumber, crossToBeAdded, m, updatedContent);
+            System.out.print(updatedContent + border);
+        }
+        System.out.println();
+    }
+
+    private String updateContent(int weekNumber, String crossToBeAdded, Module m, String out) {
+        String crosses = REPLACE_BY_MODULE_CODE + crossToBeAdded;
+        String weekNum = (isTwoDigitNumber(weekNumber) ? "" : WEEK_NUMBER_PADDING_CHAR) + weekNumber;
+        out = out.replace(REPLACE_BY_WEEK_NUMBER, weekNum);
+
+        StringBuilder moduleCode = new StringBuilder(m.getModuleCode());
+        while (moduleCode.length() < crosses.length()) {
+            moduleCode.append(" ");
+        }
+        out = out.replace(crosses, moduleCode.toString());
+
+        if (m.doesExpectedWorkLoadExist()) {
+            String expectedWorkLoad = (isTwoDigitNumber(m.getExpectedWorkload()) ? "" : PADDING_CHAR)
+                    + m.getExpectedWorkload();
+            out = out.replace(REPLACE_BY_EXPECTED_WORKLOAD, expectedWorkLoad);
+        } else {
+            out = out.replace(REPLACE_BY_NO_EXPECTED_WORKLOAD_FOUND, NO_INPUT);
+        }
+
+        if (m.doesActualTimeExist(weekNumber)) {
+            double actualTime = m.getActualTime()[weekNumber - INDEX_OFFSET];
+            actualTime = round(actualTime, DECIMAL_PLACES);
+            String actualWorkLoad = (isTwoDigitNumber((int) actualTime) ? "" : PADDING_CHAR)
+                    + actualTime;
+            out = out.replace(REPLACE_BY_ACTUAL_WORKLOAD, actualWorkLoad);
+        } else {
+            out = out.replace(REPLACE_BY_NO_ACTUAL_WORKLOAD_FOUND, NO_INPUT);
+        }
+        return out;
+    }
+
+    private int getMaxModuleLength(ArrayList<String> moduleCodes) {
         int maxLength = 0;
         for (String s : moduleCodes) {
             if (s.length() > maxLength) {
                 maxLength = s.length();
             }
         }
+        return maxLength;
+    }
 
-        int extraCharsToBeAdded = maxLength - LENGTH_OF_MODULE_CODE;
-        StringBuilder dashToBeAdded = new StringBuilder();
-        StringBuilder spaceToBeAdded = new StringBuilder();
-        StringBuilder crossToBeAdded = new StringBuilder();
-        for (int i = 0; i < extraCharsToBeAdded; i++) {
-            dashToBeAdded.append("-");
-            spaceToBeAdded.append(" ");
-            crossToBeAdded.append("X");
+    private boolean validateInputs(int weekNumber, ArrayList<Module> modList) {
+        if (weekNumber < MIN_WEEK_VALUE || weekNumber > MAX_WEEK_VALUE) {
+            System.out.println(INVALID_WEEK_NUMBER + System.lineSeparator());
+            return false;
         }
 
-        String border = FIRST_PART_OF_BORDER + dashToBeAdded + SECOND_PART_OF_BORDER;
-        String header = FIRST_PART_OF_HEADER + spaceToBeAdded + SECOND_PART_OF_HEADER;
-        String contents = FIRST_PART_OF_CONTENT + crossToBeAdded + SECOND_PART_OF_CONTENT;
-
-        System.out.print(border + header + border);
-
-        for (Module m : modList) {
-            String out = contents;
-
-            String crosses = REPLACE_BY_MODULE_CODE + crossToBeAdded;
-            String weekNum = (isTwoDigitNumber(weekNumber) ? "" : WEEK_NUMBER_PADDING_CHAR) + weekNumber;
-            out = out.replace(REPLACE_BY_WEEK_NUMBER, weekNum);
-
-            StringBuilder moduleCode = new StringBuilder(m.getModuleCode());
-            while (moduleCode.length() < crosses.length()) {
-                moduleCode.append(" ");
-            }
-            out = out.replace(crosses, moduleCode.toString());
-
-            if (m.doesExpectedWorkLoadExist()) {
-                String expectedWorkLoad = (isTwoDigitNumber(m.getExpectedWorkload()) ? "" : PADDING_CHAR)
-                        + m.getExpectedWorkload();
-                out = out.replace(REPLACE_BY_EXPECTED_WORKLOAD, expectedWorkLoad);
-            } else {
-                out = out.replace(REPLACE_BY_NO_EXPECTED_WORKLOAD_FOUND, NO_INPUT);
-            }
-
-            if (m.doesActualTimeExist(weekNumber)) {
-                double actualTime = m.getActualTime()[weekNumber - INDEX_OFFSET];
-                actualTime = round(actualTime, DECIMAL_PLACES);
-                String actualWorkLoad = (isTwoDigitNumber((int) actualTime) ? "" : PADDING_CHAR)
-                        + actualTime;
-                out = out.replace(REPLACE_BY_ACTUAL_WORKLOAD, actualWorkLoad);
-            } else {
-                out = out.replace(REPLACE_BY_NO_ACTUAL_WORKLOAD_FOUND, NO_INPUT);
-            }
-
-            System.out.print(out + border);
+        if (modList.isEmpty()) {
+            System.out.println(EMPTY_MODULE_LIST + System.lineSeparator());
+            return false;
         }
-        System.out.println();
+        return true;
     }
 
     private double round(double value, int decimalPlaces) {
@@ -123,5 +131,24 @@ public class ModView {
 
     private boolean isTwoDigitNumber(int num) {
         return String.valueOf(num).length() == 2;
+    }
+
+    private String[] updateTemplates(int extraCharsToBeAdded) {
+        String[] output = new String[4];
+
+        StringBuilder dashToBeAdded = new StringBuilder();
+        StringBuilder spaceToBeAdded = new StringBuilder();
+        StringBuilder crossToBeAdded = new StringBuilder();
+        for (int i = 0; i < extraCharsToBeAdded; i++) {
+            dashToBeAdded.append("-");
+            spaceToBeAdded.append(" ");
+            crossToBeAdded.append("X");
+        }
+
+        output[0] = FIRST_PART_OF_BORDER + dashToBeAdded + SECOND_PART_OF_BORDER;
+        output[1] = FIRST_PART_OF_HEADER + spaceToBeAdded + SECOND_PART_OF_HEADER;
+        output[2] = FIRST_PART_OF_CONTENT + crossToBeAdded + SECOND_PART_OF_CONTENT;
+        output[3] = crossToBeAdded.toString();
+        return output;
     }
 }
