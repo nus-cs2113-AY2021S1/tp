@@ -33,6 +33,9 @@
     * [Deleting a book rating](#deleting-a-book-rating-delete--r)
     * [Editing an existing book rating](#editing-an-existing-book-rating-edit--r)
     * [Finding an existing book rating](#finding-an-existing-book-rating-find--r)
+- [Getting Help in Quotesify](#getting-help-in-quotesify)
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
   
 ## Introduction
 
