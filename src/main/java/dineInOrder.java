@@ -21,7 +21,5 @@ public class dineInOrder extends Order {
         else {
             return super.toString() + "(Not Dine In)";
         }
-
     }
-
 }

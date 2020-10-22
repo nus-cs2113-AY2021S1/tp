@@ -47,5 +47,4 @@ public class deliveryOrder extends Order {
             return super.toString() + "(Not Delivery Order)";
         }
     }
-
 }

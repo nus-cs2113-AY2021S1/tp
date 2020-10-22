@@ -29,5 +29,4 @@ public class Order {
     public String toString() {
         return this.canteen + "order in " + this.stall + ": " + this.dishes +  " by " + this.customer;
     }
-
 }
