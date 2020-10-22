@@ -98,6 +98,16 @@ WatchNext was designed drawing from the ideas of the __Event-driven architectura
 ## 4. Implementation
 ## 5. Documentation
 ## 6. Testing
+Two main forms of testing was used for the development of **WatchNext**. 
+1. Text-ui-test
+    1. This seeks to test the general flow of the program and simulates the "expected" or "smooth" lifespan of the program.
+    2. This is useful to ensure that the changes to one class does not inadvertently affect the operation of another. Any changes to the operation of another class will show through this test and can be rectified by the developer.
+    3. Text-ui-test is also a good final litmus test on the smooth running of the program before it is released to production. 
+2. J-unit
+    1. The test mainly focuses on the correctness of each individual class.
+    2. This tests the functions within each class and ensures that it behaves as expected by testing the output of each function against what is expected.
+    3. The benefits include ensuring that the coupling between the classes do not cause any unexpected behaviour when another class has been modified.
+    4. The errors thrown from the J-unit tests allow the developer to zoom in on the classes which are not showing the expected behaviour to quickly and effectively rectify the bugs.
 ## 7. Dev Ops
 ##  Appendices
 
@@ -116,7 +126,7 @@ There exists many options for streaming all sorts of video content from the gian
 towards user sourced content.<br><br> This poses a new challenge to any tech-savvy person who wants to make sure they do not miss a single episode of their 
 favourite show. Netflix and other established streaming platforms are able to keep track of the user's progress, but should be the user use more than one
 streaming platform, there is no avenue of communication between the streaming platforms to synchronise this data.<br><br> **WatchNext** seeks to fill in this gap 
-by providing users with a single streamlined platform to keep track of the episodes of all their favourite shows. They do not need to worry about rewatching
+by providing users with a single streamlined platform to keep track of the episodes of all their favourite shows. They do not need to worry about re-watching
 or missing episodes with the help of **WatchNext's** show progress tracking features. <br>
 <br>**WatchNext** also helps users track the total time they spend watching shows across all platforms. This provides users with an encompassing view of the
 actual time they spend watching shows and is a feature that is not provided by most other platforms.
