@@ -3,6 +3,13 @@ package seedu.duke.command;
 import seedu.duke.data.notebook.Note;
 import seedu.duke.ui.Formatter;
 
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
 import static seedu.duke.util.PrefixSyntax.PREFIX_DELIMITER;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
@@ -11,6 +18,7 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_TITLE;
  * Views a specific Note in the Notebook.
  */
 public class ViewNoteCommand extends Command {
+    private static final Logger LOGGER = Logger.getLogger("ViewNoteCommand");
 
     public static final String COMMAND_WORD = "view-n";
 
@@ -34,6 +42,9 @@ public class ViewNoteCommand extends Command {
         this.index = index;
         this.title = null;
         this.isViewByIndex = true;
+
+        setupLogger();
+        LOGGER.log(Level.INFO, "New ViewNoteCommand object created using index.");
     }
 
     /**
@@ -44,6 +55,9 @@ public class ViewNoteCommand extends Command {
     public ViewNoteCommand(String title) {
         this.title = title;
         this.isViewByIndex = false;
+
+        setupLogger();
+        LOGGER.log(Level.INFO, "New ViewNoteCommand object created using title.");
     }
 
     @Override
@@ -54,18 +68,22 @@ public class ViewNoteCommand extends Command {
             try {
                 note = notebook.getNotes().get(index);
             } catch (IndexOutOfBoundsException exception) {
+                LOGGER.log(Level.INFO, "Note does note exist. unable to find note with index" + index);
                 return COMMAND_UNSUCCESSFUL_MESSAGE;
             }
+            LOGGER.log(Level.INFO, "Note found using index");
             noteExists = true;
         } else {
             for (Note notes : notebook.getNotes()) {
                 if (notes.getTitle().equalsIgnoreCase(title)) {
                     note = notes;
                     noteExists = true;
+                    LOGGER.log(Level.INFO, "Note found using title of note");
                 }
             }
         }
         if (!noteExists) {
+            LOGGER.log(Level.INFO, "Note does not exist.");
             return COMMAND_UNSUCCESSFUL_MESSAGE;
         }
 
@@ -78,5 +96,20 @@ public class ViewNoteCommand extends Command {
         return stringToPrint;
         //to be used with formatter
         //return Formatter.formatNote(COMMAND_SUCCESSFUL_MESSAGE + note.getTitle(), note);
+    }
+
+    private void setupLogger() {
+        LogManager.getLogManager().reset();
+        LOGGER.setLevel(Level.INFO);
+
+        try {
+            FileHandler fileHandler = new FileHandler("ViewNoteCommand.log");
+            fileHandler.setFormatter(new SimpleFormatter());
+            fileHandler.setLevel(Level.INFO);
+            LOGGER.addHandler(fileHandler);
+        } catch (IOException exception) {
+            LOGGER.log(Level.SEVERE, "File logger not working.", exception);
+        }
+
     }
 }
