@@ -17,7 +17,9 @@ import event.PersonalEvent;
 
 import exception.EditIndexOutOfBoundsException;
 import exception.EmptyEventIndexException;
+import exception.InvalidSortCriteriaException;
 import exception.NoEventLocationException;
+import exception.NoSortCriteriaException;
 import exception.UnknownErrorException;
 import exception.WrongEditFormatException;
 import location.Building;
@@ -83,8 +85,6 @@ public abstract class Parser {
             return new HelpCommand();
         case CLEAR:
             return new ClearCommand();
-        case SORT:
-            return new SortCommand();
         default:
             break;
         }
@@ -140,6 +140,22 @@ public abstract class Parser {
         //        }
         //
 
+        if (words[0].equals(SORT)) {
+            if (fullCommand.length() == 4) {
+                throw new NoSortCriteriaException();
+            }
+            String type = words[1];
+            switch(type) {
+            case "description":
+            case "time":
+            case "location":
+                return new SortCommand(type);
+            default:
+                throw new InvalidSortCriteriaException();
+            }
+        }
+
+
         //these variables are used by either Edit or Add
         //the position of /t
         int timeDividerPosition;
@@ -166,7 +182,7 @@ public abstract class Parser {
             } catch (NumberFormatException e) {
                 throw new WrongEditFormatException();
             }
-            if (eventIndex >= eventCount) {
+            if (eventIndex >= eventCount || eventIndex == -1) {
                 throw new EditIndexOutOfBoundsException();
             }
             UI ui = new UI();

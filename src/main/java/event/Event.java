@@ -75,15 +75,24 @@ public abstract class Event {
         return location;
     }
 
-    public static Comparator<Event> descriptionComparator = new Comparator<Event>() {
-        @Override
-        public int compare(Event o1, Event o2) {
-            char description1 = o1.getDescription().charAt(0);
-            char description2 = o2.getDescription().charAt(0);
+    public static Comparator<Event> descriptionComparator = (o1, o2) ->
+            o1.getDescription().compareToIgnoreCase(o2.getDescription());
 
-            return description1 - description2;
+    public static Comparator<Event> timeComparator = (o1, o2) -> {
+        LocalDate o2Date = o2.getDate();
+        LocalDate o1Date = o1.getDate();
+        int comparator = o1Date.getYear() - o2Date.getYear();
+        if (comparator == 0) {
+            comparator = o1Date.getMonthValue() - o2Date.getMonthValue();
+            if (comparator == 0) {
+                comparator = o1Date.getDayOfMonth() - o2Date.getDayOfMonth();
+            }
         }
+        return comparator;
     };
+
+    public static Comparator<Event> locationComparator = (o1, o2) ->
+            o1.getLocation().getName().compareToIgnoreCase(o2.getLocation().getName());
 }
 
 
