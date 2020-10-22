@@ -5,6 +5,7 @@
       {
         "description": "What is encapsulation?",
         "hint": "check the textbook",
+        "explanation": "because option A is the best answer",
         "options": [
           {
             "description": "A",
@@ -27,6 +28,7 @@
       {
         "description": "What is abstraction?",
         "hint": "check the textbook",
+        "explanation": "because option B is the best answer",
         "options": [
           {
             "description": "A",
@@ -54,6 +56,7 @@
       {
         "description": "How do you name classes?",
         "hint": "check the textbook",
+        "explanation": "because option A is the best answer",
         "options": [
           {
             "description": "A",
@@ -76,6 +79,7 @@
       {
         "description": "What is the appropriate indentation?",
         "hint": "check the textbook",
+        "explanation": "because option B is the best answer",
         "options": [
           {
             "description": "A",
