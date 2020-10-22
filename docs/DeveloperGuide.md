@@ -11,6 +11,8 @@
     + [2.d Before Writing Code](#1)
 * [3. Design](#3-design)
 * [4. Implementation](#4-implementation)
+    + [Watch Command](#watch-command-feature)
+    + [UpdateTimeLimit Command](#updatetimelimit-command-feature)
 - [5. Documentation](#5-documentation)   
 - [6. Testing](#6-testing)   
 - [7. Dev Ops](#7-dev-ops)  
