@@ -1,22 +1,33 @@
 # WatchNext Developer Guide
 
 
-* [1. Introduction](#1-introduction)
-    + [1.a Purpose](#1a-purpose)
-    + [1.b Scope](#1b-scope)
-* [2. Setting up](#2-setting-up)
-    + [2.a Prerequisites](#2a-prerequisites)
-    + [2.b Setting up project](#2b-setting-up-the-project-in-your-computer)
-    + [2.c Verifying the setup](#2c-verifying-the-setup)
-    + [2.d Before Writing Code](#1)
-* [3. Design](#3-design)
-* [4. Implementation](#4-implementation)
+
+- [WatchNext Developer Guide](#watchnext-developer-guide)
+  - [1. Introduction](#1-introduction)
+    - [1.a Purpose](#1a-purpose)
+    - [1.b Scope](#1b-scope)
+  - [2. Setting up](#2-setting-up)
+    - [2.a Prerequisites](#2a-prerequisites)
+    - [2.b Setting up the project in your computer](#2b-setting-up-the-project-in-your-computer)
+    - [2.c Verifying the setup](#2c-verifying-the-setup)
+    - [2.d Before Writing Code](#2d-before-writing-code)
+  - [3. Design](#3-design)
+  - [4. Implementation](#4-implementation)
+    - [Add](#add)
+    - [Edit](#edit)
+  - [5. Documentation](#5-documentation)
+  - [6. Testing](#6-testing)
+  - [7. Dev Ops](#7-dev-ops)
+  - [Appendices](#appendices)
+    - [Target user profile](#target-user-profile)
+    - [Value proposition](#value-proposition)
     + [Watch Command](#watch-command-feature)
     + [UpdateTimeLimit Command](#updatetimelimit-command-feature)
-- [5. Documentation](#5-documentation)   
-- [6. Testing](#6-testing)   
-- [7. Dev Ops](#7-dev-ops)  
-- [Appendices](#user-stories)  
+  - [User Stories](#user-stories)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+  - [Instructions for manual testing](#instructions-for-manual-testing)
+
    
 ## 1. Introduction
 
@@ -98,6 +109,14 @@ WatchNext was designed drawing from the ideas of the __Event-driven architectura
 <br>Throughout the lifespan of the program, various errors may occur. The `ErrorHandling` class stores the various errors that could occur. The expected errors usually stem from invalid user input or Input Output (IO) errors during file loading. The `Ui` class informs the users of the errors detected and suggests actions for rectification. <br>
 
 ## 4. Implementation
+
+
+### Add
+
+The `add` command allows users to add a new show which they are watching to the `ShowList`. It is invoked by the inputParser. The addCommand class checks for the correct number of inputs and throws an exception when the number of arguments is mismatched.
+### Edit 
+
+The `edit` command allows the user to change the details of each show that they are waatching after they have added the show. It is self-contained, including its own parser and methods which allows the user to change any parameter they wish, after the user enters `done`, `edit` replaces the old entry with the updated one.
 
 
  4.a Rating Command
@@ -189,18 +208,36 @@ to the desired value, which is 120 in this case.
 
 
 ## 5. Documentation
+
+This project comes with 2 pieces of documentation, the developers' guide, which you are reading right now and the user guide, which helps new users get acquainted with the program.
+
+
 ## 6. Testing
+
+
+We have written J-Unit test for the main functionalities for the program, such as `command` classes. The test can be found under `/src/test`.
+
+When using gradle to build the project, these tests are run automatically and will catch any runtime errors. If you have added new functionality, please remember to add a J-Unit test for the new functionality.
+
+
 Two main forms of testing was used for the development of **WatchNext**. 
+
 1. Text-ui-test
     1. This seeks to test the general flow of the program and simulates the "expected" or "smooth" lifespan of the program.
     2. This is useful to ensure that the changes to one class does not inadvertently affect the operation of another. Any changes to the operation of another class will show through this test and can be rectified by the developer.
     3. Text-ui-test is also a good final litmus test on the smooth running of the program before it is released to production. 
+    
 2. J-unit
     1. The test mainly focuses on the correctness of each individual class.
     2. This tests the functions within each class and ensures that it behaves as expected by testing the output of each function against what is expected.
     3. The benefits include ensuring that the coupling between the classes do not cause any unexpected behaviour when another class has been modified.
     4. The errors thrown from the J-unit tests allow the developer to zoom in on the classes which are not showing the expected behaviour to quickly and effectively rectify the bugs.
+
+
 ## 7. Dev Ops
+
+When the project is finalised and released, if you find any bugs or problems, or if you have suggestions for new functionality, please create a new issue on our [github page](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues).
+
 ##  Appendices
 
 
