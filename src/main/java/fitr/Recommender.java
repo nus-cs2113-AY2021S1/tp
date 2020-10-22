@@ -10,7 +10,7 @@ public class Recommender {
     protected StandardExerciseList aerobicList;
     protected StandardExerciseList stretchingList;
 
-    Recommender() {
+    public Recommender() {
         Boolean isSuccessful = false;
         StandardExerciseStorage storage = new StandardExerciseStorage();
         try {

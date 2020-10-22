@@ -12,7 +12,7 @@ public class StandardExerciseStorage {
     private static final String DEFAULT_STRETCH_FILEPATH = "src/main/resources/stretchList.txt";
     private static final String COMMA_SEPARATOR = ", ";
 
-    StandardExerciseStorage() {
+    public StandardExerciseStorage() {
     }
 
     public StandardExerciseList loadUpperBodyList() throws FileNotFoundException {
