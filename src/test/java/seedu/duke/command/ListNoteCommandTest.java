@@ -52,7 +52,7 @@ class ListNoteCommandTest {
 
         defaultNote = new Note("Default", content, false, false, tag);
         testNote1 = new Note("TestNote1", contentOne, true, false);
-        cs2113 = new Note("CS2113", contentTwo, true, false tagSet);
+        cs2113 = new Note("CS2113", contentTwo, true, false, tagSet);
         songLyrics = new Note("Song Lyrics", contentThree, false, false);
 
         //notebook.addNote(testNote1);
