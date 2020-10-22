@@ -1,13 +1,11 @@
 package anichan.command;
 
-import anichan.anime.Anime;
 import anichan.anime.AnimeData;
 import anichan.human.User;
 import anichan.human.Workspace;
 import anichan.parser.WorkspaceParser;
 import anichan.storage.StorageManager;
 import anichan.watchlist.Watchlist;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
