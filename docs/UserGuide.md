@@ -153,26 +153,27 @@ Format: 'event search /s KEYWORD' <br/>
 Example of usage:
 `event search /s arduino course`
 
-### 3.5 Finance features `finance` <br/>
-#### Add finance log entry: `addLog` <br/>
-Adds an entry into the finance log. <br/>
-Format: `finance addLog ITEM_NAME ITEM_VALUE` <br/>
 
-Example of usage: <br/>
-`finance addLog have lunch 5.2` <br/>
-`f addlog buy flight ticket 700` <br/>
+### 3.5 Finance features `finance`  
+#### Add finance log entry: `addLog`  
+Adds an entry into the finance log.  
+Format: `finance addLog ITEM_NAME ITEM_VALUE`  
 
-#### Delete finance log entry: `delLog` <br/>
-Removes an entry from finance log. <br/>
-Format: `finance delLog ITEM_INDEX` <br/>
+Example of usage:  
+`finance addLog have lunch 4.5`  
+`f addlog buy flight ticket 750`  
 
-Example of usage: <br/>
-`finance dellog 3` <br/>
-`f delLog 10` <br/>
+#### Delete finance log entry: `delLog`  
+Removes an entry from finance log.  
+Format: `finance delLog ITEM_INDEX`  
 
-#### View financial summary: `summary` <br/>
-Brings up a summary of the financial log and shows the total amount of money expended. <br/>
-Format: `finance summary` <br/>
+Example of usage:  
+`finance dellog 3`  
+`f delLog 10`  
+
+#### View financial summary: `summary`  
+Brings up a summary of the financial log and shows the total amount of money expended.  
+Format: `finance summary`  
 
 
 ##FAQ
@@ -191,9 +192,9 @@ listEvent | `event listEvent` | -
 countdown | `event countdown` | -
 done   | `event done EVENT_INDEX`| `event done 2`
 search | `event search /s <KEYWORD>` | `event search /s arduino` 
-addLog | `finance addLog ITEM_NAME ITEM_VALUE` | `finance addLog have lunch 5.2`
-delLog | `finance delLog ITEM_INDEX` | `finance delLog 2`
-summary | `finance summary` | -
+addLog | `finance addLog ITEM_NAME ITEM_VALUE` | `finance addLog have lunch 4.5`
+delLog | `finance delLog ITEM_INDEX` | `finance delLog 3`
+summary | `finance summary` |   -
 hr search | `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)` | `hr search /n Peter /r president`
 list prof&admin | `hr list prof&admin` | -
 list connections | `hr list connections` | -
