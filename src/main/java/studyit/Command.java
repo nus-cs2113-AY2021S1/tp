@@ -104,7 +104,7 @@ public class Command {
                 PersonBook.addPerson(AcademicCommandParser.getContact(command), listOfPerson);
 
             } else if (commandType == AcademicCommandType.CHECK_CONTACT) {
-                Ui.printLine("Checking Contact"); //TODO: Remove placeholder line.
+                //Ui.printLine("Checking Contact"); //TODO: Remove placeholder line.
                 Ui.printLine(PersonBook.printPersonBook(listOfPerson));
 
             } else if (commandType == AcademicCommandType.ADD_GRADE) {
@@ -112,11 +112,11 @@ public class Command {
                 GradeBook.addGrade(AcademicCommandParser.getGrade(command), currentGrades);
 
             } else if (commandType == AcademicCommandType.CHECK_GRADE) {
-                Ui.printLine("Checking Grade"); //TODO: Remove placeholder line.
+                //Ui.printLine("Checking Grade"); //TODO: Remove placeholder line.
                 Ui.printLine(GradeBook.printCap(currentGrades));
 
             } else if (commandType == AcademicCommandType.LIST_GRADE) {
-                Ui.printLine("Listing Grade"); //TODO: Remove placeholder line.
+                //Ui.printLine("Listing Grade"); //TODO: Remove placeholder line.
                 Ui.printLine(GradeBook.printListOfGrades(currentGrades));
 
             } else {
