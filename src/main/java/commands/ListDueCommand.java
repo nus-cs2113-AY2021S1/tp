@@ -4,6 +4,7 @@ import access.Access;
 
 import exception.InvalidFileFormatException;
 import exception.ExclusionFileException;
+
 import manager.chapter.DueChapter;
 
 import scheduler.Scheduler;
@@ -23,7 +24,7 @@ public class ListDueCommand extends Command {
 
     public ArrayList<DueChapter> allChapters;
     public ArrayList<DueChapter> dueChapters;
-
+  
     private void loadAllChapters(Storage storage, Ui ui) throws InvalidFileFormatException, ExclusionFileException {
         try {
             allChapters = storage.loadAllDueChapters(ui);

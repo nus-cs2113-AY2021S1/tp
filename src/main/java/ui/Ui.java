@@ -5,14 +5,17 @@ import access.Access;
 import commands.AddCommand;
 import commands.BackCommand;
 import commands.EditCommand;
+import commands.ExcludeCommand;
 import commands.ExitCommand;
 import commands.GoCommand;
 import commands.HelpCommand;
 import commands.ListCommand;
 import commands.ListDueCommand;
+import commands.RateCommand;
 import commands.RemoveCommand;
 import commands.RescheduleCommand;
 import commands.ReviseCommand;
+import commands.ShowRateCommand;
 import manager.card.Card;
 import manager.chapter.DueChapter;
 
@@ -137,8 +140,9 @@ public class Ui {
         out.println("8. " + GoCommand.MESSAGE_USAGE);
         out.println("9. " + BackCommand.MESSAGE_USAGE);
         out.println("10. " + ListDueCommand.MESSAGE_USAGE);
-        out.println("11. " + RescheduleCommand.MESSAGE_USAGE);
-
+        out.println("11. " + RateCommand.MESSAGE_USAGE);
+        out.println("12. " + ShowRateCommand.MESSAGE_USAGE);
+        out.println("13. " + RescheduleCommand.MESSAGE_USAGE);
     }
 
     public void showError(String error) {
@@ -191,8 +195,8 @@ public class Ui {
 
     public boolean isValidExclusionChoice(String choice) {
         switch (choice.toLowerCase()) {
-        case "module":
-        case "chapter":
+        case ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_MODULE:
+        case ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_CHAPTER:
             return true;
         default:
             return false;
@@ -200,21 +204,24 @@ public class Ui {
     }
 
     public String chooseModuleOrChapterExclusion(String type) {
-        if (type.equals("more")) {
+        if (type.equals(ExcludeCommand.EXCLUDE_COMMAND_OPTION_MORE)) {
             showToUser("Would you like to exclude a module or chapter from your schedule?");
         } else {
             showToUser("Would you like to include a module or chapter back into your schedule?");
         }
         String choice = readCommand();
         while (!isValidExclusionChoice(choice)) {
-            showToUser("That was not a valid choice. Please enter \"module\" or \"choice\".");
+            String message = "That was not a valid choice. Please enter \""
+                    + ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_MODULE + "\" or \""
+                    + ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_CHAPTER + "\".";
+            showToUser(message);
             choice = readCommand();
         }
         return choice.toLowerCase();
     }
 
     public String getExcludedModuleName(String type) {
-        if (type.equals("module")) {
+        if (type.equals(ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_MODULE)) {
             showToUser("Which module will you like to be excluded from your schedule?");
         } else {
             showToUser("Which module does the chapter you would like to be excluded belong to?");
@@ -228,7 +235,7 @@ public class Ui {
     }
 
     public String getIncludedModuleName(String type) {
-        if (type.equals("module")) {
+        if (type.equals(ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_MODULE)) {
             showToUser("Which module will you like to include back into your schedule?");
         } else {
             showToUser("Which module does the chapter you would like to be included belong to?");

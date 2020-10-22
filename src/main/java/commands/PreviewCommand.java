@@ -58,4 +58,3 @@ public class PreviewCommand extends Command {
         return false;
     }
 }
-

@@ -94,11 +94,12 @@ public class ListCommand extends Command {
         StringBuilder result = new StringBuilder();
         result.append(String.format(MESSAGE_EXIST, CHAPTER));
         for (Chapter c : allChapters) {
+            result.append("\n").append(allChapters.indexOf(c) + 1).append(".")
+                    .append(c).append(" ").append(c.translateRating());
             if (c.getDueBy() == null) {
-                result.append("\n").append(allChapters.indexOf(c) + 1).append(".").append(c).append(" (No due date)");
+                result.append(" (No due date)");
             } else {
-                result.append("\n").append(allChapters.indexOf(c) + 1).append(".")
-                        .append(c).append(" (due by ").append(c.getDueBy()).append(")");
+                result.append(" (due by ").append(c.getDueBy()).append(")");
             }
         }
         return result.toString();

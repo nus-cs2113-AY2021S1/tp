@@ -6,6 +6,7 @@ import commands.AddCommand;
 import commands.BackCommand;
 import commands.Command;
 import commands.EditCommand;
+import commands.ExcludeCommand;
 import commands.ExitCommand;
 import commands.GoCommand;
 import commands.HelpCommand;
@@ -13,18 +14,17 @@ import commands.HistoryCommand;
 import commands.ListCommand;
 import commands.ListDueCommand;
 import commands.PreviewCommand;
+import commands.RateCommand;
 import commands.RemoveCommand;
 import commands.RescheduleCommand;
 import commands.ReviseCommand;
-import commands.HistoryCommand;
-import commands.PreviewCommand;
 import commands.ExcludeCommand;
+import commands.ShowRateCommand;
 
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import storage.Storage;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
@@ -74,8 +74,14 @@ public class Parser {
             return prepareListDue(commandArgs);
         case HistoryCommand.COMMAND_WORD:
             return prepareHistory(commandArgs);
+        case RateCommand.COMMAND_WORD:
+            return prepareRate(commandArgs);
+        case ShowRateCommand.COMMAND_WORD:
+            return prepareShowRate(commandArgs);
         case PreviewCommand.COMMAND_WORD:
             return preparePreview(commandArgs);
+        case ExcludeCommand.COMMAND_WORD:
+            return prepareExclude(commandArgs);
         case RescheduleCommand.COMMAND_WORD:
             return prepareReschedule(commandArgs);
         case ExcludeCommand.COMMAND_WORD:
@@ -83,6 +89,30 @@ public class Parser {
         default:
             throw new InvalidInputException("There is no such command type.\n");
         }
+    }
+
+    private static Command prepareShowRate(String commandArgs) throws InvalidInputException {
+        if (!commandArgs.isEmpty()) {
+            throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ShowRateCommand.COMMAND_WORD) + ShowRateCommand.MESSAGE_USAGE);
+        }
+        return new ShowRateCommand();
+    }
+
+    private static RateCommand prepareRate(String commandArgs)
+            throws InvalidInputException, IncorrectAccessLevelException {
+        int chapterIndex;
+        if (commandArgs.isEmpty()) {
+            throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    RateCommand.COMMAND_WORD) + RateCommand.MESSAGE_USAGE);
+        }
+        try {
+            chapterIndex = Integer.parseInt(commandArgs) - 1;
+        } catch (NumberFormatException e) {
+            throw new IncorrectAccessLevelException("The index for chapter should be an integer.\n"
+                    + RateCommand.MESSAGE_USAGE);
+        }
+        return new RateCommand(chapterIndex);
     }
 
     private static Command prepareHistory(String commandArgs) throws InvalidInputException {
@@ -426,13 +456,26 @@ public class Parser {
             throw new InvalidFileFormatException(
                     "There should be a number to indicate how many tasks have completed.");
         }
-
         return percent;
+    }
+
+    public static String parseRatingInFile(String arg) throws InvalidFileFormatException {
+        if (!(arg.trim().startsWith(Storage.RATING_PREFIX))) {
+            throw new InvalidFileFormatException("Answers in the file should begin with [R].");
+        }
+
+        String rating = arg.substring(3).trim();
+        if (rating.isEmpty()) {
+            throw new InvalidFileFormatException("There should be a rating after [R] in the file.");
+        }
+
+        return rating;
     }
 
     private static Command preparePreview(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
-            throw new InvalidInputException("There should not be any arguments for preview.");
+            String errorMessage = "There should not be any arguments for preview." + PreviewCommand.MESSAGE_USAGE;
+            throw new InvalidInputException(errorMessage);
         }
         return new PreviewCommand();
     }
