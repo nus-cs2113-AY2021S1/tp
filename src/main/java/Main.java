@@ -9,8 +9,8 @@ import java.io.FileWriter;
 import java.io.FileNotFoundException;
 
 public class Main {
-    protected static List<Dish> dishes = new ArrayList<>();
-    protected static List<Stall> stalls = new ArrayList<>();
+    //protected static List<Dish> dishes = new ArrayList<>();
+    //protected static List<Stall> stalls = new ArrayList<>();
     protected static List<Canteen> canteens = new ArrayList<>();
     protected static Scanner sc = new Scanner(System.in);
     public static FileInputStream inputFile;
@@ -24,7 +24,7 @@ public class Main {
 
             System.out.println("Please enter your name:");
             String customerName = sc.nextLine();
-            Customer customer = new Customer(customerName);
+            Customer customer = new Customer(customerName, id);
 
             System.out.println("When will you arrive:");
             String arriveTime = sc.nextInt();
@@ -32,15 +32,17 @@ public class Main {
             Syetem.out.println("Dear " + customerName + ",");
             System.out.println("Please choose a canteen from the list:");
             int j = 0;
-            for (Canteen c : canteeens) {
+            for (String c : canteeens) {
                 j++;
                 System.out.println(j +". " + c);
             }
             System.out.println("Enter the number in front to choose:");
             int canteenIdChoosed = sc.nextInt();
-            Canteen canteenChoosed = canteens.get(canteenIdChoosed - 1);
+            String canteenChoosed = canteens.get(canteenIdChoosed - 1);
+            Canteen canteen = new Canteen(canteenChoosed);
 
             System.out.println("The avaliable stalls in " + canteenChoosed + " are:");
+            
             j = 0;
             for (stall s : stalls) {
                 j++;
@@ -48,7 +50,8 @@ public class Main {
             }
             System.out.println("Please choose a stall:");
             int stallIdChoosed = sc.nextInt();
-            Canteen stallChoosed = stalls.get(stallIdChoosed - 1);
+            String stallChoosed = stalls.get(stallIdChoosed - 1);
+            Stall stall = new Stall(canteenChoosed);
 
             System.out.println(stallChoosed + " provides following dishes:");
             j = 0;
