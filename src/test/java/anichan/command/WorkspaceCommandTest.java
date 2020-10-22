@@ -31,21 +31,21 @@ class WorkspaceCommandTest {
     void setUp() throws AniException {
         animeData = new AnimeData(new ArrayList<>());
         storageManager = new StorageManager(STORAGE_DIRECTORY);
-        user = new User("Testing", "Male");
+        user = new User("Tom", "Male");
 
-        Watchlist secondWatchlist = new Watchlist("Second");
+        Watchlist secondWatchlist = new Watchlist("Second2");
         secondWatchlist.addAnimeToList(1);
         secondWatchlist.addAnimeToList(2);
 
-        Watchlist thirdWatchlist = new Watchlist("Third");
+        Watchlist thirdWatchlist = new Watchlist("Third3");
         thirdWatchlist.addAnimeToList(3);
 
         ArrayList<Watchlist> watchlistList = new ArrayList<>();
-        watchlistList.add(new Watchlist("First"));
+        watchlistList.add(new Watchlist("First1"));
         watchlistList.add(secondWatchlist);
         watchlistList.add(thirdWatchlist);
 
-        Workspace newWorkspace = user.addWorkspace("Default");
+        Workspace newWorkspace = user.addWorkspace("Default2");
         newWorkspace.setWatchlistList(watchlistList);
         user.setActiveWorkspace(newWorkspace);
         activeWorkspace = user.getActiveWorkspace();
@@ -84,11 +84,21 @@ class WorkspaceCommandTest {
         testAddWorkspace.execute(animeData, storageManager, user);
 
         // Test deleting workspace
-        WorkspaceParser switchParse = new WorkspaceParser();
-        WorkspaceCommand testDeleteWorkspace = switchParse.parse("-d Crunchy rail 12345");
+        WorkspaceParser deleteParse = new WorkspaceParser();
+        WorkspaceCommand testDeleteWorkspace = deleteParse.parse("-d Crunchy rail 12345");
 
         String expectedString = "Successfully deleted workspace: Crunchy rail 12345";
 
         assertEquals(expectedString, testDeleteWorkspace.execute(animeData, storageManager, user));
+    }
+
+    @Test
+    void listWorkspace_empty_zeroWorkspace() throws AniException {
+        WorkspaceParser listParse = new WorkspaceParser();
+        WorkspaceCommand testListWorkspace = listParse.parse("-l");
+
+        String expectedString = "Currently, you have 1 workspace(s):" + System.lineSeparator() + "1. Default2";
+
+        assertEquals(expectedString, testListWorkspace.execute(animeData, storageManager, user));
     }
 }
