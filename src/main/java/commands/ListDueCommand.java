@@ -3,6 +3,7 @@ package commands;
 import access.Access;
 
 import exception.ExclusionFileException;
+
 import manager.chapter.DueChapter;
 
 import scheduler.Scheduler;
@@ -24,11 +25,11 @@ public class ListDueCommand extends Command {
     public ArrayList<DueChapter> dueChapters;
 
     private void loadAllChapters(Storage storage, Ui ui) throws ExclusionFileException {
-        String result = "";
         try {
             allChapters = storage.loadAllDueChapters(ui);
         } catch (FileNotFoundException e) {
             ui.showToUser(UNABLE_TO_LOAD_EMPTY_DATABASE);
+
         }
     }
 

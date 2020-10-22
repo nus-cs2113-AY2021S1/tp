@@ -12,9 +12,9 @@ import commands.HelpCommand;
 import commands.ListCommand;
 import commands.ListDueCommand;
 import commands.RemoveCommand;
+import commands.RescheduleCommand;
 import commands.ReviseCommand;
 import manager.card.Card;
-import manager.history.History;
 import manager.chapter.DueChapter;
 
 import java.io.InputStream;
@@ -28,7 +28,6 @@ import static common.Messages.LINE;
 public class Ui {
     private final Scanner in;
     private final PrintStream out;
-    private static final String lineSplit = "    ____________________________________________________________";
 
     public Ui() {
         this(System.in, System.out);
@@ -139,20 +138,12 @@ public class Ui {
         out.println("8. " + GoCommand.MESSAGE_USAGE);
         out.println("9. " + BackCommand.MESSAGE_USAGE);
         out.println("10. " + ListDueCommand.MESSAGE_USAGE);
+        out.println("11. " + RescheduleCommand.MESSAGE_USAGE);
+
     }
 
     public void showError(String error) {
         out.println(error);
-    }
-
-    public void showUnedited(String type, String content) {
-        out.println("The following " + type + " will be edited:");
-        out.println(content);
-    }
-
-    public void showEdited(String type, String content) {
-        out.println("Edited " + type + ":");
-        out.println(content);
     }
 
     public void printDueChapters(ArrayList<DueChapter> dueChapters) {

@@ -72,38 +72,39 @@ public class EditCommand extends Command {
     @Override
     public void execute(Ui ui, Access access, Storage storage)
             throws InvalidInputException, IncorrectAccessLevelException, IOException {
-        if (access.isChapterLevel()) {
-            String result = editCard(access, storage);
-            ui.showToUser(result);
-        } else if (access.isAdminLevel()) {
-            String result = editModule(access, storage);
-            ui.showToUser(result);
-        } else if (access.isModuleLevel()) {
-            String result = editChapter(ui, access, storage);
-            ui.showToUser(result);
-        } else {
+        if (!access.isAdminLevel() && !access.isModuleLevel() && !access.isChapterLevel()) {
             throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
                     access.getLevel(), accessLevel));
         }
+
+        String result = "";
+
+        if (access.isChapterLevel()) {
+            result = editCard(access, storage);
+        } else if (access.isAdminLevel()) {
+            result = editModule(access, storage);
+        } else if (access.isModuleLevel()) {
+            result = editChapter(access, storage);
+        }
+
+        ui.showToUser(result);
     }
 
     private String editCard(Access access, Storage storage) throws InvalidInputException, IOException {
         assert access.isChapterLevel() : "Not chapter level";
-        //assert question.isEmpty() && answer.isEmpty() : "The content for question and answer are both empty.";
+        assert !question.isEmpty() || !answer.isEmpty() : "The content for question and answer are both empty.";
         CardList cards = access.getChapter().getCards();
         try {
             Card card = cards.getCard(editIndex);
             StringBuilder result = new StringBuilder();
-            result.append(String.format(MESSAGE_BEFORE_EDIT, CARD));
-            result.append(card.toString()).append("\n");
+            result.append(prepareBeforeEdit(CARD, card.toString()));
             if (!(question.isEmpty())) {
                 card.setQuestion(question);
             }
             if (!(answer.isEmpty())) {
                 card.setAnswer(answer);
             }
-            result.append(String.format(MESSAGE_AFTER_EDIT, CARD));
-            result.append(card.toString());
+            result.append(prepareAfterEdit(CARD, card.toString()));
             storage.saveCards(cards, access.getModule().getModuleName(), access.getChapter().getChapterName());
             return result.toString();
         } catch (IndexOutOfBoundsException | NullPointerException e) {
@@ -114,18 +115,16 @@ public class EditCommand extends Command {
 
     private String editModule(Access access, Storage storage) throws InvalidInputException {
         assert access.isAdminLevel() : "Not admin level";
-        //assert moduleOrChapter.isEmpty() : "The module name is missing.";
+        assert !moduleOrChapter.isEmpty() : "The module name is missing.";
         ModuleList modules = access.getAdmin().getModules();
         try {
             Module module = modules.getModule(editIndex);
             boolean success = storage.renameModule(moduleOrChapter, module);
             StringBuilder result = new StringBuilder();
             if (success) {
-                result.append(String.format(MESSAGE_BEFORE_EDIT, MODULE));
-                result.append(module.toString()).append("\n");
+                result.append(prepareBeforeEdit(MODULE, module.toString()));
                 module.setModuleName(moduleOrChapter);
-                result.append(String.format(MESSAGE_AFTER_EDIT, MODULE));
-                result.append(module.toString());
+                result.append(prepareAfterEdit(MODULE, module.toString()));
             }
             return result.toString();
         } catch (IndexOutOfBoundsException | NullPointerException e) {
@@ -134,26 +133,38 @@ public class EditCommand extends Command {
         }
     }
 
-    private String editChapter(Ui ui, Access access, Storage storage) throws InvalidInputException {
+    private String editChapter(Access access, Storage storage) throws InvalidInputException {
         assert access.isModuleLevel() : "Not module level";
-        //assert moduleOrChapter.isEmpty() : "The chapter name is missing.";
+        assert !moduleOrChapter.isEmpty() : "The chapter name is missing.";
         ChapterList chapters = access.getModule().getChapters();
         try {
             Chapter chapter = chapters.getChapter(editIndex);
             boolean success = storage.renameChapter(moduleOrChapter, access, chapter);
             StringBuilder result = new StringBuilder();
             if (success) {
-                result.append(String.format(MESSAGE_BEFORE_EDIT, CHAPTER));
-                result.append(chapter.toString()).append("\n");
+                result.append(prepareBeforeEdit(CHAPTER, chapter.toString()));
                 chapter.setChapterName(moduleOrChapter);
-                result.append(String.format(MESSAGE_AFTER_EDIT, CHAPTER));
-                result.append(chapter.toString());
+                result.append(prepareAfterEdit(CHAPTER, chapter.toString()));
             }
             return result.toString();
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             throw new InvalidInputException("The chapter number needs to be within the range "
                     + "of the total number of chapters\n");
         }
+    }
+
+    private String prepareBeforeEdit(String type, String content) {
+        StringBuilder result = new StringBuilder();
+        result.append(String.format(MESSAGE_BEFORE_EDIT, type));
+        result.append(content).append("\n");
+        return result.toString();
+    }
+
+    private String prepareAfterEdit(String type, String content) {
+        StringBuilder result = new StringBuilder();
+        result.append(String.format(MESSAGE_AFTER_EDIT, type));
+        result.append(content);
+        return result.toString();
     }
 
     @Override

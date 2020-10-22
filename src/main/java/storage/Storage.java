@@ -8,7 +8,6 @@ import manager.history.History;
 import manager.chapter.CardList;
 import manager.chapter.Chapter;
 import manager.chapter.DueChapter;
-import manager.history.HistoryList;
 import parser.Parser;
 import manager.module.Module;
 import scheduler.Scheduler;
@@ -424,7 +423,7 @@ public class Storage {
     }
 
     public void createHistoryDir() {
-        File f = new File(filePath + "/" + "history");
+        File f = new File("data/history");
         boolean historyDirExists = f.exists();
         if (!historyDirExists) {
             f.mkdir();
@@ -433,31 +432,35 @@ public class Storage {
 
     public void createHistory(Ui ui, String date) {
         try {
-            File f = new File(filePath + "/history/" + date + ".txt");
+            File f = new File("data/history/" + date + ".txt");
             boolean historyFileExists = f.exists();
             boolean historyFileCreated = false;
             if (!historyFileExists) {
                 historyFileCreated = f.createNewFile();
+            } else {
+                ui.showToUser("the file " + date + ".txt already exists in history folder\n"
+                        + "It stores the revision completed in the session/in a day\n");
             }
 
             if (historyFileCreated) {
-                ui.showToUser("    Successfully created new history file " + date + ".txt");
+                ui.showToUser("Successfully created new file " + date + ".txt in history folder\n"
+                        + "It stores the revision completed in the session/in a day\n");
             }
         } catch (IOException e) {
             ui.showError("Error creating the file.");
         }
     }
 
-    public void saveHistory(HistoryList histories, String date) throws IOException {
-        FileWriter fw = new FileWriter(getFilePath() + "/history/" + date + ".txt");
-        for (int i = 0; i < histories.getHistoryCount(); i++) {
-            fw.write(histories.getHistory(i).toString());
+    public void saveHistory(ArrayList<History> histories, String date) throws IOException {
+        FileWriter fw = new FileWriter("data/history/" + date + ".txt");
+        for (History h : histories) {
+            fw.write(h.toString());
         }
         fw.close();
     }
 
     public ArrayList<History> loadHistory(String date) throws FileNotFoundException {
-        File f = new File(filePath + "/history/" + date + ".txt");
+        File f = new File("data/history/" + date + ".txt");
         boolean fileExists = f.exists();
         if (!fileExists) {
             throw new FileNotFoundException();
