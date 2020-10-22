@@ -123,7 +123,7 @@ Below is an overall sequence diagram to help illustrate the general program flow
 <br/>
 
 ![Main Sequence Diagram](images/Overall-Sequence-Diagram.png) <br/>
-*Figure 2: Overall sequence diagram* 
+*Figure 2: Overall Sequence Diagram* 
 <br/>
 <br/>
 
@@ -150,5 +150,60 @@ Once the command type is known, it will then create the respective `XYZParser` c
 Example: If Browse command was parsed, `Parser` will create `BrowseParser`.
 
 `XYZParser` will then parse the parameter and perform input validation, before creating the Command object to return to `Main`.
+
+<br/>
+
+### 3.4 Command Component
+![Command Component Diagram](images/Command-Class-Diagram.png)
+*Figure 5: Command Component Diagram*
+
+The `Command` component consists of different commands represented together as `XYZCommand` which all inherits from the abstract `Command` class. 
+
+Example: The Browse command would be represented by a `BrowseCommand`.
+
+`Main` would utilise the `Command.execute` operation to carry out the execution of the command and retrieve a String output that will contain the successful result of the `Command`. If the `Command` was not successful an exception will be thrown with details of the failure.
+
+<br/>
+
+### 3.5 AnimeData Component
+![AnimeData Component Diagram](images/AnimeData-Class-Diagram.png)
+*Figure 6: AnimeData Component Diagram*
+
+The `AnimeData` component is responsible for retrieving offline json data and parsing it into `Anime` objects that will be stored in program memory. The `AnimeData` will manage an ArrayList of `Anime` objects providing AniChan with an interface for the program to retrieve with the source data.
+
+The `AnimeData `component:
+* can retrieve Anime objects using ID.
+* can view detailed  information of each Anime Object.
+* can browse the Anime catalog with sorting algorithms.
+
+<br/>
+
+### 3.6 User Component
+![User Component Diagram](images/User-Class-Diagram.PNG)
+*Figure 7: User Component Diagram*
+
+The User inherits from the abstract `Human` class and stores the name and gender of the user. It represents the user's interaction with `Workspace` class.
+
+The `User`component: 
+* can provide user information like `name`, `gender`, and `honorific name`
+* Stores an array list of type `Workspace`
+* can add, set, and switch between workspaces 
+
+The `Workspace` component:  
+* can allow `User` to create and get the list of `Watchlist` and `Bookmark`.
+* can allow `User` to change his active `Watchlist`.
+
+<br/>
+
+### 3.7 StorageManager Component
+![StorageManager Component Diagram](images/StorageManager-Class-Diagram.png)
+*Figure 8: StorageManager Component Diagram*
+
+The `StorageManager` component: 
+* can **save** user, watchlist and bookmark data in `.txt` format and **read it back** using 
+their respective storage class, `UserStorage`, `WatchlistStorage`, and `BookmarkStorage`.
+* can **read** script files that are in `.txt` format using the `ScriptStorage` class.
+
+**AniChan** saved these data as `.txt` files so advanced users will be able to view and manipulate these saved data easily with any available text editor.
 
 <br/>
