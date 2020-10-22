@@ -8,6 +8,7 @@
       *  Add Members: `addMember`<br/>
       *  Delete Members: `delMember`<br/>
       *  View summary of members: `listMember`<br/>
+      *  Change information of members: `changeInfo`<br/>
    
    3.4 Events `event` <br/>
      * Add events: `addEvent`<br/>
@@ -74,6 +75,15 @@ Format: `hr listMember` <br/>
 Example of usage:
 `hr listMember`  
 
+#### change member information: `changeInfo`<br/>
+Changes contacts and role of member in the list, based on the given member name. 
+Format: `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` <br/>
+
+MEMBER_NAME and at least one of PHONE_NUMBER, EMAIL and MEMBER_ROLE must be provided. 
+
+Example of usage: <br/>
+`hr changeInfo /n jack sterling /p 12345678` <br/>
+`hr changeInfo /n Harry Potter /p 12345678 /e 123@gmail.com /r President`
 
 #### search members: `search`  
 Search the members whose information matches user input.  
@@ -147,11 +157,12 @@ Example of usage:
 `event done 1`
 
 #### Search for an Event `search`<br/>
-Search for a particular event.
+Search for a particular event by name or date.
 Format: 'event search /s KEYWORD' <br/>
 
 Example of usage:
 `event search /s arduino course`
+`event search /s 2000-12-16`
 
 
 ### 3.5 Finance features `finance`  
@@ -186,12 +197,13 @@ bye | `bye` | -
 addMember  | `hr addMember /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE` | `hr addMember /n Harry /p 12345678 /e HP@gmail.com /r member`<br/>
 delMember  | `hr delMember MEMBER_INDEX` | `hr delMember 1`
 listMember  | `hr listMember` | -
+changeInfo | `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` | `hr changeInfo /n Jack /p 12345678 /r president` <br/>
 addEvent | `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME` | `event addEvent /n arduino course /d 2020-09-16 /t 8pm`<br/>
 delEvent | `event delEvent EVENT_INDEX`  | `event delEvent 1`
 listEvent | `event listEvent` | -
 countdown | `event countdown` | -
 done   | `event done EVENT_INDEX`| `event done 2`
-search | `event search /s <KEYWORD>` | `event search /s arduino` 
+event search | `event search /s <KEYWORD>` | `event search /s arduino` 
 addLog | `finance addLog ITEM_NAME ITEM_VALUE` | `finance addLog have lunch 4.5`
 delLog | `finance delLog ITEM_INDEX` | `finance delLog 3`
 summary | `finance summary` |   -
