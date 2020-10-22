@@ -120,6 +120,39 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons: Reduces OOP standard of code by decoupling ChangeModeCommand from Command class and increases code complexity.
 
 
+### Add Module and Slot feature (Xing Rong)
+This feature allows the user to add modules and lesson slots into the timetable.
+Users can also add bookmarks to specific modules and slots.
+Users can enter one-shot-commands, adding multiple slots and bookmarks to a module.
+
+Given below is a sequence diagram of how the feature works.
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram.png?raw=true)
+<br>
+<br>
+Step 1. After calling execute() method of the AddSlotCommand object, there will be a check on whether the module code 
+entered by the user already exists in the timetable. If it does not exist, then the module will be created.
+
+Step 2. There will then be a check for additional commands pertaining to the module entered by the user.
+
+Step 3. The code will then check if the command is to add a module bookmark or a lesson slot, and do so accordingly.
+
+Step 4. If the command is to add a lesson slot, then there will be check for a bookmark entry in the command. If there 
+is one, then the bookmark will be added to the lesson slot.
+
+Step 5. Loop to step 3 if there are additional commands which have not been executed.
+
+#### Design consideration:
+
+##### Aspect: How to enable fast typing users to add modules, slots and related bookmarks faster
+* **Alternative 1 (Current choice):** allowing one shot command to add slots and bookmarks to a module
+    * Pros: Allow one shot command
+    * Cons: Difficult to implement.
+* **Alternative 2:** separate adding of modules, lesson slots and related bookmarks into different commands
+    * Pros: Easy to implement
+    * Pros: Lower chance of error
+    * Cons: User has to enter multiple commands each at a time to perform the functions, which takes up more time.
+
+
 ## **Product scope**
 ### Target user profile
 
