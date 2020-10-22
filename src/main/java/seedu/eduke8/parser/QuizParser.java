@@ -19,6 +19,9 @@ import java.util.logging.Logger;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_ANSWER_NOT_INDEX;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_COMMAND_NOT_IMPLEMENTED;
 
+/**
+ * Parses user input during a quiz activity.
+ */
 public class QuizParser implements Parser {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
@@ -30,6 +33,13 @@ public class QuizParser implements Parser {
         this.question = question;
     }
 
+    /**
+     * Parses the user input.
+     *
+     * @param optionList the option list that contains the list of options available for the current question
+     * @param userInput the string input typed by the user
+     * @return a Command object which when executed will carry out the appropriate action
+     */
     @Override
     public Command parseCommand(DisplayableList optionList, String userInput) {
         if ("hint".equals(userInput)) {
