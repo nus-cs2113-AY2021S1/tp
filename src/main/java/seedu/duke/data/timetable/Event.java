@@ -206,18 +206,6 @@ public class Event implements Comparable<Event> {
         return titleString + Formatter.LS + dateString;
     }
 
-    /**
-     * Converts an Event to an ArrayList format for a reminder.
-     *
-     * @return ArrayList representation of an Event.
-     */
-    public ArrayList<String> toReminderStringArray() {
-        ArrayList<String> result = new ArrayList<>();
-        result.add("Event: " + title);
-        result.add("Date: " + date.toString() + "\tTime: " + time.toString());
-        return result;
-    }
-
     @Override
     public String toString() {
         String titleString = "Event: " + title;
@@ -227,20 +215,6 @@ public class Event implements Comparable<Event> {
         String lineSeparator = Formatter.LS;
         return titleString + lineSeparator + dateString + lineSeparator + remindString
                 + lineSeparator + repeatingString;
-    }
-
-    /**
-     * Provides an ArrayList representation of the event for the formatter to use.
-     *
-     * @return ArrayList of strings to represent the event.
-     */
-    public ArrayList<String> toStringArray() {
-        ArrayList<String> result = new ArrayList<>();
-        result.add("Event: " + title);
-        result.add("Date: " + date.toString() + "\tTime: " + time.toString());
-        result.add("Reminder: " + isToRemind);
-        result.add("Repeating: " + isRecurring);
-        return result;
     }
 
     @Override

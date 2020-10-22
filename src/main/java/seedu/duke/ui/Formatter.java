@@ -2,6 +2,7 @@ package seedu.duke.ui;
 
 import seedu.duke.data.notebook.Notebook;
 import seedu.duke.data.notebook.Note;
+import seedu.duke.data.timetable.RecurringEvent;
 import seedu.duke.data.timetable.Reminder;
 import seedu.duke.data.timetable.Timetable;
 import seedu.duke.data.timetable.Event;
@@ -68,6 +69,28 @@ public class Formatter {
     }
 
     /**
+     * Formats a provided event to an ArrayList format.
+     *
+     * @param event Event to be formatted
+     * @return ArrayList of Strings to represent the Event.
+     */
+    public static ArrayList<String> formatEvent(Event event) {
+        ArrayList<String> result = new ArrayList<>();
+        result.add("Event: " + event.getTitle());
+        result.add("Date: " + event.getDate().toString() + "\tTime: " + event.getTime().toString());
+        result.add("Reminder: " + event.getToRemind());
+        String repeatingString = "Repeating: " + event.getRecurring();
+        String endRecurrenceDateString = "";
+        if (event instanceof RecurringEvent) {
+            RecurringEvent recurringEvent = (RecurringEvent) event;
+            endRecurrenceDateString = recurringEvent.getEndRecurrenceString();
+        }
+        result.add(repeatingString + endRecurrenceDateString);
+        return result;
+    }
+
+
+    /**
      * Converts a header and an ArrayList of reminders into a formatted string to be printed.
      *
      *
@@ -76,14 +99,29 @@ public class Formatter {
      * @return String representation of all reminders to be shown.
      */
     public static String formatReminders(String header, ArrayList<Reminder> reminders) {
-        String formattedString = generatesHeader(header);
-        ArrayList<String> result = Reminder.upcomingRemindersToString(reminders);
-
-        for (String line : result) {
-            formattedString = formattedString.concat(encloseRow(line));
+        ArrayList<String> result = new ArrayList<>();
+        result.add(header);
+        for (Reminder reminder : reminders) {
+            result.addAll(formatReminder(reminder));
+            result.add(" ");
         }
+        result.remove(result.size() - 1);
 
-        return encloseTopAndBottom(formattedString);
+        return formatString(result, true);
+    }
+
+    /**
+     * Formats a provided event to an ArrayList format.
+     *
+     * @param reminder Reminder to be formatted.
+     * @return ArrayList of Strings to represent the Reminder.
+     */
+    public static ArrayList<String> formatReminder(Reminder reminder) {
+        Event event = reminder.getEvent();
+        ArrayList<String> result = new ArrayList<>();
+        result.add("Event: " + event.getTitle());
+        result.add("Date: " + event.getDate().toString() + "\tTime: " + event.getTime().toString());
+        return result;
     }
 
     /**

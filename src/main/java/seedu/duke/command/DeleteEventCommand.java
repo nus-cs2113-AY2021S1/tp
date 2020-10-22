@@ -46,7 +46,7 @@ public class DeleteEventCommand extends Command {
         }
         Event event = timetable.getEvent(index);
         timetable.deleteEvent(index);
-        returnMessages = event.toStringArray();
+        returnMessages = Formatter.formatEvent(event);
         returnMessages.add(0, COMMAND_SUCCESSFUL_MESSAGE);
         return Formatter.formatString(returnMessages, true);
     }

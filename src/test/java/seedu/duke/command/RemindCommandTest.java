@@ -1,12 +1,10 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.data.notebook.Notebook;
-import seedu.duke.data.notebook.TagManager;
 import seedu.duke.data.timetable.DailyEvent;
 import seedu.duke.data.timetable.Event;
+import seedu.duke.data.timetable.Reminder;
 import seedu.duke.data.timetable.Timetable;
-import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.Formatter;
 
 import java.time.LocalDateTime;
@@ -16,6 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RemindCommandTest {
+    private static final String COMMAND_SUCCESSFUL_MESSAGE = "Here are the reminders for today!";
     private static final String TEST_TITLE_1 = "CS2113 Tutorial";
     private static final String TEST_TITLE_2 = "CS2113 Lecture";
     private static final String TEST_TITLE_3 = "CS2113 Meeting";
@@ -28,9 +27,6 @@ class RemindCommandTest {
     private final DailyEvent dailyEvent = new DailyEvent(TEST_TITLE_4, TEST_DATE_TIME,
             TEST_REMINDER, TEST_TIME_PERIODS, TEST_TIME_UNITS);
 
-    private static final StorageManager STORAGE_MANAGER = new StorageManager();
-    private static final Notebook NOTEBOOK = new Notebook();
-    private static final TagManager TAG_MANAGER = new TagManager();
     private static Timetable timetable = new Timetable();
 
 
@@ -40,23 +36,11 @@ class RemindCommandTest {
     @Test
     void execute_singleEvent_success() {
         timetable.addEvent(dailyEvent);
-        command.setData(NOTEBOOK, timetable, TAG_MANAGER, STORAGE_MANAGER);
+        command.setData(null, timetable, null, null);
         DailyEvent reminderEvent = new DailyEvent(dailyEvent.getTitle(), TEST_DATE_TIME.plusDays(1),
                 TEST_REMINDER, TEST_TIME_PERIODS, TEST_TIME_UNITS);
-        String expected =
-                "===================================================================================================="
-                        + Formatter.LS
-                + "|| Here are the reminders for today!                                                              ||"
-                        + Formatter.LS
-                + "===================================================================================================="
-                        + Formatter.LS
-                + "|| Event: CS2113 Coding                                                                           ||"
-                        + Formatter.LS
-                + "|| Date: 2020-10-23\tTime: 12:45"
-                        + "                                                                   ||"
-                        + Formatter.LS
-                + "===================================================================================================="
-                        + Formatter.LS;
+
+        String expected = Formatter.formatReminders(COMMAND_SUCCESSFUL_MESSAGE, timetable.getReminders());
         assertEquals(expected, command.execute());
 
     }

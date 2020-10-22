@@ -49,7 +49,7 @@ public class AddEventCommand extends Command {
     @Override
     public String execute() {
         timetable.addEvent(event);
-        ArrayList<String> eventStringArray = event.toStringArray();
+        ArrayList<String> eventStringArray = Formatter.formatEvent(event);
         eventStringArray.add(0, COMMAND_SUCCESSFUL_MESSAGE);
         return Formatter.formatString(eventStringArray, true);
     }
