@@ -27,10 +27,11 @@ public class Messages {
     public static final String INPUT_WEIGHT = "Please enter your weight (in kg):";
     public static final String INPUT_GENDER = "Please enter your gender (Enter 'M' for Male or 'F' for Female):";
     public static final String SETUP_COMPLETE = "Setup complete!";
-    public static final String ERROR_INVALID_AGE_INPUT = "Oops! That is an invalid age input.";
-    public static final String ERROR_INVALID_GENDER_INPUT = "Oops! That is an invalid gender input.";
-    public static final String ERROR_INVALID_HEIGHT_INPUT = "Oops! That is an invalid height input.";
-    public static final String ERROR_INVALID_WEIGHT_INPUT = "Oops! That is an invalid weight input.";
+    public static final String ERROR_INVALID_AGE_INPUT = "Oops! That is an invalid age input.\n";
+    public static final String ERROR_INVALID_GENDER_INPUT = "Oops! That is an invalid gender input.\n";
+    public static final String ERROR_INVALID_HEIGHT_INPUT = "Oops! That is an invalid height input.\n";
+    public static final String ERROR_INVALID_WEIGHT_INPUT = "Oops! That is an invalid weight input.\n";
+    public static final String ERROR_INVALID_FITNESS_INPUT = "Oops! That is an invalid fitness level input.\n";
     public static final String NAME_OUTPUT_HEADER = "Name: ";
     public static final String AGE_OUTPUT_HEADER = "Age: ";
     public static final String GENDER_OUTPUT_HEADER = "Gender: ";
@@ -80,4 +81,6 @@ public class Messages {
     public static final String AGE_ECHO_HEADER = "Age changed to: ";
     public static final String EDIT_GENDER_HEADER = "Change your gender (M|F) to: ";
     public static final String GENDER_ECHO_HEADER = "Gender changed to: ";
+    public static final String INPUT_FITNESS_LEVEL = "Please indicate your fitness level to be used for determining " 
+            + "intensity of exercises.\n(0 for Unfit; 1 for Normal; 2 for Fit): ";
 }
