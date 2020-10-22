@@ -80,7 +80,6 @@ public class TaskList {
             String[] split = str.trim().split(" ", 3);
             String modCode = split[1];
             modCode = modCode.toUpperCase();
-            TaskList taskList = new TaskList();
             if (!modList.checkIfModuleValid(modCode, true)) {
                 return;
             }
@@ -90,6 +89,7 @@ public class TaskList {
                 ui.printNotExist(modCode);
                 return;
             }
+            TaskList taskList = new TaskList();
             tasks.add(new Task(modCode, split[2]));
             ui.printTaskIsAdded(taskList, modCode);
             ui.printNumberOfTasks(taskList);

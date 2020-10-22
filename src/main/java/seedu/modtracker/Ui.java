@@ -25,13 +25,26 @@ public class Ui {
             + "   example: deleteexp CS2113T\n"
             + "7. minus <module code> <time> <week number>\n"
             + "   example: minus CS2113T 2 1\n"
-            + "8. exit\n";
+            + "8. breakdown\n"
+            + "9. addtask <module code> <task description>\n"
+            + "   example: addtask CS2113T revise for exam\n"
+            + "10.deletetask <task number>\n"
+            + "   example: deletetask 1\n"
+            + "11.done <task number>\n"
+            + "   example: done 1\n"
+            + "12.listtask\n"
+            + "13.exit\n";
     public static final String LOGO = "|\\\\        /|         |======            ||\n"
             + "||\\\\      / |  __   __|  ||  __  ___ ___ ||    ___   ____\n"
             + "|| \\\\    /  |//  \\//  |  ||//  \\/  |/    ||// / _ \\ //   \\\n"
             + "||  \\\\  /   |||   ||  |  |||   ||  ||    ||\\\\ | __/ ||\n"
             + "||   \\\\/    |\\\\__/\\\\__|  |||   \\\\__|\\___ || \\\\\\___| ||\n"
             + "*****************************************************|\n";
+    public static final String BYE_LOGO =  "_______    _______\n"
+            + "||   \\\\\\  //||\n"
+            + "||___//\\\\// ||___\n"
+            + "||   \\\\ ||  ||\n"
+            + "||___// ||  ||____\n";
 
     /**
      * Reads input entered by the user.
@@ -81,6 +94,7 @@ public class Ui {
      */
     public void printExitScreen(String name) {
         System.out.println("All changes saved.");
+        System.out.println(BYE_LOGO);
         System.out.println("Bye " + name + ". Hope to see you again soon!" + System.lineSeparator());
     }
 
@@ -169,7 +183,7 @@ public class Ui {
      */
     public void printNumberOfTasks(TaskList list) {
         ArrayList<Task> tasks = list.getTaskData();
-        if (tasks.size() == 1){
+        if (tasks.size() == 1) {
             System.out.println("Now you have 1 task in the list." + System.lineSeparator());
         } else if (tasks.size() > 1) {
             System.out.println("Now you have " + tasks.size() + " tasks in the list." + System.lineSeparator());
