@@ -146,12 +146,11 @@ public class Ui {
 
     public void printNoteList(ArrayList<Displayable> notes) {
 
-        if(notes.size() == 0) {
+        if (notes.size() == 0) {
             System.out.println("There are no notes for this topic!");
-        }
-        else {
+        } else {
             System.out.println("These are the notes for this topic");
-            for(int i = 0; i < notes.size(); i ++) {
+            for (int i = 0; i < notes.size(); i++) {
                 System.out.println(HORIZONTAL_LINE);
                 Note note = (Note) notes.get(i);
                 System.out.println(i + ". " + note.getDescription());

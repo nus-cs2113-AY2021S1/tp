@@ -6,7 +6,7 @@ public class Note implements Displayable {
     private String description;
     private boolean wasShown;
 
-    public Note (String description) {
+    public Note(String description) {
         this.description = description;
         wasShown = false;
     }
