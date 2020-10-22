@@ -23,7 +23,6 @@ public class ExcludeCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + EXCLUDE_COMMAND_OPTION_MORE + "\n"
             + "Example: " + COMMAND_WORD + " " + EXCLUDE_COMMAND_OPTION_LESS + "\n";
 
-
     public ExcludeCommand(String type) {
         this.type = type;
     }

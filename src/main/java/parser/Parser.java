@@ -18,6 +18,7 @@ import commands.RateCommand;
 import commands.RemoveCommand;
 import commands.RescheduleCommand;
 import commands.ReviseCommand;
+import commands.ExcludeCommand;
 import commands.ShowRateCommand;
 
 import exception.IncorrectAccessLevelException;
@@ -476,14 +477,14 @@ public class Parser {
         }
         return new PreviewCommand();
     }
-  
+
     private static Command prepareExclude(String commandArgs) throws InvalidInputException {
         if (commandArgs.isEmpty()) {
             throw new InvalidInputException(MESSAGE_MISSING_ARGS + ExcludeCommand.MESSAGE_USAGE);
         }
         return new ExcludeCommand(commandArgs);
     }
-  
+
     private static Command prepareReschedule(String commandArgs) throws InvalidInputException {
         try {
             String[] args = commandArgs.split(" ", 2);

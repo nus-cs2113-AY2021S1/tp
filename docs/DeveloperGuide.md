@@ -130,6 +130,77 @@ Step 5: `ReviseCommand#repeatRevision` then repeats the revision session on card
 
 Step 6: `ReviseCommand#addHistory` will call `Storage#createHistory` and `Storage#saveHistory` to keep a record of the chapter revised so that the user can look back next time.
 
+### 4.6. Scheduler feature
+#### 4.6.1. Implementation
+In KAJI, each `Chapter` stores a `CardList` of `Card`s, each with their own `int` attribute `previousInterval`. Each `Chapter` also has a `LocalDate` attribute named `dueBy` that determines when the `Chapter` is due for revision. 
+The Scheduler mechanism implements Spaced Repetition by computing the `deckInterval`, the mean (rounded off to the nearest integer) of the `previousInterval`s of every `Card` within the `Chapter`, and updates the `dueBy` attribute to `deckInterval` days after the day of revision.
+
+`Scheduler` implements the following operations:
+* `Scheduler#computeEasyInterval()`
+* `Scheduler#computeMediumInterval()`
+* `Scheduler#computeHardInterval()`
+* `Scheduler#computeDeckInterval()`
+* `Scheduler#computeDeckDeadline()`
+
+`Scheduler#computeEasyInterval()`, `Scheduler#computeMediumInterval()` and `Scheduler#computeHardInterval()` are exposed in the `ReviseCommand` class as `ReviseCommand#rateCard()` while `Scheduler#computeDeckDeadline()` is exposed as `ReviseCommand#execute()`.
+
+
+#### 4.6.2 Prerequisites
+* There must at least be one `Chapter` with at least one `Card` in the `CardList` attribute of said `Chapter`
+
+#### 4.6.3 Example
+Given below is an example usage scenario and how the Scheduler mechanism behaves at each step when: 
+`revise 1` is called in a `Module` that contains only one `Chapter` with three `Card`s in its `CardList` attribute and confirmation is given to proceed with revision. (For more details on revision, refer to [Revise feature](#43-Revise-feature))
+
+Step 1:
+* The user enters `revise 1` within the `Module` and `ReviseCommand` is instantiated. 
+* Upon confirmation and check that `CardList` of the designated `Chapter` is not empty, `ReviseCommand` proceeds to create an `ArrayList<Card>` named `allCards` comprising of all `Card`s within in the `CardList`.
+
+Step 2:
+* For each `Card` in `allCards`, `ReviseCommand#reviseCard()` is called upon completion of either `ReviseCommand#execute()` or `ReviseCommand#repeateRevision()`.
+* This operation then calls `Scheduler#computeEasyInterval()`, `Scheduler#computeMediumInterval()` or `Scheduler#computeHardInterval()` depending on the user input to compute and update the new value of `previousInteral` for each card.
+
+Step 3:
+* Upon completion of all revision, `ReviseCommand#execute()` will call `Scheduler#computeDeckDeadline()`, which in turn calls `Scheduler#computeDeckInterval()`. `Scheduler#computeDeckInterval()` computes `deckInterval`, the mean (rounded off to the nearest integer) of the `previousInterval`s of each `Card` in `allCards,` and returns it to `Scheduler#computeDeckDeadline()`.
+
+Step 4:
+* Using `deckInterval`, `Scheduler#computeDeckDeadline()` computes the new value of `dueBy` for the Chapter, which is then returned to `ReviseCommand#execute()`, where it will then update the value of `dueBy` for the `Chapter` that was just revised.
+
+### 4.8 Exclusion Feature
+##### 4.8.1 Implementation
+An ArrayList of `DueChapter`s comprising the `Chapter`s that are to be excluded from the scheduling is stored externally in a text file at relative path "/data/admin/exclusions.txt", and is maintained by `Storage` and `ExcludeCommand`.
+
+`Storage` implements the following relevant operations:
+* `Storage#appendModuleToExclusionFile()` - includes every `Chapter` in the specified `Module` to the exclusion text file.
+* `Storage#appendChapterToExclusionFile()` - include the specified `Chapter` to the exclusion text file.
+* `Storage#removeModuleFromExclusionFile()` - removes every `Chapter` in the specified `Module` from the exclusion text file.
+* `Storage#removeChapterFromExclusionFile()` - remove the specified `Chapter` from the exclusion text file.
+* `Storage#updateExclusionFile()` - writes the `ArrayList<DueChapter>` of excluded chapters into the exclusion text file.
+* `Storage#loadExclusionFile()` - retrieves the `ArrayList<DueChapter>` of excluded chapters from the exclusion text file.
+
+#### 4.8.2 Prerequisites
+* The application must have read and write access to both the "data/admin" folder and to the file "data/admin/exclusions.txt" if the file already exists at excecution.
+    * If these requisites are not met, an ExclusionFileException will be thrown.
+
+#### 4.8.3 Example
+Given below is an example usage scenario and how the remove mechanism behaves at each step:
+
+Step 1: 
+* The user launches the application with a database of flashcards without any exclusions. 
+
+Step 2: 
+* The user executes `exclude more` command to exclude a part of the database from Scheduling and specifies that a `Module` is to be excluded. 
+* The `exclude` command calls `Storage#appendModuleToExclusionFile()` which in turn calls the `Storage#loadExclusionFile()`. 
+* `Storage#loadExclusionFile()` loads the existing list of excluded chapters, which is empty, as a `ArrayList<DueChapter>`. 
+
+Step 3: 
+* `Storage#appendModuleToExclusionFile()` calls `Storage#loadChaptersFrom()` to create a `String[]` comprising the names of the `Chapter`s belonging to the specified `Module`.
+
+Step 4: 
+* `Storage#appendModuleToExclusionFile()` then creates each `DueChapter`s from each `String` and adds them to the `ArrayList<DueChapter>` if they do not already exist.
+
+Step 5: 
+* `Storage#appendModuleToExclusionFile()` then calls `Storage#updateExclusionFile()` to store the updated `ArrayList<DueChapter>` into the exclusion text file.
 
 ## 5. Appendix: Requirements
 ### 5.1. Product scope

@@ -1,9 +1,8 @@
 package commands;
 
 import access.Access;
-
+import exception.InvalidFileFormatException;
 import exception.ExclusionFileException;
-
 import manager.chapter.DueChapter;
 import scheduler.Scheduler;
 import storage.Storage;

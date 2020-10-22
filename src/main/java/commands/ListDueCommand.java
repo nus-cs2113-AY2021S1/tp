@@ -2,6 +2,7 @@ package commands;
 
 import access.Access;
 
+import exception.InvalidFileFormatException;
 import exception.ExclusionFileException;
 
 import manager.chapter.DueChapter;
@@ -23,13 +24,12 @@ public class ListDueCommand extends Command {
 
     public ArrayList<DueChapter> allChapters;
     public ArrayList<DueChapter> dueChapters;
-
-    private void loadAllChapters(Storage storage, Ui ui) throws ExclusionFileException {
+  
+    private void loadAllChapters(Storage storage, Ui ui) throws InvalidFileFormatException, ExclusionFileException {
         try {
             allChapters = storage.loadAllDueChapters(ui);
         } catch (FileNotFoundException e) {
-            ui.showToUser(UNABLE_TO_LOAD_EMPTY_DATABASE);
-
+            throw new InvalidFileFormatException(UNABLE_TO_LOAD_EMPTY_DATABASE);
         }
     }
 
@@ -43,7 +43,8 @@ public class ListDueCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) throws ExclusionFileException {
+    public void execute(Ui ui, Access access, Storage storage) throws InvalidFileFormatException,
+            ExclusionFileException {
         dueChapters = new ArrayList<>();
         loadAllChapters(storage, ui);
         setDueChapters();
