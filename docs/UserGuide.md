@@ -9,6 +9,9 @@
       *  Delete Members: `delMember`<br/>
       *  View summary of members: `listMember`<br/>
       *  Change information of members: `changeInfo`<br/>
+      *  Search members: `search`<br/>
+      *  View contacts of prof/admin: `list prof&admin`<br/>
+      *  View contacts of connections: `list connections`<br/>
    
    3.4 Events `event` <br/>
      * Add events: `addEvent`<br/>
