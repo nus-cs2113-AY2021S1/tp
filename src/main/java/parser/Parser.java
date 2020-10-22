@@ -84,8 +84,6 @@ public class Parser {
             return prepareExclude(commandArgs);
         case RescheduleCommand.COMMAND_WORD:
             return prepareReschedule(commandArgs);
-        case ExcludeCommand.COMMAND_WORD:
-            return prepareExclude(commandArgs);
         default:
             throw new InvalidInputException("There is no such command type.\n");
         }
