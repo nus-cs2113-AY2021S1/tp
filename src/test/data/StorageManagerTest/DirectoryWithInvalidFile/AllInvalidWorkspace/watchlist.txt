@@ -1,9 +1,0 @@
-a |
-a | [[[]]]
-| []
-| [, , , , ,]
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-hello /|\ []
-a | [testing, this, thing]
-a | [1, 2, test?]
-c | [1, 2, -1, -100]

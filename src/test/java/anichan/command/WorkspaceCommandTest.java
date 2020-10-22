@@ -14,8 +14,7 @@ import anichan.exception.AniException;
 import java.io.File;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WorkspaceCommandTest {
     private static final String VALID_TEST_DIRECTORY = "src" + File.separator + "test" + File.separator
@@ -36,10 +35,29 @@ class WorkspaceCommandTest {
     }
 
     @Test
-    void execute_validName_ThrowsAniException() throws AniException {
-        WorkspaceParser testParse = new WorkspaceParser();
+    void createWorkspace_validName_created() throws AniException {
+        WorkspaceParser addParse = new WorkspaceParser();
+        WorkspaceCommand testAddWorkspace = addParse.parse("-n Crunchy rail 12345");
 
-        WorkspaceCommand testAddWorkspace = testParse.parse("-n Crunchy rail 12345");
-        Assertions.assertDoesNotThrow(() -> testAddWorkspace.execute(animeData, storageManager, user));
+        String expectedString = "Successfully added new workspace: Crunchy rail 12345";
+        assertEquals(expectedString, testAddWorkspace.execute(animeData, storageManager, user));
     }
+
+    @Test
+    void switchWorkspace_validName_created() throws AniException {
+        // Create workspace
+        WorkspaceParser addParse = new WorkspaceParser();
+        WorkspaceCommand testAddWorkspace = addParse.parse("-n Crunchy rail 12345");
+        testAddWorkspace.execute(animeData, storageManager, user);
+
+        // Test switching workspace
+        WorkspaceParser switchParse = new WorkspaceParser();
+        WorkspaceCommand testSwitchWorkspace = switchParse.parse("-s Crunchy rail 12345");
+
+        String expectedString = "Workspace changed to Crunchy rail 12345";
+
+        assertEquals(expectedString, testSwitchWorkspace.execute(animeData, storageManager, user));
+    }
+
+
 }
