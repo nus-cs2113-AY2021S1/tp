@@ -100,21 +100,26 @@ You would notice that there is no direct bus to University Town. You could use t
 indirect routes to your intended destination. <br>
 These are the steps to follow:
 1. You key in <code>/routemap <strong> AA2 </strong></code> into the command line interface and press enter<br>
+<img src="UG_Figures/routemap4.png" alt="inputRouteMapCommand" width=450><br>
 
 2. The result will display the whole bus route of bus AA2.
+<img src="UG_Figures/routemap1.png" alt="RouteMapCommand" width=450><br>
 
 3. With the information that bus AA2 could bring you to bus stops after Raffles Hall e.g. Kent Vale, you can now check 
 if there is a direct bus route from these bus stops.
+<img src="UG_Figures/routemap3.png" alt="inputRouteMapCommand" width=450><br>
 
 <b><u>Example 2</u></b><br>
 This command is also useful in showing you the previous bus stops of your intended bus. You could use this information
 to gauge how crowded the bus would be.
-Let us suppose that you are at Yusof Ishak intending to board AA1. <br>
+Let us suppose that you are at Raffles Hall intending to board AA2. <br>
 These are the steps to follow:
-1. You key in <code>/routemap <strong> AA1 </strong></code> into the command line interface and press enter<br>
+1. You key in <code>/routemap <strong> AA2 </strong></code> into the command line interface and press enter<br>
+<img src="UG_Figures/routemap4.png" alt="inputRouteMapCommand" width=450><br>
 
 2. The result will display the whole bus route of bus AA1. You will observe that the bus passes through University Town
 which is relatively more crowded than other bus stops.
+<img src="UG_Figures/routemap1.png" alt="RouteMapCommand" width=450><br>
 
 3. With this information, you could explore other bus routes to your destination.
 
