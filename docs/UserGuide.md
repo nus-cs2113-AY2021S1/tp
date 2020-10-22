@@ -13,7 +13,9 @@
   * [3.4. List all bus available in NUS: ```/allbus```](#34-list-all-bus-available-in-nus-allbus)
   * [3.5. List all bus stops in NUS: ```/liststops```](#35-list-all-bus-stops-in-nus-liststops)
   * [3.6. Search for dining options within a faculty: ```/dine```](#36-search-for-dining-options-within-a-faculty-dine)
+    + [3.6.1. Examples of Usage](#361-examples-of-usage)
   * [3.7. Search for specific dining outlet: ```/dineinfo```](#37-search-for-specific-dining-outlet-dineinfo)
+    + [3.7.1. Examples of Usage](#371-examples-of-usage)
   * [3.8. Exiting the program: ```/exit```](#36-exiting-the-program-exit)
   * [3.9. Listing available help: ```help```](#37-listing-available-help-help)
   * [3.10. Similarity Checks](#38-similarity-checks)
@@ -161,6 +163,8 @@ The format of this command is as follows:<br>
 
 #### 3.6.1. Examples of Usage
 
+**<u>Example 1</u>**
+
 Let's say you want to know all the dining options available in <strong>School of Business</strong>.<br>
 1. Type <code>/dine <strong>business</strong></code> into the command line interface and press enter to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/dine1.png" alt="output" width=600><br>
@@ -173,6 +177,8 @@ The format of this command is as follows:<br>
 <code>/dineinfo <strong>keyword</strong></code> <br>
 
 #### 3.7.1. Examples of Usage
+
+**<u>Example 1</u>**
 
 Let's say you want to find information of the dining outlet <strong>Arise & Shine</strong>.<br>
 1. Type <code>/dineinfo <strong>arise</strong></code> into the command line interface and press enter to execute the command as shown in the figure below.<br><br>
@@ -208,13 +214,13 @@ Here are the range of commands:
 9./help: List all available commands
 ```
 
-### 3.8. Similarity Checks
+### 3.10. Similarity Checks
 
 When you enter a location and make a spelling error or a typo in the name, the app performs a similarity check with 
 existing location names and suggests some locations to you. The app executes this command automatically and does not 
 require any explicit input from you.
 
-#### 3.8.1. Examples of Usage
+#### 3.10.1. Examples of Usage
 
 **<u>Example 1</u>**
 
