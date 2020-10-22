@@ -79,6 +79,8 @@ Example of usage:
 Changes contacts and role of member in the list, based on the given member name. 
 Format: `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` <br/>
 
+MEMBER_NAME and at least one of PHONE_NUMBER, EMAIL and MEMBER_ROLE must be provided. 
+
 Example of usage: <br/>
 `hr changeInfo /n jack sterling /p 12345678` <br/>
 `hr changeInfo /n Harry Potter /p 12345678 /e 123@gmail.com /r President`
