@@ -10,7 +10,7 @@
 <br/>&nbsp;2.6 [AnimeData component](#25-animedata)
 <br/>&nbsp;2.6 [User component](#26-user)
 <br/>&nbsp;2.7 [Workspace component](#27-workspace)
-<br/>&nbsp;2.7 [StorageManager component](#28-storagemanager)
+<br/>&nbsp;2.8 [StorageManager component](#28-storagemanager)
 3. [Implementation](#3-implementation)
 <br/>&nbsp;3.1 [Workspace Feature](#31-workspace-feature)
 <br/>&nbsp;3.2 [Estimation Feature](#32-estimation-feature)
@@ -166,6 +166,8 @@ for running the `estimate` command, provided that the user entered a valid comma
 
 ![EstimateCommand Sequence Diagram](images/EstimateCommand-Sequence-Diagram.png)
 *Figure x. Sequence diagram for estimating translation time for a script*
+
+<br/>
 
 The `estimate` command requires minimally one input: 
 * Script's file name (including the extension).
