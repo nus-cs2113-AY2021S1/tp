@@ -9,6 +9,7 @@ import commands.ExcludeCommand;
 import commands.ExitCommand;
 import commands.GoCommand;
 import commands.HelpCommand;
+import commands.HistoryCommand;
 import commands.ListCommand;
 import commands.ListDueCommand;
 import commands.RateCommand;
@@ -16,8 +17,10 @@ import commands.RemoveCommand;
 import commands.RescheduleCommand;
 import commands.ReviseCommand;
 import commands.ShowRateCommand;
+
 import manager.card.Card;
 import manager.chapter.DueChapter;
+
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -130,19 +133,20 @@ public class Ui {
 
     public void showHelpList() {
         out.println("Here is a list of commands available:" + "\n");
-        out.println("1. " + ListCommand.MESSAGE_USAGE);
-        out.println("2. " + ReviseCommand.MESSAGE_USAGE);
-        out.println("3. " + HelpCommand.MESSAGE_USAGE);
-        out.println("4. " + AddCommand.MESSAGE_USAGE);
-        out.println("5. " + ExitCommand.MESSAGE_USAGE);
-        out.println("6. " + EditCommand.MESSAGE_USAGE);
-        out.println("7. " + RemoveCommand.MESSAGE_USAGE);
-        out.println("8. " + GoCommand.MESSAGE_USAGE);
-        out.println("9. " + BackCommand.MESSAGE_USAGE);
+        out.println("1.  " + ListCommand.MESSAGE_USAGE);
+        out.println("2.  " + ReviseCommand.MESSAGE_USAGE);
+        out.println("3.  " + HelpCommand.MESSAGE_USAGE);
+        out.println("4.  " + AddCommand.MESSAGE_USAGE);
+        out.println("5.  " + ExitCommand.MESSAGE_USAGE);
+        out.println("6.  " + EditCommand.MESSAGE_USAGE);
+        out.println("7.  " + RemoveCommand.MESSAGE_USAGE);
+        out.println("8.  " + GoCommand.MESSAGE_USAGE);
+        out.println("9.  " + BackCommand.MESSAGE_USAGE);
         out.println("10. " + ListDueCommand.MESSAGE_USAGE);
-        out.println("11. " + RateCommand.MESSAGE_USAGE);
-        out.println("12. " + ShowRateCommand.MESSAGE_USAGE);
-        out.println("13. " + RescheduleCommand.MESSAGE_USAGE);
+        out.println("11. " + HistoryCommand.MESSAGE_USAGE);
+        out.println("12. " + RateCommand.MESSAGE_USAGE);
+        out.println("13. " + ShowRateCommand.MESSAGE_USAGE);
+        out.println("14. " + RescheduleCommand.MESSAGE_USAGE);
     }
 
     public void showError(String error) {
