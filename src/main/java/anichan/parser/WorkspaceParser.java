@@ -46,6 +46,9 @@ public class WorkspaceParser extends CommandParser {
             case "s":
                 commandOption = "s";
                 break;
+            case "l":
+                commandOption = "l";
+                break;
             case "d":
                 commandOption = "d";
                 break;
