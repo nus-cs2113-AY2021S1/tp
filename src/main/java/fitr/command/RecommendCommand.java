@@ -14,7 +14,12 @@ import fitr.Exercise;
 
 import java.io.IOException;
 
-import static fitr.common.Messages.*;
+import static fitr.common.Messages.BURNT_CAL_HEADER;
+import static fitr.common.Messages.CLOSE_SQUARE_BRACKET;
+import static fitr.common.Messages.EXERCISE_HEADER;
+import static fitr.common.Messages.INTENSITY_CAL_HEADER;
+import static fitr.common.Messages.OPEN_SQUARE_BRACKET;
+import static fitr.common.Messages.SPACE_FORMATTING;
 
 public class RecommendCommand extends Command {
     @Override
@@ -36,10 +41,10 @@ public class RecommendCommand extends Command {
             for (int i = 0; i < 4; i++) {
                 StandardExercise standardExercise = recommendList.getExercise(i);
                 Calorie caloriesBurnt = new Calorie((int) (standardExercise.getDuration().get(fitnessLevel)
-                        * standardExercise.getMET()
+                        * standardExercise.getMet()
                         * standardExercise.getSets().get(fitnessLevel)
                         * user.getWeight())
-                        / 60 );
+                        / 60);
                 Ui.printCustomMessage(OPEN_SQUARE_BRACKET + (i + 1) + CLOSE_SQUARE_BRACKET
                         + EXERCISE_HEADER + standardExercise.getName()
                         + SPACE_FORMATTING + BURNT_CAL_HEADER
@@ -48,7 +53,7 @@ public class RecommendCommand extends Command {
             }
             try {
                 storageManager.writeExerciseList(exerciseList);
-            } catch(IOException e){
+            } catch (IOException e) {
                 Ui.printCustomError("Sorry, something is wrong with the storage file");
             }
         } else if (checker.equals("n")) {

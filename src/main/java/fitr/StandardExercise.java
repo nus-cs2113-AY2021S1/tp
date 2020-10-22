@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class StandardExercise {
     protected ArrayList<Double> duration;
     protected ArrayList<Integer> sets;
-    protected double MET;
+    protected double met;
     protected String name;
 
-    public StandardExercise(String name, double MET, ArrayList<Double> duration, ArrayList<Integer> sets) {
+    public StandardExercise(String name, double met, ArrayList<Double> duration, ArrayList<Integer> sets) {
         this.name = name;
-        this.MET = MET;
+        this.met = met;
         this.duration = duration;
         this.sets = sets;
     }
@@ -19,8 +19,8 @@ public class StandardExercise {
         return name;
     }
 
-    public double getMET() {
-        return MET;
+    public double getMet() {
+        return met;
     }
 
     public ArrayList<Double> getDuration() {
