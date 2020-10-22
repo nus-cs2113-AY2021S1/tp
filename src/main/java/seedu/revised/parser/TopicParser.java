@@ -60,7 +60,7 @@ public class TopicParser {
             return new FindTopicCommand(fullCommand);
         case "quiz":
             return new QuizTopicCommand(fullCommand);
-        case "result":
+        case "results":
             return new ResultTopicCommand(fullCommand);
         case "topic":
             return new ReturnTopicCommand(fullCommand);

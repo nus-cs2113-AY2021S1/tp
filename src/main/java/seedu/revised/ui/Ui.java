@@ -44,7 +44,8 @@ public class Ui {
         }
 
 
-        System.out.println("Alright, What can I do for you?\n"
+        System.out.println("____________________________________________________________\n"
+                + "Alright, What can I do for you?\n"
                 + "____________________________________________________________\n"
                 + "____________________________________________________________\n"
                 + "Type help for all available commands\n"
@@ -515,10 +516,6 @@ public class Ui {
                 }
                 System.out.println(index + ":" + task);
                 index = index + 1;
-                if (subjects.getList().get(subjects.getList().size() - 1).equals(subject)
-                        & taskList.get(taskList.size() - 1).equals(task)) {
-                    System.out.println("____________________________________________________________");
-                }
             }
         }
     }
