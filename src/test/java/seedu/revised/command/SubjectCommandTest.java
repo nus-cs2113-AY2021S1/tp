@@ -71,18 +71,21 @@ public class SubjectCommandTest {
         assertThrows(NoSubjectException.class, () -> quizNoSubject.execute(subjects));
 
     }
+
     @Test
     public void quizSubject_invalidCommand_throwsException() {
         QuizSubjectCommand quizInvalidCommand = new QuizSubjectCommand("quiz");
         assertThrows(InvalidSubjectException.class, () -> quizInvalidCommand.execute(subjects));
 
     }
+
     @Test
     public void resultSubject_subjectNotPresent_throwsException() {
         ResultSubjectCommand resultNoSubject = new ResultSubjectCommand("quiz Maths");
         assertThrows(NoSubjectException.class, () -> resultNoSubject.execute(subjects));
 
     }
+
     @Test
     public void resultSubject_invalidCommand_throwsException() {
         ResultSubjectCommand resultInvalidCommand = new ResultSubjectCommand("quiz");
