@@ -2,7 +2,6 @@ package seedu.dietbook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.dietbook.person.Person;
 
 import java.time.LocalDateTime;
 
