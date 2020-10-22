@@ -4,16 +4,16 @@
 {:toc}
 
 
-##Introduction 
+##1. Introduction 
 CCA Manager is a revolutionary all-in-one management tool that changes the way you can manage interest groups with unrivaled efficiency and simplicity. Its lightweight Command Line Interface (CLI) allows administrators to breeze through tasks quickly and easily while offering powerful features to advanced users.
 
 This developer guide is written to document the implementation of CCA Manager. This document is intended for people who
 are interested in learning more about the technical details of the various features and the organization of the application.
 
-## Setting up
+##2. Setting up
 Refer to the guide here.
 
-## Design and Implementation
+##3. Design and Implementation
 
 ![Architecture](Architecture.png)
 
@@ -132,6 +132,103 @@ Aspect: Repeated items
     *Cons: The summary cannot show each index of the repeated items that it is confusing when user wants to delete 
     any one of them.  
 
+###HR
+This section describes some noteworthy details on how features under HR are implemented. <br/>
+
+**2.1. Add/delete member feature**  
+2.1.1. Current Implementation  
+The add/delete member mechanism is facilitated by `CommandAddMember` and `CommandDelMember` classes. The 
+`CommandAddMember` class in `seedu.duke.hr` handles adding members. It adds a new `Member` instance according to 
+`userInput` into `MemberList`.  
+The `CommandDelMember` class in the same package handles deleting members. It deletes a certain `Member` instance 
+according to the index provided by `userInput` from `MemberList`.  
+These two classes implement the following operations:  
+* `CommandAddMember#execute()` - Adds a new member into the `MemberList` according to `userInput`.  
+* `CommandDelMember#execute()` - Deletes a certain member from `MemberList` according to the index provided by 
+`userInput`.  
+
+Given below is an example usage scenario and how the add/delete member behaves at each step.  
+
+Step 1. The user launches the application for the first time. The `MemberList` will be initialized with no `Member` in 
+it.  
+
+![](/Users/tissue/Desktop/CS2113T/tp/docs/hrDiagramPic/2-1S1.png)
+
+Step 2. The user executes `hr addMember /n john sterling /p 12345678 /e 123@gmail.com /r member` command to add a member
+ with name "John Sterling", phone number "12345678", email "123@gmail.com" and role "member" into member list. The 
+ `hr addMember` command calls `CommandAddMember#execute()`, which then calls `MemberList#findByName()`, 
+ `MemberList#standardizeMemberName()` and `MemberList#addToList()`. `MemberList#findByName()` finds the `Member` in the 
+ list by the given member name. `MemberList#standardizeMemberName()` standardize the member name input by the user by 
+ capitalizing the first letter in each word in the name. Then, `MemberList#addToList()` adds a `Member` with its 
+ `memberName` as `John Sterling`, `memberPhone` as `12345678`, `memberEmail` as `123@gmail.com`, and `memberRole` as 
+ `member` into `MemberList`. 
+
+The following shortcut commands can achieve the same result: <br/>
+`hr add /n john sterling /p 12345678 /e 123@gmail.com /r member`<br/>
+`hr a /n john sterling /p 12345678 /e 123@gmail.com /r member`<br/>
+
+![](/Users/tissue/Desktop/CS2113T/tp/docs/hrDiagramPic/2-1S2.png)
+
+Step 3. The user executes `hr delMember 1` command to delete the member in the member list. The `hr delMember`
+command calls `CommandDelMember#execute()`, causing the `Member` of index 1 removed from `MemberList`.  
+
+![](/Users/tissue/Desktop/CS2113T/tp/docs/hrDiagramPic/2-1S3.png)
+
+**2.2. List the members**  
+2.2.1. Current Implementation  
+The `CommandViewMember` class in `seedu.duke.hr` handles listing all the members in `MemberList` and 
+showing the contacts and role information of all the `Member`.  
+It implements the following operation:  
+* `CommandViewMember#execute()` - Lists all `Member` in `MemberList` and shows their contacts and roles.  
+
+Given below is an example usage scenario and how the program list the information of members.  
+
+Step 1. After some `hr addMember` commands, the user created a `MemberList` with two `Member`. The first `Member` is 
+"John Sterling" with phone number "12345678", email "123@gmail.com", role "member" and the second `Member` is 
+"Harry Potter", phone number "88888888", email "qaz@gmail.com", role "president".  
+
+![](/Users/tissue/Desktop/CS2113T/tp/docs/hrDiagramPic/2-2S1.png)
+
+Step 2. The user executes `hr listMember` command to list the summary of `MemberList`. The `hr listMember` command calls 
+`CommandViewMember#execute()`, then every `Member` in `MemberList` and the contacts and roles will be printed out within
+ the same line, separated by "|". Nothing will be changed in `MemberList`.  
+
+**2.3. Change member information**  
+Current Implementation  
+The `CommandChangeInfo` class in `seedu.duke.hr` handles changing contacts and roles information of the members in 
+`MemberList` and showing the contacts and roles of the changed `Member`.  
+It implements the following operation:  
+* `CommandChangeInfo#execute()` - Changes any of the their contacts and roles `Member` in `MemberList` and shows the 
+modified member information.  
+
+Given below is an example usage scenario and how the program list the information of members.  
+
+Step 1. After some `hr addMember` commands, the user created a `MemberList` with two `Member`. The first `Member` is 
+"John Sterling" with phone number "12345678", email "123@gmail.com", role "member" and the second `Member` is 
+"Harry Potter", phone number "88888888", email "qaz@gmail.com", role "president".
+
+Step 2. The user executes `hr changeInfo /n john sterling /p 11111111 /r publicity director` command to change the phone
+ number and role of the member with name "John Sterling" in the list. The `hr changeInfo` command calls 
+`CommandChangeInfo#execute()`, then `Member` with the `memberName` `John Sterling` in the `MemberList` will have its 
+`memberPhone` changed to `11111111`, and `memberRole` changed to `publicity director`. The `memberName` is not case 
+sensitive. 
+
+The following shortcut commands can achieve the same result: <br/>
+`hr c /n john Sterling /p 11111111 /r publicity director`<br/>
+
+
+**Design Considerations**  
+Aspect: Changing member information 
+*Alternative 1(Current Choice): Member information is to be modified based on the member's full name.  
+    *Pros: Easy to implement. Also, if the user knows the name of the target member, which is a likely case in actual 
+    practice, he can change the member's information quickly.
+    *Cons: Member name cannot be easily modified. If the user wants to change the name of the member, the user has to delete 
+    the target member, and add the member back using the new name.
+*Alternative 2: Member Information is to be modified based on the member's index in the list.  
+    *Pros: Member name can be easily modified. 
+    *Cons: This feature is very dependent on the list member feature. The user will always need to call the `hr listMember` 
+    command to find out the index of the target member, before he can change the member's information.  
+
 ## Product scope
 ### Target user profile
 
@@ -158,6 +255,8 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 |v2.0|user|view the number of days remaining for the events|remind myself of upcoming events |
 |v2.0|user|perform a search on member/events|find the details of the member/event quickly|
 |v2.0|user|view the list of contacts of the prof/admin|so that i know how to contact them for admin matters|
+|v2.0|user|reassign member roles |so that I can update their roles and responsibilities|
+|v2.0|user|change member phone numbers and emails |so that I can update their contacts|
 
 ## Non-Functional Requirements
 
