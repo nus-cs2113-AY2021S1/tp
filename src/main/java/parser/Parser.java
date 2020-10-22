@@ -14,6 +14,7 @@ import commands.ListDueCommand;
 import commands.RemoveCommand;
 import commands.ReviseCommand;
 import commands.HistoryCommand;
+import commands.PreviewCommand;
 
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
@@ -72,6 +73,8 @@ public class Parser {
             return prepareListDue(commandArgs);
         case HistoryCommand.COMMAND_WORD:
             return prepareHistory(commandArgs);
+        case PreviewCommand.COMMAND_WORD:
+            return preparePreview(commandArgs);
         default:
             throw new InvalidInputException("There is no such command type.\n");
         }
@@ -420,6 +423,13 @@ public class Parser {
         }
 
         return percent;
+    }
+
+    private static Command preparePreview(String commandArgs) throws InvalidInputException {
+        if (!commandArgs.isEmpty()) {
+            throw new InvalidInputException("There should not be any arguments for preview.");
+        }
+        return new PreviewCommand();
     }
 }
 
