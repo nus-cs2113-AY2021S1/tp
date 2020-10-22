@@ -121,6 +121,28 @@ public class User extends Human {
         }
     }
 
+    public void deleteWorkspace(String toDeleteWorkspace) throws AniException {
+        assert (toDeleteWorkspace != null) : "Workspace details should not have any null.";
+
+        Workspace targetWorkspace = findWorkspace(toDeleteWorkspace);
+
+        if (targetWorkspace != null) {
+            workspaceList.remove(targetWorkspace);
+        } else {
+            throw new AniException("Workspace does not exist!");
+        }
+    }
+
+    public Workspace findWorkspace(String findString) {
+        for (Workspace tempWorkspace : workspaceList) {
+            if (tempWorkspace.getName().equals(findString)) {
+                return tempWorkspace;
+            }
+        }
+
+        return null;
+    }
+
     public boolean doesWorkplaceExist(String checkWorkspace)  {
         for (Workspace existingWorkspace : workspaceList) {
             if (existingWorkspace.getName().equals(checkWorkspace)) {
@@ -130,6 +152,8 @@ public class User extends Human {
 
         return false;
     }
+
+
 
 
     @Override

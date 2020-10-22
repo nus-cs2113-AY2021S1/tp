@@ -54,7 +54,7 @@ public class WorkspaceParser extends CommandParser {
                 throw new AniException(EXCEPTION_INVALID_PARAMETERS);
             }
 
-            commandDescription = givenOption[1];
+            commandDescription = givenOption[1].trim();
         } catch (IndexOutOfBoundsException exception) {
             LOGGER.log(Level.WARNING, EXCEPTION_INVALID_PARAMETERS);
             throw new AniException(EXCEPTION_INVALID_PARAMETERS);

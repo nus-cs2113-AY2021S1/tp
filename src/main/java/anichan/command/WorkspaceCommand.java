@@ -43,7 +43,7 @@ public class WorkspaceCommand extends Command {
     }
 
     public String createWorkspace(User user, StorageManager storageManager) throws AniException {
-        Workspace newWorkspace = user.addWorkspace(optionInformation.trim());
+        Workspace newWorkspace = user.addWorkspace(optionInformation);
 
         ArrayList<Watchlist> watchlistList = new ArrayList<>();
         watchlistList.add(new Watchlist("Default"));
@@ -55,14 +55,22 @@ public class WorkspaceCommand extends Command {
     }
 
     public String switchWorkspace(User user) throws AniException {
-        String trimmedName = optionInformation.trim();
+        String trimmedName = optionInformation;
         user.switchActiveWorkspace(trimmedName);
 
         LOGGER.log(Level.INFO, "Successfully added new workspace: " + trimmedName);
         return "Workspace changed to " + trimmedName;
     }
 
-    public String deleteWorkspace(User user, StorageManager storageManager) {
-        return "WIP";
+    public String deleteWorkspace(User user, StorageManager storageManager) throws AniException {
+        if (user.getActiveWorkspace().toString().equals(optionInformation)) {
+            throw new AniException("Please switch workspace before trying to delete it.");
+        }
+
+        user.deleteWorkspace(optionInformation);
+        storageManager.deleteWorkspace(optionInformation);
+
+        LOGGER.log(Level.INFO, "Successfully deleted workspace: " + optionInformation);
+        return "Successfully deleted workspace: " + optionInformation;
     }
 }

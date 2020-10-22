@@ -8,7 +8,12 @@ import anichan.logger.AniLogger;
 import anichan.watchlist.Watchlist;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -56,6 +61,22 @@ public class StorageManager {
     public void saveWorkspace(Workspace workspace) throws AniException {
         new File(storageDirectory + workspace.getName()).mkdirs();
         watchlistStorage.save(workspace.getName(), workspace.getWatchlistList());
+    }
+
+    // ========================== Workspace Deletion ==========================
+
+    public void deleteWorkspace(String name) throws AniException {
+        String deletePathString = storageDirectory + name;
+        Path deletePath = Paths.get(deletePathString);
+
+        try {
+            Files.walk(deletePath)
+                    .sorted(Comparator.reverseOrder())
+                    .map(Path::toFile)
+                    .forEach(File::delete);
+        } catch (IOException e) {
+            throw new AniException("Failed to delete workspace folder, you can try deleting manually.");
+        }
     }
 
     // ========================== Watchlist Saving and Loading ==========================
