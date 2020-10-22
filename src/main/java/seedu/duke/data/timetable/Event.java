@@ -246,6 +246,7 @@ public class Event implements Comparable<Event> {
         for (Event event : events) {
             ArrayList<String> eventString = event.toStringArray();
             results.addAll(eventString);
+            results.add(" ");
         }
         return results;
     }
@@ -254,9 +255,8 @@ public class Event implements Comparable<Event> {
         ArrayList<String> results = new ArrayList<>();
         ArrayList<Integer> days = new ArrayList<>(calendar.keySet());
         Collections.sort(days);
-        int i = 1;
         for (Integer day : days) {
-            results.addAll(calendarToString(calendar.get(day)));
+            results.addAll(calendarToStringNoIndex(calendar.get(day)));
         }
         return results;
     }
