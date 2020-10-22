@@ -46,6 +46,13 @@ The proposed *find rating* feature will loop through the rating list to find if 
 
 [INSERT SEQUENCE DIAGRAM HERE]
 
+### Feature Add bookmark
+The proposed add bookmark feature will rely on an existing `Book` object, and then a `Bookmark` object will 
+be created in the process.
+* The `Bookmark` object will be made up of the `Book` object and a page number, which is stored in a list of 
+bookmarks named `BookmarkList`.
+
+
 ## Product scope
 ### Target user profile
 * reads a lot

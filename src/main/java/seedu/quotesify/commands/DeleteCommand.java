@@ -307,7 +307,7 @@ public class DeleteCommand extends Command {
     private int convertBookmarkIndexToInt(String indexString, TextUi ui) {
         int index = -1;
         try {
-            index = Integer.parseInt(information);
+            index = Integer.parseInt(information) - 1;
         } catch (NumberFormatException e) {
             ui.printErrorMessage(ERROR_INVALID_BOOKMARK_NUM);
         }

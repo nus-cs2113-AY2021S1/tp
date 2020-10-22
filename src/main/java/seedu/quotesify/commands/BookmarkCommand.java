@@ -35,13 +35,9 @@ public class BookmarkCommand extends Command {
         case TAG_BOOK:
             BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
             BookmarkList bookmarks = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
-            handleBookmark(books, bookmarks, ui);
-            break;
-        case TAG_NUMBER:
-            books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
-            bookmarks = (BookmarkList) ListManager.getList(ListManager.BOOKMARK_LIST);
             handleBookmarkByNumber(books, bookmarks, ui);
             break;
+
         default:
             System.out.println(ERROR_INVALID_TAG);
             break;
