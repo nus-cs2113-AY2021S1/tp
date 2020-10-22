@@ -14,15 +14,19 @@
     + [3.1.1. Examples of usage](#311-examples-of-usage)
   * [3.2. Check bus route: ```/routemap```](#32-check-bus-route-routemap)
     + [3.2.1. Examples of usage](#321-examples-of-usage)
-  * [3.3.Check for available bus at a location: ```/bus```](#33check-for-available-bus-at-a-location-bus)
-  * [3.3.Check for buses at a bus stop: ```/bus```](#33-check-for-buses-at-a-bus-stop)
+  * [3.3. Check for available bus at a location: ```/bus```](#33check-for-available-bus-at-a-location-bus)
+  * [3.3. Check for buses at a bus stop: ```/bus```](#33-check-for-buses-at-a-bus-stop)
     + [3.3.1. Examples of usage](#331-examples-of-usage) 
-  * [3.4. List all bus available in NUS ```/allbus```](#34-list-all-bus-available-in-nus-allbus)
+  * [3.4. List all bus available in NUS: ```/allbus```](#34-list-all-bus-available-in-nus-allbus)
   * [3.5. List all bus stops in NUS: ```/liststops```](#35-list-all-bus-stops-in-nus-liststops)
-  * [3.6. Exiting the program: ```/exit```](#36-exiting-the-program-exit)
-  * [3.7. Listing available help: ```help```](#37-listing-available-help-help)
-  * [3.8. Similarity Checks](#38-similarity-checks)
-    + [3.8.1 Examples of Usage](#381-examples-of-usage)
+  * [3.6. Search for dining options within a faculty: ```/dine```](#36-search-for-dining-options-within-a-faculty-dine)
+    + [3.6.1. Examples of usage](#361-examples-of-usage)
+  * [3.7. Search for specific dining outlet: ```/dineinfo```](#37-search-for-specific-dining-outlet-dineinfo)
+    + [3.7.1. Examples of usage](#371-examples-of-usage)
+  * [3.8. Exiting the program: ```/exit```](#36-exiting-the-program-exit)
+  * [3.9. Listing available help: ```help```](#37-listing-available-help-help)
+  * [3.10. Similarity Checks](#38-similarity-checks)
+    + [3.10.1. Examples of usage](#381-examples-of-usage)
 - [4. FAQ](#4-faq)
 - [5. Command Summary](#5-command-summary)
 - [6. Glossary](#6-glossary)
@@ -181,12 +185,13 @@ PGP-> Kent Ridge MRT Station-> Opp University Health Centre-> Yusof Ishak House-
 AA2
 PGP-> Kent Ridge MRT Station-> Opp University Health Centre-> University Town-> Raffles Hall-> Kent Vale-> EA-> NUS IT-> University Health Centre-> Opp Kent Ridge MRT station-> PGPR
 ```
+
 ### 3.5. List all bus stops in NUS: ```/liststops```
 Lists all bus stops in NUS. <br>
 >Note: Index keyed in must be within the range of 1 - n, where n is number of existing tasks. <br>
 
 Format: <code>/liststops</code> <br>
-Example of usage: <code>/lisstops</code> <br>
+Example of usage: <code>/liststops</code> <br>
 Expected outcome:
 ```
 PGP : Prince George's Park
@@ -204,10 +209,38 @@ Kent Vale : Accommodation for visiting faculty guests
 EA : Located in Faculty of Engineering
 NUS IT : Opposite Central library
 PGPR : Prince George's Park Residence
-
 ```
 
-### 3.6. Exiting the program: ```/exit```
+### 3.6. Search for dining options within a faculty: ```/dine```
+This command lists out all dining outlets available within a chosen faculty.<br>
+The format of this command is as follows:<br> 
+<code>/dine <strong>faculty</strong></code> <br>
+
+#### 3.6.1. Examples of Usage
+
+**<u>Example 1</u>**
+
+Let's say you want to know all the dining options available in <strong>School of Business</strong>.<br>
+1. Type <code>/dine <strong>business</strong></code> into the command line interface and press enter to execute the command as shown in the figure below.<br><br>
+<img src="UG_Figures/dine1.png" alt="output" width=600><br>
+_Figure x: The expected output message._
+
+
+### 3.7. Search for specific dining outlet: ```/dineinfo```
+Search for all dining outlets that contains the keyword, and display their location and operating hours.<br>
+The format of this command is as follows:<br>
+<code>/dineinfo <strong>outlet</strong></code> <br>
+
+#### 3.7.1. Examples of Usage
+
+**<u>Example 1</u>**
+
+Let's say you want to find information of the dining outlet <strong>Arise & Shine</strong>.<br>
+1. Type <code>/dineinfo <strong>arise</strong></code> into the command line interface and press enter to execute the command as shown in the figure below.<br><br>
+<img src="UG_Figures/dineinfo1.png" alt="output" width=600><br>
+_Figure x: The expected output message._
+
+### 3.8. Exiting the program: ```/exit```
 This command helps you exit the application.<br>
 The format of this command is as follows:<br>
 <code>/exit</code> <br>
@@ -217,7 +250,7 @@ The application exits after displaying the following message:<br>
 So long buddy!
 ```
 
-### 3.7. Listing available help: ```help```
+### 3.9. Listing available help: ```/help```
 This command lists a set of features along with their respective commands available to users.<br>
 The format of this command is as follows:<br> 
 <code>/help</code> <br>
@@ -230,18 +263,19 @@ Here are the range of commands:
 3./bus: Displays buses available at each bus stop
 4./allbus: Lists all buses available in NUS Zone a
 5./liststops: Lists all bus stops in NUS Zone a
-6./exit: Exit program
-7./help: List all available commands
-
+6./dine: Search for dining options within a faculty
+7./dineinfo: Search for a specific dining outlet
+8./exit: Exit program
+9./help: List all available commands
 ```
 
-### 3.8. Similarity Checks
+### 3.10. Similarity Checks
 
 When you enter a location and make a spelling error or a typo in the name, the app performs a similarity check with 
 existing location names and suggests some locations to you. The app executes this command automatically and does not 
 require any explicit input from you.
 
-#### 3.8.1. Examples of Usage
+#### 3.10.1. Examples of Usage
 
 **<u>Example 1</u>**
 
@@ -275,7 +309,9 @@ Command | Format | Example
 /routemap | `/routemap` **bus code** | `/routemap` **AA1** 
 /bus | `/bus` **location** | `/bus` **PGP**
 /allbus | `/allbus` | `/allbus`
-/liststops | `liststops`| `/liststops`
+/liststops | `/liststops`| `/liststops`
+/dine | `/dine` **faculty** | `/dine` **business**
+/dineinfo | `/dineinfo` **outlet** | `/dineinfo` **arise**
 /exit | `/exit` | `/exit`
 /help | `/help` | `/help`
 
