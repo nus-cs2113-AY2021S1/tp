@@ -123,6 +123,23 @@ public class Formatter {
         return result;
     }
 
+    public static String formatEventString(Event event) {
+        return formatString(formatEvent(event), false);
+    }
+
+    /**
+     * Provides a wrapper around formatEvent to add a header at the head of the ArrayList.
+     *
+     * @param event Event to be formatted
+     * @param header Header to be placed at the front.
+     * @return ArrayList of Strings to represent the Event.
+     */
+    public static String formatEventString(String header, Event event) {
+        ArrayList<String> result = formatEvent(event);
+        result.add(0, header);
+        return formatString(result, true);
+    }
+
 
     /**
      * Converts a header and an ArrayList of reminders into a formatted string to be printed.

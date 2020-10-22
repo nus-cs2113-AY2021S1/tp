@@ -109,8 +109,8 @@ public abstract class RecurringEvent extends Event {
 
     public String getEndRecurrenceString() {
         String endRecurrenceString = "Until: ";
-        endRecurrenceString += (!endRecurrenceDate.equals(DEFAULT_END_RECURRENCE)) ?
-                endRecurrenceDate.toString() : "Forever";
+        endRecurrenceString += (!endRecurrenceDate.equals(DEFAULT_END_RECURRENCE))
+                ? endRecurrenceDate.toString() : "Forever";
         return String.format(" (%s)", endRecurrenceString);
     }
 
