@@ -128,11 +128,11 @@ The following section describes the specific implementation details of each feat
 
 ### 3.1 Workspace Feature
 
+<br/>
+
 ### 3.2 Estimation Feature
 The `estimate` feature aims to provide translators with better estimates on the time needed to 
-translate a script that they have been assigned. 
-
-In the past, translators could do this by manually glancing through the script, but they may overlook 
+translate a script that they have been assigned. In the past, translators could do this by manually glancing through the script, but they may overlook 
 the amount of words that needs to be translated. 
 Hence, `estimate` helps to ensure that translators **do not overpromise** their clients.
 
@@ -141,7 +141,9 @@ Hence, `estimate` helps to ensure that translators **do not overpromise** their 
 The current implementation of `estimate` allows users to estimate the time needed by specifying the file 
 name of the script (including the extension), and optionally, the number of words they can translate in an hour, 
 and if it is not specified, the average translator's speed of 400, 500, and 600 words per hour, will be used to 
-generate 3 estimation timings. The rationale for an optional parameter is because we considered that some users 
+generate 3 estimation timings. 
+
+The rationale for an optional parameter is because we considered that some users 
 may prefer to provide a safe estimation, while some users may prefer to specify their own speed for better estimation.
 
 The sequence diagram presented below depicts the interaction between the EstimateCommand and StorageManager component 
@@ -159,14 +161,15 @@ When the user executes the `EstimateCommand`, the following steps are taken by t
 2. Proceed to load the script file's content using the `loadScript()` method using `StorageManager` while
 also providing the name of the workspace (`workspaceName`) and file name of the script (`scriptFileName`).
 3. Based on the parameters given in the command, one of the following can happen: 
-    3. **Words per hour (`-wph`) is specified**: the program will calculate the time needed in hours, and invoke the 
+    1. **Words per hour (`-wph`) is specified**: the program will calculate the time needed in hours, and invoke the 
        `timeNeededToString()` method to convert the estimation into human readable format.
-    3. **Words per hour (`-wph`) is not specified**: the program will loop through an integer array containing 
+    2. **Words per hour (`-wph`) is not specified**: the program will loop through an integer array containing 
        3 different average words per hour values and use them to calculate the time needed in hours, and invoke the 
        `timeNeededToString()` method to convert the estimation into human readable format.
 4. Once the estimation timing(s) are obtained, the command will return a string containing the estimation
 timing(s) back to `Main` for printing to inform the user of the time needed to translate the script.
 
+<br/>
 
 ### 3.4 Browse Feature
 The `BrowseCommand` is executed by `BrowseCommandParser`. It will fetch `Anime` objects matching the parameters specified 
@@ -234,6 +237,8 @@ This will be done through: `sortBrowseList(3)` method call.
 
 Here is the sequence diagram to better illustrate the lifecycle of a browse command.
 ![Browse Sequence Diagram](images/Browse-SequenceDiagram.png)
+
+<br/>
 
 ## 4. Product scope
 ### Target user profile
