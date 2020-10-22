@@ -1,33 +1,43 @@
 # User Guide
   ```
-*Insert NAV@NUS LOGO here 
+   _       _       ____     __       __
+| |\ \  | |     / /\ \    \ \     / /
+| | \ \ | |    / /__\ \    \ \   / /
+| |  \ \| |   / /----\ \    \ \ / /
+|_|   \ \_|  / /      \ \    \_V_/    @NUS 
 ```
 
 - [1. What is Nav@NUS?](#1-what-is-navnus)
 - [2. Quick Start](#2-quick-start)
 - [3. Features](#3-features)
   * [3.1. Check for direct bus: ```/route```](#31-check-for-direct-bus-route)
-    + [3.1.1. Examples of Usage](#311-examples-of-usage)
+    + [3.1.1. Examples of usage](#311-examples-of-usage)
   * [3.2. Check bus route: ```/routemap```](#32-check-bus-route-routemap)
-  * [3.3.Check for available bus at a location: ```/bus```](#33check-for-available-bus-at-a-location-bus)
+    + [3.2.1. Examples of usage](#321-examples-of-usage)
+  * [3.3. Check for available bus at a location: ```/bus```](#33check-for-available-bus-at-a-location-bus)
+  * [3.3. Check for buses at a bus stop: ```/bus```](#33-check-for-buses-at-a-bus-stop)
+    + [3.3.1. Examples of usage](#331-examples-of-usage) 
   * [3.4. List all bus available in NUS: ```/allbus```](#34-list-all-bus-available-in-nus-allbus)
   * [3.5. List all bus stops in NUS: ```/liststops```](#35-list-all-bus-stops-in-nus-liststops)
   * [3.6. Search for dining options within a faculty: ```/dine```](#36-search-for-dining-options-within-a-faculty-dine)
-    + [3.6.1. Examples of Usage](#361-examples-of-usage)
+    + [3.6.1. Examples of usage](#361-examples-of-usage)
   * [3.7. Search for specific dining outlet: ```/dineinfo```](#37-search-for-specific-dining-outlet-dineinfo)
-    + [3.7.1. Examples of Usage](#371-examples-of-usage)
+    + [3.7.1. Examples of usage](#371-examples-of-usage)
   * [3.8. Exiting the program: ```/exit```](#36-exiting-the-program-exit)
   * [3.9. Listing available help: ```help```](#37-listing-available-help-help)
   * [3.10. Similarity Checks](#38-similarity-checks)
-    + [3.10.1. Examples of Usage](#381-examples-of-usage)
+    + [3.10.1. Examples of usage](#381-examples-of-usage)
 - [4. FAQ](#4-faq)
 - [5. Command Summary](#5-command-summary)
 - [6. Glossary](#6-glossary)
 
 ## 1. What is Nav@NUS?
 
-Nav@NUS is a useful CLI application to guide users in navigating around the NUS Kent Ridge campus via the school
-shuttle services.
+Nav@NUS is a useful command line interface (CLI) application to guide you in navigating around the NUS Kent Ridge campus via the school
+shuttle services. This application enables you to retrieve key bus information easily, skipping the hassle of
+physically checking the bus stop's notice board. Nav@NUS brings convenience to you and wishes your commute in NUS
+to be as effortless as possible. Nav@NUS uses a command line interface to facilitate quick typing and retrieval of
+information that you require.
 [add more about the app]
 
 ## 2. Quick Start
@@ -91,33 +101,78 @@ below.<br><br>
 _Figure 4: The output message showing bus routes._
 
 ### 3.2. Check bus route: ```/routemap```
-Checks for user-specified bus route. <br>
-Format: <code>/routemap <strong>task description</strong></code> <br>
-        Upon receiving prompt, specify 
-        <code><strong>bus route name</strong></code> <br>
-Example of usage: <code>/routemap <strong> AA1 </strong></code> <br>
-Expected outcome: 
-```
-/routemap
-What bus routes would you like to see?
-Currently, we have two bus routes available for your viewing 
-1.AA1 
-2.AA2 
-Type the name to view:
-aa1
-Here is the AA1 route that you have requested:
-AA1
-PGP-> Kent Ridge MRT Station-> Opp University Health Centre-> Yusof Ishak House-> Central Library-> Kent Ridge-> Museum-> University Town-> University Health Centre-> Opp Kent Ridge MRT station-> PGPR
-```
+This command displays the full route of the bus that you have specified. <br>
+Format: <code>/routemap <strong>bus code</strong></code> <br>
 
-### 3.3. Check for available bus at a location: ```/bus```
-Checks for available bus at a user-specified location <br>
-Format: <code>/bus <strong>bus code</strong></code> <br>
-Example of usage: <code>/bus<strong> PGP</strong></code> <br>
-Expected outcome: 
-```
-PGP:  AA1   AA2
-```
+#### 3.2.1. Examples of usage
+<b><u>Example 1</u></b><br>
+This command is exceptionally useful to find indirect bus routes.
+Let us suppose that you are at Raffles Hall with only bus AA2 available and would like to go to University Town. 
+You would notice that there is no direct bus to University Town. You could use the <code>/routemap</code> to find
+indirect routes to your intended destination. <br>
+These are the steps to follow:
+1. You key in <code>/routemap <strong> AA2 </strong></code> into the command line interface and press enter.<br><br>
+<img src="UG_Figures/routemap4.png" alt="inputRouteMapCommand" width=800><br>
+
+2. The result will display the whole bus route of bus AA2.<br><br>
+<img src="UG_Figures/routemap1.png" alt="RouteMapCommand" width=800><br>
+
+3. With the information that bus AA2 could bring you to bus stops after Raffles Hall e.g. Kent Vale, you can now check 
+if there is a direct bus route from these bus stops.<br><br>
+<img src="UG_Figures/routemap3.png" alt="inputRouteMapCommand" width=800><br>
+
+<b><u>Example 2</u></b><br>
+This command is also useful in showing you the previous bus stops of your intended bus. You could use this information
+to gauge how crowded the bus would be.<br><br>
+Let us suppose that you are at Raffles Hall intending to board AA2. <br>
+These are the steps to follow:
+1. You key in <code>/routemap <strong> AA2 </strong></code> into the command line interface and press enter.<br><br>
+<img src="UG_Figures/routemap4.png" alt="inputRouteMapCommand" width=800><br>
+
+2. The result will display the whole bus route of bus AA1. You will observe that the bus passes through University Town
+which is relatively more crowded than other bus stops.<br><br>
+<img src="UG_Figures/routemap1.png" alt="RouteMapCommand" width=800><br>
+
+3. With this information, you could explore other bus routes to your destination.
+
+
+### 3.3.Check for buses at a bus stop: ```/bus```
+This command displays all buses available at a specific bus stop  <br>
+
+The format of this command is as follows: <br>
+<code>/bus<strong> bus stop</strong></code> <br>
+
+#### 3.3.1 Examples of Usage
+**<u>Example 1</u>** <br>
+Let's say that you are at <strong>University Town</strong> bus stop, and you want to know the buses which are available for you to take.
+
+Instead of searching for the bus stops which all the buses stop at, you can easily access this information by using the  <code>/bus</code> command.
+
+To search for available buses at University Town:
+
+1. Type <code>/bus <strong>University Town</strong></code> into the CLI and press enter to execute the command as shown in the figure below. <br><br>
+<img src="UG_Figures/bus4.png" width=550><br>
+_Figure x: Input command to find buses at University Town._
+
+2. The result will be a message displaying the buses available at University Town. <br><br>
+<img src="UG_Figures/bus3.png"><br>
+_Figure x: Output message showing buses at University Town._
+
+
+**<u>Example 2</u>** <br>
+Let's say that you are at the <strong>museum</strong> bus stop, and you want to know the buses which are available for you to take. However, you make a spelling error and type <strong>"musuem"</strong> instead. <br>
+
+These are the steps to fix the mistake:
+
+1. The result will be a message displaying bus stop suggestions for possible error in user input.<br><br>
+<img src="UG_Figures/bus2.png"><br>
+_Figure x: Output message showing suggestions for typo "musuem"._
+
+2. Type <code>/bus <strong>museum</strong></code> into the CLI as suggested in the above output.<br>
+
+3. The result will be a message displaying the buses available at the museum.<br><br>
+<img src="UG_Figures/bus1.png"><br>
+_Figure x: Input command to find buses at museum._
 
 ### 3.4. List all bus available in NUS ```/allbus```
 Lists all bus available in NUS. <br>
@@ -238,7 +293,7 @@ _Figure 6: Result when the input is correct._
 ><code>/route</code> command or a <code>/bus</code> command. 
 
 ## 4. FAQ
-Some common questions to aid in possible issues faces.
+This section addresses some common questions to aid in possible issues faced.
 
 **Q:** Where can I find the release? <br>
 It can be found at [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
@@ -251,8 +306,8 @@ The following table provides a summary of features and command formats.
 Command | Format | Example
 --- | --- | ---
 /route | `/route` **location1 /to location2** | `/route` **PGP /to Raffles Hall**
-/routemap | `/routemap` **bus code** | `deadline` **/routemap AA1** 
-/bus | `/bus` **location** | `event` **/bus PGP**
+/routemap | `/routemap` **bus code** | `/routemap` **AA1** 
+/bus | `/bus` **location** | `/bus` **PGP**
 /allbus | `/allbus` | `/allbus`
 /liststops | `liststops`| `/liststops`
 /exit | `/exit` | `/exit`
