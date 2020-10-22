@@ -8,8 +8,6 @@ import parser.Parser;
 import storage.Storage;
 import ui.UI;
 
-import exception.LoadingException;
-
 /**
  * Main entry-point for the NUSchedule application.
  */
@@ -36,7 +34,7 @@ public class NuSchedule {
             ui.showError(e.getMessage());
         }
         try {
-            events = new EventList(storage.loadEvents());
+            events = new EventList(storage.loadEvents(locations));
         } catch (NuScheduleException e) {
             ui.showLoadingError();
             events = new EventList();
@@ -60,7 +58,8 @@ public class NuSchedule {
             try {
                 String fullCommand = ui.readCommand();
                 ui.printLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
+                int eventCount = events.getSize();
+                Command c = Parser.parse(fullCommand, eventCount, locations);
                 c.execute(events, locations, busStops, ui, storage);
                 isExit = c.isExit();
             } catch (NuScheduleException e) {

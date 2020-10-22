@@ -1,11 +1,11 @@
 package locationlist;
 
 import location.Location;
+import location.OutOfNuS;
 
 import java.util.ArrayList;
 
 public class LocationList {
-    private static final String filePath = "data/locations.txt";
     private final ArrayList<Location> locationList = new ArrayList<>();
 
     public ArrayList<Location> getLocationList() {
@@ -25,5 +25,29 @@ public class LocationList {
             }
         }
         return false;
+    }
+
+    /**
+     * Finds location in the list based on the name input.
+     *
+     * @param name String that represents name of location to find
+     * @return Location that is found in the list to be returned
+     */
+    public Location findLocation(String name) {
+        Location locationReturned = null;
+        int i = 0;
+        for (Location location : locationList) {
+            if (name.equals(location.getName())) {
+                locationReturned = locationList.get(i);
+                return locationReturned;
+            }
+            i++;
+        }
+
+        if (locationReturned == null) {
+            locationReturned = new OutOfNuS(name);
+            locationList.add(locationReturned);
+        }
+        return locationReturned;
     }
 }

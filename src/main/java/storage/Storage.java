@@ -15,6 +15,7 @@ import location.Location;
 import location.LocationType;
 
 import location.OutOfNuS;
+import locationlist.LocationList;
 import parser.Parser;
 
 import java.io.File;
@@ -89,7 +90,7 @@ public class Storage {
      * @return the Events in an ArrayList
      * @throws LoadingException represents the <code>Events</code> is not correctly created
      */
-    public ArrayList<Event> loadEvents() throws LoadingException {
+    public ArrayList<Event> loadEvents(LocationList locations) throws LoadingException {
         ArrayList<Event> events = new ArrayList<Event>();
         File dataFile = new File(filePath);
         try {
@@ -98,7 +99,7 @@ public class Storage {
                 String[] words = s.nextLine().split(REGEX_IN_FILE);
                 switch (words[0]) {
                 case "C":
-                    events.add(new Class(words[2], Parser.parseLocation(words[4]),
+                    events.add(new Class(words[2], Parser.parseLocation(words[4], locations),
                             LocalDateTime.parse(words[3])));
                     if (Integer.parseInt(words[1]) == 1) {
                         events.get(events.size() - 1).markAsDone();
@@ -106,7 +107,7 @@ public class Storage {
                     break;
                 case "A":
                     try {
-                        events.add(new Assignment(words[2], Parser.parseLocation(words[4]),
+                        events.add(new Assignment(words[2], Parser.parseLocation(words[4], locations),
                                 LocalDateTime.parse(words[3])));
                     } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                         throw new LoadingException();
@@ -117,7 +118,7 @@ public class Storage {
                     break;
                 case "P":
                     try {
-                        events.add(new PersonalEvent(words[2], Parser.parseLocation(words[4]),
+                        events.add(new PersonalEvent(words[2], Parser.parseLocation(words[4], locations),
                                 LocalDateTime.parse(words[3])));
                     } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                         throw new LoadingException();
@@ -146,7 +147,7 @@ public class Storage {
      */
     public void loadBusStopData(ArrayList<BusStop> busStopList) {
         File f = new File("data/bus_stops.txt");
-        Scanner s = null;
+        Scanner s;
         try {
             s = new Scanner(f);
         } catch (FileNotFoundException e) {
