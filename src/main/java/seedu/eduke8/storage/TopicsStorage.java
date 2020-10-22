@@ -13,6 +13,7 @@ import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.topic.Topic;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,10 +28,8 @@ public class TopicsStorage extends LocalStorage {
     }
 
     @Override
-    public void save() throws IOException {
-        createFileIfNotExists();
-
-        // For adding and removing questions for v2
+    public File save() throws IOException {
+        return createFileIfNotExists();
     }
 
     @Override

@@ -1,33 +1,27 @@
 package seedu.eduke8.option;
 
 import org.junit.jupiter.api.Test;
+import seedu.eduke8.Eduke8Test;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.exception.Eduke8Exception;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class OptionListTest {
-    private static final String PLACEHOLDER_OPTION_ONE_DESCRIPTION = "Option one";
-    private static final String PLACEHOLDER_OPTION_TWO_DESCRIPTION = "Option two";
-    private static final int DEFAULT_OPTION_COUNT = 1;
+class OptionListTest extends Eduke8Test {
+    private static final int DEFAULT_OPTION_COUNT = 2;
 
     @Test
-    void getCount_oneOption_returnsCountOfOne() {
+    void getCount_twoOptions_returnsCountOfTwo() {
         OptionList optionList = createOptionList();
 
         assertEquals(DEFAULT_OPTION_COUNT, optionList.getCount());
     }
 
     @Test
-    void getInnerList_oneOption_expectsTrue() {
+    void getInnerList_sameOption_expectsTrue() {
         OptionList optionList = createOptionList();
-        ArrayList<Displayable> options = new ArrayList<>();
-
-        Option optionOne = new Option(PLACEHOLDER_OPTION_ONE_DESCRIPTION);
-        options.add(optionOne);
-        OptionList optionListTest = new OptionList(options);
+        OptionList optionListTest = createOptionList();
 
         String optionListDescription = optionList.getInnerList().get(0).getDescription();
         String optionListTestDescription = optionListTest.getInnerList().get(0).getDescription();
@@ -43,13 +37,17 @@ class OptionListTest {
         assertEquals(PLACEHOLDER_OPTION_ONE_DESCRIPTION, optionOne.getDescription());
     }
 
-    private OptionList createOptionList() {
-        ArrayList<Displayable> options = new ArrayList<>();
-        Option optionOne = new Option(PLACEHOLDER_OPTION_ONE_DESCRIPTION);
+    @Test
+    void findCorrectOptionIndex_notCorrectOption_expectEduke8Exception() {
+        OptionList optionList = createOptionList();
 
-        options.add(optionOne);
-        OptionList optionList = new OptionList(options);
+        assertThrows(Eduke8Exception.class, optionList::findCorrectOptionIndex);
+    }
 
-        return optionList;
+    @Test
+    void find_optionNotFound_expectEduke8Exception() {
+        OptionList optionList = createOptionList();
+
+        assertThrows(Eduke8Exception.class, () -> optionList.find(NONSENSE_DESCRIPTION));
     }
 }

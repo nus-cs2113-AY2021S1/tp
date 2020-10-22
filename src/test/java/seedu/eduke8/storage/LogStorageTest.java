@@ -21,10 +21,8 @@ public class LogStorageTest {
     @Test
     public void save_newLogFile_newLogFileCreated() throws IOException {
         LogStorage logStorage = new LogStorage(LOG_PATH);
-        logStorage.save();
 
-        String filePath = appendRelativePath(new File("").getAbsolutePath(), LOG_PATH);
-        File logFile = new File(filePath);
+        File logFile = logStorage.save();
 
         assertTrue(logFile.exists());
 
@@ -39,15 +37,5 @@ public class LogStorageTest {
         String logData = logReader.nextLine();
         logReader.close();
         return logData;
-    }
-
-    private String appendRelativePath(String originalPath, String relativePath) {
-        String fullPath = originalPath;
-        String[] relativePathSplit = relativePath.split("/");
-        for (String path: relativePathSplit) {
-            fullPath += File.separator + path;
-        }
-
-        return fullPath;
     }
 }
