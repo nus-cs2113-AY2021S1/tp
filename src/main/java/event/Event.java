@@ -4,6 +4,7 @@ import location.Location;
 import java.util.Comparator;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 
 /**
  * Represents the event objects.

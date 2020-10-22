@@ -9,7 +9,7 @@ import ui.UI;
 
 public class SortCommand extends Command {
     @Override
-    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) throws NuScheduleException {
+    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) {
         events.sortEvent();
         ui.printSortEventMessage();
     }
