@@ -1,27 +1,16 @@
 package seedu.eduke8.question;
 
 import org.junit.jupiter.api.Test;
-import seedu.eduke8.common.Displayable;
+import seedu.eduke8.Eduke8Test;
 import seedu.eduke8.exception.Eduke8Exception;
-import seedu.eduke8.explanation.Explanation;
-import seedu.eduke8.hint.Hint;
-import seedu.eduke8.option.Option;
-import seedu.eduke8.option.OptionList;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-class QuizQuestionsManagerTest {
+class QuizQuestionsManagerTest extends Eduke8Test {
 
-    private static final String PLACEHOLDER_QUESTION_ONE_DESCRIPTION = "First question description.";
-    private static final String PLACEHOLDER_QUESTION_TWO_DESCRIPTION = "Second question description.";
-    private static final String PLACEHOLDER_QUESTION_THREE_DESCRIPTION = "Second question description.";
-    private static final String PLACEHOLDER_HINT_DESCRIPTION = "Please check the textbook page 88";
-    private static final String PLACEHOLDER_EXPLANATION_DESCRIPTION = "Option A gives the best explanation out of all.";
     private static final int TOPIC_QUESTIONS_COUNT = 3;
     private static final int QUIZ_QUESTIONS_COUNT = 2;
     private static final int QUIZ_QUESTIONS_COUNT_MAX = 3;
@@ -31,7 +20,7 @@ class QuizQuestionsManagerTest {
     @Test
     void quizQuestionsManagerConstructor_twoQuizQuestionsFromThreeTopicQuestions_returnsCountOfTwo()
             throws Eduke8Exception {
-        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+        QuestionList topicQuestionList = createTestQuestionList();
 
         // Creating a quiz with 2 questions selected from a total of 3 questions from the topic
         QuizQuestionsManager quizQuestionsManager =
@@ -44,7 +33,7 @@ class QuizQuestionsManagerTest {
     @Test
     void quizQuestionsManagerConstructor_threeQuizQuestionsFromThreeTopicQuestions_returnsCountOfTwo()
             throws Eduke8Exception {
-        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+        QuestionList topicQuestionList = createTestQuestionList();
 
         // Creating a quiz with 3 questions selected from a total of 3 questions from the topic
         QuizQuestionsManager quizQuestionsManager =
@@ -56,7 +45,7 @@ class QuizQuestionsManagerTest {
 
     @Test
     void quizQuestionsManagerConstructor_lessThanZeroNumberOfQuizQuestions_expectsException() {
-        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+        QuestionList topicQuestionList = createTestQuestionList();
 
         assertThrows(Eduke8Exception.class, () -> {
             QuizQuestionsManager quizQuestionsManager =
@@ -67,7 +56,7 @@ class QuizQuestionsManagerTest {
     // Number of quiz questions requested by user exceeds the number of questions in the topic
     @Test
     void quizQuestionsManagerConstructor_invalidNumberOfQuizQuestions_expectsException() {
-        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+        QuestionList topicQuestionList = createTestQuestionList();
 
         assertThrows(Eduke8Exception.class, () -> {
             QuizQuestionsManager quizQuestionsManager =
@@ -80,7 +69,7 @@ class QuizQuestionsManagerTest {
     @Test
     void getNextQuestion_currentQuestionNumberAtZero_returnsCurrentQuestionNumberAtOne()
             throws Eduke8Exception {
-        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+        QuestionList topicQuestionList = createTestQuestionList();
 
         // Creating a quiz with 2 questions selected from a total of 3 questions from the topic
         QuizQuestionsManager quizQuestionsManager =
@@ -92,7 +81,7 @@ class QuizQuestionsManagerTest {
 
     @Test
     void areAllQuestionsAnswered_fullyAnsweredQuiz_expectsTrue() throws Eduke8Exception {
-        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+        QuestionList topicQuestionList = createTestQuestionList();
 
         // Creating a quiz with 2 questions selected from a total of 3 questions from the topic
         QuizQuestionsManager quizQuestionsManager =
@@ -102,42 +91,5 @@ class QuizQuestionsManagerTest {
         quizQuestionsManager.getNextQuestion();     // Displays second question to user
 
         assertTrue(quizQuestionsManager.areAllQuestionsAnswered());
-    }
-
-
-
-    // Creates a question list that holds two questions, each with a unique description
-    private QuestionList createQuestionListWithThreeUniqueQuestions() {
-        ArrayList<Displayable> questions = new ArrayList<>();
-        Question question1 = createTestQuestionWithCustomDescription(PLACEHOLDER_QUESTION_ONE_DESCRIPTION);
-        Question question2 = createTestQuestionWithCustomDescription(PLACEHOLDER_QUESTION_TWO_DESCRIPTION);
-        Question question3 = createTestQuestionWithCustomDescription(PLACEHOLDER_QUESTION_THREE_DESCRIPTION);
-
-        questions.add(question1);
-        questions.add(question2);
-        questions.add(question3);
-
-        QuestionList questionList = new QuestionList(questions);
-        return questionList;
-    }
-
-    // Creates a question with a specific description, 2 standard options, 1 standard explanation and a standard hint
-    private Question createTestQuestionWithCustomDescription(String description) {
-        Option option1 = new Option("test1");
-        Option option2 = new Option("test2");
-        ArrayList<Displayable> optionsArrayList = new ArrayList<>();
-        optionsArrayList.add(option1);
-        optionsArrayList.add(option2);
-        OptionList optionList = new OptionList(optionsArrayList);
-
-        String inputHintDescription = PLACEHOLDER_HINT_DESCRIPTION;
-        Hint hint = new Hint(inputHintDescription);
-
-        String inputExplanationDescription = PLACEHOLDER_EXPLANATION_DESCRIPTION;
-        Explanation explanation = new Explanation(inputExplanationDescription);
-
-        Question question = new Question(description, optionList, hint, explanation);
-
-        return question;
     }
 }

@@ -2,10 +2,10 @@ package seedu.eduke8.topic;
 
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.common.DisplayableList;
+import seedu.eduke8.exception.Eduke8Exception;
+import seedu.eduke8.ui.Ui;
 
 import java.util.ArrayList;
-import seedu.eduke8.ui.Ui;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TopicList implements DisplayableList {
@@ -27,13 +27,13 @@ public class TopicList implements DisplayableList {
     }
 
     @Override
-    public Displayable find(String topicName) {
+    public Displayable find(String topicName) throws Eduke8Exception {
         for (Displayable topic : topics) {
             if (topicName.equals(topic.getDescription())) {
                 return topic;
             }
         }
-        return null;
+        throw new Eduke8Exception("No such topic exists, did you spell it correctly?");
     }
 
     public int getCount() {

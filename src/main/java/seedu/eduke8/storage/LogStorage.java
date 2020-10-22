@@ -19,7 +19,7 @@ public class LogStorage extends LocalStorage {
 
     // Set up save to file inside of print to console
     @Override
-    public void save() throws IOException {
+    public File save() throws IOException {
         LogManager.getLogManager().reset();
         LOGGER.setLevel(Level.ALL);
 
@@ -37,6 +37,8 @@ public class LogStorage extends LocalStorage {
         LOGGER.addHandler(fh);
 
         LOGGER.log(Level.INFO, "Logging to file started");
+
+        return logFile;
     }
 
     @Override

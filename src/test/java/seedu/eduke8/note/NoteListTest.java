@@ -5,6 +5,7 @@ import seedu.eduke8.common.Displayable;
 import seedu.eduke8.exception.Eduke8Exception;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,7 +15,6 @@ public class NoteListTest {
     private static final String NOTE_TWO = "Second Note";
     private static final String NOTE_THREE = "Third Note";
     private static final int DEFAULT_NOTE_COUNT = 2;
-
 
     @Test
     void getCount_TwoNotes_returnsCountOfTwo() throws Eduke8Exception {
@@ -41,16 +41,13 @@ public class NoteListTest {
     }
 
     private NoteList createTestNoteList() throws Eduke8Exception {
-        ArrayList<Displayable> noteArrayList = new ArrayList<>();
-
         Note note1 = new Note(NOTE_ONE);
         Note note2 = new Note(NOTE_TWO);
 
-        noteArrayList.add(note1);
-        noteArrayList.add(note2);
+        ArrayList<Displayable> noteArrayList = new ArrayList<>(
+                Arrays.asList(note1, note2)
+        );
 
-        NoteList noteList = new NoteList(noteArrayList);
-
-        return noteList;
+        return new NoteList(noteArrayList);
     }
 }

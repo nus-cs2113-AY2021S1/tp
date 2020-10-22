@@ -1,16 +1,16 @@
 package seedu.eduke8.explanation;
 
 import org.junit.jupiter.api.Test;
+import seedu.eduke8.Eduke8Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ExplanationTest {
+public class ExplanationTest extends Eduke8Test {
 
     @Test
     void getExplanationDescription_explanationDescription_returnsExplanationDescription() {
-        String inputExplanationDescription = "Option A gives the best explanation out of all.";
-        Explanation explanation = new Explanation(inputExplanationDescription);
+        Explanation explanation = new Explanation(PLACEHOLDER_EXPLANATION_DESCRIPTION);
 
-        assertEquals(inputExplanationDescription, explanation.getDescription());
+        assertEquals(PLACEHOLDER_EXPLANATION_DESCRIPTION, explanation.getDescription());
     }
 }

@@ -1,6 +1,7 @@
 package seedu.eduke8.parser;
 
 import org.junit.jupiter.api.Test;
+import seedu.eduke8.Eduke8Test;
 import seedu.eduke8.command.AnswerCommand;
 import seedu.eduke8.command.Command;
 import seedu.eduke8.command.HintCommand;
@@ -13,11 +14,12 @@ import seedu.eduke8.option.OptionList;
 import seedu.eduke8.question.Question;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class QuizParserTest {
+public class QuizParserTest extends Eduke8Test {
 
     @Test
     public void quizParser_wrongStringInput_expectIncorrectCommandReturn() {
@@ -35,7 +37,10 @@ public class QuizParserTest {
     @Test
     public void quizParser_correctStringInput_success() {
         Hint hint = new Hint("description");
-        ArrayList<Displayable> optionsArrayList = new ArrayList<>();
+        Option option = new Option("1");
+        ArrayList<Displayable> optionsArrayList = new ArrayList<>(
+                Collections.singletonList(option)
+        );
         OptionList optionList = new OptionList(optionsArrayList);
         Explanation explanation = new Explanation("explanation");
         QuizParser quizParser = new QuizParser();
@@ -45,10 +50,6 @@ public class QuizParserTest {
         Command resultCommand = quizParser.parseCommand(optionList, "hint");
         assertTrue(resultCommand instanceof HintCommand);
 
-        optionsArrayList.add(new Option("1"));
-        // optionList.add(new Option("1"));
-        optionList = new OptionList(optionsArrayList);
-        quizParser.setQuestion(question);
         resultCommand = quizParser.parseCommand(optionList, "1");
         assertTrue(resultCommand instanceof AnswerCommand);
 

@@ -1,16 +1,16 @@
 package seedu.eduke8.hint;
 
 import org.junit.jupiter.api.Test;
+import seedu.eduke8.Eduke8Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class HintTest {
+class HintTest extends Eduke8Test {
 
     @Test
     void getHintDescription_hintDescription_returnsHintDescription() {
-        String inputHintDescription = "Please check the textbook page 88";
-        Hint hint = new Hint(inputHintDescription);
+        Hint hint = new Hint(PLACEHOLDER_HINT_DESCRIPTION);
 
-        assertEquals(inputHintDescription, hint.getDescription());
+        assertEquals(PLACEHOLDER_HINT_DESCRIPTION, hint.getDescription());
     }
 }
