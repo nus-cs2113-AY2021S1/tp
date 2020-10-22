@@ -31,7 +31,7 @@ platform and enhances their learning experience. It also consolidates key concep
 
 ### Loading data
 
-Data is loaded from the .json files in the data folder for use in quizzes and notes.  This is part of the setup and is to be done prior to the running of the app. Upon successful startup this screen should shown:
+Data is loaded from the .json files in the data folder for use in quizzes and notes.  This is part of the setup and is to be done prior to the running of the app. Upon successful startup this screen should be shown:
 
 ![welcome](./images/welcome.png)
 
