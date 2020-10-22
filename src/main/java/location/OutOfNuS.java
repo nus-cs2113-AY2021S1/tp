@@ -21,6 +21,6 @@ public class OutOfNuS extends Location {
      * @return the result string to be stored.
      */
     public String fileString() {
-        return name;
+        return "OUT/" + name;
     }
 }

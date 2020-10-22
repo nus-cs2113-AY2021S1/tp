@@ -16,7 +16,7 @@ class EditCommandTest {
     void execute_noIndexSpecified_emptyEventIndexException() throws NuScheduleException {
 
         Assertions.assertThrows(EmptyEventIndexException.class, () -> {
-            Command d = Parser.parse("edit", 0);
+            Command d = Parser.parse("edit", 0, null);
         });
 
     }
@@ -24,14 +24,14 @@ class EditCommandTest {
     @Test
     void execute_inputIsNotInteger_WrongEditFormatException() {
         Assertions.assertThrows(WrongEditFormatException.class, () -> {
-            Command c = Parser.parse("edit c", 0);
+            Command c = Parser.parse("edit c", 0, null);
         });
     }
 
     @Test
     void execute_indexOutOfBounds_editIndexOutOfBoundsException() {
         Assertions.assertThrows(EditIndexOutOfBoundsException.class, () -> {
-            Command c = Parser.parse("edit 1", 0);
+            Command c = Parser.parse("edit 1", 0, null);
         });
     }
 
