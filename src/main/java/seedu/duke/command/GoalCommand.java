@@ -37,6 +37,7 @@ public class GoalCommand extends Command {
             }
             ui.printChangeGoalMessage(goal);
             //update storage
+            storage.saveFile(storage.getFileLocation("Goal"), data, "Goal");
         }
     }
 }
