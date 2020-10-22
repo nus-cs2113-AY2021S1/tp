@@ -20,7 +20,7 @@ class QuizQuestionsManagerTest extends Eduke8Test {
     @Test
     void quizQuestionsManagerConstructor_twoQuizQuestionsFromThreeTopicQuestions_returnsCountOfTwo()
             throws Eduke8Exception {
-        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+        QuestionList topicQuestionList = createTestQuestionList();
 
         // Creating a quiz with 2 questions selected from a total of 3 questions from the topic
         QuizQuestionsManager quizQuestionsManager =
@@ -33,7 +33,7 @@ class QuizQuestionsManagerTest extends Eduke8Test {
     @Test
     void quizQuestionsManagerConstructor_threeQuizQuestionsFromThreeTopicQuestions_returnsCountOfTwo()
             throws Eduke8Exception {
-        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+        QuestionList topicQuestionList = createTestQuestionList();
 
         // Creating a quiz with 3 questions selected from a total of 3 questions from the topic
         QuizQuestionsManager quizQuestionsManager =
@@ -45,7 +45,7 @@ class QuizQuestionsManagerTest extends Eduke8Test {
 
     @Test
     void quizQuestionsManagerConstructor_lessThanZeroNumberOfQuizQuestions_expectsException() {
-        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+        QuestionList topicQuestionList = createTestQuestionList();
 
         assertThrows(Eduke8Exception.class, () -> {
             QuizQuestionsManager quizQuestionsManager =
@@ -56,7 +56,7 @@ class QuizQuestionsManagerTest extends Eduke8Test {
     // Number of quiz questions requested by user exceeds the number of questions in the topic
     @Test
     void quizQuestionsManagerConstructor_invalidNumberOfQuizQuestions_expectsException() {
-        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+        QuestionList topicQuestionList = createTestQuestionList();
 
         assertThrows(Eduke8Exception.class, () -> {
             QuizQuestionsManager quizQuestionsManager =
@@ -69,7 +69,7 @@ class QuizQuestionsManagerTest extends Eduke8Test {
     @Test
     void getNextQuestion_currentQuestionNumberAtZero_returnsCurrentQuestionNumberAtOne()
             throws Eduke8Exception {
-        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+        QuestionList topicQuestionList = createTestQuestionList();
 
         // Creating a quiz with 2 questions selected from a total of 3 questions from the topic
         QuizQuestionsManager quizQuestionsManager =
@@ -81,7 +81,7 @@ class QuizQuestionsManagerTest extends Eduke8Test {
 
     @Test
     void areAllQuestionsAnswered_fullyAnsweredQuiz_expectsTrue() throws Eduke8Exception {
-        QuestionList topicQuestionList = createQuestionListWithThreeUniqueQuestions();
+        QuestionList topicQuestionList = createTestQuestionList();
 
         // Creating a quiz with 2 questions selected from a total of 3 questions from the topic
         QuizQuestionsManager quizQuestionsManager =

@@ -14,7 +14,7 @@ public class HintCommandTest extends Eduke8Test {
         Hint hint = new Hint(PLACEHOLDER_HINT_DESCRIPTION);
         Command hintCommand = new HintCommand(hint);
 
-        OptionList optionList = createOptionList();
+        OptionList optionList = createTestOptionList();
 
         hintCommand.execute(optionList, new Ui());
 

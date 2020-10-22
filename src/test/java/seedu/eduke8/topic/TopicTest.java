@@ -12,14 +12,14 @@ class TopicTest extends Eduke8Test {
 
     @Test
     void getsTopicDescription_topicDescription_returnsTopicDescription() throws Eduke8Exception {
-        Topic topic = new Topic(INPUT, createQuestionList());
+        Topic topic = new Topic(INPUT, createTestQuestionList());
 
         assertEquals(INPUT, topic.getDescription());
     }
 
     @Test
     void getsQuestionList_questionList_returnsQuestionList() throws Eduke8Exception {
-        QuestionList questionList = createQuestionList();
+        QuestionList questionList = createTestQuestionList();
         Topic topic = new Topic(INPUT, questionList);
 
         assertEquals(questionList, topic.getQuestionList());

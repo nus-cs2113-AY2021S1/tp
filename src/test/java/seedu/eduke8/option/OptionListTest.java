@@ -13,15 +13,15 @@ class OptionListTest extends Eduke8Test {
 
     @Test
     void getCount_twoOptions_returnsCountOfTwo() {
-        OptionList optionList = createOptionList();
+        OptionList optionList = createTestOptionList();
 
         assertEquals(DEFAULT_OPTION_COUNT, optionList.getCount());
     }
 
     @Test
     void getInnerList_sameOption_expectsTrue() {
-        OptionList optionList = createOptionList();
-        OptionList optionListTest = createOptionList();
+        OptionList optionList = createTestOptionList();
+        OptionList optionListTest = createTestOptionList();
 
         String optionListDescription = optionList.getInnerList().get(0).getDescription();
         String optionListTestDescription = optionListTest.getInnerList().get(0).getDescription();
@@ -31,7 +31,7 @@ class OptionListTest extends Eduke8Test {
 
     @Test
     void find_twoOptions_returnOptionOne() throws Eduke8Exception {
-        OptionList optionList = createOptionList();
+        OptionList optionList = createTestOptionList();
         Displayable optionOne = optionList.find(PLACEHOLDER_OPTION_ONE_DESCRIPTION);
 
         assertEquals(PLACEHOLDER_OPTION_ONE_DESCRIPTION, optionOne.getDescription());
@@ -39,14 +39,14 @@ class OptionListTest extends Eduke8Test {
 
     @Test
     void findCorrectOptionIndex_notCorrectOption_expectEduke8Exception() {
-        OptionList optionList = createOptionList();
+        OptionList optionList = createTestOptionList();
 
         assertThrows(Eduke8Exception.class, optionList::findCorrectOptionIndex);
     }
 
     @Test
     void find_optionNotFound_expectEduke8Exception() {
-        OptionList optionList = createOptionList();
+        OptionList optionList = createTestOptionList();
 
         assertThrows(Eduke8Exception.class, () -> optionList.find(NONSENSE_DESCRIPTION));
     }
