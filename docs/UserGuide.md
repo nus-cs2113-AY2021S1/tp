@@ -157,11 +157,12 @@ Example of usage:
 `event done 1`
 
 #### Search for an Event `search`<br/>
-Search for a particular event.
+Search for a particular event by name or date.
 Format: 'event search /s KEYWORD' <br/>
 
 Example of usage:
 `event search /s arduino course`
+`event search /s 2000-12-16`
 
 
 ### 3.5 Finance features `finance`  
@@ -202,7 +203,7 @@ delEvent | `event delEvent EVENT_INDEX`  | `event delEvent 1`
 listEvent | `event listEvent` | -
 countdown | `event countdown` | -
 done   | `event done EVENT_INDEX`| `event done 2`
-search | `event search /s <KEYWORD>` | `event search /s arduino` 
+event search | `event search /s <KEYWORD>` | `event search /s arduino` 
 addLog | `finance addLog ITEM_NAME ITEM_VALUE` | `finance addLog have lunch 4.5`
 delLog | `finance delLog ITEM_INDEX` | `finance delLog 3`
 summary | `finance summary` |   -
