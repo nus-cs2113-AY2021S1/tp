@@ -173,10 +173,4 @@ public class Task implements Jsonable {
         jTask.put("sprintAllocatedTo", sprintAllocatedTo);
         jTask.toJson(writer);
     }
-
-
-    //Delete seedu.duke.model.task handled outside using ArrayList remove() function
-    //iD handled outside. (seedu.duke.model.task number)
-    //valueOf for enum explained here:https://www.baeldung.com/java-string-to-enum
-
 }
