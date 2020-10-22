@@ -125,7 +125,7 @@
       {
         "description": "Choose the correct statements?",
         "hint": "Recall the differences between the two core OOP concepts: abstraction and encapsulation.",
-        "explanation": "",
+        "explanation": "The second statement should be: An object is an abstraction because it lets ...",
         "options": [
           {
             "description": "An object is an encapsulation because it packages data and behavior into one bundle.",
@@ -148,7 +148,7 @@
       {
         "description": "OO is a higher level mechanism than the procedural paradigm.",
         "hint": "OOP four core concepts are: Encapsulation, Abstraction, Inheritance and Polymorphism.",
-        "explanation": "",
+        "explanation": "Procedural languages work at simple data structures (e.g., integers, arrays) and functions level.\nBecause an object is an abstraction over data+related functions, OO works at a higher level.",
         "options": [
           {
             "description": "True",
@@ -171,7 +171,7 @@
       {
         "description": "Which of the following is NOT a core concept of OOP?",
         "hint": "Think about what you have done when writing OOP code and what OOP is useful for",
-        "explanation": "",
+        "explanation": "The 4 pillars of OOP are Encapsulation, Abstraction, Inheritance and Polymorphism",
         "options": [
           {
             "description": "Inheritance",
@@ -194,7 +194,7 @@
       {
         "description": "Choose the WRONG statement",
         "hint": "We are using OOP to help model solutions like how objects in real world work, in Java",
-        "explanation": "",
+        "explanation": "While many languages support the OO paradigm, OO is not a language itself. \nAlso, we are using OOP to help model solutions like how objects in real world work.",
         "options": [
           {
             "description": "OO is a programming paradigm",
@@ -217,7 +217,7 @@
       {
         "description": "Choose the WRONG statement",
         "hint": "C language is not an OO language. Java code is able to be written like C code.",
-        "explanation": "",
+        "explanation": "C follows the procedural paradigm.\nYes, we can write procedural code using OO languages e.g., AddressBook-level1.",
         "options": [
           {
             "description": "Java and C++ are OO languages",

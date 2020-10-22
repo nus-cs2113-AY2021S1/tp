@@ -9,7 +9,6 @@ platform and enhances their learning experience.
 
 It is a desktop application where CS2113/T students can attempt bite-sized quizzes, through the **Command Line Interface (CLI)**, to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
 
-- Table of Contents {:toc}
 
 ## Quick Start
 
@@ -107,8 +106,14 @@ What you should see:
 
 Starts a quiz with the number of questions and topic as specified by you.
 
+Regardless of right or wrong answer, an explanation about the question will be displayed after you gave an answer.
+
+Note:
+- Each of the questions in the quiz will be related to the topic you have chosen.
+- The first question will be immediately displayed to you once the quiz starts.
+- The quiz will only end when you have attempted all of the questions in the it.
+
 Input format: `quiz t/TOPIC n/QUESTIONS`
-- Each of the question in the quiz will be related to the topic you have chosen.
 
 Example of usage:
 ```
@@ -120,11 +125,24 @@ What you should see:
 
 ![quiz](./images/quiz.png)
 
+From here on you can either:
+1) Enter in your answer by typing '1', '2', '3' or '4' and pressing enter.
+2) Request for a hint by typing 'hint' and pressing enter. Refer to the next section on **Hint** for more information.
+
+If you have entered the correct answer, this is what you will see:
+![quiz](./images/quiz_correct.png)
+
+If you have entered the wrong answer, this is what you will see:
+![quiz](./images/quiz_wrong.png)
+
+After attempting all of the questions, the quiz will automatically end:
+![quiz](./images/quiz_end.png)
+After the quiz ends, you will be prompted to enter in a new command. At this point, you can choose to start a new quiz again!
 
 ### Showing a hint : `hint`
 
 Shows a hint to the current question.
-- Do note that a maximum of one hint can be shown for each question
+- Do note that each question only contain exactly one hint.
 
 Example of usage:
 ```
@@ -156,11 +174,11 @@ exit
 
 | Action | Format, Examples |
 | ------ | ---------------- |
-| About       | `about`                                                |
-| Textbook    | `textbook`                                             |
-| Quiz        | `quiz t/TOPIC n/QUESTIONS` <br/> e.g. `quiz t/OOP n/5` |
-| Hint        | `hint`                                                 |
-| List Topics | `topics`                                               |
-| Help        | `help`                                                 |
+| Viewing E-Duke-8 information       | `about`                                                |
+| Viewing available commands    | `help`                                              |
+| Listing all topics        | `topics`  |
+| Accessing the CS2113T textbook content        | `textbook`                                                 |
+| Starting a quiz |  `quiz t/TOPIC n/QUESTIONS` <br/> e.g. `quiz t/OOP n/5`                                              |
+| Showing a hint        |           'hint;                                      |
 | Exit        | `exit`                                                 |
 
