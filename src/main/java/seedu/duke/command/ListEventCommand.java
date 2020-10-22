@@ -75,8 +75,6 @@ public class ListEventCommand extends Command {
 
     @Override
     public String execute() {
-//        StringBuilder result = new StringBuilder();
-
         // Just list all events, recurring or not, without repeat.
         if (year == 0) {
             ArrayList<Event> events = timetable.getEvents();
@@ -98,44 +96,5 @@ public class ListEventCommand extends Command {
         }
 
         return Formatter.formatTimetable(COMMAND_SUCCESSFUL_TIME_PERIOD_MESSAGE, year, month, calendar);
-//
-//        boolean first = true;
-//        ArrayList<Month> months = new ArrayList<>(calendar.keySet());
-//        months.sort(Month::compareTo);
-//        for (Month month : months) {
-//            StringBuilder monthEventsString = new StringBuilder(month.name() + Formatter.LS);
-//            HashMap<Integer, ArrayList<Event>> monthCalendar = calendar.get(month);
-//            ArrayList<Integer> days = new ArrayList<>(monthCalendar.keySet());
-//            Collections.sort(days);
-//            int i = 1;
-//            for (Integer day : days) {
-//                ArrayList<Event> dailyEvents = monthCalendar.get(day);
-//                // Sort does not seem to be working
-//                Comparator<Event> eventComparator = (e1, e2) -> {
-//                    int comp = e1.getDate().compareTo(e2.getDate());
-//                    if (comp != 0) {
-//                        return comp;
-//                    } else {
-//                        return e1.getTime().compareTo(e2.getTime());
-//                    }
-//                };
-//                dailyEvents.sort(eventComparator);
-//
-//                for (Event event : dailyEvents) {
-//                    monthEventsString.append(Formatter.LS)
-//                            .append(String.format("%d.", i)).append(event.toString());
-//                    i++;
-//                }
-//            }
-//            if (!first) {
-//                result.append(Formatter.LS.repeat(2));
-//            }
-//            first = false;
-//            result.append(monthEventsString);
-//        }
-//        if (result.length() == 0) {
-//            return COMMAND_UNSUCCESSFUL_MESSAGE;
-//        }
-//        return COMMAND_SUCCESSFUL_MESSAGE + result;
     }
 }

@@ -58,6 +58,15 @@ public class Formatter {
         return encloseTopAndBottom(formattedString);
     }
 
+    /**
+     * Takes an array list of events and converts it to a formatted, non-indexed string for output.
+     *
+     * @param header Success message.
+     * @param year Year of timetable
+     * @param month Month of timetable
+     * @param timetable Events to be printed
+     * @return Formatted string of non-indexed events in timetable
+     */
     public static String formatTimetable(String header, int year, int month,
                                          HashMap<Month, HashMap<Integer, ArrayList<Event>>> timetable) {
         String formattedString;
@@ -75,11 +84,11 @@ public class Formatter {
     }
 
     /**
-     * Takes an array list of events and converts it to a formatted string for output
+     * Takes an array list of events and converts it to a formatted, indexed string for output.
      *
      * @param header Success message.
      * @param events Events to be printed
-     * @return Formatted String of Events in Timetable
+     * @return Formatted string of indexed events in timetable
      */
     public static String formatTimetable(String header, ArrayList<Event> events) {
         String formattedString = generatesHeader(header);
