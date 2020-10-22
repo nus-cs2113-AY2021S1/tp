@@ -424,7 +424,7 @@ public class Parser {
                 // Delete "/end" command when user ends the edit
                 inputString.remove(inputString.size() - 1);
 
-                if (!inputString.toString().isBlank()) {
+                if (inputString.size() != 0) {
                     isInputSuccess = true;
                 } else {
                     System.out.println(SystemException.ExceptionType.EXCEPTION_CONTENT_MISSING);

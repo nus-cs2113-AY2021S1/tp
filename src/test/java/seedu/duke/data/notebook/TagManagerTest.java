@@ -69,7 +69,7 @@ class TagManagerTest {
 
         notePersonal = new Note("Personal Note", contentFour, false, false, tags);
 
-        noteDefault = new Note("Default", contentFive,false, false, tags);
+        noteDefault = new Note("Default", contentFive,false, false);
 
         emptyTagManager = new TagManager();
         defaultTagManager = new TagManager();

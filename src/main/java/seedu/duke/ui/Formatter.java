@@ -71,9 +71,9 @@ public class Formatter {
                     + note.getTagsName(), Attribute.BRIGHT_CYAN_TEXT());
             formattedString = formattedString.concat(colorText);
 
-            int truncatedContentLength = Math.min(note.getContent().length(), MAX_MESSAGE_LENGTH - 50);
+            int truncatedContentLength = Math.min(note.getContent().get(0).length(), MAX_MESSAGE_LENGTH - 50);
 
-            String truncatedContent = note.getContent().substring(0, truncatedContentLength).concat("...");
+            String truncatedContent = note.getContent().get(0).substring(0, truncatedContentLength).concat("...");
             formattedString = formattedString.concat(LS + truncatedContent + LS);
             formattedString = formattedString.concat(generatesRowSplit());
 
