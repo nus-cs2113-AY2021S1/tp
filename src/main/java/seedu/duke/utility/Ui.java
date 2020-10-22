@@ -206,6 +206,11 @@ public class Ui {
                 + "command again.");
     }
 
+    public static void printWatchingNewSeason(String showName, int newSeason) {
+        printLine();
+        System.out.println("You are now at season " +  newSeason + " of " + (showName) + " !");
+    }
+
     public static void printIoException() {
         System.out.println(ErrorHandling.ExceptionResponse.EXCEPTION_IO_EXCEPTION);
     }
