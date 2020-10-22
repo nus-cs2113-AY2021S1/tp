@@ -1,6 +1,10 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.task.*;
+import seedu.duke.command.task.AddTaskCommand;
+import seedu.duke.command.task.ChangeTaskPriorityCommand;
+import seedu.duke.command.task.DeleteTaskCommand;
+import seedu.duke.command.task.DoneTaskCommand;
+import seedu.duke.command.task.ViewTaskCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectList;

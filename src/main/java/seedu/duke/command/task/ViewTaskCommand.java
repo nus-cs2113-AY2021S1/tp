@@ -11,6 +11,7 @@ import java.util.Hashtable;
 public class ViewTaskCommand extends TaskCommand {
     private final ProjectList projectListManager;
     private Project proj;
+
     public ViewTaskCommand(Hashtable<String, String> parameters, ProjectList projectListManager) {
         super(parameters);
         this.projectListManager = projectListManager;

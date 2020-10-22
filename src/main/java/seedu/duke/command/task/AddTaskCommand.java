@@ -22,7 +22,9 @@ public class AddTaskCommand extends Command {
         super(parameters);
         this.projectListManager = projectListManager;
     }
-    public void execute() throws DukeException {
+
+    public void execute()
+            throws DukeException {
         assert !projectListManager.isEmpty() : "No project\n";
         if (projectListManager.isEmpty()) {
             Ui.showError("Please create a project first.");
