@@ -1,9 +1,7 @@
 package seedu.eduke8.quiz;
 
-import seedu.eduke8.command.AnswerCommand;
-import seedu.eduke8.command.Command;
-import seedu.eduke8.command.HintCommand;
-import seedu.eduke8.command.IncorrectCommand;
+import seedu.eduke8.bookmark.BookmarkList;
+import seedu.eduke8.command.*;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.option.Option;
@@ -25,13 +23,15 @@ public class SingleTopicQuiz implements Quiz {
     private Topic topic;
     private int numberOfQuestions;
     private QuizParser quizParser;
+    private BookmarkList bookmarks;
 
-    public SingleTopicQuiz(Topic topic, int numberOfQuestions) {
+    public SingleTopicQuiz(Topic topic, int numberOfQuestions, BookmarkList bookmarks) {
         assert topic != null;
 
         this.topic = topic;
         this.numberOfQuestions = numberOfQuestions;
-        quizParser = new QuizParser();
+        this.bookmarks = bookmarks;
+        quizParser = new QuizParser(bookmarks);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class SingleTopicQuiz implements Quiz {
 
             Command command = getCommand(ui, optionList);
 
-            assert (command instanceof AnswerCommand || command instanceof HintCommand);
+            assert (command instanceof AnswerCommand || command instanceof HintCommand || command instanceof BookmarkCommand);
 
             while (!(command instanceof AnswerCommand)) {
                 command.execute(optionList, ui);
