@@ -1,0 +1,10 @@
+recordedDate: null
+durationWatchedToday: 0
+dailyWatchLimit: 0
+1. friends
+		Season: 3
+		Episodes: 21 10 12 
+		Rating: -1
+		Duration: 20
+		Current Season: 1
+		Current Episode: 1
