@@ -108,8 +108,14 @@ The sequence diagram in figure 3 explains the above steps when the user enters `
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|freshman/ anyone new to nus|know if there is any direct bus to my target destination|I do not need to change buses|
+|v1.0|someone that is unfamiliar with the NUS campus|know the full routes of the buses|I could plan my route to my desired destination|
+|v1.0|someone new to NUS|know all the available bus stops in the school|I can check the possible bus stops I can board/alight at to reach my destination|
+|v1.0|curious person|know the full routes of all the buses in NUS|I can see where each bus is heading to|
+|v1.0|freshman/ anyone new to NUS|I want to know the buses available at specific bus stops|I can better plan my trip around the campus in advance|
+|v2.0|frequent user|have a list of favourite commands|I can access my favourite commands quickly|
+|v2.0|frequent user|be able to customise my list of favourite commands|I can change the list according to my needs|
+|v2.0|frequent user|view my most searched bus stop|it can promptly remind me of the bus stop to key in|
 
 ## 4. Non-Functional Requirements
 
