@@ -22,7 +22,7 @@ public class WorkspaceParser extends CommandParser {
 
         parameterParser(paramGiven);
 
-        return new WorkspaceCommand("parsedParts[0]", "parsedParts[1]");
+        return new WorkspaceCommand(commandOption, commandDescription);
     }
 
     public void parameterParser(String[] paramGiven) throws AniException {
@@ -36,13 +36,13 @@ public class WorkspaceParser extends CommandParser {
         
         switch (givenOption[0]) {
         case "n":
-            commandOption = "N";
+            commandOption = "n";
             break;
         case "s":
-            commandOption = "S";
+            commandOption = "s";
             break;
         case "d":
-            commandOption = "D";
+            commandOption = "d";
             break;
         default:
             throw new AniException("Unexpected value: " + givenOption[0]);
