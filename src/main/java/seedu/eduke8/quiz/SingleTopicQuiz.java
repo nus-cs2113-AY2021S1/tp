@@ -28,7 +28,6 @@ public class SingleTopicQuiz implements Quiz {
 
     public SingleTopicQuiz(Topic topic, int numberOfQuestions) {
         assert topic != null;
-        assert numberOfQuestions >= 0;
 
         this.topic = topic;
         this.numberOfQuestions = numberOfQuestions;

@@ -7,7 +7,6 @@ import seedu.eduke8.topic.Topic;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class QuizCommand extends Command {
@@ -20,7 +19,6 @@ public class QuizCommand extends Command {
 
     public QuizCommand(TopicList topicList, int numOfQuestions, String topicName, Ui ui) {
         assert topicList != null;
-        assert numOfQuestions != 0;
 
         this.topicList = topicList;
         this.numOfQuestions = numOfQuestions;
@@ -36,11 +34,7 @@ public class QuizCommand extends Command {
             singleTopicQuiz.startQuiz(ui);
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
-        } catch (NullPointerException e) {
-            LOGGER.log(Level.WARNING, "QuizCommand Execution: A NullPointerException was thrown.");
-            ui.printError("Error! There is no such topic listed in our storage. Please try again.");
         }
-
     }
 }
 

@@ -23,13 +23,13 @@ public class OptionList implements DisplayableList {
     }
 
     @Override
-    public Displayable find(String description) {
+    public Displayable find(String description) throws Eduke8Exception {
         for (Displayable option : options) {
             if (description.equals(option.getDescription())) {
                 return option;
             }
         }
-        return null;
+        throw new Eduke8Exception("No such option exists, did you spell it correctly?");
     }
 
     public int findCorrectOptionIndex() throws Eduke8Exception {

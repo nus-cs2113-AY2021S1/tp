@@ -1,37 +1,36 @@
 package seedu.eduke8.command;
 
 import org.junit.jupiter.api.Test;
-import seedu.eduke8.common.Displayable;
-import seedu.eduke8.explanation.Explanation;
-import seedu.eduke8.hint.Hint;
+import seedu.eduke8.Eduke8Test;
+import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.option.Option;
-import seedu.eduke8.option.OptionList;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.ui.Ui;
 
-import java.util.ArrayList;
-
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AnswerCommandTest {
+public class AnswerCommandTest extends Eduke8Test {
     @Test
-    public void execute_correctAnswer_markAnsweredCorrectly() {
-        Option option = new Option("test");
-        option.markAsCorrectAnswer();
-        // OptionList optionList = new OptionList();
-        // optionList.add(option);
-        ArrayList<Displayable> optionsArrayList = new ArrayList<>();
-        optionsArrayList.add(option);
-        OptionList optionList = new OptionList(optionsArrayList);
+    public void execute_correctAnswer_markAnsweredCorrectly() throws Eduke8Exception {
+        Question question = createTestQuestion(PLACEHOLDER_QUESTION_ONE_DESCRIPTION);
+        Option correctOption = (Option) question.getOptionList().find(PLACEHOLDER_OPTION_ONE_DESCRIPTION);
+        correctOption.markAsCorrectAnswer();
 
-        Hint hint = new Hint("test");
-        Explanation explanation = new Explanation("test");
-
-        Question question = new Question("test", optionList, hint, explanation);
-
-        Command answerCommand = new AnswerCommand(option, question);
-        answerCommand.execute(optionList, new Ui());
+        Command answerCommand = new AnswerCommand(correctOption, question);
+        answerCommand.execute(question.getOptionList(), new Ui());
 
         assertTrue(question.wasAnsweredCorrectly());
+    }
+
+    @Test
+    public void execute_wrongAnswer_notMarkAnsweredCorrectly() throws Eduke8Exception {
+        Question question = createTestQuestion(PLACEHOLDER_QUESTION_ONE_DESCRIPTION);
+        Option wrongOption = (Option) question.getOptionList().find(PLACEHOLDER_OPTION_ONE_DESCRIPTION);
+
+        Command answerCommand = new AnswerCommand(wrongOption, question);
+        answerCommand.execute(question.getOptionList(), new Ui());
+
+        assertFalse(question.wasAnsweredCorrectly());
     }
 }

@@ -2,6 +2,7 @@ package seedu.eduke8.question;
 
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.common.DisplayableList;
+import seedu.eduke8.exception.Eduke8Exception;
 
 import java.util.ArrayList;
 
@@ -27,12 +28,12 @@ public class QuestionList implements DisplayableList {
     }
 
     @Override
-    public Displayable find(String description) {
+    public Displayable find(String description) throws Eduke8Exception {
         for (Displayable question : questions) {
             if (description.equals(question.getDescription())) {
                 return question;
             }
         }
-        return null;
+        throw new Eduke8Exception("No such question exists, did you spell it correctly?");
     }
 }
