@@ -29,7 +29,7 @@ class CheckCommandTest {
     void execute_eventInTimeRange_printEventsInTimeRange() throws DukeException {
         UserData data = new UserData();
         Ui ui = new Ui();
-        Storage storage = new Storage("data");
+        Storage storage = new Storage("data", ui);
 
         // Add events to data
         String personalInput = "personal Go out for dinner; 05/05/20; 12:00";
@@ -54,7 +54,7 @@ class CheckCommandTest {
     void execute_eventOutsideTimeRange_printEventsInTimeRange() throws DukeException {
         UserData data = new UserData();
         Ui ui = new Ui();
-        Storage storage = new Storage("data");
+        Storage storage = new Storage("data", ui);
 
         // Add events to data
         String personalInput = "personal Go out for dinner; 05/05/20; 12:00";

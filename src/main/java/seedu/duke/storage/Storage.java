@@ -4,29 +4,28 @@ import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.exception.InvalidListException;
+import seedu.duke.ui.Ui;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Saves and loads the events list to and from an external txt file.
  */
 public class Storage {
-    public Path fileNamePath;
-    public Path fileDirectoryPath;
-    public Path filePersonalPath;
-    public Path fileZoomPath;
-    public Path fileTimeTablePath;
-    public Path fileGoalPath;
 
+    private Path fileDirectoryPath;
+    private Path filePersonalPath;
+    private Path fileZoomPath;
+    private Path fileTimeTablePath;
+    private Path fileGoalPath;
+
+    private Ui ui;
 
 
     /**
@@ -34,7 +33,7 @@ public class Storage {
      *
      * @param initPath is the name of the filepath which files are saved to and loaded from
      */
-    public Storage(String initPath) {
+    public Storage(String initPath, Ui ui) {
 
         //firstly, make string representation of storage files
 
@@ -63,8 +62,8 @@ public class Storage {
         String[] timeTableWords = timeTable.split(",");
         fileTimeTablePath = createPath(timeTableWords);
 
-
         initialiseFolder();
+        this.ui = ui;
 
     }
 
@@ -81,11 +80,26 @@ public class Storage {
         }
     }
 
+    private void initialiseFile(Path fileText) {
+
+        if(!Files.exists(fileText)) {
+            try {
+                String fileName = fileText.toString();
+                Files.createFile(fileText);
+                System.out.println("File Created: " + fileName );
+            } catch (IOException e) {
+                ui.printErrorMessage("IO exception error! File cannot be created on system!");
+            }
+        }
+    }
+
 
     public void saveAll(UserData data) {
         saveFile(filePersonalPath, data, "Personal");
         saveFile(fileTimeTablePath, data, "Timetable");
         saveFile(fileZoomPath, data, "Zoom");
+
+        ui.printStorageSavedMessage();
 
     }
 
@@ -109,7 +123,7 @@ public class Storage {
         } catch (InvalidListException e) {
             System.out.println("Error! List invalid type. Should not happen");
         } catch (IOException e) {
-            System.out.println("Error! File cannot be written to");
+            ui.printErrorMessage("Error! File cannot be written to");
         }
 
     }
@@ -124,6 +138,8 @@ public class Storage {
         loadFile(fileZoomPath, data, "Zoom");
         loadFile(fileTimeTablePath, data, "Timetable");
 
+        ui.printStorageLoadMessage();
+
     }
 
     /**
@@ -137,6 +153,7 @@ public class Storage {
         try {
 
             //First, extract out all the file information
+            this.initialiseFile(fileName);
             List<String> fileLines = Files.readAllLines(fileName);
 
             //Next, line by line reform the event
@@ -152,7 +169,7 @@ public class Storage {
             //finally, store the information in the correct list
         } catch (IOException e) {
             //do nothing
-            System.out.println("Error finding file, file does not exist");
+            ui.printStorageLoadingErrorMessage();
         } catch (InvalidListException e) {
             //do nothing for now
             System.out.println("Error, invalid list");
@@ -182,12 +199,5 @@ public class Storage {
         return fileDirectoryPath.toString();
     }
 
-    /**
-     * Function gives a string containing the file full location path name.
-     *
-     * @return String containing the file's location
-     */
-    public String getFileLocationString() {
-        return fileNamePath.toString();
-    }
+
 }

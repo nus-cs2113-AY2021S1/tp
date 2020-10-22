@@ -6,6 +6,7 @@ import seedu.duke.event.EventList;
 import seedu.duke.exception.DukeException;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
+import seedu.duke.storage.StorageParser;
 import seedu.duke.ui.Ui;
 
 import java.nio.file.Path;
@@ -31,7 +32,7 @@ public class Duke {
     public Duke(String filePath) {
         ui = new Ui();
 
-        storage = new Storage(filePath);
+        storage = new Storage(filePath, ui);
 
         data = new UserData();
 
@@ -55,6 +56,7 @@ public class Duke {
                 isExit = c.isExit();
 
                 c.execute(data, ui, storage);
+                StorageParser.saveParser(storage, data, c);
             } catch (DukeException e) {
                 ui.printErrorMessage(e.getMessage());
             }

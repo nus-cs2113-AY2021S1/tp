@@ -1,5 +1,11 @@
 package seedu.duke.storage;
 
+import seedu.duke.command.ByeCommand;
+import seedu.duke.command.CheckCommand;
+import seedu.duke.command.Command;
+import seedu.duke.command.GoalCommand;
+import seedu.duke.command.ListCommand;
+import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.Personal;
 import seedu.duke.event.Timetable;
@@ -15,6 +21,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class StorageParser {
+
+    public static void saveParser(Storage store, UserData data, Command c) {
+
+        if (c.getClass().equals(ByeCommand.class) || c.getClass().equals(CheckCommand.class) ||
+                c.getClass().equals(GoalCommand.class) || c.getClass().equals(ListCommand.class)) {
+            return; //don't need to save, nothing was modified
+        }
+
+        store.saveAll(data);
+
+    }
 
     public static String eventToString(Event activity, String type) {
 

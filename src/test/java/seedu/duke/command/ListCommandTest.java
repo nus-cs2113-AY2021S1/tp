@@ -49,7 +49,7 @@ class ListCommandTest {
     void execute_zoomEvent_listZoomEvents() throws DukeException {
         UserData data = new UserData();
         Ui ui = new Ui();
-        Storage storage = new Storage("data");
+        Storage storage = new Storage("data", ui);
 
         // Add zoom event to data
         String zoomInput = "zoom Math class; zoom.com; 09/10/2000; 1300";

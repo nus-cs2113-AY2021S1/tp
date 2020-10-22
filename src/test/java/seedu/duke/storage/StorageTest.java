@@ -25,13 +25,14 @@ class StorageTest {
 
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private Ui ui;
 
     @BeforeEach
     public void setUp() {
-        System.setOut(new PrintStream(outputStreamCaptor));
-        Storage store = new Storage("storagetester");
+        ui = new Ui();
+
+        Storage store = new Storage("storagetester", ui);
         UserData data = new UserData();
-        Ui ui = new Ui();
         store.loadAll(data);
         String inputString = "personal";
         System.setOut(new PrintStream(outputStreamCaptor));
@@ -39,7 +40,7 @@ class StorageTest {
 
     @Test
     void storageLoadAll_LoadFilesFromDirectory_allFilesLoaded() throws DukeException {
-        Storage store = new Storage("storagetester");
+        Storage store = new Storage("storagetester", ui);
         UserData data = new UserData();
         Ui ui = new Ui();
         store.loadAll(data);
@@ -49,7 +50,8 @@ class StorageTest {
         Command listCommand = ListCommand.parse(inputString);
         listCommand.execute(data, ui, store);
 
-        assertEquals("Here is a list of your Personal events:" + System.lineSeparator()
+        assertEquals("The file has successfully been loaded!" + System.lineSeparator()
+                        + "Here is a list of your Personal events:" + System.lineSeparator()
                         + "1. [P][✕] stuff on 2010-01-01, 12:00" + System.lineSeparator()
                         + "   Repeated weekly for 4 times." + System.lineSeparator()
                         + "2. [P][✓] birthday celebration on 2010-01-01, 12:00" + System.lineSeparator()
@@ -101,7 +103,7 @@ class StorageTest {
             final List<String> zoomModel = Files.readAllLines(zoomPath);
             final List<String> timetableModel = Files.readAllLines(timetablePath);
 
-            Storage store = new Storage("storagetester");
+            Storage store = new Storage("storagetester", ui);
             UserData data = new UserData();
             Ui ui = new Ui();
             store.loadAll(data);

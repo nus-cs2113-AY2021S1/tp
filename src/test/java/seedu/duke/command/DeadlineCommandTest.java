@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class DeadlineCommandTest {
     UserData data = new UserData();
     Ui ui = new Ui();
-    Storage storage = new Storage("data");
+    Storage storage = new Storage("data", ui);
 
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();

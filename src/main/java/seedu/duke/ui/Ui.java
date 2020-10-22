@@ -131,6 +131,10 @@ public class Ui {
         System.out.println("The file has successfully been saved!");
     }
 
+    public void printStorageLoadMessage() {
+        System.out.println("The file has successfully been loaded!");
+    }
+
     public void printStorageLoadingErrorMessage() {
         System.out.println("The file does not exist or has been corrupted!");
     }
