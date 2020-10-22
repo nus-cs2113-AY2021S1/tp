@@ -18,6 +18,7 @@ public class Messages {
             + "<Number of Calories>";
     public static final String FORMAT_DELETE = "delete food <Index from Food List> "
             + "or delete exercise <Index from Exercise List>";
+    public static final String FORMAT_GOAL = "goal food <goal description> / goal exercise <goal description>";
 
     //User class messages
     public static final String USER_SETUP_GREET = "Before we begin, let me get to know you :)";

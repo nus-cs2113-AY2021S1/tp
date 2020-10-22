@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import static fitr.common.Commands.COMMAND_FOOD;
 import static fitr.common.Commands.COMMAND_EXERCISE;
+import static fitr.common.Commands.COMMAND_GOAL;
 import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
 import static fitr.common.Commands.COMMAND_VIEW_BMI;
 import static fitr.common.Commands.COMMAND_VIEW_FOOD;
@@ -16,6 +17,7 @@ import static fitr.common.Commands.COMMAND_VIEW;
 import static fitr.common.Messages.FORMAT_FOOD;
 import static fitr.common.Messages.FORMAT_EXERCISE;
 import static fitr.common.Messages.FORMAT_DELETE;
+import static fitr.common.Messages.FORMAT_GOAL;
 
 import static fitr.common.Messages.MESSAGE_GREET;
 import static fitr.common.Messages.MESSAGE_SUGGEST_QUESTION;
@@ -111,6 +113,9 @@ public class Ui {
             printCustomError("Please input in the correct format!");
             printCustomMessage(FORMAT + FORMAT_DELETE);
             break;
+        case COMMAND_GOAL:
+            printCustomError("Please input in the correct format!");
+            printCustomMessage(FORMAT + FORMAT_GOAL);
         default:
             printInvalidCommandError();
             break;
