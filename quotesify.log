@@ -296,4 +296,23 @@ INFO: rating of book has completed
 Oct 21, 2020 7:45:54 PM seedu.quotesify.commands.AddCommand execute
 INFO: going to add rating to book
 Oct 21, 2020 7:45:54 PM seedu.quotesify.commands.AddCommand execute
+INFO: rating of book has completedOct 22, 2020 12:14:22 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 22, 2020 12:14:22 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 22, 2020 12:14:42 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add rating to book
+Oct 22, 2020 12:14:42 PM seedu.quotesify.commands.AddCommand execute
+INFO: rating of book has completed
+Oct 22, 2020 12:23:26 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add book to booklist
+Oct 22, 2020 12:23:26 PM seedu.quotesify.commands.AddCommand execute
+INFO: added book to booklist
+Oct 22, 2020 12:24:42 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add rating to book
+Oct 22, 2020 12:24:42 PM seedu.quotesify.commands.AddCommand execute
+INFO: rating of book has completed
+Oct 22, 2020 12:24:54 PM seedu.quotesify.commands.AddCommand execute
+INFO: going to add rating to book
+Oct 22, 2020 12:24:54 PM seedu.quotesify.commands.AddCommand execute
 INFO: rating of book has completed

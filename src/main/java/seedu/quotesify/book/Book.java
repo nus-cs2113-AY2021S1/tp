@@ -23,6 +23,14 @@ public class Book implements JsonSerializer {
         this.author = author;
         this.title = title;
         this.categories = category;
+        this.rating = 0;
+    }
+
+    public Book(Author author, String title, ArrayList<String> category, int rating) {
+        this.author = author;
+        this.title = title;
+        this.categories = category;
+        this.rating = rating;
     }
 
     public Author getAuthor() {
@@ -95,6 +103,7 @@ public class Book implements JsonSerializer {
         details.put("author", this.getAuthor().toJson());
         details.put("title", this.getTitle());
         details.put("categories", this.getCategories());
+        details.put("rating", this.getRating());
         return details;
     }
 }
