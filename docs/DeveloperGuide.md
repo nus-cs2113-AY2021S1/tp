@@ -2,19 +2,19 @@
 
 
 * [1. Introduction](#1-introduction)
-    + [1.a Purpose](#)
-    + [1.b Scope](#1)
-* [2. Setting up](#)
-    + [2.a Prerequisites](#)
-    + [2.b Scope](#1)
-    + [2.c Verifying the setup](#)
+    + [1.a Purpose](#1a-purpose)
+    + [1.b Scope](#1b-scope)
+* [2. Setting up](#2-setting-up)
+    + [2.a Prerequisites](#2a-prerequisites)
+    + [2.b Setting up project](#2b-setting-up-the-project-in-your-computer)
+    + [2.c Verifying the setup](#2c-verifying-the-setup)
     + [2.d Before Writing Code](#1)
-* [3. Design](#3)
-* [4. Implementation](#4)
-- [5. Documentation](#5)   
-- [6. Testing](#6-)   
-- [7. Dev Ops](#6--)  
-- [Appendices](#6--)  
+* [3. Design](#3-design)
+* [4. Implementation](#4-implementation)
+- [5. Documentation](#5-documentation)   
+- [6. Testing](#6-testing)   
+- [7. Dev Ops](#7-dev-ops)  
+- [Appendices](#user-stories)  
    
 ## 1. Introduction
 
@@ -46,7 +46,7 @@ The `WatchNext.jar` file is compiled using the Java version mentioned above. +
 IntelliJ has Gradle and JavaFx plugins installed by default.
 Do not disable them. If you have disabled them, go to `File` > `Settings` > `Plugins` to re-enable them.
 
- ### 2.b Setting up the project in your computer
+### 2.b Setting up the project in your computer
  
  **Fork** this [repo](https://github.com/AY2021S1-CS2113T-W12-3/tp), and clone the fork to your computer.
  
@@ -69,13 +69,13 @@ Do not disable them. If you have disabled them, go to `File` > `Settings` > `Plu
 9. Open a console and run the command `gradlew processResources` (Mac/Linux: `./gradlew processResources`). It should finish with the `BUILD SUCCESSFUL` message. +
 This will generate all the resources required by the application and tests.
 
- ### 2.c Verifying the setup
+### 2.c Verifying the setup
 
 1. You can run `Duke` and try a few commands.
 
 2. You can also run tests using our instructions for manual testing to explore our features.
 
- ### 2.d Before Writing Code
+### 2.d Before Writing Code
  
  1. Set up CI
  
@@ -93,18 +93,6 @@ This will generate all the resources required by the application and tests.
 ##  Appendices
 
 
-
-
-
-
-
-
-## Design & implementation
-
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
-
-## Product scope
 ### Target user profile
 
 {Describe the target user profile}
@@ -117,17 +105,28 @@ This will generate all the resources required by the application and tests.
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v2.0|new user|limit my watching time sometimes|I do not get carried away and watch too many shows in one sitting|
+|v1.0|user|be able to share my watch history |I can export and share the shows that I like with my friends.|
+|v1.0|show enthusiast|revisit my ratings for shows i have watched|change the rating in the event that i want to.|
+|v1.0|show enthusiast|know which current episode i am at|continue watching the show later.|
+|v1.0|student|track my watchtime|not miss my deadlines.|
+|v1.0|show enthusiast|revisit my ratings for shows i have watched|change the rating in the event that i want to.|
+|v1.0|user|clear my watch history |I can protect my privacy.|
+|v1.0|student|I want to track which zoom lectures / or webcasts that I have watched| I can make sure I don’t miss any important lessons.|
+
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. WatchNext will work on any mainstream OS as long as it has Java 11 installed.
+
+2. Users who can type fast and prefer typing over other means of input should be able to use WatchNext faster using commands than using the mouse in a GUI(Graphic User Interface)-based program.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Graphic User Interface* - It is a user interface that includes graphical elements, such as windows, icons and buttons.
 
 ## Instructions for manual testing
+
+**[NOTE]** The instructions and sample test cases only act as a guide for you to start testing on some of our application features. You are free to test our features with more test cases of your own. Refer to [Section 2.a,“Prerequisites”](#2a-prerequisites) for the instructions to set up our program on your computer.
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
