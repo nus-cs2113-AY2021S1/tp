@@ -104,11 +104,23 @@ WatchNext was designed drawing from the ideas of the __Event-driven architectura
 
 ### Target user profile
 
-{Describe the target user profile}
+**WatchNext** is a program made for teenagers and young adults.For users who use multiple free streaming platforms or other open source stream websites,
+the application will track their progress in the different shows they watch, and the upcoming shows they wish to watch.In addition, it provides a tracker 
+to limit your weekly show progress to help manage your time.
+
+**WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+There exists many options for streaming all sorts of video content from the giant media service provider company netflix, to other platforms that lean
+towards user sourced content.<br><br> This poses a new challenge to any tech-savvy person who wants to make sure they do not miss a single episode of their 
+favourite show. Netflix and other established streaming platforms are able to keep track of the user's progress, but should be the user use more than one
+streaming platform, there is no avenue of communication between the streaming platforms to synchronise this data.<br><br> **WatchNext** seeks to fill in this gap 
+by providing users with a single streamlined platform to keep track of the episodes of all their favourite shows. They do not need to worry about rewatching
+or missing episodes with the help of **WatchNext's** show progress tracking features. <br>
+<br>**WatchNext** also helps users track the total time they spend watching shows across all platforms. This provides users with an encompassing view of the
+actual time they spend watching shows and is a feature that is not provided by most other platforms.
+
 
 ## User Stories
 
