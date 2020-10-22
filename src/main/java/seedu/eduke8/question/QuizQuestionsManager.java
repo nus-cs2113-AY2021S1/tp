@@ -13,11 +13,11 @@ import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_INVALID_QUESTI
 
 public class QuizQuestionsManager {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private static final Random RANDOM = new Random();
 
     private ArrayList<Question> quizQuestions;
     private int currentQuestionNumber;
 
-    private static final Random RANDOM = new Random();
 
     public QuizQuestionsManager(int numberOfQuestionsForQuiz,
                                 ArrayList<Displayable> questionsInTopic) throws Eduke8Exception {
@@ -26,7 +26,7 @@ public class QuizQuestionsManager {
         setQuizQuestions(numberOfQuestionsForQuiz, questionsInTopic);
     }
 
-    public void setQuizQuestions(int numberOfQuestionsForQuiz,
+    private void setQuizQuestions(int numberOfQuestionsForQuiz,
                                  ArrayList<Displayable> questionsInTopic) throws Eduke8Exception {
 
         if (numberOfQuestionsForQuiz <= 0) {
@@ -37,6 +37,28 @@ public class QuizQuestionsManager {
             throw new Eduke8Exception(ERROR_QUIZ_INSUFFICIENT_TOPIC_QUESTIONS);
         }
 
+        setRandomQuestions(numberOfQuestionsForQuiz, questionsInTopic);
+    }
+
+
+    public Question getNextQuestion() {
+        // Automatically increases question count when a question is shown to the user
+        return quizQuestions.get(currentQuestionNumber++);
+    }
+
+    public int getCurrentQuestionNumber() {
+        return currentQuestionNumber;
+    }
+
+    public boolean areAllQuestionsAnswered() {
+        return currentQuestionNumber == quizQuestions.size();
+    }
+
+    public int getQuizQuestionsCount() {
+        return quizQuestions.size();
+    }
+
+    private void setRandomQuestions(int numberOfQuestionsForQuiz, ArrayList<Displayable> questionsInTopic) {
         // Stores the questions' indexes selected from the topic question list
         ArrayList<Integer> integersChosen = new ArrayList<>();
 
@@ -54,22 +76,5 @@ public class QuizQuestionsManager {
             quizQuestions.add((Question) questionsInTopic.get(randomQuestionIndex));
             integersChosen.add(randomQuestionIndex);
         }
-    }
-
-    public Question getNextQuestion() {
-        // Automatically increases question count when a question is shown to the user
-        return quizQuestions.get(currentQuestionNumber++);
-    }
-
-    public int getCurrentQuestionNumber() {
-        return currentQuestionNumber;
-    }
-
-    public boolean areAllQuestionsAnswered() {
-        return currentQuestionNumber == quizQuestions.size();
-    }
-
-    public int getQuizQuestionsCount() {
-        return quizQuestions.size();
     }
 }

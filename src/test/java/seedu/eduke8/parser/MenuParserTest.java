@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.eduke8.command.Command;
 import seedu.eduke8.command.IncorrectCommand;
 import seedu.eduke8.common.Displayable;
+import seedu.eduke8.explanation.Explanation;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.OptionList;
 import seedu.eduke8.question.Question;
@@ -24,8 +25,9 @@ public class MenuParserTest {
         Hint hint = new Hint("description");
         ArrayList<Displayable> optionsArrayList = new ArrayList<>();
         OptionList optionList = new OptionList(optionsArrayList);
+        Explanation explanation = new Explanation("explanation");
         ArrayList<Displayable> questions = new ArrayList<>();
-        Question question = new Question("description", optionList, hint);
+        Question question = new Question("description", optionList, hint, explanation);
         questions.add(question);
         QuestionList questionList = new QuestionList(questions);
         Topic topic = new Topic("description", questionList);

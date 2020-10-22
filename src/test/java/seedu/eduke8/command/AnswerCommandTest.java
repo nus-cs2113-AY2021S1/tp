@@ -2,6 +2,7 @@ package seedu.eduke8.command;
 
 import org.junit.jupiter.api.Test;
 import seedu.eduke8.common.Displayable;
+import seedu.eduke8.explanation.Explanation;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.Option;
 import seedu.eduke8.option.OptionList;
@@ -24,8 +25,9 @@ public class AnswerCommandTest {
         OptionList optionList = new OptionList(optionsArrayList);
 
         Hint hint = new Hint("test");
+        Explanation explanation = new Explanation("test");
 
-        Question question = new Question("test", optionList, hint);
+        Question question = new Question("test", optionList, hint, explanation);
 
         Command answerCommand = new AnswerCommand(option, question);
         answerCommand.execute(optionList, new Ui());
