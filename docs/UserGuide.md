@@ -24,8 +24,8 @@
     + [3.6.1. Examples of Usage](#361-examples-of-usage)
   * [3.7. Search for specific dining outlet: ```/dineinfo```](#37-search-for-specific-dining-outlet-dineinfo)
     + [3.7.1. Examples of Usage](#371-examples-of-usage)
-  * [3.8. Exiting the program: ```/exit```](#38-exiting-the-program-exit)
-  * [3.9. Listing available help: ```/help```](#39-listing-available-help-help)
+  * [3.8. Exit the program: ```/exit```](#38-exit-the-program-exit)
+  * [3.9. List available help: ```/help```](#39-list-available-help-help)
   * [3.10. Similarity Checks](#310-similarity-checks)
     + [3.10.1. Examples of Usage](#3101-examples-of-usage)
   * [3.11. Reset data: ```/reset```](#311-reset-data-reset)  
@@ -195,7 +195,7 @@ Let's say you want to see a list of all bus routes so that you can plan your tri
 To see the complete list of buses:
 
 1. Type <code>/allbus</code> into the CLI and press enter.<br><br>
-<img src="UG_Figures/allbus1.png" alt="inputCommand" width=600><br>
+<img src="UG_Figures/allbus1.png" alt="inputCommand" width=700><br>
 _Figure 14: The ouput message displaying all buses with their respective routes._
 
 ### 3.5. List all bus stops in NUS: ```/liststops```
@@ -209,8 +209,8 @@ Let's say you want to know more about the bus stops in NUS.
 
 To see the description of each location:
 
-1. Type <code>/liststops</code> <br> into the CLI and press enter.<br><br>
-<img src="UG_Figures/listOutput.png" alt="inputCommand" width=600><br>
+1. Type <code>/liststops</code> into the CLI and press enter.<br><br>
+<img src="UG_Figures/listOutput.png" alt="inputCommand" width=800><br>
 _Figure 15: The output message displaying descriptions for all bus stops in NUS._
 
 ### 3.6. Search for dining options within a faculty: ```/dine```
@@ -221,77 +221,85 @@ The format of this command is as follows:<br>
 
 #### 3.6.1. Examples of Usage
 **<u>Example 1</u>**
-Let's say you want to know all the dining options available in <strong>School of Business</strong>.<br>
+Let's say you want to know all the dining options available in <strong>School of Business</strong>.
+
+These are the steps to follow:
+
 1. Type <code>/dine <strong>business</strong></code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/dine1.png" alt="output" width=600><br>
-_Figure x: The expected output message._
+_Figure 16: The expected output message._
 
 
 ### 3.7. Search for specific dining outlet: ```/dineinfo```
-Search for all dining outlets that contains the keyword, and display their location and operating hours.<br>
+Search for all dining outlets that contains the keyword, and display their location and operating hours.
+
 The format of this command is as follows:<br>
-<code>/dineinfo <strong>outlet</strong></code> <br>
+<code>/dineinfo <strong>outlet</strong></code>
 
 #### 3.7.1. Examples of Usage
-
 **<u>Example 1</u>**
+Let's say you want to find information of the dining outlet <strong>Arise & Shine</strong>.
 
-Let's say you want to find information of the dining outlet <strong>Arise & Shine</strong>.<br>
+These are the steps to follow:
+
 1. Type <code>/dineinfo <strong>arise</strong></code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/dineinfo1.png" alt="output" width=600><br>
-_Figure x: The expected output message._
+_Figure 17: The expected output message._
 
-### 3.8. Exiting the program: ```/exit```
-This command helps you exit the application.<br>
+### 3.8. Exit the program: ```/exit```
+This command helps you exit the application.
+
 The format of this command is as follows:<br>
-<code>/exit</code> <br>
+<code>/exit</code>
 
 The application exits after displaying the following message.<br>
 ```
 So long buddy!
 ```
 
-### 3.9. Listing available help: ```help```
-This command lists a set of features along with their respective commands available to users.<br>
-The format of this command is as follows:<br> 
-<code>/help</code> <br>
-The expected outcome is as follows:<br><br>
+### 3.9. List available help: ```help```
+This command lists a set of features along with their respective commands available to users.
 
+The format of this command is as follows:<br> 
+<code>/help</code>
+
+The expected outcome is as follows:<br><br>
 <img src="UG_Figures/help1.png" alt="inputCommand" width=600><br>
+_Figure 18: The expected output message._
 
 ### 3.10. Similarity Checks
-
 When you enter a location and make a spelling error or a typo in the name, the app performs a similarity check with 
 existing location names and suggests some locations to you. The app executes this command automatically and does not 
 require any explicit input from you.
 
 #### 3.10.1. Examples of Usage
+Let's say you want to find all buses that stop at **Opp HSSML**, but you type <code>/bus <strong>Opp HSML</strong></code> instead.
 
-**<u>Example 1</u>**
-
-Let's say you want to find all buses that stop at Opp HSSML, but you type `/bus Opp HSML` instead.
 You will receive a message with suggested location names you can use as shown in the figure below.<br><br>
 <img src="UG_Figures/similarOutput1.png" alt="similar locs message" width = 550><br>
-_Figure 5: A message showing suggested locations._
+_Figure 19: A message showing suggested locations._
 
-You may then type in the command again with the correct location to see a list of buses that stop at Opp HSSML 
+You may then type in the command again with the correct location to see a list of buses that stop at **Opp HSSML** 
 as shown in the figure below.<br><br>
 <img src="UG_Figures/similarOutput2.png" alt="Correct input message" width=400><br>
-_Figure 6: Result when the input is correct._
+_Figure 20: Result when the input is correct._
 
 >Note: This check is only applicable to bus stop names, so the app performs it only when you enter a 
 ><code>/route</code> command or a <code>/bus</code> command. 
 
 ### 3.11. Reset data: ```/reset```
-This command resets the data set used to display most frequently search bus stop. <br>
-Format: <code>/reset</code> <br>
+This command resets the data set used to display most frequently search bus stop.
+
+The format for this command is as follows:<br> 
+<code>/reset</code>
+
 #### 3.11.1. Examples of usage
-<b><u>Example 1</u></b><br>
+**<u>Example 1</u>**<br>
 Let us suppose that you are transitioning to a new academic semester, and the locations that you will key in to the
 application changes. To create a new data set that will cater to your needs in this new semester, you will key in the
 command <code>/reset</code> to reset the data set and start the application on a clean slate.<br><br>
 <img src="UG_Figures/freq1.png" alt="Correct input message" width=600><br>
-_Figure 7: Output message after resetting data._
+_Figure 21: Output message after resetting data._
 
 
 ## 4. FAQ
