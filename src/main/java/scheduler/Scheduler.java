@@ -21,8 +21,24 @@ public class Scheduler {
         return dueBy.isBefore(getCurrentDate()) || dueBy.isEqual(getCurrentDate());
     }
 
+    public static boolean isDeadlineDueIn(LocalDate dueBy, int increment) {
+        if (dueBy == null) {
+            return false;
+        }
+        if (increment == 0) {
+            return dueBy.isBefore(getCurrentDate()) || dueBy.isEqual(getCurrentDate());
+        } else {
+            return dueBy.isEqual(getCurrentDate().plusDays(increment));
+        }
+    }
+
     public static LocalDate getCurrentDate() {
         return LocalDate.now();
+    }
+
+    public static String getIncrementedDate(int increment) {
+        LocalDate deadline = getCurrentDate().plusDays(increment);
+        return convertDueByToString(deadline);
     }
 
     public static LocalDate parseDate(String savedDate) {

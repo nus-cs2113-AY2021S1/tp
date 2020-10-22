@@ -1,26 +1,32 @@
 package manager.card;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class Card {
     private String question;
     private String answer;
     private int previousInterval;
     private LocalDate dueBy;
+    private int rating;
+    public static final int CANNOT_ANSWER = 0;
+    public static final int EASY = 1;
+    public static final int MEDIUM = 2;
+    public static final int HARD = 3;
 
     public Card(String question, String answer) {
-        this.question = question;
-        this.answer = answer;
-        this.dueBy = null;
-        this.previousInterval = 1;
+        setAnswer(answer);
+        setQuestion(question);
+        setDueBy(null);
+        setPreviousInterval(1);
+        setRating(CANNOT_ANSWER);
     }
 
-    public Card(String question, String answer, int previousInterval) {
-        this.question = question;
-        this.answer = answer;
-        this.dueBy = null;
-        this.previousInterval = previousInterval;
+    public Card(String question, String answer, int previousInterval, int rating) {
+        setAnswer(answer);
+        setQuestion(question);
+        setDueBy(null);
+        setPreviousInterval(previousInterval);
+        setRating(rating);
     }
 
 
@@ -58,5 +64,13 @@ public class Card {
 
     public String toString() {
         return "[Q] " + question + " | [A] " + answer;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public int getRating() {
+        return rating;
     }
 }

@@ -6,23 +6,25 @@ import commands.AddCommand;
 import commands.BackCommand;
 import commands.Command;
 import commands.EditCommand;
+import commands.ExcludeCommand;
 import commands.ExitCommand;
 import commands.GoCommand;
 import commands.HelpCommand;
+import commands.HistoryCommand;
 import commands.ListCommand;
 import commands.ListDueCommand;
+import commands.PreviewCommand;
+import commands.RateCommand;
 import commands.RemoveCommand;
+import commands.RescheduleCommand;
 import commands.ReviseCommand;
-import commands.HistoryCommand;
+import commands.ExcludeCommand;
+import commands.ShowRateCommand;
 
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import storage.Storage;
-
-
-import java.util.List;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
@@ -72,9 +74,43 @@ public class Parser {
             return prepareListDue(commandArgs);
         case HistoryCommand.COMMAND_WORD:
             return prepareHistory(commandArgs);
+        case RateCommand.COMMAND_WORD:
+            return prepareRate(commandArgs);
+        case ShowRateCommand.COMMAND_WORD:
+            return prepareShowRate(commandArgs);
+        case PreviewCommand.COMMAND_WORD:
+            return preparePreview(commandArgs);
+        case ExcludeCommand.COMMAND_WORD:
+            return prepareExclude(commandArgs);
+        case RescheduleCommand.COMMAND_WORD:
+            return prepareReschedule(commandArgs);
         default:
             throw new InvalidInputException("There is no such command type.\n");
         }
+    }
+
+    private static Command prepareShowRate(String commandArgs) throws InvalidInputException {
+        if (!commandArgs.isEmpty()) {
+            throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ShowRateCommand.COMMAND_WORD) + ShowRateCommand.MESSAGE_USAGE);
+        }
+        return new ShowRateCommand();
+    }
+
+    private static RateCommand prepareRate(String commandArgs)
+            throws InvalidInputException, IncorrectAccessLevelException {
+        int chapterIndex;
+        if (commandArgs.isEmpty()) {
+            throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    RateCommand.COMMAND_WORD) + RateCommand.MESSAGE_USAGE);
+        }
+        try {
+            chapterIndex = Integer.parseInt(commandArgs) - 1;
+        } catch (NumberFormatException e) {
+            throw new IncorrectAccessLevelException("The index for chapter should be an integer.\n"
+                    + RateCommand.MESSAGE_USAGE);
+        }
+        return new RateCommand(chapterIndex);
     }
 
     private static Command prepareHistory(String commandArgs) throws InvalidInputException {
@@ -418,8 +454,66 @@ public class Parser {
             throw new InvalidFileFormatException(
                     "There should be a number to indicate how many tasks have completed.");
         }
-
         return percent;
+    }
+
+    public static String parseRatingInFile(String arg) throws InvalidFileFormatException {
+        if (!(arg.trim().startsWith(Storage.RATING_PREFIX))) {
+            throw new InvalidFileFormatException("Answers in the file should begin with [R].");
+        }
+
+        String rating = arg.substring(3).trim();
+        if (rating.isEmpty()) {
+            throw new InvalidFileFormatException("There should be a rating after [R] in the file.");
+        }
+
+        return rating;
+    }
+
+    private static Command preparePreview(String commandArgs) throws InvalidInputException {
+        if (!commandArgs.isEmpty()) {
+            String errorMessage = "There should not be any arguments for preview." + PreviewCommand.MESSAGE_USAGE;
+            throw new InvalidInputException(errorMessage);
+        }
+        return new PreviewCommand();
+    }
+
+    private static Command prepareExclude(String commandArgs) throws InvalidInputException {
+        if (commandArgs.isEmpty()) {
+            throw new InvalidInputException(MESSAGE_MISSING_ARGS + ExcludeCommand.MESSAGE_USAGE);
+        }
+        return new ExcludeCommand(commandArgs);
+    }
+
+    private static Command prepareReschedule(String commandArgs) throws InvalidInputException {
+        try {
+            String[] args = commandArgs.split(" ", 2);
+            if (args[0].trim().isEmpty()) {
+                throw new InvalidInputException("The chapter number is missing.\n"
+                        + RescheduleCommand.MESSAGE_USAGE);
+            }
+
+            if (args[1].trim().isEmpty()) {
+                throw new InvalidInputException("The due date is missing.\n"
+                        + RescheduleCommand.MESSAGE_USAGE);
+            }
+
+            int index = Integer.parseInt(args[0].trim()) - 1;
+            LocalDate dueDate = LocalDate.parse(args[1].trim());
+            if (dueDate.isBefore(LocalDate.now())) {
+                throw new InvalidInputException("You cannot enter a due date that is before today.\n");
+            }
+            return new RescheduleCommand(index, dueDate);
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException("The chapter number needs to be an integer.\n"
+                    + RescheduleCommand.MESSAGE_USAGE);
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidInputException("The format for the reschedule command is incorrect.\n"
+                    + RescheduleCommand.MESSAGE_USAGE);
+        } catch (DateTimeParseException e) {
+            throw new InvalidInputException("The format for the date is incorrect.\n"
+                    + RescheduleCommand.MESSAGE_USAGE);
+        }
     }
 }
 

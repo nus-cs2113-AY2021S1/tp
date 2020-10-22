@@ -1,6 +1,7 @@
 package storage;
 
 import access.Access;
+import exception.ExclusionFileException;
 import exception.InvalidFileFormatException;
 import manager.card.Card;
 import manager.history.History;
@@ -25,6 +26,7 @@ public class Storage {
     public static final String QUESTION_PREFIX = "[Q]";
     public static final String ANSWER_PREFIX = "[A]";
     public static final String PREVIOUS_INTERVAL_PREFIX = "[P]";
+    public static final String RATING_PREFIX = "[R]";
     public static final String MESSAGE_CREATED = "Successfully created new %1$s %2$s\n";
     public static final String MESSAGE_EXISTS = "%1$s %2$s already exists\n";
     public static final String MESSAGE_MODULE_CHAPTER = "Module: %1$s ; Chapter: %2$s";
@@ -52,24 +54,24 @@ public class Storage {
         if (!dataDirExists) {
             dataDirCreated = f.getParentFile().mkdir();
         } else {
-            ui.showToUser(String.format(MESSAGE_EXISTS, DIR.substring(0,1).toUpperCase(),
+            ui.showToUser(String.format(MESSAGE_EXISTS, DIR.substring(0, 1).toUpperCase(),
                     f.getParentFile().getName()));
         }
         if (dataDirCreated) {
             ui.showToUser(String.format(MESSAGE_CREATED, DIR, f.getParentFile().getName()));
         }
-        createHistoryDir();
 
         boolean adminDirExists = f.exists();
         boolean adminDirCreated = false;
         if (!adminDirExists) {
             adminDirCreated = f.mkdir();
         } else {
-            ui.showToUser(String.format(MESSAGE_EXISTS, DIR.substring(0,1).toUpperCase(), f));
+            ui.showToUser(String.format(MESSAGE_EXISTS, DIR.substring(0, 1).toUpperCase(), f));
         }
         if (adminDirCreated) {
             ui.showToUser(String.format(MESSAGE_CREATED, DIR, f));
         }
+        createHistoryDir();
     }
 
     public String createModule(String moduleName) {
@@ -80,7 +82,7 @@ public class Storage {
         if (!moduleDirExists) {
             moduleDirCreated = f.mkdir();
         } else {
-            result = String.format(MESSAGE_EXISTS, DIR.substring(0,1).toUpperCase(), f);
+            result = String.format(MESSAGE_EXISTS, DIR.substring(0, 1).toUpperCase(), f);
         }
         if (moduleDirCreated) {
             result = String.format(MESSAGE_CREATED, DIR, f);
@@ -97,7 +99,7 @@ public class Storage {
         if (!chapterFileExists) {
             chapterFileCreated = f.createNewFile();
         } else {
-            result = String.format(MESSAGE_EXISTS, FILE.substring(0,1).toUpperCase(), f);
+            result = String.format(MESSAGE_EXISTS, FILE.substring(0, 1).toUpperCase(), f);
         }
         if (chapterFileCreated) {
             result = String.format(MESSAGE_CREATED, FILE, f);
@@ -116,6 +118,9 @@ public class Storage {
         String[] contents = f.list();
         ui.showToUser("List of files and directories in the specified directory:");
         for (String content : contents) {
+            if (content.equals("exclusions.txt")) {
+                continue;
+            }
             ui.showToUser(content);
             modules.add(new Module(content));
         }
@@ -146,6 +151,15 @@ public class Storage {
         return chapters;
     }
 
+    public String[] loadChaptersFrom(String moduleName) throws FileNotFoundException {
+        File file = new File(filePath + "/" + moduleName);
+        boolean moduleExists = file.exists();
+        if (!moduleExists) {
+            throw new FileNotFoundException();
+        }
+        return file.list();
+    }
+
     private String retrieveChapterDeadline(String moduleName, String chapterName) {
         File f = new File(filePath + "/" + moduleName + "/" + "dues" + "/" + chapterName + "due" + ".txt");
         try {
@@ -168,18 +182,45 @@ public class Storage {
         return f.exists();
     }
 
-    public ArrayList<DueChapter> loadAllDueChapters(Ui ui) throws FileNotFoundException {
+    private ArrayList<String> loadExcludedFile() throws ExclusionFileException {
+        File f = new File(getFilePath() + "/exclusions.txt");
+        ArrayList<String> excludedChapters = new ArrayList<>();
+        try {
+            if (!f.exists()) {
+                if (!f.createNewFile()) {
+                    throw new ExclusionFileException();
+                } else {
+                    return new ArrayList<String>();
+                }
+            }
+            Scanner s = new Scanner(f);
+            while (s.hasNext()) {
+                //to read the card
+                String entry = s.nextLine();
+                excludedChapters.add(entry);
+            }
+            s.close();
+            return excludedChapters;
+        } catch (IOException e) {
+            throw new ExclusionFileException();
+        }
+    }
+
+    public ArrayList<DueChapter> loadAllDueChapters(Ui ui) throws FileNotFoundException, ExclusionFileException {
+        //Loading in Excluded Chapters
+        ArrayList<String> excludedChapters = loadExcludedFile();
         //Loading in Modules
         File f = new File(filePath);
         boolean moduleExists = f.exists();
         if (!moduleExists) {
             throw new FileNotFoundException();
         }
-
         String[] modules = f.list();
         ArrayList<DueChapter> dueChapters = new ArrayList<>();
         for (String module : modules) {
-
+            if (module.equals("exclusions.txt")) {
+                continue;
+            }
             //Loading in Chapters for each module
             File f2 = new File(filePath + "/" + module);
             boolean chapterExists = f2.exists();
@@ -192,6 +233,10 @@ public class Storage {
             }
             for (String chapter : chapters) {
                 String target = chapter.replace(".txt", "");
+                String entry = "Module: " + module + "; Chapter: " + target;
+                if (excludedChapters.contains(entry)) {
+                    continue;
+                }
                 String deadline = retrieveChapterDeadline(module, target);
                 assert !deadline.equals(null) : "Invalid deadline retrieved";
                 if (deadline.equals("Invalid Date")) {
@@ -215,6 +260,72 @@ public class Storage {
         return dueChapters;
     }
 
+    public void chapterExists(String moduleName, String chapterName) throws FileNotFoundException {
+        File file = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
+        if (!file.exists()) {
+            throw new FileNotFoundException();
+        }
+    }
+
+    public void updateExclusionFile(ArrayList<String> excludedChapters) throws ExclusionFileException {
+        try {
+            FileWriter fw = new FileWriter(getFilePath() + "/exclusions.txt");
+            for (String excluded : excludedChapters) {
+                fw.write(excluded + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            throw new ExclusionFileException("Sorry, there was an error in accessing the Exclusion File");
+        }
+    }
+
+    public void appendModuleToExclusionFile(String moduleName) throws FileNotFoundException, ExclusionFileException {
+        ArrayList<String> excludedChapters = loadExcludedFile();
+        String[] chapters = loadChaptersFrom(moduleName);
+        for (String chapter : chapters) {
+            if (chapter.equals("dues")) {
+                continue;
+            }
+            chapter = chapter.replace(".txt", "");
+            String entry = "Module: " + moduleName + "; Chapter: " + chapter;
+            if (!excludedChapters.contains(entry)) {
+                excludedChapters.add(entry);
+            }
+        }
+        updateExclusionFile(excludedChapters);
+    }
+
+    public void appendChapterToExclusionFile(String moduleName, String chapterName) throws FileNotFoundException,
+            ExclusionFileException {
+        ArrayList<String> excludedChapters = loadExcludedFile();
+        chapterExists(moduleName, chapterName);
+        String entry = "Module: " + moduleName + "; Chapter: " + chapterName;
+        if (!excludedChapters.contains(entry)) {
+            excludedChapters.add(entry);
+        }
+        updateExclusionFile(excludedChapters);
+    }
+
+    public void removeModuleFromExclusionFile(String moduleName) throws FileNotFoundException, ExclusionFileException {
+        ArrayList<String> excludedChapters = loadExcludedFile();
+        String[] chapters = loadChaptersFrom(moduleName);
+        for (String chapter : chapters) {
+            chapter = chapter.replace(".txt", "");
+            String entry = "Module: " + moduleName + "; Chapter: " + chapter;
+            excludedChapters.remove(entry);
+        }
+        updateExclusionFile(excludedChapters);
+    }
+
+    public void removeChapterFromExclusionFile(String moduleName, String chapterName) throws FileNotFoundException,
+            ExclusionFileException {
+        ArrayList<String> excludedChapters = loadExcludedFile();
+        chapterExists(moduleName, chapterName);
+        String entry = "Module: " + moduleName + "; Chapter: " + chapterName;
+        excludedChapters.remove(entry);
+        updateExclusionFile(excludedChapters);
+    }
+
     public ArrayList<Card> loadCard(String module, String chapter) throws FileNotFoundException {
         File f = new File(filePath + "/" + module + "/" + chapter + ".txt");
         boolean fileExists = f.exists();
@@ -227,14 +338,16 @@ public class Storage {
         while (s.hasNext()) {
             //to read the card
             String fileCommand = s.nextLine();
-            String[] args = fileCommand.split(DELIMITER, 3);
+            String[] args = fileCommand.split(DELIMITER, 4);
             try {
                 String question = Parser.parseQuestionInFile(args[0]);
                 String answer = Parser.parseAnswerInFile(args[1]);
                 String interval = Parser.parsePreIntervalInFile(args[2]);
+                String rating = Parser.parseRatingInFile(args[3]);
                 int preInterval = Integer.parseInt(interval);
+                int intRating = Integer.parseInt(rating);
 
-                Card card = new Card(question, answer, preInterval);
+                Card card = new Card(question, answer, preInterval, intRating);
                 cards.add(card);
             } catch (InvalidFileFormatException e) {
                 return null;
@@ -247,8 +360,11 @@ public class Storage {
     public void saveCards(CardList cards, String module, String chapter) throws IOException {
         FileWriter fw = new FileWriter(getFilePath() + "/" + module + "/" + chapter + ".txt");
         for (int i = 0; i < cards.getCardCount(); i++) {
+            int ratingInt = cards.getCard(i).getRating();
+            String ratingString = Integer.toString(ratingInt);
             fw.write(cards.getCard(i).toString()
-                    + " | [P] " + cards.getCard(i).getPreviousInterval() + "\n");
+                    + " | [P] " + cards.getCard(i).getPreviousInterval() + " | [R] "
+                    + ratingString + "\n");
         }
         fw.close();
     }
@@ -319,6 +435,7 @@ public class Storage {
             f.mkdir();
         }
     }
+
 
     public void createHistory(Ui ui, String date) {
         try {

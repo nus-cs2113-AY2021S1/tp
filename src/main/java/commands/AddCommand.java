@@ -77,8 +77,12 @@ public class AddCommand extends Command {
             Module module = new Module(moduleOrChapter);
             result = addModule(access, storage, module);
         } else if (access.isModuleLevel()) {
-            Chapter chapter = new Chapter(moduleOrChapter, Chapter.rateChapter(), storage, access);
+            Chapter chapter = new Chapter(moduleOrChapter, rateChapter(), storage, access);
             result = addChapter(access, storage, chapter);
+            ui.showToUser(result);
+        } else {
+            throw new IncorrectAccessLevelException(String.format(MESSAGE_INVALID_ACCESS,
+                    access.getLevel(), accessLevel));
         }
 
         ui.showToUser(result);
@@ -119,6 +123,14 @@ public class AddCommand extends Command {
         result.append(content).append("\n");
         result.append(String.format(MESSAGE_COUNT, count, type));
         return result.toString();
+    }
+
+    public String rateChapter() {
+        if (Ui.chooseToRateNewDeck()) {
+            return Ui.getChoiceOfNewDeckRating();
+        } else {
+            return "N";
+        }
     }
 
     @Override
