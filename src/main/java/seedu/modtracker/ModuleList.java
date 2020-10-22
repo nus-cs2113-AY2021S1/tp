@@ -18,6 +18,11 @@ public class ModuleList {
     private static final String ERROR_ADDEXP = "Please type addexp <module code> <expected workload>";
     private static final String ERROR_DELETEMOD = "Please type deletemod <module code>";
     private static final String ERROR_DELETEEXP = "Please type deleteexp <module code>";
+    private static final String HOURS_EXCEED_ERROR = "Cannot minus actual time as there is no actual time inputted.";
+    private static final String HOURS_REMOVAL = " hours have been removed from ";
+    private static final String HOUR_REMOVAL = " hour has been removed from ";
+    private static final String HOURS_ADD = " hours have been added to ";
+    private static final String HOUR_ADD = " hour has been added to ";
     private static final int MIN_MOD_LENGTH = 6;
     private static final int MAX_MOD_LENGTH = 8;
     public static final int NO_INPUT = -1;
@@ -242,7 +247,9 @@ public class ModuleList {
     public void addTime(String input, boolean toPrint, Storage storage) {
         String[] commandInfo = input.trim().split(" ", 4);
         String modCode;
+        double hours;
         modCode = commandInfo[1].toUpperCase();
+        hours = Double.parseDouble(commandInfo[2]);
         if (!checkIfModuleValid(modCode, toPrint)) {
             return;
         }
@@ -257,8 +264,13 @@ public class ModuleList {
             int index = modList.indexOf(currentModule);
             modList.get(index).addActualTime(commandInfo[2], commandInfo[3]);
             if (toPrint) {
-                System.out.println(commandInfo[2] + " hours are added to " + modCode + System.lineSeparator());
-                storage.appendToFile(input);
+                if(hours > 1) {
+                    System.out.println(commandInfo[2] + HOURS_ADD + modCode + System.lineSeparator());
+                    storage.appendToFile(input);
+                } else {
+                    System.out.println(commandInfo[2] + HOUR_ADD + modCode + System.lineSeparator());
+                    storage.appendToFile(input);
+                }
             }
         }
     }
@@ -271,9 +283,12 @@ public class ModuleList {
      * @param storage storage object where data is stored.
      */
     public void minusTime(String input, boolean toPrint, Storage storage) {
-        String[] commandInfo = input.trim().split(" ", 4);
         String modCode;
+        double hours;
+        String[] commandInfo = input.trim().split(" ", 4);
         modCode = commandInfo[1].toUpperCase();
+        hours = Double.parseDouble(commandInfo[2]);
+
         if (!checkIfModuleValid(modCode, toPrint)) {
             return;
         }
@@ -290,13 +305,19 @@ public class ModuleList {
             if (modList.get(index).doesActualTimeExist(week)) {
                 modList.get(index).minusActualTime(commandInfo[2], commandInfo[3]);
                 if (toPrint) {
-                    System.out.println(commandInfo[2] + " hours are removed from "
-                            + modCode + System.lineSeparator());
-                    storage.appendToFile(input);
+                    if (hours > 1) {
+                        System.out.println(commandInfo[2] + HOURS_REMOVAL
+                                + modCode + System.lineSeparator());
+                        storage.appendToFile(input);
+                    } else {
+                        System.out.println(commandInfo[2] + HOUR_REMOVAL
+                                + modCode + System.lineSeparator());
+                        storage.appendToFile(input);
+                    }
                 }
             } else {
                 if (toPrint) {
-                    System.out.println("Cannot minus actual time as there is no actual time inputted."
+                    System.out.println(HOURS_EXCEED_ERROR
                             + System.lineSeparator());
                 }
             }

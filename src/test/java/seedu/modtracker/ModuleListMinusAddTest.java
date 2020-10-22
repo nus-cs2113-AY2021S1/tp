@@ -16,23 +16,48 @@ class ModuleListMinusAddTest {
 
 
     @Test
+    public void addTime_AddOnlyAnHour_ModuleWithoutActualWorkload_ModuleWithWorkloadAdded() {
+        modulesTest.addMod("addmod CS3030", true, storage);
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        modulesTest.addTime("addtime CS3030 1 4", true, storage);
+        String expected = "1 hour has been added to CS3030" + System.lineSeparator();
+        assertEquals(expected + System.lineSeparator(), outContent.toString());
+    }
+
+
+    @Test
     public void addTime_ModuleWithoutActualWorkload_ModuleWithWorkloadAdded() {
         modulesTest.addMod("addmod CS3030", true, storage);
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.addTime("addtime CS3030 4 4", true, storage);
-        String expected = "4 hours are added to CS3030" + System.lineSeparator();
+        String expected = "4 hours have been added to CS3030" + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
+
 
     @Test
     public void minusTime_ModuleWithActualWorkload_ModuleWithWorkloadSubtracted() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.minusTime("minustime CS3030 2 4", true, storage);
-        String expected = "2 hours are removed from CS3030" + System.lineSeparator();
+        String expected = "2 hours have been removed from CS3030" + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
+
+    @Test
+    public void minusTime_MinusOnlyAnHour_ModuleWithActualWorkload_ModuleWithWorkloadSubtracted() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        modulesTest.minusTime("minustime CS3030 1 4", true, storage);
+        String expected = "1 hour has been removed from CS3030" + System.lineSeparator();
+        assertEquals(expected + System.lineSeparator(), outContent.toString());
+    }
+
+
+
+
 
 
 }
