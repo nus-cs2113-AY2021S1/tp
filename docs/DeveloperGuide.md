@@ -87,6 +87,39 @@ This will generate all the resources required by the application and tests.
 
 ## 3. Design
 ## 4. Implementation
+
+ 4.a Rating Command
+ 
+The rating command was implemented in such a way where it takes in 2 parameters, the show to be rated and the desired rating for the show.
+Duke searches the list for the show that was inputted, if not found, a NullPointer exception will be thrown. Also, if the rating given is a negative number of exceeds 10, an IndexOutofBounds exception would be thrown. 
+
+After having retrieved the show in the list, the rating command sets the rating of the show and then proceeds to update it back into the show list.
+
+  4.b Change Rating Command
+  
+
+The change rating command was implemented in a similar way to the Rating Command. The command takes in 2 parameters, the show which rating is to be changed and the new rating to be updated to. 
+
+A Nullpointer exception is thrown when the show inputted is not in the show list and a IndexOutOfBounds exception is thrown when the updated rating is a negative number or greater than 10.
+
+After having retrieved the show from the show list, the change rating command proceeds to update the rating of the show before updating the show back into the show list.
+
+  4.c Delete Command
+  
+The delete command takes in 1 parameter, the show to be deleted.
+
+A Nullpointer exception is thrown when the show to be deleted cannot be found in the show list.
+
+If the show is found, the delete command proceeds to delete the show from the list.
+
+  4.d DeleteRating Command 
+
+The delete rating command takes in 1 parameter, the show which rating is to be deleted.
+
+A Nullpointer exception is thrown when the show to be deleted cannot be found in the show list.
+
+If the show is found, the delete rating command sets the rating back to -1 , essentially deleting the rating
+
 ## 5. Documentation
 ## 6. Testing
 ## 7. Dev Ops
