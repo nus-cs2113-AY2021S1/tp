@@ -32,44 +32,54 @@ Default (Default) #> Successfully added new workspace: WHITE CHoC MACADAMIA
 
 Default (Default) #> Workspace changed to WHITE CHoC MACADAMIA
 
-WHITE CHoC MACADAMIA (Default) #> Watchlist "a" has been created successfully!
+WHITE CHoC MACADAMIA (Default) #> OOPS!!! Please switch workspace before trying to delete it.
 
-WHITE CHoC MACADAMIA (Default) #> Watchlist "b" has been created successfully!
+WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace does not exist!
 
-WHITE CHoC MACADAMIA (Default) #> Watchlist "ops" has been created successfully!
+WHITE CHoC MACADAMIA (Default) #> Successfully added new workspace: COOKIES N CREME CH33SECAKE
 
-WHITE CHoC MACADAMIA (Default) #> "ops" is now your active watchlist!
+WHITE CHoC MACADAMIA (Default) #> Workspace changed to COOKIES N CREME CH33SECAKE
 
-WHITE CHoC MACADAMIA (ops) #> Watchlist "ops" has been deleted successfully!
+COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: WHITE CHoC MACADAMIA
+
+COOKIES N CREME CH33SECAKE (Default) #> Watchlist "a" has been created successfully!
+
+COOKIES N CREME CH33SECAKE (Default) #> Watchlist "b" has been created successfully!
+
+COOKIES N CREME CH33SECAKE (Default) #> Watchlist "ops" has been created successfully!
+
+COOKIES N CREME CH33SECAKE (Default) #> "ops" is now your active watchlist!
+
+COOKIES N CREME CH33SECAKE (ops) #> Watchlist "ops" has been deleted successfully!
 Changed active watchlist to: "Default".
 
-WHITE CHoC MACADAMIA (Default) #> Currently, you have 3 watchlist(s):
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 3 watchlist(s):
 	1. Default
 	2. a
 	3. b
 
-WHITE CHoC MACADAMIA (Default) #> Cowboy Bebop added to watchlist!
+COOKIES N CREME CH33SECAKE (Default) #> Cowboy Bebop added to watchlist!
 
-WHITE CHoC MACADAMIA (Default) #> Trigun added to watchlist!
+COOKIES N CREME CH33SECAKE (Default) #> Trigun added to watchlist!
 
-WHITE CHoC MACADAMIA (Default) #> Saving 1. Cowboy Bebop to bookmark.
+COOKIES N CREME CH33SECAKE (Default) #> Saving 1. Cowboy Bebop to bookmark.
 
-WHITE CHoC MACADAMIA (Default) #> Saving 410. InuYasha the Movie 2: The Castle Beyond the Looking Glass to bookmark.
+COOKIES N CREME CH33SECAKE (Default) #> Saving 410. InuYasha the Movie 2: The Castle Beyond the Looking Glass to bookmark.
 
-WHITE CHoC MACADAMIA (Default) #> Editing Cowboy Bebop to have 5 episode
+COOKIES N CREME CH33SECAKE (Default) #> Editing Cowboy Bebop to have 5 episode
 
-WHITE CHoC MACADAMIA (Default) #> Listing all anime in bookmark:
+COOKIES N CREME CH33SECAKE (Default) #> Listing all anime in bookmark:
 	1. Cowboy Bebop Ep: 5
 	2. InuYasha the Movie 2: The Castle Beyond the Looking Glass
 
 
-WHITE CHoC MACADAMIA (Default) #> OOPS!!! Anime is already in this watchlist!
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Anime is already in this watchlist!
 
-WHITE CHoC MACADAMIA (Default) #> [ID:1] Cowboy Bebop
+COOKIES N CREME CH33SECAKE (Default) #> [ID:1] Cowboy Bebop
 [ID:2] Cowboy Bebop: The Movie - Knockin' on Heaven's Door
 
 
-WHITE CHoC MACADAMIA (Default) #> 1. Cowboy Bebop [Id: 1]
+COOKIES N CREME CH33SECAKE (Default) #> 1. Cowboy Bebop [Id: 1]
 2. Cowboy Bebop: The Movie - Knockin' on Heaven's Door [Id: 2]
 3. Trigun [Id: 3]
 4. Witch Hunter Robin [Id: 4]
@@ -91,4 +101,4 @@ WHITE CHoC MACADAMIA (Default) #> 1. Cowboy Bebop [Id: 1]
 20. Zipang [Id: 20]
 Browsing Page: 1
 
-WHITE CHoC MACADAMIA (Default) #> Sayonara Abec Steiner 33rd-chan!
+COOKIES N CREME CH33SECAKE (Default) #> Sayonara Abec Steiner 33rd-chan!
