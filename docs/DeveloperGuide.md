@@ -159,6 +159,7 @@ bookmark state, and keeps information within the three arraylist using bookmark 
 object. 
 
 ![Bookmark Object Diagram 1](images/Bookmark-Default-State.PNG)
+
 Figure 3. Initial state of bookmark (First launch)
 
 Step 2. The user executes `bookmark -a 430`, the command adds the anime index `430` into bookmark. By default, 
@@ -166,29 +167,34 @@ the animeEpisode will be initialised to `0` which signify empty episode field, t
 object in noteList. This is to allow the first bookmark index to identify its respective anime index, episode and note.
 
 ![Bookmark Object Diagram 2](images/Bookmark-Add-Command.PNG)
+
 Figure 3. Bookmark state after step 2 (`bookmark -a 430`) 
 
 Step 2.5 Execute `bookmark -a 1` and `bookmark -a 410` to populate the Bookmark for better illustration.
 
 ![Bookmark Object Diagram 2](images/Bookmark-Add2-Command.PNG)
+
 Figure 3. Bookmark state after step 2.5 (`bookmark -a 1` and `bookmark -a 410`) 
 
 Step 3. The user executes `bookmark 2 -e 5`, the command will edit the bookmark index of `2` anime episode to `5`. 
 This allows the user to keep track of his/her progress within an anime series.
 
 ![Bookmark Object Diagram 2](images/Bookmark-Episode-Command.PNG)
+
 Figure 3. Bookmark state after step 3
 
 Step 4. The user executes `bookmark 2 -n Schedule Push Back`, the command will add a note to the Note object with 
 bookmark index `2`.
 
 ![Bookmark Object Diagram 2](images/Bookmark-Note-Command.PNG)
+
 Figure 3. Bookmark state after step 4
 
 Step 5. The user executes `bookmark -l`, this is the bookmark list command which outputs all anime names with the 
 bookmark index. The anime name is retrieved from AnimeData using the animeBookmarkList which keeps all anime id.
 
 ![Bookmark Object Diagram 2](images/Bookmark-List-Command.PNG)
+
 Figure 3. Bookmark state after step 5
 
 Step 6. The user executes `bookmark 2`, this is the command for bookmark info. The command will look up the bookmark 
@@ -196,11 +202,13 @@ index with `2`, use the AnimeData to retrieve all relevant information for that 
 command also prints all notes within the bookmark index `2` to the user.
 
 ![Bookmark Object Diagram 2](images/Bookmark-Info-Command.PNG)
+
 Figure 3. Bookmark state after step 6
 
 Step 7. The user executes `bookmark -d 2`. It will delete the bookmark index `2` within the three arraylist.
 
 ![Bookmark Object Diagram 2](images/Bookmark-Delete-Command.PNG)
+
 Figure 3. Bookmark state after step 7
 
 This is the end of the example. Bookmark information will be stored and is persistent through switching of workspace or 
@@ -232,7 +240,9 @@ Note: The magic constants have already been refactored out into constant variabl
 
 Let us now look at an example of how the default `browse` command would be carried out using an example page size of `3` 
 (it is set to `20` in actual execution) on a small sample list of `AnimeData`.
+
 ![Browse Object Diagram 1](images/Browse-Default-State.png)
+
 `BrowseCommand` will utilise the `buildBrowseOutput` operation to return all anime series in the page window, as shown 
 in the diagram above.
 
@@ -247,6 +257,7 @@ to construct a printable result for browsing.
 
 Moving on, if we were to run `browse -p 2` which is to browse the 2nd page of the list. 
 It would shift the page window down by 1 page as depicted in the diagram below.
+
 ![Browse Object Diagram 2](images/Browse-Default-State2.png)
 
 It will then carry out the remaining operation as per normal.
@@ -260,6 +271,7 @@ sort alphabetically and in ascending order (A-Z).
 Or in command form: `browse -n name -o asc -p 2`.
 
 ![Browse Object Diagram 3](images/Browse-Sorted-State.png)
+
 `BrowseCommand` will now firstly sort the AnimeData list through the `sortBrowseList` operation.
 
 As you can see, even though the page window is at the same position as the previous command, 
@@ -271,6 +283,7 @@ to revert the list back to its original form.
 This will be done through: `sortBrowseList(3)` method call.
 
 Here is the sequence diagram to better illustrate the lifecycle of a browse command.
+
 ![Browse Sequence Diagram](images/Browse-SequenceDiagram.png)
 
 ## 4. Product scope
