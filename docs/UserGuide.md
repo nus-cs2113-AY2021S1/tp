@@ -1,5 +1,42 @@
 # User Guide
 
+## Table of Contents
+- [Introduction](#introduction)
+- [Quick Start](#quick-start)
+- [Features](#features)
+- [Usage](#usage)
+  * [Book Management](#book-management)
+    * [Adding a book](#adding-a-book-add--b)
+    * [Listing all existing book](#listing-all-existing-books-list--b)
+    * [Listing books by an Author](#listing-books-by-an-author-list--b)
+    * [Finding books by keyword](#finding-books-by-keyword-find--b)
+    * [Deleting a book](#deleting-a-book-delete--b)
+  * [Quote Management](#quote-management)
+    * [Add quotes](#add-quotes-add--q)
+    * [List all quotes](#list-all-quotes-list--q)
+    * [List quotes from a specific reference](#list-quotes-from-a-specific-reference-list--q)
+    * [List quotes from a specific author](#list-quotes-from-a-specific-author-list--q)
+    * [List quotes from a specific reference and author](#list-quotes-from-a-specific-reference-and-author-list--q)
+    * [Delete a quote](#delete-a-quote-delete--q)
+    * [Edit an existing quote](#edit-an-existing-quote-edit--q)
+    * [Finding quotes](#finding-quotes-find--q)
+  * [Progress Tracker](#progress-tracker)
+  * [Category Management](#category-management)
+    * [Add categories](#add-categories-add--c)
+    * [List categories](#list-categories-list--c)
+    * [List items in a category](#list-items-in-a-category-list--c)
+    * [Delete categories](#delete-categories-delete--c)
+    * [Edit an existing category](#edit-an-existing-category-edit--c)
+  * [Rating System for Books](#rating-system)
+    * [Adding a book rating](#adding-a-book-rating-add--r)
+    * [Listing book ratings](#listing-book-ratings-list--r)
+    * [Deleting a book rating](#deleting-a-book-rating-delete--r)
+    * [Editing an existing book rating](#editing-an-existing-book-rating-edit--r)
+    * [Finding an existing book rating](#finding-an-existing-book-rating-find--r)
+- [Getting Help in Quotesify](#getting-help-in-quotesify)
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
+  
 ## Introduction
 
 Quotesify is a free desktop application to help you in your reading activities. With Quotesify, you can add 
@@ -273,6 +310,8 @@ If you like customising your own list, you can do so by categorising your books 
 Add one or more categories to a specified book or quote.
 
 Format: `add -c CATEGORIES {[-b BOOK_NUMBER] | [-q QUOTE_NUMBER]}`
+* `[-b BOOK_NUMBER]` tag is optional. Use it to specify an existing book.
+* `[-b QUOTE_NUMBER]` tag is optional. Use it to specify an existing quote.
 * You must specify either a book, quote, or both.
 * The specified book or quote should exist in Quotesify.
 * Multiple categories should be <u>space separated</u>.
@@ -294,13 +333,12 @@ Example of usage: `list -c`
 Expected outcome:
 ```
 Here is the list of all categories:
-1. lol - (1 items)
-2. action - (2 items)
-3. inspirational - (1 items)
-4. fantasy - (1 items)
+1. action - (2 items)
+2. inspirational - (1 items)
+3. fantasy - (1 items)
 ```
 
-#### List a specific category: `list -c`
+#### List items in a category: `list -c`
 List all books and quotes tagged under the specified category name.
 
 Format: `list -c CATEGORY`
@@ -317,16 +355,25 @@ BOOKS:
 #### Delete categories: `delete -c`
 Remove one or more categories from a specified book or quote.
 
-Format: `delete -c CATEGORIES {[-b BOOK_NUMBER] | [-q QUOTE_NUMBER]}`
-* You must specify either a book, quote, or both.
+Format: `delete -c CATEGORIES [-b BOOK_NUMBER] [-q QUOTE_NUMBER]`
+* `[-b BOOK_NUMBER]` tag is optional. Use it to specify an existing book.
+* `[-b QUOTE_NUMBER]` tag is optional. Use it to specify an existing quote.
 * The specified book or quote should exist in Quotesify.
 * Multiple categories should be <u>space separated</u>.
 
-Example of usage: `delete -c fantasy -b 1`
+Example of usage: 
+
+`delete -c fantasy -b 1`
+
+`delete -c fantasy`
 
 Expected outcome:
 ```
 I have removed category [fantasy] from "Harry Potter"!
+```
+
+```
+I have removed category [fantasy] from all books and quotes!
 ```
 
 #### Edit an existing category: `edit -c`

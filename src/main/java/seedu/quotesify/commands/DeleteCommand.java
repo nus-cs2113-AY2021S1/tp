@@ -226,14 +226,16 @@ public class DeleteCommand extends Command {
         }
     }
 
-    private void deleteCategory(CategoryList categoryList, String name, TextUi ui) {
-        try {
-            Category category = categoryList.getCategoryByName(name);
-            categoryList.deleteCategoryInBooksAndQuotes(name);
-            categoryList.getList().remove(category);
-            ui.printRemoveCategory(name);
-        } catch (QuotesifyException e) {
-            ui.printErrorMessage(e.getMessage());
+    private void deleteCategory(CategoryList categoryList, String categories, TextUi ui) {
+        for (String name : categories.split(" ")) {
+            try {
+                Category category = categoryList.getCategoryByName(name);
+                categoryList.deleteCategoryInBooksAndQuotes(name);
+                categoryList.getList().remove(category);
+                ui.printRemoveCategory(name);
+            } catch (QuotesifyException e) {
+                ui.printErrorMessage(e.getMessage());
+            }
         }
     }
 
