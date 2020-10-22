@@ -15,10 +15,14 @@
   * [3.2. Check bus route: ```/routemap```](#32-check-bus-route-routemap)
     + [3.2.1. Examples of usage](#321-examples-of-usage)
   * [3.3.Check for available bus at a location: ```/bus```](#33check-for-available-bus-at-a-location-bus)
+  * [3.3.Check for buses at a bus stop: ```/bus```](#33-check-for-buses-at-a-bus-stop)
+    + [3.3.1. Examples of usage](#331-examples-of-usage) 
   * [3.4. List all bus available in NUS ```/allbus```](#34-list-all-bus-available-in-nus-allbus)
   * [3.5. List all bus stops in NUS: ```/liststops```](#35-list-all-bus-stops-in-nus-liststops)
   * [3.6. Exiting the program: ```/exit```](#36-exiting-the-program-exit)
   * [3.7. Listing available help: ```help```](#37-listing-available-help-help)
+  * [3.8. Similarity Checks](#38-similarity-checks)
+    + [3.8.1 Examples of Usage](#381-examples-of-usage)
 - [4. FAQ](#4-faq)
 - [5. Command Summary](#5-command-summary)
 - [6. Glossary](#6-glossary)
@@ -57,22 +61,22 @@ This command displays all bus routes from one location to another that do not re
 The format of this command is as follows: <br>
 <code>/route <strong>location_1 /to location_2 </strong> </code>
 
-#### 3.1.1. Examples of usage
+#### 3.1.1. Examples of Usage
 
-<b><u>Example 1</u></b>
+**<u>Example 1</u>**
 
 Let's say you are currently at PGP and want to find out the buses you can board from PGP bus station to get to NUS IT.
 To find all such bus routes:
 1. Type <code>/route <strong> PGP /to NUS IT</strong></code> into the command line interface and press enter 
 to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/routeInput1.png" alt="inputCommand" width=450><br>
-<i>Figure 1: The input command to be given to find out bus routes from PGP to NUS IT.</i>
+_Figure 1: The input command to be given to find out bus routes from PGP to NUS IT._
 
 2. The result will be a message displaying the list of buses you can take with their routes as shown in the figure below.<br><br>
 <img src="UG_Figures/routeOutput1.png" alt="output" width=650><br>
-<i>Figure 2: The output message seen.</i>
+_Figure 2: The output message seen._
 
-<b><u>Example 2</u></b>
+**<u>Example 2</u>**
 
 Let's say you are currently at University Health Centre and you want to go to PGPR. But you accidentally type "Univerity 
 Health Center" instead. These are the steps to follow: 
@@ -82,7 +86,7 @@ press enter to execute the command as done in example 1.
 
 2. The result will be a message displaying suggestions for possible spelling errors you may have made.<br><br>
 <img src="UG_Figures/routeOutput2.png" alt="output" width=550><br>
-<i>Figure 3: The output message showing possible spelling errors.</i>
+_Figure 3: The output message showing possible spelling errors._
 
 3. Type <code>/route <strong> University Health Centre /to PGPR</strong></code> into the command line interface
 following the suggestion given.
@@ -90,7 +94,7 @@ following the suggestion given.
 4. The result will be a message displaying the list of buses you can take with their routes as shown in the figure 
 below.<br><br>
 <img src="UG_Figures/routeOutput3.png" alt="FinalOutput" width=650><br>
-<i>Figure 4: The output message showing bus routes.</i>
+_Figure 4: The output message showing bus routes._
 
 ### 3.2. Check bus route: ```/routemap```
 This command displays the full route of the bus that you have specified. <br>
@@ -128,14 +132,43 @@ which is relatively more crowded than other bus stops.<br><br>
 3. With this information, you could explore other bus routes to your destination.
 
 
-### 3.3.Check for available bus at a location: ```/bus```
-Checks for available bus at a user-specified location <br>
-Format: <code>/bus<strong>bus code</strong></code> <br>
-Example of usage: <code>/bus<strong> PGP</strong></code> <br>
-Expected outcome: 
-```
-PGP:  AA1   AA2
-```
+### 3.3.Check for buses at a bus stop: ```/bus```
+This command displays all buses available at a specific bus stop  <br>
+
+The format of this command is as follows: <br>
+<code>/bus<strong> bus stop</strong></code> <br>
+
+#### 3.3.1 Examples of Usage
+**<u>Example 1</u>** <br>
+Let's say that you are at <strong>University Town</strong> bus stop, and you want to know the buses which are available for you to take.
+
+Instead of searching for the bus stops which all the buses stop at, you can easily access this information by using the  <code>/bus</code> command.
+
+To search for available buses at University Town:
+
+1. Type <code>/bus <strong>University Town</strong></code> into the CLI and press enter to execute the command as shown in the figure below. <br><br>
+<img src="UG_Figures/bus4.png" width=550><br>
+_Figure x: Input command to find buses at University Town._
+
+2. The result will be a message displaying the buses available at University Town. <br><br>
+<img src="UG_Figures/bus3.png"><br>
+_Figure x: Output message showing buses at University Town._
+
+
+**<u>Example 2</u>** <br>
+Let's say that you are at the <strong>museum</strong> bus stop, and you want to know the buses which are available for you to take. However, you make a spelling error and type <strong>"musuem"</strong> instead. <br>
+
+These are the steps to fix the mistake:
+
+1. The result will be a message displaying bus stop suggestions for possible error in user input.<br><br>
+<img src="UG_Figures/bus2.png"><br>
+_Figure x: Output message showing suggestions for typo "musuem"._
+
+2. Type <code>/bus <strong>museum</strong></code> into the CLI as suggested in the above output.<br>
+
+3. The result will be a message displaying the buses available at the museum.<br><br>
+<img src="UG_Figures/bus1.png"><br>
+_Figure x: Input command to find buses at museum._
 
 ### 3.4. List all bus available in NUS ```/allbus```
 Lists all bus available in NUS. <br>
@@ -175,16 +208,20 @@ PGPR : Prince George's Park Residence
 ```
 
 ### 3.6. Exiting the program: ```/exit```
-Exits the program <br>
-Example of usage: <code>/exit</code> <br>
-Expected outcome:
+This command helps you exit the application.<br>
+The format of this command is as follows:<br>
+<code>/exit</code> <br>
+
+The application exits after displaying the following message:<br>
 ```
 So long buddy!
 ```
 
 ### 3.7. Listing available help: ```help```
-Lists a set of commands available to users <br>
-Example of usage: <code>/help</code> <br>
+This command lists a set of features along with their respective commands available to users.<br>
+The format of this command is as follows:<br> 
+<code>/help</code> <br>
+
 Expected outcome:
 ```
 Here are the range of commands:
@@ -198,22 +235,45 @@ Here are the range of commands:
 
 ```
 
+### 3.8. Similarity Checks
+
+When you enter a location and make a spelling error or a typo in the name, the app performs a similarity check with 
+existing location names and suggests some locations to you. The app executes this command automatically and does not 
+require any explicit input from you.
+
+#### 3.8.1. Examples of Usage
+
+**<u>Example 1</u>**
+
+Let's say you want to find all buses that stop at Opp HSSML, but you type `/bus Opp HSML` instead.
+You will receive a message with suggested location names you can use as shown in the figure below.<br><br>
+<img src="UG_Figures/similarOutput1.png" alt="similar locs message" width = 550><br>
+_Figure 5: A message showing suggested locations._
+
+You may then type in the command again with the correct location to see a list of buses that stop at Opp HSSML 
+as shown in the figure below.<br><br>
+<img src="UG_Figures/similarOutput2.png" alt="Correct input message" width=400><br>
+_Figure 6: Result when the input is correct._
+
+>Note: This check is only applicable to bus stop names, so the app performs it only when you enter a 
+><code>/route</code> command or a <code>/bus</code> command. 
+
 ## 4. FAQ
-Some common questions to aid in possible issues faces.
+This section addresses some common questions to aid in possible issues faced.
 
 **Q:** Where can I find the release? <br>
 It can be found at [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
 
 ## 5. Command Summary
-Summary of features and command formats.
+The following table provides a summary of features and command formats.
 
 >Note: No additional parameter is needed if it is not mentioned. eg help <br>
 
 Command | Format | Example
 --- | --- | ---
 /route | `/route` **location1 /to location2** | `/route` **PGP /to Raffles Hall**
-/routemap | `/routemap` **bus code** | `deadline` **/routemap AA1** 
-/bus | `/bus` **location** | `event` **/bus PGP**
+/routemap | `/routemap` **bus code** | `/routemap` **AA1** 
+/bus | `/bus` **location** | `/bus` **PGP**
 /allbus | `/allbus` | `/allbus`
 /liststops | `liststops`| `/liststops`
 /exit | `/exit` | `/exit`

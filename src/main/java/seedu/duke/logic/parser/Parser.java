@@ -4,16 +4,15 @@ import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
 import seedu.duke.logic.commands.AllBusCommand;
 import seedu.duke.logic.commands.BusCommand;
-import seedu.duke.logic.commands.Command;
 import seedu.duke.logic.commands.DineCommand;
 import seedu.duke.logic.commands.DineInfoCommand;
 import seedu.duke.logic.commands.ExitCommand;
 import seedu.duke.logic.commands.HelpCommand;
 import seedu.duke.logic.commands.ListStopsCommand;
-import seedu.duke.logic.commands.RouteCommand;
 import seedu.duke.logic.commands.RouteMapCommand;
-
-import java.lang.reflect.Array;
+import seedu.duke.logic.commands.RouteCommand;
+import seedu.duke.logic.commands.ResetSearchFreqCommand;
+import seedu.duke.logic.commands.Command;
 
 public class Parser {
 
@@ -63,6 +62,9 @@ public class Parser {
             break;
         case "/help":
             com = new HelpCommand();
+            break;
+        case "/reset":
+            com = new ResetSearchFreqCommand();
             break;
         case "/exit":
             com = new ExitCommand();
