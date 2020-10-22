@@ -158,42 +158,18 @@ PGPR : Prince George's Park Residence
 Lists out all dining outlets available within a chosen faculty.<br>
 Format: <code>/dine <strong>faculty</strong></code> <br>
 Example of usage: <code>/dine <strong>business</strong></code> <br>
-Expected outcome:
-```
-The dining options available at School of Business are:
-1. The Spread
-2. Salad Express X Pasta Express
-3. Uncle Penyet (Indonesian Express)
-4. Liang Ban Kung Fu
-5. The Deck
-6. The Coffee Hut
-7. Omo store
-8. Cool Spot Drinks
-9. Takeaway Food Kiosks
-10. Cafe Delight
-11. Reedz Café
-12. University Club
-13. The Coffee Roaster
-14. Maxx Coffee
-```
+Expected outcome:<br>
+<img src="UG_Figures/dine1.png" alt="output" width=650><br>
+_Figure 2: The output message seen._
 
 
 ### 3.7. Search for specific dining outlet: ```/dineinfo```
 Search for all dining outlets that contains the keyword, and display their location and operating hours.<br>
 Format: <code>/dineinfo <strong>keyword</strong></code> <br>
 Example of usage: <code>/dineinfo <strong>arise</strong></code> <br>
-Expected outcome:
-```
-The stores that match your search:
-
-Arise & Shine:
-Science Block S16
-Mon-Fri, 7.00am-8.00pm Sat/Sun/PH, 7.00am-3.00pm
-
-Arise & Shine:
-Engineering Block E4
-Mon-Fri, 7.00am-8.00pm Sat/Sun/PH, 7.00am-3.00pm
-```
+Expected outcome:<br>
+<img src="UG_Figures/dineinfo1.png" alt="output" width=650><br>
+_Figure 2: The output message seen._
 
 ### 3.8. Exiting the program: ```/exit```
 This command helps you exit the application.<br>
