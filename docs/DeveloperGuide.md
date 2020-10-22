@@ -369,11 +369,15 @@ Improves the reading experience of users with quick and easy features
      Expected: A message will be prompted to indicate that categories have been removed from both book and quote successfully.
 
 4. Remove one or more category from list
-   - To be implemented
-
+   - Test case: `delete -c action`
+   
+   Expected: A message will be prompted to indicate that category has been removed from all book and quotes.
+   - Test case: `delete -c action fantasy`
+   
+   Expected: A message will be prompted to indicate that categories has been removed from all book and quotes.
+   
 5. Incorrect commands to try
    - `delete -c` missing category name, book or quote
-   - `delete -c action` missing a book or quote
    - `delete -c action -b 0 -q 0` invalid book and quote index
    - `delete -c -b 1 -q 1` missing category name
    

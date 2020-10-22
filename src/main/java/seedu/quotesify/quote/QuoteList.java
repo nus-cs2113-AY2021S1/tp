@@ -73,7 +73,7 @@ public class QuoteList extends QuotesifyList<Quote> {
     public String getRandomQuote() {
         try {
             Random rand = new Random();
-            int randomQuoteNumber = rand.nextInt(getSize() - 1);
+            int randomQuoteNumber = rand.nextInt(getSize());
             Quote quoteToPrint = getQuote(randomQuoteNumber);
             return quoteToPrint.toString();
         } catch (IllegalArgumentException e) {
