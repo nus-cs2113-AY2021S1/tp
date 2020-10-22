@@ -98,3 +98,57 @@ This section will help provide insight to the general overview of Anichan’s ar
 ![Architectural Diagram](images/Architectural-Class-Diagram.png)
 
 *Figure 1: Architecture Diagram*
+
+| :bulb:  | The images used are stored in the directory: `images/`. If you wish to update a diagram you may replace the images in this folder |
+|---------------|:------------------------|
+
+The **Architecture Diagram** presented above explains the high-level design of AniChan, and given below is a quick overview of each component involved.
+
+The `Main` class is the starting point of the application and has only one class called `Main`, it is responsible for, 
+* At launch: Initializes the various components in the correct sequence, connects them up with each other, and loads any saved data.
+* At shut down: Shuts down the components and invokes any clean up methods where necessary.
+
+The rest of AniChan consists of 6 components: 
+- `Ui`: Manages the user interface of AniChan.
+- `Parser`: Parses the user input.
+- `Command`: Executes the command.
+- `User`: Manages the workspace(s) and user data.
+- `AnimeData`: Provides data from the anime source file.
+- `StorageManager`: Reads data from, and writes data to, the hard disk.
+
+<br/>
+
+Below is an overall sequence diagram to help illustrate the general program flow and how the different objects interact with each other.
+
+<br/>
+
+![Main Sequence Diagram](images/Overall-Sequence-Diagram.png) <br/>
+*Figure 2: Overall sequence diagram* 
+<br/>
+<br/>
+
+### 3.2 UI Component
+![UI Component Diagram](images/Ui-Class-Diagram.png) <br/>
+*Figure 3: UI Component Diagram*
+
+The UI component consists of a `UI` class that handles all user input and system output. The UI is only dependent on the `Main` class and does not interact directly with other classes ensuring high cohesiveness and separation of roles.
+
+The `Ui` component listens for: 
+*  the execution of commands to print the result of the Command.
+* any exceptions thrown to show an error message to the user, instead of a program termination.
+
+<br/>
+
+### 3.3 Parser Component
+![Parser Component Diagram](images/Parser-Class-Diagram.png) <br/>
+*Figure 4: Parser Component Diagram*
+
+The `Parser` component consists of a `Parser` class and multiple `XYZParser` each representing a specific command’s parser. The Parser class will first receive a user command from `Main` and will proceed to determine the command type.
+
+Once the command type is known, it will then create the respective `XYZParser` class.
+
+Example: If Browse command was parsed, `Parser` will create `BrowseParser`.
+
+`XYZParser` will then parse the parameter and perform input validation, before creating the Command object to return to `Main`.
+
+<br/>
