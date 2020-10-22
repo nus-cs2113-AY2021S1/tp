@@ -6,12 +6,11 @@ import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.UiManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CashbackTest {
-    private static InputParser inputParser = new InputParser();
+public class CashbackTest { ;
 
     public static CommandPacket handleInput(String input) {
         UiManager.printInputPrompt();
-        return inputParser.parseInput(input.toLowerCase());
+        return InputParser.getInstance().parseInput(input.toLowerCase());
     }
 
     @Test

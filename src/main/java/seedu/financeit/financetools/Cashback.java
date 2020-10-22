@@ -20,7 +20,6 @@ public class Cashback extends ParamHandler {
     }
 
     public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
-        this.paramChecker = new ParamChecker(packet);
         try {
             this.handleParams(packet);
         } catch (ItemNotFoundException exception) {
@@ -52,17 +51,17 @@ public class Cashback extends ParamHandler {
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case "/amount":
-            this.amount = paramChecker.checkAndReturnDouble(paramType);
+            this.amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         case "/cashback":
-            this.cashbackRate = paramChecker.checkAndReturnDouble(paramType);
+            this.cashbackRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         case "/cap":
-            this.monthlyCap = paramChecker.checkAndReturnDouble(paramType);
+            this.monthlyCap = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         default:
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    paramChecker.getUnrecognizedParamMessage(paramType));
+                    ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             break;
         }
     }

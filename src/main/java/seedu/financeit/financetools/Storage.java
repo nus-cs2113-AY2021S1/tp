@@ -29,7 +29,6 @@ public class Storage extends ParamHandler {
     }
 
     public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
-        this.paramChecker = new ParamChecker(packet);
         try {
             this.handleParams(packet);
         } catch (ItemNotFoundException exception) {
@@ -78,16 +77,16 @@ public class Storage extends ParamHandler {
             this.nameLabel = packet.getParam(paramType);
             break;
         case "/ir":
-            this.interestRate = paramChecker.checkAndReturnDouble(paramType);
+            this.interestRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         case "/cashb":
-            this.cashbackRate = paramChecker.checkAndReturnDouble(paramType);
+            this.cashbackRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         case "/cap":
-            this.monthlyCap = paramChecker.checkAndReturnDouble(paramType);
+            this.monthlyCap = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         case "/delete":
-            this.deleteIndex = paramChecker.checkAndReturnInt(paramType);
+            this.deleteIndex = ParamChecker.getInstance().checkAndReturnInt(paramType);
             this.activateDelete = true;
             break;
         case "/note":
@@ -95,7 +94,7 @@ public class Storage extends ParamHandler {
             break;
         default:
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    paramChecker.getUnrecognizedParamMessage(paramType));
+                ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             break;
         }
     }

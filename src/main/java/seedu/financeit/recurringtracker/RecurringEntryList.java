@@ -46,7 +46,7 @@ public class RecurringEntryList extends ItemList {
             throws ParseFailParamException {
         switch (paramType) {
         case ParamChecker.PARAM_INDEX:
-            int index = paramChecker.checkAndReturnIndex(paramType, super.items);
+            int index = ParamChecker.getInstance().checkAndReturnIndex(paramType, super.items);
             super.indexToModify = index;
             break;
         //Params for RecurringEntry to parse;
@@ -60,7 +60,7 @@ public class RecurringEntryList extends ItemList {
         case ParamChecker.PARAM_NOTES:
         default:
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    paramChecker.getUnrecognizedParamMessage(paramType));
+                    ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
         }
     }
 

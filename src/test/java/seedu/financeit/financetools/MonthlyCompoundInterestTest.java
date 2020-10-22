@@ -7,11 +7,10 @@ import seedu.financeit.ui.UiManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MonthlyCompoundInterestTest {
-    private static InputParser inputParser = new InputParser();
 
     public static CommandPacket handleInput(String input) {
         UiManager.printInputPrompt();
-        return inputParser.parseInput(input.toLowerCase());
+        return InputParser.getInstance().parseInput(input.toLowerCase());
     }
 
     @Test

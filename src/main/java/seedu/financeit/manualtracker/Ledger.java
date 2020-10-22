@@ -50,12 +50,12 @@ public class Ledger extends DateTimeItem {
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case ParamChecker.PARAM_DATE:
-            this.date = super.paramChecker.checkAndReturnDate(paramType);
+            this.date = ParamChecker.getInstance().checkAndReturnDate(paramType);
             this.setDate(this.date);
             break;
         default:
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                paramChecker.getUnrecognizedParamMessage(paramType));
+                ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             break;
         }
     }

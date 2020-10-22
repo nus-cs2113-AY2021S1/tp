@@ -7,9 +7,7 @@ import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.UiManager;
-
-import java.util.ArrayList;
-import java.lang.Math;
+import seedu.financeit.utils.ParamChecker;
 
 public class MonthlyCompoundInterest extends ParamHandler {
 
@@ -71,20 +69,20 @@ public class MonthlyCompoundInterest extends ParamHandler {
             ItemNotFoundException {
         switch (paramType) {
         case "/amount":
-            this.amount = paramChecker.checkAndReturnDouble(paramType);
+            this.amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         case "/ir":
-            this.interestRate = paramChecker.checkAndReturnDouble(paramType);
+            this.interestRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         case "/period":
-            this.calculationPeriod = paramChecker.checkAndReturnInt(paramType);
+            this.calculationPeriod = ParamChecker.getInstance().checkAndReturnInt(paramType);
             break;
         case "/deposit":
-            this.monthlyDeposit = paramChecker.checkAndReturnDouble(paramType);
+            this.monthlyDeposit = ParamChecker.getInstance().checkAndReturnDouble(paramType);
             break;
         default:
             UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
-                    paramChecker.getUnrecognizedParamMessage(paramType));
+                ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             break;
         }
     }

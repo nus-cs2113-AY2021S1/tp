@@ -20,7 +20,7 @@ public class RecurringTracker {
             UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY, DirectoryMainMenu);
             UiManager.printInputPromptMessage();
             String input = UiManager.handleInput();
-            CommandPacket packet = new InputParser().parseInput(input);
+            CommandPacket packet = InputParser.getInstance().parseInput(input);
             UiManager.refreshPage();
             switch (packet.getCommandString()) {
             case "add":

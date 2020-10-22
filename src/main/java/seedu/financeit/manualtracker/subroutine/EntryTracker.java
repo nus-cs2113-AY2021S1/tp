@@ -88,7 +88,7 @@ public class EntryTracker {
         );
 
         String input = UiManager.handleInput();
-        packet = new InputParser().parseInput(input);
+        packet = InputParser.getInstance().parseInput(input);
         UiManager.refreshPage();
         switch (packet.getCommandString()) {
         case "entry edit":

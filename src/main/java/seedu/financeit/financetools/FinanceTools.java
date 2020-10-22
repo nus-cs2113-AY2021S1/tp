@@ -156,7 +156,7 @@ public class FinanceTools {
             UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY, "[ MAIN_MENU -> FINANCE_TOOLS_MENU ]");
             UiManager.printInputPromptMessage();
             String input = UiManager.handleInput();
-            CommandPacket packet = new InputParser().parseInput(input);
+            CommandPacket packet = InputParser.getInstance().parseInput(input);
             switch (packet.getCommandString()) {
             case "simplecalc":
                 System.out.print("Total Interest Earned: $" + handleSimpleInterest(packet));

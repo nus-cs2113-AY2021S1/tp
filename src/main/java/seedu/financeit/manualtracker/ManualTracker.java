@@ -75,7 +75,7 @@ public class ManualTracker {
         UiManager.printInputPromptMessage();
 
         String input = UiManager.handleInput();
-        packet = new InputParser().parseInput(input);
+        packet = InputParser.getInstance().parseInput(input);
         UiManager.refreshPage();
         switch (packet.getCommandString()) {
         case "ledger open":
