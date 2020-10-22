@@ -13,6 +13,7 @@ import fitr.command.HelpCommand;
 import fitr.command.DeleteCommand;
 import fitr.command.ExitCommand;
 import fitr.command.AddGoalCommand;
+import fitr.command.RecommendCommand;
 import fitr.common.Commands;
 
 /**
@@ -52,6 +53,8 @@ public class Parser {
             return new ExitCommand(arguments);
         case Commands.COMMAND_GOAL:
             return new AddGoalCommand(arguments);
+        case Commands.COMMAND_RECOMMEND:
+            return new RecommendCommand();
         default:
             return new InvalidCommand(arguments);
         }
