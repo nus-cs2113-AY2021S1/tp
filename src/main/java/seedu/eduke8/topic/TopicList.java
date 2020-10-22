@@ -27,20 +27,6 @@ public class TopicList implements DisplayableList {
     }
 
     @Override
-    public void add(Displayable topic) {
-        String message = "Topic " + topic.getDescription() + " added";
-        topics.add(topic);
-        LOGGER.log(Level.INFO, message);
-    }
-
-    @Override
-    public void delete(int index) {
-        String message = "Topic " + topics.get(index).getDescription() + " deleted";
-        topics.remove(index);
-        LOGGER.log(Level.INFO, message);
-    }
-
-    @Override
     public Displayable find(String topicName) {
         for (Displayable topic : topics) {
             if (topicName.equals(topic.getDescription())) {
