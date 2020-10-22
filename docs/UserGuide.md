@@ -179,7 +179,7 @@ Lists all bus available in NUS. <br>
 Example of usage: <code>/allbus</code> <br>
 Expected outcome:
 
-<img src="UG_Figures/allbus1.png" alt="inputCommand" width=450><br>
+<img src="UG_Figures/allbus1.png" alt="inputCommand" width=800><br>
 
 ### 3.5. List all bus stops in NUS: ```/liststops```
 Lists all bus stops in NUS. <br>
@@ -189,7 +189,7 @@ Format: <code>/liststops</code> <br>
 Example of usage: <code>/lisstops</code> <br>
 Expected outcome:
 
-<img src="UG_Figures/listOutput.png" alt="inputCommand" width=450><br>
+<img src="UG_Figures/listOutput.png" alt="inputCommand" width=800><br>
 
 ### 3.6. Search for dining options within a faculty: ```/dine```
 This command lists out all dining outlets available within a chosen faculty.<br>
@@ -237,7 +237,7 @@ The format of this command is as follows:<br>
 
 Expected outcome:
 
-<img src="UG_Figures/help1.png" alt="inputCommand" width=450><br>
+<img src="UG_Figures/help1.png" alt="inputCommand" width=800><br>
 
 ### 3.10. Similarity Checks
 
