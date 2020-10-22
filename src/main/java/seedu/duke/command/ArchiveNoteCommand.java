@@ -55,7 +55,9 @@ public class ArchiveNoteCommand extends Command {
             if (title.isBlank()) {
                 title = notebook.archiveNotes(index);
             } else {
-                title = notebook.archiveNotes(title);
+                if (!notebook.archiveNotes(title)) {
+                    return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+                }
             }
             return Formatter.formatString(ARCHIVE_NOTE_MESSAGE + title);
         } catch (IndexOutOfBoundsException exception) {

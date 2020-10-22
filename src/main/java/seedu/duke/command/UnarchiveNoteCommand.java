@@ -53,7 +53,9 @@ public class UnarchiveNoteCommand extends Command {
             if (title.isBlank()) {
                 title = notebook.unarchiveNotes(index);
             } else {
-                title = notebook.unarchiveNotes(title);
+                if (!notebook.unarchiveNotes(title)) {
+                    return Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+                }
             }
             return Formatter.formatString(UNARCHIVE_NOTE_MESSAGE + title);
         } catch (IndexOutOfBoundsException exception) {

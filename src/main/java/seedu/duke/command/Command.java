@@ -11,7 +11,6 @@ import seedu.duke.storage.StorageManager;
 public abstract class Command {
 
     protected Notebook notebook;
-    protected Notebook archivedNotebook;
     protected Timetable timetable;
     protected TagManager tagManager;
     protected StorageManager storageManager;

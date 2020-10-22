@@ -66,12 +66,12 @@ public class Note {
         return (isPinned);
     }
 
-    public void togglePinned() {
-        isPinned = !isPinned;
+    public String getPinnedString() {
+        return (isPinned ? "Y" : "N");
     }
 
-    public boolean getIsArchived() {
-        return isArchived;
+    public void togglePinned() {
+        isPinned = !isPinned;
     }
 
     public void setPinned(Boolean pinned) {

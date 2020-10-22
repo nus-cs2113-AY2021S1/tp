@@ -41,24 +41,8 @@ public class Formatter {
      */
     public static String formatNotes(String header, ArrayList<Note> notes) {
         String formattedString = "";
-        return getNoteString(header, notes, formattedString);
-    }
 
-    /**
-     * Method compiles the ArrayList items and appends the items to a String.
-     *
-     * @return noteString StringBuilder containing the notes ready to be printed
-     */
-    public static String formatNotes(String pinnedHeader, String unpinnedHeader,
-                                     ArrayList<Note> pinned, ArrayList<Note> unpinned) {
-        String formattedString = "";
-        formattedString = getNoteString(pinnedHeader, pinned, formattedString);
-        formattedString = getNoteString(unpinnedHeader, unpinned, formattedString);
-        return formattedString;
-    }
-
-    private static String getNoteString(String header, ArrayList<Note> notes, String formattedString) {
-        formattedString = formattedString.concat(generatesHeader(header));
+        formattedString.concat(generatesHeader(header));
 
         for (Note note: notes) {
             String colorText = colorize("Title: " + note.getTitle() + " "
@@ -72,6 +56,19 @@ public class Formatter {
             formattedString = formattedString.concat(generatesRowSplit());
         }
         return encloseTopAndBottom(formattedString);
+    }
+
+    /**
+     * Method compiles the ArrayList items and appends the items to a String.
+     *
+     * @return noteString StringBuilder containing the notes ready to be printed
+     */
+    public static String formatNotes(String pinnedHeader, String unpinnedHeader,
+                                     ArrayList<Note> pinned, ArrayList<Note> unpinned) {
+        String formattedString = "";
+        formattedString = formatNotes(pinnedHeader, pinned);
+        formattedString = formattedString.concat(formatNotes(unpinnedHeader, unpinned));
+        return formattedString;
     }
 
     public static String formatNote(String header, Note note) {

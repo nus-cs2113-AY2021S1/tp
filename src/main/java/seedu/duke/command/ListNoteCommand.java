@@ -121,8 +121,6 @@ public class ListNoteCommand extends Command {
                 notes = notebook.getNotes();
             } else if (isSorted) {
                 notes = notebook.getSortedList(isAscendingOrder, (Boolean) null);
-            } else {
-                return Formatter.formatString("Some Error");
             }
 
             if (notes.isEmpty()) {

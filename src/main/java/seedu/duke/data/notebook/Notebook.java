@@ -96,22 +96,22 @@ public class Notebook {
      *
      * @return noteString String containing the notes sorted either ascending ot descending
      */
-    public ArrayList<Note> getSortedList(Boolean isAscendingOrder, Boolean notebookToggle) {
+    public ArrayList<Note> getSortedList(Boolean isAscendingOrder, Boolean isPinned) {
         ArrayList<Note> sortedNotes = new ArrayList<>();
 
-        if (notebookToggle == null) {
+        if (isPinned == null) {
             // Takes the notes in the notebook and sorts them according to title, alphabetically (a-z)
             sortedNotes = (ArrayList<Note>) notes.stream()
                     .filter(Objects::nonNull)
                     .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
                     .collect(Collectors.toList());
-        } else if (!notebookToggle) {
+        } else if (!isPinned) {
             sortedNotes = (ArrayList<Note>) notes.stream()
                     .filter(Objects::nonNull)
                     .filter((s) -> !s.getPinned())
                     .sorted(Comparator.comparing(a -> a.getTitle().toLowerCase()))
                     .collect(Collectors.toList());
-        } else if (notebookToggle) {
+        } else if (isPinned) {
             sortedNotes = (ArrayList<Note>) notes.stream()
                     .filter(Objects::nonNull)
                     .filter((s) -> s.getPinned())
@@ -168,8 +168,14 @@ public class Notebook {
         return notes.get(index);
     }
 
-    public Note getNote(String noteTitle, ArrayList<Note> notebook) {
-        return notebook.stream()
+    public Note getNote(String noteTitle, boolean isArchive) {
+        if (isArchive) {
+            return notes.stream()
+                    .filter((s) -> s.getTitle().equalsIgnoreCase(noteTitle))
+                    .findFirst().get();
+        }
+
+        return archivedNotes.stream()
                 .filter((s) -> s.getTitle().equalsIgnoreCase(noteTitle))
                 .findFirst().get();
     }
@@ -208,36 +214,44 @@ public class Notebook {
         Note archivedNote = notes.get(index);
 
         archivedNotes.add(archivedNote);
-        deleteNote(index);
+        notes.remove(index);
 
         return archivedNote.getTitle();
     }
 
-    public String archiveNotes(String noteTitle) {
-        Note archivedNote = getNote(noteTitle, notes);
+    public boolean archiveNotes(String noteTitle) {
+        boolean isDeleted;
 
-        archivedNotes.add(archivedNote);
-        deleteNote(noteTitle);
+        Note archivedNote = getNote(noteTitle, true);
+        isDeleted = deleteNote(noteTitle);
 
-        return archivedNote.getTitle();
+        if (isDeleted) {
+            archivedNotes.add(archivedNote);
+        }
+
+        return isDeleted;
     }
 
     public String unarchiveNotes(int index) {
         Note unarchivedNote = archivedNotes.get(index);
 
-        addNote(unarchivedNote);
+        notes.add(unarchivedNote);
         archivedNotes.remove(unarchivedNote);
 
         return unarchivedNote.getTitle();
     }
 
-    public String unarchiveNotes(String noteTitle) {
-        Note unarchivedNote = getNote(noteTitle, archivedNotes);
+    public boolean unarchiveNotes(String noteTitle) {
+        boolean isDeleted;
 
-        addNote(unarchivedNote);
-        archivedNotes.remove(unarchivedNote);
+        Note unarchivedNote = getNote(noteTitle, false);
+        isDeleted = archivedNotes.remove(unarchivedNote);
 
-        return unarchivedNote.getTitle();
+        if (isDeleted) {
+            notes.add(unarchivedNote);
+        }
+
+        return isDeleted;
     }
 
     public ArrayList<Note> getArchivedNotes() {
