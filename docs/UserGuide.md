@@ -178,38 +178,18 @@ _Figure x: Input command to find buses at museum._
 Lists all bus available in NUS. <br>
 Example of usage: <code>/allbus</code> <br>
 Expected outcome:
-```
-The buses available in NUS are: 
-AA1
-PGP-> Kent Ridge MRT Station-> Opp University Health Centre-> Yusof Ishak House-> Central Library-> Kent Ridge-> Museum-> University Town-> University Health Centre-> Opp Kent Ridge MRT station-> PGPR
-AA2
-PGP-> Kent Ridge MRT Station-> Opp University Health Centre-> University Town-> Raffles Hall-> Kent Vale-> EA-> NUS IT-> University Health Centre-> Opp Kent Ridge MRT station-> PGPR
-```
+
+<img src="UG_Figures/allbus1.png" alt="inputCommand" width=450><br>
 
 ### 3.5. List all bus stops in NUS: ```/liststops```
 Lists all bus stops in NUS. <br>
 >Note: Index keyed in must be within the range of 1 - n, where n is number of existing tasks. <br>
 
 Format: <code>/liststops</code> <br>
-Example of usage: <code>/liststops</code> <br>
+Example of usage: <code>/lisstops</code> <br>
 Expected outcome:
-```
-PGP : Prince George's Park
-Kent Ridge MRT Station : Kent Ridge MRT entrance
-Opp University Health Centre : Near University Health Centre
-Yusof Ishak House : Location with the Student Service center
-Central Library : also known as CLB
-Kent Ridge : Kent Ridge
-Museum : Opposite Faculty of Engineering
-University Town : Place filled with dining and recreational options
-University Health Centre : UHC, where students can get MC
-Opp Kent Ridge MRT station : Opposite Kent Ridge MRT
-Raffles Hall : Hall located near Faculty of Engineering
-Kent Vale : Accommodation for visiting faculty guests
-EA : Located in Faculty of Engineering
-NUS IT : Opposite Central library
-PGPR : Prince George's Park Residence
-```
+
+<img src="UG_Figures/listOutput.png" alt="inputCommand" width=450><br>
 
 ### 3.6. Search for dining options within a faculty: ```/dine```
 This command lists out all dining outlets available within a chosen faculty.<br>
@@ -250,24 +230,14 @@ The application exits after displaying the following message:<br>
 So long buddy!
 ```
 
-### 3.9. Listing available help: ```/help```
+### 3.9. Listing available help: ```help```
 This command lists a set of features along with their respective commands available to users.<br>
 The format of this command is as follows:<br> 
 <code>/help</code> <br>
 
 Expected outcome:
-```
-Here are the range of commands:
-1./route : Displays possible direct bus from point to point
-2./routemap: Displays the route map with its intermediate bus stops
-3./bus: Displays buses available at each bus stop
-4./allbus: Lists all buses available in NUS Zone a
-5./liststops: Lists all bus stops in NUS Zone a
-6./dine: Search for dining options within a faculty
-7./dineinfo: Search for a specific dining outlet
-8./exit: Exit program
-9./help: List all available commands
-```
+
+<img src="UG_Figures/help1.png" alt="inputCommand" width=450><br>
 
 ### 3.10. Similarity Checks
 
