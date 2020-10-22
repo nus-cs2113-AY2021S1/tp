@@ -20,7 +20,7 @@ class RemindCommandTest {
     private static final String TEST_TITLE_2 = "CS2113 Lecture";
     private static final String TEST_TITLE_3 = "CS2113 Meeting";
     private static final String TEST_TITLE_4 = "CS2113 Coding";
-    private static final LocalDateTime TEST_DATE_TIME = LocalDateTime.now();
+    private static final LocalDateTime TEST_DATE_TIME = LocalDateTime.of(2020,02,02,12,45);
     private static final boolean TEST_REMINDER = true;
     private static final ArrayList<Integer> TEST_TIME_PERIODS = new ArrayList<>(List.of(1));
     private static final ArrayList<String> TEST_TIME_UNITS
@@ -43,7 +43,21 @@ class RemindCommandTest {
         command.setData(NOTEBOOK, timetable, TAG_MANAGER, STORAGE_MANAGER);
         DailyEvent reminderEvent = new DailyEvent(dailyEvent.getTitle(), TEST_DATE_TIME.plusDays(1),
                 TEST_REMINDER, TEST_TIME_PERIODS, TEST_TIME_UNITS);
-        assertEquals("Reminders:" + Formatter.LS + reminderEvent.toReminderString(), command.execute());
+        String expected =
+                "===================================================================================================="
+                        + Formatter.LS
+                + "|| Here are the reminders for today!                                                              ||"
+                        + Formatter.LS
+                + "===================================================================================================="
+                        + Formatter.LS
+                + "|| Event: CS2113 Coding                                                                           ||"
+                        + Formatter.LS
+                + "|| Date: 2020-10-23\tTime: 12:45"
+                        + "                                                                   ||"
+                        + Formatter.LS
+                + "===================================================================================================="
+                        + Formatter.LS;
+        assertEquals(expected, command.execute());
 
     }
 }
