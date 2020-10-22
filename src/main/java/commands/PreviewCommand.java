@@ -25,7 +25,7 @@ public class PreviewCommand extends Command {
         try {
             allChapters = storage.loadAllDueChapters(ui);
         } catch (FileNotFoundException e) {
-            throw new InvalidFileFormatException(UNABLE_TO_LOAD_EMPTY_DATABASE);
+            ui.showToUser(UNABLE_TO_LOAD_EMPTY_DATABASE);
         }
     }
 
@@ -39,7 +39,6 @@ public class PreviewCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) throws InvalidFileFormatException {
     public void execute(Ui ui, Access access, Storage storage) throws ExclusionFileException {
         loadAllChapters(storage, ui);
         for (int i = 0; i < 7; i++) {
@@ -59,3 +58,4 @@ public class PreviewCommand extends Command {
         return false;
     }
 }
+
