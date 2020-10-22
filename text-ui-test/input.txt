@@ -3,9 +3,13 @@ Female
 addws -n
 addws  - 
 addws
-addws -n Crunchy Cinnamon
-addws -n CrispyDonut
-addws -n RED VELVET Crumblesss 
+workspace -n Crunchy Cinnamon
+workspace -n CrispyDonut
+workspace -n RED VELVET Crumblesss 
+workspace -n RED VELVET Crumblesss 
+workspace -n RED VELVET Crumblesss
+workspace -n WHITE CHoC MACADAMIA
+workspace -s WHITE CHoC MACADAMIA
 watchlist -n a
 watchlist -n b
 watchlist -n ops
