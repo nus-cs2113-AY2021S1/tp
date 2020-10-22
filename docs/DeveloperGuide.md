@@ -154,7 +154,7 @@ Example: If Browse command was parsed, `Parser` will create `BrowseParser`.
 <br/>
 
 ### 3.4 Command Component
-![Command Component Diagram](images/Command-Class-Diagram.png)
+![Command Component Diagram](images/Command-Class-Diagram.png) <br/>
 *Figure 5: Command Component Diagram*
 
 The `Command` component consists of different commands represented together as `XYZCommand` which all inherits from the abstract `Command` class. 
@@ -166,7 +166,7 @@ Example: The Browse command would be represented by a `BrowseCommand`.
 <br/>
 
 ### 3.5 AnimeData Component
-![AnimeData Component Diagram](images/AnimeData-Class-Diagram.png)
+![AnimeData Component Diagram](images/AnimeData-Class-Diagram.png) <br/>
 *Figure 6: AnimeData Component Diagram*
 
 The `AnimeData` component is responsible for retrieving offline json data and parsing it into `Anime` objects that will be stored in program memory. The `AnimeData` will manage an ArrayList of `Anime` objects providing AniChan with an interface for the program to retrieve with the source data.
@@ -179,7 +179,7 @@ The `AnimeData `component:
 <br/>
 
 ### 3.6 User Component
-![User Component Diagram](images/User-Class-Diagram.PNG)
+![User Component Diagram](images/User-Class-Diagram.png) <br/>
 *Figure 7: User Component Diagram*
 
 The User inherits from the abstract `Human` class and stores the name and gender of the user. It represents the user's interaction with `Workspace` class.
@@ -196,7 +196,7 @@ The `Workspace` component:
 <br/>
 
 ### 3.7 StorageManager Component
-![StorageManager Component Diagram](images/StorageManager-Class-Diagram.png)
+![StorageManager Component Diagram](images/StorageManager-Class-Diagram.png) <br/>
 *Figure 8: StorageManager Component Diagram*
 
 The `StorageManager` component: 
