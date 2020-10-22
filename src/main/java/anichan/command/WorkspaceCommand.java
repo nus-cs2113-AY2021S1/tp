@@ -4,10 +4,13 @@ import anichan.anime.AnimeData;
 import anichan.exception.AniException;
 import anichan.human.User;
 import anichan.human.Workspace;
+import anichan.logger.AniLogger;
 import anichan.storage.StorageManager;
 import anichan.watchlist.Watchlist;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class WorkspaceCommand extends Command {
     private final String option;
@@ -15,6 +18,7 @@ public class WorkspaceCommand extends Command {
     private static final String CREATE_OPTION = "n";
     private static final String SWITCH_OPTION = "s";
     private static final String DELETE_OPTION = "d";
+    private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistCommand.class.getName());
 
     public WorkspaceCommand(String option, String optionInformation) {
         this.option = option;
@@ -33,6 +37,7 @@ public class WorkspaceCommand extends Command {
         case DELETE_OPTION:
             return deleteWorkspace(user, storageManager);
         default:
+            LOGGER.log(Level.WARNING, "Invalid watchlist command provided.");
             throw new AniException("Watchlist command only accepts the options: -n, -s, and -d.");
         }
     }
@@ -45,12 +50,16 @@ public class WorkspaceCommand extends Command {
         newWorkspace.setWatchlistList(watchlistList);
         storageManager.saveWorkspace(newWorkspace);
 
+        LOGGER.log(Level.INFO, "Successfully added new workspace: " + newWorkspace);
         return "Successfully added new workspace: " + newWorkspace;
     }
 
     public String switchWorkspace(User user) throws AniException {
-        user.switchActiveWorkspace(optionInformation.trim());
-        return "Workspace changed to " + optionInformation.trim();
+        String trimmedName = optionInformation.trim();
+        user.switchActiveWorkspace(trimmedName);
+
+        LOGGER.log(Level.INFO, "Successfully added new workspace: " + trimmedName);
+        return "Workspace changed to " + trimmedName;
     }
 
     public String deleteWorkspace(User user, StorageManager storageManager) {

@@ -22,11 +22,15 @@ public class WorkspaceParser extends CommandParser {
 
         parameterParser(paramGiven);
 
+        LOGGER.log(Level.INFO, "Returning WorkspaceCommand object with option: "
+                + commandOption + ", and information: " + commandDescription);
+
         return new WorkspaceCommand(commandOption, commandDescription);
     }
 
     public void parameterParser(String[] paramGiven) throws AniException {
         if (paramGiven.length != 2) {
+            LOGGER.log(Level.WARNING, "Invalid number of parameters given");
             throw new AniException(EXCEPTION_INVALID_PARAMETERS);
         }
 
@@ -46,11 +50,13 @@ public class WorkspaceParser extends CommandParser {
                 commandOption = "d";
                 break;
             default:
+                LOGGER.log(Level.WARNING, "Invalid parameters provided");
                 throw new AniException(EXCEPTION_INVALID_PARAMETERS);
             }
 
             commandDescription = givenOption[1];
         } catch (IndexOutOfBoundsException exception) {
+            LOGGER.log(Level.WARNING, EXCEPTION_INVALID_PARAMETERS);
             throw new AniException(EXCEPTION_INVALID_PARAMETERS);
         }
     }
