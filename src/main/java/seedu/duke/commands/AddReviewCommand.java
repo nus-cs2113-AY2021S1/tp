@@ -5,10 +5,15 @@ import seedu.duke.classes.Show;
 
 public class AddReviewCommand extends Command {
 
-    public static void AddReviewCommand (String input) {
+    public AddReviewCommand (String input) throws ArrayIndexOutOfBoundsException,NullPointerException{
         String[] tokenizedInput = input.split(" ");
-        Show s = ShowList.getShow(tokenizedInput[1]);
+        if (tokenizedInput.length < 3) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        String showName = tokenizedInput[1];
+        Show s = ShowList.getShow(showName);
         s.setRating(Integer.parseInt(tokenizedInput[2]));
         s.setReview(String.join(" ", tokenizedInput[3]));
+        ShowList.setShow(showName,s);
     }
 }
