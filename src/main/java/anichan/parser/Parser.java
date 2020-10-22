@@ -32,12 +32,6 @@ public class Parser {
         case "workspace":
             return new WorkspaceParser().parse(description);
 
-        case "addws":
-            return new AddWorkspaceParser().parse(description);
-
-        case "switchws":
-            return new SwitchWorkspaceParser().parse(description);
-
         case "browse":
             return new BrowseParser().parse(description);
 

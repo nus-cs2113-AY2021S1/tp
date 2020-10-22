@@ -107,14 +107,14 @@ public class Main {
 
         user.setWorkspaceList(workspaceList);
         if (user.getTotalWorkspaces() == 0) {
-            Workspace newWorkspace = user.addWorkspace("Default");
-            ArrayList<Watchlist> watchlistList = new ArrayList<>();
-            watchlistList.add(new Watchlist("Default"));
-            newWorkspace.setWatchlistList(watchlistList);
-            user.setActiveWorkspace(newWorkspace);
-            LOGGER.log(Level.INFO, "Workspace created: " + newWorkspace);
-
             try {
+                Workspace newWorkspace = user.addWorkspace("Default");
+                ArrayList<Watchlist> watchlistList = new ArrayList<>();
+                watchlistList.add(new Watchlist("Default"));
+                newWorkspace.setWatchlistList(watchlistList);
+                user.setActiveWorkspace(newWorkspace);
+                LOGGER.log(Level.INFO, "Workspace created: " + newWorkspace);
+
                 storageManager.saveWorkspace(newWorkspace);
                 LOGGER.log(Level.INFO, "Workspace saved to storage: ");
             } catch (AniException exception) {

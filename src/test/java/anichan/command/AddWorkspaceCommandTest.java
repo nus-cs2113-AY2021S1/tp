@@ -7,7 +7,6 @@ import anichan.anime.Anime;
 import anichan.anime.AnimeData;
 import anichan.exception.AniException;
 import anichan.human.User;
-import anichan.parser.AddWorkspaceParser;
 import anichan.storage.StorageManager;
 
 import java.io.File;

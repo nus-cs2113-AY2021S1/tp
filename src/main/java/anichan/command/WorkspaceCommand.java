@@ -23,7 +23,7 @@ public class WorkspaceCommand extends Command {
 
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
-        assert (option != null && optionInformation != null) : "option should not be null.";
+        assert (option != null && optionInformation != null) : "Option should not be null.";
 
         switch (option) {
         case CREATE_OPTION:
@@ -33,7 +33,7 @@ public class WorkspaceCommand extends Command {
         case DELETE_OPTION:
             return deleteWorkspace(user, storageManager);
         default:
-            throw new AniException("Watchlist command only accepts the options: -n, -l, -s, and -d.");
+            throw new AniException("Watchlist command only accepts the options: -n, -s, and -d.");
         }
     }
 

@@ -106,13 +106,29 @@ public class User extends Human {
         return workspaceList.size();
     }
 
-    public Workspace addWorkspace(String name) {
-        Workspace newWorkspace = new Workspace(name);
+    public Workspace addWorkspace(String name) throws AniException {
         assert (name != null) : "Workspace details should not have any null.";
 
-        workspaceList.add(newWorkspace);
-        LOGGER.log(Level.INFO, "Workspace created: " + name);
-        return newWorkspace;
+        if (doesWorkplaceExist(name)) {
+            throw new AniException("Workspace already exist!");
+        } else {
+            Workspace newWorkspace = new Workspace(name);
+
+            workspaceList.add(newWorkspace);
+            LOGGER.log(Level.INFO, "Workspace created: " + name);
+            return newWorkspace;
+
+        }
+    }
+
+    public boolean doesWorkplaceExist(String checkWorkspace)  {
+        for (Workspace existingWorkspace : workspaceList) {
+            if (existingWorkspace.getName().equals(checkWorkspace)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 
