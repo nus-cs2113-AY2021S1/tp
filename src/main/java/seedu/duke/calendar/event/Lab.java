@@ -2,6 +2,9 @@ package seedu.duke.calendar.event;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.ZoneId;
 
 /**
  * Represents a lab event.
@@ -34,9 +37,11 @@ public class Lab extends SchoolEvent {
      * @return whether the lab is over
      */
     public boolean getIsOver() {
-        if (date.isBefore(LocalDate.now())) {
-            return true;
-        } else if (date.isEqual(LocalDate.now()) && time.isBefore(LocalTime.now())) {
+        LocalDateTime dateAndTime = LocalDateTime.of(date, time);
+        ZonedDateTime due = ZonedDateTime.of(dateAndTime, ZoneId.of("+08:00"));
+        ZonedDateTime now = ZonedDateTime.now(ZoneId.of("+08:00"));
+
+        if (due.isBefore(now)) {
             return true;
         } else {
             return false;
