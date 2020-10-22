@@ -112,9 +112,9 @@ public class Ui {
      */
     public static void printDukeBorder(boolean top) {
         if (top) {
-            System.out.println("............................... 25HoursADay CHAT BOX ^^ ..............................");
+            System.out.println("............................... 25HoursADay CHAT BOX ^^ .............................");
         } else {
-            System.out.println("......................................................................................");
+            System.out.println(".....................................................................................");
         }
     }
 
