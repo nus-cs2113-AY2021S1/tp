@@ -33,7 +33,7 @@
 ### 1.a What does **WatchNext** do?
 
 **WatchNext** is a program made for teenagers and young adults.For users who use multiple free streaming platforms or other open source stream websites,
-the application will track their progress in the different shows they watch, and the upcoming shows they wish to watch.In addition, it provides a timer 
+the application will track their progress in the different shows they watch, and the upcoming shows they wish to watch.In addition, it provides a tracker 
 to limit your weekly show progress to help manage your time.
 
 **WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).
