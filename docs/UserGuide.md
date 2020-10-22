@@ -164,6 +164,7 @@ The format of this command is as follows:<br>
 
 Let's say you want to know all the dining options available in <strong>School of Business</strong>.<br>
 1. Type <code>/dine <strong>business</strong></code> into the command line interface and press enter to execute the command as shown in the figure below.<br>
+<br>
 <img src="UG_Figures/dine1.png" alt="output" width=600><br>
 _Figure x: The expected output message._
 
@@ -178,6 +179,7 @@ The format of this command is as follows:<br>
 
 Let's say you want to find information of the dining outlet <strong>Arise & Shine</strong>.<br>
 1. Type <code>/dineinfo <strong>arise</strong></code> into the command line interface and press enter to execute the command as shown in the figure below.<br>
+<br>
 <img src="UG_Figures/dineinfo1.png" alt="output" width=600><br>
 _Figure x: The expected output message._
 
