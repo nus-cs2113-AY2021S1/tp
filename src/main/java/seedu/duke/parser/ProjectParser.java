@@ -5,6 +5,7 @@ import seedu.duke.command.project.SelectProjectCommand;
 import seedu.duke.command.project.ViewProjectCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.Project;
+import seedu.duke.model.project.ProjectList;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -21,7 +22,7 @@ public class ProjectParser implements ExceptionsParser {
 
     @Override
     public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
-                                                ArrayList<Project> projectList)
+                                                ProjectList projectListManager)
             throws DukeException {
         switch (action.toLowerCase()) {
         case CREATE:
@@ -42,14 +43,14 @@ public class ProjectParser implements ExceptionsParser {
                     || !Parser.isStringContainsNumber(parameters.get(SPRINT_DURATION))) {
                 throw new DukeException("please give a number for sprint duration");
             } else {
-                new CreateProjectCommand(parameters, projectList).execute();
+                new CreateProjectCommand(parameters, projectListManager).execute();
             }
             break;
         case VIEW:
-            new ViewProjectCommand(parameters, projectList).execute();
+            new ViewProjectCommand(parameters, projectListManager).execute();
             break;
         case SELECT:
-            new SelectProjectCommand(parameters).execute();
+            new SelectProjectCommand(parameters, projectListManager).execute();
             break;
         default:
             throw new DukeException("Invalid action!");

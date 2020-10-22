@@ -1,6 +1,7 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.model.project.Project;
+import seedu.duke.model.project.ProjectList;
 import seedu.duke.model.sprint.Sprint;
 import seedu.duke.model.sprint.SprintList;
 import seedu.duke.parser.DateTimeParser;
@@ -12,24 +13,24 @@ import java.util.Hashtable;
 
 public class ViewSprintCommand extends SprintCommand {
     private SprintList allSprint;
-    private final ArrayList<Project> projectList;
+    private final ProjectList projectListManager;
     private Project proj;
 
-    public ViewSprintCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList) {
+    public ViewSprintCommand(Hashtable<String, String> parameters, ProjectList projectListManager) {
         super(parameters);
-        this.projectList = projectList;
+        this.projectListManager = projectListManager;
     }
 
     /**
      * Abstract method that execute the command.
      */
     public void execute() {
-        assert !projectList.isEmpty() : "No project\n";
-        if (projectList.isEmpty()) {
+        assert !projectListManager.isEmpty() : "No project\n";
+        if (projectListManager.isEmpty()) {
             Ui.showError("Please create a project first.");
             return;
         }
-        proj = projectList.get(0);
+        proj = projectListManager.getProject();
         allSprint = proj.getAllSprints();
         if (allSprint.updateCurrentSprint()) {
             int currentSprintNo = allSprint.getCurrentSprintIndex();

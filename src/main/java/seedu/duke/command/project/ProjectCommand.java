@@ -7,7 +7,6 @@ import java.util.Hashtable;
 
 public abstract class ProjectCommand extends Command {
 
-    public int selectedProject = 0;
 
     /**
      * Creates a new Sprint command with arguments.

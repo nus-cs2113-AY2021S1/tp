@@ -7,6 +7,7 @@ import seedu.duke.command.sprint.ViewSprintCommand;
 import seedu.duke.command.sprint.AllocateSprintTaskCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.Project;
+import seedu.duke.model.project.ProjectList;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -21,27 +22,27 @@ public class SprintParser implements ExceptionsParser {
 
     @Override
     public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
-                                                ArrayList<Project> projectList)
+                                                ProjectList projectListManager)
             throws DukeException {
         switch (action.toLowerCase()) {
         case CREATE:
-            new CreateSprintCommand(parameters, projectList).execute();
+            new CreateSprintCommand(parameters, projectListManager).execute();
             break;
         case ADDTASK:
-            new AddSprintTaskCommand(parameters, projectList).execute();
+            new AddSprintTaskCommand(parameters, projectListManager).execute();
             break;
         case REMOVETASK:
             if (parameters.get("0").isBlank() || !Parser.isStringContainsNumber(parameters.get("0"))) {
                 throw new DukeException("please give a task number");
             } else {
-                new RemoveSprintTaskCommand(parameters, projectList).execute();
+                new RemoveSprintTaskCommand(parameters, projectListManager).execute();
             }
             break;
         case VIEW:
-            new ViewSprintCommand(parameters, projectList).execute();
+            new ViewSprintCommand(parameters, projectListManager).execute();
             break;
         case ASSIGN:
-            new AllocateSprintTaskCommand(parameters, projectList).execute();
+            new AllocateSprintTaskCommand(parameters, projectListManager).execute();
             break;
         default:
             throw new DukeException("Invalid action!");

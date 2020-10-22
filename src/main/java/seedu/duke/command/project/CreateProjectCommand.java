@@ -2,6 +2,7 @@ package seedu.duke.command.project;
 
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.Project;
+import seedu.duke.model.project.ProjectList;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -15,11 +16,11 @@ import static seedu.duke.command.CommandSummary.DESCRIPTION;
 
 public class CreateProjectCommand extends ProjectCommand {
 
-    private final ArrayList<Project> projectList;
+    private final ProjectList projectListManager;
 
-    public CreateProjectCommand(Hashtable<String, String> parameters, ArrayList<Project> projectList) {
+    public CreateProjectCommand(Hashtable<String, String> parameters, ProjectList projectListManager) {
         super(parameters);
-        this.projectList = projectList;
+        this.projectListManager = projectListManager;
     }
 
     public void execute() throws DukeException {
@@ -38,7 +39,7 @@ public class CreateProjectCommand extends ProjectCommand {
 
         Project proj = new Project(title, description, duration, sd);
         Ui.showToUserLn("Project successfully created.");
-        projectList.add(proj);
+        projectListManager.addProject(proj);
         Ui.showToUserLn(proj.toString());
     }
 }

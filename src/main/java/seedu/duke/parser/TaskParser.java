@@ -3,6 +3,7 @@ package seedu.duke.parser;
 import seedu.duke.command.task.TaskCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.Project;
+import seedu.duke.model.project.ProjectList;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -20,7 +21,7 @@ public class TaskParser implements ExceptionsParser {
 
     @Override
     public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
-                                                ArrayList<Project> projectList)
+                                                ProjectList projectListManager)
             throws DukeException {
 
         switch (action.toLowerCase()) {
@@ -38,25 +39,25 @@ public class TaskParser implements ExceptionsParser {
             if (parameters.get(PRIORITY).isBlank()) {
                 throw new DukeException("Please enter a priority!");
             } else {
-                new TaskCommand().addTaskCommand(parameters, projectList);
+                new TaskCommand().addTaskCommand(parameters, projectListManager);
             }
             break;
         case DELETE:
             if (parameters.get("0").isBlank() || !Parser.isStringContainsNumber(parameters.get("0"))) {
                 throw new DukeException("please give a task number");
             } else {
-                new TaskCommand().deleteTaskCommand(parameters, projectList);
+                new TaskCommand().deleteTaskCommand(parameters, projectListManager);
             }
             break;
         case DONE:
             if (parameters.get("0").isBlank() || !Parser.isStringContainsNumber(parameters.get("0"))) {
                 throw new DukeException("please give a task number");
             } else {
-                new TaskCommand().doneTaskCommand(parameters, projectList);
+                new TaskCommand().doneTaskCommand(parameters, projectListManager);
             }
             break;
         case VIEW:
-            new TaskCommand().viewTaskCommand(parameters, projectList);
+            new TaskCommand().viewTaskCommand(parameters, projectListManager);
             break;
         case PRIORITY:
             if (!parameters.containsKey(TASK_ID) || !parameters.containsKey(PRIORITY)) {
@@ -68,7 +69,7 @@ public class TaskParser implements ExceptionsParser {
             if (parameters.get(PRIORITY).isBlank()) {
                 throw new DukeException("Please enter a priority!");
             } else {
-                new TaskCommand().changeTaskPriorityCommand(parameters, projectList);
+                new TaskCommand().changeTaskPriorityCommand(parameters, projectListManager);
             }
             break;
         default:

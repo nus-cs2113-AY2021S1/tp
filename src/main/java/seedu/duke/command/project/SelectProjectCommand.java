@@ -1,15 +1,20 @@
 package seedu.duke.command.project;
 
+import seedu.duke.model.project.ProjectList;
+
 import java.util.Hashtable;
 
 public class SelectProjectCommand extends ProjectCommand {
 
-    public SelectProjectCommand(Hashtable<String, String> parameters) {
+    private final ProjectList projectListManager;
+
+    public SelectProjectCommand(Hashtable<String, String> parameters, ProjectList projectListManager) {
         super(parameters);
+        this.projectListManager = projectListManager;
     }
 
     public void execute() {
-        selectedProject = Integer.parseInt(parameters.get("0"));
+        projectListManager.selectProject(Integer.parseInt(parameters.get("0")));
     }
 
 }
