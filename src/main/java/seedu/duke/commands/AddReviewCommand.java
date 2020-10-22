@@ -5,7 +5,7 @@ import seedu.duke.classes.Show;
 
 public class AddReviewCommand extends Command {
 
-    public AddReviewCommand (String input) throws ArrayIndexOutOfBoundsException,NullPointerException{
+    public AddReviewCommand(String input) throws ArrayIndexOutOfBoundsException,NullPointerException {
         String[] tokenizedInput = input.split(" ");
         if (tokenizedInput.length < 3) {
             throw new ArrayIndexOutOfBoundsException();

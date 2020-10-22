@@ -1,6 +1,16 @@
 package seedu.duke.utility;
 
-import seedu.duke.commands.*;
+import seedu.duke.commands.AddCommand;
+import seedu.duke.commands.ChangeRatingCommand;
+import seedu.duke.commands.DeleteCommand;
+import seedu.duke.commands.DeleteRatingCommand;
+import seedu.duke.commands.EditCommand;
+import seedu.duke.commands.RatingCommand;
+import seedu.duke.commands.UpdateShowEpisodeProgressCommand;
+import seedu.duke.commands.UpdateShowSeasonCommand;
+import seedu.duke.commands.UpdateTimeLimitCommand;
+import seedu.duke.commands.WatchCommand;
+import seedu.duke.commands.AddReviewCommand;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -329,7 +339,7 @@ public class InputParser {
     private  static void parseAddReviewCommand(String input) {
         try {
             new AddReviewCommand(input);
-        } catch (ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printInvalidFormatException();
         } catch (NullPointerException e) {
             Ui.printNotFoundException();

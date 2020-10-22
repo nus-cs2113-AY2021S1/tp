@@ -1,10 +1,10 @@
-recordedDate: 2020-10-22
-durationWatchedToday: 30
-dailyWatchLimit: 30
+recordedDate: 2020-10-19
+durationWatchedToday: 60
+dailyWatchLimit: 120
 1. friends
 		Season: 3
-		Episodes: 10 10 10 
+		Episodes: 21 10 12 
 		Rating: -1
-		Duration: 30
+		Duration: 20
 		Current Season: 1
-		Current Episode: 2
+		Current Episode: 1
