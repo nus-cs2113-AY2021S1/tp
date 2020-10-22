@@ -1,6 +1,9 @@
-# Developer Guide
+# Developer Guide for E-Duke-8
+
+- Table of Contents {:toc}
 
 ## Introduction
+
 ### Software Overview:
 Our program, E-duke-8, comprises of a Logic component, UI component, Storage component, and Quiz component. Each component comprises of multiple classes that work in tandem, to fulfil the purpose of our program. 
 
