@@ -3,11 +3,10 @@ package fitr.command;
 import fitr.Calorie;
 import fitr.Exercise;
 import fitr.Recommender;
-import fitr.exception.FitrException;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.GoalList;
-import fitr.storage.Storage;
+import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
 
@@ -21,7 +20,7 @@ public class AddExerciseCommand extends Command {
     }
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage,
+    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
                         User user, GoalList goalList, Recommender recommender) {
         command = command.split(" ", 2)[1];
         try {
@@ -37,7 +36,7 @@ public class AddExerciseCommand extends Command {
                     throw new NumberFormatException();
                 }
                 exerciseList.addExercise(new Exercise(nameOfExercise, amountOfCaloriesBurnt));
-                storage.writeExerciseList(exerciseList);
+                storageManager.writeExerciseList(exerciseList);
                 Ui.printCustomMessage("The following exercise has been added: " + nameOfExercise);
             } else {
                 throw new ArrayIndexOutOfBoundsException();
