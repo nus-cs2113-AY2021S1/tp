@@ -10,11 +10,13 @@ workspace -n RED VELVET Crumblesss
 workspace -n RED VELVET Crumblesss
 workspace -n WHITE CHoC MACADAMIA
 workspace -s WHITE CHoC MACADAMIA
+workspace -l
 workspace -d WHITE CHoC MACADAMIA
 workspace -d non existing workspace
 workspace -n COOKIES N CREME CH33SECAKE
 workspace -s COOKIES N CREME CH33SECAKE
 workspace -d WHITE CHoC MACADAMIA
+workspace -l
 watchlist -n a
 watchlist -n b
 watchlist -n ops

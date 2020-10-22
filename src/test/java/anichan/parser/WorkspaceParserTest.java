@@ -20,7 +20,9 @@ class WorkspaceParserTest {
         assertThrows(AniException.class, () -> testParse.parse(" -n"));
         assertThrows(AniException.class, () -> testParse.parse(" - "));
         assertThrows(AniException.class, () -> testParse.parse(" -abcdefg12345!@#$%^*&(#)$%| "));
+        assertThrows(AniException.class, () -> testParse.parse(" -h hello -m world -t confusion "));
     }
+
 
     @Test
     void parser_legitimateName_success() {

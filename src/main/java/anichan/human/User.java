@@ -73,6 +73,10 @@ public class User extends Human {
         return activeWorkspace;
     }
 
+    public ArrayList<Workspace> getWorkspaceList() {
+        return workspaceList;
+    }
+
     public void setActiveWorkspace(Workspace inputWorkspace) {
         activeWorkspace = inputWorkspace;
 

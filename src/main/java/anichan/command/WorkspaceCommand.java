@@ -17,6 +17,7 @@ public class WorkspaceCommand extends Command {
     private final String optionInformation;
     private static final String CREATE_OPTION = "n";
     private static final String SWITCH_OPTION = "s";
+    private static final String LIST_OPTION = "l";
     private static final String DELETE_OPTION = "d";
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistCommand.class.getName());
 
@@ -34,6 +35,8 @@ public class WorkspaceCommand extends Command {
             return createWorkspace(user, storageManager);
         case SWITCH_OPTION:
             return switchWorkspace(user);
+        case LIST_OPTION:
+            return listWorkspace(user);
         case DELETE_OPTION:
             return deleteWorkspace(user, storageManager);
         default:
@@ -72,5 +75,19 @@ public class WorkspaceCommand extends Command {
 
         LOGGER.log(Level.INFO, "Successfully deleted workspace: " + optionInformation);
         return "Successfully deleted workspace: " + optionInformation;
+    }
+
+    public String listWorkspace(User user) {
+        StringBuilder workspacesString = new StringBuilder();
+        ArrayList<Workspace> userWorkspaces = user.getWorkspaceList();
+
+        workspacesString.append("Currently, you have " + userWorkspaces.size() + " workspace(s):");
+
+        for (int i = 0; i < userWorkspaces.size(); i++) {
+            int workspaceIndex = i + 1;
+            workspacesString.append(System.lineSeparator() + workspaceIndex + ". " + userWorkspaces.get(i).toString());
+        }
+
+        return workspacesString.toString();
     }
 }

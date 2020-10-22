@@ -32,6 +32,13 @@ Default (Default) #> Successfully added new workspace: WHITE CHoC MACADAMIA
 
 Default (Default) #> Workspace changed to WHITE CHoC MACADAMIA
 
+WHITE CHoC MACADAMIA (Default) #> Currently, you have 5 workspace(s):
+1. Default
+2. Crunchy Cinnamon
+3. CrispyDonut
+4. RED VELVET Crumblesss
+5. WHITE CHoC MACADAMIA
+
 WHITE CHoC MACADAMIA (Default) #> OOPS!!! Please switch workspace before trying to delete it.
 
 WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace does not exist!
@@ -41,6 +48,13 @@ WHITE CHoC MACADAMIA (Default) #> Successfully added new workspace: COOKIES N CR
 WHITE CHoC MACADAMIA (Default) #> Workspace changed to COOKIES N CREME CH33SECAKE
 
 COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: WHITE CHoC MACADAMIA
+
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+1. Default
+2. Crunchy Cinnamon
+3. CrispyDonut
+4. RED VELVET Crumblesss
+5. COOKIES N CREME CH33SECAKE
 
 COOKIES N CREME CH33SECAKE (Default) #> Watchlist "a" has been created successfully!
 
