@@ -1,6 +1,34 @@
 # Developer Guide
 
 ## Introduction
+### Introduction to *25 hours a day*
+*25 hours a day* is a scheduling app optimized for users via a convenient yet powerful Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, 25 hours a day can schedule your tasks and events faster than traditional GUI apps.
+
+### Purpose and scope
+The goal of this developer guide is to describe the architecture and software design decisions for the task scheduling application 25 hours a day. This developer guide covers an overview of the program architecture, the logical view of major components, and the mechanism of the functions that is helpful for you to get started or refer to.
+
+The intended audience of the developer guide is the developers and software testers of 25 hours a day.
+
+### Developer guide organization
+The table below shows the current content of the developer guide.
+
+|Section| Purpose | 
+|--------|----------|
+|[Section 2: Setting up](#setting-up)|To provide instructions on how to download and set up 25 hours a day on your computer.|
+|[Section 3: Design](#design)|To explain the architecture of 25 hours a day,  and describe the major components of 25 hours a day, the roles of major components, as well as their organization and interaction of major components.|
+|[Section 4: Implementation](#implementation)|To explain the mechanism of functions added to 25 hours a day and the features added to 25 hours a day.|
+|[Section 5: Documentation](#documentation)|To represent documents describing the system and its parts.|
+
+### Information for developer
+The table below shows the information and contact details of developers.
+
+|Developer| Contact details | 
+|--------|----------|
+|Liu Jingming|E0424608@u.nus.edu|
+|Liu Yifeng|E0425960@u.nus.edu|
+|Lyu Jiawen|E0376928@u.nus.edu|
+|Ng Hong Ming|E0426149@u.nus.edu|
+|Zhang Yilin|E0377000@u.nus.edu|
 
 ## Setting Up
 
@@ -179,7 +207,13 @@ There are two ways to run tests.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Task* - a todo item or a deadline item.
+* *School event* - a lecture, tutorial or lab session.
+* *Event* - an activity, lecture, tutorial or lab session.
+* *Calendar item* - a todo item, deadline item, activity, lecture, tutorial or lab.	
+* *Task list* - a list that stores all the tasks added to the app.
+* *Event list* - a list that stores all the events added to the app.
+* *Calendar list* - a list that stores all the calendar items added to the app.
 
 ## Instructions for manual testing
 
