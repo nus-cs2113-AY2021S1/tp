@@ -12,21 +12,25 @@ import commands.ListCommand;
 import commands.ListDueCommand;
 import commands.RateCommand;
 import commands.RemoveCommand;
+import commands.RescheduleCommand;
 import commands.ReviseCommand;
 import commands.ShowRateCommand;
 import manager.card.Card;
+import manager.chapter.DueChapter;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static commands.ReviseCommand.MESSAGE_SHOW_ANSWER_PROMPT;
 import static common.Messages.LINE;
 
 public class Ui {
+    public static final String UNABLE_TO_LOAD_EMPTY_DATABASE = "Sorry, you do not have any flashcards in the database"
+            + "yet. Please try this command again once you have added some flashcards!";
     private final Scanner in;
     private final PrintStream out;
-    private static final String lineSplit = "    ____________________________________________________________";
 
     public Ui() {
         this(System.in, System.out);
@@ -133,9 +137,54 @@ public class Ui {
         out.println("10. " + ListDueCommand.MESSAGE_USAGE);
         out.println("11. " + RateCommand.MESSAGE_USAGE);
         out.println("12. " + ShowRateCommand.MESSAGE_USAGE);
+        out.println("13. " + RescheduleCommand.MESSAGE_USAGE);
     }
 
     public void showError(String error) {
         out.println(error);
+    }
+
+    public void printDueChapters(ArrayList<DueChapter> dueChapters) {
+        for (DueChapter dueChapter : dueChapters) {
+            showToUser("\t-" + dueChapter.toString());
+        }
+    }
+
+    public void printDueByTodayMessage(int listSize, String commandType) {
+        if (listSize == 0) {
+            showToUser("You have no tasks due today!");
+            if (commandType.equals("due")) {
+                showToUser("Please use the \"preview\" command to view upcoming tasks or check back again tomorrow!");
+            }
+            return;
+        }
+        System.out.print("The chapter");
+        if (listSize > 1) {
+            System.out.print("s");
+        }
+        System.out.print(" you have due by today ");
+        if (listSize > 1) {
+            showToUser("are:");
+        } else {
+            showToUser("is:");
+        }
+    }
+
+    public void printDueByIncrementMessage(int listSize, String incrementedDueBy) {
+        if (listSize == 0) {
+            showToUser("You have no tasks due on " + incrementedDueBy + "!");
+            return;
+        }
+        System.out.print("The chapter");
+        if (listSize > 1) {
+            System.out.print("s");
+        }
+        System.out.print(" you have due by " + incrementedDueBy + " ");
+        if (listSize > 1) {
+            showToUser("are:");
+        } else {
+            showToUser("is:");
+        }
+
     }
 }
