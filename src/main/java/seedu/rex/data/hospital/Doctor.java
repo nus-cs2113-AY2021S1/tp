@@ -4,7 +4,7 @@ package seedu.rex.data.hospital;
  * Doctor class.
  */
 public class Doctor {
-    private String name;
+    private final String name;
 
     public Doctor(String name) {
         this.name = name;
@@ -14,11 +14,11 @@ public class Doctor {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
+    /**
+     * Returns doctor's name.
+     *
+     * @return Doctor's name in String
+     */
     @Override
     public String toString() {
         return name;

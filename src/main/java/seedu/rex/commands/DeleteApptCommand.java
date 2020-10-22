@@ -13,20 +13,20 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 
 /**
- * Edits appointment.
+ * Deletes appointment.
  */
-public class EditApptCommand extends Command {
+public class DeleteApptCommand extends Command {
 
-    public static final String COMMAND_WORD = "editappt";
+    public static final String COMMAND_WORD = "deleteappt";
     private final String trimmedCommand;
 
 
-    public EditApptCommand(String trimmedCommand) {
+    public DeleteApptCommand(String trimmedCommand) {
         this.trimmedCommand = trimmedCommand;
     }
 
     /**
-     * Edits appointment using NRIC given.
+     * Deletes appointment using NRIC given.
      *
      * @param patients     PatientList object.
      * @param doctors      DoctorList object.
@@ -56,25 +56,10 @@ public class EditApptCommand extends Command {
                     patientAppointments.add(appointments.getAppointmentByIndex(i));
                 }
             }
-            ui.showEditAppointmentMessage();
+            ui.showDeleteAppointmentMessage();
             Appointment appointmentToEdit = ui.getItemOfArrayList(patientAppointments);
             ui.showDeleteAppointmentMessage(appointmentToEdit);
             appointmentToEdit.removeBooking();
-
-            String indexSelected = ui.getAppointmentToEdit(appointments);
-            int index = Integer.parseInt(indexSelected) - 1;
-            if (index < 0 || index >= appointments.getSize()) {
-                throw new RexException("Index error!");
-            }
-            Rex.logger.log(Level.INFO, "going to get doctor's name");
-            String doctorName = ui.getDoctorName();
-            if (!doctors.isExistingDoctor(doctorName)) {
-                throw new RexException("No such doctor!");
-            }
-
-            appointments.getAppointmentByIndex(index).bookPatient(patients.getPatientFromNric(nric));
-            appointments.getAppointmentByIndex(index).bookDoctor(doctors.getDoctorFromName(doctorName));
-            ui.showAppointmentBookedMessage(appointments.getAppointmentByIndex(index));
 
             assert !appointments.isEmpty() : "No appointments!";
             storage.saveAppointments(appointments);

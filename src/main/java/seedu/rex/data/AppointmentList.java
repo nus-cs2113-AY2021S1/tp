@@ -3,6 +3,7 @@ package seedu.rex.data;
 import seedu.rex.data.hospital.Appointment;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * Contains ArrayList of appointments.
@@ -28,23 +29,49 @@ public class AppointmentList {
     }
 
 
+    /**
+     * Returns if ArrayList is empty.
+     *
+     * @return True if empty, false if not.
+     */
     public boolean isEmpty() {
         return appointments.isEmpty();
     }
 
+    /**
+     * Returns size of ArrayList.
+     *
+     * @return Size of ArrayList.
+     */
     public int getSize() {
         return appointments.size();
     }
 
+    /**
+     * Returns appointment of given index.
+     *
+     * @param index Index of appointment.
+     * @return Appointment at that index.
+     */
     public Appointment getAppointmentByIndex(int index) {
         return appointments.get(index);
     }
 
+    /**
+     * Adds appointment to the ArrayList.
+     *
+     * @param appointment Appointment to add.
+     */
     public void addAppointment(Appointment appointment) {
         appointments.add(appointment);
     }
 
-    public void removeAppointmentByIndex(int i) {
-        appointments.remove(i);
+    /**
+     * Returns ArrayList of available appointments.
+     *
+     * @return Appointments that are not booked.
+     */
+    public ArrayList<Appointment> getAvailableAppointments() {
+        return (ArrayList<Appointment>) appointments.stream().filter((a) -> !a.isBooked()).collect(Collectors.toList());
     }
 }

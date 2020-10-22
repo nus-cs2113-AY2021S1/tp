@@ -6,11 +6,9 @@ import java.time.LocalDate;
  * Appointment class.
  */
 public class Appointment {
-    private LocalDate date;
-    private String time;
+    private final LocalDate date;
     private Patient patient;
     private Doctor doctor;
-    private String notes;
     private Boolean isBooked;
 
     public Appointment(LocalDate date) {
@@ -20,18 +18,6 @@ public class Appointment {
 
     public LocalDate getDate() {
         return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public Patient getPatient() {
@@ -48,14 +34,6 @@ public class Appointment {
 
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
     }
 
     /**
@@ -77,6 +55,9 @@ public class Appointment {
         isBooked = true;
     }
 
+    /**
+     * Removes booking.
+     */
     public void removeBooking() {
         this.patient = null;
         this.doctor = null;
@@ -103,6 +84,11 @@ public class Appointment {
         }
     }
 
+    /**
+     * Books doctor to appointment.
+     *
+     * @param doctor Doctor to book.
+     */
     public void bookDoctor(Doctor doctor) {
         this.doctor = doctor;
     }

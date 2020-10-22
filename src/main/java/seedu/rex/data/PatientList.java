@@ -142,6 +142,11 @@ public class PatientList {
         return patients.remove(i);
     }
 
+    /**
+     * Returns list of patients.
+     *
+     * @return Patients list.
+     */
     public ArrayList<Patient> getPatients() {
         return patients;
     }
