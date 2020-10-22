@@ -85,6 +85,7 @@ Given below is the Sequence Diagram for interactions within the `Parser` compone
 
 
 ### 2.5 User
+![User Diagram](images/User-Class-Diagram.png)
 
 API: `User.java`  
 
@@ -97,7 +98,7 @@ The `User`component:
 
 
 
-### 2.6 Workspace
+#### 2.5.1 Workspace
 
 API: `Workspace.java`  
 
@@ -125,7 +126,12 @@ view and manipulate these saved data easily with any available text editor.
 
 ## 3. Implementation
 This section describes some details on how some features were implemented.
+
 ### 3.1 Workspace Feature
+The `Workspace` feature has two core functionalities, to add and switch workspace of the user. 
+
+For adding a new workspace...
+
 
 ### 3.2 Estimation Feature
 
