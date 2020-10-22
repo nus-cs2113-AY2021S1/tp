@@ -2,8 +2,6 @@ package bookmark.commands;
 
 import bookmark.BookmarkCategory;
 import bookmark.BookmarkUi;
-import bookmark.NusCategory;
-import bookmark.ZoomCategory;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -16,8 +14,8 @@ class ChangeModeCommandTest {
 
     @Test
     void executeCommand_validCategory_returnsUpdatedCategoryNumber() {
-        categories.add(new ZoomCategory());
-        categories.add(new NusCategory());
+        categories.add(new BookmarkCategory("NUS"));
+        categories.add(new BookmarkCategory( "Zoom"));
         int categoryNumber = 0;
         String inputString = "bm 2";
         ChangeModeCommand command = new ChangeModeCommand(inputString,categoryNumber);
@@ -27,8 +25,8 @@ class ChangeModeCommandTest {
 
     @Test
     void executeCommand_InvalidCategory_doesNotUpdateCategoryNumber() {
-        categories.add(new ZoomCategory());
-        categories.add(new NusCategory());
+        categories.add(new BookmarkCategory("NUS"));
+        categories.add(new BookmarkCategory( "Zoom"));
         int categoryNumber = 0;
         String inputString = "bm 200";
         ChangeModeCommand command = new ChangeModeCommand(inputString,categoryNumber);
@@ -38,8 +36,8 @@ class ChangeModeCommandTest {
 
     @Test
     void executeCommand_EmptyCategory_doesNotUpdateCategoryNumber() {
-        categories.add(new ZoomCategory());
-        categories.add(new NusCategory());
+        categories.add(new BookmarkCategory("NUS"));
+        categories.add(new BookmarkCategory( "Zoom"));
         int categoryNumber = 0;
         String inputString = "bm ";
         ChangeModeCommand command = new ChangeModeCommand(inputString,categoryNumber);
@@ -49,8 +47,8 @@ class ChangeModeCommandTest {
 
     @Test
     void executeCommand_SameCategory_doesNotUpdateCategoryNumber() {
-        categories.add(new ZoomCategory());
-        categories.add(new NusCategory());
+        categories.add(new BookmarkCategory("NUS"));
+        categories.add(new BookmarkCategory( "Zoom"));
         int categoryNumber = 2;
         String inputString = "bm 2";
         ChangeModeCommand command = new ChangeModeCommand(inputString,categoryNumber);
