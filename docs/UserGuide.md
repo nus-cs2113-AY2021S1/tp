@@ -146,7 +146,7 @@ Example of usage:
 
 `done 1` - This marks the first task on your task list as done.
 
-![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) **Only a task can be marked as done, events are not allowed to be marked as done.** ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)
+![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) **You can mark tasks as done, but not events!** ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)
 
 ### Adding an event:
 

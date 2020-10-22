@@ -95,7 +95,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Mark a task as done feature
 This feature is facilitated by `DoneCommand`. It extends the `Command` class and overrides the `execute()` function.
 The following sequence diagram show how the `execute()` operation works:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/done_command_SD.JPG" alt="" width="450"/><br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/done_command_SD.JPG" alt="" width="750"/><br/>
 Note: It first extracts the task number from the user input prior to `convertTaskNumberToCalendarNumber`. 
 There will be a check in the function `markTaskAsDone(calendarNumber)` to ensure that the calendar item being marked as done is a task. 
 
@@ -103,16 +103,16 @@ There will be a check in the function `markTaskAsDone(calendarNumber)` to ensure
 ### Additional information of an event feature
 This feature is facilitated by `AddInfoCommand` and the `ViewInfoCommand`. Both extends the `Command` class and overrides the `execute()` function.
 The following sequence diagram show how the `execute()` operation of `AddInfoCommand` works:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/addInfoCommand_SD.JPG" alt="" width="450"/><br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/addInfoCommand_SD.JPG" alt="" width="750"/><br/>
 The following sequence diagram show how the `execute()` operation of `ViewInfoCommand` works:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/viewInfoCommand_SD.JPG" alt="" width="450"/><br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/viewInfoCommand_SD.JPG" alt="" width="750"/><br/>
 
 Note: It first extracts the event number from the user input prior to `convertEventNumberToCalendarNumber`. 
 
 ### Delete a calendar item feature
 This feature is facilitated by `DeleteCommand`. It extends the `Command` class and overrides the `execute()` function.
 The following sequence diagram show how the `execute()` operation works:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/deleteCommand_SD.JPG" alt="" width="450"/><br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/deleteCommand_SD.JPG" alt="" width="750"/><br/>
 
 Note: It first extracts the task/event number from the user input prior to `convertTaskNumberToCalendarNumber` and `convertEventNumberToCalendarNumber` respectively. 
 
@@ -120,7 +120,7 @@ Note: It first extracts the task/event number from the user input prior to `conv
 ### Find a calendar item feature
 This feature is facilitated by `FindCommand`. It extends the `Command` class and overrides the `execute()` function.
 The following sequence diagram show how the `execute()` operation works when the user searches the entire calendar.:<br/>
-<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/findCommand_SD.JPG" alt="" width="450"/><br/>
+<img src="https://github.com/AY2021S1-CS2113T-T12-2/tp/blob/master/images/findCommand_SD.JPG" alt="" width="500"/><br/>
 
 The search for tasks or events feature has a similar sequence diagram. The difference is the varying condition. Depending
 on whether the user searches for tasks or events, the condition will check for the instance of either the task or event respectively.
