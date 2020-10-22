@@ -61,12 +61,12 @@ public class MenuParser implements Parser {
             int numOfQuestions = 0;
             String topicName = "";
             try {
-                if(commandArr[2].contains("n/")) {
-                    numOfQuestions = Integer.parseInt(commandArr[2].substring(commandArr[2].indexOf("n/")+2));
-                    topicName = commandArr[1].substring(commandArr[1].indexOf("t/")+2);
-                } else if(commandArr[2].contains("t/")) {
-                    numOfQuestions = Integer.parseInt(commandArr[1].substring(commandArr[1].indexOf("n/")+2));
-                    topicName = commandArr[2].substring(commandArr[2].indexOf("t/")+2);
+                if (commandArr[2].contains("n/")) {
+                    numOfQuestions = Integer.parseInt(commandArr[2].substring(commandArr[2].indexOf("n/") + 2));
+                    topicName = commandArr[1].substring(commandArr[1].indexOf("t/") + 2);
+                } else if (commandArr[2].contains("t/")) {
+                    numOfQuestions = Integer.parseInt(commandArr[1].substring(commandArr[1].indexOf("n/") + 2));
+                    topicName = commandArr[2].substring(commandArr[2].indexOf("t/") + 2);
                 }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
