@@ -54,11 +54,18 @@ public class Storage implements SaveState {
                 recordedDate = LocalDate.parse(splitRecordedDate[1]);
             } catch (Exception e) {
                 recordedDate = LocalDate.now();
+                durationWatchedToday = 0;
+                dailyWatchLimit = 0;
             }
             String[] splitDurationWatched = s.nextLine().split("durationWatchedToday: ");
             durationWatchedToday = Integer.parseInt(splitDurationWatched[1]);
             String[] splitDailyWatchedLimit = s.nextLine().split("dailyWatchLimit: ");
             dailyWatchLimit = Integer.parseInt(splitDailyWatchedLimit[1]);
+        }
+        if (WatchTime.checkIfDifferentDay(recordedDate)) {
+            recordedDate = LocalDate.now();
+            durationWatchedToday = 0;
+            dailyWatchLimit = 0;
         }
         return new WatchTime(recordedDate,durationWatchedToday,dailyWatchLimit);
     }

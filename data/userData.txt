@@ -1,3 +1,3 @@
-recordedDate: null
+recordedDate: 2020-10-22
 durationWatchedToday: 0
 dailyWatchLimit: 0
