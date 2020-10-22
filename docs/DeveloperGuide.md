@@ -18,6 +18,7 @@
 4.5. [Add flashcard feature](#45-add-flashcard-feature)<br>
 4.6. [Scheduler feature](#46-scheduler-feature)<br>
 4.7. [History feature](#47-history-feature)<br>
+4.8. [Exclusion feature](#48-exclusion-feature)<br>
 5. [Appendix: Requirements](#5-appendix-requirements)<br>
 5.1. [Product scope](#51-product-scope)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.1.1. [Target user profile](#511-target-user-profile)<br>
@@ -129,6 +130,20 @@ Step 4: Each flashcard will be shown to the user one by one and the `Ui#getInput
 Step 5: `ReviseCommand#repeatRevision` then repeats the revision session on cards which the user could not answer.
 
 Step 6: `ReviseCommand#addHistory` will call `Storage#createHistory` and `Storage#saveHistory` to keep a record of the chapter revised so that the user can look back next time.
+
+### 4.5. Add flashcard feature
+#### 4.5.1. Implementation
+The add flashcard mechanism is facilitated by `AddCommand`. It extends from the abstract class `Command`.
+In addition, it implements the following operations:
+* `AddCommand#addCard()` — Adds a new flashcard to a chapter.
+
+Given below is an example usage scenario and how the add flashcard mechanism behaves at each step.
+
+Step 1: The user is using the application and is currently in the chapter level.
+
+Step 2: The user executes `add q:1+1 | a:2` command to add a flashcard with question `1+1` and answer `2`. The `add` command creates `AddCommand` which will then be executed.
+
+Step 3: `AddCommand#execute` gets the `CardList` object based on the chapter and add the flashcard to the `CardList` object.
 
 ### 4.6. Scheduler feature
 #### 4.6.1. Implementation
