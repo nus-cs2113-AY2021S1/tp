@@ -3,6 +3,7 @@ package commands;
 import access.Access;
 
 import exception.InvalidFileFormatException;
+import exception.ExclusionFileException;
 import manager.chapter.DueChapter;
 
 import scheduler.Scheduler;
@@ -17,6 +18,8 @@ public class ListDueCommand extends Command {
     public static final String COMMAND_WORD = "due";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all Chapters that are due by the execution "
             + "date.\n" + "Example: " + COMMAND_WORD + "\n";
+    public static final String UNABLE_TO_LOAD_EMPTY_DATABASE = "Sorry, you do not have any flashcards in the database"
+            + "yet. Please try this command again once you have added some flashcards!";
 
     public ArrayList<DueChapter> allChapters;
     public ArrayList<DueChapter> dueChapters;

@@ -25,8 +25,6 @@ import static commands.ReviseCommand.MESSAGE_SHOW_ANSWER_PROMPT;
 import static common.Messages.LINE;
 
 public class Ui {
-    public static final String UNABLE_TO_LOAD_EMPTY_DATABASE = "Sorry, you do not have any flashcards in the database"
-            + "yet. Please try this command again once you have added some flashcards!";
     private final Scanner in;
     private final PrintStream out;
 
@@ -81,6 +79,8 @@ public class Ui {
         return userCommand;
     }
 
+
+
     public void showWelcome() {
         out.println("Welcome to Kaji!\n");
     }
@@ -95,6 +95,10 @@ public class Ui {
 
     public void showToUser(String message) {
         out.println(message);
+    }
+
+    public void showToUserInline(String message) {
+        out.print(message);
     }
 
     public void showCardRevision(Card c) {
@@ -181,5 +185,57 @@ public class Ui {
             showToUser("is:");
         }
 
+    }
+
+    public boolean isValidExclusionChoice(String choice) {
+        switch (choice.toLowerCase()) {
+        case "module":
+        case "chapter":
+            return true;
+        default:
+            return false;
+        }
+    }
+
+    public String chooseModuleOrChapterExclusion(String type) {
+        if (type.equals("more")) {
+            showToUser("Would you like to exclude a module or chapter from your schedule?");
+        } else {
+            showToUser("Would you like to include a module or chapter back into your schedule?");
+        }
+        String choice = readCommand();
+        while (!isValidExclusionChoice(choice)) {
+            showToUser("That was not a valid choice. Please enter \"module\" or \"choice\".");
+            choice = readCommand();
+        }
+        return choice.toLowerCase();
+    }
+
+    public String getExcludedModuleName(String type) {
+        if (type.equals("module")) {
+            showToUser("Which module will you like to be excluded from your schedule?");
+        } else {
+            showToUser("Which module does the chapter you would like to be excluded belong to?");
+        }
+        return readCommand().toLowerCase();
+    }
+
+    public String getExcludedChapterName(String moduleName) {
+        showToUser("Which chapter in the Module: " + moduleName + " would you like to exclude?");
+        return readCommand().toLowerCase();
+    }
+
+    public String getIncludedModuleName(String type) {
+        if (type.equals("module")) {
+            showToUser("Which module will you like to include back into your schedule?");
+        } else {
+            showToUser("Which module does the chapter you would like to be included belong to?");
+        }
+        return readCommand().toLowerCase();
+    }
+
+    public String getIncludedChapterName(String moduleName) {
+        showToUser("Which chapter in the Module: " + moduleName + " would you like to include?");
+        return readCommand().toLowerCase();
     }
 }
