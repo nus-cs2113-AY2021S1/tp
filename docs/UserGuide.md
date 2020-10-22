@@ -14,34 +14,33 @@
     + [3.1.1. Examples of usage](#311-examples-of-usage)
   * [3.2. Check bus route: ```/routemap```](#32-check-bus-route-routemap)
     + [3.2.1. Examples of usage](#321-examples-of-usage)
-  * [3.3.Check for available bus at a location: ```/bus```](#33check-for-available-bus-at-a-location-bus)
   * [3.3.Check for buses at a bus stop: ```/bus```](#33-check-for-buses-at-a-bus-stop)
     + [3.3.1. Examples of usage](#331-examples-of-usage) 
   * [3.4. List all bus available in NUS ```/allbus```](#34-list-all-bus-available-in-nus-allbus)
   * [3.5. List all bus stops in NUS: ```/liststops```](#35-list-all-bus-stops-in-nus-liststops)
   * [3.6. Exiting the program: ```/exit```](#36-exiting-the-program-exit)
-  * [3.7. Listing available help: ```help```](#37-listing-available-help-help)
+  * [3.7. Listing available help: ```/help```](#37-listing-available-help-help)
   * [3.8. Similarity Checks](#38-similarity-checks)
-    + [3.8.1 Examples of Usage](#381-examples-of-usage)
+    + [3.8.1 Examples of usage](#381-examples-of-usage)
+  * [3.9. Reset data: ```/reset```](#39-reset-data-reset)  
+    + [3.9.1 Examples of usage](#391-examples-of-usage)
 - [4. FAQ](#4-faq)
 - [5. Command Summary](#5-command-summary)
 - [6. Glossary](#6-glossary)
 
 ## 1. What is Nav@NUS?
-
 Nav@NUS is a useful command line interface (CLI) application to guide you in navigating around the NUS Kent Ridge campus via the school
 shuttle services. This application enables you to retrieve key bus information easily, skipping the hassle of
 physically checking the bus stop's notice board. Nav@NUS brings convenience to you and wishes your commute in NUS
 to be as effortless as possible. Nav@NUS uses a command line interface to facilitate quick typing and retrieval of
 information that you require.
-[add more about the app]
 
 ## 2. Quick Start
 The following steps will guide you through the process of running Nav@NUS.
 
 1. Ensure that you have Java `11` or above installed in your computer.
 2. Download the latest `duke.jar` from [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
-3. Copy the file to the folder you want to use as the _home folder_ for dude.jar bus application
+3. Copy the file to the folder you want to use as the _home folder_ for duke.jar bus application
 4. In command prompt, `cd` to the directory of the _home folder_.
 5. Run the .jar file in the command prompt as follows: `java -jar duke.jar`
 6. Type `help` to view commands available.
@@ -230,8 +229,10 @@ Here are the range of commands:
 3./bus: Displays buses available at each bus stop
 4./allbus: Lists all buses available in NUS Zone a
 5./liststops: Lists all bus stops in NUS Zone a
-6./exit: Exit program
-7./help: List all available commands
+6./dine: Search for dining options within a faculty
+7./dineinfo: Search for a specific dining outlet
+8./exit: Exit program
+9./help: List all available commands
 
 ```
 
@@ -257,6 +258,17 @@ _Figure 6: Result when the input is correct._
 
 >Note: This check is only applicable to bus stop names, so the app performs it only when you enter a 
 ><code>/route</code> command or a <code>/bus</code> command. 
+### 3.9. Reset data: ```/reset```
+This command resets the data set used to display most frequently search bus stop. <br>
+Format: <code>/reset</code> <br>
+#### 3.9.1. Examples of usage
+<b><u>Example 1</u></b><br>
+Let us suppose that you are transitioning to a new academic semester, and the locations that you will key in to the
+application changes. To create a new data set that will cater to your needs in this new semester, you will key in the
+command <code>/reset</code> to reset the data set and start the application on a clean slate.<br><br>
+<img src="UG_Figures/freq1.png" alt="Correct input message" width=800><br>
+_Figure 7: Output message after resetting data._
+
 
 ## 4. FAQ
 This section addresses some common questions to aid in possible issues faced.
@@ -281,5 +293,5 @@ Command | Format | Example
 
 ## 6. Glossary
 
-1. case-sensitive: Capital and lower case letters are treated differently.
+1. Case-sensitive: Capital and lower case letters are treated differently.
 2. Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text.
