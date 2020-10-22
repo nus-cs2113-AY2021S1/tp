@@ -9,9 +9,12 @@ import commands.EditCommand;
 import commands.ExitCommand;
 import commands.GoCommand;
 import commands.HelpCommand;
+import commands.HistoryCommand;
 import commands.ListCommand;
 import commands.ListDueCommand;
+import commands.PreviewCommand;
 import commands.RemoveCommand;
+import commands.RescheduleCommand;
 import commands.ReviseCommand;
 import commands.HistoryCommand;
 import commands.PreviewCommand;
@@ -21,9 +24,6 @@ import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import storage.Storage;
-
-
-import java.util.List;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -76,6 +76,8 @@ public class Parser {
             return prepareHistory(commandArgs);
         case PreviewCommand.COMMAND_WORD:
             return preparePreview(commandArgs);
+        case RescheduleCommand.COMMAND_WORD:
+            return prepareReschedule(commandArgs);
         case ExcludeCommand.COMMAND_WORD:
             return prepareExclude(commandArgs);
         default:
@@ -440,6 +442,37 @@ public class Parser {
             throw new InvalidInputException(MESSAGE_MISSING_ARGS + ExcludeCommand.MESSAGE_USAGE);
         }
         return new ExcludeCommand(commandArgs);
+    }
+
+    private static Command prepareReschedule(String commandArgs) throws InvalidInputException {
+        try {
+            String[] args = commandArgs.split(" ", 2);
+            if (args[0].trim().isEmpty()) {
+                throw new InvalidInputException("The chapter number is missing.\n"
+                        + RescheduleCommand.MESSAGE_USAGE);
+            }
+
+            if (args[1].trim().isEmpty()) {
+                throw new InvalidInputException("The due date is missing.\n"
+                        + RescheduleCommand.MESSAGE_USAGE);
+            }
+
+            int index = Integer.parseInt(args[0].trim()) - 1;
+            LocalDate dueDate = LocalDate.parse(args[1].trim());
+            if (dueDate.isBefore(LocalDate.now())) {
+                throw new InvalidInputException("You cannot enter a due date that is before today.\n");
+            }
+            return new RescheduleCommand(index, dueDate);
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException("The chapter number needs to be an integer.\n"
+                    + RescheduleCommand.MESSAGE_USAGE);
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidInputException("The format for the reschedule command is incorrect.\n"
+                    + RescheduleCommand.MESSAGE_USAGE);
+        } catch (DateTimeParseException e) {
+            throw new InvalidInputException("The format for the date is incorrect.\n"
+                    + RescheduleCommand.MESSAGE_USAGE);
+        }
     }
 }
 
