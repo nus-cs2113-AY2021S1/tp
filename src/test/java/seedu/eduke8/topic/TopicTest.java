@@ -56,9 +56,11 @@ class TopicTest {
     private Question createTestQuestion(String description) {
         Option option1 = new Option("test1");
         Option option2 = new Option("test2");
-        OptionList optionList = new OptionList();
-        optionList.add(option1);
-        optionList.add(option2);
+        ArrayList<Displayable> optionsArrayList = new ArrayList();
+        optionsArrayList.add(option1);
+        optionsArrayList.add(option2);
+
+        OptionList optionList = new OptionList(optionsArrayList);
 
         Hint hint = new Hint(HINT);
         Explanation explanation = new Explanation(EXPLANATION);

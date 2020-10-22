@@ -13,10 +13,6 @@ public class OptionList implements DisplayableList {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private static final String NO_RIGHT_ANSWER_ERROR = "Error with question: No right answer specified";
 
-    public OptionList() {
-        options = new ArrayList<>();
-    }
-
     public OptionList(ArrayList<Displayable> options) {
         this.options = options;
     }
@@ -24,16 +20,6 @@ public class OptionList implements DisplayableList {
     @Override
     public ArrayList<Displayable> getInnerList() {
         return this.options;
-    }
-
-    @Override
-    public void add(Displayable option) {
-        options.add(option);
-    }
-
-    @Override
-    public void delete(int index) {
-        options.remove(index);
     }
 
     @Override
