@@ -112,9 +112,11 @@ public class Ui {
      */
     public static void printDukeBorder(boolean top) {
         if (top) {
-            System.out.println("............................... 25HoursADay CHAT BOX ^^ .............................");
+            System.out.println("................................. "
+                    + "25HoursADay CHAT BOX ^^ ...............................");
         } else {
-            System.out.println(".....................................................................................");
+            System.out.println("...................................................."
+                    + ".....................................");
         }
     }
 
@@ -166,6 +168,7 @@ public class Ui {
      * @param calendarList tasks retrieved from this task list.
      */
     public static void printTaskListView(CalendarList calendarList) {
+        assert calendarList != null;
         int taskCounts = 0;
         System.out.println("This is your list of task(s):");
         for (int i = 0; i < calendarList.getTotalItems(); i++) {
@@ -186,6 +189,7 @@ public class Ui {
      * @param calendarList tasks retrieved from this task list.
      */
     public static void printEventsListView(CalendarList calendarList) {
+        assert calendarList != null;
         int eventCounts = 0;
         System.out.println("This is your list of event(s):");
         for (int i = 0; i < calendarList.getTotalItems(); i++) {
@@ -218,6 +222,7 @@ public class Ui {
      * @param calendarList the calendar list that the task was added to.
      */
     public static void printAddMessage(CalendarList calendarList, boolean isTask) {
+        assert calendarList != null;
         String calendarItem;
         if (isTask) {
             calendarItem = "task";
@@ -247,6 +252,7 @@ public class Ui {
      * @param item the item to print the countdown.
      */
     public static void printCountDownItem(int days, CalendarItem item) {
+        assert item != null;
         if (days < 0) {
             System.out.println(item.getDescription() + " You have already missed it!");
         } else if (days == 0) {
