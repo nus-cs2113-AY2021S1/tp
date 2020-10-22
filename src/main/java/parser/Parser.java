@@ -6,6 +6,7 @@ import commands.AddCommand;
 import commands.BackCommand;
 import commands.Command;
 import commands.EditCommand;
+import commands.ExcludeCommand;
 import commands.ExitCommand;
 import commands.GoCommand;
 import commands.HelpCommand;
@@ -78,6 +79,8 @@ public class Parser {
             return prepareShowRate(commandArgs);
         case PreviewCommand.COMMAND_WORD:
             return preparePreview(commandArgs);
+        case ExcludeCommand.COMMAND_WORD:
+            return prepareExclude(commandArgs);
         case RescheduleCommand.COMMAND_WORD:
             return prepareReschedule(commandArgs);
         default:
@@ -468,11 +471,19 @@ public class Parser {
 
     private static Command preparePreview(String commandArgs) throws InvalidInputException {
         if (!commandArgs.isEmpty()) {
-            throw new InvalidInputException("There should not be any arguments for preview.");
+            String errorMessage = "There should not be any arguments for preview." + PreviewCommand.MESSAGE_USAGE;
+            throw new InvalidInputException(errorMessage);
         }
         return new PreviewCommand();
     }
-
+  
+    private static Command prepareExclude(String commandArgs) throws InvalidInputException {
+        if (commandArgs.isEmpty()) {
+            throw new InvalidInputException(MESSAGE_MISSING_ARGS + ExcludeCommand.MESSAGE_USAGE);
+        }
+        return new ExcludeCommand(commandArgs);
+    }
+  
     private static Command prepareReschedule(String commandArgs) throws InvalidInputException {
         try {
             String[] args = commandArgs.split(" ", 2);

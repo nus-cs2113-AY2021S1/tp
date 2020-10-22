@@ -1,5 +1,6 @@
 import access.Access;
 import commands.Command;
+import exception.ExclusionFileException;
 import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 import exception.InvalidFileFormatException;
@@ -10,7 +11,6 @@ import ui.Ui;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDate;
 
 public class Kaji {
     private Ui ui;
@@ -44,7 +44,7 @@ public class Kaji {
                 ui.printLine();
                 isExit = c.isExit();
             } catch (InvalidInputException | IncorrectAccessLevelException | IOException 
-                     | IndexOutOfBoundsException | InvalidFileFormatException e) {
+                     | IndexOutOfBoundsException | InvalidFileFormatException | ExclusionFileException e) {
                 ui.showError(e.getMessage());
                 ui.printLine();
             }
