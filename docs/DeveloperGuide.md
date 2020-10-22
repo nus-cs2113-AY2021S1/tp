@@ -5,9 +5,14 @@ enhancements.
 
 - [1. Design & Implementation](#1-design--implementation)
   * [1.1. Architecture](#11-architecture)
+    + [1.1.1 Ui Component](#111-ui-component)
+    + [1.1.2 Logic Component](#112-logic-component)
+    + [1.1.3 Model Component](#113-model-component)
+    + [1.1.4 Storage Component](#114-storage-component) 
   * [1.2. Implementation](#12-implementation)
     + [1.2.1 Direct Route Finder](#121-direct-route-finder)
         * [1.2.1.1. Implementation](#1211-implementation)
+        * [1.2.1.2. Design Considerations](#1212-design-considerations)
 - [2. Product scope](#2-product-scope)
   * [2.1. Target user profile](#21-target-user-profile)
   * [2.2. Value proposition](#22-value-proposition)
@@ -24,11 +29,29 @@ enhancements.
 
 The architecture diagram given in figure 1 explains the high-level design of the App. 
 
-![Architecture Diagram](Architecture.png)
-
+![Architecture Diagram](Architecture.png)<br>
 <i><center>Figure 1: Architecture diagram</center></i>
 
 Given below is a quick overview of each component.
+
+`Main` is the class Duke.java. It is responsible for:
+
+- Initializing the components in the correct sequence, and calling or creating objects in the order of execution.
+
+The rest of the App consists of 4 main components:
+
+- `Ui` : The Ui component handles all interactions with the user.
+- `Logic` : The Logic component makes sense of the command and executes it.
+- `Model` : The Model component is responsible for all data held in the memory.
+- `Storage` : The storage component handles data by reading from and writing to files in the hard disk. 
+
+#### 1.1.1 Ui Component
+
+#### 1.1.2 Logic Component
+
+#### 1.1.3 Model Component
+
+#### 1.1.4 Storage Component
 
 ### 1.2. Implementation
 
@@ -44,13 +67,17 @@ available from *location1* to *location2*.
 The class diagram in figure 2 shows how different classes used for implementation of the `/route` command are linked to
 each other. 
 
-![RouteCommandClass](RouteCommandClass.png)
-
+![RouteCommandClass](RouteCommandClass.png)<br>
 <i><center>Figure 2: Class diagram showing the implementation of the route feature</center></i>
 
 The RouteCommand Class executes the command in the following steps:
 1. Uses RouteParser to get the locations entered by the user in the order of starting location and destination.
     - The RouteParser throws an exception if the locations or the delimiter `/to` is missing.
+3. Uses a method to check if the locations are not in the list of bus stops but are similar.
+    - The similarityCheck() method calls the static similarLoc() method of SimilarityCheck class and returns a list of 
+    similar locations, if any.
+    - If the list of similar locations is not empty, the appropriate Ui function is called, else the steps below are 
+    performed.
 2. Uses its method to make sure that location strings are not empty or same.
     - The checkLocation() method throws an exception if locations are empty or the same.
 3. Calls a method from BusData to get a list of buses with their routes from the starting location to the destination.
@@ -63,11 +90,12 @@ The sequence diagram in figure 3 explains the above steps when the user enters `
 
 <i><center>Figure 3: Sequence diagram showing how the operation works</center></i>
 
-##### 1.2.1.1. Design Considerations
+##### 1.2.1.2. Design Considerations
 
 [Work in Progress]
 
 ## 2. Product scope
+
 ### 2.1. Target user profile
 
 {Describe the target user profile}
