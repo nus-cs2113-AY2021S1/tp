@@ -81,6 +81,8 @@ public class Ui {
             System.out.print(ansi().fg(BLUE).a("[Bookmark mode] Input: ").reset());
         } else if (Parser.getProgramMode() == 2) {
             System.out.print(ansi().fg(YELLOW).a("[Timetable mode] Input: ").reset());
+        } else if (Parser.getProgramMode() == 3) {
+            System.out.print(ansi().fg(WHITE).a("[Planner mode] Input: ").reset());
         } else {
             System.out.print("[An error has occurred] ");
         }

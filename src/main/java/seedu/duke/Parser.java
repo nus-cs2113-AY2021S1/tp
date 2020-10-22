@@ -52,6 +52,8 @@ public class Parser {
             command = createBookmarkCommand(input);
         } else if (programMode == 2) {
             command = createTimetableCommand(input);
+        } else if (programMode == 3) {
+            command = createPlannerCommand(input);
         } else {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
         }
@@ -72,14 +74,12 @@ public class Parser {
         } else if (input.startsWith(LaunchBookmarkCommand.LAUNCH_KW)) {
             return new LaunchBookmarkCommand(input);
         } else if (input.startsWith(FindBookmarkCommand.FIND_KW)) {
-            command = new FindBookmarkCommand(input);
+            return new FindBookmarkCommand(input);
         } else if (input.startsWith(ClearCommand.CLEAR_KW)) {
-            command = new ClearCommand();
+            return new ClearCommand();
         } else {
             throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
         }
-
-        return command;
     }
 
     //@@author TYS0n1
@@ -100,6 +100,21 @@ public class Parser {
         }
 
         return command;
+    }
+
+    private static Command createPlannerCommand(String input) throws DukeException {
+        Command command;
+
+        if (input.startsWith(AddSlotCommand.ADD_KW)) {
+            return new AddSlotCommand(input);
+        } else if (input.startsWith(ShowTimetableCommand.SHOW_KW)) {
+            return new ShowTimetableCommand(input);
+        //} else if (input.startsWith(ClearCommand.CLEAR_KW)) {
+        //    return new ClearCommand();
+        } else {
+            throw new DukeException(DukeExceptionType.UNKNOWN_INPUT);
+        }
+
     }
 
     public static int getProgramMode() {

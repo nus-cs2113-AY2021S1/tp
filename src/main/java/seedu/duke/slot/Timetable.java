@@ -26,6 +26,10 @@ public class Timetable {
         return module;
     }
 
+    public void addModule(Module module) {
+        modules.add(module);
+    }
+
     public List<Slot> getFullSlotList() {
         List<Slot> slotList = new ArrayList<>();
         for (Module module : modules) {

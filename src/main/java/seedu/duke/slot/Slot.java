@@ -81,12 +81,36 @@ public class Slot {
         return startTime;
     }
 
+    public int getStartMinutes() {
+        int hours = Integer.parseInt(startTime.toString().substring(0,2));
+        int minutes = Integer.parseInt(startTime.toString().substring(3));
+        return hours*60 + minutes;
+    }
+
     public void setEndTime(LocalTime timeInput) {
         endTime = timeInput;
     }
 
     public LocalTime getEndTime() {
         return endTime;
+    }
+
+    public int getEndMinutes() {
+        int hours = Integer.parseInt(endTime.toString().substring(0,2));
+        int minutes = Integer.parseInt(endTime.toString().substring(3));
+        return hours*60 + minutes;
+    }
+
+    public static LocalTime convertIntToLocalTime(int hours, int minutes) {
+        String h = String.valueOf(hours);
+        String m = String.valueOf(minutes);
+        if (hours < 10) {
+            h = "0" + h;
+        }
+        if (minutes < 10){
+            m = "0" + m;
+        }
+        return LocalTime.parse(h + ":" + m);
     }
 
     public void setDay(String dayInput) {

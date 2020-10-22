@@ -2,18 +2,24 @@ package seedu.duke;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import seedu.duke.bookmark.BookmarkList;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.DukeExceptionType;
+import seedu.duke.slot.Slot;
+import seedu.duke.slot.Timetable;
+import seedu.duke.slot.Module;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -27,10 +33,10 @@ public class Storage<T> {
     /**
      * Constructs a new Storage instance by storing the given pathname of the file.
      *
-     * @param filePath The pathname of the file.
+     * @param path The pathname of the file.
      */
-    public Storage(String filePath, Class<T> storageClass) {
-        this.filePath = filePath.replace('/', File.separatorChar);
+    public Storage(String path, Class<T> storageClass) {
+        this.filePath = path.replace('/', File.separatorChar);
         this.storageClass = storageClass;
     }
 
@@ -61,6 +67,100 @@ public class Storage<T> {
             return storageClass.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
             throw new DukeException(DukeExceptionType.ERROR_LOADING_FILE);
+        }
+    }
+
+    public T loadPlanner() throws DukeException {
+
+        File folder = new File(filePath);
+        if (folder.listFiles() == null) {
+            return createNewInstance();
+        }
+
+        ArrayList<File> listOfFiles = new ArrayList<>(Arrays.asList(folder.listFiles()));
+
+        StringBuilder fileAsString = new StringBuilder();
+        String opening = "{" + System.lineSeparator() + "  \"modules\": [";
+        String closing = System.lineSeparator() + "  ]" + System.lineSeparator() + "}";
+
+        fileAsString.append(opening);
+        for (File f : listOfFiles) {
+            try {
+                StringBuilder line = new StringBuilder(Files.readString(Paths.get(f.getPath())));
+                fileAsString.append(line.delete(0,16));
+                fileAsString.delete(fileAsString.length() - 6, fileAsString.length());
+                fileAsString.append(",");
+            } catch (IOException e) {
+                return createNewInstance();
+            }
+        }
+
+        fileAsString.delete(fileAsString.length() - 1, fileAsString.length());
+        fileAsString.append(closing).append(System.lineSeparator());
+
+        // System.out.println(fileAsString.toString());
+
+        if (!fileAsString.toString().equals("null")) {
+            Gson gson = new Gson();
+            return gson.fromJson(fileAsString.toString(), storageClass);
+        } else {
+            return createNewInstance();
+        }
+    }
+
+    public static Timetable initialiseEmptySlots(Timetable timetable) {
+
+        ArrayList<Slot> slots = new ArrayList<>(timetable.getFullSlotList());
+
+        ArrayList<ArrayList<Integer>> array = new ArrayList<>(7);
+        for (int i = 0; i < 7; i++) {
+            array.add(new ArrayList<>(Collections.nCopies(300, 0)));
+        }
+
+        for (Slot s: slots) {
+            markAsFull(array, s.getStartMinutes(), s.getEndMinutes(), s.getDay());
+        }
+
+        Module module = new Module("EMPTY");
+        generateEmptySlots(array, module);
+
+        //System.out.println(module.getSlotList());
+
+        Timetable emptyTimetable = new Timetable();
+        emptyTimetable.addModule(module);
+        return emptyTimetable;
+    }
+
+    private static void markAsFull(ArrayList<ArrayList<Integer>> array, int start, int end, String day) {
+        int count = 0;
+        for (String d: Slot.days) {
+            if (d.equals(day)) {
+                for (int i = start/5; i < end/5; i++) {
+                    array.get(count).set(i, 1);
+                }
+            }
+            count++;
+        }
+    }
+
+    private static void generateEmptySlots(ArrayList<ArrayList<Integer>> array, Module module) {
+        int count = 0;
+        for (String s: Slot.days) {
+            for (int i = 0; i < 287; i++) {
+                if (array.get(count).get(i) == 0) {
+                    int startHours = (i * 5) / 60;
+                    int startMinutes = (i * 5) % 60;
+                    LocalTime start = Slot.convertIntToLocalTime(startHours % 288, startMinutes % 288);
+                    do {
+                        i++;
+                    } while (array.get(count).get(i) == 0 && i < 287);
+                    int endHours = (i * 5) / 60;
+                    int endMinutes = (i * 5) % 60;
+                    LocalTime end = Slot.convertIntToLocalTime(endHours % 288, endMinutes % 288);
+                    module.addSlot(new Slot(start, end, s, "<empty slot>"));
+                }
+            }
+            count++;
         }
     }
 

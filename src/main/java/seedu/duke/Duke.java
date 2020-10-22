@@ -11,8 +11,10 @@ public class Duke {
 
     private Storage<BookmarkList> bookmarkStorage;
     private Storage<Timetable> timetableStorage;
+    private Storage<Timetable> plannerStorage;
     private BookmarkList bookmarks;
     private Timetable timetable;
+    private Timetable planner;
     private Ui ui;
 
     /**
@@ -22,15 +24,19 @@ public class Duke {
      * @param bookmarkFilePath The filepath of the bookmark txt file.
      * @param timetableFilePath The filepath of the slot txt file.
      */
-    public Duke(String bookmarkFilePath, String timetableFilePath) {
+    public Duke(String bookmarkFilePath, String timetableFilePath, String plannerFilePath) {
         ui = new Ui();
 
         bookmarkStorage = new Storage<>(bookmarkFilePath, BookmarkList.class);
         timetableStorage = new Storage<>(timetableFilePath, Timetable.class);
+        plannerStorage = new Storage<>(plannerFilePath, Timetable.class);
 
         try {
             bookmarks = bookmarkStorage.load();
             timetable = timetableStorage.load();
+            Timetable temp = plannerStorage.loadPlanner();
+            planner = Storage.initialiseEmptySlots(temp);
+
         } catch (DukeException e) {
             ui.showErrorMessage(e);
         }
@@ -48,11 +54,15 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(bookmarks, timetable, ui);
+                if (Parser.programMode == 3) {
+                    c.execute(bookmarks, planner, ui);
+                } else {
+                    c.execute(bookmarks, timetable, ui);
+                }
                 isExit = c.isExit();
-
                 bookmarkStorage.save(bookmarks);
                 timetableStorage.save(timetable);
+
             } catch (DukeException e) {
                 ui.showErrorMessage(e);
             }
@@ -65,6 +75,6 @@ public class Duke {
      * @param args Unused.
      */
     public static void main(String[] args) {
-        new Duke("./data/bookmarks.txt", "./data/slots.txt").run();
+        new Duke("./data/bookmarks.txt", "./data/slots.txt", "./data/planner/").run();
     }
 }
