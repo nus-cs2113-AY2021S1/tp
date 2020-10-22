@@ -160,7 +160,6 @@ The format of this command is as follows:<br>
 <code>/dine <strong>faculty</strong></code> <br>
 
 #### 3.6.1. Examples of Usage
-**<u>Example 1</u>**
 
 Let's say you want to know all the dining options available in <strong>School of Business</strong>.<br>
 1. Type <code>/dine <strong>business</strong></code> into the command line interface and press enter to execute the command as shown in the figure below.<br><br>
@@ -174,7 +173,6 @@ The format of this command is as follows:<br>
 <code>/dineinfo <strong>keyword</strong></code> <br>
 
 #### 3.7.1. Examples of Usage
-**<u>Example 1</u>**
 
 Let's say you want to find information of the dining outlet <strong>Arise & Shine</strong>.<br>
 1. Type <code>/dineinfo <strong>arise</strong></code> into the command line interface and press enter to execute the command as shown in the figure below.<br><br>
