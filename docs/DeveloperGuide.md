@@ -100,6 +100,10 @@ on whether the user searches for tasks or events, the condition will check for t
 This feature is facilitated by `PrintTimelineCommand`. It extends the `Command` class and overrides the `execute()` function.
 The following sequence diagram show how the `execute()` operation works when the user wants to print the personalised calendar.:<br/>
 
+### Prioritize a task feature 
+This feature is facilitated by `PrioritizeCommand`. It extends the `Command` class and overrides the `execute()` function.
+The following sequence diagram shows how the `execute()` operation works when the user wants to prioritize a task:
+
 ## Documentation
 
 ### Documentation guide
