@@ -32,7 +32,7 @@ Step 3. Within `CheckCommand#execute()`, `CheckCommand#getDate()` is called to p
 
 This sequence diagram shows how the `getDate` method functions:
 
-![Sequence Diagram for getDate](/docs/diagrams/getDate_seq_diagram.jpg)
+![Sequence Diagram for getDate](./diagrams/getDate_seq_diagram.jpg)
 
 Step 4. Within `CheckCommand#execute()`, the start date time and end date time is passed to `CheckCommand#checkEventsInTimeRange()` along with an `EventList` (i.e. Zoom, Personal or Timetable). This method checks each `Event` in the `EventList` to determine if the event occurs within the time period. If the event date time coincides with the time period, the event is added to an ArrayList that stores all the coinciding events in the current `EventList`. This is done for each `EventList`. 
 
@@ -42,7 +42,7 @@ Step 6. `Ui#printList()` is called to print the list of coinciding events.
 
 The following sequence diagram shows how the check operation works:
 
-![Sequence Diagram for CheckCommand](/docs/diagrams/CheckCommand_seq_diagram.jpg)
+![Sequence Diagram for CheckCommand](./diagrams/CheckCommand_seq_diagram.jpg)
 
 #### [Proposed] Deadline feature
 
@@ -52,12 +52,12 @@ The ```deadline``` command calls ```DeadlineCommand#execute()```, adding/updatin
 Given below is how the deadline command behave: <br>
 
 <p align="center">
-  <img width="414" height="562" src="/docs/diagrams/DeadlineScenario.jpg">
+  <img width="414" height="562" src="./diagrams/DeadlineScenario.jpg">
 </p>
 
 The following sequence diagram shows how the deadline operation works: <br>
 
-![Sequence Diagram for Deadline Command](/docs/diagrams/DeadlineSequenceDiagram.jpg)
+![Sequence Diagram for Deadline Command](./diagrams/DeadlineSequenceDiagram.jpg)
 
 #### [Proposed] Goal feature
 
@@ -85,15 +85,12 @@ with `Ui#printGoal()`.
 
 The following sequence diagram shows how the `goal save money` command is parsed:
 
-<p align="center">
-  <img src="/docs/diagrams/GoalParseSequenceDiagram.jpg">
-</p>
+![Sequence diagram for parsing goal command](./diagrams/GoalParseSequenceDiagram.jpg)
 
 The following sequence diagram shows how `GoalCommand#execute()` works:
 
-<p align="center">
-  <img src="/docs/diagrams/GoalExecuteSequenceDiagram.jpg">
-</p>
+
+![Sequence diagram for goal command execute](./diagrams/GoalExecuteSequenceDiagram.jpg)
 
 #### Add Feature
 
@@ -139,7 +136,7 @@ Step 5. The Zoom event is then added to the user's `UserData` for further use.
  
 The following sequence diagram shows how the whole add feature works: <br>
 
-![Sequence Diagram for Add Command](/docs/diagrams/addCommand.jpg)
+![Sequence Diagram for Add Command](./diagrams/addCommand.jpg)
 
 #### Repeat Feature
 
@@ -157,7 +154,7 @@ For example, to repeat a personal event located at index 2 for 3 days, the user 
 
 The following sequence diagram shows the overall process of repeating an event:
 
-![Sequence Diagram for Repeat Command](/docs/diagrams/RepeatScenario.jpg)
+![Sequence Diagram for Repeat Command](./diagrams/RepeatScenario.jpg)
 
 The steps to repeating the command will be described in the following sections. 
 
@@ -166,44 +163,44 @@ The steps to repeating the command will be described in the following sections.
 The repeat command first locates the event that is to be repeated along with its starting date.
 Next, it creates an empty ArrayList called `repeatEventList` that will contain all repeated events.
 
-![Sequence Diagram for Repeat Command step 1](/docs/diagrams/repeatstep1.jpg)
+![Sequence Diagram for Repeat Command step 1](./diagrams/repeatstep1.jpg)
 
 ##### Step 2: Incrementing the Original Date
 
 The repeatCommand object will now call upon Event to increment the date by a fixed unit of time. In the following diagram, it shows how the program flow will work should a monthly repeat increment be set. 
 The increment date will be assigned the name `repeatDate`
 
-![Sequence Diagram for Repeat Command step 2](/docs/diagrams/repeatstep2.jpg)
+![Sequence Diagram for Repeat Command step 2](./diagrams/repeatstep2.jpg)
 
 ##### Step 3: Set Repeat type
 
 The repeatCommand now will set the original Event to have a repeat type setting. In the diagram's example, it will be set to `monthly`
 
-![Sequence Diagram for Repeat Command step 3](/docs/diagrams/repeatstep3.jpg)
+![Sequence Diagram for Repeat Command step 3](./diagrams/repeatstep3.jpg)
 
 ##### Step 4: Clone the event
 
 The original event is now cloned as shown in the following sequence diagram.
 
-![Sequence Diagram for Repeat Command step 4](/docs/diagrams/repeatstep4.jpg)
+![Sequence Diagram for Repeat Command step 4](./diagrams/repeatstep4.jpg)
 
 ##### Step 5: Add the cloned activity
 
 The cloned activity will now have its date set to be `repeatDate`. This new activity is now added into the `repeatEventList` as shwon in the following diagram.
 
-![Sequence Diagram for Repeat Command step 5](/docs/diagrams/repeatstep5.jpg)
+![Sequence Diagram for Repeat Command step 5](./diagrams/repeatstep5.jpg)
 
 ##### Step 6: Repeat steps 2 to 5
 
 Steps 2 to 5 are repeated up till the number specified by `count` as shown in the loop.
 
-![Sequence Diagram for Repeat Command step 6](/docs/diagrams/repeatstep6.jpg)
+![Sequence Diagram for Repeat Command step 6](./diagrams/repeatstep6.jpg)
 
 ##### Step 7: Assign the ArrayList as the RepeatEventList attribute of the original event.
 
 Finally, set the `repeatEventList` using the `setRepeatEventList` command as shown in the following section of the sequence diagram. The results of this process is printed and control returns back to the main program.
 
-![Sequence Diagram for Repeat Command step 7](/docs/diagrams/repeatstep7.jpg)
+![Sequence Diagram for Repeat Command step 7](./diagrams/repeatstep7.jpg)
  
  
 ## Documentation, logging, testing, configuration, dev-ops (not sure what this entails)
