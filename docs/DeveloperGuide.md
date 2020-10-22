@@ -1,21 +1,21 @@
 # CCA Manager Developer Guide
 
 
-  * [Introduction](#introduction)
-  * [Setting up](#setting-up)
-  * [Design and Implementation](#design-and-implementation)
-    + [Input Parsing](#input-parsing)
-    + [Finance](#finance)
-    + [Event](#event)
-    + [HR](#hr)
-  * [Product scope](#product-scope)
-    + [Target user profile](#target-user-profile)
-    + [Value proposition](#value-proposition)
-  * [User Stories](#user-stories)
-  * [Non-Functional Requirements](#non-functional-requirements)
-  * [Glossary](#glossary)
-  * [Instructions for manual testing](#instructions-for-manual-testing)
-
+- [1. Introduction](#1-introduction)
+- [2. Setting up](#2-setting-up)
+- [3. Design and Implementation](#3-design-and-implementation)
+  * [3.1. Input Parsing](#31-input-parsing)
+  * [3.2. Commands](#32-commands)
+  * [3.3. Finance](#33-finance)
+  * [3.4. Event](#34-event)
+  * [3.5. HR](#35-hr)
+- [4. Product scope](#4-product-scope)
+  * [4.1. Target user profile](#41-target-user-profile)
+  * [4.2. Value proposition](#42-value-proposition)
+- [5. User Stories](#5-user-stories)
+- [6. Non-Functional Requirements](#6-non-functional-requirements)
+- [7. Glossary](#7-glossary)
+- [8. Instructions for manual testing](#8-instructions-for-manual-testing)
 
 
 ## 1. Introduction 
