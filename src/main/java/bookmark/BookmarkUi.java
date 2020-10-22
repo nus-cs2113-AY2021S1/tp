@@ -1,24 +1,20 @@
 package bookmark;
 
-import bookmark.BookmarkCategory;
-import bookmark.BookmarkList;
-
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class BookmarkUi {
-    private Scanner in;
 
     public BookmarkUi() {
-        this.in = new Scanner(System.in);
+
     }
 
     public static void printWelcomeBookmarkMessage() {
         System.out.println("Welcome to B00KMARK!");
         System.out.println("Choose your category by typing \"bm <category index>!\"");
+        //showBookmarkCategoryList();
     }
 
-    public static void showBookmarkCategoryList(ArrayList<BookmarkCategory> bookmarkCategories) {
+    public void showBookmarkCategoryList(ArrayList<BookmarkCategory> bookmarkCategories) {
         System.out.println("Here are the categories available:");
         int i = 1;
         for (BookmarkCategory category: bookmarkCategories) {
@@ -34,7 +30,7 @@ public class BookmarkUi {
         } else {
             int i = 1;
             for (BookmarkList link: links) {
-                System.out.println(i + "." + link.getLink());
+                System.out.println(i + "." + link);
                 i++;
             }
         }
@@ -82,5 +78,19 @@ public class BookmarkUi {
 
     public void showAlreadyInModeMessage() {
         System.out.println("Already in chosen Category");
+    }
+
+    public void showStarBookmarks(ArrayList<BookmarkCategory> categories) {
+        int i = 0;
+        System.out.println("Starred bookmarks: ");
+        for (BookmarkCategory category : categories) {
+            for (BookmarkList link : category.getLinks()) {
+                if (link.getStar()) {
+                    i++;
+                    System.out.println(i + "." + link);
+                }
+            }
+        }
+
     }
 }

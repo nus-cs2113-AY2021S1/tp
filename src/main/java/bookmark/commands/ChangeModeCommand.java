@@ -1,6 +1,7 @@
 package bookmark.commands;
 
 import bookmark.BookmarkCategory;
+import bookmark.BookmarkStorage;
 import bookmark.BookmarkUi;
 import exceptions.InvalidBookmarkException;
 import exceptions.EmptyBookmarkException;
@@ -13,13 +14,13 @@ public class ChangeModeCommand extends BookmarkCommand {
     private int categoryNumber;
 
     public ChangeModeCommand(String line, int categoryNumber) {
-        this.line = line;
+        this.line = line.trim();
         this.categoryNumber = categoryNumber;
         assert line.startsWith("bm") : "change mode command is called when line does not start with cd";
         assert categoryNumber >= 0 : "Missing category number";
     }
 
-    public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories) {
+    public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage bookmarkStorage) {
         try {
             int category = getChosenCategory(categories);
             if (category == categoryNumber) {

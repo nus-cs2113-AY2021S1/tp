@@ -5,30 +5,31 @@ import academic.GradeBook;
 import academic.Person;
 import academic.PersonBook;
 import academic.AcademicCommandType;
+
 import academic.AcademicStorage;
 import academic.AcademicCommandParser;
 import bookmark.BookmarkParser;
 import bookmark.BookmarkUi;
+
 import exceptions.InvalidCommandException;
 import exceptions.InvalidGradeException;
 import exceptions.InvalidMcException;
 import flashcard.FlashcardRun;
 import timetable.TimeTableRun;
-import bookmark.BookmarkCategory;
-import bookmark.commands.BookmarkCommand;
 import userinterface.ErrorMessage;
 import userinterface.HelpMessage;
 import userinterface.Ui;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
+import bookmark.BookmarkRun;
 
 
 public class Command {
-    public static int chosenCategory = 0;
 
     public static void executeCommand(String command, CommandType commandType,
-                                      ArrayList<BookmarkCategory> bookmarkCategories, FlashcardRun flashcardRun,
+                                      BookmarkRun bookmarkRun, FlashcardRun flashcardRun,
                                       TimeTableRun timeTableRun, ArrayList<academic.Grade> currentGrades,
                                       ArrayList<academic.Person> listOfPerson) {
         if (commandType == CommandType.EXIT_PROGRAM) {
@@ -43,7 +44,7 @@ public class Command {
             HelpMessage.printHelpMessage();
         } else if (StudyIt.getCurrentMode() != Mode.MENU) {
             // Run the mode specific commands if the input is none of the general command
-            handleNonGeneralCommand(command, commandType, bookmarkCategories, flashcardRun, timeTableRun,
+            handleNonGeneralCommand(command, commandType, bookmarkRun, flashcardRun, timeTableRun,
                     currentGrades, listOfPerson);
         } else {
             assert commandType == CommandType.UNIDENTIFIABLE : "This command should be unidentifiable";
@@ -53,13 +54,13 @@ public class Command {
     }
 
     public static void handleNonGeneralCommand(String command, CommandType commandType,
-                                               ArrayList<BookmarkCategory> bookmarkCategories,
+                                               BookmarkRun bookmarkRun,
                                                FlashcardRun flashcardRun, TimeTableRun timeTableRun,
                                                ArrayList<academic.Grade> currentGrades,
                                                ArrayList<academic.Person> listOfPerson) {
         Mode currentMode = StudyIt.getCurrentMode();
         if (currentMode == Mode.BOOKMARK) {
-            executeBookmarkModeCommand(command, bookmarkCategories);
+            executeBookmarkModeCommand(command, bookmarkRun);
         } else if (currentMode == Mode.TIMETABLE) {
             executeTimetableModeCommand(command, timeTableRun);
         } else if (currentMode == Mode.ACADEMIC) {
@@ -72,18 +73,9 @@ public class Command {
         }
     }
 
-    public static void executeBookmarkModeCommand(String command, ArrayList<BookmarkCategory> bookmarkCategories) {
+    public static void executeBookmarkModeCommand(String command, BookmarkRun bookmarkRun) {
         StudyItLog.logger.info("Processing bookmark mode.");
-        BookmarkUi bookmarkUi = new BookmarkUi();
-        BookmarkParser bookmarkParser = new BookmarkParser();
-        try {
-            BookmarkCommand c = bookmarkParser.evaluateInput(command,chosenCategory);
-            c.executeCommand(bookmarkUi,bookmarkCategories);
-            chosenCategory = c.getCategoryNumber();
-        } catch (InvalidCommandException e) {
-            bookmarkUi.showInvalidBookmarkCommand();
-            StudyItLog.logger.info("Cannot understand bookmark command");
-        }
+        bookmarkRun.run(command);
     }
 
     public static void executeTimetableModeCommand(String command, TimeTableRun timeTableRun) {

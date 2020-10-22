@@ -1,6 +1,7 @@
 package bookmark.commands;
 
 import bookmark.BookmarkCategory;
+import bookmark.BookmarkStorage;
 import bookmark.BookmarkUi;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class ListCommand extends BookmarkCommand {
         assert categoryNumber >= 0 : "Missing category number";
     }
 
-    public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories) {
+    public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage bookmarkStorage) {
         ui.showBookmarkList(categories);
     }
 

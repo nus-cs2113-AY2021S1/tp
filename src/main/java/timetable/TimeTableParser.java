@@ -2,6 +2,7 @@ package timetable;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Scanner;
 
 public class TimeTableParser {
@@ -12,7 +13,7 @@ public class TimeTableParser {
             return;
         }
         try {
-            String[] words = command.split(" ", 3);
+            String[] words = command.split(" ");
             String action = words[0];
             String type = words[1];
             if (action.equals("add")) {
@@ -32,10 +33,12 @@ public class TimeTableParser {
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(Message.printInvalidEvent);
+        } catch (InvalidDayOfTheWeekException e) {
+            System.out.println("Day of the week input is invalid. Please add the class again");
         }
     }
 
-    private static Lesson addClass() {
+    public static Lesson addClass() throws InvalidDayOfTheWeekException {
         Scanner in = new Scanner(System.in);
         System.out.println("Please enter module name: ");
         final String moduleCode = in.nextLine();
@@ -68,14 +71,20 @@ public class TimeTableParser {
 
     }
 
-    private static void addClassPeriods(String[] periods, int repeat, LocalDateTime startDay, Lesson lesson) {
+    private static void addClassPeriods(String[] periods, int repeat, LocalDateTime startDay,
+                                        Lesson lesson) throws InvalidDayOfTheWeekException {
         int startDayNum = startDay.getDayOfWeek().getValue();
         for (int i = 0; i < repeat; i++) {
             for (String period : periods) {
                 String [] dayAndTime = period.split((" "));
                 String day = dayAndTime[0].toUpperCase().replace(" ", "");
                 String time = dayAndTime[1];
-                int dayNum = DayOfWeek.valueOf(day).getValue();
+                int dayNum;
+                try {
+                    dayNum = DayOfWeek.valueOf(day).getValue();
+                } catch (IllegalArgumentException e) {
+                    throw new InvalidDayOfTheWeekException();
+                }
                 int startTime = Integer.parseInt(time.split("-")[0]);
                 int endTime = Integer.parseInt(time.split("-")[1].replaceAll("[^0-9]", ""));
                 if (time.contains("pm")) {

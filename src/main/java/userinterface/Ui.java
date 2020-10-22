@@ -66,7 +66,7 @@ public class Ui {
         // Prints introduction to the mode (if any)
         if (newMode == Mode.BOOKMARK) {
             BookmarkUi.printWelcomeBookmarkMessage();
-            BookmarkUi.showBookmarkCategoryList(StudyIt.bookmarkCategories);
+            //BookmarkUi.showBookmarkCategoryList();
             printDivider();
         }
     }
