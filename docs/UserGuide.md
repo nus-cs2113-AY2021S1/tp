@@ -1,46 +1,44 @@
 # User Guide
-1. Introduction
-2. Quick Start
-3. Features <br/>
-   3.1 Help `help` <br/>
-   3.2 Exit the program: `exit` <br/>
-   3.3 HR `HR` <br/>
-      *  Add Members: `addMember`<br/>
-      *  Delete Members: `delMember`<br/>
-      *  View summary of members: `listMember`<br/>
-      *  Change information of members: `changeInfo`<br/>
-      *  Search members: `search`<br/>
-      *  View contacts of prof/admin: `list prof&admin`<br/>
-      *  View contacts of connections: `list connections`<br/>
-   
-   3.4 Events `event` <br/>
-     * Add events: `addEvent`<br/>
-     * Delete events: `delEvent`<br/>
-     * View Summary of events: `listEvent`<br/>
-     * Countdown events: `countdown` <br/>
-     * Mark event as done: `done` <br/>
-     * search for a particular event `search`<br/>
-     
-   3.5 Finance `finance` <br/>
-     * Add finance log : `addLog`<br/>
-     * Delete finance log: `delLog`<br/>
-     * View financial summary: `summary`<br/>
-            
-4. FAQ
-5. Command Summary
-6. Glossary
 
-## Introduction
+- [1.Introduction](#1introduction)
+- [2.Quick Start](#2quick-start)
+- [3.Features](#3features)
+  * [3.1 Help `help`](#31-help--help-)
+  * [3.2 Exit the program: `bye`](#32-exit-the-program---bye-)
+  * [3.3 HR features `HR` <br/>](#33-hr-features--hr---br--)
+    + [Add members: `addMember`<br/>](#add-members---addmember--br--)
+    + [Delete members: `delMember`<br/>](#delete-members---delmember--br--)
+    + [list members: `listMember`<br/>](#list-members---listmember--br--)
+    + [change member information: `changeInfo`<br/>](#change-member-information---changeinfo--br--)
+    + [search members: `search`](#search-members---search-)
+    + [view contacts of prof/admin: `list prof&admin`](#view-contacts-of-prof-admin---list-prof-admin-)
+    + [view contacts of connections: `list connections`](#view-contacts-of-connections---list-connections-)
+  * [3.4 Event features`event` <br/>](#34-event-features-event---br--)
+    + [Add events: `addEvent`<br/>](#add-events---addevent--br--)
+    + [Delete events: `delEvent`<br/>](#delete-events---delevent--br--)
+    + [list events: `listEvent`<br/>](#list-events---listevent--br--)
+    + [countdown events `countdown`<br/>](#countdown-events--countdown--br--)
+    + [Mark an event as completed `done`<br/>](#mark-an-event-as-completed--done--br--)
+    + [Search for an Event `search`<br/>](#search-for-an-event--search--br--)
+  * [3.5 Finance features `finance`](#35-finance-features--finance-)
+    + [Add finance log entry: `addLog`](#add-finance-log-entry---addlog-)
+    + [Delete finance log entry: `delLog`](#delete-finance-log-entry---dellog-)
+    + [View financial summary: `summary`](#view-financial-summary---summary-)
+- [4. FAQ](#4-faq)
+- [5. Command Summary](#5-command-summary)
+- [6. Glossary](#6-glossary)
+
+## 1.Introduction
 
 CCA Manager is a revolutionary tool that changes the way you can manage interest groups with unrivaled efficiency and simplicity. Its lightweight Command Line Interface (CLI) allows administrators to breeze through tasks quickly and easily while offering powerful features to advanced users.
 
-## Quick Start
+## 2.Quick Start
 
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of CCA manager from here
 3. Run the program by entering java -jar cca.java in a terminal.
 
-## Features 
+## 3.Features 
 
 ### 3.1 Help `help`
 Shows a list of available commands<br/>
@@ -190,9 +188,9 @@ Brings up a summary of the financial log and shows the total amount of money exp
 Format: `finance summary`  
 
 
-##FAQ
+## 4. FAQ
 
-##Command Summary
+## 5. Command Summary
 Command | Format | Example
 ------- | ---------- | ------------
 help | `help` | -
@@ -214,7 +212,7 @@ hr search | `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)` | `hr searc
 list prof&admin | `hr list prof&admin` | -
 list connections | `hr list connections` | -
 
-##Glossary
+## 6. Glossary
 
 
 
