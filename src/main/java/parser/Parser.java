@@ -12,10 +12,12 @@ import commands.HelpCommand;
 import commands.HistoryCommand;
 import commands.ListCommand;
 import commands.ListDueCommand;
+import commands.PreviewCommand;
 import commands.RateCommand;
 import commands.RemoveCommand;
 import commands.ReviseCommand;
 import commands.ShowRateCommand;
+
 import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
@@ -75,6 +77,8 @@ public class Parser {
             return prepareRate(commandArgs);
         case ShowRateCommand.COMMAND_WORD:
             return prepareShowRate(commandArgs);
+        case PreviewCommand.COMMAND_WORD:
+            return preparePreview(commandArgs);
         default:
             throw new InvalidInputException("There is no such command type.\n");
         }
@@ -459,6 +463,13 @@ public class Parser {
         }
 
         return rating;
+    }
+
+    private static Command preparePreview(String commandArgs) throws InvalidInputException {
+        if (!commandArgs.isEmpty()) {
+            throw new InvalidInputException("There should not be any arguments for preview.");
+        }
+        return new PreviewCommand();
     }
 }
 
