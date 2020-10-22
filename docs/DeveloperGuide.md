@@ -207,7 +207,13 @@ There are two ways to run tests.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Task* - a todo item or a deadline item.
+* *School event* - a lecture, tutorial or lab session.
+* *Event* - an activity, lecture, tutorial or lab session.
+* *Calendar item* - a todo item, deadline item, activity, lecture, tutorial or lab.	
+* *Task list* - a list that stores all the tasks added to the app.
+* *Event list* - a list that stores all the events added to the app.
+* *Calendar list* - a list that stores all the calendar items added to the app.
 
 ## Instructions for manual testing
 
