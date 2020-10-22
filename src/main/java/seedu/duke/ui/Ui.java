@@ -5,8 +5,7 @@ import seedu.duke.event.EventList;
 import seedu.duke.event.Goal;
 
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Ui {
     Scanner in;
@@ -126,7 +125,18 @@ public class Ui {
         System.out.println("You have successfully updated the deadline for this event!");
         System.out.println(eventUpdated);
     }
-
+    public void printReminder(ArrayList<Event> events) {
+        System.out.println("You have the following events today: ");
+        Collections.sort(events, new Comparator<Event>() {
+            @Override
+            public int compare(Event o1, Event o2) {
+                return o1.getTime().compareTo(o2.getTime());
+            }
+        });
+        for (int i = 0; i < events.size(); i++){
+            System.out.println(events.get(i).toString());
+        }
+    }
     public void printStorageSavedMessage() {
         System.out.println("The file has successfully been saved!");
     }

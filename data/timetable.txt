@@ -1,0 +1,3 @@
+wakeup | 2020-10-23 | 1000 | 0 | 0 | null | F
+wakeup | 2020-10-23 | 1000 | 0 | 0 | null | F
+wakeup | 2020-10-16 | 1000 | WEEKLY | 1 | null | F | F
