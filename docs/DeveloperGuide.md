@@ -86,6 +86,15 @@ This will generate all the resources required by the application and tests.
  When you are ready to start coding, we recommend that you get some sense of the overall design by reading about WatchNext’s architecture [here](#3-design).
 
 ## 3. Design
+WatchNext was designed drawing from the ideas of the __Event-driven architectural style__. <br>
+<br>The Ui and the Scanner components work together as event emitters. The <code>Ui</code> class prompts the user for input, and the scanner is ready to receive the input. Should the format of the input be unrecognised or incorrect, the <code>Ui</code> class guides the user with prompts to rectify the errors.<br>
+<br>Events will be passed onto the <code>InputParser</code> which serves as the dispatcher. The <code>InputParser</code> uses various string manipulation operations from the <code>StringOperations</code> class to recognise the intention of the user input. After recognising the command, the input will be parsed, and the command information will be passed onto the various command classes for processing. The <code>InputParser</code> communicates the events to event consumers which are the command classes in this case. <br>
+<br>All available operations will be processed by the classes in the commands package. Every command class, like the <code>AddCommand</code> class, inherits from the <code>Command</code> class. Each individual command class is able to contain all the processing required for each command with the inputs passed in during the initiation of each command object. <br>
+<br>During runtime, the show related data is all stored in the <code>ShowList</code> class. The data is accessible and can be modified statically by all the command classes. The <code>ShowList</code> contains <code>Show</code> objects which describes the attributes of a show. 
+<br>Certain commands relating to the monitoring of the amount of time users spend watching shows depend on information from the <code>WatchTime</code> class. The class tracks the date and time remaining for the users to watch shows for the day. The time limit will be set by the user. <br>
+<br>On the initiation of WatchNext, the <code>Storage</code> object will be initiated and retrieves any user data that has been saved from previous runs. The data is stored in plain text and can be manually edited by advanced users. The data is stored in <code>data/showList.txt</code>. After the execution of every command, the <code>Storage</code> object calls upon the save command to automatically update the save data file. The commands relating to saving and loading data can be accessed from the <code>SaveState</code> interface.<br>
+<br>Throughout the lifespan of the program, various errors may occur. The <code>ErrorHandling</code> class stores the various errors that could occur. The expected errors usually stem from invalid user input or Input Output (IO) errors during file loading. The <code>Ui</code> class informs the users of the errors detected and suggests actions for rectification. <br>
+
 ## 4. Implementation
 ## 5. Documentation
 ## 6. Testing

@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    public static final String SAVE_DIRECTORY = "data/showList.txt";
+    public static final String SAVE_DIRECTORY = "data/userData.txt";
 
     private Scanner scan;
 
