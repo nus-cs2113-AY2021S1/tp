@@ -63,7 +63,7 @@ the user input and execute the commands accordingly. The diagram below depicts t
 
 <p align="center">
   <img alt="NotUS" src="diagrams/out/Notus.png" />
-  <br><em>Figure 1</em>
+  <br><em>Figure 2</em>
 </p>
 
 <br>
@@ -76,7 +76,7 @@ the user input and execute the commands accordingly. The diagram below depicts t
  
 <p align="center">
   <img alt="Parser" src="diagrams/out/Parser.png" />
-  <br><em>Figure 1</em>
+  <br><em>Figure 3</em>
 </p>
 
 **Command**
