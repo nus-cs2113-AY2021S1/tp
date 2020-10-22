@@ -2,10 +2,12 @@ package eventlist;
 
 
 import event.Event;
+import exception.EmptyEventListException;
 import exception.UndefinedEventException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static java.util.stream.Collectors.toList;
 
@@ -56,9 +58,36 @@ public class EventList {
         }
     }
 
+    /**
+     * Edit the contents of an existing event.
+     *
+     * @param event the new edited event
+     * @param index the index of the event being edited
+     */
     public void editEvent(Event event, int index) {
         assert events != null;
         events.set(index, event);
+    }
+
+    /**
+     * Sorts the events alphabetically.
+     *
+     * @param type the sorting criteria.
+     */
+    public void sortEvent(String type) {
+        assert events != null;
+        switch (type) {
+        case "description":
+            Collections.sort(events, Event.descriptionComparator);
+            break;
+        case "time":
+            Collections.sort(events, Event.timeComparator);
+            break;
+        default:
+            Collections.sort(events, Event.locationComparator);
+            break;
+        }
+
     }
 
     /**
@@ -126,9 +155,15 @@ public class EventList {
 
     /**
      * Clear the ArrayList events if it is not empty.
+     *
+     * @throws EmptyEventListException when the user tries to clear a list that is already empty.
      */
-    public void clearEvents() {
-        assert events != null;
-        events.clear();
+    public void clearEvents() throws EmptyEventListException {
+        //assert events != null;
+        if (events == null) {
+            throw new EmptyEventListException();
+        } else {
+            events.clear();
+        }
     }
 }
