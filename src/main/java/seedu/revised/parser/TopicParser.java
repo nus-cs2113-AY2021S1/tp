@@ -11,6 +11,7 @@ import seedu.revised.command.topic.QuizTopicCommand;
 import seedu.revised.command.topic.AddTopicCommand;
 import seedu.revised.command.topic.ExitTopicCommand;
 import seedu.revised.command.topic.ListTopicCommand;
+import seedu.revised.command.topic.ResultTopicCommand;
 import seedu.revised.command.topic.SorryTopicCommand;
 import seedu.revised.command.topic.DeleteTopicCommand;
 import seedu.revised.command.topic.FindTopicCommand;
@@ -57,6 +58,10 @@ public class TopicParser {
             }
         case "find":
             return new FindTopicCommand(fullCommand);
+        case "quiz":
+            return new QuizTopicCommand(fullCommand);
+        case "result":
+            return new ResultTopicCommand(fullCommand);
         case "topic":
             return new ReturnTopicCommand(fullCommand);
         case "todo":
