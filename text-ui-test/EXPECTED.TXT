@@ -2,11 +2,13 @@ _________________________________
 Welcome to scheduler--;!
 What can I do for you?
 _________________________________
-File Created: C:\Users\User\Documents\Year 2 Sem 1\CS2113T Software Engineering And Object Oriented Programming\tp\data\personal.txt
-File Created: C:\Users\User\Documents\Year 2 Sem 1\CS2113T Software Engineering And Object Oriented Programming\tp\data\zoom.txt
-File Created: C:\Users\User\Documents\Year 2 Sem 1\CS2113T Software Engineering And Object Oriented Programming\tp\data\timetable.txt
+File Created: Personal
+File Created: Zoom
+File Created: Timetable
+File Created: Goal
 The file has successfully been loaded!
 _________________________________
+The file has successfully been saved!
 _________________________________
 Thank you for using scheduler--;!
 We hope to see you soon!

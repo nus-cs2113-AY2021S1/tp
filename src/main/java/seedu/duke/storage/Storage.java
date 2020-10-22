@@ -3,6 +3,7 @@ package seedu.duke.storage;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
+import seedu.duke.event.Goal;
 import seedu.duke.exception.InvalidListException;
 import seedu.duke.ui.Ui;
 
@@ -80,13 +81,13 @@ public class Storage {
         }
     }
 
-    private void initialiseFile(Path fileText) {
+    private void initialiseFile(Path fileText, String fileType) {
 
         if (!Files.exists(fileText)) {
             try {
-                String fileName = fileText.toString();
+
                 Files.createFile(fileText);
-                System.out.println("File Created: " + fileName);
+                System.out.println("File Created: " + fileType);
             } catch (IOException e) {
                 ui.printErrorMessage("IO exception error! File cannot be created on system!");
             }
@@ -98,6 +99,7 @@ public class Storage {
         saveFile(filePersonalPath, data, "Personal");
         saveFile(fileTimeTablePath, data, "Timetable");
         saveFile(fileZoomPath, data, "Zoom");
+        saveFile(fileGoalPath, data, "Goal");
 
         ui.printStorageSavedMessage();
 
@@ -108,6 +110,16 @@ public class Storage {
         try {
             //firstly, form a temporary List of strings to store the data
             ArrayList<String> toBeWritten = new ArrayList<>();
+
+            if (fileType.equals("Goal")) { //special case for goal
+                Goal entry = data.getGoal();
+                if (entry == null) { //nothing to write
+                    return;
+                }
+                toBeWritten.add(entry.toString());
+                Files.write(fileName, toBeWritten);
+                return;
+            }
 
             //next, read out event by event and process it into a storable string
             EventList listOfEvents = data.getEventList(fileType);
@@ -137,6 +149,7 @@ public class Storage {
         loadFile(filePersonalPath, data, "Personal");
         loadFile(fileZoomPath, data, "Zoom");
         loadFile(fileTimeTablePath, data, "Timetable");
+        loadFile(fileGoalPath, data, "Goal");
 
         ui.printStorageLoadMessage();
 
@@ -153,10 +166,19 @@ public class Storage {
         try {
 
             //First, extract out all the file information
-            this.initialiseFile(fileName);
+            this.initialiseFile(fileName, fileType);
             List<String> fileLines = Files.readAllLines(fileName);
 
             //Next, line by line reform the event
+
+            //special case for goal
+            if (fileType.equals("Goal")) {
+                if (fileLines.size() != 0) {
+                    Goal prevGoal = new Goal(fileLines.get(0));
+                    data.setGoal(prevGoal);
+                }
+                return;
+            }
             for (int i = 0; i < fileLines.size(); i++) {
                 String line = fileLines.get(i);
                 Event activity = StorageParser.stringToEvent(line,fileType);

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.AddCommand;
 import seedu.duke.command.Command;
+import seedu.duke.command.GoalCommand;
 import seedu.duke.command.ListCommand;
 import seedu.duke.data.UserData;
 import seedu.duke.exception.DukeException;
@@ -85,6 +86,16 @@ class StorageTest {
                         + "_________________________________" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
+        outputStreamCaptor.reset();
+
+        GoalCommand goalCheck = new GoalCommand("");
+        goalCheck.execute(data, ui, store);
+
+        assertEquals("Goal: hello there" + System.lineSeparator()
+                        + "_________________________________" + System.lineSeparator(),
+                outputStreamCaptor.toString());
+
+
 
     }
 
@@ -94,14 +105,17 @@ class StorageTest {
             String[] modelPersonalLoc = {"storagetestermodelans", "personal.txt"};
             String[] modelZoomLoc = {"storagetestermodelans", "zoom.txt"};
             String[] modelTimetableLoc = {"storagetestermodelans", "timetable.txt"};
+            String[] modelGoalLoc = {"storagetestermodelans", "goal.txt"};
 
             Path personalPath = createPath(modelPersonalLoc);
             Path zoomPath = createPath(modelZoomLoc);
             Path timetablePath = createPath(modelTimetableLoc);
+            Path goalPath = createPath(modelGoalLoc);
 
             final List<String> personalModel = Files.readAllLines(personalPath);
             final List<String> zoomModel = Files.readAllLines(zoomPath);
             final List<String> timetableModel = Files.readAllLines(timetablePath);
+            final List<String> goalModel = Files.readAllLines(goalPath);
 
             Storage store = new Storage("storagetester", ui);
             UserData data = new UserData();
@@ -112,18 +126,22 @@ class StorageTest {
             String[] actualPersonalLoc = {"storagetester", "personal.txt"};
             String[] actualZoomLoc = {"storagetester", "zoom.txt"};
             String[] actualTimetableLoc = {"storagetester", "timetable.txt"};
+            String[] actualGoalLoc = {"storagetester", "goal.txt"};
 
             Path actualPersonalPath = createPath(actualPersonalLoc);
             Path actualZoomPath = createPath(actualZoomLoc);
             Path actualTimetablePath = createPath(actualTimetableLoc);
+            Path actualGoalPath = createPath(actualGoalLoc);
 
-            List<String> personalActual = Files.readAllLines(actualPersonalPath);
-            List<String> zoomActual = Files.readAllLines(actualZoomPath);
-            List<String> timetableActual = Files.readAllLines(actualTimetablePath);
+            final List<String> personalActual = Files.readAllLines(actualPersonalPath);
+            final List<String> zoomActual = Files.readAllLines(actualZoomPath);
+            final List<String> timetableActual = Files.readAllLines(actualTimetablePath);
+            final List<String> goalActual = Files.readAllLines(actualGoalPath);
 
             assertEquals(personalActual, personalModel);
             assertEquals(zoomActual, zoomModel);
             assertEquals(timetableActual, timetableModel);
+            assertEquals(goalActual, goalModel);
 
 
         } catch (IOException e) {
