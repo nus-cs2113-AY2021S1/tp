@@ -36,7 +36,7 @@ public class MenuParserTest {
         MenuParser menuParser = new MenuParser();
 
         try {
-            Command badCommand = menuParser.parseCommand(topicList, "quiz /twrongtopic /nbadnnum");
+            Command badCommand = menuParser.parseCommand(topicList, "quiz t/wrongtopic n/badnnum");
             assertTrue(badCommand instanceof IncorrectCommand);
         } catch (Exception e) {
             e.printStackTrace();
