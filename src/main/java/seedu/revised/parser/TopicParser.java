@@ -32,8 +32,8 @@ public class TopicParser {
     public static Command parse(String fullCommand) {
         String[] message = fullCommand.split(" ");
         switch (message[0]) {
-        case "bye":
-            if (fullCommand.equals("bye")) {
+        case "exit":
+            if (fullCommand.equals("exit")) {
                 return new ExitTopicCommand();
             } else {
                 return new SorryTopicCommand();
