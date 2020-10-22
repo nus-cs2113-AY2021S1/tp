@@ -63,7 +63,7 @@ class TaskMapTest {
         // Found both tasks
         assertEquals(currentSize, taskMap.searchByDescription("meet").size());
         assertEquals(currentSize, taskMap.searchByDescription("Meet").size());
-        assertEquals(currentSize, taskMap.searchByDate(LocalDate.now()).size());
+        assertEquals(currentSize, taskMap.searchByDate(LocalDate.of(2020,10,20)).size());
         // Not found
         assertEquals(0, taskMap.searchByDate(LocalDate.of(2020, 10,30)).size());
         assertEquals(0, taskMap.searchByDescription("reading").size());
