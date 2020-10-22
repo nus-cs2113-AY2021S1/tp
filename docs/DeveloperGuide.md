@@ -1,5 +1,17 @@
 # Developer Guide
 
+## Introduction
+### Software Overview:
+Our program, E-duke-8, comprises of a Logic component, UI component, Storage component, and Quiz component. Each component comprises of multiple classes that work in tandem, to fulfil the purpose of our program. 
+
+Purpose of the document:
+E-duke-8 is an education companion, intended for students to enhance their learning experience. 
+
+This guide will allow any interested contributors who wish to develop this learning companion further, to understand the inner workings of the program. This understanding will enable such contributors to add value to the current code, by improving its performance, level of interaction or capabilities. 
+
+### Setting up:
+Fork the repo, and clone the fork into your own PC. You are recommended to use IntelliJ to best edit the program. Do not forget to configure the JDK, and to import the project as a Gradle project, and lastly, remember to verify that the JUnit tests pass, to ensure the program is functional.
+
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
