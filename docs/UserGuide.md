@@ -1,14 +1,14 @@
 # AniChan User Guide
 
-![AniChan Logo](https://i.imgur.com/VhbC59Q.png)
+
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)
 <br/>&nbsp;3.1 [View the help: `help`](#31-view-the-help-help)
-<br/>&nbsp;3.2 [Adding a user: `adduser`](#32-adding-a-user-adduser)
-<br/>&nbsp;3.3 [Switching users: `switchuser`](#33-switching-users-switchuser)
+<br/>&nbsp;3.2 [Adding a user: `addws`](#32-adding-a-user-adduser)
+<br/>&nbsp;3.3 [Switching users: `switchws`](#33-switching-users-switchuser)
 <br/>&nbsp;3.4 [Browse through all Anime: `browse`](#34-browse-through-all-anime-browse)
 <br/>&nbsp;3.5 [Watchlist management: `watchlist`](#35-watchlist-management-watchlist)
 <br/>&nbsp;3.6 [Add an Anime to the current watchlist: `add`](#36-add-an-anime-to-the-current-watchlist-add)
@@ -31,7 +31,7 @@ AniChan is an all-rounded tool to effectively create and organize anime lists wi
 ## 2. Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `AniChan` from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/v1.0).
+2. Download the latest version of `AniChan` from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V1.0).
 3. Copy the file to the folder you want to use as the home folder for your AniChan.
 4. Open cmd and change directory into the folder. Run “java -jar anichan.jar”.
 5. Type a command into the command prompt and press ‘Enter’ to execute it. e.g. typing `help` and pressing ‘Enter’ will display the help message.
@@ -64,38 +64,30 @@ Format: `help`
 
 <br/>
 
-### 3.2 Adding a user: `adduser`
-Adds a new user to AniChan.
+### 3.2 Adding a user: `addws`
+Adds a new workspace to user.
 
-Format: `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER>`
+Format: `addws -n <NAME>`
 
-Example of usage: `adduser -n Timothy Wright -dob 12/12/1997 -g male`
-
-The expected outcome:
-
-    Successfully added new user: 
-    Name: Timothy Wright
-    Birthdate: 12/12/1997
-    Gender: Male
-
-<br/>
-
-### 3.3 Switching users: `switchuser`
-Switch the current active user to another user.
-
-Format: `switchuser -n <USERNAME>`
-
-Note:
-
-The name in the command prompter has changed as well to reflect the new user.
-
-Example of usage: `Barkley-san (Default) #> switchuser -n Isaac Asimov`
+Example of usage: `addws -n Crispy Donuts Studio`
 
 The expected outcome:
 ```
- Welcome back, Isaac Asimov-san
+Successfully added new workspace: Crispy Donuts Studio
+```
 
- Isaac Asimov-san (Default) #> 
+<br/>
+
+### 3.3 Switching users: `switchws`
+Switch the current active workspace of user.
+
+Format: `switchws -n <NAME>`
+
+Example of usage: `switchws -n Crispy Donuts Studio`
+
+The expected outcome:
+```
+Workspace changed to Crispy Donuts Studio
 ```
 
 <br/>
@@ -428,8 +420,8 @@ Coming soon!
 |Feature|Command|
 |---|---|
 | Help                                     | `help`                                                   |
-| Add user                                 | `adduser -n <USERNAME> -dob <dd/MM/yyyy> -g <GENDER>`    |
-| Switch user                              | `switchuser -n <USERNAME>`                               |
+| Add workspace                            | `addws -n <NAME>>`                                       |
+| Switch workspace                         | `switchws -n <NAME>`                                     |
 | Browse                                   | `browse -s [name/rating] -p <1-26> -o [asc/dsc]`         |
 | Create watchlist                         | `watchlist -n <WATCHLIST_NAME>`                          |
 | List all watchlist                       | `watchlist -l`                                           |
