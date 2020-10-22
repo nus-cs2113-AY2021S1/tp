@@ -13,9 +13,9 @@ subjects and then would be able to add either tasks or topics.
 * Topic : This segment is accessed through the `topic NAMEOFTOPIC` command. The user can add, delete or find flashcards
 in this segment.
 
-The code is broken down into different packages, which combine classes that perform a similar functionality.Here
+The code is broken down into different packages, which combine classes that perform a similar functionality. Here
 are the list of packages:
-* card: In charge of classes related to the subject,topic,flashcard and quiz functionalities
+* Card: In charge of classes related to the subject, topic, flashcard and quiz functionalities
     - Quiz
         * Quiz
         * Result
@@ -27,25 +27,42 @@ are the list of packages:
     - SubjectList
     - Topic
     - TopicList
-* Command : In charge of reading the command and calling the relevant methods.
+    
+
+* Command: In charge of reading the command and calling the relevant methods. The package itself holds
+the following packages.
     - Flashcard
-        * AddFlashcardCommand
-        * DeleteFlashcardCommand
-        #Add ur classes he
-* Exceptions : Deals with the various exceptions which are thrown in the application.
+    - Subject
+    - Topic
+    - Task
+    
+![Flashcard Commands](https://user-images.githubusercontent.com/46095141/96748916-c9027580-13fc-11eb-8c5b-4266d750aa6f.png) 
+**Flashcard Commands**
+
+The diagram above shows how the flashcard commands extend the abstract command class.  
+* Exceptions: Deals with the various exceptions which are thrown in the application.
     -flashcard
     - storage
     - subject
     - task
     - topic
-* Parser : Parses the commands and instantiates the relevant command classes.
-* Storage : Stores the data in an external folder
-* task : Contains the classes for the different types of tasks.
-* Ui : In charge of interaction with the user.
+* Parser: Parses the commands and instantiates the relevant command classes.
+* Storage: Stores the data in an external folder
+* Task: Contains the classes for the different types of tasks.
+* Ui: In charge of interaction with the user.
 
 ![Package Diagram](https://user-images.githubusercontent.com/46095141/96674190-c7a06100-139a-11eb-95e6-64bc2721e216.png)
-
+**Package Diagram**
 The Package Diagram above shows how the Revised class interacts with all of these packages.
+
+### Storage package
+There are two classes inside this package, both of which are inside `Storage.java`.
+
+![Storage Class Diagram](https://user-images.githubusercontent.com/15065550/96747993-8e4c0d80-13fb-11eb-8b28-9171daf23098.png)
+
+`StorageBuilder` class is a static inner class of `Storage` class. It follows the builder pattern and its sole purpose
+is to create `Storage` instances. The builder pattern is used to deal with the decrease in clarity due to the increase 
+of the number parameters.
 
 ## Product scope
 
@@ -58,8 +75,19 @@ Singaporean universities.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
 
+This application aims to help students to keep track of their revision. Students should be
+able to revise their subjects effectively through this application by adding various questions
+and answers in the form of flashcards. After that, students can refer to the flashcards to
+revise the subjects. Furthermore, they can take quizzes and see if they grasp the topics or subjects well
+enough to attend their school based exams.
+
+Students who find it hard to keep track of their assignments would also find this application
+useful since it lets the students add their tasks. The application then reminds the students
+regarding the upcoming tasks, which would prompt the students to prepare them.
+
+Students who find it difficult to organise woudl find this app useful since it
+offers a one stop solution to manage both their revision and their upcoming tasks .
 ## User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
@@ -80,15 +108,143 @@ Singaporean universities.
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+The application satisfies the following requirements:
+ * Portability: Users can transfer their data from the application since all the data is stored in a txt file.
+ * Modifiability: Since the code is broken down into different packages and classes, developers would
+ be able to modify the application with ease.
+ * Simplicity: The application comes with a detailed user guide along with the help commands. Hence, users can always 
+ refer to these to understand on how to use the application.
+ * Compatibility: The application runs on various operating systems: Windows, Linux etc
+ * Testability: The application is built using Gradle, a tool that offers various testing capabilities. Furthermore,
+ developers could also modify the input.txt file to provide a set of inputs and test if the application returns the 
+ expected output.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Revised* - The main class which initiates the whole application.
+* *ui* - Package which contains the Ui class, in charge of user interactions.
+* *task* - Package which contains the task classes.
+* *Task* - An abstract class which Todo,Deadline and Even classes inherit from.
+* *Deadline* - A class which refers to a task with a deadline. Inherits from the Task class.
+* *Event* - A class which refers to an event. Inherits from the Task class.
+* *TaskList* - A class which initialises an ArrayList of tasks.
+* *Storage* - A package which holds the Storage class, which is in charge of storing and loading data
+into the application.
+* *parser* - A package which parses the user commands and initialises the necessary topics,subjects or tasks.
+* *FlashcardParser* - A class which reads the user commands to call the relevant Flashcard command.
+* *SubjectParser* - A class which reads the user commands to call the relevant Subject command.
+* *TaskParser* - A class which reads the user commands to call the relevant task command.
+* *TopicParser* - A class which reads the user commands to call the relevant topic command.
+* *card* - Package holds the necessary classes for the quiz, subject,topic and flashcard functionality.
+* *quiz* - Package holds the classes for the quiz functionality.
+* *Quiz* - An Abstract class that holds the result, list of flashcards and a list of incorrectAnswers for the 
+SubjectQuiz class and the TopicQuiz class to inherit from.
+* *SubjectQuiz* - Instantiated when the user calls for a quiz on a subject. 
+* *TopicQuiz* - Instantiated when the user calls for a quiz on a topic. 
+* *Result* - A class which stores the marks from a quiz and a description which indicates the performance of the user 
+for that quiz.
+* *ResultList* - A class which holds an ArrayList of results.
+* *Flashcard* - A class which instantiates the flashcard object.Contains the question and answer feature of the flashcard.
+* *Subject* - A class which instantiates the subject object. Holds the title of the subject and lists of flashcards, 
+results and topics.
+* *SubjectList* - A class which holds an ArrayList of Subjects.
+* *Topic* - A class which is instantiated when the user creates the topic. Holds the title of the topic, an arraylist of
+flashcards and an arraylist of results.
+* *TopicList* - A class which holds an ArrayList of Topics.
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+### Testing the Jar File
+1. Refer to the [UserGuide](https://ay2021s1-cs2113t-w13-1.github.io/tp/UserGuide.html) on how to download the application.
+2. Open the application in command prompt.
+3. Try out various commands in the userguide to check if it works.
+4. Try out invalid commands and check if the application responds correspondingly.
+5. Exit the application and check the data files to check if all the data has been saved.
+6. Open the application again and check if the data has been loaded correctly. Use the `list` command for this step.
+
+### Testing the source code
+
+#### Setting up the project
+1. Download the source code from [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/releases).
+2. The application is optimised for IntelliJ users. Download IntelliJ if you do not have it.
+3. Configure the Intellij for JDK 11, as described [here](https://se-education.org/guides/tutorials/intellijJdk.html).
+4. Import the project as a Gradle project, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
+5. After the importing is complete, locate the `src/main/java/seedu.revised/Revised.java` file, right-click it, and choose
+`Run Revised.main()`.
+6. If the setup is correct, you should see soemthing like this:
+<pre><code>
+> Task :compileJava
+> Task :processResources UP-TO-DATE
+> Task :classes
+
+> Task :Revised.main()
+Hello from
+                               __________
+                              |  __ |  _ \
+ ____  ______      _____      |  |__| | | |
+|  __|/ __ \ \    / /| | ____ |   __| | | |
+| |  |  __/ \ \__/ / | | \____|  |__| |_| |
+| |   \___|  \____/  |_| ____/|_____|_____/
+
+____________________________________________________________
+ Hello! I'm revisED
+____________________________________________________________
+Alright, What can I do for you?
+____________________________________________________________
+</code></pre>
+
+
+#### Build Automation Using Gradle
+* This project uses Gradle for build automation and dependency management.
+ It includes a basic build script as well (i.e. the build.gradle file).
+* If you are new to Gradle, refer to the [Gradle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/gradle.html).
+
+#### Testing
+
+#### I/O redirection tests
+
+* To run _I/O redirection_ tests (aka _Text UI tests_), navigate to the `text-ui-test` folder. Open it in the terminal
+by right-clicking on the folder and click `open in terminal`.
+*  Run the `runtest(.bat/.sh)` script.
+* If the tests are successful, you would see this:
+<pre><code>
+BUILD SUCCESSFUL in 2s
+4 actionable tasks: 4 executed
+Test passed!
+</code></pre>
+* If the test fails, you would see this :
+<pre><code>
+BUILD SUCCESSFUL in 2s
+4 actionable tasks: 4 executed
+Test failed!</code></pre>
+* Navigate to the `text-ui-test` folder and compare the `ACTUAL.txt` file and the `EXPECTED.txt` file to 
+observe the error.
+
+
+#### JUnit tests
+The project has multiple JUnit tests for different functions.
+* A skeleton JUnit test (`src/test/java/seedu/revised/RevisedTest.java`) is provided with this project template. 
+* Under the `src/test/java/seedu/revised` folder, you would be able to access the different tests for
+the functionalities. Right click on the folder and click the `Run Tests in ...` option to run the tests
+in the folder.  
+* The results would be displayed in the terminal.If a test fails, click on the hyperlink provided
+to navigate to the failed test.
+* If you are new to JUnit, refer to the [JUnit Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/junit.html).
+
+#### Checkstyle
+
+* A sample CheckStyle rule configuration is provided in this project.
+* Right click on the Gradle bar on the right of the IDE and click `tp/Tasks/other/checkstyleMain` to test the checkstyle in the
+code.
+* If you are new to Checkstyle, refer to the [Checkstyle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/checkstyle.html).
+
+#### Documentation
+
+`/docs` folder contains the project documentation.It contains the following pages:
+
+* Individual contributions under the  `team` folder
+* The .md files for the UserGuide,README,and the DeveloperGuide
+
 
 ## Development
 
