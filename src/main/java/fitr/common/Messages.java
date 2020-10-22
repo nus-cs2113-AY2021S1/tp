@@ -4,13 +4,18 @@ package fitr.common;
  * Container for user visible messages.
  */
 public class Messages {
-    public static final String MESSAGE_GREET = "Hello! Welcome to Fitr.";
+    public static final String FITR_WORD = " _______   __   __\n"
+            + "|    ___| |__| |  |_  .----.\n"
+            + "|    ___| |  | |   _| |   _|\n"
+            + "|___|     |__| |____| |__|\n";
+    public static final String MESSAGE_GREET = FITR_WORD + "Hello! Welcome to Fitr.";
     public static final String MESSAGE_SUGGEST_QUESTION = "What can I do for you?";
     public static final String MESSAGE_BYE = "Bye. Hope to see you again soon!";
 
+    //Format messages
     public static final String FORMAT_FOOD = "food <Name of food> / <Number of Calories> <Quantity (Optional)>";
     public static final String FORMAT_EXERCISE = "exercise <Name of exercise> / "
-            + "<Number of Calories> <Quantity (Optional)>";
+            + "<Number of Calories>";
     public static final String FORMAT_DELETE = "delete food <Index from Food List> "
             + "or delete exercise <Index from Exercise List>";
 
@@ -26,6 +31,7 @@ public class Messages {
     public static final String ERROR_INVALID_GENDER_INPUT = "Oops! That is an invalid gender input.\n";
     public static final String ERROR_INVALID_HEIGHT_INPUT = "Oops! That is an invalid height input.\n";
     public static final String ERROR_INVALID_WEIGHT_INPUT = "Oops! That is an invalid weight input.\n";
+    public static final String ERROR_INVALID_FITNESS_INPUT = "Oops! That is an invalid fitness level input.\n";
     public static final String NAME_OUTPUT_HEADER = "Name: ";
     public static final String AGE_OUTPUT_HEADER = "Age: ";
     public static final String GENDER_OUTPUT_HEADER = "Gender: ";
@@ -37,10 +43,7 @@ public class Messages {
     public static final String MALE_STRING = "Male";
     public static final String FEMALE_STRING = "Female";
 
-
     public static final String ERROR_INVALID_COMMAND = "Sorry this is an invalid command!";
-    public static final String ERROR_INVALID_INDEX = "Please input a valid index!";
-    public static final String ERROR_INVALID_CALORIES = "Sorry! Calories should be a number.";
 
     //ViewCommand class messages
     public static final String ERROR_INVALID_VIEW_COMMAND = "Sorry this is an invalid view command!";
@@ -78,4 +81,6 @@ public class Messages {
     public static final String AGE_ECHO_HEADER = "Age changed to: ";
     public static final String EDIT_GENDER_HEADER = "Change your gender (M|F) to: ";
     public static final String GENDER_ECHO_HEADER = "Gender changed to: ";
+    public static final String INPUT_FITNESS_LEVEL = "Please indicate your fitness level to be used for determining " 
+            + "intensity of exercises.\n(0 for Unfit; 1 for Normal; 2 for Fit): ";
 }
