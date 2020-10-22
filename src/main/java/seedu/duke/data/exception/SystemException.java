@@ -43,6 +43,7 @@ public class SystemException extends Exception {
 
         // Note specific exception type
         EXCEPTION_INVALID_END_INPUT("Input /end on a new line!"),
+        EXCEPTION_INVALID_DEL_INPUT("There is no previous line to delete!"),
         EXCEPTION_INVALID_INPUT_FORMAT("Format of input is not valid!"),
 
         // Event related exception type

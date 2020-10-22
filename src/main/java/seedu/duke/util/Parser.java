@@ -41,7 +41,6 @@ import static seedu.duke.util.PrefixSyntax.PREFIX_DELETE_LINE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_RECURRING;
 import static seedu.duke.util.PrefixSyntax.PREFIX_REMIND;
 import static seedu.duke.util.PrefixSyntax.PREFIX_STOP_RECURRING;
-import static seedu.duke.util.PrefixSyntax.STRING_NEW_LINE;
 import static seedu.duke.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.duke.util.PrefixSyntax.PREFIX_PIN;
 import static seedu.duke.util.PrefixSyntax.PREFIX_TAG;
@@ -405,8 +404,8 @@ public class Parser {
             inputString = new ArrayList<>();
 
             System.out.println("Enter Note:");
-            System.out.println("Type /del to delete your previous line");
-            System.out.println("Type /end on a new line to end your note input");
+            System.out.println("*/del to delete previous line*");
+            System.out.println("*/end on a new line to end note input*");
             try {
                 // Type note
                 do {
@@ -421,7 +420,7 @@ public class Parser {
                 } while (!inputString.get(inputString.size() - 1)
                         .equalsIgnoreCase(PREFIX_DELIMITER + PREFIX_END)); // "/end" to end input note
 
-                // Delete "/end" command when user ends the edit
+                // Delete "/end" command when user ends the input
                 inputString.remove(inputString.size() - 1);
 
                 if (inputString.size() != 0) {
@@ -431,22 +430,12 @@ public class Parser {
                 }
             } catch (StringIndexOutOfBoundsException exception) {
                 System.out.println(SystemException.ExceptionType.EXCEPTION_INVALID_END_INPUT);
+            } catch (IndexOutOfBoundsException exception) {
+                System.out.println(SystemException.ExceptionType.EXCEPTION_INVALID_DEL_INPUT);
             }
         } while (!isInputSuccess);
 
         return inputString;
-    }
-
-    /**
-     * Delete the last line for mistakes made in inputContent().
-     *
-     * @param commandInput Original string of the note content.
-     * @param characters String of character to be removed.
-     * @param charCount Number of character. 0 to remove new line, 1 to resume typing on the same line.
-     */
-    public static void deleteLine(StringBuilder commandInput, String characters, int charCount) {
-        int lastChar = commandInput.lastIndexOf(characters) + charCount;
-        commandInput.delete(lastChar, commandInput.length());
     }
 
     /**
