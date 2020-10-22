@@ -229,7 +229,7 @@ _Figure x: The expected output message._
 ### 3.7. Search for specific dining outlet: ```/dineinfo```
 Search for all dining outlets that contains the keyword, and display their location and operating hours.<br>
 The format of this command is as follows:<br>
-<code>/dineinfo <strong>keyword</strong></code> <br>
+<code>/dineinfo <strong>outlet</strong></code> <br>
 
 #### 3.7.1. Examples of Usage
 
@@ -309,7 +309,9 @@ Command | Format | Example
 /routemap | `/routemap` **bus code** | `/routemap` **AA1** 
 /bus | `/bus` **location** | `/bus` **PGP**
 /allbus | `/allbus` | `/allbus`
-/liststops | `liststops`| `/liststops`
+/liststops | `/liststops`| `/liststops`
+/dine | `/dine` **faculty** | `/dine` **business**
+/dineinfo | `/dineinfo` **outlet** | `/dineinfo` **arise**
 /exit | `/exit` | `/exit`
 /help | `/help` | `/help`
 
