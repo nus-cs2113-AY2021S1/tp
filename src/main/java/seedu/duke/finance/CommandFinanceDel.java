@@ -26,9 +26,9 @@ public class CommandFinanceDel extends Command {
     }
 
     public int validate(UserInput ui) {
-        if (ui.getCategory().equals("finance") && ui.getCommand().equalsIgnoreCase("dellog")
+        if (ui.getCategory().equals("finance") && (ui.getCommand().equalsIgnoreCase("dellog")
                 || ui.getCommand().equalsIgnoreCase("del")
-                || ui.getCommand().equalsIgnoreCase("d")) {
+                || ui.getCommand().equalsIgnoreCase("d"))) {
             try {
                 Integer.parseInt(ui.getArg(""));
             } catch (NumberFormatException e) {

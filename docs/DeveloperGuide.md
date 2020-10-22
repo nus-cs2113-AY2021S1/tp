@@ -4,8 +4,8 @@
 {:toc}
 
 
+##Introduction 
 CCA Manager is a revolutionary all-in-one management tool that changes the way you can manage interest groups with unrivaled efficiency and simplicity. Its lightweight Command Line Interface (CLI) allows administrators to breeze through tasks quickly and easily while offering powerful features to advanced users.
-
 
 This developer guide is written to document the implementation of CCA Manager. This document is intended for people who
 are interested in learning more about the technical details of the various features and the organization of the application.
@@ -13,10 +13,20 @@ are interested in learning more about the technical details of the various featu
 ## Setting up
 Refer to the guide here.
 
-## Design & implementation
+## Design and Implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+![Architecture](Architecture.png)
 
+The **Architecture Design** given above explains the high-level design of the App. Given below is a quick overview of each component.
+
+**`Duke`** is the main class of the application, and handles the app launch, initializing the appropriate classes to be used.
+
+The rest of the app consists of the below:
+
+* [**`UI`**](#ui-component): The UI of the App.
+* [**`Logic`**](#logic-component): The command executor.
+* [**`storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Model`**](#model-component): Holds the data of the App in memory.
 
 ### Input Parsing
 **Current Implementation**  
@@ -46,6 +56,7 @@ Aspect: Statefulness of Parser object
 * Alternative 2: Parser preserves stateful information
     * Pros: Able to implement multi-step commands. Can easily implement confirmation step for commands that manipulate large volume of data.
     * Cons: More complicated to implement. Harder to ensure the behaviour of the parser is consistent. Harder to debug.
+
 Aspect: Design of parser
 * Alternative 1 (Current Choice): Dedicated parser class creates an object to be passed into all other Command objects
     * Pros: Allows other classes to check for the required arguments without having to do low level string handling. Enforces consistent parsing across all commands. Enables `/` arguments to be added and read in any order.
@@ -54,7 +65,49 @@ Aspect: Design of parser
     * Pros: Command classes are free to simplify the parsing step depending on the required complexity of the command. No intermediate step and overhead.
     * Cons: More difficult to enforce parsing standards across Commands. String manipulation becomes required in every command.
 
-###Finance
+### Commands
+**Current Implementation**  
+The abstract `Command` class in `seedu.duke` defines how the rest of the commands interact with the UI and UserInput objects.
+Its purpose is to ensure that all commands conform to the same design and coding standards to be compatable with the UI layer while also being
+sufficiently flexible to allow for complex commands to be created. It specifies the following *abstract* methods:
+
+* `Command#help()` - Allows commands to specify a default help `String` to be displayed if the argument supplied is incorrect.
+* `Command#validate()` - Checks if the supplied `UserInput` was intended for this command and validates if the supplied arguments are correct. This is akin to knocking the doors of houses on a street to look for an individual.
+* `Command#execute()` - Performs the command action. This is only run if `validate()` returns `ACCEPT`.
+
+Given below is the logical flow of the `Command` input to execution flow:
+
+1. The `Ui` reads the user input.
+2. The `Ui` calls the `Parser` to parse the input
+3. The `Parser` returns the `UserInput` to the `Ui`
+4. The `Ui` checks through the list of available commands and runs `validate()` on each of them until one command returns either `ARGUMENT_ERR` or `ACCEPT`
+    * If the `Ui` receives an `ARGUMENT_ERR`, it calls the `help()` function of that command and prints the `String` to the `Ui`.
+    * If the `Ui` receives an `ACCEPT`, it proceeds with the execution flow from 5.
+    * If the `Ui` receives no `ACCEPT`s or `ARGUMENT_ERR` after going through all commands, the `Ui` prints a list of available commands.
+5. The `Ui` calls the `execute()` method of the command that `ACCEPT` the `UserInput`.
+6. The `Ui` prints the output String returned from the `execute()` method.
+
+**Design Considerations**    
+Aspect: The need to instantiate a `Command`
+* Alternative 1 (Current Choice): `Command` is instantiated on `UI` initialization.
+    * Pros: Easy to implement. Less overhead from executing commands. Locality of the code allows for minimal merge conflicts when developing collaboratively.
+    * Cons: Requires more memory at load to hold all the objects.
+    * Reason for choice: Since we do not have a stateful parser, this option was chosen as the simplest implementation that gets the job done.
+* Alternative 2: `Command`s only contain static methods
+    * Pros: Conceptually more sensible than having exactly one instance of each command.
+    * Cons: More complicated to implement, java has no elegant simple way to exploit inheritance and static functions in a list of classes making this option unpractical without implementing a bunch of hacks.
+
+Aspect: `Command` resolution and validation
+* Alternative 1 (Current Choice): Each class is free to specify its own matching patterns and criterion.
+    * Pros: Allows for more complex criteria evaluation without having a dedicated class for resolving commands. Makes good use of abstraction and inheritance and puts all the `Command` related functions in the same class.
+    * Cons: Searching of the command list is `O(n)` but the individual validation functions may not be `O(1)`, resulting in higher potential overhead if validation functions are not optimized.
+    * Reason for choice: We wanted development of command related functions to all be housed in the same class. This design achieves that goal while giving us a great deal of flexibility.
+* Alternative 2: Dedicated class for command resolution and validation
+    * Pros: Further separates the job of command resolution from the `Ui` and `Command`. Simplifies `Command` class.
+    * Cons: Would be a class which features a very un-elegant large `if-else` block or `switch` block. Requires every new command to update this class with a substantial amount of new lines. Harder to develop collaboratively, increases chances of merge conflicts.
+
+
+### Finance
 **1.1. Add/delete finance log entry feature**  
 1.1.1. Current Implementation  
 The `CommandFinanceAdd` class in `seedu.duke.finance` handles adding finance log entry. It adds a new `FinanceLog` instance according to `userInput` into `FinanceList`.  
@@ -67,11 +120,17 @@ Given below is an example usage scenario and how the add/delete finance log entr
 
 Step 1. The user launches the application for the first time. The `FinanceList` will be initialized with no `FinanceLog` in it.  
 
+![](./financeDiagramPic/1-1S1.png)
+
 Step 2. The user executes `finance addLog iphone12 1299` command to add a finance log entry with content "iphone12" and value "1299" into finance list. The `finance addLog` command
 calls `CommandFinanceAdd#execute()`, then `FinanceList` will be added a `FinanceLog` with its `finLog` as `iphone12` and its value as `1299`.  
 
+![](./financeDiagramPic/1-1S2.png)
+
 Step 3. The user executes `finance delLog 1` command to delete the 1st finance log entry in the finance list. The `finance delLog`
 command calls `CommandFinanceDel#execute()`, causing the `FinanceLog` of index 1 removed from `FinanceList`.  
+
+![](./financeDiagramPic/1-1S3.png)
 
 **Design Considerations**  
 Aspect: User input format for adding a finance log entry
@@ -97,8 +156,12 @@ Given below is an example usage scenario and how the program list the summary of
 Step 1. After some `finance addLog` commands, the user created a `FinanceList` with two `FinanceLog`. The first `FinanceLog` is 
 "iphone12 $1299" and the second `FinanceLog` is "chicken rice $3.5".  
 
+![](/Users/tissue/Desktop/CS2113T/tp/docs/financeDiagramPic/1-2S1.png)
+
 Step 2. The user executes `finance summary` command to list the summary of `FinanceList`. The `finance summary` command calls 
-`CommandFinanceSummary#execute()`, then every `FinanceLog` in `FinanceList` will be output and the total budget will be printed out at the bottom.  
+`CommandFinanceSummary#execute()`, then every `FinanceLog` in `FinanceList` will be output and the total budget will be printed out at the bottom. Nothing will be changed in `FinanceList`.  
+
+![](/Users/tissue/Desktop/CS2113T/tp/docs/financeDiagramPic/1-2S2.png)
 
 **Design Considerations**  
 Aspect: Repeated items  
@@ -111,7 +174,6 @@ Aspect: Repeated items
     *Pros: The user do not have to calculate the total budget for repeated items by himself.  
     *Cons: The summary cannot show each index of the repeated items that it is confusing when user wants to delete 
     any one of them.  
-
 
 ## Product scope
 ### Target user profile
@@ -130,8 +192,15 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|user|add/delete members to the list |keep track of the members in the CCA|
+|v1.0|user|view a summary of members |view information of people in the various roles|
+|v1.0|user|add/delete events to the list|so that i can manage the schedule|
+|v1.0|user|view a summary of events |keep track of future and completed events|
+|v1.0|user|add/delete entries|keep track of financial records in the CCA|
+|v1.0|user|view financial summary |keep track of cashflow information at a glance|
+|v2.0|user|view the number of days remaining for the events|remind myself of upcoming events |
+|v2.0|user|perform a search on member/events|find the details of the member/event quickly|
+|v2.0|user|view the list of contacts of the prof/admin|so that i know how to contact them for admin matters|
 
 ## Non-Functional Requirements
 

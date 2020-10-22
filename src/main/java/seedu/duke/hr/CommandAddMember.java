@@ -4,6 +4,8 @@ import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
 import static seedu.duke.hr.MemberList.isNumber;
+import static seedu.duke.hr.MemberList.findMemberByName;
+import static seedu.duke.hr.MemberList.standardizeMemberName;
 
 /**
  * Represents add member command.
@@ -21,7 +23,7 @@ public class CommandAddMember extends Command {
                 || input.getCommand().equalsIgnoreCase("a"))) {
             if (input.getNumArgs() >= 4) {
                 if ((input.getArg("n") == null) || (input.getArg("p") == null) || (input.getArg("e") == null)
-                        && (input.getArg("r") == null)) {
+                        || (input.getArg("r") == null)) {
                     return ARGUMENT_ERR;
                 }
                 if ((input.getArg("n").equals("")) || (input.getArg("p").equals(""))
@@ -39,9 +41,16 @@ public class CommandAddMember extends Command {
 
     @Override
     public String execute() {
+        String output;
         long phone = Long.parseLong(savedInput.getArg("p"));
-        Member m = new Member(savedInput.getArg("n"), phone, savedInput.getArg("e"), savedInput.getArg("r"));
-        String output = MemberList.addToList(m);
+        String standardName = standardizeMemberName(savedInput.getArg("n"));
+        Member test = findMemberByName(standardName);
+        if (test == null) {
+            Member m = new Member(standardName, phone, savedInput.getArg("e"), savedInput.getArg("r"));
+            output = MemberList.addToList(m);
+        } else {
+            output = "OOPS!!! This member already exists. You may want to modify the member's information instead.";
+        }
         return output;
     }
 

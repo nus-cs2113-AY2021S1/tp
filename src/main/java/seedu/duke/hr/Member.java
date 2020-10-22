@@ -31,7 +31,23 @@ public class Member {
     }
 
     public String getMemberName() {
+
         return this.memberName;
+    }
+
+    public void setMemberRole(String newRole) {
+
+        this.memberRole = newRole;
+    }
+
+    public void setMemberPhone(long newPhone) {
+
+        this.memberPhone = newPhone;
+    }
+
+    public void setMemberEmail(String newEmail) {
+
+        this.memberEmail = newEmail;
     }
 
     /**
