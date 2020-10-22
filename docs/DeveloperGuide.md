@@ -11,6 +11,10 @@
 <br/>&nbsp;2.6 [AnimeData component]()
 <br/>&nbsp;2.7 [StorageManager component](#27-storagemanager)
 3. [Implementation](#3-implementation)
+<br/>&nbsp;3.1 [Workspace Feature](#31-workspace-feature)
+<br/>&nbsp;3.2 [Estimation Feature](#32-estimation-feature)
+<br/>&nbsp;3.3 [Bookmark Feature](#33-bookmark-feature)
+<br/>&nbsp;3.4 [Browse Feature](#34-browse-feature)
 4. [Produce scope](#4-product-scope)
 <br/>&nbsp;4.1 [Target user profile]()
 <br/>&nbsp;4.2 [Value proposition]()
@@ -120,7 +124,79 @@ view and manipulate these saved data easily with any available text editor.
 
 
 ## 3. Implementation
+This section describes some details on how some features were implemented.
+### 3.1 Workspace Feature
 
+### 3.2 Estimation Feature
+
+### 3.3 Bookmark Feature
+
+### 3.4 Browse Feature
+The `BrowseCommand` is executed by `BrowseCommandParser`. It will fetch `Anime` objects matching the parameters specified 
+that are stored in `AnimeData`. It extends the `Command` class and implements the following operations:
+- `sortBrowseList`
+- `buildBrowseOutput`
+
+These are the two fundamental operations that will carry out the execution of the browse command.
+`BrowseCommand` will be constructed with default values. 
+This ensures that even when there is  no input provided, it can still perform a default browse and return useful information.
+
+Before we go any further, here is a helpful table of the `BrowseCommand` parameters for reference.
+
+| Parameter | Option | Function |
+| --- | --- | --- |
+| order                    | 0                                                  | Ascending       |
+| order			           | 1				                                    | Descending      |
+| sortType		           | 0                                                  | No Sort         |
+| sortType		           | 1                                                  | by name         |
+| sortType		           | 2                                                  | by rating       |
+| sortType		           | 3                                                  | back to original|
+| page			           | \>= 1                                              | page number     |
+
+Note: The magic constants have already been refactored out into constant variables in the code.
+
+Let us now look at an example of how the default `browse` command would be carried out using an example page size of `3` 
+(it is set to `20` in actual execution) on a small sample list of `AnimeData`.
+![Browse Object Diagram 1](images/Browse-Default-State.png)
+`BrowseCommand` will utilise the `buildBrowseOutput` operation to return all anime series in the page window, as shown 
+in the diagram above.
+
+In this example, it fetches the following `Anime` objects.
+```
+Charlie
+Echo
+Gamma
+```
+Once the `Anime` object is obtained it will access its methods to get relevant information about the anime series
+to construct a printable result for browsing.
+
+Moving on, if we were to run `browse -p 2` which is to browse the 2nd page of the list. 
+It would shift the page window down by 1 page as depicted in the diagram below.
+![Browse Object Diagram 2](images/Browse-Default-State2.png)
+
+It will then carry out the remaining operation as per normal.
+
+Currently, this result is not very exciting as it is just based on the Anime ID 
+which is assigned randomly by our data source, AniList.
+
+Now, let us try browsing the 2nd page of a **sorted** list. We can do this by setting browse to 
+sort alphabetically and in ascending order (A-Z). 
+
+Or in command form: `browse -n name -o asc -p 2`.
+
+![Browse Object Diagram 3](images/Browse-Sorted-State.png)
+`BrowseCommand` will now firstly sort the AnimeData list through the `sortBrowseList` operation.
+
+As you can see, even though the page window is at the same position as the previous command, 
+the list is different as it has been sorted.
+
+From this point onwards, the operation will continue as per normal, but will perform another `sortBrowseList` operation
+to revert the list back to its original form.
+
+This will be done through: `sortBrowseList(3)` method call.
+
+Here is the sequence diagram to better illustrate the lifecycle of a browse command.
+![Browse Sequence Diagram](images/Browse-SequenceDiagram.png)
 
 ## 4. Product scope
 ### Target user profile
