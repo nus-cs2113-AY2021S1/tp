@@ -1,4 +1,4 @@
-package seedu.duke.person;
+package seedu.dietbook.person;
 
 /**
  * Represents a Person.

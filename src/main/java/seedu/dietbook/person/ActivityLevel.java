@@ -1,4 +1,4 @@
-package seedu.duke.person;
+package seedu.dietbook.person;
 
 /**
  * Represents the physical activity level of a person or the amount of exercise a person engages in.

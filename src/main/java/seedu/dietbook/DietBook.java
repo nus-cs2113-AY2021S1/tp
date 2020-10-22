@@ -1,9 +1,9 @@
-package seedu.duke;
+package seedu.dietbook;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import seedu.duke.database.DataBase;
-import seedu.duke.list.FoodList;
+import seedu.dietbook.database.DataBase;
+import seedu.dietbook.list.FoodList;
 
 public class DietBook {
     private FoodList foodList;
