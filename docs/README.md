@@ -39,7 +39,7 @@ schedule your tasks and events faster than traditional GUI apps.
     * Loading of past Calendar items from text file
 
 
-##Useful links:
+### Useful links:
 
 * [User Guide](https://ay2021s1-cs2113t-t12-2.github.io/tp/UserGuide.html)
 * [Developer Guide](https://ay2021s1-cs2113t-t12-2.github.io/tp/DeveloperGuide.html)

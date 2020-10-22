@@ -14,4 +14,6 @@ print timeline week
 *t1
 *t 2
 suggestion
+lab cs1010 @nus -r 1 /211020 1440
+print events
 bye
