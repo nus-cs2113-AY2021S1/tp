@@ -62,6 +62,11 @@ public abstract class Appliance {
         return maxLocationLength;
     }
 
+    /**
+     * Converts String value into integer.
+     *
+     * @return the parameter in integer.
+     */
     private static int convertParameterToInt(String parameter) throws InvalidNumericalValueException {
         try {
             return Integer.parseInt(parameter);
@@ -137,7 +142,7 @@ public abstract class Appliance {
     }
 
     /**
-     * Abstract method to gets the type of appliance.
+     * Method to gets the name of appliance.
      *
      * @return the type of the appliance in String.
      */
@@ -146,9 +151,9 @@ public abstract class Appliance {
     }
 
     /**
-     * Method to gets the type of appliance.
+     * Method to gets the location of appliance.
      *
-     * @return the type of the appliance in String.
+     * @return the location of the appliance in String.
      */
     public String getLocation() {
         return this.location;
@@ -161,17 +166,39 @@ public abstract class Appliance {
      */
     public abstract String getType();
 
+    /**
+     * Abstract method to gets the parameter of appliance.
+     *
+     * @return the type of the appliance in String.
+     */
     public abstract String getParameter(boolean isList);
 
+    /**
+     * Method to gets the printout for the appliance.
+     *
+     * @return the printout for appliance.
+     */
     public String toString() {
         return this.getName() + "(" + this.getWattage() + "W)" + " in " + this.getLocation() + " ";
     }
 
+    /**
+     * Method to save the printout for the appliance to text file.
+     *
+     * @return the printout for appliance.
+     */
     public String writeFileFormat() {
         return this.location + "|" + this.name + "|" + this.wattage + "|" + this.getType()
                 + "|" + this.getPowerInString() + "|" + this.getParameter(false);
     }
 
+    /**
+     * Method to check validity of inputted parameter
+     *
+     * @param lowerBound parameter must be larger than this.
+     * @param upperBound parameter must be smaller than this.
+     * @return true if parameter is valid.
+     */
     protected boolean isParameterValid(String parameter, int lowerBound, int upperBound) {
         try {
             int parameterValue = convertParameterToInt(parameter);
