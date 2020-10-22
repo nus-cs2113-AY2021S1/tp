@@ -8,6 +8,8 @@ import seedu.duke.data.notebook.Notebook;
 import org.junit.jupiter.api.Test;
 import seedu.duke.ui.Formatter;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FindCommandTest {
@@ -17,10 +19,12 @@ class FindCommandTest {
     @BeforeEach
     void setup() {
         notebook = new Notebook();
+        ArrayList<String> content = new ArrayList<>();
+        content.add("default");
 
-        Note defaultNote = new Note("Default", "default", false);
-        Note testNote1 = new Note("TestNote1", "default", false);
-        Note testNote2 = new Note("TestNote2", "default", false);
+        Note defaultNote = new Note("Default", content, false);
+        Note testNote1 = new Note("TestNote1", content, false);
+        Note testNote2 = new Note("TestNote2", content, false);
 
         notebook.addNote(defaultNote);
         notebook.addNote(testNote1);

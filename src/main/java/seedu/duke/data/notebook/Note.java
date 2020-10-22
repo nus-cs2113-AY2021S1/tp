@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Note {
 
     private String title;
-    private String content;
+    private ArrayList<String> content;
     private Boolean isPinned;
     private ArrayList<Tag> tags;
 
@@ -19,7 +19,7 @@ public class Note {
      * @param content of the note.
      * @param isPinned status of the note.
      */
-    public Note(String title, String content, Boolean isPinned) {
+    public Note(String title, ArrayList<String> content, Boolean isPinned) {
         this.title = title;
         this.content = content;
         this.isPinned = isPinned;
@@ -34,7 +34,7 @@ public class Note {
      * @param isPinned status of the note.
      * @param tags of the note.
      */
-    public Note(String title, String content, Boolean isPinned, ArrayList<Tag> tags) {
+    public Note(String title, ArrayList<String> content, Boolean isPinned, ArrayList<Tag> tags) {
         this(title, content, isPinned);
         this.tags = tags;
     }
@@ -52,11 +52,11 @@ public class Note {
         this.title = title;
     }
 
-    public String getContent() {
+    public ArrayList<String> getContent() {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(ArrayList<String> content) {
         this.content = content;
     }
 
