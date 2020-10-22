@@ -11,6 +11,8 @@ import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
 
+import java.io.IOException;
+
 import static fitr.common.Commands.COMMAND_FOOD;
 
 public class AddFoodCommand extends Command {
@@ -34,6 +36,7 @@ public class AddFoodCommand extends Command {
                     throw new NumberFormatException();
                 }
                 foodList.addFood(new Food(nameOfFood, amountOfCalories));
+                storageManager.writeFoodList(foodList);
                 Ui.printCustomMessage("The following food has been added: " + nameOfFood);
             } else if (command.split(" ").length == 2) {
                 Calorie amountOfCalories = new Calorie(Integer.parseInt(command.split(" ")[0]));
@@ -45,6 +48,7 @@ public class AddFoodCommand extends Command {
                     throw new FitrException();
                 }
                 foodList.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood));
+                storageManager.writeFoodList(foodList);
                 Ui.printCustomMessage("The following food has been added: " + nameOfFood);
             }
         } catch (NumberFormatException | NullPointerException e) {
@@ -53,6 +57,8 @@ public class AddFoodCommand extends Command {
             Ui.printFormatError(COMMAND_FOOD);
         } catch (FitrException e) {
             Ui.printCustomError("Sorry, the amount of food has to be a positive number");
+        } catch (IOException e) {
+            Ui.printCustomError("Sorry, there is an error in the file");
         }
     }
 

@@ -9,6 +9,8 @@ import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
 
+import java.io.IOException;
+
 public class EditProfileCommand extends Command {
 
     public EditProfileCommand(String command) {
@@ -30,6 +32,12 @@ public class EditProfileCommand extends Command {
             editGender(user);
         } else {
             Ui.printInvalidCommandError();
+        }
+
+        try {
+            storageManager.writeUserProfile(user);
+        } catch (IOException e) {
+            Ui.printCustomMessage(Messages.MISSING_FILE);
         }
     }
 

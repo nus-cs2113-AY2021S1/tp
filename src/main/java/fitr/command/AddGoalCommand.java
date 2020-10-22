@@ -9,6 +9,8 @@ import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
 
+import java.io.IOException;
+
 import static fitr.common.Commands.COMMAND_FOOD;
 import static fitr.common.Commands.COMMAND_EXERCISE;
 import static fitr.common.Commands.COMMAND_CUSTOM;
@@ -63,8 +65,11 @@ public class AddGoalCommand extends Command {
                             + "'exercise' or 'custom' to add the respective goal and 'back' exit the goal section");
                     break;
                 }
+                storageManager.writeGoalList(goalList);
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printCustomError("Please input in the correct format!");
+            } catch (IOException e) {
+                Ui.printCustomError("Sorry, there is an error in the file");
             }
             userInput = Ui.read().toLowerCase();
         }

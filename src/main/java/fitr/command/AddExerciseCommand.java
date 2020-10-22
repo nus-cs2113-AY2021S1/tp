@@ -10,6 +10,8 @@ import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
 
+import java.io.IOException;
+
 import static fitr.common.Commands.COMMAND_EXERCISE;
 
 public class AddExerciseCommand extends Command {
@@ -34,6 +36,7 @@ public class AddExerciseCommand extends Command {
                     throw new NumberFormatException();
                 }
                 exerciseList.addExercise(new Exercise(nameOfExercise, amountOfCaloriesBurnt));
+                storageManager.writeExerciseList(exerciseList);
                 Ui.printCustomMessage("The following exercise has been added: " + nameOfExercise);
             } else {
                 throw new ArrayIndexOutOfBoundsException();
@@ -42,6 +45,8 @@ public class AddExerciseCommand extends Command {
             Ui.printCustomError("Sorry, invalid calorie amount entered");
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printFormatError(COMMAND_EXERCISE);
+        } catch (IOException e) {
+            Ui.printCustomError("Sorry, there is an error in the file");
         }
     }
 
