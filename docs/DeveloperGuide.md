@@ -85,13 +85,13 @@ Given below is the Sequence Diagram for interactions within the `Parser` compone
 ### 2.4 Command
 
 ### 2.5 AnimeData
-![AnimeData Diagram](images/AnimeData-Class-Diagram.PNG)
+![AnimeData Diagram](images/AnimeData-Class-Diagram.png)
 
 API: `AnimeData.java`
 * AnimeData load and parse Data Files into memory on startup
 * Data are stored as Anime object within AnimeData
 
-The `AnimeDatar `component:
+The `AnimeData` component:
 * Can retrieve Anime object using ID
 * Can view detailed  information of each Anime Object
 * Can browse the Anime catalog with sorting algorithms
