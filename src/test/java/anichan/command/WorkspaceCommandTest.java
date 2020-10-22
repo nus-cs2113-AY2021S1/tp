@@ -23,7 +23,7 @@ class WorkspaceCommandTest {
     private AnimeData animeData;
     private StorageManager storageManager;
     private User user;
-    private Workspace activeWorkspace;
+    // private Workspace activeWorkspace;
 
     @BeforeEach
     void setUp() throws AniException {
@@ -46,7 +46,7 @@ class WorkspaceCommandTest {
         Workspace newWorkspace = user.addWorkspace("Default2");
         newWorkspace.setWatchlistList(watchlistList);
         user.setActiveWorkspace(newWorkspace);
-        activeWorkspace = user.getActiveWorkspace();
+        // activeWorkspace = user.getActiveWorkspace();
     }
 
     @Test
