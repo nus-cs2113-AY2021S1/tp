@@ -16,6 +16,7 @@ bin/
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
 
-userConfig.txt
+userProfile.txt
 foodList.txt
 exerciseList.txt
+goals.txt

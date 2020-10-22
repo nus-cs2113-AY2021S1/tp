@@ -5,7 +5,7 @@ import fitr.Recommender;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.GoalList;
-import fitr.storage.Storage;
+import fitr.storage.StorageManager;
 import fitr.ui.Ui;
 import fitr.user.User;
 
@@ -23,7 +23,7 @@ public class AddGoalCommand extends Command {
 
 
     @Override
-    public void execute(FoodList foodList, ExerciseList exerciseList, Storage storage,
+    public void execute(FoodList foodList, ExerciseList exerciseList, StorageManager storageManager,
                         User user, GoalList goalList, Recommender recommender) {
         Ui.printCustomMessage("----------Goals Section-------------");
         Ui.printCustomMessage("The following are understood by Fitr:\n"
@@ -65,11 +65,11 @@ public class AddGoalCommand extends Command {
                             + "'exercise' or 'custom' to add the respective goal and 'back' exit the goal section");
                     break;
                 }
-                storage.writeGoalList(goalList);
+                storageManager.writeGoalList(goalList);
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printCustomError("Please input in the correct format!");
             } catch (IOException e) {
-                Ui.printCustomError("Sorry, there is an error in the file");;
+                Ui.printCustomError("Sorry, there is an error in the file");
             }
             userInput = Ui.read().toLowerCase();
         }
