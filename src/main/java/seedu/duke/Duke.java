@@ -1,13 +1,11 @@
 package seedu.duke;
 
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 import seedu.duke.parser.Parser;
-import seedu.duke.model.project.Project;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static java.lang.System.exit;
 
@@ -20,7 +18,7 @@ public class Duke {
 
     private static Parser parser = new Parser();
     private static StorageManager sm;
-    private static ProjectList projListManager = new ProjectList();
+    private static ProjectManager projListManager = new ProjectManager();
 
     public static void main(String[] args) {
         new Duke().run();

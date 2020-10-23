@@ -1,9 +1,9 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.model.project.Project;
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.sprint.Sprint;
-import seedu.duke.model.sprint.SprintList;
+import seedu.duke.model.sprint.SprintManager;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.ui.Ui;
 
@@ -13,13 +13,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AddSprintTaskCommand extends SprintCommand {
-    private SprintList allSprint;
-    private ProjectList projectManager;
+    private SprintManager allSprint;
+    private ProjectManager projectManager;
     private Project proj;
     private static final Logger LOGGER = Logger.getLogger(AddSprintTaskCommand.class.getName());
 
 
-    public AddSprintTaskCommand(Hashtable<String, String> parameters, ProjectList projectManager) {
+    public AddSprintTaskCommand(Hashtable<String, String> parameters, ProjectManager projectManager) {
         super(parameters);
         this.projectManager = projectManager;
         LOGGER.setLevel(Level.WARNING);

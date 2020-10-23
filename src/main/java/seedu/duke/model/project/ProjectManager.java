@@ -2,11 +2,11 @@ package seedu.duke.model.project;
 
 import java.util.ArrayList;
 
-public class ProjectList {
+public class ProjectManager {
     public ArrayList<Project> projectList;
     public int selectedProject;
 
-    public ProjectList() {
+    public ProjectManager() {
         this.projectList = new ArrayList<>(10);
         this.selectedProject = 1;
     }

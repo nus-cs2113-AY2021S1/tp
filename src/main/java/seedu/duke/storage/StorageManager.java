@@ -4,11 +4,11 @@ import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsoner;
 import seedu.duke.model.project.Project;
-import seedu.duke.model.task.ProjectBacklog;
+import seedu.duke.model.task.TaskManager;
 import seedu.duke.model.member.ProjectMembers;
 import seedu.duke.model.member.Member;
 import seedu.duke.model.sprint.Sprint;
-import seedu.duke.model.sprint.SprintList;
+import seedu.duke.model.sprint.SprintManager;
 import seedu.duke.model.task.Priority;
 import seedu.duke.model.task.Task;
 
@@ -121,8 +121,8 @@ public class StorageManager {
 
     private Project convertToProject(JsonObject jsonProject) {
         Project project = new Project();
-        SprintList allSprints = convertSprintsList((JsonObject) jsonProject.get("allSprints"), project);
-        ProjectBacklog backlog = convertBacklog((JsonObject) jsonProject.get("backlog"), project);
+        SprintManager allSprints = convertSprintsList((JsonObject) jsonProject.get("allSprints"), project);
+        TaskManager backlog = convertBacklog((JsonObject) jsonProject.get("backlog"), project);
         ProjectMembers members = convertProjectMembers((JsonArray) jsonProject.get("members"));
 
         String title = (String) jsonProject.get("title");
@@ -159,8 +159,8 @@ public class StorageManager {
         return projectMembers;
     }
 
-    private ProjectBacklog convertBacklog(JsonObject rawBacklog, Project project) {
-        ProjectBacklog backlog = new ProjectBacklog();
+    private TaskManager convertBacklog(JsonObject rawBacklog, Project project) {
+        TaskManager backlog = new TaskManager();
         ArrayList<Task> backlogTasks = new ArrayList<>();
         JsonArray rawTasks = (JsonArray) rawBacklog.get("backlogTasks");
         for (Object rawTask : rawTasks) {
@@ -197,11 +197,11 @@ public class StorageManager {
         return task;
     }
 
-    private SprintList convertSprintsList(JsonObject rawSprints, Project project) {
-        SprintList sprintList = new SprintList();
-        sprintList.setCurrentSprintIndex(((BigDecimal) rawSprints.get("currentSprintIndex")).intValue());
-        sprintList.setSprintList(convertSprint((JsonArray) rawSprints.get("sprintList"), project));
-        return sprintList;
+    private SprintManager convertSprintsList(JsonObject rawSprints, Project project) {
+        SprintManager sprintManager = new SprintManager();
+        sprintManager.setCurrentSprintIndex(((BigDecimal) rawSprints.get("currentSprintIndex")).intValue());
+        sprintManager.setSprintList(convertSprint((JsonArray) rawSprints.get("sprintList"), project));
+        return sprintManager;
     }
 
     private ArrayList<Sprint> convertSprint(JsonArray sprintList, Project project) {

@@ -12,12 +12,12 @@ import java.io.Writer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class SprintList implements Jsonable {
+public class SprintManager implements Jsonable {
     
     private ArrayList<Sprint> sprintList;
     private int currentSprintIndex;
 
-    public SprintList() {
+    public SprintManager() {
         this.sprintList = new ArrayList<>();
         setCurrentSprintIndex(-1);
     }

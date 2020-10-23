@@ -1,6 +1,6 @@
 package seedu.duke.command.task;
 
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.sprint.Sprint;
 import seedu.duke.ui.Messages;
 import seedu.duke.exception.DukeException;
@@ -18,7 +18,7 @@ import static seedu.duke.command.CommandSummary.TASK_ID;
 
 
 public class TaskCommand {
-    public void addTaskCommand(Hashtable<String, String> tasks, ProjectList projectListManager)
+    public void addTaskCommand(Hashtable<String, String> tasks, ProjectManager projectListManager)
             throws DukeException {
 
         String title;
@@ -45,7 +45,7 @@ public class TaskCommand {
 
     }
 
-    public void deleteTaskCommand(Hashtable<String,String> taskIdString, ProjectList projectListManager) {
+    public void deleteTaskCommand(Hashtable<String,String> taskIdString, ProjectManager projectListManager) {
         try {
             Project proj = projectListManager.getProject();
             if (taskIdString.isEmpty()) {
@@ -78,7 +78,7 @@ public class TaskCommand {
         }
     }
 
-    public void viewTaskCommand(Hashtable<String, String> taskId, ProjectList projectListManager) {
+    public void viewTaskCommand(Hashtable<String, String> taskId, ProjectManager projectListManager) {
 
         try {
             Project proj = projectListManager.getProject();
@@ -106,7 +106,7 @@ public class TaskCommand {
         }
     }
 
-    public void changeTaskPriorityCommand(Hashtable<String, String> tasks, ProjectList projectListManager)
+    public void changeTaskPriorityCommand(Hashtable<String, String> tasks, ProjectManager projectListManager)
             throws DukeException {
 
         Task task;
@@ -136,7 +136,7 @@ public class TaskCommand {
         }
     }
 
-    public void doneTaskCommand(Hashtable<String, String> taskId, ProjectList projectListManager) {
+    public void doneTaskCommand(Hashtable<String, String> taskId, ProjectManager projectListManager) {
 
         try {
             Project proj = projectListManager.getProject();

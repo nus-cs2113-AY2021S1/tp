@@ -11,16 +11,16 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 
-public class ProjectBacklog implements Jsonable {
+public class TaskManager implements Jsonable {
 
     private Project proj;
     public ArrayList<Task> backlogTasks;
     int nextId;
 
-    public ProjectBacklog() {
+    public TaskManager() {
     }
 
-    public ProjectBacklog(Project proj) {
+    public TaskManager(Project proj) {
         this.proj = proj;
         backlogTasks = new ArrayList<>(100);
         nextId = 1;

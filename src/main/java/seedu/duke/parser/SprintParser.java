@@ -6,10 +6,8 @@ import seedu.duke.command.sprint.RemoveSprintTaskCommand;
 import seedu.duke.command.sprint.ViewSprintCommand;
 import seedu.duke.command.sprint.AllocateSprintTaskCommand;
 import seedu.duke.exception.DukeException;
-import seedu.duke.model.project.Project;
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 import static seedu.duke.command.CommandSummary.CREATE;
@@ -22,7 +20,7 @@ public class SprintParser implements ExceptionsParser {
 
     @Override
     public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
-                                                ProjectList projectListManager)
+                                                ProjectManager projectListManager)
             throws DukeException {
         switch (action.toLowerCase()) {
         case CREATE:

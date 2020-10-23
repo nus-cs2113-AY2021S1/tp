@@ -1,9 +1,9 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.model.project.Project;
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.sprint.Sprint;
-import seedu.duke.model.sprint.SprintList;
+import seedu.duke.model.sprint.SprintManager;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.ui.Ui;
 
@@ -11,11 +11,11 @@ import java.time.LocalDate;
 import java.util.Hashtable;
 
 public class RemoveSprintTaskCommand extends SprintCommand {
-    private SprintList allSprint;
-    private ProjectList projectManager;
+    private SprintManager allSprint;
+    private ProjectManager projectManager;
     private Project proj;
 
-    public RemoveSprintTaskCommand(Hashtable<String, String> parameters, ProjectList projectListManager) {
+    public RemoveSprintTaskCommand(Hashtable<String, String> parameters, ProjectManager projectListManager) {
         super(parameters);
         this.projectManager = projectListManager;
     }

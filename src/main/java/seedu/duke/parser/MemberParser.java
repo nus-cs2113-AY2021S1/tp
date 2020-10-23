@@ -2,12 +2,9 @@ package seedu.duke.parser;
 
 import seedu.duke.command.member.AddMemberCommand;
 import seedu.duke.command.member.DeleteMemberCommand;
-import seedu.duke.command.member.MemberCommand;
 import seedu.duke.exception.DukeException;
-import seedu.duke.model.project.Project;
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 import static seedu.duke.command.CommandSummary.ADD;
@@ -17,7 +14,7 @@ public class MemberParser implements ExceptionsParser {
 
     @Override
     public void parseMultipleCommandsExceptions(Hashtable<String, String> parameters, String action,
-                                                ProjectList projectListManager)
+                                                ProjectManager projectListManager)
             throws DukeException {
         if (parameters.get("0").isBlank()) {
             throw new DukeException("missing name");

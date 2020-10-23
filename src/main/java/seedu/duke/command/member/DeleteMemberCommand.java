@@ -2,7 +2,7 @@ package seedu.duke.command.member;
 
 import seedu.duke.model.member.Member;
 import seedu.duke.model.project.Project;
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 import seedu.duke.ui.Ui;
 
 import java.util.Hashtable;
@@ -10,7 +10,7 @@ import java.util.Hashtable;
 public class DeleteMemberCommand extends MemberCommand {
 
 
-    public DeleteMemberCommand(Hashtable<String, String> parameters, ProjectList projectManager) {
+    public DeleteMemberCommand(Hashtable<String, String> parameters, ProjectManager projectManager) {
         super(parameters, projectManager);
     }
 

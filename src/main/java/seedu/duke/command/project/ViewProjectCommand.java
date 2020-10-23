@@ -1,17 +1,16 @@
 package seedu.duke.command.project;
 
 import seedu.duke.model.project.Project;
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 import seedu.duke.ui.Ui;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class ViewProjectCommand extends ProjectCommand {
 
-    private final ProjectList projectManager;
+    private final ProjectManager projectManager;
 
-    public ViewProjectCommand(Hashtable<String, String> parameters, ProjectList projectManager) {
+    public ViewProjectCommand(Hashtable<String, String> parameters, ProjectManager projectManager) {
         super(parameters);
         this.projectManager = projectManager;
     }

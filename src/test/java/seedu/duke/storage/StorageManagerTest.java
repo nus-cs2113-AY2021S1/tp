@@ -4,10 +4,10 @@ import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.Jsoner;
 import org.junit.jupiter.api.Test;
 import seedu.duke.model.project.Project;
-import seedu.duke.model.task.ProjectBacklog;
+import seedu.duke.model.task.TaskManager;
 import seedu.duke.model.member.ProjectMembers;
 import seedu.duke.model.member.Member;
-import seedu.duke.model.sprint.SprintList;
+import seedu.duke.model.sprint.SprintManager;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -65,15 +65,15 @@ class StorageManagerTest {
         return project;
     }
     
-    private SprintList generateSprintList(Project project) {
-        SprintList sprintList = new SprintList();
-        sprintList.addSprint(project, "Goal", LocalDate.parse("2020-10-10"), LocalDate.parse("2020-10-19"));
-        sprintList.addSprint(project, "Goal1", LocalDate.parse("2020-10-20"), LocalDate.parse("2020-10-29"));
-        return sprintList;
+    private SprintManager generateSprintList(Project project) {
+        SprintManager sprintManager = new SprintManager();
+        sprintManager.addSprint(project, "Goal", LocalDate.parse("2020-10-10"), LocalDate.parse("2020-10-19"));
+        sprintManager.addSprint(project, "Goal1", LocalDate.parse("2020-10-20"), LocalDate.parse("2020-10-29"));
+        return sprintManager;
     }
     
-    private ProjectBacklog generateProjectBacklog(Project project) {
-        ProjectBacklog backlog = new ProjectBacklog(project);
+    private TaskManager generateProjectBacklog(Project project) {
+        TaskManager backlog = new TaskManager(project);
         backlog.addTask("Task1", "Task1 desc", "LOW");
         return backlog;
     }

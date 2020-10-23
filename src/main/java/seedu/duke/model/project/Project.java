@@ -3,8 +3,8 @@ package seedu.duke.model.project;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
 import seedu.duke.model.member.ProjectMembers;
-import seedu.duke.model.sprint.SprintList;
-import seedu.duke.model.task.ProjectBacklog;
+import seedu.duke.model.sprint.SprintManager;
+import seedu.duke.model.task.TaskManager;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -13,8 +13,8 @@ import java.time.LocalDate;
 
 public class Project implements Jsonable {
 
-    private SprintList allSprints;
-    private ProjectBacklog backlog;
+    private SprintManager allSprints;
+    private TaskManager backlog;
     private ProjectMembers members;
     private String title;
     private String description;
@@ -35,9 +35,9 @@ public class Project implements Jsonable {
         this.description = description;
         this.projectDuration = projectDuration;
         this.sprintLength = sprintLength;
-        backlog = new ProjectBacklog(this);
+        backlog = new TaskManager(this);
         members = new ProjectMembers();
-        allSprints = new SprintList();
+        allSprints = new SprintManager();
     }
 
     @Override
@@ -72,7 +72,7 @@ public class Project implements Jsonable {
     }
 
     //Getters
-    public SprintList getAllSprints() {
+    public SprintManager getAllSprints() {
         return allSprints;
     }
 
@@ -96,7 +96,7 @@ public class Project implements Jsonable {
         return startDate;
     }
 
-    public ProjectBacklog getBacklog() {
+    public TaskManager getBacklog() {
         return backlog;
     }
 
@@ -108,7 +108,7 @@ public class Project implements Jsonable {
         return endDate;
     }
 
-    public ProjectBacklog getProjectBacklog() {
+    public TaskManager getProjectBacklog() {
         return backlog;
     }
 
@@ -131,11 +131,11 @@ public class Project implements Jsonable {
         this.endDate = endDate;
     }
     
-    public void setAllSprints(SprintList allSprints) {
+    public void setAllSprints(SprintManager allSprints) {
         this.allSprints = allSprints;
     }
 
-    public void setBacklog(ProjectBacklog backlog) {
+    public void setBacklog(TaskManager backlog) {
         this.backlog = backlog;
     }
 

@@ -1,7 +1,7 @@
 package seedu.duke.command.project;
 
 import seedu.duke.model.project.Project;
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 import seedu.duke.ui.Ui;
 
 import java.util.Hashtable;
@@ -14,9 +14,9 @@ import static seedu.duke.command.CommandSummary.DESCRIPTION;
 
 public class CreateProjectCommand extends ProjectCommand {
 
-    private final ProjectList projectManager;
+    private final ProjectManager projectManager;
 
-    public CreateProjectCommand(Hashtable<String, String> parameters, ProjectList projectManager) {
+    public CreateProjectCommand(Hashtable<String, String> parameters, ProjectManager projectManager) {
         super(parameters);
         this.projectManager = projectManager;
     }

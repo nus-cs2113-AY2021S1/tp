@@ -1,22 +1,21 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.model.project.Project;
-import seedu.duke.model.project.ProjectList;
+import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.sprint.Sprint;
-import seedu.duke.model.sprint.SprintList;
+import seedu.duke.model.sprint.SprintManager;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class ViewSprintCommand extends SprintCommand {
-    private SprintList allSprint;
-    private final ProjectList projectManager;
+    private SprintManager allSprint;
+    private final ProjectManager projectManager;
     private Project proj;
 
-    public ViewSprintCommand(Hashtable<String, String> parameters, ProjectList projectListManager) {
+    public ViewSprintCommand(Hashtable<String, String> parameters, ProjectManager projectListManager) {
         super(parameters);
         this.projectManager = projectListManager;
     }
