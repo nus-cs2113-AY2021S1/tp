@@ -38,7 +38,7 @@ public class Storage {
      *
      * @return Scanner to read the file of the Storage object.
      */
-    private Scanner getReader() {
+    protected Scanner getReader() {
         assert file != null : "File should not be null";
         try {
             return new Scanner(file);
