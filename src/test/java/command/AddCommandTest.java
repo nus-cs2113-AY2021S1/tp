@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import parser.Parser;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class AddCommandTest {
 
