@@ -31,7 +31,7 @@ Package PERT CHART {
         ====
         Add Daily/Weekly Events
         ---
-        2 MD
+        3 MD
     ]
     Rectangle Ramana_2 [
         Ramana
@@ -50,7 +50,7 @@ Package PERT CHART {
         Add Note
         Delete Note
         ----
-        1 MD
+        5 MD
     ]
     Rectangle Brandon_2 [
         Brandon
@@ -68,9 +68,8 @@ Package PERT CHART {
         Tag Function
         ====
         Tag Events
-        Alert on Clashing Events
         ----
-        1 MD
+        2 MD
     ]
     Rectangle Ramana_3 [
         Ramana
@@ -90,6 +89,8 @@ Package PERT CHART {
         ====
         Add Color
         Tag Notes
+        ----
+        5 MD
     ]
     Rectangle Prachi_1 [
         Prachi
@@ -111,7 +112,7 @@ Package PERT CHART {
         ====
         Edit Events
         ----
-        1 MD
+        2 MD
     ]
     Rectangle Prachi_2 [
         Prachi
@@ -121,7 +122,7 @@ Package PERT CHART {
         Import Events
         Export Events
         ----
-        1 MD
+        2 MD
     ]
     Rectangle Prachi_3 [
         Prachi
@@ -131,7 +132,7 @@ Package PERT CHART {
         Import Notes
         Export Notes
         ----
-        1 MD
+        2 MD
     ]
     Rectangle Ramana_4 [
         Ramana
@@ -149,7 +150,7 @@ Package PERT CHART {
         ====
         Edit Notes
         ----
-        1 MD
+        2 MD
     ]
 }
 
