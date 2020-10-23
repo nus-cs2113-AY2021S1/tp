@@ -41,6 +41,7 @@ public class Quotesify {
     public void exit() {
         ui.printRandomQuote();
         ui.showGoodbyeMessage();
+        System.exit(0);
     }
 
     public void runLoopUntilExitCommand() {

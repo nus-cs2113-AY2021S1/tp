@@ -4,9 +4,57 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+### Feature: Add rating
+The proposed *add rating* feature will rely on an existing book object, and a rating object will then be created
+in the process.
+* The book object will store an attribute named rating, which will be set by this feature.
+* The rating object will be made up of the book object and a rating score, which is stored in a list of ratings
+named Rating List.
+
+Given below is the class diagram of classes related to ratings:
+
+[TO INSERT CLASS DIAGRAM HERE]
+
+* A `Book` has a `0..1` multiplicity to `Rating` as a book can have only 1 rating or have not been rated at all.
+* A `Rating` has a `1` multiplicity to `Book` as 1 rating represent only 1 book.
+* A `Rating` has a `1` multiplicity to `RatingList` as the rating will only be stored in 1 rating list.
+* A `RatingList` has a `*` multiplicity to `Rating` as the rating list can stored multiple rating objects.
+* There is composition between `Book` and `Rating` as a rating can only be created when the book exists.
+The rating will be deleted when the book is deleted.
+
+#### Design consideration:
+* The rating object stores a book object, which consists of the book title and author,
+instead of only the book title. This will uniquely identify books and allow books with the same title
+but different authors to be rated.
+
+### Feature: List rating
+The proposed *list rating* feature will print all the rating objects found in the rating list.
+* Details stored in the rating objects like the book title, author and its rating score will be printed.
+* If a rating score is specified by the user, only rating objects with that rating score will be printed.
+* The messages are printed using `Ui` which relies on `UiMessage`.
+
+#### Design consideration:
+* The rating list is sorted according to the rating score, with the highest rating at the top. This is for
+better user experience where users would usually like to see their favourites and do not need to scroll
+all the way to the bottom.
+
+### Feature: Find rating
+The proposed *find rating* feature will loop through the rating list to find if the rating exists.
+* If the rating is found, the details of the book and its rating score will be printed.
+* If the rating is not found, a message to indicate unsucessful search will be printed.
+* The messages are printed using `Ui` which relies on `UiMessage`.
+
+[INSERT SEQUENCE DIAGRAM HERE]
+
+### Feature Add bookmark
+The proposed add bookmark feature will rely on an existing `Book` object, and then a `Bookmark` object will 
+be created in the process.
+* The `Bookmark` object will be made up of the `Book` object and a page number, which is stored in a list of 
+bookmarks named `BookmarkList`.
+
+
 ## Product scope
 ### Target user profile
-
 * reads a lot
 * has difficulty remembering content after reading them
 * can type fast
@@ -58,7 +106,79 @@ Improves the reading experience of users with quick and easy features
    2. Run `java -jar Quotesify.jar` to launch Quotesify.
    3. Data will be automatically loaded from the data file upon launch.
    
+### Adding a book
+1. Test case: `add -b Harry Potter /by JK Rowling`
+    
+   Expected: Book is added to Quotesify. A message will be prompted to indicate that
+   the book has been successfully added.
+   
+2. Other incorrect commands to try:
+    * `add -b`: Book title left empty
+    * `add -b /by JK Rowling`: Book title left empty with author name specified
+    * `add -b title`: Author name left empty
+    * `add -b title /by`: Author name left empty with author tag specified
+    
+    Expected: Book will not be added. An error message will by printed.
+    
+### List all existing books
+1. Test case: `list -b`
 
+   Expected: All existing books in booklist will be listed.
+   
+### List book details
+1. Test case: `list -b 2`
+
+   Expected: Book details of book with the book index 2 from list of all books will be printed.
+   
+2. Other incorrect commands to try:
+   * `list -b Harry Potter /by JK Rowling`: Wrong format. 
+   * `list -b 10000`: Index out of range of booklist.
+   
+   Expected: Book details will not be printed. An error message will be printed instead.
+   
+### List books by author
+1. Test case: `list -b /by JK Rowling`
+
+   Expected: Books with the author JK Rowling will be listed. 
+   
+2. Other incorrect commands to try:
+   * `list -b JK Rowling`: Flag `/by` not specified
+   
+   Expected: Books will not be listed. An error message will be printed.
+   
+### Find books by keyword
+1. Test case: `find -b Harry`
+
+   Expected: Books with the title or author name containing Harry will be listed. 
+   
+2. Other incorrect commands to try:
+   * `find -b`: Keyword not specified
+   
+   Expected: Books will not be listed. An error message will be printed.
+
+### Delete books
+1. Test case: `delete -b 3`
+
+   Expected: Book with the book index of 3 in booklist will be deleted from list.
+   Successful message will be printed.
+   
+2. Other incorrect commands to try:
+   * `delete -b Harry Potter`: Wrong format
+   * `delete -b 10000`: Index out of range of booklist.
+   
+   Expected: Book will not be deleted. An error message will be printed.
+
+### Edit book
+1. Test case: `edit -b 3 /to Harry Potterrrrr`
+
+   Expected: Book title of book with the book index of 3 will be changed to Harry Potterrrrr.
+   
+2. Other incorrect commands to try: 
+   * `edit -b Harry Potter /to Harry Potterrrrr`: Wrong format
+   * `edit -b 3 Harry Potterrrrr`: Flag `/to` not specified. 
+   * `edit -b 3 /to`: New title not specified. 
+   
+   Expected: Book title will not be edited. An error message will be printed. 
 ### Adding a quote
 
 1. * Test case 1: `add -q Life's short, smile while you still have teeth`
@@ -249,11 +369,15 @@ Improves the reading experience of users with quick and easy features
      Expected: A message will be prompted to indicate that categories have been removed from both book and quote successfully.
 
 4. Remove one or more category from list
-   - To be implemented
-
+   - Test case: `delete -c action`
+   
+   Expected: A message will be prompted to indicate that category has been removed from all book and quotes.
+   - Test case: `delete -c action fantasy`
+   
+   Expected: A message will be prompted to indicate that categories has been removed from all book and quotes.
+   
 5. Incorrect commands to try
    - `delete -c` missing category name, book or quote
-   - `delete -c action` missing a book or quote
    - `delete -c action -b 0 -q 0` invalid book and quote index
    - `delete -c -b 1 -q 1` missing category name
    
