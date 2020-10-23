@@ -1,5 +1,6 @@
 package fitr.storage;
 
+import fitr.exception.InvalidFileFormatException;
 import fitr.user.User;
 
 import java.io.File;
@@ -24,13 +25,15 @@ public class UserStorage {
         }
     }
 
+
     /**
      * Reads the user's data from the text file.
      *
-     * @return True if the file is read successfully, False if not
+     * @return an User object with data from the text file
      * @throws FileNotFoundException if the file is not found
+     * @throws InvalidFileFormatException if the file format is invalid
      */
-    public User loadUserProfile() throws FileNotFoundException {
+    public User loadUserProfile() throws FileNotFoundException, InvalidFileFormatException {
         LOGGER.fine("Attempting to read file: " + USER_PROFILE_PATH);
 
         File file = new File(USER_PROFILE_PATH);
@@ -45,6 +48,11 @@ public class UserStorage {
         }
 
         String[] arguments = line.split(COMMA_SEPARATOR);
+
+        if (arguments.length != 6) {
+            throw new InvalidFileFormatException();
+        }
+
         String name = arguments[0];
         String gender = arguments[1];
         int age = Integer.parseInt(arguments[2]);
