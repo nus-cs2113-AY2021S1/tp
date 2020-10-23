@@ -191,6 +191,7 @@ public class Ui {
             System.out.println("s.");
         }
     }
+
     public void printBookmarkedIndicator() {
         printMessage("Bookmarked this question!");
     }
