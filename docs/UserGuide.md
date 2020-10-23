@@ -35,9 +35,9 @@ If you can type fast, Zoomaster can help fetch useful website links for you quic
   
 ## Features   
 >[i] Notes on command format:
->* Word contained in <brackets> are parameters to be supplied by the user.
->eg. in delete <bookmark_number>, bookmark_number is a parameter which can be used as delete 1. <br></br>
->* Items in square brackets are optional. <br></br>
+>* Word contained in <brackets> are parameters to be supplied by the user. <br>
+>eg. in delete <bookmark_number>, bookmark_number is a parameter which can be used as delete 1.
+>* Items in square brackets are optional. <br>
 >eg. show [<day>] can be used as show or as show [mon].
 
 <a name="global"></a> 
