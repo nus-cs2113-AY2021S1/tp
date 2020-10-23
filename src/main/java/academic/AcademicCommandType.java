@@ -7,5 +7,6 @@ public enum AcademicCommandType {
     CHECK_GRADE,
     LIST_GRADE,
     DELETE_PERSON,
-    DELETE_GRADE
+    DELETE_GRADE,
+    SU_GRADE
 }

@@ -33,9 +33,9 @@ public class AcademicStorage {
         while (s.hasNext()) {
             String importedCommand = s.nextLine();
             if (importedCommand.startsWith("[P]")) {
-                PersonBook.addPerson(AcademicCommandParser.parseImportedStatement(importedCommand),listOfPerson);
+                PersonBook.addPerson(AcademicCommandParser.parseImportedPerson(importedCommand),listOfPerson);
             } else if (importedCommand.startsWith("[G]")) {
-                GradeBook.addGrade(AcademicCommandParser.parseImportedStatement(importedCommand),listOfGrades);
+                GradeBook.addGrade(AcademicCommandParser.parseImportedGrade(importedCommand),listOfGrades);
             }
 
         }
