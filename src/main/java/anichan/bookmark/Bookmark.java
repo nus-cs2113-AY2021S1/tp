@@ -29,14 +29,14 @@ public class Bookmark {
 
     public void addAnimeBookmark(Integer animeIndex) {
         this.animeBookmarkList.add(animeIndex);
-        this.animeEpisode.add(-1);
+        this.animeEpisode.add(0);
         this.noteList.add(new Note());
     }
 
-    public void addAnimeBookmarkEpisode(Integer animeIndex, Integer episodeNumber) {
+    public void addAnimeBookmarkEpisode(Integer animeIndex, Integer episodeNumber, Note note) {
         this.animeBookmarkList.add(animeIndex);
         this.animeEpisode.add(episodeNumber);
-        this.noteList.add(new Note());
+        this.noteList.add(note);
     }
 
     public void removeAnimeBookmark(int bookmarkIndex) {
@@ -54,6 +54,14 @@ public class Bookmark {
 
     public ArrayList<Integer> getAnimeEpisode() {
         return animeEpisode;
+    }
+
+    public ArrayList<Note> getAnimeNote() {
+        return noteList;
+    }
+
+    public int getBookmarkEpisode(Integer bookmarkIndex) {
+        return animeEpisode.get(bookmarkIndex);
     }
 
     public Anime getAnimeBookmarkByIndex(AnimeData animeData, Integer bookmarkIndex) {
@@ -100,10 +108,6 @@ public class Bookmark {
             sbAnimeList.append(". ");
             int animeIndex = this.animeBookmarkList.get(i);
             sbAnimeList.append(animeData.getAnime(animeIndex));
-            if (animeEpisode.get(i) != -1) {
-                sbAnimeList.append(" Ep: ");
-                sbAnimeList.append(animeEpisode.get(i));
-            }
             sbAnimeList.append(System.lineSeparator());
         }
         return sbAnimeList.toString();
@@ -111,5 +115,15 @@ public class Bookmark {
 
     public String getAnimeBookmarkInfo(AnimeData animeData, Integer bookmarkIndex) {
         return animeData.returnAnimeInfo(this.animeBookmarkList.get(bookmarkIndex));
+    }
+
+    public boolean checkExist(Integer animeIndex) {
+        boolean alreadyExist = false;
+        for (Integer animeID : animeBookmarkList) {
+            if (animeID.equals(animeIndex)) {
+                alreadyExist = true;
+            }
+        }
+        return alreadyExist;
     }
 }
