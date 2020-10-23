@@ -10,11 +10,12 @@ import java.util.logging.Logger;
 
 
 public class User extends Human {
+
     public static final String GENDER_MALE = "male";
     public static final String GENDER_FEMALE = "female";
     public static final String GENDER_OTHER = "other";
     private static final Logger LOGGER = getAniLogger(Main.class.getName());
-
+    public static final String EXCEPTION_WORKPLACE_NOT_FOUND = "Workspace does not exist!";
 
     protected Gender gender;
     protected Workspace activeWorkspace;
@@ -62,6 +63,10 @@ public class User extends Human {
         }
     }
 
+    public Workspace getActiveWorkspace() {
+        return activeWorkspace;
+    }
+
     public void setWorkspaceList(ArrayList<Workspace> workspaceList) {
         this.workspaceList = workspaceList;
         if (workspaceList.size() != 0) {
@@ -69,8 +74,8 @@ public class User extends Human {
         }
     }
 
-    public Workspace getActiveWorkspace() {
-        return activeWorkspace;
+    public ArrayList<Workspace> getWorkspaceList() {
+        return workspaceList;
     }
 
     public void setActiveWorkspace(Workspace inputWorkspace) {
@@ -106,15 +111,53 @@ public class User extends Human {
         return workspaceList.size();
     }
 
-    public Workspace addWorkspace(String name) {
-        Workspace newWorkspace = new Workspace(name);
+    public Workspace addWorkspace(String name) throws AniException {
         assert (name != null) : "Workspace details should not have any null.";
 
-        workspaceList.add(newWorkspace);
-        LOGGER.log(Level.INFO, "Workspace created: " + name);
-        return newWorkspace;
+        if (doesWorkplaceExist(name)) {
+            throw new AniException("Workspace already exist!");
+        } else {
+            Workspace newWorkspace = new Workspace(name);
+
+            workspaceList.add(newWorkspace);
+            LOGGER.log(Level.INFO, "Workspace created: " + name);
+            return newWorkspace;
+
+        }
     }
 
+    public void deleteWorkspace(String toDeleteWorkspace) throws AniException {
+        assert (toDeleteWorkspace != null) : "Workspace details should not have any null.";
+
+        Workspace targetWorkspace = findWorkspace(toDeleteWorkspace);
+
+        if (targetWorkspace != null) {
+            workspaceList.remove(targetWorkspace);
+        } else {
+            LOGGER.log(Level.WARNING, EXCEPTION_WORKPLACE_NOT_FOUND);
+            throw new AniException(EXCEPTION_WORKPLACE_NOT_FOUND);
+        }
+    }
+
+    public Workspace findWorkspace(String findString) {
+        for (Workspace tempWorkspace : workspaceList) {
+            if (tempWorkspace.getName().equals(findString)) {
+                return tempWorkspace;
+            }
+        }
+
+        return null;
+    }
+
+    public boolean doesWorkplaceExist(String checkWorkspace) {
+        for (Workspace existingWorkspace : workspaceList) {
+            if (existingWorkspace.getName().equals(checkWorkspace)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     @Override
     public String toString() {

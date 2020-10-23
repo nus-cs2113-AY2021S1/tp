@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Watchlist {
     private final String name;
     private final ArrayList<Integer> animeList;
+    private static final String EMPTY_WATCHLIST_MESSAGE = "Uhh.. It's empty.. :(";
 
     public Watchlist(String name) {
         this.name = name;
@@ -26,7 +27,6 @@ public class Watchlist {
 
     public void addAnimeToList(Integer animeIndex) {
         this.animeList.add(animeIndex);
-        assert this.animeList.contains(animeIndex) == true : "Watchlist should now contain new anime";
     }
     
     public void removeAnimeFromList(int watchlistListIndex) {
@@ -44,7 +44,7 @@ public class Watchlist {
     public String animeListToString() {
         StringBuilder sbAnimeList = new StringBuilder();
         if (animeList.size() == 0) {
-            sbAnimeList.append("Uhh.. It's empty.. :(");
+            sbAnimeList.append(EMPTY_WATCHLIST_MESSAGE);
             sbAnimeList.append(System.lineSeparator());
         }
 

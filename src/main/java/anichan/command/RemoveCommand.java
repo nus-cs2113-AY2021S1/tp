@@ -34,7 +34,7 @@ public class RemoveCommand extends Command {
         Workspace activeWorkspace = user.getActiveWorkspace();
         
         removeFromWatchlist(storageManager, activeWorkspace);
-        Anime anime = animeData.getAnimeByID(animeIndex);
+        Anime anime = animeData.getAnime(animeIndex);
         String animeName = anime.getAnimeName();
 
         return animeName + " successfully removed from watchlist!";

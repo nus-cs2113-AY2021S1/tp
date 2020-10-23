@@ -38,14 +38,14 @@ class AnimeDataTest {
     @Test
     void getAnimeByID_negativeInteger_expectException() {
         assertThrows(IndexOutOfBoundsException.class, () -> {
-            animeData.getAnimeByID(NEGATIVE_INTEGER);
+            animeData.getAnime(NEGATIVE_INTEGER);
         });
     }
 
     @Test
     void getAnimeByID_nullInput_expectException() {
         assertThrows(NullPointerException.class, () -> {
-            animeData.getAnimeByID(NULL_PARAM);
+            animeData.getAnime(NULL_PARAM);
         });
     }
 }

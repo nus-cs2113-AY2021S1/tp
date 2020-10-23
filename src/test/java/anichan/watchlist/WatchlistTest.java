@@ -6,8 +6,8 @@ import anichan.bookmark.Bookmark;
 
 import java.util.ArrayList;
 
-import static junit.framework.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static junit.framework.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class WatchlistTest {
     private static final int SAMPLE_ANIME_INDEX_ONE = 1;
@@ -30,14 +30,14 @@ class WatchlistTest {
     void testEqual() {
         // Test Equals on duplicated named watchlist.
         Watchlist duplicateNameWatchlist = new Watchlist("First Watchlist");
-        assertTrue(duplicateNameWatchlist.equals(firstWatchlist));
-        assertFalse(duplicateNameWatchlist.equals(secondWatchlist));
+        assertEquals(duplicateNameWatchlist, firstWatchlist);
+        assertNotEquals(secondWatchlist, duplicateNameWatchlist);
 
         // Test Equals on non-Watchlist object.
         Bookmark bookmark = new Bookmark();
-        assertFalse(firstWatchlist.equals(bookmark));
+        assertNotEquals(bookmark, firstWatchlist);
 
         // Test Equals on Null object.
-        assertFalse(firstWatchlist.equals(null));
+        assertNotEquals(firstWatchlist, null);
     }
 }
