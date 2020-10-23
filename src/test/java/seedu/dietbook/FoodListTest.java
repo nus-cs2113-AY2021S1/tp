@@ -1,7 +1,7 @@
-package seedu.duke;
+package seedu.dietbook;
 
-import seedu.duke.list.FoodList;
-import seedu.duke.food.Food;
+import seedu.dietbook.list.FoodList;
+import seedu.dietbook.food.Food;
 import org.junit.jupiter.api.Test;
 
 
