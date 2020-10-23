@@ -203,7 +203,8 @@ public class User {
                     Ui.printCustomMessage(INPUT_FITNESS_LEVEL);
                 }
             } catch (NumberFormatException e) {
-                Ui.printCustomMessage(ERROR_INVALID_FITNESS_INPUT + INPUT_FITNESS_LEVEL);
+                Ui.printCustomError(ERROR_INVALID_FITNESS_INPUT);
+                Ui.printCustomMessage(INPUT_FITNESS_LEVEL);
                 fitnessLevelInput = -1;
             }
         }

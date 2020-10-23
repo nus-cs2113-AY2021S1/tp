@@ -42,7 +42,7 @@ public class GoalStorage {
         while (readFile.hasNext()) {
             line = readFile.nextLine();
             arguments = line.split(COMMA_SEPARATOR);
-            goalList.add(new Goal(arguments[0], arguments[1]));
+            goalList.add(new Goal(arguments[0], arguments[1], arguments[2]));
         }
 
         LOGGER.fine("Goal list file read successfully.");
@@ -62,7 +62,8 @@ public class GoalStorage {
 
         for (int i = 0; i < goalList.getSize(); i++) {
             goal = goalList.getGoal(i);
-            fileWriter.write(goal.getGoalType()
+            fileWriter.write(goal.getCreatedDate()
+                    + COMMA_SEPARATOR + goal.getGoalType()
                     + COMMA_SEPARATOR + goal.getDescription() + System.lineSeparator());
         }
 

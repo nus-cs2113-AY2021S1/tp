@@ -18,6 +18,7 @@ public class Messages {
             + "<Number of Calories>";
     public static final String FORMAT_DELETE = "delete food <Index from Food List> "
             + "or delete exercise <Index from Exercise List>";
+    public static final String FORMAT_GOAL = "goal food <goal description> or goal exercise <goal description>";
 
     //User class messages
     public static final String USER_SETUP_GREET = "Before we begin, let me get to know you :)";
@@ -27,11 +28,11 @@ public class Messages {
     public static final String INPUT_WEIGHT = "Please enter your weight (in kg):";
     public static final String INPUT_GENDER = "Please enter your gender (Enter 'M' for Male or 'F' for Female):";
     public static final String SETUP_COMPLETE = "Setup complete!";
-    public static final String ERROR_INVALID_AGE_INPUT = "Oops! That is an invalid age input.\n";
-    public static final String ERROR_INVALID_GENDER_INPUT = "Oops! That is an invalid gender input.\n";
-    public static final String ERROR_INVALID_HEIGHT_INPUT = "Oops! That is an invalid height input.\n";
-    public static final String ERROR_INVALID_WEIGHT_INPUT = "Oops! That is an invalid weight input.\n";
-    public static final String ERROR_INVALID_FITNESS_INPUT = "Oops! That is an invalid fitness level input.\n";
+    public static final String ERROR_INVALID_AGE_INPUT = "Oops! That is an invalid age input.";
+    public static final String ERROR_INVALID_GENDER_INPUT = "Oops! That is an invalid gender input.";
+    public static final String ERROR_INVALID_HEIGHT_INPUT = "Oops! That is an invalid height input.";
+    public static final String ERROR_INVALID_WEIGHT_INPUT = "Oops! That is an invalid weight input.";
+    public static final String ERROR_INVALID_FITNESS_INPUT = "Oops! That is an invalid fitness level input.";
     public static final String NAME_OUTPUT_HEADER = "Name: ";
     public static final String AGE_OUTPUT_HEADER = "Age: ";
     public static final String GENDER_OUTPUT_HEADER = "Gender: ";
