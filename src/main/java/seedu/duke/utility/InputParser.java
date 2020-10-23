@@ -11,6 +11,7 @@ import seedu.duke.commands.UpdateShowSeasonCommand;
 import seedu.duke.commands.UpdateTimeLimitCommand;
 import seedu.duke.commands.WatchCommand;
 import seedu.duke.commands.AddReviewCommand;
+import seedu.duke.commands.SearchCommand;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -117,10 +118,14 @@ public class InputParser {
             parseAddReviewCommand(input);
             return command;
 
+        case "search":
+            parseSearchCommand(command,input);
+            return command;
 
         case "":
             Ui.printNoInputException();
             return command;
+
 
         default:
             Ui.printBadInputException();
@@ -184,6 +189,20 @@ public class InputParser {
         try {
             WatchCommand showWatched = new WatchCommand(command, tokenizedString);
             showWatched.processCommand();
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printSpecifyShowName();
+            return;
+        } catch (NullPointerException e) {
+            Ui.printNotFoundException();
+            return;
+        }
+    }
+
+    private static void parseSearchCommand(String command,String input) {
+        ArrayList<String> tokenizedString = tokenizeStringArray(input);
+        try {
+            SearchCommand searchCommand = new SearchCommand(command,tokenizedString);
+            searchCommand.processCommand();
         } catch (IndexOutOfBoundsException e) {
             Ui.printSpecifyShowName();
             return;
