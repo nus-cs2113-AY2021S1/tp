@@ -26,7 +26,7 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
    	                  |_|
    	 How may i assist you?
    	____________________________________________________________
-   Enter command: 
+   	 Enter command: 
    ```
    Type some word and press enter to let the execution proceed to the end.
 
